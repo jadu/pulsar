@@ -1,1 +1,7 @@
-@import url(../libraries/normalize.css/normalize.css);
+@import url(libs/normalize-css/normalize.css);
+@import url(libs/font-awesome/css/font-awesome.css);
+/**
+ * SCAFFOLDING
+ */
+body {
+  margin: 0; }

@@ -1,1 +1,7 @@
-@import '../libraries/normalize.css/normalize.css';
+// External dependencies
+@import 'libs/normalize-css/normalize.css';
+@import 'libs/font-awesome/css/font-awesome.css';
+
+@import 'variables';
+@import 'scaffolding';
+@import 'colours';

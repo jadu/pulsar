@@ -1,0 +1,10 @@
+// Pulsar palette
+$black: #222;
+$blue: #2455c3;
+
+// Semantic colour names
+$text-color: $black;
+$link-color: $blue;
+$link-active-color: $blue;
+$link-hover-color: darken($blue, 10%);
+$link-visited-color: darken($blue, 10%);
