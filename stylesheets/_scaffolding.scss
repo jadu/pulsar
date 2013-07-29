@@ -1,7 +1,13 @@
-/**
- * SCAFFOLDING
+/** 
+ * -----------------------------------------------------------------------------
+ *  _scaffolding.scss
+ * ----------------------------------------------------------------------------- 
  */
 
-body {
-	margin: 0;
+body {	
+    font-family: $baseFontFamily;
+    font-size: $baseFontSize;
+    line-height: $baseLineHeight;
+    margin: 0;
+  
 }

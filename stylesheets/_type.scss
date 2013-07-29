@@ -1,0 +1,35 @@
+/** 
+ * -----------------------------------------------------------------------------
+ *  _type.scss
+ * ----------------------------------------------------------------------------- 
+ */
+
+@font-face {
+    font-family: 'Proxima Nova';
+    src: url('#{$fontsPath}proximanova-webfont.eot');
+    src: local('☺'),
+         url('#{$fontsPath}proximanova-webfont.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Proxima Nova Semibold';
+    src: url('#{$fontsPath}proximanova-sbold-webfont.eot');
+    src: local('☺'),
+         url('#{$fontsPath}proximanova-sbold-webfont.ttf') format('truetype');
+}
+
+// Headings
+h1, h2, h3, h4, h5, h6 {
+    margin: ($baseLineHeight / 2) 0;
+}
+
+h1,
+h2,
+h3 { line-height: $baseLineHeight * 2; }
+
+h1 { font-size: $baseFontSize * 2.75; } // ~38px
+h2 { font-size: $baseFontSize * 2.25; } // ~32px
+h3 { font-size: $baseFontSize * 1.75; } // ~24px
+h4 { font-size: $baseFontSize * 1.25; } // ~18px
+h5 { font-size: $baseFontSize; }
+h6 { font-size: $baseFontSize * 0.85; } // ~12px

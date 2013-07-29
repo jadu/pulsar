@@ -1,7 +1,53 @@
-@import url(libs/normalize-css/normalize.css);
-@import url(libs/font-awesome/css/font-awesome.css);
-/**
- * SCAFFOLDING
+@import url(../libs/normalize-css/normalize.css);
+@import url(../libs/font-awesome/css/font-awesome.css);
+/** 
+ * -----------------------------------------------------------------------------
+ *  _scaffolding.scss
+ * ----------------------------------------------------------------------------- 
  */
 body {
+  font-family: "Proxima Nova", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  font-size: 14px;
+  line-height: 20px;
   margin: 0; }
+
+/** 
+ * -----------------------------------------------------------------------------
+ *  _type.scss
+ * ----------------------------------------------------------------------------- 
+ */
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url("../fonts/proximanova-webfont.eot");
+  src: local("☺"), url("../fonts/proximanova-webfont.ttf") format("truetype"); }
+
+@font-face {
+  font-family: 'Proxima Nova Semibold';
+  src: url("../fonts/proximanova-sbold-webfont.eot");
+  src: local("☺"), url("../fonts/proximanova-sbold-webfont.ttf") format("truetype"); }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 10px 0; }
+
+h1,
+h2,
+h3 {
+  line-height: 40px; }
+
+h1 {
+  font-size: 38.5px; }
+
+h2 {
+  font-size: 31.5px; }
+
+h3 {
+  font-size: 24.5px; }
+
+h4 {
+  font-size: 17.5px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  font-size: 11.9px; }
