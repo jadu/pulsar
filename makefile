@@ -6,7 +6,12 @@ BUILD := build
 
 build:
 	@ echo "${HEADER}"
-	@ echo "Installing front-end dependencies...${HR}"
+
+	@ echo "Installing Composer packages...${HR}"
+	@ php composer.phar install
+	@ echo "\n${CHECK} Done"
+
+	@ echo "${HR}\nInstalling front-end dependencies...${HR}"
 	@ echo "Installing Sass..."
 		@ gem install sass
 		@ gem install --version "~> 0.9" rb-fsevent
@@ -20,7 +25,11 @@ build:
 
 clean:
 	@ echo "${HEADER}"
-	@ echo "Removing front-end libraries...${HR}"
+	@ echo "Removing Composer packages...${HR}"
+	@ rm -rf vendor/*
+	@ echo "\n${CHECK} Done"
+
+	@ echo "${HR}\nRemoving front-end libraries...${HR}"
 	@ rm -rf libs/*
 	@ echo "\n${CHECK} Done\n"
 

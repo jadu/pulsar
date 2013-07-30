@@ -5,11 +5,21 @@
  *  _scaffolding.scss
  * ----------------------------------------------------------------------------- 
  */
+* {
+  box-sizing: border-box; }
+
 body {
+  background-color: #efefef;
   font-family: "Proxima Nova", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   font-size: 14px;
   line-height: 20px;
   margin: 0; }
+
+a {
+  color: #2455c3; }
+
+a:hover {
+  color: #142f6d; }
 
 /** 
  * -----------------------------------------------------------------------------
@@ -51,3 +61,103 @@ h5 {
 
 h6 {
   font-size: 11.9px; }
+
+ul, ol {
+  margin: 0 0 10px 25px;
+  padding: 0; }
+
+dl {
+  margin: 0 0 10px 10px; }
+
+dt {
+  font-weight: bold; }
+
+dd {
+  margin-left: 1em; }
+
+/** 
+ * -----------------------------------------------------------------------------
+ *  _buttons.scss
+ * -----------------------------------------------------------------------------
+ * 
+ * Interface buttons can be links, buttons or submit inputs and can be used 
+ * anywhere in the UI for different needs.
+ *
+ * Example:
+ *
+ * <a class="button [button--modifier]" role="button" href="#">Button text</a>
+ * <button class="button [button--modifier]" type="submit">Button text</button>
+ * <input class="button [button--modifier]" type="submit" value="Button text">
+ */
+/**
+ * Button constructor
+ *
+ * 1. Corrects inability to style clickable `input` types in iOS
+ * 2. Normalize `box-sizing` across all elements that this component could be
+ *    applied to.
+ * 3. Inherit text color from ancestor.
+ * 4. Inherit font styles from ancestor.
+ * 5. Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+.
+ * 6. Prevent button text from being selectable.
+ * 7. Prevent wrapping across multiple lines.
+ */
+.button {
+  -webkit-appearance: none;
+  /* 1 */
+  background: transparent;
+  border: 1px solid;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  /* 2 */
+  color: inherit;
+  /* 3 */
+  cursor: pointer;
+  display: inline-block;
+  font: inherit;
+  /* 4 */
+  line-height: normal;
+  /* 5 */
+  margin: 0;
+  padding: 0.4em 0.75em;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  /* 6 */
+  vertical-align: middle;
+  white-space: nowrap;
+  /* 7 */ }
+
+/**
+ * UI states
+ */
+.button:hover,
+.button:focus,
+.button:active {
+  text-decoration: none; }
+
+.button:disabled,
+.button.is-disabled {
+  cursor: default; }
+
+/**
+ * Remove excess padding and border in Firefox 4+
+ */
+.button::moz-focus-inner {
+  border: 0;
+  padding: 0; }
+
+/** 
+ * -----------------------------------------------------------------------------
+ *  _navbar.scss
+ * ----------------------------------------------------------------------------- 
+ */
+.navbar {
+  background-color: #222222; }
+  .navbar a {
+    color: white; }
+    .navbar a:hover {
+      color: #e6e6e6; }

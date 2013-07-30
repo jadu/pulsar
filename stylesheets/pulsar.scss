@@ -1,7 +1,13 @@
 @import '../libs/normalize-css/normalize.css';
+@import '../libs/bourbon/app/assets/stylesheets/bourbon';
 @import '../libs/font-awesome/css/font-awesome.css';
 
+// Structure
 @import 'variables';
+@import 'colours';
 @import 'scaffolding';
 @import 'type';
-@import 'colours';
+
+// Components
+@import 'buttons';
+@import 'navbars';
