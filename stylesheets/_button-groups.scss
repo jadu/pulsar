@@ -1,0 +1,21 @@
+.btn__group {
+	
+}
+
+.btn__group > .btn {
+	border-radius: 0;
+}
+
+.btn__group > .btn + .btn {
+	margin-left: -1px;
+}
+
+.btn__group > .btn:first-child {
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px;
+}
+
+.btn__group > .btn:last-child {
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+}

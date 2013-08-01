@@ -1,3 +1,20 @@
+$toolbarHeight: $baseLineHeight * 2;
+$brandHeight: 24px;
+
 .toolbar {
 	background-color: $black;
+	height: $toolbarHeight;
+}
+
+.brand {
+	@include hide-text;
+	
+	background-repeat: no-repeat;
+	background-image: url('../images/jaduIdent.png');
+	height: $brandHeight;
+	margin: 0 $gutterWidth;
+	overflow: hidden;
+	position: relative;
+	top: ($toolbarHeight - $brandHeight) / 2;
+	width: 75px;
 }

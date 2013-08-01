@@ -2,10 +2,9 @@
 
 $black: #222;
 $blue: #2455c3;
+$grey: #ccc;
 $offWhite: #efefef;
 $white: #fff;
-
-// Semantic colour names
 
 $textColor: $black;
 
@@ -14,3 +13,10 @@ $linkHoverColor: darken($blue, 20%);
 
 $inverseLinkColor: $white;
 $inverseLinkHoverColor: darken($white, 10%);
+
+$btnPrimaryColor: lighten(#357ebd, 10%);
+$btnSuccessColor: lighten(#5cb85c, 10%);
+$btnWarningColor: lighten(#eea236, 10%);
+$btnDangerColor: lighten(#d43f3a, 10%);
+$btnInfoColor: lighten(#46b8da, 10%);
+$btnInverseColor: lighten(#3a3c3c, 10%);

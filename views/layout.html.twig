@@ -27,20 +27,42 @@
 
     <header id="top">
     	<div class="toolbar">
-            <h1>{{ html.link('Jadu', '/search') }}</h1>
+            <h1 class="brand">{{ html.link('Jadu', '/search') }}</h1>
         </div>
 
-        <nav>
+        <nav class="breadcrumb">
             <ul>
-                <li>Bread</li>
-                <li>Crumb</li>
+                <li><a href="#">Bread</a></li>
+                <li><span>Crumb</span></li>
             </ul>
         </nav>
     </header>
 
-    {{ html.button('<i class="icon-arrow-left"></i>', null, null, null, null, 'onclick="history.back(); return false"') }}
+    <div class="actionsbar actionsbar--left">
+        {{ html.button('<i class="icon-arrow-left"></i>', null, null, null, null, 'onclick="history.back(); return false;"') }}
+        {{ html.button('Actions') }}
 
-    <h1>{{ heading }}</h1>
+        {% set buttons = [html.button('test1'), html.button('test2')] %}
+        
+        {% for button in buttons %}
+            {{ button }}
+        {% endfor %}
+
+    </div>
+
+    {{ 
+        html.buttonGroup([ 
+            html.button('Left'), 
+            html.button('Middle'),
+            html.button('Right') 
+        ]) 
+    }}
+
+    <!-- <h1>{{ heading }}</h1> -->
+
+    <div class="actionsbar actionsbar--right">
+        {{ html.button('Primary Action', 'btn--primary') }}
+    </div>
 
     <div role="main" class="container">
         {% block content %}{% endblock %}

@@ -1,0 +1,18 @@
+@mixin baseline-grid {
+    $columns: 16;
+    $column-color: rgba(200,0,0,.2);
+    $baseline-color: rgba(56,255,255,.8);
+    
+    // These are all automatically calculated
+    $gutters: ($columns - 1);
+    $column-width: 200px;
+    
+    background-image: -webkit-linear-gradient(0deg, $column-color $column-width, transparent $gutterWidth),
+                      -webkit-linear-gradient(top, rgba(0,0,0,0) 95%, $baseline-color 100%);
+    background-image: -moz-linear-gradient(0deg, $column-color $column-width, transparent $gutterWidth),
+                      -moz-linear-gradient(top, rgba(0,0,0,0) 95%, $baseline-color 100%);
+    background-image: -o-linear-gradient(0deg, $column-color $column-width, transparent $gutterWidth),
+                      -o-linear-gradient(top, rgba(0,0,0,0) 95%, $baseline-color 100%);
+    background-size: ($column-width + $gutterWidth) 100%, 100% $baseLineHeight;
+    background-position: $gutterWidth 0px; // Use to offset and center your grid
+}

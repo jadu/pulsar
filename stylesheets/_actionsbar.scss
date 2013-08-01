@@ -1,0 +1,31 @@
+// .actionsbar {
+// 	height: $baseLineHeight * 1.5;
+// 	margin: 0 $gutterWidth ($baseLineHeight / 2) $gutterWidth;
+// 	outline: 1px solid red;
+
+// 	h1 {
+// 		display: inline;
+// 		font-size: 1.75em;
+// 		line-height: 1em;
+// 		border: 1px solid red;
+// 	}
+
+// }
+
+.actionsbar {
+	display: inline-block;
+	margin: 0 $gutterWidth ($baseLineHeight / 2) $gutterWidth;
+
+	button {
+		height: $baseLineHeight * 1.5;
+	}
+}
+
+.actionsbar--left {
+	float: left;
+	width: $tabColumnWidth;
+}
+
+.actionsbar--right {
+	float: right;
+}

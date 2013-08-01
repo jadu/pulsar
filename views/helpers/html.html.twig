@@ -1,18 +1,37 @@
 {% macro button(label, class, type, id, href, attributes) %}
     {%- if type == 'link' -%}
 
-		<a href="{{ href|default('#') }}" class="btn{% if class is not empty %} {{ class }}{% endif %}"{% if id is not empty %} id="{{ id }}"{% endif %}{% if attributes is not empty %} {{ attributes|raw }}{% endif %}>{{ label|default('button')|raw }}</a>
+		<a href="{{ href|default('#') }}" class="btn{% if class is not empty %} {{ class }}{% endif %}"{% if id is not empty %} id="{{ id }}"{% endif %} role="button" {% if attributes is not empty %} {{ attributes|raw }}{% endif %}>{{ label|default('button')|raw }}</a>
 
     {%- elseif type == 'input' -%}
 
-		<input type="submit" class="btn{% if class is not empty %} {{ class }}{% endif %}{% if id is not empty %} id="{{ id }}"{% endif %}value="{{ label|default('button')|raw }}"{% if attributes is not empty %} {{ attributes|raw }}{% endif %} />
+		<input type="button" class="btn{% if class is not empty %} {{ class }}{% endif %}"{% if id is not empty %} id="{{ id }}"{% endif %} value="{{ label|default('button')|raw }}"{% if attributes is not empty %} {{ attributes|raw }}{% endif %}{% if 'is-disabled' in class %} disabled="disabled"{% endif %} />
+
+	{%- elseif type == 'submit' -%}
+
+		<input type="submit" class="btn{% if class is not empty %} {{ class }}{% endif %}"{% if id is not empty %} id="{{ id }}"{% endif %} value="{{ label|default('button')|raw }}"{% if attributes is not empty %} {{ attributes|raw }}{% endif %}{% if 'is-disabled' in class %} disabled="disabled"{% endif %} />
 
 	{%- else -%}
 
-		<button class="btn{% if class is not empty %} {{ class }}{% endif %}"{% if id is not empty %} id="{{ id }}"{% endif %}{% if attributes is not empty %} {{ attributes|raw }}{% endif %}>{{ label|default('button')|raw }}</button>
+		<button class="btn{% if class is not empty %} {{ class }}{% endif %}"{% if id is not empty %} id="{{ id }}"{% endif %}{% if attributes is not empty %} {{ attributes|raw }}{% endif %}{% if 'is-disabled' in class %} disabled="disabled"{% endif %}>{{ label|default('button')|raw }}</button>
 
 	{%- endif -%}
 {% endmacro %}
+
+
+{%- macro buttonGroup(buttons) -%}
+
+	<div class="btn__group">
+
+	{%- for button in buttons -%}
+
+		{{ button }}
+
+	{%- endfor -%}
+
+	</div>
+
+{%- endmacro -%}
 
 
 {%- macro link(label, href, class, id) -%}

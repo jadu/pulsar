@@ -73,3 +73,44 @@
     border: 0;
     padding: 0;
 }
+
+/**
+ * Visual variations
+ */
+
+.btn {
+    @include button(simple, darken($white, 10%));
+}
+
+.btn--primary {
+    @include button(simple, $btnPrimaryColor);
+}
+
+.btn--success {
+    @include button(simple, $btnSuccessColor);
+}
+
+.btn--warning {
+    @include button(simple, $btnWarningColor);
+}
+
+.btn--danger {
+    @include button(simple, $btnDangerColor);
+}
+
+.btn--info {
+    @include button(simple, $btnInfoColor);
+}
+
+.btn--inverse {
+    @include button(simple, $btnInverseColor);
+}
+
+/*
+ * Override Bourbon's defaults
+ */
+
+.btn {
+    font-size: 14px;
+    font-weight: normal;
+}

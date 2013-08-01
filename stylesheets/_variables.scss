@@ -1,9 +1,14 @@
+// Type
 $fontsPath: '../fonts/';
-
 $sansSerifFontFamily: "Proxima Nova", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 $sansSerifSemiBoldFontFamily: "Proxima Nova Semibold", "Proxima Nova", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 
 // Typographic grid
 $baseFontFamily: $sansSerifFontFamily;
-$baseFontSize: 14px;
-$baseLineHeight: 20px;
+$baseFontSize: 16px;
+$baseLineHeight: 22px;
+
+// Columnar grid
+$gutterWidth: 20px;
+$tabColumnWidth: 200px;
+$sidebarColumnWidth: 200px;

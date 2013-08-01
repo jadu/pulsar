@@ -8,12 +8,29 @@
 	box-sizing: border-box;
 }
 
-body {	
+body {
+	@include baseline-grid;
+
 	background-color: $offWhite;
     font-family: $baseFontFamily;
     font-size: $baseFontSize;
     line-height: $baseLineHeight;
     margin: 0;
+    padding: 0;
+}
+
+header {
+	margin-bottom: $baseLineHeight - 1;
+}
+
+.container {
+	clear: both;
+	outline: 1px solid blue;
+	margin: 0 $gutterWidth;
+}
+
+footer {
+	margin-top: $baseLineHeight;
 }
 
 // Links

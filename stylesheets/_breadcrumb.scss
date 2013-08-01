@@ -1,0 +1,22 @@
+.breadcrumb {
+	border-bottom: 1px solid $black;
+
+	ul {
+		list-style-type: none;
+		margin: 0 0 0 $gutterWidth;
+	}
+
+	li {
+		display: inline;
+		margin-right: $gutterWidth;
+		padding: 0;
+	}
+
+	li > a,
+	li > span {
+		display: inline-block;
+		line-height: ($baseLineHeight * 2) - 1;
+
+	}
+
+}

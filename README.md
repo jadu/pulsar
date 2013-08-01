@@ -1,6 +1,9 @@
+<link href="css/markdown.css" rel="stylesheet"></link>
+
 # Pulsar
 _Beautiful human interfaces — Stellar user experiences_
 
+----
 ## Setup
 
 ### Requirements
@@ -33,7 +36,7 @@ You can reverse the make process by using:
 
 At the moment, this will not remove the Sass dependency that was installed, in case you need it for other things. You can remove it yourself by `$ sudo gem uninstall sass`.
 
-
+----
 ## Developing with Pulsar
 
 ### Detecting Sass changes
@@ -41,6 +44,8 @@ At the moment, this will not remove the Sass dependency that was installed, in c
 If you're going to make changes to any Pulsar files you'll need to tell Pulsar to watch for changes to your stylesheets, in the Pulsar directory type:
 
 `$ make start`
+
+This will watch all the sass files and recompile `pulsar.css` when they change. Currently we don't do any style injection or live reloading in the browser for you, that may come later.
 
 ## Helpers
 
@@ -56,34 +61,81 @@ These helpers are available globally in the templates.
 
 ### Buttons
 
-Interface buttons — while they look the same — can be links, buttons or submit inputs and can be used anywhere in the UI for different needs.
+Interface buttons — while they look the same — can be links, buttons or inputs and can be used anywhere in the UI for different needs.
 
-Usage:
+Available attributes:
 
-	{{ html.button(label, class, id, type, href) }}
+	{{ html.button(label, class, id, type, href, attributes) }}
 
-Where possible, you should use the default button type
+#### Multiple tags (type)
 
-	{{ html.button('this is a regular button') }}
+Where possible, you should use the default button type, but buttons can also be links and inputs.
+
+	{{ html.button('Button') }}
+	{{ html.button('Link Button', null, 'link', null, 'http://myurl.com') }}
+	{{ html.button('Input Button', null, 'input') }}
+	{{ html.button('Submit Button', null, 'submit') }}
 	
-Buttons can also be regular links by changing the `type` attribute and supplying the `href` value
-	
-	{{ html.button('this is a link button', 'btn--primary', 'link', null, 'http://myurl.com') }}
-	
-We can also use submit inputs if your button needs to do form operations, although depending on the context you might want to use the `form.input` helper
-	
-	{{ html.button('this is an input button', btn--success, 'input') }}
-	
-#### Variations
+<button class="btn">Button</button>
+<a href="http://myurl.com" class="btn" role="button">Link Button</a>
+<input type="button" class="btn" value="Input Button" />
+<input type="submit" class="btn" value="Submit Button" />
+
+#### Variations (class)
 
 The following modifier classes can be applied to the `class` attribute to change the visual appearance of all button types
 
-* `btn--primary`
-* `btn--secondary`
-* `btn--success`
-* `btn--danger`
-* `btn--warning`
-* `btn--info`
-* `btn--inverse`
-* `is-selected`
-* `is-disabled`
+	<!-- The normal type of button you should use -->
+	{{ html.button('Default') }}
+	
+	<!-- In the context of a full UI, this is the main thing we want the user to do next -->
+	{{ html.button('Primary', 'btn--primary') }}
+	
+	<!-- Indicates a successful or positive action -->
+	{{ html.button('Success', 'btn--success') }}
+	
+	<!-- Indicates a dangerous or destructive action -->
+	{{ html.button('Danger', 'btn--danger') }}
+	
+	<!-- Indicates caution should be taken here -->
+	{{ html.button('Warning', 'btn--warning') }}
+	
+	<!-- Contextual button for informational alert messages -->
+	{{ html.button('Info', 'btn--info') }}
+	
+	<!-- Rarely used, a good example is a 'locked content' button -->
+	{{ html.button('Inverse', 'btn--inverse') }}
+	
+<button class="btn">Default</button>
+<button class="btn btn--primary">Primary</button>
+<button class="btn btn--success">Success</button>
+<button class="btn btn--danger">Danger</button>
+<button class="btn btn--warning">Warning</button>
+<button class="btn btn--info">Info</button>
+<button class="btn btn--inverse">Inverse</button>
+	
+#### Disabled buttons
+
+Adding the `is-disabled` class to a button will automatically add the `disabled` attribute to `button` `input` and `submit` type buttons.
+
+	{{ html.button('Disabled Button', 'is-disabled') }}
+
+	// output:
+	// <button class="btn is-disabled" disabled="disabled">Disabled Button</button>		
+	
+<button class="btn is-disabled" disabled>Disabled Button</button>
+
+### Button Groups
+
+Group a series of related buttons together on a single line with the button group by passing the `buttonGroup` helper an array of `button` elements.
+	
+	{{ 
+		html.buttonGroup([ 
+			html.button('Left'), 
+			html.button('Middle'),
+			html.button('Right') 
+		]) 
+	}}
+	
+<div class="btn__group"><button class="btn">Left</button><button class="btn">Middle</button><button class="btn">Right</button></div>
+	
