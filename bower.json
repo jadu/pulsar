@@ -4,7 +4,7 @@
   "ignore": [
     "**/.*",
     "node_modules",
-    "components",
+    "libs",
     "bower_components",
     "test",
     "tests"
@@ -13,6 +13,7 @@
     "jquery": "latest",
     "normalize-css": "latest",
     "font-awesome": "latest",
-    "bourbon": "latest"
+    "bourbon": "latest",
+    "respond": "latest"
   }
 }

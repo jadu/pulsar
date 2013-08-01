@@ -26,7 +26,7 @@
  * 7. Prevent wrapping across multiple lines.
  */
 
-.button {
+.btn {
     -webkit-appearance: none; /* 1 */
     background: transparent;
     border: 1px solid;
@@ -54,14 +54,14 @@
  * UI states
  */
 
-.button:hover,
-.button:focus,
-.button:active {
+.btn:hover,
+.btn:focus,
+.btn:active {
     text-decoration: none;
 }
 
-.button:disabled,
-.button.is-disabled {
+.btn:disabled,
+.btn.is-disabled {
     cursor: default;
 }
 
@@ -69,7 +69,7 @@
  * Remove excess padding and border in Firefox 4+
  */
 
-.button::moz-focus-inner {
+.btn::moz-focus-inner {
     border: 0;
     padding: 0;
 }

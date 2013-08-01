@@ -1,0 +1,20 @@
+{% macro button(label, class, type, id, href, attributes) %}
+    {%- if type == 'link' -%}
+
+		<a href="{{ href|default('#') }}" class="btn{% if class is not empty %} {{ class }}{% endif %}"{% if id is not empty %} id="{{ id }}"{% endif %}{% if attributes is not empty %} {{ attributes|raw }}{% endif %}>{{ label|default('button')|raw }}</a>
+
+    {%- elseif type == 'input' -%}
+
+		<input type="submit" class="btn{% if class is not empty %} {{ class }}{% endif %}{% if id is not empty %} id="{{ id }}"{% endif %}value="{{ label|default('button')|raw }}"{% if attributes is not empty %} {{ attributes|raw }}{% endif %} />
+
+	{%- else -%}
+
+		<button class="btn{% if class is not empty %} {{ class }}{% endif %}"{% if id is not empty %} id="{{ id }}"{% endif %}{% if attributes is not empty %} {{ attributes|raw }}{% endif %}>{{ label|default('button')|raw }}</button>
+
+	{%- endif -%}
+{% endmacro %}
+
+
+{%- macro link(label, href, class, id) -%}
+	<a href="{{ href|default('#') }}"{% if class is not empty %} class="{{ class }}"{% endif %}{% if id is not empty %} id="{{ id }}"{% endif %}>{{ label|default('link')|raw }}</a>
+{%- endmacro -%}

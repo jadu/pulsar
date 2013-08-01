@@ -1,0 +1,55 @@
+{% import 'helpers/html.html.twig' as html %}
+{% set cssPath = '../css/' %}
+{% set libsPath = '../libs/' %}
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{% block title %}Pulsar{% endblock %}</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'pulsar.css' }}" />
+
+    <!--[if IE 7]>
+    <link rel="stylesheet" type="text/css" href="{{ libsPath ~ 'font-awesome/css/font-awesome-ie7.min.css' }}" />
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="{{ libsPath ~ 'respond/respond.min.js' }}"></script>
+    <![endif]-->
+</head>
+<body>
+
+    <header id="top">
+    	<div class="toolbar">
+            <h1>{{ html.link('Jadu', '/search') }}</h1>
+        </div>
+
+        <nav>
+            <ul>
+                <li>Bread</li>
+                <li>Crumb</li>
+            </ul>
+        </nav>
+    </header>
+
+    {{ html.button('<i class="icon-arrow-left"></i>', null, null, null, null, 'onclick="history.back(); return false"') }}
+
+    <h1>{{ heading }}</h1>
+
+    <div role="main" class="container">
+        {% block content %}{% endblock %}
+    </div>
+
+    <footer>
+        {{ html.link('Back to top', '#top') }}
+        {{ html.link('Jadu 1.12 &copy; 2013', '/credits') }}
+    </footer>
+
+</body>
+</html>

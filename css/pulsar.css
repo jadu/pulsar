@@ -101,7 +101,7 @@ dd {
  * 6. Prevent button text from being selectable.
  * 7. Prevent wrapping across multiple lines.
  */
-.button {
+.btn {
   -webkit-appearance: none;
   /* 1 */
   background: transparent;
@@ -134,19 +134,19 @@ dd {
 /**
  * UI states
  */
-.button:hover,
-.button:focus,
-.button:active {
+.btn:hover,
+.btn:focus,
+.btn:active {
   text-decoration: none; }
 
-.button:disabled,
-.button.is-disabled {
+.btn:disabled,
+.btn.is-disabled {
   cursor: default; }
 
 /**
  * Remove excess padding and border in Firefox 4+
  */
-.button::moz-focus-inner {
+.btn::moz-focus-inner {
   border: 0;
   padding: 0; }
 
@@ -161,3 +161,6 @@ dd {
     color: white; }
     .navbar a:hover {
       color: #e6e6e6; }
+
+.toolbar {
+  background-color: #222222; }
