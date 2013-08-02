@@ -21,7 +21,7 @@
 // Headings
 
 h1, h2, h3, h4, h5, h6 {
-    margin: ($baseLineHeight / 2) 0;
+    margin: 0 0 $baseLineHeight 0;
 }
 
 h1,
@@ -42,7 +42,7 @@ p {
 // Lists
 
 ul, ol {
-	margin: 0 0 $baseLineHeight / 2 25px;
+	margin: 0 0 $baseLineHeight 25px;
 	padding: 0;
 }
 

@@ -39,24 +39,13 @@
     </header>
 
     <div class="actionsbar actionsbar--left">
-        {{ html.button('<i class="icon-arrow-left"></i>', null, null, null, null, 'onclick="history.back(); return false;"') }}
-        {{ html.button('Actions') }}
-
-        {% set buttons = [html.button('test1'), html.button('test2')] %}
-        
-        {% for button in buttons %}
-            {{ button }}
-        {% endfor %}
-
+        {{ 
+            html.button_group([
+                html.button('<i class="icon-arrow-left"></i>', null, null, null, null, 'onclick="history.back(); return false;"'),
+                html.button('Actions')
+            ])
+        }}
     </div>
-
-    {{ 
-        html.buttonGroup([ 
-            html.button('Left'), 
-            html.button('Middle'),
-            html.button('Right') 
-        ]) 
-    }}
 
     <!-- <h1>{{ heading }}</h1> -->
 
@@ -65,7 +54,8 @@
     </div>
 
     <div role="main" class="container">
-        {% block content %}{% endblock %}
+        {% block tabs_list %}{% endblock %}
+        {% block tabs_content %}{% endblock %}
     </div>
 
     <footer>

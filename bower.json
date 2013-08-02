@@ -14,6 +14,7 @@
     "normalize-css": "latest",
     "font-awesome": "latest",
     "bourbon": "latest",
-    "respond": "latest"
+    "respond": "latest",
+    "daux.io": "justinwalsh/daux.io"
   }
 }

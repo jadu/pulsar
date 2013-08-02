@@ -19,21 +19,48 @@
 {% endmacro %}
 
 
-{%- macro buttonGroup(buttons) -%}
-
+{%- macro button_group(buttons) -%}
 	<div class="btn__group">
-
 	{%- for button in buttons -%}
-
 		{{ button }}
-
 	{%- endfor -%}
-
 	</div>
-
 {%- endmacro -%}
 
 
 {%- macro link(label, href, class, id) -%}
 	<a href="{{ href|default('#') }}"{% if class is not empty %} class="{{ class }}"{% endif %}{% if id is not empty %} id="{{ id }}"{% endif %}>{{ label|default('link')|raw }}</a>
+{%- endmacro -%}
+
+
+{%- macro tabs(tab_labels, selected_tab) -%}
+	<ul class="nav nav__tabs">
+		{%- for tab_label in tab_labels -%}
+		
+		{% if loop.index == selected_tab %}
+			{% set class = 'is-selected' %}
+		{% else %}
+			{% set class = '' %}
+		{% endif %}
+
+		<li>{{ _self.link(tab_label, '#tab_' ~ loop.index, class) }}</li>
+		{%- endfor -%}
+	</ul>
+{%- endmacro -%}
+
+{%- macro tabs_content(tab_contents, selected_tab) -%}
+	<div class="tab__content">
+
+	{% if loop.index == selected_tab %}
+		{% set class = ' is-selected' %}
+	{% else %}
+		{% set class = '' %}
+	{% endif %}
+
+	{%- for tab_content in tab_contents -%}
+		<div class="tab__pane{{ class }}" id="tab_{{ loop.index }}">
+			{{ tab_content }}
+		</div>
+	{%- endfor -%}
+	</div>
 {%- endmacro -%}

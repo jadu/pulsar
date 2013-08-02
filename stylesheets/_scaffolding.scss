@@ -9,7 +9,7 @@
 }
 
 body {
-	@include baseline-grid;
+	// @include baseline-grid;
 
 	background-color: $offWhite;
     font-family: $baseFontFamily;
@@ -25,7 +25,6 @@ header {
 
 .container {
 	clear: both;
-	outline: 1px solid blue;
 	margin: 0 $gutterWidth;
 }
 

@@ -1,0 +1,36 @@
+.nav {
+	list-style: none;
+}
+
+ul.nav, ol.nav {
+	margin: 0;
+	padding: 0;
+}
+
+.nav__tabs {
+	float: left;
+	width: $tabColumnWidth;
+
+	> li {
+		margin-bottom: 1px;
+	}
+
+	> li > a {
+		border: 1px solid $grey;
+		border-right: none;
+		border-top-left-radius: $borderRadius;
+		border-bottom-left-radius: $borderRadius;
+		display: block;
+		line-height: $baseLineHeight * 2 - 3px;
+		padding: 0 $gutterWidth / 2;
+		text-decoration: none;
+	}
+
+	> li > a:hover {
+		background-color: $lightGrey;
+	}
+
+	> li > a.is-selected {
+		background-color: darken($lightGrey, 10%);
+	}
+}
