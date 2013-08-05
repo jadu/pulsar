@@ -28,36 +28,37 @@
 {%- endmacro -%}
 
 
-{%- macro link(label, href, class, id) -%}
-	<a href="{{ href|default('#') }}"{% if class is not empty %} class="{{ class }}"{% endif %}{% if id is not empty %} id="{{ id }}"{% endif %}>{{ label|default('link')|raw }}</a>
+{%- macro link(label, href, class, id, attributes) -%}
+	<a href="{{ href|default('#') }}"{% if class is not empty %} class="{{ class }}"{% endif %}{% if id is not empty %} id="{{ id }}"{% endif %}{% if attributes is not empty %} {{ attributes|raw }}{% endif %}>{{ label|default('link')|raw }}</a>
 {%- endmacro -%}
 
 
-{%- macro tabs(tab_labels, selected_tab) -%}
-	<ul class="nav nav__tabs">
-		{%- for tab_label in tab_labels -%}
+{%- macro tabs(tab_labels, active_tab = 1) -%}
+	<ul class="tabs__list">
+	{%- for tab_label in tab_labels -%}
 		
-		{% if loop.index == selected_tab %}
-			{% set class = 'is-selected' %}
+		{% if loop.index == active_tab %}
+			{% set class = ' class=is-active' %}
 		{% else %}
 			{% set class = '' %}
 		{% endif %}
 
-		<li>{{ _self.link(tab_label, '#tab_' ~ loop.index, class) }}</li>
-		{%- endfor -%}
+		<li{{ class }}>{{ _self.link(tab_label, '#tab_' ~ loop.index, null, null, 'data-toggle="tab"') }}</li>
+	{%- endfor -%}
 	</ul>
 {%- endmacro -%}
 
-{%- macro tabs_content(tab_contents, selected_tab) -%}
-	<div class="tab__content">
 
-	{% if loop.index == selected_tab %}
-		{% set class = ' is-selected' %}
-	{% else %}
-		{% set class = '' %}
-	{% endif %}
-
+{%- macro tabs_content(tab_contents, active_tab = 1) -%}
+	<div class="tabs__content">
 	{%- for tab_content in tab_contents -%}
+
+		{% if loop.index == active_tab %}
+			{% set class = ' is-active' %}
+		{% else %}
+			{% set class = '' %}
+		{% endif %}
+
 		<div class="tab__pane{{ class }}" id="tab_{{ loop.index }}">
 			{{ tab_content }}
 		</div>

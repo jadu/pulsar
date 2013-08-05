@@ -10,7 +10,7 @@
 			'tab1',
 			'tab2',
 			'tab3'
-		], 2)
+		])
 	}}
 {% endblock %}
 
@@ -42,9 +42,10 @@
 {% endset %}
 
 {% set tab2 %}
+	This is tab 2
 
 {% endset %}
 
 {% block tabs_content %}
-	{{ html.tabs_content([tab1, tab2], 2) }}
+	{{ html.tabs_content([tab1, tab2]) }}
 {% endblock %}

@@ -1,5 +1,6 @@
 {% import 'helpers/html.html.twig' as html %}
-{% set cssPath = '../css/' %}
+{% set cssPath  = '../css/' %}
+{% set jsPath   = '../javascripts/' %}
 {% set libsPath = '../libs/' %}
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -54,14 +55,19 @@
     </div>
 
     <div role="main" class="container">
-        {% block tabs_list %}{% endblock %}
-        {% block tabs_content %}{% endblock %}
+        <div class="tabs">
+            {% block tabs_list %}{% endblock %}
+            {% block tabs_content %}{% endblock %}
+        </div>
     </div>
 
     <footer>
         {{ html.link('Back to top', '#top') }}
         {{ html.link('Jadu 1.12 &copy; 2013', '/credits') }}
     </footer>
+
+    <script type="text/javascript" src="{{ libsPath ~ 'jquery/jquery.min.js' }}"></script>
+    <script type="text/javascript" src="{{ jsPath ~ 'tabs.js' }}"></script>
 
 </body>
 </html>

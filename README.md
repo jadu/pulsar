@@ -70,7 +70,7 @@ Pass an array of labels to the `html.tabs` helper and they'll be rendered as cli
 
 Available attributes:
 
-	{{ html.tabs(tab_labels, selected_tab) }}
+	{{ html.tabs(tab_labels, active_tab) }}
 	
 In your view you can populate the `tabs_list` block to place your tabs in the correct position.
 
@@ -80,7 +80,7 @@ In your view you can populate the `tabs_list` block to place your tabs in the co
 
 <ul class="nav nav__tabs">
 	<li><a href="#tab_1">One</a></li>
-	<li><a href="#tab_2" class="is-selected">Two</a></li>
+	<li><a href="#tab_2" class="is-active">Two</a></li>
 	<li><a href="#tab_3">Three</a></li>
 </ul>
 
@@ -92,7 +92,7 @@ The ID attribute for each tab link will be automatically generated in the format
 
 Available attributes:
 	
-	{{ html.tabs_content(tab_contents, selected_tab) }}
+	{{ html.tabs_content(tab_contents, active_tab) }}
 
 Create the contents of your tabs and pass them to the `html.tabs_content` helper within the `tabs_content` block in your view.
 
