@@ -34,6 +34,7 @@
 
 
 {%- macro tabs(tab_labels, active_tab = 1) -%}
+	{% import _self as html %}
 	<ul class="tabs__list">
 	{%- for tab_label in tab_labels -%}
 		
@@ -43,7 +44,7 @@
 			{% set class = '' %}
 		{% endif %}
 
-		<li{{ class }}>{{ _self.link(tab_label, '#tab_' ~ loop.index, null, null, 'data-toggle="tab"') }}</li>
+		<li{{ class }}>{{ html.link(tab_label, '#tab_' ~ loop.index, null, null, 'data-toggle="tab"') }}</li>
 	{%- endfor -%}
 	</ul>
 {%- endmacro -%}
@@ -60,8 +61,13 @@
 		{% endif %}
 
 		<div class="tab__pane{{ class }}" id="tab_{{ loop.index }}">
-			{{ tab_content }}
+			{{ tab_content|raw }}
 		</div>
 	{%- endfor -%}
 	</div>
+{%- endmacro -%}
+
+
+{%- macro icon(icon_name) -%}
+	<i class="icon-{{ icon_name }}">a</i>
 {%- endmacro -%}
