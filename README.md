@@ -78,10 +78,10 @@ In your view you can populate the `tabs_list` block to place your tabs in the co
 		{{ html.tabs(['One', 'Two', 'Three'], 2) }}
 	{% endblock %}
 
-<ul class="nav nav__tabs">
-	<li><a href="#tab_1">One</a></li>
-	<li><a href="#tab_2" class="is-active">Two</a></li>
-	<li><a href="#tab_3">Three</a></li>
+<ul class="tabs__list">
+	<li><a href="#tab_1" data-toggle="tab">One</a></li>
+	<li class="is-active"><a href="#tab_2" data-toggle="tab">Two</a></li>
+	<li><a href="#tab_3" data-toggle="tab">Three</a></li>
 </ul>
 
 <br style="clear:both;" />
@@ -211,7 +211,7 @@ Usage:
 
 Pulsar uses the font-awesome icon font which contains over 300 icons which scale perfectly to any size. Check the [full icon list](http://fortawesome.github.io/Font-Awesome/icons/) for all available icons.
 
-Simply pass the icon name shown in the cheatsheet to the icon helper, __without the__ `icon-` __part of the name__:
+Simply pass the icon name shown in the [icon list](http://fortawesome.github.io/Font-Awesome/icons/) to the icon helper, __without the__ `icon-` __part of the name__:
 
 	<!-- To display 'icon-ok' -->
 	{{ html.icon('ok') }}
@@ -234,11 +234,12 @@ Icons inherit their size and colour attributes from their parents and can be nes
 	{{ html.link('Link' ~ html.icon('ok'), '#example') }}
 	
 <h1><i class="icon-info-sign"></i> Heading</h1><button class="btn btn--primary"><i class="icon-plus-sign-alt"></i> Button</button>
-<a href="#example">Link <i class="icon-ok"></i> </a>
+<a href="#example">Link <i class="icon-ok"></i></a>
 
+<br />
 To increase the size of the icon relative to it's container, use the `icon-large`, `icon-2x`, `icon-3x` or `icon-4x`.
 
-<p><i class="icon-camera-retro icon-large"></i> icon-large</p>
+<p><i class="icon-camera-retro icon-large"></i> icon-large (+33%)</p>
 <p><i class="icon-camera-retro icon-2x"></i> icon-2x</p>
 <p><i class="icon-camera-retro icon-3x"></i> icon-3x</p>
 <p><i class="icon-camera-retro icon-4x"></i> icon-4x</p>

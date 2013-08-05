@@ -320,6 +320,45 @@
     .navbar a:hover {
       color: #e6e6e6; }
 
+.tabs__list {
+  float: left;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 200px; }
+  .tabs__list > li {
+    margin-bottom: 1px; }
+  .tabs__list > li > a {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    color: #222222;
+    display: block;
+    line-height: 35.5px;
+    padding: 0 10px;
+    text-decoration: none; }
+  .tabs__list > li > a:hover {
+    background-color: #eeeeee; }
+  .tabs__list > li.is-active > a {
+    border: 1px solid #cccccc;
+    border-right: none;
+    background-color: white; }
+
+.tabs__content {
+  background-color: white;
+  border: 1px solid #cccccc;
+  border-bottom-left-radius: 4px;
+  display: block;
+  overflow: auto; }
+  .tabs__content > .tab__pane {
+    display: none; }
+    .tabs__content > .tab__pane.is-active {
+      display: block; }
+
+.tabs__content > .tab__pane > table {
+  width: 100%; }
+  .tabs__content > .tab__pane > table th, .tabs__content > .tab__pane > table td {
+    text-align: left; }
+
 .toolbar {
   background-color: #222222;
   height: 44px; }

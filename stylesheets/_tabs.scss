@@ -10,13 +10,11 @@
 	}
 
 	> li > a {
-		border: 1px solid $grey;
-		border-right: none;
 		border-top-left-radius: $borderRadius;
 		border-bottom-left-radius: $borderRadius;
 		color: $black;
 		display: block;
-		line-height: $baseLineHeight * 2 - 3px;
+		line-height: $baseLineHeight * 1.75 - 3px;
 		padding: 0 $gutterWidth / 2;
 		text-decoration: none;
 	}
@@ -26,15 +24,19 @@
 	}
 
 	> li.is-active > a {
-		background-color: darken($lightGrey, 5%);
+		border: 1px solid $grey;
+		border-right: none;
+		background-color: $white;
 	}
 }
 
 .tabs__content {
+	background-color: $white;
 	border: 1px solid $grey;
 	border-bottom-left-radius: $borderRadius;
 	display: block;
 	overflow: auto;
+	// padding: $baseLineHeight $gutterWidth;
 
 	// show/hide tab panes
 	> .tab__pane {
@@ -43,5 +45,14 @@
 		&.is-active {
 			display: block;
 		}
+	}
+}
+
+// Data grid view
+.tabs__content > .tab__pane > table {
+	width: 100%;
+
+	th, td {
+		text-align: left;
 	}
 }
