@@ -1,0 +1,47 @@
+{% extends "layout.html.twig" %}
+{% import 'helpers/html.html.twig' as html %}
+
+{% block title %}{{ parent() }}{% endblock %}
+
+{% set heading = 'Pulsar' %}
+{% set active_tab = 4 %}
+
+{% 
+    set actions_menu = [
+        html.link(html.icon('save') ~ ' Save'),
+        html.link(html.icon('print') ~ ' Print'),
+        html.divider(),
+        html.link(html.icon('trash') ~ ' Delete', '#', 'link--danger')
+    ]
+%}
+
+{% block tabs_list %}
+    {{ 
+        html.tabs([
+            html.icon('font') ~ ' Typography',
+            html.icon('plus-sign-alt') ~ ' Buttons &amp; Labels',
+            html.icon('table') ~ ' Data grid',
+            html.icon('check-sign') ~ ' Forms'
+        ], active_tab)
+    }}
+{% endblock %}
+
+{% set tab_typography %}
+    {% include 'pulsar_reference/tabs/typography.html.twig' %}
+{% endset %}
+
+{% set tab_buttons %}
+    {% include 'pulsar_reference/tabs/buttons_labels.html.twig' %}
+{% endset %}
+
+{% set tab_data_grid %}
+    {% include 'pulsar_reference/tabs/datagrid.html.twig' %}
+{% endset %}
+
+{% set tab_forms %}
+    {% include 'pulsar_reference/tabs/forms.html.twig' %}
+{% endset %}
+
+{% block tabs_content %}
+    {{ html.tabs_content([tab_typography, tab_buttons, tab_data_grid, tab_forms], active_tab) }}
+{% endblock %}

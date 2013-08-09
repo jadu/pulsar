@@ -8,7 +8,7 @@
 	$loader = new Twig_Loader_Filesystem($templateDir);
 	$twig = new Twig_Environment($loader);
 
-	$template = $twig->loadTemplate('element_test.html.twig');
+	$template = $twig->loadTemplate('pulsar_reference/main.html.twig');
 
 	echo $template->render(array());
 

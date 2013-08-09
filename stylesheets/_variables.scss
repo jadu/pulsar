@@ -1,16 +1,55 @@
 // Type
-$fontsPath: '../fonts/';
-$sansSerifFontFamily: "Proxima Nova", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-$sansSerifSemiBoldFontFamily: "Proxima Nova Semibold", "Proxima Nova", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+$fonts-path: '../fonts/';
+$font-family-light: "proxima_novalight", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+$font-family-regular: "proxima_nova_rgregular", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+$font-family-semibold: "proxima_nova_semibold", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+
 
 // Typographic grid
-$baseFontFamily: $sansSerifFontFamily;
-$baseFontSize: 16px;
-$baseLineHeight: 22px;
+$font-family-base: 		$font-family-light;
+$font-size-base: 		16px;
+$font-size-large:       ceil($font-size-base * 1.25); // ~18px
+$font-size-small:       ceil($font-size-base * 0.85); // ~12px
+$line-height-base: 		22px;
+$line-height-large:     1.33;
+$line-height-small:     1.5;
+$line-height-computed:  $line-height-base;
+$font-size-small: 		ceil($font-size-base * 0.75);
+$font-size-medium: 		ceil($font-size-base * 0.85);
 
 // Columnar grid
-$gutterWidth: 20px;
-$tabColumnWidth: 200px;
-$sidebarColumnWidth: 200px;
+$gutter-width: 			20px;
+$tab-column-width: 		200px;
+$sidebar-column-width: 	200px;
+$component-offset: 		180px;
 
-$borderRadius: 4px;
+// Borders
+$border-radius: 		4px;
+
+// Dropdowns
+$dropdown-font-size: 	$font-size-medium;
+
+// Components
+$padding-base-vertical:          6px;
+$padding-base-horizontal:        12px;
+$padding-large-vertical:         10px;
+$padding-large-horizontal:       16px;
+$padding-small-vertical:         5px;
+$padding-small-horizontal:       10px;
+
+// Forms
+$form-label-column-width: 		 200px;
+$input-bg:                       #fff;
+$input-bg-disabled:              $gray-lighter;
+$input-border:                   #ccc;
+$input-border-radius:            $border-radius;
+$input-border-focus:             #66afe9;
+$input-color-placeholder:        $gray-light;
+$input-height-base:              $line-height-base * 2;
+$input-height-large:             (floor($font-size-large * $line-height-large) + ($padding-large-vertical * 2) + 2);
+$input-height-small:             (floor($font-size-small * $line-height-small) + ($padding-small-vertical * 2) + 2);
+$legend-border-color:            #e5e5e5;
+$input-group-addon-border-color: $input-border;
+
+// Z-index master list
+$zindex-dropdown: 		1000;

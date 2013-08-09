@@ -1,9 +1,9 @@
-$toolbarHeight: $baseLineHeight * 2;
-$brandHeight: 24px;
+$toolbar-height: $line-height-base * 2;
+$brand-height: 24px;
 
 .toolbar {
 	background-color: $black;
-	height: $toolbarHeight;
+	height: $toolbar-height;
 }
 
 .brand {
@@ -11,10 +11,10 @@ $brandHeight: 24px;
 	
 	background-repeat: no-repeat;
 	background-image: url('../images/jaduIdent.png');
-	height: $brandHeight;
-	margin: 0 $gutterWidth;
+	height: $brand-height;
+	margin: 0 $gutter-width;
 	overflow: hidden;
 	position: relative;
-	top: ($toolbarHeight - $brandHeight) / 2;
+	top: ($toolbar-height - $brand-height) / 2;
 	width: 75px;
 }

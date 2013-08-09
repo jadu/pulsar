@@ -3,22 +3,33 @@
 @import '../libs/font-awesome/css/font-awesome.css';
 
 // Structure
+@import 'colours';
 @import 'variables';
 @import 'mixins';
-@import 'colours';
 @import 'scaffolding';
 @import 'type';
-
-// Layouts
-@import 'tabs';
+@import 'columns';
 
 // Components
+@import 'labels';
+@import 'badges';
 @import 'button-groups';
 @import 'buttons';
+@import 'dropdowns';
 @import 'navbars';
 @import 'navs';
+@import 'tables';
+@import 'icons';
+@import 'forms';
 
 // Modules
 @import 'toolbar';
 @import 'breadcrumb';
 @import 'actionsbar';
+@import 'datagrid';
+
+// Layouts
+@import 'tabs';
+
+@import 'utilities';
+@import 'shame';

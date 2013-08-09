@@ -11,33 +11,40 @@
 body {
 	// @include baseline-grid;
 
-	background-color: $offWhite;
-    font-family: $baseFontFamily;
-    font-size: $baseFontSize;
-    line-height: $baseLineHeight;
+	background-color: $off-white;
+    font-family: $font-family-base;
+    font-size: $font-size-base;
+    line-height: $line-height-base;
     margin: 0;
     padding: 0;
 }
 
 header {
-	margin-bottom: $baseLineHeight - 1;
+	margin-bottom: $line-height-base - 1;
+}
+
+.heading {
+	display: inline-block;
+	font-family: $font-family-light;
+	line-height: 1em;
+	margin: 0;
 }
 
 .container {
 	clear: both;
-	margin: 0 $gutterWidth;
+	margin: 0 $gutter-width;
 }
 
 footer {
-	margin-top: $baseLineHeight;
+	margin-top: $line-height-base;
 }
 
 // Links
 
 a {
-	color: $linkColor;
+	color: $link-color;
 }
 
 a:hover {
-	color: $linkHoverColor;
+	color: $link-hover-color;
 }

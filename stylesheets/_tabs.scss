@@ -3,37 +3,42 @@
 	list-style: none;
 	margin: 0;
 	padding: 0;
-	width: $tabColumnWidth;
+	width: $tab-column-width;
 
 	> li {
-		margin-bottom: 1px;
+		margin-bottom: -1px;
 	}
 
 	> li > a {
-		border-top-left-radius: $borderRadius;
-		border-bottom-left-radius: $borderRadius;
+		border: 1px solid transparent;
+		border-top-left-radius: $border-radius;
+		border-bottom-left-radius: $border-radius;
 		color: $black;
 		display: block;
-		line-height: $baseLineHeight * 1.75 - 3px;
-		padding: 0 $gutterWidth / 2;
+		line-height: $line-height-base * 1.75;
+		padding: 0 $gutter-width / 2;
 		text-decoration: none;
 	}
 
 	> li > a:hover {
-		background-color: $lightGrey;
+		background-color: $gray-lighter;
 	}
 
 	> li.is-active > a {
-		border: 1px solid $grey;
+		border: 1px solid $gray;
 		border-right: none;
 		background-color: $white;
+		position: relative;
+		z-index: 1;
 	}
 }
 
 .tabs__content {
+	@include baseline-grid;
 	background-color: $white;
-	border: 1px solid $grey;
-	border-bottom-left-radius: $borderRadius;
+	border: 1px solid $gray;
+	border-bottom-left-radius: $border-radius;
+	box-shadow: -3px 1px 3px rgba(0, 0, 0, 0.05);
 	display: block;
 	overflow: auto;
 	// padding: $baseLineHeight $gutterWidth;
@@ -48,11 +53,13 @@
 	}
 }
 
-// Data grid view
-.tabs__content > .tab__pane > table {
-	width: 100%;
+// Add left & right margins to any elements, as long as it's not a datagrid
+.tab__pane > :not(.table--datagrid) {
+	margin-left: $gutter-width;
+	margin-right: $gutter-width;
+}
 
-	th, td {
-		text-align: left;
-	}
+// Add top spacing to the first element that's not a table
+.tab__pane > :first-child:not(table) {
+	margin-top: $line-height-base;
 }

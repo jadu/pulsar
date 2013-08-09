@@ -40,17 +40,25 @@
     </header>
 
     <div class="actionsbar actionsbar--left">
-        {{
-            html.button_group([
-                html.button('<i class="icon-arrow-left"></i>', null, null, null, null, 'onclick="history.back(); return false;"'),
-                html.button('Actions')
-            ])
-        }}
+        <div class="btn__toolbar">
+            <div class="btn__group">
+                <a class="btn" href="#back" onclick="history.back(); return false;"><i class="icon-arrow-left"></i></a>
+                {% if actions_menu is not empty %}
+                    {{ html.button_dropdown('Actions', null, null, actions_menu) }}
+                {% endif %}
+            </div>
+        </div>
     </div>
 
-    <!-- <h1>{{ heading }}</h1> -->
+    <h2 class="heading">{{ heading }}</h2>
 
     <div class="actionsbar actionsbar--right">
+        {{
+            html.button_group([ 
+                html.button('Secondary'),
+                html.button('Actions') 
+            ])
+        }}
         {{ html.button('Primary Action', 'btn--primary') }}
     </div>
 
@@ -67,7 +75,8 @@
     </footer>
 
     <script type="text/javascript" src="{{ libsPath ~ 'jquery/jquery.min.js' }}"></script>
-    <script type="text/javascript" src="{{ jsPath ~ 'tabs.js' }}"></script>
+    <script type="text/javascript" src="{{ jsPath   ~ 'tabs.js' }}"></script>
+    <script type="text/javascript" src="{{ jsPath   ~ 'dropdown.js' }}"></script>
 
 </body>
 </html>

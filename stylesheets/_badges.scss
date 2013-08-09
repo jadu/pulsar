@@ -1,0 +1,77 @@
+// Base classes
+.badge {
+  display: inline-block;
+  min-width: 25px;
+  padding: 3px 8px 1px 7px;
+  font-size: $font-size-medium;
+  color: $badge-color;
+  line-height: 1;
+  vertical-align: baseline;
+  white-space: nowrap;
+  text-align: center;
+  background-color: $badge-bg;
+  border-radius: 10px;
+
+  // Empty labels/badges collapse
+  &:empty {
+    display: none;
+  }
+}
+
+// Hover state, but only for links
+a.badge {
+  &:hover,
+  &:focus {
+    color: $badge-link-hover-color;
+    text-decoration: none;
+    cursor: pointer;
+  }
+}
+
+// Account for counters in navs
+a.list-group-item.active > .badge,
+.nav-pills > .active > a > .badge {
+  color: $badge-active-color;
+  background-color: $badge-active-bg;
+}
+.nav-pills > li > a > .badge {
+  margin-left: 3px;
+}
+
+// Variations
+
+.badge--primary {
+  background-color: $badge-primary-bg;
+  color: $badge-primary-color;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
+}
+
+.badge--success {
+  background-color: $badge-success-bg;
+  color: $badge-success-color;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
+}
+
+.badge--warning {
+  background-color: $badge-warning-bg;
+  color: $badge-warning-color;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
+}
+
+.badge--danger {
+  background-color: $badge-danger-bg;
+  color: $badge-danger-color;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
+}
+
+.badge--info {
+  background-color: $badge-info-bg;
+  color: $badge-info-color;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
+}
+
+.badge--inverse {
+  background-color: $badge-inverse-bg;
+  color: $badge-inverse-color;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
+}

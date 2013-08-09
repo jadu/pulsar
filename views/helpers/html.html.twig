@@ -1,19 +1,19 @@
-{% macro button(label, class, type, id, href, attributes) %}
+{% macro button(label = 'button', class, type, id, href, attributes) %}
     {%- if type == 'link' -%}
 
-		<a href="{{ href|default('#') }}" class="btn{% if class is not empty %} {{ class }}{% endif %}"{% if id is not empty %} id="{{ id }}"{% endif %} role="button" {% if attributes is not empty %} {{ attributes|raw }}{% endif %}>{{ label|default('button')|raw }}</a>
+		<a href="{{ href|default('#') }}" class="btn{% if class is not empty %} {{ class }}{% endif %}"{% if id is not empty %} id="{{ id }}"{% endif %} role="button" {% if attributes is not empty %} {{ attributes|raw }}{% endif %}>{{ label|raw }}</a>
 
     {%- elseif type == 'input' -%}
 
-		<input type="button" class="btn{% if class is not empty %} {{ class }}{% endif %}"{% if id is not empty %} id="{{ id }}"{% endif %} value="{{ label|default('button')|raw }}"{% if attributes is not empty %} {{ attributes|raw }}{% endif %}{% if 'is-disabled' in class %} disabled="disabled"{% endif %} />
+		<input type="button" class="btn{% if class is not empty %} {{ class }}{% endif %}"{% if id is not empty %} id="{{ id }}"{% endif %} value="{{ label|raw }}"{% if attributes is not empty %} {{ attributes|raw }}{% endif %}{% if 'is-disabled' in class %} disabled="disabled"{% endif %} />
 
 	{%- elseif type == 'submit' -%}
 
-		<input type="submit" class="btn{% if class is not empty %} {{ class }}{% endif %}"{% if id is not empty %} id="{{ id }}"{% endif %} value="{{ label|default('button')|raw }}"{% if attributes is not empty %} {{ attributes|raw }}{% endif %}{% if 'is-disabled' in class %} disabled="disabled"{% endif %} />
+		<input type="submit" class="btn{% if class is not empty %} {{ class }}{% endif %}"{% if id is not empty %} id="{{ id }}"{% endif %} value="{{ label|raw }}"{% if attributes is not empty %} {{ attributes|raw }}{% endif %}{% if 'is-disabled' in class %} disabled="disabled"{% endif %} />
 
 	{%- else -%}
 
-		<button class="btn{% if class is not empty %} {{ class }}{% endif %}"{% if id is not empty %} id="{{ id }}"{% endif %}{% if attributes is not empty %} {{ attributes|raw }}{% endif %}{% if 'is-disabled' in class %} disabled="disabled"{% endif %}>{{ label|default('button')|raw }}</button>
+		<button class="btn{% if class is not empty %} {{ class }}{% endif %}"{% if id is not empty %} id="{{ id }}"{% endif %}{% if attributes is not empty %} {{ attributes|raw }}{% endif %}{% if 'is-disabled' in class %} disabled="disabled"{% endif %}>{{ label|raw }}</button>
 
 	{%- endif -%}
 {% endmacro %}
@@ -24,6 +24,40 @@
 	{%- for button in buttons -%}
 		{{ button }}
 	{%- endfor -%}
+	</div>
+{%- endmacro -%}
+
+
+{%- macro button_dropdown(label = 'label', class, id, menu_items, open = false) -%}
+    {% import _self as html %}
+    <div class="btn__group{% if open %} open{% endif %}">
+	    <button type="button" class="btn dropdown__toggle {{ class }}" data-toggle="dropdown">
+	        {{ label|raw }}{% if menu_items is not empty %} <span class="caret">{% endif %}</span>
+	    </button>
+	    {% if menu_items is not empty %}
+	    <ul class="dropdown__menu">
+	    	{% for menu_item in menu_items %}
+	        <li>{{ menu_item }}</li>
+	        {% endfor %}
+	    </ul>
+	    {% endif %}
+	</div>
+{%- endmacro -%}
+
+
+{%- macro button_dropup(label = 'label', class, id, menu_items) -%}
+    {% import _self as html %}
+    <div class="btn__group dropup">
+	    <button type="button" class="btn dropdown__toggle {{ class }}" data-toggle="dropdown">
+	        {{ label|raw }}{% if menu_items is not empty %} <span class="caret">{% endif %}</span>
+	    </button>
+	    {% if menu_items is not empty %}
+	    <ul class="dropdown__menu">
+	    	{% for menu_item in menu_items %}
+	        <li>{{ menu_item }}</li>
+	        {% endfor %}
+	    </ul>
+	    {% endif %}
 	</div>
 {%- endmacro -%}
 
@@ -68,6 +102,38 @@
 {%- endmacro -%}
 
 
+{%- macro list(list_items, class, active_item) -%}
+	{% import _self as html %}
+	<ul class="{{ class }}">
+	{%- for list_item in list_items -%}
+		
+		{% if loop.index == active_item %}
+			{% set class = ' class=is-active' %}
+		{% else %}
+			{% set class = '' %}
+		{% endif %}
+
+		<li{{ class }}>{{ list_item }}</li>
+	{%- endfor -%}
+	</ul>
+{%- endmacro -%}
+
+
 {%- macro icon(icon_name, class) -%}
 	<i class="icon-{{ icon_name }} {{ class }}"></i>
 {%- endmacro -%}
+
+
+{%- macro label(label = 'label', class) -%}
+	<span class="label {{ class }}">{{ label }}</span>
+{%- endmacro -%}
+
+
+{%- macro badge(label = 'label', class) -%}
+	<span class="badge {{ class }}">{{ label }}</span>
+{%- endmacro -%}
+
+{%- macro divider() -%}
+	<li class="divider"></li>
+{%- endmacro -%}
+

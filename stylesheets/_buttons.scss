@@ -83,27 +83,51 @@
 }
 
 .btn--primary {
-    @include button(simple, $btnPrimaryColor);
+    @include button(simple, $btn-primary-color);
+    .badge {
+        background-color: $badge-primary-bg-darker;
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
+    }
 }
 
 .btn--success {
-    @include button(simple, $btnSuccessColor);
+    @include button(simple, $btn-success-color);
+    .badge {
+        background-color: $badge-success-bg-darker;
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
+    }
 }
 
 .btn--warning {
-    @include button(simple, $btnWarningColor);
+    @include button(simple, $btn-warning-color);
+    .badge {
+        background-color: $badge-warning-bg-darker;
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
+    }
 }
 
 .btn--danger {
-    @include button(simple, $btnDangerColor);
+    @include button(simple, $btn-danger-color);
+    .badge {
+        background-color: $badge-danger-bg-darker;
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
+    }
 }
 
 .btn--info {
-    @include button(simple, $btnInfoColor);
+    @include button(simple, $btn-info-color);
+    .badge {
+        background-color: $badge-info-bg-darker;
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
+    }
 }
 
 .btn--inverse {
-    @include button(simple, $btnInverseColor);
+    @include button(simple, $btn-inverse-color);
+    .badge {
+        background-color: $badge-inverse-bg-darker;
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
+    }
 }
 
 /*
@@ -113,4 +137,5 @@
 .btn {
     font-size: 14px;
     font-weight: normal;
+    padding: 7px 14px;
 }

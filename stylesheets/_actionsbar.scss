@@ -14,16 +14,13 @@
 
 .actionsbar {
 	display: inline-block;
-	margin: 0 $gutterWidth ($baseLineHeight / 2) $gutterWidth;
-
-	button {
-		height: $baseLineHeight * 1.5;
-	}
+	margin: 0 $gutter-width 2px $gutter-width;
 }
 
 .actionsbar--left {
 	float: left;
-	width: $tabColumnWidth;
+	margin-right: 0;
+	width: $tab-column-width;
 }
 
 .actionsbar--right {

@@ -3,13 +3,18 @@
 
 // Structure
 @import 'variables';
+@import 'mixins';
 @import 'colours';
 
 // Components
+@import 'labels';
+@import 'badges';
 @import 'button-groups';
 @import 'buttons';
+@import 'dropdowns';
 @import 'navbars';
 @import 'tabs';
+@import 'tables';
 
 // Modules
 @import 'toolbar';
