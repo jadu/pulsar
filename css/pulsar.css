@@ -51,27 +51,32 @@ h1, h2, h3, h4, h5, h6 {
 h1,
 h2,
 h3 {
-  letter-spacing: -1px;
-  line-height: 44px;
-  margin: 0 0 22px 0; }
+  letter-spacing: -1px; }
 
 h1 {
-  font-size: 44px; }
+  font-size: 44px;
+  line-height: 50.0px;
+  margin: 0 0 16.0px 0; }
 
 h2 {
-  font-size: 36px; }
+  font-size: 36px;
+  line-height: 56.0px;
+  margin: 0 0 10.0px 0; }
 
 h3 {
-  font-size: 28px; }
+  font-size: 28px;
+  line-height: 60.0px;
+  margin: 0 0 6.0px 0; }
 
 h4 {
-  font-size: 20px; }
+  font-size: 20px;
+  line-height: 19.0px;
+  margin: 0 0 3.0px 0; }
 
-h5 {
-  font-size: 16px; }
-
-h6 {
-  font-size: 13.6px; }
+h5, h6 {
+  font-size: 16px;
+  line-height: 22px;
+  margin: 0; }
 
 p {
   margin: 0 0 22px 0; }
@@ -81,7 +86,7 @@ ul, ol {
   padding: 0 0 0 20px; }
 
 dl {
-  margin: 0 0 11px 0; }
+  margin: 0 0 22px 0; }
 
 dt {
   font-weight: bold; }
@@ -108,6 +113,11 @@ code, pre, kbd {
     display: table; }
   .dl-horizontal dd:after {
     clear: both; }
+
+hr {
+  border: 1px solid #cccccc;
+  border-bottom: 0;
+  margin-bottom: 16.0px; }
 
 .columns {
   column-gap: 20px; }
@@ -821,7 +831,8 @@ table th {
   font-weight: normal; }
 
 .table {
-  margin-bottom: 22px;
+  margin-top: -6px;
+  margin-bottom: 27px;
   width: 97.7%; }
   .table thead > tr > th,
   .table thead > tr > td,
@@ -829,8 +840,8 @@ table th {
   .table tbody > tr > td,
   .table tfoot > tr > th,
   .table tfoot > tr > td {
-    padding: 8px;
-    line-height: 22px;
+    padding: 0 5px;
+    line-height: 43px;
     vertical-align: top;
     border-top: 1px solid #dddddd; }
   .table thead > tr > th {
@@ -840,7 +851,7 @@ table th {
   .table colgroup + thead tr:first-child td,
   .table thead:first-child tr:first-child th,
   .table thead:first-child tr:first-child td {
-    border-top: 0; }
+    border-top: 1px solid transparent; }
   .table tbody + tbody {
     border-top: 2px solid #dddddd; }
 
@@ -865,9 +876,11 @@ fieldset {
 
 legend {
   display: block;
-  width: 100%;
+  float: left;
+  width: 95%;
   padding: 0;
-  margin-bottom: 22px;
+  margin-left: 20px;
+  margin-bottom: 21px;
   font-size: 24px;
   line-height: inherit;
   color: #333333;
@@ -876,20 +889,24 @@ legend {
 
 label {
   display: inline-block;
-  margin-bottom: 5px; }
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 13px;
+  text-align: right; }
 
 input[type="search"] {
   box-sizing: border-box; }
 
 input[type="radio"],
 input[type="checkbox"] {
-  margin: 4px 0 0;
+  margin: 3px 0 0;
   margin-top: 1px \9;
   /* IE8-9 */
   line-height: normal; }
 
 input[type="file"] {
-  display: block; }
+  display: block;
+  line-height: 44px; }
 
 select[multiple],
 select[size] {
@@ -910,16 +927,16 @@ input[type="checkbox"]:focus {
 input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
   height: auto; }
 
-.form-control:-moz-placeholder {
+.form__control:-moz-placeholder {
   color: #999999; }
-.form-control::-moz-placeholder {
+.form__control::-moz-placeholder {
   color: #999999; }
-.form-control:-ms-input-placeholder {
+.form__control:-ms-input-placeholder {
   color: #999999; }
-.form-control::-webkit-input-placeholder {
+.form__control::-webkit-input-placeholder {
   color: #999999; }
 
-.form-control {
+.form__control {
   display: block;
   width: 100%;
   height: 44px;
@@ -932,26 +949,29 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
   border: 1px solid #cccccc;
   border-radius: 4px;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); }
-  .form-control:focus {
+  .form__control:focus {
     border-color: #66afe9;
     outline: 0;
     box-shadow: "inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px @{color-rgba}"; }
-  .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+  .form__control[disabled], .form__control[readonly], fieldset[disabled] .form__control {
     cursor: not-allowed;
     background-color: #eeeeee; }
-  .form-control textarea {
-    height: auto; }
 
-.form-group {
-  margin-bottom: 15px; }
+textarea.form__control {
+  height: auto;
+  padding-top: 8px;
+  padding-bottom: 12px; }
+
+.form__group {
+  clear: both;
+  margin-bottom: 22px; }
+  .form__group:hover {
+    box-shadow: inset 4px 0 0 #eeeeee; }
 
 .radio,
 .checkbox {
   display: block;
   min-height: 22px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  padding-left: 20px;
   vertical-align: middle; }
   .radio label,
   .checkbox label {
@@ -961,29 +981,26 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
     cursor: pointer; }
 
 .radio input[type="radio"],
-.radio-inline input[type="radio"],
+.radio--inline input[type="radio"],
 .checkbox input[type="checkbox"],
-.checkbox-inline input[type="checkbox"] {
-  float: left;
+.checkbox--inline input[type="checkbox"] {
   margin-left: -20px; }
 
 .radio + .radio,
 .checkbox + .checkbox {
   margin-top: -5px; }
 
-.radio-inline,
-.checkbox-inline {
-  display: inline-block;
-  padding-left: 20px;
+.radio--inline,
+.checkbox--inline {
+  padding-left: 0px;
   margin-bottom: 0;
-  vertical-align: middle;
   font-weight: normal;
   cursor: pointer; }
 
-.radio-inline + .radio-inline,
-.checkbox-inline + .checkbox-inline {
+.radio--inline + .radio--inline,
+.checkbox--inline + .checkbox--inline {
   margin-top: 0;
-  margin-left: 10px; }
+  margin-left: 0px; }
 
 .input-lg {
   height: 48px;
@@ -1009,55 +1026,68 @@ select.input-sm {
 textarea.input-lg, textarea.input-sm {
   height: auto; }
 
-.has-warning .help-block,
-.has-warning .control-label {
-  color: #c09853; }
-.has-warning .form-control {
-  border-color: #c09853;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); }
-  .has-warning .form-control:focus {
-    border-color: #a47e3c;
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #dbc59e; }
-.has-warning .input-group-addon {
-  color: #c09853;
-  border-color: #c09853;
-  background-color: #fcf8e3; }
+.has-warning {
+  box-shadow: inset 4px 0 0 #f2b865; }
+  .has-warning:hover {
+    box-shadow: inset 4px 0 0 #eea236; }
+  .has-warning .help-block,
+  .has-warning .control__label {
+    color: #c09853; }
+  .has-warning .form__control {
+    border-color: #f2b865;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); }
+    .has-warning .form__control:focus {
+      border-color: #eea236;
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #fae3c3; }
+  .has-warning .input-group-addon {
+    color: #c09853;
+    border-color: #f2b865;
+    background-color: #fcf8e3; }
 
-.has-error .help-block,
-.has-error .control-label {
-  color: #b94a48; }
-.has-error .form-control {
-  border-color: #b94a48;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); }
-  .has-error .form-control:focus {
-    border-color: #953b39;
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #d59392; }
-.has-error .input-group-addon {
-  color: #b94a48;
-  border-color: #b94a48;
-  background-color: #f2dede; }
+.has-error {
+  box-shadow: inset 4px 0 0 #dd6864; }
+  .has-error:hover {
+    box-shadow: inset 4px 0 0 #d43f3a; }
+  .has-error .help-block,
+  .has-error .control__label {
+    color: #b94a48; }
+  .has-error .form__control {
+    border-color: #dd6864;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); }
+    .has-error .form__control:focus {
+      border-color: #d43f3a;
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #efb9b8; }
+  .has-error .input-group-addon {
+    color: #b94a48;
+    border-color: #dd6864;
+    background-color: #f2dede; }
 
-.has-success .help-block,
-.has-success .control-label {
-  color: #468847; }
-.has-success .form-control {
-  border-color: #468847;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); }
-  .has-success .form-control:focus {
-    border-color: #356635;
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #7aba7b; }
-.has-success .input-group-addon {
-  color: #468847;
-  border-color: #468847;
-  background-color: #dff0d8; }
+.has-success {
+  box-shadow: inset 4px 0 0 #80c780; }
+  .has-success:hover {
+    box-shadow: inset 4px 0 0 #5cb85c; }
+  .has-success .help-block,
+  .has-success .control__label {
+    color: #468847; }
+  .has-success .form__control {
+    border-color: #80c780;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); }
+    .has-success .form__control:focus {
+      border-color: #5cb85c;
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #c7e6c7; }
+  .has-success .input-group-addon {
+    color: #468847;
+    border-color: #80c780;
+    background-color: #dff0d8; }
 
 .help-block {
   display: block;
   margin-top: 5px;
-  margin-bottom: 10px;
+  margin-bottom: -11px;
+  margin-left: 14px;
   color: #626262; }
 
-.form-inline .form-control,
+.form-inline .form__control,
 .form-inline .radio,
 .form-inline .checkbox {
   display: inline-block; }
@@ -1066,25 +1096,134 @@ textarea.input-lg, textarea.input-sm {
   margin-top: 0;
   margin-bottom: 0; }
 
-.form-horizontal .form-group {
+.form--horizontal .form__group {
   *zoom: 1; }
-  .form-horizontal .form-group:before, .form-horizontal .form-group:after {
+  .form--horizontal .form__group:before, .form--horizontal .form__group:after {
     content: " ";
     display: table; }
-  .form-horizontal .form-group:after {
+  .form--horizontal .form__group:after {
     clear: both; }
+  .form--horizontal .form__group > .checkbox,
+  .form--horizontal .form__group > .radio {
+    height: 22px;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 20%; }
+    .form--horizontal .form__group > .checkbox input,
+    .form--horizontal .form__group > .radio input {
+      margin-left: 25px;
+      margin-right: 20px; }
 
-.form-horizontal .control-label,
-.form-horizontal .radio-inline,
-.form-horizontal .checkbox-inline {
+.form--horizontal .control__label {
   display: inline-block;
+  margin-right: 20px;
   padding-top: 9px;
   vertical-align: top;
   width: 20%; }
 
-.form-horizontal .controls {
+.form--horizontal .checkbox-label,
+.form--horizontal .radio-label {
+  margin-bottom: 0;
+  width: 20%; }
+
+.form--horizontal .radio--inline input,
+.form--horizontal .checkbox--inline input {
+  margin-top: 0;
+  margin-bottom: 0; }
+
+.form--horizontal .controls {
   display: inline-block;
+  width: 30%; }
+
+.form__group--mini .controls {
+  width: 5%; }
+
+.form__group--small .controls {
+  width: 10%; }
+
+.form__group--medium .controls {
+  width: 20%; }
+
+.form__group--large .controls {
   width: 40%; }
+
+.form__group--full .controls {
+  width: 50%; }
+
+.input-group {
+  position: relative;
+  display: table;
+  height: 40px;
+  border-collapse: separate;
+  margin-bottom: -7px; }
+  .input-group.col {
+    float: none;
+    padding-left: 0;
+    padding-right: 0; }
+  .input-group .form__control {
+    width: 100%;
+    margin-bottom: 0; }
+
+.input-group-addon,
+.input-group-btn,
+.input-group .form__control {
+  display: table-cell; }
+  .input-group-addon:not(:first-child):not(:last-child),
+  .input-group-btn:not(:first-child):not(:last-child),
+  .input-group .form__control:not(:first-child):not(:last-child) {
+    border-radius: 0; }
+
+.input-group-addon,
+.input-group-btn {
+  width: 1%;
+  white-space: nowrap;
+  vertical-align: middle; }
+
+.input-group-addon {
+  padding: 6px 12px;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 22px;
+  text-align: center;
+  background-color: #eeeeee;
+  border: 1px solid #cccccc;
+  border-radius: 4px; }
+  .input-group-addon input[type="radio"],
+  .input-group-addon input[type="checkbox"] {
+    margin-top: 0; }
+
+.input-group .form__control:first-child,
+.input-group-addon:first-child,
+.input-group-btn:first-child > .btn,
+.input-group-btn:first-child > .dropdown-toggle,
+.input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0; }
+
+.input-group-addon:first-child {
+  border-right: 0; }
+
+.input-group .form__control:last-child,
+.input-group-addon:last-child,
+.input-group-btn:last-child > .btn,
+.input-group-btn:last-child > .dropdown-toggle,
+.input-group-btn:first-child > .btn:not(:first-child) {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0; }
+
+.input-group-addon:last-child {
+  border-left: 0; }
+
+.input-group-btn {
+  position: relative;
+  white-space: nowrap; }
+
+.input-group-btn > .btn {
+  position: relative; }
+  .input-group-btn > .btn + .btn {
+    margin-left: -4px; }
+  .input-group-btn > .btn:hover, .input-group-btn > .btn:active {
+    z-index: 2; }
 
 .toolbar {
   background-color: #222222;
@@ -1228,11 +1367,6 @@ tr.is-selected:hover > td {
     z-index: 1; }
 
 .tabs__content {
-  background-image: -webkit-linear-gradient(0deg, rgba(200, 0, 0, 0.2) 200px, transparent 20px), -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 95%, rgba(56, 255, 255, 0.8) 100%);
-  background-image: -moz-linear-gradient(0deg, rgba(200, 0, 0, 0.2) 200px, transparent 20px), -moz-linear-gradient(top, rgba(0, 0, 0, 0) 95%, rgba(56, 255, 255, 0.8) 100%);
-  background-image: -o-linear-gradient(0deg, rgba(200, 0, 0, 0.2) 200px, transparent 20px), -o-linear-gradient(top, rgba(0, 0, 0, 0) 95%, rgba(56, 255, 255, 0.8) 100%);
-  background-size: 220px 100%, 100% 22px;
-  background-position: 20px 0px;
   background-color: white;
   border: 1px solid #cccccc;
   border-bottom-left-radius: 4px;
@@ -1244,12 +1378,18 @@ tr.is-selected:hover > td {
     .tabs__content > .tab__pane.is-active {
       display: block; }
 
-.tab__pane > :not(.table--datagrid) {
-  margin-left: 20px;
-  margin-right: 20px; }
-
 .tab__pane > :first-child:not(table) {
   margin-top: 22px; }
+
+.tab__inner {
+  margin: 0 20px; }
+
+.show-baseline {
+  background-image: -webkit-linear-gradient(0deg, transparent 200px, transparent 20px), -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 95%, rgba(0, 0, 0, 0.5) 100%);
+  background-image: -moz-linear-gradient(0deg, transparent 200px, transparent 20px), -moz-linear-gradient(top, rgba(0, 0, 0, 0) 95%, rgba(0, 0, 0, 0.5) 100%);
+  background-image: -o-linear-gradient(0deg, transparent 200px, transparent 20px), -o-linear-gradient(top, rgba(0, 0, 0, 0) 95%, rgba(0, 0, 0, 0.5) 100%);
+  background-size: 220px 100%, 100% 22px;
+  background-position: 20px -5px; }
 
 .actionsbar--left .btn[href="#back"] > i {
   line-height: 12px; }

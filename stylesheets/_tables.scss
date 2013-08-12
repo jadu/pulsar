@@ -17,7 +17,8 @@ table {
 }
 
 .table {
-	margin-bottom: $line-height-base;
+  margin-top: -6px;
+	margin-bottom: $line-height-base + 5;
 
   width: 97.7%;
 
@@ -28,8 +29,8 @@ table {
     > tr {
       > th,
       > td {
-        padding: $table-cell-padding;
-        line-height: $line-height-base;
+        padding: 0 5px;
+        line-height: $line-height-base * 2 - 1; // account for border
         vertical-align: top;
         border-top: 1px solid $table-border-color;
       }
@@ -45,7 +46,7 @@ table {
   thead:first-child {
     tr:first-child {
       th, td {
-        border-top: 0;
+        border-top: 1px solid transparent;
       }
     }
   }

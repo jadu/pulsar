@@ -9,27 +9,48 @@
 // Headings
 
 h1, h2, h3, h4, h5, h6 {
-	font-weight: normal;
+  font-weight: normal;
   margin: 0 0 ($line-height-base / 2) 0;
 }
 
 h1,
 h2,
 h3 {
-	letter-spacing: -1px; 
-	line-height: $line-height-base * 2;
-  margin: 0 0 $line-height-base 0;
+  letter-spacing: -1px; 
 }
 
-h1 { font-size: $font-size-base * 2.75; } // ~38px
-h2 { font-size: $font-size-base * 2.25; } // ~32px
-h3 { font-size: $font-size-base * 1.75; } // ~24px
-h4 { font-size: $font-size-base * 1.25; } // ~18px
-h5 { font-size: $font-size-base; }
-h6 { font-size: $font-size-base * 0.85; } // ~12px
+h1 {
+  font-size: $font-size-base * 2.75;                // 44px
+  line-height: $line-height-base * 2.272727272;     // 50px
+  margin: 0 0 ($line-height-base * 0.727272727) 0;  // 16px
+}
+
+h2 {
+  font-size: $font-size-base * 2.25;                // 36px
+  line-height: $line-height-base * 2.545454546;     // 56px
+  margin: 0 0 ($line-height-base * 0.454545455) 0;  // 10px
+}
+
+h3 {
+  font-size: $font-size-base * 1.75;                // 28px
+  line-height: $line-height-base * 2.727272727;     // 60px
+  margin: 0 0 ($line-height-base * 0.272727273) 0;  //  6px
+}
+
+h4 {
+  font-size: $font-size-base * 1.25;                // 20px
+  line-height: $line-height-base * 0.863636364;     // 19px
+  margin: 0 0 ($line-height-base * 0.136363636) 0;  //  3px
+}
+
+h5, h6 {
+  font-size: $font-size-base;                       // 16px
+  line-height: $line-height-base;                   // 12px
+  margin: 0; 
+}
 
 p {
-    margin: 0 0 $line-height-base 0;
+  margin: 0 0 $line-height-base 0;
 }
 
 // Lists
@@ -40,7 +61,7 @@ ul, ol {
 }
 
 dl {
-	margin: 0 0 $line-height-base / 2 0;
+	margin: 0 0 $line-height-base 0;
 }
 
 dt {
@@ -68,4 +89,10 @@ code, pre, kbd {
     @include clearfix; // Clear the floated `dt` if an empty `dd` is present
     margin-left: $component-offset;
   }
+}
+
+hr {
+  border: 1px solid $gray;
+  border-bottom: 0;
+  margin-bottom: ($line-height-base * 0.727272727);
 }

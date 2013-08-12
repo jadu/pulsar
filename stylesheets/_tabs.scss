@@ -34,7 +34,6 @@
 }
 
 .tabs__content {
-	@include baseline-grid;
 	background-color: $white;
 	border: 1px solid $gray;
 	border-bottom-left-radius: $border-radius;
@@ -53,13 +52,11 @@
 	}
 }
 
-// Add left & right margins to any elements, as long as it's not a datagrid
-.tab__pane > :not(.table--datagrid) {
-	margin-left: $gutter-width;
-	margin-right: $gutter-width;
-}
-
 // Add top spacing to the first element that's not a table
 .tab__pane > :first-child:not(table) {
 	margin-top: $line-height-base;
+}
+
+.tab__inner {
+	margin: 0 $gutter-width;
 }
