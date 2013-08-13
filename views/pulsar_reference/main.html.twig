@@ -1,10 +1,11 @@
 {% extends "layout.html.twig" %}
 {% import 'helpers/html.html.twig' as html %}
+{% import 'helpers/form.html.twig' as form %}
 
 {% block title %}{{ parent() }}{% endblock %}
 
 {% set heading = 'Pulsar' %}
-{% set active_tab = 1 %}
+{% set active_tab = 4 %}
 
 {% 
     set actions_menu = [
@@ -39,7 +40,7 @@
 {% endset %}
 
 {% set tab_forms %}
-    {% include 'pulsar_reference/tabs/forms.html.twig' %}
+    {% include 'pulsar_reference/tabs/twig_forms.html.twig' %}
 {% endset %}
 
 {% block tabs_content %}

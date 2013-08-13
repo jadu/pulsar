@@ -19,9 +19,9 @@ legend {
   width: 95%;
   padding: 0;
   margin-left: $gutter-width;
-  margin-bottom: $line-height-base - 1;
-  font-size: ($font-size-base * 1.5);
-  line-height: inherit;
+  margin-bottom: $line-height-base * 0.681818182;
+  font-size: $font-size-base * 1.5;
+  line-height: $line-height-base * 1.272727273;
   color: $gray-dark;
   border: 0;
   border-bottom: 1px solid $legend-border-color;
@@ -126,7 +126,7 @@ input[type="number"] {
   padding: $padding-base-vertical $padding-base-horizontal;
   font-size: $font-size-base;
   line-height: $line-height-base;
-  color: $gray;
+  color: $black;
   vertical-align: middle;
   background-color: $input-bg;
   border: 1px solid $input-border;
@@ -307,6 +307,10 @@ textarea {
 // Horizontal forms are built on grid classes and allow you to create forms with
 // labels on the left and inputs on the right.
 
+.form--horizontal {
+  padding-top: 17px; // baseline alignment
+}
+
 .form--horizontal .form__group {
   @include clearfix();
 
@@ -331,8 +335,8 @@ textarea {
   width: 20%;
 }
 
-.form--horizontal .checkbox-label,
-.form--horizontal .radio-label {
+.form--horizontal .checkbox__label,
+.form--horizontal .radio__label {
   margin-bottom: 0;
   width: 20%;
 }
