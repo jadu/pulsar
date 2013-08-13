@@ -1,239 +1,239 @@
 {% macro form_start(legend) %}
-	<form class="form--horizontal">
+    <form class="form--horizontal">
 {% endmacro %}
 
 {% macro form_end() %}
-	</form>
+    </form>
 {% endmacro %}
 
 {% macro fieldset_start(legend) %}
-	<fieldset>
-	{% if legend is not empty %}
-		<legend>{{ legend }}</legend>
-	{% endif %}
+    <fieldset>
+    {% if legend is not empty %}
+        <legend>{{ legend }}</legend>
+    {% endif %}
 {% endmacro %}
 
 {% macro fieldset_end() %}
-	</fieldset>
+    </fieldset>
 {% endmacro %}
 
 {% macro text(label, id, class, name, placeholder, help, prepend, append) %}
-	{% import _self as form %}
-	<div class="form__group {{ class }}">
-		<label {{ form.for(id) }} class="control__label">{{ label | raw }}</label>
-		<div class="controls">
-			{% if prepend is not empty or append is not empty %}
-			<div class="input-group">
-				{{ form.addon(prepend) }}
-			{% endif %}
-				<input type="text" class="form__control" {{ form.id(id) }} {{ form.name(name) }} {{ form.placeholder(placeholder) }}>
-			{% if prepend is not empty or append is not empty %}
-				{{ form.addon(append) }}
-			</div>
-			{% endif %}
-			{% if help is not empty %} 
-			{{ form.help(help) }}
-			{% endif %}
-		</div>
-	</div>
+    {% import _self as form %}
+    <div class="form__group {{ class }}">
+        <label {{ form.for(id) }} class="control__label">{{ label | raw }}</label>
+        <div class="controls">
+            {% if prepend is not empty or append is not empty %}
+            <div class="input-group">
+                {{ form.addon(prepend) }}
+            {% endif %}
+                <input type="text" class="form__control" {{ form.id(id) }} {{ form.name(name) }} {{ form.placeholder(placeholder) }}>
+            {% if prepend is not empty or append is not empty %}
+                {{ form.addon(append) }}
+            </div>
+            {% endif %}
+            {% if help is not empty %} 
+            {{ form.help(help) }}
+            {% endif %}
+        </div>
+    </div>
 {% endmacro %}
 
 {% macro password(label, id, class, name, placeholder, help) %}
-	{% import _self as form %}
-	<div class="form__group {{ class }}">
-		<label {{ form.for(id) }} class="control__label">{{ label | raw }}</label>
-		<div class="controls">
-			<input type="password" class="form__control" {{ form.id(id) }} {{ form.name(name) }} {{ form.placeholder(placeholder) }}>
-			{% if help is not empty %} 
-			{{ form.help(help) }}
-			{% endif %}
-		</div>
-	</div>
+    {% import _self as form %}
+    <div class="form__group {{ class }}">
+        <label {{ form.for(id) }} class="control__label">{{ label | raw }}</label>
+        <div class="controls">
+            <input type="password" class="form__control" {{ form.id(id) }} {{ form.name(name) }} {{ form.placeholder(placeholder) }}>
+            {% if help is not empty %} 
+            {{ form.help(help) }}
+            {% endif %}
+        </div>
+    </div>
 {% endmacro %}
 
 {% macro textarea(label, id, class, name, placeholder, help, rows = 2) %}
-	{% import _self as form %}
-	<div class="form__group {{ class }}">
-		<label {{ form.for(id) }} class="control__label">{{ label | raw }}</label>
-		<div class="controls">
-			<textarea class="form__control" {{ form.id(id) }} {{ form.name(name) }} {{ form.placeholder(placeholder) }} {{ form.rows(rows) }}></textarea>
-			{% if help is not empty %} 
-			{{ form.help(help) }}
-			{% endif %}
-		</div>
-	</div>
+    {% import _self as form %}
+    <div class="form__group {{ class }}">
+        <label {{ form.for(id) }} class="control__label">{{ label | raw }}</label>
+        <div class="controls">
+            <textarea class="form__control" {{ form.id(id) }} {{ form.name(name) }} {{ form.placeholder(placeholder) }} {{ form.rows(rows) }}></textarea>
+            {% if help is not empty %} 
+            {{ form.help(help) }}
+            {% endif %}
+        </div>
+    </div>
 {% endmacro %}
 
 {% macro file(label, id, class, name, help) %}
-	{% import _self as form %}
-	<div class="form__group {{ class }}">
-		<label {{ form.for(id) }} class="control__label">{{ label | raw }}</label>
-		<div class="controls">
-			<input type="file" {{ form.id(id) }} {{ form.name(name) }} {{ form.placeholder(placeholder) }}>
-			{% if help is not empty %} 
-			{{ form.help(help) }}
-			{% endif %}
-		</div>
-	</div>
+    {% import _self as form %}
+    <div class="form__group {{ class }}">
+        <label {{ form.for(id) }} class="control__label">{{ label | raw }}</label>
+        <div class="controls">
+            <input type="file" {{ form.id(id) }} {{ form.name(name) }} {{ form.placeholder(placeholder) }}>
+            {% if help is not empty %} 
+            {{ form.help(help) }}
+            {% endif %}
+        </div>
+    </div>
 {% endmacro %}
 
 {% macro select(label, options, id, class, name, placeholder, help) %}
-	{% import _self as form %}
-	<div class="form__group {{ class }}">
-		<label {{ form.for(id) }} class="control__label">{{ label | raw }}</label>
-		<div class="controls">
-			<select class="form__control" {{ form.id(id) }} {{ form.name(name) }} {{ form.placeholder(placeholder) }}>
-			{%- for value, option in options -%}
-				<option value="{{ value }}">{{ option }}</option>
-			{%- endfor -%}
-			</select>
-			{% if help is not empty %} 
-			{{ form.help(help) }}
-			{% endif %}
-		</div>
-	</div>
+    {% import _self as form %}
+    <div class="form__group {{ class }}">
+        <label {{ form.for(id) }} class="control__label">{{ label | raw }}</label>
+        <div class="controls">
+            <select class="form__control" {{ form.id(id) }} {{ form.name(name) }} {{ form.placeholder(placeholder) }}>
+            {%- for value, option in options -%}
+                <option value="{{ value }}">{{ option }}</option>
+            {%- endfor -%}
+            </select>
+            {% if help is not empty %} 
+            {{ form.help(help) }}
+            {% endif %}
+        </div>
+    </div>
 {% endmacro %}
 
 {% macro checkbox(label, id, class, name, checked = false, help) %}
-	{% import _self as form %}
-	<div class="form__group {{ class }}">
-		<label {{ form.for(id) }} class="checkbox__label">{{ label | raw }}</label>
-		<div class="controls">
-			<input type="checkbox" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }}>
-			{% if help is not empty %} 
-			{{ form.help(help) }}
-			{% endif %}
-		</div>
-	</div>
+    {% import _self as form %}
+    <div class="form__group {{ class }}">
+        <label {{ form.for(id) }} class="checkbox__label">{{ label | raw }}</label>
+        <div class="controls">
+            <input type="checkbox" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }}>
+            {% if help is not empty %} 
+            {{ form.help(help) }}
+            {% endif %}
+        </div>
+    </div>
 {% endmacro %}
 
 {% macro checkbox_right(label, id, class, name, checked = false, help) %}
-	{% import _self as form %}
-	<div class="form__group {{ class }}">
-		<div class="checkbox">
-			<label {{ form.for(id) }} class="checkbox__label">
-				<input type="checkbox" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }}>
-				{{ label | raw }}
-			</label>
-			{% if help is not empty %} 
-			{{ form.help(help) }}
-			{% endif %}
-		</div>
-	</div>
+    {% import _self as form %}
+    <div class="form__group {{ class }}">
+        <div class="checkbox">
+            <label {{ form.for(id) }} class="checkbox__label">
+                <input type="checkbox" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }}>
+                {{ label | raw }}
+            </label>
+            {% if help is not empty %} 
+            {{ form.help(help) }}
+            {% endif %}
+        </div>
+    </div>
 {% endmacro %}
 
 {% macro checkbox_inline(label, id, class, name, checked = false, help) %}
-	{% import _self as form %}
-	<label {{ form.for(id) }} class="checkbox--inline">
-		<input type="checkbox" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }}>
-		{% if help is not empty %} 
-		{{ form.help(help) }}
-		{% endif %}
-		{{ label | raw }}
-	</label>
+    {% import _self as form %}
+    <label {{ form.for(id) }} class="checkbox--inline">
+        <input type="checkbox" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }}>
+        {% if help is not empty %} 
+        {{ form.help(help) }}
+        {% endif %}
+        {{ label | raw }}
+    </label>
 {% endmacro %}
 
 {% macro radio(label, id, class, name, checked = false, help) %}
-	{% import _self as form %}
-	<div class="form__group {{ class }}">
-		<label {{ form.for(id) }} class="checkbox__label">{{ label | raw }}</label>
-		<div class="controls">
-			<input type="radio" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }}>
-			{% if help is not empty %} 
-			{{ form.help(help) }}
-			{% endif %}
-		</div>
-	</div>
+    {% import _self as form %}
+    <div class="form__group {{ class }}">
+        <label {{ form.for(id) }} class="checkbox__label">{{ label | raw }}</label>
+        <div class="controls">
+            <input type="radio" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }}>
+            {% if help is not empty %} 
+            {{ form.help(help) }}
+            {% endif %}
+        </div>
+    </div>
 {% endmacro %}
 
 {% macro radio_right(label, id, class, name, checked = false, help) %}
-	{% import _self as form %}
-	<div class="form__group {{ class }}">
-		<div class="radio">
-			<label {{ form.for(id) }} class="checkbox__label">
-				<input type="radio" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }}>
-				{{ label | raw }}
-			</label>
-			{% if help is not empty %} 
-			{{ form.help(help) }}
-			{% endif %}
-		</div>
-	</div>
+    {% import _self as form %}
+    <div class="form__group {{ class }}">
+        <div class="radio">
+            <label {{ form.for(id) }} class="checkbox__label">
+                <input type="radio" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }}>
+                {{ label | raw }}
+            </label>
+            {% if help is not empty %} 
+            {{ form.help(help) }}
+            {% endif %}
+        </div>
+    </div>
 {% endmacro %}
 
 {% macro radio_inline(label, id, class, name, checked = false, help) %}
-	{% import _self as form %}
-	<label {{ form.for(id) }} class="radio--inline">
-		<input type="radio" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }}>
-		{% if help is not empty %} 
-		{{ form.help(help) }}
-		{% endif %}
-		{{ label | raw }}
-	</label>
+    {% import _self as form %}
+    <label {{ form.for(id) }} class="radio--inline">
+        <input type="radio" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }}>
+        {% if help is not empty %} 
+        {{ form.help(help) }}
+        {% endif %}
+        {{ label | raw }}
+    </label>
 {% endmacro %}
 
 {% macro checkbox_group(checkboxes) %}
-	<div class="form__group">
-		<div class="checkbox">
-		{%- for checkbox in checkboxes -%}
-			{{ checkbox }}
-		{%- endfor -%}
-		</div>
-	</div>
+    <div class="form__group">
+        <div class="checkbox">
+        {%- for checkbox in checkboxes -%}
+            {{ checkbox }}
+        {%- endfor -%}
+        </div>
+    </div>
 {% endmacro %}
 
 {% macro radio_group(radios) %}
-	<div class="form__group">
-		<div class="radio">
-		{%- for radio in radios -%}
-			{{ radio }}
-		{%- endfor -%}
-		</div>
-	</div>
+    <div class="form__group">
+        <div class="radio">
+        {%- for radio in radios -%}
+            {{ radio }}
+        {%- endfor -%}
+        </div>
+    </div>
 {% endmacro %}
 
 {% macro addon(value) %}
-	{% if value is not empty %}
-	<span class="input-group-addon">{{ value }}</span>
-	{% endif %}
+    {% if value is not empty %}
+    <span class="input-group-addon">{{ value }}</span>
+    {% endif %}
 {% endmacro %}
 
 {# Attributes #}
 
 {% macro for(value) %}
-	{% if value is not empty %}
-	for="{{ value }}"
-	{% endif %}
+    {% if value is not empty %}
+    for="{{ value }}"
+    {% endif %}
 {% endmacro %}
 
 {% macro id(value) %}
-	{% if value is not empty %}
-	id="{{ value }}"
-	{% endif %}
+    {% if value is not empty %}
+    id="{{ value }}"
+    {% endif %}
 {% endmacro %}
 
 {% macro name(value) %}
-	{% if value is not empty %}
-	name="{{ value }}"
-	{% endif %}
+    {% if value is not empty %}
+    name="{{ value }}"
+    {% endif %}
 {% endmacro %}
 
 {% macro placeholder(value) %}
-	{% if value is not empty %}
-	placeholder="{{ value }}"
-	{% endif %}
+    {% if value is not empty %}
+    placeholder="{{ value }}"
+    {% endif %}
 {% endmacro %}
 
 {% macro help(value) %}
-	<p class="help-block">{{ value }}</p>
+    <p class="help-block">{{ value }}</p>
 {% endmacro %}
 
 {% macro rows(value) %}
-	rows="{{ value }}"
+    rows="{{ value }}"
 {% endmacro %}
 
 {% macro checked(value) %}
-	{% if value %}
-	checked
-	{% endif %}
+    {% if value %}
+    checked
+    {% endif %}
 {% endmacro %}
