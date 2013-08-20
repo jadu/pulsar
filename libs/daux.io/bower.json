@@ -1,9 +1,0 @@
-{
-  "name": "daux.io",
-  "version": "0.0.0",
-  "commit": "5ff6a25883d7f4a9941ccca38195cca51411bc32",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/justinwalsh/daux.io.git"
-  }
-}

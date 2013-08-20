@@ -1,8 +1,13 @@
-{% macro form_start(legend) %}
-    <form class="form--horizontal">
+{% macro form_start(class) %}
+    <form class="form--horizontal {{ class }}">
 {% endmacro %}
 
-{% macro form_end() %}
+{% macro form_end(actions) %}
+        <div class="form__actions">
+            {%- for action in actions -%}
+                {{ action }}
+            {%- endfor -%}
+        </div>
     </form>
 {% endmacro %}
 
@@ -172,6 +177,10 @@
     </label>
 {% endmacro %}
 
+{% macro submit(label = 'Submit', class, type, id, href, attributes) %}
+    <input type="submit" class="btn{% if class is not empty %} {{ class }}{% endif %}"{% if id is not empty %} id="{{ id }}"{% endif %} value="{{ label|raw }}"{% if attributes is not empty %} {{ attributes|raw }}{% endif %}{% if 'is-disabled' in class %} disabled="disabled"{% endif %} />
+{% endmacro %}
+
 {% macro checkbox_group(checkboxes) %}
     <div class="form__group">
         <div class="checkbox">
@@ -225,7 +234,7 @@
 {% endmacro %}
 
 {% macro help(value) %}
-    <p class="help-block">{{ value }}</p>
+    <p class="help-block">{{ value | raw }}</p>
 {% endmacro %}
 
 {% macro rows(value) %}

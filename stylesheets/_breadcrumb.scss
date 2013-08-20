@@ -4,12 +4,12 @@
 
 	ul {
 		list-style-type: none;
-		margin: 0 0 0 $gutter-width;
+		margin: 0 0 0 $gutter-width / 2;
 	}
 
 	li {
 		display: inline;
-		margin-right: $gutter-width;
+		margin-right: $gutter-width - 4;
 		padding: 0;
 	}
 
@@ -17,6 +17,29 @@
 	li > span {
 		display: inline-block;
 		line-height: ($line-height-base * 2) - 1;
+	}
+
+	a {
+		color: $gray-dark;
+		text-decoration: none;
+
+		&:hover {
+			text-decoration: underline;
+		}
+
+		&:after {
+			color: $gray-light;
+			content: " / ";
+			display: inline-block;
+			font-size: 1.5em;
+			margin: 0 0 0 $gutter-width;
+			position: relative;
+			top: 3px;
+		}
+	}
+
+	&:hover a {
+		color: $link-color;
 	}
 
 }

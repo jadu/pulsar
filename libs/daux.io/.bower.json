@@ -1,0 +1,12 @@
+{
+  "name": "daux.io",
+  "homepage": "https://github.com/justinwalsh/daux.io",
+  "_release": "f540c54482",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "f540c54482a89579d5d642fc140563b1dca9c695"
+  },
+  "_source": "git://github.com/justinwalsh/daux.io.git",
+  "_target": "*"
+}

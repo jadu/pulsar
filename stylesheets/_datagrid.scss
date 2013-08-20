@@ -18,10 +18,6 @@
 		line-height: $line-height-base * 1.75;
 	}
 
-	thead > tr {
-		line-height: $line-height-base * 1.5;
-	}
-
 	tbody > tr {
 		&:hover {
 			background-color: $off-white;

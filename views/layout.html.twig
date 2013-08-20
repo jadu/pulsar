@@ -11,7 +11,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{% block title %}Pulsar{% endblock %}</title>
+    <title>{% block title %}Pulsar Lexicon{% endblock %}</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -29,23 +29,30 @@
 
     <header id="top">
     	<div class="toolbar">
-            <h1 class="brand">{{ html.link('Jadu', '/search') }}</h1>
+            <h1 class="brand" id="tour-home">{{ html.link('Jadu', '/search') }}</h1>
         </div>
 
         <nav class="breadcrumb">
             <ul>
                 <li><a href="#">Bread</a></li>
-                <li><span>Crumb</span></li>
+                <li><a href="#">Crumb</a></li>
+                <li><a href="#">Trail</a></li>
+                <li><span>Thing</span></li>
             </ul>
         </nav>
     </header>
+
+    <div class="summary hide" data-tab="#tab_5">
+        <div id="container"></div>
+        {% block summary %}{% endblock %}
+    </div>
 
     <div class="actionsbar actionsbar--left">
         <div class="btn__toolbar">
             <div class="btn__group">
                 <a class="btn" href="#back" onclick="history.back(); return false;"><i class="icon-arrow-left"></i></a>
                 {% if actions_menu is not empty %}
-                    {{ html.button_dropdown('Actions', null, null, actions_menu) }}
+                    {{ html.button_dropdown('Actions', null, 'tour-actions', actions_menu) }}
                 {% endif %}
             </div>
         </div>
@@ -56,8 +63,8 @@
     <div class="actionsbar actionsbar--right">
         {{
             html.button_group([ 
-                html.button('Secondary'),
-                html.button('Actions') 
+                html.button('Secondary', null, 'link', null, '#exampledeck', 'data-toggle="deck"'),
+                html.button('Actions', null, 'link', null, '#exampledeck', 'data-toggle="deck"') 
             ])
         }}
         {{ html.button('Primary Action', 'btn--primary') }}
@@ -68,16 +75,36 @@
             {% block tabs_list %}{% endblock %}
             {% block tabs_content %}{% endblock %}
         </div>
+        {% block decks %}{% endblock %}
     </div>
 
     <footer>
-        {{ html.link('Back to top', '#top') }}
+        {{ html.link(html.icon('long-arrow-up') ~ ' Top', '#top') }}
         {{ html.link('Jadu 1.12 &copy; 2013', '/credits') }}
-    </footer>
+        {{ html.link(html.icon('asterisk') ~ ' New Features', '#', null, 'tour') }}
+    </footer> 
 
     <script type="text/javascript" src="{{ libsPath ~ 'jquery/jquery.min.js' }}"></script>
+    <script type="text/javascript" src="{{ libsPath   ~ 'highcharts/highcharts.js' }}"></script>
+    <script type="text/javascript" src="{{ libsPath   ~ 'Vague.js/Vague.js' }}"></script>
+    <script type="text/javascript" src="{{ libsPath   ~ 'Vague.js/Vague.js' }}"></script>
+
     <script type="text/javascript" src="{{ jsPath   ~ 'tabs.js' }}"></script>
     <script type="text/javascript" src="{{ jsPath   ~ 'dropdown.js' }}"></script>
+    <script type="text/javascript" src="{{ jsPath   ~ 'decks.js' }}"></script>
+    <script type="text/javascript">{% block javascript %}{% endblock %}</script>
+
+    <script type="text/javascript" src="{{ libsPath   ~ 'hopscotch/js/hopscotch-0.1.1.min.js' }}"></script>
+    <script type="text/javascript" src="../tours/pulsar-introduction.js"></script>
+
+    <script type="text/javascript">
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+          e.target // activated tab
+          e.relatedTarget // previous tab
+          $('.summary.open').removeClass('open').hide();          
+          $('.summary[data-tab=' + $(e.target).attr('href') + ']').show().addClass('open');
+        })
+    </script>
 
 </body>
 </html>

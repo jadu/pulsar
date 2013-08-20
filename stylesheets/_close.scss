@@ -1,0 +1,26 @@
+.close {
+  float: right;
+  font-size: 2em;
+  font-weight: bold;
+  line-height: $line-height-base;
+  color: $black;
+  
+  opacity: .2;
+  &:hover {
+    color: $black;
+    text-decoration: none;
+    cursor: pointer;
+    opacity: .4;
+  }
+}
+
+// Additional properties for button version
+// iOS requires the button element instead of an anchor tag.
+// If you want the anchor version, it requires `href="#"`.
+button.close {
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  -webkit-appearance: none;
+}

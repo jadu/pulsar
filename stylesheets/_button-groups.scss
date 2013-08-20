@@ -16,9 +16,9 @@
 .btn__toolbar {
 	@include clearfix;
 
-	.btn__group {
-		float: left;
-	}
+	// .btn__group {
+	// 	float: left;
+	// }
 
 	// Space out series of button groups
 	> .btn,
@@ -74,7 +74,7 @@
 
 // Custom edits for including btn__groups within btn__groups (useful for including dropdown buttons within a btn__group)
 .btn__group > .btn__group {
-  float: left;
+  margin-left: -1px;  
 }
 .btn__group > .btn__group:not(:first-child):not(:last-child) > .btn {
   border-radius: 0;

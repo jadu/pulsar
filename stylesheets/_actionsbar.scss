@@ -14,7 +14,7 @@
 
 .actionsbar {
 	display: inline-block;
-	margin: 0 $gutter-width 2px $gutter-width;
+	margin: $line-height-base $gutter-width 2px $gutter-width;
 }
 
 .actionsbar--left {

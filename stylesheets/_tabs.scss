@@ -11,32 +11,41 @@
 
 	> li > a {
 		border: 1px solid transparent;
-		border-top-left-radius: $border-radius;
-		border-bottom-left-radius: $border-radius;
 		color: $black;
 		display: block;
 		line-height: $line-height-base * 1.75;
 		padding: 0 $gutter-width / 2;
 		text-decoration: none;
-	}
 
-	> li > a:hover {
-		background-color: $gray-lighter;
+		> i {
+			font-size: 14px;
+			opacity: .6;
+			text-align: right;
+			margin-right: 3px;
+		}
+
+		&:hover {
+			background-color: $gray-lighter;
+
+			> i {
+				opacity: 1;
+			}
+		}
 	}
 
 	> li.is-active > a {
 		border: 1px solid $gray;
+		box-shadow: inset 2px 0 0 $gray;
 		border-right: none;
 		background-color: $white;
 		position: relative;
 		z-index: 1;
-	}
+	} 
 }
 
 .tabs__content {
 	background-color: $white;
 	border: 1px solid $gray;
-	border-bottom-left-radius: $border-radius;
 	box-shadow: -3px 1px 3px rgba(0, 0, 0, 0.05);
 	display: block;
 	overflow: auto;
@@ -54,7 +63,7 @@
 
 // Add top spacing to the first element that's not a table
 .tab__pane > :first-child:not(table) {
-	margin-top: $line-height-base;
+	// margin-top: $line-height-base;
 }
 
 .tab__inner {

@@ -1,8 +1,0 @@
-{
-  "name": "bourbon",
-  "version": "3.1.8",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/thoughtbot/bourbon.git"
-  }
-}

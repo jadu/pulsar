@@ -247,7 +247,7 @@ Available attributes:
 
 ##### Multiple Tags (type)
 
-Where possible, you should use the default button type, but buttons can also be links and inputs.
+Where possible, you should use the default button type, but buttons can also be links and inputs. 
 
 	{{ html.button('Button') }}
 	{{ html.button('Link Button', null, 'link', null, 'http://myurl.com') }}

@@ -10,11 +10,14 @@
     "tests"
   ],
   "dependencies": {
+    "bourbon": "latest",
+    "daux.io": "justinwalsh/daux.io",
+    "font-awesome": "latest",
+    "hopscotch": "linkedin/hopscotch",
+    "highcharts": "latest",
     "jquery": "latest",
     "normalize-css": "latest",
-    "font-awesome": "latest",
-    "bourbon": "latest",
     "respond": "latest",
-    "daux.io": "justinwalsh/daux.io"
+    "Vague.js": "Stanton/vague.js"
   }
 }

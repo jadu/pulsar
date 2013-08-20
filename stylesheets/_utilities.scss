@@ -1,3 +1,7 @@
 .show-baseline {
 	@include baseline-grid;
 }
+
+.hide {
+	display: none;
+}

@@ -9,34 +9,33 @@
 }
 
 body {
-	// @include baseline-grid;
-
 	background-color: $off-white;
     font-family: $font-family-base;
     font-size: $font-size-base;
     line-height: $line-height-base;
-    margin: 0;
+    margin: 0 0 ($line-height-base * 2) 0;
     padding: 0;
-}
-
-header {
-	margin-bottom: $line-height-base - 1;
 }
 
 .heading {
 	display: inline-block;
 	font-family: $font-family-light;
 	line-height: 1em;
-	margin: 0;
+	margin: $line-height-base 0 0 0;
 }
 
 .container {
 	clear: both;
 	margin: 0 $gutter-width;
+	position: relative; // required for decks
 }
 
 footer {
+	bottom: 0;
 	margin-top: $line-height-base;
+	position: fixed;
+	width: 100%;
+	z-index: $zindex-footer;
 }
 
 // Links

@@ -1,0 +1,145 @@
+<table class="table--datagrid">
+    <thead>
+        <tr>
+            <th class="row__actions">
+                <input type="checkbox" />
+            </th>
+            <th><a href="#">Visitor {{ html.icon('sort-down') }}</a></th>
+            <th class="centered"><a href="#">Visits</a></th>
+            <th class="centered"><a href="#">Pages / Visit</a></th>
+            <th class="centered"><a href="#">Avg Time on Site</a></th>
+            <th class="centered"><a href="#">Bounce Rate</a></th>
+            <th class="centered"><a href="#">Country</a></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="row__actions">
+                <input type="checkbox" />
+            </td>
+            <td>{{ html.link('123.123.123.123', '#exampledeck', null, null, 'data-toggle="deck"')}}</td>
+            <td class="centered">5</td>
+            <td class="centered">10</td>
+            <td class="centered">00.02.12</td>
+            <td class="centered">10%</td>
+            <td class="centered">UK</td>
+        </tr>
+        <tr class="is-selected">
+            <td class="row__actions">
+                <input type="checkbox" checked />
+            </td>
+            <td>{{ html.link('123.123.123.123', '#exampledeck', null, null, 'data-toggle="deck"') }}</td>
+            <td class="centered">5</td>
+            <td class="centered">10</td>
+            <td class="centered">00.02.12</td>
+            <td class="centered">10%</td>
+            <td class="centered">UK</td>
+        </tr>
+        <tr>
+            <td class="row__actions">
+                <input type="checkbox" />
+            </td>
+            <td>{{ html.link('123.123.123.123', '#exampledeck', null, null, 'data-toggle="deck"')}}</td>
+            <td class="centered">5</td>
+            <td class="centered">10</td>
+            <td class="centered">00.02.12</td>
+            <td class="centered">10%</td>
+            <td class="centered">UK</td>
+        </tr>
+        <tr>
+            <td class="row__actions">
+                <input type="checkbox" />
+            </td>
+            <td>{{ html.link('123.123.123.123', '#exampledeck', null, null, 'data-toggle="deck"')}}</td>
+            <td class="centered">5</td>
+            <td class="centered">10</td>
+            <td class="centered">00.02.12</td>
+            <td class="centered">10%</td>
+            <td class="centered">UK</td>
+        </tr>
+        <tr>
+            <td class="row__actions">
+                <input type="checkbox" />
+            </td>
+            <td>{{ html.link('123.123.123.123', '#exampledeck', null, null, 'data-toggle="deck"')}}</td>
+            <td class="centered">5</td>
+            <td class="centered">10</td>
+            <td class="centered">00.02.12</td>
+            <td class="centered">10%</td>
+            <td class="centered">UK</td>
+        </tr>
+        <tr class="row--success-highlight">
+            <td class="row__actions">
+                <input type="checkbox" />
+            </td>
+            <td>{{ html.link('123.123.123.123', '#exampledeck', null, null, 'data-toggle="deck"')}}</td>
+            <td class="centered">{{ html.badge(34, 'badge--success') }}</td>
+            <td class="centered">4</td>
+            <td class="centered">00.02.12</td>
+            <td class="centered">10%</td>
+            <td class="centered">UK</td>
+        </tr>
+        <tr>
+            <td class="row__actions">
+                <input type="checkbox" />
+            </td>
+            <td>{{ html.link('123.123.123.123', '#exampledeck', null, null, 'data-toggle="deck"')}}</td>
+            <td class="centered">5</td>
+            <td class="centered">10</td>
+            <td class="centered">00.02.12</td>
+            <td class="centered">10%</td>
+            <td class="centered">UK</td>
+        </tr>
+        <tr class="row--danger-highlight">
+            <td class="row__actions">
+                <input type="checkbox" />
+            </td>
+            <td>{{ html.link('123.123.123.123', '#exampledeck', null, null, 'data-toggle="deck"')}}</td>
+            <td class="centered">5</td>
+            <td class="centered">10</td>
+            <td class="centered">00.02.12</td>
+            <td class="centered">{{ html.badge('40%', 'badge--danger') }}</td>
+            <td class="centered">UK</td>
+        </tr>
+        <tr>
+            <td class="row__actions">
+                <input type="checkbox" />
+            </td>
+            <td>{{ html.link('123.123.123.123', '#exampledeck', null, null, 'data-toggle="deck"')}}</td>
+            <td class="centered">5</td>
+            <td class="centered">10</td>
+            <td class="centered">00.02.12</td>
+            <td class="centered">10%</td>
+            <td class="centered">UK</td>
+        </tr>
+        <tr>
+            <td class="row__actions">
+                <input type="checkbox" />
+            </td>
+            <td>{{ html.link('123.123.123.123', '#exampledeck', null, null, 'data-toggle="deck"')}}</td>
+            <td class="centered">5</td>
+            <td class="centered">10</td>
+            <td class="centered">00.02.12</td>
+            <td class="centered">10%</td>
+            <td class="centered">UK</td>
+        </tr>
+        <tr>
+            <td class="row__actions">
+                <input type="checkbox" />
+            </td>
+            <td>{{ html.link('123.123.123.123', '#exampledeck', null, null, 'data-toggle="deck"')}}</td>
+            <td class="centered">5</td>
+            <td class="centered">10</td>
+            <td class="centered">00.02.12</td>
+            <td class="centered">10%</td>
+            <td class="centered">UK</td>
+        </tr>
+       
+    </tbody>
+</table>
+
+<div class="pagination">
+    <ul class="pull-left">
+        <li class="is-disabled"><a href="#"><i class="icon-double-angle-left"></i> Previous</a></li><li><a href="#">1</a></li><li class="selected"><a href="#">2</a></li><li><a href="#">3</a></li><li><a href="#">4</a></li><li><a href="#">5</a></li><li><a href="#">Next <i class="icon-double-angle-right"></i></a></li>
+    </ul>
+</div>
