@@ -54,6 +54,7 @@ input[type="checkbox"] {
 // Set the height of select and file controls to match text inputs
 input[type="file"] {
   display: block;
+  *height: $line-height-base * 2; // IE
   line-height: $line-height-base * 2;
 }
 
