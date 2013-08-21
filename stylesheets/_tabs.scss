@@ -66,6 +66,25 @@
 	// margin-top: $line-height-base;
 }
 
+.tab__inner, 
+.tab__sidebar {
+	display: inline-block;
+}
+
 .tab__inner {
+	border-right: 1px solid $gray;
 	margin: 0 $gutter-width;
+	padding-right: $gutter-width;
+	width: 70%;
+}
+
+.tab__sidebar {
+	opacity: .3;
+	padding-top: $line-height-base;
+	vertical-align: top;
+	width: 23%;
+
+	&:hover {
+		opacity: 1;
+	}
 }
