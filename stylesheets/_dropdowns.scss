@@ -6,7 +6,7 @@
 // Dropdown arrow/caret
 // --------------------
 .caret {
-  display: inline-block;
+  @include inline-block;
   width: 0;
   height: 0;
   margin-left: 2px;
@@ -70,7 +70,7 @@
     text-decoration: none;
 
     [class^="icon-"], [class*=" icon-"] {
-      display: inline-block;
+      @include inline-block;
       text-align: center;
       width: 23px;
     }

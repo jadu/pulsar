@@ -138,7 +138,11 @@ hr {
   -webkit-column-count: 4; }
 
 .label {
-  display: inline;
+  display: inline-block;
+  vertical-align: baseline;
+  zoom: 1;
+  *display: inline;
+  *vertical-align: auto;
   padding: .25em .6em;
   font-size: 75%;
   font-weight: 500;
@@ -187,6 +191,10 @@ hr {
 
 .badge {
   display: inline-block;
+  vertical-align: baseline;
+  zoom: 1;
+  *display: inline;
+  *vertical-align: auto;
   min-width: 25px;
   padding: 3px 8px 1px 7px;
   font-size: 14px;
@@ -679,6 +687,10 @@ button.close {
 
 .caret {
   display: inline-block;
+  vertical-align: baseline;
+  zoom: 1;
+  *display: inline;
+  *vertical-align: auto;
   width: 0;
   height: 0;
   margin-left: 2px;
@@ -727,6 +739,10 @@ button.close {
     text-decoration: none; }
     .dropdown__menu > li > a [class^="icon-"], .dropdown__menu > li > a [class*=" icon-"] {
       display: inline-block;
+      vertical-align: baseline;
+      zoom: 1;
+      *display: inline;
+      *vertical-align: auto;
       text-align: center;
       width: 23px; }
 
@@ -1006,7 +1022,11 @@ textarea.form__control {
   vertical-align: middle; }
   .radio label,
   .checkbox label {
-    display: inline;
+    display: inline-block;
+    vertical-align: baseline;
+    zoom: 1;
+    *display: inline;
+    *vertical-align: auto;
     margin-bottom: 0;
     font-weight: normal;
     cursor: pointer; }
@@ -1270,11 +1290,19 @@ textarea.input-lg, textarea.input-sm {
     margin: 0;
     padding: 0; }
   .pagination li {
-    display: inline;
+    display: inline-block;
+    vertical-align: baseline;
+    zoom: 1;
+    *display: inline;
+    *vertical-align: auto;
     list-style-type: none; }
   .pagination a, .pagination span {
     color: #cccccc;
     display: inline-block;
+    vertical-align: baseline;
+    zoom: 1;
+    *display: inline;
+    *vertical-align: auto;
     line-height: 38.5px;
     padding: 0 20px;
     text-align: center;
@@ -1352,6 +1380,10 @@ textarea.input-lg, textarea.input-sm {
 
 .actionsbar {
   display: inline-block;
+  vertical-align: baseline;
+  zoom: 1;
+  *display: inline;
+  *vertical-align: auto;
   margin: 22px 20px 2px 20px; }
 
 .actionsbar--left {

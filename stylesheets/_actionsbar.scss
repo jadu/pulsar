@@ -4,7 +4,7 @@
 // 	outline: 1px solid red;
 
 // 	h1 {
-// 		display: inline;
+// 		@include inline-block;
 // 		font-size: 1.75em;
 // 		line-height: 1em;
 // 		border: 1px solid red;
@@ -13,7 +13,7 @@
 // }
 
 .actionsbar {
-	display: inline-block;
+	@include inline-block;
 	margin: $line-height-base $gutter-width 2px $gutter-width;
 }
 

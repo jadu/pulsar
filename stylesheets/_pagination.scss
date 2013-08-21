@@ -9,13 +9,13 @@
 	}
 
 	li {
-		display: inline;
+		@include inline-block;
 		list-style-type: none;
 	}
 
 	a, span {
 		color: $gray;
-		display: inline-block;
+		@include inline-block;
 		line-height: $line-height-base * 1.75;
 		padding: 0 $gutter-width;
 		text-align: center;
