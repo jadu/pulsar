@@ -13,6 +13,7 @@
     "bourbon": "latest",
     "daux.io": "justinwalsh/daux.io",
     "font-awesome": "latest",
+    "html5shiv": "latest",
     "highcharts": "latest",
     "jquery": "latest",
     "normalize-css": "latest",

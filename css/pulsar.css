@@ -1,6 +1,5 @@
 @import url(../libs/normalize-css/normalize.css);
 @import url(../libs/font-awesome/css/font-awesome.css);
-@import url(../libs/hopscotch/css/hopscotch-0.1.1.min.css);
 @import url(../fonts/proxima_nova/stylesheet.css);
 /** 
  * -----------------------------------------------------------------------------
@@ -20,6 +19,10 @@ body {
 
 .heading {
   display: inline-block;
+  vertical-align: baseline;
+  zoom: 1;
+  *display: inline;
+  *vertical-align: auto;
   font-family: "proxima_novalight", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   line-height: 1em;
   margin: 22px 0 0 0; }
@@ -927,8 +930,9 @@ input[type="checkbox"] {
 
 input[type="file"] {
   display: block;
-  *height: 44px;
   line-height: 44px; }
+  .lt-ie10 input[type="file"] {
+    height: 44px; }
 
 select[multiple],
 select[size] {
@@ -1323,6 +1327,10 @@ textarea.input-lg, textarea.input-sm {
   .breadcrumb li > a,
   .breadcrumb li > span {
     display: inline-block;
+    vertical-align: baseline;
+    zoom: 1;
+    *display: inline;
+    *vertical-align: auto;
     line-height: 43px; }
   .breadcrumb a {
     color: #333333;
@@ -1331,6 +1339,10 @@ textarea.input-lg, textarea.input-sm {
       color: #999999;
       content: " / ";
       display: inline-block;
+      vertical-align: baseline;
+      zoom: 1;
+      *display: inline;
+      *vertical-align: auto;
       font-size: 1.5em;
       margin: 0 0 0 20px;
       position: relative;

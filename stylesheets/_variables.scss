@@ -4,9 +4,13 @@ $font-family-light: "proxima_novalight", "Helvetica Neue", "Helvetica", "Arial",
 $font-family-regular: "proxima_nova_rgregular", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 $font-family-semibold: "proxima_nova_semibold", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 
-
 // Typographic grid
 $font-family-base: 		$font-family-light;
+
+@include ie-lte(8) {
+	$font-family-base:  $font-family-regular;
+}
+
 $font-size-base: 		16px;
 $font-size-large:       ceil($font-size-base * 1.25); // ~18px
 $font-size-small:       ceil($font-size-base * 0.85); // ~12px
@@ -51,7 +55,7 @@ $input-height-small:             (floor($font-size-small * $line-height-small) +
 $legend-border-color:            #e5e5e5;
 $input-group-addon-border-color: $input-border;
 
-// Z-index master list
+// z-index master list
 $zindex-tour: 			 990;
 $zindex-dropdown: 		1000;
 $zindex-footer: 		1010;

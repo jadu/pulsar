@@ -1,14 +1,26 @@
 /*
-Syntax error: Undefined variable: "$gray-lighter".
-        on line 43 of stylesheets/_variables.scss
+Syntax error: Undefined mixin 'ie-lte'.
+        on line 10 of stylesheets/_variables.scss, in `ie-lte'
+        from line 10 of stylesheets/_variables.scss
         from line 5 of stylesheets/markdown.scss
 
+5: @import 'variables';
+6: @import 'mixins';
+7: @import 'colours';
+8: 
+9: // Components
+10: @import 'labels';
+11: @import 'badges';
+12: @import 'button-groups';
+13: @import 'buttons';
+14: @import 'dropdowns';
+15: @import 'navbars';
+
 Backtrace:
-stylesheets/_variables.scss:43
+stylesheets/_variables.scss:10:in `ie-lte'
+stylesheets/_variables.scss:10
 stylesheets/markdown.scss:5
-/Library/Ruby/Gems/1.8/gems/sass-3.2.10/bin/../lib/sass/../sass/script/variable.rb:49:in `_perform'
-/Library/Ruby/Gems/1.8/gems/sass-3.2.10/bin/../lib/sass/../sass/script/node.rb:40:in `perform'
-/Library/Ruby/Gems/1.8/gems/sass-3.2.10/bin/../lib/sass/../sass/tree/visitors/perform.rb:327:in `visit_variable'
+/Library/Ruby/Gems/1.8/gems/sass-3.2.10/bin/../lib/sass/../sass/tree/visitors/perform.rb:253:in `visit_mixin'
 /Library/Ruby/Gems/1.8/gems/sass-3.2.10/bin/../lib/sass/../sass/tree/visitors/base.rb:37:in `send'
 /Library/Ruby/Gems/1.8/gems/sass-3.2.10/bin/../lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
 /Library/Ruby/Gems/1.8/gems/sass-3.2.10/bin/../lib/sass/../sass/tree/visitors/perform.rb:100:in `visit'
@@ -64,4 +76,4 @@ stylesheets/markdown.scss:5
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: Undefined variable: \"$gray-lighter\".\A         on line 43 of stylesheets/_variables.scss\A         from line 5 of stylesheets/markdown.scss"; }
+  content: "Syntax error: Undefined mixin 'ie-lte'.\A         on line 10 of stylesheets/_variables.scss, in `ie-lte'\A         from line 10 of stylesheets/_variables.scss\A         from line 5 of stylesheets/markdown.scss\A \A 5: @import 'variables';\A 6: @import 'mixins';\A 7: @import 'colours';\A 8: \A 9: // Components\A 10: @import 'labels';\A 11: @import 'badges';\A 12: @import 'button-groups';\A 13: @import 'buttons';\A 14: @import 'dropdowns';\A 15: @import 'navbars';"; }
