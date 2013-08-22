@@ -11,7 +11,7 @@
   ],
   "dependencies": {
     "bourbon": "latest",
-    "daux.io": "justinwalsh/daux.io",
+    "daux.io": "Stanton/daux.io#pulsar",
     "font-awesome": "latest",
     "html5shiv": "latest",
     "highcharts": "latest",

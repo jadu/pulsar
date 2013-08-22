@@ -1,0 +1,5 @@
+Do not make changes to these files directly!
+
+These .css files are compiled by Sass and any changes you make here may be overwritten at any time.
+
+The source files are contained within /stylesheets. see the Pulsar documentation (/docs) for more information about recompiling the CSS files.

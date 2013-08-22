@@ -30,18 +30,8 @@
 <body>
 
     <header id="top">
-    	<div class="toolbar">
-            <h1 class="brand" id="tour-home">{{ html.link('Jadu', '/search') }}</h1>
-        </div>
-
-        <nav class="breadcrumb">
-            <ul>
-                <li><a href="#">Bread</a></li>
-                <li><a href="#">Crumb</a></li>
-                <li><a href="#">Trail</a></li>
-                <li><span>Thing</span></li>
-            </ul>
-        </nav>
+        {% include 'components/toolbar.html.twig' %}
+        {% include 'components/breadcrumb.html.twig' %}
     </header>
 
     <div class="summary hide" data-tab="#tab_5">

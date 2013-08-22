@@ -1329,7 +1329,7 @@ textarea.input-lg, textarea.input-sm {
   background-color: #333333;
   height: 44px; }
 
-.brand {
+.branding {
   color: transparent;
   font: 0/0 a;
   text-shadow: none;
@@ -1349,7 +1349,11 @@ textarea.input-lg, textarea.input-sm {
     list-style-type: none;
     margin: 0 0 0 10px; }
   .breadcrumb li {
-    display: inline;
+    display: inline-block;
+    vertical-align: baseline;
+    zoom: 1;
+    *display: inline;
+    *vertical-align: auto;
     margin-right: 16px;
     padding: 0; }
   .breadcrumb li > a,
