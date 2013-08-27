@@ -22,7 +22,7 @@ These packages have their own dependencies, we'll assume you can take care of th
 
 Pulsar uses GIT and the source is currently maintained in a private BitBucket repository, to clone it you'll need to send your [SSH key](https://confluence.atlassian.com/display/BITBUCKET/Use+the+SSH+protocol+with+Bitbucket) to [Paul Stanton or Scott Riley](mailto:paul.stanton@jadu.net,scott.riley@jadu.net).
 
-<a href="https://bitbucket.org/Stanton/pulsar">https://bitbucket.org/Stanton/pulsar</a>
+[https://bitbucket.org/Stanton/pulsar](https://bitbucket.org/Stanton/pulsar)
 
 If you'd like to contribute, send us your Bitbucket username.
 
