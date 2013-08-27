@@ -132,10 +132,10 @@ if ($homepage && $homepage_url !== '/') {
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 
-	<link href="../../../css/markdown.css" rel="stylesheet"></link>
-	<script type="text/javascript" src="../../../libs/jquery/jquery.min.js"></script>
-	<script type="text/javascript" src="../../../javascripts/tabs.js"></script>
-	<script type="text/javascript" src="../../../javascripts/dropdown.js"></script>
+	<link href="http://localhost:8000/css/markdown.css" rel="stylesheet"></link>
+	<script type="text/javascript" src="http://localhost:8000/libs/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="http://localhost:8000/javascripts/tabs.js"></script>
+	<script type="text/javascript" src="http://localhost:8000/javascripts/dropdown.js"></script>
 </head>
 <body>
 	<?php if ($homepage) { ?>

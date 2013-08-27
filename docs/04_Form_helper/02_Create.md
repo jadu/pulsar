@@ -14,6 +14,4 @@ Example usage:
 
 	{{ form.create('/signin') }}
 
-Output:
-
 	<form target="/signin" class="form--horizontal" method="POST">

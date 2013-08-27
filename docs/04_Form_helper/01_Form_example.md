@@ -7,7 +7,7 @@ There are separate helpers to start and end a form, your individual inputs will 
 	{{ form.password('Password') }}
 	{{ form.end(html.submit('Login')) }}
 
-Output:
+Output: 
 
 	<form class="form--horizontal" target="/login" method="POST">
 

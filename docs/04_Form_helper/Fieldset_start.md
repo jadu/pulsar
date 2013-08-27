@@ -10,7 +10,5 @@ Example usage:
 
 	{{ form.fieldset_start('Sign in') }}
 
-Output:
-
 	<fieldset>
 		<legend>Sign in</legend>

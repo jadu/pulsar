@@ -1,6 +1,6 @@
 ## Ending forms
 
-Closes a form with the desired submit actions.
+Closes a form with the desired submit actions, usually used in conjunction with [submit inputs](./Submit).
 
 ----
 
@@ -14,9 +14,7 @@ Example usage:
 	
 	{{ form.end(form.submit('Sign in')) }}
 
-Output:
-
 		<div class="form__actions">
-			<input type="submit" class="btn btn--primary" value="Sign in" />
+			<input type="submit" class="btn" value="Sign in" />
 		</div>
 	</form>

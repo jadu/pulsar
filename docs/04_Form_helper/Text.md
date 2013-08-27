@@ -12,8 +12,6 @@ Available parameters:
 
 	{{ form.text('Username') }}
 
-Output:
-
 	<div class="form__group">
         <label for="inputText" class="control__label">Username</label>
         <div class="controls">
@@ -34,8 +32,6 @@ Output:
 
 	{{ form.text('Username', 'userName') }}
 
-Output:
-
 	<div class="form__group">
         <label for="inputText" class="control__label">Username</label>
         <div class="controls">
@@ -49,8 +45,6 @@ The class is added to the `.form__group`, not the individual input.
 
 	{{ form.text('Username', 'userName', 'form__group--large') }}
 
-Output:
-
 	<div class="form__group form__group--large">
         <label for="inputText" class="control__label">Username</label>
         <div class="controls">
@@ -62,8 +56,6 @@ Output:
 
 	{{ form.text('Username', 'userName', 'form__group--large', 'User[name]') }}
 
-Output:
-
 	<div class="form__group form__group--large">
         <label for="inputText" class="control__label">Username</label>
         <div class="controls">
@@ -74,8 +66,6 @@ Output:
 #### Placeholder
 
 	{{ form.text('Username', 'userName', 'form__group--large', 'User[name]', 'Enter your username') }}
-
-Output:
 
 	<div class="form__group form__group--large">
         <label for="inputText" class="control__label">Username</label>
@@ -96,8 +86,6 @@ Output:
 #### Help text
 
 	{{ form.text('Username', 'userName', 'form__group--large', 'User[name]', 'Enter your username', "Check your sign-up email.") }}
-
-Output:
 
 	<div class="form__group form__group--large">
         <label for="inputText" class="control__label">Username</label>
@@ -122,8 +110,6 @@ Output:
 Use to extend your input with useful information which will help to clarify the input you're expecting.
 
 	{{ form.text('Twitter username', 'twitterUsername', null, 'User[twitter]', null, null, '@') }}
-
-Output:
 
 	<div class="form__group form__group--large">
         <label for="inputText" class="control__label">Username</label>
@@ -151,8 +137,6 @@ Output:
 #### Append
 
 	{{ form.text('Your website', 'url', null, 'User[website]', 'http://', null, null, '.com') }}
-
-Output:
 
 	<form class="form--horizontal">
 	<div class="form__group">

@@ -6,6 +6,4 @@ Example usage:
 
 	{{ form.fieldset_end() }}
 
-Output:
-
 	</fieldset>
