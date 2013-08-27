@@ -27,6 +27,7 @@ Currently, there's no helper for data grids so simply place your table markup, u
         </tbody>
     </table>
     
+<br />
 <table class="table--datagrid">
     <thead>
         <tr>

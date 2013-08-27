@@ -1,3 +1,5 @@
+These steps detail how you can run Pulsar completely independently of a Jadu/Weejot installation.
+
 ## Requirements
 
 ### PHP 5.4.0+
@@ -12,25 +14,21 @@ Pulsar uses a collection of tools to manage dependencies, you'll need to ensure 
 * [Bower](http://bower.io)
 * [Grunt](http://gruntjs.com)
 
-These packages may have their own dependencies, we'll assume you can take care of that.
+These packages have their own dependencies, we'll assume you can take care of that.
 
 ---- 
 
 ## Pulsar repository
 
-Pulsar uses GIT and the source is currently maintained in a private BitBucket repository, to clone it you'll need to send your SSH key<sup>[1]</sup> to [Paul Stanton or Scott Riley](mailto:paul.stanton@jadu.net,scott.riley@jadu.net).
+Pulsar uses GIT and the source is currently maintained in a private BitBucket repository, to clone it you'll need to send your [SSH key](https://confluence.atlassian.com/display/BITBUCKET/Use+the+SSH+protocol+with+Bitbucket) to [Paul Stanton or Scott Riley](mailto:paul.stanton@jadu.net,scott.riley@jadu.net).
 
-<div class="well"><a href="https://bitbucket.org/Stanton/pulsar">https://bitbucket.org/Stanton/pulsar</a></div>
+<a href="https://bitbucket.org/Stanton/pulsar">https://bitbucket.org/Stanton/pulsar</a>
 
 If you'd like to contribute, send us your Bitbucket username.
-
-<sup>[1]</sup> [Using the SSH protocol with Bitbucket](https://confluence.atlassian.com/display/BITBUCKET/Use+the+SSH+protocol+with+Bitbucket)
 
 ----
 
 ## Installing required packages & libraries
-
-[TODO] where to put the pulsar directory?
 
 Pulsar requires some additional packages to be installed before it'll work, you can install all dependencies by typing the following command in the pulsar directory:
 

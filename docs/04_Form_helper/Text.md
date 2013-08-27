@@ -1,5 +1,7 @@
 Create a text input with a variety of options.
 
+----
+
 Available parameters:
 
 	{{ form.text(label, id, class, name, placeholder, help, prepend, append) }}

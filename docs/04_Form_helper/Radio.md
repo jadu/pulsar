@@ -1,5 +1,7 @@
 Creates a radio button which can be pre-checked and grouped with other radios.
 
+----
+
 Available parameters:
 
 	{{ form.radio(label, id, class, name, checked = false, help) }}

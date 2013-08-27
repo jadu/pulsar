@@ -1,5 +1,7 @@
 Password inputs are identical to [text inputs](Text), but use dots/asterisks to mask the entered information.
 
+----
+
 Example:
 
 	{{ form.password('Password') }}

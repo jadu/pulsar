@@ -1,4 +1,12 @@
-Create a submit button to POST the current form and usually passed to the [form end helper](./End).
+Create a submit input to POST the current form, usually passed to the [form end helper](./End).
+
+----
+
+Available paramters:
+
+	{{ form.submit(label = 'Submit', class, type, id, href, attributes) }}
+
+Example:
 
 	{{ form.submit('Save') }}
 

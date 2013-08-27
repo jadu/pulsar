@@ -1,5 +1,7 @@
 Creates a select field with a number of options.
 
+----
+
 Available parameters:
 
 	{{ form.select(label, options, id, class, name, help) }}

@@ -1,5 +1,3 @@
-## Ending forms
-
 Closes a form with the desired submit actions, usually used in conjunction with [submit inputs](./Submit).
 
 ----

@@ -1,5 +1,7 @@
 Creates a checkbox which can be pre-checked and grouped with other checkboxes.
 
+----
+
 Available parameters:
 
 	{{ form.checkbox(label, id, class, name, checked = false, help) }}

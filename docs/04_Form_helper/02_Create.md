@@ -1,5 +1,3 @@
-## Creating forms
-
 Outputs an opening form tag.
 
 ----

@@ -1,5 +1,7 @@
 Creates a file upload field.
 
+----
+
 Available parameters:
 
 	{{ form.file(label, id, class, name, help) }}
