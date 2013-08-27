@@ -8,6 +8,18 @@ Pulsar uses a collection of tools to manage dependencies and to compile the styl
 
 These packages may have their own dependencies, we'll assume you can take care of that.
 
+---- 
+
+## Pulsar repository
+
+Pulsar uses GIT and the source is currently maintained in a private BitBucket repository, to clone it you'll need to send your SSH key<sup>[1]</sup> to [Paul Stanton or Scott Riley](mailto:paul.stanton@jadu.net,scott.riley@jadu.net).
+
+<div class="well"><a href="https://bitbucket.org/Stanton/pulsar">https://bitbucket.org/Stanton/pulsar</a></div>
+
+If you'd like to contribute, send us your Bitbucket username.
+
+<sup>[1]</sup> [Using the SSH protocol with Bitbucket](https://confluence.atlassian.com/display/BITBUCKET/Use+the+SSH+protocol+with+Bitbucket)
+
 ----
 
 ## Installing required packages & libraries

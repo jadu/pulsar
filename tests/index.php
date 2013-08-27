@@ -6,9 +6,9 @@
 	require_once 'vendor/autoload.php';
 
 	$loader = new Twig_Loader_Filesystem($templateDir);
-	$twig = new Twig_Environment($loader);
+	$twig = new Twig_Environment($loader, array('debug' => true));
 
-	$template = $twig->loadTemplate('pulsar_reference/main.html.twig');
+	$template = $twig->loadTemplate('lexicon/main.html.twig');
 
 	echo $template->render(array());
 

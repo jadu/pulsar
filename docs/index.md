@@ -1,1 +1,0 @@
-Pulsar is the aesthetic and usability framework that powers all Jadu software

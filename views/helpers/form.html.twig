@@ -1,5 +1,5 @@
-{% macro form_start(class) %}
-    <form class="form--horizontal {{ class }}">
+{% macro create(target, class, id, method = "POST") %}
+    <form {% if target is not empty %}target="{{ target }}"{% endif %} class="form--horizontal{% if class is not empty %} {{ class }}{% endif %}"{% if id is not empty %} id="{{ id }}"{% endif %} method="{{ method }}">
 {% endmacro %}
 
 {% macro form_end(actions) %}
@@ -31,7 +31,7 @@
             <div class="input-group">
                 {{ form.addon(prepend) }}
             {% endif %}
-                <input type="text" class="form__control" {{ form.id(id) }} {{ form.name(name) }} {{ form.placeholder(placeholder) }}>
+                <input type="text" class="form__control" {{ form.id(id) }} {{ form.name(name) }} {{ form.placeholder(placeholder) }} />
             {% if prepend is not empty or append is not empty %}
                 {{ form.addon(append) }}
             </div>

@@ -12,13 +12,12 @@ There are two template blocks which should be set by a view:
 		<!-- tabs content -->
 	{% endblock %}
 
-----
 
 ## Tabs List
 
 Pass an array of labels to the `html.tabs` helper and they'll be rendered as clickable tabs.
 
-Available attributes:
+Available parameters:
 
 	{{ html.tabs(tab_labels, active_tab) }}
 	
@@ -38,11 +37,10 @@ In your view you can populate the `tabs_list` block to place your tabs in the co
 
 The ID attribute for each tab link will be automatically generated in the format `tab_x` so that they correspond with their respective tab content.
 
-----
 
 ## Tabs Content
 
-Available attributes:
+Available parameters:
 	
 	{{ html.tabs_content(tab_contents, active_tab) }}
 

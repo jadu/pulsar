@@ -1,11 +1,11 @@
 {
   "name": "daux.io",
   "homepage": "https://github.com/Stanton/daux.io",
-  "_release": "444cc4c0ff",
+  "_release": "79408c4b89",
   "_resolution": {
     "type": "branch",
     "branch": "pulsar",
-    "commit": "444cc4c0ffd22767e6e0997853417111028e1b67"
+    "commit": "79408c4b89c8e2e9df5c807a62e9c7565bea9cf3"
   },
   "_source": "git://github.com/Stanton/daux.io.git",
   "_target": "pulsar",
