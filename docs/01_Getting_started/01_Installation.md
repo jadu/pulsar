@@ -9,7 +9,6 @@ Pulsar creates it's own development server to run the documentation and to compi
 Pulsar uses a collection of tools to manage dependencies, you'll need to ensure the following are all installed and included in your PATH
 
 * [Composer](http://getcomposer.org)
-* [Ruby](http://ruby-lang.org)
 * [Bower](http://bower.io)
 * [Grunt](http://gruntjs.com)
 
@@ -39,16 +38,6 @@ Pulsar requires some additional packages to be installed before it'll work, you 
 
 Don't run this command with sudo as some steps may fail if you try to run them with too much privilege.
 
-You can define new composer packages to be installed in `composer.json` and new front-end libraries in `bower.json`, re-running the make command will bring these into Pulsar.
+You can define new composer packages to be installed in `composer.json` and new front-end libraries in `bower.json`, re-running the make command will bring these into Pulsar. You can reverse the make process by using `$ make clean`.
 
 These dependencies should be committed to the Pulsar repository, for more information [read this article](http://addyosmani.com/blog/checking-in-front-end-dependencies/).
-
-----
-
-## Removing installed packages & libraries
-
-You can reverse the make process by using:
-
-`$ make clean`
-
-At the moment, this will not remove the Sass dependency that was installed, in case you need it for other things. You can remove it yourself by `$ sudo gem uninstall sass`.

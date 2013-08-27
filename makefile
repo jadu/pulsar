@@ -30,8 +30,3 @@ clean:
 	@ echo "${HR}\nRemoving front-end libraries...${HR}"
 	@ rm -rf libs/*
 	@ echo "\n${CHECK} Done\n"
-
-start:
-	@ echo "${HEADER}"
-	@ echo "Start watching Sass directories...${HR}"
-	@ sudo sass --watch stylesheets:css
