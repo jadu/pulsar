@@ -8,20 +8,18 @@ build:
 	@ echo "${HEADER}"
 
 	@ echo "Installing Composer packages...${HR}"
-	@ php composer.phar install
-	@ echo "\n${CHECK} Done"
-
-	@ echo "${HR}\nInstalling front-end dependencies...${HR}"
-	@ echo "Installing Sass..."
-		@ gem install sass
-		@ gem install --version "~> 0.9" rb-fsevent
+	@ sudo php composer.phar install
 	@ echo "\n${CHECK} Done"
 
 	@ echo "${HR}\nInstalling front-end libraries...${HR}"
 	@ bower install
 	@ echo "\n${CHECK} Done\n"
 
-	@ echo "Use 'make start' to watch for Sass changes"
+	@ echo "${HR}\nInstalling Grunt and it's libraries...${HR}"
+	@ npm install
+	@ echo "\n${CHECK} Done\n"
+
+	@ echo "Run 'grunt' to start the dev server and watch for Sass changes."
 
 clean:
 	@ echo "${HEADER}"

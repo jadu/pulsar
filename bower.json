@@ -16,6 +16,7 @@
     "html5shiv": "latest",
     "highcharts": "latest",
     "jquery": "1.x",
+    "livereload-js": "livereload/livereload-js",
     "normalize-css": "latest",
     "respond": "latest",
     "Vague.js": "Stanton/vague.js"

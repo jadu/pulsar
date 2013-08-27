@@ -1,4 +1,4 @@
 <?php 
-	header('Location: ../libs/daux.io/Getting_started/Installation'); 
+	header('Location: ./libs/daux.io/index.php'); 
 	exit; 
 ?>
