@@ -348,6 +348,11 @@ textarea {
 .form--horizontal .checkbox__label,
 .form--horizontal .radio__label {
   margin-bottom: 0;
+}
+
+// Only set a width for left-aligned labels
+.form--horizontal .form__group > .checkbox__label,
+.form--horizontal .form__group > .radio__label {
   width: 20%;
 }
 

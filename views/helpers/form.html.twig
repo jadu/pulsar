@@ -90,12 +90,12 @@
     </div>
 {% endmacro %}
 
-{% macro select(label, options, id, class, name, placeholder, help) %}
+{% macro select(label, options, id, class, name, help) %}
     {% import _self as form %}
     <div class="form__group {{ class }}">
         <label {{ form.for(id) }} class="control__label">{{ label | raw }}</label>
         <div class="controls">
-            <select class="form__control" {{ form.id(id) }} {{ form.name(name) }} {{ form.placeholder(placeholder) }}>
+            <select class="form__control" {{ form.id(id) }} {{ form.name(name) }}>
             {%- for value, option in options -%}
                 <option value="{{ value }}">{{ option }}</option>
             {%- endfor -%}

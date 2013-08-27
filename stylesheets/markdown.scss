@@ -6,6 +6,9 @@
 @import 'colours';
 @import 'variables';
 @import 'mixins';
+@import 'scaffolding';
+// @import 'type';
+@import 'columns';
 
 // Components
 @import 'labels';
@@ -27,3 +30,4 @@
 @import 'summary';
 @import 'decks';
 @import 'footer';
+

@@ -1,4 +1,4 @@
-Creates a checkbox
+Creates a checkbox which can be pre-checked and grouped with other checkboxes.
 
 Available parameters:
 
@@ -15,13 +15,13 @@ Examples:
         </div>
     </div>
 
-    {{ form.checkbox_right('Checkbox with right label', 'inputCheckboxRight', null, 'inputCheckboxInline', true) 
+    {{ form.checkbox_right('Pre-checked, with right label', 'inputCheckboxRight', null, 'inputCheckboxInline', true) }}
 
     <div class="form__group">
         <div class="checkbox">
             <label for="inputCheckboxRight" class="checkbox__label">
-                <input type="checkbox" />
-                Checkbox with right label
+                <input type="checkbox" id="inputCheckboxRight" name="inputCheckboxInline" checked="">
+                Pre-checked, with right label
             </label>
         </div>
     </div>
@@ -39,8 +39,8 @@ Examples:
 <div class="form__group">
     <div class="checkbox">
         <label for="inputCheckboxRight" class="checkbox__label">
-            <input type="checkbox" />
-            Checkbox with right label
+            <input type="checkbox" id="inputCheckboxRight" name="inputCheckboxInline" checked="">
+            Pre-checked with right label
         </label>
     </div>
 </div>

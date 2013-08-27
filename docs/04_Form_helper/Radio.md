@@ -1,4 +1,4 @@
-Creates a radio button
+Creates a radio button which can be pre-checked and grouped with other radios.
 
 Available parameters:
 
@@ -15,13 +15,13 @@ Examples:
         </div>
     </div>
 
-    {{ form.radio_right('Radio with right label', 'inputRadioRight', null, 'inputRadioInline', true) 
+    {{ form.radio_right('Pre-checked, with right label', 'inputRadioRight', null, 'inputRadioInline', true) }}
 
-    <div class="form__group">
+    <div class="form__group ">
         <div class="radio">
-            <label for="inputRadioRight" class="radio__label">
-                <input type="radio" />
-                Radio with right label
+            <label for="inputRadioRight" class="checkbox__label">
+                <input type="radio" id="inputRadioRight" name="inputRadioInline" checked="checked">
+                Pre-checked, with right label
             </label>
         </div>
     </div>
@@ -38,9 +38,9 @@ Examples:
 <form class="form--horizontal">
 <div class="form__group">
     <div class="radio">
-        <label for="inputRadioRight" class="radio__label">
-            <input type="radio" />
-            Radio with right label
+        <label for="inputRadioRight" class="checkbox__label">
+            <input type="radio" id="inputRadioRight" name="inputRadioInline" checked="checked">
+            Pre-checked, with right label
         </label>
     </div>
 </div>

@@ -1,12 +1,8 @@
-Text inputs
-
-----
+Create a text input with a variety of options.
 
 Available parameters:
 
 	{{ form.text(label, id, class, name, placeholder, help, prepend, append) }}
-
-----
 
 #### Label
 
@@ -114,7 +110,7 @@ Use to extend your input with useful information which will help to clarify the 
 	<div class="form__group form__group--large">
         <label for="inputText" class="control__label">Username</label>
         <div class="controls">
-	        <div class="input-grpup">
+	        <div class="input-group">
 		    	<span class="input-group-addon">@</span>
 		        <input type="text" class="form__control" id="userName" name="User[name]" />
 			</div>
@@ -126,7 +122,7 @@ Use to extend your input with useful information which will help to clarify the 
     <label for="inputText" class="control__label">Twitter 
     username</label>
     <div class="controls">
-    	<div class="input-grpup">
+    	<div class="input-group">
 	    	<span class="input-group-addon">@</span>
 	        <input type="text" class="form__control" id="twitterUsername" name="User[twitter]" />
 		</div>
@@ -142,7 +138,7 @@ Use to extend your input with useful information which will help to clarify the 
 	<div class="form__group">
 	    <label for="inputText" class="control__label">Your website</label>
 	    <div class="controls">
-	    	<div class="input-grpup">
+	    	<div class="input-group">
 		        <input type="text" class="form__control" name="User[website]" placeholder="http://" />
 		        <span class="input-group-addon">.com</span>
 			</div>
@@ -153,7 +149,7 @@ Use to extend your input with useful information which will help to clarify the 
 <div class="form__group">
     <label for="inputText" class="control__label">Your website</label>
     <div class="controls">
-    	<div class="input-grpup">
+    	<div class="input-group">
 	        <input type="text" class="form__control" name="User[website]" placeholder="http://" />
 	        <span class="input-group-addon">.com</span>
 		</div>
