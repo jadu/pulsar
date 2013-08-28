@@ -1,5 +1,7 @@
 module.exports = function(grunt) {
 
+    'use strict';
+
     grunt.initConfig({
         
         php: {
@@ -36,6 +38,13 @@ module.exports = function(grunt) {
                     livereload: true,
                 },
             },
+        },
+
+        jshint: {
+            options: {
+                jshintrc: '.jshintrc'
+            },
+            all: ['javascripts/**/*.js']
         }
 
     });
@@ -45,4 +54,4 @@ module.exports = function(grunt) {
     // load all grunt tasks
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
-}
+};

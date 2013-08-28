@@ -44,10 +44,10 @@
 
                 // Unfocus the background
                 // $($.fn.deck.defaults.backgroundElements).addClass($.fn.deck.defaults.backgroundClassName);
-var vague = $($.fn.deck.defaults.backgroundElements).Vague({
-    intensity: 2 //blur intensity
-});
-vague.blur();
+                var vague = $($.fn.deck.defaults.backgroundElements).Vague({
+                    intensity: 2 //blur intensity
+                });
+                vague.blur();
 
                 /**
                  * Activate the deck and show first slide.
@@ -80,10 +80,10 @@ vague.blur();
 
             // Refocus the background UI.
             // $($.fn.deck.defaults.backgroundElements).removeClass($.fn.deck.defaults.backgroundClassName);
-var vague = $($.fn.deck.defaults.backgroundElements).Vague({
-    intensity: 2 //blur intensity
-});
-vague.destroy();
+            var vague = $($.fn.deck.defaults.backgroundElements).Vague({
+                intensity: 2 //blur intensity
+            });
+            vague.destroy();
 
             return this;
 
