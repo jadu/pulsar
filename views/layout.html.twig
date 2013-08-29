@@ -32,6 +32,7 @@
     <header id="top">
         {% include 'components/toolbar.html.twig' %}
         {% include 'components/breadcrumb.html.twig' %}
+        {% include 'components/flash.html.twig' %}
     </header>
 
     <div class="summary hide" data-tab="#tab_5">
@@ -76,13 +77,15 @@
     </footer> 
 
     <script type="text/javascript" src="{{ libsPath ~ 'jquery/jquery.min.js' }}"></script>
+    <script type="text/javascript" src="{{ libsPath ~ 'console-js/console.js' }}"></script>
     <script type="text/javascript" src="{{ libsPath ~ 'highcharts/highcharts.js' }}"></script>
     <script type="text/javascript" src="{{ libsPath ~ 'Vague.js/Vague.js' }}"></script>
-    <script type="text/javascript" src="http://localhost:35729/pulsar/libs/livereload-js/dist/livereload.js"></script>
+    <script type="text/javascript" src="{{ libsPath ~ 'sticky/jquery.sticky.js' }}"></script>
 
     <script type="text/javascript" src="{{ jsPath   ~ 'tabs.js' }}"></script>
     <script type="text/javascript" src="{{ jsPath   ~ 'dropdown.js' }}"></script>
     <script type="text/javascript" src="{{ jsPath   ~ 'decks.js' }}"></script>
+    <script type="text/javascript" src="{{ jsPath   ~ 'flash.js' }}"></script>
     <script type="text/javascript">{% block javascript %}{% endblock %}</script>
 
     <script type="text/javascript">
@@ -94,5 +97,6 @@
         })
     </script>
 
+    <script src="http://localhost:8000/libs/livereload-js/dist/livereload.js?host=localhost"></script>
 </body>
 </html>
