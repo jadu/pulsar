@@ -11,6 +11,7 @@
   ],
   "dependencies": {
     "bourbon": "latest",
+    "console-js": "gh-pages",
     "daux.io": "Stanton/daux.io#pulsar",
     "font-awesome": "latest",
     "html5shiv": "latest",
@@ -19,6 +20,7 @@
     "livereload-js": "livereload/livereload-js",
     "normalize-css": "latest",
     "respond": "latest",
+    "sticky": "latest",
     "Vague.js": "Stanton/vague.js"
   }
 }

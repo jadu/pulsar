@@ -4,6 +4,8 @@ $brand-height: 24px;
 .toolbar {
 	background-color: $gray-dark;
 	height: $toolbar-height;
+	width: 100%;
+	z-index: 9999;
 }
 
 .branding {

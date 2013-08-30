@@ -1,5 +1,6 @@
 {% import 'helpers/html.html.twig' as html %}
 {% import 'helpers/form.html.twig' as form %}
+{% import 'helpers/flash.html.twig' as flash %}
 {% set cssPath  = '../css/' %}
 {% set jsPath   = '../javascripts/' %}
 {% set libsPath = '../libs/' %}
@@ -35,7 +36,7 @@
         {% include 'components/flash.html.twig' %}
     </header>
 
-    <div class="summary hide" data-tab="#tab_5">
+    <div class="summary hide" data-tab="#tab_6">
         <div id="container"></div>
         {% block summary %}{% endblock %}
     </div>
@@ -86,6 +87,7 @@
     <script type="text/javascript" src="{{ jsPath   ~ 'dropdown.js' }}"></script>
     <script type="text/javascript" src="{{ jsPath   ~ 'decks.js' }}"></script>
     <script type="text/javascript" src="{{ jsPath   ~ 'flash.js' }}"></script>
+    <script type="text/javascript" src="{{ jsPath   ~ 'scratch.js' }}"></script>
     <script type="text/javascript">{% block javascript %}{% endblock %}</script>
 
     <script type="text/javascript">

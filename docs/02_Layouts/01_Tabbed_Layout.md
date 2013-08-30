@@ -63,3 +63,9 @@ Create the contents of your tabs and pass them to the `html.tabs_content` helper
 	{% endblock %}
 
 Each tab's ID attribute will be automatically generated in the format `tab_x` to match those created by the `html.tabs` helper.
+
+## Active Tab
+
+You can choose which tab to have open when the page is first viewed by setting the `active_tab` variable in your view. The first tab is always opened by default.
+
+	{% set active_tab = 2 %}

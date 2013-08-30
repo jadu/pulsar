@@ -1,6 +1,12 @@
-Decks allow an interface to overlay forms on top of the current view so the user doesn't keep bouncing from page to page and losing their context.
+<a href="/lexicon" class="btn btn--primary pull-right"><i class="icon-desktop"></i> View Lexicon Example</a>
 
-The main Pulsar layout has a `decks` block, where all your decks should be defined.
+Decks allow an interface to overlay forms on top of the current view so the user doesn't keep bouncing from page to page and losing their context. The underlying interface is faded out slightly to keep focus on the deck.
+
+Decks should be used in preference to modals/lightboxes with the exception of completely blocking/destructive actions where we absolutely need to stop the user from doing anything else.
+
+![tabbed layout example](http://localhost:8000/docs/images/modules_deck-slide_1.png)![tabbed layout example](http://localhost:8000/docs/images/modules_deck-slide_2.png)
+
+The main Pulsar layout has a `{% block decks %}` block, where all your decks should be defined.
 
 ----
 
