@@ -1,3 +1,6 @@
 .DS_Store
+composer.lock
 /.sass-cache/
+/libs/
 /node_modules/
+/vendor/

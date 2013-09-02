@@ -11,6 +11,5 @@
     "commit": "66a3ba1867207e7dae1fa08ccd08ff1c5423230e"
   },
   "_source": "git://github.com/ewen/bower-highcharts.git",
-  "_target": "*",
-  "_originalSource": "highcharts"
+  "_target": "*"
 }

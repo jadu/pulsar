@@ -8,6 +8,5 @@
     "commit": "c1993025533a704b6e540db566b4b45eae342ffa"
   },
   "_source": "git://github.com/garand/sticky.git",
-  "_target": "*",
-  "_originalSource": "sticky"
+  "_target": "*"
 }

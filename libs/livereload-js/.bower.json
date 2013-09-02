@@ -9,6 +9,5 @@
     "commit": "6aa86b01479c3aad785e9623f39cfcde2b8615f9"
   },
   "_source": "git://github.com/livereload/livereload-js.git",
-  "_target": "*",
-  "_originalSource": "livereload/livereload-js"
+  "_target": "*"
 }

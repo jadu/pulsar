@@ -17,6 +17,5 @@
     "commit": "ff8981d6637242fdb71ccc585abd525d14f73ba7"
   },
   "_source": "git://github.com/Stanton/vague.js.git",
-  "_target": "*",
-  "_originalSource": "Stanton/vague.js"
+  "_target": "*"
 }
