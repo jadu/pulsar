@@ -19,7 +19,7 @@ build:
 	@ npm install
 	@ echo "\n${CHECK} Done\n"
 
-	@ echo "Run 'grunt' to start the dev server and watch for Sass changes."
+	@ echo "Run 'grunt' to start the documentation server and 'grunt watch' to monitor for Sass changes."
 
 clean:
 	@ echo "${HEADER}"
