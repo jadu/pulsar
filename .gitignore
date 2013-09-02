@@ -4,3 +4,5 @@ composer.lock
 /libs/
 /node_modules/
 /vendor/
+
+/composer.lock
