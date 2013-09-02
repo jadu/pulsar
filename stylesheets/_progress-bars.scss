@@ -21,18 +21,14 @@
   transition: width .6s ease;
 }
 
-.progress-bar-danger {
-  background-color: $danger-color;
-}
-
-.progress-bar-success {
+.progress-bar--success {
   background-color: $success-color; 
 }
 
-.progress-bar-warning {
+.progress-bar--warning {
   background-color: $warning-color;
 }
 
-.progress-bar-info {
-  background-color: $info-color;
+.progress-bar--danger {
+  background-color: $danger-color;
 }

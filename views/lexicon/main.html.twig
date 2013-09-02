@@ -6,7 +6,7 @@
 {% block title %}{{ parent() }}{% endblock %}
 
 {% set heading = 'Pulsar Lexicon' %}
-{% set active_tab = 3 %}
+{% set active_tab = 6 %}
 
 {% 
     set actions_menu = [
@@ -25,6 +25,7 @@
             html.icon('check-sign') ~ ' Forms',
             html.icon('warning-sign') ~ ' Flash messages',
             html.icon('table') ~ ' Tables',
+            html.icon('tasks') ~ ' Progress bars',
             html.icon('bar-chart') ~ ' Table with summary'
         ], active_tab)
     }}
@@ -38,10 +39,6 @@
     {% include 'lexicon/tabs/buttons_labels.html.twig' %}
 {% endset %}
 
-{% set tab_data_grid %}
-    {% include 'lexicon/tabs/datagrid.html.twig' %}
-{% endset %}
-
 {% set tab_forms %}
     {% include 'lexicon/tabs/twig_forms.html.twig' %}
 {% endset %}
@@ -50,12 +47,20 @@
     {% include 'lexicon/tabs/flash.html.twig' %}
 {% endset %}
 
+{% set tab_data_grid %}
+    {% include 'lexicon/tabs/datagrid.html.twig' %}
+{% endset %}
+
+{% set tab_progress_bars %}
+    {% include 'lexicon/tabs/progress_bars.html.twig' %}
+{% endset %}
+
 {% set tab_form_summary %}
     {% include 'lexicon/tabs/analytics.html.twig' %}
 {% endset %}
 
 {% block tabs_content %}
-    {{ html.tabs_content([tab_typography, tab_buttons, tab_forms, tab_flash, tab_data_grid, tab_form_summary], active_tab) }}
+    {{ html.tabs_content([tab_typography, tab_buttons, tab_forms, tab_flash, tab_data_grid, tab_progress_bars, tab_form_summary], active_tab) }}
 {% endblock %}
 
 {% block decks %}
