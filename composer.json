@@ -1,4 +1,5 @@
 {
+    "name": "jadu/pulsar",
     "require": {
         "twig/twig": "1.*"
     }
