@@ -1,0 +1,13 @@
+{
+  "name": "livereload-js",
+  "homepage": "https://github.com/livereload/livereload-js",
+  "version": "2.0.8",
+  "_release": "2.0.8",
+  "_resolution": {
+    "type": "version",
+    "tag": "v2.0.8",
+    "commit": "6aa86b01479c3aad785e9623f39cfcde2b8615f9"
+  },
+  "_source": "git://github.com/livereload/livereload-js.git",
+  "_target": "*"
+}
