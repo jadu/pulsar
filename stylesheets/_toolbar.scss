@@ -5,7 +5,7 @@ $brand-height: 24px;
 	background-color: $gray-dark;
 	height: $toolbar-height;
 	width: 100%;
-	z-index: 9999;
+	z-index: $zindex-sticky;
 }
 
 .branding {
