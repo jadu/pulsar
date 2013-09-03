@@ -29,7 +29,7 @@
     this.$backdrop =
     this.isShown   = null
 
-    if (this.options.remote) this.$element.find('.modal-body').load(this.options.remote)
+    if (this.options.remote) this.$element.find('.modal__body').load(this.options.remote)
   }
 
   Modal.DEFAULTS = {
@@ -150,7 +150,7 @@
     if (this.isShown && this.options.backdrop) {
       var doAnimate = $.support.transition && animate
 
-      this.$backdrop = $('<div class="modal-backdrop ' + animate + '" />')
+      this.$backdrop = $('<div class="modal__backdrop ' + animate + '" />')
         .appendTo(document.body)
 
       this.$element.on('click', $.proxy(function (e) {
@@ -236,8 +236,8 @@
 
   $(function () {
     var $body = $(document.body)
-      .on('shown.bs.modal',  '.modal', function () { $body.addClass('modal-open') })
-      .on('hidden.bs.modal', '.modal', function () { $body.removeClass('modal-open') })
+      .on('shown.bs.modal',  '.modal', function () { $body.addClass('modal--open') })
+      .on('hidden.bs.modal', '.modal', function () { $body.removeClass('modal--open') })
   })
 
 }(window.jQuery);

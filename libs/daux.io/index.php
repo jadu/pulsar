@@ -126,7 +126,6 @@ if ($homepage && $homepage_url !== '/') {
 
 	<!-- Navigation -->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
-	<script src="<?php echo $base_url ?>/js/bootstrap.min.js"></script>
 	<script src="<?php echo $base_url ?>/js/custom.js"></script>
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -134,7 +133,8 @@ if ($homepage && $homepage_url !== '/') {
 
 	<link href="http://localhost:8000/css/markdown.css" rel="stylesheet"></link>
 	<script type="text/javascript" src="http://localhost:8000/libs/jquery/jquery.min.js"></script>
-	<script type="text/javascript" src="http://localhost:8000/javascripts/tabs.js"></script>
+	<script type="text/javascript" src="http://localhost:8000/javascripts/tab.js"></script>
+	<script type="text/javascript" src="http://localhost:8000/javascripts/modal.js"></script>
 	<script type="text/javascript" src="http://localhost:8000/javascripts/dropdown.js"></script>
 </head>
 <body>

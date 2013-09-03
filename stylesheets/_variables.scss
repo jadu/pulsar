@@ -55,8 +55,41 @@ $input-height-small:             (floor($font-size-small * $line-height-small) +
 $legend-border-color:            #e5e5e5;
 $input-group-addon-border-color: $input-border;
 
+// Modals
+$modal-inner-padding: 			20px;
+$modal-title-padding: 			15px;
+$modal-title-line-height: 		$line-height-base;
+$modal-content-bg: 				#fff;
+$modal-content-border-color:    rgba(0,0,0,.2);
+$modal-content-fallback-border-color: #999;
+$modal-backdrop-bg: 			#000;
+$modal-header-border-color: 	#e5e5e5;
+$modal-footer-border-color: 	$modal-header-border-color;
+$modal-width: 					70%;
+
 // z-index master list
-$zindex-tour: 			 990;
-$zindex-dropdown: 		1000;
-$zindex-footer: 		1010;
-$zindex-sticky:			1020;
+$zindex-tour: 					1000;
+$zindex-dropdown: 				1010;
+$zindex-footer: 				1020;
+$zindex-modal:					1030;
+$zindex-sticky:					1040;
+
+// Extra small screen / phone
+$screen-xsmall:              	480px;
+$screen-phone:               	$screen-xsmall;
+
+// Small screen / tablet
+$screen-small:               	768px;
+$screen-tablet:              	$screen-small;
+
+// Medium screen / desktop
+$screen-medium:              	992px;
+$screen-desktop:             	$screen-medium;
+
+// So media queries don't overlap when required, provide a maximum
+$screen-small-max:          	($screen-medium - 1);
+$screen-tablet-max:          	$screen-small-max;
+
+// Large screen / wide desktop
+$screen-large:               	1200px;
+$screen-large-desktop:       	$screen-large;

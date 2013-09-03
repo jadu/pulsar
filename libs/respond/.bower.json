@@ -9,5 +9,6 @@
     "commit": "ad87635f83f8b811e1da53c082325a4b35960771"
   },
   "_source": "git://github.com/scottjehl/Respond.git",
-  "_target": "*"
+  "_target": "*",
+  "_originalSource": "respond"
 }

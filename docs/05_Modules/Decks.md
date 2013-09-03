@@ -4,7 +4,7 @@ Decks allow an interface to overlay forms on top of the current view so the user
 
 Decks should be used in preference to modals/lightboxes with the exception of completely blocking/destructive actions where we absolutely need to stop the user from doing anything else.
 
-![tabbed layout example](http://localhost:8000/docs/images/modules_deck-slide_1.png)![tabbed layout example](http://localhost:8000/docs/images/modules_deck-slide_2.png)
+![deck slide 1 example](http://localhost:8000/docs/images/modules_deck-slide_1.png)![deck slide 2 example](http://localhost:8000/docs/images/modules_deck-slide_2.png)
 
 The main Pulsar layout has a `{% block decks %}` block, where all your decks should be defined.
 

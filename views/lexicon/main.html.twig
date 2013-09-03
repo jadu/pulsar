@@ -6,7 +6,7 @@
 {% block title %}{{ parent() }}{% endblock %}
 
 {% set heading = 'Pulsar Lexicon' %}
-{% set active_tab = 6 %}
+{% set active_tab = 5 %}
 
 {% 
     set actions_menu = [
@@ -24,6 +24,7 @@
             html.icon('plus-sign-alt') ~ ' Buttons &amp; Labels',
             html.icon('check-sign') ~ ' Forms',
             html.icon('warning-sign') ~ ' Flash messages',
+            html.icon('list-alt') ~ ' Modals',
             html.icon('table') ~ ' Tables',
             html.icon('tasks') ~ ' Progress bars',
             html.icon('bar-chart') ~ ' Table with summary'
@@ -47,6 +48,10 @@
     {% include 'lexicon/tabs/flash.html.twig' %}
 {% endset %}
 
+{% set tab_modals %}
+    {% include 'lexicon/tabs/modals.html.twig' %}
+{% endset %}
+
 {% set tab_data_grid %}
     {% include 'lexicon/tabs/datagrid.html.twig' %}
 {% endset %}
@@ -60,7 +65,7 @@
 {% endset %}
 
 {% block tabs_content %}
-    {{ html.tabs_content([tab_typography, tab_buttons, tab_forms, tab_flash, tab_data_grid, tab_progress_bars, tab_form_summary], active_tab) }}
+    {{ html.tabs_content([tab_typography, tab_buttons, tab_forms, tab_flash, tab_modals, tab_data_grid, tab_progress_bars, tab_form_summary], active_tab) }}
 {% endblock %}
 
 {% block decks %}
