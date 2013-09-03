@@ -125,13 +125,6 @@
   }
 }
 
-.modal__example {
-  position: relative;
-  margin-left: 0;
-  z-index: 0;
-  display: block;
-}
-
 @media screen and (min-width: $screen-tablet) {
   .modal__dialog {
     left: 50%;
