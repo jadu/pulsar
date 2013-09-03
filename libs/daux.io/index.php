@@ -136,6 +136,7 @@ if ($homepage && $homepage_url !== '/') {
 	<script type="text/javascript" src="http://localhost:8000/javascripts/tab.js"></script>
 	<script type="text/javascript" src="http://localhost:8000/javascripts/modal.js"></script>
 	<script type="text/javascript" src="http://localhost:8000/javascripts/dropdown.js"></script>
+	<script type="text/javascript" src="http://localhost:8000/javascripts/tooltip.js"></script>
 </head>
 <body>
 	<?php if ($homepage) { ?>

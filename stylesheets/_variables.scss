@@ -67,12 +67,20 @@ $modal-header-border-color: 	#e5e5e5;
 $modal-footer-border-color: 	$modal-header-border-color;
 $modal-width: 					70%;
 
+// Tooltip
+$tooltip-max-width:           200px;
+$tooltip-color:               #fff;
+$tooltip-bg:                  rgba(0,0,0,.9);
+$tooltip-arrow-width:         5px;
+$tooltip-arrow-color:         $tooltip-bg;
+
 // z-index master list
 $zindex-tour: 					1000;
 $zindex-dropdown: 				1010;
 $zindex-footer: 				1020;
 $zindex-modal:					1030;
-$zindex-sticky:					1040;
+$zindex-tooltip:					1040;
+$zindex-sticky:					1050;
 
 // Extra small screen / phone
 $screen-xsmall:              	480px;
