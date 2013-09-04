@@ -11,12 +11,16 @@
   ],
   "dependencies": {
     "bourbon": "latest",
-    "daux.io": "justinwalsh/daux.io",
+    "console-js": "gh-pages",
+    "daux.io": "Stanton/daux.io#pulsar",
     "font-awesome": "latest",
+    "html5shiv": "latest",
     "highcharts": "latest",
-    "jquery": "latest",
+    "jquery": "1.x",
+    "livereload-js": "livereload/livereload-js",
     "normalize-css": "latest",
     "respond": "latest",
+    "sticky": "latest",
     "Vague.js": "Stanton/vague.js"
   }
 }

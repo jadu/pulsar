@@ -8,14 +8,14 @@
 	}
 
 	li {
-		display: inline;
+		@include inline-block;
 		margin-right: $gutter-width - 4;
 		padding: 0;
 	}
 
 	li > a,
 	li > span {
-		display: inline-block;
+		@include inline-block;
 		line-height: ($line-height-base * 2) - 1;
 	}
 
@@ -23,19 +23,16 @@
 		color: $gray-dark;
 		text-decoration: none;
 
-		&:hover {
-			text-decoration: underline;
-		}
-
 		&:after {
 			color: $gray-light;
 			content: " / ";
-			display: inline-block;
+			@include inline-block;
 			font-size: 1.5em;
 			margin: 0 0 0 $gutter-width;
 			position: relative;
 			top: 3px;
 		}
+
 	}
 
 	&:hover a {

@@ -4,9 +4,11 @@ $brand-height: 24px;
 .toolbar {
 	background-color: $gray-dark;
 	height: $toolbar-height;
+	width: 100%;
+	z-index: $zindex-sticky;
 }
 
-.brand {
+.branding {
 	@include hide-text;
 	
 	background-repeat: no-repeat;

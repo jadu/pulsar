@@ -1,0 +1,13 @@
+{
+  "name": "pulsar",
+  "version": "2.0.0",
+  "devDependencies": {
+    "grunt": "latest",
+    "grunt-bg-shell": "latest",
+    "grunt-php": "latest",
+    "grunt-contrib-sass": "latest", 
+    "grunt-contrib-watch": "latest", 
+    "grunt-contrib-jshint": "latest", 
+    "matchdep": "latest"
+  }
+}

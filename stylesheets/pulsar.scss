@@ -1,9 +1,9 @@
 @import '../libs/normalize-css/normalize.css';
 @import '../libs/bourbon/app/assets/stylesheets/bourbon';
 @import '../libs/font-awesome/css/font-awesome.css';
-@import '../libs/hopscotch/css/hopscotch-0.1.1.min.css';
 
 // Structure
+@import 'ie';
 @import 'colours';
 @import 'variables';
 @import 'mixins';
@@ -24,15 +24,20 @@
 @import 'icons';
 @import 'forms';
 @import 'input-groups';
-@import 'pagination';
+@import 'progress-bars';
 
 // Modules
 @import 'toolbar';
 @import 'breadcrumb';
 @import 'actionsbar';
+@import 'flash';
 @import 'datagrid';
 @import 'summary';
 @import 'decks';
+@import 'modals';
+@import 'pagination';
+@import 'tooltips';
+@import 'popovers';
 @import 'footer';
 
 // Layouts
@@ -42,3 +47,4 @@
 @import 'utilities';
 @import 'tour';
 @import 'shame';
+@import 'examples';

@@ -118,6 +118,14 @@
 	</ul>
 {%- endmacro -%}
 
+{%- macro progress(value, class) -%}
+	<div class="progress">
+	  <div class="progress-bar{% if class is not empty %} {{ class }}{% endif %}" role="progressbar" aria-valuenow="{{ value }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ value }}%;">
+	    <span class="sr-only">{{ value }}% Complete</span>
+	  </div>
+	</div>
+{%- endmacro -%}
+
 
 {%- macro icon(icon_name, class) -%}
 	<i class="icon-{{ icon_name }} {{ class }}"></i>

@@ -1,0 +1,44 @@
+// Constructor
+.flash {
+	padding: ($line-height-base / 2) $gutter-width;
+	width: 100%;
+	z-index: $zindex-sticky;
+
+	&.is-sticky {
+		display: none; // Flashes should be hidden on page load, then animated in so the user sees them.
+	}
+
+	i {
+		margin-right: $gutter-width / 2;
+	}
+}
+
+// Default
+.flash,
+.flash--default { 
+	background-color: rgba(0, 0, 0, .8);
+	color: $white;
+	text-shadow: 0 0 2px rgba(0, 0, 0, .5);
+
+	a {
+		color: $white;
+		text-decoration: underline;
+	}
+}
+
+// Variations
+.flash--success { background-color: rgba(0, 153, 51, .8); }
+.flash--warning { background-color: rgba(255, 137, 9, .8); }
+.flash--error 	{ background-color: rgba(204, 51, 51, .8); }
+
+// Close buttons
+.flash {
+	.close {
+		color: $white;
+		font-size: 1em;
+		opacity: .9;
+		&:hover {
+			opacity: 1;
+		}		
+	}
+}

@@ -1,0 +1,13 @@
+{
+  "name": "sticky",
+  "homepage": "https://github.com/garand/sticky",
+  "_release": "c199302553",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "c1993025533a704b6e540db566b4b45eae342ffa"
+  },
+  "_source": "git://github.com/garand/sticky.git",
+  "_target": "*",
+  "_originalSource": "sticky"
+}

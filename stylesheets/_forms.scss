@@ -55,6 +55,10 @@ input[type="checkbox"] {
 input[type="file"] {
   display: block;
   line-height: $line-height-base * 2;
+
+  .lt-ie10 & {
+    height: $line-height-base * 2; // IE
+  }
 }
 
 // Make multiple select elements height not fixed
@@ -183,7 +187,7 @@ textarea.form__control {
   min-height: $line-height-computed; // clear the floating input if there is no label text
   vertical-align: middle;
   label {
-    display: inline;
+    @include inline-block;
     margin-bottom: 0;
     font-weight: normal;
     cursor: pointer;
@@ -344,6 +348,11 @@ textarea {
 .form--horizontal .checkbox__label,
 .form--horizontal .radio__label {
   margin-bottom: 0;
+}
+
+// Only set a width for left-aligned labels
+.form--horizontal .form__group > .checkbox__label,
+.form--horizontal .form__group > .radio__label {
   width: 20%;
 }
 
