@@ -66,25 +66,28 @@
 	// margin-top: $line-height-base;
 }
 
-.tab__inner, 
-.tab__sidebar {
-	display: inline-block;
-}
-
 .tab__inner {
-	border-right: 1px solid $gray;
 	margin: 0 $gutter-width;
+	overflow: hidden;
+}
+
+.tab__main {
+	border-right: 1px solid $gray;
+	overflow: hidden;
 	padding-right: $gutter-width;
-	width: 70%;
 }
 
 .tab__sidebar {
-	opacity: .3;
-	padding-top: $line-height-base;
+	border-left: 1px solid $gray;
+	float: right;
+	// opacity: .3;
+	left: -1px; // match left border with that of .tab__main
+	padding: $line-height-base 0 $line-height-base $gutter-width;
+	position: relative;
 	vertical-align: top;
-	width: 23%;
+	width: 25%;
 
-	&:hover {
-		opacity: 1;
-	}
+	// &:hover {
+	// 	opacity: 1;
+	// }
 }

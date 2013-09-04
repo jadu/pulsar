@@ -69,3 +69,18 @@ Each tab's ID attribute will be automatically generated in the format `tab_x` to
 You can choose which tab to have open when the page is first viewed by setting the `active_tab` variable in your view. The first tab is always opened by default.
 
 	{% set active_tab = 2 %}
+
+## Sidebar
+
+Tab panes can have a right-hand sidebar which is useful for inline documentation, the sidebar element must appear before the main tab content for styling reasons.
+
+![tabbed layout with sidebar example](http://localhost:8000/docs/images/layout_tabbed-sidebar.png)
+
+	<div class="tab__inner">
+    	<div class="tab__sidebar">
+    		...
+    	</div>
+    	<div class="tab__main">
+    		...
+    	</div>
+    </div>

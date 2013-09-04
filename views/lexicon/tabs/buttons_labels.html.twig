@@ -1,110 +1,110 @@
 <div class="tab__inner">
-<h2>Button variations</h2>
+    <h2>Button variations</h2>
 
-<p>
-    <!-- The normal type of button you should use -->
-    {{ html.button('Default') }}
+    <p>
+        <!-- The normal type of button you should use -->
+        {{ html.button('Default') }}
 
-    <!-- In the context of a full UI, this is the main thing we want the user to do next -->
-    {{ html.button('Primary', 'btn--primary') }}
+        <!-- In the context of a full UI, this is the main thing we want the user to do next -->
+        {{ html.button('Primary', 'btn--primary') }}
 
-    <!-- Indicates a successful or positive action -->
-    {{ html.button('Success', 'btn--success') }}
+        <!-- Indicates a successful or positive action -->
+        {{ html.button('Success', 'btn--success') }}
 
-    <!-- Indicates a dangerous or destructive action -->
-    {{ html.button('Danger', 'btn--danger') }}
+        <!-- Indicates a dangerous or destructive action -->
+        {{ html.button('Danger', 'btn--danger') }}
 
-    <!-- Indicates caution should be taken here -->
-    {{ html.button('Warning', 'btn--warning') }}
+        <!-- Indicates caution should be taken here -->
+        {{ html.button('Warning', 'btn--warning') }}
 
-    <!-- Contextual button for informational alert messages -->
-    {{ html.button('Info', 'btn--info') }}
+        <!-- Contextual button for informational alert messages -->
+        {{ html.button('Info', 'btn--info') }}
 
-    <!-- Rarely used, a good example is a 'locked content' button -->
-    {{ html.button('Inverse', 'btn--inverse') }}
+        <!-- Rarely used, a good example is a 'locked content' button -->
+        {{ html.button('Inverse', 'btn--inverse') }}
 
-    {{ html.button('Disabled', 'is-disabled') }}
-</p>
+        {{ html.button('Disabled', 'is-disabled') }}
+    </p>
 
-<h2>Button groups</h2>
-<p>
-    <div class="btn__toolbar">
-    {{
-        html.button_group([ 
-            html.button('Left'), 
-            html.button('Middle'),
-            html.button('Right') 
-        ]) 
-    }}
-    {{
-        html.button_group([ 
-            html.button(html.icon('align-left')), 
-            html.button(html.icon('align-center')),
-            html.button(html.icon('align-right')), 
-            html.button(html.icon('align-justify')) 
-        ]) 
-    }}
-    </div>
-</p>
+    <h2>Button groups</h2>
+    <p>
+        <div class="btn__toolbar">
+        {{
+            html.button_group([ 
+                html.button('Left'), 
+                html.button('Middle'),
+                html.button('Right') 
+            ]) 
+        }}
+        {{
+            html.button_group([ 
+                html.button(html.icon('align-left')), 
+                html.button(html.icon('align-center')),
+                html.button(html.icon('align-right')), 
+                html.button(html.icon('align-justify')) 
+            ]) 
+        }}
+        </div>
+    </p>
 
-<h2>Labels</h2>
-<p>
-    {{ html.label('default') }}
-    {{ html.label('primary', 'label--primary') }}
-    {{ html.label('success', 'label--success') }}
-    {{ html.label('warning', 'label--warning') }}
-    {{ html.label('danger', 'label--danger') }}
-    {{ html.label('info', 'label--info') }}
-    {{ html.label('inverse', 'label--inverse') }}
-</p>
+    <h2>Labels</h2>
+    <p>
+        {{ html.label('default') }}
+        {{ html.label('primary', 'label--primary') }}
+        {{ html.label('success', 'label--success') }}
+        {{ html.label('warning', 'label--warning') }}
+        {{ html.label('danger', 'label--danger') }}
+        {{ html.label('info', 'label--info') }}
+        {{ html.label('inverse', 'label--inverse') }}
+    </p>
 
-<h2>Badges</h2>
-<p>
-    {{ html.badge('1') }}
-    {{ html.badge('2', 'badge--primary') }}
-    {{ html.badge('3', 'badge--success') }}
-    {{ html.badge('4', 'badge--warning') }}
-    {{ html.badge('5', 'badge--danger') }}
-    {{ html.badge('6', 'badge--info') }}
-    {{ html.badge('7', 'badge--inverse') }}
-</p>
+    <h2>Badges</h2>
+    <p>
+        {{ html.badge('1') }}
+        {{ html.badge('2', 'badge--primary') }}
+        {{ html.badge('3', 'badge--success') }}
+        {{ html.badge('4', 'badge--warning') }}
+        {{ html.badge('5', 'badge--danger') }}
+        {{ html.badge('6', 'badge--info') }}
+        {{ html.badge('7', 'badge--inverse') }}
+    </p>
 
-<h2>Dropdown/Dropup buttons</h2>
-<p>
-    <div class="btn__toolbar">
-    {% 
-        set example_dropdown = [
-            html.link(html.icon('save') ~ ' Save', '#'),
-            html.link(html.icon('print') ~ ' Print'),
-            html.link(html.icon('lock') ~ ' Lock'),
-            html.link(html.icon('group') ~ ' Collaborators ' ~ html.badge(3)),
-            html.divider(),
-            html.link(html.icon('trash') ~ ' Delete', '#', 'link--danger')
-        ]
-    %}
-    {{ html.button_dropdown('Drop Down', null, null, example_dropdown) }}
-    {{ html.button_dropup('Drop Up', null, null, example_dropdown) }}
-    </div>
-</p>
+    <h2>Dropdown/Dropup buttons</h2>
+    <p>
+        <div class="btn__toolbar">
+        {% 
+            set example_dropdown = [
+                html.link(html.icon('save') ~ ' Save', '#'),
+                html.link(html.icon('print') ~ ' Print'),
+                html.link(html.icon('lock') ~ ' Lock'),
+                html.link(html.icon('group') ~ ' Collaborators ' ~ html.badge(3)),
+                html.divider(),
+                html.link(html.icon('trash') ~ ' Delete', '#', 'link--danger')
+            ]
+        %}
+        {{ html.button_dropdown('Drop Down', null, null, example_dropdown) }}
+        {{ html.button_dropup('Drop Up', null, null, example_dropdown) }}
+        </div>
+    </p>
 
 
-<h2>Icons, Badges and Buttons (oh my!)</h2>
-<p>
-    <div class="btn__toolbar">
-        {{ html.button_dropdown(html.icon('youtube-play') ~ ' Default ' ~ html.badge('99')) }}
-        {{ html.button(html.icon('inbox') ~ ' Primary ' ~ html.badge('99'), 'btn--primary') }}
-        {{ html.button(html.icon('ok') ~ ' Success ' ~ html.badge('99'), 'btn--success') }}
-        {{ html.button(html.icon('warning-sign') ~ ' Warning ' ~ html.badge('99'), 'btn--warning') }}
-        {{ html.button(html.icon('trash') ~ ' Danger ' ~ html.badge('99'), 'btn--danger') }}
-        {{ html.button(html.icon('info-sign') ~ ' Info ' ~ html.badge('99'), 'btn--info') }}
-        {{ html.button(html.icon('lock') ~ ' Inverse ' ~ html.badge('99'), 'btn--inverse') }}
-    </div>
-</p>
+    <h2>Icons, Badges and Buttons (oh my!)</h2>
+    <p>
+        <div class="btn__toolbar">
+            {{ html.button_dropdown(html.icon('youtube-play') ~ ' Default ' ~ html.badge('99')) }}
+            {{ html.button(html.icon('inbox') ~ ' Primary ' ~ html.badge('99'), 'btn--primary') }}
+            {{ html.button(html.icon('ok') ~ ' Success ' ~ html.badge('99'), 'btn--success') }}
+            {{ html.button(html.icon('warning-sign') ~ ' Warning ' ~ html.badge('99'), 'btn--warning') }}
+            {{ html.button(html.icon('trash') ~ ' Danger ' ~ html.badge('99'), 'btn--danger') }}
+            {{ html.button(html.icon('info-sign') ~ ' Info ' ~ html.badge('99'), 'btn--info') }}
+            {{ html.button(html.icon('lock') ~ ' Inverse ' ~ html.badge('99'), 'btn--inverse') }}
+        </div>
+    </p>
 
-<h2>All the things!</h2>
-<p>
-{{ html.button_dropdown(html.icon('folder-close') ~ ' Busy Button ' ~ html.badge('99', 'badge--primary'), null, null, example_dropdown, true) }}
-</p>
+    <h2>All the things!</h2>
+    <p>
+    {{ html.button_dropdown(html.icon('folder-close') ~ ' Busy Button ' ~ html.badge('99', 'badge--primary'), null, null, example_dropdown, true) }}
+    </p>
 
-<p class="columns columns--2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam et enim sed lorem sollicitudin tristique sed at erat. Sed non nunc at nibh vestibulum dictum. Vestibulum a blandit tellus. In quis felis rhoncus mi imperdiet gravida eget quis augue. Praesent rutrum fringilla nisi, sit amet commodo purus pellentesque eu. Curabitur blandit arcu at rutrum ullamcorper. Maecenas vitae faucibus nunc. Phasellus eu quam aliquet, malesuada odio ut, dapibus lorem. Nulla nec urna rutrum, consequat est sit amet, consequat mauris. Maecenas vel mauris id urna viverra ullamcorper. Etiam nisi nibh, pulvinar vel elementum luctus, dapibus sit amet leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam et enim sed lorem sollicitudin tristique sed at erat. Sed non nunc at nibh vestibulum dictum. Vestibulum a blandit tellus. In quis felis rhoncus mi imperdiet gravida eget quis augue. Praesent rutrum fringilla nisi, sit amet commodo purus pellentesque eu. Curabitur blandit arcu at rutrum ullamcorper. Maecenas vitae faucibus nunc. Phasellus eu quam aliquet, malesuada odio ut, dapibus lorem. Nulla nec urna rutrum, consequat est sit amet, consequat mauris. Maecenas vel mauris id urna viverra ullamcorper. Etiam nisi nibh, pulvinar vel elementum luctus, dapibus sit amet leo.</p>
+    <p class="columns columns--2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam et enim sed lorem sollicitudin tristique sed at erat. Sed non nunc at nibh vestibulum dictum. Vestibulum a blandit tellus. In quis felis rhoncus mi imperdiet gravida eget quis augue. Praesent rutrum fringilla nisi, sit amet commodo purus pellentesque eu. Curabitur blandit arcu at rutrum ullamcorper. Maecenas vitae faucibus nunc. Phasellus eu quam aliquet, malesuada odio ut, dapibus lorem. Nulla nec urna rutrum, consequat est sit amet, consequat mauris. Maecenas vel mauris id urna viverra ullamcorper. Etiam nisi nibh, pulvinar vel elementum luctus, dapibus sit amet leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam et enim sed lorem sollicitudin tristique sed at erat. Sed non nunc at nibh vestibulum dictum. Vestibulum a blandit tellus. In quis felis rhoncus mi imperdiet gravida eget quis augue. Praesent rutrum fringilla nisi, sit amet commodo purus pellentesque eu. Curabitur blandit arcu at rutrum ullamcorper. Maecenas vitae faucibus nunc. Phasellus eu quam aliquet, malesuada odio ut, dapibus lorem. Nulla nec urna rutrum, consequat est sit amet, consequat mauris. Maecenas vel mauris id urna viverra ullamcorper. Etiam nisi nibh, pulvinar vel elementum luctus, dapibus sit amet leo.</p>
 </div>
