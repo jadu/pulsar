@@ -1,6 +1,12 @@
 .actionsbar {
 	@include inline-block;
 	margin: $line-height-base $gutter-width 2px $gutter-width;
+
+	@include ie-lte(7) {
+		.btn__group {
+			z-index: 1; // Fix issue where actions menu appears underneath tabs
+		}
+	}
 }
 
 .actionsbar--left {
