@@ -19,9 +19,12 @@
 }
 
 @mixin highlight-row($color) {
-    & > td:first-of-type {
-        box-shadow: inset 4px 0 0 $color;
-    }
+  > td:first-of-type {
+      box-shadow: inset 4px 0 0 $color;
+  }
+  @include ie-lte(7) {
+      border-left: 4px solid $color !important;
+  }
 }
 
 @mixin label-variant($color) {

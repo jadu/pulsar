@@ -1,6 +1,11 @@
 // Data grid view
 .table--datagrid {
+	border-collapse: separate;
 	width: 100%;
+
+	@include ie-lte(7) {
+		border-collapse: collapse;
+	}
 
 	// Links
 	a {
