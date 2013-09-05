@@ -59,6 +59,9 @@
     background-color: $dropdown-divider-bg;
     width:100%;
   }
+
+  > li {
+    min-width: 160px;
   }
 
   // Links within the dropdown menu
