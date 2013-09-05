@@ -1,5 +1,3 @@
-<a href="/lexicon" class="btn btn--primary pull-right"><i class="icon-desktop"></i> View Lexicon Example</a>
-
 Decks allow an interface to overlay forms on top of the current view so the user doesn't keep bouncing from page to page and losing their context. The underlying interface is faded out slightly to keep focus on the deck.
 
 Decks should be used in preference to modals/lightboxes with the exception of completely blocking/destructive actions where we absolutely need to stop the user from doing anything else.
