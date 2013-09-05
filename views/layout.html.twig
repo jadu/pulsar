@@ -27,6 +27,8 @@
     <script type="text/javascript" src="{{ libsPath ~ 'html5shiv/dist/html5shiv.js' }}"></script>
     <script type="text/javascript" src="{{ libsPath ~ 'respond/respond.min.js' }}"></script>
     <![endif]-->
+
+    <script type="text/javascript" src="{{ jsPath   ~ 'analytics.js' }}"></script>
 </head>
 <body>
 
@@ -92,15 +94,6 @@
     <script type="text/javascript" src="{{ jsPath   ~ 'popover.js' }}"></script>
     <script type="text/javascript" src="{{ jsPath   ~ 'scratch.js' }}"></script>
     <script type="text/javascript">{% block javascript %}{% endblock %}</script>
-
-    <script type="text/javascript">
-        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-          e.target // activated tab
-          e.relatedTarget // previous tab
-          $('.summary.open').removeClass('open').hide();          
-          $('.summary[data-tab=' + $(e.target).attr('href') + ']').show().addClass('open');
-        })
-    </script>
 
     <script src="http://localhost:8000/libs/livereload-js/dist/livereload.js?host=localhost"></script>
 </body>
