@@ -1,20 +1,12 @@
-// .actionsbar {
-// 	height: $baseLineHeight * 1.5;
-// 	margin: 0 $gutterWidth ($baseLineHeight / 2) $gutterWidth;
-// 	outline: 1px solid red;
-
-// 	h1 {
-// 		@include inline-block;
-// 		font-size: 1.75em;
-// 		line-height: 1em;
-// 		border: 1px solid red;
-// 	}
-
-// }
-
 .actionsbar {
 	@include inline-block;
 	margin: $line-height-base $gutter-width 2px $gutter-width;
+
+	@include ie-lte(7) {
+		.btn__group {
+			z-index: 1; // Fix issue where actions menu appears underneath tabs
+		}
+	}
 }
 
 .actionsbar--left {
@@ -25,4 +17,11 @@
 
 .actionsbar--right {
 	float: right;
+}
+
+@include ie-lte(7) {
+	.btn__back {
+		margin-right: -1px;
+		padding: 11px;
+	}
 }
