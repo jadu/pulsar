@@ -1,5 +1,4 @@
-var hostname = location.hostname == 'localhost' ? 'none' : location.hostname;
-console.log(hostname);
+var hostname = location.hostname === 'localhost' ? 'none' : location.hostname;
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-43788424-1']);
 _gaq.push(['_setDomainName', hostname]);

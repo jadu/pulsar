@@ -52,10 +52,16 @@
 
   // Dividers (basically an hr) within the dropdown
   .divider {
+    display: block;
     height: 1px;
     margin: ($line-height-base / 4) 0;
     overflow: hidden;
     background-color: $dropdown-divider-bg;
+    width:100%;
+  }
+
+  > li {
+    min-width: 160px;
   }
 
   // Links within the dropdown menu
