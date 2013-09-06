@@ -34,7 +34,7 @@
     box-sizing: border-box; /* 2 */
     color: inherit; /* 3 */
     cursor: pointer;
-    display: inline-block;
+    @include inline-block;
     font: inherit; /* 4 */
     line-height: normal; /* 5 */
     margin: 0;
@@ -48,6 +48,8 @@
     user-select: none; /* 6 */
     vertical-align: middle;
     white-space: nowrap; /* 7 */
+
+
 }
 
 /**
@@ -138,4 +140,7 @@
     font-size: 14px;
     font-weight: normal;
     padding: 7px 14px;
+    @include ie-lte(7) {
+        padding: 7px;
+    }
 }
