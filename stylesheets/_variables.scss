@@ -68,11 +68,12 @@ $modal-footer-border-color: 	$modal-header-border-color;
 $modal-width: 					70%;
 
 // Tooltip
-$tooltip-max-width:           200px;
-$tooltip-color:               #fff;
-$tooltip-bg:                  rgba(0,0,0,.9);
-$tooltip-arrow-width:         5px;
-$tooltip-arrow-color:         $tooltip-bg;
+$tooltip-max-width:           	200px;
+$tooltip-bg: 					rgba(0,0,0,.9);
+@include ie-lte(7) { $tooltip-bg: rgb(0,0,0); }
+$tooltip-color:               	#fff;
+$tooltip-arrow-width:         	5px;
+$tooltip-arrow-color:         	$tooltip-bg;
 
 // Popovers
 $popover-bg:                          #fff;
