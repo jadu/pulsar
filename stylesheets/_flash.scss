@@ -1,6 +1,6 @@
 // Constructor
 .flash {
-	padding: ($line-height-base / 2) $gutter-width;
+	padding: ($line-height-base / 2) 0;
 	width: 100%;
 	z-index: $zindex-sticky;
 
@@ -9,7 +9,7 @@
 	}
 
 	i {
-		margin-right: $gutter-width / 2;
+		margin: 0 $gutter-width / 2;
 	}
 }
 
