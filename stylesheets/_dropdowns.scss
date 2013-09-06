@@ -55,9 +55,9 @@
     display: block;
     height: 1px;
     margin: ($line-height-base / 4) 0;
+    min-width: 160px;
     overflow: hidden;
     background-color: $dropdown-divider-bg;
-    width:100%;
   }
 
   > li {
@@ -76,7 +76,6 @@
     text-decoration: none;
 
     [class^="icon-"], [class*=" icon-"] {
-      @include inline-block;
       text-align: center;
       width: 23px;
     }

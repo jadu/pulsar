@@ -38,7 +38,7 @@
 .btn__group,
 .btn__group-vertical {
   position: relative;
-  display: inline-block;
+  @include inline-block;
   vertical-align: middle; // match .btn alignment given font-size hack above
   > .btn {
     position: relative;
