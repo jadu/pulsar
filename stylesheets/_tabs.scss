@@ -61,14 +61,14 @@
 	}
 }
 
-// Add top spacing to the first element that's not a table
-.tab__pane > :first-child:not(table) {
-	// margin-top: $line-height-base;
-}
-
 .tab__inner {
 	margin: 0 $gutter-width;
 	overflow: hidden;
+
+	// Apply a top margin to elements that don't already have margins applied
+	> div:not(.tab__main):not(.tab__sidebar) {
+		margin-top: $line-height-base;
+	}
 }
 
 .tab__main {
