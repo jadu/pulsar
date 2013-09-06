@@ -16,6 +16,7 @@
     "font-awesome": "latest",
     "html5shiv": "latest",
     "highcharts": "latest",
+    "ie7-js": "https://ie7-js.googlecode.com/files/ie7-2.1%28beta4%29.zip",
     "jquery": "1.x",
     "livereload-js": "livereload/livereload-js",
     "normalize-css": "latest",
