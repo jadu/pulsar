@@ -5,7 +5,7 @@
   "_resolution": {
     "type": "branch",
     "branch": "pulsar",
-    "commit": "97c7baff4a77440a88de33da5d46d511ef5ef0e3"
+    "commit": "48b3df2f19f447016079079be8e318f1feca24d4"
   },
   "_source": "git://github.com/Stanton/daux.io.git",
   "_target": "pulsar",

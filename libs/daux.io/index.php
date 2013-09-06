@@ -136,8 +136,6 @@ if ($homepage && $homepage_url !== '/') {
 	<script type="text/javascript" src="http://localhost:8000/javascripts/tab.js"></script>
 	<script type="text/javascript" src="http://localhost:8000/javascripts/modal.js"></script>
 	<script type="text/javascript" src="http://localhost:8000/javascripts/dropdown.js"></script>
-	<script type="text/javascript" src="http://localhost:8000/javascripts/tooltip.js"></script>
-	<script type="text/javascript" src="http://localhost:8000/javascripts/popover.js"></script>
 </head>
 <body>
 	<?php if ($homepage) { ?>
@@ -233,7 +231,7 @@ if ($homepage && $homepage_url !== '/') {
 				<div class="navbar-inner">
 					<a class="brand pull-left" href="<?php echo $base_url ?><?php echo $homepage_url;?>"><?php echo $options['title']; ?></a>
 					<p class="navbar-text pull-right">
-						<a href="http://localhost:8888/lexicon"><i class="icon-compass"></i> Launch the Lexicon</a>
+						<a href="http://localhost:8000/lexicon"><i class="icon-compass"></i> Launch the Lexicon</a>
 					</p>
 				</div>
 			</div>
