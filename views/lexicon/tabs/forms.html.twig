@@ -41,9 +41,9 @@
 {{ form.fieldset_end() }}
 {{ form.fieldset_start('Input groups') }}
 
-        {{ form.text('Prepended input', 'inputPrepend', null, 'inputPrepend', 'Placeholder', null, '@') }}
-        {{ form.text('Appended input', 'inputAppend', null, 'inputAppend', 'Placeholder', null, null, '.com') }}
-        {{ form.text('Prepended &amp; Appended', 'inputPrependAppend', null, 'inputPrependAppend', 'Placeholder', null, 'www.', '.com') }}
+        {{ form.text('Prepended input', 'inputPrepend', 'form__group--medium', 'inputPrepend', 'Placeholder', null, '@') }}
+        {{ form.text('Appended input', 'inputAppend', 'form__group--medium', 'inputAppend', 'Placeholder', null, null, '.com') }}
+        {{ form.text('Prepended &amp; Appended', 'inputPrependAppend', 'form__group--medium', 'inputPrependAppend', 'Placeholder', null, 'www.', '.com') }}
 
 {{ form.fieldset_end() }}
 {{ form.fieldset_start('Sizes') }}
