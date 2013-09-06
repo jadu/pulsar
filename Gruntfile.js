@@ -21,7 +21,6 @@ module.exports = function(grunt) {
                 },
                 files: {
                     'css/pulsar.css': 'stylesheets/pulsar.scss',
-                    'css/pulsar-ie6.css': 'stylesheets/pulsar-ie6.scss',
                     'css/pulsar-ie7.css': 'stylesheets/pulsar-ie7.scss',
                     'css/pulsar-ie8.css': 'stylesheets/pulsar-ie8.scss',
                     'css/pulsar-ie9.css': 'stylesheets/pulsar-ie9.scss',
