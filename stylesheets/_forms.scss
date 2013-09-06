@@ -365,7 +365,7 @@ textarea {
 }
 
 .form--horizontal .controls {
-  display: inline-block;
+  @include inline-block;
   width: 30%;
 }
 
