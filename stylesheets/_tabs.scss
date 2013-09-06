@@ -19,12 +19,18 @@
 		}
 		padding: 0 $gutter-width / 2;
 		text-decoration: none;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 
 		> i {
 			font-size: 14px;
 			opacity: .6;
 			text-align: right;
 			margin-right: 3px;
+			@include ie-lte(7) {
+				margin-right: 6px;
+			}
 		}
 
 		&:hover {
