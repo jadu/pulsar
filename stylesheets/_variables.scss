@@ -1,8 +1,14 @@
 // Type
 $fonts-path: '../fonts/';
 $font-family-light: "proxima_novalight", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-$font-family-regular: "proxima_nova_rgregular", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+$font-family-regular: "proxima_nova_regular", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 $font-family-semibold: "proxima_nova_semibold", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+
+@include ie-lte(7) {
+	$font-family-light: "Arial", sans-serif;
+	$font-family-regular: "Arial", sans-serif;
+	$font-family-semibold: "Arial", sans-serif;	
+}
 
 // Typographic grid
 $font-family-base: 		$font-family-light;
