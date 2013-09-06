@@ -50,6 +50,7 @@ $input-border-radius:            $border-radius;
 $input-border-focus:             #66afe9;
 $input-color-placeholder:        $gray-light;
 $input-height-base:              $line-height-base * 2;
+@include ie-lte(7) { $input-height-base: $line-height-base * 1.2; }
 $input-height-large:             (floor($font-size-large * $line-height-large) + ($padding-large-vertical * 2) + 2);
 $input-height-small:             (floor($font-size-small * $line-height-small) + ($padding-small-vertical * 2) + 2);
 $legend-border-color:            #e5e5e5;
