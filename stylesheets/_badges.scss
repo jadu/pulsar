@@ -12,6 +12,11 @@
   background-color: $badge-bg;
   border-radius: 10px;
 
+  @include ie-lte(7) {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
   // Empty labels/badges collapse
   &:empty {
     display: none;
