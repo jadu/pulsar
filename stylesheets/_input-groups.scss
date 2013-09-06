@@ -13,6 +13,9 @@
   // Fix issue where input groups break the baseline grid
   margin-bottom: -7px;
 
+  // Make sure add-ons stay inline
+  white-space: nowrap;
+
   // Undo padding and float of grid classes
   &.col {
     float: none;
@@ -33,6 +36,10 @@
 .input-group .form__control {
   display: table-cell;
 
+  @include ie-lte(7) {
+    @include inline-block; // IE doesn't support display:table
+  }
+
   &:not(:first-child):not(:last-child) {
     border-radius: 0;
   }
@@ -43,6 +50,11 @@
   width: 1%;
   white-space: nowrap;
   vertical-align: middle; // Match the inputs
+
+  @include ie-lte(7) {
+    width: auto;
+    vertical-align: top;
+  }
 }
 
 // Text input groups
@@ -56,20 +68,6 @@
   background-color: $gray-lighter;
   border: 1px solid $input-group-addon-border-color;
   border-radius: $border-radius;
-
-  // // Sizing
-  // &.input-sm {
-  //   padding: $padding-small-vertical $padding-small-horizontal;
-  //   font-size: $font-size-small;
-  //   border-radius: $border-radius-small;
-  //   line-height: $line-height-small;
-  // }
-  // &.input-lg {
-  //   padding: $padding-large-vertical $padding-large-horizontal;
-  //   font-size: $font-size-large;
-  //   border-radius: $border-radius-large;
-  //   line-height: $line-height-large;
-  // }
 
   // Nuke default margins from checkboxes and radios to vertically center within.
   input[type="radio"],
@@ -118,5 +116,24 @@
   &:hover,
   &:active {
     z-index: 2;
+  }
+}
+
+@include ie-lte(7) {
+  // Fix add-on positioning in IE7
+  .input-group {
+    .input-group-addon:first-child,
+    .form__control + .input-group-addon {
+      min-height: 26px;
+      position: relative;
+      top: -1px;
+      vertical-align: baseline;
+    }
+    .input-group-addon:first-child {
+      margin-right: -4px;
+    }
+    .form__control + .input-group-addon {
+      margin-left: -5px;
+    }
   }
 }
