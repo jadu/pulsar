@@ -1,3 +1,6 @@
+{% import 'helpers/1.0/html.html.twig' as html %}
+{% import 'helpers/1.0/form.html.twig' as form %}
+{% import 'helpers/1.0/flash.html.twig' as flash %}
 <table class="table--datagrid">
     <thead>
         <tr>
@@ -19,7 +22,7 @@
             <td><a href="#">This is a regular row</a></td>
             <td>Monday 4th July, 2013</td>
             <td>3 hours ago</td>
-            <td class="centered">{{ html.badge('5') }}</td>
+            <td class="centered">{{ html.badge(label = '5') }}</td>
             <td>Paul Stanton</td>
         </tr>
         <tr class="is-selected">
@@ -29,7 +32,7 @@
             <td><a href="#">This row has .is-selected</a></td>
             <td>Monday 4th July, 2013</td>
             <td>3 hours ago</td>
-            <td class="centered">{{ html.badge('5') }}</td>
+            <td class="centered">{{ html.badge(label = '5') }}</td>
             <td>Paul Stanton</td>
         </tr>
         <tr class="row--highlight">
@@ -39,7 +42,7 @@
             <td><a href="#">This row has .row--highlight</a></td>
             <td>Monday 4th July, 2013</td>
             <td>3 hours ago</td>
-            <td class="centered">{{ html.badge('5') }}</td>
+            <td class="centered">{{ html.badge(label = '5') }}</td>
             <td>Paul Stanton</td>
         </tr>
         <tr class="row--success-highlight">
@@ -49,7 +52,7 @@
             <td><a href="#">This row has .row--success-highlight</a></td>
             <td>Monday 4th July, 2013</td>
             <td>3 hours ago</td>
-            <td class="centered">{{ html.badge('5') }}</td>
+            <td class="centered">{{ html.badge(label = '5') }}</td>
             <td>Paul Stanton</td>
         </tr>
         <tr class="row--danger-highlight">
@@ -59,7 +62,7 @@
             <td><a href="#">This row has .row--danger-highlight</a></td>
             <td>Monday 4th July, 2013</td>
             <td>3 hours ago</td>
-            <td class="centered">{{ html.badge('5') }}</td>
+            <td class="centered">{{ html.badge(label = '5') }}</td>
             <td>Paul Stanton</td>
         </tr>
         <tr class="row--warning-highlight">
@@ -69,7 +72,7 @@
             <td><a href="#">This row has .row--warning-highlight</a></td>
             <td>Monday 4th July, 2013</td>
             <td>3 hours ago</td>
-            <td class="centered">{{ html.badge('5') }}</td>
+            <td class="centered">{{ html.badge(label = '5') }}</td>
             <td>Paul Stanton</td>
         </tr>
         <tr class="row--success">
@@ -79,7 +82,7 @@
             <td><a href="#">This row has .row--success</a></td>
             <td>Monday 4th July, 2013</td>
             <td>3 hours ago</td>
-            <td class="centered">{{ html.badge('5') }}</td>
+            <td class="centered">{{ html.badge(label = '5') }}</td>
             <td>Paul Stanton</td>
         </tr>
         <tr class="row--danger">
@@ -89,7 +92,7 @@
             <td><a href="#">This row has .row--danger</a></td>
             <td>Monday 4th July, 2013</td>
             <td>3 hours ago</td>
-            <td class="centered">{{ html.badge('5') }}</td>
+            <td class="centered">{{ html.badge(label = '5') }}</td>
             <td>Paul Stanton</td>
         </tr>
         <tr class="row--warning">
@@ -99,7 +102,7 @@
             <td><a href="#">This row has .row--warning</a></td>
             <td>Monday 4th July, 2013</td>
             <td>3 hours ago</td>
-            <td class="centered">{{ html.badge('5') }}</td>
+            <td class="centered">{{ html.badge(label = '5') }}</td>
             <td>Paul Stanton</td>
         </tr>            
     </tbody>

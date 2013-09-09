@@ -1,14 +1,17 @@
+{% import 'helpers/1.0/html.html.twig' as html %}
+{% import 'helpers/1.0/form.html.twig' as form %}
+{% import 'helpers/1.0/flash.html.twig' as flash %}
 <div class="tab__inner">
 	<div class="example">
-		{{ flash.message('This is the default flash.message style', false) }}
+		{{ flash.message(message = 'This is the default flash.message style', sticky = false) }}
 	</div>
 	<div class="example">
-		{{ flash.success('This is the flash.success style', false) }}
+		{{ flash.success(message = 'This is the flash.success style', sticky = false) }}
 	</div>
 	<div class="example">
-		{{ flash.warning('This is the flash.warning style', false) }}
+		{{ flash.warning(message = 'This is the flash.warning style', sticky = false) }}
 	</div>
 	<div class="example">
-		{{ flash.error('This is the flash.error style', false) }}
+		{{ flash.error(message = 'This is the flash.error style', sticky = false) }}
 	</div>
 </div>

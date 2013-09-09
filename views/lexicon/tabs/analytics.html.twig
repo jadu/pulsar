@@ -1,3 +1,6 @@
+{% import 'helpers/1.0/html.html.twig' as html %}
+{% import 'helpers/1.0/form.html.twig' as form %}
+{% import 'helpers/1.0/flash.html.twig' as flash %}
 <table class="table--datagrid">
     <thead>
         <tr>
@@ -17,7 +20,7 @@
             <td class="row__actions">
                 <input type="checkbox" />
             </td>
-            <td>{{ html.link('123.123.123.123', '#exampledeck', null, null, 'data-toggle="deck"')}}</td>
+            <td>{{ html.link(label = '123.123.123.123', href = '#exampledeck', attributes = 'data-toggle="deck"') }}</td>
             <td class="centered">5</td>
             <td class="centered">10</td>
             <td class="centered">00.02.12</td>
@@ -28,7 +31,7 @@
             <td class="row__actions">
                 <input type="checkbox" checked />
             </td>
-            <td>{{ html.link('123.123.123.123', '#exampledeck', null, null, 'data-toggle="deck"') }}</td>
+            <td>{{ html.link(label = '123.123.123.123', href = '#exampledeck', attributes = 'data-toggle="deck"') }}</td>
             <td class="centered">5</td>
             <td class="centered">10</td>
             <td class="centered">00.02.12</td>
@@ -39,7 +42,7 @@
             <td class="row__actions">
                 <input type="checkbox" />
             </td>
-            <td>{{ html.link('123.123.123.123', '#exampledeck', null, null, 'data-toggle="deck"')}}</td>
+            <td>{{ html.link(label = '123.123.123.123', href = '#exampledeck', attributes = 'data-toggle="deck"')}}</td>
             <td class="centered">5</td>
             <td class="centered">10</td>
             <td class="centered">00.02.12</td>
@@ -50,7 +53,7 @@
             <td class="row__actions">
                 <input type="checkbox" />
             </td>
-            <td>{{ html.link('123.123.123.123', '#exampledeck', null, null, 'data-toggle="deck"')}}</td>
+            <td>{{ html.link(label = '123.123.123.123', href = '#exampledeck', attributes = 'data-toggle="deck"')}}</td>
             <td class="centered">5</td>
             <td class="centered">10</td>
             <td class="centered">00.02.12</td>
@@ -61,7 +64,7 @@
             <td class="row__actions">
                 <input type="checkbox" />
             </td>
-            <td>{{ html.link('123.123.123.123', '#exampledeck', null, null, 'data-toggle="deck"')}}</td>
+            <td>{{ html.link(label = '123.123.123.123', href = '#exampledeck', attributes = 'data-toggle="deck"')}}</td>
             <td class="centered">5</td>
             <td class="centered">10</td>
             <td class="centered">00.02.12</td>
@@ -72,7 +75,7 @@
             <td class="row__actions">
                 <input type="checkbox" />
             </td>
-            <td>{{ html.link('123.123.123.123', '#exampledeck', null, null, 'data-toggle="deck"')}}</td>
+            <td>{{ html.link(label = '123.123.123.123', href = '#exampledeck', attributes = 'data-toggle="deck"')}}</td>
             <td class="centered">{{ html.badge(34, 'badge--success') }}</td>
             <td class="centered">4</td>
             <td class="centered">00.02.12</td>
@@ -83,7 +86,7 @@
             <td class="row__actions">
                 <input type="checkbox" />
             </td>
-            <td>{{ html.link('123.123.123.123', '#exampledeck', null, null, 'data-toggle="deck"')}}</td>
+            <td>{{ html.link(label = '123.123.123.123', href = '#exampledeck', attributes = 'data-toggle="deck"')}}</td>
             <td class="centered">5</td>
             <td class="centered">10</td>
             <td class="centered">00.02.12</td>
@@ -94,7 +97,7 @@
             <td class="row__actions">
                 <input type="checkbox" />
             </td>
-            <td>{{ html.link('123.123.123.123', '#exampledeck', null, null, 'data-toggle="deck"')}}</td>
+            <td>{{ html.link(label = '123.123.123.123', href = '#exampledeck', attributes = 'data-toggle="deck"')}}</td>
             <td class="centered">5</td>
             <td class="centered">10</td>
             <td class="centered">00.02.12</td>
@@ -105,7 +108,7 @@
             <td class="row__actions">
                 <input type="checkbox" />
             </td>
-            <td>{{ html.link('123.123.123.123', '#exampledeck', null, null, 'data-toggle="deck"')}}</td>
+            <td>{{ html.link(label = '123.123.123.123', href = '#exampledeck', attributes = 'data-toggle="deck"')}}</td>
             <td class="centered">5</td>
             <td class="centered">10</td>
             <td class="centered">00.02.12</td>
@@ -116,7 +119,7 @@
             <td class="row__actions">
                 <input type="checkbox" />
             </td>
-            <td>{{ html.link('123.123.123.123', '#exampledeck', null, null, 'data-toggle="deck"')}}</td>
+            <td>{{ html.link(label = '123.123.123.123', href = '#exampledeck', attributes = 'data-toggle="deck"')}}</td>
             <td class="centered">5</td>
             <td class="centered">10</td>
             <td class="centered">00.02.12</td>
@@ -127,7 +130,7 @@
             <td class="row__actions">
                 <input type="checkbox" />
             </td>
-            <td>{{ html.link('123.123.123.123', '#exampledeck', null, null, 'data-toggle="deck"')}}</td>
+            <td>{{ html.link(label = '123.123.123.123', href = '#exampledeck', attributes = 'data-toggle="deck"')}}</td>
             <td class="centered">5</td>
             <td class="centered">10</td>
             <td class="centered">00.02.12</td>

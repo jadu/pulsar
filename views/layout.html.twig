@@ -59,11 +59,11 @@
     <div class="actionsbar actionsbar--right">
         {{
             html.button_group([ 
-                html.button('Secondary', null, 'link', null, '#exampledeck', 'data-toggle="deck"'),
-                html.button('Actions', null, 'link', null, '#exampledeck', 'data-toggle="deck"') 
+                html.button(label = 'Secondary', type = 'link', href = '#exampledeck', attributes = 'data-toggle="deck"'),
+                html.button(label = 'Actions', type = 'link', href = '#exampledeck', attributes = 'data-toggle="deck"') 
             ])
         }}
-        {{ html.button('Primary Action', 'btn--primary') }}
+        {{ html.button(label = 'Primary Action', class = 'btn--primary') }}
     </div>
     
     <h2 class="heading">{{ heading }}</h2>
@@ -77,8 +77,8 @@
     </div>
 
     <footer>
-        {{ html.link(html.icon('long-arrow-up') ~ ' Top', '#top') }}
-        {{ html.link('Jadu 1.12 &copy; 2013', '/credits') }}
+        {{ html.link(label = html.icon('long-arrow-up') ~ ' Top', href = '#top') }}
+        {{ html.link(label = 'Jadu 1.12 &copy; 2013', href = '/credits') }}
     </footer> 
 
     <script type="text/javascript" src="{{ libsPath ~ 'jquery/jquery.min.js' }}"></script>

@@ -1,8 +1,11 @@
+{% import 'helpers/1.0/html.html.twig' as html %}
+{% import 'helpers/1.0/form.html.twig' as form %}
+{% import 'helpers/1.0/flash.html.twig' as flash %}
 <div class="tab__inner">
 	<div class="example">
-		{{ html.progress(50) }}
-		{{ html.progress(60, 'progress-bar--success') }}
-		{{ html.progress(70, 'progress-bar--warning') }}
-		{{ html.progress(80, 'progress-bar--danger') }}
+		{{ html.progress(value = 50) }}
+		{{ html.progress(value = 60, class = 'progress-bar--success') }}
+		{{ html.progress(value = 70, class = 'progress-bar--warning') }}
+		{{ html.progress(value = 80, class = 'progress-bar--danger') }}
 	</div>
 </div>

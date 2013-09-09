@@ -9,10 +9,10 @@
 
 {% 
     set actions_menu = [
-        html.link(html.icon('save') ~ ' Save'),
-        html.link(html.icon('print') ~ ' Print'),
+        html.link(label = html.icon('save') ~ ' Save'),
+        html.link(label = html.icon('print') ~ ' Print'),
         html.divider(),
-        html.link(html.icon('trash') ~ ' Delete', '#', 'link--danger')
+        html.link(label = html.icon('trash') ~ ' Delete', href = '#', class = 'link--danger')
     ]
 %}
 
