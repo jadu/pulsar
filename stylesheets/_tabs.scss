@@ -70,6 +70,11 @@
 	}
 }
 
+.tab__pane form {
+	// Make sure forms in tabs don't add extra spacing after the form actions
+	margin-bottom: 0;
+}
+
 .tab__inner {
 	margin: 0 $gutter-width;
 	overflow: hidden;

@@ -5,6 +5,8 @@
 {% set jsPath   = '../javascripts/' %}
 {% set libsPath = '../libs/' %}
 <!DOCTYPE html>
+<!--[if IE 7]>         <html class="no-js ie7"><![endif]-->
+<!--[if gt IE 7]><!--> <html class="no-js"><!--<![endif]-->
 <html class="no-js">
 <head>
     <title>{% block title %}Pulsar Lexicon{% endblock %}</title>
@@ -13,7 +15,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!--[if IE 6]><link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'pulsar-ie6.css' }}" /><![endif]-->
     <!--[if IE 7]><link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'pulsar-ie7.css' }}" /><![endif]-->
     <!--[if IE 8]><link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'pulsar-ie8.css' }}" /><![endif]-->
     <!--[if IE 9]><link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'pulsar-ie9.css' }}" /><![endif]-->

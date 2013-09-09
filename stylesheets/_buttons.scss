@@ -142,3 +142,9 @@
         padding: 7px;
     }
 }
+
+@include ie-lte(7) {
+    a.btn { 
+        line-height: 20px; 
+    }
+}

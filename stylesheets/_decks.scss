@@ -35,7 +35,7 @@
 	
 	// Control the horizontal position of successive deck slides ---------------
 
-	$left-offset: 20px;
+	$left-offset: 10px;
 	$right-offset: 2px;
 	
 	// IE8 Currently has issues supporting nth-of-type and n
@@ -116,6 +116,9 @@
 .slide-inner {
 	background-color: $white;
 	box-shadow: -3px 0px 3px rgba(0, 0, 0, .1);
+	@include ie-lte(7) {
+		border: 1px solid $gray;
+	}
 	
 	& {
 	// &:nth-of-type(1)  { 

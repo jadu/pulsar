@@ -43,11 +43,13 @@
                 }
 
                 // Unfocus the background
-                // $($.fn.deck.defaults.backgroundElements).addClass($.fn.deck.defaults.backgroundClassName);
-                var vague = $($.fn.deck.defaults.backgroundElements).Vague({
-                    intensity: 2 //blur intensity
-                });
-                vague.blur();
+                // $('body').addClass($.fn.deck.defaults.backgroundClassName);
+                if (!$('html').hasClass('ie7')) {
+                    var vague = $($.fn.deck.defaults.backgroundElements).Vague({
+                        intensity: 2 //blur intensity
+                    });
+                    vague.blur();
+                };
 
                 /**
                  * Activate the deck and show first slide.
@@ -80,10 +82,12 @@
 
             // Refocus the background UI.
             // $($.fn.deck.defaults.backgroundElements).removeClass($.fn.deck.defaults.backgroundClassName);
-            var vague = $($.fn.deck.defaults.backgroundElements).Vague({
-                intensity: 2 //blur intensity
-            });
-            vague.destroy();
+            if (!$('html').hasClass('ie7')) {
+                var vague = $($.fn.deck.defaults.backgroundElements).Vague({
+                    intensity: 2 //blur intensity
+                });
+                vague.destroy();
+            }
 
             return this;
 
@@ -256,7 +260,7 @@
         deckPath : 'decks/',
         deckClass : '.deck',
         activeClassName : 'active',
-        backgroundClassName : 'deck-background',
+        backgroundClassName : 'deck-open',
         backgroundElements : '.breadcrumb, .actionsbar, .heading, .tabs__list, .tabs__content, .summary',
         viewportOffsetElement : 'header'
     };
