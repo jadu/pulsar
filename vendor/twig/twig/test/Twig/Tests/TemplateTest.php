@@ -27,9 +27,10 @@ class Twig_Tests_TemplateTest extends PHPUnit_Framework_TestCase
         $template = $env->loadTemplate($name);
 
         $context = array(
-            'string'       => 'foo',
-            'array'        => array('foo' => 'foo'),
-            'array_access' => new Twig_TemplateArrayAccessObject(),
+            'string'          => 'foo',
+            'array'           => array('foo' => 'foo'),
+            'array_access'    => new Twig_TemplateArrayAccessObject(),
+            'magic_exception' => new Twig_TemplateMagicPropertyObjectWithException(),
         );
 
         try {
@@ -52,6 +53,7 @@ class Twig_Tests_TemplateTest extends PHPUnit_Framework_TestCase
             array('{{ attribute(array, -10) }}', 'Key "-10" for array with keys "foo" does not exist in "%s" at line 1', false),
             array('{{ array_access.a }}', 'Method "a" for object "Twig_TemplateArrayAccessObject" does not exist in "%s" at line 1', false),
             array('{% macro foo(obj) %}{{ obj.missing_method() }}{% endmacro %}{{ _self.foo(array_access) }}', 'Method "missing_method" for object "Twig_TemplateArrayAccessObject" does not exist in "%s" at line 1', false),
+            array('{{ magic_exception.test }}', 'An exception has been thrown during the rendering of a template ("Hey! Don\'t try to isset me!") in "%s" at line 1.', false),
         );
 
         if (function_exists('twig_template_get_attributes')) {
@@ -255,9 +257,9 @@ class Twig_Tests_TemplateTest extends PHPUnit_Framework_TestCase
         $methodObject        = new Twig_TemplateMethodObject();
         $magicMethodObject   = new Twig_TemplateMagicMethodObject();
 
-        $anyType    = Twig_TemplateInterface::ANY_CALL;
-        $methodType = Twig_TemplateInterface::METHOD_CALL;
-        $arrayType  = Twig_TemplateInterface::ARRAY_CALL;
+        $anyType    = Twig_Template::ANY_CALL;
+        $methodType = Twig_Template::METHOD_CALL;
+        $arrayType  = Twig_Template::ARRAY_CALL;
 
         $basicTests = array(
             // array(defined, value, property to fetch)
@@ -361,6 +363,55 @@ class Twig_Tests_TemplateTest extends PHPUnit_Framework_TestCase
 
         return $tests;
     }
+
+    /**
+     * @expectedException Twig_Error_Runtime
+     * @expectedExceptionMessage Macro "foo" is not defined in the template "my/template".
+     */
+    public function testCallUnknownMacro()
+    {
+        $template = new Twig_TemplateTest($this->getMock('Twig_Environment'));
+        $template->callMacro(new Twig_Tests_TemplateWithMacros('my/template'), 'foo', array());
+    }
+
+    /**
+     * @expectedException Twig_Error_Runtime
+     * @expectedExceptionMessage Argument "format" is defined twice for macro "date" defined in the template "my/template".
+     */
+    public function testCallMacroWhenArgumentIsDefinedTwice()
+    {
+        $template = new Twig_TemplateTest($this->getMock('Twig_Environment'));
+        $template->callMacro(new Twig_Tests_TemplateWithMacros('my/template', array('date' => array(
+            'method' => 'getDate',
+            'arguments' => array('format' => null, 'template' => null)
+        ))), 'date', array('d', 'format' => 'H'), array('format' => 1), 1, 1);
+    }
+
+    /**
+     * @expectedException        Twig_Error_Runtime
+     * @expectedExceptionMessage Unknown argument "unknown" for macro "date" defined in the template "my/template".
+     */
+    public function testCallMacroWithWrongNamedArgumentName()
+    {
+        $template = new Twig_TemplateTest($this->getMock('Twig_Environment'));
+        $template->callMacro(new Twig_Tests_TemplateWithMacros('my/template', array('date' => array(
+            'method' => 'getDate',
+            'arguments' => array('foo' => 1, 'bar' => 2)
+        ))), 'date', array('foo' => 2), array('foo' => 1, 'unknown' => 1), 2, 0);
+    }
+
+    /**
+     * @expectedException        Twig_Error_Runtime
+     * @expectedExceptionMessage Unknown arguments "unknown1", "unknown2" for macro "date" defined in the template "my/template".
+     */
+    public function testCallMacroWithWrongNamedArgumentNames()
+    {
+        $template = new Twig_TemplateTest($this->getMock('Twig_Environment'));
+        $template->callMacro(new Twig_Tests_TemplateWithMacros('my/template', array('date' => array(
+            'method' => 'getDate',
+            'arguments' => array()
+        ))), 'date', array(), array('unknown1' => 1, 'unknown2' => 2), 2, 0);
+    }
 }
 
 class Twig_TemplateTest extends Twig_Template
@@ -411,13 +462,42 @@ class Twig_TemplateTest extends Twig_Template
     {
     }
 
-    public function getAttribute($object, $item, array $arguments = array(), $type = Twig_TemplateInterface::ANY_CALL, $isDefinedTest = false, $ignoreStrictCheck = false)
+    public function getAttribute($object, $item, array $arguments = array(), $type = Twig_Template::ANY_CALL, $isDefinedTest = false, $ignoreStrictCheck = false)
     {
         if ($this->useExtGetAttribute) {
             return twig_template_get_attributes($this, $object, $item, $arguments, $type, $isDefinedTest, $ignoreStrictCheck);
         } else {
             return parent::getAttribute($object, $item, $arguments, $type, $isDefinedTest, $ignoreStrictCheck);
         }
+    }
+
+    public function callMacro(Twig_Template $template, $macro, array $arguments, array $namedNames = array(), $namedCount = 0, $positionalCount = -1)
+    {
+        return parent::callMacro($template, $macro, $arguments, $namedNames, $namedCount, $positionalCount);
+    }
+}
+
+class Twig_Tests_TemplateWithMacros extends Twig_Template
+{
+    protected $name;
+
+    public function __construct($name, array $macros = array())
+    {
+        $this->name = $name;
+        $this->macros = $macros;
+    }
+
+    public function getTemplateName()
+    {
+        return $this->name;
+    }
+
+    public function getDate()
+    {
+    }
+
+    protected function doDisplay(array $context, array $blocks = array())
+    {
     }
 }
 
@@ -477,6 +557,14 @@ class Twig_TemplateMagicPropertyObject
     public function __get($name)
     {
         return array_key_exists($name, $this->attributes) ? $this->attributes[$name] : null;
+    }
+}
+
+class Twig_TemplateMagicPropertyObjectWithException
+{
+    public function __isset($key)
+    {
+        throw new Exception("Hey! Don't try to isset me!");
     }
 }
 

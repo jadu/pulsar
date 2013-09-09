@@ -47,7 +47,7 @@ IDEs Integration
 Many IDEs support syntax highlighting and auto-completion for Twig:
 
 * *Textmate* via the `Twig bundle`_
-* *Vim* via the `Jinja syntax plugin`_
+* *Vim* via the `Jinja syntax plugin`_ or the `vim-twig plugin`_
 * *Netbeans* via the `Twig syntax plugin`_ (until 7.1, native as of 7.2)
 * *PhpStorm* (native as of 2.1)
 * *Eclipse* via the `Twig plugin`_
@@ -191,13 +191,18 @@ progression of integers:
 Go to the :doc:`functions<functions/index>` page to learn more about the
 built-in functions.
 
+.. _named_arguments:
+
 Named Arguments
 ---------------
 
 .. versionadded:: 1.12
     Support for named arguments was added in Twig 1.12.
 
-Arguments for filters and functions can also be passed as *named arguments*:
+.. versionadded:: 1.14
+    Support for named arguments for macros was added in Twig 1.14.
+
+Arguments for filters, functions and macros can also be passed as *named arguments*:
 
 .. code-block:: jinja
 
@@ -498,6 +503,10 @@ Macros
 .. versionadded:: 1.12
     Support for default argument values was added in Twig 1.12.
 
+.. versionadded:: 1.14
+    Support for macro call with named arguments was added in Twig 1.14.
+    Support for directly call macros defined in the same template was added in Twig 1.14.
+
 Macros are comparable with functions in regular programming languages. They
 are useful to reuse often used HTML fragments to not repeat yourself.
 
@@ -518,6 +527,21 @@ Macros can be defined in any template, and need to be "imported" via the
     {% import "forms.html" as forms %}
 
     <p>{{ forms.input('username') }}</p>
+
+Macros defined in the same template can be directly called:
+
+.. code-block:: jinja
+
+    {% macro submit(name) %}
+        <input type="submit" value="{{ name }}" />
+    {% endmacro %}
+
+    <p>{{ submit('Send') }}</p>
+
+.. note::
+
+    If the macro name matches the name of a function, it need to be "imported"
+    via the :doc:`import<tags/import>`.
 
 Alternatively, you can import individual macro names from a template into the
 current namespace via the :doc:`from<tags/from>` tag and optionally alias them:
@@ -541,6 +565,14 @@ macro call:
     {% macro input(name, value = "", type = "text", size = 20) %}
         <input type="{{ type }}" name="{{ name }}" value="{{ value|e }}" size="{{ size }}" />
     {% endmacro %}
+
+Arguments for macro can also be passed as :ref:`named arguments<named_arguments>`:
+
+.. code-block:: jinja
+
+    {% import "forms.html" as forms %}
+
+    <p>{{ forms.input(name='username', size=40) }}</p>
 
 .. _twig-expressions:
 
@@ -796,11 +828,11 @@ Use the ``spaceless`` tag to remove whitespace *between HTML tags*:
 
     {% spaceless %}
         <div>
-            <strong>foo</strong>
+            <strong>foo bar</strong>
         </div>
     {% endspaceless %}
 
-    {# output will be <div><strong>foo</strong></div> #}
+    {# output will be <div><strong>foo bar</strong></div> #}
 
 In addition to the spaceless tag you can also control whitespace on a per tag
 level. By using the whitespace control modifier on your tags, you can trim
@@ -840,7 +872,8 @@ If you want to create your own, read the :ref:`Creating an
 Extension<creating_extensions>` chapter.
 
 .. _`Twig bundle`:                https://github.com/Anomareh/PHP-Twig.tmbundle
-.. _`Jinja syntax plugin`:        http://jinja.pocoo.org/2/documentation/integration
+.. _`Jinja syntax plugin`:        http://jinja.pocoo.org/docs/integration/#vim
+.. _`vim-twig plugin`:            https://github.com/evidens/vim-twig
 .. _`Twig syntax plugin`:         http://plugins.netbeans.org/plugin/37069/php-twig
 .. _`Twig plugin`:                https://github.com/pulse00/Twig-Eclipse-Plugin
 .. _`Twig language definition`:   https://github.com/gabrielcorpse/gedit-twig-template-language
