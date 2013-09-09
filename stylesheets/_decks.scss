@@ -116,6 +116,9 @@
 .slide-inner {
 	background-color: $white;
 	box-shadow: -3px 0px 3px rgba(0, 0, 0, .1);
+	@include ie-lte(7) {
+		border: 1px solid $gray;
+	}
 	
 	& {
 	// &:nth-of-type(1)  { 
