@@ -321,6 +321,12 @@ textarea {
   padding-top: 17px; // baseline alignment
 }
 
+@include ie-lte(7) {
+  .slide .form--horizontal {
+    padding: 0;
+  }
+}
+
 .form--horizontal .form__group {
   @include clearfix();
 
