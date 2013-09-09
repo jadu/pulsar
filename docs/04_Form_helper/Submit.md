@@ -8,7 +8,7 @@ Available paramters:
 
 Example:
 
-	{{ form.submit('Save') }}
+	{{ form.submit(label = 'Save') }}
 
 	<input type="submit" class="btn" value="Save" />
 

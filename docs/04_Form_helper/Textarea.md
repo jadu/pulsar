@@ -8,7 +8,7 @@ Available parameters:
 
 Example:
 
-	{{ form.textarea('Your bio') }}	
+	{{ form.textarea(label = 'Your bio') }}	
 
 	<div class="form__group">
         <label class="control__label">Your bio</label>

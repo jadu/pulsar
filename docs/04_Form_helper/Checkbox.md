@@ -8,7 +8,7 @@ Available parameters:
 
 Examples:
 
-	{{ form.checkbox('Checkbox with left label') }}
+	{{ form.checkbox(label = 'Checkbox with left label') }}
 
 	<div class="form__group">
         <label for="inputCheckboxLeft" class="checkbox__label">Checkbox with left label</label>
@@ -17,7 +17,11 @@ Examples:
         </div>
     </div>
 
-    {{ form.checkbox_right('Pre-checked, with right label', 'inputCheckboxRight', null, 'inputCheckboxInline', true) }}
+    {{ form.checkbox_right(
+        label = 'Pre-checked, with right label', 
+        id = 'inputCheckboxRight', 
+        name = 'inputCheckboxInline', 
+        checked = true) }}
 
     <div class="form__group">
         <div class="checkbox">
@@ -53,9 +57,22 @@ Examples:
 You can group checkboxes together into logical blocks by wrapping them with the `checkbox_group` helper, this is particularly useful for creating inline checkboxes if your options are relatively small.
 
     {{ form.checkbox_group([
-            form.checkbox_inline('Inline', 'inputCheckboxInline1', null, 'inputCheckboxInline', true),
-            form.checkbox_inline('Check', 'inputCheckboxInline2', null, 'inputCheckboxInline', true),
-            form.checkbox_inline('Boxes', 'inputCheckboxInline3', null, 'inputCheckboxInline', true)]) 
+        form.checkbox_inline(
+            label = 'Inline', 
+            id = 'inputCheckboxInline1', 
+            name = 'inputCheckboxInline', 
+            checked = true),
+        form.checkbox_inline(
+            label = 'Check', 
+            id = 'inputCheckboxInline2', 
+            name = 'inputCheckboxInline', 
+            checked = true),
+        form.checkbox_inline(
+            label = 'Boxes', 
+            id = 'inputCheckboxInline3', 
+            name = 'inputCheckboxInline', 
+            checked = true)
+        ]) 
     }}
 
 <form class="form--horizontal">

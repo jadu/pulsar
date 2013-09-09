@@ -2,14 +2,14 @@ There are separate helpers to start and end a form, your individual inputs will 
 
 ## A simple form example
 
-	{{ form.create('/login') }}
-	{{ form.input('Username') }}
-	{{ form.password('Password') }}
-	{{ form.end(html.submit('Login')) }}
+	{{ form.create(action = '/login') }}
+	{{ form.input(label = 'Username') }}
+	{{ form.password(label = 'Password') }}
+	{{ form.end(html.submit(label = 'Login')) }}
 
 Output: 
 
-	<form class="form--horizontal" target="/login" method="POST">
+	<form class="form--horizontal" action="/login" method="POST">
 
         <div class="form__group">
         	<label class="control__label">Username</label>

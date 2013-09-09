@@ -8,7 +8,7 @@ Available parameters:
 
 Example usage:
 
-	{{ form.fieldset_start('Sign in') }}
+	{{ form.fieldset_start(legend = 'Sign in') }}
 
 	<fieldset>
 		<legend>Sign in</legend>

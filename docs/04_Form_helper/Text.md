@@ -8,7 +8,7 @@ Available parameters:
 
 #### Label
 
-	{{ form.text('Username') }}
+	{{ form.text(label = 'Username') }}
 
 	<div class="form__group">
         <label for="inputText" class="control__label">Username</label>
@@ -28,7 +28,9 @@ Available parameters:
 
 #### ID
 
-	{{ form.text('Username', 'userName') }}
+	{{ form.text(
+		label = 'Username', 
+		id = 'userName') }}
 
 	<div class="form__group">
         <label for="inputText" class="control__label">Username</label>
@@ -41,7 +43,10 @@ Available parameters:
 
 The class is added to the `.form__group`, not the individual input.
 
-	{{ form.text('Username', 'userName', 'form__group--large') }}
+	{{ form.text(
+		label = 'Username', 
+		id = 'userName', 
+		class = 'form__group--large') }}
 
 	<div class="form__group form__group--large">
         <label for="inputText" class="control__label">Username</label>
@@ -52,7 +57,11 @@ The class is added to the `.form__group`, not the individual input.
 
 #### Name
 
-	{{ form.text('Username', 'userName', 'form__group--large', 'User[name]') }}
+	{{ form.text(
+		label = 'Username', 
+		id = 'userName', 
+		class = 'form__group--large', 
+		name = 'User[name]') }}
 
 	<div class="form__group form__group--large">
         <label for="inputText" class="control__label">Username</label>
@@ -63,7 +72,12 @@ The class is added to the `.form__group`, not the individual input.
 
 #### Placeholder
 
-	{{ form.text('Username', 'userName', 'form__group--large', 'User[name]', 'Enter your username') }}
+	{{ form.text(
+		label = 'Username', 
+		id = 'userName', 
+		class = 'form__group--large', 
+		name = 'User[name]', 
+		placedholder = 'Enter your username') }}
 
 	<div class="form__group form__group--large">
         <label for="inputText" class="control__label">Username</label>
@@ -83,7 +97,13 @@ The class is added to the `.form__group`, not the individual input.
 
 #### Help text
 
-	{{ form.text('Username', 'userName', 'form__group--large', 'User[name]', 'Enter your username', "Check your sign-up email.") }}
+	{{ form.text(
+		label = 'Username', 
+		id = 'userName', 
+		class = 'form__group--large', 
+		name = 'User[name]', 
+		placeholder = 'Enter your username', 
+		help = 'Check your sign-up email.') }}
 
 	<div class="form__group form__group--large">
         <label for="inputText" class="control__label">Username</label>
@@ -107,7 +127,11 @@ The class is added to the `.form__group`, not the individual input.
 
 Use to extend your input with useful information which will help to clarify the input you're expecting.
 
-	{{ form.text('Twitter username', 'twitterUsername', null, 'User[twitter]', null, null, '@') }}
+	{{ form.text(
+		label = 'Twitter username', 
+		id = 'twitterUsername', 
+		name = 'User[twitter]'
+		prepend = '@') }}
 
 	<div class="form__group form__group--large">
         <label for="inputText" class="control__label">Username</label>
@@ -134,7 +158,12 @@ Use to extend your input with useful information which will help to clarify the 
 
 #### Append
 
-	{{ form.text('Your website', 'url', null, 'User[website]', 'http://', null, null, '.com') }}
+	{{ form.text(
+		label = 'Your website', 
+		id = 'url',
+		name = 'User[website]', 
+		placeholder = 'http://',
+		append = '.com') }}
 
 	<form class="form--horizontal">
 	<div class="form__group">

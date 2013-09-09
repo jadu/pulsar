@@ -8,7 +8,7 @@ Available parameters:
 
 Examples:
 
-	{{ form.radio('Radio with left label') }}
+	{{ form.radio(label = 'Radio with left label') }}
 
 	<div class="form__group">
         <label for="inputRadioLeft" class="radio__label">Radio with left label</label>
@@ -53,9 +53,22 @@ Examples:
 You can group radios together into logical blocks by wrapping them with the `radio_group` helper, this is particularly useful for creating inline radios if your options are relatively small.
 
     {{ form.radio_group([
-            form.radio_inline('Inline', 'inputRadioInline1', null, 'inputRadioInline', true),
-            form.radio_inline('Check', 'inputRadioInline2', null, 'inputRadioInline', true),
-            form.radio_inline('Boxes', 'inputRadioInline3', null, 'inputRadioInline', true)]) 
+        form.radio_inline(
+            label = 'Inline',
+            id = 'inputRadioInline1', 
+            name = 'inputRadioInline', 
+            checked = true),
+        form.radio_inline(
+            label = 'Check',
+            id = 'inputRadioInline2', 
+            name = 'inputRadioInline', 
+            checked = true),
+        form.radio_inline(
+            label = 'Boxes',
+            id = 'inputRadioInline3', 
+            name = 'inputRadioInline', 
+            checked = true)
+        ]) 
     }}
 
 <form class="form--horizontal">

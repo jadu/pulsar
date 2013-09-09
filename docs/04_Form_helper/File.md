@@ -8,7 +8,7 @@ Available parameters:
 
 Example:
 
-	{{ form.file('Your photo') }}
+	{{ form.file(label = 'Your photo') }}
 
 	<div class="form__group">
 	    <label for="inputFile" class="control__label">Your photo</label>

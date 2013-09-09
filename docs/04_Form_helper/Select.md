@@ -8,7 +8,12 @@ Available parameters:
 
 Example:
 
-	{{ form.select('Choose one', {value1: 'value one', value2: 'value two'}) }}
+	{{ form.select(
+        label = 'Choose one', 
+        options = {
+            value1: 'value one', 
+            value2: 'value two'
+        }) }}
 
 	<div class="form__group">
         <label class="control__label">Choose one</label>

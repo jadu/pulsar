@@ -2,9 +2,13 @@ Password inputs are identical to [text inputs](Text), but use dots/asterisks to 
 
 ----
 
+Available parameters:
+
+    {{ form.password(label, id, class, name, placeholder, help, prepend, append) }}
+
 Example:
 
-	{{ form.password('Password') }}
+	{{ form.password(label = 'Password') }}
 
 	<div class="form__group">
         <label for="inputText" class="control__label">Your password</label>
