@@ -1,4 +1,5 @@
 .actionsbar {
+	@extend .btn__toolbar;
 	@include inline-block;
 	margin: $line-height-base $gutter-width 2px $gutter-width;
 
@@ -17,6 +18,9 @@
 
 .actionsbar--right {
 	float: right;
+	.btn, .btn__group {
+		float: left;
+	}
 }
 
 @include ie-lte(7) {
