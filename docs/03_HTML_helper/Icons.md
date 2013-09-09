@@ -1,6 +1,6 @@
 Usage:
 
-	{{ html.icon(icon_name, class) }}
+	{{ html.icon(icon_name) }}
 
 Pulsar uses the font-awesome icon font which contains over 300 icons which scale perfectly to any size. Check the [full icon list](http://fortawesome.github.io/Font-Awesome/icons/) for all available icons.
 
@@ -31,9 +31,3 @@ Icons inherit their size and colour attributes from their parents and can be nes
 <a href="#example">Link <i class="icon-ok"></i></a>
 
 <br />
-To increase the size of the icon relative to it's container, use the `icon-large`, `icon-2x`, `icon-3x` or `icon-4x`.
-
-<p><i class="icon-camera-retro icon-large"></i> icon-large (+33%)</p>
-<p><i class="icon-camera-retro icon-2x"></i> icon-2x</p>
-<p><i class="icon-camera-retro icon-3x"></i> icon-3x</p>
-<p><i class="icon-camera-retro icon-4x"></i> icon-4x</p>

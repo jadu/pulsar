@@ -8,14 +8,15 @@ Usage:
 Pass a list of links to the `menu_items` parameter to be used as the dropdown/up menu, remember you can chain together icons, labels and badges too.
 	
 	{{ 
-	   html.button_dropdown('Drop Down', null, null,
-           [	
-				html.link(html.icon('save') ~ ' Save'),
-				html.link(html.icon('print') ~ ' Print'),
-				html.link(html.icon('star') ~ ' Favourite ' ~ html.badge(3)),
-				html.divider(),
-				html.link(html.icon('trash') ~ ' Delete')
-           ]	
+	   html.button_dropdown(
+	   	label = 'Drop Down',
+		[	
+			html.link(label = html.icon('save') ~ ' Save'),
+			html.link(label = html.icon('print') ~ ' Print'),
+			html.link(label = html.icon('star') ~ ' Favourite ' ~ html.badge(3)),
+			html.divider(),
+			html.link(label = html.icon('trash') ~ ' Delete')
+		]	
        ) 	
 	}}
 	

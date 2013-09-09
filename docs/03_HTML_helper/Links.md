@@ -9,10 +9,13 @@ Available parameters:
 Data-attributes can be attached to links through `attributes`
 
 	<!-- Simple example -->
-	{{ html.link('Sign in', '/signin') }}
+	{{ html.link(label = 'Sign in', href = '/signin') }}
 
 	<!-- Complex example -->
-	{{ html.link(html.icon('user') ~ ' My account', '#preferences', null, null, 'data-toggle="modal"' ) }}
+	{{ html.link(
+		label = html.icon('user') ~ ' My account', 
+		href = '#preferences', 
+		attributes = 'data-toggle="modal"' ) }}
 
 Simple example: <a href="/signin">Sign in</a>
 
