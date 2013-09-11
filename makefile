@@ -34,4 +34,8 @@ clean:
 
 	@ echo "${HR}\nRemoving front-end libraries...${HR}"
 	@ rm -rf libs/*
-	@ echo "\n${CHECK} Done\n"
+	@ echo "\n${CHECK} Done"
+
+	@ echo "${HR}\nRemoving GIT hooks...${HR}"
+	@ rm -rf .git/hooks/*
+	@ echo "\n${CHECK} Done\n"	

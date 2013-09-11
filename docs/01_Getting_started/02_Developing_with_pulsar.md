@@ -28,3 +28,4 @@ There's a task you must run before comitting changes to the repository:
 This will perform the following checks, if any of them fail you must resolve the issue before comitting.
 
  * Check all js, css, scss, twig files use spaces instead of hard-tabs
+ * Compile Sass to CSS
