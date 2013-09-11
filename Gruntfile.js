@@ -49,15 +49,17 @@ module.exports = function(grunt) {
     });
 
     grunt.config.set('leadingIndent.indentation', 'spaces');
-    grunt.config.set('leadingIndent.jsFiles', {
-        src : ['javascripts/*.js']
-    });
-    grunt.config.set('leadingIndent.cssFiles', {
-        src : ['css/*.css', 'stylesheets/*.scss']
+    grunt.config.set('leadingIndent.files', {
+        src : [
+            'javascripts/*.js',
+            'css/*.css', 
+            'stylesheets/*.scss',
+            'views/**/*.twig'
+        ]
     });
 
     grunt.registerTask('default', ['php', 'sass']);
-    grunt.registerTask('precommit', ['leadingIndent:jsFiles', 'leadingIndent:cssFiles']);
+    grunt.registerTask('precommit', ['leadingIndent:files']);
 
     // load all grunt tasks
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);

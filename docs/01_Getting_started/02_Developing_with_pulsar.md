@@ -19,3 +19,12 @@ Pulsar uses [Sass](http://sass-lang.com) to make our CSS awesome, while Pulsar i
 * The Sass files are in `/stylesheets`
 * The compiled CSS files are in `/css` (don't make any changes here)
 
+## Pre-commit checks
+
+There's a task you must run before comitting changes to the repository:
+
+`grunt precommit`
+
+This will perform the following checks, if any of them fail you must resolve the issue before comitting.
+
+ * Check all js, css, scss, twig files use spaces instead of hard-tabs
