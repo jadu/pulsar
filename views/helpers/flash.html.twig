@@ -19,7 +19,7 @@
 {%- endmacro -%}
 
 {%- macro flash(message, type, sticky) -%}
-	{% import 'helpers/1.0/html.html.twig' as html %}
+	{% import 'helpers/html.html.twig' as html %}
 	
 	{% if type == 'success' %}
 		{% set icon = 'ok' %}
