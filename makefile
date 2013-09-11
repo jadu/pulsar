@@ -13,10 +13,14 @@ build:
 
 	@ echo "${HR}\nInstalling front-end libraries...${HR}"
 	@ bower install
-	@ echo "\n${CHECK} Done\n"
+	@ echo "\n${CHECK} Done"
 
 	@ echo "${HR}\nInstalling Grunt and it's libraries...${HR}"
 	@ npm install
+	@ echo "\n${CHECK} Done"
+
+	@ echo "${HR}\nInstalling GIT hooks...${HR}"
+	@ cp hooks/* .git/hooks/
 	@ echo "\n${CHECK} Done\n"
 
 	@ echo "Run 'grunt' to start the documentation server and 'grunt watch' to monitor for Sass changes."
