@@ -25,11 +25,14 @@ Set the links to display in the actions menu by populating the `actions_menu` va
 
 	{% 
 	    set actions_menu = [
-	        html.link(html.icon('save') ~ ' Save'),
-	        html.link(html.icon('print') ~ ' Print'),
-	        html.link(html.icon('lock') ~ ' Lock'),
-	        html.link(html.icon('group') ~ ' Collaborators ' ~ html.badge(3)),
+	        html.link(label = html.icon('save') ~ ' Save'),
+	        html.link(label = html.icon('print') ~ ' Print'),
+	        html.link(label = html.icon('lock') ~ ' Lock'),
+	        html.link(label = html.icon('group') ~ ' Collaborators ' ~ html.badge(3)),
 	        html.divider(),
-	        html.link(html.icon('trash') ~ ' Delete', '#', 'link--danger')
+	        html.link(
+	        	label = html.icon('trash') ~ ' Delete', 
+	        	href = '#', 
+	        	class = 'link--danger')
 	    ]
 	%}

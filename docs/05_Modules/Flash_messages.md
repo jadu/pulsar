@@ -8,13 +8,13 @@ Available attributes:
 
 Variations:
 
-	{{ flash.message('This is the default flash message style, messages can also contain ' ~ html.link('links', '#my-link')) }}
+	{{ flash.message(message = 'This is the default flash message style, messages can also contain ' ~ html.link(label = 'links', href = '#my-link')) }}
 
-	{{ flash.success('This is a success message') }}
+	{{ flash.success(message = 'This is a success message') }}
 
-	{{ flash.warning('This is a warning message') }}
+	{{ flash.warning(message = 'This is a warning message') }}
 
-	{{ flash.error('This is an error message') }}
+	{{ flash.error(message = 'This is an error message') }}
 
 <p>
 <div class="flash flash--default">
