@@ -57,6 +57,7 @@
   .close {
     color: $white;
     font-size: 1em;
+    margin-right: ($gutter-width / 2);
     opacity: .9;
     &:hover {
       opacity: 1;
