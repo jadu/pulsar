@@ -1,37 +1,37 @@
 .btn__group > .btn + .btn {
-	margin-left: -1px;
+  margin-left: -1px;
 }
 
 .btn__group > .btn:first-child {
-	border-top-left-radius: 3px;
-	border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
 }
 
 .btn__group > .btn:last-child {
-	border-top-right-radius: 3px;
-	border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
 }
 
 // Optional: Group multiple button groups together for a toolbar
 .btn__toolbar {
-	@include clearfix;
+  @include clearfix;
 
-	// .btn__group {
-	// 	float: left;
-	// }
+  // .btn__group {
+  //  float: left;
+  // }
 
-	// Space out series of button groups
-	> .btn,
-	> .btn__group {
-		+ .btn,
-		+ .btn__group {
-			margin-left: 5px;
-		}
-	}
+  // Space out series of button groups
+  > .btn,
+  > .btn__group {
+    + .btn,
+    + .btn__group {
+      margin-left: 5px;
+    }
+  }
 }
 
 .btn__group > .btn:not(:first-child):not(:last-child):not(.dropdown__toggle) {
-	border-radius: 0;
+  border-radius: 0;
 }
 
 // Make the div behave like a button

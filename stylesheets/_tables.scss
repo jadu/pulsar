@@ -10,20 +10,20 @@ th {
 
 // Columns
 table {
-	th {
-		background-color: darken($white, 5%);
-		font-family: $font-family-semibold;
-		font-weight: normal;
-	}
+  th {
+    background-color: darken($white, 5%);
+    font-family: $font-family-semibold;
+    font-weight: normal;
+  }
 }
 
 .table {
   margin-top: -6px;
-	margin-bottom: $line-height-base + 5;
+  margin-bottom: $line-height-base + 5;
 
   width: 97.7%;
 
-	// Cells
+  // Cells
   thead,
   tbody,
   tfoot {

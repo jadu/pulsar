@@ -1,9 +1,9 @@
 .show-baseline {
-	@include baseline-grid;
+  @include baseline-grid;
 }
 
 .hide {
-	display: none;
+  display: none;
 }
 
 // Make an element only 'visible' to screenreaders

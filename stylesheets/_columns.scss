@@ -1,15 +1,15 @@
 .columns {
-	column-gap: $gutter-width;
+  column-gap: $gutter-width;
 }
 
 .columns--2 {
-	-webkit-column-count: 2;
+  -webkit-column-count: 2;
 }
 
 .columns--3 {
-	-webkit-column-count: 3;
+  -webkit-column-count: 3;
 }
 
 .columns--4 {
-	-webkit-column-count: 4;
+  -webkit-column-count: 4;
 }

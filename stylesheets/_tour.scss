@@ -2,17 +2,17 @@
 // A couple of things needed to be fixed for alignment
 
 div.hopscotch-bubble {
-	z-index: $zindex-tour;
+  z-index: $zindex-tour;
 
-	.hopscotch-content {
-		font-family: $font-family-base;
-	}
+  .hopscotch-content {
+    font-family: $font-family-base;
+  }
 
-	.hopscotch-bubble-number {
-		padding-right: 0;
-	}
+  .hopscotch-bubble-number {
+    padding-right: 0;
+  }
 
-	.hopscotch-bubble-close {
-		padding: 12px;
-	}
+  .hopscotch-bubble-close {
+    padding: 12px;
+  }
 }

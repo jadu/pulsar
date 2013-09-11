@@ -8,6 +8,7 @@
     "grunt-contrib-sass": "latest", 
     "grunt-contrib-watch": "latest", 
     "grunt-contrib-jshint": "latest", 
+    "grunt-leading-indent": "latest",
     "matchdep": "latest"
   }
 }

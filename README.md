@@ -1,4 +1,4 @@
-# Pulsar
+# Pulsar UI
 
 _Beautiful user interfaces, stellar user experiences._
 

@@ -1,42 +1,40 @@
 .breadcrumb {
-	background-color: $white;
-	border-bottom: 1px solid $gray;
+  background-color: $white;
+  border-bottom: 1px solid $gray;
 
-	ul {
-		list-style-type: none;
-		margin: 0 0 0 $gutter-width / 2;
-	}
+  ul {
+    list-style-type: none;
+    margin: 0 0 0 $gutter-width / 2;
+  }
 
-	li {
-		@include inline-block;
-		margin-right: $gutter-width - 4;
-		padding: 0;
-	}
+  li {
+    @include inline-block;
+    margin-right: $gutter-width - 4;
+    padding: 0;
+  }
 
-	li > a,
-	li > span {
-		@include inline-block;
-		line-height: ($line-height-base * 2) - 1;
-	}
+  li > a,
+  li > span {
+    @include inline-block;
+    line-height: ($line-height-base * 2) - 1;
+  }
 
-	a {
-		color: $gray-dark;
-		text-decoration: none;
+  a {
+    color: $gray-dark;
+    text-decoration: none;
 
-		&:after {
-			color: $gray-light;
-			content: " / ";
-			@include inline-block;
-			font-size: 1.5em;
-			margin: 0 0 0 $gutter-width;
-			position: relative;
-			top: 3px;
-		}
+    &:after {
+      color: $gray-light;
+      content: " / ";
+      @include inline-block;
+      font-size: 1.5em;
+      margin: 0 0 0 $gutter-width;
+      position: relative;
+      top: 3px;
+    }
+  }
 
-	}
-
-	&:hover a {
-		color: $link-color;
-	}
-
+  &:hover a {
+    color: $link-color;
+  }
 }

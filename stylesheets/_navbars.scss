@@ -1,17 +1,11 @@
-/** 
- * -----------------------------------------------------------------------------
- *  _navbar.scss
- * ----------------------------------------------------------------------------- 
- */
-
 .navbar {
-	background-color: $black;
+  background-color: $black;
 
-	a {
-		color: $inverse-link-color;
+  a {
+    color: $inverse-link-color;
 
-		&:hover {
-			color: $inverse-link-hover-color;
-		}
-	}
+    &:hover {
+      color: $inverse-link-hover-color;
+    }
+  }
 }
