@@ -60,7 +60,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('default', ['php']);
 
-  grunt.registerTask('precommit', [
+  grunt.registerTask('pre-commit', [
     'leadingIndent:files', 
     'sass'
   ]);
