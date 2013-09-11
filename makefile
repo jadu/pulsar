@@ -21,6 +21,7 @@ build:
 
 	@ echo "${HR}\nInstalling GIT hooks...${HR}"
 	@ cp hooks/* .git/hooks/
+	@ chmod -R -x .git/hooks/*
 	@ echo "\n${CHECK} Done\n"
 
 	@ echo "Run 'grunt' to start the documentation server and 'grunt watch' to monitor for Sass changes."
