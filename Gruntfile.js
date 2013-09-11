@@ -62,8 +62,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('precommit', [
     'leadingIndent:files', 
-    'sass', 
-    'jshint'
+    'sass'
   ]);
 
   // load all grunt tasks

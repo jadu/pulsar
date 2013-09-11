@@ -23,7 +23,7 @@ Pulsar uses [Sass](http://sass-lang.com) to make our CSS awesome, while Pulsar i
 
 There's a task you must run before comitting changes to the repository:
 
-`grunt precommit`
+`$ grunt precommit`
 
 This will perform the following checks, if any of them fail you must resolve the issue before comitting.
 
