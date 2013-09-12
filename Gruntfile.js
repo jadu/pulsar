@@ -95,13 +95,21 @@ module.exports = function(grunt) {
     },
 
     copy: {
-      libs: {
-        src: 'libs/*',
+      dist: {
+        src: [
+          'libs/*', 
+          'fonts/*', 
+          'images/*', 
+          'docs/**/', 
+          'docs/**/*.md', 
+          'docs/images/*', 
+          '!docs/**/*.php'
+        ],
         dest: 'dist/'
       },
-      docs: {
-        src: ['docs/**/', 'docs/**/*.md', 'docs/images/*', '!docs/**/*.php'],
-        dest: 'dist/'
+      readme: {
+        src: 'docs/01_Getting_started/01_Installation.md',
+        dest: 'README.md',
       }
     },
 
@@ -130,13 +138,14 @@ module.exports = function(grunt) {
     'sass:dist',
     'uglify:concat',
     'uglify:minify',
-    'copy:libs',
-    'copy:docs'
+    'copy:dist',
+    'copy:readme'
   ]);
 
   grunt.registerTask('pre-commit', [
     'asciify', 
-    'leadingIndent:files'
+    'leadingIndent:files',
+    'copy:readme'
   ]);
 
   // load all grunt tasks

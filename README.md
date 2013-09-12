@@ -1,13 +1,3 @@
-# Pulsar UI
-
-_Beautiful user interfaces, stellar user experiences._
-
-Pulsar is the user interface framework which powers all Jadu products.
-
-----
-
-# Installation
-
 These steps detail how you can run Pulsar completely independently of a Jadu/Weejot installation.
 
 ## Requirements
