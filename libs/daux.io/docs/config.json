@@ -5,6 +5,7 @@
 	"docs_path": "../../docs",
 	"image": "img/app.png",
 	"theme": "navy",
+	"timezone": "Europe/London",
 	"date_modified": true,
 	"float": false,
 	"ignore": {
