@@ -9,6 +9,7 @@ build:
 
 	@ echo "Installing Composer packages...${HR}"
 	@ sudo php composer.phar install
+	@ sudo find vendor -type d -name '.git' -exec rm -rf {} +
 	@ echo "\n${CHECK} Done"
 
 	@ echo "${HR}\nInstalling front-end libraries...${HR}"
