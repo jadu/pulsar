@@ -1,0 +1,11 @@
+.navbar {
+  background-color: $black;
+
+  a {
+    color: $inverse-link-color;
+
+    &:hover {
+      color: $inverse-link-hover-color;
+    }
+  }
+}

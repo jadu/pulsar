@@ -1,0 +1,4 @@
+// When a button only contains an icon, the line height goes a bit screwy
+.actionsbar--left .btn[href="#back"] > i {
+  line-height: 12px;
+}

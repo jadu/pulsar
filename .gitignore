@@ -1,4 +1,6 @@
 .DS_Store
-libs/
+*.orig
 /.sass-cache/
 /node_modules/
+/composer.lock
+/npm-debug.log

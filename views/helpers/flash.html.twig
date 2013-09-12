@@ -1,0 +1,39 @@
+{%- macro success(message, sticky = true) -%}
+  {% import _self as self %}
+  {{ self.flash(message, 'success', sticky) }}
+{%- endmacro -%}
+
+{%- macro warning(message, sticky = true) -%}
+  {% import _self as self %}
+  {{ self.flash(message, 'warning', sticky) }}
+{%- endmacro -%}
+
+{%- macro error(message, sticky = true) -%}
+  {% import _self as self %}
+  {{ self.flash(message, 'error', sticky) }}
+{%- endmacro -%}
+
+{%- macro message(message, sticky = true) -%}
+  {% import _self as self %}
+  {{ self.flash(message, 'default', sticky) }}
+{%- endmacro -%}
+
+{%- macro flash(message, type, sticky) -%}
+  {% import 'helpers/html.html.twig' as html %}
+  
+  {% if type == 'success' %}
+    {% set icon = 'ok' %}
+  {% elseif type == 'warning' %}
+    {% set icon = 'warning-sign' %}
+  {% elseif type == 'error' %}
+    {% set icon = 'warning-sign' %}
+  {% elseif type == 'default' %}
+    {% set icon = 'info-sign' %}
+  {% endif %}
+
+  <div class="flash flash--{{ type }}{% if sticky == true %} is-sticky{% endif %}">
+    {% if sticky == true %}<button class="close" data-dismiss="flash">{{ html.icon('remove') }}</button>{% endif %}
+    {{ html.icon(icon) }} {{ message|raw }}
+  </div>
+
+{%- endmacro -%}

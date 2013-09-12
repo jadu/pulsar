@@ -1,0 +1,30 @@
+.modal__example {
+  position: relative;
+  margin-left: 0;
+  z-index: 1 !important;
+  display: block;
+  overflow: hidden;
+
+  .modal__dialog {
+    padding-top: 30px;
+  }
+}
+
+.example-popovers {
+  @include clearfix();
+  padding-bottom: 24px;
+  width: 600px;
+
+  .popover {
+    position: relative;
+    display: block;
+    float: left;
+    width: 260px;
+    margin: 20px;
+    z-index: 0;
+  }
+}
+
+.example {
+  margin-top: $line-height-base;
+}

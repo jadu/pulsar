@@ -1,0 +1,31 @@
+.actionsbar {
+  @extend .btn__toolbar;
+  @include inline-block;
+  margin: $line-height-base $gutter-width 2px $gutter-width;
+
+  @include ie-lte(7) {
+    .btn__group {
+      z-index: 1; // Fix issue where actions menu appears underneath tabs
+    }
+  }
+}
+
+.actionsbar--left {
+  float: left;
+  margin-right: 0;
+  width: $tab-column-width;
+}
+
+.actionsbar--right {
+  float: right;
+  .btn, .btn__group {
+    float: left;
+  }
+}
+
+@include ie-lte(7) {
+  .btn__back {
+    margin-right: -1px;
+    padding: 11px;
+  }
+}

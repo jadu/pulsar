@@ -1,7 +1,50 @@
-// External dependencies
-@import 'libs/normalize-css/normalize.css';
-@import 'libs/font-awesome/css/font-awesome.css';
+@import '../libs/normalize-css/normalize.css';
+@import '../libs/bourbon/app/assets/stylesheets/bourbon';
+@import '../libs/font-awesome/css/font-awesome.css';
 
-@import 'variables';
-@import 'scaffolding';
+// Structure
+@import 'ie';
 @import 'colours';
+@import 'variables';
+@import 'mixins';
+@import 'scaffolding';
+@import 'type';
+@import 'columns';
+
+// Components
+@import 'labels';
+@import 'badges';
+@import 'button-groups';
+@import 'buttons';
+@import 'close';
+@import 'dropdowns';
+@import 'navbars';
+@import 'navs';
+@import 'tables';
+@import 'icons';
+@import 'forms';
+@import 'input-groups';
+@import 'progress-bars';
+
+// Modules
+@import 'toolbar';
+@import 'breadcrumb';
+@import 'actionsbar';
+@import 'flash';
+@import 'datagrid';
+@import 'summary';
+@import 'decks';
+@import 'modals';
+@import 'pagination';
+@import 'tooltips';
+@import 'popovers';
+@import 'footer';
+
+// Layouts
+@import 'tabs';
+
+// Fixes and overrides
+@import 'utilities';
+@import 'tour';
+@import 'shame';
+@import 'examples';

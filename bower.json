@@ -1,17 +1,27 @@
 {
   "name": "pulsar",
-  "version": "2.0.0",
+  "version": "1.0.0",
   "ignore": [
     "**/.*",
     "node_modules",
-    "components",
+    "libs",
     "bower_components",
     "test",
     "tests"
   ],
   "dependencies": {
-    "jquery": "latest",
+    "bourbon": "latest",
+    "console-js": "gh-pages",
+    "daux.io": "Stanton/daux.io#pulsar",
+    "font-awesome": "latest",
+    "html5shiv": "latest",
+    "highcharts": "latest",
+    "ie7-js": "https://ie7-js.googlecode.com/files/ie7-2.1%28beta4%29.zip",
+    "jquery": "1.x",
+    "livereload-js": "livereload/livereload-js",
     "normalize-css": "latest",
-    "font-awesome": "latest"
+    "respond": "latest",
+    "sticky": "latest",
+    "Vague.js": "Stanton/vague.js"
   }
 }

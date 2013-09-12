@@ -1,0 +1,120 @@
+// Data grid view
+.table--datagrid {
+  border-collapse: separate;
+  width: 100%;
+
+  @include ie-lte(7) {
+    border-collapse: collapse;
+  }
+
+  // Links
+  a {
+    color: $black;
+    text-decoration: none;
+  }
+  
+  // Colour links when user hovers over the table
+  &:hover tbody a {
+    color: $link-color;
+  }
+
+  // Rows
+  tr {
+    line-height: $line-height-base * 1.75;
+
+    th, td {
+      border-bottom: 1px solid $gray;
+      padding: 0 $gutter-width / 2;
+      text-align: left;
+
+      &.centered {
+        text-align: center;
+      }
+
+      &.shrink-to-fit {
+        width: 1px;
+      }
+    }
+  }
+
+  // Row effects
+  tbody > tr {
+    &:hover {
+      background-color: $off-white;
+    }
+    &:last-of-type {
+      th, td {
+        border-bottom: 0;
+      }
+    }
+  }
+
+  // Actions column
+  .row__actions {
+    text-align: center;
+    padding: 0;
+    width: 50px;
+
+    // First column after the actions doesn't need so much space
+    + th,
+    + td {
+      padding-left: 0;
+    }
+  }
+}
+
+tr.row--highlight {
+  @include highlight-row($blue);
+}
+
+tr.row--success-highlight {
+  @include highlight-row($btn-success-color);
+}
+
+tr.row--danger-highlight {
+  @include highlight-row($btn-danger-color);
+}
+
+tr.row--warning-highlight {
+  @include highlight-row($btn-warning-color);
+}
+
+tr.row--success {
+  @include highlight-row($btn-success-color);
+  > td {
+    background-color: lighten($btn-success-color, 25%);
+  }
+  &:hover > td {
+    background-color: lighten($btn-success-color, 23%); 
+  }
+}
+
+tr.row--danger {
+  @include highlight-row($btn-danger-color);
+  > td {
+    background-color: lighten($btn-danger-color, 25%);
+  }
+  &:hover > td {
+    background-color: lighten($btn-danger-color, 24%);  
+  }
+}
+
+tr.row--warning {
+  @include highlight-row($btn-warning-color);
+  > td {
+    background-color: lighten($btn-warning-color, 25%);
+  }
+  &:hover > td {
+    background-color: lighten($btn-warning-color, 23%);
+  }
+}
+
+tr.is-selected {
+  @include highlight-row($blue);
+  > td {
+    background-color: lighten($blue, 50%);
+  }
+  &:hover > td {
+    background-color: lighten($blue, 48%);
+  }
+}
