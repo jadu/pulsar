@@ -233,7 +233,7 @@ if ($homepage && $homepage_url !== '/') {
 				<div class="navbar-inner">
 					<a class="brand pull-left" href="<?php echo $base_url ?><?php echo $homepage_url;?>"><?php echo $options['title']; ?></a>
 					<p class="navbar-text pull-right">
-						<a href="/lexicon"><i class="icon-compass"></i> Launch the Lexicon</a>
+						<a href="../../../../lexicon"><i class="icon-compass"></i> Launch the Lexicon</a>
 					</p>
 				</div>
 			</div>
