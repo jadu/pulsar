@@ -19,7 +19,6 @@ module.exports = function(grunt) {
     sass: {
       dev: {
         options: {
-          banner: '<%= pkg.banner %>',
           style: 'compressed'
         },
         files: {
