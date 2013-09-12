@@ -4,8 +4,10 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
 
+    pkg: grunt.file.readJSON('package.json'),
+
     php: {
-      dist: {
+      dev: {
         options: {
           bin: '/usr/local/php5/bin/php', // See http://php-osx.liip.ch for PHP 5.4.0+ on OSX
           keepalive: true,
@@ -15,16 +17,30 @@ module.exports = function(grunt) {
     },
 
     sass: {
-      dist: {
+      dev: {
         options: {
+          banner: '<%= pkg.banner %>',
           style: 'compressed'
         },
         files: {
-          'css/pulsar.css': 'stylesheets/pulsar.scss',
-          'css/pulsar-ie7.css': 'stylesheets/pulsar-ie7.scss',
-          'css/pulsar-ie8.css': 'stylesheets/pulsar-ie8.scss',
-          'css/pulsar-ie9.css': 'stylesheets/pulsar-ie9.scss',
+          'css/<%= pkg.name %>.css': 'stylesheets/pulsar.scss',
+          'css/<%= pkg.name %>-ie7.css': 'stylesheets/pulsar-ie7.scss',
+          'css/<%= pkg.name %>-ie8.css': 'stylesheets/pulsar-ie8.scss',
+          'css/<%= pkg.name %>-ie9.css': 'stylesheets/pulsar-ie9.scss',
           'css/markdown.css': 'stylesheets/markdown.scss',
+        }
+      },
+      dist: {
+        options: {
+          banner: '<%= pkg.banner %>',
+          style: 'compressed'
+        },
+        files: {
+          'dist/css/<%= pkg.name %>.css': 'stylesheets/pulsar.scss',
+          'dist/css/<%= pkg.name %>-ie7.css': 'stylesheets/pulsar-ie7.scss',
+          'dist/css/<%= pkg.name %>-ie8.css': 'stylesheets/pulsar-ie8.scss',
+          'dist/css/<%= pkg.name %>-ie9.css': 'stylesheets/pulsar-ie9.scss',
+          'dist/css/markdown.css': 'stylesheets/markdown.scss',
         }
       }
     },
@@ -44,6 +60,53 @@ module.exports = function(grunt) {
         jshintrc: '.jshintrc'
       },
       all: ['javascripts/**/*.js']
+    },
+
+    uglify: {
+      concat: {
+        options: {
+          banner: '<%= pkg.banner %>',
+          beautify: true
+        },
+        files: {
+          'dist/js/<%= pkg.name %>.js': ['javascripts/**/*.js']
+        }
+      },
+      minify: {
+        options: {
+          banner: '<%= pkg.banner %>',
+          compress: true,
+          report: 'min'
+        },
+        files: {
+          'dist/js/<%= pkg.name %>.min.js': ['javascripts/**/*.js']
+        }
+      }
+    },
+
+    asciify: { 
+      banner:{
+        text: '<%= pkg.name %>',
+        options: {
+          font: 'univers',
+          log: true
+        }
+      },
+    },
+
+    copy: {
+      libs: {
+        src: 'libs/*',
+        dest: 'dist/'
+      },
+      docs: {
+        src: ['docs/**/', 'docs/**/*.md', 'docs/images/*', '!docs/**/*.php'],
+        dest: 'dist/'
+      }
+    },
+
+    clean: {
+      dist: ['dist']
     }
 
   });
@@ -60,9 +123,20 @@ module.exports = function(grunt) {
 
   grunt.registerTask('default', ['php']);
 
-  grunt.registerTask('pre-commit', [
+  grunt.registerTask('build', [
+    'asciify', 
     'leadingIndent:files', 
-    'sass'
+    'clean:dist', 
+    'sass:dist',
+    'uglify:concat',
+    'uglify:minify',
+    'copy:libs',
+    'copy:docs'
+  ]);
+
+  grunt.registerTask('pre-commit', [
+    'asciify', 
+    'leadingIndent:files'
   ]);
 
   // load all grunt tasks
