@@ -34,11 +34,7 @@
 .input-group-addon,
 .input-group-btn,
 .input-group .form__control {
-  display: table-cell;
-
-  @include ie-lte(7) {
-    @include inline-block; // IE doesn't support display:table
-  }
+  @include inline-block;
 
   &:not(:first-child):not(:last-child) {
     border-radius: 0;
@@ -47,9 +43,8 @@
 // Addon and addon wrapper for buttons
 .input-group-addon,
 .input-group-btn {
-  width: 1%;
   white-space: nowrap;
-  vertical-align: middle; // Match the inputs
+  vertical-align: top; // Match the inputs
 
   @include ie-lte(7) {
     width: auto;
@@ -63,7 +58,7 @@
   padding: $padding-base-vertical $padding-base-horizontal;
   font-size: $font-size-base;
   font-weight: normal;
-  line-height: $line-height-base;
+  line-height: $line-height-base * 1.4;
   text-align: center;
   background-color: $gray-lighter;
   border: 1px solid $input-group-addon-border-color;
@@ -87,6 +82,7 @@
 }
 .input-group-addon:first-child {
   border-right: 0;
+  margin-right: -4px;
 }
 .input-group .form__control:last-child,
 .input-group-addon:last-child,
@@ -97,7 +93,8 @@
   border-bottom-left-radius: 0;
 }
 .input-group-addon:last-child {
-  border-left: 0;
+  margin-left: -4px;
+  z-index: 999;
 }
 
 // Button input groups
