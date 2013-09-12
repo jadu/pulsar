@@ -26,3 +26,22 @@ The following checks and tasks are run ever time you commit changes to the pulsa
  * Check all js, css, scss, twig files use spaces instead of hard-tabs
 
 You can run these checks manually (without needing to commit) with `$ grunt pre-commit`
+
+## Building a release
+
+Our sofware (CMP, Zodyac, Weejot) consume a 'built' version of pulsar which is contained within the `/dist` directory.
+
+The contents of `/dist` should reflect the current state of the latest stable release on the master branch.
+
+To build a new release, you can run the following grunt command:
+
+`$ grunt build`
+
+This will perform the following tasks:
+
+ * Run tests
+ * Compile Sass files to CSS
+ * Minify all pulsar specific javascript into a single file
+ * Copy all libs, fonts, docs and images
+
+The resulting changes to `/dist` should then be committed to the master branch and a new release tag created.
