@@ -24,6 +24,5 @@ Pulsar uses [Sass](http://sass-lang.com) to make our CSS awesome, while Pulsar i
 The following checks and tasks are run ever time you commit changes to the pulsar repository, if any of them fail you must resolve the issue before comitting.
 
  * Check all js, css, scss, twig files use spaces instead of hard-tabs
- * Compile Sass to CSS
 
 You can run these checks manually (without needing to commit) with `$ grunt pre-commit`
