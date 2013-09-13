@@ -338,7 +338,7 @@ textarea {
     margin-left: 20%;
     input {
       margin-left: ($gutter-width) + 5px;
-      margin-right: $gutter-width;
+      margin-right: $gutter-width / 2;
     }
   }
 }
