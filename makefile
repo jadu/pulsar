@@ -19,7 +19,7 @@ build:
 	@ npm install
 	@ echo "\n${CHECK} Done"
 
-	@ echo "${HR}\nInstalling GIT hooks...${HR}"
+	@ echo "${HR}\nInstalling Git hooks...${HR}"
 	@ cp hooks/* .git/hooks/
 	@ chmod -R u+x .git/hooks/*
 	@ echo "\n${CHECK} Done\n"
