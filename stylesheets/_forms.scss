@@ -163,6 +163,7 @@ input[type="number"] {
 // Reset height for `textarea`s
 textarea.form__control {
   height: auto;
+  line-height: $line-height-base;
   padding-top: 8px;
   padding-bottom: 12px;
 }
