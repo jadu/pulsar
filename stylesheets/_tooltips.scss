@@ -10,7 +10,7 @@
   display: block;
   visibility: visible;
   font-size: $font-size-small;
-  line-height: 1.4;
+  line-height: 2;
   @include opacity(0);
 
   &.in     { @include opacity(1); }
