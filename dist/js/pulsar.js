@@ -13,7 +13,7 @@
 Don't edit this file directly!
 Refer to the pulsar documentation for more information.
 
-Built: Thursday 12-09-2013 - 07:09:00 PM (GMT+0100)
+Built: Friday 13-09-2013 - 02:09:30 PM (GMT+0100)
 
 */
 var hostname = "localhost" === location.hostname ? "none" : location.hostname, _gaq = _gaq || [];
@@ -90,7 +90,8 @@ _gaq.push([ "_setAllowLinker", !0 ]), _gaq.push([ "_trackPageview" ]), function(
                     var i = b(e, f, h);
                     c(e, i);
                 }
-                if (!a("html").hasClass("ie7")) {
+                if (a(a.fn.deck.defaults.backgroundElements).addClass(a.fn.deck.defaults.backgroundClassName), 
+                !a("html").hasClass("ie7")) {
                     var j = a(a.fn.deck.defaults.backgroundElements).Vague({
                         intensity: 2
                     });
@@ -101,6 +102,7 @@ _gaq.push([ "_setAllowLinker", !0 ]), _gaq.push([ "_trackPageview" ]), function(
         },
         hide: function(b) {
             if (b ? b.removeClass(a.fn.deck.defaults.activeClassName).children().hide() : a(a.fn.deck.defaults.deckClass).removeClass(a.fn.deck.defaults.activeClassName).children().hide(), 
+            a(a.fn.deck.defaults.backgroundElements).removeClass(a.fn.deck.defaults.backgroundClassName), 
             !a("html").hasClass("ie7")) {
                 var c = a(a.fn.deck.defaults.backgroundElements).Vague({
                     intensity: 2
@@ -117,7 +119,7 @@ _gaq.push([ "_setAllowLinker", !0 ]), _gaq.push([ "_trackPageview" ]), function(
         deckPath: "decks/",
         deckClass: ".deck",
         activeClassName: "active",
-        backgroundClassName: "deck-open",
+        backgroundClassName: "deck-background",
         backgroundElements: ".breadcrumb, .actionsbar, .heading, .tabs__list, .tabs__content, .summary",
         viewportOffsetElement: "header"
     }, a(function() {
