@@ -62,8 +62,8 @@ Use the `.modal--danger` class for situations where we're performing destructive
 				<p>A modal's action buttons should be written so that if a user only reads the buttons, they should get an idea of the action they're about to perform instead of blindly clicking 'OK' or 'Confirm'.</p>
 			</div>
 			<div class="modal__footer">
-				<button type="button" class="btn" data-dismiss="modal">No, Don't Do Anything</button>
-				<button type="button" class="btn btn--danger">Yes, Delete Everything</button>
+				<button type="button" class="btn" data-dismiss="modal">Don't Do Anything</button>
+				<button type="button" class="btn btn--danger">Delete Everything</button>
 			</div>
 		</div><!-- /.modal__content -->
 	</div><!-- /.modal__dialog -->
