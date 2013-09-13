@@ -43,7 +43,7 @@
                 }
 
                 // Unfocus the background
-                // $('body').addClass($.fn.deck.defaults.backgroundClassName);
+                $($.fn.deck.defaults.backgroundElements).addClass($.fn.deck.defaults.backgroundClassName);
                 if (!$('html').hasClass('ie7')) {
                     var vague = $($.fn.deck.defaults.backgroundElements).Vague({
                         intensity: 2 //blur intensity
@@ -81,7 +81,7 @@
             }
 
             // Refocus the background UI.
-            // $($.fn.deck.defaults.backgroundElements).removeClass($.fn.deck.defaults.backgroundClassName);
+            $($.fn.deck.defaults.backgroundElements).removeClass($.fn.deck.defaults.backgroundClassName);
             if (!$('html').hasClass('ie7')) {
                 var vague = $($.fn.deck.defaults.backgroundElements).Vague({
                     intensity: 2 //blur intensity
@@ -260,7 +260,7 @@
         deckPath : 'decks/',
         deckClass : '.deck',
         activeClassName : 'active',
-        backgroundClassName : 'deck-open',
+        backgroundClassName : 'deck-background',
         backgroundElements : '.breadcrumb, .actionsbar, .heading, .tabs__list, .tabs__content, .summary',
         viewportOffsetElement : 'header'
     };
