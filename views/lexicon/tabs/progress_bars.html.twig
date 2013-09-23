@@ -7,9 +7,12 @@
     {{ html.progress(value = 60, class = 'progress-bar--success') }}
     {{ html.progress(value = 70, class = 'progress-bar--warning') }}
     {{ html.progress(value = 80, class = 'progress-bar--danger') }}
-    <h2>Visible labels</h2>
-    {{ html.progress(value = 5, label_visible = true) }}
-    {{ html.progress(value = 10, label_visible = true) }}
-    {{ html.progress(value = 50, label_visible = true) }}
-    {{ html.progress(value = 100, class = 'progress-bar--success', label_visible = true) }}
+
+    <h2>Visible values</h2>
+    {{ html.progress(value = 5, value_visible = true) }}
+    {{ html.progress(value = 10, value_visible = true) }}
+
+    <h2>Custom labels</h2>
+    {{ html.progress(value = 80, label = 'uploaded', value_visible = true) }}
+    {{ html.progress(value = 100, class = 'progress-bar--success', label = 'done ' ~ html.icon('ok')) }}
 </div>

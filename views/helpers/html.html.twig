@@ -118,12 +118,11 @@
   </ul>
 {%- endmacro -%}
 
-{%- macro progress(value, class, label_visible = false) -%}
+{%- macro progress(value, class, label, value_visible = false) -%}
   <div class="progress">
     <div class="progress-bar{% if class is not empty %} {{ class }}{% endif %}" role="progressbar" aria-valuenow="{{ value }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ value }}%;">
-    {% if value > 3 %}
-      <span{% if label_visible == false %} class="sr-only"{% endif %}>{{ value }}%<span class="sr-only"> Complete</span></span>
-    {% endif %}
+      {% if value_visible == false %}<span class="sr-only">{% endif %}{{ value }}%{% if value_visible == false %}</span>{% endif %}
+      {% if label is not empty %}{{ label|raw }}{% endif %}
     </div>
   </div>
 {%- endmacro -%}
