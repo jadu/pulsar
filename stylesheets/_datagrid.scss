@@ -20,11 +20,13 @@
 
   // Rows
   tr {
-    line-height: $line-height-base * 1.75;
+    line-height: $line-height-base;
 
     th, td {
       border-bottom: 1px solid $gray;
+      height: $line-height-base * 1.8;
       padding: 0 $gutter-width / 2;
+
       text-align: left;
 
       &.centered {
