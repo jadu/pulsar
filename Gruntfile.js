@@ -97,7 +97,7 @@ module.exports = function(grunt) {
       dist: {
         src: [
           'libs/*', 
-          'fonts/*', 
+          'fonts/**/*', 
           'images/*', 
           'docs/**/', 
           'docs/**/*.md', 
