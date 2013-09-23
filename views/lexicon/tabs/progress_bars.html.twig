@@ -2,10 +2,14 @@
 {% import 'helpers/form.html.twig' as form %}
 {% import 'helpers/flash.html.twig' as flash %}
 <div class="tab__inner">
-  <div class="example">
+    <h2>Variations</h2>
     {{ html.progress(value = 50) }}
     {{ html.progress(value = 60, class = 'progress-bar--success') }}
     {{ html.progress(value = 70, class = 'progress-bar--warning') }}
     {{ html.progress(value = 80, class = 'progress-bar--danger') }}
-  </div>
+    <h2>Visible labels</h2>
+    {{ html.progress(value = 5, label_visible = true) }}
+    {{ html.progress(value = 10, label_visible = true) }}
+    {{ html.progress(value = 50, label_visible = true) }}
+    {{ html.progress(value = 100, class = 'progress-bar--success', label_visible = true) }}
 </div>

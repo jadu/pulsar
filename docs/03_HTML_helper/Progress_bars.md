@@ -4,7 +4,7 @@ Provide up-to-date feedback on the progress of a workflow or action with simple 
 
 Available attributes:
 
-	{{ html.progress(value, class) }}
+	{{ html.progress(value, class, visible_label = false) }}
 
 ## Variations
 
@@ -31,21 +31,23 @@ Available attributes:
 	<!-- Warning -->
 	{{ html.progress(
 		value = 60, 
-		class = 'progress-bar--warning') }}
+		class = 'progress-bar--warning',
+		visible_label = true) }}
 
 <div class="progress">
 	<div class="progress-bar progress-bar--warning" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
-		<span class="sr-only">70% Complete</span>
+		70% <span class="sr-only">Complete</span>
 	</div>
 </div>
 
 	<!-- Danger -->
 	{{ html.progress(
 		value = 60, 
-		class = 'progress-bar--danger') }}
+		class = 'progress-bar--danger',
+		visible_label = true) }}
 
 <div class="progress">
 	<div class="progress-bar progress-bar--danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">
-		<span class="sr-only">80% Complete</span>
+		80% <span class="sr-only">Complete</span>
 	</div>
 </div>
