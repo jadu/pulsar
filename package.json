@@ -13,6 +13,7 @@
     "grunt-contrib-watch": "latest",
     "grunt-leading-indent": "latest",
     "grunt-php": "latest", 
+    "grunt-phpunit": "latest", 
     "matchdep": "latest"
   },
   "banner": "/*!<%= asciify_banner %>\nDon't edit this file directly!\nRefer to the pulsar documentation for more information.\n\nBuilt: <%= grunt.template.today(\"dddd dd-mm-yyyy - hh:mm:ss TT (Z)\") %>\n\n*/\n"
