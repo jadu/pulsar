@@ -22,5 +22,3 @@ class Url_Params_Extension extends Twig_Extension
 	}
 
 }
-
-?>

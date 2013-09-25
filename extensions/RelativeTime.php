@@ -54,5 +54,3 @@ class Relative_Time_Extension extends Twig_Extension
 	}
 
 }
-
-?>

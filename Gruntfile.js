@@ -16,6 +16,16 @@ module.exports = function(grunt) {
       }
     },
 
+    phpunit: {
+      classes: {
+          dir: 'tests/unit/'
+      },
+      options: {
+          bin: 'vendor/bin/phpunit',
+          colors: true
+      }
+    },
+
     sass: {
       dev: {
         options: {
@@ -132,6 +142,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('build', [
     'asciify', 
+    'phpunit', 
     'leadingIndent:files', 
     'clean:dist', 
     'sass:dist',
@@ -143,6 +154,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('pre-commit', [
     'asciify', 
+    'phpunit', 
     'leadingIndent:files',
     'copy:readme'
   ]);
