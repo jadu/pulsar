@@ -1,6 +1,7 @@
 {
     "name": "jadu/pulsar",
     "require": {
-        "twig/twig": "@dev"
+        "twig/twig": "@dev",
+        "phpunit/phpunit": "@dev"
     }
 }

@@ -1,11 +1,11 @@
 <?php
 
-class Pulsar_Twig_Extension_Url extends Twig_Extension 
+class Url_Params_Extension extends Twig_Extension 
 {
 
 	public function getName() 
 	{
-		return 'Pulsar';
+		return 'url_params_extension';
 	}
 
 	public function getGlobals()
