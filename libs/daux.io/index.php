@@ -65,8 +65,6 @@ software, even if advised of the possibility of such damage.
 
 require_once('libs/functions.php');
 
-date_default_timezone_set('Europe/London');
-
 $options = get_options();
 $tree = get_tree($options['docs_path'], $base_url);
 $homepage_url = homepage_url($tree);
@@ -133,11 +131,11 @@ if ($homepage && $homepage_url !== '/') {
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 
-	<link href="../../../../css/markdown.css" rel="stylesheet"></link>
-	<script type="text/javascript" src="../../../../libs/jquery/jquery.min.js"></script>
-	<script type="text/javascript" src="../../../../javascripts/tab.js"></script>
-	<script type="text/javascript" src="../../../../javascripts/modal.js"></script>
-	<script type="text/javascript" src="../../../../javascripts/dropdown.js"></script>
+	<link href="http://localhost:8000/css/markdown.css" rel="stylesheet"></link>
+	<script type="text/javascript" src="http://localhost:8000/libs/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="http://localhost:8000/javascripts/tab.js"></script>
+	<script type="text/javascript" src="http://localhost:8000/javascripts/modal.js"></script>
+	<script type="text/javascript" src="http://localhost:8000/javascripts/dropdown.js"></script>
 </head>
 <body>
 	<?php if ($homepage) { ?>
@@ -233,7 +231,7 @@ if ($homepage && $homepage_url !== '/') {
 				<div class="navbar-inner">
 					<a class="brand pull-left" href="<?php echo $base_url ?><?php echo $homepage_url;?>"><?php echo $options['title']; ?></a>
 					<p class="navbar-text pull-right">
-						<a href="../../../../lexicon"><i class="icon-compass"></i> Launch the Lexicon</a>
+						<a href="http://localhost:8000/lexicon"><i class="icon-compass"></i> Launch the Lexicon</a>
 					</p>
 				</div>
 			</div>
