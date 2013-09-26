@@ -128,9 +128,9 @@ module.exports = function(grunt) {
 
     bump: {
       options: {
-        files: ['package.json', 'VERSION'],
         updateConfigs: ['pkg'],
-        commit: false,
+        files: ['package.json', 'composer.json', 'VERSION'],
+        commit: true,
         commitMessage: 'Release v%VERSION%',
         commitFiles: ['-a'],
         createTag: true,
@@ -171,6 +171,11 @@ module.exports = function(grunt) {
     'phpunit', 
     'leadingIndent:files',
     'copy:readme'
+  ]);
+
+  grunt.registerTask('release', [
+    'build',
+    'bump'
   ]);
 
   // load all grunt tasks
