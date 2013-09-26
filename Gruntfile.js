@@ -124,6 +124,20 @@ module.exports = function(grunt) {
 
     clean: {
       dist: ['dist']
+    },
+
+    bump: {
+      options: {
+        files: ['package.json', 'VERSION'],
+        updateConfigs: ['pkg'],
+        commit: false,
+        commitMessage: 'Release v%VERSION%',
+        commitFiles: ['-a'],
+        createTag: true,
+        tagName: 'v%VERSION%',
+        push: true,
+        pushTo: 'origin'
+      }
     }
 
   });
