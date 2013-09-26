@@ -124,6 +124,20 @@ module.exports = function(grunt) {
 
     clean: {
       dist: ['dist']
+    },
+
+    bump: {
+      options: {
+        updateConfigs: ['pkg'],
+        files: ['package.json', 'composer.json', 'VERSION'],
+        commit: true,
+        commitMessage: 'Release v%VERSION%',
+        commitFiles: ['-a'],
+        createTag: true,
+        tagName: 'v%VERSION%',
+        push: true,
+        pushTo: 'origin'
+      }
     }
 
   });
@@ -157,6 +171,11 @@ module.exports = function(grunt) {
     'phpunit', 
     'leadingIndent:files',
     'copy:readme'
+  ]);
+
+  grunt.registerTask('release', [
+    'build',
+    'bump'
   ]);
 
   // load all grunt tasks
