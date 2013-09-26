@@ -6,18 +6,18 @@
         "source": {
             "type": "git",
             "url": "https://github.com/fabpot/Twig.git",
-            "reference": "4001f81a179e3971377ce1ac51b4ff9ea851b8ce"
+            "reference": "d827c601e3afea6535fede5e39c9f91c12fc2e66"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/fabpot/Twig/zipball/4001f81a179e3971377ce1ac51b4ff9ea851b8ce",
-            "reference": "4001f81a179e3971377ce1ac51b4ff9ea851b8ce",
+            "url": "https://api.github.com/repos/fabpot/Twig/zipball/d827c601e3afea6535fede5e39c9f91c12fc2e66",
+            "reference": "d827c601e3afea6535fede5e39c9f91c12fc2e66",
             "shasum": ""
         },
         "require": {
             "php": ">=5.2.4"
         },
-        "time": "2013-09-08 15:21:02",
+        "time": "2013-09-20 20:40:25",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -51,50 +51,167 @@
         ]
     },
     {
-        "name": "phpunit/php-timer",
-        "version": "1.0.5",
-        "version_normalized": "1.0.5.0",
+        "name": "symfony/finder",
+        "version": "v2.3.4",
+        "version_normalized": "2.3.4.0",
+        "target-dir": "Symfony/Component/Finder",
         "source": {
             "type": "git",
-            "url": "https://github.com/sebastianbergmann/php-timer.git",
-            "reference": "19689d4354b295ee3d8c54b4f42c3efb69cbc17c"
+            "url": "https://github.com/symfony/Finder.git",
+            "reference": "4a0fee5b86f5bbd9dfdc11ec124eba2915737ce1"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/sebastianbergmann/php-timer/zipball/19689d4354b295ee3d8c54b4f42c3efb69cbc17c",
-            "reference": "19689d4354b295ee3d8c54b4f42c3efb69cbc17c",
+            "url": "https://api.github.com/repos/symfony/Finder/zipball/4a0fee5b86f5bbd9dfdc11ec124eba2915737ce1",
+            "reference": "4a0fee5b86f5bbd9dfdc11ec124eba2915737ce1",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3.3"
         },
-        "time": "2013-08-02 07:42:54",
+        "time": "2013-08-13 20:18:00",
         "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.3-dev"
+            }
+        },
         "installation-source": "dist",
         "autoload": {
-            "classmap": [
-                "PHP/"
-            ]
+            "psr-0": {
+                "Symfony\\Component\\Finder\\": ""
+            }
         },
         "notification-url": "https://packagist.org/downloads/",
-        "include-path": [
-            ""
-        ],
         "license": [
-            "BSD-3-Clause"
+            "MIT"
         ],
         "authors": [
             {
-                "name": "Sebastian Bergmann",
-                "email": "sb@sebastian-bergmann.de",
-                "role": "lead"
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            },
+            {
+                "name": "Symfony Community",
+                "homepage": "http://symfony.com/contributors"
             }
         ],
-        "description": "Utility class for timing",
-        "homepage": "https://github.com/sebastianbergmann/php-timer/",
+        "description": "Symfony Finder Component",
+        "homepage": "http://symfony.com"
+    },
+    {
+        "name": "behat/gherkin",
+        "version": "v3.0.3",
+        "version_normalized": "3.0.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Behat/Gherkin.git",
+            "reference": "cbc0a34d195bec76eb2b5fb4fad8b9ee524727d4"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Behat/Gherkin/zipball/cbc0a34d195bec76eb2b5fb4fad8b9ee524727d4",
+            "reference": "cbc0a34d195bec76eb2b5fb4fad8b9ee524727d4",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.1",
+            "symfony/finder": "~2.0"
+        },
+        "require-dev": {
+            "symfony/config": "~2.1",
+            "symfony/yaml": "~2.1"
+        },
+        "suggest": {
+            "symfony/config": "If you want to use Config component to manage resources",
+            "symfony/yaml": "If you want to parse features, represented in YAML files"
+        },
+        "time": "2013-09-15 20:23:37",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-develop": "3.0-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Behat\\Gherkin": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Konstantin Kudryashov",
+                "email": "ever.zet@gmail.com",
+                "homepage": "http://everzet.com"
+            }
+        ],
+        "description": "Gherkin DSL parser for PHP 5.3",
+        "homepage": "http://behat.org/",
         "keywords": [
-            "timer"
+            "BDD",
+            "Behat",
+            "Cucumber",
+            "DSL",
+            "gherkin",
+            "parser"
         ]
+    },
+    {
+        "name": "symfony/class-loader",
+        "version": "v2.3.4",
+        "version_normalized": "2.3.4.0",
+        "target-dir": "Symfony/Component/ClassLoader",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/ClassLoader.git",
+            "reference": "622d370a07321329f5259c6f96d5c636104ad46b"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/symfony/ClassLoader/zipball/622d370a07321329f5259c6f96d5c636104ad46b",
+            "reference": "622d370a07321329f5259c6f96d5c636104ad46b",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "require-dev": {
+            "symfony/finder": "~2.0"
+        },
+        "time": "2013-08-13 20:18:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.3-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Symfony\\Component\\ClassLoader\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            },
+            {
+                "name": "Symfony Community",
+                "homepage": "http://symfony.com/contributors"
+            }
+        ],
+        "description": "Symfony ClassLoader Component",
+        "homepage": "http://symfony.com"
     },
     {
         "name": "symfony/yaml",
@@ -144,6 +261,447 @@
         ],
         "description": "Symfony Yaml Component",
         "homepage": "http://symfony.com"
+    },
+    {
+        "name": "symfony/translation",
+        "version": "v2.3.4",
+        "version_normalized": "2.3.4.0",
+        "target-dir": "Symfony/Component/Translation",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/Translation.git",
+            "reference": "65f888291f0896ad492f9abc6dc05c998373aded"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/symfony/Translation/zipball/65f888291f0896ad492f9abc6dc05c998373aded",
+            "reference": "65f888291f0896ad492f9abc6dc05c998373aded",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "require-dev": {
+            "symfony/config": "~2.0",
+            "symfony/yaml": "~2.2"
+        },
+        "suggest": {
+            "symfony/config": "",
+            "symfony/yaml": ""
+        },
+        "time": "2013-08-26 05:49:51",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.3-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Symfony\\Component\\Translation\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            },
+            {
+                "name": "Symfony Community",
+                "homepage": "http://symfony.com/contributors"
+            }
+        ],
+        "description": "Symfony Translation Component",
+        "homepage": "http://symfony.com"
+    },
+    {
+        "name": "symfony/event-dispatcher",
+        "version": "v2.3.4",
+        "version_normalized": "2.3.4.0",
+        "target-dir": "Symfony/Component/EventDispatcher",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/EventDispatcher.git",
+            "reference": "41c9826457c65fa3cf746f214985b7ca9cba42f8"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/41c9826457c65fa3cf746f214985b7ca9cba42f8",
+            "reference": "41c9826457c65fa3cf746f214985b7ca9cba42f8",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "require-dev": {
+            "symfony/dependency-injection": "~2.0"
+        },
+        "suggest": {
+            "symfony/dependency-injection": "",
+            "symfony/http-kernel": ""
+        },
+        "time": "2013-07-21 12:12:18",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.3-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Symfony\\Component\\EventDispatcher\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            },
+            {
+                "name": "Symfony Community",
+                "homepage": "http://symfony.com/contributors"
+            }
+        ],
+        "description": "Symfony EventDispatcher Component",
+        "homepage": "http://symfony.com"
+    },
+    {
+        "name": "symfony/dependency-injection",
+        "version": "v2.3.4",
+        "version_normalized": "2.3.4.0",
+        "target-dir": "Symfony/Component/DependencyInjection",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/DependencyInjection.git",
+            "reference": "3678aa969e5bfeb8515a1f3047c63e8104723f5c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/symfony/DependencyInjection/zipball/3678aa969e5bfeb8515a1f3047c63e8104723f5c",
+            "reference": "3678aa969e5bfeb8515a1f3047c63e8104723f5c",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "require-dev": {
+            "symfony/config": "~2.2",
+            "symfony/yaml": "~2.0"
+        },
+        "suggest": {
+            "symfony/config": "",
+            "symfony/proxy-manager-bridge": "Generate service proxies to lazy load them",
+            "symfony/yaml": ""
+        },
+        "time": "2013-07-25 17:13:25",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.3-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Symfony\\Component\\DependencyInjection\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            },
+            {
+                "name": "Symfony Community",
+                "homepage": "http://symfony.com/contributors"
+            }
+        ],
+        "description": "Symfony DependencyInjection Component",
+        "homepage": "http://symfony.com"
+    },
+    {
+        "name": "symfony/filesystem",
+        "version": "v2.3.4",
+        "version_normalized": "2.3.4.0",
+        "target-dir": "Symfony/Component/Filesystem",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/Filesystem.git",
+            "reference": "87acbbef6d35ba649f96f09cc572c45119b360c3"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/symfony/Filesystem/zipball/87acbbef6d35ba649f96f09cc572c45119b360c3",
+            "reference": "87acbbef6d35ba649f96f09cc572c45119b360c3",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "time": "2013-07-21 12:12:18",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.3-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Symfony\\Component\\Filesystem\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            },
+            {
+                "name": "Symfony Community",
+                "homepage": "http://symfony.com/contributors"
+            }
+        ],
+        "description": "Symfony Filesystem Component",
+        "homepage": "http://symfony.com"
+    },
+    {
+        "name": "symfony/config",
+        "version": "v2.3.4",
+        "version_normalized": "2.3.4.0",
+        "target-dir": "Symfony/Component/Config",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/Config.git",
+            "reference": "65a927c15ca5a911ba2fa277a5457fa8129505b0"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/symfony/Config/zipball/65a927c15ca5a911ba2fa277a5457fa8129505b0",
+            "reference": "65a927c15ca5a911ba2fa277a5457fa8129505b0",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3",
+            "symfony/filesystem": "~2.3"
+        },
+        "time": "2013-08-06 05:49:23",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.3-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Symfony\\Component\\Config\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            },
+            {
+                "name": "Symfony Community",
+                "homepage": "http://symfony.com/contributors"
+            }
+        ],
+        "description": "Symfony Config Component",
+        "homepage": "http://symfony.com"
+    },
+    {
+        "name": "symfony/console",
+        "version": "v2.3.4",
+        "version_normalized": "2.3.4.0",
+        "target-dir": "Symfony/Component/Console",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/Console.git",
+            "reference": "db78f8ff7fc9e28d25ff9a0bf6ddf9f0e35fbbe3"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/symfony/Console/zipball/db78f8ff7fc9e28d25ff9a0bf6ddf9f0e35fbbe3",
+            "reference": "db78f8ff7fc9e28d25ff9a0bf6ddf9f0e35fbbe3",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "require-dev": {
+            "symfony/event-dispatcher": "~2.1"
+        },
+        "suggest": {
+            "symfony/event-dispatcher": ""
+        },
+        "time": "2013-08-17 16:34:49",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.3-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Symfony\\Component\\Console\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            },
+            {
+                "name": "Symfony Community",
+                "homepage": "http://symfony.com/contributors"
+            }
+        ],
+        "description": "Symfony Console Component",
+        "homepage": "http://symfony.com"
+    },
+    {
+        "name": "behat/behat",
+        "version": "3.0.x-dev",
+        "version_normalized": "3.0.9999999.9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Behat/Behat.git",
+            "reference": "f38e86dcfd66d611bfc98e343241a02719c21d75"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Behat/Behat/zipball/f38e86dcfd66d611bfc98e343241a02719c21d75",
+            "reference": "f38e86dcfd66d611bfc98e343241a02719c21d75",
+            "shasum": ""
+        },
+        "require": {
+            "behat/gherkin": "~3.0.3",
+            "php": ">=5.3.3",
+            "symfony/class-loader": "~2.1",
+            "symfony/config": "~2.1",
+            "symfony/console": "~2.1",
+            "symfony/dependency-injection": "~2.1",
+            "symfony/event-dispatcher": "~2.1",
+            "symfony/finder": "~2.1",
+            "symfony/translation": "~2.1",
+            "symfony/yaml": "~2.1"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~3.7.24"
+        },
+        "suggest": {
+            "behat/mink-extension": "for integration with Mink testing framework",
+            "behat/symfony2-extension": "for integration with Symfony2 web framework",
+            "behat/yii-extension": "for integration with Yii web framework"
+        },
+        "time": "2013-09-25 14:46:33",
+        "bin": [
+            "bin/behat"
+        ],
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-develop": "3.0-dev"
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Behat\\Behat": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Konstantin Kudryashov",
+                "email": "ever.zet@gmail.com",
+                "homepage": "http://everzet.com"
+            }
+        ],
+        "description": "Scenario-oriented BDD framework for PHP 5.3",
+        "homepage": "http://behat.org/",
+        "keywords": [
+            "BDD",
+            "Behat",
+            "Symfony2"
+        ]
+    },
+    {
+        "name": "phpunit/php-timer",
+        "version": "1.0.5",
+        "version_normalized": "1.0.5.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/sebastianbergmann/php-timer.git",
+            "reference": "19689d4354b295ee3d8c54b4f42c3efb69cbc17c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/sebastianbergmann/php-timer/zipball/19689d4354b295ee3d8c54b4f42c3efb69cbc17c",
+            "reference": "19689d4354b295ee3d8c54b4f42c3efb69cbc17c",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "time": "2013-08-02 07:42:54",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "PHP/"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "include-path": [
+            ""
+        ],
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Sebastian Bergmann",
+                "email": "sb@sebastian-bergmann.de",
+                "role": "lead"
+            }
+        ],
+        "description": "Utility class for timing",
+        "homepage": "https://github.com/sebastianbergmann/php-timer/",
+        "keywords": [
+            "timer"
+        ]
     },
     {
         "name": "phpunit/php-text-template",
