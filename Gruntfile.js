@@ -123,7 +123,8 @@ module.exports = function(grunt) {
     },
 
     clean: {
-      dist: ['dist']
+      dist: ['dist'],
+      testcss: ['libs/phantomcss/failures/*']
     },
 
     bump: {
@@ -137,6 +138,12 @@ module.exports = function(grunt) {
         tagName: 'v%VERSION%',
         push: true,
         pushTo: 'origin'
+      }
+    },
+
+    exec: {
+      phantomcss: {
+        cmd: 'cd libs/phantomcss; sudo phantomjs demo/testsuite.js; cd ../../'
       }
     }
 
@@ -176,6 +183,11 @@ module.exports = function(grunt) {
   grunt.registerTask('release', [
     'build',
     'bump'
+  ]);
+
+  grunt.registerTask('testcss', [
+    'clean:testcss',
+    'exec:phantomcss'
   ]);
 
   // load all grunt tasks

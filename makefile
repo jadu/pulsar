@@ -12,11 +12,15 @@ build:
 	@ sudo find vendor -type d -name '.git' -exec rm -rf {} +
 	@ echo "\n${CHECK} Done"
 
+	@ echo "${HR}\nInstalling Homebrew packages...${HR}"
+	@ brew install phantomjs
+	@ echo "\n${CHECK} Done"
+
 	@ echo "${HR}\nInstalling front-end libraries...${HR}"
 	@ bower install
 	@ echo "\n${CHECK} Done"
 
-	@ echo "${HR}\nInstalling Grunt and it's libraries...${HR}"
+	@ echo "${HR}\nInstalling Grunt and it's libraries...${HR}\n"
 	@ npm install
 	@ echo "\n${CHECK} Done"
 
@@ -31,6 +35,10 @@ clean:
 	@ echo "${HEADER}"
 	@ echo "Removing Composer packages...${HR}"
 	@ rm -rf vendor/*
+	@ echo "\n${CHECK} Done"
+
+	@ echo "${HR}\nRemoving Homebrew packages...${HR}"
+	@ brew uninstall phantomjs
 	@ echo "\n${CHECK} Done"
 
 	@ echo "${HR}\nRemoving front-end libraries...${HR}"

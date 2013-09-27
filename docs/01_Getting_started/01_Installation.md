@@ -15,6 +15,7 @@ Pulsar uses a collection of tools to manage dependencies, you'll need to ensure 
 * [Composer](http://getcomposer.org)
 * [Bower](http://bower.io)
 * [Grunt](http://gruntjs.com)
+* [Homebrew](http://brew.sh)
 
 These packages have their own dependencies, we'll assume you can take care of that.
 
