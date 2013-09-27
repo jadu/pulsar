@@ -11,7 +11,7 @@ $loader = new Twig_Loader_Filesystem($templateDir);
 $twig = new Twig_Environment($loader, array('debug' => true));
 
 $twig->addExtension(new RelativeTimeExtension());
-$twig->addExtension(new UrlParamsExtension());
+$twig->addExtension(new UrlParamsExtension($_GET));
 
 $template = $twig->loadTemplate('lexicon/main.html.twig');
 
