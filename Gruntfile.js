@@ -185,7 +185,7 @@ module.exports = function(grunt) {
     'bump'
   ]);
 
-  grunt.registerTask('testcss', [
+  grunt.registerTask('smoketest', [
     'clean:testcss',
     'exec:phantomcss'
   ]);

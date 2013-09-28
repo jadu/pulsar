@@ -1,0 +1,13 @@
+{
+  "name": "phantomcss",
+  "homepage": "https://github.com/Huddle/PhantomCSS",
+  "_release": "master",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "48351e081fe8c8117b337590da5101818a0a0cf6"
+  },
+  "_source": "git://github.com/Huddle/PhantomCSS.git",
+  "_target": "*",
+  "_originalSource": "phantomcss"
+}
