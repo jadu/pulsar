@@ -1,5 +1,3 @@
-# Pulsar UI
-
 These steps detail how you can run Pulsar UI completely independently of a Jadu/Weejot installation.
 
 ## Requirements
