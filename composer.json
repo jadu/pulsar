@@ -8,6 +8,7 @@
     },
     "require": {
         "twig/twig": "@dev",
-        "phpunit/phpunit": "@dev"
+        "phpunit/phpunit": "@dev",
+        "dflydev/markdown": "@dev" 
     }
 }
