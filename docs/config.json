@@ -3,13 +3,11 @@
 	"tagline": "Beautiful user interfaces, Stellar user experiences.",
 	"clean_urls": false,
 	"docs_path": ".",
-	"image": "img/app.png",
-	"theme": "navy",
 	"timezone": "Europe/London",
 	"date_modified": true,
 	"float": false,
 	"ignore": {
-		"files": ["index.php"],
+		"files": ["index.php", "functions.php"],
 		"folders": ["images"]
 	}
 }

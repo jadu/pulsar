@@ -32,10 +32,12 @@
 
     <script type="text/javascript" src="{{ jsPath   ~ 'analytics.js' }}"></script>
 </head>
-<body class="language-html">
+<body>
 
     <header id="top">
         {% include 'components/toolbar.html.twig' %}
+        {% include 'components/breadcrumb.html.twig' %}
+        {% include 'components/flash.html.twig' %}
     </header>
 
     <div class="summary hide" data-tab="#tab_10">
@@ -55,7 +57,13 @@
     </div>
 
     <div class="actionsbar actionsbar--right">
-        {{ html.button(label = html.icon('desktop') ~ ' Pulsar Lexicon', href = '/lexicon', type = 'link') }}
+        {{
+            html.button_group([ 
+                html.button(label = 'Secondary', type = 'link', href = '#exampledeck', attributes = 'data-toggle="deck"'),
+                html.button(label = 'Actions', type = 'link', href = '#exampledeck', attributes = 'data-toggle="deck"') 
+            ])
+        }}
+        {{ html.button(label = 'Primary Action', class = 'btn--primary') }}
     </div>
     
     <h2 class="heading">{{ heading }}</h2>
@@ -78,7 +86,6 @@
     <script type="text/javascript" src="{{ libsPath ~ 'highcharts/highcharts.js' }}"></script>
     <script type="text/javascript" src="{{ libsPath ~ 'Vague.js/Vague.js' }}"></script>
     <script type="text/javascript" src="{{ libsPath ~ 'sticky/jquery.sticky.js' }}"></script>
-    <script type="text/javascript" src="{{ libsPath ~ 'highlightjs/highlight.pack.js' }}"></script>
 
     <script type="text/javascript" src="{{ jsPath   ~ 'tab.js' }}"></script>
     <script type="text/javascript" src="{{ jsPath   ~ 'dropdown.js' }}"></script>

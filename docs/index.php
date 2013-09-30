@@ -24,10 +24,12 @@ $options = get_options();
 $tree = get_tree($options['docs_path'], $base_url);
 $homepage_url = homepage_url($tree);
 $docs_url = docs_url($tree);
+$page = load_page($tree, $markdownParser);
+
 
 print $template->render(
 	array(
 		'tabs' => build_nav($tree),
-		'content' => load_page($tree, $markdownParser)
+		'content' => $page['html']
 	)
 );

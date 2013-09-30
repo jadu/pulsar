@@ -173,7 +173,7 @@ function build_nav($tree, $url_params = false) {
 		$url_params = url_params();
 	}
 	$url_path = url_path();
-	$html = '<ul class="nav nav-list">';
+	$html = '<ul class="tabs__list">';
 	foreach($tree as $key => $val) {
 		// Active Tree Node
 		if (isset($url_params[0]) && $url_params[0] == $val['clean']) {
@@ -181,9 +181,9 @@ function build_nav($tree, $url_params = false) {
 
 			// Final Node
 			if ($url_path == $val['url']) {
-				$html .= '<li class="active">';
+				$html .= '<li class="is-active">';
 			} else {
-				$html .= '<li class="open">';
+				$html .= '<li class="is-active is-open">';
 			}
 		} else {
 			$html .= '<li>';

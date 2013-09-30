@@ -3,12 +3,20 @@
 {% import 'helpers/form.html.twig' as form %}
 {% import 'helpers/flash.html.twig' as flash %}
 
-{% block title %}{{ parent() }}{% endblock %}
+{% block title %}Pulsar Documentation{% endblock %}
+
+{% set heading = 'Pulsar UI' %}
 
 {% block tabs_list %}
-    {{ base_url }}
+    {{ tabs|raw }}
 {% endblock %}
 
 {% block tabs_content %}
-
+    <div class="tabs__content">
+        <div class="tab__pane is-active">
+            <div class="tab__inner tab--padded">
+                {{ content|raw }}
+            </div>
+        </div>
+    </div>
 {% endblock %}
