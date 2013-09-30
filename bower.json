@@ -12,7 +12,6 @@
   "dependencies": {
     "bourbon": "latest",
     "console-js": "gh-pages",
-    "daux.io": "Stanton/daux.io#pulsar",
     "font-awesome": "latest",
     "html5shiv": "latest",
     "highcharts": "latest",
