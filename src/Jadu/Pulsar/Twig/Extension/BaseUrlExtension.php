@@ -15,7 +15,7 @@ class BaseUrlExtension extends \Twig_Extension
 
     public function getGlobals()
     {
-        return array(
+    	return array(
             'base_url' => $this->getBaseUrl()
         );
     }
