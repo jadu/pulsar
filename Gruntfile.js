@@ -123,7 +123,7 @@ module.exports = function(grunt) {
 
     clean: {
       dist: ['dist'],
-      testcss: ['libs/phantomcss/failures/*']
+      testcss: ['tmp/failures/*']
     },
 
     bump: {
@@ -142,7 +142,7 @@ module.exports = function(grunt) {
 
     exec: {
       phantomcss: {
-        cmd: 'cd libs/phantomcss; sudo phantomjs demo/testsuite.js; cd ../../'
+        cmd: 'sudo phantomjs tests/css/testsuite.js'
       }
     }
 
