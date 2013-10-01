@@ -16,6 +16,7 @@ build:
 	@ echo "\n${CHECK} Done"
 
 	@ echo "${HR}\nInstalling Grunt and it's libraries...${HR}"
+	@ npm install -g grunt-cli
 	@ npm install
 	@ echo "\n${CHECK} Done"
 
