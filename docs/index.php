@@ -1,6 +1,7 @@
 <?php
 
-$templateDir = '../views';
+$baseDir = '../';
+$templateDir = $baseDir . 'views';
 
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../docs/functions.php';
@@ -14,7 +15,7 @@ $markdownParser = new MarkdownExtraParser();
 $loader = new Twig_Loader_Filesystem($templateDir);
 $twig = new Twig_Environment($loader, array('debug' => true));
 
-$twig->addExtension(new ConfigExtension());
+$twig->addExtension(new ConfigExtension($baseDir . 'pulsar.json'));
 $twig->addExtension(new RelativeTimeExtension());
 $twig->addExtension(new UrlParamsExtension($_GET));
 

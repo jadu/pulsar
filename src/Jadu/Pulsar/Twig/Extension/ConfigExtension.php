@@ -12,6 +12,13 @@ namespace Jadu\Pulsar\Twig\Extension;
 class ConfigExtension extends \Twig_Extension
 {
 
+    protected $configFile;
+
+    public function __construct($configFile)
+    {
+        $this->configFile = $configFile;
+    }
+
     public function getName() 
     {
         return 'config_extension';
@@ -24,7 +31,12 @@ class ConfigExtension extends \Twig_Extension
 
     public function getConfigVars()
     {
-        $file = file_get_contents('../pulsar.json');
+        $file = @file_get_contents($this->configFile);
+
+        if (!$file) {
+            return false;
+        }
+        
         $json = json_decode($file);
         $config = array();
 
