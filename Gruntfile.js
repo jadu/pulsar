@@ -36,8 +36,7 @@ module.exports = function(grunt) {
           'css/<%= pkg.name %>.css': 'stylesheets/pulsar.scss',
           'css/<%= pkg.name %>-ie7.css': 'stylesheets/pulsar-ie7.scss',
           'css/<%= pkg.name %>-ie8.css': 'stylesheets/pulsar-ie8.scss',
-          'css/<%= pkg.name %>-ie9.css': 'stylesheets/pulsar-ie9.scss',
-          'css/markdown.css': 'stylesheets/markdown.scss',
+          'css/<%= pkg.name %>-ie9.css': 'stylesheets/pulsar-ie9.scss'
         }
       },
       dist: {
@@ -49,8 +48,7 @@ module.exports = function(grunt) {
           'dist/css/<%= pkg.name %>.css': 'stylesheets/pulsar.scss',
           'dist/css/<%= pkg.name %>-ie7.css': 'stylesheets/pulsar-ie7.scss',
           'dist/css/<%= pkg.name %>-ie8.css': 'stylesheets/pulsar-ie8.scss',
-          'dist/css/<%= pkg.name %>-ie9.css': 'stylesheets/pulsar-ie9.scss',
-          'dist/css/markdown.css': 'stylesheets/markdown.scss',
+          'dist/css/<%= pkg.name %>-ie9.css': 'stylesheets/pulsar-ie9.scss'
         }
       }
     },
