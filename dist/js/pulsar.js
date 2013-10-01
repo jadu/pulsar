@@ -13,7 +13,7 @@
 Don't edit this file directly!
 Refer to the pulsar documentation for more information.
 
-Built: Friday 27-09-2013 - 02:09:36 PM (GMT+0100)
+Built: Tuesday 01-10-2013 - 11:10:18 AM (GMT+0100)
 
 */
 var hostname = "localhost" === location.hostname ? "none" : location.hostname, _gaq = _gaq || [];
@@ -336,7 +336,12 @@ _gaq.push([ "_setAllowLinker", !0 ]), _gaq.push([ "_trackPageview" ]), function(
         topSpacing: 0
     }), $('a[data-toggle="tab"]').on("shown.bs.tab", function(a) {
         a.target, a.relatedTarget, $(".summary.open").removeClass("open").hide(), $(".summary[data-tab=" + $(a.target).attr("href") + "]").show().addClass("open");
-    });
+    }), $(".aj-nav").click(function(a) {
+        a.preventDefault(), $(this).parent().siblings().find("ul").slideUp().parent().removeClass("is-active"), 
+        $(this).parent().addClass("is-active"), $(this).next().slideToggle("fast");
+    }), window.onload = function() {
+        for (var a = document.getElementsByTagName("pre"), b = 0; b < a.length; b++) hljs.highlightBlock(a[b]);
+    };
 }), +function(a) {
     "use strict";
     var b = function(b) {

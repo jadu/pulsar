@@ -1,0 +1,102 @@
+{% import 'pulsar/helpers/html.html.twig' as html %}
+{% import 'pulsar/helpers/form.html.twig' as form %}
+{% import 'pulsar/helpers/flash.html.twig' as flash %}
+{% set cssPath  = base_path ~ 'css/' %}
+{% set jsPath   = base_path ~ 'javascripts/' %}
+{% set libsPath = base_path ~ 'libs/' %}
+<!DOCTYPE html>
+<!--[if IE 7]>         <html class="no-js ie7"><![endif]-->
+<!--[if gt IE 7]><!--> <html class="no-js"><!--<![endif]-->
+<html class="no-js">
+<head>
+    <title>{% block title %}Pulsar Lexicon{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--[if IE 7]><link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'pulsar-ie7.css' }}" /><![endif]-->
+    <!--[if IE 8]><link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'pulsar-ie8.css' }}" /><![endif]-->
+    <!--[if IE 9]><link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'pulsar-ie9.css' }}" /><![endif]-->
+    <!--[if gt IE 9]><!--> <link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'pulsar.css' }}" /> <!--<![endif]-->
+    
+    <!--[if IE 7]>
+    <link rel="stylesheet" type="text/css" href="{{ libsPath ~ 'ie7-js/IE9.js' }}" />
+    <link rel="stylesheet" type="text/css" href="{{ libsPath ~ 'font-awesome/css/font-awesome-ie7.min.css' }}" />
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="{{ libsPath ~ 'html5shiv/dist/html5shiv.js' }}"></script>
+    <script type="text/javascript" src="{{ libsPath ~ 'respond/respond.min.js' }}"></script>
+    <![endif]-->
+
+    <script type="text/javascript" src="{{ jsPath   ~ 'analytics.js' }}"></script>
+</head>
+<body>
+
+    <header id="top">
+        {% include 'pulsar/components/toolbar.html.twig' %}
+        {% include 'pulsar/components/breadcrumb.html.twig' %}
+        {% include 'pulsar/components/flash.html.twig' %}
+    </header>
+
+    <div class="summary hide" data-tab="#tab_10">
+        <div id="container"></div>
+        {% block summary %}{% endblock %}
+    </div>
+
+    <div class="actionsbar actionsbar--left">
+        <div class="btn__toolbar">
+            <div class="btn__group">
+                <a class="btn btn__back" href="#back" onclick="history.back(); return false;"><i class="icon-arrow-left"></i></a>
+                {% if actions_menu is not empty %}
+                    {{ html.button_dropdown('Actions', null, 'tour-actions', actions_menu) }}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="actionsbar actionsbar--right">
+        {{
+            html.button_group([ 
+                html.button(label = 'Secondary', type = 'link', href = '#exampledeck', attributes = 'data-toggle="deck"'),
+                html.button(label = 'Actions', type = 'link', href = '#exampledeck', attributes = 'data-toggle="deck"') 
+            ])
+        }}
+        {{ html.button(label = 'Primary Action', class = 'btn--primary') }}
+    </div>
+    
+    <h2 class="heading">{{ heading }}</h2>
+
+    <div role="main" class="container">
+        <div class="tabs">
+            {% block tabs_list %}{% endblock %}
+            {% block tabs_content %}{% endblock %}
+        </div>
+        {% block decks %}{% endblock %}
+    </div>
+
+    <footer>
+        {{ html.link(label = html.icon('long-arrow-up') ~ ' Top', href = '#top') }}
+        {{ html.link(label = 'Jadu 1.12 &copy; 2013', href = '/credits') }}
+    </footer> 
+
+    <script type="text/javascript" src="{{ libsPath ~ 'jquery/jquery.min.js' }}"></script>
+    <script type="text/javascript" src="{{ libsPath ~ 'console-js/console.js' }}"></script>
+    <script type="text/javascript" src="{{ libsPath ~ 'highcharts/highcharts.js' }}"></script>
+    <script type="text/javascript" src="{{ libsPath ~ 'Vague.js/Vague.js' }}"></script>
+    <script type="text/javascript" src="{{ libsPath ~ 'sticky/jquery.sticky.js' }}"></script>
+
+    <script type="text/javascript" src="{{ jsPath   ~ 'tab.js' }}"></script>
+    <script type="text/javascript" src="{{ jsPath   ~ 'dropdown.js' }}"></script>
+    <script type="text/javascript" src="{{ jsPath   ~ 'deck.js' }}"></script>
+    <script type="text/javascript" src="{{ jsPath   ~ 'flash.js' }}"></script>
+    <script type="text/javascript" src="{{ jsPath   ~ 'modal.js' }}"></script>
+    <script type="text/javascript" src="{{ jsPath   ~ 'tooltip.js' }}"></script>
+    <script type="text/javascript" src="{{ jsPath   ~ 'popover.js' }}"></script>
+    <script type="text/javascript" src="{{ jsPath   ~ 'scratch.js' }}"></script>
+    <script type="text/javascript">{% block javascript %}{% endblock %}</script>
+
+    <script src="http://localhost:8000/libs/livereload-js/dist/livereload.js?host=localhost"></script>
+</body>
+</html>

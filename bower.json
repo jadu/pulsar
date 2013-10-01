@@ -12,10 +12,10 @@
   "dependencies": {
     "bourbon": "latest",
     "console-js": "gh-pages",
-    "daux.io": "Stanton/daux.io#pulsar",
     "font-awesome": "latest",
     "html5shiv": "latest",
     "highcharts": "latest",
+    "highlightjs": "latest",
     "ie7-js": "https://ie7-js.googlecode.com/files/ie7-2.1%28beta4%29.zip",
     "jquery": "1.x",
     "normalize-css": "latest",

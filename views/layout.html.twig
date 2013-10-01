@@ -1,9 +1,9 @@
-{% import 'helpers/html.html.twig' as html %}
-{% import 'helpers/form.html.twig' as form %}
-{% import 'helpers/flash.html.twig' as flash %}
-{% set cssPath  = '../css/' %}
-{% set jsPath   = '../javascripts/' %}
-{% set libsPath = '../libs/' %}
+{% import 'pulsar/helpers/html.html.twig' as html %}
+{% import 'pulsar/helpers/form.html.twig' as form %}
+{% import 'pulsar/helpers/flash.html.twig' as flash %}
+{% set cssPath  = base_path ~ 'css/' %}
+{% set jsPath   = base_path ~ 'javascripts/' %}
+{% set libsPath = base_path ~ 'libs/' %}
 <!DOCTYPE html>
 <!--[if IE 7]>         <html class="no-js ie7"><![endif]-->
 <!--[if gt IE 7]><!--> <html class="no-js"><!--<![endif]-->
@@ -32,12 +32,10 @@
 
     <script type="text/javascript" src="{{ jsPath   ~ 'analytics.js' }}"></script>
 </head>
-<body>
+<body class="language-html">
 
     <header id="top">
-        {% include 'components/toolbar.html.twig' %}
-        {% include 'components/breadcrumb.html.twig' %}
-        {% include 'components/flash.html.twig' %}
+        {% include 'pulsar/components/toolbar.html.twig' %}
     </header>
 
     <div class="summary hide" data-tab="#tab_10">
@@ -57,13 +55,7 @@
     </div>
 
     <div class="actionsbar actionsbar--right">
-        {{
-            html.button_group([ 
-                html.button(label = 'Secondary', type = 'link', href = '#exampledeck', attributes = 'data-toggle="deck"'),
-                html.button(label = 'Actions', type = 'link', href = '#exampledeck', attributes = 'data-toggle="deck"') 
-            ])
-        }}
-        {{ html.button(label = 'Primary Action', class = 'btn--primary') }}
+        {{ html.button(label = html.icon('desktop') ~ ' Pulsar Lexicon', href = '/lexicon', type = 'link') }}
     </div>
     
     <h2 class="heading">{{ heading }}</h2>
@@ -86,6 +78,7 @@
     <script type="text/javascript" src="{{ libsPath ~ 'highcharts/highcharts.js' }}"></script>
     <script type="text/javascript" src="{{ libsPath ~ 'Vague.js/Vague.js' }}"></script>
     <script type="text/javascript" src="{{ libsPath ~ 'sticky/jquery.sticky.js' }}"></script>
+    <script type="text/javascript" src="{{ libsPath ~ 'highlightjs/highlight.pack.js' }}"></script>
 
     <script type="text/javascript" src="{{ jsPath   ~ 'tab.js' }}"></script>
     <script type="text/javascript" src="{{ jsPath   ~ 'dropdown.js' }}"></script>
