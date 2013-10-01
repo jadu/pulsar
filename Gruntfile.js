@@ -149,6 +149,7 @@ module.exports = function(grunt) {
       'javascripts/*.js',
       'css/*.css', 
       'stylesheets/*.scss',
+      'tests/**/*.php',
       'views/**/*.twig'
     ]
   });

@@ -1,9 +1,9 @@
-{% import 'helpers/html.html.twig' as html %}
-{% import 'helpers/form.html.twig' as form %}
-{% import 'helpers/flash.html.twig' as flash %}
-{% set cssPath  = base_url ~ 'css/' %}
-{% set jsPath   = base_url ~ 'javascripts/' %}
-{% set libsPath = base_url ~ 'libs/' %}
+{% import 'pulsar/helpers/html.html.twig' as html %}
+{% import 'pulsar/helpers/form.html.twig' as form %}
+{% import 'pulsar/helpers/flash.html.twig' as flash %}
+{% set cssPath  = base_path ~ 'css/' %}
+{% set jsPath   = base_path ~ 'javascripts/' %}
+{% set libsPath = base_path ~ 'libs/' %}
 <!DOCTYPE html>
 <!--[if IE 7]>         <html class="no-js ie7"><![endif]-->
 <!--[if gt IE 7]><!--> <html class="no-js"><!--<![endif]-->
@@ -35,7 +35,7 @@
 <body class="language-html">
 
     <header id="top">
-        {% include 'components/toolbar.html.twig' %}
+        {% include 'pulsar/components/toolbar.html.twig' %}
     </header>
 
     <div class="summary hide" data-tab="#tab_10">
