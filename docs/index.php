@@ -28,13 +28,13 @@ $docs_url = docs_url($tree);
 $page = load_page($tree, $markdownParser);
 
 $breadcrumb = array(
-	'Pulsar' => '/',
-	'Documentation' => null	
+    'Pulsar' => '/',
+    'Documentation' => null 
 );
 
 print $template->render(array(
-	'breadcrumb' => $breadcrumb,
-	'tabs' => build_nav($tree),
-	'content' => $page['html']
-	)
+    'breadcrumb' => $breadcrumb,
+    'tabs' => build_nav($tree),
+    'content' => $page['html']
+    )
 );
