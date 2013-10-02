@@ -27,9 +27,14 @@ $homepage_url = homepage_url($tree);
 $docs_url = docs_url($tree);
 $page = load_page($tree, $markdownParser);
 
-print $template->render(
-	array(
-		'tabs' => build_nav($tree),
-		'content' => $page['html']
+$breadcrumb = array(
+	'Pulsar' => '/',
+	'Documentation' => null	
+);
+
+print $template->render(array(
+	'breadcrumb' => $breadcrumb,
+	'tabs' => build_nav($tree),
+	'content' => $page['html']
 	)
 );

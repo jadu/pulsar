@@ -18,4 +18,13 @@ $twig->addExtension(new UrlParamsExtension($_GET));
 
 $template = $twig->loadTemplate('lexicon/main.html.twig');
 
-print $template->render(array());
+$breadcrumb = array(
+	'Pulsar' => '/',
+	'Documentation' => '/docs',
+	'Lexicon' => null
+);
+
+print $template->render(array(
+	'breadcrumb' => $breadcrumb
+	)
+);
