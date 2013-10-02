@@ -22,9 +22,14 @@ $breadcrumb = array(
     'Pulsar' => '/',
     'Documentation' => '/docs',
     'Lexicon' => null
-);
+    );
+
+$flashMessage = array(
+    'type' => 'success',
+    'message' => 'This is a flash message, it lets users know that something happened. <a href="#tab_4" data-toggle="tab">read more</a>.'
+    );
 
 print $template->render(array(
-    'breadcrumb' => $breadcrumb
-    )
-);
+    'breadcrumb' => $breadcrumb,
+    'flash_message' => $flashMessage
+    ));

@@ -1,24 +1,4 @@
-{%- macro success(message, sticky = true) -%}
-  {% import _self as self %}
-  {{ self.flash(message, 'success', sticky) }}
-{%- endmacro -%}
-
-{%- macro warning(message, sticky = true) -%}
-  {% import _self as self %}
-  {{ self.flash(message, 'warning', sticky) }}
-{%- endmacro -%}
-
-{%- macro error(message, sticky = true) -%}
-  {% import _self as self %}
-  {{ self.flash(message, 'error', sticky) }}
-{%- endmacro -%}
-
-{%- macro message(message, sticky = true) -%}
-  {% import _self as self %}
-  {{ self.flash(message, 'default', sticky) }}
-{%- endmacro -%}
-
-{%- macro flash(message, type, sticky) -%}
+{%- macro message(message, type = 'default', sticky = true) -%}
   {% import 'pulsar/helpers/html.html.twig' as html %}
   
   {% if type == 'success' %}

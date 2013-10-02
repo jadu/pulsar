@@ -3,15 +3,15 @@
 {% import 'pulsar/helpers/flash.html.twig' as flash %}
 <div class="tab__inner">
   <div class="example">
-    {{ flash.message(message = 'This is the default flash.message style', sticky = false) }}
+    {{ flash.message(message = 'This is the default message style', sticky = false) }}
   </div>
   <div class="example">
-    {{ flash.success(message = 'This is the flash.success style', sticky = false) }}
+    {{ flash.message(message = 'This is the success style', type = 'success', sticky = false) }}
   </div>
   <div class="example">
-    {{ flash.warning(message = 'This is the flash.warning style', sticky = false) }}
+    {{ flash.message(message = 'This is the warning style', type = 'warning', sticky = false) }}
   </div>
   <div class="example">
-    {{ flash.error(message = 'This is the flash.error style', sticky = false) }}
+    {{ flash.message(message = 'This is the error style', type = 'error', sticky = false) }}
   </div>
 </div>

@@ -1,1 +1,1 @@
-{{ flash.success('This is a flash message, it lets users know that something happened. ' ~ html.link('read more', '#tab_4', null, null, 'data-toggle="tab"') ~ '.') }}
+{{ flash.message(flash_message.message, flash_message.type) }}
