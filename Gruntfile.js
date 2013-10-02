@@ -143,8 +143,20 @@ module.exports = function(grunt) {
     exec: {
       phantomcss: {
         cmd: 'phantomjs tests/css/testsuite.js'
+      },
+      updateComposer: {
+        cmd: 'sudo php composer.phar update'
+      },
+      updateBrew: {
+        cmd: 'brew update && brew upgrade'
+      },
+      updateBower: {
+        cmd: 'bower update'
+      },
+      updateNpm: {
+        cmd: 'sudo npm install'
       }
-    }
+    },
 
   });
 
@@ -188,6 +200,13 @@ module.exports = function(grunt) {
   grunt.registerTask('smoketest', [
     'clean:smoketest',
     'exec:phantomcss'
+  ]);
+
+  grunt.registerTask('update', [
+    'exec:updateComposer',
+    'exec:updateBrew',
+    'exec:updateBower',
+    'exec:updateNpm'
   ]);
 
   // load all grunt tasks

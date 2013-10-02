@@ -7,16 +7,23 @@ BUILD := build
 build:
 	@ echo "${HEADER}"
 
-	@ echo "Installing Composer packages...${HR}"
+	@ echo "Installing Composer and its dependencies...${HR}\n"
+	@ sudo curl -sS https://getcomposer.org/installer | php -d detect_unicode=Off
 	@ sudo php composer.phar install
 	@ echo "\n${CHECK} Done"
 
-	@ echo "${HR}\nInstalling front-end libraries...${HR}"
+	@ echo "${HR}\nInstalling Homebrew and its dependencies...${HR}\n"
+	@ ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
+	@ brew install phantomjs
+	@ echo "\n${CHECK} Done"
+
+	@ echo "${HR}\nInstalling Bower and its dependencies...${HR}\n"
+	@ sudo npm install -g bower
 	@ bower install
 	@ echo "\n${CHECK} Done"
 
-	@ echo "${HR}\nInstalling Grunt and it's libraries...${HR}"
-	@ npm install -g grunt-cli
+	@ echo "${HR}\nInstalling Grunt and it's libraries...${HR}\n"
+	@ sudo npm install -g grunt-cli
 	@ npm install
 	@ echo "\n${CHECK} Done"
 
