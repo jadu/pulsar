@@ -1,1 +1,3 @@
+{% if flash_message is defined %}
 {{ flash.message(flash_message.message, flash_message.type) }}
+{% endif %}
