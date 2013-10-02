@@ -8,6 +8,7 @@ namespace Jadu\Pulsar\Twig\Extension;
  * Process Pulsar's config file (pulsar.json) and set
  * it's contents as globals
  *
+ * Unit tests: tests/unit/ConfigExtensionTest.php
  */
 class ConfigExtension extends \Twig_Extension
 {

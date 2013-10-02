@@ -10,7 +10,7 @@ namespace Jadu\Pulsar\Twig\Extension;
  *
  * Usage: "1380093916"|time_ago
  * 
- * Unit tests: tests/unit/RelativeTimeTest.php
+ * Unit tests: tests/unit/RelativeTimeExtensionTest.php
  */
 class RelativeTimeExtension extends \Twig_Extension
 {

@@ -2,6 +2,14 @@
 
 namespace Jadu\Pulsar\Twig\Extension;
 
+/**
+ * Url Parameters
+ *
+ * Currently retrieves the active tab index from the URL string but will be
+ * extended over time to grab any url params
+ * 
+ * Unit tests: tests/unit/UrlParamsExtensionTest.php
+ */
 class UrlParamsExtension extends \Twig_Extension 
 {
     /**
