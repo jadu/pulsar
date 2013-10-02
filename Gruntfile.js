@@ -123,7 +123,7 @@ module.exports = function(grunt) {
 
     clean: {
       dist: ['dist'],
-      testcss: ['tmp/failures/*']
+      smoketest: ['tmp/failures/*']
     },
 
     bump: {
@@ -142,7 +142,7 @@ module.exports = function(grunt) {
 
     exec: {
       phantomcss: {
-        cmd: 'sudo phantomjs tests/css/testsuite.js'
+        cmd: 'phantomjs tests/css/testsuite.js'
       }
     }
 
@@ -186,7 +186,7 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('smoketest', [
-    'clean:testcss',
+    'clean:smoketest',
     'exec:phantomcss'
   ]);
 
