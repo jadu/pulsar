@@ -7,3 +7,4 @@
 /vendor/**/.git
 /vendor/
 /tmp/
+/composer.phar
