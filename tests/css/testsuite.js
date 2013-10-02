@@ -3,9 +3,9 @@
 	Initialise CasperJs
 */
 
-var basePath = './libs/phantomcss/';
+var libraryRoot = './libs/phantomcss/';
 
-phantom.casperPath = basePath + 'CasperJs';
+phantom.casperPath = libraryRoot + 'CasperJs';
 phantom.injectJs(phantom.casperPath + '/bin/bootstrap.js');
 phantom.injectJs('jquery.js');
 
@@ -20,12 +20,13 @@ var casper = require('casper').create({
 	Require and initialise PhantomCSS module
 */
 
-var phantomcss = require(basePath + 'phantomcss.js');
+var phantomcss = require(libraryRoot + 'phantomcss.js');
 var url = 'http://localhost:8000/lexicon';
 
 phantomcss.init({
 	screenshotRoot: './tmp/screenshots',
-	failedComparisonsRoot: './tmp/failures'
+	failedComparisonsRoot: './tmp/failures',
+	libraryRoot: libraryRoot
 });
 
 /*

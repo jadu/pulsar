@@ -9,7 +9,7 @@ phantom.injectJs('jquery.js');
 
 var casper = require('casper').create({
 	viewportSize: {
-		width: 1024,
+		width: 1027,
 		height: 800
 	}
 });
@@ -19,7 +19,7 @@ var casper = require('casper').create({
 */
 
 var phantomcss = require('./phantomcss.js');
-var url = 'http://localhost:8000/lexicon';
+var url = startServer('demo/coffeemachine.html');
 
 phantomcss.init({
 	screenshotRoot: './screenshots',
@@ -32,102 +32,39 @@ phantomcss.init({
 
 casper.
 	start( url ).
-	then(function() {
-		phantomcss.screenshot('#tab_1', 'typography');
+	then(function(){
+		phantomcss.screenshot('#coffee-machine-wrapper', 'open coffee machine button');
 	}).
-	then(function() {
-		casper.click('a[href="#tab_2"]');
+	then(function(){
+		casper.click('#coffee-machine-button');
+		
+		// wait for modal to fade-in 
 
-		casper.waitForSelector('#tab_2.is-active',
+		casper.waitForSelector('#myModal:not([style*="display: none"])',
 			function success(){
-				phantomcss.screenshot('#tab_2', 'buttons');
+				phantomcss.screenshot('#myModal', 'coffee machine dialog');
 			},
 			function timeout(){
-				casper.test.fail('Should see buttons tab');
+				casper.test.fail('Should see coffee machine');
 			}
 		);
-	}).
-	then(function() {
-		casper.click('a[href="#tab_3"]');
 
-		casper.waitForSelector('#tab_3.is-active',
+	}).
+	then(function(){
+		casper.click('#cappuccino-button');
+		phantomcss.screenshot('#myModal', 'cappuccino success');
+	}).
+	then(function(){
+		casper.click('#close');
+
+		// wait for modal to fade-out
+
+		casper.waitForSelector('#myModal[style*="display: none"]',
 			function success(){
-				phantomcss.screenshot('#tab_3', 'forms');
+				phantomcss.screenshot('#coffee-machine-wrapper', 'coffee machine close success');
 			},
 			function timeout(){
-				casper.test.fail('Should see forms tab');
-			}
-		);
-	}).
-	then(function() {
-		casper.click('a[href="#tab_4"]');
-
-		casper.waitForSelector('#tab_4.is-active',
-			function success(){
-				phantomcss.screenshot('#tab_4', 'flash messages');
-			},
-			function timeout(){
-				casper.test.fail('Should see flash messages tab');
-			}
-		);
-	}).
-	then(function() {
-		casper.click('a[href="#tab_5"]');
-
-		casper.waitForSelector('#tab_5.is-active',
-			function success(){
-				phantomcss.screenshot('#tab_5', 'modals');
-			},
-			function timeout(){
-				casper.test.fail('Should see modals tab');
-			}
-		);
-	}).
-	then(function() {
-		casper.click('a[href="#tab_6"]');
-
-		casper.waitForSelector('#tab_6.is-active',
-			function success(){
-				phantomcss.screenshot('#tab_6', 'tooltips');
-			},
-			function timeout(){
-				casper.test.fail('Should see tooltips tab');
-			}
-		);
-	}).
-	then(function() {
-		casper.click('a[href="#tab_7"]');
-
-		casper.waitForSelector('#tab_7.is-active',
-			function success(){
-				phantomcss.screenshot('#tab_7', 'popovers');
-			},
-			function timeout(){
-				casper.test.fail('Should see popovers tab');
-			}
-		);
-	}).
-	then(function() {
-		casper.click('a[href="#tab_8"]');
-
-		casper.waitForSelector('#tab_8.is-active',
-			function success(){
-				phantomcss.screenshot('#tab_8', 'tables');
-			},
-			function timeout(){
-				casper.test.fail('Should see tables tab');
-			}
-		);
-	}).
-	then(function() {
-		casper.click('a[href="#tab_9"]');
-
-		casper.waitForSelector('#tab_9.is-active',
-			function success(){
-				phantomcss.screenshot('#tab_9', 'progress bars');
-			},
-			function timeout(){
-				casper.test.fail('Should see progress bars tab');
+				casper.test.fail('Should be able to walk away from the coffee machine');
 			}
 		);
 	});

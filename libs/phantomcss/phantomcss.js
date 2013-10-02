@@ -264,7 +264,7 @@ function compareAll(exclude){
 								});
 
 							}, function(){},
-							10000000000000
+							10000
 						);
 					} else {
 						_onPass(test);
@@ -282,7 +282,7 @@ function compareAll(exclude){
 		}, function(){
 			_onComplete(tests, fails, errors);
 		}, function(){},
-		10000000000000);
+		10000);
 	});
 }
 
