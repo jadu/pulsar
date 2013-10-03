@@ -1,5 +1,5 @@
-{% macro create(target, class, id, method = "POST") %}
-    <form {% if target is not empty %}target="{{ target }}"{% endif %} class="form--horizontal{% if class is not empty %} {{ class }}{% endif %}"{% if id is not empty %} id="{{ id }}"{% endif %} method="{{ method }}">
+{% macro create(action, class, id, method = "POST") %}
+    <form {% if action is not empty %}action="{{ action }}"{% endif %} class="form--horizontal{% if class is not empty %} {{ class }}{% endif %}"{% if id is not empty %} id="{{ id }}"{% endif %} method="{{ method }}">
 {% endmacro %}
 
 {% macro form_end(actions) %}
