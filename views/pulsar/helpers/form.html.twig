@@ -90,14 +90,14 @@
     </div>
 {% endmacro %}
 
-{% macro select(label, options, id, class, name, help) %}
+{% macro select(label, options, selected, id, class, name, help) %}
     {% import _self as form %}
     <div class="form__group {{ class }}">
         <label {{ form.for(id) }} class="control__label">{{ label | raw }}</label>
         <div class="controls">
             <select class="form__control" {{ form.id(id) }} {{ form.name(name) }}>
             {%- for value, option in options -%}
-                <option {{ form.value(value) }}>{{ option }}</option>
+                <option {{ form.value(value) }} {% if value == selected %}selected{% endif %}>{{ option }}</option>
             {%- endfor -%}
             </select>
             {% if help is not empty %} 
