@@ -22,7 +22,7 @@
     </fieldset>
 {% endmacro %}
 
-{% macro text(label, id, class, name, placeholder, help, prepend, append) %}
+{% macro text(label, value, id, class, name, placeholder, help, prepend, append) %}
     {% import _self as form %}
     <div class="form__group {{ class }}">
         <label {{ form.for(id) }} class="control__label">{{ label | raw }}</label>
@@ -31,7 +31,7 @@
             <div class="input-group">
                 {{ form.addon(prepend) }}
             {% endif %}
-                <input type="text" class="form__control" {{ form.id(id) }} {{ form.name(name) }} {{ form.placeholder(placeholder) }} />
+                <input type="text" class="form__control" {{ form.id(id) }} {{ form.name(name) }} {{ form.placeholder(placeholder) }} {{ form.value(value)}} />
             {% if prepend is not empty or append is not empty %}
                 {{ form.addon(append) }}
             </div>
@@ -43,7 +43,7 @@
     </div>
 {% endmacro %}
 
-{% macro password(label, id, class, name, placeholder, help, prepend, append) %}
+{% macro password(label, value, id, class, name, placeholder, help, prepend, append) %}
     {% import _self as form %}
     <div class="form__group {{ class }}">
         <label {{ form.for(id) }} class="control__label">{{ label | raw }}</label>
@@ -52,7 +52,7 @@
             <div class="input-group">
                 {{ form.addon(prepend) }}
             {% endif %}
-                <input type="password" class="form__control" {{ form.id(id) }} {{ form.name(name) }} {{ form.placeholder(placeholder) }} />
+                <input type="password" class="form__control" {{ form.id(id) }} {{ form.name(name) }} {{ form.placeholder(placeholder) }} {{ form.value(value) }} />
             {% if prepend is not empty or append is not empty %}
                 {{ form.addon(append) }}
             </div>
@@ -64,12 +64,12 @@
     </div>
 {% endmacro %}
 
-{% macro textarea(label, id, class, name, placeholder, help, rows = 2) %}
+{% macro textarea(label, value, id, class, name, placeholder, help, rows = 2) %}
     {% import _self as form %}
     <div class="form__group {{ class }}">
         <label {{ form.for(id) }} class="control__label">{{ label | raw }}</label>
         <div class="controls">
-            <textarea class="form__control" {{ form.id(id) }} {{ form.name(name) }} {{ form.placeholder(placeholder) }} {{ form.rows(rows) }}></textarea>
+            <textarea class="form__control" {{ form.id(id) }} {{ form.name(name) }} {{ form.placeholder(placeholder) }} {{ form.rows(rows) }}>{{ value }}</textarea>
             {% if help is not empty %} 
             {{ form.help(help) }}
             {% endif %}
@@ -97,7 +97,7 @@
         <div class="controls">
             <select class="form__control" {{ form.id(id) }} {{ form.name(name) }}>
             {%- for value, option in options -%}
-                <option value="{{ value }}">{{ option }}</option>
+                <option {{ form.value(value) }}>{{ option }}</option>
             {%- endfor -%}
             </select>
             {% if help is not empty %} 
@@ -186,7 +186,7 @@
 {% endmacro %}
 
 {% macro submit(label = 'Submit', class, type, id, href, attributes) %}
-    <input type="submit" class="btn{% if class is not empty %} {{ class }}{% endif %}"{% if id is not empty %} id="{{ id }}"{% endif %} value="{{ label|raw }}"{% if attributes is not empty %} {{ attributes|raw }}{% endif %}{% if 'is-disabled' in class %} disabled="disabled"{% endif %} />
+    <input type="submit" class="btn{% if class is not empty %} {{ class }}{% endif %}" {{ form.id(id) }} {{ form.value(label|raw) }}{% if attributes is not empty %} {{ attributes|raw }}{% endif %}{% if 'is-disabled' in class %} disabled="disabled"{% endif %} />
 {% endmacro %}
 
 {% macro checkbox_group(checkboxes) %}
@@ -216,6 +216,12 @@
 {% endmacro %}
 
 {# Attributes #}
+
+{% macro value(value) %}
+    {% if value is not empty %}
+    value="{{ value }}"
+    {% endif %}
+{% endmacro %}
 
 {% macro for(value) %}
     {% if value is not empty %}

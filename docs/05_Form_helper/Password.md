@@ -4,7 +4,7 @@ Password inputs are identical to [text inputs](Text), but use dots/asterisks to 
 
 Available parameters:
 
-    {{ form.password(label, id, class, name, placeholder, help, prepend, append) }}
+    {{ form.password(label, value, id, class, name, placeholder, help, prepend, append) }}
 
 Example:
 
