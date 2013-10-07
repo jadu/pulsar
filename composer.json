@@ -6,6 +6,12 @@
             "Jadu\\Pulsar": "src"
         }
     },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/Stanton/Twig.git"
+        }
+    ],
     "require": {
         "twig/twig": "@dev",
         "phpunit/phpunit": "@dev",
