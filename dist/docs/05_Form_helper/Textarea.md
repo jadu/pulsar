@@ -4,7 +4,7 @@ Creates a textarea input field who's height can be defined in 'rows'
 
 Available parameters:
 
-	{{ form.textarea(label, id, class, name, placeholder, help, rows = 2) }}
+	{{ form.textarea(label, value, id, class, name, placeholder, help, rows = 2) }}
 
 Example:
 
