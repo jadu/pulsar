@@ -1,0 +1,3 @@
+PATH="/usr/local/bin:/usr/local/share/npm/bin:$PATH"
+#!/bin/sh
+grunt sass:dev
