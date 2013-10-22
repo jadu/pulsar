@@ -126,11 +126,11 @@ require(['jquery', 'jquery-mousewheel', 'vague'], function ($) {
         methods.hide.call();
     }
 
-    function closeSlide() {
+    function closeSlide(e) {
 
-        event.preventDefault();
+        e.preventDefault();
         
-        var self = $(event.currentTarget),
+        var self = $(e.currentTarget),
             slide = self.closest($.fn.deck.defaults.slideClass);
 
         slide.hide();
@@ -145,11 +145,11 @@ require(['jquery', 'jquery-mousewheel', 'vague'], function ($) {
 
     }
 
-    function showSlide() {
+    function showSlide(e) {
         
-        event.preventDefault();
+        e.preventDefault();
 
-        var self = $(event.currentTarget),
+        var self = $(e.currentTarget),
             slide = $(self.attr('href')),
             deckTop = slide.parent().offset().top,
             slideTop = slide.offset().top;
@@ -200,7 +200,7 @@ require(['jquery', 'jquery-mousewheel', 'vague'], function ($) {
 
         $('body').on('click.deck.data-api', '[data-toggle="deck"]', function (e) {
 
-            event.preventDefault();
+            e.preventDefault();
 
             // Grab the deck target from the data-attribute.
             var self = $(this),
