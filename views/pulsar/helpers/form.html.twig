@@ -4,9 +4,9 @@
 
 {% macro form_end(actions) %}
         <div class="form__actions">
-            {%- for action in actions -%}
+            {% for action in actions %}
                 {{ action }}
-            {%- endfor -%}
+            {% endfor %}
         </div>
     </form>
 {% endmacro %}
