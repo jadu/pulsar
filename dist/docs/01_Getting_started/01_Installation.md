@@ -8,11 +8,9 @@ Pulsar creates its own development server to run the documentation and to compil
 
 ## Pulsar repository
 
-Pulsar uses Git and the source is currently maintained in a private BitBucket repository, to clone it you'll need to send your [SSH key](https://confluence.atlassian.com/display/BITBUCKET/Use+the+SSH+protocol+with+Bitbucket) to [Paul Stanton or Scott Riley](mailto:paul.stanton@jadu.net,scott.riley@jadu.net).
+Pulsar uses Git and the source is published to [Stash](https://stash.hq.jadu.net), you are free to clone and [fork](https://stash.hq.jadu.net/projects/PULSAR/repos/pulsar-ui?fork) this repository as needed, please submit any changes as a [pull request](https://stash.hq.jadu.net/projects/PULSAR/repos/pulsar-ui/pull-requests).
 
-[https://bitbucket.org/Stanton/pulsar](https://bitbucket.org/Stanton/pulsar)
-
-If you'd like to contribute, send us your Bitbucket username.
+Repository URL: [https://stash.hq.jadu.net/scm/pulsar/pulsar-ui.git](https://stash.hq.jadu.net/scm/pulsar/pulsar-ui.git)
 
 ----
 
@@ -20,12 +18,12 @@ If you'd like to contribute, send us your Bitbucket username.
 
 Pulsar requires some additional packages to be installed before it'll work, you can install all dependencies by typing the following command in the pulsar directory:
 
-	$ make
+    $ make
 
 (Make can be installed via xCode)
 
 You can define new composer packages to be installed in `composer.json` and new front-end libraries in `bower.json`, re-running the make command will bring these into Pulsar. You can reverse the make process by using:
 
-	$ sudo make clean
+    $ sudo make clean
 
 These dependencies should be committed to the Pulsar repository, for more information [read this article](http://addyosmani.com/blog/checking-in-front-end-dependencies/).

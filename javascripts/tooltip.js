@@ -19,7 +19,7 @@
  * ======================================================================== */
 
 
-+function ($) { "use strict";
+require(['jquery'], function ($) { "use strict";
 
   // TOOLTIP PUBLIC CLASS DEFINITION
   // ===============================
@@ -375,8 +375,4 @@
     return this
   }
 
-}(window.jQuery);
-
-$(document).ready(function() {
-  $('[data-toggle="tooltip"]').tooltip();
 });

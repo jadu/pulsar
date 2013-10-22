@@ -18,7 +18,7 @@
  * ======================================================================== */
 
 
-+function ($) { "use strict";
+require(['jquery'], function ($) { "use strict";
 
   // MODAL CLASS DEFINITION
   // ======================
@@ -240,4 +240,4 @@
       .on('hidden.bs.modal', '.modal', function () { $body.removeClass('modal--open') })
   })
 
-}(window.jQuery);
+});
