@@ -29,6 +29,9 @@
     <script type="text/javascript" src="{{ libsPath ~ 'html5shiv/dist/html5shiv.js' }}"></script>
     <script type="text/javascript" src="{{ libsPath ~ 'respond/respond.min.js' }}"></script>
     <![endif]-->
+
+    <script src="{{ libsPath ~ 'requirejs/require.js' }}"></script>
+    <script src="{{ jsPath ~ '/main.js' }}"></script>
 </head>
 <body class="language-html">
 
@@ -72,24 +75,7 @@
         {{ html.link(label = html.icon('long-arrow-up') ~ ' Top', href = '#top') }}
         {{ html.link(label = 'Jadu 1.12 &copy; 2013', href = '/credits') }}
     </footer> 
-
-    <script type="text/javascript" src="{{ libsPath ~ 'jquery/jquery.min.js' }}"></script>
-    <script type="text/javascript" src="{{ libsPath ~ 'console-js/console.js' }}"></script>
-    <script type="text/javascript" src="{{ libsPath ~ 'highcharts/highcharts.js' }}"></script>
-    <script type="text/javascript" src="{{ libsPath ~ 'Vague.js/Vague.js' }}"></script>
-    <script type="text/javascript" src="{{ libsPath ~ 'sticky/jquery.sticky.js' }}"></script>
-    <script type="text/javascript" src="{{ libsPath ~ 'highlightjs/highlight.pack.js' }}"></script>
-
-    <script type="text/javascript" src="{{ jsPath   ~ 'tab.js' }}"></script>
-    <script type="text/javascript" src="{{ jsPath   ~ 'dropdown.js' }}"></script>
-    <script type="text/javascript" src="{{ jsPath   ~ 'deck.js' }}"></script>
-    <script type="text/javascript" src="{{ jsPath   ~ 'flash.js' }}"></script>
-    <script type="text/javascript" src="{{ jsPath   ~ 'modal.js' }}"></script>
-    <script type="text/javascript" src="{{ jsPath   ~ 'tooltip.js' }}"></script>
-    <script type="text/javascript" src="{{ jsPath   ~ 'popover.js' }}"></script>
-    <script type="text/javascript" src="{{ jsPath   ~ 'scratch.js' }}"></script>
     <script type="text/javascript">{% block javascript %}{% endblock %}</script>
-
     <script src="http://localhost:8000/libs/livereload-js/dist/livereload.js?host=localhost"></script>
 </body>
 </html>

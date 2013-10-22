@@ -1,4 +1,4 @@
-require(['jquery', 'highcharts'], function() {
+require(['jquery', 'highcharts', 'highcharts-theme'], function() {
 
   $(document).ready(function() {
 
