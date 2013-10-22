@@ -24,7 +24,6 @@ require([
     'deck',
     'dropdown',
     'flash',
-    'highlightjs',
     'modal',
     'navigation',
     'tab',

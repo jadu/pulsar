@@ -9,59 +9,66 @@
 
 {% 
     set actions_menu = [
-        html.link(label = html.icon('save') ~ ' Save'),
-        html.link(label = html.icon('print') ~ ' Print'),
+        html.link(label = html.icon('save') ~ ' Save', href = '#save'),
+        html.link(label = html.icon('print') ~ ' Print', href = '#print'),
         html.divider(),
-        html.link(label = html.icon('trash') ~ ' Delete', href = '#', class = 'link--danger')
+        html.link(label = html.icon('trash') ~ ' Delete', href = '#delete', class = 'link--danger')
     ]
 %}
 
 {% block tabs_list %}
     {{ 
         html.tabs([
-            html.icon('font') ~ ' Typography',
             html.icon('plus-sign-alt') ~ ' Buttons/Labels/Badges',
-            html.icon('check-sign') ~ ' Forms',
+            html.icon('columns') ~ ' Decks',
             html.icon('warning-sign') ~ ' Flash messages',
+            html.icon('check-sign') ~ ' Forms',
             html.icon('list-alt') ~ ' Modals',
             html.icon('quote-left') ~ ' Tooltips',
             html.icon('table') ~ ' Tables',
             html.icon('tasks') ~ ' Progress bars',
+            html.icon('table') ~ ' Tables',
+            html.icon('quote-left') ~ ' Tooltips',
+            html.icon('font') ~ ' Typography',
             html.icon('bar-chart') ~ ' Table with summary'
         ], active_tab)
     }}
 {% endblock %}
 
-{% set tab_typography %}
-    {% include 'lexicon/tabs/typography.html.twig' %}
-{% endset %}
-
 {% set tab_buttons %}
     {% include 'lexicon/tabs/buttons_labels.html.twig' %}
 {% endset %}
 
-{% set tab_forms %}
-    {% include 'lexicon/tabs/forms.html.twig' %}
+{% set tab_decks %}
+    {% include 'lexicon/tabs/decks.html.twig' %}
 {% endset %}
 
 {% set tab_flash %}
     {% include 'lexicon/tabs/flash.html.twig' %}
 {% endset %}
 
+{% set tab_forms %}
+    {% include 'lexicon/tabs/forms.html.twig' %}
+{% endset %}
+
 {% set tab_modals %}
     {% include 'lexicon/tabs/modals.html.twig' %}
 {% endset %}
 
-{% set tab_tooltips %}
-    {% include 'lexicon/tabs/tooltips.html.twig' %}
+{% set tab_progress_bars %}
+    {% include 'lexicon/tabs/progress_bars.html.twig' %}
 {% endset %}
 
 {% set tab_data_grid %}
     {% include 'lexicon/tabs/datagrid.html.twig' %}
 {% endset %}
 
-{% set tab_progress_bars %}
-    {% include 'lexicon/tabs/progress_bars.html.twig' %}
+{% set tab_typography %}
+    {% include 'lexicon/tabs/typography.html.twig' %}
+{% endset %}
+
+{% set tab_tooltips %}
+    {% include 'lexicon/tabs/tooltips.html.twig' %}
 {% endset %}
 
 {% set tab_form_summary %}
@@ -70,8 +77,9 @@
 
 {% block tabs_content %}
     {{ html.tabs_content([
+      tab_buttons,
+      tab_decks, 
       tab_typography, 
-      tab_buttons, 
       tab_forms, 
       tab_flash, 
       tab_modals, 
@@ -80,49 +88,4 @@
       tab_progress_bars, 
       tab_form_summary
     ], active_tab) }}
-{% endblock %}
-
-{% block decks %}
-<div class="deck" id="exampledeck">
-  <div class="slide">
-    <div class="slide-inner">
-        <button class="close" data-dismiss="deck">×</button>
-          {{ form.create() }}
-          {{ form.fieldset_start('Deck Slide') }}
-
-          {{ form.text('Text input', 'inputText', null, 'inputText', 'Placeholder') }}
-          {{ form.checkbox('Checkbox with left label', 'inputCheckboxLeft', null, 'inputCheckboxLeft', true) }}
-          {{ form.file('File input', 'inputFile', null, 'inputFile') }}
-          {{ form.select('Select input', {value1: 'value one', value2: 'value two'}, 'inputSelect', null, 'inputSelect') }}
-          {{ form.textarea('Textarea (4 rows)', 'inputTextarea4', null, 'inputTextarea4', 'Placeholder', null, 4) }}
-
-          {{ form.fieldset_end() }}
-          {{ 
-            form.form_end([
-              form.submit('Save', 'btn--primary')
-            ]) 
-          }}
-    </div>
-  </div>
-  <div class="slide">
-    <div class="slide-inner">
-        <button class="close" data-dismiss="deck">×</button>
-          {{ form.create() }}
-          {{ form.fieldset_start('Deck Slide') }}
-
-          {{ form.text('Text input', 'inputText', null, 'inputText', 'Placeholder') }}
-          {{ form.checkbox('Checkbox with left label', 'inputCheckboxLeft', null, 'inputCheckboxLeft', true) }}
-          {{ form.file('File input', 'inputFile', null, 'inputFile') }}
-          {{ form.select('Select input', {value1: 'value one', value2: 'value two'}, 'inputSelect', null, 'inputSelect') }}
-          {{ form.textarea('Textarea (4 rows)', 'inputTextarea4', null, 'inputTextarea4', 'Placeholder', null, 4) }}
-
-          {{ form.fieldset_end() }}
-          {{ 
-            form.form_end([
-              form.submit('Save', 'btn--primary')
-            ]) 
-          }}
-    </div>
-  </div>
-</div>
 {% endblock %}

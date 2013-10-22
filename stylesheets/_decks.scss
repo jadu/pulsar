@@ -35,10 +35,10 @@
   
   // Control the horizontal position of successive deck slides ---------------
 
-  $left-offset: 10px;
+  $left-offset: 20px;
   $right-offset: 2px;
   
-  // IE8 Currently has issues supporting nth-of-type and n
+  // IE8 Currently has issues supporting nth-of-type and nth-child
   
   & {
   // &:nth-of-type(1)  { 
@@ -118,6 +118,10 @@
   @include ie-lte(7) {
       border: 1px solid $gray;
   }
+
+  &.padded {
+    padding: $line-height-base $gutter-width;
+  }
   
   & {
   // &:nth-of-type(1)  { 
@@ -129,61 +133,10 @@
       box-shadow: none;
   }
 
-  // .form-horizontal {
-  //  padding-top: 0;
-  // }
-
-  // // h1,
-  // // legend {
-  // //   border-bottom: 1px solid $gray-lighter;
-  // //   background-color: $gray-lighter;
-  // //   display: block;
-  // //   font-size: 14px;
-  // //   font-weight: normal;
-  // //   margin-top: 0;
-  // //   margin-bottom: $line-height-base;
-  // //   padding-left: 10px;
-  // //   width: 100%;
-  // // }
-
-  // // Remove the gray background from embedded fieldset legends 
-  // fieldset > fieldset legend {
-  //  background-color: transparent;
-  // }
-
-  // fieldset {
-  //  overflow-x: hidden;
-  // }
-
-  // legend {
-  //  margin-bottom: 0;
-  // }
-
-  // form {
-  //  background-color: $white;
-  //  margin: 0;
-  //  padding-top: 8px;
-  //  position: relative;
-  // }
-
-  // .form-actions {
-  //  background-color: $gray-lighter;
-  //  margin: 0;
-  //  position: relative;
-  // }
-
   .pager {
     margin-top: 0;
     text-align: left;
   }
-
-  // legend + iframe {
-  //  margin-top: 18px;
-  // }
-
-  // legend > .btn {
-  //  margin-top: 4px;
-  // }
 
   .table-scrollable {
     margin: $line-height-base 0 $line-height-base $gutter-width;
@@ -198,7 +151,6 @@
   table input[type="radio"] {
     margin-top: -5px;
   }
-
 
   .nav-tabs {
     border-bottom: 1px solid $white;
@@ -223,6 +175,7 @@
   }
 
 }
+
 
 // Define the animated transition when the .deck-background class is added and removed
 .nav-tabs,
