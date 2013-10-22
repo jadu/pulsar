@@ -17,8 +17,7 @@
  * limitations under the License.
  * ======================================================================== */
 
-
-+function ($) { "use strict";
+require(['jquery'], function ($) { "use strict";
 
   // DROPDOWN CLASS DEFINITION
   // =========================
@@ -151,4 +150,4 @@
     .on('click.bs.dropdown.data-api'  , toggle, Dropdown.prototype.toggle)
     .on('keydown.bs.dropdown.data-api', toggle + ', [role=menu]' , Dropdown.prototype.keydown)
 
-}(window.jQuery);
+});

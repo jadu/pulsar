@@ -18,8 +18,10 @@
     "highlightjs": "latest",
     "ie7-js": "https://ie7-js.googlecode.com/files/ie7-2.1%28beta4%29.zip",
     "jquery": "1.x",
+    "jquery-mousewheel": "latest",
     "normalize-css": "latest",
     "respond": "latest",
+    "requirejs": "latest",
     "sticky": "latest",
     "Vague.js": "Stanton/vague.js"
   },
