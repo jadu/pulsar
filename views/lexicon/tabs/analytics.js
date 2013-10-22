@@ -6,7 +6,7 @@ require(['jquery', 'highcharts', 'highcharts-theme'], function() {
 
     var analyticsChart = new Highcharts.Chart({
         chart: {
-          className: 'chart summary-tab_9',
+          className: 'chart summary-tab_12',
           renderTo: $container[0],
           type: 'areaspline'
         },
