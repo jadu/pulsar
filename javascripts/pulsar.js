@@ -17,12 +17,14 @@ require(['jquery'], function() {
         });
 
         // Trigger syntax highlighting
-        require(['highlightjs'], function() {
-            var aCodes = document.getElementsByTagName('pre');
-            for (var i=0; i < aCodes.length; i++) {
-                hljs.highlightBlock(aCodes[i]);
-            }
-        });
+        if (!$('html.ie7').size()) { // IE8 and up only
+            require(['highlightjs'], function() {
+                var aCodes = document.getElementsByTagName('pre');
+                for (var i=0; i < aCodes.length; i++) {
+                    hljs.highlightBlock(aCodes[i]);
+                }
+            });
+        }
 
         // Show summary panels based on their data-tab value
         require(['tab'], function() {

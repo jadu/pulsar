@@ -1,14 +1,27 @@
 {
   "name": "highlightjs",
-  "_cacheHeaders": {
-    "ETag": "\"507a8ceb-5822\"",
-    "Last-Modified": "Sun, 14 Oct 2012 09:59:07 GMT",
-    "Content-Length": "22562",
-    "Content-Type": "application/x-javascript"
+  "version": "7.3.0",
+  "main": "highlight.pack.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "vendor",
+    "components"
+  ],
+  "scripts": [
+    "highlight.pack.js"
+  ],
+  "files": [
+    "styles/default.css"
+  ],
+  "homepage": "https://github.com/components/highlightjs",
+  "_release": "7.3.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "7.3.0",
+    "commit": "60f5b260c3ae12578f7241e15e8102e9b65c4d3b"
   },
-  "_release": "e-tag:507a8ceb-",
-  "main": "index.js",
-  "_source": "http://yandex.st/highlightjs/7.3/highlight.min.js",
+  "_source": "git://github.com/components/highlightjs.git",
   "_target": "*",
-  "_originalSource": "http://yandex.st/highlightjs/7.3/highlight.min.js"
+  "_originalSource": "highlightjs"
 }
