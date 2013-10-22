@@ -5,7 +5,7 @@ requirejs.config({
         'flash'             : '/javascripts/flash',
         'highcharts'        : '/libs/highcharts/highcharts',
         'highcharts-theme'  : '/javascripts/highcharts-theme',
-        'highlightjs'       : '/libs/highlightjs/highlight.pack',
+        'highlightjs'       : '/libs/highlightjs/index',
         'jquery'            : '/libs/jquery/jquery',
         'jquery-mousewheel' : '/libs/jquery-mousewheel/jquery.mousewheel',
         'modal'             : '/javascripts/modal',
