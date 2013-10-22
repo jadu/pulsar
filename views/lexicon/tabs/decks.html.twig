@@ -1,0 +1,87 @@
+{% import 'pulsar/helpers/html.html.twig' as html %}
+{% import 'pulsar/helpers/form.html.twig' as form %}
+{% import 'pulsar/helpers/flash.html.twig' as flash %}
+<div class="tab__inner">
+    <h2>Decks</h2>
+
+    {{ html.button('A simple deck', null, 'link', null, '#deck-simple', 'data-toggle="deck"') }}
+
+    {{ html.button('A multi-slide deck', null, 'link', null, '#deck-multi', 'data-toggle="deck"') }}
+
+    {{ html.button('An AJAXY deck', null, 'link', null, '#deck-ajax', 'data-toggle="deck"') }}
+
+</div>
+
+<div class="deck" id="deck-simple">
+    <div class="slide">
+        <div class="slide-inner">
+            <button class="close" data-dismiss="deck">×</button>
+            {{ form.create() }}
+            {{ form.fieldset_start('Deck Slide') }}
+            {{ form.text('Text input', 'deckInputText', null, 'deckInputText', 'Placeholder') }}
+            {{ form.checkbox('Checkbox with left label', 'deckInputCheckboxLeft', null, 'deckInputCheckboxLeft', true) }}
+            {{ form.file('File input', 'deckInputFile', null, 'deckInputFile') }}
+            {{ form.select('Select input', {value1: 'value one', value2: 'value two'}, 'deckInputSelect', null, 'deckInputSelect') }}
+            {{ form.textarea('Textarea (4 rows)', 'deckInputTextarea4', null, 'deckInputTextarea4', 'Placeholder', null, 4) }}
+            {{ form.fieldset_end() }}
+            {{ 
+                form.form_end([
+                    form.submit('Save', 'btn--primary')
+                ]) 
+            }}
+        </div>
+    </div>
+</div>
+
+
+<div class="deck" id="deck-multi">
+    <div class="slide" id="slide-1">
+        <div class="slide-inner">
+            <button class="close" data-dismiss="deck">×</button>
+            {{ form.create() }}
+            {{ form.fieldset_start('Slide One') }}
+            {{ form.textarea('Textarea (4 rows)', 'deckInputTextarea4', null, 'deckInputTextarea4', 'Placeholder', null) }}
+            {{ form.fieldset_end() }}           
+            {{ 
+                form.form_end([
+                    html.button('Show me slide 2 ' ~ html.icon('arrow-right'), 'btn--primary', 'link', null, '#slide-2', 'data-toggle="slide"'),
+                    html.button('Close this slide', null, 'link', null, null, 'data-dismiss="slide"'),
+                    html.button('Close all slides', null, 'link', null, null, 'data-dismiss="deck"')
+                ]) 
+            }}
+        </div>
+    </div>
+    <div class="slide" id="slide-2">
+        <div class="slide-inner">
+            <button class="close" data-dismiss="deck">×</button>
+            {{ form.create() }}
+            {{ form.fieldset_start('Slide Two') }}
+            {{ form.textarea('Textarea (4 rows)', 'deckInputTextarea4', null, 'deckInputTextarea4', 'Placeholder', null) }}
+            {{ form.fieldset_end() }}           
+            {{ 
+                form.form_end([
+                    html.button('Show me slide 3 ' ~ html.icon('arrow-right'), 'btn--primary', 'link', null, '#slide-3', 'data-toggle="slide"'),
+                    html.button('Close this slide', null, 'link', null, null, 'data-dismiss="slide"'),
+                    html.button('Close all slides', null, 'link', null, null, 'data-dismiss="deck"')
+                ]) 
+            }}
+        </div>
+    </div>
+    <div class="slide" id="slide-3">
+        <div class="slide-inner">
+            <button class="close" data-dismiss="deck">×</button>
+            {{ form.create() }}
+            {{ form.fieldset_start('Slide Three') }}
+            {{ form.textarea('Textarea (4 rows)', 'deckInputTextarea4', null, 'deckInputTextarea4', 'Placeholder', null) }}
+            {{ form.fieldset_end() }}           
+            {{ 
+                form.form_end([
+                    html.button('Close this slide', null, 'link', null, null, 'data-dismiss="slide"'),
+                    html.button('Close all slides', null, 'link', null, null, 'data-dismiss="deck"')
+                ]) 
+            }}
+        </div>
+    </div>
+</div>
+
+<div class="deck" id="deck-ajax" data-deck-source="views/lexicon/decks/deck-example.html.twig"></div>
