@@ -24,6 +24,7 @@
             html.icon('warning-sign') ~ ' Flash messages',
             html.icon('check-sign') ~ ' Forms',
             html.icon('list-alt') ~ ' Modals',
+            html.icon('comment') ~ ' Popovers',
             html.icon('tasks') ~ ' Progress bars',
             html.icon('table') ~ ' Tables',
             html.icon('quote-left') ~ ' Tooltips',
@@ -59,6 +60,8 @@
 
 {% set tab_data_grid %}
     {% include 'lexicon/tabs/datagrid.html.twig' %}
+{% set tab_popovers %}
+    {% include 'lexicon/tabs/popovers.html.twig' %}
 {% endset %}
 
 {% set tab_progress_bars %}
@@ -80,6 +83,7 @@
       tab_flash, 
       tab_forms, 
       tab_modals, 
+      tab_popovers, 
       tab_progress_bars, 
       tab_data_grid, 
       tab_tooltips, 
