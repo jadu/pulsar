@@ -22,7 +22,7 @@
     </fieldset>
 {% endmacro %}
 
-{% macro text(label, value, id, class, name, placeholder, help, prepend, append) %}
+{% macro text(label, value, id, class, name, placeholder, help, prepend, append, attributes) %}
     {% import _self as form %}
     <div class="form__group {{ class }}">
         <label {{ form.for(id) }} class="control__label">{{ label | raw }}</label>
@@ -31,7 +31,7 @@
             <div class="input-group">
                 {{ form.addon(prepend) }}
             {% endif %}
-                <input type="text" class="form__control" {{ form.id(id) }} {{ form.name(name) }} {{ form.placeholder(placeholder) }} {{ form.value(value)}} />
+                <input type="text" class="form__control" {{ form.id(id) }} {{ form.name(name) }} {{ form.placeholder(placeholder) }} {{ form.value(value)}}{% if attributes is not empty %} {{ attributes|raw }}{% endif %} />
             {% if prepend is not empty or append is not empty %}
                 {{ form.addon(append) }}
             </div>
@@ -93,7 +93,9 @@
 {% macro select(label, options, selected, id, class, name, help) %}
     {% import _self as form %}
     <div class="form__group {{ class }}">
+        {% if label is not null %}
         <label {{ form.for(id) }} class="control__label">{{ label | raw }}</label>
+        {% endif %}
         <div class="controls">
             <select class="form__control" {{ form.id(id) }} {{ form.name(name) }}>
             {%- for value, option in options -%}
