@@ -3,15 +3,57 @@
 {% import 'pulsar/helpers/flash.html.twig' as flash %}
 <table class="table--datagrid">
     <thead>
+        <tr class="filters">
+            <th class="centered">
+                <small>Filters:</small>
+            </th>
+            <th colspan="99">
+                <span class="label label--inverse">
+                    <strong>Author:</strong> Paul Stanton <i class="icon-remove-sign"></i></span>
+                <span class="label label--inverse" data-daterange="true">
+                    <strong>Created:</strong> Last 30 days <i class="icon-remove-sign"></i></span>
+                {{ 
+                    html.link(
+                        attributes = 'data-filter-action="add" data-toggle="tooltip" data-placement="right"',
+                        title = 'Add a filter',
+                        label = html.label(
+                            label = html.icon(
+                                icon_name = 'plus-sign'
+                            )
+                        )
+                    ) 
+                }}
+                {{
+                    html.link(
+                        attributes = 'data-filter-action="clear-all" data-toggle="tooltip" data-placement="left"',
+                        title = 'Clear all filters',
+                        label = html.icon(
+                            icon_name = 'remove-sign'
+                        )
+                    )
+                }}
+            </th>
+        </tr>
         <tr>
             <th class="row__actions">
                 <input type="checkbox" />
             </th>
-            <th><a href="#">Title {{ html.icon('sort-down') }}</a></th>
-            <th><a href="#">Created</a></th>
-            <th><a href="#">Modified</a></th>
-            <th class="centered shrink-to-fit"><a href="#">{{ html.icon('comment-alt') }}</a></th>
-            <th><a href="#">Author</a></th>
+            <th>
+                {{ html.link(label = 'Title') }}
+                {{ html.icon('sort-by-alphabet') }}
+            </th>
+            <th>
+                {{ html.link(label = 'Created') }}
+            </th>
+            <th>
+                {{ html.link(label = 'Modified') }}
+            </th>
+            <th class="centered shrink-to-fit">
+                {{ html.link(label = html.icon('comment-alt')) }}
+            </th>
+            <th>
+                {{ html.link(label = 'Author') }} 
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -107,3 +149,4 @@
         </tr>            
     </tbody>
 </table>
+

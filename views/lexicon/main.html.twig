@@ -20,13 +20,13 @@
     {{ 
         html.tabs([
             html.icon('plus-sign-alt') ~ ' Buttons/Labels/Badges',
+            html.icon('table') ~ ' Data grid',
             html.icon('columns') ~ ' Decks',
             html.icon('warning-sign') ~ ' Flash messages',
             html.icon('check-sign') ~ ' Forms',
             html.icon('list-alt') ~ ' Modals',
             html.icon('comment') ~ ' Popovers',
             html.icon('tasks') ~ ' Progress bars',
-            html.icon('table') ~ ' Tables',
             html.icon('quote-left') ~ ' Tooltips',
             html.icon('font') ~ ' Typography',
             html.icon('bar-chart') ~ ' Table with summary'
@@ -36,6 +36,10 @@
 
 {% set tab_buttons %}
     {% include 'lexicon/tabs/buttons_labels.html.twig' %}
+{% endset %}
+
+{% set tab_data_grid %}
+    {% include 'lexicon/tabs/datagrid.html.twig' %}
 {% endset %}
 
 {% set tab_decks %}
@@ -54,18 +58,16 @@
     {% include 'lexicon/tabs/modals.html.twig' %}
 {% endset %}
 
-{% set tab_tooltips %}
-    {% include 'lexicon/tabs/tooltips.html.twig' %}
-{% endset %}
-
-{% set tab_data_grid %}
-    {% include 'lexicon/tabs/datagrid.html.twig' %}
 {% set tab_popovers %}
     {% include 'lexicon/tabs/popovers.html.twig' %}
 {% endset %}
 
 {% set tab_progress_bars %}
     {% include 'lexicon/tabs/progress_bars.html.twig' %}
+{% endset %}
+
+{% set tab_tooltips %}
+    {% include 'lexicon/tabs/tooltips.html.twig' %}
 {% endset %}
 
 {% set tab_typography %}
@@ -79,13 +81,13 @@
 {% block tabs_content %}
     {{ html.tabs_content([
       tab_buttons,
+      tab_data_grid, 
       tab_decks, 
       tab_flash, 
       tab_forms, 
       tab_modals, 
       tab_popovers, 
       tab_progress_bars, 
-      tab_data_grid, 
       tab_tooltips, 
       tab_typography, 
       tab_form_summary

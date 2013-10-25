@@ -2,7 +2,7 @@
  * Set up Pulsar's UI environment
  */
 
-require(['jquery'], function() {
+define(['jquery'], function() {
 
     $(document).ready(function() {
     
@@ -54,6 +54,34 @@ require(['jquery'], function() {
                 $(this).parent().addClass('is-active');
                 $(this).next().slideToggle('fast');
             });
+        });
+
+        // $('[data-popover-content]').popover({ 
+        //     html : true, 
+        //     placement: 'bottom',
+        //     content: function() {
+        //       return $($(this).data('popoverContent'));
+        //     }
+        // });
+
+        require(['daterange'], function() {
+            $('[data-daterange]').daterangepicker(
+                {
+                  ranges: {
+                     'Today': [moment(), moment()],
+                     'Yesterday': [moment().subtract('days', 1), moment().subtract('days', 1)],
+                     'Last 7 Days': [moment().subtract('days', 6), moment()],
+                     'Last 30 Days': [moment().subtract('days', 29), moment()],
+                     'This Month': [moment().startOf('month'), moment().endOf('month')],
+                     'Last Month': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
+                  },
+                  startDate: moment().subtract('days', 29),
+                  endDate: moment()
+                },
+                function(start, end) {
+                    $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+                }
+            );
         });
 
     });

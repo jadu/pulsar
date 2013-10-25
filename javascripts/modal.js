@@ -18,7 +18,7 @@
  * ======================================================================== */
 
 
-require(['jquery'], function ($) { "use strict";
+define(['jquery'], function($) { "use strict";
 
   // MODAL CLASS DEFINITION
   // ======================

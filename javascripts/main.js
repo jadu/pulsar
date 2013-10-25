@@ -1,5 +1,6 @@
 requirejs.config({
     paths: {
+        'daterange'         : '/libs/bootstrap-daterangepicker/daterangepicker',
         'deck'              : '/javascripts/deck',
         'dropdown'          : '/javascripts/dropdown',
         'flash'             : '/javascripts/flash',
@@ -9,6 +10,7 @@ requirejs.config({
         'jquery'            : '/libs/jquery/jquery',
         'jquery-mousewheel' : '/libs/jquery-mousewheel/jquery.mousewheel',
         'modal'             : '/javascripts/modal',
+        'moment'            : '/libs/moment/moment',
         'navigation'        : '/javascripts/navigation',
         'order'             : '/libs/order/index',
         'popover'           : '/javascripts/popover',
@@ -17,6 +19,12 @@ requirejs.config({
         'tab'               : '/javascripts/tab',
         'tooltip'           : '/javascripts/tooltip',
         'vague'             : '/libs/Vague.js/Vague'
+    },
+    shim: {
+        daterange: {
+            deps: ['jquery', 'moment'],
+            exports: 'daterange'
+        }
     }
 });
  
