@@ -17,21 +17,51 @@
 %}
 
 {% block tabs_list %}
-    {{ 
-        html.tabs([
-            html.icon('plus-sign-alt') ~ ' Buttons/Labels/Badges',
-            html.icon('columns') ~ ' Decks',
-            html.icon('warning-sign') ~ ' Flash messages',
-            html.icon('check-sign') ~ ' Forms',
-            html.icon('list-alt') ~ ' Modals',
-            html.icon('tasks') ~ ' Progress bars',
-            html.icon('table') ~ ' Tables',
-            html.icon('quote-left') ~ ' Tooltips',
-            html.icon('font') ~ ' Typography',
-            html.icon('bar-chart') ~ ' Table with summary'
-        ], active_tab)
-    }}
+{{ 
+    html.tabs(tabs = [
+        {'components': html.icon('puzzle-piece') ~ ' Components', 
+          'tabs': [
+            {'buttons':  html.icon('plus-sign-alt') ~ ' Buttons'},
+            {'table':    html.icon('table') ~ ' Table'},
+            {'decks':    html.icon('columns') ~ ' Decks'},
+            {'flash':    html.icon('warning-sign') ~ ' Flash messages'},
+            {'forms':    html.icon('check-sign') ~ ' Forms'},
+            {'modals':   html.icon('list-alt') ~ ' Modals'},
+            {'popovers': html.icon('comment') ~ ' Popovers'},
+            {'progress': html.icon('tasks') ~ ' Progress bars'},
+            {'tooltips': html.icon('quote-left') ~ ' Tooltips'},
+            {'type':     html.icon('font') ~ ' Typography'}
+          ]
+        },
+        {'examples': html.icon('desktop') ~ ' UI Examples', 
+            'tabs': [
+              {'summary': html.icon('bar-chart') ~ ' Table with summary'},
+              {'filter':  html.icon('filter') ~ ' Table with filters'}
+            ]
+        }
+      ], active_tab = 'examples'
+    )
+}}
 {% endblock %}
+
+{# 
+   html.icon('plus-sign-alt') ~ ' Buttons/Labels/Badges',
+        html.icon('table') ~ ' Table',
+        html.icon('columns') ~ ' Decks',
+        html.icon('warning-sign') ~ ' Flash messages',
+        html.icon('check-sign') ~ ' Forms',
+        html.icon('list-alt') ~ ' Modals',
+        html.icon('comment') ~ ' Popovers',
+        html.icon('tasks') ~ ' Progress bars',
+        html.icon('quote-left') ~ ' Tooltips',
+        html.icon('font') ~ ' Typography',
+        [
+          html.icon('desktop') ~ ' UI examples',
+          html.icon('bar-chart') ~ ' Table with summary',
+          html.icon('filter') ~ ' Table with filters'
+        ]
+    ], active_tab)
+#}
 
 {% set tab_buttons %}
     {% include 'lexicon/tabs/buttons_labels.html.twig' %}

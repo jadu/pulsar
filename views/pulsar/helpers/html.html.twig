@@ -67,19 +67,55 @@
 {%- endmacro -%}
 
 
-{%- macro tabs(tab_labels, active_tab = 1) -%}
+{%- macro tabs(tabs, active_tab = 1) -%}
   {% import _self as html %}
   <ul class="tabs__list">
-  {%- for tab_label in tab_labels -%}
-    
-    {% if loop.index == active_tab %}
-      {% set class = ' class=is-active' %}
-    {% else %}
-      {% set class = '' %}
-    {% endif %}
 
-    <li{{ class }}>{{ html.link(tab_label, '#tab_' ~ loop.index, null, null, 'data-toggle="tab"') }}</li>
+  {%- for tab in tabs -%}
+    <li{{ class }}>
+    {%- for id, label, sub_tabs in tab -%}
+
+      {% if id == active_tab %}
+        {% set class = ' class=is-active' %}
+      {% else %}
+        {% set class = '' %}
+      {% endif %}
+
+
+      {% if label is not iterable %}
+
+      {{ html.link(
+          label = label, 
+          href = '#' ~ id, 
+          attributes = 'data-toggle="tab"') }}
+
+      {% else %}
+
+        <ul class="tabs__list">
+        
+        {% for sub_tab in label %}
+        {% for sub_id, sub_label in sub_tab %}
+          
+          <li>
+          
+            {{ html.link(
+              label = sub_label, 
+              href = '#' ~ sub_id, 
+              attributes = 'data-toggle="tab"') }}
+
+          </li>
+
+        {% endfor %}
+        {% endfor %}
+
+        </ul>
+      {% endif %}
+
+
+    {%- endfor -%}
+    </li>
   {%- endfor -%}
+
   </ul>
 {%- endmacro -%}
 

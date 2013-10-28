@@ -15,6 +15,7 @@ $twig = new Twig_Environment($loader, array('debug' => true));
 $twig->addExtension(new ConfigExtension($baseDir . 'pulsar.json'));
 $twig->addExtension(new RelativeTimeExtension());
 $twig->addExtension(new UrlParamsExtension($_GET));
+$twig->addExtension(new Twig_Extension_Debug());
 
 $template = $twig->loadTemplate('lexicon/main.html.twig');
 
