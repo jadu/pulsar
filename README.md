@@ -6,6 +6,8 @@ These steps detail how you can run Pulsar UI completely independently of a Jadu/
 
 Pulsar creates its own development server to run the documentation and to compile the stylesheets, if you're running Mountain Lion you will need to install PHP 5.4.0+, [This article](http://php-osx.liip.ch) shows how to install the latest version of PHP as `/usr/local/php5/bin/php`. This path is defined in `Gruntfile.js`.
 
+----
+
 ## Pulsar repository
 
 Pulsar uses Git and the source is published to [Stash](https://stash.hq.jadu.net), you are free to clone and [fork](https://stash.hq.jadu.net/projects/PULSAR/repos/pulsar-ui?fork) this repository as needed, please submit any changes as a [pull request](https://stash.hq.jadu.net/projects/PULSAR/repos/pulsar-ui/pull-requests).
