@@ -2,9 +2,9 @@ These steps detail how you can run Pulsar UI completely independently of a Jadu/
 
 ## Requirements
 
-### PHP 5.4.0+
+### OSX Mavericks (or manual install of PHP 5.4.0+)
 
-Pulsar creates its own development server to run the documentation and to compile the stylesheets, you will need PHP 5.4.0+ installed on your mac, but this doesn't have to be the default version installed under OSX. [This article](http://php-osx.liip.ch) shows how to install the latest version of PHP as `/usr/local/php5/bin/php`. This path is defined in `Gruntfile.js`.
+Pulsar creates its own development server to run the documentation and to compile the stylesheets, if you're running Mountain Lion you will need to install PHP 5.4.0+, [This article](http://php-osx.liip.ch) shows how to install the latest version of PHP as `/usr/local/php5/bin/php`. This path is defined in `Gruntfile.js`.
 
 ## Pulsar repository
 
