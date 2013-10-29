@@ -60,18 +60,9 @@ require(['jquery'], function() {
             $('.tabs__list [data-toggle="tab"]').click(function(e) {
                 e.preventDefault();
                 $(this).parent().siblings().find('ul').slideUp('fast').parent().removeClass('is-active');
-                $(this).parent().addClass('is-active');
                 $('.tabs__list', $(this).parent()).slideToggle('fast'); 
             });
         });
-
-        // $('[data-popover-content]').popover({ 
-        //     html : true, 
-        //     placement: 'bottom',
-        //     content: function() {
-        //       return $($(this).data('popoverContent'));
-        //     }
-        // });
 
         require(['daterange'], function() {
             $('[data-daterange]').daterangepicker(

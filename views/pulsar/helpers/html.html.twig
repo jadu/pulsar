@@ -67,20 +67,20 @@
 {%- endmacro -%}
 
 
-{%- macro tabs(tabs, active_tab = 1) -%}
+{%- macro tabs(tabs, active_tab = null) -%}
   {% import _self as html %}
   <ul class="tabs__list">
 
+    {% if active_tab == null %}
+      {% set class = ' class=is-active' %}
+    {% else %}
+      {% set class = '' %}
+    {% endif %}
+
   {%- for tab in tabs -%}
+
     <li{{ class }}>
     {%- for id, label, sub_tabs in tab -%}
-
-      {% if id == active_tab %}
-        {% set class = ' class=is-active' %}
-      {% else %}
-        {% set class = '' %}
-      {% endif %}
-
 
       {% if label is not iterable %}
 
@@ -95,8 +95,14 @@
         
         {% for sub_tab in label %}
         {% for sub_id, sub_label in sub_tab %}
+
+          {% if active_tab == null and loop.parent.loop.index == 1 %}
+            {% set class = ' class=is-active' %}
+          {% else %}
+            {% set class = '' %}
+          {% endif %}
           
-          <li>
+          <li{{ class }}>
           
             {{ html.link(
               label = sub_label, 
@@ -120,19 +126,21 @@
 {%- endmacro -%}
 
 
-{%- macro tabs_content(tab_contents, active_tab = 1) -%}
+{%- macro tabs_content(tabs, active_tab = null) -%}
   <div class="tabs__content">
-  {%- for tab_content in tab_contents -%}
+  {%- for tab in tabs -%}
+  {%- for id, content in tab -%}
 
-    {% if loop.index == active_tab %}
+    {% if active_tab == null and loop.parent.loop.index == 1 %}
       {% set class = ' is-active' %}
     {% else %}
       {% set class = '' %}
     {% endif %}
 
-    <div class="tab__pane{{ class }}" id="tab_{{ loop.index }}">
-      {{ tab_content|raw }}
+    <div class="tab__pane{{ class }}" id="{{ id }}">
+      {{ content|raw }}
     </div>
+  {%- endfor -%}
   {%- endfor -%}
   </div>
 {%- endmacro -%}

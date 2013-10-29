@@ -68,7 +68,8 @@
   }
 }
 
-.tabs__list > li.is-open > .tabs__list {
+.tabs__list > li.is-open > .tabs__list,
+.tabs__list > li.is-active > .tabs__list {
   display: block;
 }
 

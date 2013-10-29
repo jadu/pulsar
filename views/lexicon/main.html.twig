@@ -39,29 +39,10 @@
               {'filter':  html.icon('filter') ~ ' Table with filters'}
             ]
         }
-      ], active_tab = 'examples'
+      ]
     )
 }}
 {% endblock %}
-
-{# 
-   html.icon('plus-sign-alt') ~ ' Buttons/Labels/Badges',
-        html.icon('table') ~ ' Table',
-        html.icon('columns') ~ ' Decks',
-        html.icon('warning-sign') ~ ' Flash messages',
-        html.icon('check-sign') ~ ' Forms',
-        html.icon('list-alt') ~ ' Modals',
-        html.icon('comment') ~ ' Popovers',
-        html.icon('tasks') ~ ' Progress bars',
-        html.icon('quote-left') ~ ' Tooltips',
-        html.icon('font') ~ ' Typography',
-        [
-          html.icon('desktop') ~ ' UI examples',
-          html.icon('bar-chart') ~ ' Table with summary',
-          html.icon('filter') ~ ' Table with filters'
-        ]
-    ], active_tab)
-#}
 
 {% set tab_buttons %}
     {% include 'lexicon/tabs/buttons_labels.html.twig' %}
@@ -104,16 +85,20 @@
 {% endset %}
 
 {% block tabs_content %}
-    {{ html.tabs_content([
-      tab_buttons,
-      tab_decks, 
-      tab_flash, 
-      tab_forms, 
-      tab_modals, 
-      tab_progress_bars, 
-      tab_data_grid, 
-      tab_tooltips, 
-      tab_typography, 
-      tab_form_summary
-    ], active_tab) }}
+{{ 
+  html.tabs_content(
+    tabs = [
+      {'buttons':  tab_buttons},
+      {'table':    tab_data_grid}, 
+      {'decks':    tab_decks}, 
+      {'flash':    tab_flash}, 
+      {'forms':    tab_forms}, 
+      {'modals':   tab_modals}, 
+      {'progress': tab_progress_bars}, 
+      {'tooltips': tab_tooltips}, 
+      {'type':     tab_typography}, 
+      {'summary':  tab_form_summary}
+    ]
+  ) 
+}}
 {% endblock %}
