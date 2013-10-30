@@ -10,6 +10,7 @@ use dflydev\markdown\MarkdownExtraParser;
 use Jadu\Pulsar\Twig\Extension\ConfigExtension;
 use Jadu\Pulsar\Twig\Extension\RelativeTimeExtension;
 use Jadu\Pulsar\Twig\Extension\UrlParamsExtension;
+use Jadu\Pulsar\Twig\Extension\TabsExtension;
 
 $markdownParser = new MarkdownExtraParser();
 $loader = new Twig_Loader_Filesystem($templateDir);
@@ -18,6 +19,8 @@ $twig = new Twig_Environment($loader, array('debug' => true));
 $twig->addExtension(new ConfigExtension($baseDir . 'pulsar.json'));
 $twig->addExtension(new RelativeTimeExtension());
 $twig->addExtension(new UrlParamsExtension($_GET));
+$twig->addExtension(new TabsExtension());
+$twig->addExtension(new Twig_Extension_Debug());
 
 $template = $twig->loadTemplate('docs/main.html.twig');
 

@@ -67,62 +67,35 @@
 {%- endmacro -%}
 
 
-{%- macro tabs(tabs, active_tab = null) -%}
+{%- macro tabs(tabs_list) -%}
   {% import _self as html %}
+  {% set active_tab_id = get_active_tab(tabs_list, active_tab) %}
+
   <ul class="tabs__list">
+  {%- for tab_item in tabs_list -%}
+      <li{% if active_tab_id == tab_item.tab.id %} class="is-active"{% endif %}>
 
-    {% if active_tab == null %}
-      {% set class = ' class=is-active' %}
-    {% else %}
-      {% set class = '' %}
-    {% endif %}
-
-  {%- for tab in tabs -%}
-
-    <li{{ class }}>
-    {%- for id, label, sub_tabs in tab -%}
-
-      {% if label is not iterable %}
-
-      {{ html.link(
-          label = label, 
-          href = '#' ~ id, 
+        {{ html.link(
+          label = tab_item.tab.label, 
+          href = '#' ~ tab_item.tab.id, 
           attributes = 'data-toggle="tab"') }}
 
-      {% else %}
-
         <ul class="tabs__list">
-        
-        {% for sub_tab in label %}
-        {% for sub_id, sub_label in sub_tab %}
 
-          {% if active_tab == null and loop.parent.loop.index == 1 %}
-            {% set class = ' class=is-active' %}
-          {% else %}
-            {% set class = '' %}
-          {% endif %}
-          
-          <li{{ class }}>
-          
-            {{ html.link(
-              label = sub_label, 
-              href = '#' ~ sub_id, 
-              attributes = 'data-toggle="tab"') }}
-
-          </li>
-
-        {% endfor %}
-        {% endfor %}
+          {%- for sub_tab in tab_item.sub_tabs -%}
+            <li{% if active_tab == sub_tab.id %} class="is-active"{% endif %}>
+              {{ html.link(
+                label = sub_tab.label, 
+                href = '#' ~ sub_tab.id, 
+                attributes = 'data-toggle="tab"') }}
+            </li>
+          {%- endfor -%}
 
         </ul>
-      {% endif %}
-
-
+      </li>
     {%- endfor -%}
-    </li>
-  {%- endfor -%}
-
   </ul>
+  
 {%- endmacro -%}
 
 
@@ -161,6 +134,12 @@
   {%- endfor -%}
   </ul>
 {%- endmacro -%}
+
+
+{%- macro list_item(item, class) -%}
+  <li {% if class is not empty %} class="{{ class }}"{% endif %}>{{ item }}</li>
+{%- endmacro -%}
+
 
 {%- macro progress(value, class, label, value_visible = false) -%}
   <div class="progress">

@@ -16,31 +16,64 @@
     ]
 %}
 
+{% 
+  set tabs = [{
+      "tab":
+        {
+          "id": "components", 
+          "label": html.icon("puzzle-piece") ~ " Components"},
+      "sub_tabs": [
+        {
+          "id": "buttons", 
+          "label": html.icon("plus-sign-alt") ~ " Buttons"},
+        {
+          "id": "table",   
+          "label": html.icon("table") ~ " Table"},
+        {
+          "id": "decks",   
+          "label": html.icon("columns") ~ " Decks"},
+        {
+          "id": "flash",   
+          "label": html.icon("warning-sign") ~ " Flash messages"},
+        {
+          "id": "forms",   
+          "label": html.icon("check-sign") ~ " Forms"},
+        {
+          "id": "modals",  
+          "label": html.icon("list-alt") ~ " Modals"},
+        {
+          "id": "popovers",
+          "label": html.icon("comment") ~ " Popovers"},
+        {
+          "id": "progress",
+          "label": html.icon("tasks") ~ " Progress bars"},
+        {
+          "id": "tooltips",
+          "label": html.icon("quote-left") ~ " Tooltips"},
+        {
+          "id": "type",    
+          "label": html.icon("font") ~ " Typography"}
+      ]
+    },
+    {
+      "tab":
+        {
+          "id": "examples",
+          "label": html.icon("desktop") ~ " UI Examples"},
+      "sub_tabs": [
+        {
+          "id": "summary",
+          "label": html.icon("bar-chart") ~ " Table with summary"},
+        {
+          "id": "filter",  
+          "label": html.icon("filter") ~ " Table with filters"}
+      ]
+    }]
+%}
+
 {% block tabs_list %}
 {{ 
-    html.tabs(tabs = [
-        {'components': html.icon('puzzle-piece') ~ ' Components', 
-          'tabs': [
-            {'buttons':  html.icon('plus-sign-alt') ~ ' Buttons'},
-            {'table':    html.icon('table') ~ ' Table'},
-            {'decks':    html.icon('columns') ~ ' Decks'},
-            {'flash':    html.icon('warning-sign') ~ ' Flash messages'},
-            {'forms':    html.icon('check-sign') ~ ' Forms'},
-            {'modals':   html.icon('list-alt') ~ ' Modals'},
-            {'popovers': html.icon('comment') ~ ' Popovers'},
-            {'progress': html.icon('tasks') ~ ' Progress bars'},
-            {'tooltips': html.icon('quote-left') ~ ' Tooltips'},
-            {'type':     html.icon('font') ~ ' Typography'}
-          ]
-        },
-        {'examples': html.icon('desktop') ~ ' UI Examples', 
-            'tabs': [
-              {'summary': html.icon('bar-chart') ~ ' Table with summary'},
-              {'filter':  html.icon('filter') ~ ' Table with filters'}
-            ]
-        }
-      ]
-    )
+    html.tabs(tabs)
 }}
 {% endblock %}
 
