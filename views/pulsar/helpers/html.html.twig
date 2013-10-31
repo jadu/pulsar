@@ -73,7 +73,7 @@
 
   <ul class="tabs__list">
   {%- for tab_item in tabs_list -%}
-      <li{% if (active_tab_id == null and loop.index == 1) or (active_tab_id == tab_item.tab.id) %} class="is-active"{% endif %}>
+      <li{% if (active_tab_id == null and loop.first == 1) or (active_tab_id == tab_item.tab.id) %} class="is-active"{% endif %}>
 
         {{ html.link(
           label = tab_item.tab.label, 
@@ -83,7 +83,7 @@
         <ul class="tabs__list">
 
           {%- for sub_tab in tab_item.sub_tabs -%}
-            <li{% if (active_tab_id == null and loop.index == 1) or (active_tab == sub_tab.id) %} class="is-active"{% endif %}>
+            <li{% if (active_tab_id == null and loop.parent.loop.first and loop.first) or (active_tab == sub_tab.id) %} class="is-active"{% endif %}>
               {{ html.link(
                 label = sub_tab.label, 
                 href = '#' ~ sub_tab.id, 
@@ -102,18 +102,17 @@
 {%- macro tabs_content(tabs, active_tab = null) -%}
   <div class="tabs__content">
   {%- for tab in tabs -%}
-  {%- for id, content in tab -%}
-
-    {% if active_tab == null and loop.parent.loop.index == 1 %}
+  
+    {% if active_tab == null and loop.index == 1 %}
       {% set class = ' is-active' %}
     {% else %}
       {% set class = '' %}
     {% endif %}
 
-    <div class="tab__pane{{ class }}" id="{{ id }}">
-      {{ content|raw }}
+    <div class="tab__pane{{ class }}" id="{{ tab.id }}">
+      {{ tab.src|raw }}
     </div>
-  {%- endfor -%}
+
   {%- endfor -%}
   </div>
 {%- endmacro -%}

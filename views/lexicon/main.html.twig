@@ -42,9 +42,6 @@
           "id": "modals",  
           "label": html.icon("list-alt") ~ " Modals"},
         {
-          "id": "popovers",
-          "label": html.icon("comment") ~ " Popovers"},
-        {
           "id": "progress",
           "label": html.icon("tasks") ~ " Progress bars"},
         {
@@ -63,10 +60,7 @@
       "sub_tabs": [
         {
           "id": "summary",
-          "label": html.icon("bar-chart") ~ " Table with summary"},
-        {
-          "id": "filter",  
-          "label": html.icon("filter") ~ " Table with filters"}
+          "label": html.icon("bar-chart") ~ " Table with summary"}
       ]
     }]
 %}
@@ -109,6 +103,10 @@
     {% include 'lexicon/tabs/progress_bars.html.twig' %}
 {% endset %}
 
+{% set tab_progress_bars %}
+    {% include 'lexicon/tabs/progress_bars.html.twig' %}
+{% endset %}
+
 {% set tab_typography %}
     {% include 'lexicon/tabs/typography.html.twig' %}
 {% endset %}
@@ -121,16 +119,36 @@
 {{ 
   html.tabs_content(
     tabs = [
-      {'buttons':  tab_buttons},
-      {'table':    tab_data_grid}, 
-      {'decks':    tab_decks}, 
-      {'flash':    tab_flash}, 
-      {'forms':    tab_forms}, 
-      {'modals':   tab_modals}, 
-      {'progress': tab_progress_bars}, 
-      {'tooltips': tab_tooltips}, 
-      {'type':     tab_typography}, 
-      {'summary':  tab_form_summary}
+      {
+        "id": "buttons",
+        "src": tab_buttons},
+      {
+        "id": "table",
+        "src": tab_data_grid}, 
+      {
+        "id": "decks",
+        "src": tab_decks}, 
+      {
+        "id": "flash",
+        "src": tab_flash}, 
+      {
+        "id": "forms",
+        "src": tab_forms}, 
+      {
+        "id": "modals",
+        "src": tab_modals}, 
+      {
+        "id": "progress",
+        "src": tab_progress_bars}, 
+      {
+        "id": "tooltips",
+        "src": tab_tooltips}, 
+      {
+        "id": "type",
+        "src": tab_typography}, 
+      {
+        "id": "summary",
+        "src": tab_form_summary}
     ]
   ) 
 }}
