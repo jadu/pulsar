@@ -67,9 +67,9 @@
       "label"     : html.icon("puzzle-piece") ~ " Components",
       "sub_tabs"  : [
         {
-          "id"    : "table",   
-          "label" : html.icon("table") ~ " Table",
-          "src"   : tab_data_grid
+          "id"    : "buttons", 
+          "label" : html.icon("plus-sign-alt") ~ " Buttons",
+          "src"   : tab_buttons
         },
         {
           "id"    : "decks",   
@@ -97,6 +97,11 @@
           "src"   : tab_progress_bars
         },
         {
+          "id"    : "table",   
+          "label" : html.icon("table") ~ " Table",
+          "src"   : tab_data_grid
+        },
+        {
           "id"    : "tooltips",
           "label" : html.icon("quote-left") ~ " Tooltips",
           "src"   : tab_tooltips
@@ -107,11 +112,6 @@
           "src"   : tab_typography
         }
       ]
-    },
-    {
-      "id"    : "buttons", 
-      "label" : html.icon("plus-sign-alt") ~ " Buttons",
-      "src"   : tab_buttons
     },
     {
       "id"        : "examples",

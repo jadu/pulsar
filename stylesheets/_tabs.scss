@@ -47,8 +47,10 @@
     border: 1px solid $gray;
     box-shadow: inset 2px 0 0 $gray;
     border-right: none;
-    position: relative;
     z-index: 1;
+    &:hover {
+      background-color: $gray-lighter;
+    }
   } 
 }
 
@@ -65,6 +67,9 @@
     background-color: rgba(0, 0, 0, .1);
     border: 0;
     box-shadow: none;
+    &:hover {
+      background-color: $gray-lighter;
+    }
   }
 }
 
