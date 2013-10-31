@@ -73,7 +73,7 @@
 
   <ul class="tabs__list">
   {%- for tab_item in tabs_list -%}
-      <li{% if active_tab_id == tab_item.tab.id %} class="is-active"{% endif %}>
+      <li{% if (active_tab_id == null and loop.index == 1) or (active_tab_id == tab_item.tab.id) %} class="is-active"{% endif %}>
 
         {{ html.link(
           label = tab_item.tab.label, 
@@ -83,7 +83,7 @@
         <ul class="tabs__list">
 
           {%- for sub_tab in tab_item.sub_tabs -%}
-            <li{% if active_tab == sub_tab.id %} class="is-active"{% endif %}>
+            <li{% if (active_tab_id == null and loop.index == 1) or (active_tab == sub_tab.id) %} class="is-active"{% endif %}>
               {{ html.link(
                 label = sub_tab.label, 
                 href = '#' ~ sub_tab.id, 
