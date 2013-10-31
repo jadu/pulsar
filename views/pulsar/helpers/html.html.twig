@@ -107,14 +107,14 @@
   {%- for tab in tabs -%}
 
     {%- if tab.src != null -%}
-      <div class="tab__pane{% if (active_tab_id == null and loop.first) or (active_tab_id == tab.id) %} is-active{% endif %}" id="{{ tab.id }}">
+      <div class="tab__pane{% if (active_tab_id == null and loop.first) or (active_tab_id == tab.id) %} is-active{% endif %}" id="{{ tab.id }}"{% if tab.attr != null %} {{ tab.attr|raw }}{% endif %}>
         {{ tab.src|raw }}
       </div>
     {%- endif -%}
 
     {%- for sub_tab in tab.sub_tabs -%}
         
-        <div class="tab__pane{% if (active_tab == null and loop.parent.loop.first and loop.first) or (active_tab == sub_tab.id) %} is-active{% endif %}" id="{{ sub_tab.id }}">
+        <div class="tab__pane{% if (active_tab == null and loop.parent.loop.first and loop.first) or (active_tab == sub_tab.id) %} is-active{% endif %}" id="{{ sub_tab.id }}"{% if sub_tab.attr != null %} {{ sub_tab.attr|raw }}{% endif %}>
           {{ sub_tab.src|raw }}
         </div>
 

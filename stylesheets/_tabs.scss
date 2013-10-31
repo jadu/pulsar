@@ -42,6 +42,10 @@
     }
   }
 
+  > li.is-open > a {
+    outline: 1px solid red;
+  }
+
   > li.is-active > a {
     background-color: $white;
     border: 1px solid $gray;
