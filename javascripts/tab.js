@@ -134,8 +134,8 @@ require(['jquery'], function ($) {
     $(this).tab('show')
   })
 
-  // Make sure tab panes are at least as high as the tab list (otherwise they just look weird)
   $(document).ready(function() {
+    // Make sure tab panes are at least as high as the tab list (otherwise they just look weird)
     $('.tab__pane').css('min-height', $('.tabs__list').height());
   });
 

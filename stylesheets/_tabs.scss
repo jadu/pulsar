@@ -68,11 +68,8 @@
   }
 }
 
-.tabs__list {
-  li.is-open > .tabs__list,
-  li.is-active > .tabs__list {
-    display: block;
-  }
+.tabs__list .is-active > .tabs__list {
+  display: block;
 }
 
 .tabs__content {

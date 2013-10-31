@@ -46,24 +46,6 @@ require(['jquery'], function() {
             });
         });
 
-        require(['jquery'], function() {
-            // Subnavigation collapse (copied from daux.io, should be made nicerer)
-            $('.aj-nav').click(function(e) {
-                e.preventDefault();
-                $(this).parent().siblings().find('ul').slideUp().parent().removeClass('is-active');
-                $(this).parent().addClass('is-active');
-                $(this).next().slideToggle('fast');
-            });
-        });
-
-        require(['jquery'], function() {
-            $('.tabs__list [data-toggle="tab"]').click(function(e) {
-                e.preventDefault();
-                $(this).parent().siblings().find('ul').slideUp('fast').parent().removeClass('is-active');
-                $('.tabs__list', $(this).parent()).slideToggle('fast'); 
-            });
-        });
-
         require(['daterange'], function() {
             $('[data-daterange]').daterangepicker(
                 {
