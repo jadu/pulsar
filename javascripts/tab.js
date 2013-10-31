@@ -52,6 +52,13 @@ require(['jquery'], function ($) {
 
     var $target = $(selector)
 
+    // If we have sub-tabs, selecting the parent should activate and highlight the first one
+    if (!$target.length)  {
+      var firstTab = $('li > a', $this.parent())
+      firstTab.parent().removeClass('is-active').first().addClass('is-active')
+      $target = $($(firstTab).attr('href'))      
+    }
+
     this.activate($this.parent('li'), $ul)
     this.activate($target, $target.parent(), function () {
       $this.trigger({

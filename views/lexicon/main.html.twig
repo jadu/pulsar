@@ -16,61 +16,6 @@
     ]
 %}
 
-{% 
-  set tabs = [{
-      "tab":
-        {
-          "id": "components", 
-          "label": html.icon("puzzle-piece") ~ " Components"},
-      "sub_tabs": [
-        {
-          "id": "buttons", 
-          "label": html.icon("plus-sign-alt") ~ " Buttons"},
-        {
-          "id": "table",   
-          "label": html.icon("table") ~ " Table"},
-        {
-          "id": "decks",   
-          "label": html.icon("columns") ~ " Decks"},
-        {
-          "id": "flash",   
-          "label": html.icon("warning-sign") ~ " Flash messages"},
-        {
-          "id": "forms",   
-          "label": html.icon("check-sign") ~ " Forms"},
-        {
-          "id": "modals",  
-          "label": html.icon("list-alt") ~ " Modals"},
-        {
-          "id": "progress",
-          "label": html.icon("tasks") ~ " Progress bars"},
-        {
-          "id": "tooltips",
-          "label": html.icon("quote-left") ~ " Tooltips"},
-        {
-          "id": "type",    
-          "label": html.icon("font") ~ " Typography"}
-      ]
-    },
-    {
-      "tab":
-        {
-          "id": "examples",
-          "label": html.icon("desktop") ~ " UI Examples"},
-      "sub_tabs": [
-        {
-          "id": "summary",
-          "label": html.icon("bar-chart") ~ " Table with summary"}
-      ]
-    }]
-%}
-
-{% block tabs_list %}
-{{ 
-    html.tabs(tabs)
-}}
-{% endblock %}
-
 {% set tab_buttons %}
     {% include 'lexicon/tabs/buttons_labels.html.twig' %}
 {% endset %}
@@ -115,41 +60,77 @@
     {% include 'lexicon/tabs/analytics.html.twig' %}
 {% endset %}
 
+{% 
+  set tabs = [
+    {
+      "id"        : "components", 
+      "label"     : html.icon("puzzle-piece") ~ " Components",
+      "sub_tabs"  : [
+        {
+          "id"    : "table",   
+          "label" : html.icon("table") ~ " Table",
+          "src"   : tab_data_grid
+        },
+        {
+          "id"    : "decks",   
+          "label" : html.icon("columns") ~ " Decks",
+          "src"   : tab_decks
+        },
+        {
+          "id"    : "flash",   
+          "label" : html.icon("warning-sign") ~ " Flash messages",
+          "src"   : tab_flash
+        },
+        {
+          "id"    : "forms",   
+          "label" : html.icon("check-sign") ~ " Forms",
+          "src"   : tab_forms
+        },
+        {
+          "id"    : "modals",  
+          "label" : html.icon("list-alt") ~ " Modals",
+          "src"   : tab_modals
+        },
+        {
+          "id"    : "progress",
+          "label" : html.icon("tasks") ~ " Progress bars",
+          "src"   : tab_progress_bars
+        },
+        {
+          "id"    : "tooltips",
+          "label" : html.icon("quote-left") ~ " Tooltips",
+          "src"   : tab_tooltips
+        },
+        {
+          "id"    : "type",
+          "label" : html.icon("font") ~ " Typography",
+          "src"   : tab_typography
+        }
+      ]
+    },
+    {
+      "id"    : "buttons", 
+      "label" : html.icon("plus-sign-alt") ~ " Buttons",
+      "src"   : tab_buttons
+    },
+    {
+      "id"        : "examples",
+      "label"     : html.icon("desktop") ~ " UI Examples",
+      "sub_tabs"  : [
+        {
+          "id"    : "summary",
+          "label" : html.icon("bar-chart") ~ " Table with summary",
+          "src"   : tab_form_summary
+        }
+      ]
+    }
+  ]
+%}
+
+{% block tabs_list %}
+  {{ html.tabs(tabs) }}
+{% endblock %}
+
 {% block tabs_content %}
-{{ 
-  html.tabs_content(
-    tabs = [
-      {
-        "id": "buttons",
-        "src": tab_buttons},
-      {
-        "id": "table",
-        "src": tab_data_grid}, 
-      {
-        "id": "decks",
-        "src": tab_decks}, 
-      {
-        "id": "flash",
-        "src": tab_flash}, 
-      {
-        "id": "forms",
-        "src": tab_forms}, 
-      {
-        "id": "modals",
-        "src": tab_modals}, 
-      {
-        "id": "progress",
-        "src": tab_progress_bars}, 
-      {
-        "id": "tooltips",
-        "src": tab_tooltips}, 
-      {
-        "id": "type",
-        "src": tab_typography}, 
-      {
-        "id": "summary",
-        "src": tab_form_summary}
-    ]
-  ) 
-}}
+  {{ html.tabs_content(tabs) }}
 {% endblock %}
