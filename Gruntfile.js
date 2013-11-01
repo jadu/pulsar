@@ -9,7 +9,8 @@ module.exports = function(grunt) {
     php: {
       dev: {
         options: {
-          bin: '/usr/local/php5/bin/php', // See http://php-osx.liip.ch for PHP 5.4.0+ on OSX
+          bin: '/usr/bin/php', // Mavericks
+          // bin: '/usr/local/php5/bin/php', // Mountain Lion (See http://php-osx.liip.ch for PHP 5.4.0+)
           keepalive: true,
           open: true
         }

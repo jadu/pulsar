@@ -16,7 +16,7 @@ class UrlParamsExtensionTest extends \PHPUnit_Framework_TestCase
 
     public function testGetDefaultTab() 
     {
-        $this->assertEquals(1, $this->ext->getActiveTab());
+        $this->assertEquals(null, $this->ext->getActiveTab());
     }
 
     public function testGetActiveTab() 

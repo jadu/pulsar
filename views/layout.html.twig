@@ -40,12 +40,9 @@
         {% include 'pulsar/components/breadcrumb.html.twig' %}
         <!--{% include 'pulsar/components/flash.html.twig' %}-->
     </header>
-
-    <div class="summary hide" data-tab="#tab_12">
-        <div id="container"></div>
-        {% block summary %}{% endblock %}
-    </div>
-
+    
+    {% block summary %}{% endblock %}
+    
     <div class="actionsbar actionsbar--left">
         <div class="btn__toolbar">
             <div class="btn__group">

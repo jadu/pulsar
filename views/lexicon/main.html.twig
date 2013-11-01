@@ -16,30 +16,8 @@
     ]
 %}
 
-{% block tabs_list %}
-    {{ 
-        html.tabs([
-            html.icon('plus-sign-alt') ~ ' Buttons/Labels/Badges',
-            html.icon('table') ~ ' Data grid',
-            html.icon('columns') ~ ' Decks',
-            html.icon('warning-sign') ~ ' Flash messages',
-            html.icon('check-sign') ~ ' Forms',
-            html.icon('list-alt') ~ ' Modals',
-            html.icon('comment') ~ ' Popovers',
-            html.icon('tasks') ~ ' Progress bars',
-            html.icon('quote-left') ~ ' Tooltips',
-            html.icon('font') ~ ' Typography',
-            html.icon('bar-chart') ~ ' Table with summary'
-        ], active_tab)
-    }}
-{% endblock %}
-
 {% set tab_buttons %}
     {% include 'lexicon/tabs/buttons_labels.html.twig' %}
-{% endset %}
-
-{% set tab_data_grid %}
-    {% include 'lexicon/tabs/datagrid.html.twig' %}
 {% endset %}
 
 {% set tab_decks %}
@@ -58,16 +36,20 @@
     {% include 'lexicon/tabs/modals.html.twig' %}
 {% endset %}
 
-{% set tab_popovers %}
-    {% include 'lexicon/tabs/popovers.html.twig' %}
+{% set tab_tooltips %}
+    {% include 'lexicon/tabs/tooltips.html.twig' %}
+{% endset %}
+
+{% set tab_data_grid %}
+    {% include 'lexicon/tabs/datagrid.html.twig' %}
 {% endset %}
 
 {% set tab_progress_bars %}
     {% include 'lexicon/tabs/progress_bars.html.twig' %}
 {% endset %}
 
-{% set tab_tooltips %}
-    {% include 'lexicon/tabs/tooltips.html.twig' %}
+{% set tab_progress_bars %}
+    {% include 'lexicon/tabs/progress_bars.html.twig' %}
 {% endset %}
 
 {% set tab_typography %}
@@ -78,18 +60,84 @@
     {% include 'lexicon/tabs/analytics.html.twig' %}
 {% endset %}
 
+{% 
+  set tabs = [
+    {
+      "id"        : "components", 
+      "label"     : html.icon("puzzle-piece") ~ " Components",
+      "sub_tabs"  : [
+        {
+          "id"    : "buttons", 
+          "label" : html.icon("plus-sign-alt") ~ " Buttons",
+          "src"   : tab_buttons
+        },
+        {
+          "id"    : "decks",   
+          "label" : html.icon("columns") ~ " Decks",
+          "src"   : tab_decks
+        },
+        {
+          "id"    : "flash",   
+          "label" : html.icon("warning-sign") ~ " Flash messages",
+          "src"   : tab_flash
+        },
+        {
+          "id"    : "forms",   
+          "label" : html.icon("check-sign") ~ " Forms",
+          "src"   : tab_forms
+        },
+        {
+          "id"    : "modals",  
+          "label" : html.icon("list-alt") ~ " Modals",
+          "src"   : tab_modals
+        },
+        {
+          "id"    : "progress",
+          "label" : html.icon("tasks") ~ " Progress bars",
+          "src"   : tab_progress_bars
+        },
+        {
+          "id"    : "table",   
+          "label" : html.icon("table") ~ " Table",
+          "src"   : tab_data_grid
+        },
+        {
+          "id"    : "tooltips",
+          "label" : html.icon("quote-left") ~ " Tooltips",
+          "src"   : tab_tooltips
+        },
+        {
+          "id"    : "type",
+          "label" : html.icon("font") ~ " Typography",
+          "src"   : tab_typography
+        }
+      ]
+    },
+    {
+      "id"        : "examples",
+      "label"     : html.icon("desktop") ~ " UI Examples",
+      "sub_tabs"  : [
+        {
+          "id"    : "summary",
+          "label" : html.icon("bar-chart") ~ " Table with summary",
+          "src"   : tab_form_summary,
+          "attr"  : "data-summary=#analytics"
+        }
+      ]
+    }
+  ]
+%}
+
+{% block summary %}
+  <div class="summary hide" data-tab="#analytics">
+    <div id="container"></div>
+  </div>
+{% endblock %}
+
+{% block tabs_list %}
+  {{ html.tabs(tabs) }}
+{% endblock %}
+
 {% block tabs_content %}
-    {{ html.tabs_content([
-      tab_buttons,
-      tab_data_grid, 
-      tab_decks, 
-      tab_flash, 
-      tab_forms, 
-      tab_modals, 
-      tab_popovers, 
-      tab_progress_bars, 
-      tab_tooltips, 
-      tab_typography, 
-      tab_form_summary
-    ], active_tab) }}
+  {{ html.tabs_content(tabs) }}
 {% endblock %}

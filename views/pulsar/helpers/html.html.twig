@@ -67,36 +67,59 @@
 {%- endmacro -%}
 
 
-{%- macro tabs(tab_labels, active_tab = 1) -%}
+{%- macro tabs(tabs) -%}
   {% import _self as html %}
+  {% set active_tab_id = get_active_tab(tabs, active_tab) %}
   <ul class="tabs__list">
-  {%- for tab_label in tab_labels -%}
-    
-    {% if loop.index == active_tab %}
-      {% set class = ' class=is-active' %}
-    {% else %}
-      {% set class = '' %}
-    {% endif %}
+  {%- for tab in tabs -%}
 
-    <li{{ class }}>{{ html.link(label = tab_label, href = '#tab_' ~ loop.index, attributes = 'data-toggle="tab"') }}</li>
-  {%- endfor -%}
+      <li{% if (active_tab_id == null and loop.first) or (active_tab_id == tab.id) %} class="is-active"{% endif %}>
+
+        {{ html.link(
+          label = tab.label, 
+          href = '#' ~ tab.id, 
+          attributes = 'data-toggle="tab"') }}
+
+        {%- if tab.sub_tabs != null %}
+          <ul class="tabs__list">
+
+            {%- for sub_tab in tab.sub_tabs -%}
+              <li{% if (active_tab_id == null and loop.parent.loop.first and loop.first) or (active_tab == sub_tab.id) %} class="is-active"{% endif %}>
+                {{ html.link(
+                  label = sub_tab.label, 
+                  href = '#' ~ sub_tab.id, 
+                  attributes = 'data-toggle="tab"') }}
+              </li>
+            {%- endfor -%}
+
+          </ul>
+        {%- endif -%}
+
+      </li>
+    {%- endfor -%}
   </ul>
+  
 {%- endmacro -%}
 
 
-{%- macro tabs_content(tab_contents, active_tab = 1) -%}
+{%- macro tabs_content(tabs) -%}
   <div class="tabs__content">
-  {%- for tab_content in tab_contents -%}
+  {%- for tab in tabs -%}
 
-    {% if loop.index == active_tab %}
-      {% set class = ' is-active' %}
-    {% else %}
-      {% set class = '' %}
-    {% endif %}
+    {%- if tab.src != null -%}
+      <div class="tab__pane{% if (active_tab_id == null and loop.first) or (active_tab_id == tab.id) %} is-active{% endif %}" id="{{ tab.id }}"{% if tab.attr != null %} {{ tab.attr|raw }}{% endif %}>
+        {{ tab.src|raw }}
+      </div>
+    {%- endif -%}
 
-    <div class="tab__pane{{ class }}" id="tab_{{ loop.index }}">
-      {{ tab_content|raw }}
-    </div>
+    {%- for sub_tab in tab.sub_tabs -%}
+        
+        <div class="tab__pane{% if (active_tab == null and loop.parent.loop.first and loop.first) or (active_tab == sub_tab.id) %} is-active{% endif %}" id="{{ sub_tab.id }}"{% if sub_tab.attr != null %} {{ sub_tab.attr|raw }}{% endif %}>
+          {{ sub_tab.src|raw }}
+        </div>
+
+    {%- endfor -%}
+
   {%- endfor -%}
   </div>
 {%- endmacro -%}
@@ -117,6 +140,12 @@
   {%- endfor -%}
   </ul>
 {%- endmacro -%}
+
+
+{%- macro list_item(item, class) -%}
+  <li {% if class is not empty %} class="{{ class }}"{% endif %}>{{ item }}</li>
+{%- endmacro -%}
+
 
 {%- macro progress(value, class, label, value_visible = false) -%}
   <div class="progress">
