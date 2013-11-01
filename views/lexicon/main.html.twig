@@ -44,8 +44,8 @@
     {% include 'lexicon/tabs/datagrid.html.twig' %}
 {% endset %}
 
-{% set tab_progress_bars %}
-    {% include 'lexicon/tabs/progress_bars.html.twig' %}
+{% set tab_popovers %}
+    {% include 'lexicon/tabs/popovers.html.twig' %}
 {% endset %}
 
 {% set tab_progress_bars %}
@@ -63,33 +63,38 @@
 {% 
   set tabs = [
     {
-      "id"        : "components", 
+      "id"        : "components",
       "label"     : html.icon("puzzle-piece") ~ " Components",
       "sub_tabs"  : [
         {
-          "id"    : "buttons", 
+          "id"    : "buttons",
           "label" : html.icon("plus-sign-alt") ~ " Buttons",
           "src"   : tab_buttons
         },
         {
-          "id"    : "decks",   
+          "id"    : "decks",
           "label" : html.icon("columns") ~ " Decks",
           "src"   : tab_decks
         },
         {
-          "id"    : "flash",   
+          "id"    : "flash",  
           "label" : html.icon("warning-sign") ~ " Flash messages",
           "src"   : tab_flash
         },
         {
-          "id"    : "forms",   
+          "id"    : "forms",  
           "label" : html.icon("check-sign") ~ " Forms",
           "src"   : tab_forms
         },
         {
-          "id"    : "modals",  
+          "id"    : "modals", 
           "label" : html.icon("list-alt") ~ " Modals",
           "src"   : tab_modals
+        },
+        {
+          "id"    : "popovers",
+          "label" : html.icon("comment") ~ " Popovers",
+          "src"   : tab_popovers
         },
         {
           "id"    : "progress",
@@ -97,7 +102,7 @@
           "src"   : tab_progress_bars
         },
         {
-          "id"    : "table",   
+          "id"    : "table",  
           "label" : html.icon("table") ~ " Table",
           "src"   : tab_data_grid
         },
