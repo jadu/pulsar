@@ -121,12 +121,18 @@
           "id"    : "summary",
           "label" : html.icon("bar-chart") ~ " Table with summary",
           "src"   : tab_form_summary,
-          "attr"  : "data-summary=\"#summary\""
+          "attr"  : "data-summary=#analytics"
         }
       ]
     }
   ]
 %}
+
+{% block summary %}
+  <div class="summary hide" data-tab="#analytics">
+    <div id="container"></div>
+  </div>
+{% endblock %}
 
 {% block tabs_list %}
   {{ html.tabs(tabs) }}
