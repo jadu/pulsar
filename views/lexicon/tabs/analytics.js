@@ -6,7 +6,7 @@ require(['jquery', 'highcharts', 'highcharts-theme'], function() {
 
     var analyticsChart = new Highcharts.Chart({
         chart: {
-          className: 'chart summary-tab_10',
+          className: 'chart tab-summary',
           renderTo: $container[0],
           type: 'areaspline'
         },
@@ -31,5 +31,6 @@ require(['jquery', 'highcharts', 'highcharts-theme'], function() {
         }]
     });
   });
+
 
 });

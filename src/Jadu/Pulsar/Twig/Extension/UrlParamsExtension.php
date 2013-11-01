@@ -37,6 +37,6 @@ class UrlParamsExtension extends \Twig_Extension
 
     public function getActiveTab()
     {
-        return (isset($this->parameters['tab'])) ? intval($this->parameters['tab']) : 1;
+        return (isset($this->parameters['tab'])) ? $this->parameters['tab'] : null;
     }
 }

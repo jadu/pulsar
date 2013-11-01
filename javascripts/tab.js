@@ -52,6 +52,15 @@ require(['jquery'], function ($) {
 
     var $target = $(selector)
 
+    // If we have sub-tabs, selecting the parent should activate and highlight the first one
+    if (!$target.length)  {
+    var firstTab = $('li > a', $this.parent())
+      if ($(firstTab).attr('href').substring(0,1) === "#") {
+          firstTab.parent().removeClass('is-active').first().addClass('is-active')
+          $target = $($(firstTab).attr('href'))
+      }
+    }
+
     this.activate($this.parent('li'), $ul)
     this.activate($target, $target.parent(), function () {
       $this.trigger({
@@ -59,6 +68,8 @@ require(['jquery'], function ($) {
       , relatedTarget: previous
       })
     })
+
+    $('.tab__pane').css('min-height', $('.tabs__list').height());
   }
 
   Tab.prototype.activate = function (element, container, callback) {
@@ -134,8 +145,8 @@ require(['jquery'], function ($) {
     $(this).tab('show')
   })
 
-  // Make sure tab panes are at least as high as the tab list (otherwise they just look weird)
   $(document).ready(function() {
+    // Make sure tab panes are at least as high as the tab list (otherwise they just look weird)
     $('.tab__pane').css('min-height', $('.tabs__list').height());
   });
 

@@ -175,22 +175,17 @@ function build_nav($tree, $url_params = false) {
 	$url_path = url_path();
 	$html = '<ul class="tabs__list">';
 	foreach($tree as $key => $val) {
+        
 		// Active Tree Node
 		if (isset($url_params[0]) && $url_params[0] == $val['clean']) {
 			array_shift($url_params);
-
-			// Final Node
-			if ($url_path == $val['url']) {
-				$html .= '<li class="is-active">';
-			} else {
-				$html .= '<li class="is-active is-open">';
-			}
+            $html .= '<li class="is-active">';			
 		} else {
 			$html .= '<li>';
 		}
 
 		if ($val['type'] == 'folder') {
-			$html .= '<a href="#" class="aj-nav folder">'.$val['name'].'</a>';
+			$html .= '<a href="#" data-toggle="tab">'.$val['name'].'</a>';
 			$html .= build_nav($val['tree'], $url_params);
 		} else {
 			$html .= '<a href="'.$val['url'].'">'.$val['name'].'</a>';

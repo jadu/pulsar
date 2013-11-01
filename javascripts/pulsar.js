@@ -31,30 +31,32 @@ require(['jquery'], function() {
             $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
                 e.target // activated tab
                 e.relatedTarget // previous tab
-                $('.summary .open').removeClass('open').hide();
 
-                var $container = $('.summary');
-                var $summary = $('.summary-' + $(e.target).attr('href').substring(1)).parent();
+                $('.summary.open').removeClass('open').hide();
+                
+                var $summary = '';
+
+                if ($(e.target).parent().has('.is-active').length != 0) {
+                    var $pane = $($('.is-active > a', $(e.target).parent()).attr('href'));
+                    if ($pane.attr('data-summary') != 'undefined') {
+                        $summary = $('[data-tab="' + $pane.attr('data-summary') + '"]');
+                    }
+                } else {
+                    $summary = $($(e.target).attr('data-summary'));
+                }
 
                 if ($summary.length) {
-                    $container.show();
                     $summary.show().addClass('open');
                 } else {
-                    $container.hide();
                     $summary.hide();
                 }
             });
         });
+    
 
-        require(['jquery'], function() {
-            // Subnavigation collapse (copied from daux.io, should be made nicerer)
-            $('.aj-nav').click(function(e) {
-                e.preventDefault();
-                $(this).parent().siblings().find('ul').slideUp().parent().removeClass('is-active');
-                $(this).parent().addClass('is-active');
-                $(this).next().slideToggle('fast');
-            });
-        });
+        if ($('[data-summary]').hasClass('is-active')) {
+            $('[data-tab="' + $('[data-summary]').attr('href') + '"]').show();
+        }
 
     });
 });
