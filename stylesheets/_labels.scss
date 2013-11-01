@@ -48,4 +48,8 @@
 
 .label--inverse {
   @include label-variant($label-inverse-bg);
+  
+  i {
+    color: $label-color;
+  }  
 }

@@ -60,6 +60,10 @@
     {% include 'lexicon/tabs/analytics.html.twig' %}
 {% endset %}
 
+{% set tab_filters %}
+    {% include 'lexicon/tabs/filters.html.twig' %}
+{% endset %}
+
 {% 
   set tabs = [
     {
@@ -127,6 +131,11 @@
           "label" : html.icon("bar-chart") ~ " Table with summary",
           "src"   : tab_form_summary,
           "attr"  : "data-summary=#analytics"
+        },
+        {
+          "id"    : "filters",
+          "label" : html.icon("filter") ~ " Table with filters",
+          "src"   : tab_filters
         }
       ]
     }
