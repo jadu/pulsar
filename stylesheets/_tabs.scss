@@ -68,7 +68,7 @@
   float: none;
 
   > li.is-active > a {
-    background-color: rgba(0, 0, 0, .1);
+    background-color: $gray-lighter;
     border: 0;
     box-shadow: none;
     &:hover {
@@ -106,7 +106,6 @@
 
 .tab__inner {
   margin: 0 $gutter-width;
-  overflow: hidden;
 }
 
 .tab__main {
