@@ -58,8 +58,6 @@ require(['jquery'], function() {
             $('[data-tab="' + $('[data-summary]').attr('href') + '"]').show();
         }
 
-        
-
     });
 });
 

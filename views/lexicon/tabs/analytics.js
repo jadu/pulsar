@@ -31,9 +31,6 @@ require(['jquery', 'highcharts', 'highcharts-theme'], function() {
         }]
     });
   });
-  
-  if ($('#summary').hasClass('is-active')) {
-    $('[data-tab="#summary"]').show();
-  }
+
 
 });

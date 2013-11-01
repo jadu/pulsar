@@ -118,18 +118,19 @@
 .tab__sidebar {
   border-left: 1px solid $gray;
   float: right;
-  // opacity: .3;
   left: -1px; // match left border with that of .tab__main
   padding: $line-height-base 0 $line-height-base $gutter-width;
   position: relative;
   vertical-align: top;
   width: 25%;
-
-  // &:hover {
-  //  opacity: 1;
-  // }
 }
 
 .tab--padded {
   padding: $line-height-base 0;
+}
+
+.tabs {
+  display: inline-block;
+  margin-bottom: 3.2em;
+  width: 100%;
 }

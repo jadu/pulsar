@@ -68,6 +68,8 @@ require(['jquery'], function ($) {
       , relatedTarget: previous
       })
     })
+
+    $('.tab__pane').css('min-height', $('.tabs__list').height());
   }
 
   Tab.prototype.activate = function (element, container, callback) {
