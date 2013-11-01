@@ -17,7 +17,7 @@
       "grunt-contrib-clean": "latest",
       "grunt-contrib-copy": "latest",
       "grunt-contrib-jshint": "latest",
-      "grunt-contrib-sass": "latest",
+      "grunt-sass": "latest",
       "grunt-contrib-uglify": "latest",
       "grunt-contrib-watch": "latest",
       "grunt-exec": "latest",
