@@ -12,7 +12,7 @@
   "dependencies": {
     "bourbon": "latest",
     "console-js": "gh-pages",
-    "font-awesome": "latest",
+    "font-awesome": "3.2.1",
     "html5shiv": "latest",
     "highcharts": "latest",
     "highlightjs": "latest",

@@ -1,9 +1,10 @@
-(function (Highcharts) {
-	var seriesTypes = Highcharts.seriesTypes,
-		each = Highcharts.each;
+(function (H) {
+	var seriesTypes = H.seriesTypes,
+		each = H.each;
 	
-	seriesTypes.heatmap = Highcharts.extendClass(seriesTypes.map, {
+	seriesTypes.heatmap = H.extendClass(seriesTypes.map, {
 		colorKey: 'z',
+		useMapGeometry: false,
 		pointArrayMap: ['y', 'z'],
 		translate: function () {
 			var series = this,
@@ -45,7 +46,8 @@
 			series.translateColors(dataMin, dataMax);
 		},
 		
-		getBox: function () {}
+		getBox: function () {},
+		getExtremes: H.Series.prototype.getExtremes
 			
 	});
 	
