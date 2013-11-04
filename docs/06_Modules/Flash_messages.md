@@ -4,39 +4,39 @@
 
 Available attributes:
 
-	{{ flash.message(message, sticky = true) }}
+    {{ flash.message(message, sticky = true) }}
 
 Variations:
 
-	{{ flash.message(message = 'This is the default flash message style, messages can also contain ' ~ html.link(label = 'links', href = '#my-link')) }}
+    {{ flash.message(message = 'This is the default flash message style, messages can also contain ' ~ html.link(label = 'links', href = '#my-link')) }}
 
-	{{ flash.success(message = 'This is a success message') }}
+    {{ flash.success(message = 'This is a success message') }}
 
-	{{ flash.warning(message = 'This is a warning message') }}
+    {{ flash.warning(message = 'This is a warning message') }}
 
-	{{ flash.error(message = 'This is an error message') }}
+    {{ flash.error(message = 'This is an error message') }}
 
 <p>
 <div class="flash flash--default">
-	<i class="icon-info-sign"></i> This is the default flash.message style, messages can also contain <a href="#my-link">links</a>
+    <i class="icon-info-sign"></i> This is the default flash.message style, messages can also contain <a href="#my-link">links</a>
 </div>
 </p>
 
 <p>
 <div class="flash flash--success">
-	<i class="icon-ok"></i> This is a success message
+    <i class="icon-ok"></i> This is a success message
 </div>
 </p>
 
 <p>
 <div class="flash flash--warning">
-	<i class="icon-warning-sign"></i> This is a warning message
+    <i class="icon-warning-sign"></i> This is a warning message
 </div>
 </p>
 
 <p>
 <div class="flash flash--error">
-	<i class="icon-warning-sign"></i> This is an error message
+    <i class="icon-warning-sign"></i> This is an error message
 </div>
 </p>
 

@@ -4,16 +4,17 @@ Create a submit input to POST the current form, usually passed to the [form end 
 
 Available paramters:
 
-	{{ form.submit(label = 'Submit', class, type, id, href, attributes) }}
+    {{ form.submit(label = 'Submit', class, type, id, href, attributes) }}
 
 Example:
 
-	{{ form.submit(label = 'Save') }}
+    {{ form.submit(label = 'Save') }}
 
-	<input type="submit" class="btn" value="Save" />
+    <input type="submit" class="btn" value="Save" />
 
 <input type="submit" class="btn" value="Save" />
 
 ----
 
 The [button helper documentation](../HTML_helper/Buttons) has more details of button styling.
+]

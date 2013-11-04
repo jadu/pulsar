@@ -1,13 +1,13 @@
 {
-	"title": "Pulsar Documentation",
-	"tagline": "Beautiful user interfaces, Stellar user experiences.",
-	"clean_urls": false,
-	"docs_path": ".",
-	"timezone": "Europe/London",
-	"date_modified": true,
-	"float": false,
-	"ignore": {
-		"files": ["index.php", "functions.php"],
-		"folders": ["images"]
-	}
+    "title": "Pulsar Documentation",
+    "tagline": "Beautiful user interfaces, Stellar user experiences.",
+    "clean_urls": false,
+    "docs_path": ".",
+    "timezone": "Europe/London",
+    "date_modified": true,
+    "float": false,
+    "ignore": {
+        "files": ["index.php", "functions.php"],
+        "folders": ["images"]
+    }
 }

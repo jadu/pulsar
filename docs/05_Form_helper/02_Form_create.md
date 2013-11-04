@@ -10,6 +10,6 @@ All parameters are optional, a simple call to `{{ form.create() }}` will assume 
 
 Example usage:
 
-	{{ form.create(action = '/signin') }}
+    {{ form.create(action = '/signin') }}
 
-	<form action="/signin" class="form--horizontal" method="POST">
+    <form action="/signin" class="form--horizontal" method="POST">

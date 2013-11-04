@@ -4,13 +4,13 @@ Creates a checkbox which can be pre-checked and grouped with other checkboxes.
 
 Available parameters:
 
-	{{ form.checkbox(label, id, class, name, checked = false, help) }}
+    {{ form.checkbox(label, id, class, name, checked = false, help) }}
 
 Examples:
 
-	{{ form.checkbox(label = 'Checkbox with left label') }}
+    {{ form.checkbox(label = 'Checkbox with left label') }}
 
-	<div class="form__group">
+    <div class="form__group">
         <label for="inputCheckboxLeft" class="checkbox__label">Checkbox with left label</label>
         <div class="controls">
             <input type="checkbox" id="inputCheckboxLeft" name="inputCheckboxLeft" checked="">

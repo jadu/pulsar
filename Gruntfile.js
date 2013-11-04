@@ -200,11 +200,15 @@ module.exports = function(grunt) {
   grunt.config.set('leadingIndent.indentation', 'spaces');
   grunt.config.set('leadingIndent.files', {
     src : [
-      'javascripts/*.js',
-      'css/*.css', 
-      'stylesheets/*.scss',
-      'tests/**/*.php',
-      'views/**/*.twig'
+      'docs/**/*.md',
+      'docs/**/*.php',
+      'css/**/*', 
+      'javascripts/**/*',
+      'lexicon/**/*',
+      'src/**/*',
+      'stylesheets/**/*',
+      'tests/**/*',
+      'views/**/*'
     ]
   });
 

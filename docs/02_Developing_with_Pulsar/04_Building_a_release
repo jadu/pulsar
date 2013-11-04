@@ -4,7 +4,7 @@ The contents of `/dist` should reflect the current state of the latest stable re
 
 To build a new release, you can run the following grunt command **on the master branch**:
 
-	$ grunt build
+    $ grunt build
 
 This will perform the following tasks:
 
@@ -18,10 +18,10 @@ This will perform the following tasks:
 
 The layout of `/dist` is:
 
-	dist/
-	 ├── css/
-	 ├── docs/
-	 ├── fonts/
-	 ├── images/
-	 ├── js/
-	 ├── libs/
+    dist/
+     ├── css/
+     ├── docs/
+     ├── fonts/
+     ├── images/
+     ├── js/
+     ├── libs/
