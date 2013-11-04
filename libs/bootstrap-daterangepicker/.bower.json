@@ -1,0 +1,13 @@
+{
+  "name": "bootstrap-daterangepicker",
+  "homepage": "https://github.com/dangrossman/bootstrap-daterangepicker",
+  "_release": "1001e2cc08",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "1001e2cc089d7f0e7b63bf0cacef9c266d7a562b"
+  },
+  "_source": "git://github.com/dangrossman/bootstrap-daterangepicker.git",
+  "_target": "*",
+  "_originalSource": "bootstrap-daterangepicker"
+}

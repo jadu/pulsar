@@ -18,9 +18,7 @@
  * ======================================================================== */
 
 
-require(['jquery'], function ($) { 
-
-  "use strict";
+define(['jquery'], function($) { "use strict";
 
   // TAB CLASS DEFINITION
   // ====================
