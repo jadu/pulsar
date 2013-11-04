@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v3.0.5 (2013-08-23)
+ * @license Highcharts JS v3.0.7 (2013-10-24)
  *
  * Standalone Highcharts Framework
  *
@@ -140,6 +140,7 @@ function augment(obj) {
 				var events = this.HCEvents[name] || [],
 					target = this,
 					len = events.length,
+					i,
 					preventDefault,
 					fn;
 
@@ -147,10 +148,9 @@ function augment(obj) {
 				preventDefault = function () {
 					args.defaultPrevented = true;
 				};
-
-				while (len--) {
-
-					fn = events[len];
+				
+				for (i = 0; i < len; i++) {
+					fn = events[i];
 
 					// args is never null here
 					if (args.stopped) {
@@ -159,7 +159,8 @@ function augment(obj) {
 
 					args.preventDefault = preventDefault;
 					args.target = target;
-
+					args.type = name; // #2297	
+					
 					// If the event handler return false, prevent the default handler from executing
 					if (fn.call(this, args) === false) {
 						args.preventDefault();
@@ -192,6 +193,7 @@ return {
 					if (prop === 'opacity') {
 						prop = 'filter';
 					}
+					/*jslint unparam: true*/
 					val = el.currentStyle[prop.replace(/\-(\w)/g, function (a, b) { return b.toUpperCase(); })];
 					if (prop === 'filter') {
 						val = val.replace(
@@ -201,6 +203,7 @@ return {
 							}
 						);
 					}
+					/*jslint unparam: false*/
 					return val === '' ? 1 : val;
 				} 
 			};
@@ -420,7 +423,7 @@ return {
 				} else if (el.attr) {
 					start = el.attr(name);
 				} else {
-					start = parseFloat(this._getStyle(el, name)) || 0;
+					start = parseFloat(HighchartsAdapter._getStyle(el, name)) || 0;
 					if (name !== 'opacity') {
 						unit = 'px';
 					}

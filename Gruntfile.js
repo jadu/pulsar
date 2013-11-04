@@ -56,7 +56,7 @@ module.exports = function(grunt) {
 
     watch: {
       css: {
-        files: '**/*.scss',
+        files: 'stylesheets/*.scss',
         tasks: ['sass:dev'],
         options: {
           livereload: true,
@@ -186,6 +186,13 @@ module.exports = function(grunt) {
           }
         }
       }
+    },
+
+    concurrent: {
+      dev: ['watch', 'php'],
+      options: {
+        logConcurrentOutput: true
+      }
     }
 
   });
@@ -201,7 +208,7 @@ module.exports = function(grunt) {
     ]
   });
 
-  grunt.registerTask('default', ['php']);
+  grunt.registerTask('default', ['concurrent:dev']);
 
   grunt.registerTask('build', [
     'asciify', 
