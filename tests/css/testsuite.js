@@ -11,8 +11,8 @@ phantom.injectJs('jquery.js');
 
 var casper = require('casper').create({
 	viewportSize: {
-		width: 800,
-		height: 800
+		width: 1024,
+		height: 1024
 	}
 });
 
@@ -36,14 +36,14 @@ phantomcss.init({
 casper.
 	start( url ).
 	then(function() {
-		phantomcss.screenshot('#tab_1', 'typography');
+		phantomcss.screenshot('#buttons', 'buttons');
 	}).
 	then(function() {
-		casper.click('a[href="#tab_2"]');
+		casper.click('a[href="#buttons"]');
 
-		casper.waitForSelector('#tab_2.is-active',
+		casper.waitForSelector('#buttons.is-active',
 			function success(){
-				phantomcss.screenshot('#tab_2', 'buttons');
+				phantomcss.screenshot('#buttons', 'buttons');
 			},
 			function timeout(){
 				casper.test.fail('Should see buttons tab');
@@ -51,23 +51,23 @@ casper.
 		);
 	}).
 	then(function() {
-		casper.click('a[href="#tab_3"]');
+		casper.click('a[href="#decks"]');
 
-		casper.waitForSelector('#tab_3.is-active',
+		casper.waitForSelector('#decks.is-active',
 			function success(){
-				phantomcss.screenshot('#tab_3', 'forms');
+				phantomcss.screenshot('#decks', 'decks');
 			},
 			function timeout(){
-				casper.test.fail('Should see forms tab');
+				casper.test.fail('Should see decks tab');
 			}
 		);
 	}).
 	then(function() {
-		casper.click('a[href="#tab_4"]');
+		casper.click('a[href="#flash"]');
 
-		casper.waitForSelector('#tab_4.is-active',
+		casper.waitForSelector('#flash.is-active',
 			function success(){
-				phantomcss.screenshot('#tab_4', 'flash messages');
+				phantomcss.screenshot('#flash', 'flash messages');
 			},
 			function timeout(){
 				casper.test.fail('Should see flash messages tab');
@@ -75,11 +75,23 @@ casper.
 		);
 	}).
 	then(function() {
-		casper.click('a[href="#tab_5"]');
+		casper.click('a[href="#forms"]');
 
-		casper.waitForSelector('#tab_5.is-active',
+		casper.waitForSelector('#forms.is-active',
 			function success(){
-				phantomcss.screenshot('#tab_5', 'modals');
+				phantomcss.screenshot('#forms', 'forms');
+			},
+			function timeout(){
+				casper.test.fail('Should see forms tab');
+			}
+		);
+	}).
+	then(function() {
+		casper.click('a[href="#modals"]');
+
+		casper.waitForSelector('#modals.is-active',
+			function success(){
+				phantomcss.screenshot('#modals', 'modals');
 			},
 			function timeout(){
 				casper.test.fail('Should see modals tab');
@@ -87,50 +99,62 @@ casper.
 		);
 	}).
 	then(function() {
-		casper.click('a[href="#tab_6"]');
+		casper.click('a[href="#progress"]');
 
-		casper.waitForSelector('#tab_6.is-active',
+		casper.waitForSelector('#progress.is-active',
 			function success(){
-				phantomcss.screenshot('#tab_6', 'tooltips');
+				phantomcss.screenshot('#progress', 'progress');
 			},
 			function timeout(){
-				casper.test.fail('Should see tooltips tab');
+				casper.test.fail('Should see progress tab');
 			}
 		);
 	}).
 	then(function() {
-		casper.click('a[href="#tab_7"]');
+		casper.click('a[href="#table"]');
 
-		casper.waitForSelector('#tab_7.is-active',
+		casper.waitForSelector('#table.is-active',
 			function success(){
-				phantomcss.screenshot('#tab_7', 'popovers');
+				phantomcss.screenshot('#table', 'table');
 			},
 			function timeout(){
-				casper.test.fail('Should see popovers tab');
+				casper.test.fail('Should see table tab');
 			}
 		);
 	}).
 	then(function() {
-		casper.click('a[href="#tab_8"]');
+		casper.click('a[href="#type"]');
 
-		casper.waitForSelector('#tab_8.is-active',
+		casper.waitForSelector('#type.is-active',
 			function success(){
-				phantomcss.screenshot('#tab_8', 'tables');
+				phantomcss.screenshot('#type', 'typography');
 			},
 			function timeout(){
-				casper.test.fail('Should see tables tab');
+				casper.test.fail('Should see typography tab');
 			}
 		);
 	}).
 	then(function() {
-		casper.click('a[href="#tab_9"]');
+		casper.click('a[href="#summary"]');
 
-		casper.waitForSelector('#tab_9.is-active',
+		casper.waitForSelector('#summary.is-active',
 			function success(){
-				phantomcss.screenshot('#tab_9', 'progress bars');
+				phantomcss.screenshot('#summary', 'table_with_summary');
 			},
 			function timeout(){
-				casper.test.fail('Should see progress bars tab');
+				casper.test.fail('Should see table with summary tab');
+			}
+		);
+	}).
+	then(function() {
+		casper.click('a[href="#filters"]');
+
+		casper.waitForSelector('#filters.is-active',
+			function success(){
+				phantomcss.screenshot('#filters', 'table_with_filters');
+			},
+			function timeout(){
+				casper.test.fail('Should see table with filters tab');
 			}
 		);
 	}).

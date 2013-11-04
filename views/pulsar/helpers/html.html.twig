@@ -62,8 +62,8 @@
 {%- endmacro -%}
 
 
-{%- macro link(label, href, class, id, attributes) -%}
-  <a href="{{ href|default('#') }}"{% if class is not empty %} class="{{ class }}"{% endif %}{% if id is not empty %} id="{{ id }}"{% endif %}{% if attributes is not empty %} {{ attributes|raw }}{% endif %}>{{ label|default('link')|raw }}</a>
+{%- macro link(label, href, class, id, title, attributes) -%}
+  <a href="{{ href|default('#') }}"{% if class is not empty %} class="{{ class }}"{% endif %}{% if id is not empty %} id="{{ id }}"{% endif %}{% if title is not empty %} title="{{ title }}"{% endif %}{% if attributes is not empty %} {{ attributes|raw }}{% endif %}>{{ label|default('link')|raw }}</a>
 {%- endmacro -%}
 
 
@@ -158,17 +158,17 @@
 
 
 {%- macro icon(icon_name, class) -%}
-  <i class="icon-{{ icon_name }} {{ class }}"></i>
+  <i class="icon-{{ icon_name }}{% if class is not empty %} {{ class }}{% endif %}"></i>
 {%- endmacro -%}
 
 
 {%- macro label(label = 'label', class) -%}
-  <span class="label {{ class }}">{{ label }}</span>
+  <span class="label{% if class is not empty %} {{ class }}{% endif %}">{{ label }}</span>
 {%- endmacro -%}
 
 
 {%- macro badge(label = 'label', class) -%}
-  <span class="badge {{ class }}">{{ label }}</span>
+  <span class="badge{% if class is not empty %} {{ class }}{% endif %}">{{ label }}</span>
 {%- endmacro -%}
 
 {%- macro divider() -%}

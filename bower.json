@@ -10,6 +10,7 @@
     "tests"
   ],
   "dependencies": {
+    "bootstrap-daterangepicker": "latest",
     "bourbon": "latest",
     "console-js": "gh-pages",
     "font-awesome": "3.2.1",
@@ -19,6 +20,7 @@
     "ie7-js": "https://ie7-js.googlecode.com/files/ie7-2.1%28beta4%29.zip",
     "jquery": "1.x",
     "jquery-mousewheel": "latest",
+    "moment": "latest",
     "normalize-css": "latest",
     "respond": "latest",
     "requirejs": "latest",
