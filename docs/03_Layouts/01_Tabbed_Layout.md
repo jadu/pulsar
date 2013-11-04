@@ -49,7 +49,7 @@ A tab can declare a number of sub-tabs which will be expanded when the user clic
           "id"    : "summary",
           "label" : html.icon("bar-chart") ~ " Table with summary",
           "src"   : tab_form_summary,
-          "attr"  : "data-summary=\"#summary\""
+          "attr"  : "data-summary=#summary"
         }
       ]
     }
