@@ -32,7 +32,15 @@ build:
 	@ chmod -R u+x .git/hooks/*
 	@ echo "\n${CHECK} Done\n"
 
-	@ echo "Run 'grunt' to start the documentation server and 'grunt watch' to monitor for Sass changes."
+	@ echo "${HR}\nCompiling the stylesheets...${HR}\n"
+	@ grunt sass:dev
+	@ echo "\n${CHECK} Done\n"
+
+	@ echo "${HR}\nRunning the first build...${HR}\n"
+	@ grunt build
+	@ echo "\n${CHECK} Done\n"
+
+	@ echo "Run 'grunt' to start the documentation server and watch for Sass changes."
 
 clean:
 	@ echo "${HEADER}"
