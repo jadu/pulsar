@@ -39,7 +39,7 @@ If a user has supplied invalid information within a form field, the whole input 
     <label for="inputTextError" class="control__label">Postcode</label>
     <div class="controls">
       <input type="text" class="form__control" id="inputTextError" name="inputTextError" placeholder="Placeholder" value="123456" />
-      <div class="help-block">This postcode was not found.</div>
+      <div class="help-block">This postcode was not found</div>
     </div>
   </div>
 </form>

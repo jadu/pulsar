@@ -1,3 +1,4 @@
+<a href="../Styleguides/Buttons" class="btn pull-right"><i class="icon-pencil"></i> Button Styleguide</a>
 Interface buttons — while they look the same — can be links, buttons or inputs and can be used anywhere in the UI for different needs.
 
 Available parameters:
