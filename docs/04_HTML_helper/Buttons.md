@@ -5,7 +5,7 @@ Available parameters:
 
     {{ html.button(label, class, id, type, href, attributes) }}
 
-## Multiple Tags (type)
+## Multiple tags (type)
 
 Where possible, you should use the default button type, but buttons can also be links and inputs. 
 
@@ -65,7 +65,7 @@ The following modifier classes can be applied to the `class` attribute to change
     
 <button class="btn">Default</button> <button class="btn btn--primary">Primary</button> <button class="btn btn--success">Success</button> <button class="btn btn--danger">Danger</button> <button class="btn btn--warning"><i class="icon-warning-sign"></i> Warning</button> <button class="btn btn--info">Info <i class="icon-chevron-sign-right"></i></button> <button class="btn btn--inverse"><i class="icon-lock"></i> Inverse</button>
     
-## Disabled Buttons
+## Disabled buttons
 
 Adding the `is-disabled` class to a button will automatically add the `disabled` attribute to `button` `input` and `submit` type buttons.
 

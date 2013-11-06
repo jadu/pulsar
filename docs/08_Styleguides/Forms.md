@@ -8,6 +8,38 @@ Forms make up the bulk of our interfaces and they should be consistent, clear an
 * Don‘t use ‘please’ on labels - but give polite, clear, short instructions
 * Don‘t add ‘your’ to labels, for example: ‘Your name’, ‘Your address’, unless you have a form where you need to differentiate multiple people - for example: ‘your name’, ‘partner name’
 
+----
+
+## Validation summary
+
+You should summarise any form validation errors at the top of the page, this summary is designed to be visible without scrolling. The entire form should be validated at once rather than one field at a time.
+
+If you have fewer than 4 validation messages, you should detail them individually. Each link should jump the user to the relevant form control.
+
+**TODO: add validation summary example**
+
+If you have 5 or more, summarise the summary.
+
+**TODO: add validation summary example**
+
+## Input errors
+
+If a user has supplied invalid information within a form field, the whole input group should be highlighted.
+
+* Clearly explain what they've done wrong (It's almost never OK to say ‘invalid input’)
+* Where possible, accept blame on behalf of the user
+* Avoid overly technical explanations and the use of the word ‘validation’
+
+<form class="form--horizontal">
+  <div class="form__group has-error">
+    <label for="inputTextError" class="control__label">Postcode</label>
+    <div class="controls">
+      <input type="text" class="form__control" id="inputTextError" name="inputTextError" placeholder="Placeholder" value="123456" />
+      <div class="help-block">This postcode was not found</div>
+    </div>
+  </div>
+</form>
+
 ## Placeholders
 
 Placeholders can be used to provide an example of the expected format, especially if the data will be validated.

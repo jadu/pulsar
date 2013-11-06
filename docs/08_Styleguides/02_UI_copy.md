@@ -1,6 +1,6 @@
 All Pulsar UI interfaces should use clear English with correct grammar and punctuaton.
 
-### Title Case
+### Title case
 
 Some interface elements should use title case which capitalises the major words (conjunctions, articles and prepositions are considered minor words).
 
@@ -12,7 +12,7 @@ The following interface elements should use title case:
 * Page, Deck, Modal, Popover titles
 * Table headers
 
-### Sentence Case
+### Sentence case
 
 Use sentence case for everything else, including:
 

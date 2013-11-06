@@ -28,7 +28,7 @@ Action: <button class="btn"><i class="icon-unlock"></i> Unlock</button>
 
 State: <span class="label label--inverse"><i class="icon-lock"></i> Locked</span> 
 
-## Communicating State Changes
+## Communicating state changes
 
 As an interface may consist of multiple tabs, deck slides and modals it's important to communicate changes as the user transitions in and out of these different interfaces. Light blue is used instead of green to highlight that while something has changed, those changes haven't been saved yet. These highlights will fade away after a few seconds.
 

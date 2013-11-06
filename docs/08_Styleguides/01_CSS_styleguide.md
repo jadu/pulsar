@@ -36,13 +36,13 @@ You should aim to adhere to these rules where possible but there will be excepti
 Single line CSS rulesets are a pain to navigate, a pain to diff, and a pain to edit.
 Our final CSS file can be minified and gzipped, so don't worry about those extra lines padding out the file size, using multi-line declarations keeps things orderly in development.
 
-### Alphabetically Ordered Declarations
+### Alphabetically ordered declarations
 
 All designers and developers have their own idea of which properties should be grouped together, like positioning and size. In order to take personal preference out of the equation and bring consistency to our stylesheets the easiest way to do this is to order them alphabetically.
 
 As well as making it easier to visually locate a specific rule in a large ruleset, the CSS author doesn't need to constantly refer to this document to re-learn our ordering scheme to make updates and it should be quite clear from reading the stylesheet alone that we're ordering alphabetically.
 
-### Closing Semi-colon
+### Closing semi-colon
 
 The closing semi-colon on the last declaration of a CSS rule is optional, while some people will no-doubt argue that dropping this will lead to smaller filesizes I’d always argue that long-term maintainability is more important, especially on larger projects with multiple developers.
 
@@ -50,7 +50,7 @@ By keeping the closing semi-colon in place anyone can quickly dive into the file
 
 ----
 
-### Javascript Hooks
+### Javascript hooks
 
 Never use a CSS class as a javascript hook, you should aim to keep the visual and behavioural layers separate.
 
@@ -62,7 +62,7 @@ Javascript may (of course) change CSS state classes such as `.is-open` or `.is-a
 
 ----
 
-# SCSS Style
+# SCSS style
 
 * Any `$variable` or `@mixin` that is used more than once should go in `_variables.scss` or `_mixins.scss` respectively.
 * Any `.scss.` file which does not directly compile to a `.css` version should be prefixed with an underscore. `_example.scss`

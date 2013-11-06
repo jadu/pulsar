@@ -5,4 +5,4 @@ Use tooltips to provide useful information about elements when they are hovered 
 
 <button data-toggle="tooltip" title="Locked by Paul Stanton until Monday 4th July, 12:00pm." class="btn btn--inverse"><i class="icon-lock"></i> Locked</button>
 <i class="icon-key" data-toggle="tooltip" title="This file is password protected"></i>
-<span class="label label--primary" data-toggle="tooltip" title="minimum &ndash; maximum">1 &ndash; 10</span>
+<span class="label label--primary" data-toggle="tooltip" title="Minimum &ndash; Maximum">1 &ndash; 10</span>
