@@ -7,6 +7,10 @@
 
 {% set heading = 'Pulsar UI' %}
 
+{% block actionsbar %}
+  {{ html.button(label = html.icon('desktop') ~ ' Pulsar Lexicon', href = '/lexicon', type = 'link') }}
+{% endblock %}
+
 {% block tabs_list %}
     {{ tabs|raw }}
 {% endblock %}

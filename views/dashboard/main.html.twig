@@ -1,0 +1,68 @@
+{% extends 'pulsar/layouts/dashboard.html.twig' %}
+{% import 'pulsar/helpers/html.html.twig' as html %}
+{% import 'pulsar/helpers/form.html.twig' as form %}
+{% import 'pulsar/helpers/flash.html.twig' as flash %}
+
+{% block title %}{{ parent() }}{% endblock %}
+
+{% set heading = '' %}
+
+{% 
+    set actions_menu = [
+        html.link(label = html.icon('plus') ~ ' Create dashboard', href = '#save'),
+        html.link(label = html.icon('save') ~ ' Save', href = '#save'),
+        html.link(label = html.icon('save') ~ ' Save as template', href = '#save'),
+        html.link(label = html.icon('share') ~ ' Share', href = '#save'),
+        html.divider(),
+        html.link(label = html.icon('trash') ~ ' Delete', href = '#delete', class = 'link--danger')
+    ]
+%}
+
+{% block actionsbar %}
+
+  {{ 
+    html.button_group([
+      html.button(label = html.icon('th-large') ~ ' Dashboards', href = '#', type = 'link'),
+      html.button(label = html.icon('dashboard') ~ ' Widgets', href = '#', type = 'link')
+    ])
+  }}
+{% endblock %}
+
+{% block widgets %}
+  
+  <div class="widget">
+    <i class="icon-cog" data-action="widget-remove"></i>
+    <h3>XForms</h3>
+
+  </div>
+
+  <div class="widget">
+    <h3>Twitter</h3>
+  </div>
+
+  <div class="widget span-2">
+    <h3>Visitors</h3>
+  </div>
+
+  <div class="widget">
+    <h3>Notifications</h3>
+  </div>
+
+  <div class="widget span-2">
+    <h3>Facebook</h3>
+  </div>
+
+  <div class="widget">
+    <h3>Google+</h3>
+  </div>
+
+  <div class="widget span-2">
+    <h3>Habbo Hotel</h3>
+  </div>
+
+  <div class="widget span-2">
+    <h3>Bebo</h3>
+  </div>
+
+{% endblock %}
+

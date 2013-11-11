@@ -1,0 +1,25 @@
+.widget {
+  background-color: #efefef;
+  border: 2px solid $off-white;
+  display: inline-block;
+  min-height: 250px;
+  position: relative;
+  padding: 2px 10px 0 10px;
+  width: 25%;
+
+  h3 {
+    border-bottom: 1px solid $gray;
+    line-height: 42px;
+    margin: 0;
+  }
+}
+
+.span-2 {
+  width: 50%;
+}
+
+[data-action="widget-remove"] {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
