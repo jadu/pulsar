@@ -2,7 +2,7 @@ Save buttons are one of the most used UI elements within our software but histor
 
 A Pulsar save button should communicate the system's current saving state to the user in-situ without relying on methods like flash messages, which typically only appear at the top of the page, to communicate whether or not something actually happened.
 
-## Modes & Loops
+## Modes & loops
 
 ### Normal save
 

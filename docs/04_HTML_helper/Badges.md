@@ -35,7 +35,7 @@ Badges can accept any of the usual modifier classes
 <span class="badge">1</span> <span class="badge badge--primary">2</span> <span class="badge badge--success">3</span> <span class="badge badge--warning">5</span> <span class="badge badge--danger">8</span> <span class="badge badge--info">13</span> <span class="badge badge--inverse">21</span> 
 
 
-## Badged Buttons
+## Badged buttons
 
 Badges within buttons will inherit the parent's styling, which is nice.
 
