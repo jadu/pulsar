@@ -5,10 +5,21 @@
 define(['jquery'], function() {
 
     $(document).ready(function() {
+       
+        
+
+        require(['jquery-ui', 'jquery-ui-touch'], function() {
+            $( ".dashboard" ).sortable({
+                opacity: 0.5,
+                revert: 100
+            });
+            $( ".widgets" ).disableSelection();
+        });
     
         // Stick the Jadu toolbar to the top of the window
         require(['sticky'], function() {
             $('.toolbar').sticky({topSpacing: 0});
+            // $('.tray').sticky({topSpacing: 44}).sticky('update');
         });
 
         // Init tooltips
@@ -84,6 +95,12 @@ define(['jquery'], function() {
                     $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
                 }
             );
+        });
+
+        // toggle a given element
+        $('[data-toggle]').on('click', function(e) {
+            $target = $('.' + $(this).data('toggle'));
+            $target.slideToggle(100);
         });
 
     });

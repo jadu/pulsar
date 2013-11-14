@@ -1,4 +1,4 @@
 <?php 
-	header('Location: docs'); 
+	header('Location: app/docs'); 
 	exit;
 ?>

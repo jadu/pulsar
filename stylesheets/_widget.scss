@@ -1,16 +1,32 @@
 .widget {
-  background-color: #efefef;
-  border: 2px solid $off-white;
-  display: inline-block;
-  min-height: 250px;
+  background-color: $white;
+  box-shadow: 0 0 5px rgba(0,0,0,.2);
+  cursor: -webkit-grab;
+  cursor:    -moz-grab;
+  cursor:         grab;
+  float: left;
+  height: 250px;
+  margin: 0 1%;
+  overflow: hidden;
   position: relative;
-  padding: 2px 10px 0 10px;
-  width: 25%;
+  transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+  transition: transform .2s;
+  -webkit-transition: -webkit-transform .2s;
+  width: 23%;
+
+  &:hover {
+    .widget__controls {
+      display: block;
+    }    
+  }
 
   h3 {
     border-bottom: 1px solid $gray;
-    line-height: 42px;
+    line-height: 40px;
     margin: 0;
+    padding: 2px 10px 0 10px;
   }
 }
 
@@ -18,8 +34,36 @@
   width: 50%;
 }
 
-[data-action="widget-remove"] {
+.widget__controls {
+  color: inherit;
+  display: none;
   position: absolute;
-  top: 10px;
   right: 10px;
+  text-decoration: none;
+  top: 10px;
+}
+
+.widget__price {
+  @extend .btn--primary;
+  float: right;
+  margin-top: $line-height-base / 2;
+}
+
+.ui-sortable-helper {
+  box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+  cursor: -webkit-grabbing; 
+  cursor:    -moz-grabbing;
+  cursor:         grabbing;
+  transform: rotate(7deg);
+  -ms-transform: rotate(7deg);
+  -webkit-transform: rotate(7deg);
+}
+
+.ui-state-highlight {
+  outline: 1px solid red;
+}
+
+.highchart {
+  height: 209px;
+  width: 100%;
 }
