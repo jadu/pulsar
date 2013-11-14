@@ -178,6 +178,7 @@ module.exports = function(grunt) {
             'modal'             : '../javascripts/modal',
             'navigation'        : '../javascripts/navigation',
             'order'             : '../libs/order/index',
+            'popover'           : '../javascripts/popover',
             'pulsar'            : '../javascripts/pulsar',
             'sticky'            : '../libs/sticky/jquery.sticky',
             'tab'               : '../javascripts/tab',
