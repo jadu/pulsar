@@ -2,7 +2,7 @@ The data grid is the primary way to display lists of content and is basically a 
 
 Currently, there's no helper for data grids so simply place your table markup, using the `table--datagrid` class, in your tab.
 
-	 <table class="table--datagrid">
+   <table class="table--datagrid">
         <thead>
             <tr>
                 <th class="row__actions">
@@ -26,8 +26,6 @@ Currently, there's no helper for data grids so simply place your table markup, u
             </tr>
         </tbody>
     </table>
-
-
     
 <br />
 <table class="table--datagrid">

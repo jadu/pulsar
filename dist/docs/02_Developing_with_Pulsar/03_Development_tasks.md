@@ -10,13 +10,13 @@ The following checks and tasks are run ever time you commit changes to the pulsa
 
 You can run these checks manually (without needing to commit) with: 
 
-	$ grunt pre-commit
+    $ grunt pre-commit
 
 ## Unit tests
 
 All PHP code should have unit tests written to test functionality, you can run the unit tests with:
 
-	$ grunt phpunit
+    $ grunt phpunit
 
 The unit tests are also run as part of pre-commit and build tasks.
 
@@ -28,4 +28,4 @@ The resulting failure image diffs are placed in `/tmp/failures`
 
 Run the smoke test with:
 
-	$ grunt smoketest
+    $ grunt smoketest
