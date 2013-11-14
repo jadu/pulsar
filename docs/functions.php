@@ -13,213 +13,213 @@ if (isset($_SERVER['SCRIPT_NAME']))
 }
 
 function get_options() {
-	$options = array(
-		'title' => "Documentation",
-		'tagline' => false,
-		'image' => false,
-		'theme' => 'blue',
-		'date_modified' => true,
-		'float' => true,
-		'repo' => false,
-		'twitter' => array(),
-		'links' => array(),
-		'colors' => false,
-		'clean_urls' => true,
-		'google_analytics' => false,
-		'piwik_analytics' => false,
+    $options = array(
+        'title' => "Documentation",
+        'tagline' => false,
+        'image' => false,
+        'theme' => 'blue',
+        'date_modified' => true,
+        'float' => true,
+        'repo' => false,
+        'twitter' => array(),
+        'links' => array(),
+        'colors' => false,
+        'clean_urls' => true,
+        'google_analytics' => false,
+        'piwik_analytics' => false,
         'ignore' => array()
-	);
+    );
 
-	// Load User Config
-	$config_file = './config.json';
-	if (file_exists($config_file)) {
-		$config = json_decode(file_get_contents($config_file), true);
-		$options = array_merge($options, $config);
-	}
+    // Load User Config
+    $config_file = './config.json';
+    if (file_exists($config_file)) {
+        $config = json_decode(file_get_contents($config_file), true);
+        $options = array_merge($options, $config);
+    }
 
-	if ($options['theme'] !== 'custom') {
-		// Load Theme
-		if (!in_array($options['theme'], array("blue","navy","green","red"))) {
-			echo "<strong>Daux.io Config Error:</strong><br>The theme you set is not not a valid option. Please use one of the following options: " . join(array_keys($themes), ', ') . ' or <a href="http://daux.io">learn more</a> about how to customize the colors.';
-			exit;
-		}
-	} else {
-		if (empty($options['colors'])) {
-			echo '<strong>Daux.io Config Error:</strong><br>You are trying to use a custom theme, but did not setup your color options in the config. <a href="http://daux.io">Learn more</a> about how to customize the colors.';
-			exit;
-		}
-	}
+    if ($options['theme'] !== 'custom') {
+        // Load Theme
+        if (!in_array($options['theme'], array("blue","navy","green","red"))) {
+            echo "<strong>Daux.io Config Error:</strong><br>The theme you set is not not a valid option. Please use one of the following options: " . join(array_keys($themes), ', ') . ' or <a href="http://daux.io">learn more</a> about how to customize the colors.';
+            exit;
+        }
+    } else {
+        if (empty($options['colors'])) {
+            echo '<strong>Daux.io Config Error:</strong><br>You are trying to use a custom theme, but did not setup your color options in the config. <a href="http://daux.io">Learn more</a> about how to customize the colors.';
+            exit;
+        }
+    }
 
-	return $options;
+    return $options;
 }
 
 function homepage_url($tree) {
-	// Check for homepage
-	if (isset($tree['index'])) {
-		return '/';
-	} else {
-		return docs_url($tree);
-	}
+    // Check for homepage
+    if (isset($tree['index'])) {
+        return '/';
+    } else {
+        return docs_url($tree);
+    }
 }
 
 function docs_url($tree, $branch = false) {
-	// Get next branch
-	if (!$branch) {
-		$branch = current($tree);
-	}
+    // Get next branch
+    if (!$branch) {
+        $branch = current($tree);
+    }
 
-	if ($branch['type'] === 'file') {
-		return $branch['url'];
-	} else if (!empty($branch['tree'])) {
-		return docs_url($branch['tree']);
-	} else {
-		// Try next folder...
-		$branch = next($tree);
-		if ($branch) {
-			return docs_url($tree, $branch);
-		} else {
-			echo '<strong>Daux.io Config Error:</strong><br>Unable to find the first page in the /docs folder. Double check you have at least one file in the root of of the /docs folder. Also make sure you do not have any empty folders. Visit the docs to <a href="http://daux.io">learn more</a> about how the default routing works.';
-			exit;
-		}
-	}
+    if ($branch['type'] === 'file') {
+        return $branch['url'];
+    } else if (!empty($branch['tree'])) {
+        return docs_url($branch['tree']);
+    } else {
+        // Try next folder...
+        $branch = next($tree);
+        if ($branch) {
+            return docs_url($tree, $branch);
+        } else {
+            echo '<strong>Daux.io Config Error:</strong><br>Unable to find the first page in the /docs folder. Double check you have at least one file in the root of of the /docs folder. Also make sure you do not have any empty folders. Visit the docs to <a href="http://daux.io">learn more</a> about how the default routing works.';
+            exit;
+        }
+    }
 }
 
 function load_page($tree, $markdownParser) {
-	$branch = find_branch($tree);
+    $branch = find_branch($tree);
 
-	$page = array();
+    $page = array();
 
-	if (isset($branch['type']) && $branch['type'] == 'file') {
-		$html = '';
-		if ($branch['name'] !== 'index') {
+    if (isset($branch['type']) && $branch['type'] == 'file') {
+        $html = '';
+        if ($branch['name'] !== 'index') {
 
-			$page['title'] = $branch['title'];
-			$page['modified'] = filemtime($branch['path']);
+            $page['title'] = $branch['title'];
+            $page['modified'] = filemtime($branch['path']);
 
-		}
-		$html .= $markdownParser->transformMarkdown(file_get_contents($branch['path']));
+        }
+        $html .= $markdownParser->transformMarkdown(file_get_contents($branch['path']));
 
-		$page['html'] = $html;
+        $page['html'] = $html;
 
-	} else {
+    } else {
 
-		$page['title'] = "Oh no";
-		$page['html'] = "<h3>Oh No. That page dosn't exist</h3>";
+        $page['title'] = "Oh no";
+        $page['html'] = "<h3>Oh No. That page dosn't exist</h3>";
 
-	}
-	
+    }
+    
 
-	return $page;
+    return $page;
 }
 
 function find_branch($tree) {
-	$path = url_params();
-	foreach($path as $peice) {
-		// Check for homepage
-		if (empty($peice)) {
-			$peice = 'index';
-		}
+    $path = url_params();
+    foreach($path as $peice) {
+        // Check for homepage
+        if (empty($peice)) {
+            $peice = 'index';
+        }
 
-		if (isset($tree[$peice])) {
-			if ($tree[$peice]['type'] == 'folder') {
-				$tree = $tree[$peice]['tree'];
-			} else {
-				$tree = $tree[$peice];
-			}
-		} else {
-			return false;
-		}
-	}
+        if (isset($tree[$peice])) {
+            if ($tree[$peice]['type'] == 'folder') {
+                $tree = $tree[$peice]['tree'];
+            } else {
+                $tree = $tree[$peice];
+            }
+        } else {
+            return false;
+        }
+    }
 
-	return $tree;
+    return $tree;
 }
 
 function url_path() {
-	$url = parse_url($_SERVER['REQUEST_URI']);
-	$url = $url['path'];
-	return $url;
+    $url = parse_url($_SERVER['REQUEST_URI']);
+    $url = $url['path'];
+    return $url;
 }
 
 function url_params() {
-	$url = get_uri();
-	$params = explode('/', trim($url, '/'));
-	return $params;
+    $url = get_uri();
+    $params = explode('/', trim($url, '/'));
+    return $params;
 }
 
 function clean_sort($text) {
-	// Remove .md file extension
-	$text = str_replace('.md', '', $text);
+    // Remove .md file extension
+    $text = str_replace('.md', '', $text);
 
-	// Remove sort placeholder
-	$parts = explode('_', $text);
-	if (isset($parts[0]) && is_numeric($parts[0])) {
-		unset($parts[0]);
-	}
-	$text = implode('_', $parts);
+    // Remove sort placeholder
+    $parts = explode('_', $text);
+    if (isset($parts[0]) && is_numeric($parts[0])) {
+        unset($parts[0]);
+    }
+    $text = implode('_', $parts);
 
-	return $text;
+    return $text;
 }
 
 function clean_name($text) {
-	$text = str_replace('_', ' ', $text);
-	return $text;
+    $text = str_replace('_', ' ', $text);
+    return $text;
 }
 
 function build_nav($tree, $url_params = false) {
-	// Remove Index
-	unset($tree['index']);
+    // Remove Index
+    unset($tree['index']);
 
-	if (!is_array($url_params)) {
-		$url_params = url_params();
-	}
-	$url_path = url_path();
-	$html = '<ul class="tabs__list">';
-	foreach($tree as $key => $val) {
+    if (!is_array($url_params)) {
+        $url_params = url_params();
+    }
+    $url_path = url_path();
+    $html = '<ul class="tabs__list">';
+    foreach($tree as $key => $val) {
         
-		// Active Tree Node
-		if (isset($url_params[0]) && $url_params[0] == $val['clean']) {
-			array_shift($url_params);
-            $html .= '<li class="is-active">';			
-		} else {
-			$html .= '<li>';
-		}
+        // Active Tree Node
+        if (isset($url_params[0]) && $url_params[0] == $val['clean']) {
+            array_shift($url_params);
+            $html .= '<li class="is-active">';          
+        } else {
+            $html .= '<li>';
+        }
 
-		if ($val['type'] == 'folder') {
-			$html .= '<a href="#" data-toggle="tab">'.$val['name'].'</a>';
-			$html .= build_nav($val['tree'], $url_params);
-		} else {
-			$html .= '<a href="'.$val['url'].'">'.$val['name'].'</a>';
-		}
+        if ($val['type'] == 'folder') {
+            $html .= '<a href="#" data-toggle="tab">'.$val['name'].'</a>';
+            $html .= build_nav($val['tree'], $url_params);
+        } else {
+            $html .= '<a href="'.$val['url'].'">'.$val['name'].'</a>';
+        }
 
-		$html .= '</li>';
-	}
-	$html .= '</ul>';
-	return $html;
+        $html .= '</li>';
+    }
+    $html .= '</ul>';
+    return $html;
 }
 
 function get_ignored() {
-	// TODO: Add support for wildcards
-	// TODO: Add support for specific paths, i.e. /Publish/Somefile.md vs. /Don't_Publish/Somefile.md
-	$options = get_options();
-	$default_ignored_files = array('config.json', 'cgi-bin', '.', '..', '.DS_Store', 'Thumbs.db', '.Trashes', '.htaccess');
-	$default_ignored_folders = array(); // To allow for easy addition of default folders if found necessary in the future
-	$user_ignored_files = array();
-	$user_ignored_folders = array();
-	// Check if ignore settings exist
-	if(array_key_exists('ignore', $options)) {
-		if(array_key_exists('files', $options['ignore'])) {
-			$user_ignored_files = $options['ignore']['files'];
-		}
-		if(array_key_exists('folders', $options['ignore'])) {
-			$user_ignored_folders = $options['ignore']['folders'];
-		}
-	}
+    // TODO: Add support for wildcards
+    // TODO: Add support for specific paths, i.e. /Publish/Somefile.md vs. /Don't_Publish/Somefile.md
+    $options = get_options();
+    $default_ignored_files = array('config.json', 'cgi-bin', '.', '..', '.DS_Store', 'Thumbs.db', '.Trashes', '.htaccess');
+    $default_ignored_folders = array(); // To allow for easy addition of default folders if found necessary in the future
+    $user_ignored_files = array();
+    $user_ignored_folders = array();
+    // Check if ignore settings exist
+    if(array_key_exists('ignore', $options)) {
+        if(array_key_exists('files', $options['ignore'])) {
+            $user_ignored_files = $options['ignore']['files'];
+        }
+        if(array_key_exists('folders', $options['ignore'])) {
+            $user_ignored_folders = $options['ignore']['folders'];
+        }
+    }
 
-	// Merge all ignore arrays together
-	$all_ignored = array_merge($default_ignored_files, $default_ignored_folders, $user_ignored_files, $user_ignored_folders);
+    // Merge all ignore arrays together
+    $all_ignored = array_merge($default_ignored_files, $default_ignored_folders, $user_ignored_files, $user_ignored_folders);
 
-	// Return array of all ignored files and folders
-	return $all_ignored;
+    // Return array of all ignored files and folders
+    return $all_ignored;
 }
 
 function get_tree($path = '.', $clean_path = '', $title = '', $first = true){
@@ -232,20 +232,20 @@ function get_tree($path = '.', $clean_path = '', $title = '', $first = true){
     // Build array of paths
     $paths = array();
     while(false !== ($file = readdir($dh))){
-		$paths[$file] = $file;
-	}
+        $paths[$file] = $file;
+    }
 
-	// Close the directory handle
-	closedir($dh);
+    // Close the directory handle
+    closedir($dh);
 
-	// Sort paths
-	sort($paths);
+    // Sort paths
+    sort($paths);
 
     // Loop through the paths
     // while(false !== ($file = readdir($dh))){
-	foreach($paths as $file) {
+    foreach($paths as $file) {
 
-     	// Check that this file or folder is not to be ignored
+        // Check that this file or folder is not to be ignored
         if(!in_array($file, $ignore)) {
             $full_path = "$path/$file";
             $clean_sort = clean_sort($file);
@@ -264,42 +264,42 @@ function get_tree($path = '.', $clean_path = '', $title = '', $first = true){
             }
             else
             {
-            	$url = $clean_path . '/' . $clean_sort;
+                $url = $clean_path . '/' . $clean_sort;
             }
 
-        	$clean_name = clean_name($clean_sort);
+            $clean_name = clean_name($clean_sort);
 
-        	// Title
-        	if (empty($title)) {
-        		$full_title = $clean_name;
-        	} else {
-        		$full_title = $title . ': ' . $clean_name;
-        	}
+            // Title
+            if (empty($title)) {
+                $full_title = $clean_name;
+            } else {
+                $full_title = $title . ': ' . $clean_name;
+            }
 
             if(is_dir("$path/$file")) {
-            	// Directory
-            	$tree[$clean_sort] = array(
-            		'type' => 'folder',
-            		'name' => $clean_name,
-            		'title' => $full_title,
-            		'path' => $full_path,
-            		'clean' => $clean_sort,
-            		'url' => $url,
-            		'tree'=> get_tree($full_path, $url, $full_title, false)
-            	);
+                // Directory
+                $tree[$clean_sort] = array(
+                    'type' => 'folder',
+                    'name' => $clean_name,
+                    'title' => $full_title,
+                    'path' => $full_path,
+                    'clean' => $clean_sort,
+                    'url' => $url,
+                    'tree'=> get_tree($full_path, $url, $full_title, false)
+                );
             } else {
-            	// File
-            	$tree[$clean_sort] = array(
-            		'type' => 'file',
-            		'name' => $clean_name,
-            		'title' => $full_title,
-            		'path' => $full_path,
-            		'clean' => $clean_sort,
-            		'url' => $url,
-            	);
+                // File
+                $tree[$clean_sort] = array(
+                    'type' => 'file',
+                    'name' => $clean_name,
+                    'title' => $full_title,
+                    'path' => $full_path,
+                    'clean' => $clean_sort,
+                    'url' => $url,
+                );
             }
         }
-     	$index++;
+        $index++;
     }
 
     return $tree;

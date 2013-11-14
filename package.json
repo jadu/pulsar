@@ -14,6 +14,7 @@
       "grunt-asciify": "latest",
       "grunt-bg-shell": "latest",
       "grunt-bump": "latest",
+      "grunt-concurrent": "latest",
       "grunt-contrib-clean": "latest",
       "grunt-contrib-copy": "latest",
       "grunt-contrib-jshint": "latest",

@@ -4,13 +4,13 @@ Creates a radio button which can be pre-checked and grouped with other radios.
 
 Available parameters:
 
-	{{ form.radio(label, id, class, name, checked = false, help) }}
+    {{ form.radio(label, id, class, name, checked = false, help) }}
 
 Examples:
 
-	{{ form.radio(label = 'Radio with left label') }}
+    {{ form.radio(label = 'Radio with left label') }}
 
-	<div class="form__group">
+    <div class="form__group">
         <label for="inputRadioLeft" class="radio__label">Radio with left label</label>
         <div class="controls">
             <input type="radio" id="inputRadioLeft" name="inputRadioLeft" checked="">
@@ -48,7 +48,7 @@ Examples:
 </div>
 </form>
 
-### Radio Groups
+### Radio groups
 
 You can group radios together into logical blocks by wrapping them with the `radio_group` helper, this is particularly useful for creating inline radios if your options are relatively small.
 

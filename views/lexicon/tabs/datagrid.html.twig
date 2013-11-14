@@ -7,11 +7,22 @@
             <th class="row__actions">
                 <input type="checkbox" />
             </th>
-            <th><a href="#">Title {{ html.icon('sort-down') }}</a></th>
-            <th><a href="#">Created</a></th>
-            <th><a href="#">Modified</a></th>
-            <th class="centered shrink-to-fit"><a href="#">{{ html.icon('comment-alt') }}</a></th>
-            <th><a href="#">Author</a></th>
+            <th>
+                {{ html.link(label = 'Title') }}
+                {{ html.icon('sort-by-alphabet') }}
+            </th>
+            <th>
+                {{ html.link(label = 'Created') }}
+            </th>
+            <th>
+                {{ html.link(label = 'Modified') }}
+            </th>
+            <th class="centered shrink-to-fit">
+                {{ html.link(label = html.icon('comment-alt')) }}
+            </th>
+            <th>
+                {{ html.link(label = 'Author') }} 
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -107,3 +118,4 @@
         </tr>            
     </tbody>
 </table>
+

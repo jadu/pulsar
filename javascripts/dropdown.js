@@ -17,7 +17,7 @@
  * limitations under the License.
  * ======================================================================== */
 
-require(['jquery'], function ($) { "use strict";
+define(['jquery'], function($) { "use strict";
 
   // DROPDOWN CLASS DEFINITION
   // =========================

@@ -56,7 +56,7 @@ module.exports = function(grunt) {
 
     watch: {
       css: {
-        files: '**/*.scss',
+        files: 'stylesheets/*.scss',
         tasks: ['sass:dev'],
         options: {
           livereload: true,
@@ -130,7 +130,7 @@ module.exports = function(grunt) {
     bump: {
       options: {
         updateConfigs: ['pkg'],
-        files: ['package.json', 'composer.json', 'VERSION'],
+        files: ['pulsar.json', 'package.json', 'composer.json', 'VERSION'],
         commit: true,
         commitMessage: 'Release v%VERSION%',
         commitFiles: ['-a'],
@@ -178,6 +178,7 @@ module.exports = function(grunt) {
             'modal'             : '../javascripts/modal',
             'navigation'        : '../javascripts/navigation',
             'order'             : '../libs/order/index',
+            'popover'           : '../javascripts/popover',
             'pulsar'            : '../javascripts/pulsar',
             'sticky'            : '../libs/sticky/jquery.sticky',
             'tab'               : '../javascripts/tab',
@@ -186,6 +187,13 @@ module.exports = function(grunt) {
           }
         }
       }
+    },
+
+    concurrent: {
+      dev: ['watch', 'php'],
+      options: {
+        logConcurrentOutput: true
+      }
     }
 
   });
@@ -193,15 +201,19 @@ module.exports = function(grunt) {
   grunt.config.set('leadingIndent.indentation', 'spaces');
   grunt.config.set('leadingIndent.files', {
     src : [
-      'javascripts/*.js',
-      'css/*.css', 
-      'stylesheets/*.scss',
-      'tests/**/*.php',
-      'views/**/*.twig'
+      'docs/**/*.md',
+      'docs/**/*.php',
+      'css/**/*', 
+      'javascripts/**/*',
+      'lexicon/**/*',
+      'src/**/*',
+      'stylesheets/**/*',
+      'tests/**/*',
+      'views/**/*'
     ]
   });
 
-  grunt.registerTask('default', ['php']);
+  grunt.registerTask('default', ['concurrent:dev']);
 
   grunt.registerTask('build', [
     'asciify', 
