@@ -3,17 +3,22 @@ HEADER = ---------------------------------------------\n _____  _    _ _       _
 CHECK=\033[32m✔\033[39m
 
 BUILD := build
+BREW = $(shell which brew)
 
 build:
 	@ echo "${HEADER}"
-
+	
 	@ echo "Installing Composer and its dependencies...${HR}\n"
 	@ sudo curl -sS https://getcomposer.org/installer | php -d detect_unicode=Off
 	@ sudo php composer.phar install
 	@ echo "\n${CHECK} Done"
 
 	@ echo "${HR}\nInstalling Homebrew and its dependencies...${HR}\n"
-	@ ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
+ifeq (${BREW}, )
+	ruby -e "$$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
+else
+	@ echo "Homebrew v$(shell brew --version) is already installed.\n"
+endif
 	@ brew install phantomjs
 	@ echo "\n${CHECK} Done"
 
