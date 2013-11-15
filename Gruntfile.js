@@ -112,7 +112,7 @@ module.exports = function(grunt) {
           '!docs/**/*.php',
           'fonts/**/*', 
           'images/*', 
-          'js/main.js',
+          'js/**/*',
           'libs/**/*'
         ],
         dest: 'dist/'
