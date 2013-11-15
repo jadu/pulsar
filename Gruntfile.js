@@ -106,7 +106,7 @@ module.exports = function(grunt) {
     copy: {
       dist: {
         src: [
-          'libs/*', 
+          'libs/**/*', 
           'fonts/**/*', 
           'images/*', 
           'docs/**/', 
@@ -167,19 +167,23 @@ module.exports = function(grunt) {
           // optimize: 'none',
           out: 'dist/js/pulsar.min.js',
           paths: {
+            'daterange'         : '../libs/bootstrap-daterangepicker/daterangepicker',
             'deck'              : '../js/deck',
             'dropdown'          : '../js/dropdown',
             'flash'             : '../js/flash',
             'highcharts'        : '../libs/highcharts/highcharts',
+            'highcharts-mono'   : '../js/highcharts-mono',
             'highcharts-theme'  : '../js/highcharts-theme',
             'highlightjs'       : '../libs/highlightjs/highlight.pack',
             'jquery'            : '../libs/jquery/jquery',
             'jquery-mousewheel' : '../libs/jquery-mousewheel/jquery.mousewheel',
             'modal'             : '../js/modal',
+            'moment'            : '../libs/moment/moment',
             'navigation'        : '../js/navigation',
             'order'             : '../libs/order/index',
             'popover'           : '../js/popover',
             'pulsar'            : '../js/pulsar',
+            'sparkline'         : '../libs/sparkline/index',
             'sticky'            : '../libs/sticky/jquery.sticky',
             'tab'               : '../js/tab',
             'tooltip'           : '../js/tooltip',
