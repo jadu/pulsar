@@ -4,7 +4,7 @@ Tooltips can be applied through the use of data-attributes and can be added to H
 
 Example: 
 
-	<a href="#" data-toggle="tooltip" title="first tooltip">Hover over me</a>
+   <a href="#" data-toggle="tooltip" title="first tooltip">Hover over me</a>
 
 <a href="#" data-toggle="tooltip" title="first tooltip">Hover over me</a>   
 

@@ -8,13 +8,13 @@ Available parameters:
 
 Example:
 
-	{{ form.password(label = 'Password') }}
+    {{ form.password(label = 'Password') }}
 
-	<div class="form__group">
+    <div class="form__group">
         <label for="inputText" class="control__label">Your password</label>
         <div class="controls">
             <input type="password" class="form__control" />
-		</div>
+        </div>
     </div>
 
 <form class="form--horizontal">
@@ -22,6 +22,6 @@ Example:
     <label for="inputText" class="control__label">Your password</label>
     <div class="controls">
         <input type="password" class="form__control" />
-	</div>
+    </div>
 </div>
 </form>
