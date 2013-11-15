@@ -9,16 +9,16 @@ Available parameters:
 Actions should typically be an array of submits/buttons/button groups which are rendered inline.
 
 Example usage:
-	
-	{{ 
+    
+    {{ 
         form.form_end([
             html.button(label = 'Register', type = 'link', href = '/register'),
             form.submit(label = 'Sign in')
         ]) 
     }}
 
-		<div class="form__actions">
+        <div class="form__actions">
             <a href="/register" class="btn" role="button">Register</a>
-			<input type="submit" class="btn" value="Sign in" />
-		</div>
-	</form>
+            <input type="submit" class="btn" value="Sign in" />
+        </div>
+    </form>
