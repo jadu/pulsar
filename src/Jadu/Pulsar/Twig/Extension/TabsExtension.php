@@ -38,7 +38,7 @@ class TabsExtension extends \Twig_Extension
     foreach ($ob as $item) {
 
       // If we have subnavigation
-      if ($item->sub_tabs != null) {
+      if (isset($item->sub_tabs) && $item->sub_tabs != null) {
 
         // Loop through its sub tabs
         foreach($item->sub_tabs as $sub_tab) {
