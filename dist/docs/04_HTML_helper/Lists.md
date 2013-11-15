@@ -2,4 +2,4 @@ Pass an array of items and have them rendered as a simple list, this is particul
 
 Available parameters:
 
-	{{ html.list(list_items, class, active_item) }}
+    {{ html.list(list_items, class, active_item) }}

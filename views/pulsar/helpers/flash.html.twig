@@ -1,5 +1,5 @@
 {%- macro message(message, type = 'default', sticky = true) -%}
-  {% import 'pulsar/helpers/html.html.twig' as html %}
+  {% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
   
   {% if type == 'success' %}
     {% set icon = 'ok' %}

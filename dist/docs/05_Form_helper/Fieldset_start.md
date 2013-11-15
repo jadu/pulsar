@@ -4,11 +4,11 @@ Fieldsets are used for grouping related form components together, there's no vis
 
 Available parameters:
 
-	{{ form.fieldset_start(legend) }}
+    {{ form.fieldset_start(legend) }}
 
 Example usage:
 
-	{{ form.fieldset_start(legend = 'Sign in') }}
+    {{ form.fieldset_start(legend = 'Sign in') }}
 
-	<fieldset>
-		<legend>Sign in</legend>
+    <fieldset>
+        <legend>Sign in</legend>

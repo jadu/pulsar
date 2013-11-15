@@ -68,7 +68,7 @@ module.exports = function(grunt) {
       options: {
         jshintrc: '.jshintrc'
       },
-      all: ['javascripts/**/*.js']
+      all: ['js/**/*.js']
     },
 
     uglify: {
@@ -78,7 +78,7 @@ module.exports = function(grunt) {
           beautify: true
         },
         files: {
-          'dist/js/<%= pkg.name %>.js': ['javascripts/**/*.js']
+          'dist/js/<%= pkg.name %>.js': ['js/**/*.js']
         }
       },
       minify: {
@@ -88,7 +88,7 @@ module.exports = function(grunt) {
           report: 'min'
         },
         files: {
-          'dist/js/<%= pkg.name %>.min.js': ['javascripts/**/*.js']
+          'dist/js/<%= pkg.name %>.min.js': ['js/**/*.js']
         }
       }
     },
@@ -106,13 +106,14 @@ module.exports = function(grunt) {
     copy: {
       dist: {
         src: [
-          'libs/*', 
-          'fonts/**/*', 
-          'images/*', 
           'docs/**/', 
           'docs/**/*.md', 
           'docs/images/*', 
-          '!docs/**/*.php'
+          '!docs/**/*.php',
+          'fonts/**/*', 
+          'images/*', 
+          'js/**/*',
+          'libs/**/*'
         ],
         dest: 'dist/'
       },
@@ -163,26 +164,29 @@ module.exports = function(grunt) {
       dist: {
         options: {
           name: 'main',
-          mainConfigFile: 'javascripts/main.js',
+          mainConfigFile: 'js/main.js',
           // optimize: 'none',
           out: 'dist/js/pulsar.min.js',
           paths: {
-            'deck'              : '../javascripts/deck',
-            'dropdown'          : '../javascripts/dropdown',
-            'flash'             : '../javascripts/flash',
+            'daterange'         : '../libs/bootstrap-daterangepicker/daterangepicker',
+            'deck'              : '../js/deck',
+            'dropdown'          : '../js/dropdown',
+            'flash'             : '../js/flash',
             'highcharts'        : '../libs/highcharts/highcharts',
-            'highcharts-theme'  : '../javascripts/highcharts-theme',
+            'highcharts-mono'   : '../js/highcharts-mono',
+            'highcharts-theme'  : '../js/highcharts-theme',
             'highlightjs'       : '../libs/highlightjs/highlight.pack',
             'jquery'            : '../libs/jquery/jquery',
             'jquery-mousewheel' : '../libs/jquery-mousewheel/jquery.mousewheel',
-            'modal'             : '../javascripts/modal',
-            'navigation'        : '../javascripts/navigation',
+            'modal'             : '../js/modal',
+            'moment'            : '../libs/moment/moment',
+            'navigation'        : '../js/navigation',
             'order'             : '../libs/order/index',
             'popover'           : '../javascripts/popover',
             'pulsar'            : '../javascripts/pulsar',
             'sticky'            : '../libs/sticky/jquery.sticky',
-            'tab'               : '../javascripts/tab',
-            'tooltip'           : '../javascripts/tooltip',
+            'tab'               : '../js/tab',
+            'tooltip'           : '../js/tooltip',
             'vague'             : '../libs/Vague.js/Vague'
           }
         }
@@ -204,7 +208,7 @@ module.exports = function(grunt) {
       'docs/**/*.md',
       'docs/**/*.php',
       'css/**/*', 
-      'javascripts/**/*',
+      'js/**/*',
       'lexicon/**/*',
       'src/**/*',
       'stylesheets/**/*',
