@@ -48,7 +48,7 @@ Examples:
 </div>
 </form>
 
-### Radio Groups
+### Radio groups
 
 You can group radios together into logical blocks by wrapping them with the `radio_group` helper, this is particularly useful for creating inline radios if your options are relatively small.
 

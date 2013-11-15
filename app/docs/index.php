@@ -13,7 +13,10 @@ use Jadu\Pulsar\Twig\Extension\UrlParamsExtension;
 use Jadu\Pulsar\Twig\Extension\TabsExtension;
 
 $markdownParser = new MarkdownExtraParser();
+
 $loader = new Twig_Loader_Filesystem($templateDir);
+$loader->addPath($templateDir, 'pulsar');
+
 $twig = new Twig_Environment($loader, array('debug' => true));
 
 $twig->addExtension(new ConfigExtension($baseDir . 'pulsar.json'));

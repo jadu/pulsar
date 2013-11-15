@@ -12,7 +12,7 @@ There are two template blocks which should be set by a view:
         <!-- tabs content -->
     {% endblock %}
 
-## Tabs Object
+## Tabs object
 
 The information for the individual tabs and their content is defined in a JSON object that you will pass to the `html.tabs()` and `html.tabs_content()` helpers to physically render them.
 
@@ -49,12 +49,12 @@ A tab can declare a number of sub-tabs which will be expanded when the user clic
           "id"    : "summary",
           "label" : html.icon("bar-chart") ~ " Table with summary",
           "src"   : tab_form_summary,
-          "attr"  : "data-summary=\"#summary\""
+          "attr"  : "data-summary=#summary"
         }
       ]
     }
 
-## Tabs List
+## Tabs list
 
 Pass your tabs object to the `html.tabs` helper and they'll be rendered as clickable tabs.
 
@@ -78,7 +78,7 @@ In your view you can populate the `tabs_list` block to place your tabs in the co
 
 The ID attribute for each tab link will be automatically generated in the format `tab_x` so that they correspond with their respective tab content.
 
-## Tabs Content
+## Tabs content
 
 Pass your tabs object to the `html.tabs_content` helper to render each tab's `src` as a tab pane.
 
@@ -86,7 +86,7 @@ Pass your tabs object to the `html.tabs_content` helper to render each tab's `sr
         {{ html.tabs_content(tabs) }}
     {% endblock %}
 
-## Putting It All Together
+## Putting it all together
 
 Create the contents of your tabs and pass them to the `html.tabs_content` helper within the `tabs_content` block in your view. To keep your views more modular you should keep the tab content separate where possible, like in a directory called `/tabs` in your view.
 
@@ -139,7 +139,7 @@ Create the contents of your tabs and pass them to the `html.tabs_content` helper
     {# Profit? #}
 
 
-## Active Tab
+## Active tab
 
 You can choose which tab to have open when the page is first viewed by setting the ID as the `tab` url paramater. The first tab is always opened by default.
 

@@ -4,11 +4,11 @@ The time ago filter converts a timestamp to a human readable 'relative time'
 
 Example:
 
-	<!-- Where news.published is a timestamp from around two days ago -->
-	{{ news.published|time_ago }}
+    <!-- Where news.published is a timestamp from around two days ago -->
+    {{ news.published|time_ago }}
 
-	<!-- Output -->
-	2 days ago
+    <!-- Output -->
+    2 days ago
 
 The filter will automatically pluralise the output and will cater for
 
