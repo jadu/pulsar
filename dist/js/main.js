@@ -9,6 +9,8 @@ requirejs.config({
         'highcharts-theme'  : '/js/highcharts-theme',
         'highlightjs'       : '/libs/highlightjs/highlight.pack',
         'jquery'            : '/libs/jquery/jquery',
+        'jquery-ui'         : '/libs/jquery.ui/dist/jquery-ui.min',
+        'jquery-ui-touch'   : '/libs/jqueryui-touch-punch/jquery.ui.touch-punch.min',
         'jquery-mousewheel' : '/libs/jquery-mousewheel/jquery.mousewheel',
         'modal'             : '/js/modal',
         'moment'            : '/libs/moment/moment',
@@ -16,7 +18,6 @@ requirejs.config({
         'order'             : '/libs/order/index',
         'popover'           : '/js/popover',
         'pulsar'            : '/js/pulsar',
-        'sparkline'         : '/libs/sparkline/index',
         'sticky'            : '/libs/sticky/jquery.sticky',
         'tab'               : '/js/tab',
         'tooltip'           : '/js/tooltip',
@@ -26,6 +27,12 @@ requirejs.config({
         'daterange': {
             deps: ['jquery', 'moment'],
             exports: 'daterange'
+        },
+        'highcharts': {
+            deps: ['jquery']
+        },
+        'highcharts-mono': {
+            deps: ['jquery', 'highcharts']
         }
     }
 });

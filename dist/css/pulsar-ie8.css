@@ -29,6 +29,7 @@ body {
 .container {
   clear: both;
   margin: 0 20px;
+  height: 100%;
   position: relative; }
 
 footer {
@@ -138,6 +139,57 @@ hr {
 .columns--4 {
   -webkit-column-count: 4; }
 
+.dashboard {
+  float: left;
+  margin-top: 11px;
+  height: 100%;
+  width: 100%; }
+
+.tray {
+  background-color: #333333;
+  color: white;
+  display: none;
+  height: 200px;
+  margin-top: -1px;
+  padding-left: 20px;
+  width: 100%;
+  z-index: 1050; }
+  .tray .is-open {
+    display: block; }
+
+.tray__column, .tray__detail {
+  display: inline-block;
+  height: 200px;
+  overflow-y: scroll; }
+
+.tray__column {
+  margin-right: 1%;
+  padding-top: 3px;
+  width: 15%; }
+  .tray__column li {
+    border-bottom: 1px solid #262626;
+    box-shadow: 0 1px 0 #404040;
+    line-height: 2em;
+    list-style-type: none;
+    padding: 0 5px; }
+    .tray__column li [class^="icon-"], .tray__column li [class*=" icon-"] {
+      display: none;
+      float: right;
+      margin-top: 8px; }
+    .tray__column li:hover {
+      background-color: #2e2e2e; }
+      .tray__column li:hover [class^="icon-"], .tray__column li:hover [class*=" icon-"] {
+        display: block; }
+
+.tray--widgets li {
+  cursor: pointer;
+  cursor: hand;
+  cursor: -webkit-grab;
+  cursor: -moz-grab; }
+
+.tray__detail {
+  width: 55%; }
+
 .label {
   display: inline-block;
   vertical-align: baseline;
@@ -159,6 +211,15 @@ hr {
     text-decoration: none;
     cursor: pointer;
     background-color: grey; }
+  .label [data-filter-action="remove"] {
+    border-left: 1px dotted #cccccc;
+    color: inherit;
+    margin-left: 5px;
+    text-decoration: none; }
+    .label [data-filter-action="remove"] i {
+      margin-left: 7px; }
+    .label [data-filter-action="remove"]:hover {
+      margin-top: 1px; }
 
 .label--danger {
   background-color: #dd6664; }
@@ -416,6 +477,9 @@ a.list-group-item.active > .badge, .nav-pills > .active > a > .badge {
   white-space: nowrap;
   /* 7 */ }
 
+a.btn {
+  color: inherit; }
+
 /**
  * UI states
  */
@@ -465,7 +529,7 @@ a.list-group-item.active > .badge, .nav-pills > .active > a > .badge {
     opacity: 0.5;
     cursor: not-allowed; }
 
-.btn--primary {
+.btn--primary, .widget__price {
   border: 1px solid #2778b7;
   border-radius: 3px;
   box-shadow: inset 0 1px 0 0 #97bdda;
@@ -1482,12 +1546,6 @@ tr.filters [data-filter-action="clear-all"] {
 [data-daterange]:hover {
   cursor: pointer; }
 
-[data-filter-action="remove"] {
-  margin-left: 5px;
-  border-left: 1px dotted #cccccc; }
-  [data-filter-action="remove"] i {
-    margin-left: 7px; }
-
 .summary {
   background-color: #333333;
   color: white;
@@ -2135,6 +2193,62 @@ footer {
 .daterangepicker select.hourselect, .daterangepicker select.minuteselect, .daterangepicker select.ampmselect {
   width: 50px;
   margin-bottom: 0; }
+
+.widget {
+  background-color: white;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  cursor: -webkit-grab;
+  cursor: -moz-grab;
+  cursor: grab;
+  float: left;
+  height: 250px;
+  margin: 0 1%;
+  overflow: hidden;
+  position: relative;
+  transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+  transition: transform 0.2s;
+  -webkit-transition: -webkit-transform 0.2s;
+  width: 23%; }
+  .widget:hover .widget__controls {
+    display: block; }
+  .widget h3 {
+    border-bottom: 1px solid #cccccc;
+    line-height: 40px;
+    margin: 0;
+    padding: 2px 10px 0 10px; }
+
+.span-2 {
+  width: 50%; }
+
+.widget__controls {
+  color: inherit;
+  display: none;
+  position: absolute;
+  right: 10px;
+  text-decoration: none;
+  top: 10px; }
+
+.widget__price {
+  float: right;
+  margin-top: 11px; }
+
+.ui-sortable-helper {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  cursor: -webkit-grabbing;
+  cursor: -moz-grabbing;
+  cursor: grabbing;
+  transform: rotate(7deg);
+  -ms-transform: rotate(7deg);
+  -webkit-transform: rotate(7deg); }
+
+.ui-state-highlight {
+  outline: 1px solid red; }
+
+.highchart {
+  height: 209px;
+  width: 100%; }
 
 .tabs__list {
   float: left;
