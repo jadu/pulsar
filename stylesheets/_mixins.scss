@@ -148,3 +148,13 @@
   $opacity-ie: ($opacity * 100);
   filter: "alpha(opacity=#{opacity-ie})";
 }
+
+// User select
+@mixin user-select($value: inherit) {
+  -webkit-touch-callout: $value;
+  -webkit-user-select: $value;
+  -khtml-user-select: $value;
+  -moz-user-select: $value;
+  -ms-user-select: $value;
+  user-select: $value;
+}

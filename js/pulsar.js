@@ -4,16 +4,31 @@
 
 define(['jquery'], function() {
 
-    $(document).ready(function() {
-    
+    $(document).ready(function() {  
+
         require(['jquery-ui', 'jquery-ui-touch'], function() {
             $( ".dashboard" ).sortable({
+                forcePlaceholderSize: true,
                 opacity: 0.5,
-                revert: 100
+                revert: 100,
+                receive: function(event, ui) {
+                    console.log('received');
+                }
+            }).disableSelection();
+
+            // Connect the widget list with the dashboard
+            $('.tray__widgets ul').sortable({
+                forcePlaceholderSize: true,
+                revert: true
             });
-            $( ".widgets" ).disableSelection();
+
+            $('.tray__widgets .widget').draggable({
+              connectToSortable: '.dashboard',
+              helper: 'clone',
+              revert: 'invalid'  
+            });
+            
         });
-     
      
         // Stick the Jadu toolbar to the top of the window
         require(['sticky'], function() {

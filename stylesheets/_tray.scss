@@ -1,7 +1,7 @@
 .tray {
   background-color: $gray-dark;
   color: $white;
-  display: none;
+  // display: none;
   height: 200px;
   margin-top: -1px;
   padding-left: $gutter-width;
@@ -31,6 +31,7 @@
     line-height: 2em;
     list-style-type: none;
     padding: 0 5px;
+    @include user-select('none');
 
     [class^="icon-"], 
     [class*=" icon-"] {
@@ -48,13 +49,6 @@
       }
     }
   }
-}
-
-.tray--widgets li {
-  cursor: pointer;
-  cursor: hand;
-  cursor: -webkit-grab;
-  cursor: -moz-grab;
 }
 
 .tray__detail {

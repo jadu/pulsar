@@ -2,6 +2,7 @@ requirejs.config({
     paths: {
         'daterange'         : '/libs/bootstrap-daterangepicker/daterangepicker',
         'deck'              : '/js/deck',
+        'dashboard'         : '/js/dashboard',
         'dropdown'          : '/js/dropdown',
         'flash'             : '/js/flash',
         'highcharts'        : '/libs/highcharts/highcharts',

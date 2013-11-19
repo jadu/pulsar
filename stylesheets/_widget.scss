@@ -1,9 +1,18 @@
-.widget {
+.tray__widgets .widget {
+  background-color: $gray-dark;
+  cursor: pointer;
+  cursor: hand;
+  cursor: -webkit-grab;
+  cursor: -moz-grab;
+}
+
+.dashboard .widget {
   background-color: $white;
   box-shadow: 0 0 5px rgba(0,0,0,.2);
   cursor: -webkit-grab;
   cursor:    -moz-grab;
   cursor:         grab;
+  display: block;
   float: left;
   height: 250px;
   margin: 0 1%;
@@ -66,4 +75,12 @@
 .highchart {
   height: 209px;
   width: 100%;
+}
+
+.dashboard .ui-sortable-placeholder {
+  background-color: #fafafa !important;
+  box-shadow: none !important;
+  border: 1px dashed #ccc !important;
+  height: 250px !important;
+  visibility: visible !important;
 }
