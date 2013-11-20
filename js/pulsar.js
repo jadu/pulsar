@@ -7,27 +7,33 @@ define(['jquery'], function() {
     $(document).ready(function() {  
 
         require(['jquery-ui', 'jquery-ui-touch'], function() {
+
+            var widget_content = '';
+
             $( ".dashboard" ).sortable({
                 forcePlaceholderSize: true,
                 opacity: 0.5,
                 revert: 100,
                 receive: function(event, ui) {
-                    console.log('received');
+                    $(this).data().uiSortable.currentItem.html(widget_content);
                 }
             }).disableSelection();
-
-            // Connect the widget list with the dashboard
-            $('.tray__widgets ul').sortable({
-                forcePlaceholderSize: true,
-                revert: true
-            });
 
             $('.tray__widgets .widget').draggable({
               connectToSortable: '.dashboard',
               helper: 'clone',
-              revert: 'invalid'  
+              revert: 'invalid',
+              start: function(event, ui) {
+                var widget = $(ui.helper.context).data('widget');
+                var self = $(this);
+                $.ajax({
+                  url: '/views/dashboard/widgets/' + widget
+                }).done(function(data) {
+                  widget_content = data;
+                });
+              }
             });
-            
+
         });
      
         // Stick the Jadu toolbar to the top of the window
