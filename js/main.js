@@ -6,6 +6,7 @@ requirejs.config({
         'dropdown'          : '/js/dropdown',
         'flash'             : '/js/flash',
         'highcharts'        : '/libs/highcharts/highcharts',
+        'highcharts-more'   : '/libs/highcharts/highcharts-more',
         'highcharts-mono'   : '/js/highcharts-mono',
         'highcharts-theme'  : '/js/highcharts-theme',
         'highlightjs'       : '/libs/highlightjs/highlight.pack',
@@ -32,7 +33,7 @@ requirejs.config({
         'highcharts': {
             deps: ['jquery']
         },
-        'highcharts-mono': {
+        'highcharts-more': {
             deps: ['jquery', 'highcharts']
         }
     }

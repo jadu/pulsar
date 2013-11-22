@@ -34,7 +34,70 @@ $flashMessage = array(
     'message' => 'This is a flash message, it lets users know that something happened. <a href="#tab_4" data-toggle="tab">read more</a>.'
     );
 
+$widgets = array(
+    array(
+        'id' => 'analytics',
+        'title' => 'Analytics',
+        'widgets' => array(
+            array(
+                'id' => 'browsers',
+                'title' => 'Browser Usage',
+                'source' => 'browsers.html.twig',
+                'price' => '0',
+                'description' => 'Show which browsers your users have used to visit your site.'
+            )
+        )
+    ),
+    array(
+        'id' => 'search',
+        'title' => 'Search',
+        'widgets' => array(
+            array(
+                'id' => 'trending',
+                'title' => 'Trending Searches',
+                'source' => 'trending.html.twig',
+                'price' => '9.99',
+                'description' => 'Show which search terms are currently popular on your site(s).'
+            )
+        )
+    ),
+    array(
+        'id' => 'system',
+        'title' => 'System Information',
+        'widgets' => array(
+            array(
+                'id' => 'cpu',
+                'title' => 'CPU Load',
+                'source' => 'cpu.html.twig',
+                'price' => '0',
+                'description' => 'Shows how hard your server is working at the moment.'
+            ),
+            array(
+                'id' => 'galaxies_count',
+                'title' => 'Galaxies Sites',
+                'source' => 'galaxies.html.twig',
+                'price' => '0',
+                'description' => 'Shows how many Galaxies sites are currently active.'
+            )                
+        )
+    ),
+    array(
+        'id' => 'users',
+        'title' => 'User Information',
+        'widgets' => array(
+            array(
+                'id' => 'admins',
+                'title' => 'Admins',
+                'source' => 'admins.html.twig',
+                'price' => '0',
+                'description' => 'Show how many administrators you have.'
+            )                
+        )
+    )
+);
+
 print $template->render(array(
     'breadcrumb' => $breadcrumb,
-    'flash_message' => $flashMessage
+    'flash_message' => $flashMessage,
+    'widgets' => $widgets
     ));

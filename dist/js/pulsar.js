@@ -102,6 +102,13 @@ define(['jquery'], function() {
             $target.slideToggle(100);
         });
 
+        // Switch a given element within the same data-group
+        $('[data-switch]').on('click', function(e) {
+            console.log($(this));
+            // $target = $('#' + $(this).data('toggle'));
+            // $target.slideToggle(100);
+        });
+
     });
 });
 

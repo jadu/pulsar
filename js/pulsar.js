@@ -10,36 +10,97 @@ define(['jquery'], function() {
 
             var widget_content = '';
 
-            $( ".dashboard" ).sortable({
-                forcePlaceholderSize: true,
-                opacity: 0.5,
-                revert: 100,
-                receive: function(event, ui) {
-                    $(this).data().uiSortable.currentItem.html(widget_content);
-                }
-            }).disableSelection();
+            // $('.tray__widgets .widget').draggable({
+            //   connectToSortable: '.dashboard',
+            //   helper: 'clone',
+            //   revert: 'invalid',
 
-            $('.tray__widgets .widget').draggable({
+            //   // Fetch widget content when dragging starts
+            //   start: function(event, ui) {
+            //     var widget = $(ui.helper.context).data('widget');
+            //     widget_content = '';
+            //     $.ajax({
+            //       url: '/views/widgets/' + widget + '/index.php'
+            //     }).done(function(data) {
+            //       widget_content = data;
+            //     });
+            //   }
+            // });
+
+            $('.tray__detail .widget').draggable({
               connectToSortable: '.dashboard',
               helper: 'clone',
               revert: 'invalid',
+
+              // Fetch widget content when dragging starts
               start: function(event, ui) {
                 var widget = $(ui.helper.context).data('widget');
-                var self = $(this);
+                widget_content = '';
                 $.ajax({
-                  url: '/views/dashboard/widgets/' + widget
+                  url: '/views/widgets/' + widget + '/index.php'
                 }).done(function(data) {
                   widget_content = data;
                 });
               }
             });
 
+
+            $( ".dashboard" ).sortable({
+                forcePlaceholderSize: true,
+                opacity: 0.5,
+                revert: 100,
+                tolerance: 'pointer',
+                // Populate widget content when widget is dropped into dashboard
+                receive: function(event, ui) {
+                    var $this = $(this);
+
+                    // If the fetch started by the dragging event hasn't finished, keep checking for the response...
+                    isFetched();
+                    function isFetched() {
+                        if (widget_content != '') {
+                            
+                            // Populate the widget
+                            $this.data().uiSortable.currentItem.html(widget_content);
+
+                            // Tidy up after ourselves
+                            widget_content = '';
+                        } else {
+
+                            // Wait a bit more...
+                            setTimeout(isFetched, 50);
+                        }
+                    }
+                }
+            });
+
+
+            $('.dashboard').on('click', '.widget [data-widget-action=remove]', function() {
+                $(this).closest('.widget').remove();
+            });
+
+            $('.tray__widgets li').on('click', function() {
+                var $this = $(this);
+                $('.tray__widgets').find('li').removeClass('active');
+                $this.addClass('active');
+                $('.widget__title').text($this.data('widget-title'));
+                $('.widget__description').text($this.data('widget-description'));
+                $('.widget__price').text($this.data('widget-price'));
+
+console.log($this.data('widget'));
+
+                $('.tray__detail .widget').data('widget', $this.data('widget'))
+                    .data('widget-title', $this.data('widget-title'))
+                    .data('widget-description', $this.data('widget-description'))
+                    .show();
+            });
+
+
         });
      
         // Stick the Jadu toolbar to the top of the window
         require(['sticky'], function() {
             $('.toolbar').sticky({topSpacing: 0});
-            // $('.tray').sticky({topSpacing: 44}).sticky('update');
+            // $('.tray').sticky({topSpacing: 45}).sticky('update');
         });
 
         // Init tooltips
@@ -119,8 +180,25 @@ define(['jquery'], function() {
 
         // toggle a given element
         $('[data-toggle]').on('click', function(e) {
+            $(this).toggleClass('active');
             $target = $('.' + $(this).data('toggle'));
             $target.slideToggle(100);
+        });
+
+        // Switch a given element within the same data-group
+        $('[data-switch]').on('click', function(e) {
+            var $this = $(this);
+            
+            if ($this.hasClass('active')) {
+                return false;
+            } else {
+                $this.siblings().removeClass('active');
+            }
+            
+            $('.' + $this.data('group')).hide();
+            $this.addClass('active');
+            $('#' + $this.data('switch')).show();
+            
         });
 
     });

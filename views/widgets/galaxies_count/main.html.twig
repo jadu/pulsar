@@ -1,0 +1,105 @@
+{% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
+{{ 
+    html.button_dropdown(
+        caret = false,
+        class = 'widget__controls',
+        label = html.icon('angle-down'),
+        type = 'link',
+        menu_items = [
+            html.link(
+                label = html.icon('trash') ~ ' Remove',
+                class = 'link--danger',
+                attributes = 'data-widget-action=remove'
+            )
+        ]
+    ) 
+}}
+<h3>Galaxies Sites</h3>
+<script>  
+  require(['highcharts'], function() {
+
+    var $container = $('#galaxies');
+    
+    var chart = new Highcharts.Chart({
+      chart: {
+          height: 200,
+          renderTo: $container[0],
+          spacing: 0,
+          type: 'areaspline'
+      },
+      xAxis: {
+        categories: [
+              '09:00',
+              '10:00',
+              '11:00',
+              '12:00',
+              '13:00',
+              '14:00',
+              '15:00',
+              '16:00'
+        ],
+        labels: {
+          enabled: false
+        },
+        gridLineColor: '#efefef',
+        gridLineDashStyle: 'longdash',
+        gridLineWidth: 1,
+        pointPlacement: 'on',
+        lineWidth: 0,
+        tickWidth: 00
+      },
+      yAxis: {
+        gridLineWidth: 0,
+        labels: {
+          enabled: false
+        },
+        min: 0,
+        title: null
+      },
+      legend: {
+        enabled: false
+      },
+      credits: {
+        enabled: false
+      },
+      title: {
+        text: null
+      },
+      tooltip: {
+          headerFormat: "{point.key}<br />",
+          pointFormat: "{point.y}"
+      },
+      plotOptions: {
+        series: {
+          pointPadding: 0,
+          groupPadding: 0,
+          borderWidth: 0,   
+          shadow: false,
+          dataLabels: {
+            enabled: true,
+            inside: false,
+            useHTML: true,
+            verticalAlign: 'top',
+            formatter: function() {                    
+              if ((this.point.x + 1) === this.point.series.data.length) {
+                return this.y;
+              } else {
+                return null;
+              }
+            }
+          },
+          marker: {
+            radius: 2
+          },
+          zIndex: -1
+        }
+      },
+      series: [{
+          name: 'Galaxies',
+          data: [2,3,5,8,13,21,24]
+      }]
+   });
+      
+  });
+</script>
+<div id="galaxies" class="highchart"></div>

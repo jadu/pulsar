@@ -82,8 +82,19 @@ a.btn {
  * Visual variations
  */
 
+@mixin active($base-color) {
+    &.active {
+    $border-active: adjust-color($base-color, $saturation: 9%, $lightness: -14%);
+    $inset-shadow-active: adjust-color($base-color, $saturation: 7%, $lightness: -17%);
+    border: 1px solid $border-active;
+    box-shadow: inset 0 0 8px 4px $inset-shadow-active, inset 0 0 8px 4px $inset-shadow-active, 0 1px 1px 0 #eee;
+    }
+}
+
 .btn {
-    @include button(simple, darken($white, 10%));
+    $base-color: darken($white, 10%);
+    @include button(simple, $base-color);
+    @include active($base-color);    
 }
 
 .btn--primary {
@@ -133,6 +144,8 @@ a.btn {
         text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
     }
 }
+
+
 
 /*
  * Override Bourbon's defaults

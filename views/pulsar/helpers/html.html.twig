@@ -28,12 +28,24 @@
 {%- endmacro -%}
 
 
-{%- macro button_dropdown(label = 'label', class, id, menu_items, open = false) -%}
+{%- macro button_dropdown(label = 'label', class, id, type, menu_items, open = false, caret = true) -%}
   {% import _self as html %}
   <div class="btn__group{% if open %} open{% endif %} {{ class }}">
+
+    {% if type == 'link' %}
+
+    <a class="dropdown__toggle" {% if id is not empty %} id="{{ id }}"{% endif %} data-toggle="dropdown">
+        {{ label|raw }}{% if menu_items is not empty and caret == true %} <span class="caret"></span>{% endif %}
+    </a>
+
+    {% else %}
+
     <button type="button" class="btn dropdown__toggle" {% if id is not empty %} id="{{ id }}"{% endif %} data-toggle="dropdown">
-        {{ label|raw }}{% if menu_items is not empty %} <span class="caret">{% endif %}</span>
+        {{ label|raw }}{% if menu_items is not empty and caret == true %} <span class="caret"></span>{% endif %}
     </button>
+
+    {% endif %}
+
     {% if menu_items is not empty %}
     <ul class="dropdown__menu">
       {% for menu_item in menu_items %}

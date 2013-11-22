@@ -2,6 +2,7 @@
 {% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
 {% import '@pulsar/pulsar/helpers/form.html.twig' as form %}
 {% import '@pulsar/pulsar/helpers/flash.html.twig' as flash %}
+{% import '@pulsar/pulsar/helpers/pulsar.html.twig' as pulsar %}
 
 {% block title %}{{ parent() }}{% endblock %}
 
@@ -20,281 +21,26 @@
 
 {% block summary %}
   <div class="tray">
-    
-    <div class="tray__column tray__categories">
-      <ul>
-        <li>Social {{ html.icon('angle-right') }}</li>
-        <li>Analytics {{ html.icon('angle-right') }}</li></li>
-        <li>Workflow {{ html.icon('angle-right') }}</li></li>
-        <li>xForms {{ html.icon('angle-right') }}</li></li>
-        <li>Social {{ html.icon('angle-right') }}</li></li>
-        <li>Analytics {{ html.icon('angle-right') }}</li></li>
-        <li>Workflow {{ html.icon('angle-right') }}</li></li>
-        <li>Social {{ html.icon('angle-right') }}</li></li>
-        <li>Analytics {{ html.icon('angle-right') }}</li></li>
-        <li>Workflow {{ html.icon('angle-right') }}</li></li>
-        <li>Social {{ html.icon('angle-right') }}</li></li>
-        <li>Analytics {{ html.icon('angle-right') }}</li></li>
-        <li>Workflow {{ html.icon('angle-right') }}</li></li>
-        <li>Social {{ html.icon('angle-right') }}</li></li>
-        <li>Analytics {{ html.icon('angle-right') }}</li></li>
-        <li>Workflow {{ html.icon('angle-right') }}</li></li>
-      </ul>
-    </div>
-
-    <div class="tray__column tray__widgets">
-      <ul>
-        <li class="widget" data-widget="kitteh.html.twig">Kitteh {{ html.icon('move') }}</li></li>
-        <li class="widget">Facebook {{ html.icon('move') }}</li></li>
-        <li class="widget">Google+ {{ html.icon('move') }}</li></li>
-        <li class="widget">Twitter: Mentions {{ html.icon('move') }}</li></li>
-        <li class="widget">Twitter: Retweets {{ html.icon('move') }}</li></li>
-        <li class="widget">Analytics {{ html.icon('move') }}</li></li>
-        <li class="widget">Workflow {{ html.icon('move') }}</li></li>
-        <li class="widget">Social {{ html.icon('move') }}</li></li>
-        <li class="widget">Analytics {{ html.icon('move') }}</li></li>
-        <li class="widget">Workflow {{ html.icon('move') }}</li></li>
-        <li class="widget">Social {{ html.icon('move') }}</li></li>
-        <li class="widget">Analytics {{ html.icon('move') }}</li></li>
-        <li class="widget">Workflow {{ html.icon('move') }}</li></li>
-        <li class="widget">Social {{ html.icon('move') }}</li></li>
-        <li class="widget">Analytics {{ html.icon('move') }}</li></li>
-        <li class="widget">Workflow {{ html.icon('move') }}</li></li>
-      </ul>
-    </div>
-
-    <div class="tray__detail">
-      {{ html.button(label = html.icon('shopping-cart') ~ ' £9.99', class = 'widget__price') }}
-      <h3>Twitter Mentions</h3>
-      <p>Show how many times your Twitter username(s) have been mentioned within a given period of time.</p>
-    </div>
-
+    {% include '@pulsar/pulsar/components/widget_list.html.twig' %}
   </div>
 {% endblock %}
 
 {% block actionsbar %}
   {{ 
     html.button_group([
-      html.button(label = html.icon('calendar') ~ ' Last 7 days', href = '#', type = 'link'),
-      html.button(label = html.icon('th-large') ~ ' Dashboards', href = '#', type = 'link'),
       html.button(label = html.icon('dashboard') ~ ' Widgets', href = '#', type = 'link', attributes = 'data-toggle=tray')
     ])
   }}
 {% endblock %}
 
 {% block widgets %}
-  <div class="dashboard">
+<div class="widget">
+<h3>Administrators</h3> 
 
-    <div class="widget">
-      {{ html.link(label = html.icon('angle-down'), class = 'widget__controls') }}
-      <h3>Galaxies Sites</h3>
-      <script>  
-        require(['highcharts-mono'], function() {
-          
-          $('#galaxies').highcharts({
-            chart: {
-                backgroundColor: '#FFF',
-                spacing: 0,
-                type: 'column'
-            },
-            xAxis: {
-              categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-              labels: {
-                enabled: false
-              },
-              lineWidth: 0,
-              tickWidth: 0
-            },
-            yAxis: {
-              gridLineWidth: 0,
-              labels: {
-                enabled: false
-              },
-              min: 0,
-              title: null
-            },
-            legend: {
-              enabled: false
-            },
-            credits: {
-              enabled: false
-            },
-            title: {
-              text: null
-            },
-            tooltip: {
-                headerFormat: "{point.key}<br />",
-                pointFormat: "{point.y}"
-            },
-            plotOptions: {
-              series: {
-                color: '#333',
-                pointPadding: 0.04,
-                groupPadding: 0,
-                borderWidth: 0, 
-                shadow: false,
-                dataLabels: {
-                  color: '#eee',
-                  enabled: true,
-                  inside: true,
-                  useHTML: true,
-                  verticalAlign: 'top',
-                  formatter: function() {                    
-                    if ((this.point.x + 1) === this.point.series.data.length) {
-                      return this.y;
-                    } else {
-                      return null;
-                    }
-                  }
-                }
-              }
-            },
-            series: [{
-                name: 'Galaxies',
-                data: [2,3,5,8,13,21,24]
-            }]
-         });
-            
-        });
-      </script>
-      <div id="galaxies" class="highchart"></div>
-    </div>
+<p class="big-ass-number">638 <span class="label label--success"><i class="icon-arrow-up"></i> 7</span></p>
 
-    <div class="widget">
-      {{ html.link(label = html.icon('angle-down'), class = 'widget__controls') }}
-      <h3>Browsers</h3>
-      <script>
-      require(['highcharts', 'highcharts-mono'], function() {
-        $(document).ready(function() {
+<p class="big-ass-number">14 <span class="label label--danger"><i class="icon-arrow-down"></i> 1</span></p>
 
-          $('#browsers').highcharts({
-            chart: {
-                plotBackgroundColor: null,
-                plotBorderWidth: null,
-                plotShadow: false
-            },
-            title: {
-                text: ''
-            },
-            tooltip: {
-              pointFormat: "{series.name}: <b>{point.percentage:.1f}%</b>"
-            },
-            plotOptions: {
-                pie: {
-                    allowPointSelect: true,
-                    cursor: 'pointer',
-                    dataLabels: {
-                        enabled: true,
-                        color: '#000000',
-                        distance: 5,
-                        color: 'black',                
-                        connectorColor: '#CCC',
-                        format: '{point.name}'
-                    }
-                }
-            },
-            series: [{
-                type: 'pie',
-                name: 'Browser share',
-                data: [
-                    ['Firefox',   45.0],
-                    ['IE',        26.8],
-                    ['Chrome',    12.8],
-                    ['Safari',    8.5]
-                ]
-            }],
-            credits: {
-              enabled: false
-            }
-          });
-
-        });
-      });
-      </script>
-      <div id="browsers" class="highchart"></div>
-    </div>
-
-
-    <div class="widget">
-      {{ html.link(label = html.icon('angle-down'), class = 'widget__controls') }}
-      <h3>Administrators</h3>
-      <script>  
-        require(['highcharts-mono'], function() {
-          
-          $('#admins').highcharts({
-            chart: {
-                backgroundColor: '#FFF',
-                spacing: 0,
-                type: 'column'
-            },
-            xAxis: {
-              categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-              labels: {
-                enabled: false
-              },
-              lineWidth: 0,
-              tickWidth: 0
-            },
-            yAxis: {
-              gridLineWidth: 0,
-              labels: {
-                enabled: false
-              },
-              min: 0,
-              title: null
-            },
-            legend: {
-              enabled: false
-            },
-            credits: {
-              enabled: false
-            },
-            title: {
-              text: null
-            },
-            tooltip: {
-                headerFormat: "{point.key}<br />",
-                pointFormat: "{point.y}"
-            },
-            plotOptions: {
-              series: {
-                color: '#666',
-                pointPadding: 0.04,
-                groupPadding: 0,
-                borderWidth: 0, 
-                shadow: false,
-                dataLabels: {
-                  color: '#eee',
-                  enabled: true,
-                  inside: true,
-                  useHTML: true,
-                  verticalAlign: 'top',
-                  formatter: function() {                    
-                    if ((this.point.x + 1) === this.point.series.data.length) {
-                      return this.y;
-                    } else {
-                      return null;
-                    }
-                  }
-                }
-              }
-            },
-            series: [{
-                data: [321,258,254,300,367,389,400]
-            }]
-         });
-            
-        });
-      </script>
-      <div id="admins" class="highchart"></div>
-    </div>
-
-    <div class="widget">
-      {{ html.link(label = html.icon('angle-down'), class = 'widget__controls') }}
-      <h3>Kitteh!</h3>
-      <img src="http://placekitten.com/402/211" />
-    </div>
-  </div>
-
+</div>
 {% endblock %}
 

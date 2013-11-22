@@ -1,10 +1,11 @@
 .tray {
   background-color: $gray-dark;
-  color: $white;
-  // display: none;
+  color: $off-white;
+  display: none;
   height: 200px;
   margin-top: -1px;
   padding-left: $gutter-width;
+  text-shadow: 0px -1px 0px rgba(0,0,0,.7);
   width: 100%;
   z-index: $zindex-sticky;
 
@@ -21,38 +22,81 @@
 }
 
 .tray__column {
-  margin-right: 1%;
+  background-color: darken($gray-dark, 2);
+  border-right: 1px solid darken($gray-dark, 5);
+  box-shadow: 1px 0 0 lighten($gray-dark, 5);
+  float: left;
+  margin-right: 1px;
   padding-top: 3px;
-  width: 15%;
+  @include user-select('none');
+  width: 20%; 
+
+  &:first-of-type {
+    border-left: 1px solid darken($gray-dark, 5);
+    border-right: 1px solid darken($gray-dark, 5);
+    box-shadow: 1px 0 0 lighten($gray-dark, 5%),
+               -1px 0 0 lighten($gray-dark, 5%);
+  }
+
+  ul {
+    box-shadow: 0 1px 10px rgba(0,0,0,.7);
+    margin-top: -2px;
+    width: 100%;
+  }
 
   li {
-    border-bottom: 1px solid darken($gray-dark, 5%);
-    box-shadow: 0 1px 0 lighten($gray-dark, 5%);
+    background-color: $gray-dark;
+    border-bottom: 1px solid rgba(0,0,0,.2);
+    box-shadow: 0 1px 0 rgba(255,255,255,.1);
+    cursor: pointer;
     line-height: 2em;
     list-style-type: none;
-    padding: 0 5px;
+    margin-bottom: 1px; // for box-shadow
+    padding: 0 0 0 10px;
     @include user-select('none');
+
+    &.active,
+    &:hover {
+      background-color: darken($gray-dark, 2);
+    }
+    
+    &.active {
+      background-color: #5697cf;
+      border-bottom: 1px solid rgba(0,0,0,.2);
+    }
 
     [class^="icon-"], 
     [class*=" icon-"] {
-      display: none;
       float: right;
-      margin-top: 8px;
+      margin: 6px 10px 0 0;
     }
 
-    &:hover {
-      background-color: darken($gray-dark, 2%);
-
-      [class^="icon-"], 
-      [class*=" icon-"] {
-        display: block;
-      }
+    &:last-of-type {
+      border-bottom: none;
+      box-shadow: none;
     }
   }
 }
 
+.widget__list {
+  float: left;
+}
+
+.tray__detail .widget {
+  border-left: 1px solid rgba(255,255,255,.1);
+  box-shadow: -1px 0 0 rgba(0,0,0,.2);
+  float: right;
+  padding: 0 10px;
+}
+
 .tray__detail {
+  margin-left: 2%;
   width: 55%;
 }
 
-
+.widget__preview {
+  clear: right;
+  float: right;
+  height: 170px;
+  width: 200px;
+}
