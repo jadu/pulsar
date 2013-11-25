@@ -7,8 +7,7 @@ class ConfigExtensionTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->config = 'pulsar.json';
-        $this->ext = new ConfigExtension($this->config);
-        
+        $this->ext = new ConfigExtension($this->config);   
     }
 
     public function testGetName()
