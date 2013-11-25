@@ -1,0 +1,8 @@
+{
+    "name": "CPU Usage",
+    "version": "0.0.1",
+    "twig": true,
+    "config": {
+        "widget_title": "CPU Usage"
+    }
+}

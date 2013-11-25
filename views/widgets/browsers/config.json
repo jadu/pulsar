@@ -1,0 +1,8 @@
+{
+    "name": "Browser Usage",
+    "version": "0.0.1",
+    "twig": true,
+    "config": {
+        "widget_title": "Browser Usage"
+    }
+}

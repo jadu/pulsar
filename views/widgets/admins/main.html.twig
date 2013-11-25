@@ -1,5 +1,19 @@
 {% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
-{{ html.link(label = html.icon('remove'), class = 'widget__controls', attributes = 'data-widget-action="remove"') }}
+{{ 
+    html.button_dropdown(
+        caret = false,
+        class = 'widget__controls',
+        label = html.icon('angle-down'),
+        type = 'link',
+        menu_items = [
+            html.link(
+                label = html.icon('trash') ~ ' Remove',
+                class = 'link--danger',
+                attributes = 'data-widget-action=remove'
+            )
+        ]
+    ) 
+}}
 <h3>{{ config.widget_title }}</h3>
 <dl>
   <dt>Active</dt>
