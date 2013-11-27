@@ -15,11 +15,10 @@
     ) 
 }}
 <h3>{{ config.widget_title }}</h3>
-<div id="browsers" class="highchart"></div>
 <script>
 require(['highcharts'], function() {
 
-    var $container = $('#browsers');
+    var $container = $('[data-last-appended=true] .highchart');
 
     var chart = new Highcharts.Chart({
         chart: {
@@ -66,3 +65,4 @@ require(['highcharts'], function() {
 
 });
 </script>
+<div class="highchart"></div>

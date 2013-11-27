@@ -3,6 +3,7 @@
     "version": "0.0.1",
     "twig": true,
     "config": {
+    		"widget_id": "widget_admins",
         "widget_title": "Administrators"
     }
 }

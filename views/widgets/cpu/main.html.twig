@@ -18,7 +18,7 @@
 <script>
   require(['highcharts-more'], function() {
     
-    var $container = $('#cpu');
+    var $container = $('[data-last-appended=true] .highchart');
 
     var chart = new Highcharts.Chart({
   
@@ -139,4 +139,4 @@
     });
   });
 </script>
-<div id="cpu" class="highchart"></div>
+<div class="highchart"></div>
