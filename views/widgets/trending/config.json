@@ -1,8 +1,8 @@
 {
-    "name": "Trending searches",
+    "id": "widget_trending",
     "version": "0.0.1",
     "twig": true,
-    "config": {
-        "widget_title": "Trending"
+    "settings": {
+        "name": "Trending Searches"
     }
 }

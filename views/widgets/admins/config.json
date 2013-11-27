@@ -1,9 +1,8 @@
 {
-    "name": "Administrators Widget",
-    "version": "0.0.1",
-    "twig": true,
-    "config": {
-    		"widget_id": "widget_admins",
-        "widget_title": "Administrators"
-    }
+  "id": "widget_admins",
+  "version": "0.0.1",
+  "twig": true,
+  "settings": {
+      "name": "Administrators"
+  }
 }

@@ -4,7 +4,7 @@
 
 define(['jquery'], function() {
 
-    $(document).ready(function() {  
+    $(document).ready(function() {
 
         require(['jquery-ui', 'jquery-ui-touch'], function() {
 
@@ -33,6 +33,13 @@ define(['jquery'], function() {
                 opacity: 0.5,
                 revert: 100,
                 tolerance: 'pointer',
+
+                // Recapture the widget state when any re-arrangement is done
+                change: capture_state,
+                refresh: function() {
+                    console.log('refresh called');
+                },
+
                 // Populate widget content when widget is dropped into dashboard
                 receive: function(e, ui) {
                     var $this = $(this);
@@ -59,6 +66,9 @@ define(['jquery'], function() {
                                   .data('widget-description', sender.data('widget-description'))
                                   .data('last-appended', 'true');
 
+                            // Update our state once we've properly fetched the widget contents
+                            capture_state();
+
                             // Tidy up after ourselves
                             widget_content = '';
                         } else {
@@ -67,36 +77,40 @@ define(['jquery'], function() {
                             setTimeout(isFetched, 50);
                         }
                     }
-                },
-                stop: function(e, ui) {
-
-                    var widget_state = [];
-
-                    // Grab the widget states
-                    $.map($(this).find('.widget'), function(el) {
-                        widget_state.push({
-                            guid:   "widget_guid",
-                            id:     $(el).attr('id'),
-                            name:   $(el).data('widget'),
-                            settings: [{
-                                name: "test_name",
-                                value: "test_value"
-                            }]
-                        });
-                    });
-
-                    // Create the json object that stores dashboard state
-                    var Dashboard = {
-                        title: "My Dashboard",
-                        widgets: widget_state
-                    };
-
-                    // console.log(JSON.stringify(Dashboard));
                 }
             });
 
+
+
+            function capture_state(e, ui) {
+                var widget_state = []; 
+
+                // Grab the widget states
+                $.map($('.dashboard').find('.widget'), function(el) {
+                    widget_state.push({
+                        guid:   "widget_guid",
+                        id:     $(el).attr('id'),
+                        settings: {
+                            name: $(el).data('widget')
+                        }
+                    });
+                });
+
+                // Create the json object that stores dashboard state
+                var Dashboard = {
+                    title: "My Dashboard",
+                    widgets: widget_state
+                };
+
+                // Copy state to hidden field in the DOM
+                console.log(JSON.stringify(Dashboard));
+                $('#dashboard_state').val(JSON.stringify(Dashboard));
+            };
+
+
             $('.dashboard').on('click', '.widget [data-widget-action=remove]', function() {
                 $(this).closest('.widget').remove();
+                capture_state();                
             });
 
             $('.tray__widgets li').on('click', function() {
@@ -164,18 +178,9 @@ define(['jquery'], function() {
             });
         });
     
-
         if ($('[data-summary]').hasClass('is-active')) {
             $('[data-tab="' + $('[data-summary]').attr('href') + '"]').show();
         }
-
-        // $('[data-popover-content]').popover({ 
-        //     html : true, 
-        //     placement: 'bottom',
-        //     content: function() {
-        //       return $($(this).data('popoverContent'));
-        //     }
-        // });
 
         require(['daterange'], function() {
             $('[data-daterange]').daterangepicker(

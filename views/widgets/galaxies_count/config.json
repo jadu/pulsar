@@ -1,8 +1,8 @@
 {
-    "name": "Galaxies count",
+    "id": "widget_galaxies",
     "version": "0.0.1",
     "twig": true,
-    "config": {
-        "widget_title": "Galaxies"
+    "settings": {
+        "name": "Galaxies"
     }
 }
