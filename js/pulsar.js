@@ -6,94 +6,27 @@ define(['jquery'], function() {
 
     $(document).ready(function() {  
 
+        require(['dashboard'], function() {
+            $('.dashboard').dashboard();
+        });
+
         require(['jquery-ui', 'jquery-ui-touch'], function() {
 
             var widget_content = '';
 
-            // $('.tray__widgets .widget').draggable({
-            //   connectToSortable: '.dashboard',
-            //   helper: 'clone',
-            //   revert: 'invalid',
+$('.tray__widgets li').on('click', function() {
+    var $this = $(this);
+    $('.tray__widgets').find('li').removeClass('active');
+    $this.addClass('active');
+    $('.widget__title').text($this.data('widget-title'));
+    $('.widget__description').text($this.data('widget-description'));
+    $('.widget__price').text($this.data('widget-price'));
 
-            //   // Fetch widget content when dragging starts
-            //   start: function(event, ui) {
-            //     var widget = $(ui.helper.context).data('widget');
-            //     widget_content = '';
-            //     $.ajax({
-            //       url: '/views/widgets/' + widget + '/index.php'
-            //     }).done(function(data) {
-            //       widget_content = data;
-            //     });
-            //   }
-            // });
-
-            $('.tray__detail .widget').draggable({
-              connectToSortable: '.dashboard',
-              helper: 'clone',
-              revert: 'invalid',
-
-              // Fetch widget content when dragging starts
-              start: function(event, ui) {
-                var widget = $(ui.helper.context).data('widget');
-                widget_content = '';
-                $.ajax({
-                  url: '/views/widgets/' + widget + '/index.php'
-                }).done(function(data) {
-                  widget_content = data;
-                });
-              }
-            });
-
-
-            $( ".dashboard" ).sortable({
-                forcePlaceholderSize: true,
-                opacity: 0.5,
-                revert: 100,
-                tolerance: 'pointer',
-                // Populate widget content when widget is dropped into dashboard
-                receive: function(event, ui) {
-                    var $this = $(this);
-
-                    // If the fetch started by the dragging event hasn't finished, keep checking for the response...
-                    isFetched();
-                    function isFetched() {
-                        if (widget_content != '') {
-                            
-                            // Populate the widget
-                            $this.data().uiSortable.currentItem.html(widget_content);
-
-                            // Tidy up after ourselves
-                            widget_content = '';
-                        } else {
-
-                            // Wait a bit more...
-                            setTimeout(isFetched, 50);
-                        }
-                    }
-                }
-            });
-
-
-            $('.dashboard').on('click', '.widget [data-widget-action=remove]', function() {
-                $(this).closest('.widget').remove();
-            });
-
-            $('.tray__widgets li').on('click', function() {
-                var $this = $(this);
-                $('.tray__widgets').find('li').removeClass('active');
-                $this.addClass('active');
-                $('.widget__title').text($this.data('widget-title'));
-                $('.widget__description').text($this.data('widget-description'));
-                $('.widget__price').text($this.data('widget-price'));
-
-console.log($this.data('widget'));
-
-                $('.tray__detail .widget').data('widget', $this.data('widget'))
-                    .data('widget-title', $this.data('widget-title'))
-                    .data('widget-description', $this.data('widget-description'))
-                    .show();
-            });
-
+    $('.tray__detail .widget').data('widget', $this.data('widget'))
+      .data('widget-title', $this.data('widget-title'))
+      .data('widget-description', $this.data('widget-description'))
+      .show();
+  });
 
         });
      

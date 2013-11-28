@@ -1,5 +1,6 @@
 requirejs.config({
     paths: {
+        'console-js'        : '/libs/console-js/console',
         'daterange'         : '/libs/bootstrap-daterangepicker/daterangepicker',
         'deck'              : '/js/deck',
         'dashboard'         : '/js/dashboard',
@@ -40,6 +41,7 @@ requirejs.config({
 });
  
 require([
+    'console-js',
     'jquery',
     'deck',
     'dropdown',
