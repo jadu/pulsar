@@ -27,6 +27,9 @@ requirejs.config({
         'vague'             : '/libs/Vague.js/Vague'
     },
     shim: {
+        'dashboard': {
+            deps: ['jquery']
+        },
         'daterange': {
             deps: ['jquery', 'moment'],
             exports: 'daterange'
@@ -43,6 +46,7 @@ requirejs.config({
 require([
     'console-js',
     'jquery',
+    'dashboard',
     'deck',
     'dropdown',
     'flash',

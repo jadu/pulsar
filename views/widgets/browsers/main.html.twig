@@ -14,12 +14,11 @@
         ]
     ) 
 }}
-<h3>Browser Usage</h3>
-<div id="browsers" class="highchart"></div>
+<h3>{{ settings.name }}</h3>
 <script>
 require(['highcharts'], function() {
 
-    var $container = $('#browsers');
+    var $container = $('[data-last-appended=true] .highchart');
 
     var chart = new Highcharts.Chart({
         chart: {
@@ -66,3 +65,4 @@ require(['highcharts'], function() {
 
 });
 </script>
+<div class="highchart"></div>

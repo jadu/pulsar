@@ -14,11 +14,11 @@
         ]
     ) 
 }}
-<h3>Galaxies Sites</h3>
+<h3>{{ settings.name }}</h3>
 <script>  
   require(['highcharts'], function() {
 
-    var $container = $('#galaxies');
+    var $container = $('[data-last-appended=true] .highchart');
     
     var chart = new Highcharts.Chart({
       chart: {
@@ -102,4 +102,4 @@
       
   });
 </script>
-<div id="galaxies" class="highchart"></div>
+<div class="highchart"></div>
