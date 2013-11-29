@@ -6,29 +6,48 @@
 
 {% block title %}{{ parent() }}{% endblock %}
 
-{% set heading = '' %}
+{% set heading = 'My Dashboard' %}
 
 {% 
     set actions_menu = [
-        html.link(label = html.icon('plus') ~ ' Create dashboard', href = '#save'),
-        html.link(label = html.icon('save') ~ ' Save', href = '#save', attributes = 'data-widget-action=save'),
-        html.link(label = html.icon('save') ~ ' Save as template', href = '#save'),
-        html.link(label = html.icon('share') ~ ' Share', href = '#save'),
+        html.link(
+          label = html.icon('plus') ~ ' Create dashboard', 
+          href = '#save'
+        ),
+        html.link(
+          label = html.icon('save') ~ ' Save', 
+          href = '#save', 
+          attributes = 'data-widget-action=save'
+        ),
+        html.link(
+          label = html.icon('edit') ~ ' Rename', 
+          href = '#rename', 
+          attributes = 'data-toggle=modal'
+        ),
         html.divider(),
-        html.link(label = html.icon('trash') ~ ' Delete', href = '#delete', class = 'link--danger')
+        html.link(
+          label = html.icon('trash') ~ ' Delete', 
+          href = '#delete', 
+          class = 'link--danger'
+        )
     ]
 %}
 
 {% block summary %}
   <div class="tray">
     {% include '@pulsar/pulsar/components/widget_list.html.twig' %}
+    <input type="hidden" id="widget__data" />
   </div>
 {% endblock %}
 
 {% block actionsbar %}
   {{ 
     html.button_group([
-      html.button(label = html.icon('dashboard') ~ ' Widgets', href = '#', type = 'link', attributes = 'data-toggle=tray')
+      html.button(
+        label = html.icon('dashboard') ~ ' Widgets', 
+        href = '#', 
+        type = 'link', 
+        attributes = 'data-toggle=tray')
     ])
   }}
 {% endblock %}
@@ -36,3 +55,24 @@
 {% block widgets %}
 {% endblock %}
 
+{% block modals %}
+<div class="modal">
+    <div class="modal__dialog">
+        <div class="modal__content">
+            <div class="modal__header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal__title">Rename Dashboard</h4>
+            </div>
+            <div class="modal__body">
+                {{ form.create(action = '#rename', id = 'rename') }}
+                {{ form.text(label = 'Name', name = "name", class = 'form__group--full', value = 'My Dashboard') }}
+            </div>
+            <div class="modal__footer">
+                <button type="button" class="btn" data-dismiss="modal">Cancel</button>
+                {{ form.submit(label = 'Save Changes', class = 'btn--primary') }}
+                </form>
+            </div>
+        </div><!-- /.modal__content -->
+    </div><!-- /.modal__dialog -->
+</div><!-- /.modal -->
+{% endblock %}

@@ -3,7 +3,7 @@
  *
  * Attaches the behaviour to a Dashboard in Jadu CMP
  */
-;define(['jquery', 'jquery-ui', 'jquery-ui-touch'], function() {
+;define(['jquery', 'jquery-ui', 'jquery-ui-touch', 'modal', 'tray'], function() {
 
   (function ( $, window, document, undefined ) {
 
@@ -12,15 +12,15 @@
           defaults = {
             fetchRetryTimeout: 50,
             title: "My Dashboard",
-            trayContainer: ".tray__detail",
-            widgetClass: ".widget",
-            draggableHelper: "clone",
-            draggableRevert: "invalid",
+            titleContainer: ".heading",
             sortableForcePlaceholderSize: true,
             sortableOpacity: 0.5,
             sortableRevert: 100,
             sortableTolerance: "pointer",
             stateContainer: "#dashboard_state",
+            trayContainer: ".tray",
+            widgetClass: ".widget",
+            widgetDataContainer: '#widget__data',
             widgetRemoveAttribute: "[data-widget-action=remove]"
           };
 
@@ -31,8 +31,8 @@
           this.settings = $.extend( {}, defaults, options );
           this._defaults = defaults;
           this._name = pluginName;
-          this.widgetData = '';
           this.widgetState = [];
+          this.widgetData = '';
           this.init();
       }
 
@@ -40,8 +40,10 @@
       Plugin.prototype = {
           init: function () {
 
-            // Set up the draggable widget tray
-            this.initTray();
+            // Set up the tray
+            tray = $(this.settings.trayContainer).tray({ 
+              connectToSortable: this.element
+            });
 
             // Set up the sortable dashboard
             this.initDashboard();
@@ -65,8 +67,9 @@
                 isFetched();
 
                 function isFetched() {
-                  if (parent.widgetData != '') {
+                  parent.widgetData = $(parent.settings.widgetDataContainer).val();
 
+                  if (parent.widgetData != '') {
                     var widget = $this.data().uiSortable.currentItem;
                     var sender = ui.sender;
 
@@ -87,6 +90,7 @@
                     parent.captureState();
 
                     // Tidy up after ourselves
+                    $(parent.settings.widgetDataContainer).val('');
                     parent.widgetData = '';
                   } else {
 
@@ -103,41 +107,28 @@
               tolerance: this.settings.sortableTolerance
             });
 
-            // Remove widget event handler
+            // Remove widget event
             $(this.element).on('click', this.settings.widgetClass + ' ' + this.settings.widgetRemoveAttribute, function() {
               $(this).closest(parent.settings.widgetClass).remove();
               this.captureState;
             });
-          },
 
-          initTray: function () {
-            console.log('init tray');
+            // Rename dashboard
+            $('form#rename').submit(function(e) {
+              e.preventDefault();
 
-            var parent = this;
+              var values = {};
+              $.each($(this).serializeArray(), function(i, field) {
+                values[field.name] = field.value;
+              });
 
-            $(this.settings.widgetClass, this.settings.trayContainer).draggable({
-              connectToSortable: this.element,
-              helper: this.settings.draggableHelper,
-              revert: this.settings.draggableRevert,
-              start: function(e, ui) {
-                parent.fetchWidget(e, ui);
-              }
-            });
+              parent.settings.title = values.name;
+              
+              $(parent.settings.titleContainer).text(parent.settings.title);
+              parent.captureState();
 
-            // Widget tray event handlers
-            // TODO: Clean this up
-            $('.tray__widgets li').on('click', function() {
-              var $this = $(this);
-              $('.tray__widgets').find('li').removeClass('active');
-              $this.addClass('active');
-              $('.widget__title').text($this.data('widget-title'));
-              $('.widget__description').text($this.data('widget-description'));
-              $('.widget__price').text($this.data('widget-price'));
-
-              $('.tray__detail .widget').data('widget', $this.data('widget'))
-                .data('widget-title', $this.data('widget-title'))
-                .data('widget-description', $this.data('widget-description'))
-                .show();
+              $(this).closest('.modal').modal().modal('hide');
+              $('.modal__backdrop').remove();              
             });
           },
 
@@ -167,22 +158,8 @@
             // Copy state to hidden stateContainer field in the DOM
             console.log(JSON.stringify(Dashboard));
             $(this.settings.stateContainer).val(JSON.stringify(Dashboard));
-          },
-
-          fetchWidget: function (e, ui) {
-            console.log('fetching widget...');
-
-            var parent = this,
-                widget = $(ui.helper.context).data('widget')
-
-            // Fetch it
-            $.ajax({
-              url: '/views/widgets/' + widget + '/index.php'
-            }).done(function (data) {
-              console.log('fetched');
-              parent.widgetData = data;
-            });
           }
+          
       };
 
       $.fn[ pluginName ] = function ( options ) {

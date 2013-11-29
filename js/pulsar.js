@@ -10,12 +10,6 @@ define(['jquery'], function() {
             $('.dashboard').dashboard();
         });
 
-        require(['jquery-ui', 'jquery-ui-touch'], function() {
-
-
-
-        });
-     
         // Stick the Jadu toolbar to the top of the window
         require(['sticky'], function() {
             $('.toolbar').sticky({topSpacing: 0});

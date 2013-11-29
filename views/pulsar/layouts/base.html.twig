@@ -68,7 +68,8 @@
     <footer>
         {{ html.link(label = html.icon('long-arrow-up') ~ ' Top', href = '#top') }}
         {{ html.link(label = 'Jadu 1.12 &copy; 2013', href = '/credits') }}
-    </footer> 
+    </footer>
+    {% block modals %}{% endblock %}
     <script src="http://localhost:8000/libs/livereload-js/dist/livereload.js?host=localhost"></script>
 </body>
 </html>

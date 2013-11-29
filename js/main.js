@@ -24,12 +24,10 @@ requirejs.config({
         'sticky'            : '/libs/sticky/jquery.sticky',
         'tab'               : '/js/tab',
         'tooltip'           : '/js/tooltip',
+        'tray'              : '/js/tray',
         'vague'             : '/libs/Vague.js/Vague'
     },
     shim: {
-        'dashboard': {
-            deps: ['jquery']
-        },
         'daterange': {
             deps: ['jquery', 'moment'],
             exports: 'daterange'
@@ -58,5 +56,5 @@ require([
     'pulsar'
 ], function($) {
     'use strict';
-    $();
+    // $();
 });
