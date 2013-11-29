@@ -12,21 +12,7 @@ define(['jquery'], function() {
 
         require(['jquery-ui', 'jquery-ui-touch'], function() {
 
-            var widget_content = '';
 
-$('.tray__widgets li').on('click', function() {
-    var $this = $(this);
-    $('.tray__widgets').find('li').removeClass('active');
-    $this.addClass('active');
-    $('.widget__title').text($this.data('widget-title'));
-    $('.widget__description').text($this.data('widget-description'));
-    $('.widget__price').text($this.data('widget-price'));
-
-    $('.tray__detail .widget').data('widget', $this.data('widget'))
-      .data('widget-title', $this.data('widget-title'))
-      .data('widget-description', $this.data('widget-description'))
-      .show();
-  });
 
         });
      

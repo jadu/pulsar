@@ -1,3 +1,8 @@
+/**
+ * Jadu CMP Dashboard
+ *
+ * Attaches the behaviour to a Dashboard in Jadu CMP
+ */
 ;define(['jquery', 'jquery-ui', 'jquery-ui-touch'], function() {
 
   (function ( $, window, document, undefined ) {
@@ -14,7 +19,9 @@
             sortableForcePlaceholderSize: true,
             sortableOpacity: 0.5,
             sortableRevert: 100,
-            sortableTolerance: "pointer"
+            sortableTolerance: "pointer",
+            stateContainer: "#dashboard_state",
+            widgetRemoveAttribute: "[data-widget-action=remove]"
           };
 
       // Constructor
@@ -25,12 +32,13 @@
           this._defaults = defaults;
           this._name = pluginName;
           this.widgetData = '';
+          this.widgetState = [];
           this.init();
       }
 
+      // Methods
       Plugin.prototype = {
           init: function () {
-            console.log(this.settings);
 
             // Set up the draggable widget tray
             this.initTray();
@@ -39,40 +47,13 @@
             this.initDashboard();
           },
 
-          captureState: function () {
-            console.log('capture state');
-
-          },
-
-          createWidget: function (e, ui, $this, currentItem) {
-            console.log('create widget');
-            
-          },
-
-          fetchWidget: function (e, ui) {
-            console.log('fetching widget...');
-
-            var parent = this,
-                widget = $(ui.helper.context).data('widget'),
-                widgetData = '';
-
-            // Fetch it
-            $.ajax({
-              url: '/views/widgets/' + widget + '/index.php'
-            }).done(function (data) {
-              console.log('fetched');
-              parent.widgetData = data;
-            });
-
-          },
-
           initDashboard: function () {
             console.log('init dashboard');
 
             var parent = this;
 
+            // Set up the sortable
             $(this.element).sortable({
-              change: this.captureState,
               forcePlaceholderSize: this.settings.sortableForcePlaceholderSize,
               opacity: this.settings.sortableOpacity,
               receive: function(e, ui) {
@@ -84,7 +65,6 @@
                 isFetched();
 
                 function isFetched() {
-
                   if (parent.widgetData != '') {
 
                     var widget = $this.data().uiSortable.currentItem;
@@ -96,7 +76,7 @@
                     // Reset last-appended flag
                     $(parent.settings.widgetClass, parent.element).not(widget)
                       .removeAttr('data-last-appended');
-console.log(widget);
+
                     // Populate data attributes in new widget instance
                     widget.data('widget', sender.data('widget'))
                           .data('widget-title', sender.data('widget-title'))
@@ -104,21 +84,29 @@ console.log(widget);
                           .attr('data-last-appended', 'true');
 
                     // Update our state once we've properly fetched the widget contents
-                    parent.captureState;
+                    parent.captureState();
 
                     // Tidy up after ourselves
                     parent.widgetData = '';
                   } else {
 
                     // Wait a bit more...
-                    setTimeout(isFetched, 50);
+                    setTimeout(isFetched, parent.settings.fetchRetryTimeout);
                   }
                 }
 
-
               },
               revert: this.settings.sortableRevert,
+              stop: function() {
+                parent.captureState();
+              },
               tolerance: this.settings.sortableTolerance
+            });
+
+            // Remove widget event handler
+            $(this.element).on('click', this.settings.widgetClass + ' ' + this.settings.widgetRemoveAttribute, function() {
+              $(this).closest(parent.settings.widgetClass).remove();
+              this.captureState;
             });
           },
 
@@ -126,22 +114,77 @@ console.log(widget);
             console.log('init tray');
 
             var parent = this;
-            console.log(parent);
 
             $(this.settings.widgetClass, this.settings.trayContainer).draggable({
               connectToSortable: this.element,
               helper: this.settings.draggableHelper,
               revert: this.settings.draggableRevert,
               start: function(e, ui) {
-                console.log(parent);
                 parent.fetchWidget(e, ui);
               }
+            });
+
+            // Widget tray event handlers
+            // TODO: Clean this up
+            $('.tray__widgets li').on('click', function() {
+              var $this = $(this);
+              $('.tray__widgets').find('li').removeClass('active');
+              $this.addClass('active');
+              $('.widget__title').text($this.data('widget-title'));
+              $('.widget__description').text($this.data('widget-description'));
+              $('.widget__price').text($this.data('widget-price'));
+
+              $('.tray__detail .widget').data('widget', $this.data('widget'))
+                .data('widget-title', $this.data('widget-title'))
+                .data('widget-description', $this.data('widget-description'))
+                .show();
+            });
+          },
+
+          captureState: function () {
+            var widgetState = [];
+
+            // Grab the widget states
+            $.map($(this.element).find(this.settings.widgetClass), function(el) {
+              widgetState.push({
+                guid: "widget_guid",
+                id: $(el).attr('id'),
+                settings: {
+                  name: $(el).data('widget')
+                }
+              });
+            });
+
+            // Create the json object that stores dashboard state
+            var Dashboard = {
+              title: this.settings.title,
+              widgets: widgetState
+            };
+
+            // Store our JSON object
+            this.widgetState = Dashboard;
+
+            // Copy state to hidden stateContainer field in the DOM
+            console.log(JSON.stringify(Dashboard));
+            $(this.settings.stateContainer).val(JSON.stringify(Dashboard));
+          },
+
+          fetchWidget: function (e, ui) {
+            console.log('fetching widget...');
+
+            var parent = this,
+                widget = $(ui.helper.context).data('widget')
+
+            // Fetch it
+            $.ajax({
+              url: '/views/widgets/' + widget + '/index.php'
+            }).done(function (data) {
+              console.log('fetched');
+              parent.widgetData = data;
             });
           }
       };
 
-      // A really lightweight plugin wrapper around the constructor,
-      // preventing against multiple instantiations
       $.fn[ pluginName ] = function ( options ) {
           return this.each(function() {
               if ( !$.data( this, "plugin_" + pluginName ) ) {
