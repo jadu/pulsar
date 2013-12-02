@@ -4,6 +4,7 @@ $baseDir = '../../';
 $templateDir = $baseDir . 'views';
 
 require_once __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__ . '/../../src/Jadu/Pulsar/Twig/Sandbox/SecurityPolicy.php';
 
 use Jadu\Pulsar\Twig\Extension\ConfigExtension;
 use Jadu\Pulsar\Twig\Extension\RelativeTimeExtension;
@@ -15,11 +16,15 @@ $loader->addPath($templateDir, 'pulsar');
 
 $twig = new Twig_Environment($loader, array('debug' => true));
 
+$policy = new Twig_Sandbox_SecurityPolicy($tags, $filters, $methods, $properties, $functions);
+$sandbox = new Twig_Extension_Sandbox($policy);
+
 $twig->addExtension(new ConfigExtension($baseDir . 'pulsar.json'));
 $twig->addExtension(new RelativeTimeExtension());
 $twig->addExtension(new UrlParamsExtension($_GET));
 $twig->addExtension(new TabsExtension());
 $twig->addExtension(new Twig_Extension_Debug());
+$twig->addExtension($sandbox);
 
 $template = $twig->loadTemplate('dashboard/main.html.twig');
 
