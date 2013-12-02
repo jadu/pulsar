@@ -86,9 +86,6 @@
                           .data('widget-description', sender.data('widget-description'))
                           .attr('data-last-appended', 'true');
 
-                    // Update our state once we've properly fetched the widget contents
-                    parent.captureState();
-
                     // Tidy up after ourselves
                     $(parent.settings.widgetDataContainer).val('');
                     parent.widgetData = '';

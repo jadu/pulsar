@@ -4,95 +4,95 @@
  * The tray displays the currently available widgets and enables them to be 
  * dropped into a dashboard or a homepage.
  */
-;define(['jquery', 'jquery-ui', 'jquery-ui-touch'], function() {
+define(['jquery', 'jquery-ui', 'jquery-ui-touch'], function() {
 
-  (function ( $, window, document, undefined ) {
+	'use strict';
 
-    // Defaults
-    var pluginName = "tray",
-        defaults = {
-          container: ".tray__detail",
-          connectToSortable: false,
-          widgetClass: ".widget",
-          widgetDataContainer: '#widget__data',
-          widgetPath: "/views/widgets/",
-          draggableHelper: "clone",
-          draggableRevert: "invalid"
-        };
+	(function ( $, window, document, undefined ) {
 
-    // Constructor
-    function Plugin ( element, options ) {
-        this.element = element;
-        this.settings = $.extend( {}, defaults, options );
-        this._defaults = defaults;
-        this._name = pluginName;
-        this.init();
-    }
+		// Defaults
+		var pluginName = 'tray',
+			defaults = {
+				container: '.tray__detail',
+				connectToSortable: false,
+				widgetClass: '.widget',
+				widgetDataContainer: '#widget__data',
+				widgetPath: '/views/widgets/',
+				draggableHelper: 'clone',
+				draggableRevert: 'invalid'
+			};
 
-    // Methods
-    Plugin.prototype = {
-      init: function () {
+		// Constructor
+		function Plugin ( element, options ) {
+			this.element = element;
+			this.settings = $.extend( {}, defaults, options );
+			this._defaults = defaults;
+			this._name = pluginName;
+			this.init();
+		}
 
-        // Set up the draggable widget tray
-        this.initTray();
-      },
+		// Methods
+		Plugin.prototype = {
+			init: function () {
+				this.initTray();
+			},
 
-      initTray: function () {
-        console.log('init tray');
+			initTray: function () {
+				var parent = this;
 
-        var parent = this;
+				// Set up the draggable
+				$(this.settings.widgetClass, this.settings.trayContainer).draggable({
+					connectToSortable: this.settings.connectToSortable,
+					helper: this.settings.draggableHelper,
+					revert: this.settings.draggableRevert,
+					start: function(e, ui) {
 
-        $(this.settings.widgetClass, this.settings.trayContainer).draggable({
-          connectToSortable: this.settings.connectToSortable,
-          helper: this.settings.draggableHelper,
-          revert: this.settings.draggableRevert,
-          start: function(e, ui) {
-            parent.fetchWidget(e, ui);
-          }
-        });
+						// Start fetching when dragging starts
+						parent.fetchWidget(e, ui);
+					}
+				});
 
-        // Widget tray event handlers
-        // TODO: Clean this up
-        $('.tray__widgets li').on('click', function() {
-          var $this = $(this);
-          $('.tray__widgets').find('li').removeClass('active');
-          $this.addClass('active');
-          $('.widget__title').text($this.data('widget-title'));
-          $('.widget__description').text($this.data('widget-description'));
-          $('.widget__price').text($this.data('widget-price'));
+				// Widget tray event handlers
+				// TODO: Clean this up
+				$('.tray__widgets li').on('click', function() {
+					var $this = $(this);
+					$('.tray__widgets').find('li').removeClass('active');
+					$this.addClass('active');
+					$('.widget__title').text($this.data('widget-title'));
+					$('.widget__description').text($this.data('widget-description'));
+					$('.widget__price').text($this.data('widget-price'));
 
-          $('.tray__detail .widget').data('widget', $this.data('widget'))
-            .data('widget-title', $this.data('widget-title'))
-            .data('widget-description', $this.data('widget-description'))
-            .show();
-        });
-      },
+					$('.tray__detail .widget').data('widget', $this.data('widget'))
+					.data('widget-title', $this.data('widget-title'))
+					.data('widget-description', $this.data('widget-description'))
+					.show();
+				});
+			},
 
-      fetchWidget: function (e, ui) {
-        console.log('fetching widget...');
+			fetchWidget: function ( e, ui ) {
+				var parent = this,
+					widget = $(ui.helper.context).data('widget'); // The data attribute of the widget we're dragging
 
-        var parent = this,
-            widget = $(ui.helper.context).data('widget')
+				// Fetch it
+				$.ajax({
+					url: parent.settings.widgetPath + widget + '/index.php'
+				}).done(function (data) {
 
-        // Fetch it
-        $.ajax({
-          url: parent.settings.widgetPath + widget + '/index.php'
-        }).done(function (data) {
-          console.log('fetched');
-          $(parent.settings.widgetDataContainer).val(data);
-        });
-      }
+					// Throw the data into the newly created widget container
+					$(parent.settings.widgetDataContainer).val(data);
+				});
+			}
 
-    };
+		};
 
-    $.fn[ pluginName ] = function ( options ) {
-      return this.each(function() {
-        if ( !$.data( this, "plugin_" + pluginName ) ) {
-          $.data( this, "plugin_" + pluginName, new Plugin( this, options ) );
-        }
-      });
-    };
+		$.fn[ pluginName ] = function ( options ) {
+			return this.each(function() {
+				if ( !$.data( this, 'plugin_' + pluginName ) ) {
+					$.data( this, 'plugin_' + pluginName, new Plugin( this, options ) );
+				}
+			});
+		};
 
-  })( jQuery, window, document );
+	})( jQuery, window, document );
 
 });

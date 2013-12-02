@@ -223,7 +223,7 @@ module.exports = function(grunt) {
   grunt.registerTask('build', [
     'asciify', 
     'phpunit', 
-    'leadingIndent:files', 
+    // 'leadingIndent:files', 
     'clean:dist', 
     'sass:dist',
     'requirejs',
@@ -234,7 +234,7 @@ module.exports = function(grunt) {
   grunt.registerTask('pre-commit', [
     'asciify', 
     'phpunit', 
-    'leadingIndent:files',
+    // 'leadingIndent:files',
     'copy:readme'
   ]);
 
