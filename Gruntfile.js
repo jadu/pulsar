@@ -168,6 +168,8 @@ module.exports = function(grunt) {
           // optimize: 'none',
           out: 'dist/js/pulsar.min.js',
           paths: {
+            'console-js'        : '../libs/console-js/console',
+            'dashboard'         : '../js/dashboard',
             'daterange'         : '../libs/bootstrap-daterangepicker/daterangepicker',
             'deck'              : '../js/deck',
             'dropdown'          : '../js/dropdown',
@@ -177,6 +179,8 @@ module.exports = function(grunt) {
             'highcharts-theme'  : '../js/highcharts-theme',
             'highlightjs'       : '../libs/highlightjs/highlight.pack',
             'jquery'            : '../libs/jquery/jquery',
+            'jquery-ui'         : '../libs/jquery.ui/dist/jquery-ui.min',
+            'jquery-ui-touch'   : '../libs/jqueryui-touch-punch/jquery.ui.touch-punch.min',
             'jquery-mousewheel' : '../libs/jquery-mousewheel/jquery.mousewheel',
             'modal'             : '../js/modal',
             'moment'            : '../libs/moment/moment',
@@ -188,6 +192,7 @@ module.exports = function(grunt) {
             'sticky'            : '../libs/sticky/jquery.sticky',
             'tab'               : '../js/tab',
             'tooltip'           : '../js/tooltip',
+            'tray'              : '../js/tray',
             'vague'             : '../libs/Vague.js/Vague'
           }
         }
@@ -226,9 +231,9 @@ module.exports = function(grunt) {
     // 'leadingIndent:files', 
     'clean:dist', 
     'sass:dist',
-    'requirejs',
     'copy:dist',
-    'copy:readme'
+    'copy:readme',
+    'requirejs',
   ]);
 
   grunt.registerTask('pre-commit', [

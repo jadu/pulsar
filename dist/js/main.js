@@ -1,10 +1,13 @@
 requirejs.config({
     paths: {
+        'console-js'        : '/libs/console-js/console',
         'daterange'         : '/libs/bootstrap-daterangepicker/daterangepicker',
         'deck'              : '/js/deck',
+        'dashboard'         : '/js/dashboard',
         'dropdown'          : '/js/dropdown',
         'flash'             : '/js/flash',
         'highcharts'        : '/libs/highcharts/highcharts',
+        'highcharts-more'   : '/libs/highcharts/highcharts-more',
         'highcharts-mono'   : '/js/highcharts-mono',
         'highcharts-theme'  : '/js/highcharts-theme',
         'highlightjs'       : '/libs/highlightjs/highlight.pack',
@@ -21,6 +24,7 @@ requirejs.config({
         'sticky'            : '/libs/sticky/jquery.sticky',
         'tab'               : '/js/tab',
         'tooltip'           : '/js/tooltip',
+        'tray'              : '/js/tray',
         'vague'             : '/libs/Vague.js/Vague'
     },
     shim: {
@@ -31,14 +35,16 @@ requirejs.config({
         'highcharts': {
             deps: ['jquery']
         },
-        'highcharts-mono': {
+        'highcharts-more': {
             deps: ['jquery', 'highcharts']
         }
     }
 });
  
 require([
+    'console-js',
     'jquery',
+    'dashboard',
     'deck',
     'dropdown',
     'flash',
@@ -50,5 +56,5 @@ require([
     'pulsar'
 ], function($) {
     'use strict';
-    $();
+    // $();
 });

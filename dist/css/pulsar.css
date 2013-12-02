@@ -146,11 +146,12 @@ hr {
 
 .tray {
   background-color: #333333;
-  color: white;
+  color: #fafafa;
   display: none;
   height: 200px;
   margin-top: -1px;
   padding-left: 20px;
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.7);
   width: 100%;
   z-index: 1050; }
   .tray .is-open {
@@ -162,32 +163,72 @@ hr {
   overflow-y: scroll; }
 
 .tray__column {
-  margin-right: 1%;
+  background-color: #2e2e2e;
+  border-right: 1px solid #262626;
+  box-shadow: 1px 0 0 #404040;
+  float: left;
+  margin-right: 1px;
   padding-top: 3px;
-  width: 15%; }
+  -webkit-touch-callout: 'none';
+  -webkit-user-select: 'none';
+  -khtml-user-select: 'none';
+  -moz-user-select: 'none';
+  -ms-user-select: 'none';
+  user-select: 'none';
+  width: 20%; }
+  .tray__column:first-of-type {
+    border-left: 1px solid #262626;
+    border-right: 1px solid #262626;
+    box-shadow: 1px 0 0 #404040, -1px 0 0 #404040; }
+  .tray__column ul {
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.7);
+    margin-top: -2px;
+    width: 100%; }
   .tray__column li {
-    border-bottom: 1px solid #262626;
-    box-shadow: 0 1px 0 #404040;
+    background-color: #333333;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+    cursor: pointer;
     line-height: 2em;
     list-style-type: none;
-    padding: 0 5px; }
-    .tray__column li [class^="icon-"], .tray__column li [class*=" icon-"] {
-      display: none;
-      float: right;
-      margin-top: 8px; }
-    .tray__column li:hover {
+    margin-bottom: 1px;
+    padding: 0 0 0 10px;
+    -webkit-touch-callout: 'none';
+    -webkit-user-select: 'none';
+    -khtml-user-select: 'none';
+    -moz-user-select: 'none';
+    -ms-user-select: 'none';
+    user-select: 'none'; }
+    .tray__column li.active, .tray__column li:hover {
       background-color: #2e2e2e; }
-      .tray__column li:hover [class^="icon-"], .tray__column li:hover [class*=" icon-"] {
-        display: block; }
+    .tray__column li.active {
+      background-color: #5697cf;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.2); }
+    .tray__column li [class^="icon-"], .tray__column li [class*=" icon-"] {
+      float: right;
+      margin: 6px 10px 0 0; }
+    .tray__column li:last-of-type {
+      border-bottom: none;
+      box-shadow: none; }
 
-.tray--widgets li {
-  cursor: pointer;
-  cursor: hand;
-  cursor: -webkit-grab;
-  cursor: -moz-grab; }
+.widget__list {
+  float: left; }
+
+.tray__detail .widget {
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: -1px 0 0 rgba(0, 0, 0, 0.2);
+  float: right;
+  padding: 0 10px; }
 
 .tray__detail {
+  margin-left: 2%;
   width: 55%; }
+
+.widget__preview {
+  clear: right;
+  float: right;
+  height: 170px;
+  width: 200px; }
 
 .label {
   display: inline-block;
@@ -527,6 +568,9 @@ a.btn {
   .btn:disabled {
     opacity: 0.5;
     cursor: not-allowed; }
+  .btn.active {
+    border: 1px solid #c8bdbd;
+    box-shadow: inset 0 0 8px 4px #bfb6b6, inset 0 0 8px 4px #bfb6b6, 0 1px 1px 0 #eeeeee; }
 
 .btn--primary, .widget__price {
   border: 1px solid #2778b7;
@@ -2193,16 +2237,23 @@ footer {
   width: 50px;
   margin-bottom: 0; }
 
-.widget {
+.tray__widgets .widget {
+  background-color: #333333;
+  cursor: pointer;
+  cursor: hand;
+  cursor: -webkit-grab;
+  cursor: -moz-grab; }
+
+.dashboard .widget {
   background-color: white;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   cursor: -webkit-grab;
   cursor: -moz-grab;
   cursor: grab;
+  display: block;
   float: left;
   height: 250px;
-  margin: 0 1%;
-  overflow: hidden;
+  margin: 0 1% 2% 1%;
   position: relative;
   transform: rotate(0deg);
   -ms-transform: rotate(0deg);
@@ -2210,9 +2261,9 @@ footer {
   transition: transform 0.2s;
   -webkit-transition: -webkit-transform 0.2s;
   width: 23%; }
-  .widget:hover .widget__controls {
+  .dashboard .widget:hover .widget__controls {
     display: block; }
-  .widget h3 {
+  .dashboard .widget h3 {
     border-bottom: 1px solid #cccccc;
     line-height: 40px;
     margin: 0;
@@ -2222,12 +2273,29 @@ footer {
   width: 50%; }
 
 .widget__controls {
-  color: inherit;
-  display: none;
-  position: absolute;
-  right: 10px;
-  text-decoration: none;
-  top: 10px; }
+  color: #1e1e1e;
+  float: right;
+  line-height: 2.5em;
+  padding: 0 10px;
+  text-decoration: none; }
+  .widget__controls .dropdown__menu {
+    left: auto;
+    right: 0; }
+
+.tray__detail .widget {
+  background-color: #303030;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.2), 1px 0 0 rgba(0, 0, 0, 0.2), 0 -1px 0 rgba(0, 0, 0, 0.2), inset 1px 0 0 rgba(0, 0, 0, 0.2);
+  cursor: -webkit-grab;
+  cursor: -moz-grab;
+  cursor: grab;
+  float: left;
+  padding: 10px; }
+  .tray__detail .widget [class^="icon-"], .tray__detail .widget [class*=" icon-"] {
+    padding-right: 4px; }
+  .tray__detail .widget:hover {
+    background-color: #2e2e2e; }
 
 .widget__price {
   float: right;
@@ -2238,9 +2306,9 @@ footer {
   cursor: -webkit-grabbing;
   cursor: -moz-grabbing;
   cursor: grabbing;
-  transform: rotate(7deg);
-  -ms-transform: rotate(7deg);
-  -webkit-transform: rotate(7deg); }
+  transform: rotate(7deg) !important;
+  -ms-transform: rotate(7deg) !important;
+  -webkit-transform: rotate(7deg) !important; }
 
 .ui-state-highlight {
   outline: 1px solid red; }
@@ -2248,6 +2316,29 @@ footer {
 .highchart {
   height: 209px;
   width: 100%; }
+
+.dashboard .ui-sortable-placeholder {
+  background-color: #fafafa !important;
+  box-shadow: none !important;
+  border: 1px dashed #cccccc !important;
+  height: 250px !important;
+  visibility: visible !important; }
+
+.ui-resizable-handle {
+  z-index: 999; }
+
+.widget .big-ass-number {
+  margin: 1em 0 0 3%; }
+  .widget .big-ass-number dt, .widget .big-ass-number dd {
+    float: left;
+    margin: 0; }
+  .widget .big-ass-number .widget_summary__label {
+    clear: left;
+    line-height: 1em;
+    margin-right: 3%; }
+  .widget .big-ass-number .widget_summary__figure {
+    font-size: 2em;
+    font-family: "proxima_nova_semibold", "Helvetica Neue", "Helvetica", "Arial", sans-serif; }
 
 .tabs__list {
   float: left;

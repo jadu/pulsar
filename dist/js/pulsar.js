@@ -4,21 +4,16 @@
 
 define(['jquery'], function() {
 
-    $(document).ready(function() {
-    
-        require(['jquery-ui', 'jquery-ui-touch'], function() {
-            $( ".dashboard" ).sortable({
-                opacity: 0.5,
-                revert: 100
-            });
-            $( ".widgets" ).disableSelection();
+    $(document).ready(function() {  
+
+        require(['dashboard'], function() {
+            $('.dashboard').dashboard();
         });
-     
-     
+
         // Stick the Jadu toolbar to the top of the window
         require(['sticky'], function() {
             $('.toolbar').sticky({topSpacing: 0});
-            // $('.tray').sticky({topSpacing: 44}).sticky('update');
+            // $('.tray').sticky({topSpacing: 45}).sticky('update');
         });
 
         // Init tooltips
@@ -98,15 +93,25 @@ define(['jquery'], function() {
 
         // toggle a given element
         $('[data-toggle]').on('click', function(e) {
+            $(this).toggleClass('active');
             $target = $('.' + $(this).data('toggle'));
             $target.slideToggle(100);
         });
 
         // Switch a given element within the same data-group
         $('[data-switch]').on('click', function(e) {
-            console.log($(this));
-            // $target = $('#' + $(this).data('toggle'));
-            // $target.slideToggle(100);
+            var $this = $(this);
+            
+            if ($this.hasClass('active')) {
+                return false;
+            } else {
+                $this.siblings().removeClass('active');
+            }
+            
+            $('.' + $this.data('group')).hide();
+            $this.addClass('active');
+            $('#' + $this.data('switch')).show();
+            
         });
 
     });
