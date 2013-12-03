@@ -4,7 +4,6 @@
 {% import '@pulsar/pulsar/helpers/flash.html.twig' as flash %}
 {% import '@pulsar/pulsar/helpers/pulsar.html.twig' as pulsar %}
 
-{% block flas_message %}{{ parent() }}{% endblock %}
 {% block title %}{{ parent() }}{% endblock %}
 
 {% set heading = '' %}
@@ -30,7 +29,7 @@
   {{ 
     html.button_group([
       html.button(label = html.icon('eye-open') ~ '', href = '#', type = 'link', attributes = 'data-homepage-mode=focus'),
-      html.button(label = html.icon('eye') ~ '', href = '#', type = 'link', attributes = 'data-homepage-mode=focus')
+      html.button(label = html.icon('eye-close') ~ '', href = '#', type = 'link', attributes = 'data-homepage-mode=focus')
     ])
   }}
 {% endblock %}

@@ -1,6 +1,6 @@
-$grid-container-width : 1120; 		/* The max-width of your containers */
-$grid-column-count : 12; 			/* The number of columns you want, consider carefully. Maximum of 24 */
-$grid-gutter-width : 20; 			/* The width of the space between columns. This number is the width, in pixels, of the gutters when the container is at it's max-width. */
+$grid-container-width : 1120;     /* The max-width of your containers */
+$grid-column-count : 12;      /* The number of columns you want, consider carefully. Maximum of 24 */
+$grid-gutter-width : 20;      /* The width of the space between columns. This number is the width, in pixels, of the gutters when the container is at it's max-width. */
 $mid-width : 800px;
 $small-width : 480px;
 
@@ -18,244 +18,244 @@ $gutter-size : $grid-gutter-width / $grid-container-width * 100;
 @import "grid-operations";
 
 .show-grid {
-	&:nth-child(2n + 1) {
-		div {
-			background: rgb(250,200,240);
-		}
-	}
-	&:nth-child(3n + 1) {
-		div {
-			background: rgb(200,250,240);
-		}
-	}
-	div {
-		height: 200px;
-		background: rgb(180,200,240); 
-	}
+  &:nth-child(2n + 1) {
+    div {
+      background: rgb(250,200,240);
+    }
+  }
+  &:nth-child(3n + 1) {
+    div {
+      background: rgb(200,250,240);
+    }
+  }
+  div {
+    height: 200px;
+    background: rgb(180,200,240); 
+  }
 }
 
 .grid-container {
-	width: 100%;
-	max-width: $grid-container-width * $fixed-metric;
-	padding: 0 ($grid-gutter-width / 2 * $fixed-metric); 
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-	margin: auto;
-	display: block;
-	margin-bottom: 1.2em;
+  width: 100%;
+  max-width: $grid-container-width * $fixed-metric;
+  padding: 0 ($grid-gutter-width / 2 * $fixed-metric); 
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: auto;
+  display: block;
+  margin-bottom: 1.2em;
 }
 
 .grid-master {
-	position: absolute;
-	z-index: -1;
-	text-align: center;
-	overflow: auto;
-	width: 100%;
+  position: absolute;
+  z-index: -1;
+  text-align: center;
+  overflow: auto;
+  width: 100%;
 }
 
 .grid-overlay {
-	height: 2000px;
-	div {
-		height: 2000px;
-		background: rgba(0,0,0,.01) !important;
-		-webkit-box-sizing: border-box;
-		-moz-box-sizing: border-box;
-		box-sizing: border-box;
-		border-left: 1px solid #eee;
-		border-right: 1px solid #eee;
-		position: relative;
-		$gutter-margin : $grid-gutter-width / $column-width-in-px * 100;
-		$gutter-margin : $gutter-margin/2 * -1 * $fluid-metric;
-		&:after {
-			display: block;
-			position: absolute;
-			right: $gutter-margin;
-			height: 100%;
-			width: 1px;
-			border-left: 1px dashed #e5e5e5; 
-			-webkit-box-sizing: border-box;
-			-moz-box-sizing: border-box;
-			box-sizing: border-box;
-			content: ' ';
-		} 
-		&:first-child {
-			&:before {
-				display: block;
-				position: absolute;
-				left: $gutter-margin;
-				height: 100%;
-				width: 1px;
-				border-left: 1px dashed #e5e5e5; 
-				-webkit-box-sizing: border-box;
-				-moz-box-sizing: border-box;
-				box-sizing: border-box;
-				content: ' ';
-			}
-		}
-	}
+  height: 2000px;
+  div {
+    height: 2000px;
+    background: rgba(0,0,0,.01) !important;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border-left: 1px solid #eee;
+    border-right: 1px solid #eee;
+    position: relative;
+    $gutter-margin : $grid-gutter-width / $column-width-in-px * 100;
+    $gutter-margin : $gutter-margin/2 * -1 * $fluid-metric;
+    &:after {
+      display: block;
+      position: absolute;
+      right: $gutter-margin;
+      height: 100%;
+      width: 1px;
+      border-left: 1px dashed #e5e5e5; 
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      content: ' ';
+    } 
+    &:first-child {
+      &:before {
+        display: block;
+        position: absolute;
+        left: $gutter-margin;
+        height: 100%;
+        width: 1px;
+        border-left: 1px dashed #e5e5e5; 
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        content: ' ';
+      }
+    }
+  }
 }
 
 .column {
-	margin-right: $gutter-size * $fluid-metric;
-	display: block;
-	float: left;
-	&:last-child {
-		margin-right: 0;
-	}
-	@media (max-width : $small-width) {
-		width: 100% !important;
-		margin-right: 0;
-		margin-left: 0 !important;
-		float: none;
-		clear: both;
-	}
+  margin-right: $gutter-size * $fluid-metric;
+  display: block;
+  float: left;
+  &:last-child {
+    margin-right: 0;
+  }
+  @media (max-width : $small-width) {
+    width: 100% !important;
+    margin-right: 0;
+    margin-left: 0 !important;
+    float: none;
+    clear: both;
+  }
 }
 
 .grid-span-1 {
-	width: $column-width * $fluid-metric; 
+  width: $column-width * $fluid-metric; 
 }
 
 .grid-span-2 {
-	$span-width : ($column-width * 2) + $gutter-size * $fluid-metric;
-	width: $span-width;
-	@include divisions($span-width / ($span-width * 0 + 1));
+  $span-width : ($column-width * 2) + $gutter-size * $fluid-metric;
+  width: $span-width;
+  @include divisions($span-width / ($span-width * 0 + 1));
 }
 
 .grid-span-3 {
-	$span-width : ($column-width * 3) + ($gutter-size * 2) * $fluid-metric;
-	width: $span-width;
-	@include divisions($span-width / ($span-width * 0 + 1));
+  $span-width : ($column-width * 3) + ($gutter-size * 2) * $fluid-metric;
+  width: $span-width;
+  @include divisions($span-width / ($span-width * 0 + 1));
 }
 
 .grid-span-4 {
-	$span-width : ($column-width * 4) + ($gutter-size * 3) * $fluid-metric;
-	width: $span-width;
-	@include divisions($span-width / ($span-width * 0 + 1));
+  $span-width : ($column-width * 4) + ($gutter-size * 3) * $fluid-metric;
+  width: $span-width;
+  @include divisions($span-width / ($span-width * 0 + 1));
 }
 
 .grid-span-5 {
-	$span-width : ($column-width * 5) + ($gutter-size * 4) * $fluid-metric;
-	width: $span-width; 
-	@include divisions($span-width / ($span-width * 0 + 1));
+  $span-width : ($column-width * 5) + ($gutter-size * 4) * $fluid-metric;
+  width: $span-width; 
+  @include divisions($span-width / ($span-width * 0 + 1));
 }
 
 .grid-span-6 {
-	$span-width : ($column-width * 6) + ($gutter-size * 5) * $fluid-metric;
-	width: $span-width; 
-	@include divisions($span-width / ($span-width * 0 + 1));
+  $span-width : ($column-width * 6) + ($gutter-size * 5) * $fluid-metric;
+  width: $span-width; 
+  @include divisions($span-width / ($span-width * 0 + 1));
 }
 
 .grid-span-7 {
-	$span-width : ($column-width * 7) + ($gutter-size * 6) * $fluid-metric;
-	width: $span-width; 
-	@include divisions($span-width / ($span-width * 0 + 1));
+  $span-width : ($column-width * 7) + ($gutter-size * 6) * $fluid-metric;
+  width: $span-width; 
+  @include divisions($span-width / ($span-width * 0 + 1));
 }
 
 .grid-span-8 {
-	$span-width : ($column-width * 8) + ($gutter-size * 7) * $fluid-metric;
-	width: $span-width; 
-	@include divisions($span-width / ($span-width * 0 + 1));
+  $span-width : ($column-width * 8) + ($gutter-size * 7) * $fluid-metric;
+  width: $span-width; 
+  @include divisions($span-width / ($span-width * 0 + 1));
 }
 
 .grid-span-9 {
-	$span-width : ($column-width * 9) + ($gutter-size * 8) * $fluid-metric;
-	width: $span-width; 
-	@include divisions($span-width / ($span-width * 0 + 1));
+  $span-width : ($column-width * 9) + ($gutter-size * 8) * $fluid-metric;
+  width: $span-width; 
+  @include divisions($span-width / ($span-width * 0 + 1));
 }
 
 .grid-span-10 {
-	$span-width : ($column-width * 10) + ($gutter-size * 9) * $fluid-metric;
-	width: $span-width; 
-	@include divisions($span-width / ($span-width * 0 + 1));
+  $span-width : ($column-width * 10) + ($gutter-size * 9) * $fluid-metric;
+  width: $span-width; 
+  @include divisions($span-width / ($span-width * 0 + 1));
 }
 
 .grid-span-11 {
-	$span-width : ($column-width * 11) + ($gutter-size * 10) * $fluid-metric;
-	width: $span-width; 
-	@include divisions($span-width / ($span-width * 0 + 1));
+  $span-width : ($column-width * 11) + ($gutter-size * 10) * $fluid-metric;
+  width: $span-width; 
+  @include divisions($span-width / ($span-width * 0 + 1));
 }
 
 .grid-span-12 {
-	$span-width : ($column-width * 12) + ($gutter-size * 11) * $fluid-metric;
-	width: $span-width; 
-	@include divisions($span-width / ($span-width * 0 + 1));
+  $span-width : ($column-width * 12) + ($gutter-size * 11) * $fluid-metric;
+  width: $span-width; 
+  @include divisions($span-width / ($span-width * 0 + 1));
 }
 
 .grid-span-13 {
-	$span-width : ($column-width * 13) + ($gutter-size * 12) * $fluid-metric;
-	width: $span-width; 
-	@include divisions($span-width / ($span-width * 0 + 1));
+  $span-width : ($column-width * 13) + ($gutter-size * 12) * $fluid-metric;
+  width: $span-width; 
+  @include divisions($span-width / ($span-width * 0 + 1));
 }
 
 .grid-span-14 {
-	$span-width : ($column-width * 14) + ($gutter-size * 13) * $fluid-metric;
-	width: $span-width; 
-	@include divisions($span-width / ($span-width * 0 + 1));
+  $span-width : ($column-width * 14) + ($gutter-size * 13) * $fluid-metric;
+  width: $span-width; 
+  @include divisions($span-width / ($span-width * 0 + 1));
 }
 
 .grid-span-15 {
-	$span-width : ($column-width * 15) + ($gutter-size * 14) * $fluid-metric;
-	width: $span-width; 
-	@include divisions($span-width / ($span-width * 0 + 1));
+  $span-width : ($column-width * 15) + ($gutter-size * 14) * $fluid-metric;
+  width: $span-width; 
+  @include divisions($span-width / ($span-width * 0 + 1));
 }
 
 .grid-span-16 {
-	$span-width : ($column-width * 16) + ($gutter-size * 15) * $fluid-metric; 
-	width: $span-width;
-	@include divisions($span-width / ($span-width * 0 + 1));
+  $span-width : ($column-width * 16) + ($gutter-size * 15) * $fluid-metric; 
+  width: $span-width;
+  @include divisions($span-width / ($span-width * 0 + 1));
 }
 
 .grid-span-17 {
-	$span-width : ($column-width * 17) + ($gutter-size * 16) * $fluid-metric; 
-	width: $span-width;
-	@include divisions($span-width / ($span-width * 0 + 1));
+  $span-width : ($column-width * 17) + ($gutter-size * 16) * $fluid-metric; 
+  width: $span-width;
+  @include divisions($span-width / ($span-width * 0 + 1));
 }
 
 .grid-span-18 {
-	$span-width : ($column-width * 18) + ($gutter-size * 17) * $fluid-metric; 
-	width: $span-width;
-	@include divisions($span-width / ($span-width * 0 + 1));
+  $span-width : ($column-width * 18) + ($gutter-size * 17) * $fluid-metric; 
+  width: $span-width;
+  @include divisions($span-width / ($span-width * 0 + 1));
 }
 
 .grid-span-19 {
-	$span-width : ($column-width * 19) + ($gutter-size * 18) * $fluid-metric; 
-	width: $span-width;
-	@include divisions($span-width / ($span-width * 0 + 1));
+  $span-width : ($column-width * 19) + ($gutter-size * 18) * $fluid-metric; 
+  width: $span-width;
+  @include divisions($span-width / ($span-width * 0 + 1));
 }
 
 .grid-span-20 {
-	$span-width : ($column-width * 20) + ($gutter-size * 19) * $fluid-metric; 
-	width: $span-width;
-	@include divisions($span-width / ($span-width * 0 + 1));
+  $span-width : ($column-width * 20) + ($gutter-size * 19) * $fluid-metric; 
+  width: $span-width;
+  @include divisions($span-width / ($span-width * 0 + 1));
 }
 
 .grid-span-21 {
-	$span-width : ($column-width * 21) + ($gutter-size * 20) * $fluid-metric; 
-	width: $span-width;
-	@include divisions($span-width / ($span-width * 0 + 1));
+  $span-width : ($column-width * 21) + ($gutter-size * 20) * $fluid-metric; 
+  width: $span-width;
+  @include divisions($span-width / ($span-width * 0 + 1));
 }
 
 .grid-span-22 {
-	$span-width : ($column-width * 22) + ($gutter-size * 21) * $fluid-metric; 
-	width: $span-width;
-	@include divisions($span-width / ($span-width * 0 + 1));
+  $span-width : ($column-width * 22) + ($gutter-size * 21) * $fluid-metric; 
+  width: $span-width;
+  @include divisions($span-width / ($span-width * 0 + 1));
 }
 
 .grid-span-23 {
-	$span-width : ($column-width * 23) + ($gutter-size * 22) * $fluid-metric;
-	width: $span-width; 
-	@include divisions($span-width / ($span-width * 0 + 1));
+  $span-width : ($column-width * 23) + ($gutter-size * 22) * $fluid-metric;
+  width: $span-width; 
+  @include divisions($span-width / ($span-width * 0 + 1));
 }
 
 .grid-span-24 {
-	$span-width : ($column-width * 24) + ($gutter-size * 23) * $fluid-metric; 
-	width: $span-width;
-	@include divisions($span-width / ($span-width * 0 + 1));
+  $span-width : ($column-width * 24) + ($gutter-size * 23) * $fluid-metric; 
+  width: $span-width;
+  @include divisions($span-width / ($span-width * 0 + 1));
 }
 
 .omega {
-	margin-right: 0;
+  margin-right: 0;
 }
 
 @import 'grid-offset'; 
