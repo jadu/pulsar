@@ -1,0 +1,85 @@
+@mixin inner-grid($width, $split, $span) {
+	$col-no : $split;
+	$pixel-width : ($width / 100) * ($grid-container-width - $grid-gutter-width); // width of the column in px
+	$inner-without-gutters : $pixel-width - ($grid-gutter-width * ($span - 1)); // pixel width of the colum without gutters
+	$inner-pixel-col : $inner-without-gutters / $span; //width of a single column in px
+	$inner-col-width : $inner-pixel-col / $pixel-width * 100;
+	$inner-gutter : $grid-gutter-width / $pixel-width * 100;
+	width: (($inner-col-width * $col-no) + ($inner-gutter * ($col-no - 1))) * $fluid-metric;
+	margin-right: $inner-gutter * $fluid-metric; 
+	float: left;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	&:last-child {
+		margin-right: 0;
+	}
+}
+
+@mixin divisions($width) {
+	& {
+		.one-eigth {
+			@include inner-grid($width, 1, 8);
+		}
+		.one-seventh {
+			@include inner-grid($width, 1, 7);
+		}
+		.one-sixth {
+			@include inner-grid($width, 1, 6);
+		}
+		.one-fith {
+			@include inner-grid($width, 1, 5);
+		}
+		.three-eigths {
+			@include inner-grid($width, 3, 8);
+		}
+		.one-quarter {
+			@include inner-grid($width, 1, 4);
+		}
+		.two-sevenths {
+			@include inner-grid($width, 2, 7);
+		}
+		.two-fiths {
+			@include inner-grid($width, 2, 5);
+		}
+		.one-third {
+			@include inner-grid($width, 1, 3);
+		}
+		.three-sevenths {
+			@include inner-grid($width, 3, 7);
+		}
+		.half {
+			@include inner-grid($width, 1, 2);
+		}
+		.five-eigths {
+			@include inner-grid($width, 5, 8);
+		}
+		.four-sevenths {
+			@include inner-grid($width, 4, 7);
+		}
+		.three-fiths {
+			@include inner-grid($width, 3, 5);
+		}
+		.two-thirds {
+			@include inner-grid($width, 2, 3);
+		}
+		.three-quarters {
+			@include inner-grid($width, 3, 4);
+		}
+		.five-sevenths {
+			@include inner-grid($width, 5, 7);
+		}
+		.four-fiths {
+			@include inner-grid($width, 4, 5);
+		} 
+		.five-sixths {
+			@include inner-grid($width, 5, 6);
+		}
+		.six-sevenths {
+			@include inner-grid($width, 6, 7);
+		}
+		.seven-eigths {
+			@include inner-grid($width, 7, 8);
+		}
+	}
+}

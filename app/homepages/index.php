@@ -30,8 +30,8 @@ $breadcrumb = array(
     );
 
 $flashMessage = array(
-    'type' => 'success',
-    'message' => 'This is a flash message, it lets users know that something happened. <a href="#tab_4" data-toggle="tab">read more</a>.'
+    'type' => 'info',
+    'message' => '<strong>Hint:</strong> You can use the G key on your keyboard to toggle the grid on and off'
     );
 
 $widgets = array(

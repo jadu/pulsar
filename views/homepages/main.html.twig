@@ -4,6 +4,7 @@
 {% import '@pulsar/pulsar/helpers/flash.html.twig' as flash %}
 {% import '@pulsar/pulsar/helpers/pulsar.html.twig' as pulsar %}
 
+{% block flas_message %}{{ parent() }}{% endblock %}
 {% block title %}{{ parent() }}{% endblock %}
 
 {% set heading = '' %}
@@ -28,19 +29,9 @@
 {% block actionsbar %}
   {{ 
     html.button_group([
-      html.button(label = html.icon('dashboard') ~ ' Widgets', href = '#', type = 'link', attributes = 'data-toggle=tray')
+      html.button(label = html.icon('eye-open') ~ '', href = '#', type = 'link', attributes = 'data-homepage-mode=focus'),
+      html.button(label = html.icon('eye') ~ '', href = '#', type = 'link', attributes = 'data-homepage-mode=focus')
     ])
   }}
-{% endblock %}
-
-{% block widgets %}
-<div class="widget">
-<h3>Administrators</h3> 
-
-<p class="big-ass-number">638 <span class="label label--success"><i class="icon-arrow-up"></i> 7</span></p>
-
-<p class="big-ass-number">14 <span class="label label--danger"><i class="icon-arrow-down"></i> 1</span></p>
-
-</div>
 {% endblock %}
 

@@ -158,3 +158,7 @@
   -ms-user-select: $value;
   user-select: $value;
 }
+
+@mixin ghostbuster {
+  cursor: not-allowed;
+}

@@ -1,0 +1,54 @@
+.draggable {
+    cursor: move;
+}
+
+.widget {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    position: relative;
+    &:hover, &.operating {
+        box-shadow:0 0 1px cyan;
+        .resizer {
+            display: block;
+        }
+    }
+}
+
+.resizer {
+    display: block;
+    height: 100%;
+    width: 8px;
+    border-right:1px solid cyan;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    position: absolute;
+    right: 0; 
+    top: 0;
+    display: none;
+    cursor: ew-resize;
+    .indicator {
+        display: block;
+        position: absolute;
+        width: 0;
+        height: 100%;
+        border: 1px dashed cyan;
+        border-left: none; 
+        content: ' ';
+        margin-left: 100%;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        &.flipped {
+            border-right: none;
+            border-left: 1px dashed cyan;  
+        }
+    }
+    &.resizer__left {
+        border-right: none;
+        right: auto;
+        left: 0;
+        border-left: 1px solid cyan;    
+    }
+}
