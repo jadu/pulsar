@@ -4,7 +4,11 @@
 
 define(['jquery'], function() {
 
-    $(document).ready(function() {  
+    $(document).ready(function() {
+
+        // Set up a Jadu global, if we don't already have one
+        // This is primarily used to configure requirejs filepaths in CMP
+        if (!window.jadu) { window.jadu = {}; }
 
         require(['dashboard'], function() {
             $('.dashboard').dashboard();

@@ -17,7 +17,7 @@
             sortableOpacity: 0.5,
             sortableRevert: 100,
             sortableTolerance: "pointer",
-            stateContainer: "#dashboard_state",
+            stateContainer: "#dashboard-state",
             trayContainer: ".tray",
             widgetClass: ".widget",
             widgetDataContainer: '#widget__data',
@@ -40,13 +40,20 @@
       Plugin.prototype = {
           init: function () {
 
+            var self = this;
+
             // Set up the tray
             tray = $(this.settings.trayContainer).tray({ 
               connectToSortable: this.element
             });
 
             // Set up the sortable dashboard
-            this.initDashboard();
+            self.initDashboard();
+
+            // Check for an existing state, and render it
+            $(document).ready(function() {
+              self.parseState();
+            });
           },
 
           initDashboard: function () {
@@ -58,7 +65,7 @@
             $(this.element).sortable({
               forcePlaceholderSize: this.settings.sortableForcePlaceholderSize,
               opacity: this.settings.sortableOpacity,
-              receive: function(e, ui) {
+              receive: function( e, ui ) {
                 console.log('received');
 
                 var $this = $(this);
@@ -130,11 +137,11 @@
           },
 
           captureState: function () {
-            var widgetState = [];
+            var state = [];
 
             // Grab the widget states
             $.map($(this.element).find(this.settings.widgetClass), function(el) {
-              widgetState.push({
+              state.push({
                 guid: "widget_guid",
                 id: $(el).attr('id'),
                 settings: {
@@ -146,15 +153,23 @@
             // Create the json object that stores dashboard state
             var Dashboard = {
               title: this.settings.title,
-              widgets: widgetState
+              widgets: state
             };
 
             // Store our JSON object
-            this.widgetState = Dashboard;
+            this.state = Dashboard;
 
             // Copy state to hidden stateContainer field in the DOM
             console.log(JSON.stringify(Dashboard));
             $(this.settings.stateContainer).val(JSON.stringify(Dashboard));
+          },
+
+          parseState: function () {
+            console.log('parse state');
+            
+            var state = JSON.parse( $(this.settings.stateContainer).html() );
+            
+            console.log(state);
           }
           
       };

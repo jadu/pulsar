@@ -1,7 +1,7 @@
 <?php
 
-$baseDir = '../../';
-$templateDir = $baseDir . 'views';
+$base_dir = '../../';
+$template_dir = $base_dir . 'views';
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 require_once __DIR__ . '/../../src/Jadu/Pulsar/Twig/Sandbox/SecurityPolicy.php';
@@ -11,15 +11,15 @@ use Jadu\Pulsar\Twig\Extension\RelativeTimeExtension;
 use Jadu\Pulsar\Twig\Extension\UrlParamsExtension;
 use Jadu\Pulsar\Twig\Extension\TabsExtension;
 
-$loader = new Twig_Loader_Filesystem($templateDir);
-$loader->addPath($templateDir, 'pulsar');
+$loader = new Twig_Loader_Filesystem($template_dir);
+$loader->addPath($template_dir, 'pulsar');
 
 $twig = new Twig_Environment($loader, array('debug' => true));
 
 $policy = new Twig_Sandbox_SecurityPolicy($tags, $filters, $methods, $properties, $functions);
 $sandbox = new Twig_Extension_Sandbox($policy);
 
-$twig->addExtension(new ConfigExtension($baseDir . 'pulsar.json'));
+$twig->addExtension(new ConfigExtension($base_dir . 'pulsar.json'));
 $twig->addExtension(new RelativeTimeExtension());
 $twig->addExtension(new UrlParamsExtension($_GET));
 $twig->addExtension(new TabsExtension());
@@ -34,7 +34,7 @@ $breadcrumb = array(
     'Dashboard' => null
     );
 
-$flashMessage = array(
+$flash_message = array(
     'type' => 'success',
     'message' => 'This is a flash message, it lets users know that something happened. <a href="#tab_4" data-toggle="tab">read more</a>.'
     );
@@ -45,9 +45,9 @@ $widgets = array(
         'title' => 'Analytics',
         'widgets' => array(
             array(
-                'id' => 'browsers',
+                'guid' => 'browsers',
+                'version' => '0.0.1',
                 'title' => 'Browser Usage',
-                'source' => 'browsers.html.twig',
                 'price' => '0',
                 'description' => 'Show which browsers your users have used to visit your site.'
             )
@@ -58,9 +58,9 @@ $widgets = array(
         'title' => 'Search',
         'widgets' => array(
             array(
-                'id' => 'trending',
+                'guid' => 'trending',
+                'version' => '0.0.1',
                 'title' => 'Trending Searches',
-                'source' => 'trending.html.twig',
                 'price' => '9.99',
                 'description' => 'Show which search terms are currently popular on your site(s).'
             )
@@ -71,16 +71,16 @@ $widgets = array(
         'title' => 'System Information',
         'widgets' => array(
             array(
-                'id' => 'cpu',
+                'guid' => 'cpu',
+                'version' => '0.0.1',
                 'title' => 'CPU Load',
-                'source' => 'cpu.html.twig',
                 'price' => '0',
                 'description' => 'Shows how hard your server is working at the moment.'
             ),
             array(
-                'id' => 'galaxies_count',
+                'guid' => 'galaxies_count',
+                'version' => '0.0.1',
                 'title' => 'Galaxies Sites',
-                'source' => 'galaxies.html.twig',
                 'price' => '0',
                 'description' => 'Shows how many Galaxies sites are currently active.'
             )                
@@ -91,9 +91,9 @@ $widgets = array(
         'title' => 'User Information',
         'widgets' => array(
             array(
-                'id' => 'admins',
+                'guid' => 'admins',
+                'version' => '0.0.1',
                 'title' => 'Admins',
-                'source' => 'admins.html.twig',
                 'price' => '0',
                 'description' => 'Show how many administrators you have.'
             )                
@@ -101,8 +101,11 @@ $widgets = array(
     )
 );
 
+$initial_state = '{"title":"My Dashboard","widgets":[{"guid":"widget_guid","id":"ui-id-1","settings":{}},{"guid":"widget_guid","id":"ui-id-2","settings":{}}]}';
+
 print $template->render(array(
     'breadcrumb' => $breadcrumb,
-    'flash_message' => $flashMessage,
-    'widgets' => $widgets
+    'flash_message' => $flash_message,
+    'widgets' => $widgets,
+    'initial_state' => $initial_state
     ));

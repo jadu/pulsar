@@ -17,7 +17,7 @@ define(['jquery', 'jquery-ui', 'jquery-ui-touch'], function() {
 				connectToSortable: false,
 				widgetClass: '.widget',
 				widgetDataContainer: '#widget__data',
-				widgetPath: '/views/widgets/',
+				widgetPath: '/var/widgets/',
 				draggableHelper: 'clone',
 				draggableRevert: 'invalid'
 			};
@@ -56,26 +56,33 @@ define(['jquery', 'jquery-ui', 'jquery-ui-touch'], function() {
 				// TODO: Clean this up
 				$('.tray__widgets li').on('click', function() {
 					var $this = $(this);
+
 					$('.tray__widgets').find('li').removeClass('active');
+
 					$this.addClass('active');
+
 					$('.widget__title').text($this.data('widget-title'));
 					$('.widget__description').text($this.data('widget-description'));
 					$('.widget__price').text($this.data('widget-price'));
 
-					$('.tray__detail .widget').data('widget', $this.data('widget'))
-					.data('widget-title', $this.data('widget-title'))
-					.data('widget-description', $this.data('widget-description'))
-					.show();
+					$('.tray__detail .widget')
+						.data('widget-guid', $this.data('widget-guid'))
+						.data('widget-version', $this.data('widget-version'))
+						.data('widget-title', $this.data('widget-title'))
+						.data('widget-description', $this.data('widget-description'))
+						.show();
 				});
 			},
 
 			fetchWidget: function ( e, ui ) {
 				var parent = this,
-					widget = $(ui.helper.context).data('widget'); // The data attribute of the widget we're dragging
+						widget = $(ui.helper.context),
+					  widgetGuid = widget.data('widget-guid'),
+					  widgetVersion = widget.data('widget-version'); // The data attribute of the widget we're dragging
 
 				// Fetch it
 				$.ajax({
-					url: parent.settings.widgetPath + widget + '/index.php'
+					url: parent.settings.widgetPath + widgetGuid + '/' + widgetVersion + '/index.php'
 				}).done(function (data) {
 
 					// Throw the data into the newly created widget container

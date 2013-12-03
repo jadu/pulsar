@@ -22,6 +22,7 @@
     "jquery.ui": "latest",
     "jqueryui-touch-punch": "latest",
     "jquery-mousewheel": "latest",
+    "list.js": "latest",
     "moment": "latest",
     "normalize-css": "latest",
     "respond": "latest",
