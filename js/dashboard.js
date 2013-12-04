@@ -44,11 +44,12 @@ define([
             this._name = pluginName;
             this.api = api;
             this.element = element;
-            this.currentItem = '';
-            this.settings = $.extend( {}, defaults, options );
-            this.state = [];
-            this.tray = '';
-            this.widgetData = '';
+            this.settings = $.extend({}, defaults, options);
+            this.currentItem;
+            this.state;
+            this.tray;
+            this.widgetData;
+
             this.init();
         }
 
@@ -68,7 +69,7 @@ define([
             initDashboard: function () {
                 console.log('init dashboard');
 
-                var parent = this;
+                var _this = this;
 
                 // Set up the sortable
                 $(this.element).sortable({
@@ -80,17 +81,17 @@ define([
                         var $this = $(this);
 
                         function isFetched() {
-                            parent.widgetData = $(parent.settings.widgetDataContainer).val();
+                            _this.widgetData = $(_this.settings.widgetDataContainer).val();
 
-                            if (parent.widgetData !== '') {
+                            if (_this.widgetData !== '') {
                                 var widget = $this.data().uiSortable.currentItem;
                                 var sender = ui.sender;
 
-                                widget.html(parent.widgetData) // Populate widget content
+                                widget.html(_this.widgetData) // Populate widget content
                                     .uniqueId(); // Attach unique identifier
 
                                 // Reset last-appended flag
-                                $(parent.settings.widgetClass, parent.element).not(widget)
+                                $(_this.settings.widgetClass, _this.element).not(widget)
                                     .removeAttr('data-last-appended');
 
                                 // Populate data attributes in new widget instance
@@ -100,12 +101,12 @@ define([
                                       .attr('data-last-appended', 'true');
 
                                 // Tidy up after ourselves
-                                $(parent.settings.widgetDataContainer).val('');
-                                parent.widgetData = '';
+                                $(_this.settings.widgetDataContainer).val('');
+                                _this.widgetData = '';
                             } else {
 
                                 // Wait a bit more...
-                                setTimeout(isFetched, parent.settings.fetchRetryTimeout);
+                                setTimeout(isFetched, _this.settings.fetchRetryTimeout);
                             }
                         }
 
@@ -115,15 +116,15 @@ define([
                     },
                     revert: this.settings.sortableRevert,
                     stop: function() {
-                        parent.captureState();
+                        _this.captureState();
                     },
                     tolerance: this.settings.sortableTolerance
                 });
 
                 // Remove widget event
                 $(this.element).on('click', this.settings.widgetClass + ' ' + this.settings.widgetRemoveAttribute, function() {
-                    $(this).closest(parent.settings.widgetClass).remove();
-                    parent.captureState();
+                    $(this).closest(_this.settings.widgetClass).remove();
+                    _this.captureState();
                 });
 
                 // Rename dashboard
@@ -131,14 +132,15 @@ define([
                     e.preventDefault();
 
                     var values = {};
+
                     $.each($(this).serializeArray(), function(i, field) {
                         values[field.name] = field.value;
                     });
 
-                    parent.settings.title = values.name;
+                    _this.settings.title = values.name;
                     
-                    $(parent.settings.titleContainer).text(parent.settings.title);
-                    parent.captureState();
+                    $(_this.settings.titleContainer).text(_this.settings.title);
+                    _this.captureState();
 
                     $(this).closest('.modal').modal().modal('hide');
                     $('.modal__backdrop').remove();
@@ -171,7 +173,7 @@ define([
                 // Save state to localstorage if available
                 if (store.enabled) {
                     store.set(this.settings.storageStateName, this.state);
-                    store.set(this.settings.storageModifiedName, +new Date);
+                    store.set(this.settings.storageModifiedName, Number(new Date));
                 }
 
                 this.saveState();
@@ -183,7 +185,7 @@ define([
                 var state = [];
                 
                 // Check for a stored state object first, then try localstorage
-                if (this.state !== 'undefined') {
+                if (this.state) {
                     state = this.state;
                 }
                 else if (store.enabled) {
@@ -224,9 +226,9 @@ define([
                         return;
                     }
                     if (xhr.status == 500) {
-                        $.error('Unable to save data via API (error 500)');
+                        $.error('Unable to save data via Jadu API (error 500)');
                     } else {
-                        $.error('Unable to save data via API');
+                        $.error('Unable to save data via Jadu API');
                     }
                 });
 
