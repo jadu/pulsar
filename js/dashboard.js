@@ -4,13 +4,13 @@
  * Attaches the behaviour to a Dashboard in Jadu CMP
  */
 define([
+    'store-js',
     'jquery',
     'jquery-ui',
     'jquery-ui-touch',
-    'store-js',
     'modal',
     'tray'
-], function() {
+], function(store) {
 
     'use strict';
 
@@ -165,11 +165,8 @@ define([
                 this.state = Dashboard;
 
                 // Save state to localstorage if available
-                console.log(store.enabled);
-
                 if (store.enabled) {
                     store.set(this.pluginName, this.state);
-
                     console.log('State saved to localstorage');
                 }
 

@@ -38,9 +38,6 @@ requirejs.config({
         },
         'highcharts-more': {
             deps: ['jquery', 'highcharts']
-        },
-        'store-js': {
-            exports: 'store'
         }
     }
 });
