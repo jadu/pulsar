@@ -8,7 +8,7 @@ define(['jquery', 'jquery-ui', 'jquery-ui-touch'], function() {
 
 	'use strict';
 
-	(function ( $, window, document, undefined ) {
+	(function ($, window, document, undefined) {
 
 		// Defaults
 		var pluginName = 'tray',
@@ -23,7 +23,7 @@ define(['jquery', 'jquery-ui', 'jquery-ui-touch'], function() {
 			};
 
 		// Constructor
-		function Plugin ( element, options ) {
+		function Plugin (element, options) {
 			this.element = element;
 			this.settings = $.extend( {}, defaults, options );
 			this._defaults = defaults;
@@ -74,7 +74,7 @@ define(['jquery', 'jquery-ui', 'jquery-ui-touch'], function() {
 				});
 			},
 
-			fetchWidget: function ( e, ui ) {
+			fetchWidget: function (e, ui) {
 				var parent = this,
 						widget = $(ui.helper.context),
 					  widgetGuid = widget.data('widget-guid'),
