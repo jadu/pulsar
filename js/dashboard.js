@@ -19,7 +19,7 @@ define([
         // Defaults
         var pluginName = 'dashboard',
             api = {
-                save: '/api/dashboard/save/',
+                save: 'api/dashboard/save/',
             },
             defaults = {
                 fetchRetryTimeout: 50,
@@ -30,6 +30,8 @@ define([
                 sortableRevert: 100,
                 sortableTolerance: 'pointer',
                 stateContainer: '#dashboard-state',
+                storageStateName: 'dashboard-state',
+                storageModifiedName: 'dashboard-modified',
                 trayContainer: '.tray',
                 widgetClass: '.widget',
                 widgetDataContainer: '#widget__data',
@@ -38,14 +40,14 @@ define([
 
         // Constructor
         function Plugin (element, options) {
+            this._defaults = defaults;
+            this._name = pluginName;
             this.api = api;
             this.element = element;
             this.currentItem = '';
             this.settings = $.extend( {}, defaults, options );
-            this._defaults = defaults;
-            this._name = pluginName;
+            this.state = [];
             this.tray = '';
-            this.widgetState = [];
             this.widgetData = '';
             this.init();
         }
@@ -168,27 +170,48 @@ define([
 
                 // Save state to localstorage if available
                 if (store.enabled) {
-                    store.set('dashboard-state', this.state);
-                    store.set('dashboard-modified', +new Date);
+                    store.set(this.settings.storageStateName, this.state);
+                    store.set(this.settings.storageModifiedName, +new Date);
                 }
 
-                // Copy state to hidden stateContainer field in the DOM, possibly for regular form driven save? May remove this if we go all-in on ajax saving...
-                $(this.settings.stateContainer).val(JSON.stringify(Dashboard));
-
                 this.saveState();
+            },
+
+            getState: function () {
+                console.log('get state');
+
+                var state = [];
+                
+                // Check for a stored state object first, then try localstorage
+                if (this.state !== 'undefined') {
+                    state = this.state;
+                }
+                else if (store.enabled) {
+                    state = store.get(this.settings.storageStateName);
+                } 
+                else {
+                    return false;
+                }
+
+                return state;
             },
 
             saveState: function() {
                 console.log('saving state... (' + this.api.save + ')');
                 console.log(this.state);
 
+                var state = this.getState();
+
                 $.ajax({
+                    data: state,
                     type: 'POST',
                     tryCount : 0,
                     retryLimit : 3,
                     url: this.api.save
                 }).done(function (data) {
+
                     console.log('saved!');
+
                 }).error(function(xhr, textStatus, errorThrown) {
                     if (textStatus == 'timeout') {
                         this.tryCount++;
@@ -206,7 +229,7 @@ define([
                         $.error('Unable to save data via API');
                     }
                 });
-                
+
             }
             
         };
@@ -219,6 +242,6 @@ define([
             });
         };
 
-    })( jQuery, window, document );
+    })(jQuery, window, document);
 
 });
