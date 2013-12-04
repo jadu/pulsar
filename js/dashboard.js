@@ -18,6 +18,9 @@ define([
 
         // Defaults
         var pluginName = 'dashboard',
+            api = {
+                save: '/api/dashboard/save/',
+            },
             defaults = {
                 fetchRetryTimeout: 50,
                 title: 'My Dashboard',
@@ -35,6 +38,7 @@ define([
 
         // Constructor
         function Plugin (element, options) {
+            this.api = api;
             this.element = element;
             this.currentItem = '';
             this.settings = $.extend( {}, defaults, options );
@@ -164,13 +168,45 @@ define([
 
                 // Save state to localstorage if available
                 if (store.enabled) {
-                    store.set(this._name, this.state);
+                    store.set('dashboard-state', this.state);
+                    store.set('dashboard-modified', +new Date);
                 }
 
-                // Copy state to hidden stateContainer field in the DOM
+                // Copy state to hidden stateContainer field in the DOM, possibly for regular form driven save? May remove this if we go all-in on ajax saving...
                 $(this.settings.stateContainer).val(JSON.stringify(Dashboard));
 
-                console.log(JSON.stringify(this.state));
+                this.saveState();
+            },
+
+            saveState: function() {
+                console.log('saving state... (' + this.api.save + ')');
+                console.log(this.state);
+
+                $.ajax({
+                    type: 'POST',
+                    tryCount : 0,
+                    retryLimit : 3,
+                    url: this.api.save
+                }).done(function (data) {
+                    console.log('saved!');
+                }).error(function(xhr, textStatus, errorThrown) {
+                    if (textStatus == 'timeout') {
+                        this.tryCount++;
+                        if (this.tryCount <= this.retryLimit) {
+                            
+                            // Try again
+                            $.ajax(this);
+                            return;
+                        }            
+                        return;
+                    }
+                    if (xhr.status == 500) {
+                        $.error('Unable to save data via API (error 500)');
+                    } else {
+                        $.error('Unable to save data via API');
+                    }
+                });
+                
             }
             
         };
