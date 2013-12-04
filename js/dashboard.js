@@ -57,8 +57,6 @@ define([
 
                 // Set up the sortable dashboard
                 this.initDashboard();
-
-                console.log(store.enabled);
             },
 
             initDashboard: function () {
@@ -119,7 +117,7 @@ define([
                 // Remove widget event
                 $(this.element).on('click', this.settings.widgetClass + ' ' + this.settings.widgetRemoveAttribute, function() {
                     $(this).closest(parent.settings.widgetClass).remove();
-                    this.captureState;
+                    parent.captureState();
                 });
 
                 // Rename dashboard
@@ -166,8 +164,7 @@ define([
 
                 // Save state to localstorage if available
                 if (store.enabled) {
-                    store.set(this.pluginName, this.state);
-                    console.log('State saved to localstorage');
+                    store.set(this._name, this.state);
                 }
 
                 // Copy state to hidden stateContainer field in the DOM
