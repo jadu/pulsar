@@ -3,11 +3,18 @@
  *
  * Attaches the behaviour to a Dashboard in Jadu CMP
  */
-define(['jquery', 'jquery-ui', 'jquery-ui-touch', 'modal', 'tray'], function() {
+define([
+    'jquery',
+    'jquery-ui',
+    'jquery-ui-touch',
+    'store-js',
+    'modal',
+    'tray'
+], function() {
 
     'use strict';
 
-    (function ( $, window, document, undefined ) {
+    (function ($, window, document, undefined) {
 
         // Defaults
         var pluginName = 'dashboard',
@@ -27,7 +34,7 @@ define(['jquery', 'jquery-ui', 'jquery-ui-touch', 'modal', 'tray'], function() {
             };
 
         // Constructor
-        function Plugin ( element, options ) {
+        function Plugin (element, options) {
             this.element = element;
             this.currentItem = '';
             this.settings = $.extend( {}, defaults, options );
@@ -50,6 +57,8 @@ define(['jquery', 'jquery-ui', 'jquery-ui-touch', 'modal', 'tray'], function() {
 
                 // Set up the sortable dashboard
                 this.initDashboard();
+
+                console.log(store.enabled);
             },
 
             initDashboard: function () {
@@ -61,7 +70,7 @@ define(['jquery', 'jquery-ui', 'jquery-ui-touch', 'modal', 'tray'], function() {
                 $(this.element).sortable({
                     forcePlaceholderSize: this.settings.sortableForcePlaceholderSize,
                     opacity: this.settings.sortableOpacity,
-                    receive: function( e, ui ) {
+                    receive: function(e, ui) {
                         console.log('received');
 
                         var $this = $(this);
@@ -155,17 +164,27 @@ define(['jquery', 'jquery-ui', 'jquery-ui-touch', 'modal', 'tray'], function() {
                 // Store our JSON object
                 this.state = Dashboard;
 
+                // Save state to localstorage if available
+                console.log(store.enabled);
+
+                if (store.enabled) {
+                    store.set(this.pluginName, this.state);
+
+                    console.log('State saved to localstorage');
+                }
+
                 // Copy state to hidden stateContainer field in the DOM
-                console.log(JSON.stringify(Dashboard));
                 $(this.settings.stateContainer).val(JSON.stringify(Dashboard));
+
+                console.log(JSON.stringify(this.state));
             }
             
         };
 
-        $.fn[ pluginName ] = function ( options ) {
+        $.fn[pluginName] = function (options) {
             return this.each(function() {
-                if ( !$.data( this, 'plugin_' + pluginName ) ) {
-                    $.data( this, 'plugin_' + pluginName, new Plugin( this, options ) );
+                if (!$.data(this, 'plugin_' + pluginName)) {
+                    $.data(this, 'plugin_' + pluginName, new Plugin(this, options));
                 }
             });
         };

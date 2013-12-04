@@ -22,6 +22,7 @@ requirejs.config({
         'popover'           : '/js/popover',
         'pulsar'            : '/js/pulsar',
         'sticky'            : '/libs/sticky/jquery.sticky',
+        'store-js'          : '/libs/store.js/store',
         'tab'               : '/js/tab',
         'tooltip'           : '/js/tooltip',
         'tray'              : '/js/tray',
@@ -37,6 +38,9 @@ requirejs.config({
         },
         'highcharts-more': {
             deps: ['jquery', 'highcharts']
+        },
+        'store-js': {
+            exports: 'store'
         }
     }
 });
