@@ -95,8 +95,8 @@ define(['jquery'], function() {
             );
         });
 
-        // toggle a given element
-        // $('[data-toggle]').on('click', function(e) {
+        // // toggle a given element
+        // $('[data-toggle=]').on('click', function(e) {
         //     $(this).toggleClass('active');
         //     $target = $('.' + $(this).data('toggle'));
         //     $target.slideToggle(100);

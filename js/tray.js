@@ -97,6 +97,14 @@ define([
 
         };
 
+        // Data-API
+        $(document).on('click', '[data-toggle="tray"]', function (e) {
+            var $target = $($(this).attr('data-target'));
+            
+            e.preventDefault();
+            $target.slideToggle(100);
+        })
+
         $.fn[pluginName] = function (options) {
             return this.each(function() {
                 if (!$.data(this, 'plugin_' + pluginName)) {

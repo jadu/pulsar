@@ -34,7 +34,7 @@
 %}
 
 {% block summary %}
-  <div class="tray">
+  <div id="tray" class="tray">
     {% include '@pulsar/pulsar/components/widget_list.html.twig' %}
     <input type="hidden" id="widget__data" />
   </div>
@@ -47,7 +47,7 @@
         label = html.icon('dashboard') ~ ' Widgets', 
         href = '#', 
         type = 'link', 
-        attributes = 'data-toggle=tray')
+        attributes = 'data-toggle=tray data-target=#tray')
     ])
   }}
 {% endblock %}
