@@ -1,6 +1,6 @@
 {
   "name": "respond",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "main": "dest/respond.src.js",
   "description": "Fast and lightweight polyfill for min/max-width CSS3 Media Queries (for IE 6-8, and more)",
   "ignore": [
@@ -8,11 +8,11 @@
     "test"
   ],
   "homepage": "https://github.com/scottjehl/Respond",
-  "_release": "1.4.0",
+  "_release": "1.4.1",
   "_resolution": {
     "type": "version",
-    "tag": "1.4.0",
-    "commit": "9ca762f0bbbdd78cb5278f68be1e9f2585c2b1eb"
+    "tag": "1.4.1",
+    "commit": "3510fb2965db59ea476e4708746817d0a947b4fe"
   },
   "_source": "git://github.com/scottjehl/Respond.git",
   "_target": "*",
