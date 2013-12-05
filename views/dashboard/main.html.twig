@@ -22,7 +22,7 @@
         html.link(
           label = html.icon('edit') ~ ' Rename', 
           href = '#rename', 
-          attributes = 'data-toggle=modal'
+          attributes = 'data-toggle=modal data-target=#rename'
         ),
         html.divider(),
         html.link(
@@ -56,7 +56,7 @@
 {% endblock %}
 
 {% block modals %}
-<div class="modal">
+<div class="modal" id="rename">
     <div class="modal__dialog">
         <div class="modal__content">
             <div class="modal__header">
@@ -75,4 +75,8 @@
         </div><!-- /.modal__content -->
     </div><!-- /.modal__dialog -->
 </div><!-- /.modal -->
+{% endblock %}
+
+{% block javascript %}
+  <script id="dashboard-state" type="application/json">{{ initial_state|raw }}</script>
 {% endblock %}

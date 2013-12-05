@@ -8,7 +8,6 @@ define([
     'jquery',
     'jquery-ui',
     'jquery-ui-touch',
-    'modal',
     'tray'
 ], function(store) {
 
@@ -142,8 +141,6 @@ define([
                     $(_this.settings.titleContainer).text(_this.settings.title);
                     _this.captureState();
 
-                    $(this).closest('.modal').modal().modal('hide');
-                    $('.modal__backdrop').remove();
                 });
             },
 

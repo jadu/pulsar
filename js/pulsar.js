@@ -96,11 +96,11 @@ define(['jquery'], function() {
         });
 
         // toggle a given element
-        $('[data-toggle]').on('click', function(e) {
-            $(this).toggleClass('active');
-            $target = $('.' + $(this).data('toggle'));
-            $target.slideToggle(100);
-        });
+        // $('[data-toggle]').on('click', function(e) {
+        //     $(this).toggleClass('active');
+        //     $target = $('.' + $(this).data('toggle'));
+        //     $target.slideToggle(100);
+        // });
 
         // Switch a given element within the same data-group
         $('[data-switch]').on('click', function(e) {
