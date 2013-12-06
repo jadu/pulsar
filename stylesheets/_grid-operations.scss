@@ -1,3 +1,5 @@
+$cyan : darken(cyan, 20);
+
 .draggable {
     cursor: move;
 }
@@ -8,7 +10,7 @@
     box-sizing: border-box;
     position: relative;
     &:hover, &.operating {
-        box-shadow:0 0 1px cyan;
+        box-shadow:0 0 1px $cyan;
         .resizer {
             display: block;
         }
@@ -19,7 +21,7 @@
     display: block;
     height: 100%;
     width: 8px;
-    border-right:1px solid cyan;
+    border-right:1px solid $cyan;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -33,7 +35,7 @@
         position: absolute;
         width: 0;
         height: 100%;
-        border: 1px dashed cyan;
+        border: 1px dashed $cyan;
         border-left: none; 
         content: ' ';
         margin-left: 100%;
@@ -42,13 +44,42 @@
         box-sizing: border-box;
         &.flipped {
             border-right: none;
-            border-left: 1px dashed cyan;  
+            border-left: 1px dashed $cyan;  
         }
     }
     &.resizer__left {
         border-right: none;
         right: auto;
         left: 0;
-        border-left: 1px solid cyan;    
+        border-left: 1px dashed $cyan;    
     }
+}
+
+.grid-container {
+    position: relative;
+    overflow: visible;
+    margin-bottom: 1.2em;
+    clear: both;
+    &:hover {
+        .row-handler {
+            display: block;
+            opacity: 1;
+        }
+    }
+    .row-handler {
+        background: #333;
+        padding: 0.4em;
+        color: #FFF; 
+        cursor: move;
+        opacity: .6;
+        .remove-row {
+            float: right;
+            color: #FFF;
+            text-decoration: none;
+        }
+    }
+}
+
+.homepage {
+    padding-bottom: 2em;
 }

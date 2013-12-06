@@ -29,7 +29,7 @@
 {% block actionsbar %}
   {{ 
     html.button_group([
-      html.button(label = html.icon('eye-open') ~ '', href = '#', type = 'link', attributes = 'data-homepage-mode=focus'),
+      html.button(label = html.icon('eye-open') ~ '', href = '#', type = 'link', attributes = 'data-toggle=row-handler', class="focus"),
       html.button(label = html.icon('eye') ~ '', href = '#', type = 'link', attributes = 'data-homepage-mode=focus')
     ])
   }}
