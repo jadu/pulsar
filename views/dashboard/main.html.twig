@@ -11,13 +11,14 @@
 {% 
   set actions_menu = [
     html.link(
-      label = html.icon('plus') ~ ' Create dashboard', 
-      href = '#save'
-    ),
-    html.link(
       label = html.icon('save') ~ ' Save', 
       href = '#save', 
       attributes = 'data-action=save'
+    ),
+    html.link(
+      label = html.icon('share') ~ ' Share', 
+      href = '#share', 
+      attributes = 'data-toggle=modal data-target=#share'
     ),
     html.link(
       label = html.icon('edit') ~ ' Rename', 
@@ -57,6 +58,39 @@
 {% endblock %}
 
 {% block modals %}
+<div id="share" class="modal" role="dialog" aria-labelledby="share-modal-title" aria-hidden="true">
+  <div class="modal__dialog">
+    <div class="modal__content">
+      <div class="modal__header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 id="share-modal-title" class="modal__title">Share &lsquo;<span id="dashboard-title">{{ heading }}</span>&rsquo; Template</h4>
+      </div>
+      <div class="modal__body">
+        <p>To share this dashboard as a template simply send this link to another Jadu user, when they click it they will be asked if they would like to use the template.</p>
+        <ul>
+          <li>No personal settings, usernames or passwords will be shared</li>
+          <li>No other changes you make will be shared with anyone using this template</li>
+        </ul>
+        {{ form.create(action = '#dashboard-share', attributes = 'data-action=share') }}
+        {{ 
+          form.text(
+            label =  'Share link',
+            name =   'sharelink',
+            class =  'form__group--full',
+            value =  'http://jadu.net/myreallyreallylongdashboardlink'
+          )
+        }}
+        </form>
+      </div>
+      <div class="modal__footer">
+        <button type="button" class="btn" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn--primary" data-dismiss="modal">Finished</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div id="rename" class="modal" role="dialog" aria-labelledby="rename-modal-title" aria-hidden="true">
   <div class="modal__dialog">
     <div class="modal__content">
@@ -66,7 +100,7 @@
       </div>
       <div class="modal__body">
         {{ form.create(action = '#dashboard-rename', attributes = 'data-action=rename') }}
-        {{ form.text(label = 'Name', name = "name", class = 'form__group--full', value = 'My Dashboard') }}
+        {{ form.text(label = 'Name', name = 'name', class = 'form__group--full', value = 'My Dashboard') }}
       </div>
       <div class="modal__footer">
         <button type="button" class="btn" data-dismiss="modal">Cancel</button>

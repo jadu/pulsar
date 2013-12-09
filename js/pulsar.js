@@ -7,21 +7,37 @@ define(['jquery'], function() {
     $(document).ready(function() {
 
         // Set up Pulsar's UI environment
-        require(['tooltip', 'sticky'], function() {
+        require(['tooltip', 'sticky', 'zeroclipboard'], function() {
 
-            // Tooltips (js/tooltip.js)
+            // tooltips (js/tooltip.js)
             $('[data-toggle="tooltip"]').tooltip();
 
-            // Sticky toolbar
+            // sticky toolbar
             $('.toolbar').sticky({topSpacing: 0});
 
-            // Syntax highlighting
+            // syntax highlighting
             if (!$('html.ie7').size()) { // IE8 and up only
                 var aCodes = document.getElementsByTagName('pre');
                 for (var i=0; i < aCodes.length; i++) {
                     hljs.highlightBlock(aCodes[i]);
                 }
-            }
+            };
+
+            // copy to clipboard
+            $('[data-action=clipboard]').on('click', function(e) {
+                console.log($(this));
+                e.preventDefault();
+                var clip = new ZeroClipboard($(this), {
+                    moviePath: 'libs/zeroclipboard/ZeroClipboard.swf'
+                });
+                console.log('clip');
+                clip.on('load', function(client) {
+                    console.log('loaded');
+                    client.on('complete', function(client, args) {
+                        console.log('copied');
+                    });                    
+                });
+            });
 
         });
 
@@ -38,8 +54,6 @@ define(['jquery'], function() {
         $('.flash.is-sticky').delay('1000').slideDown('100', function() {
             $(this).sticky({topSpacing: 44}).sticky('update');
         });
-
-
 
         // Show summary panels based on their data-tab value
         require(['tab'], function() {

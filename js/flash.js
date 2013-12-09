@@ -1,5 +1,9 @@
 /**
- * Jadu Alert Handler
+ * Jadu Flash Message Handler
+ *
+ * Example: 
+ *   
+ *   $(document).flash().success('Something good happened');
  */
 define([
   'jquery',
@@ -10,7 +14,7 @@ define([
 
   (function ($, window, document, undefined) {
 
-    // Defaults
+    // defaults
     var pluginName = 'flash',
         defaults = {
           autohide: false,
@@ -27,7 +31,7 @@ define([
           helper: '/app/helpers/flash.php'
         };
 
-    // Constructor
+    // constructor
     function Plugin (element, options) {
       this._defaults = defaults;
       this._name = pluginName;
@@ -41,7 +45,7 @@ define([
       this.init();
     }
 
-    // Methods
+    // methods
     Plugin.prototype = {
 
       init: function () {
