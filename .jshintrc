@@ -19,6 +19,8 @@
     "unused": true,
     "globals": {
         "$": false,
-        "jQuery": false
+        "jQuery": false,
+        "console": false,
+        "define": false
     }
 }
