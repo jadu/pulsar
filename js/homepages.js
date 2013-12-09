@@ -3,16 +3,38 @@ $(document).ready(function() {
     var resizerLeft = $('<div class="resizer resizer__left"></div>');
     $('.widget').append(resizer, resizerLeft);
 
-    var dragging = false;
-    var resizing = false;
-    var rowDragging = false;
-    var originalX = 0;
-    var currentX = 0;
-    var originalY = 0;
-    var currentY = 0;
-    var columnsResized = 0;
-    var alreadyResized = false;
-    var columnCount = 12;
+    var dragging = false,
+        resizing = false,
+        rowDragging = false,
+        originalX = 0,
+        currentX = 0,
+        originalY = 0,
+        currentY = 0,
+        columnsResized = 0,
+        alreadyResized = false,
+        columnCount = 12,
+        versions = [];
+
+    function createHomepageObject() {
+        var homepageObject = [];
+        var i = 0;
+        $('.homepage .widget-row').each(function(){
+            var row = [];
+            var thisRow = $(this);
+            thisRow.children('.widget').each(function(){
+                var thisWidget = $(this);
+                var widget = {};
+                var widgetClass = thisWidget.attr('class');
+                var widgetGuid = thisWidget.data('widget-guid');
+                widget = { classes: widgetClass, guid: widgetGuid};
+                row.push(widget);
+            });
+            homepageObject.push(row);
+        });
+        return homepageObject;
+    }
+
+    console.log(createHomepageObject());
 
     function manipulateOffset(operator, direction) {
         if(!(operator.is('[class*=offset]')) && direction == 'right') {
