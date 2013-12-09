@@ -73,7 +73,6 @@ define([
 
         // set up the sortable dashboard
         this.initDashboard();
-        $(document).flash().warning(this.flash.saveDelay, true);
       },
 
       initDashboard: function () {

@@ -15,7 +15,7 @@ define([
         defaults = {
           autohide: false,
           autohideDelay: 5000,
-          consoleLog: true,
+          consoleLog: false,
           container: 'header',
           successType: 'success',
           warningType: 'warning',
