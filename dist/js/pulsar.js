@@ -4,32 +4,56 @@
 
 define(['jquery'], function() {
 
-    $(document).ready(function() {  
+    $(document).ready(function() {
 
-        require(['dashboard'], function() {
-            $('.dashboard').dashboard();
-        });
+        // Set up Pulsar's UI environment
+        require(['tooltip', 'sticky', 'zeroclipboard'], function() {
 
-        // Stick the Jadu toolbar to the top of the window
-        require(['sticky'], function() {
-            $('.toolbar').sticky({topSpacing: 0});
-            // $('.tray').sticky({topSpacing: 45}).sticky('update');
-        });
-
-        // Init tooltips
-        require(['tooltip'], function() {
+            // tooltips (js/tooltip.js)
             $('[data-toggle="tooltip"]').tooltip();
-        });
 
-        // Trigger syntax highlighting
-        if (!$('html.ie7').size()) { // IE8 and up only
-            require(['highlightjs'], function() {
+            // sticky toolbar
+            $('.toolbar').sticky({topSpacing: 0});
+
+            // syntax highlighting
+            if (!$('html.ie7').size()) { // IE8 and up only
                 var aCodes = document.getElementsByTagName('pre');
                 for (var i=0; i < aCodes.length; i++) {
                     hljs.highlightBlock(aCodes[i]);
                 }
+            };
+
+            // copy to clipboard
+            $('[data-action=clipboard]').on('click', function(e) {
+                console.log($(this));
+                e.preventDefault();
+                var clip = new ZeroClipboard($(this), {
+                    moviePath: 'libs/zeroclipboard/ZeroClipboard.swf'
+                });
+                console.log('clip');
+                clip.on('load', function(client) {
+                    console.log('loaded');
+                    client.on('complete', function(client, args) {
+                        console.log('copied');
+                    });                    
+                });
             });
-        }
+
+        });
+
+
+// To clean up -----------------
+
+
+        // TODO: Move this to the dashboard view
+        require(['dashboard'], function() {
+            $('.dashboard').dashboard();
+        });
+
+        // Look for any flashes and animate them in when the page loads
+        $('.flash.is-sticky').delay('1000').slideDown('100', function() {
+            $(this).sticky({topSpacing: 44}).sticky('update');
+        });
 
         // Show summary panels based on their data-tab value
         require(['tab'], function() {
@@ -63,14 +87,6 @@ define(['jquery'], function() {
             $('[data-tab="' + $('[data-summary]').attr('href') + '"]').show();
         }
 
-        // $('[data-popover-content]').popover({ 
-        //     html : true, 
-        //     placement: 'bottom',
-        //     content: function() {
-        //       return $($(this).data('popoverContent'));
-        //     }
-        // });
-
         require(['daterange'], function() {
             $('[data-daterange]').daterangepicker(
                 {
@@ -91,13 +107,6 @@ define(['jquery'], function() {
             );
         });
 
-        // toggle a given element
-        // $('[data-toggle]').on('click', function(e) {
-        //     $(this).toggleClass('active');
-        //     $target = $('.' + $(this).data('toggle'));
-        //     $target.slideToggle(100);
-        // });
-
         // Switch a given element within the same data-group
         $('[data-switch]').on('click', function(e) {
             var $this = $(this);
@@ -108,10 +117,17 @@ define(['jquery'], function() {
                 $this.siblings().removeClass('active');
             }
             
-            $('.' + $this.data('group')).hide();
+            $($this.data('group')).hide();
             $this.addClass('active');
-            $('#' + $this.data('switch')).show();
-            
+            $($this.data('switch')).show();
+        });
+
+        $('[data-hide]').on('click', function(e) {
+            $($(this).data('hide')).hide();
+        });
+
+        $('[data-show]').on('click', function(e) {
+            $($(this).data('show')).show();
         });
 
     });

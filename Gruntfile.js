@@ -190,6 +190,7 @@ module.exports = function(grunt) {
             'pulsar'            : '../js/pulsar',
             'sparkline'         : '../libs/sparkline/index',
             'sticky'            : '../libs/sticky/jquery.sticky',
+            'store-js'          : '../libs/store.js/store',
             'tab'               : '../js/tab',
             'tooltip'           : '../js/tooltip',
             'tray'              : '../js/tray',

@@ -148,7 +148,6 @@ hr {
 .tray {
   background-color: #333333;
   color: #fafafa;
-  display: none;
   height: 200px;
   margin-top: -1px;
   padding-left: 20px;
@@ -230,6 +229,10 @@ hr {
   float: right;
   height: 170px;
   width: 200px; }
+
+.tray__intro {
+  position: absolute;
+  top: 39%; }
 
 .label {
   display: inline-block;

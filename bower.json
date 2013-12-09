@@ -29,7 +29,8 @@
     "requirejs": "latest",
     "sticky": "latest",
     "store.js": "latest",
-    "Vague.js": "Stanton/vague.js"
+    "Vague.js": "Stanton/vague.js",
+    "zeroclipboard": "latest"
   },
   "devDependencies": {
     "livereload-js": "livereload/livereload-js",

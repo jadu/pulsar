@@ -33,7 +33,8 @@ requirejs.config({
         'tab'               : path + '/js/tab',
         'tooltip'           : path + '/js/tooltip',
         'tray'              : path + '/js/tray',
-        'vague'             : path + '/libs/Vague.js/Vague'
+        'vague'             : path + '/libs/Vague.js/Vague',
+        'zeroclipboard'     : path + '/libs/zeroclipboard/ZeroClipboard'
     },
     shim: {
         'daterange': {

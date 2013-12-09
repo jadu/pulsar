@@ -1,7 +1,7 @@
 var path = '';
 
+// Set by /public_html/jadu/assets/js/config.js
 if (window.jadu.requireJsPath) {
-    // Set by /public_html/jadu/assets/js/config.js
     var path = window.jadu.requireJsPath;
 }
 
@@ -29,10 +29,12 @@ requirejs.config({
         'popover'           : path + '/js/popover',
         'pulsar'            : path + '/js/pulsar',
         'sticky'            : path + '/libs/sticky/jquery.sticky',
+        'store-js'          : path + '/libs/store.js/store',
         'tab'               : path + '/js/tab',
         'tooltip'           : path + '/js/tooltip',
         'tray'              : path + '/js/tray',
-        'vague'             : path + '/libs/Vague.js/Vague'
+        'vague'             : path + '/libs/Vague.js/Vague',
+        'zeroclipboard'     : path + '/libs/zeroclipboard/ZeroClipboard'
     },
     shim: {
         'daterange': {
