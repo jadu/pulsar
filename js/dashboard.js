@@ -15,34 +15,43 @@ define([
 
   (function ($, window, document, undefined) {
 
-    // Defaults
+    // defaults
     var pluginName = 'dashboard',
-      api = {
-        save: 'api/dashboard/save/',
-      },
-      defaults = {
-        fetchRetryTimeout: 50,
-        title: 'My Dashboard',
-        titleContainer: '.heading',
-        sortableForcePlaceholderSize: true,
-        sortableOpacity: 0.5,
-        sortableRevert: 100,
-        sortableTolerance: 'pointer',
-        stateContainer: '#dashboard-state',
-        storageStateName: 'dashboard-state',
-        storageModifiedName: 'dashboard-modified',
-        trayContainer: '.tray',
-        widgetClass: '.widget',
-        widgetDataContainer: '#widget__data',
-        widgetRemoveAttribute: '[data-widget-action=remove]'
-      };
+        api = {
+          save: 'api/dashboard/save/',
+        },
+        defaults = {
+          fetchRetryTimeout: 50,
+          fetchRetryLimit: 5,
+          title: 'My Dashboard',
+          titleContainer: '.heading',
+          sortableForcePlaceholderSize: true,
+          sortableOpacity: 0.5,
+          sortableRevert: 100,
+          sortableTolerance: 'pointer',
+          stateContainer: '#dashboard-state',
+          storageStateName: 'dashboard-state',
+          storageModifiedName: 'dashboard-modified',
+          trayContainer: '.tray',
+          widgetClass: '.widget',
+          widgetDataContainer: '#widget__data',
+          widgetRemoveAttribute: '[data-widget-action=remove]'
+        },
+        flash = {
+          saveSuccess: 'Your dashboard has been saved.',
+          saveFail: 'There was a problem and your dashboard wasn’t saved. Please try again.',
+          saveErrorApi: 'There was a problem and your dashboard wasn’t saved, please try again or contact your support team if you see this message again. (error code: API)',
+          saveError500: 'There was a problem and your dashboard wasn’t saved, please try again or contact your support team if you see this message again. (error code: 500)',
+          saveDelay: 'Your dashboard is taking longer than expected to save, please wait a moment...'
+        };
 
-    // Constructor
+    // constructor
     function Plugin (element, options) {
       this._defaults = defaults;
       this._name = pluginName;
       this.api = api;
       this.element = element;
+      this.flash = flash;
       this.settings = $.extend({}, defaults, options);
       this.currentItem;
       this.state;
@@ -52,17 +61,19 @@ define([
       this.init();
     }
 
-    // Methods
+    // methods
     Plugin.prototype = {
+
       init: function () {
 
-        // Set up the tray
+        // set up the tray
         this.tray = $(this.settings.trayContainer).tray({
           connectToSortable: this.element
         });
 
-        // Set up the sortable dashboard
+        // set up the sortable dashboard
         this.initDashboard();
+        $(document).flash().warning(this.flash.saveDelay, true);
       },
 
       initDashboard: function () {
@@ -70,7 +81,7 @@ define([
 
         var _this = this;
 
-        // Set up the sortable
+        // set up the sortable
         $(this.element).sortable({
           forcePlaceholderSize: this.settings.sortableForcePlaceholderSize,
           opacity: this.settings.sortableOpacity,
@@ -86,30 +97,33 @@ define([
                 var widget = $this.data().uiSortable.currentItem;
                 var sender = ui.sender;
 
-                widget.html(_this.widgetData) // Populate widget content
-                  .uniqueId(); // Attach unique identifier
+                widget.html(_this.widgetData) // populate widget content
+                  .uniqueId(); // attach unique identifier
 
-                // Reset last-appended flag
+                // reset last-appended flag
                 $(_this.settings.widgetClass, _this.element).not(widget)
                   .removeAttr('data-last-appended');
 
-                // Populate data attributes in new widget instance
+                // populate data attributes in new widget instance
                 widget.data('widget', sender.data('widget'))
                     .data('widget-title', sender.data('widget-title'))
                     .data('widget-description', sender.data('widget-description'))
                     .attr('data-last-appended', 'true');
 
-                // Tidy up after ourselves
+                // tidy up after ourselves
                 $(_this.settings.widgetDataContainer).val('');
                 _this.widgetData = '';
               } else {
 
-                // Wait a bit more...
+                // wait a bit more...
                 setTimeout(isFetched, _this.settings.fetchRetryTimeout);
               }
             }
 
-            // If the fetch started by the dragging event hasn't finished, keep checking for the response...
+            /**
+             * if the fetch started by the dragging event hasn't finished,
+             * keep checking for the response...
+             */
             isFetched();
 
           },
@@ -120,14 +134,14 @@ define([
           tolerance: this.settings.sortableTolerance
         });
 
-        // Remove widget event
+        // remove widget event
         $(this.element).on('click', this.settings.widgetClass + ' ' + this.settings.widgetRemoveAttribute, function() {
           $(this).closest(_this.settings.widgetClass).remove();
           _this.captureState();
         });
 
-        // Rename dashboard
-        $('#dashboard-rename').submit(function(e) {
+        // action - rename dashboard
+        $('[data-action=rename]').submit(function(e) {
           console.log('rename');
           var values = {};
 
@@ -143,17 +157,27 @@ define([
 
           // update the name used in the 'delete widget' modal
           $('#dashboard-title').text(_this.settings.title);
-          
+
           _this.captureState();
 
           $(this).closest('.modal').modal('hide');
         });
+
+        // action - save dashboard
+        $('[data-action=save]').on('click', function() {
+          _this.captureState(true);
+        });
+
       },
 
-      captureState: function () {
+      captureState: function (showFlash) {
         var state = [];
 
-        // Grab the widget states
+        if (typeof(showFlash) === 'undefined') {
+          showFlash = false;
+        }
+
+        // grab the widget states
         $.map($(this.element).find(this.settings.widgetClass), function(el) {
           state.push({
             guid: 'widget_guid',
@@ -164,22 +188,22 @@ define([
           });
         });
 
-        // Create the json object that stores dashboard state
+        // create the json object that stores dashboard state
         var Dashboard = {
           title: this.settings.title,
           widgets: state
         };
 
-        // Store our JSON object
+        // store our JSON object
         this.state = Dashboard;
 
-        // Save state to localstorage if available
+        // save state to localstorage if available
         if (store.enabled) {
           store.set(this.settings.storageStateName, this.state);
           store.set(this.settings.storageModifiedName, Number(new Date));
         }
 
-        this.saveState();
+        this.saveState(showFlash);
       },
 
       getState: function () {
@@ -187,7 +211,7 @@ define([
 
         var state = [];
         
-        // Check for a stored state object first, then try localstorage
+        // check for a stored state object first, then try localstorage
         if (this.state) {
           state = this.state;
         }
@@ -201,37 +225,43 @@ define([
         return state;
       },
 
-      saveState: function() {
+      saveState: function(showFlash) {
         console.log('saving state... (' + this.api.save + ')');
         console.log(this.state);
 
-        var state = this.getState();
+        var _this = this,
+            state = this.getState();
 
         $.ajax({
           data: state,
           type: 'POST',
           tryCount : 0,
-          retryLimit : 3,
+          retryLimit : _this.settings.fetchRetryLimit,
           url: this.api.save
         }).done(function (data) {
-
-          console.log('saved!');
-
+          if (showFlash === true) {
+            $(document).flash().success(_this.flash.saveSuccess);
+          }
         }).error(function(xhr, textStatus, errorThrown) {
           if (textStatus == 'timeout') {
             this.tryCount++;
+
+            // show the delay message if we're having trouble saving
+            if (this.tryCount > 2) {
+              $(document).flash().warning(_this.flash.saveDelay, true);
+            }
+
+            // try again
             if (this.tryCount <= this.retryLimit) {
-              
-              // Try again
               $.ajax(this);
               return;
             }            
             return;
           }
           if (xhr.status == 500) {
-            $.error('Unable to save data via Jadu API (error 500)');
+            $(document).flash().error(_this.flash.saveError500);
           } else {
-            $.error('Unable to save data via Jadu API');
+            $(document).flash().error(_this.flash.saveErrorApi);
           }
         });
 

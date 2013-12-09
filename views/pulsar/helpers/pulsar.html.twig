@@ -48,7 +48,7 @@
   <div class="tray__column tray__categories">
     <ul>
   {% for widget in widgets %}
-      <li data-group="widget__list" data-switch="category_{{ widget.id }}">{{ widget.title|raw }} {{ html.icon('angle-right') }}</li>
+      <li data-group=".widget__list" data-switch="#category_{{ widget.id }}">{{ widget.title|raw }} {{ html.icon('angle-right') }}</li>
   {% endfor %}
     </ul>
   </div>
@@ -79,6 +79,5 @@
       <h3 class="widget__title"></h3>
       <p class="widget__description"></p>
       <div class="widget hide" data-widget-guid="" data-widget-version="" data-widget-title="" data-widget-description="" data-last-appended="true"><i class="icon-move"></i> Drag Me to your Dashboard</div>
-
     </div>
 {%- endmacro -%}

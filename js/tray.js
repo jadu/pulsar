@@ -38,6 +38,7 @@ define([
 
         // Methods
         Plugin.prototype = {
+            
             init: function () {
                 this.initTray();
             },

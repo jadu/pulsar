@@ -30,6 +30,7 @@
     <script type="text/javascript" src="{{ libsPath ~ 'respond/respond.min.js' }}"></script>
     <![endif]-->
 
+    <script src="{{ jsPath ~ 'config.js' }}"></script>
     <script src="{{ libsPath ~ 'requirejs/require.js' }}"></script>
     <script src="{{ jsPath ~ 'main.js' }}"></script>
 </head>
@@ -38,7 +39,7 @@
     <header id="top">
         {% include '@pulsar/pulsar/components/toolbar.html.twig' %}
         {% include '@pulsar/pulsar/components/breadcrumb.html.twig' %}
-        <!--{% include '@pulsar/pulsar/components/flash.html.twig' %}-->
+        {% include '@pulsar/pulsar/components/flash.html.twig' %}
     </header>
     
     {% block summary %}{% endblock %}

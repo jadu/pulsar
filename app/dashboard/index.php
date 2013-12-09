@@ -34,11 +34,6 @@ $breadcrumb = array(
     'Dashboard' => null
     );
 
-$flash_message = array(
-    'type' => 'success',
-    'message' => 'This is a flash message, it lets users know that something happened. <a href="#tab_4" data-toggle="tab">read more</a>.'
-    );
-
 $widgets = array(
     array(
         'id' => 'analytics',
@@ -105,7 +100,6 @@ $initial_state = '{"title":"My Dashboard","widgets":[{"guid":"widget_guid","id":
 
 print $template->render(array(
     'breadcrumb' => $breadcrumb,
-    'flash_message' => $flash_message,
     'widgets' => $widgets,
     'initial_state' => $initial_state
     ));

@@ -17,7 +17,7 @@
     html.link(
       label = html.icon('save') ~ ' Save', 
       href = '#save', 
-      attributes = 'data-widget-action=save'
+      attributes = 'data-action=save'
     ),
     html.link(
       label = html.icon('edit') ~ ' Rename', 
@@ -65,7 +65,7 @@
         <h4 id="rename-modal-title" class="modal__title">Rename Dashboard</h4>
       </div>
       <div class="modal__body">
-        {{ form.create(action = '#dashboard-rename', id = 'dashboard-rename') }}
+        {{ form.create(action = '#dashboard-rename', attributes = 'data-action=rename') }}
         {{ form.text(label = 'Name', name = "name", class = 'form__group--full', value = 'My Dashboard') }}
       </div>
       <div class="modal__footer">

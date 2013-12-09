@@ -6,34 +6,40 @@ define(['jquery'], function() {
 
     $(document).ready(function() {
 
-        // Set up a Jadu global, if we don't already have one
-        // This is primarily used to configure requirejs filepaths in CMP
-        if (!window.jadu) { window.jadu = {}; }
+        // Set up Pulsar's UI environment
+        require(['tooltip', 'sticky'], function() {
 
-        require(['dashboard'], function() {
-            $('.dashboard').dashboard();
-        });
-
-        // Stick the Jadu toolbar to the top of the window
-        require(['sticky'], function() {
-            $('.toolbar').sticky({topSpacing: 0});
-            // $('.tray').sticky({topSpacing: 45}).sticky('update');
-        });
-
-        // Init tooltips
-        require(['tooltip'], function() {
+            // Tooltips (js/tooltip.js)
             $('[data-toggle="tooltip"]').tooltip();
-        });
 
-        // Trigger syntax highlighting
-        if (!$('html.ie7').size()) { // IE8 and up only
-            require(['highlightjs'], function() {
+            // Sticky toolbar
+            $('.toolbar').sticky({topSpacing: 0});
+
+            // Syntax highlighting
+            if (!$('html.ie7').size()) { // IE8 and up only
                 var aCodes = document.getElementsByTagName('pre');
                 for (var i=0; i < aCodes.length; i++) {
                     hljs.highlightBlock(aCodes[i]);
                 }
-            });
-        }
+            }
+
+        });
+
+
+// To clean up -----------------
+
+
+        // TODO: Move this to the dashboard view
+        require(['dashboard'], function() {
+            $('.dashboard').dashboard();
+        });
+
+        // Look for any flashes and animate them in when the page loads
+        $('.flash.is-sticky').delay('1000').slideDown('100', function() {
+            $(this).sticky({topSpacing: 44}).sticky('update');
+        });
+
+
 
         // Show summary panels based on their data-tab value
         require(['tab'], function() {
@@ -97,10 +103,17 @@ define(['jquery'], function() {
                 $this.siblings().removeClass('active');
             }
             
-            $('.' + $this.data('group')).hide();
+            $($this.data('group')).hide();
             $this.addClass('active');
-            $('#' + $this.data('switch')).show();
-            
+            $($this.data('switch')).show();
+        });
+
+        $('[data-hide]').on('click', function(e) {
+            $($(this).data('hide')).hide();
+        });
+
+        $('[data-show]').on('click', function(e) {
+            $($(this).data('show')).show();
         });
 
     });
