@@ -1,5 +1,5 @@
-{% macro create(action, class, id, method = "POST") %}
-    <form {% if action is not empty %}action="{{ action }}"{% endif %} class="form--horizontal{% if class is not empty %} {{ class }}{% endif %}"{% if id is not empty %} id="{{ id }}"{% endif %} method="{{ method }}">
+{% macro create(action, class, id, method = "POST", attributes) %}
+    <form {% if action is not empty %}action="{{ action }}"{% endif %} class="form--horizontal{% if class is not empty %} {{ class }}{% endif %}"{% if id is not empty %} id="{{ id }}"{% endif %} method="{{ method }}"{% if attributes is not empty %} {{ attributes|raw }}{% endif %}>
 {% endmacro %}
 
 {% macro form_end(actions) %}
@@ -188,6 +188,7 @@
 {% endmacro %}
 
 {% macro submit(label = 'Submit', class, type, id, href, attributes) %}
+    {% import _self as form %}
     <input type="submit" class="btn{% if class is not empty %} {{ class }}{% endif %}" {{ form.id(id) }} {{ form.value(label|raw) }}{% if attributes is not empty %} {{ attributes|raw }}{% endif %}{% if 'is-disabled' in class %} disabled="disabled"{% endif %} />
 {% endmacro %}
 

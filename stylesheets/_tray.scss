@@ -1,7 +1,7 @@
 .tray {
   background-color: $gray-dark;
   color: $off-white;
-  display: none;
+  // display: none;
   height: 200px;
   margin-top: -1px;
   padding-left: $gutter-width;
@@ -99,4 +99,9 @@
   float: right;
   height: 170px;
   width: 200px;
+}
+
+.tray__intro {
+  position: absolute;
+  top: 39%;
 }

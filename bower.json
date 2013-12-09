@@ -22,12 +22,15 @@
     "jquery.ui": "latest",
     "jqueryui-touch-punch": "latest",
     "jquery-mousewheel": "latest",
+    "list.js": "latest",
     "moment": "latest",
     "normalize-css": "latest",
     "respond": "latest",
     "requirejs": "latest",
     "sticky": "latest",
-    "Vague.js": "Stanton/vague.js"
+    "store.js": "latest",
+    "Vague.js": "Stanton/vague.js",
+    "zeroclipboard": "latest"
   },
   "devDependencies": {
     "livereload-js": "livereload/livereload-js",

@@ -6,41 +6,131 @@
 
 {% block title %}{{ parent() }}{% endblock %}
 
-{% set heading = '' %}
+{% set heading = 'My Dashboard' %}
 
 {% 
-    set actions_menu = [
-        html.link(label = html.icon('plus') ~ ' Create dashboard', href = '#save'),
-        html.link(label = html.icon('save') ~ ' Save', href = '#save'),
-        html.link(label = html.icon('save') ~ ' Save as template', href = '#save'),
-        html.link(label = html.icon('share') ~ ' Share', href = '#save'),
-        html.divider(),
-        html.link(label = html.icon('trash') ~ ' Delete', href = '#delete', class = 'link--danger')
-    ]
+  set actions_menu = [
+    html.link(
+      label = html.icon('save') ~ ' Save', 
+      href = '#save', 
+      attributes = 'data-action=save'
+    ),
+    html.link(
+      label = html.icon('share') ~ ' Share', 
+      href = '#share', 
+      attributes = 'data-toggle=modal data-target=#share'
+    ),
+    html.link(
+      label = html.icon('edit') ~ ' Rename', 
+      href = '#rename', 
+      attributes = 'data-toggle=modal data-target=#rename'
+    ),
+    html.divider(),
+    html.link(
+      label = html.icon('trash') ~ ' Delete', 
+      href = '#delete', 
+      class = 'link--danger',
+      attributes = 'data-toggle=modal data-target=#delete'
+    )
+  ]
 %}
 
 {% block summary %}
-  <div class="tray">
-    {% include '@pulsar/pulsar/components/widget_list.html.twig' %}
+  <div id="tray" class="tray">
+  {% include '@pulsar/pulsar/components/widget_list.html.twig' %}
+  <input type="hidden" id="widget__data" />
   </div>
 {% endblock %}
 
 {% block actionsbar %}
   {{ 
-    html.button_group([
-      html.button(label = html.icon('dashboard') ~ ' Widgets', href = '#', type = 'link', attributes = 'data-toggle=tray')
-    ])
+  html.button_group([
+    html.button(
+    label = html.icon('dashboard') ~ ' Widgets', 
+    href = '#', 
+    type = 'link', 
+    attributes = 'data-toggle=tray data-target=#tray')
+  ])
   }}
 {% endblock %}
 
 {% block widgets %}
-<div class="widget">
-<h3>Administrators</h3> 
+{% endblock %}
 
-<p class="big-ass-number">638 <span class="label label--success"><i class="icon-arrow-up"></i> 7</span></p>
+{% block modals %}
+<div id="share" class="modal" role="dialog" aria-labelledby="share-modal-title" aria-hidden="true">
+  <div class="modal__dialog">
+    <div class="modal__content">
+      <div class="modal__header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 id="share-modal-title" class="modal__title">Share &lsquo;<span id="dashboard-title">{{ heading }}</span>&rsquo; Template</h4>
+      </div>
+      <div class="modal__body">
+        <p>To share this dashboard as a template simply send this link to another Jadu user, when they click it they will be asked if they would like to use the template.</p>
+        <ul>
+          <li>No personal settings, usernames or passwords will be shared</li>
+          <li>No other changes you make will be shared with anyone using this template</li>
+        </ul>
+        {{ form.create(action = '#dashboard-share', attributes = 'data-action=share') }}
+        {{ 
+          form.text(
+            label =  'Share link',
+            name =   'sharelink',
+            class =  'form__group--full',
+            value =  'http://jadu.net/myreallyreallylongdashboardlink'
+          )
+        }}
+        </form>
+      </div>
+      <div class="modal__footer">
+        <button type="button" class="btn" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn--primary" data-dismiss="modal">Finished</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
-<p class="big-ass-number">14 <span class="label label--danger"><i class="icon-arrow-down"></i> 1</span></p>
+<div id="rename" class="modal" role="dialog" aria-labelledby="rename-modal-title" aria-hidden="true">
+  <div class="modal__dialog">
+    <div class="modal__content">
+      <div class="modal__header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 id="rename-modal-title" class="modal__title">Rename Dashboard</h4>
+      </div>
+      <div class="modal__body">
+        {{ form.create(action = '#dashboard-rename', attributes = 'data-action=rename') }}
+        {{ form.text(label = 'Name', name = 'name', class = 'form__group--full', value = 'My Dashboard') }}
+      </div>
+      <div class="modal__footer">
+        <button type="button" class="btn" data-dismiss="modal">Cancel</button>
+        {{ form.submit(label = 'Save Changes', class = 'btn--primary') }}
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
+<div id="delete" class="modal modal--danger" role="dialog" aria-labelledby="delete-modal-title" aria-hidden="true">
+  <div class="modal__dialog">
+    <div class="modal__content">
+      <div class="modal__header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 id="delete-modal-title" class="modal__title">{{ html.icon('warning-sign') }} Delete &lsquo;<span id="dashboard-title">{{ heading }}</span>&rsquo;?</h4>
+      </div>
+      <div class="modal__body">
+        Are you sure you would like to delete this dashboard and its settings?
+      </div>
+      <div class="modal__footer">
+        <button type="button" class="btn" data-dismiss="modal">Don't Do Anything</button>
+        {{ form.submit(label = 'Delete', class = 'btn--danger') }}
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}
 
+{% block javascript %}
+  <script id="dashboard-state" type="application/json">{{ initial_state|raw }}</script>
+{% endblock %}

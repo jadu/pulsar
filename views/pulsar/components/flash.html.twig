@@ -1,3 +1,10 @@
 {% if flash_message is defined %}
-{{ flash.message(flash_message.message, flash_message.type) }}
+{% import '@pulsar/pulsar/helpers/flash.html.twig' as flash %}
+{{ 
+	flash.message(
+		message = flash_message.message, 
+		type = flash_message.type, 
+		autohide = flash_message.autohide
+	) 
+}}
 {% endif %}

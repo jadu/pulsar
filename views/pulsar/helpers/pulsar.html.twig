@@ -1,5 +1,5 @@
 {%- macro primary_nav(label = 'label', class, id, menu_items, open = false) -%}
-  {% import 'pulsar/helpers/html.html.twig' as html %}
+  {% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
   <div class="nav-item {% if open %} open{% endif %}">
     <a class="nav-link nav-link__toggle" data-toggle="dropdown">
         {{ label|raw }}
@@ -44,11 +44,11 @@
 {%- endmacro -%}
 
 {%- macro widget_list(widgets) -%}
-  {% import 'pulsar/helpers/html.html.twig' as html %}
+  {% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
   <div class="tray__column tray__categories">
     <ul>
   {% for widget in widgets %}
-      <li data-group="widget__list" data-switch="category_{{ widget.id }}">{{ widget.title|raw }} {{ html.icon('angle-right') }}</li>
+      <li data-group=".widget__list" data-switch="#category_{{ widget.id }}">{{ widget.title|raw }} {{ html.icon('angle-right') }}</li>
   {% endfor %}
     </ul>
   </div>
@@ -62,7 +62,7 @@
         {% else %}
           {% set widget_price = '£' ~ widget.price %}
         {% endif %}
-        <li data-widget="{{ widget.id }}" data-widget-title="{{ widget.title }}" data-widget-price="{{ widget_price }}" data-widget-description="{{ widget.description }}">{{ widget.title }} {{ html.icon('angle-right') }}</li>
+        <li class="widget__list-item" data-widget-guid="{{ widget.guid }}" data-widget-version="{{ widget.version }}" data-widget-title="{{ widget.title }}" data-widget-price="{{ widget_price }}" data-widget-description="{{ widget.description }}">{{ widget.title }} {{ html.icon('angle-right') }}</li>
       {% endfor %}
     </ul>
   {% endfor %}
@@ -78,7 +78,6 @@
 #}
       <h3 class="widget__title"></h3>
       <p class="widget__description"></p>
-      <div class="widget hide" data-widget="" data-widget-title="" data-widget-description=""><i class="icon-move"></i> Drag Me to your Dashboard</div>
-
+      <div class="widget hide" data-widget-guid="" data-widget-version="" data-widget-title="" data-widget-description="" data-last-appended="true"><i class="icon-move"></i> Drag Me to your Dashboard</div>
     </div>
 {%- endmacro -%}
