@@ -1,5 +1,5 @@
 /* ========================================================================
- * Bootstrap: modal.js v3.0.0
+ * Bootstrap: modal.js v3.0.3
  * http://twbs.github.com/bootstrap/javascript.html#modals
  * ========================================================================
  * Copyright 2012 Twitter, Inc.
@@ -25,11 +25,11 @@ define(['jquery'], function($) { "use strict";
 
   var Modal = function (element, options) {
     this.options   = options
-    this.$element  = $(element).on('click.dismiss.modal', '[data-dismiss="modal"]', $.proxy(this.hide, this))
+    this.$element  = $(element)
     this.$backdrop =
     this.isShown   = null
 
-    if (this.options.remote) this.$element.find('.modal__body').load(this.options.remote)
+    if (this.options.remote) this.$element.load(this.options.remote)
   }
 
   Modal.DEFAULTS = {
@@ -38,13 +38,13 @@ define(['jquery'], function($) { "use strict";
     , show: true
   }
 
-  Modal.prototype.toggle = function () {
-    return this[!this.isShown ? 'show' : 'hide']()
+  Modal.prototype.toggle = function (_relatedTarget) {
+    return this[!this.isShown ? 'show' : 'hide'](_relatedTarget)
   }
 
-  Modal.prototype.show = function () {
+  Modal.prototype.show = function (_relatedTarget) {
     var that = this
-    var e    = $.Event('show.bs.modal')
+    var e    = $.Event('show.bs.modal', { relatedTarget: _relatedTarget })
 
     this.$element.trigger(e)
 
@@ -53,6 +53,8 @@ define(['jquery'], function($) { "use strict";
     this.isShown = true
 
     this.escape()
+
+    this.$element.on('click.dismiss.modal', '[data-dismiss="modal"]', $.proxy(this.hide, this))
 
     this.backdrop(function () {
       var transition = $.support.transition && that.$element.hasClass('fade')
@@ -73,13 +75,15 @@ define(['jquery'], function($) { "use strict";
 
       that.enforceFocus()
 
+      var e = $.Event('shown.bs.modal', { relatedTarget: _relatedTarget })
+
       transition ?
-        that.$element
+        that.$element.find('.modal-dialog') // wait for modal to slide in
           .one($.support.transition.end, function () {
-            that.$element.focus().trigger('shown.bs.modal')
+            that.$element.focus().trigger(e)
           })
           .emulateTransitionEnd(300) :
-        that.$element.focus().trigger('shown.bs.modal')
+        that.$element.focus().trigger(e)
     })
   }
 
@@ -101,6 +105,7 @@ define(['jquery'], function($) { "use strict";
     this.$element
       .removeClass('in')
       .attr('aria-hidden', true)
+      .off('click.dismiss.modal')
 
     $.support.transition && this.$element.hasClass('fade') ?
       this.$element
@@ -135,6 +140,7 @@ define(['jquery'], function($) { "use strict";
     this.backdrop(function () {
       that.removeBackdrop()
       that.$element.trigger('hidden.bs.modal')
+
     })
   }
 
@@ -150,10 +156,10 @@ define(['jquery'], function($) { "use strict";
     if (this.isShown && this.options.backdrop) {
       var doAnimate = $.support.transition && animate
 
-      this.$backdrop = $('<div class="modal__backdrop ' + animate + '" />')
+      this.$backdrop = $('<div class="modal-backdrop ' + animate + '" />')
         .appendTo(document.body)
 
-      this.$element.on('click', $.proxy(function (e) {
+      this.$element.on('click.dismiss.modal', $.proxy(function (e) {
         if (e.target !== e.currentTarget) return
         this.options.backdrop == 'static'
           ? this.$element[0].focus.call(this.$element[0])
@@ -175,7 +181,7 @@ define(['jquery'], function($) { "use strict";
     } else if (!this.isShown && this.$backdrop) {
       this.$backdrop.removeClass('in')
 
-      $.support.transition && this.$element.hasClass('fade')?
+      $.support.transition && this.$element.hasClass('fade') ?
         this.$backdrop
           .one($.support.transition.end, callback)
           .emulateTransitionEnd(150) :
@@ -192,15 +198,15 @@ define(['jquery'], function($) { "use strict";
 
   var old = $.fn.modal
 
-  $.fn.modal = function (option) {
+  $.fn.modal = function (option, _relatedTarget) {
     return this.each(function () {
       var $this   = $(this)
       var data    = $this.data('bs.modal')
       var options = $.extend({}, Modal.DEFAULTS, $this.data(), typeof option == 'object' && option)
 
       if (!data) $this.data('bs.modal', (data = new Modal(this, options)))
-      if (typeof option == 'string') data[option]()
-      else if (options.show) data.show()
+      if (typeof option == 'string') data[option](_relatedTarget)
+      else if (options.show) data.show(_relatedTarget)
     })
   }
 
@@ -223,21 +229,19 @@ define(['jquery'], function($) { "use strict";
     var $this   = $(this)
     var href    = $this.attr('href')
     var $target = $($this.attr('data-target') || (href && href.replace(/.*(?=#[^\s]+$)/, ''))) //strip for ie7
-    var option  = $target.data('modal') ? 'toggle' : $.extend({ remote:!/#/.test(href) && href }, $target.data(), $this.data())
+    var option  = $target.data('modal') ? 'toggle' : $.extend({ remote: !/#/.test(href) && href }, $target.data(), $this.data())
 
     e.preventDefault()
 
     $target
-      .modal(option)
+      .modal(option, this)
       .one('hide', function () {
         $this.is(':visible') && $this.focus()
       })
   })
 
-  $(function () {
-    var $body = $(document.body)
-      .on('shown.bs.modal',  '.modal', function () { $body.addClass('modal--open') })
-      .on('hidden.bs.modal', '.modal', function () { $body.removeClass('modal--open') })
-  })
+  $(document)
+    .on('show.bs.modal',  '.modal', function () { $(document.body).addClass('modal-open') })
+    .on('hidden.bs.modal', '.modal', function () { $(document.body).removeClass('modal-open'); $(this).removeData('modal'); })
 
 });

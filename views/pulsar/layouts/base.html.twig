@@ -54,7 +54,13 @@
         {{ html.link(label = 'Jadu 1.12 &copy; 2013', href = '/credits') }}
     </footer>
     
-    {% block modals %}{% endblock %}
+    <div id="modal" class="modal" role="dialog" aria-hidden="true">
+        <!-- empty modal for ajax requests -->
+    </div>
+
+    {% block modals %}
+    {% endblock %}
+    
     {% block javascript %}{% endblock %}
 
     <script src="http://localhost:8000/libs/livereload-js/dist/livereload.js?host=localhost"></script>
