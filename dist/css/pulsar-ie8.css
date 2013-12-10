@@ -2415,7 +2415,9 @@ footer {
 .tab__inner {
   background-color: white;
   border: 1px solid #cccccc;
-  box-shadow: -3px 1px 3px rgba(0, 0, 0, 0.05); }
+  box-shadow: -3px 1px 3px rgba(0, 0, 0, 0.05);
+  float: left;
+  width: 100%; }
 
 .tab__main {
   border-right: 1px solid #cccccc;
