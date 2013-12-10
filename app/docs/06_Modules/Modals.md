@@ -71,7 +71,7 @@ Use the `.modal--danger` class for situations where we're performing destructive
 
 ## Show modal
 
-Toggle a modal with a link (or a link button) by using the `data-toggle="modal"` attribute.
+Toggle a modal with a link (or a link button) by using the `data-toggle="modal"` attribute. This method assumes the modal markup is present in the DOM.
 
     <!-- Toggle link -->
     <a data-toggle="modal" href="#myModal" class="btn">Launch Demo Modal</a>
@@ -82,6 +82,16 @@ Toggle a modal with a link (or a link button) by using the `data-toggle="modal"`
     </div>
 
 <a data-toggle="modal" href="#myModal" class="btn">Launch Demo Modal</a>
+
+## Fetch a modal with AJAX
+
+This will be the defacto method within Jadu software to populate a modal's content, your modal toggle should specify the location of the modal as the `href` attribute. Pulsar has a ‘modal controller’ which you can pass a trig-based modal view to be rendered.
+
+    <!-- Toggle link, the data-target is the default modal container which should always be present in Pulsar's layouts/base.html.twig -->
+    <a data-toggle="modal" data-target="#modal" href="/app/modals/modal.php?modal=dashboard/share.html.twig" />An ajaxy modal</a>
+
+<a data-toggle="modal" data-target="#modal" href="/app/modals/modal.php?modal=dashboard/share.html.twig" />An ajaxy modal</a>
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
