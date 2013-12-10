@@ -45,6 +45,13 @@ $widgets = array(
                 'title' => 'Browser Usage',
                 'price' => '0',
                 'description' => 'Show which browsers your users have used to visit your site.'
+            ),
+            array(
+                'guid' => 'fillmurray',
+                'version' => '0.0.1',
+                'title' => 'Fill Murray',
+                'price' => '0',
+                'description' => 'Some Bill Murray Placeholder'
             )
         )
     ),
