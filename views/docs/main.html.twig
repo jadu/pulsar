@@ -7,20 +7,31 @@
 
 {% set heading = 'Pulsar UI' %}
 
-{% block actionsbar %}
-  {{ html.button(label = html.icon('desktop') ~ ' Pulsar Lexicon', href = '/lexicon', type = 'link') }}
-{% endblock %}
 
 {% block tabs_list %}
-    {{ tabs|raw }}
+  <div class="actionsbar actionsbar--left">
+    <div class="btn__toolbar">
+      <div class="btn__group">
+        <a class="btn btn__back" href="#back" onclick="history.back(); return false;"><i class="icon-arrow-left"></i></a>
+        {% if actions_menu is not empty %}
+          {{ html.button_dropdown(label = 'Actions', menu_items = actions_menu) }}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  {{ tabs|raw }}
 {% endblock %}
 
 {% block tabs_content %}
     <div class="tabs__content">
-        <div class="tab__pane is-active">
-            <div class="tab__inner tab--padded">
-                {{ content|raw }}
-            </div>
-        </div>
+
+    	<h2 class="heading">{{ heading|raw }}</h2>
+
+      <div class="tab__pane is-active">
+          <div class="tab__inner tab--padded">
+              {{ content|raw }}
+          </div>
+      </div>
     </div>
 {% endblock %}
