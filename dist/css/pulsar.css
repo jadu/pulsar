@@ -522,6 +522,8 @@ a.list-group-item.active > .badge, .nav-pills > .active > a > .badge {
 
 a.btn {
   color: inherit; }
+  a.btn.btn--primary, a.btn.btn--success, a.btn.btn--danger, a.btn.btn--warning, a.btn.btn--info, a.btn.btn--inverse {
+    color: white; }
 
 /**
  * UI states
