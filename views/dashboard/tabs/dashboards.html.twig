@@ -15,11 +15,11 @@
 </div> -->
 
 <div class="tab__inner tab--unpadded">
-    <table class="table--datagrid">
+    <table id="dashboards" class="table--datagrid">
         <thead>
             <tr>
                 <th class="row__actions">
-                    <input type="checkbox" data-action="select-all" />
+                    <input type="checkbox" data-action="select-all" data-toggle="tooltips" data-placement="left" title="Select all items on this page" />
                 </th>
                 <th>
                     {{ html.link(label = 'Title') }}

@@ -8,47 +8,44 @@ define([
 
   'use strict';
 
-  (function(defaults, $, window, document, undefined) {
+  (function (defaults, $, window, document, undefined) {
 
 		$.extend({
-			// Function to change the default properties of the plugin
-			// Usage:
-			// jQuery.pluginSetup({property:'Custom value'});
+
 			pluginSetup : function (options) {
-
 				return $.extend(defaults, options);
-
 			}
 
 		}).fn.extend({
-			// Usage:
-			// jQuery(selector).pluginName({property:'value'});
+
 			datagrid : function (options) {
-				console.log('datagrid');
+				
 				options = $.extend({}, defaults, options);
 
 				return $(this).each(function () {
-
-					// Plugin logic
-					// Calling the function:
-					// jQuery(selector).pluginName(options);
 					$(document).setSelectedItems();
 				});
-
 			},
 
 			setSelectedItems : function () {
-				var selectedItems = store.get(defaults.storageKey);
+
+				var _this = $(this),
+						datagridId = _this.closest(defaults.datagridSelector).attr('id'),
+						selectedItems = store.get(defaults.storageKey + datagridId);
 
 				$.each(selectedItems, function () {
 					$('[data-id=' + this + ']').prop('checked', true);
-				})
+				});
 
+				$(this).checkIndeterminate();
  			},
 
-			selectItem : function () {				
-				var selectedItems = store.get(defaults.storageKey),
-						selected = $(this).data('id'),
+			selectItem : function () {
+
+				var _this = $(this),
+						selected = _this.data('id'),
+						datagridId = _this.closest(defaults.datagridSelector).attr('id'),
+						selectedItems = store.get(defaults.storageKey + datagridId),
 						found = $.inArray(selected, selectedItems);
 
 				if (typeof selectedItems === "undefined") {
@@ -66,25 +63,73 @@ define([
 				}
 
 				if (store.enabled) {
-					store.set(defaults.storageKey, selectedItems);
+					store.set(defaults.storageKey + datagridId, selectedItems);
+				}
+
+				$(this).checkIndeterminate();
+			},
+
+			selectAll : function () {
+
+				var _this = $(this),
+						checked = false,
+						datagridId = _this.closest(defaults.datagridSelector).attr('id'),
+						selectedItems = store.get(defaults.storageKey + datagridId);
+
+				if (typeof selectedItems === "undefined") {
+					var selectedItems = [];
+				}
+
+				if (_this.is(':checked')) {
+					checked = true;
+				}
+
+				$(defaults.selector).prop('checked', checked);
+
+				$.each($(defaults.selector), function() {
+
+					var _this = $(this),
+							selected = _this.data('id'),
+							found = $.inArray(selected, selectedItems);
+
+					if (_this.is(':checked')) {
+						if (found < 0) {
+							selectedItems.push(selected);
+						}
+					} else {
+						if (found >= 0) {
+							selectedItems.splice(found, 1);
+						}
+					}
+
+				});
+				
+				if (store.enabled) {
+					store.set(defaults.storageKey + datagridId, selectedItems);
 				}
 
 			},
 
-			selectAll : function () {
-				var checked = false;
+			checkIndeterminate : function () {
 
-				if ($(this).is(':checked')) {
-					checked = true;	
+				var _this = $(this),
+						state = false,
+						datagridId = _this.closest(defaults.datagridSelector).attr('id'),
+						selectedItems = store.get(defaults.storageKey + datagridId);
+
+				if (selectedItems.length > 0) {
+					state = true;
 				}
 
-				$(defaults.selector).prop('checked', checked);
+				$(defaults.selectAllHandler).prop('indeterminate', state);
 			}
 
 		});
 	})({
+		datagridSelector : '.table--datagrid',
 		selector : '[data-id]',
-		storageKey : 'datagrid-selected'
+		selectAllHandler : '[data-action=select-all]',
+		storageKey : 'datagrid-'
 	}, jQuery, window, document);
 
 	$(document)

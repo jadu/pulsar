@@ -10,7 +10,7 @@ define(['jquery'], function() {
         require(['tooltip', 'sticky', 'zeroclipboard', 'datagrid'], function() {
 
             // tooltips (js/tooltip.js)
-            $('[data-toggle="tooltip"]').tooltip();
+            $('[data-toggle="tooltips"]').tooltips();
 
             // datagrid
             $('.table--datagrid').datagrid();
