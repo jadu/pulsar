@@ -38,9 +38,6 @@ define([
 			},
 
 			setSelectedItems : function () {
-
-				console.log('render dat shit');
-
 				var selectedItems = store.get(defaults.storageKey);
 
 				$.each(selectedItems, function () {
@@ -49,11 +46,10 @@ define([
 
  			},
 
-			selectDatagridItem : function () {
-				
+			selectItem : function () {				
 				var selectedItems = store.get(defaults.storageKey),
 						selected = $(this).data('id'),
-						found = jQuery.inArray(selected, selectedItems);
+						found = $.inArray(selected, selectedItems);
 
 				if (typeof selectedItems === "undefined") {
 					var selectedItems = [];
@@ -70,10 +66,19 @@ define([
 				}
 
 				if (store.enabled) {
-					console.log(defaults.storageKey);
 					store.set(defaults.storageKey, selectedItems);
 				}
 
+			},
+
+			selectAll : function () {
+				var checked = false;
+
+				if ($(this).is(':checked')) {
+					checked = true;	
+				}
+
+				$(defaults.selector).prop('checked', checked);
 			}
 
 		});
@@ -82,8 +87,12 @@ define([
 		storageKey : 'datagrid-selected'
 	}, jQuery, window, document);
 
-	$(document).on('click', '[data-id]', function (e) {
-		$(this).selectDatagridItem();
-	});
+	$(document)
+		.on('click', '[data-action=select]', function (e) {
+			$(this).selectItem();
+		})
+		.on('click', '[data-action=select-all]', function (e) {
+			$(this).selectAll();
+		});
 
 });
