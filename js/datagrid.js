@@ -73,7 +73,8 @@ define([
 
 				var _this = $(this),
 						checked = false,
-						datagridId = _this.closest(defaults.datagridSelector).attr('id'),
+						datagrid = _this.closest(defaults.datagridSelector),
+						datagridId = datagrid.attr('id'),
 						selectedItems = store.get(defaults.storageKey + datagridId);
 
 				if (typeof selectedItems === "undefined") {
@@ -84,7 +85,7 @@ define([
 					checked = true;
 				}
 
-				$(defaults.selector).prop('checked', checked);
+				$(defaults.selector, datagrid).prop('checked', checked);
 
 				$.each($(defaults.selector), function() {
 
@@ -114,14 +115,15 @@ define([
 
 				var _this = $(this),
 						state = false,
-						datagridId = _this.closest(defaults.datagridSelector).attr('id'),
+						datagrid = _this.closest(defaults.datagridSelector),
+						datagridId = datagrid.attr('id'),
 						selectedItems = store.get(defaults.storageKey + datagridId);
 
 				if (selectedItems.length > 0) {
 					state = true;
 				}
 
-				$(defaults.selectAllHandler).prop('indeterminate', state);
+				$(defaults.selectAllHandler, datagrid).prop('indeterminate', state);
 			}
 
 		});
