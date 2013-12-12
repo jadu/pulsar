@@ -12,35 +12,38 @@ define([
 
 		$.extend({
 
-			pluginSetup : function (options) {
+			pluginSetup: function (options) {
 				return $.extend(defaults, options);
 			}
 
 		}).fn.extend({
 
-			datagrid : function (options) {
+			datagrid: function (options) {
 				
 				options = $.extend({}, defaults, options);
 
 				return $(this).each(function () {
-					$(document).setSelectedItems();
+
+					$(this).setSelectedItems();
+
 				});
 			},
 
-			setSelectedItems : function () {
+			setSelectedItems: function () {
 
 				var _this = $(this),
-						datagridId = _this.closest(defaults.datagridSelector).attr('id'),
+						datagrid = _this.closest(defaults.datagridSelector),
+						datagridId = datagrid.attr('id'),
 						selectedItems = store.get(defaults.storageKey + datagridId);
 
 				$.each(selectedItems, function () {
-					$('[data-id=' + this + ']').prop('checked', true);
+					$('[data-id=' + this + ']', datagrid).prop('checked', true);
 				});
 
 				$(this).checkIndeterminate();
  			},
 
-			selectItem : function () {
+			selectItem: function () {
 
 				var _this = $(this),
 						selected = _this.data('id'),
@@ -67,15 +70,17 @@ define([
 				}
 
 				$(this).checkIndeterminate();
+				$(this).badgeActionsButton();
 			},
 
-			selectAll : function () {
+			selectAll: function () {
 
 				var _this = $(this),
 						checked = false,
 						datagrid = _this.closest(defaults.datagridSelector),
 						datagridId = datagrid.attr('id'),
-						selectedItems = store.get(defaults.storageKey + datagridId);
+						selectedItems = store.get(defaults.storageKey + datagridId),
+						checkboxes = $(defaults.selector, datagrid);
 
 				if (typeof selectedItems === "undefined") {
 					var selectedItems = [];
@@ -85,9 +90,9 @@ define([
 					checked = true;
 				}
 
-				$(defaults.selector, datagrid).prop('checked', checked);
+				checkboxes.prop('checked', checked);
 
-				$.each($(defaults.selector), function() {
+				$.each(checkboxes, function() {
 
 					var _this = $(this),
 							selected = _this.data('id'),
@@ -111,7 +116,7 @@ define([
 
 			},
 
-			checkIndeterminate : function () {
+			checkIndeterminate: function () {
 
 				var _this = $(this),
 						state = false,
@@ -124,6 +129,11 @@ define([
 				}
 
 				$(defaults.selectAllHandler, datagrid).prop('indeterminate', state);
+
+			},
+
+			badgeActionsButton: function () {
+				console.log($('.actions-menu'));
 			}
 
 		});
