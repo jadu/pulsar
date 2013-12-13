@@ -106,7 +106,7 @@ define([
                     columnWidth += columnMargin;
                     currentX = e.pageX;
                     var diffX = currentX - originalX;
-                    if(diffX > columnWidth - (columnWidth / 10)) {
+                    if(diffX > columnWidth) {
                         var operatingSpan = parseInt($('.operating').attr('class').split('grid-span-')[1].split(' ')[0]);
                         var oldSpan = 'grid-span-' + operatingSpan;
                         operatingSpan += columnsResized;
@@ -119,7 +119,7 @@ define([
                             originalX = e.pageX;
                         }
                     }
-                    else if(diffX < -60) {
+                    else if(diffX < -columnWidth) {
                         var indicatorWidth = parseInt($('.operating .resizer .indicator').outerWidth());
                         indicatorWidth -= columnWidth;
                         $('.operating .resizer .indicator').css({ width : indicatorWidth + 'px', right : '-' + indicatorWidth + 'px'});
