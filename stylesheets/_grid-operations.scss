@@ -1,5 +1,23 @@
 $cyan : darken(cyan, 20);
 
+@-webkit-keyframes infinite-spinning {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes infinite-spinning {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .draggable {
     cursor: move;
 }
@@ -14,6 +32,20 @@ $cyan : darken(cyan, 20);
         .resizer {
             display: block;
         }
+    }
+    .icon-spinner:before {
+        -webkit-transform-origin: center center;
+        -moz-transform-origin: center center;
+        -ms-transform-origin: center center;
+        -o-transform-origin: center center;
+        transform-origin: center center;
+        -webkit-animation: infinite-spinning .6s infinite linear;
+        animation: infinite-spinning .6s infinite linear;
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        margin-left: -10px;
+        margin-top: -10px;
     }
 }
 
