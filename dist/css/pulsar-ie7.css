@@ -5197,6 +5197,8 @@ a.list-group-item.active > .badge, .nav-pills > .active > a > .badge {
 
 a.btn {
   color: inherit; }
+  a.btn.btn--primary, a.btn.btn--success, a.btn.btn--danger, a.btn.btn--warning, a.btn.btn--info, a.btn.btn--inverse {
+    color: white; }
 
 /**
  * UI states
@@ -6147,13 +6149,14 @@ textarea.input-lg, textarea.input-sm {
   zoom: 1;
   *display: inline;
   *vertical-align: auto;
-  margin: 22px 20px 2px 20px; }
+  margin: 22px 0 2px 0; }
   .actionsbar .btn__group {
     z-index: 1; }
 
 .actionsbar--left {
   float: left;
   margin-right: 0;
+  margin-bottom: 6px;
   width: 200px; }
 
 .actionsbar--right {
@@ -6328,7 +6331,7 @@ tr.filters [data-filter-action="clear-all"] {
   /* Hide decks by default */
   position: absolute;
   left: 16%;
-  top: 0;
+  top: 58px;
   right: 0;
   bottom: 0;
   z-index: 1; }
@@ -7067,6 +7070,7 @@ footer {
     font-family: "Arial", sans-serif; }
 
 .tabs__list {
+  clear: left;
   float: left;
   list-style: none;
   margin: 0;
@@ -7124,9 +7128,6 @@ footer {
   display: block; }
 
 .tabs__content {
-  background-color: white;
-  border: 1px solid #cccccc;
-  box-shadow: -3px 1px 3px rgba(0, 0, 0, 0.05);
   display: block;
   overflow: auto; }
   .tabs__content > .tab__pane {
@@ -7138,7 +7139,11 @@ footer {
   margin-bottom: 0; }
 
 .tab__inner {
-  margin: 0 20px; }
+  background-color: white;
+  border: 1px solid #cccccc;
+  box-shadow: -3px 1px 3px rgba(0, 0, 0, 0.05);
+  float: left;
+  width: 100%; }
 
 .tab__main {
   border-right: 1px solid #cccccc;
@@ -7155,7 +7160,7 @@ footer {
   width: 25%; }
 
 .tab--padded {
-  padding: 22px 0; }
+  padding: 22px 20px; }
 
 .tabs {
   display: inline-block;

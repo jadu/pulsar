@@ -24,7 +24,7 @@ define(['jquery'], function($) { "use strict";
   // TOOLTIP PUBLIC CLASS DEFINITION
   // ===============================
 
-  var Tooltip = function (element, options) {
+  var Tooltips = function (element, options) {
     this.type       =
     this.options    =
     this.enabled    =
@@ -35,7 +35,7 @@ define(['jquery'], function($) { "use strict";
     this.init('tooltip', element, options)
   }
 
-  Tooltip.DEFAULTS = {
+  Tooltips.DEFAULTS = {
     animation: true
   , placement: 'top'
   , selector: false
@@ -47,7 +47,7 @@ define(['jquery'], function($) { "use strict";
   , container: false
   }
 
-  Tooltip.prototype.init = function (type, element, options) {
+  Tooltips.prototype.init = function (type, element, options) {
     this.enabled  = true
     this.type     = type
     this.$element = $(element)
@@ -74,11 +74,11 @@ define(['jquery'], function($) { "use strict";
       this.fixTitle()
   }
 
-  Tooltip.prototype.getDefaults = function () {
-    return Tooltip.DEFAULTS
+  Tooltips.prototype.getDefaults = function () {
+    return Tooltips.DEFAULTS
   }
 
-  Tooltip.prototype.getOptions = function (options) {
+  Tooltips.prototype.getOptions = function (options) {
     options = $.extend({}, this.getDefaults(), this.$element.data(), options)
 
     if (options.delay && typeof options.delay == 'number') {
@@ -91,7 +91,7 @@ define(['jquery'], function($) { "use strict";
     return options
   }
 
-  Tooltip.prototype.enter = function (obj) {
+  Tooltips.prototype.enter = function (obj) {
     var defaults = this.getDefaults()
     var options  = {}
 
@@ -112,7 +112,7 @@ define(['jquery'], function($) { "use strict";
     }, self.options.delay.show)
   }
 
-  Tooltip.prototype.leave = function (obj) {
+  Tooltips.prototype.leave = function (obj) {
     var self = obj instanceof this.constructor ?
       obj : $(obj.currentTarget)[this.type](this._options).data('bs.' + this.type)
 
@@ -126,7 +126,7 @@ define(['jquery'], function($) { "use strict";
     }, self.options.delay.hide)
   }
 
-  Tooltip.prototype.show = function () {
+  Tooltips.prototype.show = function () {
     var e = $.Event('show.bs.'+ this.type)
 
     if (this.hasContent() && this.enabled) {
@@ -186,7 +186,7 @@ define(['jquery'], function($) { "use strict";
     }
   }
 
-  Tooltip.prototype.applyPlacement = function(offset, placement) {
+  Tooltips.prototype.applyPlacement = function(offset, placement) {
     var replace
     var $tip   = this.tip()
     var width  = $tip[0].offsetWidth
@@ -237,11 +237,11 @@ define(['jquery'], function($) { "use strict";
     if (replace) $tip.offset(offset)
   }
 
-  Tooltip.prototype.replaceArrow = function(delta, dimension, position) {
+  Tooltips.prototype.replaceArrow = function(delta, dimension, position) {
     this.arrow().css(position, delta ? (50 * (1 - delta / dimension) + "%") : '')
   }
 
-  Tooltip.prototype.setContent = function () {
+  Tooltips.prototype.setContent = function () {
     var $tip  = this.tip()
     var title = this.getTitle()
 
@@ -249,7 +249,7 @@ define(['jquery'], function($) { "use strict";
     $tip.removeClass('fade in top bottom left right')
   }
 
-  Tooltip.prototype.hide = function () {
+  Tooltips.prototype.hide = function () {
     var that = this
     var $tip = this.tip()
     var e    = $.Event('hide.bs.' + this.type)
@@ -273,18 +273,18 @@ define(['jquery'], function($) { "use strict";
     return this
   }
 
-  Tooltip.prototype.fixTitle = function () {
+  Tooltips.prototype.fixTitle = function () {
     var $e = this.$element
     if ($e.attr('title') || typeof($e.attr('data-original-title')) != 'string') {
       $e.attr('data-original-title', $e.attr('title') || '').attr('title', '')
     }
   }
 
-  Tooltip.prototype.hasContent = function () {
+  Tooltips.prototype.hasContent = function () {
     return this.getTitle()
   }
 
-  Tooltip.prototype.getPosition = function () {
+  Tooltips.prototype.getPosition = function () {
     var el = this.$element[0]
     return $.extend({}, (typeof el.getBoundingClientRect == 'function') ? el.getBoundingClientRect() : {
       width: el.offsetWidth
@@ -292,14 +292,14 @@ define(['jquery'], function($) { "use strict";
     }, this.$element.offset())
   }
 
-  Tooltip.prototype.getCalcuatedOffset = function (placement, pos, actualWidth, actualHeight) {
+  Tooltips.prototype.getCalcuatedOffset = function (placement, pos, actualWidth, actualHeight) {
     return placement == 'bottom' ? { top: pos.top + pos.height,   left: pos.left + pos.width / 2 - actualWidth / 2  } :
            placement == 'top'    ? { top: pos.top - actualHeight, left: pos.left + pos.width / 2 - actualWidth / 2  } :
            placement == 'left'   ? { top: pos.top + pos.height / 2 - actualHeight / 2, left: pos.left - actualWidth } :
         /* placement == 'right' */ { top: pos.top + pos.height / 2 - actualHeight / 2, left: pos.left + pos.width   }
   }
 
-  Tooltip.prototype.getTitle = function () {
+  Tooltips.prototype.getTitle = function () {
     var title
     var $e = this.$element
     var o  = this.options
@@ -310,15 +310,15 @@ define(['jquery'], function($) { "use strict";
     return title
   }
 
-  Tooltip.prototype.tip = function () {
+  Tooltips.prototype.tip = function () {
     return this.$tip = this.$tip || $(this.options.template)
   }
 
-  Tooltip.prototype.arrow = function () {
+  Tooltips.prototype.arrow = function () {
     return this.$arrow = this.$arrow || this.tip().find('.tooltip-arrow')
   }
 
-  Tooltip.prototype.validate = function () {
+  Tooltips.prototype.validate = function () {
     if (!this.$element[0].parentNode) {
       this.hide()
       this.$element = null
@@ -326,24 +326,24 @@ define(['jquery'], function($) { "use strict";
     }
   }
 
-  Tooltip.prototype.enable = function () {
+  Tooltips.prototype.enable = function () {
     this.enabled = true
   }
 
-  Tooltip.prototype.disable = function () {
+  Tooltips.prototype.disable = function () {
     this.enabled = false
   }
 
-  Tooltip.prototype.toggleEnabled = function () {
+  Tooltips.prototype.toggleEnabled = function () {
     this.enabled = !this.enabled
   }
 
-  Tooltip.prototype.toggle = function (e) {
+  Tooltips.prototype.toggle = function (e) {
     var self = e ? $(e.currentTarget)[this.type](this._options).data('bs.' + this.type) : this
     self.tip().hasClass('in') ? self.leave(self) : self.enter(self)
   }
 
-  Tooltip.prototype.destroy = function () {
+  Tooltips.prototype.destroy = function () {
     this.hide().$element.off('.' + this.type).removeData('bs.' + this.type)
   }
 
@@ -351,27 +351,27 @@ define(['jquery'], function($) { "use strict";
   // TOOLTIP PLUGIN DEFINITION
   // =========================
 
-  var old = $.fn.tooltip
+  var old = $.fn.tooltips
 
-  $.fn.tooltip = function (option) {
+  $.fn.tooltips = function (option) {
     return this.each(function () {
       var $this   = $(this)
       var data    = $this.data('bs.tooltip')
       var options = typeof option == 'object' && option
 
-      if (!data) $this.data('bs.tooltip', (data = new Tooltip(this, options)))
+      if (!data) $this.data('bs.tooltip', (data = new Tooltips(this, options)))
       if (typeof option == 'string') data[option]()
     })
   }
 
-  $.fn.tooltip.Constructor = Tooltip
+  $.fn.tooltips.Constructor = Tooltips
 
 
   // TOOLTIP NO CONFLICT
   // ===================
 
-  $.fn.tooltip.noConflict = function () {
-    $.fn.tooltip = old
+  $.fn.tooltips.noConflict = function () {
+    $.fn.tooltips = old
     return this
   }
 

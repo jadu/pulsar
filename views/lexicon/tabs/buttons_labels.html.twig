@@ -1,7 +1,10 @@
 {% import 'pulsar/helpers/html.html.twig' as html %}
 {% import 'pulsar/helpers/form.html.twig' as form %}
 {% import 'pulsar/helpers/flash.html.twig' as flash %}
-<div class="tab__inner">
+
+<h2 class="heading">{{ heading|raw }}</h2>
+
+<div class="tab__inner tab--padded">
     <h2>Button variations</h2>
 
     <p>
@@ -15,7 +18,7 @@
         {{ html.button(label = 'Success', class = 'btn--success') }}
 
         <!-- Indicates a dangerous or destructive action -->
-        {{ html.button(label = 'Danger', class = 'btn--danger') }}
+        {{ html.button(label = 'Danger', class = 'btn--danger', type = 'link') }}
 
         <!-- Indicates caution should be taken here -->
         {{ html.button(label = 'Warning', class = 'btn--warning') }}

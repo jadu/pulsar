@@ -1,0 +1,253 @@
+{% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
+{% import '@pulsar/pulsar/helpers/form.html.twig' as form %}
+{% import '@pulsar/pulsar/helpers/flash.html.twig' as flash %}
+
+<h2 class="heading">{{ heading|raw }}</h2>
+
+<!-- <div class="actionsbar actionsbar--right">
+  {{ 
+    html.button_group([
+      html.button(
+        label = html.icon('plus') ~ ' Create Dashboard',
+        class = 'btn--primary')
+    ])
+  }}
+</div> -->
+
+<div class="tab__inner tab--unpadded">
+    <table id="dashboards" class="table--datagrid">
+        <thead>
+            <tr>
+                <th class="row__actions">
+                    <input type="checkbox" data-action="select-all" data-toggle="tooltips" data-placement="left" title="Select all items on this page" />
+                </th>
+                <th>
+                    {{ html.link(label = 'Title') }}
+                </th>
+                <th>
+                    {{ html.link(label = 'Owner') }}
+                </th>
+                <th>
+                    {{ html.link(label = 'Created') }}
+                </th>
+                <th class="centered">
+                    {{ html.link(label = 'Widgets') }}
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="row__actions">
+                    <input type="checkbox" name="datagrid-items" data-action="select" data-id="1" />
+                </td>
+                <td>
+                    {{ 
+                        html.link(
+                            label = 'Example deck link',
+                            href = '#dashboard-edit',
+                            attributes = 'data-toggle=deck'
+                        ) 
+                    }}
+                </td>
+                <td>Tarquin Longname Longnamerson IV</td>
+                <td>Monday 4th July, 2013</td>
+                <td class="centered">8</td>
+            </tr>
+            <tr>
+                <td class="row__actions">
+                    <input type="checkbox" name="datagrid-items" data-action="select" data-id="2" />
+                </td>
+                <td>
+                    {{ 
+                        html.link(
+                            label = 'Example deck link',
+                            href = '#dashboard-edit',
+                            attributes = 'data-toggle=deck'
+                        ) 
+                    }}
+                </td>
+                <td>Tarquin Longname Longnamerson IV</td>
+                <td>Monday 4th July, 2013</td>
+                <td class="centered">8</td>
+            </tr>
+            <tr>
+                <td class="row__actions">
+                    <input type="checkbox" name="datagrid-items" data-action="select" data-id="3" />
+                </td>
+                <td>
+                    {{ 
+                        html.link(
+                            label = 'Example deck link',
+                            href = '#dashboard-edit',
+                            attributes = 'data-toggle=deck'
+                        ) 
+                    }}
+                </td>
+                <td>Tarquin Longname Longnamerson IV</td>
+                <td>Monday 4th July, 2013</td>
+                <td class="centered">8</td>
+            </tr>
+            <tr>
+                <td class="row__actions">
+                    <input type="checkbox" name="datagrid-items" data-action="select" data-id="4" />
+                </td>
+                <td>
+                    {{ 
+                        html.link(
+                            label = 'Example deck link',
+                            href = '#dashboard-edit',
+                            attributes = 'data-toggle=deck'
+                        ) 
+                    }}
+                </td>
+                <td>Tarquin Longname Longnamerson IV</td>
+                <td>Monday 4th July, 2013</td>
+                <td class="centered">8</td>
+            </tr>
+            <tr>
+                <td class="row__actions">
+                    <input type="checkbox" name="datagrid-items" data-action="select" data-id="5" />
+                </td>
+                <td>
+                    {{ 
+                        html.link(
+                            label = 'Example deck link',
+                            href = '#dashboard-edit',
+                            attributes = 'data-toggle=deck'
+                        ) 
+                    }}
+                </td>
+                <td>Tarquin Longname Longnamerson IV</td>
+                <td>Monday 4th July, 2013</td>
+                <td class="centered">8</td>
+            </tr>
+            <tr>
+                <td class="row__actions">
+                    <input type="checkbox" name="datagrid-items" data-action="select" data-id="6" />
+                </td>
+                <td>
+                    {{ 
+                        html.link(
+                            label = 'Example deck link',
+                            href = '#dashboard-edit',
+                            attributes = 'data-toggle=deck'
+                        ) 
+                    }}
+                </td>
+                <td>Tarquin Longname Longnamerson IV</td>
+                <td>Monday 4th July, 2013</td>
+                <td class="centered">8</td>
+            </tr>
+            <tr>
+                <td class="row__actions">
+                    <input type="checkbox" name="datagrid-items" data-action="select" data-id="7" />
+                </td>
+                <td>
+                    {{ 
+                        html.link(
+                            label = 'Example deck link',
+                            href = '#dashboard-edit',
+                            attributes = 'data-toggle=deck'
+                        ) 
+                    }}
+                </td>
+                <td>Tarquin Longname Longnamerson IV</td>
+                <td>Monday 4th July, 2013</td>
+                <td class="centered">8</td>
+            </tr>
+            <tr>
+                <td class="row__actions">
+                    <input type="checkbox" name="datagrid-items" data-action="select" data-id="8" />
+                </td>
+                <td>
+                    {{ 
+                        html.link(
+                            label = 'Example deck link',
+                            href = '#dashboard-edit',
+                            attributes = 'data-toggle=deck'
+                        ) 
+                    }}
+                </td>
+                <td>Tarquin Longname Longnamerson IV</td>
+                <td>Monday 4th July, 2013</td>
+                <td class="centered">8</td>
+            </tr>
+            <tr>
+                <td class="row__actions">
+                    <input type="checkbox" name="datagrid-items" data-action="select" data-id="9" />
+                </td>
+                <td>
+                    {{ 
+                        html.link(
+                            label = 'Example deck link',
+                            href = '#dashboard-edit',
+                            attributes = 'data-toggle=deck'
+                        ) 
+                    }}
+                </td>
+                <td>Tarquin Longname Longnamerson IV</td>
+                <td>Monday 4th July, 2013</td>
+                <td class="centered">8</td>
+            </tr>
+            <tr>
+                <td class="row__actions">
+                    <input type="checkbox" name="datagrid-items" data-action="select" data-id="10" />
+                </td>
+                <td>
+                    {{ 
+                        html.link(
+                            label = 'Example deck link',
+                            href = '#dashboard-edit',
+                            attributes = 'data-toggle=deck'
+                        ) 
+                    }}
+                </td>
+                <td>Tarquin Longname Longnamerson IV</td>
+                <td>Monday 4th July, 2013</td>
+                <td class="centered">8</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="pagination">
+        <ul class="pull-left"><!--
+            --><li class="is-disabled"><a href="#"><i class="icon-double-angle-left"></i> Previous</a></li><!--
+            --><li><a href="#">1</a></li><!--
+            --><li class="selected"><a href="#">2</a></li><!--
+            --><li><a href="#">3</a></li><!--
+            --><li><a href="#">4</a></li><!--
+            --><li><a href="#">5</a></li><!--
+            --><li><a href="#">Next <i class="icon-double-angle-right"></i></a></li><!--
+        --></ul>
+    </div>
+</div>
+
+<div class="deck" id="dashboard-edit">
+    <div class="slide">
+        <div class="slide-inner">
+            <button class="close" data-dismiss="deck">&times;</button>
+
+            {{ form.create() }}
+            {{ form.fieldset_start(legend = 'Edit Dashboard') }}
+            {{ form.text(label = 'Title', id = 'dashboard[title]', name = 'dashboardTitle', value = 'Dashboard Title') }}
+            {{ form.text(label = 'Owner', id = 'dashboard[owner]', name = 'dashboardOwner', value = 'Paul Stanton') }}
+            {{ form.fieldset_end() }}
+            {{ 
+                form.form_end([
+                    form.submit(
+                        label = 'Save',
+                        class = 'btn--primary'
+                    ),
+                    html.button(
+                        label = html.icon('trash') ~ ' Delete Dashboard',
+                        class = 'btn btn--danger pull-right',
+                        href = '/jadu/modals/modal.php?modal=dashboard/delete.html.twig',
+                        type = 'link',
+                        attributes = 'data-toggle=modal data-target=#modal-danger'
+                    )
+                ]) 
+            }}
+            
+        </div>
+    </div>
+</div>

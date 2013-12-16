@@ -44,23 +44,6 @@
     
     {% block summary %}{% endblock %}
     
-    <div class="actionsbar actionsbar--left">
-        <div class="btn__toolbar">
-            <div class="btn__group">
-                <a class="btn btn__back" href="#back" onclick="history.back(); return false;"><i class="icon-arrow-left"></i></a>
-                {% if actions_menu is not empty %}
-                    {{ html.button_dropdown(label = 'Actions', menu_items = actions_menu) }}
-                {% endif %}
-            </div>
-        </div>
-    </div>
-
-    <div class="actionsbar actionsbar--right">
-        {% block actionsbar %}{% endblock %}
-    </div>
-    
-    <h2 class="heading">{{ heading|raw }}</h2>
-
     <div role="main" class="container">
         {% block content %}{% endblock %}
         {% block decks %}{% endblock %}
@@ -71,7 +54,13 @@
         {{ html.link(label = 'Jadu 1.12 &copy; 2013', href = '/credits') }}
     </footer>
     
-    {% block modals %}{% endblock %}
+    <div id="modal" class="modal" role="dialog" aria-hidden="true">
+        <!-- empty modal for ajax requests -->
+    </div>
+
+    {% block modals %}
+    {% endblock %}
+    
     {% block javascript %}{% endblock %}
 
     <script src="http://localhost:8000/libs/livereload-js/dist/livereload.js?host=localhost"></script>
