@@ -34,11 +34,18 @@ $widgets = array(
         'title' => 'Analytics',
         'widgets' => array(
             array(
-                'id' => 'browsers',
+                'guid' => 'browsers',
+                'version' => '0.0.1',
                 'title' => 'Browser Usage',
-                'source' => 'browsers.html.twig',
                 'price' => '0',
                 'description' => 'Show which browsers your users have used to visit your site.'
+            ),
+            array(
+                'guid' => 'fillmurray',
+                'version' => '0.0.1',
+                'title' => 'Fill Murray',
+                'price' => '0',
+                'description' => 'Some Bill Murray Placeholder'
             )
         )
     ),
@@ -47,9 +54,9 @@ $widgets = array(
         'title' => 'Search',
         'widgets' => array(
             array(
-                'id' => 'trending',
+                'guid' => 'trending',
+                'version' => '0.0.1',
                 'title' => 'Trending Searches',
-                'source' => 'trending.html.twig',
                 'price' => '9.99',
                 'description' => 'Show which search terms are currently popular on your site(s).'
             )
@@ -60,16 +67,16 @@ $widgets = array(
         'title' => 'System Information',
         'widgets' => array(
             array(
-                'id' => 'cpu',
+                'guid' => 'cpu',
+                'version' => '0.0.1',
                 'title' => 'CPU Load',
-                'source' => 'cpu.html.twig',
                 'price' => '0',
                 'description' => 'Shows how hard your server is working at the moment.'
             ),
             array(
-                'id' => 'galaxies_count',
+                'guid' => 'galaxies_count',
+                'version' => '0.0.1',
                 'title' => 'Galaxies Sites',
-                'source' => 'galaxies.html.twig',
                 'price' => '0',
                 'description' => 'Shows how many Galaxies sites are currently active.'
             )                
@@ -80,9 +87,9 @@ $widgets = array(
         'title' => 'User Information',
         'widgets' => array(
             array(
-                'id' => 'admins',
+                'guid' => 'admins',
+                'version' => '0.0.1',
                 'title' => 'Admins',
-                'source' => 'admins.html.twig',
                 'price' => '0',
                 'description' => 'Show how many administrators you have.'
             )                
