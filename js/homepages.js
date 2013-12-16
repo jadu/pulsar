@@ -139,7 +139,7 @@ define([
                             var newSpan = 'grid-span-' + operatingSpan;
                             $('.operating').removeClass(oldSpan).addClass(newSpan);
                             $('.operating .resizer .indicator').css({width : '0', right : '0' });
-                            columnsResized = 0; 
+                            columnsResized = 0;
                         }
                     }
                 }
@@ -171,6 +171,12 @@ define([
                     rowDragging = false;
                     $('.operating-row').removeClass('operating-row');
                 }
+            });
+
+            $(element).on('click', '.remove-widget', function(e){
+                e.preventDefault();
+                e.stopPropagation();
+                $(this).parent().remove();
             });
 
             $('.focus').on('click', function(e){
@@ -216,7 +222,7 @@ define([
                     var guid = widget.guid;
                     var version = widget.version;
                     var classes = widget.classes;
-                    var loadingSpinner = $('<div><i class="icon-spinner"></i></div>');
+                    var loadingSpinner = $('<div><i class="icon-spinner"></i><a class="remove-widget icon-remove"></a></div>');
                     loadingSpinner.addClass(classes).append(resizer);
                     rowDOM.append(loadingSpinner);
                     $.ajax({
