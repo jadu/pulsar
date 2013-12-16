@@ -100,10 +100,22 @@ define([
 
     // data-API
     $(document).on('click', '[data-toggle="tray"]', function (e) {
-      var $target = $($(this).attr('data-target'));
+      var _this = $(this),
+          $target = $($(this).attr('data-target'));
       
       e.preventDefault();
-      $target.slideToggle(100);
+
+      // Show/hide the tray
+      $target.slideToggle(100, function () {
+
+        // Toggle active state on tray toggle
+        if ($(this).is(':visible')) {
+          _this.addClass('active');
+        } else {
+          _this.removeClass('active');
+        }
+      });
+
     })
 
     $.fn[pluginName] = function (options) {
