@@ -178,6 +178,7 @@ module.exports = function(grunt) {
             'highcharts-mono'   : '../js/highcharts-mono',
             'highcharts-theme'  : '../js/highcharts-theme',
             'highlightjs'       : '../libs/highlightjs/highlight.pack',
+            'homepages'         : '../js/homepages',
             'jquery'            : '../libs/jquery/jquery',
             'jquery-ui'         : '../libs/jquery.ui/dist/jquery-ui.min',
             'jquery-ui-touch'   : '../libs/jqueryui-touch-punch/jquery.ui.touch-punch.min',

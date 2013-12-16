@@ -25,12 +25,7 @@ $template = $twig->loadTemplate('homepages/main.html.twig');
 
 $breadcrumb = array(
     'Pulsar' => '/',
-    'Documentation' => '/docs',
-    'Dashboard' => null
-    );
-
-$flashMessage = array(
-    'message' => 'You can use the G key on your keyboard to toggle the grid on and off'
+    'Homepage Designer' => null
     );
 
 $widgets = array(
@@ -97,6 +92,5 @@ $widgets = array(
 
 print $template->render(array(
     'breadcrumb' => $breadcrumb,
-    'flash_message' => $flashMessage,
     'widgets' => $widgets
     ));

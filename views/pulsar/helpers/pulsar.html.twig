@@ -45,39 +45,41 @@
 
 {%- macro widget_list(widgets) -%}
   {% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
-  <div class="tray__column tray__categories">
-    <ul>
-  {% for widget in widgets %}
-      <li data-group=".widget__list" data-switch="#category_{{ widget.id }}">{{ widget.title|raw }} {{ html.icon('angle-right') }}</li>
-  {% endfor %}
-    </ul>
-  </div>
+  <div id="tray" class="tray">
+    <div class="tray__column tray__categories">
+      <ul>
+    {% for widget in widgets %}
+        <li data-group=".widget__list" data-switch="#category_{{ widget.id }}">{{ widget.title|raw }} {{ html.icon('angle-right') }}</li>
+    {% endfor %}
+      </ul>
+    </div>
 
-  <div class="tray__column tray__widgets">
-  {% for widget in widgets %}
-    <ul id="category_{{ widget.id }}" class="widget__list hide">
-      {% for widget in widget.widgets %}
-        {% if widget.price == 0 %}
-          {% set widget_price = 'Free' %}
-        {% else %}
-          {% set widget_price = '£' ~ widget.price %}
+    <div class="tray__column tray__widgets">
+    {% for widget in widgets %}
+      <ul id="category_{{ widget.id }}" class="widget__list hide">
+        {% for widget in widget.widgets %}
+          {% if widget.price == 0 %}
+            {% set widget_price = 'Free' %}
+          {% else %}
+            {% set widget_price = '£' ~ widget.price %}
+          {% endif %}
+          <li class="widget__list-item" data-widget-guid="{{ widget.guid }}" data-widget-version="{{ widget.version }}" data-widget-title="{{ widget.title }}" data-widget-price="{{ widget_price }}" data-widget-description="{{ widget.description }}">{{ widget.title }} {{ html.icon('angle-right') }}</li>
+        {% endfor %}
+      </ul>
+    {% endfor %}
+    </div>
+
+    <div class="tray__detail">
+  {#
+        {% if first_widget.price == 0 %}
+          {{ html.button(label = 'Free', class = 'widget__price') }}
+        {% else %} 
+          {{ html.button(label = '£9.99', class = 'widget__price') }}
         {% endif %}
-        <li class="widget__list-item" data-widget-guid="{{ widget.guid }}" data-widget-version="{{ widget.version }}" data-widget-title="{{ widget.title }}" data-widget-price="{{ widget_price }}" data-widget-description="{{ widget.description }}">{{ widget.title }} {{ html.icon('angle-right') }}</li>
-      {% endfor %}
-    </ul>
-  {% endfor %}
-  </div>
-
-  <div class="tray__detail">
-{#
-      {% if first_widget.price == 0 %}
-        {{ html.button(label = 'Free', class = 'widget__price') }}
-      {% else %} 
-        {{ html.button(label = '£9.99', class = 'widget__price') }}
-      {% endif %}
-#}
+  #}
       <h3 class="widget__title"></h3>
       <p class="widget__description"></p>
       <div class="widget hide" data-widget-guid="" data-widget-version="" data-widget-title="" data-widget-description="" data-last-appended="true"><i class="icon-move"></i> Drag Me to your Dashboard</div>
     </div>
+  </div>
 {%- endmacro -%}

@@ -1,10 +1,10 @@
-{% extends '@pulsar/pulsar/layouts/homepages.html.twig' %}
+{% extends '@pulsar/pulsar/layouts/homepage.html.twig' %}
 {% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
 {% import '@pulsar/pulsar/helpers/form.html.twig' as form %}
 {% import '@pulsar/pulsar/helpers/flash.html.twig' as flash %}
 {% import '@pulsar/pulsar/helpers/pulsar.html.twig' as pulsar %}
 
-{% block flas_message %}{{ parent() }}{% endblock %}
+{% block flash_message %}{{ parent() }}{% endblock %}
 {% block title %}{{ parent() }}{% endblock %}
 
 {% set heading = '' %}
@@ -21,16 +21,31 @@
 %}
 
 {% block summary %}
-  <div class="tray">
-    {% include '@pulsar/pulsar/components/widget_list.html.twig' %}
-  </div>
+  {% include '@pulsar/pulsar/components/widget_list.html.twig' %}
 {% endblock %}
 
 {% block actionsbar %}
   {{ 
     html.button_group([
-      html.button(label = html.icon('eye-open') ~ '', href = '#', type = 'link', attributes = 'data-toggle=row-handler', class="focus"),
-      html.button(label = html.icon('eye') ~ '', href = '#', type = 'link', attributes = 'data-homepage-mode=focus')
+      html.button(
+        label = html.icon('eye-open'),
+        class = 'focus',
+        href = '#',
+        type = 'link',
+        attributes = 'data-toggle=row-handler'
+      ),
+      html.button(
+        label = html.icon('eye-close'),
+        href = '#',
+        type = 'link',
+        attributes = 'data-homepage-mode=focus'
+      ),
+      html.button(
+        label = html.icon('dashboard') ~ ' Widgets', 
+        href = '#', 
+        type = 'link', 
+        attributes = 'data-toggle=tray data-target=#tray'
+      )
     ])
   }}
 {% endblock %}
