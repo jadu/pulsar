@@ -10,14 +10,30 @@
 {% set heading = '' %}
 
 {% 
-    set actions_menu = [
-        html.link(label = html.icon('plus') ~ ' Create dashboard', href = '#save'),
-        html.link(label = html.icon('save') ~ ' Save', href = '#save'),
-        html.link(label = html.icon('save') ~ ' Save as template', href = '#save'),
-        html.link(label = html.icon('share') ~ ' Share', href = '#save'),
-        html.divider(),
-        html.link(label = html.icon('trash') ~ ' Delete', href = '#delete', class = 'link--danger')
-    ]
+  set actions_menu = [
+    html.link(
+      label = html.icon('plus') ~ ' Create dashboard',
+      href = '#save'
+    ),
+    html.link(
+      label = html.icon('save') ~ ' Save',
+      href = '#save'
+    ),
+    html.link(
+      label = html.icon('save') ~ ' Save as template',
+      href = '#save'
+    ),
+    html.link(
+      label = html.icon('share') ~ ' Share',
+      href = '#save'
+    ),
+    html.divider(),
+    html.link(
+      label = html.icon('trash') ~ ' Delete',
+      href = '#delete',
+      class = 'link--danger'
+    )
+  ]
 %}
 
 {% block summary %}
