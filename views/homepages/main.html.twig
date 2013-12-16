@@ -66,3 +66,11 @@
   }}
 {% endblock %}
 
+{% block javascript %}
+  <script>
+  require(['tray'], function() {
+      $('#tray').tray();
+  });
+  </script>
+{% endblock %}
+
