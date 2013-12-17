@@ -22,7 +22,31 @@ define([
             columnCount = 12,
             widgetPath = '/var/widgets/',
             homepagePath = '/var/homepages/',
+            currentVersion = 0,
+            homepageHtml,
             versions = [];
+
+        function createHomepageObject(homepageElement) {
+            var homepageObject = [];
+            var i = 0;
+            console.log(homepageElement.html());
+            $(homepageElement).children('.widget-row').each(function(){
+                console.log("Loop");
+                var row = [];
+                var thisRow = $(this);
+                thisRow.children('.homepage-widget').each(function(){
+                    var thisWidget = $(this);
+                    var widget = {};
+                    var widgetClass = thisWidget.attr('class');
+                    var widgetGuid = thisWidget.data('widget-guid');
+                    var widgetVersion = thisWidget.data('widget-version');
+                    widget = { classes: widgetClass, guid: widgetGuid, version: widgetVersion};
+                    row.push(widget);
+                });
+                homepageObject.push(row);
+            });
+            return homepageObject;
+        }
 
         function attachEvents(element) {
             $(element).on('mousedown', '.homepage-widget', function(e){
@@ -162,45 +186,65 @@ define([
                     }
                     columnsResized = 0;
                     resizing = false;
+                    newVersion();
                 }
                 if(dragging) {
                     dragging = false;
                     $('.operating').removeClass('operating');
+                    newVersion();
                 }
                 if(rowDragging) {
                     rowDragging = false;
                     $('.operating-row').removeClass('operating-row');
+                    newVersion();
                 }
             });
 
+            function newVersion() {
+                var elementHtml = $('.homepage-item').html();
+                elementHtml = $(elementHtml);
+                console.log(elementHtml);
+                versions[currentVersion + 1] = elementHtml;
+                currentVersion += 1;
+            }
+
+            function undo(element) {
+                if(currentVersion > 0) {
+                    element.empty();
+                    var undoHtml = versions[currentVersion - 1];
+                    element.append(undoHtml);
+                    currentVersion -= 1;
+                }
+            }
+
+            function redo(element) {
+                if(currentVersion < versions.length - 1) {
+                    element.empty();
+                    var redoHtml = versions[currentVersion + 1];
+                    element.append(redoHtml);
+                    currentVersion += 1;
+                }
+            }
+
             $('.focus').on('click', function(e){
+                e.preventDefault();
                 $('#top, footer').slideToggle();
                 $('.grid-master').fadeToggle();
             });
-        }
 
-        function createHomepageObject(element) {
-            var homepageObject = [];
-            var i = 0;
-            element.children('.widget-row').each(function(){
-                var row = [];
-                var thisRow = $(this);
-                thisRow.children('.homepage-widget').each(function(){
-                    var thisWidget = $(this);
-                    var widget = {};
-                    var widgetClass = thisWidget.attr('class');
-                    var widgetGuid = thisWidget.data('widget-guid');
-                    var widgetVersion = thisWidget.data('widget-version');
-                    widget = { classes: widgetClass, guid: widgetGuid, version: widgetVersion};
-                    row.push(widget);
-                });
-                homepageObject.push(row);
+            $('[data-action="undo"]').on('click', function(e){
+                e.preventDefault();
+                undo($('.homepage-item'));
             });
-            return homepageObject;
+
+            $('[data-action="redo"]').on('click', function(e){
+                e.preventDefault();
+                redo($('.homepage-item'));
+            });
         }
 
         function paintHomepage(element, homepage) {
-            var homepageDOM = $('<div></div>');
+            var homepageDOM = $('<div class="homepage-item"></div>');
             var resizer = '<div class="resizer"><div class="indicator"></div></div>';
             var resizerLeft = $('<div class="resizer resizer__left"></div>');
             homepage.forEach(function(homepageRow, index){
@@ -238,26 +282,27 @@ define([
                 ajaxLoop(0, homepageRow);
             });
             element.append(homepageDOM);
+            versions[0] = homepageDOM;
+            console.log(versions);
         }
 
         function loadHomepageObject(json, element) {
-            console.log(json);
             var homepageLiteral = $.parseJSON(json);
             paintHomepage(element, homepageLiteral);
-            // attachEvents();
         }
 
-        function fetchHomepage(guid, element) {
+        function fetchHomepage(guid, element, eventParent) {
             $.ajax({
                 url: homepagePath + '/' + guid + '.json'
             }).done(function (data) {
                 loadHomepageObject(data, element);
             });
-            attachEvents(element);
+            attachEvents(element, eventParent);
         }
 
         var homepageContainer = $('.homepage-content');
-        fetchHomepage('fillmurray', homepageContainer);
+        var homepageItem = $('.homepage-item');
+        fetchHomepage('fillmurray', homepageContainer, homepageItem);
 
         function manipulateOffset(operator, direction) {
             if(!(operator.is('[class*=offset]')) && direction == 'right') {
