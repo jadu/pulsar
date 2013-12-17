@@ -203,7 +203,7 @@ define([
             $(element).on('click', '.remove-widget', function(e){
                 e.preventDefault();
                 e.stopPropagation();
-                if($(this).is('only-child')){
+                if($(this).parent().parent().children().length == 2){ // then it's the last widget in the row
                     $(this).parent().parent().remove();
                 }
                 else {
