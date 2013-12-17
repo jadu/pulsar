@@ -35,6 +35,10 @@ $cyan : #ea33a3;
         .resizer {
             display: block;
         }
+        .icon-remove {
+            display: block;
+            cursor: pointer;
+        }
     }
     .icon-spinner:before {
         -webkit-transform-origin: center center;
@@ -49,6 +53,12 @@ $cyan : #ea33a3;
         position: absolute;
         margin-left: -10px;
         margin-top: -10px;
+    }
+    .icon-remove {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        display: none;
     }
 }
 
