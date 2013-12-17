@@ -24,7 +24,8 @@ define([
             homepagePath = '/var/homepages/',
             currentVersion = 0,
             homepageHtml,
-            versions = [];
+            versions = [],
+            changed = false;
 
         function createHomepageObject(homepageElement) {
             var homepageObject = [];
@@ -46,6 +47,18 @@ define([
                 homepageObject.push(row);
             });
             return homepageObject;
+        }
+
+        function newVersion() {
+            var elementHtml = $('.homepage-item').html();
+            elementHtml = $(elementHtml);
+            console.log('versions: ' + versions.length);
+            for(var i = currentVersion + 1; i < versions.length; i++) {
+                console.log('i' + i);
+                delete versions[i];
+            }
+            versions[currentVersion + 1] = elementHtml;
+            currentVersion += 1;
         }
 
         function attachEvents(element) {
@@ -184,9 +197,11 @@ define([
                         $('.operating .resizer .indicator').css({width : '0', right : '0' });
                         $('.operating').removeClass('operating');
                     }
+                    if(columnsResized != 0) {
+                        newVersion();
+                    }
                     columnsResized = 0;
                     resizing = false;
-                    newVersion();
                 }
                 if(dragging) {
                     dragging = false;
@@ -218,14 +233,6 @@ define([
                 $(this).parent().parent().remove();
                 newVersion();
             });
-
-            function newVersion() {
-                var elementHtml = $('.homepage-item').html();
-                elementHtml = $(elementHtml);
-                console.log(elementHtml);
-                versions[currentVersion + 1] = elementHtml;
-                currentVersion += 1;
-            }
 
             function undo(element) {
                 if(currentVersion > 0) {
