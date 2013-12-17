@@ -179,6 +179,12 @@ define([
                 $(this).parent().remove();
             });
 
+            $(element).on('click', '.remove-row', function(e){
+                e.preventDefault();
+                e.stopPropagation();
+                $(this).parent().parent().remove();
+            });
+
             $('.focus').on('click', function(e){
                 $('#top, footer').slideToggle();
                 $('.grid-master').fadeToggle();
@@ -211,7 +217,7 @@ define([
             var resizerLeft = $('<div class="resizer resizer__left"></div>');
             homepage.forEach(function(homepageRow, index){
                 var rowDOM = $('<div class="grid-container widget-row"></div>');
-                var rowHandler = $('<div class="row-handler column grid-span-12"></div>');
+                var rowHandler = $('<div class="row-handler column grid-span-12"><a class="icon-remove remove-row></a></div>');
                 var rowNo = parseInt(index) + 1;
                 var rowTitle = 'Row ' + rowNo;
                 rowHandler.append(rowTitle);
@@ -247,10 +253,8 @@ define([
         }
 
         function loadHomepageObject(json, element) {
-            console.log(json);
             var homepageLiteral = $.parseJSON(json);
             paintHomepage(element, homepageLiteral);
-            // attachEvents();
         }
 
         function fetchHomepage(guid, element) {
