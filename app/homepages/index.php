@@ -45,7 +45,8 @@ $widgets = array(
                 'version' => '0.0.1',
                 'title' => 'Fill Murray',
                 'price' => '0',
-                'description' => 'Some Bill Murray Placeholder'
+                'description' => 'Some Bill Murray Placeholder',
+                'gridspan' => 6
             )
         )
     ),

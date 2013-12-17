@@ -70,21 +70,22 @@ define([
           $('.widget__title').text($this.data('widget-title'));
           $('.widget__description').text($this.data('widget-description'));
           $('.widget__price').text($this.data('widget-price'));
-          
+          console.log($this.data('widget-grid-span'));
           $('.tray__detail .widget')
             .data('widget-guid', $this.data('widget-guid'))
             .data('widget-version', $this.data('widget-version'))
             .data('widget-title', $this.data('widget-title'))
             .data('widget-description', $this.data('widget-description'))
+            .data('widget-grid-span', $this.data('widget-grid-span'))
             .show();
         });
       },
 
       fetchWidget: function (e, ui) {
         var _this = this,
-          widget = $(ui.helper.context),
-          widgetGuid = widget.data('widget-guid'),
-          widgetVersion = widget.data('widget-version'); // The data attribute of the widget we're dragging
+            widget = $(ui.helper.context),
+            widgetGuid = widget.data('widget-guid'),
+            widgetVersion = widget.data('widget-version'); // The data attribute of the widget we're dragging
 
         // fetch it
         $.ajax({
@@ -98,17 +99,17 @@ define([
 
     };
 
-    // data-API
-    $(document).on('click', '[data-toggle="tray"]', function (e) {
+    // data-api
+    $(document).on('click', '[data-toggle=tray]', function (e) {
       var _this = $(this),
           $target = $($(this).attr('data-target'));
       
       e.preventDefault();
 
-      // Show/hide the tray
+      // show/hide the tray
       $target.slideToggle(100, function () {
 
-        // Toggle active state on tray toggle
+        // toggle active state on tray toggle
         if ($(this).is(':visible')) {
           _this.addClass('active');
         } else {

@@ -27,9 +27,12 @@ define([
       fetchRetryTimeout = 50,
       fetchRetryLimit = 5,
       trayContainer = '.tray',
+      widgetConfig,
       widgetData,
       widgetClass = '.widget',
       widgetDataContainer = '#widget__data',
+      widgetPath = '/var/widgets/',
+      widgetSpan = 4,
       widgetRemoveAttribute = '[data-widget-action=remove]';
 
     function attachEvents(element) {
@@ -310,22 +313,30 @@ define([
         activeClass: 'ui-state-highlight',
         hoverClass: 'row-droppable',
         drop: function (e, ui) {
-          
+
           // clone the dragged widget and drop it
-          var droppedWidget = $(ui.draggable).clone().appendTo(this);
+          var droppedWidget = $(ui.draggable)
+                                .clone()
+                                .appendTo(this);
 
           function isFetched() {
 
-            // Check if we've got the widget data back from the ajax call
+            // check if we've got the widget data back from the ajax call
             widgetData = $(widgetDataContainer).val();
 
-            // If we've got it, do stuff
+            // if we've got it, do stuff
             if (widgetData !== '') {
               var sender = ui.draggable;
-              
+
+              // if a widget has a defined span, override the default
+              if (sender.data('widget-grid-span')) {
+                widgetSpan = sender.data('widget-grid-span');
+              }
+
               // populate widget content
               var widget = droppedWidget.html(widgetData)
-                .uniqueId(); // attach unique identifier
+                            .addClass('grid-span-' + widgetSpan + ' column')
+                            .uniqueId(); // attach unique identifier
 
               // reset last-appended flag on all widgets except this one
               $(widgetClass).not(widget)
@@ -354,7 +365,7 @@ define([
           isFetched();   
         }
       });
-    }    
+    }
 
   })(jQuery, window, document);
 });

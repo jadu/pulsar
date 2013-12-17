@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "twig": true,
   "settings": {
-      "name": "Administrators"
+      "name": "Administrators",
+      "grid-span": 4 
   }
 }
