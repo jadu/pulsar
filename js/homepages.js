@@ -22,7 +22,31 @@ define([
             columnCount = 12,
             widgetPath = '/var/widgets/',
             homepagePath = '/var/homepages/',
+            currentVersion = 0,
+            homepageHtml,
             versions = [];
+
+        function createHomepageObject(homepageElement) {
+            var homepageObject = [];
+            var i = 0;
+            console.log(homepageElement.html());
+            $(homepageElement).children('.widget-row').each(function(){
+                console.log("Loop");
+                var row = [];
+                var thisRow = $(this);
+                thisRow.children('.homepage-widget').each(function(){
+                    var thisWidget = $(this);
+                    var widget = {};
+                    var widgetClass = thisWidget.attr('class');
+                    var widgetGuid = thisWidget.data('widget-guid');
+                    var widgetVersion = thisWidget.data('widget-version');
+                    widget = { classes: widgetClass, guid: widgetGuid, version: widgetVersion};
+                    row.push(widget);
+                });
+                homepageObject.push(row);
+            });
+            return homepageObject;
+        }
 
         function attachEvents(element) {
             $(element).on('mousedown', '.homepage-widget', function(e){
@@ -139,7 +163,7 @@ define([
                             var newSpan = 'grid-span-' + operatingSpan;
                             $('.operating').removeClass(oldSpan).addClass(newSpan);
                             $('.operating .resizer .indicator').css({width : '0', right : '0' });
-                            columnsResized = 0; 
+                            columnsResized = 0;
                         }
                     }
                 }
@@ -162,50 +186,108 @@ define([
                     }
                     columnsResized = 0;
                     resizing = false;
+                    newVersion();
                 }
                 if(dragging) {
                     dragging = false;
                     $('.operating').removeClass('operating');
+                    newVersion();
                 }
                 if(rowDragging) {
                     rowDragging = false;
                     $('.operating-row').removeClass('operating-row');
+                    newVersion();
+                }
+            });
+
+            $(element).on('click', '.remove-widget', function(e){
+                e.preventDefault();
+                e.stopPropagation();
+                if($(this).parent().parent().children().length == 2){ // then it's the last widget in the row
+                    $(this).parent().parent().remove();
+                }
+                else {
+                    $(this).parent().remove();
+                }
+                newVersion();
+            });
+
+            $(element).on('click', '.remove-row', function(e){
+                e.preventDefault();
+                e.stopPropagation();
+                $(this).parent().parent().remove();
+                newVersion();
+            });
+
+            function newVersion() {
+                var elementHtml = $('.homepage-item').html();
+                elementHtml = $(elementHtml);
+                console.log(elementHtml);
+                versions[currentVersion + 1] = elementHtml;
+                currentVersion += 1;
+            }
+
+            function undo(element) {
+                if(currentVersion > 0) {
+                    element.empty();
+                    var undoHtml = versions[currentVersion - 1];
+                    element.append(undoHtml);
+                    currentVersion -= 1;
+                }
+            }
+
+            function redo(element) {
+                if(currentVersion < versions.length - 1) {
+                    element.empty();
+                    var redoHtml = versions[currentVersion + 1];
+                    element.append(redoHtml);
+                    currentVersion += 1;
+                }
+            }
+
+            $(window).keydown(function(e){
+                if(e.metaKey && e.shiftKey &&  e.keyCode == 90) { // Mac Redo CMD + SHIFT + Z
+                    e.preventDefault();
+                    redo($('.homepage-item'));
+                }
+                else if(e.metaKey && e.keyCode == 90) { // Mac Undo CMD + Z
+                    e.preventDefault();
+                    undo($('.homepage-item'));
+                }
+                else if(e.ctrlKey && e.keyCode == 89) { // Win Redo CMD + Y
+                    e.preventDefault();
+                    redo($('.homepage-item'));
+                }
+                else if(e.ctrlKey && e.keyCode == 90) { // Win Undo CMD + Z
+                    e.preventDefault();
+                    undo($('.homepage-item'));
                 }
             });
 
             $('.focus').on('click', function(e){
+                e.preventDefault();
                 $('#top, footer').slideToggle();
                 $('.grid-master').fadeToggle();
             });
-        }
 
-        function createHomepageObject(element) {
-            var homepageObject = [];
-            var i = 0;
-            element.children('.widget-row').each(function(){
-                var row = [];
-                var thisRow = $(this);
-                thisRow.children('.homepage-widget').each(function(){
-                    var thisWidget = $(this);
-                    var widget = {};
-                    var widgetClass = thisWidget.attr('class');
-                    var widgetGuid = thisWidget.data('widget-guid');
-                    var widgetVersion = thisWidget.data('widget-version');
-                    widget = { classes: widgetClass, guid: widgetGuid, version: widgetVersion};
-                    row.push(widget);
-                });
-                homepageObject.push(row);
+            $('[data-action="undo"]').on('click', function(e){
+                e.preventDefault();
+                undo($('.homepage-item'));
             });
-            return homepageObject;
+
+            $('[data-action="redo"]').on('click', function(e){
+                e.preventDefault();
+                redo($('.homepage-item'));
+            });
         }
 
         function paintHomepage(element, homepage) {
-            var homepageDOM = $('<div></div>');
+            var homepageDOM = $('<div class="homepage-item"></div>');
             var resizer = '<div class="resizer"><div class="indicator"></div></div>';
             var resizerLeft = $('<div class="resizer resizer__left"></div>');
             homepage.forEach(function(homepageRow, index){
                 var rowDOM = $('<div class="grid-container widget-row"></div>');
-                var rowHandler = $('<div class="row-handler column grid-span-12"></div>');
+                var rowHandler = $('<div class="row-handler column grid-span-12"><a class="icon-remove remove-row></a></div>');
                 var rowNo = parseInt(index) + 1;
                 var rowTitle = 'Row ' + rowNo;
                 rowHandler.append(rowTitle);
@@ -216,7 +298,7 @@ define([
                     var guid = widget.guid;
                     var version = widget.version;
                     var classes = widget.classes;
-                    var loadingSpinner = $('<div><i class="icon-spinner"></i></div>');
+                    var loadingSpinner = $('<div><i class="icon-spinner"></i><a class="remove-widget icon-remove"></a></div>');
                     loadingSpinner.addClass(classes).append(resizer);
                     rowDOM.append(loadingSpinner);
                     $.ajax({
@@ -238,26 +320,26 @@ define([
                 ajaxLoop(0, homepageRow);
             });
             element.append(homepageDOM);
+            versions[0] = homepageDOM;
         }
 
         function loadHomepageObject(json, element) {
-            console.log(json);
             var homepageLiteral = $.parseJSON(json);
             paintHomepage(element, homepageLiteral);
-            // attachEvents();
         }
 
-        function fetchHomepage(guid, element) {
+        function fetchHomepage(guid, element, eventParent) {
             $.ajax({
                 url: homepagePath + '/' + guid + '.json'
             }).done(function (data) {
                 loadHomepageObject(data, element);
             });
-            attachEvents(element);
+            attachEvents(element, eventParent);
         }
 
         var homepageContainer = $('.homepage-content');
-        fetchHomepage('fillmurray', homepageContainer);
+        var homepageItem = $('.homepage-item');
+        fetchHomepage('fillmurray', homepageContainer, homepageItem);
 
         function manipulateOffset(operator, direction) {
             if(!(operator.is('[class*=offset]')) && direction == 'right') {

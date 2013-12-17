@@ -1,67 +1,36 @@
-{% extends '@pulsar/pulsar/layouts/homepage.html.twig' %}
+{% extends '@pulsar/pulsar/layouts/homepages.html.twig' %}
 {% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
 {% import '@pulsar/pulsar/helpers/form.html.twig' as form %}
 {% import '@pulsar/pulsar/helpers/flash.html.twig' as flash %}
 {% import '@pulsar/pulsar/helpers/pulsar.html.twig' as pulsar %}
 
-{% block flash_message %}{{ parent() }}{% endblock %}
+{% block flas_message %}{{ parent() }}{% endblock %}
 {% block title %}{{ parent() }}{% endblock %}
 
 {% set heading = '' %}
 
 {% 
-  set actions_menu = [
-    html.link(
-      label = html.icon('plus') ~ ' Create dashboard',
-      href = '#save'
-    ),
-    html.link(
-      label = html.icon('save') ~ ' Save',
-      href = '#save'
-    ),
-    html.link(
-      label = html.icon('save') ~ ' Save as template',
-      href = '#save'
-    ),
-    html.link(
-      label = html.icon('share') ~ ' Share',
-      href = '#save'
-    ),
-    html.divider(),
-    html.link(
-      label = html.icon('trash') ~ ' Delete',
-      href = '#delete',
-      class = 'link--danger'
-    )
-  ]
+    set actions_menu = [
+        html.link(label = html.icon('plus') ~ ' Create dashboard', href = '#save'),
+        html.link(label = html.icon('save') ~ ' Save', href = '#save'),
+        html.link(label = html.icon('save') ~ ' Save as template', href = '#save'),
+        html.link(label = html.icon('share') ~ ' Share', href = '#save'),
+        html.divider(),
+        html.link(label = html.icon('trash') ~ ' Delete', href = '#delete', class = 'link--danger')
+    ]
 %}
 
 {% block summary %}
-  {% include '@pulsar/pulsar/components/widget_list.html.twig' %}
+  <div class="tray">
+    {% include '@pulsar/pulsar/components/widget_list.html.twig' %}
+  </div>
 {% endblock %}
 
 {% block actionsbar %}
   {{ 
     html.button_group([
-      html.button(
-        label = html.icon('eye-open'),
-        class = 'focus',
-        href = '#',
-        type = 'link',
-        attributes = 'data-toggle=row-handler'
-      ),
-      html.button(
-        label = html.icon('eye-close'),
-        href = '#',
-        type = 'link',
-        attributes = 'data-homepage-mode=focus'
-      ),
-      html.button(
-        label = html.icon('dashboard') ~ ' Widgets', 
-        href = '#', 
-        type = 'link', 
-        attributes = 'data-toggle=tray data-target=#tray'
-      )
+      html.button(label = html.icon('undo') ~ '', href = '#', type = 'link', attributes = 'data-action=undo'),
+      html.button(label = html.icon('rotate-right') ~ '', href = '#', type = 'link', attributes = 'data-action=redo')
     ])
   }}
 {% endblock %}
