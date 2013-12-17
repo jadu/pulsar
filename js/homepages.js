@@ -203,13 +203,20 @@ define([
             $(element).on('click', '.remove-widget', function(e){
                 e.preventDefault();
                 e.stopPropagation();
-                $(this).parent().remove();
+                if($(this).is('only-child')){
+                    $(this).parent().parent().remove();
+                }
+                else {
+                    $(this).parent().remove();
+                }
+                newVersion();
             });
 
             $(element).on('click', '.remove-row', function(e){
                 e.preventDefault();
                 e.stopPropagation();
                 $(this).parent().parent().remove();
+                newVersion();
             });
 
             function newVersion() {
