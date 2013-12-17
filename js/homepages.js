@@ -238,6 +238,25 @@ define([
                 }
             }
 
+            $(window).keydown(function(e){
+                if(e.metaKey && e.shiftKey &&  e.keyCode == 90) { // Mac Redo CMD + SHIFT + Z
+                    e.preventDefault();
+                    redo($('.homepage-item'));
+                }
+                else if(e.metaKey && e.keyCode == 90) { // Mac Undo CMD + Z
+                    e.preventDefault();
+                    undo($('.homepage-item'));
+                }
+                else if(e.ctrlKey && e.keyCode == 89) { // Win Redo CMD + Y
+                    e.preventDefault();
+                    redo($('.homepage-item'));
+                }
+                else if(e.ctrlKey && e.keyCode == 90) { // Win Undo CMD + Z
+                    e.preventDefault();
+                    undo($('.homepage-item'));
+                }
+            });
+
             $('.focus').on('click', function(e){
                 e.preventDefault();
                 $('#top, footer').slideToggle();
