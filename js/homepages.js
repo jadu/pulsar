@@ -163,7 +163,7 @@ define([
                             var newSpan = 'grid-span-' + operatingSpan;
                             $('.operating').removeClass(oldSpan).addClass(newSpan);
                             $('.operating .resizer .indicator').css({width : '0', right : '0' });
-                            columnsResized = 0; 
+                            columnsResized = 0;
                         }
                     }
                 }
@@ -198,6 +198,18 @@ define([
                     $('.operating-row').removeClass('operating-row');
                     newVersion();
                 }
+            });
+
+            $(element).on('click', '.remove-widget', function(e){
+                e.preventDefault();
+                e.stopPropagation();
+                $(this).parent().remove();
+            });
+
+            $(element).on('click', '.remove-row', function(e){
+                e.preventDefault();
+                e.stopPropagation();
+                $(this).parent().parent().remove();
             });
 
             function newVersion() {
@@ -249,7 +261,7 @@ define([
             var resizerLeft = $('<div class="resizer resizer__left"></div>');
             homepage.forEach(function(homepageRow, index){
                 var rowDOM = $('<div class="grid-container widget-row"></div>');
-                var rowHandler = $('<div class="row-handler column grid-span-12"></div>');
+                var rowHandler = $('<div class="row-handler column grid-span-12"><a class="icon-remove remove-row></a></div>');
                 var rowNo = parseInt(index) + 1;
                 var rowTitle = 'Row ' + rowNo;
                 rowHandler.append(rowTitle);
@@ -260,7 +272,7 @@ define([
                     var guid = widget.guid;
                     var version = widget.version;
                     var classes = widget.classes;
-                    var loadingSpinner = $('<div><i class="icon-spinner"></i></div>');
+                    var loadingSpinner = $('<div><i class="icon-spinner"></i><a class="remove-widget icon-remove"></a></div>');
                     loadingSpinner.addClass(classes).append(resizer);
                     rowDOM.append(loadingSpinner);
                     $.ajax({
@@ -283,7 +295,6 @@ define([
             });
             element.append(homepageDOM);
             versions[0] = homepageDOM;
-            console.log(versions);
         }
 
         function loadHomepageObject(json, element) {
