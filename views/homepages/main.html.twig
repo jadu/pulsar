@@ -4,7 +4,6 @@
 {% import '@pulsar/pulsar/helpers/flash.html.twig' as flash %}
 {% import '@pulsar/pulsar/helpers/pulsar.html.twig' as pulsar %}
 
-{% block flash_message %}{{ parent() }}{% endblock %}
 {% block title %}{{ parent() }}{% endblock %}
 
 {% set heading = '' %}
@@ -65,12 +64,3 @@
     ])
   }}
 {% endblock %}
-
-{% block javascript %}
-  <script>
-  require(['tray'], function() {
-      $('#tray').tray();
-  });
-  </script>
-{% endblock %}
-

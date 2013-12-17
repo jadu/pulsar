@@ -70,7 +70,7 @@ define([
           $('.widget__title').text($this.data('widget-title'));
           $('.widget__description').text($this.data('widget-description'));
           $('.widget__price').text($this.data('widget-price'));
-
+          
           $('.tray__detail .widget')
             .data('widget-guid', $this.data('widget-guid'))
             .data('widget-version', $this.data('widget-version'))

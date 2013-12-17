@@ -89,6 +89,7 @@ $cyan : #ea33a3;
 }
 
 .grid-container {
+    float: left; // need's to have height so we can drop things on it
     position: relative;
     overflow: visible;
     margin-bottom: 1.2em;
@@ -115,4 +116,8 @@ $cyan : #ea33a3;
 
 .homepage {
     padding-bottom: 2em;
+}
+
+.row-droppable {
+    border: 2px dashed $cyan;
 }
