@@ -29,16 +29,23 @@ $cyan : #ea33a3;
     position: relative;
     z-index: 0;
     &:hover, &.operating {
-        box-shadow:  2px 2px 0 $cyan,
-                     -2px -2px 0 $cyan;
         z-index: 99;
-        .resizer {
+        .resizer, .overlay {
             display: block;
         }
         .icon-container {
             display: block;
             cursor: pointer;
         }
+    }
+    .overlay {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        background: rgba($cyan,.15);
+        display: none;
     }
     .icon-spinner:before {
         -webkit-transform-origin: center center;
@@ -79,7 +86,7 @@ $cyan : #ea33a3;
     display: block;
     height: 100%;
     width: 8px;
-    border-right:1px solid $cyan;
+    border-right:2px solid $cyan;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -89,7 +96,7 @@ $cyan : #ea33a3;
     display: none;
     cursor: ew-resize;
     .indicator {
-        display: block;
+        display: none;
         position: absolute;
         width: 0;
         height: 100%;
@@ -115,10 +122,10 @@ $cyan : #ea33a3;
 
 .grid-container {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     margin-bottom: 1.2em;
     clear: both;
-    &:hover {
+    &:hover, &.operating-on-child {
         .row-handler {
             display: block;
             opacity: 1;
