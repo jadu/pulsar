@@ -231,15 +231,13 @@ define([
                 if(dragging) {
                     dragging = false;
                     $('.operating').removeClass('operating');
-<<<<<<< HEAD
 
                     // check whether we need to keep or remove our new drop target
                     if (newRowPresent) {
                         removeNewRow();
                     }
-=======
+
                     $('.operating-on-child').removeClass('operating-on-child');
->>>>>>> d91e44b961b26946f80301cb3978e35357cf94bd
                     newVersion();
                 }
                 if(rowDragging) {
