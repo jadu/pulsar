@@ -218,11 +218,19 @@ define([
             $(element).on('click', '.remove-widget', function(e){
                 e.preventDefault();
                 e.stopPropagation();
-                if($(this).parent().parent().children().length == 2){ // then it's the last widget in the row
-                    $(this).parent().parent().remove();
+                if($(this).parent().parent().parent().children().length == 2){ // then it's the last widget in the row
+                    $(this).parent().parent().parent().fadeOut(300, function() {
+                        $(this).remove();
+                    });
                 }
                 else {
-                    $(this).parent().remove();
+                    $(this).parent().parent().fadeOut(300, function() {
+                        var remover = $(this);
+                        remover.next().css({'margin-left' : remover.outerWidth()});
+                        remover.next().animate({'margin-left' : ''}, 200, function() {
+                            remover.remove();
+                        });
+                    });
                 }
                 newVersion();
             });
