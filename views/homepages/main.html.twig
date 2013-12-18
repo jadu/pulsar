@@ -42,8 +42,18 @@
 {% block actionsbar %}
   {{ 
     html.button_group([
-      html.button(label = html.icon('undo') ~ '', href = '#', type = 'link', attributes = 'data-action=undo'),
-      html.button(label = html.icon('rotate-right') ~ '', href = '#', type = 'link', attributes = 'data-action=redo')
+      html.button(
+        label = html.icon('undo') ~ '', 
+        href = '#', 
+        type = 'link', 
+        attributes = 'data-action=undo'
+      ),
+      html.button(
+        label = html.icon('rotate-right') ~ '', 
+        href = '#', 
+        type = 'link', 
+        attributes = 'data-action=redo'
+      ),
       html.button(
         label = html.icon('eye-open'),
         class = 'focus',
