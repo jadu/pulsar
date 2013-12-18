@@ -82,6 +82,7 @@ define([
                 dragging = true;
                 originalX = e.pageX;
                 $(this).addClass('operating');
+                $(this).parent().addClass('operating-on-child');
             });
 
             $(element).on('mousedown', '.row-handler', function(e){
@@ -97,7 +98,9 @@ define([
                 e.preventDefault();
                 resizing = true;
                 originalX = e.pageX;
+                $(this).children('.indicator').show();
                 $(this).parent().addClass('operating');
+                $(this).parent().parent().addClass('operating-on-child');
             }).on('mouseup', function(e){
                 e.preventDefault();
             });
@@ -216,21 +219,27 @@ define([
                         $('.operating').removeClass(oldSpan).addClass(newSpan);
                         $('.operating .resizer .indicator').css({width : '0', right : '0' });
                         $('.operating').removeClass('operating');
+                        $('.operating-on-child').removeClass('operating-on-child');
                         if(columnsResized != 0) {
                             newVersion();
                         }
                     }
+                    $('.indicator').hide();
                     columnsResized = 0;
                     resizing = false;
                 }
                 if(dragging) {
                     dragging = false;
                     $('.operating').removeClass('operating');
+<<<<<<< HEAD
 
                     // check whether we need to keep or remove our new drop target
                     if (newRowPresent) {
                         removeNewRow();
                     }
+=======
+                    $('.operating-on-child').removeClass('operating-on-child');
+>>>>>>> d91e44b961b26946f80301cb3978e35357cf94bd
                     newVersion();
                 }
                 if(rowDragging) {
@@ -244,20 +253,21 @@ define([
                 e.preventDefault();
                 e.stopPropagation();
                 if($(this).parent().parent().parent().children().length == 2){ // then it's the last widget in the row
-                    $(this).parent().parent().parent().fadeOut(300, function() {
+                    $(this).parent().parent().parent().fadeOut(200, function() {
                         $(this).remove();
+                        newVersion();
                     });
                 }
                 else {
-                    $(this).parent().parent().fadeOut(300, function() {
+                    $(this).parent().parent().fadeOut(100, function() {
                         var remover = $(this);
                         remover.next().css({'margin-left' : remover.outerWidth()});
-                        remover.next().animate({'margin-left' : ''}, 200, function() {
+                        remover.next().animate({'margin-left' : ''}, 120, function() {
                             remover.remove();
+                            newVersion();
                         });
                     });
                 }
-                newVersion();
             });
 
             $(element).on('click', '.remove-row', function(e){
@@ -338,7 +348,7 @@ define([
                     var guid = widget.guid;
                     var version = widget.version;
                     var classes = widget.classes;
-                    var loadingSpinner = $('<div><i class="icon-spinner"></i><div class="icon-container"><a class="edit-widget-settings icon-wrench"></a> <a class="remove-widget icon-remove"></a></div></div>');
+                    var loadingSpinner = $('<div><div class="overlay"></div><i class="icon-spinner"></i><div class="icon-container"><a class="edit-widget-settings icon-wrench"></a> <a class="remove-widget icon-remove"></a></div></div>');
                     loadingSpinner.addClass(classes).append(resizer);
                     rowDOM.append(loadingSpinner);
                     $.ajax({
