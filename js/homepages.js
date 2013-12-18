@@ -69,8 +69,7 @@ define([
           
           // add a new empty drop target when dragging starts
           if (!newRowPresent) {
-            createRow();
-            newRowPresent = true;
+            createNewRow();
           }
 
           var operator = $('.operating');
@@ -189,17 +188,7 @@ define([
 
           // check whether we need to keep or remove our new drop target
           if (newRowPresent) {
-
-            // our new row *should* always be the last one added
-            var lastRow = $('.widget-row:last-of-type');
-
-            // if the new row doesn't contain widgets, remove it
-            if (lastRow.find('.widget').length <= 0) {
-              lastRow.remove();
-            }
-
-            // reset the flag for the next dragging operation
-            newRowPresent = false;
+            removeNewRow();
           }
         }
         if(rowDragging) {
@@ -207,7 +196,6 @@ define([
           $('.operating-row').removeClass('operating-row');
         }
       });
-
 
       $('.focus').on('click', function(e){
         $('#top, footer').slideToggle();
@@ -276,10 +264,10 @@ define([
       element.append(homepageDOM);
     }
 
-    function createRow() {
+    function createNewRow() {
       var rows = $('.widget-row'),
           lastRow = $('.widget-row:last-of-type'),
-          rowDom = $('<div class="grid-container widget-row"></div>'),
+          rowDom = $('<div class="grid-container widget-row widget-row-new"></div>'),
           rowHandler = $('<div class="row-handler column grid-span-12"></div>'),
           rowNo = rows.length += 1,
           rowTitle = 'Row ' + rowNo;
@@ -287,6 +275,21 @@ define([
       rowHandler.append(rowTitle);
       rowDom.append(rowHandler);
       lastRow.after(rowDom);
+
+      newRowPresent = true;
+    }
+
+    function removeNewRow() {
+      // our new row *should* always be the last one added
+      var lastRow = $('.widget-row-new');
+
+      // if the new row doesn't contain widgets, remove it
+      if (lastRow.find('.widget').length <= 0) {
+        lastRow.remove();
+      }
+      
+      // reset the flag for the next dragging operation
+      newRowPresent = false;
     }
 
     function loadHomepageObject(json, element) {
@@ -313,6 +316,12 @@ define([
        * will be completed before the user clicks this button
        */
       $('[data-toggle=tray]').on('click', function() {
+        if (!newRowPresent) {
+          createNewRow();
+        } else {
+          removeNewRow();
+        }
+
         initDroppable();
       });
     }
