@@ -196,9 +196,9 @@ define([
                         $('.operating').removeClass(oldSpan).addClass(newSpan);
                         $('.operating .resizer .indicator').css({width : '0', right : '0' });
                         $('.operating').removeClass('operating');
-                    }
-                    if(columnsResized != 0) {
-                        newVersion();
+                        if(columnsResized != 0) {
+                            newVersion();
+                        }
                     }
                     columnsResized = 0;
                     resizing = false;
@@ -305,7 +305,7 @@ define([
                     var guid = widget.guid;
                     var version = widget.version;
                     var classes = widget.classes;
-                    var loadingSpinner = $('<div><i class="icon-spinner"></i><a class="remove-widget icon-remove"></a></div>');
+                    var loadingSpinner = $('<div><i class="icon-spinner"></i><div class="icon-container"><a class="edit-widget-settings icon-wrench"></a> <a class="remove-widget icon-remove"></a></div></div>');
                     loadingSpinner.addClass(classes).append(resizer);
                     rowDOM.append(loadingSpinner);
                     $.ajax({
