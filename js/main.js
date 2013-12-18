@@ -1,5 +1,5 @@
 // The default path used by the Grunfile
-var path = '..';
+var path = '';
 
 // Set by /public_html/jadu/assets/js/config.js
 if (window.jadu.requireJsPath) {

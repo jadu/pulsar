@@ -37,7 +37,7 @@ define([
             widgetSpan = 4,
             widgetRemoveAttribute = '[data-widget-action=remove]';
             currentVersion = 0,
-            homepageHtml,
+            homepageHtml = '',
             versions = [],
             changed = false;
 
