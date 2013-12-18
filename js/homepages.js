@@ -14,6 +14,8 @@ define([
     var dragging = false,
       resizing = false,
       rowDragging = false,
+      newRow,
+      newRowPresent = false,
       originalX = 0,
       currentX = 0,
       originalY = 0,
@@ -64,6 +66,13 @@ define([
 
       $('body').on('mousemove', function(e){
         if(dragging) {
+          
+          // add a new empty drop target when dragging starts
+          if (!newRowPresent) {
+            createRow();
+            newRowPresent = true;
+          }
+
           var operator = $('.operating');
           currentX = e.pageX;
           var diffX = currentX - originalX;
@@ -177,12 +186,28 @@ define([
         if(dragging) {
           dragging = false;
           $('.operating').removeClass('operating');
+
+          // check whether we need to keep or remove our new drop target
+          if (newRowPresent) {
+
+            // our new row *should* always be the last one added
+            var lastRow = $('.widget-row:last-of-type');
+
+            // if the new row doesn't contain widgets, remove it
+            if (lastRow.find('.widget').length <= 0) {
+              lastRow.remove();
+            }
+
+            // reset the flag for the next dragging operation
+            newRowPresent = false;
+          }
         }
         if(rowDragging) {
           rowDragging = false;
           $('.operating-row').removeClass('operating-row');
         }
       });
+
 
       $('.focus').on('click', function(e){
         $('#top, footer').slideToggle();
@@ -249,6 +274,19 @@ define([
         ajaxLoop(0, homepageRow);
       });
       element.append(homepageDOM);
+    }
+
+    function createRow() {
+      var rows = $('.widget-row'),
+          lastRow = $('.widget-row:last-of-type'),
+          rowDom = $('<div class="grid-container widget-row"></div>'),
+          rowHandler = $('<div class="row-handler column grid-span-12"></div>'),
+          rowNo = rows.length += 1,
+          rowTitle = 'Row ' + rowNo;
+
+      rowHandler.append(rowTitle);
+      rowDom.append(rowHandler);
+      lastRow.after(rowDom);
     }
 
     function loadHomepageObject(json, element) {
@@ -365,6 +403,7 @@ define([
           isFetched();   
         }
       });
+
     }
 
   })(jQuery, window, document);
