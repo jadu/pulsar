@@ -251,8 +251,9 @@ define([
             $(element).on('click', '.remove-widget', function(e){
                 e.preventDefault();
                 e.stopPropagation();
-                if($(this).parent().parent().parent().children().length == 2){ // then it's the last widget in the row
-                    $(this).parent().parent().parent().fadeOut(200, function() {
+                var widgetRow = $(this).parent().parent().parent();
+                if(widgetRow.children().length == 2){ // then it's the last widget in the row
+                    widgetRow.fadeOut(200, function() {
                         $(this).remove();
                         newVersion();
                     });
@@ -272,20 +273,14 @@ define([
             $(element).on('click', '.remove-row', function(e){
                 e.preventDefault();
                 e.stopPropagation();
-                var rowHeight =  $(this).parent().parent().outerHeight();
-                $(this).parent().parent().fadeOut(100, function() {
+                var rowToHandle = $(this).parent().parent();
+                var rowHeight =  rowToHandle.outerHeight();
+                rowToHandle.animate({'opacity' : 0}, 150, function() {
                     var remover = $(this);
-                    if($(this).next().length) {
-                        $(this).next().css({'margin-top' : rowHeight });
-                        $(this).next().animate({'margin-top' : ''}, 120, function(){
-                            remover.remove();
-                            newVersion();
-                        });
-                    }
-                    else {
-                        remove.remove();
+                    remover.slideUp(120, function(){
+                        remover.remove();
                         newVersion();
-                    }
+                    });
                 });
             });
 
