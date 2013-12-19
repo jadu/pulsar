@@ -400,7 +400,8 @@ define([
         }
 
         function loadHomepageObject(json, element) {
-            var homepageLiteral = $.parseJSON(JSON.stringify(json));
+            var homepageLiteral = $.parseJSON(json); // Others
+            //var homepageLiteral = $.parseJSON(JSON.stringify(json)); // IE
             paintHomepage(element, homepageLiteral);
         }
 
