@@ -68,10 +68,6 @@ define([
             var elementHtml = $('.homepage-item').html();
             elementHtml = $(elementHtml);
             console.log('versions: ' + versions.length);
-            for(var i = currentVersion + 1; i < versions.length; i++) {
-                console.log('i' + i);
-                delete versions[i];
-            }
             versions[currentVersion + 1] = elementHtml;
             currentVersion += 1;
         }
@@ -287,6 +283,7 @@ define([
             function undo(element) {
                 if(currentVersion > 0) {
                     element.empty();
+                    console.log('back to version ' + (currentVersion - 1));
                     var undoHtml = versions[currentVersion - 1];
                     element.append(undoHtml);
                     currentVersion -= 1;
@@ -421,7 +418,6 @@ define([
             }).done(function (data) {
                 loadHomepageObject(data, element);
             });
-            attachEvents(element);
 
             // set up the tray
             $(trayContainer).tray();
