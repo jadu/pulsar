@@ -28,11 +28,18 @@ define([
             versions = [],
             fetchRetryTimeout = 50,
             fetchRetryLimit = 5,
+            resizer = '<div class="resizer"><div class="indicator"></div></div>',
             trayContainer = '.tray',
             widgetConfig,
             widgetData,
             widgetClass = '.widget',
             widgetDataContainer = '#widget__data',
+            widgetOverlay = '<div class="overlay"></div>' +
+                            '<i class="icon-spinner"></i>' +
+                            '<div class="icon-container">' +
+                            '<a class="edit-widget-settings icon-wrench"></a>' +
+                            '<a class="remove-widget icon-remove"></a>' +
+                            '</div>',
             widgetPath = '/var/widgets/',
             widgetSpan = 4,
             widgetRemoveAttribute = '[data-widget-action=remove]';
@@ -344,7 +351,6 @@ define([
 
         function paintHomepage(element, homepage) {
             var homepageDOM = $('<div class="homepage-item"></div>');
-            var resizer = '<div class="resizer"><div class="indicator"></div></div>';
             var resizerLeft = $('<div class="resizer resizer__left"></div>');
             homepage.forEach(function(homepageRow, index){
                 var rowDOM = $('<div class="grid-container widget-row"></div>');
@@ -360,8 +366,11 @@ define([
                     var guid = widget.guid;
                     var version = widget.version;
                     var classes = widget.classes;
-                    var loadingSpinner = $('<div><div class="overlay"></div><i class="icon-spinner"></i><div class="icon-container"><a class="edit-widget-settings icon-wrench"></a> <a class="remove-widget icon-remove"></a></div></div>');
-                    loadingSpinner.addClass(classes).append(resizer);
+                    
+                    var loadingSpinner = $('<div></div>')
+                        .append($(widgetOverlay), $(resizer))
+                        .addClass(classes);
+                    
                     rowDOM.append(loadingSpinner);
                     $.ajax({
                         url: widgetPath + guid + '/' + version + '/index.php',
@@ -504,8 +513,9 @@ define([
 
                             // populate widget content
                             var widget = droppedWidget.html(widgetData)
-                                          .addClass('grid-span-' + widgetSpan + ' column')
-                                          .uniqueId(); // attach unique identifier
+                                          .addClass('grid-span-' + widgetSpan + ' column homepage-widget')
+                                          .append($(widgetOverlay), $(resizer))
+                                          .uniqueId();
 
                             // reset last-appended flag on all widgets except this one
                             $(widgetClass).not(widget)
