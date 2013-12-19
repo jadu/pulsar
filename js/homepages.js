@@ -274,20 +274,12 @@ define([
                 e.stopPropagation();
                 var rowToHandle = $(this).parent().parent();
                 var rowHeight =  rowToHandle.outerHeight();
-                rowToHandle.fadeOut(100, function() {
+                rowToHandle.animate({'opacity' : 0}, 150, function() {
                     var remover = $(this);
-                    var nextRow = $(this).next();
-                    if(nextRow.length) {
-                        nextRow.css({'margin-top' : rowHeight });
-                        nextRow.animate({'margin-top' : ''}, 120, function(){
-                            remover.remove();
-                            newVersion();
-                        });
-                    }
-                    else {
-                        remove.remove();
+                    remover.slideUp(120, function(){
+                        remover.remove();
                         newVersion();
-                    }
+                    });
                 });
             });
 
