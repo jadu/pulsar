@@ -107,7 +107,7 @@ define([
 
             $('body').on('mousemove', function(e){
                 if(dragging) {
-                    
+
                     // add a new empty drop target when dragging starts
                     if (!newRowPresent) {
                         createNewRow();
@@ -271,8 +271,21 @@ define([
             $(element).on('click', '.remove-row', function(e){
                 e.preventDefault();
                 e.stopPropagation();
-                $(this).parent().parent().remove();
-                newVersion();
+                var rowHeight =  $(this).parent().parent().outerHeight();
+                $(this).parent().parent().fadeOut(100, function() {
+                    var remover = $(this);
+                    if($(this).next().length) {
+                        $(this).next().css({'margin-top' : rowHeight });
+                        $(this).next().animate({'margin-top' : ''}, 120, function(){
+                            remover.remove();
+                            newVersion();
+                        });
+                    }
+                    else {
+                        remove.remove();
+                        newVersion();
+                    }
+                });
             });
 
             function undo(element) {
@@ -335,10 +348,11 @@ define([
             var resizerLeft = $('<div class="resizer resizer__left"></div>');
             homepage.forEach(function(homepageRow, index){
                 var rowDOM = $('<div class="grid-container widget-row"></div>');
-                var rowHandler = $('<div class="row-handler column grid-span-12"><a class="icon-remove remove-row></a></div>');
+                var rowHandler = $('<div class="row-handler column grid-span-12"></div>');
                 var rowNo = parseInt(index) + 1;
                 var rowTitle = 'Row ' + rowNo;
                 rowHandler.append(rowTitle);
+                rowHandler.append('<a class="icon-remove remove-row"></a>');
                 rowDOM.append(rowHandler);
                 var widgetCount = homepageRow.length;
                 function ajaxLoop(widgetIndex, rowArray) {
@@ -394,7 +408,7 @@ define([
             if (lastRow.find('.widget').length <= 0) {
                 lastRow.remove();
             }
-            
+
             // reset the flag for the next dragging operation
             newRowPresent = false;
         }
@@ -516,7 +530,7 @@ define([
                      * if the fetch started by the dragging event hasn't finished,
                      * keep checking for the response...
                      */
-                    isFetched();   
+                    isFetched();
                 }
             });
 
