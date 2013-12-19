@@ -28,6 +28,7 @@ define([
             versions = [],
             fetchRetryTimeout = 50,
             fetchRetryLimit = 5,
+            rowMarkup = '<div class="row-handler column grid-span-12"><a class="icon-remove remove-row"></a></div>',
             trayContainer = '.tray',
             widgetConfig,
             widgetData,
@@ -348,7 +349,7 @@ define([
             var resizerLeft = $('<div class="resizer resizer__left"></div>');
             homepage.forEach(function(homepageRow, index){
                 var rowDOM = $('<div class="grid-container widget-row"></div>');
-                var rowHandler = $('<div class="row-handler column grid-span-12"></div>');
+                var rowHandler = $(rowMarkup);
                 var rowNo = parseInt(index) + 1;
                 var rowTitle = 'Row ' + rowNo;
                 rowHandler.append(rowTitle);
@@ -389,7 +390,7 @@ define([
             var rows = $('.widget-row'),
                 lastRow = $('.widget-row:last-of-type'),
                 rowDom = $('<div class="grid-container widget-row widget-row-new"></div>'),
-                rowHandler = $('<div class="row-handler column grid-span-12"></div>'),
+                rowHandler = $(rowMarkup),
                 rowNo = rows.length += 1,
                 rowTitle = 'Row ' + rowNo;
 
