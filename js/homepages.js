@@ -490,7 +490,7 @@ define([
 
                             // populate widget content
                             var widget = droppedWidget.html(widgetData)
-                                          .addClass('grid-span-' + widgetSpan + ' column')
+                                          .addClass('grid-span-' + widgetSpan + ' column homepage-widget')
                                           .uniqueId(); // attach unique identifier
 
                             // reset last-appended flag on all widgets except this one
