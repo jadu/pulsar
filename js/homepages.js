@@ -318,11 +318,18 @@ define([
                 else {
                     $(this).parent().parent().fadeOut(100, function() {
                         var remover = $(this);
-                        remover.next().css({'margin-left' : remover.outerWidth()});
-                        remover.next().animate({'margin-left' : ''}, 120, function() {
+                        var nextWidget = remover.next();
+                        if(nextWidget.length) {
+                            remover.next().css({'margin-left' : remover.outerWidth()});
+                            remover.next().animate({'margin-left' : ''}, 120, function() {
+                                remover.remove();
+                                newVersion();
+                            });
+                        }
+                        else {
                             remover.remove();
                             newVersion();
-                        });
+                        }
                     });
                 }
             });
