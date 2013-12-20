@@ -40,14 +40,13 @@ define([
             currentVersion = 0,
             homepageHtml = '',
             versions = [],
+            startPosition = 0, // used for calculating if a new version should be created when something is moved
             changed = false;
 
         function createHomepageObject(homepageElement) {
             var homepageObject = [];
             var i = 0;
-            console.log(homepageElement.html());
             $(homepageElement).children('.widget-row').each(function(){
-                console.log("Loop");
                 var row = [];
                 var thisRow = $(this);
                 thisRow.children('.homepage-widget').each(function(){
@@ -64,12 +63,68 @@ define([
             return homepageObject;
         }
 
+        function paintHomepage(element, homepage) {
+            var homepageDOM = $('<div class="homepage-item"></div>');
+            var resizer = '<div class="resizer"><div class="indicator"></div></div>';
+            var resizerLeft = $('<div class="resizer resizer__left"></div>');
+            homepage.forEach(function(homepageRow, index){
+                var rowDOM = $('<div class="grid-container widget-row"></div>');
+                var rowHandler = $(rowMarkup);
+                var rowNo = parseInt(index) + 1;
+                var rowTitle = 'Row ' + rowNo;
+                rowHandler.append(rowTitle);
+                rowHandler.append('<a class="icon-remove remove-row"></a>');
+                rowDOM.append(rowHandler);
+                var widgetCount = homepageRow.length;
+                function ajaxLoop(widgetIndex, rowArray) {
+                    var widget = rowArray[widgetIndex];
+                    var guid = widget.guid;
+                    var version = widget.version;
+                    var classes = widget.classes;
+                    var loadingSpinner = $('<div><div class="overlay"></div><i class="icon-spinner"></i><div class="icon-container"><a class="edit-widget-settings icon-wrench"></a> <a class="remove-widget icon-remove"></a></div></div>');
+                    loadingSpinner.addClass(classes).append(resizer);
+                    rowDOM.append(loadingSpinner);
+                    $.ajax({
+                        url: widgetPath + guid + '/' + version + '/index.php',
+                        success: function (data) {
+                            var dataElement = $(data);
+                            var newIndex = widgetIndex + 1;
+                            loadingSpinner.remove('h2').append(dataElement);
+                            if(newIndex < widgetCount) {
+                                var widget = rowArray[widgetIndex + 1];
+                                ajaxLoop(newIndex, rowArray);
+                            }
+                            else {
+                                homepageDOM.append(rowDOM);
+                                if(rowNo == homepage.length) {
+                                    versions[1] = homepageDOM.html();
+                                    currentVersion = 1;
+                                }
+                            }
+                        }
+                    });
+                }
+                ajaxLoop(0, homepageRow);
+            });
+            element.append(homepageDOM);
+        }
+
         function newVersion() {
             var elementHtml = $('.homepage-item').html();
-            elementHtml = $(elementHtml);
-            console.log('versions: ' + versions.length);
-            versions[currentVersion + 1] = elementHtml;
+            elementHtml = elementHtml;
+            var numberToRemove = versions.length - currentVersion; // we want to remove everything after the current version in the array
+            if(numberToRemove > 1) {
+                // if the 'current' version (i.e. the version before the user's change) is not the latest change
+                // then we have to remove everything after it in the versions array, so that the user
+                // cannot perform the redo function to get to 'old' versions of their homepage
+                numberToRemove *= -1; // so we can splice from the end of the versions array
+                numberToRemove += 1;
+                versions.splice(numberToRemove);
+            }
             currentVersion += 1;
+            versions[currentVersion] = elementHtml; // add the new version we've just created
+            startPosition = 0; //restart start position for next moves
+            console.log('I made a version 4 u bbz');
         }
 
         function attachEvents(element) {
@@ -118,11 +173,13 @@ define([
                             operator.next().after(operator);
                             diffX = 0;
                             originalX = e.pageX;
+                            startPosition += 1;
                         }
                         else if(diffX > 90) {
                             manipulateOffset(operator, 'right');
                             diffX = 0;
                             originalX = e.pageX;
+                            startPosition += 1;
                         }
                     }
                     else if(diffX < -60) {
@@ -130,11 +187,13 @@ define([
                             operator.prev('.homepage-widget').before(operator);
                             diffX = 0;
                             originalX = e.pageX;
+                            startPosition -= 1;
                         }
                         else if(diffX < -90) {
                             manipulateOffset(operator, 'left');
                             diffX = 0;
                             originalX = e.pageX;
+                            startPosition -= 1;
                         }
                     }
                 }
@@ -147,6 +206,7 @@ define([
                             operatingRow.prev('.widget-row').before(operatingRow);
                             diffY = 0;
                             originalY = e.pageY;
+                            startPosition += 1;
                         }
                     }
                     else if(diffY > 100) {
@@ -154,6 +214,7 @@ define([
                             operatingRow.next('.widget-row').after(operatingRow);
                             diffY = 0;
                             originalY = e.pageY;
+                            startPosition -= 1;
                         }
                     }
                 }
@@ -163,7 +224,7 @@ define([
                     columnWidth += columnMargin;
                     currentX = e.pageX;
                     var diffX = currentX - originalX;
-                    if(diffX > columnWidth) {
+                    if(diffX > columnWidth) { // if we should resize upwards
                         var operatingSpan = parseInt($('.operating').attr('class').split('grid-span-')[1].split(' ')[0]);
                         var oldSpan = 'grid-span-' + operatingSpan;
                         operatingSpan += columnsResized;
@@ -174,15 +235,17 @@ define([
                             $('.operating .resizer .indicator').css({ width : indicatorWidth + 'px', right : '-' + indicatorWidth + 'px'});
                             diffX = 0;
                             originalX = e.pageX;
+                            startPosition += 1;
                         }
                     }
-                    else if(diffX < -columnWidth) {
+                    else if(diffX < -columnWidth) { // if we should resize downwards
                         var indicatorWidth = parseInt($('.operating .resizer .indicator').outerWidth());
                         indicatorWidth -= columnWidth;
                         $('.operating .resizer .indicator').css({ width : indicatorWidth + 'px', right : '-' + indicatorWidth + 'px'});
                         diffX = 0;
                         originalX = e.pageX;
                         columnsResized -= 1;
+                        startPosition -= 1;
                         if(columnsResized < 0) {
                             var operatingSpan = parseInt($('.operating').attr('class').split('grid-span-')[1].split(' ')[0]);
                             var oldSpan = 'grid-span-' + operatingSpan;
@@ -217,9 +280,6 @@ define([
                         $('.operating .resizer .indicator').css({width : '0', right : '0' });
                         $('.operating').removeClass('operating');
                         $('.operating-on-child').removeClass('operating-on-child');
-                        if(columnsResized != 0) {
-                            newVersion();
-                        }
                     }
                     $('.indicator').hide();
                     columnsResized = 0;
@@ -235,11 +295,12 @@ define([
                     }
 
                     $('.operating-on-child').removeClass('operating-on-child');
-                    newVersion();
                 }
                 if(rowDragging) {
                     rowDragging = false;
                     $('.operating-row').removeClass('operating-row');
+                }
+                if(startPosition != 0) {
                     newVersion();
                 }
             });
@@ -281,12 +342,11 @@ define([
             });
 
             function undo(element) {
-                if(currentVersion > 0) {
+                if(currentVersion > 1) {
                     element.empty();
-                    console.log('back to version ' + (currentVersion - 1));
-                    var undoHtml = versions[currentVersion - 1];
-                    element.append(undoHtml);
                     currentVersion -= 1;
+                    var undoHtml = versions[currentVersion];
+                    element.append(undoHtml);
                 }
             }
 
@@ -333,49 +393,6 @@ define([
                 e.preventDefault();
                 redo($('.homepage-item'));
             });
-        }
-
-        function paintHomepage(element, homepage) {
-            var homepageDOM = $('<div class="homepage-item"></div>');
-            var resizer = '<div class="resizer"><div class="indicator"></div></div>';
-            var resizerLeft = $('<div class="resizer resizer__left"></div>');
-            homepage.forEach(function(homepageRow, index){
-                var rowDOM = $('<div class="grid-container widget-row"></div>');
-                var rowHandler = $(rowMarkup);
-                var rowNo = parseInt(index) + 1;
-                var rowTitle = 'Row ' + rowNo;
-                rowHandler.append(rowTitle);
-                rowHandler.append('<a class="icon-remove remove-row"></a>');
-                rowDOM.append(rowHandler);
-                var widgetCount = homepageRow.length;
-                function ajaxLoop(widgetIndex, rowArray) {
-                    var widget = rowArray[widgetIndex];
-                    var guid = widget.guid;
-                    var version = widget.version;
-                    var classes = widget.classes;
-                    var loadingSpinner = $('<div><div class="overlay"></div><i class="icon-spinner"></i><div class="icon-container"><a class="edit-widget-settings icon-wrench"></a> <a class="remove-widget icon-remove"></a></div></div>');
-                    loadingSpinner.addClass(classes).append(resizer);
-                    rowDOM.append(loadingSpinner);
-                    $.ajax({
-                        url: widgetPath + guid + '/' + version + '/index.php',
-                        success: function (data) {
-                            var dataElement = $(data);
-                            var newIndex = widgetIndex + 1;
-                            loadingSpinner.remove('h2').append(dataElement);
-                            if(newIndex < widgetCount) {
-                                var widget = rowArray[widgetIndex + 1];
-                                ajaxLoop(newIndex, rowArray);
-                            }
-                            else {
-                                homepageDOM.append(rowDOM);
-                            }
-                        }
-                    });
-                }
-                ajaxLoop(0, homepageRow);
-            });
-            element.append(homepageDOM);
-            versions[0] = homepageDOM;
         }
 
         function createNewRow() {
