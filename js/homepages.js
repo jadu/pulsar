@@ -124,7 +124,6 @@ define([
             currentVersion += 1;
             versions[currentVersion] = elementHtml; // add the new version we've just created
             startPosition = 0; //restart start position for next moves
-            console.log('I made a version 4 u bbz');
         }
 
         function attachEvents(element) {
