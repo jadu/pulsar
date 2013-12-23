@@ -43,7 +43,7 @@
   </div>
 {%- endmacro -%}
 
-{%- macro widget_list(widgets) -%}
+{%- macro widget_list(widgets, context = 'Dashboard') -%}
   {% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
   <div id="tray" class="tray">
     <div class="tray__column tray__categories">
@@ -79,7 +79,7 @@
   #}
       <h3 class="widget__title"></h3>
       <p class="widget__description"></p>
-      <div class="widget hide" data-widget-guid="" data-widget-version="" data-widget-title="" data-widget-description="" data-last-appended="true"><i class="icon-move"></i> Drag Me to your Dashboard</div>
+      <div class="widget hide" data-widget-guid="" data-widget-version="" data-widget-title="" data-widget-description="" data-last-appended="true"><i class="icon-move"></i> Drag Me to your {{ context }}</div>
     </div>
   </div>
   <input type="hidden" id="widget__data" />
