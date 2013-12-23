@@ -28,7 +28,7 @@ define([
             versions = [],
             fetchRetryTimeout = 50,
             fetchRetryLimit = 5,
-            rowMarkup = '<div class="row-handler column grid-span-12"><a class="icon-remove remove-row"></a></div>',
+            rowMarkup = '<div class="row-handler column grid-span-12"><a class="icon-magic fill-row"></a><a class="icon-remove remove-row"></a></div>',
             trayContainer = '.tray',
             widgetConfig,
             widgetData,
@@ -124,6 +124,17 @@ define([
             currentVersion += 1;
             versions[currentVersion] = elementHtml; // add the new version we've just created
             startPosition = 0; //restart start position for next moves
+            // check rows and enable/disable auto–fill button accordingly
+            $('.widget-row').each(function(){
+                var noOfWidgets = $(this).children('.homepage-widget').length;
+                var fillButton = $(this).find('.fill-row');
+                if(columnCount % noOfWidgets) {
+                    fillButton.addClass('disabled');
+                }
+                else {
+                    fillButton.removeClass('disabled');
+                }
+            });
         }
 
         function attachEvents(element) {
@@ -345,6 +356,15 @@ define([
                         newVersion();
                     });
                 });
+            });
+
+            $(element).on('click', '.fill-row', function(e){
+                e.stopPropagation();
+                var widgets = $(this).parent().parent().children('.homepage-widget');
+                var newSpan = columnCount / widgets.length;
+                newSpan = 'grid-span-' + newSpan;
+                widgets.addClass(newSpan);
+                newVersion();
             });
 
             function undo(element) {
