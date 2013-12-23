@@ -23,6 +23,7 @@ define([
             columnsResized = 0,
             alreadyResized = false,
             columnCount = 12,
+            mobileSize = 480,
             widgetPath = '/var/widgets/',
             homepagePath = '/var/homepages/',
             versions = [],
@@ -405,6 +406,24 @@ define([
             $('[data-action="redo"]').on('click', function(e){
                 e.preventDefault();
                 redo($('.homepage-item'));
+            });
+
+            $('[data-homepage-mode=mobile]').on('click', function(e){
+                e.preventDefault();
+                element.removeClass('tablet-view');
+                element.addClass('mobile-view');
+            });
+
+            $('[data-homepage-mode=tablet]').on('click', function(e){
+                e.preventDefault();
+                element.removeClass('mobile-view');
+                element.addClass('tablet-view');
+            });
+
+            $('[data-homepage-mode=desktop]').on('click', function(e){
+                e.preventDefault();
+                element.removeClass('mobile-view');
+                element.removeClass('tablet-view');
             });
         }
 
