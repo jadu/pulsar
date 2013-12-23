@@ -29,11 +29,18 @@ define([
             fetchRetryTimeout = 50,
             fetchRetryLimit = 5,
             rowMarkup = '<div class="row-handler column grid-span-12"><a class="icon-remove remove-row"></a></div>',
+            resizer = '<div class="resizer"><div class="indicator"></div></div>',
             trayContainer = '.tray',
             widgetConfig,
             widgetData,
             widgetClass = '.widget',
             widgetDataContainer = '#widget__data',
+            widgetOverlay = '<div class="overlay"></div>' +
+                            '<i class="icon-spinner"></i>' +
+                            '<div class="icon-container">' +
+                            '<a class="edit-widget-settings icon-wrench"></a>' +
+                            '<a class="remove-widget icon-remove"></a>' +
+                            '</div>',
             widgetPath = '/var/widgets/',
             widgetSpan = 4,
             widgetRemoveAttribute = '[data-widget-action=remove]';
@@ -401,6 +408,51 @@ define([
             });
         }
 
+        function paintHomepage(element, homepage) {
+            var homepageDOM = $('<div class="homepage-item"></div>');
+            var resizerLeft = $('<div class="resizer resizer__left"></div>');
+            homepage.forEach(function(homepageRow, index){
+                var rowDOM = $('<div class="grid-container widget-row"></div>');
+                var rowHandler = $('<div class="row-handler column grid-span-12"></div>');
+                var rowNo = parseInt(index) + 1;
+                var rowTitle = 'Row ' + rowNo;
+                rowHandler.append(rowTitle);
+                rowHandler.append('<a class="icon-remove remove-row"></a>');
+                rowDOM.append(rowHandler);
+                var widgetCount = homepageRow.length;
+                function ajaxLoop(widgetIndex, rowArray) {
+                    var widget = rowArray[widgetIndex];
+                    var guid = widget.guid;
+                    var version = widget.version;
+                    var classes = widget.classes;
+
+                    var loadingSpinner = $('<div></div>')
+                        .append($(widgetOverlay), $(resizer))
+                        .addClass(classes);
+
+                    rowDOM.append(loadingSpinner);
+                    $.ajax({
+                        url: widgetPath + guid + '/' + version + '/index.php',
+                        success: function (data) {
+                            var dataElement = $(data);
+                            var newIndex = widgetIndex + 1;
+                            loadingSpinner.remove('h2').append(dataElement);
+                            if(newIndex < widgetCount) {
+                                var widget = rowArray[widgetIndex + 1];
+                                ajaxLoop(newIndex, rowArray);
+                            }
+                            else {
+                                homepageDOM.append(rowDOM);
+                            }
+                        }
+                    });
+                }
+                ajaxLoop(0, homepageRow);
+            });
+            element.append(homepageDOM);
+            versions[0] = homepageDOM;
+        }
+
         function createNewRow() {
             var rows = $('.widget-row'),
                 lastRow = $('.widget-row:last-of-type'),
@@ -520,7 +572,8 @@ define([
                             // populate widget content
                             var widget = droppedWidget.html(widgetData)
                                           .addClass('grid-span-' + widgetSpan + ' column homepage-widget')
-                                          .uniqueId(); // attach unique identifier
+                                          .append($(widgetOverlay), $(resizer))
+                                          .uniqueId();
 
                             // reset last-appended flag on all widgets except this one
                             $(widgetClass).not(widget)
