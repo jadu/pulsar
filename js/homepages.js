@@ -409,24 +409,19 @@ define([
         }
 
         function paintHomepage(element, homepage) {
-            var homepageDOM = $('<div class="homepage-item"></div>');
-            var resizerLeft = $('<div class="resizer resizer__left"></div>');
+            var homepageDOM = $('<div class="homepage-item"></div>'),
+                resizerLeft = $('<div class="resizer resizer__left"></div>');
+                rowNo = 0;
             homepage.forEach(function(homepageRow, index){
-                var rowDOM = $('<div class="grid-container widget-row"></div>');
-                var rowHandler = $('<div class="row-handler column grid-span-12"></div>');
-                var rowNo = parseInt(index) + 1;
-                var rowTitle = 'Row ' + rowNo;
-                rowHandler.append(rowTitle);
-                rowHandler.append('<a class="icon-remove remove-row"></a>');
-                rowDOM.append(rowHandler);
-                var widgetCount = homepageRow.length;
+                rowNo++;
+                var rowDOM = createNewRow(true, rowNo),
+                    widgetCount = homepageRow.length;
                 function ajaxLoop(widgetIndex, rowArray) {
-                    var widget = rowArray[widgetIndex];
-                    var guid = widget.guid;
-                    var version = widget.version;
-                    var classes = widget.classes;
-
-                    var loadingSpinner = $('<div></div>')
+                    var widget = rowArray[widgetIndex],
+                        guid = widget.guid,
+                        version = widget.version,
+                        classes = widget.classes,
+                        loadingSpinner = $('<div></div>')
                         .append($(widgetOverlay), $(resizer))
                         .addClass(classes);
 
@@ -453,19 +448,24 @@ define([
             versions[0] = homepageDOM;
         }
 
-        function createNewRow() {
+        function createNewRow(returnRow, rowNo) {
             var rows = $('.widget-row'),
                 lastRow = $('.widget-row:last-of-type'),
                 rowDom = $('<div class="grid-container widget-row widget-row-new"></div>'),
                 rowHandler = $(rowMarkup),
-                rowNo = rows.length += 1,
                 rowTitle = 'Row ' + rowNo;
-
+            if(!rowNo) {
+                rowNo = rows.length + 1;
+            }
             rowHandler.append(rowTitle);
             rowDom.append(rowHandler);
-            lastRow.after(rowDom);
-
             newRowPresent = true;
+            if(returnRow) {
+                return rowDom;
+            }
+            else {
+                lastRow.after(rowDom);
+            }
         }
 
         function removeNewRow() {
