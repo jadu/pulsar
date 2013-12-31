@@ -452,12 +452,14 @@ define([
         function createNewRow(returnRow, rowNo) {
             var rows = $('.widget-row'),
                 lastRow = $('.widget-row:last-of-type'),
-                rowDom = $('<div class="grid-container widget-row widget-row-new"></div>'),
+                rowDom = $('<div class="grid-container widget-row"></div>'),
                 rowHandler = $(rowMarkup),
-                rowTitle = 'Row ' + rowNo;
+                rowTitle = '';
             if(!rowNo) {
-                rowNo = rows.length + 1;
+                rowNo = rows.length += 1;
+                rowDom.addClass('widget-row-new');
             }
+            rowTitle = 'Row ' + rowNo;
             rowHandler.append(rowTitle);
             rowDom.append(rowHandler);
             newRowPresent = true;
@@ -470,7 +472,7 @@ define([
         }
 
         function removeNewRow() {
-            // our new row *should* always be the last one added
+            // our new row *should* always be the last one
             var lastRow = $('.widget-row-new');
 
             // if the new row doesn't contain widgets, remove it
