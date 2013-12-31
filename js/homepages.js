@@ -412,6 +412,7 @@ define([
             var homepageDOM = $('<div class="homepage-item"></div>'),
                 resizerLeft = $('<div class="resizer resizer__left"></div>');
                 rowNo = 0;
+
             homepage.forEach(function(homepageRow, index){
                 rowNo++;
                 var rowDOM = createNewRow(true, rowNo),
