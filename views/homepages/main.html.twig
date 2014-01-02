@@ -8,7 +8,7 @@
 
 {% set heading = '' %}
 
-{% 
+{%
   set actions_menu = [
     html.link(
       label = html.icon('plus') ~ ' Create dashboard',
@@ -41,18 +41,18 @@
 {% endblock %}
 
 {% block actionsbar %}
-  {{ 
+  {{
     html.button_group([
       html.button(
-        label = html.icon('undo') ~ '', 
-        href = '#', 
-        type = 'link', 
+        label = html.icon('undo') ~ '',
+        href = '#',
+        type = 'link',
         attributes = 'data-action=undo'
       ),
       html.button(
-        label = html.icon('rotate-right') ~ '', 
-        href = '#', 
-        type = 'link', 
+        label = html.icon('rotate-right') ~ '',
+        href = '#',
+        type = 'link',
         attributes = 'data-action=redo'
       ),
       html.button(
@@ -69,9 +69,27 @@
         attributes = 'data-homepage-mode=focus'
       ),
       html.button(
-        label = html.icon('dashboard') ~ ' Widgets', 
-        href = '#', 
-        type = 'link', 
+        label = html.icon('mobile-phone'),
+        href = '#',
+        type = 'link',
+        attributes = 'data-homepage-mode=mobile'
+      ),
+      html.button(
+        label = html.icon('tablet'),
+        href = '#',
+        type = 'link',
+        attributes = 'data-homepage-mode=tablet'
+      ),
+      html.button(
+        label = html.icon('desktop'),
+        href = '#',
+        type = 'link',
+        attributes = 'data-homepage-mode=desktop'
+      ),
+      html.button(
+        label = html.icon('dashboard') ~ ' Widgets',
+        href = '#',
+        type = 'link',
         attributes = 'data-toggle=tray data-target=#tray'
       )
     ])
