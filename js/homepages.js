@@ -29,7 +29,7 @@ define([
             versions = [],
             fetchRetryTimeout = 50,
             fetchRetryLimit = 5,
-            rowMarkup = '<div class="row-handler column grid-span-12"><a class="icon-remove remove-row"></a></div>',
+            rowMarkup = '<div class="row-handler column grid-span-12"><a class="icon-magic fill-row"></a><a class="icon-remove remove-row"></a></div>',
             rowOverlay = '<div class="row-overlay"><i class="icon-plus-sign"></i> Drop widget here</div>',
             trayContainer = '.tray',
             widgetConfig,
@@ -77,7 +77,7 @@ define([
                     resizer = '<div class="resizer"><div class="indicator"></div></div>',
                     resizerLeft = '<div class="resizer resizer__left"></div>',
                     spinner = '<i class="icon-spinner"></i>';
- 
+
                 $(this)
                     .addClass('homepage-widget draggable resizable')
                     .prepend(overlay, spinner, controls)
@@ -105,7 +105,7 @@ define([
                         guid = widget.guid,
                         version = widget.version,
                         classes = widget.classes,
-                        
+
                     widgetContainer = widgetSkeleton
                                         .clone()
                                         .addClass(classes)
@@ -168,7 +168,7 @@ define([
         }
 
         /**
-         * binds the event handlers for all widgets in a painted homepage, and 
+         * binds the event handlers for all widgets in a painted homepage, and
          * those that will be created later through ajax
          */
         $.fn.makeDraggable = function() {
@@ -323,7 +323,7 @@ define([
                         }
                     }
                 }
-                
+
                 if(resizing) {
                     var columnWidth = parseInt($('.grid-span-1').outerWidth());
                     var columnMargin = parseInt($('.grid-span-1').css('margin-right')) + 1;
@@ -368,7 +368,7 @@ define([
                             columnsResized = 0;
                         }
                     }
-                }                
+                }
             }).on('mouseup', function(e){
                 if(resizing) {
                     if(!alreadyResized) {
@@ -493,20 +493,20 @@ define([
                 rowNo++;
                 var rowDOM = createNewRow(true, rowNo),
                     widgetCount = homepageRow.length;
-                
+
                 function ajaxLoop(widgetIndex, rowArray) {
                     var widget = rowArray[widgetIndex],
                         guid = widget.guid,
                         version = widget.version,
                         classes = widget.classes,
-                         
+
                     widgetContainer = widgetSkeleton
                                         .clone()
                                         .addClass(classes)
                                         .attachWidgetUI();
- 
+
                     rowDOM.append(widgetContainer);
- 
+
                     $.ajax({
                         url: widgetPath + guid + '/' + version + '/index.php',
                         success: function (data) {
