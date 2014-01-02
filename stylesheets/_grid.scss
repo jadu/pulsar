@@ -44,6 +44,14 @@ $gutter-size : $grid-gutter-width / $grid-container-width * 100;
     margin: auto;
     display: block;
     margin-bottom: 1.2em;
+    -webkit-transition: width .2s;
+            transition: width .2s;
+    .mobile-view & {
+        width: $small-width;
+    }
+    .tablet-view & {
+        width: $mid-width;
+    }
 }
 
 .grid-master {
@@ -103,6 +111,13 @@ $gutter-size : $grid-gutter-width / $grid-container-width * 100;
     &:last-child {
         margin-right: 0;
     }
+    .mobile-view & {
+        width: 100% !important;
+        margin-right: 0;
+        margin-left: 0 !important;
+        float: none;
+        clear: both;
+    }
     @media (max-width : $small-width) {
         width: 100% !important;
         margin-right: 0;
@@ -114,6 +129,7 @@ $gutter-size : $grid-gutter-width / $grid-container-width * 100;
         width: 100%;
     }
     -webkit-transition: width .2s;
+            transition: width .2s;
 }
 
 @for $i from 1 through $grid-column-count {

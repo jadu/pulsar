@@ -23,6 +23,7 @@ define([
             columnsResized = 0,
             alreadyResized = false,
             columnCount = 12,
+            mobileSize = 480,
             widgetPath = '/var/widgets/',
             homepagePath = '/var/homepages/',
             versions = [],
@@ -75,7 +76,7 @@ define([
                     resizer = '<div class="resizer"><div class="indicator"></div></div>',
                     resizerLeft = '<div class="resizer resizer__left"></div>',
                     spinner = '<i class="icon-spinner"></i>';
-
+ 
                 $(this)
                     .addClass('homepage-widget draggable resizable')
                     .prepend(overlay, spinner, controls)
@@ -152,6 +153,17 @@ define([
             currentVersion += 1;
             versions[currentVersion] = elementHtml; // add the new version we've just created
             startPosition = 0; //restart start position for next moves
+            // check rows and enable/disable auto–fill button accordingly
+            $('.widget-row').each(function(){
+                var noOfWidgets = $(this).children('.homepage-widget').length;
+                var fillButton = $(this).find('.fill-row');
+                if(columnCount % noOfWidgets) {
+                    fillButton.addClass('disabled');
+                }
+                else {
+                    fillButton.removeClass('disabled');
+                }
+            });
         }
 
         /**
@@ -233,6 +245,15 @@ define([
                     });
                 });
 
+                $(element).on('click', '.fill-row', function(e){
+                    e.stopPropagation();
+                    var widgets = $(this).parent().parent().children('.homepage-widget');
+                    var newSpan = columnCount / widgets.length;
+                    newSpan = 'grid-span-' + newSpan;
+                    widgets.addClass(newSpan);
+                    newVersion();
+                });
+
             });
         }
 
@@ -261,71 +282,78 @@ define([
                         startPosition += 1;
                     }
                 }
-                else if(diffX < -60) {
-                    if(!operator.is('[class*=offset]') && operator.prev('.homepage-widget').length) {
-                        operator.prev('.homepage-widget').before(operator);
-                        diffX = 0;
-                        originalX = e.pageX;
-                        startPosition -= 1;
+                if(rowDragging) {
+                    var operatingRow = $('.operating-row');
+                    var previousHeight = operatingRow.prev().outerHeight() * -1;
+                    var nextHeight = operatingRow.next().outerHeight();
+                    currentY = e.pageY;
+                    var diffY = currentY - originalY;
+                    if(diffY < -100 && diffY < previousHeight) {
+                        if(operatingRow.prev('.widget-row').length) {
+                            operatingRow.prev('.widget-row').before(operatingRow);
+                            diffY = 0;
+                            originalY = e.pageY;
+                            startPosition += 1;
+                        }
                     }
-                    else if(diffX < -90) {
-                        manipulateOffset(operator, 'left');
-                        diffX = 0;
-                        originalX = e.pageX;
-                        startPosition -= 1;
-                    }
-                }
-            }
-            if(rowDragging) {
-                var operatingRow = $('.operating-row');
-                currentY = e.pageY;
-                var diffY = currentY - originalY;
-                if(diffY < -100) {
-                    if(operatingRow.prev('.widget-row').length) {
-                        operatingRow.prev('.widget-row').before(operatingRow);
-                        diffY = 0;
-                        originalY = e.pageY;
-                        startPosition += 1;
+                    else if(diffY > 100 && diffY > nextHeight) {
+                        if(operatingRow.next('.widget-row').length) {
+                            operatingRow.next('.widget-row').after(operatingRow);
+                            diffY = 0;
+                            originalY = e.pageY;
+                            startPosition -= 1;
+                        }
                     }
                 }
-                else if(diffY > 100) {
-                    if(operatingRow.next('.widget-row').length) {
-                        operatingRow.next('.widget-row').after(operatingRow);
-                        diffY = 0;
-                        originalY = e.pageY;
-                        startPosition -= 1;
+                if(resizing) {
+                    var columnWidth = parseInt($('.grid-span-1').outerWidth());
+                    var columnMargin = parseInt($('.grid-span-1').css('margin-right')) + 1;
+                    columnWidth += columnMargin;
+                    currentX = e.pageX;
+                    var diffX = currentX - originalX;
+                    if(diffX > columnWidth) { // if we should resize upwards
+                        var operatingSpan = parseInt($('.operating').attr('class').split('grid-span-')[1].split(' ')[0]);
+                        var oldSpan = 'grid-span-' + operatingSpan;
+                        operatingSpan += columnsResized;
+                        if(operatingSpan < columnCount) {
+                            columnsResized += 1;
+                            var indicatorWidth = parseInt($('.operating .resizer .indicator').outerWidth());
+                            indicatorWidth += columnWidth;
+                            $('.operating .resizer .indicator').css({ width : indicatorWidth + 'px', right : '-' + indicatorWidth + 'px'});
+                            diffX = 0;
+                            originalX = e.pageX;
+                            startPosition += 1;
+                        }
                     }
-                }
-            }
-            if(resizing) {
-                var columnWidth = parseInt($('.grid-span-1').outerWidth());
-                var columnMargin = parseInt($('.grid-span-1').css('margin-right')) + 1;
-                columnWidth += columnMargin;
-                currentX = e.pageX;
-                var diffX = currentX - originalX;
-                if(diffX > columnWidth) { // if we should resize upwards
-                    var operatingSpan = parseInt($('.operating').attr('class').split('grid-span-')[1].split(' ')[0]);
-                    var oldSpan = 'grid-span-' + operatingSpan;
-                    operatingSpan += columnsResized;
-                    if(operatingSpan < columnCount) {
-                        columnsResized += 1;
+                    else if(diffX < -columnWidth) { // if we should resize downwards
                         var indicatorWidth = parseInt($('.operating .resizer .indicator').outerWidth());
-                        indicatorWidth += columnWidth;
+                        indicatorWidth -= columnWidth;
                         $('.operating .resizer .indicator').css({ width : indicatorWidth + 'px', right : '-' + indicatorWidth + 'px'});
                         diffX = 0;
                         originalX = e.pageX;
-                        startPosition += 1;
+                        columnsResized -= 1;
+                        startPosition -= 1;
+                        if(columnsResized < 0) {
+                            var operatingSpan = parseInt($('.operating').attr('class').split('grid-span-')[1].split(' ')[0]);
+                            var oldSpan = 'grid-span-' + operatingSpan;
+                            operatingSpan += columnsResized;
+                            if(operatingSpan < 1) {
+                                operatingSpan = 1;
+                            }
+                            else if(operatingSpan > 12) {
+                                operatingSpan = 12;
+                            }
+                            var newSpan = 'grid-span-' + operatingSpan;
+                            $('.operating').removeClass(oldSpan).addClass(newSpan);
+                            $('.operating .resizer .indicator').css({width : '0', right : '0' });
+                            columnsResized = 0;
+                        }
                     }
                 }
-                else if(diffX < -columnWidth) { // if we should resize downwards
-                    var indicatorWidth = parseInt($('.operating .resizer .indicator').outerWidth());
-                    indicatorWidth -= columnWidth;
-                    $('.operating .resizer .indicator').css({ width : indicatorWidth + 'px', right : '-' + indicatorWidth + 'px'});
-                    diffX = 0;
-                    originalX = e.pageX;
-                    columnsResized -= 1;
-                    startPosition -= 1;
-                    if(columnsResized < 0) {
+            }
+            }).on('mouseup', function(e){
+                if(resizing) {
+                    if(!alreadyResized) {
                         var operatingSpan = parseInt($('.operating').attr('class').split('grid-span-')[1].split(' ')[0]);
                         var oldSpan = 'grid-span-' + operatingSpan;
                         operatingSpan += columnsResized;
@@ -338,120 +366,176 @@ define([
                         var newSpan = 'grid-span-' + operatingSpan;
                         $('.operating').removeClass(oldSpan).addClass(newSpan);
                         $('.operating .resizer .indicator').css({width : '0', right : '0' });
-                        columnsResized = 0;
+                        $('.operating').removeClass('operating');
+                        $('.operating-on-child').removeClass('operating-on-child');
                     }
+                    $('.indicator').hide();
+                    columnsResized = 0;
+                    resizing = false;
                 }
-            }
-        }).on('mouseup', function(e){
-            if(resizing) {
-                if(!alreadyResized) {
-                    var operatingSpan = parseInt($('.operating').attr('class').split('grid-span-')[1].split(' ')[0]);
-                    var oldSpan = 'grid-span-' + operatingSpan;
-                    operatingSpan += columnsResized;
-                    if(operatingSpan < 1) {
-                        operatingSpan = 1;
-                    }
-                    else if(operatingSpan > 12) {
-                        operatingSpan = 12;
-                    }
-                    var newSpan = 'grid-span-' + operatingSpan;
-                    $('.operating').removeClass(oldSpan).addClass(newSpan);
-                    $('.operating .resizer .indicator').css({width : '0', right : '0' });
+                if(dragging) {
+                    dragging = false;
                     $('.operating').removeClass('operating');
+
+                    // check whether we need to keep or remove our new drop target
+                    if (newRowPresent) {
+                        removeNewRow();
+                    }
+
                     $('.operating-on-child').removeClass('operating-on-child');
                 }
-                $('.indicator').hide();
-                columnsResized = 0;
-                resizing = false;
-            }
-            if(dragging) {
-                dragging = false;
-                $('.operating').removeClass('operating');
-
-                // check whether we need to keep or remove our new drop target
-                if (newRowPresent) {
-                    removeNewRow();
+                if(rowDragging) {
+                    rowDragging = false;
+                    $('.operating-row').removeClass('operating-row');
                 }
+                if(startPosition != 0) {
+                    newVersion();
+                }
+            });
 
-                $('.operating-on-child').removeClass('operating-on-child');
+            function undo(element) {
+                if(currentVersion > 1) {
+                    element.empty();
+                    currentVersion -= 1;
+                    var undoHtml = versions[currentVersion];
+                    element.append(undoHtml);
+                }
             }
-            if(rowDragging) {
-                rowDragging = false;
-                $('.operating-row').removeClass('operating-row');
-            }
-            if(startPosition != 0) {
-                newVersion();
-            }
-        });
 
-        function undo(element) {
-            if(currentVersion > 1) {
-                element.empty();
-                currentVersion -= 1;
-                var undoHtml = versions[currentVersion];
-                element.append(undoHtml);
-                $('.widget-row').makeDroppable();
+            function redo(element) {
+                if(currentVersion < versions.length - 1) {
+                    element.empty();
+                    var redoHtml = versions[currentVersion + 1];
+                    element.append(redoHtml);
+                    $('.widget-row').makeDroppable();
+                    currentVersion += 1;
+                }
             }
-        }
 
-        function redo(element) {
-            if(currentVersion < versions.length - 1) {
-                element.empty();
-                var redoHtml = versions[currentVersion + 1];
-                element.append(redoHtml);
-                $('.widget-row').makeDroppable();
-                currentVersion += 1;
-            }
-        }
+            $(window).keydown(function(e){
+                if(e.metaKey && e.shiftKey &&  e.keyCode == 90) { // Mac Redo CMD + SHIFT + Z
+                    e.preventDefault();
+                    redo($('.homepage-item'));
+                }
+                else if(e.metaKey && e.keyCode == 90) { // Mac Undo CMD + Z
+                    e.preventDefault();
+                    undo($('.homepage-item'));
+                }
+                else if(e.ctrlKey && e.keyCode == 89) { // Win Redo CMD + Y
+                    e.preventDefault();
+                    redo($('.homepage-item'));
+                }
+                else if(e.ctrlKey && e.keyCode == 90) { // Win Undo CMD + Z
+                    e.preventDefault();
+                    undo($('.homepage-item'));
+                }
+            });
 
-        $(window).keydown(function(e){
-            if(e.metaKey && e.shiftKey &&  e.keyCode == 90) { // Mac Redo CMD + SHIFT + Z
+            $('.focus').on('click', function(e){
                 e.preventDefault();
-                redo($('.homepage-item'));
-            }
-            else if(e.metaKey && e.keyCode == 90) { // Mac Undo CMD + Z
+                $('#top, footer').slideToggle();
+                $('.grid-master').fadeToggle();
+            });
+
+            $('[data-action="undo"]').on('click', function(e){
                 e.preventDefault();
                 undo($('.homepage-item'));
-            }
-            else if(e.ctrlKey && e.keyCode == 89) { // Win Redo CMD + Y
+            });
+
+            $('[data-action="redo"]').on('click', function(e){
                 e.preventDefault();
                 redo($('.homepage-item'));
-            }
-            else if(e.ctrlKey && e.keyCode == 90) { // Win Undo CMD + Z
+            });
+
+            $('[data-homepage-mode=mobile]').on('click', function(e){
                 e.preventDefault();
-                undo($('.homepage-item'));
-            }
-        });
+                element.removeClass('tablet-view');
+                element.addClass('mobile-view');
+            });
 
-        $('.focus').on('click', function(e){
-            e.preventDefault();
-            $('#top, footer').slideToggle();
-            $('.grid-master').fadeToggle();
-        });
+            $('[data-homepage-mode=tablet]').on('click', function(e){
+                e.preventDefault();
+                element.removeClass('mobile-view');
+                element.addClass('tablet-view');
+            });
 
-        $('[data-action="undo"]').on('click', function(e){
-            e.preventDefault();
-            undo($('.homepage-item'));
-        });
+            $('[data-homepage-mode=desktop]').on('click', function(e){
+                e.preventDefault();
+                element.removeClass('mobile-view');
+                element.removeClass('tablet-view');
+            });
+        
 
-        $('[data-action="redo"]').on('click', function(e){
-            e.preventDefault();
-            redo($('.homepage-item'));
-        });
+        function paintHomepage(element, homepage) {
+            var homepageDOM = $('<div class="homepage-item"></div>'),
+                resizerLeft = $('<div class="resizer resizer__left"></div>');
+                rowNo = 0;
 
-        function createNewRow() {
+            homepage.forEach(function(homepageRow, index){
+                rowNo++;
+                var rowDOM = createNewRow(true, rowNo),
+                    widgetCount = homepageRow.length;
+                
+                function ajaxLoop(widgetIndex, rowArray) {
+                    var widget = rowArray[widgetIndex],
+                        guid = widget.guid,
+                        version = widget.version,
+                        classes = widget.classes,
+                         
+                    widgetContainer = widgetSkeleton
+                                        .clone()
+                                        .addClass(classes)
+                                        .attachWidgetUI();
+ 
+                    rowDOM.append(widgetContainer);
+ 
+                    $.ajax({
+                        url: widgetPath + guid + '/' + version + '/index.php',
+                        success: function (data) {
+                            var dataElement = $(data);
+                            var newIndex = widgetIndex + 1;
+                            widgetContainer.remove('h2').append(dataElement);
+                            if(newIndex < widgetCount) {
+                                var widget = rowArray[widgetIndex + 1];
+                                ajaxLoop(newIndex, rowArray);
+                            }
+                            else {
+                                homepageDOM.append(rowDOM);
+                                if(rowNo == homepage.length) {
+                                    versions[1] = homepageDOM.html();
+                                    currentVersion = 1;
+                                }
+                            }
+                        }
+                    });
+
+                }
+                ajaxLoop(0, homepageRow);
+            });
+            element.append(homepageDOM);
+            versions[0] = homepageDOM;
+        }
+
+        function createNewRow(returnRow, rowNo) {
             var rows = $('.widget-row'),
                 lastRow = $('.widget-row:last-of-type'),
-                rowDom = $('<div class="grid-container widget-row widget-row-new"></div>'),
+                rowDom = $('<div class="grid-container widget-row"></div>'),
                 rowHandler = $(rowMarkup),
-                rowNo = rows.length += 1,
-                rowTitle = 'Row ' + rowNo;
-
+                rowTitle = '';
+            if(!rowNo) {
+                rowNo = rows.length += 1;
+                rowDom.addClass('widget-row-new');
+            }
+            rowTitle = 'Row ' + rowNo;
             rowHandler.append(rowTitle);
             rowDom.append(rowHandler);
-            lastRow.after(rowDom);
-
             newRowPresent = true;
+            if(returnRow) {
+                return rowDom;
+            }
+            else {
+                lastRow.after(rowDom);
+            }
         }
 
         function removeNewRow() {
@@ -560,11 +644,11 @@ define([
                                     widgetSpan = sender.data('widget-grid-span');
                                 }
 
-                                // populate widget content
-                                var widget = droppedWidget.html(widgetData)
-                                              .addClass('grid-span-' + widgetSpan + ' column')
-                                              .attachWidgetUI()
-                                              .uniqueId(); // attach unique identifier
+                            // populate widget content
+                            var widget = droppedWidget.html(widgetData)
+                                          .addClass('grid-span-' + widgetSpan + ' column homepage-widget')
+                                          .attachWidgetUI()
+                                          .uniqueId();
 
                                 // reset last-appended flag on all widgets except this one
                                 $(widgetClass).not(widget)
