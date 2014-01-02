@@ -299,31 +299,31 @@ define([
                             startPosition -= 1;
                         }
                     }
-
-                    if(rowDragging) {
-                        var operatingRow = $('.operating-row');
-                        var previousHeight = operatingRow.prev().outerHeight() * -1;
-                        var nextHeight = operatingRow.next().outerHeight();
-                        currentY = e.pageY;
-                        var diffY = currentY - originalY;
-                        if(diffY < -100 && diffY < previousHeight) {
-                            if(operatingRow.prev('.widget-row').length) {
-                                operatingRow.prev('.widget-row').before(operatingRow);
-                                diffY = 0;
-                                originalY = e.pageY;
-                                startPosition += 1;
-                            }
+                }
+                if(rowDragging) {
+                    var operatingRow = $('.operating-row');
+                    var previousHeight = operatingRow.prev().outerHeight() * -1;
+                    var nextHeight = operatingRow.next().outerHeight();
+                    currentY = e.pageY;
+                    var diffY = currentY - originalY;
+                    if(diffY < -100 && diffY < previousHeight) {
+                        if(operatingRow.prev('.widget-row').length) {
+                            operatingRow.prev('.widget-row').before(operatingRow);
+                            diffY = 0;
+                            originalY = e.pageY;
+                            startPosition += 1;
                         }
-                        else if(diffY > 100 && diffY > nextHeight) {
-                            if(operatingRow.next('.widget-row').length) {
-                                operatingRow.next('.widget-row').after(operatingRow);
-                                diffY = 0;
-                                originalY = e.pageY;
-                                startPosition -= 1;
-                            }
+                    }
+                    else if(diffY > 100 && diffY > nextHeight) {
+                        if(operatingRow.next('.widget-row').length) {
+                            operatingRow.next('.widget-row').after(operatingRow);
+                            diffY = 0;
+                            originalY = e.pageY;
+                            startPosition -= 1;
                         }
                     }
                 }
+                
                 if(resizing) {
                     var columnWidth = parseInt($('.grid-span-1').outerWidth());
                     var columnMargin = parseInt($('.grid-span-1').css('margin-right')) + 1;
