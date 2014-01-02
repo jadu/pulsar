@@ -529,12 +529,12 @@ define([
             rowTitle = 'Row ' + rowNo;
             rowHandler.append(rowTitle);
             rowDom.append(rowHandler);
-            newRowPresent = true;
             if(returnRow) {
                 return rowDom;
             }
             else {
                 lastRow.after(rowDom);
+                newRowPresent = true;
             }
         }
 
