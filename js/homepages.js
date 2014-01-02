@@ -417,10 +417,11 @@ define([
             });
 
             /**
-             * show overlay when attempting to drag widgets to another row
+             * show overlay when attempting to drag widgets to another row as 
+             * long as it's we're not attempting to drop onto the original row
              */
             $('body').on('mouseenter', '.widget-row', function(e) {
-                if(dragging) {
+                if(dragging && $('.widget-row').index($(this)) != originalRow) {
                     $(this).prepend(rowOverlay);
                 }
             }).on('mouseleave', '.widget-row', function(e) {
