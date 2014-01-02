@@ -29,7 +29,9 @@ define([
             versions = [],
             fetchRetryTimeout = 50,
             fetchRetryLimit = 5,
+            originalRow,
             rowMarkup = '<div class="row-handler column grid-span-12"><a class="icon-remove remove-row"></a></div>',
+            rowOverlay = '<div class="row-overlay"><i class="icon-plus-sign"></i> Drop widget here</div>',
             trayContainer = '.tray',
             widgetConfig,
             widgetData,
@@ -178,6 +180,8 @@ define([
                     resizing = false;
                     dragging = true;
                     originalX = e.pageX;
+                    originalRow = $('.widget-row').index($(this).parent());
+
                     $(this).addClass('operating');
                     $(this).parent().addClass('operating-on-child');
                 });
@@ -253,55 +257,72 @@ define([
                     widgets.addClass(newSpan);
                     newVersion();
                 });
-
             });
         }
 
-        $('body').on('mousemove', function(e) {
-            if(dragging) {
+        function attachEvents(element) {
+            $('body').on('mousemove', function(e) {
+                if(dragging) {
 
-                // add a new empty drop target when dragging starts
-                if (!newRowPresent) {
-                    createNewRow();
-                }
+                    // add a new empty drop target when dragging starts
+                    if (!newRowPresent) {
+                        createNewRow();
+                    }
 
-                var operator = $('.operating');
-                currentX = e.pageX;
-                var diffX = currentX - originalX;
-                if(diffX > 60) {
-                    if(operator.next().length) {
-                        operator.next().after(operator);
-                        diffX = 0;
-                        originalX = e.pageX;
-                        startPosition += 1;
-                    }
-                    else if(diffX > 90) {
-                        manipulateOffset(operator, 'right');
-                        diffX = 0;
-                        originalX = e.pageX;
-                        startPosition += 1;
-                    }
-                }
-                if(rowDragging) {
-                    var operatingRow = $('.operating-row');
-                    var previousHeight = operatingRow.prev().outerHeight() * -1;
-                    var nextHeight = operatingRow.next().outerHeight();
-                    currentY = e.pageY;
-                    var diffY = currentY - originalY;
-                    if(diffY < -100 && diffY < previousHeight) {
-                        if(operatingRow.prev('.widget-row').length) {
-                            operatingRow.prev('.widget-row').before(operatingRow);
-                            diffY = 0;
-                            originalY = e.pageY;
+                    var operator = $('.operating');
+                    currentX = e.pageX;
+                    var diffX = currentX - originalX;
+
+                    if(diffX > 60) {
+                        if(operator.next().length) {
+                            operator.next().after(operator);
+                            diffX = 0;
+                            originalX = e.pageX;
+                            startPosition += 1;
+                        }
+                        else if(diffX > 90) {
+                            manipulateOffset(operator, 'right');
+                            diffX = 0;
+                            originalX = e.pageX;
                             startPosition += 1;
                         }
                     }
-                    else if(diffY > 100 && diffY > nextHeight) {
-                        if(operatingRow.next('.widget-row').length) {
-                            operatingRow.next('.widget-row').after(operatingRow);
-                            diffY = 0;
-                            originalY = e.pageY;
+                    else if(diffX < -60) {
+                        if(!operator.is('[class*=offset]') && operator.prev('.homepage-widget').length) {
+                            operator.prev('.homepage-widget').before(operator);
+                            diffX = 0;
+                            originalX = e.pageX;
                             startPosition -= 1;
+                        }
+                        else if(diffX < -90) {
+                            manipulateOffset(operator, 'left');
+                            diffX = 0;
+                            originalX = e.pageX;
+                            startPosition -= 1;
+                        }
+                    }
+
+                    if(rowDragging) {
+                        var operatingRow = $('.operating-row');
+                        var previousHeight = operatingRow.prev().outerHeight() * -1;
+                        var nextHeight = operatingRow.next().outerHeight();
+                        currentY = e.pageY;
+                        var diffY = currentY - originalY;
+                        if(diffY < -100 && diffY < previousHeight) {
+                            if(operatingRow.prev('.widget-row').length) {
+                                operatingRow.prev('.widget-row').before(operatingRow);
+                                diffY = 0;
+                                originalY = e.pageY;
+                                startPosition += 1;
+                            }
+                        }
+                        else if(diffY > 100 && diffY > nextHeight) {
+                            if(operatingRow.next('.widget-row').length) {
+                                operatingRow.next('.widget-row').after(operatingRow);
+                                diffY = 0;
+                                originalY = e.pageY;
+                                startPosition -= 1;
+                            }
                         }
                     }
                 }
@@ -349,8 +370,7 @@ define([
                             columnsResized = 0;
                         }
                     }
-                }
-            }
+                }                
             }).on('mouseup', function(e){
                 if(resizing) {
                     if(!alreadyResized) {
@@ -391,7 +411,23 @@ define([
                 if(startPosition != 0) {
                     newVersion();
                 }
+
+                // remove all row overlays
+                $('.row-overlay').remove();
             });
+
+            /**
+             * show overlay when attempting to drag widgets to another row
+             */
+            $('body').on('mouseenter', '.widget-row', function(e) {
+                if(dragging) {
+                    $(this).prepend(rowOverlay);
+                }
+            }).on('mouseleave', '.widget-row', function(e) {
+                if(dragging) {
+                    $('.row-overlay', this).remove();
+                }
+            });            
 
             function undo(element) {
                 if(currentVersion > 1) {
@@ -464,7 +500,7 @@ define([
                 element.removeClass('mobile-view');
                 element.removeClass('tablet-view');
             });
-        
+        }
 
         function paintHomepage(element, homepage) {
             var homepageDOM = $('<div class="homepage-item"></div>'),
@@ -583,6 +619,7 @@ define([
             });
 
             element.makeDraggable();
+            attachEvents(element, eventParent);
         }
 
         var homepageContainer = $('.homepage-content');
