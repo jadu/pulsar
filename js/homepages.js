@@ -182,6 +182,9 @@ define([
 
                     $(this).addClass('operating');
                     $(this).parent().addClass('operating-on-child');
+
+                    originalRow = $(this).parent();
+                    hoveredRow = originalRow;
                 });
 
                 $(element).on('mousedown', '.row-handler', function(e){
@@ -233,21 +236,29 @@ define([
                     }
                 });
 
-                $(element).on('click', '.remove-row', function(e){
+                $(element).on('click', '.remove-row', function(e) {
                     e.preventDefault();
                     e.stopPropagation();
-                    var rowToHandle = $(this).parent().parent();
-                    var rowHeight =  rowToHandle.outerHeight();
-                    rowToHandle.animate({'opacity' : 0}, 150, function() {
-                        var remover = $(this);
-                        remover.slideUp(120, function(){
-                            remover.remove();
-                            newVersion();
-                        });
-                    });
+                    var row = $(this).parent().parent();
+
+                    /**
+                     * request confirmation if attempting to remove a row which
+                     * contains widgets
+                     */
+                    if (row.has('.homepage-widget').length) {
+                        var modal = $('#remove_row_modal');
+
+                        // pass the row's index to the modal action
+                        $('[data-action=remove-row]', modal).data('row', $('.widget-row').index(row));
+                        modal.modal('show');
+                        return false;
+                    }
+
+                    // remove the row immediately if its empty
+                    row.removeRow();
                 });
 
-                $(element).on('click', '.fill-row', function(e){
+                $(element).on('click', '.fill-row', function(e) {
                     e.stopPropagation();
                     var widgets = $(this).parent().parent().children('.homepage-widget');
                     var newSpan = columnCount / widgets.length;
@@ -258,12 +269,43 @@ define([
             });
         }
 
+        /**
+         * remove a homepage row and its contents (or a collection of them)
+         */
+        $.fn.removeRow = function() {
+            return this.each(function(index, element) {
+                var self = $(this),
+                    rowHeight = self.outerHeight();
+
+                self.animate({'opacity' : 0}, 150, function() {
+                    self.slideUp(120, function() {
+                        self.remove();
+                        newVersion();
+                    });
+                });
+            });
+        }
+
+        /**
+         * find out if the new row contains widgets or not
+         * @return {boolean} true if empty, false if full
+         */
+        function newRowEmpty() {
+            if (!newRowPresent && !$('.widget-row:last-of-type').not(':has(.homepage-widget)').length) {
+                return false
+            }
+            return true;
+        }
+
         function attachEvents(element) {
             $('body').on('mousemove', function(e) {
                 if(dragging) {
 
-                    // add a new empty drop target when dragging starts
-                    if (!newRowPresent) {
+                    /**
+                     * add a new empty drop target when dragging starts, as long
+                     * as the last row is not already empty
+                     */
+                    if (!newRowEmpty()) {
                         createNewRow();
                     }
 
@@ -392,12 +434,34 @@ define([
                     resizing = false;
                 }
                 if(dragging) {
+                    var operatedWidget = $('.operating');
                     dragging = false;
-                    $('.operating').removeClass('operating');
 
-                    // check whether we need to keep or remove our new drop target
-                    if (newRowPresent) {
+                    /**
+                     * if we've dragged a widget to another row, move it, and
+                     * strip any offset classes which would be carried over
+                     * into the new row and affect the layout
+                     */      
+                    if (hoveredRow != null && hoveredRow != originalRow) {
+                        operatedWidget
+                            .detach()
+                            .removeClass(function(index, css) {
+                                return (css.match(/\boffset-\d+/g) || []).join(' ');
+                            })
+                            .appendTo(hoveredRow);                        
+                    }
+                    
+                    operatedWidget.removeClass('operating');
+
+                    /**
+                     * if the new row hasn't been used, we can safely remove it,
+                     * otherwise, we can promote it to a real row
+                     */
+                    if (newRowPresent && hoveredRow[0] != newRow[0]) {
                         removeNewRow();
+                    } else {
+                        newRow.removeClass('widget-row-new');
+                        newRowPresent = false;
                     }
 
                     $('.operating-on-child').removeClass('operating-on-child');
@@ -409,6 +473,31 @@ define([
                 if(startPosition != 0) {
                     newVersion();
                 }
+
+                // remove all row overlays
+                $('.row-overlay').remove();
+            });
+
+            /**
+             * show overlay when attempting to drag widgets to another row as 
+             * long as it's we're not attempting to drop onto the original row
+             */
+            $('body').on('mouseenter', '.widget-row', function(e) {
+                if (dragging) {
+                    hoveredRow = $(this);
+                    if (hoveredRow[0] != originalRow[0]) {
+                        $(this).prepend(rowOverlay);
+                    }
+                }
+            }).on('mouseleave', '.widget-row', function(e) {
+                if (dragging) {
+                    hoveredRow = null;
+                    $('.row-overlay', this).remove();
+                }
+            }).on('click', '[data-action=remove-row]', function(e) {
+                $('.widget-row')[$(this).data('row')].remove();
+                $('#remove_row_modal').modal('hide');
+                newVersion();
             });
 
             function undo(element) {
@@ -540,14 +629,23 @@ define([
                 rowDom = $('<div class="grid-container widget-row"></div>'),
                 rowHandler = $(rowMarkup),
                 rowTitle = '';
-            if(!rowNo) {
+
+            if (!rowNo) {
                 rowNo = rows.length += 1;
                 rowDom.addClass('widget-row-new');
             }
+
             rowTitle = 'Row ' + rowNo;
             rowHandler.append(rowTitle);
             rowDom.append(rowHandler);
-            if(returnRow) {
+
+            /**
+             * store a reference to the new row which will be checked later to
+             * see if anything has been added to it
+             */
+            newRow = rowDom;
+
+            if (returnRow) {
                 return rowDom;
             }
             else {
@@ -591,7 +689,7 @@ define([
              * will be completed before the user clicks this button
              */
             $('[data-toggle=tray]').on('click', function() {
-                if (!newRowPresent) {
+                if (!newRowEmpty()) {
                     createNewRow();
                 } else {
                     removeNewRow();
@@ -640,8 +738,6 @@ define([
             return this.each(function(index, element) {
                 $(this).droppable({
                     accept: '.widget',
-                    activeClass: 'ui-state-highlight',
-                    hoverClass: 'row-droppable',
                     drop: function (e, ui) {
 
                         // clone the dragged widget and drop it
@@ -694,7 +790,13 @@ define([
                          * keep checking for the response...
                          */
                         isFetched();
-                    }
+                    },
+                    over: function (e, ui) {
+                        $(this).prepend(rowOverlay);
+                    },
+                    out: function (e, ui) {
+                        $('.row-overlay', this).remove();
+                    }    
                 });
             });
         }

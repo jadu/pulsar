@@ -38,3 +38,9 @@
     </div>
 </div>
 {% endblock %}
+
+{% block modals %}
+<div id="remove_row_modal" class="modal modal--danger">
+  {% include '/modals/homepages/remove_non_empty_row.html.twig' %}
+</div>
+{% endblock %}
