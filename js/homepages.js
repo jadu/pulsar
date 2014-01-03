@@ -29,7 +29,8 @@ define([
             versions = [],
             fetchRetryTimeout = 50,
             fetchRetryLimit = 5,
-            originalRow,
+            originalRow, // where a widget was dragged from
+            hoveredRow, // where a widget is dragged over
             rowMarkup = '<div class="row-handler column grid-span-12"><a class="icon-remove remove-row"></a></div>',
             rowOverlay = '<div class="row-overlay"><i class="icon-plus-sign"></i> Drop widget here</div>',
             trayContainer = '.tray',
@@ -180,10 +181,12 @@ define([
                     resizing = false;
                     dragging = true;
                     originalX = e.pageX;
-                    originalRow = $('.widget-row').index($(this).parent());
 
                     $(this).addClass('operating');
                     $(this).parent().addClass('operating-on-child');
+
+                    originalRow = $(this).parent();
+                    hoveredRow = originalRow;
                 });
 
                 $(element).on('mousedown', '.row-handler', function(e){
@@ -264,8 +267,11 @@ define([
             $('body').on('mousemove', function(e) {
                 if(dragging) {
 
-                    // add a new empty drop target when dragging starts
-                    if (!newRowPresent) {
+                    /**
+                     * add a new empty drop target when dragging starts, as long
+                     * as the last row is not already empty
+                     */
+                    if (!newRowPresent && !$('.widget-row:last-of-type').not(':has(.homepage-widget)').length) {
                         createNewRow();
                     }
 
@@ -394,12 +400,34 @@ define([
                     resizing = false;
                 }
                 if(dragging) {
+                    var operatedWidget = $('.operating');
                     dragging = false;
-                    $('.operating').removeClass('operating');
 
-                    // check whether we need to keep or remove our new drop target
-                    if (newRowPresent) {
+                    /**
+                     * if we've dragged a widget to another row, move it, and
+                     * strip any offset classes which would be carried over
+                     * into the new row and affect the layout
+                     */      
+                    if (hoveredRow != null && hoveredRow != originalRow) {
+                        operatedWidget
+                            .detach()
+                            .removeClass(function(index, css) {
+                                return (css.match(/\boffset-\d+/g) || []).join(' ');
+                            })
+                            .appendTo(hoveredRow);                        
+                    }
+                    
+                    operatedWidget.removeClass('operating');
+
+                    /**
+                     * if the new row hasn't been used, we can safely remove it,
+                     * otherwise, we can promote it to a real row
+                     */
+                    if (newRowPresent && hoveredRow[0] != newRow[0]) {
                         removeNewRow();
+                    } else {
+                        newRow.removeClass('widget-row-new');
+                        newRowPresent = false;
                     }
 
                     $('.operating-on-child').removeClass('operating-on-child');
@@ -421,14 +449,18 @@ define([
              * long as it's we're not attempting to drop onto the original row
              */
             $('body').on('mouseenter', '.widget-row', function(e) {
-                if(dragging && $('.widget-row').index($(this)) != originalRow) {
-                    $(this).prepend(rowOverlay);
+                if (dragging) {
+                    hoveredRow = $(this);
+                    if (hoveredRow[0] != originalRow[0]) {
+                        $(this).prepend(rowOverlay);
+                    }
                 }
             }).on('mouseleave', '.widget-row', function(e) {
-                if(dragging) {
+                if (dragging) {
+                    hoveredRow = null;
                     $('.row-overlay', this).remove();
                 }
-            });            
+            });          
 
             function undo(element) {
                 if(currentVersion > 1) {
@@ -559,14 +591,23 @@ define([
                 rowDom = $('<div class="grid-container widget-row"></div>'),
                 rowHandler = $(rowMarkup),
                 rowTitle = '';
-            if(!rowNo) {
+
+            if (!rowNo) {
                 rowNo = rows.length += 1;
                 rowDom.addClass('widget-row-new');
             }
+
             rowTitle = 'Row ' + rowNo;
             rowHandler.append(rowTitle);
             rowDom.append(rowHandler);
-            if(returnRow) {
+
+            /**
+             * store a reference to the new row which will be checked later to
+             * see if anything has been added to it
+             */
+            newRow = rowDom;
+
+            if (returnRow) {
                 return rowDom;
             }
             else {
