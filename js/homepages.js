@@ -263,6 +263,17 @@ define([
             });
         }
 
+        /**
+         * find out if the new row contains widgets or not
+         * @return {boolean} true if empty, false if full
+         */
+        function newRowEmpty() {
+            if (!newRowPresent && !$('.widget-row:last-of-type').not(':has(.homepage-widget)').length) {
+                return false
+            }
+            return true;
+        }
+
         function attachEvents(element) {
             $('body').on('mousemove', function(e) {
                 if(dragging) {
@@ -271,7 +282,7 @@ define([
                      * add a new empty drop target when dragging starts, as long
                      * as the last row is not already empty
                      */
-                    if (!newRowPresent && !$('.widget-row:last-of-type').not(':has(.homepage-widget)').length) {
+                    if (!newRowEmpty()) {
                         createNewRow();
                     }
 
@@ -651,7 +662,7 @@ define([
              * will be completed before the user clicks this button
              */
             $('[data-toggle=tray]').on('click', function() {
-                if (!newRowPresent) {
+                if (!newRowEmpty()) {
                     createNewRow();
                 } else {
                     removeNewRow();
@@ -700,8 +711,6 @@ define([
             return this.each(function(index, element) {
                 $(this).droppable({
                     accept: '.widget',
-                    activeClass: 'ui-state-highlight',
-                    hoverClass: 'row-droppable',
                     drop: function (e, ui) {
 
                         // clone the dragged widget and drop it
