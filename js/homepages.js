@@ -466,6 +466,10 @@ define([
 
                     $('.operating-on-child').removeClass('operating-on-child');
                 }
+                
+                // remove all row overlays
+                $('.row-overlay').remove();
+
                 if(rowDragging) {
                     rowDragging = false;
                     $('.operating-row').removeClass('operating-row');
@@ -474,13 +478,11 @@ define([
                     newVersion();
                 }
 
-                // remove all row overlays
-                $('.row-overlay').remove();
             });
 
             /**
              * show overlay when attempting to drag widgets to another row as 
-             * long as it's we're not attempting to drop onto the original row
+             * long as we're not attempting to drop onto the original row
              */
             $('body').on('mouseenter', '.widget-row', function(e) {
                 if (dragging) {
