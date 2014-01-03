@@ -571,6 +571,30 @@ define([
                 element.removeClass('mobile-view');
                 element.removeClass('tablet-view');
             });
+
+            /**
+             * when the settings are toggled, update any actions which need to
+             * use this widget's id             
+             */
+            $('body').on('click', '.edit-widget-settings', function(e) {
+                console.log($(this).closest('.homepage-widget').attr('id'));
+                $('[data-widget-id]').data('widget-id', $(this).closest('.homepage-widget').attr('id'));
+            });
+
+            $('[data-action=widget-duplicate]').on('click', function(e) {
+                e.preventDefault();
+                var self = $(this),
+                    source = $('#' + self.data('widget-id')),
+                    clone = source.clone()
+
+                // make sure duplicated widgets have a new unique id
+                clone
+                    .removeUniqueId()
+                    .uniqueId();
+
+                // insert it immediately after the source widget
+                source.after(clone)
+            });
         }
 
         function paintHomepage(element, homepage) {
@@ -592,7 +616,8 @@ define([
                     widgetContainer = widgetSkeleton
                                         .clone()
                                         .addClass(classes)
-                                        .attachWidgetUI();
+                                        .attachWidgetUI()
+                                        .uniqueId();
 
                     rowDOM.append(widgetContainer);
 
