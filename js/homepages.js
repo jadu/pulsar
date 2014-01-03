@@ -751,6 +751,7 @@ define([
                                 // tidy up after ourselves
                                 $(widgetDataContainer).val('');
                                 widgetData = '';
+                                newVersion();
                             } else {
 
                                 // otherwise ajax hasn't finished so wait a bit more...
