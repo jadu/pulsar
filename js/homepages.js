@@ -713,7 +713,13 @@ define([
                          * keep checking for the response...
                          */
                         isFetched();
-                    }
+                    },
+                    over: function (e, ui) {
+                        $(this).prepend(rowOverlay);
+                    },
+                    out: function (e, ui) {
+                        $('.row-overlay', this).remove();
+                    }    
                 });
             });
         }
