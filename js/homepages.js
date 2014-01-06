@@ -28,7 +28,7 @@ define([
             versions = [],
             fetchRetryTimeout = 50,
             fetchRetryLimit = 5,
-            rowMarkup = '<div class="row-handler column grid-span-12"><a class="icon-magic fill-row"></a><a class="icon-remove remove-row"></a></div>',
+            rowMarkup = '<div class="row-handler column grid-span-12"><a class="icon-magic fill-row" data-toggle="tooltips" data-original-title="Resize widgets to fill row" data-placement="left"></a><a class="icon-remove remove-row"></a></div>',
             trayContainer = '.tray',
             widgetConfig,
             widgetData,
@@ -166,6 +166,8 @@ define([
             }).on('mouseup', function(e){
                 e.preventDefault();
             });
+
+            $('[data-toggle="tooltips"]').tooltips();
 
             $('body').on('mousemove', function(e){
                 if(dragging) {
