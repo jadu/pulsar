@@ -140,6 +140,7 @@ define([
         }
 
         function newVersion() {
+            console.log('version added');
             var elementHtml = $('.homepage-item').html();
             elementHtml = elementHtml;
             var numberToRemove = versions.length - currentVersion; // we want to remove everything after the current version in the array
@@ -761,8 +762,8 @@ define([
                                     widgetSpan = sender.data('widget-grid-span');
                                 }
 
-                            // populate widget content
-                            var widget = droppedWidget.html(widgetData)
+                                // populate widget content
+                                var widget = droppedWidget.html(widgetData)
                                           .addClass('grid-span-' + widgetSpan + ' column homepage-widget')
                                           .attachWidgetUI()
                                           .uniqueId();
@@ -780,6 +781,7 @@ define([
                                 // tidy up after ourselves
                                 $(widgetDataContainer).val('');
                                 widgetData = '';
+                                newVersion();
                             } else {
 
                                 // otherwise ajax hasn't finished so wait a bit more...
