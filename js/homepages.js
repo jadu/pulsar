@@ -593,7 +593,8 @@ define([
                     .uniqueId();
 
                 // insert it immediately after the source widget
-                source.after(clone)
+                source.after(clone);
+                newVersion();
             });
         }
 
