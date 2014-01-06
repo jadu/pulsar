@@ -509,6 +509,7 @@ define([
                     currentVersion -= 1;
                     var undoHtml = versions[currentVersion];
                     element.append(undoHtml);
+                    $('.widget-row').makeDroppable();
                 }
             }
 
@@ -813,6 +814,7 @@ define([
                                 // tidy up after ourselves
                                 $(widgetDataContainer).val('');
                                 widgetData = '';
+                                newVersion();
                             } else {
 
                                 // otherwise ajax hasn't finished so wait a bit more...
