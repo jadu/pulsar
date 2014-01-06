@@ -547,6 +547,12 @@ define([
                 $('.grid-master').fadeToggle();
             });
 
+            $('[data-toggle="grid"]').on('click', function(e){
+                e.preventDefault();
+                $('.grid-master').fadeToggle(200);
+                $(this).toggleClass('active');
+            });
+
             $('[data-action="undo"]').on('click', function(e){
                 e.preventDefault();
                 undo($('.homepage-item'));
@@ -574,6 +580,31 @@ define([
                 element.removeClass('mobile-view');
                 element.removeClass('tablet-view');
             });
+
+            /**
+             * when the settings are toggled, update any actions which need to
+             * use this widget's id             
+             */
+            $('body').on('click', '.edit-widget-settings', function(e) {
+                $('.widget-default-controls').fadeIn(200);
+                $('[data-widget-id]').data('widget-id', $(this).closest('.homepage-widget').attr('id'));
+            });
+
+            $('[data-action=widget-duplicate]').on('click', function(e) {
+                e.preventDefault();
+                var self = $(this),
+                    source = $('#' + self.data('widget-id')),
+                    clone = source.clone()
+
+                // make sure duplicated widgets have a new unique id
+                clone
+                    .removeUniqueId()
+                    .uniqueId();
+
+                // insert it immediately after the source widget
+                source.after(clone);
+                newVersion();
+            });
         }
 
         function paintHomepage(element, homepage) {
@@ -595,7 +626,8 @@ define([
                     widgetContainer = widgetSkeleton
                                         .clone()
                                         .addClass(classes)
-                                        .attachWidgetUI();
+                                        .attachWidgetUI()
+                                        .uniqueId();
 
                     rowDOM.append(widgetContainer);
 
