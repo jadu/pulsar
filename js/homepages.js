@@ -479,6 +479,7 @@ define([
                     currentVersion -= 1;
                     var undoHtml = versions[currentVersion];
                     element.append(undoHtml);
+                    $('.widget-row').makeDroppable();
                 }
             }
 
