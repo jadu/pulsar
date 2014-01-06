@@ -29,6 +29,8 @@ define([
             fetchRetryTimeout = 50,
             fetchRetryLimit = 5,
             rowMarkup = '<div class="row-handler column grid-span-12"><a class="icon-magic fill-row" data-toggle="tooltips" data-original-title="Resize widgets to fill row" data-placement="left"></a><a class="icon-remove remove-row"></a></div>',
+            enabledTooltipMessage = 'Resize widgets to fill row',
+            disabledTooltipMessage = 'Widgets cannot be auto–sized',
             trayContainer = '.tray',
             widgetConfig,
             widgetData,
@@ -89,7 +91,7 @@ define([
                         success: function (data) {
                             var dataElement = $(data);
                             var newIndex = widgetIndex + 1;
-                            loadingSpinner.remove('h2').append(dataElement);
+                            loadingSpinner.append(dataElement);
                             if(newIndex < widgetCount) {
                                 var widget = rowArray[widgetIndex + 1];
                                 ajaxLoop(newIndex, rowArray);
@@ -101,12 +103,25 @@ define([
                                     currentVersion = 1;
                                 }
                             }
+                            loadTooltips();
                         }
                     });
                 }
                 ajaxLoop(0, homepageRow);
             });
             element.append(homepageDOM);
+        }
+
+        function loadTooltips() {
+            $('.fill-row').each(function(){
+                if($(this).hasClass('disabled')) {
+                    $(this).attr('data-original-title', disabledTooltipMessage);
+                }
+                else {
+                    $(this).attr('data-original-title', enabledTooltipMessage);
+                }
+            });
+            $('[data-toggle="tooltips"]').tooltips();
         }
 
         function newVersion() {
@@ -134,6 +149,7 @@ define([
                 else {
                     fillButton.removeClass('disabled');
                 }
+                loadTooltips();
             });
         }
 
@@ -166,8 +182,6 @@ define([
             }).on('mouseup', function(e){
                 e.preventDefault();
             });
-
-            $('[data-toggle="tooltips"]').tooltips();
 
             $('body').on('mousemove', function(e){
                 if(dragging) {
