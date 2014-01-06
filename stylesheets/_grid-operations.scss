@@ -35,6 +35,10 @@ $cyan : #ea33a3;
     height: 100%;
     padding: .5em;
     width: 25%;
+
+    .widget-default-controls {
+       display: none;
+    }
 }
 
 .homepage-widget {
@@ -195,4 +199,18 @@ $cyan : #ea33a3;
 
 .row-droppable {
     border: 2px dashed $cyan;
+}
+
+.row-overlay {
+    background-color: rgba(0, 0, 0, .8);
+    color: white;
+    font-size: 3em;
+    bottom: 0;
+    left: 0;
+    line-height: 1.5em;
+    position: absolute;
+    text-align: center;
+    right: 0;
+    top: 0;
+    z-index: 9999;
 }

@@ -544,6 +544,12 @@ define([
                 $('.grid-master').fadeToggle();
             });
 
+            $('[data-toggle="grid"]').on('click', function(e){
+                e.preventDefault();
+                $('.grid-master').fadeToggle(200);
+                $(this).toggleClass('active');
+            });
+
             $('[data-action="undo"]').on('click', function(e){
                 e.preventDefault();
                 undo($('.homepage-item'));
@@ -577,7 +583,7 @@ define([
              * use this widget's id             
              */
             $('body').on('click', '.edit-widget-settings', function(e) {
-                console.log($(this).closest('.homepage-widget').attr('id'));
+                $('.widget-default-controls').fadeIn(200);
                 $('[data-widget-id]').data('widget-id', $(this).closest('.homepage-widget').attr('id'));
             });
 
