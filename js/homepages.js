@@ -29,7 +29,9 @@ define([
             versions = [],
             fetchRetryTimeout = 50,
             fetchRetryLimit = 5,
-            rowMarkup = '<div class="row-handler column grid-span-12"><a class="icon-magic fill-row"></a><a class="icon-remove remove-row"></a></div>',
+            originalRow, // where a widget was dragged from
+            hoveredRow, // where a widget is dragged over
+            rowMarkup = '<div class="row-handler column grid-span-12"><a class="icon-remove remove-row"></a></div>',
             rowOverlay = '<div class="row-overlay"><i class="icon-plus-sign"></i> Drop widget here</div>',
             trayContainer = '.tray',
             widgetConfig,
@@ -341,27 +343,28 @@ define([
                             startPosition -= 1;
                         }
                     }
-                }
-                if(rowDragging) {
-                    var operatingRow = $('.operating-row');
-                    var previousHeight = operatingRow.prev().outerHeight() * -1;
-                    var nextHeight = operatingRow.next().outerHeight();
-                    currentY = e.pageY;
-                    var diffY = currentY - originalY;
-                    if(diffY < -100 && diffY < previousHeight) {
-                        if(operatingRow.prev('.widget-row').length) {
-                            operatingRow.prev('.widget-row').before(operatingRow);
-                            diffY = 0;
-                            originalY = e.pageY;
-                            startPosition += 1;
+
+                    if(rowDragging) {
+                        var operatingRow = $('.operating-row');
+                        var previousHeight = operatingRow.prev().outerHeight() * -1;
+                        var nextHeight = operatingRow.next().outerHeight();
+                        currentY = e.pageY;
+                        var diffY = currentY - originalY;
+                        if(diffY < -100 && diffY < previousHeight) {
+                            if(operatingRow.prev('.widget-row').length) {
+                                operatingRow.prev('.widget-row').before(operatingRow);
+                                diffY = 0;
+                                originalY = e.pageY;
+                                startPosition += 1;
+                            }
                         }
-                    }
-                    else if(diffY > 100 && diffY > nextHeight) {
-                        if(operatingRow.next('.widget-row').length) {
-                            operatingRow.next('.widget-row').after(operatingRow);
-                            diffY = 0;
-                            originalY = e.pageY;
-                            startPosition -= 1;
+                        else if(diffY > 100 && diffY > nextHeight) {
+                            if(operatingRow.next('.widget-row').length) {
+                                operatingRow.next('.widget-row').after(operatingRow);
+                                diffY = 0;
+                                originalY = e.pageY;
+                                startPosition -= 1;
+                            }
                         }
                     }
                 }
