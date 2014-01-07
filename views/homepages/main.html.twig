@@ -28,6 +28,11 @@
     ),
     html.divider(),
     html.link(
+      label = html.icon('remove-sign') ~ ' Clear Homepage',
+      href = '#clear',
+      attributes = 'data-action=clear-homepage'
+    ),
+    html.link(
       label = html.icon('trash') ~ ' Delete',
       href = '#delete',
       class = 'link--danger'

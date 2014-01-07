@@ -142,6 +142,7 @@ define([
         }
 
         function newVersion() {
+            console.log('version');
             var elementHtml = $('.homepage-item').html();
             elementHtml = elementHtml;
             var numberToRemove = versions.length - currentVersion; // we want to remove everything after the current version in the array
@@ -258,6 +259,7 @@ define([
 
                     // remove the row immediately if its empty
                     row.removeRow();
+                    newVersion();
                 });
 
                 $(element).on('click', '.fill-row', function(e) {
@@ -282,7 +284,6 @@ define([
                 self.animate({'opacity' : 0}, 150, function() {
                     self.slideUp(120, function() {
                         self.remove();
-                        newVersion();
                     });
                 });
             });
@@ -502,6 +503,9 @@ define([
             }).on('click', '[data-action=remove-row]', function(e) {
                 $('.widget-row')[$(this).data('row')].remove();
                 $('#remove_row_modal').modal('hide');
+                newVersion();
+            }).on('click', '[data-action=clear-homepage]', function(e) {
+                $('.widget-row').removeRow();
                 newVersion();
             });
 
