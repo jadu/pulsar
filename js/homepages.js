@@ -504,8 +504,12 @@ define([
                 $('.widget-row')[$(this).data('row')].remove();
                 $('#remove_row_modal').modal('hide');
                 newVersion();
+            }).on('click', '[data-action=clear-homepage-confirmation]', function(e) {
+                e.preventDefault();
+                $('#clear_homepage_modal').modal('show');
             }).on('click', '[data-action=clear-homepage]', function(e) {
                 $('.widget-row').removeRow();
+                $('#clear_homepage_modal').modal('hide');
                 newVersion();
             });
 
