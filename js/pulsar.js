@@ -38,7 +38,7 @@ define(['jquery'], function() {
                     console.log('loaded');
                     client.on('complete', function(client, args) {
                         console.log('copied');
-                    });                    
+                    });
                 });
             });
 
@@ -65,7 +65,7 @@ define(['jquery'], function() {
                 e.relatedTarget // previous tab
 
                 $('.summary.open').removeClass('open').hide();
-                
+
                 var $summary = '';
 
                 if ($(e.target).parent().has('.is-active').length != 0) {
@@ -84,7 +84,7 @@ define(['jquery'], function() {
                 }
             });
         });
-    
+
 
         if ($('[data-summary]').hasClass('is-active')) {
             $('[data-tab="' + $('[data-summary]').attr('href') + '"]').show();
@@ -113,13 +113,13 @@ define(['jquery'], function() {
         // Switch a given element within the same data-group
         $('[data-switch]').on('click', function(e) {
             var $this = $(this);
-            
+
             if ($this.hasClass('active')) {
                 return false;
             } else {
                 $this.siblings().removeClass('active');
             }
-            
+
             $($this.data('group')).hide();
             $this.addClass('active');
             $($this.data('switch')).show();
