@@ -29,7 +29,9 @@ define([
             versions = [],
             fetchRetryTimeout = 50,
             fetchRetryLimit = 5,
-            rowMarkup = '<div class="row-handler column grid-span-12"><a class="icon-magic fill-row"></a><a class="icon-remove remove-row"></a></div>',
+            originalRow, // where a widget was dragged from
+            hoveredRow, // where a widget is dragged over
+            rowMarkup = '<div class="row-handler column grid-span-12"><a class="icon-remove remove-row"></a></div>',
             rowOverlay = '<div class="row-overlay"><i class="icon-plus-sign"></i> Drop widget here</div>',
             trayContainer = '.tray',
             widgetConfig,
@@ -342,27 +344,28 @@ define([
                             startPosition -= 1;
                         }
                     }
-                }
-                if(rowDragging) {
-                    var operatingRow = $('.operating-row');
-                    var previousHeight = operatingRow.prev().outerHeight() * -1;
-                    var nextHeight = operatingRow.next().outerHeight();
-                    currentY = e.pageY;
-                    var diffY = currentY - originalY;
-                    if(diffY < -100 && diffY < previousHeight) {
-                        if(operatingRow.prev('.widget-row').length) {
-                            operatingRow.prev('.widget-row').before(operatingRow);
-                            diffY = 0;
-                            originalY = e.pageY;
-                            startPosition += 1;
+
+                    if(rowDragging) {
+                        var operatingRow = $('.operating-row');
+                        var previousHeight = operatingRow.prev().outerHeight() * -1;
+                        var nextHeight = operatingRow.next().outerHeight();
+                        currentY = e.pageY;
+                        var diffY = currentY - originalY;
+                        if(diffY < -100 && diffY < previousHeight) {
+                            if(operatingRow.prev('.widget-row').length) {
+                                operatingRow.prev('.widget-row').before(operatingRow);
+                                diffY = 0;
+                                originalY = e.pageY;
+                                startPosition += 1;
+                            }
                         }
-                    }
-                    else if(diffY > 100 && diffY > nextHeight) {
-                        if(operatingRow.next('.widget-row').length) {
-                            operatingRow.next('.widget-row').after(operatingRow);
-                            diffY = 0;
-                            originalY = e.pageY;
-                            startPosition -= 1;
+                        else if(diffY > 100 && diffY > nextHeight) {
+                            if(operatingRow.next('.widget-row').length) {
+                                operatingRow.next('.widget-row').after(operatingRow);
+                                diffY = 0;
+                                originalY = e.pageY;
+                                startPosition -= 1;
+                            }
                         }
                     }
                 }
@@ -509,6 +512,7 @@ define([
                     currentVersion -= 1;
                     var undoHtml = versions[currentVersion];
                     element.append(undoHtml);
+                    $('.widget-row').makeDroppable();
                 }
             }
 
@@ -547,6 +551,12 @@ define([
                 $('.grid-master').fadeToggle();
             });
 
+            $('[data-toggle="grid"]').on('click', function(e){
+                e.preventDefault();
+                $('.grid-master').fadeToggle(200);
+                $(this).toggleClass('active');
+            });
+
             $('[data-action="undo"]').on('click', function(e){
                 e.preventDefault();
                 undo($('.homepage-item'));
@@ -574,6 +584,31 @@ define([
                 element.removeClass('mobile-view');
                 element.removeClass('tablet-view');
             });
+
+            /**
+             * when the settings are toggled, update any actions which need to
+             * use this widget's id             
+             */
+            $('body').on('click', '.edit-widget-settings', function(e) {
+                $('.widget-default-controls').fadeIn(200);
+                $('[data-widget-id]').data('widget-id', $(this).closest('.homepage-widget').attr('id'));
+            });
+
+            $('[data-action=widget-duplicate]').on('click', function(e) {
+                e.preventDefault();
+                var self = $(this),
+                    source = $('#' + self.data('widget-id')),
+                    clone = source.clone()
+
+                // make sure duplicated widgets have a new unique id
+                clone
+                    .removeUniqueId()
+                    .uniqueId();
+
+                // insert it immediately after the source widget
+                source.after(clone);
+                newVersion();
+            });
         }
 
         function paintHomepage(element, homepage) {
@@ -595,7 +630,8 @@ define([
                     widgetContainer = widgetSkeleton
                                         .clone()
                                         .addClass(classes)
-                                        .attachWidgetUI();
+                                        .attachWidgetUI()
+                                        .uniqueId();
 
                     rowDOM.append(widgetContainer);
 

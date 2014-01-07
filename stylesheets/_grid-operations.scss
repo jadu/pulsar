@@ -22,6 +22,25 @@ $cyan : #ea33a3;
     cursor: move;
 }
 
+.homepage-item {
+    clear: both;
+    float: left;
+    width: 75%;
+}
+
+.homepage-sidebar {
+    background-color: #444;
+    color: #fff;
+    float: left;
+    height: 100%;
+    padding: .5em;
+    width: 25%;
+
+    .widget-default-controls {
+       display: none;
+    }
+}
+
 .homepage-widget {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;

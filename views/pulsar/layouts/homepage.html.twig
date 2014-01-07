@@ -37,6 +37,15 @@
         </div>
     </div>
 </div>
+<div class="homepage-sidebar">
+  
+  <div class="widget-default-controls">
+    {{ html.button(
+        label = html.icon('copy') ~ ' Duplicate',
+        attributes = 'data-action=widget-duplicate data-widget-id=null')
+    }}
+  </div>
+</div>
 {% endblock %}
 
 {% block modals %}
