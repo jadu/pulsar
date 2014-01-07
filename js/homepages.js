@@ -31,8 +31,10 @@ define([
             fetchRetryLimit = 5,
             originalRow, // where a widget was dragged from
             hoveredRow, // where a widget is dragged over
-            rowMarkup = '<div class="row-handler column grid-span-12"><a class="icon-remove remove-row"></a></div>',
             rowOverlay = '<div class="row-overlay"><i class="icon-plus-sign"></i> Drop widget here</div>',
+            rowMarkup = '<div class="row-handler column grid-span-12"><a class="icon-magic fill-row" data-toggle="tooltips" data-original-title="Resize widgets to fill row" data-placement="left"></a><a class="icon-remove remove-row"></a></div>',
+            enabledTooltipMessage = 'Resize widgets to fill row',
+            disabledTooltipMessage = 'Widgets cannot be auto–sized',
             trayContainer = '.tray',
             widgetConfig,
             widgetData,
@@ -132,6 +134,7 @@ define([
                                     currentVersion = 1;
                                 }
                             }
+                            loadTooltips();
                             updateActionsMenu();
                         }
                     });
@@ -140,6 +143,18 @@ define([
                 ajaxLoop(0, homepageRow);
             });
             element.append(homepageDOM);
+        }
+
+        function loadTooltips() {
+            $('.fill-row').each(function(){
+                if($(this).hasClass('disabled')) {
+                    $(this).attr('data-original-title', disabledTooltipMessage);
+                }
+                else {
+                    $(this).attr('data-original-title', enabledTooltipMessage);
+                }
+            });
+            $('[data-toggle="tooltips"]').tooltips();
         }
 
         function updateActionsMenu() {
@@ -153,18 +168,11 @@ define([
         function newVersion() {
             var elementHtml = $('.homepage-item').html();
             elementHtml = elementHtml;
-
-            // we want to remove everything after the current version in the array
-            var numberToRemove = versions.length - currentVersion; 
-
-            /**
-             * if the 'current' version (i.e. the version before the user's 
-             * change) is not the latest change then we have to remove 
-             * everything after it in the versions array, so that the user
-             * cannot perform the redo function to get to 'old' versions of 
-             * their homepage
-             */
-            if (numberToRemove > 1) {
+            var numberToRemove = versions.length - currentVersion; // we want to remove everything after the current version in the array
+            if(numberToRemove > 1) {
+                // if the 'current' version (i.e. the version before the user's change) is not the latest change
+                // then we have to remove everything after it in the versions array, so that the user
+                // cannot perform the redo function to get to 'old' versions of their homepage
                 numberToRemove *= -1; // so we can splice from the end of the versions array
                 numberToRemove += 1;
                 versions.splice(numberToRemove);
@@ -188,6 +196,7 @@ define([
                 else {
                     fillButton.removeClass('disabled');
                 }
+                loadTooltips();
             });
             
             // enable or disable specific actions based on current homepage state
@@ -476,16 +485,16 @@ define([
                      * if we've dragged a widget to another row, move it, and
                      * strip any offset classes which would be carried over
                      * into the new row and affect the layout
-                     */      
+                     */
                     if (hoveredRow != null && hoveredRow != originalRow) {
                         operatedWidget
                             .detach()
                             .removeClass(function(index, css) {
                                 return (css.match(/\boffset-\d+/g) || []).join(' ');
                             })
-                            .appendTo(hoveredRow);                        
+                            .appendTo(hoveredRow);
                     }
-                    
+
                     operatedWidget.removeClass('operating');
 
                     /**
@@ -501,7 +510,7 @@ define([
 
                     $('.operating-on-child').removeClass('operating-on-child');
                 }
-                
+
                 // remove all row overlays
                 $('.row-overlay').remove();
 
@@ -516,7 +525,7 @@ define([
             });
 
             /**
-             * show overlay when attempting to drag widgets to another row as 
+             * show overlay when attempting to drag widgets to another row as
              * long as we're not attempting to drop onto the original row
              */
             $('body').on('mouseenter', '.widget-row', function(e) {
@@ -624,7 +633,7 @@ define([
 
             /**
              * when the settings are toggled, update any actions which need to
-             * use this widget's id             
+             * use this widget's id
              */
             $('body').on('click', '.edit-widget-settings', function(e) {
                 $('.widget-default-controls').fadeIn(200);
@@ -822,7 +831,7 @@ define([
                     },
                     out: function (e, ui) {
                         $('.row-overlay', this).remove();
-                    }    
+                    }
                 });
             });
         }
