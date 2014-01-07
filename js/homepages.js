@@ -143,7 +143,7 @@ define([
         }
 
         function updateActionsMenu() {
-            console.log($('.homepage-item > .widget-row').length);
+
             // disable actions if homepage empty
             if ($('.homepage-item > .widget-row').length === 0) {
                 $('[data-action=clear-homepage-confirmation]').parent().addClass('disabled', 'disabled');
@@ -189,7 +189,7 @@ define([
                     fillButton.removeClass('disabled');
                 }
             });
-            console.log($('.widget-row'));
+            
             // enable or disable specific actions based on current homepage state
             updateActionsMenu();
         }
@@ -539,7 +539,6 @@ define([
                 e.preventDefault();
                 $('#clear_homepage_modal').modal('show');
             }).on('click', '[data-action=clear-homepage]', function(e) {
-                console.log('clearing');
                 $('.widget-row').removeRow();
                 $('#clear_homepage_modal').modal('hide');
             });
