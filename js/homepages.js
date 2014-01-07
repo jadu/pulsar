@@ -142,7 +142,6 @@ define([
         }
 
         function newVersion() {
-            console.log('version added');
             var elementHtml = $('.homepage-item').html();
             elementHtml = elementHtml;
             var numberToRemove = versions.length - currentVersion; // we want to remove everything after the current version in the array
