@@ -132,6 +132,7 @@ define([
                                     currentVersion = 1;
                                 }
                             }
+                            updateActionsMenu();
                         }
                     });
 
@@ -141,24 +142,44 @@ define([
             element.append(homepageDOM);
         }
 
+        function updateActionsMenu() {
+            console.log($('.homepage-item > .widget-row').length);
+            // disable actions if homepage empty
+            if ($('.homepage-item > .widget-row').length === 0) {
+                $('[data-action=clear-homepage-confirmation]').parent().addClass('disabled', 'disabled');
+            };
+        }
+
         function newVersion() {
-            console.log('version');
             var elementHtml = $('.homepage-item').html();
             elementHtml = elementHtml;
-            var numberToRemove = versions.length - currentVersion; // we want to remove everything after the current version in the array
-            if(numberToRemove > 1) {
-                // if the 'current' version (i.e. the version before the user's change) is not the latest change
-                // then we have to remove everything after it in the versions array, so that the user
-                // cannot perform the redo function to get to 'old' versions of their homepage
+
+            // we want to remove everything after the current version in the array
+            var numberToRemove = versions.length - currentVersion; 
+
+            /**
+             * if the 'current' version (i.e. the version before the user's 
+             * change) is not the latest change then we have to remove 
+             * everything after it in the versions array, so that the user
+             * cannot perform the redo function to get to 'old' versions of 
+             * their homepage
+             */
+            if (numberToRemove > 1) {
                 numberToRemove *= -1; // so we can splice from the end of the versions array
                 numberToRemove += 1;
                 versions.splice(numberToRemove);
             }
+            
             currentVersion += 1;
-            versions[currentVersion] = elementHtml; // add the new version we've just created
-            startPosition = 0; //restart start position for next moves
+
+            // add the new version we've just created
+            versions[currentVersion] = elementHtml; 
+            
+            // restart start position for next moves
+            startPosition = 0; 
+
             // check rows and enable/disable auto–fill button accordingly
-            $('.widget-row').each(function(){
+            $('.widget-row').each(function() {
                 var noOfWidgets = $(this).children('.homepage-widget').length;
                 var fillButton = $(this).find('.fill-row');
                 if(columnCount % noOfWidgets) {
@@ -168,6 +189,9 @@ define([
                     fillButton.removeClass('disabled');
                 }
             });
+            console.log($('.widget-row'));
+            // enable or disable specific actions based on current homepage state
+            updateActionsMenu();
         }
 
         /**
@@ -259,7 +283,6 @@ define([
 
                     // remove the row immediately if its empty
                     row.removeRow();
-                    newVersion();
                 });
 
                 $(element).on('click', '.fill-row', function(e) {
@@ -277,13 +300,21 @@ define([
          * remove a homepage row and its contents (or a collection of them)
          */
         $.fn.removeRow = function() {
-            return this.each(function(index, element) {
+            var i = this.length;
+
+            this.each(function(index, element) {
                 var self = $(this),
                     rowHeight = self.outerHeight();
 
                 self.animate({'opacity' : 0}, 150, function() {
                     self.slideUp(120, function() {
                         self.remove();
+                        i--;
+
+                        // create new version after all rows are removed
+                        if (i === 0) {
+                            newVersion();
+                        }
                     });
                 });
             });
@@ -508,9 +539,9 @@ define([
                 e.preventDefault();
                 $('#clear_homepage_modal').modal('show');
             }).on('click', '[data-action=clear-homepage]', function(e) {
+                console.log('clearing');
                 $('.widget-row').removeRow();
                 $('#clear_homepage_modal').modal('hide');
-                newVersion();
             });
 
             function undo(element) {

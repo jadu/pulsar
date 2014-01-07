@@ -46,3 +46,7 @@ a {
 a:hover {
   color: $link-hover-color;
 }
+
+a.disabled {
+  opacity: .5;
+}

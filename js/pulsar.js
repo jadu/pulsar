@@ -42,6 +42,12 @@ define(['jquery'], function() {
                 });
             });
 
+            // Don't allow disabled links to be clicked
+            $('a.disabled').on('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            });
+
         });
 
 
