@@ -618,57 +618,6 @@ define([
             });
         }
 
-        function paintHomepage(element, homepage) {
-            var homepageDOM = $('<div class="homepage-item"></div>'),
-                resizerLeft = $('<div class="resizer resizer__left"></div>');
-                rowNo = 0;
-
-            homepage.forEach(function(homepageRow, index){
-                rowNo++;
-                var rowDOM = createNewRow(true, rowNo),
-                    widgetCount = homepageRow.length;
-
-                function ajaxLoop(widgetIndex, rowArray) {
-                    var widget = rowArray[widgetIndex],
-                        guid = widget.guid,
-                        version = widget.version,
-                        classes = widget.classes,
-
-                    widgetContainer = widgetSkeleton
-                                        .clone()
-                                        .addClass(classes)
-                                        .attachWidgetUI()
-                                        .uniqueId();
-
-                    rowDOM.append(widgetContainer);
-
-                    $.ajax({
-                        url: widgetPath + guid + '/' + version + '/index.php',
-                        success: function (data) {
-                            var dataElement = $(data);
-                            var newIndex = widgetIndex + 1;
-                            widgetContainer.remove('h2').append(dataElement);
-                            if(newIndex < widgetCount) {
-                                var widget = rowArray[widgetIndex + 1];
-                                ajaxLoop(newIndex, rowArray);
-                            }
-                            else {
-                                homepageDOM.append(rowDOM);
-                                if(rowNo == homepage.length) {
-                                    versions[1] = homepageDOM.html();
-                                    currentVersion = 1;
-                                }
-                            }
-                        }
-                    });
-
-                }
-                ajaxLoop(0, homepageRow);
-            });
-            element.append(homepageDOM);
-            versions[0] = homepageDOM;
-        }
-
         function createNewRow(returnRow, rowNo) {
             var rows = $('.widget-row'),
                 lastRow = $('.widget-row:last-of-type'),
