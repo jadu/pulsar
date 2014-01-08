@@ -74,8 +74,13 @@ a.btn {
 }
 
 .btn:disabled,
-.btn.is-disabled {
-    cursor: default;
+.btn.is-disabled
+.btn.disabled {
+    cursor: not-allowed !important;
+
+    &:hover {
+        cursor: not-allowed !important ;
+    }
 }
 
 /**

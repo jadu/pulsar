@@ -135,10 +135,9 @@ define([
                                 }
                             }
                             loadTooltips();
-                            updateActionsMenu();
                         }
                     });
-
+                    updateActions();
                 }
                 ajaxLoop(0, homepageRow);
             });
@@ -157,19 +156,40 @@ define([
             $('[data-toggle="tooltips"]').tooltips();
         }
 
-        function updateActionsMenu() {
+        function updateActions() {
 
             // disable actions if homepage empty
             if ($('.homepage-item > .widget-row').length === 0) {
                 $('[data-action=clear-homepage-confirmation]').parent().addClass('disabled', 'disabled');
             };
+
+            var undoHandler = $('[data-action=undo]'),
+                redoHandler = $('[data-action=redo]');
+
+            // undo
+            if (currentVersion <= 1) {
+                undoHandler.addClass('disabled');
+            } else {
+                undoHandler.removeClass('disabled');
+            }
+
+            // redo
+            if (currentVersion < versions.length - 1) {
+                redoHandler.removeClass('disabled');
+            } else {
+                redoHandler.addClass('disabled');
+            }
         }
 
         function newVersion() {
-            var elementHtml = $('.homepage-item').html();
-            elementHtml = elementHtml;
-            var numberToRemove = versions.length - currentVersion; // we want to remove everything after the current version in the array
-            if(numberToRemove > 1) {
+            var elementHtml = $('.homepage-item').html(),
+                numberToRemove = versions.length - currentVersion; // we want to remove everything after the current version in the array
+
+            if (!elementHtml) {
+                return false;
+            }
+            
+            if (numberToRemove > 1) {
                 // if the 'current' version (i.e. the version before the user's change) is not the latest change
                 // then we have to remove everything after it in the versions array, so that the user
                 // cannot perform the redo function to get to 'old' versions of their homepage
@@ -200,7 +220,7 @@ define([
             });
             
             // enable or disable specific actions based on current homepage state
-            updateActionsMenu();
+            updateActions();
         }
 
         /**
@@ -553,22 +573,24 @@ define([
             });
 
             function undo(element) {
-                if(currentVersion > 1) {
+                if (currentVersion > 1) {
                     element.empty();
                     currentVersion -= 1;
                     var undoHtml = versions[currentVersion];
                     element.append(undoHtml);
                     $('.widget-row').makeDroppable();
+                    updateActions();
                 }
             }
 
             function redo(element) {
-                if(currentVersion < versions.length - 1) {
+                if (currentVersion < versions.length - 1) {
                     element.empty();
                     var redoHtml = versions[currentVersion + 1];
                     element.append(redoHtml);
                     $('.widget-row').makeDroppable();
                     currentVersion += 1;
+                    updateActions();
                 }
             }
 
