@@ -113,6 +113,7 @@ define([
                     widgetContainer = widgetSkeleton
                                         .clone()
                                         .addClass(classes)
+                                        .uniqueId()
                                         .attachWidgetUI();
 
                     rowDOM.append(widgetContainer);
@@ -648,6 +649,8 @@ define([
                 var self = $(this),
                     source = $('#' + self.data('widget-id')),
                     clone = source.clone();
+
+                    console.log(source);
 
                 // make sure duplicated widgets have a new unique id
                 clone
