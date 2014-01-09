@@ -136,6 +136,7 @@ define([
                             }
                             loadTooltips();
                             updateActionsMenu();
+                            $('.icon-spinner', widgetContainer).remove();
                         }
                     });
 
