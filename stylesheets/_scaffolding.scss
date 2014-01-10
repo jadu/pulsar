@@ -49,4 +49,9 @@ a:hover {
 
 a.disabled {
   opacity: .5;
+  cursor: not-allowed !important;
+
+  &:hover {
+    cursor: not-allowed !important;
+  }
 }
