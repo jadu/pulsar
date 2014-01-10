@@ -15,6 +15,11 @@
     "require": {
         "twig/twig": "@dev",
         "phpunit/phpunit": "@dev",
-        "dflydev/markdown": "@dev" 
+        "dflydev/markdown": "@dev", 
+        "behat/behat": "2.*",
+        "behat/mink": "1.4.*@stable",
+        "behat/mink-extension": "*",
+        "behat/mink-goutte-driver": "*",
+        "behat/mink-selenium2-driver": "*"
     }
 }
