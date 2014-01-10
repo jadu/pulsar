@@ -136,6 +136,7 @@ define([
                             }
                             loadTooltips();
                             updateActionsMenu();
+                            $('.icon-spinner', widgetContainer).remove();
                         }
                     });
 
@@ -501,11 +502,13 @@ define([
                      * if the new row hasn't been used, we can safely remove it,
                      * otherwise, we can promote it to a real row
                      */
-                    if (newRowPresent && hoveredRow[0] != newRow[0]) {
-                        removeNewRow();
-                    } else {
-                        newRow.removeClass('widget-row-new');
-                        newRowPresent = false;
+                    if (newRowPresent) {
+                        if (hoveredRow[0] != newRow[0]) {
+                            removeNewRow();
+                        } else {
+                            newRow.removeClass('widget-row-new');
+                            newRowPresent = false;
+                        }
                     }
 
                     $('.operating-on-child').removeClass('operating-on-child');
@@ -644,7 +647,7 @@ define([
                 e.preventDefault();
                 var self = $(this),
                     source = $('#' + self.data('widget-id')),
-                    clone = source.clone()
+                    clone = source.clone();
 
                 // make sure duplicated widgets have a new unique id
                 clone
