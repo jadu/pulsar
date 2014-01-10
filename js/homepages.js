@@ -92,12 +92,14 @@ define([
         function paintHomepage(element, homepage) {
             var homepageDOM = $('<div class="homepage-item"></div>');
 
-            homepage.forEach(function(homepageRow, index) {
+            $(homepage).each(function(index) {
                 var rowDOM = $('<div class="grid-container widget-row"></div>'),
                     rowHandler = $(rowMarkup),
                     rowNo = parseInt(index) + 1,
+                    homepageRow = $(this);
                     rowTitle = 'Row ' + rowNo;
 
+                console.log(homepageRow);
                 rowHandler.append(rowTitle);
                 rowHandler.append('<a class="icon-remove remove-row"></a>');
                 rowDOM.append(rowHandler);
@@ -197,14 +199,14 @@ define([
                 numberToRemove += 1;
                 versions.splice(numberToRemove);
             }
-            
+
             currentVersion += 1;
 
             // add the new version we've just created
-            versions[currentVersion] = elementHtml; 
-            
+            versions[currentVersion] = elementHtml;
+
             // restart start position for next moves
-            startPosition = 0; 
+            startPosition = 0;
 
             // check rows and enable/disable auto–fill button accordingly
             $('.widget-row').each(function() {
@@ -218,7 +220,7 @@ define([
                 }
                 loadTooltips();
             });
-            
+
             // enable or disable specific actions based on current homepage state
             updateActions();
         }
@@ -727,8 +729,12 @@ define([
         }
 
         function loadHomepageObject(json, element) {
-            var homepageLiteral = $.parseJSON(json); // Others
-            //var homepageLiteral = $.parseJSON(JSON.stringify(json)); // IE
+            if($('body').hasClass('lt-ie9')) {
+                var homepageLiteral = $.parseJSON(JSON.stringify(json)); // IE
+            }
+            else {
+                var homepageLiteral = $.parseJSON(json); // Others
+            }
             paintHomepage(element, homepageLiteral);
         }
 
