@@ -113,6 +113,7 @@ define([
                     widgetContainer = widgetSkeleton
                                         .clone()
                                         .addClass(classes)
+                                        .attr('data-widget-guid', guid)
                                         .attachWidgetUI();
 
                     rowDOM.append(widgetContainer);
