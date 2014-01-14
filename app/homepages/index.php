@@ -30,16 +30,9 @@ $breadcrumb = array(
 
 $widgets = array(
     array(
-        'id' => 'analytics',
-        'title' => 'Analytics',
+        'id' => 'murray',
+        'title' => 'Bill Murray',
         'widgets' => array(
-            array(
-                'guid' => 'browsers',
-                'version' => '0.0.1',
-                'title' => 'Browser Usage',
-                'price' => '0',
-                'description' => 'Show which browsers your users have used to visit your site.'
-            ),
             array(
                 'guid' => 'fillmurray',
                 'version' => '0.0.1',
@@ -47,7 +40,14 @@ $widgets = array(
                 'price' => '0',
                 'description' => 'Some Bill Murray Placeholder',
                 'gridspan' => 6
-            )
+            ),
+            array(
+                'guid' => 'image',
+                'version' => '0.0.1',
+                'title' => 'Image',
+                'price' => '0',
+                'description' => 'A lovely portrait of Bill.'
+            ),
         )
     ),
     array(

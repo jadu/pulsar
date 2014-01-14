@@ -72,11 +72,11 @@ define([
           $('.widget__price').text($this.data('widget-price'));
 
           $('.tray__detail .widget')
-            .data('widget-guid', $this.data('widget-guid'))
-            .data('widget-version', $this.data('widget-version'))
-            .data('widget-title', $this.data('widget-title'))
-            .data('widget-description', $this.data('widget-description'))
-            .data('widget-grid-span', $this.data('widget-grid-span'))
+            .attr('data-widget-guid', $this.data('widget-guid'))
+            .attr('data-widget-version', $this.data('widget-version'))
+            .attr('data-widget-title', $this.data('widget-title'))
+            .attr('data-widget-description', $this.data('widget-description'))
+            .attr('data-widget-grid-span', $this.data('widget-grid-span'))
             .show();
         });
       },

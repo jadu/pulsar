@@ -1,0 +1,14 @@
+default:
+  paths:
+    features: features
+    bootstrap: %behat.paths.features%/bootstrap
+  extensions:
+    Behat\MinkExtension\Extension:
+            base_url: "http://localhost:8000/"
+            default_session: selenium2
+            browser_name: firefox
+            selenium2:
+                capabilities: { "version": "*" }
+                wd_host: http://127.0.0.1:4444/wd/hub
+            show_auto: true
+            show_cmd: "open %s"
