@@ -343,6 +343,164 @@ class FeatureContext extends MinkContext
         $session->buttonup(""); //release mouse to complete drag and drop operation
     }
 
+    /**
+     * @Given /^I have at least one row$/
+     */
+    public function iHaveAtLeastOneRow()
+    {
+        $page = $this->getSession()->getPage();
+        $rows = $page->find('css', '.widget-row');
+
+        if (!$rows) {
+            throw new \Exception('Homepage has no rows');
+        } 
+    }
+
+    /**
+     * @Then /^my rows should have the remove-row button$/
+     */
+    public function myRowsShouldHaveTheRemoveRowButton()
+    {
+        $page = $this->getSession()->getPage();
+        $rows = $page->findAll('css', '.widget-row');
+
+        foreach ($rows as $row) {
+            $removeRowButton = $row->find('css', '.row-handler .remove-row');
+            if (!$removeRowButton) {
+                throw new \Exception('Row does not have remove-row button');
+            }
+        }
+    }
+
+    /**
+     * @When /^I click the remove button on row (\d+)$/
+     */
+    public function iClickTheRemoveButtonOnRow($rowNo)
+    {
+        $page = $this->getSession()->getPage();
+        $row = $page->find('xpath', "//div[contains(concat(' ', @class, ' '), ' widget-row ')][" . $rowNo . "]");
+
+        if (!$row) {
+            throw new \Exception('Row is not present, and it should be');
+        }
+
+        $removeButton = $row->find('css', '.remove-row');
+        $removeButton->click();
+
+        $this->rowNo = $rowNo;
+    }
+
+    /**
+     * @Given /^I remove widget (\d+) on row (\d+)$/
+     */
+    public function iRemoveWidgetOnRow($widgetNo, $rowNo)
+    {
+        $page = $this->getSession()->getPage();
+        $this->jqueryWait();
+
+        $this->iHoverOverWidgetOnRow($widgetNo, $rowNo);
+        $this->jqueryWait();
+        
+        $removeButton = $page->find('xpath', "//div[@id='row-" . $rowNo . "']//div[contains(concat(' ', @class, ' '), ' homepage-widget ')][" . $widgetNo . "]//a[contains(concat(' ', @class, ' '), ' remove-widget ')]");
+
+        $removeButton->click();
+    }
+    
+    /**
+     * @Given /^I hover over widget (\d+) on row (\d+)$/
+     */
+    public function iHoverOverWidgetOnRow($widgetNo, $rowNo)
+    {
+        $session = $this->getSession()->getDriver()->getWebDriverSession();
+
+        $xpath = "//div[@id='row-" . $rowNo . "']//div[contains(concat(' ', @class, ' '), ' homepage-widget ')][" . $widgetNo . "]";
+
+        $element = $session->element('xpath', $xpath);
+
+        $session->moveto(array('element' => $element->getID()));
+
+        $this->hoveredWidget = $xpath;
+        $this->widgetNo = $widgetNo;
+        $this->rowNo = $rowNo;
+    }
+
+    /**
+     * @Given /^the resize handle should be visible$/
+     */
+    public function theResizeHandleShouldBeVisible()
+    {
+        $page = $this->getSession()->getPage();
+        $widget = $page->find('xpath', $this->hoveredWidget);
+        $resizer = $widget->find('css', '.resizer');
+
+        if (!$resizer->isVisible()) {
+            throw new \Exception('Resize handle is not visible');
+        }
+    }
+
+    /**
+     * @Then /^the widget should be highlighted$/
+     */
+    public function theWidgetOnRowShouldBeHighlighted()
+    {
+        if (!$this->rowNo || !$this->widgetNo) {
+            throw new \Exception('Required widget or row not found');
+        }
+
+        $page = $this->getSession()->getPage();
+        $widget = $page->find('xpath', "//div[@id='row-" . $this->rowNo . "']//div[contains(concat(' ', @class, ' '), ' homepage-widget ')][" . $this->widgetNo . "]");
+
+        $overlay = $widget->find('css', '.overlay');
+
+        if (!$overlay->isVisible()) {
+            throw new \Exception('Widget overlay is not visible');
+        }
+    }
+
+    /**
+     * @Then /^I should see the "([^"]*)" link$/
+     */
+    public function iShouldSeeTheLink($arg1)
+    {
+        $page = $this->getSession()->getPage();
+        $widget = $page->find('xpath', $this->hoveredWidget);
+        $link = $widget->find('css', $arg1);
+
+        if (!$link) {
+            throw new \Exception('Link not found');
+        }
+    }
+
+    /**
+     * @Then /^the row should be removed$/
+     */
+    public function rowShouldBeRemoved()
+    {
+        if (!$this->rowNo) {
+            throw new \Exception('Row number has not been set');
+        }
+
+        $page = $this->getSession()->getPage();
+        $row = $page->find('css', '#row-' . $this->rowNo);
+
+        if ($row) {
+            throw new \Exception('Row has not been removed');
+        }
+    }
+
+    /**
+     * @Then /^I should see the "([^"]*)" modal$/
+     */
+    public function checkModalByID($arg1)
+    {
+        $page = $this->getSession()->getPage();
+        $this->jqueryWait();
+        $modal = $page->find('css', '#' + $arg1);
+
+        if (!$modal || !$modal->isVisible()) {
+            throw new \Exception('Modal "#' . $arg1 . '" not found, or is not visible');
+        }
+    }
 
     protected function jqueryWait($duration = 10000)
     {
@@ -371,4 +529,19 @@ class FeatureContext extends MinkContext
             $backtrace[1]['file'] . ", line " . $backtrace[1]['line']
         );
     }
+
+    /**
+     * Pauses the scenario until the user presses a key. Useful when debugging a scenario.
+     *
+     * @Then /^(?:|I )put a breakpoint$/
+     */
+    public function iPutABreakpoint()
+    {
+        fwrite(STDOUT, "\033[s    \033[93m[Breakpoint] Press \033[1;93m[RETURN]\033[0;93m to continue...\033[0m");
+        while (fgets(STDIN, 1024) == '') {}
+        fwrite(STDOUT, "\033[u");
+
+        return;
+    }
+
 }
