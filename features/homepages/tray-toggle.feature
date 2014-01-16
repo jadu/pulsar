@@ -5,7 +5,6 @@ Feature: Toggle Tray
 
 Scenario: Tray hidden by default
 	Given I am on the homepages designer
-	When I do nothing
 	Then the tray should be hidden
 	And the 'Widgets' button should not be toggled
 

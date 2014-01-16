@@ -21,5 +21,4 @@ Scenario: removing non-empty row should ask for confirmation
 	And I drag the handle to row 1
 	When I click the remove button on row 1
 	Then I should see the "remove_row_modal" modal
-
 	

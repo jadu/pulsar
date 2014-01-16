@@ -50,8 +50,8 @@ Scenario: Drag widget to new row
 	Given the tray is visible
 	And a new row has been created
 	When I click on the "Bill Murray" category
-	And I click on the "Image" widget
-	When I drag the handle to row 3
-	Then row 3 should contain the widget:
-		| image |
+	And I click on the "Fill Murray" widget
+	When I drag the handle to the new row
+	Then the new row should contain the widget:
+		| fillmurray |
 
