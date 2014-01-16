@@ -300,10 +300,17 @@ define([
 
                 $(element).on('click', '.fill-row', function(e) {
                     e.stopPropagation();
-                    var widgets = $(this).parent().parent().children('.homepage-widget');
-                    var newSpan = columnCount / widgets.length;
+                    var widgets = $(this).parent().parent().children('.homepage-widget'),
+                        newSpan = columnCount / widgets.length;
+                    
                     newSpan = 'grid-span-' + newSpan;
-                    widgets.addClass(newSpan);
+
+                    widgets
+                        .removeClass(function (index, css) {
+                            return (css.match (/\bgrid-span-\S+/g) || []).join(' ');
+                        })
+                        .addClass(newSpan);
+
                     newVersion();
                 });
             });
