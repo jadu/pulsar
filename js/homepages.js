@@ -157,6 +157,7 @@ define([
                 }
                 ajaxLoop(0, homepageRow);
             });
+            element.find('#row-1').remove();
             element.append(homepageDOM);
         }
 
