@@ -137,7 +137,7 @@ define([
                                 }
                             }
                             loadTooltips();
-                            updateActionsMenu();
+                            updateActions();
                             $('.icon-spinner', widgetContainer).remove();
                         }
                     });
@@ -160,12 +160,43 @@ define([
             $('[data-toggle="tooltips"]').tooltips();
         }
 
-        function updateActionsMenu() {
+        function updateActions() {
 
             // disable actions if homepage empty
             if ($('.homepage-item > .widget-row').length === 0) {
                 $('[data-action=clear-homepage-confirmation]').parent().addClass('disabled', 'disabled');
             };
+
+            // disable fill-row action if not applicable
+            $('.widget-row').each(function() {
+                var widgets = $('.homepage-widget', this),
+                    fillButton = $('.fill-row', this),
+                    widgetColCount = 0;
+
+                // loop over each widget in this row
+                widgets.each(function() {
+                    var widgetClasses = $(this).attr('class');
+
+                    // grab the grid-span integer and add it to our count
+                    widgetColCount += parseInt(/grid-span-(\d+)/.exec(widgetClasses)[1], 10);
+                });
+
+                /**
+                 * Disable the fill button if any of these conditions are met:
+                 *     - the widget's can't be equally resized
+                 *         eg: 12 columns / 5 widgets = 2.4 (disabled)
+                 *             12 columns / 3 widgets = 4   (enabled)
+                 *     - the widgets already fill the row
+                 *     - there are no widgets in the row
+                 */
+                if (columnCount % widgets.length || columnCount === widgetColCount || !widgets.length) {
+                    fillButton.addClass('disabled');
+                }
+                else {
+                    fillButton.removeClass('disabled');
+                }
+                loadTooltips();
+            });
         }
 
         function newVersion() {
@@ -189,22 +220,8 @@ define([
             // restart start position for next moves
             startPosition = 0; 
 
-            // check rows and enable/disable auto–fill button accordingly
-            $('.widget-row').each(function() {
-                var noOfWidgets = $(this).children('.homepage-widget').length,
-                    fillButton = $(this).find('.fill-row');
-                
-                if (columnCount % noOfWidgets || !noOfWidgets) {
-                    fillButton.addClass('disabled');
-                }
-                else {
-                    fillButton.removeClass('disabled');
-                }
-                loadTooltips();
-            });
-            
             // enable or disable specific actions based on current homepage state
-            updateActionsMenu();
+            updateActions();
         }
 
         /**
