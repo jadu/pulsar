@@ -396,6 +396,8 @@ define([
                     forcePlaceholderSize: true,
                     handle: ".row-handler",
                     placeholder: "row-placeholder",
+                    revert: 100,
+                    tolerance: "pointer",
                     update: function() {
                         newVersion();
                     }
