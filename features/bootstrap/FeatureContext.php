@@ -762,7 +762,6 @@ class FeatureContext extends MinkContext
     public function theRowShouldStillBeVisible()
     {
         $page = $this->getSession()->getPage();
-        print $this->lastRowID;
         $row = $page->find('css', '#' . $this->lastRowID);
 
         if (!$row || !$row->isVisible()) {
