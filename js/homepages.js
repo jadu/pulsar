@@ -42,7 +42,7 @@ define([
             widgetSkeleton = $('<div></div>');
             widgetDataContainer = '#widget__data',
             widgetPath = '/var/widgets/',
-            widgetSpan = 4,
+            widgetSpan = 1,
             widgetRemoveAttribute = '[data-widget-action=remove]';
             currentVersion = 0,
             homepageHtml = '',
@@ -92,17 +92,17 @@ define([
         function paintHomepage(element, homepage) {
             var homepageDOM = $('<div class="homepage-item"></div>');
 
-            $(homepage).each(function(index) {
+            homepage.forEach(function(homepageRow, index) {
                 var rowDOM = $('<div class="grid-container widget-row"></div>'),
                     rowHandler = $(rowMarkup),
                     rowNo = parseInt(index) + 1,
-                    homepageRow = $(this);
                     rowTitle = 'Row ' + rowNo;
 
-                console.log(homepageRow);
                 rowHandler.append(rowTitle);
-                rowHandler.append('<a class="icon-remove remove-row"></a>');
-                rowDOM.append(rowHandler);
+
+                rowDOM
+                    .attr('id', 'row-' + rowNo)
+                    .append(rowHandler);
 
                 var widgetCount = homepageRow.length;
 
@@ -138,9 +138,11 @@ define([
                                 }
                             }
                             loadTooltips();
+                            updateActionsMenu();
+                            $('.icon-spinner', widgetContainer).remove();
                         }
                     });
-                    updateActions();
+
                 }
                 ajaxLoop(0, homepageRow);
             });
@@ -159,40 +161,19 @@ define([
             $('[data-toggle="tooltips"]').tooltips();
         }
 
-        function updateActions() {
+        function updateActionsMenu() {
 
             // disable actions if homepage empty
             if ($('.homepage-item > .widget-row').length === 0) {
                 $('[data-action=clear-homepage-confirmation]').parent().addClass('disabled', 'disabled');
             };
-
-            var undoHandler = $('[data-action=undo]'),
-                redoHandler = $('[data-action=redo]');
-
-            // undo
-            if (currentVersion <= 1) {
-                undoHandler.addClass('disabled');
-            } else {
-                undoHandler.removeClass('disabled');
-            }
-
-            // redo
-            if (currentVersion < versions.length - 1) {
-                redoHandler.removeClass('disabled');
-            } else {
-                redoHandler.addClass('disabled');
-            }
         }
 
         function newVersion() {
-            var elementHtml = $('.homepage-item').html(),
-                numberToRemove = versions.length - currentVersion; // we want to remove everything after the current version in the array
-
-            if (!elementHtml) {
-                return false;
-            }
-            
-            if (numberToRemove > 1) {
+            var elementHtml = $('.homepage-item').html();
+            elementHtml = elementHtml;
+            var numberToRemove = versions.length - currentVersion; // we want to remove everything after the current version in the array
+            if(numberToRemove > 1) {
                 // if the 'current' version (i.e. the version before the user's change) is not the latest change
                 // then we have to remove everything after it in the versions array, so that the user
                 // cannot perform the redo function to get to 'old' versions of their homepage
@@ -200,14 +181,14 @@ define([
                 numberToRemove += 1;
                 versions.splice(numberToRemove);
             }
-
+            
             currentVersion += 1;
 
             // add the new version we've just created
-            versions[currentVersion] = elementHtml;
-
+            versions[currentVersion] = elementHtml; 
+            
             // restart start position for next moves
-            startPosition = 0;
+            startPosition = 0; 
 
             // check rows and enable/disable auto–fill button accordingly
             $('.widget-row').each(function() {
@@ -221,9 +202,9 @@ define([
                 }
                 loadTooltips();
             });
-
+            
             // enable or disable specific actions based on current homepage state
-            updateActions();
+            updateActionsMenu();
         }
 
         /**
@@ -319,10 +300,17 @@ define([
 
                 $(element).on('click', '.fill-row', function(e) {
                     e.stopPropagation();
-                    var widgets = $(this).parent().parent().children('.homepage-widget');
-                    var newSpan = columnCount / widgets.length;
+                    var widgets = $(this).parent().parent().children('.homepage-widget'),
+                        newSpan = columnCount / widgets.length;
+                    
                     newSpan = 'grid-span-' + newSpan;
-                    widgets.addClass(newSpan);
+
+                    widgets
+                        .removeClass(function (index, css) {
+                            return (css.match (/\bgrid-span-\S+/g) || []).join(' ');
+                        })
+                        .addClass(newSpan);
+
                     newVersion();
                 });
             });
@@ -365,7 +353,7 @@ define([
 
         function attachEvents(element) {
             $('body').on('mousemove', function(e) {
-                if (dragging) {
+                if(dragging) {
 
                     /**
                      * add a new empty drop target when dragging starts, as long
@@ -410,21 +398,26 @@ define([
                 }
 
                 if (rowDragging) {
-                    var operatingRow = $('.operating-row');
-                    var previousHeight = operatingRow.prev().outerHeight() * -1;
-                    var nextHeight = operatingRow.next().outerHeight();
+                    var operatingRow = $('.operating-row'),
+                        thisHeight = operatingRow.outerHeight(),
+                        previousHeight = operatingRow.prev().outerHeight() * -1;
+
                     currentY = e.pageY;
                     var diffY = currentY - originalY;
-                    if(diffY < -100 && diffY < previousHeight) {
-                        if(operatingRow.prev('.widget-row').length) {
+
+                    // scrolling upwards
+                    if (diffY < -100 && diffY < previousHeight) {
+                        if (operatingRow.prev('.widget-row').length) {
                             operatingRow.prev('.widget-row').before(operatingRow);
                             diffY = 0;
                             originalY = e.pageY;
                             startPosition += 1;
                         }
                     }
-                    else if(diffY > 100 && diffY > nextHeight) {
-                        if(operatingRow.next('.widget-row').length) {
+
+                    // scrolling downwards
+                    else if (diffY > 100 && diffY > thisHeight) {
+                        if (operatingRow.next('.widget-row').length) {
                             operatingRow.next('.widget-row').after(operatingRow);
                             diffY = 0;
                             originalY = e.pageY;
@@ -432,9 +425,8 @@ define([
                         }
                     }
                 }
-                
 
-                if (resizing) {
+                if(resizing) {
                     var columnWidth = parseInt($('.grid-span-1').outerWidth());
                     var columnMargin = parseInt($('.grid-span-1').css('margin-right')) + 1;
                     columnWidth += columnMargin;
@@ -579,24 +571,22 @@ define([
             });
 
             function undo(element) {
-                if (currentVersion > 1) {
+                if(currentVersion > 1) {
                     element.empty();
                     currentVersion -= 1;
                     var undoHtml = versions[currentVersion];
                     element.append(undoHtml);
                     $('.widget-row').makeDroppable();
-                    updateActions();
                 }
             }
 
             function redo(element) {
-                if (currentVersion < versions.length - 1) {
+                if(currentVersion < versions.length - 1) {
                     element.empty();
                     var redoHtml = versions[currentVersion + 1];
                     element.append(redoHtml);
                     $('.widget-row').makeDroppable();
                     currentVersion += 1;
-                    updateActions();
                 }
             }
 
@@ -711,7 +701,10 @@ define([
 
             rowTitle = 'Row ' + rowNo;
             rowHandler.append(rowTitle);
-            rowDom.append(rowHandler);
+
+            rowDom
+                .attr('id', 'row-' + rowNo)
+                .append(rowHandler);
 
             /**
              * store a reference to the new row which will be checked later to
@@ -742,12 +735,8 @@ define([
         }
 
         function loadHomepageObject(json, element) {
-            if($('body').hasClass('lt-ie9')) {
-                var homepageLiteral = $.parseJSON(JSON.stringify(json)); // IE
-            }
-            else {
-                var homepageLiteral = $.parseJSON(json); // Others
-            }
+            var homepageLiteral = $.parseJSON(json); // Others
+            //var homepageLiteral = $.parseJSON(JSON.stringify(json)); // IE
             paintHomepage(element, homepageLiteral);
         }
 

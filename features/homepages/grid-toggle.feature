@@ -5,7 +5,6 @@ Feature: Toggle Grid
 
 Scenario: Grid visible by default
 	Given I am on the homepages designer
-	When I do nothing
 	Then the grid should be visible
 	And the 'Hide Grid' button should not be toggled
 

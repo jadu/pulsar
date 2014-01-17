@@ -26,18 +26,21 @@ class FeatureContext extends MinkContext
      * @var     string
      */
     private $env;
+
     /**
      * Last runned command name.
      *
      * @var     string
      */
     private $command;
+
     /**
      * Last runned command output.
      *
      * @var     string
      */
     private $output;
+
     /**
      * Last runned command return code.
      *
@@ -46,20 +49,23 @@ class FeatureContext extends MinkContext
     private $return;
 
     /**
+     * XPath for the empty row which is created on certain actions
+     * @var string
+     */
+    private $newRowXPath = "//div[contains(concat(' ', @class, ' '), ' widget-row-new ')]";
+
+    /**
+     * XPath for the widget drag handle which a user drags from the tray to the homepage
+     * @var string
+     */
+    private $handleXPath = "//div[contains(concat(' ', @class, ' '), ' tray__detail ')]//div[contains(concat(' ', @class, ' '), ' ui-draggable ')]";
+
+    /**
      * Initializes context.
      *
      * @param   array   $parameters
      */
     public function __construct(array $parameters = array())
-    {
-        // $this->useContext('hooks', new Hooks());
-        // $this->useContext('support', new Support());
-    }
-
-    /**
-     * @When /^I do nothing$/
-     */
-    public function iDoNothing()
     {
     }
 
@@ -86,7 +92,7 @@ class FeatureContext extends MinkContext
     /**
      * @Given /^the \'([^\']*)\' button should be toggled$/
      */
-    public function theButtonShouldBeToggled($arg1)
+    public function assertButtonIsToggled($arg1)
     {
         $page = $this->getSession()->getPage();
         $button = $page->findLink($arg1);
@@ -99,7 +105,7 @@ class FeatureContext extends MinkContext
     /**
      * @Given /^the \'([^\']*)\' button should not be toggled$/
      */
-    public function theButtonShouldNotBeToggled($arg1)
+    public function assertButtonNotToggled($arg1)
     {
         $page = $this->getSession()->getPage();
         $button = $page->findLink($arg1);
@@ -266,7 +272,7 @@ class FeatureContext extends MinkContext
     {
         $rows = $fields->getRows();
 
-        $this->spin(function ($context) use ($arg1,$rows) {
+        $this->spin(function ($context) use ($arg1, $rows) {
             foreach ($rows as $row) {
                 foreach ($row as $value) {
                     $widget = $this->getSession()->getPage()->find('xpath', "//div[contains(concat(' ', @class, ' '), ' widget-row ')][" . $arg1 . "]//div[@data-widget-guid='" . $value . "']");
@@ -278,6 +284,29 @@ class FeatureContext extends MinkContext
             }
             return true;
         });
+    }
+
+    /**
+     * @Then /^the new row should contain the widget:$/
+     */
+    public function newRowShouldContainTheWidget(TableNode $fields)
+    {
+        $guids = $fields->getRows();
+        
+        $page = $this->getSession()->getPage();
+        $newRow = $page->find('css', '.widget-row-new');
+
+        $this->jqueryWait();
+
+        foreach ($guids as $guid) {
+            foreach ($guid as $value) {
+                $widget = $newRow->find('xpath', "//div[@data-widget-guid='" . $value . "']");
+
+                if (!$widget) {
+                    throw new \Exception(sprintf('The widget "%s" is not visible on this page, but it should be.', $value));
+                }
+            }
+        }
     }
 
     /**
@@ -294,7 +323,8 @@ class FeatureContext extends MinkContext
     public function theDragHandlerAttributeShouldBe($arg1, $arg2)
     {
         $page = $this->getSession()->getPage();
-        $handle = $page->find('css', '.tray__detail .ui-draggable');
+        $handle = $page->find('xpath', $this->handleXPath);
+        
         $this->jqueryWait();
 
         if ($handle->getAttribute($arg1) != $arg2) {
@@ -329,20 +359,423 @@ class FeatureContext extends MinkContext
         $page = $this->getSession()->getPage();
         $session = $this->getSession()->getDriver()->getWebDriverSession();
 
-        $handle = $page->find('css', '.tray__detail .ui-draggable');
-        $target = $page->find('xpath', "//div[contains(concat(' ', @class, ' '), ' ui-droppable ')][" . $arg1 . "]");
-        
+        // wait for new row to be created
         $this->jqueryWait();
+
+        $targetRow = "//div[contains(concat(' ', @class, ' '), ' ui-droppable ')][" . $arg1 . "]//div";
         
-        $from = $session->element('xpath',$handle->getXpath());
-        $to = $session->element('xpath',$target->getXpath());
-        //now perform drag and drop
+        $from = $session->element('xpath', $this->handleXPath);
+        $to = $session->element('xpath', $targetRow);
         $session->moveto(array('element' => $from->getID())); //move to source location, using reference to source element
-        $session->buttondown(""); //click mouse to start drag, defaults to left mouse button
-        $session->moveto(array('element' => $to->getID())); //move to target location, using reference to target element
-        $session->buttonup(""); //release mouse to complete drag and drop operation
+        $session->buttondown("");
+        $session->moveto(array('element' => $to->getID()));
+        $session->buttonup("");
     }
 
+    /**
+     * @When /^I drag the handle to the new row$/
+     */
+    public function iDragTheHandleToTheNewRow()
+    {
+        // wait for new row to be created
+        $this->jqueryWait();
+
+        $page = $this->getSession()->getPage();
+        $session = $this->getSession()->getDriver()->getWebDriverSession();
+
+        $from = $session->element('xpath', $this->handleXPath);
+        $to = $session->element('xpath', $this->newRowXPath);
+        $session->moveto(array('element' => $from->getID())); //move to source location, using reference to source element
+        $session->buttondown("");
+        $session->moveto(array('element' => $to->getID()));
+        $session->buttonup("");
+    }
+
+    /**
+     * @Given /^I have at least one row$/
+     */
+    public function iHaveAtLeastOneRow()
+    {
+        $page = $this->getSession()->getPage();
+        $rows = $page->find('css', '.widget-row');
+
+        if (!$rows) {
+            throw new \Exception('Homepage has no rows');
+        } 
+    }
+
+    /**
+     * @Given /^I have (\d+) rows$/
+     */
+    public function iHaveRows($count)
+    {
+        $page = $this->getSession()->getPage();
+        
+        $this->openHomepageDesigner();
+        $this->openTray();
+        $this->iClickOnTheCategory('Bill Murray');
+        $this->iClickOnTheWidget('Image');
+
+        for ($i = 1; $i <= $count; $i++) {
+            $this->iDragTheHandleToRow($i);
+            $this->jqueryWait();
+        }
+    }
+
+    /**
+     * @Given /^I have a row with (\d+) widget(s?)$/
+     */
+    public function iHaveARowWithWidget($count)
+    {
+        $page = $this->getSession()->getPage();
+        
+        $this->openHomepageDesigner();
+        $this->openTray();
+        $this->iClickOnTheCategory('Bill Murray');
+        $this->iClickOnTheWidget('Image');
+
+        for ($i = 1; $i <= $count; $i++) {
+            $this->iDragTheHandleToTheNewRow();
+            $this->jqueryWait();
+        }
+
+        $this->rowXPath = $this->newRowXPath;
+    }
+
+    /**
+     * @Then /^my rows should have the remove-row button$/
+     */
+    public function myRowsShouldHaveTheRemoveRowButton()
+    {
+        $page = $this->getSession()->getPage();
+        $rows = $page->findAll('css', '.widget-row');
+
+        foreach ($rows as $row) {
+            $removeRowButton = $row->find('css', '.row-handler .remove-row');
+            if (!$removeRowButton) {
+                throw new \Exception('Row does not have remove-row button');
+            }
+        }
+    }
+
+    /**
+     * @When /^I click the remove button on row (\d+)$/
+     */
+    public function iClickTheRemoveButtonOnRow($rowNo)
+    {
+        $page = $this->getSession()->getPage();
+        $row = $page->find('xpath', "//div[contains(concat(' ', @class, ' '), ' widget-row ')][" . $rowNo . "]");
+
+        if (!$row) {
+            throw new \Exception('Row is not present, and it should be');
+        }
+
+        $removeButton = $row->find('css', '.remove-row');
+        $removeButton->click();
+
+        $this->rowNo = $rowNo;
+    }
+
+    /**
+     * @When /^I click the row\'s "([^"]*)" button$/
+     */
+    public function iClickTheRowSButton($locator)
+    {
+        $page = $this->getSession()->getPage();
+        $row = $page->find('xpath', $this->rowXPath);
+
+        if (!$row) {
+            throw new \Exception('Row is not present, and it should be');
+        }
+
+        $removeButton = $row->find('css', $locator);
+        $removeButton->click();
+    }
+
+    /**
+     * @Then /^the widgets should fill the row$/
+     */
+    public function theWidgetsShouldFillTheRow()
+    {
+        $page = $this->getSession()->getPage();
+        $row = $page->find('xpath', $this->rowXPath);
+        $rowHandler = $row->find('css', '.row-handler');
+
+        if (!$row) {
+            throw new \Exception('Row is not present, and it should be');
+        }
+
+        // get available width of row
+        
+        preg_match("/\bgrid-span-(\d+)\b/", $rowHandler->getAttribute('class'), $matches);
+        $rowWidth = $matches[1];
+
+        $widgets = $row->findAll('css', '.homepage-widget');
+
+        if (!$widgets) {
+            throw new \Exception('The row contains no widgets, it really should');
+        }
+
+        // wait for resize operation to complete
+        $this->jqueryWait();
+
+        $spanCount = 0;
+        foreach ($widgets as $widget) {
+            preg_match("/\bgrid-span-(\d+)\b/", $widget->getAttribute('class'), $matches);
+            
+            if (!$matches) {
+                throw new \Exception('Could not find the widget grid width');
+            }
+
+            $spanCount += $matches[1];
+        }
+
+        if ($spanCount != $rowWidth) {
+            throw new \Exception('Total widget spans do not equal the full width of the row');
+        }
+    }
+
+    /**
+     * @Given /^I remove widget (\d+) on row (\d+)$/
+     */
+    public function iRemoveWidgetOnRow($widgetNo, $rowNo)
+    {
+        $page = $this->getSession()->getPage();
+        $this->jqueryWait();
+
+        $this->iHoverOverWidgetOnRow($widgetNo, $rowNo);
+        $this->jqueryWait();
+        
+        $removeButton = $page->find('xpath', "//div[@id='row-" . $rowNo . "']//div[contains(concat(' ', @class, ' '), ' homepage-widget ')][" . $widgetNo . "]//a[contains(concat(' ', @class, ' '), ' remove-widget ')]");
+
+        $removeButton->click();
+    }
+    
+    /**
+     * @Given /^I hover over widget (\d+) on row (\d+)$/
+     */
+    public function iHoverOverWidgetOnRow($widgetNo, $rowNo)
+    {
+        $session = $this->getSession()->getDriver()->getWebDriverSession();
+
+        $xpath = "//div[@id='row-" . $rowNo . "']//div[contains(concat(' ', @class, ' '), ' homepage-widget ')][" . $widgetNo . "]";
+
+        $element = $session->element('xpath', $xpath);
+
+        $session->moveto(array('element' => $element->getID()));
+
+        $this->hoveredWidget = $xpath;
+        $this->widgetNo = $widgetNo;
+        $this->rowNo = $rowNo;
+    }
+
+    /**
+     * @Given /^the resize handle should be visible$/
+     */
+    public function theResizeHandleShouldBeVisible()
+    {
+        $page = $this->getSession()->getPage();
+        $widget = $page->find('xpath', $this->hoveredWidget);
+        $resizer = $widget->find('css', '.resizer');
+
+        if (!$resizer->isVisible()) {
+            throw new \Exception('Resize handle is not visible');
+        }
+    }
+
+    /**
+     * @Then /^the widget should be highlighted$/
+     */
+    public function theWidgetOnRowShouldBeHighlighted()
+    {
+        if (!$this->rowNo || !$this->widgetNo) {
+            throw new \Exception('Required widget or row not found');
+        }
+
+        $page = $this->getSession()->getPage();
+        $widget = $page->find('xpath', "//div[@id='row-" . $this->rowNo . "']//div[contains(concat(' ', @class, ' '), ' homepage-widget ')][" . $this->widgetNo . "]");
+
+        $overlay = $widget->find('css', '.overlay');
+
+        if (!$overlay->isVisible()) {
+            throw new \Exception('Widget overlay is not visible');
+        }
+    }
+
+    /**
+     * @Then /^I should see the "([^"]*)" link$/
+     */
+    public function iShouldSeeTheLink($arg1)
+    {
+        $page = $this->getSession()->getPage();
+        $widget = $page->find('xpath', $this->hoveredWidget);
+        $link = $widget->find('css', $arg1);
+
+        if (!$link) {
+            throw new \Exception('Link not found');
+        }
+    }
+
+    /**
+     * @Then /^the row should be removed$/
+     */
+    public function rowShouldBeRemoved()
+    {
+        if (!$this->rowNo) {
+            throw new \Exception('Row number has not been set');
+        }
+
+        $page = $this->getSession()->getPage();
+        $row = $page->find('css', '#row-' . $this->rowNo);
+
+        if ($row) {
+            throw new \Exception('Row has not been removed');
+        }
+    }
+
+    /**
+     * @Then /^I should see the "([^"]*)" modal$/
+     */
+    public function checkModalByID($arg1)
+    {
+        $page = $this->getSession()->getPage();
+        $this->jqueryWait();
+        $modal = $page->find('css', '#' + $arg1);
+
+        if (!$modal || !$modal->isVisible()) {
+            throw new \Exception('Modal "#' . $arg1 . '" not found, or is not visible');
+        }
+    }
+
+    /**
+     * @Then /^the row\'s "([^"]*)" button should be enabled$/
+     */
+    public function theRowSButtonShouldBeEnabled($locator)
+    {
+        $page = $this->getSession()->getPage();
+        
+        $row = $page->find('xpath', $this->rowXPath);
+        $button = $row->find('css', $locator);
+
+        $this->jqueryWait();
+
+        if ($button->hasClass('disabled')) {
+            throw new \Exception('The button is not active');
+        }
+    }
+
+    /**
+     * @Then /^the row\'s "([^"]*)" button should be disabled$/
+     */
+    public function theRowSButtonShouldBeDisabled($locator)
+    {
+        $page = $this->getSession()->getPage();
+
+        $row = $page->find('xpath', $this->rowXPath);
+        $button = $row->find('css', $locator);
+
+        $this->jqueryWait();
+
+        if (!$button->hasClass('disabled')) {
+            throw new \Exception('The button is not disabled');
+        }
+    }
+
+
+
+    /**
+     * @Given /^the order of the rows is:$/
+     * @Then /^the order of the rows should be:$/
+     */
+    public function theOrderOfTheRowsIs(TableNode $table)
+    {
+        $page = $this->getSession()->getPage();
+        $rows = $page->findAll('css', '.widget-row');
+
+        $rowIDs = $table->getRows();
+        $i = 0;
+
+        foreach ($rows as $row) {
+            if (!isset($rowIDs[$i][0])) {
+                break;
+            }
+            if ($row->getAttribute('id') != $rowIDs[$i][0]) {
+                throw new \Exception('Rows are not in correct order');
+            }
+            $i++;
+        }
+
+        return true;
+    }
+
+    /**
+     * @When /^I drag "([^"]*)" to "([^"]*)"$/
+     */
+    public function iDragRowToRow($arg1, $arg2)
+    {
+        // wait for new row to be created
+        $this->jqueryWait();
+        $page = $this->getSession()->getPage();
+        $session = $this->getSession()->getDriver()->getWebDriverSession();
+
+        $from = $session->element('xpath', "//div[@id='" . $arg1 . "']//div");
+        $to = $session->element('xpath', "//div[@id='" . $arg2 . "']//div");
+
+        $session->moveto(array('element' => $from->getID()));
+        $session->buttondown("");
+        $session->moveto(array('element' => $to->getID()));
+        $session->buttonup("");
+    }
+
+    /**
+     * @When /^I start dragging "([^"]*)"$/
+     */
+    public function iStartDragging($arg1)
+    {
+        $this->jqueryWait();
+        $page = $this->getSession()->getPage();
+        $session = $this->getSession()->getDriver()->getWebDriverSession();
+
+        $from = $session->element('xpath', "//div[@id='" . $arg1 . "']//div");
+
+        $session->moveto(array('element' => $from->getID()));
+        $session->buttondown("");
+        $session->moveto(array('element' => $to->getID()));
+
+        // There is no drop action here
+    }
+
+    /**
+     * @Then /^the rows should be minimized$/
+     */
+    public function theRowsShouldBeMinimized()
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Given /^the rows are minimized$/
+     */
+    public function theRowsAreMinimized()
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @When /^I stop dragging$/
+     */
+    public function iStopDragging()
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Then /^the rows should be maximized$/
+     */
+    public function theRowsShouldBeMaximized()
+    {
+        throw new PendingException();
+    }
 
     protected function jqueryWait($duration = 10000)
     {
@@ -371,4 +804,19 @@ class FeatureContext extends MinkContext
             $backtrace[1]['file'] . ", line " . $backtrace[1]['line']
         );
     }
+
+    /**
+     * Pauses the scenario until the user presses a key. Useful when debugging a scenario.
+     *
+     * @Then /^(?:|I )put a breakpoint$/
+     */
+    public function iPutABreakpoint()
+    {
+        fwrite(STDOUT, "\033[s    \033[93m[Breakpoint] Press \033[1;93m[RETURN]\033[0;93m to continue...\033[0m");
+        while (fgets(STDIN, 1024) == '') {}
+        fwrite(STDOUT, "\033[u");
+
+        return;
+    }
+
 }
