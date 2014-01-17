@@ -11,7 +11,9 @@ define([
 ], function() {
     (function ($, window, document, undefined) {
 
-        var dragging = false,
+        var guidParameter = 'homepage', //the param name we use in URL to load a homepage
+            homepageGuid = getHomepageGuid(),
+            dragging = false,
             resizing = false,
             newRow,
             newRowPresent = false,
@@ -48,6 +50,16 @@ define([
             versions = [],
             startPosition = 0, // used for calculating if a new version should be created when something is moved
             changed = false;
+
+        function getHomepageGuid() {
+            var query = window.location.search.substring(1);
+            var vars = query.split("&");
+            for (var i=0;i<vars.length;i++) {
+                   var pair = vars[i].split("=");
+                   if(pair[0] == guidParameter){return pair[1];}
+            }
+            return(false);
+        }
 
         function createHomepageObject(homepageElement) {
             var homepageObject = [];
@@ -180,14 +192,14 @@ define([
                 numberToRemove += 1;
                 versions.splice(numberToRemove);
             }
-            
+
             currentVersion += 1;
 
             // add the new version we've just created
-            versions[currentVersion] = elementHtml; 
-            
+            versions[currentVersion] = elementHtml;
+
             // restart start position for next moves
-            startPosition = 0; 
+            startPosition = 0;
 
             // check rows and enable/disable auto–fill button accordingly
             $('.widget-row').each(function() {
@@ -201,7 +213,7 @@ define([
                 }
                 loadTooltips();
             });
-            
+
             // enable or disable specific actions based on current homepage state
             updateActionsMenu();
         }
@@ -293,7 +305,7 @@ define([
                     e.stopPropagation();
                     var widgets = $(this).parent().parent().children('.homepage-widget'),
                         newSpan = columnCount / widgets.length;
-                    
+
                     newSpan = 'grid-span-' + newSpan;
 
                     widgets
@@ -387,7 +399,7 @@ define([
                         }
                     }
                 }
-                
+
                 // row reordering
                 $('.homepage-item').sortable({
                     axis: "y",
@@ -402,7 +414,7 @@ define([
                         newVersion();
                     }
                 });
-                
+
 
                 if(resizing) {
                     var columnWidth = parseInt($('.grid-span-1').outerWidth());
@@ -714,13 +726,7 @@ define([
             paintHomepage(element, homepageLiteral);
         }
 
-        function fetchHomepage(guid, element, eventParent) {
-            $.ajax({
-                url: homepagePath + '/' + guid + '.json'
-            }).done(function (data) {
-                loadHomepageObject(data, element);
-            });
-
+        function setupTray(element, eventParent) {
             // set up the tray
             $(trayContainer).tray();
 
@@ -743,9 +749,23 @@ define([
             attachEvents(element, eventParent);
         }
 
+        function fetchHomepage(guid, element, eventParent) {
+            $.ajax({
+                url: homepagePath + '/' + guid + '.json'
+            }).done(function (data) {
+                loadHomepageObject(data, element);
+            });
+            setupTray(element, eventParent);
+        }
+
         var homepageContainer = $('.homepage-content');
         var homepageItem = $('.homepage-item');
-        fetchHomepage('fillmurray', homepageContainer, homepageItem);
+        if(homepageGuid) {
+            fetchHomepage(homepageGuid, homepageContainer, homepageItem);
+        }
+        else {
+            setupTray(homepageContainer, homepageItem);
+        }
 
         function manipulateOffset(operator, direction) {
             if(!(operator.is('[class*=offset]')) && direction == 'right') {
