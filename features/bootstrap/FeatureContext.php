@@ -486,7 +486,7 @@ class FeatureContext extends MinkContext
     public function iClickTheRowSButton($locator)
     {
         $page = $this->getSession()->getPage();
-        $row = $page->find('xpath', $this->rowXPath);
+        $row = $page->find('css', '#' . $this->lastRowID);
 
         if (!$row) {
             throw new \Exception('Row is not present, and it should be');
@@ -657,7 +657,6 @@ class FeatureContext extends MinkContext
     public function theRowSButtonShouldBeEnabled($locator)
     {
         $page = $this->getSession()->getPage();
-        
         $row = $page->find('xpath', $this->rowXPath);
         $button = $row->find('css', $locator);
 
@@ -675,10 +674,11 @@ class FeatureContext extends MinkContext
     {
         $page = $this->getSession()->getPage();
 
-        $row = $page->find('xpath', $this->rowXPath);
+        $row = $page->find('css', '#' . $this->lastRowID);
+
         $button = $row->find('css', $locator);
 
-        $this->jqueryWait();
+        $this->jQueryWait();
 
         if (!$button->hasClass('disabled')) {
             throw new \Exception('The button is not disabled');
@@ -762,7 +762,6 @@ class FeatureContext extends MinkContext
     public function theRowShouldStillBeVisible()
     {
         $page = $this->getSession()->getPage();
-        print $this->lastRowID;
         $row = $page->find('css', '#' . $this->lastRowID);
 
         if (!$row || !$row->isVisible()) {

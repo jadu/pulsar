@@ -191,9 +191,10 @@ define([
 
             // check rows and enable/disable auto–fill button accordingly
             $('.widget-row').each(function() {
-                var noOfWidgets = $(this).children('.homepage-widget').length;
-                var fillButton = $(this).find('.fill-row');
-                if(columnCount % noOfWidgets) {
+                var noOfWidgets = $(this).children('.homepage-widget').length,
+                    fillButton = $(this).find('.fill-row');
+                
+                if (columnCount % noOfWidgets || !noOfWidgets) {
                     fillButton.addClass('disabled');
                 }
                 else {
