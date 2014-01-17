@@ -728,7 +728,42 @@ class FeatureContext extends MinkContext
         $session->buttonup("");
     }
 
+    /**
+     * @When /^I remove all widgets from the row$/
+     */
+    public function iRemoveAllWidgetsFromTheRow()
+    {
+        $page = $this->getSession()->getPage();
+        $session = $this->getSession()->getDriver()->getWebDriverSession();
+        $row = $page->find('xpath', $this->rowXPath);
 
+        $this->jQueryWait();
+        $widgets = $row->findAll('css', '.homepage-widget');
+
+        if (!$widgets) {
+            throw new \Exception('The row contains no widgets');
+        }
+
+        foreach ($widgets as $widget) {
+            $element = $session->element('xpath', $widget->getXpath($widget));
+            $session->moveto(array('element' => $element->getID()));
+            $removeButton = $widget->find('css', '.remove-widget');
+            $removeButton->click();
+        }
+    }
+
+    /**
+     * @Then /^the row should still be visible$/
+     */
+    public function theRowShouldStillBeVisible()
+    {
+        $page = $this->getSession()->getPage();
+        $row = $page->find('xpath', $this->rowXPath);
+
+        if (!$row || !$row->isVisible()) {
+            throw new \Exception('Row is not present or is not visible');
+        }
+    }
 
     protected function jqueryWait($duration = 10000)
     {
