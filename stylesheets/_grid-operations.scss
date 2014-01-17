@@ -210,3 +210,20 @@ $cyan : #ea33a3;
     top: 0;
     z-index: 9999;
 }
+
+.row-placeholder {
+    border: 2px dashed $cyan;
+    background: rgba($cyan,.15);
+    float: left;
+    margin-bottom: 1.2em;
+}
+
+.ui-sortable-helper {
+  box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+  cursor: -webkit-grabbing; 
+  cursor:    -moz-grabbing;
+  cursor:         grabbing;
+  // transform: rotate(7deg) !important;
+  // -ms-transform: rotate(7deg) !important;
+  // -webkit-transform: rotate(7deg) !important;
+}

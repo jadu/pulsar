@@ -723,59 +723,12 @@ class FeatureContext extends MinkContext
 
         $session->moveto(array('element' => $from->getID()));
         $session->buttondown("");
+        sleep(1);
         $session->moveto(array('element' => $to->getID()));
         $session->buttonup("");
     }
 
-    /**
-     * @When /^I start dragging "([^"]*)"$/
-     */
-    public function iStartDragging($arg1)
-    {
-        $this->jqueryWait();
-        $page = $this->getSession()->getPage();
-        $session = $this->getSession()->getDriver()->getWebDriverSession();
 
-        $from = $session->element('xpath', "//div[@id='" . $arg1 . "']//div");
-
-        $session->moveto(array('element' => $from->getID()));
-        $session->buttondown("");
-        $session->moveto(array('element' => $to->getID()));
-
-        // There is no drop action here
-    }
-
-    /**
-     * @Then /^the rows should be minimized$/
-     */
-    public function theRowsShouldBeMinimized()
-    {
-        throw new PendingException();
-    }
-
-    /**
-     * @Given /^the rows are minimized$/
-     */
-    public function theRowsAreMinimized()
-    {
-        throw new PendingException();
-    }
-
-    /**
-     * @When /^I stop dragging$/
-     */
-    public function iStopDragging()
-    {
-        throw new PendingException();
-    }
-
-    /**
-     * @Then /^the rows should be maximized$/
-     */
-    public function theRowsShouldBeMaximized()
-    {
-        throw new PendingException();
-    }
 
     protected function jqueryWait($duration = 10000)
     {

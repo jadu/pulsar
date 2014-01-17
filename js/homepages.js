@@ -13,7 +13,6 @@ define([
 
         var dragging = false,
             resizing = false,
-            rowDragging = false,
             newRow,
             newRowPresent = false,
             originalX = 0,
@@ -227,14 +226,6 @@ define([
                     hoveredRow = originalRow;
                 });
 
-                $(element).on('mousedown', '.row-handler', function(e){
-                    e.stopPropagation();
-                    e.preventDefault();
-                    rowDragging = true;
-                    originalY = e.pageY;
-                    $(this).parent().addClass('operating-row');
-                });
-
                 $(element).on('mousedown', '.resizer', function(e){
                     e.stopPropagation();
                     e.preventDefault();
@@ -396,35 +387,22 @@ define([
                         }
                     }
                 }
-
-                if (rowDragging) {
-                    var operatingRow = $('.operating-row'),
-                        thisHeight = operatingRow.outerHeight(),
-                        previousHeight = operatingRow.prev().outerHeight() * -1;
-
-                    currentY = e.pageY;
-                    var diffY = currentY - originalY;
-
-                    // scrolling upwards
-                    if (diffY < -100 && diffY < previousHeight) {
-                        if (operatingRow.prev('.widget-row').length) {
-                            operatingRow.prev('.widget-row').before(operatingRow);
-                            diffY = 0;
-                            originalY = e.pageY;
-                            startPosition += 1;
-                        }
+                
+                // row reordering
+                $('.homepage-item').sortable({
+                    axis: "y",
+                    cursor: "grab",
+                    delay: 150,
+                    forcePlaceholderSize: true,
+                    handle: ".row-handler",
+                    placeholder: "row-placeholder",
+                    revert: 100,
+                    tolerance: "pointer",
+                    update: function() {
+                        newVersion();
                     }
-
-                    // scrolling downwards
-                    else if (diffY > 100 && diffY > thisHeight) {
-                        if (operatingRow.next('.widget-row').length) {
-                            operatingRow.next('.widget-row').after(operatingRow);
-                            diffY = 0;
-                            originalY = e.pageY;
-                            startPosition -= 1;
-                        }
-                    }
-                }
+                });
+                
 
                 if(resizing) {
                     var columnWidth = parseInt($('.grid-span-1').outerWidth());
@@ -532,10 +510,6 @@ define([
                 // remove all row overlays
                 $('.row-overlay').remove();
 
-                if(rowDragging) {
-                    rowDragging = false;
-                    $('.operating-row').removeClass('operating-row');
-                }
                 if(startPosition != 0) {
                     newVersion();
                 }
