@@ -13,7 +13,6 @@ define([
 
         var dragging = false,
             resizing = false,
-            rowDragging = false,
             newRow,
             newRowPresent = false,
             originalX = 0,
@@ -227,14 +226,6 @@ define([
                     hoveredRow = originalRow;
                 });
 
-                $(element).on('mousedown', '.row-handler', function(e){
-                    e.stopPropagation();
-                    e.preventDefault();
-                    rowDragging = true;
-                    originalY = e.pageY;
-                    $(this).parent().addClass('operating-row');
-                });
-
                 $(element).on('mousedown', '.resizer', function(e){
                     e.stopPropagation();
                     e.preventDefault();
@@ -404,9 +395,13 @@ define([
                     delay: 150,
                     forcePlaceholderSize: true,
                     handle: ".row-handler",
-                    placeholder: "row-placeholder"
+                    placeholder: "row-placeholder",
+                    update: function() {
+                        newVersion();
+                    }
                 });
                 
+
                 if(resizing) {
                     var columnWidth = parseInt($('.grid-span-1').outerWidth());
                     var columnMargin = parseInt($('.grid-span-1').css('margin-right')) + 1;
@@ -513,10 +508,6 @@ define([
                 // remove all row overlays
                 $('.row-overlay').remove();
 
-                if(rowDragging) {
-                    rowDragging = false;
-                    $('.operating-row').removeClass('operating-row');
-                }
                 if(startPosition != 0) {
                     newVersion();
                 }
