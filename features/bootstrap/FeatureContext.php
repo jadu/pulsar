@@ -629,6 +629,7 @@ class FeatureContext extends MinkContext
             throw new \Exception('Row number has not been set');
         }
 
+        $this->jQueryWait();
         $page = $this->getSession()->getPage();
         $row = $page->find('css', '#row-' . $this->rowNo);
 

@@ -146,6 +146,21 @@ define([
                 ajaxLoop(0, homepageRow);
             });
             element.append(homepageDOM);
+
+            // make homepage rows sortable
+            $('.homepage-item').sortable({
+                axis: "y",
+                cursor: "grab",
+                delay: 150,
+                forcePlaceholderSize: true,
+                handle: ".row-handler",
+                placeholder: "row-placeholder",
+                revert: 100,
+                tolerance: "pointer",
+                update: function() {
+                    newVersion();
+                }
+            });
         }
 
         function loadTooltips() {
@@ -335,6 +350,7 @@ define([
         }
 
         function attachEvents(element) {
+
             $('body').on('mousemove', function(e) {
                 if(dragging) {
 
@@ -379,22 +395,7 @@ define([
                         }
                     }
                 }
-                
-                // row reordering
-                $('.homepage-item').sortable({
-                    axis: "y",
-                    cursor: "grab",
-                    delay: 150,
-                    forcePlaceholderSize: true,
-                    handle: ".row-handler",
-                    placeholder: "row-placeholder",
-                    revert: 100,
-                    tolerance: "pointer",
-                    update: function() {
-                        newVersion();
-                    }
-                });
-                
+             
 
                 if(resizing) {
                     var columnWidth = parseInt($('.grid-span-1').outerWidth());
@@ -723,8 +724,9 @@ define([
             attachEvents(element, eventParent);
         }
 
-        var homepageContainer = $('.homepage-content');
-        var homepageItem = $('.homepage-item');
+        var homepageContainer = $('.homepage-content'),
+            homepageItem = $('.homepage-item');
+
         fetchHomepage('fillmurray', homepageContainer, homepageItem);
 
         function manipulateOffset(operator, direction) {
