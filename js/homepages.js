@@ -242,29 +242,21 @@ define([
                     e.preventDefault();
                     e.stopPropagation();
                     var widgetRow = $(this).parent().parent().parent();
-                    if(widgetRow.children().length == 2){ // then it's the last widget in the row
-                        widgetRow.fadeOut(200, function() {
-                            $(this).remove();
-                            newVersion();
-                        });
-                    }
-                    else {
-                        $(this).parent().parent().fadeOut(100, function() {
-                            var remover = $(this);
-                            var nextWidget = remover.next();
-                            if(nextWidget.length) {
-                                remover.next().css({'margin-left' : remover.outerWidth()});
-                                remover.next().animate({'margin-left' : ''}, 120, function() {
-                                    remover.remove();
-                                    newVersion();
-                                });
-                            }
-                            else {
+                    $(this).parent().parent().fadeOut(100, function() {
+                        var remover = $(this);
+                        var nextWidget = remover.next();
+                        if(nextWidget.length) {
+                            remover.next().css({'margin-left' : remover.outerWidth()});
+                            remover.next().animate({'margin-left' : ''}, 120, function() {
                                 remover.remove();
                                 newVersion();
-                            }
-                        });
-                    }
+                            });
+                        }
+                        else {
+                            remover.remove();
+                            newVersion();
+                        }
+                    });
                 });
 
                 $(element).on('click', '.remove-row', function(e) {

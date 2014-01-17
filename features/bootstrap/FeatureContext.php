@@ -385,10 +385,16 @@ class FeatureContext extends MinkContext
 
         $from = $session->element('xpath', $this->handleXPath);
         $to = $session->element('xpath', $this->newRowXPath);
+
         $session->moveto(array('element' => $from->getID())); //move to source location, using reference to source element
         $session->buttondown("");
         $session->moveto(array('element' => $to->getID()));
         $session->buttonup("");
+
+        // get last row's ID
+        $this->jQueryWait();
+        $this->rowXPath = $this->newRowXPath;
+        $this->lastRowID = $to->getAttribute('id');
     }
 
     /**
@@ -438,8 +444,6 @@ class FeatureContext extends MinkContext
             $this->iDragTheHandleToTheNewRow();
             $this->jqueryWait();
         }
-
-        $this->rowXPath = $this->newRowXPath;
     }
 
     /**
@@ -758,7 +762,8 @@ class FeatureContext extends MinkContext
     public function theRowShouldStillBeVisible()
     {
         $page = $this->getSession()->getPage();
-        $row = $page->find('xpath', $this->rowXPath);
+        print $this->lastRowID;
+        $row = $page->find('css', '#' . $this->lastRowID);
 
         if (!$row || !$row->isVisible()) {
             throw new \Exception('Row is not present or is not visible');
