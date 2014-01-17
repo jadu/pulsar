@@ -628,7 +628,6 @@ define([
             $('[data-toggle="grid"]').on('click', function(e){
                 e.preventDefault();
                 $('.grid-master').fadeToggle(200);
-                $(this).toggleClass('active');
             });
 
             $('[data-action="undo"]').on('click', function(e){
