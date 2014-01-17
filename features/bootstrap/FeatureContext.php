@@ -367,9 +367,9 @@ class FeatureContext extends MinkContext
         $from = $session->element('xpath', $this->handleXPath);
         $to = $session->element('xpath', $targetRow);
         $session->moveto(array('element' => $from->getID())); //move to source location, using reference to source element
-        $session->buttondown(""); //click mouse to start drag, defaults to left mouse button
-        $session->moveto(array('element' => $to->getID())); //move to target location, using reference to target element
-        $session->buttonup(""); //release mouse to complete drag and drop operation
+        $session->buttondown("");
+        $session->moveto(array('element' => $to->getID()));
+        $session->buttonup("");
     }
 
     /**
@@ -386,9 +386,9 @@ class FeatureContext extends MinkContext
         $from = $session->element('xpath', $this->handleXPath);
         $to = $session->element('xpath', $this->newRowXPath);
         $session->moveto(array('element' => $from->getID())); //move to source location, using reference to source element
-        $session->buttondown(""); //click mouse to start drag, defaults to left mouse button
-        $session->moveto(array('element' => $to->getID())); //move to target location, using reference to target element
-        $session->buttonup(""); //release mouse to complete drag and drop operation
+        $session->buttondown("");
+        $session->moveto(array('element' => $to->getID()));
+        $session->buttonup("");
     }
 
     /**
@@ -700,7 +700,6 @@ class FeatureContext extends MinkContext
                 break;
             }
             if ($row->getAttribute('id') != $rowIDs[$i][0]) {
-                $this->iPutABreakpoint();
                 throw new \Exception('Rows are not in correct order');
             }
             $i++;
@@ -716,17 +715,66 @@ class FeatureContext extends MinkContext
     {
         // wait for new row to be created
         $this->jqueryWait();
-
         $page = $this->getSession()->getPage();
         $session = $this->getSession()->getDriver()->getWebDriverSession();
 
         $from = $session->element('xpath', "//div[@id='" . $arg1 . "']//div");
         $to = $session->element('xpath', "//div[@id='" . $arg2 . "']//div");
 
-        $session->moveto(array('element' => $from->getID())); //move to source location, using reference to source element
-        $session->buttondown(""); //click mouse to start drag, defaults to left mouse button
-        $session->moveto(array('element' => $to->getID())); //move to target location, using reference to target element
-        $session->buttonup(""); //release mouse to complete drag and drop operation
+        $session->moveto(array('element' => $from->getID()));
+        $session->buttondown("");
+        $session->moveto(array('element' => $to->getID()));
+        $session->buttonup("");
+    }
+
+    /**
+     * @When /^I start dragging "([^"]*)"$/
+     */
+    public function iStartDragging($arg1)
+    {
+        $this->jqueryWait();
+        $page = $this->getSession()->getPage();
+        $session = $this->getSession()->getDriver()->getWebDriverSession();
+
+        $from = $session->element('xpath', "//div[@id='" . $arg1 . "']//div");
+
+        $session->moveto(array('element' => $from->getID()));
+        $session->buttondown("");
+        $session->moveto(array('element' => $to->getID()));
+
+        // There is no drop action here
+    }
+
+    /**
+     * @Then /^the rows should be minimized$/
+     */
+    public function theRowsShouldBeMinimized()
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Given /^the rows are minimized$/
+     */
+    public function theRowsAreMinimized()
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @When /^I stop dragging$/
+     */
+    public function iStopDragging()
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Then /^the rows should be maximized$/
+     */
+    public function theRowsShouldBeMaximized()
+    {
+        throw new PendingException();
     }
 
     protected function jqueryWait($duration = 10000)
