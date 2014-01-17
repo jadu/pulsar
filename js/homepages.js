@@ -627,7 +627,18 @@ define([
 
             $('[data-toggle="grid"]').on('click', function(e){
                 e.preventDefault();
+
+                var self = $(this),
+                    label = self.html();
+
                 $('.grid-master').fadeToggle(200);
+                self.toggleClass('active');
+
+                if (label.indexOf('Hide') >= 0) {
+                    self.html(label.replace('Hide', 'Show'));
+                } else {
+                    self.html(label.replace('Show', 'Hide'));
+                }
             });
 
             $('[data-action="undo"]').on('click', function(e){
