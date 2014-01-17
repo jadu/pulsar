@@ -405,6 +405,24 @@ class FeatureContext extends MinkContext
     }
 
     /**
+     * @Given /^I have (\d+) rows$/
+     */
+    public function iHaveRows($count)
+    {
+        $page = $this->getSession()->getPage();
+        
+        $this->openHomepageDesigner();
+        $this->openTray();
+        $this->iClickOnTheCategory('Bill Murray');
+        $this->iClickOnTheWidget('Image');
+
+        for ($i = 1; $i <= $count; $i++) {
+            $this->iDragTheHandleToRow($i);
+            $this->jqueryWait();
+        }
+    }
+
+    /**
      * @Given /^I have a row with (\d+) widget(s?)$/
      */
     public function iHaveARowWithWidget($count)
@@ -664,6 +682,52 @@ class FeatureContext extends MinkContext
     }
 
 
+
+    /**
+     * @Given /^the order of the rows is:$/
+     * @Then /^the order of the rows should be:$/
+     */
+    public function theOrderOfTheRowsIs(TableNode $table)
+    {
+        $page = $this->getSession()->getPage();
+        $rows = $page->findAll('css', '.widget-row');
+
+        $rowIDs = $table->getRows();
+        $i = 0;
+
+        foreach ($rows as $row) {
+            if (!isset($rowIDs[$i][0])) {
+                break;
+            }
+            if ($row->getAttribute('id') != $rowIDs[$i][0]) {
+                $this->iPutABreakpoint();
+                throw new \Exception('Rows are not in correct order');
+            }
+            $i++;
+        }
+
+        return true;
+    }
+
+    /**
+     * @When /^I drag "([^"]*)" to "([^"]*)"$/
+     */
+    public function iDragRowToRow($arg1, $arg2)
+    {
+        // wait for new row to be created
+        $this->jqueryWait();
+
+        $page = $this->getSession()->getPage();
+        $session = $this->getSession()->getDriver()->getWebDriverSession();
+
+        $from = $session->element('xpath', "//div[@id='" . $arg1 . "']//div");
+        $to = $session->element('xpath', "//div[@id='" . $arg2 . "']//div");
+
+        $session->moveto(array('element' => $from->getID())); //move to source location, using reference to source element
+        $session->buttondown(""); //click mouse to start drag, defaults to left mouse button
+        $session->moveto(array('element' => $to->getID())); //move to target location, using reference to target element
+        $session->buttonup(""); //release mouse to complete drag and drop operation
+    }
 
     protected function jqueryWait($duration = 10000)
     {

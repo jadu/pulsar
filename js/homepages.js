@@ -42,7 +42,7 @@ define([
             widgetSkeleton = $('<div></div>');
             widgetDataContainer = '#widget__data',
             widgetPath = '/var/widgets/',
-            widgetSpan = 4,
+            widgetSpan = 1,
             widgetRemoveAttribute = '[data-widget-action=remove]';
             currentVersion = 0,
             homepageHtml = '',
@@ -396,22 +396,28 @@ define([
                         }
                     }
                 }
-                if(rowDragging) {
-                    var operatingRow = $('.operating-row');
-                    var previousHeight = operatingRow.prev().outerHeight() * -1;
-                    var nextHeight = operatingRow.next().outerHeight();
+
+                if (rowDragging) {
+                    var operatingRow = $('.operating-row'),
+                        thisHeight = operatingRow.outerHeight(),
+                        previousHeight = operatingRow.prev().outerHeight() * -1;
+
                     currentY = e.pageY;
                     var diffY = currentY - originalY;
-                    if(diffY < -100 && diffY < previousHeight) {
-                        if(operatingRow.prev('.widget-row').length) {
+
+                    // scrolling upwards
+                    if (diffY < -100 && diffY < previousHeight) {
+                        if (operatingRow.prev('.widget-row').length) {
                             operatingRow.prev('.widget-row').before(operatingRow);
                             diffY = 0;
                             originalY = e.pageY;
                             startPosition += 1;
                         }
                     }
-                    else if(diffY > 100 && diffY > nextHeight) {
-                        if(operatingRow.next('.widget-row').length) {
+
+                    // scrolling downwards
+                    else if (diffY > 100 && diffY > thisHeight) {
+                        if (operatingRow.next('.widget-row').length) {
                             operatingRow.next('.widget-row').after(operatingRow);
                             diffY = 0;
                             originalY = e.pageY;
