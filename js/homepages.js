@@ -169,32 +169,51 @@ define([
 
             // disable fill-row action if not applicable
             $('.widget-row').each(function() {
-                var widgets = $('.homepage-widget', this),
+                var disabled = false,
                     fillButton = $('.fill-row', this),
+                    widgets = $('.homepage-widget', this),
                     widgetColCount = 0;
-
-                // loop over each widget in this row
-                widgets.each(function() {
-                    var widgetClasses = $(this).attr('class');
-
-                    // grab the grid-span integer and add it to our count
-                    widgetColCount += parseInt(/grid-span-(\d+)/.exec(widgetClasses)[1], 10);
-                });
 
                 /**
                  * Disable the fill button if any of these conditions are met:
                  *     - the widget's can't be equally resized
                  *         eg: 12 columns / 5 widgets = 2.4 (disabled)
                  *             12 columns / 3 widgets = 4   (enabled)
-                 *     - the widgets already fill the row
                  *     - there are no widgets in the row
                  */
-                if (columnCount % widgets.length || columnCount === widgetColCount || !widgets.length) {
-                    fillButton.addClass('disabled');
+                if (columnCount % widgets.length || !widgets.length) {
+                    disabled = true;
                 }
-                else {
+
+                /**
+                 * if we're not already disabled, count the total grid span of
+                 * this row's widgets to see if they already fill the row
+                 */
+                if (!disabled) {
+                    widgets.each(function() {
+
+                        /**
+                         * grab the grid-span integer from this widget's classes
+                         * and add it to our total column count
+                         */
+                        widgetColCount += parseInt(/grid-span-(\d+)/.exec($(this).attr('class'))[1], 10);
+                    });
+
+                    /**
+                     * Disable the fill button if the widgets fill the row
+                     */
+                    if (columnCount === widgetColCount) {
+                        disabled = true;
+                    }
+                }
+
+                // enable/disable the fill button
+                if (disabled) {
+                    fillButton.addClass('disabled');
+                } else {
                     fillButton.removeClass('disabled');
                 }
+
                 loadTooltips();
             });
         }
