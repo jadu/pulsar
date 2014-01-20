@@ -71,6 +71,7 @@ class FeatureContext extends MinkContext
 
     /**
      * @Given /^I am on the homepages designer$/
+     * @Given /^I am editing the "([^"]*)" homepage$/
      */
     public function openHomepageDesigner()
     {
@@ -767,6 +768,58 @@ class FeatureContext extends MinkContext
 
         if (!$row || !$row->isVisible()) {
             throw new \Exception('Row is not present or is not visible');
+        }
+    }
+
+    /**
+     * @Then /^the "([^"]*)" button should be disabled on rows:$/
+     */
+    public function theButtonShouldBeDisabledOnRows($locator, TableNode $table)
+    {
+        $this->jQueryWait();
+        $page = $this->getSession()->getPage();
+
+        foreach ($table->getRows() as $row) {
+            foreach ($row as $value) {
+                
+                $homepagerow = $page->find('css', '#' . $value);
+
+                if (!$homepagerow) {
+                    throw new \Exception('Row not found');
+                }
+
+                $button = $homepagerow->find('css', $locator);
+
+                if (!$button->hasClass('disabled')) {
+                    throw new \Exception('The button is not disabled');
+                }
+            }
+        }
+    }
+
+    /**
+     * @Given /^the "([^"]*)" button should be enabled on rows:$/
+     */
+    public function theButtonShouldBeEnabledOnRows($locator, TableNode $table)
+    {
+        $this->jQueryWait();
+        $page = $this->getSession()->getPage();
+
+        foreach ($table->getRows() as $row) {
+            foreach ($row as $value) {
+                
+                $homepagerow = $page->find('css', '#' . $value);
+
+                if (!$homepagerow) {
+                    throw new \Exception('Row not found');
+                }
+
+                $button = $homepagerow->find('css', $locator);
+
+                if ($button->hasClass('disabled')) {
+                    throw new \Exception('The button is disabled');
+                }
+            }
         }
     }
 
