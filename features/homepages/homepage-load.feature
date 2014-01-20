@@ -16,8 +16,10 @@ Scenario: Load the fillmurray homepage
 
 Scenario: Rows on blank homepage should be droppable
   Given I am on the homepages designer
+  When I open the tray
   Then all rows should be droppable
 
 Scenario: Rows on test homepage should be droppable
   Given I am on the "fillmurray" homepage
+  When I open the tray
   Then all rows should be droppable

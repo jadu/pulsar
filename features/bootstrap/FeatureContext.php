@@ -195,9 +195,22 @@ class FeatureContext extends MinkContext
     /**
      * @Given /^the tray is visible$/
      */
-    public function openTray()
+    public function trayIsVisible()
     {
         $this->openHomepageDesigner();
+        $this->jqueryWait();
+        $page = $this->getSession()->getPage();
+        $link = $page->findLink('Widgets');
+        $link->click();
+
+        $this->assertTrayIsVisible();
+    }
+
+    /**
+     * @When /^I open the tray$/
+     */
+    public function openTray()
+    {
         $this->jqueryWait();
         $page = $this->getSession()->getPage();
         $link = $page->findLink('Widgets');
@@ -283,6 +296,7 @@ class FeatureContext extends MinkContext
 
         foreach ($table->getRows() as $row) {
             foreach ($row as $value) {
+                $this->jQueryWait();
                 $found = $page->find('css', '#'.$value);
                 if (!$found) {
                     throw new \Exception('Could not find '.$value);
@@ -539,7 +553,6 @@ class FeatureContext extends MinkContext
         }
 
         // get available width of row
-
         preg_match("/\bgrid-span-(\d+)\b/", $rowHandler->getAttribute('class'), $matches);
         $rowWidth = $matches[1];
 
@@ -878,6 +891,27 @@ class FeatureContext extends MinkContext
                 if ($button->hasClass('disabled')) {
                     throw new \Exception('The button is disabled');
                 }
+            }
+        }
+    }
+
+    /**
+     * @Then /^all rows should be droppable$/
+     */
+    public function allRowsShouldBeDroppable()
+    {
+        $this->jQueryWait();
+        $page = $this->getSession()->getPage();
+        $rows = $page->find('css', '.widget-row');
+
+        if (!$rows) {
+            throw new \Exception('No rows found');
+        }
+
+        foreach ($rows as $key => $row) {
+            $this->jQueryWait();
+            if (!$row->hasClass('ui-droppable')) {
+                throw new \Exception(sprintf('Row "%s" is not droppable', $row->getAttribute('id')));
             }
         }
     }
