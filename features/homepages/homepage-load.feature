@@ -16,7 +16,7 @@ Scenario: Load the fillmurray homepage
 
 Scenario: Toggle tray on empty homepage
   Given I am on the homepages designer
-  When I click on the 'Widgets' button
+  When I open the tray
   Then I should see the following rows:
     | row-1 |
 
