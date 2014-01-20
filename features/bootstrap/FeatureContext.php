@@ -123,6 +123,7 @@ class FeatureContext extends MinkContext
         $page = $this->getSession()->getPage();
         $button = $page->findLink($arg1);
 
+        $this->jQueryWait();
         if ($button->hasClass('active')) {
             throw new \Exception('Button is toggled');
         }
@@ -134,16 +135,13 @@ class FeatureContext extends MinkContext
      */
     public function assertGridIsVisible()
     {
-        $this->spin(function($context) {
-            $page = $this->getSession()->getPage();
-            $grid = $page->find("css", ".grid-master");
+        $page = $this->getSession()->getPage();
+        $grid = $page->find("css", ".grid-master");
 
-            if (!$grid->isVisible()) {
-                throw new \Exception('Grid is not visible');
-            }
-
-            return true;
-        });
+        $this->jQueryWait();
+        if (!$grid->isVisible()) {
+            throw new \Exception('Grid is not visible');
+        }
     }
 
     /**
@@ -152,16 +150,13 @@ class FeatureContext extends MinkContext
      */
     public function assertGridNotVisible()
     {
-        $this->spin(function($context) {
-            $page = $this->getSession()->getPage();
-            $grid = $page->find("css", ".grid-master");
+        $page = $this->getSession()->getPage();
+        $grid = $page->find("css", ".grid-master");
 
-            if ($grid->isVisible()) {
-                throw new \Exception('Grid is visible');
-            }
-
-            return true;
-        });
+        $this->jQueryWait();
+        if ($grid->isVisible()) {
+            throw new \Exception('Grid is visible');
+        }
     }
 
     /**
@@ -169,10 +164,10 @@ class FeatureContext extends MinkContext
      */
     public function assertTrayIsVisible()
     {
-        $this->jqueryWait();        
         $page = $this->getSession()->getPage();
         $grid = $page->find("css", ".tray");
 
+        $this->jQueryWait();
         if (!$grid->isVisible()) {
             throw new \Exception('Tray is not visible');
         }
@@ -184,10 +179,10 @@ class FeatureContext extends MinkContext
      */
     public function assertTrayNotVisible()
     {
-        $this->jqueryWait();
         $page = $this->getSession()->getPage();
         $grid = $page->find("css", ".tray");
 
+        $this->jqueryWait();
         if ($grid->isVisible()) {
             throw new \Exception('Tray is visible');
         }
@@ -283,20 +278,18 @@ class FeatureContext extends MinkContext
      */
     public function rowShouldContainTheWidgets($arg1, TableNode $fields)
     {
+        $this->jQueryWait();
         $rows = $fields->getRows();
 
-        $this->spin(function ($context) use ($arg1, $rows) {
-            foreach ($rows as $row) {
-                foreach ($row as $value) {
-                    $widget = $this->getSession()->getPage()->find('xpath', "//div[contains(concat(' ', @class, ' '), ' widget-row ')][" . $arg1 . "]//div[@data-widget-guid='" . $value . "']");
+        foreach ($rows as $row) {
+            foreach ($row as $value) {
+                $widget = $this->getSession()->getPage()->find('xpath', "//div[contains(concat(' ', @class, ' '), ' widget-row ')][" . $arg1 . "]//div[@data-widget-guid='" . $value . "']");
 
-                    if (!$widget) {
-                        throw new \Exception(sprintf('The widget "%s" is not visible on this page, but it should be.', $value));
-                    }
+                if (!$widget) {
+                    throw new \Exception(sprintf('The widget "%s" is not visible on this page, but it should be.', $value));
                 }
             }
-            return true;
-        });
+        }
     }
 
     /**
@@ -839,29 +832,6 @@ class FeatureContext extends MinkContext
     protected function jqueryWait($duration = 10000)
     {
         $this->getSession()->wait($duration, '(typeof(jQuery)=="undefined" || (0 === jQuery.active && 0 === jQuery(\':animated\').length))');
-    }
-
-    public function spin ($lambda, $wait = 10)
-    {
-        for ($i = 0; $i < $wait; $i++)
-        {
-            try {
-                if ($lambda($this)) {
-                    return true;
-                }
-            } catch (Exception $e) {
-                // do nothing
-            }
-
-            sleep(1);
-        }
-
-        $backtrace = debug_backtrace();
-
-        throw new Exception(
-            "Timeout thrown by " . $backtrace[1]['class'] . "::" . $backtrace[1]['function'] . "()\n" .
-            $backtrace[1]['file'] . ", line " . $backtrace[1]['line']
-        );
     }
 
     /**
