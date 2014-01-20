@@ -146,6 +146,21 @@ define([
                 ajaxLoop(0, homepageRow);
             });
             element.append(homepageDOM);
+
+            // make homepage rows sortable
+            $('.homepage-item').sortable({
+                axis: "y",
+                cursor: "grab",
+                delay: 150,
+                forcePlaceholderSize: true,
+                handle: ".row-handler",
+                placeholder: "row-placeholder",
+                revert: 100,
+                tolerance: "pointer",
+                update: function() {
+                    newVersion();
+                }
+            });
         }
 
         function loadTooltips() {
@@ -242,29 +257,21 @@ define([
                     e.preventDefault();
                     e.stopPropagation();
                     var widgetRow = $(this).parent().parent().parent();
-                    if(widgetRow.children().length == 2){ // then it's the last widget in the row
-                        widgetRow.fadeOut(200, function() {
-                            $(this).remove();
-                            newVersion();
-                        });
-                    }
-                    else {
-                        $(this).parent().parent().fadeOut(100, function() {
-                            var remover = $(this);
-                            var nextWidget = remover.next();
-                            if(nextWidget.length) {
-                                remover.next().css({'margin-left' : remover.outerWidth()});
-                                remover.next().animate({'margin-left' : ''}, 120, function() {
-                                    remover.remove();
-                                    newVersion();
-                                });
-                            }
-                            else {
+                    $(this).parent().parent().fadeOut(100, function() {
+                        var remover = $(this);
+                        var nextWidget = remover.next();
+                        if(nextWidget.length) {
+                            remover.next().css({'margin-left' : remover.outerWidth()});
+                            remover.next().animate({'margin-left' : ''}, 120, function() {
                                 remover.remove();
                                 newVersion();
-                            }
-                        });
-                    }
+                            });
+                        }
+                        else {
+                            remover.remove();
+                            newVersion();
+                        }
+                    });
                 });
 
                 $(element).on('click', '.remove-row', function(e) {
@@ -343,6 +350,7 @@ define([
         }
 
         function attachEvents(element) {
+
             $('body').on('mousemove', function(e) {
                 if(dragging) {
 
@@ -387,22 +395,7 @@ define([
                         }
                     }
                 }
-                
-                // row reordering
-                $('.homepage-item').sortable({
-                    axis: "y",
-                    cursor: "grab",
-                    delay: 150,
-                    forcePlaceholderSize: true,
-                    handle: ".row-handler",
-                    placeholder: "row-placeholder",
-                    revert: 100,
-                    tolerance: "pointer",
-                    update: function() {
-                        newVersion();
-                    }
-                });
-                
+             
 
                 if(resizing) {
                     var columnWidth = parseInt($('.grid-span-1').outerWidth());
@@ -743,8 +736,9 @@ define([
             attachEvents(element, eventParent);
         }
 
-        var homepageContainer = $('.homepage-content');
-        var homepageItem = $('.homepage-item');
+        var homepageContainer = $('.homepage-content'),
+            homepageItem = $('.homepage-item');
+
         fetchHomepage('fillmurray', homepageContainer, homepageItem);
 
         function manipulateOffset(operator, direction) {

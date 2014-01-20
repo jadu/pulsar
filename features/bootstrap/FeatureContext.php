@@ -385,10 +385,16 @@ class FeatureContext extends MinkContext
 
         $from = $session->element('xpath', $this->handleXPath);
         $to = $session->element('xpath', $this->newRowXPath);
+
         $session->moveto(array('element' => $from->getID())); //move to source location, using reference to source element
         $session->buttondown("");
         $session->moveto(array('element' => $to->getID()));
         $session->buttonup("");
+
+        // get last row's ID
+        $this->jQueryWait();
+        $this->rowXPath = $this->newRowXPath;
+        $this->lastRowID = $to->getAttribute('id');
     }
 
     /**
@@ -438,8 +444,6 @@ class FeatureContext extends MinkContext
             $this->iDragTheHandleToTheNewRow();
             $this->jqueryWait();
         }
-
-        $this->rowXPath = $this->newRowXPath;
     }
 
     /**
@@ -625,6 +629,7 @@ class FeatureContext extends MinkContext
             throw new \Exception('Row number has not been set');
         }
 
+        $this->jQueryWait();
         $page = $this->getSession()->getPage();
         $row = $page->find('css', '#row-' . $this->rowNo);
 
@@ -728,7 +733,42 @@ class FeatureContext extends MinkContext
         $session->buttonup("");
     }
 
+    /**
+     * @When /^I remove all widgets from the row$/
+     */
+    public function iRemoveAllWidgetsFromTheRow()
+    {
+        $page = $this->getSession()->getPage();
+        $session = $this->getSession()->getDriver()->getWebDriverSession();
+        $row = $page->find('xpath', $this->rowXPath);
 
+        $this->jQueryWait();
+        $widgets = $row->findAll('css', '.homepage-widget');
+
+        if (!$widgets) {
+            throw new \Exception('The row contains no widgets');
+        }
+
+        foreach ($widgets as $widget) {
+            $element = $session->element('xpath', $widget->getXpath($widget));
+            $session->moveto(array('element' => $element->getID()));
+            $removeButton = $widget->find('css', '.remove-widget');
+            $removeButton->click();
+        }
+    }
+
+    /**
+     * @Then /^the row should still be visible$/
+     */
+    public function theRowShouldStillBeVisible()
+    {
+        $page = $this->getSession()->getPage();
+        $row = $page->find('css', '#' . $this->lastRowID);
+
+        if (!$row || !$row->isVisible()) {
+            throw new \Exception('Row is not present or is not visible');
+        }
+    }
 
     protected function jqueryWait($duration = 10000)
     {
