@@ -13,3 +13,11 @@ Scenario: Load the fillmurray homepage
   Then I should see the following rows:
     | row-1 |
     | row-2 |
+
+Scenario: Rows on blank homepage should be droppable
+  Given I am on the homepages designer
+  Then all rows should be droppable
+
+Scenario: Rows on test homepage should be droppable
+  Given I am on the "fillmurray" homepage
+  Then all rows should be droppable

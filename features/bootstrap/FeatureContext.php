@@ -770,7 +770,7 @@ class FeatureContext extends MinkContext
     {
         $url = $this->getSession()->getCurrentUrl();
         if(strstr($url, '?homepage=')) {
-            // throw new \Exception('A homepage parameter has been set');
+            throw new \Exception('A homepage parameter has been set');
         }
     }
     /**
@@ -782,24 +782,6 @@ class FeatureContext extends MinkContext
         $session = $this->getSession()->getDriver()->getWebDriverSession();
         $row = $page->find('xpath', $this->rowXPath);
 
-    /**
-     * @Then /^I should see (\d+) empty row$/
-     */
-    public function iShouldSeeEmptyRow($arg1)
-    {
-        $this->jqueryWait();
-        $page = $this->getSession()->getPage();
-        $rows = $page->findAll('css', '.widget-row');
-        if(sizeof($rows) != $arg1) {
-            throw new \Exception('Not showing a single row');
-        }
-        foreach($rows as $row) {
-            $widgets = $row->find('css', '.homepage-widget');
-            if($widgets) {
-                throw new \Exception('Row ' . $arg1 . ' contains widgets');
-            }
-        }
-    }
         $this->jQueryWait();
         $widgets = $row->findAll('css', '.homepage-widget');
 
@@ -812,6 +794,25 @@ class FeatureContext extends MinkContext
             $session->moveto(array('element' => $element->getID()));
             $removeButton = $widget->find('css', '.remove-widget');
             $removeButton->click();
+        }
+    }
+
+    /**
+     * @Then /^I should see (\d+) empty row$/
+     */
+    public function iShouldSeeEmptyRow($arg1)
+    {
+        $this->jqueryWait();
+        $page = $this->getSession()->getPage();
+        $rows = $page->findAll('css', '.widget-row');
+        if (sizeof($rows) != $arg1) {
+            throw new \Exception('Not showing a single row');
+        }
+        foreach ($rows as $row) {
+            $widgets = $row->find('css', '.homepage-widget');
+            if ($widgets) {
+                throw new \Exception('Row ' . $arg1 . ' contains widgets');
+            }
         }
     }
 
