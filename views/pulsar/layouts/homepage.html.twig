@@ -9,11 +9,11 @@
     <div class="btn__group">
       <a class="btn btn__back" href="#back" onclick="history.back(); return false;"><i class="icon-arrow-left"></i></a>
       {% if actions_menu is not empty %}
-        {{ 
+        {{
             html.button_dropdown(
               label = 'Actions',
               menu_items = actions_menu,
-              class = 'actions-menu') 
+              class = 'actions-menu')
         }}
       {% endif %}
     </div>
@@ -41,9 +41,18 @@
             <div class="grid-span-1 column"></div>
         </div>
     </div>
+    <div class="homepage-item ui-sortable">
+      <div class="grid-container widget-row" id="row-1">
+        <div class="row-handler column grid-span-12">
+          <a class="icon-magic fill-row" data-toggle="tooltips" data-original-title="Resize widgets to fill row" data-placement="left"></a>
+          <a class="icon-remove remove-row"></a>
+            Row 1
+        </div>
+      </div>
+    </div>
 </div>
 <div class="homepage-sidebar">
-  
+
   <div class="widget-default-controls">
     {{ html.button(
         label = html.icon('copy') ~ ' Duplicate',

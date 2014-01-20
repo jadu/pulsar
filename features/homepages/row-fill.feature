@@ -15,3 +15,23 @@ Scenario: Widget should resize to fill row
 	Given I have a row with 1 widget
 	When I click the row's ".fill-row" button
 	Then the widgets should fill the row
+
+Scenario: auto-fill capability should be checked on initial homepage load
+	Given I am editing the "fillmurray" homepage
+	Then the ".fill-row" button should be enabled on rows:
+		| row-1 |
+	And the ".fill-row" button should be disabled on rows:
+		| row-2 |
+	Then the widgets should fill the row
+
+Scenario: auto-fill capability should be checked on initial homepage load
+	Given I am editing the "fillmurray" homepage
+	Then the ".fill-row" button should be enabled on rows:
+		| row-1 |
+	And the ".fill-row" button should be disabled on rows:
+		| row-2 |
+
+Scenario: A blank homepage should have an empty row which can't be auto-filled
+	Given I am editing an empty homepage
+	Then the ".fill-row" button should be disabled on rows:
+		| row-1 |
