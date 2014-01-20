@@ -34,4 +34,4 @@ Scenario: auto-fill capability should be checked on initial homepage load
 Scenario: A blank homepage should have an empty row which can't be auto-filled
 	Given I am editing an empty homepage
 	Then the ".fill-row" button should be disabled on rows:
-		| row-2 |
+		| row-1 |
