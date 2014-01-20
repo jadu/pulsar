@@ -71,11 +71,23 @@ class FeatureContext extends MinkContext
 
     /**
      * @Given /^I am on the homepages designer$/
-     * @Given /^I am editing the "([^"]*)" homepage$/
+     * @Given /^I am editing an empty homepage$/
      */
     public function openHomepageDesigner()
     {
         $this->visit('/app/homepages');
+    }
+
+    /**
+     * @Given /^I am editing the "([^"]*)" homepage$/
+     */
+    public function openHomepage($guid)
+    {
+        if (!$guid) {
+            throw new \Exception('No homepage GUID was passed through the URL');
+        }
+
+        $this->visit('/app/homepages?homepage=' . $guid);
     }
 
     /**
@@ -503,7 +515,7 @@ class FeatureContext extends MinkContext
     public function theWidgetsShouldFillTheRow()
     {
         $page = $this->getSession()->getPage();
-        $row = $page->find('xpath', $this->rowXPath);
+        $row = $page->find('css', '#' . $this->lastRowID);
         $rowHandler = $row->find('css', '.row-handler');
 
         if (!$row) {
@@ -783,6 +795,7 @@ class FeatureContext extends MinkContext
             foreach ($row as $value) {
                 
                 $homepagerow = $page->find('css', '#' . $value);
+                $this->lastRowID = $value;
 
                 if (!$homepagerow) {
                     throw new \Exception('Row not found');
