@@ -487,6 +487,8 @@ class FeatureContext extends MinkContext
             $this->jqueryWait();
             $this->iDragTheHandleToRow(1);
         }
+
+        $this->lastRowID = 'row-1';
     }
 
     /**
@@ -528,6 +530,7 @@ class FeatureContext extends MinkContext
      */
     public function iClickTheRowSButton($locator)
     {
+        $this->jQueryWait();
         $page = $this->getSession()->getPage();
         $row = $page->find('css', '#' . $this->lastRowID);
 
@@ -535,8 +538,9 @@ class FeatureContext extends MinkContext
             throw new \Exception('Row is not present, and it should be');
         }
 
-        $removeButton = $row->find('css', $locator);
-        $removeButton->click();
+        $button = $row->find('css', $locator);
+        $button->click();
+
     }
 
     /**
@@ -544,6 +548,7 @@ class FeatureContext extends MinkContext
      */
     public function theWidgetsShouldFillTheRow()
     {
+        $this->jQueryWait();
         $page = $this->getSession()->getPage();
         $row = $page->find('css', '#' . $this->lastRowID);
         $rowHandler = $row->find('css', '.row-handler');
@@ -699,12 +704,11 @@ class FeatureContext extends MinkContext
      */
     public function theRowSButtonShouldBeEnabled($locator)
     {
+        $this->jqueryWait();
         $page = $this->getSession()->getPage();
 
-        $row = $page->find('xpath', $this->rowXPath);
+        $row = $page->find('css', '#' . $this->lastRowID);
         $button = $row->find('css', $locator);
-
-        $this->jqueryWait();
 
         if ($button->hasClass('disabled')) {
             throw new \Exception('The button is not active');
