@@ -79,15 +79,14 @@ class FeatureContext extends MinkContext
     }
 
     /**
-     * @Given /^I am editing the "([^"]*)" homepage$/
+     * @Given /^I am on the "([^"]*)" homepage$/
      */
-    public function openHomepage($guid)
+    public function iAmOnTheHomepage($guid)
     {
-        if (!$guid) {
-            throw new \Exception('No homepage GUID was passed through the URL');
+        if(!$guid) {
+           throw new \Exception('No homepage supplied');
         }
-
-        $this->visit('/app/homepages?homepage=' . $guid);
+        $this->visit('/app/homepages/?homepage='.$guid);
     }
 
     /**
@@ -169,7 +168,7 @@ class FeatureContext extends MinkContext
      */
     public function assertTrayIsVisible()
     {
-        $this->jqueryWait();        
+        $this->jqueryWait();
         $page = $this->getSession()->getPage();
         $grid = $page->find("css", ".tray");
 
@@ -196,7 +195,7 @@ class FeatureContext extends MinkContext
     /**
      * @Given /^the tray is visible$/
      */
-    public function openTray() 
+    public function openTray()
     {
         $this->openHomepageDesigner();
         $this->jqueryWait();
@@ -215,7 +214,7 @@ class FeatureContext extends MinkContext
         $page = $this->getSession()->getPage();
         $category_list = $page->find("css", ".tray__categories");
         $categories = $category_list->findAll('css', 'li');
-        
+
         if (!$categories) {
             throw new \Exception('No categories found');
         }
@@ -276,6 +275,23 @@ class FeatureContext extends MinkContext
     }
 
     /**
+     * @Then /^I should see the following rows:$/
+     */
+    public function iShouldSeeTheRows(TableNode $table)
+    {
+        $page = $this->getSession()->getPage();
+
+        foreach ($table->getRows() as $row) {
+            foreach ($row as $value) {
+                $found = $page->find('css', '#'.$value);
+                if (!$found) {
+                    throw new \Exception('Could not find '.$value);
+                }
+            }
+        }
+    }
+
+    /**
      * @Given /^row (\d+) contains the widgets:$/
      * @Given /^row (\d+) contains the widget:$/
      * @Then /^row (\d+) should contain the widgets:$/
@@ -305,7 +321,7 @@ class FeatureContext extends MinkContext
     public function newRowShouldContainTheWidget(TableNode $fields)
     {
         $guids = $fields->getRows();
-        
+
         $page = $this->getSession()->getPage();
         $newRow = $page->find('css', '.widget-row-new');
 
@@ -337,12 +353,12 @@ class FeatureContext extends MinkContext
     {
         $page = $this->getSession()->getPage();
         $handle = $page->find('xpath', $this->handleXPath);
-        
+
         $this->jqueryWait();
 
         if ($handle->getAttribute($arg1) != $arg2) {
             throw new \Exception('Attribute should be "' . $arg1 . '"');
-        }   
+        }
     }
 
     /**
@@ -351,9 +367,9 @@ class FeatureContext extends MinkContext
      */
     public function aNewRowShouldBeCreated()
     {
-        
+
         $page = $this->getSession()->getPage();
-        
+
         $this->jqueryWait();
 
         $lastRow = $page->find('css', '.widget-row-new');
@@ -376,7 +392,7 @@ class FeatureContext extends MinkContext
         $this->jqueryWait();
 
         $targetRow = "//div[contains(concat(' ', @class, ' '), ' ui-droppable ')][" . $arg1 . "]//div";
-        
+
         $from = $session->element('xpath', $this->handleXPath);
         $to = $session->element('xpath', $targetRow);
         $session->moveto(array('element' => $from->getID())); //move to source location, using reference to source element
@@ -420,7 +436,7 @@ class FeatureContext extends MinkContext
 
         if (!$rows) {
             throw new \Exception('Homepage has no rows');
-        } 
+        }
     }
 
     /**
@@ -429,7 +445,7 @@ class FeatureContext extends MinkContext
     public function iHaveRows($count)
     {
         $page = $this->getSession()->getPage();
-        
+
         $this->openHomepageDesigner();
         $this->openTray();
         $this->iClickOnTheCategory('Bill Murray');
@@ -447,7 +463,7 @@ class FeatureContext extends MinkContext
     public function iHaveARowWithWidget($count)
     {
         $page = $this->getSession()->getPage();
-        
+
         $this->openHomepageDesigner();
         $this->openTray();
         $this->iClickOnTheCategory('Bill Murray');
@@ -523,7 +539,7 @@ class FeatureContext extends MinkContext
         }
 
         // get available width of row
-        
+
         preg_match("/\bgrid-span-(\d+)\b/", $rowHandler->getAttribute('class'), $matches);
         $rowWidth = $matches[1];
 
@@ -539,7 +555,7 @@ class FeatureContext extends MinkContext
         $spanCount = 0;
         foreach ($widgets as $widget) {
             preg_match("/\bgrid-span-(\d+)\b/", $widget->getAttribute('class'), $matches);
-            
+
             if (!$matches) {
                 throw new \Exception('Could not find the widget grid width');
             }
@@ -562,12 +578,12 @@ class FeatureContext extends MinkContext
 
         $this->iHoverOverWidgetOnRow($widgetNo, $rowNo);
         $this->jqueryWait();
-        
+
         $removeButton = $page->find('xpath', "//div[@id='row-" . $rowNo . "']//div[contains(concat(' ', @class, ' '), ' homepage-widget ')][" . $widgetNo . "]//a[contains(concat(' ', @class, ' '), ' remove-widget ')]");
 
         $removeButton->click();
     }
-    
+
     /**
      * @Given /^I hover over widget (\d+) on row (\d+)$/
      */
@@ -671,6 +687,7 @@ class FeatureContext extends MinkContext
     public function theRowSButtonShouldBeEnabled($locator)
     {
         $page = $this->getSession()->getPage();
+
         $row = $page->find('xpath', $this->rowXPath);
         $button = $row->find('css', $locator);
 
@@ -746,6 +763,16 @@ class FeatureContext extends MinkContext
         $session->buttonup("");
     }
 
+     /**
+     * @Given /^I have not specified a homepage to load$/
+     */
+    public function iHaveNotSpecifiedAHomepageToLoad()
+    {
+        $url = $this->getSession()->getCurrentUrl();
+        if(strstr($url, '?homepage=')) {
+            // throw new \Exception('A homepage parameter has been set');
+        }
+    }
     /**
      * @When /^I remove all widgets from the row$/
      */
@@ -755,6 +782,24 @@ class FeatureContext extends MinkContext
         $session = $this->getSession()->getDriver()->getWebDriverSession();
         $row = $page->find('xpath', $this->rowXPath);
 
+    /**
+     * @Then /^I should see (\d+) empty row$/
+     */
+    public function iShouldSeeEmptyRow($arg1)
+    {
+        $this->jqueryWait();
+        $page = $this->getSession()->getPage();
+        $rows = $page->findAll('css', '.widget-row');
+        if(sizeof($rows) != $arg1) {
+            throw new \Exception('Not showing a single row');
+        }
+        foreach($rows as $row) {
+            $widgets = $row->find('css', '.homepage-widget');
+            if($widgets) {
+                throw new \Exception('Row ' . $arg1 . ' contains widgets');
+            }
+        }
+    }
         $this->jQueryWait();
         $widgets = $row->findAll('css', '.homepage-widget');
 
