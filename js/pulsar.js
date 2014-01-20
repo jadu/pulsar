@@ -48,6 +48,10 @@ define(['jquery'], function() {
                 e.stopPropagation();
             });
 
+            $('[data-toggle*=button]').on('click', function(e) {
+                $(this).toggleClass('active');
+            })
+
         });
 
 
