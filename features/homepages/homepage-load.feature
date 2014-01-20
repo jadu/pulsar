@@ -14,6 +14,13 @@ Scenario: Load the fillmurray homepage
     | row-1 |
     | row-2 |
 
+Scenario: Toggle tray on empty homepage
+  Given I am on the homepages designer
+  When I click on the 'Widgets' button
+  Then I should see the following rows:
+    | row-1 |
+
+
 Scenario: Rows on blank homepage should be droppable
   Given I am on the homepages designer
   When I open the tray
