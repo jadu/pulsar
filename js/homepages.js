@@ -11,9 +11,9 @@ define([
 ], function() {
     (function ($, window, document, undefined) {
 
-        var guidParameter = 'homepage', //the param name we use in URL to load a homepage
+        var guidParameter = 'homepage', // the param name we use in URL to load a homepage
             homepageGuid = getHomepageGuid(),
-            dragging = false,
+            dragging = false, // used to determine when to show a new row
             resizing = false,
             newRow,
             newRowPresent = false,
@@ -54,10 +54,14 @@ define([
         function getHomepageGuid() {
             var query = window.location.search.substring(1);
             var vars = query.split("&");
-            for (var i=0;i<vars.length;i++) {
-                   var pair = vars[i].split("=");
-                   if(pair[0] == guidParameter){return pair[1];}
+
+            for (var i = 0; i < vars.length; i++) {
+                var pair = vars[i].split("=");
+                if (pair[0] == guidParameter) {
+                    return pair[1];
+                }
             }
+
             return(false);
         }
 
@@ -137,13 +141,13 @@ define([
                             var dataElement = $(data);
                             var newIndex = widgetIndex + 1;
                             widgetContainer.remove('h2').append(dataElement);
-                            if(newIndex < widgetCount) {
+                            if (newIndex < widgetCount) {
                                 var widget = rowArray[widgetIndex + 1];
                                 ajaxLoop(newIndex, rowArray);
                             }
                             else {
                                 homepageDOM.append(rowDOM);
-                                if(rowNo == homepage.length) {
+                                if (rowNo == homepage.length) {
                                     versions[1] = homepageDOM.html();
                                     currentVersion = 1;
                                 }
@@ -163,7 +167,7 @@ define([
 
         function loadTooltips() {
             $('.fill-row').each(function(){
-                if($(this).hasClass('disabled')) {
+                if ($(this).hasClass('disabled')) {
                     $(this).attr('data-original-title', disabledTooltipMessage);
                 }
                 else {
@@ -185,7 +189,7 @@ define([
             var elementHtml = $('.homepage-item').html();
             elementHtml = elementHtml;
             var numberToRemove = versions.length - currentVersion; // we want to remove everything after the current version in the array
-            if(numberToRemove > 1) {
+            if (numberToRemove > 1) {
                 // if the 'current' version (i.e. the version before the user's change) is not the latest change
                 // then we have to remove everything after it in the versions array, so that the user
                 // cannot perform the redo function to get to 'old' versions of their homepage
@@ -206,7 +210,7 @@ define([
             $('.widget-row').each(function() {
                 var noOfWidgets = $(this).children('.homepage-widget').length;
                 var fillButton = $(this).find('.fill-row');
-                if(columnCount % noOfWidgets) {
+                if (columnCount % noOfWidgets) {
                     fillButton.addClass('disabled');
                 }
                 else {
@@ -255,7 +259,7 @@ define([
                     e.preventDefault();
                     e.stopPropagation();
                     var widgetRow = $(this).parent().parent().parent();
-                    if(widgetRow.children().length == 2){ // then it's the last widget in the row
+                    if (widgetRow.children().length == 2){ // then it's the last widget in the row
                         widgetRow.fadeOut(200, function() {
                             $(this).remove();
                             newVersion();
@@ -265,7 +269,7 @@ define([
                         $(this).parent().parent().fadeOut(100, function() {
                             var remover = $(this);
                             var nextWidget = remover.next();
-                            if(nextWidget.length) {
+                            if (nextWidget.length) {
                                 remover.next().css({'margin-left' : remover.outerWidth()});
                                 remover.next().animate({'margin-left' : ''}, 120, function() {
                                     remover.remove();
@@ -357,7 +361,7 @@ define([
 
         function attachEvents(element) {
             $('body').on('mousemove', function(e) {
-                if(dragging) {
+                if (dragging) {
 
                     /**
                      * add a new empty drop target when dragging starts, as long
@@ -371,28 +375,28 @@ define([
                     currentX = e.pageX;
                     var diffX = currentX - originalX;
 
-                    if(diffX > 60) {
-                        if(operator.next().length) {
+                    if (diffX > 60) {
+                        if (operator.next().length) {
                             operator.next().after(operator);
                             diffX = 0;
                             originalX = e.pageX;
                             startPosition += 1;
                         }
-                        else if(diffX > 90) {
+                        else if (diffX > 90) {
                             manipulateOffset(operator, 'right');
                             diffX = 0;
                             originalX = e.pageX;
                             startPosition += 1;
                         }
                     }
-                    else if(diffX < -60) {
-                        if(!operator.is('[class*=offset]') && operator.prev('.homepage-widget').length) {
+                    else if (diffX < -60) {
+                        if (!operator.is('[class*=offset]') && operator.prev('.homepage-widget').length) {
                             operator.prev('.homepage-widget').before(operator);
                             diffX = 0;
                             originalX = e.pageX;
                             startPosition -= 1;
                         }
-                        else if(diffX < -90) {
+                        else if (diffX < -90) {
                             manipulateOffset(operator, 'left');
                             diffX = 0;
                             originalX = e.pageX;
@@ -417,17 +421,17 @@ define([
                 });
 
 
-                if(resizing) {
+                if (resizing) {
                     var columnWidth = parseInt($('.grid-span-1').outerWidth());
                     var columnMargin = parseInt($('.grid-span-1').css('margin-right')) + 1;
                     columnWidth += columnMargin;
                     currentX = e.pageX;
                     var diffX = currentX - originalX;
-                    if(diffX > columnWidth) { // if we should resize upwards
+                    if (diffX > columnWidth) { // if we should resize upwards
                         var operatingSpan = parseInt($('.operating').attr('class').split('grid-span-')[1].split(' ')[0]);
                         var oldSpan = 'grid-span-' + operatingSpan;
                         operatingSpan += columnsResized;
-                        if(operatingSpan < columnCount) {
+                        if (operatingSpan < columnCount) {
                             columnsResized += 1;
                             var indicatorWidth = parseInt($('.operating .resizer .indicator').outerWidth());
                             indicatorWidth += columnWidth;
@@ -437,7 +441,7 @@ define([
                             startPosition += 1;
                         }
                     }
-                    else if(diffX < -columnWidth) { // if we should resize downwards
+                    else if (diffX < -columnWidth) { // if we should resize downwards
                         var indicatorWidth = parseInt($('.operating .resizer .indicator').outerWidth());
                         indicatorWidth -= columnWidth;
                         $('.operating .resizer .indicator').css({ width : indicatorWidth + 'px', right : '-' + indicatorWidth + 'px'});
@@ -445,14 +449,14 @@ define([
                         originalX = e.pageX;
                         columnsResized -= 1;
                         startPosition -= 1;
-                        if(columnsResized < 0) {
+                        if (columnsResized < 0) {
                             var operatingSpan = parseInt($('.operating').attr('class').split('grid-span-')[1].split(' ')[0]);
                             var oldSpan = 'grid-span-' + operatingSpan;
                             operatingSpan += columnsResized;
-                            if(operatingSpan < 1) {
+                            if (operatingSpan < 1) {
                                 operatingSpan = 1;
                             }
-                            else if(operatingSpan > 12) {
+                            else if (operatingSpan > 12) {
                                 operatingSpan = 12;
                             }
                             var newSpan = 'grid-span-' + operatingSpan;
@@ -463,15 +467,15 @@ define([
                     }
                 }
             }).on('mouseup', function(e){
-                if(resizing) {
-                    if(!alreadyResized) {
+                if (resizing) {
+                    if (!alreadyResized) {
                         var operatingSpan = parseInt($('.operating').attr('class').split('grid-span-')[1].split(' ')[0]);
                         var oldSpan = 'grid-span-' + operatingSpan;
                         operatingSpan += columnsResized;
-                        if(operatingSpan < 1) {
+                        if (operatingSpan < 1) {
                             operatingSpan = 1;
                         }
-                        else if(operatingSpan > 12) {
+                        else if (operatingSpan > 12) {
                             operatingSpan = 12;
                         }
                         var newSpan = 'grid-span-' + operatingSpan;
@@ -484,7 +488,7 @@ define([
                     columnsResized = 0;
                     resizing = false;
                 }
-                if(dragging) {
+                if (dragging) {
                     var operatedWidget = $('.operating');
                     dragging = false;
 
@@ -523,7 +527,7 @@ define([
                 // remove all row overlays
                 $('.row-overlay').remove();
 
-                if(startPosition != 0) {
+                if (startPosition != 0) {
                     newVersion();
                 }
 
@@ -558,7 +562,7 @@ define([
             });
 
             function undo(element) {
-                if(currentVersion > 1) {
+                if (currentVersion > 1) {
                     element.empty();
                     currentVersion -= 1;
                     var undoHtml = versions[currentVersion];
@@ -568,7 +572,7 @@ define([
             }
 
             function redo(element) {
-                if(currentVersion < versions.length - 1) {
+                if (currentVersion < versions.length - 1) {
                     element.empty();
                     var redoHtml = versions[currentVersion + 1];
                     element.append(redoHtml);
@@ -578,19 +582,19 @@ define([
             }
 
             $(window).keydown(function(e){
-                if(e.metaKey && e.shiftKey &&  e.keyCode == 90) { // Mac Redo CMD + SHIFT + Z
+                if (e.metaKey && e.shiftKey &&  e.keyCode == 90) { // Mac Redo CMD + SHIFT + Z
                     e.preventDefault();
                     redo($('.homepage-item'));
                 }
-                else if(e.metaKey && e.keyCode == 90) { // Mac Undo CMD + Z
+                else if (e.metaKey && e.keyCode == 90) { // Mac Undo CMD + Z
                     e.preventDefault();
                     undo($('.homepage-item'));
                 }
-                else if(e.ctrlKey && e.keyCode == 89) { // Win Redo CMD + Y
+                else if (e.ctrlKey && e.keyCode == 89) { // Win Redo CMD + Y
                     e.preventDefault();
                     redo($('.homepage-item'));
                 }
-                else if(e.ctrlKey && e.keyCode == 90) { // Win Undo CMD + Z
+                else if (e.ctrlKey && e.keyCode == 90) { // Win Undo CMD + Z
                     e.preventDefault();
                     undo($('.homepage-item'));
                 }
@@ -761,7 +765,8 @@ define([
 
         var homepageContainer = $('.homepage-content');
         var homepageItem = $('.homepage-item');
-        if(homepageGuid) {
+        
+        if (homepageGuid) {
             fetchHomepage(homepageGuid, homepageContainer, homepageItem);
         }
         else {
@@ -769,21 +774,21 @@ define([
         }
 
         function manipulateOffset(operator, direction) {
-            if(!(operator.is('[class*=offset]')) && direction == 'right') {
+            if (!(operator.is('[class*=offset]')) && direction == 'right') {
                 operator.addClass('offset-1');
             }
-            else if(direction == 'right') {
+            else if (direction == 'right') {
                 var operatingOffset = parseInt(operator.attr('class').split('offset-')[1].split(' ')[0]);
                 var oldOffset = 'offset-' + operatingOffset;
                 operatingOffset += 1;
                 var newOffset = 'offset-' + operatingOffset;
                 operator.removeClass(oldOffset).addClass(newOffset)
             }
-            else if(direction == 'left') {
+            else if (direction == 'left') {
                 var operatingOffset = parseInt(operator.attr('class').split('offset-')[1].split(' ')[0]);
                 var oldOffset = 'offset-' + operatingOffset;
                 operatingOffset -= 1;
-                if(operatingOffset == 0) {
+                if (operatingOffset == 0) {
                     operator.removeClass(oldOffset);
                 }
                 else {
