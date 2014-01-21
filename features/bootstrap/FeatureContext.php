@@ -605,6 +605,7 @@ class FeatureContext extends MinkContext
         $removeButton = $page->find('xpath', "//div[@id='row-" . $rowNo . "']//div[contains(concat(' ', @class, ' '), ' homepage-widget ')][" . $widgetNo . "]//a[contains(concat(' ', @class, ' '), ' remove-widget ')]");
 
         $removeButton->click();
+        $this->jQueryWait();
     }
 
     /**
@@ -620,6 +621,7 @@ class FeatureContext extends MinkContext
         $element = $session->element('xpath', $xpath);
 
         $session->moveto(array('element' => $element->getID()));
+        $this->jQueryWait();
 
         $this->hoveredWidget = $xpath;
         $this->widgetNo = $widgetNo;

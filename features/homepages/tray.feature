@@ -32,10 +32,11 @@ Scenario: Show widget details
 	And the drag handler "data-last-appended" attribute should be "true"
 
 Scenario: Drag widget to existing row
-	Given the tray is visible
+	Given I am on the "fillmurray" homepage
 	And row 1 contains the widget:
 		| fillmurray |
-	When I click on the "Bill Murray" category
+	When I open the tray
+	And I click on the "Bill Murray" category
 	And I click on the "Image" widget
 	When I drag the handle to row 1
 	Then row 1 should contain the widgets:
