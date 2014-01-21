@@ -212,8 +212,26 @@ class FeatureContext extends MinkContext
         $page = $this->getSession()->getPage();
         $link = $page->findLink('Widgets');
         $link->click();
+        
+        $this->jQueryWait();
+        $this->assertTrayIsVisible();
+    }
+
+    /**
+     * @Given /^the tray is closed$/
+     */
+    public function closeTray()
+    {
+        $this->jQueryWait();
+        $page = $this->getSession()->getPage();
+        $link = $page->findLink('Widgets');
 
         $this->assertTrayIsVisible();
+
+        $link->click();
+        
+        $this->jQueryWait();
+        $this->assertTrayNotVisible();
     }
 
     /**
@@ -331,7 +349,7 @@ class FeatureContext extends MinkContext
         $guids = $fields->getRows();
 
         $page = $this->getSession()->getPage();
-        $newRow = $page->find('css', '.widget-row-new');
+        $newRow = $page->find('css', '#' . $this->lastRowID);
 
         $this->jQueryWait();
 
@@ -375,13 +393,16 @@ class FeatureContext extends MinkContext
      */
     public function aNewRowShouldBeCreated()
     {
-
+        $this->jQueryWait();
         $page = $this->getSession()->getPage();
 
-        $this->jQueryWait();
-
         $lastRow = $page->find('css', '.widget-row-new');
-        $widgets = $lastRow->find('css', '.homepage-widget');
+
+        if (!$lastRow) {
+            throw new \Exception('A new row was expected, but not found');
+        }
+
+        $widgets = $lastRow->findAll('css', '.homepage-widget');
 
         if ($widgets) {
             throw new \Exception('A new row has not been created or the row is not empty');
@@ -424,6 +445,7 @@ class FeatureContext extends MinkContext
         $session->moveto(array('element' => $from->getID()));
         $session->buttondown("");
 
+        $this->jQueryWait();
         $to = $session->element('xpath', $this->newRowXPath);
 
         $session->moveto(array('element' => $to->getID()));
@@ -812,7 +834,12 @@ class FeatureContext extends MinkContext
         $this->jQueryWait();
         $page = $this->getSession()->getPage();
         $session = $this->getSession()->getDriver()->getWebDriverSession();
-        $row = $page->find('xpath', $this->rowXPath);
+
+        $row = $page->find('css', '#' . $this->lastRowID);
+
+        if (!$row) {
+            throw new \Exception(sprintf('Row "%s" was not found', $this->lastRowID));
+        }
 
         $widgets = $row->findAll('css', '.homepage-widget');
 

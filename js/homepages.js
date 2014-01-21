@@ -286,18 +286,6 @@ define([
             // restart start position for next moves
             startPosition = 0;
 
-            // check rows and enable/disable auto–fill button accordingly
-            $('.widget-row').each(function() {
-                var noOfWidgets = $(this).children('.homepage-widget').length;
-                var fillButton = $(this).find('.fill-row');
-                if (columnCount % noOfWidgets) {
-                    fillButton.addClass('disabled');
-                }
-                else {
-                    fillButton.removeClass('disabled');
-                }
-            });
-
             // enable or disable specific actions based on current homepage state
             updateActions();
         }
@@ -808,11 +796,11 @@ define([
              * will be completed before the user clicks this button
              */
             $('[data-toggle=tray]').on('click', function() {
-                if (!newRowEmpty()) {
-                    createNewRow();
-                } else {
-                    removeNewRow();
-                }
+                // if (!newRowEmpty()) {
+                //     createNewRow();
+                // } else {
+                //     removeNewRow();
+                // }
 
                 $('.widget-row').makeDroppable();
             });
