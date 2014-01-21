@@ -33,9 +33,11 @@ define([
             originalRow, // where a widget was dragged from
             hoveredRow, // where a widget is dragged over
             rowOverlay = '<div class="row-overlay"><i class="icon-plus-sign"></i> Drop widget here</div>',
-            rowMarkup = '<div class="row-handler column grid-span-12"><a class="icon-magic fill-row" data-toggle="tooltips" data-original-title="Resize widgets to fill row" data-placement="left"></a><a class="icon-remove remove-row"></a></div>',
-            enabledTooltipMessage = 'Resize widgets to fill row',
-            disabledTooltipMessage = 'Widgets cannot be auto–sized',
+            rowMarkup = '<div class="row-handler column grid-span-12"><a class="icon-magic fill-row" data-toggle="tooltips" data-original-title="Resize widgets to fill row" data-placement="left"></a><a class="icon-remove remove-row" data-toggle="tooltips"></a></div>',
+            enabledRemoveRowMessage = 'Remove row',
+            disabledRemoveRowMessage = 'Row cannot be removed',
+            enabledFillRowMessage = 'Resize widgets to fill row',
+            disabledFillRowMessage = 'Widgets cannot be auto–sized',
             trayContainer = '.tray',
             widgetConfig,
             widgetData,
@@ -152,7 +154,6 @@ define([
                                     currentVersion = 1;
                                 }
                             }
-                            loadTooltips();
                             updateActions();
                             $('.icon-spinner', widgetContainer).remove();
                         }
@@ -178,18 +179,6 @@ define([
                     newVersion();
                 }
             });
-        }
-
-        function loadTooltips() {
-            $('.fill-row').each(function(){
-                if ($(this).hasClass('disabled')) {
-                    $(this).attr('data-original-title', disabledTooltipMessage);
-                }
-                else {
-                    $(this).attr('data-original-title', enabledTooltipMessage);
-                }
-            });
-            $('[data-toggle="tooltips"]').tooltips();
         }
 
         function updateActions() {
@@ -252,19 +241,27 @@ define([
 
                 // enable/disable the fill button
                 if (fillDisabled) {
-                    fillButton.addClass('disabled');
+                    fillButton
+                        .addClass('disabled')
+                        .attr('data-original-title', disabledFillRowMessage);
                 } else {
-                    fillButton.removeClass('disabled');
+                    fillButton
+                        .removeClass('disabled')
+                        .attr('data-original-title', enabledFillRowMessage);
                 }
 
                 // enable/disable the remove button
                 if (removeDisabled) {
-                    removeButton.addClass('disabled');
+                    removeButton
+                        .addClass('disabled')
+                        .attr('data-original-title', disabledRemoveRowMessage);
                 } else {
-                    removeButton.removeClass('disabled');
+                    removeButton
+                        .removeClass('disabled')
+                        .attr('data-original-title', enabledRemoveRowMessage);
                 }
 
-                loadTooltips();
+                $('[data-toggle="tooltips"]').tooltips();
             });
         }
 
@@ -299,7 +296,6 @@ define([
                 else {
                     fillButton.removeClass('disabled');
                 }
-                loadTooltips();
             });
 
             // enable or disable specific actions based on current homepage state
@@ -852,6 +848,7 @@ define([
         }
         else {
             setupTray(homepageContainer, homepageItem);
+            updateActions();
         }
 
         function manipulateOffset(operator, direction) {
