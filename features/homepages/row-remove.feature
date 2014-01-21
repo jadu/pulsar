@@ -9,7 +9,7 @@ Scenario: rows should have remove button
 	Then my rows should have the remove-row button
 
 Scenario: removing empty row should remove silently
-	Given the tray is visible
+	Given I have a row with 1 widget
 	And I remove widget 1 on row 1
 	When I click the remove button on row 1
 	Then the row should be removed

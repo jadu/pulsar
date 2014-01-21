@@ -94,7 +94,7 @@ class FeatureContext extends MinkContext
      */
     public function iClickOnTheButton($arg1)
     {
-        $this->jqueryWait();
+        $this->jQueryWait();
         $page = $this->getSession()->getPage();
         $button = $page->findLink($arg1);
 
@@ -106,6 +106,7 @@ class FeatureContext extends MinkContext
      */
     public function assertButtonIsToggled($arg1)
     {
+        $this->jQueryWait();
         $page = $this->getSession()->getPage();
         $button = $page->findLink($arg1);
 
@@ -119,6 +120,7 @@ class FeatureContext extends MinkContext
      */
     public function assertButtonNotToggled($arg1)
     {
+        $this->jQueryWait();
         $page = $this->getSession()->getPage();
         $button = $page->findLink($arg1);
 
@@ -133,16 +135,13 @@ class FeatureContext extends MinkContext
      */
     public function assertGridIsVisible()
     {
-        $this->spin(function($context) {
-            $page = $this->getSession()->getPage();
-            $grid = $page->find("css", ".grid-master");
+        $this->jQueryWait();
+        $page = $this->getSession()->getPage();
+        $grid = $page->find("css", ".grid-master");
 
-            if (!$grid->isVisible()) {
-                throw new \Exception('Grid is not visible');
-            }
-
-            return true;
-        });
+        if (!$grid->isVisible()) {
+            throw new \Exception('Grid is not visible');
+        }
     }
 
     /**
@@ -151,16 +150,13 @@ class FeatureContext extends MinkContext
      */
     public function assertGridNotVisible()
     {
-        $this->spin(function($context) {
-            $page = $this->getSession()->getPage();
-            $grid = $page->find("css", ".grid-master");
+        $this->jQueryWait();
+        $page = $this->getSession()->getPage();
+        $grid = $page->find("css", ".grid-master");
 
-            if ($grid->isVisible()) {
-                throw new \Exception('Grid is visible');
-            }
-
-            return true;
-        });
+        if ($grid->isVisible()) {
+            throw new \Exception('Grid is visible');
+        }
     }
 
     /**
@@ -168,7 +164,7 @@ class FeatureContext extends MinkContext
      */
     public function assertTrayIsVisible()
     {
-        $this->jqueryWait();
+        $this->jQueryWait();
         $page = $this->getSession()->getPage();
         $grid = $page->find("css", ".tray");
 
@@ -183,7 +179,7 @@ class FeatureContext extends MinkContext
      */
     public function assertTrayNotVisible()
     {
-        $this->jqueryWait();
+        $this->jQueryWait();
         $page = $this->getSession()->getPage();
         $grid = $page->find("css", ".tray");
 
@@ -198,7 +194,7 @@ class FeatureContext extends MinkContext
     public function trayIsVisible()
     {
         $this->openHomepageDesigner();
-        $this->jqueryWait();
+        $this->jQueryWait();
         $page = $this->getSession()->getPage();
         $link = $page->findLink('Widgets');
         $link->click();
@@ -211,7 +207,7 @@ class FeatureContext extends MinkContext
      */
     public function openTray()
     {
-        $this->jqueryWait();
+        $this->jQueryWait();
         $page = $this->getSession()->getPage();
         $link = $page->findLink('Widgets');
         $link->click();
@@ -315,18 +311,15 @@ class FeatureContext extends MinkContext
     {
         $rows = $fields->getRows();
 
-        $this->spin(function ($context) use ($arg1, $rows) {
-            foreach ($rows as $row) {
-                foreach ($row as $value) {
-                    $widget = $this->getSession()->getPage()->find('xpath', "//div[contains(concat(' ', @class, ' '), ' widget-row ')][" . $arg1 . "]//div[@data-widget-guid='" . $value . "']");
+        foreach ($rows as $row) {
+            foreach ($row as $value) {
+                $widget = $this->getSession()->getPage()->find('xpath', "//div[contains(concat(' ', @class, ' '), ' widget-row ')][" . $arg1 . "]//div[@data-widget-guid='" . $value . "']");
 
-                    if (!$widget) {
-                        throw new \Exception(sprintf('The widget "%s" is not visible on this page, but it should be.', $value));
-                    }
+                if (!$widget) {
+                    throw new \Exception(sprintf('The widget "%s" is not visible on this page, but it should be.', $value));
                 }
             }
-            return true;
-        });
+        }
     }
 
     /**
@@ -339,7 +332,7 @@ class FeatureContext extends MinkContext
         $page = $this->getSession()->getPage();
         $newRow = $page->find('css', '.widget-row-new');
 
-        $this->jqueryWait();
+        $this->jQueryWait();
 
         foreach ($guids as $guid) {
             foreach ($guid as $value) {
@@ -368,7 +361,7 @@ class FeatureContext extends MinkContext
         $page = $this->getSession()->getPage();
         $handle = $page->find('xpath', $this->handleXPath);
 
-        $this->jqueryWait();
+        $this->jQueryWait();
 
         if ($handle->getAttribute($arg1) != $arg2) {
             throw new \Exception('Attribute should be "' . $arg1 . '"');
@@ -384,7 +377,7 @@ class FeatureContext extends MinkContext
 
         $page = $this->getSession()->getPage();
 
-        $this->jqueryWait();
+        $this->jQueryWait();
 
         $lastRow = $page->find('css', '.widget-row-new');
         $widgets = $lastRow->find('css', '.homepage-widget');
@@ -399,18 +392,19 @@ class FeatureContext extends MinkContext
      */
     public function iDragTheHandleToRow($arg1)
     {
+        $this->jQueryWait();
         $page = $this->getSession()->getPage();
         $session = $this->getSession()->getDriver()->getWebDriverSession();
 
-        // wait for new row to be created
-        $this->jqueryWait();
-
-        $targetRow = "//div[contains(concat(' ', @class, ' '), ' ui-droppable ')][" . $arg1 . "]//div";
+        $targetRow = "//div[contains(concat(' ', @class, ' '), ' ui-droppable ')][" . $arg1 . "]";
 
         $from = $session->element('xpath', $this->handleXPath);
-        $to = $session->element('xpath', $targetRow);
-        $session->moveto(array('element' => $from->getID())); //move to source location, using reference to source element
+
+        $session->moveto(array('element' => $from->getID()));
         $session->buttondown("");
+
+        $to = $session->element('xpath', $targetRow);
+
         $session->moveto(array('element' => $to->getID()));
         $session->buttonup("");
     }
@@ -420,17 +414,17 @@ class FeatureContext extends MinkContext
      */
     public function iDragTheHandleToTheNewRow()
     {
-        // wait for new row to be created
-        $this->jqueryWait();
-
+        $this->jQueryWait();
         $page = $this->getSession()->getPage();
         $session = $this->getSession()->getDriver()->getWebDriverSession();
 
         $from = $session->element('xpath', $this->handleXPath);
+
+        $session->moveto(array('element' => $from->getID()));
+        $session->buttondown("");
+
         $to = $session->element('xpath', $this->newRowXPath);
 
-        $session->moveto(array('element' => $from->getID())); //move to source location, using reference to source element
-        $session->buttondown("");
         $session->moveto(array('element' => $to->getID()));
         $session->buttonup("");
 
@@ -445,6 +439,7 @@ class FeatureContext extends MinkContext
      */
     public function iHaveAtLeastOneRow()
     {
+        $this->jQueryWait();
         $page = $this->getSession()->getPage();
         $rows = $page->find('css', '.widget-row');
 
@@ -458,7 +453,7 @@ class FeatureContext extends MinkContext
      */
     public function iHaveRows($count)
     {
-        $page = $this->getSession()->getPage();
+        $this->jQueryWait();
 
         $this->openHomepageDesigner();
         $this->openTray();
@@ -467,7 +462,14 @@ class FeatureContext extends MinkContext
 
         for ($i = 1; $i <= $count; $i++) {
             $this->iDragTheHandleToRow($i);
-            $this->jqueryWait();
+        }
+
+        $this->jQueryWait();
+        $page = $this->getSession()->getPage();
+        $rowCount = sizeof($page->findAll('css', '.widget-row'));
+
+        if ($rowCount != $count) {
+            throw new \Exception(sprintf('%s rows were expected, but %d row(s) found', $count, $rowCount));
         }
     }
 
@@ -476,6 +478,7 @@ class FeatureContext extends MinkContext
      */
     public function iHaveARowWithWidget($count)
     {
+        $this->jQueryWait();
         $page = $this->getSession()->getPage();
 
         $this->openHomepageDesigner();
@@ -484,7 +487,7 @@ class FeatureContext extends MinkContext
         $this->iClickOnTheWidget('Image');
 
         for ($i = 1; $i <= $count; $i++) {
-            $this->jqueryWait();
+            $this->jQueryWait();
             $this->iDragTheHandleToRow(1);
         }
 
@@ -496,6 +499,7 @@ class FeatureContext extends MinkContext
      */
     public function myRowsShouldHaveTheRemoveRowButton()
     {
+        $this->jQueryWait();
         $page = $this->getSession()->getPage();
         $rows = $page->findAll('css', '.widget-row');
 
@@ -512,6 +516,7 @@ class FeatureContext extends MinkContext
      */
     public function iClickTheRemoveButtonOnRow($rowNo)
     {
+        $this->jQueryWait();
         $page = $this->getSession()->getPage();
         $row = $page->find('xpath', "//div[contains(concat(' ', @class, ' '), ' widget-row ')][" . $rowNo . "]");
 
@@ -568,7 +573,7 @@ class FeatureContext extends MinkContext
         }
 
         // wait for resize operation to complete
-        $this->jqueryWait();
+        $this->jQueryWait();
 
         $spanCount = 0;
         foreach ($widgets as $widget) {
@@ -591,11 +596,11 @@ class FeatureContext extends MinkContext
      */
     public function iRemoveWidgetOnRow($widgetNo, $rowNo)
     {
+        $this->jQueryWait();
         $page = $this->getSession()->getPage();
-        $this->jqueryWait();
 
         $this->iHoverOverWidgetOnRow($widgetNo, $rowNo);
-        $this->jqueryWait();
+        $this->jQueryWait();
 
         $removeButton = $page->find('xpath', "//div[@id='row-" . $rowNo . "']//div[contains(concat(' ', @class, ' '), ' homepage-widget ')][" . $widgetNo . "]//a[contains(concat(' ', @class, ' '), ' remove-widget ')]");
 
@@ -607,6 +612,7 @@ class FeatureContext extends MinkContext
      */
     public function iHoverOverWidgetOnRow($widgetNo, $rowNo)
     {
+        $this->jQueryWait();
         $session = $this->getSession()->getDriver()->getWebDriverSession();
 
         $xpath = "//div[@id='row-" . $rowNo . "']//div[contains(concat(' ', @class, ' '), ' homepage-widget ')][" . $widgetNo . "]";
@@ -625,6 +631,7 @@ class FeatureContext extends MinkContext
      */
     public function theResizeHandleShouldBeVisible()
     {
+        $this->jQueryWait();
         $page = $this->getSession()->getPage();
         $widget = $page->find('xpath', $this->hoveredWidget);
         $resizer = $widget->find('css', '.resizer');
@@ -639,6 +646,7 @@ class FeatureContext extends MinkContext
      */
     public function theWidgetOnRowShouldBeHighlighted()
     {
+        $this->jQueryWait();
         if (!$this->rowNo || !$this->widgetNo) {
             throw new \Exception('Required widget or row not found');
         }
@@ -658,6 +666,7 @@ class FeatureContext extends MinkContext
      */
     public function iShouldSeeTheLink($arg1)
     {
+        $this->jQueryWait();
         $page = $this->getSession()->getPage();
         $widget = $page->find('xpath', $this->hoveredWidget);
         $link = $widget->find('css', $arg1);
@@ -672,6 +681,8 @@ class FeatureContext extends MinkContext
      */
     public function rowShouldBeRemoved()
     {
+        $this->jQueryWait();
+
         if (!$this->rowNo) {
             throw new \Exception('Row number has not been set');
         }
@@ -690,8 +701,8 @@ class FeatureContext extends MinkContext
      */
     public function checkModalByID($arg1)
     {
+        $this->jQueryWait();
         $page = $this->getSession()->getPage();
-        $this->jqueryWait();
         $modal = $page->find('css', '#' + $arg1);
 
         if (!$modal || !$modal->isVisible()) {
@@ -704,7 +715,7 @@ class FeatureContext extends MinkContext
      */
     public function theRowSButtonShouldBeEnabled($locator)
     {
-        $this->jqueryWait();
+        $this->jQueryWait();
         $page = $this->getSession()->getPage();
 
         $row = $page->find('css', '#' . $this->lastRowID);
@@ -720,13 +731,11 @@ class FeatureContext extends MinkContext
      */
     public function theRowSButtonShouldBeDisabled($locator)
     {
+        $this->jQueryWait();
         $page = $this->getSession()->getPage();
 
         $row = $page->find('css', '#' . $this->lastRowID);
-
         $button = $row->find('css', $locator);
-
-        $this->jQueryWait();
 
         if (!$button->hasClass('disabled')) {
             throw new \Exception('The button is not disabled');
@@ -741,6 +750,7 @@ class FeatureContext extends MinkContext
      */
     public function theOrderOfTheRowsIs(TableNode $table)
     {
+        $this->jQueryWait();
         $page = $this->getSession()->getPage();
         $rows = $page->findAll('css', '.widget-row');
 
@@ -765,8 +775,7 @@ class FeatureContext extends MinkContext
      */
     public function iDragRowToRow($arg1, $arg2)
     {
-        // wait for new row to be created
-        $this->jqueryWait();
+        $this->jQueryWait();
         $page = $this->getSession()->getPage();
         $session = $this->getSession()->getDriver()->getWebDriverSession();
 
@@ -785,6 +794,7 @@ class FeatureContext extends MinkContext
      */
     public function iHaveNotSpecifiedAHomepageToLoad()
     {
+        $this->jQueryWait();
         $url = $this->getSession()->getCurrentUrl();
         if(strstr($url, '?homepage=')) {
             throw new \Exception('A homepage parameter has been set');
@@ -795,11 +805,11 @@ class FeatureContext extends MinkContext
      */
     public function iRemoveAllWidgetsFromTheRow()
     {
+        $this->jQueryWait();
         $page = $this->getSession()->getPage();
         $session = $this->getSession()->getDriver()->getWebDriverSession();
         $row = $page->find('xpath', $this->rowXPath);
 
-        $this->jQueryWait();
         $widgets = $row->findAll('css', '.homepage-widget');
 
         if (!$widgets) {
@@ -819,9 +829,10 @@ class FeatureContext extends MinkContext
      */
     public function iShouldSeeEmptyRow($arg1)
     {
-        $this->jqueryWait();
+        $this->jQueryWait();
         $page = $this->getSession()->getPage();
         $rows = $page->findAll('css', '.widget-row');
+
         if (sizeof($rows) != $arg1) {
             throw new \Exception('Not showing a single row');
         }
@@ -920,32 +931,9 @@ class FeatureContext extends MinkContext
         }
     }
 
-    protected function jqueryWait($duration = 10000)
+    protected function jQueryWait($duration = 10000)
     {
         $this->getSession()->wait($duration, '(typeof(jQuery)=="undefined" || (0 === jQuery.active && 0 === jQuery(\':animated\').length))');
-    }
-
-    public function spin ($lambda, $wait = 10)
-    {
-        for ($i = 0; $i < $wait; $i++)
-        {
-            try {
-                if ($lambda($this)) {
-                    return true;
-                }
-            } catch (Exception $e) {
-                // do nothing
-            }
-
-            sleep(1);
-        }
-
-        $backtrace = debug_backtrace();
-
-        throw new Exception(
-            "Timeout thrown by " . $backtrace[1]['class'] . "::" . $backtrace[1]['function'] . "()\n" .
-            $backtrace[1]['file'] . ", line " . $backtrace[1]['line']
-        );
     }
 
     /**

@@ -767,6 +767,7 @@ define([
             }
             else {
                 lastRow.after(rowDom);
+                rowDom.makeDroppable();
                 newRowPresent = true;
             }
         }
@@ -807,6 +808,16 @@ define([
                 }
 
                 $('.widget-row').makeDroppable();
+            });
+
+            $('.ui-draggable').mousedown(function () {
+                if (!newRowEmpty()) {
+                    createNewRow();
+                }
+            }).mouseup(function () {
+                if (newRowEmpty()) {
+                    removeNewRow();
+                }
             });
 
             element.makeDraggable();
@@ -862,6 +873,8 @@ define([
          */
         $.fn.makeDroppable = function() {
             return this.each(function(index, element) {
+                var self = $(this);
+
                 $(this).droppable({
                     accept: '.widget',
                     drop: function (e, ui) {
@@ -905,6 +918,8 @@ define([
                                 $(widgetDataContainer).val('');
                                 widgetData = '';
                                 newVersion();
+                                self.removeClass('widget-row-new');
+                                newRowPresent = false;
                             } else {
 
                                 // otherwise ajax hasn't finished so wait a bit more...
