@@ -611,7 +611,20 @@ define([
                     $('.row-overlay', this).remove();
                 }
             }).on('click', '[data-action=remove-row]', function(e) {
-                $('.widget-row')[$(this).data('row')].remove();
+                var row = $('.widget-row')[$(this).data('row')],
+                    rows = $('.widget-row'),
+                    widgets = $('.homepage-widget', row);
+
+                /**
+                 * if this is the last row, just remove it's widgets
+                 * otherwise, remove the row entirely
+                 */
+                if (rows.length === 1) {
+                    widgets.remove();
+                } else {
+                    row.remove();
+                }
+
                 $('#remove_row_modal').modal('hide');
                 newVersion();
             }).on('click', '[data-action=clear-homepage-confirmation]', function(e) {

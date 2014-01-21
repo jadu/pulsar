@@ -22,3 +22,9 @@ Scenario: removing non-empty row should ask for confirmation
 Scenario: single empty row on a homepage shouldn't be removable
 	Given I am on the homepages designer
 	Then the row's ".remove-row" button should be disabled
+
+Scenario: removing last row should only remove it's widgets
+	Given I have a row with 1 widget
+	When I click the remove button on row 1
+	Then I should see the following rows:
+	 | row-1 |
