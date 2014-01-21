@@ -32,10 +32,11 @@ Scenario: Show widget details
 	And the drag handler "data-last-appended" attribute should be "true"
 
 Scenario: Drag widget to existing row
-	Given the tray is visible
+	Given I am on the "fillmurray" homepage
 	And row 1 contains the widget:
 		| fillmurray |
-	When I click on the "Bill Murray" category
+	When I open the tray
+	And I click on the "Bill Murray" category
 	And I click on the "Image" widget
 	When I drag the handle to row 1
 	Then row 1 should contain the widgets:
@@ -55,3 +56,15 @@ Scenario: Drag widget to new row
 	Then the new row should contain the widget:
 		| fillmurray |
 
+Scenario: Dragging widget should create a new row
+	Given I have a row with 1 widget
+	And I click on the "Bill Murray" category
+	When I start dragging the "Image" widget
+	Then a new row should be created
+
+Scenario: New row should be removed when dragging stops
+	Given I have a row with 1 widget
+	And I click on the "Bill Murray" category
+	And I start dragging the "Image" widget
+	When I stop dragging
+	Then the new row should be removed
