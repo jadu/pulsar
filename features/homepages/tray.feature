@@ -56,3 +56,15 @@ Scenario: Drag widget to new row
 	Then the new row should contain the widget:
 		| fillmurray |
 
+Scenario: Dragging widget should create a new row
+	Given I have a row with 1 widget
+	And I click on the "Bill Murray" category
+	When I start dragging the "Image" widget
+	Then a new row should be created
+
+Scenario: New row should be removed when dragging stops
+	Given I have a row with 1 widget
+	And I click on the "Bill Murray" category
+	And I start dragging the "Image" widget
+	When I stop dragging
+	Then the new row should be removed

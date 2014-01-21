@@ -380,6 +380,11 @@ class FeatureContext extends MinkContext
         $this->jQueryWait();
 
         $lastRow = $page->find('css', '.widget-row-new');
+
+        if (!$lastRow) {
+            throw new \Exception('A new row was expected, but was not found');
+        }
+
         $widgets = $lastRow->find('css', '.homepage-widget');
 
         if ($widgets) {
@@ -433,6 +438,44 @@ class FeatureContext extends MinkContext
         $this->rowXPath = $this->newRowXPath;
         $this->lastRowID = $to->getAttribute('id');
     }
+
+     /**
+     * @Given /^I start dragging the "([^"]*)" widget$/
+     */
+    public function iStartDraggingTheWidget($arg1)
+    {
+        $this->jQueryWait();
+        $session = $this->getSession()->getDriver()->getWebDriverSession();
+
+        $from = $session->element('xpath', $this->handleXPath);
+
+        $session->moveto(array('element' => $from->getID()));
+        $session->buttondown("");
+    }
+
+    /**
+     * @When /^I stop dragging$/
+     */
+    public function iStopDragging()
+    {
+        $this->jQueryWait();
+        $session = $this->getSession()->getDriver()->getWebDriverSession();
+        $session->buttonup("");
+    }
+
+    /**
+     * @Then /^the new row should be removed$/
+     */
+    public function theNewRowShouldBeRemoved()
+    {
+        $page = $this->getSession()->getPage();
+        $newRow = $page->find('css', '.widget-row-new');
+
+        if ($newRow) {
+            throw new \Exception('New row present');
+        }
+    }
+
 
     /**
      * @Given /^I have at least one row$/
