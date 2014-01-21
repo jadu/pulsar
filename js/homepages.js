@@ -193,18 +193,21 @@ define([
         }
 
         function updateActions() {
+            var rows = $('.widget-row');
 
             // disable actions if homepage empty
             if ($('.homepage-item > .widget-row').length === 0) {
                 $('[data-action=clear-homepage-confirmation]').parent().addClass('disabled', 'disabled');
             };
 
-            // disable fill-row action if not applicable
-            $('.widget-row').each(function() {
-                var disabled = false,
-                    fillButton = $('.fill-row', this),
-                    widgets = $('.homepage-widget', this),
-                    widgetColCount = 0;
+            // disable the row's actions if they're not applicable
+            rows.each(function() {
+                var fillDisabled    = false,
+                    fillButton      = $('.fill-row', this),
+                    removeDisabled  = false,
+                    removeButton    = $('.remove-row', this),
+                    widgets         = $('.homepage-widget', this),
+                    widgetColCount  = 0;
 
                 /**
                  * Disable the fill button if any of these conditions are met:
@@ -214,14 +217,14 @@ define([
                  *     - there are no widgets in the row
                  */
                 if (columnCount % widgets.length || !widgets.length) {
-                    disabled = true;
+                    fillDisabled = true;
                 }
 
                 /**
                  * if we're not already disabled, count the total grid span of
                  * this row's widgets to see if they already fill the row
                  */
-                if (!disabled) {
+                if (!fillDisabled) {
                     widgets.each(function() {
 
                         /**
@@ -235,15 +238,30 @@ define([
                      * Disable the fill button if the widgets fill the row
                      */
                     if (columnCount === widgetColCount) {
-                        disabled = true;
+                        fillDisabled = true;
                     }
                 }
 
+                /**
+                 * Disable the remove button if this is the only row in a 
+                 * homepage and it's empty
+                 */
+                if (rows.length === 1 && widgets.length === 0) {
+                    removeDisabled = true;
+                }
+
                 // enable/disable the fill button
-                if (disabled) {
+                if (fillDisabled) {
                     fillButton.addClass('disabled');
                 } else {
                     fillButton.removeClass('disabled');
+                }
+
+                // enable/disable the remove button
+                if (removeDisabled) {
+                    removeButton.addClass('disabled');
+                } else {
+                    removeButton.removeClass('disabled');
                 }
 
                 loadTooltips();

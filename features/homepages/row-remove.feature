@@ -22,3 +22,6 @@ Scenario: removing non-empty row should ask for confirmation
 	When I click the remove button on row 1
 	Then I should see the "remove_row_modal" modal
 	
+Scenario: single empty row on a homepage shouldn't be removable
+	Given I am on the homepages designer
+	Then the row's ".remove-row" button should be disabled

@@ -76,6 +76,7 @@ class FeatureContext extends MinkContext
     public function openHomepageDesigner()
     {
         $this->visit('/app/homepages');
+        $this->lastRowID = 'row-1';
     }
 
     /**
@@ -492,6 +493,7 @@ class FeatureContext extends MinkContext
         }
 
         $this->lastRowID = 'row-1';
+        sleep(1);
     }
 
     /**
