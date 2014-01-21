@@ -245,9 +245,25 @@ define([
                         .addClass('disabled')
                         .attr('data-original-title', disabledFillRowMessage);
                 } else {
+                    console.log('fill enabled');
                     fillButton
                         .removeClass('disabled')
-                        .attr('data-original-title', enabledFillRowMessage);
+                        .attr('data-original-title', enabledFillRowMessage)
+                        .on('click', function(e) {
+                            e.stopPropagation();
+                            var widgets = $(this).parent().parent().children('.homepage-widget'),
+                                newSpan = columnCount / widgets.length;
+
+                            newSpan = 'grid-span-' + newSpan;
+
+                            widgets
+                                .removeClass(function (index, css) {
+                                    return (css.match (/\bgrid-span-\S+/g) || []).join(' ');
+                                })
+                                .addClass(newSpan);
+
+                            newVersion();
+                        });;
                 }
 
                 // enable/disable the remove button
@@ -256,9 +272,31 @@ define([
                         .addClass('disabled')
                         .attr('data-original-title', disabledRemoveRowMessage);
                 } else {
+                    console.log('remove enabled');
                     removeButton
                         .removeClass('disabled')
-                        .attr('data-original-title', enabledRemoveRowMessage);
+                        .attr('data-original-title', enabledRemoveRowMessage)
+                        .on('click', function(e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            var row = $(this).parent().parent();
+
+                            /**
+                             * request confirmation if attempting to remove a row which
+                             * contains widgets
+                             */
+                            if (row.has('.homepage-widget').length) {
+                                var modal = $('#remove_row_modal');
+
+                                // pass the row's index to the modal action
+                                $('[data-action=remove-row]', modal).data('row', $('.widget-row').index(row));
+                                modal.modal('show');
+                                return false;
+                            }
+
+                            // remove the row immediately if its empty
+                            row.removeRow();
+                        });
                 }
 
                 $('[data-toggle="tooltips"]').tooltips();
@@ -342,44 +380,6 @@ define([
                             newVersion();
                         }
                     });
-                });
-
-                $(element).on('click', '.remove-row', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    var row = $(this).parent().parent();
-
-                    /**
-                     * request confirmation if attempting to remove a row which
-                     * contains widgets
-                     */
-                    if (row.has('.homepage-widget').length) {
-                        var modal = $('#remove_row_modal');
-
-                        // pass the row's index to the modal action
-                        $('[data-action=remove-row]', modal).data('row', $('.widget-row').index(row));
-                        modal.modal('show');
-                        return false;
-                    }
-
-                    // remove the row immediately if its empty
-                    row.removeRow();
-                });
-
-                $(element).on('click', '.fill-row', function(e) {
-                    e.stopPropagation();
-                    var widgets = $(this).parent().parent().children('.homepage-widget'),
-                        newSpan = columnCount / widgets.length;
-
-                    newSpan = 'grid-span-' + newSpan;
-
-                    widgets
-                        .removeClass(function (index, css) {
-                            return (css.match (/\bgrid-span-\S+/g) || []).join(' ');
-                        })
-                        .addClass(newSpan);
-
-                    newVersion();
                 });
             });
         }
@@ -796,12 +796,6 @@ define([
              * will be completed before the user clicks this button
              */
             $('[data-toggle=tray]').on('click', function() {
-                // if (!newRowEmpty()) {
-                //     createNewRow();
-                // } else {
-                //     removeNewRow();
-                // }
-
                 $('.widget-row').makeDroppable();
             });
 
@@ -817,6 +811,7 @@ define([
 
             element.makeDraggable();
             attachEvents(element, eventParent);
+            updateActions();
         }
 
         function fetchHomepage(guid, element, eventParent) {

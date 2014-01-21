@@ -729,7 +729,8 @@ class FeatureContext extends MinkContext
     {
         $this->jQueryWait();
         $page = $this->getSession()->getPage();
-        $modal = $page->find('css', '#' + $arg1);
+
+        $modal = $page->findById($arg1);
 
         if (!$modal || !$modal->isVisible()) {
             throw new \Exception('Modal "#' . $arg1 . '" not found, or is not visible');

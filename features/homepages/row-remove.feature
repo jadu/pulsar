@@ -15,10 +15,7 @@ Scenario: removing empty row should remove silently
 	Then the row should be removed
 
 Scenario: removing non-empty row should ask for confirmation
-	Given the tray is visible
-	When I click on the "Bill Murray" category
-	And I click on the "Image" widget
-	And I drag the handle to row 1
+	Given I have a row with 1 widget
 	When I click the remove button on row 1
 	Then I should see the "remove_row_modal" modal
 	
