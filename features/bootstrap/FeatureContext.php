@@ -95,10 +95,9 @@ class FeatureContext extends MinkContext
      */
     public function iClickOnTheButton($arg1)
     {
-        $this->jQueryWait();
         $page = $this->getSession()->getPage();
         $button = $page->findLink($arg1);
-
+        $this->jQueryWait();
         $button->click();
     }
 
@@ -398,6 +397,9 @@ class FeatureContext extends MinkContext
         $page = $this->getSession()->getPage();
 
         $lastRow = $page->find('css', '.widget-row-new');
+
+        $session = $this->getSession()->getDriver()->getWebDriverSession();
+        $session->buttonup("");
 
         if (!$lastRow) {
             throw new \Exception('A new row was expected, but not found');
