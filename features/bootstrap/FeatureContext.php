@@ -125,7 +125,7 @@ class FeatureContext extends MinkContext
     }
 
     /**
-     * @Given /^the \'([^\']*)\' button should be toggled$/
+     * @Given /^the \"([^\"]*)\" button should be toggled$/
      */
     public function assertButtonIsToggled($arg1)
     {
@@ -139,7 +139,7 @@ class FeatureContext extends MinkContext
     }
 
     /**
-     * @Given /^the \'([^\']*)\' button should not be toggled$/
+     * @Given /^the \"([^\"]*)\" button should not be toggled$/
      */
     public function assertButtonNotToggled($arg1)
     {
