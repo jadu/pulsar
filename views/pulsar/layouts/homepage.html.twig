@@ -48,6 +48,15 @@
           <a class="icon-remove remove-row"></a>
             Row 1
         </div>
+        <div class="row-hint">
+          <p>Drop widgets into this row to start creating your homepage</p>
+          {{
+            html.button(
+              label = 'Show Widgets',
+              class = 'btn--primary',
+              attributes = 'data-toggle=tray data-target=#tray')
+          }}
+        </div>
       </div>
     </div>
 </div>

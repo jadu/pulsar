@@ -756,6 +756,36 @@ class FeatureContext extends MinkContext
     }
 
     /**
+     * @Then /^I should see the element "([^"]*)"$/
+     */
+    public function iShouldSeeTheElement($arg1)
+    {
+        $this->jQueryWait();
+        $page = $this->getSession()->getPage();
+
+        $element = $page->find('css', $arg1);
+
+        if (!$element || !$element->isVisible()) {
+            throw new \Exception('Element "' . $arg1 . '" not found, or is not visible');
+        }
+    }
+
+    /**
+     * @Then /^I should not see the element "([^"]*)"$/
+     */
+    public function iShouldNotSeeTheElement($arg1)
+    {
+        $this->jQueryWait();
+        $page = $this->getSession()->getPage();
+
+        $element = $page->find('css', $arg1);
+
+        if ($element && $element->isVisible()) {
+            throw new \Exception('Unexpected element "' . $arg1 . '" found');
+        }
+    }
+
+    /**
      * @Then /^the row\'s "([^"]*)" button should be enabled$/
      */
     public function theRowSButtonShouldBeEnabled($locator)

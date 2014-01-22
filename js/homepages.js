@@ -86,6 +86,26 @@ define([
         }
 
         /**
+         * Initialises the sortable behaviour for homepage rows
+         */
+        function initSortable() {
+            console.log($('.homepage-item'));
+            $('.homepage-item').sortable({
+                axis: "y",
+                cursor: "grab",
+                delay: 150,
+                forcePlaceholderSize: true,
+                handle: ".row-handler",
+                placeholder: "row-placeholder",
+                revert: 100,
+                tolerance: "pointer",
+                update: function() {
+                    newVersion();
+                }
+            });
+        }
+
+        /**
          * adds the handlers for drag/drop/settings/close functions for a widget
          * which may be painted on load, or dropped in from the tray
          */
@@ -163,21 +183,7 @@ define([
             });
             element.find('#row-1').remove();
             element.append(homepageDOM);
-
-            // make homepage rows sortable
-            $('.homepage-item').sortable({
-                axis: "y",
-                cursor: "grab",
-                delay: 150,
-                forcePlaceholderSize: true,
-                handle: ".row-handler",
-                placeholder: "row-placeholder",
-                revert: 100,
-                tolerance: "pointer",
-                update: function() {
-                    newVersion();
-                }
-            });
+            initSortable();
         }
 
         function loadTooltips() {
@@ -243,10 +249,59 @@ define([
                 if (disabled) {
                     fillButton.addClass('disabled');
                 } else {
-                    fillButton.removeClass('disabled');
+                    fillButton
+                        .removeClass('disabled')
+                        .attr('data-original-title', enabledFillRowMessage)
+                        .on('click', function(e) {
+                            e.stopPropagation();
+                            var widgets = $(this).parent().parent().children('.homepage-widget'),
+                                newSpan = columnCount / widgets.length;
+
+                            newSpan = 'grid-span-' + newSpan;
+
+                            widgets
+                                .removeClass(function (index, css) {
+                                    return (css.match (/\bgrid-span-\S+/g) || []).join(' ');
+                                })
+                                .addClass(newSpan);
+
+                            newVersion();
+                        });;
                 }
 
-                loadTooltips();
+                // enable/disable the remove button
+                if (removeDisabled) {
+                    removeButton
+                        .addClass('disabled')
+                        .attr('data-original-title', disabledRemoveRowMessage);
+                } else {
+                    removeButton
+                        .removeClass('disabled')
+                        .attr('data-original-title', enabledRemoveRowMessage)
+                        .on('click', function(e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            var row = $(this).parent().parent();
+
+                            /**
+                             * request confirmation if attempting to remove a row which
+                             * contains widgets
+                             */
+                            if (row.has('.homepage-widget').length) {
+                                var modal = $('#remove_row_modal');
+
+                                // pass the row's index to the modal action
+                                $('[data-action=remove-row]', modal).data('row', $('.widget-row').index(row));
+                                modal.modal('show');
+                                return false;
+                            }
+
+                            // remove the row immediately if its empty
+                            row.removeRow();
+                        });
+                }
+
+                $('[data-toggle="tooltips"]').tooltips();
             });
         }
 
@@ -410,7 +465,7 @@ define([
          * find out if the new row contains widgets or not
          * @return {boolean} true if empty, false if full
          */
-        function newRowEmpty() {
+        function newRowIsEmpty() {
             if (!newRowPresent && !$('.widget-row:last-of-type').not(':has(.homepage-widget)').length) {
                 return false
             }
@@ -426,7 +481,7 @@ define([
                      * add a new empty drop target when dragging starts, as long
                      * as the last row is not already empty
                      */
-                    if (!newRowEmpty()) {
+                    if (!newRowIsEmpty()) {
                         createNewRow();
                     }
 
@@ -463,22 +518,6 @@ define([
                         }
                     }
                 }
-
-                // row reordering
-                $('.homepage-item').sortable({
-                    axis: "y",
-                    cursor: "grab",
-                    delay: 150,
-                    forcePlaceholderSize: true,
-                    handle: ".row-handler",
-                    placeholder: "row-placeholder",
-                    revert: 100,
-                    tolerance: "pointer",
-                    update: function() {
-                        newVersion();
-                    }
-                });
-
 
                 if (resizing) {
                     var columnWidth = parseInt($('.grid-span-1').outerWidth());
@@ -804,11 +843,11 @@ define([
             });
 
             $('.ui-draggable').mousedown(function () {
-                if (!newRowEmpty()) {
+                if (!newRowIsEmpty()) {
                     createNewRow();
                 }
             }).mouseup(function () {
-                if (newRowEmpty()) {
+                if (newRowIsEmpty()) {
                     removeNewRow();
                 }
             });
@@ -823,7 +862,6 @@ define([
             }).done(function (data) {
                 loadHomepageObject(data, element);
             });
-            setupTray(element, eventParent);
         }
 
         var homepageContainer = $('.homepage-content');
@@ -831,10 +869,12 @@ define([
         
         if (homepageGuid) {
             fetchHomepage(homepageGuid, homepageContainer, homepageItem);
+        } else {
+            initSortable();
         }
-        else {
-            setupTray(homepageContainer, homepageItem);
-        }
+        
+        setupTray(homepageContainer, homepageItem);
+        
 
         function manipulateOffset(operator, direction) {
             if (!(operator.is('[class*=offset]')) && direction == 'right') {
@@ -906,6 +946,9 @@ define([
                                       .data('widget-title', sender.data('widget-title'))
                                       .data('widget-description', sender.data('widget-description'))
                                       .attr('data-last-appended', 'true');
+
+                                // Remove the hint message from row-1, if needed
+                                $('.row-hint').hide();
 
                                 // tidy up after ourselves
                                 $(widgetDataContainer).val('');

@@ -193,6 +193,19 @@ $cyan : #ea33a3;
     }
 }
 
+.widget-row {
+    border-bottom: 1px solid lighten($gray, 10%);
+    min-height: 130px;
+    
+    .row-hint {
+        color: $gray-dark;
+        float: left;
+        margin-top: 1%;
+        text-align: center;
+        width: 100%;
+    }
+}
+
 .homepage {
     padding-bottom: 2em;
 }
