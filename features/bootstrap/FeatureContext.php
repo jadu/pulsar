@@ -90,14 +90,36 @@ class FeatureContext extends MinkContext
     }
 
     /**
-     * @When /^I click on the \'([^\']*)\' button$/
+     * @When /^I click on the \"([^\"]*)\" button$/
      */
     public function iClickOnTheButton($arg1)
     {
         $this->jQueryWait();
         $page = $this->getSession()->getPage();
-        $button = $page->findLink($arg1);
+        $button = $page->findButton($arg1);
 
+        $button->click();
+    }
+
+    /**
+     * @Given /^I click on the widget\'s button with class "([^"]*)"$/
+     */
+    public function iClickOnTheButtonWithClass($arg1)
+    {
+        $this->jQueryWait();
+        $page = $this->getSession()->getPage();
+
+        $lastWidget = $page->findById($this->lastWidgetId);
+
+        if (!$lastWidget) {
+            throw new \Exception('Widget "' . $this->lastWidgetId . '" not found');
+        }
+
+        $button = $lastWidget->find('css', $arg1);
+
+        if (!$button || !$button->isVisible()) {
+            throw new \Exception('Button "' . $arg1 . '" not found or not visible');
+        }
         $button->click();
     }
 
@@ -657,6 +679,8 @@ class FeatureContext extends MinkContext
     public function iHoverOverWidgetOnRow($widgetNo, $rowNo)
     {
         $this->jQueryWait();
+        sleep(1);
+
         $session = $this->getSession()->getDriver()->getWebDriverSession();
 
         $xpath = "//div[@id='row-" . $rowNo . "']//div[contains(concat(' ', @class, ' '), ' homepage-widget ')][" . $widgetNo . "]";
@@ -664,9 +688,12 @@ class FeatureContext extends MinkContext
         $element = $session->element('xpath', $xpath);
 
         $session->moveto(array('element' => $element->getID()));
+
         $this->jQueryWait();
 
+
         $this->hoveredWidget = $xpath;
+        $this->lastWidgetId = $element->getAttribute('id');
         $this->widgetNo = $widgetNo;
         $this->rowNo = $rowNo;
     }
@@ -709,7 +736,7 @@ class FeatureContext extends MinkContext
     /**
      * @Then /^I should see the "([^"]*)" link$/
      */
-    public function iShouldSeeTheLink($arg1)
+    public function iShouldSeeTheAction($arg1)
     {
         $this->jQueryWait();
         $page = $this->getSession()->getPage();
@@ -719,6 +746,29 @@ class FeatureContext extends MinkContext
         if (!$link) {
             throw new \Exception('Link not found');
         }
+    }
+
+    /**
+     * @Then /^I should see the "([^"]*)" button$/
+     */
+    public function iShouldSeeTheButton($arg1)
+    {
+        $this->jQueryWait();
+        $page = $this->getSession()->getPage();
+
+        $button = $page->findButton($arg1);
+
+        if (!$button) {
+            throw new \Exception('Button "' . $arg1 . '" not found');
+        }
+    }
+
+    /**
+     * @When /^I duplicate widget (\d+) on row (\d+)$/
+     */
+    public function iDuplicateWidgetOnRow($arg1, $arg2)
+    {
+        throw new PendingException();
     }
 
     /**
