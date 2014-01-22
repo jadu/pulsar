@@ -57,6 +57,9 @@ $cyan : #ea33a3;
             cursor: pointer;
         }
     }
+    &.active {
+        border: 2px dashed $cyan;
+    }
     .overlay {
         position: absolute;
         height: 100%;
