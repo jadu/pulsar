@@ -288,6 +288,7 @@ class FeatureContext extends MinkContext
      */
     public function iShouldSeeTheRows(TableNode $table)
     {
+        $this->jqueryWait();
         $page = $this->getSession()->getPage();
 
         foreach ($table->getRows() as $row) {
