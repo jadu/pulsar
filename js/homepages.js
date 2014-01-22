@@ -186,18 +186,6 @@ define([
             initSortable();
         }
 
-        function loadTooltips() {
-            $('.fill-row').each(function(){
-                if ($(this).hasClass('disabled')) {
-                    $(this).attr('data-original-title', disabledTooltipMessage);
-                }
-                else {
-                    $(this).attr('data-original-title', enabledTooltipMessage);
-                }
-            });
-            $('[data-toggle="tooltips"]').tooltips();
-        }
-
         function updateActions() {
 
             // disable actions if homepage empty
