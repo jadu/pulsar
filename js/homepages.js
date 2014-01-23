@@ -40,6 +40,11 @@ define([
                         '</div>',
             enabledTooltipMessage = 'Resize widgets to fill row',
             disabledTooltipMessage = 'Widgets cannot be auto–sized',
+            rowMarkup = '<div class="row-handler column grid-span-12"><a class="icon-magic fill-row" data-toggle="tooltips" data-original-title="Resize widgets to fill row" data-placement="left"></a><a class="icon-remove remove-row" data-toggle="tooltips"></a></div>',
+            enabledRemoveRowMessage = 'Remove row',
+            disabledRemoveRowMessage = 'Row cannot be removed',
+            enabledFillRowMessage = 'Resize widgets to fill row',
+            disabledFillRowMessage = 'Widgets cannot be auto–sized',
             trayContainer = '.tray',
             widgetConfig,
             widgetData,
@@ -156,7 +161,6 @@ define([
                                     currentVersion = 1;
                                 }
                             }
-                            loadTooltips();
                             updateActions();
                             $('.icon-spinner', widgetContainer).remove();
                         }
@@ -184,31 +188,22 @@ define([
             });
         }
 
-        function loadTooltips() {
-            $('.fill-row').each(function(){
-                if ($(this).hasClass('disabled')) {
-                    $(this).attr('data-original-title', disabledTooltipMessage);
-                }
-                else {
-                    $(this).attr('data-original-title', enabledTooltipMessage);
-                }
-            });
-            $('[data-toggle="tooltips"]').tooltips();
-        }
-
         function updateActions() {
+            var rows = $('.widget-row');
 
             // disable actions if homepage empty
             if ($('.homepage-item > .widget-row').length === 0) {
                 $('[data-action=clear-homepage-confirmation]').parent().addClass('disabled', 'disabled');
             };
 
-            // disable fill-row action if not applicable
-            $('.widget-row').each(function() {
-                var disabled = false,
-                    fillButton = $('.fill-row', this),
-                    widgets = $('.homepage-widget', this),
-                    widgetColCount = 0;
+            // disable the row's actions if they're not applicable
+            rows.each(function() {
+                var fillDisabled    = false,
+                    fillButton      = $('.fill-row', this),
+                    removeDisabled  = false,
+                    removeButton    = $('.remove-row', this),
+                    widgets         = $('.homepage-widget', this),
+                    widgetColCount  = 0;
 
                 /**
                  * Disable the fill button if any of these conditions are met:
@@ -218,14 +213,14 @@ define([
                  *     - there are no widgets in the row
                  */
                 if (columnCount % widgets.length || !widgets.length) {
-                    disabled = true;
+                    fillDisabled = true;
                 }
 
                 /**
                  * if we're not already disabled, count the total grid span of
                  * this row's widgets to see if they already fill the row
                  */
-                if (!disabled) {
+                if (!fillDisabled) {
                     widgets.each(function() {
 
                         /**
@@ -239,18 +234,79 @@ define([
                      * Disable the fill button if the widgets fill the row
                      */
                     if (columnCount === widgetColCount) {
-                        disabled = true;
+                        fillDisabled = true;
                     }
                 }
 
-                // enable/disable the fill button
-                if (disabled) {
-                    fillButton.addClass('disabled');
-                } else {
-                    fillButton.removeClass('disabled');
+                /**
+                 * Disable the remove button if this is the only row in a 
+                 * homepage and it's empty
+                 */
+                if (rows.length === 1 && widgets.length === 0) {
+                    removeDisabled = true;
                 }
 
-                loadTooltips();
+                // enable/disable the fill button
+                if (fillDisabled) {
+                    fillButton
+                        .addClass('disabled')
+                        .attr('data-original-title', disabledFillRowMessage);
+                } else {
+                    console.log('fill enabled');
+                    fillButton
+                        .removeClass('disabled')
+                        .attr('data-original-title', enabledFillRowMessage)
+                        .on('click', function(e) {
+                            e.stopPropagation();
+                            var widgets = $(this).parent().parent().children('.homepage-widget'),
+                                newSpan = columnCount / widgets.length;
+
+                            newSpan = 'grid-span-' + newSpan;
+
+                            widgets
+                                .removeClass(function (index, css) {
+                                    return (css.match (/\bgrid-span-\S+/g) || []).join(' ');
+                                })
+                                .addClass(newSpan);
+
+                            newVersion();
+                        });;
+                }
+
+                // enable/disable the remove button
+                if (removeDisabled) {
+                    removeButton
+                        .addClass('disabled')
+                        .attr('data-original-title', disabledRemoveRowMessage);
+                } else {
+                    console.log('remove enabled');
+                    removeButton
+                        .removeClass('disabled')
+                        .attr('data-original-title', enabledRemoveRowMessage)
+                        .on('click', function(e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            var row = $(this).parent().parent();
+
+                            /**
+                             * request confirmation if attempting to remove a row which
+                             * contains widgets
+                             */
+                            if (row.has('.homepage-widget').length) {
+                                var modal = $('#remove_row_modal');
+
+                                // pass the row's index to the modal action
+                                $('[data-action=remove-row]', modal).data('row', $('.widget-row').index(row));
+                                modal.modal('show');
+                                return false;
+                            }
+
+                            // remove the row immediately if its empty
+                            row.removeRow();
+                        });
+                }
+
+                $('[data-toggle="tooltips"]').tooltips();
             });
         }
 
@@ -274,19 +330,6 @@ define([
 
             // restart start position for next moves
             startPosition = 0;
-
-            // check rows and enable/disable auto–fill button accordingly
-            $('.widget-row').each(function() {
-                var noOfWidgets = $(this).children('.homepage-widget').length;
-                var fillButton = $(this).find('.fill-row');
-                if (columnCount % noOfWidgets) {
-                    fillButton.addClass('disabled');
-                }
-                else {
-                    fillButton.removeClass('disabled');
-                }
-                loadTooltips();
-            });
 
             // enable or disable specific actions based on current homepage state
             updateActions();
@@ -344,63 +387,6 @@ define([
                             newVersion();
                         }
                     });
-                });
-
-                $(element).on('click', '.remove-row', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    var row = $(this).parent().parent();
-
-                    /**
-                     * request confirmation if attempting to remove a row which
-                     * contains widgets
-                     */
-                    if (row.has('.homepage-widget').length) {
-                        var modal = $('#remove_row_modal');
-
-                        // pass the row's index to the modal action
-                        $('[data-action=remove-row]', modal).data('row', $('.widget-row').index(row));
-                        modal.modal('show');
-                        return false;
-                    }
-
-                    // remove the row immediately if its empty
-                    row.removeRow();
-                });
-
-                $(element).on('click', '.clear-row', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    var row = $(this).parent().parent();
-
-                    /**
-                     * request confirmation
-                     */
-                    if (row.has('.homepage-widget').length) {
-                        var modal = $('#clear_row_modal');
-
-                        // pass the row's index to the modal action
-                        $('[data-action=clear-row]', modal).data('row', $('.widget-row').index(row));
-                        modal.modal('show');
-                        return false;
-                    }
-                    
-                });
-
-                $(element).on('click', '.fill-row', function(e) {
-                    e.stopPropagation();
-                    var widgets = $(this).parent().parent().children('.homepage-widget'),
-                        newSpan = columnCount / widgets.length;
-
-                    newSpan = 'grid-span-' + newSpan;
-
-                    widgets
-                        .removeClass(function (index, css) {
-                            return (css.match (/\bgrid-span-\S+/g) || []).join(' ');
-                        })
-                        .addClass(newSpan);
-
-                    newVersion();
                 });
             });
         }
@@ -634,7 +620,20 @@ define([
                 }
 
             }).on('click', '[data-action=remove-row]', function(e) {
-                $('.widget-row')[$(this).data('row')].remove();
+                var row = $('.widget-row')[$(this).data('row')],
+                    rows = $('.widget-row'),
+                    widgets = $('.homepage-widget', row);
+
+                /**
+                 * if this is the last row, just remove it's widgets
+                 * otherwise, remove the row entirely
+                 */
+                if (rows.length === 1) {
+                    widgets.remove();
+                } else {
+                    row.remove();
+                }
+
                 $('#remove_row_modal').modal('hide');
                 newVersion();
 
@@ -827,12 +826,6 @@ define([
              * will be completed before the user clicks this button
              */
             $('[data-toggle=tray]').on('click', function() {
-                if (!newRowEmpty()) {
-                    createNewRow();
-                } else {
-                    removeNewRow();
-                }
-
                 $('.widget-row').makeDroppable();
             });
 
@@ -848,6 +841,7 @@ define([
 
             element.makeDraggable();
             attachEvents(element, eventParent);
+            updateActions();
         }
 
         function fetchHomepage(guid, element, eventParent) {
@@ -861,12 +855,13 @@ define([
 
         var homepageContainer = $('.homepage-content');
         var homepageItem = $('.homepage-item');
-        
+
         if (homepageGuid) {
             fetchHomepage(homepageGuid, homepageContainer, homepageItem);
         }
         else {
             setupTray(homepageContainer, homepageItem);
+            updateActions();
         }
 
         function manipulateOffset(operator, direction) {
