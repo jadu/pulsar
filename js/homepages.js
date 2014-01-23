@@ -33,7 +33,11 @@ define([
             originalRow, // where a widget was dragged from
             hoveredRow, // where a widget is dragged over
             rowOverlay = '<div class="row-overlay"><i class="icon-plus-sign"></i> Drop widget here</div>',
-            rowMarkup = '<div class="row-handler column grid-span-12"><a class="icon-magic fill-row" data-toggle="tooltips" data-original-title="Resize widgets to fill row" data-placement="left"></a><a class="icon-remove remove-row"></a></div>',
+            rowMarkup = '<div class="row-handler column grid-span-12">' + 
+                        '<a class="icon-magic fill-row" data-toggle="tooltips" data-original-title="Resize widgets to fill row" data-placement="bottom"></a>' +
+                        '<a class="icon-remove-sign clear-row" data-toggle="tooltips" data-original-title="Clear the contents of this row" data-placement="bottom"></a>' +
+                        '<a class="icon-remove remove-row" data-toggle="tooltips" data-original-title="Remove this row" data-placement="bottom"></a>' +
+                        '</div>',
             enabledTooltipMessage = 'Resize widgets to fill row',
             disabledTooltipMessage = 'Widgets cannot be auto–sized',
             trayContainer = '.tray',
@@ -364,6 +368,25 @@ define([
                     row.removeRow();
                 });
 
+                $(element).on('click', '.clear-row', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    var row = $(this).parent().parent();
+
+                    /**
+                     * request confirmation
+                     */
+                    if (row.has('.homepage-widget').length) {
+                        var modal = $('#clear_row_modal');
+
+                        // pass the row's index to the modal action
+                        $('[data-action=clear-row]', modal).data('row', $('.widget-row').index(row));
+                        modal.modal('show');
+                        return false;
+                    }
+                    
+                });
+
                 $(element).on('click', '.fill-row', function(e) {
                     e.stopPropagation();
                     var widgets = $(this).parent().parent().children('.homepage-widget'),
@@ -603,18 +626,28 @@ define([
                         $(this).prepend(rowOverlay);
                     }
                 }
+
             }).on('mouseleave', '.widget-row', function(e) {
                 if (dragging) {
                     hoveredRow = null;
                     $('.row-overlay', this).remove();
                 }
+
             }).on('click', '[data-action=remove-row]', function(e) {
                 $('.widget-row')[$(this).data('row')].remove();
                 $('#remove_row_modal').modal('hide');
                 newVersion();
+
+            }).on('click', '[data-action=clear-row]', function(e) {
+                var row = $('.widget-row')[$(this).data('row')];
+                $('.homepage-widget', row).remove();             
+                $('#clear_row_modal').modal('hide');
+                newVersion();
+
             }).on('click', '[data-action=clear-homepage-confirmation]', function(e) {
                 e.preventDefault();
                 $('#clear_homepage_modal').modal('show');
+
             }).on('click', '[data-action=clear-homepage]', function(e) {
                 $('.widget-row').removeRow();
                 $('#clear_homepage_modal').modal('hide');

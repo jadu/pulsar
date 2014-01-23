@@ -1,0 +1,25 @@
+{% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
+{% import '@pulsar/pulsar/helpers/form.html.twig' as form %}
+{% import '@pulsar/pulsar/helpers/flash.html.twig' as flash %}
+{% import '@pulsar/pulsar/helpers/pulsar.html.twig' as pulsar %}
+<div class="modal__dialog">
+  <div class="modal__content">
+    <div class="modal__header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h4 id="delete-modal-title" class="modal__title">{{ html.icon('warning-sign') }} Clear row?</h4>
+    </div>
+    <div class="modal__body">
+      Are you sure you would like to clear all widgets from this row?
+    </div>
+    <div class="modal__footer">
+      <button type="button" class="btn" data-dismiss="modal">Don't Do Anything</button>
+      {{ 
+        html.button(
+          label = 'Clear',
+          type = 'link',
+          class = 'btn--danger',
+          attributes = 'data-action="clear-row"')
+      }}
+    </div>
+  </div>
+</div>

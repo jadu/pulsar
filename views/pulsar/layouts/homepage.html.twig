@@ -44,8 +44,9 @@
     <div class="homepage-item ui-sortable">
       <div class="grid-container widget-row" id="row-1">
         <div class="row-handler column grid-span-12">
-          <a class="icon-magic fill-row" data-toggle="tooltips" data-original-title="Resize widgets to fill row" data-placement="left"></a>
-          <a class="icon-remove remove-row"></a>
+          <a class="icon-magic fill-row" data-toggle="tooltips" data-original-title="Resize widgets to fill row" data-placement="bottom"></a>
+          <a class="icon-remove-sign clear-row" data-toggle="tooltips" data-original-title="Clear the contents of this row" data-placement="bottom"></a>
+          <a class="icon-trash remove-row" data-toggle="tooltips" data-original-title="Remove this row" data-placement="bottom"></a>
             Row 1
         </div>
       </div>
@@ -65,6 +66,9 @@
 {% block modals %}
 <div id="remove_row_modal" class="modal modal--danger">
   {% include '/modals/homepages/remove_non_empty_row.html.twig' %}
+</div>
+<div id="clear_row_modal" class="modal modal--danger">
+  {% include '/modals/homepages/clear_row.html.twig' %}
 </div>
 <div id="clear_homepage_modal" class="modal modal--danger">
   {% include '/modals/homepages/clear_homepage.html.twig' %}

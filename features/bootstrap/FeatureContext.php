@@ -102,6 +102,33 @@ class FeatureContext extends MinkContext
     }
 
     /**
+     * @When /^I click on the row\'s "([^"]*)" button$/
+     */
+    public function iClickOnTheRowSButton($arg1)
+    {
+        $this->jQueryWait();
+        $page = $this->getSession()->getPage();
+
+        if (!$this->lastRowID) {
+            throw new \Exception('lastRowID was not set');
+        }
+
+        $row = $page->findById($this->lastRowID);
+        
+        $button = $row->findLink($arg1);
+        $button->click();
+
+    }
+
+    /**
+     * @Then /^the row should be empty$/
+     */
+    public function theRowShouldBeEmpty()
+    {
+        throw new PendingException();
+    }
+
+    /**
      * @Given /^the \'([^\']*)\' button should be toggled$/
      */
     public function assertButtonIsToggled($arg1)
@@ -538,16 +565,16 @@ class FeatureContext extends MinkContext
     }
 
     /**
-     * @Then /^my rows should have the remove-row button$/
+     * @Then /^my rows should have the "([^"]*)" button$/
      */
-    public function myRowsShouldHaveTheRemoveRowButton()
+    public function myRowsShouldHaveTheButton($arg1)
     {
         $this->jQueryWait();
         $page = $this->getSession()->getPage();
         $rows = $page->findAll('css', '.widget-row');
 
         foreach ($rows as $row) {
-            $removeRowButton = $row->find('css', '.row-handler .remove-row');
+            $removeRowButton = $row->find('css', '.row-handler ' . $arg1);
             if (!$removeRowButton) {
                 throw new \Exception('Row does not have remove-row button');
             }
@@ -765,6 +792,10 @@ class FeatureContext extends MinkContext
 
         $row = $page->find('css', '#' . $this->lastRowID);
         $button = $row->find('css', $locator);
+
+        if (!$button) {
+            throw new \Exception('The button "' . $locator . '" was not found');
+        }
 
         if ($button->hasClass('disabled')) {
             throw new \Exception('The button is not active');
