@@ -149,7 +149,8 @@ $cyan : #ea33a3;
 .grid-container {
     float: left; // need's to have height so we can drop things on it
     position: relative;
-    overflow: hidden;
+    overflow-y: visible;
+    overflow-x: hidden;
     margin-bottom: 1.2em;
     clear: both;
     &:hover, &.operating-on-child {
@@ -168,7 +169,10 @@ $cyan : #ea33a3;
         padding: 0.4em;
         position: relative;
         z-index: 999;
-        .remove-row, .fill-row {
+
+        .clear-row,
+        .remove-row, 
+        .fill-row {
             color: #333;
             text-decoration: none;
             cursor: pointer;
@@ -178,7 +182,15 @@ $cyan : #ea33a3;
             right: 0;
             border-left: 1px solid #eee
         }
+
         .fill-row {
+            right: 60px;
+            &.disabled {
+                color: #AAA;
+            }
+        }
+
+        .clear-row {
             right: 30px;
             &.disabled {
                 color: #AAA;

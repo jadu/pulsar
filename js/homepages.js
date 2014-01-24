@@ -33,7 +33,13 @@ define([
             originalRow, // where a widget was dragged from
             hoveredRow, // where a widget is dragged over
             rowOverlay = '<div class="row-overlay"><i class="icon-plus-sign"></i> Drop widget here</div>',
-            rowMarkup = '<div class="row-handler column grid-span-12"><a class="icon-magic fill-row" data-toggle="tooltips" data-original-title="Resize widgets to fill row" data-placement="left"></a><a class="icon-remove remove-row" data-toggle="tooltips"></a></div>',
+            rowMarkup = '<div class="row-handler column grid-span-12">' + 
+                        '<a class="icon-magic fill-row" data-toggle="tooltips" data-original-title="Resize widgets to fill row" data-placement="bottom"></a>' +
+                        '<a class="icon-remove-sign clear-row" data-toggle="tooltips" data-original-title="Clear the contents of this row" data-placement="bottom"></a>' +
+                        '<a class="icon-remove remove-row" data-toggle="tooltips" data-original-title="Remove this row" data-placement="bottom"></a>' +
+                        '</div>',
+            enabledClearRowMessage = 'Clear this row',
+            disabledClearRowMessage = 'Row cannot be cleared',
             enabledRemoveRowMessage = 'Remove row',
             disabledRemoveRowMessage = 'Row cannot be removed',
             enabledFillRowMessage = 'Resize widgets to fill row',
@@ -198,7 +204,9 @@ define([
 
             // disable the row's actions if they're not applicable
             rows.each(function() {
-                var fillDisabled    = false,
+                var clearDisabled   = false,
+                    clearButton     = $('.clear-row', this),
+                    fillDisabled    = false,
                     fillButton      = $('.fill-row', this),
                     removeDisabled  = false,
                     removeButton    = $('.remove-row', this),
@@ -244,6 +252,35 @@ define([
                  */
                 if (rows.length === 1 && widgets.length === 0) {
                     removeDisabled = true;
+                }
+
+                /**
+                 * Disabled the clear-row button if the row is empty
+                 */
+                if (!widgets.length) {
+                    clearDisabled = true;
+                }
+
+                // enable/disable the clear button
+                if (clearDisabled) {
+                    clearButton
+                        .addClass('disabled')
+                        .attr('data-original-title', disabledClearRowMessage);
+                } else {
+                    clearButton
+                        .removeClass('disabled')
+                        .attr('data-original-title', enabledClearRowMessage)
+                        .on('click', function(e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            var row = $(this).parent().parent(),
+                                modal = $('#clear_row_modal');
+
+                            // pass the row's index to the modal action
+                            $('[data-action=clear-row]', modal).data('row', $('.widget-row').index(row));
+                            modal.modal('show');
+                            return false;
+                        });
                 }
 
                 // enable/disable the fill button
@@ -572,10 +609,12 @@ define([
                     }
 
                     $('.operating-on-child').removeClass('operating-on-child');
+
                 }
 
                 // remove all row overlays
                 $('.row-overlay').remove();
+                updateActions();
 
                 if (startPosition != 0) {
                     newVersion();
@@ -594,11 +633,13 @@ define([
                         $(this).prepend(rowOverlay);
                     }
                 }
+
             }).on('mouseleave', '.widget-row', function(e) {
                 if (dragging) {
                     hoveredRow = null;
                     $('.row-overlay', this).remove();
                 }
+
             }).on('click', '[data-action=remove-row]', function(e) {
                 var row = $('.widget-row')[$(this).data('row')],
                     rows = $('.widget-row'),
@@ -616,9 +657,20 @@ define([
 
                 $('#remove_row_modal').modal('hide');
                 newVersion();
+
+            }).on('click', '[data-action=clear-row]', function(e) {
+                e.preventDefault;
+                e.stopPropagation;
+                var row = $('.widget-row')[$(this).data('row')];
+                $('.homepage-widget', row).remove();
+                $('#clear_row_modal').modal('hide');
+                updateActions();
+                newVersion();
+
             }).on('click', '[data-action=clear-homepage-confirmation]', function(e) {
                 e.preventDefault();
                 $('#clear_homepage_modal').modal('show');
+
             }).on('click', '[data-action=clear-homepage]', function(e) {
                 $('.widget-row').removeRow();
                 $('#clear_homepage_modal').modal('hide');
