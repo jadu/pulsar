@@ -710,8 +710,13 @@ define([
              * use this widget's id
              */
             $('body').on('click', '.edit-widget-settings', function(e) {
+                var widget = $(this).closest('.homepage-widget');
+
+                $('.homepage-widget').removeClass('active');
+                widget.addClass('active');
+
                 $('.widget-default-controls').fadeIn(200);
-                $('[data-widget-id]').data('widget-id', $(this).closest('.homepage-widget').attr('id'));
+                $('[data-widget-id]').data('widget-id', widget.attr('id'));
             });
 
             $('[data-action=widget-duplicate]').on('click', function(e) {
@@ -720,11 +725,10 @@ define([
                     source = $('#' + self.data('widget-id')),
                     clone = source.clone();
 
-                    console.log(source);
-
                 // make sure duplicated widgets have a new unique id
                 clone
                     .removeUniqueId()
+                    .removeClass('active')
                     .uniqueId();
 
                 // insert it immediately after the source widget
