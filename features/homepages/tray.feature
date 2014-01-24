@@ -43,18 +43,13 @@ Scenario: Drag widget to existing row
 		| fillmurray |
 		| image |
 
-Scenario: Opening tray should create a new row
-	Given the tray is visible
-	Then a new row should be created
-
 Scenario: Drag widget to new row
-	Given the tray is visible
-	And a new row has been created
-	When I click on the "Bill Murray" category
-	And I click on the "Fill Murray" widget
+	Given I have a row with 1 widget
+	And I click on the "Bill Murray" category
+	And I click on the "Image" widget
 	When I drag the handle to the new row
 	Then the new row should contain the widget:
-		| fillmurray |
+		| image |
 
 Scenario: Dragging widget should create a new row
 	Given I have a row with 1 widget

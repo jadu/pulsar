@@ -20,7 +20,6 @@ Scenario: Toggle tray on empty homepage
   Then I should see the following rows:
     | row-1 |
 
-
 Scenario: Rows on blank homepage should be droppable
   Given I am on the homepages designer
   When I open the tray
