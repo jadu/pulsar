@@ -60,10 +60,11 @@ $gutter-size : $grid-gutter-width / $grid-container-width * 100;
     text-align: center;
     overflow: auto;
     width: 100%;
+    height: 100%;
 }
 
 .grid-overlay {
-    height: 2000px;
+    height: 100%;
     div {
         height: 2000px;
         background: rgba(0,0,0,.01) !important;

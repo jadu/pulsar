@@ -4,24 +4,25 @@
 {% import 'pulsar/helpers/flash.html.twig' as flash %}
 
 {% block content %}
-<div class="actionsbar actionsbar--left">
-  <div class="btn__toolbar">
-    <div class="btn__group">
-      <a class="btn btn__back" href="#back" onclick="history.back(); return false;"><i class="icon-arrow-left"></i></a>
-      {% if actions_menu is not empty %}
-        {{
-            html.button_dropdown(
-              label = 'Actions',
-              menu_items = actions_menu,
-              class = 'actions-menu')
-        }}
-      {% endif %}
+<div class="buttons-container">
+  <div class="actionsbar actionsbar--left">
+    <div class="btn__toolbar">
+      <div class="btn__group">
+        <a class="btn btn__back" href="#back" onclick="history.back(); return false;"><i class="icon-arrow-left"></i></a>
+        {% if actions_menu is not empty %}
+          {{
+              html.button_dropdown(
+                label = 'Actions',
+                menu_items = actions_menu,
+                class = 'actions-menu')
+          }}
+        {% endif %}
+      </div>
     </div>
   </div>
-</div>
-
-<div class="actionsbar actionsbar--right">
-  {% block actionsbar %}{% endblock %}
+  <div class="actionsbar actionsbar--right">
+    {% block actionsbar %}{% endblock %}
+  </div>
 </div>
 
 <div class="homepage-content">
@@ -50,15 +51,14 @@
         </div>
       </div>
     </div>
-</div>
-<div class="homepage-sidebar">
-
-  <div class="widget-default-controls">
-    {{ html.button(
-        label = html.icon('copy') ~ ' Duplicate',
-        attributes = 'data-action=widget-duplicate data-widget-id=null')
-    }}
-  </div>
+    <div class="homepage-sidebar">
+      <div class="widget-default-controls">
+        {{ html.button(
+            label = html.icon('copy') ~ ' Duplicate',
+            attributes = 'data-action=widget-duplicate data-widget-id=null')
+        }}
+      </div>
+    </div>
 </div>
 {% endblock %}
 
