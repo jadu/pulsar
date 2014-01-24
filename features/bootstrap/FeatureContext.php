@@ -125,7 +125,165 @@ class FeatureContext extends MinkContext
     }
 
     /**
-     * @Given /^the \"([^\"]*)\" button should be toggled$/
+     * @When /^I click on the row\'s "([^"]*)" button$/
+     */
+    public function iClickOnTheRowSButton($arg1)
+    {
+        $this->jQueryWait();
+        $page = $this->getSession()->getPage();
+
+        if (!$this->lastRowID) {
+            throw new \Exception('lastRowID was not set');
+        }
+
+        $row = $page->findById($this->lastRowID);
+
+        if (!$row) {
+            throw new \Exception('Row "' . $this->lastRowID . '" not found');
+        }
+        
+        $button = $row->find('css', $arg1);
+
+        if (!$button) {
+            throw new \Exception('Button "' . $this->lastRowID . '" not found');
+        }
+
+        $button->click();
+    }
+
+    /**
+     * @When /^I click the "([^"]*)" button on row (\d+)$/
+     */
+    public function iClickTheButtonOnRow($arg1, $arg2)
+    {
+        $this->jQueryWait();
+        $page = $this->getSession()->getPage();
+        $this->lastRowID = 'row-' . $arg2;
+
+        $row = $page->findById($this->lastRowID);
+
+        if (!$row) {
+            throw new \Exception('Row "' . $this->lastRowID . '" not found');
+        }
+        
+        $button = $row->find('css', $arg1);
+
+        if (!$button) {
+            throw new \Exception('Button "' . $arg1 . '" on row "' . $this->lastRowID . '" not found');
+        }
+
+        $button->click();
+    }
+
+    /**
+     * @When /^I clear the row$/
+     */
+    public function iClearTheRow()
+    {
+        $this->jQueryWait();
+        $page = $this->getSession()->getPage();
+
+        if (!$this->lastRowID) {
+            throw new \Exception('lastRowID was not set');
+        }
+
+        $row = $page->findById($this->lastRowID);
+
+        if (!$row) {
+            throw new \Exception('Row "' . $this->lastRowID . '" not found');
+        }
+
+        // show modal
+        $button = $row->find('css', '.clear-row');
+        $button->click();
+
+        $modal = $page->findById('clear_row_modal');
+
+        if (!$modal || !$modal->isVisible()) {
+            throw new \Exception('Modal "#' . $arg1 . '" not found, or is not visible');
+        }
+
+        // confirm modal
+        $confirmButton = $modal->findLink('Clear');
+        $confirmButton->click();
+        
+    }
+
+    /**
+     * @When /^I clear row (\d+)$/
+     */
+    public function iClearRow($arg1)
+    {
+        $this->jQueryWait();
+        $page = $this->getSession()->getPage();
+
+        $this->lastRowID = 'row-' . $arg1;
+
+        $row = $page->findById($this->lastRowID);
+
+        if (!$row) {
+            throw new \Exception('Row "' . $this->lastRowID . '" not found');
+        }
+
+        // show modal
+        $button = $row->find('css', '.clear-row');
+        $button->click();
+
+        $modal = $page->findById('clear_row_modal');
+
+        if (!$modal || !$modal->isVisible()) {
+            throw new \Exception('Modal "#' . $arg1 . '" not found, or is not visible');
+        }
+
+        // confirm modal
+        $confirmButton = $modal->findLink('Clear');
+        $confirmButton->click();
+    }
+
+    /**
+     * @Given /^row (\d+) should not be empty$/
+     */
+    public function rowShouldNotBeEmpty($arg1)
+    {
+        $this->jQueryWait();
+        $page = $this->getSession()->getPage();
+
+        if (!$this->lastRowID) {
+            throw new \Exception('lastRowID was not set');
+        }
+
+        $row = $page->findById('row-' . $arg1);
+
+        $widgets = $row->find('css', '.homepage-widget');
+
+        if (!$widgets) {
+            throw new \Exception('Row '. $arg1 .' is empty');
+        }
+    }
+
+    /**
+     * @Then /^the row should be empty$/
+     */
+    public function theRowShouldBeEmpty()
+    {
+        $this->jQueryWait();
+        $page = $this->getSession()->getPage();
+
+        if (!$this->lastRowID) {
+            throw new \Exception('lastRowID was not set');
+        }
+
+        $row = $page->findById($this->lastRowID);
+
+        $widgets = $row->find('css', '.homepage-widget');
+
+        if ($widgets) {
+            throw new \Exception('Row "' . $this->lastRowID . '" is not empty');
+        }
+    }
+
+    /**
+     * @Given /^the \'([^\']*)\' button should be toggled$/
      */
     public function assertButtonIsToggled($arg1)
     {
@@ -583,16 +741,16 @@ class FeatureContext extends MinkContext
     }
 
     /**
-     * @Then /^my rows should have the remove-row button$/
+     * @Then /^my rows should have the "([^"]*)" button$/
      */
-    public function myRowsShouldHaveTheRemoveRowButton()
+    public function myRowsShouldHaveTheButton($arg1)
     {
         $this->jQueryWait();
         $page = $this->getSession()->getPage();
         $rows = $page->findAll('css', '.widget-row');
 
         foreach ($rows as $row) {
-            $removeRowButton = $row->find('css', '.row-handler .remove-row');
+            $removeRowButton = $row->find('css', '.row-handler ' . $arg1);
             if (!$removeRowButton) {
                 throw new \Exception('Row does not have remove-row button');
             }
@@ -869,6 +1027,10 @@ class FeatureContext extends MinkContext
 
         $row = $page->find('css', '#' . $this->lastRowID);
         $button = $row->find('css', $locator);
+
+        if (!$button) {
+            throw new \Exception('The button "' . $locator . '" was not found');
+        }
 
         if ($button->hasClass('disabled')) {
             throw new \Exception('The button is not active');

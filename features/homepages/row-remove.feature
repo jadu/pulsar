@@ -6,7 +6,7 @@ Feature: Removing rows
 Scenario: rows should have remove button
 	Given I am on the homepages designer
 	And I have at least one row
-	Then my rows should have the remove-row button
+	Then my rows should have the ".remove-row" button
 
 Scenario: removing empty row should remove silently
 	Given I have a row with 1 widget
