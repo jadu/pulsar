@@ -6,16 +6,16 @@ Feature: Toggle Tray
 Scenario: Tray hidden by default
 	Given I am on the homepages designer
 	Then the tray should be hidden
-	And the 'Widgets' button should not be toggled
+	And the "Widgets" button should not be toggled
 
 Scenario: Show tray
 	Given I am on the homepages designer
-	When I click on the 'Widgets' button
+	When I click on the "Widgets" button
 	Then the tray should be visible
-	And the 'Widgets' button should be toggled
+	And the "Widgets" button should be toggled
 
 Scenario: Hide tray
 	Given the tray is visible
-	When I click on the 'Widgets' button
+	When I click on the "Widgets" button
 	Then the tray should be hidden
-	And the 'Widgets' button should not be toggled
+	And the "Widgets" button should not be toggled

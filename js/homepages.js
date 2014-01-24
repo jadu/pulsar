@@ -153,7 +153,8 @@ define([
                                         .clone()
                                         .addClass(classes)
                                         .attr('data-widget-guid', guid)
-                                        .attachWidgetUI();
+                                        .attachWidgetUI()
+                                        .uniqueId();
 
                     rowDOM.append(widgetContainer);
 
@@ -829,7 +830,7 @@ define([
 
         var homepageContainer = $('.homepage-content');
         var homepageItem = $('.homepage-item');
-        
+
         if (homepageGuid) {
             fetchHomepage(homepageGuid, homepageContainer, homepageItem);
         } else {
