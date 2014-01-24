@@ -33,9 +33,17 @@ define([
             originalRow, // where a widget was dragged from
             hoveredRow, // where a widget is dragged over
             rowOverlay = '<div class="row-overlay"><i class="icon-plus-sign"></i> Drop widget here</div>',
-            rowMarkup = '<div class="row-handler column grid-span-12"><a class="icon-magic fill-row" data-toggle="tooltips" data-original-title="Resize widgets to fill row" data-placement="left"></a><a class="icon-remove remove-row"></a></div>',
-            enabledTooltipMessage = 'Resize widgets to fill row',
-            disabledTooltipMessage = 'Widgets cannot be auto–sized',
+            rowMarkup = '<div class="row-handler column grid-span-12">' + 
+                        '<a class="icon-magic fill-row" data-toggle="tooltips" data-original-title="Resize widgets to fill row" data-placement="bottom"></a>' +
+                        '<a class="icon-remove-sign clear-row" data-toggle="tooltips" data-original-title="Clear the contents of this row" data-placement="bottom"></a>' +
+                        '<a class="icon-remove remove-row" data-toggle="tooltips" data-original-title="Remove this row" data-placement="bottom"></a>' +
+                        '</div>',
+            enabledClearRowMessage = 'Clear this row',
+            disabledClearRowMessage = 'Row cannot be cleared',
+            enabledRemoveRowMessage = 'Remove row',
+            disabledRemoveRowMessage = 'Row cannot be removed',
+            enabledFillRowMessage = 'Resize widgets to fill row',
+            disabledFillRowMessage = 'Widgets cannot be auto–sized',
             trayContainer = '.tray',
             widgetConfig,
             widgetData,
@@ -86,6 +94,26 @@ define([
         }
 
         /**
+         * Initialises the sortable behaviour for homepage rows
+         */
+        function initSortable() {
+            console.log($('.homepage-item'));
+            $('.homepage-item').sortable({
+                axis: "y",
+                cursor: "grab",
+                delay: 150,
+                forcePlaceholderSize: true,
+                handle: ".row-handler",
+                placeholder: "row-placeholder",
+                revert: 100,
+                tolerance: "pointer",
+                update: function() {
+                    newVersion();
+                }
+            });
+        }
+
+        /**
          * adds the handlers for drag/drop/settings/close functions for a widget
          * which may be painted on load, or dropped in from the tray
          */
@@ -131,7 +159,8 @@ define([
                                         .clone()
                                         .addClass(classes)
                                         .attr('data-widget-guid', guid)
-                                        .attachWidgetUI();
+                                        .attachWidgetUI()
+                                        .uniqueId();
 
                     rowDOM.append(widgetContainer);
 
@@ -152,7 +181,6 @@ define([
                                     currentVersion = 1;
                                 }
                             }
-                            loadTooltips();
                             updateActions();
                             $('.icon-spinner', widgetContainer).remove();
                         }
@@ -163,48 +191,27 @@ define([
             });
             element.find('#row-1').remove();
             element.append(homepageDOM);
-
-            // make homepage rows sortable
-            $('.homepage-item').sortable({
-                axis: "y",
-                cursor: "grab",
-                delay: 150,
-                forcePlaceholderSize: true,
-                handle: ".row-handler",
-                placeholder: "row-placeholder",
-                revert: 100,
-                tolerance: "pointer",
-                update: function() {
-                    newVersion();
-                }
-            });
-        }
-
-        function loadTooltips() {
-            $('.fill-row').each(function(){
-                if ($(this).hasClass('disabled')) {
-                    $(this).attr('data-original-title', disabledTooltipMessage);
-                }
-                else {
-                    $(this).attr('data-original-title', enabledTooltipMessage);
-                }
-            });
-            $('[data-toggle="tooltips"]').tooltips();
+            initSortable();
         }
 
         function updateActions() {
+            var rows = $('.widget-row');
 
             // disable actions if homepage empty
             if ($('.homepage-item > .widget-row').length === 0) {
                 $('[data-action=clear-homepage-confirmation]').parent().addClass('disabled', 'disabled');
             };
 
-            // disable fill-row action if not applicable
-            $('.widget-row').each(function() {
-                var disabled = false,
-                    fillButton = $('.fill-row', this),
-                    widgets = $('.homepage-widget', this),
-                    widgetColCount = 0;
+            // disable the row's actions if they're not applicable
+            rows.each(function() {
+                var clearDisabled   = false,
+                    clearButton     = $('.clear-row', this),
+                    fillDisabled    = false,
+                    fillButton      = $('.fill-row', this),
+                    removeDisabled  = false,
+                    removeButton    = $('.remove-row', this),
+                    widgets         = $('.homepage-widget', this),
+                    widgetColCount  = 0;
 
                 /**
                  * Disable the fill button if any of these conditions are met:
@@ -214,14 +221,14 @@ define([
                  *     - there are no widgets in the row
                  */
                 if (columnCount % widgets.length || !widgets.length) {
-                    disabled = true;
+                    fillDisabled = true;
                 }
 
                 /**
                  * if we're not already disabled, count the total grid span of
                  * this row's widgets to see if they already fill the row
                  */
-                if (!disabled) {
+                if (!fillDisabled) {
                     widgets.each(function() {
 
                         /**
@@ -235,18 +242,106 @@ define([
                      * Disable the fill button if the widgets fill the row
                      */
                     if (columnCount === widgetColCount) {
-                        disabled = true;
+                        fillDisabled = true;
                     }
                 }
 
-                // enable/disable the fill button
-                if (disabled) {
-                    fillButton.addClass('disabled');
-                } else {
-                    fillButton.removeClass('disabled');
+                /**
+                 * Disable the remove button if this is the only row in a 
+                 * homepage and it's empty
+                 */
+                if (rows.length === 1 && widgets.length === 0) {
+                    removeDisabled = true;
                 }
 
-                loadTooltips();
+                /**
+                 * Disabled the clear-row button if the row is empty
+                 */
+                if (!widgets.length) {
+                    clearDisabled = true;
+                }
+
+                // enable/disable the clear button
+                if (clearDisabled) {
+                    clearButton
+                        .addClass('disabled')
+                        .attr('data-original-title', disabledClearRowMessage);
+                } else {
+                    clearButton
+                        .removeClass('disabled')
+                        .attr('data-original-title', enabledClearRowMessage)
+                        .on('click', function(e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            var row = $(this).parent().parent(),
+                                modal = $('#clear_row_modal');
+
+                            // pass the row's index to the modal action
+                            $('[data-action=clear-row]', modal).data('row', $('.widget-row').index(row));
+                            modal.modal('show');
+                            return false;
+                        });
+                }
+
+                // enable/disable the fill button
+                if (fillDisabled) {
+                    fillButton
+                        .addClass('disabled')
+                        .attr('data-original-title', disabledFillRowMessage);
+                } else {
+                    fillButton
+                        .removeClass('disabled')
+                        .attr('data-original-title', enabledFillRowMessage)
+                        .on('click', function(e) {
+                            e.stopPropagation();
+                            var widgets = $(this).parent().parent().children('.homepage-widget'),
+                                newSpan = columnCount / widgets.length;
+
+                            newSpan = 'grid-span-' + newSpan;
+
+                            widgets
+                                .removeClass(function (index, css) {
+                                    return (css.match (/\bgrid-span-\S+/g) || []).join(' ');
+                                })
+                                .addClass(newSpan);
+
+                            newVersion();
+                        });;
+                }
+
+                // enable/disable the remove button
+                if (removeDisabled) {
+                    removeButton
+                        .addClass('disabled')
+                        .attr('data-original-title', disabledRemoveRowMessage);
+                } else {
+                    removeButton
+                        .removeClass('disabled')
+                        .attr('data-original-title', enabledRemoveRowMessage)
+                        .on('click', function(e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            var row = $(this).parent().parent();
+
+                            /**
+                             * request confirmation if attempting to remove a row which
+                             * contains widgets
+                             */
+                            if (row.has('.homepage-widget').length) {
+                                var modal = $('#remove_row_modal');
+
+                                // pass the row's index to the modal action
+                                $('[data-action=remove-row]', modal).data('row', $('.widget-row').index(row));
+                                modal.modal('show');
+                                return false;
+                            }
+
+                            // remove the row immediately if its empty
+                            row.removeRow();
+                        });
+                }
+
+                $('[data-toggle="tooltips"]').tooltips();
             });
         }
 
@@ -270,19 +365,6 @@ define([
 
             // restart start position for next moves
             startPosition = 0;
-
-            // check rows and enable/disable auto–fill button accordingly
-            $('.widget-row').each(function() {
-                var noOfWidgets = $(this).children('.homepage-widget').length;
-                var fillButton = $(this).find('.fill-row');
-                if (columnCount % noOfWidgets) {
-                    fillButton.addClass('disabled');
-                }
-                else {
-                    fillButton.removeClass('disabled');
-                }
-                loadTooltips();
-            });
 
             // enable or disable specific actions based on current homepage state
             updateActions();
@@ -345,44 +427,6 @@ define([
                         }
                     });
                 });
-
-                $(element).on('click', '.remove-row', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    var row = $(this).parent().parent();
-
-                    /**
-                     * request confirmation if attempting to remove a row which
-                     * contains widgets
-                     */
-                    if (row.has('.homepage-widget').length) {
-                        var modal = $('#remove_row_modal');
-
-                        // pass the row's index to the modal action
-                        $('[data-action=remove-row]', modal).data('row', $('.widget-row').index(row));
-                        modal.modal('show');
-                        return false;
-                    }
-
-                    // remove the row immediately if its empty
-                    row.removeRow();
-                });
-
-                $(element).on('click', '.fill-row', function(e) {
-                    e.stopPropagation();
-                    var widgets = $(this).parent().parent().children('.homepage-widget'),
-                        newSpan = columnCount / widgets.length;
-
-                    newSpan = 'grid-span-' + newSpan;
-
-                    widgets
-                        .removeClass(function (index, css) {
-                            return (css.match (/\bgrid-span-\S+/g) || []).join(' ');
-                        })
-                        .addClass(newSpan);
-
-                    newVersion();
-                });
             });
         }
 
@@ -414,7 +458,7 @@ define([
          * find out if the new row contains widgets or not
          * @return {boolean} true if empty, false if full
          */
-        function newRowEmpty() {
+        function newRowIsEmpty() {
             if (!newRowPresent && !$('.widget-row:last-of-type').not(':has(.homepage-widget)').length) {
                 return false
             }
@@ -430,7 +474,7 @@ define([
                      * add a new empty drop target when dragging starts, as long
                      * as the last row is not already empty
                      */
-                    if (!newRowEmpty()) {
+                    if (!newRowIsEmpty()) {
                         createNewRow();
                     }
 
@@ -467,22 +511,6 @@ define([
                         }
                     }
                 }
-
-                // row reordering
-                $('.homepage-item').sortable({
-                    axis: "y",
-                    cursor: "grab",
-                    delay: 150,
-                    forcePlaceholderSize: true,
-                    handle: ".row-handler",
-                    placeholder: "row-placeholder",
-                    revert: 100,
-                    tolerance: "pointer",
-                    update: function() {
-                        newVersion();
-                    }
-                });
-
 
                 if (resizing) {
                     var columnWidth = parseInt($('.grid-span-1').outerWidth());
@@ -585,10 +613,12 @@ define([
                     }
 
                     $('.operating-on-child').removeClass('operating-on-child');
+
                 }
 
                 // remove all row overlays
                 $('.row-overlay').remove();
+                updateActions();
 
                 if (startPosition != 0) {
                     newVersion();
@@ -607,18 +637,44 @@ define([
                         $(this).prepend(rowOverlay);
                     }
                 }
+
             }).on('mouseleave', '.widget-row', function(e) {
                 if (dragging) {
                     hoveredRow = null;
                     $('.row-overlay', this).remove();
                 }
+
             }).on('click', '[data-action=remove-row]', function(e) {
-                $('.widget-row')[$(this).data('row')].remove();
+                var row = $('.widget-row')[$(this).data('row')],
+                    rows = $('.widget-row'),
+                    widgets = $('.homepage-widget', row);
+
+                /**
+                 * if this is the last row, just remove it's widgets
+                 * otherwise, remove the row entirely
+                 */
+                if (rows.length === 1) {
+                    widgets.remove();
+                } else {
+                    row.remove();
+                }
+
                 $('#remove_row_modal').modal('hide');
                 newVersion();
+
+            }).on('click', '[data-action=clear-row]', function(e) {
+                e.preventDefault;
+                e.stopPropagation;
+                var row = $('.widget-row')[$(this).data('row')];
+                $('.homepage-widget', row).remove();
+                $('#clear_row_modal').modal('hide');
+                updateActions();
+                newVersion();
+
             }).on('click', '[data-action=clear-homepage-confirmation]', function(e) {
                 e.preventDefault();
                 $('#clear_homepage_modal').modal('show');
+
             }).on('click', '[data-action=clear-homepage]', function(e) {
                 $('.widget-row').removeRow();
                 $('#clear_homepage_modal').modal('hide');
@@ -711,8 +767,13 @@ define([
              * use this widget's id
              */
             $('body').on('click', '.edit-widget-settings', function(e) {
+                var widget = $(this).closest('.homepage-widget');
+
+                $('.homepage-widget').removeClass('active');
+                widget.addClass('active');
+
                 $('.widget-default-controls').fadeIn(200);
-                $('[data-widget-id]').data('widget-id', $(this).closest('.homepage-widget').attr('id'));
+                $('[data-widget-id]').data('widget-id', widget.attr('id'));
             });
 
             $('[data-action=widget-duplicate]').on('click', function(e) {
@@ -721,11 +782,10 @@ define([
                     source = $('#' + self.data('widget-id')),
                     clone = source.clone();
 
-                    console.log(source);
-
                 // make sure duplicated widgets have a new unique id
                 clone
                     .removeUniqueId()
+                    .removeClass('active')
                     .uniqueId();
 
                 // insert it immediately after the source widget
@@ -798,12 +858,6 @@ define([
              * will be completed before the user clicks this button
              */
             $('[data-toggle=tray]').on('click', function() {
-                if (!newRowEmpty()) {
-                    createNewRow();
-                } else {
-                    removeNewRow();
-                }
-
                 $('.widget-row').makeDroppable();
             });
 
@@ -814,13 +868,14 @@ define([
                     }
                 }
             }).mouseup(function () {
-                if (newRowEmpty()) {
+                if (newRowIsEmpty()) {
                     removeNewRow();
                 }
             });
 
             element.makeDraggable();
             attachEvents(element, eventParent);
+            updateActions();
         }
 
         function fetchHomepage(guid, element, eventParent) {
@@ -829,18 +884,19 @@ define([
             }).done(function (data) {
                 loadHomepageObject(data, element);
             });
-            setupTray(element, eventParent);
         }
 
         var homepageContainer = $('.homepage-content');
         var homepageItem = $('.homepage-item');
-        
+
         if (homepageGuid) {
             fetchHomepage(homepageGuid, homepageContainer, homepageItem);
+        } else {
+            initSortable();
         }
-        else {
-            setupTray(homepageContainer, homepageItem);
-        }
+        
+        setupTray(homepageContainer, homepageItem);
+        
 
         function manipulateOffset(operator, direction) {
             if (!(operator.is('[class*=offset]')) && direction == 'right') {
@@ -912,6 +968,9 @@ define([
                                       .data('widget-title', sender.data('widget-title'))
                                       .data('widget-description', sender.data('widget-description'))
                                       .attr('data-last-appended', 'true');
+
+                                // Remove the hint message from row-1, if needed
+                                $('.row-hint').hide();
 
                                 // tidy up after ourselves
                                 $(widgetDataContainer).val('');

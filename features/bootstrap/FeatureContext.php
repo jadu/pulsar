@@ -76,6 +76,7 @@ class FeatureContext extends MinkContext
     public function openHomepageDesigner()
     {
         $this->visit('/app/homepages');
+        $this->lastRowID = 'row-1';
     }
 
     /**
@@ -90,15 +91,195 @@ class FeatureContext extends MinkContext
     }
 
     /**
-     * @When /^I click on the \'([^\']*)\' button$/
+     * @When /^I click on the \"([^\"]*)\" button$/
      */
     public function iClickOnTheButton($arg1)
     {
         $this->jQueryWait();
         $page = $this->getSession()->getPage();
-        $button = $page->findLink($arg1);
+        $button = $page->findButton($arg1);
 
         $button->click();
+    }
+
+    /**
+     * @Given /^I click on the widget\'s button with class "([^"]*)"$/
+     */
+    public function iClickOnTheButtonWithClass($arg1)
+    {
+        $this->jQueryWait();
+        $page = $this->getSession()->getPage();
+
+        $lastWidget = $page->findById($this->lastWidgetId);
+
+        if (!$lastWidget) {
+            throw new \Exception('Widget "' . $this->lastWidgetId . '" not found');
+        }
+
+        $button = $lastWidget->find('css', $arg1);
+
+        if (!$button || !$button->isVisible()) {
+            throw new \Exception('Button "' . $arg1 . '" not found or not visible');
+        }
+        $button->click();
+    }
+
+    /**
+     * @When /^I click on the row\'s "([^"]*)" button$/
+     */
+    public function iClickOnTheRowSButton($arg1)
+    {
+        $this->jQueryWait();
+        $page = $this->getSession()->getPage();
+
+        if (!$this->lastRowID) {
+            throw new \Exception('lastRowID was not set');
+        }
+
+        $row = $page->findById($this->lastRowID);
+
+        if (!$row) {
+            throw new \Exception('Row "' . $this->lastRowID . '" not found');
+        }
+        
+        $button = $row->find('css', $arg1);
+
+        if (!$button) {
+            throw new \Exception('Button "' . $this->lastRowID . '" not found');
+        }
+
+        $button->click();
+    }
+
+    /**
+     * @When /^I click the "([^"]*)" button on row (\d+)$/
+     */
+    public function iClickTheButtonOnRow($arg1, $arg2)
+    {
+        $this->jQueryWait();
+        $page = $this->getSession()->getPage();
+        $this->lastRowID = 'row-' . $arg2;
+
+        $row = $page->findById($this->lastRowID);
+
+        if (!$row) {
+            throw new \Exception('Row "' . $this->lastRowID . '" not found');
+        }
+        
+        $button = $row->find('css', $arg1);
+
+        if (!$button) {
+            throw new \Exception('Button "' . $arg1 . '" on row "' . $this->lastRowID . '" not found');
+        }
+
+        $button->click();
+    }
+
+    /**
+     * @When /^I clear the row$/
+     */
+    public function iClearTheRow()
+    {
+        $this->jQueryWait();
+        $page = $this->getSession()->getPage();
+
+        if (!$this->lastRowID) {
+            throw new \Exception('lastRowID was not set');
+        }
+
+        $row = $page->findById($this->lastRowID);
+
+        if (!$row) {
+            throw new \Exception('Row "' . $this->lastRowID . '" not found');
+        }
+
+        // show modal
+        $button = $row->find('css', '.clear-row');
+        $button->click();
+
+        $modal = $page->findById('clear_row_modal');
+
+        if (!$modal || !$modal->isVisible()) {
+            throw new \Exception('Modal "#' . $arg1 . '" not found, or is not visible');
+        }
+
+        // confirm modal
+        $confirmButton = $modal->findLink('Clear');
+        $confirmButton->click();
+        
+    }
+
+    /**
+     * @When /^I clear row (\d+)$/
+     */
+    public function iClearRow($arg1)
+    {
+        $this->jQueryWait();
+        $page = $this->getSession()->getPage();
+
+        $this->lastRowID = 'row-' . $arg1;
+
+        $row = $page->findById($this->lastRowID);
+
+        if (!$row) {
+            throw new \Exception('Row "' . $this->lastRowID . '" not found');
+        }
+
+        // show modal
+        $button = $row->find('css', '.clear-row');
+        $button->click();
+
+        $modal = $page->findById('clear_row_modal');
+
+        if (!$modal || !$modal->isVisible()) {
+            throw new \Exception('Modal "#' . $arg1 . '" not found, or is not visible');
+        }
+
+        // confirm modal
+        $confirmButton = $modal->findLink('Clear');
+        $confirmButton->click();
+    }
+
+    /**
+     * @Given /^row (\d+) should not be empty$/
+     */
+    public function rowShouldNotBeEmpty($arg1)
+    {
+        $this->jQueryWait();
+        $page = $this->getSession()->getPage();
+
+        if (!$this->lastRowID) {
+            throw new \Exception('lastRowID was not set');
+        }
+
+        $row = $page->findById('row-' . $arg1);
+
+        $widgets = $row->find('css', '.homepage-widget');
+
+        if (!$widgets) {
+            throw new \Exception('Row '. $arg1 .' is empty');
+        }
+    }
+
+    /**
+     * @Then /^the row should be empty$/
+     */
+    public function theRowShouldBeEmpty()
+    {
+        $this->jQueryWait();
+        $page = $this->getSession()->getPage();
+
+        if (!$this->lastRowID) {
+            throw new \Exception('lastRowID was not set');
+        }
+
+        $row = $page->findById($this->lastRowID);
+
+        $widgets = $row->find('css', '.homepage-widget');
+
+        if ($widgets) {
+            throw new \Exception('Row "' . $this->lastRowID . '" is not empty');
+        }
     }
 
     /**
@@ -116,7 +297,7 @@ class FeatureContext extends MinkContext
     }
 
     /**
-     * @Given /^the \'([^\']*)\' button should not be toggled$/
+     * @Given /^the \"([^\"]*)\" button should not be toggled$/
      */
     public function assertButtonNotToggled($arg1)
     {
@@ -211,8 +392,26 @@ class FeatureContext extends MinkContext
         $page = $this->getSession()->getPage();
         $link = $page->findLink('Widgets');
         $link->click();
+        
+        $this->jQueryWait();
+        $this->assertTrayIsVisible();
+    }
+
+    /**
+     * @Given /^the tray is closed$/
+     */
+    public function closeTray()
+    {
+        $this->jQueryWait();
+        $page = $this->getSession()->getPage();
+        $link = $page->findLink('Widgets');
 
         $this->assertTrayIsVisible();
+
+        $link->click();
+        
+        $this->jQueryWait();
+        $this->assertTrayNotVisible();
     }
 
     /**
@@ -288,6 +487,7 @@ class FeatureContext extends MinkContext
      */
     public function iShouldSeeTheRows(TableNode $table)
     {
+        $this->jqueryWait();
         $page = $this->getSession()->getPage();
 
         foreach ($table->getRows() as $row) {
@@ -330,7 +530,7 @@ class FeatureContext extends MinkContext
         $guids = $fields->getRows();
 
         $page = $this->getSession()->getPage();
-        $newRow = $page->find('css', '.widget-row-new');
+        $newRow = $page->find('css', '#' . $this->lastRowID);
 
         $this->jQueryWait();
 
@@ -374,18 +574,19 @@ class FeatureContext extends MinkContext
      */
     public function aNewRowShouldBeCreated()
     {
-
-        $page = $this->getSession()->getPage();
-
         $this->jQueryWait();
+        $page = $this->getSession()->getPage();
 
         $lastRow = $page->find('css', '.widget-row-new');
 
+        $session = $this->getSession()->getDriver()->getWebDriverSession();
+        $session->buttonup("");
+
         if (!$lastRow) {
-            throw new \Exception('A new row was expected, but was not found');
+            throw new \Exception('A new row was expected, but not found');
         }
 
-        $widgets = $lastRow->find('css', '.homepage-widget');
+        $widgets = $lastRow->findAll('css', '.homepage-widget');
 
         if ($widgets) {
             throw new \Exception('A new row has not been created or the row is not empty');
@@ -428,6 +629,7 @@ class FeatureContext extends MinkContext
         $session->moveto(array('element' => $from->getID()));
         $session->buttondown("");
 
+        $this->jQueryWait();
         $to = $session->element('xpath', $this->newRowXPath);
 
         $session->moveto(array('element' => $to->getID()));
@@ -535,19 +737,20 @@ class FeatureContext extends MinkContext
         }
 
         $this->lastRowID = 'row-1';
+        sleep(1);
     }
 
     /**
-     * @Then /^my rows should have the remove-row button$/
+     * @Then /^my rows should have the "([^"]*)" button$/
      */
-    public function myRowsShouldHaveTheRemoveRowButton()
+    public function myRowsShouldHaveTheButton($arg1)
     {
         $this->jQueryWait();
         $page = $this->getSession()->getPage();
         $rows = $page->findAll('css', '.widget-row');
 
         foreach ($rows as $row) {
-            $removeRowButton = $row->find('css', '.row-handler .remove-row');
+            $removeRowButton = $row->find('css', '.row-handler ' . $arg1);
             if (!$removeRowButton) {
                 throw new \Exception('Row does not have remove-row button');
             }
@@ -657,6 +860,8 @@ class FeatureContext extends MinkContext
     public function iHoverOverWidgetOnRow($widgetNo, $rowNo)
     {
         $this->jQueryWait();
+        sleep(1);
+
         $session = $this->getSession()->getDriver()->getWebDriverSession();
 
         $xpath = "//div[@id='row-" . $rowNo . "']//div[contains(concat(' ', @class, ' '), ' homepage-widget ')][" . $widgetNo . "]";
@@ -664,9 +869,12 @@ class FeatureContext extends MinkContext
         $element = $session->element('xpath', $xpath);
 
         $session->moveto(array('element' => $element->getID()));
+
         $this->jQueryWait();
 
+
         $this->hoveredWidget = $xpath;
+        $this->lastWidgetId = $element->getAttribute('id');
         $this->widgetNo = $widgetNo;
         $this->rowNo = $rowNo;
     }
@@ -709,7 +917,7 @@ class FeatureContext extends MinkContext
     /**
      * @Then /^I should see the "([^"]*)" link$/
      */
-    public function iShouldSeeTheLink($arg1)
+    public function iShouldSeeTheAction($arg1)
     {
         $this->jQueryWait();
         $page = $this->getSession()->getPage();
@@ -719,6 +927,29 @@ class FeatureContext extends MinkContext
         if (!$link) {
             throw new \Exception('Link not found');
         }
+    }
+
+    /**
+     * @Then /^I should see the "([^"]*)" button$/
+     */
+    public function iShouldSeeTheButton($arg1)
+    {
+        $this->jQueryWait();
+        $page = $this->getSession()->getPage();
+
+        $button = $page->findButton($arg1);
+
+        if (!$button) {
+            throw new \Exception('Button "' . $arg1 . '" not found');
+        }
+    }
+
+    /**
+     * @When /^I duplicate widget (\d+) on row (\d+)$/
+     */
+    public function iDuplicateWidgetOnRow($arg1, $arg2)
+    {
+        throw new PendingException();
     }
 
     /**
@@ -748,10 +979,41 @@ class FeatureContext extends MinkContext
     {
         $this->jQueryWait();
         $page = $this->getSession()->getPage();
-        $modal = $page->find('css', '#' + $arg1);
+
+        $modal = $page->findById($arg1);
 
         if (!$modal || !$modal->isVisible()) {
             throw new \Exception('Modal "#' . $arg1 . '" not found, or is not visible');
+        }
+    }
+
+    /**
+     * @Then /^I should see the element "([^"]*)"$/
+     */
+    public function iShouldSeeTheElement($arg1)
+    {
+        $this->jQueryWait();
+        $page = $this->getSession()->getPage();
+
+        $element = $page->find('css', $arg1);
+
+        if (!$element || !$element->isVisible()) {
+            throw new \Exception('Element "' . $arg1 . '" not found, or is not visible');
+        }
+    }
+
+    /**
+     * @Then /^I should not see the element "([^"]*)"$/
+     */
+    public function iShouldNotSeeTheElement($arg1)
+    {
+        $this->jQueryWait();
+        $page = $this->getSession()->getPage();
+
+        $element = $page->find('css', $arg1);
+
+        if ($element && $element->isVisible()) {
+            throw new \Exception('Unexpected element "' . $arg1 . '" found');
         }
     }
 
@@ -765,6 +1027,10 @@ class FeatureContext extends MinkContext
 
         $row = $page->find('css', '#' . $this->lastRowID);
         $button = $row->find('css', $locator);
+
+        if (!$button) {
+            throw new \Exception('The button "' . $locator . '" was not found');
+        }
 
         if ($button->hasClass('disabled')) {
             throw new \Exception('The button is not active');
@@ -853,7 +1119,12 @@ class FeatureContext extends MinkContext
         $this->jQueryWait();
         $page = $this->getSession()->getPage();
         $session = $this->getSession()->getDriver()->getWebDriverSession();
-        $row = $page->find('xpath', $this->rowXPath);
+
+        $row = $page->find('css', '#' . $this->lastRowID);
+
+        if (!$row) {
+            throw new \Exception(sprintf('Row "%s" was not found', $this->lastRowID));
+        }
 
         $widgets = $row->findAll('css', '.homepage-widget');
 
