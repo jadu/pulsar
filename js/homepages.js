@@ -377,27 +377,31 @@ define([
         $.fn.makeDraggable = function() {
             return this.each(function(index, element) {
 
-                $(element).on('mousedown', '.homepage-widget', function(e){
-                    e.preventDefault();
-                    resizing = false;
-                    dragging = true;
-                    originalX = e.pageX;
+                $(element).on('mousedown', '.homepage-widget', function(e) {
+                    if (e.which === 1) { // left click only
+                        e.preventDefault();
+                        resizing = false;
+                        dragging = true;
+                        originalX = e.pageX;
 
-                    $(this).addClass('operating');
-                    $(this).parent().addClass('operating-on-child');
+                        $(this).addClass('operating');
+                        $(this).parent().addClass('operating-on-child');
 
-                    originalRow = $(this).parent();
-                    hoveredRow = originalRow;
+                        originalRow = $(this).parent();
+                        hoveredRow = originalRow;
+                    }
                 });
 
-                $(element).on('mousedown', '.resizer', function(e){
-                    e.stopPropagation();
-                    e.preventDefault();
-                    resizing = true;
-                    originalX = e.pageX;
-                    $(this).children('.indicator').show();
-                    $(this).parent().addClass('operating');
-                    $(this).parent().parent().addClass('operating-on-child');
+                $(element).on('mousedown', '.resizer', function(e) {
+                    if (e.which === 1) { // left click only
+                        e.stopPropagation();
+                        e.preventDefault();
+                        resizing = true;
+                        originalX = e.pageX;
+                        $(this).children('.indicator').show();
+                        $(this).parent().addClass('operating');
+                        $(this).parent().parent().addClass('operating-on-child');
+                    }
                 }).on('mouseup', function(e){
                     e.preventDefault();
                 });
@@ -857,9 +861,11 @@ define([
                 $('.widget-row').makeDroppable();
             });
 
-            $('.ui-draggable').mousedown(function () {
-                if (!newRowIsEmpty()) {
-                    createNewRow();
+            $('.ui-draggable').mousedown(function (e) {
+                if (e.which === 1) { // left click only
+                    if (!newRowEmpty()) {
+                        createNewRow();
+                    }
                 }
             }).mouseup(function () {
                 if (newRowIsEmpty()) {
