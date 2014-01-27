@@ -1,4 +1,5 @@
 $cyan : #ea33a3;
+$sidebar-width : 200px;
 
 @-webkit-keyframes infinite-spinning {
   from {
@@ -24,8 +25,6 @@ $cyan : #ea33a3;
 
 .homepage-item {
     clear: both;
-    float: left;
-    width: 75%;
 }
 
 .homepage-sidebar {
@@ -34,8 +33,10 @@ $cyan : #ea33a3;
     float: left;
     height: 100%;
     padding: .5em;
-    width: 25%;
-
+    width: $sidebar-width;
+    position: absolute;
+    top: 0;
+    right: 0;
     .widget-default-controls {
        display: none;
     }
@@ -146,6 +147,11 @@ $cyan : #ea33a3;
     }
 }
 
+.grid-master,
+.homepage-item {
+    padding-right: $sidebar-width + 20px;
+}
+
 .grid-container {
     float: left; // need's to have height so we can drop things on it
     position: relative;
@@ -226,6 +232,13 @@ $cyan : #ea33a3;
     padding-bottom: 2em;
 }
 
+.homepage-content {
+    overflow: visible;
+    position: relative;
+    clear: both;
+    height: 100%;
+}
+
 .row-overlay {
     background-color: rgba(0, 0, 0, .8);
     color: white;
@@ -249,7 +262,7 @@ $cyan : #ea33a3;
 
 .ui-sortable-helper {
   box-shadow: 0 0 10px rgba(0, 0, 0, .5);
-  cursor: -webkit-grabbing; 
+  cursor: -webkit-grabbing;
   cursor:    -moz-grabbing;
   cursor:         grabbing;
   // transform: rotate(7deg) !important;
