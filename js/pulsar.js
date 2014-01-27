@@ -5,27 +5,46 @@
 define(['jquery'], function() {
 
     $(document).ready(function() {
-    
-        // Stick the Jadu toolbar to the top of the window
-        require(['sticky'], function() {
-            $('.toolbar').sticky({topSpacing: 0});
-            // $('.tray').sticky({topSpacing: 44}).sticky('update');
-        });
 
-        // Init tooltips
-        require(['tooltip'], function() {
+        // Set up Pulsar's UI environment
+        require(['tooltip', 'sticky', 'zeroclipboard', 'datagrid'], function() {
+
+            // tooltips
             $('[data-toggle="tooltip"]').tooltip();
-        });
 
-        // Trigger syntax highlighting
-        if (!$('html.ie7').size()) { // IE8 and up only
-            require(['highlightjs'], function() {
+            // datagrid
+            $('.table--datagrid').datagrid();
+
+            // sticky toolbar
+            $('.toolbar').sticky({topSpacing: 0});
+
+            // syntax highlighting
+            if (!$('html.ie7').size()) { // IE8 and up only
                 var aCodes = document.getElementsByTagName('pre');
                 for (var i=0; i < aCodes.length; i++) {
                     hljs.highlightBlock(aCodes[i]);
                 }
+            };
+
+            // copy to clipboard
+            $('[data-action=clipboard]').on('click', function(e) {
+                console.log($(this));
+                e.preventDefault();
+                var clip = new ZeroClipboard($(this), {
+                    moviePath: 'libs/zeroclipboard/ZeroClipboard.swf'
+                });
+                console.log('clip');
+                clip.on('load', function(client) {
+                    console.log('loaded');
+                    client.on('complete', function(client, args) {
+                        console.log('copied');
+                    });                    
+                });
             });
-        }
+
+        });
+
+// To clean up -----------------
 
         // Show summary panels based on their data-tab value
         require(['tab'], function() {

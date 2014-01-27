@@ -40,7 +40,7 @@ define([
           $('[data-id=' + this + ']', datagrid).prop('checked', true);
         });
 
-        $(this).checkIndeterminate();
+        _this.checkIndeterminate();
       },
 
       selectItem: function () {
@@ -69,8 +69,8 @@ define([
           store.set(defaults.storageKey + datagridId, selectedItems);
         }
 
-        $(this).checkIndeterminate();
-        $(this).badgeActionsButton();
+        _this.checkIndeterminate();
+        _this.badgeActionsButton();
       },
 
       selectAll: function () {
