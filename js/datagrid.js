@@ -10,146 +10,146 @@ define([
 
   (function (defaults, $, window, document, undefined) {
 
-		$.extend({
+    $.extend({
 
-			pluginSetup: function (options) {
-				return $.extend(defaults, options);
-			}
+      pluginSetup: function (options) {
+        return $.extend(defaults, options);
+      }
 
-		}).fn.extend({
+    }).fn.extend({
 
-			datagrid: function (options) {
-				
-				options = $.extend({}, defaults, options);
+      datagrid: function (options) {
+        
+        options = $.extend({}, defaults, options);
 
-				return $(this).each(function () {
+        return $(this).each(function () {
 
-					$(this).setSelectedItems();
+          $(this).setSelectedItems();
 
-				});
-			},
+        });
+      },
 
-			setSelectedItems: function () {
+      setSelectedItems: function () {
 
-				var _this = $(this),
-						datagrid = _this.closest(defaults.datagridSelector),
-						datagridId = datagrid.attr('id'),
-						selectedItems = store.get(defaults.storageKey + datagridId);
+        var _this = $(this),
+            datagrid = _this.closest(defaults.datagridSelector),
+            datagridId = datagrid.attr('id'),
+            selectedItems = store.get(defaults.storageKey + datagridId);
 
-				$.each(selectedItems, function () {
-					$('[data-id=' + this + ']', datagrid).prop('checked', true);
-				});
+        $.each(selectedItems, function () {
+          $('[data-id=' + this + ']', datagrid).prop('checked', true);
+        });
 
-				$(this).checkIndeterminate();
- 			},
+        $(this).checkIndeterminate();
+      },
 
-			selectItem: function () {
+      selectItem: function () {
 
-				var _this = $(this),
-						selected = _this.data('id'),
-						datagridId = _this.closest(defaults.datagridSelector).attr('id'),
-						selectedItems = store.get(defaults.storageKey + datagridId),
-						found = $.inArray(selected, selectedItems);
+        var _this = $(this),
+            selected = _this.data('id'),
+            datagridId = _this.closest(defaults.datagridSelector).attr('id'),
+            selectedItems = store.get(defaults.storageKey + datagridId),
+            found = $.inArray(selected, selectedItems);
 
-				if (typeof selectedItems === "undefined") {
-					var selectedItems = [];
-				}
-				
-				if ($(this).is(':checked')) {
-					if (found < 0) {
-						selectedItems.push(selected);
-					}
-				} else {
-					if (found >= 0) {
-						selectedItems.splice(found, 1);
-					}
-				}
+        if (typeof selectedItems === "undefined") {
+          var selectedItems = [];
+        }
+        
+        if ($(this).is(':checked')) {
+          if (found < 0) {
+            selectedItems.push(selected);
+          }
+        } else {
+          if (found >= 0) {
+            selectedItems.splice(found, 1);
+          }
+        }
 
-				if (store.enabled) {
-					store.set(defaults.storageKey + datagridId, selectedItems);
-				}
+        if (store.enabled) {
+          store.set(defaults.storageKey + datagridId, selectedItems);
+        }
 
-				$(this).checkIndeterminate();
-				$(this).badgeActionsButton();
-			},
+        $(this).checkIndeterminate();
+        $(this).badgeActionsButton();
+      },
 
-			selectAll: function () {
+      selectAll: function () {
 
-				var _this = $(this),
-						checked = false,
-						datagrid = _this.closest(defaults.datagridSelector),
-						datagridId = datagrid.attr('id'),
-						selectedItems = store.get(defaults.storageKey + datagridId),
-						checkboxes = $(defaults.selector, datagrid);
+        var _this = $(this),
+            checked = false,
+            datagrid = _this.closest(defaults.datagridSelector),
+            datagridId = datagrid.attr('id'),
+            selectedItems = store.get(defaults.storageKey + datagridId),
+            checkboxes = $(defaults.selector, datagrid);
 
-				if (typeof selectedItems === "undefined") {
-					var selectedItems = [];
-				}
+        if (typeof selectedItems === "undefined") {
+          var selectedItems = [];
+        }
 
-				if (_this.is(':checked')) {
-					checked = true;
-				}
+        if (_this.is(':checked')) {
+          checked = true;
+        }
 
-				checkboxes.prop('checked', checked);
+        checkboxes.prop('checked', checked);
 
-				$.each(checkboxes, function() {
+        $.each(checkboxes, function() {
 
-					var _this = $(this),
-							selected = _this.data('id'),
-							found = $.inArray(selected, selectedItems);
+          var _this = $(this),
+              selected = _this.data('id'),
+              found = $.inArray(selected, selectedItems);
 
-					if (_this.is(':checked')) {
-						if (found < 0) {
-							selectedItems.push(selected);
-						}
-					} else {
-						if (found >= 0) {
-							selectedItems.splice(found, 1);
-						}
-					}
+          if (_this.is(':checked')) {
+            if (found < 0) {
+              selectedItems.push(selected);
+            }
+          } else {
+            if (found >= 0) {
+              selectedItems.splice(found, 1);
+            }
+          }
 
-				});
-				
-				if (store.enabled) {
-					store.set(defaults.storageKey + datagridId, selectedItems);
-				}
+        });
+        
+        if (store.enabled) {
+          store.set(defaults.storageKey + datagridId, selectedItems);
+        }
 
-			},
+      },
 
-			checkIndeterminate: function () {
+      checkIndeterminate: function () {
 
-				var _this = $(this),
-						state = false,
-						datagrid = _this.closest(defaults.datagridSelector),
-						datagridId = datagrid.attr('id'),
-						selectedItems = store.get(defaults.storageKey + datagridId);
+        var _this = $(this),
+            state = false,
+            datagrid = _this.closest(defaults.datagridSelector),
+            datagridId = datagrid.attr('id'),
+            selectedItems = store.get(defaults.storageKey + datagridId);
 
-				if (selectedItems.length > 0) {
-					state = true;
-				}
+        if (selectedItems.length > 0) {
+          state = true;
+        }
 
-				$(defaults.selectAllHandler, datagrid).prop('indeterminate', state);
+        $(defaults.selectAllHandler, datagrid).prop('indeterminate', state);
 
-			},
+      },
 
-			badgeActionsButton: function () {
-				console.log($('.actions-menu'));
-			}
+      badgeActionsButton: function () {
+        console.log($('.actions-menu'));
+      }
 
-		});
-	})({
-		datagridSelector : '.table--datagrid',
-		selector : '[data-id]',
-		selectAllHandler : '[data-action=select-all]',
-		storageKey : 'datagrid-'
-	}, jQuery, window, document);
+    });
+  })({
+    datagridSelector : '.table--datagrid',
+    selector : '[data-id]',
+    selectAllHandler : '[data-action=select-all]',
+    storageKey : 'datagrid-'
+  }, jQuery, window, document);
 
-	$(document)
-		.on('click', '[data-action=select]', function (e) {
-			$(this).selectItem();
-		})
-		.on('click', '[data-action=select-all]', function (e) {
-			$(this).selectAll();
-		});
+  $(document)
+    .on('click', '[data-action=select]', function (e) {
+      $(this).selectItem();
+    })
+    .on('click', '[data-action=select-all]', function (e) {
+      $(this).selectAll();
+    });
 
 });
