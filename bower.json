@@ -25,6 +25,7 @@
     "respond": "latest",
     "requirejs": "latest",
     "sticky": "latest",
+    "store.js": "latest",
     "Vague.js": "Stanton/vague.js"
   },
   "devDependencies": {

@@ -1,11 +1,11 @@
 {
   "name": "console-js",
   "homepage": "https://github.com/NV/console.js",
-  "_release": "00b30654ac",
+  "_release": "21d8065ea3",
   "_resolution": {
     "type": "branch",
     "branch": "gh-pages",
-    "commit": "00b30654ace39403c8db3d5efefc00429c5675f9"
+    "commit": "21d8065ea3d35c830d372b6679bdfe285189ea6f"
   },
   "_source": "git://github.com/NV/console.js.git",
   "_target": "gh-pages",
