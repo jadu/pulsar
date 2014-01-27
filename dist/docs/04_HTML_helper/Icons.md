@@ -15,7 +15,7 @@ Simply pass the icon name shown in the [icon list](http://fortawesome.github.io/
 <i class="icon-ok"></i> <i class="icon-info-sign"></i>
 
 
-## Icon Sizes
+## Icon sizes
 
 Icons inherit their size and colour attributes from their parents and can be nested within other helpers, like buttons, links and tabs.
 
