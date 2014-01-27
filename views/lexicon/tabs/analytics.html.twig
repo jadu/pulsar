@@ -2,7 +2,7 @@
 {% import 'pulsar/helpers/form.html.twig' as form %}
 {% import 'pulsar/helpers/flash.html.twig' as flash %}
 {% import 'pulsar/helpers/datagrid.html.twig' as datagrid %}
-<table class="table--datagrid">
+<table class="table--datagrid" id="lexicon_analytics">
     <thead>
         <tr>
             {{ datagrid.select_all() }}
@@ -16,7 +16,7 @@
     </thead>
     <tbody>
         <tr>
-            {{ datagrid.select_item() }}
+            {{ datagrid.select_item(1) }}
             <td>{{ html.link(label = '123.123.123.123', href = '#exampledeck', attributes = 'data-toggle="deck"') }}</td>
             <td class="centered">5</td>
             <td class="centered">10</td>
@@ -25,7 +25,7 @@
             <td class="centered">UK</td>
         </tr>
         <tr class="is-selected">
-            {{ datagrid.select_item() }}
+            {{ datagrid.select_item(2) }}
             <td>{{ html.link(label = '123.123.123.123', href = '#exampledeck', attributes = 'data-toggle="deck"') }}</td>
             <td class="centered">5</td>
             <td class="centered">10</td>
@@ -34,7 +34,7 @@
             <td class="centered">UK</td>
         </tr>
         <tr>
-            {{ datagrid.select_item() }}
+            {{ datagrid.select_item(3) }}
             <td>{{ html.link(label = '123.123.123.123', href = '#exampledeck', attributes = 'data-toggle="deck"')}}</td>
             <td class="centered">5</td>
             <td class="centered">10</td>
@@ -43,7 +43,7 @@
             <td class="centered">UK</td>
         </tr>
         <tr>
-            {{ datagrid.select_item() }}
+            {{ datagrid.select_item(4) }}
             <td>{{ html.link(label = '123.123.123.123', href = '#exampledeck', attributes = 'data-toggle="deck"')}}</td>
             <td class="centered">5</td>
             <td class="centered">10</td>
@@ -52,7 +52,7 @@
             <td class="centered">UK</td>
         </tr>
         <tr>
-            {{ datagrid.select_item() }}
+            {{ datagrid.select_item(5) }}
             <td>{{ html.link(label = '123.123.123.123', href = '#exampledeck', attributes = 'data-toggle="deck"')}}</td>
             <td class="centered">5</td>
             <td class="centered">10</td>
@@ -61,7 +61,7 @@
             <td class="centered">UK</td>
         </tr>
         <tr class="row--success-highlight">
-            {{ datagrid.select_item() }}
+            {{ datagrid.select_item(6) }}
             <td>{{ html.link(label = '123.123.123.123', href = '#exampledeck', attributes = 'data-toggle="deck"')}}</td>
             <td class="centered">{{ html.badge(34, 'badge--success') }}</td>
             <td class="centered">4</td>
@@ -70,7 +70,7 @@
             <td class="centered">UK</td>
         </tr>
         <tr>
-            {{ datagrid.select_item() }}
+            {{ datagrid.select_item(7) }}
             <td>{{ html.link(label = '123.123.123.123', href = '#exampledeck', attributes = 'data-toggle="deck"')}}</td>
             <td class="centered">5</td>
             <td class="centered">10</td>
@@ -79,7 +79,7 @@
             <td class="centered">UK</td>
         </tr>
         <tr class="row--danger-highlight">
-            {{ datagrid.select_item() }}
+            {{ datagrid.select_item(8) }}
             <td>{{ html.link(label = '123.123.123.123', href = '#exampledeck', attributes = 'data-toggle="deck"')}}</td>
             <td class="centered">5</td>
             <td class="centered">10</td>
@@ -88,7 +88,7 @@
             <td class="centered">UK</td>
         </tr>
         <tr>
-            {{ datagrid.select_item() }}
+            {{ datagrid.select_item(9) }}
             <td>{{ html.link(label = '123.123.123.123', href = '#exampledeck', attributes = 'data-toggle="deck"')}}</td>
             <td class="centered">5</td>
             <td class="centered">10</td>
@@ -97,7 +97,7 @@
             <td class="centered">UK</td>
         </tr>
         <tr>
-            {{ datagrid.select_item() }}
+            {{ datagrid.select_item(10) }}
             <td>{{ html.link(label = '123.123.123.123', href = '#exampledeck', attributes = 'data-toggle="deck"')}}</td>
             <td class="centered">5</td>
             <td class="centered">10</td>
@@ -105,16 +105,6 @@
             <td class="centered">10%</td>
             <td class="centered">UK</td>
         </tr>
-        <tr>
-            {{ datagrid.select_item() }}
-            <td>{{ html.link(label = '123.123.123.123', href = '#exampledeck', attributes = 'data-toggle="deck"')}}</td>
-            <td class="centered">5</td>
-            <td class="centered">10</td>
-            <td class="centered">00.02.12</td>
-            <td class="centered">10%</td>
-            <td class="centered">UK</td>
-        </tr>
-       
     </tbody>
 </table>
 
