@@ -283,7 +283,7 @@ class FeatureContext extends MinkContext
     }
 
     /**
-     * @Given /^the \'([^\']*)\' button should be toggled$/
+     * @Given /^the \"([^\"]*)\" button should be toggled$/
      */
     public function assertButtonIsToggled($arg1)
     {
@@ -579,12 +579,14 @@ class FeatureContext extends MinkContext
 
         $lastRow = $page->find('css', '.widget-row-new');
 
-        $session = $this->getSession()->getDriver()->getWebDriverSession();
-        $session->buttonup("");
-
         if (!$lastRow) {
+            $session = $this->getSession()->getDriver()->getWebDriverSession();
+            $session->buttonup("");
             throw new \Exception('A new row was expected, but not found');
         }
+
+        $session = $this->getSession()->getDriver()->getWebDriverSession();
+        $session->buttonup("");
 
         $widgets = $lastRow->findAll('css', '.homepage-widget');
 
@@ -602,15 +604,20 @@ class FeatureContext extends MinkContext
         $page = $this->getSession()->getPage();
         $session = $this->getSession()->getDriver()->getWebDriverSession();
 
-        $targetRow = "//div[contains(concat(' ', @class, ' '), ' ui-droppable ')][" . $arg1 . "]";
-
         $from = $session->element('xpath', $this->handleXPath);
 
+        if (!$from) {
+            throw new \Exception('Can’t find element to drag from');
+        }
+
+        $to = $session->element('xpath', "//div[@id='row-" . $arg1 . "']");
+
+        if (!$to) {
+            throw new \Exception('Can’t find element to drag to');
+        }
+        
         $session->moveto(array('element' => $from->getID()));
         $session->buttondown("");
-
-        $to = $session->element('xpath', $targetRow);
-
         $session->moveto(array('element' => $to->getID()));
         $session->buttonup("");
     }
@@ -706,6 +713,7 @@ class FeatureContext extends MinkContext
         $this->iClickOnTheWidget('Image');
 
         for ($i = 1; $i <= $count; $i++) {
+            $this->jQueryWait();
             $this->iDragTheHandleToRow($i);
         }
 
@@ -732,8 +740,8 @@ class FeatureContext extends MinkContext
         $this->iClickOnTheWidget('Image');
 
         for ($i = 1; $i <= $count; $i++) {
-            $this->jQueryWait();
             $this->iDragTheHandleToRow(1);
+            $this->jQueryWait();
         }
 
         $this->lastRowID = 'row-1';
@@ -1026,6 +1034,11 @@ class FeatureContext extends MinkContext
         $page = $this->getSession()->getPage();
 
         $row = $page->find('css', '#' . $this->lastRowID);
+
+        if (!$row) {
+            throw new \Exception('Row "' . $this->lastRowID . '" was not found');
+        }
+
         $button = $row->find('css', $locator);
 
         if (!$button) {

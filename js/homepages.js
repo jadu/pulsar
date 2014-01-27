@@ -863,7 +863,7 @@ define([
 
             $('.ui-draggable').mousedown(function (e) {
                 if (e.which === 1) { // left click only
-                    if (!newRowEmpty()) {
+                    if (!newRowIsEmpty()) {
                         createNewRow();
                     }
                 }
