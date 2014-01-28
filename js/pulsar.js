@@ -7,7 +7,7 @@ define(['jquery'], function() {
     $(document).ready(function() {
 
         // Set up Pulsar's UI environment
-        require(['tooltip', 'sticky', 'zeroclipboard', 'datagrid'], function() {
+        require(['tooltip', 'sticky', 'datagrid'], function() {
 
             // tooltips
             $('[data-toggle="tooltip"]').tooltip();
@@ -25,22 +25,6 @@ define(['jquery'], function() {
                     hljs.highlightBlock(aCodes[i]);
                 }
             };
-
-            // copy to clipboard
-            $('[data-action=clipboard]').on('click', function(e) {
-                console.log($(this));
-                e.preventDefault();
-                var clip = new ZeroClipboard($(this), {
-                    moviePath: 'libs/zeroclipboard/ZeroClipboard.swf'
-                });
-                console.log('clip');
-                clip.on('load', function(client) {
-                    console.log('loaded');
-                    client.on('complete', function(client, args) {
-                        console.log('copied');
-                    });                    
-                });
-            });
 
         });
 
