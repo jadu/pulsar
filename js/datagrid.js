@@ -75,7 +75,6 @@ define([
         
         _this.updateSelectedItems(selected);
         _this.checkIndeterminate();
-        _this.badgeActionsButton();
       },
 
       /**
@@ -154,10 +153,6 @@ define([
         }
 
         $(defaults.selectAllHandler, datagrid).prop('indeterminate', state);
-      },
-
-      badgeActionsButton: function () {
-        console.log($('.actions-menu'));
       }
 
     });
