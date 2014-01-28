@@ -82,7 +82,7 @@
     <div class="form__group {{ class }}">
         <label {{ form.for(id) }} class="control__label">{{ label | raw }}</label>
         <div class="controls">
-            <input type="file" {{ form.id(id) }} {{ form.name(name) }} {{ form.placeholder(placeholder) }}>
+            <input type="file" {{ form.id(id) }} {{ form.name(name) }} {{ form.placeholder(placeholder) }} />
             {% if help is not empty %} 
             {{ form.help(help) }}
             {% endif %}
@@ -114,7 +114,7 @@
     <div class="form__group {{ class }}">
         <label {{ form.for(id) }} class="checkbox__label">{{ label | raw }}</label>
         <div class="controls">
-            <input type="checkbox" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }}>
+            <input type="checkbox" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }} />
             {% if help is not empty %} 
             {{ form.help(help) }}
             {% endif %}
@@ -127,7 +127,7 @@
     <div class="form__group {{ class }}">
         <div class="checkbox">
             <label {{ form.for(id) }} class="checkbox__label">
-                <input type="checkbox" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }}>
+                <input type="checkbox" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }} />
                 {{ label | raw }}
             </label>
             {% if help is not empty %} 
@@ -140,7 +140,7 @@
 {% macro checkbox_inline(label, id, class, name, checked = false, help) %}
     {% import _self as form %}
     <label {{ form.for(id) }} class="checkbox--inline">
-        <input type="checkbox" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }}>
+        <input type="checkbox" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }} />
         {% if help is not empty %} 
         {{ form.help(help) }}
         {% endif %}
@@ -153,7 +153,7 @@
     <div class="form__group {{ class }}">
         <label {{ form.for(id) }} class="checkbox__label">{{ label | raw }}</label>
         <div class="controls">
-            <input type="radio" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }}>
+            <input type="radio" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }} />
             {% if help is not empty %} 
             {{ form.help(help) }}
             {% endif %}
@@ -166,7 +166,7 @@
     <div class="form__group {{ class }}">
         <div class="radio">
             <label {{ form.for(id) }} class="checkbox__label">
-                <input type="radio" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }}>
+                <input type="radio" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }} />
                 {{ label | raw }}
             </label>
             {% if help is not empty %} 
@@ -179,7 +179,7 @@
 {% macro radio_inline(label, id, class, name, checked = false, help) %}
     {% import _self as form %}
     <label {{ form.for(id) }} class="radio--inline">
-        <input type="radio" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }}>
+        <input type="radio" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }} />
         {% if help is not empty %} 
         {{ form.help(help) }}
         {% endif %}
@@ -258,7 +258,5 @@
 {% endmacro %}
 
 {% macro checked(value) %}
-    {% if value %}
-    checked
-    {% endif %}
+    {% if value %}checked="checked" {% endif %}
 {% endmacro %}

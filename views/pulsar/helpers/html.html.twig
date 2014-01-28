@@ -32,7 +32,7 @@
   {% import _self as html %}
   <div class="btn__group{% if open %} open{% endif %}">
     <button type="button" class="btn dropdown__toggle {{ class }}" {% if id is not empty %} id="{{ id }}"{% endif %} data-toggle="dropdown">
-        {{ label|raw }}{% if menu_items is not empty %} <span class="caret">{% endif %}</span>
+        {{ label|raw }}{% if menu_items is not empty %} <span class="caret"></span>{% endif %}
     </button>
     {% if menu_items is not empty %}
     <ul class="dropdown__menu">
@@ -49,7 +49,7 @@
   {% import _self as html %}
   <div class="btn__group dropup">
     <button type="button" class="btn dropdown__toggle {{ class }}" data-toggle="dropdown">
-        {{ label|raw }}{% if menu_items is not empty %} <span class="caret">{% endif %}</span>
+        {{ label|raw }}{% if menu_items is not empty %} <span class="caret"></span>{% endif %}
     </button>
     {% if menu_items is not empty %}
     <ul class="dropdown__menu">
