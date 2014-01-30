@@ -18,6 +18,8 @@ define([
                 datagridSelector : '.is-active .table--datagrid',
                 missingDatagridIdMessage : 'Datagrid state cannot be saved becase no ID has been defined',
                 missingCheckboxIdMessage : 'Checkbox state cannot be saved because of a missing data-id attribute',
+                rowSelector: 'tr',
+                rowSelectedClass: 'is-selected',
                 selectedCountKey : 'actions-count',
                 selectAllHandler : '[data-action=select-all]',
                 storageKey : 'datagrid-'
@@ -127,6 +129,7 @@ define([
             */
             updateSelectedItems: function (element) {
                 var $element = $(element),
+                    row = $element.closest(this.options.rowSelector),
                     selectedId = $element.data('id'),
                     found = $.inArray(selectedId, this.selectedItems),
                     storedSelectCount;
@@ -143,12 +146,14 @@ define([
                 if ($element.is(':checked')) {
                     if (found < 0) {
                         this.selectedItems.push(selectedId);
+                        row.addClass(this.options.rowSelectedClass);
                         this.selectedCount++;
                     }
                 } else {
                     if (found >= 0) {
                         this.selectedItems.splice(found, 1);
                         if (this.selectedCount) {
+                            row.removeClass(this.options.rowSelectedClass);
                             this.selectedCount--;
                         }
                     }
@@ -168,7 +173,6 @@ define([
              * checkbox to the indeterminate state [-]
              */
             checkIndeterminate: function () {
-
                 var state = false;
 
                 if (this.selectedItems.length) {
