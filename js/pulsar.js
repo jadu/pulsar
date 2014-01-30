@@ -1,13 +1,21 @@
 /**
  * Set up Pulsar's UI environment
  */
-
 define(['jquery'], function() {
 
     $(document).ready(function() {
 
         // Set up Pulsar's UI environment
-        require(['tooltip', 'sticky', 'datagrid'], function() {
+        require([
+            'actionsMenu',
+            'highlightjs',
+            'tooltip',
+            'sticky',
+            'datagrid'
+        ], function() {
+
+            // actions menu
+            $('.actions-menu').actions();
 
             // tooltips
             $('[data-toggle="tooltip"]').tooltip();
@@ -19,12 +27,12 @@ define(['jquery'], function() {
             $('.toolbar').sticky({topSpacing: 0});
 
             // syntax highlighting
-            if (!$('html.ie7').size()) { // IE8 and up only
-                var aCodes = document.getElementsByTagName('pre');
-                for (var i=0; i < aCodes.length; i++) {
-                    hljs.highlightBlock(aCodes[i]);
-                }
-            };
+            // if (!$('html.ie7').size()) { // IE8 and up only
+            //     var aCodes = document.getElementsByTagName('pre');
+            //     for (var i=0; i < aCodes.length; i++) {
+            //         hljs.highlightBlock(aCodes[i]);
+            //     }
+            // };
 
         });
 

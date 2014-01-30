@@ -20,11 +20,11 @@ define([
 
       datagrid: function (options) {
         
-        var _this = $(this);
+        var _this = $(this);   
 
         options = $.extend({}, defaults, options);
 
-        return _this.each(function () {
+        return this.each(function () {
 
           // set the state of the checkboxes currently visible in the datagrid
           _this.setSelectedItems();
@@ -110,8 +110,19 @@ define([
         var _this = $(this),
             datagrid = _this.closest(defaults.datagridSelector),
             datagridId = datagrid.attr('id'),
+            selectedCount = 0,
             selectedItems = _this.getSelectedItems(),
-            found = $.inArray(selected, selectedItems);
+            found = $.inArray(selected, selectedItems),
+            storedSelectCount;
+
+        if (store.enabled) {
+          storedSelectCount = store.get(defaults.selectedCountKey);
+
+          // only use the stored select count if we have one
+          if (typeof storedSelectCount !== "undefined") {
+            selectedCount = storedSelectCount;
+          }
+        }
 
         // start a collection, if we don't have anything in localstorage
         if (typeof selectedItems === "undefined") {
@@ -121,16 +132,22 @@ define([
         if (_this.is(':checked')) {
           if (found < 0) {
             selectedItems.push(selected);
+            selectedCount++;
           }
         } else {
           if (found >= 0) {
             selectedItems.splice(found, 1);
+            if (selectedCount) {
+              selectedCount--;
+            }
           }
         }
 
-        // save to localstorage
+        actionsMenu.updateBadge(selectedCount);
+
         if (store.enabled) {
           store.set(defaults.storageKey + datagridId, selectedItems);
+          store.set(defaults.selectedCountKey, selectedCount);
           return true;
         }
 
@@ -153,6 +170,32 @@ define([
         }
 
         $(defaults.selectAllHandler, datagrid).prop('indeterminate', state);
+      },
+
+      /**
+       * set the selected count within localstorage
+       * 
+       * @param  {int} modifier   positive/negative number to modify count by
+       * @return {int}            the new value of selected items
+       */
+      setSelectedCount: function (modifier) {
+
+        var selectedCount = 0;
+
+        if (store.enabled) {
+
+          // attempt to get the current value in localstorage
+          storedSelectCount = store.get(defaults.selectedCountKey);
+
+          // only use the stored select count if we have one
+          if (typeof storedSelectCount !== "undefined") {
+            selectedCount = storedSelectCount + modifier;
+          }
+
+          // set the new value
+          store.set(defaults.selectedCountKey, selectedCount);
+        }
+
       }
 
     });
@@ -161,6 +204,7 @@ define([
     datagridSelector : '.is-active .table--datagrid',
     missingDatagridIdMessage : 'Datagrid state cannot be saved becase no ID has been defined',
     missingCheckboxIdMessage : 'Checkbox state cannot be saved because of a missing data-id attribute',
+    selectedCountKey : 'selected-items',
     selector : '[data-id]',
     selectAllHandler : '[data-action=select-all]',
     storageKey : 'datagrid-'
