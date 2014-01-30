@@ -38,15 +38,28 @@ define([
         Plugin.prototype = {
 
             init: function () {
+                var _this = this;
+
                 this.badge = $(this.options.badgeSelector, this.element);
-                this.updateBadge();
+
+                $('.table--datagrid')
+                    .on('click', '[data-action=select]', function () {
+                        setTimeout(function(){
+                            _this.updateBadge();
+                        }, 50);
+                    })
+                    .on('click', '[data-action=select-all]', function () {
+                        setTimeout(function(){
+                            _this.updateBadge();
+                        }, 50);
+                    });
             },
 
             updateBadge: function (count) {
-                if (typeof count != 'undefined') {
+                if (typeof count !== 'undefined') {
 
                     // use value passed to method
-                    this.count = parseInt(count);
+                    this.count = count;
                 } else {
 
                     // check localstorage
@@ -57,22 +70,22 @@ define([
                 if (this.count) {
 
                   // add the count and show the badge
-                  this.badge
-                    .text(this.count)
-                    .fadeIn(this.options.animationSpeed)
+                    this.badge
+                        .text(this.count)
+                        .fadeIn(this.options.animationSpeed);
                 } else {
 
-                  // hide the badge and empty the count
-                  this.badge.fadeOut(this.options.animationSpeed, function () {
-                    $(this).text('');
-                  });  
+                    // hide the badge and empty the count
+                    this.badge.fadeOut(this.options.animationSpeed, function () {
+                        $(this).text('');
+                    });
                 }
 
             },
 
             getCount: function () {
                 if (!store.enabled) {
-                    return false
+                    return false;
                 }
 
                 // update cached count
@@ -83,7 +96,7 @@ define([
 
             setCount: function (count) {
                 if (!store.enabled || !count) {
-                    return false
+                    return false;
                 }
 
                 // set localstorage value
