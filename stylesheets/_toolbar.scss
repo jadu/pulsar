@@ -13,10 +13,34 @@ $brand-height: 24px;
   
   background-repeat: no-repeat;
   background-image: url('../images/jaduIdent.png');
+  display: inline-block;
   height: $brand-height;
   margin: 0 $gutter-width;
   overflow: hidden;
   position: relative;
-  top: ($toolbar-height - $brand-height) / 2;
+  top: -6px;
   width: 75px;
-} 
+}
+
+.user-actions {
+  margin-right: 20px;
+  top: 8px;
+
+  .btn {
+    background: none;
+    box-shadow: none;
+    border: none;
+    color: $white;
+    text-shadow: none;
+  }
+
+  .btn:hover {
+    background-color: rgba(0, 0, 0, .2);
+    background-image: none;
+    box-shadow: none;
+  }
+
+  .caret {
+    border-top: 4px solid $white;
+  }
+}
