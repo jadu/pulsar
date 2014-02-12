@@ -9,14 +9,14 @@ Pass a list of links to the `menu_items` parameter to be used as the dropdown/up
     
     {{ 
        html.button_dropdown(
-        label = 'Drop Down',
-        [   
-            html.link(label = html.icon('save') ~ ' Save'),
-            html.link(label = html.icon('print') ~ ' Print'),
-            html.link(label = html.icon('star') ~ ' Favourite ' ~ html.badge(3)),
-            html.divider(),
-            html.link(label = html.icon('trash') ~ ' Delete')
-        ]   
+            label = 'Drop Down',
+            menu_items = [   
+                html.link(label = html.icon('save') ~ ' Save'),
+                html.link(label = html.icon('print') ~ ' Print'),
+                html.link(label = html.icon('star') ~ ' Favourite ' ~ html.badge(3)),
+                html.divider(),
+                html.link(label = html.icon('trash') ~ ' Delete')
+            ]
        )    
     }}
     
