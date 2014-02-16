@@ -7,6 +7,7 @@ BUILD := build
 BREW = $(shell which brew)
 BOWER = $(shell which bower)
 GRUNT = $(shell which grunt)
+XCODE = $(shell pkgutil --pkg-info=com.apple.pkg.CLTools_Executables)
 
 build:
 	@ echo "${HEADER}"
@@ -15,6 +16,13 @@ build:
 	@ sudo curl -sS https://getcomposer.org/installer | php -d detect_unicode=Off
 	@ sudo php composer.phar install
 	@ echo "\n${CHECK} Done"
+
+	@ echo "${HR}\nInstalling XCode Command Line Tools...${HR}\n"
+ifeq (${XCODE}, )
+	xcode-select --install
+else
+	@ echo "Command line tools are already installed."
+endif
 
 	@ echo "${HR}\nInstalling Homebrew and its dependencies...${HR}\n"
 ifeq (${BREW}, )
