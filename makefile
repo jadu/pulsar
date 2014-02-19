@@ -18,7 +18,7 @@ build:
 
 	@ echo "${HR}\nInstalling Homebrew and its dependencies...${HR}\n"
 ifeq (${BREW}, )
-	ruby -e "$$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
+	ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
 else
 	@ echo "Homebrew v$(shell brew --version) is already installed.\n"
 endif
