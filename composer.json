@@ -1,6 +1,6 @@
 {
     "name": "jadu/pulsar",
-    "version": "1.0.11",
+    "version": "1.0.15",
     "autoload": {
         "psr-0": {
             "Jadu\\Pulsar": "src"

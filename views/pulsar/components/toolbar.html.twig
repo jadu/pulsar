@@ -1,3 +1,15 @@
+{% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
 <div class="toolbar">
     <h1 class="branding" id="tour-home">{{ html.link('Jadu', '/search') }}</h1>
+    {{ 
+      html.button_dropdown(
+        label = 'Your Name',
+        class = 'user-actions pull-right',
+        menu_items = [   
+          html.link(label = html.icon('key') ~ ' Change password'),
+          html.divider(),
+          html.link(label = html.icon('signout') ~ ' Sign out')
+        ]
+      )
+    }}
 </div>
