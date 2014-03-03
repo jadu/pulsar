@@ -21,6 +21,22 @@
       background-color: darken($gray-light, 10%);
     }
   }
+
+  // Removable labels
+  [data-filter-action="remove"] {
+    border-left: 1px dotted #ccc;
+    color: inherit;
+    margin-left: 5px;
+    text-decoration: none;
+
+    i {
+        margin-left: 7px;
+    }
+
+    &:hover {
+      margin-top: 1px;
+    }
+  }
 }
 
 // Colors
@@ -53,3 +69,4 @@
     color: $label-color;
   }  
 }
+

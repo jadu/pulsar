@@ -52,7 +52,7 @@ Examples:
 </div>
 </form>
 
-### Checkbox Groups
+### Checkbox groups
 
 You can group checkboxes together into logical blocks by wrapping them with the `checkbox_group` helper, this is particularly useful for creating inline checkboxes if your options are relatively small.
 

@@ -1,0 +1,19 @@
+{
+  "name": "store",
+  "version": "1.3.15",
+  "description": "a simple API for cross browser local storage",
+  "main": "store.js",
+  "scripts": [
+    "store.js"
+  ],
+  "homepage": "https://github.com/marcuswestin/store.js",
+  "_release": "1.3.15",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.3.15",
+    "commit": "00fd6abf657eb7d2f539846ed25fa0dab177cab6"
+  },
+  "_source": "git://github.com/marcuswestin/store.js.git",
+  "_target": "*",
+  "_originalSource": "store.js"
+}

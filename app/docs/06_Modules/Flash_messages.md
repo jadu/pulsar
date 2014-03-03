@@ -1,4 +1,4 @@
-<p>Flash messages alert the user when things happen, this may be to confirm that something has occurred successfully, like saving a document, or when something goes wrong. Flash messages may also highlight problems with the system that the user may need to know about, like a loss of network connectivity which is preventing auto-save.</p>
+Flash messages alert the user when things happen, this may be to confirm that something has occurred successfully, like saving a document, or when something goes wrong. Flash messages may also highlight problems with the system that the user may need to know about, like a loss of network connectivity which is preventing auto-save.
 
 ----
 

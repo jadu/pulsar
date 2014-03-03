@@ -1,24 +1,24 @@
 {
   "name": "jquery-mousewheel",
-  "version": "3.1.4",
+  "version": "3.1.9",
   "main": "./jquery.mousewheel.js",
   "ignore": [
-    ".*",
-    "*.txt",
-    "*.markdown",
     "*.json",
-    "test",
-    "Gruntfile.js"
+    "*.markdown",
+    "*.txt",
+    ".*",
+    "Gruntfile.js",
+    "test"
   ],
   "dependencies": {
     "jquery": ">=1.2.2"
   },
   "homepage": "https://github.com/brandonaaron/jquery-mousewheel",
-  "_release": "3.1.4",
+  "_release": "3.1.9",
   "_resolution": {
     "type": "version",
-    "tag": "3.1.4",
-    "commit": "55eb3d0ccda12fd4d67206e9a40b1d2880978e01"
+    "tag": "3.1.9",
+    "commit": "d55a79ef9ff60e4b49cde4598664a2ff682316f5"
   },
   "_source": "git://github.com/brandonaaron/jquery-mousewheel.git",
   "_target": "*",

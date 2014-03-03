@@ -1,6 +1,6 @@
 {
     "name": "jadu/pulsar",
-    "version": "1.0.11",
+    "version": "1.0.13",
     "autoload": {
         "psr-0": {
             "Jadu\\Pulsar": "src"
@@ -9,12 +9,17 @@
     "repositories": [
         {
             "type": "git",
-            "url": "https://github.com/Stanton/Twig.git"
+            "url": "https://github.com/jadu/Twig.git"
         }
     ],
     "require": {
         "twig/twig": "@dev",
         "phpunit/phpunit": "@dev",
-        "dflydev/markdown": "@dev" 
+        "dflydev/markdown": "@dev",
+        "behat/behat": "2.*",
+        "behat/mink": "1.4.*@stable",
+        "behat/mink-extension": "*",
+        "behat/mink-goutte-driver": "*",
+        "behat/mink-selenium2-driver": "*" 
     }
 }
