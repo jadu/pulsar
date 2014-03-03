@@ -18,7 +18,7 @@ Repository URL: [https://gitlab.hq.jadu.net/pulsar/pulsar-ui/tree/master](https:
 
 ## Installing required packages & libraries
 
-Pulsar requires some additional packages to be installed before it'll work, you can install all dependencies by typing the following command in the pulsar directory:
+Pulsar requires some additional packages to be installed before it'll work, you can install all dependencies by typing the following command in the Pulsar directory:
 
     $ make
 

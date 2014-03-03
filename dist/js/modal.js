@@ -243,7 +243,7 @@ define(['jquery'], function($) { "use strict";
   $(document)
     .on('show.bs.modal',  '.modal', function () { $(document.body).addClass('modal-open') })
     .on('hidden.bs.modal', '.modal', function () { 
-      $(this).removeData('bs.modal').empty()
+      // $(this).removeData('bs.modal').empty()
       $(document.body).removeClass('modal-open') 
     })
 

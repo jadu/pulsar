@@ -7,10 +7,13 @@ define(['jquery'], function() {
     $(document).ready(function() {
 
         // Set up Pulsar's UI environment
-        require(['tooltip', 'sticky', 'zeroclipboard'], function() {
+        require(['tooltip', 'sticky', 'zeroclipboard', 'datagrid'], function() {
 
             // tooltips (js/tooltip.js)
-            $('[data-toggle="tooltip"]').tooltip();
+            $('[data-toggle="tooltips"]').tooltips();
+
+            // datagrid
+            $('.table--datagrid').datagrid();
 
             // sticky toolbar
             $('.toolbar').sticky({topSpacing: 0});
@@ -35,9 +38,19 @@ define(['jquery'], function() {
                     console.log('loaded');
                     client.on('complete', function(client, args) {
                         console.log('copied');
-                    });                    
+                    });
                 });
             });
+
+            // Don't allow disabled links to be clicked
+            $('a.disabled').on('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            });
+
+            $('[data-toggle*=button]').on('click', function(e) {
+                $(this).toggleClass('active');
+            })
 
         });
 
@@ -62,7 +75,7 @@ define(['jquery'], function() {
                 e.relatedTarget // previous tab
 
                 $('.summary.open').removeClass('open').hide();
-                
+
                 var $summary = '';
 
                 if ($(e.target).parent().has('.is-active').length != 0) {
@@ -81,7 +94,7 @@ define(['jquery'], function() {
                 }
             });
         });
-    
+
 
         if ($('[data-summary]').hasClass('is-active')) {
             $('[data-tab="' + $('[data-summary]').attr('href') + '"]').show();
@@ -110,13 +123,13 @@ define(['jquery'], function() {
         // Switch a given element within the same data-group
         $('[data-switch]').on('click', function(e) {
             var $this = $(this);
-            
+
             if ($this.hasClass('active')) {
                 return false;
             } else {
                 $this.siblings().removeClass('active');
             }
-            
+
             $($this.data('group')).hide();
             $this.addClass('active');
             $($this.data('switch')).show();

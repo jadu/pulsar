@@ -72,19 +72,20 @@ define([
           $('.widget__price').text($this.data('widget-price'));
 
           $('.tray__detail .widget')
-            .data('widget-guid', $this.data('widget-guid'))
-            .data('widget-version', $this.data('widget-version'))
-            .data('widget-title', $this.data('widget-title'))
-            .data('widget-description', $this.data('widget-description'))
+            .attr('data-widget-guid', $this.data('widget-guid'))
+            .attr('data-widget-version', $this.data('widget-version'))
+            .attr('data-widget-title', $this.data('widget-title'))
+            .attr('data-widget-description', $this.data('widget-description'))
+            .attr('data-widget-grid-span', $this.data('widget-grid-span'))
             .show();
         });
       },
 
       fetchWidget: function (e, ui) {
         var _this = this,
-          widget = $(ui.helper.context),
-          widgetGuid = widget.data('widget-guid'),
-          widgetVersion = widget.data('widget-version'); // The data attribute of the widget we're dragging
+            widget = $(ui.helper.context),
+            widgetGuid = widget.data('widget-guid'),
+            widgetVersion = widget.data('widget-version'); // The data attribute of the widget we're dragging
 
         // fetch it
         $.ajax({
@@ -98,12 +99,24 @@ define([
 
     };
 
-    // data-API
-    $(document).on('click', '[data-toggle="tray"]', function (e) {
-      var $target = $($(this).attr('data-target'));
+    // data-api
+    $(document).on('click', '[data-toggle=tray]', function (e) {
+      var _this = $(this),
+          $target = $($(this).attr('data-target'));
       
       e.preventDefault();
-      $target.slideToggle(100);
+
+      // show/hide the tray
+      $target.slideToggle(100, function () {
+
+        // toggle active state on tray toggle
+        if ($(this).is(':visible')) {
+          _this.addClass('active');
+        } else {
+          _this.removeClass('active');
+        }
+      });
+
     })
 
     $.fn[pluginName] = function (options) {

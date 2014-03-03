@@ -1,13 +1,15 @@
+// The default path used by the Grunfile
 var path = '';
 
 // Set by /public_html/jadu/assets/js/config.js
 if (window.jadu.requireJsPath) {
-    var path = window.jadu.requireJsPath;
+    path = window.jadu.requireJsPath;
 }
 
 requirejs.config({
     paths: {
         'console-js'        : path + '/libs/console-js/console',
+        'datagrid'          : path + '/js/datagrid',
         'daterange'         : path + '/libs/bootstrap-daterangepicker/daterangepicker',
         'deck'              : path + '/js/deck',
         'dashboard'         : path + '/js/dashboard',

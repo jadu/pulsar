@@ -2,11 +2,11 @@ A question I'm still asked, by Jadugars old and new:
 
 So, what exactly *is* Pulsar?
 
-I understand why it's still a difficult concept to grasp, as there's so many facets to pulsar, so I felt it was important to try and make some sense and explain some of the different things that are being worked on inside the Pulsar. At first, I tried to explain pulsar in a sentence:
+I understand why it's still a difficult concept to grasp, as there's so many facets to Pulsar, so I felt it was important to try and make some sense and explain some of the different things that are being worked on inside the Pulsar. At first, I tried to explain Pulsar in a sentence:
 
-"Pulsar is a robust user-interface framework with a collection of patterns, helpers and a user-focused design process with documented best practices that will help you to make beautiful user interfaces and beautiful user experiences."
+"Pulsar is a robust user-interface framework with a collection of patterns, helpers and a user-focused design process with documented best practices that will help you to make beautiful user interfaces and amazing user experiences."
 
-This isn't bad, but it still fails to really clarify what it means to 'make it pulsar', it really only started to make sense when I split pulsar into two separate components.
+This isn't bad, but it still fails to really clarify what it means to 'make it Pulsar', it really only started to make sense when I split Pulsar into two separate components.
 
 # Pulsar UI & Pulsar UX 
 
