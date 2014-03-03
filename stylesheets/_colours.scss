@@ -54,7 +54,8 @@ $label-info-bg:                 $info-color;
 $label-warning-bg:              $warning-color;
 $label-danger-bg:               $danger-color;
 $label-inverse-bg:              $inverse-color;
-$label-color:                   #fff;
+$label-color:               		$black;
+$label-color-alt:               #fff;
 $label-link-hover-color:        #fff;
 
 // Progress bars

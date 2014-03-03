@@ -1,0 +1,12 @@
+.pagination--simple {
+  color: $text-color;
+  float: left;
+  font-size: $font-size-small;
+  line-height: 2.6;
+  margin-right: $gutter-width;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
