@@ -1,0 +1,56 @@
+{% extends '@pulsar/quantum/layouts/tabbed.html.twig' %}
+{% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
+{% import '@pulsar/pulsar/helpers/form.html.twig' as form %}
+{% import '@pulsar/pulsar/helpers/flash.html.twig' as flash %}
+
+{% block title %}{{ parent() }}{% endblock %}
+
+{% set heading = 'AB123C Appellant v Authority' %}
+
+{% set tab_details %}
+    {% include 'quantum/portal/case/tabs/details.html.twig' %}
+{% endset %}
+
+{% 
+  set tabs = [
+    {
+      "id"        : "details",
+      "label"     : "Appeal details",
+      "src"       : tab_details
+    },
+    {
+      "id"        : "messages",
+      "label"     : "Messages",
+    },
+    {
+      "id"        : "my_evidence",
+      "label"     : "My evidence",
+    },
+    {
+      "id"        : "authority_evidence",
+      "label"     : "Authority evidence",
+    },
+    {
+      "id"        : "hearing",
+      "label"     : "Hearing",
+    },
+    {
+      "id"        : "decision",
+      "label"     : "Desicion",
+    }
+  ]
+%}
+
+{% block summary %}
+  <div class="summary hide" data-tab="#analytics">
+    <div id="container"></div>
+  </div>
+{% endblock %}
+
+{% block tabs_list %}
+  {{ html.tabs(tabs) }}
+{% endblock %}
+
+{% block tabs_content %}
+  {{ html.tabs_content(tabs) }}
+{% endblock %}

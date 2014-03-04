@@ -1,0 +1,11 @@
+{% extends "@pulsar/quantum/layouts/base.html.twig" %}
+
+{% block content %}
+
+<h2 class="heading">{{ heading|raw }}</h2>
+
+<div class="tabs">
+  {% block tabs_list %}{% endblock %}
+  {% block tabs_content %}{% endblock %}
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+.quantum-portal {
+  .heading {
+    margin-left: 200px;
+  }
+}
+
+.portal__details {
+  margin: $line-height-base $gutter-width 0 $gutter-width;
+}
+
+.portal__details--left {
+  float: left;
+  width: 70%;
+}
+
+.portal__details--right {
+  float: left;
+}
