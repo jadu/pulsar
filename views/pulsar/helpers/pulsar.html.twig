@@ -1,0 +1,44 @@
+{%- macro primary_nav(label = 'label', class, id, menu_items, open = false) -%}
+  {% import 'pulsar/helpers/html.html.twig' as html %}
+  <div class="nav-item {% if open %} open{% endif %}">
+    <a class="nav-link nav-link__toggle" data-toggle="dropdown">
+        {{ label|raw }}
+    </a>
+    <ul class="dropdown__menu inverse">
+    {% for label, items in menu_items %}
+      <li>
+        {% if items is not iterable %}
+          {% set href = items %}
+        {% else %}
+          {% set href = '#' %}
+        {% endif %}
+        <a href="{{ href }}">{{ label|raw }}</a>
+        {% for label, item in items %}
+
+          {% if item is iterable %}
+            {% if loop.first %}
+              <div data-subnav="true" class="subnav-container">
+            {% endif %}
+              {{ html.linkList(item) }}
+            {% if loop.last %}
+              </div>
+            {% endif %}
+
+          {% else %}
+
+            {% if loop.first %}
+              <ul data-subnav="true">
+            {% endif %}
+              {{ html.listItem(html.link(label, item)) }}
+            {% if loop.last %}
+              </ul>
+            {% endif %}
+          {% endif %}
+
+        {% endfor %}
+
+      </li>
+    {% endfor %}
+    </ul>
+  </div>
+{%- endmacro -%}
