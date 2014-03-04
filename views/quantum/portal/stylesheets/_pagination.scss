@@ -1,12 +1,17 @@
 .pagination--simple {
+  background: none;
+  border: none;
   color: $text-color;
   float: left;
   font-size: $font-size-small;
-  line-height: 2.6;
   margin-right: $gutter-width;
   text-decoration: none;
 
   &:hover {
+  	background: none;
+  	background-image: none;
+  	border: none;
     text-decoration: underline;
+    text-shadow: none;
   }
 }
