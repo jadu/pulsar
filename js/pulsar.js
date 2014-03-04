@@ -29,12 +29,12 @@ define(['jquery'], function() {
             $('.toolbar').sticky({topSpacing: 0});
 
             // syntax highlighting
-            // if (!$('html.ie7').size()) { // IE8 and up only
-            //     var aCodes = document.getElementsByTagName('pre');
-            //     for (var i=0; i < aCodes.length; i++) {
-            //         hljs.highlightBlock(aCodes[i]);
-            //     }
-            // };
+            if (!$('html.ie7').size()) { // IE8 and up only
+                var aCodes = document.getElementsByTagName('pre');
+                for (var i=0; i < aCodes.length; i++) {
+                    hljs.highlightBlock(aCodes[i]);
+                }
+            };
 
         });
 

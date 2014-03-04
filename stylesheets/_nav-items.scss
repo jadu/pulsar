@@ -6,13 +6,14 @@
     @include user-select(none);
     > a {
         color: #EAEAEA;
+        cursor: pointer;
         display: block;
         height: $toolbar-height + 20px;
         width: 100%;
         padding: (($toolbar-height - $brand-height) / 2) + 14 $gutter-width 0;
-        cursor: pointer;
+        text-decoration: none;
         &:hover {
-            background: darken($gray-dark,5); 
+            background: rgba(0, 0, 0, .1);
             color: #FFF;
             border-bottom: 3px solid $primary-color; 
         }

@@ -74,7 +74,14 @@
 {% for i in 0..10 %}
       <tr>
         {{ datagrid.select_item(1) }}
-        <td>{{ html.link(label = 'ABC123') }}</td>
+        <td>
+          {{ 
+            html.link(
+              label = 'ABC123',
+              href = 'case.php'
+            ) 
+          }}
+        </td>
         <td>Monday 4th July, 2013</td>
         <td>Parking</td>
         <td>AB12 CDE</td>

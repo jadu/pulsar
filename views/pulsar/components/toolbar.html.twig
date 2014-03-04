@@ -1,3 +1,22 @@
+{% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
+{% import '@pulsar/pulsar/helpers/pulsar.html.twig' as pulsar %}
+
 <div class="toolbar">
-    <h1 class="branding" id="tour-home">{{ html.link('Jadu', '/search') }}</h1>
+  <h1 class="branding" id="tour-home">{{ html.link('Jadu', '/search') }}</h1>
+
+  {% for label, items in toolbar %}
+    {{ pulsar.primary_nav(label = label, menu_items = items) }}
+  {% endfor %}
+    <!-- {{ 
+      html.button_dropdown(
+        label = 'Your Name',
+        class = 'user-actions pull-right',
+        menu_items = [   
+          html.link(label = html.icon('key') ~ ' Change password'),
+          html.divider(),
+          html.link(label = html.icon('signout') ~ ' Sign out')
+        ]
+      )
+    }} -->
+
 </div>

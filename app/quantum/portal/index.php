@@ -23,5 +23,13 @@ $twig->addExtension(new Twig_Extension_Debug());
 
 $template = $twig->loadTemplate('quantum/portal/main.html.twig');
 
+$toolbar = array(
+    'Current Appeals' => '',
+    'Archived Appeals' => '',
+    'Sign Out' => ''
+    );
+
+
 print $template->render(array(
-    ));
+	'toolbar' => $toolbar
+));
