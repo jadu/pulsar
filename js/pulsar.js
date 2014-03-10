@@ -111,15 +111,14 @@ define(['jquery'], function() {
 
             var $this = $(this);
              
-            // if ($this.hasClass('active')) {
-            //     return false;
-            // } else {
-            //     $this.siblings().removeClass('active');
-            // }
-            
-            $('.' + $this.data('group')).hide();
-            // $this.addClass('active');
-            $($this.data('switch')).show();
+            if ($this.hasClass('active')) {
+                return false;
+            }
+
+            $('[data-group=' + $this.data('group') + ']').removeClass('active');
+            $('.' + $this.data('group')).slideUp(150);
+            $this.addClass('active');
+            $($this.data('switch')).slideDown(150);
         });
 
     });

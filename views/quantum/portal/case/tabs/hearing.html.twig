@@ -7,12 +7,11 @@
 
 <div class="tab__inner tab--unpadded">
   {{ form.create() }}
-  {{ form.fieldset_start(legend = 'Hearing') }}
 
   <p>You have had time to review any evidence the authority may have submitted, please confirm whether you would like to proceed with a hearing.</p>
 
   {{ 
-    form.radio(
+    form.radio_flush(
       label = 'I do not wish to attend a hearing',
       help = 'I would like the adjudicator to make an independent decision based on the details and evidence supplied by all parties. You will be informed when your decision has been made',
       name = 'hearing',
@@ -21,7 +20,7 @@
   }}
 
   {{ 
-    form.radio(
+    form.radio_flush(
       label = 'I would like to request a hearing',
       help = 'I would like the opportunity to speak to an adjudicator',
       name = 'hearing',
@@ -30,15 +29,13 @@
   }}
 
   {{ 
-    form.radio(
+    form.radio_flush(
       label = 'I would like to withdraw my appeal',
       help = 'I have reviewed the evidence submitted by the authority and would no longer like to persue my appeal',
       name = 'hearing',
       attributes = 'data-switch=#hearing-withdraw data-group=hearing-type'
     )
   }}
-
-  {{ form.fieldset_end() }}
 
   <div id="hearing-choose" class="hearing-type hide">
 
@@ -81,7 +78,8 @@
         {{ 
           form.textarea(
             label = 'Special requirements',
-            help = 'If you (or anyone coming to a hearing with you) have a disability or a particular need please provide details in the box below. All venues are wheelchair accessible and a hearing loop is available.'
+            help = 'If you (or anyone coming to a hearing with you) have a disability or a particular need please provide details in the box below. All venues are wheelchair accessible and a hearing loop is available.',
+            rows = 4
           ) 
         }}
       </div>
@@ -92,7 +90,7 @@
   {{ 
     form.form_end([
         form.submit(label = 'Send my Hearing Request', class = 'btn--primary')
-    ]) 
+    ], flush = true) 
   }}
 
 </div>

@@ -2,8 +2,8 @@
     <form {% if action is not empty %}action="{{ action }}"{% endif %} class="form--horizontal{% if class is not empty %} {{ class }}{% endif %}"{% if id is not empty %} id="{{ id }}"{% endif %} method="{{ method }}">
 {% endmacro %}
 
-{% macro form_end(actions) %}
-        <div class="form__actions">
+{% macro form_end(actions, flush) %}
+        <div class="form__actions{% if flush is not empty %} form__actions--flush{% endif %}">
             {% for action in actions %}
                 {{ action }}
             {% endfor %}
@@ -164,6 +164,21 @@
 {% macro radio_right(label, id, class, name, checked = false, help, attributes) %}
     {% import _self as form %}
     <div class="form__group {{ class }}">
+        <div class="radio">
+            <label {{ form.for(id) }} class="checkbox__label">
+                <input type="radio" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }} {% if attributes is not empty %} {{ attributes|raw }}{% endif %} />
+                {{ label | raw }}
+            </label>
+            {% if help is not empty %} 
+            {{ form.help(help) }}
+            {% endif %}
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro radio_flush(label, id, class, name, checked = false, help, attributes) %}
+    {% import _self as form %}
+    <div class="form__group form__group--flush {{ class }}">
         <div class="radio">
             <label {{ form.for(id) }} class="checkbox__label">
                 <input type="radio" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }} {% if attributes is not empty %} {{ attributes|raw }}{% endif %} />
