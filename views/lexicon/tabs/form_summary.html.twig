@@ -1,8 +1,12 @@
-{{ form.create() }}
-{{ form.fieldset_start('Create Campaign Tracker') }}
+<h2 class="heading">{{ heading|raw }}</h2>
 
-  {{ form.text('Tracker name', 'inputText', null, 'inputText', 'Twitter') }}
-  {{ form.text('URL Fragment', 'inputText', null, 'inputText', '?medium=twitter', 'This will be automatically added to tweets.') }}
-  
-{{ form.fieldset_end() }}
-{{ form.form_end() }}
+<div class="tab__inner">
+  {{ form.create() }}
+  {{ form.fieldset_start('Create Campaign Tracker') }}
+
+    {{ form.text('Tracker name', 'inputText', null, 'inputText', 'Twitter') }}
+    {{ form.text('URL Fragment', 'inputText', null, 'inputText', '?medium=twitter', 'This will be automatically added to tweets.') }}
+    
+  {{ form.fieldset_end() }}
+  {{ form.form_end() }}
+</div>
