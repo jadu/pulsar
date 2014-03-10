@@ -6,41 +6,41 @@
 {% block title %}{{ parent() }}{% endblock %}
 
 {% block content %}
-<div class="actionsbar actionsbar--left">
-  <div class="btn__toolbar">
-    {{ 
-      html.button(
-        label = 'Make an Appeal',
-        class = 'btn--primary'
-      )
+<div class="dashboard">
+
+  <div class="actionsbar actionsbar--left">
+    <div class="btn__toolbar">
+      {{ 
+        html.button(
+          label = 'Make an Appeal',
+          class = 'btn--primary'
+        )
+      }}
+    </div>
+  </div>
+
+  <div class="actionsbar actionsbar--right">
+  {{ 
+     html.button_dropdown(
+      label = '<strong>1&ndash;10</strong> of <strong>999</strong>',
+      class = 'pagination--simple',
+      menu_items = [   
+          html.link(label = 'Newest'),
+          html.link(label = 'Oldest'),
+      ]
+     )
+  }}
+    {{
+      html.button_group([ 
+        html.button(
+          label = html.icon('chevron-left')
+        ),
+        html.button(
+          label = html.icon('chevron-right')
+        )
+      ])
     }}
   </div>
-</div>
-
-<div class="actionsbar actionsbar--right">
-{{ 
-   html.button_dropdown(
-    label = '<strong>1&ndash;10</strong> of <strong>999</strong>',
-    class = 'pagination--simple',
-    menu_items = [   
-        html.link(label = 'Newest'),
-        html.link(label = 'Oldest'),
-    ]
-   )
-}}
-  {{
-    html.button_group([ 
-      html.button(
-        label = html.icon('chevron-left')
-      ),
-      html.button(
-        label = html.icon('chevron-right')
-      )
-    ])
-  }}
-</div>
-
-<div class="dashboard">
 
   <table class="table--datagrid" id="component_example">
     <thead>
