@@ -73,12 +73,12 @@
     <tbody>
 {% for i in 0..10 %}
       <tr>
-        {{ datagrid.select_item(1) }}
+        {{ datagrid.select_item(i) }}
         <td>
           {{ 
             html.link(
               label = 'ABC123',
-              href = 'case.php'
+              href = 'portal/case.php'
             ) 
           }}
         </td>

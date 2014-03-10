@@ -11,6 +11,10 @@
     {% include 'quantum/portal/case/tabs/details.html.twig' %}
 {% endset %}
 
+{% set tab_evidence %}
+    {% include 'quantum/portal/case/tabs/evidence.html.twig' %}
+{% endset %}
+
 {% 
   set tabs = [
     {
@@ -25,6 +29,7 @@
     {
       "id"        : "my_evidence",
       "label"     : "My evidence",
+      "src"       : tab_evidence
     },
     {
       "id"        : "authority_evidence",

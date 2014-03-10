@@ -29,12 +29,28 @@
 
       text-align: left;
 
+      &.preview {
+        text-align: center;
+
+        img {
+          height: 30px;
+          vertical-align: middle;
+          width: 30px;
+        }
+      }
+
       &.centered {
         text-align: center;
       }
 
       &.shrink-to-fit {
         width: 1px;
+      }
+
+      &.no-wrap {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     }
   }
@@ -55,6 +71,7 @@
   .row__actions {
     text-align: center;
     padding: 0;
+    min-width: 50px;
     width: 50px;
 
     // First column after the actions doesn't need so much space

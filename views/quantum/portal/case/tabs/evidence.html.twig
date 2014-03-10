@@ -1,0 +1,35 @@
+{% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
+{% import '@pulsar/pulsar/helpers/form.html.twig' as form %}
+{% import '@pulsar/pulsar/helpers/flash.html.twig' as flash %}
+{% import 'pulsar/helpers/datagrid.html.twig' as datagrid %}
+<table class="table--datagrid" id="lexicon_analytics">
+  <thead>
+    <tr>
+      {{ datagrid.select_all() }}
+      <th class="centered">{{ html.icon('search') }}</th>
+      <th><a href="#">Date {{ html.icon('sort-down') }}</a></th>
+      <th><a href="#">Name</a></th>
+      <th><a href="#">Type</a></th>
+      <th><a href="#">Description</a></th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for i in 1..10 %}
+    <tr>
+      {{ datagrid.select_item(i) }}
+      <td class="preview"><img src="http://www.dumb.com/m_pictures/1b60c22e7d92a900f6534a5880845979.jpg" /></td>
+      <td>04/07/2014</td>
+      <td>
+        {{ 
+          html.link(
+            label = 'Article&nbsp;' ~ i,
+            href = '#'
+          ) 
+        }}
+      </td>
+      <td>Photograph</td>
+      <td class="no-wrap">This is my description, it should be truncated after a sensible amount of words</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
