@@ -3,60 +3,64 @@
 {% import '@pulsar/pulsar/helpers/flash.html.twig' as flash %}
 {% import '@pulsar/pulsar/helpers/datagrid.html.twig' as datagrid %}
 
-<div class="portal__details">
+<h2 class="heading">{{ heading|raw }}</h2>
 
-  <div class="portal__details--left">
-    <dl class="dl-horizontal">
+<div class="tab__inner tab--unpadded">
+  <div class="portal__details">
 
-      <dt>Case reference</dt>
-      <dd>AB123C</dd>
+    <div class="portal__details--left">
+      <dl class="dl-horizontal">
 
-      <dt>Status</dt>
-      <dd>{{ html.label(label = 'Submitted to TPT') }}</dd>
+        <dt>Case reference</dt>
+        <dd>AB123C</dd>
 
-      <dt>Date submitted</dt>
-      <dd>04/07/2014 <span class="muted">12 days ago</span></dd>
+        <dt>Status</dt>
+        <dd>{{ html.label(label = 'Submitted to TPT') }}</dd>
 
-      <dt>Penalty type</dt>
-      <dd>England Parking</dd>
+        <dt>Date submitted</dt>
+        <dd>04/07/2014 <span class="muted">12 days ago</span></dd>
 
-      <dt>Vehicle Registration</dt>
-      <dd>AB12 CDE</dd>
+        <dt>Penalty type</dt>
+        <dd>England Parking</dd>
 
-      <dt>Notice of Rejection date</dt>
-      <dd>01/07/2014 <span class="muted">15 days ago</span></dd>
+        <dt>Vehicle Registration</dt>
+        <dd>AB12 CDE</dd>
 
-      <dt>Details</dt>
-      <dd>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis ligula ac tellus tristique pharetra vitae ac felis. Morbi non sollicitudin sem, non fringilla sapien. Donec luctus metus non ipsum feugiat, id hendrerit felis feugiat. Interdum et malesuada fames ac ante ipsum primis in faucibus. Phasellus bibendum, mi sed sodales ultricies, felis quam semper nisi, sed dapibus mi lectus sed eros. Pellentesque id turpis quam. Vivamus vulputate rutrum arcu, at lacinia urna.</p>
-      </dd>
+        <dt>Notice of Rejection date</dt>
+        <dd>01/07/2014 <span class="muted">15 days ago</span></dd>
 
-    </dl>
+        <dt>Details</dt>
+        <dd>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis ligula ac tellus tristique pharetra vitae ac felis. Morbi non sollicitudin sem, non fringilla sapien. Donec luctus metus non ipsum feugiat, id hendrerit felis feugiat. Interdum et malesuada fames ac ante ipsum primis in faucibus. Phasellus bibendum, mi sed sodales ultricies, felis quam semper nisi, sed dapibus mi lectus sed eros. Pellentesque id turpis quam. Vivamus vulputate rutrum arcu, at lacinia urna.</p>
+        </dd>
+
+      </dl>
+    </div>
+
+    <div class="portal__details--right">
+      <span>PCN No(s)</span>
+      {{ 
+        html.list(
+          [
+            'AB12345678',
+            'AB12345678',
+            'AB12345678',
+            'AB12345678',
+            'AB12345678'
+          ],
+          class = 'unbulleted'
+        )
+      }}
+    </div>
+
   </div>
 
-  <div class="portal__details--right">
-    <span>PCN No(s)</span>
+  <div class="form__actions">
     {{ 
-      html.list(
-        [
-          'AB12345678',
-          'AB12345678',
-          'AB12345678',
-          'AB12345678',
-          'AB12345678'
-        ],
-        class = 'unbulleted'
+      html.button(
+        label = 'Withdraw my Appeal',
+        class = 'btn--danger'
       )
     }}
   </div>
-
-</div>
-
-<div class="form__actions">
-  {{ 
-    html.button(
-      label = 'Withdraw my Appeal',
-      class = 'btn--danger'
-    )
-  }}
 </div>
