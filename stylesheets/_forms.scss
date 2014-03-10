@@ -35,6 +35,11 @@ label {
   text-align: right;
 }
 
+p {
+  clear: both;
+  margin-left: $gutter-width;
+}
+
 
 // Normalize form controls
 
@@ -363,6 +368,7 @@ textarea {
 .form--horizontal .form__group > .checkbox__label,
 .form--horizontal .form__group > .radio__label {
   width: 20%;
+  vertical-align: top;
 }
 
 .form--horizontal .radio--inline,

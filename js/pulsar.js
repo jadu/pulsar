@@ -106,7 +106,21 @@ define(['jquery'], function() {
             $target.slideToggle(100);
         });
 
+        // Switch a given element within the same data-group
+        $('[data-switch]').on('click', function(e) {
+
+            var $this = $(this);
+             
+            // if ($this.hasClass('active')) {
+            //     return false;
+            // } else {
+            //     $this.siblings().removeClass('active');
+            // }
+            
+            $('.' + $this.data('group')).hide();
+            // $this.addClass('active');
+            $($this.data('switch')).show();
+        });
+
     });
 });
-
-

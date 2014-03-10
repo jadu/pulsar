@@ -15,12 +15,16 @@
     {% include 'quantum/portal/case/tabs/evidence.html.twig' %}
 {% endset %}
 
+{% set tab_hearing %}
+    {% include 'quantum/portal/case/tabs/hearing.html.twig' %}
+{% endset %}
+
 {% 
   set tabs = [
     {
       "id"        : "details",
       "label"     : "Appeal details",
-      "src"       : tab_details
+      "src"       : tab_hearing
     },
     {
       "id"        : "messages",
@@ -39,6 +43,7 @@
     {
       "id"        : "hearing",
       "label"     : "Hearing",
+      "src"       : tab_hearing
     },
     {
       "id"        : "decision",

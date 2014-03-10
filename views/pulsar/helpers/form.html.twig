@@ -109,12 +109,12 @@
     </div>
 {% endmacro %}
 
-{% macro checkbox(label, id, class, name, checked = false, help) %}
+{% macro checkbox(label, id, class, name, checked = false, help, attributes) %}
     {% import _self as form %}
     <div class="form__group {{ class }}">
         <label {{ form.for(id) }} class="checkbox__label">{{ label | raw }}</label>
         <div class="controls">
-            <input type="checkbox" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }} />
+            <input type="checkbox" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }} {% if attributes is not empty %} {{ attributes|raw }}{% endif %} />
             {% if help is not empty %} 
             {{ form.help(help) }}
             {% endif %}
@@ -122,12 +122,12 @@
     </div>
 {% endmacro %}
 
-{% macro checkbox_right(label, id, class, name, checked = false, help) %}
+{% macro checkbox_right(label, id, class, name, checked = false, help, attributes) %}
     {% import _self as form %}
     <div class="form__group {{ class }}">
         <div class="checkbox">
             <label {{ form.for(id) }} class="checkbox__label">
-                <input type="checkbox" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }} />
+                <input type="checkbox" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }} {% if attributes is not empty %} {{ attributes|raw }}{% endif %} />
                 {{ label | raw }}
             </label>
             {% if help is not empty %} 
@@ -137,10 +137,10 @@
     </div>
 {% endmacro %}
 
-{% macro checkbox_inline(label, id, class, name, checked = false, help) %}
+{% macro checkbox_inline(label, id, class, name, checked = false, help, attributes) %}
     {% import _self as form %}
     <label {{ form.for(id) }} class="checkbox--inline">
-        <input type="checkbox" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }} />
+        <input type="checkbox" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }} {% if attributes is not empty %} {{ attributes|raw }}{% endif %} />
         {% if help is not empty %} 
         {{ form.help(help) }}
         {% endif %}
@@ -148,12 +148,12 @@
     </label>
 {% endmacro %}
 
-{% macro radio(label, id, class, name, checked = false, help) %}
+{% macro radio(label, id, class, name, checked = false, help, attributes) %}
     {% import _self as form %}
     <div class="form__group {{ class }}">
         <label {{ form.for(id) }} class="checkbox__label">{{ label | raw }}</label>
         <div class="controls">
-            <input type="radio" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }} />
+            <input type="radio" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }} {% if attributes is not empty %} {{ attributes|raw }}{% endif %} />
             {% if help is not empty %} 
             {{ form.help(help) }}
             {% endif %}
@@ -161,12 +161,12 @@
     </div>
 {% endmacro %}
 
-{% macro radio_right(label, id, class, name, checked = false, help) %}
+{% macro radio_right(label, id, class, name, checked = false, help, attributes) %}
     {% import _self as form %}
     <div class="form__group {{ class }}">
         <div class="radio">
             <label {{ form.for(id) }} class="checkbox__label">
-                <input type="radio" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }} />
+                <input type="radio" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }} {% if attributes is not empty %} {{ attributes|raw }}{% endif %} />
                 {{ label | raw }}
             </label>
             {% if help is not empty %} 
@@ -176,10 +176,10 @@
     </div>
 {% endmacro %}
 
-{% macro radio_inline(label, id, class, name, checked = false, help) %}
+{% macro radio_inline(label, id, class, name, checked = false, help, attributes) %}
     {% import _self as form %}
     <label {{ form.for(id) }} class="radio--inline">
-        <input type="radio" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }} />
+        <input type="radio" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }} {% if attributes is not empty %} {{ attributes|raw }}{% endif %} />
         {% if help is not empty %} 
         {{ form.help(help) }}
         {% endif %}
@@ -188,7 +188,8 @@
 {% endmacro %}
 
 {% macro submit(label = 'Submit', class, type, id, href, attributes) %}
-    <input type="submit" class="btn{% if class is not empty %} {{ class }}{% endif %}" {{ form.id(id) }} {{ form.value(label|raw) }}{% if attributes is not empty %} {{ attributes|raw }}{% endif %}{% if 'is-disabled' in class %} disabled="disabled"{% endif %} />
+    {% import _self as form %}
+    <input type="submit" class="btn{% if class is not empty %} {{ class }}{% endif %}" {{ form.id(id) }} {{ _self.value(label|raw) }}{% if attributes is not empty %} {{ attributes|raw }}{% endif %}{% if 'is-disabled' in class %} disabled="disabled"{% endif %} />
 {% endmacro %}
 
 {% macro checkbox_group(checkboxes) %}
