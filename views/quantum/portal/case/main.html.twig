@@ -19,12 +19,17 @@
     {% include 'quantum/portal/case/tabs/hearing.html.twig' %}
 {% endset %}
 
+{% set tab_decision %}
+    {% include 'quantum/portal/case/tabs/decision.html.twig' %}
+{% endset %}
+
 {% 
   set tabs = [
     {
       "id"        : "details",
       "label"     : "Appeal details",
       "src"       : tab_details
+
     },
     {
       "id"        : "messages",
@@ -47,7 +52,8 @@
     },
     {
       "id"        : "decision",
-      "label"     : "Desicion",
+      "label"     : "Decision",
+      "src"       : tab_decision
     }
   ]
 %}

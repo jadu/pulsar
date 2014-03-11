@@ -106,6 +106,11 @@ define(['jquery'], function() {
             $target.slideToggle(100);
         });
 
+        $('[data-show]').on('click', function(e) {
+            $target = $('.' + $(this).data('toggle'));
+            $target.slideToggle(100);
+        });
+
         // Switch a given element within the same data-group
         $('[data-switch]').on('click', function(e) {
 
@@ -116,9 +121,31 @@ define(['jquery'], function() {
             }
 
             $('[data-group=' + $this.data('group') + ']').removeClass('active');
-            $('.' + $this.data('group')).slideUp(150);
+
+            $('.' + $this.data('group')).hide();
             $this.addClass('active');
-            $($this.data('switch')).slideDown(150);
+            $($this.data('switch')).fadeIn(150);
+        });
+
+        $('input[type=checkbox][data-checked-enable]').change(function() {
+            var $this = $(this),
+                target = $this.data('checked-enable');
+            if ($this.is(':checked')) {
+                $(target)
+                    .removeClass('is-disabled')
+                    .removeAttr('disabled');
+            }
+        });
+
+        $('input[type=checkbox][data-unchecked-disable]').change(function() {
+            var $this = $(this),
+                target = $this.data('unchecked-disable');
+                
+            if (!$this.is(':checked')) {
+                $(target)
+                    .addClass('is-disabled')
+                    .attr('disabled', true);
+            }
         });
 
     });

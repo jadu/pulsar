@@ -137,6 +137,21 @@
     </div>
 {% endmacro %}
 
+{% macro checkbox_flush(label, id, class, name, checked = false, help, attributes) %}
+    {% import _self as form %}
+    <div class="form__group form__group--flush {{ class }}">
+        <div class="checkbox">
+            <label {{ form.for(id) }} class="checkbox__label">
+                <input type="checkbox" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }} {% if attributes is not empty %} {{ attributes|raw }}{% endif %} />
+                {{ label | raw }}
+            </label>
+            {% if help is not empty %} 
+            {{ form.help(help) }}
+            {% endif %}
+        </div>
+    </div>
+{% endmacro %}
+
 {% macro checkbox_inline(label, id, class, name, checked = false, help, attributes) %}
     {% import _self as form %}
     <label {{ form.for(id) }} class="checkbox--inline">

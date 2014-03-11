@@ -1,0 +1,49 @@
+{% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
+{% import '@pulsar/pulsar/helpers/form.html.twig' as form %}
+{% import '@pulsar/pulsar/helpers/flash.html.twig' as flash %}
+{% import '@pulsar/pulsar/helpers/datagrid.html.twig' as datagrid %}
+
+<h2 class="heading">{{ heading|raw }}</h2>
+
+<div class="tab__inner tab--padded">
+
+  <h3>Decision: <strong>dismissed</strong></h3>
+  <p>Friday 4th July, 2014 12:34pm</p>
+
+  <p>You are not liable to pay the penalty charge (unless your vehicle was removed or clamped and you paid to have it released, in which case you need to take no action).</p>
+
+  <p>You have 28 days to pay. If you do not pay, the council may issue a Charge Certificate. The amount of the penalty charge will then increase by 50%.</p>
+
+  <p>You must pay the full amount of the penalty charge unless the Council has expressly agreed to accept a lesser sum. The discount for prompt payment is no longer available.</p>
+
+  <p>If you are unsure how, where or how much to pay, contact the council for advice. The Traffic Penalty Tribunal is not involved in enforcing penalty charges. Do not send money to the Traffic Penalty Tribunal.</p>
+
+  <p>The Adjudicator's decision is final. There is no automatic right to appeal.</p>
+
+  {{ 
+    html.button(
+      label = 'Pay on the Council Website',
+      class = 'btn--primary'
+    )
+  }}
+
+  <hr / >
+
+  <h3>Decision document 
+  {{ 
+    html.button(
+      label = html.icon('download-alt') ~ ' Download',
+      class = 'pull-right'
+    )
+  }}</h3>
+
+  <hr />
+
+  {{ 
+    html.button(
+      label = html.icon('arrow-up') ~ ' Back to Top',
+      type = 'link'
+    )
+  }}
+
+</div>

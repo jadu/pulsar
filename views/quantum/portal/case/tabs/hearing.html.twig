@@ -15,7 +15,7 @@
       label = 'I do not wish to attend a hearing',
       help = 'I would like the adjudicator to make an independent decision based on the details and evidence supplied by all parties. You will be informed when your decision has been made',
       name = 'hearing',
-      attributes = 'data-switch=#hearing-none data-group=hearing-type'
+      attributes = 'data-switch=.hearing-none data-group=hearing-type'
     )
   }}
 
@@ -24,7 +24,7 @@
       label = 'I would like to request a hearing',
       help = 'I would like the opportunity to speak to an adjudicator',
       name = 'hearing',
-      attributes = 'data-switch=#hearing-choose data-group=hearing-type'
+      attributes = 'data-switch=.hearing-choose data-group=hearing-type'
     )
   }}
 
@@ -33,11 +33,13 @@
       label = 'I would like to withdraw my appeal',
       help = 'I have reviewed the evidence submitted by the authority and would no longer like to persue my appeal',
       name = 'hearing',
-      attributes = 'data-switch=#hearing-withdraw data-group=hearing-type'
+      attributes = 'data-switch=.hearing-withdraw data-group=hearing-type'
     )
   }}
 
-  <div id="hearing-choose" class="hearing-type hide">
+  <div class="hearing-type hearing-choose hide">
+
+    {{ form.fieldset_start(legend = 'Request hearing') }}
 
     <ul class="tabs__list tabs--horizontal">
       <li class="is-active"><a href="#telephone" data-toggle="tab">Telephone hearing</a></li>
@@ -85,12 +87,39 @@
       </div>
     </div>
 
+    {{ form.fieldset_end() }}
+
+  </div>
+
+  <div id="hearing-withdraw" class="hearing-type hearing-withdraw hide">
+    
+    {{ form.fieldset_start(legend = 'Withdraw Appeal') }}
+
+    <p>A paragraph explaining the implications of withdrawl, that nothing more will happen and the appellant remains responsible for paying their penalty to the authority.</p>
+
+    {{ 
+      form.checkbox_flush(
+        label = 'I agree to contact the authority and pay the penalty',
+        name = 'withdrawl_confirm',
+        attributes = 'data-checked-enable=#confirm-hearing-withdraw data-unchecked-disable=#confirm-hearing-withdraw'
+      )
+    }}
+
+    {{ form.fieldset_end() }}
   </div>
 
   {{ 
     form.form_end([
-        form.submit(label = 'Send my Hearing Request', class = 'btn--primary')
-    ], flush = true) 
+        form.submit(
+          label = 'Send my Hearing Request',
+          class = 'btn--primary hearing-type hearing-choose hearing-none'
+        ),
+        form.submit(
+          label = 'Withdraw my Appeal',
+          id = 'confirm-hearing-withdraw',
+          class = 'btn--danger hearing-type hearing-withdraw hide is-disabled'
+        )
+    ], flush = true)
   }}
 
 </div>

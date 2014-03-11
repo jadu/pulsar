@@ -160,6 +160,11 @@
   width: 25%;
 }
 
+.tab--unpadded p {
+  clear: both;
+  margin-left: $gutter-width;
+}
+
 .tab--padded {
   padding: $line-height-base $gutter-width;
 }
