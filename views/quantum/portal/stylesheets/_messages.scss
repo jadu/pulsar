@@ -1,0 +1,81 @@
+.portal-messages {
+  time {
+    clear: both;
+    float: right;
+  }
+}
+
+.portal-messages__list,
+.portal-messages__message {
+  max-height: 500px;
+  overflow-y: scroll;
+}
+
+.portal-messages__list {
+  border-right: 1px solid $gray;
+  box-shadow: inset -5px -5px 5px rgba(0,0,0,.1);
+  float: left;
+  width: 35%;
+
+  li {
+    border-bottom: 1px solid $gray;
+    list-style-type: none;
+    padding: 3px 5px 2px 5px;
+
+    &.is-selected {
+      background-color: lighten($primary-color, 30%);
+      .sender {
+        font-family: $font-family-regular;
+      }
+    }
+  }
+
+  .sender,
+  .subject {
+    display: inline-block;
+  }
+
+  .subject {
+    font-size: $font-size-small;
+    line-height: 1line-height-small;
+  }
+}
+
+.portal-messages__message {
+  float: left;
+  padding: 15px $gutter-width;
+  width: 65%;
+
+  .sender,
+  .subject,
+  .recipient {
+    display: inline-block;
+  }
+
+  header {
+    border-bottom: 1px solid $gray-lighter;
+    margin-bottom: 1em;
+  }
+
+  .subject {
+    font-family: $font-family-regular;
+    font-size: $font-size-large;
+    line-height: $line-height-large;
+    margin-bottom: .5em;
+  }
+
+  .message-body {
+    border-top: 1px solid $gray-lighter;
+    
+    &,
+    > p {
+      margin-top: 1em;
+    }
+  }
+  
+  p {
+    clear: none;
+    margin-left: 0;
+  }
+
+}
