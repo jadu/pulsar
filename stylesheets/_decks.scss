@@ -120,7 +120,7 @@
   }
 
   &.padded {
-    padding: $line-height-base $gutter-width;
+    padding: $gutter-width $gutter-width 0 $gutter-width;
   }
   
   & {
@@ -174,7 +174,13 @@
     border: 0;
   }
 
+  &.padded .form__actions {
+    margin-left: -20px;
+    margin-right: -20px;
+  }
+
 }
+
 
 
 // Define the animated transition when the .deck-background class is added and removed

@@ -35,7 +35,8 @@
           {{ 
             html.link(
               label = 'Article&nbsp;' ~ i,
-              href = '#'
+              href = '#deck-evidence-item',
+              attributes = 'data-toggle=deck'
             ) 
           }}
         </td>
@@ -58,3 +59,5 @@
     --></ul>
   </div>
 </div>
+
+<div class="deck" id="deck-evidence-item" data-deck-source="/views/quantum/portal/case/decks/evidence_item.html.twig"></div>

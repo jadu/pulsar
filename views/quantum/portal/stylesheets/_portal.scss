@@ -14,3 +14,31 @@
 .help-block {
   margin-bottom: 0;
 }
+
+.btn__toolbar h3 {
+  display: inline-block;
+  line-height: 36px;
+  margin-left: $gutter-width;
+}
+
+#deck-evidence-item {
+  img {
+    margin-right: 2%;
+    margin-bottom: $line-height-base;
+    width: 70%;
+  }
+
+  .form__group:hover {
+    box-shadow: none;
+  }
+
+  div.pull-left {
+    width: 28%;
+
+    label {
+      margin-left: 0;
+    }
+  }
+
+
+}
