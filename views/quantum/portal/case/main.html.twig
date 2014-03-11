@@ -11,6 +11,10 @@
     {% include 'quantum/portal/case/tabs/details.html.twig' %}
 {% endset %}
 
+{% set tab_messages %}
+    {% include 'quantum/portal/case/tabs/messages.html.twig' %}
+{% endset %}
+
 {% set tab_evidence %}
     {% include 'quantum/portal/case/tabs/evidence.html.twig' %}
 {% endset %}
@@ -28,12 +32,13 @@
     {
       "id"        : "details",
       "label"     : "Appeal details",
-      "src"       : tab_evidence
+      "src"       : tab_details
 
     },
     {
       "id"        : "messages",
       "label"     : "Messages",
+      "src"       : tab_messages
     },
     {
       "id"        : "my_evidence",

@@ -9,6 +9,25 @@
 
 .portal__details--right {
   float: left;
+  margin-left: 2%;
+  width: 28%;
+
+  span {
+    display: block;
+    font-weight: normal;
+    font-family: $font-family-regular;
+    margin-bottom: 1em;
+  }
+
+  ul {
+    width: 100%;
+  }
+
+  li {
+    border-bottom: 1px solid #efefef;
+    margin-bottom: .5em;
+    width: 100%;
+  }
 }
 
 .help-block {
@@ -39,6 +58,31 @@
       margin-left: 0;
     }
   }
+}
 
+.portal__details {
+  dl {
 
+    dt {
+      font-weight: normal;
+      font-family: $font-family-regular;
+      margin-right: 2%;
+      width: 30%;
+    }
+
+    dd {
+      margin-bottom: 1em;
+      margin-left: 32%;
+    }
+
+    dd > p {
+      clear: none;
+      margin-left: 0;
+    }
+  }
+}
+
+.muted {
+  color: $gray-light;
+  margin-left: $gutter-width;
 }
