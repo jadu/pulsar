@@ -60,6 +60,8 @@ footer {
         font-family: "proxima_nova_regular", "Helvetica Neue", "Helvetica", "Arial", sans-serif; }
     .portal-messages__list li:last-of-type {
       border-bottom: 3px double #ccc; }
+  .portal-messages__list .badge {
+    margin-left: 20px; }
   .portal-messages__list .sender, .portal-messages__list .subject {
     display: inline-block; }
   .portal-messages__list .subject {
