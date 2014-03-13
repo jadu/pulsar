@@ -1,31 +1,47 @@
 /**
  * Set up Pulsar's UI environment
  */
-
 define(['jquery'], function() {
 
     $(document).ready(function() {
-    
-        // Stick the Jadu toolbar to the top of the window
-        require(['sticky'], function() {
-            $('.toolbar').sticky({topSpacing: 0});
-            // $('.tray').sticky({topSpacing: 44}).sticky('update');
-        });
 
-        // Init tooltips
-        require(['tooltip'], function() {
+        // Set up Pulsar's UI environment
+        require([
+            'actions',
+            'highlightjs',
+            'jquery-autosize',
+            'tooltip',
+            'sticky',
+            'datagrid'
+        ], function() {
+
+            // actions menu
+            $('.actions-menu').actions();
+
+            // tooltips
             $('[data-toggle="tooltip"]').tooltip();
-        });
 
-        // Trigger syntax highlighting
-        if (!$('html.ie7').size()) { // IE8 and up only
-            require(['highlightjs'], function() {
+            // datagrid
+            $('.table--datagrid').each(function () {
+                $(this).datagrid();
+            });
+
+            // sticky toolbar
+            $('.toolbar').sticky({topSpacing: 0});
+
+            // syntax highlighting
+            if (!$('html.ie7').size()) { // IE8 and up only
                 var aCodes = document.getElementsByTagName('pre');
                 for (var i=0; i < aCodes.length; i++) {
                     hljs.highlightBlock(aCodes[i]);
                 }
-            });
-        }
+            };
+
+
+        });
+
+
+// To clean up -----------------
 
         // Show summary panels based on their data-tab value
         require(['tab'], function() {
@@ -93,7 +109,47 @@ define(['jquery'], function() {
             $target.slideToggle(100);
         });
 
+        $('[data-show]').on('click', function(e) {
+            $target = $('.' + $(this).data('toggle'));
+            $target.slideToggle(100);
+        });
+
+        // Switch a given element within the same data-group
+        $('[data-switch]').on('click', function(e) {
+
+            var $this = $(this);
+             
+            if ($this.hasClass('active')) {
+                return false;
+            }
+
+            $('[data-group=' + $this.data('group') + ']').removeClass('active');
+
+            $('.' + $this.data('group')).hide();
+            $this.addClass('active');
+            $($this.data('switch')).fadeIn(150);
+        });
+
+        $('input[type=checkbox][data-checked-enable]').change(function() {
+            var $this = $(this),
+                target = $this.data('checked-enable');
+            if ($this.is(':checked')) {
+                $(target)
+                    .removeClass('is-disabled')
+                    .removeAttr('disabled');
+            }
+        });
+
+        $('input[type=checkbox][data-unchecked-disable]').change(function() {
+            var $this = $(this),
+                target = $this.data('unchecked-disable');
+                
+            if (!$this.is(':checked')) {
+                $(target)
+                    .addClass('is-disabled')
+                    .attr('disabled', true);
+            }
+        });
+
     });
 });
-
-

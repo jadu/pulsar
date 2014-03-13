@@ -9,6 +9,7 @@ define(['jquery'], function() {
         require([
             'actions',
             'highlightjs',
+            'jquery-autosize',
             'tooltip',
             'sticky',
             'datagrid'
@@ -36,7 +37,9 @@ define(['jquery'], function() {
                 }
             };
 
+
         });
+
 
 // To clean up -----------------
 

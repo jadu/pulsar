@@ -7,18 +7,22 @@
 
 .portal-messages__list,
 .portal-messages__message {
+  min-height: 500px;
   max-height: 500px;
   overflow-y: scroll;
 }
 
 .portal-messages__list {
+  background-color: $off-white;
   border-right: 1px solid $gray;
   box-shadow: inset -5px -5px 5px rgba(0,0,0,.1);
   float: left;
   width: 35%;
 
   li {
+    background-color: white;
     border-bottom: 1px solid $gray;
+    box-shadow: inset -5px 0px 5px -2px rgba(0,0,0,.1);
     list-style-type: none;
     padding: 3px 5px 2px 5px;
 
@@ -27,6 +31,10 @@
       .sender {
         font-family: $font-family-regular;
       }
+    }
+
+    &:last-of-type {
+      border-bottom: 3px double $gray;
     }
   }
 
@@ -78,4 +86,40 @@
     margin-left: 0;
   }
 
+}
+
+.history {
+  background-color: $off-white;
+  cursor: pointer;
+  color: $text-color;
+  display: block;
+  margin: -1.1em (-$gutter-width) 1em;
+  border-top: 1px solid $gray;
+  border-bottom: 1px solid $gray;
+  position: relative;
+  text-align: center;
+
+  span {
+    background-color: $off-white;
+    padding: 0 $gutter-width;
+    position: relative;
+    z-index: 1;
+  }
+
+  &:after {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    height: 1px;
+    background: $gray;
+    content: "";
+    width: 100%;
+    display: block;
+    z-index: 0;
+  }
+
+  &:hover,
+  &:hover > span {
+    background-color: darken($off-white, 5%);
+  }
 }

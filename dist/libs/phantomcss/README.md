@@ -3,7 +3,7 @@ PhantomCSS
 
 **CSS regression testing**. A [CasperJS](http://github.com/n1k0/casperjs) module for automating visual regression testing with [PhantomJS](http://github.com/ariya/phantomjs/) and [Resemble.js](http://huddle.github.com/Resemble.js/). For testing Web apps, live style guides and responsive layouts. Read more on Huddle's Engineering blog: [CSS Regression Testing](http://tldr.huddle.com/blog/css-testing/).
 
-### Code
+### Example
 
 ```javascript
 casper.
@@ -19,9 +19,14 @@ casper.
 	});
 ```
 
+From the command line/terminal run
+
+* On Windows `casperjs demo/testsuite.js`
+* On Mac OSX `casperjs test demo/testsuite.js`
+
 ### How?
 
-PhantomCSS takes screenshots captured by PhantomJS and compares them to baseline images using [Resemble.js](http://huddle.github.com/Resemble.js/) to test for rgb pixel differences. PhantomCSS then generates image diffs to help you find the cause.
+PhantomCSS takes screenshots captured by CasperJS and compares them to baseline images using [Resemble.js](http://huddle.github.com/Resemble.js/) to test for rgb pixel differences. PhantomCSS then generates image diffs to help you find the cause.
 
 ![A failed visual regression test, pink areas show where padding has changed.](https://raw.github.com/Huddle/PhantomCSS/master/readme_assets/intro-example.png "Failed visual regression test")
 
@@ -29,10 +34,10 @@ Screenshot based regression testing can only work when UI is predictable. It's p
 
 ### Getting started, try the demo
 
-* Mac OSX users should first [download PhantomJS](http://phantomjs.org/download.html), easiest with Homebrew.  For convenience I've included PhantomJS.exe for Windows users
-* Download or clone this repo and run `phantomjs demo/testsuite.js` in command/terminal from the PhantomCSS folder.  PhantomJS is the only binary dependency - this should just work
+* Mac OSX users should first [install CasperJS 1.1-beta](http://docs.casperjs.org/en/latest/installation.html), easiest with Homebrew.  For convenience I've included CasperJS.bat for Windows users.
+* Download or clone this repo and run `casperjs demo/testsuite.js` (windows) or `casperjs test demo/testsuite.js` (OSX) in command/terminal from the PhantomCSS folder.  PhantomJS is the only binary dependency - this should just work
 * Find the screenshot folder and have a look at the (baseline) images
-* Run the tests again with `phantomjs demo/testsuite.js`. New screenshots will be created to compare against the baseline images. These new images can be ignored, they will be replaced every test run.
+* Run the tests again with `casperjs demo/testsuite.js` (windows) or `casperjs test demo/testsuite.js` (OSX). New screenshots will be created to compare against the baseline images. These new images can be ignored, they will be replaced every test run.
 * To test failure, add/change some CSS in the file demo/coffeemachine.html e.g. make `.mug` bright green
 * Run the tests again, you should see some reported failures
 * In the failures folder some images should have been created. The images should show bright pink where the screenshot has visually changed
@@ -47,10 +52,16 @@ phantomcss.init({
 	screenshotRoot: './screenshots',
 	failedComparisonsRoot: './failures',
 
-	// If failedComparisonsRoot is not defined failure images can still 
-	// be found alongside the original and new images
+	/*
+		If failedComparisonsRoot is not defined failure images can still be found alongside the original and new images
+	*/
 
 	addLabelToFailedImage: false, // Don't add label to generated failure image
+
+	/*
+		Mismatch tolerance defaults to  0.05%. Increasing this value will decrease test coverage
+	*/
+	mismatchTolerance: 0.05,
 
 	onFail: function(test){ console.log(test.filename, test.mismatch); },
 	onPass: function(){ console.log(test.filename); },
@@ -86,11 +97,31 @@ phantomcss.screenshot( "#CSS .selector", screenshotName);
 // phantomcss.screenshot( "#CSS .selector" );
 // phantomcss.screenshot( "#CSS .selector", delay, hideElements, screenshotName);
 
+/*
+	String is converted into a Regular expression that matches on full image path
+*/
 phantomcss.compareAll('exclude.test'); 
-// String is converted into a Regular expression that matches on full image path
 
 // phantomcss.compareMatched('include.test', 'exclude.test');
+
 // phantomcss.compareMatched( new RegExp('include.test'), new RegExp('exclude.test'));
+
+/*
+	Compare image diffs generated in this test run only
+*/
+// phantomcss.compareSession();
+
+/*
+	Explicitly define what files you want to compare
+*/
+// phantomcss.compareExplicit(['/dialog.diff.png', '/header.diff.png']);
+
+/*
+	Get a list of image diffs generated in this test run
+*/
+// phantomcss.getCreatedDiffFiles();
+
+
 ```
 
 ### Best Practices
@@ -127,7 +158,7 @@ phantomcss.screenshot("#feedback-form");
 
 ##### PhantomCSS should not be used to replace functional tests
 
-If you needed functional tests before, then you still need them.  Automated visual regression testing gives us coverage of CSS and design in a way we didn't have before, but that doesn't mean that conventional test assertions are now invalid.  Feedback time is crucial with test automation, the longer it takes the easier it is to ignore; the easier it is to ignore the sooner trust is lost from the team.  Unfortunately comparing images it not and never will be as fast as simple DOM assertion.
+If you needed functional tests before, then you still need them.  Automated visual regression testing gives us coverage of CSS and design in a way we didn't have before, but that doesn't mean that conventional test assertions are now invalid.  Feedback time is crucial with test automation, the longer it takes the easier it is to ignore; the easier it is to ignore the sooner trust is lost from the team.  Unfortunately comparing images is not, and never will be as fast as simple DOM assertion.
 
 ##### Don't try to test all the visuals
 

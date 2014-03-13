@@ -5,6 +5,15 @@
 
 <h2 class="heading">{{ heading|raw }}</h2>
 
+<div class="actionsbar actionsbar--right">
+  {{
+    html.button(
+      label = html.icon('edit') ~ ' New Message',
+      class = 'btn--primary'
+    )
+  }}
+</div>
+
 <div class="tab__inner tab--unpadded portal-messages">
   <div class="portal-messages__list">
 
@@ -14,7 +23,7 @@
         <span class="sender">Caroline Sheppard (Adjudicator)</span>
         <span class="subject">Please provide clarification regarding location</span>
       </li>
-{% for i in 1..50 %}
+{% for i in 1..5 %}
       <li>
         <time>12:34pm</time>
         <span class="sender">Caroline Sheppard (Adjudicator)</span>
@@ -36,6 +45,10 @@
         )
       }}
     </header>
+
+    <a class="history">
+      <span>View 2 older messages</span>
+    </a>
 
     <time>12:34pm (3 hours ago)</time>
     <span class="sender">Caroline Sheppard (Adjudicator)</span>

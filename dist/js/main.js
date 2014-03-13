@@ -1,26 +1,37 @@
+var path = '';
+
+// Set by /public_html/jadu/assets/js/config.js
+if (window.jadu.requireJsPath) {
+    var path = window.jadu.requireJsPath;
+}
+
 requirejs.config({
     paths: {
-        'daterange'         : '/libs/bootstrap-daterangepicker/daterangepicker',
-        'deck'              : '/js/deck',
-        'dropdown'          : '/js/dropdown',
-        'flash'             : '/js/flash',
-        'highcharts'        : '/libs/highcharts/highcharts',
-        'highcharts-mono'   : '/js/highcharts-mono',
-        'highcharts-theme'  : '/js/highcharts-theme',
-        'highlightjs'       : '/libs/highlightjs/highlight.pack',
-        'jquery'            : '/libs/jquery/jquery',
-        'jquery-mousewheel' : '/libs/jquery-mousewheel/jquery.mousewheel',
-        'modal'             : '/js/modal',
-        'moment'            : '/libs/moment/moment',
-        'navigation'        : '/js/navigation',
-        'order'             : '/libs/order/index',
-        'popover'           : '/js/popover',
-        'pulsar'            : '/js/pulsar',
-        'sparkline'         : '/libs/sparkline/index',
-        'sticky'            : '/libs/sticky/jquery.sticky',
-        'tab'               : '/js/tab',
-        'tooltip'           : '/js/tooltip',
-        'vague'             : '/libs/Vague.js/Vague'
+        'actions'           : path + '/js/actions',
+        'console-js'        : path + '/libs/console-js/console',
+        'datagrid'          : path + '/js/datagrid',
+        'daterange'         : path + '/libs/bootstrap-daterangepicker/daterangepicker',
+        'deck'              : path + '/js/deck',
+        'dropdown'          : path + '/js/dropdown',
+        'flash'             : path + '/js/flash',
+        'highcharts'        : path + '/libs/highcharts/highcharts',
+        'highcharts-mono'   : path + '/js/highcharts-mono',
+        'highcharts-theme'  : path + '/js/highcharts-theme',
+        'highlightjs'       : path + '/libs/highlightjs/highlight.pack',
+        'jquery'            : path + '/libs/jquery/jquery',
+        'jquery-mousewheel' : path + '/libs/jquery-mousewheel/jquery.mousewheel',
+        'modal'             : path + '/js/modal',
+        'moment'            : path + '/libs/moment/moment',
+        'navigation'        : path + '/js/navigation',
+        'order'             : path + '/libs/order/index',
+        'popover'           : path + '/js/popover',
+        'pulsar'            : path + '/js/pulsar',
+        'sparkline'         : path + '/libs/sparkline/index',
+        'sticky'            : path + '/libs/sticky/jquery.sticky',
+        'store-js'          : path + '/libs/store.js/store',
+        'tab'               : path + '/js/tab',
+        'tooltip'           : path + '/js/tooltip',
+        'vague'             : path + '/libs/Vague.js/Vague'
     },
     shim: {
         'daterange': {
@@ -43,5 +54,4 @@ require([
     'pulsar'
 ], function($) {
     'use strict';
-    $();
 });

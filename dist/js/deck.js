@@ -62,12 +62,14 @@ require(['jquery', 'jquery-mousewheel', 'vague'], function ($) {
 
                 // If no specific deck is provided, hide 'em all.
                 $($.fn.deck.defaults.deckClass).removeClass($.fn.deck.defaults.activeClassName)
+                    .removeAttr('style')
                     .children()
                     .hide();
             } else {
 
                 // Remove active class, reset the deck's position and hide all slides.
                 deck.removeClass($.fn.deck.defaults.activeClassName)
+                    .removeAttr('style')
                     .children()
                     .hide();
             }
