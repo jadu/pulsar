@@ -2357,6 +2357,10 @@ footer {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis; }
+    .tabs__list > li > a > .label {
+      margin-left: 0.5em;
+      position: relative;
+      top: -1px; }
     .tabs__list > li > a > i {
       font-size: 14px;
       opacity: 0.6;

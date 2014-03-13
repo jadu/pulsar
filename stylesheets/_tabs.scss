@@ -24,6 +24,12 @@
     overflow: hidden;
     text-overflow: ellipsis;
 
+    > .label {
+      margin-left: .5em;
+      position: relative;
+      top: -1px;
+    }
+
     > i {
       font-size: 14px;
       opacity: .6;

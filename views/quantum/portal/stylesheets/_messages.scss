@@ -28,7 +28,16 @@
     padding: 3px 5px 2px 5px;
     width: 100%;
 
-
+    &:hover {
+      background-color: rgba(0,0,0,.01);
+      cursor: pointer;
+      .subject:after {
+        background-image: -webkit-linear-gradient(left, rgba(255,255,255,0), rgba(0,0,0,.01));
+        background-image: -moz-linear-gradient(left, rgba(255,255,255,0), rgba(0,0,0,.01));
+        background-image: -ms-linear-gradient(left, rgba(255,255,255,0), rgba(0,0,0,.01));
+        background-image: -o-linear-gradient(left, rgba(255,255,255,0), rgba(0,0,0,.01));
+      }
+    }
 
     &:last-of-type {
       border-bottom: 3px double $gray;
@@ -149,6 +158,11 @@
   border-bottom: 1px solid $gray;
   position: relative;
   text-align: center;
+
+  &,
+  span {
+    transition: background-color .15s;
+  }
 
   span {
     background-color: $off-white;

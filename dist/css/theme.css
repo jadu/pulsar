@@ -56,6 +56,14 @@ footer {
     list-style-type: none;
     padding: 3px 5px 2px 5px;
     width: 100%; }
+    .portal-messages__list li:hover {
+      background-color: rgba(0, 0, 0, 0.01);
+      cursor: pointer; }
+      .portal-messages__list li:hover .subject:after {
+        background-image: -webkit-linear-gradient(left, rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.01));
+        background-image: -moz-linear-gradient(left, rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.01));
+        background-image: -ms-linear-gradient(left, rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.01));
+        background-image: -o-linear-gradient(left, rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.01)); }
     .portal-messages__list li:last-of-type {
       border-bottom: 3px double #ccc; }
     .portal-messages__list li .subject {
@@ -142,6 +150,8 @@ footer {
   border-bottom: 1px solid #ccc;
   position: relative;
   text-align: center; }
+  .history, .history span {
+    transition: background-color 0.15s; }
   .history span {
     background-color: #fafafa;
     padding: 0 20px;
