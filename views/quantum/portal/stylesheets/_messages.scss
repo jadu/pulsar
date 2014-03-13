@@ -68,7 +68,7 @@
   .subject {
     font-family: $font-family-regular;
     font-size: $font-size-large;
-    line-height: $line-height-large;
+    line-height: 1.35;
     margin-bottom: .5em;
   }
 
@@ -84,6 +84,10 @@
   p {
     clear: none;
     margin-left: 0;
+  }
+
+  .message-reply {
+    margin-bottom: .5em;
   }
 
 }

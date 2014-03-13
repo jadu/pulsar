@@ -78,7 +78,7 @@ footer {
   .portal-messages__message .subject {
     font-family: "proxima_nova_regular", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
     font-size: 20px;
-    line-height: 1.33;
+    line-height: 1.35;
     margin-bottom: 0.5em; }
   .portal-messages__message .message-body {
     border-top: 1px solid #eeeeee; }
@@ -87,6 +87,8 @@ footer {
   .portal-messages__message p {
     clear: none;
     margin-left: 0; }
+  .portal-messages__message .message-reply {
+    margin-bottom: 0.5em; }
 
 .history {
   background-color: #fafafa;

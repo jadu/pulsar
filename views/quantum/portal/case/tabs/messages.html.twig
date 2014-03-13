@@ -23,7 +23,7 @@
         <span class="sender">Caroline Sheppard (Adjudicator)</span>
         <span class="subject">Please provide clarification regarding location</span>
       </li>
-{% for i in 1..5 %}
+{% for i in 1..10 %}
       <li>
         <time>12:34pm</time>
         <span class="sender">Caroline Sheppard (Adjudicator)</span>
@@ -40,12 +40,14 @@
 
       {{ 
         html.button(
-          label = html.icon('reply') ~ ' Reply',
-          class = 'pull-right'
+          label = html.icon('mail-reply-all') ~ ' Reply to All',
+          class = 'pull-right',
+          attributes = 'data-focus=#message-reply'
         )
       }}
     </header>
 
+    <!-- Should only be present in the markup if there's history... -->
     <a class="history">
       <span>View 2 older messages</span>
     </a>
@@ -57,14 +59,22 @@
     <div class="message-body">
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra vehicula justo in tincidunt. Ut et condimentum neque. In hac habitasse platea dictumst. Proin lectus eros, eleifend eget fringilla eu, ultrices eu lacus. Sed id lacus at ante gravida mollis. Nunc aliquet lectus nec libero semper tempus. Etiam eget dui tincidunt, interdum massa et, pretium sem. Phasellus a tellus ac lorem varius consequat eu at urna. Maecenas et erat nisl.</p>
 
-      <!-- <p>Proin eget justo euismod est placerat commodo. Fusce tristique, risus ac volutpat lobortis, erat libero bibendum augue, in pulvinar arcu enim at tortor. Etiam fermentum condimentum orci, nec hendrerit neque tempus scelerisque. Suspendisse tristique nulla id adipiscing mollis. Proin ut porttitor nunc, sed blandit erat. Sed egestas justo sed mi hendrerit, vel tincidunt purus tincidunt. Aliquam justo neque, interdum at bibendum eget, dapibus vel magna.</p>
+      <!-- <p>Proin eget justo euismod est placerat commodo. Fusce tristique, risus ac volutpat lobortis, erat libero bibendum augue, in pulvinar arcu enim at tortor. Etiam fermentum condimentum orci, nec hendrerit neque tempus scelerisque. Suspendisse tristique nulla id adipiscing mollis. Proin ut porttitor nunc, sed blandit erat. Sed egestas justo sed mi hendrerit, vel tincidunt purus tincidunt. Aliquam justo neque, interdum at bibendum eget, dapibus vel magna.</p> -->
 
-      <p>Praesent pharetra nibh est, non vestibulum turpis dapibus nec. Maecenas ultrices enim in sem dictum, eu pulvinar ipsum aliquet. Proin at dolor suscipit, commodo nulla sed, tempor nibh. Quisque lobortis sodales dolor sed ultrices. In convallis felis fermentum dictum pellentesque. Pellentesque at lorem nec ipsum suscipit feugiat. Aliquam eget dolor quis velit faucibus feugiat eu sed arcu. Aenean purus arcu, adipiscing ut iaculis laoreet, ultrices a lorem. Ut aliquam nunc eu malesuada aliquet.</p> -->
+      <!-- <p>Praesent pharetra nibh est, non vestibulum turpis dapibus nec. Maecenas ultrices enim in sem dictum, eu pulvinar ipsum aliquet. Proin at dolor suscipit, commodo nulla sed, tempor nibh. Quisque lobortis sodales dolor sed ultrices. In convallis felis fermentum dictum pellentesque. Pellentesque at lorem nec ipsum suscipit feugiat. Aliquam eget dolor quis velit faucibus feugiat eu sed arcu. Aenean purus arcu, adipiscing ut iaculis laoreet, ultrices a lorem. Ut aliquam nunc eu malesuada aliquet.</p> -->
     </div>
 
     {{
       form.textarea(
-        placeholder = 'Click here to reply to all'
+        placeholder = 'Click here to reply to all',
+        id = 'message-reply',
+        class = 'message-reply'
+      )
+    }}
+  
+    {{ 
+      html.button(
+        label = html.icon('mail-reply-all') ~ ' Reply to All'
       )
     }}
 

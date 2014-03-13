@@ -151,5 +151,15 @@ define(['jquery'], function() {
             }
         });
 
+        $('[data-focus]').on('click', function() {
+            var target = $($(this).data('focus'));
+            $('html, body').animate({
+                scrollTop: target.offset().top
+            }, 250);
+            target
+                .focus()
+                .attr('rows', 6);
+        });
+
     });
 });
