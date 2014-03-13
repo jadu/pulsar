@@ -52,21 +52,61 @@ footer {
     background-color: white;
     border-bottom: 1px solid #ccc;
     box-shadow: inset -5px 0px 5px -2px rgba(0, 0, 0, 0.1);
+    float: left;
     list-style-type: none;
-    padding: 3px 5px 2px 5px; }
+    padding: 3px 5px 2px 5px;
+    width: 100%; }
+    .portal-messages__list li:last-of-type {
+      border-bottom: 3px double #ccc; }
+    .portal-messages__list li .subject {
+      position: relative;
+      width: 99%; }
+      .portal-messages__list li .subject:after {
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 100%;
+        background-image: -webkit-linear-gradient(left, rgba(255, 255, 255, 0), #ffffff);
+        background-image: -moz-linear-gradient(left, rgba(255, 255, 255, 0), #ffffff);
+        background-image: -ms-linear-gradient(left, rgba(255, 255, 255, 0), #ffffff);
+        background-image: -o-linear-gradient(left, rgba(255, 255, 255, 0), #ffffff);
+        content: "";
+        width: 30px;
+        display: block;
+        z-index: 0; }
     .portal-messages__list li.is-selected {
       background-color: #d9ebea; }
       .portal-messages__list li.is-selected .sender {
         font-family: "proxima_nova_regular", "Helvetica Neue", "Helvetica", "Arial", sans-serif; }
-    .portal-messages__list li:last-of-type {
-      border-bottom: 3px double #ccc; }
+      .portal-messages__list li.is-selected .subject:after {
+        background-image: -webkit-linear-gradient(left, rgba(217, 235, 234, 0), #d9ebea);
+        background-image: -moz-linear-gradient(left, rgba(217, 235, 234, 0), #d9ebea);
+        background-image: -ms-linear-gradient(left, rgba(217, 235, 234, 0), #d9ebea);
+        background-image: -o-linear-gradient(left, rgba(217, 235, 234, 0), #d9ebea); }
   .portal-messages__list .badge {
     margin-left: 20px; }
   .portal-messages__list .sender, .portal-messages__list .subject {
-    display: inline-block; }
+    display: inline;
+    overflow: hidden;
+    float: left;
+    white-space: nowrap;
+    /* css-3 */
+    white-space: -moz-nowrap;
+    /* Mozilla, since 1999 */
+    white-space: -nowrap;
+    /* Opera 4-6 */
+    white-space: -o-nowrap;
+    /* Opera 7 */ }
   .portal-messages__list .subject {
     font-size: 12px;
-    line-height: 1line-height-small; }
+    line-height: 1.5;
+    width: 100%; }
+  .portal-messages__list .label {
+    box-shadow: -15px 0px 5px 0px white;
+    float: right;
+    margin-top: -1.5em;
+    position: relative;
+    z-index: 2; }
 
 .portal-messages__message {
   float: left;

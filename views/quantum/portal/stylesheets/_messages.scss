@@ -23,19 +23,50 @@
     background-color: white;
     border-bottom: 1px solid $gray;
     box-shadow: inset -5px 0px 5px -2px rgba(0,0,0,.1);
+    float: left;
     list-style-type: none;
     padding: 3px 5px 2px 5px;
+    width: 100%;
 
-    &.is-selected {
-      background-color: lighten($primary-color, 30%);
-      .sender {
-        font-family: $font-family-regular;
-      }
-    }
+
 
     &:last-of-type {
       border-bottom: 3px double $gray;
     }
+
+    .subject {
+      position: relative;
+      width: 99%;
+
+      &:after {
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 100%;
+        background-image: -webkit-linear-gradient(left, rgba(255,255,255,0), white);
+        background-image: -moz-linear-gradient(left, rgba(255,255,255,0), white);
+        background-image: -ms-linear-gradient(left, rgba(255,255,255,0), white);
+        background-image: -o-linear-gradient(left, rgba(255,255,255,0), white);
+        content: "";
+        width: 30px;
+        display: block;
+        z-index: 0;
+      }
+    }
+
+    &.is-selected {
+      background-color: rgba(217,235,234, 1);
+      .sender {
+        font-family: $font-family-regular;
+      }
+      .subject:after {
+        background-image: -webkit-linear-gradient(left, rgba(217,235,234, 0), lighten($primary-color, 30%));
+        background-image: -moz-linear-gradient(left, rgba(217,235,234, 0), lighten($primary-color, 30%));
+        background-image: -ms-linear-gradient(left, rgba(217,235,234, 0), lighten($primary-color, 30%));
+        background-image: -o-linear-gradient(left, rgba(217,235,234, 0), lighten($primary-color, 30%));
+      }
+    }
+
   }
 
   .badge {
@@ -44,12 +75,24 @@
 
   .sender,
   .subject {
-    display: inline-block;
+    display: inline;
+    overflow: hidden;
+    float: left;
+    @include nowrap;
   }
 
   .subject {
     font-size: $font-size-small;
-    line-height: 1line-height-small;
+    line-height: $line-height-small;
+    width: 100%;
+  }
+
+  .label {
+    box-shadow: -15px 0px 5px 0px white;
+    float: right;
+    margin-top: -1.5em;
+    position: relative;
+    z-index: 2;
   }
 }
 

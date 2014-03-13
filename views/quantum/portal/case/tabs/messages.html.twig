@@ -30,7 +30,6 @@
         }}
         <span class="subject">Please provide clarification regarding location</span>
       </li>
-{% for i in 1..10 %}
       <li>
         <time>12:34pm</time>
         <span class="sender">Caroline Sheppard (Adjudicator)</span>
@@ -40,6 +39,51 @@
             attributes = 'data-toggle=tooltip title="There are 999 messages in this conversation"'
           )
         }}
+        <span class="subject">Please provide clarification regarding location</span>
+        {{
+          html.label(
+            label = '2 days to respond',
+            class = 'label--warning'
+          )
+        }}
+      </li>
+      <li>
+        <time>12:34pm</time>
+        <span class="sender">Caroline Sheppard (Adjudicator)</span>
+        {{ 
+          html.badge(
+            label = 999,
+            attributes = 'data-toggle=tooltip title="There are 999 messages in this conversation"'
+          )
+        }}
+        <span class="subject">This is an example of a message which needs sorting now</span>
+        {{
+          html.label(
+            label = 'response required today',
+            class = 'label--danger'
+          )
+        }}
+      </li>
+      <li>
+        <time>12:34pm</time>
+        <span class="sender">Caroline Sheppard (Adjudicator)</span>
+        {{ 
+          html.badge(
+            label = 999,
+            attributes = 'data-toggle=tooltip title="There are 999 messages in this conversation"'
+          )
+        }}
+        <span class="subject">This is an example of a message with a long subject line and a label which needs to be dealt with</span>
+        {{
+          html.label(
+            label = '14 days to respond'
+          )
+        }}
+      </li>
+{% for i in 1..10 %}
+      <li>
+        <time>12:34pm</time>
+        <span class="sender">Caroline Sheppard (Adjudicator)</span>
         <span class="subject">Please provide clarification regarding location</span>
       </li>
 {% endfor %}
