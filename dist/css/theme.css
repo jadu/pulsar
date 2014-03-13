@@ -38,8 +38,7 @@ footer {
   float: right; }
 
 .portal-messages__list, .portal-messages__message {
-  min-height: 500px;
-  max-height: 500px;
+  height: 75vh;
   overflow-y: scroll; }
 
 .portal-messages__list {
@@ -130,10 +129,25 @@ footer {
     font-size: 20px;
     line-height: 1.35;
     margin-bottom: 0.5em; }
-  .portal-messages__message .message-body {
+  .portal-messages__message .message-body, .portal-messages__message .file-reference {
     border-top: 1px solid #eeeeee; }
-    .portal-messages__message .message-body, .portal-messages__message .message-body > p {
+    .portal-messages__message .message-body, .portal-messages__message .message-body > p, .portal-messages__message .file-reference, .portal-messages__message .file-reference > p {
       margin-top: 1em; }
+  .portal-messages__message .file-reference {
+    padding-top: 1em; }
+    .portal-messages__message .file-reference li {
+      display: inline-block;
+      list-style-type: none;
+      margin-right: 2%;
+      max-width: 18%; }
+      .portal-messages__message .file-reference li img {
+        width: 100%; }
+      .portal-messages__message .file-reference li a {
+        color: #989699;
+        display: block;
+        text-align: center; }
+        .portal-messages__message .file-reference li a:hover {
+          color: #1e1e1e; }
   .portal-messages__message p {
     clear: none;
     margin-left: 0; }

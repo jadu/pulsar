@@ -12,7 +12,8 @@ define(['jquery'], function() {
             'jquery-autosize',
             'tooltip',
             'sticky',
-            'datagrid'
+            'datagrid',
+            'vague'
         ], function() {
 
             // actions menu
@@ -159,6 +160,14 @@ define(['jquery'], function() {
             target
                 .focus()
                 .attr('rows', 6);
+        });
+
+        $('#message-reply').on('focus', function() {
+            $('.portal-messages__list li:not(:first-of-type), .tabs__list, .actionsbar, .heading').fadeTo(250, 0.25);
+        });
+
+        $('#message-reply').on('focusout', function() {
+            $('.portal-messages__list li, .tabs__list, .actionsbar, .heading').fadeTo(250, 1);
         });
 
     });

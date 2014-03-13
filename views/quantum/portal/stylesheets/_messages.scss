@@ -7,8 +7,10 @@
 
 .portal-messages__list,
 .portal-messages__message {
-  min-height: 500px;
-  max-height: 500px;
+  // min-height: 500px;
+  // max-height: 500px;
+  height: 75vh;
+
   overflow-y: scroll;
 }
 
@@ -128,12 +130,38 @@
     margin-bottom: .5em;
   }
 
-  .message-body {
+  .message-body,
+  .file-reference {
     border-top: 1px solid $gray-lighter;
     
     &,
     > p {
       margin-top: 1em;
+    }
+  }
+
+  .file-reference {
+    padding-top: 1em;
+    
+    li {
+      display: inline-block;
+      list-style-type: none;
+      margin-right: 2%;
+      max-width: 18%;
+
+      img {
+        width: 100%;
+      }
+
+      a {
+        color: $text-color;
+        display: block;
+        text-align: center;
+
+        &:hover {
+          color: $black;
+        }
+      }
     }
   }
   
