@@ -21,12 +21,25 @@
       <li class="is-selected">
         <time>12:34pm</time>
         <span class="sender">Caroline Sheppard (Adjudicator)</span>
+        {{ 
+          html.badge(
+            label = 3,
+            class = 'badge--primary',
+            attributes = 'data-toggle=tooltip title="There are 3 messages in this conversation"'
+          )
+        }}
         <span class="subject">Please provide clarification regarding location</span>
       </li>
 {% for i in 1..10 %}
       <li>
         <time>12:34pm</time>
         <span class="sender">Caroline Sheppard (Adjudicator)</span>
+        {{ 
+          html.badge(
+            label = 999,
+            attributes = 'data-toggle=tooltip title="There are 999 messages in this conversation"'
+          )
+        }}
         <span class="subject">Please provide clarification regarding location</span>
       </li>
 {% endfor %}

@@ -184,8 +184,8 @@
 {%- endmacro -%}
 
 
-{%- macro badge(label = 'label', class) -%}
-  <span class="badge{% if class is not empty %} {{ class }}{% endif %}">{{ label }}</span>
+{%- macro badge(label = 'label', class, attributes) -%}
+  <span class="badge{% if class is not empty %} {{ class }}{% endif %}"{% if attributes is not empty %} {{ attributes|raw }}{% endif %}>{{ label }}</span>
 {%- endmacro -%}
 
 {%- macro divider() -%}

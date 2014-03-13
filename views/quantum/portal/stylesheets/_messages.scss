@@ -38,6 +38,10 @@
     }
   }
 
+  .badge {
+    margin-left: $gutter-width;
+  }
+
   .sender,
   .subject {
     display: inline-block;
