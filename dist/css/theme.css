@@ -37,7 +37,7 @@ footer {
   clear: both;
   float: right; }
 
-.portal-messages__list, .portal-messages__message {
+.portal-messages__list, .portal-messages__conversation {
   height: 75vh;
   overflow-y: scroll; }
 
@@ -115,51 +115,78 @@ footer {
     position: relative;
     z-index: 2; }
 
-.portal-messages__message {
+.portal-messages__conversation {
   float: left;
-  padding: 15px 20px;
+  padding: 15px 0;
   width: 65%; }
-  .portal-messages__message .sender, .portal-messages__message .subject, .portal-messages__message .recipient {
+  .portal-messages__conversation .sender, .portal-messages__conversation .subject, .portal-messages__conversation .recipient, .portal-messages__conversation .preview {
     display: inline-block; }
-  .portal-messages__message header {
+  .portal-messages__conversation header {
     border-bottom: 1px solid #eeeeee;
-    margin-bottom: 1em; }
-  .portal-messages__message .subject {
+    margin-bottom: 1em;
+    padding: 0 20px; }
+  .portal-messages__conversation .subject {
     font-family: "proxima_nova_regular", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
     font-size: 20px;
     line-height: 1.35;
     margin-bottom: 0.5em; }
-  .portal-messages__message .message-body, .portal-messages__message .file-reference {
-    border-top: 1px solid #eeeeee; }
-    .portal-messages__message .message-body, .portal-messages__message .message-body > p, .portal-messages__message .file-reference, .portal-messages__message .file-reference > p {
+  .portal-messages__conversation .preview {
+    font-size: 12px;
+    line-height: 1.5;
+    width: 100%; }
+  .portal-messages__conversation .message-body, .portal-messages__conversation .file-reference {
+    border-top: 1px solid #ccc; }
+    .portal-messages__conversation .message-body, .portal-messages__conversation .message-body > p, .portal-messages__conversation .file-reference, .portal-messages__conversation .file-reference > p {
       margin-top: 1em; }
-  .portal-messages__message .file-reference {
+  .portal-messages__conversation .file-reference {
     padding-top: 1em; }
-    .portal-messages__message .file-reference li {
+    .portal-messages__conversation .file-reference li {
       display: inline-block;
       list-style-type: none;
       margin-right: 2%;
       max-width: 18%; }
-      .portal-messages__message .file-reference li img {
+      .portal-messages__conversation .file-reference li img {
         width: 100%; }
-      .portal-messages__message .file-reference li a {
+      .portal-messages__conversation .file-reference li a {
         color: #989699;
         display: block;
         text-align: center; }
-        .portal-messages__message .file-reference li a:hover {
+        .portal-messages__conversation .file-reference li a:hover {
           color: #1e1e1e; }
-  .portal-messages__message p {
+  .portal-messages__conversation p {
     clear: none;
     margin-left: 0; }
-  .portal-messages__message .message-reply {
+  .portal-messages__conversation .message-reply {
     margin-bottom: 0.5em; }
+    .portal-messages__conversation .message-reply textarea {
+      background-color: #fafafa; }
+
+.message-old.message--open {
+  border-bottom: 3px double #ccc; }
+
+.message {
+  overflow: hidden;
+  padding: 1em 20px 0; }
+  .message.message--open .message-body {
+    height: auto; }
+  .message.message--closed {
+    background-color: #eeeeee;
+    padding-top: 0.5em; }
+    .message.message--closed .message-body {
+      border-top: 1px dashed #ccc;
+      margin-top: 0.5em; }
+    .message.message--closed .message-body > * {
+      display: none; }
+    .message.message--closed:hover {
+      background-color: #ededed;
+      cursor: pointer; }
 
 .history {
   background-color: #fafafa;
   cursor: pointer;
   color: #989699;
   display: block;
-  margin: -1.1em -20px 1em;
+  margin: -1.1em 0 0 0;
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
   position: relative;
@@ -183,6 +210,9 @@ footer {
     z-index: 0; }
   .history:hover, .history:hover > span {
     background-color: #ededed; }
+
+.compose {
+  padding: 0 20px; }
 
 .portal__details {
   margin: 22px 20px 0 20px; }

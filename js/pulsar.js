@@ -173,9 +173,13 @@ define(['jquery'], function() {
         });
 
         $('.message--closed').on('click', function() {
+            var $this = $(this);
             $('.preview', this).hide();
-            $('.message-body > *', $(this)).slideToggle();
-            $(this).removeClass('message--closed').addClass('message--open');
+            $('.message-body > *', $this).slideToggle();
+            $this
+                .removeClass('message--closed')
+                .addClass('message--open')
+                .unbind('click');
         })
 
 
