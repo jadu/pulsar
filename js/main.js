@@ -19,6 +19,7 @@ requirejs.config({
         'highcharts-theme'  : path + '/js/highcharts-theme',
         'highlightjs'       : path + '/libs/highlightjs/highlight.pack',
         'jquery'            : path + '/libs/jquery/jquery',
+        'jquery-autosize'   : path + '/libs/jquery-autosize/jquery.autosize',
         'jquery-mousewheel' : path + '/libs/jquery-mousewheel/jquery.mousewheel',
         'modal'             : path + '/js/modal',
         'moment'            : path + '/libs/moment/moment',
@@ -37,6 +38,12 @@ requirejs.config({
         'daterange': {
             deps: ['jquery', 'moment'],
             exports: 'daterange'
+        },
+        'jquery-autosize': {
+            deps: ['jquery'],
+            init: function() {
+                return $.fn.autosize();
+            }
         }
     }
 });

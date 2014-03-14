@@ -90,74 +90,114 @@
     </ol>
   </div>
 
-  <div class="portal-messages__message">
+    <div class="portal-messages__conversation">
 
-    <header>
-      <span class="subject">Re: Article 1 &mdash; Please provide clarification regarding location</span>
+      <header>
+        <span class="subject">Re: Article 1 &mdash; Please provide clarification regarding location</span>
+        {{ 
+          html.button(
+            label = html.icon('mail-reply-all') ~ ' Reply to All',
+            class = 'pull-right',
+            attributes = 'data-focus=#message-reply'
+          )
+        }}
+      </header>
 
-      {{ 
-        html.button(
-          label = html.icon('mail-reply-all') ~ ' Reply to All',
-          class = 'pull-right',
-          attributes = 'data-focus=#message-reply'
-        )
-      }}
-    </header>
+      <!-- Should only be present in the markup if there's history... -->
+      <a class="history" data-show="message--closed">
+        <span>View 2 older messages</span>
+      </a>
 
-    <!-- Should only be present in the markup if there's history... -->
-    <a class="history">
-      <span>View 2 older messages</span>
-    </a>
+{% for i in 1..3 %}
+      <div class="message message-old message--closed hide">
+        <time>12:34pm (3 hours ago)</time>
+        <span class="sender">Me</span>
+        <span class="recipient">to TPT, Council</span>
+        <span class="preview">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra vehicula...</span>
+        
+        <div class="message-body">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra vehicula justo in tincidunt. Ut et condimentum neque. In hac habitasse platea dictumst. Proin lectus eros, eleifend eget fringilla eu, ultrices eu lacus. Sed id lacus at ante gravida mollis. Nunc aliquet lectus nec libero semper tempus. Etiam eget dui tincidunt, interdum massa et, pretium sem. Phasellus a tellus ac lorem varius consequat eu at urna. Maecenas et erat nisl.</p>
 
-    <time>12:34pm (3 hours ago)</time>
-    <span class="sender">Caroline Sheppard (Adjudicator)</span>
-    <span class="recipient">to Council, Me</span>
+          <!-- <p>Proin eget justo euismod est placerat commodo. Fusce tristique, risus ac volutpat lobortis, erat libero bibendum augue, in pulvinar arcu enim at tortor. Etiam fermentum condimentum orci, nec hendrerit neque tempus scelerisque. Suspendisse tristique nulla id adipiscing mollis. Proin ut porttitor nunc, sed blandit erat. Sed egestas justo sed mi hendrerit, vel tincidunt purus tincidunt. Aliquam justo neque, interdum at bibendum eget, dapibus vel magna.</p> -->
 
-    
-    <div class="message-body">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra vehicula justo in tincidunt. Ut et condimentum neque. In hac habitasse platea dictumst. Proin lectus eros, eleifend eget fringilla eu, ultrices eu lacus. Sed id lacus at ante gravida mollis. Nunc aliquet lectus nec libero semper tempus. Etiam eget dui tincidunt, interdum massa et, pretium sem. Phasellus a tellus ac lorem varius consequat eu at urna. Maecenas et erat nisl.</p>
+          <!-- <p>Praesent pharetra nibh est, non vestibulum turpis dapibus nec. Maecenas ultrices enim in sem dictum, eu pulvinar ipsum aliquet. Proin at dolor suscipit, commodo nulla sed, tempor nibh. Quisque lobortis sodales dolor sed ultrices. In convallis felis fermentum dictum pellentesque. Pellentesque at lorem nec ipsum suscipit feugiat. Aliquam eget dolor quis velit faucibus feugiat eu sed arcu. Aenean purus arcu, adipiscing ut iaculis laoreet, ultrices a lorem. Ut aliquam nunc eu malesuada aliquet.</p> -->
+          
+          <ol class="file-reference">
+            <li>
+              <a href="#">
+                <img src="http://www.dumb.com/m_pictures/1b60c22e7d92a900f6534a5880845979.jpg" />
+                Article 1
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <img src="http://www.dumb.com/m_pictures/1b60c22e7d92a900f6534a5880845979.jpg" />
+                Article 2
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <img src="http://www.dumb.com/m_pictures/1b60c22e7d92a900f6534a5880845979.jpg" />
+                Article 3
+              </a>
+            </li>
+          </ol>
 
-      <!-- <p>Proin eget justo euismod est placerat commodo. Fusce tristique, risus ac volutpat lobortis, erat libero bibendum augue, in pulvinar arcu enim at tortor. Etiam fermentum condimentum orci, nec hendrerit neque tempus scelerisque. Suspendisse tristique nulla id adipiscing mollis. Proin ut porttitor nunc, sed blandit erat. Sed egestas justo sed mi hendrerit, vel tincidunt purus tincidunt. Aliquam justo neque, interdum at bibendum eget, dapibus vel magna.</p> -->
+        </div>
+      </div>
+{% endfor %}
 
-      <!-- <p>Praesent pharetra nibh est, non vestibulum turpis dapibus nec. Maecenas ultrices enim in sem dictum, eu pulvinar ipsum aliquet. Proin at dolor suscipit, commodo nulla sed, tempor nibh. Quisque lobortis sodales dolor sed ultrices. In convallis felis fermentum dictum pellentesque. Pellentesque at lorem nec ipsum suscipit feugiat. Aliquam eget dolor quis velit faucibus feugiat eu sed arcu. Aenean purus arcu, adipiscing ut iaculis laoreet, ultrices a lorem. Ut aliquam nunc eu malesuada aliquet.</p> -->
+      <div class="message message--open">
+        <time>12:34pm (3 hours ago)</time>
+        <span class="sender">Caroline Sheppard (Adjudicator)</span>
+        <span class="recipient">to Council, Me</span>
+
+        <div class="message-body">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra vehicula justo in tincidunt. Ut et condimentum neque. In hac habitasse platea dictumst. Proin lectus eros, eleifend eget fringilla eu, ultrices eu lacus. Sed id lacus at ante gravida mollis. Nunc aliquet lectus nec libero semper tempus. Etiam eget dui tincidunt, interdum massa et, pretium sem. Phasellus a tellus ac lorem varius consequat eu at urna. Maecenas et erat nisl.</p>
+
+          <!-- <p>Proin eget justo euismod est placerat commodo. Fusce tristique, risus ac volutpat lobortis, erat libero bibendum augue, in pulvinar arcu enim at tortor. Etiam fermentum condimentum orci, nec hendrerit neque tempus scelerisque. Suspendisse tristique nulla id adipiscing mollis. Proin ut porttitor nunc, sed blandit erat. Sed egestas justo sed mi hendrerit, vel tincidunt purus tincidunt. Aliquam justo neque, interdum at bibendum eget, dapibus vel magna.</p> -->
+
+          <!-- <p>Praesent pharetra nibh est, non vestibulum turpis dapibus nec. Maecenas ultrices enim in sem dictum, eu pulvinar ipsum aliquet. Proin at dolor suscipit, commodo nulla sed, tempor nibh. Quisque lobortis sodales dolor sed ultrices. In convallis felis fermentum dictum pellentesque. Pellentesque at lorem nec ipsum suscipit feugiat. Aliquam eget dolor quis velit faucibus feugiat eu sed arcu. Aenean purus arcu, adipiscing ut iaculis laoreet, ultrices a lorem. Ut aliquam nunc eu malesuada aliquet.</p> -->
+          
+          <ol class="file-reference">
+            <li>
+              <a href="#">
+                <img src="http://www.dumb.com/m_pictures/1b60c22e7d92a900f6534a5880845979.jpg" />
+                Article 1
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <img src="http://www.dumb.com/m_pictures/1b60c22e7d92a900f6534a5880845979.jpg" />
+                Article 2
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <img src="http://www.dumb.com/m_pictures/1b60c22e7d92a900f6534a5880845979.jpg" />
+                Article 3
+              </a>
+            </li>
+          </ol>
+
+        </div>
+      </div>
       
-      <ol class="file-reference">
-        <li>
-          <a href="#">
-            <img src="http://www.dumb.com/m_pictures/1b60c22e7d92a900f6534a5880845979.jpg" />
-            Article 1
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <img src="http://www.dumb.com/m_pictures/1b60c22e7d92a900f6534a5880845979.jpg" />
-            Article 2
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <img src="http://www.dumb.com/m_pictures/1b60c22e7d92a900f6534a5880845979.jpg" />
-            Article 3
-          </a>
-        </li>
-      </ol>
-
+      <div class="compose">
+        {{
+          form.textarea(
+            placeholder = 'Click here to write your reply',
+            id = 'message-reply',
+            class = 'message-reply'
+          )
+        }}
+      
+        {{ 
+          html.button(
+            label = html.icon('mail-reply-all') ~ ' Reply to All'
+          )
+        }}
+      </div>
     </div>
-
-    {{
-      form.textarea(
-        placeholder = 'Click here to reply to all',
-        id = 'message-reply',
-        class = 'message-reply'
-      )
-    }}
-  
-    {{ 
-      html.button(
-        label = html.icon('mail-reply-all') ~ ' Reply to All'
-      )
-    }}
-
-  </div>
 
 </div>

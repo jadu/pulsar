@@ -6,7 +6,7 @@
 }
 
 .portal-messages__list,
-.portal-messages__message {
+.portal-messages__conversation {
   // min-height: 500px;
   // max-height: 500px;
   height: 75vh;
@@ -107,20 +107,22 @@
   }
 }
 
-.portal-messages__message {
+.portal-messages__conversation {
   float: left;
-  padding: 15px $gutter-width;
+  padding: 15px 0;
   width: 65%;
 
   .sender,
   .subject,
-  .recipient {
+  .recipient,
+  .preview {
     display: inline-block;
   }
 
   header {
     border-bottom: 1px solid $gray-lighter;
     margin-bottom: 1em;
+    padding: 0 $gutter-width;
   }
 
   .subject {
@@ -130,9 +132,15 @@
     margin-bottom: .5em;
   }
 
+  .preview {
+    font-size: $font-size-small;
+    line-height: $line-height-small;
+    width: 100%;
+  }
+
   .message-body,
   .file-reference {
-    border-top: 1px solid $gray-lighter;
+    border-top: 1px solid $gray;
     
     &,
     > p {
@@ -172,8 +180,48 @@
 
   .message-reply {
     margin-bottom: .5em;
+
+    textarea {
+      background-color: $off-white;
+    }
   }
 
+}
+
+.message-old.message--open {
+  border-bottom: 3px double $gray;
+}
+
+.message {
+  overflow: hidden;
+  padding: 1em $gutter-width 0;
+
+  &.message--open {
+    .message-body {
+      height: auto;
+    }
+  }
+
+  &.message--closed {
+    background-color: $gray-lighter;
+    padding-top: .5em;
+    .message-body {
+      border-top: 1px dashed $gray;
+      margin-top: .5em;
+    }
+    .message-body {
+      // height: 0;
+      > * {
+        display: none;
+      }
+    }
+    &:hover {
+      background-color: darken($off-white, 5%);
+      cursor: pointer;
+    }
+  }
+
+  
 }
 
 .history {
@@ -181,7 +229,7 @@
   cursor: pointer;
   color: $text-color;
   display: block;
-  margin: -1.1em (-$gutter-width) 1em;
+  margin: -1.1em 0 0 0;
   border-top: 1px solid $gray;
   border-bottom: 1px solid $gray;
   position: relative;
@@ -215,4 +263,8 @@
   &:hover > span {
     background-color: darken($off-white, 5%);
   }
+}
+
+.compose {
+  padding: 0 $gutter-width;
 }

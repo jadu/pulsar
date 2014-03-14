@@ -38,6 +38,7 @@ define(['jquery'], function() {
                 }
             };
 
+            $('#message-reply').autosize();
 
         });
 
@@ -111,7 +112,8 @@ define(['jquery'], function() {
         });
 
         $('[data-show]').on('click', function(e) {
-            $target = $('.' + $(this).data('toggle'));
+            e.preventDefault();
+            $target = $('.' + $(this).data('show'));
             $target.slideToggle(100);
         });
 
@@ -169,6 +171,13 @@ define(['jquery'], function() {
         $('#message-reply').on('focusout', function() {
             $('.portal-messages__list li, .tabs__list, .actionsbar, .heading').fadeTo(250, 1);
         });
+
+        $('.message--closed').on('click', function() {
+            $('.preview', this).hide();
+            $('.message-body > *', $(this)).slideToggle();
+            $(this).removeClass('message--closed').addClass('message--open');
+        })
+
 
     });
 });
