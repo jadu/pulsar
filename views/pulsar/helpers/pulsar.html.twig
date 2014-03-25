@@ -1,5 +1,5 @@
 {%- macro primary_nav(label = 'label', class, id, menu_items, open = false) -%}
-  {% import 'pulsar/helpers/html.html.twig' as html %}
+  {% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
   <div class="nav-item {% if open %} open{% endif %}">
     {% if menu_items is iterable %}
     <a class="nav-link nav-link__toggle" data-toggle="dropdown">
