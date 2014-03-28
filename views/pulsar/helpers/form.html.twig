@@ -296,8 +296,9 @@
 {% endmacro %}
 
 {% macro loading(class) %}
+    {% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
     {% if 'is-loading' in class %}
-        {% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
-        {{ html.loading() }}
+        {% set visibility = false %}
     {% endif %}
+    {{ html.loading(visibility) }}
 {% endmacro %}

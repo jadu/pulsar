@@ -192,8 +192,8 @@
   <span class="divider"></span>
 {%- endmacro -%}
 
-{%- macro loading() -%}
-  <div class="loading loading--circle">
+{%- macro loading(visible = true) -%}
+  <div class="loading loading--circle{% if visible == false %} hide{% endif %}">
     <i></i>
   </div>
 {%- endmacro -%}

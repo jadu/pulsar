@@ -87,6 +87,7 @@
   }
 
   .loading {
+    display: block;
     position: absolute;
     right: -10px;
     top: $line-height-base / 2;
