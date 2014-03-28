@@ -32,6 +32,10 @@
     {% include 'lexicon/tabs/forms.html.twig' %}
 {% endset %}
 
+{% set tab_loading %}
+    {% include 'lexicon/tabs/loading.html.twig' %}
+{% endset %}
+
 {% set tab_modals %}
     {% include 'lexicon/tabs/modals.html.twig' %}
 {% endset %}
@@ -89,6 +93,11 @@
           "id"    : "forms",  
           "label" : html.icon("check-sign") ~ " Forms",
           "src"   : tab_forms
+        },
+        {
+          "id"    : "loading", 
+          "label" : html.icon("spinner") ~ " Loading",
+          "src"   : tab_loading
         },
         {
           "id"    : "modals", 
