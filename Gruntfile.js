@@ -238,7 +238,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask('pre-commit', [
     'asciify', 
-    'phpunit', 
     'leadingIndent:files',
     'copy:readme'
   ]);

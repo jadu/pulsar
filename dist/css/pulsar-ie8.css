@@ -1907,6 +1907,31 @@ tr.filters [data-filter-action="clear-all"] {
   .deck-inverse a {
     color: #fff; }
 
+.form__login {
+  margin: 0 auto;
+  max-width: 500px;
+  width: 100%; }
+  .form__login legend {
+    text-align: center; }
+  .form__login .form__group {
+    margin: 0 auto;
+    width: 80%; }
+  .form__login .form__group:hover {
+    box-shadow: none; }
+  .form__login .control__label, .form__login .controls {
+    display: block;
+    margin: 0 0 1em 0;
+    text-align: center;
+    width: 100%; }
+  .form__login input {
+    text-align: center; }
+  .form__login .form__actions {
+    background: none;
+    box-shadow: none;
+    margin-top: 1em;
+    padding: 0;
+    text-align: center; }
+
 .modal--open {
   overflow: hidden; }
 
