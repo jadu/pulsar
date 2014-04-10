@@ -8,6 +8,7 @@ if (window.jadu.requireJsPath) {
 requirejs.config({
     paths: {
         'actions'           : path + '/js/actions',
+        'chosen'            : path + '/libs/chosen/chosen.jquery',
         'console-js'        : path + '/libs/console-js/console',
         'datagrid'          : path + '/js/datagrid',
         'daterange'         : path + '/libs/bootstrap-daterangepicker/daterangepicker',
@@ -44,6 +45,10 @@ requirejs.config({
             init: function() {
                 return $.fn.autosize();
             }
+        },
+        'chosen': {
+            deps: ['jquery'],
+            exports: 'jQuery.fn.chosen'
         }
     }
 });

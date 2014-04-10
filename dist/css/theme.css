@@ -33,6 +33,29 @@ footer {
     text-decoration: underline;
     text-shadow: none; }
 
+#quantum_case_filters {
+  color: #999;
+  text-shadow: 0px -1px 0px #000; }
+  #quantum_case_filters > div {
+    display: inline-block;
+    margin: 1em 1% 0 0;
+    vertical-align: top;
+    width: 19%; }
+    #quantum_case_filters > div > label {
+      font-size: 20px; }
+    #quantum_case_filters > div select {
+      width: 100%; }
+  #quantum_case_filters label {
+    margin-left: 0; }
+
+#quantum_case_filters_type_choices label {
+  margin-bottom: 0.5em; }
+
+.filter-actions {
+  margin: 1em 0 0 0;
+  padding-bottom: 1em;
+  text-align: right; }
+
 .portal-messages time {
   clear: both;
   float: right; }
