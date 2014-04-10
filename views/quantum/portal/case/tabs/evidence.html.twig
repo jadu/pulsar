@@ -27,7 +27,7 @@
       </tr>
     </thead>
     <tbody>
-    {% for i in 1..10 %}
+    {% for i in 1..20 %}
       <tr>
         {{ datagrid.select_item(i) }}
         <td class="preview"><img src="http://www.dumb.com/m_pictures/1b60c22e7d92a900f6534a5880845979.jpg" /></td>
@@ -47,17 +47,7 @@
     {% endfor %}
     </tbody>
   </table>
-  <div class="pagination">
-    <ul class="pull-left"><!--
-    --><li class="is-disabled"><a href="#"><i class="icon-double-angle-left"></i> Previous</a></li><!--
-    --><li><a href="#">1</a></li><!--
-    --><li class="selected"><a href="#">2</a></li><!--
-    --><li><a href="#">3</a></li><!--
-    --><li><a href="#">4</a></li><!--
-    --><li><a href="#">5</a></li><!--
-    --><li><a href="#">Next <i class="icon-double-angle-right"></i></a></li><!--
-    --></ul>
-  </div>
+  <!--  -->
 </div>
 
 <div class="deck" id="deck-evidence-item" data-deck-source="/views/quantum/portal/case/decks/evidence_item.html.twig"></div>

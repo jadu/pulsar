@@ -12,6 +12,7 @@
   "dependencies": {
     "bootstrap-daterangepicker": "latest",
     "bourbon": "latest",
+    "chosen": "https://github.com/harvesthq/chosen/releases/download/v1.1.0/chosen_v1.1.0.zip",
     "console-js": "gh-pages",
     "font-awesome": "3.2.1",
     "html5shiv": "latest",

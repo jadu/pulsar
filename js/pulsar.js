@@ -8,6 +8,7 @@ define(['jquery'], function() {
         // Set up Pulsar's UI environment
         require([
             'actions',
+            'chosen',
             'highlightjs',
             'jquery-autosize',
             'tooltip',
@@ -29,6 +30,10 @@ define(['jquery'], function() {
 
             // sticky toolbar
             $('.toolbar').sticky({topSpacing: 0});
+
+            // chosen
+            console.log($('#quantum_case_filters_status_statuses'));
+            $('#quantum_case_filters_status_statuses').chosen();
 
             // syntax highlighting
             if (!$('html.ie7').size()) { // IE8 and up only
