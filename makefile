@@ -7,6 +7,7 @@ BUILD := build
 BREW = $(shell which brew)
 BOWER = $(shell which bower)
 GRUNT = $(shell which grunt)
+NODE = $(shell which node)
 XCODE = $(shell pkgutil --pkg-info=com.apple.pkg.CLTools_Executables)
 
 build:
@@ -31,6 +32,14 @@ else
 	@ echo "Homebrew v$(shell brew --version) is already installed.\n"
 endif
 	@ brew install phantomjs
+	@ echo "\n${CHECK} Done"
+
+	@ echo "${HR}\nInstalling Node & NPM...${HR}\n"
+ifeq (${NODE}, )
+	brew install node
+else
+	@ echo "Node v$(shell node --version) is already installed.\n"
+endif
 	@ echo "\n${CHECK} Done"
 
 	@ echo "${HR}\nInstalling Bower and its dependencies...${HR}\n"
