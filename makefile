@@ -38,7 +38,7 @@ endif
 ifeq (${NODE}, )
 	brew install node
 else
-	@ echo "Node v$(shell node --version) is already installed.\n"
+	@ echo "Node $(shell node --version) is already installed."
 endif
 	@ echo "\n${CHECK} Done"
 
@@ -46,12 +46,12 @@ endif
 ifeq (${BOWER}, )
 	@ sudo npm install -g bower
 else
-	@ echo "Bower v$(shell brew --version) is already installed.\n"
+	@ echo "Bower v$(shell bower --version) is already installed."
 endif
 	@ bower install
 	@ echo "\n${CHECK} Done"
 
-	@ echo "${HR}\nInstalling Grunt and it's libraries...${HR}\n"
+	@ echo "${HR}\nInstalling Grunt and its libraries...${HR}\n"
 ifeq (${GRUNT}, )
 	@ sudo npm install -g grunt-cli
 else
@@ -67,7 +67,7 @@ endif
 
 	@ echo "${HR}\nCompiling the stylesheets...${HR}\n"
 	@ grunt sass:dev
-	@ echo "\n${CHECK} Done\n"
+	@ echo "${CHECK} Done\n"
 
 	@ echo "${HR}\nRunning the first build...${HR}\n"
 	@ grunt build
