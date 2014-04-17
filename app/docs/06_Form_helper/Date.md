@@ -136,7 +136,10 @@ The class is added to the `.form__group`, not the individual input.
 <div class="form__group form__group--large">
     <label for="inputText" class="control__label">Date</label>
     <div class="controls">
-        <input type="text" class="form__control" id="Date" name="field[name]" placeholder="Choose Date" />
+        <div class="input-group">
+            <input type="text" class="form__control" id="Date" name="field[name]" placeholder="Choose Date" data-datepicker="true" />
+            <span class="input-group-addon"><i class="icon-calendar"></i></span>
+        </div>
         <p class="help-block">Something helpful this way comes</p>
     </div>
 </div>
