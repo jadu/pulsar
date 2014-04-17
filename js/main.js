@@ -50,6 +50,9 @@ requirejs.config({
         },
         'highcharts-more': {
             deps: ['jquery', 'highcharts']
+        },
+        'pikaday': {
+            deps: ['moment']
         }
     }
 });

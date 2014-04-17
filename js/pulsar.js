@@ -61,7 +61,8 @@ define(['jquery'], function() {
         require(['pikaday'], function(Pikaday) {
             $('[data-datepicker=true]').each(function() {
                 new Pikaday({
-                    field: this
+                    field: this,
+                    format: 'ddd DD/MM/YYYY'
                 });
             });
         });
