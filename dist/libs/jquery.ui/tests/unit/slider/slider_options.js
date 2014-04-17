@@ -1,3 +1,6 @@
+/*
+ * slider_options.js
+ */
 (function( $ ) {
 
 var element, options;
@@ -197,7 +200,7 @@ test( "values", function() {
 });
 
 test( "range", function() {
-	expect( 33 );
+	expect( 27 );
 	var range;
 
 	// min
@@ -296,21 +299,6 @@ test( "range", function() {
 	equal( element.slider( "value" ), 1 , "value" );
 	equal( element.slider( "option", "values" ), null, "values" );
 	deepEqual( element.slider( "values" ), [] , "values" );
-	element.slider( "destroy" );
-
-	// Change range from true to false
-	element = $( "<div></div>" ).slider({
-		range: true,
-		min: 1,
-		max: 10,
-		step: 1
-	}).slider( "option", "range", false );
-	equal( element.find( ".ui-slider-handle" ).length, 2, "range switch from true to false, both handles remain" );
-	equal( element.find( ".ui-slider-range" ).length, 0, "range switch from true to false" );
-	equal( element.slider( "option", "value" ), 0 , "option value" );
-	equal( element.slider( "value" ), 1 , "value" );
-	deepEqual( element.slider( "option", "values" ), [1, 1], "option values" );
-	deepEqual( element.slider( "values" ), [1, 1], "values" );
 	element.slider( "destroy" );
 });
 

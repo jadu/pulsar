@@ -1,16 +1,16 @@
-# [jQuery UI](http://jqueryui.com/) - Interactions and Widgets for the web
+[jQuery UI](http://jqueryui.com/) - Interactions and Widgets for the web
+================================
 
-jQuery UI is a curated set of user interface interactions, effects, widgets, and themes built on top of jQuery. Whether you're building highly interactive web applications, or you just need to add a date picker to a form control, jQuery UI is the perfect choice.
+jQuery UI provides interactions like Drag and Drop and widgets like Autocomplete, Tabs and Slider and makes these as easy to use as jQuery itself.
 
-If you want to use jQuery UI, go to [jqueryui.com](http://jqueryui.com) to get started, [jqueryui.com/demos/](http://jqueryui.com/demos/) for demos, [api.jqueryui.com](http://api.jqueryui.com/) for API documentation, or the [Using jQuery UI Forum](http://forum.jquery.com/using-jquery-ui) for discussions and questions.
-
-If you want to report a bug/issue, please visit [bugs.jqueryui.com](http://bugs.jqueryui.com).
+If you want to use jQuery UI, go to [jqueryui.com](http://jqueryui.com) to get started. Or visit the [Using jQuery UI Forum](http://forum.jquery.com/using-jquery-ui) for discussions and questions.
 
 If you are interested in helping develop jQuery UI, you are in the right place.
-To discuss development with team members and the community, visit the [Developing jQuery UI Forum](http://forum.jquery.com/developing-jquery-ui) or [#jqueryui-dev on irc.freenode.net](http://irc.jquery.org/).
+To discuss development with team members and the community, visit the [Developing jQuery UI Forum](http://forum.jquery.com/developing-jquery-ui) or in #jquery on irc.freednode.net.
 
 
-## For contributors
+For contributors
+---
 
 If you want to help and provide a patch for a bugfix or new feature, please take
 a few minutes and look at [our Getting Involved guide](http://wiki.jqueryui.com/w/page/35263114/Getting-Involved).
@@ -22,7 +22,8 @@ pull request for that branch. Don't mix unrelated changes. You can use the commi
 message as the description for the pull request.
 
 
-## Running the Unit Tests
+Running the Unit Tests
+---
 
 Run the unit tests with a local server that supports PHP. No database is required. Pre-configured php local servers are available for Windows and Mac. Here are some options:
 
@@ -32,34 +33,36 @@ Run the unit tests with a local server that supports PHP. No database is require
 - [Mongoose (most platforms)](http://code.google.com/p/mongoose/)
 
 
-## Building jQuery UI
+Building jQuery UI
+---
 
-jQuery UI uses the [Grunt](http://github.com/gruntjs/grunt) build system.
+jQuery UI uses the [grunt](http://github.com/cowboy/grunt) build system. Building jQuery UI requires node.js and a command line zip program.
 
-To build jQuery UI, you must have [node.js](http://nodejs.org/) installed and then run the following commands:
+Install grunt.
 
-```sh
+`npm install grunt -g`
 
-# Install the Grunt CLI
-npm install -g grunt-cli
+Clone the jQuery UI git repo.
 
-# Clone the jQuery UI git repo
-git clone git://github.com/jquery/jquery-ui.git
-cd jquery-ui
+`git clone git://github.com/jquery/jquery-ui.git`
 
-# Install the node module dependencies
-npm install
+`cd jquery-ui`
 
-# Run the build task
-grunt build
+Install node modules.
 
-# There are many other tasks that can be run through Grunt.
-# For a list of all tasks:
-grunt --help
-```
+`npm install`
+
+Run grunt.
+
+`grunt build`
+
+There are many other tasks that can be run through grunt. For a list of all tasks:
+
+`grunt --help`
 
 
-## For committers
+For committers
+---
 
 When looking at pull requests, first check for [proper commit messages](http://wiki.jqueryui.com/w/page/12137724/Bug-Fixing-Guide).
 
@@ -88,7 +91,7 @@ If you need to edit the changes:
 	# make changes
 	git commit --author="[author-name-and-email]"
 
-If it should go to the stable branch, cherry-pick it to stable:
+If it should go to the stable brach, cherry-pick it to stable:
 
     git checkout 1-8-stable
     git cherry-pick -x [sha-of-commit-from-master]

@@ -1,7 +1,5 @@
 /*jshint -W106 */
-/*jshint node:true */
 module.exports = function(grunt) {
-  'use strict';
 
   // Metadata
   var pkg = grunt.file.readJSON('package.json');
@@ -26,8 +24,7 @@ module.exports = function(grunt) {
       }
     },
     clean: {
-      src: ['ZeroClipboard.*'],
-      meta: ['bower.json', 'composer.json', 'LICENSE']
+      dist: ['ZeroClipboard.*', 'bower.json', 'composer.json', 'LICENSE']
     },
     concat: {
       options: {
@@ -40,14 +37,11 @@ module.exports = function(grunt) {
         src: [
           'src/meta/source-banner.tmpl',
           'src/javascript/start.js',
-          'src/javascript/ZeroClipboard/state.js',
           'src/javascript/ZeroClipboard/utils.js',
-          'src/javascript/ZeroClipboard/flash.js',
           'src/javascript/ZeroClipboard/client.js',
           'src/javascript/ZeroClipboard/core.js',
           'src/javascript/ZeroClipboard/dom.js',
           'src/javascript/ZeroClipboard/event.js',
-          'src/javascript/ZeroClipboard/deprecated.js',
           'src/javascript/end.js'
         ],
         dest: 'ZeroClipboard.js'
@@ -110,8 +104,7 @@ module.exports = function(grunt) {
       options: {
         mode: '444'
       },
-      src: ['ZeroClipboard.*'],
-      meta: ['bower.json', 'composer.json', 'LICENSE']
+      dist: ['ZeroClipboard.*', 'bower.json', 'composer.json', 'LICENSE']
     },
     connect: {
       server: {
@@ -121,31 +114,19 @@ module.exports = function(grunt) {
       }
     },
     qunit: {
-      file: ['test/**/*.js.html'],
+      //file: ['test/**/*.js.html'],
+      file: ['test/utils.js.html'],
       http: {
         options: {
-          urls: grunt.file.expand(['test/**/*.js.html']).map(function(testPage) {
-            return 'http://localhost:' + localPort + '/' + testPage + '?noglobals=true';
+          //urls: grunt.file.expand(['test/**/*.js.html']).map(function(testPage) {
+          urls: ['test/utils.js.html'].map(function(testPage) {
+            return 'http://localhost:' + localPort + '/' + testPage;
           })
         }
       }
     },
-    watch: {
-      options: {
-        spawn: false
-      },
-      Gruntfile: {
-        files: '<%= jshint.Gruntfile %>',
-        tasks: ['jshint:Gruntfile']
-      },
-      js: {
-        files: '<%= jshint.js %>',
-        tasks: ['jshint:js', 'unittest']
-      },
-      test: {
-        files: '<%= jshint.test %>',
-        tasks: ['jshint:test', 'unittest']
-      }
+    nodeunit: {
+      all: ['test/client.js', 'test/core.js', 'test/dom.js', 'test/event.js']
     }
   });
 
@@ -159,15 +140,15 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-chmod');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-qunit');
-  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-nodeunit');
 
 
   //
   // Task aliases and chains
   //
 
-  grunt.registerTask('unittest', ['connect', 'qunit']);
-  grunt.registerTask('test',     ['jshint', 'clean:src', 'concat', 'mxmlc', 'chmod:src', 'unittest']);
+  grunt.registerTask('unittest', ['connect', 'qunit', 'nodeunit']);
+  grunt.registerTask('test',     ['jshint', 'unittest']);
   grunt.registerTask('travis',   ['test']);
 
   // Default task

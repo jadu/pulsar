@@ -3,14 +3,6 @@ PhantomCSS
 
 **CSS regression testing**. A [CasperJS](http://github.com/n1k0/casperjs) module for automating visual regression testing with [PhantomJS](http://github.com/ariya/phantomjs/) and [Resemble.js](http://huddle.github.com/Resemble.js/). For testing Web apps, live style guides and responsive layouts. Read more on Huddle's Engineering blog: [CSS Regression Testing](http://tldr.huddle.com/blog/css-testing/).
 
-### What?
-
-PhantomCSS takes screenshots captured by CasperJS and compares them to baseline images using [Resemble.js](http://huddle.github.com/Resemble.js/) to test for rgb pixel differences. PhantomCSS then generates image diffs to help you find the cause.
-
-![A failed visual regression test, pink areas show where padding has changed.](https://raw.github.com/Huddle/PhantomCSS/master/readme_assets/intro-example.png "Failed visual regression test")
-
-Screenshot based regression testing can only work when UI is predictable. It's possible to hide mutable UI components with PhantomCSS but it would be better to test static pages or drive the UI with faked data during test runs.
-
 ### Example
 
 ```javascript
@@ -32,11 +24,13 @@ From the command line/terminal run
 * On Windows `casperjs demo/testsuite.js`
 * On Mac OSX `casperjs test demo/testsuite.js`
 
-### Download
+### How?
 
-* `npm install phantomcss`
-* `bower install phantomcss`
-* `git clone git://github.com/Huddle/PhantomCSS.git`
+PhantomCSS takes screenshots captured by CasperJS and compares them to baseline images using [Resemble.js](http://huddle.github.com/Resemble.js/) to test for rgb pixel differences. PhantomCSS then generates image diffs to help you find the cause.
+
+![A failed visual regression test, pink areas show where padding has changed.](https://raw.github.com/Huddle/PhantomCSS/master/readme_assets/intro-example.png "Failed visual regression test")
+
+Screenshot based regression testing can only work when UI is predictable. It's possible to hide mutable UI components with PhantomCSS but it would be better to drive the UI from faked data during test runs. Take a look at [PhantomXHR](http://github.com/Huddle/PhantomXHR) for mocking XHR requests.
 
 ### Getting started, try the demo
 
@@ -49,31 +43,20 @@ From the command line/terminal run
 * In the failures folder some images should have been created. The images should show bright pink where the screenshot has visually changed
 * If you want to manually compare the images, go to the screenshot folder to see the original/baseline and latest screenshots
 
-### Example setup
+### Setup
 
 ```javascript
+
 phantomcss.init({
 	libraryRoot: './modules/PhantomCSS',
 	screenshotRoot: './screenshots',
-
-	/*
-		If failedComparisonsRoot is not defined failure images can still be found alongside the original and new images
-	*/
 	failedComparisonsRoot: './failures',
 
-	/*
-		Don't add label to generated failure image
-	*/
-	addLabelToFailedImage: false,
+	// If failedComparisonsRoot is not defined failure images can still 
+	// be found alongside the original and new images
 
-	/*
-		Mismatch tolerance defaults to  0.05%. Increasing this value will decrease test coverage
-	*/
-	mismatchTolerance: 0.05,
+	addLabelToFailedImage: false, // Don't add label to generated failure image
 
-	/*
-		Callbacks for your specific integration
-	*/
 	onFail: function(test){ console.log(test.filename, test.mismatch); },
 	onPass: function(){ console.log(test.filename); },
 	onTimeout: function(){ console.log(test.filename); },
@@ -84,10 +67,6 @@ phantomcss.init({
 			}
 		});
 	},
-
-	/*
-		Change the output screenshot filenames for your specific integration
-	*/
 	fileNameGetter: function(root,filename){ 
 		// globally override output filename
 		// files must exist under root
@@ -98,66 +77,11 @@ phantomcss.init({
 		} else {
 			return name+'.png';
 		}
-	},
-
-	/*
-		Output styles for image failure outputs genrated by Resemble.js
-	*/
-	outputSettings: {
-		errorColor: {
-			red: 255,
-			green: 255,
-			blue: 0
-		},
-		errorType: 'movement',
-		transparency: 0.3
 	}
 });
-/*
-	Turn off CSS transitions and jQuery animations
-*/
-phantomcss.turnOffAnimations();
-```
 
-### Don't like pink?
+phantomcss.turnOffAnimations(); // turn off CSS transitions and jQuery animations
 
-![A failed visual regression test, yellow areas show where the icon has enlarged and pushed other elements down.](https://raw.github.com/Huddle/PhantomCSS/master/readme_assets/differentcolour.png "Failed visual regression test")
-
-```javascript
-phantomcss.init({
-	/*
-		Output styles for image failure outputs genrated by Resemble.js
-	*/
-	outputSettings: {
-
-		/*
-			Error pixel color, RGB, anything you want, 
-			though bright and ugly works best!
-		*/
-		errorColor: {
-			red: 255,
-			green: 255,
-			blue: 0
-		},
-		
-		/*
-			ErrorType values include 'flat', or 'movement'.  
-			The latter merges error color with base image
-			which makes it a little easier to spot movement.
-		*/
-		errorType: 'movement',
-		
-		/*
-			Fade unchanged areas to make changed areas more apparent.
-		*/
-		transparency: 0.3
-	}
-});
-```
-
-### There are different ways to take a screenshot
-
-```javascript
 var delay = 10;
 var hideElements = 'input[type=file]';
 var screenshotName = 'the_dialog'
@@ -166,40 +90,12 @@ phantomcss.screenshot( "#CSS .selector", screenshotName);
 
 // phantomcss.screenshot( "#CSS .selector" );
 // phantomcss.screenshot( "#CSS .selector", delay, hideElements, screenshotName);
-```
 
-### Compare the images when and how you want
-
-```javascript
-/*
-	String is converted into a Regular expression that matches on full image path
-*/
 phantomcss.compareAll('exclude.test'); 
+// String is converted into a Regular expression that matches on full image path
 
 // phantomcss.compareMatched('include.test', 'exclude.test');
 // phantomcss.compareMatched( new RegExp('include.test'), new RegExp('exclude.test'));
-
-/*
-	Compare image diffs generated in this test run only
-*/
-// phantomcss.compareSession();
-
-/*
-	Explicitly define what files you want to compare
-*/
-// phantomcss.compareExplicit(['/dialog.diff.png', '/header.diff.png']);
-
-/*
-	Get a list of image diffs generated in this test run
-*/
-// phantomcss.getCreatedDiffFiles();
-
-/*
-	Compare any two images, and wait for the results to complete
-*/
-// phantomcss.compareFiles(baseFile, diffFile);
-// phantomcss.waitForTests();
-
 ```
 
 ### Best Practices
@@ -236,7 +132,7 @@ phantomcss.screenshot("#feedback-form");
 
 ##### PhantomCSS should not be used to replace functional tests
 
-If you needed functional tests before, then you still need them.  Automated visual regression testing gives us coverage of CSS and design in a way we didn't have before, but that doesn't mean that conventional test assertions are now invalid.  Feedback time is crucial with test automation, the longer it takes the easier it is to ignore; the easier it is to ignore the sooner trust is lost from the team.  Unfortunately comparing images is not, and never will be as fast as simple DOM assertion.
+If you needed functional tests before, then you still need them.  Automated visual regression testing gives us coverage of CSS and design in a way we didn't have before, but that doesn't mean that conventional test assertions are now invalid.  Feedback time is crucial with test automation, the longer it takes the easier it is to ignore; the easier it is to ignore the sooner trust is lost from the team.  Unfortunately comparing images it not and never will be as fast as simple DOM assertion.
 
 ##### Don't try to test all the visuals
 
@@ -265,9 +161,8 @@ If your using a version control system like Git to store the baseline screenshot
 
 ### ...You might also be interested in
 
-**[grunt-testflow](https://github.com/Huddle/grunt-testflow)**, A grunt plugin that wraps PhantomCSS and also provides an experimental way of describing and visualising user flows through tests with CasperJS. As well as providing a terse readable structure for UI testing, it also produces intriguing graph visualisations that can be used to present PhantomCSS screenshots and failed diffs.  We're actively using it at Huddle and it's changing the way we think about UI for the better. "Work in progress".
+**[PhantomFlow](http://github.com/Huddle/PhantomFlow)**, is an experimental way of describing and visualising user flows through tests. As well as providing a terse readable structure for UI testing, it also produces a fantastic graph visualisation that can be used to present PhantomCSS screenshots and failed diffs.  We're actively using it at Huddle and it's changing the way we think about UI for the better.
 
-Also, take a look at [PhantomXHR](http://github.com/Huddle/PhantomXHR) for stubbing and mocking XHR requests. Isolated UI testing IS THE FUTURE!
 
 --------------------------------------
 

@@ -3,8 +3,8 @@
 jQuery(function($){
 	$.datepicker.regional['lv'] = {
 		closeText: 'Aizvērt',
-		prevText: 'Iepr.',
-		nextText: 'Nāk.',
+		prevText: 'Iepr',
+		nextText: 'Nāka',
 		currentText: 'Šodien',
 		monthNames: ['Janvāris','Februāris','Marts','Aprīlis','Maijs','Jūnijs',
 		'Jūlijs','Augusts','Septembris','Oktobris','Novembris','Decembris'],
@@ -13,8 +13,8 @@ jQuery(function($){
 		dayNames: ['svētdiena','pirmdiena','otrdiena','trešdiena','ceturtdiena','piektdiena','sestdiena'],
 		dayNamesShort: ['svt','prm','otr','tre','ctr','pkt','sst'],
 		dayNamesMin: ['Sv','Pr','Ot','Tr','Ct','Pk','Ss'],
-		weekHeader: 'Ned.',
-		dateFormat: 'dd.mm.yy',
+		weekHeader: 'Nav',
+		dateFormat: 'dd-mm-yy',
 		firstDay: 1,
 		isRTL: false,
 		showMonthAfterYear: false,

@@ -2,7 +2,6 @@
 	var store = {},
 		doc = win.document,
 		localStorageName = 'localStorage',
-		scriptTag = 'script',
 		storage
 
 	store.disabled = false
@@ -79,7 +78,7 @@
 		try {
 			storageContainer = new ActiveXObject('htmlfile')
 			storageContainer.open()
-			storageContainer.write('<'+scriptTag+'>document.w=window</'+scriptTag+'><iframe src="/favicon.ico"></iframe>')
+			storageContainer.write('<s' + 'cript>document.w=window</s' + 'cript><iframe src="/favicon.ico"></iframe>')
 			storageContainer.close()
 			storageOwner = storageContainer.w.frames[0].document
 			storage = storageOwner.createElement('div')
@@ -104,12 +103,10 @@
 			}
 		}
 
-		// In IE7, keys cannot start with a digit or contain certain chars.
-		// See https://github.com/marcuswestin/store.js/issues/40
-		// See https://github.com/marcuswestin/store.js/issues/83
+		// In IE7, keys may not contain special chars. See all of https://github.com/marcuswestin/store.js/issues/40
 		var forbiddenCharsRegex = new RegExp("[!\"#$%&'()*+,/\\\\:;<=>?@[\\]^`{|}~]", "g")
 		function ieKeyFix(key) {
-			return key.replace(/^d/, '___$&').replace(forbiddenCharsRegex, '___')
+			return key.replace(forbiddenCharsRegex, '___')
 		}
 		store.set = withIEStorage(function(storage, key, val) {
 			key = ieKeyFix(key)
@@ -159,9 +156,9 @@
 		store.disabled = true
 	}
 	store.enabled = !store.disabled
-
-	if (typeof module != 'undefined' && module.exports && this.module !== module) { module.exports = store }
+	
+	if (typeof module != 'undefined' && module.exports) { module.exports = store }
 	else if (typeof define === 'function' && define.amd) { define(store) }
 	else { win.store = store }
-
-})(Function('return this')());
+	
+})(this.window || global);

@@ -95,7 +95,8 @@ asyncTest( "invocation", function() {
 	expect( isOldIE ? 25 : 29 );
 
 	function step0() {
-		var inp = TestHelpers.datepicker.initNewInput(),
+		var input = $( "<input>" ).appendTo( "#qunit-fixture" ),
+			inp = TestHelpers.datepicker.init( input ),
 			dp = $( "#ui-datepicker-div" );
 
 		button = inp.siblings( "button" );
@@ -113,7 +114,8 @@ asyncTest( "invocation", function() {
 
 	function step1() {
 
-		var inp = TestHelpers.datepicker.initNewInput(),
+		var input = $( "<input>" ).appendTo( "#qunit-fixture" ),
+			inp = TestHelpers.datepicker.init( input ),
 			dp = $( "#ui-datepicker-div" );
 
 		TestHelpers.datepicker.onFocus( inp, function() {
@@ -127,10 +129,8 @@ asyncTest( "invocation", function() {
 	}
 
 	function step2() {
-		var inp = TestHelpers.datepicker.initNewInput({
-				showOn: "button",
-				buttonText: "Popup"
-			}),
+		var input = $( "<input>" ).appendTo( "#qunit-fixture" ),
+			inp = TestHelpers.datepicker.init( input, { showOn: "button", buttonText: "Popup" } ),
 			dp = $( "#ui-datepicker-div" );
 
 		ok( !dp.is( ":visible" ), "Button - initially hidden" );
@@ -153,7 +153,8 @@ asyncTest( "invocation", function() {
 	}
 
 	function step3() {
-		var inp = TestHelpers.datepicker.initNewInput({
+		var input = $( "<input>" ).appendTo( "#qunit-fixture" ),
+			inp = TestHelpers.datepicker.init( input, {
 				showOn: "button",
 				buttonImageOnly: true,
 				buttonImage: "images/calendar.gif",
@@ -166,7 +167,7 @@ asyncTest( "invocation", function() {
 		ok( button.length === 0, "Image button - button absent" );
 		image = inp.siblings( "img" );
 		ok( image.length === 1, "Image button - image present" );
-		ok( /images\/calendar\.gif$/.test( image.attr( "src" ) ), "Image button - image source" );
+		equal( image.attr( "src" ), "images/calendar.gif", "Image button - image source" );
 		equal( image.attr( "title" ), "Cal", "Image button - image text" );
 
 		TestHelpers.datepicker.onFocus( inp, function() {
@@ -182,10 +183,8 @@ asyncTest( "invocation", function() {
 	}
 
 	function step4() {
-		var inp = TestHelpers.datepicker.initNewInput({
-				showOn: "both",
-				buttonImage: "images/calendar.gif"
-			}),
+		var input = $( "<input>" ).appendTo( "#qunit-fixture" ),
+			inp = TestHelpers.datepicker.init( input, { showOn: "both", buttonImage: "images/calendar.gif"} ),
 			dp = $( "#ui-datepicker-div" );
 
 		ok( !dp.is( ":visible" ), "Both - initially hidden" );
@@ -1057,22 +1056,21 @@ test("formatDate", function() {
 	settings = {dayNamesShort: fr.dayNamesShort, dayNames: fr.dayNames,
 		monthNamesShort: fr.monthNamesShort, monthNames: fr.monthNames};
 	equal($.datepicker.formatDate("D M y", new Date(2001, 4 - 1, 9), settings),
-		"lun. avril 01", "Format date D M y with settings");
+		"Lun. Avril 01", "Format date D M y with settings");
 	equal($.datepicker.formatDate("DD MM yy", new Date(2001, 4 - 1, 9), settings),
-		"lundi avril 2001", "Format date DD MM yy with settings");
+		"Lundi Avril 2001", "Format date DD MM yy with settings");
 	equal($.datepicker.formatDate("DD, MM d, yy", new Date(2001, 4 - 1, 9), settings),
-		"lundi, avril 9, 2001", "Format date DD, MM d, yy with settings");
+		"Lundi, Avril 9, 2001", "Format date DD, MM d, yy with settings");
 	equal($.datepicker.formatDate("'jour' d 'de' MM (''DD''), yy",
-		new Date(2001, 4 - 1, 9), settings), "jour 9 de avril ('lundi'), 2001",
+		new Date(2001, 4 - 1, 9), settings), "jour 9 de Avril ('Lundi'), 2001",
 		"Format date 'jour' d 'de' MM (''DD''), yy with settings");
 });
 
-// TODO: Fix this test so it isn't mysteriously flaky in Browserstack on certain OS/Browser combos
-// test("Ticket 6827: formatDate day of year calculation is wrong during day lights savings time", function(){
-// 	expect( 1 );
-// 	var time = $.datepicker.formatDate("oo", new Date("2010/03/30 12:00:00 CDT"));
-// 	equal(time, "089");
-// });
+test("Ticket 6827: formatDate day of year calculation is wrong during day lights savings time", function(){
+	expect( 1 );
+	var time = $.datepicker.formatDate("oo", new Date("2010/03/30 12:00:00 CDT"));
+	equal(time, "089");
+});
 
 test( "Ticket 7602: Stop datepicker from appearing with beforeShow event handler", function() {
 	expect( 3 );

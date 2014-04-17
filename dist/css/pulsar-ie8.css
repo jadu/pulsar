@@ -1,6 +1,7 @@
 @import url('../libs/normalize-css/normalize.css');
 @import url('../libs/font-awesome/css/font-awesome.css');
 @import url('../libs/highlightjs/styles/rainbow.css');
+@import url('../libs/pikaday/css/pikaday.css');
 @import url('../fonts/proxima_nova/stylesheet.css');
 * {
   box-sizing: border-box; }
@@ -4133,7 +4134,6 @@ textarea.input-lg, textarea.input-sm {
   .table--datagrid:hover tbody a {
     color: #2455c3; }
   .table--datagrid tr {
-    background-color: white;
     line-height: 22px; }
     .table--datagrid tr th, .table--datagrid tr td {
       border-bottom: 1px solid #ccc;
@@ -4194,32 +4194,6 @@ tr.is-selected > td {
   background-color: #ebf0fb; }
 tr.is-selected:hover > td {
   background-color: #e2eafa; }
-
-.dataTables_wrapper {
-  background-color: #f2f2f2; }
-  .dataTables_wrapper table {
-    border-bottom: 1px solid #ccc; }
-  .dataTables_wrapper th {
-    border-top: 1px solid #d9d9d9;
-    box-shadow: inset 0 1px 0 white; }
-
-.dataTables_length, .dataTables_filter {
-  float: right;
-  height: 38.5px;
-  vertical-align: middle; }
-  .dataTables_length label, .dataTables_filter label {
-    position: relative;
-    top: 8px; }
-
-.dataTables_paginate {
-  background-color: #fff;
-  line-height: 38.5px; }
-
-.dataTables_info {
-  float: left;
-  line-height: 38.5px;
-  margin-right: 20px;
-  padding-left: 20px; }
 
 .filter {
   display: none;

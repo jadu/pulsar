@@ -1,50 +1,24 @@
 # Mouse Wheel ChangeLog
 
-## 3.1.11
-
-* Fix version number for package managers...
-
-## 3.1.10
-
-* Fix issue with calculating line height when using older versions of jQuery
-* Add offsetX/Y normalization with setting to turn it off
-* Cleans up data on teardown
-
-## 3.1.9
-
-* Fix bower.json file
-* Updated how the deltas are adjusted for older mousewheel based events that have deltas that are factors of 120.
-* Add $.event.special.mousewheel.settings.adjustOldDeltas (defaults to true) to turn off adjusting of old deltas that are factors of 120. You'd turn this off if you want to be as close to native scrolling as possible.
-
-## 3.1.8
-
-* Even better handling of older browsers that use a wheelDelta based on 120
-* And fix version reported by `$.event.special.mousewheel`
-
-## 3.1.7
-
-* Better handle the `deltaMode` values 1 (lines) and 2 (pages)
-* Attempt to better handle older browsers that use a wheelDelta based on 120
-
 ## 3.1.6
 
-* Deprecating `delta`, `deltaX`, and `deltaY` event handler arguments
-* Update actual event object with normalized `deltaX `and `deltaY` values (`event.deltaX`, `event.deltaY`)
-* Add `deltaFactor` to the event object (`event.deltaFactor`)
-* Handle `> 0` but `< 1` deltas better
-* Do not fire the event if `deltaX` and `deltaY` are `0`
-* Better handle different devices that give different `lowestDelta` values
-* Add `$.event.special.mousewheel.version`
+* Deprecating delta, deltaX, and deltaY event handler arguments
+* Update actual event object with normalized deltaX and deltaY values (event.deltaX, event.deltaY)
+* Add deltaFactor to the event object (event.deltaFactor)
+* Handle > 0 but < 1 deltas better
+* Do not fire the event if deltaX and deltaY are 0
+* Better handle different devices that give different lowestDelta values
+* Add $.event.special.mousewheel.version
 * Some clean up
 
 ## 3.1.5
 
-* Bad release because I did not update the new `$.event.special.mousewheel.version`
+* Bad release because I did not update the new $.event.special.mousewheel.version
 
 ## 3.1.4
 
-* Always set the `deltaY`
-* Add back in the `deltaX` and `deltaY` support for older Firefox versions
+* Always set the deltaY
+* Add back in the deltaX and deltaY support for older Firefox versions
 
 ## 3.1.3
 

@@ -2,7 +2,7 @@
  * jQuery UI Dialog @VERSION
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2013 jQuery Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -169,8 +169,7 @@ $.widget( "ui.dialog", {
 	enable: $.noop,
 
 	close: function( event ) {
-		var activeElement,
-			that = this;
+		var that = this;
 
 		if ( !this._isOpen || this._trigger( "beforeClose", event ) === false ) {
 			return;
@@ -180,22 +179,10 @@ $.widget( "ui.dialog", {
 		this._destroyOverlay();
 
 		if ( !this.opener.filter(":focusable").focus().length ) {
-
-			// support: IE9
-			// IE9 throws an "Unspecified error" accessing document.activeElement from an <iframe>
-			try {
-				activeElement = this.document[ 0 ].activeElement;
-
-				// Support: IE9, IE10
-				// If the <body> is blurred, IE will switch windows, see #4520
-				if ( activeElement && activeElement.nodeName.toLowerCase() !== "body" ) {
-
-					// Hiding a focused element doesn't trigger blur in WebKit
-					// so in case we have nothing to focus on, explicitly blur the active element
-					// https://bugs.webkit.org/show_bug.cgi?id=47182
-					$( activeElement ).blur();
-				}
-			} catch ( error ) {}
+			// Hiding a focused element doesn't trigger blur in WebKit
+			// so in case we have nothing to focus on, explicitly blur the active element
+			// https://bugs.webkit.org/show_bug.cgi?id=47182
+			$( this.document[0].activeElement ).blur();
 		}
 
 		this._hide( this.uiDialog, this.options.hide, function() {
@@ -355,10 +342,7 @@ $.widget( "ui.dialog", {
 			}
 		});
 
-		// support: IE
-		// Use type="button" to prevent enter keypresses in textboxes from closing the
-		// dialog in IE (#9312)
-		this.uiDialogTitlebarClose = $( "<button type='button'></button>" )
+		this.uiDialogTitlebarClose = $("<button></button>")
 			.button({
 				label: this.options.closeText,
 				icons: {
@@ -572,6 +556,7 @@ $.widget( "ui.dialog", {
 	},
 
 	_setOption: function( key, value ) {
+		/*jshint maxcomplexity:15*/
 		var isDraggable, isResizable,
 			uiDialog = this.uiDialog;
 

@@ -2,55 +2,46 @@
 
 module( "autocomplete: options" );
 
-var data = [ "c++", "java", "php", "coldfusion", "javascript", "asp", "ruby",
-	"python", "c", "scala", "groovy", "haskell", "perl" ];
+var data = [ "c++", "java", "php", "coldfusion", "javascript", "asp", "ruby", "python", "c", "scala", "groovy", "haskell", "perl" ];
 
 test( "appendTo", function() {
 	expect( 8 );
 	var detached = $( "<div>" ),
 		element = $( "#autocomplete" ).autocomplete();
-	equal( element.autocomplete( "widget" ).parent()[ 0 ], document.body,
-		"defaults to body" );
+	equal( element.autocomplete( "widget" ).parent()[0], document.body, "defaults to body" );
 	element.autocomplete( "destroy" );
 
 	element.autocomplete({
-		appendTo: ".autocomplete-wrap"
+		appendTo: ".ac-wrap"
 	});
-	equal( element.autocomplete( "widget" ).parent()[ 0 ],
-		$( "#autocomplete-wrap1" )[ 0 ], "first found element" );
-	equal( $( "#autocomplete-wrap2 .ui-autocomplete" ).length, 0,
-		"only appends to one element" );
+	equal( element.autocomplete( "widget" ).parent()[0], $( "#ac-wrap1" )[0], "first found element" );
+	equal( $( "#ac-wrap2 .ui-autocomplete" ).length, 0, "only appends to one element" );
 	element.autocomplete( "destroy" );
 
-	$( "#autocomplete-wrap2" ).addClass( "ui-front" );
+	$( "#ac-wrap2" ).addClass( "ui-front" );
 	element.autocomplete();
-	equal( element.autocomplete( "widget" ).parent()[ 0 ],
-		$( "#autocomplete-wrap2" )[ 0 ], "null, inside .ui-front" );
+	equal( element.autocomplete( "widget" ).parent()[0], $( "#ac-wrap2" )[0], "null, inside .ui-front" );
 	element.autocomplete( "destroy" );
-	$( "#autocomlete-wrap2" ).removeClass( "ui-front" );
+	$( "#ac-wrap2" ).removeClass( "ui-front" );
 
-	element.autocomplete().autocomplete( "option", "appendTo", "#autocomplete-wrap1" );
-	equal( element.autocomplete( "widget" ).parent()[ 0 ],
-		$( "#autocomplete-wrap1" )[ 0 ], "modified after init" );
+	element.autocomplete().autocomplete( "option", "appendTo", "#ac-wrap1" );
+	equal( element.autocomplete( "widget" ).parent()[0], $( "#ac-wrap1" )[0], "modified after init" );
 	element.autocomplete( "destroy" );
 
 	element.autocomplete({
 		appendTo: detached
 	});
-	equal( element.autocomplete( "widget" ).parent()[ 0 ], detached[ 0 ],
-		"detached jQuery object" );
+	equal( element.autocomplete( "widget" ).parent()[0], detached[0], "detached jQuery object" );
 	element.autocomplete( "destroy" );
 
 	element.autocomplete({
-		appendTo: detached[ 0 ]
+		appendTo: detached[0]
 	});
-	equal( element.autocomplete( "widget" ).parent()[ 0 ], detached[ 0 ],
-		"detached DOM element" );
+	equal( element.autocomplete( "widget" ).parent()[0], detached[0], "detached DOM element" );
 	element.autocomplete( "destroy" );
 
 	element.autocomplete().autocomplete( "option", "appendTo", detached );
-	equal( element.autocomplete( "widget" ).parent()[ 0 ], detached[ 0 ],
-		"detached DOM element via option()" );
+	equal( element.autocomplete( "widget" ).parent()[0], detached[0], "detached DOM element via option()" );
 	element.autocomplete( "destroy" );
 });
 
@@ -60,13 +51,8 @@ function autoFocusTest( afValue, focusedLength ) {
 		delay: 0,
 		source: data,
 		open: function() {
-			equal(
-				element.autocomplete( "widget" )
-					.children( ".ui-menu-item:first" )
-					.find( ".ui-state-focus" )
-					.length,
-				focusedLength,
-				"first item is " + (afValue ? "" : "not") + " auto focused" );
+			equal( element.autocomplete( "widget" ).children( ".ui-menu-item:first" ).find( ".ui-state-focus" ).length,
+				focusedLength, "first item is " + (afValue ? "" : "not") + " auto focused" );
 			start();
 		}
 	});

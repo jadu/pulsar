@@ -2,7 +2,7 @@
  * jQuery UI Autocomplete @VERSION
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2013 jQuery Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -15,6 +15,9 @@
  *	jquery.ui.menu.js
  */
 (function( $, undefined ) {
+
+// used to prevent race conditions with remote data sources
+var requestIndex = 0;
 
 $.widget( "ui.autocomplete", {
 	version: "@VERSION",
@@ -41,7 +44,6 @@ $.widget( "ui.autocomplete", {
 		select: null
 	},
 
-	requestIndex: 0,
 	pending: 0,
 
 	_create: function() {
@@ -75,6 +77,7 @@ $.widget( "ui.autocomplete", {
 
 		this._on( this.element, {
 			keydown: function( event ) {
+				/*jshint maxcomplexity:15*/
 				if ( this.element.prop( "readOnly" ) ) {
 					suppressKeyPress = true;
 					suppressInput = true;
@@ -417,18 +420,19 @@ $.widget( "ui.autocomplete", {
 	},
 
 	_response: function() {
-		var index = ++this.requestIndex;
+		var that = this,
+			index = ++requestIndex;
 
-		return $.proxy(function( content ) {
-			if ( index === this.requestIndex ) {
-				this.__response( content );
+		return function( content ) {
+			if ( index === requestIndex ) {
+				that.__response( content );
 			}
 
-			this.pending--;
-			if ( !this.pending ) {
-				this.element.removeClass( "ui-autocomplete-loading" );
+			that.pending--;
+			if ( !that.pending ) {
+				that.element.removeClass( "ui-autocomplete-loading" );
 			}
-		}, this );
+		};
 	},
 
 	__response: function( content ) {

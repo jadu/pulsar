@@ -27,7 +27,7 @@ alert(user.name + ' likes ' + user.likes)
 store.getAll().user.name == 'marcus'
 
 // Loop over all stored values
-store.forEach(function(key, val) {
+store.forEach(function(val, key) {
 	console.log(key, '==', val)
 })
 ```

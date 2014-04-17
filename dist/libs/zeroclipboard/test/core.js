@@ -1,131 +1,99 @@
-/*global ZeroClipboard, _globalConfig:true */
-
 "use strict";
 
-(function(module, test) {
+require("./fixtures/env");
+var zeroClipboard, clip;
 
-  var originalConfig;
+exports.core = {
 
-  module("core", {
-    setup: function() {
-      originalConfig = ZeroClipboard.config();
-    },
-    teardown: function() {
-      _globalConfig = originalConfig;
-    }
-  });
+  "Changing movie path works": function (test) {
 
+    zeroClipboard = require("../ZeroClipboard");
+    clip = new zeroClipboard();
 
-  test("`swfPath` finds the expected default URL", function(assert) {
-    assert.expect(1);
+    // Test the client has default path
+    test.equal(clip.options.moviePath, "ZeroClipboard.swf");
 
-    // Assert, act, assert
-    var pageUrl = window.location.href.split("#")[0].split("?")[0];
-    var protocolIndex = pageUrl.lastIndexOf("//");
-    var protocol = pageUrl.slice(0, protocolIndex + 2);
-    var rootDir = protocol + pageUrl.slice(protocolIndex + 2).split("/").slice(0, -2).join("/") + "/";
-    //var stateJsUrl = rootDir + "src/javascript/ZeroClipboard/state.js";
-    var swfPathBasedOnStateJsPath = rootDir + "src/javascript/ZeroClipboard/ZeroClipboard.swf";
+    // change the path
+    clip.options.moviePath = "new/movie/path.swf";
 
-    // Test that the client has the expected default URL [even if it's not correct]
-    assert.strictEqual(ZeroClipboard.config("swfPath"), swfPathBasedOnStateJsPath);
-  });
+    test.equal(clip.options.moviePath, "new/movie/path.swf");
 
+    test.done();
 
-  test("Changing `trustedDomains` works", function(assert) {
-    assert.expect(5);
+    zeroClipboard.destroy();
+  },
 
-    // Arrange
-    var currentHost = window.location.host;
-    var originalValue = currentHost ? [currentHost] : [];
-    var updatedValue = currentHost ? [currentHost, "otherDomain.com"] : ["otherDomain.com"];
+  "Set trusted origins": function (test) {
 
-    // Assert, act, assert
-    // Test that the client has the default value
-    assert.deepEqual(ZeroClipboard.config("trustedDomains"), originalValue);
-    assert.deepEqual(ZeroClipboard.config().trustedDomains, originalValue);
-    // Change the value
-    var updatedConfig = ZeroClipboard.config({ trustedDomains: updatedValue });
-    // Test that the client has the changed value
-    assert.deepEqual(updatedConfig.trustedDomains, updatedValue);
-    assert.deepEqual(ZeroClipboard.config("trustedDomains"), updatedValue);
-    assert.deepEqual(ZeroClipboard.config().trustedDomains, updatedValue);
-  });
+    zeroClipboard = require("../ZeroClipboard");
+    clip = new zeroClipboard();
 
+    // Test that trustedOrigins is undefined
+    test.equal(clip.options.trustedOrigins, undefined);
 
-  /** @deprecated */
-  module("core - deprecated", {
-    setup: function() {
-      originalConfig = ZeroClipboard.config();
-      ZeroClipboard.config({ debug: false });
-    },
-    teardown: function() {
-      _globalConfig = originalConfig;
-    }
-  });
+    // change the path
+    clip.options.trustedOrigins = "google.com";
 
+    test.equal(clip.options.trustedOrigins, "google.com");
 
-  test("Changing `moviePath` works", function(assert) {
-    assert.expect(5);
+    test.done();
+    zeroClipboard.destroy();
+  },
 
-    // Assert, act, assert
+  "destroy clears up the client": function (test) {
 
-    // Test that the client has the default path
-    assert.strictEqual(ZeroClipboard.config("moviePath"), "ZeroClipboard.swf");
-    assert.strictEqual(ZeroClipboard.config().moviePath, "ZeroClipboard.swf");
-    // Change the path
-    var updatedConfig = ZeroClipboard.config({ moviePath: "new/movie/path.swf" });
-    // Test that the client has the changed path
-    assert.strictEqual(updatedConfig.moviePath, "new/movie/path.swf");
-    assert.strictEqual(ZeroClipboard.config("moviePath"), "new/movie/path.swf");
-    assert.strictEqual(ZeroClipboard.config().moviePath, "new/movie/path.swf");
-  });
+    zeroClipboard = require("../ZeroClipboard");
+    clip = new zeroClipboard();
 
-  /** @deprecated */
-  test("Changing `trustedOrigins` works", function(assert) {
-    assert.expect(5);
+    zeroClipboard.destroy();
 
-    // Arrange
-    var currentHost = window.location.host || "localhost";
-    var originalValue = null;
-    var updatedValue = [currentHost, "otherDomain.com"];
+    test.equal($("#global-zeroclipboard-html-bridge").length, 0);
+    test.ok(!zeroClipboard.prototype._singleton);
 
-    // Assert, act, assert
-    // Test that the client has the default value
-    assert.equal(ZeroClipboard.config("trustedOrigins"), originalValue);
-    assert.equal(ZeroClipboard.config().trustedOrigins, originalValue);
-    // Change the value
-    var updatedConfig = ZeroClipboard.config({ trustedOrigins: updatedValue });
-    // Test that the client has the changed value
-    assert.deepEqual(updatedConfig.trustedOrigins, updatedValue);
-    assert.deepEqual(ZeroClipboard.config("trustedOrigins"), updatedValue);
-    assert.deepEqual(ZeroClipboard.config().trustedOrigins, updatedValue);
-  });
+    test.done();
+  },
 
+  "Detecting no flash": function (test) {
+    zeroClipboard = require("../ZeroClipboard");
+    clip = new zeroClipboard();
 
-  /** @deprecated */
-  test("Setting default options", function(assert) {
-    assert.expect(4);
+    navigator.mimeTypes["application/x-shockwave-flash"] = undefined;
 
-    // Arrange
-    var newPath = "the/path";
-    var scriptAccess = "always";
-    var client = new ZeroClipboard();
+    // Test that we don't have flash
+    test.equal(zeroClipboard.detectFlashSupport(), false);
 
-    // Assert
-    assert.notEqual(client.options.moviePath, newPath);
-    assert.notEqual(client.options.allowScriptAccess, scriptAccess);
+    navigator.mimeTypes["application/x-shockwave-flash"] = true;
+    test.done();
+    zeroClipboard.destroy();
+  },
 
-    // Act
-    ZeroClipboard.config({
-      moviePath: newPath,
-      allowScriptAccess: scriptAccess
+  "Detecting has flash mimetype": function (test) {
+
+    zeroClipboard = require("../ZeroClipboard");
+    clip = new zeroClipboard();
+
+    // Test that we don't have flash
+    test.equal(zeroClipboard.detectFlashSupport(), true);
+
+    test.done();
+    zeroClipboard.destroy();
+  },
+
+  "Setting default options": function (test) {
+    zeroClipboard = require("../ZeroClipboard");
+
+    zeroClipboard.setDefaults({
+      moviePath:         "the/path",
+      allowScriptAccess: "always"
     });
 
-    // Assert
-    client = new ZeroClipboard();
-    assert.strictEqual(client.options.moviePath, newPath);
-    assert.strictEqual(client.options.allowScriptAccess, scriptAccess);
-  });
+    clip = new zeroClipboard();
 
-})(QUnit.module, QUnit.test);
+    test.equal(clip.options.moviePath, "the/path");
+    test.equal(clip.options.allowScriptAccess, "always");
+
+    test.done();
+    zeroClipboard.destroy();
+  },
+
+};

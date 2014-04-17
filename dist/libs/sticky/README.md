@@ -26,14 +26,6 @@ This is how it works:
 
 - Edit your css to position the elements (check the examples in `example-*.html`).
 
-- To unstick an object
-
-```html
-<script>
-  $("#sticker").unstick();
-</script>
-```
-
 ## Options
 
 - `topSpacing`: Pixels between the page top and the element's top.

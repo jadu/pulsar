@@ -331,16 +331,6 @@ test( "re-init", function() {
 	deepEqual( actions, [ "optionfoo", "init" ], "correct methods called on re-init with options" );
 });
 
-test( "redeclare", function() {
-	expect( 2 );
-
-	$.widget( "ui.testWidget", {} );
-	equal( $.ui.testWidget.prototype.widgetEventPrefix, "testWidget" );
-
-	$.widget( "ui.testWidget", {} );
-	equal( $.ui.testWidget.prototype.widgetEventPrefix, "testWidget" );
-});
-
 test( "inheritance", function() {
 	expect( 6 );
 	// #5830 - Widget: Using inheritance overwrites the base classes options
@@ -535,7 +525,7 @@ test( ".option() - delegate to ._setOptions()", function() {
 });
 
 test( ".option() - delegate to ._setOption()", function() {
-	expect( 3 );
+	expect( 2 );
 	var div,
 		calls = [];
 	$.widget( "ui.testWidget", {
@@ -555,11 +545,6 @@ test( ".option() - delegate to ._setOption()", function() {
 		"_setOption called for single option" );
 
 	calls = [];
-	div.testWidget( "option", "foo", undefined );
-	deepEqual( calls, [{ key: "foo", val: undefined }],
-		"_setOption called for single option where value is undefined" );
-
-	calls = [];
 	div.testWidget( "option", {
 		bar: "qux",
 		quux: "quuux"
@@ -571,9 +556,9 @@ test( ".option() - delegate to ._setOption()", function() {
 });
 
 test( ".option() - deep option setter", function() {
-	expect( 9 );
+	expect( 6 );
 	$.widget( "ui.testWidget", {} );
-	var result, div = $( "<div>" ).testWidget();
+	var div = $( "<div>" ).testWidget();
 	function deepOption( from, to, msg ) {
 		div.data( "ui-testWidget" ).options.foo = from;
 		$.ui.testWidget.prototype._setOption = function( key, value ) {
@@ -584,12 +569,6 @@ test( ".option() - deep option setter", function() {
 
 	deepOption( { bar: "baz" }, { bar: "qux" }, "one deep" );
 	div.testWidget( "option", "foo.bar", "qux" );
-
-	deepOption( { bar: "baz" }, { bar: undefined }, "one deep - value = undefined" );
-
-	result = div.testWidget( "option", "foo.bar", undefined );
-
-	deepEqual ( result, div, "option should return widget on successful set operation" );
 
 	deepOption( null, { bar: "baz" }, "null" );
 	div.testWidget( "option", "foo.bar", "baz" );

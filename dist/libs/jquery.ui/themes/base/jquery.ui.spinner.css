@@ -2,11 +2,11 @@
  * jQuery UI Spinner @VERSION
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2013 jQuery Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
- * http://api.jqueryui.com/spinner/#theming
+ * http://docs.jquery.com/UI/Spinner#theming
  */
 .ui-spinner {
 	position: relative;
@@ -38,13 +38,13 @@
 	overflow: hidden;
 	right: 0;
 }
-/* more specificity required here to override default borders */
+/* more specificity required here to overide default borders */
 .ui-spinner a.ui-spinner-button {
 	border-top: none;
 	border-bottom: none;
 	border-right: none;
 }
-/* vertically center icon */
+/* vertical centre icon */
 .ui-spinner .ui-icon {
 	position: absolute;
 	margin-top: -8px;

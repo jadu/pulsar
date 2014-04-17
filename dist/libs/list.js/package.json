@@ -1,6 +1,6 @@
 {
   "name": "list.js",
-  "version": "1.1.1",
+  "version": "1.0.0",
   "description": "Component package manager consuming git repositories",
   "keywords": [
     "list",

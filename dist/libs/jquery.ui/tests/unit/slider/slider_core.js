@@ -1,3 +1,6 @@
+/*
+ * slider unit tests
+ */
 (function( $ ) {
 //
 // Slider Test Helper Functions
