@@ -2,6 +2,7 @@
 
 The ZeroClipboard library provides an easy way to copy text to the clipboard using an invisible [Adobe Flash](http://en.wikipedia.org/wiki/Adobe_Flash) movie and a [JavaScript](http://en.wikipedia.org/wiki/JavaScript) interface. The "Zero" signifies that the library is invisible and the user interface is left entirely up to you.
 
+
 ## Simple Example
 
 ``` html
@@ -16,11 +17,11 @@ The ZeroClipboard library provides an easy way to copy text to the clipboard usi
 
 ``` js
 // main.js
-var clip = new ZeroClipboard( document.getElementById("copy-button"), {
+var client = new ZeroClipboard( document.getElementById("copy-button"), {
   moviePath: "/path/to/ZeroClipboard.swf"
 } );
 
-clip.on( "load", function(client) {
+client.on( "load", function(client) {
   // alert( "movie is loaded" );
 
   client.on( "complete", function(client, args) {
@@ -35,20 +36,11 @@ See the [instructions](docs/instructions.md) for more advanced options in using 
 
 Here is a working [test page](http://zeroclipboard.org/#demo) where you can try out ZeroClipboard in your browser.
 
-## Testing ZeroClipboard.swf Locally
 
-To test the page [demo page](http://zeroclipboard.org/#demo) locally. checkout the `gh-pages` branch and run `make`. This should open [localhost:3000](http://localhost:3000/)
+## Testing ZeroClipboard Locally
 
-```
-git checkout gh-pages
-make
-```
-add `BRANCH=my-dev-branch` to get the assets from a certain branch
+To test the page [demo page](http://zeroclipboard.org/#demo) locally, clone the [website repo](https://github.com/zeroclipboard/zeroclipboard.org).
 
-```
-git checkout gh-pages
-make BRANCH=my-dev-branch
-```
 
 ## Support
 
@@ -56,9 +48,11 @@ This library is fully compatible with Flash Player 10, which requires that the c
 
 Works in IE7+ and all of the evergreen browsers.
 
+
 ## Contributing
 
 see [CONTRIBUTING.md](CONTRIBUTING.md)
+
 
 ## Releases
 
@@ -66,9 +60,11 @@ Starting with version [1.1.7](https://github.com/zeroclipboard/zeroclipboard/rel
 
 see [releases](https://github.com/zeroclipboard/zeroclipboard/releases)
 
+
 ## Roadmap
 
 see [roadmap.md](docs/roadmap.md)
+
 
 ## Last Build
 

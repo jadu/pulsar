@@ -315,26 +315,45 @@ ClassList.prototype.removeMatching = function(re){
 };
 
 /**
- * Toggle class `name`.
+ * Toggle class `name`, can force state via `force`.
+ *
+ * For browsers that support classList, but do not support `force` yet,
+ * the mistake will be detected and corrected.
  *
  * @param {String} name
+ * @param {Boolean} force
  * @return {ClassList}
  * @api public
  */
 
-ClassList.prototype.toggle = function(name){
+ClassList.prototype.toggle = function(name, force){
   // classList
   if (this.list) {
-    this.list.toggle(name);
+    if ("undefined" !== typeof force) {
+      if (force !== this.list.toggle(name, force)) {
+        this.list.toggle(name); // toggle again to correct
+      }
+    } else {
+      this.list.toggle(name);
+    }
     return this;
   }
 
   // fallback
-  if (this.has(name)) {
-    this.remove(name);
+  if ("undefined" !== typeof force) {
+    if (!force) {
+      this.remove(name);
+    } else {
+      this.add(name);
+    }
   } else {
-    this.add(name);
+    if (this.has(name)) {
+      this.remove(name);
+    } else {
+      this.add(name);
+    }
   }
+
   return this;
 };
 
@@ -395,9 +414,9 @@ module.exports = function(arr, obj){
 };
 });
 require.register("component-event/index.js", function(exports, require, module){
-var bind = (window.addEventListener !== undefined) ? 'addEventListener' : 'attachEvent',
-    unbind = (window.removeEventListener !== undefined) ? 'removeEventListener' : 'detachEvent',
-    prefix = (bind !== 'addEventListener') ? 'on' : '';
+var bind = window.addEventListener ? 'addEventListener' : 'attachEvent',
+    unbind = window.removeEventListener ? 'removeEventListener' : 'detachEvent',
+    prefix = bind !== 'addEventListener' ? 'on' : '';
 
 /**
  * Bind `el` event `type` to `fn`.
@@ -412,7 +431,6 @@ var bind = (window.addEventListener !== undefined) ? 'addEventListener' : 'attac
 
 exports.bind = function(el, type, fn, capture){
   el[bind](prefix + type, fn, capture || false);
-
   return fn;
 };
 
@@ -429,68 +447,46 @@ exports.bind = function(el, type, fn, capture){
 
 exports.unbind = function(el, type, fn, capture){
   el[unbind](prefix + type, fn, capture || false);
-
   return fn;
 };
 });
-require.register("timoxley-is-collection/index.js", function(exports, require, module){
-var typeOf = require('type')
-
+require.register("timoxley-to-array/index.js", function(exports, require, module){
 /**
- * Evaluates _obj_ to determine if it's an array, an array-like collection, or
- * something else. This is useful when working with the function `arguments`
- * collection and `HTMLElement` collections.
- * Note: This implementation doesn't consider elements that are also
+ * Convert an array-like object into an `Array`.
+ * If `collection` is already an `Array`, then will return a clone of `collection`.
  *
- *
-  
-  collections, such as `<form>` and `<select>`, to be array-like.
+ * @param {Array | Mixed} collection An `Array` or array-like object to convert e.g. `arguments` or `NodeList`
+ * @return {Array} Naive conversion of `collection` to a new `Array`.
+ * @api public
+ */
 
-  @method test
-@param {Object} obj Object to test.
-@return {Number} A number indicating the results of the test:
+module.exports = function toArray(collection) {
+  if (typeof collection === 'undefined') return []
+  if (collection === null) return [null]
+  if (collection === window) return [window]
+  if (typeof collection === 'string') return [collection]
+  if (isArray(collection)) return collection
+  if (typeof collection.length != 'number') return [collection]
+  if (typeof collection === 'function' && collection instanceof Function) return [collection]
 
- * 0: Neither an array nor an array-like collection.
- * 1: Real array.
- * 2: Array-like collection.
-
-@api private
- **/
-module.exports = function isCollection(obj) {
-  var type = typeOf(obj)
-  if (type === 'array') return 1
-    switch (type) {
-      case 'arguments': return 2
-      case 'object':
-        if (isNodeList(obj)) return 2
-        try {
-          // indexed, but no tagName (element) or scrollTo/document (window. From DOM.isWindow test which we can't use here),
-          // or functions without apply/call (Safari
-          // HTMLElementCollection bug).
-          if ('length' in obj
-              && !obj.tagName
-            && !(obj.scrollTo && obj.document)
-            && !obj.apply) {
-              return 2
-            }
-        } catch (ex) {}
-      default:
-        return 0
+  var arr = []
+  for (var i = 0; i < collection.length; i++) {
+    if (Object.prototype.hasOwnProperty.call(collection, i) || i in collection) {
+      arr.push(collection[i])
     }
+  }
+  if (!arr.length) return []
+  return arr
 }
 
-function isNodeList(nodes) {
-  return typeof nodes === 'object'
-  && /^\[object (NodeList)\]$/.test(Object.prototype.toString.call(nodes))
-  && nodes.hasOwnProperty('length')
-  && (nodes.length == 0 || (typeof nodes[0] === "object" && nodes[0].nodeType > 0))
+function isArray(arr) {
+  return Object.prototype.toString.call(arr) === "[object Array]";
 }
-
 
 });
 require.register("javve-events/index.js", function(exports, require, module){
 var events = require('event'),
-  isCollection = require('is-collection');
+  toArray = require('to-array');
 
 /**
  * Bind `el` event `type` to `fn`.
@@ -503,12 +499,9 @@ var events = require('event'),
  */
 
 exports.bind = function(el, type, fn, capture){
-  if (!isCollection(el)) {
-    events.bind(el, type, fn, capture);
-  } else if ( el && el[0] !== undefined ) {
-    for ( var i = 0; i < el.length; i++ ) {
-      events.bind(el[i], type, fn, capture);
-    }
+  el = toArray(el);
+  for ( var i = 0; i < el.length; i++ ) {
+    events.bind(el[i], type, fn, capture);
   }
 };
 
@@ -523,14 +516,12 @@ exports.bind = function(el, type, fn, capture){
  */
 
 exports.unbind = function(el, type, fn, capture){
-  if (!isCollection(el)) {
-    events.unbind(el, type, fn, capture);
-  } else if ( el && el[0] !== undefined ) {
-    for ( var i = 0; i < el.length; i++ ) {
-      events.unbind(el[i], type, fn, capture);
-    }
+  el = toArray(el);
+  for ( var i = 0; i < el.length; i++ ) {
+    events.unbind(el[i], type, fn, capture);
   }
 };
+
 });
 require.register("javve-get-by-class/index.js", function(exports, require, module){
 /**
@@ -555,6 +546,7 @@ module.exports = (function() {
     };
   } else if (document.querySelector) {
     return function(container, className, single) {
+      className = '.' + className;
       if (single) {
         return container.querySelector(className);
       } else {
@@ -682,7 +674,6 @@ module.exports = function(s) {
 
 });
 require.register("component-type/index.js", function(exports, require, module){
-
 /**
  * toString ref.
  */
@@ -699,20 +690,19 @@ var toString = Object.prototype.toString;
 
 module.exports = function(val){
   switch (toString.call(val)) {
-    case '[object Function]': return 'function';
     case '[object Date]': return 'date';
     case '[object RegExp]': return 'regexp';
     case '[object Arguments]': return 'arguments';
     case '[object Array]': return 'array';
-    case '[object String]': return 'string';
+    case '[object Error]': return 'error';
   }
 
   if (val === null) return 'null';
   if (val === undefined) return 'undefined';
+  if (val !== val) return 'nan';
   if (val && val.nodeType === 1) return 'element';
-  if (val === Object(val)) return 'object';
 
-  return typeof val;
+  return typeof val.valueOf();
 };
 
 });
@@ -725,7 +715,6 @@ By Jonny Strömberg (www.jonnystromberg.com, www.listjs.com)
 "use strict";
 
 var document = window.document,
-    events = require('events'),
     getByClass = require('get-by-class'),
     extend = require('extend'),
     indexOf = require('indexof');
@@ -738,38 +727,46 @@ var List = function(id, options, values) {
         addAsync = require('./src/add-async')(self),
         parse = require('./src/parse')(self);
 
-    this.listClass      = "list";
-    this.searchClass    = "search";
-    this.sortClass      = "sort";
-    this.page           = 200;
-    this.i              = 1;
-    this.items          = [];
-    this.visibleItems   = [];
-    this.matchingItems  = [];
-    this.searched       = false;
-    this.filtered       = false;
-    this.handlers       = { 'updated': [] };
-    this.plugins        = {};
-
-    extend(this, options);
-
-    this.listContainer = (typeof(id) === 'string') ? document.getElementById(id) : id;
-    if (!this.listContainer) { return; }
-    this.list           = getByClass(this.listContainer, this.listClass, true);
-
-    this.templater      = require('./src/templater')(self);
-    this.sort           = require('./src/sort')(self);
-    this.search         = require('./src/search')(self);
-    this.filter         = require('./src/filter')(self);
-
     init = {
-        start: function(values) {
+        start: function() {
+            self.listClass      = "list";
+            self.searchClass    = "search";
+            self.sortClass      = "sort";
+            self.page           = 200;
+            self.i              = 1;
+            self.items          = [];
+            self.visibleItems   = [];
+            self.matchingItems  = [];
+            self.searched       = false;
+            self.filtered       = false;
+            self.handlers       = { 'updated': [] };
+            self.plugins        = {};
+            self.helpers        = {
+                getByClass: getByClass,
+                extend: extend,
+                indexOf: indexOf
+            };
+
+            extend(self, options);
+
+            self.listContainer = (typeof(id) === 'string') ? document.getElementById(id) : id;
+            if (!self.listContainer) { return; }
+            self.list           = getByClass(self.listContainer, self.listClass, true);
+
+            self.templater      = require('./src/templater')(self);
+            self.search         = require('./src/search')(self);
+            self.filter         = require('./src/filter')(self);
+            self.sort           = require('./src/sort')(self);
+
+            this.items();
+            self.update();
+            this.plugins();
+        },
+        items: function() {
             parse(self.list);
             if (values !== undefined) {
                 self.add(values);
             }
-            self.update();
-            this.plugins();
         },
         plugins: function() {
             for (var i = 0; i < self.plugins.length; i++) {
@@ -930,7 +927,7 @@ var List = function(id, options, values) {
         return self;
     };
 
-    init.start(values);
+    init.start();
 };
 
 module.exports = List;
@@ -1040,10 +1037,22 @@ module.exports = function(list) {
     list.handlers.searchComplete = list.handlers.searchComplete || [];
 
     events.bind(getByClass(list.listContainer, list.searchClass), 'keyup', function(e) {
-        var target = e.target || e.srcElement; // IE have srcElement
-        searchMethod(target.value);
+        var target = e.target || e.srcElement, // IE have srcElement
+            alreadyCleared = (target.value === "" && !list.searched);
+        if (!alreadyCleared) { // If oninput already have resetted the list, do nothing
+            searchMethod(target.value);
+        }
     });
 
+    // Used to detect click on HTML5 clear button
+    events.bind(getByClass(list.listContainer, list.searchClass), 'input', function(e) {
+        var target = e.target || e.srcElement;
+        if (target.value === "") {
+            searchMethod('');
+        }
+    });
+
+    list.helpers.toString = toString;
     return searchMethod;
 };
 
@@ -1053,52 +1062,82 @@ var naturalSort = require('natural-sort'),
     classes = require('classes'),
     events = require('events'),
     getByClass = require('get-by-class'),
-    getAttribute = require('get-attribute'),
-    sortButtons;
-
-var clearPreviousSorting = function() {
-    for (var i = 0, il = sortButtons.length; i < il; i++) {
-        classes(sortButtons[i]).remove('asc');
-        classes(sortButtons[i]).remove('desc');
-    }
-};
+    getAttribute = require('get-attribute');
 
 module.exports = function(list) {
-    var sort = function() {
-        var options = {},
-            valueName;
+    list.sortFunction = list.sortFunction || function(itemA, itemB, options) {
+        options.desc = options.order == "desc" ? true : false; // Natural sort uses this format
+        return naturalSort(itemA.values()[options.valueName], itemB.values()[options.valueName], options);
+    };
 
-        if (arguments[0].currentTarget || arguments[0].srcElement) {
-            var e = arguments[0],
-                target = e.currentTarget || e.srcElement,
-                newSortingOrder;
-
-            valueName = getAttribute(target, 'data-sort');
-
-            if (classes(target).has('desc')) {
-                options.desc = false;
-                newSortingOrder = 'asc';
-            } else if (classes(target).has('asc')) {
-                options.desc = true;
-                newSortingOrder = 'desc';
-            } else {
-                options.desc = false;
-                newSortingOrder = 'asc';
+    var buttons = {
+        els: undefined,
+        clear: function() {
+            for (var i = 0, il = buttons.els.length; i < il; i++) {
+                classes(buttons.els[i]).remove('asc');
+                classes(buttons.els[i]).remove('desc');
             }
-            clearPreviousSorting();
-            classes(target).add(newSortingOrder);
-        } else {
-            valueName = arguments[0];
-            options = arguments[1] || options;
+        },
+        getOrder: function(btn) {
+            var predefinedOrder = getAttribute(btn, 'data-order');
+            if (predefinedOrder == "asc" || predefinedOrder == "desc") {
+                return predefinedOrder;
+            } else if (classes(btn).has('desc')) {
+                return "asc";
+            } else if (classes(btn).has('asc')) {
+                return "desc";
+            } else {
+                return "asc";
+            }
+        },
+        getInSensitive: function(btn, options) {
+            var insensitive = getAttribute(btn, 'data-insensitive');
+            if (insensitive === "true") {
+                options.insensitive = true;
+            } else {
+                options.insensitive = false;
+            }
+        },
+        setOrder: function(options) {
+            for (var i = 0, il = buttons.els.length; i < il; i++) {
+                var btn = buttons.els[i];
+                if (getAttribute(btn, 'data-sort') !== options.valueName) {
+                    continue;
+                }
+                var predefinedOrder = getAttribute(btn, 'data-order');
+                if (predefinedOrder == "asc" || predefinedOrder == "desc") {
+                    if (predefinedOrder == options.order) {
+                        classes(btn).add(options.order);
+                    }
+                } else {
+                    classes(btn).add(options.order);
+                }
+            }
         }
-
-        options.insensitive = (typeof options.insensitive == "undefined") ? true : options.insensitive;
-        options.sortFunction = options.sortFunction || function(a, b) {
-            return naturalSort(a.values()[valueName], b.values()[valueName], options);
-        };
-
+    };
+    var sort = function() {
         list.trigger('sortStart');
-        list.items.sort(options.sortFunction);
+        options = {};
+
+        var target = arguments[0].currentTarget || arguments[0].srcElement || undefined;
+
+        if (target) {
+            options.valueName = getAttribute(target, 'data-sort');
+            buttons.getInSensitive(target, options);
+            options.order = buttons.getOrder(target);
+        } else {
+            options = arguments[1] || options;
+            options.valueName = arguments[0];
+            options.order = options.order || "asc";
+            options.insensitive = (typeof options.insensitive == "undefined") ? true : options.insensitive;
+        }
+        buttons.clear();
+        buttons.setOrder(options);
+
+        options.sortFunction = options.sortFunction || list.sortFunction;
+        list.items.sort(function(a, b) {
+            return options.sortFunction(a, b, options);
+        });
         list.update();
         list.trigger('sortComplete');
     };
@@ -1107,8 +1146,16 @@ module.exports = function(list) {
     list.handlers.sortStart = list.handlers.sortStart || [];
     list.handlers.sortComplete = list.handlers.sortComplete || [];
 
-    sortButtons = getByClass(list.listContainer, list.sortClass);
-    events.bind(sortButtons, 'click', sort);
+    buttons.els = getByClass(list.listContainer, list.sortClass);
+    events.bind(buttons.els, 'click', sort);
+    list.on('searchStart', buttons.clear);
+    list.on('filterStart', buttons.clear);
+
+    // Helpers
+    list.helpers.classes = classes;
+    list.helpers.naturalSort = naturalSort;
+    list.helpers.events = events;
+    list.helpers.getAttribute = getAttribute;
 
     return sort;
 };
@@ -1377,6 +1424,16 @@ module.exports = function(list) {
 
 
 
+
+
+
+
+
+
+
+
+
+
 require.alias("component-classes/index.js", "list.js/deps/classes/index.js");
 require.alias("component-classes/index.js", "classes/index.js");
 require.alias("component-indexof/index.js", "component-classes/deps/indexof/index.js");
@@ -1391,8 +1448,7 @@ require.alias("javve-events/index.js", "list.js/deps/events/index.js");
 require.alias("javve-events/index.js", "events/index.js");
 require.alias("component-event/index.js", "javve-events/deps/event/index.js");
 
-require.alias("timoxley-is-collection/index.js", "javve-events/deps/is-collection/index.js");
-require.alias("component-type/index.js", "timoxley-is-collection/deps/type/index.js");
+require.alias("timoxley-to-array/index.js", "javve-events/deps/to-array/index.js");
 
 require.alias("javve-get-by-class/index.js", "list.js/deps/get-by-class/index.js");
 require.alias("javve-get-by-class/index.js", "get-by-class/index.js");

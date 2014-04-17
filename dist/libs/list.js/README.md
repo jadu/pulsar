@@ -3,6 +3,8 @@ Perfect library for adding **search**, **sort**, **filters** and **flexibility**
 **tables**, **lists** and various HTML elements. Built to be invisible and work on existing HTML.
 Really simple and easy to use!
 
+[![Donate](https://s3.amazonaws.com/listjs/donate-coffee.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=M7ZGHV75VSD2E)
+
 ### Core idea
 - Simple and invisible
 - Easy to apply to existing HTML
@@ -42,9 +44,7 @@ Really simple and easy to use!
 - [Build your own](http://listjs.com/docs/plugins/build)
 
 ### Known issues
-- Sorting fails with `åä`, thinking that `ä` is before `å`.
-- There should not be a limit for how many items that could be parsed.
-- Class `asc` and `desc` should be removed as soon as the sorting breaks.
+- Sorting fails with some UTF8 characters. Example: `åä`, thinking that `ä` is before `å`.
 - Tables row items can't be created with the `{ item: '<html>' }`-method.
 
 
@@ -67,11 +67,22 @@ Really simple and easy to use!
 * [dancrew32](https://github.com/dancrew32) / [Dan Masquelier](http://danmasq.com/)
 * [jkeyes](https://github.com/jkeyes) / [John Keyes](http://keyes.ie/)
 * [samosad](https://github.com/samosad) / Alexey Tabakman
+* [Page-](https://github.com/Page-)
+
+Built with [Component](https://github.com/component/component) which is created by [TJ Holowaychuk](https://github.com/visionmedia).
 
 ### Want to contribute?
 - Read more at [listjs.com/overview/contribute](http://listjs.com/overview/contribute)
+
+### Creator
+|               | Jonny Strömberg [@javve](http://twitter.com/javve)            |
+| ------------- | ------------- |
+| ![Image of Jonny](http://listjs.com/images/graphics/javve.jpg) | I hope you like the lib. I’ve put a lot of hours into it! Feel free to follow me on [Twitter](http://twitter.com/javve) for news and [donate a coffee](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=M7ZGHV75VSD2E) for good karma ;)  
+
 
 ## License (MIT)
 
 Copyright (c) 2012 Jonny Strömberg <[jonny.stromberg@gmail.com](jonny.stromberg@gmail.com)>
 [http://jonnystromberg.com](http://jonnystromberg.com)
+
+[![Views in the last 24 hours](https://sourcegraph.com/api/repos/github.com/javve/list.js/counters/views-24h.png)](https://sourcegraph.com/github.com/javve/list.js)

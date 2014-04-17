@@ -5,8 +5,9 @@ package {
   import flash.display.LoaderInfo;
   import flash.events.*;
   import flash.external.ExternalInterface;
-  import flash.utils.*;
+  import flash.net.URLVariables;
   import flash.system.Capabilities;
+  import flash.utils.*;
 
   // ZeroClipboard
   //
@@ -16,22 +17,14 @@ package {
   // returns nothing
   public class ZeroClipboard extends Sprite {
 
-    // "CONSTANTS" 
+    // CONSTANTS
     // Function through which JavaScript events are dispatched normally
-    private static var normalDispatcher:String = "ZeroClipboard.dispatch";
+    private static const NORMAL_DISPATCHER:String = "ZeroClipboard.dispatch";
 
-    // Function through which JavaScript events are dispatched if using an AMD loader
-    private static var amdWrappedDispatcher:String =
-      "(function (event, args, amdModuleId) {\n" +
-      "  require([amdModuleId], function (ZeroClipboard) {\n" +
-      "    ZeroClipboard.dispatch(event, args);\n" +
-      "  });\n" +
-      "})";
-
-    // Function through which JavaScript events are dispatched if using a CommonJS module loader
-    private static var cjsWrappedDispatcher:String =
-      "(function (event, args, cjsModuleId) {\n" +
-      "  var ZeroClipboard = require(cjsModuleId);\n" +
+    // Function through which JavaScript events are dispatched if using an AMD/CommonJS module loader
+    private static const JS_MODULE_WRAPPED_DISPATCHER:String =
+      "(function (event, args, jsModuleId) {\n" +
+      "  var ZeroClipboard = require(jsModuleId);\n" +
       "  ZeroClipboard.dispatch(event, args);\n" +
       "})";
 
@@ -42,11 +35,8 @@ package {
     // The text in the clipboard
     private var clipText:String = "";
 
-    // AMD module ID or path to access the ZeroClipboard object
-    private var amdModuleId:String = null;
-
-    // CommonJS module ID or path to access the ZeroClipboard object
-    private var cjsModuleId:String = null;
+    // AMD or CommonJS module ID/path to access the ZeroClipboard object
+    private var jsModuleId:String = null;
 
     // constructor, setup event listeners and external interfaces
     public function ZeroClipboard() {
@@ -55,23 +45,19 @@ package {
       stage.align = "TL";
       stage.scaleMode = "noScale";
 
-      // Get the flashvars
-      var flashvars:Object = LoaderInfo( this.root.loaderInfo ).parameters;
+      // Get the FlashVars, filtering out all URL query parameters
+      var loaderInfo:LoaderInfo = LoaderInfo(this.root.loaderInfo);
+      var flashVars:Object = ZeroClipboard.getFlashVars(loaderInfo.parameters, loaderInfo.url);
 
       // Allow the SWF object to communicate with a page on a different origin than its own (e.g. SWF served from CDN)
-      if (flashvars.trustedOrigins && typeof flashvars.trustedOrigins === "string") {
-        var origins:Array = flashvars.trustedOrigins.split("\\").join("\\\\").split(",");
+      if (flashVars.trustedOrigins && typeof flashVars.trustedOrigins === "string") {
+        var origins:Array = flashVars.trustedOrigins.split(",");
         flash.system.Security.allowDomain.apply(null, origins);
       }
-      
-      // Enable complete AMD support (e.g. RequireJS)
-      if (flashvars.amdModuleId && typeof flashvars.amdModuleId === "string") {
-        amdModuleId = flashvars.amdModuleId.split("\\").join("\\\\");
-      }
 
-      // Enable complete CommonJS support (e.g. Browserify)
-      if (flashvars.cjsModuleId && typeof flashvars.cjsModuleId === "string") {
-        cjsModuleId = flashvars.cjsModuleId.split("\\").join("\\\\");
+      // Enable complete AMD (e.g. RequireJS) and CommonJS (e.g. Browserify) support
+      if (flashVars.jsModuleId && typeof flashVars.jsModuleId === "string") {
+        jsModuleId = flashVars.jsModuleId;
       }
 
       // invisible button covers entire stage
@@ -99,6 +85,16 @@ package {
       dispatch("load", ZeroClipboard.metaData());
     }
 
+    // sanitizeString
+    //
+    // This private function will accept a string, and return a sanitized string
+    // to avoid XSS vulnerabilities
+    //
+    // returns an XSS safe String
+    private static function sanitizeString(dirty:String): String {
+      return dirty.replace(/\\/g,"\\\\")
+    }
+
     // mouseClick
     //
     // The mouseClick private function handles clearing the clipboard, and
@@ -115,7 +111,7 @@ package {
 
       // signal to the page it is done
       dispatch("complete", ZeroClipboard.metaData(event, {
-        text: clipText.split("\\").join("\\\\")
+        text: ZeroClipboard.sanitizeString(clipText)
       }));
 
       // reset the text
@@ -192,21 +188,18 @@ package {
       button.width = width;
       button.height = height;
     }
-    
+
     // dispatch
     //
     // Function through which JavaScript events are dispatched
     //
     // returns nothing
     private function dispatch(eventName:String, eventArgs:Object): void {
-      if (amdModuleId) {
-        ExternalInterface.call(ZeroClipboard.amdWrappedDispatcher, eventName, eventArgs, amdModuleId);
-      }
-      else if (cjsModuleId) {
-        ExternalInterface.call(ZeroClipboard.cjsWrappedDispatcher, eventName, eventArgs, cjsModuleId);
+      if (jsModuleId) {
+        ExternalInterface.call(ZeroClipboard.JS_MODULE_WRAPPED_DISPATCHER, eventName, eventArgs, jsModuleId);
       }
       else {
-        ExternalInterface.call(ZeroClipboard.normalDispatcher, eventName, eventArgs);
+        ExternalInterface.call(ZeroClipboard.NORMAL_DISPATCHER, eventName, eventArgs);
       }
     }
 
@@ -237,6 +230,43 @@ package {
       }
 
       return normalOptions;
+    }
+
+    // parseQuery
+    //
+    // Parse a URL's query string into a hash map object
+    //
+    // returns Object (hash map of query string)
+    private static function parseQuery(url:String): Object {
+      var query:Object = null;
+      if (url) {
+        url = url.split("?").slice(1).join("?");
+        if (url) {
+          query = new URLVariables(url);
+        }
+      }
+      return query;
+    }
+
+    // getFlashVars
+    // 
+    // Does a symmetric "except" (non-intersect) to filter query params from the `LoaderInfo.parameters`, leaving only FlashVars.
+    //
+    // returns Object (the actual FlashVars)
+    private static function getFlashVars(loaderInfoParameters:Object, swfUrl:String): Object {
+      var flashVars:Object = {};
+      var queryParams:Object = ZeroClipboard.parseQuery(swfUrl);
+      if (queryParams) {
+        for (var key:String in loaderInfoParameters) {
+          if (loaderInfoParameters.hasOwnProperty(key)) {
+            var value:String = ZeroClipboard.sanitizeString(loaderInfoParameters[key] as String);
+            if (!(queryParams.hasOwnProperty(key) && ZeroClipboard.sanitizeString(queryParams[key]) === value)) {
+              flashVars[key] = value;
+            }
+          }
+        }
+      }
+      return flashVars;
     }
   }
 }

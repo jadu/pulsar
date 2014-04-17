@@ -107,7 +107,7 @@
   respond.queue = requestQueue;
   respond.regex = {
     media: /@media[^\{]+\{([^\{\}]*\{[^\}\{]*\})+/gi,
-    keyframes: /@.*keyframes[^\{]+\{(?:[^\{\}]*\{[^\}\{]*\})+[^\}]+\}/gi,
+    keyframes: /@(?:\-(?:o|moz|webkit)\-)?keyframes[^\{]+\{(?:[^\{\}]*\{[^\}\{]*\})+[^\}]*\}/gi,
     urls: /(url\()['"]?([^\/\)'"][^:\)'"]+)['"]?(\))/g,
     findStyles: /@media *([^\{]+)\{([\S\s]+?)$/,
     only: /(only\s+)?([a-zA-Z]+)\s?/,
@@ -176,6 +176,7 @@
         }
       }
     }
+    appendedEls.length = 0;
     for (var k in styleBlocks) {
       if (styleBlocks.hasOwnProperty(k)) {
         var ss = doc.createElement("style"), css = styleBlocks[k].join("\n");
