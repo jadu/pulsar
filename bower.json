@@ -25,6 +25,7 @@
     "list.js": "latest",
     "moment": "latest",
     "normalize-css": "latest",
+    "pikaday": "latest",
     "respond": "latest",
     "requirejs": "latest",
     "sticky": "latest",

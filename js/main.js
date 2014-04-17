@@ -29,6 +29,7 @@ requirejs.config({
         'moment'            : path + '/libs/moment/moment',
         'navigation'        : path + '/js/navigation',
         'order'             : path + '/libs/order/index',
+        'pikaday'           : path + '/libs/pikaday/pikaday',
         'popover'           : path + '/js/popover',
         'pulsar'            : path + '/js/pulsar',
         'sticky'            : path + '/libs/sticky/jquery.sticky',
