@@ -4,7 +4,7 @@ Allow the user to pick a specific date from a calendar popover
 
 Available parameters:
 
-    {{ form.date(label, value, id, class, name, placeholder, help, attributes) }}
+    {{ form.date(label, value, id, class, name, placeholder = 'dd/mm/yyyy', help, attributes) }}
 
 #### Label
 
@@ -14,7 +14,7 @@ Available parameters:
         <label for="inputText" class="control__label">Date</label>
         <div class="controls">
             <div class="input-group">
-                <input type="text" class="form__control" data-datepicker="true" placeholder="dd/mm/yyyy" />
+                <input type="text" class="form__control" placeholder="dd/mm/yyyy" data-datepicker="true" />
                 <span class="input-group-addon"><i class="icon-calendar"></i></span>
             </div>
         </div>
@@ -42,7 +42,7 @@ Available parameters:
         <label for="inputText" class="control__label">Date</label>
         <div class="controls">
             <div class="input-group">
-                <input type="text" class="form__control" id="date" data-datepicker="true" />
+                <input type="text" class="form__control" id="date" placeholder="dd/mm/yyyy" data-datepicker="true" />
                 <span class="input-group-addon"><i class="icon-calendar"></i></span>
             </div>
         </div>
@@ -61,7 +61,7 @@ The class is added to the `.form__group`, not the individual input.
         <label for="inputText" class="control__label">Date</label>
         <div class="controls">
             <div class="input-group">
-                <input type="text" class="form__control" id="date" data-datepicker="true" />
+                <input type="text" class="form__control" id="date" placeholder="dd/mm/yyyy" data-datepicker="true" />
                 <span class="input-group-addon"><i class="icon-calendar"></i></span>
             </div>
         </div>
@@ -79,7 +79,7 @@ The class is added to the `.form__group`, not the individual input.
         <label for="inputText" class="control__label">Date</label>
         <div class="controls">
             <div class="input-group">
-                <input type="text" class="form__control" id="date" name="field[name]" />
+                <input type="text" class="form__control" id="date" name="field[name]" placeholder="dd/mm/yyyy" />
                 <span class="input-group-addon"><i class="icon-calendar"></i></span>
             </div>
         </div>
