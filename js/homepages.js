@@ -97,7 +97,6 @@ define([
          * Initialises the sortable behaviour for homepage rows
          */
         function initSortable() {
-            console.log($('.homepage-item'));
             $('.homepage-item').sortable({
                 axis: "y",
                 cursor: "grab",

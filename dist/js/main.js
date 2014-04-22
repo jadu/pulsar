@@ -22,7 +22,7 @@ requirejs.config({
         'highlightjs'       : path + '/libs/highlightjs/highlight.pack',
         'homepages'         : path + '/js/homepages',
         'jquery'            : path + '/libs/jquery/jquery',
-        'jquery-ui'         : path + '/libs/jquery.ui/dist/jquery-ui.min',
+        'jquery-ui'         : path + '/libs/jqueryui/ui/minified/jquery-ui.min',
         'jquery-ui-touch'   : path + '/libs/jqueryui-touch-punch/jquery.ui.touch-punch.min',
         'jquery-mousewheel' : path + '/libs/jquery-mousewheel/jquery.mousewheel',
         'modal'             : path + '/js/modal',
@@ -50,6 +50,9 @@ requirejs.config({
         },
         'highcharts-more': {
             deps: ['jquery', 'highcharts']
+        },
+        'pikaday': {
+            deps: ['moment']
         }
     }
 });

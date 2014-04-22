@@ -1,4 +1,4 @@
-/**
+    /**
  * Set up Pulsar's UI environment
  */
 
@@ -7,16 +7,16 @@ define(['jquery'], function() {
     $(document).ready(function() {
 
         // Set up Pulsar's UI environment
-        require(['tooltip', 'sticky', 'zeroclipboard', 'datagrid'], function() {      
+        require(['tooltip', 'sticky', 'zeroclipboard', 'datagrid', 'highlightjs'], function() {
+
+            // sticky toolbar
+            $('.toolbar').sticky({topSpacing: 0});
 
             // tooltips (js/tooltip.js)
             $('[data-toggle="tooltips"]').tooltips();
 
             // datagrid
             $('.table--datagrid').datagrid();
-
-            // sticky toolbar
-            $('.toolbar').sticky({topSpacing: 0});
 
             // syntax highlighting
             if (!$('html.ie7').size()) { // IE8 and up only
@@ -57,15 +57,13 @@ define(['jquery'], function() {
 
 // To clean up -----------------
 
-        require(['pikaday'], function(Pikaday)
-        {
-            var picker = new Pikaday(
-            {
-                field: $('[data-datepicker=true]')[0],
-                firstDay: 1,
-                minDate: new Date('2000-01-01'),
-                maxDate: new Date('2020-12-31'),
-                yearRange: [2000,2020]
+        // date pickers
+        require(['pikaday', 'sticky'], function(Pikaday) {
+            $('[data-datepicker=true]').each(function() {
+                new Pikaday({
+                    field: this,
+                    format: 'ddd DD/MM/YYYY'
+                });
             });
         });
 
