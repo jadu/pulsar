@@ -182,7 +182,7 @@ define([
       },
 
       badgeActionsButton: function () {
-        console.log($('.actions-menu'));
+        //console.log($('.actions-menu'));
       }
 
     });

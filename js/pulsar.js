@@ -7,13 +7,15 @@ define(['jquery'], function() {
     $(document).ready(function() {
 
         // Set up Pulsar's UI environment
-        require(['tooltip', 'sticky', 'zeroclipboard', 'datagrid'], function() {
+        require(['tooltip', 'sticky', 'datagrid'], function() {
 
             // tooltips
             $('[data-toggle="tooltip"]').tooltip();
 
             // datagrid
-            $('.table--datagrid').datagrid();
+            $('.table--datagrid').each(function() {
+                $(this).datagrid();
+            });
 
             // sticky toolbar
             $('.toolbar').sticky({topSpacing: 0});
