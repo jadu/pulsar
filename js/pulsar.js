@@ -7,16 +7,16 @@ define(['jquery'], function() {
     $(document).ready(function() {
 
         // Set up Pulsar's UI environment
-        require(['tooltip', 'sticky', 'zeroclipboard', 'datagrid', 'highlightjs'], function() {      
+        require(['tooltip', 'sticky', 'zeroclipboard', 'datagrid', 'highlightjs'], function() {
+
+            // sticky toolbar
+            $('.toolbar').sticky({topSpacing: 0});
 
             // tooltips (js/tooltip.js)
             $('[data-toggle="tooltips"]').tooltips();
 
             // datagrid
             $('.table--datagrid').datagrid();
-
-            // sticky toolbar
-            $('.toolbar').sticky({topSpacing: 0});
 
             // syntax highlighting
             if (!$('html.ie7').size()) { // IE8 and up only
@@ -58,7 +58,7 @@ define(['jquery'], function() {
 // To clean up -----------------
 
         // date pickers
-        require(['pikaday'], function(Pikaday) {
+        require(['pikaday', 'sticky'], function(Pikaday) {
             $('[data-datepicker=true]').each(function() {
                 new Pikaday({
                     field: this,

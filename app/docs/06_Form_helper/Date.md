@@ -13,10 +13,7 @@ Available parameters:
     <div class="form__group form__group--medium">
         <label class="control__label">Date</label>
         <div class="controls">
-            <div class="input-group">
-                <input type="text" class="form__control" placeholder="dd/mm/yyyy" data-datepicker="true" />
-                <span class="input-group-addon"><i class="icon-calendar"></i></span>
-            </div>
+            <input type="text" class="form__control" placeholder="dd/mm/yyyy" data-datepicker="true" />
         </div>
     </div>
 
@@ -24,10 +21,7 @@ Available parameters:
 <div class="form__group form__group--medium">
     <label for="inputText" class="control__label">Date</label>
     <div class="controls">
-        <div class="input-group">
-            <input type="text" class="form__control" data-datepicker="true" placeholder="dd/mm/yyyy" />
-            <span class="input-group-addon"><i class="icon-calendar"></i></span>
-        </div>
+        <input type="text" class="form__control" data-datepicker="true" placeholder="dd/mm/yyyy" />
     </div>
 </div>
 </form>
@@ -41,10 +35,7 @@ Available parameters:
     <div class="form__group form__group--medium">
         <label for="inputDate" class="control__label">Date</label>
         <div class="controls">
-            <div class="input-group">
-                <input type="text" class="form__control" id="inputDate" placeholder="dd/mm/yyyy" data-datepicker="true" />
-                <span class="input-group-addon"><i class="icon-calendar"></i></span>
-            </div>
+            <input type="text" class="form__control" id="inputDate" placeholder="dd/mm/yyyy" data-datepicker="true" />
         </div>
     </div>
 
@@ -60,10 +51,7 @@ The class is added to the `.form__group`, not the individual input.
     <div class="form__group form__group--large">
         <label for="inputText" class="control__label">Date</label>
         <div class="controls">
-            <div class="input-group">
-                <input type="text" class="form__control" id="inputDate" placeholder="dd/mm/yyyy" data-datepicker="true" />
-                <span class="input-group-addon"><i class="icon-calendar"></i></span>
-            </div>
+            <input type="text" class="form__control" id="inputDate" placeholder="dd/mm/yyyy" data-datepicker="true" />
         </div>
     </div>
 
@@ -78,10 +66,7 @@ The class is added to the `.form__group`, not the individual input.
     <div class="form__group form__group--large">
         <label for="inputText" class="control__label">Date</label>
         <div class="controls">
-            <div class="input-group">
-                <input type="text" class="form__control" id="inputDate" name="field[name]" placeholder="dd/mm/yyyy" data-datepicker="true" />
-                <span class="input-group-addon"><i class="icon-calendar"></i></span>
-            </div>
+            <input type="text" class="form__control" id="inputDate" name="field[name]" placeholder="dd/mm/yyyy" data-datepicker="true" />
         </div>
     </div>
 
@@ -105,10 +90,7 @@ The class is added to the `.form__group`, not the individual input.
 <div class="form__group form__group--medium">
     <label for="inputText" class="control__label">Date</label>
     <div class="controls">
-        <div class="input-group">
-            <input type="text" class="form__control" data-datepicker="true" placeholder="Choose Date"  data-datepicker="true" />
-            <span class="input-group-addon"><i class="icon-calendar"></i></span>
-        </div>
+        <input type="text" class="form__control" data-datepicker="true" placeholder="Choose Date"  data-datepicker="true" />
     </div>
 </div>
 </form>
