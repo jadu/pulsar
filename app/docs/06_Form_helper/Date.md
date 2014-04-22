@@ -1,4 +1,4 @@
-Allow the user to pick a specific date from a calendar popover
+Allow the user to pick a specific date from a calendar popover. This uses the [Pikaday](https://github.com/dbushell/Pikaday) plugin, additional documentation is available there.
 
 ----
 
