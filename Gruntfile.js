@@ -155,6 +155,9 @@ module.exports = function(grunt) {
       updateBower: {
         cmd: 'bower update'
       },
+      updateGems: {
+        cmd: 'sudo gem update'
+      },
       updateNpm: {
         cmd: 'sudo npm install'
       }
@@ -262,6 +265,7 @@ module.exports = function(grunt) {
     'exec:updateComposer',
     'exec:updateBrew',
     'exec:updateBower',
+    'exec:updateGems',
     'exec:updateNpm'
   ]);
 
