@@ -26,30 +26,30 @@ define([
 
         return _this.each(function () {
 
-          // set the state of the checkboxes currently visible in the datagrid
-          _this.setSelectedItems();
+          // clear stored selected-item counts for datagrids on init
+          store.clear(defaults.storageKey + _this.attr('id'));
 
         });
       },
 
-      /**
-       * check the selected items currently saved in localstorage and set their
-       * respective checkbox states
-       */
-      setSelectedItems: function () {
+      // /**
+      //  * check the selected items currently saved in localstorage and set their
+      //  * respective checkbox states
+      //  */
+      // setSelectedItems: function () {
 
-        var _this = $(this),
-            datagrid = _this.closest(defaults.datagridSelector),
-            datagridId = datagrid.attr('id'),
-            selectedItems = store.get(defaults.storageKey + datagridId);
+      //   var _this = $(this),
+      //       datagrid = _this.closest(defaults.datagridSelector),
+      //       datagridId = datagrid.attr('id'),
+      //       selectedItems = store.get(defaults.storageKey + datagridId);
 
-        // loop over the IDs saved in localstorage and check them
-        $.each(selectedItems, function () {
-          $('[data-id=' + this + ']', datagrid).prop('checked', true);
-        });
+      //   // loop over the IDs saved in localstorage and check them
+      //   $.each(selectedItems, function () {
+      //     $('[data-id=' + this + ']', datagrid).prop('checked', true);
+      //   });
 
-        _this.checkIndeterminate();
-      },
+      //   _this.checkIndeterminate();
+      // },
 
       /**
        * select an individual datagrid item
@@ -90,7 +90,7 @@ define([
         }
 
         _this.checkIndeterminate();
-        _this.badgeActionsButton();
+        _this.badgeActionsButton(selectedItems.length);
       },
 
       /**
@@ -98,9 +98,9 @@ define([
        */
       selectAll: function () {
 
-        var _this = $(this),
-            checked = false,
-            datagrid = _this.closest(defaults.datagridSelector),
+        var _this      = $(this),
+            checked    = false,
+            datagrid   = _this.closest(defaults.datagridSelector),
             datagridId = datagrid.attr('id'),
             checkboxes = $(defaults.selector, datagrid);
 
@@ -137,6 +137,7 @@ define([
           store.set(defaults.storageKey + datagridId, selectedItems);
         }
 
+        _this.badgeActionsButton(selectedItems.length);
       },
 
       /**
@@ -181,8 +182,28 @@ define([
 
       },
 
-      badgeActionsButton: function () {
-        //console.log($('.actions-menu'));
+      badgeActionsButton: function (count) {
+
+        $('.actions-menu').actionsMenu().updateBadge(count);
+
+      },
+
+      switchActionsButtonOnTab: function (count) {
+
+        var _this = $(this),
+            tabId = _this.attr('href'),
+            datagridId = $(defaults.datagridSelector, tabId).attr('id'),
+            count;
+
+        if (store.enabled) {
+          count = store.get(defaults.storageKey + datagridId);
+
+          if (!count) {
+            count = 0;
+          }
+        }
+
+        $('.actions-menu').actionsMenu().updateBadge(count.length);
       }
 
     });
@@ -201,6 +222,9 @@ define([
     })
     .on('click', '[data-action=select-all]', function (e) {
       $(this).selectAll();
+    })
+    .on('click', '[data-toggle=tab]', function (e) {
+      $(this).switchActionsButtonOnTab();
     });
 
 });

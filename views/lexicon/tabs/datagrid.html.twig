@@ -2,115 +2,16 @@
 {% import 'pulsar/helpers/form.html.twig' as form %}
 {% import 'pulsar/helpers/flash.html.twig' as flash %}
 {% import 'pulsar/helpers/datagrid.html.twig' as datagrid %}
-<table id="component-table-example" class="table--datagrid">
-    <thead>
-        <tr>
-            {{ datagrid.select_all() }}
-            <th>
-                {{ html.link(label = 'Title') }}
-                {{ html.icon('sort-by-alphabet') }}
-            </th>
-            <th>
-                {{ html.link(label = 'Created') }}
-            </th>
-            <th>
-                {{ html.link(label = 'Modified') }}
-            </th>
-            <th class="centered shrink-to-fit">
-                {{ html.link(label = html.icon('comment-alt')) }}
-            </th>
-            <th>
-                {{ html.link(label = 'Author') }} 
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            {{ datagrid.select_item(1) }}
-            <td><a href="#">This is a regular row</a></td>
-            <td>Monday 4th July, 2013</td>
-            <td>3 hours ago</td>
-            <td class="centered">{{ html.badge(label = '5') }}</td>
-            <td>Paul Stanton</td>
-        </tr>
-        <tr class="is-selected">
-            {{ datagrid.select_item(2) }}
-            <td><a href="#">This row has .is-selected</a></td>
-            <td>Monday 4th July, 2013</td>
-            <td>3 hours ago</td>
-            <td class="centered">{{ html.badge(label = '5') }}</td>
-            <td>Paul Stanton</td>
-        </tr>
-        <tr class="row--highlight">
-            {{ datagrid.select_item(3) }}
-            <td><a href="#">This row has .row--highlight</a></td>
-            <td>Monday 4th July, 2013</td>
-            <td>3 hours ago</td>
-            <td class="centered">{{ html.badge(label = '5') }}</td>
-            <td>Paul Stanton</td>
-        </tr>
-        <tr class="row--success-highlight">
-            {{ datagrid.select_item(4) }}
-            <td><a href="#">This row has .row--success-highlight</a></td>
-            <td>Monday 4th July, 2013</td>
-            <td>3 hours ago</td>
-            <td class="centered">{{ html.badge(label = '5') }}</td>
-            <td>Paul Stanton</td>
-        </tr>
-        <tr class="row--danger-highlight">
-            {{ datagrid.select_item(5) }}
-            <td><a href="#">This row has .row--danger-highlight</a></td>
-            <td>Monday 4th July, 2013</td>
-            <td>3 hours ago</td>
-            <td class="centered">{{ html.badge(label = '5') }}</td>
-            <td>Paul Stanton</td>
-        </tr>
-        <tr class="row--warning-highlight">
-            {{ datagrid.select_item(6) }}
-            <td><a href="#">This row has .row--warning-highlight</a></td>
-            <td>Monday 4th July, 2013</td>
-            <td>3 hours ago</td>
-            <td class="centered">{{ html.badge(label = '5') }}</td>
-            <td>Paul Stanton</td>
-        </tr>
-        <tr class="row--success">
-            {{ datagrid.select_item(7) }}
-            <td><a href="#">This row has .row--success</a></td>
-            <td>Monday 4th July, 2013</td>
-            <td>3 hours ago</td>
-            <td class="centered">{{ html.badge(label = '5') }}</td>
-            <td>Paul Stanton</td>
-        </tr>
-        <tr class="row--danger">
-            {{ datagrid.select_item(8) }}
-            <td><a href="#">This row has .row--danger</a></td>
-            <td>Monday 4th July, 2013</td>
-            <td>3 hours ago</td>
-            <td class="centered">{{ html.badge(label = '5') }}</td>
-            <td>Paul Stanton</td>
-        </tr>
-        <tr class="row--warning">
-            {{ datagrid.select_item(9) }}
-            <td><a href="#">This row has .row--warning</a></td>
-            <td>Monday 4th July, 2013</td>
-            <td>3 hours ago</td>
-            <td class="centered">{{ html.badge(label = '5') }}</td>
-            <td>Paul Stanton</td>
-        </tr>
-    </tbody>
-</table>
-
 <h2 class="heading">{{ heading|raw }}</h2>
 
 <div class="tab__inner tab--unpadded">
-    <table class="table--datagrid">
+    <table id="component-table-example" class="table--datagrid">
         <thead>
             <tr>
-                <th class="row__actions">
-                    <input type="checkbox" />
-                </th>
+                {{ datagrid.select_all() }}
                 <th>
                     {{ html.link(label = 'Title') }}
+                    {{ html.icon('sort-by-alphabet') }}
                 </th>
                 <th>
                     {{ html.link(label = 'Created') }}
@@ -128,9 +29,7 @@
         </thead>
         <tbody>
             <tr>
-                <td class="row__actions">
-                    <input type="checkbox" />
-                </td>
+                {{ datagrid.select_item(1) }}
                 <td><a href="#">This is a regular row</a></td>
                 <td>Monday 4th July, 2013</td>
                 <td>3 hours ago</td>
@@ -138,49 +37,39 @@
                 <td>Paul Stanton</td>
             </tr>
             <tr class="is-selected">
-                <td class="row__actions">
-                    <input type="checkbox" checked />
-                </td>
+                {{ datagrid.select_item(2) }}
                 <td><a href="#">This row has .is-selected</a></td>
-                <td>Tuesday 5th July, 2013</td>
-                <td>4 hours ago</td>
-                <td class="centered">{{ html.badge(label = '1') }}</td>
-                <td>Scott Riley</td>
+                <td>Monday 4th July, 2013</td>
+                <td>3 hours ago</td>
+                <td class="centered">{{ html.badge(label = '5') }}</td>
+                <td>Paul Stanton</td>
             </tr>
             <tr class="row--highlight">
-                <td class="row__actions">
-                    <input type="checkbox" />
-                </td>
+                {{ datagrid.select_item(3) }}
                 <td><a href="#">This row has .row--highlight</a></td>
-                <td>Sunday 3rd July, 2013</td>
-                <td>1 hours ago</td>
-                <td class="centered">{{ html.badge(label = '3') }}</td>
-                <td>Sarah Backhouse</td>
+                <td>Monday 4th July, 2013</td>
+                <td>3 hours ago</td>
+                <td class="centered">{{ html.badge(label = '5') }}</td>
+                <td>Paul Stanton</td>
             </tr>
             <tr class="row--success-highlight">
-                <td class="row__actions">
-                    <input type="checkbox" />
-                </td>
+                {{ datagrid.select_item(4) }}
                 <td><a href="#">This row has .row--success-highlight</a></td>
                 <td>Monday 4th July, 2013</td>
-                <td>17 hours ago</td>
-                <td class="centered">{{ html.badge(label = '16') }}</td>
-                <td>Tom Graham</td>
+                <td>3 hours ago</td>
+                <td class="centered">{{ html.badge(label = '5') }}</td>
+                <td>Paul Stanton</td>
             </tr>
             <tr class="row--danger-highlight">
-                <td class="row__actions">
-                    <input type="checkbox" />
-                </td>
+                {{ datagrid.select_item(5) }}
                 <td><a href="#">This row has .row--danger-highlight</a></td>
                 <td>Monday 4th July, 2013</td>
                 <td>3 hours ago</td>
                 <td class="centered">{{ html.badge(label = '5') }}</td>
-                <td>Adam Lang</td>
+                <td>Paul Stanton</td>
             </tr>
             <tr class="row--warning-highlight">
-                <td class="row__actions">
-                    <input type="checkbox" />
-                </td>
+                {{ datagrid.select_item(6) }}
                 <td><a href="#">This row has .row--warning-highlight</a></td>
                 <td>Monday 4th July, 2013</td>
                 <td>3 hours ago</td>
@@ -188,9 +77,7 @@
                 <td>Paul Stanton</td>
             </tr>
             <tr class="row--success">
-                <td class="row__actions">
-                    <input type="checkbox" />
-                </td>
+                {{ datagrid.select_item(7) }}
                 <td><a href="#">This row has .row--success</a></td>
                 <td>Monday 4th July, 2013</td>
                 <td>3 hours ago</td>
@@ -198,9 +85,7 @@
                 <td>Paul Stanton</td>
             </tr>
             <tr class="row--danger">
-                <td class="row__actions">
-                    <input type="checkbox" />
-                </td>
+                {{ datagrid.select_item(8) }}
                 <td><a href="#">This row has .row--danger</a></td>
                 <td>Monday 4th July, 2013</td>
                 <td>3 hours ago</td>
@@ -208,9 +93,7 @@
                 <td>Paul Stanton</td>
             </tr>
             <tr class="row--warning">
-                <td class="row__actions">
-                    <input type="checkbox" />
-                </td>
+                {{ datagrid.select_item(9) }}
                 <td><a href="#">This row has .row--warning</a></td>
                 <td>Monday 4th July, 2013</td>
                 <td>3 hours ago</td>
@@ -220,4 +103,3 @@
         </tbody>
     </table>
 </div>
-

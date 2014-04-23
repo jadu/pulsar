@@ -25,7 +25,7 @@ define([
 
         // init actions menu
         return _this.each(function () {
-          _this.updateActions(2);
+          _this.updateActions();
         });
 
       },
@@ -67,7 +67,7 @@ define([
     actionsMenuSelector : '.actions-menu',
     animationSpeed : 250,
     badgeSelector : '.badge',
-    badgeActiveClass : '.badge--primary'
+    badgeActiveClass : 'badge--primary'
   }, jQuery, window, document);
 
 });
