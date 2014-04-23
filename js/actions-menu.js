@@ -59,6 +59,12 @@ define([
           });  
         }
 
+        if (count >= 1) {
+          $(defaults.disabledItemSelector).removeClass(defaults.disabledItemClass)
+        } else {
+          $(defaults.disabledItemSelector).addClass(defaults.disabledItemClass);
+        }
+
       }
 
     });
@@ -67,7 +73,9 @@ define([
     actionsMenuSelector : '.actions-menu',
     animationSpeed : 250,
     badgeSelector : '.badge',
-    badgeActiveClass : 'badge--primary'
+    badgeActiveClass : 'badge--primary',
+    disabledItemSelector : '[data-on-datagrid-item-selected=enable]',
+    disabledItemClass : 'disabled'
   }, jQuery, window, document);
 
 });

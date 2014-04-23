@@ -90,7 +90,7 @@ define([
         }
 
         _this.checkIndeterminate();
-        _this.badgeActionsButton(selectedItems.length);
+        _this.updateActionsButton(selectedItems.length);
       },
 
       /**
@@ -137,7 +137,7 @@ define([
           store.set(defaults.storageKey + datagridId, selectedItems);
         }
 
-        _this.badgeActionsButton(selectedItems.length);
+        _this.updateActionsButton(selectedItems.length);
       },
 
       /**
@@ -182,10 +182,8 @@ define([
 
       },
 
-      badgeActionsButton: function (count) {
-
+      updateActionsButton: function (count) {
         $('.actions-menu').actionsMenu().updateBadge(count);
-
       },
 
       switchActionsButtonOnTab: function (count) {
@@ -201,11 +199,12 @@ define([
           }
         }
 
-        $('.actions-menu').actionsMenu().updateBadge(count.length);
+        $(defaults.actionsMenuSelector).actionsMenu().updateBadge(count.length);
       }
 
     });
   })({
+    actionsMenuSelector : '.actions-menu',
     activeTabSelector : '.tab__pane.is-active',
     datagridSelector : '.table--datagrid',
     missingDatagridIdMessage : 'Datagrid state cannot be saved becase no ID has been defined',
