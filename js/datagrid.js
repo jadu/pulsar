@@ -190,9 +190,7 @@ define([
 
       switchActionsButtonOnTab: function (count) {
 
-        var _this = $(this),
-            tabId = _this.attr('href'),
-            datagridId = $(defaults.datagridSelector, tabId).attr('id'),
+        var datagridId = $(defaults.datagridSelector, $(defaults.activeTabSelector)).attr('id'),
             count;
 
         if (store.enabled) {
@@ -208,6 +206,7 @@ define([
 
     });
   })({
+    activeTabSelector : '.tab__pane.is-active',
     datagridSelector : '.table--datagrid',
     missingDatagridIdMessage : 'Datagrid state cannot be saved becase no ID has been defined',
     missingCheckboxIdMessage : 'Checkbox state cannot be saved because of a missing data-id attribute',
