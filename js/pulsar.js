@@ -1,4 +1,4 @@
-    /**
+/**
  * Set up Pulsar's UI environment
  */
 
@@ -7,7 +7,16 @@ define(['jquery'], function() {
     $(document).ready(function() {
 
         // Set up Pulsar's UI environment
-        require(['tooltip', 'sticky', 'zeroclipboard', 'datagrid', 'highlightjs'], function() {
+        require([
+            'actions-menu',
+            'tooltip',
+            'sticky',
+            'datagrid',
+            'highlightjs'
+            ], function() {
+
+            // actions menu
+            $('.actions-menu').actionsMenu();
 
             // sticky toolbar
             $('.toolbar').sticky({topSpacing: 0});
@@ -16,7 +25,12 @@ define(['jquery'], function() {
             $('[data-toggle="tooltips"]').tooltips();
 
             // datagrid
-            $('.table--datagrid').datagrid();
+            $('.table--datagrid').each(function() {
+                $(this).datagrid();
+            });
+
+            // sticky toolbar
+            $('.toolbar').sticky({topSpacing: 0});
 
             // syntax highlighting
             if (!$('html.ie7').size()) { // IE8 and up only
@@ -25,22 +39,6 @@ define(['jquery'], function() {
                     hljs.highlightBlock(aCodes[i]);
                 }
             };
-
-            // copy to clipboard
-            $('[data-action=clipboard]').on('click', function(e) {
-                console.log($(this));
-                e.preventDefault();
-                var clip = new ZeroClipboard($(this), {
-                    moviePath: 'libs/zeroclipboard/ZeroClipboard.swf'
-                });
-                console.log('clip');
-                clip.on('load', function(client) {
-                    console.log('loaded');
-                    client.on('complete', function(client, args) {
-                        console.log('copied');
-                    });
-                });
-            });
 
             // Don't allow disabled links to be clicked
             $('a.disabled').on('click', function(e) {

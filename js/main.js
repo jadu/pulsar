@@ -8,6 +8,7 @@ if (window.jadu.requireJsPath) {
 
 requirejs.config({
     paths: {
+        'actions-menu'      : path + '/js/actions-menu',
         'console-js'        : path + '/libs/console-js/console',
         'datagrid'          : path + '/js/datagrid',
         'daterange'         : path + '/libs/bootstrap-daterangepicker/daterangepicker',
@@ -37,8 +38,7 @@ requirejs.config({
         'tab'               : path + '/js/tab',
         'tooltip'           : path + '/js/tooltip',
         'tray'              : path + '/js/tray',
-        'vague'             : path + '/libs/Vague.js/Vague',
-        'zeroclipboard'     : path + '/libs/zeroclipboard/ZeroClipboard'
+        'vague'             : path + '/libs/Vague.js/Vague'
     },
     shim: {
         'daterange': {
