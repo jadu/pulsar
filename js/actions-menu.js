@@ -17,7 +17,7 @@ define([
 
     }).fn.extend({
 
-      actionsmenu: function (options) {
+      actionsMenu: function (options) {
         
         var _this = $(this);
 
@@ -25,21 +25,31 @@ define([
 
         // init actions menu
         return _this.each(function () {
-
-
+          _this.updateActions(2);
         });
 
       },
 
-      updateBadge: function (count) {
-        
-        var badge = $(defaults.badgeSelector, $(defaults.actionsMenuSelector));
+      updateActions: function (count) {
 
+        var _this = $(this);
+
+        if (count >= 1) {
+          _this.updateBadge(count);
+        }
+
+      },
+
+      updateBadge: function (count) {
+
+        var badge = $(defaults.badgeSelector, $(defaults.actionsMenuSelector));
+        
         if (count) {
 
           // add the count and show the badge
           badge
             .text(count)
+            .addClass(defaults.badgeActiveClass)
             .fadeIn(defaults.animationSpeed)
         } else {
 
@@ -56,7 +66,8 @@ define([
   })({
     actionsMenuSelector : '.actions-menu',
     animationSpeed : 250,
-    badgeSelector : '.badge'
+    badgeSelector : '.badge',
+    badgeActiveClass : '.badge--primary'
   }, jQuery, window, document);
 
 });
