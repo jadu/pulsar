@@ -13,14 +13,5 @@
     "Gemfile.lock",
     "Rakefile",
     "bourbon.gemspec"
-  ],
-  "_release": "4.0.0",
-  "_resolution": {
-    "type": "version",
-    "tag": "v4.0.0",
-    "commit": "6516c4eee40b4ebc2333df9e4987efbd3b6fcc42"
-  },
-  "_source": "git://github.com/thoughtbot/bourbon.git",
-  "_target": "*",
-  "_originalSource": "bourbon"
+  ]
 }
