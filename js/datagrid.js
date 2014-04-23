@@ -10,146 +10,197 @@ define([
 
   (function (defaults, $, window, document, undefined) {
 
-		$.extend({
+    $.extend({
 
-			pluginSetup: function (options) {
-				return $.extend(defaults, options);
-			}
+      pluginSetup: function (options) {
+        return $.extend(defaults, options);
+      }
 
-		}).fn.extend({
+    }).fn.extend({
 
-			datagrid: function (options) {
-				
-				options = $.extend({}, defaults, options);
+      datagrid: function (options) {
+        
+        var _this = $(this);
 
-				return $(this).each(function () {
+        options = $.extend({}, defaults, options);
 
-					$(this).setSelectedItems();
+        return _this.each(function () {
 
-				});
-			},
+          // set the state of the checkboxes currently visible in the datagrid
+          _this.setSelectedItems();
 
-			setSelectedItems: function () {
+        });
+      },
 
-				var _this = $(this),
-						datagrid = _this.closest(defaults.datagridSelector),
-						datagridId = datagrid.attr('id'),
-						selectedItems = store.get(defaults.storageKey + datagridId);
+      /**
+       * check the selected items currently saved in localstorage and set their
+       * respective checkbox states
+       */
+      setSelectedItems: function () {
 
-				$.each(selectedItems, function () {
-					$('[data-id=' + this + ']', datagrid).prop('checked', true);
-				});
+        var _this = $(this),
+            datagrid = _this.closest(defaults.datagridSelector),
+            datagridId = datagrid.attr('id'),
+            selectedItems = store.get(defaults.storageKey + datagridId);
 
-				$(this).checkIndeterminate();
- 			},
+        // loop over the IDs saved in localstorage and check them
+        $.each(selectedItems, function () {
+          $('[data-id=' + this + ']', datagrid).prop('checked', true);
+        });
 
-			selectItem: function () {
+        _this.checkIndeterminate();
+      },
 
-				var _this = $(this),
-						selected = _this.data('id'),
-						datagridId = _this.closest(defaults.datagridSelector).attr('id'),
-						selectedItems = store.get(defaults.storageKey + datagridId),
-						found = $.inArray(selected, selectedItems);
+      /**
+       * select an individual datagrid item
+       */
+      selectItem: function () {
 
-				if (typeof selectedItems === "undefined") {
-					var selectedItems = [];
-				}
-				
-				if ($(this).is(':checked')) {
-					if (found < 0) {
-						selectedItems.push(selected);
-					}
-				} else {
-					if (found >= 0) {
-						selectedItems.splice(found, 1);
-					}
-				}
+        var _this = $(this),
+            datagridId = _this.closest(defaults.datagridSelector).attr('id'),
+            selected = _this.data('id');
 
-				if (store.enabled) {
-					store.set(defaults.storageKey + datagridId, selectedItems);
-				}
+        // don't go any further if the datagrid doesn't have an ID
+        if (!datagridId) {
+          $.error(defaults.missingDatagridIdMessage);
+          return false;
+        }
 
-				$(this).checkIndeterminate();
-				$(this).badgeActionsButton();
-			},
+        // if selected item doesn't have a data-id, we can't save it
+        if (!selected) {
+          $.error(defaults.missingCheckboxIdMessage);
+          return false;
+        }
 
-			selectAll: function () {
+        // retrieve our saved values from localstorage
+        if (store.enabled) {
+          var selectedItems = store.get(defaults.storageKey + datagridId);
+        }
 
-				var _this = $(this),
-						checked = false,
-						datagrid = _this.closest(defaults.datagridSelector),
-						datagridId = datagrid.attr('id'),
-						selectedItems = store.get(defaults.storageKey + datagridId),
-						checkboxes = $(defaults.selector, datagrid);
+        // start a collection, if we don't have anything in localstorage
+        if (typeof selectedItems === "undefined") {
+          var selectedItems = [];
+        }
+        
+        _this.updateSelectedItems(selected, selectedItems);
 
-				if (typeof selectedItems === "undefined") {
-					var selectedItems = [];
-				}
+        // save to localstorage
+        if (store.enabled) {
+          store.set(defaults.storageKey + datagridId, selectedItems);
+        }
 
-				if (_this.is(':checked')) {
-					checked = true;
-				}
+        _this.checkIndeterminate();
+        _this.badgeActionsButton();
+      },
 
-				checkboxes.prop('checked', checked);
+      /**
+       * select all datagrid items on the currently visible page
+       */
+      selectAll: function () {
 
-				$.each(checkboxes, function() {
+        var _this = $(this),
+            checked = false,
+            datagrid = _this.closest(defaults.datagridSelector),
+            datagridId = datagrid.attr('id'),
+            checkboxes = $(defaults.selector, datagrid);
 
-					var _this = $(this),
-							selected = _this.data('id'),
-							found = $.inArray(selected, selectedItems);
+        // don't go any further if the datagrid doesn't have an ID
+        if (!datagridId) {
+          $.error(defaults.missingDatagridIdMessage);
+          return false;
+        }
 
-					if (_this.is(':checked')) {
-						if (found < 0) {
-							selectedItems.push(selected);
-						}
-					} else {
-						if (found >= 0) {
-							selectedItems.splice(found, 1);
-						}
-					}
+        // retrieve our saved values from localstorage
+        if (store.enabled) {
+          var selectedItems = store.get(defaults.storageKey + datagridId);
+        }
 
-				});
-				
-				if (store.enabled) {
-					store.set(defaults.storageKey + datagridId, selectedItems);
-				}
+        // start a collection, if we don't have anything in localstorage
+        if (typeof selectedItems === "undefined") {
+          var selectedItems = [];
+        }
 
-			},
+        if (_this.is(':checked')) {
+          checked = true;
+        }
 
-			checkIndeterminate: function () {
+        checkboxes.prop('checked', checked);
 
-				var _this = $(this),
-						state = false,
-						datagrid = _this.closest(defaults.datagridSelector),
-						datagridId = datagrid.attr('id'),
-						selectedItems = store.get(defaults.storageKey + datagridId);
+        $.each(checkboxes, function() {
+          var _this = $(this),
+              selected = _this.data('id')
 
-				if (selectedItems.length > 0) {
-					state = true;
-				}
+          _this.updateSelectedItems(selected, selectedItems);
+        });
+        
+        if (store.enabled) {
+          store.set(defaults.storageKey + datagridId, selectedItems);
+        }
 
-				$(defaults.selectAllHandler, datagrid).prop('indeterminate', state);
+      },
 
-			},
+      /**
+       * add or remove the selected ID from localstorage based on it's checked
+       * state
+       */
+      updateSelectedItems: function (selected, selectedItems) {
 
-			badgeActionsButton: function () {
-				console.log($('.actions-menu'));
-			}
+        var _this = $(this),
+            found = $.inArray(selected, selectedItems);
 
-		});
-	})({
-		datagridSelector : '.table--datagrid',
-		selector : '[data-id]',
-		selectAllHandler : '[data-action=select-all]',
-		storageKey : 'datagrid-'
-	}, jQuery, window, document);
+        if (_this.is(':checked')) {
+          if (found < 0) {
+            selectedItems.push(selected);
+          }
+        } else {
+          if (found >= 0) {
+            selectedItems.splice(found, 1);
+          }
+        }
 
-	$(document)
-		.on('click', '[data-action=select]', function (e) {
-			$(this).selectItem();
-		})
-		.on('click', '[data-action=select-all]', function (e) {
-			$(this).selectAll();
-		});
+        return selectedItems;
+      },
+
+      /**
+       * if some, but not all items are selected, this will set the 'select all'
+       * checkbox to the indeterminate state [-]
+       */
+      checkIndeterminate: function () {
+
+        var _this = $(this),
+            state = false,
+            datagrid = _this.closest(defaults.datagridSelector),
+            datagridId = datagrid.attr('id'),
+            selectedItems = store.get(defaults.storageKey + datagridId);
+
+        if (selectedItems.length > 0) {
+          state = true;
+        }
+
+        $(defaults.selectAllHandler, datagrid).prop('indeterminate', state);
+
+      },
+
+      badgeActionsButton: function () {
+        //console.log($('.actions-menu'));
+      }
+
+    });
+  })({
+    datagridSelector : '.table--datagrid',
+    missingDatagridIdMessage : 'Datagrid state cannot be saved becase no ID has been defined',
+    missingCheckboxIdMessage : 'Checkbox state cannot be saved because of a missing data-id attribute',
+    selector : '[data-id]',
+    selectAllHandler : '[data-action=select-all]',
+    storageKey : 'datagrid-'
+  }, jQuery, window, document);
+
+  $(document)
+    .on('click', '[data-action=select]', function (e) {
+      $(this).selectItem();
+    })
+    .on('click', '[data-action=select-all]', function (e) {
+      $(this).selectAll();
+    });
 
 });

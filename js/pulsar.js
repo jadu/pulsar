@@ -1,4 +1,4 @@
-    /**
+/**
  * Set up Pulsar's UI environment
  */
 
@@ -25,7 +25,12 @@ define(['jquery'], function() {
             $('[data-toggle="tooltips"]').tooltips();
 
             // datagrid
-            $('.table--datagrid').datagrid();
+            $('.table--datagrid').each(function() {
+                $(this).datagrid();
+            });
+
+            // sticky toolbar
+            $('.toolbar').sticky({topSpacing: 0});
 
             // syntax highlighting
             if (!$('html.ie7').size()) { // IE8 and up only
