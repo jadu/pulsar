@@ -113,35 +113,53 @@ $brand-height: 24px;
   
   background-repeat: no-repeat;
   background-image: url('../images/jaduIdent.png');
-  display: inline-block;
+  display: block;
+  float: left;
   height: $brand-height;
   margin: 0 $gutter-width;
   margin-right: $gutter-width * 2;
   overflow: hidden;
   position: relative;
-  top: -6px;
+  top: (($toolbar-height - $brand-height) / 2) + 10;
   width: 75px;
 }
 
-.user-actions {
-  margin-right: 20px;
-  top: 8px;
+.toolbar .btn__group {
+  top: ($toolbar-height - $brand-height) / 2;
 
   .btn {
     background: none;
+    border: 0;
     box-shadow: none;
-    border: none;
     color: $white;
     text-shadow: none;
+
+    .caret {
+      display: none;
+    }
   }
 
-  .btn:hover {
-    background-color: rgba(0, 0, 0, .2);
-    background-image: none;
-    box-shadow: none;
+  &.open .btn {
+    background-color: $white;
+    color: $black;
+  }
+}
+
+.toolbar {
+  $nav-min-width: 150px;
+  // Sub-navigation
+  .dropdown__menu {
+    min-width: $nav-min-width;
+    z-index: $zindex-nav;
+
+    > li > ul {
+      @extend .dropdown__menu;
+      @extend .inverse;
+      background: rgba($gray-dark,.95); 
+      left: $nav-min-width + 10px;
+      top: 0;
+    }
+  
   }
 
-  .caret {
-    border-top: 4px solid $white;
-  }
 }
