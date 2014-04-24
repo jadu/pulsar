@@ -1,0 +1,187 @@
+{% extends '@pulsar/quantum/layouts/tabbed.html.twig' %}
+{% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
+{% import '@pulsar/pulsar/helpers/form.html.twig' as form %}
+{% import '@pulsar/pulsar/helpers/flash.html.twig' as flash %}
+
+{% block title %}{{ parent() }}{% endblock %}
+
+{% set heading = 'AB123C Appellant v Authority' %}
+
+{% set tab_details %}
+    {% include 'quantum/portal/case/tabs/details.html.twig' %}
+{% endset %}
+
+{% set tab_messages %}
+    {% include 'quantum/portal/case/tabs/messages.html.twig' %}
+{% endset %}
+
+{% set tab_evidence %}
+    {% include 'quantum/portal/case/tabs/evidence.html.twig' %}
+{% endset %}
+
+{% set tab_hearing %}
+    {% include 'quantum/portal/case/tabs/hearing.html.twig' %}
+{% endset %}
+
+{% set tab_decision %}
+    {% include 'quantum/portal/case/tabs/decision.html.twig' %}
+{% endset %}
+
+{% 
+  set tabs = [
+    {
+      "id"        : "details",
+      "label"     : "Appeal details",
+      "src"       : tab_messages
+
+    },
+    {
+      "id"        : "messages",
+      "label"     : "Messages " ~ html.label(label = 'new', class = 'label--primary'),
+      "src"       : tab_messages
+    },
+    {
+      "id"        : "my_evidence",
+      "label"     : "My evidence",
+      "src"       : tab_evidence
+    },
+    {
+      "id"        : "authority_evidence",
+      "label"     : "Authority evidence",
+      "src"       : tab_evidence
+    },
+    {
+      "id"        : "hearing",
+      "label"     : "Hearing",
+      "src"       : tab_hearing
+    },
+    {
+      "id"        : "decision",
+      "label"     : "Decision",
+      "src"       : tab_decision
+    }
+  ]
+%}
+
+{% block summary %}
+
+<div class="summary">
+  <div class="container">
+    <form name="quantum_case_filters" method="post" action="">
+      <div id="quantum_case_filters">
+        <div>
+          <label class="required">Assigned adjudicator</label>
+          <div id="quantum_case_filters_adjudicator">
+            <div>
+              <label for="quantum_case_filters_adjudicator_members" class="hide">Members</label>
+              <select id="quantum_case_filters_adjudicator_members" name="quantum_case_filters[adjudicator][members][]" multiple="multiple" data-chosen="true">
+                <option value="375">Caroline Sheppard</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div>
+          <label class="required">Assigned authority</label>
+          <div id="quantum_case_filters_authority">
+            <div>
+              <label for="quantum_case_filters_authority_members" class="hide">Members</label>
+              <select id="quantum_case_filters_authority_members" name="quantum_case_filters[authority][members][]" multiple="multiple">
+                <option value="147" selected="selected">Bournemouth Borough Council</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div>
+          <label class="required">Status</label>
+          <div id="quantum_case_filters_status">
+            <div>
+              <label for="quantum_case_filters_status_statuses" class="hide">Statuses</label>
+              <select id="quantum_case_filters_status_statuses" name="quantum_case_filters[status][statuses][]" multiple="multiple" data-chosen="true">
+                <option value="incomplete">Incomplete</option>
+                <option value="awaiting_council_confirmation">Awaiting registration</option>
+                <option value="awaiting_adjudicator_registration">Awaiting registration</option>
+                <option value="awaiting_evidence">Awaiting evidence</option>
+                <option value="awaiting_hearing_request">Awaiting hearing request</option>
+                <option value="awaiting_hearing_date">Awaiting hearing date</option>
+                <option value="hearing_arranged">Hearing arranged</option>
+                <option value="awaiting_decision">Awaiting decision</option>
+                <option value="closed">Case closed</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div>
+          <label class="required">Appeal type</label>
+          <div id="quantum_case_filters_type">
+            <div>
+              <label class="hide">Choices</label>
+              <div id="quantum_case_filters_type_choices">
+                
+                <label for="quantum_case_filters_type_choices_0">
+                  <input type="checkbox" id="quantum_case_filters_type_choices_0" name="quantum_case_filters[type][choices][]" value="parking" />
+                   Parking
+                </label>
+                
+                <label for="quantum_case_filters_type_choices_1">
+                  <input type="checkbox" id="quantum_case_filters_type_choices_1" name="quantum_case_filters[type][choices][]" value="bus_lane" />
+                   Bus lane
+                </label>
+
+                <label for="quantum_case_filters_type_choices_3">
+                  <input type="checkbox" id="quantum_case_filters_type_choices_3" name="quantum_case_filters[type][choices][]" value="durham" />
+                   Durham
+                </label>
+                
+                <label for="quantum_case_filters_type_choices_4">
+                  <input type="checkbox" id="quantum_case_filters_type_choices_4" name="quantum_case_filters[type][choices][]" value="parking_wales" />
+                   Parking
+                </label>
+
+                <label for="quantum_case_filters_type_choices_2">
+                  <input type="checkbox" id="quantum_case_filters_type_choices_2" name="quantum_case_filters[type][choices][]" value="dartford_crossing" />
+                   Dartford Crossing
+                </label>
+                
+                <label for="quantum_case_filters_type_choices_5">
+                  <input type="checkbox" id="quantum_case_filters_type_choices_5" name="quantum_case_filters[type][choices][]" value="moving_traffic_and_bus_lanes" />
+                   Moving Traffic and Bus Lanes
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="filter-actions">
+      <button class="btn">Clear All</button>
+      <input type="submit" class="btn btn--primary" value="Apply Filter" />
+    </div>
+
+    </form>
+
+    
+
+  </div>
+
+</div>
+{% endblock %}
+
+{% block tabs_list %}
+  <div class="actionsbar actionsbar--left">
+    <div class="btn__toolbar">
+      <div class="btn__group">
+        <a class="btn btn__back" href="#back" onclick="history.back(); return false;"><i class="icon-arrow-left"></i></a>
+        {% if actions_menu is not empty %}
+          {{ html.button_dropdown(label = 'Actions', menu_items = actions_menu) }}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  {{ html.tabs(tabs) }}
+{% endblock %}
+
+{% block tabs_content %}
+  {{ html.tabs_content(tabs) }}
+{% endblock %}

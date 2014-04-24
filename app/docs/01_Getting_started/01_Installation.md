@@ -10,15 +10,15 @@ Pulsar creates its own development server to run the documentation and to compil
 
 ## Pulsar repository
 
-Pulsar uses Git and the source is published to [GitLab](https://gitlab.hq.jadu.net), you are free to clone and [fork](https://gitlab.hq.jadu.net/pulsar/pulsar-ui/fork) this repository as needed, please submit any changes as a [merge request](https://gitlab.hq.jadu.net/pulsar/pulsar-ui/merge_requests).
+Pulsar uses Git and the source is published to [Stash](https://stash.hq.jadu.net), you are free to clone and [fork](https://stash.hq.jadu.net/projects/PULSAR/repos/pulsar-ui?fork) this repository as needed, please submit any changes as a [pull request](https://stash.hq.jadu.net/projects/PULSAR/repos/pulsar-ui/pull-requests).
 
-Repository URL: [https://gitlab.hq.jadu.net/pulsar/pulsar-ui/tree/master](https://gitlab.hq.jadu.net/pulsar/pulsar-ui/tree/master)
+Repository URL: [https://stash.hq.jadu.net/scm/pulsar/pulsar-ui.git](https://stash.hq.jadu.net/scm/pulsar/pulsar-ui.git)
 
 ----
 
 ## Installing required packages & libraries
 
-Pulsar requires some additional packages to be installed before it'll work, you can install all dependencies by typing the following command in the Pulsar directory:
+Pulsar requires some additional packages to be installed before it'll work, you can install all dependencies by typing the following command in the pulsar directory:
 
     $ make
 

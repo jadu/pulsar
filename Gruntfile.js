@@ -37,7 +37,8 @@ module.exports = function(grunt) {
           'css/<%= pkg.name %>.css': 'stylesheets/pulsar.scss',
           'css/<%= pkg.name %>-ie7.css': 'stylesheets/pulsar-ie7.scss',
           'css/<%= pkg.name %>-ie8.css': 'stylesheets/pulsar-ie8.scss',
-          'css/<%= pkg.name %>-ie9.css': 'stylesheets/pulsar-ie9.scss'
+          'css/<%= pkg.name %>-ie9.css': 'stylesheets/pulsar-ie9.scss',
+          'css/theme.css': 'views/**/theme.scss'
         }
       },
       dist: {
@@ -49,14 +50,18 @@ module.exports = function(grunt) {
           'dist/css/<%= pkg.name %>.css': 'stylesheets/pulsar.scss',
           'dist/css/<%= pkg.name %>-ie7.css': 'stylesheets/pulsar-ie7.scss',
           'dist/css/<%= pkg.name %>-ie8.css': 'stylesheets/pulsar-ie8.scss',
-          'dist/css/<%= pkg.name %>-ie9.css': 'stylesheets/pulsar-ie9.scss'
+          'dist/css/<%= pkg.name %>-ie9.css': 'stylesheets/pulsar-ie9.scss',
+          'dist/css/theme.css': 'views/**/theme.scss'
         }
       }
     },
 
     watch: {
       css: {
-        files: 'stylesheets/*.scss',
+        files: [
+          'stylesheets/*.scss',
+          'views/**/*.scss'
+        ],
         tasks: ['sass:dev'],
         options: {
           livereload: true,

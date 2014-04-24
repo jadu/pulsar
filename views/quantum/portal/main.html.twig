@@ -1,0 +1,103 @@
+{% extends '@pulsar/quantum/layouts/base.html.twig' %}
+{% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
+{% import '@pulsar/pulsar/helpers/form.html.twig' as form %}
+{% import '@pulsar/pulsar/helpers/flash.html.twig' as flash %}
+
+{% block title %}{{ parent() }}{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+
+  <div class="actionsbar actionsbar--left">
+    <div class="btn__toolbar">
+      {{ 
+        html.button(
+          label = 'Make an Appeal',
+          class = 'btn--primary'
+        )
+      }}
+    </div>
+  </div>
+
+  <div class="actionsbar actionsbar--right">
+  {{ 
+     html.button_dropdown(
+      label = '<strong>1&ndash;10</strong> of <strong>999</strong>',
+      class = 'pagination--simple',
+      menu_items = [   
+          html.link(label = 'Newest'),
+          html.link(label = 'Oldest'),
+      ]
+     )
+  }}
+    {{
+      html.button_group([ 
+        html.button(
+          label = html.icon('chevron-left')
+        ),
+        html.button(
+          label = html.icon('chevron-right')
+        )
+      ])
+    }}
+  </div>
+
+  <table class="table--datagrid" id="component_example">
+    <thead>
+      <tr>
+        {{ datagrid.select_all() }}
+        <th>
+          {{ html.link(label = 'Case Ref') }}
+        </th>
+        <th>
+          {{ html.link(label = 'Date Submitted') }}
+        </th>
+        <th>
+          {{ html.link(label = 'Type') }}
+        </th>
+        <th>
+          {{ html.link(label = 'Vehicle') }}
+        </th>
+        <th>
+          <u>{{ html.link(label = 'Status') }}</u>
+          {{ html.icon('caret-down') }}
+        </th>
+        <th class="centered">
+          {{ html.link(label = 'Unread') }}
+        </th>
+        <th>
+          {{ html.link(label = 'Actions') }}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+{% for i in 0..10 %}
+      <tr>
+        {{ datagrid.select_item(i) }}
+        <td>
+          {{ 
+            html.link(
+              label = 'ABC123',
+              href = 'portal/case.php'
+            ) 
+          }}
+          {% if i == 2 %}{{ html.icon('envelope-alt', class = 'muted') }}{% endif %}
+        </td>
+        <td>Monday 4th July, 2013</td>
+        <td>Parking</td>
+        <td>AB12 CDE</td>
+        <td>{{ html.label(label = 'awaiting validation') }}
+        <td class="centered">
+          {{ 
+            html.badge(
+              label = '5',
+              class = 'badge--primary') 
+          }}
+        </td>
+        <td>{{ html.link(label = 'the next thing to do') }}</td>
+      </tr>
+{% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

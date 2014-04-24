@@ -145,7 +145,7 @@ define(['jquery'], function($) { "use strict";
 
   $(document).ready(function() {
     // Make sure tab panes are at least as high as the tab list (otherwise they just look weird)
-    $('.tab__pane').css('min-height', $('.tabs__list').height());
+    $('.tabs > .tabs__content > .tab__pane').css('min-height', $('.tabs__list').height());
   });
 
 });

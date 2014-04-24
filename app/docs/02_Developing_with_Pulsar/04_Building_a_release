@@ -1,4 +1,4 @@
-Our sofware (CMP, Zodyac, Weejot) consume a 'built' version of Pulsar which is contained within the `/dist` directory.
+Our sofware (CMP, Zodyac, Weejot) consume a 'built' version of pulsar which is contained within the `/dist` directory.
 
 The contents of `/dist` should reflect the current state of the latest stable release on the master branch.
 
@@ -10,7 +10,7 @@ This will perform the following tasks:
 
  * Run tests
  * Compile Sass files to CSS
- * Minify all Pulsar specific javascript into a single file
+ * Minify all pulsar specific javascript into a single file
  * Copy all libs, fonts, docs and images to `/dist`
  * Commit changes with message 'Release vx.x.x'
  * Tag branch with 'x.x.x'
