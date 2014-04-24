@@ -1,5 +1,5 @@
 /*!
-	Autosize v1.18.5 - 2014-03-10
+	Autosize v1.18.7 - 2014-04-13
 	Automatically adjust textarea height based on user input.
 	(c) 2014 Jack Moore - http://www.jacklmoore.com/autosize
 	license: http://www.opensource.org/licenses/mit-license.php
@@ -9,7 +9,7 @@
 	defaults = {
 		className: 'autosizejs',
 		id: 'autosizejs',
-		append: '',
+		append: '\n',
 		callback: false,
 		resizeDelay: 10,
 		placeholder: true
@@ -102,7 +102,7 @@
 
 					width = ta.getBoundingClientRect().width;
 
-					if (width === 0) {
+					if (width === 0 || typeof width !== 'number') {
 						width = parseInt(style.width,10);
 					}
 
@@ -132,7 +132,8 @@
 				$.each(typographyStyles, function(i,val){
 					styles[val] = $ta.css(val);
 				});
-				$(mirror).css(styles);
+				
+				$(mirror).css(styles).attr('wrap', $ta.attr('wrap'));
 
 				setWidth();
 
