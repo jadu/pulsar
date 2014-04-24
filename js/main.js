@@ -67,8 +67,8 @@ require([
     'homepages',
     'modal',
     'navigation',
-    'popover',
     'tab',
+    'popover',
     'tooltip',
     'pulsar'
 ], function($) {
