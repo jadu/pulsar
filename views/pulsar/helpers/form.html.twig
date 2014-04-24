@@ -43,6 +43,19 @@
     </div>
 {% endmacro %}
 
+{% macro date(label, value, id, class = 'form__group--medium', name, placeholder = 'dd/mm/yyyy', help, prepend, append, attributes) %}
+    {% import _self as form %}
+    <div class="form__group {{ class }}">
+        <label {{ form.for(id) }} class="control__label">{{ label | raw }}</label>
+        <div class="controls">
+            <input type="text" class="form__control" data-datepicker="true" {{ form.id(id) }} {{ form.name(name) }} {{ form.placeholder(placeholder) }} {{ form.value(value)}}{% if attributes is not empty %} {{ attributes|raw }}{% endif %} />
+            {% if help is not empty %} 
+            {{ form.help(help) }}
+            {% endif %}
+        </div>
+    </div>
+{% endmacro %}
+
 {% macro password(label, value, id, class, name, placeholder, help, prepend, append) %}
     {% import _self as form %}
     <div class="form__group {{ class }}">
