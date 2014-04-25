@@ -10,6 +10,7 @@
   vertical-align: baseline;
   background-color: $label-bg;
   border-radius: $border-radius;
+  text-transform: lowercase;
 
   // Add hover effects, but only for links
   &[href] {

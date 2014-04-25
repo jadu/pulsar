@@ -172,7 +172,8 @@ hr {
   white-space: nowrap;
   vertical-align: baseline;
   background-color: #ccc;
-  border-radius: 4px; }
+  border-radius: 4px;
+  text-transform: lowercase; }
   .label[href]:hover, .label[href]:focus {
     color: #fff;
     text-decoration: none;
