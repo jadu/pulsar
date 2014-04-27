@@ -238,9 +238,12 @@
     <input type="submit" class="btn{% if class is not empty %} {{ class }}{% endif %}" {{ form.id(id) }} {{ _self.value(label|raw) }}{% if attributes is not empty %} {{ attributes|raw }}{% endif %}{% if 'is-disabled' in class %} disabled="disabled"{% endif %} />
 {% endmacro %}
 
-{% macro checkbox_group(checkboxes) %}
-    <div class="form__group">
-        <div class="checkbox">
+{% macro checkbox_group(label, checkboxes) %}
+    <div class="form__group checkbox__group">
+    
+        <label class="checkbox__label">{{ label }}</label>
+    
+        <div class="controls">
         {%- for checkbox in checkboxes -%}
             {{ checkbox }}
         {%- endfor -%}
@@ -248,9 +251,12 @@
     </div>
 {% endmacro %}
 
-{% macro radio_group(radios) %}
-    <div class="form__group">
-        <div class="radio">
+{% macro radio_group(label, radios) %}
+    <div class="form__group radio__group">
+
+        <label class="radio__label">{{ label }}</label>
+        
+        <div class="controls">
         {%- for radio in radios -%}
             {{ radio }}
         {%- endfor -%}

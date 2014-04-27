@@ -199,6 +199,7 @@ textarea.form__control {
     cursor: pointer;
   }
 }
+
 .radio input[type="radio"],
 .radio--inline input[type="radio"],
 .checkbox input[type="checkbox"],
@@ -348,9 +349,9 @@ textarea {
 
 .form--horizontal .form__group {
   @include clearfix();
-
-  > .checkbox,
-  > .radio {
+  
+  .checkbox,
+  .radio {
     min-height: 22px;
     margin-top: 0;
     margin-bottom: 0;
@@ -359,6 +360,36 @@ textarea {
     input {
       margin-left: ($gutter-width) + 5px;
       margin-right: $gutter-width / 2;
+    }
+  }
+
+  &.checkbox__group,
+  &.radio__group {
+
+    .form__group {
+      &:hover {
+        box-shadow: none;
+      }
+    }
+
+    .controls {
+      label,
+      input,
+      .checkbox,
+      .radio {
+        margin-left: 0;
+      }
+
+      .form__group:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+
+    .checkbox--inline,
+    .radio--inline {
+      input {
+        margin-right: 10px;
+      }
     }
   }
 
