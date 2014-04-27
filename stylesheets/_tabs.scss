@@ -125,7 +125,6 @@
 .tabs__content {
   display: block;
   overflow: auto;
-  // padding: $baseLineHeight $gutterWidth;
 
   // show/hide tab panes
   > .tab__pane {
@@ -177,6 +176,6 @@
 
 .tabs {
   display: inline-block;
-  margin-bottom: 3.2em;
+  padding-bottom: 3.2em;
   width: 100%;
 }
