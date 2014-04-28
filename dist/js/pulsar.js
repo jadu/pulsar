@@ -73,7 +73,7 @@ define(['jquery'], function() {
 
         // Look for any flashes and animate them in when the page loads
         $('.flash.is-sticky').delay('1000').slideDown('100', function() {
-            $(this).sticky({topSpacing: 44}).sticky('update');
+            $(this).sticky({topSpacing: 64}).sticky('update');
         });
 
         // Show summary panels based on their data-tab value

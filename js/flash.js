@@ -164,4 +164,12 @@ define([
 
   })(jQuery, window, document);
 
+  $(document)
+    .on('click', '[data-dismiss=flash]', function (e) {
+      // parent() targets the sticky wrapper
+      $(this).closest('.flash')
+        .parent()
+        .slideUp(100);
+    });
+
 });
