@@ -380,8 +380,12 @@ textarea {
         margin-left: 0;
       }
 
-      .form__group:last-of-type {
-        margin-bottom: 0;
+      .form__group {
+        margin-bottom: 6px;
+
+        &:last-of-type {
+          margin-bottom: 0;
+        }
       }
     }
 
