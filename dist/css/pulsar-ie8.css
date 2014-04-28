@@ -1238,15 +1238,15 @@ textarea.input-lg, textarea.input-sm {
     .form--horizontal .form__group .checkbox input, .form--horizontal .form__group .radio input {
       margin-left: 25px;
       margin-right: 10px; }
-  .form--horizontal .form__group.checkbox__group .form__group:hover, .form--horizontal .form__group.radio__group .form__group:hover {
+  .form--horizontal .form__group.choice__group .form__group:hover {
     box-shadow: none; }
-  .form--horizontal .form__group.checkbox__group .controls label, .form--horizontal .form__group.checkbox__group .controls input, .form--horizontal .form__group.checkbox__group .controls .checkbox, .form--horizontal .form__group.checkbox__group .controls .radio, .form--horizontal .form__group.radio__group .controls label, .form--horizontal .form__group.radio__group .controls input, .form--horizontal .form__group.radio__group .controls .checkbox, .form--horizontal .form__group.radio__group .controls .radio {
+  .form--horizontal .form__group.choice__group .controls label, .form--horizontal .form__group.choice__group .controls input, .form--horizontal .form__group.choice__group .controls .checkbox, .form--horizontal .form__group.choice__group .controls .radio {
     margin-left: 0; }
-  .form--horizontal .form__group.checkbox__group .controls .form__group, .form--horizontal .form__group.radio__group .controls .form__group {
+  .form--horizontal .form__group.choice__group .controls .form__group {
     margin-bottom: 6px; }
-    .form--horizontal .form__group.checkbox__group .controls .form__group:last-of-type, .form--horizontal .form__group.radio__group .controls .form__group:last-of-type {
+    .form--horizontal .form__group.choice__group .controls .form__group:last-of-type {
       margin-bottom: 0; }
-  .form--horizontal .form__group.checkbox__group .checkbox--inline input, .form--horizontal .form__group.checkbox__group .radio--inline input, .form--horizontal .form__group.radio__group .checkbox--inline input, .form--horizontal .form__group.radio__group .radio--inline input {
+  .form--horizontal .form__group.choice__group .checkbox--inline input, .form--horizontal .form__group.choice__group .radio--inline input {
     margin-right: 10px; }
   .form--horizontal .form__group.form__group--flush > .checkbox, .form--horizontal .form__group.form__group--flush > .radio {
     margin-left: 0; }
