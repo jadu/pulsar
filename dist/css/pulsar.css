@@ -1241,6 +1241,8 @@ textarea.input-lg, textarea.input-sm {
     box-shadow: none; }
   .form--horizontal .form__group.choice__group .controls label, .form--horizontal .form__group.choice__group .controls input, .form--horizontal .form__group.choice__group .controls .checkbox, .form--horizontal .form__group.choice__group .controls .radio {
     margin-left: 0; }
+  .form--horizontal .form__group.choice__group .controls label {
+    text-align: left; }
   .form--horizontal .form__group.choice__group .controls .form__group {
     margin-bottom: 6px; }
     .form--horizontal .form__group.choice__group .controls .form__group:last-of-type {
