@@ -343,7 +343,32 @@ textarea {
       margin-right: $gutter-width / 2;
     }
   }
+
+  &.form__group--top {
+    > .control__label {
+      display: block;
+      margin-bottom: 1em;
+      text-align: left;
+      width: 95%;
+    }
+
+    .controls {
+      margin-left: $gutter-width * 2 + 5px;
+      padding-left: 20%;
+      width: 50%;
+    }
+  }
+
+  &.form__group--flush {
+    .controls {
+      margin-left: $gutter-width;
+      padding-left: 0;
+      width: 30%;
+    }
+  }
+
 }
+
 
 .form--horizontal .control__label {
   display: inline-block;

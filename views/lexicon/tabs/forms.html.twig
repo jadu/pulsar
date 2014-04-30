@@ -10,7 +10,12 @@
 
         {{ form.text(label = 'Text input', id = 'inputText', name = 'inputText', placeholder = 'Placeholder') }}
         {{ form.text(label = 'Text input with value', value = "This is my value, neat huh?", id = 'inputText', name = 'inputText', placeholder = 'Placeholder') }}
+        
         {{ form.text(label = 'Text input with a longer than expected label which will probably wrap multple lines and push the following input onto the next baseline', name = 'inputTextLong', placeholder = 'Placeholder', help = 'Example block-level help text here.') }}
+
+        {{ form.text(label = 'Text input with a longer than expected label but this time we use the form__group--top class to keep the label on a single line', class = 'form__group--top', name = 'inputTextLong', placeholder = 'Placeholder', help = 'Example block-level help text here.') }}
+
+        {{ form.text(label = 'The same as above, but this time we also add the .form__group--flush class to keep everything on the left edge', class = 'form__group--top form__group--flush', name = 'inputTextLong', placeholder = 'Placeholder', help = 'Example block-level help text here.') }}
         
         {{ form.date(label = 'Date picker', id = 'inputDatepicker1', name = 'inputDatepicker1') }}
 
