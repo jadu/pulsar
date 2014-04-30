@@ -22,7 +22,7 @@ requirejs.config({
         'highcharts-theme'  : path + '/js/highcharts-theme',
         'highlightjs'       : path + '/libs/highlightjs/highlight.pack',
         'homepages'         : path + '/js/homepages',
-        'jquery'            : path + '/libs/jquery/jquery',
+        'jquery'            : path + '/libs/jquery/dist/jquery.min',
         'jquery-ui'         : path + '/libs/jqueryui/ui/minified/jquery-ui.min',
         'jquery-ui-touch'   : path + '/libs/jqueryui-touch-punch/jquery.ui.touch-punch.min',
         'jquery-mousewheel' : path + '/libs/jquery-mousewheel/jquery.mousewheel',

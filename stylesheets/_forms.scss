@@ -300,8 +300,9 @@ textarea {
 }
 
 &.form__group--flush {
+  
   label {
-    margin-left: 0;
+    margin-left: $gutter-width;
   }
 
   > .checkbox,

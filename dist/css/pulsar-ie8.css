@@ -1210,7 +1210,7 @@ textarea.input-lg, textarea.input-sm {
   color: #d7d7d8; }
 
 .form__group--flush label {
-  margin-left: 0; }
+  margin-left: 20px; }
 .form__group--flush > .checkbox .help-block, .form__group--flush > .radio .help-block {
   margin-left: 60px; }
 
@@ -1252,6 +1252,19 @@ textarea.input-lg, textarea.input-sm {
     margin-right: 10px; }
   .form--horizontal .form__group.form__group--flush > .checkbox, .form--horizontal .form__group.form__group--flush > .radio {
     margin-left: 0; }
+  .form--horizontal .form__group.form__group--top > .control__label {
+    display: block;
+    margin-bottom: 1em;
+    text-align: left;
+    width: 95%; }
+  .form--horizontal .form__group.form__group--top .controls {
+    margin-left: 45px;
+    padding-left: 20%;
+    width: 50%; }
+  .form--horizontal .form__group.form__group--flush .controls {
+    margin-left: 20px;
+    padding-left: 0;
+    width: 30%; }
 
 .form--horizontal .control__label {
   display: inline-block;
