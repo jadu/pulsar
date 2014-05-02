@@ -104,6 +104,19 @@ define(['jquery'], function() {
         });
 
 
+        $('[data-filter-action=save-as]').on('click', function() {
+            var input = $('[data-filter-action=save]'),
+                oldVal = input.val();
+
+            input.parent().slideDown(250);
+            input.popover('show').val(oldVal).select();
+
+        });
+
+        $('[data-action=tab-name-dismiss]').on('click', function() {
+            $('[data-action=tab-name]').popover('hide');
+        });
+
         if ($('[data-summary]').hasClass('is-active')) {
             $('[data-tab="' + $('[data-summary]').attr('href') + '"]').show();
         }

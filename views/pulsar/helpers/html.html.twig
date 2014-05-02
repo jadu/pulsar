@@ -67,7 +67,7 @@
 {%- endmacro -%}
 
 
-{%- macro tabs(tabs) -%}
+{%- macro tabs(tabs, editable = true) -%}
   {% import _self as html %}
   {% set active_tab_id = get_active_tab(tabs, active_tab) %}
   <ul class="tabs__list">
@@ -97,6 +97,30 @@
 
       </li>
     {%- endfor -%}
+
+    <li class="new hide">
+      <input 
+        type="text" 
+        value="My New Tab" 
+        autofocus 
+        data-filter-action="save" 
+        data-animation="true"
+        data-toggle="popover" 
+        title="Give your tab a nice name" 
+        data-content='<button class="btn btn--primary">Save</button> <button class="btn" data-action="tab-name-dismiss">Don’t Create It</button>' 
+        data-html=true 
+      />
+    </li>
+
+    <li>
+      {{ 
+        html.link(
+          label = 'Add a new tab',
+          href = '#',
+          attributes = 'data-show=#new-tab'
+        )
+      }}
+    </li>
   </ul>
   
 {%- endmacro -%}
@@ -180,7 +204,7 @@
 
 
 {%- macro label(label = 'label', class) -%}
-  <span class="label{% if class is not empty %} {{ class }}{% endif %}">{{ label }}</span>
+  <span class="label{% if class is not empty %} {{ class }}{% endif %}">{{ label|raw }}</span>
 {%- endmacro -%}
 
 

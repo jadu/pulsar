@@ -1,0 +1,75 @@
+{% import 'pulsar/helpers/html.html.twig' as html %}
+{% import 'pulsar/helpers/form.html.twig' as form %}
+{% import 'pulsar/helpers/flash.html.twig' as flash %}
+{% import 'pulsar/helpers/datagrid.html.twig' as datagrid %}
+
+<h2 class="heading">{{ heading|raw }}</h2>
+
+<div class="tab__inner tab--unpadded">
+    <table class="table--datagrid" id="lexicon_analytics">
+        <thead>
+            <tr class="filters edit">
+                <th class="centered">
+                    <small>Filters:</small>
+                </th>
+                <th colspan="99">
+                    <span class="label">
+                        Author <a href="#" data-filter-action="add"><i class="icon-plus"></i></a></span>
+                    <span class="label" data-daterange="true">
+                        Created <a href="#" data-filter-action="add"><i class="icon-plus"></i></a></span>
+
+                    <span class="actions">
+                        {{ 
+                            html.link(
+                                attributes = 'data-filter-action="save-as" data-toggle="tooltips" data-placement="bottom"',
+                                title = 'Save this filter as a new tab on the left-hand side',
+                                label = html.label(
+                                    label = 'Save as Tab'
+                                )
+                            )
+                        }}
+                        {{ 
+                            html.link(
+                                attributes = 'data-filter-action="done" data-toggle="tooltips" data-placement="bottom"',
+                                title = 'Apply these filters to the current tab',
+                                label = html.label(
+                                    class = "label--primary", 
+                                    label = html.icon('ok') ~ ' Done'
+                                )
+                            )
+                        }}
+                    </span>
+                    <!-- {{
+                        html.link(
+                            attributes = 'data-filter-action="clear-all" data-toggle="tooltips" data-placement="left"',
+                            title = 'Clear all filters',
+                            label = html.icon(
+                                icon_name = 'remove-sign'
+                            )
+                        )
+                    }} -->
+                </th>
+            </tr>
+            <tr>
+                {{ datagrid.select_all() }}
+                <th><a href="#">Case Ref</a></th>
+                <th><a href="#">Submitted</a></th>
+                <th><a href="#">Appellant</a></th>
+                <th><a href="#">Adjudicator</a></th>
+                <th><a href="#">Status</a></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for i in 1..10 %}
+            <tr>
+                {{ datagrid.select_item(i) }}
+                <td>AA100001</td>
+                <td>01/05/2014</td>
+                <td>Matt Culpin</td>
+                <td>Caroline Sheppard</td>
+                <td>10%</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
