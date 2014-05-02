@@ -199,5 +199,9 @@
     line-height: 1.75em;
     margin: 4px 0 0 5%;
     width: 90%;
+
+    &::selection {
+      background: white;
+    }
   }
 }
