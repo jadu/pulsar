@@ -189,7 +189,7 @@ module.exports = function(grunt) {
             'highcharts-theme'  : '../js/highcharts-theme',
             'highlightjs'       : '../libs/highlightjs/highlight.pack',
             'homepages'         : '../js/homepages',
-            'jquery'            : '../libs/jquery/jquery',
+            'jquery'            : '../libs/jquery/dist/jquery.min',
             'jquery-ui'         : '../libs/jqueryui/ui/minified/jquery-ui.min',
             'jquery-ui-touch'   : '../libs/jqueryui-touch-punch/jquery.ui.touch-punch.min',
             'jquery-mousewheel' : '../libs/jquery-mousewheel/jquery.mousewheel',
