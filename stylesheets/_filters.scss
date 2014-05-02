@@ -51,6 +51,8 @@
 tr.filters {
   .label {
     text-transform: none;
+    user-select: none;
+    cursor: pointer;
   }
   [data-filter-type="multi"]:hover {
     cursor: pointer;

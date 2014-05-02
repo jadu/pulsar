@@ -103,6 +103,16 @@ define(['jquery'], function() {
             });
         });
 
+        $('[data-popover-content-source]').on('click', function() {
+
+            $(this).popover({ 
+                content: $('[data-popover-content=' + $(this).data('popover-content-source') + ']').html() ,
+                html: true,
+                placement: 'bottom'
+            }).show();
+
+        });
+
 
         $('[data-filter-action=save-as]').on('click', function() {
             var input = $('[data-filter-action=save]'),
