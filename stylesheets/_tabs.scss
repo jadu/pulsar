@@ -182,8 +182,11 @@
 
 .tabs__list > li > a[data-show="#new-tab"] {
   @extend .muted;
-
   text-align: center;
+
+  &:hover {
+    color: $gray-dark;
+  }
 }
 
 .tabs__list .new {

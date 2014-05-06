@@ -49,6 +49,7 @@
 }
 
 tr.filters {
+
   .label {
     text-transform: none;
     user-select: none;
@@ -77,6 +78,19 @@ tr.filters {
     }
     [data-filter-action="clear-all"] {
       margin-right: -25px;
+    }
+  }
+}
+
+tr.is-collapsed {
+
+  td, th {
+    border: none;
+    height: 0;
+
+    > div {
+      height: 0;
+      overflow: hidden;
     }
   }
 }
