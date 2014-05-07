@@ -1277,7 +1277,7 @@ textarea.input-lg, textarea.input-sm {
     margin-right: 10px; }
   .form--horizontal .form__group.form__group--flush > .checkbox, .form--horizontal .form__group.form__group--flush > .radio {
     margin-left: 0; }
-  .form--horizontal .form__group.form__group--top > .control__label {
+  .form--horizontal .form__group.form__group--top > .control__label, .form--horizontal .form__group.form__group--top > .checkbox__label, .form--horizontal .form__group.form__group--top > .radio__label {
     display: block;
     margin-bottom: 1em;
     text-align: left;

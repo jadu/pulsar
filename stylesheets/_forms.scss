@@ -407,7 +407,10 @@ textarea {
   }
 
   &.form__group--top {
-    > .control__label {
+  
+    > .control__label,
+    > .checkbox__label,
+    > .radio__label {
       display: block;
       margin-bottom: 1em;
       text-align: left;
