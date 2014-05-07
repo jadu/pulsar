@@ -60,7 +60,7 @@ define(['jquery'], function() {
         // date pickers
         require(['pikaday', 'sticky'], function(Pikaday) {
             $('[data-datepicker=true]').each(function() {
-                new PikadayPikaday({
+                new Pikaday({
                     field: this,
                     format: 'ddd DD/MM/YYYY'
                 });
