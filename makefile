@@ -12,7 +12,7 @@ XCODE = $(shell pkgutil --pkg-info=com.apple.pkg.CLTools_Executables)
 
 build:
 	@ echo "${HEADER}"
-	
+
 	@ echo "Installing Composer and its dependencies...${HR}\n"
 	@ sudo curl -sS https://getcomposer.org/installer | php -d detect_unicode=Off
 	@ sudo php composer.phar install
@@ -37,6 +37,7 @@ endif
 	@ echo "${HR}\nInstalling Node & NPM...${HR}\n"
 ifeq (${NODE}, )
 	brew install node
+	npm install -g npm
 else
 	@ echo "Node $(shell node --version) is already installed."
 endif
@@ -87,4 +88,4 @@ clean:
 
 	@ echo "${HR}\nRemoving GIT hooks...${HR}"
 	@ rm -rf .git/hooks/*
-	@ echo "\n${CHECK} Done\n"	
+	@ echo "\n${CHECK} Done\n"
