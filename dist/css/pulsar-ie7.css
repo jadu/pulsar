@@ -2818,6 +2818,27 @@ hr {
   .badge:empty {
     display: none; }
 
+.label.label--danger .badge {
+  background-color: #d43d3a; }
+.label.label--primary .badge {
+  background-color: #3580bd; }
+.label.label--success .badge {
+  background-color: #5eb85c; }
+.label.label--warning .badge {
+  background-color: #ee9e36; }
+.label.label--info .badge {
+  background-color: #46bada; }
+.label.label--inverse .badge {
+  background-color: #3a3c3c; }
+.label .badge {
+  color: inherit;
+  font-size: 12px;
+  margin-bottom: -1px;
+  margin-top: -1px;
+  min-width: 20px;
+  padding-bottom: 1px;
+  padding-top: 1px; }
+
 a.badge:hover, a.badge:focus {
   color: #fff;
   text-decoration: none;
