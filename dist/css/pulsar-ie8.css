@@ -2591,8 +2591,15 @@ footer {
   display: none;
   max-width: 270px; }
 
+.daterangepicker.show-calendar .calendar {
+  display: block; }
+
+.daterangepicker .calendar.single .calendar-date {
+  border: none; }
+
 .daterangepicker .calendar th, .daterangepicker .calendar td {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 12px;
   white-space: nowrap;
   text-align: center;
   min-width: 32px; }
