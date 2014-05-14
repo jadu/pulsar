@@ -123,7 +123,16 @@ define(['jquery'], function() {
                   endDate: moment()
                 },
                 function(start, end) {
-                    $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+                    var label,
+                        startLabel = start.format('MMMM D, YYYY'),
+                        endLabel = end.format('MMMM D, YYYY');
+                    
+                    if (startLabel === endLabel) {
+                        label = startLabel;
+                    } else {
+                        label = startLabel + ' - ' + endLabel;
+                    }
+                    $('[data-daterange]').html('<strong>Created:</strong> ' + label);
                 }
             );
         });
