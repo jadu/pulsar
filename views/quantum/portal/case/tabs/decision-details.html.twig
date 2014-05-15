@@ -1,0 +1,155 @@
+{% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
+{% import '@pulsar/pulsar/helpers/form.html.twig' as form %}
+{% import '@pulsar/pulsar/helpers/flash.html.twig' as flash %}
+{% import '@pulsar/pulsar/helpers/datagrid.html.twig' as datagrid %}
+
+<h2 class="heading">{{ heading|raw }}</h2>
+
+<div class="tab__inner tab--unpadded">
+  {{ form.create() }}
+  {{ form.fieldset_start('Step 1') }}
+  
+  <div class="column--55">
+
+  {{ 
+      form.radio_group(
+          label = 'Attendance',
+          radios = [
+              form.radio_right(
+                label = 'All parties attended the hearing', 
+                id = 'attendance-all', 
+                name = 'hearing-attendance'
+              ),
+              form.radio_right(
+                label = 'The authority did not attend', 
+                id = 'attendance-no-authority', 
+                name = 'hearing-attendance'
+              ),
+              form.radio_right(
+                label = 'The appellant did not attend', 
+                id = 'attendance-no-appellant', 
+                name = 'hearing-attendance'
+              ),
+              form.radio_right(
+                label = 'There was no hearing', 
+                id = 'attendance-no-hearing', 
+                name = 'hearing-attendance'
+              )
+          ]
+      ) 
+  }}
+
+  {{ 
+      form.radio_group(
+          label = 'Outcome',
+          radios = [
+              form.radio_right(
+                label = 'Allowed', 
+                id = 'outcome-allowed', 
+                name = 'outcome'
+              ),
+              form.radio_right(
+                label = 'Dismissed', 
+                id = 'outcome-dismissed', 
+                name = 'outcome'
+              ),
+              form.radio_right(
+                label = 'Consent order', 
+                id = 'outcome-consent', 
+                name = 'outcome'
+              )
+          ]
+      ) 
+  }}
+
+  {{
+    form.select(
+      label = 'Grounds of appeal',
+      options = {
+        value1: 'Choose', 
+        value2: 'value two'
+      }
+    )
+  }}
+
+  {{ 
+    form.textarea(
+      label = 'Directions', 
+      id = 'inputTextarea4', 
+      name = 'inputTextarea4', 
+      placeholder = 'Placeholder'
+    ) 
+  }}
+
+  </div>
+  <div class="column--45">
+
+    <div class="form__group form__group--flush form__group--top ">
+          <div class="controls">
+          <table class="form__field-matrix">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th data-action="check-column"><span>Allowed</span></th>
+                  <th data-action="check-column"><span>Dismissed</span></th>
+                  <th data-action="check-column"><span>Consent Order</span></th>
+                </tr>
+              </thead>
+              <tbody class="choice-matrix">
+                <tr>
+                  <td data-action="check-row"><span>AA12345678</span></td>
+                                               
+                  <td class="choice-matrix__choice"><label class="checkbox__label" for="hearing_values_appellant_availability_0900_1100_choices_0"><input type="radio" id="hearing_values_appellant_availability_0900_1100_choices_0" name="hearing[values][appellant_availability_0900_1100][choices][]" value="monday"><div class="monday ir"></div></label></td>
+                                              
+                  <td class="choice-matrix__choice--ban"><label class="checkbox__label" for="hearing_values_appellant_availability_0900_1100_choices_1"><input type="radio" id="hearing_values_appellant_availability_0900_1100_choices_1" name="hearing[values][appellant_availability_0900_1100][choices][]" value="tuesday"><div class="tuesday ir"></div></label></td>
+                                              
+                  <td class="choice-matrix__choice--info"><label class="checkbox__label" for="hearing_values_appellant_availability_0900_1100_choices_2"><input type="radio" id="hearing_values_appellant_availability_0900_1100_choices_2" name="hearing[values][appellant_availability_0900_1100][choices][]" value="wednesday"><div class="wednesday ir"></div></label></td>
+                                              
+                </tr>
+
+                <tr>
+                  <td data-action="check-row"><span>BB12345678</span></td>
+                                               
+                  <td class="choice-matrix__choice"><label class="checkbox__label" for="hearing_values_appellant_availability_1100_1300_choices_0"><input type="radio" id="hearing_values_appellant_availability_1100_1300_choices_0" name="hearing[values][appellant_availability_1100_1300][choices][]" value="monday"><div class="monday ir"></div></label></td>
+                                              
+                  <td class="choice-matrix__choice--ban"><label class="checkbox__label" for="hearing_values_appellant_availability_1100_1300_choices_1"><input type="radio" id="hearing_values_appellant_availability_1100_1300_choices_1" name="hearing[values][appellant_availability_1100_1300][choices][]" value="tuesday"><div class="tuesday ir"></div></label></td>
+                                              
+                  <td class="choice-matrix__choice--info"><label class="checkbox__label" for="hearing_values_appellant_availability_1100_1300_choices_2"><input type="radio" id="hearing_values_appellant_availability_1100_1300_choices_2" name="hearing[values][appellant_availability_1100_1300][choices][]" value="wednesday"><div class="wednesday ir"></div></label></td>
+                                              
+                  
+                </tr>
+
+                <tr>
+                  <td data-action="check-row"><span>CC12345678</span></td>
+                                               
+                  <td class="choice-matrix__choice"><label class="checkbox__label" for="hearing_values_appellant_availability_1300_1500_choices_0"><input type="radio" id="hearing_values_appellant_availability_1300_1500_choices_0" name="hearing[values][appellant_availability_1300_1500][choices][]" value="monday"><div class="monday ir"></div></label></td>
+                                              
+                  <td class="choice-matrix__choice--ban"><label class="checkbox__label" for="hearing_values_appellant_availability_1300_1500_choices_1"><input type="radio" id="hearing_values_appellant_availability_1300_1500_choices_1" name="hearing[values][appellant_availability_1300_1500][choices][]" value="tuesday"><div class="tuesday ir"></div></label></td>
+                                              
+                  <td class="choice-matrix__choice--info"><label class="checkbox__label" for="hearing_values_appellant_availability_1300_1500_choices_2"><input type="radio" id="hearing_values_appellant_availability_1300_1500_choices_2" name="hearing[values][appellant_availability_1300_1500][choices][]" value="wednesday"><div class="wednesday ir"></div></label></td>
+                                              
+                </tr>
+              </tbody>
+              <tfoot>
+                  <tr>
+                      <td>
+                          <a href="#" data-action="allow-all" data-text-all="Allow all" data-text-none="Reset">
+                              allow all
+                          </a>
+                      </td>
+                      <td colspan="5"></td>
+                  </tr>
+              </tfoot>
+          </table>
+      </div>
+    </div>
+  </div>
+
+  {{ form.fieldset_end() }}
+  
+  {{ 
+    form.form_end([
+      form.submit(label = 'Save and Continue', class = 'btn--primary')
+    ]) 
+  }}
+</div>

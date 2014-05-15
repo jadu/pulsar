@@ -86,3 +86,21 @@
   color: $gray-light;
   margin-left: $gutter-width;
 }
+
+.column--55 {
+  float: left;
+  width: 55%;
+
+  .controls {
+    width: 60%;
+  }
+}
+
+.column--45 {
+  float: left;
+  width: 45%;
+
+  .form__group:hover {
+    box-shadow: none;
+  }
+}

@@ -23,8 +23,8 @@
     {% include 'quantum/portal/case/tabs/hearing.html.twig' %}
 {% endset %}
 
-{% set tab_decision %}
-    {% include 'quantum/portal/case/tabs/decision.html.twig' %}
+{% set tab_decision_details %}
+    {% include 'quantum/portal/case/tabs/decision-details.html.twig' %}
 {% endset %}
 
 {% 
@@ -58,7 +58,18 @@
     {
       "id"        : "decision",
       "label"     : "Decision",
-      "src"       : tab_decision
+      "sub_tabs"  : [
+        {
+          "id"    : "decision-details",
+          "label" : "Details",
+          "src"   : tab_decision_details
+        },
+        {
+          "id"    : "decision-record",
+          "label" : "Record decision",
+          "src"   : tab_decision_record
+        }
+      ]
     }
   ]
 %}
