@@ -52,7 +52,12 @@
   > .btn__group {
     + .btn,
     + .btn__group {
-      margin-left: 5px;
+      margin-left: 4px; // match the default display: inline-block; spacing for consistency
+    }
+    + .btn {
+      + .btn {
+        margin-left: 0; // for fixing the white-space between rows of display: inline-block; buttons
+      }
     }
   }
 }
