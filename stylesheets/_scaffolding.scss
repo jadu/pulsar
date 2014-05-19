@@ -24,9 +24,14 @@ body {
 
 .container {
   clear: both;
-  margin: 0 $gutter-width;
+  margin: 0;
   height: 100%;
-  position: relative; // required for decks
+  @include respond-min($screen-phone) {
+    margin: 0 $gutter-width;
+  }
+  @include respond-min($screen-tablet) {
+    position: relative; // required for decks
+  }
 }
 
 footer {

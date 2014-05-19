@@ -1,6 +1,9 @@
 {% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
 <div class="toolbar">
     <h1 class="branding" id="tour-home">{{ html.link('Jadu', '/search') }}</h1>
+    <a href="#" class="mobile-menu-toggle">
+      <i class="icon-reorder"></i>
+    </a>
     {{ 
       html.button_dropdown(
         label = 'Your Name',

@@ -163,3 +163,28 @@ $brand-height: 24px;
   }
 
 }
+
+.mobile-menu-toggle {
+  color: $white;
+  float: right;
+  font-size: $font-size-large;
+  height: $font-size-large;
+  line-height: $font-size-large;
+  margin: (-$font-size-large / 2) $gutter-width 0;
+  position: relative;
+  text-decoration: none;
+  top: 50%;
+  vertical-align: top;
+
+  i {
+    vertical-align: top;
+  }
+
+  &:hover {
+    color: $gray-lighter;
+  }
+
+  @include respond-min($screen-tablet) {
+    display: none;
+  }
+}

@@ -11,10 +11,15 @@
 }
 
 .actionsbar--left {
-  float: left;
-  margin-right: 0;
-  margin-bottom: 6px;
-  width: $tab-column-width;
+  position: absolute;
+  top: 0;
+  @include respond-min($screen-tablet) {
+    float: left;
+    margin-right: 0;
+    margin-bottom: 6px;
+    position: static;
+    width: $tab-column-width;
+  }
 }
 
 .actionsbar--right {

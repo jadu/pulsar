@@ -1,10 +1,15 @@
 .tabs__list {
   clear: left;
   float: left;
+  display: none;
   list-style: none;
   margin: 0;
   padding: 0;
   width: $tab-column-width;
+
+  @include respond-min($screen-tablet) {
+    display: inline;
+  }
 
   > li {
     margin-bottom: -1px;
@@ -143,16 +148,25 @@
 
 .tab__inner {
   background-color: $white;
-  border: 1px solid $gray;
+  border-top: 1px solid $gray;
+  border-bottom: 1px solid $gray;
   box-shadow: -3px 1px 3px rgba(0, 0, 0, 0.05);
   float: left;
   width: 100%;
+
+  @include respond-min($screen-phone) {
+    border: 1px solid $gray;
+  }
 }
 
 .tab__main {
   border-right: 1px solid $gray;
   overflow: hidden;
-  padding-right: $gutter-width;
+  padding-right: $gutter-width / 2;
+
+  @include respond-min($screen-phone) {
+    padding-right: $gutter-width;
+  }
 }
 
 .tab__sidebar {
