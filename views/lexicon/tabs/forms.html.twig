@@ -38,14 +38,50 @@
         {{ form.radio(label = 'Radio with left label', id = 'inputRadioLeft', name = 'inputRadioLeft', checked = true) }}
         {{ form.checkbox_right(label = 'Checkbox with right label', id = 'inputCheckboxRight', name = 'inputCheckboxInline', checked = true) }}
         {{ form.radio_right(label = 'Radio with right label', id = 'inputRadioRight', name = 'inputRadioInline', checked = true) }}
-        {{ form.checkbox_group([
-                form.checkbox_inline(label = 'Inline', id = 'inputCheckboxInline1', name = 'inputCheckboxInline', checked = true),
-                form.checkbox_inline(label = 'Check', id = 'inputCheckboxInline2', name = 'inputCheckboxInline', checked = true),
-                form.checkbox_inline(label = 'Boxes', id = 'inputCheckboxInline3', name = 'inputCheckboxInline', checked = true)]) }}
-        {{ form.radio_group([
-                form.radio_inline(label = 'Inline', id = 'inputRadioInline1', name = 'inputRadioInline', checked = true),
-                form.radio_inline(label = 'Radio', id = 'inputRadioInline2', name = 'inputRadioInline', checked = true),
-                form.radio_inline(label = 'Buttons', id = 'inputRadioInline3', name = 'inputRadioInline', checked = true)]) }}
+
+        {{ 
+            form.checkbox_group(
+                label = 'Checkbox group',
+                checkboxes = [
+                    form.checkbox_right(label = 'Grouped checkbox 1', id = 'inputCheckboxInline1', name = 'inputCheckboxInline', checked = true),
+                    form.checkbox_right(label = 'Grouped checkbox 2', id = 'inputCheckboxInline2', name = 'inputCheckboxInline', checked = true),
+                    form.checkbox_right(label = 'Grouped checkbox 3', id = 'inputCheckboxInline3', name = 'inputCheckboxInline', checked = true)
+                ]
+            ) 
+        }}
+
+        {{ 
+            form.checkbox_group(
+                label = 'Grouped and inline',
+                checkboxes = [
+                    form.checkbox_inline(label = 'Inline', id = 'inputCheckboxInline1', name = 'inputCheckboxInline', checked = true),
+                    form.checkbox_inline(label = 'Check', id = 'inputCheckboxInline2', name = 'inputCheckboxInline', checked = true),
+                    form.checkbox_inline(label = 'Boxes', id = 'inputCheckboxInline3', name = 'inputCheckboxInline', checked = true)
+                ]
+            ) 
+        }}
+
+        {{ 
+            form.radio_group(
+                label = 'Radio group',
+                radios = [
+                    form.radio_right(label = 'Grouped radio 1', id = 'inputGroupedRadioInline1', name = 'inputGroupedRadioInline', checked = true),
+                    form.radio_right(label = 'Grouped radio 2', id = 'inputGroupedRadioInline2', name = 'inputGroupedRadioInline', checked = true),
+                    form.radio_right(label = 'Grouped radio 3', id = 'inputGroupedRadioInline3', name = 'inputGroupedRadioInline', checked = true)
+                ]
+            ) 
+        }}
+
+        {{ 
+            form.radio_group(
+                label = 'Grouped and inline',
+                radios = [
+                    form.radio_inline(label = 'Inline', id = 'inputRadioInline1', name = 'inputRadioInline', checked = true),
+                    form.radio_inline(label = 'Radio', id = 'inputRadioInline2', name = 'inputRadioInline', checked = true),
+                    form.radio_inline(label = 'Buttons', id = 'inputRadioInline3', name = 'inputRadioInline', checked = true)
+                ]
+            )
+        }}
 
     {{ form.fieldset_end() }}
     {{ form.fieldset_start(legend = 'States') }}

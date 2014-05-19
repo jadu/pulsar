@@ -29,6 +29,7 @@
     @include transform(translate(0, -25%));
   }
   &.in .modal__dialog { @include transform(translate(0, 0))}
+
 }
 
 // Shell div to position the modal with bottom padding
@@ -51,6 +52,11 @@
   background-clip: padding-box;
   // Remove focus outline from opened modal
   outline: none;
+
+  // prevent forms within modal from breaking the layout
+  > .form--horizontal {
+    padding-top: 0;
+  }
 }
 
 // Modal background

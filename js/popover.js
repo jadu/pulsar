@@ -27,9 +27,9 @@ define(['jquery', 'tooltip'], function($) { "use strict";
     this.init('popover', element, options)
   }
 
-  if (!$.fn.tooltips) throw new Error('Popover requires tooltip.js')
+  if (!$.fn.tooltip) throw new Error('Popover requires tooltip.js')
 
-  Popover.DEFAULTS = $.extend({} , $.fn.tooltips.Constructor.DEFAULTS, {
+  Popover.DEFAULTS = $.extend({} , $.fn.tooltip.Constructor.DEFAULTS, {
     placement: 'right'
   , trigger: 'click'
   , content: ''
@@ -40,7 +40,7 @@ define(['jquery', 'tooltip'], function($) { "use strict";
   // NOTE: POPOVER EXTENDS tooltip.js
   // ================================
 
-  Popover.prototype = $.extend({}, $.fn.tooltips.Constructor.prototype)
+  Popover.prototype = $.extend({}, $.fn.tooltip.Constructor.prototype)
 
   Popover.prototype.constructor = Popover
 

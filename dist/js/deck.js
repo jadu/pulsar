@@ -62,12 +62,14 @@ require(['jquery', 'jquery-mousewheel', 'vague'], function ($) {
 
                 // If no specific deck is provided, hide 'em all.
                 $($.fn.deck.defaults.deckClass).removeClass($.fn.deck.defaults.activeClassName)
+                    .removeAttr('style')
                     .children()
                     .hide();
             } else {
 
                 // Remove active class, reset the deck's position and hide all slides.
                 deck.removeClass($.fn.deck.defaults.activeClassName)
+                    .removeAttr('style')
                     .children()
                     .hide();
             }
@@ -190,7 +192,7 @@ require(['jquery', 'jquery-mousewheel', 'vague'], function ($) {
         slideClass : '.slide',
         activeClassName : 'active',
         backgroundClassName : 'deck-background',
-        backgroundElements : '.breadcrumb, .actionsbar, .heading, .tabs__list, .summary',
+        backgroundElements : '.breadcrumb, .actionsbar, .heading, .actionsbar + .tabs__list, .summary',
         viewportOffsetElement : '.toolbar'
     };
 

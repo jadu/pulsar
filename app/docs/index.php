@@ -3,8 +3,8 @@
 $baseDir = '../../';
 $templateDir = $baseDir . 'views';
 
-require_once __DIR__ . '/../../vendor/autoload.php';
-require_once __DIR__ . '/../docs/functions.php';
+require_once __DIR__ . '/' . $baseDir . 'vendor/autoload.php';
+require_once __DIR__ . '/functions.php';
 
 use dflydev\markdown\MarkdownExtraParser;
 use Jadu\Pulsar\Twig\Extension\ConfigExtension;

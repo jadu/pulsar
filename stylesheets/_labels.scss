@@ -10,6 +10,7 @@
   vertical-align: baseline;
   background-color: $label-bg;
   border-radius: $border-radius;
+  text-transform: lowercase;
 
   // Add hover effects, but only for links
   &[href] {
@@ -22,9 +23,11 @@
     }
   }
 
-  // Removable labels
+  // Addable/Removable labels
+  [data-filter-action="add"],
   [data-filter-action="remove"] {
-    border-left: 1px dotted #ccc;
+    border-left: 1px dotted;
+    border-color: white;
     color: inherit;
     margin-left: 5px;
     text-decoration: none;
@@ -66,7 +69,7 @@
   @include label-variant($label-inverse-bg);
   
   i {
-    color: $label-color;
+    color: $white;
   }  
 }
 

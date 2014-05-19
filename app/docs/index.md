@@ -1,1 +1,1 @@
-Pulsar is a robust user-interface framework with a collection of patterns, helpers and a user-focused design process with documented best practices that will help you to make beautiful user interfaces and amazing user experiences.
+Pulsar is a robust user-interface framework with a collection of patterns, helpers and a user-focused design process with documented best practices that will help you to make beautiful user interfaces and beautiful user experiences.

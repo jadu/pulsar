@@ -1,0 +1,8 @@
+.dashboard {
+  margin: 0 $gutter-width;
+}
+
+.dashboard > table {
+  border-top: 1px solid $table-border-color;
+  border-bottom: 3px double $table-border-color;
+}

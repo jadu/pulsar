@@ -79,6 +79,15 @@ code, pre, kbd {
     font-size: $font-size-medium;
 }
 
+.monospace {
+  font-family: $font-family-monospace;
+
+  em {
+    font-style: normal;
+    margin-right: 3px;
+  }
+}
+
 // Horizontal layout (like forms)
 .dl-horizontal {
   dt {

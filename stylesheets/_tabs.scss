@@ -24,6 +24,12 @@
     overflow: hidden;
     text-overflow: ellipsis;
 
+    > .label {
+      margin-left: .5em;
+      position: relative;
+      top: -1px;
+    }
+
     > i {
       font-size: 14px;
       opacity: .6;
@@ -59,7 +65,41 @@
   } 
 }
 
-// Nested navigation
+// horizontal navigation
+.tabs__list.tabs--horizontal {
+  margin: 0 $gutter-width;
+  position: relative;
+  width: auto;
+  z-index: $zindex-dropdown;
+
+  > li {
+    float: left;
+  }
+
+  > li > a:hover {
+    z-index: -1;
+  }
+
+  > li.is-active > a {
+    border: 1px solid $gray;
+    border-bottom: none;
+    box-shadow: inset 0 2px 0 $gray;
+  }
+
+  + .tabs__content {
+    border: 1px solid $gray;
+    clear: left;
+    margin: -2px $gutter-width 1em $gutter-width;
+    position: relative;
+    top: -1px;
+
+    > .tab__pane {
+      padding: $line-height-base 0;
+    }
+  }
+}
+
+// nested navigation
 .tabs__list > li > .tabs__list {
   background-color: $white;
   border-left: 1px solid $gray;
@@ -85,7 +125,6 @@
 .tabs__content {
   display: block;
   overflow: auto;
-  // padding: $baseLineHeight $gutterWidth;
 
   // show/hide tab panes
   > .tab__pane {
@@ -98,7 +137,7 @@
 }
 
 .tab__pane form {
-  // Make sure forms in tabs don't add extra spacing after the form actions
+  // make sure forms in tabs don't add extra spacing after the form actions
   margin-bottom: 0;
 }
 
@@ -126,12 +165,46 @@
   width: 25%;
 }
 
+.tab--unpadded p {
+  clear: both;
+  margin-left: $gutter-width;
+}
+
 .tab--padded {
   padding: $line-height-base $gutter-width;
 }
 
 .tabs {
   display: inline-block;
-  margin-bottom: 3.2em;
+  padding-bottom: 3.2em;
   width: 100%;
+}
+
+.tabs__list > li > a[data-show="#new-tab"] {
+  @extend .muted;
+  text-align: center;
+
+  &:hover {
+    color: $gray-dark;
+  }
+}
+
+.tabs__list .new {
+  background-color: $primary-color;
+  border-bottom: none;
+  height: $line-height-base * 1.75;
+
+  input {
+    background-color: $primary-color;
+    border: 0;
+    outline: none;
+    color: $white;
+    line-height: 1.75em;
+    margin: 4px 0 0 5%;
+    width: 90%;
+
+    &::selection {
+      background: white;
+    }
+  }
 }

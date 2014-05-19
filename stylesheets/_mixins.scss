@@ -29,6 +29,7 @@
 
 @mixin label-variant($color) {
   background-color: $color;
+  color: $label-color-alt;
   &[href] {
     &:hover,
     &:focus {
@@ -161,4 +162,11 @@
 
 @mixin ghostbuster {
   cursor: not-allowed;
+}
+
+@mixin nowrap() {
+  white-space: nowrap; /* css-3 */
+  white-space: -moz-nowrap; /* Mozilla, since 1999 */
+  white-space: -nowrap; /* Opera 4-6 */
+  white-space: -o-nowrap; /* Opera 7 */
 }

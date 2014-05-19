@@ -3,6 +3,7 @@ $fonts-path: '../fonts/';
 $font-family-light: "proxima_novalight", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 $font-family-regular: "proxima_nova_regular", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 $font-family-semibold: "proxima_nova_semibold", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+$font-family-monospace: "courier new", monospace;
 
 @include ie-lte(7) {
     $font-family-light: "Arial", sans-serif;
@@ -98,10 +99,11 @@ $popover-arrow-outer-fallback-color:  #999;
 $zindex-tour:                   1000;
 $zindex-dropdown:               1010;
 $zindex-footer:                 1020;
-$zindex-popover:                1030;
-$zindex-tooltip:                1040;
-$zindex-sticky:                 1050;
-$zindex-modal:                  1060;
+$zindex-tooltip:                1030;
+$zindex-sticky:                 1040;
+$zindex-nav:                    1050;
+$zindex-popover:                1060;
+$zindex-modal:                  1070;
 
 // Extra small screen / phone
 $screen-xsmall:                 480px;

@@ -31,7 +31,7 @@ $inverse-link-color:            $white;
 $inverse-link-hover-color:      darken($white, 10%);
 
 // State colours
-$primary-color:                 lighten(#357ebd, 10%);
+$primary-color:                 #73b8b4;
 $success-color:                 lighten(#5cb85c, 10%);
 $warning-color:                 lighten(#eea236, 10%);
 $danger-color:                  lighten(#d43f3a, 10%);
@@ -54,7 +54,8 @@ $label-info-bg:                 $info-color;
 $label-warning-bg:              $warning-color;
 $label-danger-bg:               $danger-color;
 $label-inverse-bg:              $inverse-color;
-$label-color:                   #fff;
+$label-color:               		$black;
+$label-color-alt:               #fff;
 $label-link-hover-color:        #fff;
 
 // Progress bars
@@ -104,7 +105,7 @@ $table-bg:                       transparent;
 $table-bg-accent:                #f9f9f9;
 $table-bg-hover:                 #f5f5f5;
 $table-bg-active:                $table-bg-hover;
-$table-border-color:             #ddd;
+$table-border-color:             #ccc;
 
 // Forms
 $state-warning-text:             #c09853;

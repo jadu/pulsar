@@ -1,4 +1,4 @@
-    /**
+/**
  * Set up Pulsar's UI environment
  */
 
@@ -7,16 +7,32 @@ define(['jquery'], function() {
     $(document).ready(function() {
 
         // Set up Pulsar's UI environment
-        require(['tooltip', 'sticky', 'zeroclipboard', 'datagrid', 'highlightjs'], function() {
+        require([
+            'actions-menu',
+            'tooltip',
+            'sticky',
+            'datagrid',
+            'tooltip',
+            'highlightjs'
+            ], function() {
+
+            // tooltips (js/tooltip.js)
+            //$('[data-toggle="tooltips"]').tooltip();
+
+            // actions menu
+            $('.actions-menu').actionsMenu();
 
             // sticky toolbar
             $('.toolbar').sticky({topSpacing: 0});
 
-            // tooltips (js/tooltip.js)
-            $('[data-toggle="tooltips"]').tooltips();
 
             // datagrid
-            $('.table--datagrid').datagrid();
+            $('.table--datagrid').each(function() {
+                $(this).datagrid();
+            });
+
+            // sticky toolbar
+            $('.toolbar').sticky({topSpacing: 0});
 
             // syntax highlighting
             if (!$('html.ie7').size()) { // IE8 and up only
@@ -25,22 +41,6 @@ define(['jquery'], function() {
                     hljs.highlightBlock(aCodes[i]);
                 }
             };
-
-            // copy to clipboard
-            $('[data-action=clipboard]').on('click', function(e) {
-                console.log($(this));
-                e.preventDefault();
-                var clip = new ZeroClipboard($(this), {
-                    moviePath: 'libs/zeroclipboard/ZeroClipboard.swf'
-                });
-                console.log('clip');
-                clip.on('load', function(client) {
-                    console.log('loaded');
-                    client.on('complete', function(client, args) {
-                        console.log('copied');
-                    });
-                });
-            });
 
             // Don't allow disabled links to be clicked
             $('a.disabled').on('click', function(e) {
@@ -74,7 +74,7 @@ define(['jquery'], function() {
 
         // Look for any flashes and animate them in when the page loads
         $('.flash.is-sticky').delay('1000').slideDown('100', function() {
-            $(this).sticky({topSpacing: 44}).sticky('update');
+            $(this).sticky({topSpacing: 64}).sticky('update');
         });
 
         // Show summary panels based on their data-tab value
@@ -104,7 +104,6 @@ define(['jquery'], function() {
             });
         });
 
-
         if ($('[data-summary]').hasClass('is-active')) {
             $('[data-tab="' + $('[data-summary]').attr('href') + '"]').show();
         }
@@ -124,7 +123,16 @@ define(['jquery'], function() {
                   endDate: moment()
                 },
                 function(start, end) {
-                    $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+                    var label,
+                        startLabel = start.format('MMMM D, YYYY'),
+                        endLabel = end.format('MMMM D, YYYY');
+                    
+                    if (startLabel === endLabel) {
+                        label = startLabel;
+                    } else {
+                        label = startLabel + ' - ' + endLabel;
+                    }
+                    $('[data-daterange]').html('<strong>Created:</strong> ' + label);
                 }
             );
         });
@@ -153,6 +161,101 @@ define(['jquery'], function() {
         });
 
     });
+
+    // Quantum Control Centre Protoype UI
+
+    require(['popover', 'vague'], function() {
+
+        var filterTour = $('.table--datagrid .filters > th small');
+
+        // show filter bar, show popover introducing the feature
+        $('[data-show=#new-tab]').on('click', function() {
+
+            $('.table--datagrid .filters.is-collapsed th')
+                .css({
+                    'border-bottom': '1px solid #ccc'
+                })
+                .animate({
+                    paddingTop: '7px'
+                }, 250, function () {
+                    $('.table--datagrid .filters').removeClass('is-collapsed');
+                    $('[data-show=#new-tab]').fadeOut();
+                    $('.table--datagrid .filters > th small').popover('show');
+                });
+
+            $('.table--datagrid .filters.is-collapsed div')
+                .animate({
+                    height: '31px'
+                }, 250);
+
+        });
+
+        function hideFilters () {
+            $('.table--datagrid .filters:not(.is-collapsed) th')
+                .css({
+                    'border-bottom': 'none'
+                })
+                .animate({
+                    paddingTop: '0'
+                }, 250, function () {
+                    $('.table--datagrid .filters').addClass('is-collapsed');
+                    $('[data-show=#new-tab]').fadeIn();
+                });
+
+            $('.table--datagrid .filters:not(.is-collapsed) div')
+                .animate({
+                    height: '0'
+                }, 250);
+        }
+
+        $('[data-filter-action=done]').on('click', function() {
+            filterTour.popover('hide');
+            hideFilters();
+        });
+
+        // close filter intro when a filter or an action is clicked
+        $('.table--datagrid .filters .label').on('click', function () {
+            filterTour.popover('hide');
+        });
+
+
+        $('[data-popover-content-source]').on('click', function() {
+            $(this).popover({ 
+                content: $('[data-popover-content=' + $(this).data('popover-content-source') + ']').html() ,
+                html: true,
+                placement: 'bottom'
+            }).show();
+        });
+
+        $('[data-filter-action=save-as]').on('click', function() {
+            var input = $('[data-filter-action=save]'),
+                oldVal = input.val();
+
+            filterTour.popover('hide');
+
+            var vague = $('.tabs__content').Vague({
+                intensity: 2
+            });
+            vague.blur();
+
+            input.parent().slideDown(250);
+            input.popover('show').val(oldVal).select();
+
+        });
+
+        $('.tabs__list').on('click', '[data-filter-action=dismiss-save-as]', function() {
+            $('[data-filter-action=save]').popover('hide').parent().slideUp(250);
+            filterTour.popover('hide');
+            hideFilters();
+            $('[data-show=#new-tab]').fadeIn();
+
+            var vague = $('.tabs__content').Vague({
+                intensity: 2
+            });
+            vague.destroy();
+        });
+    });
+
 });
 
 

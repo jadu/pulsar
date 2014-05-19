@@ -1,6 +1,6 @@
 {
     "name": "jadu/pulsar",
-    "version": "1.0.16",
+    "version": "1.0.13",
     "autoload": {
         "psr-0": {
             "Jadu\\Pulsar": "src"
@@ -13,13 +13,15 @@
         }
     ],
     "require": {
-        "twig/twig": "@dev",
-        "phpunit/phpunit": "@dev",
-        "dflydev/markdown": "@dev", 
-        "behat/behat": "2.*",
-        "behat/mink": "1.4.*@stable",
+        "twig/twig": "@dev"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*",
+        "dflydev/markdown": "*",
+        "behat/behat": "~2.5",
+        "behat/mink": "*",
         "behat/mink-extension": "*",
         "behat/mink-goutte-driver": "*",
-        "behat/mink-selenium2-driver": "*"
+        "behat/mink-selenium2-driver": "*" 
     }
 }

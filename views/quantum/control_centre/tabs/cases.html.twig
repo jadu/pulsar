@@ -1,0 +1,80 @@
+{% import 'pulsar/helpers/html.html.twig' as html %}
+{% import 'pulsar/helpers/form.html.twig' as form %}
+{% import 'pulsar/helpers/flash.html.twig' as flash %}
+{% import 'pulsar/helpers/datagrid.html.twig' as datagrid %}
+
+<h2 class="heading">{{ heading|raw }}</h2>
+
+<div class="tab__inner tab--unpadded">
+    <table class="table--datagrid" id="lexicon_analytics">
+        <thead>
+            <tr class="filters edit is-collapsed">
+                <th class="centered">
+                    <div>
+                        <small data-toggle="popover" data-content="Choose a filter to start refining your results<br /><small class=muted><label><input type=checkbox /> Don’t show me this again</label></small>" data-html="true" data-placement="top">Filters:</small>
+                    </div>
+                </th>
+                <th colspan="99">
+                    <div>
+                    <span class="label" data-popover-content-source="test">
+                        case ref <a href="#" data-filter-action="add"><i class="icon-plus"></i></a></span>
+                    <span class="label" data-popover-content-source="test">
+                        submitted<a href="#" data-filter-action="add"><i class="icon-plus"></i></a></span>
+                    <span class="label" data-popover-content-source="test">
+                        appellant<a href="#" data-filter-action="add"><i class="icon-plus"></i></a></span>
+                    <span class="label" data-popover-content-source="test">
+                        adjudicator<a href="#" data-filter-action="add"><i class="icon-plus"></i></a></span>
+                    <span class="label" data-popover-content-source="test">
+                        status<a href="#" data-filter-action="add"><i class="icon-plus"></i></a></span>
+
+                    <span class="actions">
+                        {{ 
+                            html.button_group([
+                                html.button(
+                                    label = 'Save as Tab',
+                                    class = 'btn--small',
+                                    attributes = 'data-filter-action="save-as" data-toggle="tooltips" data-placement="bottom" title="Save this filter as a new tab on the left-hand side"'
+                                ),
+                                html.button(
+                                    label = 'Done',
+                                    class = 'btn--primary btn--small',
+                                    attributes = 'data-filter-action="done" data-toggle="tooltips" data-placement="bottom" title="Apply these filters to the current tab"'  
+                                )
+                            ])
+                        }}
+                    </span>
+                    <!-- {{
+                        html.link(
+                            attributes = 'data-filter-action="clear-all" data-toggle="tooltips" data-placement="left"',
+                            title = 'Clear all filters',
+                            label = html.icon(
+                                icon_name = 'remove-sign'
+                            )
+                        )
+                    }} -->
+                </th>
+                </div>
+            </tr>
+            <tr>
+                {{ datagrid.select_all() }}
+                <th><a href="#">Case Ref</a></th>
+                <th><a href="#">Submitted</a></th>
+                <th><a href="#">Appellant</a></th>
+                <th><a href="#">Adjudicator</a></th>
+                <th><a href="#">Status</a></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for i in 1..10 %}
+            <tr>
+                {{ datagrid.select_item(i) }}
+                <td>AA100001</td>
+                <td>01/05/2014</td>
+                <td>Matt Culpin</td>
+                <td>Caroline Sheppard</td>
+                <td></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>

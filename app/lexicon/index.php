@@ -1,9 +1,9 @@
 <?php
 
 $baseDir = '../../';
-$templateDir = '../../views';
+$templateDir = $baseDir . 'views';
 
-require_once __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__ . '/' . $baseDir . 'vendor/autoload.php';
 
 use Jadu\Pulsar\Twig\Extension\ConfigExtension;
 use Jadu\Pulsar\Twig\Extension\RelativeTimeExtension;

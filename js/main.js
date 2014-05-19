@@ -8,6 +8,7 @@ if (window.jadu.requireJsPath) {
 
 requirejs.config({
     paths: {
+        'actions-menu'      : path + '/js/actions-menu',
         'console-js'        : path + '/libs/console-js/console',
         'datagrid'          : path + '/js/datagrid',
         'daterange'         : path + '/libs/bootstrap-daterangepicker/daterangepicker',
@@ -21,7 +22,7 @@ requirejs.config({
         'highcharts-theme'  : path + '/js/highcharts-theme',
         'highlightjs'       : path + '/libs/highlightjs/highlight.pack',
         'homepages'         : path + '/js/homepages',
-        'jquery'            : path + '/libs/jquery/jquery',
+        'jquery'            : path + '/libs/jquery/dist/jquery.min',
         'jquery-ui'         : path + '/libs/jqueryui/ui/minified/jquery-ui.min',
         'jquery-ui-touch'   : path + '/libs/jqueryui-touch-punch/jquery.ui.touch-punch.min',
         'jquery-mousewheel' : path + '/libs/jquery-mousewheel/jquery.mousewheel',
@@ -37,8 +38,7 @@ requirejs.config({
         'tab'               : path + '/js/tab',
         'tooltip'           : path + '/js/tooltip',
         'tray'              : path + '/js/tray',
-        'vague'             : path + '/libs/Vague.js/Vague',
-        'zeroclipboard'     : path + '/libs/zeroclipboard/ZeroClipboard'
+        'vague'             : path + '/libs/Vague.js/Vague'
     },
     shim: {
         'daterange': {
@@ -67,8 +67,8 @@ require([
     'homepages',
     'modal',
     'navigation',
-    'popover',
     'tab',
+    'popover',
     'tooltip',
     'pulsar'
 ], function($) {
