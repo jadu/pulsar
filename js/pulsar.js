@@ -22,9 +22,6 @@ define(['jquery'], function() {
             // actions menu
             $('.actions-menu').actionsMenu();
 
-            // sticky toolbar
-            $('.toolbar').sticky({topSpacing: 0});
-
 
             // datagrid
             $('.table--datagrid').each(function() {
