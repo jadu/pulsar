@@ -603,8 +603,63 @@ textarea {
 //   }
 // }
 
-.form__group--mini .controls    { width: 5%; }
-.form__group--small  .controls  { width: 10%; }
-.form__group--medium .controls  { width: 20%; }
-.form__group--large  .controls  { width: 40%; }
-.form__group--full   .controls  { width: 50%; }
+.form__group--mini .controls {
+  min-width: 55px; // prevents getting _too_ small on mobile portrait screen widths
+  max-width: $controls-max-width * .25;
+  width: $controls-width * 1.875;
+
+  @include respond-min($screen-phone) {
+    width: $controls-width * .5;
+  }
+  @include respond-min($screen-desktop) {
+    width: $controls-width * .25;
+  }
+}
+
+.form__group--small .controls {
+  max-width: $controls-max-width * .5;
+  width: $controls-width * 2.05;
+
+  @include respond-min($screen-phone) {
+    width: $controls-width;
+  }
+  @include respond-min($screen-desktop) {
+    width: $controls-width * .5;
+  }
+}
+
+.form__group--medium .controls {
+  max-width: $controls-max-width * .75;
+  width: $controls-width * 2.275;
+
+  @include respond-min($screen-phone) {
+    width: $controls-width * 1.5;
+  }
+  @include respond-min($screen-desktop) {
+    width: $controls-width * .75;
+  }
+}
+
+.form__group--large .controls {
+  max-width: $controls-max-width * 1.25;
+  width: $controls-width * 2.725;
+
+  @include respond-min($screen-phone) {
+    width: $controls-width * 2.5;
+  }
+  @include respond-min($screen-desktop) {
+    width: $controls-width * 1.25;
+  }
+}
+
+.form__group--full .controls {
+  max-width: $controls-max-width * 1.5;
+  width: $controls-width * 2.95;
+
+  @include respond-min($screen-phone) {
+    width: $controls-width * 3;
+  }
+  @include respond-min($screen-desktop) {
+    width: $controls-width * 1.5;
+  }
+}
