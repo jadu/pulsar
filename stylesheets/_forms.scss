@@ -501,14 +501,36 @@ textarea {
         text-align: left;
         width: 95%;
 
+        &:after {
+          content: '';
+          display: inline-block;
+        }
+      }
+
+      .controls {
+        box-sizing: content-box; // the one time border-box is more a hindrence than a help..!
+        margin-left: 20%;
+        padding-left: $gutter-width * 2;
+        width: 30%;
+      }
     }
   }
 
   &.form__group--flush {
     .controls {
+      margin-bottom: $padding-large-vertical;
       margin-left: $gutter-width;
+      max-width: $controls-max-width;
       padding-left: 0;
-      width: 30%;
+      width: $controls-width * 2.5;
+
+      @include respond-min($screen-phone) {
+        width: $controls-width * 2;
+      }
+      @include respond-min($screen-desktop) {
+        margin-bottom: 0;
+        width: $controls-width;
+      }
     }
   }
 
