@@ -378,6 +378,11 @@ textarea {
 
 .form--horizontal {
   padding-top: 17px; // baseline alignment
+
+  legend {
+    display: block;
+    width: 100%;
+  }
 }
 
 @include ie-lte(7) {
