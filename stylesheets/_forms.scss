@@ -44,10 +44,14 @@ legend {
 
 label {
   display: inline-block;
+  margin-bottom: $padding-large-vertical;
   margin-left: $gutter-width;
   margin-right: $gutter-width;
-  margin-bottom: 13px;
-  text-align: right;
+
+  @include respond-min($screen-desktop) {
+    margin-bottom: 13px;
+    text-align: right;
+  }
 }
 
 
