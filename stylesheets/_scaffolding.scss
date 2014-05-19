@@ -9,17 +9,27 @@ html, body {
 body {
   background-color: $off-white;
   font-family: $font-family-base;
-  font-size: $font-size-base;
-  line-height: $line-height-base;
+  font-size: $font-size-medium;
+  line-height: $line-height-small;
   margin: 0 0 ($line-height-base * 2) 0;
   padding: 0;
+
+  @include respond-min($screen-phone) {
+    font-size: $font-size-base;
+    line-height: $line-height-base;
+  }
 }
 
 .heading {
   @include inline-block;
   font-family: $font-family-light;
-  line-height: 1em;
-  margin: $line-height-base 0 0 0;
+  line-height: 1.33em;
+  margin: ($line-height-base / $line-height-small) $gutter-width 0;
+
+  @include respond-min($screen-phone) {
+    line-height: 1em;
+    margin: $line-height-base 0 0;
+  }
 }
 
 .container {
