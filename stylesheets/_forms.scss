@@ -35,6 +35,7 @@ label {
   text-align: right;
 }
 
+
 // Normalize form controls
 
 // Override content-box in Normalize (* isn't specific enough)
@@ -157,12 +158,11 @@ input[type="number"] {
 .form__actions {
   background-color: $gray-lighter;
   box-shadow: inset 0 -4px 0 $gray;
-  clear: both;
-  padding: $line-height-base $gutter-width $line-height-base 24%;
+  padding: $line-height-base $gutter-width $line-height-base 20%;
 
-  &.form__actions--flush {
-    padding-left: $gutter-width;
-  }  
+  :first-child {
+    margin-left: $gutter-width * 2; // align left edge with controls above
+  }
 }
 
 // Reset height for `textarea`s
@@ -199,7 +199,6 @@ textarea.form__control {
     cursor: pointer;
   }
 }
-
 .radio input[type="radio"],
 .radio--inline input[type="radio"],
 .checkbox input[type="checkbox"],
@@ -295,22 +294,8 @@ textarea {
   display: block; // account for any element using help-block
   margin-top: 5px;
   margin-bottom: -11px; // Pull up the next form__control to maintain baseline
-  margin-left: 14px; // Left-edge should appear inline with input text/placeholders
+  margin-left: 13px; // Left-edge should appear inline with input text/placeholders
   color: lighten($text-color, 25%); // lighten the text some for contrast
-}
-
-&.form__group--flush {
-  
-  label {
-    margin-left: $gutter-width;
-  }
-
-  > .checkbox,
-  > .radio {
-    .help-block {
-      margin-left: 60px;
-    }
-  }
 }
 
 
@@ -350,67 +335,21 @@ textarea {
 
 .form--horizontal .form__group {
   @include clearfix();
-  
-  .checkbox,
-  .radio {
-    min-height: 22px;
+
+  > .checkbox,
+  > .radio {
+    height: 22px;
     margin-top: 0;
     margin-bottom: 0;
     margin-left: 20%;
-
     input {
-      margin-left: ($gutter-width) + 5px;
+      margin-left: ($gutter-width);
       margin-right: $gutter-width / 2;
     }
   }
 
-  &.choice__group {
-
-    .form__group {
-      &:hover {
-        box-shadow: none;
-      }
-    }
-
-    .controls {
-      label,
-      input,
-      .checkbox,
-      .radio {
-        margin-left: 0;
-      }
-
-      label {
-        text-align: left;
-      }
-
-      .form__group {
-        margin-bottom: 6px;
-
-        &:last-of-type {
-          margin-bottom: 0;
-        }
-      }
-    }
-
-    .checkbox--inline,
-    .radio--inline {
-      input {
-        margin-right: 10px;
-      }
-    }
-  }
-
-  &.form__group--flush > .checkbox,
-  &.form__group--flush > .radio {
-    margin-left: 0;
-  }
-
   &.form__group--top {
-  
-    > .control__label,
-    > .checkbox__label,
-    > .radio__label {
+    > .control__label {
       display: block;
       margin-bottom: 1em;
       text-align: left;
@@ -418,7 +357,7 @@ textarea {
     }
 
     .controls {
-      margin-left: $gutter-width * 2 + 5px;
+      margin-left: $gutter-width * 2;
       padding-left: 20%;
       width: 50%;
     }
@@ -452,7 +391,6 @@ textarea {
 .form--horizontal .form__group > .checkbox__label,
 .form--horizontal .form__group > .radio__label {
   width: 20%;
-  vertical-align: top;
 }
 
 .form--horizontal .radio--inline,
@@ -465,6 +403,7 @@ textarea {
 
 .form--horizontal .controls {
   @include inline-block;
+  margin-left: -4px;
   width: 30%;
 }
 
