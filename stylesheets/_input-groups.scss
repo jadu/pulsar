@@ -24,8 +24,12 @@
   }
 
   .form__control {
-    width: 100%;
+    width: 75%;
     margin-bottom: 0;
+
+    @include respond-min($screen-phone) {
+      width: 100%;
+    }
   }
 }
 
