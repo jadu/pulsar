@@ -1,6 +1,6 @@
 // Constructor
 .flash {
-  padding: ($line-height-base / 2) 0;
+  padding: (($line-height-base / $line-height-small) / 2) $gutter-width;
   width: 100%;
   z-index: $zindex-sticky;
 
@@ -10,6 +10,8 @@
 
   i {
     margin: 0 ($gutter-width / 2) 0 $gutter-width;
+  @include respond-min($screen-phone) {
+    padding: ($line-height-base / 2) $gutter-width;
   }
 }
 

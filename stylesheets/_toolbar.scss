@@ -44,7 +44,7 @@ $brand-height: 24px;
 
 .toolbar {
   background-color: $gray-dark;
-  height: $toolbar-height + 20px;
+  height: ($toolbar-height * 0.85) + 20px;
   position: relative;
   width: 100%;
   z-index: $zindex-sticky;
@@ -106,6 +106,10 @@ $brand-height: 24px;
       background: lighten($gray-dark,11);
     }
   }
+
+  @include respond-min($screen-phone) {
+    height: $toolbar-height + 20px;
+  }
 }
 
 .branding {
@@ -113,19 +117,26 @@ $brand-height: 24px;
   
   background-repeat: no-repeat;
   background-image: url('../images/jaduIdent.png');
+  background-size: 100%;
   display: block;
   float: left;
-  height: $brand-height;
+  height: $brand-height * 0.85;
   margin: 0 $gutter-width;
   margin-right: $gutter-width * 2;
   overflow: hidden;
   position: relative;
-  top: (($toolbar-height - $brand-height) / 2) + 10;
-  width: 75px;
+  top: ((($toolbar-height - $brand-height) * 0.85) / 2) + 8;
+  width: 75px * 0.85;
+
+  @include respond-min($screen-phone) {
+    height: $brand-height;
+    top: (($toolbar-height - $brand-height) / 2) + 10;
+    width: 75px;
+  }
 }
 
 .toolbar .btn__group {
-  top: ($toolbar-height - $brand-height) / 2;
+  top: (($toolbar-height - $brand-height) * 0.85) / 2;
 
   .btn {
     background: none;
@@ -142,6 +153,10 @@ $brand-height: 24px;
   &.open .btn {
     background-color: $white;
     color: $black;
+  }
+
+  @include respond-min($screen-phone) {
+    top: ($toolbar-height - $brand-height) / 2;
   }
 }
 
