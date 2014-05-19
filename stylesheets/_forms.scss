@@ -173,10 +173,14 @@ input[type="number"] {
 .form__actions {
   background-color: $gray-lighter;
   box-shadow: inset 0 -4px 0 $gray;
-  padding: $line-height-base $gutter-width $line-height-base 20%;
+  padding: $line-height-base $gutter-width;
 
-  :first-child {
-    margin-left: $gutter-width * 2; // align left edge with controls above
+  @include respond-min($screen-desktop) {
+    padding-left: 20%;
+
+    :first-child {
+      margin-left: $gutter-width * 2; // align left edge with controls above
+    }
   }
 }
 
