@@ -102,16 +102,16 @@
 
 // Footer (for actions)
 .modal__footer {
-  padding: ($modal-inner-padding - 1) $modal-inner-padding $modal-inner-padding;
+  padding: ($modal-inner-padding - 1) $modal-inner-padding ($modal-inner-padding - 5);
   text-align: right; // right align buttons
   border-top: 1px solid $modal-footer-border-color;
   @include clearfix; // clear it in case folks use .pull-* classes on buttons
 
-  // Properly space out buttons
+/*   // Properly space out buttons
   .btn + .btn {
     margin-left: 5px;
     margin-bottom: 0; // account for input[type="submit"] which gets the bottom margin like all other inputs
-  }
+  } */
   // but override that for button groups
   .btn-group .btn + .btn {
     margin-left: -1px;
