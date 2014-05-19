@@ -198,7 +198,11 @@ textarea.form__control {
 
 .form__group {
   clear: both;
-  margin-bottom: $line-height-base;
+  margin-bottom: $line-height-base - $padding-large-vertical; // deduct the margin from .controls on smaller viewports
+
+  @include respond-min($screen-desktop) {
+    margin-bottom: $line-height-base;
+  }
 
   &:hover {
     box-shadow: inset 4px 0 0 $gray;
@@ -505,13 +509,17 @@ textarea {
 
 }
 
-
 .form--horizontal .control__label {
-  display: inline-block;
+  display: block;
   margin-right: $gutter-width;
-  padding-top: 9px;
+  padding-top: 5px;
   vertical-align: top;
-  width: 20%;
+
+  @include respond-min($screen-desktop) {
+    padding-top: 9px;
+    display: inline-block;
+    width: 20%;
+  }
 }
 
 .form--horizontal .checkbox__label,
@@ -540,8 +548,19 @@ textarea {
 
 .form--horizontal .controls {
   @include inline-block;
-  margin-left: -4px;
-  width: 30%;
+  margin-bottom: $padding-large-vertical;
+  margin-left: $gutter-width;
+  max-width: $controls-max-width;
+  width: $controls-width * 2.5;
+
+  @include respond-min($screen-phone) {
+    width: $controls-width * 2;
+  }
+  @include respond-min($screen-desktop) {
+    margin-bottom: 0;
+    margin-left: -4px;
+    width: $controls-width;
+  }
 }
 
 // .form--horizontal {
