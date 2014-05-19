@@ -62,6 +62,8 @@ $input-height-large:             (floor($font-size-large * $line-height-large) +
 $input-height-small:             (floor($font-size-small * $line-height-small) + ($padding-small-vertical * 2) + 2);
 $legend-border-color:            #e5e5e5;
 $input-group-addon-border-color: $input-border;
+$controls-width:                 30%;
+$controls-max-width:             300px;
 
 // Modals
 $modal-inner-padding:           20px;
