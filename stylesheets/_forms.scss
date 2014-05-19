@@ -203,6 +203,13 @@ textarea.form__control {
   &:hover {
     box-shadow: inset 4px 0 0 $gray;
   }
+
+  .form__group {
+    margin-bottom: $padding-small-vertical;
+    &:hover {
+      box-shadow: none;
+    }
+  }
 }
 
 
