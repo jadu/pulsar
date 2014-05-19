@@ -71,7 +71,14 @@ define(['jquery'], function() {
 
         // Look for any flashes and animate them in when the page loads
         $('.flash.is-sticky').delay('1000').slideDown('100', function() {
-            $(this).sticky({topSpacing: 64}).sticky('update');
+            var toolbarHeight = $('.toolbar').outerHeight();
+            $(this).sticky({topSpacing: toolbarHeight}).sticky('update');
+        });
+
+        // Update the sticky wrappers when the window resizes
+        $(window).resize(function() {
+            var toolbarHeight = $('.toolbar').outerHeight();
+            $('.toolbar, .flash.is-sticky').parent().css({'height': toolbarHeight});
         });
 
         // Show summary panels based on their data-tab value
