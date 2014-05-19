@@ -35,7 +35,7 @@
   font-size: $dropdown-font-size;
   min-width: 160px;
   padding: 5px 0;
-  margin: 0; // override default ul
+  margin: -($padding-base-vertical) 0 0; // override default ul
   list-style: none;
   background-color: $dropdown-bg;
   border: 1px solid $dropdown-fallback-border; // IE8 fallback
