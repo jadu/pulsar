@@ -133,11 +133,12 @@
   }
 }
 
-@media screen and (min-width: $screen-tablet) {
+@include respond-min($screen-tablet) {
   .modal__dialog {
     left: 50%;
     right: auto;
-    width: 600px;
+    width: 100%;
+    max-width: 600px;
     padding-top: 100px;
     padding-bottom: 30px;
   }
