@@ -34,13 +34,15 @@ require(['jquery', 'jquery-mousewheel', 'vague'], function ($) {
                     populateDeck(deck, slides);
                 }
 
-                // Unfocus the background
-                $($.fn.deck.defaults.backgroundElements).addClass($.fn.deck.defaults.backgroundClassName);
-                if (!$('html').hasClass('ie7')) {
-                    var vague = $($.fn.deck.defaults.backgroundElements).Vague({
-                        intensity: 2 //blur intensity
-                    });
-                    vague.blur();
+                // Unfocus the background, as long as we're not in 'responsive' mode
+                if ($(window).width() >= $.fn.deck.defaults.blurBreakpoint) {
+                    $($.fn.deck.defaults.backgroundElements).addClass($.fn.deck.defaults.backgroundClassName);
+                    if (!$('html').hasClass('ie7')) {
+                        var vague = $($.fn.deck.defaults.backgroundElements).Vague({
+                            intensity: 2 //blur intensity
+                        });
+                        vague.blur();
+                    }
                 }
 
                 /**
@@ -74,13 +76,15 @@ require(['jquery', 'jquery-mousewheel', 'vague'], function ($) {
                     .hide();
             }
 
-            // Refocus the background UI.
-            $($.fn.deck.defaults.backgroundElements).removeClass($.fn.deck.defaults.backgroundClassName);
-            if (!$('html').hasClass('ie7')) {
-                var vague = $($.fn.deck.defaults.backgroundElements).Vague({
-                    intensity: 2 //blur intensity
-                });
-                vague.destroy();
+            // Refocus the background UI if applicable
+            if ($(window).width() >= $.fn.deck.defaults.blurBreakpoint) {
+                $($.fn.deck.defaults.backgroundElements).removeClass($.fn.deck.defaults.backgroundClassName);
+                if (!$('html').hasClass('ie7')) {
+                    var vague = $($.fn.deck.defaults.backgroundElements).Vague({
+                        intensity: 2 //blur intensity
+                    });
+                    vague.destroy();
+                }
             }
 
             return this;
@@ -188,6 +192,7 @@ require(['jquery', 'jquery-mousewheel', 'vague'], function ($) {
 
     // Default options.
     $.fn.deck.defaults = {
+        blurBreakpoint : 768,
         deckClass : '.deck',
         slideClass : '.slide',
         activeClassName : 'active',

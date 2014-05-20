@@ -22,9 +22,6 @@ define(['jquery'], function() {
             // actions menu
             $('.actions-menu').actionsMenu();
 
-            // sticky toolbar
-            $('.toolbar').sticky({topSpacing: 0});
-
 
             // datagrid
             $('.table--datagrid').each(function() {
@@ -74,7 +71,59 @@ define(['jquery'], function() {
 
         // Look for any flashes and animate them in when the page loads
         $('.flash.is-sticky').delay('1000').slideDown('100', function() {
-            $(this).sticky({topSpacing: 64}).sticky('update');
+            var toolbarHeight = $('.toolbar').outerHeight();
+            $(this).sticky({topSpacing: toolbarHeight}).sticky('update');
+        });
+
+        // Update the sticky flash message wrappers
+        function updateStickyFlashMessages() {
+            var toolbarHeight = $('.toolbar').outerHeight(), 
+                flashBannerHeight = $('.flash.is-sticky').outerHeight();
+
+            $('.toolbar').parent().css({'height': toolbarHeight});
+
+            if ($('.flash.is-sticky').parent().is(':visible')) {
+                $('.flash.is-sticky').parent().css({'height': flashBannerHeight});
+                $('.flash.is-sticky').unstick().sticky({topSpacing: toolbarHeight}).sticky('update');
+                $('.flash.is-sticky').show();
+            }
+        }
+
+        // Show and hide mobile-only elements
+        function mobileToggle() {
+            $('[data-mobile-toggle-button]').each(function() {
+                var target = $(this).attr('data-toggle-target');
+
+                if (!window.matchMedia('(min-width: 768px)').matches) {
+                    $(target).each(function() {
+                        if (!($(this).parents(target).length)) {
+                            $(this).attr('data-mobile-togglable', '').show();
+                        }
+                    });
+
+                    $(this).off('click.mobileToggle touchenter.mobileToggle').on('click.mobileToggle touchenter.mobileToggle', function(e) {
+                        e.preventDefault();
+
+                        if (target === '.tabs__list') {
+                            $(target + '[data-mobile-togglable]').css({'top': $('.toolbar').outerHeight()});
+                        }
+
+                        $(target + '[data-mobile-togglable]').toggleClass('toggled');
+                    });
+                }
+                else {
+                    $(target + '[data-mobile-togglable]').removeAttr('data-mobile-togglable').removeClass('toggled');
+                }
+            });
+        }
+        mobileToggle();
+
+        // Do these things whenever the window resizes
+        $(window).resize(function() {
+            updateStickyFlashMessages();
+            mobileToggle();
+
+            $('.tabs__list[data-mobile-togglable]').css({'top': $('.toolbar').outerHeight()});
         });
 
         // Show summary panels based on their data-tab value
