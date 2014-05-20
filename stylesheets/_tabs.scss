@@ -160,23 +160,34 @@
 }
 
 .tab__main {
-  border-right: 1px solid $gray;
   overflow: hidden;
-  padding-right: $gutter-width / 2;
+  width: 100%;
 
-  @include respond-min($screen-phone) {
+  @include respond-min($screen-desktop) {
+    border-right: 1px solid $gray;
     padding-right: $gutter-width;
+    width: auto;
   }
 }
 
 .tab__sidebar {
-  border-left: 1px solid $gray;
-  float: right;
-  left: -1px; // match left border with that of .tab__main
-  padding: $line-height-base 0 $line-height-base $gutter-width;
+  border-bottom: 1px solid $gray;
+  float: left;
+  padding: 0;
+  margin-bottom: $line-height-base;
   position: relative;
   vertical-align: top;
-  width: 25%;
+  width: 100%;
+
+  @include respond-min($screen-desktop) {
+    border-bottom: 0 none;
+    border-left: 1px solid $gray;
+    float: right;
+    left: -1px; // match left border with that of .tab__main
+    margin-bottom: 0;
+    padding: $line-height-base 0 $line-height-base $gutter-width;
+    width: 25%;
+  }
 }
 
 .tab--unpadded p {
