@@ -89,9 +89,41 @@ define(['jquery'], function() {
             }
         }
 
+        // Show and hide mobile-only elements
+        function mobileToggle() {
+            $('[data-mobile-toggle-button]').each(function() {
+                var target = $(this).attr('data-toggle-target');
+
+                if (!window.matchMedia('(min-width: 768px)').matches) {
+                    $(target).each(function() {
+                        if (!($(this).parents(target).length)) {
+                            $(this).attr('data-mobile-togglable', '').show();
+                        }
+                    });
+
+                    $(this).off('click.mobileToggle touchenter.mobileToggle').on('click.mobileToggle touchenter.mobileToggle', function(e) {
+                        e.preventDefault();
+
+                        if (target === '.tabs__list') {
+                            $(target + '[data-mobile-togglable]').css({'top': $('.toolbar').outerHeight()});
+                        }
+
+                        $(target + '[data-mobile-togglable]').toggleClass('toggled');
+                    });
+                }
+                else {
+                    $(target + '[data-mobile-togglable]').removeAttr('data-mobile-togglable').removeClass('toggled');
+                }
+            });
+        }
+        mobileToggle();
+
         // Do these things whenever the window resizes
         $(window).resize(function() {
             updateStickyFlashMessages();
+            mobileToggle();
+
+            $('.tabs__list[data-mobile-togglable]').css({'top': $('.toolbar').outerHeight()});
         });
 
         // Show summary panels based on their data-tab value

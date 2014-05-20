@@ -1,14 +1,31 @@
 .tabs__list {
   clear: left;
-  float: left;
   display: none;
+  float: left;
   list-style: none;
   margin: 0;
   padding: 0;
   width: $tab-column-width;
 
+  &[data-mobile-togglable] {
+    background-color: $gray-dark;
+    height: 100%;
+    margin-right: -$tab-column-width;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: $zindex-nav;
+
+    &.toggled {
+      margin-right: 0;
+      -webkit-transition: margin-right .15s ease-out;
+      -moz-transition: margin-right .15s ease-out;
+      -transition: margin-right .15s ease-out;
+    }
+  }
+
   @include respond-min($screen-tablet) {
-    display: inline;
+    display: block;
   }
 
   > li {
