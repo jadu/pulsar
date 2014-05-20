@@ -80,8 +80,9 @@ define(['jquery'], function() {
             var toolbarHeight = $('.toolbar').outerHeight(), 
                 flashBannerHeight = $('.flash.is-sticky').outerHeight();
 
+            $('.toolbar').parent().css({'height': toolbarHeight});
+
             if ($('.flash.is-sticky').parent().is(':visible')) {
-                $('.toolbar').parent().css({'height': toolbarHeight});
                 $('.flash.is-sticky').parent().css({'height': flashBannerHeight});
                 $('.flash.is-sticky').unstick().sticky({topSpacing: toolbarHeight}).sticky('update');
                 $('.flash.is-sticky').show();
