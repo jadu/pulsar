@@ -16,7 +16,7 @@
   @include respond-min($screen-tablet) {
     float: left;
     margin-right: 0;
-    margin-bottom: 6px;
+    margin-bottom: 0;
     position: static;
     width: $tab-column-width;
   }
