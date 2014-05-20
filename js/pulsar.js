@@ -77,8 +77,10 @@ define(['jquery'], function() {
 
         // Update the sticky wrappers when the window resizes
         $(window).resize(function() {
-            var toolbarHeight = $('.toolbar').outerHeight();
-            $('.toolbar, .flash.is-sticky').parent().css({'height': toolbarHeight});
+            var toolbarHeight = $('.toolbar').outerHeight(), 
+                flashBannerHeight = $('.flash.is-sticky').outerHeight();
+            $('.toolbar').parent().css({'height': toolbarHeight});
+            $('.flash.is-sticky').parent().css({'height': flashBannerHeight});
         });
 
         // Show summary panels based on their data-tab value
