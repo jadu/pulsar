@@ -75,8 +75,8 @@ define(['jquery'], function() {
             $(this).sticky({topSpacing: toolbarHeight}).sticky('update');
         });
 
-        // Update the sticky wrappers when the window resizes
-        $(window).resize(function() {
+        // Update the sticky flash message wrappers
+        function updateStickyFlashMessages() {
             var toolbarHeight = $('.toolbar').outerHeight(), 
                 flashBannerHeight = $('.flash.is-sticky').outerHeight();
 
@@ -87,6 +87,11 @@ define(['jquery'], function() {
                 $('.flash.is-sticky').unstick().sticky({topSpacing: toolbarHeight}).sticky('update');
                 $('.flash.is-sticky').show();
             }
+        }
+
+        // Do these things whenever the window resizes
+        $(window).resize(function() {
+            updateStickyFlashMessages();
         });
 
         // Show summary panels based on their data-tab value
