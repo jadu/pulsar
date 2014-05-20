@@ -79,8 +79,13 @@ define(['jquery'], function() {
         $(window).resize(function() {
             var toolbarHeight = $('.toolbar').outerHeight(), 
                 flashBannerHeight = $('.flash.is-sticky').outerHeight();
-            $('.toolbar').parent().css({'height': toolbarHeight});
-            $('.flash.is-sticky').parent().css({'height': flashBannerHeight});
+
+            if ($('.flash.is-sticky').parent().is(':visible')) {
+                $('.toolbar').parent().css({'height': toolbarHeight});
+                $('.flash.is-sticky').parent().css({'height': flashBannerHeight});
+                $('.flash.is-sticky').unstick().sticky({topSpacing: toolbarHeight}).sticky('update');
+                $('.flash.is-sticky').show();
+            }
         });
 
         // Show summary panels based on their data-tab value
