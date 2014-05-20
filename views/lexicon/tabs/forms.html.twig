@@ -50,6 +50,7 @@
     {{ form.fieldset_end() }}
     {{ form.fieldset_start(legend = 'States') }}
 
+            {{ form.text(label = 'Input that has changed', id = 'inputTextChanged', class = 'has-changed', name = 'inputTextChanged', placeholder = 'Placeholder') }}
             {{ form.text(label = 'Input with warning', id = 'inputTextWarning', class = 'has-warning', name = 'inputTextWarning', placeholder = 'Placeholder') }}
             {{ form.text(label = 'Input with error', id = 'inputTextError', class = 'has-error', name = 'inputTextError', placeholder = 'Placeholder') }}
             {{ form.text(label = 'Input with success', id = 'inputTextSuccess', class = 'has-success', name = 'inputTextSuccess', placeholder = 'Placeholder') }}
