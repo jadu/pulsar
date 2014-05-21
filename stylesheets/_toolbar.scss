@@ -199,6 +199,10 @@ $brand-height: 24px;
     color: $gray-lighter;
   }
 
+  &.toggled {
+    color: $primary-color;
+  }
+
   @include respond-min($screen-tablet) {
     display: none;
   }

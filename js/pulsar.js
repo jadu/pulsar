@@ -105,13 +105,15 @@ define(['jquery'], function() {
                         e.preventDefault();
 
                         if (target === '.tabs__list') {
-                            $(target + '[data-mobile-togglable]').css({'top': $('.toolbar').outerHeight()});
+                            $(target + '[data-mobile-togglable]').css({'top': ($('.toolbar').outerHeight() - 3)});
                         }
 
+                        $(this).toggleClass('toggled');
                         $(target + '[data-mobile-togglable]').toggleClass('toggled');
                     });
                 }
                 else {
+                    $(this).removeClass('toggled');
                     $(target + '[data-mobile-togglable]').removeAttr('data-mobile-togglable').removeClass('toggled');
                 }
             });
@@ -123,7 +125,7 @@ define(['jquery'], function() {
             updateStickyFlashMessages();
             mobileToggle();
 
-            $('.tabs__list[data-mobile-togglable]').css({'top': $('.toolbar').outerHeight()});
+            $('.tabs__list[data-mobile-togglable]').css({'top': ($('.toolbar').outerHeight() - 3)});
         });
 
         // Show summary panels based on their data-tab value
