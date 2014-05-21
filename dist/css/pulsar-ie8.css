@@ -2212,14 +2212,18 @@ tr.is-collapsed td, tr.is-collapsed th {
  * -----------------------------------------------------------------------------
  */
 .deck {
+  bottom: 0;
   display: none;
   /* Hide decks by default */
+  left: -2%;
   position: absolute;
-  left: 16%;
-  top: 58px;
   right: 0;
-  bottom: 0;
-  z-index: 1; }
+  top: 144px;
+  z-index: 1;
+  left: 2%;
+  top: 166px;
+  left: 16%;
+  top: 58px; }
 
 .deck.active {
   display: block;
