@@ -40,16 +40,8 @@
     }
   }
 }
-.table--datagrid tr.row--no-results {
-  background-color: $gray-lighter;
-  td {
-    height: ($line-height-base * 1.8) * 3;
-    text-align: center;
-  }
-}
 
 tr.filters {
-
   .label {
     text-transform: none;
     user-select: none;
@@ -59,7 +51,7 @@ tr.filters {
     cursor: pointer;
   }
   .actions {
-    [data-filter-action="done"], 
+    [data-filter-action="done"],
     [data-filter-action="save-as"] {
       // display: none;
     }
@@ -71,7 +63,7 @@ tr.filters {
       [data-filter-action="add"] {
         display: none;
       }
-      [data-filter-action="done"], 
+      [data-filter-action="done"],
       [data-filter-action="save"] {
         display: inline;
       }
