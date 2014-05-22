@@ -34,7 +34,8 @@
     margin-bottom: -1px;
   }
 
-  &[data-mobile-togglable] > li {
+  &[data-mobile-togglable] > li, 
+  &[data-mobile-togglable] > li > .tabs__list > li {
     margin-bottom: 0;
   }
 
@@ -59,10 +60,12 @@
     }
 
     > i {
+      display: inline-block;
       font-size: 14px;
       opacity: .6;
-      text-align: right;
+      text-align: center;
       margin-right: 3px;
+      width: 14px;
       @include ie-lte(7) {
         margin-right: 6px;
       }
@@ -152,6 +155,7 @@
   padding-bottom: 1px;
   display: none;
   float: none;
+  width: 100%;
 
   > li.is-active > a {
     background-color: $gray-lighter;
