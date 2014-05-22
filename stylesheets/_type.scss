@@ -24,9 +24,9 @@ h1 {
 }
 
 h2 {
-  font-size: $font-size-small * 2.25;                                      // 27px
-  line-height: ($line-height-base / $line-height-small) * 3;               // 44px
-  margin: 0 0 (($line-height-base / $line-height-small) * 0.5454545) 0;    // 8px
+  font-size: $font-size-small * 2.25;                                    // 27px
+  line-height: ($line-height-base / $line-height-small) * 2.11363636;    // 31px
+  margin: (($line-height-base / $line-height-small) * 2.11363636) 0 (($line-height-base / $line-height-small) * 1.09090909) 0; // 31px 0 16px 0
 
   @include respond-min($screen-phone) {
     font-size: $font-size-base * 2.25;                // 36px
