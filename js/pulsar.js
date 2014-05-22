@@ -120,6 +120,17 @@ define(['jquery'], function() {
         }
         mobileToggle();
 
+        // Make datagrid tables look better on smaller viewports
+        function mobileTables() {
+            $('.table--datagrid tr td').each(function() {
+                var tableCellPosition = $(this).index() + 1, 
+                    tableHeader = $(this).closest('table').find('th:nth-child(' + tableCellPosition + ')').text();
+
+                $(this).attr('data-table-header', tableHeader);
+            });
+        }
+        mobileTables();
+
         // Do these things whenever the window resizes
         $(window).resize(function() {
             updateStickyFlashMessages();
