@@ -2257,6 +2257,8 @@ tr.is-collapsed td, tr.is-collapsed th {
     margin: 0 0 1em 0;
     text-align: center;
     width: 100%; }
+  .form__login .help-block {
+    margin-left: 0; }
   .form__login input {
     text-align: center; }
   .form__login .form__actions {
