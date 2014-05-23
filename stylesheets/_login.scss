@@ -10,10 +10,11 @@
     .form__group {
         margin: 0 auto;
         width: 80%;
-    }
 
-    .form__group:hover {
-        box-shadow: none;
+        &.has-error, 
+        &:hover {
+            box-shadow: none;
+        }
     }
 
     .control__label,
