@@ -58,7 +58,7 @@ ifeq (${GRUNT}, )
 else
 	@ echo "Grunt is already installed.\n"
 endif
-	@ npm install
+	@ sudo npm install
 	@ echo "\n${CHECK} Done"
 
 	@ echo "${HR}\nInstalling Git hooks...${HR}"
