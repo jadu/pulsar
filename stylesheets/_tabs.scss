@@ -165,7 +165,7 @@
 
   > li.is-active > a {
     background-color: $gray-lighter;
-    border: 0;
+    border-color: transparent;
     box-shadow: none;
     &:hover {
       background-color: $gray-lighter;
