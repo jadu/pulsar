@@ -2252,13 +2252,15 @@ tr.is-collapsed td, tr.is-collapsed th {
   .form__login .form__group {
     margin: 0 auto;
     width: 80%; }
-  .form__login .form__group:hover {
-    box-shadow: none; }
+    .form__login .form__group.has-error, .form__login .form__group:hover {
+      box-shadow: none; }
   .form__login .control__label, .form__login .controls {
     display: block;
     margin: 0 0 1em 0;
     text-align: center;
     width: 100%; }
+  .form__login .help-block {
+    margin-left: 0; }
   .form__login input {
     text-align: center; }
   .form__login .form__actions {
