@@ -1174,6 +1174,34 @@ select.input-sm {
 textarea.input-lg, textarea.input-sm {
   height: auto; }
 
+.has-changed {
+  box-shadow: inset 4px 0 0 #71cae2; }
+  .has-changed:hover {
+    box-shadow: inset 4px 0 0 #46bada; }
+  .has-changed .help-block, .has-changed .control__label {
+    color: #3a87ad; }
+  .has-changed .form__control {
+    background-color: #d9edf7;
+    border-color: #71cae2;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); }
+    .has-changed .form__control:focus {
+      border-color: #46bada;
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #c6eaf3; }
+    .has-changed .form__control::-webkit-input-placeholder {
+      /* Webkit */
+      color: #7ab7d3; }
+    .has-changed .form__control:-ms-input-placeholder {
+      /* Internet Explorer 10+ */
+      color: #7ab7d3; }
+    .has-changed .form__control:-moz-placeholder, .has-changed .form__control::-moz-placeholder {
+      /* Mozilla Firefox 19+ */
+      color: #7ab7d3;
+      opacity: 1; }
+  .has-changed .input-group-addon {
+    color: #3a87ad;
+    border-color: #71cae2;
+    background-color: #d9edf7; }
+
 .has-warning {
   box-shadow: inset 4px 0 0 #f2b765; }
   .has-warning:hover {
@@ -1187,6 +1215,16 @@ textarea.input-lg, textarea.input-sm {
     .has-warning .form__control:focus {
       border-color: #ee9e36;
       box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #fae2c3; }
+    .has-warning .form__control::-webkit-input-placeholder {
+      /* Webkit */
+      color: #dbc49e; }
+    .has-warning .form__control:-ms-input-placeholder {
+      /* Internet Explorer 10+ */
+      color: #dbc49e; }
+    .has-warning .form__control:-moz-placeholder, .has-warning .form__control::-moz-placeholder {
+      /* Mozilla Firefox 19+ */
+      color: #dbc49e;
+      opacity: 1; }
   .has-warning .input-group-addon {
     color: #c09853;
     border-color: #f2b765;
@@ -1205,6 +1243,16 @@ textarea.input-lg, textarea.input-sm {
     .has-error .form__control:focus {
       border-color: #d43d3a;
       box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #efb9b8; }
+    .has-error .form__control::-webkit-input-placeholder {
+      /* Webkit */
+      color: #d59392; }
+    .has-error .form__control:-ms-input-placeholder {
+      /* Internet Explorer 10+ */
+      color: #d59392; }
+    .has-error .form__control:-moz-placeholder, .has-error .form__control::-moz-placeholder {
+      /* Mozilla Firefox 19+ */
+      color: #d59392;
+      opacity: 1; }
   .has-error .input-group-addon {
     color: #b94a48;
     border-color: #dd6664;
@@ -1223,6 +1271,16 @@ textarea.input-lg, textarea.input-sm {
     .has-success .form__control:focus {
       border-color: #5eb85c;
       box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #c7e6c7; }
+    .has-success .form__control::-webkit-input-placeholder {
+      /* Webkit */
+      color: #7aba7a; }
+    .has-success .form__control:-ms-input-placeholder {
+      /* Internet Explorer 10+ */
+      color: #7aba7a; }
+    .has-success .form__control:-moz-placeholder, .has-success .form__control::-moz-placeholder {
+      /* Mozilla Firefox 19+ */
+      color: #7aba7a;
+      opacity: 1; }
   .has-success .input-group-addon {
     color: #468847;
     border-color: #81c780;
@@ -1820,6 +1878,16 @@ tr.row--warning > td {
 tr.row--warning:hover > td {
   background-color: #fbe9d1; }
 
+tr.row--no-results {
+  background-color: #fafafa; }
+  tr.row--no-results td {
+    height: 118.8px;
+    text-align: center; }
+  tr.row--no-results a {
+    color: #2455c3; }
+  tr.row--no-results:hover a {
+    text-decoration: underline; }
+
 tr.is-selected > td:first-of-type {
   box-shadow: inset 4px 0 0 #2455c3; }
 tr.is-selected > td {
@@ -2010,12 +2078,6 @@ tr.is-selected:hover > td {
   top: 50%; }
   .form--horizontal .form__group .form__collection .remove__control:hover {
     color: #dd6664; }
-
-.table--datagrid tr.row--no-results {
-  background-color: #eeeeee; }
-  .table--datagrid tr.row--no-results td {
-    height: 118.8px;
-    text-align: center; }
 
 tr.filters .label {
   text-transform: none;

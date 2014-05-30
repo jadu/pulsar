@@ -137,6 +137,9 @@ tr.row--no-results {
   a {
     color: $link-color;
   }
+  &:hover a {
+    text-decoration: underline;
+  }
 }
 
 tr.is-selected {
