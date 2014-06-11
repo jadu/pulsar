@@ -4,9 +4,7 @@
     <h1 class="branding" id="tour-home">{{ html.link('Jadu', '/search') }}</h1>
     {{ 
       pulsar.notifications(
-        badge = 2,
-        open = true,
-        items = [
+        [
           pulsar.notification(
             icon = html.icon('asterisk'),
             href = '#',
