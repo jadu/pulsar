@@ -1,6 +1,37 @@
 {% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
+{% import '@pulsar/pulsar/helpers/pulsar.html.twig' as pulsar %}
 <div class="toolbar">
     <h1 class="branding" id="tour-home">{{ html.link('Jadu', '/search') }}</h1>
+    {{ 
+      pulsar.notifications(
+        badge = 2,
+        open = true,
+        items = [
+          pulsar.notification(
+            icon = html.icon('asterisk'),
+            href = '#',
+            title = 'Something awesome happened',
+            description = 'And we want to show you it',
+            time = 'Just now'
+          ),
+          pulsar.notification(
+            icon = html.icon('asterisk'),
+            href = '#',
+            title = 'Something awesome happened',
+            description = 'And we want to show you it',
+            time = 'Just now'
+          ),
+          pulsar.notification(
+            icon = html.icon('warning-sign'),
+            href = '#',
+            title = 'Something bad happened',
+            description = 'And we want to show you it',
+            time = '10 mins ago',
+            class = 'notification--danger'
+          )
+        ]
+      )
+    }}
     {{ 
       html.button_dropdown(
         label = 'Your Name',

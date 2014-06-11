@@ -49,6 +49,47 @@
   </div>
 {%- endmacro -%}
 
+
+{%- macro notifications(badge = 0, class = 'badge--danger', items, open = false) -%}
+  {% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
+  {% if badge > 0 %}
+    <div class="notifications pull-right {% if open %} open{% endif %}">
+      <button type="button" class="btn dropdown__toggle" data-toggle="dropdown">
+          <span class="badge{% if class %} {{ class }}{% endif %}">{{ badge }}</span>
+      </button>
+      {% if items is not empty %}
+      <ul class="dropdown__menu">
+        <li class="notifications__header">
+          {{ 
+            html.link(
+              label = html.icon('check-sign'),
+              class = 'notifications__dismiss',
+              attributes = 'data-toggle="tooltips" title="Mark all as read" data-placement="left"'
+            )
+          }}
+          <h1>Notifications</h1>
+        </li>
+        {% for item in items %}
+          {{ item }}
+          {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+  {% endif %}
+{%- endmacro -%}
+
+
+{%- macro notification(icon, href, title, description, time, class) -%}
+  <li class="notification{% if class %} {{ class }}{% endif %}">
+    <a href="{{ href }}">
+      <p class="notification__title">{{ icon|raw }} {{ title|raw }}</p>
+      <p class="notification__description">{{ description }}</p>
+      <time class="notification__time">{{ time }}</time>
+    </a>
+  </li>
+{%- endmacro -%}
+
+
 {%- macro widget_list(widgets, context = 'Dashboard') -%}
   {% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
   <div id="tray" class="tray">
