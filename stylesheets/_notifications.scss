@@ -1,5 +1,6 @@
 .notifications {
   margin-right: 20px;
+  max-width: 300px;
   position: relative;
   top: 5px;
 
@@ -70,7 +71,7 @@
 
 .notification__time {
   float: right;
-  font-size: $font-size-small;  
+  font-size: $font-size-small;
 }
 
 .notification__description {

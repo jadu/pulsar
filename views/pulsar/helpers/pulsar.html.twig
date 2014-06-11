@@ -44,14 +44,13 @@
 {%- endmacro -%}
 
 
-{%- macro notifications(badge = 0, class = 'badge--danger', items, open = false) -%}
+{%- macro notifications(items) -%}
   {% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
-  {% if badge > 0 %}
+  {% if items %}
     <div class="notifications pull-right {% if open %} open{% endif %}">
       <button type="button" class="btn dropdown__toggle" data-toggle="dropdown">
-          <span class="badge{% if class %} {{ class }}{% endif %}">{{ badge }}</span>
+          <span class="badge badge--danger">{{ items|length }}</span>
       </button>
-      {% if items is not empty %}
       <ul class="dropdown__menu">
         <li class="notifications__header">
           {{ 
@@ -67,7 +66,6 @@
           {{ item }}
           {% endfor %}
       </ul>
-      {% endif %}
     </div>
   {% endif %}
 {%- endmacro -%}
