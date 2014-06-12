@@ -220,6 +220,12 @@
   <span class="divider"></span>
 {%- endmacro -%}
 
+{%- macro loading(visible = true) -%}
+  <div class="loading loading--circle{% if visible == false %} hide{% endif %}">
+    <i></i>
+  </div>
+{%- endmacro -%}
+
 {%- macro tooltip(title, placement = 'top') -%}
   {% if title %}
     data-toggle="tooltips" data-placement="{{ placement }}" title="{{ title }}"
