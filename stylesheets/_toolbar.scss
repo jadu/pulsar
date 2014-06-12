@@ -1,16 +1,118 @@
 $toolbar-height: $line-height-base * 2;
 $brand-height: 24px;
 
+// .toolbar {
+//   background-color: $gray-dark;
+//   height: $toolbar-height;
+//   width: 100%;
+//   z-index: $zindex-sticky;
+// }
+
+// .branding {
+//   @include hide-text;
+
+//   background-repeat: no-repeat;
+//   background-image: url('../images/jaduIdent.png');
+//   height: $brand-height;
+//   margin: 0 $gutter-width;
+//   overflow: hidden;
+//   position: relative;
+//   top: ($toolbar-height - $brand-height) / 2;
+//   width: 75px;
+// }
+
+$toolbar-height: $line-height-base * 2;
+$brand-height: 24px;
+
+@-webkit-keyframes omg-it-spins {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(359deg);
+  }
+}
+
+@keyframes omg-it-spins {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .toolbar {
   background-color: $gray-dark;
   height: $toolbar-height;
   width: 100%;
   z-index: $zindex-sticky;
+  border-bottom: 3px solid $primary-color;
+  .search-form {
+    margin: 0;
+    height: $brand-height + 16;
+    padding-top: 10px;
+    display: inline-block;
+    width: 100%;
+    max-width: 800px;
+    margin-left: $gutter-width;
+    position: relative;
+    .icon-search {
+      position: absolute;
+      top: 50%;
+      margin-top: 2px;
+      left: 10px;
+      width: 14px;
+      height: 14px;
+      font-size: 14px;
+      color: lighten($primary-color,10);
+    }
+    .icon-spinner {
+      position: absolute;
+      top: 50%;
+      margin-top: 2px;
+      right: 10px;
+      width: 14px;
+      height: 14px;
+      font-size: 14px;
+      color: white;
+      display: none;
+      animation: omg-it-spins .5s 0 infinite;
+      -webkit-animation: omg-it-spins .5s 0 infinite;
+      animation-timing-function: linear;
+      -webkit-animation-timing-function: linear;
+    }
+    :focus ~ .icon-search {
+      color: $primary-color;
+    }
+    :focus ~ .icon-spinner {
+      display: block;
+    }
+  }
+  .search-field {
+    background: lighten($gray-dark,5);
+    height: $brand-height;
+    padding: 20px 20px 20px 40px;
+    border: none;
+    border-bottom: 2px solid $primary-color;
+    width: 100%;
+    max-width: 400px;
+    -webkit-transition: all .2s ease-in-out;
+    color: #FFF;
+    &:focus {
+      max-width: 800px;
+      outline: none;
+      background: lighten($gray-dark,11);
+    }
+  }
+  .notifications {
+    top: (($toolbar-height - $brand-height) / 2) + 3;
+  }
 }
 
 .branding {
   @include hide-text;
-  
+
   background-repeat: no-repeat;
   background-image: url('../images/jaduIdent.png');
   display: inline-block;
@@ -22,9 +124,8 @@ $brand-height: 24px;
   width: 75px;
 }
 
-.user-actions {
-  margin-right: 20px;
-  top: 8px;
+.toolbar .btn__group {
+  top: (($toolbar-height - $brand-height) / 2) + 6;
 
   .btn {
     background: none;
@@ -34,13 +135,22 @@ $brand-height: 24px;
     text-shadow: none;
   }
 
-  .btn:hover {
-    background-color: rgba(0, 0, 0, .2);
-    background-image: none;
-    box-shadow: none;
+}
+
+.toolbar {
+  $nav-min-width: 150px;
+  // Sub-navigation
+  .dropdown__menu {
+    min-width: $nav-min-width;
+    z-index: $zindex-nav;
+
+    > li > ul {
+      @extend .dropdown__menu;
+      @extend .inverse;
+      background: rgba($gray-dark,.95);
+      left: $nav-min-width + 10px;
+      top: 0;
+    }
   }
 
-  .caret {
-    border-top: 4px solid $white;
-  }
 }
