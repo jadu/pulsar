@@ -162,8 +162,9 @@
 {%- endmacro -%}
 
 
-{%- macro label(label = 'label', class) -%}
-  <span class="label{% if class is not empty %} {{ class }}{% endif %}">{{ label }}</span>
+{%- macro label(label = 'label', class, tooltip_title, tooltip_placement = 'top') -%}
+  {% import _self as html %}
+  <span class="label{% if class is not empty %} {{ class }}{% endif %}"{% if tooltip_title %}{{ _self.tooltip(tooltip_title, tooltip_placement) }}{% endif %}>{{ label }}</span>
 {%- endmacro -%}
 
 
@@ -173,4 +174,10 @@
 
 {%- macro divider() -%}
   <span class="divider"></span>
+{%- endmacro -%}
+
+{%- macro tooltip(title, placement = 'top') -%}
+  {% if title %}
+    data-toggle="tooltips" data-placement="{{ placement }}" title="{{ title }}"
+  {% endif %}
 {%- endmacro -%}
