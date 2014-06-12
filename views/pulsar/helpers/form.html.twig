@@ -235,7 +235,7 @@
 
 {% macro submit(label = 'Submit', class, type, id, href, attributes) %}
     {% import _self as form %}
-    <input type="submit" class="btn{% if class is not empty %} {{ class }}{% endif %}" {{ form.id(id) }} {{ _self.value(label) }}{% if attributes is not empty %} {{ attributes|raw }}{% endif %}{% if 'is-disabled' in class %} disabled="disabled"{% endif %} />
+    <input type="submit" class="btn{% if class is not empty %} {{ class }}{% endif %}" {{ form.id(id) }} {{ _self.value(label|raw) }}{% if attributes is not empty %} {{ attributes|raw }}{% endif %}{% if 'is-disabled' in class %} disabled="disabled"{% endif %} />
 {% endmacro %}
 
 {% macro checkbox_group(label, checkboxes) %}
@@ -274,7 +274,7 @@
 
 {% macro value(value) %}
     {% if value is not empty %}
-    value="{{ value|raw }}"
+    value="{{ value }}"
     {% endif %}
 {% endmacro %}
 
