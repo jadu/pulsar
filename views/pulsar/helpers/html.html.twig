@@ -13,7 +13,7 @@
 
   {%- else -%}
 
-    <button class="btn{% if class is not empty %} {{ class }}{% endif %}"{% if id is not empty %} id="{{ id }}"{% endif %}{% if attributes is not empty %} {{ attributes|raw }}{% endif %}{% if 'is-disabled' in class %} disabled="disabled"{% endif %}>{{ label|raw }}</button>
+    <button type="button" class="btn{% if class is not empty %} {{ class }}{% endif %}"{% if id is not empty %} id="{{ id }}"{% endif %}{% if attributes is not empty %} {{ attributes|raw }}{% endif %}{% if 'is-disabled' in class %} disabled="disabled"{% endif %}>{{ label|raw }}</button>
 
   {%- endif -%}
 {% endmacro %}
@@ -76,8 +76,8 @@
       <li{% if (active_tab_id == null and loop.first) or (active_tab_id == tab.id) %} class="is-active"{% endif %}>
 
         {{ html.link(
-          label = tab.label, 
-          href = '#' ~ tab.id, 
+          label = tab.label,
+          href = '#' ~ tab.id,
           attributes = 'data-toggle="tab"') }}
 
         {%- if tab.sub_tabs != null %}
@@ -86,8 +86,8 @@
             {%- for sub_tab in tab.sub_tabs -%}
               <li{% if (active_tab_id == null and loop.parent.loop.first and loop.first) or (active_tab == sub_tab.id) %} class="is-active"{% endif %}>
                 {{ html.link(
-                  label = sub_tab.label, 
-                  href = '#' ~ sub_tab.id, 
+                  label = sub_tab.label,
+                  href = '#' ~ sub_tab.id,
                   attributes = 'data-toggle="tab"') }}
               </li>
             {%- endfor -%}
@@ -100,21 +100,21 @@
 
     {% if editable == true %}
     <li class="new hide">
-      <input 
-        type="text" 
-        value="My New Tab" 
-        autofocus 
-        data-filter-action="save" 
+      <input
+        type="text"
+        value="My New Tab"
+        autofocus
+        data-filter-action="save"
         data-animation="true"
-        data-toggle="popover" 
-        title="Give your tab a nice name" 
-        data-content='<button class="btn btn--primary">Save</button> <button class="btn" data-filter-action="dismiss-save-as">Cancel</button>' 
-        data-html=true 
+        data-toggle="popover"
+        title="Give your tab a nice name"
+        data-content='<button class="btn btn--primary">Save</button> <button class="btn" data-filter-action="dismiss-save-as">Cancel</button>'
+        data-html=true
       />
     </li>
 
       {{
-        html.list_item( 
+        html.list_item(
           html.link(
             label = 'Add a new tab',
             href = '#',
@@ -125,7 +125,7 @@
   {% endif %}
 
   </ul>
-  
+
 {%- endmacro -%}
 
 
@@ -140,7 +140,7 @@
     {%- endif -%}
 
     {%- for sub_tab in tab.sub_tabs -%}
-        
+
         <div class="tab__pane{% if (active_tab == null and loop.parent.loop.first and loop.first) or (active_tab == sub_tab.id) %} is-active{% endif %}" id="{{ sub_tab.id }}"{% if sub_tab.attr != null %} {{ sub_tab.attr|raw }}{% endif %}>
           {{ sub_tab.src|raw }}
         </div>
@@ -156,7 +156,7 @@
   {% import _self as html %}
   <ul class="{{ class }}">
   {%- for list_item in list_items -%}
-    
+
     {% if loop.index == active_item %}
       {% set class = ' class=is-active' %}
     {% else %}
@@ -173,7 +173,7 @@
   {% import _self as html %}
   <ul{% if class is not empty %} class="{{ class }}"{% endif %}>
   {%- for label, href in items -%}
-    
+
     {% if loop.index == active_item %}
       {% set class = ' class=is-active' %}
     {% else %}

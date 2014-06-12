@@ -6,7 +6,7 @@
 // Normalize non-controls
 //
 // Restyle and baseline non-control form elements.
-// 
+//
 fieldset {
   padding: 0;
   margin: 0;
@@ -162,7 +162,7 @@ input[type="number"] {
 
   &.form__actions--flush {
     padding-left: $gutter-width;
-  }  
+  }
 }
 
 // Reset height for `textarea`s
@@ -307,7 +307,7 @@ textarea {
 }
 
 &.form__group--flush {
-  
+
   label {
     margin-left: $gutter-width;
   }
@@ -357,7 +357,7 @@ textarea {
 
 .form--horizontal .form__group {
   @include clearfix();
-  
+
   .checkbox,
   .radio {
     min-height: 22px;
@@ -414,7 +414,7 @@ textarea {
   }
 
   &.form__group--top {
-  
+
     > .control__label,
     > .checkbox__label,
     > .radio__label {
@@ -473,6 +473,10 @@ textarea {
 .form--horizontal .controls {
   @include inline-block;
   width: 30%;
+}
+
+.form__group--floating {
+  margin-left: 24%;
 }
 
 // .form--horizontal {

@@ -10,13 +10,13 @@
 
         {{ form.text(label = 'Text input', id = 'inputText', name = 'inputText', placeholder = 'Placeholder') }}
         {{ form.text(label = 'Text input with value', value = "This is my value, neat huh?", id = 'inputText', name = 'inputText', placeholder = 'Placeholder') }}
-        
+
         {{ form.text(label = 'Text input with a longer than expected label which will probably wrap multple lines and push the following input onto the next baseline', name = 'inputTextLong', placeholder = 'Placeholder', help = 'Example block-level help text here.') }}
 
         {{ form.text(label = 'Text input with a longer than expected label but this time we use the form__group--top class to keep the label on a single line', class = 'form__group--top', name = 'inputTextLong', placeholder = 'Placeholder', help = 'Example block-level help text here.') }}
 
         {{ form.text(label = 'The same as above, but this time we also add the .form__group--flush class to keep everything on the left edge', class = 'form__group--top form__group--flush', name = 'inputTextLong', placeholder = 'Placeholder', help = 'Example block-level help text here.') }}
-        
+
         {{ form.date(label = 'Date picker', id = 'inputDatepicker1', name = 'inputDatepicker1') }}
 
         {{ form.password(label = 'Password input', id = 'inputPassword', name = 'inputPassword', placeholder = 'Placeholder') }}
@@ -32,14 +32,14 @@
         {{ form.select(label = 'Select input', options = {value1: 'value one', value2: 'value two'}, id = 'inputSelect', name = 'inputSelect') }}
 
     {{ form.fieldset_end() }}
-    {{ form.fieldset_start(legend = 'Checkboxes &amp; Radios') }}
+    {{ form.fieldset_start(legend = 'Checkboxes & Radios') }}
 
         {{ form.checkbox(label = 'Checkbox with left label', id = 'inputCheckboxLeft', name = 'inputCheckboxLeft', checked = true) }}
         {{ form.radio(label = 'Radio with left label', id = 'inputRadioLeft', name = 'inputRadioLeft', checked = true) }}
         {{ form.checkbox_right(label = 'Checkbox with right label', id = 'inputCheckboxRight', name = 'inputCheckboxInline', checked = true) }}
         {{ form.radio_right(label = 'Radio with right label', id = 'inputRadioRight', name = 'inputRadioInline', checked = true) }}
 
-        {{ 
+        {{
             form.checkbox_group(
                 label = 'Checkbox group',
                 checkboxes = [
@@ -47,10 +47,10 @@
                     form.checkbox_right(label = 'Grouped checkbox 2', id = 'inputCheckboxInline2', name = 'inputCheckboxInline', checked = true),
                     form.checkbox_right(label = 'Grouped checkbox 3', id = 'inputCheckboxInline3', name = 'inputCheckboxInline', checked = true)
                 ]
-            ) 
+            )
         }}
 
-        {{ 
+        {{
             form.checkbox_group(
                 label = 'Grouped and inline',
                 checkboxes = [
@@ -58,10 +58,10 @@
                     form.checkbox_inline(label = 'Check', id = 'inputCheckboxInline2', name = 'inputCheckboxInline', checked = true),
                     form.checkbox_inline(label = 'Boxes', id = 'inputCheckboxInline3', name = 'inputCheckboxInline', checked = true)
                 ]
-            ) 
+            )
         }}
 
-        {{ 
+        {{
             form.radio_group(
                 label = 'Radio group',
                 radios = [
@@ -69,10 +69,10 @@
                     form.radio_right(label = 'Grouped radio 2', id = 'inputGroupedRadioInline2', name = 'inputGroupedRadioInline', checked = true),
                     form.radio_right(label = 'Grouped radio 3', id = 'inputGroupedRadioInline3', name = 'inputGroupedRadioInline', checked = true)
                 ]
-            ) 
+            )
         }}
 
-        {{ 
+        {{
             form.radio_group(
                 label = 'Grouped and inline',
                 radios = [
@@ -99,6 +99,11 @@
             {{ form.text(label = 'Prepended &amp; Appended', id = 'inputPrependAppend', class = 'form__group--large', name = 'inputPrependAppend', placeholder = 'Placeholder', prepend = 'www.', append = '.com') }}
 
     {{ form.fieldset_end() }}
+    {{ form.fieldset_start(legend = 'Floating elements') }}
+
+        {{ html.button(label = 'This Button Has No Form Label', class = 'form__group--floating') }}
+
+    {{ form.fieldset_end() }}
     {{ form.fieldset_start(legend = 'Sizes') }}
 
             {{ form.text(label = 'Mini', id = 'inputTextMini', class = 'form__group--mini', name = 'inputTextMini') }}
@@ -110,9 +115,9 @@
 
     {{ form.fieldset_end() }}
 
-    {{ 
+    {{
         form.form_end([
             form.submit(label = 'Primary Action', class = 'btn--primary')
-        ]) 
+        ])
     }}
 </div>
