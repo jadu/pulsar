@@ -107,7 +107,11 @@ $brand-height: 24px;
     }
   }
   .notifications {
-    top: (($toolbar-height - $brand-height) / 2) + 3;
+    top: (($toolbar-height - $brand-height) / 2) + 2;
+
+    @include respond-min($screen-phone) {
+      top: (($toolbar-height - $brand-height) / 2) + 3;
+    }
   }
 
   @include respond-min($screen-phone) {
@@ -139,7 +143,7 @@ $brand-height: 24px;
 }
 
 .toolbar .btn__group {
-  top: (($toolbar-height - $brand-height) * 0.85) / 2;
+  top: (($toolbar-height - $brand-height) * 0.85) / 1.25;
 
   .btn {
     background: none;
@@ -159,7 +163,7 @@ $brand-height: 24px;
   }
 
   @include respond-min($screen-phone) {
-    top: (($toolbar-height - $brand-height) / 2) + 6;
+    top: (($toolbar-height - $brand-height) / 2) + 7;
   }
 }
 
@@ -187,7 +191,7 @@ $brand-height: 24px;
   font-size: $font-size-large;
   height: $font-size-large;
   line-height: $font-size-large;
-  margin: (-$font-size-large / 2) $gutter-width 0;
+  margin: (-$font-size-large / 2) $gutter-width 0 ($gutter-width / 2);
   position: relative;
   text-decoration: none;
   top: 50%;

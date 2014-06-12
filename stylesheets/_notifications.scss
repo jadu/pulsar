@@ -1,5 +1,5 @@
 .notifications {
-  margin-right: 20px;
+  margin-right: $gutter-width / 2;
   max-width: 300px;
   position: relative;
   top: 5px;
@@ -10,6 +10,10 @@
     border: none;
     color: $white;
     text-shadow: none;
+
+    > .badge {
+      margin: -3px 0 -1px;
+    }
   }
 
   .btn:hover {
@@ -22,11 +26,15 @@
     float: left;
     font-size: $font-size-large;
     line-height: $line-height-large;
-    margin: 0 0 0 10px;
+    margin: 0 0 0 ($gutter-width / 2);
   }
 
   small {
     color: $gray-light;
+  }
+
+  @include respond-min($screen-phone) {
+    margin-right: $gutter-width;
   }
 }
 
@@ -39,7 +47,7 @@
 .dropdown__menu > li > a.notifications__dismiss {
   color: $gray;
   float: right;
-  padding-right: 10px;
+  padding-right: $gutter-width / 2;
   text-decoration: none;
 
   &:hover {
@@ -67,6 +75,10 @@
 .notification__title {
   font-family: $font-family-regular;
   margin-bottom: 0;
+
+  .dropdown__menu > li & > i {
+    margin: 0 2px 0 -4px;
+  }
 }
 
 .notification__time {
