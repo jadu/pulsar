@@ -56,6 +56,7 @@ function update(options){
 	_onPass = options.onPass || _onPass;
 	_onFail = options.onFail || _onFail;
 	_onTimeout = options.onTimeout || _onTimeout;
+	_onNewImage = options.onNewImage || _onNewImage;
 	_onComplete = options.onComplete || options.report || _onComplete;
 
 	_hideElements = options.hideElements;
@@ -76,17 +77,23 @@ function init(options){
 function turnOffAnimations(){
 	console.log('[PhantomCSS] Turning off animations');
 	casper.evaluate(function turnOffAnimations(){
-		window.addEventListener('load', function(){
-
-			var css = document.createElement("style");
-			css.type = "text/css";
-			css.innerHTML = "* { -webkit-transition: none !important; transition: none !important; }";
-			document.body.appendChild(css);
-
+		
+		function disableAnimations(){
 			if(jQuery){
 				jQuery.fx.off = true;
 			}
-		},false);
+		
+			var css = document.createElement("style");
+			css.type = "text/css";
+			css.innerHTML = "* { -webkit-transition: none !important; transition: none !important; -webkit-animation: none !important; animation: none !important; }";
+			document.body.appendChild(css);
+		}
+
+		if (document.readyState !== "loading") {
+			disableAnimations();
+		} else {
+			window.addEventListener('load', disableAnimations, false);
+		}
 	});
 }
 
@@ -103,8 +110,8 @@ function _fileNameGetter(root, fileName){
 	}
 }
 
-function screenshot(selector, timeToWait, hideSelector, fileName){
 	
+function screenshot(target, timeToWait, hideSelector, fileName){
 	if(isNaN(Number(timeToWait)) && typeof timeToWait === 'string'){
 		fileName = timeToWait;
 		timeToWait = void 0;
@@ -118,31 +125,48 @@ function screenshot(selector, timeToWait, hideSelector, fileName){
 
 		if(hideSelector || _hideElements){
 			casper.evaluate(function(s1, s2){
-				if(s1){
-					$(s1).css('visibility', 'hidden');
+
+				if(jQuery){
+					if(s1){ jQuery(s1).css('visibility', 'hidden'); }
+					if(s2){ jQuery(s2).css('visibility', 'hidden'); }
+					return;
 				}
-				$(s2).css('visibility', 'hidden');
+
+				// Ensure at least an empty string
+				s1 = s1 || '';
+				s2 = s2 || '';
+
+				// Create a combined selector, removing leading/trailing commas
+				var selector = (s1 + ',' + s2).replace(/(^,|,$)/g, '');
+				var elements = document.querySelectorAll(selector);
+				var i        = elements.length;
+
+				while( i-- ){
+					elements[i].style.visibility = 'hidden';
+				}
 			}, {
 				s1: _hideElements,
 				s2: hideSelector
 			});
 		}
 
-		capture(srcPath, resultPath, selector);
+		capture(srcPath, resultPath, target);
 
 	}); // give a bit of time for all the images appear
 }
 
-function capture(srcPath, resultPath, selector){
+function capture(srcPath, resultPath, target){
 	var originalForResult = resultPath.replace('.diff', '');
 	var originalFromSource = srcPath.replace('.diff', '');
 
 	try {
 
 		if( isThisImageADiff(resultPath) ){
-
-			casper.captureSelector( resultPath , selector );
-			
+			if (isClipRect(target)) {
+				casper.capture(resultPath, target);
+			} else {
+				casper.captureSelector(resultPath, target);
+			}
 			diffsCreated.push(resultPath);
 
 			if(srcPath !== resultPath){
@@ -152,17 +176,35 @@ function capture(srcPath, resultPath, selector){
 
 		} else {
 
-			casper.captureSelector( srcPath , selector );
+			if (isClipRect(target)) {
+				casper.capture(srcPath, target);
+			} else {
+				casper.captureSelector(srcPath, target);
+			}
 
 			if(srcPath !== resultPath){
 				copyAndReplaceFile(srcPath, resultPath);
 			}
+
+			_onNewImage({
+				filename: resultPath
+			});
 		}
 
 	}
 	catch(ex){
 		console.log("[PhantomCSS] Screenshot capture failed: ", ex.message);
 	}
+}
+
+function isClipRect(value) {
+	return (
+		typeof value === 'object' &&
+		typeof value.top === 'number' &&
+		typeof value.left === 'number' &&
+		typeof value.width === 'number' &&
+		typeof value.height === 'number'
+	);
 }
 
 function isThisImageADiff(path){
@@ -324,10 +366,13 @@ function compareFiles(baseFile, file) {
 
 								casper.captureSelector(failFile, 'img');
 								console.log('Failure! Saved to', failFile);
+							} else {
+								if (file.indexOf('.diff.png') !== -1) {
+									casper.captureSelector(file.replace('.diff.png', '.fail.png'), 'img');
+								} else {
+									casper.captureSelector(file.replace('.png', '.fail.png'), 'img');
+								}
 							}
-
-							// Always create non-flattened failure images
-							casper.captureSelector(file.replace('.diff.png', '.fail.png'), 'img');
 
 							casper.evaluate(function(){
 								window._imagediff_.hasImage = false;
@@ -482,6 +527,10 @@ function _onFail(test){
 function _onTimeout(test){
 	console.log('\n');
 	casper.test.info('Could not complete image comparison for ' + test.filename);
+}
+function _onNewImage(test){
+	console.log('\n');
+	casper.test.info('New screenshot at '+ test.filename);
 }
 function _onComplete(tests, noOfFails, noOfErrors){
 

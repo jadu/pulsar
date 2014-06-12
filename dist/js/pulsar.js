@@ -13,7 +13,7 @@ define(['jquery'], function() {
             $('.toolbar').sticky({topSpacing: 0});
 
             // tooltips (js/tooltip.js)
-            $('[data-toggle="tooltips"]').tooltips();
+            $('[data-toggle="tooltips"]').tooltip();
 
             // datagrid
             $('.table--datagrid').datagrid();

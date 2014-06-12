@@ -184,8 +184,8 @@ module.exports = function(grunt) {
             'highcharts-theme'  : '../js/highcharts-theme',
             'highlightjs'       : '../libs/highlightjs/highlight.pack',
             'homepages'         : '../js/homepages',
-            'jquery'            : '../libs/jquery/jquery',
-            'jquery-ui'         : '../libs/jqueryui/ui/minified/jquery-ui.min',
+            'jquery'            : '../libs/jquery/dist/jquery',
+            'jquery-ui'         : '../libs/jqueryui/js/jquery-ui-1.10.4.custom.min',
             'jquery-ui-touch'   : '../libs/jqueryui-touch-punch/jquery.ui.touch-punch.min',
             'jquery-mousewheel' : '../libs/jquery-mousewheel/jquery.mousewheel',
             'modal'             : '../js/modal',
@@ -201,7 +201,7 @@ module.exports = function(grunt) {
             'tooltip'           : '../js/tooltip',
             'tray'              : '../js/tray',
             'vague'             : '../libs/Vague.js/Vague',
-            'zeroclipboard'     : '../libs/zeroclipboard/ZeroClipboard'
+            'zeroclipboard'     : '../libs/zeroclipboard/dist/ZeroClipboard'
           }
         }
       }
