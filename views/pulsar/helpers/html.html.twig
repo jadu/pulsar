@@ -9,7 +9,7 @@
 
   {%- elseif type == 'submit' -%}
 
-    <input type="submit" class="btn{% if class is not empty %} {{ class }}{% endif %}"{% if id is not empty %} id="{{ id }}"{% endif %} value="{{ label|raw }}"{% if attributes is not empty %} {{ attributes|raw }}{% endif %}{% if 'is-disabled' in class %} disabled="disabled"{% endif %} />
+    <button type="submit" class="btn{% if class is not empty %} {{ class }}{% endif %}"{% if id is not empty %} id="{{ id }}"{% endif %} {% if attributes is not empty %} {{ attributes|raw }}{% endif %}{% if 'is-disabled' in class %} disabled="disabled"{% endif %}>{{ label|raw }}</button>
 
   {%- else -%}
 
