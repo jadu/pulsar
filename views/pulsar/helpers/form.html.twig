@@ -36,7 +36,7 @@
                 {{ form.addon(append) }}
             </div>
             {% endif %}
-            {% if help is not empty %} 
+            {% if help is not empty %}
             {{ form.help(help) }}
             {% endif %}
         </div>
@@ -49,7 +49,7 @@
         <label {{ form.for(id) }} class="control__label">{{ label | raw }}</label>
         <div class="controls">
             <input type="text" class="form__control" data-datepicker="true" {{ form.id(id) }} {{ form.name(name) }} {{ form.placeholder(placeholder) }} {{ form.value(value)}}{% if attributes is not empty %} {{ attributes|raw }}{% endif %} />
-            {% if help is not empty %} 
+            {% if help is not empty %}
             {{ form.help(help) }}
             {% endif %}
         </div>
@@ -70,7 +70,7 @@
                 {{ form.addon(append) }}
             </div>
             {% endif %}
-            {% if help is not empty %} 
+            {% if help is not empty %}
             {{ form.help(help) }}
             {% endif %}
         </div>
@@ -85,7 +85,7 @@
         {% endif %}
         <div class="controls">
             <textarea class="form__control" {{ form.id(id) }} {{ form.name(name) }} {{ form.placeholder(placeholder) }}  {% if attributes is not empty %} {{ attributes|raw }}{% endif %}>{{ value }}</textarea>
-            {% if help is not empty %} 
+            {% if help is not empty %}
             {{ form.help(help) }}
             {% endif %}
         </div>
@@ -98,7 +98,7 @@
         <label {{ form.for(id) }} class="control__label">{{ label | raw }}</label>
         <div class="controls">
             <input type="file" {{ form.id(id) }} {{ form.name(name) }} {{ form.placeholder(placeholder) }} />
-            {% if help is not empty %} 
+            {% if help is not empty %}
             {{ form.help(help) }}
             {% endif %}
         </div>
@@ -118,7 +118,7 @@
                 <option {{ form.value(value) }} {% if value == selected %}selected{% endif %}>{{ option }}</option>
             {%- endfor -%}
             </select>
-            {% if help is not empty %} 
+            {% if help is not empty %}
             {{ form.help(help) }}
             {% endif %}
         </div>
@@ -131,7 +131,7 @@
         <label {{ form.for(id) }} class="checkbox__label">{{ label | raw }}</label>
         <div class="controls">
             <input type="checkbox" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }} {% if attributes is not empty %} {{ attributes|raw }}{% endif %} />
-            {% if help is not empty %} 
+            {% if help is not empty %}
             {{ form.help(help) }}
             {% endif %}
         </div>
@@ -146,7 +146,7 @@
                 <input type="checkbox" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }} {% if attributes is not empty %} {{ attributes|raw }}{% endif %} />
                 {{ label | raw }}
             </label>
-            {% if help is not empty %} 
+            {% if help is not empty %}
             {{ form.help(help) }}
             {% endif %}
         </div>
@@ -161,7 +161,7 @@
                 <input type="checkbox" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }} {% if attributes is not empty %} {{ attributes|raw }}{% endif %} />
                 {{ label | raw }}
             </label>
-            {% if help is not empty %} 
+            {% if help is not empty %}
             {{ form.help(help) }}
             {% endif %}
         </div>
@@ -172,7 +172,7 @@
     {% import _self as form %}
     <label {{ form.for(id) }} class="checkbox--inline">
         <input type="checkbox" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }} {% if attributes is not empty %} {{ attributes|raw }}{% endif %} />
-        {% if help is not empty %} 
+        {% if help is not empty %}
         {{ form.help(help) }}
         {% endif %}
         {{ label | raw }}
@@ -185,7 +185,7 @@
         <label {{ form.for(id) }} class="checkbox__label">{{ label | raw }}</label>
         <div class="controls">
             <input type="radio" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }} {% if attributes is not empty %} {{ attributes|raw }}{% endif %} />
-            {% if help is not empty %} 
+            {% if help is not empty %}
             {{ form.help(help) }}
             {% endif %}
         </div>
@@ -200,7 +200,7 @@
                 <input type="radio" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }} {% if attributes is not empty %} {{ attributes|raw }}{% endif %} />
                 {{ label | raw }}
             </label>
-            {% if help is not empty %} 
+            {% if help is not empty %}
             {{ form.help(help) }}
             {% endif %}
         </div>
@@ -215,7 +215,7 @@
                 <input type="radio" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }} {% if attributes is not empty %} {{ attributes|raw }}{% endif %} />
                 {{ label | raw }}
             </label>
-            {% if help is not empty %} 
+            {% if help is not empty %}
             {{ form.help(help) }}
             {% endif %}
         </div>
@@ -226,7 +226,7 @@
     {% import _self as form %}
     <label {{ form.for(id) }} class="radio--inline">
         <input type="radio" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }} {% if attributes is not empty %} {{ attributes|raw }}{% endif %} />
-        {% if help is not empty %} 
+        {% if help is not empty %}
         {{ form.help(help) }}
         {% endif %}
         {{ label | raw }}
@@ -235,14 +235,14 @@
 
 {% macro submit(label = 'Submit', class, type, id, href, attributes) %}
     {% import _self as form %}
-    <input type="submit" class="btn{% if class is not empty %} {{ class }}{% endif %}" {{ form.id(id) }} {{ _self.value(label|raw) }}{% if attributes is not empty %} {{ attributes|raw }}{% endif %}{% if 'is-disabled' in class %} disabled="disabled"{% endif %} />
+    <input type="submit" class="btn{% if class is not empty %} {{ class }}{% endif %}" {{ form.id(id) }} {{ _self.value(label) }}{% if attributes is not empty %} {{ attributes|raw }}{% endif %}{% if 'is-disabled' in class %} disabled="disabled"{% endif %} />
 {% endmacro %}
 
 {% macro checkbox_group(label, checkboxes) %}
     <div class="form__group choice__group">
-    
+
         <label class="checkbox__label">{{ label }}</label>
-    
+
         <div class="controls">
         {%- for checkbox in checkboxes -%}
             {{ checkbox }}
@@ -255,7 +255,7 @@
     <div class="form__group choice__group">
 
         <label class="radio__label">{{ label }}</label>
-        
+
         <div class="controls">
         {%- for radio in radios -%}
             {{ radio }}
@@ -274,7 +274,7 @@
 
 {% macro value(value) %}
     {% if value is not empty %}
-    value="{{ value }}"
+    value="{{ value|raw }}"
     {% endif %}
 {% endmacro %}
 
