@@ -29,8 +29,7 @@ casper.
 
 From the command line/terminal run
 
-* On Windows `casperjs demo/testsuite.js`
-* On Mac OSX `casperjs test demo/testsuite.js`
+* `casperjs test demo/testsuite.js`
 
 ### Download
 
@@ -41,9 +40,9 @@ From the command line/terminal run
 ### Getting started, try the demo
 
 * Mac OSX users should first [install CasperJS 1.1-beta](http://docs.casperjs.org/en/latest/installation.html), easiest with Homebrew.  For convenience I've included CasperJS.bat for Windows users.
-* Download or clone this repo and run `casperjs demo/testsuite.js` (windows) or `casperjs test demo/testsuite.js` (OSX) in command/terminal from the PhantomCSS folder.  PhantomJS is the only binary dependency - this should just work
+* Download or clone this repo and run `casperjs test demo/testsuite.js` in command/terminal from the PhantomCSS folder.  PhantomJS is the only binary dependency - this should just work
 * Find the screenshot folder and have a look at the (baseline) images
-* Run the tests again with `casperjs demo/testsuite.js` (windows) or `casperjs test demo/testsuite.js` (OSX). New screenshots will be created to compare against the baseline images. These new images can be ignored, they will be replaced every test run.
+* Run the tests again with `casperjs test demo/testsuite.js`. New screenshots will be created to compare against the baseline images. These new images can be ignored, they will be replaced every test run.
 * To test failure, add/change some CSS in the file demo/coffeemachine.html e.g. make `.mug` bright green
 * Run the tests again, you should see some reported failures
 * In the failures folder some images should have been created. The images should show bright pink where the screenshot has visually changed
@@ -76,6 +75,8 @@ phantomcss.init({
 	*/
 	onFail: function(test){ console.log(test.filename, test.mismatch); },
 	onPass: function(){ console.log(test.filename); },
+	// called when creating new baseline images
+	onNewImage: function(){ console.log(test.filename); },
 	onTimeout: function(){ console.log(test.filename); },
 	onComplete: function(allTests, noOfFails, noOfErrors){
 		allTests.forEach(function(test){
@@ -166,6 +167,13 @@ phantomcss.screenshot( "#CSS .selector", screenshotName);
 
 // phantomcss.screenshot( "#CSS .selector" );
 // phantomcss.screenshot( "#CSS .selector", delay, hideElements, screenshotName);
+
+// phantomcss.screenshot({
+//   top: 100,
+//   left: 100,
+//   width: 500,
+//   height: 400
+// }, screenshotName);
 ```
 
 ### Compare the images when and how you want
@@ -265,7 +273,7 @@ If your using a version control system like Git to store the baseline screenshot
 
 ### ...You might also be interested in
 
-**[grunt-testflow](https://github.com/Huddle/grunt-testflow)**, A grunt plugin that wraps PhantomCSS and also provides an experimental way of describing and visualising user flows through tests with CasperJS. As well as providing a terse readable structure for UI testing, it also produces intriguing graph visualisations that can be used to present PhantomCSS screenshots and failed diffs.  We're actively using it at Huddle and it's changing the way we think about UI for the better. "Work in progress".
+**[PhantomFlow](https://github.com/Huddle/PhantomFlow)** and **[grunt-phantomflow](https://github.com/Huddle/grunt-testflow)** wrap PhantomCSS and provides an experimental way of describing and visualising user flows through tests with CasperJS. As well as providing a terse readable structure for UI testing, it also produces intriguing graph visualisations that can be used to present PhantomCSS screenshots and failed diffs.  We're actively using it at Huddle and it's changing the way we think about UI for the better.
 
 Also, take a look at [PhantomXHR](http://github.com/Huddle/PhantomXHR) for stubbing and mocking XHR requests. Isolated UI testing IS THE FUTURE!
 
