@@ -1885,6 +1885,8 @@ tr.row--no-results {
     text-align: center; }
   tr.row--no-results a {
     color: #2455c3; }
+  tr.row--no-results:hover a {
+    text-decoration: underline; }
 
 tr.is-selected > td:first-of-type {
   box-shadow: inset 4px 0 0 #2455c3; }

@@ -1931,6 +1931,8 @@ tr.row--no-results {
     text-align: center; }
   tr.row--no-results a {
     color: #2455c3; }
+  tr.row--no-results:hover a {
+    text-decoration: underline; }
 
 tr.is-selected {
   border-left: 4px solid #2455c3 !important; }
