@@ -21,7 +21,7 @@ requirejs.config({
         'highcharts-theme'  : path + '/js/highcharts-theme',
         'highlightjs'       : path + '/libs/highlightjs/highlight.pack',
         'homepages'         : path + '/js/homepages',
-        'jquery'            : path + '/libs/jquery/dist/jquery',
+        'jquery'            : path + '/libs/jquery/dist/jquery.min',
         'jquery-ui'         : path + '/libs/jqueryui/js/jquery-ui-1.10.4.custom.min',
         'jquery-ui-touch'   : path + '/libs/jqueryui-touch-punch/jquery.ui.touch-punch.min',
         'jquery-mousewheel' : path + '/libs/jquery-mousewheel/jquery.mousewheel',
