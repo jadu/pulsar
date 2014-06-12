@@ -12,7 +12,7 @@
     color: $black;
     text-decoration: none;
   }
-  
+
   // Colour links when user hovers over the table
   &:hover tbody a {
     color: $link-color;
@@ -193,6 +193,7 @@ tr.row--success {
         background-color: lighten($btn-success-color, 18%);
       }
     }
+    background-color: lighten($btn-success-color, 23%);
   }
 }
 
@@ -214,6 +215,7 @@ tr.row--danger {
         background-color: lighten($btn-danger-color, 19%);
       }
     }
+    background-color: lighten($btn-danger-color, 24%);
   }
 }
 
@@ -240,6 +242,20 @@ tr.row--warning {
         background-color: lighten($btn-warning-color, 18%);
       }
     }
+  }
+}
+
+tr.row--no-results {
+  background-color: $off-white;
+  td {
+    height: ($line-height-base * 1.8) * 3;
+    text-align: center;
+  }
+  a {
+    color: $link-color;
+  }
+  &:hover a {
+    text-decoration: underline;
   }
 }
 

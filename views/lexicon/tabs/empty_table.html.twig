@@ -1,0 +1,40 @@
+{% import 'pulsar/helpers/html.html.twig' as html %}
+{% import 'pulsar/helpers/form.html.twig' as form %}
+{% import 'pulsar/helpers/flash.html.twig' as flash %}
+{% import 'pulsar/helpers/datagrid.html.twig' as datagrid %}
+
+<h2 class="heading">{{ heading|raw }}</h2>
+
+<div class="tab__inner tab--unpadded">
+  <table class="table--datagrid" id="lexicon_filters">
+    <thead>
+      <tr>
+        {{ datagrid.select_all() }}
+        <th>
+          {{ html.link(label = 'Title') }}
+          {{ html.icon('sort-by-alphabet') }}
+        </th>
+        <th>
+          {{ html.link(label = 'Created') }}
+        </th>
+        <th>
+          {{ html.link(label = 'Modified') }}
+        </th>
+        <th class="centered shrink-to-fit">
+          {{ html.link(label = html.icon('comment-alt')) }}
+        </th>
+        <th>
+          {{ html.link(label = 'Author') }}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="row--no-results">
+        <td colspan="99">
+          <p>There are currently no items to display</p>
+          <a href="#">useful call to action</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

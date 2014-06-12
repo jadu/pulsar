@@ -13,7 +13,8 @@ define(['jquery'], function() {
             'sticky',
             'datagrid',
             'tooltip',
-            'highlightjs'
+            'highlightjs',
+            'jquery-placeholder'
             ], function() {
 
             // tooltips (js/tooltip.js)
@@ -22,14 +23,13 @@ define(['jquery'], function() {
             // actions menu
             $('.actions-menu').actionsMenu();
 
+            // sticky toolbar
+            $('.toolbar').sticky({topSpacing: 0});
 
             // datagrid
             $('.table--datagrid').each(function() {
                 $(this).datagrid();
             });
-
-            // sticky toolbar
-            $('.toolbar').sticky({topSpacing: 0});
 
             // syntax highlighting
             if (!$('html.ie7').size()) { // IE8 and up only
@@ -47,7 +47,10 @@ define(['jquery'], function() {
 
             $('[data-toggle*=button]').on('click', function(e) {
                 $(this).toggleClass('active');
-            })
+            });
+
+            // Add placholder support for browsers that don't support it
+            $('input, textarea').placeholder();
 
         });
 
@@ -188,7 +191,7 @@ define(['jquery'], function() {
                     var label,
                         startLabel = start.format('MMMM D, YYYY'),
                         endLabel = end.format('MMMM D, YYYY');
-                    
+
                     if (startLabel === endLabel) {
                         label = startLabel;
                     } else {
@@ -282,7 +285,7 @@ define(['jquery'], function() {
 
 
         $('[data-popover-content-source]').on('click', function() {
-            $(this).popover({ 
+            $(this).popover({
                 content: $('[data-popover-content=' + $(this).data('popover-content-source') + ']').html() ,
                 html: true,
                 placement: 'bottom'

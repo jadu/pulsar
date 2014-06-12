@@ -26,6 +26,7 @@ requirejs.config({
         'jquery-ui'         : path + '/libs/jqueryui/ui/minified/jquery-ui.min',
         'jquery-ui-touch'   : path + '/libs/jqueryui-touch-punch/jquery.ui.touch-punch.min',
         'jquery-mousewheel' : path + '/libs/jquery-mousewheel/jquery.mousewheel',
+        'jquery-placeholder': path + '/libs/jquery-placeholder/jquery.placeholder',
         'modal'             : path + '/js/modal',
         'moment'            : path + '/libs/moment/moment',
         'navigation'        : path + '/js/navigation',
@@ -56,7 +57,7 @@ requirejs.config({
         }
     }
 });
- 
+
 require([
     'console-js',
     'jquery',
