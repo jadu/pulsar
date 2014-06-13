@@ -1,6 +1,6 @@
 # ZeroClipboard.Core API
 
-This documents details the **ZeroClipboard.Core** API, including various types of properties, methods, and events. **ZeroClipboard.Core** is primarily intended for use in wrapping ZeroClipboard in 3rd party plugins, e.g. [jquery.zeroclipboard](https://github.com/JamesMGreene/jquery.zeroclipboard).
+This documents details the **ZeroClipboard.Core** API, including various types of properties, methods, and events. **ZeroClipboard.Core** is primarily intended for use in wrapping ZeroClipboard in 3rd party plugins, e.g. [jquery.zeroclipboard](https://github.com/zeroclipboard/jquery.zeroclipboard).
 
 
 ## Static
@@ -9,7 +9,7 @@ This documents details the **ZeroClipboard.Core** API, including various types o
 
 #### `ZeroClipboard.version`
 
-_[`String`]_ The version of the ZeroClipboard library being used, e.g. `"v2.0.0"`.
+_[`String`]_ The version of the ZeroClipboard library being used, e.g. `"2.0.0"`.
 
 
 ### Static Methods
@@ -80,18 +80,46 @@ ZeroClipboard.clearData();
 _[`undefined`]_ Clear the pending data of ALL formats for clipboard injection.
 
 
+#### `ZeroClipboard.getData(...)`
+
+```js
+var text = ZeroClipboard.getData("text/plain");
+```
+
+_[`String`]_ Get the pending data of type `format` for clipboard injection.
+
+```js
+var dataObj = ZeroClipboard.getData();
+```
+
+_[`Object`]_ Get a copy of the pending data of ALL formats for clipboard injection.
+
+
+#### `ZeroClipboard.focus(...)`
 #### `ZeroClipboard.activate(...)`
 
 ```js
-ZeroClipboard.activate(document.getElementById("d_clip_button"));
+ZeroClipboard.focus(document.getElementById("d_clip_button"));
 ```
 
-_[`undefined`]_ "Activate" the provided element by moving the Flash SWF object in front of it.
+_[`undefined`]_ Focus/"activate" the provided element by moving the Flash SWF object in front of it. **NOTE:** The preferred method to use is `focus` but the alias `activate` is available for backward compatibility's sake.
 
 
+#### `ZeroClipboard.blur()`
 #### `ZeroClipboard.deactivate()`
 
-_[`undefined`]_ "Deactivate" the currently "activated" element, moving the Flash SWF object off the screen.
+_[`undefined`]_ Blur/"deactivate" the currently focused/"activated" element, moving the Flash SWF object off the screen. **NOTE:** The preferred method to use is `blur` but the alias `deactivate` is available for backward compatibility's sake.
+
+
+#### `ZeroClipboard.activeElement()`
+
+```js
+var el = document.getElementById("d_clip_button");
+ZeroClipboard.focus(el);
+var activeEl = ZeroClipboard.activeElement();  // activeEl === el
+```
+
+_[`HTMLElement` or `null`]_ Return the currently "activated" element that the Flash SWF object is in front of it.
 
 
 #### `ZeroClipboard.state()`
@@ -209,7 +237,7 @@ _[`Object`]_ Retrieves a copy of the map of registered listener functions/object
 #### `"ready"`
 
 The `ready` event is fired when the Flash SWF completes loading and is ready for action.  Please
-note that you need to set most configuration options [with [`ZeroClipboard.config(...)`](#zeroclipboard-config)]
+note that you need to set most configuration options [with [`ZeroClipboard.config(...)`](#zeroclipboardconfig)]
 before `ZeroClipboard.create()` is invoked.
 
 ```js
@@ -519,7 +547,7 @@ var _globalConfig = {
   // how long it takes to load the SWF, you can set this to `null`.
   flashLoadTimeout: 30000,
 
-  // Setting this to `false` would allow users to handle calling `ZeroClipboard.activate(...);`
+  // Setting this to `false` would allow users to handle calling `ZeroClipboard.focus(...);`
   // themselves instead of relying on our per-element `mouseover` handler.
   autoActivate: true,
 
@@ -603,7 +631,7 @@ If you find yourself in this situation (as in [Issue #170](https://github.com/ze
 ## Extending `ZeroClipboard`
 
 For developers who want to wrap ZeroClipboard into a 3rd party plugin
-(e.g. [JamesMGreene/jquery.zeroclipboard](https://github.com/JamesMGreene/jquery.zeroclipboard)), here
+(e.g. [jquery.zeroclipboard](https://github.com/zeroclipboard/jquery.zeroclipboard)), here
 are the important extension points:
 
 

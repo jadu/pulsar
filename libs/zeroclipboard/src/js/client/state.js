@@ -37,10 +37,11 @@ var _elementMeta = {};
  *
  * Entry structure:
  *   _mouseHandlers[element.zcClippingId] = {
- *     mouseover: function(event) {},
- *     mouseout:  function(event) {},
- *     mousedown: function(event) {},
- *     mouseup:   function(event) {}
+ *     mouseover:  function(event) {},
+ *     mouseout:   function(event) {},
+ *     mouseenter: function(event) {},
+ *     mouseleave: function(event) {},
+ *     mousemove:  function(event) {}
  *   };
  */
 var _mouseHandlers = {};
@@ -52,7 +53,7 @@ var _mouseHandlers = {};
 _extend(_globalConfig, {
 
   // Setting this to `false` would allow users to handle calling
-  // `ZeroClipboard.activate(...);` themselves instead of relying on our
+  // `ZeroClipboard.focus(...);` themselves instead of relying on our
   // per-element `mouseover` handler.
   autoActivate: true
 
