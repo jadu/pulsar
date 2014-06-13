@@ -134,10 +134,29 @@ define(['jquery'], function() {
         }
         mobileTables();
 
+        // Responsive actions menu positioning
+        function actionsMenu() {
+            var topHidden = -($('.actions-menu .dropdown__menu').outerHeight() + parseInt($('.actionsbar--left').css('marginTop'))),
+                topRevealed = $('.toolbar').outerHeight() - parseInt($('.actionsbar--left').css('marginTop'));
+
+            $('.actions-menu .dropdown__menu').css({'top': topHidden}).show().parent().removeClass('open');
+
+            $('.actions-menu [data-toggle=dropdown]').on('click touchenter', function() {
+                if (!$(this).parent().hasClass('open')) {
+                    $(this).next('.dropdown__menu').css({'top': topRevealed});
+                }
+                else {
+                    $(this).next('.dropdown__menu').css({'top': topHidden});
+                }
+            });
+        }
+        actionsMenu();
+
         // Do these things whenever the window resizes
         $(window).resize(function() {
             updateStickyFlashMessages();
             mobileToggle();
+            actionsMenu();
 
             $('.tabs__list[data-mobile-togglable]').css({'top': ($('.toolbar').outerHeight() - 3)});
         });
