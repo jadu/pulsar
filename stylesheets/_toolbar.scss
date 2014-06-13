@@ -47,8 +47,9 @@ $brand-height: 24px;
   height: ($toolbar-height * 0.85) + 20px;
   position: relative;
   width: 100%;
-  z-index: $zindex-sticky;
+  z-index: $zindex-nav;
   border-bottom: 3px solid $primary-color;
+
   .search-form {
     margin: 0;
     height: $brand-height + 16;
@@ -58,6 +59,7 @@ $brand-height: 24px;
     max-width: 800px;
     margin-left: $gutter-width;
     position: relative;
+
     .icon-search {
       position: absolute;
       top: 50%;
@@ -100,6 +102,7 @@ $brand-height: 24px;
     max-width: 400px;
     -webkit-transition: all .2s ease-in-out;
     color: #FFF;
+
     &:focus {
       max-width: 800px;
       outline: none;
@@ -129,7 +132,6 @@ $brand-height: 24px;
   float: left;
   height: $brand-height * 0.85;
   margin: 0 $gutter-width;
-  margin-right: $gutter-width * 2;
   overflow: hidden;
   position: relative;
   top: ((($toolbar-height - $brand-height) * 0.85) / 2) + 8;
@@ -143,17 +145,23 @@ $brand-height: 24px;
 }
 
 .toolbar .btn__group {
-  top: (($toolbar-height - $brand-height) * 0.85) / 1.25;
+  top: (($toolbar-height - $brand-height) * 0.75);
 
   .btn {
     background: none;
     border: 0;
     box-shadow: none;
     color: $white;
+    outline: 0;
     text-shadow: none;
 
     .caret {
       display: none;
+    }
+
+    @include respond-max($screen-phone - 1) {
+      padding-left: 10px;
+      padding-right: 10px;
     }
   }
 
@@ -163,7 +171,7 @@ $brand-height: 24px;
   }
 
   @include respond-min($screen-phone) {
-    top: (($toolbar-height - $brand-height) / 2) + 7;
+    top: (($toolbar-height - $brand-height) - 1);
   }
 }
 
@@ -215,7 +223,7 @@ $brand-height: 24px;
   font-size: $font-size-large;
   height: $font-size-large;
   line-height: $font-size-large;
-  margin: (-$font-size-large / 2) $gutter-width 0 ($gutter-width / 2);
+  margin: (-$font-size-large / 2) $gutter-width 0;
   position: relative;
   text-decoration: none;
   top: 50%;
