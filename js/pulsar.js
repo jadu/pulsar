@@ -136,19 +136,24 @@ define(['jquery'], function() {
 
         // Responsive actions menu positioning
         function actionsMenu() {
-            var topHidden = -($('.actions-menu .dropdown__menu').outerHeight() + parseInt($('.actionsbar--left').css('marginTop'))),
-                topRevealed = $('.toolbar').outerHeight() - parseInt($('.actionsbar--left').css('marginTop'));
+            if (window.matchMedia('(max-width: 767px)').matches) {
+                var topHidden = -($('.actions-menu .dropdown__menu').outerHeight() + parseInt($('.actionsbar--left').css('marginTop'))),
+                    topRevealed = $('.toolbar').outerHeight() - parseInt($('.actionsbar--left').css('marginTop'));
 
-            $('.actions-menu .dropdown__menu').css({'top': topHidden}).show().parent().removeClass('open');
+                $('.actions-menu .dropdown__menu').css({'top': topHidden}).show().parent().removeClass('open');
 
-            $('.actions-menu [data-toggle=dropdown]').on('click touchenter', function() {
-                if (!$(this).parent().hasClass('open')) {
-                    $(this).next('.dropdown__menu').css({'top': topRevealed});
-                }
-                else {
-                    $(this).next('.dropdown__menu').css({'top': topHidden});
-                }
-            });
+                $('.actions-menu [data-toggle=dropdown]').on('click touchenter', function() {
+                    if ((!$(this).parent().hasClass('open')) && window.matchMedia('(max-width: 767px)').matches) {
+                        $(this).next('.dropdown__menu').css({'top': topRevealed});
+                    }
+                    else if (window.matchMedia('(max-width: 767px)').matches) {
+                        $(this).next('.dropdown__menu').css({'top': topHidden});
+                    }
+                });
+            }
+            else {
+                $('.actions-menu .dropdown__menu').removeAttr('style');
+            }
         }
         actionsMenu();
 
