@@ -98,7 +98,7 @@ module.exports = function(grunt) {
       }
     },
 
-    asciify: { 
+    asciify: {
       banner:{
         text: '<%= pkg.name %>',
         options: {
@@ -111,12 +111,12 @@ module.exports = function(grunt) {
     copy: {
       dist: {
         src: [
-          'docs/**/', 
-          'docs/**/*.md', 
-          'docs/images/*', 
+          'docs/**/',
+          'docs/**/*.md',
+          'docs/images/*',
           '!docs/**/*.php',
-          'fonts/**/*', 
-          'images/*', 
+          'fonts/**/*',
+          'images/*',
           'js/**/*',
           'libs/**/*'
         ],
@@ -190,7 +190,8 @@ module.exports = function(grunt) {
             'highlightjs'       : '../libs/highlightjs/highlight.pack',
             'homepages'         : '../js/homepages',
             'jquery'            : '../libs/jquery/dist/jquery.min',
-            'jquery-ui'         : '../libs/jqueryui/ui/minified/jquery-ui.min',
+            'jquery-ui'         : '../libs/jqueryui/js/jquery-ui-1.10.4.custom.min',
+
             'jquery-ui-touch'   : '../libs/jqueryui-touch-punch/jquery.ui.touch-punch.min',
             'jquery-mousewheel' : '../libs/jquery-mousewheel/jquery.mousewheel',
             'modal'             : '../js/modal',
@@ -206,7 +207,7 @@ module.exports = function(grunt) {
             'tooltip'           : '../js/tooltip',
             'tray'              : '../js/tray',
             'vague'             : '../libs/Vague.js/Vague',
-            'zeroclipboard'     : '../libs/zeroclipboard/ZeroClipboard'
+            'zeroclipboard'     : '../libs/zeroclipboard/dist/ZeroClipboard'
           }
         }
       }
@@ -226,7 +227,7 @@ module.exports = function(grunt) {
     src : [
       'docs/**/*.md',
       'docs/**/*.php',
-      'css/**/*', 
+      'css/**/*',
       'js/**/*',
       'lexicon/**/*',
       'src/**/*',
@@ -239,10 +240,10 @@ module.exports = function(grunt) {
   grunt.registerTask('default', ['concurrent:dev']);
 
   grunt.registerTask('build', [
-    'asciify', 
-    'phpunit', 
-    // 'leadingIndent:files', 
-    'clean:dist', 
+    'asciify',
+    'phpunit',
+    // 'leadingIndent:files',
+    'clean:dist',
     'sass:dist',
     'copy:dist',
     'copy:readme',
@@ -250,8 +251,8 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('pre-commit', [
-    'asciify', 
-    'phpunit', 
+    'asciify',
+    'phpunit',
     // 'leadingIndent:files',
     'copy:readme'
   ]);

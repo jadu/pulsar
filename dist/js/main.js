@@ -23,7 +23,11 @@ requirejs.config({
         'highlightjs'       : path + '/libs/highlightjs/highlight.pack',
         'homepages'         : path + '/js/homepages',
         'jquery'            : path + '/libs/jquery/dist/jquery.min',
+<<<<<<< HEAD
         'jquery-ui'         : path + '/libs/jqueryui/ui/minified/jquery-ui.min',
+=======
+        'jquery-ui'         : path + '/libs/jqueryui/js/jquery-ui-1.10.4.custom.min',
+>>>>>>> refs/heads/develop
         'jquery-ui-touch'   : path + '/libs/jqueryui-touch-punch/jquery.ui.touch-punch.min',
         'jquery-mousewheel' : path + '/libs/jquery-mousewheel/jquery.mousewheel',
         'jquery-placeholder': path + '/libs/jquery-placeholder/jquery.placeholder',
@@ -39,7 +43,12 @@ requirejs.config({
         'tab'               : path + '/js/tab',
         'tooltip'           : path + '/js/tooltip',
         'tray'              : path + '/js/tray',
+<<<<<<< HEAD
         'vague'             : path + '/libs/Vague.js/Vague'
+=======
+        'vague'             : path + '/libs/Vague.js/Vague',
+        'zeroclipboard'     : path + '/libs/zeroclipboard/dist/ZeroClipboard.min'
+>>>>>>> refs/heads/develop
     },
     shim: {
         'daterange': {
@@ -51,6 +60,9 @@ requirejs.config({
         },
         'highcharts-more': {
             deps: ['jquery', 'highcharts']
+        },
+        'jquery-ui': {
+            deps: ['jquery']
         },
         'pikaday': {
             deps: ['moment']

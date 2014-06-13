@@ -26,6 +26,12 @@ define(['jquery'], function() {
             // sticky toolbar
             $('.toolbar').sticky({topSpacing: 0});
 
+<<<<<<< HEAD
+=======
+            // tooltips (js/tooltip.js)
+            $('[data-toggle="tooltips"]').tooltip();
+
+>>>>>>> refs/heads/develop
             // datagrid
             $('.table--datagrid').each(function() {
                 $(this).datagrid();

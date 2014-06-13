@@ -22,6 +22,11 @@ define(['jquery'], function($) { "use strict";
     this.init('tooltip', element, options)
   }
 
+<<<<<<< HEAD
+=======
+  Tooltip.VERSION  = '3.1.1'
+
+>>>>>>> refs/heads/develop
   Tooltip.DEFAULTS = {
     animation: true,
     placement: 'top',
@@ -96,7 +101,16 @@ define(['jquery'], function($) { "use strict";
 
   Tooltip.prototype.enter = function (obj) {
     var self = obj instanceof this.constructor ?
+<<<<<<< HEAD
       obj : $(obj.currentTarget)[this.type](this.getDelegateOptions()).data('bs.' + this.type)
+=======
+      obj : $(obj.currentTarget).data('bs.' + this.type)
+
+    if (!self) {
+      self = new this.constructor(obj.currentTarget, this.getDelegateOptions())
+      $(obj.currentTarget).data('bs.' + this.type, self)
+    }
+>>>>>>> refs/heads/develop
 
     clearTimeout(self.timeout)
 
@@ -111,7 +125,16 @@ define(['jquery'], function($) { "use strict";
 
   Tooltip.prototype.leave = function (obj) {
     var self = obj instanceof this.constructor ?
+<<<<<<< HEAD
       obj : $(obj.currentTarget)[this.type](this.getDelegateOptions()).data('bs.' + this.type)
+=======
+      obj : $(obj.currentTarget).data('bs.' + this.type)
+
+    if (!self) {
+      self = new this.constructor(obj.currentTarget, this.getDelegateOptions())
+      $(obj.currentTarget).data('bs.' + this.type, self)
+    }
+>>>>>>> refs/heads/develop
 
     clearTimeout(self.timeout)
 
@@ -130,12 +153,22 @@ define(['jquery'], function($) { "use strict";
     if (this.hasContent() && this.enabled) {
       this.$element.trigger(e)
 
+<<<<<<< HEAD
       if (e.isDefaultPrevented()) return
       var that = this;
+=======
+      var inDom = $.contains(document.documentElement, this.$element[0])
+      if (e.isDefaultPrevented() || !inDom) return
+      var that = this
+>>>>>>> refs/heads/develop
 
       var $tip = this.tip()
 
+      var tipId = this.getUID(this.type)
+
       this.setContent()
+      $tip.attr('id', tipId)
+      this.$element.attr('aria-describedby', tipId)
 
       if (this.options.animation) $tip.addClass('fade')
 
@@ -151,6 +184,7 @@ define(['jquery'], function($) { "use strict";
         .detach()
         .css({ top: 0, left: 0, display: 'block' })
         .addClass(placement)
+        .data('bs.' + this.type, this)
 
       this.options.container ? $tip.appendTo(this.options.container) : $tip.insertAfter(this.$element)
 
@@ -179,13 +213,21 @@ define(['jquery'], function($) { "use strict";
       this.applyPlacement(calculatedOffset, placement)
       this.hoverState = null
 
+<<<<<<< HEAD
       var complete = function() {
+=======
+      var complete = function () {
+>>>>>>> refs/heads/develop
         that.$element.trigger('shown.bs.' + that.type)
       }
 
       $.support.transition && this.$tip.hasClass('fade') ?
         $tip
+<<<<<<< HEAD
           .one($.support.transition.end, complete)
+=======
+          .one('bsTransitionEnd', complete)
+>>>>>>> refs/heads/develop
           .emulateTransitionEnd(150) :
         complete()
     }
@@ -229,6 +271,7 @@ define(['jquery'], function($) { "use strict";
     }
 
     var delta = this.getViewportAdjustedDelta(placement, offset, actualWidth, actualHeight)
+<<<<<<< HEAD
 
     if (delta.left) offset.left += delta.left
     else offset.top += delta.top
@@ -237,6 +280,16 @@ define(['jquery'], function($) { "use strict";
     var arrowPosition       = delta.left ? 'left'        : 'top'
     var arrowOffsetPosition = delta.left ? 'offsetWidth' : 'offsetHeight'
 
+=======
+
+    if (delta.left) offset.left += delta.left
+    else offset.top += delta.top
+
+    var arrowDelta          = delta.left ? delta.left * 2 - width + actualWidth : delta.top * 2 - height + actualHeight
+    var arrowPosition       = delta.left ? 'left'        : 'top'
+    var arrowOffsetPosition = delta.left ? 'offsetWidth' : 'offsetHeight'
+
+>>>>>>> refs/heads/develop
     $tip.offset(offset)
     this.replaceArrow(arrowDelta, $tip[0][arrowOffsetPosition], arrowPosition)
   }
@@ -258,6 +311,11 @@ define(['jquery'], function($) { "use strict";
     var $tip = this.tip()
     var e    = $.Event('hide.bs.' + this.type)
 
+<<<<<<< HEAD
+=======
+    this.$element.removeAttr('aria-describedby')
+
+>>>>>>> refs/heads/develop
     function complete() {
       if (that.hoverState != 'in') $tip.detach()
       that.$element.trigger('hidden.bs.' + that.type)
@@ -271,7 +329,7 @@ define(['jquery'], function($) { "use strict";
 
     $.support.transition && this.$tip.hasClass('fade') ?
       $tip
-        .one($.support.transition.end, complete)
+        .one('bsTransitionEnd', complete)
         .emulateTransitionEnd(150) :
       complete()
 
@@ -282,7 +340,7 @@ define(['jquery'], function($) { "use strict";
 
   Tooltip.prototype.fixTitle = function () {
     var $e = this.$element
-    if ($e.attr('title') || typeof($e.attr('data-original-title')) != 'string') {
+    if ($e.attr('title') || typeof ($e.attr('data-original-title')) != 'string') {
       $e.attr('data-original-title', $e.attr('title') || '').attr('title', '')
     }
   }
@@ -299,7 +357,11 @@ define(['jquery'], function($) { "use strict";
       scroll: isBody ? document.documentElement.scrollTop || document.body.scrollTop : $element.scrollTop(),
       width:  isBody ? $(window).width()  : $element.outerWidth(),
       height: isBody ? $(window).height() : $element.outerHeight()
+<<<<<<< HEAD
     }, isBody ? {top: 0, left: 0} : $element.offset())
+=======
+    }, isBody ? { top: 0, left: 0 } : $element.offset())
+>>>>>>> refs/heads/develop
   }
 
   Tooltip.prototype.getCalculatedOffset = function (placement, pos, actualWidth, actualHeight) {
@@ -349,12 +411,27 @@ define(['jquery'], function($) { "use strict";
     return title
   }
 
+<<<<<<< HEAD
   Tooltip.prototype.tip = function () {
     return this.$tip = this.$tip || $(this.options.template)
   }
 
   Tooltip.prototype.arrow = function () {
     return this.$arrow = this.$arrow || this.tip().find('.tooltip-arrow')
+=======
+  Tooltip.prototype.getUID = function (prefix) {
+    do prefix += ~~(Math.random() * 1000000)
+    while (document.getElementById(prefix))
+    return prefix
+  }
+
+  Tooltip.prototype.tip = function () {
+    return (this.$tip = this.$tip || $(this.options.template))
+  }
+
+  Tooltip.prototype.arrow = function () {
+    return (this.$arrow = this.$arrow || this.tip().find('.tooltip-arrow'))
+>>>>>>> refs/heads/develop
   }
 
   Tooltip.prototype.validate = function () {
@@ -378,7 +455,19 @@ define(['jquery'], function($) { "use strict";
   }
 
   Tooltip.prototype.toggle = function (e) {
+<<<<<<< HEAD
     var self = e ? $(e.currentTarget)[this.type](this.getDelegateOptions()).data('bs.' + this.type) : this
+=======
+    var self = this
+    if (e) {
+      self = $(e.currentTarget).data('bs.' + this.type)
+      if (!self) {
+        self = new this.constructor(e.currentTarget, this.getDelegateOptions())
+        $(e.currentTarget).data('bs.' + this.type, self)
+      }
+    }
+
+>>>>>>> refs/heads/develop
     self.tip().hasClass('in') ? self.leave(self) : self.enter(self)
   }
 
@@ -391,9 +480,13 @@ define(['jquery'], function($) { "use strict";
   // TOOLTIP PLUGIN DEFINITION
   // =========================
 
+<<<<<<< HEAD
   var old = $.fn.tooltip
 
   $.fn.tooltip = function (option) {
+=======
+  function Plugin(option) {
+>>>>>>> refs/heads/develop
     return this.each(function () {
       var $this   = $(this)
       var data    = $this.data('bs.tooltip')
@@ -405,6 +498,12 @@ define(['jquery'], function($) { "use strict";
     })
   }
 
+<<<<<<< HEAD
+=======
+  var old = $.fn.tooltip
+
+  $.fn.tooltip             = Plugin
+>>>>>>> refs/heads/develop
   $.fn.tooltip.Constructor = Tooltip
 
 
