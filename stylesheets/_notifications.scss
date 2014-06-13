@@ -1,8 +1,8 @@
 .notifications {
-  margin-right: $gutter-width / 2;
   max-width: 300px;
   position: relative;
   top: 5px;
+  z-index: $zindex-nav + 1;
 
   .btn {
     background: none;
@@ -34,6 +34,9 @@
   }
 
   @include respond-min($screen-phone) {
+    margin-right: $gutter-width / 4;
+  }
+  @include respond-min($screen-tablet) {
     margin-right: $gutter-width;
   }
 }
