@@ -273,7 +273,7 @@ var _destroy = function() {
   ZeroClipboard.clearData();
 
   // Deactivate during self-destruct, even if `_globalConfig.autoActivate` !== `true`
-  ZeroClipboard.deactivate();
+  ZeroClipboard.blur();
 
   // Emit a special [synchronously handled] event so that Clients may listen
   // for it and destroy themselves
@@ -338,10 +338,26 @@ var _clearData = function(format) {
 
 
 /**
- * The underlying implementation of `ZeroClipboard.activate`.
+ * The underlying implementation of `ZeroClipboard.getData`.
  * @private
  */
-var _activate = function(element) {
+var _getData = function(format) {
+  // If no format is passed, get a copy of ALL of the pending data
+  if (typeof format === "undefined") {
+    return _deepCopy(_clipData);
+  }
+  // Otherwise, get only the pending data of the specified format
+  else if (typeof format === "string" && _hasOwn.call(_clipData, format)) {
+    return _clipData[format];
+  }
+};
+
+
+/**
+ * The underlying implementation of `ZeroClipboard.focus`/`ZeroClipboard.activate`.
+ * @private
+ */
+var _focus = function(element) {
   if (!(element && element.nodeType === 1)) {
     return;
   }
@@ -379,10 +395,10 @@ var _activate = function(element) {
 
 
 /**
- * The underlying implementation of `ZeroClipboard.deactivate`.
+ * The underlying implementation of `ZeroClipboard.blur`/`ZeroClipboard.deactivate`.
  * @private
  */
-var _deactivate = function() {
+var _blur = function() {
   // Hide the Flash object off-screen
   var htmlBridge = _getHtmlBridge(_flashState.bridge);
   if (htmlBridge) {
@@ -401,6 +417,14 @@ var _deactivate = function() {
   }
 };
 
+
+/**
+ * The underlying implementation of `ZeroClipboard.activeElement`.
+ * @private
+ */
+var _activeElement = function() {
+  return _currentElement || null;
+};
 
 
 
@@ -538,7 +562,7 @@ var _addMouseData = function(event) {
     delete event._stageX;
     delete event._stageY;
 
-    // Update the appropriate properties of `event` with position data.
+    // Update the appropriate properties of `event`, mostly with position data.
     // Good notes:
     //   http://www.jacklmoore.com/notes/mouse-position/
     _extend(event, {
@@ -724,21 +748,55 @@ var _preprocessEvent = function(event) {
 
     case "_mouseover":
       // Set this as the new currently active element
-      ZeroClipboard.activate(element);
+      ZeroClipboard.focus(element);
       
       if (_globalConfig.bubbleEvents === true && sourceIsSwf) {
-        _fireMouseEvent(_extend({}, event, { type: "mouseover" }));
-        _fireMouseEvent(_extend({}, event, { type: "mouseenter", bubbles: false }));
+        if (
+          element &&
+          element !== event.relatedTarget &&
+          !_containedBy(event.relatedTarget, element)
+        ) {
+          _fireMouseEvent(
+            _extend({}, event, {
+              type: "mouseenter",
+              bubbles: false,
+              cancelable: false
+            })
+          );
+        }
+
+        _fireMouseEvent(
+          _extend({}, event, {
+            type: "mouseover"
+          })
+        );
       }
       break;
 
     case "_mouseout":
       // If the mouse is moving to any other element, deactivate and...
-      ZeroClipboard.deactivate();
+      ZeroClipboard.blur();
 
       if (_globalConfig.bubbleEvents === true && sourceIsSwf) {
-        _fireMouseEvent(_extend({}, event, { type: "mouseout" }));
-        _fireMouseEvent(_extend({}, event, { type: "mouseleave", bubbles: false }));
+        if (
+          element &&
+          element !== event.relatedTarget &&
+          !_containedBy(event.relatedTarget, element)
+        ) {
+          _fireMouseEvent(
+            _extend({}, event, {
+              type: "mouseleave",
+              bubbles: false,
+              cancelable: false
+            })
+          );
+        }
+
+        _fireMouseEvent(
+          _extend({}, event, {
+            type: "mouseout"
+          })
+        );
       }
       break;
 
@@ -785,7 +843,7 @@ var _fireMouseEvent = function(event) {
   }
 
   var e,
-      target = event.target || event.srcElement || null,
+      target = event.target || null,
       doc = (target && target.ownerDocument) || _document,
       defaults = {
         view: doc.defaultView || _window,
@@ -819,12 +877,9 @@ var _fireMouseEvent = function(event) {
     e = doc.createEvent("MouseEvents");
     if (e.initMouseEvent) {
       e.initMouseEvent.apply(e, args);
+      e._source = "js";
       target.dispatchEvent(e);
     }
-  }
-  else if (doc.createEventObject && target.fireEvent) {
-    e = doc.createEventObject(args);
-    target.fireEvent("on" + args.type, e);
   }
 };
 
@@ -1316,7 +1371,6 @@ var _addClass = function(element, value) {
         element.className = setClass.replace(/^\s+|\s+$/g, "");
       }
     }
-
   }
 
   return element;
@@ -1361,28 +1415,6 @@ var _removeClass = function(element, value) {
 
 
 /**
- * Convert standard CSS property names into the equivalent CSS property names
- * for use by oldIE and/or `el.style.{prop}`.
- *
- * NOTE: oldIE has other special cases that are not accounted for here,
- * e.g. "float" -> "styleFloat"
- *
- * @example _camelizeCssPropName("z-index") -> "zIndex"
- *
- * @returns The CSS property name for oldIE and/or `el.style.{prop}`
- * @private
- */
-var _camelizeCssPropName = (function() {
-  var matcherRegex = /\-([a-z])/g,
-      replacerFn = function(match, group) { return group.toUpperCase(); };
-
-  return function(prop) {
-    return prop.replace(matcherRegex, replacerFn);
-  };
-})();
-
-
-/**
  * Attempt to interpret the element's CSS styling. If `prop` is `"cursor"`,
  * then we assume that it should be a hand ("pointer") cursor if the element
  * is an anchor element ("a" tag).
@@ -1391,26 +1423,10 @@ var _camelizeCssPropName = (function() {
  * @private
  */
 var _getStyle = function(el, prop) {
-  var value, camelProp, tagName;
-
-  if (_window.getComputedStyle) {
-    value = _window.getComputedStyle(el, null).getPropertyValue(prop);
-  }
-  else {
-    camelProp = _camelizeCssPropName(prop);
-
-    if (el.currentStyle) {
-      value = el.currentStyle[camelProp];
-    }
-    else {
-      value = el.style[camelProp];
-    }
-  }
-
+  var value = _window.getComputedStyle(el, null).getPropertyValue(prop);
   if (prop === "cursor") {
     if (!value || value === "auto") {
-      tagName = el.tagName.toLowerCase();
-      if (tagName === "a") {
+      if (el.nodeName === "A") {
         return "pointer";
       }
     }
