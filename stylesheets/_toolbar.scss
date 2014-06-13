@@ -185,6 +185,30 @@ $brand-height: 24px;
 
 }
 
+.user-actions {
+  i {
+    display: block;
+    font-size: 18px;
+    margin: -3px 0 -1px;
+    vertical-align: top;
+  }
+  &:not(.open):hover i {
+    color: $gray-lighter;
+  }
+  span {
+    display: none;
+  }
+
+  @include respond-min($screen-phone) {
+    i {
+      display: none;
+    }
+    span {
+      display: inline;
+    }
+  }
+}
+
 .mobile-menu-toggle {
   color: $white;
   float: right;
