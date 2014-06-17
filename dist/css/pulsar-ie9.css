@@ -3,7 +3,9 @@
 @import url('../libs/highlightjs/styles/rainbow.css');
 @import url('../fonts/proxima_nova/stylesheet.css');
 * {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased; }
 
 html, body {
   height: 100%; }
@@ -153,7 +155,7 @@ hr {
   padding-left: 20px;
   text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.7);
   width: 100%;
-  z-index: 1050; }
+  z-index: 1060; }
   .tray .is-open {
     display: block; }
 
@@ -4091,7 +4093,7 @@ textarea.input-lg, textarea.input-sm {
   background-color: #333333;
   height: 44px;
   width: 100%;
-  z-index: 1050; }
+  z-index: 1060; }
 
 .branding {
   color: transparent;
@@ -4613,7 +4615,7 @@ tr.filters [data-filter-action="clear-all"] {
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 1060; }
+  z-index: 1070; }
   .modal.fade .modal__dialog {
     -webkit-transform: translate(0, -25%);
     -moz-transform: translate(0, -25%);
@@ -4632,7 +4634,7 @@ tr.filters [data-filter-action="clear-all"] {
   margin-right: auto;
   width: auto;
   padding: 10px;
-  z-index: 1070; }
+  z-index: 1080; }
 
 .modal__content {
   position: relative;
@@ -4650,7 +4652,7 @@ tr.filters [data-filter-action="clear-all"] {
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 1050;
+  z-index: 1060;
   background-color: #000; }
   .modal__backdrop.fade {
     opacity: 0;
