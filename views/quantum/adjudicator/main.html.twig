@@ -7,6 +7,32 @@
 
 {% set heading = 'AB123C Appellant v Authority' %}
 
+{%
+    set actions_menu = [
+        html.link(label = html.icon('save') ~ ' Save', href = '#save'),
+        html.link(
+          label = html.icon('print') ~ ' Print',
+          href = '#print'
+        ),
+        html.divider(),
+        html.link(
+          label = html.icon('download') ~ ' Download all evidence (.zip)',
+          href = '#download'
+        ),
+        html.link(
+          label = html.icon('envelope-alt') ~ ' Email me all evidence (.zip)',
+          href = '#download'
+        ),
+        html.divider(),
+        html.link(
+          label = html.icon('trash') ~ ' Delete',
+          href = '#delete',
+          class = 'link--danger disabled',
+          attributes = 'data-on-datagrid-item-selected=enable'
+        )
+    ]
+%}
+
 {% set tab_details %}
     {% include 'quantum/portal/case/tabs/details.html.twig' %}
 {% endset %}
@@ -27,7 +53,7 @@
     {% include 'quantum/portal/case/tabs/decision.html.twig' %}
 {% endset %}
 
-{% 
+{%
   set tabs = [
     {
       "id"        : "details",
@@ -83,7 +109,7 @@
       "label"     : html.icon('legal') ~ " Decision",
       "src"       : tab_messages
     }
-    
+
   ]
 %}
 

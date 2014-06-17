@@ -34,6 +34,7 @@ requirejs.config({
         'pikaday'           : path + '/libs/pikaday/pikaday',
         'popover'           : path + '/js/popover',
         'pulsar'            : path + '/js/pulsar',
+        'quantum'           : path + '/js/quantum',
         'sticky'            : path + '/libs/sticky/jquery.sticky',
         'store-js'          : path + '/libs/store.js/store',
         'tab'               : path + '/js/tab',
@@ -75,7 +76,8 @@ require([
     'tab',
     'popover',
     'tooltip',
-    'pulsar'
+    'pulsar',
+    'quantum'
 ], function($) {
     'use strict';
     // $();

@@ -62,8 +62,14 @@
 {%- endmacro -%}
 
 
-{%- macro link(label, href, class, id, title, attributes) -%}
-  <a href="{{ href|default('#') }}"{% if class is not empty %} class="{{ class }}"{% endif %}{% if id is not empty %} id="{{ id }}"{% endif %}{% if title is not empty %} title="{{ title }}"{% endif %}{% if attributes is not empty %} {{ attributes|raw }}{% endif %}>{{ label|default('link')|raw }}</a>
+{%- macro link(label, href, class, id, title, attributes, progress) -%}
+  {% import _self as html %}
+  <a href="{{ href|default('#') }}"{% if class is not empty %} class="{{ class }}"{% endif %}{% if id is not empty %} id="{{ id }}"{% endif %}{% if title is not empty %} title="{{ title }}"{% endif %}{% if attributes is not empty %} {{ attributes|raw }}{% endif %}>
+    {{ label|default('link')|raw }}
+    {% if progress %}
+      {{ html.progress(progress) }}
+    {% endif %}
+  </a>
 {%- endmacro -%}
 
 

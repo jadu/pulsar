@@ -1,0 +1,35 @@
+{% extends '@pulsar/quantum/layouts/base.html.twig' %}
+{% import 'pulsar/helpers/html.html.twig' as html %}
+{% import 'pulsar/helpers/form.html.twig' as form %}
+{% import 'pulsar/helpers/flash.html.twig' as flash %}
+
+{% block content %}
+<br />
+	{%
+	    set example_dropdown = [
+	        html.link(label = html.icon('print') ~ ' Print'),
+	        html.divider(),
+	        html.link(
+	          label = html.icon('download-alt') ~ ' Download evidence bundle (.zip)',
+	          class = 'js-evidence-download has-popover'
+	        ),
+	        html.divider(),
+	        html.link(label = html.icon('trash') ~ ' Delete', href = '#', class = 'link--danger')
+	    ]
+	%}
+	{{
+		html.button_dropdown(
+			label = 'Actions',
+			menu_items = example_dropdown,
+			open = true
+		)
+	}}
+
+	<div id="popover_content_wrapper" style="display: none">
+		<p>The evidence bundle is being created, large bundles may take some time to create.</p>
+		{{ html.button(label = html.icon('bell') ~ ' Notify Me When it‘s Ready') }}
+	</div>
+
+
+
+{% endblock %}
