@@ -2,7 +2,7 @@
 .flash {
   padding: ($line-height-base / 2) 0;
   width: 100%;
-  z-index: $zindex-sticky;
+  z-index: $zindex-flash;
 
   &.is-sticky {
     display: none; // Flashes should be hidden on page load, then animated in so the user sees them.
