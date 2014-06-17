@@ -10,8 +10,9 @@
 	        html.link(label = html.icon('print') ~ ' Print'),
 	        html.divider(),
 	        html.link(
-	          label = html.icon('download-alt') ~ ' Download evidence bundle (.zip)',
-	          class = 'js-evidence-download has-popover'
+	          label = html.icon('download-alt') ~ ' Creating evidence bundle (.zip)',
+	          class = 'js-evidence-download has-popover',
+	          progress = 25
 	        ),
 	        html.divider(),
 	        html.link(label = html.icon('trash') ~ ' Delete', href = '#', class = 'link--danger')
@@ -27,7 +28,7 @@
 
 	<div id="popover_content_wrapper" style="display: none">
 		<p>The evidence bundle is being created, large bundles may take some time to create.</p>
-		{{ html.button(label = html.icon('bell') ~ ' Notify Me When it‘s Ready') }}
+		{{ html.button(label = html.icon('envelope-alt') ~ ' Email Me When it‘s Ready') }}
 	</div>
 
 
