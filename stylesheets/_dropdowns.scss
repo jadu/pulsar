@@ -35,7 +35,7 @@
   font-size: $dropdown-font-size;
   min-width: 160px;
   padding: 5px 0;
-  margin: 2px 0 0; // override default ul
+  margin: 0; // override default ul
   list-style: none;
   background-color: $dropdown-bg;
   border: 1px solid $dropdown-fallback-border; // IE8 fallback
@@ -60,14 +60,14 @@
     background-color: $dropdown-divider-bg;
   }
 
-  > li {
+  li {
     min-width: 160px;
   }
 
   // Links within the dropdown menu
-  > li > a {
+  li > a {
     display: block;
-    padding: 3px 15px 3px 10px;
+    padding: 7px 15px 7px 10px;
     clear: both;
     font-weight: normal;
     line-height: $line-height-base;
@@ -81,18 +81,60 @@
       width: 23px;
     }
   }
-
+  &.inverse {
+    background: rgba($gray-dark,.98);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: none;
+    ul {
+      border-bottom: 3px double rgba($primary-color, .9);
+      list-style: none;
+      background: none;
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      &:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+      li > a {
+        color: #EAEAEA;
+        padding: $line-height-base/2 $gutter-width;
+        &:hover {
+          color: #FFF;
+          background: $primary-color;
+        }
+      }
+      li:last-child > a {
+        border-bottom: none;
+      }
+    }
+    li > a {
+      color: #EAEAEA;
+      padding: $line-height-base/2 $gutter-width;
+    }
+    li:last-child > a {
+      border-bottom: none;
+    }
+  }
 }
 
 // Hover/Focus state
 // -----------
 .dropdown__menu > li > a {
   &:hover,
-  &:focus {
+  &:focus,
+  &.active {
     text-decoration: none;
     background-color: $dropdown-link-hover-bg;
     color: $dropdown-link-hover-color;
   }
+}
+
+.open~li a {
+  text-decoration: none;
+  background-color: $dropdown-link-hover-bg !important;
+  color: $dropdown-link-hover-color;
 }
 
 // Active state
@@ -141,6 +183,14 @@
   // Remove the outline when :focus is triggered
   > a {
     outline: 0;
+  }
+}
+
+// Highlight state for the dropdown
+// ---------------------------
+.is-open {
+  > a {
+    background: rgba($primary-color, .5);
   }
 }
 
@@ -262,5 +312,22 @@
       @extend .badge--inverse;
       background-color: darken($badge-inverse-bg, 20%);
     }
+  }
+}
+
+.dropdown__menu .popover {
+  min-width: 300px;
+}
+
+.dropdown__menu > li > a {
+  > .progress {
+    height: 3px;
+    margin-bottom: 0;
+    .progress-bar {
+      background-color: $primary-color;
+    }
+  }
+  &:hover > .progress .progress-bar {
+    background-color: darken($primary-color, 15%);
   }
 }

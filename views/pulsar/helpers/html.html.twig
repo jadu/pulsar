@@ -9,11 +9,11 @@
 
   {%- elseif type == 'submit' -%}
 
-    <input type="submit" class="btn{% if class is not empty %} {{ class }}{% endif %}"{% if id is not empty %} id="{{ id }}"{% endif %} value="{{ label|raw }}"{% if attributes is not empty %} {{ attributes|raw }}{% endif %}{% if 'is-disabled' in class %} disabled="disabled"{% endif %} />
+    <button type="submit" class="btn{% if class is not empty %} {{ class }}{% endif %}"{% if id is not empty %} id="{{ id }}"{% endif %} {% if attributes is not empty %} {{ attributes|raw }}{% endif %}{% if 'is-disabled' in class %} disabled="disabled"{% endif %}>{{ label|raw }}</button>
 
   {%- else -%}
 
-    <button class="btn{% if class is not empty %} {{ class }}{% endif %}"{% if id is not empty %} id="{{ id }}"{% endif %}{% if attributes is not empty %} {{ attributes|raw }}{% endif %}{% if 'is-disabled' in class %} disabled="disabled"{% endif %}>{{ label|raw }}</button>
+    <button type="button" class="btn{% if class is not empty %} {{ class }}{% endif %}"{% if id is not empty %} id="{{ id }}"{% endif %}{% if attributes is not empty %} {{ attributes|raw }}{% endif %}{% if 'is-disabled' in class %} disabled="disabled"{% endif %}>{{ label|raw }}</button>
 
   {%- endif -%}
 {% endmacro %}
@@ -28,11 +28,11 @@
 {%- endmacro -%}
 
 
-{%- macro button_dropdown(label = 'label', class, id, menu_items, open = false) -%}
+{%- macro button_dropdown(label = 'label', class, id, menu_items, open = false, caret = true) -%}
   {% import _self as html %}
   <div class="btn__group{% if open %} open{% endif %}{% if class %} {{ class }}{% endif %}">
     <button type="button" class="btn dropdown__toggle" {% if id is not empty %} id="{{ id }}"{% endif %} data-toggle="dropdown">
-        {{ label|raw }}{% if menu_items is not empty %} <span class="caret">{% endif %}</span>
+        {{ label|raw }}{% if (caret == true and menu_items is not empty) %} <span class="caret"></span>{% endif %}
     </button>
     {% if menu_items is not empty %}
     <ul class="dropdown__menu">
@@ -45,11 +45,11 @@
 {%- endmacro -%}
 
 
-{%- macro button_dropup(label = 'label', class, id, menu_items) -%}
+{%- macro button_dropup(label = 'label', class, id, menu_items, caret = false) -%}
   {% import _self as html %}
   <div class="btn__group dropup{% if class %} {{ class }}{% endif %}">
     <button type="button" class="btn dropdown__toggle" data-toggle="dropdown">
-        {{ label|raw }}{% if menu_items is not empty %} <span class="caret">{% endif %}</span>
+        {{ label|raw }}{% if (caret == true and menu_items is not empty) %} <span class="caret"></span>{% endif %}
     </button>
     {% if menu_items is not empty %}
     <ul class="dropdown__menu">
@@ -62,12 +62,18 @@
 {%- endmacro -%}
 
 
-{%- macro link(label, href, class, id, title, attributes) -%}
-  <a href="{{ href|default('#') }}"{% if class is not empty %} class="{{ class }}"{% endif %}{% if id is not empty %} id="{{ id }}"{% endif %}{% if title is not empty %} title="{{ title }}"{% endif %}{% if attributes is not empty %} {{ attributes|raw }}{% endif %}>{{ label|default('link')|raw }}</a>
+{%- macro link(label, href, class, id, title, attributes, progress) -%}
+  {% import _self as html %}
+  <a href="{{ href|default('#') }}"{% if class is not empty %} class="{{ class }}"{% endif %}{% if id is not empty %} id="{{ id }}"{% endif %}{% if title is not empty %} title="{{ title }}"{% endif %}{% if attributes is not empty %} {{ attributes|raw }}{% endif %}>
+    {{ label|default('link')|raw }}
+    {% if progress %}
+      {{ html.progress(progress) }}
+    {% endif %}
+  </a>
 {%- endmacro -%}
 
 
-{%- macro tabs(tabs) -%}
+{%- macro tabs(tabs, editable = false) -%}
   {% import _self as html %}
   {% set active_tab_id = get_active_tab(tabs, active_tab) %}
   <ul class="tabs__list">
@@ -76,8 +82,8 @@
       <li{% if (active_tab_id == null and loop.first) or (active_tab_id == tab.id) %} class="is-active"{% endif %}>
 
         {{ html.link(
-          label = tab.label, 
-          href = '#' ~ tab.id, 
+          label = tab.label,
+          href = '#' ~ tab.id,
           attributes = 'data-toggle="tab"') }}
 
         {%- if tab.sub_tabs != null %}
@@ -86,8 +92,8 @@
             {%- for sub_tab in tab.sub_tabs -%}
               <li{% if (active_tab_id == null and loop.parent.loop.first and loop.first) or (active_tab == sub_tab.id) %} class="is-active"{% endif %}>
                 {{ html.link(
-                  label = sub_tab.label, 
-                  href = '#' ~ sub_tab.id, 
+                  label = sub_tab.label,
+                  href = '#' ~ sub_tab.id,
                   attributes = 'data-toggle="tab"') }}
               </li>
             {%- endfor -%}
@@ -97,8 +103,35 @@
 
       </li>
     {%- endfor -%}
+
+    {% if editable == true %}
+    <li class="new hide">
+      <input
+        type="text"
+        value="My New Tab"
+        autofocus
+        data-filter-action="save"
+        data-animation="true"
+        data-toggle="popover"
+        title="Give your tab a nice name"
+        data-content='<button class="btn btn--primary">Save</button> <button class="btn" data-filter-action="dismiss-save-as">Cancel</button>'
+        data-html=true
+      />
+    </li>
+
+      {{
+        html.list_item(
+          html.link(
+            label = 'Add a new tab',
+            href = '#',
+            attributes = 'data-show=#new-tab'
+          )
+        )
+      }}
+  {% endif %}
+
   </ul>
-  
+
 {%- endmacro -%}
 
 
@@ -113,7 +146,7 @@
     {%- endif -%}
 
     {%- for sub_tab in tab.sub_tabs -%}
-        
+
         <div class="tab__pane{% if (active_tab == null and loop.parent.loop.first and loop.first) or (active_tab == sub_tab.id) %} is-active{% endif %}" id="{{ sub_tab.id }}"{% if sub_tab.attr != null %} {{ sub_tab.attr|raw }}{% endif %}>
           {{ sub_tab.src|raw }}
         </div>
@@ -129,7 +162,7 @@
   {% import _self as html %}
   <ul class="{{ class }}">
   {%- for list_item in list_items -%}
-    
+
     {% if loop.index == active_item %}
       {% set class = ' class=is-active' %}
     {% else %}
@@ -137,6 +170,23 @@
     {% endif %}
 
     <li{{ class }}>{{ list_item }}</li>
+  {%- endfor -%}
+  </ul>
+{%- endmacro -%}
+
+
+{%- macro link_list(items, class, active_item) -%}
+  {% import _self as html %}
+  <ul{% if class is not empty %} class="{{ class }}"{% endif %}>
+  {%- for label, href in items -%}
+
+    {% if loop.index == active_item %}
+      {% set class = ' class=is-active' %}
+    {% else %}
+      {% set class = '' %}
+    {% endif %}
+
+    {{ _self.listItem(_self.link(label, href)) }}
   {%- endfor -%}
   </ul>
 {%- endmacro -%}
@@ -168,12 +218,18 @@
 {%- endmacro -%}
 
 
-{%- macro badge(label = 'label', class) -%}
-  <span class="badge{% if class is not empty %} {{ class }}{% endif %}">{{ label }}</span>
+{%- macro badge(label = 'label', class, attributes) -%}
+  <span class="badge{% if class is not empty %} {{ class }}{% endif %}"{% if attributes is not empty %} {{ attributes|raw }}{% endif %}>{{ label }}</span>
 {%- endmacro -%}
 
 {%- macro divider() -%}
   <span class="divider"></span>
+{%- endmacro -%}
+
+{%- macro loading(visible = true) -%}
+  <div class="loading loading--circle{% if visible == false %} hide{% endif %}">
+    <i></i>
+  </div>
 {%- endmacro -%}
 
 {%- macro tooltip(title, placement = 'top') -%}
