@@ -851,7 +851,7 @@ button.close {
     .dropdown__menu.inverse li:last-child > a, .dropdown__menu.inverse li:last-child > .toolbar .dropdown__menu > li > ul.inverse, .toolbar .dropdown__menu > li > .dropdown__menu.inverse li:last-child > ul.inverse, .dropdown__menu.inverse li:last-child > .toolbar .dropdown__menu > li > ul, .toolbar .dropdown__menu > li > .dropdown__menu.inverse li:last-child > ul, .dropdown__menu.inverse li:last-child > ul.subnav-container, .dropdown__menu.inverse li:last-child > .toolbar .dropdown__menu > li > ul.dropdown__menu, .toolbar .dropdown__menu > li > .dropdown__menu.inverse li:last-child > ul.dropdown__menu, .dropdown__menu.inverse li:last-child > .toolbar .dropdown__menu > li > ul, .toolbar .dropdown__menu > li > .dropdown__menu.inverse li:last-child > ul, .dropdown__menu.inverse li:last-child > .subnav-container, .dropdown__menu.inverse li:last-child > .toolbar .dropdown__menu > li > ul, .toolbar .dropdown__menu > li > .dropdown__menu.inverse li:last-child > ul, .dropdown__menu.inverse li:last-child > ul.subnav-container, .dropdown__menu.inverse li:last-child > .inverse.subnav-container, .dropdown__menu.inverse li:last-child > .toolbar .dropdown__menu > li > ul.subnav-container, .toolbar .dropdown__menu > li > .dropdown__menu.inverse li:last-child > ul.subnav-container, .dropdown__menu.inverse li:last-child > .subnav-container, .dropdown__menu.inverse li:last-child > .dropdown__menu.subnav-container, .dropdown__menu.inverse li:last-child > .toolbar .dropdown__menu > li > ul.subnav-container, .toolbar .dropdown__menu > li > .dropdown__menu.inverse li:last-child > ul.subnav-container, .dropdown__menu.inverse li:last-child > .subnav-container {
       border-bottom: none; }
 
-.dropdown__menu > li > a:hover, .dropdown__menu > li > .toolbar .dropdown__menu > li > ul, .toolbar .dropdown__menu > li > .dropdown__menu > li > ul, .dropdown__menu > li > .subnav-container, .dropdown__menu > li > a:focus, .dropdown__menu > li > .toolbar .dropdown__menu > li > ul, .toolbar .dropdown__menu > li > .dropdown__menu > li > ul, .dropdown__menu > li > .subnav-container {
+.dropdown__menu > li > a:hover, .dropdown__menu > li > .toolbar .dropdown__menu > li > ul, .toolbar .dropdown__menu > li > .dropdown__menu > li > ul, .dropdown__menu > li > .subnav-container, .dropdown__menu > li > a:focus, .dropdown__menu > li > .toolbar .dropdown__menu > li > ul, .toolbar .dropdown__menu > li > .dropdown__menu > li > ul, .dropdown__menu > li > .subnav-container, .dropdown__menu > li > a.active, .dropdown__menu > li > .toolbar .dropdown__menu > li > ul, .toolbar .dropdown__menu > li > .dropdown__menu > li > ul, .dropdown__menu > li > .subnav-container {
   text-decoration: none;
   background-color: #73b8b4;
   color: #fff; }
@@ -956,6 +956,15 @@ button.close {
     background-color: #474949; }
   .dropdown__menu > li > a.link--inverse > .badge, .dropdown__menu > li > a.link--inverse > .toolbar .dropdown__menu > li > ul, .toolbar .dropdown__menu > li > .dropdown__menu > li > a.link--inverse > ul, .dropdown__menu > li > a.link--inverse > .subnav-container {
     background-color: #212222; }
+
+.dropdown__menu .popover, .dropdown__menu .toolbar .dropdown__menu > li > ul, .toolbar .dropdown__menu > li > .dropdown__menu ul, .dropdown__menu .subnav-container, .dropdown__menu .daterangepicker {
+  min-width: 300px; }
+
+.dropdown__menu > li > a > .progress, .dropdown__menu > li > a > .toolbar .dropdown__menu > li > ul, .toolbar .dropdown__menu > li > .dropdown__menu > li > a > ul, .dropdown__menu > li > a > .subnav-container {
+  height: 3px;
+  margin-bottom: 0; }
+  .dropdown__menu > li > a > .progress .progress-bar, .dropdown__menu > li > a > .progress .toolbar .dropdown__menu > li > ul, .toolbar .dropdown__menu > li > .dropdown__menu > li > a > .progress ul, .dropdown__menu > li > a > .progress .subnav-container {
+    background-color: #4b948f; }
 
 .navbar {
   background-color: #1e1e1e; }
@@ -3154,6 +3163,14 @@ footer {
 
 .muted, .tabs__list > li > a[data-show="#new-tab"] {
   color: #ccc; }
+
+p.success {
+  background: rgba(0, 153, 51, 0.8);
+  color: #fff;
+  padding: 5px 5px;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.5); }
+  p.success i {
+    margin: 0 4px; }
 
 div.hopscotch-bubble {
   z-index: 1000; }

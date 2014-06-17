@@ -200,6 +200,7 @@ module.exports = function(grunt) {
             'pikaday'           : '../libs/pikaday/pikaday',
             'popover'           : '../js/popover',
             'pulsar'            : '../js/pulsar',
+            'quantum'            : '../js/quantum',
             'sticky'            : '../libs/sticky/jquery.sticky',
             'store-js'          : '../libs/store.js/store',
             'tab'               : '../js/tab',
