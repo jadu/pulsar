@@ -50,7 +50,7 @@
 {%- endmacro -%}
 
 
-{%- macro notifications(items, count = null) -%}
+{%- macro notifications(items, count = null, open = false) -%}
   {% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
   <div class="notifications pull-right {% if open %} open{% endif %}">
     <button type="button" class="btn dropdown__toggle" data-toggle="dropdown">
