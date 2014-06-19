@@ -104,6 +104,13 @@
         {{ html.button(label = 'This Button Has No Form Label', class = 'form__group--floating') }}
 
     {{ form.fieldset_end() }}
+    {{ form.fieldset_start(legend = 'Removable inputs') }}
+
+        {{ form.text(label = 'Removable text input', id = 'inputTextRemovable', name = 'inputTextRemovable', placeholder = 'Placeholder', removable = true) }}
+
+        {{ html.button(label = 'This Button Has No Form Label', class = 'form__group--floating') }}{{ html.remove_button() }}
+
+    {{ form.fieldset_end() }}
     {{ form.fieldset_start(legend = 'Sizes') }}
 
             {{ form.text(label = 'Mini', id = 'inputTextMini', class = 'form__group--mini', name = 'inputTextMini') }}

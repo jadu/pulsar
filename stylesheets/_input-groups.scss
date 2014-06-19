@@ -134,3 +134,44 @@
     }
   }
 }
+
+.remove-button {
+  vertical-align: top;
+  white-space: nowrap;
+
+  [class^="icon-"],
+  [class*=" icon-"] {
+    color: $gray-light;
+    font-size: 1.2em;
+    vertical-align: middle;
+  }
+
+  &:hover {
+    [class^="icon-"],
+    [class*=" icon-"] {
+      color: $black;
+    }
+  }
+
+  + .tooltip {
+    margin-left: -10px;
+  }
+}
+
+
+
+
+.input-group.is-removable {
+  width: 100%;
+
+  .form__control {
+    border-radius: $border-radius;
+    display: inline-block;
+    vertical-align: baseline;
+  }
+
+  .remove-button {
+    line-height: 30px;
+  }
+
+}

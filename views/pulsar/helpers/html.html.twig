@@ -237,3 +237,19 @@
     data-toggle="tooltips" data-placement="{{ placement }}" title="{{ title }}"
   {% endif %}
 {%- endmacro -%}
+
+{%- macro remove_button(target) -%}
+  {% import _self as html %}
+  {{
+    html.button(
+      label = html.icon('remove-sign'),
+      class = 'btn--naked remove-button',
+      attributes = '
+        data-toggle=tooltips
+        data-placement=right
+        title="Remove this item"
+        data-action=remove
+        data-action-target="' ~ target ~ '"'
+    )
+  }}
+{%- endmacro -%}

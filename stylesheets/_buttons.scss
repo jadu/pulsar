@@ -1,9 +1,9 @@
-/** 
+/**
  * -----------------------------------------------------------------------------
  *  _buttons.scss
  * -----------------------------------------------------------------------------
- * 
- * Interface buttons can be links, buttons or submit inputs and can be used 
+ *
+ * Interface buttons can be links, buttons or submit inputs and can be used
  * anywhere in the UI for different needs.
  *
  * Example:
@@ -113,7 +113,7 @@ a.btn {
 .btn {
     $base-color: darken($white, 10%);
     @include button(simple, $base-color);
-    @include active($base-color);    
+    @include active($base-color);
 }
 
 .btn--primary {
@@ -180,7 +180,18 @@ a.btn {
 }
 
 @include ie-lte(7) {
-    a.btn { 
-        line-height: 20px; 
+    a.btn {
+        line-height: 20px;
     }
+}
+
+.btn--naked,
+.btn--naked:hover,
+.btn--naked:active {
+    background: none !important;
+    border: 1px solid white !important;
+    box-shadow: none !important;
+    display: inline-block;
+    line-height: auto;
+    vertical-align: top;
 }
