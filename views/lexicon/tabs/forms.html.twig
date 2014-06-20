@@ -107,7 +107,7 @@
     {{ form.fieldset_start(legend = 'Removable inputs') }}
 
         {{ form.text(label = 'Removable text input', id = 'inputTextRemovable', name = 'inputTextRemovable', placeholder = 'Placeholder', removable = true) }}
-
+        {{ form.file(label = 'Removable File input', id = 'inputFileRemovable', name = 'inputFileRemovable', removable = true) }}
         {{ html.button(label = 'This Button Has No Form Label', class = 'form__group--floating') }}{{ html.remove_button() }}
 
     {{ form.fieldset_end() }}

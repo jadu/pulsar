@@ -104,16 +104,31 @@
     </div>
 {% endmacro %}
 
-{% macro file(label, id, class, name, help) %}
+{% macro file(label, id, class, name, help, removable = false) %}
     {% import _self as form %}
+    {% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
     <div class="form__group {{ class }}">
+
         <label {{ form.for(id) }} class="control__label">{{ label | raw }}</label>
+
         <div class="controls">
-            <input type="file" {{ form.id(id) }} {{ form.name(name) }} {{ form.placeholder(placeholder) }} />
-            {% if help is not empty %}
+
+        {% if removable %}
+            <div class="input-group is-removable">
+        {% endif %}
+
+            <input type="file" class="form__control" {{ form.id(id) }} {{ form.name(name) }} {{ form.placeholder(placeholder) }} />
+        {% if help is not empty %}
             {{ form.help(help) }}
-            {% endif %}
+        {% endif %}
+
+        {% if removable %}
+            {{ html.remove_button(target = id) }}
+            </div>
+        {% endif %}
+
         </div>
+
     </div>
 {% endmacro %}
 

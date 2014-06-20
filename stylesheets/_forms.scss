@@ -59,6 +59,13 @@ input[type="file"] {
   .lt-ie10 & {
     height: $line-height-base * 2; // IE
   }
+
+  // switch off default input styles which don't look nice for file inputs
+  &.form__control {
+    border: none;
+    box-shadow: none;
+    padding: 0;
+  }
 }
 
 // Make multiple select elements height not fixed
