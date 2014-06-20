@@ -3,5 +3,7 @@
 }
 
 .inline {
-  list-style-type: inline;
+  li {
+    display: inline-block;
+  }
 }
