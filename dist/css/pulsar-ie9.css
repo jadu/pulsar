@@ -413,12 +413,12 @@ a.list-group-item.active > .badge, .nav-pills > .active > a > .badge {
 .btn__group[data-toggle="buttons"] > .btn > input[type="radio"], .btn__group[data-toggle="buttons"] > .btn > input[type="checkbox"] {
   display: none; }
 
-/** 
+/**
  * -----------------------------------------------------------------------------
  *  _buttons.scss
  * -----------------------------------------------------------------------------
- * 
- * Interface buttons can be links, buttons or submit inputs and can be used 
+ *
+ * Interface buttons can be links, buttons or submit inputs and can be used
  * anywhere in the UI for different needs.
  *
  * Example:
@@ -741,6 +741,14 @@ a.btn {
   font-size: 14px;
   font-weight: normal;
   padding: 7px 14px; }
+
+.btn--naked, .btn--naked:hover, .btn--naked:active {
+  background: none !important;
+  border: 1px solid white !important;
+  box-shadow: none !important;
+  display: inline-block;
+  line-height: auto;
+  vertical-align: top; }
 
 .close {
   float: right;
@@ -1571,6 +1579,27 @@ textarea.input-lg, textarea.input-sm {
     margin-left: -4px; }
   .input-group-btn > .btn:hover, .input-group-btn > .btn:active {
     z-index: 2; }
+
+.remove-button {
+  vertical-align: top;
+  white-space: nowrap; }
+  .remove-button [class^="icon-"], .remove-button [class*=" icon-"] {
+    color: #999999;
+    font-size: 1.2em;
+    vertical-align: middle; }
+  .remove-button:hover [class^="icon-"], .remove-button:hover [class*=" icon-"] {
+    color: #1e1e1e; }
+  .remove-button + .tooltip {
+    margin-left: -12px !important; }
+
+.input-group.is-removable {
+  width: 100%; }
+  .input-group.is-removable .form__control {
+    border-radius: 4px;
+    display: inline-block;
+    vertical-align: baseline; }
+  .input-group.is-removable .remove-button {
+    line-height: 2em; }
 
 .progress {
   background-color: #eeeeee;

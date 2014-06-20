@@ -153,13 +153,10 @@
     }
   }
 
-  + .tooltip {
-    margin-left: -10px;
+  & + .tooltip {
+    margin-left: -12px !important;
   }
 }
-
-
-
 
 .input-group.is-removable {
   width: 100%;
@@ -171,7 +168,7 @@
   }
 
   .remove-button {
-    line-height: 30px;
+    line-height: 2em;
   }
 
 }
