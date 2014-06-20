@@ -457,6 +457,12 @@ textarea {
   width: 20%;
 }
 
+.form--horizontal .control__label--null {
+  display: none;
+  visibility: hidden;
+  width: 0;
+}
+
 .form--horizontal .checkbox__label,
 .form--horizontal .radio__label {
   margin-bottom: 0;

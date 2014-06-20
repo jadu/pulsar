@@ -51,7 +51,7 @@
     {% import _self as form %}
     {% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
     <div class="form__group {{ class }}">
-        <label {{ form.for(id) }} class="control__label">{{ label | raw }}</label>
+        {{ form.label(for = id, label = label) }}
         <div class="controls">
 
             {% if prepend is not empty or append is not empty %}
