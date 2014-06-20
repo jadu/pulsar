@@ -1179,6 +1179,10 @@ input[type="file"] {
   margin: 9px 0; }
   .lt-ie10 input[type="file"] {
     height: 44px; }
+  input[type="file"].form__control {
+    border: none;
+    box-shadow: none;
+    padding: 0; }
 
 select[multiple], select[size] {
   height: auto; }
@@ -1486,6 +1490,11 @@ textarea.input-lg, textarea.input-sm {
   vertical-align: top;
   width: 20%; }
 
+.form--horizontal .control__label--null {
+  display: none;
+  visibility: hidden;
+  width: 0; }
+
 .form--horizontal .checkbox__label, .form--horizontal .radio__label {
   margin-bottom: 0; }
 
@@ -1522,6 +1531,22 @@ textarea.input-lg, textarea.input-sm {
 
 .form__group--full .controls {
   width: 50%; }
+
+.controls__group .form__group .controls {
+  margin-left: 0;
+  width: 100%; }
+.controls__group .form__group .checkbox, .controls__group .form__group .radio {
+  margin-left: 0; }
+  .controls__group .form__group .checkbox label, .controls__group .form__group .checkbox input, .controls__group .form__group .radio label, .controls__group .form__group .radio input {
+    margin-left: 0;
+    padding-left: 0; }
+.controls__group .form__group:hover {
+  box-shadow: none; }
+
+.form__group--inline .controls__group > .form__group {
+  display: table-cell; }
+  .form__group--inline .controls__group > .form__group:not(:last-of-type) {
+    padding-right: 10px; }
 
 .input-group {
   position: relative;
