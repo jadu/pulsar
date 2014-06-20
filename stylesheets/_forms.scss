@@ -428,11 +428,20 @@ textarea {
 //   }
 // }
 
-.form__group--mini .controls    { width: 5%; }
+// These should probably be a mixin of some sort...
+.form__group--mini   .controls  { width: 5%; }
 .form__group--small  .controls  { width: 10%; }
 .form__group--medium .controls  { width: 20%; }
 .form__group--large  .controls  { width: 40%; }
 .form__group--full   .controls  { width: 50%; }
+
+.controls__group {
+  // .form__group--mini   .controls  { width: 20%; }
+  // .form__group--small  .controls  { width: 50%; }
+  // .form__group--medium .controls  { width: 70%; }
+  // .form__group--large  .controls  { width: 80%; }
+  // .form__group--full   .controls  { width: 100%; }
+}
 
 .controls__group {
 
@@ -455,6 +464,16 @@ textarea {
 
     &:hover {
       box-shadow: none;
+    }
+  }
+}
+
+.form__group--inline {
+  .controls__group > .form__group {
+    display: table-cell;
+
+    &:not(:last-of-type) {
+      padding-right: $gutter-width / 2;
     }
   }
 }
