@@ -40,7 +40,7 @@
         {{ form.label(for = id, label = label) }}
         <div class="controls controls__group">
         {% for control in controls %}
-            {{ control }}
+            {{ control|raw }}
         {% endfor %}
         </div>
         {% if removable %}
