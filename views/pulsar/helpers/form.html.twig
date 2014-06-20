@@ -22,6 +22,31 @@
     </fieldset>
 {% endmacro %}
 
+{%- macro label(for, label = null) -%}
+    {% import _self as form %}
+    <label
+        {{ form.for(for) }}
+        class="control__label{% if label is null%} control__label--null{% endif %}">
+            {% if label is not null %}
+                {{ label | raw }}
+            {% endif %}
+        </label>
+{%- endmacro -%}
+
+{% macro group(label, id, class, help, controls, attributes) %}
+    {% import _self as form %}
+    <div class="form__group {{ class }}">
+        {{ form.label(for = id, label = label) }}
+        <div class="controls controls__group">
+            {% for control in controls %}
+                {{ control }}
+            {% endfor %}
+
+        </div>
+
+    </div>
+{% endmacro %}
+
 {% macro text(label, value, id, class, name, placeholder, help, prepend, append, attributes, removable = false) %}
     {% import _self as form %}
     {% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
