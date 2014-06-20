@@ -6,7 +6,7 @@
 // Normalize non-controls
 //
 // Restyle and baseline non-control form elements.
-// 
+//
 fieldset {
   padding: 0;
   margin: 0;
@@ -385,6 +385,12 @@ textarea {
   width: 20%;
 }
 
+.form--horizontal .control__label--null {
+  display: none;
+  visibility: hidden;
+  width: 0;
+}
+
 .form--horizontal .checkbox__label,
 .form--horizontal .radio__label {
   margin-bottom: 0;
@@ -427,3 +433,28 @@ textarea {
 .form__group--medium .controls  { width: 20%; }
 .form__group--large  .controls  { width: 40%; }
 .form__group--full   .controls  { width: 50%; }
+
+.controls__group {
+
+  .form__group {
+    .controls {
+      margin-left: 0;
+      width: 100%;
+    }
+
+    .checkbox,
+    .radio {
+      margin-left: 0;
+
+      label,
+      input {
+        margin-left: 0;
+        padding-left: 0;
+      }
+    }
+
+    &:hover {
+      box-shadow: none;
+    }
+  }
+}

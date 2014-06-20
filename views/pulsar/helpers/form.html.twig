@@ -22,10 +22,35 @@
     </fieldset>
 {% endmacro %}
 
+{%- macro label(for, label = null) -%}
+    {% import _self as form %}
+    <label
+        {{ form.for(for) }}
+        class="control__label{% if label is null%} control__label--null{% endif %}">
+            {% if label is not null %}
+                {{ label | raw }}
+            {% endif %}
+        </label>
+{%- endmacro -%}
+
+{% macro group(label, id, class, help, controls, attributes) %}
+    {% import _self as form %}
+    <div class="form__group {{ class }}">
+        {{ form.label(for = id, label = label) }}
+        <div class="controls controls__group">
+            {% for control in controls %}
+                {{ control }}
+            {% endfor %}
+
+        </div>
+
+    </div>
+{% endmacro %}
+
 {% macro text(label, value, id, class, name, placeholder, help, prepend, append, attributes) %}
     {% import _self as form %}
     <div class="form__group {{ class }}">
-        <label {{ form.for(id) }} class="control__label">{{ label | raw }}</label>
+        {{ form.label(for = id, label = label) }}
         <div class="controls">
             {% if prepend is not empty or append is not empty %}
             <div class="input-group">
@@ -36,7 +61,7 @@
                 {{ form.addon(append) }}
             </div>
             {% endif %}
-            {% if help is not empty %} 
+            {% if help is not empty %}
             {{ form.help(help) }}
             {% endif %}
         </div>
@@ -57,7 +82,7 @@
                 {{ form.addon(append) }}
             </div>
             {% endif %}
-            {% if help is not empty %} 
+            {% if help is not empty %}
             {{ form.help(help) }}
             {% endif %}
         </div>
@@ -70,7 +95,7 @@
         <label {{ form.for(id) }} class="control__label">{{ label | raw }}</label>
         <div class="controls">
             <input type="text" class="form__control" data-datepicker="true" {{ form.id(id) }} {{ form.name(name) }} {{ form.placeholder(placeholder) }} {{ form.value(value)}}{% if attributes is not empty %} {{ attributes|raw }}{% endif %} />
-            {% if help is not empty %} 
+            {% if help is not empty %}
             {{ form.help(help) }}
             {% endif %}
         </div>
@@ -83,7 +108,7 @@
         <label {{ form.for(id) }} class="control__label">{{ label | raw }}</label>
         <div class="controls">
             <textarea class="form__control" {{ form.id(id) }} {{ form.name(name) }} {{ form.placeholder(placeholder) }} {{ form.rows(rows) }}>{{ value }}</textarea>
-            {% if help is not empty %} 
+            {% if help is not empty %}
             {{ form.help(help) }}
             {% endif %}
         </div>
@@ -96,7 +121,7 @@
         <label {{ form.for(id) }} class="control__label">{{ label | raw }}</label>
         <div class="controls">
             <input type="file" {{ form.id(id) }} {{ form.name(name) }} {{ form.placeholder(placeholder) }}>
-            {% if help is not empty %} 
+            {% if help is not empty %}
             {{ form.help(help) }}
             {% endif %}
         </div>
@@ -115,7 +140,7 @@
                 <option {{ form.value(value) }} {% if value == selected %}selected{% endif %}>{{ option }}</option>
             {%- endfor -%}
             </select>
-            {% if help is not empty %} 
+            {% if help is not empty %}
             {{ form.help(help) }}
             {% endif %}
         </div>
@@ -128,7 +153,7 @@
         <label {{ form.for(id) }} class="checkbox__label">{{ label | raw }}</label>
         <div class="controls">
             <input type="checkbox" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }}>
-            {% if help is not empty %} 
+            {% if help is not empty %}
             {{ form.help(help) }}
             {% endif %}
         </div>
@@ -143,7 +168,7 @@
                 <input type="checkbox" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }}>
                 {{ label | raw }}
             </label>
-            {% if help is not empty %} 
+            {% if help is not empty %}
             {{ form.help(help) }}
             {% endif %}
         </div>
@@ -154,7 +179,7 @@
     {% import _self as form %}
     <label {{ form.for(id) }} class="checkbox--inline">
         <input type="checkbox" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }}>
-        {% if help is not empty %} 
+        {% if help is not empty %}
         {{ form.help(help) }}
         {% endif %}
         {{ label | raw }}
@@ -167,7 +192,7 @@
         <label {{ form.for(id) }} class="checkbox__label">{{ label | raw }}</label>
         <div class="controls">
             <input type="radio" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }}>
-            {% if help is not empty %} 
+            {% if help is not empty %}
             {{ form.help(help) }}
             {% endif %}
         </div>
@@ -182,7 +207,7 @@
                 <input type="radio" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }}>
                 {{ label | raw }}
             </label>
-            {% if help is not empty %} 
+            {% if help is not empty %}
             {{ form.help(help) }}
             {% endif %}
         </div>
@@ -193,7 +218,7 @@
     {% import _self as form %}
     <label {{ form.for(id) }} class="radio--inline">
         <input type="radio" {{ form.id(id) }} {{ form.name(name) }} {{ form.checked(checked) }}>
-        {% if help is not empty %} 
+        {% if help is not empty %}
         {{ form.help(help) }}
         {% endif %}
         {{ label | raw }}

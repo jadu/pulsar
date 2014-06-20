@@ -10,13 +10,13 @@
 
         {{ form.text(label = 'Text input', id = 'inputText', name = 'inputText', placeholder = 'Placeholder') }}
         {{ form.text(label = 'Text input with value', value = "This is my value, neat huh?", id = 'inputText', name = 'inputText', placeholder = 'Placeholder') }}
-        
+
         {{ form.text(label = 'Text input with a longer than expected label which will probably wrap multple lines and push the following input onto the next baseline', name = 'inputTextLong', placeholder = 'Placeholder', help = 'Example block-level help text here.') }}
 
         {{ form.text(label = 'Text input with a longer than expected label but this time we use the form__group--top class to keep the label on a single line', class = 'form__group--top', name = 'inputTextLong', placeholder = 'Placeholder', help = 'Example block-level help text here.') }}
 
         {{ form.text(label = 'The same as above, but this time we also add the .form__group--flush class to keep everything on the left edge', class = 'form__group--top form__group--flush', name = 'inputTextLong', placeholder = 'Placeholder', help = 'Example block-level help text here.') }}
-        
+
         {{ form.date(label = 'Date picker', id = 'inputDatepicker1', name = 'inputDatepicker1') }}
 
         {{ form.password(label = 'Password input', id = 'inputPassword', name = 'inputPassword', placeholder = 'Placeholder') }}
@@ -26,13 +26,28 @@
         {{ form.textarea(label = 'Textarea (4 rows)', id = 'inputTextarea4', name = 'inputTextarea4', placeholder = 'Placeholder', rows = 4) }}
 
     {{ form.fieldset_end() }}
+    {{ form.fieldset_start(legend = 'Input groups') }}
+
+        {{
+            form.group(
+                label = 'Input group',
+                controls = [
+                    form.text(id = 'inputTextGroup1', name = 'inputTextGroup1', placeholder = 'Grouped input 1'),
+                    form.text(id = 'inputTextGroup2', name = 'inputTextGroup2', placeholder = 'Grouped input 2'),
+                    form.checkbox_right(label = 'Grouped input 3', id = 'inputCheckboxGroupedRight', name = 'inputCheckboxInline', checked = true),
+                    html.button(label = 'Grouped input 4')
+                ]
+            )
+        }}
+
+    {{ form.fieldset_end() }}
     {{ form.fieldset_start(legend = 'Selections') }}
 
         {{ form.file(label = 'File input', id = 'inputFile', name = 'inputFile') }}
         {{ form.select(label = 'Select input', options = {value1: 'value one', value2: 'value two'}, id = 'inputSelect', name = 'inputSelect') }}
 
     {{ form.fieldset_end() }}
-    {{ form.fieldset_start(legend = 'Checkboxes &amp; Radios') }}
+    {{ form.fieldset_start(legend = 'Checkboxes & Radios') }}
 
         {{ form.checkbox(label = 'Checkbox with left label', id = 'inputCheckboxLeft', name = 'inputCheckboxLeft', checked = true) }}
         {{ form.radio(label = 'Radio with left label', id = 'inputRadioLeft', name = 'inputRadioLeft', checked = true) }}
@@ -74,9 +89,9 @@
 
     {{ form.fieldset_end() }}
 
-    {{ 
+    {{
         form.form_end([
             form.submit(label = 'Primary Action', class = 'btn--primary')
-        ]) 
+        ])
     }}
 </div>
