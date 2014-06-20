@@ -136,6 +136,7 @@
 }
 
 .remove-button {
+  padding-right: 0;
   vertical-align: top;
   white-space: nowrap;
 
@@ -151,10 +152,6 @@
     [class*=" icon-"] {
       color: $black;
     }
-  }
-
-  & + .tooltip {
-    margin-left: -12px !important;
   }
 }
 

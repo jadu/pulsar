@@ -1603,6 +1603,7 @@ textarea.input-lg, textarea.input-sm {
   margin-left: -5px; }
 
 .remove-button {
+  padding-right: 0;
   vertical-align: top;
   white-space: nowrap; }
   .remove-button [class^="icon-"], .remove-button [class*=" icon-"] {
@@ -1611,8 +1612,6 @@ textarea.input-lg, textarea.input-sm {
     vertical-align: middle; }
   .remove-button:hover [class^="icon-"], .remove-button:hover [class*=" icon-"] {
     color: #1e1e1e; }
-  .remove-button + .tooltip {
-    margin-left: -12px !important; }
 
 .input-group.is-removable {
   width: 100%; }
