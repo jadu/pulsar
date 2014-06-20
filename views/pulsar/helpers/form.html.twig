@@ -33,17 +33,19 @@
         </label>
 {%- endmacro -%}
 
-{% macro group(label, id, class, help, controls, attributes) %}
+{% macro group(label, id, class, help, controls, attributes, removable = false) %}
     {% import _self as form %}
-    <div class="form__group {{ class }}">
+    {% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
+    <div class="form__group {{ class }}{% if removable %} is-removable{% endif %}">
         {{ form.label(for = id, label = label) }}
         <div class="controls controls__group">
-            {% for control in controls %}
-                {{ control }}
-            {% endfor %}
-
+        {% for control in controls %}
+            {{ control }}
+        {% endfor %}
         </div>
-
+        {% if removable %}
+            {{ html.remove_button(target = id) }}
+        {% endif %}
     </div>
 {% endmacro %}
 
