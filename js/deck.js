@@ -18,15 +18,15 @@ require(['jquery', 'jquery-mousewheel', 'vague'], function ($) {
 
       return this.each(function () {
 
-                var deck = $(this),
-                    source = deck.attr('data-deck-source');
+        var deck = $(this),
+          source = deck.attr('data-deck-source');
 
-                if (toggle) {
-                    var params = toggle.attr('data-params');
-                }
+        if (toggle) {
+          var params = toggle.attr('data-params');
+        }
 
-                // Hide any active decks
-                methods.hide.call(this);
+        // Hide any active decks
+        methods.hide.call(this);
 
         /**
         * If the data-deck-source attribute is present slides will be retrieved
@@ -216,13 +216,13 @@ require(['jquery', 'jquery-mousewheel', 'vague'], function ($) {
       var self = $(this),
       target = $(self).attr('href');
 
-        /**
-         * Open any decks that are .active
-         * To prevent issues, we'll only open the first deck that matches
-         */
-        $(document).ready(function() {
-            $('.deck.active').first().deck();
-        });
+      /**
+       * Open any decks that are .active
+       * To prevent issues, we'll only open the first deck that matches
+       */
+      $(document).ready(function() {
+        $('.deck.active').first().deck();
+      });
 
     });
 
