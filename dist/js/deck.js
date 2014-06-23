@@ -19,8 +19,11 @@ require(['jquery', 'jquery-mousewheel', 'vague'], function ($) {
       return this.each(function () {
 
         var deck = $(this),
-        source = deck.attr('data-deck-source'),
-        params = toggle.attr('data-params');
+          source = deck.attr('data-deck-source');
+
+        if (toggle) {
+          var params = toggle.attr('data-params');
+        }
 
         // Hide any active decks
         methods.hide.call(this);
@@ -213,8 +216,13 @@ require(['jquery', 'jquery-mousewheel', 'vague'], function ($) {
       var self = $(this),
       target = $(self).attr('href');
 
-      // Init the target deck of the clicked element.
-      $(target).deck(self);
+      /**
+       * Open any decks that are .active
+       * To prevent issues, we'll only open the first deck that matches
+       */
+      $(document).ready(function() {
+        $('.deck.active').first().deck();
+      });
 
     });
 
