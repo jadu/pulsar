@@ -193,7 +193,7 @@ require(['jquery', 'jquery-mousewheel', 'vague'], function ($) {
         slideClass : '.slide',
         activeClassName : 'active',
         backgroundClassName : 'deck-background',
-        backgroundElements : '.breadcrumb, .actionsbar, .heading, .tabs__list, .summary',
+        backgroundElements : '.breadcrumb, .actionsbar, .heading, .actionsbar + .tabs__list, .summary',
         viewportOffsetElement : '.toolbar'
     };
 
