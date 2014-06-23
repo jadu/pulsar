@@ -56,6 +56,16 @@ module.exports = function(grunt) {
       }
     },
 
+    autoprefixer: {
+      single_file: {
+        options: {
+          browsers: ['last 2 version', 'ie 7', 'ie 8', 'ie 9']
+        },
+        src: 'css/<%= pkg.name %>.css',
+        dest: 'css/<%= pkg.name %>.css'
+      }
+    },
+
     watch: {
       css: {
         files: [
@@ -245,6 +255,7 @@ module.exports = function(grunt) {
     // 'leadingIndent:files',
     'clean:dist',
     'sass:dist',
+    'autoprefixer',
     'copy:dist',
     'copy:readme',
     'requirejs',

@@ -2,16 +2,17 @@
   "name": "pulsar",
   "version": "1.0.16",
   "repository":
-    { 
-      "type": "git", 
+    {
+      "type": "git",
       "url": "git@bitbucket.org:Stanton/pulsar.git"
     },
-  "devDependencies": 
+  "devDependencies":
     {
       "chai": "latest",
       "contextify": "latest",
       "grunt": "latest",
       "grunt-asciify": "latest",
+      "grunt-autoprefixer": "latest",
       "grunt-bg-shell": "latest",
       "grunt-bump": "latest",
       "grunt-concurrent": "latest",
@@ -24,10 +25,10 @@
       "grunt-exec": "latest",
       "grunt-leading-indent": "latest",
       "grunt-mocha": "latest",
-      "grunt-php": "latest", 
+      "grunt-php": "latest",
       "grunt-phpunit": "latest",
       "grunt-requirejs": "latest",
-      "jsdom": "latest", 
+      "jsdom": "latest",
       "mocha": "latest",
       "matchdep": "latest",
       "sinon": "latest"

@@ -511,6 +511,11 @@ textarea {
 .form__group--large  .controls  { width: 40%; }
 .form__group--full   .controls  { width: 50%; }
 
+input.form__group--mini   { width: 20%; }
+input.form__group--small  { width: 35%; }
+input.form__group--medium { width: 49%; }
+input.form__group--large  { width: 75%; }
+input.form__group--full   { width: 100%; }
 
 .controls__group {
 
@@ -538,7 +543,8 @@ textarea {
 }
 
 .form__group--inline {
-  .controls__group > .form__group {
+  .controls__group > .form__group,
+  .controls__group > input {
     display: table-cell;
 
     &:not(:last-of-type) {
