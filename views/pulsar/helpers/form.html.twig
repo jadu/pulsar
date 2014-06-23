@@ -62,7 +62,7 @@
             {% elseif removable %}
             <div class="input-group is-removable">
             {% endif %}
-                {{ form.input_text(id, name, placeholder, value, attributes) }}
+                {{ form.input_text(id = id, name = name, placeholder = placeholder, value = value, attributes = attributes) }}
             {% if prepend is not empty or append is not empty %}
                 {{ form.addon(append) }}
             </div>
@@ -82,7 +82,7 @@
 
 {% macro input_text(id, class, name, placeholder, value, attributes) %}
     {% import _self as form %}
-    <input type="text" class="form__control {{ class }}" {{ form.id(id) }} {{ form.name(name) }} {{ form.placeholder(placeholder) }} {{ form.value(value)}}{% if attributes is not empty %} {{ attributes|raw }}{% endif %} />
+    <input type="text" class="form__control{% if class is not empty %} {{ class }}{% endif %}" {{ form.id(id) }} {{ form.name(name) }} {{ form.placeholder(placeholder) }} {{ form.value(value)}}{% if attributes is not empty %} {{ attributes|raw }}{% endif %} />
 {% endmacro %}
 
 {% macro date(label, value, id, class = 'form__group--medium', name, placeholder = 'dd/mm/yyyy', help, prepend, append, attributes) %}
