@@ -216,14 +216,14 @@ require(['jquery', 'jquery-mousewheel', 'vague'], function ($) {
       var self = $(this),
       target = $(self).attr('href');
 
-      /**
-       * Open any decks that are .active
-       * To prevent issues, we'll only open the first deck that matches
-       */
-      $(document).ready(function() {
-        $('.deck.active').first().deck();
-      });
+    });
 
+    /**
+     * Open any decks that are .active
+     * To prevent issues, we'll only open the first deck that matches
+     */
+    $(document).ready(function() {
+      $('.deck.active').first().deck();
     });
 
   });
