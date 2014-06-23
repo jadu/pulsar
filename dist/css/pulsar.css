@@ -1,7 +1,7 @@
-@import url('../libs/normalize-css/normalize.css');
-@import url('../libs/font-awesome/css/font-awesome.css');
-@import url('../libs/highlightjs/styles/rainbow.css');
-@import url('../fonts/proxima_nova/stylesheet.css');
+@import url(../libs/normalize-css/normalize.css);
+@import url(../libs/font-awesome/css/font-awesome.css);
+@import url(../libs/highlightjs/styles/rainbow.css);
+@import url(../fonts/proxima_nova/stylesheet.css);
 * {
   box-sizing: border-box; }
 
@@ -65,23 +65,23 @@ h1, h2, h3 {
 
 h1 {
   font-size: 44px;
-  line-height: 50px;
-  margin: 0 0 16px 0; }
+  line-height: 49.999999984px;
+  margin: 0 0 15.999999994px 0; }
 
 h2 {
   font-size: 36px;
-  line-height: 56px;
-  margin: 0 0 10px 0; }
+  line-height: 56.000000012px;
+  margin: 0 0 10.00000001px 0; }
 
 h3 {
   font-size: 28px;
-  line-height: 60px;
-  margin: 0 0 6px 0; }
+  line-height: 59.999999994px;
+  margin: 0 0 6.000000006px 0; }
 
 h4 {
   font-size: 20px;
-  line-height: 19px;
-  margin: 0 0 3px 0; }
+  line-height: 19.000000008px;
+  margin: 0 0 2.999999992px 0; }
 
 h5, h6 {
   font-size: 16px;
@@ -136,7 +136,7 @@ code, pre, kbd {
 hr {
   border: 1px solid #ccc;
   border-bottom: 0;
-  margin-bottom: 16px; }
+  margin-bottom: 15.999999994px; }
 
 .columns {
   column-gap: 20px; }
@@ -1143,9 +1143,9 @@ legend {
   width: 95%;
   padding: 0;
   margin-left: 20px;
-  margin-bottom: 15px;
+  margin-bottom: 15.000000004px;
   font-size: 24px;
-  line-height: 28px;
+  line-height: 28.000000006px;
   color: #333333;
   border: 0;
   border-bottom: 1px solid #e5e5e5; }
@@ -1187,7 +1187,7 @@ select optgroup {
 
 input[type="file"]:focus, input[type="radio"]:focus, input[type="checkbox"]:focus {
   outline: thin dotted #333;
-  outline: 5px auto-webkit-focus-ring-color;
+  outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px; }
 
 input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
@@ -1522,6 +1522,21 @@ textarea.input-lg, textarea.input-sm {
 .form__group--full .controls {
   width: 50%; }
 
+input.form__group--mini {
+  width: 20%; }
+
+input.form__group--small {
+  width: 35%; }
+
+input.form__group--medium {
+  width: 49%; }
+
+input.form__group--large {
+  width: 75%; }
+
+input.form__group--full {
+  width: 100%; }
+
 .controls__group .form__group .controls {
   margin-left: 0;
   width: 100%; }
@@ -1533,9 +1548,9 @@ textarea.input-lg, textarea.input-sm {
 .controls__group .form__group:hover {
   box-shadow: none; }
 
-.form__group--inline .controls__group > .form__group {
+.form__group--inline .controls__group > .form__group, .form__group--inline .controls__group > input {
   display: table-cell; }
-  .form__group--inline .controls__group > .form__group:not(:last-of-type) {
+  .form__group--inline .controls__group > .form__group:not(:last-of-type), .form__group--inline .controls__group > input:not(:last-of-type) {
     padding-right: 10px; }
 
 .input-group {
@@ -2171,7 +2186,7 @@ tr.is-selected:hover > td {
   border: 0; }
 
 .pika-table th, .pika-table td {
-  width: 14.28571%;
+  width: 14.2857142857%;
   padding: 0; }
 
 .pika-table th {
@@ -2899,7 +2914,6 @@ footer {
   text-align: center;
   margin: 8px auto 0 auto;
   line-height: 30px; }
-
 
 .daterangepicker table {
   width: 100%;
