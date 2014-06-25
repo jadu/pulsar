@@ -86,6 +86,6 @@ clean:
 	@ rm -rf libs/*
 	@ echo "\n${CHECK} Done"
 
-	@ echo "${HR}\nRemoving GIT hooks...${HR}"
+	@ echo "${HR}\nRemoving Git hooks...${HR}"
 	@ rm -rf .git/hooks/*
 	@ echo "\n${CHECK} Done\n"
