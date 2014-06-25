@@ -1,10 +1,10 @@
 {
   "name": "jqueryui",
-  "_release": "28fb7b9225",
+  "_release": "b56bd27b84",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "28fb7b92253f93cdb80283c2637ee3ea5a97f058"
+    "commit": "b56bd27b848c629718aa00b3589ed001a798349f"
   },
   "_source": "git@gitlab.hq.jadu.net:pulsar/jquery-ui.git",
   "_target": "*",
