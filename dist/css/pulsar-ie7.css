@@ -1531,19 +1531,19 @@ textarea.input-lg, textarea.input-sm {
 .form__group--full .controls {
   width: 50%; }
 
-input.form__group--mini {
+.form__control.form__group--mini {
   width: 20%; }
 
-input.form__group--small {
+.form__control.form__group--small {
   width: 35%; }
 
-input.form__group--medium {
+.form__control.form__group--medium {
   width: 49%; }
 
-input.form__group--large {
+.form__control.form__group--large {
   width: 75%; }
 
-input.form__group--full {
+.form__control.form__group--full {
   width: 100%; }
 
 .controls__group .form__group .controls {
