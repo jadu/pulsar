@@ -10,9 +10,9 @@ Example:
 
     {{ form.submit(label = 'Save') }}
 
-    <input type="submit" class="btn" value="Save" />
+    <button type="submit" class="btn">Save</button>
 
-<input type="submit" class="btn" value="Save" />
+<button type="submit" class="btn">Save</button>
 
 ----
 
