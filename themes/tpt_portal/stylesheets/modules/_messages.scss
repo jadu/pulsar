@@ -89,7 +89,7 @@
     display: inline;
     overflow: hidden;
     float: left;
-    @include nowrap;
+    white-space: nowrap;
   }
 
   .subject {
@@ -141,7 +141,7 @@
   .message-body,
   .file-reference {
     border-top: 1px solid $gray;
-    
+
     &,
     > p {
       margin-top: 1em;
@@ -150,7 +150,7 @@
 
   .file-reference {
     padding-top: 1em;
-    
+
     li {
       display: inline-block;
       list-style-type: none;
@@ -172,7 +172,7 @@
       }
     }
   }
-  
+
   p {
     clear: none;
     margin-left: 0;
@@ -221,7 +221,7 @@
     }
   }
 
-  
+
 }
 
 .history {

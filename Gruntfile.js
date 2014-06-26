@@ -4,7 +4,8 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
 
-    pkg: grunt.file.readJSON('package.json'),
+    pkg:    grunt.file.readJSON('package.json'),
+    pulsar: grunt.file.readJSON('pulsar.json'),
 
     php: {
       dev: {
@@ -29,30 +30,45 @@ module.exports = function(grunt) {
     },
 
     sass: {
-      dev: {
+      pulsar: {
         options: {
           style: 'compressed'
         },
-        files: {
-          'css/<%= pkg.name %>.css': 'stylesheets/pulsar.scss',
-          'css/<%= pkg.name %>-ie7.css': 'stylesheets/pulsar-ie7.scss',
-          'css/<%= pkg.name %>-ie8.css': 'stylesheets/pulsar-ie8.scss',
-          'css/<%= pkg.name %>-ie9.css': 'stylesheets/pulsar-ie9.scss',
-          'css/theme.css': 'views/**/theme.scss'
-        }
+        files: [{
+          expand: true,
+          cwd:    'stylesheets/',
+          src:    '*.scss',
+          dest:   'css/',
+          ext:    '.css',
+          extDot: 'first'
+        }]
+      },
+      theme: {
+        options: {
+          style: 'compressed'
+        },
+        files: [{
+          expand: true,
+          cwd:    'themes/tpt_portal/stylesheets/',
+          src:    '*.scss',
+          dest:   'css/themes/<%= pulsar.theme %>/',
+          ext:    '.css',
+          extDot: 'first'
+        }]
       },
       dist: {
         options: {
           banner: '<%= pkg.banner %>',
           style: 'compressed'
         },
-        files: {
-          'dist/css/<%= pkg.name %>.css': 'stylesheets/pulsar.scss',
-          'dist/css/<%= pkg.name %>-ie7.css': 'stylesheets/pulsar-ie7.scss',
-          'dist/css/<%= pkg.name %>-ie8.css': 'stylesheets/pulsar-ie8.scss',
-          'dist/css/<%= pkg.name %>-ie9.css': 'stylesheets/pulsar-ie9.scss',
-          'dist/css/theme.css': 'views/**/theme.scss'
-        }
+        files: [{
+          expand: true,
+          cwd:    'stylesheets/',
+          src:    '*.scss',
+          dest:   'css/',
+          ext:    '.css',
+          extDot: 'first'
+        }]
       }
     },
 
@@ -268,6 +284,11 @@ module.exports = function(grunt) {
   grunt.registerTask('release', [
     'build',
     'bump'
+  ]);
+
+  grunt.registerTask('sass:dev', [
+    'sass:pulsar',
+    'sass:theme'
   ]);
 
   grunt.registerTask('smoketest', [

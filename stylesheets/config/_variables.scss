@@ -8,7 +8,7 @@ $font-family-monospace: "courier new", monospace;
 @include ie-lte(7) {
     $font-family-light: "Arial", sans-serif;
     $font-family-regular: "Arial", sans-serif;
-    $font-family-semibold: "Arial", sans-serif; 
+    $font-family-semibold: "Arial", sans-serif;
 }
 
 // Typographic grid
@@ -83,6 +83,10 @@ $tooltip-color:                 #fff;
 $tooltip-arrow-width:           5px;
 $tooltip-arrow-color:           $tooltip-bg;
 
+// Toolbar
+$toolbar-height: $line-height-base * 2;
+$brand-height: 24px;
+
 // Popovers
 $popover-bg:                          #fff;
 $popover-max-width:                   276px;
@@ -99,11 +103,12 @@ $popover-arrow-outer-fallback-color:  #999;
 $zindex-tour:                   1000;
 $zindex-dropdown:               1010;
 $zindex-footer:                 1020;
-$zindex-tooltip:                1030;
-$zindex-sticky:                 1040;
-$zindex-nav:                    1050;
-$zindex-popover:                1060;
-$zindex-modal:                  1070;
+$zindex-popover:                1030;
+$zindex-tooltip:                1040;
+$zindex-flash:                  1050;
+$zindex-sticky:                 1060;
+$zindex-nav:                    1070;
+$zindex-modal:                  1080;
 
 // Extra small screen / phone
 $screen-xsmall:                 480px;
