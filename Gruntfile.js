@@ -51,7 +51,7 @@ module.exports = function(grunt) {
           expand: true,
           cwd:    'themes/tpt_portal/stylesheets/',
           src:    '*.scss',
-          dest:   'css/themes/<%= pulsar.theme %>/',
+          dest:   'css/',
           ext:    '.css',
           extDot: 'first'
         }]
