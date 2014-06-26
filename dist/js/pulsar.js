@@ -65,6 +65,9 @@ define(['jquery'], function() {
             // Add placholder support for browsers that don't support it
             $('input, textarea').placeholder();
 
+            // Add placholder support for browsers that don't support it
+            $('input:not([data-datepicker=true]), textarea').placeholder();
+
         });
 
 
