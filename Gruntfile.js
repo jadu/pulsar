@@ -43,19 +43,6 @@ module.exports = function(grunt) {
           extDot: 'first'
         }]
       },
-      theme: {
-        options: {
-          style: 'compressed'
-        },
-        files: [{
-          expand: true,
-          cwd:    'themes/tpt_portal/stylesheets/',
-          src:    '*.scss',
-          dest:   'css/',
-          ext:    '.css',
-          extDot: 'first'
-        }]
-      },
       dist: {
         options: {
           banner: '<%= pkg.banner %>',
@@ -84,7 +71,10 @@ module.exports = function(grunt) {
 
     watch: {
       css: {
-        files: 'stylesheets/**/*.scss',
+        files: [
+          'stylesheets/**/*.scss',
+          'theme/**/*.scss',
+        ],
         tasks: ['sass:dev'],
         options: {
           livereload: true,
@@ -287,8 +277,7 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('sass:dev', [
-    'sass:pulsar',
-    'sass:theme'
+    'sass:pulsar'
   ]);
 
   grunt.registerTask('smoketest', [

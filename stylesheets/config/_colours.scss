@@ -1,125 +1,175 @@
-// Jadu brand colours
+// -----------------------------------------------------------------------------
+//  Branding
+// -----------------------------------------------------------------------------
 
-// Principles
-$jadu-blue: 					#3399cc;
-$jadu-orange: 					#fcb130;
-$jadu-green: 					#89b029;
-$jadu-teal: 					#06a79d;
-$jadu-red: 						#d12918;
-$jadu-yellow: 					#ffcc33;
-$jadu-black: 					#1e1e1e;
+$jadu-blue:                     #3399cc;
+$jadu-orange:                   #fcb130;
+$jadu-green:                    #89b029;
+$jadu-teal:                     #06a79d;
+$jadu-red:                      lighten(#d12918, 15);
+$jadu-yellow:                   #ffcc33;
+$jadu-black:                    #1e1e1e;
+$jadu-copy-gray:                #989699;
 
-$jadu-copy-gray: 				#989699;
+// -----------------------------------------------------------------------------
+//  Colours
+// -----------------------------------------------------------------------------
 
-// Pulsar palette
-$black:         				$jadu-black;
-$blue:          				#2455c3;
-$blue-light:    				lighten(#2455c3, 45%);
-$gray-darker:  					lighten(#000, 13.5%); // #222
-$gray-dark:     				lighten(#000, 20%);   // #333
-$gray:          				#ccc;
-$gray-light:    				lighten(#000, 60%);   // #999
-$gray-lighter:  				lighten(#000, 93.5%); // #eee
-$off-white:     				#fafafa;
-$white:         				#fff;
+$black:                         $jadu-black !default;
+$blue:                          #2455c3 !default;
+$blue-light:                    lighten(#2455c3, 45%) !default;
+$gray-darker:                   lighten(#000, 13.5%) !default;
+$gray-dark:                     lighten(#000, 30%) !default;
+$gray:                          #ccc !default;
+$gray-light:                    lighten(#000, 60%) !default;
+$gray-lighter:                  lighten(#000, 93.5%) !default;
+$green:                         #42ab5f;
+$off-white:                     #fafafa !default;
+$white:                         #fff !default;
 
-// Text & Links
-$text-color:                    $jadu-copy-gray;
-$link-color:                    $blue;
-$link-hover-color:              darken($blue, 20%);
-$inverse-link-color:            $white;
-$inverse-link-hover-color:      darken($white, 10%);
+// -----------------------------------------------------------------------------
+//  Accents
+// -----------------------------------------------------------------------------
 
-// State colours
-$primary-color:                 #73b8b4;
-$success-color:                 lighten(#5cb85c, 10%);
-$warning-color:                 lighten(#eea236, 10%);
-$danger-color:                  lighten(#d43f3a, 10%);
-$info-color:                    lighten(#46b8da, 10%);
-$inverse-color:                 lighten(#3a3c3c, 10%);
+$accent-color:                  $jadu-blue;
 
-// Buttons
-$btn-primary-color:             $primary-color;
-$btn-success-color:             $success-color;
-$btn-warning-color:             $warning-color;
-$btn-danger-color:              $danger-color;
-$btn-info-color:                $info-color;
-$btn-inverse-color:             $inverse-color;
+// -----------------------------------------------------------------------------
+//  Text & Links
+// -----------------------------------------------------------------------------
 
-// Labels
-$label-bg:                      $gray;
-$label-primary-bg:              $primary-color;
-$label-success-bg:              $success-color;
-$label-info-bg:                 $info-color;
-$label-warning-bg:              $warning-color;
-$label-danger-bg:               $danger-color;
-$label-inverse-bg:              $inverse-color;
-$label-color:               		$black;
-$label-color-alt:               #fff;
-$label-link-hover-color:        #fff;
+$text-color:                    $jadu-copy-gray !default;
+$link-color:                    $blue !default;
+$link-hover-color:              darken($blue, 20%) !default;
+$inverse-link-color:            $white !default;
+$inverse-link-hover-color:      darken($white, 10%) !default;
 
-// Progress bars
-$progress-bg: 					$gray-lighter;
+// -----------------------------------------------------------------------------
+//  States
+// -----------------------------------------------------------------------------
 
-// Badges
-$badge-bg:                      $gray;
-$badge-primary-bg:              $primary-color;
-$badge-primary-bg-darker:       darken($badge-primary-bg, 20%);
-$badge-primary-color:           $white;
-$badge-success-bg:              $success-color;
-$badge-success-bg-darker: 		darken($badge-success-bg, 20%);
-$badge-success-color:           $white;
-$badge-info-bg:                 $info-color;
-$badge-info-bg-darker: 			darken($badge-info-bg, 20%);
-$badge-info-color:              $white;
-$badge-warning-bg:              $warning-color;
-$badge-warning-bg-darker: 		darken($badge-warning-bg, 20%);
-$badge-warning-color:           $white;
-$badge-danger-bg:               $danger-color;
-$badge-danger-bg-darker: 		darken($badge-danger-bg, 20%);
-$badge-danger-color:            $white;
-$badge-inverse-bg:              $inverse-color;
-$badge-inverse-bg-darker: 		darken($badge-inverse-bg, 20%);
-$badge-inverse-color:           $white;
-$badge-color:                   inherit;
-$badge-active-bg:               #fff;
-$badge-active-color:            #fff;
-$badge-link-hover-color:        #fff;
+$primary-color:                 $jadu-blue !default;
+$success-color:                 $green !default;
+$warning-color:                 lighten(#eea236, 10%) !default;
+$danger-color:                  $jadu-red !default;
+$info-color:                    lighten($jadu-blue, 15%) !default;
+$inverse-color:                 $gray-dark !default;
 
-// Dropdowns
-$dropdown-bg:                    #fff;
-$dropdown-border:                rgba(0,0,0,.15);
-$dropdown-fallback-border:       #ccc;
-$dropdown-divider-bg:            #e5e5e5;
-$dropdown-link-active-color:     #fff;
-$dropdown-link-active-bg:        $primary-color;
-$dropdown-link-color:            $gray-dark;
-$dropdown-link-hover-color:      #fff;
-$dropdown-link-hover-bg:         $dropdown-link-active-bg;
-$dropdown-caret-color:           #000;
+// -----------------------------------------------------------------------------
+//  Buttons
+// -----------------------------------------------------------------------------
 
-// Tables
-$table-cell-padding:             8px;
-$table-condensed-cell-padding:   5px;
-$table-bg:                       transparent;
-$table-bg-accent:                #f9f9f9;
-$table-bg-hover:                 #f5f5f5;
-$table-bg-active:                $table-bg-hover;
-$table-border-color:             #ccc;
+$btn-primary-color:             $primary-color !default;
+$btn-success-color:             $success-color !default;
+$btn-warning-color:             $warning-color !default;
+$btn-danger-color:              $danger-color !default;
+$btn-info-color:                $info-color !default;
+$btn-inverse-color:             $inverse-color !default;
 
-// Forms
-$state-warning-text:             #c09853;
-$state-warning-bg:               #fcf8e3;
-$state-warning-border:           darken($state-warning-bg, 10%);
+// -----------------------------------------------------------------------------
+//  Labels
+// -----------------------------------------------------------------------------
 
-$state-danger-text:              #b94a48;
-$state-danger-bg:                #f2dede;
-$state-danger-border:            darken($state-danger-bg, 10%);
+$label-bg:                      $gray !default;
+$label-primary-bg:              $primary-color !default;
+$label-success-bg:              $success-color !default;
+$label-info-bg:                 $info-color !default;
+$label-warning-bg:              $warning-color !default;
+$label-danger-bg:               $danger-color !default;
+$label-inverse-bg:              $inverse-color !default;
+$label-color:                   $black !default;
+$label-color-alt:               #fff !default;
+$label-link-hover-color:        #fff !default;
 
-$state-success-text:             #468847;
-$state-success-bg:               #dff0d8;
-$state-success-border:           darken($state-success-bg, 10%);
+// -----------------------------------------------------------------------------
+//  Progress bars
+// -----------------------------------------------------------------------------
 
-$state-info-text:                #3a87ad;
-$state-info-bg:                  #d9edf7;
-$state-info-border:              darken($state-info-bg, 10%);
+$progress-bg:                   $gray-lighter !default;
+
+// -----------------------------------------------------------------------------
+//  Badges
+// -----------------------------------------------------------------------------
+
+$badge-bg:                      $gray !default;
+
+$badge-primary-bg:              $primary-color !default;
+$badge-primary-bg-darker:       darken($badge-primary-bg, 20%) !default;
+$badge-primary-color:           $white !default;
+
+$badge-success-bg:              $success-color !default;
+$badge-success-bg-darker:       darken($badge-success-bg, 20%) !default;
+$badge-success-color:           $white !default;
+
+$badge-info-bg:                 $info-color !default;
+$badge-info-bg-darker:          darken($badge-info-bg, 20%) !default;
+$badge-info-color:              $white !default;
+
+$badge-warning-bg:              $warning-color !default;
+$badge-warning-bg-darker:       darken($badge-warning-bg, 20%) !default;
+$badge-warning-color:           $white !default;
+
+$badge-danger-bg:               $danger-color !default;
+$badge-danger-bg-darker:        darken($badge-danger-bg, 20%) !default;
+$badge-danger-color:            $white !default;
+
+$badge-inverse-bg:              $inverse-color !default;
+$badge-inverse-bg-darker:       darken($badge-inverse-bg, 20%) !default;
+$badge-inverse-color:           $white !default;
+
+$badge-color:                   inherit !default;
+$badge-active-bg:               #fff !default;
+$badge-active-color:            #fff !default;
+$badge-link-hover-color:        #fff !default;
+
+// -----------------------------------------------------------------------------
+//  Dropdowns
+// -----------------------------------------------------------------------------
+
+$dropdown-bg:                    #fff !default;
+$dropdown-border:                rgba(0,0,0,.15) !default;
+$dropdown-fallback-border:       #ccc !default;
+$dropdown-divider-bg:            #e5e5e5 !default;
+$dropdown-link-active-color:     #fff !default;
+$dropdown-link-active-bg:        $primary-color !default;
+$dropdown-link-color:            $gray-dark !default;
+$dropdown-link-hover-color:      #fff !default;
+$dropdown-link-hover-bg:         $dropdown-link-active-bg !default;
+$dropdown-caret-color:           #000 !default;
+
+// -----------------------------------------------------------------------------
+//  Tables
+// -----------------------------------------------------------------------------
+
+$table-bg:                       transparent !default;
+$table-bg-accent:                #f9f9f9 !default;
+$table-bg-hover:                 #f5f5f5 !default;
+$table-bg-active:                $table-bg-hover !default;
+$table-border-color:             #ccc !default;
+
+// -----------------------------------------------------------------------------
+//  Toolbar
+// -----------------------------------------------------------------------------
+
+$toolbar-bg:                     $gray-dark !default;
+$toolbar-search-accent:          $primary-color !default;
+$toolbar-link-color:             $white !default;
+
+// -----------------------------------------------------------------------------
+//  Forms
+// -----------------------------------------------------------------------------
+
+$state-warning-text:             #c09853 !default;
+$state-warning-bg:               #fcf8e3 !default;
+$state-warning-border:           darken($state-warning-bg, 10%) !default;
+
+$state-danger-text:              #b94a48 !default;
+$state-danger-bg:                #f2dede !default;
+$state-danger-border:            darken($state-danger-bg, 10%) !default;
+
+$state-success-text:             #468847 !default;
+$state-success-bg:               #dff0d8 !default;
+$state-success-border:           darken($state-success-bg, 10%) !default;
+
+$state-info-text:                #3a87ad !default;
+$state-info-bg:                  #d9edf7 !default;
+$state-info-border:              darken($state-info-bg, 10%) !default;

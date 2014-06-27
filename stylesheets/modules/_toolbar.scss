@@ -17,12 +17,15 @@
 }
 
 .toolbar {
-  background-color: $gray-dark;
-  height: $toolbar-height + 20px;
+  background-color: $toolbar-bg;
+  float: left;
+  height: $toolbar-height;
+  padding: $toolbar-y-padding $toolbar-x-padding;
   position: relative;
   width: 100%;
   z-index: $zindex-sticky;
-  border-bottom: 3px solid $primary-color;
+  border-bottom: 3px solid $accent-color;
+
   .search-form {
     margin: 0;
     height: $brand-height + 16;
@@ -32,6 +35,7 @@
     max-width: 800px;
     margin-left: $gutter-width;
     position: relative;
+
     .icon-search {
       position: absolute;
       top: 50%;
@@ -40,8 +44,9 @@
       width: 14px;
       height: 14px;
       font-size: 14px;
-      color: lighten($primary-color,10);
+      color: lighten($toolbar-search-accent, 10);
     }
+
     .icon-spinner {
       position: absolute;
       top: 50%;
@@ -57,19 +62,22 @@
       animation-timing-function: linear;
       -webkit-animation-timing-function: linear;
     }
+
     :focus ~ .icon-search {
-      color: $primary-color;
+      color: $toolbar-search-accent;
     }
     :focus ~ .icon-spinner {
       display: block;
     }
+
   }
+
   .search-field {
     background: lighten($gray-dark,5);
     height: $brand-height;
     padding: 20px 20px 20px 40px;
     border: none;
-    border-bottom: 2px solid $primary-color;
+    border-bottom: 2px solid $toolbar-search-accent;
     width: 100%;
     max-width: 400px;
     -webkit-transition: all .2s ease-in-out;
@@ -77,38 +85,39 @@
     &:focus {
       max-width: 800px;
       outline: none;
-      background: lighten($gray-dark,11);
+      background: lighten($toolbar-bg, 11);
     }
   }
+
   .notifications {
-    top: (($toolbar-height - $brand-height) / 2) + 3;
+    top: $toolbar-element-offset - 3;
   }
+
 }
 
 .branding {
   @include hide-text;
-
   background-repeat: no-repeat;
-  background-image: url('../images/jaduIdent.png');
+  background-image: url($brand-image);
+  background-size: $brand-background-size;
   display: block;
   float: left;
   height: $brand-height;
-  margin: 0 $gutter-width;
   margin-right: $gutter-width * 2;
   overflow: hidden;
   position: relative;
-  top: (($toolbar-height - $brand-height) / 2) + 10;
-  width: 75px;
+  top: $brand-top;
+  width: $brand-width;
 }
 
 .toolbar .btn__group {
-  top: (($toolbar-height - $brand-height) / 2) + 6;
+  top: $toolbar-element-offset;
 
   .btn {
     background: none;
     border: 0;
     box-shadow: none;
-    color: $white;
+    color: $toolbar-link-color;
     text-shadow: none;
 
     .caret {
@@ -128,7 +137,7 @@
     > li > ul {
       @extend .dropdown__menu;
       @extend .inverse;
-      background: rgba($gray-dark,.95);
+      background: rgba($toolbar-bg, .95);
       left: $nav-min-width + 10px;
       top: 0;
     }

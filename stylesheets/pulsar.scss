@@ -10,6 +10,9 @@
 @import 'config/colours';
 @import 'config/variables';
 
+// Theme
+//@import '../theme/stylesheets/theme.scss';
+
 // Structure
 @import 'structure/scaffolding';
 @import 'structure/type';
@@ -27,7 +30,6 @@
 @import 'components/lists';
 @import 'components/loading';
 @import 'components/navbars';
-@import 'components/navs';
 @import 'components/nav-items';
 @import 'components/tables';
 @import 'components/icons';
@@ -68,3 +70,5 @@
 @import 'overrides/tour';
 @import 'overrides/shame';
 @import 'overrides/examples';
+
+
