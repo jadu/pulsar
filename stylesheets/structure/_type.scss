@@ -24,9 +24,15 @@ h1 {
 }
 
 h2 {
-  font-size: $font-size-base * 2.25;                // 36px
-  line-height: $line-height-base * 2.545454546;     // 56px
-  margin: 0 0 ($line-height-base * 0.454545455) 0;  // 10px
+  font-size: $font-size-small * 2.25;                                    // 27px
+  line-height: ($line-height-base / $line-height-small) * 2.11363636;    // 31px
+  margin: (($line-height-base / $line-height-small) * 2.11363636) 0 (($line-height-base / $line-height-small) * 1.09090909) 0; // 31px 0 16px 0
+
+  @include respond-min($screen-phone) {
+    font-size: $font-size-base * 2.25;                // 36px
+    line-height: $line-height-base * 2.545454546;     // 56px
+    margin: 0 0 ($line-height-base * 0.454545455) 0;  // 10px
+  }
 }
 
 h3 {
@@ -48,7 +54,11 @@ h5, h6 {
 }
 
 p {
-  margin: 0 0 $line-height-base 0;
+  margin: 0 0 ($line-height-base / $line-height-small) 0;
+
+  @include respond-min($screen-phone) {
+    margin-bottom: $line-height-base;
+  }
 }
 
 // Lists

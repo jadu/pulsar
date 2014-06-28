@@ -21,6 +21,8 @@
   float: left;
   height: $toolbar-height;
   padding: $toolbar-y-padding $toolbar-x-padding;
+  background-color: $gray-dark;
+  height: ($toolbar-height * 0.85) + 20px;
   position: relative;
   width: 100%;
   z-index: $zindex-sticky;
@@ -90,9 +92,16 @@
   }
 
   .notifications {
-    top: $toolbar-element-offset - 3;
+    top: (($toolbar-height - $brand-height) / 2) + 2;
+
+    @include respond-min($screen-phone) {
+      top: (($toolbar-height - $brand-height) / 2) + 3;
+    }
   }
 
+  @include respond-min($screen-phone) {
+    height: $toolbar-height + 20px;
+  }
 }
 
 .branding {
@@ -102,16 +111,23 @@
   background-size: $brand-background-size;
   display: block;
   float: left;
-  height: $brand-height;
+  height: $brand-height * 0.85;
+  margin: 0 $gutter-width;
   margin-right: $gutter-width * 2;
   overflow: hidden;
   position: relative;
-  top: $brand-top;
-  width: $brand-width;
+  top: ((($toolbar-height - $brand-height) * 0.85) / 2) + 8;
+  width: 75px * 0.85;
+
+  @include respond-min($screen-phone) {
+    height: $brand-height;
+    top: (($toolbar-height - $brand-height) / 2) + 10;
+    width: 75px;
+  }
 }
 
 .toolbar .btn__group {
-  top: $toolbar-element-offset;
+  top: (($toolbar-height - $brand-height) * 0.85) / 1.25;
 
   .btn {
     background: none;
@@ -125,6 +141,14 @@
     }
   }
 
+  &.open .btn {
+    background-color: $white;
+    color: $black;
+  }
+
+  @include respond-min($screen-phone) {
+    top: (($toolbar-height - $brand-height) / 2) + 7;
+  }
 }
 
 .toolbar {
@@ -143,4 +167,33 @@
     }
   }
 
+}
+
+.mobile-menu-toggle {
+  color: $white;
+  float: right;
+  font-size: $font-size-large;
+  height: $font-size-large;
+  line-height: $font-size-large;
+  margin: (-$font-size-large / 2) $gutter-width 0 ($gutter-width / 2);
+  position: relative;
+  text-decoration: none;
+  top: 50%;
+  vertical-align: top;
+
+  i {
+    vertical-align: top;
+  }
+
+  &:hover {
+    color: $gray-lighter;
+  }
+
+  &.toggled {
+    color: $primary-color;
+  }
+
+  @include respond-min($screen-tablet) {
+    display: none;
+  }
 }

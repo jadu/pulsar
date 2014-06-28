@@ -1,13 +1,42 @@
 .tabs__list {
   clear: left;
+  display: none;
   float: left;
   list-style: none;
   margin: 0;
   padding: 0;
   width: $tab-column-width;
 
+  &[data-mobile-togglable] {
+    background-color: $gray-dark;
+    border-left: 3px solid $primary-color;
+    height: 100%;
+    margin-right: -$tab-column-width;
+    overflow-y: auto;
+    position: fixed;
+    right: 0;
+    top: 0;
+    -webkit-transition: margin-right .15s ease-out;
+    -moz-transition: margin-right .15s ease-out;
+    -transition: margin-right .15s ease-out;
+    z-index: $zindex-nav;
+
+    &.toggled {
+      margin-right: 0;
+    }
+  }
+
+  @include respond-min($screen-tablet) {
+    display: block;
+  }
+
   > li {
     margin-bottom: -1px;
+  }
+
+  &[data-mobile-togglable] > li, 
+  &[data-mobile-togglable] > li > .tabs__list > li {
+    margin-bottom: 0;
   }
 
   > li > a {
@@ -31,10 +60,12 @@
     }
 
     > i {
+      display: inline-block;
       font-size: 14px;
       opacity: .6;
-      text-align: right;
+      text-align: center;
       margin-right: 3px;
+      width: 14px;
       @include ie-lte(7) {
         margin-right: 6px;
       }
@@ -46,6 +77,16 @@
       > i {
         opacity: 1;
       }
+    }
+  }
+
+  &[data-mobile-togglable] > li > a {
+    color: $gray-light;
+    border: 0 none;
+
+    &:hover {
+      color: $white;
+      background-color: $gray-dark;
     }
   }
 
@@ -62,7 +103,19 @@
     &:hover {
       background-color: $gray-lighter;
     }
-  } 
+  }
+
+  &[data-mobile-togglable] > li.is-active > a {
+    background-color: $gray-dark;
+    border: 0 none;
+    border-bottom: 1px solid lighten($gray-dark, 5);
+    box-shadow: none;
+    color: $white;
+
+    i {
+      opacity: 1;
+    }
+  }
 }
 
 // horizontal navigation
@@ -102,18 +155,44 @@
 // nested navigation
 .tabs__list > li > .tabs__list {
   background-color: $white;
-  border-left: 1px solid $gray;
   border-bottom: 1px solid $gray;
+  border-left: 1px solid $gray;
+  box-shadow: 1px 0 0 $gray;
   padding-bottom: 1px;
   display: none;
   float: none;
+  width: 100%;
 
   > li.is-active > a {
     background-color: $gray-lighter;
-    border: 0;
+    border-color: transparent;
     box-shadow: none;
     &:hover {
       background-color: $gray-lighter;
+    }
+  }
+}
+.tabs__list[data-mobile-togglable] > li > .tabs__list {
+  background-color: $black;
+  border: 0 none;
+  padding: 0;
+
+  > li > a {
+    border: 0 none;
+    color: $gray-light;
+
+    &:hover {
+      background-color: transparent;
+      color: $white;
+    }
+  }
+
+  > li.is-active > a {
+    background-color: $primary-color;
+    color: $black;
+
+    i {
+      opacity: 1;
     }
   }
 }
@@ -143,26 +222,50 @@
 
 .tab__inner {
   background-color: $white;
-  border: 1px solid $gray;
+  border-top: 1px solid $gray;
+  border-bottom: 1px solid $gray;
   box-shadow: -3px 1px 3px rgba(0, 0, 0, 0.05);
   float: left;
   width: 100%;
+
+  h2:first-of-type {
+    margin-top: 0;
+  }
+
+  @include respond-min($screen-phone) {
+    border: 1px solid $gray;
+  }
 }
 
 .tab__main {
-  border-right: 1px solid $gray;
   overflow: hidden;
-  padding-right: $gutter-width;
+  width: 100%;
+
+  @include respond-min($screen-desktop) {
+    border-right: 1px solid $gray;
+    padding-right: $gutter-width;
+    width: auto;
+  }
 }
 
 .tab__sidebar {
-  border-left: 1px solid $gray;
-  float: right;
-  left: -1px; // match left border with that of .tab__main
-  padding: $line-height-base 0 $line-height-base $gutter-width;
+  border-bottom: 1px solid $gray;
+  float: left;
+  padding: 0;
+  margin-bottom: $line-height-base;
   position: relative;
   vertical-align: top;
-  width: 25%;
+  width: 100%;
+
+  @include respond-min($screen-desktop) {
+    border-bottom: 0 none;
+    border-left: 1px solid $gray;
+    float: right;
+    left: -1px; // match left border with that of .tab__main
+    margin-bottom: 0;
+    padding: $line-height-base 0 $line-height-base $gutter-width;
+    width: 25%;
+  }
 }
 
 .tab--unpadded p {

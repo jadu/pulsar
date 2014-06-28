@@ -173,6 +173,7 @@ a.btn {
 .btn {
     font-size: 14px;
     font-weight: normal;
+    margin-bottom: $padding-base-vertical;
     padding: 7px 14px;
     @include ie-lte(7) {
         padding: 7px;

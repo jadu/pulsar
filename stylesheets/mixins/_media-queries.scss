@@ -14,14 +14,16 @@
             @content;
         }
     }
-}/* 
+}
 @mixin respond-max($width) {
-    @media screen and (max-width: $width) {
-        @content;
+    @if $is-ie == false {
+        @media screen and (max-width: $width) {
+            @content;
+        }
     }
 }
-@mixin respond-min-and-max($min-width, $max-width) {
-    @media screen and (min-width: $min-width) and (max-width: $max-width) {
-        @content;
-    }
-} */
+// @mixin respond-min-and-max($min-width, $max-width) {
+//     @media screen and (min-width: $min-width) and (max-width: $max-width) {
+//         @content;
+//     }
+// }

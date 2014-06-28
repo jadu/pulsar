@@ -12,5 +12,15 @@ footer {
     &:hover {
       color: darken($white, 10%);
     }
+
+    &:last-child {
+      float: right;
+    }
+
+    @include respond-min($screen-tablet) {
+      &:last-child {
+        float: none;
+      }
+    }
   }
 }

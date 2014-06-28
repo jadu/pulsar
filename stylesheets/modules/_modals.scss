@@ -36,9 +36,15 @@
 .modal__dialog {
   margin-left: auto;
   margin-right: auto;
+  max-width: 600px;
+  padding: 85px ($gutter-width / 2) 30px;
   width: auto;
-  padding: 10px;
   z-index: ($zindex-modal + 10);
+
+  @include respond-min($screen-tablet) {
+    padding-top: 100px;
+    width: 100%;
+  }
 }
 
 // Actual modal
@@ -102,16 +108,16 @@
 
 // Footer (for actions)
 .modal__footer {
-  padding: ($modal-inner-padding - 1) $modal-inner-padding $modal-inner-padding;
+  padding: ($modal-inner-padding - 1) $modal-inner-padding ($modal-inner-padding - 5);
   text-align: right; // right align buttons
   border-top: 1px solid $modal-footer-border-color;
   @include clearfix; // clear it in case folks use .pull-* classes on buttons
 
-  // Properly space out buttons
+/*   // Properly space out buttons
   .btn + .btn {
     margin-left: 5px;
     margin-bottom: 0; // account for input[type="submit"] which gets the bottom margin like all other inputs
-  }
+  } */
   // but override that for button groups
   .btn-group .btn + .btn {
     margin-left: -1px;
@@ -131,15 +137,4 @@
     color: $white;
     @include opacity(.7);
   }
-}
-
-@media screen and (min-width: $screen-tablet) {
-  .modal__dialog {
-    left: 50%;
-    right: auto;
-    width: 600px;
-    padding-top: 100px;
-    padding-bottom: 30px;
-  }
- 
 }
