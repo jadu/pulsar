@@ -6,7 +6,7 @@
 // Normalize non-controls
 //
 // Restyle and baseline non-control form elements.
-// 
+//
 
 form {
   overflow-x: hidden; // For those silly legends
@@ -189,6 +189,7 @@ input[type="number"] {
   &.form__actions--flush {
     padding-left: $gutter-width;
   }
+
   @include respond-min($screen-desktop) {
     padding-left: 20%;
 
@@ -264,7 +265,7 @@ textarea.form__control {
 }
 
 // Radios and checkboxes on same line
-.radio--inline, 
+.radio--inline,
 .checkbox--inline {
   // float: left;
   padding-left: 0;
@@ -433,7 +434,7 @@ textarea {
           margin-left: $gutter-width;
         }
       }
-    }    
+    }
 
     &:last-child {
       margin-bottom: $padding-large-vertical;
@@ -477,20 +478,20 @@ textarea {
         margin-bottom: $padding-large-vertical;
       }
 
-      .checkbox label, 
+      .checkbox label,
       .radio label {
         text-align: left;
       }
 
-      .checkbox:last-child, 
+      .checkbox:last-child,
       .radio:last-child {
         margin-bottom: 0;
       }
-      
+
       .form__group .checkbox__label {
         margin-left: 0;
 
-        label, 
+        label,
         input {
           margin-left: 0;
         }
@@ -502,11 +503,11 @@ textarea {
         margin-top: 0;
         max-width: 75%;
 
-        .checkbox, 
+        .checkbox,
         .radio {
           margin-left: 0;
 
-          label, 
+          label,
           input {
             margin-left: 0;
           }
@@ -694,4 +695,5 @@ textarea {
   @include respond-min($screen-desktop) {
     width: $controls-width * 1.5;
   }
+}
 }

@@ -10,6 +10,9 @@
 @import 'config/colours';
 @import 'config/variables';
 
+// Mixins
+@import 'mixins/media-queries';
+
 // Theme
 //@import '../theme/stylesheets/theme.scss';
 
@@ -61,9 +64,6 @@
 
 // Layouts
 @import 'layouts/tabs';
-
-// Mixins
-@import 'mixins/media-queries';
 
 // Overrides and fixes
 @import 'overrides/utilities';
