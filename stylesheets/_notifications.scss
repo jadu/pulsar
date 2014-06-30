@@ -1,0 +1,184 @@
+.notifications {
+  max-width: 300px;
+  position: relative;
+  top: 5px;
+  z-index: $zindex-nav + 1;
+
+  .btn {
+    background: none;
+    box-shadow: none;
+    border: none;
+    color: $white;
+    text-shadow: none;
+
+    > .badge {
+      font-size: 12px;
+      margin: -3px 0 -1px;
+      min-width: 20px;
+      padding: 4px 0 2px;
+    }
+  }
+
+  .btn:hover {
+    background-color: rgba(0, 0, 0, .2);
+    background-image: none;
+    box-shadow: none;
+  }
+
+  .toolbar &.btn__group.open .btn {
+    background-color: rgba(0, 0, 0, .2);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1);
+
+    .badge {
+      background-color: $white;
+      color: $jadu-black;
+    }
+  }
+
+  h1 {
+    float: left;
+    font-size: $font-size-large;
+    line-height: $line-height-large;
+    margin: 0 0 0 ($gutter-width / 2);
+  }
+
+  small {
+    color: $gray-light;
+  }
+
+  @include respond-min($screen-phone) {
+    margin-right: $gutter-width / 4;
+  }
+  @include respond-min($screen-tablet) {
+    margin-right: $gutter-width;
+  }
+}
+
+.notifications__header {
+  padding-bottom: 40px;
+}
+
+
+// very specific to overcome dropdown specifics
+.dropdown__menu > li > a.notifications__dismiss {
+  color: $gray;
+  float: right;
+  padding-right: $gutter-width / 2;
+  text-decoration: none;
+
+  &:hover {
+    color: $white;
+  }
+}
+
+.notification {
+  border-bottom: 1px solid $gray-lighter;
+  display: block;
+  float: left;
+  width: 100%;
+
+  > a,
+  > a > i,
+  > a > img {
+    float: left;
+  }
+
+  > a {
+    width: 100%;
+  }
+}
+
+.notification__title {
+  font-family: $font-family-regular;
+  margin-bottom: 0;
+
+  .dropdown__menu > li & > i {
+    margin: 0 2px 0 -4px;
+  }
+}
+
+.notification__time {
+  float: right;
+  font-size: $font-size-small;
+}
+
+.notification__description {
+  margin-left: 25px;
+}
+
+.notification__description {
+  margin-bottom: 0;
+}
+
+.dropdown__menu > li {
+  &:hover > .badge {
+    @extend .badge--primary;
+    background-color: darken($dropdown-link-active-bg, 20%);
+  }
+  &.notification--primary a {
+    background-color: $label-primary-bg;
+    color: $white;
+    &:hover {
+      background-color: darken($label-primary-bg, 5%);
+    }
+    > .badge {
+      @extend .badge--primary;
+      background-color: darken($badge-primary-bg, 20%);
+    }
+  }
+  &.notification--success a {
+    background-color: $label-success-bg;
+    color: $white;
+    &:hover {
+      background-color: darken($label-success-bg, 5%);
+    }
+    > .badge {
+      @extend .badge--success;
+      background-color: darken($badge-success-bg, 20%);
+    }
+  }
+  &.notification--warning a {
+    background-color: $label-warning-bg;
+    color: $white;
+    &:hover {
+      background-color: darken($label-warning-bg, 5%);
+    }
+    > .badge {
+      @extend .badge--warning;
+      background-color: darken($badge-warning-bg, 20%);
+    }
+  }
+  &.notification--info a {
+    background-color: $label-info-bg;
+    color: $white;
+    &:hover {
+      background-color: darken($label-info-bg, 5%);
+    }
+    > .badge {
+      @extend .badge--info;
+      background-color: darken($badge-info-bg, 20%);
+    }
+  }
+  &.notification--danger a {
+    background-color: $label-danger-bg;
+    color: $white;
+    &:hover {
+      background-color: darken($label-danger-bg, 5%);
+    }
+    > .badge {
+      @extend .badge--danger;
+      background-color: darken($badge-danger-bg, 20%);
+    }
+  }
+  &.notification--inverse a {
+    background-color: $label-inverse-bg;
+    color: $white;
+    &:hover {
+      background-color: darken($label-inverse-bg, 5%);
+    }
+    > .badge {
+      @extend .badge--inverse;
+      background-color: darken($badge-inverse-bg, 20%);
+    }
+  }
+}

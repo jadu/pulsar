@@ -147,10 +147,42 @@ define(['jquery'], function() {
         }
         mobileTables();
 
+        // Responsive actions menu positioning
+        var mobileMenu = $('.actions-menu .dropdown__menu').clone()
+
+        $('.toolbar').append(mobileMenu);
+        $('.toolbar > .dropdown__menu').addClass('mobile-actions-menu').show();
+
+        function actionsMenu() {
+            if (window.matchMedia('(max-width: 767px)').matches) {
+                var topHidden = -($('.mobile-actions-menu').outerHeight() + $('.toolbar').outerHeight()),
+                    topRevealed = $('.toolbar').outerHeight() - parseInt($('.actionsbar--left').css('marginTop'));
+
+                $('.actions-menu .dropdown__menu').hide();
+                //if ($('.toolbar .dropdown__menu').length < 1) {
+                //}
+                // ({'top': topHidden}).show().parent().removeClass('open');
+
+                $('.actions-menu [data-toggle=dropdown]').on('click touchenter', function() {
+                    if ((!$(this).parent().hasClass('open')) && window.matchMedia('(max-width: 767px)').matches) {
+                        $('.mobile-actions-menu').css({'marginTop': 0});
+                    }
+                    else if (window.matchMedia('(max-width: 767px)').matches) {
+                        $('.mobile-actions-menu').css({'marginTop': topHidden});
+                    }
+                });
+            }
+            else {
+                $('.actions-menu .dropdown__menu').removeAttr('style');
+            }
+        }
+        actionsMenu();
+
         // Do these things whenever the window resizes
         $(window).resize(function() {
             updateStickyFlashMessages();
             mobileToggle();
+            actionsMenu();
 
             $('.tabs__list[data-mobile-togglable]').css({'top': ($('.toolbar').outerHeight() - 3)});
         });
