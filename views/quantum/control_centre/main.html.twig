@@ -5,7 +5,35 @@
 
 {% block title %}{{ parent() }}{% endblock %}
 
-{% set heading = 'AB123C Appellant v Authority' %}
+{% set heading = 'My Cases' %}
+
+
+{%
+    set actions_menu = [
+        html.link(label = html.icon('save') ~ ' Save', href = '#save'),
+        html.link(
+          label = html.icon('print') ~ ' Print',
+          href = '#print'
+        ),
+        html.divider(),
+        html.link(
+          label = html.icon('download') ~ ' Download all evidence (.zip)',
+          href = '#download'
+        ),
+        html.link(
+          label = html.icon('envelope-alt') ~ ' Email me all evidence (.zip)',
+          href = '#download'
+        ),
+        html.divider(),
+        html.link(
+          label = html.icon('trash') ~ ' Delete',
+          href = '#delete',
+          class = 'link--danger disabled',
+          attributes = 'data-on-datagrid-item-selected=enable'
+        )
+    ]
+%}
+
 
 {% set tab_cases %}
     {% include 'quantum/control_centre/tabs/cases.html.twig' %}
@@ -27,41 +55,7 @@
 %}
 
 {% block summary %}
-<div class="flash flash--warning is-sticky">
-    <i class="icon-warning-sign"></i> This case is awaiting council confirmation
-    <form class="form--inline" method="post" action="/q/app_dev.php/case/AA100001/transition?returnPath=http%3A%2F%2Ftpt.quantum.dev%2Fq%2Fapp_dev.php%2Fcase%2FAA100001">
 
-      <button type="submit" class="btn btn--primary">Confirm Now</button>
-
-      <input class="form__control" type="hidden" id="quantum_cc_case_status_transition__token" name="quantum_cc_case_status_transition[_token]" value="ca7Xbiv-8gpDPP6br6bFV7JWHO-nxjCPDN_SSwsooAU">
-    </form>
-
-    <form class="form--inline" method="post" action="/q/app_dev.php/case/AA100001/jump?returnPath=http%3A%2F%2Ftpt.quantum.dev%2Fq%2Fapp_dev.php%2Fcase%2FAA100001">
-
-      <div class="form__group">
-        <label class="control__label" for="quantum_cc_case_status_jump_status">or change status to</label>
-        <div class="controls">
-          <select class="form__control" id="quantum_cc_case_status_jump_status" name="quantum_cc_case_status_jump[status]">
-            <option value="incomplete">Incomplete</option>
-            <option value="awaiting_council_confirmation" selected="selected">Awaiting council confirmation</option>
-            <option value="awaiting_adjudicator_registration">Awaiting registration</option>
-            <option value="awaiting_evidence">Awaiting evidence</option>
-            <option value="awaiting_hearing_request">Awaiting hearing request</option>
-            <option value="awaiting_hearing_date">Awaiting hearing date</option>
-            <option value="hearing_arranged">Hearing arranged</option>
-            <option value="awaiting_decision">Awaiting decision</option>
-            <option value="closed">Case closed</option>
-            <option value="registration_rejected">Rejected by adjudicator</option>
-          </select>
-        </div>
-      </div>
-
-      <button type="submit" class="btn">Change Status</button>
-
-      <input class="form__control" type="hidden" id="quantum_cc_case_status_jump__token" name="quantum_cc_case_status_jump[_token]" value="QMglN1rkt-xsRHKvfILh2jvAO0V_7QDXabdOWbDiBcM">
-
-    </form>
-</div>
 {% endblock %}
 
 {% block tabs_list %}

@@ -104,6 +104,8 @@
 
     @include respond-min($screen-tablet) {
       display: table-cell;
+      padding: 0 $gutter-width / 2;
+
       vertical-align: middle;
       width: auto;
 
@@ -184,7 +186,7 @@ tr.row--success {
     }
   }
   &:hover > td {
-    background-color: lighten($btn-success-color, 23%); 
+    background-color: lighten($btn-success-color, 23%);
     &:before {
       background-color: lighten($btn-success-color, 18%);
     }
@@ -206,10 +208,10 @@ tr.row--danger {
     }
   }
   &:hover > td {
-    background-color: lighten($btn-danger-color, 24%); 
+    background-color: lighten($btn-danger-color, 24%);
     &:before {
       background-color: lighten($btn-danger-color, 19%);
-    } 
+    }
     @include respond-max($screen-tablet) {
       &.row__actions {
         background-color: lighten($btn-danger-color, 19%);

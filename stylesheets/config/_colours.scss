@@ -18,7 +18,7 @@ $jadu-copy-gray:                #989699;
 $black:                         $jadu-black !default;
 $blue:                          #2455c3 !default;
 $blue-light:                    lighten(#2455c3, 45%) !default;
-$gray-darker:                   lighten(#000, 13.5%) !default;
+$gray-darker:                   lighten(#000, 25%) !default;
 $gray-dark:                     lighten(#000, 30%) !default;
 $gray:                          #ccc !default;
 $gray-light:                    lighten(#000, 60%) !default;
@@ -32,6 +32,7 @@ $white:                         #fff !default;
 // -----------------------------------------------------------------------------
 
 $accent-color:                  $jadu-blue;
+$accent-color-alt:              $white;
 
 // -----------------------------------------------------------------------------
 //  Text & Links
@@ -150,7 +151,7 @@ $table-border-color:             #ccc !default;
 //  Toolbar
 // -----------------------------------------------------------------------------
 
-$toolbar-bg:                     $gray-dark !default;
+$toolbar-bg:                     $gray-darker !default;
 $toolbar-search-accent:          $primary-color !default;
 $toolbar-link-color:             $white !default;
 

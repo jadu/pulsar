@@ -6,15 +6,6 @@ $font-path:                           '../fonts/' !default;
 $image-path:                          '../images/' !default;
 
 // -----------------------------------------------------------------------------
-//  Branding
-// -----------------------------------------------------------------------------
-
-$brand-image:                         $image_path + 'brand.png' !default;
-$brand-height:                        24px !default;
-$brand-width:                         75px !default;
-$brand-background-size:               100% !default;
-
-// -----------------------------------------------------------------------------
 //  Typefaces
 // -----------------------------------------------------------------------------
 
@@ -58,6 +49,29 @@ $sidebar-column-width:                200px !default;
 $component-offset:                    180px !default;
 
 // -----------------------------------------------------------------------------
+//  Breakpoints
+// -----------------------------------------------------------------------------
+
+$screen-xsmall:                       480px !default;
+$screen-phone:                        $screen-xsmall !default;
+
+// Small screen / tablet
+$screen-small:                        768px !default;
+$screen-tablet:                       $screen-small !default;
+
+// Medium screen / desktop
+$screen-medium:                       992px !default;
+$screen-desktop:                      $screen-medium !default;
+
+// So media queries don't overlap when required, provide a maximum
+$screen-small-max:                    ($screen-medium - 1) !default;
+$screen-tablet-max:                   $screen-small-max !default;
+
+// Large screen / wide desktop
+$screen-large:                        1200px !default;
+$screen-large-desktop:                $screen-large !default;
+
+// -----------------------------------------------------------------------------
 //  Borders
 // -----------------------------------------------------------------------------
 
@@ -85,6 +99,8 @@ $padding-small-horizontal:            10px !default;
 // -----------------------------------------------------------------------------
 
 $form-label-column-width:             200px !default;
+$controls-width:                      30%;
+$controls-max-width:                  300px;
 $input-bg:                            #fff !default;
 $input-bg-disabled:                   $gray-lighter !default;
 $input-border:                        #ccc !default;
@@ -139,14 +155,22 @@ $tooltip-arrow-color:                 $tooltip-bg !default;
 //  Toolbar
 // -----------------------------------------------------------------------------
 
-$toolbar-accent-height:               3px !default;
-$toolbar-element-offset:              0px !default;
-$toolbar-x-padding:                   20px !default;
-$toolbar-y-padding:                   20px !default;
-$toolbar-height-base:                 ($line-height-base * 2) !default;
-$toolbar-height:                      ($brand-height + ($toolbar-y-padding * 2)) + $toolbar-accent-height !default;
+$toolbar-accent-height:               4px !default;
 
-$brand-top:                           0 !default;
+$toolbar-height:                      ($line-height-base * 3) !default; // including accent height
+$toolbar-height-small:                ($line-height-base * 2) !default; // including accent height
+
+//$toolbar-internal-height:             ($toolbar-height - $toolbar-accent-height) !default;
+
+
+// -----------------------------------------------------------------------------
+//  Branding
+// -----------------------------------------------------------------------------
+
+$brand-image:                         $image_path + 'brand.png' !default;
+$brand-height:                        24px !default;
+$brand-width:                         75px !default;
+$brand-background-size:               100% !default;
 
 // -----------------------------------------------------------------------------
 //  Popovers
@@ -176,26 +200,3 @@ $zindex-flash:                        1050 !default;
 $zindex-sticky:                       1060 !default;
 $zindex-nav:                          1070 !default;
 $zindex-modal:                        1080 !default;
-
-// -----------------------------------------------------------------------------
-//  Breakpoints
-// -----------------------------------------------------------------------------
-
-$screen-xsmall:                       480px !default;
-$screen-phone:                        $screen-xsmall !default;
-
-// Small screen / tablet
-$screen-small:                        768px !default;
-$screen-tablet:                       $screen-small !default;
-
-// Medium screen / desktop
-$screen-medium:                       992px !default;
-$screen-desktop:                      $screen-medium !default;
-
-// So media queries don't overlap when required, provide a maximum
-$screen-small-max:                    ($screen-medium - 1) !default;
-$screen-tablet-max:                   $screen-small-max !default;
-
-// Large screen / wide desktop
-$screen-large:                        1200px !default;
-$screen-large-desktop:                $screen-large !default;

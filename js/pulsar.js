@@ -93,7 +93,7 @@ define(['jquery'], function() {
 
         // Update the sticky flash message wrappers
         function updateStickyFlashMessages() {
-            var toolbarHeight = $('.toolbar').outerHeight(), 
+            var toolbarHeight = $('.toolbar').outerHeight(),
                 flashBannerHeight = $('.flash.is-sticky').outerHeight();
 
             $('.toolbar').parent().css({'height': toolbarHeight});
@@ -121,7 +121,7 @@ define(['jquery'], function() {
                         e.preventDefault();
 
                         if (target === '.tabs__list') {
-                            $(target + '[data-mobile-togglable]').css({'top': ($('.toolbar').outerHeight() - 3)});
+                            $(target + '[data-mobile-togglable]').css({'top': ($('.toolbar').outerHeight())});
                         }
 
                         $(this).toggleClass('toggled');
@@ -139,7 +139,7 @@ define(['jquery'], function() {
         // Make datagrid tables look better on smaller viewports
         function mobileTables() {
             $('.table--datagrid tr td').each(function() {
-                var tableCellPosition = $(this).index() + 1, 
+                var tableCellPosition = $(this).index() + 1,
                     tableHeader = $(this).closest('table').find('th:nth-child(' + tableCellPosition + ')').text();
 
                 $(this).attr('data-table-header', tableHeader);

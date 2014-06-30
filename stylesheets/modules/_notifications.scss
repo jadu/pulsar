@@ -1,5 +1,6 @@
 .notifications {
-  margin-right: $gutter-width / 2;
+  color: $accent-color-alt;
+  // margin-right: $gutter-width / 2;
   max-width: 300px;
   position: relative;
   top: 5px;
@@ -34,7 +35,7 @@
   }
 
   @include respond-min($screen-phone) {
-    margin-right: $gutter-width;
+    // margin-right: $gutter-width;
   }
 }
 
@@ -45,13 +46,13 @@
 
 // very specific to overcome dropdown specifics
 .dropdown__menu > li > a.notifications__dismiss {
-  color: $gray;
+  color: $accent-color-alt;
   float: right;
   padding-right: $gutter-width / 2;
   text-decoration: none;
 
   &:hover {
-    color: $white;
+    color: $accent-color;
   }
 }
 
@@ -103,7 +104,8 @@
     background-color: $label-primary-bg;
     color: $white;
     &:hover {
-      background-color: darken($label-primary-bg, 5%);
+      background-color: $accent-color-alt;
+      color: $accent-color;
     }
     > .badge {
       @extend .badge--primary;
@@ -114,7 +116,8 @@
     background-color: $label-success-bg;
     color: $white;
     &:hover {
-      background-color: darken($label-success-bg, 5%);
+      background-color: $accent-color-alt;
+      color: $label-success-bg;
     }
     > .badge {
       @extend .badge--success;
@@ -125,7 +128,8 @@
     background-color: $label-warning-bg;
     color: $white;
     &:hover {
-      background-color: darken($label-warning-bg, 5%);
+      background-color: $accent-color-alt;
+      color: $label-warning-bg;
     }
     > .badge {
       @extend .badge--warning;
@@ -136,7 +140,8 @@
     background-color: $label-info-bg;
     color: $white;
     &:hover {
-      background-color: darken($label-info-bg, 5%);
+      background-color: $accent-color-alt;
+      color: $label-info-bg;
     }
     > .badge {
       @extend .badge--info;
@@ -147,7 +152,8 @@
     background-color: $label-danger-bg;
     color: $white;
     &:hover {
-      background-color: darken($label-danger-bg, 5%);
+      background-color: $accent-color-alt;
+      color: $label-danger-bg;
     }
     > .badge {
       @extend .badge--danger;
@@ -158,7 +164,8 @@
     background-color: $label-inverse-bg;
     color: $white;
     &:hover {
-      background-color: darken($label-inverse-bg, 5%);
+      background-color: $accent-color-alt;
+      color: $label-inverse-bg;
     }
     > .badge {
       @extend .badge--inverse;
