@@ -20,6 +20,7 @@
 }
 
 .actionsbar--left {
+  width: $tab-column-width;
   @include respond-min($screen-tablet) {
     float: left;
     margin-right: 0;
@@ -27,7 +28,7 @@
     width: $tab-column-width;
   }
   @include respond-max($screen-tablet - 1) {
-    margin-top: (($toolbar-height - $brand-height) - 1);
+    // margin-top: (($toolbar-height - $brand-height) - 1);
     position: fixed;
     top: 0;
     width: 25%;
@@ -44,6 +45,10 @@
         border: 0;
         box-shadow: none;
         color: $white;
+        height: $toolbar-height;
+        @include respond-max($screen-phone) {
+          height: $toolbar-height-small;
+        }
         outline: 0;
         text-shadow: none;
 
@@ -73,13 +78,17 @@
     }
   }
   @include respond-max($screen-phone - 1) {
-    margin-top: (($toolbar-height - $brand-height) * 0.75);
+    // margin-top: (($toolbar-height - $brand-height) * 0.75);
 
     .actions-menu {
       .dropdown__menu {
-        left: -((75px * 0.85) + ($gutter-width * 1.5));
+        // left: -((75px * 0.85) + ($gutter-width * 1.5));
+        z-index: $zindex-nav;
       }
     }
+  }
+  @include respond-max($screen-tablet-max) {
+    width: $tab-column-width-tablet;
   }
 }
 

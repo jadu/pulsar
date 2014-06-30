@@ -7,6 +7,10 @@
   padding: 0;
   width: $tab-column-width;
 
+  @include respond-max($screen-tablet-max) {
+    width: $tab-column-width-tablet;
+  }
+
   &[data-mobile-togglable] {
     background-color: $accent-color;
     border-left: $toolbar-accent-height solid $accent-color;

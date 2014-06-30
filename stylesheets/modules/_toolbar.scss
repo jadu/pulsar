@@ -126,8 +126,12 @@
   width: $brand-width;
 
   @include respond-max($screen-phone) {
-    height: $brand-height;
+    margin: 0 $gutter-width;
     top: (($toolbar-height-small - $toolbar-accent-height) - $brand-height) / 2;
+  }
+
+  @include respond-max($screen-tablet) {
+    margin: 0 $gutter-width;
   }
 }
 

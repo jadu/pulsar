@@ -151,6 +151,7 @@ define(['jquery'], function() {
         var mobileMenu = $('.actions-menu .dropdown__menu').clone()
 
         $('.toolbar').append(mobileMenu);
+        console.log($('.toolbar > .dropdown__menu'));
         $('.toolbar > .dropdown__menu').addClass('mobile-actions-menu').show();
 
         function actionsMenu() {
@@ -158,7 +159,7 @@ define(['jquery'], function() {
                 var topHidden = -($('.mobile-actions-menu').outerHeight() + $('.toolbar').outerHeight()),
                     topRevealed = $('.toolbar').outerHeight() - parseInt($('.actionsbar--left').css('marginTop'));
 
-                $('.actions-menu .dropdown__menu').hide();
+                // $('.actions-menu .dropdown__menu').hide();
                 //if ($('.toolbar .dropdown__menu').length < 1) {
                 //}
                 // ({'top': topHidden}).show().parent().removeClass('open');

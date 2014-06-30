@@ -1,5 +1,10 @@
 .nav-item {
     display: inline-block;
+
+  @include respond-max($screen-phone) {
+    display: none;
+  }
+
     position: relative;
     font-size: 1.1em;
     height: $toolbar-height;

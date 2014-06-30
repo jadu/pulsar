@@ -44,9 +44,11 @@ $font-size-medium:                    ceil($font-size-base * 0.85) !default;
 // -----------------------------------------------------------------------------
 
 $gutter-width:                        20px !default;
-$tab-column-width:                    200px !default;
-$sidebar-column-width:                200px !default;
 $component-offset:                    180px !default;
+$tab-column-width:                    200px !default;
+$tab-column-width-tablet:             133px !default;
+$sidebar-column-width:                200px !default;
+$sidebar-column-width-tablet:         133px !default;
 
 // -----------------------------------------------------------------------------
 //  Breakpoints
