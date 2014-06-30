@@ -209,7 +209,51 @@
       background-color: $accent-color-alt;
     }
   }
+}
 
+.user-actions {
+  i {
+    display: block;
+    font-size: 16px;
+    margin: -2px 0 -1px;
+    vertical-align: top;
+  }
+  &:not(.open):hover i {
+    color: $gray-lighter;
+  }
+  span {
+    display: none;
+  }
+
+  @include respond-min($screen-phone) {
+    i {
+      display: none;
+    }
+    span {
+      display: inline;
+    }
+  }
+}
+
+.mobile-actions-menu {
+  background-color: $gray-dark;
+  border: 0;
+  border-bottom: 3px solid $primary-color;
+  box-shadow: none;
+  box-sizing: content-box;
+  display: none !important;
+  margin: 0;
+  position: relative;
+  width: 100%;
+  transition: .15s ease-out margin;
+  z-index: $zindex-nav - 11;
+
+  &.dropdown__menu > li > a {
+    color: $white;
+  }
+  &.dropdown__menu .divider {
+    background-color: lighten($gray-dark, 10);
+  }
 }
 
 .mobile-menu-toggle {
