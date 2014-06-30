@@ -120,7 +120,7 @@
   float: left;
   height: $brand-height;
   overflow: hidden;
-  margin-left: $gutter-width;
+  margin: 0 ($sidebar-column-width - ($brand-width + $gutter-width)) 0 $gutter-width;
   position: relative;
   top: (($toolbar-height - $toolbar-accent-height) - $brand-height) / 2;
   width: $brand-width;
@@ -133,6 +133,11 @@
 
 .toolbar .btn__group {
   // top: (($toolbar-height - $brand-height) * 0.85) / 1.25 {
+
+  &:hover {
+    background: $accent-color;
+            color: $accent-color-alt;
+  }
 
 
   .btn {

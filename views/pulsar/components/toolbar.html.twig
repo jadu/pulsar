@@ -2,6 +2,9 @@
 {% import '@pulsar/pulsar/helpers/pulsar.html.twig' as pulsar %}
 <div class="toolbar">
     <h1 class="branding" id="tour-home">{{ html.link('Jadu', '/search') }}</h1>
+    {% for label, items in toolbar %}
+    {{ pulsar.primary_nav(label = label, menu_items = items) }}
+{% endfor %}
     <a href="#" class="mobile-menu-toggle" data-mobile-toggle-button data-toggle-target=".tabs__list">
       <i class="icon-reorder"></i>
     </a>

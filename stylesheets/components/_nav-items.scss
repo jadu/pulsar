@@ -2,26 +2,26 @@
     display: inline-block;
     position: relative;
     font-size: 1.1em;
-    height: $toolbar-height + 20px;
+    height: $toolbar-height;
     @include user-select(none);
     > a {
-        color: #EAEAEA;
+        color: $accent-color-alt;
         cursor: pointer;
-        display: block;
-        height: $toolbar-height + 20px;
+        display: table-cell;
+        height: $toolbar-height;
         width: 100%;
-        padding: (($toolbar-height - $brand-height) / 2) + 14 $gutter-width 0;
+        padding: 0 $gutter-width 0;
         text-decoration: none;
+        vertical-align: middle;
         &:hover {
-            background: rgba(0, 0, 0, .1);
-            color: #FFF;
-            border-bottom: 3px solid $primary-color; 
+            background: $accent-color;
+            color: $accent-color-alt;
         }
     }
     &.open > a {
-        background: $primary-color; 
-        color: #FFF;
-        border-bottom: 3px solid $primary-color; 
+        background: $accent-color;
+        color: $accent-color-alt;
+        border-bottom: 3px solid $primary-color;
     }
 }
 
