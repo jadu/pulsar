@@ -135,19 +135,27 @@ define(['jquery'], function() {
         mobileTables();
 
         // Responsive actions menu positioning
+        var mobileMenu = $('.actions-menu .dropdown__menu').clone()
+
+        $('.toolbar').append(mobileMenu);
+        $('.toolbar > .dropdown__menu').addClass('mobile-actions-menu').show();
+
         function actionsMenu() {
             if (window.matchMedia('(max-width: 767px)').matches) {
-                var topHidden = -($('.actions-menu .dropdown__menu').outerHeight() + parseInt($('.actionsbar--left').css('marginTop'))),
+                var topHidden = -($('.mobile-actions-menu').outerHeight() + $('.toolbar').outerHeight()),
                     topRevealed = $('.toolbar').outerHeight() - parseInt($('.actionsbar--left').css('marginTop'));
 
-                $('.actions-menu .dropdown__menu').css({'top': topHidden}).show().parent().removeClass('open');
+                $('.actions-menu .dropdown__menu').hide();
+                //if ($('.toolbar .dropdown__menu').length < 1) {
+                //}
+                // ({'top': topHidden}).show().parent().removeClass('open');
 
                 $('.actions-menu [data-toggle=dropdown]').on('click touchenter', function() {
                     if ((!$(this).parent().hasClass('open')) && window.matchMedia('(max-width: 767px)').matches) {
-                        $(this).next('.dropdown__menu').css({'top': topRevealed});
+                        $('.mobile-actions-menu').css({'marginTop': 0});
                     }
                     else if (window.matchMedia('(max-width: 767px)').matches) {
-                        $(this).next('.dropdown__menu').css({'top': topHidden});
+                        $('.mobile-actions-menu').css({'marginTop': topHidden});
                     }
                 });
             }

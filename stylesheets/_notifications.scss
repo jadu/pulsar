@@ -12,7 +12,10 @@
     text-shadow: none;
 
     > .badge {
+      font-size: 12px;
       margin: -3px 0 -1px;
+      min-width: 20px;
+      padding: 4px 0 2px;
     }
   }
 
@@ -20,6 +23,16 @@
     background-color: rgba(0, 0, 0, .2);
     background-image: none;
     box-shadow: none;
+  }
+
+  .toolbar &.btn__group.open .btn {
+    background-color: rgba(0, 0, 0, .2);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1);
+
+    .badge {
+      background-color: $white;
+      color: $jadu-black;
+    }
   }
 
   h1 {

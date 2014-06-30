@@ -145,7 +145,7 @@ $brand-height: 24px;
 }
 
 .toolbar .btn__group {
-  top: (($toolbar-height - $brand-height) * 0.75);
+  top: (($toolbar-height - $brand-height) * 0.85) - 6;
 
   .btn {
     background: none;
@@ -153,6 +153,7 @@ $brand-height: 24px;
     box-shadow: none;
     color: $white;
     outline: 0;
+    padding: 10px 14px;
     text-shadow: none;
 
     .caret {
@@ -166,12 +167,12 @@ $brand-height: 24px;
   }
 
   &.open .btn {
-    background-color: $white;
-    color: $black;
+    background-color: rgba(0, 0, 0, .2);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1);
   }
 
   @include respond-min($screen-phone) {
-    top: (($toolbar-height - $brand-height) - 1);
+    top: (($toolbar-height - $brand-height) - 5);
   }
 }
 
@@ -196,8 +197,8 @@ $brand-height: 24px;
 .user-actions {
   i {
     display: block;
-    font-size: 18px;
-    margin: -3px 0 -1px;
+    font-size: 16px;
+    margin: -2px 0 -1px;
     vertical-align: top;
   }
   &:not(.open):hover i {
@@ -217,13 +218,34 @@ $brand-height: 24px;
   }
 }
 
+.mobile-actions-menu {
+  background-color: $gray-dark;
+  border: 0;
+  border-bottom: 3px solid $primary-color;
+  box-shadow: none;
+  box-sizing: content-box;
+  display: none !important;
+  margin: 0;
+  position: relative;
+  width: 100%;
+  transition: .15s ease-out margin;
+  z-index: $zindex-nav - 11;
+
+  &.dropdown__menu > li > a {
+    color: $white;
+  }
+  &.dropdown__menu .divider {
+    background-color: lighten($gray-dark, 10);
+  }
+}
+
 .mobile-menu-toggle {
   color: $white;
   float: right;
   font-size: $font-size-large;
-  height: $font-size-large;
   line-height: $font-size-large;
-  margin: (-$font-size-large / 2) $gutter-width 0;
+  margin: (-$font-size-large + 10 / 2) $gutter-width / 2 0;
+  padding: 6px 10px 4px;
   position: relative;
   text-decoration: none;
   top: 50%;
@@ -238,6 +260,8 @@ $brand-height: 24px;
   }
 
   &.toggled {
+    background-color: rgba(0, 0, 0, .2);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1);
     color: $primary-color;
   }
 

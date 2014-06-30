@@ -61,15 +61,6 @@
         }
       }
 
-      .dropdown__menu {
-        box-sizing: content-box;
-        left: -(75px + ($gutter-width * 2));
-        margin: 0 -1px;
-        position: absolute;
-        width: 400%;
-        transition: .15s ease-out top;
-      }
-
       &.open {
         > .btn {
           color: $primary-color;
