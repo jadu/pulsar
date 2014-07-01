@@ -94,10 +94,10 @@
 
   .notifications {
     top: 0;
-    width: $toolbar-height;
 
     .btn {
-      width: 100%;
+      padding-left: 0;
+      padding-right: 0;
     }
 
     .badge {
@@ -130,19 +130,13 @@
     top: (($toolbar-height-small - $toolbar-accent-height) - $brand-height) / 2;
   }
 
-  @include respond-max($screen-tablet) {
+  @include respond-max($screen-tablet-max) {
     margin: 0 $gutter-width;
   }
 }
 
 .toolbar .btn__group {
   // top: (($toolbar-height - $brand-height) * 0.85) / 1.25 {
-
-  &:hover {
-    background: $accent-color;
-            color: $accent-color-alt;
-  }
-
 
   .btn {
     background: none;
@@ -151,9 +145,19 @@
     box-shadow: none;
     color: $toolbar-link-color;
     height: ($toolbar-height - $toolbar-accent-height);
+    width: $toolbar-height;
 
     @include respond-max($screen-phone) {
       height: ($toolbar-height-small - $toolbar-accent-height);
+    }
+
+    @include respond-max($screen-tablet) {
+      width: $toolbar-height / 1.5;
+    }
+
+    @include respond-min($screen-desktop) {
+      min-width: $toolbar-height;
+      width: 100%;
     }
 
     padding-top: 0;
@@ -163,6 +167,11 @@
 
     .caret {
       display: none;
+    }
+
+    &:hover {
+      background: $accent-color;
+      color: $accent-color-alt;
     }
   }
 
@@ -222,6 +231,7 @@
     margin: -2px 0 -1px;
     vertical-align: top;
   }
+
   &:not(.open):hover i {
     color: $gray-lighter;
   }
@@ -229,7 +239,7 @@
     display: none;
   }
 
-  @include respond-min($screen-phone) {
+  @include respond-min($screen-tablet-max) {
     i {
       display: none;
     }
@@ -277,6 +287,10 @@
   top: 0;
   width: $toolbar-height;
   vertical-align: middle;
+
+  @include respond-max($screen-tablet) {
+    width: $toolbar-height / 1.5;
+  }
 
   i {
     vertical-align: top;

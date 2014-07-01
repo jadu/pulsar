@@ -1,0 +1,26 @@
+.nav__primary {
+  float: left;
+  width: $nav-primary-width;
+
+  .nav-item {
+    max-width: $nav-primary-item-width;
+
+    @include respond-max($screen-tablet-max) {
+      font-size: $font-size-medium;
+      line-height: 1.2;
+    }
+
+    @include respond-max($screen-phone) {
+      font-size: $font-size-small;
+      line-height: 1;
+    }
+
+    @include respond-max($screen-tablet) {
+
+      > a {
+        padding-left: $gutter-width / 2;
+        padding-right: $gutter-width / 2;
+      }
+    }
+  }
+}

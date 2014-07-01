@@ -154,36 +154,36 @@ define(['jquery'], function() {
         console.log($('.toolbar > .dropdown__menu'));
         $('.toolbar > .dropdown__menu').addClass('mobile-actions-menu').show();
 
-        function actionsMenu() {
-            if (window.matchMedia('(max-width: 767px)').matches) {
-                var topHidden = -($('.mobile-actions-menu').outerHeight() + $('.toolbar').outerHeight()),
-                    topRevealed = $('.toolbar').outerHeight() - parseInt($('.actionsbar--left').css('marginTop'));
+        // function actionsMenu() {
+        //     if (window.matchMedia('(max-width: 767px)').matches) {
+        //         var topHidden = -($('.mobile-actions-menu').outerHeight() + $('.toolbar').outerHeight()),
+        //             topRevealed = $('.toolbar').outerHeight() - parseInt($('.actionsbar--left').css('marginTop'));
 
-                // $('.actions-menu .dropdown__menu').hide();
-                //if ($('.toolbar .dropdown__menu').length < 1) {
-                //}
-                // ({'top': topHidden}).show().parent().removeClass('open');
+        //         // $('.actions-menu .dropdown__menu').hide();
+        //         //if ($('.toolbar .dropdown__menu').length < 1) {
+        //         //}
+        //         // ({'top': topHidden}).show().parent().removeClass('open');
 
-                $('.actions-menu [data-toggle=dropdown]').on('click touchenter', function() {
-                    if ((!$(this).parent().hasClass('open')) && window.matchMedia('(max-width: 767px)').matches) {
-                        $('.mobile-actions-menu').css({'marginTop': 0});
-                    }
-                    else if (window.matchMedia('(max-width: 767px)').matches) {
-                        $('.mobile-actions-menu').css({'marginTop': topHidden});
-                    }
-                });
-            }
-            else {
-                $('.actions-menu .dropdown__menu').removeAttr('style');
-            }
-        }
-        actionsMenu();
+        //         $('.actions-menu [data-toggle=dropdown]').on('click touchenter', function() {
+        //             if ((!$(this).parent().hasClass('open')) && window.matchMedia('(max-width: 767px)').matches) {
+        //                 $('.mobile-actions-menu').css({'marginTop': 0});
+        //             }
+        //             else if (window.matchMedia('(max-width: 767px)').matches) {
+        //                 $('.mobile-actions-menu').css({'marginTop': topHidden});
+        //             }
+        //         });
+        //     }
+        //     else {
+        //         $('.actions-menu .dropdown__menu').removeAttr('style');
+        //     }
+        // }
+        // actionsMenu();
 
         // Do these things whenever the window resizes
         $(window).resize(function() {
             updateStickyFlashMessages();
             mobileToggle();
-            actionsMenu();
+            // actionsMenu();
 
             $('.tabs__list[data-mobile-togglable]').css({'top': ($('.toolbar').outerHeight() - 3)});
         });

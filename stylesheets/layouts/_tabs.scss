@@ -208,6 +208,12 @@
   display: block;
   overflow: auto;
 
+  @include respond-max($screen-tablet) {
+    position: relative;
+    top: -($line-height-base * 2.5);
+    z-index: -1;
+  }
+
   // show/hide tab panes
   > .tab__pane {
     display: none;

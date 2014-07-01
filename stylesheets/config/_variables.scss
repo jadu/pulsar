@@ -30,6 +30,7 @@ $font-family-base:                    $font-family-light !default;
 }
 
 $font-size-base:                      16px !default;
+$font-size-xlarge:                     ceil($font-size-base * 1.5) !default; // ~18px
 $font-size-large:                     ceil($font-size-base * 1.25) !default; // ~18px
 $font-size-small:                     ceil($font-size-base * 0.85) !default; // ~12px
 $line-height-base:                    22px !default;
@@ -95,6 +96,13 @@ $padding-large-vertical:              10px !default;
 $padding-large-horizontal:            16px !default;
 $padding-small-vertical:              5px !default;
 $padding-small-horizontal:            10px !default;
+
+// -----------------------------------------------------------------------------
+//  Navigation
+// -----------------------------------------------------------------------------
+
+$nav-primary-width:                   45%;
+$nav-primary-item-width:              32%; // % of $nav-primary-width
 
 // -----------------------------------------------------------------------------
 //  Forms

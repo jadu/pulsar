@@ -1,100 +1,50 @@
 .actionsbar {
   @extend .btn__toolbar;
   @include inline-block;
+  margin: ($line-height-base / 2) 0 ($line-height-base / 2) 0;
+
+
+  @include respond-min($screen-tablet) {
+    margin: $line-height-base 0 0 0;
+  }
+
+  @include respond-min($screen-tablet-max) {
+    margin: $line-height-base 0 2px 0;
+  }
 
   @include ie-lte(7) {
     .btn__group {
       z-index: 1; // Fix issue where actions menu appears underneath tabs
     }
   }
-
-  @include respond-min($screen-tablet) {
-    margin: $line-height-base 0 2px 0;
-  }
-  @include respond-max($screen-tablet - 1) {
-    left: 75px + ($gutter-width * 2);
-  }
-  @include respond-max($screen-phone - 1) {
-    left: (75px * 0.85) + ($gutter-width * 1.5);
-  }
 }
 
 .actionsbar--left {
+  float: left;
+  margin-right: 0;
+  margin-bottom: 0;
   width: $tab-column-width;
-  @include respond-min($screen-tablet) {
-    float: left;
-    margin-right: 0;
-    margin-bottom: 0;
-    width: $tab-column-width;
+
+  @include respond-max($screen-tablet) {
+    float: none;
   }
-  @include respond-max($screen-tablet - 1) {
-    // margin-top: (($toolbar-height - $brand-height) - 1);
-    position: fixed;
-    top: 0;
-    width: 25%;
-    z-index: $zindex-nav;
 
-    .btn__group {
-      position: static;
-    }
-    .actions-menu {
-      position: static;
-
-      > .btn {
-        background: none;
-        border: 0;
-        box-shadow: none;
-        color: $white;
-        height: $toolbar-height;
-        @include respond-max($screen-phone) {
-          height: $toolbar-height-small;
-        }
-        outline: 0;
-        text-shadow: none;
-
-        .caret {
-          border-top-color: $white;
-          margin-left: 3px;
-        }
-
-        &:hover {
-          color: $gray-lighter;
-
-          .caret {
-            border-top-color: $gray-lighter;
-          }
-        }
-      }
-
-      &.open {
-        > .btn {
-          color: $primary-color;
-
-          .caret {
-            border-top-color: $primary-color;
-          }
-        }
-      }
-    }
-  }
-  @include respond-max($screen-phone - 1) {
-    // margin-top: (($toolbar-height - $brand-height) * 0.75);
-
-    .actions-menu {
-      .dropdown__menu {
-        // left: -((75px * 0.85) + ($gutter-width * 1.5));
-        z-index: $zindex-nav;
-      }
-    }
-  }
   @include respond-max($screen-tablet-max) {
-    width: $tab-column-width-tablet;
+    width: $sidebar-column-width-tablet;
+  }
+}
+
+@include respond-max($screen-phone) {
+  .btn__back {
+    display: none;
+  }
+  .actions-menu .btn {
+    // @extend .btn--primary;
   }
 }
 
 .actionsbar--right {
   float: right;
-
   .btn, .btn__group {
     float: left;
   }
@@ -104,11 +54,5 @@
   .btn__back {
     margin-right: -1px;
     padding: 11px;
-  }
-}
-
-@include respond-max($screen-tablet - 1) {
-  .btn__back {
-    display: none;
   }
 }
