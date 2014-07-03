@@ -4430,23 +4430,6 @@ textarea.input-lg, textarea.input-sm {
 .user-actions span {
   display: inline; }
 
-.mobile-actions-menu {
-  background-color: #4d4d4d;
-  border: 0;
-  border-bottom: 3px solid #3399cc;
-  box-shadow: none;
-  box-sizing: content-box;
-  display: none !important;
-  margin: 0;
-  position: relative;
-  width: 100%;
-  transition: 0.15s ease-out margin;
-  z-index: 1059; }
-  .mobile-actions-menu.dropdown__menu > li > a, .mobile-actions-menu.dropdown__menu > li > .mobile-actions-menu.subnav-container, .mobile-actions-menu.dropdown__menu > li > .toolbar .dropdown__menu > li > ul.mobile-actions-menu, .toolbar .dropdown__menu > li > .mobile-actions-menu.dropdown__menu > li > ul.mobile-actions-menu, .mobile-actions-menu.dropdown__menu > li > .toolbar .dropdown__menu > li > ul.mobile-actions-menu, .toolbar .dropdown__menu > li > .mobile-actions-menu.dropdown__menu > li > ul.mobile-actions-menu {
-    color: #fff; }
-  .mobile-actions-menu.dropdown__menu .divider, .mobile-actions-menu.dropdown__menu .mobile-actions-menu.subnav-container, .mobile-actions-menu.dropdown__menu .toolbar .dropdown__menu > li > ul.mobile-actions-menu, .toolbar .dropdown__menu > li > .mobile-actions-menu.dropdown__menu ul.mobile-actions-menu, .mobile-actions-menu.dropdown__menu .toolbar .dropdown__menu > li > ul.mobile-actions-menu, .toolbar .dropdown__menu > li > .mobile-actions-menu.dropdown__menu ul.mobile-actions-menu {
-    background-color: #666666; }
-
 .mobile-menu-toggle {
   color: #fff;
   float: right;
@@ -5663,23 +5646,6 @@ tr.is-collapsed td, tr.is-collapsed th {
 .user-actions span {
   display: inline; }
 
-.mobile-actions-menu {
-  background-color: #4d4d4d;
-  border: 0;
-  border-bottom: 3px solid #3399cc;
-  box-shadow: none;
-  box-sizing: content-box;
-  display: none !important;
-  margin: 0;
-  position: relative;
-  width: 100%;
-  transition: 0.15s ease-out margin;
-  z-index: 1059; }
-  .mobile-actions-menu.dropdown__menu > li > a, .mobile-actions-menu.dropdown__menu > li > .mobile-actions-menu.subnav-container, .mobile-actions-menu.dropdown__menu > li > .toolbar .dropdown__menu > li > ul.mobile-actions-menu, .toolbar .dropdown__menu > li > .mobile-actions-menu.dropdown__menu > li > ul.mobile-actions-menu, .mobile-actions-menu.dropdown__menu > li > .toolbar .dropdown__menu > li > ul.mobile-actions-menu, .toolbar .dropdown__menu > li > .mobile-actions-menu.dropdown__menu > li > ul.mobile-actions-menu {
-    color: #fff; }
-  .mobile-actions-menu.dropdown__menu .divider, .mobile-actions-menu.dropdown__menu .mobile-actions-menu.subnav-container, .mobile-actions-menu.dropdown__menu .toolbar .dropdown__menu > li > ul.mobile-actions-menu, .toolbar .dropdown__menu > li > .mobile-actions-menu.dropdown__menu ul.mobile-actions-menu, .mobile-actions-menu.dropdown__menu .toolbar .dropdown__menu > li > ul.mobile-actions-menu, .toolbar .dropdown__menu > li > .mobile-actions-menu.dropdown__menu ul.mobile-actions-menu {
-    background-color: #666666; }
-
 .mobile-menu-toggle {
   color: #fff;
   float: right;
@@ -6230,7 +6196,7 @@ footer {
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
   box-shadow: -3px 1px 3px rgba(0, 0, 0, 0.05);
-  float: left;
+  position: relative;
   width: 100%;
   border: 1px solid #ccc; }
   .tab__inner h2:first-of-type {

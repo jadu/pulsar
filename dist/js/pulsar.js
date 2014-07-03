@@ -151,8 +151,8 @@ define(['jquery'], function() {
         var mobileMenu = $('.actions-menu .dropdown__menu').clone()
 
         $('.toolbar').append(mobileMenu);
-        console.log($('.toolbar > .dropdown__menu'));
-        $('.toolbar > .dropdown__menu').addClass('mobile-actions-menu').show();
+        // console.log($('.toolbar > .dropdown__menu'));
+        // $('.toolbar > .dropdown__menu').addClass('mobile-actions-menu').show();
 
         // function actionsMenu() {
         //     if (window.matchMedia('(max-width: 767px)').matches) {

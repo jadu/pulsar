@@ -176,6 +176,7 @@
     }
   }
 }
+
 .tabs__list[data-mobile-togglable] > li > .tabs__list {
   background-color: shade($accent-color, 15%);
   border: 0 none;
@@ -234,7 +235,7 @@
   border-top: 1px solid $gray;
   border-bottom: 1px solid $gray;
   box-shadow: -3px 1px 3px rgba(0, 0, 0, 0.05);
-  float: left;
+  position: relative;
   width: 100%;
 
   h2:first-of-type {
