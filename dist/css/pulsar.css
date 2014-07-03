@@ -5944,8 +5944,7 @@ footer {
   @media screen and (max-width: 768px) {
     .tabs__content {
       position: relative;
-      top: -55px;
-      z-index: -1; } }
+      top: -55px; } }
   .tabs__content > .tab__pane {
     display: none; }
     .tabs__content > .tab__pane.is-active {
