@@ -126,13 +126,14 @@
   width: $brand-width;
 
   @include respond-max($screen-phone) {
-    margin: 0 $gutter-width;
+    margin: 0 $gutter-width / 2;
     top: (($toolbar-height-small - $toolbar-accent-height) - $brand-height) / 2;
   }
 
-  @include respond-max($screen-tablet-max) {
+  @include respond-min($screen-tablet) {
     margin: 0 $gutter-width;
   }
+
 }
 
 .toolbar .btn__group {
@@ -200,6 +201,10 @@
     min-width: $nav-min-width;
     top: $toolbar-height;
     z-index: $zindex-nav;
+
+    @include respond-max($screen-phone) {
+      top: $toolbar-height-small;
+    }
 
     > li > ul {
       @extend .dropdown__menu;
