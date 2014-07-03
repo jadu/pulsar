@@ -6228,7 +6228,7 @@ footer {
     background-color: #3399cc;
     border-left: 4px solid #3399cc;
     height: 100%;
-    margin-right: -200px;
+    margin-right: -250px;
     overflow-y: auto;
     position: fixed;
     right: 0;
@@ -6236,7 +6236,8 @@ footer {
     -webkit-transition: margin-right 0.15s ease-out;
     -moz-transition: margin-right 0.15s ease-out;
     -transition: margin-right 0.15s ease-out;
-    z-index: 1070; }
+    z-index: 1070;
+    width: 250px; }
     .tabs__list[data-mobile-togglable].toggled {
       margin-right: 0; }
   @media screen and (min-width: 768px) {

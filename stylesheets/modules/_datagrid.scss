@@ -32,6 +32,9 @@
         border-bottom: 1px solid $gray;
       }
       height: $line-height-base * 1.8;
+      @include respond-max($screen-tablet) {
+        height: $line-height-base;
+      }
       padding: 0 $gutter-width / 2;
 
       text-align: left;

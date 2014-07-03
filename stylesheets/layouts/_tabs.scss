@@ -15,7 +15,7 @@
     background-color: $accent-color;
     border-left: $toolbar-accent-height solid $accent-color;
     height: 100%;
-    margin-right: -$tab-column-width;
+    margin-right: -$tab-column-width-mobile;
     overflow-y: auto;
     position: fixed;
     right: 0;
@@ -24,6 +24,7 @@
     -moz-transition: margin-right .15s ease-out;
     -transition: margin-right .15s ease-out;
     z-index: $zindex-nav;
+    width: $tab-column-width-mobile;
 
     &.toggled {
       margin-right: 0;
