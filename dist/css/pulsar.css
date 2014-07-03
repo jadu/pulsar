@@ -3956,9 +3956,9 @@ textarea.input-lg, textarea.input-sm {
   width: 75px; }
   @media screen and (max-width: 480px) {
     .branding {
-      margin: 0 20px;
+      margin: 0 10px;
       top: 8px; } }
-  @media screen and (max-width: 991px) {
+  @media screen and (min-width: 768px) {
     .branding {
       margin: 0 20px; } }
 
@@ -4004,6 +4004,9 @@ textarea.input-lg, textarea.input-sm {
   min-width: 150px;
   top: 66px;
   z-index: 1070; }
+  @media screen and (max-width: 480px) {
+    .toolbar .dropdown__menu {
+      top: 44px; } }
   .toolbar .dropdown__menu > li > ul, .toolbar .dropdown__menu > li > .subnav-container {
     background: rgba(63, 63, 63, 0.95);
     left: 160px;
@@ -5306,9 +5309,9 @@ tr.is-collapsed td, tr.is-collapsed th {
   width: 75px; }
   @media screen and (max-width: 480px) {
     .branding {
-      margin: 0 20px;
+      margin: 0 10px;
       top: 8px; } }
-  @media screen and (max-width: 991px) {
+  @media screen and (min-width: 768px) {
     .branding {
       margin: 0 20px; } }
 
@@ -5354,6 +5357,9 @@ tr.is-collapsed td, tr.is-collapsed th {
   min-width: 150px;
   top: 66px;
   z-index: 1070; }
+  @media screen and (max-width: 480px) {
+    .toolbar .dropdown__menu {
+      top: 44px; } }
   .toolbar .dropdown__menu > li > ul, .toolbar .dropdown__menu > li > .subnav-container {
     background: rgba(63, 63, 63, 0.95);
     left: 160px;

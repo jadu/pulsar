@@ -4389,7 +4389,8 @@ textarea.input-lg, textarea.input-sm {
   margin: 0 105px 0 20px;
   position: relative;
   top: 19px;
-  width: 75px; }
+  width: 75px;
+  margin: 0 20px; }
 
 .toolbar .btn__group {
   top: 0; }
@@ -5650,7 +5651,8 @@ tr.is-collapsed td, tr.is-collapsed th {
   margin: 0 105px 0 20px;
   position: relative;
   top: 19px;
-  width: 75px; }
+  width: 75px;
+  margin: 0 20px; }
 
 .toolbar .btn__group {
   top: 0; }

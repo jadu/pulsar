@@ -4440,6 +4440,9 @@ textarea.input-lg, textarea.input-sm {
   position: relative;
   top: 19px;
   width: 75px; }
+  @media screen and (min-width: 768px) {
+    .branding {
+      margin: 0 20px; } }
 
 .toolbar .btn__group .btn {
   background: none;
@@ -5728,6 +5731,9 @@ tr.is-collapsed td, tr.is-collapsed th {
   position: relative;
   top: 19px;
   width: 75px; }
+  @media screen and (min-width: 768px) {
+    .branding {
+      margin: 0 20px; } }
 
 .toolbar .btn__group .btn {
   background: none;
