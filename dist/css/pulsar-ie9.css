@@ -4436,13 +4436,16 @@ textarea.input-lg, textarea.input-sm {
   float: left;
   height: 24px;
   overflow: hidden;
-  margin: 0 105px 0 20px;
+  margin: 0 20px;
   position: relative;
   top: 19px;
   width: 75px; }
   @media screen and (min-width: 768px) {
     .branding {
       margin: 0 20px; } }
+  @media screen and (min-width: 992px) {
+    .branding {
+      margin: 0 105px 0 20px; } }
 
 .toolbar .btn__group .btn {
   background: none;
@@ -5487,10 +5490,10 @@ tr.is-collapsed td, tr.is-collapsed th {
     background-color: #1a1a1a; }
 
 .pagination {
+  background-color: #fff;
   border-top: 3px double #ccc;
   font-size: 14px; }
   .pagination ul {
-    float: left;
     margin: 0;
     padding: 0; }
   .pagination li {
@@ -5710,13 +5713,16 @@ tr.is-collapsed td, tr.is-collapsed th {
   float: left;
   height: 24px;
   overflow: hidden;
-  margin: 0 105px 0 20px;
+  margin: 0 20px;
   position: relative;
   top: 19px;
   width: 75px; }
   @media screen and (min-width: 768px) {
     .branding {
       margin: 0 20px; } }
+  @media screen and (min-width: 992px) {
+    .branding {
+      margin: 0 105px 0 20px; } }
 
 .toolbar .btn__group .btn {
   background: none;

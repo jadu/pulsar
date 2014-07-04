@@ -3950,7 +3950,7 @@ textarea.input-lg, textarea.input-sm {
   float: left;
   height: 24px;
   overflow: hidden;
-  margin: 0 105px 0 20px;
+  margin: 0 20px;
   position: relative;
   top: 19px;
   width: 75px; }
@@ -3961,6 +3961,9 @@ textarea.input-lg, textarea.input-sm {
   @media screen and (min-width: 768px) {
     .branding {
       margin: 0 20px; } }
+  @media screen and (min-width: 992px) {
+    .branding {
+      margin: 0 105px 0 20px; } }
 
 .toolbar .btn__group .btn {
   background: none;
@@ -4938,8 +4941,12 @@ tr.is-collapsed td, tr.is-collapsed th {
         line-height: 1.2; } }
     @media screen and (max-width: 480px) {
       .nav__primary .nav-item {
-        font-size: 14px;
-        line-height: 1; } }
+        display: inline-block;
+        font-size: 0.8em !important;
+        height: 44px; }
+        .nav__primary .nav-item > a {
+          height: 41px;
+          padding: 0 2px 0; } }
     @media screen and (max-width: 768px) {
       .nav__primary .nav-item > a {
         padding-left: 10px;
@@ -5060,10 +5067,10 @@ tr.is-collapsed td, tr.is-collapsed th {
     background-color: #1a1a1a; }
 
 .pagination {
+  background-color: #fff;
   border-top: 3px double #ccc;
   font-size: 14px; }
   .pagination ul {
-    float: left;
     margin: 0;
     padding: 0; }
   .pagination li {
@@ -5288,7 +5295,7 @@ tr.is-collapsed td, tr.is-collapsed th {
   float: left;
   height: 24px;
   overflow: hidden;
-  margin: 0 105px 0 20px;
+  margin: 0 20px;
   position: relative;
   top: 19px;
   width: 75px; }
@@ -5299,6 +5306,9 @@ tr.is-collapsed td, tr.is-collapsed th {
   @media screen and (min-width: 768px) {
     .branding {
       margin: 0 20px; } }
+  @media screen and (min-width: 992px) {
+    .branding {
+      margin: 0 105px 0 20px; } }
 
 .toolbar .btn__group .btn {
   background: none;
