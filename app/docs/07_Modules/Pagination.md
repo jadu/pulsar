@@ -19,7 +19,7 @@ Example:
     </div>
 
 <div class="pagination">
-    <ul class="pull-left"><!--
+    <ul><!--
         --><li class="is-disabled"><a href="#"><i class="icon-double-angle-left"></i> Previous</a></li><!--
         --><li><a href="#">1</a></li><!--
         --><li class="selected"><a href="#">2</a></li><!--
