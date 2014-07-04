@@ -11,12 +11,16 @@
     }
 
     @include respond-max($screen-phone) {
-      font-size: $font-size-small;
-      line-height: 1;
+      display: inline-block;
+      font-size: .8em !important;
+      height: 44px;
+      > a {
+        height: 41px;
+        padding: 0 2px 0;
+      }
     }
 
     @include respond-max($screen-tablet) {
-
       > a {
         padding-left: $gutter-width / 2;
         padding-right: $gutter-width / 2;

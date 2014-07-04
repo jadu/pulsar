@@ -230,7 +230,7 @@ module.exports = function(grunt) {
     concurrent: {
       dev: ['watch', 'php'],
       options: {
-        logConcurrentOutput: false
+        logConcurrentOutput: true
       }
     }
 

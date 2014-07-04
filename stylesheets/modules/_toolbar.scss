@@ -120,7 +120,7 @@
   float: left;
   height: $brand-height;
   overflow: hidden;
-  margin: 0 ($sidebar-column-width - ($brand-width + $gutter-width)) 0 $gutter-width;
+  margin: 0 $gutter-width;
   position: relative;
   top: (($toolbar-height - $toolbar-accent-height) - $brand-height) / 2;
   width: $brand-width;
@@ -132,6 +132,10 @@
 
   @include respond-min($screen-tablet) {
     margin: 0 $gutter-width;
+  }
+
+  @include respond-min($screen-desktop) {
+    margin: 0 ($sidebar-column-width - ($brand-width + $gutter-width)) 0 $gutter-width;
   }
 
 }
