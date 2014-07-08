@@ -32,7 +32,8 @@ module.exports = function(grunt) {
     sass: {
       pulsar: {
         options: {
-          style: 'compressed'
+          style: 'compressed',
+          sourceMap: true
         },
         files: [{
           expand: true,

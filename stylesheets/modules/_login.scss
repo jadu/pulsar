@@ -11,7 +11,7 @@
         margin: 0 auto;
         width: 80%;
 
-        &.has-error, 
+        &.has-error,
         &:hover {
             box-shadow: none;
         }
@@ -20,7 +20,7 @@
     .control__label,
     .controls {
         display: block;
-        margin: 0 0 1em 0;
+        margin: 0 auto 1em auto;
         text-align: center;
         width: 100%;
     }

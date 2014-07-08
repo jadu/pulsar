@@ -5121,7 +5121,7 @@ tr.is-collapsed td, tr.is-collapsed th {
       box-shadow: none; }
   .form__login .control__label, .form__login .controls {
     display: block;
-    margin: 0 0 1em 0;
+    margin: 0 auto 1em auto;
     text-align: center;
     width: 100%; }
   .form__login .help-block {
