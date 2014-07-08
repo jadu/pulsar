@@ -71,6 +71,12 @@
         ]
       )
     }}
+    <div class="search" style="margin-top: -1em;margin-left: 300px;">
+        <form action="/app_dev.php/">
+            <input type="search" name="q" id="case-search" value="" placeholder="Search by case ref, car reg, PCN or surname">
+            <input type="submit" name="case-search" value="Go">
+        </form>
+    </div>
     {{
       html.button_dropdown(
         label = html.icon('user') ~ ' <span>Paul Stanton</span>',

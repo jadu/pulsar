@@ -32,7 +32,7 @@
 
 .subnav-container {
     @extend .dropdown__menu;
-    @extend .inverse;
+    // @extend .inverse;
     top: 0;
     left: 160px;
 }

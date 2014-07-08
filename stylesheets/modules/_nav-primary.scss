@@ -12,6 +12,7 @@
 
     @include respond-max($screen-phone) {
       display: inline-block;
+      outline: 1px solid red;
       font-size: .8em !important;
       height: 44px;
       > a {
