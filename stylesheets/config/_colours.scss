@@ -151,9 +151,31 @@ $table-border-color:             #ccc !default;
 //  Toolbar
 // -----------------------------------------------------------------------------
 
-$toolbar-bg:                     $gray-darker !default;
 $toolbar-search-accent:          $primary-color !default;
+
+$toolbar-bg:                     $gray-darker !default;
+$toolbar-bg-hover:               $accent-color !default;
+
 $toolbar-link-color:             $white !default;
+$toolbar-link-color-hover:       $white !default;
+
+$toolbar-notification-bg:        $accent-color !default;
+$toolbar-notification-text-color: $toolbar-link-color !default;
+$toolbar-notification-item-hover: $white !default;
+
+
+$toolbar-dropdown-bg:            $white !default;
+$toolbar-dropdown-link-color:    $accent-color !default;
+$toolbar-dropdown-link-color-hover: $white !default;
+
+// -----------------------------------------------------------------------------
+//  Search
+// -----------------------------------------------------------------------------
+
+$search-bg:                      darken($toolbar-bg, 5%) !default;
+$search-bg-focus:                $search-bg !default;
+$search-text-color:              $white !default;
+$search-accent-color:            $accent-color !default;
 
 // -----------------------------------------------------------------------------
 //  Forms

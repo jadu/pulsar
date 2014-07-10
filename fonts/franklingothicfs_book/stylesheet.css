@@ -1,0 +1,36 @@
+/*
+ * Web Fonts from fontspring.com
+ *
+ * All OpenType features and all extended glyphs have been removed.
+ * Fully installable fonts can be purchased at http://www.fontspring.com
+ *
+ * The fonts included in this stylesheet are subject to the End User License you purchased
+ * from Fontspring. The fonts are protected under domestic and international trademark and 
+ * copyright law. You are prohibited from modifying, reverse engineering, duplicating, or
+ * distributing this font software.
+ *
+ * (c) 2010-2014 Fontspring
+ *
+ *
+ *
+ *
+ * The fonts included are copyrighted by the vendor listed below.
+ *
+ * Vendor:      FontSite Inc.
+ * License URL: http://www.fontspring.com/fflicense/fontsite
+ *
+ *
+ */
+
+@font-face {
+    font-family: 'franklin_gothic_fsbook';
+    src: url('FranklinGothic-Book-webfont.eot');
+    src: url('FranklinGothic-Book-webfont.eot?#iefix') format('embedded-opentype'),
+         url('FranklinGothic-Book-webfont.woff') format('woff'),
+         url('FranklinGothic-Book-webfont.ttf') format('truetype'),
+         url('FranklinGothic-Book-webfont.svg#franklin_gothic_fsbook') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+

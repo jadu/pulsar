@@ -10,7 +10,7 @@
     height: $toolbar-height;
     @include user-select(none);
     > a {
-        color: $accent-color-alt;
+        color: $toolbar-link-color;
         cursor: pointer;
         display: table-cell;
         height: $toolbar-height;
@@ -19,8 +19,8 @@
         text-decoration: none;
         vertical-align: middle;
         &:hover {
-            background: $accent-color;
-            color: $accent-color-alt;
+            background: $toolbar-bg-hover;
+            color: $toolbar-link-color-hover;
         }
     }
     &.open > a {

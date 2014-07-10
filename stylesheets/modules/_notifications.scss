@@ -104,7 +104,7 @@
     background-color: $label-primary-bg;
     color: $white;
     &:hover {
-      background-color: $accent-color-alt;
+      background-color: $toolbar-notification-item-hover;
       color: $accent-color;
     }
     > .badge {
@@ -116,7 +116,7 @@
     background-color: $label-success-bg;
     color: $white;
     &:hover {
-      background-color: $accent-color-alt;
+      background-color: $toolbar-notification-item-hover;
       color: $label-success-bg;
     }
     > .badge {
@@ -128,7 +128,7 @@
     background-color: $label-warning-bg;
     color: $white;
     &:hover {
-      background-color: $accent-color-alt;
+      background-color: $toolbar-notification-item-hover;
       color: $label-warning-bg;
     }
     > .badge {
@@ -140,7 +140,7 @@
     background-color: $label-info-bg;
     color: $white;
     &:hover {
-      background-color: $accent-color-alt;
+      background-color: $toolbar-notification-item-hover;
       color: $label-info-bg;
     }
     > .badge {
@@ -152,7 +152,7 @@
     background-color: $label-danger-bg;
     color: $white;
     &:hover {
-      background-color: $accent-color-alt;
+      background-color: $toolbar-notification-item-hover;
       color: $label-danger-bg;
     }
     > .badge {
@@ -164,7 +164,7 @@
     background-color: $label-inverse-bg;
     color: $white;
     &:hover {
-      background-color: $accent-color-alt;
+      background-color: $toolbar-notification-item-hover;
       color: $label-inverse-bg;
     }
     > .badge {

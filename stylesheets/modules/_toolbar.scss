@@ -31,13 +31,16 @@
 
   .search-form {
     margin: 0;
-    height: $brand-height + 16;
+    float: none;
     padding-top: 10px;
-    display: inline-block;
-    width: 100%;
-    max-width: 800px;
-    margin-left: $gutter-width;
+    display: table-cell;
     position: relative;
+    width: 1%;
+
+    @include respond-max($screen-tablet-max) {
+      display: none;
+      // NEEDS A RESPONSIVE VIEW
+    }
 
     .icon-search {
       position: absolute;
@@ -76,21 +79,25 @@
   }
 
   .search-field {
-    background: lighten($gray-dark,5);
+    background: $search-bg;
     height: $brand-height;
-    padding: 20px 20px 20px 40px;
+    padding: 20px;
     border: none;
-    border-bottom: 2px solid $toolbar-search-accent;
+    border-radius: $search-border-radius;
+    text-overflow: ellipsis;
     width: 100%;
     max-width: 400px;
     -webkit-transition: all .2s ease-in-out;
-    color: #FFF;
+    color: $search-text-color;
     &:focus {
+      border-bottom: 2px solid $search-accent-color;
       max-width: 800px;
       outline: none;
-      background: lighten($toolbar-bg, 11);
+      background: $search-bg-focus;
     }
   }
+
+
 
   .notifications {
     top: 0;
@@ -101,8 +108,9 @@
     }
 
     .badge {
-      background-color: $accent-color;
+      background-color: $toolbar-notification-bg;
       border-radius: $border-radius;
+      color: $toolbar-notification-text-color;
     }
 
     @include respond-min($screen-phone) {
@@ -175,16 +183,16 @@
     }
 
     &:hover {
-      background: $accent-color;
-      color: $accent-color-alt;
+      background: $toolbar-bg-hover;
+      color: $toolbar-link-color-hover;
     }
   }
 
 
 
   &.open .btn {
-    background-color: $accent-color;
-    color: $accent-color-alt;
+    background-color: $toolbar-bg-hover;
+    color: $toolbar-link-color-hover;
   }
 
   @include respond-min($screen-phone) {
@@ -198,7 +206,7 @@
 
   // Sub-navigation
   .dropdown__menu {
-    background-color: $accent-color;
+    background-color: $toolbar-dropdown-bg;
     border: 0;
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.175);
     margin-top: 0;
@@ -219,12 +227,12 @@
     }
 
     a {
-      color: $accent-color-alt;
+      color: $toolbar-dropdown-link-color;
     }
 
     a:hover {
       background-color: $accent-color-alt;
-      color: $accent-color;
+      color: $toolbar-dropdown-link-color-hover;
     }
 
     .divider {

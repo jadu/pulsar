@@ -30,7 +30,7 @@ $font-family-base:                    $font-family-light !default;
 }
 
 $font-size-base:                      16px !default;
-$font-size-xlarge:                     ceil($font-size-base * 1.5) !default; // ~18px
+$font-size-xlarge:                    ceil($font-size-base * 1.5) !default; // ~18px
 $font-size-large:                     ceil($font-size-base * 1.25) !default; // ~18px
 $font-size-small:                     ceil($font-size-base * 0.85) !default; // ~12px
 $line-height-base:                    22px !default;
@@ -171,8 +171,14 @@ $toolbar-accent-height:               4px !default;
 $toolbar-height:                      ($line-height-base * 3) !default; // including accent height
 $toolbar-height-small:                ($line-height-base * 2) !default; // including accent height
 
+
 //$toolbar-internal-height:             ($toolbar-height - $toolbar-accent-height) !default;
 
+// -----------------------------------------------------------------------------
+//  Search
+// -----------------------------------------------------------------------------
+
+$search-border-radius:                0px !default;
 
 // -----------------------------------------------------------------------------
 //  Branding

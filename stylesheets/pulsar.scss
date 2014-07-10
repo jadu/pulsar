@@ -14,7 +14,7 @@
 @import 'config/variables';
 
 // Theme
-//@import '../theme/stylesheets/theme.scss';
+@import '../theme/theme.scss';
 
 // Structure
 @import 'structure/scaffolding';
@@ -41,7 +41,6 @@
 @import 'components/progress-bars';
 
 // Modules
-@import 'modules/toolbar';
 @import 'modules/breadcrumb';
 @import 'modules/actionsbar';
 @import 'modules/flash';
