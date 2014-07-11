@@ -4917,6 +4917,8 @@ tr.is-collapsed td, tr.is-collapsed th {
   float: left;
   width: 100%;
   border: 1px solid #ccc; }
+  .slide-inner form {
+    width: 100%; }
   .slide-inner.padded {
     padding: 20px 20px 0 20px; }
   .slide-inner {

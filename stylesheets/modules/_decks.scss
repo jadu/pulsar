@@ -118,6 +118,10 @@
   float: left;
   width: 100%;
 
+  form {
+    width: 100%;
+  }
+
   @include ie-lte(7) {
       border: 1px solid $gray;
   }
