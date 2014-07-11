@@ -32,79 +32,79 @@
   padding-bottom: 60px;
   position: absolute;
   right: 0;
-  
+
   // Control the horizontal position of successive deck slides ---------------
 
   $left-offset: 20px;
   $right-offset: 2px;
-  
+
   // IE8 Currently has issues supporting nth-of-type and nth-child
-  
+
   & {
-  // &:nth-of-type(1)  { 
-    left: $left-offset * 1; 
+  // &:nth-of-type(1)  {
+    left: $left-offset * 1;
     right: $right-offset * 1;
     z-index: 1;
   }
 
   & + & {
-  // &:nth-of-type(2)  { 
-    left: $left-offset * 2; 
+  // &:nth-of-type(2)  {
+    left: $left-offset * 2;
     right: $right-offset * 2;
     z-index: 2;
   }
 
   & + & + & {
-  // &:nth-of-type(3)  { 
-    left: $left-offset * 3; 
+  // &:nth-of-type(3)  {
+    left: $left-offset * 3;
     right: $right-offset * 3;
     z-index: 3;
   }
 
   & + & + & + & {
-  // &:nth-of-type(4)  { 
-    left: $left-offset * 4; 
+  // &:nth-of-type(4)  {
+    left: $left-offset * 4;
     right: $right-offset * 4;
     z-index: 4;
   }
 
   & + & + & + & + & {
-  // &:nth-of-type(5)  { 
-    left: $left-offset * 5; 
+  // &:nth-of-type(5)  {
+    left: $left-offset * 5;
     right: $right-offset * 5;
     z-index: 5;
   }
 
   & + & + & + & + & + & {
-  // &:nth-of-type(6)  { 
-    left: $left-offset * 6; 
+  // &:nth-of-type(6)  {
+    left: $left-offset * 6;
     right: $right-offset * 6;
     z-index: 6;
   }
 
   & + & + & + & + & + & + & {
-  // &:nth-of-type(7)  { 
-    left: $left-offset * 7; 
+  // &:nth-of-type(7)  {
+    left: $left-offset * 7;
     right: $right-offset * 7;
     z-index: 7;
   }
 
   & + & + & + & + & + & + & + & {
-  // &:nth-of-type(8)  { 
-    left: $left-offset * 8; 
+  // &:nth-of-type(8)  {
+    left: $left-offset * 8;
     right: $right-offset * 8;
     z-index: 8;
   }
 
   & + & + & + & + & + & + & + & + & {
-  // &:nth-of-type(9)  { 
-    left: $left-offset * 9; 
+  // &:nth-of-type(9)  {
+    left: $left-offset * 9;
     right: $right-offset * 9;
     z-index: 9;
   }
 
   & + & + & + & + & + & + & + & + & + & {
-  // &:nth-of-type(n + 11) { 
+  // &:nth-of-type(n + 11) {
     left: $left-offset * 10;
     right: $right-offset * 10;
     z-index: 10;
@@ -115,6 +115,9 @@
 .slide-inner {
   background-color: $white;
   box-shadow: -3px 0px 3px rgba(0, 0, 0, .1);
+  float: left;
+  width: 100%;
+
   @include ie-lte(7) {
       border: 1px solid $gray;
   }
@@ -122,14 +125,14 @@
   &.padded {
     padding: $gutter-width $gutter-width 0 $gutter-width;
   }
-  
+
   & {
-  // &:nth-of-type(1)  { 
+  // &:nth-of-type(1)  {
       box-shadow: 0 5px 10px rgba(0,0,0,.7);
   }
 
   & + & + & + & + & + & + & + & + & + & + & + & {
-  // &:nth-of-type(n + 12) { 
+  // &:nth-of-type(n + 12) {
       box-shadow: none;
   }
 
@@ -155,7 +158,7 @@
   .nav-tabs {
     border-bottom: 1px solid $white;
   }
-  
+
   .nav-tabs > li > a {
     border: 0;
     border-radius: 0;
@@ -197,7 +200,7 @@
   transition: opacity .2s ease-in-out;
 }
 
-// The styles applied to background elements to reduce their visual prominence 
+// The styles applied to background elements to reduce their visual prominence
 .deck-background {
   opacity: 0.5;
 }
