@@ -1,7 +1,7 @@
 /**
-* @version: 1.3.7
+* @version: 1.3.8
 * @author: Dan Grossman http://www.dangrossman.info/
-* @date: 2014-04-29
+* @date: 2014-07-10
 * @copyright: Copyright (c) 2012-2014 Dan Grossman. All rights reserved.
 * @license: Licensed under Apache License v2.0. See http://www.apache.org/licenses/LICENSE-2.0
 * @website: http://www.improvely.com/
@@ -16,6 +16,9 @@
         //element that triggered the date range picker
         this.element = $(element);
 
+        //tracks visible state
+        this.isShowing = false;
+
         //create the picker HTML object
         var DRPTemplate = '<div class="daterangepicker dropdown-menu">' +
                 '<div class="calendar left"></div>' +
@@ -24,11 +27,11 @@
                   '<div class="range_inputs">' +
                     '<div class="daterangepicker_start_input">' +
                       '<label for="daterangepicker_start"></label>' +
-                      '<input class="input-mini" type="text" name="daterangepicker_start" value="" disabled="disabled" />' +
+                      '<input class="input-mini" type="text" name="daterangepicker_start" value="" readonly="readonly" />' +
                     '</div>' +
                     '<div class="daterangepicker_end_input">' +
                       '<label for="daterangepicker_end"></label>' +
-                      '<input class="input-mini" type="text" name="daterangepicker_end" value="" disabled="disabled" />' +
+                      '<input class="input-mini" type="text" name="daterangepicker_end" value="" readonly="readonly" />' +
                     '</div>' +
                     '<button class="applyBtn" disabled="disabled"></button>&nbsp;' +
                     '<button class="cancelBtn"></button>' +
@@ -115,7 +118,7 @@
             if (this.element.hasClass('pull-right'))
                 this.opens = 'left';
 
-            this.buttonClasses = ['btn', 'btn-small'];
+            this.buttonClasses = ['btn', 'btn-small btn-sm'];
             this.applyClass = 'btn-success';
             this.cancelClass = 'btn-default';
 
@@ -382,6 +385,7 @@
 
             this.updateView();
             this.updateCalendars();
+            this.updateInputText();
         },
 
         setEndDate: function(endDate) {
@@ -398,11 +402,12 @@
 
             this.updateView();
             this.updateCalendars();
+            this.updateInputText();
         },
 
         updateView: function () {
-            this.leftCalendar.month.month(this.startDate.month()).year(this.startDate.year());
-            this.rightCalendar.month.month(this.endDate.month()).year(this.endDate.year());
+            this.leftCalendar.month.month(this.startDate.month()).year(this.startDate.year()).hour(this.startDate.hour()).minute(this.startDate.minute());
+            this.rightCalendar.month.month(this.endDate.month()).year(this.endDate.year()).hour(this.endDate.hour()).minute(this.endDate.minute());
             this.updateFormInputs();
         },
 
@@ -424,7 +429,7 @@
             var dateString = this.element.val().split(this.separator),
                 start = null,
                 end = null;
-            
+
             if(dateString.length === 2) {
                 start = moment(dateString[0], this.format);
                 end = moment(dateString[1], this.format);
@@ -434,7 +439,7 @@
                 start = moment(this.element.val(), this.format);
                 end = start;
             }
-            
+
             if (end.isBefore(start)) return;
 
             this.oldStartDate = this.startDate.clone();
@@ -499,6 +504,8 @@
         },
 
         show: function (e) {
+            if (this.isShowing) return;
+
             this.element.addClass('active');
             this.container.show();
             this.move();
@@ -513,6 +520,7 @@
               // and also close when focus changes to outside the picker (eg. tabbing between controls)
               .on('focusin.daterangepicker', this._outsideClickProxy);
 
+            this.isShowing = true;
             this.element.trigger('show.daterangepicker', this);
         },
 
@@ -529,10 +537,12 @@
         },
 
         hide: function (e) {
+            if (!this.isShowing) return;
+
             $(document)
-              .off('mousedown.daterangepicker', this._outsideClickProxy)
-              .off('click.daterangepicker', this._outsideClickProxy)
-              .off('focusin.daterangepicker', this._outsideClickProxy);
+              .off('mousedown.daterangepicker')
+              .off('click.daterangepicker', '[data-toggle=dropdown]')
+              .off('focusin.daterangepicker');
 
             this.element.removeClass('active');
             this.container.hide();
@@ -543,6 +553,7 @@
             this.oldStartDate = this.startDate.clone();
             this.oldEndDate = this.endDate.clone();
 
+            this.isShowing = false;
             this.element.trigger('hide.daterangepicker', this);
         },
 
@@ -561,10 +572,12 @@
         showCalendars: function() {
             this.container.addClass('show-calendar');
             this.move();
+            this.element.trigger('showCalendar.daterangepicker', this);
         },
 
         hideCalendars: function() {
             this.container.removeClass('show-calendar');
+            this.element.trigger('hideCalendar.daterangepicker', this);
         },
 
         updateInputText: function() {

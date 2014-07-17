@@ -1,16 +1,19 @@
 {
   "name": "highcharts",
-  "version": "3.0.7",
-  "main": "./highcharts.js",
-  "dependencies": {},
-  "homepage": "https://github.com/ewen/bower-highcharts",
-  "_release": "3.0.7",
+  "version": "4.0.3",
+  "main": [
+    "highcharts.js",
+    "highcharts-more.js",
+    "modules/exporting.js"
+  ],
+  "homepage": "https://github.com/highslide-software/highcharts-release",
+  "_release": "4.0.3",
   "_resolution": {
     "type": "version",
-    "tag": "v3.0.7",
-    "commit": "3319e634b9179af6e07b7bac854ff0cace0217c1"
+    "tag": "v4.0.3",
+    "commit": "cb444834095550b2cf68487a622ee94568ecc0fa"
   },
-  "_source": "git://github.com/ewen/bower-highcharts.git",
+  "_source": "git://github.com/highslide-software/highcharts-release.git",
   "_target": "*",
   "_originalSource": "highcharts"
 }
