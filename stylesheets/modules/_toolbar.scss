@@ -35,7 +35,7 @@
     display: table-cell;
     position: relative;
     vertical-align: middle;
-    width: $search-max-width;
+    max-width: $search-max-width;
 
     @include respond-max($screen-tablet) {
       display: none;

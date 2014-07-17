@@ -5466,7 +5466,7 @@ tr.is-collapsed td, tr.is-collapsed th {
     display: table-cell;
     position: relative;
     vertical-align: middle;
-    width: 400px; }
+    max-width: 400px; }
     .toolbar .search-form .icon-search {
       position: absolute;
       top: 50%;
