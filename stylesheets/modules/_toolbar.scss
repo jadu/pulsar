@@ -103,15 +103,6 @@
   .notifications {
     top: 0;
 
-    &:hover {
-      background-color: $accent-color;
-
-      .badge {
-        background-color: white;
-        color: $accent-color;
-      }
-    }
-
     .btn {
       padding-left: 0;
       padding-right: 0;
@@ -191,14 +182,7 @@
     .caret {
       display: none;
     }
-
-    &:hover {
-      background: $toolbar-bg-hover;
-      color: $toolbar-link-color-hover;
-    }
   }
-
-
 
   &.open .btn {
     background-color: $toolbar-bg-hover;
@@ -240,11 +224,6 @@
       color: $toolbar-dropdown-link-color;
     }
 
-    a:hover {
-      background-color: $accent-color-alt;
-      color: $toolbar-dropdown-link-color-hover;
-    }
-
     .divider {
       background-color: $accent-color-alt;
     }
@@ -252,10 +231,6 @@
 }
 
 .user-actions {
-  &:hover {
-    background-color: $accent-color;
-  }
-
   i {
     display: block;
     font-size: 16px;
@@ -308,10 +283,6 @@
   height: ($toolbar-height - $toolbar-accent-height);
   line-height: ($toolbar-height - $toolbar-accent-height);
 
-  &:hover {
-    background-color: $accent-color;
-    color: $accent-color-alt;
-  }
   @include respond-max($screen-phone) {
     height: 45px;
     line-height: 45px;
