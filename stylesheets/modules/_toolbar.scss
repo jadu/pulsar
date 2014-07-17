@@ -31,13 +31,14 @@
 
   .search-form {
     margin: 0;
-    float: none;
-    padding-top: 10px;
+
+    height: $search-form-height;
     display: table-cell;
     position: relative;
-    width: 1%;
+    vertical-align: middle;
+    width: $search-max-width;
 
-    @include respond-max($screen-tablet-max) {
+    @include respond-max($screen-tablet) {
       display: none;
       // NEEDS A RESPONSIVE VIEW
     }
@@ -80,15 +81,17 @@
 
   .search-field {
     background: $search-bg;
-    height: $brand-height;
+    float: right;
+    height: $search-height;
     padding: 20px;
     border: none;
     border-radius: $search-border-radius;
-    text-overflow: ellipsis;
-    width: 100%;
-    max-width: 400px;
-    -webkit-transition: all .2s ease-in-out;
     color: $search-text-color;
+    margin: ($search-form-height - $search-height) / 2 0;
+    text-overflow: ellipsis;
+    width: $search-width;
+    max-width: $search-max-width;
+    -webkit-transition: all .2s ease-in-out;
     &:focus {
       border-bottom: 2px solid $search-accent-color;
       max-width: 800px;
@@ -97,10 +100,17 @@
     }
   }
 
-
-
   .notifications {
     top: 0;
+
+    &:hover {
+      background-color: $accent-color;
+
+      .badge {
+        background-color: white;
+        color: $accent-color;
+      }
+    }
 
     .btn {
       padding-left: 0;
@@ -135,7 +145,7 @@
 
   @include respond-max($screen-phone) {
     margin: 0 $gutter-width / 2;
-    top: (($toolbar-height-small - $toolbar-accent-height) - $brand-height) / 2;
+    top: 3px;
   }
 
   @include respond-min($screen-tablet) {
@@ -161,7 +171,7 @@
     width: $toolbar-height;
 
     @include respond-max($screen-phone) {
-      height: ($toolbar-height-small - $toolbar-accent-height);
+      height: 45px;
     }
 
     @include respond-max($screen-tablet) {
@@ -242,6 +252,10 @@
 }
 
 .user-actions {
+  &:hover {
+    background-color: $accent-color;
+  }
+
   i {
     display: block;
     font-size: 16px;
@@ -250,7 +264,7 @@
   }
 
   &:not(.open):hover i {
-    color: $gray-lighter;
+    color: $accent-color-alt;
   }
   span {
     display: none;
@@ -288,14 +302,19 @@
 // }
 
 .mobile-menu-toggle {
-  color: $accent-color-alt;
+  color: $accent-color;
   float: right;
   font-size: $font-size-large;
   height: ($toolbar-height - $toolbar-accent-height);
   line-height: ($toolbar-height - $toolbar-accent-height);
+
+  &:hover {
+    background-color: $accent-color;
+    color: $accent-color-alt;
+  }
   @include respond-max($screen-phone) {
-    height: ($toolbar-height-small - $toolbar-accent-height);
-    line-height: ($toolbar-height-small - $toolbar-accent-height);
+    height: 45px;
+    line-height: 45px;
   }
   // margin: 0 $gutter-width 0 ($gutter-width / 2);
   position: relative;
@@ -314,7 +333,7 @@
   }
 
   &:hover {
-    color: $gray-lighter;
+    color: $accent-color-alt;
   }
 
   &.toggled {

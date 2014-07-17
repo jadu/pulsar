@@ -170,24 +170,26 @@ $toolbar-accent-height:               4px !default;
 
 $toolbar-height:                      ($line-height-base * 3) !default; // including accent height
 $toolbar-height-small:                ($line-height-base * 2) !default; // including accent height
+$toolbar-internal-height:             ($toolbar-height - $toolbar-accent-height) !default;
 
+// -----------------------------------------------------------------------------
+//  Branding
+// -----------------------------------------------------------------------------
 
-//$toolbar-internal-height:             ($toolbar-height - $toolbar-accent-height) !default;
+$brand-image:                         $image-path + 'brand.png' !default;
+$brand-height:                        24px !default;
+$brand-width:                         75px !default;
+$brand-background-size:               100% !default;
 
 // -----------------------------------------------------------------------------
 //  Search
 // -----------------------------------------------------------------------------
 
 $search-border-radius:                0px !default;
-
-// -----------------------------------------------------------------------------
-//  Branding
-// -----------------------------------------------------------------------------
-
-$brand-image:                         $image_path + 'brand.png' !default;
-$brand-height:                        24px !default;
-$brand-width:                         75px !default;
-$brand-background-size:               100% !default;
+$search-form-height:                  $toolbar-height !default;
+$search-height:                       $brand-height !default;
+$search-width:                        100% !default;
+$search-max-width:                    400px !default;
 
 // -----------------------------------------------------------------------------
 //  Popovers

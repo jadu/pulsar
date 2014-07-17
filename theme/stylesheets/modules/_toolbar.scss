@@ -1,0 +1,27 @@
+.branding,
+.toolbar .search-form {
+
+  @include respond-max($screen-phone) {
+    margin: 0 $gutter-width / 2 !important;
+  }
+
+  @include respond-min($screen-tablet) {
+    margin: 0 $gutter-width !important;
+  }
+
+  @include respond-min($screen-desktop) {
+    margin: 0 $gutter-width !important;
+  }
+
+}
+
+@include respond-max($screen-phone) {
+  .branding {
+    float: none !important;
+    margin: 0 auto !important;
+  }
+}
+
+.toolbar .search-field {
+  margin: 15px 0 !important;
+}

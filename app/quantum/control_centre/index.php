@@ -25,8 +25,7 @@ $template = $twig->loadTemplate('quantum/control_centre/main.html.twig');
 
 $toolbar = array(
     'Current Cases' => '',
-    'Archived Cases' => '',
-    'Sign Out' => ''
+    'Archived Cases' => ''
     );
 
 
