@@ -1,9 +1,3 @@
-.nav-item {
-  height: 44px; }
-  .nav-item > a {
-    height: 44px;
-    padding: 30px 20px 0; }
-
 .toolbar {
   background-color: #54534b;
   height: 90px; }
@@ -13,6 +7,12 @@
   height: 63px;
   top: 10px;
   width: 109px; }
+
+.nav-item {
+  height: 90px; }
+  .nav-item > a {
+    height: 90px;
+    padding: 33.5px 20px 0; }
 
 footer {
   background-color: #54534b; }
@@ -119,7 +119,14 @@ footer {
     display: inline;
     overflow: hidden;
     float: left;
-    white-space: nowrap; }
+    white-space: nowrap;
+    /* css-3 */
+    white-space: -moz-nowrap;
+    /* Mozilla, since 1999 */
+    white-space: -nowrap;
+    /* Opera 4-6 */
+    white-space: -o-nowrap;
+    /* Opera 7 */ }
   .portal-messages__list .subject {
     font-size: 12px;
     line-height: 1.5;
