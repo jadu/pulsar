@@ -5021,7 +5021,6 @@ tr.is-collapsed td, tr.is-collapsed th {
 .toolbar {
   background-color: white;
   border-bottom: 4px solid #64b7c6;
-  float: left;
   height: 74px;
   position: relative;
   width: 100%;
@@ -5201,6 +5200,9 @@ tr.is-collapsed td, tr.is-collapsed th {
   top: 0;
   width: 74px;
   vertical-align: middle; }
+  .mobile-menu-toggle:hover {
+    background-color: #64b7c6;
+    color: #fff; }
   @media screen and (max-width: 480px) {
     .mobile-menu-toggle {
       height: 45px;

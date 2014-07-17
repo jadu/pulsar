@@ -5384,7 +5384,6 @@ tr.is-collapsed td, tr.is-collapsed th {
 .toolbar {
   background-color: white;
   border-bottom: 4px solid #64b7c6;
-  float: left;
   height: 74px;
   position: relative;
   width: 100%;
@@ -5536,6 +5535,9 @@ tr.is-collapsed td, tr.is-collapsed th {
   width: 74px;
   vertical-align: middle;
   display: none; }
+  .mobile-menu-toggle:hover {
+    background-color: #64b7c6;
+    color: #fff; }
   .mobile-menu-toggle i {
     vertical-align: top; }
   .mobile-menu-toggle:hover {

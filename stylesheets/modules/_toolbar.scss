@@ -19,7 +19,6 @@
 .toolbar {
   background-color: $toolbar-bg;
   border-bottom: $toolbar-accent-height solid $accent-color;
-  float: left;
   height: $toolbar-height;
   position: relative;
   width: 100%;
@@ -283,6 +282,10 @@
   height: ($toolbar-height - $toolbar-accent-height);
   line-height: ($toolbar-height - $toolbar-accent-height);
 
+  &:hover {
+    background-color: $accent-color;
+    color: $accent-color-alt;
+  }
   @include respond-max($screen-phone) {
     height: 45px;
     line-height: 45px;
