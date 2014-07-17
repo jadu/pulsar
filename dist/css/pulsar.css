@@ -2,7 +2,6 @@
 @import url(../libs/font-awesome/css/font-awesome.css);
 @import url(../libs/highlightjs/styles/rainbow.css);
 @import url(../fonts/proxima_nova/stylesheet.css);
-@import url(../fonts/franklingothicfs_book/stylesheet.css);
 .actionsbar {
   margin-top: 20px !important; }
 
@@ -32,7 +31,7 @@ html, body {
 
 body {
   background-color: #fafafa;
-  font-family: 'franklin_gothic_fsbook', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-family: 'proxima_novalight', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   font-size: 14px;
   line-height: 1.5;
   margin: 0 0 44px 0;
@@ -3200,7 +3199,7 @@ th {
 
 table th {
   background-color: #f2f2f2;
-  font-family: 'franklin_gothic_medium', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-family: 'proxima_nova_semibold', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   font-weight: normal; }
 
 .table {
@@ -4068,7 +4067,7 @@ textarea.input-lg, textarea.input-sm {
       background-color: #f2f2f2;
       content: attr(data-table-header);
       display: inline-block;
-      font-family: 'franklin_gothic_medium', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+      font-family: 'proxima_nova_semibold', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
       font-weight: normal;
       height: 100%;
       min-width: 35%;
@@ -4807,7 +4806,7 @@ tr.is-collapsed td, tr.is-collapsed th {
     width: 100%; }
 
 .notification__title {
-  font-family: 'franklin_gothic_fsbook', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-family: 'proxima_nova_regular', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   margin-bottom: 0; }
   .dropdown__menu > li .notification__title > i, .dropdown__menu > li .notification__title > .subnav-container, .dropdown__menu > li .notification__title > .toolbar .dropdown__menu > li > ul, .toolbar .dropdown__menu > li > .dropdown__menu > li .notification__title > ul {
     margin: 0 2px 0 -4px; }
@@ -4900,7 +4899,7 @@ tr.is-collapsed td, tr.is-collapsed th {
     text-decoration: none; }
   .pagination li.selected > a {
     background-color: #e6e6e6;
-    font-family: 'franklin_gothic_fsbook', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    font-family: 'proxima_nova_regular', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     color: #1e1e1e; }
   .pagination li.is-disabled a, .pagination li.is-disabled span {
     color: #e6e6e6;
@@ -5591,7 +5590,7 @@ footer {
     margin-right: 3%; }
   .widget .big-ass-number .widget_summary__figure {
     font-size: 2em;
-    font-family: 'franklin_gothic_medium', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; }
+    font-family: 'proxima_nova_semibold', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; }
 
 .tabs__list {
   clear: left;
@@ -5856,7 +5855,7 @@ p.success {
 div.hopscotch-bubble {
   z-index: 1000; }
   div.hopscotch-bubble .hopscotch-content {
-    font-family: 'franklin_gothic_fsbook', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; }
+    font-family: 'proxima_novalight', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; }
   div.hopscotch-bubble .hopscotch-bubble-number {
     padding-right: 0; }
   div.hopscotch-bubble .hopscotch-bubble-close {
