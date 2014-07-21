@@ -3147,31 +3147,31 @@ a.btn {
     box-shadow: inset 0 0 8px 4px #bfb5b5, inset 0 0 8px 4px #bfb5b5, 0 1px 1px 0 #eee; }
 
 .btn--primary, .widget__price {
-  border: 1px solid #1c719b;
+  border: 1px solid #339db0;
   border-radius: 3px;
-  box-shadow: inset 0 1px 0 0 #77b5d4;
+  box-shadow: inset 0 1px 0 0 #a1cdd5;
   color: white;
   display: inline-block;
   font-size: 11px;
   font-weight: bold;
-  background-color: #3399cc;
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #3399cc), color-stop(100%, #1f7aa8));
-  background-image: -webkit-linear-gradient(#3399cc, #1f7aa8);
-  background-image: linear-gradient(#3399cc, #1f7aa8);
+  background-color: #64b7c6;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #64b7c6), color-stop(100%, #36a8bc));
+  background-image: -webkit-linear-gradient(#64b7c6, #36a8bc);
+  background-image: linear-gradient(#64b7c6, #36a8bc);
   padding: 7px 18px;
   text-decoration: none;
-  text-shadow: 0 1px 0 #14668f;
+  text-shadow: 0 1px 0 #2893a6;
   background-clip: padding-box; }
   .btn--primary:hover:not(:disabled), .widget__price:hover:not(:disabled) {
-    box-shadow: inset 0 1px 0 0 #4fa1c9;
+    box-shadow: inset 0 1px 0 0 #7dbbc6;
     cursor: pointer;
-    background-color: #3288b3;
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #3288b3), color-stop(100%, #1d719a));
-    background-image: -webkit-linear-gradient(#3288b3, #1d719a);
-    background-image: linear-gradient(#3288b3, #1d719a); }
+    background-color: #56abba;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #56abba), color-stop(100%, #349caf));
+    background-image: -webkit-linear-gradient(#56abba, #349caf);
+    background-image: linear-gradient(#56abba, #349caf); }
   .btn--primary:active:not(:disabled), .widget__price:active:not(:disabled) {
-    border: 1px solid #1c719b;
-    box-shadow: inset 0 0 8px 4px #1c678d, inset 0 0 8px 4px #1c678d, 0 1px 1px 0 #eee; }
+    border: 1px solid #339db0;
+    box-shadow: inset 0 0 8px 4px #3191a2, inset 0 0 8px 4px #3191a2, 0 1px 1px 0 #eee; }
   .btn--primary:disabled, .widget__price:disabled {
     opacity: 0.5;
     cursor: not-allowed; }
@@ -6164,6 +6164,7 @@ footer {
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
   box-shadow: -3px 1px 3px rgba(0, 0, 0, 0.05);
+  float: left;
   position: relative;
   width: 100%; }
   .tab__inner h2:first-of-type {
