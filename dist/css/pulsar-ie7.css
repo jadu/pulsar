@@ -4859,8 +4859,8 @@ tr.is-collapsed td, tr.is-collapsed th {
   right: 0;
   top: 144px;
   z-index: 1;
-  left: 2%;
-  top: 166px;
+  left: 0;
+  top: 89px;
   left: 16%;
   top: 58px; }
 
@@ -6118,6 +6118,7 @@ footer {
 
 .tabs {
   display: inline-block;
+  height: 100%;
   margin-bottom: 3.2em;
   position: relative;
   width: 100%; }

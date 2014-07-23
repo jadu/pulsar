@@ -14,8 +14,8 @@
   z-index: 1;
 
   @include respond-min($screen-phone) {
-    left: 2%;
-    top: 166px;
+    left: 0;
+    top: 89px;
   }
 
   @include respond-min($screen-tablet) {

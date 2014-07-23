@@ -4928,8 +4928,8 @@ tr.is-collapsed td, tr.is-collapsed th {
   z-index: 1; }
   @media screen and (min-width: 480px) {
     .deck {
-      left: 2%;
-      top: 166px; } }
+      left: 0;
+      top: 89px; } }
   @media screen and (min-width: 767px) {
     .deck {
       left: 16%;
@@ -6209,6 +6209,7 @@ footer {
 
 .tabs {
   display: inline-block;
+  height: 100%;
   margin-bottom: 3.2em;
   position: relative;
   width: 100%; }
