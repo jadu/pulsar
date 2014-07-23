@@ -3723,6 +3723,8 @@ table th {
 
 form {
   overflow-x: hidden; }
+  form p, form ul, form ol {
+    margin-left: 20px; }
 
 fieldset {
   padding: 0;
@@ -4181,6 +4183,29 @@ textarea.input-lg, textarea.input-sm {
       margin-bottom: 0;
       margin-left: -4px;
       width: 30%; } }
+
+.form--horizontal .control__label--null {
+  display: none;
+  visibility: hidden;
+  width: 0; }
+
+.controls__group .form__group {
+  margin-bottom: 5px; }
+  .controls__group .form__group .controls {
+    margin-left: 0;
+    width: 100%; }
+  .controls__group .form__group .checkbox, .controls__group .form__group .radio {
+    margin-left: 0; }
+    .controls__group .form__group .checkbox label, .controls__group .form__group .checkbox input, .controls__group .form__group .radio label, .controls__group .form__group .radio input {
+      margin-left: 0;
+      padding-left: 0; }
+  .controls__group .form__group:hover {
+    box-shadow: none; }
+
+.form__group--inline .controls__group > .form__group {
+  display: table-cell; }
+  .form__group--inline .controls__group > .form__group:not(:last-of-type) {
+    padding-right: 10px; }
 
 .form__group--mini .controls {
   min-width: 55px;

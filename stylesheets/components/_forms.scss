@@ -616,6 +616,50 @@ textarea {
 //   }
 // }
 
+.form--horizontal .control__label--null {
+  display: none;
+  visibility: hidden;
+  width: 0;
+}
+
+
+.controls__group {
+
+  .form__group {
+    margin-bottom: $padding-small-vertical;
+
+    .controls {
+      margin-left: 0;
+      width: 100%;
+    }
+
+    .checkbox,
+    .radio {
+      margin-left: 0;
+
+      label,
+      input {
+        margin-left: 0;
+        padding-left: 0;
+      }
+    }
+
+    &:hover {
+      box-shadow: none;
+    }
+  }
+}
+
+.form__group--inline {
+  .controls__group > .form__group {
+    display: table-cell;
+
+    &:not(:last-of-type) {
+      padding-right: $gutter-width / 2;
+    }
+  }
+}
+
 .form__group--mini .controls {
   min-width: 55px; // prevents getting _too_ small on mobile portrait screen widths
   max-width: $controls-max-width * .25;
