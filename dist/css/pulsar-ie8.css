@@ -5004,7 +5004,7 @@ tr.is-collapsed td, tr.is-collapsed th {
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 1080; }
+  z-index: 3000; }
   .modal.fade .modal__dialog {
     -webkit-transform: translate(0, -25%);
     -moz-transform: translate(0, -25%);
@@ -5024,7 +5024,7 @@ tr.is-collapsed td, tr.is-collapsed th {
   max-width: 600px;
   padding: 85px 10px 30px;
   width: auto;
-  z-index: 1090;
+  z-index: 3010;
   padding-top: 100px;
   width: 100%; }
 
@@ -5046,7 +5046,7 @@ tr.is-collapsed td, tr.is-collapsed th {
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 1070;
+  z-index: 2990;
   background-color: #000; }
   .modal__backdrop.fade {
     opacity: 0;
