@@ -208,6 +208,7 @@
 
 .tabs__content {
   display: block;
+  height: 100%;
   overflow: auto;
 
   @include respond-max($screen-tablet) {

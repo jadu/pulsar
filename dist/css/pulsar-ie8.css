@@ -6015,6 +6015,7 @@ footer {
 
 .tabs__content {
   display: block;
+  height: 100%;
   overflow: auto; }
   .tabs__content > .tab__pane {
     display: none; }

@@ -5735,6 +5735,7 @@ footer {
 
 .tabs__content {
   display: block;
+  height: 100%;
   overflow: auto; }
   @media screen and (max-width: 767px) {
     .tabs__content {
