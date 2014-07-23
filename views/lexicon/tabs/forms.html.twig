@@ -127,6 +127,21 @@
             {{ form.text(label = 'Prepended &amp; Appended', id = 'inputPrependAppend', class = 'form__group--medium', name = 'inputPrependAppend', placeholder = 'Placeholder', prepend = 'www.', append = '.com') }}
 
     {{ form.fieldset_end() }}
+    {{ form.fieldset_start(legend = 'Regular elements') }}
+
+            <p>This is a plain ol' paragraph, its left edge should match that of the rest of the form.</p>
+
+            <ul>
+                <li>Unordered List</li>
+                <li>Unordered List</li>
+            </ul>
+
+            <ol>
+                <li>Unordered List</li>
+                <li>Unordered List</li>
+            </ol>
+
+    {{ form.fieldset_end() }}
     {{ form.fieldset_start(legend = 'Floating elements') }}
 
         {{ html.button(label = 'This Button Has No Form Label', class = 'form__group--floating') }}

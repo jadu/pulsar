@@ -10,6 +10,12 @@
 
 form {
   overflow-x: hidden; // For those silly legends
+
+  p,
+  ul,
+  ol {
+    margin-left: $gutter-width;
+  }
 }
 
 fieldset {
