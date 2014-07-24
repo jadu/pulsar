@@ -158,7 +158,7 @@ code, pre, kbd {
   font-size: 14px; }
 
 .monospace {
-  font-family: 'andale mono', 'menlo', monospace; }
+  font-family: monospace; }
   .monospace em {
     font-style: normal;
     margin-right: 3px; }
@@ -4019,7 +4019,9 @@ textarea.input-lg, textarea.input-sm {
   background: rgba(0, 153, 51, 0.8); }
 
 .flash--warning {
-  background: rgba(255, 137, 9, 0.8); }
+  background: rgba(255, 137, 9, 0.8);
+  color: #6f3900;
+  text-shadow: none; }
 
 .flash--error {
   background: rgba(204, 51, 51, 0.8); }
