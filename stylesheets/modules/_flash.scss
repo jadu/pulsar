@@ -23,7 +23,7 @@
 
 // Default
 .flash,
-.flash--default { 
+.flash--default {
   background: rgba(0, 0, 0, .8);
   color: $white;
   text-shadow: 0 0 2px rgba(0, 0, 0, .5);
@@ -48,6 +48,8 @@
 
 .flash--warning {
   background: rgba(255, 137, 9, .8);
+  color: darken(rgb(255, 137, 9), 30%);
+  text-shadow: none;
   @include ie-lte(7) {
     background:  rgb(255, 137, 9);
   }
