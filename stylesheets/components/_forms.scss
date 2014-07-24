@@ -361,7 +361,7 @@ textarea {
   margin-top: 5px;
   margin-bottom: -11px; // Pull up the next form__control to maintain baseline
   margin-left: 13px !important; // Left-edge should appear inline with input text/placeholders, !important to override `.tab--padded p`
-  color: lighten($text-color, 25%); // lighten the text some for contrast
+  color: lighten($text-color, 15%); // lighten the text some for contrast
 }
 
 
