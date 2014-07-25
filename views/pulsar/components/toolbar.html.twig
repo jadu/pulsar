@@ -2,6 +2,14 @@
 {% import '@pulsar/pulsar/helpers/pulsar.html.twig' as pulsar %}
 <div class="toolbar">
     <h1 class="branding" id="tour-home">{{ html.link('Jadu', '/search') }}</h1>
+    <nav class="nav__primary">
+    {% for label, items in toolbar %}
+    {{ pulsar.primary_nav(label = label, menu_items = items) }}
+    {% endfor %}
+    </nav>
+    <a href="#" class="mobile-menu-toggle" data-mobile-toggle-button data-toggle-target=".tabs__list">
+      <i class="icon-reorder"></i>
+    </a>
     {{
       pulsar.notifications(
         [
@@ -63,9 +71,10 @@
         ]
       )
     }}
+
     {{
       html.button_dropdown(
-        label = 'Your Name',
+        label = html.icon('user') ~ ' <span>Paul Stanton</span>',
         class = 'user-actions pull-right',
         menu_items = [
           html.link(label = html.icon('key') ~ ' Change password'),
@@ -74,4 +83,8 @@
         ]
       )
     }}
+    <form class="search-form" action="/app_dev.php/">
+        <input class="search-field" type="search" name="q" id="case-search" value="" placeholder="Search by case ref, car reg, PCN or surname">
+        <input type="submit" name="case-search" class="hide" value="Go">
+    </form>
 </div>

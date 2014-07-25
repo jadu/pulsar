@@ -21,16 +21,28 @@
   // Rows
   tr {
     line-height: $line-height-base;
+    position: relative;
+
+    @include respond-min($screen-tablet) {
+      position: static;
+    }
 
     th, td {
-      border-bottom: 1px solid $gray;
+      @include respond-min($screen-tablet) {
+        border-bottom: 1px solid $gray;
+      }
       height: $line-height-base * 1.8;
+      @include respond-max($screen-tablet) {
+        height: $line-height-base;
+      }
       padding: 0 $gutter-width / 2;
 
       text-align: left;
 
       &.preview {
-        text-align: center;
+        @include respond-min($screen-tablet) {
+          text-align: center;
+        }
 
         img {
           height: 30px;
@@ -40,17 +52,68 @@
       }
 
       &.centered {
-        text-align: center;
+        @include respond-min($screen-tablet) {
+          text-align: center;
+        }
       }
 
       &.shrink-to-fit {
-        width: 1px;
+        @include respond-min($screen-tablet) {
+          width: 1px;
+        }
       }
 
       &.no-wrap {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+      }
+    }
+  }
+
+  // Set up tables for smaller viewports
+  tr th {
+    display: none;
+
+    @include respond-min($screen-tablet) {
+      display: table-cell;
+    }
+  }
+
+  tr td {
+    display: table;
+    padding-left: 0;
+    vertical-align: baseline;
+    width: 100%;
+
+    &:before {
+      background-color: darken($white, 5%);
+      content: attr(data-table-header);
+      display: inline-block;
+      font-family: $font-family-semibold;
+      font-weight: normal;
+      height: 100%;
+      min-width: 35%;
+      padding: $padding-small-vertical ($gutter-width / 2) 0;
+      margin-right: $gutter-width / 2;
+      text-align: right;
+      vertical-align: baseline;
+      width: auto;
+    }
+
+    &:last-child {
+      border-bottom: 1px solid $gray;
+    }
+
+    @include respond-min($screen-tablet) {
+      display: table-cell;
+      padding: 0 $gutter-width / 2;
+
+      vertical-align: middle;
+      width: auto;
+
+      &:before {
+        display: none;
       }
     }
   }
@@ -69,10 +132,29 @@
 
   // Actions column
   .row__actions {
-    text-align: center;
-    padding: 0;
-    min-width: 50px;
-    width: 50px;
+    &:before {
+      display: none;
+    }
+    height: auto;
+    padding-top: $padding-small-vertical;
+    position: absolute;
+    left: $gutter-width * 0.75;
+    width: auto;
+
+    @include respond-max($screen-tablet) {
+      background-color: transparent;
+    }
+    @include respond-min($screen-phone) {
+      left: $gutter-width * 1.75;
+    }
+    @include respond-min($screen-tablet) {
+      height: $line-height-base * 1.8;
+      min-width: 50px;
+      padding: 0;
+      position: static;
+      text-align: center;
+      width: 50px;
+    }
 
     // First column after the actions doesn't need so much space
     + th,
@@ -102,8 +184,20 @@ tr.row--success {
   @include highlight-row($btn-success-color);
   > td {
     background-color: lighten($btn-success-color, 25%);
+    &:before {
+      background-color: lighten($btn-success-color, 20%);
+    }
   }
   &:hover > td {
+    background-color: lighten($btn-success-color, 23%);
+    &:before {
+      background-color: lighten($btn-success-color, 18%);
+    }
+    @include respond-max($screen-tablet) {
+      &.row__actions {
+        background-color: lighten($btn-success-color, 18%);
+      }
+    }
     background-color: lighten($btn-success-color, 23%);
   }
 }
@@ -112,8 +206,20 @@ tr.row--danger {
   @include highlight-row($btn-danger-color);
   > td {
     background-color: lighten($btn-danger-color, 25%);
+    &:before {
+      background-color: lighten($btn-danger-color, 20%);
+    }
   }
   &:hover > td {
+    background-color: lighten($btn-danger-color, 24%);
+    &:before {
+      background-color: lighten($btn-danger-color, 19%);
+    }
+    @include respond-max($screen-tablet) {
+      &.row__actions {
+        background-color: lighten($btn-danger-color, 19%);
+      }
+    }
     background-color: lighten($btn-danger-color, 24%);
   }
 }
@@ -122,17 +228,39 @@ tr.row--warning {
   @include highlight-row($btn-warning-color);
   > td {
     background-color: lighten($btn-warning-color, 25%);
+    &:before {
+      background-color: lighten($btn-warning-color, 20%);
+    }
+    @include respond-max($screen-tablet) {
+      &.row__actions {
+        background-color: lighten($btn-warning-color, 20%);
+      }
+    }
   }
   &:hover > td {
     background-color: lighten($btn-warning-color, 23%);
+    &:before {
+      background-color: lighten($btn-warning-color, 18%);
+    }
+    @include respond-max($screen-tablet) {
+      &.row__actions {
+        background-color: lighten($btn-warning-color, 18%);
+      }
+    }
   }
 }
 
 tr.row--no-results {
   background-color: $off-white;
   td {
+    display: table-cell;
     height: ($line-height-base * 1.8) * 3;
     text-align: center;
+    vertical-align: inherit;
+
+    &:before {
+      display: none;
+    }
   }
   a {
     color: $link-color;
@@ -146,8 +274,19 @@ tr.is-selected {
   @include highlight-row($blue);
   > td {
     background-color: lighten($blue, 50%);
+    &:before {
+      background-color: lighten($blue, 45%);
+    }
   }
   &:hover > td {
     background-color: lighten($blue, 48%);
+    &:before {
+      background-color: lighten($blue, 43%);
+    }
+    @include respond-max($screen-tablet) {
+      &.row__actions {
+        background-color: lighten($blue, 43%);
+      }
+    }
   }
 }

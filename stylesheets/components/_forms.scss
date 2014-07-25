@@ -7,6 +7,17 @@
 //
 // Restyle and baseline non-control form elements.
 //
+
+form {
+  overflow-x: hidden; // For those silly legends
+
+  p,
+  ul,
+  ol {
+    margin-left: $gutter-width;
+  }
+}
+
 fieldset {
   padding: 0;
   margin: 0;
@@ -14,10 +25,7 @@ fieldset {
 }
 
 legend {
-  display: block;
-  float: left;
-  width: 95%;
-  padding: 0;
+  padding: 0 $gutter-width 0 0;
   margin-left: $gutter-width;
   margin-bottom: $line-height-base * 0.681818182;
   font-size: $font-size-base * 1.5;
@@ -25,15 +33,33 @@ legend {
   color: $gray-dark;
   border: 0;
   border-bottom: 1px solid $legend-border-color;
+
+  // Make it appear as though the legend has gutter on the right even though it doesn't because it's stupid and won't obey display: block;
+  position: relative;
+  &:before {
+    background-color: $white;
+    bottom: -1px;
+    content: '';
+    display: block;
+    height: 1px;
+    position: absolute;
+    right: 0;
+    width: $gutter-width * 2;
+  }
 }
 
 label {
   display: inline-block;
+  margin-bottom: $padding-large-vertical;
   margin-left: $gutter-width;
   margin-right: $gutter-width;
-  margin-bottom: 13px;
-  text-align: right;
+
+  @include respond-min($screen-desktop) {
+    margin-bottom: 13px;
+    text-align: right;
+  }
 }
+
 
 // Normalize form controls
 
@@ -58,13 +84,6 @@ input[type="file"] {
 
   .lt-ie10 & {
     height: $line-height-base * 2; // IE
-  }
-
-  // switch off default input styles which don't look nice for file inputs
-  &.form__control {
-    border: none;
-    box-shadow: none;
-    padding: 0;
   }
 }
 
@@ -164,11 +183,14 @@ input[type="number"] {
 .form__actions {
   background-color: $gray-lighter;
   box-shadow: inset 0 -4px 0 $gray;
-  clear: both;
-  padding: $line-height-base $gutter-width $line-height-base 24%;
+  padding: $line-height-base $gutter-width;
 
-  &.form__actions--flush {
-    padding-left: $gutter-width;
+  @include respond-min($screen-desktop) {
+    padding-left: 20%;
+
+    :first-child {
+      margin-left: $gutter-width * 2; // align left edge with controls above
+    }
   }
 }
 
@@ -182,10 +204,21 @@ textarea.form__control {
 
 .form__group {
   clear: both;
-  margin-bottom: $line-height-base;
+  margin-bottom: $line-height-base - $padding-large-vertical; // deduct the margin from .controls on smaller viewports
+
+  @include respond-min($screen-desktop) {
+    margin-bottom: $line-height-base;
+  }
 
   &:hover {
     box-shadow: inset 4px 0 0 $gray;
+  }
+
+  .form__group {
+    margin-bottom: $padding-small-vertical;
+    &:hover {
+      box-shadow: none;
+    }
   }
 }
 
@@ -201,12 +234,19 @@ textarea.form__control {
   vertical-align: middle;
   label {
     @include inline-block;
-    margin-bottom: 0;
+    margin-bottom: $padding-small-vertical;
     font-weight: normal;
     cursor: pointer;
   }
-}
 
+  &:last-child {
+    margin-bottom: $padding-large-vertical;
+
+    @include respond-min($screen-phone) {
+      margin-bottom: 0;
+    }
+  }
+}
 .radio input[type="radio"],
 .radio--inline input[type="radio"],
 .checkbox input[type="checkbox"],
@@ -223,15 +263,26 @@ textarea.form__control {
 .radio--inline,
 .checkbox--inline {
   // float: left;
-  padding-left: 0px;
-  margin-bottom: 0;
+  padding-left: 0;
+  margin-bottom: $padding-small-vertical;
   font-weight: normal;
   cursor: pointer;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  @include respond-min($screen-desktop) {
+
+    &:first-child {
+      margin-left: $gutter-width;
+    }
+  }
 }
 .radio--inline + .radio--inline,
 .checkbox--inline + .checkbox--inline {
   margin-top: 0;
-  margin-left: 0px; // space out consecutive inline controls
+  // margin-left: 0px; // space out consecutive inline controls
 }
 
 
@@ -309,22 +360,8 @@ textarea {
   display: block; // account for any element using help-block
   margin-top: 5px;
   margin-bottom: -11px; // Pull up the next form__control to maintain baseline
-  margin-left: 14px; // Left-edge should appear inline with input text/placeholders
-  color: lighten($text-color, 25%); // lighten the text some for contrast
-}
-
-&.form__group--flush {
-
-  label {
-    margin-left: $gutter-width;
-  }
-
-  > .checkbox,
-  > .radio {
-    .help-block {
-      margin-left: 60px;
-    }
-  }
+  margin-left: 13px !important; // Left-edge should appear inline with input text/placeholders, !important to override `.tab--padded p`
+  color: lighten($text-color, 15%); // lighten the text some for contrast
 }
 
 
@@ -354,6 +391,11 @@ textarea {
 
 .form--horizontal {
   padding-top: 17px; // baseline alignment
+
+  legend {
+    display: block;
+    width: 100%;
+  }
 }
 
 @include ie-lte(7) {
@@ -365,102 +407,159 @@ textarea {
 .form--horizontal .form__group {
   @include clearfix();
 
-  .checkbox,
-  .radio {
-    min-height: 22px;
+  > .checkbox,
+  > .radio {
+    // height: 22px;
     margin-top: 0;
-    margin-bottom: 0;
-    margin-left: 20%;
+    margin-bottom: $padding-small-vertical;
 
     input {
-      margin-left: ($gutter-width) + 5px;
+      margin-left: $gutter-width;
       margin-right: $gutter-width / 2;
-    }
-  }
 
-  &.choice__group {
+      &:first-child {
+        margin-left: $gutter-width / 2;
 
-    .form__group {
-      &:hover {
-        box-shadow: none;
-      }
-    }
-
-    .controls {
-      label,
-      input,
-      .checkbox,
-      .radio {
-        margin-left: 0;
-      }
-
-      label {
-        text-align: left;
-      }
-
-      .form__group {
-        margin-bottom: 6px;
-
-        &:last-of-type {
-          margin-bottom: 0;
+        @include respond-min($screen-desktop) {
+          margin-left: $gutter-width;
         }
       }
     }
 
-    .checkbox--inline,
-    .radio--inline {
-      input {
-        margin-right: 10px;
+    &:last-child {
+      margin-bottom: $padding-large-vertical;
+    }
+
+    @include respond-min($screen-phone) {
+      margin-bottom: 0;
+    }
+    @include respond-min($screen-desktop) {
+      margin-bottom: 0;
+      margin-left: 20%;
+    }
+  }
+  .checkbox__label + .controls {
+    margin-left: $gutter-width / 2;
+    margin-bottom: $padding-small-vertical;
+    width: auto;
+
+    &:last-child {
+      margin-bottom: $padding-large-vertical;
+    }
+
+    @include respond-min($screen-desktop) {
+      margin-left: -4px;
+      width: 30%;
+    }
+  }
+
+  &.choice__group {
+    .controls {
+      display: block;
+      margin-bottom: $padding-small-vertical;
+      margin-left: $gutter-width * 1.5;
+      margin-top: $padding-small-vertical;
+      max-width: none;
+      vertical-align: top; // fix alignment of grouped checkboxes/radios
+      width: auto;
+      width: auto;
+
+      &:last-child {
+        margin-bottom: $padding-large-vertical;
+      }
+
+      .checkbox label,
+      .radio label {
+        text-align: left;
+      }
+
+      .checkbox:last-child,
+      .radio:last-child {
+        margin-bottom: 0;
+      }
+
+      .form__group .checkbox__label {
+        margin-left: 0;
+
+        label,
+        input {
+          margin-left: 0;
+        }
+      }
+
+      @include respond-min($screen-desktop) {
+        display: inline-block;
+        margin-left: -4px;
+        margin-top: 0;
+        max-width: 75%;
+
+        .checkbox,
+        .radio {
+          margin-left: 0;
+
+          label,
+          input {
+            margin-left: 0;
+          }
+        }
       }
     }
   }
 
-  &.form__group--flush > .checkbox,
-  &.form__group--flush > .radio {
-    margin-left: 0;
-  }
-
   &.form__group--top {
+    @include respond-min($screen-desktop) {
+      > .control__label {
+        display: block;
+        margin-bottom: 1em;
+        text-align: left;
+        width: 95%;
 
-    > .control__label,
-    > .checkbox__label,
-    > .radio__label {
-      display: block;
-      margin-bottom: 1em;
-      text-align: left;
-      width: 95%;
-    }
+        &:after {
+          content: '';
+          display: inline-block;
+        }
+      }
 
-    .controls {
-      margin-left: $gutter-width * 2 + 5px;
-      padding-left: 20%;
-      width: 50%;
+      .controls {
+        box-sizing: content-box; // the one time border-box is more a hindrence than a help..!
+        margin-left: 20%;
+        padding-left: $gutter-width * 2;
+        width: 30%;
+      }
     }
   }
 
   &.form__group--flush {
     .controls {
+      margin-bottom: $padding-large-vertical;
       margin-left: $gutter-width;
+      max-width: $controls-max-width;
       padding-left: 0;
-      width: 30%;
+      width: $controls-width * 2.5;
+
+      @include respond-min($screen-phone) {
+        width: $controls-width * 2;
+      }
+      @include respond-min($screen-desktop) {
+        margin-bottom: 0;
+        width: $controls-width;
+      }
     }
   }
 
 }
 
-
 .form--horizontal .control__label {
-  display: inline-block;
+  display: block;
   margin-right: $gutter-width;
-  padding-top: 9px;
+  padding-top: 5px;
   vertical-align: top;
-  width: 20%;
-}
 
-.form--horizontal .control__label--null {
-  display: none;
-  visibility: hidden;
-  width: 0;
+  @include respond-min($screen-desktop) {
+    padding-top: 9px;
+    display: inline-block;
+    width: 20%;
+  }
 }
 
 .form--horizontal .checkbox__label,
@@ -471,25 +570,37 @@ textarea {
 // Only set a width for left-aligned labels
 .form--horizontal .form__group > .checkbox__label,
 .form--horizontal .form__group > .radio__label {
-  width: 20%;
-  vertical-align: top;
+  margin-right: 0;
+  max-width: 75%;
+
+  @include respond-min($screen-desktop) {
+    margin-right: $gutter-width;
+    width: 20%;
+  }
 }
 
 .form--horizontal .radio--inline,
 .form--horizontal .checkbox--inline {
   input {
     margin-top: 0;
-    margin-bottom: 0;
   }
 }
 
 .form--horizontal .controls {
   @include inline-block;
-  width: 30%;
-}
+  margin-bottom: $padding-large-vertical;
+  margin-left: $gutter-width;
+  max-width: $controls-max-width;
+  width: $controls-width * 2.5;
 
-.form__group--floating {
-  margin: 0 0 1em 24%;
+  @include respond-min($screen-phone) {
+    width: $controls-width * 2;
+  }
+  @include respond-min($screen-desktop) {
+    margin-bottom: 0;
+    margin-left: -4px;
+    width: $controls-width;
+  }
 }
 
 // .form--horizontal {
@@ -505,21 +616,18 @@ textarea {
 //   }
 // }
 
-.form__group--mini   .controls  { width: 5%; }
-.form__group--small  .controls  { width: 10%; }
-.form__group--medium .controls  { width: 20%; }
-.form__group--large  .controls  { width: 40%; }
-.form__group--full   .controls  { width: 50%; }
+.form--horizontal .control__label--null {
+  display: none;
+  visibility: hidden;
+  width: 0;
+}
 
-.form__control.form__group--mini   { width: 20%; }
-.form__control.form__group--small  { width: 35%; }
-.form__control.form__group--medium { width: 49%; }
-.form__control.form__group--large  { width: 75%; }
-.form__control.form__group--full   { width: 100%; }
 
 .controls__group {
 
   .form__group {
+    margin-bottom: $padding-small-vertical;
+
     .controls {
       margin-left: 0;
       width: 100%;
@@ -543,12 +651,72 @@ textarea {
 }
 
 .form__group--inline {
-  .controls__group > .form__group,
-  .controls__group > input {
+  .controls__group > .form__group {
     display: table-cell;
 
     &:not(:last-of-type) {
       padding-right: $gutter-width / 2;
     }
+  }
+}
+
+.form__group--mini .controls {
+  min-width: 55px; // prevents getting _too_ small on mobile portrait screen widths
+  max-width: $controls-max-width * .25;
+  width: $controls-width * 1.875;
+
+  @include respond-min($screen-phone) {
+    width: $controls-width * .5;
+  }
+  @include respond-min($screen-desktop) {
+    width: $controls-width * .25;
+  }
+}
+
+.form__group--small .controls {
+  max-width: $controls-max-width * .5;
+  width: $controls-width * 2.05;
+
+  @include respond-min($screen-phone) {
+    width: $controls-width;
+  }
+  @include respond-min($screen-desktop) {
+    width: $controls-width * .5;
+  }
+}
+
+.form__group--medium .controls {
+  max-width: $controls-max-width * .75;
+  width: $controls-width * 2.275;
+
+  @include respond-min($screen-phone) {
+    width: $controls-width * 1.5;
+  }
+  @include respond-min($screen-desktop) {
+    width: $controls-width * .75;
+  }
+}
+
+.form__group--large .controls {
+  max-width: $controls-max-width * 1.25;
+  width: $controls-width * 2.725;
+
+  @include respond-min($screen-phone) {
+    width: $controls-width * 2.5;
+  }
+  @include respond-min($screen-desktop) {
+    width: $controls-width * 1.25;
+  }
+}
+
+.form__group--full .controls {
+  max-width: $controls-max-width * 1.5;
+  width: $controls-width * 2.95;
+
+  @include respond-min($screen-phone) {
+    width: $controls-width * 3;
+  }
+  @include respond-min($screen-desktop) {
+    width: $controls-width * 1.5;
   }
 }

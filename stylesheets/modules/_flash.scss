@@ -1,6 +1,6 @@
 // Constructor
 .flash {
-  padding: ($line-height-base / 2) 0;
+  padding: (($line-height-base / $line-height-small) / 2) $gutter-width;
   width: 100%;
   z-index: $zindex-flash;
 
@@ -9,13 +9,21 @@
   }
 
   i {
-    margin: 0 ($gutter-width / 2) 0 $gutter-width;
+    margin: 0 ($gutter-width / 4) 0 0;
+
+    @include respond-min($screen-phone) {
+      margin-right: $gutter-width / 2;
+    }
+  }
+
+  @include respond-min($screen-phone) {
+    padding: ($line-height-base / 2) $gutter-width;
   }
 }
 
 // Default
 .flash,
-.flash--default { 
+.flash--default {
   background: rgba(0, 0, 0, .8);
   color: $white;
   text-shadow: 0 0 2px rgba(0, 0, 0, .5);
@@ -40,6 +48,8 @@
 
 .flash--warning {
   background: rgba(255, 137, 9, .8);
+  color: darken(rgb(255, 137, 9), 30%);
+  text-shadow: none;
   @include ie-lte(7) {
     background:  rgb(255, 137, 9);
   }
@@ -57,10 +67,16 @@
   .close {
     color: $white;
     font-size: 1em;
-    margin-right: ($gutter-width / 2);
+    margin-left: $gutter-width / 4;
+    margin-right: -($gutter-width / 2);
     opacity: .9;
     &:hover {
       opacity: 1;
-    }       
+    }
+
+    @include respond-min($screen-phone) {
+      margin-left: $gutter-width / 2;
+      margin-right: -$gutter-width;
+    }
   }
 }

@@ -17,21 +17,31 @@
 }
 
 .toolbar {
-  background-color: $gray-dark;
-  height: $toolbar-height + 20px;
+  background-color: $toolbar-bg;
+  border-bottom: $toolbar-accent-height solid $accent-color;
+  height: $toolbar-height;
   position: relative;
   width: 100%;
   z-index: $zindex-sticky;
-  border-bottom: 3px solid $primary-color;
+
+  @include respond-max($screen-phone) {
+    height: $toolbar-height-small;
+  }
+
   .search-form {
     margin: 0;
-    height: $brand-height + 16;
-    padding-top: 10px;
-    display: inline-block;
-    width: 100%;
-    max-width: 800px;
-    margin-left: $gutter-width;
+
+    height: $search-form-height;
+    display: table-cell;
     position: relative;
+    vertical-align: middle;
+    max-width: $search-max-width;
+
+    @include respond-max($screen-tablet) {
+      display: none;
+      // NEEDS A RESPONSIVE VIEW
+    }
+
     .icon-search {
       position: absolute;
       top: 50%;
@@ -40,8 +50,9 @@
       width: 14px;
       height: 14px;
       font-size: 14px;
-      color: lighten($primary-color,10);
+      color: lighten($toolbar-search-accent, 10);
     }
+
     .icon-spinner {
       position: absolute;
       top: 50%;
@@ -57,58 +68,114 @@
       animation-timing-function: linear;
       -webkit-animation-timing-function: linear;
     }
+
     :focus ~ .icon-search {
-      color: $primary-color;
+      color: $toolbar-search-accent;
     }
     :focus ~ .icon-spinner {
       display: block;
     }
+
   }
+
   .search-field {
-    background: lighten($gray-dark,5);
-    height: $brand-height;
-    padding: 20px 20px 20px 40px;
+    background: $search-bg;
+    float: right;
+    height: $search-height;
+    padding: 20px;
     border: none;
-    border-bottom: 2px solid $primary-color;
-    width: 100%;
-    max-width: 400px;
+    border-radius: $search-border-radius;
+    color: $search-text-color;
+    margin: ($search-form-height - $search-height) / 2 0;
+    text-overflow: ellipsis;
+    width: $search-width;
+    max-width: $search-max-width;
     -webkit-transition: all .2s ease-in-out;
-    color: #FFF;
     &:focus {
+      border-bottom: 2px solid $search-accent-color;
       max-width: 800px;
       outline: none;
-      background: lighten($gray-dark,11);
+      background: $search-bg-focus;
     }
   }
+
   .notifications {
-    top: (($toolbar-height - $brand-height) / 2) + 3;
+    top: 0;
+
+    .btn {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .badge {
+      background-color: $toolbar-notification-bg;
+      border-radius: $border-radius;
+      color: $toolbar-notification-text-color;
+    }
+
+    @include respond-min($screen-phone) {
+      top: 0;
+    }
   }
 }
 
 .branding {
   @include hide-text;
-
   background-repeat: no-repeat;
-  background-image: url('../images/jaduIdent.png');
+  background-image: url($brand-image);
+  background-size: $brand-background-size;
   display: block;
   float: left;
   height: $brand-height;
-  margin: 0 $gutter-width;
-  margin-right: $gutter-width * 2;
   overflow: hidden;
+  margin: 0 $gutter-width;
   position: relative;
-  top: (($toolbar-height - $brand-height) / 2) + 10;
-  width: 75px;
+  top: (($toolbar-height - $toolbar-accent-height) - $brand-height) / 2;
+  width: $brand-width;
+
+  @include respond-max($screen-phone) {
+    margin: 0 $gutter-width / 2;
+    top: 3px;
+  }
+
+  @include respond-min($screen-tablet) {
+    margin: 0 $gutter-width;
+  }
+
+  @include respond-min($screen-desktop) {
+    margin: 0 ($sidebar-column-width - ($brand-width + $gutter-width)) 0 $gutter-width;
+  }
+
 }
 
 .toolbar .btn__group {
-  top: (($toolbar-height - $brand-height) / 2) + 6;
+  // top: (($toolbar-height - $brand-height) * 0.85) / 1.25 {
 
   .btn {
     background: none;
     border: 0;
+    border-radius: 0;
     box-shadow: none;
-    color: $white;
+    color: $toolbar-link-color;
+    height: ($toolbar-height - $toolbar-accent-height);
+    width: $toolbar-height;
+
+    @include respond-max($screen-phone) {
+      height: 45px;
+    }
+
+    @include respond-max($screen-tablet) {
+      width: $toolbar-height / 1.5;
+    }
+
+    @include respond-min($screen-desktop) {
+      min-width: $toolbar-height;
+      width: 100%;
+    }
+
+    padding-top: 0;
+    padding-bottom: 0;
+    margin: 0;
     text-shadow: none;
 
     .caret {
@@ -116,22 +183,138 @@
     }
   }
 
+  &.open .btn {
+    background-color: $toolbar-bg-hover;
+    color: $toolbar-link-color-hover;
+  }
+
+  @include respond-min($screen-phone) {
+    // top: (($toolbar-height - $brand-height) / 2) + 7;
+    top: 0;
+  }
 }
 
 .toolbar {
   $nav-min-width: 150px;
+
   // Sub-navigation
   .dropdown__menu {
+    background-color: $toolbar-dropdown-bg;
+    border: 0;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.175);
+    margin-top: 0;
     min-width: $nav-min-width;
+    top: $toolbar-height;
     z-index: $zindex-nav;
+
+    @include respond-max($screen-phone) {
+      top: $toolbar-height-small;
+    }
 
     > li > ul {
       @extend .dropdown__menu;
-      @extend .inverse;
-      background: rgba($gray-dark,.95);
+      background: rgba($toolbar-bg, .95);
       left: $nav-min-width + 10px;
       top: 0;
     }
+
+    a {
+      color: $toolbar-dropdown-link-color;
+    }
+
+    .divider {
+      background-color: $accent-color-alt;
+    }
+  }
+}
+
+.user-actions {
+  i {
+    display: block;
+    font-size: 16px;
+    margin: -2px 0 -1px;
+    vertical-align: top;
   }
 
+  &:not(.open):hover i {
+    color: $accent-color-alt;
+  }
+  span {
+    display: none;
+  }
+
+  @include respond-min($screen-tablet-max) {
+    i {
+      display: none;
+    }
+    span {
+      display: inline;
+    }
+  }
+}
+
+// .mobile-actions-menu {
+//   background-color: $gray-dark;
+//   border: 0;
+//   border-bottom: 3px solid $primary-color;
+//   box-shadow: none;
+//   box-sizing: content-box;
+//   display: none !important;
+//   margin: 0;
+//   position: relative;
+//   width: 100%;
+//   transition: .15s ease-out margin;
+//   z-index: $zindex-nav - 11;
+
+//   &.dropdown__menu > li > a {
+//     color: $white;
+//   }
+//   &.dropdown__menu .divider {
+//     background-color: lighten($gray-dark, 10);
+//   }
+// }
+
+.mobile-menu-toggle {
+  color: $accent-color;
+  float: right;
+  font-size: $font-size-large;
+  height: ($toolbar-height - $toolbar-accent-height);
+  line-height: ($toolbar-height - $toolbar-accent-height);
+
+  &:hover {
+    background-color: $accent-color;
+    color: $accent-color-alt;
+  }
+  @include respond-max($screen-phone) {
+    height: 45px;
+    line-height: 45px;
+  }
+  // margin: 0 $gutter-width 0 ($gutter-width / 2);
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  top: 0;
+  width: $toolbar-height;
+  vertical-align: middle;
+
+  @include respond-max($screen-tablet) {
+    width: $toolbar-height / 1.5;
+  }
+
+  i {
+    vertical-align: top;
+  }
+
+  &:hover {
+    color: $accent-color-alt;
+  }
+
+  &.toggled {
+    background-color: $accent-color;
+    color: $accent-color-alt;
+  }
+
+  @include respond-min($screen-tablet) {
+    display: none;
+  }
 }

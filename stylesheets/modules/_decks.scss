@@ -5,13 +5,23 @@
  */
 
 .deck {
-  display: none; /* Hide decks by default */
-  position: absolute;
-  left: 16%;
-  top: 58px;
-  right: 0;
   bottom: 0;
+  display: none; /* Hide decks by default */
+  left: -2%;
+  position: absolute;
+  right: 0;
+  top: 144px;
   z-index: 1;
+
+  @include respond-min($screen-phone) {
+    left: 0;
+    top: 89px;
+  }
+
+  @include respond-min($screen-tablet) {
+    left: 11%;
+    top: 58px;
+  }
 }
 
 .deck.active {
@@ -187,8 +197,6 @@
   }
 
 }
-
-
 
 // Define the animated transition when the .deck-background class is added and removed
 .nav-tabs,

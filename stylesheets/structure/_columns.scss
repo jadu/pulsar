@@ -3,13 +3,22 @@
 }
 
 .columns--2 {
-  -webkit-column-count: 2;
+  @include respond-min($screen-phone) {
+    -webkit-column-count: 2;
+  }  
 }
 
 .columns--3 {
-  -webkit-column-count: 3;
+  @include respond-min($screen-tablet) {
+    -webkit-column-count: 3;
+  }
 }
 
 .columns--4 {
-  -webkit-column-count: 4;
+  @include respond-min($screen-phone) {
+    -webkit-column-count: 2;
+  }  
+  @include respond-min($screen-desktop) {
+    -webkit-column-count: 4;
+  }  
 }

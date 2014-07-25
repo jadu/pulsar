@@ -5,56 +5,19 @@
 
 <h2 class="heading">{{ heading|raw }}</h2>
 
+<div class="actionsbar actionsbar--right">
+  {{
+     html.button(
+      label = html.icon('plus') ~ ' Create Case',
+      class = 'btn--primary',
+      attributes = 'style="margin-bottom: 0;"'
+     )
+  }}
+</div>
+
 <div class="tab__inner tab--unpadded">
     <table class="table--datagrid" id="lexicon_analytics">
         <thead>
-            <tr class="filters edit is-collapsed">
-                <th class="centered">
-                    <div>
-                        <small data-toggle="popover" data-content="Choose a filter to start refining your results<br /><small class=muted><label><input type=checkbox /> Don’t show me this again</label></small>" data-html="true" data-placement="top">Filters:</small>
-                    </div>
-                </th>
-                <th colspan="99">
-                    <div>
-                    <span class="label" data-popover-content-source="test">
-                        case ref <a href="#" data-filter-action="add"><i class="icon-plus"></i></a></span>
-                    <span class="label" data-popover-content-source="test">
-                        submitted<a href="#" data-filter-action="add"><i class="icon-plus"></i></a></span>
-                    <span class="label" data-popover-content-source="test">
-                        appellant<a href="#" data-filter-action="add"><i class="icon-plus"></i></a></span>
-                    <span class="label" data-popover-content-source="test">
-                        adjudicator<a href="#" data-filter-action="add"><i class="icon-plus"></i></a></span>
-                    <span class="label" data-popover-content-source="test">
-                        status<a href="#" data-filter-action="add"><i class="icon-plus"></i></a></span>
-
-                    <span class="actions">
-                        {{ 
-                            html.button_group([
-                                html.button(
-                                    label = 'Save as Tab',
-                                    class = 'btn--small',
-                                    attributes = 'data-filter-action="save-as" data-toggle="tooltips" data-placement="bottom" title="Save this filter as a new tab on the left-hand side"'
-                                ),
-                                html.button(
-                                    label = 'Done',
-                                    class = 'btn--primary btn--small',
-                                    attributes = 'data-filter-action="done" data-toggle="tooltips" data-placement="bottom" title="Apply these filters to the current tab"'  
-                                )
-                            ])
-                        }}
-                    </span>
-                    <!-- {{
-                        html.link(
-                            attributes = 'data-filter-action="clear-all" data-toggle="tooltips" data-placement="left"',
-                            title = 'Clear all filters',
-                            label = html.icon(
-                                icon_name = 'remove-sign'
-                            )
-                        )
-                    }} -->
-                </th>
-                </div>
-            </tr>
             <tr>
                 {{ datagrid.select_all() }}
                 <th><a href="#">Case Ref</a></th>
@@ -65,16 +28,109 @@
             </tr>
         </thead>
         <tbody>
-        {% for i in 1..10 %}
+
+            <tr class="row--danger-highlight">
+                {{ datagrid.select_item(1) }}
+                <td class="monospace shrink-to-fit"><a href="#">Q040781</a></td>
+                <td class="monospace">12/06/2014</td>
+                <td>Christopher Walsh</td>
+                <td>Richard Backhouse</td>
+                <td>{{ html.label(label = 'evidence overdue', class = 'label--danger') }}</td>
+
+            </tr>
+
+            <tr class="row--warning-highlight">
+                {{ datagrid.select_item(2) }}
+                <td class="monospace shrink-to-fit"><a href="#">Q040780</a></td>
+                <td class="monospace">10/06/2014</td>
+                <td>Alfons Król</td>
+                <td>Tom Graham</td>
+                <td>{{ html.label(label = 'awaiting authority confirmation', class = 'label--warning') }}</td>
+            </tr>
+
+            <tr class="row--success-highlight">
+                {{ datagrid.select_item(3) }}
+                <td class="monospace shrink-to-fit"><a href="#">Q040779</a></td>
+                <td class="monospace">10/06/2014</td>
+                <td>Amelia Walters</td>
+                <td>Daniel Phillimore</td>
+                <td>{{ html.label(label = 'case closed', class = 'label--success') }}</td>
+            </tr>
+
             <tr>
-                {{ datagrid.select_item(i) }}
-                <td>AA100001</td>
-                <td>01/05/2014</td>
-                <td>Matt Culpin</td>
-                <td>Caroline Sheppard</td>
+                {{ datagrid.select_item(4) }}
+                <td class="monospace shrink-to-fit"><a href="#">Q040778</a></td>
+                <td class="monospace">09/06/2014</td>
+                <td>Hannah Hyde</td>
+                <td>Dave Gudgeon</td>
                 <td></td>
             </tr>
-        {% endfor %}
+
+            <tr>
+                {{ datagrid.select_item(5) }}
+                <td class="monospace shrink-to-fit"><a href="#">Q040776</a></td>
+                <td class="monospace">09/06/2014</td>
+                <td>Arthur R. Gridley</td>
+                <td>Paul Stanton</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                {{ datagrid.select_item(6) }}
+                <td class="monospace shrink-to-fit"><a href="#">Q040775</a></td>
+                <td class="monospace">09/06/2014</td>
+                <td>Nicholas Norton</td>
+                <td>Dave Gudgeon</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                {{ datagrid.select_item(7) }}
+                <td class="monospace shrink-to-fit"><a href="#">Q040774</a></td>
+                <td class="monospace">07/06/2014</td>
+                <td>Jasmine Singh</td>
+                <td>Richard Backhouse</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                {{ datagrid.select_item(8) }}
+                <td class="monospace shrink-to-fit"><a href="#">Q040773</a></td>
+                <td class="monospace">04/06/2014</td>
+                <td>Boško Antunović</td>
+                <td>Mark Buxton</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                {{ datagrid.select_item(9) }}
+                <td class="monospace shrink-to-fit"><a href="#">Q040772</a></td>
+                <td class="monospace">04/06/2014</td>
+                <td>Madeleine Fitzgerald</td>
+                <td>Adam Lang</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                {{ datagrid.select_item(10) }}
+                <td class="monospace shrink-to-fit"><a href="#">Q040771</a></td>
+                <td class="monospace">03/06/2014</td>
+                <td>Charles Williams</td>
+                <td>James Jacobs</td>
+                <td></td>
+            </tr>
+
         </tbody>
     </table>
+    <div class="pagination">
+    <ul><!--
+        --><li class="is-disabled"><a href="#"><i class="icon-double-angle-left"></i> Previous</a></li><!--
+        --><li><a href="#">1</a></li><!--
+        --><li class="selected"><a href="#">2</a></li><!--
+        --><li><a href="#">3</a></li><!--
+        --><li><a href="#">4</a></li><!--
+        --><li><a href="#">5</a></li><!--
+        --><li><a href="#">Next <i class="icon-double-angle-right"></i></a></li><!--
+    --></ul>
+</div>
 </div>

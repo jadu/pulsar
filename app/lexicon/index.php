@@ -6,7 +6,6 @@ $templateDir = $baseDir . 'views';
 require_once __DIR__ . '/' . $baseDir . 'vendor/autoload.php';
 
 use Jadu\Pulsar\Twig\Extension\ConfigExtension;
-use Jadu\Pulsar\Twig\Extension\FileExistsExtension;
 use Jadu\Pulsar\Twig\Extension\RelativeTimeExtension;
 use Jadu\Pulsar\Twig\Extension\UrlParamsExtension;
 use Jadu\Pulsar\Twig\Extension\TabsExtension;
@@ -17,7 +16,6 @@ $loader->addPath($templateDir, 'pulsar');
 $twig = new Twig_Environment($loader, array('debug' => true));
 
 $twig->addExtension(new ConfigExtension($baseDir . 'pulsar.json'));
-$twig->addExtension(new FileExistsExtension());
 $twig->addExtension(new RelativeTimeExtension());
 $twig->addExtension(new UrlParamsExtension($_GET));
 $twig->addExtension(new TabsExtension());

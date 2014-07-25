@@ -13,15 +13,23 @@
 .example-popovers {
   @include clearfix();
   padding-bottom: 24px;
-  width: 600px;
+  max-width: 600px;
+  width: 100%;
 
   .popover {
     position: relative;
     display: block;
-    float: left;
-    width: 260px;
-    margin: 20px;
+    max-width: 260px;
+    width: 100%;
+    margin: 20px auto;
     z-index: 0;
+
+    @include respond-min($screen-phone) {
+      float: left;
+      margin-left: 2.5%;
+      margin-right: 2.5%;
+      width: 45%;
+    }
   }
 }
 

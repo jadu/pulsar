@@ -1,8 +1,0 @@
-.nav-item {
-    height: $toolbar-height;
-
-    > a {        
-        height: $toolbar-height;
-        padding: (($toolbar-height - $brand-height) / 2) + 20 $gutter-width 0;
-    }
-}

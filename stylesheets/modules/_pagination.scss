@@ -1,9 +1,10 @@
 .pagination {
+  background-color: $white;
   border-top: 3px double $gray;
   font-size: $font-size-medium;
 
   ul {
-    float: left;
+    // float: left;
     margin: 0;
     padding: 0;
   }

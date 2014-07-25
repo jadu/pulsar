@@ -9,19 +9,20 @@
 <!--[if gt IE 7]><!--> <html class="no-js"><!--<![endif]-->
 <html class="no-js">
 <head>
-    <title>{% block title %}TPT Portal{% endblock %}</title>
+    <title>{% block title %}My Cases | Jadu Q{% endblock %}</title>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
 
     <!--[if IE 7]><link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'pulsar-ie7.css' }}" /><![endif]-->
     <!--[if IE 8]><link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'pulsar-ie8.css' }}" /><![endif]-->
     <!--[if IE 9]><link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'pulsar-ie9.css' }}" /><![endif]-->
     <!--[if gt IE 9]><!--> <link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'pulsar.css' }}" /> <!--<![endif]-->
 
-    <link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'theme.css' }}" />
-    
+    <!--<link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'theme.css' }}" />-->
+
     <!--[if IE 7]>
     <link rel="stylesheet" type="text/css" href="{{ libsPath ~ 'ie7-js/IE9.js' }}" />
     <link rel="stylesheet" type="text/css" href="{{ libsPath ~ 'font-awesome/css/font-awesome-ie7.min.css' }}" />
@@ -42,7 +43,7 @@
         {% include '@pulsar/pulsar/components/toolbar.html.twig' %}
         {% include '@pulsar/pulsar/components/breadcrumb.html.twig' %}
     </header>
-    
+
     {% block summary %}{% endblock %}
 
     <div role="main" class="container">
@@ -50,10 +51,7 @@
         {% block decks %}{% endblock %}
     </div>
 
-    <footer>
-        {{ html.link(label = html.icon('long-arrow-up') ~ ' Top', href = '#top') }}
-        {{ html.link(label = 'Jadu 1.12 &copy; 2013', href = '/credits') }}
-    </footer> 
+
     <script src="http://localhost:8000/libs/livereload-js/dist/livereload.js?host=localhost"></script>
 </body>
 </html>

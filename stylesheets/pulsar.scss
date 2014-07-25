@@ -1,70 +1,31 @@
-// Libs
-@import '../libs/normalize-css/normalize.css';
-@import '../libs/bourbon/app/assets/stylesheets/bourbon';
-@import '../libs/font-awesome/css/font-awesome.css';
-@import '../libs/highlightjs/styles/rainbow.css';
-@import '../fonts/proxima_nova/stylesheet.css';
+/**
+                          88
+                          88
+                          88
+8b,dPPYba,   88       88  88  ,adPPYba,  ,adPPYYba,  8b,dPPYba,
+88P'    "8a  88       88  88  I8[    ""  ""     `Y8  88P'   "Y8
+88       d8  88       88  88   `"Y8ba,   ,adPPPPP88  88
+88b,   ,a8"  "8a,   ,a88  88  aa    ]8I  88,    ,88  88
+88`YbbdP"'    `"YbbdP'Y8  88  `"YbbdP"'  `"8bbdP"Y8  88
+88
+88
 
-// Config
-@import 'config/mixins';
-@import 'config/colours';
-@import 'config/variables';
+*/
 
-// Structure
-@import 'structure/scaffolding';
-@import 'structure/type';
-@import 'structure/columns';
-@import 'structure/tray';
-@import 'structure/grid';
+// Variables, colours and mixins.
+@import 'setup/pulsar-core-setup';
 
-// Components
-@import 'components/labels';
-@import 'components/badges';
-@import 'components/button-groups';
-@import 'components/buttons';
-@import 'components/close';
-@import 'components/dropdowns';
-@import 'components/lists';
-@import 'components/loading';
-@import 'components/navbars';
-@import 'components/navs';
-@import 'components/nav-items';
-@import 'components/tables';
-@import 'components/icons';
-@import 'components/forms';
-@import 'components/input-groups';
-@import 'components/progress-bars';
 
-// Modules
-@import 'modules/toolbar';
-@import 'modules/breadcrumb';
-@import 'modules/actionsbar';
-@import 'modules/flash';
-@import 'modules/datagrid';
-@import 'modules/datepicker';
-@import 'modules/filter';
-@import 'modules/filters';
-@import 'modules/summary';
-@import 'modules/decks';
-@import 'modules/login';
-@import 'modules/modals';
-@import 'modules/notifications';
-@import 'modules/pagination';
-@import 'modules/tooltips';
-@import 'modules/toolbar';
-@import 'modules/popovers';
-@import 'modules/footer';
-@import 'modules/daterange';
-@import 'modules/widget';
+// If you're theming Pulsar and want to include your own
+// variables, colours or mixins you should @import them
+// here.
 
-// Layouts
-@import 'layouts/tabs';
+// @import 'theme-setup';
 
-// Mixins
-@import 'mixins/media-queries';
+// Structure, Components, Layouts, Modules and Overrides.
+@import 'setup/pulsar-core';
 
-// Overrides and fixes
-@import 'overrides/utilities';
-@import 'overrides/tour';
-@import 'overrides/shame';
-@import 'overrides/examples';
+// If you're extending Pulsar and want to include your own
+// layouts, modules etc you should @import them here.
+
+// @import 'theme-modules';

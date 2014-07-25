@@ -2,3 +2,32 @@
 .actionsbar--left .btn > i {
   line-height: 12px;
 }
+
+.form--inline {
+  display: inline-block;
+
+  .form__group {
+    display: inline-block;
+    margin-bottom: 0;
+
+    &:hover {
+      box-shadow: none;
+    }
+  }
+
+  .control__label {
+    margin-bottom: 0;
+  }
+
+  .controls {
+    display: inline-block;
+  }
+
+  & > .btn {
+    margin-left: 20px;
+  }
+}
+
+.flash select {
+  height: 30px;
+}

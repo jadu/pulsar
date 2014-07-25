@@ -42,11 +42,11 @@
     "jquery": null
   },
   "homepage": "https://github.com/garand/sticky",
-  "_release": "eee40602b4",
+  "_release": "2126fe2560",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "eee40602b4065359163fddce3405af12ffd0e5e1"
+    "commit": "2126fe2560063bb0bb93e6eae84c91e35b7a212b"
   },
   "_source": "git://github.com/garand/sticky.git",
   "_target": "*",
