@@ -11,7 +11,7 @@
   ],
   "dependencies": {
     "bootstrap-daterangepicker": "latest",
-    "bourbon": "4.0.2",
+    "bourbon": "3.x",
     "console-js": "gh-pages",
     "font-awesome": "3.2.1",
     "html5shiv": "latest",
