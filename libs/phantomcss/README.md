@@ -1,3 +1,5 @@
+**Huddle is Hiring!** We're always looking for talented Developers and Test Engineers. Visit http://www.huddle.com/careers for open vacancies now, or register your interest for the future.
+
 PhantomCSS
 ==========
 
@@ -61,6 +63,11 @@ phantomcss.init({
 		By default, failure images are put in the './failures' folder. If failedComparisonsRoot is set to false a seperate folder will not be created but failure images can still be found alongside the original and new images.
 	*/
 	failedComparisonsRoot: './failures',
+
+	/*
+		Remove results directory tree after run.  Use in conjunction with failedComparisonsRoot to see failed comparisons
+	*/
+	cleanupComparisonImages: true,
 
 	/*
 		You might want to keep master/baseline images in a completely different folder to the diffs/failures.  Useful when working with version control systems. By default this resolves to the screenshotRoot folder.
@@ -239,7 +246,7 @@ phantomcss.screenshot("#feedback-form", "Responsive Feedback Form");
 
 ```
 
-Perhaps a better way is to use the ‘fileNameGetter’ callback property on the ‘init’ method. This does involve having a bit more structure around your tests.  See: https://github.com/Huddle/PhantomFlow/blob/master/demo/runTests.js#L72
+Perhaps a better way is to use the ‘fileNameGetter’ callback property on the ‘init’ method. This does involve having a bit more structure around your tests.  See: https://github.com/Huddle/PhantomFlow/blob/master/lib/phantomCSSAdaptor.js#L41
 
 ##### CSS3 selectors for testing
 
@@ -290,6 +297,14 @@ If your using a version control system like Git to store the baseline screenshot
 **[PhantomFlow](https://github.com/Huddle/PhantomFlow)** and **[grunt-phantomflow](https://github.com/Huddle/grunt-testflow)** wrap PhantomCSS and provides an experimental way of describing and visualising user flows through tests with CasperJS. As well as providing a terse readable structure for UI testing, it also produces intriguing graph visualisations that can be used to present PhantomCSS screenshots and failed diffs.  We're actively using it at Huddle and it's changing the way we think about UI for the better.
 
 Also, take a look at [PhantomXHR](http://github.com/Huddle/PhantomXHR) for stubbing and mocking XHR requests. Isolated UI testing IS THE FUTURE!
+
+### Huddle Careers
+
+Huddle strongly believe in innovation and give you 20% of work time to spend on innovative projects of your choosing.
+
+If you like what you see and would like to work on this kind of stuff for a job then get in touch.
+
+Visit http://www.huddle.com/careers for open vacancies now, or register your interest for the future.
 
 --------------------------------------
 

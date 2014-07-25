@@ -1,20 +1,29 @@
 [![Bourbon Sass Mixin Library](http://bourbon.io/images/shared/bourbon-logo.png)](http://bourbon.io)
+<br>
+<br>
+[![Gem Version](https://badge.fury.io/rb/bourbon.png)](http://badge.fury.io/rb/bourbon) [![Code Climate](https://codeclimate.com/github/thoughtbot/bourbon.png)](https://codeclimate.com/github/thoughtbot/bourbon)  [![Gitter chat](https://badges.gitter.im/thoughtbot/bourbon.png)](https://gitter.im/thoughtbot/bourbon)
 
-# A simple and lightweight mixin library for Sass
-Bourbon is a comprehensive library of sass mixins that are designed to be simple
-and easy to use. No configuration required.  
+-
+:warning: Bourbon **4.0.0** requires Sass **3.3.x**. If you are using **libsass** or **sass-rails** use Bourbon **3.2.x**.
+
+## A lightweight mixin library for Sass
+Bourbon is a library of pure sass mixins that are designed to be simple
+and easy to use. No configuration required.
+
 The mixins aim to be as vanilla as possible, meaning they should be as close to the original CSS syntax as possible.
 
 The mixins contain vendor specific prefixes for all CSS3 properties for support
 amongst modern browsers. The prefixes also ensure graceful degradation for older
 browsers that support only CSS3 prefixed properties. Bourbon uses SCSS syntax.
 
-#[Documentation & Demo](http://bourbon.io)
 
-## Requirements
-Sass 3.2+
 
-# Install for Rails 3.1+
+### [Documentation & Demo](http://bourbon.io)
+
+### Requirements
+Sass 3.3+
+
+### Install for Rails 3.1+
 In your Gemfile:
 
     gem 'bourbon'
@@ -42,11 +51,11 @@ Import Bourbon at the beginning of application.css.scss. All additional styleshe
 
 ##### [Rails 3.0.x Install Instructions](https://github.com/thoughtbot/bourbon/wiki/Rails-3.0.x-Install) | [Rails 2.3 Install Instructions](https://github.com/thoughtbot/bourbon/wiki/Bourbon-v2.x-or-Rails-2.3-Install)
 
-# <span id="non-rails"></span>Non-Rails projects
+### Non-Rails projects
 Bourbon includes an easy way to generate a directory with all the necessary files.  
 For command line help: `$ bourbon help` or visit the [Command line tools wiki](https://github.com/thoughtbot/bourbon/wiki/Command-Line-Tools)
 
-####Install (Bourbon v3.0+)
+##### Install (Bourbon v3.0+)
 
     gem install bourbon
 
@@ -60,7 +69,7 @@ You can specify a target directory using the `path` flag:
 
     bourbon install --path my/custom/path/
 
-#### Import
+##### Import
 
 Lastly, import the mixins at the beginning of your stylesheet(s):
 
@@ -68,7 +77,7 @@ Lastly, import the mixins at the beginning of your stylesheet(s):
 
 Note: Bourbon no longer requires a custom `sass --watch` command for Bourbon v3.0+
 
-#### Other Commands
+##### Other Commands
 Visit the [Command line tools wiki](https://github.com/thoughtbot/bourbon/wiki/Command-Line-Tools) for a complete list
 
     bourbon help
@@ -76,15 +85,14 @@ Visit the [Command line tools wiki](https://github.com/thoughtbot/bourbon/wiki/C
     
 ##### [Bourbon v2.x install instructions](https://github.com/thoughtbot/bourbon/wiki/Bourbon-v2.x-or-Rails-2.3-Install)
 
--------
-# [Changelog](https://github.com/thoughtbot/bourbon/wiki)
 
-# [Browser support](https://github.com/thoughtbot/bourbon/wiki/Browser-Support)
--------
+- [Changelog](https://github.com/thoughtbot/bourbon/releases)
+- [Browser support](https://github.com/thoughtbot/bourbon/wiki/Browser-Support)
 
-Credits
--------
+### Chat with us
+[![Gitter chat](https://badges.gitter.im/thoughtbot/bourbon.png)](https://gitter.im/thoughtbot/bourbon)
 
+### Credits
 ![thoughtbot](http://thoughtbot.com/images/tm/logo.png)
 
 Bourbon is maintained and funded by [thoughtbot, inc](http://thoughtbot.com/community)
@@ -93,7 +101,5 @@ The names and logos for thoughtbot are trademarks of thoughtbot, inc.
 
 Got questions? Need help? Tweet at [@phillapier](http://twitter.com/phillapier).
 
-License
--------
-
+### License
 Bourbon is Copyright © 2011-2013 thoughtbot. It is free software, and may be redistributed under the terms specified in the LICENSE file.

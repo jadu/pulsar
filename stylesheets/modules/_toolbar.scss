@@ -213,7 +213,6 @@
 
     > li > ul {
       @extend .dropdown__menu;
-      @extend .inverse;
       background: rgba($toolbar-bg, .95);
       left: $nav-min-width + 10px;
       top: 0;
