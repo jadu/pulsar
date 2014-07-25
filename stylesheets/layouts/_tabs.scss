@@ -229,6 +229,7 @@
 .tab__pane form {
   // make sure forms in tabs don't add extra spacing after the form actions
   margin-bottom: 0;
+  width: 100%;
 }
 
 .tab__inner {

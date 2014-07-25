@@ -182,6 +182,7 @@ input[type="number"] {
 
 .form__actions {
   background-color: $gray-lighter;
+  clear: both;
   box-shadow: inset 0 -4px 0 $gray;
   padding: $line-height-base $gutter-width;
 
