@@ -12,16 +12,14 @@
 
 */
 
-// Libs
+// Third party plugins
 @import '../libs/normalize-css/normalize.css';
 @import '../libs/bourbon/dist/bourbon';
 @import '../libs/font-awesome/css/font-awesome.css';
 @import '../libs/highlightjs/styles/rainbow.css';
-@import '../fonts/proxima_nova/stylesheet.css';
 
 // Variables, colours and mixins.
 @import 'setup/pulsar-core-setup';
-
 
 // If you're theming Pulsar and want to include your own
 // variables, colours or mixins you should @import them
@@ -29,7 +27,7 @@
 
 // @import 'theme-setup';
 
-// Structure, Components, Layouts, Modules and Overrides.
+// Structure, components, layouts, modules and overrides.
 @import 'setup/pulsar-core';
 
 // If you're extending Pulsar and want to include your own
