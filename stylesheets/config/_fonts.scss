@@ -1,0 +1,32 @@
+@font-face {
+  font-family: 'proxima_novalight';
+  src: url('proximanova-light.eot');
+  src: url('proximanova-light.eot?#iefix') format('embedded-opentype'),
+       url('proximanova-light.woff') format('woff'),
+       url('proximanova-light.ttf') format('truetype'),
+       url('proximanova-light.svg#proxima_novalight') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'proxima_nova_rgregular';
+  src: url('proximanova-regular.eot');
+  src: url('proximanova-regular.eot?#iefix') format('embedded-opentype'),
+       url('proximanova-regular.woff') format('woff'),
+       url('proximanova-regular.ttf') format('truetype'),
+       url('proximanova-regular.svg#proxima_nova_rgregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'proxima_novasemibold';
+  src: url('proximanova-semibold.eot');
+  src: url('proximanova-semibold.eot?#iefix') format('embedded-opentype'),
+       url('proximanova-semibold.woff') format('woff'),
+       url('proximanova-semibold.ttf') format('truetype'),
+       url('proximanova-semibold.svg#proxima_novasemibold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
