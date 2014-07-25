@@ -8,10 +8,6 @@
     margin: $line-height-base 0 0 0;
   }
 
-  @include respond-min($screen-tablet-max) {
-    margin: $line-height-base 0 2px 0;
-  }
-
   //@include ie-lte(7) {
     .btn__group {
       z-index: 1; // Fix issue where actions menu appears underneath tabs
