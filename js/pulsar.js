@@ -9,6 +9,7 @@ define(['jquery'], function() {
         // Set up Pulsar's UI environment
         require([
             'actions-menu',
+            'bootstrap-tour',
             'tooltip',
             'sticky',
             'datagrid',
@@ -64,6 +65,28 @@ define(['jquery'], function() {
 
             // Add placholder support for browsers that don't support it
             $('input:not([data-datepicker=true]), textarea').placeholder();
+
+
+
+            // Instance the tour
+            var tour = new Tour({
+              steps: [
+              {
+                element: ".heading",
+                title: "Title of my step",
+                content: "Content of my step"
+              }
+            ]});
+
+            // Initialize the tour
+            tour.init();
+
+            // Start the tour
+            tour.start();
+
+
+
+
 
         });
 
