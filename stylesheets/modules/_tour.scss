@@ -23,21 +23,28 @@
 }
 
 .popover[class*="tour-"] {
+  min-width: 280px;
 
   &,
   .popover-title {
     background-color: $accent-color;
     color: $white;
   }
-  .popover-title {
+
+  &.top .arrow::after {
+    border-top-color: $accent-color;
   }
 
-  &.right .arrow::after {
-    border-right-color: $accent-color;
+  &.bottom .arrow::after {
+    border-bottom-color: $accent-color;
   }
 
   &.left .arrow::after {
     border-left-color: $accent-color;
+  }
+
+  &.right .arrow::after {
+    border-right-color: $accent-color;
   }
 
   .btn {

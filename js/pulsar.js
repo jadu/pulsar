@@ -25,7 +25,7 @@ define(['jquery'], function() {
             $('.actions-menu').actionsMenu();
 
             // sticky toolbar
-            $('.toolbar').sticky({topSpacing: 0});
+            //$('.toolbar').sticky({topSpacing: 0});
 
             // tooltips (js/tooltip.js)
             $('[data-toggle="tooltips"]').tooltip();
