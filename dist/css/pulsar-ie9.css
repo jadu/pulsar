@@ -3760,6 +3760,12 @@ table th {
 .icon--primary {
   color: #3399cc; }
 
+.icon--muted {
+  color: #ccc; }
+
+.icon--success:before {
+  color: #42ab5f; }
+
 .icon-grid:before {
   content: "\f039";
   -webkit-transform: rotate(90deg);
