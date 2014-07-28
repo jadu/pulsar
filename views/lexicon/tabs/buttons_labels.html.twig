@@ -7,6 +7,10 @@
 <div class="tab__inner tab--padded">
     <h2>Button variations</h2>
 
+    <p id="my-element">1</p>
+
+    <p id="my-other-element">2</p>
+
     <p>
         <!-- The normal type of button you should use -->
         {{ html.button(label = 'Default') }}
@@ -36,19 +40,19 @@
     <p>
         <div class="btn__toolbar">
         {{
-            html.button_group([ 
-                html.button(label = 'Left'), 
+            html.button_group([
+                html.button(label = 'Left'),
                 html.button(label = 'Middle'),
-                html.button(label = 'Right') 
-            ]) 
+                html.button(label = 'Right')
+            ])
         }}
         {{
-            html.button_group([ 
-                html.button(label = html.icon('align-left')), 
+            html.button_group([
+                html.button(label = html.icon('align-left')),
                 html.button(label = html.icon('align-center')),
-                html.button(label = html.icon('align-right')), 
-                html.button(label = html.icon('align-justify')) 
-            ]) 
+                html.button(label = html.icon('align-right')),
+                html.button(label = html.icon('align-justify'))
+            ])
         }}
         </div>
     </p>
@@ -90,7 +94,7 @@
     <h2>Dropdown/Dropup buttons</h2>
     <p>
         <div class="btn__toolbar">
-        {% 
+        {%
             set example_dropdown = [
                 html.link(label = html.icon('save') ~ ' Save', href = '#'),
                 html.link(label = html.icon('print') ~ ' Print'),

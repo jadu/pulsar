@@ -68,15 +68,20 @@ define(['jquery'], function() {
 
 
 
-            // Instance the tour
             var tour = new Tour({
-              steps: [
-              {
-                element: ".heading",
-                title: "Title of my step",
-                content: "Content of my step"
-              }
-            ]});
+            backdrop: true,
+            steps: [
+            {
+              element: "#my-element",
+              title: "Title of my step",
+              content: "Content of my step"
+            },
+            {
+              element: "#my-other-element",
+              title: "Title of my step",
+              content: "Content of my step"
+            }
+          ]});
 
             // Initialize the tour
             tour.init();
