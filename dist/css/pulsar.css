@@ -1,7 +1,6 @@
-@import url(../../libs/normalize-css/normalize.css);
-@import url(../../libs/font-awesome/css/font-awesome.css);
-@import url(../../libs/highlightjs/styles/rainbow.css);
-@import url(../../fonts/proxima_nova/stylesheet.css);
+@import url(../libs/normalize-css/normalize.css);
+@import url(../libs/font-awesome/css/font-awesome.css);
+@import url(../libs/highlightjs/styles/rainbow.css);
 /**
                           88
                           88
@@ -15,6 +14,27 @@
 88
 
 */
+@font-face {
+  font-family: 'proxima_novalight';
+  src: url('../fonts/proxima_nova/proximanova-light.eot');
+  src: url('../fonts/proxima_nova/proximanova-light.eot?#iefix') format('embedded-opentype'), url('../fonts/proxima_nova/proximanova-light.woff') format('woff'), url('../fonts/proxima_nova/proximanova-light.ttf') format('truetype'), url('../fonts/proxima_nova/proximanova-light.svg#proxima_novalight') format('svg');
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'proxima_nova_rgregular';
+  src: url('../fonts/proxima_nova/proximanova-regular.eot');
+  src: url('../fonts/proxima_nova/proximanova-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/proxima_nova/proximanova-regular.woff') format('woff'), url('../fonts/proxima_nova/proximanova-regular.ttf') format('truetype'), url('../fonts/proxima_nova/proximanova-regular.svg#proxima_nova_rgregular') format('svg');
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'proxima_novasemibold';
+  src: url('../fonts/proxima_nova/proximanova-semibold.eot');
+  src: url('../fonts/proxima_nova/proximanova-semibold.eot?#iefix') format('embedded-opentype'), url('../fonts/proxima_nova/proximanova-semibold.woff') format('woff'), url('../fonts/proxima_nova/proximanova-semibold.ttf') format('truetype'), url('../fonts/proxima_nova/proximanova-semibold.svg#proxima_novasemibold') format('svg');
+  font-weight: normal;
+  font-style: normal; }
+
 * {
   box-sizing: border-box; }
 
@@ -3360,6 +3380,7 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 
 .form__actions {
   background-color: #eeeeee;
+  clear: both;
   box-shadow: inset 0 -4px 0 #ccc;
   padding: 22px 20px; }
   @media screen and (min-width: 992px) {
@@ -3981,9 +4002,6 @@ textarea.input-lg, textarea.input-sm {
   @media screen and (min-width: 767px) {
     .actionsbar {
       margin: 22px 0 0 0; } }
-  @media screen and (min-width: 991px) {
-    .actionsbar {
-      margin: 22px 0 2px 0; } }
   .actionsbar .btn__group {
     z-index: 1; }
 
@@ -4591,6 +4609,7 @@ tr.is-collapsed td, tr.is-collapsed th {
   float: left;
   width: 100%; }
   .slide-inner form {
+    padding-top: 0;
     width: 100%; }
   .slide-inner.padded {
     padding: 20px 20px 0 20px; }
@@ -4623,6 +4642,13 @@ tr.is-collapsed td, tr.is-collapsed th {
   .slide-inner.padded .form__actions {
     margin-left: -20px;
     margin-right: -20px; }
+
+.slide__title, .slide legend {
+  border-bottom: 1px solid #eeeeee;
+  font-size: 32px;
+  line-height: 1.25em;
+  margin: 0.15em 0 0.5em 0;
+  padding-left: 20px; }
 
 .nav-tabs, .tab-pane, .tab-content, .btn-toolbar, .slide {
   opacity: 1;
@@ -5783,7 +5809,6 @@ footer {
 
 .tabs__content {
   display: block;
-  height: 100%;
   overflow: auto; }
   @media screen and (max-width: 767px) {
     .tabs__content {
@@ -5795,7 +5820,8 @@ footer {
       display: block; }
 
 .tab__pane form {
-  margin-bottom: 0; }
+  margin-bottom: 0;
+  width: 100%; }
 
 .tab__inner {
   background-color: #fff;

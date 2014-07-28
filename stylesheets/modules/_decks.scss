@@ -129,6 +129,7 @@
   width: 100%;
 
   form {
+    padding-top: 0;
     width: 100%;
   }
 
@@ -196,6 +197,15 @@
     margin-right: -20px;
   }
 
+}
+
+.slide__title,
+.slide legend {
+  border-bottom: 1px solid $gray-lighter;
+  font-size: $font-size-xxlarge;
+  line-height: 1.25em;
+  margin: .15em 0 .5em 0;
+  padding-left: 20px;
 }
 
 // Define the animated transition when the .deck-background class is added and removed
