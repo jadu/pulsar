@@ -66,33 +66,6 @@ define(['jquery'], function() {
             // Add placholder support for browsers that don't support it
             $('input:not([data-datepicker=true]), textarea').placeholder();
 
-
-
-            var tour = new Tour({
-            backdrop: true,
-            steps: [
-            {
-              element: "#my-element",
-              title: "Title of my step",
-              content: "Content of my step"
-            },
-            {
-              element: "#my-other-element",
-              title: "Title of my step",
-              content: "Content of my step"
-            }
-          ]});
-
-            // Initialize the tour
-            tour.init();
-
-            // Start the tour
-            tour.start();
-
-
-
-
-
         });
 
 
@@ -114,10 +87,10 @@ define(['jquery'], function() {
         });
 
         // Look for any flashes and animate them in when the page loads
-        $('.flash.is-sticky').delay('1000').slideDown('100', function() {
-            var toolbarHeight = $('.toolbar').outerHeight();
-            $(this).sticky({topSpacing: toolbarHeight}).sticky('update');
-        });
+        // $('.flash.is-sticky').delay('1000').slideDown('100', function() {
+        //     var toolbarHeight = $('.toolbar').outerHeight();
+        //     $(this).sticky({topSpacing: toolbarHeight}).sticky('update');
+        // });
 
         // Update the sticky flash message wrappers
         function updateStickyFlashMessages() {
