@@ -9,6 +9,7 @@ define(['jquery'], function() {
         // Set up Pulsar's UI environment
         require([
             'actions-menu',
+            'bootstrap-tour',
             'tooltip',
             'sticky',
             'datagrid',
@@ -24,7 +25,7 @@ define(['jquery'], function() {
             $('.actions-menu').actionsMenu();
 
             // sticky toolbar
-            $('.toolbar').sticky({topSpacing: 0});
+            //$('.toolbar').sticky({topSpacing: 0});
 
             // tooltips (js/tooltip.js)
             $('[data-toggle="tooltips"]').tooltip();
@@ -86,10 +87,10 @@ define(['jquery'], function() {
         });
 
         // Look for any flashes and animate them in when the page loads
-        $('.flash.is-sticky').delay('1000').slideDown('100', function() {
-            var toolbarHeight = $('.toolbar').outerHeight();
-            $(this).sticky({topSpacing: toolbarHeight}).sticky('update');
-        });
+        // $('.flash.is-sticky').delay('1000').slideDown('100', function() {
+        //     var toolbarHeight = $('.toolbar').outerHeight();
+        //     $(this).sticky({topSpacing: toolbarHeight}).sticky('update');
+        // });
 
         // Update the sticky flash message wrappers
         function updateStickyFlashMessages() {

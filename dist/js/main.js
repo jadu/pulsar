@@ -9,6 +9,7 @@ if (window.jadu.requireJsPath) {
 requirejs.config({
     paths: {
         'actions-menu'      : path + '/js/actions-menu',
+        'bootstrap-tour'    : path + '/libs/bootstrap-tour/build/js/bootstrap-tour.min',
         'console-js'        : path + '/libs/console-js/console',
         'datagrid'          : path + '/js/datagrid',
         'daterange'         : path + '/libs/bootstrap-daterangepicker/daterangepicker',
