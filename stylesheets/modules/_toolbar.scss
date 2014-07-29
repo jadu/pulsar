@@ -33,9 +33,11 @@
 
     height: $search-form-height;
     display: table-cell;
+    float: right;
     position: relative;
     vertical-align: middle;
-    max-width: $search-max-width;
+    // max-width: $search-max-width;
+
 
     @include respond-max($screen-tablet) {
       display: none;
@@ -86,7 +88,7 @@
     border: none;
     border-radius: $search-border-radius;
     color: $search-text-color;
-    margin: ($search-form-height - $search-height) / 2 0;
+    margin: ($search-form-height - $search-height) / 4 0;
     text-overflow: ellipsis;
     width: $search-width;
     max-width: $search-max-width;

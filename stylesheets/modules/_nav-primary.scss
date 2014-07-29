@@ -1,9 +1,10 @@
 .nav__primary {
   float: left;
+  height: $toolbar-height;
   // width: $nav-primary-width;
 
   @include respond-max($screen-phone) {
-    clear: both;
+    clear: none;
   }
 
   .nav-item {
