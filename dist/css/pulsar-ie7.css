@@ -5656,6 +5656,10 @@ tr.is-collapsed td, tr.is-collapsed th {
   border-radius: 4px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   white-space: normal; }
+  .popover.popover--standout, .popover--standout.daterangepicker {
+    background-color: #3399cc;
+    border-color: #3193c4;
+    color: #fff; }
   .popover.top, .top.daterangepicker {
     margin-top: -10px; }
   .popover.right, .right.daterangepicker {
@@ -5675,9 +5679,26 @@ tr.is-collapsed td, tr.is-collapsed th {
   background-color: #f7f7f7;
   border-bottom: 1px solid #ebebeb;
   border-radius: 5px 5px 0 0; }
+  .popover--standout .popover-title {
+    background-color: #3090c0;
+    border-color: #3193c4; }
 
 .popover-content {
   padding: 9px 14px; }
+  .popover-content p, .popover-content ul, .popover-content ol {
+    margin-bottom: 1em; }
+    .popover-content p:last-child, .popover-content ul:last-child, .popover-content ol:last-child {
+      margin-bottom: 0; }
+
+.popover-footer {
+  background-color: #f7f7f7;
+  border-top: 1px solid #ebebeb;
+  padding: 9px 14px; }
+  .popover--standout .popover-footer {
+    background-color: #3090c0;
+    border-color: #3193c4; }
+  .popover-footer .btn {
+    margin: 0; }
 
 .popover .arrow, .popover .daterangepicker, .popover .arrow:after, .popover .daterangepicker {
   position: absolute;
@@ -5707,6 +5728,10 @@ tr.is-collapsed td, tr.is-collapsed th {
     margin-left: -10px;
     border-bottom-width: 0;
     border-top-color: #fff; }
+.popover.popover--standout.top .arrow, .popover.popover--standout.top .popover--standout.top.daterangepicker {
+  border-top-color: #3193c4; }
+  .popover.popover--standout.top .arrow:after, .popover.popover--standout.top .popover--standout.top.daterangepicker {
+    border-top-color: #3399cc; }
 .popover.right .arrow, .popover.right .right.daterangepicker {
   top: 50%;
   left: -11px;
@@ -5720,6 +5745,10 @@ tr.is-collapsed td, tr.is-collapsed th {
     bottom: -10px;
     border-left-width: 0;
     border-right-color: #fff; }
+.popover.popover--standout.right .arrow, .popover.popover--standout.right .popover--standout.right.daterangepicker {
+  border-right-color: #3193c4; }
+  .popover.popover--standout.right .arrow:after, .popover.popover--standout.right .popover--standout.right.daterangepicker {
+    border-right-color: #3399cc; }
 .popover.bottom .arrow, .popover.bottom .bottom.daterangepicker {
   left: 50%;
   margin-left: -11px;
@@ -5733,6 +5762,10 @@ tr.is-collapsed td, tr.is-collapsed th {
     margin-left: -10px;
     border-top-width: 0;
     border-bottom-color: #fff; }
+.popover.popover--standout.bottom .arrow, .popover.popover--standout.bottom .popover--standout.bottom.daterangepicker {
+  border-bottom-color: #3193c4; }
+  .popover.popover--standout.bottom .arrow:after, .popover.popover--standout.bottom .popover--standout.bottom.daterangepicker {
+    border-bottom-color: #3399cc; }
 .popover.left .arrow, .popover.left .left.daterangepicker {
   top: 50%;
   right: -11px;
@@ -5746,6 +5779,10 @@ tr.is-collapsed td, tr.is-collapsed th {
     border-right-width: 0;
     border-left-color: #fff;
     bottom: -10px; }
+.popover.popover--standout.left .arrow, .popover.popover--standout.left .popover--standout.left.daterangepicker {
+  border-left-color: #3193c4; }
+  .popover.popover--standout.left .arrow:after, .popover.popover--standout.left .popover--standout.left.daterangepicker {
+    border-left-color: #3399cc; }
 
 .search {
   outline: 1px solid red; }
