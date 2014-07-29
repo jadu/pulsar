@@ -30,7 +30,7 @@
     "normalize-css": "latest",
     "pikaday": "latest",
     "respond": "latest",
-    "requirejs": "latest",
+    "requirejs": "2.1.14",
     "sticky": "latest",
     "store.js": "latest",
     "Vague.js": "Stanton/vague.js",
