@@ -3,7 +3,7 @@
 }
 
 html, body {
-  height: 100%;
+  height: auto;
 }
 
 body {
@@ -41,7 +41,7 @@ body {
 .container {
   clear: both;
   margin: 0;
-  height: 100%;
+  height: auto;
   @include respond-min($screen-phone) {
     margin: 0 $gutter-width;
   }

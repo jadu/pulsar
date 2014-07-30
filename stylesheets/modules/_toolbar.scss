@@ -30,13 +30,14 @@
 
   .search-form {
     margin: 0;
-
     height: $search-form-height;
     display: table-cell;
     float: right;
     position: relative;
     vertical-align: middle;
     // max-width: $search-max-width;
+
+    display: content-box;
 
 
     @include respond-max($screen-tablet) {
@@ -82,6 +83,7 @@
 
   .search-field {
     background: $search-bg;
+    display: content-box;
     float: right;
     height: $search-height;
     padding: 20px;

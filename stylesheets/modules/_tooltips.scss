@@ -10,6 +10,7 @@
   display: block;
   visibility: visible;
   font-size: $font-size-small;
+  font-family: $font-family-base;
   line-height: 1.2;
   @include opacity(0);
 
