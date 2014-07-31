@@ -189,7 +189,7 @@ input[type="number"] {
   @include respond-min($screen-desktop) {
     padding-left: 20%;
 
-    :first-child {
+    > :first-child {
       margin-left: $gutter-width * 2; // align left edge with controls above
     }
   }
