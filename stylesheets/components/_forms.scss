@@ -159,13 +159,17 @@ input[type="number"] {
   color: $black;
   vertical-align: middle;
   background-color: $input-bg;
-  border: 1px solid $input-border;
-  border-radius: $input-border-radius;
-  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+
   // .transition(~"border-color ease-in-out .15s, box-shadow ease-in-out .15s");
 
   // Customize the `:focus` state to imitate native WebKit styles.
   @include form__control-focus();
+
+  &:not([type="file"]) {
+    border: 1px solid $input-border;
+    border-radius: $input-border-radius;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  }
 
   // Disabled and read-only inputs
   // Note: HTML5 says that inputs under a fieldset > legend:first-child won't be
@@ -189,7 +193,7 @@ input[type="number"] {
   @include respond-min($screen-desktop) {
     padding-left: 20%;
 
-    > :first-child {
+    >:first-child {
       margin-left: $gutter-width * 2; // align left edge with controls above
     }
   }
