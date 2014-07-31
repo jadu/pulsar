@@ -3671,6 +3671,8 @@ textarea.input-lg, textarea.input-sm {
         margin-left: 0; }
         .form--horizontal .form__group.choice__group .controls .checkbox label, .form--horizontal .form__group.choice__group .controls .checkbox input, .form--horizontal .form__group.choice__group .controls .radio label, .form--horizontal .form__group.choice__group .controls .radio input {
           margin-left: 0; } }
+.form--horizontal .form__group.choice__group .control__label {
+  padding-top: 0; }
 @media screen and (min-width: 992px) {
   .form--horizontal .form__group.form__group--top > .control__label {
     display: block;

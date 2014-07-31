@@ -505,6 +505,9 @@ textarea {
         }
       }
     }
+    .control__label {
+      padding-top: 0;
+    }
   }
 
   &.form__group--top {
