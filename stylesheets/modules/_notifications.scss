@@ -37,6 +37,12 @@
   @include respond-min($screen-phone) {
     // margin-right: $gutter-width;
   }
+
+  .dropdown__menu {
+    max-height: 75vh;
+    overflow: hidden;
+    overflow-y: scroll;
+  }
 }
 
 .notifications__header {
