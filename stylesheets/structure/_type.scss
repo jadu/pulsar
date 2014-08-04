@@ -105,7 +105,6 @@ code, pre, kbd {
     width: ($component-offset - 20);
     clear: left;
     text-align: right;
-    @include text-overflow();
   }
   dd {
     @include clearfix; // Clear the floated `dt` if an empty `dd` is present
