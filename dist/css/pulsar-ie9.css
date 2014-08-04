@@ -3864,14 +3864,15 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
   line-height: 44px;
   color: #1e1e1e;
   vertical-align: middle;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); }
+  background-color: #fff; }
   .form__control:focus {
     border-color: #66afe9;
     outline: 0;
     box-shadow: "inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px color-rgba"; }
+  .form__control:not([type="file"]) {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); }
   .form__control[disabled], .form__control[readonly], fieldset[disabled] .form__control {
     cursor: not-allowed;
     background-color: #eeeeee; }
@@ -3884,7 +3885,7 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
   @media screen and (min-width: 992px) {
     .form__actions {
       padding-left: 20%; }
-      .form__actions :first-child {
+      .form__actions > :first-child {
         margin-left: 40px; } }
 
 textarea.form__control {
@@ -4517,6 +4518,7 @@ textarea.input-lg, textarea.input-sm {
 
 .flash {
   padding: 7.3333333333px 20px;
+  position: absolute;
   width: 100%;
   z-index: 1050; }
   .flash.is-sticky {
@@ -4529,6 +4531,10 @@ textarea.input-lg, textarea.input-sm {
   @media screen and (min-width: 480px) {
     .flash {
       padding: 11px 20px; } }
+
+.flash__wrapper--sticky {
+  position: absolute;
+  width: 100%; }
 
 .flash, .flash--default {
   background: rgba(0, 0, 0, 0.8);
@@ -5111,9 +5117,10 @@ tr.is-collapsed td, tr.is-collapsed th {
 .slide__title, .slide legend {
   border-bottom: 1px solid #eeeeee;
   font-size: 32px;
-  line-height: 1.25em;
-  margin: 0.15em 0 0.5em 0;
-  padding-left: 20px; }
+  line-height: 1.5em;
+  margin: 0 0 0.5em 0;
+  padding-left: 20px;
+  padding-top: 5px; }
 
 .nav-tabs, .tab-pane, .tab-content, .btn-toolbar, .slide {
   opacity: 1;
@@ -5308,6 +5315,10 @@ tr.is-collapsed td, tr.is-collapsed th {
   .notifications small {
     color: #999999; }
   @media screen and (min-width: 480px) { }
+  .notifications .dropdown__menu, .notifications .subnav-container, .notifications .toolbar .dropdown__menu > li > ul, .toolbar .dropdown__menu > li > .notifications ul {
+    max-height: 75vh;
+    overflow: hidden;
+    overflow-y: scroll; }
 
 .notifications__header {
   padding-bottom: 40px; }
@@ -6442,7 +6453,7 @@ footer {
   background-position: 20px -5px; }
 
 .hide {
-  display: none; }
+  display: none !important; }
 
 .sr-only {
   position: absolute;
