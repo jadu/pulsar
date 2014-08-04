@@ -1,6 +1,7 @@
 // Constructor
 .flash {
   padding: (($line-height-base / $line-height-small) / 2) $gutter-width;
+  position: absolute;
   width: 100%;
   z-index: $zindex-flash;
 
@@ -19,6 +20,12 @@
   @include respond-min($screen-phone) {
     padding: ($line-height-base / 2) $gutter-width;
   }
+}
+
+// Make sure sticky flashes appear over the breadcrumb
+.flash__wrapper--sticky {
+  position: absolute;
+  width: 100%;
 }
 
 // Default

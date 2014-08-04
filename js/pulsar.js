@@ -86,25 +86,7 @@ define(['jquery'], function() {
             $('.dashboard').dashboard();
         });
 
-        // Look for any flashes and animate them in when the page loads
-        // $('.flash.is-sticky').delay('1000').slideDown('100', function() {
-        //     var toolbarHeight = $('.toolbar').outerHeight();
-        //     $(this).sticky({topSpacing: toolbarHeight}).sticky('update');
-        // });
 
-        // Update the sticky flash message wrappers
-        function updateStickyFlashMessages() {
-            var toolbarHeight = $('.toolbar').outerHeight(),
-                flashBannerHeight = $('.flash.is-sticky').outerHeight();
-
-            $('.toolbar').parent().css({'height': toolbarHeight});
-
-            if ($('.flash.is-sticky').parent().is(':visible')) {
-                $('.flash.is-sticky').parent().css({'height': flashBannerHeight});
-                $('.flash.is-sticky').unstick().sticky({topSpacing: toolbarHeight}).sticky('update');
-                $('.flash.is-sticky').show();
-            }
-        }
 
         // Show and hide mobile-only elements
         function mobileToggle() {
@@ -182,9 +164,12 @@ define(['jquery'], function() {
 
         // Do these things whenever the window resizes
         $(window).resize(function() {
-            updateStickyFlashMessages();
             mobileToggle();
             // actionsMenu();
+
+            // Refresh positions of sticky elements
+            console.log($('.is-sticky'));
+            $('.is-sticky').sticky('update');
 
             $('.tabs__list[data-mobile-togglable]').css({'top': ($('.toolbar').outerHeight() - 3)});
         });

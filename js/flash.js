@@ -1,8 +1,8 @@
 /**
  * Jadu Flash Message Handler
  *
- * Example: 
- *   
+ * Example:
+ *
  *   $(document).flash().success('Something good happened');
  */
 define([
@@ -93,8 +93,8 @@ define([
           if (_this.flashAutohide) {
             var timer = setTimeout(function() {
 
-              /** 
-               * parent() targets the sticky wrapper, otherwise the space 
+              /**
+               * parent() targets the sticky wrapper, otherwise the space
                * occupied by the flash message doesn't get removed
                */
               $newFlash.parent().slideUp(_this.settings.slideSpeed);
@@ -164,12 +164,23 @@ define([
 
   })(jQuery, window, document);
 
-  $(document)
-    .on('click', '[data-dismiss=flash]', function (e) {
-      // parent() targets the sticky wrapper
-      $(this).closest('.flash')
-        .parent()
-        .slideUp(100);
+  $(document).on('click', '[data-dismiss=flash]', function (e) {
+    // parent() targets the sticky wrapper
+    $(this).closest('.flash')
+      .parent()
+      .slideUp(100);
+  });
+
+  // Look for any flashes and animate them in when the page loads
+  $(document).ready(function() {
+    $('.flash.is-sticky').delay('1000').slideDown('100', function() {
+      $(this).sticky({
+        getWidthFrom: '.toolbar',
+        topSpacing: 0,
+        responsiveWidth: true,
+        wrapperClassName: 'flash__wrapper--sticky'
+      });
     });
+  });
 
 });
