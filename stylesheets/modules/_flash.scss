@@ -40,7 +40,7 @@
     text-decoration: underline;
   }
 
-  @include ie-lte(7) {
+  @include ie-lte(8) {
     background:  rgb(0, 0, 0);
   }
 }
@@ -48,7 +48,7 @@
 // Variations
 .flash--success {
   background: rgba(0, 153, 51, .8);
-  @include ie-lte(7) {
+  @include ie-lte(8) {
     background:  rgb(0, 153, 51);
   }
 }
@@ -57,14 +57,14 @@
   background: rgba(255, 137, 9, .8);
   color: darken(rgb(255, 137, 9), 30%);
   text-shadow: none;
-  @include ie-lte(7) {
+  @include ie-lte(8) {
     background:  rgb(255, 137, 9);
   }
 }
 
 .flash--error {
   background: rgba(204, 51, 51, .8);
-  @include ie-lte(7) {
+  @include ie-lte(8) {
     background:  rgb(204, 51, 51);
   }
 }
