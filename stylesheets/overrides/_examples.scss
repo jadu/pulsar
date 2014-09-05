@@ -10,6 +10,11 @@
   }
 }
 
+.example .flash {
+  position: relative;
+
+}
+
 .example-popovers {
   @include clearfix();
   padding-bottom: 24px;

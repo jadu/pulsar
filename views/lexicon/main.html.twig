@@ -68,6 +68,10 @@
     {% include 'lexicon/tabs/typography.html.twig' %}
 {% endset %}
 
+{% set tab_interactions %}
+    {% include 'lexicon/tabs/interactions.html.twig' %}
+{% endset %}
+
 {% set tab_form_summary %}
     {% include 'lexicon/tabs/analytics.html.twig' %}
 {% endset %}
@@ -142,6 +146,11 @@
           "src"   : tab_typography
         }
       ]
+    },
+    {
+      "id"        : "interactions",
+      "label"     : html.icon("forward") ~ " Interactions",
+      "src"       : tab_interactions
     },
     {
       "id"        : "examples",

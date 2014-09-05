@@ -44,10 +44,10 @@ module.exports = function(grunt) {
         }]
       },
       dist: {
-        /*options: {
+        options: {
           banner: '<%= pkg.banner %>',
           style: 'compressed'
-        },*/
+        },
         files: [{
           expand: true,
           cwd:    'stylesheets/',
@@ -110,7 +110,7 @@ module.exports = function(grunt) {
         }
       }
     },
-/*
+
     asciify: {
       banner:{
         text: '<%= pkg.name %>',
@@ -120,7 +120,7 @@ module.exports = function(grunt) {
         }
       },
     },
-*/
+
     copy: {
       dist: {
         src: [
@@ -254,7 +254,7 @@ module.exports = function(grunt) {
   grunt.registerTask('default', ['concurrent:dev']);
 
   grunt.registerTask('build', [
-    //'asciify',
+    'asciify',
     'phpunit',
     // 'leadingIndent:files',
     'clean:dist',
@@ -266,7 +266,7 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('pre-commit', [
-    //'asciify',
+    'asciify',
     'phpunit',
     // 'leadingIndent:files',
     'copy:readme'

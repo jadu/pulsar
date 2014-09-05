@@ -1,0 +1,20 @@
+{% import 'pulsar/helpers/html.html.twig' as html %}
+{% import 'pulsar/helpers/form.html.twig' as form %}
+{% import 'pulsar/helpers/flash.html.twig' as flash %}
+
+<h2 class="heading">{{ heading|raw }}</h2>
+
+<div class="tab__inner tab--padded">
+
+	<h2>Show / Hide</h2>
+
+	<button class="btn" data-ui-action="show" data-ui-target="#showhide-target">Show</button>
+	<button class="btn hide" id="showhide-target" data-ui-action="hide">Hide Me!</button>
+
+	<h2>Slide Toggle</h2>
+
+	<button class="btn" data-ui-action="slideToggle" data-ui-target="#show-target">Slide Toggle</button>
+	<p id="show-target" class="hide">I once was lost, but now I'm found.</p>
+
+
+</div>

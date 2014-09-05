@@ -9,4 +9,5 @@
 /vendor/
 /tmp/
 /composer.phar
+/css
 /.bashrc
