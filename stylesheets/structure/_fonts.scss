@@ -30,3 +30,20 @@
   font-weight: normal;
   font-style: normal;
 }
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'proxima_novalight';
+    src: url($font-path + 'proxima_nova/proximanova-light.svg#proxima_novalight') format('svg');
+  }
+
+  @font-face {
+    font-family: 'proxima_nova_rgregular';
+    src: url($font-path + 'proxima_nova/proximanova-regular.svg#proxima_nova_rgregular') format('svg');
+  }
+
+  @font-face {
+    font-family: 'proxima_novasemibold';
+    src: url($font-path + 'proxima_nova/proximanova-semibold.svg#proxima_novasemibold') format('svg');
+  }
+}
