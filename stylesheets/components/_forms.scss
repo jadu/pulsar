@@ -87,6 +87,11 @@ input[type="file"] {
   }
 }
 
+// Chrome on Windows renders garbled characters when trying to use non standard fonts in select elements
+select {
+  font-family: $font-family-fallback;
+}
+
 // Make multiple select elements height not fixed
 select[multiple],
 select[size] {
@@ -225,6 +230,11 @@ textarea.form__control {
       box-shadow: none;
     }
   }
+}
+
+// Choice matrix position
+.form__group .form__field-matrix {
+  margin-top: .5em;
 }
 
 
