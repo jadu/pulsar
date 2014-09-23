@@ -23,10 +23,13 @@
     text-decoration: none;
   }
 
-  li.selected > a {
-    background-color: darken($white, 10%);
-    font-family: $font-family-regular;
-    color: $black;
+  li.selected {
+    & > a,
+    & > span {
+      background-color: darken($white, 10%);
+      font-family: $font-family-regular;
+      color: $black;
+    }
   }
 
   li.is-disabled {
