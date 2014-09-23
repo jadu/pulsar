@@ -15,7 +15,7 @@
   }
 
   a, span {
-    color: $gray;
+    color: $gray-dark;
     @include inline-block;
     line-height: $line-height-base * 1.75;
     padding: 0 $gutter-width;
@@ -34,7 +34,7 @@
 
   li.is-disabled {
     a, span {
-      color: lighten($gray, 10%);
+      color: $gray;
       cursor: not-allowed;
     }
   }
