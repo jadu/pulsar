@@ -2,7 +2,13 @@
  * Set up Pulsar's UI environment
  */
 
-define(['jquery'], function() {
+define([
+  'jquery',
+  'choice-matrix'
+], function(
+  $,
+  FieldMatrix
+) {
 
     $(document).ready(function() {
 
@@ -23,6 +29,9 @@ define(['jquery'], function() {
 
             // actions menu
             $('.actions-menu').actionsMenu();
+
+            matrix = new FieldMatrix();
+            matrix.init();
 
             // sticky toolbar
             //$('.toolbar').sticky({topSpacing: 0});

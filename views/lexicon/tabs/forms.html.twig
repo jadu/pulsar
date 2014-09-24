@@ -164,6 +164,120 @@
             {{ form.text(label = 'Full', id = 'inputTextFull', class = 'form__group--full', name = 'inputTextFull') }}
 
     {{ form.fieldset_end() }}
+    {{ form.fieldset_start(legend = 'Choice Matrix') }}
+
+        <div class="form__group form__group--full">
+            <label for="choiceMatrix" class="control__label">
+                Three way choice using radio inputs
+            </label>
+            <div class="controls">
+                <table class="form__field-matrix">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th><span class="">Positive</span></th>
+                            <th><span class="">Info</span></th>
+                            <th><span class="">Negative</span></th>
+                        </tr>
+                    </thead>
+                    <tbody class="choice-matrix">
+                        <tr>
+                            <td><span class="">Pick one</span></td>
+
+                            <td class="choice-matrix__choice"><label class="checkbox__label" for="choice_one"><input type="radio" id="choice_one" name="choice-matrix-one" value="positive"><div class="ir"></div></label></td>
+
+                            <td class="choice-matrix__choice--info"><label class="checkbox__label" for="choice-two"><input type="radio" id="choice-two" name="choice-matrix-one" value="info"><div class="ir"></div></label></td>
+
+                            <td class="choice-matrix__choice--ban"><label class="checkbox__label" for="choice-three"><input type="radio" id="choice-three" name="choice-matrix-one" value="negative"><div class="ir"></div></label></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <div class="form__group form__group--full">
+            <label for="choiceMatrix" class="control__label">
+                Specify X and Y using checkboxes
+            </label>
+            <div class="controls">
+                <table class="form__field-matrix">
+                    <thead>
+                        <tr>
+                            <th>
+                                <a href="#" data-action="check-all" data-text-all="Select all" data-text-none="Select none">
+                                    Select all
+                                </a>
+                            </th>
+                            <th data-action="check-column"><span class="">Mondays</span></th>
+                            <th data-action="check-column"><span class="">Tuesdays</span></th>
+                            <th data-action="check-column"><span class="">Wednesdays</span></th>
+                            <th data-action="check-column"><span class="">Thursdays</span></th>
+                            <th data-action="check-column"><span>Fridays</span></th>
+                        </tr>
+                    </thead>
+                    <tbody class="choice-matrix">
+                        <tr>
+                            <td data-action="check-row"><span class="">9 am - 11 am</span></td>
+
+                            <td class="choice-matrix__choice"><label class="checkbox__label" for="hearing_values_appellant_availability_0900_1100_choices_0"><input type="checkbox" id="hearing_values_appellant_availability_0900_1100_choices_0" name="hearing[values][appellant_availability_0900_1100][choices][]" value="monday"><div class="monday ir"></div></label></td>
+
+                            <td class="choice-matrix__choice"><label class="checkbox__label" for="hearing_values_appellant_availability_0900_1100_choices_1"><input type="checkbox" id="hearing_values_appellant_availability_0900_1100_choices_1" name="hearing[values][appellant_availability_0900_1100][choices][]" value="tuesday"><div class="tuesday ir"></div></label></td>
+
+                            <td class="choice-matrix__choice"><label class="checkbox__label" for="hearing_values_appellant_availability_0900_1100_choices_2"><input type="checkbox" id="hearing_values_appellant_availability_0900_1100_choices_2" name="hearing[values][appellant_availability_0900_1100][choices][]" value="wednesday"><div class="wednesday ir"></div></label></td>
+
+                            <td class="choice-matrix__choice"><label class="checkbox__label" for="hearing_values_appellant_availability_0900_1100_choices_3"><input type="checkbox" id="hearing_values_appellant_availability_0900_1100_choices_3" name="hearing[values][appellant_availability_0900_1100][choices][]" value="thursday"><div class="thursday ir"></div></label></td>
+
+                            <td class="choice-matrix__choice"><label class="checkbox__label" for="hearing_values_appellant_availability_0900_1100_choices_4"><input type="checkbox" id="hearing_values_appellant_availability_0900_1100_choices_4" name="hearing[values][appellant_availability_0900_1100][choices][]" value="friday"><div class="friday ir"></div></label></td>
+                        </tr>
+
+                        <tr>
+                            <td data-action="check-row"><span class="">11 am - 1 pm</span></td>
+
+                            <td class="choice-matrix__choice"><label class="checkbox__label" for="hearing_values_appellant_availability_1100_1300_choices_0"><input type="checkbox" id="hearing_values_appellant_availability_1100_1300_choices_0" name="hearing[values][appellant_availability_1100_1300][choices][]" value="monday"><div class="monday ir"></div></label></td>
+
+                            <td class="choice-matrix__choice"><label class="checkbox__label" for="hearing_values_appellant_availability_1100_1300_choices_1"><input type="checkbox" id="hearing_values_appellant_availability_1100_1300_choices_1" name="hearing[values][appellant_availability_1100_1300][choices][]" value="tuesday"><div class="tuesday ir"></div></label></td>
+
+                            <td class="choice-matrix__choice"><label class="checkbox__label" for="hearing_values_appellant_availability_1100_1300_choices_2"><input type="checkbox" id="hearing_values_appellant_availability_1100_1300_choices_2" name="hearing[values][appellant_availability_1100_1300][choices][]" value="wednesday"><div class="wednesday ir"></div></label></td>
+
+                            <td class="choice-matrix__choice"><label class="checkbox__label" for="hearing_values_appellant_availability_1100_1300_choices_3"><input type="checkbox" id="hearing_values_appellant_availability_1100_1300_choices_3" name="hearing[values][appellant_availability_1100_1300][choices][]" value="thursday"><div class="thursday ir"></div></label></td>
+
+                            <td class="choice-matrix__choice"><label class="checkbox__label" for="hearing_values_appellant_availability_1100_1300_choices_4"><input type="checkbox" id="hearing_values_appellant_availability_1100_1300_choices_4" name="hearing[values][appellant_availability_1100_1300][choices][]" value="friday"><div class="friday ir"></div></label></td>
+                        </tr>
+
+                        <tr>
+                            <td data-action="check-row"><span class="">1 pm - 3 pm</span></td>
+
+                            <td class="choice-matrix__choice"><label class="checkbox__label" for="hearing_values_appellant_availability_1300_1500_choices_0"><input type="checkbox" id="hearing_values_appellant_availability_1300_1500_choices_0" name="hearing[values][appellant_availability_1300_1500][choices][]" value="monday"><div class="monday ir"></div></label></td>
+
+                            <td class="choice-matrix__choice"><label class="checkbox__label" for="hearing_values_appellant_availability_1300_1500_choices_1"><input type="checkbox" id="hearing_values_appellant_availability_1300_1500_choices_1" name="hearing[values][appellant_availability_1300_1500][choices][]" value="tuesday"><div class="tuesday ir"></div></label></td>
+
+                            <td class="choice-matrix__choice"><label class="checkbox__label" for="hearing_values_appellant_availability_1300_1500_choices_2"><input type="checkbox" id="hearing_values_appellant_availability_1300_1500_choices_2" name="hearing[values][appellant_availability_1300_1500][choices][]" value="wednesday"><div class="wednesday ir"></div></label></td>
+
+                            <td class="choice-matrix__choice"><label class="checkbox__label" for="hearing_values_appellant_availability_1300_1500_choices_3"><input type="checkbox" id="hearing_values_appellant_availability_1300_1500_choices_3" name="hearing[values][appellant_availability_1300_1500][choices][]" value="thursday"><div class="thursday ir"></div></label></td>
+
+                            <td class="choice-matrix__choice"><label class="checkbox__label" for="hearing_values_appellant_availability_1300_1500_choices_4"><input type="checkbox" id="hearing_values_appellant_availability_1300_1500_choices_4" name="hearing[values][appellant_availability_1300_1500][choices][]" value="friday"><div class="friday ir"></div></label></td>
+                        </tr>
+
+                        <tr>
+                            <td data-action="check-row"><span class="">3 pm - 5 pm</span></td>
+
+                            <td class="choice-matrix__choice"><label class="checkbox__label" for="hearing_values_appellant_availability_1500_1700_choices_0"><input type="checkbox" id="hearing_values_appellant_availability_1500_1700_choices_0" name="hearing[values][appellant_availability_1500_1700][choices][]" value="monday"><div class="monday ir"></div></label></td>
+
+                            <td class="choice-matrix__choice"><label class="checkbox__label" for="hearing_values_appellant_availability_1500_1700_choices_1"><input type="checkbox" id="hearing_values_appellant_availability_1500_1700_choices_1" name="hearing[values][appellant_availability_1500_1700][choices][]" value="tuesday"><div class="tuesday ir"></div></label></td>
+
+                            <td class="choice-matrix__choice"><label class="checkbox__label" for="hearing_values_appellant_availability_1500_1700_choices_2"><input type="checkbox" id="hearing_values_appellant_availability_1500_1700_choices_2" name="hearing[values][appellant_availability_1500_1700][choices][]" value="wednesday"><div class="wednesday ir"></div></label></td>
+
+                            <td class="choice-matrix__choice"><label class="checkbox__label" for="hearing_values_appellant_availability_1500_1700_choices_3"><input type="checkbox" id="hearing_values_appellant_availability_1500_1700_choices_3" name="hearing[values][appellant_availability_1500_1700][choices][]" value="thursday"><div class="thursday ir"></div></label></td>
+
+                            <td class="choice-matrix__choice"><label class="checkbox__label" for="hearing_values_appellant_availability_1500_1700_choices_4"><input type="checkbox" id="hearing_values_appellant_availability_1500_1700_choices_4" name="hearing[values][appellant_availability_1500_1700][choices][]" value="friday"><div class="friday ir"></div></label></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    {{ form.fieldset_end() }}
 
     {{
         form.form_end([
