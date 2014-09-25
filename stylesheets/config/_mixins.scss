@@ -93,10 +93,13 @@
 
 @mixin form__control-validation($text-color: #555, $border-color: #ccc, $background-color: #f5f5f5) {
 
-  box-shadow: inset 4px 0 0 $border-color;
+  // Dont show the left hand highlight when we're in a modal
+  @at-root :not(.modal) & {
+    box-shadow: inset 4px 0 0 $border-color;
 
-  &:hover {
-    box-shadow: inset 4px 0 0 darken($border-color, 10%);
+    &:hover {
+      box-shadow: inset 4px 0 0 darken($border-color, 10%);
+    }
   }
 
   // Color the label and help text

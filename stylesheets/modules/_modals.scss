@@ -30,6 +30,12 @@
   }
   &.in .modal__dialog { @include transform(translate(0, 0))}
 
+  form {
+    p, ul, ol {
+      margin-left: 0;
+    }
+  }
+
 }
 
 // Shell div to position the modal with bottom padding
@@ -136,5 +142,13 @@
   .close {
     color: $white;
     @include opacity(.7);
+  }
+}
+
+// Forms in modals
+
+.modal {
+  .control__label {
+    margin-left: 0;
   }
 }

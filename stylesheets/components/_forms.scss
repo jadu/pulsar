@@ -220,7 +220,7 @@ textarea.form__control {
     margin-bottom: $line-height-base;
   }
 
-  &:hover {
+  @at-root :not(.modal) &:hover {
     box-shadow: inset 4px 0 0 $gray;
   }
 
@@ -345,26 +345,21 @@ textarea {
 //
 // Apply contextual and semantic states to individual form controls.
 
-// Warning
 .has-changed {
   @include form__control-validation($state-info-text, $label-info-bg, $state-info-bg);
 }
 
-// Warning
 .has-warning {
   @include form__control-validation($state-warning-text, $label-warning-bg, $state-warning-bg);
 }
 
-// Error
 .has-error {
   @include form__control-validation($state-danger-text, $label-danger-bg, $state-danger-bg);
 }
 
-// Success
 .has-success {
   @include form__control-validation($state-success-text, $label-success-bg, $state-success-bg);
 }
-
 
 // Help text
 //
@@ -377,6 +372,11 @@ textarea {
   margin-bottom: -11px; // Pull up the next form__control to maintain baseline
   margin-left: 13px !important; // Left-edge should appear inline with input text/placeholders, !important to override `.tab--padded p`
   color: lighten($text-color, 15%); // lighten the text some for contrast
+
+  // for multiple errors
+  li {
+    list-style-type: none;
+  }
 }
 
 
