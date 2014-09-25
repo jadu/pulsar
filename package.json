@@ -28,6 +28,7 @@
       "grunt-php": "latest",
       "grunt-phpunit": "latest",
       "grunt-requirejs": "latest",
+      "grunt-semver": "latest",
       "jsdom": "latest",
       "mocha": "latest",
       "matchdep": "latest",

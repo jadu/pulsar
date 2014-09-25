@@ -10,7 +10,7 @@ module.exports = function(grunt) {
     php: {
       dev: {
         options: {
-          bin: '/usr/bin/php', // Mavericks
+          bin: '/usr/bin/php', // Mavericks and Yosemite
           // bin: '/usr/local/php5/bin/php', // Mountain Lion (See http://php-osx.liip.ch for PHP 5.4.0+)
           keepalive: true,
           open: true
@@ -30,22 +30,8 @@ module.exports = function(grunt) {
     },
 
     sass: {
-      pulsar: {
+      dev: {
         options: {
-          style: 'compressed'
-        },
-        files: [{
-          expand: true,
-          cwd:    'stylesheets/',
-          src:    '*.scss',
-          dest:   'css/',
-          ext:    '.css',
-          extDot: 'first'
-        }]
-      },
-      dist: {
-        options: {
-          banner: '<%= pkg.banner %>',
           style: 'compressed'
         },
         files: [{
@@ -71,11 +57,8 @@ module.exports = function(grunt) {
 
     watch: {
       css: {
-        files: [
-          'stylesheets/**/*.scss',
-          'theme/**/*.scss',
-        ],
-        tasks: ['sass:dev'],
+        files: ['stylesheets/**/*.scss'],
+        tasks: ['sass'],
         options: {
           livereload: true,
         },
@@ -122,20 +105,6 @@ module.exports = function(grunt) {
     },
 
     copy: {
-      dist: {
-        src: [
-          'css/**/*',
-          'docs/**/',
-          'docs/**/*.md',
-          'docs/images/*',
-          '!docs/**/*.php',
-          'fonts/**/*',
-          'images/*',
-          'js/**/*',
-          'libs/**/*'
-        ],
-        dest: 'dist/'
-      },
       readme: {
         src: 'docs/01_Getting_started/01_Installation.md',
         dest: 'README.md',
@@ -182,51 +151,6 @@ module.exports = function(grunt) {
       }
     },
 
-    requirejs: {
-      dist: {
-        options: {
-          name: 'main',
-          mainConfigFile: 'js/main.js',
-          // optimize: 'none',
-          out: 'dist/js/pulsar.min.js',
-          paths: {
-            'console-js'        : '../libs/console-js/console',
-            'datagrid'          : '../js/datagrid',
-            'daterange'         : '../libs/bootstrap-daterangepicker/daterangepicker',
-            'deck'              : '../js/deck',
-            'dashboard'         : '../js/dashboard',
-            'dropdown'          : '../js/dropdown',
-            'flash'             : '../js/flash',
-            'highcharts'        : '../libs/highcharts/highcharts',
-            'highcharts-more'   : '../libs/highcharts/highcharts-more',
-            'highcharts-mono'   : '../js/highcharts-mono',
-            'highcharts-theme'  : '../js/highcharts-theme',
-            'highlightjs'       : '../libs/highlightjs/highlight.pack',
-            'homepages'         : '../js/homepages',
-            'jquery'            : '../libs/jquery/dist/jquery.min',
-            'jquery-ui'         : '../libs/jqueryui/js/jquery-ui-1.10.4.custom.min',
-            'jquery-ui-touch'   : '../libs/jqueryui-touch-punch/jquery.ui.touch-punch.min',
-            'jquery-mousewheel' : '../libs/jquery-mousewheel/jquery.mousewheel',
-            'modal'             : '../js/modal',
-            'moment'            : '../libs/moment/moment',
-            'navigation'        : '../js/navigation',
-            'order'             : '../libs/order/index',
-            'pikaday'           : '../libs/pikaday/pikaday',
-            'popover'           : '../js/popover',
-            'pulsar'            : '../js/pulsar',
-            'quantum'            : '../js/quantum',
-            'sticky'            : '../libs/sticky/jquery.sticky',
-            'store-js'          : '../libs/store.js/store',
-            'tab'               : '../js/tab',
-            'tooltip'           : '../js/tooltip',
-            'tray'              : '../js/tray',
-            'vague'             : '../libs/Vague.js/Vague',
-            'zeroclipboard'     : '../libs/zeroclipboard/dist/ZeroClipboard'
-          }
-        }
-      }
-    },
-
     concurrent: {
       dev: ['watch', 'php'],
       options: {
@@ -251,35 +175,19 @@ module.exports = function(grunt) {
     ]
   });
 
-  grunt.registerTask('default', ['concurrent:dev']);
+ grunt.registerTask('default', ['concurrent:dev']);
 
-  grunt.registerTask('build', [
-    'asciify',
-    'phpunit',
-    // 'leadingIndent:files',
-    'clean:dist',
-    'sass:dist',
-    'autoprefixer',
-    'copy:dist',
-    'copy:readme',
-    'requirejs',
-  ]);
-
-  grunt.registerTask('pre-commit', [
+ grunt.registerTask('pre-commit', [
     'asciify',
     'phpunit',
     // 'leadingIndent:files',
     'copy:readme'
   ]);
 
-  grunt.registerTask('release', [
-    'build',
-    'bump'
-  ]);
-
-  grunt.registerTask('sass:dev', [
-    'sass:pulsar'
-  ]);
+  // grunt.registerTask('release', [
+  //   'build',
+  //   'bump'
+  // ]);
 
   grunt.registerTask('smoketest', [
     'clean:smoketest',
