@@ -36,19 +36,32 @@
     <p>
         <div class="btn__toolbar">
         {{
-            html.button_group([
-                html.button(label = 'Left'),
-                html.button(label = 'Middle'),
-                html.button(label = 'Right')
-            ])
+            html.button_group(
+                buttons = [
+                    html.button(label = 'Left'),
+                    html.button(label = 'Middle'),
+                    html.button(label = 'Right')
+                ]
+            )
         }}
         {{
-            html.button_group([
-                html.button(label = html.icon('align-left')),
-                html.button(label = html.icon('align-center')),
-                html.button(label = html.icon('align-right')),
-                html.button(label = html.icon('align-justify'))
-            ])
+            html.button_group(
+                buttons = [
+                    html.button(label = html.icon('align-left')),
+                    html.button(label = html.icon('align-center')),
+                    html.button(label = html.icon('align-right')),
+                    html.button(label = html.icon('align-justify'))
+                ]
+            )
+        }}
+        {{
+            html.button_group(
+                buttons = [
+                    html.button(label = 'Left'),
+                    html.button(label = 'Middle'),
+                    html.button(label = 'Right')
+                ]
+            )
         }}
         </div>
     </p>

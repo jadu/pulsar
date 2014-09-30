@@ -19,8 +19,8 @@
 {% endmacro %}
 
 
-{%- macro button_group(buttons) -%}
-  <div class="btn__group">
+{%- macro button_group(buttons, class, attributes) -%}
+  <div class="btn__group{% if class %} {{ class }}{% endif %}"{% if attributes %} {{ attributes|raw }}{% endif %}>
   {%- for button in buttons -%}
     {{ button }}
   {%- endfor -%}
