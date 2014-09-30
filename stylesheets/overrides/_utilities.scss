@@ -3,11 +3,6 @@
 }
 
 .hide {
-  display: none;
-}
-
-// Make an element only 'visible' to screenreaders
-.sr-only {
   position: absolute;
   width: 1px;
   height: 1px;

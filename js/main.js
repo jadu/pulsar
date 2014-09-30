@@ -10,6 +10,7 @@ requirejs.config({
     paths: {
         'actions-menu'      : path + '/js/actions-menu',
         'bootstrap-tour'    : path + '/libs/bootstrap-tour/build/js/bootstrap-tour.min',
+        'choice-matrix'     : path + '/js/choice-matrix',
         'console-js'        : path + '/libs/console-js/console',
         'dashboard'         : path + '/js/dashboard',
         'data-ui'           : path + '/js/data-ui',
