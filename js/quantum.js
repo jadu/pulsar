@@ -1,3 +1,7 @@
+/**
+ * All of this is to be removed or merged into Pulsar proper (Stanton)
+ */
+
 define(['jquery'], function() {
 
     $(document).ready(function() {
