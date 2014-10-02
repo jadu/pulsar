@@ -34,3 +34,8 @@
 // layouts, modules etc you should @import them here.
 
 // @import 'theme-modules';
+
+// Structure, components, layouts, modules and overrides.
+// These have to come last to make sure they override
+// anything in theme-modules.
+@import 'setup/pulsar-core-overrides';
