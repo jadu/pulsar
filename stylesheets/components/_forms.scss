@@ -60,6 +60,23 @@ label {
   }
 }
 
+// Positioning information for non-form elements which may need to be positioned within the flow of a form
+//
+// [ .control__label ] [ .controls  ]
+// [ .form__indent   ] [ my-element ]
+//
+// Can be applied to a singleton element, or used as a wrapper on a <section> element
+
+form .form__indent {
+  margin-left: 20%;
+  margin-right: $gutter-width;
+
+  p {
+    margin-left: 0;
+    padding-left: 0;
+  }
+}
+
 
 // Normalize form controls
 

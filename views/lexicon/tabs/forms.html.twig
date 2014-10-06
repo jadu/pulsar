@@ -129,7 +129,7 @@
     {{ form.fieldset_end() }}
     {{ form.fieldset_start(legend = 'Regular elements') }}
 
-            <p>This is a plain ol' paragraph, its left edge should match that of the rest of the form.</p>
+            <p>This is a plain ol' paragraph, its left edge should be on the far left.</p>
 
             <ul>
                 <li>Unordered List</li>
@@ -141,17 +141,31 @@
                 <li>Unordered List</li>
             </ol>
 
+            <section class="form__indent">
+                <p>This is the same plain ol' paragraph, but now we're wrapped in a <code>form__indent</code> class which should make our left edge match the form controls.</p>
+
+                <ul>
+                    <li>Unordered List</li>
+                    <li>Unordered List</li>
+                </ul>
+
+                <ol>
+                    <li>Unordered List</li>
+                    <li>Unordered List</li>
+                </ol>
+            </section>
+
     {{ form.fieldset_end() }}
     {{ form.fieldset_start(legend = 'Floating elements') }}
 
-        {{ html.button(label = 'This Button Has No Form Label', class = 'form__group--floating') }}
+        {{ html.button(label = 'This Button Has No Form Label', class = 'form__indent') }}
 
     {{ form.fieldset_end() }}
     {{ form.fieldset_start(legend = 'Removable inputs') }}
 
         {{ form.text(label = 'Removable text input', id = 'inputTextRemovable', name = 'inputTextRemovable', placeholder = 'Placeholder', removable = true) }}
         {{ form.file(label = 'Removable File input', id = 'inputFileRemovable', name = 'inputFileRemovable', removable = true) }}
-        {{ html.button(label = 'This Button Has No Form Label', class = 'form__group--floating') }}{{ html.remove_button() }}
+        {{ html.button(label = 'This Button Has No Form Label', class = 'form__indent') }}{{ html.remove_button() }}
 
     {{ form.fieldset_end() }}
     {{ form.fieldset_start(legend = 'Sizes') }}
