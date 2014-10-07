@@ -20,7 +20,7 @@
   background-color: $toolbar-bg;
   border-bottom: $toolbar-accent-height solid $accent-color;
   float: left;
-  height: $toolbar-height;
+  min-height: $toolbar-height;
   position: relative;
   width: 100%;
   z-index: $zindex-sticky;
