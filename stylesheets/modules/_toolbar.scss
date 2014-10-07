@@ -89,7 +89,7 @@
     display: content-box;
     float: right;
     height: $search-height;
-    margin: ($search-form-height - $search-height) / 4 0;
+    margin: $search-form-margin;
     max-width: $search-max-width;
     padding: 0 20px;
     text-overflow: ellipsis;

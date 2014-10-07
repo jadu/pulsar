@@ -194,7 +194,8 @@ $brand-background-size:               100% !default;
 
 $search-border-radius:                0px !default;
 $search-form-height:                  $toolbar-height !default;
-$search-height:                       $brand-height !default;
+$search-height:                       44px !default;
+$search-form-margin:                  ($search-form-height - $search-height - $toolbar-accent-height) / 2 0;
 $search-width:                        100% !default;
 $search-max-width:                    400px !default;
 
