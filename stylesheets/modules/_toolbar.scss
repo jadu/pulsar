@@ -19,6 +19,7 @@
 .toolbar {
   background-color: $toolbar-bg;
   border-bottom: $toolbar-accent-height solid $accent-color;
+  float: left;
   height: $toolbar-height;
   position: relative;
   width: 100%;
@@ -89,7 +90,7 @@
     display: content-box;
     float: right;
     height: $search-height;
-    line-height: $search-height;
+    line-height: $search-height; // IE8
     margin: $search-form-margin;
     max-width: $search-max-width;
     padding: 0 20px;
