@@ -26,7 +26,7 @@
   z-index: $zindex-sticky;
 
   @include respond-max($screen-phone) {
-    height: $toolbar-height-small;
+    min-height: $toolbar-height-small;
   }
 
   .search-form {
