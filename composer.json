@@ -22,6 +22,6 @@
         "behat/mink": "*",
         "behat/mink-extension": "*",
         "behat/mink-goutte-driver": "*",
-        "behat/mink-selenium2-driver": "*" 
+        "behat/mink-selenium2-driver": "*"
     }
 }

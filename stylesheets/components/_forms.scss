@@ -254,6 +254,13 @@ textarea.form__control {
   margin-top: .5em;
 }
 
+// Tabs list position
+.form__group {
+  .tabs__list,
+  .tabs__list + .tabs__content {
+    margin-left: 0;
+  }
+}
 
 // Checkboxes and radios
 //
