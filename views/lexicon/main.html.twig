@@ -32,6 +32,10 @@
     {% include 'lexicon/tabs/decks.html.twig' %}
 {% endset %}
 
+{% set tab_editor %}
+    {% include 'lexicon/tabs/editor.html.twig' %}
+{% endset %}
+
 {% set tab_flash %}
     {% include 'lexicon/tabs/flash.html.twig' %}
 {% endset %}
@@ -99,6 +103,11 @@
           "id"    : "decks",
           "label" : html.icon("columns") ~ " Decks",
           "src"   : tab_decks
+        },
+        {
+          "id"    : "editor",
+          "label" : html.icon("file-text-alt") ~ " Editor",
+          "src"   : tab_editor
         },
         {
           "id"    : "flash",
