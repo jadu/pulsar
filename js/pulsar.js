@@ -10,12 +10,14 @@ define(['jquery'], function() {
         require([
             'actions-menu',
             'bootstrap-tour',
+            'codemirror',
             'tooltip',
             'sticky',
             'datagrid',
             'tooltip',
             'highlightjs',
-            'jquery-placeholder'
+            'jquery-placeholder',
+            'summernote'
             ], function() {
 
             // tooltips (js/tooltip.js)
@@ -29,6 +31,22 @@ define(['jquery'], function() {
 
             // tooltips (js/tooltip.js)
             $('[data-toggle="tooltips"]').tooltip();
+
+            $('.summernote').summernote({
+              codemirror: { // codemirror options
+                theme: 'monokai'
+              },
+              minHeight: 400,
+              toolbar: [
+                //[groupname, [button list]]
+                ['style', ['style']],
+                ['style', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['insert', ['link', 'picture', 'video', 'table']],
+                ['misc', ['codeview', 'help']]
+              ]
+            });
 
             // datagrid
             $('.table--datagrid').each(function() {
