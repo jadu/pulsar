@@ -1,6 +1,7 @@
 {%- macro primary_nav(label = 'label', class, id, menu_items, open = false) -%}
   {% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
   <div class="nav-item {% if open %} open{% endif %}">
+  {% if menu_items is iterable %}
     <a class="nav-link nav-link__toggle" data-toggle="dropdown">
         {{ label|raw }}
     </a>
@@ -19,7 +20,7 @@
             {% if loop.first %}
               <div data-subnav="true" class="subnav-container">
             {% endif %}
-              {{ html.linkList(item) }}
+              {{ html.link_list(item) }}
             {% if loop.last %}
               </div>
             {% endif %}
@@ -29,7 +30,7 @@
             {% if loop.first %}
               <ul data-subnav="true">
             {% endif %}
-              {{ html.listItem(html.link(label, item)) }}
+              {{ html.list_item(html.link(label, item)) }}
             {% if loop.last %}
               </ul>
             {% endif %}
@@ -40,8 +41,56 @@
       </li>
     {% endfor %}
     </ul>
+  {% else %}
+    <a class="nav-link nav-link__toggle" href="{{ menu_items }}">
+      {{ label|raw }}
+    </a>
+  {% endif %}
   </div>
 {%- endmacro -%}
+
+
+{%- macro notifications(items, count = null, open = false) -%}
+  {% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
+  <div class="notifications btn__group pull-right {% if open %} open{% endif %}">
+    <button type="button" class="btn dropdown__toggle">
+        <span class="badge">
+        {% if count is null %}
+          {{ items|length }}
+        {% else %}
+          {{ count }}
+        {% endif %}
+      </span>
+    </button>
+    <ul class="dropdown__menu">
+      <li class="notifications__header">
+        {{
+          html.link(
+            label = html.icon('check-sign'),
+            class = 'notifications__dismiss',
+            attributes = 'data-toggle="tooltips" title="Mark all as read" data-placement="left"'
+          )
+        }}
+        <h1>Notifications</h1>
+      </li>
+      {% for item in items %}
+        {{ item }}
+        {% endfor %}
+    </ul>
+  </div>
+{%- endmacro -%}
+
+
+{%- macro notification(icon, href, title, description, time, class) -%}
+  <li class="notification{% if class %} {{ class }}{% endif %}">
+    <a href="{{ href }}">
+      <p class="notification__title">{{ icon|raw }} {{ title|raw }}</p>
+      <p class="notification__description">{{ description }}</p>
+      <time class="notification__time">{{ time }}</time>
+    </a>
+  </li>
+{%- endmacro -%}
+
 
 {%- macro widget_list(widgets, context = 'Dashboard') -%}
   {% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
@@ -73,7 +122,7 @@
   {#
         {% if first_widget.price == 0 %}
           {{ html.button(label = 'Free', class = 'widget__price') }}
-        {% else %} 
+        {% else %}
           {{ html.button(label = '£9.99', class = 'widget__price') }}
         {% endif %}
   #}

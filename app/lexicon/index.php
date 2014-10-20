@@ -1,9 +1,9 @@
 <?php
 
 $baseDir = '../../';
-$templateDir = '../../views';
+$templateDir = $baseDir . 'views';
 
-require_once __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__ . '/' . $baseDir . 'vendor/autoload.php';
 
 use Jadu\Pulsar\Twig\Extension\ConfigExtension;
 use Jadu\Pulsar\Twig\Extension\RelativeTimeExtension;
@@ -23,6 +23,11 @@ $twig->addExtension(new Twig_Extension_Debug());
 
 $template = $twig->loadTemplate('lexicon/main.html.twig');
 
+$toolbar = array(
+    '<i class="icon-file"></i> Docs' => '#',
+    '<i class="icon-file"></i> Lexicon' => '#',
+    );
+
 $breadcrumb = array(
     'Pulsar' => '/',
     'Documentation' => '/docs',
@@ -36,5 +41,7 @@ $flashMessage = array(
 
 print $template->render(array(
     'breadcrumb' => $breadcrumb,
-    'flash_message' => $flashMessage
+    'flash_message' => $flashMessage,
+    'notifications' => 3,
+    'toolbar' => $toolbar
     ));

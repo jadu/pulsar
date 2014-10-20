@@ -1,0 +1,54 @@
+.actionsbar {
+  @extend .btn__toolbar;
+  @include inline-block;
+  margin: ($line-height-base / 2) 0 ($line-height-base / 2) 0;
+
+
+  @include respond-min($screen-tablet) {
+    margin: $line-height-base 0 0 0;
+  }
+
+  //@include ie-lte(7) {
+    .btn__group {
+      z-index: 1; // Fix issue where actions menu appears underneath tabs
+    }
+  //}
+}
+
+.actionsbar--left {
+  float: left;
+  margin-right: 0;
+  margin-bottom: 0;
+  width: $tab-column-width;
+
+  @include respond-max($screen-tablet) {
+    float: none;
+  }
+
+  @include respond-max($screen-tablet-max) {
+    width: $sidebar-column-width-tablet;
+  }
+}
+
+@include respond-max($screen-phone) {
+  .btn__back {
+    display: none;
+  }
+  .actions-menu .btn {
+    // @extend .btn--primary;
+  }
+}
+
+.actionsbar--right {
+  float: right;
+  .btn, .btn__group {
+    float: left;
+  }
+}
+
+@include ie-lte(7) {
+  .btn__back {
+    margin-right: -1px;
+    padding: 11px;
+  }
+}

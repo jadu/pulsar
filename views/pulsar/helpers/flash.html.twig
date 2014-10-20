@@ -1,6 +1,6 @@
-{%- macro message(message, type = 'default', sticky = true, autohide = false) -%}
+{%- macro message(message, type = 'default', sticky = true, dismissable = true, autohide = false) -%}
   {% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
-  
+
   {% if type == 'success' %}
     {% set icon = 'ok' %}
   {% elseif type == 'warning' %}

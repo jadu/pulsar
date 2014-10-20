@@ -1,0 +1,66 @@
+.toolbar {
+  outline: 1px solid red;
+
+  background-color: $toolbar-bg;
+  display: table;
+  width: 100%;
+
+
+  .branding,
+  .search-form,
+  .nav-item,
+  .notifications,
+  .user-actions,
+  .mobile-menu-toggle {
+    outline: 1px solid blue;
+    display: table-cell;
+    height: $toolbar-height;
+    top: 0; // some elements need forcing into place
+    vertical-align: middle;
+  }
+
+  .pull-right {
+    float: none;
+  }
+
+  .search-form {
+
+  }
+
+
+  .branding {
+    @include hide-text;
+    background-repeat: no-repeat;
+    background-image: url($brand-image);
+    background-size: $brand-background-size;
+
+    height: $brand-height;
+    overflow: hidden;
+    margin: 0 $gutter-width;
+    position: relative;
+    top: (($toolbar-height - $toolbar-accent-height) - $brand-height) / 2;
+    width: $brand-width;
+
+    @include respond-max($screen-phone) {
+      margin: 0 $gutter-width / 2;
+      top: (($toolbar-height-small - $toolbar-accent-height) - $brand-height) / 2;
+    }
+
+    @include respond-min($screen-tablet) {
+      margin: 0 $gutter-width;
+    }
+
+    @include respond-min($screen-desktop) {
+      margin: 0 ($sidebar-column-width - ($brand-width + $gutter-width)) 0 $gutter-width;
+    }
+
+  }
+
+
+  .mobile-menu-toggle {
+    display: none;
+  }
+
+
+
+}

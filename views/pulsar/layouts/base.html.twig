@@ -5,9 +5,8 @@
 {% set jsPath   = base_path ~ 'js/' %}
 {% set libsPath = base_path ~ 'libs/' %}
 <!DOCTYPE html>
-<!--[if IE 7]>         <html class="no-js ie7 lt-ie9 lt-ie8"><![endif]-->
-<!--[if IE 8]>         <html class="no-js ie7 lt-ie9"><![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"><!--<![endif]-->
+<!--[if IE 7]>         <html class="no-js ie7"><![endif]-->
+<!--[if gt IE 7]><!--> <html class="no-js"><!--<![endif]-->
 <html class="no-js">
 <head>
     <title>{% block title %}Pulsar Lexicon{% endblock %}</title>
@@ -39,9 +38,9 @@
 
     <header id="top">
         {% include '@pulsar/pulsar/components/toolbar.html.twig' %}
-        {% include '@pulsar/pulsar/components/breadcrumb.html.twig' %}
         {% include '@pulsar/pulsar/components/flash.html.twig' %}
     </header>
+    {% include '@pulsar/pulsar/components/breadcrumb.html.twig' %}
 
     {% block summary %}{% endblock %}
 
@@ -52,7 +51,7 @@
 
     <footer>
         {{ html.link(label = html.icon('long-arrow-up') ~ ' Top', href = '#top') }}
-        {{ html.link(label = 'Jadu 1.12 &copy; 2013', href = '/credits') }}
+        {{ html.link(label = 'Jadu 1.12 &copy; 2014', href = '/credits') }}
     </footer>
 
     <div id="modal" class="modal" role="dialog" aria-hidden="true">

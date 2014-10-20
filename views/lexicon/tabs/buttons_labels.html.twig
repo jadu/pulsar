@@ -36,19 +36,32 @@
     <p>
         <div class="btn__toolbar">
         {{
-            html.button_group([ 
-                html.button(label = 'Left'), 
-                html.button(label = 'Middle'),
-                html.button(label = 'Right') 
-            ]) 
+            html.button_group(
+                buttons = [
+                    html.button(label = 'Left'),
+                    html.button(label = 'Middle'),
+                    html.button(label = 'Right')
+                ]
+            )
         }}
         {{
-            html.button_group([ 
-                html.button(label = html.icon('align-left')), 
-                html.button(label = html.icon('align-center')),
-                html.button(label = html.icon('align-right')), 
-                html.button(label = html.icon('align-justify')) 
-            ]) 
+            html.button_group(
+                buttons = [
+                    html.button(label = html.icon('align-left')),
+                    html.button(label = html.icon('align-center')),
+                    html.button(label = html.icon('align-right')),
+                    html.button(label = html.icon('align-justify'))
+                ]
+            )
+        }}
+        {{
+            html.button_group(
+                buttons = [
+                    html.button(label = 'Left'),
+                    html.button(label = 'Middle'),
+                    html.button(label = 'Right')
+                ]
+            )
         }}
         </div>
     </p>
@@ -63,7 +76,7 @@
         {{ html.label(label = 'info', class = 'label--info') }}
         {{ html.label(label = 'inverse', class = 'label--inverse') }}
         {{ html.label(label = 'label with tooltip', class = 'label--inverse', tooltip_title = 'Hello') }}
-        {{ html.label(label = 'label with right-aligned tooltip', class = 'label--inverse', tooltip_title = 'Hello', tooltip_placement='right') }}
+        {{ html.label(label = 'label with right-aligned tooltip', class = 'label--inverse', tooltip_title = 'You look nice', tooltip_placement='right') }}
     </p>
 
     <h2>Removable labels</h2>
@@ -90,7 +103,7 @@
     <h2>Dropdown/Dropup buttons</h2>
     <p>
         <div class="btn__toolbar">
-        {% 
+        {%
             set example_dropdown = [
                 html.link(label = html.icon('save') ~ ' Save', href = '#'),
                 html.link(label = html.icon('print') ~ ' Print'),

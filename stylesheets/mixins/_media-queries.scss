@@ -1,0 +1,25 @@
+@mixin respond-min($width) {
+  @if $is-ie {
+    @if $ie-version < 9 {
+      @content;
+    }
+    @else {
+      @media screen and (min-width: $width) {
+        @content;
+      }
+    }
+  }
+  @else {
+    @media screen and (min-width: $width) {
+      @content;
+    }
+  }
+}
+
+@mixin respond-max($width) {
+  @if $is-ie == false {
+    @media screen and (max-width: $width) {
+      @content;
+    }
+  }
+}

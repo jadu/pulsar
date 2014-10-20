@@ -1,59 +1,41 @@
+/**
+                          88
+                          88
+                          88
+8b,dPPYba,   88       88  88  ,adPPYba,  ,adPPYYba,  8b,dPPYba,
+88P'    "8a  88       88  88  I8[    ""  ""     `Y8  88P'   "Y8
+88       d8  88       88  88   `"Y8ba,   ,adPPPPP88  88
+88b,   ,a8"  "8a,   ,a88  88  aa    ]8I  88,    ,88  88
+88`YbbdP"'    `"YbbdP'Y8  88  `"YbbdP"'  `"8bbdP"Y8  88
+88
+88
+
+*/
+
+// Third party plugins
 @import '../libs/normalize-css/normalize.css';
-@import '../libs/bourbon/app/assets/stylesheets/bourbon';
+@import '../libs/bourbon/dist/bourbon';
 @import '../libs/font-awesome/css/font-awesome.css';
 @import '../libs/highlightjs/styles/rainbow.css';
-@import '../fonts/proxima_nova/stylesheet.css';
 
-// Structure
-@import 'ie';
-@import 'colours';
-@import 'variables';
-@import 'mixins';
-@import 'scaffolding';
-@import 'type';
-@import 'columns';
-@import 'tray';
-@import 'grid';
+// Variables, colours and mixins.
+@import 'setup/pulsar-core-setup';
 
-// Components
-@import 'labels';
-@import 'badges';
-@import 'button-groups';
-@import 'buttons';
-@import 'close';
-@import 'dropdowns';
-@import 'navbars';
-@import 'navs';
-@import 'tables';
-@import 'icons';
-@import 'forms';
-@import 'input-groups';
-@import 'progress-bars';
-@import 'widget';
+// If you're theming Pulsar and want to include your own
+// variables, colours or mixins you should @import them
+// here.
 
-// Modules
-@import 'toolbar';
-@import 'breadcrumb';
-@import 'actionsbar';
-@import 'flash';
-@import 'datagrid';
-@import 'datepicker';
-@import 'filter';
-@import 'summary';
-@import 'decks';
-@import 'modals';
-@import 'pagination';
-@import 'tooltips';
-@import 'popovers';
-@import 'footer';
-@import 'daterange';
-@import 'widget';
+// @import 'theme-setup';
 
-// Layouts
-@import 'tabs';
+// Structure, components, layouts, modules and overrides.
+@import 'setup/pulsar-core';
 
-// Fixes and overrides
-@import 'utilities';
-@import 'tour';
-@import 'shame';
-@import 'examples';
+// If you're extending Pulsar and want to include your own
+// layouts, modules etc you should @import them here.
+
+// @import 'theme-modules';
+
+// Structure, components, layouts, modules and overrides.
+// These have to come last to make sure they override
+// anything in theme-modules.
+@import 'setup/pulsar-core-overrides';

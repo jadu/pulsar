@@ -4,12 +4,13 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
 
-    pkg: grunt.file.readJSON('package.json'),
+    pkg:    grunt.file.readJSON('package.json'),
+    pulsar: grunt.file.readJSON('pulsar.json'),
 
     php: {
       dev: {
         options: {
-          bin: '/usr/bin/php', // Mavericks
+          bin: '/usr/bin/php', // Mavericks and Yosemite
           // bin: '/usr/local/php5/bin/php', // Mountain Lion (See http://php-osx.liip.ch for PHP 5.4.0+)
           keepalive: true,
           open: true
@@ -33,31 +34,31 @@ module.exports = function(grunt) {
         options: {
           style: 'compressed'
         },
-        files: {
-          'css/<%= pkg.name %>.css': 'stylesheets/pulsar.scss',
-          'css/<%= pkg.name %>-ie7.css': 'stylesheets/pulsar-ie7.scss',
-          'css/<%= pkg.name %>-ie8.css': 'stylesheets/pulsar-ie8.scss',
-          'css/<%= pkg.name %>-ie9.css': 'stylesheets/pulsar-ie9.scss'
-        }
-      },
-      dist: {
+        files: [{
+          expand: true,
+          cwd:    'stylesheets/',
+          src:    '*.scss',
+          dest:   'css/',
+          ext:    '.css',
+          extDot: 'first'
+        }]
+      }
+    },
+
+    autoprefixer: {
+      single_file: {
         options: {
-          banner: '<%= pkg.banner %>',
-          style: 'compressed'
+          browsers: ['last 2 version', 'ie 7', 'ie 8', 'ie 9']
         },
-        files: {
-          'dist/css/<%= pkg.name %>.css': 'stylesheets/pulsar.scss',
-          'dist/css/<%= pkg.name %>-ie7.css': 'stylesheets/pulsar-ie7.scss',
-          'dist/css/<%= pkg.name %>-ie8.css': 'stylesheets/pulsar-ie8.scss',
-          'dist/css/<%= pkg.name %>-ie9.css': 'stylesheets/pulsar-ie9.scss'
-        }
+        src: 'css/<%= pkg.name %>.css',
+        dest: 'css/<%= pkg.name %>.css'
       }
     },
 
     watch: {
       css: {
-        files: 'stylesheets/*.scss',
-        tasks: ['sass:dev'],
+        files: ['stylesheets/**/*.scss'],
+        tasks: ['sass'],
         options: {
           livereload: true,
         },
@@ -93,7 +94,7 @@ module.exports = function(grunt) {
       }
     },
 
-    asciify: { 
+    asciify: {
       banner:{
         text: '<%= pkg.name %>',
         options: {
@@ -104,19 +105,6 @@ module.exports = function(grunt) {
     },
 
     copy: {
-      dist: {
-        src: [
-          'docs/**/', 
-          'docs/**/*.md', 
-          'docs/images/*', 
-          '!docs/**/*.php',
-          'fonts/**/*', 
-          'images/*', 
-          'js/**/*',
-          'libs/**/*'
-        ],
-        dest: 'dist/'
-      },
       readme: {
         src: 'docs/01_Getting_started/01_Installation.md',
         dest: 'README.md',
@@ -163,50 +151,6 @@ module.exports = function(grunt) {
       }
     },
 
-    requirejs: {
-      dist: {
-        options: {
-          name: 'main',
-          mainConfigFile: 'js/main.js',
-          // optimize: 'none',
-          out: 'dist/js/pulsar.min.js',
-          paths: {
-            'console-js'        : '../libs/console-js/console',
-            'datagrid'          : '../js/datagrid',
-            'daterange'         : '../libs/bootstrap-daterangepicker/daterangepicker',
-            'deck'              : '../js/deck',
-            'dashboard'         : '../js/dashboard',
-            'dropdown'          : '../js/dropdown',
-            'flash'             : '../js/flash',
-            'highcharts'        : '../libs/highcharts/highcharts',
-            'highcharts-more'   : '../libs/highcharts/highcharts-more',
-            'highcharts-mono'   : '../js/highcharts-mono',
-            'highcharts-theme'  : '../js/highcharts-theme',
-            'highlightjs'       : '../libs/highlightjs/highlight.pack',
-            'homepages'         : '../js/homepages',
-            'jquery'            : '../libs/jquery/dist/jquery.min',
-            'jquery-ui'         : '../libs/jqueryui/js/jquery-ui-1.10.4.custom.min',
-            'jquery-ui-touch'   : '../libs/jqueryui-touch-punch/jquery.ui.touch-punch.min',
-            'jquery-mousewheel' : '../libs/jquery-mousewheel/jquery.mousewheel',
-            'modal'             : '../js/modal',
-            'moment'            : '../libs/moment/moment',
-            'navigation'        : '../js/navigation',
-            'order'             : '../libs/order/index',
-            'pikaday'           : '../libs/pikaday/pikaday',
-            'popover'           : '../js/popover',
-            'pulsar'            : '../js/pulsar',
-            'sticky'            : '../libs/sticky/jquery.sticky',
-            'store-js'          : '../libs/store.js/store',
-            'tab'               : '../js/tab',
-            'tooltip'           : '../js/tooltip',
-            'tray'              : '../js/tray',
-            'vague'             : '../libs/Vague.js/Vague',
-            'zeroclipboard'     : '../libs/zeroclipboard/dist/ZeroClipboard'
-          }
-        }
-      }
-    },
-
     concurrent: {
       dev: ['watch', 'php'],
       options: {
@@ -221,7 +165,7 @@ module.exports = function(grunt) {
     src : [
       'docs/**/*.md',
       'docs/**/*.php',
-      'css/**/*', 
+      'css/**/*',
       'js/**/*',
       'lexicon/**/*',
       'src/**/*',
@@ -231,30 +175,19 @@ module.exports = function(grunt) {
     ]
   });
 
-  grunt.registerTask('default', ['concurrent:dev']);
+ grunt.registerTask('default', ['concurrent:dev']);
 
-  grunt.registerTask('build', [
-    'asciify', 
-    'phpunit', 
-    // 'leadingIndent:files', 
-    'clean:dist', 
-    'sass:dist',
-    'copy:dist',
-    'copy:readme',
-    'requirejs',
-  ]);
-
-  grunt.registerTask('pre-commit', [
-    'asciify', 
-    'phpunit', 
+ grunt.registerTask('pre-commit', [
+    'asciify',
+    'phpunit',
     // 'leadingIndent:files',
     'copy:readme'
   ]);
 
-  grunt.registerTask('release', [
-    'build',
-    'bump'
-  ]);
+  // grunt.registerTask('release', [
+  //   'build',
+  //   'bump'
+  // ]);
 
   grunt.registerTask('smoketest', [
     'clean:smoketest',

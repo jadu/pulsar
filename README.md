@@ -1,8 +1,8 @@
-These steps detail how you can run Pulsar UI completely independently of a Jadu/Weejot installation.
+These steps detail how you can run Pulsar UI completely independently of a Jadu product.
 
 ## Requirements
 
-### OSX Mavericks (or manual install of PHP 5.4.0+)
+### OSX Mavericks or above (or manual install of PHP 5.4.0+)
 
 Pulsar creates its own development server to run the documentation and to compile the stylesheets, if you're running Mountain Lion you will need to install PHP 5.4.0+, [This article](http://php-osx.liip.ch) shows how to install the latest version of PHP as `/usr/local/php5/bin/php`. This path is defined in `Gruntfile.js`.
 
@@ -10,9 +10,9 @@ Pulsar creates its own development server to run the documentation and to compil
 
 ## Pulsar repository
 
-Pulsar uses Git and the source is published to [Stash](https://stash.hq.jadu.net), you are free to clone and [fork](https://stash.hq.jadu.net/projects/PULSAR/repos/pulsar-ui?fork) this repository as needed, please submit any changes as a [pull request](https://stash.hq.jadu.net/projects/PULSAR/repos/pulsar-ui/pull-requests).
+Pulsar uses Git and the source is published to [GitLab](https://gitlab.hq.jadu.net/pulsar/pulsar-ui), you are free to clone and [fork](https://gitlab.hq.jadu.net/pulsar/pulsar-ui/fork) this repository as needed, please submit any changes as a [merge request](https://gitlab.hq.jadu.net/pulsar/pulsar-ui/merge_requests).
 
-Repository URL: [https://stash.hq.jadu.net/scm/pulsar/pulsar-ui.git](https://stash.hq.jadu.net/scm/pulsar/pulsar-ui.git)
+Repository URL: [https://gitlab.hq.jadu.net/pulsar/pulsar-ui](https://gitlab.hq.jadu.net/pulsar/pulsar-ui)
 
 ----
 

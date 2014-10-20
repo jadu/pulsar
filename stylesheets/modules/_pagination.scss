@@ -1,0 +1,57 @@
+.pagination {
+  background-color: $white;
+  border-top: 3px double $gray;
+  font-size: $font-size-medium;
+
+  ul {
+    // float: left;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    @include inline-block;
+    list-style-type: none;
+  }
+
+  a, span {
+    color: $gray-dark;
+    font-family: $font-family-regular;
+    @include inline-block;
+    line-height: $line-height-base * 1.75;
+    padding: 0 $gutter-width;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  li.selected {
+    & > a,
+    & > span {
+      background-color: darken($white, 10%);
+      color: $black;
+    }
+  }
+
+  li.is-disabled {
+    a, span {
+      color: $gray;
+      cursor: not-allowed;
+    }
+  }
+
+  li:not(.is-disabled) > a:hover {
+    background-color: darken($white, 5%);
+    color: $black;
+  }
+
+  form {
+    color: $gray;
+    float: right;
+    padding-top: 0;
+  }
+
+  select {
+    border: 0;
+    -webkit-appearance: none;
+  }
+}

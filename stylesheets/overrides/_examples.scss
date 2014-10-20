@@ -1,0 +1,43 @@
+.modal__example {
+  position: relative;
+  margin-left: 0;
+  z-index: 1 !important;
+  display: block;
+  overflow: hidden;
+
+  .modal__dialog {
+    padding-top: 30px;
+  }
+}
+
+.example .flash {
+  position: relative;
+
+}
+
+.example-popovers {
+  @include clearfix();
+  padding-bottom: 24px;
+  max-width: 600px;
+  width: 100%;
+
+  .popover {
+    position: relative;
+    display: block;
+    max-width: 260px;
+    width: 100%;
+    margin: 20px auto;
+    z-index: 0;
+
+    @include respond-min($screen-phone) {
+      float: left;
+      margin-left: 2.5%;
+      margin-right: 2.5%;
+      width: 45%;
+    }
+  }
+}
+
+.example {
+  margin-top: $line-height-base;
+}

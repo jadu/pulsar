@@ -1,0 +1,80 @@
+{% extends '@pulsar/quantum/layouts/tabbed.html.twig' %}
+{% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
+{% import '@pulsar/pulsar/helpers/form.html.twig' as form %}
+{% import '@pulsar/pulsar/helpers/flash.html.twig' as flash %}
+
+{% block title %}{{ parent() }}{% endblock %}
+
+{% set heading = 'My Cases' %}
+
+
+{%
+    set actions_menu = [
+        html.link(label = html.icon('save') ~ ' Save', href = '#save'),
+        html.link(
+          label = html.icon('print') ~ ' Print',
+          href = '#print'
+        ),
+        html.divider(),
+        html.link(
+          label = html.icon('download') ~ ' Download all evidence (.zip)',
+          href = '#download'
+        ),
+        html.link(
+          label = html.icon('envelope-alt') ~ ' Email me all evidence (.zip)',
+          href = '#download'
+        ),
+        html.divider(),
+        html.link(
+          label = html.icon('trash') ~ ' Delete',
+          href = '#delete',
+          class = 'link--danger disabled',
+          attributes = 'data-on-datagrid-item-selected=enable'
+        )
+    ]
+%}
+
+
+{% set tab_cases %}
+    {% include 'quantum/control_centre/tabs/cases.html.twig' %}
+{% endset %}
+
+{%
+  set tabs = [
+    {
+      "id"        : "my_cases",
+      "label"     : "My Cases",
+      "src"       : tab_cases
+    },
+    {
+      "id"        : "all_cases",
+      "label"     : "All Cases",
+      "src"       : tab_cases
+    }
+  ]
+%}
+
+{% block summary %}
+
+{% endblock %}
+
+{% block tabs_list %}
+
+
+  <div class="actionsbar actionsbar--left">
+    <div class="btn__toolbar">
+      <div class="btn__group">
+        <a class="btn btn__back" href="#back" onclick="history.back(); return false;"><i class="icon-arrow-left"></i></a>
+        {% if actions_menu is not empty %}
+          {{ html.button_dropdown(label = 'Actions', class="actions-menu", menu_items = actions_menu) }}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  {{ html.tabs(tabs, editable = true) }}
+{% endblock %}
+
+{% block tabs_content %}
+  {{ html.tabs_content(tabs) }}
+{% endblock %}

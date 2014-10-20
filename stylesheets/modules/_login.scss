@@ -1,0 +1,43 @@
+.form__login {
+    margin: 0 auto;
+    max-width: 500px;
+    width: 100%;
+
+    legend {
+        text-align: center;
+    }
+
+    .form__group {
+        margin: 0 auto;
+        width: 80%;
+
+        &.has-error,
+        &:hover {
+            box-shadow: none;
+        }
+    }
+
+    .control__label,
+    .controls {
+        display: block;
+        margin: 0 auto 1em auto;
+        text-align: center;
+        width: 100%;
+    }
+
+    .help-block {
+        margin-left: 0;
+    }
+
+    input {
+        text-align: center;
+    }
+
+    .form__actions {
+        background: none;
+        box-shadow: none;
+        margin-top: 1em;
+        padding: 0;
+        text-align: center;
+    }
+}

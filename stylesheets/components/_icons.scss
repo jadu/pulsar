@@ -1,0 +1,20 @@
+.icon--primary {
+  color: $label-primary-bg;
+}
+
+.icon--muted {
+  color: $gray;
+}
+
+.icon--success:before {
+  color: $success-color;
+}
+
+.icon-grid:before {
+  content: "\f039";
+  -webkit-transform:  rotate(90deg);
+  -moz-transform:     rotate(90deg);
+  -ms-transform:      rotate(90deg);
+  -o-transform:       rotate(90deg);
+  filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+}

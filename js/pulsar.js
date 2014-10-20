@@ -1,22 +1,48 @@
-    /**
+/**
  * Set up Pulsar's UI environment
  */
 
-define(['jquery'], function() {
+define([
+  'jquery',
+  'choice-matrix'
+], function(
+  $,
+  FieldMatrix
+) {
 
     $(document).ready(function() {
 
         // Set up Pulsar's UI environment
-        require(['tooltip', 'sticky', 'zeroclipboard', 'datagrid', 'highlightjs'], function() {
+        require([
+            'actions-menu',
+            'bootstrap-tour',
+            'tooltip',
+            'sticky',
+            'datagrid',
+            'tooltip',
+            'highlightjs',
+            'jquery-placeholder'
+            ], function() {
+
+            // tooltips (js/tooltip.js)
+            //$('[data-toggle="tooltips"]').tooltip();
+
+            // actions menu
+            $('.actions-menu').actionsMenu();
+
+            matrix = new FieldMatrix();
+            matrix.init();
 
             // sticky toolbar
-            $('.toolbar').sticky({topSpacing: 0});
+            //$('.toolbar').sticky({topSpacing: 0});
 
             // tooltips (js/tooltip.js)
             $('[data-toggle="tooltips"]').tooltip();
 
             // datagrid
-            $('.table--datagrid').datagrid();
+            $('.table--datagrid').each(function() {
+                $(this).datagrid();
+            });
 
             // syntax highlighting
             if (!$('html.ie7').size()) { // IE8 and up only
@@ -26,31 +52,25 @@ define(['jquery'], function() {
                 }
             };
 
-            // copy to clipboard
-            $('[data-action=clipboard]').on('click', function(e) {
-                console.log($(this));
-                e.preventDefault();
-                var clip = new ZeroClipboard($(this), {
-                    moviePath: 'libs/zeroclipboard/ZeroClipboard.swf'
-                });
-                console.log('clip');
-                clip.on('load', function(client) {
-                    console.log('loaded');
-                    client.on('complete', function(client, args) {
-                        console.log('copied');
-                    });
-                });
-            });
-
-            // Don't allow disabled links to be clicked
+            // Don't allow disabled links, or links with popovers to be clicked
             $('a.disabled').on('click', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
             });
 
+            $('a.has-popover').on('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                $(this).addClass('active');
+            });
+
             $('[data-toggle*=button]').on('click', function(e) {
                 $(this).toggleClass('active');
-            })
+            });
+
+            // Add placholder support for browsers that don't support it
+            $('input, textarea').placeholder();
 
             // Add placholder support for browsers that don't support it
             $('input:not([data-datepicker=true]), textarea').placeholder();
@@ -75,9 +95,92 @@ define(['jquery'], function() {
             $('.dashboard').dashboard();
         });
 
-        // Look for any flashes and animate them in when the page loads
-        $('.flash.is-sticky').delay('1000').slideDown('100', function() {
-            $(this).sticky({topSpacing: 44}).sticky('update');
+
+
+        // Show and hide mobile-only elements
+        function mobileToggle() {
+            $('[data-mobile-toggle-button]').each(function() {
+                var target = $(this).attr('data-toggle-target');
+
+                if (!window.matchMedia('(min-width: 768px)').matches) {
+                    $(target).each(function() {
+                        if (!($(this).parents(target).length)) {
+                            $(this).attr('data-mobile-togglable', '').show();
+                        }
+                    });
+
+                    $(this).off('click.mobileToggle touchenter.mobileToggle').on('click.mobileToggle touchenter.mobileToggle', function(e) {
+                        e.preventDefault();
+
+                        if (target === '.tabs__list') {
+                            $(target + '[data-mobile-togglable]').css({'top': ($('.toolbar').outerHeight())});
+                        }
+
+                        $(this).toggleClass('toggled');
+                        $(target + '[data-mobile-togglable]').toggleClass('toggled');
+                    });
+                }
+                else {
+                    $(this).removeClass('toggled');
+                    $(target + '[data-mobile-togglable]').removeAttr('data-mobile-togglable').removeClass('toggled');
+                }
+            });
+        }
+        mobileToggle();
+
+        // Make datagrid tables look better on smaller viewports
+        function mobileTables() {
+            $('.table--datagrid tr td').each(function() {
+                var tableCellPosition = $(this).index() + 1,
+                    tableHeader = $(this).closest('table').find('th:nth-child(' + tableCellPosition + ')').text();
+
+                $(this).attr('data-table-header', tableHeader);
+            });
+        }
+        mobileTables();
+
+        // Responsive actions menu positioning
+        var mobileMenu = $('.actions-menu .dropdown__menu').clone()
+
+        $('.toolbar').append(mobileMenu);
+        // console.log($('.toolbar > .dropdown__menu'));
+        // $('.toolbar > .dropdown__menu').addClass('mobile-actions-menu').show();
+
+        // function actionsMenu() {
+        //     if (window.matchMedia('(max-width: 767px)').matches) {
+        //         var topHidden = -($('.mobile-actions-menu').outerHeight() + $('.toolbar').outerHeight()),
+        //             topRevealed = $('.toolbar').outerHeight() - parseInt($('.actionsbar--left').css('marginTop'));
+
+        //         // $('.actions-menu .dropdown__menu').hide();
+        //         //if ($('.toolbar .dropdown__menu').length < 1) {
+        //         //}
+        //         // ({'top': topHidden}).show().parent().removeClass('open');
+
+        //         $('.actions-menu [data-toggle=dropdown]').on('click touchenter', function() {
+        //             if ((!$(this).parent().hasClass('open')) && window.matchMedia('(max-width: 767px)').matches) {
+        //                 $('.mobile-actions-menu').css({'marginTop': 0});
+        //             }
+        //             else if (window.matchMedia('(max-width: 767px)').matches) {
+        //                 $('.mobile-actions-menu').css({'marginTop': topHidden});
+        //             }
+        //         });
+        //     }
+        //     else {
+        //         $('.actions-menu .dropdown__menu').removeAttr('style');
+        //     }
+        // }
+        // actionsMenu();
+
+        // Do these things whenever the window resizes
+        $(window).resize(function() {
+            mobileToggle();
+            // actionsMenu();
+
+            // Refresh positions of sticky elements
+            console.log($('.is-sticky'));
+            $('.is-sticky').sticky('update');
+
+            $('.tabs__list[data-mobile-togglable]').css({'top': ($('.toolbar').outerHeight() - 3)});
         });
 
         // Show summary panels based on their data-tab value
@@ -107,7 +210,6 @@ define(['jquery'], function() {
             });
         });
 
-
         if ($('[data-summary]').hasClass('is-active')) {
             $('[data-tab="' + $('[data-summary]').attr('href') + '"]').show();
         }
@@ -127,7 +229,16 @@ define(['jquery'], function() {
                   endDate: moment()
                 },
                 function(start, end) {
-                    $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+                    var label,
+                        startLabel = start.format('MMMM D, YYYY'),
+                        endLabel = end.format('MMMM D, YYYY');
+
+                    if (startLabel === endLabel) {
+                        label = startLabel;
+                    } else {
+                        label = startLabel + ' - ' + endLabel;
+                    }
+                    $('[data-daterange]').html('<strong>Created:</strong> ' + label);
                 }
             );
         });
@@ -156,6 +267,8 @@ define(['jquery'], function() {
         });
 
     });
+
+
 });
 
 

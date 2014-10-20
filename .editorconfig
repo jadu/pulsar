@@ -1,0 +1,24 @@
+# top-most EditorConfig file
+root = true
+
+# Globals
+[*]
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# PHP
+[*.php]
+indent_style = tab
+indent_size = 4
+tab_width = 4
+
+# Javascript
+[*.js]
+indent_style = space
+indent_size = 2
+
+# Sass
+[*.scss]
+indent_style = space
+indent_size = 2

@@ -10,13 +10,13 @@
 
         {{ form.text(label = 'Text input', id = 'inputText', name = 'inputText', placeholder = 'Placeholder') }}
         {{ form.text(label = 'Text input with value', value = "This is my value, neat huh?", id = 'inputText', name = 'inputText', placeholder = 'Placeholder') }}
-        
+
         {{ form.text(label = 'Text input with a longer than expected label which will probably wrap multple lines and push the following input onto the next baseline', name = 'inputTextLong', placeholder = 'Placeholder', help = 'Example block-level help text here.') }}
 
         {{ form.text(label = 'Text input with a longer than expected label but this time we use the form__group--top class to keep the label on a single line', class = 'form__group--top', name = 'inputTextLong', placeholder = 'Placeholder', help = 'Example block-level help text here.') }}
 
         {{ form.text(label = 'The same as above, but this time we also add the .form__group--flush class to keep everything on the left edge', class = 'form__group--top form__group--flush', name = 'inputTextLong', placeholder = 'Placeholder', help = 'Example block-level help text here.') }}
-        
+
         {{ form.date(label = 'Date picker', id = 'inputDatepicker1', name = 'inputDatepicker1') }}
 
         {{ form.password(label = 'Password input', id = 'inputPassword', name = 'inputPassword', placeholder = 'Placeholder') }}
@@ -26,26 +26,90 @@
         {{ form.textarea(label = 'Textarea (4 rows)', id = 'inputTextarea4', name = 'inputTextarea4', placeholder = 'Placeholder', rows = 4) }}
 
     {{ form.fieldset_end() }}
+    {{ form.fieldset_start(legend = 'Input groups') }}
+
+        {{
+            form.group(
+                label = 'Input group',
+                controls = [
+                    form.text(id = 'inputTextGroup1', name = 'inputTextGroup1', placeholder = 'Grouped input 1'),
+                    form.text(id = 'inputTextGroup2', name = 'inputTextGroup2', placeholder = 'Grouped input 2'),
+                    form.checkbox_right(label = 'Grouped input 3', id = 'inputCheckboxGroupedRight', name = 'inputCheckboxInline', checked = true),
+                    html.button(label = 'Grouped input 4')
+                ]
+            )
+        }}
+
+        {{
+            form.group(
+                label = 'Inline input group',
+                id = 'inlineInputGroup',
+                class = 'form__group--inline',
+                removable = true,
+                controls = [
+                    form.input_text(id = 'inputTextGroup1', name = 'inputTextGroup1', placeholder = 'dd/mm/yyyy', class = 'form__group--medium'),
+                    form.input_text(id = 'inputTextGroup2', name = 'inputTextGroup2', placeholder = 'hh:mm', class = 'form__group--medium')
+                ]
+            )
+        }}
+
+    {{ form.fieldset_end() }}
     {{ form.fieldset_start(legend = 'Selections') }}
 
         {{ form.file(label = 'File input', id = 'inputFile', name = 'inputFile') }}
         {{ form.select(label = 'Select input', options = {value1: 'value one', value2: 'value two'}, id = 'inputSelect', name = 'inputSelect') }}
 
     {{ form.fieldset_end() }}
-    {{ form.fieldset_start(legend = 'Checkboxes &amp; Radios') }}
+    {{ form.fieldset_start(legend = 'Checkboxes & Radios') }}
 
         {{ form.checkbox(label = 'Checkbox with left label', id = 'inputCheckboxLeft', name = 'inputCheckboxLeft', checked = true) }}
         {{ form.radio(label = 'Radio with left label', id = 'inputRadioLeft', name = 'inputRadioLeft', checked = true) }}
         {{ form.checkbox_right(label = 'Checkbox with right label', id = 'inputCheckboxRight', name = 'inputCheckboxInline', checked = true) }}
         {{ form.radio_right(label = 'Radio with right label', id = 'inputRadioRight', name = 'inputRadioInline', checked = true) }}
-        {{ form.checkbox_group([
-                form.checkbox_inline(label = 'Inline', id = 'inputCheckboxInline1', name = 'inputCheckboxInline', checked = true),
-                form.checkbox_inline(label = 'Check', id = 'inputCheckboxInline2', name = 'inputCheckboxInline', checked = true),
-                form.checkbox_inline(label = 'Boxes', id = 'inputCheckboxInline3', name = 'inputCheckboxInline', checked = true)]) }}
-        {{ form.radio_group([
-                form.radio_inline(label = 'Inline', id = 'inputRadioInline1', name = 'inputRadioInline', checked = true),
-                form.radio_inline(label = 'Radio', id = 'inputRadioInline2', name = 'inputRadioInline', checked = true),
-                form.radio_inline(label = 'Buttons', id = 'inputRadioInline3', name = 'inputRadioInline', checked = true)]) }}
+
+        {{
+            form.checkbox_group(
+                label = 'Checkbox group',
+                checkboxes = [
+                    form.checkbox_right(label = 'Grouped checkbox 1', id = 'inputCheckboxInline1', name = 'inputCheckboxInline', checked = true),
+                    form.checkbox_right(label = 'Grouped checkbox 2', id = 'inputCheckboxInline2', name = 'inputCheckboxInline', checked = true),
+                    form.checkbox_right(label = 'Grouped checkbox 3', id = 'inputCheckboxInline3', name = 'inputCheckboxInline', checked = true)
+                ]
+            )
+        }}
+
+        {{
+            form.checkbox_group(
+                label = 'Grouped and inline',
+                checkboxes = [
+                    form.checkbox_inline(label = 'Inline', id = 'inputCheckboxInline1', name = 'inputCheckboxInline', checked = true),
+                    form.checkbox_inline(label = 'Check', id = 'inputCheckboxInline2', name = 'inputCheckboxInline', checked = true),
+                    form.checkbox_inline(label = 'Boxes', id = 'inputCheckboxInline3', name = 'inputCheckboxInline', checked = true)
+                ]
+            )
+        }}
+
+        {{
+            form.radio_group(
+                label = 'Radio group',
+                radios = [
+                    form.radio_right(label = 'Grouped radio 1', id = 'inputGroupedRadioInline1', name = 'inputGroupedRadioInline', checked = true),
+                    form.radio_right(label = 'Grouped radio 2', id = 'inputGroupedRadioInline2', name = 'inputGroupedRadioInline', checked = true),
+                    form.radio_right(label = 'Grouped radio 3', id = 'inputGroupedRadioInline3', name = 'inputGroupedRadioInline', checked = true)
+                ]
+            )
+        }}
+
+        {{
+            form.radio_group(
+                label = 'Grouped and inline',
+                radios = [
+                    form.radio_inline(label = 'Inline', id = 'inputRadioInline1', name = 'inputRadioInline', checked = true),
+                    form.radio_inline(label = 'Radio', id = 'inputRadioInline2', name = 'inputRadioInline', checked = true),
+                    form.radio_inline(label = 'Buttons', id = 'inputRadioInline3', name = 'inputRadioInline', checked = true)
+                ]
+            )
+        }}
 
     {{ form.fieldset_end() }}
     {{ form.fieldset_start(legend = 'States') }}
@@ -60,7 +124,48 @@
 
             {{ form.text(label = 'Prepended input', id = 'inputPrepend', class = 'form__group--large', name = 'inputPrepend', placeholder = 'Placeholder', prepend = '@') }}
             {{ form.text(label = 'Appended input', id = 'inputAppend', class = 'form__group--large', name = 'inputAppend', placeholder = 'Placeholder', append = '.com') }}
-            {{ form.text(label = 'Prepended &amp; Appended', id = 'inputPrependAppend', class = 'form__group--large', name = 'inputPrependAppend', placeholder = 'Placeholder', prepend = 'www.', append = '.com') }}
+            {{ form.text(label = 'Prepended &amp; Appended', id = 'inputPrependAppend', class = 'form__group--medium', name = 'inputPrependAppend', placeholder = 'Placeholder', prepend = 'www.', append = '.com') }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start(legend = 'Regular elements') }}
+
+            <p>This is a plain ol' paragraph, its left edge should be on the far left.</p>
+
+            <ul>
+                <li>Unordered List</li>
+                <li>Unordered List</li>
+            </ul>
+
+            <ol>
+                <li>Unordered List</li>
+                <li>Unordered List</li>
+            </ol>
+
+            <section class="form__indent">
+                <p>This is the same plain ol' paragraph, but now we're wrapped in a <code>form__indent</code> class which should make our left edge match the form controls.</p>
+
+                <ul>
+                    <li>Unordered List</li>
+                    <li>Unordered List</li>
+                </ul>
+
+                <ol>
+                    <li>Unordered List</li>
+                    <li>Unordered List</li>
+                </ol>
+            </section>
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start(legend = 'Floating elements') }}
+
+        {{ html.button(label = 'This Button Has No Form Label', class = 'form__indent') }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start(legend = 'Removable inputs') }}
+
+        {{ form.text(label = 'Removable text input', id = 'inputTextRemovable', name = 'inputTextRemovable', placeholder = 'Placeholder', removable = true) }}
+        {{ form.file(label = 'Removable File input', id = 'inputFileRemovable', name = 'inputFileRemovable', removable = true) }}
+        {{ html.button(label = 'This Button Has No Form Label', class = 'form__indent') }}{{ html.remove_button() }}
 
     {{ form.fieldset_end() }}
     {{ form.fieldset_start(legend = 'Sizes') }}
@@ -73,10 +178,124 @@
             {{ form.text(label = 'Full', id = 'inputTextFull', class = 'form__group--full', name = 'inputTextFull') }}
 
     {{ form.fieldset_end() }}
+    {{ form.fieldset_start(legend = 'Choice Matrix') }}
 
-    {{ 
+        <div class="form__group form__group--full">
+            <label for="choiceMatrix" class="control__label">
+                Three way choice using radio inputs
+            </label>
+            <div class="controls">
+                <table class="form__field-matrix">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th><span class="">Positive</span></th>
+                            <th><span class="">Info</span></th>
+                            <th><span class="">Negative</span></th>
+                        </tr>
+                    </thead>
+                    <tbody class="choice-matrix">
+                        <tr>
+                            <td><span class="">Pick one</span></td>
+
+                            <td class="choice-matrix__choice"><label class="checkbox__label" for="choice_one"><input type="radio" id="choice_one" name="choice-matrix-one" value="positive"><div class="ir"></div></label></td>
+
+                            <td class="choice-matrix__choice--info"><label class="checkbox__label" for="choice-two"><input type="radio" id="choice-two" name="choice-matrix-one" value="info"><div class="ir"></div></label></td>
+
+                            <td class="choice-matrix__choice--ban"><label class="checkbox__label" for="choice-three"><input type="radio" id="choice-three" name="choice-matrix-one" value="negative"><div class="ir"></div></label></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <div class="form__group form__group--full">
+            <label for="choiceMatrix" class="control__label">
+                Specify X and Y using checkboxes
+            </label>
+            <div class="controls">
+                <table class="form__field-matrix">
+                    <thead>
+                        <tr>
+                            <th>
+                                <a href="#" data-action="check-all" data-text-all="Select all" data-text-none="Select none">
+                                    Select all
+                                </a>
+                            </th>
+                            <th data-action="check-column"><span class="">Mondays</span></th>
+                            <th data-action="check-column"><span class="">Tuesdays</span></th>
+                            <th data-action="check-column"><span class="">Wednesdays</span></th>
+                            <th data-action="check-column"><span class="">Thursdays</span></th>
+                            <th data-action="check-column"><span>Fridays</span></th>
+                        </tr>
+                    </thead>
+                    <tbody class="choice-matrix">
+                        <tr>
+                            <td data-action="check-row"><span class="">9 am - 11 am</span></td>
+
+                            <td class="choice-matrix__choice"><label class="checkbox__label" for="hearing_values_appellant_availability_0900_1100_choices_0"><input type="checkbox" id="hearing_values_appellant_availability_0900_1100_choices_0" name="hearing[values][appellant_availability_0900_1100][choices][]" value="monday"><div class="monday ir"></div></label></td>
+
+                            <td class="choice-matrix__choice"><label class="checkbox__label" for="hearing_values_appellant_availability_0900_1100_choices_1"><input type="checkbox" id="hearing_values_appellant_availability_0900_1100_choices_1" name="hearing[values][appellant_availability_0900_1100][choices][]" value="tuesday"><div class="tuesday ir"></div></label></td>
+
+                            <td class="choice-matrix__choice"><label class="checkbox__label" for="hearing_values_appellant_availability_0900_1100_choices_2"><input type="checkbox" id="hearing_values_appellant_availability_0900_1100_choices_2" name="hearing[values][appellant_availability_0900_1100][choices][]" value="wednesday"><div class="wednesday ir"></div></label></td>
+
+                            <td class="choice-matrix__choice"><label class="checkbox__label" for="hearing_values_appellant_availability_0900_1100_choices_3"><input type="checkbox" id="hearing_values_appellant_availability_0900_1100_choices_3" name="hearing[values][appellant_availability_0900_1100][choices][]" value="thursday"><div class="thursday ir"></div></label></td>
+
+                            <td class="choice-matrix__choice"><label class="checkbox__label" for="hearing_values_appellant_availability_0900_1100_choices_4"><input type="checkbox" id="hearing_values_appellant_availability_0900_1100_choices_4" name="hearing[values][appellant_availability_0900_1100][choices][]" value="friday"><div class="friday ir"></div></label></td>
+                        </tr>
+
+                        <tr>
+                            <td data-action="check-row"><span class="">11 am - 1 pm</span></td>
+
+                            <td class="choice-matrix__choice"><label class="checkbox__label" for="hearing_values_appellant_availability_1100_1300_choices_0"><input type="checkbox" id="hearing_values_appellant_availability_1100_1300_choices_0" name="hearing[values][appellant_availability_1100_1300][choices][]" value="monday"><div class="monday ir"></div></label></td>
+
+                            <td class="choice-matrix__choice"><label class="checkbox__label" for="hearing_values_appellant_availability_1100_1300_choices_1"><input type="checkbox" id="hearing_values_appellant_availability_1100_1300_choices_1" name="hearing[values][appellant_availability_1100_1300][choices][]" value="tuesday"><div class="tuesday ir"></div></label></td>
+
+                            <td class="choice-matrix__choice"><label class="checkbox__label" for="hearing_values_appellant_availability_1100_1300_choices_2"><input type="checkbox" id="hearing_values_appellant_availability_1100_1300_choices_2" name="hearing[values][appellant_availability_1100_1300][choices][]" value="wednesday"><div class="wednesday ir"></div></label></td>
+
+                            <td class="choice-matrix__choice"><label class="checkbox__label" for="hearing_values_appellant_availability_1100_1300_choices_3"><input type="checkbox" id="hearing_values_appellant_availability_1100_1300_choices_3" name="hearing[values][appellant_availability_1100_1300][choices][]" value="thursday"><div class="thursday ir"></div></label></td>
+
+                            <td class="choice-matrix__choice"><label class="checkbox__label" for="hearing_values_appellant_availability_1100_1300_choices_4"><input type="checkbox" id="hearing_values_appellant_availability_1100_1300_choices_4" name="hearing[values][appellant_availability_1100_1300][choices][]" value="friday"><div class="friday ir"></div></label></td>
+                        </tr>
+
+                        <tr>
+                            <td data-action="check-row"><span class="">1 pm - 3 pm</span></td>
+
+                            <td class="choice-matrix__choice"><label class="checkbox__label" for="hearing_values_appellant_availability_1300_1500_choices_0"><input type="checkbox" id="hearing_values_appellant_availability_1300_1500_choices_0" name="hearing[values][appellant_availability_1300_1500][choices][]" value="monday"><div class="monday ir"></div></label></td>
+
+                            <td class="choice-matrix__choice"><label class="checkbox__label" for="hearing_values_appellant_availability_1300_1500_choices_1"><input type="checkbox" id="hearing_values_appellant_availability_1300_1500_choices_1" name="hearing[values][appellant_availability_1300_1500][choices][]" value="tuesday"><div class="tuesday ir"></div></label></td>
+
+                            <td class="choice-matrix__choice"><label class="checkbox__label" for="hearing_values_appellant_availability_1300_1500_choices_2"><input type="checkbox" id="hearing_values_appellant_availability_1300_1500_choices_2" name="hearing[values][appellant_availability_1300_1500][choices][]" value="wednesday"><div class="wednesday ir"></div></label></td>
+
+                            <td class="choice-matrix__choice"><label class="checkbox__label" for="hearing_values_appellant_availability_1300_1500_choices_3"><input type="checkbox" id="hearing_values_appellant_availability_1300_1500_choices_3" name="hearing[values][appellant_availability_1300_1500][choices][]" value="thursday"><div class="thursday ir"></div></label></td>
+
+                            <td class="choice-matrix__choice"><label class="checkbox__label" for="hearing_values_appellant_availability_1300_1500_choices_4"><input type="checkbox" id="hearing_values_appellant_availability_1300_1500_choices_4" name="hearing[values][appellant_availability_1300_1500][choices][]" value="friday"><div class="friday ir"></div></label></td>
+                        </tr>
+
+                        <tr>
+                            <td data-action="check-row"><span class="">3 pm - 5 pm</span></td>
+
+                            <td class="choice-matrix__choice"><label class="checkbox__label" for="hearing_values_appellant_availability_1500_1700_choices_0"><input type="checkbox" id="hearing_values_appellant_availability_1500_1700_choices_0" name="hearing[values][appellant_availability_1500_1700][choices][]" value="monday"><div class="monday ir"></div></label></td>
+
+                            <td class="choice-matrix__choice"><label class="checkbox__label" for="hearing_values_appellant_availability_1500_1700_choices_1"><input type="checkbox" id="hearing_values_appellant_availability_1500_1700_choices_1" name="hearing[values][appellant_availability_1500_1700][choices][]" value="tuesday"><div class="tuesday ir"></div></label></td>
+
+                            <td class="choice-matrix__choice"><label class="checkbox__label" for="hearing_values_appellant_availability_1500_1700_choices_2"><input type="checkbox" id="hearing_values_appellant_availability_1500_1700_choices_2" name="hearing[values][appellant_availability_1500_1700][choices][]" value="wednesday"><div class="wednesday ir"></div></label></td>
+
+                            <td class="choice-matrix__choice"><label class="checkbox__label" for="hearing_values_appellant_availability_1500_1700_choices_3"><input type="checkbox" id="hearing_values_appellant_availability_1500_1700_choices_3" name="hearing[values][appellant_availability_1500_1700][choices][]" value="thursday"><div class="thursday ir"></div></label></td>
+
+                            <td class="choice-matrix__choice"><label class="checkbox__label" for="hearing_values_appellant_availability_1500_1700_choices_4"><input type="checkbox" id="hearing_values_appellant_availability_1500_1700_choices_4" name="hearing[values][appellant_availability_1500_1700][choices][]" value="friday"><div class="friday ir"></div></label></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    {{ form.fieldset_end() }}
+
+    {{
         form.form_end([
             form.submit(label = 'Primary Action', class = 'btn--primary')
-        ]) 
+        ])
     }}
 </div>

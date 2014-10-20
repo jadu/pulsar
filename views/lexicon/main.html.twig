@@ -2,17 +2,25 @@
 {% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
 {% import '@pulsar/pulsar/helpers/form.html.twig' as form %}
 {% import '@pulsar/pulsar/helpers/flash.html.twig' as flash %}
- 
+
 {% block title %}{{ parent() }}{% endblock %}
 
 {% set heading = 'Pulsar Lexicon' %}
 
-{% 
+{%
     set actions_menu = [
         html.link(label = html.icon('save') ~ ' Save', href = '#save'),
-        html.link(label = html.icon('print') ~ ' Print', href = '#print'),
+        html.link(
+          label = html.icon('print') ~ ' Print',
+          href = '#print'
+        ),
         html.divider(),
-        html.link(label = html.icon('trash') ~ ' Delete', href = '#delete', class = 'link--danger')
+        html.link(
+          label = html.icon('trash') ~ ' Delete',
+          href = '#delete',
+          class = 'link--danger disabled',
+          attributes = 'data-on-datagrid-item-selected=enable'
+        )
     ]
 %}
 
@@ -30,6 +38,10 @@
 
 {% set tab_forms %}
     {% include 'lexicon/tabs/forms.html.twig' %}
+{% endset %}
+
+{% set tab_loading %}
+    {% include 'lexicon/tabs/loading.html.twig' %}
 {% endset %}
 
 {% set tab_modals %}
@@ -56,6 +68,10 @@
     {% include 'lexicon/tabs/typography.html.twig' %}
 {% endset %}
 
+{% set tab_interactions %}
+    {% include 'lexicon/tabs/interactions.html.twig' %}
+{% endset %}
+
 {% set tab_form_summary %}
     {% include 'lexicon/tabs/analytics.html.twig' %}
 {% endset %}
@@ -64,7 +80,11 @@
     {% include 'lexicon/tabs/filters.html.twig' %}
 {% endset %}
 
-{% 
+{% set tab_empty_table %}
+    {% include 'lexicon/tabs/empty_table.html.twig' %}
+{% endset %}
+
+{%
   set tabs = [
     {
       "id"        : "components",
@@ -81,17 +101,22 @@
           "src"   : tab_decks
         },
         {
-          "id"    : "flash",  
+          "id"    : "flash",
           "label" : html.icon("warning-sign") ~ " Flash messages",
           "src"   : tab_flash
         },
         {
-          "id"    : "forms",  
+          "id"    : "forms",
           "label" : html.icon("check-sign") ~ " Forms",
           "src"   : tab_forms
         },
         {
-          "id"    : "modals", 
+          "id"    : "loading",
+          "label" : html.icon("spinner") ~ " Loading",
+          "src"   : tab_loading
+        },
+        {
+          "id"    : "modals",
           "label" : html.icon("list-alt") ~ " Modals",
           "src"   : tab_modals
         },
@@ -106,7 +131,7 @@
           "src"   : tab_progress_bars
         },
         {
-          "id"    : "table",  
+          "id"    : "table",
           "label" : html.icon("table") ~ " Table",
           "src"   : tab_data_grid
         },
@@ -123,6 +148,11 @@
       ]
     },
     {
+      "id"        : "interactions",
+      "label"     : html.icon("forward") ~ " Interactions",
+      "src"       : tab_interactions
+    },
+    {
       "id"        : "examples",
       "label"     : html.icon("desktop") ~ " UI Examples",
       "sub_tabs"  : [
@@ -136,6 +166,11 @@
           "id"    : "filters",
           "label" : html.icon("filter") ~ " Table with filters",
           "src"   : tab_filters
+        },
+        {
+          "id"    : "empty_table",
+          "label" : html.icon("table") ~ " Table with no results",
+          "src"   : tab_empty_table
         }
       ]
     }
@@ -154,7 +189,13 @@
       <div class="btn__group">
         <a class="btn btn__back" href="#back" onclick="history.back(); return false;"><i class="icon-arrow-left"></i></a>
         {% if actions_menu is not empty %}
-          {{ html.button_dropdown(label = 'Actions', menu_items = actions_menu) }}
+          {{
+            html.button_dropdown(
+              label = 'Actions ' ~ html.badge(class = 'hide'),
+              class='actions-menu',
+              menu_items = actions_menu
+            )
+          }}
         {% endif %}
       </div>
     </div>
@@ -165,4 +206,8 @@
 
 {% block tabs_content %}
   {{ html.tabs_content(tabs) }}
+{% endblock %}
+
+{% block javascript %}
+  <script type="text/javascript" src="../views/lexicon/js/main.js"></script>
 {% endblock %}

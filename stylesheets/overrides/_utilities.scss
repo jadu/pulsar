@@ -1,0 +1,29 @@
+.show-baseline {
+  @include baseline-grid;
+}
+
+.hide {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  border: 0;
+}
+
+.muted {
+  color: $gray;
+}
+
+p.success {
+  background: rgba(0, 153, 51, .8);
+  color: $white;
+  padding: 5px 5px;
+  text-shadow: 0 0 2px rgba(0, 0, 0, .5);
+
+  i {
+    margin: 0 4px;
+  }
+}

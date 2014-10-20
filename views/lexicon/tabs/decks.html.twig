@@ -19,17 +19,19 @@
         <div class="slide-inner">
             <button class="close" data-dismiss="deck">×</button>
             {{ form.create() }}
-            {{ form.fieldset_start('Deck Slide') }}
+
+            <h2 class="slide__title">Deck Slide</h2>
+
             {{ form.text('Text input', 'deckInputText', null, 'deckInputText', 'Placeholder') }}
             {{ form.checkbox('Checkbox with left label', 'deckInputCheckboxLeft', null, 'deckInputCheckboxLeft', true) }}
             {{ form.file('File input', 'deckInputFile', null, 'deckInputFile') }}
             {{ form.select('Select input', {value1: 'value one', value2: 'value two'}, 'deckInputSelect', null, 'deckInputSelect') }}
             {{ form.textarea('Textarea (4 rows)', 'deckInputTextarea4', null, 'deckInputTextarea4', 'Placeholder', null, 4) }}
-            {{ form.fieldset_end() }}
-            {{ 
+
+            {{
                 form.form_end([
                     form.submit('Save', 'btn--primary')
-                ]) 
+                ])
             }}
         </div>
     </div>
@@ -41,15 +43,15 @@
         <div class="slide-inner">
             <button class="close" data-dismiss="deck">×</button>
             {{ form.create() }}
-            {{ form.fieldset_start('Slide One') }}
+            <h2 class="slide__title">Slide One</h2>
+
             {{ form.textarea('Textarea (4 rows)', 'deckInputTextarea4', null, 'deckInputTextarea4', 'Placeholder', null) }}
-            {{ form.fieldset_end() }}           
-            {{ 
+            {{
                 form.form_end([
                     html.button('Show me slide 2 ' ~ html.icon('arrow-right'), 'btn--primary', 'link', null, '#slide-2', 'data-toggle="slide"'),
                     html.button('Close this slide', null, 'link', null, null, 'data-dismiss="slide"'),
                     html.button('Close all slides', null, 'link', null, null, 'data-dismiss="deck"')
-                ]) 
+                ])
             }}
         </div>
     </div>
@@ -57,15 +59,14 @@
         <div class="slide-inner">
             <button class="close" data-dismiss="deck">×</button>
             {{ form.create() }}
-            {{ form.fieldset_start('Slide Two') }}
+            <h2 class="slide__title">Slide Two</h2>
             {{ form.textarea('Textarea (4 rows)', 'deckInputTextarea4', null, 'deckInputTextarea4', 'Placeholder', null) }}
-            {{ form.fieldset_end() }}           
-            {{ 
+            {{
                 form.form_end([
                     html.button('Show me slide 3 ' ~ html.icon('arrow-right'), 'btn--primary', 'link', null, '#slide-3', 'data-toggle="slide"'),
                     html.button('Close this slide', null, 'link', null, null, 'data-dismiss="slide"'),
                     html.button('Close all slides', null, 'link', null, null, 'data-dismiss="deck"')
-                ]) 
+                ])
             }}
         </div>
     </div>
@@ -73,14 +74,13 @@
         <div class="slide-inner">
             <button class="close" data-dismiss="deck">×</button>
             {{ form.create() }}
-            {{ form.fieldset_start('Slide Three') }}
+            <h2 class="slide__title">Slide Three</h2>
             {{ form.textarea('Textarea (4 rows)', 'deckInputTextarea4', null, 'deckInputTextarea4', 'Placeholder', null) }}
-            {{ form.fieldset_end() }}           
-            {{ 
+            {{
                 form.form_end([
                     html.button('Close this slide', null, 'link', null, null, 'data-dismiss="slide"'),
                     html.button('Close all slides', null, 'link', null, null, 'data-dismiss="deck"')
-                ]) 
+                ])
             }}
         </div>
     </div>

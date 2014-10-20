@@ -21,6 +21,7 @@ var _test_match;
 var _test_exclude;
 var _mismatchTolerance = 0.05;
 var _resembleOutputSettings;
+var _cleanupComparisonImages = false;
 var diffsCreated = [];
 
 exports.screenshot = screenshot;
@@ -39,7 +40,7 @@ exports.getCreatedDiffFiles = getCreatedDiffFiles;
 function update(options){
 
 	function stripslash ( str ){
-		return str.replace(/\/\//g,'/').replace(/\\/g,'\\');
+		return (str||'').replace(/\/\//g,'/').replace(/\\/g,'\\');
 	}
 
 	options = options || {};
@@ -49,7 +50,7 @@ function update(options){
 	
 	_src = stripslash(options.screenshotRoot || _src);
 	_results = stripslash(options.comparisonResultRoot || _results || _src);
-	_failures = stripslash(options.failedComparisonsRoot || _failures);
+	_failures = options.failedComparisonsRoot === false ? false : stripslash( options.failedComparisonsRoot || _failures);
 	
 	_fileNameGetter = options.fileNameGetter || _fileNameGetter;
 
@@ -65,8 +66,14 @@ function update(options){
 
 	_resembleOutputSettings = options.outputSettings || _resembleOutputSettings;
 
+        _cleanupComparisonImages = options.cleanupComparisonImages || _cleanupComparisonImages;
+
 	if(options.addLabelToFailedImage !== undefined){
 		_addLabelToFailedImage = options.addLabelToFailedImage;
+	}
+
+	if (_cleanupComparisonImages) {
+	   _results += fs.separator + generateRandomString();
 	}
 }
 
@@ -353,7 +360,7 @@ function compareFiles(baseFile, file) {
 
 							if(_failures){
 								// flattened structure for failed diffs so that it is easier to preview
-								failFile = _failures + fs.separator + file.split(fs.separator).pop().replace('.diff.png', '').replace('.png', '');
+								failFile = _failures + fs.separator + file.split(/\/|\\/g).pop().replace('.diff.png', '').replace('.png', '');
 								safeFileName = failFile;
 								increment = 0;
 
@@ -363,17 +370,18 @@ function compareFiles(baseFile, file) {
 								}
 
 								failFile = safeFileName + '.fail.png';
-
 								casper.captureSelector(failFile, 'img');
+
+								test.failFile = failFile;
 								console.log('Failure! Saved to', failFile);
-							} else {
-								if (file.indexOf('.diff.png') !== -1) {
-									casper.captureSelector(file.replace('.diff.png', '.fail.png'), 'img');
-								} else {
-									casper.captureSelector(file.replace('.png', '.fail.png'), 'img');
-								}
 							}
 
+							if (file.indexOf('.diff.png') !== -1) {
+								casper.captureSelector(file.replace('.diff.png', '.fail.png'), 'img');
+							} else {
+								casper.captureSelector(file.replace('.png', '.fail.png'), 'img');
+							}
+						
 							casper.evaluate(function(){
 								window._imagediff_.hasImage = false;
 							});
@@ -547,12 +555,18 @@ function _onComplete(tests, noOfFails, noOfErrors){
 			console.log("\nIf you want to make them fail, go change some CSS - weirdo.");
 		} else {
 			console.log("\nPhantomCSS found " + tests.length + " tests, " + noOfFails + ' of them failed.');
-			console.log('\nPhantomCSS has created some images that try to show the difference (in the directory '+_failures+'). Fuchsia colored pixels indicate a difference betwen the new and old screenshots.');
+			if(_failures){
+				console.log('\nPhantomCSS has created some images that try to show the difference (in the directory '+_failures+'). Fuchsia colored pixels indicate a difference betwen the new and old screenshots.');
+			}
 		}
 
 		if(noOfErrors !== 0){
 			console.log("There were " + noOfErrors + "errors.  Is it possible that a baseline image was deleted but not the diff?");
 		}
+
+        if (_cleanupComparisonImages) {
+           fs.removeTree(_results);
+        }
 
 		exitStatus = noOfErrors+noOfFails;
 	}
@@ -560,4 +574,7 @@ function _onComplete(tests, noOfFails, noOfErrors){
 
 function getExitStatus() {
 	return exitStatus;
+}
+function generateRandomString() {
+   return (Math.random() + 1).toString(36).substring(7);
 }

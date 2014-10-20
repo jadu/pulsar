@@ -8,11 +8,15 @@ if (window.jadu.requireJsPath) {
 
 requirejs.config({
     paths: {
+        'actions-menu'      : path + '/js/actions-menu',
+        'bootstrap-tour'    : path + '/libs/bootstrap-tour/build/js/bootstrap-tour.min',
+        'choice-matrix'     : path + '/js/choice-matrix',
         'console-js'        : path + '/libs/console-js/console',
+        'dashboard'         : path + '/js/dashboard',
+        'data-ui'           : path + '/js/data-ui',
         'datagrid'          : path + '/js/datagrid',
         'daterange'         : path + '/libs/bootstrap-daterangepicker/daterangepicker',
         'deck'              : path + '/js/deck',
-        'dashboard'         : path + '/js/dashboard',
         'dropdown'          : path + '/js/dropdown',
         'flash'             : path + '/js/flash',
         'highcharts'        : path + '/libs/highcharts/highcharts',
@@ -25,6 +29,8 @@ requirejs.config({
         'jquery-ui'         : path + '/libs/jqueryui/js/jquery-ui-1.10.4.custom.min',
         'jquery-ui-touch'   : path + '/libs/jqueryui-touch-punch/jquery.ui.touch-punch.min',
         'jquery-mousewheel' : path + '/libs/jquery-mousewheel/jquery.mousewheel',
+        'jquery-placeholder': path + '/libs/jquery-placeholder/jquery.placeholder',
+        'matchMedia'        : path + '/libs/matchMedia/matchMedia',
         'modal'             : path + '/js/modal',
         'moment'            : path + '/libs/moment/moment',
         'navigation'        : path + '/js/navigation',
@@ -32,6 +38,7 @@ requirejs.config({
         'pikaday'           : path + '/libs/pikaday/pikaday',
         'popover'           : path + '/js/popover',
         'pulsar'            : path + '/js/pulsar',
+        'quantum'           : path + '/js/quantum',
         'sticky'            : path + '/libs/sticky/jquery.sticky',
         'store-js'          : path + '/libs/store.js/store',
         'tab'               : path + '/js/tab',
@@ -59,21 +66,24 @@ requirejs.config({
         }
     }
 });
- 
+
 require([
     'console-js',
     'jquery',
     'dashboard',
+    'data-ui',
     'deck',
     'dropdown',
     'flash',
     'homepages',
+    'matchMedia',
     'modal',
     'navigation',
-    'popover',
     'tab',
+    'popover',
     'tooltip',
-    'pulsar'
+    'pulsar',
+    'quantum'
 ], function($) {
     'use strict';
     // $();

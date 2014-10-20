@@ -33,7 +33,7 @@ define(['jquery', 'tooltip'], function($) { "use strict";
     placement: 'right'
   , trigger: 'click'
   , content: ''
-  , template: '<div class="popover"><div class="arrow"></div><h3 class="popover__title"></h3><div class="popover__content"></div></div>'
+  , template: '<div class="popover"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
   })
 
 
@@ -53,12 +53,12 @@ define(['jquery', 'tooltip'], function($) { "use strict";
     var title   = this.getTitle()
     var content = this.getContent()
 
-    $tip.find('.popover__title')[this.options.html ? 'html' : 'text'](title)
-    $tip.find('.popover__content')[this.options.html ? 'html' : 'text'](content)
+    $tip.find('.popover-title')[this.options.html ? 'html' : 'text'](title)
+    $tip.find('.popover-content')[this.options.html ? 'html' : 'text'](content)
 
     $tip.removeClass('fade top bottom left right in')
 
-    $tip.find('.popover__title:empty').hide()
+    $tip.find('.popover-title:empty').hide()
   }
 
   Popover.prototype.hasContent = function () {
