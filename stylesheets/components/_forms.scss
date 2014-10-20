@@ -48,7 +48,8 @@ legend {
   }
 }
 
-label {
+label,
+span.control__label {
   display: inline-block;
   margin-bottom: $padding-large-vertical;
   margin-left: $gutter-width;
@@ -591,16 +592,22 @@ textarea {
 
 }
 
-.form--horizontal .control__label {
-  display: block;
-  margin-right: $gutter-width;
-  padding-top: 5px;
-  vertical-align: top;
+.form--horizontal {
+  .control__label {
+    display: block;
+    margin-right: $gutter-width;
+    padding-top: 5px;
+    vertical-align: top;
 
-  @include respond-min($screen-desktop) {
-    padding-top: 9px;
-    display: inline-block;
-    width: 20%;
+    @include respond-min($screen-desktop) {
+      padding-top: 9px;
+      display: inline-block;
+      width: 20%;
+    }
+  }
+
+  span.control__label {
+    padding-top: 0;
   }
 }
 
