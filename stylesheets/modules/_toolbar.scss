@@ -282,6 +282,7 @@
 
 .mobile-menu-toggle {
   color: $accent-color;
+  display: none; // shown by javascript only if there are items in the menu
   float: right;
   font-size: $font-size-large;
   height: ($toolbar-height - $toolbar-accent-height);
@@ -295,7 +296,7 @@
     height: 45px;
     line-height: 45px;
   }
-  // margin: 0 $gutter-width 0 ($gutter-width / 2);
+
   position: relative;
   text-align: center;
   text-decoration: none;
@@ -318,9 +319,5 @@
   &.toggled {
     background-color: $accent-color;
     color: $accent-color-alt;
-  }
-
-  @include respond-min($screen-tablet) {
-    display: none;
   }
 }
