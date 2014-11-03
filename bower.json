@@ -26,6 +26,7 @@
     "jquery-placeholder": "Stanton/jquery-placeholder#v.2.0.9",
     "jquery-mousewheel": "latest",
     "list.js": "latest",
+    "matchMedia": "latest",
     "moment": "latest",
     "normalize-css": "latest",
     "pikaday": "latest",
