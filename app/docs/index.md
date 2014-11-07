@@ -16,6 +16,10 @@ These dependencies should be committed to the Pulsar repository, for more inform
 
 ### Changelog
 
+**2.2.0** - 07/11/2014
+
+* Add [Summernote](/app/lexicon?tab=editor) WYSIWYG editor example
+
 **2.1.0** - 07/11/2014
 
 * Add MatchMedia library
