@@ -106,7 +106,7 @@ module.exports = function(grunt) {
 
     copy: {
       readme: {
-        src: 'docs/01_Getting_started/01_Installation.md',
+        src: 'docs/index.md',
         dest: 'README.md',
       }
     },
