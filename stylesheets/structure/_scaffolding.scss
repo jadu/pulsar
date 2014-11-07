@@ -24,7 +24,7 @@ body {
   @include inline-block;
   font-family: $font-family-light;
   line-height: $line-height-base * 2;
-  margin: ($line-height-base / $line-height-small) $gutter-width 0 0;
+  margin: ceil($line-height-base / $line-height-small) $gutter-width 0 0;
 
   @include respond-max($screen-tablet) {
     font-size: $font-size-xlarge;
