@@ -2,7 +2,13 @@ Pulsar is a robust user-interface framework with a collection of patterns, helpe
 
 ### Changelog
 
-**2.0.0** - dd/mm/yyyy
+**2.1.0** - 07/11/2014
+
+* Add MatchMedia library
+* Add Dan's background-size polyfill
+* Make mobile menu only show if there are tab items present to display
+
+**2.0.0** - 20/10/2014
 
 This release marks a significant step in Pulsar-UI's lifecycle and merges a lot of the work and lessons learned into the Pulsar core. There are some changes will will break backwards compatibility with older versions of Pulsar-UI so increments the major version number to 2.0.0
 
