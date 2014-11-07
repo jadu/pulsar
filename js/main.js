@@ -31,7 +31,7 @@ requirejs.config({
         'jquery-ui-touch'   : path + '/libs/jqueryui-touch-punch/jquery.ui.touch-punch.min',
         'jquery-mousewheel' : path + '/libs/jquery-mousewheel/jquery.mousewheel',
         'jquery-placeholder': path + '/libs/jquery-placeholder/jquery.placeholder',
-        'matchMedia'        : path + '/libs/matchMedia/matchMedia',
+        'matchMedia'        : path + '/js/polyfills/matchMedia',
         'modal'             : path + '/js/modal',
         'moment'            : path + '/libs/moment/moment',
         'navigation'        : path + '/js/navigation',
