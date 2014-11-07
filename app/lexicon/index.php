@@ -41,7 +41,6 @@ $flashMessage = array(
 
 print $template->render(array(
     'breadcrumb' => $breadcrumb,
-    'flash_message' => $flashMessage,
     'notifications' => 3,
     'toolbar' => $toolbar
     ));

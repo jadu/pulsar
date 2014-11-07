@@ -41,12 +41,13 @@
   "dependencies": {
     "jquery": null
   },
+  "ignore": [],
   "homepage": "https://github.com/garand/sticky",
-  "_release": "2126fe2560",
+  "_release": "a98ce74de5",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "2126fe2560063bb0bb93e6eae84c91e35b7a212b"
+    "commit": "a98ce74de5dbf94d335b79c9d05d2430193d0dd5"
   },
   "_source": "git://github.com/garand/sticky.git",
   "_target": "*",

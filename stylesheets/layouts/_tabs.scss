@@ -279,7 +279,7 @@
   }
 }
 
-.tab--unpadded p {
+.tab--unpadded > p {
   clear: both;
   margin-left: $gutter-width;
 }

@@ -134,6 +134,15 @@
     </div>
 {% endmacro %}
 
+{% macro editor(label, value, id, class, name, help, attributes, airmode = true) %}
+    <div class="form__group {{ class }}">
+        <label {{ form.for(id) }} class="control__label">{{ label | raw }}</label>
+        <div class="controls editor">
+            <div class="form__control summernote">{{ value }}</div>
+        </div>
+    </div>
+{% endmacro %}
+
 {% macro file(label, id, class, name, help, removable = false) %}
     {% import _self as form %}
     {% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
