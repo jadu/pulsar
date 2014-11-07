@@ -1,5 +1,19 @@
 Pulsar is a robust user-interface framework with a collection of patterns, helpers and a user-focused design process with documented best practices that will help you to make beautiful user interfaces and beautiful user experiences.
 
+## Installing development dependencies
+
+To run the local development version of Pulsar some additional packages to be installed before it'll work, you can install all dependencies by typing the following command in the pulsar directory:
+
+    $ make
+
+(Make can be installed via xCode)
+
+You can define new composer packages to be installed in `composer.json` and new front-end libraries in `bower.json`, re-running the make command will bring these into Pulsar. You can reverse the make process by using:
+
+    $ sudo make clean
+
+These dependencies should be committed to the Pulsar repository, for more information [read this article](http://addyosmani.com/blog/checking-in-front-end-dependencies/).
+
 ### Changelog
 
 **2.1.0** - 07/11/2014
