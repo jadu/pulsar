@@ -68,6 +68,10 @@
     {% include 'lexicon/tabs/progress_bars.html.twig' %}
 {% endset %}
 
+{% set tab_rich_list %}
+    {% include 'lexicon/tabs/rich_list.html.twig' %}
+{% endset %}
+
 {% set tab_typography %}
     {% include 'lexicon/tabs/typography.html.twig' %}
 {% endset %}
@@ -138,6 +142,11 @@
           "id"    : "progress",
           "label" : html.icon("tasks") ~ " Progress bars",
           "src"   : tab_progress_bars
+        },
+        {
+          "id"    : "rich_list",
+          "label" : html.icon("tasks") ~ " Rich list (simple)",
+          "src"   : tab_rich_list
         },
         {
           "id"    : "table",

@@ -1,0 +1,242 @@
+// -----------------------------------------------------------------------------
+// Variables
+// -----------------------------------------------------------------------------
+
+// Heights
+// Rich lists should aim to chop the last item in a list in half horizontally
+// in order to visually prompt the user that information has been hidden and
+// that they should scroll to see more items
+$rich-list-height:                    215px !default;
+$rich-list-height-tall:               490px !default;
+
+// Items
+$rich-list-item-padding:              .5em ($gutter-width / 2);
+
+// Item widths
+$rich-list-items-width-default:       .5 !default;  // small screen
+$rich-list-items-width-small:         .25 !default; // large screen
+$rich-list-items-width-medium:        .37 !default; // large screen
+$rich-list-items-width-large:         .5 !default;  // large screen
+$rich-list-items-width-xlarge:        .65 !default;  // large screen
+
+// Colour
+$rich-list-border-color:              $gray !default;
+$rich-list-item-bg-color:             $white !default;
+$rich-list-item-bg-hover-color:       $gray-lighter !default;
+$rich-list-item-bg-selected-color:    $jadu-blue !default;
+$rich-list-item-text-selected-color:  $white !default;
+
+// -----------------------------------------------------------------------------
+// Core Layout
+// -----------------------------------------------------------------------------
+
+.rich-list {
+  display: block;
+  float: left;
+  width: 100%;
+}
+
+.rich-list__items-container,
+.rich-list__detail {
+  display: block;
+  float: left;
+  overflow: scroll;
+}
+
+.rich-list__items {
+  width: 100%;
+
+  ul &,
+  ol & {
+    display: block;
+  }
+}
+
+.rich-list__detail {
+  height: 100%;
+}
+
+// -----------------------------------------------------------------------------
+// Default presentation
+// -----------------------------------------------------------------------------
+
+.rich-list {
+  margin-bottom: 1em;
+
+  // Outline is used here so that if the rich list can be used in a container
+  // that already has a border present without 'doubling up' the border
+  outline: 1px solid $rich-list-border-color;
+}
+
+.rich-list__items-container {
+
+  // The colour to be shown 'underneath' the items, which helps to signify when
+  // the end of the list has been reached
+  background-color: $off-white;
+  border-right: 1px solid $rich-list-border-color;
+
+  // Make sure the elements containing list items are always flush with the top
+  // of this container (tables are normally aligned to the bottom)
+  vertical-align: top;
+  width: percentage($rich-list_items-width-default);
+
+  // Remove default styles from list elements used to display items
+  > ul,
+  > ol {
+    margin: 0;
+  }
+}
+
+.rich-list__item {
+  background-color: $rich-list-item-bg-color;
+
+  // Use a border on all but the last item
+  &:not(:last-of-type),
+  th {
+    border-bottom: 1px solid $rich-list-border-color;
+  }
+
+  // Don't show bullets/numbers when using ordered/unordered lists
+  ol &,
+  ul & {
+    list-style-type: none;
+  }
+
+  // Rich list items can contain selection of different element types, which
+  // need padding applied to maintain layout
+  > a,
+  > div,
+  > span,
+  > td,
+  > th {
+    padding: $rich-list-item-padding;
+  }
+
+  // Make sure all elements are treated as block-level and 100% width
+  a,
+  span {
+    display: inline-block;
+    width: 100%;
+  }
+
+  // Reset default table styles
+  th,
+  td {
+    background: none;
+    background-color: none;
+  }
+
+  // Remove underlines from links
+  a {
+    text-decoration: none;
+  }
+
+  //
+  // States
+  //
+
+  &:hover {
+    background-color: $rich-list-item-bg-hover-color;
+    cursor: pointer;
+  }
+
+  &.is-selected {
+    background-color: $rich-list-item-bg-selected-color;
+    color: $rich-list-item-text-selected-color;
+  }
+}
+
+.rich-list__detail {
+  padding: $rich-list-item-padding;
+  width: percentage(1 - $rich-list_items-width-default);
+}
+
+// -----------------------------------------------------------------------------
+// Variations
+//
+//  * Wider list items (quarter/third/half width)
+//    (only when the screen is wide enough for it to be sensible)
+//  * Taller container (double height)
+// -----------------------------------------------------------------------------
+
+.rich-list {
+  height: $rich-list-height;
+
+  .rich-list__items-container {
+    height: $rich-list-height;
+    overflow: scroll;
+  }
+}
+
+// Remove ability to scroll contents and simply stretch the height to fit the
+// number of items
+.rich-list--fit-items {
+  &,
+  .rich-list__items-container,
+  .rich-list__detail {
+    height: auto;
+  }
+}
+
+.rich-list__paginated {
+  @extend .rich-list--fit-items;
+
+  // Make sure .pagination element sits directly underneath the rich list
+  margin-bottom: 1px;
+}
+
+// Size variants are only used when the screen is large enough for them to work
+@include respond-min($screen-tablet) {
+  .rich-list {
+    .rich-list__items-container {
+      width: percentage($rich-list-items-width-small);
+    }
+    .rich-list__detail {
+      width: percentage(1 - $rich-list-items-width-small);
+    }
+  }
+
+  .rich-list--medium {
+    .rich-list__items-container {
+      width: percentage($rich-list-items-width-medium);
+    }
+    .rich-list__detail {
+      width: percentage(1 - $rich-list-items-width-medium);
+    }
+  }
+
+  .rich-list--large {
+    .rich-list__items-container {
+      width: percentage($rich-list-items-width-large);
+    }
+    .rich-list__detail {
+      width: percentage(1 - $rich-list-items-width-large);
+    }
+  }
+
+  .rich-list--xlarge {
+    .rich-list__items-container {
+      width: percentage($rich-list-items-width-xlarge);
+    }
+    .rich-list__detail {
+      width: percentage(1 - $rich-list-items-width-xlarge);
+    }
+  }
+}
+
+.rich-list--tall,
+.rich-list--tall .rich-list__items-container {
+  height: $rich-list-height-tall;
+}
+
+//
+// Rich-lists inside Decks
+//
+
+.deck {
+  .rich-list__items,
+  .rich-list__detail {
+    height: 100%;
+    overflow-y: visible;
+  }
+}
