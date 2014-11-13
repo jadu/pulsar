@@ -7,15 +7,16 @@
  *    that they should scroll to see more items.
  * 2. Outline is used here so that if the rich list is used in a container that
  *    already has a border, it wont be doubled up.
- * 3. The colour to be shown 'underneath' the items, which helps to signify when
+ * 3. The last item should always show empty space after/underneath, this helps
+ *    to indicate that the end of the list has been reached.
+ * 4. The colour to be shown 'underneath' the items, which helps to signify when
  *    the end of the list has been reached.
- * 4. Make sure the elements containing list items are always flush with the top
+ * 5. Make sure the elements containing list items are always flush with the top
  *    of this container (tables are normally aligned to the bottom).
- * 5. Remove default styles from list elements used to display items.
- * 6. Use a border on all but the last item.
- * 7. Don't show bullets/numbers when using ordered/unordered lists.
- * 8. Rich list items can contain selection of different element types, which
+ * 6. Remove default styles from list elements used to display items.
+ * 7. Rich list items can contain selection of different element types, which
  *    need padding applied to maintain layout.
+ * 8. Don't show bullets/numbers when using ordered/unordered lists.
  * 9. Make sure links & spans used as list items are treated as block-level and
  *    100% width.
  * 10. Reset default table styles.
@@ -23,10 +24,15 @@
  *     handled by the list item itself.
  * 12. Remove ability to scroll contents and simply stretch the height to fit
  *     the number of items.
- * 13. Make sure .pagination element sits directly underneath the rich list.
- * 14. Size variants only available when the screen is wide enough for them to
+ * 13. If streching to fit, or paginating, then we don't need the emtpy space
+ *     after the last item as created in [3].
+ * 14. Don't include a bottom border on the last item in stretched or paginated
+ *     lists so that the border isn't 'doubled up' with the bottom border of the
+ *     rich list container.
+ * 14. Make sure .pagination element sits directly underneath the rich list.
+ * 15. Size variants only available when the screen is wide enough for them to
  *     be useful.
- * 15. Rich lists within decks
+ * 16. Rich lists within decks.
  */
 
 
@@ -82,6 +88,7 @@ $rich-list-item-text-selected-color:  $white !default;
 }
 
 .richer-list__items {
+  margin-bottom: 1em; /* [3] */
   width: 100%;
 
   ul &,
@@ -95,36 +102,35 @@ $rich-list-item-text-selected-color:  $white !default;
 }
 
 .richer-list__items-container {
-  background-color: $off-white; /* [3] */
+  background-color: $off-white; /* [4] */
   border-right: 1px solid $rich-list-border-color;
-  vertical-align: top; /* [4] */
+  vertical-align: top; /* [5] */
   width: percentage($rich-list_items-width-default);
 
   > ul,
-  > ol { /* [5] */
-    margin: 0;
+  > ol { /* [6] */
+    margin-left: 0;
   }
 }
 
+.richer-list__header,
 .richer-list__item {
   background-color: $rich-list-item-bg-color;
-
-  &:not(:last-of-type),
-  th { /* [6] */
-    border-bottom: 1px solid $rich-list-border-color;
-  }
-
-  ol &,
-  ul & { /* [7] */
-    list-style-type: none;
-  }
+  border-bottom: 1px solid $rich-list-border-color;
 
   > a,
   > div,
   > span,
   > td,
-  > th { /* [8] */
+  > th { /* [7] */
     padding: $rich-list-item-padding;
+  }
+}
+
+.richer-list__item {
+  ol &,
+  ul & { /* [8] */
+    list-style-type: none;
   }
 
   a,
@@ -174,20 +180,29 @@ $rich-list-item-text-selected-color:  $white !default;
   .richer-list__detail {
     height: auto;
   }
+
+  .richer-list__items {
+    margin-bottom: 0; /* [13] */
+  }
+
+  .richer-list__item:last-of-type {
+    border-bottom: 0; /* [14] */
+  }
 }
 
 
 .richer-list__paginated {
   @extend .richer-list--fit-items;
-  margin-bottom: 1px; /* [13] */
+  margin-bottom: 1px; /* [15] */
 }
 
 
-@include respond-min($screen-tablet) { /* [14] */
+@include respond-min($screen-tablet) { /* [16] */
   .richer-list {
     .richer-list__items-container {
       width: percentage($rich-list-items-width-small);
     }
+
     .richer-list__detail {
       width: percentage(1 - $rich-list-items-width-small);
     }
@@ -198,6 +213,7 @@ $rich-list-item-text-selected-color:  $white !default;
     .richer-list__items-container {
       width: percentage($rich-list-items-width-medium);
     }
+
     .richer-list__detail {
       width: percentage(1 - $rich-list-items-width-medium);
     }
@@ -208,6 +224,7 @@ $rich-list-item-text-selected-color:  $white !default;
     .richer-list__items-container {
       width: percentage($rich-list-items-width-large);
     }
+
     .richer-list__detail {
       width: percentage(1 - $rich-list-items-width-large);
     }
@@ -218,6 +235,7 @@ $rich-list-item-text-selected-color:  $white !default;
     .richer-list__items-container {
       width: percentage($rich-list-items-width-xlarge);
     }
+
     .richer-list__detail {
       width: percentage(1 - $rich-list-items-width-xlarge);
     }
@@ -235,7 +253,7 @@ $rich-list-item-text-selected-color:  $white !default;
     Alternative Uses
 \* -------------------------------------------------------------------------- */
 
-.deck { /* [15] */
+.deck { /* [17] */
   .richer-list__items,
   .richer-list__detail {
     height: 100%;

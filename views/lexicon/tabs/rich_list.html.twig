@@ -1,0 +1,164 @@
+{% import 'pulsar/helpers/html.html.twig' as html %}
+{% import 'pulsar/helpers/form.html.twig' as form %}
+{% import 'pulsar/helpers/flash.html.twig' as flash %}
+{% import 'pulsar/helpers/datagrid.html.twig' as datagrid %}
+
+<h2 class="heading">{{ heading|raw }}</h2>
+
+<div class="tab__inner tab--padded">
+
+	<h3>Simple Rich List</h3>
+
+	<div class="richer-list">
+		<div class="richer-list__items-container">
+			<ol class="richer-list__items">
+				<li class="richer-list__item is-selected"><span>This item has <code>.is-selected</code></span></li>
+				{% for i in 1..10 %}
+				<li class="richer-list__item"><a href="#">Item using a link</a></li>
+				<li class="richer-list__item"><span>Item using a span</span></li>
+				{% endfor %}
+			</ol>
+		</div>
+		<div class="richer-list__detail">
+			Detail
+		</div>
+	</div>
+
+	<h3>Rich List using a table</h3>
+
+	<div class="richer-list">
+		<div class="richer-list__items-container">
+			<table class="richer-list__items">
+				<thead>
+					<tr class="richer-list__header">
+						<th>Col 1</th>
+						<th>Col 2</th>
+						<th>Col 3</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for i in 1..4 %}
+					<tr class="richer-list__item">
+						<td>Row {{ i }}</td>
+						<td>Row {{ i }}</td>
+						<td>Row {{ i }}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		<div class="richer-list__detail">
+			Detail
+		</div>
+	</div>
+
+	<h3>Paginated Rich List</h3>
+
+	<div class="richer-list richer-list__paginated">
+		<div class="richer-list__items-container">
+			<table class="richer-list__items">
+				<thead>
+					<tr class="richer-list__header">
+						<th>Col 1</th>
+						<th>Col 2</th>
+						<th>Col 3</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for i in 1..10 %}
+					<tr class="richer-list__item">
+						<td>Row {{ i }}</td>
+						<td>Row {{ i }}</td>
+						<td>Row {{ i }}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		<div class="richer-list__detail">
+			Paginated rich lists always stretch to fit the number of items, you can use the same stretch behaviour on a non-paginated list by using the <code>.richer-list--fit-items</code> variant
+		</div>
+	</div>
+	<div class="pagination">
+        <ul><!--
+	        --><li class="is-disabled"><span><i class="icon-double-angle-left"></i> First</span></li><!--
+			--><li class="is-disabled"><span><i class="icon-angle-left"></i> Previous</span></li><!--
+	        --><li class="current selected"><span>1</span></li><!--
+	        --><li class="current"><a href="#">2</a></li><!--
+	        --><li class="current"><a href="#">3</a></li><!--
+	        --><li class="current"><a href="#">4</a></li><!--
+	        --><li class="current"><a href="#">5</a></li><!--
+	        --><li class="is-disabled"><span>Next <i class="icon-angle-right"></i></span></li><!--
+	        --><li class="is-disabled"><span>Last <i class="icon-double-angle-right"></i></span></li><!--
+    	--></ul>
+    </div>
+
+	<h3>Rich List &mdash; medium</h3>
+
+	<div class="richer-list richer-list--medium">
+		<div class="richer-list__items-container">
+			<ol class="richer-list__items">
+				<li class="richer-list__item is-selected"><span>This item has <code>.is-selected</code></span></li>
+				{% for i in 1..10 %}
+				<li class="richer-list__item"><a href="#">Item using a link</a></li>
+				<li class="richer-list__item"><span>Item using a span</span></li>
+				{% endfor %}
+			</ol>
+		</div>
+		<div class="richer-list__detail">
+			<code><pre>&lt;div class="richer-list richer-list--medium"&gt;</pre></code>
+		</div>
+	</div>
+
+	<h3>Rich List &mdash; large</h3>
+
+	<div class="richer-list richer-list--large">
+		<div class="richer-list__items-container">
+			<ol class="richer-list__items">
+				<li class="richer-list__item is-selected"><span>This item has <code>.is-selected</code></span></li>
+				{% for i in 1..10 %}
+				<li class="richer-list__item"><a href="#">Item using a link</a></li>
+				<li class="richer-list__item"><span>Item using a span</span></li>
+				{% endfor %}
+			</ol>
+		</div>
+		<div class="richer-list__detail">
+			<code><pre>&lt;div class="richer-list richer-list--large"&gt;</pre></code>
+		</div>
+	</div>
+
+	<h3>Rich List &mdash; extra large</h3>
+
+	<div class="richer-list richer-list--xlarge">
+		<div class="richer-list__items-container">
+			<ol class="richer-list__items">
+				<li class="richer-list__item is-selected"><span>This item has <code>.is-selected</code></span></li>
+				{% for i in 1..10 %}
+				<li class="richer-list__item"><a href="#">Item using a link</a></li>
+				<li class="richer-list__item"><span>Item using a span</span></li>
+				{% endfor %}
+			</ol>
+		</div>
+		<div class="richer-list__detail">
+			<code><pre>&lt;div class="richer-list richer-list--xlarge"&gt;</pre></code>
+		</div>
+	</div>
+
+	<h3>Rich List &mdash; tall &amp; large</h3>
+
+	<div class="richer-list richer-list--tall richer-list--large">
+		<div class="richer-list__items-container">
+			<ol class="richer-list__items">
+				<li class="richer-list__item is-selected"><span>This item has <code>.is-selected</code></span></li>
+				{% for i in 1..10 %}
+				<li class="richer-list__item"><a href="#">Item using a link</a></li>
+				<li class="richer-list__item"><span>Item using a span</span></li>
+				{% endfor %}
+			</ol>
+		</div>
+		<div class="richer-list__detail">
+			<code><pre>&lt;div class="richer-list richer-list--tall richer-list--large"&gt;</pre></code>
+		</div>
+	</div>
+
+</div>
