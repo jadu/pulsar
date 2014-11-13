@@ -20,7 +20,7 @@
  * 9. Make sure links & spans used as list items are treated as block-level and
  *    100% width.
  * 10. Reset default table styles.
- * 11. Remove underlines from links used in list items, visual styling should be
+ * 11. Reset link styling used in list items, visual styling should be
  *     handled by the list item itself.
  * 12. Remove ability to scroll contents and simply stretch the height to fit
  *     the number of items.
@@ -146,6 +146,7 @@ $rich-list-item-text-selected-color:  $white !default;
   }
 
   a { /* [11] */
+    color: $black;
     text-decoration: none;
   }
 
@@ -153,7 +154,7 @@ $rich-list-item-text-selected-color:  $white !default;
    * States
    */
 
-  @at-root :not(thead) &:hover {
+  &:hover {
     background-color: $rich-list-item-bg-hover-color;
     cursor: pointer;
   }
