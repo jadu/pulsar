@@ -162,131 +162,132 @@
       padding-left: 0;
     }
   }
-}
 
-tr.row--highlight {
-  @include highlight-row($blue);
-}
-
-tr.row--success-highlight {
-  @include highlight-row($btn-success-color);
-}
-
-tr.row--danger-highlight {
-  @include highlight-row($btn-danger-color);
-}
-
-tr.row--warning-highlight {
-  @include highlight-row($btn-warning-color);
-}
-
-tr.row--success {
-  @include highlight-row($btn-success-color);
-  > td {
-    background-color: lighten($btn-success-color, 25%);
-    &:before {
-      background-color: lighten($btn-success-color, 20%);
-    }
+  tr.row--highlight {
+    @include highlight-row($blue);
   }
-  &:hover > td {
-    background-color: lighten($btn-success-color, 23%);
-    &:before {
-      background-color: lighten($btn-success-color, 18%);
+
+  tr.row--success-highlight {
+    @include highlight-row($btn-success-color);
+  }
+
+  tr.row--danger-highlight {
+    @include highlight-row($btn-danger-color);
+  }
+
+  tr.row--warning-highlight {
+    @include highlight-row($btn-warning-color);
+  }
+
+  tr.row--success {
+    @include highlight-row($btn-success-color);
+    > td {
+      background-color: lighten($btn-success-color, 25%);
+      &:before {
+        background-color: lighten($btn-success-color, 20%);
+      }
     }
-    @include respond-max($screen-tablet) {
-      &.row__actions {
+    &:hover > td {
+      background-color: lighten($btn-success-color, 23%);
+      &:before {
         background-color: lighten($btn-success-color, 18%);
       }
+      @include respond-max($screen-tablet) {
+        &.row__actions {
+          background-color: lighten($btn-success-color, 18%);
+        }
+      }
+      background-color: lighten($btn-success-color, 23%);
     }
-    background-color: lighten($btn-success-color, 23%);
   }
-}
 
-tr.row--danger {
-  @include highlight-row($btn-danger-color);
-  > td {
-    background-color: lighten($btn-danger-color, 25%);
-    &:before {
-      background-color: lighten($btn-danger-color, 20%);
+  tr.row--danger {
+    @include highlight-row($btn-danger-color);
+    > td {
+      background-color: lighten($btn-danger-color, 25%);
+      &:before {
+        background-color: lighten($btn-danger-color, 20%);
+      }
     }
-  }
-  &:hover > td {
-    background-color: lighten($btn-danger-color, 24%);
-    &:before {
-      background-color: lighten($btn-danger-color, 19%);
-    }
-    @include respond-max($screen-tablet) {
-      &.row__actions {
+    &:hover > td {
+      background-color: lighten($btn-danger-color, 24%);
+      &:before {
         background-color: lighten($btn-danger-color, 19%);
       }
+      @include respond-max($screen-tablet) {
+        &.row__actions {
+          background-color: lighten($btn-danger-color, 19%);
+        }
+      }
+      background-color: lighten($btn-danger-color, 24%);
     }
-    background-color: lighten($btn-danger-color, 24%);
   }
-}
 
-tr.row--warning {
-  @include highlight-row($btn-warning-color);
-  > td {
-    background-color: lighten($btn-warning-color, 25%);
-    &:before {
-      background-color: lighten($btn-warning-color, 20%);
-    }
-    @include respond-max($screen-tablet) {
-      &.row__actions {
+  tr.row--warning {
+    @include highlight-row($btn-warning-color);
+    > td {
+      background-color: lighten($btn-warning-color, 25%);
+      &:before {
         background-color: lighten($btn-warning-color, 20%);
       }
+      @include respond-max($screen-tablet) {
+        &.row__actions {
+          background-color: lighten($btn-warning-color, 20%);
+        }
+      }
     }
-  }
-  &:hover > td {
-    background-color: lighten($btn-warning-color, 23%);
-    &:before {
-      background-color: lighten($btn-warning-color, 18%);
-    }
-    @include respond-max($screen-tablet) {
-      &.row__actions {
+    &:hover > td {
+      background-color: lighten($btn-warning-color, 23%);
+      &:before {
         background-color: lighten($btn-warning-color, 18%);
       }
-    }
-  }
-}
-
-tr.row--no-results {
-  background-color: $off-white;
-  td {
-    display: table-cell;
-    height: ($line-height-base * 1.8) * 3;
-    text-align: center;
-    vertical-align: inherit;
-
-    &:before {
-      display: none;
-    }
-  }
-  a {
-    color: $link-color;
-  }
-  &:hover a {
-    text-decoration: underline;
-  }
-}
-
-tr.is-selected {
-  @include highlight-row($blue);
-  > td {
-    background-color: lighten($blue, 50%);
-    &:before {
-      background-color: lighten($blue, 45%);
-    }
-  }
-  &:hover > td {
-    background-color: lighten($blue, 48%);
-    &:before {
-      background-color: lighten($blue, 43%);
-    }
-    @include respond-max($screen-tablet) {
-      &.row__actions {
-        background-color: lighten($blue, 43%);
+      @include respond-max($screen-tablet) {
+        &.row__actions {
+          background-color: lighten($btn-warning-color, 18%);
+        }
       }
     }
   }
+
+  tr.row--no-results {
+    background-color: $off-white;
+    td {
+      display: table-cell;
+      height: ($line-height-base * 1.8) * 3;
+      text-align: center;
+      vertical-align: inherit;
+
+      &:before {
+        display: none;
+      }
+    }
+    a {
+      color: $link-color;
+    }
+    &:hover a {
+      text-decoration: underline;
+    }
+  }
+
+  tr.is-selected {
+    @include highlight-row($blue);
+    > td {
+      background-color: lighten($blue, 50%);
+      &:before {
+        background-color: lighten($blue, 45%);
+      }
+    }
+    &:hover > td {
+      background-color: lighten($blue, 48%);
+      &:before {
+        background-color: lighten($blue, 43%);
+      }
+      @include respond-max($screen-tablet) {
+        &.row__actions {
+          background-color: lighten($blue, 43%);
+        }
+      }
+    }
+  }
+
 }
