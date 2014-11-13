@@ -1,0 +1,244 @@
+/**
+ * Rich lists can be displayed either as the entire layout for a tab, or as a
+ * separate component within a form.
+ *
+ * 1. Rich lists should aim to chop the last item in a list in half horizontally
+ *    in order to visually prompt the user that information has been hidden and
+ *    that they should scroll to see more items.
+ * 2. Outline is used here so that if the rich list is used in a container that
+ *    already has a border, it wont be doubled up.
+ * 3. The colour to be shown 'underneath' the items, which helps to signify when
+ *    the end of the list has been reached.
+ * 4. Make sure the elements containing list items are always flush with the top
+ *    of this container (tables are normally aligned to the bottom).
+ * 5. Remove default styles from list elements used to display items.
+ * 6. Use a border on all but the last item.
+ * 7. Don't show bullets/numbers when using ordered/unordered lists.
+ * 8. Rich list items can contain selection of different element types, which
+ *    need padding applied to maintain layout.
+ * 9. Make sure links & spans used as list items are treated as block-level and
+ *    100% width.
+ * 10. Reset default table styles.
+ * 11. Remove underlines from links used in list items, visual styling should be
+ *     handled by the list item itself.
+ * 12. Remove ability to scroll contents and simply stretch the height to fit
+ *     the number of items.
+ * 13. Make sure .pagination element sits directly underneath the rich list.
+ * 14. Size variants only available when the screen is wide enough for them to
+ *     be useful.
+ * 15. Rich lists within decks
+ */
+
+
+/* -------------------------------------------------------------------------- *\
+    Configuration
+\* -------------------------------------------------------------------------- */
+
+// Heights
+$rich-list-height:                    215px !default; /* [1] */
+$rich-list-height-tall:               490px !default; /* [1] */
+
+// Items
+$rich-list-item-padding:              .5em ($gutter-width / 2);
+
+// Item widths
+$rich-list-items-width-default:       .5 !default;  // small screen
+$rich-list-items-width-small:         .25 !default; // large screen
+$rich-list-items-width-medium:        .37 !default; // large screen
+$rich-list-items-width-large:         .5 !default;  // large screen
+$rich-list-items-width-xlarge:        .65 !default; // large screen
+
+// Colour
+$rich-list-border-color:              $gray !default;
+$rich-list-item-bg-color:             $white !default;
+$rich-list-item-bg-hover-color:       $gray-lighter !default;
+$rich-list-item-bg-selected-color:    $jadu-blue !default;
+$rich-list-item-text-selected-color:  $white !default;
+
+
+/* -------------------------------------------------------------------------- *\
+    Default Presentation
+\* -------------------------------------------------------------------------- */
+
+.rich-list {
+  display: block;
+  float: left;
+  height: $rich-list-height;
+  margin-bottom: 1em;
+  outline: 1px solid $rich-list-border-color; /* [2] */
+  width: 100%;
+}
+
+.rich-list__items-container,
+.rich-list__detail {
+  display: block;
+  float: left;
+  overflow: scroll;
+}
+
+.rich-list__items-container {
+  height: $rich-list-height;
+  overflow: scroll;
+}
+
+.rich-list__items {
+  width: 100%;
+
+  ul &,
+  ol & {
+    display: block;
+  }
+}
+
+.rich-list__detail {
+  height: 100%;
+}
+
+.rich-list__items-container {
+  background-color: $off-white; /* [3] */
+  border-right: 1px solid $rich-list-border-color;
+  vertical-align: top; /* [4] */
+  width: percentage($rich-list_items-width-default);
+
+  > ul,
+  > ol { /* [5] */
+    margin: 0;
+  }
+}
+
+.rich-list__item {
+  background-color: $rich-list-item-bg-color;
+
+  &:not(:last-of-type),
+  th { /* [6] */
+    border-bottom: 1px solid $rich-list-border-color;
+  }
+
+  ol &,
+  ul & { /* [7] */
+    list-style-type: none;
+  }
+
+  > a,
+  > div,
+  > span,
+  > td,
+  > th { /* [8] */
+    padding: $rich-list-item-padding;
+  }
+
+  a,
+  span { /* [9] */
+    display: inline-block;
+    width: 100%;
+  }
+
+  th,
+  td { /* [10] */
+    background: none;
+    background-color: none;
+  }
+
+  a { /* [11] */
+    text-decoration: none;
+  }
+
+  /**
+   * States
+   */
+
+  @at-root :not(thead) &:hover {
+    background-color: $rich-list-item-bg-hover-color;
+    cursor: pointer;
+  }
+
+  &.is-selected {
+    background-color: $rich-list-item-bg-selected-color;
+    color: $rich-list-item-text-selected-color;
+  }
+}
+
+.rich-list__detail {
+  padding: $rich-list-item-padding;
+  width: percentage(1 - $rich-list_items-width-default);
+}
+
+
+/* -------------------------------------------------------------------------- *\
+    Variations
+\* -------------------------------------------------------------------------- */
+
+.rich-list--fit-items { /* [12] */
+  &,
+  .rich-list__items-container,
+  .rich-list__detail {
+    height: auto;
+  }
+}
+
+
+.rich-list__paginated {
+  @extend .rich-list--fit-items;
+  margin-bottom: 1px; /* [13] */
+}
+
+
+@include respond-min($screen-tablet) { /* [14] */
+  .rich-list {
+    .rich-list__items-container {
+      width: percentage($rich-list-items-width-small);
+    }
+    .rich-list__detail {
+      width: percentage(1 - $rich-list-items-width-small);
+    }
+  }
+
+
+  .rich-list--medium {
+    .rich-list__items-container {
+      width: percentage($rich-list-items-width-medium);
+    }
+    .rich-list__detail {
+      width: percentage(1 - $rich-list-items-width-medium);
+    }
+  }
+
+
+  .rich-list--large {
+    .rich-list__items-container {
+      width: percentage($rich-list-items-width-large);
+    }
+    .rich-list__detail {
+      width: percentage(1 - $rich-list-items-width-large);
+    }
+  }
+
+
+  .rich-list--xlarge {
+    .rich-list__items-container {
+      width: percentage($rich-list-items-width-xlarge);
+    }
+    .rich-list__detail {
+      width: percentage(1 - $rich-list-items-width-xlarge);
+    }
+  }
+}
+
+
+.rich-list--tall,
+.rich-list--tall .rich-list__items-container {
+  height: $rich-list-height-tall;
+}
+
+
+/* -------------------------------------------------------------------------- *\
+    Alternative Uses
+\* -------------------------------------------------------------------------- */
+
+.deck { /* [15] */
+  .rich-list__items,
+  .rich-list__detail {
+    height: 100%;
+    overflow-y: visible;
+  }
+}

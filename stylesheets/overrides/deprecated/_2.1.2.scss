@@ -1,0 +1,7 @@
+/**
+ * Rich lists have been rewritten when bringing them over from Quantum into
+ * Pulsar, some class names have been changed to tidy things up.
+ */
+.rich-list__expanded {
+  @extend .rich-list__detail;
+}

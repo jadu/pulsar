@@ -1,4 +1,6 @@
-// Structure
+/**
+ * Structure
+ */
 @import '../structure/fonts';
 @import '../structure/scaffolding';
 @import '../structure/type';
@@ -6,10 +8,14 @@
 @import '../structure/tray';
 @import '../structure/grid';
 
-// Layouts
+/**
+ * Layouts
+ */
 @import '../layouts/tabs';
 
-// Components
+/**
+ * Components
+ */
 @import '../components/labels';
 @import '../components/badges';
 @import '../components/button-groups';
@@ -26,7 +32,9 @@
 @import '../components/input-groups';
 @import '../components/progress-bars';
 
-// Modules
+/**
+ * Modules
+ */
 @import '../modules/breadcrumb';
 @import '../modules/actionsbar';
 @import '../modules/choice-matrix';
@@ -43,6 +51,7 @@
 @import '../modules/nav-primary';
 @import '../modules/notifications';
 @import '../modules/pagination';
+@import '../modules/rich-list';
 @import '../modules/tooltips';
 @import '../modules/toolbar';
 @import '../modules/popovers';

@@ -1,6 +1,9 @@
 .pagination {
   background-color: $white;
-  border-top: 3px double $gray;
+
+  // We assume pagination will always sit underneath an element, and that
+  // element may or may not be floated
+  clear: both;
   font-size: $font-size-medium;
 
   ul {
