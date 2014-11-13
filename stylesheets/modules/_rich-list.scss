@@ -1,5 +1,5 @@
 /**
- * Rich lists can be displayed either as the entire layout for a tab, or as a
+ * Richer lists can be displayed either as the entire layout for a tab, or as a
  * separate component within a form.
  *
  * 1. Rich lists should aim to chop the last item in a list in half horizontally
@@ -60,7 +60,7 @@ $rich-list-item-text-selected-color:  $white !default;
     Default Presentation
 \* -------------------------------------------------------------------------- */
 
-.rich-list {
+.richer-list {
   display: block;
   float: left;
   height: $rich-list-height;
@@ -69,19 +69,19 @@ $rich-list-item-text-selected-color:  $white !default;
   width: 100%;
 }
 
-.rich-list__items-container,
-.rich-list__detail {
+.richer-list__items-container,
+.richer-list__detail {
   display: block;
   float: left;
   overflow: scroll;
 }
 
-.rich-list__items-container {
+.richer-list__items-container {
   height: $rich-list-height;
   overflow: scroll;
 }
 
-.rich-list__items {
+.richer-list__items {
   width: 100%;
 
   ul &,
@@ -90,11 +90,11 @@ $rich-list-item-text-selected-color:  $white !default;
   }
 }
 
-.rich-list__detail {
+.richer-list__detail {
   height: 100%;
 }
 
-.rich-list__items-container {
+.richer-list__items-container {
   background-color: $off-white; /* [3] */
   border-right: 1px solid $rich-list-border-color;
   vertical-align: top; /* [4] */
@@ -106,7 +106,7 @@ $rich-list-item-text-selected-color:  $white !default;
   }
 }
 
-.rich-list__item {
+.richer-list__item {
   background-color: $rich-list-item-bg-color;
 
   &:not(:last-of-type),
@@ -158,7 +158,7 @@ $rich-list-item-text-selected-color:  $white !default;
   }
 }
 
-.rich-list__detail {
+.richer-list__detail {
   padding: $rich-list-item-padding;
   width: percentage(1 - $rich-list_items-width-default);
 }
@@ -168,65 +168,65 @@ $rich-list-item-text-selected-color:  $white !default;
     Variations
 \* -------------------------------------------------------------------------- */
 
-.rich-list--fit-items { /* [12] */
+.richer-list--fit-items { /* [12] */
   &,
-  .rich-list__items-container,
-  .rich-list__detail {
+  .richer-list__items-container,
+  .richer-list__detail {
     height: auto;
   }
 }
 
 
-.rich-list__paginated {
-  @extend .rich-list--fit-items;
+.richer-list__paginated {
+  @extend .richer-list--fit-items;
   margin-bottom: 1px; /* [13] */
 }
 
 
 @include respond-min($screen-tablet) { /* [14] */
-  .rich-list {
-    .rich-list__items-container {
+  .richer-list {
+    .richer-list__items-container {
       width: percentage($rich-list-items-width-small);
     }
-    .rich-list__detail {
+    .richer-list__detail {
       width: percentage(1 - $rich-list-items-width-small);
     }
   }
 
 
-  .rich-list--medium {
-    .rich-list__items-container {
+  .richer-list--medium {
+    .richer-list__items-container {
       width: percentage($rich-list-items-width-medium);
     }
-    .rich-list__detail {
+    .richer-list__detail {
       width: percentage(1 - $rich-list-items-width-medium);
     }
   }
 
 
-  .rich-list--large {
-    .rich-list__items-container {
+  .richer-list--large {
+    .richer-list__items-container {
       width: percentage($rich-list-items-width-large);
     }
-    .rich-list__detail {
+    .richer-list__detail {
       width: percentage(1 - $rich-list-items-width-large);
     }
   }
 
 
-  .rich-list--xlarge {
-    .rich-list__items-container {
+  .richer-list--xlarge {
+    .richer-list__items-container {
       width: percentage($rich-list-items-width-xlarge);
     }
-    .rich-list__detail {
+    .richer-list__detail {
       width: percentage(1 - $rich-list-items-width-xlarge);
     }
   }
 }
 
 
-.rich-list--tall,
-.rich-list--tall .rich-list__items-container {
+.richer-list--tall,
+.richer-list--tall .richer-list__items-container {
   height: $rich-list-height-tall;
 }
 
@@ -236,8 +236,8 @@ $rich-list-item-text-selected-color:  $white !default;
 \* -------------------------------------------------------------------------- */
 
 .deck { /* [15] */
-  .rich-list__items,
-  .rich-list__detail {
+  .richer-list__items,
+  .richer-list__detail {
     height: 100%;
     overflow-y: visible;
   }
