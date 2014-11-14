@@ -249,26 +249,6 @@
     }
   }
 
-  tr.row--no-results {
-    background-color: $off-white;
-    td {
-      display: table-cell;
-      height: ($line-height-base * 1.8) * 3;
-      text-align: center;
-      vertical-align: inherit;
-
-      &:before {
-        display: none;
-      }
-    }
-    a {
-      color: $link-color;
-    }
-    &:hover a {
-      text-decoration: underline;
-    }
-  }
-
   tr.is-selected {
     @include highlight-row($blue);
     > td {
