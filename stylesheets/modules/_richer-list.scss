@@ -165,6 +165,22 @@ $rich-list-item-text-selected-color:  $white !default;
   }
 }
 
+
+.richer-list__item-placeholder {
+  background-color: $off-white;
+  height: ($line-height-base * 1.8) * 3;
+  text-align: center;
+  vertical-align: inherit;
+
+  a {
+    color: $link-color;
+  }
+
+  &:hover a {
+    text-decoration: underline;
+  }
+}
+
 .richer-list__detail {
   padding: $rich-list-item-padding;
   width: percentage(1 - $rich-list_items-width-default);
