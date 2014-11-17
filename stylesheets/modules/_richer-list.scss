@@ -208,7 +208,7 @@ $rich-list-item-text-selected-color:  $white !default;
 }
 
 
-.richer-list__paginated {
+.richer-list--paginated {
   @extend .richer-list--fit-items;
   margin-bottom: 1px; /* [15] */
 }
