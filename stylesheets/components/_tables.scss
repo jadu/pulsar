@@ -82,3 +82,16 @@ table {
     }
   }
 }
+
+
+.row--align-top {
+  th, td {
+    vertical-align: top;
+  }
+}
+
+.row--align-middle {
+  th, td {
+    vertical-align: middle;
+  }
+}
