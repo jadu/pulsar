@@ -133,8 +133,8 @@ $rich-list-item-text-selected-color:  $white !default;
     list-style-type: none;
   }
 
-  a,
-  span { /* [10] */
+  > a,
+  > span { /* [10] */
     display: inline-block;
     width: 100%;
   }
