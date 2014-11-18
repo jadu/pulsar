@@ -18,19 +18,23 @@
  * 7. Rich list items can contain selection of different element types, which
  *    need padding applied to maintain layout.
  * 8. Don't show bullets/numbers when using ordered/unordered lists.
- * 9. Make sure links & spans used as list items are treated as block-level and
- *    100% width.
- * 10. Reset default table styles.
- * 11. Reset link styling used in list items, visual styling should be
+ * 9. Use pointer cursor here, as we might not always be using links to trigger
+ *    the detail changes.
+ * 10. Remove list bullets/numbers, though we probably should allow numbers as
+ *     an option at some point...
+ * 11. Make sure links & spans used as list items are treated as block-level and
+ *     100% width.
+ * 12. Reset default table styles.
+ * 13. Reset link styling used in list items, visual styling should be
  *     handled by the list item itself.
- * 12. Remove ability to scroll contents and simply stretch the height to fit
+ * 14. Remove ability to scroll contents and simply stretch the height to fit
  *     the number of items.
- * 13. If streching to fit, or paginating, then we don't need the emtpy space
+ * 15. If streching to fit, or paginating, then we don't need the emtpy space
  *     after the last item as created in [3].
- * 14. Make sure .pagination element sits directly underneath the rich list.
- * 15. Size variants only available when the screen is wide enough for them to
+ * 16. Make sure .pagination element sits directly underneath the rich list.
+ * 17. Size variants only available when the screen is wide enough for them to
  *     be useful.
- * 16. Rich lists within decks.
+ * 18. Rich lists within decks.
  */
 
 
@@ -128,24 +132,26 @@ $rich-list-item-text-selected-color:  $white !default;
 }
 
 .richer-list__item {
+  cursor: pointer; /* [9] */
+
   ol &,
-  ul & { /* [9] */
+  ul & { /* [10] */
     list-style-type: none;
   }
 
   > a,
-  > span { /* [10] */
+  > span { /* [11] */
     display: inline-block;
     width: 100%;
   }
 
   th,
-  td { /* [11] */
+  td { /* [12] */
     background: none;
     background-color: none;
   }
 
-  a { /* [12] */
+  a { /* [13] */
     color: $black;
     text-decoration: none;
   }
@@ -191,7 +197,7 @@ $rich-list-item-text-selected-color:  $white !default;
     Variations
 \* -------------------------------------------------------------------------- */
 
-.richer-list--fit-items { /* [13] */
+.richer-list--fit-items { /* [14] */
   &,
   .richer-list__items-container,
   .richer-list__detail {
@@ -199,7 +205,7 @@ $rich-list-item-text-selected-color:  $white !default;
   }
 
   .richer-list__items {
-    margin-bottom: 0; /* [14] */
+    margin-bottom: 0; /* [15] */
   }
 }
 
@@ -207,7 +213,7 @@ $rich-list-item-text-selected-color:  $white !default;
 .richer-list--paginated {
   @extend .richer-list--fit-items;
   height: $rich-list-height-paginated; /* [2] */
-  margin-bottom: 1px; /* [15] */
+  margin-bottom: 1px; /* [16] */
 
   .richer-list__detail {
     height: 100%;
@@ -216,7 +222,7 @@ $rich-list-item-text-selected-color:  $white !default;
 }
 
 
-@include respond-min($screen-tablet) { /* [16] */
+@include respond-min($screen-tablet) { /* [17] */
   .richer-list {
     .richer-list__items-container {
       width: percentage($rich-list-items-width-small);
@@ -272,7 +278,7 @@ $rich-list-item-text-selected-color:  $white !default;
     Alternative Uses
 \* -------------------------------------------------------------------------- */
 
-.deck { /* [17] */
+.deck { /* [18] */
   .richer-list__items,
   .richer-list__detail {
     height: 100%;
