@@ -1,6 +1,7 @@
 // Data grid view
 .table--datagrid {
   border-collapse: separate;
+  max-width: auto;
   outline: 1px solid $gray;
   width: 100%;
 
