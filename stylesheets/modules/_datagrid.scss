@@ -164,6 +164,11 @@
     }
   }
 
+  .label {
+    white-space: normal;
+  }
+}
+
   tr.row--highlight {
     @include highlight-row($blue);
   }
