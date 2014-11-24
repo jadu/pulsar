@@ -15,6 +15,8 @@
  * 10. Compensate for [11] so that the rest of the layout doesn't move when
  *     animating the top offset.
  * 11. Offset the button slightly to achieve the inset/outset effect.
+ * 12. Remove border set in [?]
+ * 13. Use auto margin to align right without floats.
  */
 
 /* -------------------------------------------------------------------------- *\
@@ -44,6 +46,12 @@ $greeter-button-bg-color-hover:     darken($greeter-button-bg-color, 2) !default
 $greeter-button-border-color:       darken($greeter-button-bg-color, 10) !default;
 $greeter-button-bg-color-disabled:  lighten($greeter-button-bg-color, 3) !default;
 
+// Branding
+$greeter-brand-bottom-image:        '../images/branding/jadu-white.svg';
+$greeter-brand-bottom-width:        100px;
+$greeter-brand-bottom-height:       40px;
+
+
 /* -------------------------------------------------------------------------- *\
     Default Presentation
 \* -------------------------------------------------------------------------- */
@@ -54,15 +62,15 @@ $greeter-button-bg-color-disabled:  lighten($greeter-button-bg-color, 3) !defaul
   min-height: $greeter-min-height;
   padding: $greeter-padding;
   width: $greeter-width;
+}
 
-  a {
-    border-bottom: 1px solid $greeter-link-underline-color;
-    color: $greeter-text-color;
-    text-decoration: none;
+.greeter__link {
+  border-bottom: 1px solid $greeter-link-underline-color;
+  color: $greeter-text-color;
+  text-decoration: none;
 
-    &:hover {
-      border-bottom-color: $greeter-text-color;
-    }
+  &:hover {
+    border-bottom-color: $greeter-text-color;
   }
 }
 
@@ -142,4 +150,20 @@ $greeter-button-bg-color-disabled:  lighten($greeter-button-bg-color, 3) !defaul
   &:disabled {
     background-color: $greeter-button-bg-color-disabled;
   }
+}
+
+
+.greeter__footer {
+  position: relative;
+}
+
+.greeter__brand-bottom {
+  background: url($greeter-brand-bottom-image);
+  background-size: $greeter-brand-bottom-width $greeter-brand-bottom-height;
+  border-bottom: none; /* [12] */
+  display: block;
+  height: $greeter-brand-bottom-height;
+  margin-left: auto; /* [13] */
+  text-indent: -9999px;
+  width: $greeter-brand-bottom-width;
 }
