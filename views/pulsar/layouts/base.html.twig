@@ -32,37 +32,18 @@
 
     <script src="{{ jsPath ~ 'config.js' }}"></script>
     <script src="{{ libsPath ~ 'requirejs/require.js' }}"></script>
-    <script src="{{ jsPath ~ 'main.js' }}"></script>
+    <script
+        src="{{ jsPath ~ 'main.js' }}"
+        id="main-js"
+{% if pageModule is defined %}
+        data-page="{{ pageModule }}"
+{% endif %}
+    ></script>
 
 </head>
 <body class="language-html">
 
-    <header id="top">
-        {% include '@pulsar/pulsar/components/toolbar.html.twig' %}
-        {% include '@pulsar/pulsar/components/flash.html.twig' %}
-    </header>
-    {% include '@pulsar/pulsar/components/breadcrumb.html.twig' %}
-
-    {% block summary %}{% endblock %}
-
-    <div role="main" class="container">
-        {% block content %}{% endblock %}
-        {% block decks %}{% endblock %}
-    </div>
-
-    <footer>
-        {{ html.link(label = html.icon('long-arrow-up') ~ ' Top', href = '#top') }}
-        {{ html.link(label = 'Jadu 1.12 &copy; 2014', href = '/credits') }}
-    </footer>
-
-    <div id="modal" class="modal" role="dialog" aria-hidden="true">
-        <!-- empty modal for ajax requests -->
-    </div>
-
-    {% block modals %}
-    {% endblock %}
-
-    {% block javascript %}{% endblock %}
+    {% block body %}{% endblock %}
 
     <script src="http://localhost:8000/libs/livereload-js/dist/livereload.js?host=localhost"></script>
 </body>

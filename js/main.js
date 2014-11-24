@@ -1,10 +1,13 @@
-// The default path used by the Grunfile
+
 var path = '';
 
-// Set by /public_html/jadu/assets/js/config.js
+// Set by /public_html/jadu/assets/js/config.json
 if (window.jadu.requireJsPath) {
     path = window.jadu.requireJsPath;
 }
+
+var script = document.getElementById('main-js'),
+    pageModule = script ? script.getAttribute('data-page') : null;
 
 requirejs.config({
     paths: {
@@ -20,6 +23,7 @@ requirejs.config({
         'deck'              : path + '/js/deck',
         'dropdown'          : path + '/js/dropdown',
         'flash'             : path + '/js/flash',
+        'greeter'           : path + '/js/greeter',
         'highcharts'        : path + '/libs/highcharts/highcharts',
         'highcharts-more'   : path + '/libs/highcharts/highcharts-more',
         'highcharts-mono'   : path + '/js/highcharts-mono',
@@ -46,6 +50,7 @@ requirejs.config({
         'tab'               : path + '/js/tab',
         'tooltip'           : path + '/js/tooltip',
         'tray'              : path + '/js/tray',
+        'util'              : path + '/js/util',
         'vague'             : path + '/libs/Vague.js/Vague',
         'zeroclipboard'     : path + '/libs/zeroclipboard/dist/ZeroClipboard.min'
     },
@@ -85,8 +90,15 @@ require([
     'popover',
     'tooltip',
     'pulsar',
-    'quantum'
+    'quantum',
+    'util'
 ], function($) {
+
     'use strict';
-    // $();
+
+    if (pageModule) {
+      require([pageModule], function (Page) {
+          (new Page()).init();
+      });
+    }
 });
