@@ -13,6 +13,10 @@
   border: 0;
 }
 
+.visually-hidden {
+  display: none;
+}
+
 .muted {
   color: $gray;
 }

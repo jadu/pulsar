@@ -238,16 +238,16 @@ textarea.form__control {
     margin-bottom: $line-height-base;
   }
 
-  @at-root :not(.modal) &:hover {
-    box-shadow: inset 4px 0 0 $gray;
-  }
-
   .form__group {
     margin-bottom: $padding-small-vertical;
     &:hover {
       box-shadow: none;
     }
   }
+}
+
+:not(.modal) .form__group:hover {
+  box-shadow: inset 4px 0 0 $gray;
 }
 
 // Choice matrix position

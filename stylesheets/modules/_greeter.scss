@@ -2,21 +2,28 @@
  * The greeter is a panel which is displayed when a user first logs into the
  * Jadu CMS.
  *
+ * 1. Use text-align to move the send button to the right.
  * 2. Make sure input text colour is correctly set over the input background
  *    colour.
  * 3. Remove default textarea border.
- * 4. Give the user plenty of space to write their responses.
- * 5. Prevent unwanted outline outside of the textarea.
- * 6. Relative position required for the movement we'll do in [8].
- * 7. Hovering over the button causes the button to be 'pushed in' by 1px which
+ * 4. Stop textarea from being resized horizontally.
+ * 5. Give the user plenty of space to write their responses.
+ * 6. Prevent unwanted outline outside of the textarea.
+ * 7. This container is required to contain an absolutely positioned element
+ *    which will be added by javascript which will allow us to bind hover
+ *    behaviour over the disabled input.
+ * 8. Makes the hint text line up correctly with the submit label.
+ * 9. The hand icon which points to the input.
+ *
+ * 10. Relative position required for the movement we'll do in [8].
+ * 11. Hovering over the button causes the button to be 'pushed in' by 1px which
  *    helps to explain the affordance (it can be pushed).
- * 8. Make sure active state overrides the hover state.
- * 9. Disabled state changes to outset when the user begins to type.
- * 10. Compensate for [11] so that the rest of the layout doesn't move when
+ * 12. Make sure active state overrides the hover state.
+ * 13. Disabled state changes to outset when the user begins to type.
+ * 14. Compensate for [11] so that the rest of the layout doesn't move when
  *     animating the top offset.
- * 11. Offset the button slightly to achieve the inset/outset effect.
- * 12. Remove border set in [?]
- * 13. Use auto margin to align right without floats.
+ * 15. Offset the button slightly to achieve the inset/outset effect.
+ * 16. Use auto margin to align right without floats.
  */
 
 /* -------------------------------------------------------------------------- *\
@@ -24,32 +31,47 @@
 \* -------------------------------------------------------------------------- */
 
 // Dimensions
-$greeter-min-height:                200px !default;
-$greeter-width:                     600px !default;
-$greeter-padding:                   $gutter-width !default;
-$greeter-form-width:                500px;
-$greeter-button-border-width:       3px;
+$greeter-min-height:                    200px !default;
+$greeter-width:                         600px !default;
+$greeter-padding:                       $gutter-width !default;
+$greeter-form-width:                    500px;
+$greeter-button-border-width:           3px;
 
 // Type
-$greeter-font-size-large:           2em !default;
-$greeter-font-size-medium:          1.25em !default;
-$greeter-font-size-small:           .9em !default;
+$greeter-font-size-large:               2em !default;
+$greeter-font-size-medium:              1.25em !default;
+$greeter-font-size-small:               .9em !default;
 
 // Colours
-$greeter-bg-color:                  $jadu-blue !default;
-$greeter-bg-color-lighter:          $jadu-blue-cool !default;
-$greeter-text-color:                $white !default;
-$greeter-text-color-alt:            $black !default;
-$greeter-link-underline-color:      $greeter-bg-color-lighter !default;
-$greeter-button-bg-color:           $jadu-blue-secondary !default;
-$greeter-button-bg-color-hover:     darken($greeter-button-bg-color, 2) !default;
-$greeter-button-border-color:       darken($greeter-button-bg-color, 10) !default;
-$greeter-button-bg-color-disabled:  lighten($greeter-button-bg-color, 3) !default;
+$greeter-bg-color:                      $jadu-blue !default;
+$greeter-bg-color-lighter:              $jadu-blue-cool !default;
+$greeter-text-color:                    $white !default;
+$greeter-text-color-alt:                $black !default;
+$greeter-link-underline-color:          $greeter-bg-color-lighter !default;
+$greeter-button-bg-color:               $jadu-blue-secondary !default;
+$greeter-button-bg-color-hover:         darken($greeter-button-bg-color, 2) !default;
+$greeter-button-border-color:           darken($greeter-button-bg-color, 10) !default;
+$greeter-button-bg-color-disabled:      darken($greeter-bg-color, 3) !default;
+$greeter-button-border-color-disabled:  darken($greeter-bg-color, 10) !default;
 
 // Branding
-$greeter-brand-bottom-image:        '../images/branding/jadu-white.svg';
-$greeter-brand-bottom-width:        100px;
-$greeter-brand-bottom-height:       40px;
+$greeter-brand-top-image:               '../images/branding/logo-cms-white.svg' !default;
+$greeter-brand-top-width:               65px !default;
+$greeter-brand-top-height:              $greeter-brand-top-width !default;
+$greeter-brand-bottom-image:            '../images/branding/jadu-white.svg' !default;
+$greeter-brand-bottom-width:            100px !default;
+$greeter-brand-bottom-height:           40px !default;
+
+// Animations
+@-webkit-keyframes bounce {
+  0%, 50%, 100% { -webkit-transform: translateY(0); }
+  25%, 75% { -webkit-transform: translateY(-5px); }
+}
+
+@keyframes bounce {
+  0%, 50%, 100% { transform: translateY(0); }
+  25%, 75% { transform: translateY(-5px); }
+}
 
 
 /* -------------------------------------------------------------------------- *\
@@ -58,6 +80,10 @@ $greeter-brand-bottom-height:       40px;
 
 .greeter {
   background-color: $greeter-bg-color;
+  background-image: url($greeter-brand-top-image);
+  background-size: $greeter-brand-top-width $greeter-brand-top-height;
+  background-position: $greeter-padding $greeter-padding;
+  background-repeat: no-repeat;
   color: $greeter-text-color;
   min-height: $greeter-min-height;
   padding: $greeter-padding;
@@ -66,8 +92,13 @@ $greeter-brand-bottom-height:       40px;
 
 .greeter__link {
   border-bottom: 1px solid $greeter-link-underline-color;
-  color: $greeter-text-color;
   text-decoration: none;
+
+  &,
+  &:link,
+  &:visited {
+    color: $greeter-text-color;
+  }
 
   &:hover {
     border-bottom-color: $greeter-text-color;
@@ -75,6 +106,8 @@ $greeter-brand-bottom-height:       40px;
 }
 
 .greeter__header {
+  margin-left: auto;
+  max-width: 85%;
   text-align: right;
 }
 
@@ -88,7 +121,7 @@ $greeter-brand-bottom-height:       40px;
   font-size: $greeter-font-size-medium;
   line-height: 1em;
   margin-bottom: .5em;
-  text-align: right;
+
 }
 
 .greeter__call-to-action {
@@ -97,9 +130,9 @@ $greeter-brand-bottom-height:       40px;
 
 
 .greeter__form {
-  margin: 2em auto;
+  margin: 2em auto 0 auto;
   overflow: visible;
-  text-align: right;
+  text-align: right; /* [1] */
   width: $greeter-form-width;
 
   input,
@@ -111,14 +144,46 @@ $greeter-brand-bottom-height:       40px;
 .greeter__textarea {
   border: 0; /* [3] */
   box-shadow: inset 0 3px 0 $gray-lighter;
-  min-height: 8em; /* [4] */
+  max-width: ($greeter-width - ($greeter-padding * 2)); /* [4] */
+  max-height: 16em;
+  min-height: 8em; /* [5] */
   padding: .5em;
+  resize: vertical; /* [4] */
   width: 100%;
 
   &:focus {
-    outline: none; /* [5] */
+    outline: none; /* [6] */
   }
 }
+
+
+.greeter__actions { /* [7] */
+  display: inline-block;
+  position: relative;
+}
+
+.greeter__hint {
+  display: inline-block;
+  margin: 0 ($greeter-padding / 2) 0 auto;
+  opacity: 0;
+  position: relative;
+  top: 3px; /* [8] */
+
+  i { /* [9] */
+    display: inline-block;
+    font-size: 1.5em;
+    margin-right: ($greeter-padding / 2);
+    -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+    -webkit-animation-iteration-count:infinite;
+            animation-iteration-count:infinite;
+    -webkit-animation-name: bounce;
+            animation-name: bounce;
+  }
+}
+
 
 .greeter__button {
   background-color: $greeter-button-bg-color;
@@ -128,9 +193,9 @@ $greeter-brand-bottom-height:       40px;
   font-size: $greeter-font-size-small;
   line-height: 1em;
   padding: 10px 10px 7px 10px;
-  position: relative; /* [6] */
+  position: relative; /* [10] */
 
-  &:hover:not(:disabled) { /* [7] */
+  &:hover:not(:disabled) { /* [11] */
     border-bottom-color: $greeter-button-border-color;
     border-bottom-width: $greeter-button-border-width - 1;
     background-color: $greeter-button-bg-color-hover;
@@ -139,31 +204,31 @@ $greeter-brand-bottom-height:       40px;
   }
 
   &:active,
-  &:hover:active, /* [8] */
-  &:disabled { /* [9] */
+  &:hover:active, /* [12] */
+  &:disabled { /* [13] */
     border-bottom: 0;
     box-shadow: inset 0 1px 0 $greeter-button-border-color;
-    margin-bottom: $greeter-button-border-width; /* [10] */
-    top: $greeter-button-border-width; /* [11] */
+    margin-bottom: $greeter-button-border-width; /* [14] */
+    top: $greeter-button-border-width; /* [15] */
   }
 
   &:disabled {
+    box-shadow: inset 0 1px 0 $greeter-button-border-color-disabled;
     background-color: $greeter-button-bg-color-disabled;
   }
 }
 
 
 .greeter__footer {
-  position: relative;
+  margin-top: 2em;
 }
 
 .greeter__brand-bottom {
-  background: url($greeter-brand-bottom-image);
+  background-image: url($greeter-brand-bottom-image);
   background-size: $greeter-brand-bottom-width $greeter-brand-bottom-height;
-  border-bottom: none; /* [12] */
   display: block;
   height: $greeter-brand-bottom-height;
-  margin-left: auto; /* [13] */
+  margin-left: auto; /* [16] */
   text-indent: -9999px;
   width: $greeter-brand-bottom-width;
 }
