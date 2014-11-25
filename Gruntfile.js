@@ -46,19 +46,20 @@ module.exports = function(grunt) {
     },
 
     autoprefixer: {
-      single_file: {
+      dev: {
         options: {
           browsers: ['last 2 version', 'ie 7', 'ie 8', 'ie 9']
         },
-        src: 'css/<%= pkg.name %>.css',
-        dest: 'css/<%= pkg.name %>.css'
+        expand: true,
+        src:    'css/*.css',
+        dest:   'css/'
       }
     },
 
     watch: {
       css: {
         files: ['stylesheets/**/*.scss'],
-        tasks: ['sass'],
+        tasks: ['sass', 'autoprefixer'],
         options: {
           livereload: true,
         },
