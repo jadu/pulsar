@@ -2,7 +2,7 @@ Decks allow an interface to overlay forms on top of the current view so the user
 
 Decks should be used in preference to modals/lightboxes with the exception of completely blocking/destructive actions where we absolutely need to stop the user from doing anything else.
 
-![deck slide 1 example](http://localhost:8000/docs/images/modules_deck-slide_1.png)![deck slide 2 example](http://localhost:8000/docs/images/modules_deck-slide_2.png)
+![deck slide 1 example](http://localhost:8000/app/docs/images/modules_deck-slide_1.png)![deck slide 2 example](http://localhost:8000/app/docs/images/modules_deck-slide_2.png)
 
 The main Pulsar layout has a `{% block decks %}` block, where all your decks should be defined.
 
@@ -33,7 +33,7 @@ Decks consist of one or more 'slides' which are offset from each other to give t
 Use the `data-toggle="deck"` attribute to make a link (or a [button with the link type](../HTML_helper/Buttons)) open a deck with the given ID and show it's first slide.
 
     {{ html.link('Example deck link, '#example-deck', null, null, 'data-toggle="deck"' ) }}
-    
+
     {{ html.button('Example Deck', null, 'link', null, '#example-deck', 'data-toggle="deck"') }}
 
 

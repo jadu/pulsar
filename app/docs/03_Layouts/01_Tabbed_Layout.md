@@ -1,14 +1,14 @@
 The tabbed layout is Pulsar's default and consists of a list of clickable tabs down the left hand side and their respective content on the right. The tab content is ususally a form or a data-grid, but can be more complex depending on the needs of the interface.
 
-![tabbed layout example](http://localhost:8000/docs/images/layout_tabbed.png)
+![tabbed layout example](http://localhost:8000/app/docs/images/layout_tabbed.png)
 
 There are two template blocks which should be set by a view:
 
-    {% block tabs_list %} 
+    {% block tabs_list %}
         <!-- tabs list -->
     {% endblock %}
-    
-    {% block tabs_content %} 
+
+    {% block tabs_content %}
         <!-- tabs content -->
     {% endblock %}
 
@@ -17,20 +17,20 @@ There are two template blocks which should be set by a view:
 The information for the individual tabs and their content is defined in a JSON object that you will pass to the `html.tabs()` and `html.tabs_content()` helpers to physically render them.
 
 
-    {% 
+    {%
       set tabs = [
         {
-          "id"    : "buttons", 
+          "id"    : "buttons",
           "label" : html.icon("plus-sign-alt") ~ " Buttons",
           "src"   : tab_buttons
         },
         {
-          "id"    : "decks",   
+          "id"    : "decks",
           "label" : html.icon("columns") ~ " Decks",
           "src"   : tab_decks
         },
         {
-          "id"    : "flash",   
+          "id"    : "flash",
           "label" : html.icon("warning-sign") ~ " Flash messages",
           "src"   : tab_flash
         }
@@ -61,7 +61,7 @@ Pass your tabs object to the `html.tabs` helper and they'll be rendered as click
 Available parameters:
 
     {{ html.tabs(tabs) }}
-    
+
 In your view you can populate the `tabs_list` block to place your tabs in the correct position and optionally choose which tab should be active on page load.
 
     {% block tabs_list %}
@@ -95,31 +95,31 @@ Create the contents of your tabs and pass them to the `html.tabs_content` helper
         {% set tab_buttons %}
             {% include 'tabs/buttons.html.twig' %}
         {% endset %}
-        
+
         {% set tab_columns %}
             {% include 'tabs/columns.html.twig' %}
         {% endset %}
-        
+
         {% set tab_alerts %}
             {% include 'tabs/alerts.html.twig' %}
         {% endset %}
 
     {# Create the tab object #}
 
-        {% 
+        {%
           set tabs = [
             {
-              "id"    : "buttons", 
+              "id"    : "buttons",
               "label" : html.icon("plus-sign-alt") ~ " Buttons",
               "src"   : tab_buttons
             },
             {
-              "id"    : "decks",   
+              "id"    : "decks",
               "label" : html.icon("columns") ~ " Decks",
               "src"   : tab_decks
             },
             {
-              "id"    : "flash",   
+              "id"    : "flash",
               "label" : html.icon("warning-sign") ~ " Flash messages",
               "src"   : tab_flash
             }
@@ -131,7 +131,7 @@ Create the contents of your tabs and pass them to the `html.tabs_content` helper
         {% block tabs_list %}
             {{ html.tabs(tabs) }}
         {% endblock %}
-        
+
         {% block tabs_content %}
             {{ html.tabs_content(tabs) }}
         {% endblock %}
@@ -151,7 +151,7 @@ If the active tab is a sub-navigation tab, the parent tab will be automatically 
 
 Tab panes can have a right-hand sidebar which is useful for inline documentation, the sidebar element must appear before the main tab content for styling reasons.
 
-![tabbed layout with sidebar example](http://localhost:8000/docs/images/layout_tabbed-sidebar.png)
+![tabbed layout with sidebar example](http://localhost:8000/app/docs/images/layout_tabbed-sidebar.png)
 
     <div class="tab__inner">
         <div class="tab__sidebar">

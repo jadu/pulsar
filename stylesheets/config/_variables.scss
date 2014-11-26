@@ -175,7 +175,7 @@ $tooltip-arrow-color:                 $tooltip-bg !default;
 
 $toolbar-accent-height:               4px !default;
 
-$toolbar-height:                      ($line-height-base * 3) !default; // including accent height
+$toolbar-height:                      64px !default; // including accent height
 $toolbar-height-small:                ($line-height-base * 2) !default; // including accent height
 $toolbar-internal-height:             ($toolbar-height - $toolbar-accent-height) !default;
 
