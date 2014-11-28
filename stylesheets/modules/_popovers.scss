@@ -10,7 +10,7 @@
   z-index: $zindex-popover;
   display: none;
   max-width: $popover-max-width;
-  padding: 1px;
+  padding: 0;
   text-align: left; // Reset given new insertion method
   background-color: $popover-bg;
   -webkit-bg-clip: padding-box;
@@ -65,6 +65,10 @@
     &:last-child {
       margin-bottom: 0;
     }
+  }
+
+  fieldset {
+    margin: 0.5em 0.75em;
   }
 }
 
