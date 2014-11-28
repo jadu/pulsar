@@ -32,6 +32,33 @@
         {{ html.button(label = 'Disabled', class = 'is-disabled') }}
     </p>
 
+    <h2>Link buttons</h2>
+
+    <p>
+        <!-- The normal type of button you should use -->
+        {{ html.button(label = 'Default', type = 'link') }}
+
+        <!-- In the context of a full UI, this is the main thing we want the user to do next -->
+        {{ html.button(label = 'Primary', class = 'btn--primary', type = 'link') }}
+
+        <!-- Indicates a successful or positive action -->
+        {{ html.button(label = 'Success', class = 'btn--success', type = 'link') }}
+
+        <!-- Indicates a dangerous or destructive action -->
+        {{ html.button(label = 'Danger', class = 'btn--danger', type = 'link') }}
+
+        <!-- Indicates caution should be taken here -->
+        {{ html.button(label = 'Warning', class = 'btn--warning', type = 'link') }}
+
+        <!-- Contextual button for informational alert messages -->
+        {{ html.button(label = 'Info', class = 'btn--info', type = 'link') }}
+
+        <!-- Rarely used, a good example is a 'locked content' button -->
+        {{ html.button(label = 'Inverse', class = 'btn--inverse', type = 'link') }}
+
+        {{ html.button(label = 'Disabled', class = 'is-disabled', type = 'link') }}
+    </p>
+
     <h2>Button groups</h2>
     <p>
         <div class="btn__toolbar">
