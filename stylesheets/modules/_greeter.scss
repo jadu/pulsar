@@ -1,0 +1,235 @@
+/**
+ * The greeter is a panel which is displayed when a user first logs into the
+ * Jadu CMS.
+ *
+ * 1. Use text-align to move the send button to the right.
+ * 2. Make sure input text colour is correctly set over the input background
+ *    colour.
+ * 3. Remove default textarea border.
+ * 4. Stop textarea from being resized horizontally.
+ * 5. Give the user plenty of space to write their responses.
+ * 6. Prevent unwanted outline outside of the textarea.
+ * 7. This container is required to contain an absolutely positioned element
+ *    which will be added by javascript which will allow us to bind hover
+ *    behaviour over the disabled input.
+ * 8. Makes the hint text line up correctly with the submit label.
+ * 9. The hand icon which points to the input.
+ *
+ * 10. Relative position required for the movement we'll do in [8].
+ * 11. Hovering over the button causes the button to be 'pushed in' by 1px which
+ *    helps to explain the affordance (it can be pushed).
+ * 12. Make sure active state overrides the hover state.
+ * 13. Disabled state changes to outset when the user begins to type.
+ * 14. Compensate for [11] so that the rest of the layout doesn't move when
+ *     animating the top offset.
+ * 15. Offset the button slightly to achieve the inset/outset effect.
+ * 16. Use auto margin to align right without floats.
+ */
+
+/* -------------------------------------------------------------------------- *\
+    Configuration
+\* -------------------------------------------------------------------------- */
+
+// Dimensions
+$greeter-min-height:                    200px !default;
+$greeter-width:                         600px !default;
+$greeter-padding:                       $gutter-width !default;
+$greeter-form-width:                    500px;
+$greeter-button-border-width:           3px;
+
+// Type
+$greeter-font-size-large:               2em !default;
+$greeter-font-size-medium:              1.25em !default;
+$greeter-font-size-small:               .9em !default;
+
+// Colours
+$greeter-bg-color:                      $jadu-blue !default;
+$greeter-bg-color-lighter:              $jadu-blue-cool !default;
+$greeter-bg-color-darker:               darken($greeter-bg-color, 3) !default;
+$greeter-text-color:                    $white !default;
+$greeter-text-color-alt:                $black !default;
+$greeter-link-underline-color:          $greeter-bg-color-lighter !default;
+$greeter-button-bg-color:               $jadu-blue-secondary !default;
+$greeter-button-bg-color-hover:         darken($greeter-button-bg-color, 2) !default;
+$greeter-button-border-color:           darken($greeter-button-bg-color, 10) !default;
+$greeter-button-bg-color-disabled:      $greeter-bg-color-darker !default;
+$greeter-button-border-color-disabled:  darken($greeter-bg-color, 10) !default;
+
+// Branding
+$greeter-brand-top-image:               '../images/branding/logo-cms-white.svg' !default;
+$greeter-brand-top-width:               65px !default;
+$greeter-brand-top-height:              $greeter-brand-top-width !default;
+$greeter-brand-bottom-image:            '../images/branding/jadu-white.svg' !default;
+$greeter-brand-bottom-width:            100px !default;
+$greeter-brand-bottom-height:           40px !default;
+
+// Animations
+@-webkit-keyframes bounce {
+  0%, 50%, 100% { -webkit-transform: translateY(0); }
+  25%, 75% { -webkit-transform: translateY(-5px); }
+}
+
+@keyframes bounce {
+  0%, 50%, 100% { transform: translateY(0); }
+  25%, 75% { transform: translateY(-5px); }
+}
+
+
+/* -------------------------------------------------------------------------- *\
+    Default Presentation
+\* -------------------------------------------------------------------------- */
+
+.greeter {
+  background-color: $greeter-bg-color;
+  background-image: url($greeter-brand-top-image);
+  background-size: $greeter-brand-top-width $greeter-brand-top-height;
+  background-position: $greeter-padding $greeter-padding;
+  background-repeat: no-repeat;
+  color: $greeter-text-color;
+  min-height: $greeter-min-height;
+  padding: $greeter-padding;
+  width: $greeter-width;
+
+  &__link {
+    border-bottom: 1px solid $greeter-link-underline-color;
+    text-decoration: none;
+
+    &,
+    &:link,
+    &:visited {
+      color: $greeter-text-color;
+    }
+
+    &:hover {
+      border-bottom-color: $greeter-text-color;
+    }
+  }
+
+  &__header {
+    margin-left: auto;
+    max-width: 85%;
+    text-align: right;
+  }
+
+  &__title {
+    font-size: $greeter-font-size-large;
+    line-height: 1em;
+    margin-bottom: .25em;
+  }
+
+  &__sub-title {
+    font-size: $greeter-font-size-medium;
+    line-height: 1em;
+    margin-bottom: .5em;
+
+  }
+
+  &__call-to-action {
+    font-size: $greeter-font-size-small;
+  }
+
+
+  &__form {
+    margin: 2em auto 0 auto;
+    overflow: visible;
+    text-align: right; /* [1] */
+    width: $greeter-form-width;
+
+    input,
+    textarea { /* [2] */
+      color: $greeter-text-color-alt;
+    }
+  }
+
+  &__textarea {
+    border: 0; /* [3] */
+    box-shadow: inset 0 3px 0 $gray-lighter;
+    max-width: ($greeter-width - ($greeter-padding * 2)); /* [4] */
+    max-height: 16em;
+    min-height: 8em; /* [5] */
+    padding: .5em;
+    resize: vertical; /* [4] */
+    width: 100%;
+
+    &:focus {
+      outline: none; /* [6] */
+    }
+  }
+
+
+  &__actions { /* [7] */
+    display: inline-block;
+    position: relative;
+  }
+
+  &__hint {
+    display: inline-block;
+    margin: 0 ($greeter-padding / 2) 0 auto;
+    opacity: 0;
+    position: relative;
+    top: 3px; /* [8] */
+
+    i { /* [9] */
+      display: inline-block;
+      font-size: 1.5em;
+      margin-right: ($greeter-padding / 2);
+      -webkit-animation-duration: 1s;
+              animation-duration: 1s;
+      -webkit-animation-fill-mode: both;
+              animation-fill-mode: both;
+      -webkit-animation-iteration-count:infinite;
+              animation-iteration-count:infinite;
+      -webkit-animation-name: bounce;
+              animation-name: bounce;
+    }
+  }
+
+
+  &__button {
+    background-color: $greeter-button-bg-color;
+    border: 0;
+    border-bottom: $greeter-button-border-width solid $greeter-button-border-color;
+    border-radius: 4px;
+    font-size: $greeter-font-size-small;
+    line-height: 1em;
+    padding: 10px 10px 7px 10px;
+    position: relative; /* [10] */
+
+    &:hover:not(:disabled) { /* [11] */
+      border-bottom-color: $greeter-button-border-color;
+      border-bottom-width: $greeter-button-border-width - 1;
+      background-color: $greeter-button-bg-color-hover;
+      margin-bottom: 1px;
+      top: 1px;
+    }
+
+    &:active,
+    &:hover:active, /* [12] */
+    &:disabled { /* [13] */
+      border-bottom: 0;
+      box-shadow: inset 0 1px 0 $greeter-button-border-color;
+      margin-bottom: $greeter-button-border-width; /* [14] */
+      top: $greeter-button-border-width; /* [15] */
+    }
+
+    &:disabled {
+      box-shadow: inset 0 1px 0 $greeter-button-border-color-disabled;
+      background-color: $greeter-button-bg-color-disabled;
+    }
+  }
+
+
+  &__footer {
+    margin-top: 2em;
+  }
+
+  &__brand-bottom {
+    background-image: url($greeter-brand-bottom-image);
+    background-size: $greeter-brand-bottom-width $greeter-brand-bottom-height;
+    display: block;
+    height: $greeter-brand-bottom-height;
+    margin-left: auto; /* [16] */
+    text-indent: -9999px;
+    width: $greeter-brand-bottom-width;
+  }
+}
