@@ -23,7 +23,8 @@ define([
             'tooltip',
             'highlightjs',
             'jquery-placeholder',
-            'summernote'
+            'summernote',
+            'toggles'
             ], function() {
 
             // tooltips (js/tooltip.js)
@@ -55,6 +56,39 @@ define([
                 ['insert', ['link', 'picture', 'video', 'table']],
                 ['misc', ['codeview', 'help']]
               ]
+            });
+
+            $('[data-toggle=settings]').on('click', function() {
+              $('.settings').toggleClass('open');
+            });
+
+            $('[data-toggle-checkbox]').each(function() {
+              var $this = $(this),
+                  $target = $('#' + $this.data('toggle-checkbox')),
+                  $icon = $this.closest('.setting').find('.setting__icon'),
+                  checked = false;
+
+              if ($target.attr('checked')) {
+                checked = true;
+
+                $icon.addClass('is-enabled');
+              } else {
+                $icon.removeClass('is-enabled');
+              }
+
+              $this.toggles({
+                animate: 100,
+                on: checked
+              });
+
+              $this.on('toggle', function (e, active) {
+                if (active) {
+                  $icon.addClass('is-enabled');
+                } else {
+                  $icon.removeClass('is-enabled');
+                }
+              });
+
             });
 
             // datagrid

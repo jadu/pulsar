@@ -48,7 +48,7 @@ requirejs.config({
         'store-js'          : path + '/libs/store.js/store',
         'summernote'        : path + '/libs/summernote/dist/summernote.min',
         'tab'               : path + '/js/tab',
-        'toggles'           : path + '/libs/jquery-toggles.toggles.min',
+        'toggles'           : path + '/libs/jquery-toggles/toggles.min',
         'tooltip'           : path + '/js/tooltip',
         'tray'              : path + '/js/tray',
         'util'              : path + '/js/util',

@@ -103,15 +103,12 @@ $rich-list-item-text-selected-color:  $white !default;
 
 
 .richer-list__detail {
+  display: table-cell;
   position: relative;
   height: 100%;
-  width: percentage(1 - $rich-list_items-width-default);
-}
-
-.richer-list__detail-inner {
-  display: table-cell;
+  // max-width: 90%;
   padding: $rich-list-item-padding;
-  width: 90%;
+  width: percentage(1 - $rich-list_items-width-default);
 }
 
 
@@ -301,12 +298,26 @@ $rich-list-item-text-selected-color:  $white !default;
 
 .richer-list__with-settings {
 
-  position: relative;
+  .richer-list__detail {
+    padding-right: 55px;
+    position: relative;
+  }
 
   .settings {
-    bottom: 0;
-    position: fixed;
+    height: 100%;
+    position: absolute;
+    right: -200px;
     top: 0;
-    right: -150px;
+
+    -webkit-transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out;
+    -ms-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+
+    &.open {
+      box-shadow: -5px 0 0 rgba(0,0,0,.1);
+      right: 0;
+    }
   }
 }

@@ -1,7 +1,7 @@
 .settings {
-  background-color: #f7f7f7;
+  background-color: #fff;
   display: block;
-  max-width: 250px;
+  width: 250px;
 }
 
 .settings__title {
@@ -13,31 +13,47 @@
   font-size: 1.2em;
 }
 
+.settings__toggle {
+  &:hover {
+    background-color: darken(#f7f7f7, 5);
+  }
+
+  i:before {
+    transition: all .5s ease-in-out;
+  }
+}
+
+.settings.open .settings__toggle {
+  background-color: darken(#f7f7f7, 5);
+
+  i:before {
+    transform: rotate(180deg);
+  }
+}
+
 .settings__toggle,
 .setting__icon {
   @extend .naked-link;
-  background-color: darken(#f7f7f7, 5);
+  // background-color: darken(#f7f7f7, 5);
   display: table-cell;
   font-size: 1.25em;
   padding: .5em;
   text-align: center;
   width: 50px;
 
-  &:hover {
-    background-color: darken(#f7f7f7, 5);
-  }
 }
 
 
 .setting__controls {
   display: table-cell;
-  padding: .5em 0;
+  padding: .5em 0 0 0;
   vertical-align: top;
 
   label {
     margin: 0;
     padding-left: .5em;
     padding-right: .5em;
+    text-align: left;
   }
 
   .warning {
@@ -48,17 +64,32 @@
       margin-bottom: .5em;
     }
   }
+
+  .toggle {
+    display: inline-block;
+    margin-right: 5px;
+    vertical-align: middle;
+    width: 55px;
+  }
+
+  .toggle-slide {
+    text-align: center;
+  }
+
 }
+
 
 .setting__actions {
   text-align: center;
 }
 
 
-.setting__icon i:before {
-  color: $gray;
-}
+.setting__icon {
+  & i:before {
+    color: $gray;
+  }
 
-.setting__icon--enabled i:before {
-  color: $jadu-green;
+  &.is-enabled i:before {
+    color: $jadu-green;
+  }
 }
