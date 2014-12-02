@@ -48,7 +48,7 @@ $rich-list-height-tall:               490px !default; /* [1] */
 $rich-list-height-paginated:          428px !default; /* [2] */
 
 // Items
-$rich-list-item-padding:              .5em ($gutter-width / 2);
+$rich-list-item-padding:              .5em;
 
 // Item widths
 $rich-list-items-width-default:       .5 !default;  // small screen
@@ -101,9 +101,19 @@ $rich-list-item-text-selected-color:  $white !default;
   }
 }
 
+
 .richer-list__detail {
+  position: relative;
   height: 100%;
+  width: percentage(1 - $rich-list_items-width-default);
 }
+
+.richer-list__detail-inner {
+  display: table-cell;
+  padding: $rich-list-item-padding;
+  width: 90%;
+}
+
 
 .richer-list__items-container {
   background-color: $off-white; /* [5] */
@@ -185,11 +195,6 @@ $rich-list-item-text-selected-color:  $white !default;
   &:hover a {
     text-decoration: underline;
   }
-}
-
-.richer-list__detail {
-  padding: $rich-list-item-padding;
-  width: percentage(1 - $rich-list_items-width-default);
 }
 
 
@@ -283,5 +288,25 @@ $rich-list-item-text-selected-color:  $white !default;
   .richer-list__detail {
     height: 100%;
     overflow-y: visible;
+  }
+}
+
+
+
+
+
+/* -------------------------------------------------------------------------- *\
+    Settings
+\* -------------------------------------------------------------------------- */
+
+.richer-list__with-settings {
+
+  position: relative;
+
+  .settings {
+    bottom: 0;
+    position: fixed;
+    top: 0;
+    right: -150px;
   }
 }

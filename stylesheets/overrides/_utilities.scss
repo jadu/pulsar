@@ -31,3 +31,10 @@ p.success {
     margin: 0 4px;
   }
 }
+
+// Removes default link styling
+.naked-link,
+.naked-link:hover {
+  text-decoration: none;
+  color: inherit;
+}
