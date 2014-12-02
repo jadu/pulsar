@@ -19,7 +19,8 @@
   }
 
   i:before {
-    transition: all .5s ease-in-out;
+    -webkit-transition: all .5s ease-in-out;
+            transition: all .5s ease-in-out;
   }
 }
 
@@ -27,7 +28,8 @@
   background-color: darken(#f7f7f7, 5);
 
   i:before {
-    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
   }
 }
 
