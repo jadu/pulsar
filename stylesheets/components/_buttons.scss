@@ -187,7 +187,7 @@ a.btn {
 }
 
 .btn--naked,
-.btn--naked:hover,
+.btn--naked:hover:not(:disabled),
 .btn--naked:active {
     background: none;
     border: none;

@@ -33,20 +33,35 @@
 		<div class="richer-list__detail">
 			<p>Lorizzle ipsum dolor shut the shizzle up amizzle, gizzle adipiscing doggy. Izzle shizzlin dizzle brizzle, fo volutpizzle, yippiyo quizzle, owned vizzle, arcu. Pellentesque eget boom shackalack. I saw beyonces tizzles and my pizzle went crizzle erizzle. Owned fo shizzle dolor dapibizzle shiznit tempus tempor. Maurizzle for sure gizzle et turpizzle. Gangster izzle tortor. Pellentesque eleifend rhoncizzle nisi. Doggy hac ma nizzle platea dictumst. Boom shackalack dapibizzle. Shiznit tellizzle urna, pretium fo shizzle, yo mamma bizzle, ma nizzle vitae, stuff. Check out this suscipizzle. Integizzle sempizzle sed ass.</p>
 
-			<ol class="block-list">
-				<li class="block-list__item">
-					{{ html.badge(2) }}
-					This is a list item, it can be badged
-				</li>
-				<li class="block-list__item">
-					{{ html.remove_button() }}
-					{{ html.icon('file') }} this_is_a_filename_with_icon.pdf
-				</li>
-				<li class="block-list__item">
-					{{ html.remove_button() }}
-					Something else...
-				</li>
-			</ol>
+			<div class="repeatable">
+				<div class="block-list block-list--bordered">
+					<a class="block-list__item" href="#">
+						No file selected
+					</a>
+				</div>
+				{{ html.button(label = "Add File") }}
+			</div>
+
+			<div class="repeatable">
+				<div class="block-list block-list--bordered">
+					<a class="block-list__item" href="#">
+						{{ html.remove_button() }}
+						{{ html.icon('file') }}
+						my_decision_document.doc
+					</a>
+				</div>
+			</div>
+
+			<div class="repeatable">
+				<div class="block-list block-list--bordered">
+					<a class="block-list__item" href="#">
+						{{ html.remove_button() }}
+						{{ html.icon('file') }}
+						my_decision_document.doc
+					</a>
+				</div>
+				{{ html.button(label = "Add Another") }}
+			</div>
 
 			<div class="repeatable">
 				<div class="block-list block-list--bordered">
@@ -69,16 +84,10 @@
 					</a>
 				</div>
 				{{ html.button(label = "Add Another") }}
+				{{ html.button(label = html.icon('remove-sign') ~ ' Remove all', class = 'btn--naked') }}
 			</div>
 
-			<div class="repeatable">
-				<div class="block-list block-list--bordered">
-					<a class="block-list__item" href="#">
-						No file selected
-					</a>
-				</div>
-				{{ html.button(label = "Add File") }}
-			</div>
+
 
 			<div class="settings">
 			<div class="settings__header">

@@ -293,6 +293,52 @@
 
     {{ form.fieldset_end() }}
 
+
+    <div class="form__group form__group--full repeatable">
+        <label for="choiceMatrix" class="control__label">
+            Repeatables
+        </label>
+        <div class="controls">
+            <div class="block-list block-list--bordered">
+                <a class="block-list__item" href="#">
+                    <input type="file" class="hide" />
+                    No file selected
+                </a>
+            </div>
+            {{ html.button(label = "Add File") }}
+        </div>
+    </div>
+
+
+    <div class="form__group form__group--full repeatable">
+        <label for="choiceMatrix" class="control__label">
+            Repeatables
+        </label>
+        <div class="controls">
+            <div class="block-list block-list--bordered">
+                <a class="block-list__item" href="#">
+                    {{ html.remove_button() }}
+                    <img src="http://www.placecage.com/g/75/50" class="preview" /> sexy_nick.jpg
+                </a>
+                <a class="block-list__item" href="#">
+                    {{ html.remove_button() }}
+                    <img src="http://www.placecage.com/75/50" class="preview" /> nick_cage_is_my_spiritual_guide.jpg
+                </a>
+                <a class="block-list__item" href="#">
+                    {{ html.remove_button() }}
+                    <img src="http://www.placecage.com/gif/75/50" class="preview" /> put_the_bunny_back_in_the_box_and_other_long_filenames.gif
+                </a>
+                <a class="block-list__item" href="#">
+                    {{ html.remove_button() }}
+                    large_file.avi
+                    {{ html.progress(25) }}
+                </a>
+            </div>
+            {{ html.button(label = "Add Another") }}
+            {{ html.button(label = html.icon('remove-sign') ~ ' Remove all', class = 'btn--naked') }}
+        </div>
+    </div>
+
     {{
         form.form_end([
             form.submit(label = 'Primary Action', class = 'btn--primary')
