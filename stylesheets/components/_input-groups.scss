@@ -139,25 +139,6 @@
   }
 }
 
-.remove-button {
-  padding-right: 0;
-  vertical-align: top;
-  white-space: nowrap;
-
-  [class^="icon-"],
-  [class*=" icon-"] {
-    color: $gray-light;
-    font-size: 1.2em;
-    vertical-align: middle;
-  }
-
-  &:hover {
-    [class^="icon-"],
-    [class*=" icon-"] {
-      color: $black;
-    }
-  }
-}
 
 .input-group.is-removable {
   width: 100%;

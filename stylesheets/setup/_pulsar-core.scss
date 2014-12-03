@@ -19,6 +19,7 @@
  */
 @import '../components/labels';
 @import '../components/badges';
+@import '../components/block-list';
 @import '../components/button-groups';
 @import '../components/buttons';
 @import '../components/close';
@@ -32,6 +33,7 @@
 @import '../components/forms';
 @import '../components/input-groups';
 @import '../components/progress-bars';
+@import '../components/remove-button';
 @import '../components/settings';
 
 /**
@@ -54,6 +56,7 @@
 @import '../modules/nav-primary';
 @import '../modules/notifications';
 @import '../modules/pagination';
+@import '../modules/repeatable';
 @import '../modules/richer-list';
 @import '../modules/tooltips';
 @import '../modules/toolbar';

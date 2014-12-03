@@ -240,17 +240,15 @@
 
 {%- macro remove_button(target, type = 'button') -%}
   {% import _self as html %}
-  {{
-    html.button(
-      label = html.icon('remove-sign'),
-      class = 'btn--naked remove-button',
-      type = type,
-      attributes = '
-        data-toggle=tooltips
-        data-placement=right
-        title="Remove this item"
-        data-action=remove
-        data-action-target="' ~ target ~ '"'
-    )
-  }}
+
+  <button
+    type="{{ type }}"
+    class="remove-button"
+    data-toggle="tooltips"
+    data-placement=right
+    title="Remove this item"
+    data-action=remove
+    data-action-target="' ~ target ~ '"
+  >{{ html.icon('remove-sign') }}</button>
+
 {%- endmacro -%}
