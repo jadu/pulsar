@@ -32,33 +32,49 @@ module.exports = function(grunt) {
     sass: {
       dev: {
         options: {
+          style: 'nested',
+          sourceMap: true
+        },
+        files: [{
+          cwd:    'stylesheets/',
+          dest:   'css/',
+          expand: true,
+          ext:    '.css',
+          extDot: 'first',
+          src:    '*.scss'
+        }]
+      },
+      dist: {
+        options: {
           style: 'compressed'
         },
         files: [{
-          expand: true,
           cwd:    'stylesheets/',
-          src:    '**/*.scss',
           dest:   'css/',
+          expand: true,
+          flatten: true,
           ext:    '.css',
-          extDot: 'first'
+          extDot: 'first',
+          src:    '*.scss'
         }]
-      }
+      },
     },
 
     autoprefixer: {
-      single_file: {
+      dev: {
         options: {
           browsers: ['last 2 version', 'ie 7', 'ie 8', 'ie 9']
         },
-        src: 'css/<%= pkg.name %>.css',
-        dest: 'css/<%= pkg.name %>.css'
+        expand: true,
+        src:    'css/*.css',
+        dest:   'css/'
       }
     },
 
     watch: {
       css: {
         files: ['stylesheets/**/*.scss'],
-        tasks: ['sass'],
+        tasks: ['sass:dev', 'autoprefixer'],
         options: {
           livereload: true,
         },
@@ -175,7 +191,7 @@ module.exports = function(grunt) {
     ]
   });
 
- grunt.registerTask('default', ['concurrent:dev']);
+ grunt.registerTask('default', ['sass:dev', 'concurrent:dev']);
 
  grunt.registerTask('pre-commit', [
     'asciify',

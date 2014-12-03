@@ -2,7 +2,14 @@
 //  Branding
 // -----------------------------------------------------------------------------
 
-$jadu-blue:                     #3399cc;
+
+$jadu-blue-principle:           #3399cc;
+$jadu-blue-secondary:           #2080c0;
+$jadu-blue-cool:                #a0cdef;
+$jadu-blue-warm:                #a4c2cd;
+$jadu-blue-pale:                #e0f3f9;
+$jadu-blue:                     $jadu-blue-principle; // Alias
+
 $jadu-orange:                   #fcb130;
 $jadu-green:                    #89b029;
 $jadu-teal:                     #06a79d;
