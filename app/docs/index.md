@@ -16,6 +16,10 @@ These dependencies should be committed to the Pulsar repository, for more inform
 
 ### Changelog
 
+**TBC**
+
+Allow `html.remove_button()` to accept a `type` attribute
+
 **2.2.0** - 07/11/2014
 
 * Add [Summernote](/app/lexicon?tab=editor) WYSIWYG editor example

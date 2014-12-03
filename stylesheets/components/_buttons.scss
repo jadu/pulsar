@@ -56,7 +56,6 @@ a.btn {
     &.btn--primary,
     &.btn--success,
     &.btn--danger,
-    &.btn--warning,
     &.btn--info,
     &.btn--inverse {
         color: white;
@@ -150,6 +149,7 @@ a.btn {
 
 .btn--info {
     @include button(simple, $btn-info-color);
+    color: $white;
     .badge {
         background-color: $badge-info-bg-darker;
         text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);

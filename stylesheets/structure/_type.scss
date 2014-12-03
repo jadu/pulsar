@@ -135,6 +135,14 @@ i, em {
   }
 }
 
+// Stop fonts being too thin in IE8
+@include ie-lte(8) {
+  html,
+  body {
+    font-family: Arial, Helvetica, sans-serif !important;
+  }
+}
+
 // Fix poor rendering in IE7/8 because of cleartype (ironic, huh)
 @include ie-lte(8) {
   h1, h2, h3, h4, h5, h6, p, li, td {

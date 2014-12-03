@@ -169,110 +169,139 @@
   }
 }
 
-  tr.row--highlight {
-    @include highlight-row($blue);
-  }
-
-  tr.row--success-highlight {
-    @include highlight-row($btn-success-color);
-  }
-
-  tr.row--danger-highlight {
-    @include highlight-row($btn-danger-color);
-  }
-
-  tr.row--warning-highlight {
-    @include highlight-row($btn-warning-color);
-  }
-
-  tr.row--success {
-    @include highlight-row($btn-success-color);
-    > td {
-      background-color: lighten($btn-success-color, 25%);
-      &:before {
-        background-color: lighten($btn-success-color, 20%);
-      }
+/* Fixes gaps in grey bg on table headers in responsive views */
+@include respond-max($screen-tablet) {
+    .table--datagrid tr td:before {
+        padding-bottom: 8px !important;
     }
-    &:hover > td {
-      background-color: lighten($btn-success-color, 23%);
-      &:before {
+}
+
+
+@include ie-lte(9) {
+
+    .table--datagrid tr {
+        position: relative;
+    }
+
+    .table--datagrid td {
+        border-bottom: 1px solid $gray;
+    }
+
+    /* Fixes responsive table headings being hidden (in pulsar) in mobile views for < IE9 */
+    .table--datagrid tr th {
+        display: table-cell;
+    }
+
+    /* Fix grey boxes in <IE10  */
+    .table--datagrid tr td:before {
+        display: none !important;
+    }
+}
+
+tr.row--highlight {
+  @include highlight-row($blue);
+}
+
+tr.row--success-highlight {
+  @include highlight-row($btn-success-color);
+}
+
+tr.row--danger-highlight {
+  @include highlight-row($btn-danger-color);
+}
+
+tr.row--warning-highlight {
+  @include highlight-row($btn-warning-color);
+}
+
+tr.row--success {
+  @include highlight-row($btn-success-color);
+  > td {
+    background-color: lighten($btn-success-color, 25%);
+    &:before {
+      background-color: lighten($btn-success-color, 20%);
+    }
+  }
+  &:hover > td {
+    background-color: lighten($btn-success-color, 23%);
+    &:before {
+      background-color: lighten($btn-success-color, 18%);
+    }
+    @include respond-max($screen-tablet) {
+      &.row__actions {
         background-color: lighten($btn-success-color, 18%);
       }
-      @include respond-max($screen-tablet) {
-        &.row__actions {
-          background-color: lighten($btn-success-color, 18%);
-        }
-      }
-      background-color: lighten($btn-success-color, 23%);
+    }
+    background-color: lighten($btn-success-color, 23%);
+  }
+}
+
+tr.row--danger {
+  @include highlight-row($btn-danger-color);
+  > td {
+    background-color: lighten($btn-danger-color, 25%);
+    &:before {
+      background-color: lighten($btn-danger-color, 20%);
     }
   }
-
-  tr.row--danger {
-    @include highlight-row($btn-danger-color);
-    > td {
-      background-color: lighten($btn-danger-color, 25%);
-      &:before {
-        background-color: lighten($btn-danger-color, 20%);
-      }
+  &:hover > td {
+    background-color: lighten($btn-danger-color, 24%);
+    &:before {
+      background-color: lighten($btn-danger-color, 19%);
     }
-    &:hover > td {
-      background-color: lighten($btn-danger-color, 24%);
-      &:before {
+    @include respond-max($screen-tablet) {
+      &.row__actions {
         background-color: lighten($btn-danger-color, 19%);
       }
-      @include respond-max($screen-tablet) {
-        &.row__actions {
-          background-color: lighten($btn-danger-color, 19%);
-        }
-      }
-      background-color: lighten($btn-danger-color, 24%);
     }
+    background-color: lighten($btn-danger-color, 24%);
   }
+}
 
-  tr.row--warning {
-    @include highlight-row($btn-warning-color);
-    > td {
-      background-color: lighten($btn-warning-color, 25%);
-      &:before {
+tr.row--warning {
+  @include highlight-row($btn-warning-color);
+  > td {
+    background-color: lighten($btn-warning-color, 25%);
+    &:before {
+      background-color: lighten($btn-warning-color, 20%);
+    }
+    @include respond-max($screen-tablet) {
+      &.row__actions {
         background-color: lighten($btn-warning-color, 20%);
       }
-      @include respond-max($screen-tablet) {
-        &.row__actions {
-          background-color: lighten($btn-warning-color, 20%);
-        }
-      }
     }
-    &:hover > td {
-      background-color: lighten($btn-warning-color, 23%);
-      &:before {
+  }
+  &:hover > td {
+    background-color: lighten($btn-warning-color, 23%);
+    &:before {
+      background-color: lighten($btn-warning-color, 18%);
+    }
+    @include respond-max($screen-tablet) {
+      &.row__actions {
         background-color: lighten($btn-warning-color, 18%);
       }
-      @include respond-max($screen-tablet) {
-        &.row__actions {
-          background-color: lighten($btn-warning-color, 18%);
-        }
-      }
     }
   }
+}
 
-  tr.is-selected {
-    @include highlight-row($blue);
-    > td {
-      background-color: lighten($blue, 50%);
-      &:before {
-        background-color: lighten($blue, 45%);
-      }
+tr.is-selected {
+  @include highlight-row($blue);
+  > td {
+    background-color: lighten($blue, 50%);
+    &:before {
+      background-color: lighten($blue, 45%);
     }
-    &:hover > td {
-      background-color: lighten($blue, 48%);
-      &:before {
+  }
+  &:hover > td {
+    background-color: lighten($blue, 48%);
+    &:before {
+      background-color: lighten($blue, 43%);
+    }
+    @include respond-max($screen-tablet) {
+      &.row__actions {
         background-color: lighten($blue, 43%);
       }
-      @include respond-max($screen-tablet) {
-        &.row__actions {
-          background-color: lighten($blue, 43%);
-        }
-      }
     }
   }
+}
 
