@@ -238,12 +238,13 @@
   {% endif %}
 {%- endmacro -%}
 
-{%- macro remove_button(target) -%}
+{%- macro remove_button(target, type = 'button') -%}
   {% import _self as html %}
   {{
     html.button(
       label = html.icon('remove-sign'),
       class = 'btn--naked remove-button',
+      type = type,
       attributes = '
         data-toggle=tooltips
         data-placement=right
