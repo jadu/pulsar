@@ -1,0 +1,15 @@
+.has-changed {
+  background-color: lighten($info-color, 25);
+}
+
+.has-success {
+  background-color: lighten($success-color, 45);
+}
+
+.has-warning {
+  background-color: lighten($warning-color, 25);
+}
+
+.has-error {
+  background-color: lighten($danger-color, 33);
+}

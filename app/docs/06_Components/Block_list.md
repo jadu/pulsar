@@ -126,3 +126,36 @@
 	</a>
 </div>
 
+----
+
+### States, and full width
+
+	<ul class="block-list block-list--bordered block-list--full">
+		<li class="block-list__item has-changed">
+			has-changed
+		</li>
+		<li class="block-list__item has-success">
+			has-success
+		</li>
+		<li class="block-list__item has-warning">
+			has-warning
+		</li>
+		<li class="block-list__item has-error">
+			has-error
+		</li>
+	</ul>
+
+<div class="block-list block-list--bordered block-list--full">
+	<li class="block-list__item has-changed">
+		has-changed
+	</li>
+	<li class="block-list__item has-success">
+		has-success
+	</li>
+	<li class="block-list__item has-warning">
+		has-warning
+	</li>
+	<li class="block-list__item has-error">
+		has-error
+	</li>
+</div>

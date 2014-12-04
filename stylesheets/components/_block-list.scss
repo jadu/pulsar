@@ -57,6 +57,10 @@ a.block-list__item {
     Variations
 \* -------------------------------------------------------------------------- */
 
+.block-list--full {
+  max-width: 100%;
+}
+
 
 .block-list--bordered {
   @extend .block-list--padded;
