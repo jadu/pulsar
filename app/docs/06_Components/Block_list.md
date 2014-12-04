@@ -145,17 +145,17 @@
 		</li>
 	</ul>
 
-<div class="block-list block-list--bordered block-list--full">
+<div class="block-list block-list--full">
 	<li class="block-list__item has-changed">
-		has-changed
+		<i class="icon-time"></i> has-changed
 	</li>
 	<li class="block-list__item has-success">
-		has-success
+		<i class="icon-ok"></i> has-success
 	</li>
 	<li class="block-list__item has-warning">
-		has-warning
+		<i class="icon-warning-sign"></i> has-warning
 	</li>
 	<li class="block-list__item has-error">
-		has-error
+		<i class="icon-remove"></i> has-error
 	</li>
 </div>

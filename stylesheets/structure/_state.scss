@@ -1,8 +1,0 @@
-.warning {
-  background: rgba(255, 137, 9, .8);
-  color: darken(rgb(255, 137, 9), 30%);
-  text-shadow: none;
-  @include ie-lte(8) {
-    background:  rgb(255, 137, 9);
-  }
-}

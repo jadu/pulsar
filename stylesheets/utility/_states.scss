@@ -1,15 +1,30 @@
-.has-changed {
-  background-color: lighten($info-color, 25);
+.warning {
+  background: rgba(255, 137, 9, .8);
+  color: darken(rgb(255, 137, 9), 30%);
+  text-shadow: none;
+  @include ie-lte(8) {
+    background:  rgb(255, 137, 9);
+  }
+}
+
+
+.has-changed,
+.has-info {
+  background-color: lighten($info-color, 15);
+  color: darken($info-color, 30);
 }
 
 .has-success {
-  background-color: lighten($success-color, 45);
+  background-color: lighten($success-color, 35);
+  color: darken($success-color, 15);
 }
 
 .has-warning {
-  background-color: lighten($warning-color, 25);
+  background-color: lighten($warning-color, 15);
+  color: darken($warning-color, 30);
 }
 
 .has-error {
-  background-color: lighten($danger-color, 33);
+  background-color: lighten($danger-color, 23);
+  color: darken($danger-color, 30);
 }
