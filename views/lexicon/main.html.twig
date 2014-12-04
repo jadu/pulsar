@@ -24,89 +24,35 @@
     ]
 %}
 
-{% set tab_buttons %}
-    {% include 'lexicon/tabs/buttons_labels.html.twig' %}
-{% endset %}
-
-{% set tab_decks %}
-    {% include 'lexicon/tabs/decks.html.twig' %}
-{% endset %}
-
-{% set tab_editor %}
-    {% include 'lexicon/tabs/editor.html.twig' %}
-{% endset %}
-
-{% set tab_flash %}
-    {% include 'lexicon/tabs/flash.html.twig' %}
-{% endset %}
-
-{% set tab_forms %}
-    {% include 'lexicon/tabs/forms.html.twig' %}
-{% endset %}
-
-{% set tab_loading %}
-    {% include 'lexicon/tabs/loading.html.twig' %}
-{% endset %}
-
-{% set tab_modals %}
-    {% include 'lexicon/tabs/modals.html.twig' %}
-{% endset %}
-
-{% set tab_tooltips %}
-    {% include 'lexicon/tabs/tooltips.html.twig' %}
-{% endset %}
-
-{% set tab_data_grid %}
-    {% include 'lexicon/tabs/datagrid.html.twig' %}
-{% endset %}
-
-{% set tab_popovers %}
-    {% include 'lexicon/tabs/popovers.html.twig' %}
-{% endset %}
-
-{% set tab_progress_bars %}
-    {% include 'lexicon/tabs/progress_bars.html.twig' %}
-{% endset %}
-
-{% set tab_rich_list %}
-    {% include 'lexicon/tabs/rich_list.html.twig' %}
-{% endset %}
-
-{% set tab_typography %}
-    {% include 'lexicon/tabs/typography.html.twig' %}
-{% endset %}
-
-{% set tab_interactions %}
-    {% include 'lexicon/tabs/interactions.html.twig' %}
-{% endset %}
-
-{% set tab_form_summary %}
-    {% include 'lexicon/tabs/analytics.html.twig' %}
-{% endset %}
-
-{% set tab_filters %}
-    {% include 'lexicon/tabs/filters.html.twig' %}
-{% endset %}
-
-{% set tab_empty_table %}
-    {% include 'lexicon/tabs/empty_table.html.twig' %}
-{% endset %}
+{% set tab_buttons %}{% include       'lexicon/tabs/buttons_labels.html.twig' %}{% endset %}
+{% set tab_decks %}{% include         'lexicon/tabs/decks.html.twig' %}{% endset %}
+{% set tab_editor %}{% include        'lexicon/tabs/editor.html.twig' %}{% endset %}
+{% set tab_flash %}{% include         'lexicon/tabs/flash.html.twig' %}{% endset %}
+{% set tab_forms %}{% include         'lexicon/tabs/forms.html.twig' %}{% endset %}
+{% set tab_loading %}{% include       'lexicon/tabs/loading.html.twig' %}{% endset %}
+{% set tab_modals %}{% include        'lexicon/tabs/modals.html.twig' %}{% endset %}
+{% set tab_tooltips %}{% include      'lexicon/tabs/tooltips.html.twig' %}{% endset %}
+{% set tab_data_grid %}{% include     'lexicon/tabs/datagrid.html.twig' %}{% endset %}
+{% set tab_popovers %}{% include      'lexicon/tabs/popovers.html.twig' %}{% endset %}
+{% set tab_progress_bars %}{% include 'lexicon/tabs/progress_bars.html.twig' %}{% endset %}
+{% set tab_rich_list %}{% include     'lexicon/tabs/rich_list.html.twig' %}{% endset %}
+{% set tab_simple_file %}{% include   'lexicon/tabs/simple_file.html.twig' %}{% endset %}
+{% set tab_typography %}{% include    'lexicon/tabs/typography.html.twig' %}{% endset %}
+{% set tab_interactions %}{% include  'lexicon/tabs/interactions.html.twig' %}{% endset %}
+{% set tab_form_summary %}{% include  'lexicon/tabs/analytics.html.twig' %}{% endset %}
+{% set tab_filters %}{% include       'lexicon/tabs/filters.html.twig' %}{% endset %}
+{% set tab_empty_table %}{% include   'lexicon/tabs/empty_table.html.twig' %}{% endset %}
 
 {%
   set tabs = [
     {
       "id"        : "components",
-      "label"     : html.icon("puzzle-piece") ~ " Components",
+      "label"     : html.icon("th") ~ " Components",
       "sub_tabs"  : [
         {
           "id"    : "buttons",
           "label" : html.icon("plus-sign-alt") ~ " Buttons",
           "src"   : tab_buttons
-        },
-        {
-          "id"    : "decks",
-          "label" : html.icon("columns") ~ " Decks",
-          "src"   : tab_decks
         },
         {
           "id"    : "editor",
@@ -129,24 +75,9 @@
           "src"   : tab_loading
         },
         {
-          "id"    : "modals",
-          "label" : html.icon("list-alt") ~ " Modals",
-          "src"   : tab_modals
-        },
-        {
-          "id"    : "popovers",
-          "label" : html.icon("comment") ~ " Popovers",
-          "src"   : tab_popovers
-        },
-        {
           "id"    : "progress",
           "label" : html.icon("tasks") ~ " Progress bars",
           "src"   : tab_progress_bars
-        },
-        {
-          "id"    : "rich_list",
-          "label" : html.icon("columns") ~ " Rich list",
-          "src"   : tab_rich_list
         },
         {
           "id"    : "table",
@@ -163,6 +94,43 @@
           "label" : html.icon("font") ~ " Typography",
           "src"   : tab_typography
         }
+      ]
+    },
+    {
+      "id"        : "Modules",
+      "label"     : html.icon("th-large") ~ " Modules",
+      "sub_tabs"  : [
+        {
+          "id"    : "decks",
+          "label" : html.icon("columns") ~ " Decks",
+          "src"   : tab_decks
+        },
+        {
+          "id"    : "modals",
+          "label" : html.icon("list-alt") ~ " Modals",
+          "src"   : tab_modals
+        },
+        {
+          "id"    : "popovers",
+          "label" : html.icon("comment") ~ " Popovers",
+          "src"   : tab_popovers
+        },
+        {
+          "id"    : "rich_list",
+          "label" : html.icon("columns") ~ " Rich list",
+          "src"   : tab_rich_list
+        },
+      ]
+    },
+    {
+      "id"        : "Patterns",
+      "label"     : html.icon("puzzle-piece") ~ " Patterns",
+      "sub_tabs"  : [
+        {
+          "id"    : "simple_file",
+          "label" : html.icon("paperclip") ~ " Simple Attachments",
+          "src"   : tab_simple_file
+        },
       ]
     },
     {
