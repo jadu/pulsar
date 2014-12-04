@@ -187,11 +187,11 @@ a.btn {
 }
 
 .btn--naked,
-.btn--naked:hover,
+.btn--naked:hover:not(:disabled),
 .btn--naked:active {
-    background: none !important;
-    border: 1px solid white !important;
-    box-shadow: none !important;
+    background: none;
+    border: none;
+    box-shadow: none;
     display: inline-block;
     line-height: auto;
     vertical-align: top;

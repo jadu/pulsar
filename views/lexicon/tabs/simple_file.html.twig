@@ -1,0 +1,99 @@
+{% import 'pulsar/helpers/html.html.twig' as html %}
+{% import 'pulsar/helpers/form.html.twig' as form %}
+{% import 'pulsar/helpers/flash.html.twig' as flash %}
+{% import 'pulsar/helpers/datagrid.html.twig' as datagrid %}
+
+<h2 class="heading">{{ heading|raw }}</h2>
+
+<div class="tab__inner tab--padded">
+
+	<p>Single file</p>
+
+	<div class="repeatable">
+		<div class="block-list block-list--bordered">
+			<a class="block-list__item" href="#">
+				No file selected
+			</a>
+		</div>
+		{{ html.button(label = "Add File") }}
+	</div>
+
+	<p>Uploading</p>
+
+	<div class="repeatable">
+		<div class="block-list block-list--bordered">
+			<a class="block-list__item" href="#">
+				{{ html.icon('file') }}
+				true_lies.avi
+				{{ html.progress(25) }}
+			</a>
+		</div>
+		{{ html.button(label = "Add File", attributes = "disabled") }}
+	</div>
+
+	<p>File selected</p>
+
+	<div class="repeatable">
+		<div class="block-list block-list--bordered">
+			<a class="block-list__item" href="#">
+				{{ html.remove_button() }}
+				{{ html.icon('file') }}
+				true_lies.avi
+			</a>
+		</div>
+		{{ html.button(label = "Add File") }}
+	</div>
+
+	<p>Image previews</p>
+
+	<div class="repeatable">
+		<div class="block-list block-list--bordered">
+			<a class="block-list__item" href="#">
+				{{ html.remove_button() }}
+				<img src="http://www.placecage.com/g/75/50" class="preview" /> sexy_nick_cage.jpg
+			</a>
+		</div>
+		{{ html.button(label = "Add File") }}
+	</div>
+
+	<p>Multiple files</p>
+
+	<div class="repeatable">
+		<div class="block-list block-list--bordered">
+			<a class="block-list__item" href="#">
+				{{ html.remove_button() }}
+				<img src="http://www.placecage.com/g/75/50" class="preview" /> sexy_nick_cage.jpg
+			</a>
+			<a class="block-list__item" href="#">
+				{{ html.remove_button() }}
+				<img src="http://www.placecage.com/75/50" class="preview" /> nick_cage_is_my_spiritual_guide.jpg
+			</a>
+			<a class="block-list__item" href="#">
+				{{ html.remove_button() }}
+				<img src="http://www.placecage.com/gif/75/50" class="preview" /> put_the_bunny_back_in_the_box.gif
+			</a>
+		</div>
+		{{ html.button(label = "Add Another") }}
+		{{ html.button(label = html.icon('remove-sign') ~ ' Remove all', class = 'btn--naked') }}
+	</div>
+
+	<p>Within a form</p>
+
+	<form class="form--horizontal">
+	<div class="form__group form__group--full repeatable">
+        <label for="choiceMatrix" class="control__label">
+            Repeatables
+        </label>
+        <div class="controls">
+            <div class="block-list block-list--bordered">
+                <a class="block-list__item" href="#">
+                    <input type="file" class="hide" />
+                    No file selected
+                </a>
+            </div>
+            {{ html.button(label = "Add File") }}
+        </div>
+    </div>
+    </form>
+
+</div>

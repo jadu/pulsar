@@ -13,6 +13,10 @@
   border: 0;
 }
 
+.visually-hidden {
+  display: none;
+}
+
 .muted {
   color: $gray;
 }
@@ -30,4 +34,11 @@ p.success {
   i {
     margin: 0 4px;
   }
+}
+
+// Removes default link styling
+.naked-link,
+.naked-link:hover {
+  text-decoration: none;
+  color: inherit;
 }

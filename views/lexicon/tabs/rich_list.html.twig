@@ -19,6 +19,123 @@
 
 <div class="tab__inner tab--padded">
 
+
+<div class="richer-list richer-list--tall richer-list__with-settings">
+		<div class="richer-list__items-container">
+			<ol class="richer-list__items">
+				<li class="richer-list__item is-selected"><span>This item has <code>.is-selected</code></span></li>
+				{% for i in 1..10 %}
+				<li class="richer-list__item"><a href="#">Item using a link</a></li>
+				<li class="richer-list__item"><span>Item using a span</span></li>
+				{% endfor %}
+			</ol>
+		</div>
+		<div class="richer-list__detail">
+			<p>Lorizzle ipsum dolor shut the shizzle up amizzle, gizzle adipiscing doggy. Izzle shizzlin dizzle brizzle, fo volutpizzle, yippiyo quizzle, owned vizzle, arcu. Pellentesque eget boom shackalack. I saw beyonces tizzles and my pizzle went crizzle erizzle. Owned fo shizzle dolor dapibizzle shiznit tempus tempor. Maurizzle for sure gizzle et turpizzle. Gangster izzle tortor. Pellentesque eleifend rhoncizzle nisi. Doggy hac ma nizzle platea dictumst. Boom shackalack dapibizzle. Shiznit tellizzle urna, pretium fo shizzle, yo mamma bizzle, ma nizzle vitae, stuff. Check out this suscipizzle. Integizzle sempizzle sed ass.</p>
+
+			<div class="repeatable">
+				<div class="block-list block-list--bordered">
+					<a class="block-list__item" href="#">
+						No file selected
+					</a>
+				</div>
+				{{ html.button(label = "Add File") }}
+			</div>
+
+			<div class="repeatable">
+				<div class="block-list block-list--bordered">
+					<a class="block-list__item" href="#">
+						{{ html.remove_button() }}
+						{{ html.icon('file') }}
+						my_decision_document.doc
+					</a>
+				</div>
+			</div>
+
+			<div class="repeatable">
+				<div class="block-list block-list--bordered">
+					<a class="block-list__item" href="#">
+						{{ html.remove_button() }}
+						{{ html.icon('file') }}
+						my_decision_document.doc
+					</a>
+				</div>
+				{{ html.button(label = "Add Another") }}
+			</div>
+
+			<div class="repeatable">
+				<div class="block-list block-list--bordered">
+					<a class="block-list__item" href="#">
+						{{ html.remove_button() }}
+						<img src="http://www.placecage.com/g/75/50" class="preview" /> sexy_nick.jpg
+					</a>
+					<a class="block-list__item" href="#">
+						{{ html.remove_button() }}
+						<img src="http://www.placecage.com/75/50" class="preview" /> nick_cage_is_my_spiritual_guide.jpg
+					</a>
+					<a class="block-list__item" href="#">
+						{{ html.remove_button() }}
+						<img src="http://www.placecage.com/gif/75/50" class="preview" /> put_the_bunny_back_in_the_box_and_other_long_filenames.gif
+					</a>
+					<a class="block-list__item" href="#">
+						{{ html.remove_button() }}
+						large_file.avi
+						{{ html.progress(25) }}
+					</a>
+				</div>
+				{{ html.button(label = "Add Another") }}
+				{{ html.button(label = html.icon('remove-sign') ~ ' Remove all', class = 'btn--naked') }}
+			</div>
+
+
+
+			<div class="settings">
+			<div class="settings__header">
+				<a href="#" class="settings__toggle" title="Open Settings" data-toggle="settings" data-placement="left">{{ html.icon('caret-left') }}</a>
+
+				<h2 class="settings__title">Settings</h2>
+			</div>
+
+			<div class="setting">
+				<a href="#" class="setting__icon" title="Pin to top" data-placement="left">{{ html.icon('pushpin') }}</a>
+
+				<div class="setting__controls">
+					<label>
+						<input type="checkbox" id="setting-pin" class="hide" checked />
+						<div data-toggle-checkbox="setting-pin" class="toggle toggle-light"></div>
+						Pin to top
+					</label>
+				</div>
+			</div>
+
+			<div class="setting">
+				<a href="#" class="setting__icon" title="Make case alert" data-placement="left">{{ html.icon('warning-sign') }}</a>
+
+				<div class="setting__controls">
+					<label>
+						<input type="checkbox" id="setting-alert" class="hide" />
+						<div data-toggle-checkbox="setting-alert" class="toggle toggle-light"></div>
+						Make case alert
+					</label>
+
+					<div class="warning hide">
+						<p>You already have a case alert set, do you want to make this one the case alert instead?</p>
+
+						<div class="setting__actions">
+							{{ html.button(label = 'Do It', class = 'btn--primary') }}
+							{{ html.button(label = 'Cancel') }}
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		</div>
+
+
+
+	</div>
+
 	<h3>Simple Rich List</h3>
 
 	<div class="richer-list">
@@ -35,6 +152,10 @@
 			{{ lipsum|raw }}
 		</div>
 	</div>
+
+	<h3>Rich List with settings</h3>
+
+
 
 	<h3>Rich List using a table</h3>
 

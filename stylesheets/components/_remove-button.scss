@@ -1,0 +1,25 @@
+.remove-button {
+  @extend .btn--naked;
+  border: 0;
+  padding: 0;
+  vertical-align: top;
+  white-space: nowrap;
+
+  [class^="icon-"],
+  [class*=" icon-"] {
+    color: $gray-light;
+    font-size: 1.2em;
+    vertical-align: middle;
+  }
+
+  &:hover {
+    [class^="icon-"],
+    [class*=" icon-"] {
+      color: $black;
+    }
+  }
+}
+
+a + .remove-button {
+  margin-left: 10px;
+}

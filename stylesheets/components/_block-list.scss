@@ -1,0 +1,69 @@
+/* -------------------------------------------------------------------------- *\
+    Configuration
+\* -------------------------------------------------------------------------- */
+
+$padding: ($line-height-base / 2);
+
+
+/* -------------------------------------------------------------------------- *\
+    Default Presentation
+\* -------------------------------------------------------------------------- */
+
+.block-list {
+  margin-bottom: 1em;
+  max-width: 500px;
+}
+
+.block-list__item {
+  display: block;
+  padding: $padding $padding;
+}
+
+
+a.block-list__item {
+  color: inherit;
+  text-decoration: none;
+  word-wrap: break-word;
+
+  &:hover {
+    background-color: $gray-lighter;
+    color: $link-color;
+  }
+}
+
+
+.block-list__item > .remove-button,
+.block-list__item > .badge {
+  float: right;
+}
+
+
+.block-list__item > .preview {
+  margin-right: $padding;
+  vertical-align: top;
+}
+
+
+.block-list__item > .progress {
+  @extend .progress-bar--compact;
+  margin: .5em 0 0 0;
+}
+
+
+
+
+
+/* -------------------------------------------------------------------------- *\
+    Variations
+\* -------------------------------------------------------------------------- */
+
+
+.block-list--bordered {
+  @extend .block-list--padded;
+  border: 1px solid $gray;
+  border-radius: $border-radius;
+
+  .block-list__item:not(:last-of-type) {
+    border-bottom: 1px solid $gray;
+  }
+}
