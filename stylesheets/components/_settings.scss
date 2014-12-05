@@ -87,11 +87,26 @@
 
 
 .setting__icon {
-  & i:before {
+  & > i:before {
     color: $gray;
   }
 
-  &.is-enabled i:before {
+  &.is-enabled > i:before {
     color: $jadu-green;
+  }
+
+  > .loading {
+    display: none;
+    margin-left: 5px;
+  }
+
+  &.is-loading {
+    > .loading {
+      display: block;
+    }
+
+    > i {
+      display: none;
+    }
   }
 }

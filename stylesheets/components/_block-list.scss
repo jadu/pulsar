@@ -62,6 +62,29 @@ a.block-list__item {
 }
 
 
+.block-list--underlined {
+  .block-list__item {
+    border-bottom: 1px solid $gray;
+  }
+
+  .block-list__item.has-info {
+    border-bottom-color: lighten($info-color, 5);
+  }
+
+  .block-list__item.has-success {
+    border-bottom-color: lighten($success-color, 20);
+  }
+
+  .block-list__item.has-warning {
+    border-bottom-color: darken($warning-color, 2);
+  }
+
+  .block-list__item.has-error {
+    border-bottom-color: lighten($danger-color, 10);
+  }
+}
+
+
 .block-list--bordered {
   @extend .block-list--padded;
   border: 1px solid $gray;

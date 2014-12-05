@@ -159,3 +159,31 @@
 		<i class="icon-remove"></i> has-error
 	</li>
 </div>
+
+
+<div class="block-list block-list--underlined">
+	<li class="block-list__item has-info">
+		<i class="icon-time"></i> Response expected by 04/07/1981 12:34
+	</li>
+	<li class="block-list__item">
+		<i class="icon-ellipsis-horizontal muted"></i> Appellant has not responded yet
+	</li>
+	<li class="block-list__item">
+		<i class="icon-ellipsis-horizontal muted"></i> Adjudicator has not responded yet
+	</li>
+</div>
+
+<div class="block-list block-list--underlined">
+	<li class="block-list__item has-info">
+		<i class="icon-time"></i> Response expected by 04/07/1981 12:34
+	</li>
+	<li class="block-list__item has-success">
+		<i class="icon-ok"></i> Appellant replied at 04/12/2014 14:46
+	</li>
+	<li class="block-list__item has-warning">
+		<i class="icon-ellipsis-horizontal muted"></i> Adjudicator has not responded yet
+	</li>
+	<li class="block-list__item has-error">
+		<i class="icon-ellipsis-horizontal muted"></i> Adjudicator has not responded yet
+	</li>
+</div>
