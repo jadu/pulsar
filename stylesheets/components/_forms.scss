@@ -250,6 +250,10 @@ textarea.form__control {
   box-shadow: inset 4px 0 0 $gray;
 }
 
+.controls > .form__group:hover {
+  box-shadow: none;
+}
+
 // Choice matrix position
 .form__group .form__field-matrix {
   margin-top: .5em;
