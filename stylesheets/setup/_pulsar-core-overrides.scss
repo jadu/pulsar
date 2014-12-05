@@ -7,9 +7,14 @@
 @import '../overrides/deprecated/_2.1.2.scss';
 
 /**
+ * Utilities
+ */
+@import '../utility/utilities';
+@import '../utility/states';
+
+/**
  * Overrides and fixes
  */
-@import '../overrides/utilities';
 @import '../overrides/tour';
 @import '../overrides/shame';
 @import '../overrides/examples';
