@@ -40,7 +40,7 @@ define([
             // sticky toolbar
             //$('.toolbar').sticky({topSpacing: 0});
 
-            $('.uploader').uploader();
+            //$('.uploader').uploader();
 
 
             // tooltips (js/tooltip.js)

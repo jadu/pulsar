@@ -16,10 +16,12 @@
 	<div class="uploader">
 		<form>
 		<div class="block-list block-list--bordered">
-			<label for="file-1" class="block-list__item" href="#">
-				<input type="file" id="file-1" class="hide" />
-				<span class="uploader__label">No file selected</span>
-			</label>
+		 	<div class="block-list__item">
+				<label for="file-1" href="#">
+					{{ form.file(id = 'file-1', class = 'hide') }}
+					<span class="uploader__label">No file selected</span>
+				</label>
+			</div>
 		</div>
 		{{ html.button(label = "Add File", attributes = 'data-action=browse') }}
 		</form>
@@ -28,12 +30,14 @@
 	<div class="uploader">
 		<form>
 		<div class="block-list block-list--bordered">
-			<label for="file-1" class="block-list__item" href="#">
-				{{ html.remove_button() }}
-				{{ form.text(label = 'Name', value = "True Lies Extended Cut") }}
-				{{ form.file(id = 'file-1', class = 'hide') }}
+			<div class="block-list__item">
+				<!-- <label for="file-2" href="#" -->
+					{{ html.remove_button() }}
+					{{ form.text(label = 'Name', value = "True Lies Extended Cut") }}
+					{{ form.file(id = 'file-2', class = 'hide') }}
+				<!-- </label> -->
 				{{ html.metadata(items = metadata) }}
-			</label>
+			</div>
 		</div>
 		{{
 			html.button_group([
@@ -48,19 +52,23 @@
 	<div class="uploader">
 		<form>
 		<div class="block-list block-list--bordered">
-			<label for="file-2" class="block-list__item" href="#">
-				{{ html.remove_button() }}
-				{{ form.text(label = 'Name', value = "True Lies Extended Cut") }}
-				{{ form.file(id = 'file-2', class = 'hide') }}
-				{{ html.metadata(items = data) }}
-			</label>
+			<div class="block-list__item">
+				<!-- <label for="file-3" href="#"> -->
+					{{ html.remove_button() }}
+					{{ form.text(label = 'Name', value = "True Lies Extended Cut") }}
+					{{ form.file(id = 'file-3', class = 'hide') }}
+				<!-- </label> -->
+				{{ html.metadata(items = metadata) }}
+			</div>
 
-			<label for="file-3" class="block-list__item" href="#">
-				{{ html.remove_button() }}
-				{{ form.text(label = 'Name', value = "All my passwords") }}
-				{{ form.file(id = 'file-3', class = 'hide') }}
-				{{ html.metadata(items = data) }}
-			</label>
+			<div class="block-list__item">
+				<!-- <label for="file-4" href="#"> -->
+					{{ html.remove_button() }}
+					{{ form.text(label = 'Name', value = "All my passwords") }}
+					{{ form.file(id = 'file-4', class = 'hide') }}
+				<!-- </label> -->
+				{{ html.metadata(items = metadata) }}
+			</div>
 		</div>
 		{{
 			html.button_group([

@@ -17,42 +17,42 @@ $padding: ($line-height-base / 2);
   &__item {
     display: block;
     padding: $padding $padding;
-  }
 
-  a.block-list__item {
-    color: inherit;
-    text-decoration: none;
-    word-wrap: break-word;
-  }
+    a {
+      color: inherit;
+      text-decoration: none;
+      word-wrap: break-word;
+    }
 
-  label.block-list__item {
-    margin: 0;
-    text-align: left;
-  }
+    label {
+      margin: 0;
+      text-align: left;
+      width: 100%;
+    }
 
-  a.block-list__item:hover,
-  label.block-list__item:hover {
-    background-color: $gray-lighter;
+    &:hover {
+      background-color: $gray-lighter;
 
-    .uploader__label {
-      color: $link-color;
-      cursor: pointer;
+      .uploader__label {
+        color: $link-color;
+        cursor: pointer;
+      }
     }
   }
 
-  &__item > .remove-button,
-  &__item > .badge {
+  &__item .remove-button,
+  &__item .badge {
     float: right;
   }
 
 
-  &__item > .preview {
+  &__item .preview {
     margin-right: $padding;
     vertical-align: top;
   }
 
 
-  &__item > .progress {
+  &__item .progress {
     @extend .progress-bar--compact;
     margin: .5em 0 0 0;
   }
