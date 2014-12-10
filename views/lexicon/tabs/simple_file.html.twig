@@ -10,39 +10,64 @@
 	<p>Single file</p>
 
 	<div class="repeatable">
+		<form>
 		<div class="block-list block-list--bordered">
-			<a class="block-list__item" href="#">
+			<input type="file" id="file-1" class="hide" />
+			<label for="file-1" class="block-list__item" href="#">
 				No file selected
-			</a>
+			</label>
 		</div>
 		{{ html.button(label = "Add File") }}
+		</form>
 	</div>
 
-	<p>Uploading</p>
+
+	<p>If the file is part of a larger form, the file can be submitted with it, and doesn't need a separate upload action</p>
+
+	<div class="repeatable">
+		<form>
+		<div class="block-list block-list--bordered">
+			<input type="file" id="file-1" class="hide" />
+			<label for="file-1" class="block-list__item" href="#">
+				{{ html.remove_button() }}
+				{{ html.icon('file') }}
+				true_lies.avi
+			</label>
+		</div>
+		</form>
+	</div>
+
+
+	<p>If the file upload isn't part of a larger form, it should provide it's own upload action.</p>
+
+	<div class="repeatable">
+		<form>
+		<div class="block-list block-list--bordered">
+			<input type="file" id="file-1" class="hide" />
+			<label for="file-1" class="block-list__item" href="#">
+				{{ html.remove_button() }}
+				{{ html.icon('file') }}
+				true_lies.avi
+			</label>
+		</div>
+		{{ html.button(label = "Upload File", class = 'btn--primary') }}
+		</form>
+	</div>
+
+
+	<p>Ajaxy Uploading</p>
 
 	<div class="repeatable">
 		<div class="block-list block-list--bordered">
 			<a class="block-list__item" href="#">
+				{{ html.remove_button(tooltip = 'Stop uploading') }}
 				{{ html.icon('file') }}
 				true_lies.avi
 				{{ html.progress(25) }}
 			</a>
 		</div>
-		{{ html.button(label = "Add File", attributes = "disabled") }}
 	</div>
 
-	<p>File selected</p>
-
-	<div class="repeatable">
-		<div class="block-list block-list--bordered">
-			<a class="block-list__item" href="#">
-				{{ html.remove_button() }}
-				{{ html.icon('file') }}
-				true_lies.avi
-			</a>
-		</div>
-		{{ html.button(label = "Add File") }}
-	</div>
 
 	<p>Image previews</p>
 
@@ -53,8 +78,8 @@
 				<img src="http://www.placecage.com/g/75/50" class="preview" /> sexy_nick_cage.jpg
 			</a>
 		</div>
-		{{ html.button(label = "Add File") }}
 	</div>
+
 
 	<p>Multiple files</p>
 
@@ -62,7 +87,7 @@
 		<div class="block-list block-list--bordered">
 			<a class="block-list__item" href="#">
 				{{ html.remove_button() }}
-				<img src="http://www.placecage.com/g/75/50" class="preview" /> sexy_nick_cage.jpg
+				<img src="http://www.placecage.com/g/175/150" class="preview" /> sexy_nick_cage.jpg
 			</a>
 			<a class="block-list__item" href="#">
 				{{ html.remove_button() }}
@@ -76,6 +101,7 @@
 		{{ html.button(label = "Add Another") }}
 		{{ html.button(label = html.icon('remove-sign') ~ ' Remove all', class = 'btn--naked') }}
 	</div>
+
 
 	<p>Within a form</p>
 

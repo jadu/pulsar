@@ -238,7 +238,7 @@
   {% endif %}
 {%- endmacro -%}
 
-{%- macro remove_button(target, type = 'button') -%}
+{%- macro remove_button(target, type = 'button', tooltip = 'Remove this item') -%}
   {% import _self as html %}
 
   <button
@@ -246,7 +246,7 @@
     class="remove-button"
     data-toggle="tooltips"
     data-placement=right
-    title="Remove this item"
+    title="{{ tooltip }}"
     data-action=remove
     data-action-target="' ~ target ~ '"
   >{{ html.icon('remove-sign') }}</button>
