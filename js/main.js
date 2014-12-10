@@ -44,6 +44,8 @@ requirejs.config({
         'popover'           : path + '/js/popover',
         'pulsar'            : path + '/js/pulsar',
         'quantum'           : path + '/js/quantum',
+        'rich-list'         : path + '/js/rich-list',
+        'uploader'          : path + '/js/uploader',
         'sticky'            : path + '/libs/sticky/jquery.sticky',
         'store-js'          : path + '/libs/store.js/store',
         'summernote'        : path + '/libs/summernote/dist/summernote.min',

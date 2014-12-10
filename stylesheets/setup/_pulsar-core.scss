@@ -38,6 +38,7 @@
 @import '../components/progress-bars';
 @import '../components/remove-button';
 @import '../components/settings';
+@import '../components/tiles';
 
 /**
  * Modules
@@ -63,6 +64,8 @@
 @import '../modules/richer-list';
 @import '../modules/tooltips';
 @import '../modules/toolbar';
+@import '../modules/tile-grid';
+@import '../modules/uploader';
 @import '../modules/popovers';
 @import '../modules/search';
 @import '../modules/tour';

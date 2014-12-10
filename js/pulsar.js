@@ -24,7 +24,8 @@ define([
             'highlightjs',
             'jquery-placeholder',
             'summernote',
-            'toggles'
+            'toggles',
+            'uploader'
             ], function() {
 
             // tooltips (js/tooltip.js)
@@ -38,6 +39,9 @@ define([
 
             // sticky toolbar
             //$('.toolbar').sticky({topSpacing: 0});
+
+            $('.uploader').uploader();
+
 
             // tooltips (js/tooltip.js)
             $('[data-toggle="tooltips"]').tooltip();

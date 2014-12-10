@@ -34,6 +34,7 @@ $padding: ($line-height-base / 2);
   label.block-list__item:hover {
     background-color: $gray-lighter;
     color: $link-color;
+    cursor: pointer;
   }
 
   &__item > .remove-button,
