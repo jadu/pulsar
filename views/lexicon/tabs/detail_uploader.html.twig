@@ -1,0 +1,81 @@
+{% import 'pulsar/helpers/html.html.twig' as html %}
+{% import 'pulsar/helpers/form.html.twig' as form %}
+{% import 'pulsar/helpers/flash.html.twig' as flash %}
+{% import 'pulsar/helpers/datagrid.html.twig' as datagrid %}
+
+<h2 class="heading">{{ heading|raw }}</h2>
+
+<div class="tab__inner tab--padded">
+
+	<div class="uploader">
+		<form>
+		<div class="block-list block-list--bordered">
+			<label for="file-1" class="block-list__item" href="#">
+				<input type="file" id="file-1" class="hide" />
+				<span class="uploader__label">No file selected</span>
+			</label>
+		</div>
+		{{ html.button(label = "Add File", attributes = 'data-action=browse') }}
+		</form>
+	</div>
+
+	<div class="uploader">
+		<form>
+		<div class="block-list block-list--bordered">
+			<label for="file-1" class="block-list__item" href="#">
+				{{ html.remove_button() }}
+				{{ form.text(label = 'Name', value = "True Lies Extended Cut") }}
+				<input type="file" id="file-1" class="hide" />
+				<dl class="metadata">
+					<dt class="metadata__key">File</dt><!--
+					--><dd class="metadata__value uploader__label">true_lies-extended-cut.avi</dd>
+				</dl>
+				</span>
+			</label>
+		</div>
+		{{
+			html.button_group([
+				html.button(label = "Upload File", class = 'btn--primary'),
+				html.button(label = "Add Another", class = 'data-action=add')
+			])
+		}}
+		</form>
+	</div>
+
+
+	<div class="uploader">
+		<form>
+		<div class="block-list block-list--bordered">
+			<label for="file-2" class="block-list__item" href="#">
+				{{ html.remove_button() }}
+				{{ form.text(label = 'Name', value = "True Lies Extended Cut") }}
+				<input type="file" id="file-2" class="hide" />
+				<dl class="metadata">
+					<dt class="metadata__key">File</dt><!--
+					--><dd class="metadata__value uploader__label">true_lies-extended-cut.avi</dd>
+				</dl>
+				</span>
+			</label>
+
+			<label for="file-3" class="block-list__item" href="#">
+				{{ html.remove_button() }}
+				{{ form.text(label = 'Name', value = "All my passwords") }}
+				<input type="file" id="file-3" class="hide" />
+				<dl class="metadata">
+					<dt class="metadata__key">File</dt><!--
+					--><dd class="metadata__value uploader__label">passwords.xls</dd>
+				</dl>
+				</span>
+			</label>
+		</div>
+		{{
+			html.button_group([
+				html.button(label = "Upload Files", class = 'btn--primary'),
+				html.button(label = "Add Another", class = 'data-action=add')
+			])
+		}}
+		{{ html.button(label = html.icon('remove-sign') ~ ' Remove all', class = 'btn--naked uploader__clear-all') }}
+		</form>
+	</div>
+
+</div>

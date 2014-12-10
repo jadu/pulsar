@@ -1,0 +1,32 @@
+{% import 'pulsar/helpers/html.html.twig' as html %}
+{% import 'pulsar/helpers/form.html.twig' as form %}
+{% import 'pulsar/helpers/flash.html.twig' as flash %}
+
+<h2 class="heading">{{ heading|raw }}</h2>
+
+<div class="tab__inner tab--padded">
+
+    <h2>Metadata</h2>
+    <p>Simple key/value presentation of data</p>
+
+    <dl class="metadata">
+        <dt class="metadata__key">File</dt><!--
+     --><dd class="metadata__value">true_lies.avi</dd>
+        <dt class="metadata__key">Size</dt><!--
+     --><dd class="metadata__value">1.2 Gb</dd>
+        <dt class="metadata__key">Type</dt><!--
+     --><dd class="metadata__value">Video</dd>
+    </dl>
+
+    <h3>Bordered variation</h3>
+
+    <dl class="metadata metadata--bordered">
+        <dt class="metadata__key">File</dt><!--
+     --><dd class="metadata__value">true_lies.avi</dd>
+        <dt class="metadata__key">Size</dt><!--
+     --><dd class="metadata__value">1.2 Gb</dd>
+        <dt class="metadata__key">Type</dt><!--
+     --><dd class="metadata__value">Video</dd>
+    </dl>
+
+</div>

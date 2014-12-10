@@ -1,0 +1,32 @@
+.metadata {
+  margin-bottom: 0;
+  max-width: 500px;
+  width: 100%;
+
+  &__key,
+  &__value {
+    display: inline-block;
+    padding: $padding-small-vertical $padding-small-horizontal;
+  }
+
+  &__key {
+    width: 15%;
+  }
+
+  &__value {
+    margin-left: 0;
+    width: 85%;
+  }
+}
+
+.metadata--bordered {
+  border: 1px solid $gray;
+  border-radius: $border-radius;
+
+  .metadata__key,
+  .metadata__value {
+    &:not(:last-of-type) {
+      border-bottom: 1px solid $gray;
+    }
+  }
+}

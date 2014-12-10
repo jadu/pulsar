@@ -24,24 +24,26 @@
     ]
 %}
 
-{% set tab_buttons %}{% include       'lexicon/tabs/buttons_labels.html.twig' %}{% endset %}
-{% set tab_decks %}{% include         'lexicon/tabs/decks.html.twig' %}{% endset %}
-{% set tab_editor %}{% include        'lexicon/tabs/editor.html.twig' %}{% endset %}
-{% set tab_flash %}{% include         'lexicon/tabs/flash.html.twig' %}{% endset %}
-{% set tab_forms %}{% include         'lexicon/tabs/forms.html.twig' %}{% endset %}
-{% set tab_loading %}{% include       'lexicon/tabs/loading.html.twig' %}{% endset %}
-{% set tab_modals %}{% include        'lexicon/tabs/modals.html.twig' %}{% endset %}
-{% set tab_tooltips %}{% include      'lexicon/tabs/tooltips.html.twig' %}{% endset %}
-{% set tab_data_grid %}{% include     'lexicon/tabs/datagrid.html.twig' %}{% endset %}
-{% set tab_popovers %}{% include      'lexicon/tabs/popovers.html.twig' %}{% endset %}
-{% set tab_progress_bars %}{% include 'lexicon/tabs/progress_bars.html.twig' %}{% endset %}
-{% set tab_rich_list %}{% include     'lexicon/tabs/rich_list.html.twig' %}{% endset %}
-{% set tab_simple_file %}{% include   'lexicon/tabs/simple_file.html.twig' %}{% endset %}
-{% set tab_typography %}{% include    'lexicon/tabs/typography.html.twig' %}{% endset %}
-{% set tab_interactions %}{% include  'lexicon/tabs/interactions.html.twig' %}{% endset %}
-{% set tab_form_summary %}{% include  'lexicon/tabs/analytics.html.twig' %}{% endset %}
-{% set tab_filters %}{% include       'lexicon/tabs/filters.html.twig' %}{% endset %}
-{% set tab_empty_table %}{% include   'lexicon/tabs/empty_table.html.twig' %}{% endset %}
+{% set tab_buttons %}{% include         'lexicon/tabs/buttons_labels.html.twig' %}{% endset %}
+{% set tab_decks %}{% include           'lexicon/tabs/decks.html.twig' %}{% endset %}
+{% set tab_editor %}{% include          'lexicon/tabs/editor.html.twig' %}{% endset %}
+{% set tab_flash %}{% include           'lexicon/tabs/flash.html.twig' %}{% endset %}
+{% set tab_forms %}{% include           'lexicon/tabs/forms.html.twig' %}{% endset %}
+{% set tab_loading %}{% include         'lexicon/tabs/loading.html.twig' %}{% endset %}
+{% set tab_modals %}{% include          'lexicon/tabs/modals.html.twig' %}{% endset %}
+{% set tab_tooltips %}{% include        'lexicon/tabs/tooltips.html.twig' %}{% endset %}
+{% set tab_data_grid %}{% include       'lexicon/tabs/datagrid.html.twig' %}{% endset %}
+{% set tab_metadata %}{% include        'lexicon/tabs/metadata.html.twig' %}{% endset %}
+{% set tab_popovers %}{% include        'lexicon/tabs/popovers.html.twig' %}{% endset %}
+{% set tab_progress_bars %}{% include   'lexicon/tabs/progress_bars.html.twig' %}{% endset %}
+{% set tab_rich_list %}{% include       'lexicon/tabs/rich_list.html.twig' %}{% endset %}
+{% set tab_simple_uploader %}{% include 'lexicon/tabs/simple_uploader.html.twig' %}{% endset %}
+{% set tab_detail_uploader %}{% include 'lexicon/tabs/detail_uploader.html.twig' %}{% endset %}
+{% set tab_typography %}{% include      'lexicon/tabs/typography.html.twig' %}{% endset %}
+{% set tab_interactions %}{% include    'lexicon/tabs/interactions.html.twig' %}{% endset %}
+{% set tab_form_summary %}{% include    'lexicon/tabs/analytics.html.twig' %}{% endset %}
+{% set tab_filters %}{% include         'lexicon/tabs/filters.html.twig' %}{% endset %}
+{% set tab_empty_table %}{% include     'lexicon/tabs/empty_table.html.twig' %}{% endset %}
 
 {%
   set tabs = [
@@ -73,6 +75,11 @@
           "id"    : "loading",
           "label" : html.icon("spinner") ~ " Loading",
           "src"   : tab_loading
+        },
+        {
+          "id"    : "metadata",
+          "label" : html.icon("info-sign") ~ " Metadata",
+          "src"   : tab_metadata
         },
         {
           "id"    : "progress",
@@ -127,9 +134,14 @@
       "label"     : html.icon("puzzle-piece") ~ " Patterns",
       "sub_tabs"  : [
         {
-          "id"    : "simple_file",
-          "label" : html.icon("paperclip") ~ " Simple Attachments",
-          "src"   : tab_simple_file
+          "id"    : "simple_uploader",
+          "label" : html.icon("paperclip") ~ " Simple Uploader",
+          "src"   : tab_simple_uploader
+        },
+        {
+          "id"    : "detail_uploader",
+          "label" : html.icon("paperclip") ~ " Detailed Uploader",
+          "src"   : tab_detail_uploader
         },
       ]
     },

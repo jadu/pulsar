@@ -33,8 +33,11 @@ $padding: ($line-height-base / 2);
   a.block-list__item:hover,
   label.block-list__item:hover {
     background-color: $gray-lighter;
-    color: $link-color;
-    cursor: pointer;
+
+    .uploader__label {
+      color: $link-color;
+      cursor: pointer;
+    }
   }
 
   &__item > .remove-button,
@@ -57,6 +60,7 @@ $padding: ($line-height-base / 2);
   .preview {
     max-height: 75px;
     max-width: 75px;
+    vertical-align: bottom;
   }
 }
 

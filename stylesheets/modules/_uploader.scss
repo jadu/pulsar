@@ -5,10 +5,46 @@
 .uploader {
   @extend .repeatable;
 
+  .form__group {
+    display: inline-block;;
+    margin: 0 0 11px 0;
+    width: 95%;
 
+    &:hover {
+      box-shadow: none;
+    }
+  }
 
+  .control__label {
+    margin: 0;
+    text-align: left;
+    width: 15%;
+  }
 
+  .form__control {
+    height: 26px;
+    line-height: 26px;
+    padding: 0 6px;
+  }
 
+  .controls {
+    display: inline-block;
+    width: 83.5%;
+  }
+
+  &__name {
+    display: block;
+    margin: 11px 0 0 0;
+  }
+
+  &__clear-all {
+    color: $gray-light;
+    padding: 8px 14px 6px 14px;
+  }
+
+  .metadata {
+    font-size: $font-size-small;
+  }
 
 
 }
