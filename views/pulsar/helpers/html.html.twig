@@ -252,3 +252,12 @@
   >{{ html.icon('remove-sign') }}</button>
 
 {%- endmacro -%}
+
+{%- macro metadata(items, class) -%}
+  <dl class="metadata{% if class is not empty %} {{ class }}{% endif %}">
+    {%- for key, value in items -%}
+    <dt class="metadata__key">{{ key }}</dt><!--
+ --><dd class="metadata__value">{{ value }}</dd>
+    {% endfor %}
+  </dl>
+{%- endmacro -%}

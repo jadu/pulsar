@@ -9,24 +9,18 @@
     <h2>Metadata</h2>
     <p>Simple key/value presentation of data</p>
 
-    <dl class="metadata">
-        <dt class="metadata__key">File</dt><!--
-     --><dd class="metadata__value">true_lies.avi</dd>
-        <dt class="metadata__key">Size</dt><!--
-     --><dd class="metadata__value">1.2 Gb</dd>
-        <dt class="metadata__key">Type</dt><!--
-     --><dd class="metadata__value">Video</dd>
-    </dl>
+    {%
+        set data = {
+            "File" : "true_lies.avi",
+            "Size" : "1.2Gb",
+            "Type" : "Video"
+        }
+    %}
+
+    {{ html.metadata(items = data) }}
 
     <h3>Bordered variation</h3>
 
-    <dl class="metadata metadata--bordered">
-        <dt class="metadata__key">File</dt><!--
-     --><dd class="metadata__value">true_lies.avi</dd>
-        <dt class="metadata__key">Size</dt><!--
-     --><dd class="metadata__value">1.2 Gb</dd>
-        <dt class="metadata__key">Type</dt><!--
-     --><dd class="metadata__value">Video</dd>
-    </dl>
+    {{ html.metadata(items = data, class = 'metadata--bordered') }}
 
 </div>

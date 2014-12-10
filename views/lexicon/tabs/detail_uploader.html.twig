@@ -3,6 +3,12 @@
 {% import 'pulsar/helpers/flash.html.twig' as flash %}
 {% import 'pulsar/helpers/datagrid.html.twig' as datagrid %}
 
+{%
+	set metadata = {
+	    "File" : "true_lies-extended-cut.avi"
+	}
+%}
+
 <h2 class="heading">{{ heading|raw }}</h2>
 
 <div class="tab__inner tab--padded">
@@ -25,12 +31,8 @@
 			<label for="file-1" class="block-list__item" href="#">
 				{{ html.remove_button() }}
 				{{ form.text(label = 'Name', value = "True Lies Extended Cut") }}
-				<input type="file" id="file-1" class="hide" />
-				<dl class="metadata">
-					<dt class="metadata__key">File</dt><!--
-				 --><dd class="metadata__value uploader__label">true_lies-extended-cut.avi</dd>
-				</dl>
-				</span>
+				{{ form.file(id = 'file-1', class = 'hide') }}
+    			{{ html.metadata(items = metadata) }}
 			</label>
 		</div>
 		{{
@@ -49,23 +51,15 @@
 			<label for="file-2" class="block-list__item" href="#">
 				{{ html.remove_button() }}
 				{{ form.text(label = 'Name', value = "True Lies Extended Cut") }}
-				<input type="file" id="file-2" class="hide" />
-				<dl class="metadata">
-					<dt class="metadata__key">File</dt><!--
-				 --><dd class="metadata__value uploader__label">true_lies-extended-cut.avi</dd>
-				</dl>
-				</span>
+				{{ form.file(id = 'file-2', class = 'hide') }}
+				{{ html.metadata(items = data) }}
 			</label>
 
 			<label for="file-3" class="block-list__item" href="#">
 				{{ html.remove_button() }}
 				{{ form.text(label = 'Name', value = "All my passwords") }}
-				<input type="file" id="file-3" class="hide" />
-				<dl class="metadata">
-					<dt class="metadata__key">File</dt><!--
-				 --><dd class="metadata__value uploader__label">passwords.xls</dd>
-				</dl>
-				</span>
+				{{ form.file(id = 'file-3', class = 'hide') }}
+				{{ html.metadata(items = metadata) }}
 			</label>
 		</div>
 		{{

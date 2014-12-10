@@ -1,3 +1,18 @@
+/* -------------------------------------------------------------------------- *\
+    Configuration
+\* -------------------------------------------------------------------------- */
+
+$metadata-padding-x: $padding-small-horizontal !default;
+$metadata-padding-y: $padding-small-vertical !default;
+
+
+
+
+
+/* -------------------------------------------------------------------------- *\
+    Default Presentation
+\* -------------------------------------------------------------------------- */
+
 .metadata {
   margin-bottom: 0;
   max-width: 500px;
@@ -6,7 +21,7 @@
   &__key,
   &__value {
     display: inline-block;
-    padding: $padding-small-vertical $padding-small-horizontal;
+    padding: $metadata-padding-y 0;
   }
 
   &__key {
@@ -19,14 +34,24 @@
   }
 }
 
+
+
+
+/* -------------------------------------------------------------------------- *\
+    Variations
+\* -------------------------------------------------------------------------- */
+
 .metadata--bordered {
   border: 1px solid $gray;
   border-radius: $border-radius;
 
   .metadata__key,
   .metadata__value {
+    padding: $metadata-padding-y $metadata-padding-x;
+
     &:not(:last-of-type) {
       border-bottom: 1px solid $gray;
     }
   }
 }
+
