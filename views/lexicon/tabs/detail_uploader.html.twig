@@ -5,7 +5,7 @@
 
 {%
 	set metadata = {
-	    "File" : "true_lies-extended-cut.avi"
+		"File" : "true_lies-extended-cut.avi"
 	}
 %}
 
@@ -32,7 +32,7 @@
 				{{ html.remove_button() }}
 				{{ form.text(label = 'Name', value = "True Lies Extended Cut") }}
 				{{ form.file(id = 'file-1', class = 'hide') }}
-    			{{ html.metadata(items = metadata) }}
+				{{ html.metadata(items = metadata) }}
 			</label>
 		</div>
 		{{
@@ -59,7 +59,7 @@
 				{{ html.remove_button() }}
 				{{ form.text(label = 'Name', value = "All my passwords") }}
 				{{ form.file(id = 'file-3', class = 'hide') }}
-				{{ html.metadata(items = metadata) }}
+				{{ html.metadata(items = data) }}
 			</label>
 		</div>
 		{{
