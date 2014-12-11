@@ -1,18 +1,58 @@
+/**
+ * Block Lists
+ *
+ * A simple way to present lists of information which can be marked up using
+ * <div> <ul> or <ol>.
+ *
+ * Example:
+ *
+ * <ul class="block-list">
+ *   <li class="block-list__item">One</li>
+ *   <li class="block-list__item">Two</li>
+ *   <li class="block-list__item">Three</li>
+ * </ul>
+ *
+ * <div class="block-list">
+ *   <a class="block-list__item" href="#">One</a>
+ *   <a class="block-list__item" href="#">Two</a>
+ *   <a class="block-list__item" href="#">Three</a>
+ * </div>
+ *
+ * List items can be a singular block-level element, or a collection of elements
+ * in a wrapper.
+ *
+ * Example:
+ *
+ * <div class="block-list">
+ *   <a class="block-list__item" href="#">Link</a>
+ * </div>
+ *
+ * or
+ *
+ * <div class="block-list">
+ *   <div class="block-list__item">
+ *     {{ html.icon('file') }}
+ *     Filename
+ *   </div>
+ * </div>
+ *
+ * 1. Reset left margins in case we're using <ul> or <ol>
+ */
+
 /* -------------------------------------------------------------------------- *\
     Configuration
 \* -------------------------------------------------------------------------- */
 
 $padding: ($line-height-base / 2);
 
-
 /* -------------------------------------------------------------------------- *\
     Default Presentation
 \* -------------------------------------------------------------------------- */
 
 .block-list {
+  margin-left: 0; /* [1] */
   margin-bottom: 1em;
   max-width: 500px;
-
 
   &__item {
     display: block;
@@ -40,6 +80,7 @@ $padding: ($line-height-base / 2);
     }
   }
 
+
   &__item .remove-button,
   &__item .badge {
     float: right;
@@ -57,12 +98,14 @@ $padding: ($line-height-base / 2);
     margin: .5em 0 0 0;
   }
 
+
   .preview {
     max-height: 75px;
     max-width: 75px;
     vertical-align: bottom;
   }
 }
+
 
 
 
