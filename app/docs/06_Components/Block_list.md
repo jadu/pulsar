@@ -12,7 +12,7 @@
 		</li>
 	</ul>
 
-<div class="block-list block-list--bordered">
+<ul class="block-list block-list--bordered">
 	<li class="block-list__item">
 		One
 	</li>
@@ -22,7 +22,7 @@
 	<li class="block-list__item">
 		Three
 	</li>
-</div>
+</ul>
 
 ----
 
