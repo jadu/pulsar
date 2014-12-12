@@ -200,3 +200,10 @@
   }
 
 }
+
+.popover--scrolling {
+  .popover-content {
+    max-height: 200px;
+    overflow-y: scroll;
+  }
+}
