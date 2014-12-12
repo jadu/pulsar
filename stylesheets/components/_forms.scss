@@ -729,6 +729,7 @@ textarea {
 
 .form__group--small .controls {
   max-width: $controls-max-width * .5;
+  min-width: 70px;
   width: $controls-width * 2.05;
 
   @include respond-min($screen-phone) {
@@ -741,6 +742,7 @@ textarea {
 
 .form__group--medium .controls {
   max-width: $controls-max-width * .75;
+  min-width: 100px;
   width: $controls-width * 2.275;
 
   @include respond-min($screen-phone) {
