@@ -214,6 +214,7 @@
   &--info {
     .popover-title {
       background-color: $state-info-bg;
+      border-bottom-color: darken($state-info-bg, 5);
       color: $state-info-text;
     }
     &.bottom .arrow::after {
@@ -224,6 +225,7 @@
   &--warning {
     .popover-title {
       background-color: $state-warning-bg;
+      border-bottom-color: darken($state-warning-bg, 10);
       color: $state-warning-text;
     }
     &.bottom .arrow::after {
@@ -234,6 +236,7 @@
   &--success {
     .popover-title {
       background-color: $state-success-bg;
+      border-bottom-color: darken($state-success-bg, 5);
       color: $state-success-text;
     }
     &.bottom .arrow::after {
@@ -244,6 +247,7 @@
   &--danger {
     .popover-title {
       background-color: $state-danger-bg;
+      border-bottom-color: darken($state-danger-bg, 5);
       color: $state-danger-text;
     }
     &.bottom .arrow::after {
