@@ -13,32 +13,48 @@ Examples:
 <div class="example-popovers">
     <div class="popover top">
         <div class="arrow"></div>
-        <h3 class="popover__title">Popover top</h3>
-        <div class="popover__content">
+        <h3 class="popover-title">Popover top</h3>
+        <div class="popover-content">
             Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.
         </div>
     </div>
 
     <div class="popover right">
         <div class="arrow"></div>
-        <h3 class="popover__title">Popover right</h3>
-        <div class="popover__content">
+        <h3 class="popover-title">Popover right</h3>
+        <div class="popover-content">
             Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.
         </div>
     </div>
 
-    <div class="popover bottom">
+    <div class="popover popover--danger bottom">
         <div class="arrow"></div>
-        <h3 class="popover__title">Popover bottom</h3>
-        <div class="popover__content">
+        <h3 class="popover-title"><i class="icon-exclamation-sign"></i> Danger popover bottom</h3>
+        <div class="popover-content">
             Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.
         </div>
     </div>
 
-    <div class="popover left">
+    <div class="popover popover--success left">
         <div class="arrow"></div>
-        <h3 class="popover__title">Popover left</h3>
-        <div class="popover__content">
+        <h3 class="popover-title"><i class="icon-ok-sign"></i> Success popover left</h3>
+        <div class="popover-content">
+            Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.
+        </div>
+    </div>
+
+    <div class="popover popover--warning right">
+        <div class="arrow"></div>
+        <h3 class="popover-title"><i class="icon-warning-sign"></i> Warning popover right</h3>
+        <div class="popover-content">
+            Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.
+        </div>
+    </div>
+
+    <div class="popover popover--info bottom">
+        <div class="arrow"></div>
+        <h3 class="popover-title"><i class="icon-info-sign"></i> Info popover left</h3>
+        <div class="popover-content">
             Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.
         </div>
     </div>

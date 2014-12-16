@@ -201,10 +201,53 @@
 
 }
 
+
 .popover--scrolling {
   .popover-content {
     max-height: 200px;
     overflow-x: hidden;
     overflow-y: scroll;
+  }
+}
+
+.popover {
+  &--info {
+    .popover-title {
+      background-color: $state-info-bg;
+      color: $state-info-text;
+    }
+    &.bottom .arrow::after {
+      border-bottom-color: $state-info-bg;
+    }
+  }
+
+  &--warning {
+    .popover-title {
+      background-color: $state-warning-bg;
+      color: $state-warning-text;
+    }
+    &.bottom .arrow::after {
+      border-bottom-color: $state-warning-bg;
+    }
+  }
+
+  &--success {
+    .popover-title {
+      background-color: $state-success-bg;
+      color: $state-success-text;
+    }
+    &.bottom .arrow::after {
+      border-bottom-color: $state-success-bg;
+    }
+  }
+
+  &--danger {
+    .popover-title {
+      background-color: $state-danger-bg;
+      color: $state-danger-text;
+    }
+    &.bottom .arrow::after {
+      border-bottom-color: $state-danger-bg;
+    }
   }
 }
