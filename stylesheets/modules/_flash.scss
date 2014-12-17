@@ -64,6 +64,15 @@
   }
 }
 
+.flash--info {
+  background: $label-info-bg;
+  // color: $state-info-text;
+  text-shadow: none;
+  @include ie-lte(8) {
+    background:  $label-info-bg;
+  }
+}
+
 // Close buttons
 .flash {
   .close {
