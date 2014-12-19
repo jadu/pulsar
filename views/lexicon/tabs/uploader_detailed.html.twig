@@ -13,8 +13,7 @@
 
 <div class="tab__inner tab--padded">
 
-	<div class="uploader">
-		<form>
+	<div class="uploader uploader--simple">
 		<div class="block-list block-list--bordered">
 		 	<div class="block-list__item">
 				<label for="file-11" href="#">
@@ -24,12 +23,24 @@
 			</div>
 		</div>
 		{{ html.button(label = "Add File", attributes = 'data-action=browse') }}
-		</form>
+	</div>
+
+	<div class="uploader" data-uploader-type="detailed">
+		<div class="block-list block-list--bordered">
+		 	<div class="block-list__item">
+				<label for="file-11" href="#">
+					{{ form.text(label = 'Name', class = "uploader__name hide") }}
+					{{ form.file(id = 'file-11', class = 'hide') }}
+					<span class="uploader__label">No file selected</span>
+				</label>
+			</div>
+		</div>
+		{{ html.button(label = "Add File", attributes = 'data-action=browse') }}
 	</div>
 
 	<p>If the uploader allows multiple files, they will have the option to add more after the first one has been successfully added/uploaded.</p>
 
-	<div class="uploader">
+	<div class="uploader uploader--detailed">
 		<form>
 		<div class="block-list block-list--bordered">
 			<div class="block-list__item">

@@ -238,12 +238,12 @@
   {% endif %}
 {%- endmacro -%}
 
-{%- macro remove_button(target, type = 'button', tooltip = 'Remove this item') -%}
+{%- macro remove_button(target, class = '', type = 'button', tooltip = 'Remove this item') -%}
   {% import _self as html %}
 
   <button
     type="{{ type }}"
-    class="remove-button"
+    class="remove-button{% if class is not empty %} {{ class }}{% endif %}"
     data-toggle="tooltips"
     data-placement=right
     title="{{ tooltip }}"

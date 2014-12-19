@@ -3,7 +3,15 @@
 \* -------------------------------------------------------------------------- */
 
 .uploader {
-  @extend .repeatable;
+  margin-bottom: 1em;
+
+  .block-list {
+    margin-bottom: .25em;
+  }
+
+  .block-list__item > label {
+    width: 95%;
+  }
 
   .form__group {
     display: inline-block;;
