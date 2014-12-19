@@ -11,19 +11,21 @@ define([
             itemContainer: '.block-list',
             itemSelector: '.block-list__item',
             browseButtonSelector: '[data-action=browse]',
-            fileInputSelector: '[type=file]',
+            fileInputSelector: '[type="file"]',
             labelDefaultValue: 'No file selected',
             labelSelector: '.uploader__label',
             removeButtonSelector: '[data-action=remove]',
             removeButtonMarkup: '<button type="button" class="remove-button" data-action="remove" data-toggle="tooltips" data-placement=right title="Remove this item" data-action=remove><i class="icon-remove-sign"></i></button>',
-            removeAllButtonSelector: '[data-action=remove-all]',
+            removeAllButtonSelector: '[data-action="remove-all"]',
             removeAllButtonMarkup: '<button type="button" class="btn btn--naked" data-action="remove-all"><i class="icon-remove-sign"></i> Remove all</button>',
-            addAnotherButtonSelector: '[data-action=add-another]',
+            addAnotherButtonSelector: '[data-action="add-another"]',
             addAnotherButtonMarkup: '<button type="button" class="btn" data-action="add-another">Add Another</button>',
         };
 
     $.fn.uploader = function (options) {
         options = $.extend({}, defaults, options);
+
+        console.log('3');
 
         return this.each(function () {
             var $this = $(this),
@@ -32,7 +34,7 @@ define([
 
             // Add File button
             $this.on('click', options.browseButtonSelector, function () {
-                $this.find(options.fileInputSelector).trigger('click');
+              $this.find(options.fileInputSelector)[0].click();
             });
 
 
@@ -78,7 +80,7 @@ define([
                       $nameField = $row.find('.uploader__name');
 
                   $metadata.removeClass('hide');
-                  $nameField.removeClass('hide').find('[type=text]').focus();
+                  $nameField.removeClass('hide').find('[type="text"]').focus();
 
                   $metadata.find('.metadata__value').text($(this).val());
 
@@ -119,9 +121,11 @@ define([
                     $newRow = $defaultRow
                                 .clone()
                                 .hide(),
-                    $newFileInput = $newRow.find(options.fileInputSelector);
+                    $newFileInput = $newRow.find(options.fileInputSelector),
+                    $newRowId = 'uploader-' + $uploader.index() + '-file-' + ($rows.length + 1);
 
-                $newFileInput.attr('id', 'uploader-' + $uploader.index() + '-file-' + ($rows.length + 1));
+                $newFileInput.attr('id', $newRowId);
+                $newRow.find('.uploader__control').attr('for', $newRowId);
 
                 $newRow.appendTo($this.find(options.itemContainer))
                   .slideDown(250, function() {
@@ -137,7 +141,9 @@ define([
                     $(options.browseButtonSelector).show();
                 });
 
-                $newFileInput.trigger('click');
+                $newFileInput[0].click();
+
+               return false;
 
             });
 

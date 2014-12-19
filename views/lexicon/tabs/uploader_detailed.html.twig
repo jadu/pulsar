@@ -8,13 +8,13 @@
 <div class="tab__inner tab--padded">
 
 	<p>Detailed uploader</p>
-
+<form>
 	<div class="uploader" data-uploader-type="detailed">
 		<div class="block-list block-list--bordered">
 		 	<div class="block-list__item">
-				<label for="file-11" href="#">
+				<label class="uploader__control" for="file-1">
 					{{ form.text(label = 'Name', class = 'uploader__name hide', placeholder = 'optional') }}
-					{{ form.file(id = 'file-11', class = 'hide') }}
+					<input type="file" class="form__control" id="file-1">
 					<span class="uploader__label">No file selected</span>
 				</label>
 				<dl class="metadata hide">
@@ -25,5 +25,6 @@
 		</div>
 		{{ html.button(label = "Add File", attributes = 'data-action=browse') }}
 	</div>
+</form>
 	<hr />
 </div>
