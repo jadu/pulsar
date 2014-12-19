@@ -25,8 +25,6 @@ define([
     $.fn.uploader = function (options) {
         options = $.extend({}, defaults, options);
 
-        console.log('3');
-
         return this.each(function () {
             var $this = $(this),
                 $defaultRow = $(this).find(options.itemSelector).clone();
@@ -34,7 +32,7 @@ define([
 
             // Add File button
             $this.on('click', options.browseButtonSelector, function () {
-              $this.find(options.fileInputSelector)[0].click();
+              $this.find(options.fileInputSelector).trigger('click');
             });
 
 
@@ -141,7 +139,7 @@ define([
                     $(options.browseButtonSelector).show();
                 });
 
-                $newFileInput[0].click();
+                $newFileInput.trigger('click');
 
                return false;
 
