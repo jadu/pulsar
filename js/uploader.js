@@ -170,7 +170,7 @@ define([
                         $itemContainer = $uploader.find(options.itemContainer);
 
                     $itemContainer.append($newRow);
-                    $newRow.addClass('has-info fade').slideDown(250);
+                    $newRow.removeClass('has-danger fade').addClass('has-changed fade').slideDown(250);
                     $uploader.find(options.addAnotherButtonSelector).remove();
                     $(options.browseButtonSelector).show();
                   }
