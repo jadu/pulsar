@@ -3,95 +3,27 @@
 {% import 'pulsar/helpers/flash.html.twig' as flash %}
 {% import 'pulsar/helpers/datagrid.html.twig' as datagrid %}
 
-{%
-	set metadata = {
-		"File" : "true_lies-extended-cut.avi"
-	}
-%}
-
 <h2 class="heading">{{ heading|raw }}</h2>
 
 <div class="tab__inner tab--padded">
 
-	<div class="uploader uploader--simple">
-		<div class="block-list block-list--bordered">
-		 	<div class="block-list__item">
-				<label for="file-11" href="#">
-					{{ form.file(id = 'file-11', class = 'hide') }}
-					<span class="uploader__label">No file selected</span>
-				</label>
-			</div>
-		</div>
-		{{ html.button(label = "Add File", attributes = 'data-action=browse') }}
-	</div>
+	<p>Detailed uploader</p>
 
 	<div class="uploader" data-uploader-type="detailed">
 		<div class="block-list block-list--bordered">
 		 	<div class="block-list__item">
 				<label for="file-11" href="#">
-					{{ form.text(label = 'Name', class = "uploader__name hide") }}
+					{{ form.text(label = 'Name', class = 'uploader__name hide', placeholder = 'optional') }}
 					{{ form.file(id = 'file-11', class = 'hide') }}
 					<span class="uploader__label">No file selected</span>
 				</label>
+				<dl class="metadata hide">
+					<dt class="metadata__key">File</dt><!--
+ 				 --><dd class="metadata__value"></dd>
+      			</dl>
 			</div>
 		</div>
 		{{ html.button(label = "Add File", attributes = 'data-action=browse') }}
 	</div>
-
-	<p>If the uploader allows multiple files, they will have the option to add more after the first one has been successfully added/uploaded.</p>
-
-	<div class="uploader uploader--detailed">
-		<form>
-		<div class="block-list block-list--bordered">
-			<div class="block-list__item">
-				<!-- <label for="file-12" href="#" -->
-					{{ html.remove_button() }}
-					{{ form.text(label = 'Name', value = "True Lies Extended Cut") }}
-					{{ form.file(id = 'file-12', class = 'hide') }}
-				<!-- </label> -->
-				{{ html.metadata(items = metadata) }}
-			</div>
-		</div>
-		{{
-			html.button_group([
-				html.button(label = "Upload File", class = 'btn--primary'),
-				html.button(label = "Add Another", class = 'data-action=add')
-			])
-		}}
-		</form>
-	</div>
-
-	<p>When more than one item exists, we should give the user the ability to remove all the items in one step with the ‘Remove all’ link</p>
-
-	<div class="uploader">
-		<form>
-		<div class="block-list block-list--bordered">
-			<div class="block-list__item">
-				<!-- <label for="file-13" href="#"> -->
-					{{ html.remove_button() }}
-					{{ form.text(label = 'Name', value = "True Lies Extended Cut") }}
-					{{ form.file(id = 'file-13', class = 'hide') }}
-				<!-- </label> -->
-				{{ html.metadata(items = metadata) }}
-			</div>
-
-			<div class="block-list__item">
-				<!-- <label for="file-14" href="#"> -->
-					{{ html.remove_button() }}
-					{{ form.text(label = 'Name', value = "All my passwords") }}
-					{{ form.file(id = 'file-14', class = 'hide') }}
-				<!-- </label> -->
-				{{ html.metadata(items = metadata) }}
-			</div>
-		</div>
-		{{
-			html.button_group([
-				html.button(label = "Upload Files", class = 'btn--primary'),
-				html.button(label = "Add Another", class = 'data-action=add')
-			])
-		}}
-		{{ html.button(label = html.icon('remove-sign') ~ ' Remove all', class = 'btn--naked uploader__clear-all') }}
-		</form>
-	</div>
-
+	<hr />
 </div>

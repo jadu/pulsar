@@ -10,6 +10,7 @@
 	<p>Simple uploader</p>
 
 	<div class="uploader">
+		<form>
 		<ol class="block-list block-list--bordered">
 			<li class="block-list__item">
 				<label for="file-1" href="#">
@@ -31,29 +32,137 @@
 				attributes = 'data-action=browse'
 			)
 		}}
+		</form>
 	</div>
 
 
-<hr />
 
-	<p>Detailed uploader</p>
 
-	<div class="uploader" data-uploader-type="detailed">
-		<div class="block-list block-list--bordered">
-		 	<div class="block-list__item">
-				<label for="file-11" href="#">
-					{{ form.text(label = 'Name', class = 'uploader__name hide', placeholder = 'optional') }}
-					{{ form.file(id = 'file-11', class = 'hide') }}
-					<span class="uploader__label">No file selected</span>
+	<hr />
+
+
+<!--
+
+	<p>If the file is part of a larger form, the file can be submitted with it, and doesn't need a separate upload action</p>
+
+	<div class="uploader">
+		<form>
+		<ol class="block-list block-list--bordered">
+			<li class="block-list__item">
+				{{ html.remove_button() }}
+				{{ form.file(id = 'file-2', class = '') }}
+				<label for="file-2" href="#">
+					<span class="uploader__label">
+						{{ html.icon('file') }}
+						true_lies.avi
+					</span>
 				</label>
-				<dl class="metadata hide">
-					<dt class="metadata__key">File</dt><!--
- 				 --><dd class="metadata__value"></dd>
-      			</dl>
+			</li>
+		</ol>
+		</form>
+	</div>
+
+
+	<p>If the file upload isn't part of a larger form, it should provide it's own upload action.</p>
+
+	<div class="uploader">
+		<form>
+		<ol class="block-list block-list--bordered">
+			<li class="block-list__item">
+				{{ html.remove_button() }}
+				{{ form.file(id = 'file-3', class = 'hide') }}
+				<label for="file-3" href="#">
+					<span class="uploader__label">
+						{{ html.icon('file') }}
+						true_lies.avi
+					</span>
+				</label>
+			</li>
+		</ol>
+		{{ html.button(label = "Upload File", class = 'btn--primary') }}
+		</form>
+	</div>
+
+
+	<p>Ajaxy Uploading</p>
+
+	<div class="uploader">
+		<ol class="block-list block-list--bordered">
+			<li class="block-list__item">
+				<a href="#">
+					{{ html.remove_button(tooltip = 'Stop uploading') }}
+					<span class="uploader__label">
+						{{ html.icon('file') }}
+						true_lies.avi
+					</span>
+					{{ html.progress(25) }}
+				</a>
+			</li>
+		</ol>
+	</div>
+
+
+	<p>Image previews</p>
+
+	<div class="uploader">
+		<ol class="block-list block-list--bordered">
+			<li class="block-list__item">
+				<a href="#">
+					{{ html.remove_button() }}
+					<span class="uploader__label"><img src="http://www.placecage.com/g/75/50" class="preview" /> sexy_nick_cage.jpg</span>
+				</a>
+			</li>
+		</ol>
+	</div>
+
+
+	<p>Multiple files</p>
+
+	<div class="uploader">
+		<ol class="block-list block-list--bordered">
+			<li class="block-list__item">
+				<a href="#">
+					{{ html.remove_button() }}
+					<span class="uploader__label"><img src="http://www.placecage.com/g/175/150" class="preview" /> sexy_nick_cage.jpg</span>
+				</a>
+			</li>
+			<li class="block-list__item">
+				<a href="#">
+					{{ html.remove_button() }}
+					<span class="uploader__label"><img src="http://www.placecage.com/75/50" class="preview" /> nick_cage_is_my_spiritual_guide.jpg</span>
+				</a>
+			</li>
+			<li class="block-list__item">
+				<a href="#">
+					{{ html.remove_button() }}
+					<span class="uploader__label"><img src="http://www.placecage.com/gif/75/50" class="preview" /> put_the_bunny_back_in_the_box.gif</span>
+				</a>
+			</li>
+		</ol>
+		{{ html.button(label = "Add Another") }}
+		{{ html.button(label = html.icon('remove-sign') ~ ' Remove all', class = 'btn--naked') }}
+	</div>
+
+
+	<p>Within a form</p>
+
+	<form class="form--horizontal">
+		<div class="form__group form__group--full uploader">
+			<label class="control__label">
+				Repeatables
+			</label>
+			<div class="controls">
+				<ol class="block-list block-list--bordered">
+					<li class="block-list__item">
+						<label for="file-11" href="#">
+							{{ form.file(id = 'file-4', class = 'hide') }}
+							<span class="uploader__label">No file selected</span>
+						</label>
+					</li>
+				</ol>
+				{{ html.button(label = "Add File") }}
 			</div>
 		</div>
-		{{ html.button(label = "Add File", attributes = 'data-action=browse') }}
-	</div>
-
-<hr />
+	</form>
+-->
 </div>
