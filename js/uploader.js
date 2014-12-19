@@ -150,31 +150,36 @@ define([
                   $fileInput = row.find(options.fileInputSelector),
                   $uploader = row.parents(options.mainSelector);
 
-              if (row.siblings().length > 0) {
-
                 row.removeClass('has-changed fade').addClass('has-danger fade');
 
                 row.slideUp(250, function() {
+                  var $this = $(this);
 
-                  if (row.siblings().length === 1) {
+                  if ($this.siblings().length === 1) {
                     $uploader.find(options.removeAllButtonSelector)
                       .fadeOut(250, function() {
                         $(this).remove();
                       });
                   }
 
-                  $(this).remove();
+                  $this.remove();
+
+                  // if removing last row, add the new row back in
+                  if (!$uploader.find(options.itemSelector).length) {
+                    var $newRow = $defaultRow.clone().hide(),
+                        $itemContainer = $uploader.find(options.itemContainer);
+
+                    $itemContainer.append($newRow);
+                    $newRow.addClass('has-info fade').slideDown(250);
+                    $uploader.find(options.addAnotherButtonSelector).remove();
+                    $(options.browseButtonSelector).show();
+                  }
 
                   if (typeof callback == 'function') {
                     callback.call(this);
                   }
                 });
 
-              } else {
-                row.replaceWith($defaultRow.clone().addClass('has-danger fade'));
-                $uploader.find(options.addAnotherButtonSelector).remove();
-                $(options.browseButtonSelector).show();
-              }
             }
 
 
