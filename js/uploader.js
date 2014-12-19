@@ -27,14 +27,12 @@ define([
 
         return this.each(function () {
             var $this = $(this),
-                $fileInput = $this.find(options.fileInputSelector),
-                $browseButton = $this.find($(options.browseButtonSelector)),
-                $defaultRow = $this.find(options.itemSelector).clone();
+                $defaultRow = $(this).find(options.itemSelector).clone();
 
 
             // Add File button
-            $browseButton.on('click', function () {
-                $(this).parents(options.mainSelector).find(options.fileInputSelector).trigger('click');
+            $this.on('click', options.browseButtonSelector, function () {
+                $this.find(options.fileInputSelector).trigger('click');
             });
 
 
@@ -121,9 +119,9 @@ define([
                     $newRow = $defaultRow
                                 .clone()
                                 .hide(),
-                    $fileInput = $newRow.find(options.fileInputSelector);
+                    $newFileInput = $newRow.find(options.fileInputSelector);
 
-                $fileInput.attr('id', 'uploader-' + $uploader.index() + '-file-' + ($rows.length + 1));
+                $newFileInput.attr('id', 'uploader-' + $uploader.index() + '-file-' + ($rows.length + 1));
 
                 $newRow.appendTo($this.find(options.itemContainer))
                   .slideDown(250, function() {
@@ -139,7 +137,7 @@ define([
                     $(options.browseButtonSelector).show();
                 });
 
-                $fileInput.trigger('click');
+                $newFileInput.trigger('click');
 
             });
 
