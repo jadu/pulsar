@@ -7,11 +7,105 @@
   }
 }
 
+$info-from-bg-color: lighten($info-color, 30);
+$info-to-bg-color: transparent;
+$info-from-text-color: darken($info-color, 30);
+$info-to-text-color: black;
+
+$danger-from-bg-color: lighten($danger-color, 30);
+$danger-to-bg-color: transparent;
+$danger-from-text-color: darken($danger-color, 30);
+$danger-to-text-color: black;
+
+@-webkit-keyframes infoFade {
+  from {
+    background-color: $info-from-bg-color;
+    color: $info-from-text-color;
+  }
+  to {
+    background-color: $info-to-bg-color;
+    color: $info-to-text-color;
+  }
+}
+
+@-moz-keyframes infoFade {
+  from {
+    background-color: $info-from-bg-color;
+    color: $info-from-text-color;
+  }
+  to {
+    background-color: $info-to-bg-color;
+    color: $info-to-text-color;
+  }
+}
+
+@keyframes infoFade {
+  from {
+    background-color: $info-from-bg-color;
+    color: $info-from-text-color;
+  }
+  to {
+    background-color: $info-to-bg-color;
+    color: $info-to-text-color;
+  }
+}
+
+@-webkit-keyframes dangerFade {
+  from {
+    background-color: $danger-from-bg-color;
+    color: $danger-from-text-color;
+  }
+  to {
+    background-color: $danger-to-bg-color;
+    color: $danger-to-text-color;
+  }
+}
+
+@-moz-keyframes dangerFade {
+  from {
+    background-color: $danger-from-bg-color;
+    color: $danger-from-text-color;
+  }
+  to {
+    background-color: $danger-to-bg-color;
+    color: $danger-to-text-color;
+  }
+}
+
+@keyframes dangerFade {
+  from {
+    background-color: $danger-from-bg-color;
+    color: $danger-from-text-color;
+  }
+  to {
+    background-color: $danger-to-bg-color;
+    color: $danger-to-text-color;
+  }
+}
 
 .has-changed,
-.has-info {
-  background-color: lighten($info-color, 15);
-  color: darken($info-color, 30);
+.has-changed:hover,
+.has-info,
+.has-info:hover {
+
+  background-color: $info-from-bg-color;
+  color: $info-from-text-color;
+
+  &.fade {
+    -webkit-animation: infoFade ease-out 1;
+       -moz-animation: infoFade ease-out 1;
+            animation: infoFade ease-out 1;
+    -webkit-animation-delay: 2s;
+       -moz-animation-delay: 2s;
+            animation-delay: 2s;
+    -webkit-animation-duration: .5s;
+       -moz-animation-duration: .5s;
+            animation-duration: .5s;
+    -webkit-animation-fill-mode: forwards;
+       -moz-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+  }
+
 }
 
 .has-success {
@@ -24,7 +118,25 @@
   color: darken($warning-color, 30);
 }
 
-.has-error {
-  background-color: lighten($danger-color, 23);
-  color: darken($danger-color, 30);
+.has-error,
+.has-error:hover,
+.has-danger,
+.has-danger:hover {
+  background-color: $danger-from-bg-color;
+  color: $danger-from-text-color;
+
+  &.fade {
+    -webkit-animation: dangerFade ease-out 1;
+       -moz-animation: dangerFade ease-out 1;
+            animation: dangerFade ease-out 1;
+    -webkit-animation-delay: 2s;
+       -moz-animation-delay: 2s;
+            animation-delay: 2s;
+    -webkit-animation-duration: .5s;
+       -moz-animation-duration: .5s;
+            animation-duration: .5s;
+    -webkit-animation-fill-mode: forwards;
+       -moz-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+  }
 }

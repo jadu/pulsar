@@ -72,7 +72,7 @@ define([
                     $label = $row.find(options.labelSelector),
                     $uploader = $row.parents(options.mainSelector);
 
-                $row.addClass('has-changed fade');
+                $row.removeClass('has-danger fade').addClass('has-changed fade');
 
                 switch($uploader.data('uploader-type')) {
                 case 'detailed':
@@ -80,13 +80,13 @@ define([
                       $nameField = $row.find('.uploader__name');
 
                   $metadata.removeClass('hide');
-                  $nameField.removeClass('hide');
+                  $nameField.removeClass('hide').find('[type=text]').focus();
 
                   $metadata.find('.metadata__value').text($(this).val());
 
                   $label.hide();
 
-                  $('.uploader__name').show();
+                  //$('.uploader__name').show();
                 default:
                   $label.text($(this).val());
                 }
@@ -144,15 +144,15 @@ define([
             });
 
 
-            // Slide a row away and
+            // Slide up and get rid
             function removeRow(row, callback) {
               var $label = $this.find(options.labelSelector),
                   $fileInput = row.find(options.fileInputSelector),
                   $uploader = row.parents(options.mainSelector);
 
-              row.removeClass('has-changed fade').addClass('has-danger fade');
-
               if (row.siblings().length > 0) {
+
+                row.removeClass('has-changed fade').addClass('has-danger fade');
 
                 row.slideUp(250, function() {
 
@@ -163,7 +163,6 @@ define([
                       });
                   }
 
-                  clearRow(row);
                   $(this).remove();
 
                   if (typeof callback == 'function') {
@@ -172,38 +171,12 @@ define([
                 });
 
               } else {
-                clearRow(row);
-              }
-            }
-
-            // Clear a row's contents back to it's initial state
-            function clearRow(row) {
-              var $label = $this.find(options.labelSelector),
-                  $fileInput = row.find(options.fileInputSelector),
-                  $uploader = row.parents(options.mainSelector);
-
-              switch($uploader.data('uploader-type')) {
-                case 'detailed':
-                  var $metadata = row.find('.metadata'),
-                      $nameField = row.find('.uploader__name');
-
-                  $metadata.addClass('hide');
-                  $nameField.addClass('hide');
-                  $metadata.find('.metadata__value').text('');
-                default:
-                  row.find(options.labelSelector).text(options.labelDefaultValue);
-              }
-
-              row.find(options.removeButtonSelector).fadeTo(250, 0);
-              $fileInput.wrap('<form>').parent('form').trigger('reset');
-              $fileInput.unwrap();
-
-              if (row.siblings().length < 1) {
-                $(options.addAnotherButtonSelector).remove();
+                row.replaceWith($defaultRow.clone().addClass('has-danger fade'));
+                $uploader.find(options.addAnotherButtonSelector).remove();
                 $(options.browseButtonSelector).show();
-                $label.show();
               }
             }
+
 
         });
     };

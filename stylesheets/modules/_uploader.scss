@@ -9,8 +9,16 @@
     margin-bottom: .25em;
   }
 
-  .block-list__item > label {
-    width: 95%;
+  .block-list__item {
+    min-height: 44px;
+    padding: 0;
+    position: relative;
+
+    > label {
+      cursor: pointer;
+      padding: 11px;
+      width: 100%;
+    }
   }
 
   .form__group {
@@ -45,13 +53,22 @@
     margin: 11px 0 0 0;
   }
 
-  &__clear-all {
+  .remove-button {
+    position: absolute;
+    top: 11px;
+    right: 12px;
+    width: 17px;
+  }
+
+  [data-action=remove-all] {
     color: $gray-light;
     padding: 8px 14px 6px 14px;
+    text-shadow: none;
+    vertical-align: middle;
   }
 
   .metadata {
     font-size: $font-size-small;
-    margin-top: 11px;
+    margin-left: 11px;
   }
 }
