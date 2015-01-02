@@ -143,7 +143,7 @@
     </div>
 {% endmacro %}
 
-{% macro file(label, id, class, name, help, removable = false) %}
+{% macro file(label, id, class, name, help, placeholder, removable = false) %}
     {% import _self as form %}
     {% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
     <div class="form__group {{ class }}">
