@@ -10,7 +10,6 @@
   }
 
   .block-list__item {
-    height: 44px;
     padding: 0;
     position: relative;
 
@@ -65,6 +64,11 @@
     padding: 8px 14px 6px 14px;
     text-shadow: none;
     vertical-align: middle;
+
+    &:hover {
+      color: $black;
+      vertical-align: middle;
+    }
   }
 
   .metadata {
