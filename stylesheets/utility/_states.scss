@@ -87,33 +87,33 @@ $danger-to-text-color: black;
 .has-changed:hover,
 .has-info,
 .has-info:hover {
+  &:not(.form__group) {
+    background-color: $info-from-bg-color;
+    color: $info-from-text-color;
 
-  background-color: $info-from-bg-color;
-  color: $info-from-text-color;
-
-  &.fade {
-    -webkit-animation: infoFade ease-out 1;
-       -moz-animation: infoFade ease-out 1;
-            animation: infoFade ease-out 1;
-    -webkit-animation-delay: 2s;
-       -moz-animation-delay: 2s;
-            animation-delay: 2s;
-    -webkit-animation-duration: .5s;
-       -moz-animation-duration: .5s;
-            animation-duration: .5s;
-    -webkit-animation-fill-mode: forwards;
-       -moz-animation-fill-mode: forwards;
-            animation-fill-mode: forwards;
+    &.fade {
+      -webkit-animation: infoFade ease-out 1;
+         -moz-animation: infoFade ease-out 1;
+              animation: infoFade ease-out 1;
+      -webkit-animation-delay: 1.5s;
+         -moz-animation-delay: 1.5s;
+              animation-delay: 1.5s;
+      -webkit-animation-duration: 3s;
+         -moz-animation-duration: 3s;
+              animation-duration: 3s;
+      -webkit-animation-fill-mode: forwards;
+         -moz-animation-fill-mode: forwards;
+              animation-fill-mode: forwards;
+    }
   }
-
 }
 
-.has-success {
+.has-success:not(.form__group) {
   background-color: lighten($success-color, 35);
   color: darken($success-color, 15);
 }
 
-.has-warning {
+.has-warning:not(.form__group) {
   background-color: lighten($warning-color, 15);
   color: darken($warning-color, 30);
 }
@@ -122,21 +122,23 @@ $danger-to-text-color: black;
 .has-error:hover,
 .has-danger,
 .has-danger:hover {
-  background-color: $danger-from-bg-color;
-  color: $danger-from-text-color;
+  &:not(.form__group) {
+    background-color: $danger-from-bg-color;
+    color: $danger-from-text-color;
 
-  &.fade {
-    -webkit-animation: dangerFade ease-out 1;
-       -moz-animation: dangerFade ease-out 1;
-            animation: dangerFade ease-out 1;
-    -webkit-animation-delay: 2s;
-       -moz-animation-delay: 2s;
-            animation-delay: 2s;
-    -webkit-animation-duration: .5s;
-       -moz-animation-duration: .5s;
-            animation-duration: .5s;
-    -webkit-animation-fill-mode: forwards;
-       -moz-animation-fill-mode: forwards;
-            animation-fill-mode: forwards;
+    &.fade {
+      -webkit-animation: dangerFade ease-out 1;
+         -moz-animation: dangerFade ease-out 1;
+              animation: dangerFade ease-out 1;
+      -webkit-animation-delay: 1.5s;
+         -moz-animation-delay: 1.5s;
+              animation-delay: 1.5s;
+      -webkit-animation-duration: 3s;
+         -moz-animation-duration: 3s;
+              animation-duration: 3s;
+      -webkit-animation-fill-mode: forwards;
+         -moz-animation-fill-mode: forwards;
+              animation-fill-mode: forwards;
+    }
   }
 }
