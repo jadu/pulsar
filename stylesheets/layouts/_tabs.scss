@@ -125,6 +125,7 @@
 
 // horizontal navigation
 .tabs__list.tabs--horizontal {
+  margin: 0 $gutter-width;
   position: relative;
   width: auto;
   z-index: $zindex-dropdown;
