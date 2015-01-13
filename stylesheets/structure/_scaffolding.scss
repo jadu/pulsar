@@ -20,6 +20,11 @@ body {
   }
 }
 
+// Make sure flash messages properly clear header/toolbar
+#top {
+  @include clear-fix;
+}
+
 .heading {
   @include inline-block;
   font-family: $font-family-light;
