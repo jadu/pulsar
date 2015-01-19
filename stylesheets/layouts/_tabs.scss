@@ -1,6 +1,9 @@
 .tabs__list {
   clear: left;
   display: none;
+  @include ie-lte(8) {
+    display: block;
+  }
   float: left;
   list-style: none;
   margin: 0;
@@ -125,6 +128,7 @@
 
 // horizontal navigation
 .tabs__list.tabs--horizontal {
+  margin: 0 $gutter-width;
   position: relative;
   width: auto;
   z-index: $zindex-dropdown;
