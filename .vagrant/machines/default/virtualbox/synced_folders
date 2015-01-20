@@ -1,0 +1,1 @@
+{"virtualbox":{"/var/www/html":{"mount_options":["dmode=777,fmode=666"],"guestpath":"/var/www/html","hostpath":"/Users/stanton/Localhost/pulsar-ui","disabled":false},"/vagrant":{"guestpath":"/vagrant","hostpath":"/Users/stanton/Localhost/pulsar-ui","disabled":false}}}
