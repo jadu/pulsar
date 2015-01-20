@@ -217,6 +217,14 @@
   <span class="label{% if class is not empty %} {{ class }}{% endif %}"{% if tooltip_title %}{{ _self.tooltip(tooltip_title, tooltip_placement) }}{% endif %}>{{ label }}</span>
 {%- endmacro -%}
 
+{%- macro label_group(labels, class, attributes) -%}
+  <div class="label-group{% if class %} {{ class }}{% endif %}"{% if attributes %} {{ attributes|raw }}{% endif %}>
+  {%- for label in labels -%}
+    {{ label }}
+  {%- endfor -%}
+  </div>
+{%- endmacro -%}
+
 
 {%- macro badge(label = 'label', class, attributes) -%}
   <span class="badge{% if class is not empty %} {{ class }}{% endif %}"{% if attributes is not empty %} {{ attributes|raw }}{% endif %}>{{ label }}</span>

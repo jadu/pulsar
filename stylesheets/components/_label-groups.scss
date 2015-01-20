@@ -1,0 +1,50 @@
+.label-group {
+
+    .label {
+
+        &:first-child {
+            margin-right: 20px;
+
+            @include border-radius(4px 0 0 4px);
+            @include css-arrow(9px, right)
+        }
+
+        &:last-child {
+            padding-left: 20px;
+            margin-left: -30px;
+            
+            @include border-radius(0 4px 4px 0);
+        }
+
+    }
+}
+
+.label-group--tall {
+    .label {
+        font-size: 100%;
+        
+        &:first-child {
+            @include css-arrow(12px, right)
+        }
+
+        &:last-child {
+            padding-left: 25px;
+            margin-left: -30px;
+        }
+    }
+}
+
+.label-group--tallest {
+    .label {
+        font-size: 120%;
+        
+        &:first-child {
+            @include css-arrow(14px, right)
+        }
+
+        &:last-child {
+            padding-left: 30px;
+            margin-left: -30px;
+        }
+    }
+}

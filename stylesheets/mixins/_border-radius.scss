@@ -1,0 +1,21 @@
+/**
+ * Creates a browser prefixed border-radius 
+ *
+ * @param {string | var} $radius - the border radius measurement (can be px, em, % or whatever you like)
+ *
+ * @example scss
+ * .some-class {
+ *     @include border-radius(5px);
+ * }
+ *
+ * @example scss
+ * .some-class {
+ *     @include border-radius(5px 0 0 5px);
+ * }
+ */
+@mixin border-radius($radius) {
+    background-clip: padding-box;  /* stops bg color from leaking outside the border: */
+    -moz-border-radius: $radius;
+    -webkit-border-radius: $radius;
+    border-radius: $radius;
+}

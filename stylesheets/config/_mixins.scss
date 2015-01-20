@@ -34,6 +34,7 @@
 
 @mixin label-variant($color) {
   background-color: $color;
+  border-color: $color;
   color: $label-color-alt;
   &[href] {
     &:hover,

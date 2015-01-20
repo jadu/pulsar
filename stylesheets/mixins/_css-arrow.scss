@@ -1,0 +1,61 @@
+/**
+ * CSS Arrow
+ * @param {string} $size - size and unit of measurement (20px for example)
+ * @param {string} $position - left, right, top, bottom
+ * @param {string} $color - colour of arrow (white, #000000, default: inherit)
+ *
+ * @example scss
+ * .some-class {
+ *     @include cssArrow(20px, top, $black);
+ * }   
+ *
+ * @example scss
+ * .some-class {
+ *     @include cssArrow(2empx, left, $black);
+ * }
+ */
+
+@mixin css-arrow($size, $position, $color: inherit) {
+    position: relative;
+
+    &:after {
+
+        border: solid transparent;
+        border-color: rgba(0, 0, 0, 0);
+        
+        @if ($position) == 'top' {
+            bottom: 100%;
+            left: 50%;
+            border-bottom-color: $color;
+            margin-left: -$size;
+        }
+
+        @else if ($position) == 'right' {
+            left: 100%;
+            top: 50%;
+            border-left-color: $color;
+            margin-top: -$size;
+        }
+
+        @else if ($position) == 'bottom' {
+            top: 100%;
+            left: 50%;
+            border-top-color: $color;
+            margin-left: -$size;
+        }
+
+        @else if ($position) == 'left' {
+            right: 100%;
+            top: 50%;
+            border-right-color: $color;
+            margin-top: -$size;
+        }
+
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;        
+        border-width: $size;
+    } 
+}
