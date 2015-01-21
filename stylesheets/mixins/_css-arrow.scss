@@ -11,17 +11,15 @@
  *
  * @example scss
  * .some-class {
- *     @include cssArrow(2empx, left, $black);
+ *     @include cssArrow(2px, left, $black);
  * }
  */
-
 @mixin css-arrow($size, $position, $color: inherit) {
     position: relative;
 
     &:after {
 
         border: solid transparent;
-        border-color: rgba(0, 0, 0, 0);
         
         @if ($position) == 'top' {
             bottom: 100%;
