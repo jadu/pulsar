@@ -53,7 +53,7 @@ The following modifier classes can be applied to the `class` attribute to change
                 ),
                 html.label(
                     label = 'checking details',
-                    class = 'label--warning'
+                    class = 'label--info'
                 )
             ],
             class = 'label-group--tall'
@@ -70,16 +70,21 @@ The following modifier classes can be applied to the `class` attribute to change
                 ),
                 html.label(
                     label = 'checking details',
-                    class = 'label--warning'
+                    class = 'label--danger'
                 )
             ],
             class = 'label-group--tallest'
         )
     }}
 
+<p>
 <div class="label-group">  <span class="label label--inverse">case closed with decision</span>  <span class="label label--warning">checking details</span></div>
+</p>
 
-<div class="label-group label-group--tall">  <span class="label label--inverse">case closed with decision</span>  <span class="label label--warning">checking details</span></div>
+<p>
+<div class="label-group label-group--tall">  <span class="label label--inverse">case closed with decision</span>  <span class="label label--info">checking details</span></div>
+</p>
 
-<div class="label-group label-group--tallest">  <span class="label label--inverse">case closed with decision</span>  <span class="label label--warning">checking details</span></div>
-
+<p>
+<div class="label-group label-group--tallest">  <span class="label label--inverse">case closed with decision</span>  <span class="label label--danger">checking details</span></div>
+</p>

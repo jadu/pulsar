@@ -35,6 +35,7 @@
             top: 50%;
             border-left-color: $color;
             margin-top: -$size;
+            padding-left: -1px;
         }
 
         @else if ($position) == 'bottom' {
@@ -51,11 +52,11 @@
             margin-top: -$size;
         }
 
+        border-width: $size;
         content: " ";
         height: 0;
-        width: 0;
         position: absolute;
         pointer-events: none;        
-        border-width: $size;
+        width: 0;
     } 
 }

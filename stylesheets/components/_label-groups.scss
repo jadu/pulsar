@@ -1,17 +1,18 @@
 .label-group {
 
     .label {
+        line-height: 1.2;
 
         &:first-child {
             margin-right: 20px;
 
             @include border-radius(4px 0 0 4px);
-            @include css-arrow(9px, right)
+            @include css-arrow(10px, right)
         }
 
         &:last-child {
-            padding-left: 20px;
             margin-left: -30px;
+            padding-left: 20px;
             
             @include border-radius(0 4px 4px 0);
         }
@@ -22,29 +23,31 @@
 .label-group--tall {
     .label {
         font-size: 100%;
-        
+        line-height: 1.2;
+
         &:first-child {
-            @include css-arrow(12px, right)
+            @include css-arrow(13px, right)
         }
 
         &:last-child {
-            padding-left: 25px;
             margin-left: -30px;
+            padding-left: 25px;
         }
     }
 }
 
 .label-group--tallest {
     .label {
-        font-size: 120%;
+        font-size: 110%;
+        line-height: 1.2;
         
         &:first-child {
             @include css-arrow(14px, right)
         }
 
         &:last-child {
-            padding-left: 30px;
             margin-left: -30px;
+            padding-left: 30px;
         }
     }
 }
