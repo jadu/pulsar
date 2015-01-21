@@ -214,7 +214,15 @@
 
 {%- macro label(label = 'label', class, tooltip_title, tooltip_placement = 'top') -%}
   {% import _self as html %}
-  <span class="label{% if class is not empty %} {{ class }}{% endif %}"{% if tooltip_title %}{{ _self.tooltip(tooltip_title, tooltip_placement) }}{% endif %}>{{ label }}</span>
+  <span class="label{% if class is not empty %} {{ class }}{% endif %}"{% if tooltip_title %}{{ _self.tooltip(tooltip_title, tooltip_placement) }}{% endif %}>{{ label|raw }}</span>
+{%- endmacro -%}
+
+{%- macro label_group(labels, class, attributes) -%}
+  <div class="label-group{% if class %} {{ class }}{% endif %}"{% if attributes %} {{ attributes|raw }}{% endif %}>
+  {%- for label in labels -%}
+    {{ label }}
+  {%- endfor -%}
+  </div>
 {%- endmacro -%}
 
 

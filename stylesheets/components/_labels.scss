@@ -1,5 +1,6 @@
 .label {
   @include inline-block;
+  @include content-box;
   padding: .25em .6em;
   font-size: 75%;
   font-weight: 500;
