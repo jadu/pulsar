@@ -1,0 +1,27 @@
+.panel {
+    background-color: $gray-lighter;
+    margin: $line-height-base $gutter-width;
+
+    &__title {
+        font-size: $font-size-xlarge;
+        line-height: 1em;
+        padding: $padding-base-vertical $padding-base-horizontal;
+    }
+
+    &__body {
+        margin-left: 26px;
+        padding: $padding-base-vertical $padding-base-horizontal;
+
+        p:last-of-type {
+            margin-bottom: 0;
+        }
+    }
+
+    &--danger  { background-color: $danger-color; color: $white; }
+    &--info    { background-color: $info-color; color: $white; }
+    &--inverse { background-color: $inverse-color; color: $white; }
+    &--primary { background-color: $primary-color; color: $white; }
+    &--success { background-color: $success-color; color: $white; }
+    &--warning { background-color: $warning-color; color: $white; }
+
+}

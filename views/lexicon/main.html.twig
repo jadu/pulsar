@@ -34,6 +34,7 @@
 {% set tab_tooltips %}{% include        'lexicon/tabs/tooltips.html.twig' %}{% endset %}
 {% set tab_data_grid %}{% include       'lexicon/tabs/datagrid.html.twig' %}{% endset %}
 {% set tab_metadata %}{% include        'lexicon/tabs/metadata.html.twig' %}{% endset %}
+{% set tab_panels %}{% include          'lexicon/tabs/panels.html.twig' %}{% endset %}
 {% set tab_popovers %}{% include        'lexicon/tabs/popovers.html.twig' %}{% endset %}
 {% set tab_progress_bars %}{% include   'lexicon/tabs/progress_bars.html.twig' %}{% endset %}
 {% set tab_rich_list %}{% include       'lexicon/tabs/rich_list.html.twig' %}{% endset %}
@@ -80,6 +81,11 @@
           "id"    : "metadata",
           "label" : html.icon("info-sign") ~ " Metadata",
           "src"   : tab_metadata
+        },
+        {
+          "id"    : "panels",
+          "label" : html.icon("info-sign") ~ " Panels",
+          "src"   : tab_panels
         },
         {
           "id"    : "progress",
