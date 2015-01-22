@@ -1,5 +1,6 @@
 .panel {
     background-color: $gray-lighter;
+    border-radius: $border-radius;
     margin: $line-height-base $gutter-width;
 
     &__title {
