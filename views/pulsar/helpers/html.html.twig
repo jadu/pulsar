@@ -261,6 +261,7 @@
 
 {%- endmacro -%}
 
+
 {%- macro metadata(items, class) -%}
   <dl class="metadata{% if class is not empty %} {{ class }}{% endif %}">
     {%- for key, value in items -%}
@@ -268,4 +269,17 @@
  --><dd class="metadata__value">{{ value }}</dd>
     {% endfor %}
   </dl>
+{%- endmacro -%}
+
+
+{%- macro panel(title, body, class, icon = 'info-sign') -%}
+  {% import _self as html %}
+  <div class="panel{% if class is not empty %} {{ class }}{% endif %}">
+    <div class="panel__title">
+        {{ _self.icon(icon) }} {{ title }}
+    </div>
+    <div class="panel__body">
+        {{ body }}
+    </div>
+</div>
 {%- endmacro -%}
