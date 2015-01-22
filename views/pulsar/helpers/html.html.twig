@@ -279,7 +279,7 @@
         {{ _self.icon(icon) }} {{ title }}
     </div>
     <div class="panel__body">
-        {{ body }}
+        {{ body|raw }}
     </div>
 </div>
 {%- endmacro -%}
