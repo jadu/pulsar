@@ -25,6 +25,7 @@
 %}
 
 {% set tab_buttons %}{% include         'lexicon/tabs/buttons_labels.html.twig' %}{% endset %}
+{% set tab_colours %}{% include         'lexicon/tabs/colours.html.twig' %}{% endset %}
 {% set tab_decks %}{% include           'lexicon/tabs/decks.html.twig' %}{% endset %}
 {% set tab_editor %}{% include          'lexicon/tabs/editor.html.twig' %}{% endset %}
 {% set tab_flash %}{% include           'lexicon/tabs/flash.html.twig' %}{% endset %}
@@ -53,6 +54,11 @@
       "label"     : html.icon("th") ~ " Components",
       "sub_tabs"  : [
         {
+          "id"    : "colours",
+          "label" : html.icon("tint") ~ " Colours",
+          "src"   : tab_colours
+        },
+        {
           "id"    : "buttons",
           "label" : html.icon("plus-sign-alt") ~ " Buttons",
           "src"   : tab_buttons
@@ -79,7 +85,7 @@
         },
         {
           "id"    : "metadata",
-          "label" : html.icon("info-sign") ~ " Metadata",
+          "label" : html.icon("list-alt") ~ " Metadata",
           "src"   : tab_metadata
         },
         {

@@ -44,9 +44,9 @@ In the middle of the club with the rub-a-dub, unh</p>
     </div>
 </div>
 
-<div class="panel panel--primary">
+<div class="panel panel--info">
     <div class="panel__title">
-        <i class="icon-question-sign"></i> Primary panel
+        <i class="icon-question-sign"></i> Info panel
     </div>
     <div class="panel__body">
         <p>No love for the haters, the haters
@@ -57,9 +57,9 @@ I got the fever for the flavor of a crowd pleaser</p>
     </div>
 </div>
 
-<div class="panel panel--info">
+<div class="panel panel--success">
     <div class="panel__title">
-        <i class="icon-info-sign"></i> Info panel
+        <i class="icon-ok-sign"></i> Success panel
     </div>
     <div class="panel__body">
         <p>DJ play another
@@ -70,9 +70,9 @@ South to the west to the east to the north</p>
     </div>
 </div>
 
-<div class="panel panel--success">
+<div class="panel panel--warning">
     <div class="panel__title">
-        <i class="icon-ok-sign"></i> Success panel
+        <i class="icon-warning-sign"></i> Warning panel
     </div>
     <div class="panel__body">
         <p>Bought my hits and watch 'em go off a go off
@@ -83,9 +83,9 @@ Gettin jiggy wit 'em</p>
     </div>
 </div>
 
-<div class="panel panel--warning">
+<div class="panel panel--danger">
     <div class="panel__title">
-        <i class="icon-warning-sign"></i> Warning panel
+        <i class="icon-exclamation-sign"></i> Danger panel
     </div>
     <div class="panel__body">
         <p>Eight-fifty I.S. if you need a lift
@@ -95,9 +95,9 @@ Livin' that life some consider a myth Rock from south street to one two fifth</p
     </div>
 </div>
 
-<div class="panel panel--danger">
+<div class="panel panel--inverse">
     <div class="panel__title">
-        <i class="icon-exclamation-sign"></i> Danger panel
+        <i class="icon-remove-sign"></i> Inverse panel
     </div>
     <div class="panel__body">
         <p>Women used to tease me
@@ -105,26 +105,5 @@ Give it to me now nice and easy
 Since I moved up like George and Wheezy
 Cream to the maximum I be askin' 'em
 Would you like to bounce with the brother that's platinum</p>
-    </div>
-</div>
-
-<div class="panel panel--inverse">
-    <div class="panel__title">
-        <i class="icon-remove-sign"></i> Inverse panel
-    </div>
-    <div class="panel__body">
-        <p>Never see Will attackin' 'em
-Rather play ball with Shaq and um,
-Flatten 'em
-Psyche
-Kiddin'
-You thought I took a spill
-But I didn't
-Trust the lady of my life she hittin'
-Hit her with a drop top with the ribbon
-Crib for my mom on the outskirts of Philly
-You trying to flex on me
-Don't be silly
-Getting jiggy wit it</p>
     </div>
 </div>

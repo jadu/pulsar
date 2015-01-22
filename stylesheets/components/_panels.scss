@@ -7,22 +7,45 @@
         font-size: $font-size-xlarge;
         line-height: 1em;
         padding: $padding-base-vertical $padding-base-horizontal;
+
+        i::before {
+          width: 30px;
+        }
     }
 
     &__body {
-        margin-left: 26px;
-        padding: $padding-base-vertical $padding-base-horizontal;
+        margin-left: 42px;
+        padding: $padding-base-vertical 0;
 
         p:last-of-type {
             margin-bottom: 0;
         }
     }
 
-    &--danger  { background-color: $danger-color; color: $white; }
-    &--info    { background-color: $info-color; color: $white; }
-    &--inverse { background-color: $inverse-color; color: $white; }
-    &--primary { background-color: $primary-color; color: $white; }
-    &--success { background-color: $success-color; color: $white; }
-    &--warning { background-color: $warning-color; color: $white; }
+    &--danger  {
+        background-color: $danger-color;
+        color: $white;
+    }
+
+    &--info    {
+        background-color: $info-color;
+        color: $black;
+    }
+
+    &--inverse {
+        background-color: $inverse-color;
+        color: $white;
+    }
+
+    &--success {
+        background-color: $success-color;
+        color: $white;
+    }
+
+    &--warning {
+        background-color: $warning-color;
+        color: $black;
+    }
+
 
 }
