@@ -32,16 +32,17 @@
   }
 }
 
-@mixin label-variant($color) {
+@mixin label-variant($color, $text-color: $label-color-alt) {
   background-color: $color;
   border-color: $color;
   border-width: 0;
-  color: $label-color-alt;
+  color: $text-color;
+  text-transform: lowercase;
 
   &:not(:last-child) {
       @include css-arrow(14px, right);
       &:before {
-        border-left-color: darken($color, 10%) !important;
+        border-left-color: darken($color, 20%) !important;
       }
   }
 
