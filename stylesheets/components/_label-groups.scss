@@ -1,19 +1,21 @@
 .label-group {
 
+    background-clip: padding-box;
+    line-height: 1;
+    overflow: hidden;
+    position: relative;
+
     .label {
         line-height: 1.2;
 
         &:first-child {
             margin-right: 20px;
-
             @include border-radius(4px 0 0 4px);
-            @include css-arrow(10px, right)
         }
 
         &:last-child {
             margin-left: -30px;
-            padding-left: 20px;
-            
+            padding-left: 33px;
             @include border-radius(0 4px 4px 0);
         }
 
@@ -25,13 +27,9 @@
         font-size: 100%;
         line-height: 1.2;
 
-        &:first-child {
-            @include css-arrow(13px, right)
-        }
-
         &:last-child {
             margin-left: -30px;
-            padding-left: 25px;
+            padding-left: 33px;
         }
     }
 }
@@ -40,14 +38,10 @@
     .label {
         font-size: 110%;
         line-height: 1.2;
-        
-        &:first-child {
-            @include css-arrow(14px, right)
-        }
 
         &:last-child {
             margin-left: -30px;
-            padding-left: 30px;
+            padding-left: 33px;
         }
     }
 }

@@ -35,7 +35,16 @@
 @mixin label-variant($color) {
   background-color: $color;
   border-color: $color;
+  border-width: 0;
   color: $label-color-alt;
+
+  &:not(:last-child) {
+      @include css-arrow(14px, right);
+      &:before {
+        border-left-color: darken($color, 10%) !important;
+      }
+  }
+
   &[href] {
     &:hover,
     &:focus {

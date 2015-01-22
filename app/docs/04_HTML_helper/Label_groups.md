@@ -77,6 +77,23 @@ The following modifier classes can be applied to the `class` attribute to change
         )
     }}
 
+    <!-- Tallest labels (with same colour labels)-->
+    {{
+        html.label_group(
+            labels = [
+                html.label(
+                    label = 'case closed with decision',
+                    class = 'label--warning'
+                ),
+                html.label(
+                    label = 'checking details',
+                    class = 'label--warning'
+                )
+            ],
+            class = 'label-group--tallest'
+        )
+    }}
+
 <p>
 <div class="label-group">  <span class="label label--inverse">case closed with decision</span>  <span class="label label--warning">checking details</span></div>
 </p>
@@ -88,3 +105,5 @@ The following modifier classes can be applied to the `class` attribute to change
 <p>
 <div class="label-group label-group--tallest">  <span class="label label--inverse">case closed with decision</span>  <span class="label label--danger">checking details</span></div>
 </p>
+
+<div class="label-group label-group--tallest">  <span class="label label--warning">case closed with decision</span>  <span class="label label--warning">checking details</span></div>

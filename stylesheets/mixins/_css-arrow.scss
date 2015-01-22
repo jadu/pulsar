@@ -1,5 +1,5 @@
 /**
- * CSS Arrow
+ * CSS Arrow - note border colour of the :before and :after are inherited from the parent by default
  * @param {string} $size - size and unit of measurement (20px for example)
  * @param {string} $position - left, right, top, bottom
  * @param {string} $color - colour of arrow (white, #000000, default: inherit)
@@ -17,44 +17,114 @@
 @mixin css-arrow($size, $position, $color: inherit) {
     position: relative;
 
-    &:after {
-
-        border: solid transparent;
-        
-        @if ($position) == 'top' {
+    @if ($position) == 'top' {
+        &:before,
+        &:after {
             bottom: 100%;
             left: 50%;
-            border-bottom-color: $color;
-            margin-left: -$size;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            position: absolute;
+            pointer-events: none;        
+            width: 0;
         }
 
-        @else if ($position) == 'right' {
+        &:after {
+            border-bottom-color: inherit;
+            border-width: $size;
+            margin-left: -$size;
+            padding-bottom: -1px;
+        }
+
+        &:before {
+            border-bottom-color: inherit;
+            border-width: $size + 2;
+            margin-left: -($size + 2);
+        }
+    }
+
+    @if ($position) == 'right' {
+        &:before,
+        &:after {
             left: 100%;
             top: 50%;
-            border-left-color: $color;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            position: absolute;
+            pointer-events: none;        
+            width: 0;
+        }
+
+        &:after {
+            border-left-color: inherit;
+            border-width: $size;
             margin-top: -$size;
             padding-left: -1px;
         }
 
-        @else if ($position) == 'bottom' {
+        &:before {
+            border-left-color: inherit;
+            border-width: $size + 2;
+            margin-top: -($size + 2);
+        }
+    }
+
+    @if ($position) == 'bottom' {
+        &:before,
+        &:after {
             top: 100%;
             left: 50%;
-            border-top-color: $color;
-            margin-left: -$size;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            position: absolute;
+            pointer-events: none;        
+            width: 0;
         }
 
-        @else if ($position) == 'left' {
+        &:after {
+            border-top-color: inherit;
+            border-width: $size;
+            margin-left: -$size;
+            padding-top: -1px;
+        }
+
+        &:before {
+            border-top-color: inherit;
+            border-width: $size + 2;
+            margin-left: -($size + 2);
+        }
+    }
+
+    @if ($position) == 'left' {
+        &:before,
+        &:after {
             right: 100%;
             top: 50%;
-            border-right-color: $color;
-            margin-top: -$size;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            position: absolute;
+            pointer-events: none;        
+            width: 0;
         }
 
-        border-width: $size;
-        content: " ";
-        height: 0;
-        position: absolute;
-        pointer-events: none;        
-        width: 0;
-    } 
+        &:after {
+            border-right-color: inherit;
+            border-width: $size;
+            margin-top: -$size;
+            padding-right: -1px;
+        }
+
+        &:before {
+            border-right-color: inherit;
+            border-width: $size + 2;
+            margin-top: -($size + 2);
+        }
+    }
 }
+
+
+

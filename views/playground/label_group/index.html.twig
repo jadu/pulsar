@@ -1,6 +1,7 @@
 {% extends 'pulsar/layouts/base.html.twig' %}
 
 {% block body %}
+
 <p>
 	{{
         html.label_group(
@@ -77,7 +78,7 @@
             labels = [
                 html.label(
                 	label = 'case closed with decision',
-                	class = 'label--inverse'
+                	class = 'label--danger'
                 ),
                 html.label(
                 	label = 'checking details',
@@ -95,7 +96,7 @@
             labels = [
                 html.label(
                 	label = 'case closed with decision',
-                	class = 'label--inverse'
+                	class = 'label--warning'
                 ),
                 html.label(
                 	label = 'checking details',
@@ -105,6 +106,10 @@
             class = 'label-group--tallest'
         )
     }}
+</p>
+
+<p>
+    <span class="label label--warning">case closed with decision</span>
 </p>
 
 {% endblock %}
