@@ -16,10 +16,7 @@
   -webkit-bg-clip: padding-box;
      -moz-bg-clip: padding;
   background-clip: padding-box;
-  border: 1px solid $popover-fallback-border-color;
-  border: 1px solid $popover-border-color;
-  border-radius: $border-radius;
-  box-shadow: 0 5px 10px rgba(0,0,0,.2);
+  box-shadow: 0 0 10px 5px rgba(0,0,0,.15);
 
   // Overrides for proper insertion
   white-space: normal;
@@ -43,12 +40,13 @@
   margin: 0; // reset heading margin
   padding: 8px 14px;
   font-size: $font-size-base;
+  font-family: $font-family-regular;
+
   font-weight: normal;
   letter-spacing: 0;
   line-height: 18px;
   background-color: $popover-title-bg;
   border-bottom: 1px solid darken($popover-title-bg, 5%);
-  border-radius: 5px 5px 0 0;
 
   .popover--standout & {
     background-color: $popover-standout-title-bg;
