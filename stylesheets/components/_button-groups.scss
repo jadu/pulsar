@@ -1,30 +1,15 @@
-.btn__group > .btn + .btn {
-  margin-left: -1px;
-}
-
-.btn__group > .btn:first-child {
-  border-top-left-radius: 3px;
-  border-bottom-left-radius: 3px;
-}
-
-.btn__group > .btn:last-child {
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
-}
-
-.btn__group > .btn:not(:first-child):not(:last-child):not(.dropdown__toggle) {
-  border-radius: 0;
-}
-
 // Make the div behave like a button
 .btn__group,
 .btn__group-vertical {
   position: relative;
   @include inline-block;
   vertical-align: middle; // match .btn alignment given font-size hack above
+
   > .btn {
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
     position: relative;
-    float: left;
+    vertical-align: bottom;
     // Bring the "active" button to the front
     &:hover,
     &:focus,
@@ -34,6 +19,28 @@
     }
   }
 }
+
+.btn__group > .btn + .btn {
+  margin-left: -1px;
+}
+
+.btn__group > .btn:first-child {
+  border-left-width: 0;
+  border-left-width: 0;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.btn__group > .btn:last-child {
+  border-right-width: 0;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.btn__group > .btn:not(:first-child):not(:last-child):not(.dropdown__toggle) {
+  border-radius: 0;
+}
+
 
 // Prevent double borders when buttons are next to each other
 .btn__group .btn + .btn {

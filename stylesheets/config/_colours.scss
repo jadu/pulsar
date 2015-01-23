@@ -53,6 +53,8 @@ $inverse-link-hover-color:      darken($white, 10%) !default;
 
 // -----------------------------------------------------------------------------
 //  States
+//
+//  The colour and it's alternative MUST meet AA compliance for contrast
 // -----------------------------------------------------------------------------
 
 $primary-color:                 #1F7BB8 !default;
@@ -61,6 +63,13 @@ $warning-color:                 #EAA96A !default;
 $danger-color:                  #C84D40 !default;
 $info-color:                    $jadu-blue-cool !default;
 $inverse-color:                 $gray-dark !default;
+
+$primary-color-alt:             #FFFFFF !default;
+$success-color-alt:             #FFFFFF !default;
+$warning-color-alt:             #000000 !default;
+$danger-color-alt:              #FFFFFF !default;
+$info-color-alt:                #000000 !default;
+$inverse-color-alt:             #FFFFFF !default;
 
 // -----------------------------------------------------------------------------
 //  Buttons

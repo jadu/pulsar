@@ -20,47 +20,46 @@
  * 2. Normalize `box-sizing` across all elements that this component could be
  *    applied to.
  * 3. Inherit text color from ancestor.
- * 4. Inherit font styles from ancestor.
- * 5. Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+.
- * 6. Prevent button text from being selectable.
- * 7. Prevent wrapping across multiple lines.
+ * 4. Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+.
+ * 5. Prevent button text from being selectable.
+ * 6. Prevent wrapping across multiple lines.
+ * 7. Remove excess padding and border in Firefox 4+
  */
 
 .btn {
     -webkit-appearance: none; /* 1 */
     background: transparent;
-    border: 1px solid;
+    border: 0px;
+    border-radius: $border-radius;
     -moz-box-sizing: border-box;
     box-sizing: border-box; /* 2 */
     color: inherit; /* 3 */
     cursor: pointer;
     @include inline-block;
-    font: inherit; /* 4 */
-    line-height: normal; /* 5 */
+    font-size: 14px;
+    line-height: normal; /* 4 */
     margin: 0;
-    padding: 0.4em 0.75em;
+    padding: 8px 14px 6px;
     position: relative;
     text-align: center;
     text-decoration: none;
     -moz-user-select: none;
     -ms-user-select: none;
     -webkit-user-select: none;
-    user-select: none; /* 6 */
-    vertical-align: middle;
-    white-space: nowrap; /* 7 */
-}
+    user-select: none; /* 5 */
+    vertical-align: bottom;
+    white-space: nowrap; /* 6 */
 
-a.btn {
-    color: inherit;
+    @include ie-lte(7) {
+        padding: 7px;
+    }
 
-    &.btn--primary,
-    &.btn--success,
-    &.btn--danger,
-    &.btn--info,
-    &.btn--inverse {
-        color: white;
+    &::moz-focus-inner { /* 7 */
+      border: 0;
+      padding: 0;
     }
 }
+
 
 .btn--small {
     font-size: .75em !important;
@@ -71,36 +70,60 @@ a.btn {
  * UI states
  */
 
-.btn:hover,
-.btn:focus,
-.btn:active {
-    text-decoration: none;
-}
+.btn {
+  border-bottom-style: solid;
 
-.btn:disabled,
-.btn.is-disabled
-.btn.disabled {
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: none;
+  }
+
+  &:disabled,
+  &.is-disabled
+  &.disabled {
+    padding-top: 9px;
     cursor: not-allowed !important;
 
     &:hover {
-        cursor: not-allowed !important ;
+      cursor: not-allowed !important;
+    }
+  }
+}
+
+/**
+ * Mixin to theme button states
+ */
+
+@mixin button-states($base-color, $alt-color: #000000) {
+    $shadow-color: darken($base-color, 10%);
+
+    background-color: $base-color;
+    box-shadow: 0 2px 0 $shadow-color;
+    color: $alt-color;
+    position: relative;
+
+    &:hover {
+      box-shadow: 0 1px 0 $shadow-color;
+      color: $alt-color;
+      top: 1px;
+    }
+
+    &:active,
+    &.active {
+      background-color: darken($base-color, 5);
+      box-shadow: 0 0 0 $shadow-color;
+      top: 2px;
+    }
+
+    &:disabled,
+    &.is-disabled
+    &.disabled {
+      color: lighten($alt-color, 30%);
     }
 }
 
-/**
- * Remove excess padding and border in Firefox 4+
- */
-
-.btn::moz-focus-inner {
-    border: 0;
-    padding: 0;
-}
-
-/**
- * Visual variations
- */
-
-@mixin active($base-color) {
+@mixin btn-active($base-color) {
     &.active {
     $border-active: adjust-color($base-color, $saturation: 9%, $lightness: -14%);
     $inset-shadow-active: adjust-color($base-color, $saturation: 7%, $lightness: -17%);
@@ -110,13 +133,12 @@ a.btn {
 }
 
 .btn {
-    $base-color: darken($white, 10%);
-    //@include button(simple, $base-color);
-    @include active($base-color);
+    @include button-states(darken($white, 10%));
 }
 
 .btn--primary {
-    //@include button(simple, $btn-primary-color);
+    @include button-states($primary-color, $primary-color-alt);
+
     .badge {
         background-color: $badge-primary-bg-darker;
         text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
@@ -124,7 +146,8 @@ a.btn {
 }
 
 .btn--success {
-    //@include button(simple, $btn-success-color);
+    @include button-states($success-color, $success-color-alt);
+
     .badge {
         background-color: $badge-success-bg-darker;
         text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
@@ -132,7 +155,8 @@ a.btn {
 }
 
 .btn--warning {
-    //@include button(simple, $btn-warning-color);
+    @include button-states($warning-color, $warning-color-alt);
+
     .badge {
         background-color: $badge-warning-bg-darker;
         text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
@@ -140,7 +164,8 @@ a.btn {
 }
 
 .btn--danger {
-    //@include button(simple, $btn-danger-color);
+    @include button-states($danger-color, $danger-color-alt);
+
     .badge {
         background-color: $badge-danger-bg-darker;
         text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
@@ -148,8 +173,8 @@ a.btn {
 }
 
 .btn--info {
-    //@include button(simple, $btn-info-color);
-    color: $white;
+    @include button-states($info-color, $info-color-alt);
+
     .badge {
         background-color: $badge-info-bg-darker;
         text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
@@ -157,7 +182,8 @@ a.btn {
 }
 
 .btn--inverse {
-    //@include button(simple, $btn-inverse-color);
+    @include button-states($inverse-color, $inverse-color-alt);
+
     .badge {
         background-color: $badge-inverse-bg-darker;
         text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
@@ -170,15 +196,7 @@ a.btn {
  * Override Bourbon's defaults
  */
 
-.btn {
-    font-size: 14px;
-    font-weight: normal;
-    margin-bottom: $padding-base-vertical;
-    padding: 7px 14px;
-    @include ie-lte(7) {
-        padding: 7px;
-    }
-}
+
 
 @include ie-lte(7) {
     a.btn {
