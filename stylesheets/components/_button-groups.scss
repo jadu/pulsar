@@ -42,7 +42,7 @@
 
 // Optional: Group multiple button groups together for a toolbar
 .btn__toolbar {
-  @include clearfix;
+  @include clear-fix;
 
   .btn__group {
     float: left;
@@ -77,7 +77,7 @@
 
 // Custom edits for including btn__groups within btn__groups (useful for including dropdown buttons within a btn__group)
 .btn__group > .btn__group {
-  margin-left: -1px;  
+  margin-left: -1px;
 }
 .btn__group > .btn__group:not(:first-child):not(:last-child) > .btn {
   border-radius: 0;

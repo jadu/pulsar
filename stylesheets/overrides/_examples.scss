@@ -16,7 +16,7 @@
 }
 
 .example-popovers {
-  @include clearfix();
+  @include clear-fix();
   padding-bottom: 24px;
   max-width: 600px;
   width: 100%;

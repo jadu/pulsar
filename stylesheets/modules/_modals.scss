@@ -24,12 +24,6 @@
   left: 0;
   z-index: $zindex-modal;
 
-  // When fading in the modal, animate it to slide down
-  &.fade .modal__dialog {
-    @include transform(translate(0, -25%));
-  }
-  &.in .modal__dialog { @include transform(translate(0, 0))}
-
   form {
     p, ul, ol {
       margin-left: 0;
@@ -117,7 +111,7 @@
   padding: ($modal-inner-padding - 1) $modal-inner-padding ($modal-inner-padding - 5);
   text-align: right; // right align buttons
   border-top: 1px solid $modal-footer-border-color;
-  @include clearfix; // clear it in case folks use .pull-* classes on buttons
+  @include clear-fix; // clear it in case folks use .pull-* classes on buttons
 
 /*   // Properly space out buttons
   .btn + .btn {

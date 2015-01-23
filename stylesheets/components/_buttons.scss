@@ -111,12 +111,12 @@ a.btn {
 
 .btn {
     $base-color: darken($white, 10%);
-    @include button(simple, $base-color);
+    //@include button(simple, $base-color);
     @include active($base-color);
 }
 
 .btn--primary {
-    @include button(simple, $btn-primary-color);
+    //@include button(simple, $btn-primary-color);
     .badge {
         background-color: $badge-primary-bg-darker;
         text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
@@ -124,7 +124,7 @@ a.btn {
 }
 
 .btn--success {
-    @include button(simple, $btn-success-color);
+    //@include button(simple, $btn-success-color);
     .badge {
         background-color: $badge-success-bg-darker;
         text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
@@ -132,7 +132,7 @@ a.btn {
 }
 
 .btn--warning {
-    @include button(simple, $btn-warning-color);
+    //@include button(simple, $btn-warning-color);
     .badge {
         background-color: $badge-warning-bg-darker;
         text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
@@ -140,7 +140,7 @@ a.btn {
 }
 
 .btn--danger {
-    @include button(simple, $btn-danger-color);
+    //@include button(simple, $btn-danger-color);
     .badge {
         background-color: $badge-danger-bg-darker;
         text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
@@ -148,7 +148,7 @@ a.btn {
 }
 
 .btn--info {
-    @include button(simple, $btn-info-color);
+    //@include button(simple, $btn-info-color);
     color: $white;
     .badge {
         background-color: $badge-info-bg-darker;
@@ -157,7 +157,7 @@ a.btn {
 }
 
 .btn--inverse {
-    @include button(simple, $btn-inverse-color);
+    //@include button(simple, $btn-inverse-color);
     .badge {
         background-color: $badge-inverse-bg-darker;
         text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
