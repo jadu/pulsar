@@ -30,7 +30,7 @@
 .actionsbar--left {
   float: left;
   margin-right: 0;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   width: $tab-column-width;
 
   @include respond-max($screen-tablet) {
