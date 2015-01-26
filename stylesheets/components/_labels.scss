@@ -1,17 +1,18 @@
 .label {
   @include inline-block;
   @include content-box;
-  padding: .25em .6em;
+  background-color: $label-bg;
+  border-radius: $border-radius;
+  color: $label-color;
   font-size: 75%;
   font-weight: 500;
   line-height: 1;
-  color: $label-color;
+  padding: .25em .6em;
   text-align: center;
-  white-space: nowrap;
-  vertical-align: baseline;
-  background-color: $label-bg;
-  border-radius: $border-radius;
   text-transform: lowercase;
+  vertical-align: baseline;
+  white-space: nowrap;
+  @include label-variant($label-bg);
 
   // Add hover effects, but only for links
   &[href] {
