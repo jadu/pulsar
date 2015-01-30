@@ -1,0 +1,127 @@
+.swatch {
+  display: inline-block;
+  margin-right: $gutter-width * 2;
+  width: 110px;
+  vertical-align: top;
+
+  &__colour {
+    border-radius: 100px;
+    display: block;
+    margin: 0 auto;
+    height: 100px;
+    width: 100px;
+  }
+
+  &__text {
+    display: block;
+    position: relative;
+    top: 38%;
+    text-align: center;
+    width: 100px;
+  }
+
+  &__label {
+    color: $gray-light;
+
+    code, span {
+      display: block;
+      font-size: .75em;
+      text-align: center;
+      width: 100%;
+    }
+  }
+
+  &--primary .swatch__colour {
+    background-color: $primary-color;
+    color: white;
+  }
+
+  &--info .swatch__colour {
+    background-color: $info-color;
+    color: black;
+  }
+
+  &--success .swatch__colour {
+    background-color: $success-color;
+    color: white;
+  }
+
+  &--warning .swatch__colour {
+    background-color: $warning-color;
+    color: black;
+  }
+
+  &--danger .swatch__colour {
+    background-color: $danger-color;
+    color: white;
+  }
+
+  &--inverse .swatch__colour {
+    background-color: $inverse-color;
+    color: white;
+  }
+
+  // Jadu Blues
+
+  &--jadu-blue .swatch__colour {
+    background-color: $jadu-blue;
+    color: white;
+  }
+
+  &--jadu-blue-secondary .swatch__colour {
+    background-color: $jadu-blue-secondary;
+    color: white;
+  }
+
+  &--jadu-blue-cool .swatch__colour {
+    background-color: $jadu-blue-cool;
+    color: white;
+  }
+
+  &--jadu-blue-warm .swatch__colour {
+    background-color: $jadu-blue-warm;
+    color: white;
+  }
+
+  &--jadu-blue-pale .swatch__colour {
+    background-color: $jadu-blue-pale;
+    color: white;
+  }
+
+  // Jadu Colours
+
+  &--jadu-orange .swatch__colour {
+    background-color: $jadu-orange;
+    color: white;
+  }
+
+  &--jadu-green .swatch__colour {
+    background-color: $jadu-green;
+    color: white;
+  }
+
+  &--jadu-teal .swatch__colour {
+    background-color: $jadu-teal;
+    color: white;
+  }
+
+  &--jadu-red .swatch__colour {
+    background-color: $jadu-red;
+    color: white;
+  }
+
+  &--jadu-yellow .swatch__colour {
+    background-color: $jadu-yellow;
+    color: white;
+  }
+
+  &--jadu-black .swatch__colour {
+    background-color: $jadu-black;
+    color: white;
+  }
+
+  &--jadu-copy-gray .swatch__colour {
+    background-color: $jadu-copy-gray;
+    color: white;
+  }
+}

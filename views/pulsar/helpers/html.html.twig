@@ -212,9 +212,17 @@
 {%- endmacro -%}
 
 
-{%- macro label(label = 'label', class, tooltip_title, tooltip_placement = 'top') -%}
+{%- macro label(label = 'label', class, tooltip_title, tooltip_placement = 'top', attributes) -%}
   {% import _self as html %}
-  <span class="label{% if class is not empty %} {{ class }}{% endif %}"{% if tooltip_title %}{{ _self.tooltip(tooltip_title, tooltip_placement) }}{% endif %}>{{ label }}</span>
+  <span class="label{% if class is not empty %} {{ class }}{% endif %}" {% if tooltip_title %}{{ _self.tooltip(tooltip_title, tooltip_placement) }}{% endif %} {% if attributes %} {{ attributes|raw }}{% endif %}>{{ label|raw }}</span>
+{%- endmacro -%}
+
+{%- macro label_group(labels, class, attributes) -%}
+  <div class="label-group{% if class %} {{ class }}{% endif %}"{% if attributes %} {{ attributes|raw }}{% endif %}>
+  {%- for label in labels -%}
+    {{ label }}
+  {%- endfor -%}
+  </div>
 {%- endmacro -%}
 
 
@@ -253,6 +261,7 @@
 
 {%- endmacro -%}
 
+
 {%- macro metadata(items, class) -%}
   <dl class="metadata{% if class is not empty %} {{ class }}{% endif %}">
     {%- for key, value in items -%}
@@ -260,4 +269,17 @@
  --><dd class="metadata__value">{{ value }}</dd>
     {% endfor %}
   </dl>
+{%- endmacro -%}
+
+
+{%- macro panel(title, body, class, icon = 'comment-alt') -%}
+  {% import _self as html %}
+  <div class="panel{% if class is not empty %} {{ class }}{% endif %}">
+    <div class="panel__title">
+        {{ _self.icon(icon) }}{{ title }}
+    </div>
+    <div class="panel__body">
+        {{ body|raw }}
+    </div>
+</div>
 {%- endmacro -%}

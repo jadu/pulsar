@@ -5,7 +5,7 @@
 
 
   @include respond-min($screen-tablet) {
-    margin: $line-height-base 0 0 0;
+    margin: $line-height-base 0 8px 0;
   }
 
   //@include ie-lte(7) {
@@ -13,12 +13,23 @@
       z-index: 1; // Fix issue where actions menu appears underneath tabs
     }
   //}
+
+  .btn__back {
+    float: left;
+  }
+
+  .btn {
+    vertical-align: bottom;
+  }
+
+  .actions-menu {
+    border-left: 1px solid #ccc;
+  }
 }
 
 .actionsbar--left {
   float: left;
   margin-right: 0;
-  margin-bottom: 0;
   width: $tab-column-width;
 
   @include respond-max($screen-tablet) {

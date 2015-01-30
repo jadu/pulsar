@@ -1,8 +1,13 @@
 /**
  * Mixins
  */
-@import '../mixins/media-queries';
+@import '../mixins/border-radius';
 @import '../mixins/clear-fix';
+@import '../mixins/content-box';
+@import '../mixins/css-arrow';
+@import '../mixins/hide-text';
+@import '../mixins/inline-block';
+@import '../mixins/media-queries';
 
 /**
  * Configuration

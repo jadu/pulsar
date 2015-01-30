@@ -1,0 +1,115 @@
+{% extends 'pulsar/layouts/base.html.twig' %}
+
+{% block body %}
+
+<p>
+	{{
+        html.label_group(
+            labels = [
+                html.label(
+                	label = 'case closed with decision', 
+    				class = 'label--inverse'
+    			),
+                html.label(
+                	label = html.icon('warning-sign') ~ ' checking details',
+                	class = 'label--danger'
+                )
+            ]
+        )
+    }}
+</p>
+
+<p>
+    {{
+        html.label_group(
+            labels = [
+                html.label(
+                	label = 'case closed with decision',
+                	class = 'label--inverse'
+                ),
+                html.label(
+                	label = 'checking details ' ~ html.icon('chevron-sign-right'),
+                	class = 'label--info'
+                )
+            ],
+            class = 'label-group--tall'
+        )
+    }}
+</p>
+
+<p>
+    {{
+        html.label_group(
+            labels = [
+                html.label(
+                	label = 'case closed with decision',
+                	class = 'label--inverse'
+                ),
+                html.label(
+                	label = 'checking details ' ~ html.icon('chevron-sign-right'),
+                	class = 'label--warning'
+                )
+            ],
+            class = 'label-group--tallest'
+        )
+    }}
+</p>
+
+<p>
+	{{
+        html.label_group(
+            labels = [
+                html.label(
+                	label = 'case closed with decision', 
+    				class = 'label--inverse'
+    			),
+                html.label(
+                	label = 'checking details',
+                	class = 'label--danger'
+                )
+            ]
+        )
+    }}
+</p>
+
+<p>
+    {{
+        html.label_group(
+            labels = [
+                html.label(
+                	label = 'case closed with decision',
+                	class = 'label--danger'
+                ),
+                html.label(
+                	label = 'checking details',
+                	class = 'label--info'
+                )
+            ],
+            class = 'label-group--tall'
+        )
+    }}
+</p>
+
+<p>
+    {{
+        html.label_group(
+            labels = [
+                html.label(
+                	label = 'case closed with decision',
+                	class = 'label--warning'
+                ),
+                html.label(
+                	label = 'checking details',
+                	class = 'label--warning'
+                )
+            ],
+            class = 'label-group--tallest'
+        )
+    }}
+</p>
+
+<p>
+    <span class="label label--warning">case closed with decision</span>
+</p>
+
+{% endblock %}

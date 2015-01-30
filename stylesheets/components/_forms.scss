@@ -450,7 +450,7 @@ textarea {
 }
 
 .form--horizontal .form__group {
-  @include clearfix();
+  @include clear-fix();
 
   > .checkbox,
   > .radio {

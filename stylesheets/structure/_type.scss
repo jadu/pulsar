@@ -108,7 +108,7 @@ code, pre, kbd {
     @include text-overflow();
   }
   dd {
-    @include clearfix; // Clear the floated `dt` if an empty `dd` is present
+    @include clear-fix; // Clear the floated `dt` if an empty `dd` is present
     margin-left: $component-offset;
   }
 }

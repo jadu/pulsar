@@ -1,0 +1,18 @@
+---
+- hosts: all
+  tasks:
+    - name: install server components
+      apt: name={{ item }} state=present
+      sudo: yes
+      with_items:
+       - apache2
+       - mysql-server
+       - php5-mysql
+       - php5
+       - git
+
+    - name: ensure server components are running
+      service: name={{ item }} state=started enabled=yes
+      with_items:
+       - apache2
+       - mysql

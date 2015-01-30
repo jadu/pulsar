@@ -1,0 +1,47 @@
+.label-group {
+
+    background-clip: padding-box;
+    line-height: 1;
+    overflow: hidden;
+    position: relative;
+
+    .label {
+        line-height: 1.2;
+
+        &:first-child {
+            margin-right: 20px;
+            @include border-radius(4px 0 0 4px);
+        }
+
+        &:last-child {
+            margin-left: -30px;
+            padding-left: 33px;
+            @include border-radius(0 4px 4px 0);
+        }
+
+    }
+}
+
+.label-group--tall {
+    .label {
+        font-size: 100%;
+        line-height: 1.2;
+
+        &:last-child {
+            margin-left: -30px;
+            padding-left: 33px;
+        }
+    }
+}
+
+.label-group--tallest {
+    .label {
+        font-size: 110%;
+        line-height: 1.2;
+
+        &:last-child {
+            margin-left: -30px;
+            padding-left: 33px;
+        }
+    }
+}
