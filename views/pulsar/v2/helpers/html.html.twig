@@ -1,0 +1,848 @@
+{#	----------------------------------------------------------------------------
+
+## Button
+
+### Example usage
+
+	{{
+		html.button({
+			'class': 'btn--primary',
+			'id': 'myAwesomeId',
+			'label': 'Click Me All Over',
+			'data': {
+				'one': 'two',
+				'checked': true
+			}
+		})
+	}}
+
+### Options
+
+Option  | Description
+------- | ----------------------------------------------------------------------
+class 	| (string) A space separated list of class names
+data 	| (hash) Data attributes by key/value
+href 	| (string) URL to use for link button types
+id 		| (string) A unique identifier, if required
+label 	| (string) The button label
+type 	| (string) Can be button (default), link, input, submit
+
+#}
+{% macro button(options = {}) %}
+{% spaceless %}
+	{% import 'pulsar/v2/helpers/util.html.twig' as util %}
+	{% import _self as html %}
+
+	{% if options.type == 'link' %}
+
+		{{
+			html.link({
+				'class': 'btn ' ~ options.class,
+				'href': options.href,
+				'id': options.id,
+				'label': options.label,
+				'data': options.data
+			})
+		}}
+
+	{% elseif options.type == 'input' %}
+
+		<input
+			{{ util.type('button') }}
+			{{ util.class('btn', options.class) }}
+			{{ util.id(options.id) }}
+			{{ util.data(options.data) }}
+			{{ util.value(options.label) }}
+		/>
+
+	{% elseif options.type == 'submit' %}
+
+		<button
+			{{ util.type('submit') }}
+			{{ util.class('btn', options.class) }}
+			{{ util.id(options.id) }}
+			{{ util.data(options.data) }}
+		>
+			{{- options.label|raw -}}
+		</button>
+
+	{% else %}
+
+		<button
+			{{ util.type('button') }}
+			{{ util.class('btn', options.class) }}
+			{{ util.id(options.id) }}
+			{{ util.data(options.data) }}
+		>
+			{{- options.label|raw -}}
+			{{- util.caret(options.caret) -}}
+		</button>
+
+	{% endif %}
+{% endspaceless %}
+{% endmacro %}
+
+
+{#	----------------------------------------------------------------------------
+
+## Button dropdown
+
+Show a dropdown/dropup menu when the button is clicked
+
+### Example usage
+
+	{{
+		html.button_dropdown({
+			'label': 'Drop Me Down',
+			'items': [
+				'foo',
+				'bar'
+			]
+		})
+	}}
+
+### Options
+
+Option  	| Description
+----------- | ----------------------------------------------------------------------
+caret		| (bool) Whether to show the caret arrow in the label (default true)
+class 		| (string) A space separated list of class names (applied to the container)
+direction 	| (string) down (default) | up
+data 		| (hash) Data attributes by key/value (applied to the button)
+id 			| (string) A unique identifier, if required (applied to the button)
+items 		| (array) An array of items to put in the dropdown list (usually links)
+label 		| (string) The button label
+
+#}
+{% macro button_dropdown(options = {}) %}
+{% spaceless %}
+	{% import 'pulsar/v2/helpers/util.html.twig' as util %}
+	{% import _self as html %}
+
+	<div
+		{{
+			util.class(
+				'btn__group drop' ~ options.direction|default('down'),
+				options.class
+			)
+		}}
+	/>
+		{{
+			html.button({
+				'caret': options.caret|default(true),
+				'class': 'dropdown__toggle',
+				'data': {
+					'toggle': 'dropdown'
+				},
+				'id': options.id,
+				'label': options.label,
+			})
+		}}
+
+		{{
+			html.list({
+				'class': 'dropdown__menu',
+				'items': options.items
+			})
+		}}
+	</div>
+
+{% endspaceless %}
+{% endmacro %}
+
+
+{#	----------------------------------------------------------------------------
+
+## Button group
+
+### Example usage
+
+	{{
+		html.button_group({
+			'buttons': [
+				html.button({ label: 'foo' }),
+				html.button({ label: 'bar' }),
+				html.button({ label: 'baz' })
+			]
+		})
+	}}
+
+### Options
+
+Option  | Description
+------- | ----------------------------------------------------------------------
+buttons | (array) An array of `html.button()` elements
+class 	| (string) Classes to be applied to the button group (not the buttons inside it)
+data 	| (hash) data attributes by key/value
+id 		| (string) A unique identifier, if required
+
+#}
+{% macro button_group(options = {}) %}
+{% spaceless %}
+	{% import 'pulsar/v2/helpers/util.html.twig' as util %}
+
+	<div
+		{{ util.class('btn__group', options.class) }}
+		{{ util.id(options.id) }}
+		{{ util.data(options.data) }}
+	>
+		{% for button in options.buttons -%}
+			{{ button }}
+		{% endfor %}
+	</div>
+
+{% endspaceless %}
+{% endmacro %}
+
+
+{#	----------------------------------------------------------------------------
+
+## Badge
+
+### Example usage
+
+	{{
+		html.badge({
+			'value': '123'
+		})
+	}}
+
+### Options
+
+Option  | Description
+------- | ----------------------------------------------------------------------
+class 	| (string) CSS classes, space separated
+data 	| (hash) Data attributes by key/value
+id 		| (string) A unique identifier, if required
+label 	| (string) The value to display, usually an integer
+
+#}
+{% macro badge(options = {}) %}
+{% spaceless %}
+	{% import 'pulsar/v2/helpers/util.html.twig' as util %}
+
+	<span
+		{{ util.class('badge', options.class) }}
+		{{ util.id(options.id) }}
+		{{ util.data(options.data) }}
+	>
+		{{- options.label|raw -}}
+	</span>
+
+{% endspaceless %}
+{% endmacro %}
+
+
+{#	----------------------------------------------------------------------------
+
+## Divider
+
+Used in html.dropdown to insert lines between items.
+
+### Example usage
+
+	{{ html.divider() }}
+
+#}
+{% macro divider() %}
+{% spaceless %}
+	<span class="divider"></span>
+{% endspaceless %}
+{% endmacro %}
+
+
+{#	----------------------------------------------------------------------------
+
+## Icon
+
+### Example usage
+
+	{{ html.icon('save') }}
+
+### Options
+
+Option  | Description
+------- | ----------------------------------------------------------------------
+class 	| (string) CSS classes, space separated
+
+#}
+{% macro icon(icon_name, options = {}) %}
+{% spaceless %}
+	{% import 'pulsar/v2/helpers/util.html.twig' as util %}
+
+	<i {{ util.class('icon-' ~ icon_name, options.class) }}></i>
+
+{% endspaceless %}
+{% endmacro %}
+
+
+{#	----------------------------------------------------------------------------
+
+## Label
+
+### Example usage
+
+	{{
+		html.label({
+			'label': 'harro'
+		})
+	}}
+
+### Options
+
+Option  			| Description
+------------------- | ----------------------------------------------------------
+class 				| (string) CSS classes, space separated
+data 				| (hash) data attributes by key/value
+id 					| (string) A unique identifier, if required
+label 				| (string) The value to display
+tooltip_title 		| (string) Tooltip text to be shown on mouse over
+tooltip_placement 	| (string) top (default) | right | bottom | left
+
+#}
+{% macro label(options = {}) %}
+{% spaceless %}
+	{% import 'pulsar/v2/helpers/util.html.twig' as util %}
+	{% import _self as html %}
+
+	<span
+		{{ util.class('label', options.class) }}
+		{{ util.id(options.id) }}
+		{{ util.data(options.data) }}
+		{{ _self.tooltip(options.tooltip_title, options.tooltip_placement) }}
+	>
+		{{- options.label|raw -}}
+	</span>
+
+{% endspaceless %}
+{% endmacro %}
+
+
+{#  ----------------------------------------------------------------------------
+
+## Label group
+
+### Example usage
+
+	{{
+		html.label_group({
+			'labels': [
+				html.label({ 'label': 'foo' }),
+				html.label({ 'label': 'bar' })
+			]
+		})
+	}}
+
+### Options
+
+Option  | Description
+------- | ----------------------------------------------------------------------
+class 	| (string) CSS classes, space separated
+data 	| (hash) data attributes by key/value
+id 		| (string) A unique identifier, if required
+labels 	| (array) The labels to group
+
+#}
+{% macro label_group(options = {}) %}
+{% spaceless %}
+	{% import 'pulsar/v2/helpers/util.html.twig' as util %}
+
+	<div
+		{{ util.class('label-group', options.class) }}
+		{{ util.id(options.id) }}
+		{{ util.data(options.data) }}
+	>
+		{% for label in options.labels -%}
+			{{ label }}
+		{% endfor %}
+	</div>
+
+{% endspaceless %}
+{% endmacro %}
+
+
+{#  ----------------------------------------------------------------------------
+
+## Link
+
+### Example usage
+
+	{{
+		html.link({
+			'href': 'http://www.google.com',
+			'label': 'Google'
+		})
+	}}
+
+### Options
+
+Option  | Description
+------- | ----------------------------------------------------------------------
+class 	| (string) CSS classes, space separated
+data 	| (hash) data attributes by key/value
+href	| (string) The URL attribute
+id 		| (string) A unique identifier, if required
+label 	| (string) The link text label
+
+#}
+{% macro link(options = {}) %}
+{% spaceless %}
+	{% import 'pulsar/v2/helpers/util.html.twig' as util %}
+
+	<a
+		{{ util.class('', options.class) }}
+		{{ util.href(options.href) }}
+		{{ util.id(options.id) }}
+		{{ util.data(options.data) }}
+	>
+		{{- options.label|raw -}}
+	</a>
+
+{% endspaceless %}
+{% endmacro %}
+
+
+{#  ----------------------------------------------------------------------------
+
+## List
+
+Pass an array of items and have them rendered as a simple list, this is
+particularly useful when chained with other helpers.
+
+### Example usage
+
+	{{
+		html.list({
+			'items': [
+				'foo',
+				'bar'
+			]
+		})
+	}}
+
+### Options
+
+Option      | Description
+----------- | ------------------------------------------------------------------
+active_item | (int) The index of the active item, will have .is-active applied
+class 		| (string) CSS classes, space separated
+data 		| (hash) data attributes by key/value
+id 			| (string) A unique identifier, if required
+items		| (array) An array of items to be rendered as a list
+type 		| (string) ul (default) | ol
+
+#}
+{% macro list(options = {}) %}
+{% spaceless %}
+	{% import 'pulsar/v2/helpers/util.html.twig' as util %}
+	{% import _self as html %}
+	{% set list_type = options.type|default('ul') %}
+
+	<{{ list_type }}
+		{{ util.class('', options.class) }}
+	>
+
+	{% for list_item in options.items %}
+
+		{% if loop.index == options.active_item %}
+			{% set item_class = 'is-active' %}
+		{% else %}
+			{% set item_class = '' %}
+		{% endif %}
+
+		{{
+			html.li({
+				'class': item_class,
+				'value': list_item
+			})
+		}}
+
+	{% endfor %}
+
+	</{{ list_type }}>
+
+{% endspaceless %}
+{% endmacro %}
+
+
+{#  ----------------------------------------------------------------------------
+
+## Link list
+
+A specialised method to create a list of links without the need to manually call
+multiple html.link() helpers.
+
+### Example usage
+
+	{{
+		html.link_list({
+			items: {
+				'Value one': '#href_one',
+				'Value two': '#href_two'
+			}
+		})
+	}}
+
+### Options
+
+Option      | Description
+----------- | ------------------------------------------------------------------
+active_item | (int) The index of the active item, will have .is-active applied
+class 		| (string) CSS classes, space separated
+data 		| (hash) data attributes by key/value
+id 			| (string) A unique identifier, if required
+items		| (hash) A hash of links formatted by { label: href }
+type 		| (string) ul (default) | ol
+
+#}
+{% macro link_list(options = {}) %}
+{% spaceless %}
+	{% import 'pulsar/v2/helpers/util.html.twig' as util %}
+	{% import _self as html %}
+	{% set items = [] %}
+
+	{% for label, href in options.items %}
+		{%
+			set items = items|merge([
+				html.link({
+					'label': label,
+					'href': href
+				})
+			])
+		%}
+	{% endfor %}
+
+	{{
+		html.list({
+			'active_item': options.active_item,
+			'class': options.class,
+			'data': options.data,
+			'id': options.id,
+			'items': items,
+			'type': options.type,
+		})
+	}}
+
+{% endspaceless %}
+{% endmacro %}
+
+
+{#  ----------------------------------------------------------------------------
+
+## Li
+
+Simple wrapper to create `<li>` elements, mainly used from within other helpers.
+
+### Example usage
+
+	{{
+		html.li({ value: 'foo' })
+	}}
+
+### Options
+
+Option  | Description
+-------	| ----------------------------------------------------------------------
+class 	| (string) CSS classes, space separated
+data 	| (hash) data attributes by key/value
+id 		| (string) A unique identifier, if required
+value 	| (string) The value to display
+
+#}
+{% macro li(options = {}) %}
+{% spaceless %}
+	{% import 'pulsar/v2/helpers/util.html.twig' as util %}
+
+	<li
+		{{ util.class('', options.class) }}
+		{{ util.id(options.id) }}
+		{{ util.data(options.data) }}
+	>
+		{{- options.value|raw -}}
+	</li>
+
+{% endspaceless %}
+{% endmacro %}
+
+
+{#  ----------------------------------------------------------------------------
+
+## Loading
+
+Give feedback to the user that something is happening or that information is being retrieved from the server.
+
+Adding the `hide` class will allow you to place the loading markup in the DOM on pageload, then to toggle it with javascript.
+
+### Example usage
+
+	{{ html.loading() }}
+
+### Options
+
+Option  | Description
+-------	| ----------------------------------------------------------------------
+class 	| (string) CSS classes, space separated
+data 	| (hash) data attributes by key/value
+id 		| (string) A unique identifier, if required
+
+#}
+{% macro loading(options = {}) %}
+{% spaceless %}
+	{% import 'pulsar/v2/helpers/util.html.twig' as util %}
+
+	<div
+		{{ util.class('loading loading--circle', options.class) }}
+		{{ util.id(options.id) }}
+		{{ util.data(options.data) }}
+	>
+		<i></i>
+	</div>
+
+{% endspaceless %}
+{% endmacro %}
+
+
+{#  ----------------------------------------------------------------------------
+
+## Metadata
+
+Provides a simple way to mark up key/value information provided by a Twig hash /
+JSON object.
+
+### Example usage
+
+	{{
+		html.metadata({
+			'items': {
+				'File' : 'true_lies.avi',
+				'Size' : '1.2 Gb',
+				'Type' : 'Video'
+			}
+		})
+	}}
+
+### Options
+
+Option  | Description
+-------	| ----------------------------------------------------------------------
+class 	| (string) CSS classes, space separated
+data 	| (hash) data attributes by key/value
+id 		| (string) A unique identifier, if required
+items   | (hash) A hash of data where key: value = title: description
+
+#}
+{% macro metadata(options = {}) %}
+{% spaceless %}
+	{% import 'pulsar/v2/helpers/util.html.twig' as util %}
+
+	<dl
+		{{ util.class('metadata', options.class) }}
+		{{ util.id(options.id) }}
+		{{ util.data(options.data) }}
+	>
+	{% for key, value in options.items %}
+
+		   <dt class="metadata__key">{{ key }}</dt><!--
+		--><dd class="metadata__value">{{ value }}</dd>
+
+	{% endfor %}
+	</dl>
+
+{% endspaceless %}
+{% endmacro %}
+
+
+{#  ----------------------------------------------------------------------------
+
+## Panel
+
+Display important information in a prominent container.
+
+### Example usage
+
+	{{
+		html.panel({
+			'title': 'In West Philadelphia born and raised',
+			'body': 'In the playground was where I spent most of my days.'
+		})
+	}}
+
+### Options
+
+Option  | Description
+-------	| --------------------------------------------------------------
+body 	| (string) The main content of the panel
+class 	| (string) CSS classes, space separated
+data 	| (hash) data attributes by key/value
+icon 	| (string) Icon to display next to the panel title
+id 		| (string) A unique identifier, if required
+title 	| (strong) The title of the panel
+
+#}
+{% macro panel(options = {}) %}
+{% spaceless %}
+	{% import 'pulsar/v2/helpers/util.html.twig' as util %}
+	{% import _self as html %}
+
+	<div
+		{{ util.class('panel', options.class) }}
+		{{ util.id(options.id) }}
+		{{ util.data(options.data) }}
+	>
+		<div class="panel__title">
+			{{ html.icon(options.icon) }}
+			{{ options.title }}
+		</div>
+		<div class="panel__body">
+			{{- options.body|raw -}}
+		</div>
+	</div>
+
+{% endspaceless %}
+{% endmacro %}
+
+
+{#  ----------------------------------------------------------------------------
+
+## Progress
+
+Provide up-to-date feedback on the progress of a workflow or action with simple progress bars.
+
+### Example usage
+
+	{{
+		html.progress({
+			'value': 25
+		})
+	}}
+
+### Options
+
+Option  		| Description
+---------------	| --------------------------------------------------------------
+class 			| (string) CSS classes, space separated
+data 			| (hash) data attributes by key/value
+id 				| (string) A unique identifier, if required
+label 			| (string) Text to display inside the progress bar
+value 			| (int) The percentage value of the progress bar
+value_visible 	| (bool) Whether to visually display the value inside the bar (default false)
+
+#}
+{% macro progress(options = {}) %}
+{% spaceless %}
+	{% import 'pulsar/v2/helpers/util.html.twig' as util %}
+
+	<div class="progress">
+		<div
+			{{ util.class('progress-bar', options.class) }}
+			{{ util.id(options.id) }}
+			{{ util.data(options.data) }}
+			role="progressbar"
+			aria-valuenow="{{ options.value }}"
+			aria-valuemin="0"
+			aria-valuemax="100"
+			style="width: {{ options.value }}%;"
+		>
+
+			{% if options.value_visible|default(false) %}
+				{{- options.value|raw ~ '%' }}
+			{% else %}
+				<span class="hide">
+					{{- options.value ~ '%' }}
+				</span>
+			{% endif %}
+
+			{{ options.label|raw -}}
+		</div>
+	</div>
+
+{% endspaceless %}
+{% endmacro %}
+
+
+{#  ----------------------------------------------------------------------------
+
+## Remove button
+
+Used by other helpers to add the remove icons (x). Uses data-attributes to
+contain information about what object should be removed.
+
+### Example usage
+
+	{{
+		html.remove_button({
+			'target': '#itemToRemove'
+		})
+	}}
+
+### Options
+
+Option  	| Description
+------- | -----------------------------------------------------------
+class 	| (string) A space separated list of class names
+data 	| (hash) Data attributes by key/value
+id 		| (string) A unique identifier, if required
+target 	| (string) CSS Selector of the item to be removed
+tooltip | (string) The text to display as the tooltip
+type 	| (string) Can be button (default), link, input, submit
+
+#}
+{% macro remove_button(options = {}) %}
+{% spaceless %}
+	{% import 'pulsar/v2/helpers/util.html.twig' as util %}
+	{% import _self as html %}
+
+	{{
+		html.button({
+			'class': 'remove-button ' ~ options.class,
+			'id': options.id,
+			'label': html.icon('remove-sign'),
+			'type': options.type|default('button'),
+			'data': {
+				'action': 'remove',
+				'action-target': options.target,
+				'placement': 'right',
+				'toggle': 'tooltips',
+				'title': options.tooltip|default('Remove this item')
+			}
+		})
+	}}
+
+{% endspaceless %}
+{% endmacro %}
+
+
+{#  ----------------------------------------------------------------------------
+
+## Tooltip
+
+Generates the required data-attributes for adding a tooltip to an element.
+
+### Example usage
+
+	{{
+		html.tooltip({
+			'title': 'Hello'
+		})
+	}}
+
+### Options
+
+Option  	| Description
+-----------	| -----------------------------------------------------------
+title 		| (string) The text to display as the tooltip
+placement 	| (string) top (default) | right | bottom | left
+
+#}
+{% macro tooltip(options = {}) %}
+{% spaceless %}
+
+	{% if options.title != '' %}
+		data-toggle="tooltips"
+		data-placement="{{ options.placement|default('top') }}"
+		title="{{ options.title }}"
+	{% endif %}
+
+{% endspaceless %}
+{% endmacro %}
+

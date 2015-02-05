@@ -1,56 +1,48 @@
-Usage:
+## Label
 
-    {{ html.label(
-        label, class) }}
-        
-Labels inherit their parent's size:
+### Example usage
 
-<h1>Example heading <span class="label">New</span></h1>
-<h2>Example heading <span class="label">New</span></h2>
-<h3>Example heading <span class="label">New</span></h3>
-<h4>Example heading <span class="label">New</span></h4>
-<h5>Example heading <span class="label">New</span></h5>
-<h6>Example heading <span class="label">New</span></h6>
-<br />
+    {{ html.label({ label: 'harro') }}
 
-Labels can accept any of the usual modifier classes
-    
-    {{ html.label(label = 'default') }}
+### Options
 
-    {{ html.label(
-        label = 'primary', 
-        class = 'label--primary') }}
+Option              | Description
+------------------- | ----------------------------------------------------------
+class               | (string) CSS classes, space separated
+data                | (hash) data attributes by key/value
+id                  | (string) A unique identifier, if required
+label               | (string) The value to display
+tooltip_title       | (string) Tooltip text to be shown on mouse over
+tooltip_placement   | (string) top (default) | right | bottom | left
 
-    {{ html.label(
-        label = 'success', 
-        class = 'label--success') }}
+### Variations
 
-    {{ html.label(
-        label = 'warning', 
-        class = 'label--warning') }}
+Labels accept the normal state variations through the `class` option
 
-    {{ html.label(
-        label = 'danger', 
-        class = 'label--danger') }}
+    {{
+        html.label({
+            label: 'primary',
+            class: 'label--primary'
+        })
+    }}
 
-    {{ html.label(
-        label = 'info', 
-        class = 'label--info') }}
-        
-    {{ html.label(
-        label = 'inverse', 
-        class = 'label--inverse') }}
-    
-<span class="label">default</span> <span class="label label--primary">primary</span> <span class="label label--success">success</span> <span class="label label--warning">warning</span> <span class="label label--danger">danger</span> <span class="label label--info">info</span> <span class="label label--inverse">inverse</span>
+<span class="label">default</span>
+<span class="label label--primary">primary</span>
+<span class="label label--success">success</span>
+<span class="label label--warning">warning</span>
+<span class="label label--danger">danger</span>
+<span class="label label--info">info</span>
+<span class="label label--inverse">inverse</span>
 
-## Labels with tooltips
+### Labels with tooltips
 
-Usage:
+    {{
+        html.label({
+            label: '3 days ago',
+            class: 'label--primary',
+            tooltip_title: '4th July 2015 12:34pm',
+            tooltip_placement: 'right'
+        })
+    }}
 
-    {{ html.label(
-        label = '3 days ago',
-        class = 'label--primary',
-        tooltip_title = 'You should always show the actual date in a tooltip when using relative time') }}
-
-Output:
-<span class="label label--primary" data-toggle="tooltips" data-placement="top" title="You should always show the actual date in a tooltip when using relative time">3 days ago</span>
+<span class="label label--primary" data-toggle="tooltips" data-placement="right" title="4th July 2015 12:34pm">3 days ago</span>

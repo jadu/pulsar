@@ -1,0 +1,78 @@
+{% macro caret(visible = false) %}
+{% spaceless %}
+	{% if visible %}
+		&nbsp;<span class="caret"></span>
+	{% endif  %}
+{% endspaceless %}
+{% endmacro %}
+
+
+{% macro class(default = '', value = '') %}
+{% spaceless %}
+	{% if default != '' or value != '' %}
+		class="{{ default ~ ' ' ~ value -}}"
+	{% endif %}
+{% endspaceless %}
+{% endmacro %}
+
+
+{% macro data(attributes = {}) %}
+{% spaceless %}
+	{% for key, value in attributes if value is not empty %}
+		{% if key == 'checked' %}
+            checked
+        {% else %}
+        	data-{{ key }}="{{ value }}"
+        {% endif %}
+	{% endfor %}
+{% endspaceless %}
+{% endmacro %}
+
+
+{% macro href(value) %}
+{% spaceless %}
+	{% if value is null %}
+		{% set href = '#missing-href-attribute' %}
+	{% else %}
+		{% set href = value %}
+	{% endif %}
+
+	href="{{ href }}"
+{% endspaceless %}
+{% endmacro %}
+
+
+{% macro id(value) %}
+{% spaceless %}
+	{% if value != '' %}
+		id="{{ value }}"
+	{% endif  %}
+{% endspaceless %}
+{% endmacro %}
+
+
+{% macro label(value) %}
+{% spaceless %}
+	{% if value is defined %}
+		label="{{ value }}"
+	{% endif %}
+{% endspaceless %}
+{% endmacro %}
+
+
+{% macro type(value) %}
+{% spaceless %}
+	{% if value != '' %}
+		type="{{ value }}"
+	{% endif  %}
+{% endspaceless %}
+{% endmacro %}
+
+
+{% macro value(value) %}
+{% spaceless %}
+	{% if value is defined %}
+		value="{{ value }}"
+	{% endif  %}
+{% endspaceless %}
+{% endmacro %}

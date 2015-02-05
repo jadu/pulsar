@@ -1,4 +1,4 @@
-{% import 'pulsar/helpers/html.html.twig' as html %}
+{% import 'pulsar/v2/helpers/html.html.twig' as html %}
 {% import 'pulsar/helpers/form.html.twig' as form %}
 {% import 'pulsar/helpers/flash.html.twig' as flash %}
 {% import 'pulsar/helpers/datagrid.html.twig' as datagrid %}
@@ -23,7 +23,14 @@
       			</dl>
 			</div>
 		</div>
-		{{ html.button(label = "Add File", attributes = 'data-action=browse') }}
+		{{
+			html.button({
+				'label': 'Add File',
+				'data': {
+					'action': 'browse'
+				}
+			})
+		}}
 	</div>
 </form>
 	<hr />

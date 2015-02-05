@@ -1,0 +1,55 @@
+{% import 'pulsar/v2/helpers/html.html.twig' as html %}
+
+test
+
+{{
+	html.button({
+		class: 'btn--primary btn--danger',
+		label: 'Normal button'
+	})
+}}
+
+{{
+	html.button({
+		class: 'btn--primary btn--danger',
+		id: 'myId',
+		label: 'Link button',
+		type: 'link',
+		data: {
+			'one': 'two',
+			'three': 'four',
+			'checked': true,
+			'five': 'six'
+		}
+	})
+}}
+
+{{
+	html.button({
+		class: 'btn--primary btn--danger',
+		id: 'myId',
+		label: 'Link button',
+		type: 'submit',
+		data: {
+			'one': 'two',
+			'three': 'four',
+			'checked': true,
+			'five': 'six'
+		}
+	})
+}}
+
+{{
+	html.button({
+		class: 'btn--primary btn--danger',
+		id: 'myId',
+		label: '<i class="icon"></i> Input button',
+		type: 'input',
+		data: {
+			'one': 'two',
+			'three': 'four',
+			'checked': true,
+			'five': 'six'
+		}
+	})
+}}

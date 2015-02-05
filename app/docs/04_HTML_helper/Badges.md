@@ -1,69 +1,50 @@
+## Badge
+
 Use badges to signify quantities or a number of items
 
-Usage:
+### Usage
 
-    {{ html.badge(label, class) }}
-    
-Badges can accept any of the usual modifier classes
-    
-    {{ html.badge(value = '1') }}
-    
-    {{ html.badge(
-        value = '2', 
-        class = 'badge--primary') }}
+    {{ html.badge({ options }) }}
 
-    {{ html.badge(
-        value = '3', 
-        class = 'badge--success') }}
+### Options
 
-    {{ html.badge(
-        value = '5', 
-        class = 'badge--warning') }}
+Option  | Description
+------------- | -------------
+class | CSS classes, space separated
+id | A unique identifier, if required
+label | The value to display, usually an integer
+data | a hash of data attributes by key/value
 
-    {{ html.badge(
-        value = '8', 
-        class = 'badge--danger') }}
+### Variations
 
-    {{ html.badge(
-        value = '13', 
-        class = 'badge--info') }}
+Badges accept the normal state variations through the `class` option
 
-    {{ html.badge(
-        value = '21', 
-        class = 'badge--inverse') }}
-    
-<span class="badge">1</span> <span class="badge badge--primary">2</span> <span class="badge badge--success">3</span> <span class="badge badge--warning">5</span> <span class="badge badge--danger">8</span> <span class="badge badge--info">13</span> <span class="badge badge--inverse">21</span> 
+    {{
+        html.badge({
+            value = '2',
+            class: 'badge--primary'
+        })
+    }}
+
+<span class="badge">1</span>
+<span class="badge badge--primary">2</span>
+<span class="badge badge--success">3</span>
+<span class="badge badge--warning">5</span>
+<span class="badge badge--danger">8</span>
+<span class="badge badge--info">13</span>
+<span class="badge badge--inverse">21</span>
 
 
-## Badged buttons
+### Badged buttons
 
 Badges within buttons will inherit the parent's styling, which is nice.
 
-    {{ html.button(value = 'Default ' ~ html.badge(value = '1')) }}
-
-    {{ html.button(
-        value = html.icon('inbox') ~ ' Primary ' ~ html.badge(value = '2'), 
-        class = 'btn--primary') }}
-
-    {{ html.button(
-        value = html.icon('ok') ~ ' Success ' ~ html.badge(value = '3'), 
-        class = 'btn--success') }}
-
-    {{ html.button(
-        value = html.icon('warning-sign') ~ ' Warning ' ~ html.badge(value = '5'), 
-        class = 'btn--warning') }}
-
-    {{ html.button(
-        value = html.icon('trash') ~ ' Danger ' ~ html.badge(value = '8'), 
-        class = 'btn--danger') }}
-
-    {{ html.button(
-        value = html.icon('info-sign') ~ ' Info ' ~ html.badge(value = '13'), 
-        class = 'btn--info') }}
-
-    {{ html.button(
-        value = html.icon('lock') ~ ' Inverse ' ~ html.badge('21'), 
-        class = 'btn--inverse') }}
+    {{
+        html.button({
+            value: html.icon('inbox') ~ ' Primary ' ~ html.badge(value = '2'),
+            class: 'btn--primary'
+        })
+    }}
 
 <p>
     <button class="btn">Default <span class="badge">1</span></button>

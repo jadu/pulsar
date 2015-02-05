@@ -1,4 +1,4 @@
-{% import 'pulsar/helpers/html.html.twig' as html %}
+{% import 'pulsar/v2/helpers/html.html.twig' as html %}
 {% import 'pulsar/helpers/form.html.twig' as form %}
 {% import 'pulsar/helpers/flash.html.twig' as flash %}
 {% import 'pulsar/helpers/datagrid.html.twig' as datagrid %}
@@ -39,7 +39,7 @@
 						No file selected
 					</a>
 				</div>
-				{{ html.button(label = "Add File") }}
+				{{ html.button({ 'label': 'Add File' }) }}
 			</div>
 
 			<div class="repeatable">
@@ -60,7 +60,7 @@
 						my_decision_document.doc
 					</a>
 				</div>
-				{{ html.button(label = "Add Another") }}
+				{{ html.button({ 'label': 'Add Another' }) }}
 			</div>
 
 			<div class="repeatable">
@@ -80,11 +80,11 @@
 					<a class="block-list__item" href="#">
 						{{ html.remove_button() }}
 						large_file.avi
-						{{ html.progress(25) }}
+						{{ html.progress({ 'value': 25 }) }}
 					</a>
 				</div>
-				{{ html.button(label = "Add Another") }}
-				{{ html.button(label = html.icon('remove-sign') ~ ' Remove all', class = 'btn--naked') }}
+				{{ html.button({ 'label': 'Add Another' }) }}
+				{{ html.button({ 'label': html.icon('remove-sign') ~ ' Remove all', 'class': 'btn--naked' }) }}
 			</div>
 
 
@@ -122,8 +122,8 @@
 						<p>You already have a case alert set, do you want to make this one the case alert instead?</p>
 
 						<div class="setting__actions">
-							{{ html.button(label = 'Do It', class = 'btn--primary') }}
-							{{ html.button(label = 'Cancel') }}
+							{{ html.button({ 'label': 'Do It', 'class': 'btn--primary' }) }}
+							{{ html.button({ 'label': 'Cancel' }) }}
 						</div>
 					</div>
 

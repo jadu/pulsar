@@ -1,24 +1,38 @@
+## Panel
+
 Display important information in a prominent container.
 
-Usage:
+### Example usage
 
-    <div class="panel">
-        <div class="panel__title">
-            {{ html.icon('info-sign') }} Panel Title
-        </div>
-        <div class="panel__body">
-            Something interesting
-        </div>
-    </div>
+    {{
+        html.panel({
+            'title': 'In West Philadelphia born and raised',
+            'body': 'In the playground was where I spent most of my days.'
+        })
+    }}
 
 <div class="panel">
     <div class="panel__title">
-        <i class="icon-info-sign"></i> Panel Title
+        <i class="icon-info-sign"></i> In West Philadelphia born and raised
     </div>
     <div class="panel__body">
-        Something interesting
+        In the playground was where I spent most of my days.
     </div>
 </div>
+
+### Options
+
+Option  | Description
+------- | --------------------------------------------------------------
+body    | (string) The main content of the panel
+class   | (string) CSS classes, space separated
+data    | (hash) data attributes by key/value
+icon    | (string) Icon to display next to the panel title
+id      | (string) A unique identifier, if required
+title   | (strong) The title of the panel
+
+
+
 
 ## Variations (class)
 

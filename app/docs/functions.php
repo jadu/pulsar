@@ -97,7 +97,7 @@ function load_page($tree, $markdownParser) {
             $page['modified'] = filemtime($branch['path']);
 
         }
-        $html .= $markdownParser->transformMarkdown(file_get_contents($branch['path']));
+        $html .= $markdownParser->defaultTransform(file_get_contents($branch['path']));
 
         $page['html'] = $html;
 
@@ -107,7 +107,7 @@ function load_page($tree, $markdownParser) {
         $page['html'] = "<h3>Oh No. That page dosn't exist</h3>";
 
     }
-    
+
 
     return $page;
 }
@@ -175,11 +175,11 @@ function build_nav($tree, $url_params = false) {
     $url_path = url_path();
     $html = '<ul class="tabs__list">';
     foreach($tree as $key => $val) {
-        
+
         // Active Tree Node
         if (isset($url_params[0]) && $url_params[0] == $val['clean']) {
             array_shift($url_params);
-            $html .= '<li class="is-active">';          
+            $html .= '<li class="is-active">';
         } else {
             $html .= '<li>';
         }

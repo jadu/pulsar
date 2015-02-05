@@ -1,4 +1,4 @@
-{% import 'pulsar/helpers/html.html.twig' as html %}
+{% import 'pulsar/v2/helpers/html.html.twig' as html %}
 {% import 'pulsar/helpers/form.html.twig' as form %}
 {% import 'pulsar/helpers/flash.html.twig' as flash %}
 {% import 'pulsar/helpers/datagrid.html.twig' as datagrid %}
@@ -20,20 +20,20 @@
             <tr>
                 {{ datagrid.select_all() }}
                 <th>
-                    {{ html.link(label = heading[0]) }}
+                    {{ html.link({'label': heading[0]}) }}
                     {{ html.icon('sort-by-alphabet') }}
                 </th>
                 <th>
-                    {{ html.link(label = heading[1]) }}
+                    {{ html.link({'label': heading[1]}) }}
                 </th>
                 <th>
-                    {{ html.link(label = heading[2]) }}
+                    {{ html.link({'label': heading[2]}) }}
                 </th>
                 <th class="centered shrink-to-fit">
-                    {{ html.link(label = heading[3]) }}
+                    {{ html.link({'label': heading[3]}) }}
                 </th>
                 <th>
-                    {{ html.link(label = heading[4]) }}
+                    {{ html.link({'label': heading[4]}) }}
                 </th>
             </tr>
         </thead>
@@ -43,7 +43,7 @@
                 <td data-th="{{ heading[0] }}"><a href="#">This is a regular row</a></td>
                 <td data-th="{{ heading[1] }}">Monday 4th July, 2013</td>
                 <td data-th="{{ heading[2] }}">3 hours ago</td>
-                <td data-th="{{ heading[3]|e('css') }}" class="centered">{{ html.badge(label = '5') }}</td>
+                <td data-th="{{ heading[3]|e('css') }}" class="centered">{{ html.badge({ 'label': '5' }) }}</td>
                 <td data-th="{{ heading[4] }}">Paul Stanton</td>
             </tr>
             <tr class="is-selected">
@@ -51,7 +51,7 @@
                 <td data-th="{{ heading[0] }}"><a href="#">This row has .is-selected</a></td>
                 <td data-th="{{ heading[1] }}">Monday 4th July, 2013</td>
                 <td data-th="{{ heading[2] }}">3 hours ago</td>
-                <td data-th="{{ heading[3]|e('css') }}" class="centered">{{ html.badge(label = '5') }}</td>
+                <td data-th="{{ heading[3]|e('css') }}" class="centered">{{ html.badge({ 'label': '5' }) }}</td>
                 <td data-th="{{ heading[4] }}">Paul Stanton</td>
             </tr>
             <tr class="row--highlight">
@@ -59,7 +59,7 @@
                 <td data-th="{{ heading[0] }}"><a href="#">This row has .row--highlight</a></td>
                 <td data-th="{{ heading[1] }}">Monday 4th July, 2013</td>
                 <td data-th="{{ heading[2] }}">3 hours ago</td>
-                <td data-th="{{ heading[3]|e('css') }}" class="centered">{{ html.badge(label = '5') }}</td>
+                <td data-th="{{ heading[3]|e('css') }}" class="centered">{{ html.badge({ 'label': '5' }) }}</td>
                 <td data-th="{{ heading[4] }}">Paul Stanton</td>
             </tr>
             <tr class="row--success-highlight">
@@ -67,7 +67,7 @@
                 <td data-th="{{ heading[0] }}"><a href="#">This row has .row--success-highlight</a></td>
                 <td data-th="{{ heading[1] }}">Monday 4th July, 2013</td>
                 <td data-th="{{ heading[2] }}">3 hours ago</td>
-                <td data-th="{{ heading[3]|e('css') }}" class="centered">{{ html.badge(label = '5') }}</td>
+                <td data-th="{{ heading[3]|e('css') }}" class="centered">{{ html.badge({ 'label': '5' }) }}</td>
                 <td data-th="{{ heading[4] }}">Paul Stanton</td>
             </tr>
             <tr class="row--danger-highlight">
@@ -75,7 +75,7 @@
                 <td data-th="{{ heading[0] }}"><a href="#">This row has .row--danger-highlight</a></td>
                 <td data-th="{{ heading[1] }}">Monday 4th July, 2013</td>
                 <td data-th="{{ heading[2] }}">3 hours ago</td>
-                <td data-th="{{ heading[3]|e('css') }}" class="centered">{{ html.badge(label = '5') }}</td>
+                <td data-th="{{ heading[3]|e('css') }}" class="centered">{{ html.badge({ 'label': '5' }) }}</td>
                 <td data-th="{{ heading[4] }}">Paul Stanton</td>
             </tr>
             <tr class="row--warning-highlight">
@@ -83,7 +83,7 @@
                 <td data-th="{{ heading[0] }}"><a href="#">This row has .row--warning-highlight</a></td>
                 <td data-th="{{ heading[1] }}">Monday 4th July, 2013</td>
                 <td data-th="{{ heading[2] }}">3 hours ago</td>
-                <td data-th="{{ heading[3]|e('css') }}" class="centered">{{ html.badge(label = '5') }}</td>
+                <td data-th="{{ heading[3]|e('css') }}" class="centered">{{ html.badge({ 'label': '5' }) }}</td>
                 <td data-th="{{ heading[4] }}">Paul Stanton</td>
             </tr>
             <tr class="row--success">
@@ -91,7 +91,7 @@
                 <td data-th="{{ heading[0] }}"><a href="#">This row has .row--success</a></td>
                 <td data-th="{{ heading[1] }}">Monday 4th July, 2013</td>
                 <td data-th="{{ heading[2] }}">3 hours ago</td>
-                <td data-th="{{ heading[3]|e('css') }}" class="centered">{{ html.badge(label = '5') }}</td>
+                <td data-th="{{ heading[3]|e('css') }}" class="centered">{{ html.badge({ 'label': '5' }) }}</td>
                 <td data-th="{{ heading[4] }}">Paul Stanton</td>
             </tr>
             <tr class="row--danger">
@@ -99,7 +99,7 @@
                 <td data-th="{{ heading[0] }}"><a href="#">This row has .row--danger</a></td>
                 <td data-th="{{ heading[1] }}">Monday 4th July, 2013</td>
                 <td data-th="{{ heading[2] }}">3 hours ago</td>
-                <td data-th="{{ heading[3]|e('css') }}" class="centered">{{ html.badge(label = '5') }}</td>
+                <td data-th="{{ heading[3]|e('css') }}" class="centered">{{ html.badge({ 'label': '5' }) }}</td>
                 <td data-th="{{ heading[4] }}">Paul Stanton</td>
             </tr>
             <tr class="row--warning">
@@ -107,7 +107,7 @@
                 <td data-th="{{ heading[0] }}"><a href="#">This row has .row--warning</a></td>
                 <td data-th="{{ heading[1] }}">Monday 4th July, 2013</td>
                 <td data-th="{{ heading[2] }}">3 hours ago</td>
-                <td data-th="{{ heading[3]|e('css') }}" class="centered">{{ html.badge(label = '5') }}</td>
+                <td data-th="{{ heading[3]|e('css') }}" class="centered">{{ html.badge({ 'label': '5' }) }}</td>
                 <td data-th="{{ heading[4] }}">Paul Stanton</td>
             </tr>
         </tbody>

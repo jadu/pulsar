@@ -1,4 +1,4 @@
-{% import 'pulsar/helpers/html.html.twig' as html %}
+{% import 'pulsar/v2/helpers/html.html.twig' as html %}
 {% import 'pulsar/helpers/form.html.twig' as form %}
 {% import 'pulsar/helpers/flash.html.twig' as flash %}
 
@@ -21,7 +21,7 @@
         <p>This popover also contains the <code>popover--standout</code> class to make it, well, stand out.</p>
       </div>
       <div class="popover-footer">
-        {{ html.button(label = 'An Action') }}
+        {{ html.button({ 'label': 'An Action' }) }}
       </div>
     </div>
 
@@ -40,7 +40,7 @@
         <p>You need to get lots of yellow and red cards and kick some very big goals to win.</p>
       </div>
       <div class="popover-footer">
-        {{ html.button(label = html.icon('thumbs-up-alt') ~ ' Kick Big Goal ', class = 'btn--danger pill') }}
+        {{ html.button({ 'label': html.icon('thumbs-up-alt') ~ ' Kick Big Goal ', 'class': 'btn--danger' }) }}
       </div>
     </div>
 
@@ -51,7 +51,7 @@
         <img src="http://media.indiedb.com/images/games/1/10/9018/61708.gif" />
       </div>
       <div class="popover-footer">
-        {{ html.button(label = html.icon('thumbs-up-alt') ~ ' Longcat is Long ') }}
+        {{ html.button({ 'label': html.icon('thumbs-up-alt') ~ ' Longcat is Long ' }) }}
       </div>
     </div>
   </div>

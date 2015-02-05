@@ -20,7 +20,7 @@
             {% if loop.first %}
               <div data-subnav="true" class="subnav-container">
             {% endif %}
-              {{ html.link_list(item) }}
+              {{ html.link_list({ items: item }) }}
             {% if loop.last %}
               </div>
             {% endif %}

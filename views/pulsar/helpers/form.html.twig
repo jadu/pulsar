@@ -178,7 +178,7 @@
         <label {{ form.for(id) }} class="control__label">{{ label | raw }}</label>
         {% endif %}
         <div class="controls">
-            {{ form.loading(class) }}
+            {# form.loading() #}
             <select class="form__control" {{ form.id(id) }} {{ form.name(name) }}>
             {%- for value, option in options -%}
                 <option {{ form.value(value) }} {% if value == selected %}selected{% endif %}>{{ option }}</option>
@@ -382,9 +382,6 @@
 
 {% macro loading(class) %}
     {% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
-    {% if 'is-loading' in class %}
-        {% set visibility = false %}
-    {% endif %}
-    {{ html.loading(visibility) }}
+    {{ html.loading() }}
 {% endmacro %}
 

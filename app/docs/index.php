@@ -6,13 +6,13 @@ $templateDir = $baseDir . 'views';
 require_once __DIR__ . '/' . $baseDir . 'vendor/autoload.php';
 require_once __DIR__ . '/functions.php';
 
-use dflydev\markdown\MarkdownExtraParser;
+use \Michelf\MarkdownExtra;
 use Jadu\Pulsar\Twig\Extension\ConfigExtension;
 use Jadu\Pulsar\Twig\Extension\RelativeTimeExtension;
 use Jadu\Pulsar\Twig\Extension\UrlParamsExtension;
 use Jadu\Pulsar\Twig\Extension\TabsExtension;
 
-$markdownParser = new MarkdownExtraParser();
+$markdownParser = new MarkdownExtra();
 
 $loader = new Twig_Loader_Filesystem($templateDir);
 $loader->addPath($templateDir, 'pulsar');
@@ -35,7 +35,7 @@ $page = load_page($tree, $markdownParser);
 
 $breadcrumb = array(
     'Pulsar' => '/',
-    'Documentation' => null 
+    'Documentation' => null
 );
 
 print $template->render(array(

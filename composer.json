@@ -17,7 +17,7 @@
     },
     "require-dev": {
         "phpunit/phpunit": "*",
-        "dflydev/markdown": "*",
+        "michelf/php-markdown": "1.4.1",
         "behat/behat": "~2.5",
         "behat/mink": "*",
         "behat/mink-extension": "*",

@@ -1,4 +1,4 @@
-{% import 'pulsar/helpers/html.html.twig' as html %}
+{% import 'pulsar/v2/helpers/html.html.twig' as html %}
 {% import 'pulsar/helpers/form.html.twig' as form %}
 {% import 'pulsar/helpers/flash.html.twig' as flash %}
 
@@ -6,16 +6,65 @@
 
 <div class="tab__inner tab--padded">
     <h2>Variations</h2>
-    {{ html.progress(value = 50) }}
-    {{ html.progress(value = 60, class = 'progress-bar--success') }}
-    {{ html.progress(value = 70, class = 'progress-bar--warning') }}
-    {{ html.progress(value = 80, class = 'progress-bar--danger') }}
+    {{
+        html.progress({
+            value: 50
+        })
+    }}
+
+    {{
+        html.progress({
+            class: 'progress-bar--success',
+            value: 60,
+        })
+    }}
+
+    {{
+        html.progress({
+            class: 'progress-bar--warning',
+            value: 70,
+        })
+    }}
+
+    {{
+        html.progress({
+            class: 'progress-bar--danger',
+            value: 80,
+        })
+    }}
 
     <h2>Visible values</h2>
-    {{ html.progress(value = 5, value_visible = true) }}
-    {{ html.progress(value = 10, value_visible = true) }}
+
+    {{
+        html.progress({
+            value: 5,
+            value_visible: true
+        })
+    }}
+
+    {{
+        html.progress({
+            value: 10,
+            value_visible: true
+        })
+    }}
+
 
     <h2>Custom labels</h2>
-    {{ html.progress(value = 80, label = 'uploaded', value_visible = true) }}
-    {{ html.progress(value = 100, class = 'progress-bar--success', label = 'done ' ~ html.icon('ok')) }}
+    {{
+        html.progress({
+            label:  'uploaded',
+            value: 80,
+            value_visible:  true
+        })
+    }}
+
+    {{
+        html.progress({
+            class: 'progress-bar--success',
+            label: 'done ' ~ html.icon('ok'),
+            value: 100
+        })
+    }}
+
 </div>

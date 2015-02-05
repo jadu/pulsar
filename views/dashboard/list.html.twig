@@ -3,31 +3,32 @@
 {% import '@pulsar/pulsar/helpers/form.html.twig' as form %}
 {% import '@pulsar/pulsar/helpers/flash.html.twig' as flash %}
 {% import '@pulsar/pulsar/helpers/pulsar.html.twig' as pulsar %}
+{% import '@pulsar/pulsar/helpers/tabs.html.twig' as tabs %}
 
 {% set heading = 'Dashboards' %}
 
 {% block title %}{{ heading ~ ' | ' ~ parent() }}{% endblock %}
 
-{% 
+{%
   set actions_menu = [
     html.link(
-      label = html.icon('plus') ~ ' Create dashboard', 
+      label = html.icon('plus') ~ ' Create dashboard',
       href = '#save',
       attributes = 'data-action=dashboard-create'
     ),
     html.link(
-      label = html.icon('upload-alt') ~ ' Install widget', 
+      label = html.icon('upload-alt') ~ ' Install widget',
       href = '#widget-install',
       attributes = 'data-toggle=deck'
     ),
     html.link(
-      label = html.icon('share') ~ ' Share dashboard', 
+      label = html.icon('share') ~ ' Share dashboard',
       href = '/jadu/modals/modal.php?modal=dashboard/share.html.twig',
       attributes = 'data-toggle=modal data-target=#modal'
     ),
     html.divider(),
     html.link(
-      label = html.icon('trash') ~ ' Delete selected', 
+      label = html.icon('trash') ~ ' Delete selected',
       href = '/jadu/modals/modal.php?modal=dashboard/delete.html.twig',
       class = 'link--danger',
       attributes = 'data-toggle=modal data-target=#modal-danger'
@@ -43,7 +44,7 @@
     {% include 'dashboard/tabs/widgets.html.twig' %}
 {% endset %}
 
-{% 
+{%
   set tabs = [
     {
       "id"		: "dashboards",
@@ -70,11 +71,11 @@
     </div>
   </div>
 
-  {{ html.tabs(tabs) }}
+  {{ tabs.tabs(tabs) }}
 {% endblock %}
 
 {% block tabs_content %}
-  {{ html.tabs_content(tabs) }}
+  {{ tabs.tabs_content(tabs) }}
 
 
 <div class="deck" id="widget-install">
@@ -84,15 +85,15 @@
             {{ form.create() }}
             {{ form.fieldset_start(legend = 'Install Widget') }}
             {{ form.file(
-                label = 'Widget zip file', 
-                id = 'widget[file]', 
+                label = 'Widget zip file',
+                id = 'widget[file]',
                 name = 'widgetFile') }}
             {{ form.fieldset_end() }}
             {{ form.form_end([
                 form.submit(
                     label = 'Install',
                     class = 'btn--primary')
-                ]) 
+                ])
             }}
         </div>
     </div>

@@ -41,3 +41,7 @@
 .example {
   margin-top: $line-height-base;
 }
+
+.markdown .tab__inner table {
+  @extend .table;
+}

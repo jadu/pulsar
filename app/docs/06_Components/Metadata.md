@@ -9,7 +9,7 @@ Provides a simple way to mark up key/value information provided by a JSON object
             "Type" : "Video"
         }
     %}
-    {{ html.metadata(items = json) }}
+    {{ html.metadata({ 'items': json }) }}
 
 
 <dl class="metadata">
@@ -26,10 +26,10 @@ Provides a simple way to mark up key/value information provided by a JSON object
 ### Bordered
 
 	{{
-		html.metadata(
-			items = json,
-			class = 'metadata--bordered'
-		)
+		html.metadata({
+			'items': json,
+			'class': 'metadata--bordered'
+		})
 	}}
 
 <dl class="metadata metadata--bordered">
