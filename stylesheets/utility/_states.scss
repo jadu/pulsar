@@ -108,20 +108,28 @@ $danger-to-text-color: black;
   }
 }
 
-.has-success:not(.form__group) {
-  background-color: lighten($success-color, 35);
-  color: darken($success-color, 15);
+.has-success,
+.has-success .help-block {
+  &:not(.form__group) {
+    background-color: lighten($success-color, 35);
+    color: darken($success-color, 15);
+  }
 }
 
-.has-warning:not(.form__group) {
-  background-color: lighten($warning-color, 15);
-  color: darken($warning-color, 30);
+.has-warning,
+.has-warning .help-block {
+  &:not(.form__group) {
+    background-color: lighten($warning-color, 15);
+    color: darken($warning-color, 30);
+  }
 }
 
 .has-error,
 .has-error:hover,
+.has-error .help-block,
 .has-danger,
-.has-danger:hover {
+.has-danger:hover,
+.has-danger .help-block {
   &:not(.form__group) {
     background-color: $danger-from-bg-color;
     color: $danger-from-text-color;
