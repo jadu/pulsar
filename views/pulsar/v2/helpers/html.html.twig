@@ -107,8 +107,8 @@ Option  	| Description
 ----------- | ----------------------------------------------------------------------
 caret		| (bool) Whether to show the caret arrow in the label (default true)
 class 		| (string) A space separated list of class names (applied to the container)
-direction 	| (string) down (default) | up
 data 		| (hash) Data attributes by key/value (applied to the button)
+direction 	| (string) down (default) | up
 id 			| (string) A unique identifier, if required (applied to the button)
 items 		| (array) An array of items to put in the dropdown list (usually links)
 label 		| (string) The button label
@@ -296,8 +296,8 @@ class 				| (string) CSS classes, space separated
 data 				| (hash) data attributes by key/value
 id 					| (string) A unique identifier, if required
 label 				| (string) The value to display
-tooltip_title 		| (string) Tooltip text to be shown on mouse over
 tooltip_placement 	| (string) top (default) | right | bottom | left
+tooltip_title 		| (string) Tooltip text to be shown on mouse over
 
 #}
 {% macro label(options = {}) %}
@@ -536,7 +536,9 @@ Simple wrapper to create `<li>` elements, mainly used from within other helpers.
 ### Example usage
 
 	{{
-		html.li({ value: 'foo' })
+		html.li({
+			value: 'foo'
+		})
 	}}
 
 ### Options
@@ -569,9 +571,11 @@ value 	| (string) The value to display
 
 ## Loading
 
-Give feedback to the user that something is happening or that information is being retrieved from the server.
+Give feedback to the user that something is happening or that information is
+being retrieved from the server.
 
-Adding the `hide` class will allow you to place the loading markup in the DOM on pageload, then to toggle it with javascript.
+Adding the `hide` class will allow you to place the loading markup in the DOM on
+pageload, then to toggle it with javascript.
 
 ### Example usage
 
@@ -706,7 +710,8 @@ title 	| (strong) The title of the panel
 
 ## Progress
 
-Provide up-to-date feedback on the progress of a workflow or action with simple progress bars.
+Provide up-to-date feedback on the progress of a workflow or action with simple
+progress bars.
 
 ### Example usage
 
@@ -778,7 +783,7 @@ contain information about what object should be removed.
 ### Options
 
 Option  	| Description
-------- | -----------------------------------------------------------
+------- | ----------------------------------------------------------------------
 class 	| (string) A space separated list of class names
 data 	| (hash) Data attributes by key/value
 id 		| (string) A unique identifier, if required
@@ -829,9 +834,9 @@ Generates the required data-attributes for adding a tooltip to an element.
 ### Options
 
 Option  	| Description
------------	| -----------------------------------------------------------
-title 		| (string) The text to display as the tooltip
+-----------	| ------------------------------------------------------------------
 placement 	| (string) top (default) | right | bottom | left
+title 		| (string) The text to display as the tooltip
 
 #}
 {% macro tooltip(options = {}) %}
@@ -845,4 +850,3 @@ placement 	| (string) top (default) | right | bottom | left
 
 {% endspaceless %}
 {% endmacro %}
-
