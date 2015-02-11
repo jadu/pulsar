@@ -78,15 +78,17 @@ form    | string | Specific one or more forms this label belongs to
 {% spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-    <label
-        {{ util.class('control__label', options) }}
-        {{ util.for(options.for) }}
-        {{ util.form(options.form) }}
-        {{ util.id(options.id) }}
-        {{ util.data(options.data) }}
-    >
-        {{- options.label|raw -}}
-    </label>
+    {% if options.label is not empty %}
+	    <label
+	        {{ util.class('control__label', options) }}
+	        {{ util.for(options.for) }}
+	        {{ util.form(options.form) }}
+	        {{ util.id(options.id) }}
+	        {{ util.data(options.data) }}
+	    >
+	        {{- options.label|raw -}}
+	    </label>
+	{% endif %}
 
 {% endspaceless %}
 {% endmacro %}

@@ -81,10 +81,11 @@ value         | string | Specifies the value of the input
         _self.group({
             'class': options.class,
             'help': options.help,
+            'label': null,
             'inputs': [
                 elem.label({
                     'bare': true,
-                    'class': 'checkbox--inline',
+                    'class': 'checkbox--inline-v2',
                     'for': options.id,
                     'label': label
                 })
@@ -129,7 +130,7 @@ value         | string | Specifies the value of the input
             'inputs': [
                 elem.label({
                     'bare': true,
-                    'class': 'radio--inline',
+                    'class': 'radio--inline-v2',
                     'for': options.id,
                     'label': label
                 })
@@ -316,7 +317,7 @@ name    | string | A name for the fieldset
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
     <fieldset
-        {{ util.class(options) }}
+        {{ util.class(null, options) }}
         {{ util.id(options.id) }}
         {{ util.form(options.form) }}
         {{ util.name(options.name) }}
@@ -424,8 +425,12 @@ value       | string | Specifies the value of the input
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
     {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 
+    {% if options.label is null %}
+        {% set hasLabelClass = ' form__group--no-label' %}
+    {% endif %}
+
     <div
-        {{ util.class('form__group', options) }}
+        {{ util.class('form__group' ~ hasLabelClass, options) }}
     >
         {{
             elem.label({
