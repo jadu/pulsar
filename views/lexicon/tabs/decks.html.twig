@@ -45,7 +45,13 @@
 
             {{ form.text('Text input', 'deckInputText', null, 'deckInputText', 'Placeholder') }}
             {{ form.checkbox('Checkbox with left label', 'deckInputCheckboxLeft', null, 'deckInputCheckboxLeft', true) }}
-            {{ form.file('File input', 'deckInputFile', null, 'deckInputFile') }}
+            {{
+                form.file({
+                    'label': 'File input',
+                    'id': 'deckInputFile',
+                    'name': 'deckInputFile'
+                })
+            }}
             {{ form.select('Select input', {value1: 'value one', value2: 'value two'}, 'deckInputSelect', null, 'deckInputSelect') }}
             {{ form.textarea('Textarea (4 rows)', 'deckInputTextarea4', null, 'deckInputTextarea4', 'Placeholder', null, 4) }}
 

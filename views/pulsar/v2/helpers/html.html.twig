@@ -30,7 +30,7 @@ type 	| (string) Can be button (default), link, input, submit
 #}
 {% macro button(options = {}) %}
 {% spaceless %}
-	{% import 'pulsar/v2/helpers/util.html.twig' as util %}
+	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 	{% import _self as html %}
 
 	{% if options.type == 'link' %}
@@ -49,7 +49,7 @@ type 	| (string) Can be button (default), link, input, submit
 
 		<input
 			{{ util.type('button') }}
-			{{ util.class('btn', options.class) }}
+			{{ util.class('btn', options) }}
 			{{ util.id(options.id) }}
 			{{ util.data(options.data) }}
 			{{ util.value(options.label) }}
@@ -59,7 +59,7 @@ type 	| (string) Can be button (default), link, input, submit
 
 		<button
 			{{ util.type('submit') }}
-			{{ util.class('btn', options.class) }}
+			{{ util.class('btn', options) }}
 			{{ util.id(options.id) }}
 			{{ util.data(options.data) }}
 		>
@@ -70,7 +70,7 @@ type 	| (string) Can be button (default), link, input, submit
 
 		<button
 			{{ util.type('button') }}
-			{{ util.class('btn', options.class) }}
+			{{ util.class('btn', options) }}
 			{{ util.id(options.id) }}
 			{{ util.data(options.data) }}
 		>
@@ -116,7 +116,7 @@ label 		| (string) The button label
 #}
 {% macro button_dropdown(options = {}) %}
 {% spaceless %}
-	{% import 'pulsar/v2/helpers/util.html.twig' as util %}
+	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 	{% import _self as html %}
 
 	<div
@@ -179,10 +179,10 @@ id 		| (string) A unique identifier, if required
 #}
 {% macro button_group(options = {}) %}
 {% spaceless %}
-	{% import 'pulsar/v2/helpers/util.html.twig' as util %}
+	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
 	<div
-		{{ util.class('btn__group', options.class) }}
+		{{ util.class('btn__group', options) }}
 		{{ util.id(options.id) }}
 		{{ util.data(options.data) }}
 	>
@@ -219,10 +219,10 @@ label 	| (string) The value to display, usually an integer
 #}
 {% macro badge(options = {}) %}
 {% spaceless %}
-	{% import 'pulsar/v2/helpers/util.html.twig' as util %}
+	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
 	<span
-		{{ util.class('badge', options.class) }}
+		{{ util.class('badge', options) }}
 		{{ util.id(options.id) }}
 		{{ util.data(options.data) }}
 	>
@@ -268,9 +268,9 @@ class 	| (string) CSS classes, space separated
 #}
 {% macro icon(icon_name, options = {}) %}
 {% spaceless %}
-	{% import 'pulsar/v2/helpers/util.html.twig' as util %}
+	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-	<i {{ util.class('icon-' ~ icon_name, options.class) }}></i>
+	<i {{ util.class('icon-' ~ icon_name, options) }}></i>
 
 {% endspaceless %}
 {% endmacro %}
@@ -302,11 +302,11 @@ tooltip_title 		| (string) Tooltip text to be shown on mouse over
 #}
 {% macro label(options = {}) %}
 {% spaceless %}
-	{% import 'pulsar/v2/helpers/util.html.twig' as util %}
+	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 	{% import _self as html %}
 
 	<span
-		{{ util.class('label', options.class) }}
+		{{ util.class('label', options) }}
 		{{ util.id(options.id) }}
 		{{ util.data(options.data) }}
 		{{ _self.tooltip(options.tooltip_title, options.tooltip_placement) }}
@@ -345,10 +345,10 @@ labels 	| (array) The labels to group
 #}
 {% macro label_group(options = {}) %}
 {% spaceless %}
-	{% import 'pulsar/v2/helpers/util.html.twig' as util %}
+	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
 	<div
-		{{ util.class('label-group', options.class) }}
+		{{ util.class('label-group', options) }}
 		{{ util.id(options.id) }}
 		{{ util.data(options.data) }}
 	>
@@ -387,10 +387,10 @@ label 	| (string) The link text label
 #}
 {% macro link(options = {}) %}
 {% spaceless %}
-	{% import 'pulsar/v2/helpers/util.html.twig' as util %}
+	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
 	<a
-		{{ util.class('', options.class) }}
+		{{ util.class('', options) }}
 		{{ util.href(options.href) }}
 		{{ util.id(options.id) }}
 		{{ util.data(options.data) }}
@@ -434,12 +434,12 @@ type 		| (string) ul (default) | ol
 #}
 {% macro list(options = {}) %}
 {% spaceless %}
-	{% import 'pulsar/v2/helpers/util.html.twig' as util %}
+	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 	{% import _self as html %}
 	{% set list_type = options.type|default('ul') %}
 
 	<{{ list_type }}
-		{{ util.class('', options.class) }}
+		{{ util.class('', options) }}
 	>
 
 	{% for list_item in options.items %}
@@ -497,7 +497,7 @@ type 		| (string) ul (default) | ol
 #}
 {% macro link_list(options = {}) %}
 {% spaceless %}
-	{% import 'pulsar/v2/helpers/util.html.twig' as util %}
+	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 	{% import _self as html %}
 	{% set items = [] %}
 
@@ -553,10 +553,10 @@ value 	| (string) The value to display
 #}
 {% macro li(options = {}) %}
 {% spaceless %}
-	{% import 'pulsar/v2/helpers/util.html.twig' as util %}
+	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
 	<li
-		{{ util.class('', options.class) }}
+		{{ util.class('', options) }}
 		{{ util.id(options.id) }}
 		{{ util.data(options.data) }}
 	>
@@ -592,10 +592,10 @@ id 		| (string) A unique identifier, if required
 #}
 {% macro loading(options = {}) %}
 {% spaceless %}
-	{% import 'pulsar/v2/helpers/util.html.twig' as util %}
+	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
 	<div
-		{{ util.class('loading loading--circle', options.class) }}
+		{{ util.class('loading loading--circle', options) }}
 		{{ util.id(options.id) }}
 		{{ util.data(options.data) }}
 	>
@@ -637,10 +637,10 @@ items   | (hash) A hash of data where key: value = title: description
 #}
 {% macro metadata(options = {}) %}
 {% spaceless %}
-	{% import 'pulsar/v2/helpers/util.html.twig' as util %}
+	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
 	<dl
-		{{ util.class('metadata', options.class) }}
+		{{ util.class('metadata', options) }}
 		{{ util.id(options.id) }}
 		{{ util.data(options.data) }}
 	>
@@ -685,11 +685,11 @@ title 	| (strong) The title of the panel
 #}
 {% macro panel(options = {}) %}
 {% spaceless %}
-	{% import 'pulsar/v2/helpers/util.html.twig' as util %}
+	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 	{% import _self as html %}
 
 	<div
-		{{ util.class('panel', options.class) }}
+		{{ util.class('panel', options) }}
 		{{ util.id(options.id) }}
 		{{ util.data(options.data) }}
 	>
@@ -735,11 +735,11 @@ value_visible 	| (bool) Whether to visually display the value inside the bar (de
 #}
 {% macro progress(options = {}) %}
 {% spaceless %}
-	{% import 'pulsar/v2/helpers/util.html.twig' as util %}
+	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
 	<div class="progress">
 		<div
-			{{ util.class('progress-bar', options.class) }}
+			{{ util.class('progress-bar', options) }}
 			{{ util.id(options.id) }}
 			{{ util.data(options.data) }}
 			role="progressbar"
@@ -794,7 +794,7 @@ type 	| (string) Can be button (default), link, input, submit
 #}
 {% macro remove_button(options = {}) %}
 {% spaceless %}
-	{% import 'pulsar/v2/helpers/util.html.twig' as util %}
+	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 	{% import _self as html %}
 
 	{{
@@ -842,7 +842,7 @@ title 		| (string) The text to display as the tooltip
 {% macro tooltip(options = {}) %}
 {% spaceless %}
 
-	{% if options.title != '' %}
+	{% if options.title is not empty %}
 		data-toggle="tooltips"
 		data-placement="{{ options.placement|default('top') }}"
 		title="{{ options.title }}"

@@ -1,5 +1,5 @@
 {% import 'pulsar/v2/helpers/html.html.twig' as html %}
-{% import 'pulsar/helpers/form.html.twig' as form %}
+{% import 'pulsar/v2/helpers/form.html.twig' as form %}
 {% import 'pulsar/helpers/flash.html.twig' as flash %}
 {% import 'pulsar/helpers/datagrid.html.twig' as datagrid %}
 
@@ -13,7 +13,13 @@
 		<div class="block-list block-list--bordered">
 		 	<div class="block-list__item">
 				<label class="uploader__control" for="file-1">
-					{{ form.text(label = 'Name', class = 'uploader__name hide', placeholder = 'optional') }}
+					{{
+						form.text({
+							'label': 'Name',
+							'class': 'uploader__name hide',
+							'placeholder': 'optional'
+						})
+					}}
 					<input type="file" class="hide" id="file-1" name="file-1">
 					<span class="uploader__label">No file selected</span>
 				</label>

@@ -1,0 +1,14 @@
+.form-v2 {
+
+  .checkbox--inline,
+  .radio--inline {
+    .form__control {
+      display: inline-block;
+      height: auto;
+      margin-right: 10px;
+      vertical-align: middle;
+      width: 18px;
+    }
+  }
+
+}

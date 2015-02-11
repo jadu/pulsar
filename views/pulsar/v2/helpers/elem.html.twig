@@ -1,0 +1,200 @@
+{#  ----------------------------------------------------------------------------
+
+## Input
+
+A standard input field, accepts a `type` attribute to switch between:
+
+ * File
+ * Password
+ * Text (default)
+
+### Example usage
+
+	{{
+		input.text({
+			'name': 'MyAwesomeField'
+		})
+	}}
+
+### Options
+
+Option      | Type   | Description
+----------- | ------ | ---------------------------------------------------------
+class       | string | A space separated list of class names
+data        | hash   | Data attributes by key/value
+id          | string | A unique identifier, if required
+form        | string | Specific one or more forms this label belongs to
+placeholder | string | A short hint that describes the expected value
+type 		| string | Defines the type of input to render (default text)
+value       | string | Specifies the value of the input
+
+#}
+{% macro input(options) %}
+{% spaceless %}
+	{% import 'pulsar/v2/helpers/util.html.twig' as util %}
+
+	<input
+		{{ util.class('form__control', options) }}
+		{{ util.checked(options.checked) }}
+		{{ util.form(options.form) }}
+		{{ util.id(options.id) }}
+		{{ util.name(options.name) }}
+		{{ util.placeholder(options.placeholder) }}
+		{{ util.type(options.type|default('text')) }}
+		{{ util.value(options.value) }}
+		{{ util.data(options.data) }}
+	/>
+
+{% endspaceless %}
+{% endmacro %}
+
+
+{#  ----------------------------------------------------------------------------
+
+## Label
+
+Generates a `<label>` element to accompany an input
+
+### Example usage
+
+    {{
+        form.label({
+            'for': 'myInput'
+        })
+    }}
+
+### Options
+
+Option  | Type   | Description
+------- | ------ | -------------------------------------------------------------
+class   | string | A space separated list of class names
+data    | hash   | Data attributes by key/value
+id      | string | A unique identifier, if required
+for     | string | Specific which form element this label is bound to
+form    | string | Specific one or more forms this label belongs to
+
+#}
+{% macro label(options) %}
+{% spaceless %}
+    {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+
+    <label
+        {{ util.class('control__label', options) }}
+        {{ util.for(options.for) }}
+        {{ util.form(options.form) }}
+        {{ util.id(options.id) }}
+        {{ util.data(options.data) }}
+    >
+        {{- options.label|raw -}}
+    </label>
+
+{% endspaceless %}
+{% endmacro %}
+
+
+{#  ----------------------------------------------------------------------------
+
+## Select
+
+A standard select field
+
+### Example usage
+
+	{{
+		input.text({
+			'name': 'MyAwesomeField'
+		})
+	}}
+
+### Options
+
+Option      | Type   | Description
+----------- | ------ | ---------------------------------------------------------
+class       | string | A space separated list of class names
+data        | hash   | Data attributes by key/value
+id          | string | A unique identifier, if required
+form        | string | Specific one or more forms this label belongs to
+options 	| hash   | Hash of <option> elements by { 'value': 'label' }
+placeholder | string | A short hint that describes the expected value
+selected 	| string | The `value` to have as the selected option
+type 		| string | Defines the type of input to render (default text)
+value       | string | Specifies the value of the input
+
+#}
+{% macro select(options) %}
+{% spaceless %}
+	{% import 'pulsar/v2/helpers/util.html.twig' as util %}
+
+	<select
+		{{ util.class('form__control', options) }}
+		{{ util.form(options.form) }}
+		{{ util.id(options.id) }}
+		{{ util.multiple(options.multiple) }}
+		{{ util.name(options.name) }}
+		{{ util.data(options.data) }}
+	>
+
+	{% for value, label in options.options %}
+		<option
+			{{ util.value(value) }}
+			{% if value == options.selected %}
+				selected
+			{% endif %}
+		>
+			{{- label -}}
+		</option>
+	{% endfor %}
+
+	</select>
+
+{% endspaceless %}
+{% endmacro %}
+
+
+{#  ----------------------------------------------------------------------------
+
+## Textarea
+
+A standard texarea field.
+
+### Example usage
+
+	{{
+		input.textarea({
+			'name': 'MyAwesomeField'
+		})
+	}}
+
+### Options
+
+Option      | Type    | Description
+----------- | ------- | ---------------------------------------------------------
+class       | string  | A space separated list of class names
+data        | hash    | Data attributes by key/value
+id          | string  | A unique identifier, if required
+form        | string  | Specific one or more forms this label belongs to
+placeholder | string  | A short hint that describes the expected value
+rows		| integer | The height, in rows (default 2)
+value       | string  | Specifies the value of the input
+
+#}
+{% macro textarea(options) %}
+{% spaceless %}
+	{% import 'pulsar/v2/helpers/util.html.twig' as util %}
+
+	<textarea
+		{{ util.class('form__control', options) }}
+		{{ util.form(options.form) }}
+		{{ util.id(options.id) }}
+		{{ util.name(options.name) }}
+		{{ util.placeholder(options.placeholder) }}
+		{{ util.type(options.type) }}
+		{{ util.value(options.value) }}
+		{{ util.data(options.data) }}
+		rows="{{ options.rows|default(2) }}"
+	>
+		{{- options.value -}}
+	</textarea>
+
+{% endspaceless %}
+{% endmacro %}

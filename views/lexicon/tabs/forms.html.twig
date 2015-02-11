@@ -1,96 +1,299 @@
-{% import 'pulsar/v2/helpers/html.html.twig' as html %}
-{% import 'pulsar/helpers/form.html.twig' as form %}
-{% import 'pulsar/helpers/flash.html.twig' as flash %}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
+{% import '@pulsar/pulsar/helpers/flash.html.twig' as flash %}
 
 <h2 class="heading">{{ heading|raw }}</h2>
 
 <div class="tab__inner tab--unpadded">
     {{ form.create() }}
-    {{ form.fieldset_start(legend = 'Text inputs') }}
 
-        {{ form.text(label = 'Text input', id = 'inputText', name = 'inputText', placeholder = 'Placeholder') }}
-        {{ form.text(label = 'Text input with value', value = "This is my value, neat huh?", id = 'inputText', name = 'inputText', placeholder = 'Placeholder') }}
-
-        {{ form.text(label = 'Text input with a longer than expected label which will probably wrap multple lines and push the following input onto the next baseline', name = 'inputTextLong', placeholder = 'Placeholder', help = 'Example block-level help text here.') }}
-
-        {{ form.text(label = 'Text input with a longer than expected label but this time we use the form__group--top class to keep the label on a single line', class = 'form__group--top', name = 'inputTextLong', placeholder = 'Placeholder', help = 'Example block-level help text here.') }}
-
-        {{ form.text(label = 'The same as above, but this time we also add the .form__group--flush class to keep everything on the left edge', class = 'form__group--top form__group--flush', name = 'inputTextLong', placeholder = 'Placeholder', help = 'Example block-level help text here.') }}
-
-        {{ form.date(label = 'Date picker', id = 'inputDatepicker1', name = 'inputDatepicker1') }}
-
-        {{ form.password(label = 'Password input', id = 'inputPassword', name = 'inputPassword', placeholder = 'Placeholder') }}
-        {{ form.textarea(label = 'Textarea (1 row)', id = 'inputTextarea1', name = 'inputTextarea1', placeholder = 'Placeholder', rows = 1) }}
-        {{ form.textarea(label = 'Textarea (2 rows)', id = 'inputTextarea2', name = 'inputTextarea2', placeholder = 'Placeholder', rows = 2) }}
-        {{ form.textarea(label = 'Textarea (3 rows)', id = 'inputTextarea3', name = 'inputTextarea3', placeholder = 'Placeholder', rows = 3) }}
-        {{ form.textarea(label = 'Textarea (4 rows)', id = 'inputTextarea4', name = 'inputTextarea4', placeholder = 'Placeholder', rows = 4) }}
-
-    {{ form.fieldset_end() }}
-    {{ form.fieldset_start(legend = 'Input groups') }}
+    {{
+        form.fieldset_start({
+            'legend': 'Text inputs'
+        })
+    }}
 
         {{
-            form.group(
+            form.radio_inline({
+                'id': 'one',
+                'label': 'this is my label',
+                'input_placement': 'right',
+                'bare': true
+            })
+        }}
+
+        {{
+            form.text({
+                'label': 'Text input',
+                'id': 'inputText',
+                'name': 'inputText',
+                'placeholder': 'Placeholder'
+            })
+        }}
+
+        {{
+            form.text({
+                'label': 'Text input with value',
+                'value': 'This is my value, neat huh?',
+                'id': 'inputText',
+                'name': 'inputText',
+                'placeholder': 'Placeholder'
+            })
+        }}
+
+        {{
+            form.text({
+                'label': 'Text input with a longer than expected label which will probably wrap multple lines and push the following input onto the next baseline',
+                'name': 'inputTextLong',
+                'placeholder': 'Placeholder',
+                'help': 'Example block-level help text here.'
+            })
+        }}
+
+        {{
+            form.text({
+                'label': 'Text input with a longer than expected label but this time we use the form__group--top class to keep the label on a single line',
+                'class': 'form__group--top',
+                'name': 'inputTextLong',
+                'placeholder': 'Placeholder',
+                'help': 'Example block-level help text here.'
+            })
+        }}
+
+        {{
+            form.text({
+                'label': 'The same as above, but this time we also add the .form__group--flush class to keep everything on the left edge',
+                'class': 'form__group--top form__group--flush',
+                'name': 'inputTextLong',
+                'placeholder': 'Placeholder',
+                'help': 'Example block-level help text here.'
+            })
+        }}
+
+        {{
+            form.date({
+                'label': 'Date picker',
+                'id': 'inputDatepicker1',
+                'name': 'inputDatepicker1',
+                'data': { 'test': 'icles' }
+            })
+        }}
+
+        {{
+            form.password({
+                'label': 'Password input',
+                'id': 'inputPassword',
+                'name': 'inputPassword',
+                'placeholder': 'Placeholder'
+            })
+        }}
+
+        {{
+            form.textarea({
+                'label': 'Textarea (1 row)',
+                'id': 'inputTextarea1',
+                'name': 'inputTextarea1',
+                'placeholder': 'Placeholder',
+                'rows': 1
+            })
+        }}
+
+        {{
+            form.textarea({
+                'label': 'Textarea (2 rows)',
+                'id': 'inputTextarea2',
+                'name': 'inputTextarea2',
+                'placeholder': 'Placeholder',
+                'rows': 2
+            })
+        }}
+
+        {{
+            form.textarea({
+                'label': 'Textarea (3 rows)',
+                'id': 'inputTextarea3',
+                'name': 'inputTextarea3',
+                'placeholder': 'Placeholder',
+                'rows': 3
+            })
+        }}
+
+        {{
+            form.textarea({
+                'label': 'Textarea (4 rows)',
+                'id': 'inputTextarea4',
+                'name': 'inputTextarea4',
+                'placeholder': 'Placeholder',
+                'rows': 4
+            })
+        }}
+
+
+    {{ form.fieldset_end() }}
+
+    {{
+        form.fieldset_start({
+            'legend': 'Input groups'
+        })
+    }}
+
+        {{
+            form.group_old(
                 label = 'Input group',
                 controls = [
-                    form.text(id = 'inputTextGroup1', name = 'inputTextGroup1', placeholder = 'Grouped input 1'),
-                    form.text(id = 'inputTextGroup2', name = 'inputTextGroup2', placeholder = 'Grouped input 2'),
-                    form.checkbox_right(label = 'Grouped input 3', id = 'inputCheckboxGroupedRight', name = 'inputCheckboxInline', checked = true),
+                    form.text({
+                        'id': 'inputTextGroup1',
+                        'name': 'inputTextGroup1',
+                        'placeholder': 'Grouped input 1'
+                    }),
+                    form.text({
+                        'id': 'inputTextGroup2',
+                        'name': 'inputTextGroup2',
+                        'placeholder': 'Grouped input 2'
+                    }),
+                    form.checkbox_inline({
+                        'label': 'Grouped input 3',
+                        'id': 'inputCheckboxGroupedRight',
+                        'name': 'inputCheckboxInline',
+                        'input_placement': 'right',
+                        'checked': true
+                    }),
                     html.button({ 'label': 'Grouped input 4' })
                 ]
             )
         }}
 
         {{
-            form.group(
+            form.group_old(
                 label = 'Inline input group',
                 id = 'inlineInputGroup',
                 class = 'form__group--inline',
                 removable = true,
                 controls = [
-                    form.input_text(id = 'inputTextGroup1', name = 'inputTextGroup1', placeholder = 'dd/mm/yyyy', class = 'form__group--medium'),
-                    form.input_text(id = 'inputTextGroup2', name = 'inputTextGroup2', placeholder = 'hh:mm', class = 'form__group--medium')
+                    input.text({
+                        'id': 'inputTextGroup1',
+                        'name': 'inputTextGroup1',
+                        'placeholder':'dd/mm/yyyy',
+                        'class': 'form__group--medium'
+                    }),
+                    input.text({
+                        'id': 'inputTextGroup2',
+                        'name': 'inputTextGroup2',
+                        'placeholder':'hh:mm',
+                        'class': 'form__group--medium'
+                    })
                 ]
             )
         }}
 
     {{ form.fieldset_end() }}
-    {{ form.fieldset_start(legend = 'Selections') }}
 
-        {{ form.file(label = 'File input', id = 'inputFile', name = 'inputFile') }}
-        {{ form.select(label = 'Select input', options = {value1: 'value one', value2: 'value two'}, id = 'inputSelect', name = 'inputSelect') }}
-
-    {{ form.fieldset_end() }}
-    {{ form.fieldset_start(legend = 'Checkboxes & Radios') }}
-
-        {{ form.checkbox(label = 'Checkbox with left label', id = 'inputCheckboxLeft', name = 'inputCheckboxLeft', checked = true) }}
-        {{ form.radio(label = 'Radio with left label', id = 'inputRadioLeft', name = 'inputRadioLeft', checked = true) }}
-        {{ form.checkbox_right(label = 'Checkbox with right label', id = 'inputCheckboxRight', name = 'inputCheckboxInline', checked = true) }}
-        {{ form.radio_right(label = 'Radio with right label', id = 'inputRadioRight', name = 'inputRadioInline', checked = true) }}
+    {{
+        form.fieldset_start({
+            'legend': 'Selections'
+        })
+    }}
 
         {{
-            form.checkbox_group(
+            form.file({
+                'label': 'File input',
+                'id': 'inputFile',
+                'name': 'inputFile'
+            })
+        }}
+
+        {{
+            form.select({
+                'id': 'inputSelect',
+                'name': 'inputSelect',
+                'label': 'Select input',
+                'selected': 'value2',
+                'options': {
+                    'value1': 'value one',
+                    'value2': 'value two'
+                }
+            })
+        }}
+
+    {{ form.fieldset_end() }}
+
+        {{
+            form.checkbox({
+                'label': 'Checkbox with left label',
+                'id': 'inputCheckboxLeft',
+                'name': 'inputCheckboxLeft',
+                'checked': true
+            })
+        }}
+        {{
+            form.radio({
+                'class': 'test',
+                'label': 'Radio with left label',
+                'id': 'inputRadioLeft',
+                'name': 'inputRadioLeft',
+                'checked': true
+            })
+        }}
+        {{
+            form.checkbox_inline({
+                'label': 'Checkbox with right label',
+                'id': 'inputCheckboxRight',
+                'name': 'inputCheckboxInline',
+                'checked': true
+            })
+        }}
+        {{
+            form.radio_inline({
+                'label': 'Radio with right label',
+                'id': 'inputRadioRight',
+                'name': 'inputRadioInline',
+                'checked': true
+            })
+        }}
+
+        {{
+            form.checkbox_group_old(
                 label = 'Checkbox group',
                 checkboxes = [
-                    form.checkbox_right(label = 'Grouped checkbox 1', id = 'inputCheckboxInline1', name = 'inputCheckboxInline', checked = true),
-                    form.checkbox_right(label = 'Grouped checkbox 2', id = 'inputCheckboxInline2', name = 'inputCheckboxInline', checked = true),
-                    form.checkbox_right(label = 'Grouped checkbox 3', id = 'inputCheckboxInline3', name = 'inputCheckboxInline', checked = true)
+                    form.checkbox_inline({
+                        'label': 'Grouped checkbox 1',
+                        'id': 'inputCheckboxInline1',
+                        'name': 'inputCheckboxInline',
+                        'input_placement': 'right',
+                        'checked': true
+                    }),
+                    form.checkbox_inline({
+                        'label': 'Grouped checkbox 2',
+                        'id': 'inputCheckboxInline2',
+                        'name': 'inputCheckboxInline',
+                        'input_placement': 'right',
+                        'checked': true
+                    }),
+                    form.checkbox_inline({
+                        'label': 'Grouped checkbox 3',
+                        'id': 'inputCheckboxInline3',
+                        'name': 'inputCheckboxInline',
+                        'input_placement': 'right',
+                        'checked': true
+                    })
                 ]
             )
         }}
 
         {{
-            form.checkbox_group(
+            form.checkbox_group_old(
                 label = 'Grouped and inline',
                 checkboxes = [
-                    form.checkbox_inline(label = 'Inline', id = 'inputCheckboxInline1', name = 'inputCheckboxInline', checked = true),
-                    form.checkbox_inline(label = 'Check', id = 'inputCheckboxInline2', name = 'inputCheckboxInline', checked = true),
-                    form.checkbox_inline(label = 'Boxes', id = 'inputCheckboxInline3', name = 'inputCheckboxInline', checked = true)
+                    form.checkbox_inline_old(label = 'Inline', id = 'inputCheckboxInline1', name = 'inputCheckboxInline', checked = true),
+                    form.checkbox_inline_old(label = 'Check', id = 'inputCheckboxInline2', name = 'inputCheckboxInline', checked = true),
+                    form.checkbox_inline_old(label = 'Boxes', id = 'inputCheckboxInline3', name = 'inputCheckboxInline', checked = true)
                 ]
             )
         }}
 
         {{
-            form.radio_group(
+            form.radio_group_old(
                 label = 'Radio group',
                 radios = [
                     form.radio_right(label = 'Grouped radio 1', id = 'inputGroupedRadioInline1', name = 'inputGroupedRadioInline', checked = true),
@@ -101,33 +304,108 @@
         }}
 
         {{
-            form.radio_group(
+            form.radio_group_old(
                 label = 'Grouped and inline',
                 radios = [
-                    form.radio_inline(label = 'Inline', id = 'inputRadioInline1', name = 'inputRadioInline', checked = true),
-                    form.radio_inline(label = 'Radio', id = 'inputRadioInline2', name = 'inputRadioInline', checked = true),
-                    form.radio_inline(label = 'Buttons', id = 'inputRadioInline3', name = 'inputRadioInline', checked = true)
+                    form.radio_inline_old(label = 'Inline', id = 'inputRadioInline1', name = 'inputRadioInline', checked = true),
+                    form.radio_inline_old(label = 'Radio', id = 'inputRadioInline2', name = 'inputRadioInline', checked = true),
+                    form.radio_inline_old(label = 'Buttons', id = 'inputRadioInline3', name = 'inputRadioInline', checked = true)
                 ]
             )
         }}
 
     {{ form.fieldset_end() }}
-    {{ form.fieldset_start(legend = 'States') }}
 
-            {{ form.text(label = 'Input that has changed', id = 'inputTextChanged', class = 'has-changed', name = 'inputTextChanged', placeholder = 'Placeholder') }}
-            {{ form.text(label = 'Input with warning', id = 'inputTextWarning', class = 'has-warning', name = 'inputTextWarning', placeholder = 'Placeholder') }}
-            {{ form.text(label = 'Input with error', id = 'inputTextError', class = 'has-error', name = 'inputTextError', placeholder = 'Placeholder') }}
-            {{ form.text(label = 'Input with success', id = 'inputTextSuccess', class = 'has-success', name = 'inputTextSuccess', placeholder = 'Placeholder') }}
+    {{
+        form.fieldset_start({
+            'legend': 'States'
+        })
+    }}
+
+            {{
+                form.text({
+                    'label': 'Input that has changed',
+                    'id': 'inputTextChanged',
+                    'class': 'has-changed',
+                    'name': 'inputTextChanged',
+                    'placeholder': 'Placeholder'
+                })
+            }}
+            {{
+                form.text({
+                    'label': 'Input with warning',
+                    'id': 'inputTextWarning',
+                    'class': 'has-warning',
+                    'name': 'inputTextWarning',
+                    'placeholder': 'Placeholder'
+                })
+            }}
+            {{
+                form.text({
+                    'label': 'Input with error',
+                    'id': 'inputTextError',
+                    'class': 'has-error',
+                    'name': 'inputTextError',
+                    'placeholder': 'Placeholder'
+                })
+            }}
+            {{
+                form.text({
+                    'label': 'Input with success',
+                    'id': 'inputTextSuccess',
+                    'class': 'has-success',
+                    'name': 'inputTextSuccess',
+                    'placeholder': 'Placeholder'
+                })
+            }}
 
     {{ form.fieldset_end() }}
-    {{ form.fieldset_start(legend = 'Input groups') }}
 
-            {{ form.text(label = 'Prepended input', id = 'inputPrepend', class = 'form__group--large', name = 'inputPrepend', placeholder = 'Placeholder', prepend = '@') }}
-            {{ form.text(label = 'Appended input', id = 'inputAppend', class = 'form__group--large', name = 'inputAppend', placeholder = 'Placeholder', append = '.com') }}
-            {{ form.text(label = 'Prepended &amp; Appended', id = 'inputPrependAppend', class = 'form__group--medium', name = 'inputPrependAppend', placeholder = 'Placeholder', prepend = 'www.', append = '.com') }}
+    {{
+        form.fieldset_start({
+            'legend': 'Input groups'
+        })
+    }}
+
+            {{
+                form.text({
+                    'label': 'Prepended input',
+                    'id': 'inputPrepend',
+                    'class': 'form__group--large',
+                    'name': 'inputPrepend',
+                    'placeholder': 'Placeholder',
+                    'prepend': '@'
+                })
+            }}
+            {{
+                form.text({
+                    'label': 'Appended input',
+                    'id': 'inputAppend',
+                    'class': 'form__group--large',
+                    'name': 'inputAppend',
+                    'placeholder': 'Placeholder',
+                    'append': '.com'
+                })
+            }}
+            {{
+                form.text({
+                    'label': 'Prepended &amp; Appended',
+                    'id': 'inputPrependAppend',
+                    'class': 'form__group--medium',
+                    'name': 'inputPrependAppend',
+                    'placeholder': 'Placeholder',
+                    'prepend': 'www.',
+                    'append': '.com'
+                })
+            }}
 
     {{ form.fieldset_end() }}
-    {{ form.fieldset_start(legend = 'Regular elements') }}
+
+    {{
+        form.fieldset_start({
+            'legend': 'Regular elements'
+        })
+    }}
 
             <p>This is a plain ol' paragraph, its left edge should be on the far left.</p>
 
@@ -156,7 +434,12 @@
             </section>
 
     {{ form.fieldset_end() }}
-    {{ form.fieldset_start(legend = 'Floating elements') }}
+
+    {{
+        form.fieldset_start({
+            'legend': 'Floating elements'
+        })
+    }}
 
         {{
             html.button({
@@ -166,10 +449,32 @@
         }}
 
     {{ form.fieldset_end() }}
-    {{ form.fieldset_start(legend = 'Removable inputs') }}
 
-        {{ form.text(label = 'Removable text input', id = 'inputTextRemovable', name = 'inputTextRemovable', placeholder = 'Placeholder', removable = true) }}
-        {{ form.file(label = 'Removable File input', id = 'inputFileRemovable', name = 'inputFileRemovable', removable = true) }}
+    {{
+        form.fieldset_start({
+            'legend': 'Removable inputs'
+        })
+    }}
+
+        {{
+            form.text({
+                'label': 'Removable text input',
+                'id': 'inputTextRemovable',
+                'name': 'inputTextRemovable',
+                'placeholder': 'Placeholder',
+                'removable': true
+            })
+        }}
+
+        {{
+            form.file({
+                'label': 'Removable File input',
+                'id': 'inputFileRemovable',
+                'name': 'inputFileRemovable',
+                'removable': 'true'
+            })
+        }}
+
         {{
             html.button({
                 'label': 'This Button Has No Form Label',
@@ -179,17 +484,74 @@
         {{ html.remove_button() }}
 
     {{ form.fieldset_end() }}
-    {{ form.fieldset_start(legend = 'Sizes') }}
 
-            {{ form.text(label = 'Mini', id = 'inputTextMini', class = 'form__group--mini', name = 'inputTextMini') }}
-            {{ form.text(label = 'Small', id = 'inputTextSmall', class = 'form__group--small', name = 'inputTextSmall') }}
-            {{ form.text(label = 'Medium', id = 'inputTextMedium', class = 'form__group--medium', name = 'inputTextMedium') }}
-            {{ form.text(label = 'Regular', id = 'inputTextRegular', name = 'inputTextRegular') }}
-            {{ form.text(label = 'Large', id = 'inputTextLarge', class = 'form__group--large', name = 'inputTextLarge') }}
-            {{ form.text(label = 'Full', id = 'inputTextFull', class = 'form__group--full', name = 'inputTextFull') }}
+    {{
+        form.fieldset_start({
+            'legend': 'Sizes'
+        })
+    }}
+
+            {{
+                form.text({
+                    'label': 'Mini',
+                    'id': 'inputTextMini',
+                    'class': 'form__group--mini',
+                    'name': 'inputTextMini'
+                })
+            }}
+
+            {{
+                form.text({
+                    'label': 'Small',
+                    'id': 'inputTextSmall',
+                    'class': 'form__group--small',
+                    'name': 'inputTextSmall'
+                })
+            }}
+
+            {{
+                form.text({
+                    'label': 'Medium',
+                    'id': 'inputTextMedium',
+                    'class': 'form__group--medium',
+                    'name': 'inputTextMedium'
+                })
+            }}
+
+            {{
+                form.text({
+                    'label': 'Regular',
+                    'id': 'inputTextRegular',
+                    'name': 'inputTextRegular'
+                })
+            }}
+
+            {{
+                form.text({
+                    'label': 'Large',
+                    'id': 'inputTextLarge',
+                    'class': 'form__group--large',
+                    'name': 'inputTextLarge'
+                })
+            }}
+
+            {{
+                form.text({
+                    'label': 'Full',
+                    'id': 'inputTextFull',
+                    'class': 'form__group--full',
+                    'name': 'inputTextFull'
+                })
+            }}
+
 
     {{ form.fieldset_end() }}
-    {{ form.fieldset_start(legend = 'Choice Matrix') }}
+
+    {{
+        form.fieldset_start({
+            'legend': 'Choice Matrix'
+        })
+    }}
 
         <div class="form__group form__group--full">
             <label for="choiceMatrix" class="control__label">
@@ -351,8 +713,10 @@
     </div>
 
     {{
-        form.form_end([
-            form.submit(label = 'Primary Action', class = 'btn--primary')
-        ])
+        form.end({
+            'actions': [
+                form.submit(label = 'Primary Action', class = 'btn--primary')
+            ]
+        })
     }}
 </div>
