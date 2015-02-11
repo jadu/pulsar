@@ -38,6 +38,10 @@
     .controls {
       max-width: none;
       width: 100%;
+
+      label {
+        margin-bottom: 0;
+      }
     }
 
     .form__group--no-label {

@@ -1,3 +1,11 @@
+{% macro addon(value) %}
+{% spaceless %}
+    {% if value is not empty %}
+    <span class="input-group-addon">{{- value -}}</span>
+    {% endif %}
+{% endspaceless %}
+{% endmacro %}
+
 {% macro caret(visible = false) %}
 {% spaceless %}
 	{% if visible %}

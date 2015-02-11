@@ -138,54 +138,7 @@
         })
     }}
 
-        {{
-            form.group_old(
-                label = 'Input group',
-                controls = [
-                    form.text({
-                        'id': 'inputTextGroup1',
-                        'name': 'inputTextGroup1',
-                        'placeholder': 'Grouped input 1'
-                    }),
-                    form.text({
-                        'id': 'inputTextGroup2',
-                        'name': 'inputTextGroup2',
-                        'placeholder': 'Grouped input 2'
-                    }),
-                    form.checkbox_inline({
-                        'label': 'Grouped input 3',
-                        'id': 'inputCheckboxGroupedRight',
-                        'name': 'inputCheckboxInline',
-                        'input_placement': 'right',
-                        'checked': true
-                    }),
-                    html.button({ 'label': 'Grouped input 4' })
-                ]
-            )
-        }}
 
-        {{
-            form.group_old(
-                label = 'Inline input group',
-                id = 'inlineInputGroup',
-                class = 'form__group--inline',
-                removable = true,
-                controls = [
-                    input.text({
-                        'id': 'inputTextGroup1',
-                        'name': 'inputTextGroup1',
-                        'placeholder':'dd/mm/yyyy',
-                        'class': 'form__group--medium'
-                    }),
-                    input.text({
-                        'id': 'inputTextGroup2',
-                        'name': 'inputTextGroup2',
-                        'placeholder':'hh:mm',
-                        'class': 'form__group--medium'
-                    })
-                ]
-            )
-        }}
 
     {{ form.fieldset_end() }}
 
@@ -757,7 +710,10 @@
     {{
         form.end({
             'actions': [
-                form.submit(label = 'Primary Action', class = 'btn--primary')
+                form.submit({
+                	'label': 'Primary Action', 
+                	'class': 'btn--primary'
+                })
             ]
         })
     }}

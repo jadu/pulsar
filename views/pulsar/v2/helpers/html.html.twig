@@ -50,6 +50,7 @@ type 	| (string) Can be button (default), link, input, submit
 		<input
 			{{ util.type('button') }}
 			{{ util.class('btn', options) }}
+			{{ util.form(options.id) }}
 			{{ util.id(options.id) }}
 			{{ util.data(options.data) }}
 			{{ util.value(options.label) }}
@@ -60,6 +61,7 @@ type 	| (string) Can be button (default), link, input, submit
 		<button
 			{{ util.type('submit') }}
 			{{ util.class('btn', options) }}
+			{{ util.form(options.id) }}
 			{{ util.id(options.id) }}
 			{{ util.data(options.data) }}
 		>
@@ -71,6 +73,7 @@ type 	| (string) Can be button (default), link, input, submit
 		<button
 			{{ util.type('button') }}
 			{{ util.class('btn', options) }}
+			{{ util.form(options.id) }}
 			{{ util.id(options.id) }}
 			{{ util.data(options.data) }}
 		>
