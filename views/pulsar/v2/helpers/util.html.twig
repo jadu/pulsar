@@ -20,11 +20,14 @@
 {% spaceless %}
 	{% set classes = [] %}
 
-	{% if options.bare == false %}
+	{%
+		if options.bare is not defined
+		or options.bare == false
+	%}
 		{% set classes = classes|merge([default]) %}
 	{% endif %}
 
-	{% set classes = classes|merge([options.class]) %}
+	{% set classes = classes|merge([options.class|default]) %}
 
 	class="{{ classes|join(' ')|trim }}"
 

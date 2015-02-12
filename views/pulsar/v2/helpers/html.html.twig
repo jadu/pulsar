@@ -33,39 +33,39 @@ type    | string | Can be button (default), link, input, submit
 {% spaceless %}
 	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-	{% if options.type == 'link' %}
+	{% if options.type is defined and options.type == 'link' %}
 
 		{{
 			_self.link({
-				'class': 'btn ' ~ options.class,
-				'href': options.href,
-				'id': options.id,
-				'label': options.label,
-				'data': options.data
+				'class': 'btn ' ~ options.class|default,
+				'href': options.href|default,
+				'id': options.id|default,
+				'label': options.label|default,
+				'data': options.data|default
 			})
 		}}
 
-	{% elseif options.type == 'input' %}
+	{% elseif options.type is defined and options.type == 'input' %}
 
 		<input
 			{{ util.type('button') }}
 			{{ util.class('btn', options) }}
-			{{ util.form(options.id) }}
-			{{ util.id(options.id) }}
-			{{ util.data(options.data) }}
-			{{ util.value(options.label) }}
+			{{ util.form(options.id|default) }}
+			{{ util.id(options.id|default) }}
+			{{ util.data(options.data|default) }}
+			{{ util.value(options.label|default) }}
 		/>
 
-	{% elseif options.type == 'submit' %}
+	{% elseif options.type is defined and options.type == 'submit' %}
 
 		<button
 			{{ util.type('submit') }}
 			{{ util.class('btn', options) }}
-			{{ util.form(options.id) }}
-			{{ util.id(options.id) }}
-			{{ util.data(options.data) }}
+			{{ util.form(options.id|default) }}
+			{{ util.id(options.id|default) }}
+			{{ util.data(options.data|default) }}
 		>
-			{{- options.label|raw -}}
+			{{- options.label|default|raw -}}
 		</button>
 
 	{% else %}
@@ -73,12 +73,12 @@ type    | string | Can be button (default), link, input, submit
 		<button
 			{{ util.type('button') }}
 			{{ util.class('btn', options) }}
-			{{ util.form(options.id) }}
-			{{ util.id(options.id) }}
-			{{ util.data(options.data) }}
+			{{ util.form(options.id|default) }}
+			{{ util.id(options.id|default) }}
+			{{ util.data(options.data|default) }}
 		>
-			{{- options.label|raw -}}
-			{{- util.caret(options.caret) -}}
+			{{- options.label|default|raw -}}
+			{{- util.caret(options.caret|default) -}}
 		</button>
 
 	{% endif %}
@@ -136,15 +136,15 @@ label     | string | The button label
 				'data': {
 					'toggle': 'dropdown'
 				},
-				'id': options.id,
-				'label': options.label,
+				'id': options.id|default,
+				'label': options.label|default,
 			})
 		}}
 
 		{{
 			_self.list({
 				'class': 'dropdown__menu',
-				'items': options.items
+				'items': options.items|default
 			})
 		}}
 	</div>
@@ -185,8 +185,8 @@ id      | string | A unique identifier, if required
 
 	<div
 		{{ util.class('btn__group', options) }}
-		{{ util.id(options.id) }}
-		{{ util.data(options.data) }}
+		{{ util.id(options.id|default) }}
+		{{ util.data(options.data|default) }}
 	>
 		{% for button in options.buttons -%}
 			{{ button }}
@@ -225,10 +225,10 @@ label  | string | The value to display, usually an integer
 
 	<span
 		{{ util.class('badge', options) }}
-		{{ util.id(options.id) }}
-		{{ util.data(options.data) }}
+		{{ util.id(options.id|default) }}
+		{{ util.data(options.data|default) }}
 	>
-		{{- options.label|raw -}}
+		{{- options.label|default|raw -}}
 	</span>
 
 {% endspaceless %}
@@ -308,11 +308,11 @@ tooltip_title     | string | Tooltip text to be shown on mouse over
 
 	<span
 		{{ util.class('label', options) }}
-		{{ util.id(options.id) }}
-		{{ util.data(options.data) }}
-		{{ _self.tooltip(options.tooltip_title, options.tooltip_placement) }}
+		{{ util.id(options.id|default) }}
+		{{ util.data(options.data|default) }}
+		{{ _self.tooltip(options.tooltip_title|default, options.tooltip_placement|default) }}
 	>
-		{{- options.label|raw -}}
+		{{- options.label|default|raw -}}
 	</span>
 
 {% endspaceless %}
@@ -350,8 +350,8 @@ labels | array  | The labels to group
 
 	<div
 		{{ util.class('label-group', options) }}
-		{{ util.id(options.id) }}
-		{{ util.data(options.data) }}
+		{{ util.id(options.id|default) }}
+		{{ util.data(options.data|default) }}
 	>
 		{% for label in options.labels -%}
 			{{ label }}
@@ -392,11 +392,11 @@ label  | string | The link text label
 
 	<a
 		{{ util.class('', options) }}
-		{{ util.href(options.href) }}
-		{{ util.id(options.id) }}
-		{{ util.data(options.data) }}
+		{{ util.href(options.href|default) }}
+		{{ util.id(options.id|default) }}
+		{{ util.data(options.data|default) }}
 	>
-		{{- options.label|raw -}}
+		{{- options.label|default|raw -}}
 	</a>
 
 {% endspaceless %}
@@ -444,7 +444,7 @@ type        | string | ul (default) | ol
 
 	{% for list_item in options.items %}
 
-		{% if loop.index == options.active_item %}
+		{% if loop.index == options.active_item|default(0) %}
 			{% set item_class = 'is-active' %}
 		{% else %}
 			{% set item_class = '' %}
@@ -513,12 +513,12 @@ type        | string | ul (default) | ol
 
 	{{
 		_self.list({
-			'active_item': options.active_item,
-			'class': options.class,
-			'data': options.data,
-			'id': options.id,
-			'items': items,
-			'type': options.type,
+			'active_item': options.active_item|default,
+			'class': options.class|default,
+			'data': options.data|default,
+			'id': options.id|default,
+			'items': items|default,
+			'type': options.type|default
 		})
 	}}
 
@@ -556,8 +556,8 @@ value  | string | The value to display
 
 	<li
 		{{ util.class('', options) }}
-		{{ util.id(options.id) }}
-		{{ util.data(options.data) }}
+		{{ util.id(options.id|default) }}
+		{{ util.data(options.data|default) }}
 	>
 		{{- options.value|raw -}}
 	</li>
@@ -595,8 +595,8 @@ id     | string | A unique identifier, if required
 
 	<div
 		{{ util.class('loading loading--circle', options) }}
-		{{ util.id(options.id) }}
-		{{ util.data(options.data) }}
+		{{ util.id(options.id|default) }}
+		{{ util.data(options.data|default) }}
 	>
 		<i></i>
 	</div>
@@ -640,8 +640,8 @@ items  | hash   | A hash of data where key: value = title: description
 
 	<dl
 		{{ util.class('metadata', options) }}
-		{{ util.id(options.id) }}
-		{{ util.data(options.data) }}
+		{{ util.id(options.id|default) }}
+		{{ util.data(options.data|default) }}
 	>
 	{% for key, value in options.items %}
 
@@ -688,11 +688,11 @@ title  | string | The title of the panel
 
 	<div
 		{{ util.class('panel', options) }}
-		{{ util.id(options.id) }}
-		{{ util.data(options.data) }}
+		{{ util.id(options.id|default) }}
+		{{ util.data(options.data|default) }}
 	>
 		<div class="panel__title">
-			{{ _self.icon(options.icon) }}
+			{{ _self.icon(options.icon|default) }}
 			{{ options.title }}
 		</div>
 		<div class="panel__body">
@@ -738,8 +738,8 @@ value_visible | bool   | Whether to visually display the value inside the bar (d
 	<div class="progress">
 		<div
 			{{ util.class('progress-bar', options) }}
-			{{ util.id(options.id) }}
-			{{ util.data(options.data) }}
+			{{ util.id(options.id|default) }}
+			{{ util.data(options.data|default) }}
 			role="progressbar"
 			aria-valuenow="{{ options.value }}"
 			aria-valuemin="0"
@@ -755,7 +755,7 @@ value_visible | bool   | Whether to visually display the value inside the bar (d
 				</span>
 			{% endif %}
 
-			{{ options.label|raw -}}
+			{{- options.label|default|raw -}}
 		</div>
 	</div>
 
@@ -796,13 +796,13 @@ type    | string | Can be button (default), link, input, submit
 
 	{{
 		_self.button({
-			'class': 'remove-button ' ~ options.class,
-			'id': options.id,
+			'class': 'remove-button ' ~ options.class|default,
+			'id': options.id|default,
 			'label': _self.icon('remove-sign'),
 			'type': options.type|default('button'),
 			'data': {
 				'action': 'remove',
-				'action-target': options.target,
+				'action-target': options.target|default,
 				'placement': 'right',
 				'toggle': 'tooltips',
 				'title': options.tooltip|default('Remove this item')
@@ -839,7 +839,7 @@ title     | string | The text to display as the tooltip
 {% macro tooltip(options = {}) %}
 {% spaceless %}
 
-	{% if options.title is not empty %}
+	{% if options.title is defined and options.title is not empty %}
 		data-toggle="tooltips"
 		data-placement="{{ options.placement|default('top') }}"
 		title="{{ options.title }}"

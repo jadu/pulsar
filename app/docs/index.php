@@ -17,7 +17,12 @@ $markdownParser = new MarkdownExtra();
 $loader = new Twig_Loader_Filesystem($templateDir);
 $loader->addPath($templateDir, 'pulsar');
 
-$twig = new Twig_Environment($loader, array('debug' => true));
+$twig = new Twig_Environment($loader,
+	array(
+		'debug' => true,
+		'strict_variables' => true
+	)
+);
 
 $twig->addExtension(new ConfigExtension($baseDir . 'pulsar.json'));
 $twig->addExtension(new RelativeTimeExtension());

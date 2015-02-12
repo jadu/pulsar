@@ -1,39 +1,12 @@
 {% extends '@pulsar/pulsar/layouts/dashboard.html.twig' %}
-{% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
-{% import '@pulsar/pulsar/helpers/form.html.twig' as form %}
-{% import '@pulsar/pulsar/helpers/flash.html.twig' as flash %}
-{% import '@pulsar/pulsar/helpers/pulsar.html.twig' as pulsar %}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{% import '@pulsar/pulsar/v2/helpers/flash.html.twig' as flash %}
+{% import '@pulsar/pulsar/v2/helpers/pulsar.html.twig' as pulsar %}
 
 {% block title %}{{ parent() }}{% endblock %}
 
 {% set heading = 'My Dashboard' %}
-
-{% 
-  set actions_menu = [
-    html.link(
-      label = html.icon('save') ~ ' Save', 
-      href = '#save', 
-      attributes = 'data-action=save'
-    ),
-    html.link(
-      label = html.icon('share') ~ ' Share', 
-      href = '/app/modals/modal.php?modal=dashboard/share.html.twig',
-      attributes = 'data-toggle=modal data-target=#modal'
-    ),
-    html.link(
-      label = html.icon('edit') ~ ' Rename', 
-      href = '/app/modals/modal.php?modal=dashboard/rename.html.twig',
-      attributes = 'data-toggle=modal data-target=#modal'
-    ),
-    html.divider(),
-    html.link(
-      label = html.icon('trash') ~ ' Delete', 
-      href = '/app/modals/modal.php?modal=dashboard/delete.html.twig',
-      class = 'link--danger',
-      attributes = 'data-toggle=modal data-target=#modal'
-    )
-  ]
-%}
 
 {% block summary %}
   <div id="tray" class="tray">
@@ -42,14 +15,20 @@
 {% endblock %}
 
 {% block actionsbar %}
-  {{ 
-  html.button_group([
-    html.button(
-    label = html.icon('dashboard') ~ ' Widgets', 
-    href = '#', 
-    type = 'link', 
-    attributes = 'data-toggle=tray data-target=#tray')
-  ])
+  {{
+    html.button_group({
+      'items': [
+        html.button({
+          'label': html.icon('dashboard') ~ ' Widgets',
+          'href': '#',
+          'type': 'link',
+          'data': {
+            'toggle': 'tray',
+            'target': '#tray'
+          }
+        })
+      ]
+    })
   }}
 {% endblock %}
 

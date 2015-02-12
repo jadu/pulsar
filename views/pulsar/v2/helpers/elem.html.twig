@@ -36,14 +36,14 @@ value       | string | Specifies the value of the input
 
 	<input
 		{{ util.class('form__control', options) }}
-		{{ util.checked(options.checked) }}
-		{{ util.form(options.form) }}
-		{{ util.id(options.id) }}
-		{{ util.name(options.name) }}
-		{{ util.placeholder(options.placeholder) }}
+		{{ util.checked(options.checked|default) }}
+		{{ util.form(options.form|default) }}
+		{{ util.id(options.id|default) }}
+		{{ util.name(options.name|default) }}
+		{{ util.placeholder(options.placeholder|default) }}
 		{{ util.type(options.type|default('text')) }}
-		{{ util.value(options.value) }}
-		{{ util.data(options.data) }}
+		{{ util.value(options.value|default) }}
+		{{ util.data(options.data|default) }}
 	/>
 
 {% endspaceless %}
@@ -83,10 +83,10 @@ name    | string | The name of this control
     {% if options.label is not empty %}
 	    <label
 	        {{ util.class('control__label', options) }}
-	        {{ util.for(options.for) }}
-	        {{ util.form(options.form) }}
-	        {{ util.id(options.id) }}
-	        {{ util.data(options.data) }}
+	        {{ util.for(options.for|default) }}
+	        {{ util.form(options.form|default) }}
+	        {{ util.id(options.id|default) }}
+	        {{ util.data(options.data|default) }}
 	    >
 	        {{- options.label|raw -}}
 	    </label>
@@ -132,11 +132,11 @@ value       | string | Specifies the value of the input
 
 	<select
 		{{ util.class('form__control', options) }}
-		{{ util.form(options.form) }}
-		{{ util.id(options.id) }}
-		{{ util.multiple(options.multiple) }}
-		{{ util.name(options.name) }}
-		{{ util.data(options.data) }}
+		{{ util.form(options.form|default) }}
+		{{ util.id(options.id|default) }}
+		{{ util.multiple(options.multiple|default) }}
+		{{ util.name(options.name|default) }}
+		{{ util.data(options.data|default) }}
 	>
 
 	{% for value, label in options.options %}
@@ -190,13 +190,13 @@ value       | string  | Specifies the value of the input
 
 	<textarea
 		{{ util.class('form__control', options) }}
-		{{ util.form(options.form) }}
-		{{ util.id(options.id) }}
-		{{ util.name(options.name) }}
-		{{ util.placeholder(options.placeholder) }}
-		{{ util.type(options.type) }}
-		{{ util.value(options.value) }}
-		{{ util.data(options.data) }}
+		{{ util.form(options.form|default) }}
+		{{ util.id(options.id|default) }}
+		{{ util.name(options.name|default) }}
+		{{ util.placeholder(options.placeholder|default) }}
+		{{ util.type(options.type|default) }}
+		{{ util.value(options.value|default) }}
+		{{ util.data(options.data|default) }}
 		rows="{{ options.rows|default(2) }}"
 	>
 		{{- options.value -}}

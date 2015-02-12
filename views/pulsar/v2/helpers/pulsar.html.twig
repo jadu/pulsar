@@ -3,7 +3,7 @@
 	{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 
 	<div
-		class="nav-item {% if options.open %} open{% endif %}"
+		class="nav-item"
 	 >
 
 	{% if options.menu_items is iterable %}
@@ -74,13 +74,16 @@
 {% spaceless %}
 	{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 
-	<div class="notifications btn__group pull-right {% if options.open %} open{% endif %}">
+	<div class="notifications btn__group pull-right">
 		<button type="button" class="btn dropdown__toggle">
 			<span class="badge">
-			{% if options.count is null %}
+			{%
+				if options.count is defined
+				and options.count is null
+			%}
 			  {{ options.items|length }}
 			{% else %}
-			  {{ options.count }}
+			  {{ options.count|default }}
 			{% endif %}
 		  </span>
 		</button>
@@ -113,11 +116,11 @@
 {% macro notification(options) %}
 {% spaceless %}
 
-  <li class="notification{% if options.class %} {{ options.class }}{% endif %}">
+  <li class="notification{% if options.class is defined %} {{ options.class }}{% endif %}">
 	<a href="{{ options.href }}">
-	  <p class="notification__title">{{ options.icon|raw }} {{ options.title|raw }}</p>
-	  <p class="notification__description">{{ options.description }}</p>
-	  <time class="notification__time">{{ options.time }}</time>
+	  <p class="notification__title">{{ options.icon|default|raw }} {{ options.title|default|raw }}</p>
+	  <p class="notification__description">{{ options.description|default }}</p>
+	  <time class="notification__time">{{ options.time|default }}</time>
 	</a>
   </li>
 

@@ -14,7 +14,10 @@
 		  	})
 		}}
 
-		{%- if tab.sub_tabs != null %}
+		{%-
+			if tab.sub_tabs is defined
+			and tab.sub_tabs != null
+		%}
 		  <ul class="tabs__list">
 
 			{%- for sub_tab in tab.sub_tabs -%}
@@ -70,19 +73,24 @@
   <div class="tabs__content">
   {%- for tab in tabs -%}
 
-	{%- if tab.src != null -%}
-	  <div class="tab__pane{% if (active_tab_id == null and loop.first) or (active_tab_id == tab.id) %} is-active{% endif %}" id="{{ tab.id }}"{% if tab.attr != null %} {{ tab.attr|raw }}{% endif %}>
+	{%-
+		if tab.src is defined
+		and tab.src != null
+	-%}
+	  <div class="tab__pane{% if active_tab_id is defined and ((active_tab_id == null and loop.first) or (active_tab_id == tab.id)) %} is-active{% endif %}" id="{{ tab.id }}"{% if tab.attr is defined and tab.attr != null %} {{ tab.attr|raw }}{% endif %}>
 		{{ tab.src|raw }}
 	  </div>
 	{%- endif -%}
 
+	{% if tab.sub_tabs is defined %}
 	{%- for sub_tab in tab.sub_tabs -%}
 
-		<div class="tab__pane{% if (active_tab == null and loop.parent.loop.first and loop.first) or (active_tab == sub_tab.id) %} is-active{% endif %}" id="{{ sub_tab.id }}"{% if sub_tab.attr != null %} {{ sub_tab.attr|raw }}{% endif %}>
+		<div class="tab__pane{% if (active_tab == null and loop.parent.loop.first and loop.first) or (active_tab == sub_tab.id) %} is-active{% endif %}" id="{{ sub_tab.id }}"{% if sub_tab.attr is defined and sub_tab.attr != null %} {{ sub_tab.attr|raw }}{% endif %}>
 		  {{ sub_tab.src|raw }}
 		</div>
 
 	{%- endfor -%}
+	{% endif %}
 
   {%- endfor -%}
   </div>

@@ -41,19 +41,19 @@ value         | string | Specifies the value of the input
 
 	{{
 		_self.group({
-			'class': options.class,
-			'help': options.help,
-			'label': options.label,
+			'class':options.class|default,
+			'help': options.help|default,
+			'label': options.label|default,
 			'inputs': [
 				elem.input({
-					'checked': options.checked,
-					'form': options.form,
-					'id': options.id,
-					'indeterminate': options.indeterminate,
-					'name': options.name,
+					'checked': options.checked|default,
+					'form': options.form|default,
+					'id': options.id|default,
+					'indeterminate': options.indeterminate|default,
+					'name': options.name|default,
 					'type': 'checkbox',
-					'value': options.value,
-					'data': options.data
+					'value': options.value|default,
+					'data': options.data|default
 				})
 			]
 		})
@@ -115,20 +115,23 @@ value           | string | Specifies the value of the input
 
 	{% set label = input ~ options.label %}
 
-	{% if options.input_placement == 'right' %}
+	{%
+		if options.input_placement is defined
+		and options.input_placement == 'right'
+	%}
 		{% set label = options.label ~ input %}
 	{% endif %}
 
 	{{
 		_self.group({
-			'class': options.class,
-			'help': options.help,
+			'class': options.class|default,
+			'help': options.help|default,
 			'label': null,
 			'inputs': [
 				elem.label({
 					'bare': true,
 					'class': 'checkbox--inline-v2',
-					'for': options.id,
+					'for': options.id|default,
 					'label': label
 				})
 			]
@@ -167,19 +170,29 @@ method  | string | The HTTP method to be used to submit the form
 	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
 	<form
-		{% if options.action is not empty %}
+		{%
+			if options.action is defined
+			and options.action is not empty
+		%}
 			action="{{ options.action }}"
 		{% endif %}
-		{% if options.method is not empty %}
+		{%
+			if options.method is defined
+			and options.method is not empty
+		%}
 			method="{{ options.method|default('POST') }}"
 		{% endif %}
-		{% if options.enctype is not empty and options.method == 'POST' %}
+		{%
+			if options.enctype is defined
+			and options.enctype is not empty
+			and options.method == 'POST'
+		%}
 			enctype="{{ options.enctype|default('POST') }}"
 		{% endif %}
 		{{ util.class('form--horizontal form-v2', options) }}
-		{{ util.id(options.id) }}
-		{{ util.name(options.name) }}
-		{{ util.data(options.data) }}
+		{{ util.id(options.id|default) }}
+		{{ util.name(options.name|default) }}
+		{{ util.data(options.data|default) }}
 	>
 
 {% endspaceless %}
@@ -220,14 +233,14 @@ value       | string | Specifies the value of the input
 
 	{{
 		_self.text({
-			'class': options.class,
-			'form': options.form,
-			'id': options.id,
-			'help': options.help,
-			'label': options.label,
-			'name': options.name,
+			'class': options.class|default,
+			'form': options.form|default,
+			'id': options.id|default,
+			'help': options.help|default,
+			'label': options.label|default,
+			'name': options.name|default,
 			'placeholder': options.placeholder|default('dd/mm/yyyy'),
-			'value': options.value,
+			'value': options.value|default,
 			'data': options.data|default({})|merge({ 'datepicker': 'true' })
 		})
 	}}
@@ -316,12 +329,15 @@ name    | string | The name of this control
 
 	<fieldset
 		{{ util.class(null, options) }}
-		{{ util.id(options.id) }}
-		{{ util.form(options.form) }}
-		{{ util.name(options.name) }}
-		{{ util.data(options.data) }}
+		{{ util.id(options.id|default) }}
+		{{ util.form(options.form|default) }}
+		{{ util.name(options.name|default) }}
+		{{ util.data(options.data|default) }}
 	>
-	{% if options.legend is not empty %}
+	{%
+		if options.legend is defined
+		and options.legend is not empty
+	%}
 		<legend>{{ options.legend|raw }}</legend>
 	{% endif %}
 
@@ -390,18 +406,18 @@ value       | string | Specifies the value of the input
 
 	{{
 		_self.group({
-			'class': options.class,
-			'help': options.help,
-			'label': options.label,
+			'class': options.class|default,
+			'help': options.help|default,
+			'label': options.label|default,
 			'inputs': [
 				elem.input({
-					'form': options.form,
-					'id': options.id,
-					'name': options.name,
-					'placeholder': options.placeholder,
+					'form': options.form|default,
+					'id': options.id|default,
+					'name': options.name|default,
+					'placeholder': options.placeholder|default,
 					'type': 'file',
-					'value': options.value,
-					'data': options.data
+					'value': options.value|default,
+					'data': options.data|default
 				})
 			]
 		})
@@ -449,27 +465,35 @@ removable   | bool   | Whether to display a remove button after the input (defau
 	{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 	{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 
-	{% if options.label is null %}
+	{% if options.label is defined and options.label is null %}
 		{% set hasLabelClass = ' form__group--no-label' %}
 	{% endif %}
 
 	<div
-		{{ util.class('form__group' ~ hasLabelClass, options) }}
-		{{ util.id(options.id) }}
-		{{ util.data(options.data) }}
+		{{ util.class('form__group' ~ hasLabelClass|default, options) }}
+		{{ util.id(options.id|default) }}
+		{{ util.data(options.data|default) }}
 	>
 		{{
 			elem.label({
-				'for': options.id,
-				'label': options.label
+				'for': options.id|default,
+				'label': options.label|default
 			})
 		}}
 		<div class="controls">
 
-		{% if options.prepend is not empty or options.append is not empty %}
+		{%
+			if (
+				options.prepend is defined
+				and options.prepend is not empty
+			) or (
+				options.append is defined
+				and options.append is not empty
+			)
+		%}
 			<div class="input-group">
-				{{ util.addon(options.prepend) }}
-		{% elseif removable %}
+				{{ util.addon(options.prepend|default) }}
+		{% elseif options.removable is defined and options.removable == true %}
 			<div class="input-group is-removable">
 		{% endif %}
 
@@ -477,19 +501,61 @@ removable   | bool   | Whether to display a remove button after the input (defau
 				{{- input|raw -}}
 		{% endfor %}
 
-		{% if prepend is not empty or append is not empty %}
-				{{ util.addon(append) }}
+		{%
+			if (
+				options.prepend is defined
+				and options.prepend is not empty
+			) or (
+				options.append is defined
+				and options.append is not empty
+			)
+		%}
+				{{ util.addon(append|default) }}
 			</div>
 		{% endif %}
 
-		{% if removable %}
-				{{ html.remove_button({ 'target': options.id }) }}
+		{% if options.removable is defined and options.removable == true %}
+				{{ html.remove_button({ 'target': options.id|default }) }}
 			</div>
 		{% endif %}
 
-			{{ _self.help(options.help) }}
+			{{ _self.help({ 'value': options.help|default }) }}
 		</div>
 	</div>
+
+{% endspaceless %}
+{% endmacro %}
+
+
+{# -----------------------------------------------------------------------------
+
+## Password
+
+Additional guidance text to be displayed with a form control, normally called by
+the `form.group()` helper and not really intended to be called directly from a
+view.
+
+### Example usage
+
+	{{
+		form.help({
+			'value': 'Your password'
+		})
+	}}
+
+### Options
+
+Option | Type   | Description
+------ | ------ | ---------------------------------------------------------
+value  | string | The string / markup to render inside the help block
+
+#}
+{% macro help(options) %}
+{% spaceless %}
+
+    <p class="help-block">
+    	{{- options.value|raw -}}
+    </p>
 
 {% endspaceless %}
 {% endmacro %}
@@ -528,16 +594,16 @@ value       | string | Specifies the value of the input
 
 	{{
 		_self.text({
-			'class': options.class,
-			'form': options.form,
-			'id': options.id,
-			'help': options.help,
-			'label': options.label,
-			'name': options.name,
-			'placeholder': options.placeholder,
+			'class': options.class|default,
+			'form': options.form|default,
+			'id': options.id|default,
+			'help': options.help|default,
+			'label': options.label|default,
+			'name': options.name|default,
+			'placeholder': options.placeholder|default,
 			'type': 'password',
-			'value': options.value,
-			'data': options.data
+			'value': options.value|default,
+			'data': options.data|default
 		})
 	}}
 
@@ -584,9 +650,9 @@ value    | string | Specifies the value of the input
 
 	{{
 		_self.group({
-			'class': options.class,
-			'help': options.help,
-			'label': options.label,
+			'class': options.class|default,
+			'help': options.help|default,
+			'label': options.label|default,
 			'inputs': [
 				elem.input(options|merge({
 					'class': null,
@@ -644,30 +710,33 @@ value           | string | Specifies the value of the input
 
 	{%
 		set input = elem.input({
-			'form': options.form,
-			'id': options.id,
-			'name': options.name,
-			'selected': options.selected,
+			'form': options.form|default,
+			'id': options.id|default,
+			'name': options.name|default,
+			'selected': options.selected|default,
 			'type': 'radio',
-			'data': options.data
+			'data': options.data|default
 		})
 	%}
 
 	{% set label = input ~ options.label %}
 
-	{% if options.input_placement == 'right' %}
+	{%
+		if options.input_placement is defined
+		and options.input_placement == 'right'
+	%}
 		{% set label = options.label ~ input %}
 	{% endif %}
 
 	{{
 		_self.group({
-			'class': options.class,
-			'help': options.help,
+			'class': options.class|default,
+			'help': options.help|default,
 			'inputs': [
 				elem.label({
 					'bare': true,
 					'class': 'radio--inline-v2',
-					'for': options.id,
+					'for': options.id|default,
 					'label': label
 				})
 			]
@@ -726,19 +795,19 @@ size        | int     | The number of items to display when the list is shown
 
 	{{
 		_self.group({
-			'class': options.class,
-			'help': options.help,
-			'label': options.label,
+			'class': options.class|default,
+			'help': options.help|default,
+			'label': options.label|default,
 			'inputs': [
 				elem.select({
-					'form': options.form,
-					'id': options.id,
-					'options': options.options,
-					'name': options.name,
-					'multiple': options.multiple,
-					'selected': options.selected,
-					'size': options.size,
-					'data': options.data
+					'form': options.form|default,
+					'id': options.id|default,
+					'options': options.options|default,
+					'name': options.name|default,
+					'multiple': options.multiple|default,
+					'selected': options.selected|default,
+					'size': options.size|default,
+					'data': options.data|default
 				})
 			]
 		})
@@ -832,18 +901,18 @@ value       | string  | Specifies the value of the input
 
 	{{
 		_self.group({
-			'class': options.class,
-			'help': options.help,
-			'label': options.label,
+			'class': options.class|default,
+			'help': options.help|default,
+			'label': options.label|default,
 			'inputs': [
 				elem.input({
-					'form': options.form,
-					'id': options.id,
-					'name': options.name,
-					'placeholder': options.placeholder,
+					'form': options.form|default,
+					'id': options.id|default,
+					'name': options.name|default,
+					'placeholder': options.placeholder|default,
 					'type': 'text',
-					'value': options.value,
-					'data': options.data
+					'value': options.value|default,
+					'data': options.data|default
 				})
 			]
 		})
@@ -895,18 +964,18 @@ value       | string  | Specifies the value of the input
 
 	{{
 		_self.group({
-			'class': options.class,
-			'help': options.help,
-			'label': options.label,
+			'class': options.class|default,
+			'help': options.help|default,
+			'label': options.label|default,
 			'inputs': [
 				elem.textarea({
-					'form': options.form,
-					'id': options.id,
-					'name': options.name,
-					'placeholder': options.placeholder,
-					'rows': options.rows,
-					'value': options.value,
-					'data': options.data
+					'form': options.form|default,
+					'id': options.id|default,
+					'name': options.name|default,
+					'placeholder': options.placeholder|default,
+					'rows': options.rows|default,
+					'value': options.value|default,
+					'data': options.data|default
 				})
 			]
 		})

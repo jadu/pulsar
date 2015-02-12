@@ -308,7 +308,7 @@
                     label: html.icon('lock') ~ ' Lock'
                 }),
                 html.link({
-                    label: html.icon('group') ~ ' Collaborators ' ~ html.badge(3)
+                    label: html.icon('group') ~ ' Collaborators ' ~ html.badge({ 'label': 3 })
                 }),
                 html.divider(),
                 html.link({
@@ -340,47 +340,47 @@
         <div class="btn__toolbar">
             {{
                 html.button({
-                    'label': html.icon('youtube-play') ~ ' Default ' ~ html.badge('99')
+                    'label': html.icon('youtube-play') ~ ' Default ' ~ html.badge({ 'label': '99' })
                 })
             }}
             {{
             	html.button({
-            		label: html.icon('inbox') ~ ' Primary ' ~ html.badge('99'),
+            		label: html.icon('inbox') ~ ' Primary ' ~ html.badge({ 'label': '99' }),
             		class: 'btn--primary'
             	})
 
             }}
             {{
             	html.button({
-            		label: html.icon('ok') ~ ' Success ' ~ html.badge('99'),
+            		label: html.icon('ok') ~ ' Success ' ~ html.badge({ 'label': '99' }),
             		class: 'btn--success'
             	})
 
             }}
             {{
             	html.button({
-            		label: html.icon('warning-sign') ~ ' Warning ' ~ html.badge('99'),
+            		label: html.icon('warning-sign') ~ ' Warning ' ~ html.badge({ 'label': '99' }),
             		class: 'btn--warning'
             	})
 
             }}
             {{
             	html.button({
-            		label: html.icon('trash') ~ ' Danger ' ~ html.badge('99'),
+            		label: html.icon('trash') ~ ' Danger ' ~ html.badge({ 'label': '99' }),
             		class: 'btn--danger'
             	})
 
             }}
             {{
             	html.button({
-            		label: html.icon('info-sign') ~ ' Info ' ~ html.badge('99'),
+            		label: html.icon('info-sign') ~ ' Info ' ~ html.badge({ 'label': '99' }),
             		class: 'btn--info'
             	})
 
             }}
             {{
             	html.button({
-            		label: html.icon('lock') ~ ' Inverse ' ~ html.badge('99'),
+            		label: html.icon('lock') ~ ' Inverse ' ~ html.badge({ 'label': '99' }),
             		class: 'btn--inverse'
             	})
 
@@ -392,7 +392,7 @@
     <p>
     {{
         html.button_dropdown({
-            'label': html.icon('folder-close') ~ ' Busy Button ' ~ html.badge('99', 'badge--primary'),
+            'label': html.icon('folder-close') ~ ' Busy Button ' ~ html.badge({ 'label': '99', 'class': 'badge--primary'}),
             'items': example_dropdown
         })
     }}
