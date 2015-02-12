@@ -1,10 +1,11 @@
 {% macro addon(value) %}
 {% spaceless %}
-    {% if value is not empty %}
-    <span class="input-group-addon">{{- value -}}</span>
-    {% endif %}
+	{% if value is not empty %}
+	<span class="input-group-addon">{{- value -}}</span>
+	{% endif %}
 {% endspaceless %}
 {% endmacro %}
+
 
 {% macro caret(visible = false) %}
 {% spaceless %}
@@ -64,9 +65,9 @@
 
 {% macro form(value) %}
 {% spaceless %}
-    {% if value is not empty %}
-    	form="{{ value }}"
-    {% endif %}
+	{% if value is not empty %}
+		form="{{ value }}"
+	{% endif %}
 {% endspaceless %}
 {% endmacro %}
 

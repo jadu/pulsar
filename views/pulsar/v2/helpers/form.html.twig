@@ -1,4 +1,4 @@
-{#  ----------------------------------------------------------------------------
+{# -----------------------------------------------------------------------------
 
 ## Checkbox
 
@@ -6,11 +6,11 @@ Generates a checkbox input field.
 
 ### Example usage
 
-    {{
-        form.checkbox({
-            'label': 'Are you awesome?'
-        })
-    }}
+	{{
+		form.checkbox({
+			'label': 'Are you awesome?'
+		})
+	}}
 
 ### Options applied to parent wrapper
 
@@ -31,38 +31,39 @@ form          | string | Specific one or more forms this label belongs to
 id            | string | A unique identifier, if required
 help          | string | Additional guidance information to be displayed next to the input
 indeterminate | bool | Shows the checkbox as [-], overrides the value of `checked`
+name          | string | The name of this control
 value         | string | Specifies the value of the input
 
 #}
 {% macro checkbox(options) %}
 {% spaceless %}
-    {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
+	{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
-    {{
-        _self.group({
-            'class': options.class,
-            'help': options.help,
-            'label': options.label,
-            'inputs': [
-                elem.input({
-                    'checked': options.checked,
-                    'form': options.form,
-                    'id': options.id,
-                    'indeterminate': options.indeterminate,
-                    'name': options.name,
-                    'type': 'checkbox',
-                    'value': options.value,
-                    'data': options.data
-                })
-            ]
-        })
-    }}
+	{{
+		_self.group({
+			'class': options.class,
+			'help': options.help,
+			'label': options.label,
+			'inputs': [
+				elem.input({
+					'checked': options.checked,
+					'form': options.form,
+					'id': options.id,
+					'indeterminate': options.indeterminate,
+					'name': options.name,
+					'type': 'checkbox',
+					'value': options.value,
+					'data': options.data
+				})
+			]
+		})
+	}}
 
 {% endspaceless %}
 {% endmacro %}
 
 
-{#  ----------------------------------------------------------------------------
+{# -----------------------------------------------------------------------------
 
 ## Checkbox inline
 
@@ -71,72 +72,74 @@ be positioned either before or after the label value.
 
 ### Example usage
 
-    {{
-        form.checkbox_inline({
-            'id': 'areYouAwesome',
-            'label': 'Are you awesome?',
-            'name': 'areYouAwesome'
-        })
-    }}
+	{{
+		form.checkbox_inline({
+			'id': 'areYouAwesome',
+			'label': 'Are you awesome?',
+			'name': 'areYouAwesome'
+		})
+	}}
 
 ### Options applied to parent wrapper
 
-Option        | Type   | Description
-------------- | ------ | -------------------------------------------------------
-class         | string | A space separated list of class names
-help          | string | Additional guidance information to be displayed next to the input
+Option          | Type   | Description
+--------------- | ------ | -----------------------------------------------------
+class           | string | A space separated list of class names
+help            | string | Additional guidance information to be displayed next to the input
 
 ### Options applied to input
 
-Option        | Type   | Description
-------------- | ------ | -------------------------------------------------------
-checked       | bool   | Whether the input is checked
-data          | hash   | Data attributes by key/value
-form          | string | Specific one or more forms this label belongs to
-id            | string | A unique identifier, if required
-indeterminate | bool   | Shows the checkbox as [-], overrides the value of `checked`
-label         | string | Text for the `<label>` companion element
-value         | string | Specifies the value of the input
+Option          | Type   | Description
+--------------- | ------ | -----------------------------------------------------
+checked         | bool   | Whether the input is checked
+data            | hash   | Data attributes by key/value
+form            | string | Specific one or more forms this label belongs to
+id              | string | A unique identifier, if required
+indeterminate   | bool   | Shows the checkbox as [-], overrides the value of `checked`
+input_placement | string | left (default)|right position of the input vs the label value
+label           | string | Text for the `<label>` companion element
+name            | string | The name of this control
+value           | string | Specifies the value of the input
 
 #}
 {% macro checkbox_inline(options) %}
 {% spaceless %}
-    {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
+	{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
-    {%
-        set input = elem.input(options|merge({
-            'label': null,
-            'type': 'checkbox'
-        }))
-    %}
+	{%
+		set input = elem.input(options|merge({
+			'label': null,
+			'type': 'checkbox'
+		}))
+	%}
 
-    {% set label = input ~ options.label %}
+	{% set label = input ~ options.label %}
 
-    {% if options.input_placement == 'right' %}
-        {% set label = options.label ~ input %}
-    {% endif %}
+	{% if options.input_placement == 'right' %}
+		{% set label = options.label ~ input %}
+	{% endif %}
 
-    {{
-        _self.group({
-            'class': options.class,
-            'help': options.help,
-            'label': null,
-            'inputs': [
-                elem.label({
-                    'bare': true,
-                    'class': 'checkbox--inline-v2',
-                    'for': options.id,
-                    'label': label
-                })
-            ]
-        })
-    }}
+	{{
+		_self.group({
+			'class': options.class,
+			'help': options.help,
+			'label': null,
+			'inputs': [
+				elem.label({
+					'bare': true,
+					'class': 'checkbox--inline-v2',
+					'for': options.id,
+					'label': label
+				})
+			]
+		})
+	}}
 
 {% endspaceless %}
 {% endmacro %}
 
 
-{#  ----------------------------------------------------------------------------
+{# -----------------------------------------------------------------------------
 
 ## Radio inline
 
@@ -145,74 +148,76 @@ be positioned either before or after the label value.
 
 ### Example usage
 
-    {{
-        form.radio_inline({
-            'id': 'areYouAwesome',
-            'label': 'Are you awesome?',
-            'name': 'areYouAwesome'
-        })
-    }}
+	{{
+		form.radio_inline({
+			'id': 'areYouAwesome',
+			'label': 'Are you awesome?',
+			'name': 'areYouAwesome'
+		})
+	}}
 
 ### Options applied to parent wrapper
 
-Option   | Type   | Description
--------- | ------ | ------------------------------------------------------------
-class    | string | A space separated list of class names
-help     | string | Additional guidance information to be displayed next to the input
+Option          | Type   | Description
+--------------- | ------ | -----------------------------------------------------
+class           | string | A space separated list of class names
+help            | string | Additional guidance information to be displayed next to the input
 
 ### Options applied to input
 
-Option   | Type   | Description
--------- | ------ | ------------------------------------------------------------
-data     | hash   | Data attributes by key/value
-form     | string | Specific one or more forms this label belongs to
-id       | string | A unique identifier, if required
-label    | string | Text for the `<label>` companion element
-selected | bool | Whether this radio button should be selected
-value    | string | Specifies the value of the input
+Option          | Type   | Description
+--------------- | ------ | -----------------------------------------------------
+data            | hash   | Data attributes by key/value
+form            | string | Specific one or more forms this label belongs to
+id              | string | A unique identifier, if required
+label           | string | Text for the `<label>` companion element
+input_placement | string | left (default)|right position of the input vs the label value
+name            | string | The name of this control
+selected        | bool   | Whether this radio button should be selected
+value           | string | Specifies the value of the input
 
 #}
 {% macro radio_inline(options) %}
 {% spaceless %}
-    {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
+	{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
-    {%
-        set input = elem.input({
-            'form': options.form,
-            'id': options.id,
-            'name': options.name,
-            'selected': options.selected,
-            'type': 'radio',
-            'data': options.data
-        })
-    %}
+	{%
+		set input = elem.input({
+			'form': options.form,
+			'id': options.id,
+			'name': options.name,
+			'selected': options.selected,
+			'type': 'radio',
+			'data': options.data
+		})
+	%}
 
-    {% set label = input ~ options.label %}
+	{% set label = input ~ options.label %}
 
-    {% if options.input_placement == 'right' %}
-        {% set label = options.label ~ input %}
-    {% endif %}
+	{% if options.input_placement == 'right' %}
+		{% set label = options.label ~ input %}
+	{% endif %}
 
-    {{
-        _self.group({
-            'class': options.class,
-            'help': options.help,
-            'inputs': [
-                elem.label({
-                    'bare': true,
-                    'class': 'radio--inline-v2',
-                    'for': options.id,
-                    'label': label
-                })
-            ]
-        })
-    }}
+	{{
+		_self.group({
+			'class': options.class,
+			'help': options.help,
+			'inputs': [
+				elem.label({
+					'bare': true,
+					'class': 'radio--inline-v2',
+					'for': options.id,
+					'label': label
+				})
+			]
+		})
+	}}
 
 {% endspaceless %}
 {% endmacro %}
 
 
-{#  ----------------------------------------------------------------------------
+{# -----------------------------------------------------------------------------
 
 ## Create
 
@@ -220,12 +225,12 @@ Creates the opening <form> element.
 
 ### Example usage
 
-    {{ form.create() }}
+	{{ form.create() }}
 
 ### Options
 
 Option  | Type   | Description
-------- | ------ | ---------------------------------------------------
+------- | ------ | -------------------------------------------------------------
 action  | string | URL to post to, will submit to self if empty
 class   | string | A space separated list of class names
 data    | hash   | Data attributes by key/value
@@ -237,29 +242,29 @@ method  | string | The HTTP method to be used to submit the form
 #}
 {% macro create(options) %}
 {% spaceless %}
-    {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-    <form
-        {% if options.action is not empty %}
-            action="{{ options.action }}"
-        {% endif %}
-        {% if options.method is not empty %}
-            method="{{ options.method|default('POST') }}"
-        {% endif %}
-        {% if options.enctype is not empty and options.method == 'POST' %}
-            enctype="{{ options.enctype|default('POST') }}"
-        {% endif %}
-        {{ util.class('form--horizontal form-v2', options) }}
-        {{ util.id(options.id) }}
-        {{ util.name(options.name) }}
-        {{ util.data(options.data) }}
-    >
+	<form
+		{% if options.action is not empty %}
+			action="{{ options.action }}"
+		{% endif %}
+		{% if options.method is not empty %}
+			method="{{ options.method|default('POST') }}"
+		{% endif %}
+		{% if options.enctype is not empty and options.method == 'POST' %}
+			enctype="{{ options.enctype|default('POST') }}"
+		{% endif %}
+		{{ util.class('form--horizontal form-v2', options) }}
+		{{ util.id(options.id) }}
+		{{ util.name(options.name) }}
+		{{ util.data(options.data) }}
+	>
 
 {% endspaceless %}
 {% endmacro %}
 
 
-{#  ----------------------------------------------------------------------------
+{# -----------------------------------------------------------------------------
 
 ## Date
 
@@ -267,11 +272,11 @@ Generates a text input field which will show a date picker when focused.
 
 ### Example usage
 
-    {{
-        form.date({
-            'label': 'When is your birthday?'
-        })
-    }}
+	{{
+		form.date({
+			'label': 'When is your birthday?'
+		})
+	}}
 
 ### Options
 
@@ -283,6 +288,7 @@ form        | string | Specific one or more forms this label belongs to
 id          | string | A unique identifier, if required
 help        | string | Additional guidance information to be displayed next to the input
 label       | string | Text for the `<label>` companion element
+name        | string | The name of this control
 placeholder | string | A short hint that describes the expected value
 value       | string | Specifies the value of the input
 
@@ -290,25 +296,25 @@ value       | string | Specifies the value of the input
 {% macro date(options) %}
 {% spaceless %}
 
-    {{
-        _self.text({
-            'class': options.class,
-            'form': options.form,
-            'id': options.id,
-            'help': options.help,
-            'label': options.label,
-            'name': options.name,
-            'placeholder': options.placeholder|default('dd/mm/yyyy'),
-            'value': options.value,
-            'data': options.data|default({})|merge({ 'datepicker': 'true' })
-        })
-    }}
+	{{
+		_self.text({
+			'class': options.class,
+			'form': options.form,
+			'id': options.id,
+			'help': options.help,
+			'label': options.label,
+			'name': options.name,
+			'placeholder': options.placeholder|default('dd/mm/yyyy'),
+			'value': options.value,
+			'data': options.data|default({})|merge({ 'datepicker': 'true' })
+		})
+	}}
 
 {% endspaceless %}
 {% endmacro %}
 
 
-{#  ----------------------------------------------------------------------------
+{# -----------------------------------------------------------------------------
 
 ## End
 
@@ -317,46 +323,46 @@ form.
 
 ### Example usage
 
-    {{
-        form.end({
-            'actions': [
-                form.submit({
-                    'label': 'Sign In'
-                }),
-                html.link({
-                    'label': 'Cancel',
-                    'href': '/home'
-                })
-            ]
-        })
-    }}
+	{{
+		form.end({
+			'actions': [
+				form.submit({
+					'label': 'Sign In'
+				}),
+				html.link({
+					'label': 'Cancel',
+					'href': '/home'
+				})
+			]
+		})
+	}}
 
 ### Options
 
 Option  | Type   | Description
-------- | ------ | ---------------------------------------------------
+------- | ------ | -------------------------------------------------------------
 actions | array  | Helpers to display as the actions, usually form.submit() but can be buttons, links etc...
 class   | string | A space separated list of class names
 
 #}
 {% macro end(options) %}
 {% spaceless %}
-    {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-        <div
-            {{ util.class('form__actions', options) }}
-        >
-            {% for action in options.actions %}
-                {{- action -}}
-            {% endfor %}
-        </div>
-    </form>
+		<div
+			{{ util.class('form__actions', options) }}
+		>
+			{% for action in options.actions %}
+				{{- action -}}
+			{% endfor %}
+		</div>
+	</form>
 
 {% endspaceless %}
 {% endmacro %}
 
 
-{#  ----------------------------------------------------------------------------
+{# -----------------------------------------------------------------------------
 
 ## Fieldset start
 
@@ -364,44 +370,44 @@ Opens a `<fieldset>` and allows you to define an optional `<legend>`.
 
 ### Example usage
 
-    {{
-        form.fieldset_start({
-            'legend': 'I am Legend'
-        })
-    }}
+	{{
+		form.fieldset_start({
+			'legend': 'I am Legend'
+		})
+	}}
 
 ### Options
 
 Option  | Type   | Description
-------- | ------ | ---------------------------------------------------
+------- | ------ | -------------------------------------------------------------
 class   | string | A space separated list of class names
 data    | hash   | Data attributes by key/value
 form    | string | Specific one or more forms the fieldset belongs to
 id      | string | A unique identifier, if required
 legend  | string | Label for the optional legend element
-name    | string | A name for the fieldset
+name    | string | The name of this control
 
 #}
 {% macro fieldset_start(options) %}
 {% spaceless %}
-    {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-    <fieldset
-        {{ util.class(null, options) }}
-        {{ util.id(options.id) }}
-        {{ util.form(options.form) }}
-        {{ util.name(options.name) }}
-        {{ util.data(options.data) }}
-    >
-    {% if options.legend is not empty %}
-        <legend>{{ options.legend|raw }}</legend>
-    {% endif %}
+	<fieldset
+		{{ util.class(null, options) }}
+		{{ util.id(options.id) }}
+		{{ util.form(options.form) }}
+		{{ util.name(options.name) }}
+		{{ util.data(options.data) }}
+	>
+	{% if options.legend is not empty %}
+		<legend>{{ options.legend|raw }}</legend>
+	{% endif %}
 
 {% endspaceless %}
 {% endmacro %}
 
 
-{#  ----------------------------------------------------------------------------
+{# -----------------------------------------------------------------------------
 
 ## Fieldset end
 
@@ -409,51 +415,81 @@ Closes a `<fieldset>`.
 
 ### Example usage
 
-    {{ form.fieldset_start() }}
+	{{ form.fieldset_start() }}
 
 #}
 {% macro fieldset_end() %}
 {% spaceless %}
 
-    </fieldset>
+	</fieldset>
 
 {% endspaceless %}
 {% endmacro %}
 
 
-{#  ----------------------------------------------------------------------------
+{# -----------------------------------------------------------------------------
 
 ## File
+
+Generates a file input and passes it to the `group` helper to wrap it in the
+required form markup.
+
+### Example usage
+
+	{{
+		form.file({
+			'label': 'Send us a pretty picture'
+		})
+	}}
+
+### Options applied to parent wrapper
+
+Option      | Type   | Description
+----------- | ------ | ---------------------------------------------------------
+class       | string | A space separated list of class names
+help        | string | Additional guidance information to be displayed next to the input
+label       | string  | Text for the `<label>` companion element
+
+### Options applied to input
+
+Option      | Type   | Description
+----------- | ------ | ---------------------------------------------------------
+data        | hash   | Data attributes by key/value
+form        | string | Specific one or more forms this label belongs to
+id          | string | A unique identifier, if required
+name        | string | The name of this control
+placeholder | string | A short hint that describes the expected value
+value       | string | Specifies the value of the input
 
 #}
 {% macro file(options) %}
 {% spaceless %}
-    {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
+	{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
-    {{
-        _self.group({
-            'class': options.class,
-            'help': options.help,
-            'label': options.label,
-            'inputs': [
-                elem.input({
-                    'form': options.form,
-                    'id': options.id,
-                    'name': options.name,
-                    'placeholder': options.placeholder,
-                    'type': 'file',
-                    'value': options.value,
-                    'data': options.data
-                })
-            ]
-        })
-    }}
+	{{
+		_self.group({
+			'class': options.class,
+			'help': options.help,
+			'label': options.label,
+			'inputs': [
+				elem.input({
+					'form': options.form,
+					'id': options.id,
+					'name': options.name,
+					'placeholder': options.placeholder,
+					'type': 'file',
+					'value': options.value,
+					'data': options.data
+				})
+			]
+		})
+	}}
 
 {% endspaceless %}
 {% endmacro %}
 
 
-{#  ----------------------------------------------------------------------------
+{# -----------------------------------------------------------------------------
 
 ## Group
 
@@ -464,13 +500,13 @@ directly from a view.
 
 ### Example usage
 
-    {{
-        form.group({
-            'label': 'What is the meaning of life?'
-        })
-    }}
+	{{
+		form.group({
+			'label': 'What is the meaning of life?'
+		})
+	}}
 
-### Options
+### Options applied to the parent wrapper
 
 Option      | Type   | Description
 ----------- | ------ | ---------------------------------------------------------
@@ -478,68 +514,66 @@ append      | string | Content to display after the input, usually short text or
 class       | string | A space separated list of class names
 data        | hash   | Data attributes by key/value
 id          | string | A unique identifier, if required
-form        | string | Specific one or more forms this label belongs to
 help        | string | Additional guidance information to be displayed next to the input
 inputs      | array  | One or more form inputs to display
 label       | string | Text for the `<label>` companion element
-placeholder | string | A short hint that describes the expected value
 prepend     | string | Content to display before the input, usually short text or icons
-type        | string | This macro also drives other text type macros like form.password
 removeable  | bool   | Whether to display a remove button after the input (default false)
-value       | string | Specifies the value of the input
 
 #}
 {% macro group(options) %}
 {% spaceless %}
-    {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
-    {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
-    {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+	{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
+	{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 
-    {% if options.label is null %}
-        {% set hasLabelClass = ' form__group--no-label' %}
-    {% endif %}
+	{% if options.label is null %}
+		{% set hasLabelClass = ' form__group--no-label' %}
+	{% endif %}
 
-    <div
-        {{ util.class('form__group' ~ hasLabelClass, options) }}
-    >
-        {{
-            elem.label({
-                'for': options.id,
-                'label': options.label
-            })
-        }}
-        <div class="controls">
+	<div
+		{{ util.class('form__group' ~ hasLabelClass, options) }}
+		{{ util.id(options.id) }}
+		{{ util.data(options.data) }}
+	>
+		{{
+			elem.label({
+				'for': options.id,
+				'label': options.label
+			})
+		}}
+		<div class="controls">
 
-        {% if options.prepend is not empty or options.append is not empty %}
-            <div class="input-group">
-                {{ util.addon(options.prepend) }}
-        {% elseif removable %}
-            <div class="input-group is-removable">
-        {% endif %}
+		{% if options.prepend is not empty or options.append is not empty %}
+			<div class="input-group">
+				{{ util.addon(options.prepend) }}
+		{% elseif removable %}
+			<div class="input-group is-removable">
+		{% endif %}
 
-        {% for input in options.inputs %}
-                {{- input|raw -}}
-        {% endfor %}
+		{% for input in options.inputs %}
+				{{- input|raw -}}
+		{% endfor %}
 
-        {% if prepend is not empty or append is not empty %}
-                {{ util.addon(append) }}
-            </div>
-        {% endif %}
+		{% if prepend is not empty or append is not empty %}
+				{{ util.addon(append) }}
+			</div>
+		{% endif %}
 
-        {% if removable %}
-                {{ html.remove_button({ 'target': options.id }) }}
-            </div>
-        {% endif %}
+		{% if removable %}
+				{{ html.remove_button({ 'target': options.id }) }}
+			</div>
+		{% endif %}
 
-            {{ _self.help(options.help) }}
-        </div>
-    </div>
+			{{ _self.help(options.help) }}
+		</div>
+	</div>
 
 {% endspaceless %}
 {% endmacro %}
 
 
-{#  ----------------------------------------------------------------------------
+{# -----------------------------------------------------------------------------
 
 ## Password
 
@@ -547,11 +581,11 @@ Generates a password input field.
 
 ### Example usage
 
-    {{
-        form.password({
-            'label': 'Your password'
-        })
-    }}
+	{{
+		form.password({
+			'label': 'Your password'
+		})
+	}}
 
 ### Options
 
@@ -563,31 +597,32 @@ form        | string | Specific one or more forms this label belongs to
 id          | string | A unique identifier, if required
 help        | string | Additional guidance information to be displayed next to the input
 label       | string | Text for the `<label>` companion element
+name        | string | The name of this control
 placeholder | string | A short hint that describes the expected value
 value       | string | Specifies the value of the input
 
 #}
 {% macro password(options) %}
 
-    {{
-        _self.text({
-            'class': options.class,
-            'form': options.form,
-            'id': options.id,
-            'help': options.help,
-            'label': options.label,
-            'name': options.name,
-            'placeholder': options.placeholder,
-            'type': 'password',
-            'value': options.value,
-            'data': options.data
-        })
-    }}
+	{{
+		_self.text({
+			'class': options.class,
+			'form': options.form,
+			'id': options.id,
+			'help': options.help,
+			'label': options.label,
+			'name': options.name,
+			'placeholder': options.placeholder,
+			'type': 'password',
+			'value': options.value,
+			'data': options.data
+		})
+	}}
 
 {% endmacro %}
 
 
-{#  ----------------------------------------------------------------------------
+{# -----------------------------------------------------------------------------
 
 ## Radio
 
@@ -595,50 +630,55 @@ Generates a radio input field.
 
 ### Example usage
 
-    {{
-        form.radio({
-            'label': 'GaGa'
-        })
-    }}
+	{{
+		form.radio({
+			'label': 'GaGa'
+		})
+	}}
 
-### Options
+### Options applied to parent wrapper
 
-Option        | Type   | Description
-------------- | ------ | ---------------------------------------------------------
-checked       | bool   | Whether the input is checked
-class         | string | A space separated list of class names
-data          | hash   | Data attributes by key/value
-form          | string | Specific one or more forms this label belongs to
-id            | string | A unique identifier, if required
-help          | string | Additional guidance information to be displayed next to the input
-indeterminate | bool | Shows the checkbox as [-], overrides the value of `checked`
-label         | string | Text for the `<label>` companion element
-value         | string | Specifies the value of the input
+Option   | Type   | Description
+-------- | ------ | ------------------------------------------------------------
+class    | string | A space separated list of class names
+help     | string | Additional guidance information to be displayed next to the input
+label    | string  | Text for the `<label>` companion element
+
+### Options applied to input
+
+Option   | Type   | Description
+-------- | ------ | ------------------------------------------------------------
+data     | hash   | Data attributes by key/value
+form     | string | Specific one or more forms this label belongs to
+id       | string | A unique identifier, if required
+name     | string | The name of this control
+selected | bool   | Whether the input is checked
+value    | string | Specifies the value of the input
 
 #}
 {% macro radio(options) %}
 {% spaceless %}
-    {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
+	{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
-    {{
-        _self.group({
-            'class': options.class,
-            'help': options.help,
-            'label': options.label,
-            'inputs': [
-                elem.input(options|merge({
-                    'class': null,
-                    'type': 'radio'
-                }))
-            ]
-        })
-    }}
+	{{
+		_self.group({
+			'class': options.class,
+			'help': options.help,
+			'label': options.label,
+			'inputs': [
+				elem.input(options|merge({
+					'class': null,
+					'type': 'radio'
+				}))
+			]
+		})
+	}}
 
 {% endspaceless %}
 {% endmacro %}
 
 
-{#  ----------------------------------------------------------------------------
+{# -----------------------------------------------------------------------------
 
 ## Select
 
@@ -647,56 +687,68 @@ required form markup.
 
 ### Example usage
 
-    {{
-        form.textarea({
-            'label': 'Send us a pretty picture'
-        })
-    }}
+	{{
+		form.select({
+			'label': 'What’s your favourite colour?',
+			'options': {
+				'': 'Choose',
+				'colour_red': 'Red',
+				'colour_blue': 'Blue'
+			}
+		})
+	}}
 
-### Options
+### Options applied to parent wrapper
 
 Option      | Type    | Description
 ----------- | ------- | --------------------------------------------------------
 class       | string  | A space separated list of class names
+help        | string  | Additional guidance information to be displayed next to the input
+label       | string  | Text for the `<label>` companion element
+
+### Options applied to the input
+
+Option      | Type    | Description
+----------- | ------- | --------------------------------------------------------
 data        | hash    | Data attributes by key/value
 form        | string  | Specific one or more forms this label belongs to
 id          | string  | A unique identifier, if required
-help        | string  | Additional guidance information to be displayed next to the input
-label       | string  | Text for the `<label>` companion element
-placeholder | string  | A short hint that describes the expected value
-rows        | integer | The height, in rows (default 2)
-value       | string  | Specifies the value of the input
+multiple    | boolean | Whether multiple options can be selected
+name        | string  | The name of this control
+options     | hash    | The <option> attributes formatted as { 'value': 'label' }
+selected    | string  | The `id` of the item in `options` that should be initially selected
+size        | int     | The number of items to display when the list is shown
 
 #}
 {% macro select(options) %}
 {% spaceless %}
-    {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
+	{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
-    {{
-        _self.group({
-            'class': options.class,
-            'help': options.help,
-            'label': options.label,
-            'inputs': [
-                elem.select({
-                    'form': options.form,
-                    'id': options.id,
-                    'options': options.options,
-                    'name': options.name,
-                    'multiple': options.multiple,
-                    'selected': options.selected,
-                    'size': options.size,
-                    'data': options.data
-                })
-            ]
-        })
-    }}
+	{{
+		_self.group({
+			'class': options.class,
+			'help': options.help,
+			'label': options.label,
+			'inputs': [
+				elem.select({
+					'form': options.form,
+					'id': options.id,
+					'options': options.options,
+					'name': options.name,
+					'multiple': options.multiple,
+					'selected': options.selected,
+					'size': options.size,
+					'data': options.data
+				})
+			]
+		})
+	}}
 
 {% endspaceless %}
 {% endmacro %}
 
 
-{#  ----------------------------------------------------------------------------
+{# -----------------------------------------------------------------------------
 
 ## Submit
 
@@ -705,40 +757,41 @@ Creates your standard form submit button. Accepts all the same arguments as the
 
 ### Example usage
 
-    {{
-        form.submit({
-            'label': 'GO GO GO!'
-        })
-    }}
+	{{
+		form.submit({
+			'label': 'GO GO GO!'
+		})
+	}}
 
 ### Options
 
 Option   | Type  | Description
--------- | ----- | --------------------------------------------------------
+-------- | ----- | -------------------------------------------------------------
 class   | string | A space separated list of class names
 data    | hash   | Data attributes by key/value
 form    | string | Specifies one or more forms this label belongs to
 href    | string | URL to use for link button types
 id      | string | A unique identifier, if required
+name    | string | The name of this control
 label   | string | The button label
 type    | string | Can be button (default), link, input, submit
 
 #}
 {% macro submit(options) %}
 {% spaceless %}
-    {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+	{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 
-    {{ 
-        html.button(options|merge({
-            'type': 'submit'
-        }))
-    }}
+	{{
+		html.button(options|merge({
+			'type': 'submit'
+		}))
+	}}
 
 {% endspaceless %}
 {% endmacro %}
 
 
-{#  ----------------------------------------------------------------------------
+{# -----------------------------------------------------------------------------
 
 ## Text
 
@@ -747,55 +800,60 @@ required form markup.
 
 ### Example usage
 
-    {{
-        form.textarea({
-            'label': 'Send us a pretty picture'
-        })
-    }}
+	{{
+		form.text({
+			'label': 'What’s your name, boss?'
+		})
+	}}
 
-### Options
+### Options applied to parent wrapper
+
+Option      | Type   | Description
+----------- | ------ | -------------------------------------------------------
+class       | string | A space separated list of class names
+help        | string | Additional guidance information to be displayed next to the input
+label       | string | Text for the `<label>` companion element
+
+### Options applied to input
 
 Option      | Type    | Description
 ----------- | ------- | --------------------------------------------------------
-class       | string  | A space separated list of class names
 data        | hash    | Data attributes by key/value
 form        | string  | Specific one or more forms this label belongs to
 id          | string  | A unique identifier, if required
-help        | string  | Additional guidance information to be displayed next to the input
-label       | string  | Text for the `<label>` companion element
+name        | string  | The name of this control
 placeholder | string  | A short hint that describes the expected value
-rows        | integer | The height, in rows (default 2)
 value       | string  | Specifies the value of the input
 
 #}
 {% macro text(options) %}
 {% spaceless %}
-    {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
+	{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
-    {{
-        _self.group({
-            'class': options.class,
-            'help': options.help,
-            'label': options.label,
-            'inputs': [
-                elem.input({
-                    'form': options.form,
-                    'id': options.id,
-                    'name': options.name,
-                    'placeholder': options.placeholder,
-                    'type': 'text',
-                    'value': options.value,
-                    'data': options.data
-                })
-            ]
-        })
-    }}
+	{{
+		_self.group({
+			'class': options.class,
+			'help': options.help,
+			'label': options.label,
+			'inputs': [
+				elem.input({
+					'form': options.form,
+					'id': options.id,
+					'name': options.name,
+					'placeholder': options.placeholder,
+					'type': 'text',
+					'value': options.value,
+					'data': options.data
+				})
+			]
+		})
+	}}
 
 {% endspaceless %}
 {% endmacro %}
 
 
-{#  ----------------------------------------------------------------------------
+{# -----------------------------------------------------------------------------
 
 ## Textarea
 
@@ -804,22 +862,28 @@ required form markup.
 
 ### Example usage
 
-    {{
-        form.textarea({
-            'label': 'Send us a pretty picture'
-        })
-    }}
+	{{
+		form.textarea({
+			'label': 'What is the meaning of life?'
+		})
+	}}
 
-### Options
+### Options applied to parent wrapper
+
+Option      | Type   | Description
+----------- | ------ | -------------------------------------------------------
+class       | string | A space separated list of class names
+help        | string | Additional guidance information to be displayed next to the input
+label       | string | Text for the `<label>` companion element
+
+### Options applied to input
 
 Option      | Type    | Description
 ----------- | ------- | --------------------------------------------------------
-class       | string  | A space separated list of class names
 data        | hash    | Data attributes by key/value
 form        | string  | Specific one or more forms this label belongs to
 id          | string  | A unique identifier, if required
-help        | string  | Additional guidance information to be displayed next to the input
-label       | string  | Text for the `<label>` companion element
+name        | string  | The name of this control
 placeholder | string  | A short hint that describes the expected value
 rows        | integer | The height, in rows (default 2)
 value       | string  | Specifies the value of the input
@@ -827,26 +891,26 @@ value       | string  | Specifies the value of the input
 #}
 {% macro textarea(options) %}
 {% spaceless %}
-    {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
+	{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
-    {{
-        _self.group({
-            'class': options.class,
-            'help': options.help,
-            'label': options.label,
-            'inputs': [
-                elem.textarea({
-                    'form': options.form,
-                    'id': options.id,
-                    'name': options.name,
-                    'placeholder': options.placeholder,
-                    'rows': options.rows,
-                    'value': options.value,
-                    'data': options.data
-                })
-            ]
-        })
-    }}
+	{{
+		_self.group({
+			'class': options.class,
+			'help': options.help,
+			'label': options.label,
+			'inputs': [
+				elem.textarea({
+					'form': options.form,
+					'id': options.id,
+					'name': options.name,
+					'placeholder': options.placeholder,
+					'rows': options.rows,
+					'value': options.value,
+					'data': options.data
+				})
+			]
+		})
+	}}
 
 {% endspaceless %}
 {% endmacro %}
