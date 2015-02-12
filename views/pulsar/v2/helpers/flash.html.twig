@@ -1,0 +1,36 @@
+{# macro message(message, type = 'default', sticky = true, dismissable = true, autohide = false) #}
+{% macro message(options) %}
+{% spaceless %}
+	{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+
+	{% if options.type == 'success' %}
+		{% set icon = 'ok' %}
+	{% elseif options.type == 'warning' %}
+		{% set icon = 'warning-sign' %}
+	{% elseif options.type == 'error' %}
+		{% set icon = 'warning-sign' %}
+	{% else %}
+		{% set icon = 'info-sign' %}
+	{% endif %}
+
+	<div
+		class="flash flash--{{ options.type }}
+		{% if options.sticky == true %} is-sticky{% endif %}"
+	>
+
+		{%
+			if options.autohide == false
+			or options.autohide == 'undefined'
+		%}
+			<button class="close" data-dismiss="flash">
+				{{ html.icon('remove') }}
+			</button>
+		{% endif %}
+
+		{{ html.icon(icon) }}
+		{{ options.message|raw }}
+
+	</div>
+
+{% endspaceless %}
+{% endmacro %}

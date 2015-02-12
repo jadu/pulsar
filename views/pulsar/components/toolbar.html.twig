@@ -1,87 +1,96 @@
-{% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
-{% import '@pulsar/pulsar/helpers/pulsar.html.twig' as pulsar %}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{% import '@pulsar/pulsar/v2/helpers/pulsar.html.twig' as pulsar %}
 <div class="toolbar">
     <h1 class="branding" id="tour-home">{{ html.link('Jadu', '/search') }}</h1>
     <nav class="nav__primary">
     {% for label, items in toolbar %}
-    {{ pulsar.primary_nav(label = label, menu_items = items) }}
+    {{
+      pulsar.primary_nav({
+        'label': label,
+        'menu_items': items
+      })
+    }}
     {% endfor %}
     </nav>
     <a href="#" class="mobile-menu-toggle" data-mobile-toggle-button data-toggle-target=".tabs__list">
       <i class="icon-reorder"></i>
     </a>
     {{
-      pulsar.notifications(
-        [
-          pulsar.notification(
-            icon = html.icon('asterisk'),
-            href = '#',
-            title = 'Something awesome happened',
-            description = 'And we want to show you it',
-            time = 'Just now'
-          ),
-          pulsar.notification(
-            icon = html.icon('asterisk'),
-            href = '#',
-            title = 'Something awesome happened',
-            description = 'And we want to show you it',
-            time = 'Just now',
-            class = 'notification--primary'
-          ),
-          pulsar.notification(
-            icon = html.icon('asterisk'),
-            href = '#',
-            title = 'Something awesome happened',
-            description = 'And we want to show you it',
-            time = 'Just now',
-            class = 'notification--success'
-          ),
-          pulsar.notification(
-            icon = html.icon('asterisk'),
-            href = '#',
-            title = 'Something awesome happened',
-            description = 'And we want to show you it',
-            time = 'Just now',
-            class = 'notification--warning'
-          ),
-          pulsar.notification(
-            icon = html.icon('warning-sign'),
-            href = '#',
-            title = 'Something bad happened',
-            description = 'And we want to show you it',
-            time = '10 mins ago',
-            class = 'notification--danger'
-          ),
-          pulsar.notification(
-            icon = html.icon('asterisk'),
-            href = '#',
-            title = 'Something awesome happened',
-            description = 'And we want to show you it',
-            time = 'Just now',
-            class = 'notification--info'
-          ),
-          pulsar.notification(
-            icon = html.icon('asterisk'),
-            href = '#',
-            title = 'Something awesome happened',
-            description = 'And we want to show you it',
-            time = 'Just now',
-            class = 'notification--inverse'
-          )
+      pulsar.notifications({
+        'items': [
+          pulsar.notification({
+            'icon': html.icon('asterisk'),
+            'href': '#',
+            'title': 'Something awesome happened',
+            'description': 'And we want to show you it',
+            'time': 'Just now'
+          }),
+          pulsar.notification({
+            'icon': html.icon('asterisk'),
+            'href': '#',
+            'title': 'Something awesome happened',
+            'description': 'And we want to show you it',
+            'time': 'Just now',
+            'class': 'notification--primary'
+          }),
+          pulsar.notification({
+            'icon': html.icon('asterisk'),
+            'href': '#',
+            'title': 'Something awesome happened',
+            'description': 'And we want to show you it',
+            'time': 'Just now',
+            'class': 'notification--success'
+          }),
+          pulsar.notification({
+            'icon': html.icon('asterisk'),
+            'href': '#',
+            'title': 'Something awesome happened',
+            'description': 'And we want to show you it',
+            'time': 'Just now',
+            'class': 'notification--warning'
+          }),
+          pulsar.notification({
+            'icon': html.icon('warning-sign'),
+            'href': '#',
+            'title': 'Something bad happened',
+            'description': 'And we want to show you it',
+            'time ':'10 mins ago',
+            'class ':'notification--danger'
+          }),
+          pulsar.notification({
+            'icon': html.icon('asterisk'),
+            'href': '#',
+            'title': 'Something awesome happened',
+            'description': 'And we want to show you it',
+            'time': 'Just now',
+            'class': 'notification--info'
+          }),
+          pulsar.notification({
+            'icon': html.icon('asterisk'),
+            'href': '#',
+            'title': 'Something awesome happened',
+            'description': 'And we want to show you it',
+            'time': 'Just now',
+            'class': 'notification--inverse'
+          })
         ]
-      )
+      })
     }}
 
     {{
-      html.button_dropdown(
-        label = html.icon('user') ~ ' <span>Paul Stanton</span>',
-        class = 'user-actions pull-right',
-        menu_items = [
-          html.link(label = html.icon('key') ~ ' Change password'),
+      html.button_dropdown({
+        'label': html.icon('user') ~ ' <span>Paul Stanton</span>',
+        'class': 'user-actions pull-right',
+        'menu_items': [
+          html.link({
+              'label': html.icon('key') ~ ' Change password'
+          }),
           html.divider(),
-          html.link(label = html.icon('signout') ~ ' Sign out')
+          html.link({
+            'label': html.icon('signout') ~ ' Sign out'
+          })
         ]
-      )
+      })
     }}
     <form class="search-form" action="/app_dev.php/">
         <input class="search-field" type="search" name="q" id="case-search" value="" placeholder="Search for stuff">
