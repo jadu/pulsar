@@ -46,28 +46,23 @@ class AttributeParserExtension extends \Twig_Extension
 	 * @return string             A space separated string of key="value"
 	 * attributes ready for including in an HTML element
 	 */
-	public function parseAttributes($attributes = null, $ignores = null)
+	public function parseAttributes($attributes, array $ignores = array())
 	{
 		if (!isset($attributes) || empty($attributes)) {
-			return false;
+			return '';
 		}
 
-		$html = '';
+		$html = [];
 
 		foreach ($attributes as $key => $value) {
 
 			// skip over any items whose key is present in the $ignores argument
-			if (isset($ignores) && in_array($key, $ignores)) {
-				unset($attributes[$key]);
-				continue;
+			if (!in_array($key, $ignores)) {
+				$html[] = htmlspecialchars($key) . '="' . htmlspecialchars($value) . '"';
 			}
-
-			// add to the string, formatted as key="value"
-			$html .= sprintf('%s="%s" ', $key, htmlentities($value));
 		}
 
-		// remove trailing space
-		return rtrim($html);
+		return implode(' ', $html);
 	}
 
 }
