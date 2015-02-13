@@ -48,7 +48,7 @@ class AttributeParserExtension extends \Twig_Extension
 	 */
 	public function parseAttributes($attributes, array $ignores = array())
 	{
-		if (!isset($attributes) || empty($attributes)) {
+		if (empty($attributes)) {
 			return '';
 		}
 
