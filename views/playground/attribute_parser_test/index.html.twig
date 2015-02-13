@@ -1,0 +1,18 @@
+{% extends 'pulsar/layouts/base.html.twig' %}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+
+{% block body %}
+
+	{%
+		set attributes = {
+			'class': 'this is my class chain',
+			'data-awesome': 'true',
+			'data-from-star-trek': 'false',
+			'href': 'http://www.google.com',
+			'label': 'MY LABELZ'
+		}
+	%}
+
+	{{ html.attr_test(attributes) }}
+
+{% endblock %}

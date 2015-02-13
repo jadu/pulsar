@@ -847,3 +847,18 @@ title     | string | The text to display as the tooltip
 
 {% endspaceless %}
 {% endmacro %}
+
+
+
+{% macro attr_test(attr) %}
+{% spaceless %}
+	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+
+	<span
+		{{ attributes(attr, ['label']) }}
+	>
+		{{- attr.label|raw -}}
+	</span>
+
+{% endspaceless %}
+{% endmacro %}
