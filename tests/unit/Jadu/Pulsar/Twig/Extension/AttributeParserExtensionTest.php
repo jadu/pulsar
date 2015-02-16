@@ -63,10 +63,46 @@ class AttributeParserExtensionTest extends \PHPUnit_Framework_TestCase
 	public function testParseAttributesIgnoresItemsInIgnoresList()
 	{
 		$dataIn = ['slim' => 'shady', 'marshall' => 'mathers', 'eminem' => true];
-		$ignores = ['slim', 'eminem'];
+		$args = ['ignores' => ['slim', 'eminem']];
 		$dataOut = 'marshall="mathers"';
 
-		$this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn, $ignores));
+		$this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn, $args));
+	}
+
+	public function testParseAttributesOnlyIncludesItemsInIncludesList()
+	{
+		$dataIn = ['slim' => 'shady', 'marshall' => 'mathers', 'eminem' => true];
+		$args = ['includes' => ['marshall']];
+		$dataOut = 'marshall="mathers"';
+
+		$this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn, $args));
+	}
+
+	public function testParseAttributesIgnoresShouldOverrideIncludes()
+	{
+		$dataIn = ['slim' => 'shady', 'marshall' => 'mathers', 'eminem' => true];
+		$args = ['ignores' => ['marshall'], 'includes' => ['marshall', 'slim']];
+		$dataOut = 'slim="shady"';
+
+		$this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn, $args));
+	}
+
+	public function testParseAttributesDefaultsShouldBeParsed()
+	{
+		$dataIn = ['slim' => 'shady', 'marshall' => 'mathers', 'eminem' => true];
+		$args = ['defaults' => ['class' => 'wrapper']];
+		$dataOut = 'class="wrapper" slim="shady" marshall="mathers" eminem="1"';
+
+		$this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn, $args));
+	}
+
+	public function testParseAttributesDefaultsShouldBeMerged()
+	{
+		$dataIn = ['slim' => 'shady', 'marshall' => 'mathers', 'eminem' => true, 'class' => 'wrapper'];
+		$args = ['defaults' => ['class' => 'wrapper--white']];
+		$dataOut = 'slim="shady" marshall="mathers" eminem="1" class="wrapper wrapper--white"';
+
+		$this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn, $args));
 	}
 
 }
