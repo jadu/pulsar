@@ -28,32 +28,32 @@ class ArrayExtension extends \Twig_Extension
 	}
 
 	/**
-     * Name of this extension
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return 'array_extension';
-    }
+	 * Name of this extension
+	 *
+	 * @return string
+	 */
+	public function getName()
+	{
+		return 'array_extension';
+	}
 
-    /**
-     * Returns only items not present in the filter list
-     * @param  array        $array    The array to filter
-     * @param  string|array $excludes The list of items to exclude
-     * @return array                  The filtered array
-     */
-    public function excludeFromArray(array $array, $excludes = null)
-    {
-    	if (!is_array($excludes) && !is_string($excludes)) {
-    		return $array;
-    	}
+	/**
+	 * Returns only items not present in the filter list
+	 * @param  array        $array    The array to filter
+	 * @param  string|array $excludes The list of items to exclude
+	 * @return array                  The filtered array
+	 */
+	public function excludeFromArray(array $array, $excludes = null)
+	{
+		if (!is_array($excludes) && !is_string($excludes)) {
+			return $array;
+		}
 
-    	if (is_string($excludes)) {
-    		$excludes = explode(' ', $excludes);
-    	}
+		if (is_string($excludes)) {
+			$excludes = explode(' ', $excludes);
+		}
 
-    	$out = [];
+		$out = [];
 
 		foreach ($array as $key => $value) {
 			if (!in_array($key, $excludes)) {
@@ -61,26 +61,26 @@ class ArrayExtension extends \Twig_Extension
 			}
 		}
 
-    	return $out;
-    }
+		return $out;
+	}
 
-    /**
-     * Returns only items present in the filter list
-     * @param  array        $array    The array to filter
-     * @param  string|array $excludes The list of items to include
-     * @return array           	      The filtered array
-     */
-    public function onlyFromArray(array $array, $only = null)
-    {
-    	if (!is_array($only) && !is_string($only)) {
-    		return [];
-    	}
+	/**
+	 * Returns only items present in the filter list
+	 * @param  array        $array    The array to filter
+	 * @param  string|array $excludes The list of items to include
+	 * @return array                  The filtered array
+	 */
+	public function onlyFromArray(array $array, $only = null)
+	{
+		if (!is_array($only) && !is_string($only)) {
+			return [];
+		}
 
-    	if (is_string($only)) {
-    		$only = explode(' ', $only);
-    	}
+		if (is_string($only)) {
+			$only = explode(' ', $only);
+		}
 
-    	$out = [];
+		$out = [];
 
 		foreach ($array as $key => $value) {
 			if (in_array($key, $only)) {
@@ -88,7 +88,7 @@ class ArrayExtension extends \Twig_Extension
 			}
 		}
 
-    	return $out;
-    }
+		return $out;
+	}
 
 }
