@@ -43,7 +43,7 @@ class AttributeParserExtension extends \Twig_Extension
 	 *
 	 * @param  array  $attributes An array of attributes to parse
 	 * @param  array  $args       Arguments to affect the output:
-	 *                [ignores] A list of keys to remove. This takes precedence
+	 *                [excludes] A list of keys to remove. This takes precedence
 	 *                over other options
 	 *                [includes] A list of keys to be output, all others will be
 	 *                ignored
@@ -79,12 +79,12 @@ class AttributeParserExtension extends \Twig_Extension
 		// Parse the attributes
 		foreach ($attributes as $key => $value) {
 
-			// if an item is in the ignores list, or is not in the includes list
+			// if an item is in the excludes list, or is not in the includes list
 			// then skip it.
 			if (
 				(
-					(array_key_exists('ignores', $args)
-					&& in_array($key, $args['ignores']))
+					(array_key_exists('excludes', $args)
+					&& in_array($key, $args['excludes']))
 					|| (array_key_exists('includes', $args)
 					&& !in_array($key, $args['includes']))
 				)

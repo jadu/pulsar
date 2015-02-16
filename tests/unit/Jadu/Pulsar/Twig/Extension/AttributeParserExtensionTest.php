@@ -60,10 +60,10 @@ class AttributeParserExtensionTest extends \PHPUnit_Framework_TestCase
 		$this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn));
 	}
 
-	public function testParseAttributesIgnoresItemsInIgnoresList()
+	public function testParseAttributesExcludesItemsInExcludesList()
 	{
 		$dataIn = ['slim' => 'shady', 'marshall' => 'mathers', 'eminem' => true];
-		$args = ['ignores' => ['slim', 'eminem']];
+		$args = ['excludes' => ['slim', 'eminem']];
 		$dataOut = 'marshall="mathers"';
 
 		$this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn, $args));
@@ -78,10 +78,10 @@ class AttributeParserExtensionTest extends \PHPUnit_Framework_TestCase
 		$this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn, $args));
 	}
 
-	public function testParseAttributesIgnoresShouldOverrideIncludes()
+	public function testParseAttributesExcludesShouldOverrideIncludes()
 	{
 		$dataIn = ['slim' => 'shady', 'marshall' => 'mathers', 'eminem' => true];
-		$args = ['ignores' => ['marshall'], 'includes' => ['marshall', 'slim']];
+		$args = ['excludes' => ['marshall'], 'includes' => ['marshall', 'slim']];
 		$dataOut = 'slim="shady"';
 
 		$this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn, $args));
