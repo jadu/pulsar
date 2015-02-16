@@ -45,7 +45,8 @@ class AttributeParserExtension extends \Twig_Extension
 	 * @param  array  $args       Arguments to affect the output:
 	 *                [ignores] A list of keys to remove. This takes precedence
 	 *                over other options
-	 *                [includes] Only output these attributes
+	 *                [includes] A list of keys to be output, all others will be
+	 *                ignored
 	 *                [defaults] Additional attributes to be included, if the
 	 *                attribute exists in both $attributes and $args, the values
 	 *                will be merged
