@@ -8,7 +8,7 @@ class ArrayExtensionTest extends \PHPUnit_Framework_TestCase
 	{
 		$this->env = new \Twig_Environment();
 		$this->ext = new ArrayExtension(array());
-		$this->data = ['slim' => 'shady', 'marshall' => 'mathers', 'eminem' => true, 'class' => 'wrapper'];
+		$this->data = array('slim' => 'shady', 'marshall' => 'mathers', 'eminem' => true, 'class' => 'wrapper');
 	}
 
 	public function testGetName()
@@ -18,7 +18,7 @@ class ArrayExtensionTest extends \PHPUnit_Framework_TestCase
 
 	public function testExcludeFromArrayIgnoresUnsetExcludes()
 	{
-		$tests = ['', false, null, []];
+		$tests = ['', false, null, array()];
 		foreach ($tests as $excludes) {
 	        $this->assertEquals(
 	        	$this->data,
@@ -33,7 +33,7 @@ class ArrayExtensionTest extends \PHPUnit_Framework_TestCase
 	public function testExcludeFromArrayExcludesSingleString()
 	{
 		$excludes = 'eminem';
-		$dataOut = ['slim' => 'shady', 'marshall' => 'mathers', 'class' => 'wrapper'];
+		$dataOut = array('slim' => 'shady', 'marshall' => 'mathers', 'class' => 'wrapper');
 
         $this->assertEquals(
         	$dataOut,
@@ -47,7 +47,7 @@ class ArrayExtensionTest extends \PHPUnit_Framework_TestCase
 	public function testExcludeFromArrayExcludesSpaceSeparatedString()
 	{
 		$excludes = 'eminem marshall';
-		$dataOut = ['slim' => 'shady', 'class' => 'wrapper'];
+		$dataOut = array('slim' => 'shady', 'class' => 'wrapper');
 
         $this->assertEquals(
         	$dataOut,
@@ -61,7 +61,7 @@ class ArrayExtensionTest extends \PHPUnit_Framework_TestCase
 	public function testExcludeFromArrayExcludesArray()
 	{
 		$excludes = ['slim', 'class'];
-		$dataOut = ['eminem' => '1', 'marshall' => 'mathers'];
+		$dataOut = array('eminem' => '1', 'marshall' => 'mathers');
 
         $this->assertEquals(
         	$dataOut,
@@ -74,7 +74,7 @@ class ArrayExtensionTest extends \PHPUnit_Framework_TestCase
 
 	public function testOnlyFromArrayIgnoresUnsetValues()
 	{
-		$tests = ['', false, null, []];
+		$tests = ['', false, null, array()];
 		foreach ($tests as $test) {
 	        $this->assertEquals(
 	        	array(),
@@ -89,7 +89,7 @@ class ArrayExtensionTest extends \PHPUnit_Framework_TestCase
 	public function testOnlyFromArrayIncludesOnlyFromSingleString()
 	{
 		$only = 'eminem';
-		$dataOut = ['eminem' => '1'];
+		$dataOut = array('eminem' => '1');
 
         $this->assertEquals(
         	$dataOut,
@@ -103,7 +103,7 @@ class ArrayExtensionTest extends \PHPUnit_Framework_TestCase
 	public function testOnlyFromArrayIncludesOnlyFromSpaceSeparatedString()
 	{
 		$only = 'slim class';
-		$dataOut = ['slim' => 'shady', 'class' => 'wrapper'];
+		$dataOut = array('slim' => 'shady', 'class' => 'wrapper');
 
         $this->assertEquals(
         	$dataOut,
@@ -117,7 +117,7 @@ class ArrayExtensionTest extends \PHPUnit_Framework_TestCase
 	public function testOnlyFromArrayIncludesOnlyFromArray()
 	{
 		$only = ['slim', 'class'];
-		$dataOut = ['slim' => 'shady', 'class' => 'wrapper'];
+		$dataOut = array('slim' => 'shady', 'class' => 'wrapper');
 
         $this->assertEquals(
         	$dataOut,

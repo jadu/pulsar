@@ -53,7 +53,7 @@ class ArrayExtension extends \Twig_Extension
 			$excludes = explode(' ', $excludes);
 		}
 
-		$out = [];
+		$out = array();
 
 		foreach ($array as $key => $value) {
 			if (!in_array($key, $excludes)) {
@@ -73,14 +73,14 @@ class ArrayExtension extends \Twig_Extension
 	public function onlyFromArray(array $array, $only = null)
 	{
 		if (!is_array($only) && !is_string($only)) {
-			return [];
+			return array();
 		}
 
 		if (is_string($only)) {
 			$only = explode(' ', $only);
 		}
 
-		$out = [];
+		$out = array();
 
 		foreach ($array as $key => $value) {
 			if (in_array($key, $only)) {

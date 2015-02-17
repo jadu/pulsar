@@ -16,7 +16,7 @@ class AttributeParserExtensionTest extends \PHPUnit_Framework_TestCase
 
 	public function testParseAttributesReturnsFalseIfNoAttributesSupplied()
 	{
-		$tests = ['', false, null, []];
+		$tests = array('', false, null, array());
 		foreach ($tests as $test) {
 			$this->assertEquals(false, $this->ext->parseAttributes($test));
 		}
@@ -34,75 +34,31 @@ class AttributeParserExtensionTest extends \PHPUnit_Framework_TestCase
 
 	public function testParseAttributesParsesSingleAttribute()
 	{
-		$dataIn = ['slim' => 'shady'];
+		$dataIn = array('slim' => 'shady');
 		$dataOut = 'slim="shady"';
 		$this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn));
 	}
 
 	public function testParseAttributesParsesMultipleAttributes()
 	{
-		$dataIn = ['slim' => 'shady', 'marshall' => 'mathers', 'eminem' => true];
+		$dataIn = array('slim' => 'shady', 'marshall' => 'mathers', 'eminem' => true);
 		$dataOut = 'slim="shady" marshall="mathers" eminem="1"';
 		$this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn));
 	}
 
 	public function testParseAttributesEscapesDoubleQuotes()
 	{
-		$dataIn = ['foo' => 'bar"baz'];
+		$dataIn = array('foo' => 'bar"baz');
 		$dataOut = 'foo="bar&quot;baz"';
 		$this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn));
 	}
 
 	public function testParseAttributesConvertsHtmlEntities()
 	{
-		$dataIn = ['foo' => '<span>bar</span> <blink>baz</blink>'];
+		$dataIn = array('foo' => '<span>bar</span> <blink>baz</blink>');
 		$dataOut = 'foo="&lt;span&gt;bar&lt;/span&gt; &lt;blink&gt;baz&lt;/blink&gt;"';
 		$this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn));
 	}
 
-	public function testParseAttributesExcludesItemsInExcludesList()
-	{
-		$dataIn = ['slim' => 'shady', 'marshall' => 'mathers', 'eminem' => true];
-		$args = ['excludes' => ['slim', 'eminem']];
-		$dataOut = 'marshall="mathers"';
-
-		$this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn, $args));
-	}
-
-	public function testParseAttributesOnlyIncludesItemsInIncludesList()
-	{
-		$dataIn = ['slim' => 'shady', 'marshall' => 'mathers', 'eminem' => true];
-		$args = ['includes' => ['marshall']];
-		$dataOut = 'marshall="mathers"';
-
-		$this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn, $args));
-	}
-
-	public function testParseAttributesExcludesShouldOverrideIncludes()
-	{
-		$dataIn = ['slim' => 'shady', 'marshall' => 'mathers', 'eminem' => true];
-		$args = ['excludes' => ['marshall'], 'includes' => ['marshall', 'slim']];
-		$dataOut = 'slim="shady"';
-
-		$this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn, $args));
-	}
-
-	public function testParseAttributesDefaultsShouldBeParsed()
-	{
-		$dataIn = ['slim' => 'shady', 'marshall' => 'mathers', 'eminem' => true];
-		$args = ['defaults' => ['class' => 'wrapper']];
-		$dataOut = 'class="wrapper" slim="shady" marshall="mathers" eminem="1"';
-
-		$this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn, $args));
-	}
-
-	public function testParseAttributesDefaultsShouldBeMerged()
-	{
-		$dataIn = ['slim' => 'shady', 'marshall' => 'mathers', 'eminem' => true, 'class' => 'wrapper'];
-		$args = ['defaults' => ['class' => 'wrapper--white']];
-		$dataOut = 'slim="shady" marshall="mathers" eminem="1" class="wrapper wrapper--white"';
-
-		$this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn, $args));
-	}
 
 }

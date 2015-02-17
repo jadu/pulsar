@@ -23,6 +23,23 @@ class AttributeParserExtension extends \Twig_Extension
 	}
 
 	/**
+	 * Returns a list of filters.
+	 *
+	 * @return array
+	 */
+	public function getFilters()
+	{
+		$filters = array(
+			new \Twig_SimpleFilter(
+				'defaults',
+				array($this, 'defaultAttributes'),
+				array('is_safe' => array('html'))
+			)
+		);
+		return $filters;
+	}
+
+	/**
 	 * Register the `attributes()` function with Twig.
 	 *
 	 * @return array The Twig function
@@ -38,16 +55,32 @@ class AttributeParserExtension extends \Twig_Extension
 		);
 	}
 
+	public function defaultAttributes(array $attributes, array $default)
+	{
+		$out = $attributes;
+
+		foreach ($default as $key => $value) {
+			if (array_key_exists($key, $attributes)) {
+				$out[$key] = $value . ' ' . $attributes[$key];
+				continue;
+			}
+
+			$out[$key] = $value;
+		}
+
+		return $out;
+	}
+
 	/**
 	 * Convert an array of attributes into a HTML friendly string.
 	 *
 	 * @param  array  $attributes An array of attributes to parse
 	 * @param  array  $args       Arguments to affect the output:
-	 *                [excludes] A list of keys to remove. This takes precedence
+	 *                [exclude] A list of keys to remove. This takes precedence
 	 *                over other options
-	 *                [includes] A list of keys to be output, all others will be
+	 *                [include] A list of keys to be output, all others will be
 	 *                ignored
-	 *                [defaults] Additional attributes to be included, if the
+	 *                [default] Additional attributes to be included, if the
 	 *                attribute exists in both $attributes and $args, the values
 	 *                will be merged
 	 * @return string             A space separated string of key="value"
@@ -59,39 +92,25 @@ class AttributeParserExtension extends \Twig_Extension
 			return '';
 		}
 
-		$html = [];
+		$html = array();
 
-		// Handle default attributes
-		if (array_key_exists('defaults', $args)) {
-			foreach ($args['defaults'] as $key => $value) {
+		// // Handle default attributes
+		// if (array_key_exists('default', $args)) {
+		// 	foreach ($args['default'] as $key => $value) {
 
-				// If attribute exists, merge it
-				if (array_key_exists($key, $attributes)) {
-					$attributes[$key] = $attributes[$key] . ' ' . $args['defaults'][$key];
-					continue;
-				}
+		// 		// If attribute exists, merge it
+		// 		if (array_key_exists($key, $attributes)) {
+		// 			$attributes[$key] = $attributes[$key] . ' ' . $args['default'][$key];
+		// 			continue;
+		// 		}
 
-				// Otherwise, just add a new attribute
-				$html[] = htmlspecialchars($key) . '="' . htmlspecialchars($value) . '"';
-			}
-		}
+		// 		// Otherwise, just add a new attribute
+		// 		$html[] = htmlspecialchars($key) . '="' . htmlspecialchars($value) . '"';
+		// 	}
+		// }
 
 		// Parse the attributes
 		foreach ($attributes as $key => $value) {
-
-			// if an item is in the excludes list, or is not in the includes list
-			// then skip it.
-			if (
-				(
-					(array_key_exists('excludes', $args)
-					&& in_array($key, $args['excludes']))
-					|| (array_key_exists('includes', $args)
-					&& !in_array($key, $args['includes']))
-				)
-			) {
-				continue;
-			}
-
 			$html[] = htmlspecialchars($key) . '="' . htmlspecialchars($value) . '"';
 		}
 
