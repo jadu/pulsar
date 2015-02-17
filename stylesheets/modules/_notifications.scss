@@ -107,7 +107,7 @@
     background-color: darken($dropdown-link-active-bg, 20%);
   }
   &.notification--primary a {
-    background-color: $label-primary-bg;
+    background-color: $primary-color;
     color: $white;
     &:hover {
       background-color: $toolbar-notification-item-hover;
@@ -119,11 +119,11 @@
     }
   }
   &.notification--success a {
-    background-color: $label-success-bg;
+    background-color: $success-color;
     color: $white;
     &:hover {
       background-color: $toolbar-notification-item-hover;
-      color: $label-success-bg;
+      color: $success-color;
     }
     > .badge {
       @extend .badge--success;
@@ -131,11 +131,11 @@
     }
   }
   &.notification--warning a {
-    background-color: $label-warning-bg;
+    background-color: $warning-color;
     color: $white;
     &:hover {
       background-color: $toolbar-notification-item-hover;
-      color: $label-warning-bg;
+      color: $warning-color;
     }
     > .badge {
       @extend .badge--warning;
@@ -143,11 +143,11 @@
     }
   }
   &.notification--info a {
-    background-color: $label-info-bg;
+    background-color: $info-color;
     color: $white;
     &:hover {
       background-color: $toolbar-notification-item-hover;
-      color: $label-info-bg;
+      color: $info-color;
     }
     > .badge {
       @extend .badge--info;
@@ -155,11 +155,11 @@
     }
   }
   &.notification--danger a {
-    background-color: $label-danger-bg;
+    background-color: $danger-color;
     color: $white;
     &:hover {
       background-color: $toolbar-notification-item-hover;
-      color: $label-danger-bg;
+      color: $danger-color;
     }
     > .badge {
       @extend .badge--danger;
@@ -167,11 +167,11 @@
     }
   }
   &.notification--inverse a {
-    background-color: $label-inverse-bg;
+    background-color: $inverse-color;
     color: $white;
     &:hover {
       background-color: $toolbar-notification-item-hover;
-      color: $label-inverse-bg;
+      color: $inverse-color;
     }
     > .badge {
       @extend .badge--inverse;

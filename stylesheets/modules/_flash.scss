@@ -65,11 +65,11 @@
 }
 
 .flash--info {
-  background: $label-info-bg;
+  background: $info-color;
   // color: $state-info-text;
   text-shadow: none;
   @include ie-lte(8) {
-    background:  $label-info-bg;
+    background:  $info-color;
   }
 }
 

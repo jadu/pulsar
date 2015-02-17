@@ -26,22 +26,22 @@
 // Inside labels
 .label {
   &.label--danger .badge {
-    background-color: darken($label-danger-bg, 10%);
+    background-color: darken($danger-color, 10%);
   }
   &.label--primary .badge {
-    background-color: darken($label-primary-bg, 10%);
+    background-color: darken($primary-color, 10%);
   }
   &.label--success .badge {
-    background-color: darken($label-success-bg, 10%);
+    background-color: darken($success-color, 10%);
   }
   &.label--warning .badge {
-    background-color: darken($label-warning-bg, 10%);
+    background-color: darken($warning-color, 10%);
   }
   &.label--info .badge {
-    background-color: darken($label-info-bg, 10%);
+    background-color: darken($info-color, 10%);
   }
   &.label--inverse .badge {
-    background-color: darken($label-inverse-bg, 10%);
+    background-color: darken($inverse-color, 10%);
   }
   .badge {
     color: inherit;

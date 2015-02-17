@@ -375,19 +375,19 @@ textarea {
 // Apply contextual and semantic states to individual form controls.
 .form__group {
   &.has-changed {
-    @include form__control-validation($state-info-text, $label-info-bg, $state-info-bg);
+    @include form__control-validation($state-info-text, $info-color, $state-info-bg);
   }
 
   &.has-warning {
-    @include form__control-validation($state-warning-text, $label-warning-bg, $state-warning-bg);
+    @include form__control-validation($state-warning-text, $warning-color, $state-warning-bg);
   }
 
   &.has-error {
-    @include form__control-validation($state-danger-text, $label-danger-bg, $state-danger-bg);
+    @include form__control-validation($state-danger-text, $danger-color, $state-danger-bg);
   }
 
   &.has-success {
-    @include form__control-validation($state-success-text, $label-success-bg, $state-success-bg);
+    @include form__control-validation($state-success-text, $success-color, $state-success-bg);
   }
 }
 
