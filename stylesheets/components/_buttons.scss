@@ -80,7 +80,7 @@
   }
 
   &:disabled,
-  &.is-disabled
+  &.is-disabled,
   &.disabled {
     padding-top: 9px;
     cursor: not-allowed !important;
