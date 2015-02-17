@@ -56,9 +56,10 @@ class ArrayExtension extends \Twig_Extension
 		}
 
 		$out = array();
+		$excludes = array_map('strtolower', $excludes);
 
 		foreach ($array as $key => $value) {
-			if (!in_array(strtolower($key), array_map('strtolower', $excludes))) {
+			if (!in_array(strtolower($key), $excludes)) {
 				$out[$key] = $value;
 			}
 		}
@@ -85,9 +86,10 @@ class ArrayExtension extends \Twig_Extension
 		}
 
 		$out = array();
+		$only = array_map('strtolower', $only);
 
 		foreach ($array as $key => $value) {
-			if (in_array(strtolower($key), array_map('strtolower', $only))) {
+			if (in_array(strtolower($key), $only)) {
 				$out[$key] = $value;
 			}
 		}
