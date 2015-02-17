@@ -1,109 +1,58 @@
+## Label group
+
 Group a series of related labels together on a single line by passing the `labelGroup` helper an array of `label` elements.
 
-Available parameters:
-
-    {{ label_group(labels, class, attributes) }}
-
-Usage:
+### Example usage
 
     {{
-        html.label_group(
-            labels = [
-                html.label(
-                    label = 'case closed with decision', 
-                    class = 'label--inverse'
-                ),
-                html.label(
-                    label = 'checking details',
-                    class = 'label--warning'
-                )
+        html.label_group({
+            labels: [
+                html.label({ 'label': 'foo' }),
+                html.label({ 'label': 'bar' })
             ]
-        )
-    }}
-
-<div class="label-group">  <span class="label label--inverse">case closed with decision</span>  <span class="label label--warning">checking details</span></div>
-
-## Variations (class)
-
-The following modifier classes can be applied to the `class` attribute to change the size of the grouped labels
-
-    <!-- The default label_group styling -->
-    {{
-        html.label_group(
-            labels = [
-                html.label(
-                    label = 'case closed with decision', 
-                    class = 'label--inverse'
-                ),
-                html.label(
-                    label = 'checking details',
-                    class = 'label--warning'
-                )
-            ]
-        )
-    }}
-    
-    <!-- Tall labels -->
-    {{
-        html.label_group(
-            labels = [
-                html.label(
-                    label = 'case closed with decision',
-                    class = 'label--inverse'
-                ),
-                html.label(
-                    label = 'checking details',
-                    class = 'label--info'
-                )
-            ],
-            class = 'label-group--tall'
-        )
-    }}
-    
-    <!-- Tallest labels -->
-    {{
-        html.label_group(
-            labels = [
-                html.label(
-                    label = 'case closed with decision',
-                    class = 'label--inverse'
-                ),
-                html.label(
-                    label = 'checking details',
-                    class = 'label--danger'
-                )
-            ],
-            class = 'label-group--tallest'
-        )
-    }}
-
-    <!-- Tallest labels (with same colour labels)-->
-    {{
-        html.label_group(
-            labels = [
-                html.label(
-                    label = 'case closed with decision',
-                    class = 'label--warning'
-                ),
-                html.label(
-                    label = 'checking details',
-                    class = 'label--warning'
-                )
-            ],
-            class = 'label-group--tallest'
-        )
+        })
     }}
 
 <p>
-<div class="label-group">  <span class="label label--inverse">case closed with decision</span>  <span class="label label--warning">checking details</span></div>
+    <div class="label-group">
+        <span class="label label--danger">foo</span>
+        <span class="label label--success">bar</span>
+    </div>
+</p>
+
+### Options
+
+Option              | Description
+------------------- | ------------------------------------------------------
+class               | (string) CSS classes, space separated
+data                | (hash) data attributes by key/value
+id                  | (string) A unique identifier, if required
+labels              | (array) The labels to group
+
+### Variations
+
+The following modifier classes can be applied to the `class` attribute to change the height of the grouped labels.
+
+* `label-group--tall`
+* `label-group--tallest`
+
+<p>
+    <div class="label-group">
+        <span class="label">normal</span>
+        <span class="label label--warning">height</span>
+    </div>
 </p>
 
 <p>
-<div class="label-group label-group--tall">  <span class="label label--inverse">case closed with decision</span>  <span class="label label--info">checking details</span></div>
+    <div class="label-group label-group--tall">
+        <span class="label label--warning">tall</span>
+        <span class="label label--danger">height</span>
+    </div>
 </p>
 
 <p>
-<div class="label-group label-group--tallest">  <span class="label label--inverse">case closed with decision</span>  <span class="label label--danger">checking details</span></div>
+    <div class="label-group label-group--tallest">
+        <span class="label label--danger">tallest</span>
+        <span class="label label--inverse">height</span>
+    </div>
 </p>
-
-<div class="label-group label-group--tallest">  <span class="label label--warning">case closed with decision</span>  <span class="label label--warning">checking details</span></div>

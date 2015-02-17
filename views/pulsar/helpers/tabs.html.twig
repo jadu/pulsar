@@ -1,0 +1,104 @@
+{%- macro tabs(tabs, editable = false) -%}
+  {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+  {% set active_tab_id = get_active_tab(tabs, active_tab) %}
+  <ul class="tabs__list">
+  {%- for tab in tabs -%}
+
+	  <li{% if (active_tab_id == null and loop.first) or (active_tab_id == tab.id) %} class="is-active"{% endif %}>
+
+		{{
+			html.link({
+		  		'label': tab.label,
+		  		'href': '#' ~ tab.id,
+		  		'data-toggle': 'tab'
+		  	})
+		}}
+
+		{%-
+			if tab.sub_tabs is defined
+			and tab.sub_tabs != null
+		%}
+		  <ul class="tabs__list">
+
+			{%- for sub_tab in tab.sub_tabs -%}
+			  <li{% if (active_tab_id == null and loop.parent.loop.first and loop.first) or (active_tab == sub_tab.id) %} class="is-active"{% endif %}>
+				{{
+					html.link({
+				  		'label': sub_tab.label,
+				  		'href': '#' ~ sub_tab.id,
+				  		'data-toggle': 'tab'
+				  	})
+				}}
+			  </li>
+			{%- endfor -%}
+
+		  </ul>
+		{%- endif -%}
+
+	  </li>
+	{%- endfor -%}
+
+	{% if editable == true %}
+	<li class="new hide">
+	  <input
+		type="text"
+		value="My New Tab"
+		autofocus
+		data-filter-action="save"
+		data-animation="true"
+		data-toggle="popover"
+		title="Give your tab a nice name"
+		data-content='<button class="btn btn--primary">Save</button> <button class="btn" data-filter-action="dismiss-save-as">Cancel</button>'
+		data-html=true
+	  />
+	</li>
+
+	  {{
+		html.li({
+			'value': html.link({
+						'label': 'Add a new tab',
+						'href': '#',
+						'data-show': '#new-tab'
+			})
+		})
+	  }}
+  {% endif %}
+
+  </ul>
+
+{%- endmacro -%}
+
+
+{%- macro tabs_content(tabs) -%}
+  <div class="tabs__content">
+  {%- for tab in tabs -%}
+
+	{%-
+		if tab.src is defined
+		and tab.src != null
+	-%}
+	  <div class="tab__pane{% if active_tab_id is defined and ((active_tab_id == null and loop.first) or (active_tab_id == tab.id)) %} is-active{% endif %}" id="{{ tab.id }}"{% if tab.attr is defined and tab.attr != null %} {{ tab.attr|raw }}{% endif %}>
+		{{ tab.src|raw }}
+	  </div>
+	{%- endif -%}
+
+	{% if tab.sub_tabs is defined %}
+	{%- for sub_tab in tab.sub_tabs -%}
+
+		<div class="tab__pane{% if (active_tab == null and loop.parent.loop.first and loop.first) or (active_tab == sub_tab.id) %} is-active{% endif %}" id="{{ sub_tab.id }}"{% if sub_tab.attr is defined and sub_tab.attr != null %} {{ sub_tab.attr|raw }}{% endif %}>
+		  {{ sub_tab.src|raw }}
+		</div>
+
+	{%- endfor -%}
+	{% endif %}
+
+  {%- endfor -%}
+  </div>
+{%- endmacro -%}
+
+
+
+
+
+
+

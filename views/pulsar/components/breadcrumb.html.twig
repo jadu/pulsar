@@ -1,11 +1,16 @@
 {% if breadcrumb is defined %}
-{% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 <nav class="breadcrumb">
     <ul>
     {% for key, value in breadcrumb %}
         <li>
         {% if value is not empty %}
-            {{ html.link(label = key, href = value) }}
+            {{
+                html.link({
+                    'label': key,
+                    'href': value
+                })
+            }}
         {% else %}
             <span>{{ key }}</span>
         {% endif %}

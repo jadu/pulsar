@@ -1,23 +1,52 @@
-{% import 'pulsar/helpers/html.html.twig' as html %}
-{% import 'pulsar/helpers/form.html.twig' as form %}
-{% import 'pulsar/helpers/flash.html.twig' as flash %}
+{% import 'pulsar/v2/helpers/html.html.twig' as html %}
+{% import 'pulsar/v2/helpers/form.html.twig' as form %}
+{% import 'pulsar/v2/helpers/flash.html.twig' as flash %}
 
 <h2 class="heading">{{ heading|raw }}</h2>
 
 <div class="tab__inner tab--padded">
-  <div class="example">
-    {{ flash.message(message = 'This is the default message style', sticky = false) }}
-  </div>
-  <div class="example">
-    {{ flash.message(message = 'This is the success style', type = 'success', sticky = false) }}
-  </div>
-  <div class="example">
-    {{ flash.message(message = 'This is the warning style', type = 'warning', sticky = false) }}
-  </div>
-  <div class="example">
-    {{ flash.message(message = 'This is the error style', type = 'error', sticky = false) }}
-  </div>
-  <div class="example">
-    {{ flash.message(message = 'This is the info style', type = 'info', sticky = false) }}
-  </div>
+	<div class="example">
+		{{
+			flash.message({
+				'message': 'This is the default message style',
+				'sticky': false
+			})
+		}}
+	</div>
+	<div class="example">
+		{{
+			flash.message({
+				'message': 'This is the success style',
+				'type': 'success',
+				'sticky': false
+			})
+		}}
+	</div>
+	<div class="example">
+		{{
+			flash.message({
+				'message': 'This is the warning style',
+				'type': 'warning',
+				'sticky': false
+			})
+		}}
+	</div>
+	<div class="example">
+		{{
+			flash.message({
+				'message': 'This is the error style',
+				'type': 'error',
+				'sticky': false
+			})
+		}}
+	</div>
+	<div class="example">
+		{{
+			flash.message({
+				'message': 'This is the info style',
+				'type': 'info',
+				'sticky': false
+			})
+		}}
+	</div>
 </div>

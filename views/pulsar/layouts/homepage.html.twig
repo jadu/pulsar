@@ -1,7 +1,8 @@
-{% extends 'pulsar/layouts/base.html.twig' %}
-{% import 'pulsar/helpers/html.html.twig' as html %}
-{% import 'pulsar/helpers/form.html.twig' as form %}
-{% import 'pulsar/helpers/flash.html.twig' as flash %}
+{% extends '@pulsar/pulsar/layouts/pulsar.html.twig' %}
+
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{% import '@pulsar/pulsar/v2/helpers/flash.html.twig' as flash %}
 
 {% block content %}
 <div class="buttons-container">
@@ -9,12 +10,13 @@
     <div class="btn__toolbar">
       <div class="btn__group">
         <a class="btn btn__back" href="#back" onclick="history.back(); return false;"><i class="icon-arrow-left"></i></a>
-        {% if actions_menu is not empty %}
+        {% if actions_menu is defined and actions_menu is not empty %}
           {{
-              html.button_dropdown(
-                label = 'Actions',
-                menu_items = actions_menu,
-                class = 'actions-menu')
+            html.button_dropdown({
+              'label': 'Actions',
+              'items': actions_menu,
+              'class': 'actions-menu'
+            })
           }}
         {% endif %}
       </div>
@@ -53,19 +55,28 @@
         <div class="row-hint">
           <p>Drop widgets into this row to start creating your homepage</p>
           {{
-            html.button(
-              label = 'Show Widgets',
-              class = 'btn--primary',
-              attributes = 'data-toggle=tray data-target=#tray')
+            html.button({
+              'label': 'Show Widgets',
+              'class': 'btn--primary',
+              'data': {
+                'toggle': 'tray',
+                'target': '#tray'
+              }
+            })
           }}
         </div>
       </div>
     </div>
     <div class="homepage-sidebar">
       <div class="widget-default-controls">
-        {{ html.button(
-            label = html.icon('copy') ~ ' Duplicate',
-            attributes = 'data-action=widget-duplicate data-widget-id=null')
+        {{
+          html.button({
+            'label': html.icon('copy') ~ ' Duplicate',
+            'data': {
+              'action': 'widget-duplicate',
+              'widget-id': 'null'
+            }
+          })
         }}
       </div>
     </div>

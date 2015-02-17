@@ -1,7 +1,7 @@
 {% extends '@pulsar/pulsar/layouts/tabbed.html.twig' %}
-{% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
-{% import '@pulsar/pulsar/helpers/form.html.twig' as form %}
-{% import '@pulsar/pulsar/helpers/flash.html.twig' as flash %}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{% import '@pulsar/pulsar/v2/helpers/flash.html.twig' as flash %}
 
 {% block title %}Pulsar Documentation{% endblock %}
 
@@ -12,8 +12,8 @@
     <div class="btn__toolbar">
       <div class="btn__group">
         <a class="btn btn__back" href="#back" onclick="history.back(); return false;"><i class="icon-arrow-left"></i></a>
-        {% if actions_menu is not empty %}
-          {{ html.button_dropdown(label = 'Actions', menu_items = actions_menu) }}
+        {% if actions_menu is defined and actions_menu is not empty %}
+          {{ html.button_dropdown({ 'label': 'Actions', 'items': actions_menu }) }}
         {% endif %}
       </div>
     </div>
@@ -23,7 +23,7 @@
 {% endblock %}
 
 {% block tabs_content %}
-    <div class="tabs__content">
+    <div class="tabs__content markdown">
 
     	<h2 class="heading">{{ heading|raw }}</h2>
 

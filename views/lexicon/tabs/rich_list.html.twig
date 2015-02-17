@@ -1,6 +1,6 @@
-{% import 'pulsar/helpers/html.html.twig' as html %}
-{% import 'pulsar/helpers/form.html.twig' as form %}
-{% import 'pulsar/helpers/flash.html.twig' as flash %}
+{% import 'pulsar/v2/helpers/html.html.twig' as html %}
+{% import 'pulsar/v2/helpers/form.html.twig' as form %}
+{% import 'pulsar/v2/helpers/flash.html.twig' as flash %}
 {% import 'pulsar/helpers/datagrid.html.twig' as datagrid %}
 
 {% set lipsum = "<p>Lorizzle ipsum dolor shut the shizzle up amizzle, gizzle adipiscing doggy. Izzle shizzlin dizzle brizzle, fo volutpizzle, yippiyo quizzle, owned vizzle, arcu. Pellentesque eget boom shackalack. I saw beyonces tizzles and my pizzle went crizzle erizzle. Owned fo shizzle dolor dapibizzle shiznit tempus tempor. Maurizzle for sure gizzle et turpizzle. Gangster izzle tortor. Pellentesque eleifend rhoncizzle nisi. Doggy hac ma nizzle platea dictumst. Boom shackalack dapibizzle. Shiznit tellizzle urna, pretium fo shizzle, yo mamma bizzle, ma nizzle vitae, stuff. Check out this suscipizzle. Integizzle sempizzle sed ass.</p>
@@ -39,7 +39,7 @@
 						No file selected
 					</a>
 				</div>
-				{{ html.button(label = "Add File") }}
+				{{ html.button({ 'label': 'Add File' }) }}
 			</div>
 
 			<div class="repeatable">
@@ -60,7 +60,7 @@
 						my_decision_document.doc
 					</a>
 				</div>
-				{{ html.button(label = "Add Another") }}
+				{{ html.button({ 'label': 'Add Another' }) }}
 			</div>
 
 			<div class="repeatable">
@@ -80,11 +80,11 @@
 					<a class="block-list__item" href="#">
 						{{ html.remove_button() }}
 						large_file.avi
-						{{ html.progress(25) }}
+						{{ html.progress({ 'value': 25 }) }}
 					</a>
 				</div>
-				{{ html.button(label = "Add Another") }}
-				{{ html.button(label = html.icon('remove-sign') ~ ' Remove all', class = 'btn--naked') }}
+				{{ html.button({ 'label': 'Add Another' }) }}
+				{{ html.button({ 'label': html.icon('remove-sign') ~ ' Remove all', 'class': 'btn--naked' }) }}
 			</div>
 
 
@@ -122,8 +122,8 @@
 						<p>You already have a case alert set, do you want to make this one the case alert instead?</p>
 
 						<div class="setting__actions">
-							{{ html.button(label = 'Do It', class = 'btn--primary') }}
-							{{ html.button(label = 'Cancel') }}
+							{{ html.button({ 'label': 'Do It', 'class': 'btn--primary' }) }}
+							{{ html.button({ 'label': 'Cancel' }) }}
 						</div>
 					</div>
 

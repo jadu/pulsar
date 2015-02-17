@@ -1,0 +1,59 @@
+.form-v2 {
+
+
+  .form__control[type=checkbox],
+  .form__control[type=radio] {
+    height: auto;
+    margin-top: 12px;
+    vertical-align: baseline;
+    width: 18px;
+  }
+
+  .checkbox--inline-v2,
+  .radio--inline-v2 {
+    margin-left: 0;
+    text-align: left;
+    width: 100%;
+
+    .form__control {
+      display: inline-block;
+      height: auto;
+      margin-right: 10px;
+      margin-top: 0;
+      vertical-align: baseline;
+      width: 18px;
+    }
+  }
+
+
+  .form__group--no-label {
+    margin-left: 24%;
+  }
+
+  .form__group .form__group--no-label {
+    margin-left: 0;
+  }
+
+  .form__group .form__group {
+
+    .controls {
+      max-width: none;
+      width: 100%;
+
+      label {
+        margin-bottom: 0;
+      }
+    }
+
+    .form__group--no-label {
+    margin-left: 0;
+
+      .checkbox--inline-v2,
+      .radio--inline-v2 {
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+
+}

@@ -1,0 +1,39 @@
+
+{% macro message(options) %}
+{% spaceless %}
+	{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+
+	{% if options.type is defined and options.type == 'success' %}
+		{% set icon = 'ok' %}
+	{% elseif options.type is defined and options.type == 'warning' %}
+		{% set icon = 'warning-sign' %}
+	{% elseif options.type is defined and options.type == 'error' %}
+		{% set icon = 'warning-sign' %}
+	{% else %}
+		{% set icon = 'info-sign' %}
+	{% endif %}
+
+	<div
+		class="flash flash--{{ options.type|default }}
+		{% if options.sticky == true %} is-sticky{% endif %}"
+	>
+
+		{%
+			if options.autohide is defined
+			and (
+				options.autohide == false
+				or options.autohide == 'undefined'
+			)
+		%}
+			<button class="close" data-dismiss="flash">
+				{{ html.icon('remove') }}
+			</button>
+		{% endif %}
+
+		{{ html.icon(icon) }}
+		{{ options.message|raw }}
+
+	</div>
+
+{% endspaceless %}
+{% endmacro %}

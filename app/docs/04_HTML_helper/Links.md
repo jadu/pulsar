@@ -1,23 +1,25 @@
-A simple helper to render a plain 'ol hyperlink.
+## Link
 
-You should use the link helper for everything as the plan is to automatically track UI element usage through analytics, using the link helper will allow us to roll out tracking code much more easily.
+### Example usage:
 
-Available parameters:
-    
-    {{ html.link(label, href, class, id, attributes) }}
+	{{
+		html.link({
+			'href': 'http://www.google.com',
+			'label': 'Google'
+		})
+	}}
 
-Data-attributes can be attached to links through `attributes`
+### Options
 
-    <!-- Simple example -->
-    {{ html.link(label = 'Sign in', href = '/signin') }}
+Option  | Description
+------- | ----------------------------------------------------------------------
+class 	| (string) CSS classes, space separated
+data 	| (hash) data attributes by key/value
+href	| (string) The URL attribute
+id 		| (string) A unique identifier, if required
+label 	| (string) The link label
 
-    <!-- Complex example -->
-    {{ html.link(
-        label = html.icon('user') ~ ' My account', 
-        href = '#preferences', 
-        attributes = 'data-toggle="modal"' ) }}
 
-Simple example: <a href="/signin">Sign in</a>
 
-Complex example: <a href="#preferences" data-toggle="modal"><i class="icon-user"></i> My account</a>
+
 

@@ -1,7 +1,10 @@
 {% extends '@pulsar/pulsar/layouts/tabbed.html.twig' %}
-{% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
-{% import '@pulsar/pulsar/helpers/form.html.twig' as form %}
+
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+
 {% import '@pulsar/pulsar/helpers/flash.html.twig' as flash %}
+{% import '@pulsar/pulsar/helpers/tabs.html.twig' as tabs %}
 
 {% block title %}{{ parent() }}{% endblock %}
 
@@ -9,25 +12,52 @@
 
 {%
     set actions_menu = [
-        html.link(label = html.icon('save') ~ ' Save', href = '#save'),
-        html.link(
-          label = html.icon('print') ~ ' Print',
-          href = '#print'
-        ),
+        html.link({
+          'label': html.icon('save') ~ ' Save',
+          'href': '#save'
+        }),
+        html.link({
+          'label': html.icon('print') ~ ' Print',
+          'href': '#print'
+        }),
         html.divider(),
-        html.link(
-          label = html.icon('trash') ~ ' Delete',
-          href = '#delete',
-          class = 'link--danger disabled',
-          attributes = 'data-on-datagrid-item-selected=enable'
-        )
+        html.link({
+          'label': html.icon('trash') ~ ' Delete',
+          'href': '#delete',
+          'class': 'link--danger disabled',
+          'attributes': 'data-on-datagrid-item-selected=enable'
+        })
+    ]
+%}
+
+{%
+    set actions_menu = [
+        html.link({
+          'label': html.icon('plus') ~ ' Create new filter',
+          'href': '#save'
+        }),
+        html.divider(),
+        html.link({
+          'label': html.icon('pencil') ~ ' Edit this filter',
+          'href': '#print'
+        }),
+        html.link({
+          'label': html.icon('remove-sign') ~ ' Clear this filter',
+          'href': '#print'
+        }),
+        html.divider(),
+        html.link({
+          'label': html.icon('trash') ~ ' Delete this filter',
+          'href': '#delete',
+          'class': 'link--danger',
+          'attributes': 'data-on-datagrid-item-selected=enable'
+        })
     ]
 %}
 
 {% set tab_buttons %}{% include         'lexicon/tabs/buttons_labels.html.twig' %}{% endset %}
 {% set tab_colours %}{% include         'lexicon/tabs/colours.html.twig' %}{% endset %}
 {% set tab_decks %}{% include           'lexicon/tabs/decks.html.twig' %}{% endset %}
-{% set tab_editor %}{% include          'lexicon/tabs/editor.html.twig' %}{% endset %}
 {% set tab_flash %}{% include           'lexicon/tabs/flash.html.twig' %}{% endset %}
 {% set tab_forms %}{% include           'lexicon/tabs/forms.html.twig' %}{% endset %}
 {% set tab_loading %}{% include         'lexicon/tabs/loading.html.twig' %}{% endset %}
@@ -48,7 +78,7 @@
 {% set tab_empty_table %}{% include     'lexicon/tabs/empty_table.html.twig' %}{% endset %}
 
 {%
-  set tabs = [
+  set tabs_content = [
     {
       "id"        : "components",
       "label"     : html.icon("th") ~ " Components",
@@ -62,11 +92,6 @@
           "id"    : "buttons",
           "label" : html.icon("plus-sign-alt") ~ " Buttons",
           "src"   : tab_buttons
-        },
-        {
-          "id"    : "editor",
-          "label" : html.icon("file-text-alt") ~ " Editor",
-          "src"   : tab_editor
         },
         {
           "id"    : "flash",
@@ -200,22 +225,22 @@
         <a class="btn btn__back" href="#back" onclick="history.back(); return false;"><i class="icon-arrow-left"></i></a>
         {% if actions_menu is not empty %}
           {{
-            html.button_dropdown(
-              label = 'Actions ' ~ html.badge(class = 'hide'),
-              class='actions-menu',
-              menu_items = actions_menu
-            )
+            html.button_dropdown({
+              'label': 'Actions ' ~ html.badge({ 'class': 'hide' }),
+              'class': 'actions-menu',
+              'items': actions_menu
+            })
           }}
         {% endif %}
       </div>
     </div>
   </div>
 
-  {{ html.tabs(tabs) }}
+  {{ tabs.tabs(tabs_content) }}
 {% endblock %}
 
 {% block tabs_content %}
-  {{ html.tabs_content(tabs) }}
+  {{ tabs.tabs_content(tabs_content) }}
 {% endblock %}
 
 {% block javascript %}

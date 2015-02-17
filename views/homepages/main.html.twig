@@ -1,8 +1,8 @@
 {% extends '@pulsar/pulsar/layouts/homepage.html.twig' %}
-{% import '@pulsar/pulsar/helpers/html.html.twig' as html %}
-{% import '@pulsar/pulsar/helpers/form.html.twig' as form %}
-{% import '@pulsar/pulsar/helpers/flash.html.twig' as flash %}
-{% import '@pulsar/pulsar/helpers/pulsar.html.twig' as pulsar %}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{% import '@pulsar/pulsar/v2/helpers/flash.html.twig' as flash %}
+{% import '@pulsar/pulsar/v2/helpers/pulsar.html.twig' as pulsar %}
 
 {% block title %}{{ parent() }}{% endblock %}
 
@@ -10,33 +10,35 @@
 
 {%
   set actions_menu = [
-    html.link(
-      label = html.icon('plus') ~ ' Create dashboard',
-      href = '#save'
-    ),
-    html.link(
-      label = html.icon('save') ~ ' Save',
-      href = '#save'
-    ),
-    html.link(
-      label = html.icon('save') ~ ' Save as template',
-      href = '#save'
-    ),
-    html.link(
-      label = html.icon('share') ~ ' Share',
-      href = '#save'
-    ),
+    html.link({
+      'label': html.icon('plus') ~ ' Create dashboard',
+      'href': '#save'
+    }),
+    html.link({
+      'label': html.icon('save') ~ ' Save',
+      'href': '#save'
+    }),
+    html.link({
+      'label': html.icon('save') ~ ' Save as template',
+      'href': '#save'
+    }),
+    html.link({
+      'label': html.icon('share') ~ ' Share',
+      'href': '#save'
+    }),
     html.divider(),
-    html.link(
-      label = html.icon('remove-sign') ~ ' Clear Homepage',
-      href = '#clear',
-      attributes = 'data-action=clear-homepage-confirmation'
-    ),
-    html.link(
-      label = html.icon('trash') ~ ' Delete',
-      href = '#delete',
-      class = 'link--danger'
-    )
+    html.link({
+      'label': html.icon('remove-sign') ~ ' Clear Homepage',
+      'href': '#clear',
+      'data': {
+          'action': 'clear-homepage-confirmation'
+      }
+    }),
+    html.link({
+      'label': html.icon('trash') ~ ' Delete',
+      'href': '#delete',
+      'class': 'link--danger'
+    })
   ]
 %}
 
@@ -47,60 +49,80 @@
 
 {% block actionsbar %}
   {{
-    html.button_group([
-      html.button(
-        label = html.icon('undo') ~ '',
-        href = '#',
-        type = 'link',
-        attributes = 'data-action=undo'
-      ),
-      html.button(
-        label = html.icon('rotate-right') ~ '',
-        href = '#',
-        type = 'link',
-        attributes = 'data-action=redo'
-      ),
-      html.button(
-        label = html.icon('eye-open'),
-        class = 'focus',
-        href = '#',
-        type = 'link',
-        attributes = 'data-toggle="row-handler button"'
-      ),
-      html.button(
-        label = html.icon('mobile-phone'),
-        href = '#',
-        type = 'link',
-        attributes = 'data-homepage-mode=mobile'
-      ),
-      html.button(
-        label = html.icon('tablet'),
-        href = '#',
-        type = 'link',
-        attributes = 'data-homepage-mode=tablet'
-      ),
-      html.button(
-        label = html.icon('desktop'),
-        href = '#',
-        type = 'link',
-        attributes = 'data-homepage-mode=desktop'
-      )
-    ])
-  }} 
+    html.button_group({
+      'items': [
+      html.button({
+        'label': html.icon('undo') ~ '',
+        'href': '#',
+        'type': 'link',
+        'data': {
+          'action': 'undo'
+        }
+      }),
+      html.button({
+        'label': html.icon('rotate-right') ~ '',
+        'href': '#',
+        'type': 'link',
+        'data': {
+          'action': 'redo'
+        }
+      }),
+      html.button({
+        'label': html.icon('eye-open'),
+        'class': 'focus',
+        'href': '#',
+        'type': 'link',
+        'data': {
+          'toggle': 'row-handler button'
+       }
+      }),
+      html.button({
+        'label': html.icon('mobile-phone'),
+        'href': '#',
+        'type': 'link',
+        'data': {
+          'homepage': 'mode=mobile'
+       }
+      }),
+      html.button({
+        'label': html.icon('tablet'),
+        'href': '#',
+        'type': 'link',
+        'data': {
+          'homepage': 'mode=tablet'
+       }
+      }),
+      html.button({
+        'label': html.icon('desktop'),
+        'href': '#',
+        'type': 'link',
+        'data': {
+          'homepage': 'mode=desktop'
+       }
+      })
+      ]
+    })
+  }}
   {{
-    html.button_group([
-      html.button(
-        label = html.icon('grid') ~ ' Hide Grid',
-        href = '#',
-        type = 'link',
-        attributes = 'data-toggle="grid button"'
-      ),
-      html.button(
-        label = html.icon('dashboard') ~ ' Widgets',
-        href = '#',
-        type = 'link',
-        attributes = 'data-toggle=tray data-target=#tray'
-      )
-    ])
+    html.button_group({
+      'items': [
+      html.button({
+        'label': html.icon('grid') ~ ' Hide Grid',
+        'href': '#',
+        'type': 'link',
+        'data': {
+          'toggle': '"grid button"'
+        }
+      }),
+      html.button({
+        'label': html.icon('dashboard') ~ ' Widgets',
+        'href': '#',
+        'type': 'link',
+        'data': {
+          'toggle': 'tray data-target=#tray'
+        }
+      })
+      ]
+    })
   }}
 {% endblock %}

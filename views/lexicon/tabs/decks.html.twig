@@ -1,16 +1,37 @@
-{% import 'pulsar/helpers/html.html.twig' as html %}
-{% import 'pulsar/helpers/form.html.twig' as form %}
+{% import 'pulsar/v2/helpers/html.html.twig' as html %}
+{% import 'pulsar/v2/helpers/form.html.twig' as form %}
 {% import 'pulsar/helpers/flash.html.twig' as flash %}
 <h2 class="heading">{{ heading|raw }}</h2>
 
 <div class="tab__inner tab--padded">
     <h2>Decks</h2>
 
-    {{ html.button('A simple deck', null, 'link', null, '#deck-simple', 'data-toggle="deck"') }}
+    {{
+        html.button({
+            'label': 'A simple deck',
+            'type': 'link',
+            'href': '#deck-simple',
+            'data-toggle': 'deck'
+        })
+    }}
 
-    {{ html.button('A multi-slide deck', null, 'link', null, '#deck-multi', 'data-toggle="deck"') }}
+    {{
+        html.button({
+            'label': 'A multi-slide deck',
+            'type':  'link',
+            'href': '#deck-multi',
+            'data-toggle': 'deck'
+        })
+    }}
 
-    {{ html.button('An AJAXY deck', null, 'link', null, '#deck-ajax', 'data-toggle="deck"') }}
+    {{
+        html.button({
+            'label': 'An AJAXY deck',
+            'type': 'link',
+            'href': '#deck-ajax',
+            'data-toggle': 'deck'
+        })
+    }}
 
 </div>
 
@@ -22,16 +43,58 @@
 
             <h2 class="slide__title">Deck Slide</h2>
 
-            {{ form.text('Text input', 'deckInputText', null, 'deckInputText', 'Placeholder') }}
-            {{ form.checkbox('Checkbox with left label', 'deckInputCheckboxLeft', null, 'deckInputCheckboxLeft', true) }}
-            {{ form.file('File input', 'deckInputFile', null, 'deckInputFile') }}
-            {{ form.select('Select input', {value1: 'value one', value2: 'value two'}, 'deckInputSelect', null, 'deckInputSelect') }}
-            {{ form.textarea('Textarea (4 rows)', 'deckInputTextarea4', null, 'deckInputTextarea4', 'Placeholder', null, 4) }}
-
             {{
-                form.form_end([
-                    form.submit('Save', 'btn--primary')
-                ])
+                form.text({
+                    'label': 'Text input',
+                    'id': 'deckInputText',
+                    'name': 'deckInputText',
+                    'placeholder': 'Placeholder'
+                })
+            }}
+            {{
+                form.checkbox({
+                    'label': 'Checkbox with left label',
+                    'id': 'deckInputCheckboxLeft',
+                    'name': 'deckInputCheckboxLeft',
+                    'checked': true
+                })
+            }}
+            {{
+                form.file({
+                    'label': 'File input',
+                    'id': 'deckInputFile',
+                    'name': 'deckInputFile'
+                })
+            }}
+            {{
+                form.select({
+                    'label': 'Select input',
+                    'id': 'deckInputSelect',
+                    'name': 'deckInputSelect',
+                    'options': {
+                        'value1': 'value one',
+                        'value2': 'value two'
+                    }
+                })
+            }}
+            {{
+                form.textarea({
+                    'label': 'Textarea (4 rows)',
+                    'id': 'deckInputTextarea4',
+                    'name': 'deckInputTextarea4',
+                    'placeholder': 'Placeholder',
+                    'rows': 4
+                })
+            }}
+            {{
+                form.end({
+                    'actions': [
+                        form.submit({
+                            'label': 'Save',
+                            'class': 'btn--primary'
+                        })
+                    ]
+                })
             }}
         </div>
     </div>
@@ -45,13 +108,36 @@
             {{ form.create() }}
             <h2 class="slide__title">Slide One</h2>
 
-            {{ form.textarea('Textarea (4 rows)', 'deckInputTextarea4', null, 'deckInputTextarea4', 'Placeholder', null) }}
             {{
-                form.form_end([
-                    html.button('Show me slide 2 ' ~ html.icon('arrow-right'), 'btn--primary', 'link', null, '#slide-2', 'data-toggle="slide"'),
-                    html.button('Close this slide', null, 'link', null, null, 'data-dismiss="slide"'),
-                    html.button('Close all slides', null, 'link', null, null, 'data-dismiss="deck"')
-                ])
+                form.textarea({
+                    'label': 'Textarea',
+                    'id': 'deckInputTextarea4',
+                    'name': 'deckInputTextarea4',
+                    'placeholder': 'Placeholder'
+                })
+            }}
+            {{
+                form.end({
+                    'actions': [
+                        html.button({
+                            'label': 'Show me slide 2 ' ~ html.icon('arrow-right'),
+                            'class': 'btn--primary',
+                            'type': 'link',
+                            'href': '#slide-2',
+                            'data-toggle': 'slide'
+                        }),
+                        html.button({
+                            'label': 'Close this Slide',
+                            'type': 'link',
+                            'data-dismiss': 'slide'
+                        }),
+                        html.button({
+                            'label': 'Close all Slides',
+                            'type': 'link',
+                            'data-dismiss': 'deck'
+                        })
+                    ]
+                })
             }}
         </div>
     </div>
@@ -60,13 +146,36 @@
             <button class="close" data-dismiss="deck">×</button>
             {{ form.create() }}
             <h2 class="slide__title">Slide Two</h2>
-            {{ form.textarea('Textarea (4 rows)', 'deckInputTextarea4', null, 'deckInputTextarea4', 'Placeholder', null) }}
             {{
-                form.form_end([
-                    html.button('Show me slide 3 ' ~ html.icon('arrow-right'), 'btn--primary', 'link', null, '#slide-3', 'data-toggle="slide"'),
-                    html.button('Close this slide', null, 'link', null, null, 'data-dismiss="slide"'),
-                    html.button('Close all slides', null, 'link', null, null, 'data-dismiss="deck"')
-                ])
+                form.textarea({
+                    'label': 'Textarea',
+                    'id': 'deckInputTextarea5',
+                    'name': 'deckInputTextarea5',
+                    'placeholder': 'Placeholder'
+                })
+            }}
+            {{
+                form.end({
+                    'actions': [
+                        html.button({
+                            'label': 'Show me Slide 3 ' ~ html.icon('arrow-right'),
+                            'class': 'btn--primary',
+                            'type': 'link',
+                            'href': '#slide-3',
+                            'data-toggle': 'slide'
+                        }),
+                        html.button({
+                            'label': 'Close this Slide',
+                            'type': 'link',
+                            'data-dismiss': 'slide'
+                        }),
+                        html.button({
+                            'label': 'Close all Slides',
+                            'type': 'link',
+                            'data-dismiss': 'deck'
+                        })
+                    ]
+                })
             }}
         </div>
     </div>
@@ -75,12 +184,29 @@
             <button class="close" data-dismiss="deck">×</button>
             {{ form.create() }}
             <h2 class="slide__title">Slide Three</h2>
-            {{ form.textarea('Textarea (4 rows)', 'deckInputTextarea4', null, 'deckInputTextarea4', 'Placeholder', null) }}
             {{
-                form.form_end([
-                    html.button('Close this slide', null, 'link', null, null, 'data-dismiss="slide"'),
-                    html.button('Close all slides', null, 'link', null, null, 'data-dismiss="deck"')
-                ])
+                form.textarea({
+                    'label': 'Textarea',
+                    'id': 'deckInputTextarea6',
+                    'name': 'deckInputTextarea',
+                    'placeholder': 'Placeholder'
+                })
+            }}
+            {{
+                form.end({
+                    'actions': [
+                        html.button({
+                            'label': 'Close this Slide',
+                            'type': 'link',
+                            'data-dismiss': 'slide'
+                        }),
+                        html.button({
+                            'label': 'Close all Slides',
+                            'type': 'link',
+                            'data-dismiss': 'deck'
+                        })
+                    ]
+                })
             }}
         </div>
     </div>
