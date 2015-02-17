@@ -35,15 +35,13 @@ value       | string | Specifies the value of the input
 	{% import 'pulsar/v2/helpers/util.html.twig' as util %}
 
 	<input
-		{{ util.class('form__control', options) }}
-		{{ util.checked(options.checked|default) }}
-		{{ util.form(options.form|default) }}
-		{{ util.id(options.id|default) }}
-		{{ util.name(options.name|default) }}
-		{{ util.placeholder(options.placeholder|default) }}
-		{{ util.type(options.type|default('text')) }}
-		{{ util.value(options.value|default) }}
-		{{ util.data(options.data|default) }}
+		{{
+			attributes(options
+				|defaults({
+					'class': 'form__control'
+				})
+			)
+		}}
 	/>
 
 {% endspaceless %}
@@ -78,18 +76,21 @@ name    | string | The name of this control
 #}
 {% macro label(options) %}
 {% spaceless %}
-    {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-    {% if options.label is not empty %}
-	    <label
-	        {{ util.class('control__label', options) }}
-	        {{ util.for(options.for|default) }}
-	        {{ util.form(options.form|default) }}
-	        {{ util.id(options.id|default) }}
-	        {{ util.data(options.data|default) }}
-	    >
-	        {{- options.label|raw -}}
-	    </label>
+	{% if options.label is not empty %}
+		<label
+			{{
+				attributes(options
+					|exclude('label')
+					|defaults({
+						'class': 'control__label'
+					})
+				)
+			}}
+		>
+			{{- options.label|raw -}}
+		</label>
 	{% endif %}
 
 {% endspaceless %}
@@ -131,12 +132,14 @@ value       | string | Specifies the value of the input
 	{% import 'pulsar/v2/helpers/util.html.twig' as util %}
 
 	<select
-		{{ util.class('form__control', options) }}
-		{{ util.form(options.form|default) }}
-		{{ util.id(options.id|default) }}
-		{{ util.multiple(options.multiple|default) }}
-		{{ util.name(options.name|default) }}
-		{{ util.data(options.data|default) }}
+		{{
+			attributes(options
+				|exclude('label selected value')
+				|defaults({
+					'class': 'form__control'
+				})
+			)
+		}}
 	>
 
 	{% for value, label in options.options %}
@@ -189,15 +192,15 @@ value       | string  | Specifies the value of the input
 	{% import 'pulsar/v2/helpers/util.html.twig' as util %}
 
 	<textarea
-		{{ util.class('form__control', options) }}
-		{{ util.form(options.form|default) }}
-		{{ util.id(options.id|default) }}
-		{{ util.name(options.name|default) }}
-		{{ util.placeholder(options.placeholder|default) }}
-		{{ util.type(options.type|default) }}
-		{{ util.value(options.value|default) }}
-		{{ util.data(options.data|default) }}
-		rows="{{ options.rows|default(2) }}"
+		{{
+			attributes(options
+				|exclude('value')
+				|defaults({
+					'class': 'form__control',
+					'rows': 2
+				})
+			)
+		}}
 	>
 		{{- options.value -}}
 	</textarea>

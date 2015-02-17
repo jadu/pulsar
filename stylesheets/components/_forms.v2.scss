@@ -13,17 +13,18 @@
   .radio--inline-v2 {
     margin-left: 0;
     text-align: left;
+    width: 100%;
 
     .form__control {
       display: inline-block;
       height: auto;
       margin-right: 10px;
+      margin-top: 0;
       vertical-align: baseline;
       width: 18px;
     }
   }
 
-  
 
   .form__group--no-label {
     margin-left: 24%;

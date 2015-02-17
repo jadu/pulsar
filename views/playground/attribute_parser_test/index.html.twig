@@ -1,18 +1,131 @@
 {% extends 'pulsar/layouts/base.html.twig' %}
-{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+
+{% macro attr_test(attr, args = {}) %}
+{% spaceless %}
+	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+
+	<span
+		{{ attributes(attr, args) -}}
+	>
+		{{- attr.label|raw -}}
+	</span>
+
+{% endspaceless %}
+{% endmacro %}
 
 {% block body %}
 
 	{%
-		set attributes = {
+		set attr_simple = {
 			'class': 'this is my class chain',
 			'data-awesome': 'true',
 			'data-from-star-trek': 'false',
 			'href': 'http://www.google.com',
-			'label': 'MY LABELZ'
+			'label': 'Simple example'
 		}
 	%}
 
-	{{ html.attr_test(attributes) }}
+	{{ _self.attr_test(attr_simple)|e }}
 
+	<hr />
+
+	{%
+		set attr_ignores = {
+			'slim': 'shady',
+			'marshall': 'mathers',
+			'eminem': true,
+			'label': 'Ignore test'
+		}
+	%}
+
+	{{
+		_self.attr_test(
+			attr_ignores,
+			{
+				'ignores': ['slim', 'eminem', 'label']
+			}
+		)|e
+	}}
+
+	<hr />
+
+	{%
+		set attr_includes = {
+			'slim': 'shady',
+			'marshall': 'mathers',
+			'eminem': true,
+			'label': 'Includes test'
+		}
+	%}
+
+	{{
+		_self.attr_test(
+			attr_includes,
+			{
+				'includes': ['eminem']
+			}
+		)|e
+	}}
+
+	<hr />
+
+	{%
+		set attr_both = {
+			'slim': 'shady',
+			'marshall': 'mathers',
+			'eminem': true,
+			'label': 'Ignores should override includes'
+		}
+	%}
+
+	{{
+		_self.attr_test(
+			attr_both,
+			{
+				'ignores': ['eminem'],
+				'includes': ['eminem', 'slim']
+			}
+		)|e
+	}}
+
+	<hr />
+
+	{%
+		set attr_both = {
+			'slim': 'shady',
+			'marshall': 'mathers',
+			'eminem': true,
+			'label': 'Defaults test'
+		}
+	%}
+
+	{{
+		_self.attr_test(
+			attr_both,
+			{
+				'defaults': {
+					'class': 'myDefaultClass',
+					'marshall': 'III'
+				}
+			}
+		)|e
+	}}
+
+	<hr />
+
+	{%
+		set hash = {
+			'data-awesome': 'true',
+			'data-from-star-trek': 'false',
+			'href': 'http://www.google.com',
+			'label': 'Simple example'
+		}
+	%}
+
+	{%
+		set array = ['guess', 'who’s', 'back', 'back', 'again']
+	%}
+<pre>
+{{ dump(hash|exclude('label')|defaults({'class': 'btn'})) }}
+</pre>
 {% endblock %}
