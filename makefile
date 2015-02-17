@@ -15,7 +15,7 @@ build:
 
 	@ echo "Installing Composer and its dependencies...${HR}\n"
 	@ sudo curl -sS https://getcomposer.org/installer | php -d detect_unicode=Off
-	@ sudo php composer.phar install
+	@ php composer.phar install
 	@ echo "\n${CHECK} Done"
 
 	@ echo "${HR}\nInstalling XCode Command Line Tools...${HR}\n"
@@ -58,7 +58,7 @@ ifeq (${GRUNT}, )
 else
 	@ echo "Grunt is already installed.\n"
 endif
-	@ sudo npm install
+	@ npm install
 	@ echo "\n${CHECK} Done"
 
 	@ echo "${HR}\nInstalling Git hooks...${HR}"
