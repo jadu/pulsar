@@ -7,17 +7,6 @@ module.exports = function(grunt) {
     pkg:    grunt.file.readJSON('package.json'),
     pulsar: grunt.file.readJSON('pulsar.json'),
 
-    php: {
-      dev: {
-        options: {
-          bin: '/usr/bin/php', // Mavericks and Yosemite
-          // bin: '/usr/local/php5/bin/php', // Mountain Lion (See http://php-osx.liip.ch for PHP 5.4.0+)
-          keepalive: true,
-          open: true
-        }
-      }
-    },
-
     phpunit: {
       classes: {
           dir: 'tests/unit/'
@@ -165,13 +154,6 @@ module.exports = function(grunt) {
       updateNpm: {
         cmd: 'sudo npm install'
       }
-    },
-
-    concurrent: {
-      dev: ['watch', 'php'],
-      options: {
-        logConcurrentOutput: true
-      }
     }
 
   });
@@ -191,7 +173,7 @@ module.exports = function(grunt) {
     ]
   });
 
- grunt.registerTask('default', ['sass:dev', 'concurrent:dev']);
+ grunt.registerTask('default', ['sass:dev', 'watch']);
 
  grunt.registerTask('pre-commit', [
     'asciify',
@@ -199,11 +181,6 @@ module.exports = function(grunt) {
     // 'leadingIndent:files',
     'copy:readme'
   ]);
-
-  // grunt.registerTask('release', [
-  //   'build',
-  //   'bump'
-  // ]);
 
   grunt.registerTask('smoketest', [
     'clean:smoketest',
