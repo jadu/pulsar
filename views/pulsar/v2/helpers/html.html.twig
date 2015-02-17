@@ -36,13 +36,9 @@ type    | string | Can be button (default), link, input, submit
 	{% if options.type is defined and options.type == 'link' %}
 
 		{{
-			_self.link({
-				'class': 'btn ' ~ options.class|default,
-				'href': options.href|default,
-				'id': options.id|default,
-				'label': options.label|default,
-				'data': options.data|default
-			})
+			_self.link(options|merge({
+				'class': 'btn ' ~ options.class|default
+			}))
 		}}
 
 	{% elseif options.type is defined and options.type == 'input' %}
@@ -132,9 +128,11 @@ label     | string | The button label
 
 	<div
 		{{
-			util.class(
-				'btn__group drop' ~ options.direction|default('down'),
-				options
+			attributes(options
+				|only('class')
+				|defaults({
+					'class': 'btn__group drop' ~ options.direction|default('down')
+				})
 			)
 		}}
 	/>
@@ -832,9 +830,8 @@ type    | string | Can be button (default), link, input, submit
 	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
 	{{
-		_self.button({
+		_self.button(options|merge({
 			'class': 'remove-button ' ~ options.class|default,
-			'id': options.id|default,
 			'label': _self.icon('remove-sign'),
 			'type': options.type|default('button'),
 			'data-action': 'remove',
@@ -842,7 +839,7 @@ type    | string | Can be button (default), link, input, submit
 			'data-placement': 'right',
 			'data-toggle': 'tooltips',
 			'data-title': options.tooltip|default('Remove this item')
-		})
+		}))
 	}}
 
 {% endspaceless %}
