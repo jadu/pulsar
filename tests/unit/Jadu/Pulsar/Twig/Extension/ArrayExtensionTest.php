@@ -72,6 +72,20 @@ class ArrayExtensionTest extends \PHPUnit_Framework_TestCase
         );
 	}
 
+	public function testExcludeFromArrayIsCaseInsensitive()
+	{
+		$excludes = ['SLIM', 'Class'];
+		$dataOut = array('eminem' => '1', 'marshall' => 'mathers');
+
+        $this->assertEquals(
+        	$dataOut,
+        	$this->ext->excludeFromArray(
+        		$this->data,
+        		$excludes
+        	)
+        );
+	}
+
 	public function testOnlyFromArrayIgnoresUnsetValues()
 	{
 		$tests = ['', false, null, array()];
@@ -128,5 +142,18 @@ class ArrayExtensionTest extends \PHPUnit_Framework_TestCase
         );
 	}
 
+	public function testOnlyFromArrayIsCaseInsensitive()
+	{
+		$only = ['SLIM', 'Class'];
+		$dataOut = array('slim' => 'shady', 'class' => 'wrapper');
+
+        $this->assertEquals(
+        	$dataOut,
+        	$this->ext->onlyFromArray(
+        		$this->data,
+        		$only
+        	)
+        );
+	}
 
 }

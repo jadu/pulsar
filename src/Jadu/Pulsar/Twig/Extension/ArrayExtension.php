@@ -38,7 +38,9 @@ class ArrayExtension extends \Twig_Extension
 	}
 
 	/**
-	 * Returns only items not present in the filter list
+	 * Returns only items not present in the filter list based on a
+	 * case-insensitive search.
+	 *
 	 * @param  array        $array    The array to filter
 	 * @param  string|array $excludes The list of items to exclude
 	 * @return array                  The filtered array
@@ -56,7 +58,7 @@ class ArrayExtension extends \Twig_Extension
 		$out = array();
 
 		foreach ($array as $key => $value) {
-			if (!in_array($key, $excludes)) {
+			if (!in_array(strtolower($key), array_map('strtolower', $excludes))) {
 				$out[$key] = $value;
 			}
 		}
@@ -65,7 +67,9 @@ class ArrayExtension extends \Twig_Extension
 	}
 
 	/**
-	 * Returns only items present in the filter list
+	 * Returns only items present in the filter list based on a case-insensitive
+	 * search.
+	 *
 	 * @param  array        $array    The array to filter
 	 * @param  string|array $excludes The list of items to include
 	 * @return array                  The filtered array
@@ -83,7 +87,7 @@ class ArrayExtension extends \Twig_Extension
 		$out = array();
 
 		foreach ($array as $key => $value) {
-			if (in_array($key, $only)) {
+			if (in_array(strtolower($key), array_map('strtolower', $only))) {
 				$out[$key] = $value;
 			}
 		}
