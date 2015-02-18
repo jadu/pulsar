@@ -59,6 +59,7 @@ p {
   @include respond-min($screen-phone) {
     margin-bottom: $line-height-base;
   }
+  @include word-wrap();
 }
 
 // Lists

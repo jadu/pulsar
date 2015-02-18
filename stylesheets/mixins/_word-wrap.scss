@@ -1,0 +1,16 @@
+/**
+ * Cross browser shortcut for word-break: break-word with hyphens
+ *
+ * @example scss
+ * .some-class {
+ *     @include word-wrap();
+ * }
+ *
+ */
+@mixin word-wrap() {
+    word-break: break-word;
+    word-wrap: break-word;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+         hyphens: auto;
+}
