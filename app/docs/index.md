@@ -1,24 +1,26 @@
-Pulsar is a robust user-interface framework with a collection of patterns, helpers and a user-focused design process with documented best practices that will help you to make beautiful user interfaces and beautiful user experiences.
-
-## Installing development dependencies
-
-To run the local development version of Pulsar some additional packages to be installed before it'll work, you can install all dependencies by typing the following command in the pulsar directory:
-
-    $ make
-
-(Make can be installed via xCode)
-
-You can define new composer packages to be installed in `composer.json` and new front-end libraries in `bower.json`, re-running the make command will bring these into Pulsar. You can reverse the make process by using:
-
-    $ sudo make clean
-
-These dependencies should be committed to the Pulsar repository, for more information [read this article](http://addyosmani.com/blog/checking-in-front-end-dependencies/).
-
 ### Changelog
 
-**TBC**
+**3.1.0** - 18/02/2015
 
-Allow `html.remove_button()` to accept a `type` attribute
+* Removed use of [sudo](http://www.youtube.com/watch?v=r0qBaBb1Y-U) from makefile
+* Dumping php server functions from gruntfile in favour of Vagrant, we've just got more in common
+* Standardised colour variable use for badges, labels and buttons
+* Added a missing comma, try to find where!
+
+**3.0.0** - 17/02/2015
+
+* **New** `html.panel` component
+* **New** `html.label_group` component
+* Rewrote all helpers to remove the need for named arguments, now everyone gets along nicely
+* Made all helpers compatibile with Twig’s `strict_variables` mode
+* Added an `AttributesParser` Twig extension to simplify how html element attributes are passed around inside macros
+* Added new `excludes` and `only` array filters for Twig, be a bit more bossy about what your arrays do
+* Switch to the official [twigphp/twig](https://github.com/twigphp/Twig) repository instead of jadu/twig which was a fork of fabpot/twig (did you follow all that?)
+* Went through the 12 step programme and removed the Bourbon dependency from Sass
+* Remixed the state colours (success, error etc) to meet WCAG 2.0 AA guidelines for contrast ratios, you can now read the text, which is nice
+* Made buttons look pretty (buttons used to use Bourbon’s button styling, eww)
+* Updated popover styling to make them a bit sharper and standouty (totally a word)
+* Added Vagrant hawtness for running the Pulsar development environment in a VM like the cool kids
 
 **2.2.0** - 07/11/2014
 
