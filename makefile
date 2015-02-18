@@ -62,7 +62,7 @@ endif
 ifeq (${GRUNT}, )
 	@ npm install -g grunt-cli
 else
-	@ echo "Grunt is already installed.\n"
+	@ echo "Grunt is already installed."
 endif
 	@ npm install
 	@ echo "\n${CHECK} Done"
