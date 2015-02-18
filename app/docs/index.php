@@ -7,6 +7,7 @@ require_once __DIR__ . '/' . $baseDir . 'vendor/autoload.php';
 require_once __DIR__ . '/functions.php';
 
 use \Michelf\MarkdownExtra;
+use Jadu\Pulsar\Twig\Extension\ArrayExtension;
 use Jadu\Pulsar\Twig\Extension\AttributeParserExtension;
 use Jadu\Pulsar\Twig\Extension\ConfigExtension;
 use Jadu\Pulsar\Twig\Extension\RelativeTimeExtension;
@@ -25,6 +26,7 @@ $twig = new Twig_Environment($loader,
 	)
 );
 
+$twig->addExtension(new ArrayExtension());
 $twig->addExtension(new AttributeParserExtension());
 $twig->addExtension(new ConfigExtension($baseDir . 'pulsar.json'));
 $twig->addExtension(new RelativeTimeExtension());

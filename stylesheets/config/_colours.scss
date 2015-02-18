@@ -57,6 +57,7 @@ $inverse-link-hover-color:      darken($white, 10%) !default;
 //  The colour and it's alternative MUST meet AA compliance for contrast
 // -----------------------------------------------------------------------------
 
+$base-color:                    $gray !default;
 $primary-color:                 #1F7BB8 !default;
 $success-color:                 #297C46 !default;
 $warning-color:                 #EAA96A !default;
@@ -64,6 +65,7 @@ $danger-color:                  #C84D40 !default;
 $info-color:                    $jadu-blue-cool !default;
 $inverse-color:                 $gray-dark !default;
 
+$base-color-alt:                $black !default;
 $primary-color-alt:             #FFFFFF !default;
 $success-color-alt:             #FFFFFF !default;
 $warning-color-alt:             #000000 !default;
@@ -71,20 +73,6 @@ $danger-color-alt:              #FFFFFF !default;
 $info-color-alt:                #000000 !default;
 $inverse-color-alt:             #FFFFFF !default;
 
-// -----------------------------------------------------------------------------
-//  Labels
-// -----------------------------------------------------------------------------
-
-$label-bg:                      $gray !default;
-$label-primary-bg:              $primary-color !default;
-$label-success-bg:              $success-color !default;
-$label-info-bg:                 $info-color !default;
-$label-warning-bg:              $warning-color !default;
-$label-danger-bg:               $danger-color !default;
-$label-inverse-bg:              $inverse-color !default;
-$label-color:                   $black !default;
-$label-color-alt:               #fff !default;
-$label-link-hover-color:        #fff !default;
 
 // -----------------------------------------------------------------------------
 //  Progress bars

@@ -228,17 +228,19 @@
         }}
         {{
             html.label({
-                label: 'label with tooltip',
-                class: 'label--inverse',
-                tooltip_title: 'Hello'
+                'label': 'label with tooltip',
+                'class': 'label--inverse',
+                'data-toggle': 'tooltips',
+                'data-title': 'Hello!'
             })
         }}
         {{
             html.label({
-                label: 'label with right-aligned tooltip',
-                class: 'label--inverse',
-                tooltip_title: 'You look nice',
-                tooltip_placement: 'right'
+                'label': 'label with right-aligned tooltip',
+                'class': 'label--inverse',
+                'data-toggle': 'tooltips',
+                'data-title': 'You look nice',
+                'data-placement': 'right'
             })
         }}
     </p>

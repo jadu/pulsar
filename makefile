@@ -8,14 +8,15 @@ BREW = $(shell which brew)
 BOWER = $(shell which bower)
 GRUNT = $(shell which grunt)
 NODE = $(shell which node)
+PHANTOMJS = $(shell which phantomjs)
 XCODE = $(shell pkgutil --pkg-info=com.apple.pkg.CLTools_Executables)
 
 build:
 	@ echo "${HEADER}"
 
 	@ echo "Installing Composer and its dependencies...${HR}\n"
-	@ sudo curl -sS https://getcomposer.org/installer | php -d detect_unicode=Off
-	@ sudo php composer.phar install
+	@ curl -sS https://getcomposer.org/installer | php -d detect_unicode=Off
+	@ php composer.phar install
 	@ echo "\n${CHECK} Done"
 
 	@ echo "${HR}\nInstalling XCode Command Line Tools...${HR}\n"
@@ -29,10 +30,15 @@ endif
 ifeq (${BREW}, )
 	ruby -e "$$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
 else
-	@ echo "Homebrew v$(shell brew --version) is already installed.\n"
+	@ echo "Homebrew v$(shell brew --version) is already installed."
 endif
+
+ifeq (${PHANTOMJS}, )
 	@ brew install phantomjs
 	@ echo "\n${CHECK} Done"
+else
+	@ echo "Phantomjs v$(shell phantomjs --version) is already installed."
+endif
 
 	@ echo "${HR}\nInstalling Node & NPM...${HR}\n"
 ifeq (${NODE}, )
@@ -45,7 +51,7 @@ endif
 
 	@ echo "${HR}\nInstalling Bower and its dependencies...${HR}\n"
 ifeq (${BOWER}, )
-	@ sudo npm install -g bower
+	@ npm install -g bower
 else
 	@ echo "Bower v$(shell bower --version) is already installed."
 endif
@@ -54,11 +60,11 @@ endif
 
 	@ echo "${HR}\nInstalling Grunt and its libraries...${HR}\n"
 ifeq (${GRUNT}, )
-	@ sudo npm install -g grunt-cli
+	@ npm install -g grunt-cli
 else
 	@ echo "Grunt is already installed.\n"
 endif
-	@ sudo npm install
+	@ npm install
 	@ echo "\n${CHECK} Done"
 
 	@ echo "${HR}\nInstalling Git hooks...${HR}"
@@ -70,11 +76,8 @@ endif
 	@ grunt sass:dev
 	@ echo "${CHECK} Done\n"
 
-	@ echo "${HR}\nRunning the first build...${HR}\n"
-	@ grunt build
-	@ echo "\n${CHECK} Done\n"
-
-	@ echo "Run 'grunt' to start the documentation server and watch for Sass changes."
+	@ echo "Run 'vagrant up' start the VM."
+	@ echo "Run 'grunt' to watch for Sass changes."
 
 clean:
 	@ echo "${HEADER}"
