@@ -5,7 +5,7 @@
 * Removed use of [sudo](http://www.youtube.com/watch?v=r0qBaBb1Y-U) from makefile
 * Dumping php server functions from gruntfile in favour of Vagrant, we've just got more in common
 * Standardised colour variable use for badges, labels and buttons
-* Added a missing comma, try to find where!
+* Added a missing comma, mistakes like that crash space shuttles!
 
 **3.0.0** - 17/02/2015
 
