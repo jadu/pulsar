@@ -6,7 +6,7 @@
   vertical-align: middle; // match .btn alignment given font-size hack above
 
   > .btn,
-  .btn__group {
+  > .btn__group {
     border-left: 1px solid #ccc;
     border-right: 1px solid #ccc;
     position: relative;
@@ -45,11 +45,6 @@
 .btn__group > .btn__group:not(:first-child):not(:last-child) {
   border-radius: 0;
 }
-
-.btn__group > .btn__group + .btn__group >.btn {
-  margin-left: -1px;
-}
-
 
 // Prevent double borders when buttons are next to each other
 .btn__group .btn + .btn,
@@ -120,6 +115,18 @@
 
 // Split button dropdowns
 // ----------------------
+
+// Remove the box-shadow and borders from btns
+.btn__group > .btn__group > .btn {
+  box-shadow: none; 
+  border-right: none;
+  border-left: none;
+}
+
+// Add the box-shadow to the nested .btn__group rather than the .btn
+.btn__group > .btn__group {
+  box-shadow: 0 2px 0 $shadow-color;
+}
 
 // Give the line between buttons some depth
 .btn__group > .btn + .dropdown__toggle {
