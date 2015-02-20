@@ -125,7 +125,7 @@
 
 // Add the box-shadow to the nested .btn__group rather than the .btn
 .btn__group > .btn__group {
-  box-shadow: 0 2px 0 $shadow-color;
+  box-shadow: 0 2px 0 #ccc;
 }
 
 // Give the line between buttons some depth
