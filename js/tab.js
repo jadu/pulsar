@@ -18,7 +18,9 @@
  * ======================================================================== */
 
 
-define(['jquery'], function($) { "use strict";
+"use strict";
+
+var $ = require('jquery');
 
   // TAB CLASS DEFINITION
   // ====================
@@ -148,5 +150,5 @@ define(['jquery'], function($) { "use strict";
     $('.tabs > .tabs__content > .tab__pane').css('min-height', $('.tabs__list').height());
   });
 
-});
+module.exports = tab;
 

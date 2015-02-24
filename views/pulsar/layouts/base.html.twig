@@ -30,15 +30,8 @@
     <link rel="stylesheet" type="text/css" href="{{ libsPath ~ 'font-awesome/css/font-awesome-ie7.min.css' }}" />
     <![endif]-->
 
-    <script src="{{ jsPath ~ 'config.js' }}"></script>
-    <script src="{{ libsPath ~ 'requirejs/require.js' }}"></script>
-    <script
-        src="{{ jsPath ~ 'main.js' }}"
-        id="main-js"
-{% if pageModule is defined %}
-        data-page="{{ pageModule }}"
-{% endif %}
-    ></script>
+    <script src="{{ base_path ~ 'dist/js/pulsar.js' }}"></script>
+
 
     {% block pageStyle %}{% endblock %}
 
@@ -47,6 +40,6 @@
 
     {% block body %}{% endblock %}
 
-    <script src="http://localhost:8000/libs/livereload-js/dist/livereload.js?host=localhost"></script>
+    <script src="http://pulsar.dev/libs/livereload-js/dist/livereload.js?host=localhost"></script>
 </body>
 </html>

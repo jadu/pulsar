@@ -7,6 +7,10 @@ module.exports = function(grunt) {
     pkg:    grunt.file.readJSON('package.json'),
     pulsar: grunt.file.readJSON('pulsar.json'),
 
+    browserify: {
+      'dist/js/pulsar.js': ['js/browserify.js']
+    },
+
     phpunit: {
       classes: {
           dir: 'tests/unit/'
@@ -68,6 +72,10 @@ module.exports = function(grunt) {
           livereload: true,
         },
       },
+      js: {
+        files: ['js/**/*.js'],
+        tasks: ['browserify']
+      }
     },
 
     jshint: {
