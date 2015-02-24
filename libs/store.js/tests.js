@@ -16,16 +16,18 @@ function assert(truthy, msg) {
 
 function runFirstPass() {
 	store.clear()
-	
+
 	store.get('unsetValue') // see https://github.com/marcuswestin/store.js/issues/63
-	
+
 	store.set('foo', 'bar')
 	assert(store.get('foo') == 'bar', "stored key 'foo' not equal to stored value 'bar'")
 
 	store.remove('foo')
 	assert(store.get('foo') == null, "removed key 'foo' not null")
 
+	assert(store.has('foo') == false, "key 'foo' exists when it shouldn't")
 	assert(store.set('foo','value') == 'value', "store#set returns the stored value")
+	assert(store.has('foo') == true, "key 'foo' doesn't exist when it should")
 
 	store.set('foo', 'bar1')
 	store.set('foo', 'bar2')
@@ -34,12 +36,15 @@ function runFirstPass() {
 	store.set('foo', 'bar')
 	store.set('bar', 'foo')
 	store.remove('foo')
+	assert(store.has('foo') == false, "key 'foo' exists when it shouldn't")
 	assert(store.get('bar') == 'foo', "removing key 'foo' also removed key 'bar'")
 
 	store.set('foo', 'bar')
 	store.set('bar', 'foo')
 	store.clear()
 	assert(store.get('foo') == null && store.get('bar') == null, "keys foo and bar not cleared after store cleared")
+
+	assert(store.get('defaultVal', 123) == 123, "store.get should return default value")
 
 	store.transact('foosact', function(val) {
 		assert(typeof val == 'object', "new key is not an object at beginning of transaction")
