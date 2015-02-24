@@ -12,11 +12,8 @@
   "dependencies": {
     "bootstrap-daterangepicker": "latest",
     "bootstrap-tour": "latest",
-    "bourbon": "3.x",
-    "console-js": "gh-pages",
     "font-awesome": "3.2.1",
     "html5shiv": "latest",
-    "highcharts": "latest",
     "highlightjs": "latest",
     "ie7-js": "https://ie7-js.googlecode.com/files/ie7-2.1%28beta4%29.zip",
     "jquery": "1.x",
@@ -35,11 +32,13 @@
     "sticky": "latest",
     "store.js": "latest",
     "summernote": "latest",
-    "Vague.js": "Stanton/vague.js",
-    "zeroclipboard": "2.1.1"
+    "Vague.js": "Stanton/vague.js"
   },
   "devDependencies": {
     "livereload-js": "livereload/livereload-js",
     "phantomcss": "latest"
+  },
+  "resolutions": {
+    "font-awesome": "3.2.1"
   }
 }

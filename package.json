@@ -13,9 +13,7 @@
       "grunt": "latest",
       "grunt-asciify": "latest",
       "grunt-autoprefixer": "latest",
-      "grunt-bg-shell": "latest",
       "grunt-bump": "latest",
-      "grunt-concurrent": "latest",
       "grunt-contrib-clean": "latest",
       "grunt-contrib-copy": "latest",
       "grunt-contrib-jshint": "latest",
@@ -25,13 +23,13 @@
       "grunt-exec": "latest",
       "grunt-leading-indent": "latest",
       "grunt-mocha": "latest",
-      "grunt-php": "latest",
+      "grunt-notify": "latest",
       "grunt-phpunit": "latest",
       "grunt-requirejs": "latest",
-      "grunt-semver": "latest",
       "jsdom": "latest",
       "mocha": "latest",
       "matchdep": "latest",
-      "sinon": "latest"
+      "sinon": "latest",
+      "time-grunt": "latest"
     }
 }
