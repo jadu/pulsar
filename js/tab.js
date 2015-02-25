@@ -150,5 +150,5 @@ var $ = require('jquery');
     $('.tabs > .tabs__content > .tab__pane').css('min-height', $('.tabs__list').height());
   });
 
-module.exports = tab;
+module.exports = Tab;
 

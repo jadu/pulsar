@@ -1,37 +1,43 @@
 {
   "name": "pulsar",
   "version": "3.1.1",
-  "repository":
-    {
-      "type": "git",
-      "url": "git@bitbucket.org:Stanton/pulsar.git"
-    },
-  "devDependencies":
-    {
-      "chai": "latest",
-      "contextify": "latest",
-      "grunt": "latest",
-      "grunt-asciify": "latest",
-      "grunt-autoprefixer": "latest",
-      "grunt-bump": "latest",
-      "grunt-browserify": "latest",
-      "grunt-contrib-clean": "latest",
-      "grunt-contrib-copy": "latest",
-      "grunt-contrib-jshint": "latest",
-      "grunt-sass": "latest",
-      "grunt-contrib-uglify": "latest",
-      "grunt-contrib-watch": "latest",
-      "grunt-exec": "latest",
-      "grunt-leading-indent": "latest",
-      "grunt-mocha": "latest",
-      "grunt-notify": "latest",
-      "grunt-phpunit": "latest",
-      "grunt-requirejs": "latest",
-      "jquery": "1.x",
-      "jsdom": "latest",
-      "mocha": "latest",
-      "matchdep": "latest",
-      "sinon": "latest",
-      "time-grunt": "latest"
-    }
+  "repository": {
+    "type": "git",
+    "url": "git@bitbucket.org:Stanton/pulsar.git"
+  },
+  "scripts": {
+    "test": "npm run dantest && mocha-phantomjs --path ./node_modules/.bin/phantomjs tests/js/index.html --reporter spec",
+    "dantest": "browserify tests/js/index --standalone=pulsar --debug --outfile dist/js/test.js"
+  },
+  "devDependencies": {
+    "browserify": "^6.3.3",
+    "chai": "latest",
+    "contextify": "latest",
+    "grunt": "latest",
+    "grunt-asciify": "latest",
+    "grunt-autoprefixer": "latest",
+    "grunt-browserify": "latest",
+    "grunt-bump": "latest",
+    "grunt-contrib-clean": "latest",
+    "grunt-contrib-copy": "latest",
+    "grunt-contrib-jshint": "latest",
+    "grunt-contrib-uglify": "latest",
+    "grunt-contrib-watch": "latest",
+    "grunt-exec": "latest",
+    "grunt-leading-indent": "latest",
+    "grunt-mocha": "latest",
+    "grunt-notify": "latest",
+    "grunt-phpunit": "latest",
+    "grunt-requirejs": "latest",
+    "grunt-sass": "latest",
+    "jquery": "1.x",
+    "jsdom": "latest",
+    "matchdep": "latest",
+    "mocha": "latest",
+    "mocha-phantomjs": "latest",
+    "phantomjs": "latest",
+    "sinon": "latest",
+    "sinon-chai": "latest",
+    "time-grunt": "latest"
+  }
 }

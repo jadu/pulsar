@@ -17,7 +17,9 @@
  * limitations under the License.
  * ======================================================================== */
 
-define(['jquery'], function($) { "use strict";
+"use strict";
+
+var $ = require('jquery');
 
   // DROPDOWN CLASS DEFINITION
   // =========================
@@ -150,4 +152,4 @@ define(['jquery'], function($) { "use strict";
     .on('click.bs.dropdown.data-api'  , toggle, Dropdown.prototype.toggle)
     .on('keydown.bs.dropdown.data-api', toggle + ', [role=menu]' , Dropdown.prototype.keydown)
 
-});
+module.exports = dropdown;
