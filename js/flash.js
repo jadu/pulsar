@@ -7,8 +7,8 @@
  */
 'use strict';
 
-var $ = require('jquery');
-    //sticky = require('../libs/sticky/jquery.sticky');
+var $ = require('jquery'),
+    sticky = require('../libs/sticky/jquery.sticky');
 
   (function ($, window, document, undefined) {
 

@@ -34,18 +34,19 @@
     "jquery": "1.x",
     "jsdom": "latest",
     "matchdep": "latest",
+    "minifyify": "^6.3.0",
     "mocha": "latest",
     "mocha-phantomjs": "latest",
     "phantomjs": "latest",
     "sinon": "latest",
     "sinon-chai": "latest",
-    "time-grunt": "latest"
+    "time-grunt": "latest",
+    "uglifyify": "^3.0.1"
   },
   "browserify": {
     "transform": [
-        "browserify-shim"
+      "browserify-shim"
     ]
   },
-  "browserify-shim": {
-  }
+  "browserify-shim": {}
 }
