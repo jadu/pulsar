@@ -1,5 +1,10 @@
 ### Changelog
 
+**3.2.0** - 26/02/2015
+
+* Switch to using Browserify instead of RequireJS, not just for t'laugh, it's just better
+* Slimmed down the main javascript package to the essential components that the  majority of Pulsar UIs will need
+
 **3.1.0** - 18/02/2015
 
 * Removed use of [sudo](http://www.youtube.com/watch?v=r0qBaBb1Y-U) from makefile
