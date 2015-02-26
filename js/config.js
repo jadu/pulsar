@@ -1,8 +1,8 @@
-(function () {
+module.exports = function() {
 
   // Set up a Jadu global, if we don't already have one
   if (!window.jadu) {
-    window.jadu = {}; 
+    window.jadu = {};
   }
 
   // Set RequireJS path (used by main.js)
@@ -10,4 +10,4 @@
     window.jadu.requireJsPath = '';
   }
 
-}());
+}

@@ -2,6 +2,8 @@ define([
   'summernote/core/agent', 'summernote/core/dom', 'summernote/core/func'
 ], function (agent, dom, func) {
   /**
+   * @class Renderer
+   *
    * renderer
    *
    * rendering toolbar and editable
@@ -10,14 +12,15 @@ define([
 
     /**
      * bootstrap button template
-     *
-     * @param {String} label
-     * @param {Object} [options]
-     * @param {String} [options.event]
-     * @param {String} [options.value]
-     * @param {String} [options.title]
-     * @param {String} [options.dropdown]
-     * @param {String} [options.hide]
+     * @private
+     * @param {String} label button name
+     * @param {Object} [options] button options
+     * @param {String} [options.event] data-event
+     * @param {String} [options.className] button's class name
+     * @param {String} [options.value] data-value
+     * @param {String} [options.title] button's title for popup
+     * @param {String} [options.dropdown] dropdown html
+     * @param {String} [options.hide] data-hide
      */
     var tplButton = function (label, options) {
       var event = options.event;
@@ -46,7 +49,7 @@ define([
 
     /**
      * bootstrap icon button template
-     *
+     * @private
      * @param {String} iconClassName
      * @param {Object} [options]
      * @param {String} [options.event]
@@ -61,7 +64,7 @@ define([
 
     /**
      * bootstrap popover template
-     *
+     * @private
      * @param {String} className
      * @param {String} content
      */
@@ -78,9 +81,9 @@ define([
      * bootstrap dialog template
      *
      * @param {String} className
-     * @param {String} [title]
+     * @param {String} [title='']
      * @param {String} body
-     * @param {String} [footer]
+     * @param {String} [footer='']
      */
     var tplDialog = function (className, title, body, footer) {
       return '<div class="' + className + ' modal" aria-hidden="false">' +
@@ -93,9 +96,7 @@ define([
                    '</div>' : ''
                    ) +
                    '<form class="note-modal-form">' +
-                     '<div class="modal-body">' +
-                       '<div class="row-fluid">' + body + '</div>' +
-                     '</div>' +
+                     '<div class="modal-body">' + body + '</div>' +
                      (footer ?
                      '<div class="modal-footer">' + footer + '</div>' : ''
                      ) +
@@ -107,23 +108,16 @@ define([
 
     var tplButtonInfo = {
       picture: function (lang) {
-        return tplIconButton('fa fa-picture-o icon-picture', {
+        return tplIconButton('fa fa-picture-o', {
           event: 'showImageDialog',
           title: lang.image.image,
           hide: true
         });
       },
       link: function (lang) {
-        return tplIconButton('fa fa-link icon-link', {
+        return tplIconButton('fa fa-link', {
           event: 'showLinkDialog',
           title: lang.link.link,
-          hide: true
-        });
-      },
-      video: function (lang) {
-        return tplIconButton('fa fa-youtube-play icon-play', {
-          event: 'showVideoDialog',
-          title: lang.video.video,
           hide: true
         });
       },
@@ -136,7 +130,7 @@ define([
                          '</div>' +
                          '<div class="note-dimension-display"> 1 x 1 </div>' +
                        '</ul>';
-        return tplIconButton('fa fa-table icon-table', {
+        return tplIconButton('fa fa-table', {
           title: lang.table.table,
           dropdown: dropdown
         });
@@ -152,16 +146,18 @@ define([
                  '</a></li>';
         }, '');
 
-        return tplIconButton('fa fa-magic icon-magic', {
+        return tplIconButton('fa fa-magic', {
           title: lang.style.style,
           dropdown: '<ul class="dropdown-menu">' + items + '</ul>'
         });
       },
       fontname: function (lang, options) {
         var items = options.fontNames.reduce(function (memo, v) {
-          if (!agent.isFontInstalled(v)) { return memo; }
-          return memo + '<li><a data-event="fontName" href="#" data-value="' + v + '">' +
-                          '<i class="fa fa-check icon-ok"></i> ' + v +
+          if (!agent.isFontInstalled(v) && options.fontNamesIgnoreCheck.indexOf(v) === -1) {
+            return memo;
+          }
+          return memo + '<li><a data-event="fontName" href="#" data-value="' + v + '" style="font-family:\'' + v + '\'">' +
+                          '<i class="fa fa-check"></i> ' + v +
                         '</a></li>';
         }, '');
         var label = '<span class="note-current-fontname">' +
@@ -172,22 +168,8 @@ define([
           dropdown: '<ul class="dropdown-menu">' + items + '</ul>'
         });
       },
-      fontsize: function (lang, options) {
-        var items = options.fontSizes.reduce(function (memo, v) {
-          return memo + '<li><a data-event="fontSize" href="#" data-value="' + v + '">' +
-                          '<i class="fa fa-check icon-ok"></i> ' + v +
-                        '</a></li>';
-        }, '');
-
-        var label = '<span class="note-current-fontsize">11</span>';
-        return tplButton(label, {
-          title: lang.font.size,
-          dropdown: '<ul class="dropdown-menu">' + items + '</ul>'
-        });
-      },
-
       color: function (lang) {
-        var colorButtonLabel = '<i class="fa fa-font icon-font" style="color:black;background-color:yellow;"></i>';
+        var colorButtonLabel = '<i class="fa fa-font" style="color:black;background-color:yellow;"></i>';
         var colorButton = tplButton(colorButtonLabel, {
           className: 'note-recent-color',
           title: lang.color.recent,
@@ -223,82 +205,64 @@ define([
         return colorButton + moreButton;
       },
       bold: function (lang) {
-        return tplIconButton('fa fa-bold icon-bold', {
+        return tplIconButton('fa fa-bold', {
           event: 'bold',
           title: lang.font.bold
         });
       },
       italic: function (lang) {
-        return tplIconButton('fa fa-italic icon-italic', {
+        return tplIconButton('fa fa-italic', {
           event: 'italic',
           title: lang.font.italic
         });
       },
       underline: function (lang) {
-        return tplIconButton('fa fa-underline icon-underline', {
+        return tplIconButton('fa fa-underline', {
           event: 'underline',
           title: lang.font.underline
         });
       },
-      strikethrough: function (lang) {
-        return tplIconButton('fa fa-strikethrough icon-strikethrough', {
-          event: 'strikethrough',
-          title: lang.font.strikethrough
-        });
-      },
-      superscript: function (lang) {
-        return tplIconButton('fa fa-superscript icon-superscript', {
-          event: 'superscript',
-          title: lang.font.superscript
-        });
-      },
-      subscript: function (lang) {
-        return tplIconButton('fa fa-subscript icon-subscript', {
-          event: 'subscript',
-          title: lang.font.subscript
-        });
-      },
       clear: function (lang) {
-        return tplIconButton('fa fa-eraser icon-eraser', {
+        return tplIconButton('fa fa-eraser', {
           event: 'removeFormat',
           title: lang.font.clear
         });
       },
       ul: function (lang) {
-        return tplIconButton('fa fa-list-ul icon-list-ul', {
+        return tplIconButton('fa fa-list-ul', {
           event: 'insertUnorderedList',
           title: lang.lists.unordered
         });
       },
       ol: function (lang) {
-        return tplIconButton('fa fa-list-ol icon-list-ol', {
+        return tplIconButton('fa fa-list-ol', {
           event: 'insertOrderedList',
           title: lang.lists.ordered
         });
       },
       paragraph: function (lang) {
-        var leftButton = tplIconButton('fa fa-align-left icon-align-left', {
+        var leftButton = tplIconButton('fa fa-align-left', {
           title: lang.paragraph.left,
           event: 'justifyLeft'
         });
-        var centerButton = tplIconButton('fa fa-align-center icon-align-center', {
+        var centerButton = tplIconButton('fa fa-align-center', {
           title: lang.paragraph.center,
           event: 'justifyCenter'
         });
-        var rightButton = tplIconButton('fa fa-align-right icon-align-right', {
+        var rightButton = tplIconButton('fa fa-align-right', {
           title: lang.paragraph.right,
           event: 'justifyRight'
         });
-        var justifyButton = tplIconButton('fa fa-align-justify icon-align-justify', {
+        var justifyButton = tplIconButton('fa fa-align-justify', {
           title: lang.paragraph.justify,
           event: 'justifyFull'
         });
 
-        var outdentButton = tplIconButton('fa fa-outdent icon-indent-left', {
+        var outdentButton = tplIconButton('fa fa-outdent', {
           title: lang.paragraph.outdent,
           event: 'outdent'
         });
-        var indentButton = tplIconButton('fa fa-indent icon-indent-right', {
+        var indentButton = tplIconButton('fa fa-indent', {
           title: lang.paragraph.indent,
           event: 'indent'
         });
@@ -312,7 +276,7 @@ define([
                          '</div>' +
                        '</div>';
 
-        return tplIconButton('fa fa-align-left icon-align-left', {
+        return tplIconButton('fa fa-align-left', {
           title: lang.paragraph.paragraph,
           dropdown: dropdown
         });
@@ -320,49 +284,49 @@ define([
       height: function (lang, options) {
         var items = options.lineHeights.reduce(function (memo, v) {
           return memo + '<li><a data-event="lineHeight" href="#" data-value="' + parseFloat(v) + '">' +
-                          '<i class="fa fa-check icon-ok"></i> ' + v +
+                          '<i class="fa fa-check"></i> ' + v +
                         '</a></li>';
         }, '');
 
-        return tplIconButton('fa fa-text-height icon-text-height', {
+        return tplIconButton('fa fa-text-height', {
           title: lang.font.height,
           dropdown: '<ul class="dropdown-menu">' + items + '</ul>'
         });
 
       },
       help: function (lang) {
-        return tplIconButton('fa fa-question icon-question', {
+        return tplIconButton('fa fa-question', {
           event: 'showHelpDialog',
           title: lang.options.help,
           hide: true
         });
       },
       fullscreen: function (lang) {
-        return tplIconButton('fa fa-arrows-alt icon-fullscreen', {
+        return tplIconButton('fa fa-arrows-alt', {
           event: 'fullscreen',
           title: lang.options.fullscreen
         });
       },
       codeview: function (lang) {
-        return tplIconButton('fa fa-code icon-code', {
+        return tplIconButton('fa fa-code', {
           event: 'codeview',
           title: lang.options.codeview
         });
       },
       undo: function (lang) {
-        return tplIconButton('fa fa-undo icon-undo', {
+        return tplIconButton('fa fa-undo', {
           event: 'undo',
           title: lang.history.undo
         });
       },
       redo: function (lang) {
-        return tplIconButton('fa fa-repeat icon-repeat', {
+        return tplIconButton('fa fa-repeat', {
           event: 'redo',
           title: lang.history.redo
         });
       },
       hr: function (lang) {
-        return tplIconButton('fa fa-minus icon-hr', {
+        return tplIconButton('fa fa-minus', {
           event: 'insertHorizontalRule',
           title: lang.hr.insert
         });
@@ -371,12 +335,12 @@ define([
 
     var tplPopovers = function (lang, options) {
       var tplLinkPopover = function () {
-        var linkButton = tplIconButton('fa fa-edit icon-edit', {
+        var linkButton = tplIconButton('fa fa-edit', {
           title: lang.link.edit,
           event: 'showLinkDialog',
           hide: true
         });
-        var unlinkButton = tplIconButton('fa fa-unlink icon-unlink', {
+        var unlinkButton = tplIconButton('fa fa-unlink', {
           title: lang.link.unlink,
           event: 'unlink'
         });
@@ -404,44 +368,44 @@ define([
           value: '0.25'
         });
 
-        var leftButton = tplIconButton('fa fa-align-left icon-align-left', {
+        var leftButton = tplIconButton('fa fa-align-left', {
           title: lang.image.floatLeft,
           event: 'floatMe',
           value: 'left'
         });
-        var rightButton = tplIconButton('fa fa-align-right icon-align-right', {
+        var rightButton = tplIconButton('fa fa-align-right', {
           title: lang.image.floatRight,
           event: 'floatMe',
           value: 'right'
         });
-        var justifyButton = tplIconButton('fa fa-align-justify icon-align-justify', {
+        var justifyButton = tplIconButton('fa fa-align-justify', {
           title: lang.image.floatNone,
           event: 'floatMe',
           value: 'none'
         });
 
-        var roundedButton = tplIconButton('fa fa-square icon-unchecked', {
+        var roundedButton = tplIconButton('fa fa-square', {
           title: lang.image.shapeRounded,
           event: 'imageShape',
           value: 'img-rounded'
         });
-        var circleButton = tplIconButton('fa fa-circle-o icon-circle-blank', {
+        var circleButton = tplIconButton('fa fa-circle-o', {
           title: lang.image.shapeCircle,
           event: 'imageShape',
           value: 'img-circle'
         });
-        var thumbnailButton = tplIconButton('fa fa-picture-o icon-picture', {
+        var thumbnailButton = tplIconButton('fa fa-picture-o', {
           title: lang.image.shapeThumbnail,
           event: 'imageShape',
           value: 'img-thumbnail'
         });
-        var noneButton = tplIconButton('fa fa-times icon-times', {
+        var noneButton = tplIconButton('fa fa-times', {
           title: lang.image.shapeNone,
           event: 'imageShape',
           value: ''
         });
 
-        var removeButton = tplIconButton('fa fa-trash-o icon-trash', {
+        var removeButton = tplIconButton('fa fa-trash-o', {
           title: lang.image.remove,
           event: 'removeMedia',
           value: 'none'
@@ -493,105 +457,137 @@ define([
      * @param {String} title
      * @param {String} body
      */
-    var tplShortcut = function (title, body) {
-      return '<table class="note-shortcut">' +
-               '<thead>' +
-                 '<tr><th></th><th>' + title + '</th></tr>' +
-               '</thead>' +
-               '<tbody>' + body + '</tbody>' +
-             '</table>';
+    var tplShortcut = function (title, keys) {
+      var keyClass = 'note-shortcut-col col-xs-6 note-shortcut-';
+      var body = [];
+
+      for (var i in keys) {
+        if (keys.hasOwnProperty(i)) {
+          body.push(
+            '<div class="' + keyClass + 'key">' + keys[i].kbd + '</div>' +
+            '<div class="' + keyClass + 'name">' + keys[i].text + '</div>'
+            );
+        }
+      }
+
+      return '<div class="note-shortcut-row row"><div class="' + keyClass + 'title col-xs-offset-6">' + title + '</div></div>' +
+             '<div class="note-shortcut-row row">' + body.join('</div><div class="note-shortcut-row row">') + '</div>';
     };
 
     var tplShortcutText = function (lang) {
-      var body = '<tr><td>⌘ + B</td><td>' + lang.font.bold + '</td></tr>' +
-                 '<tr><td>⌘ + I</td><td>' + lang.font.italic + '</td></tr>' +
-                 '<tr><td>⌘ + U</td><td>' + lang.font.underline + '</td></tr>' +
-                 '<tr><td>⌘ + ⇧ + S</td><td>' + lang.font.strikethrough + '</td></tr>' +
-                 '<tr><td>⌘ + \\</td><td>' + lang.font.clear + '</td></tr>';
+      var keys = [
+        { kbd: '⌘ + B', text: lang.font.bold },
+        { kbd: '⌘ + I', text: lang.font.italic },
+        { kbd: '⌘ + U', text: lang.font.underline },
+        { kbd: '⌘ + \\', text: lang.font.clear }
+      ];
 
-      return tplShortcut(lang.shortcut.textFormatting, body);
+      return tplShortcut(lang.shortcut.textFormatting, keys);
     };
 
     var tplShortcutAction = function (lang) {
-      var body = '<tr><td>⌘ + Z</td><td>' + lang.history.undo + '</td></tr>' +
-                 '<tr><td>⌘ + ⇧ + Z</td><td>' + lang.history.redo + '</td></tr>' +
-                 '<tr><td>⌘ + ]</td><td>' + lang.paragraph.indent + '</td></tr>' +
-                 '<tr><td>⌘ + [</td><td>' + lang.paragraph.outdent + '</td></tr>' +
-                 '<tr><td>⌘ + ENTER</td><td>' + lang.hr.insert + '</td></tr>';
+      var keys = [
+        { kbd: '⌘ + Z', text: lang.history.undo },
+        { kbd: '⌘ + ⇧ + Z', text: lang.history.redo },
+        { kbd: '⌘ + ]', text: lang.paragraph.indent },
+        { kbd: '⌘ + [', text: lang.paragraph.outdent },
+        { kbd: '⌘ + ENTER', text: lang.hr.insert }
+      ];
 
-      return tplShortcut(lang.shortcut.action, body);
+      return tplShortcut(lang.shortcut.action, keys);
     };
 
     var tplShortcutPara = function (lang) {
-      var body = '<tr><td>⌘ + ⇧ + L</td><td>' + lang.paragraph.left + '</td></tr>' +
-                 '<tr><td>⌘ + ⇧ + E</td><td>' + lang.paragraph.center + '</td></tr>' +
-                 '<tr><td>⌘ + ⇧ + R</td><td>' + lang.paragraph.right + '</td></tr>' +
-                 '<tr><td>⌘ + ⇧ + J</td><td>' + lang.paragraph.justify + '</td></tr>' +
-                 '<tr><td>⌘ + ⇧ + NUM7</td><td>' + lang.lists.ordered + '</td></tr>' +
-                 '<tr><td>⌘ + ⇧ + NUM8</td><td>' + lang.lists.unordered + '</td></tr>';
+      var keys = [
+        { kbd: '⌘ + ⇧ + L', text: lang.paragraph.left },
+        { kbd: '⌘ + ⇧ + E', text: lang.paragraph.center },
+        { kbd: '⌘ + ⇧ + R', text: lang.paragraph.right },
+        { kbd: '⌘ + ⇧ + J', text: lang.paragraph.justify },
+        { kbd: '⌘ + ⇧ + NUM7', text: lang.lists.ordered },
+        { kbd: '⌘ + ⇧ + NUM8', text: lang.lists.unordered }
+      ];
 
-      return tplShortcut(lang.shortcut.paragraphFormatting, body);
+      return tplShortcut(lang.shortcut.paragraphFormatting, keys);
     };
 
     var tplShortcutStyle = function (lang) {
-      var body = '<tr><td>⌘ + NUM0</td><td>' + lang.style.normal + '</td></tr>' +
-                 '<tr><td>⌘ + NUM1</td><td>' + lang.style.h1 + '</td></tr>' +
-                 '<tr><td>⌘ + NUM2</td><td>' + lang.style.h2 + '</td></tr>' +
-                 '<tr><td>⌘ + NUM3</td><td>' + lang.style.h3 + '</td></tr>' +
-                 '<tr><td>⌘ + NUM4</td><td>' + lang.style.h4 + '</td></tr>' +
-                 '<tr><td>⌘ + NUM5</td><td>' + lang.style.h5 + '</td></tr>' +
-                 '<tr><td>⌘ + NUM6</td><td>' + lang.style.h6 + '</td></tr>';
+      var keys = [
+        { kbd: '⌘ + NUM0', text: lang.style.normal },
+        { kbd: '⌘ + NUM1', text: lang.style.h1 },
+        { kbd: '⌘ + NUM2', text: lang.style.h2 },
+        { kbd: '⌘ + NUM3', text: lang.style.h3 },
+        { kbd: '⌘ + NUM4', text: lang.style.h4 },
+        { kbd: '⌘ + NUM5', text: lang.style.h5 },
+        { kbd: '⌘ + NUM6', text: lang.style.h6 }
+      ];
 
-      return tplShortcut(lang.shortcut.documentStyle, body);
+      return tplShortcut(lang.shortcut.documentStyle, keys);
     };
 
     var tplExtraShortcuts = function (lang, options) {
       var extraKeys = options.extraKeys;
-      var body = '';
+      var keys = [];
+
       for (var key in extraKeys) {
         if (extraKeys.hasOwnProperty(key)) {
-          body += '<tr><td>' + key + '</td><td>' + extraKeys[key] + '</td></tr>';
+          keys.push({ kbd: key, text: extraKeys[key] });
         }
       }
 
-      return tplShortcut(lang.shortcut.extraKeys, body);
+      return tplShortcut(lang.shortcut.extraKeys, keys);
     };
 
     var tplShortcutTable = function (lang, options) {
-      var template = '<table class="note-shortcut-layout">' +
-                       '<tbody>' +
-                         '<tr><td>' + tplShortcutAction(lang, options) + '</td><td>' + tplShortcutText(lang, options) + '</td></tr>' +
-                         '<tr><td>' + tplShortcutStyle(lang, options) + '</td><td>' + tplShortcutPara(lang, options) + '</td></tr>';
+      var colClass = 'class="note-shortcut note-shortcut-col col-sm-6 col-xs-12"';
+      var template = [
+        '<div ' + colClass + '>' + tplShortcutAction(lang, options) + '</div>' +
+        '<div ' + colClass + '>' + tplShortcutText(lang, options) + '</div>',
+        '<div ' + colClass + '>' + tplShortcutStyle(lang, options) + '</div>' +
+        '<div ' + colClass + '>' + tplShortcutPara(lang, options) + '</div>'
+      ];
+
       if (options.extraKeys) {
-        template += '<tr><td colspan="2">' + tplExtraShortcuts(lang, options) + '</td></tr>';
+        template.push('<div ' + colClass + '>' + tplExtraShortcuts(lang, options) + '</div>');
       }
-      template += '</tbody></table>';
-      return template;
+
+      return '<div class="note-shortcut-row row">' +
+               template.join('</div><div class="note-shortcut-row row">') +
+             '</div>';
     };
 
     var replaceMacKeys = function (sHtml) {
       return sHtml.replace(/⌘/g, 'Ctrl').replace(/⇧/g, 'Shift');
     };
 
-    var tplDialogs = function (lang, options) {
-      var tplImageDialog = function () {
-        var body =
-                   '<div class="note-group-select-from-files">' +
-                   '<h5>' + lang.image.selectFromFiles + '</h5>' +
-                   '<input class="note-image-input" type="file" name="files" accept="image/*" />' +
+    var tplDialogInfo = {
+      image: function (lang, options) {
+        var imageLimitation = '';
+        if (options.maximumImageFileSize) {
+          var unit = Math.floor(Math.log(options.maximumImageFileSize) / Math.log(1024));
+          var readableSize = (options.maximumImageFileSize / Math.pow(1024, unit)).toFixed(2) * 1 +
+                             ' ' + ' KMGTP'[unit] + 'B';
+          imageLimitation = '<small>' + lang.image.maximumFileSize + ' : ' + readableSize + '</small>';
+        }
+
+        var body = '<div class="form-group row-fluid note-group-select-from-files">' +
+                     '<label>' + lang.image.selectFromFiles + '</label>' +
+                     '<input class="note-image-input" type="file" name="files" accept="image/*" multiple="multiple" />' +
+                     imageLimitation +
                    '</div>' +
-                   '<h5>' + lang.image.url + '</h5>' +
-                   '<input class="note-image-url form-control span12" type="text" />';
+                   '<div class="form-group row-fluid">' +
+                     '<label>' + lang.image.url + '</label>' +
+                     '<input class="note-image-url form-control span12" type="text" />' +
+                   '</div>';
         var footer = '<button href="#" class="btn btn-primary note-image-btn disabled" disabled>' + lang.image.insert + '</button>';
         return tplDialog('note-image-dialog', lang.image.insert, body, footer);
-      };
+      },
 
-      var tplLinkDialog = function () {
-        var body = '<div class="form-group">' +
+      link: function (lang, options) {
+        var body = '<div class="form-group row-fluid">' +
                      '<label>' + lang.link.textToDisplay + '</label>' +
                      '<input class="note-link-text form-control span12" type="text" />' +
                    '</div>' +
-                   '<div class="form-group">' +
+                   '<div class="form-group row-fluid">' +
                      '<label>' + lang.link.url + '</label>' +
                      '<input class="note-link-url form-control span12" type="text" />' +
                    '</div>' +
@@ -604,35 +600,29 @@ define([
                    );
         var footer = '<button href="#" class="btn btn-primary note-link-btn disabled" disabled>' + lang.link.insert + '</button>';
         return tplDialog('note-link-dialog', lang.link.insert, body, footer);
-      };
+      },
 
-      var tplVideoDialog = function () {
-        var body = '<div class="form-group">' +
-                     '<label>' + lang.video.url + '</label>&nbsp;<small class="text-muted">' + lang.video.providers + '</small>' +
-                     '<input class="note-video-url form-control span12" type="text" />' +
-                   '</div>';
-        var footer = '<button href="#" class="btn btn-primary note-video-btn disabled" disabled>' + lang.video.insert + '</button>';
-        return tplDialog('note-video-dialog', lang.video.insert, body, footer);
-      };
-
-      var tplHelpDialog = function () {
+      help: function (lang, options) {
         var body = '<a class="modal-close pull-right" aria-hidden="true" tabindex="-1">' + lang.shortcut.close + '</a>' +
                    '<div class="title">' + lang.shortcut.shortcuts + '</div>' +
                    (agent.isMac ? tplShortcutTable(lang, options) : replaceMacKeys(tplShortcutTable(lang, options))) +
                    '<p class="text-center">' +
-                     '<a href="//hackerwins.github.io/summernote/" target="_blank">Summernote @VERSION</a> · ' +
-                     '<a href="//github.com/HackerWins/summernote" target="_blank">Project</a> · ' +
-                     '<a href="//github.com/HackerWins/summernote/issues" target="_blank">Issues</a>' +
+                     '<a href="//summernote.org/" target="_blank">Summernote @VERSION</a> · ' +
+                     '<a href="//github.com/summernote/summernote" target="_blank">Project</a> · ' +
+                     '<a href="//github.com/summernote/summernote/issues" target="_blank">Issues</a>' +
                    '</p>';
         return tplDialog('note-help-dialog', '', body, '');
-      };
+      }
+    };
 
-      return '<div class="note-dialog">' +
-               tplImageDialog() +
-               tplLinkDialog() +
-               tplVideoDialog() +
-               tplHelpDialog() +
-             '</div>';
+    var tplDialogs = function (lang, options) {
+      var dialogs = '';
+
+      $.each(tplDialogInfo, function (idx, tplDialog) {
+        dialogs += tplDialog(lang, options);
+      });
+
+      return '<div class="note-dialog">' + dialogs + '</div>';
     };
 
     var tplStatusbar = function () {
@@ -714,9 +704,8 @@ define([
      * @param {Object} options
      */
     this.createLayoutByAirMode = function ($holder, options) {
+      var langInfo = options.langInfo;
       var keyMap = options.keyMap[agent.isMac ? 'mac' : 'pc'];
-      var langInfo = $.extend($.summernote.lang['en-US'], $.summernote.lang[options.lang]);
-
       var id = func.uniqueId();
 
       $holder.addClass('note-air-editor note-editable');
@@ -758,6 +747,8 @@ define([
      * @param {Object} options
      */
     this.createLayoutByFrame = function ($holder, options) {
+      var langInfo = options.langInfo;
+
       //01. create Editor
       var $editor = $('<div class="note-editor"></div>');
       if (options.width) {
@@ -779,13 +770,15 @@ define([
       if (options.direction) {
         $editable.attr('dir', options.direction);
       }
+      var placeholder = $holder.attr('placeholder') || options.placeholder;
+      if (placeholder) {
+        $editable.attr('data-placeholder', placeholder);
+      }
 
-      $editable.html(dom.html($holder) || dom.emptyPara);
+      $editable.html(dom.html($holder));
 
       //031. create codable
       $('<textarea class="note-codable"></textarea>').prependTo($editor);
-
-      var langInfo = $.extend($.summernote.lang['en-US'], $.summernote.lang[options.lang]);
 
       //04. create Toolbar
       var toolbarHTML = '';
@@ -795,9 +788,10 @@ define([
 
         toolbarHTML += '<div class="note-' + groupName + ' btn-group">';
         for (var i = 0, btnLength = groupButtons.length; i < btnLength; i++) {
+          var buttonInfo = tplButtonInfo[groupButtons[i]];
           // continue creating toolbar even if a button doesn't exist
-          if (!$.isFunction(tplButtonInfo[groupButtons[i]])) { continue; }
-          toolbarHTML += tplButtonInfo[groupButtons[i]](langInfo, options);
+          if (!$.isFunction(buttonInfo)) { continue; }
+          toolbarHTML += buttonInfo(langInfo, options);
         }
         toolbarHTML += '</div>';
       }
@@ -901,6 +895,40 @@ define([
         layoutInfo.editor.remove();
         $holder.show();
       }
+    };
+
+    /**
+     *
+     * @return {Object}
+     * @return {function(label, options=):string} return.button {@link #tplButton function to make text button}
+     * @return {function(iconClass, options=):string} return.iconButton {@link #tplIconButton function to make icon button}
+     * @return {function(className, title=, body=, footer=):string} return.dialog {@link #tplDialog function to make dialog}
+     */
+    this.getTemplate = function () {
+      return {
+        button: tplButton,
+        iconButton: tplIconButton,
+        dialog: tplDialog
+      };
+    };
+
+    /**
+     * add button information
+     *
+     * @param {String} name button name
+     * @param {Function} buttonInfo function to make button, reference to {@link #tplButton},{@link #tplIconButton}
+     */
+    this.addButtonInfo = function (name, buttonInfo) {
+      tplButtonInfo[name] = buttonInfo;
+    };
+
+    /**
+     *
+     * @param {String} name
+     * @param {Function} dialogInfo function to make dialog, reference to {@link #tplDialog}
+     */
+    this.addDialogInfo = function (name, dialogInfo) {
+      tplDialogInfo[name] = dialogInfo;
     };
   };
 

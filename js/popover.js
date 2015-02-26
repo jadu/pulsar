@@ -17,8 +17,10 @@
  * limitations under the License.
  * ======================================================================== */
 
+'use strict';
 
-define(['jquery', 'tooltip'], function($) { "use strict";
+var $ = require('jquery'),
+    tooltip = require('./tooltip');
 
   // POPOVER PUBLIC CLASS DEFINITION
   // ===============================
@@ -113,7 +115,7 @@ define(['jquery', 'tooltip'], function($) { "use strict";
   }
 
   $(document).ready(function() {
-    $('[data-toggle="popover"]').popover()
-  })
+    $('[data-toggle="popover"]').popover();
+  });
 
-});
+module.exports = Popover;

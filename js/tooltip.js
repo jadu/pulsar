@@ -6,7 +6,9 @@
  * Copyright 2011-2014 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
-define(['jquery'], function($) { "use strict";
+"use strict";
+
+var $ = require('jquery');
 
   // TOOLTIP PUBLIC CLASS DEFINITION
   // ===============================
@@ -416,4 +418,8 @@ define(['jquery'], function($) { "use strict";
     return this
   }
 
-});
+  $(document).ready(function() {
+    $('[data-toggle="tooltips"]').tooltip();
+  });
+
+module.exports = Tooltip;

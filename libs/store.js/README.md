@@ -55,7 +55,7 @@ If your product depends on store.js, you must check the `store.enabled` flag fir
 	init()
 	function init() {
 		if (!store.enabled) {
-			alert('Local storage is not supported by your browser. Please disabled "Private Mode", or upgrade to a modern browser')
+			alert('Local storage is not supported by your browser. Please disable "Private Mode", or upgrade to a modern browser.')
 			return
 		}
 		var user = store.get('user')
@@ -139,6 +139,7 @@ Unsupported browsers
  - Safari 3: no synchronous api (has asynch sqlite api, but store.js is synch)
  - Opera 9: don't know if there is synchronous api for storing data locally
  - Firefox 1.5: don't know if there is synchronous api for storing data locally
+ - Microsoft IIS & IE7: With meta tag & "charset=iso-8859-1", things stop working. See issue #47.
 
 
 Some notes on serialization
