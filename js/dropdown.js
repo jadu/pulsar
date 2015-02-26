@@ -17,7 +17,7 @@
  * limitations under the License.
  * ======================================================================== */
 
-"use strict";
+'use strict';
 
 var $ = require('jquery');
 
@@ -119,8 +119,6 @@ var $ = require('jquery');
   // DROPDOWN PLUGIN DEFINITION
   // ==========================
 
-  var old = $.fn.dropdown
-
   $.fn.dropdown = function (option) {
     return this.each(function () {
       var $this = $(this)
@@ -152,4 +150,4 @@ var $ = require('jquery');
     .on('click.bs.dropdown.data-api'  , toggle, Dropdown.prototype.toggle)
     .on('keydown.bs.dropdown.data-api', toggle + ', [role=menu]' , Dropdown.prototype.keydown)
 
-module.exports = dropdown;
+module.exports = Dropdown;

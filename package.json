@@ -11,6 +11,7 @@
   },
   "devDependencies": {
     "browserify": "^6.3.3",
+    "browserify-shim": "^3.8.3",
     "chai": "latest",
     "contextify": "latest",
     "grunt": "latest",
@@ -39,5 +40,12 @@
     "sinon": "latest",
     "sinon-chai": "latest",
     "time-grunt": "latest"
+  },
+  "browserify": {
+    "transform": [
+        "browserify-shim"
+    ]
+  },
+  "browserify-shim": {
   }
 }

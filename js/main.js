@@ -42,7 +42,7 @@ requirejs.config({
         'order'             : path + '/libs/order/index',
         'pikaday'           : path + '/libs/pikaday/pikaday',
         'popover'           : path + '/js/popover',
-        'pulsar'            : path + '/js/pulsar',
+        'pulsar'            : path + '/js/require-pulsar',
         'quantum'           : path + '/js/quantum',
         'rich-list'         : path + '/js/rich-list',
         'uploader'          : path + '/js/uploader',

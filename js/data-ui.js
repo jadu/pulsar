@@ -1,3 +1,7 @@
+'use strict';
+
+var $ = require('jquery');
+
 (function () {
 
     function applyAction($source, $target, action, actionArg) {

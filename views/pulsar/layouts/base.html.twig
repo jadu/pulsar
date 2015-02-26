@@ -30,8 +30,13 @@
     <link rel="stylesheet" type="text/css" href="{{ libsPath ~ 'font-awesome/css/font-awesome-ie7.min.css' }}" />
     <![endif]-->
 
-    <script src="{{ base_path ~ 'dist/js/pulsar.js' }}"></script>
-
+    <script
+        src="{{ base_path ~ 'dist/js/pulsar.js' }}"
+        id="main-js"
+{% if pageModule is defined %}
+        data-page="{{ pageModule }}"
+{% endif %}
+    ></script>
 
     {% block pageStyle %}{% endblock %}
 

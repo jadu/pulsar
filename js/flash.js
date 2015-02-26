@@ -5,12 +5,10 @@
  *
  *   $(document).flash().success('Something good happened');
  */
-define([
-  'jquery',
-  'sticky'
-], function() {
+'use strict';
 
-  'use strict';
+var $ = require('jquery');
+    //sticky = require('../libs/sticky/jquery.sticky');
 
   (function ($, window, document, undefined) {
 
@@ -162,7 +160,7 @@ define([
       return plugin;
     };
 
-  })(jQuery, window, document);
+  })($, window, document);
 
   $(document).on('click', '[data-dismiss=flash]', function (e) {
     // parent() targets the sticky wrapper
@@ -183,4 +181,3 @@ define([
     });
   });
 
-});

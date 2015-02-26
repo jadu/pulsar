@@ -418,4 +418,8 @@ var $ = require('jquery');
     return this
   }
 
-module.exports = tooltip;
+  $(document).ready(function() {
+    $('[data-toggle="tooltips"]').tooltip();
+  });
+
+module.exports = Tooltip;

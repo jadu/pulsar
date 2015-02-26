@@ -1,6 +1,10 @@
-require(['jquery', 'jquery-mousewheel', 'vague'], function ($) {
+'use strict';
 
-  'use strict';
+var $ = require('jquery'),
+	vague = require('../libs/Vague.js/Vague');
+
+//require(['jquery', 'jquery-mousewheel', 'vague'], function ($) {
+
 
   // Public methods ------------------------------------------------------------
 
@@ -229,5 +233,3 @@ require(['jquery', 'jquery-mousewheel', 'vague'], function ($) {
     });
 
   });
-
-});
