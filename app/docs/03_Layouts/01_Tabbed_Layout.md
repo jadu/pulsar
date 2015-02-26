@@ -1,6 +1,6 @@
 The tabbed layout is Pulsar's default and consists of a list of clickable tabs down the left hand side and their respective content on the right. The tab content is ususally a form or a data-grid, but can be more complex depending on the needs of the interface.
 
-![tabbed layout example](http://localhost:8000/app/docs/images/layout_tabbed.png)
+![tabbed layout example](http://pulsar.dev/app/docs/images/layout_tabbed.png)
 
 There are two template blocks which should be set by a view:
 
@@ -151,7 +151,7 @@ If the active tab is a sub-navigation tab, the parent tab will be automatically 
 
 Tab panes can have a right-hand sidebar which is useful for inline documentation, the sidebar element must appear before the main tab content for styling reasons.
 
-![tabbed layout with sidebar example](http://localhost:8000/app/docs/images/layout_tabbed-sidebar.png)
+![tabbed layout with sidebar example](http://pulsar.dev/app/docs/images/layout_tabbed-sidebar.png)
 
     <div class="tab__inner">
         <div class="tab__sidebar">

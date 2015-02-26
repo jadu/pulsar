@@ -1,6 +1,6 @@
 A question I'm still asked, by Jadugars old and new:
 
-So, what exactly *is* Pulsar?
+So, what *is* Pulsar?
 
 I understand why it's still a difficult concept to grasp, as there's so many facets to Pulsar, so I felt it was important to try and make some sense and explain some of the different things that are being worked on inside the Pulsar. At first, I tried to explain Pulsar in a sentence:
 
@@ -8,7 +8,7 @@ I understand why it's still a difficult concept to grasp, as there's so many fac
 
 This isn't bad, but it still fails to really clarify what it means to 'make it Pulsar', it really only started to make sense when I split Pulsar into two separate components.
 
-# Pulsar UI & Pulsar UX 
+# Pulsar UI & Pulsar UX
 
 *Beautiful software. Beautiful experience.*
 
@@ -32,7 +32,7 @@ This isn't bad, but it still fails to really clarify what it means to 'make it P
  * The interaction design
  * The testing
  * The iteration and constant improvement
- 
+
 # Goals
 
 ### Pulsar UI

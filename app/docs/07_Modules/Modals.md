@@ -1,6 +1,6 @@
 Modals are a blocking element, they should be used sparingly and only when we absolutely, positively have to stop the user in their tracks to perform a specific action. For everything else, use [decks](Decks).
 
-![tabbed layout example](http://localhost:8000/app/docs/images/modules_modal.png)
+![tabbed layout example](http://pulsar.dev/app/docs/images/modules_modal.png)
 
 ----
 

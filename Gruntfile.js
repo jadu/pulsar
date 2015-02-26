@@ -13,7 +13,7 @@ module.exports = function(grunt) {
 				'dist/js/bundle.js': ['js/main.js']
 			},
 			options: {
-				transform: ['uglifyify']
+				// transform: ['uglifyify']
 			}
 		}
 	},

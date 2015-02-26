@@ -14,7 +14,7 @@
     "bootstrap-tour": "latest",
     "font-awesome": "3.2.1",
     "html5shiv": "latest",
-    "highlightjs": "latest",
+    "highlightjs": "jadu/highlight-redux",
     "ie7-js": "https://ie7-js.googlecode.com/files/ie7-2.1%28beta4%29.zip",
     "jquery": "1.x",
     "jqueryui": "git@gitlab.hq.jadu.net:pulsar/jquery-ui.git",

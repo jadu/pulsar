@@ -1,42 +1,3175 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-"use strict";function bindEvents(){$('[data-dismiss="deck"]').on({click:closeDeck}),$('[data-toggle="slide"]').on({click:showSlide}),$('[data-dismiss="slide"]').on({click:closeSlide})}function getSlides(e,t,s){var a="";return $.ajax({async:!1,data:s,url:t,success:function(e){a=e}}),a}function populateDeck(e,t){e.html(t)}function closeDeck(){methods.hide.call()}function closeSlide(e){e.preventDefault();var t=$(e.currentTarget),s=t.closest($.fn.deck.defaults.slideClass);s.hide(),0===s.index()&&methods.hide.call(t,s.parent())}function showSlide(e){e.preventDefault();{var t=$(e.currentTarget),s=$(t.attr("href"));s.parent().offset().top,s.offset().top}s.show();s.css("left"),s.width(),s.offset().left,$(window).scrollTop(),$($.fn.deck.defaults.viewportOffsetElement).height()}var $=require("jquery"),vague=require("../libs/Vague.js/Vague"),methods={init:function(e){methods.show.call(this,e),bindEvents()},show:function(e){return this.each(function(){var t=$(this),s=t.attr("data-deck-source");if(e)var a=e.attr("data-params");if(methods.hide.call(this),s){var d=getSlides(t,s,a);populateDeck(t,d)}if($($.fn.deck.defaults.backgroundElements).addClass($.fn.deck.defaults.backgroundClassName),!$("html").hasClass("ie7")){var n=$($.fn.deck.defaults.backgroundElements).Vague({intensity:2});n.blur()}t.addClass($.fn.deck.defaults.activeClassName).children().first().show()})},hide:function(e){if(e?e.removeClass($.fn.deck.defaults.activeClassName).children().hide():$($.fn.deck.defaults.deckClass).removeClass($.fn.deck.defaults.activeClassName).children().hide(),$($.fn.deck.defaults.backgroundElements).removeClass($.fn.deck.defaults.backgroundClassName),!$("html").hasClass("ie7")){var t=$($.fn.deck.defaults.backgroundElements).Vague({intensity:2});t.destroy()}return this}};$.fn.deck=function(e){return methods[e]?methods[e].apply(this,Array.prototype.slice.call(arguments,1)):"object"!=typeof e&&e?void $.error("Method "+e+" does not exist on jQuery.deck"):methods.init.apply(this,arguments)},$.fn.deck.defaults={deckClass:".deck",slideClass:".slide",activeClassName:"active",backgroundClassName:"deck-background",backgroundElements:".breadcrumb, .actionsbar, .heading, .actionsbar + .tabs__list, .summary",viewportOffsetElement:".toolbar"},$(function(){$("body").on("click.deck.data-api",'[data-toggle="deck"]',function(e){e.preventDefault();var t=$(this),s=$(t).attr("href");$(s).deck(t)}),$(document).ready(function(){$(".deck.active").first().deck()})});
+'use strict';
+
+var $ = require('jquery'),
+	vague = require('../libs/Vague.js/Vague');
+
+//require(['jquery', 'jquery-mousewheel', 'vague'], function ($) {
 
 
-},{"../libs/Vague.js/Vague":9,"jquery":11}],2:[function(require,module,exports){
-"use strict";function clearMenus(){$(backdrop).remove(),$(toggle).each(function(o){var e=getParent($(this));e.hasClass("open")&&(e.trigger(o=$.Event("hide.bs.dropdown")),o.isDefaultPrevented()||e.removeClass("open").trigger("hidden.bs.dropdown"))})}function getParent(o){var e=o.attr("data-target");e||(e=o.attr("href"),e=e&&/#/.test(e)&&e.replace(/.*(?=#[^\s]*$)/,""));var n=e&&$(e);return n&&n.length?n:o.parent()}var $=require("jquery"),backdrop=".dropdown-backdrop",toggle="[data-toggle=dropdown]",Dropdown=function(o){$(o).on("click.bs.dropdown",this.toggle)};Dropdown.prototype.toggle=function(o){var e=$(this);if(!e.is(".disabled, :disabled")){var n=getParent(e),t=n.hasClass("open");if(clearMenus(),!t){if("ontouchstart"in document.documentElement&&$('<div class="dropdown-backdrop"/>').insertAfter($(this)).on("click",clearMenus),n.trigger(o=$.Event("show.bs.dropdown")),o.isDefaultPrevented())return;n.toggleClass("open").trigger("shown.bs.dropdown")}return e.focus(),!1}},Dropdown.prototype.keydown=function(o){if(/(38|40|27)/.test(o.keyCode)){var e=$(this);if(o.preventDefault(),o.stopPropagation(),!e.is(".disabled, :disabled")){var n=getParent(e),t=n.hasClass("open");if(!t||t&&27==o.keyCode)return 27==o.which&&n.find(toggle).focus(),e.click();var r=$("[role=menu] li:not(.divider):visible a",n);if(r.length){var d=r.index(r.filter(":focus"));38==o.keyCode&&d>0&&d--,40==o.keyCode&&d<r.length-1&&d++,~d||(d=0),r.eq(d).focus()}}}},$.fn.dropdown=function(o){return this.each(function(){var e=$(this),n=e.data("dropdown");n||e.data("dropdown",n=new Dropdown(this)),"string"==typeof o&&n[o].call(e)})},$.fn.dropdown.Constructor=Dropdown,$.fn.dropdown.noConflict=function(){return $.fn.dropdown=old,this},$(document).on("click.bs.dropdown.data-api",clearMenus).on("click.bs.dropdown.data-api",".dropdown form",function(o){o.stopPropagation()}).on("click.bs.dropdown.data-api",toggle,Dropdown.prototype.toggle).on("keydown.bs.dropdown.data-api",toggle+", [role=menu]",Dropdown.prototype.keydown),module.exports=Dropdown;
+  // Public methods ------------------------------------------------------------
+
+  var methods = {
+
+    init : function (toggle) {
+
+      // Call the 'show' method.
+      methods.show.call(this, toggle);
+      bindEvents();
+
+    },
+
+    show : function (toggle) {
+
+      return this.each(function () {
+
+        var deck = $(this),
+            source = deck.attr('data-deck-source');
+
+        if (toggle) {
+          var params = toggle.attr('data-params');
+        }
+
+        // Hide any active decks
+        methods.hide.call(this);
+
+        /**
+         * If the data-deck-source attribute is present slides will be retrieved
+         * with XHR, otherwise, we'll assume they're inline.
+         */
+        if (source) {
+          var slides = getSlides(deck, source, params);
+
+          populateDeck(deck, slides);
+        }
+
+        // Unfocus the background
+        $($.fn.deck.defaults.backgroundElements).addClass($.fn.deck.defaults.backgroundClassName);
+
+        if (!$('html').hasClass('ie7')) {
+          var vague = $($.fn.deck.defaults.backgroundElements).Vague({
+            intensity: 2 // Blur intensity.
+          });
+
+          vague.blur();
+        }
+
+        /**
+         * Activate the deck and show first slide.
+         * (slides are hidden by default in CSS).
+         */
+        deck.addClass($.fn.deck.defaults.activeClassName)
+            .children()
+            .first()
+            .show();
+
+      });
+
+    },
+
+    hide : function (deck) {
+
+      if (!deck) {
+
+        // If no specific deck is provided, hide 'em all.
+        $($.fn.deck.defaults.deckClass).removeClass($.fn.deck.defaults.activeClassName)
+            .children()
+            .hide();
+      } else {
+
+        // Remove active class, reset the deck's position and hide all slides.
+        deck.removeClass($.fn.deck.defaults.activeClassName)
+            .children()
+            .hide();
+      }
+
+      // Refocus the background UI.
+      $($.fn.deck.defaults.backgroundElements).removeClass($.fn.deck.defaults.backgroundClassName);
+
+      if (!$('html').hasClass('ie7')) {
+        var vague = $($.fn.deck.defaults.backgroundElements).Vague({
+          intensity: 2 // Blur intensity.
+        });
+
+        vague.destroy();
+      }
+
+      return this;
+
+    }
+
+  };
+
+  // Private methods -----------------------------------------------------------
+
+  function bindEvents() {
+
+    // Bind action to close an entire deck.
+    $('[data-dismiss="deck"]').on({click: closeDeck});
+
+    // Bind action to open a specified slide.
+    $('[data-toggle="slide"]').on({click: showSlide});
+
+    // Bind action to close a specified slide.
+    $('[data-dismiss="slide"]').on({click: closeSlide});
+
+  }
+
+  function getSlides(deck, source, params) {
+
+    var result = '';
+
+    $.ajax({
+      async: false,
+      data: params,
+      url: source,
+      success: function (data) {
+        result = data;
+      }
+    });
+
+    return result;
+
+  }
+
+  function populateDeck(deck, slides) {
+    deck.html(slides);
+  }
+
+  function closeDeck() {
+    methods.hide.call();
+  }
+
+  function closeSlide(e) {
+
+    e.preventDefault();
+
+    var self = $(e.currentTarget),
+        slide = self.closest($.fn.deck.defaults.slideClass);
+
+    slide.hide();
+
+    /**
+     * If this is the first slide in a deck, closing the slide needs to close
+     * the deck and restore the background UI.
+     */
+    if (slide.index() === 0) {
+      methods.hide.call(self, slide.parent());
+    }
+
+  }
+
+  function showSlide(e) {
+
+    e.preventDefault();
+
+    var self = $(e.currentTarget),
+        slide = $(self.attr('href')),
+        deckTop = slide.parent().offset().top,
+        slideTop = slide.offset().top;
+
+    /**
+     * We need to show the slide at this point as the next vars need to be set
+     * based on its rendered position (the values when hidden are different).
+     */
+    slide.show();
+
+    // Store the current x position so we can re-apply it later.
+    var originalLeft = slide.css('left'),
+        originalWidth = slide.width(),
+        previousLeft = slide.offset().left,
+        previousTop = $(window).scrollTop(),
+        viewportTop = $($.fn.deck.defaults.viewportOffsetElement).height();
+
+  }
+
+  // Constructor ---------------------------------------------------------------
+
+  $.fn.deck = function (method) {
+
+    // Method calling logic.
+    if (methods[method]) {
+      return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
+    } else if (typeof method === 'object' || !method) {
+      return methods.init.apply(this, arguments);
+    } else {
+      $.error('Method ' + method + ' does not exist on jQuery.deck');
+    }
+
+  };
+
+  // Default options.
+  $.fn.deck.defaults = {
+    deckClass : '.deck',
+    slideClass : '.slide',
+    activeClassName : 'active',
+    backgroundClassName : 'deck-background',
+    backgroundElements : '.breadcrumb, .actionsbar, .heading, .actionsbar + .tabs__list, .summary',
+    viewportOffsetElement : '.toolbar'
+  };
+
+  // Data API ------------------------------------------------------------------
+
+  $(function () {
+
+    $('body').on('click.deck.data-api', '[data-toggle="deck"]', function (e) {
+
+      e.preventDefault();
+
+      // Grab the deck target from the data-attribute.
+      var self = $(this),
+          target = $(self).attr('href');
+
+      // Init the target deck of the clicked element.
+      $(target).deck(self);
+
+    });
+
+    /**
+     * Open any decks that are .active
+     * To prevent issues, we'll only open the first deck that matches.
+     */
+    $(document).ready(function() {
+      $('.deck.active').first().deck();
+    });
+
+  });
+
+},{"../libs/Vague.js/Vague":10,"jquery":22}],2:[function(require,module,exports){
+/* ========================================================================
+ * Bootstrap: dropdown.js v3.0.0
+ * http://twbs.github.com/bootstrap/javascript.html#dropdowns
+ * ========================================================================
+ * Copyright 2012 Twitter, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * ======================================================================== */
+
+'use strict';
+
+var $ = require('jquery');
+
+  // DROPDOWN CLASS DEFINITION
+  // =========================
+
+  var backdrop = '.dropdown-backdrop'
+  var toggle   = '[data-toggle=dropdown]'
+  var Dropdown = function (element) {
+    var $el = $(element).on('click.bs.dropdown', this.toggle)
+  }
+
+  Dropdown.prototype.toggle = function (e) {
+    var $this = $(this)
+
+    if ($this.is('.disabled, :disabled')) return
+
+    var $parent  = getParent($this)
+    var isActive = $parent.hasClass('open')
+
+    clearMenus()
+
+    if (!isActive) {
+      if ('ontouchstart' in document.documentElement) {
+        // if mobile we we use a backdrop because click events don't delegate
+        $('<div class="dropdown-backdrop"/>').insertAfter($(this)).on('click', clearMenus)
+      }
+
+      $parent.trigger(e = $.Event('show.bs.dropdown'))
+
+      if (e.isDefaultPrevented()) return
+
+      $parent
+        .toggleClass('open')
+        .trigger('shown.bs.dropdown')
+    }
+
+    $this.focus()
+
+    return false
+  }
+
+  Dropdown.prototype.keydown = function (e) {
+    if (!/(38|40|27)/.test(e.keyCode)) return
+
+    var $this = $(this)
+
+    e.preventDefault()
+    e.stopPropagation()
+
+    if ($this.is('.disabled, :disabled')) return
+
+    var $parent  = getParent($this)
+    var isActive = $parent.hasClass('open')
+
+    if (!isActive || (isActive && e.keyCode == 27)) {
+      if (e.which == 27) $parent.find(toggle).focus()
+      return $this.click()
+    }
+
+    var $items = $('[role=menu] li:not(.divider):visible a', $parent)
+
+    if (!$items.length) return
+
+    var index = $items.index($items.filter(':focus'))
+
+    if (e.keyCode == 38 && index > 0)                 index--                        // up
+    if (e.keyCode == 40 && index < $items.length - 1) index++                        // down
+    if (!~index)                                      index=0
+
+    $items.eq(index).focus()
+  }
+
+  function clearMenus() {
+    $(backdrop).remove()
+    $(toggle).each(function (e) {
+      var $parent = getParent($(this))
+      if (!$parent.hasClass('open')) return
+      $parent.trigger(e = $.Event('hide.bs.dropdown'))
+      if (e.isDefaultPrevented()) return
+      $parent.removeClass('open').trigger('hidden.bs.dropdown')
+    })
+  }
+
+  function getParent($this) {
+    var selector = $this.attr('data-target')
+
+    if (!selector) {
+      selector = $this.attr('href')
+      selector = selector && /#/.test(selector) && selector.replace(/.*(?=#[^\s]*$)/, '') //strip for ie7
+    }
+
+    var $parent = selector && $(selector)
+
+    return $parent && $parent.length ? $parent : $this.parent()
+  }
 
 
-},{"jquery":11}],3:[function(require,module,exports){
-"use strict";var $=require("jquery"),sticky=require("../libs/sticky/jquery.sticky");!function(s){function e(e,a){this._defaults=i,this._name=t,this.element=e,this.settings=s.extend({},i,a),this.html,this.flashMessage,this.flashType="default",this.flashAutohide=!1,this.init()}var t="flash",i={autohide:!1,autohideDelay:5e3,consoleLog:!1,container:"header",successType:"success",warningType:"warning",errorType:"error",defaultType:"default",dismissHandler:'[data-dismiss="flash"]',slideSpeed:100,stickyTopSpacing:44,helper:"/app/helpers/flash.php"};e.prototype={init:function(){},setFlash:function(){var e=this;s.ajax({data:"flash_message="+e.flashMessage+"&flash_type="+e.flashType+"&flash_autohide="+e.flashAutohide,url:e.settings.helper}).done(function(s){e.html=s,e.render()}),e.settings.consoleLog===!0&&s.error(e.flashMessage)},render:function(){var e=this,t=s(e.settings.container);if(e.html){var i=t.append(e.html).children().last();if(i.slideDown(e.settings.slideSpeed,function(){s(this).sticky({topSpacing:e.settings.stickyTopSpacing})}),e.flashAutohide){setTimeout(function(){i.parent().slideUp(e.settings.slideSpeed)},e.settings.autohideDelay)}s(e.element).on("click",e.settings.dismissHandler,function(){s(this).closest(".flash").parent().slideUp(e.settings.slideSpeed)})}},success:function(s,e){var t=this;t.flashType=t.settings.successType,t.flashMessage=s,t.flashAutohide=e,t.setFlash()},warning:function(s,e){var t=this;t.flashType=t.settings.warningType,t.flashMessage=s,t.flashAutohide=e,t.setFlash()},error:function(s,e){var t=this;t.flashType=t.settings.errorType,t.flashMessage=s,t.flashAutohide=e,t.setFlash()},message:function(s,e){var t=this;t.flashType=t.settings.defaultType,t.flashMessage=s,t.flashAutohide=e,t.setFlash()}},s.fn[t]=function(i){var a;return this.each(function(){a=s.data(this,"plugin_"+t),a||(a=new e(this,i),s.data(this,"plugin_"+t,a))}),a}}($,window,document),$(document).on("click","[data-dismiss=flash]",function(){$(this).closest(".flash").parent().slideUp(100)}),$(document).ready(function(){$(".flash.is-sticky").delay("1000").slideDown("100",function(){$(this).sticky({getWidthFrom:".toolbar",topSpacing:0,responsiveWidth:!0,wrapperClassName:"flash__wrapper--sticky"})})});
+  // DROPDOWN PLUGIN DEFINITION
+  // ==========================
+
+  $.fn.dropdown = function (option) {
+    return this.each(function () {
+      var $this = $(this)
+      var data  = $this.data('dropdown')
+
+      if (!data) $this.data('dropdown', (data = new Dropdown(this)))
+      if (typeof option == 'string') data[option].call($this)
+    })
+  }
+
+  $.fn.dropdown.Constructor = Dropdown
 
 
-},{"../libs/sticky/jquery.sticky":10,"jquery":11}],4:[function(require,module,exports){
-window.jQuery=require("jquery");var $=require("jquery"),deck=require("./deck"),dropdown=require("./dropdown"),flash=require("./flash"),modal=require("./modal"),tab=require("./tab"),popover=require("./popover"),tooltip=require("./tooltip");
-},{"./deck":1,"./dropdown":2,"./flash":3,"./modal":5,"./popover":6,"./tab":7,"./tooltip":8,"jquery":11}],5:[function(require,module,exports){
-"use strict";var $=require("jquery"),Modal=function(t,e){this.options=e,this.$element=$(t),this.$backdrop=this.isShown=null,this.options.remote&&this.$element.load(this.options.remote)};Modal.DEFAULTS={backdrop:!0,keyboard:!0,show:!0},Modal.prototype.toggle=function(t){return this[this.isShown?"hide":"show"](t)},Modal.prototype.show=function(t){var e=this,o=$.Event("show.bs.modal",{relatedTarget:t});this.$element.trigger(o),this.isShown||o.isDefaultPrevented()||(this.isShown=!0,this.escape(),this.$element.on("click.dismiss.modal",'[data-dismiss="modal"]',$.proxy(this.hide,this)),this.backdrop(function(){var o=$.support.transition&&e.$element.hasClass("fade");e.$element.parent().length||e.$element.appendTo(document.body),e.$element.show(),o&&e.$element[0].offsetWidth,e.$element.addClass("in").attr("aria-hidden",!1),e.enforceFocus();var s=$.Event("shown.bs.modal",{relatedTarget:t});o?e.$element.find(".modal-dialog").one($.support.transition.end,function(){e.$element.focus().trigger(s)}).emulateTransitionEnd(300):e.$element.focus().trigger(s)}))},Modal.prototype.hide=function(t){t&&t.preventDefault(),t=$.Event("hide.bs.modal"),this.$element.trigger(t),this.isShown&&!t.isDefaultPrevented()&&(this.isShown=!1,this.escape(),$(document).off("focusin.bs.modal"),this.$element.removeClass("in").attr("aria-hidden",!0).off("click.dismiss.modal"),$.support.transition&&this.$element.hasClass("fade")?this.$element.one($.support.transition.end,$.proxy(this.hideModal,this)).emulateTransitionEnd(300):this.hideModal())},Modal.prototype.enforceFocus=function(){$(document).off("focusin.bs.modal").on("focusin.bs.modal",$.proxy(function(t){this.$element[0]===t.target||this.$element.has(t.target).length||this.$element.focus()},this))},Modal.prototype.escape=function(){this.isShown&&this.options.keyboard?this.$element.on("keyup.dismiss.bs.modal",$.proxy(function(t){27==t.which&&this.hide()},this)):this.isShown||this.$element.off("keyup.dismiss.bs.modal")},Modal.prototype.hideModal=function(){var t=this;this.$element.hide(),this.backdrop(function(){t.removeBackdrop(),t.$element.trigger("hidden.bs.modal")})},Modal.prototype.removeBackdrop=function(){this.$backdrop&&this.$backdrop.remove(),this.$backdrop=null},Modal.prototype.backdrop=function(t){var e=this.$element.hasClass("fade")?"fade":"";if(this.isShown&&this.options.backdrop){var o=$.support.transition&&e;if(this.$backdrop=$('<div class="modal__backdrop '+e+'" />').appendTo(document.body),this.$element.on("click.dismiss.modal",$.proxy(function(t){t.target===t.currentTarget&&("static"==this.options.backdrop?this.$element[0].focus.call(this.$element[0]):this.hide.call(this))},this)),o&&this.$backdrop[0].offsetWidth,this.$backdrop.addClass("in"),!t)return;o?this.$backdrop.one($.support.transition.end,t).emulateTransitionEnd(150):t()}else!this.isShown&&this.$backdrop?(this.$backdrop.removeClass("in"),$.support.transition&&this.$element.hasClass("fade")?this.$backdrop.one($.support.transition.end,t).emulateTransitionEnd(150):t()):t&&t()};var old=$.fn.modal;$.fn.modal=function(t,e){return this.each(function(){var o=$(this),s=o.data("bs.modal"),i=$.extend({},Modal.DEFAULTS,o.data(),"object"==typeof t&&t);s||o.data("bs.modal",s=new Modal(this,i)),"string"==typeof t?s[t](e):i.show&&s.show(e)})},$.fn.modal.Constructor=Modal,$.fn.modal.noConflict=function(){return $.fn.modal=old,this},$(document).on("click.bs.modal.data-api",'[data-toggle="modal"]',function(t){var e=$(this),o=e.attr("href"),s=$(e.attr("data-target")||o&&o.replace(/.*(?=#[^\s]+$)/,"")),i=s.data("modal")?"toggle":$.extend({remote:!/#/.test(o)&&o},s.data(),e.data());t.preventDefault(),s.modal(i,this).one("hide",function(){e.is(":visible")&&e.focus()})}),$(document).on("show.bs.modal",".modal",function(){$(document.body).addClass("modal-open")}).on("hidden.bs.modal",".modal",function(){$(document.body).removeClass("modal-open")}),module.exports=Modal;
+  // DROPDOWN NO CONFLICT
+  // ====================
+
+  $.fn.dropdown.noConflict = function () {
+    $.fn.dropdown = old
+    return this
+  }
 
 
-},{"jquery":11}],6:[function(require,module,exports){
-"use strict";var $=require("jquery"),tooltip=require("./tooltip"),Popover=function(t,o){this.init("popover",t,o)};if(!$.fn.tooltip)throw new Error("Popover requires tooltip.js");Popover.DEFAULTS=$.extend({},$.fn.tooltip.Constructor.DEFAULTS,{placement:"right",trigger:"click",content:"",template:'<div class="popover"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'}),Popover.prototype=$.extend({},$.fn.tooltip.Constructor.prototype),Popover.prototype.constructor=Popover,Popover.prototype.getDefaults=function(){return Popover.DEFAULTS},Popover.prototype.setContent=function(){var t=this.tip(),o=this.getTitle(),e=this.getContent();t.find(".popover-title")[this.options.html?"html":"text"](o),t.find(".popover-content")[this.options.html?"html":"text"](e),t.removeClass("fade top bottom left right in"),t.find(".popover-title:empty").hide()},Popover.prototype.hasContent=function(){return this.getTitle()||this.getContent()},Popover.prototype.getContent=function(){var t=this.$element,o=this.options;return t.attr("data-content")||("function"==typeof o.content?o.content.call(t[0]):o.content)},Popover.prototype.arrow=function(){return this.$arrow=this.$arrow||this.tip().find(".arrow")},Popover.prototype.tip=function(){return this.$tip||(this.$tip=$(this.options.template)),this.$tip};var old=$.fn.popover;$.fn.popover=function(t){return this.each(function(){var o=$(this),e=o.data("bs.popover"),r="object"==typeof t&&t;e||o.data("bs.popover",e=new Popover(this,r)),"string"==typeof t&&e[t]()})},$.fn.popover.Constructor=Popover,$.fn.popover.noConflict=function(){return $.fn.popover=old,this},$(document).ready(function(){$('[data-toggle="popover"]').popover()}),module.exports=Popover;
+  // APPLY TO STANDARD DROPDOWN ELEMENTS
+  // ===================================
+
+  $(document)
+    .on('click.bs.dropdown.data-api', clearMenus)
+    .on('click.bs.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() })
+    .on('click.bs.dropdown.data-api'  , toggle, Dropdown.prototype.toggle)
+    .on('keydown.bs.dropdown.data-api', toggle + ', [role=menu]' , Dropdown.prototype.keydown)
+
+module.exports = Dropdown;
+
+},{"jquery":22}],3:[function(require,module,exports){
+/**
+ * Jadu Flash Message Handler
+ *
+ * Example:
+ *
+ *   $(document).flash().success('Something good happened');
+ */
+'use strict';
+
+var $ = require('jquery'),
+    sticky = require('../libs/sticky/jquery.sticky');
+
+  (function ($, window, document, undefined) {
+
+    // defaults
+    var pluginName = 'flash',
+        defaults = {
+          autohide: false,
+          autohideDelay: 5000,
+          consoleLog: false,
+          container: 'header',
+          successType: 'success',
+          warningType: 'warning',
+          errorType: 'error',
+          defaultType: 'default',
+          dismissHandler: '[data-dismiss="flash"]',
+          slideSpeed: 100,
+          stickyTopSpacing: 44,
+          helper: '/app/helpers/flash.php'
+        };
+
+    // constructor
+    function Plugin (element, options) {
+      this._defaults = defaults;
+      this._name = pluginName;
+      this.element = element;
+      this.settings = $.extend({}, defaults, options);
+      this.html;
+      this.flashMessage;
+      this.flashType = 'default';
+      this.flashAutohide = false;
+
+      this.init();
+    }
+
+    // methods
+    Plugin.prototype = {
+
+      init: function () {
+      },
+
+      setFlash: function () {
+        var _this = this;
+
+        $.ajax({
+          data: 'flash_message=' + _this.flashMessage +
+                '&flash_type=' + _this.flashType +
+                '&flash_autohide=' + _this.flashAutohide,
+          url: _this.settings.helper
+        }).done(function (data) {
+            _this.html = data;
+            _this.render();
+        });
+
+        // if required, show the message in the console
+        if (_this.settings.consoleLog === true) {
+          $.error(_this.flashMessage);
+        }
+
+      },
+
+      render: function () {
+        var _this = this,
+            $container = $(_this.settings.container);
+
+        // double check we do actually have the data back
+        if (_this.html) {
+
+          var $newFlash = $container.append(_this.html)
+            .children()
+            .last();
+
+          // insert our flash message into the header
+          $newFlash.slideDown(_this.settings.slideSpeed, function() {
+            $(this).sticky({
+              topSpacing: _this.settings.stickyTopSpacing
+            });
+          });
+
+          // self-dismissing flash messages
+          if (_this.flashAutohide) {
+            var timer = setTimeout(function() {
+
+              /**
+               * parent() targets the sticky wrapper, otherwise the space
+               * occupied by the flash message doesn't get removed
+               */
+              $newFlash.parent().slideUp(_this.settings.slideSpeed);
+            }, _this.settings.autohideDelay);
+          }
+
+          // bind the dismiss handler
+          $(_this.element).on('click', _this.settings.dismissHandler, function () {
+
+              // parent() targets the sticky wrapper
+              $(this).closest('.flash')
+                .parent()
+                .slideUp(_this.settings.slideSpeed);
+          });
+        }
+      },
+
+      success: function (message, autohide) {
+        var _this = this;
+
+        _this.flashType = _this.settings.successType;
+        _this.flashMessage = message;
+        _this.flashAutohide = autohide;
+        _this.setFlash();
+      },
+
+      warning: function (message, autohide) {
+        var _this = this;
+
+        _this.flashType = _this.settings.warningType;
+        _this.flashMessage = message;
+        _this.flashAutohide = autohide;
+        _this.setFlash();
+      },
+
+      error: function (message, autohide) {
+        var _this = this;
+
+        _this.flashType = _this.settings.errorType;
+        _this.flashMessage = message;
+        _this.flashAutohide = autohide;
+        _this.setFlash();
+      },
+
+      message: function (message, autohide) {
+        var _this = this;
+
+        _this.flashType = _this.settings.defaultType;
+        _this.flashMessage = message;
+        _this.flashAutohide = autohide;
+        _this.setFlash();
+      }
+
+    };
+
+    $.fn[pluginName] = function (options) {
+      var plugin;
+      this.each(function() {
+        plugin = $.data(this, 'plugin_' + pluginName);
+        if (!plugin) {
+          plugin = new Plugin(this, options);
+          $.data(this, 'plugin_' + pluginName, plugin);
+        }
+      });
+      return plugin;
+    };
+
+  })($, window, document);
+
+  $(document).on('click', '[data-dismiss=flash]', function (e) {
+    // parent() targets the sticky wrapper
+    $(this).closest('.flash')
+      .parent()
+      .slideUp(100);
+  });
+
+  // Look for any flashes and animate them in when the page loads
+  $(document).ready(function() {
+    $('.flash.is-sticky').delay('1000').slideDown('100', function() {
+      $(this).sticky({
+        getWidthFrom: '.toolbar',
+        topSpacing: 0,
+        responsiveWidth: true,
+        wrapperClassName: 'flash__wrapper--sticky'
+      });
+    });
+  });
 
 
-},{"./tooltip":8,"jquery":11}],7:[function(require,module,exports){
-"use strict";var $=require("jquery"),Tab=function(t){this.element=$(t)};Tab.prototype.show=function(){var t=this.element,a=t.closest("ul:not(.dropdown-menu)"),e=t.attr("data-target");if(e||(e=t.attr("href"),e=e&&e.replace(/.*(?=#[^\s]*$)/,"")),!t.parent("li").hasClass("is-active")){var s=a.find(".is-active:last a")[0],i=$.Event("show.bs.tab",{relatedTarget:s});if(t.trigger(i),!i.isDefaultPrevented()){var n=$(e);if(!n.length){var r=$("li > a",t.parent());"#"===$(r).attr("href").substring(0,1)&&(r.parent().removeClass("is-active").first().addClass("is-active"),n=$($(r).attr("href")))}this.activate(t.parent("li"),a),this.activate(n,n.parent(),function(){t.trigger({type:"shown.bs.tab",relatedTarget:s})}),$(".tab__pane").css("min-height",$(".tabs__list").height())}}},Tab.prototype.activate=function(t,a,e){function s(){i.removeClass("is-active").find("> .dropdown-menu > .is-active").removeClass("is-active"),t.addClass("is-active"),n?(t[0].offsetWidth,t.addClass("in")):t.removeClass("fade"),t.parent(".dropdown-menu")&&t.closest("li.dropdown").addClass("is-active"),e&&e()}var i=a.find("> .is-active"),n=e&&$.support.transition&&i.hasClass("fade");n?i.one($.support.transition.end,s).emulateTransitionEnd(150):s(),i.removeClass("in")};var old=$.fn.tab;$.fn.tab=function(t){return this.each(function(){var a=$(this),e=a.data("bs.tab");e||a.data("bs.tab",e=new Tab(this)),"string"==typeof t&&e[t]()})},$.fn.tab.Constructor=Tab,$.fn.tab.noConflict=function(){return $.fn.tab=old,this},$(document).on("click.bs.tab.data-api",'[data-toggle="tab"], [data-toggle="pill"]',function(t){t.preventDefault(),$(this).tab("show")}),$(document).ready(function(){$(".tabs > .tabs__content > .tab__pane").css("min-height",$(".tabs__list").height())}),module.exports=Tab;
+},{"../libs/sticky/jquery.sticky":21,"jquery":22}],4:[function(require,module,exports){
+var $ = require('jquery'),
+	hljs = require('../libs/highlightjs/lib/index');
+
+$(function () {
+
+	if (!$('html.ie7').size()) { // IE8 and up only
+		$('pre code').each(function(i, block) {
+			hljs.highlightBlock(block);
+		});
+	};
+
+});
+
+},{"../libs/highlightjs/lib/index":12,"jquery":22}],5:[function(require,module,exports){
+/**
+ * Pulsar
+ *
+ * Core UI components that should always be present.
+ *
+ * Jadu Ltd.
+ */
+
+// Fixes issue with dependencies that expect both $ and jQuery to be set
+window.jQuery = require('jquery');
+
+// Global UI components
+var $          = require('jquery'),
+	deck       = require('./deck'),
+	dropdown   = require('./dropdown'),
+	flash      = require('./flash'),
+	modal      = require('./modal'),
+	tab        = require('./tab'),
+	popover    = require('./popover'),
+	highlight  = require('./highlight'),
+	tooltip    = require('./tooltip');
+
+},{"./deck":1,"./dropdown":2,"./flash":3,"./highlight":4,"./modal":6,"./popover":7,"./tab":8,"./tooltip":9,"jquery":22}],6:[function(require,module,exports){
+/* ========================================================================
+ * Bootstrap: modal.js v3.0.3
+ * http://twbs.github.com/bootstrap/javascript.html#modals
+ * ========================================================================
+ * Copyright 2012 Twitter, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * ======================================================================== */
 
 
-},{"jquery":11}],8:[function(require,module,exports){
-"use strict";var $=require("jquery"),Tooltip=function(t,e){this.type=this.options=this.enabled=this.timeout=this.hoverState=this.$element=null,this.init("tooltip",t,e)};Tooltip.DEFAULTS={animation:!0,placement:"top",selector:!1,template:'<div class="tooltip" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>',trigger:"hover focus",title:"",delay:0,html:!1,container:!1,viewport:{selector:"body",padding:0}},Tooltip.prototype.init=function(t,e,o){this.enabled=!0,this.type=t,this.$element=$(e),this.options=this.getOptions(o),this.$viewport=this.options.viewport&&$(this.options.viewport.selector||this.options.viewport);for(var i=this.options.trigger.split(" "),s=i.length;s--;){var n=i[s];if("click"==n)this.$element.on("click."+this.type,this.options.selector,$.proxy(this.toggle,this));else if("manual"!=n){var l="hover"==n?"mouseenter":"focusin",p="hover"==n?"mouseleave":"focusout";this.$element.on(l+"."+this.type,this.options.selector,$.proxy(this.enter,this)),this.$element.on(p+"."+this.type,this.options.selector,$.proxy(this.leave,this))}}this.options.selector?this._options=$.extend({},this.options,{trigger:"manual",selector:""}):this.fixTitle()},Tooltip.prototype.getDefaults=function(){return Tooltip.DEFAULTS},Tooltip.prototype.getOptions=function(t){return t=$.extend({},this.getDefaults(),this.$element.data(),t),t.delay&&"number"==typeof t.delay&&(t.delay={show:t.delay,hide:t.delay}),t},Tooltip.prototype.getDelegateOptions=function(){var t={},e=this.getDefaults();return this._options&&$.each(this._options,function(o,i){e[o]!=i&&(t[o]=i)}),t},Tooltip.prototype.enter=function(t){var e=t instanceof this.constructor?t:$(t.currentTarget)[this.type](this.getDelegateOptions()).data("bs."+this.type);return clearTimeout(e.timeout),e.hoverState="in",e.options.delay&&e.options.delay.show?void(e.timeout=setTimeout(function(){"in"==e.hoverState&&e.show()},e.options.delay.show)):e.show()},Tooltip.prototype.leave=function(t){var e=t instanceof this.constructor?t:$(t.currentTarget)[this.type](this.getDelegateOptions()).data("bs."+this.type);return clearTimeout(e.timeout),e.hoverState="out",e.options.delay&&e.options.delay.hide?void(e.timeout=setTimeout(function(){"out"==e.hoverState&&e.hide()},e.options.delay.hide)):e.hide()},Tooltip.prototype.show=function(){var t=$.Event("show.bs."+this.type);if(this.hasContent()&&this.enabled){if(this.$element.trigger(t),t.isDefaultPrevented())return;var e=this,o=this.tip();this.setContent(),this.options.animation&&o.addClass("fade");var i="function"==typeof this.options.placement?this.options.placement.call(this,o[0],this.$element[0]):this.options.placement,s=/\s?auto?\s?/i,n=s.test(i);n&&(i=i.replace(s,"")||"top"),o.detach().css({top:0,left:0,display:"block"}).addClass(i),this.options.container?o.appendTo(this.options.container):o.insertAfter(this.$element);var l=this.getPosition(),p=o[0].offsetWidth,r=o[0].offsetHeight;if(n){var a=i,h=this.$element.parent(),f=this.getPosition(h);i="bottom"==i&&l.top+l.height+r-f.scroll>f.height?"top":"top"==i&&l.top-f.scroll-r<0?"bottom":"right"==i&&l.right+p>f.width?"left":"left"==i&&l.left-p<f.left?"right":i,o.removeClass(a).addClass(i)}var d=this.getCalculatedOffset(i,l,p,r);this.applyPlacement(d,i),this.hoverState=null;var u=function(){e.$element.trigger("shown.bs."+e.type)};$.support.transition&&this.$tip.hasClass("fade")?o.one($.support.transition.end,u).emulateTransitionEnd(150):u()}},Tooltip.prototype.applyPlacement=function(t,e){var o=this.tip(),i=o[0].offsetWidth,s=o[0].offsetHeight,n=parseInt(o.css("margin-top"),10),l=parseInt(o.css("margin-left"),10);isNaN(n)&&(n=0),isNaN(l)&&(l=0),t.top=t.top+n,t.left=t.left+l,$.offset.setOffset(o[0],$.extend({using:function(t){o.css({top:Math.round(t.top),left:Math.round(t.left)})}},t),0),o.addClass("in");var p=o[0].offsetWidth,r=o[0].offsetHeight;"top"==e&&r!=s&&(t.top=t.top+s-r);var a=this.getViewportAdjustedDelta(e,t,p,r);a.left?t.left+=a.left:t.top+=a.top;var h=a.left?2*a.left-i+p:2*a.top-s+r,f=a.left?"left":"top",d=a.left?"offsetWidth":"offsetHeight";o.offset(t),this.replaceArrow(h,o[0][d],f)},Tooltip.prototype.replaceArrow=function(t,e,o){this.arrow().css(o,t?50*(1-t/e)+"%":"")},Tooltip.prototype.setContent=function(){var t=this.tip(),e=this.getTitle();t.find(".tooltip-inner")[this.options.html?"html":"text"](e),t.removeClass("fade in top bottom left right")},Tooltip.prototype.hide=function(){function t(){"in"!=e.hoverState&&o.detach(),e.$element.trigger("hidden.bs."+e.type)}var e=this,o=this.tip(),i=$.Event("hide.bs."+this.type);return this.$element.trigger(i),i.isDefaultPrevented()?void 0:(o.removeClass("in"),$.support.transition&&this.$tip.hasClass("fade")?o.one($.support.transition.end,t).emulateTransitionEnd(150):t(),this.hoverState=null,this)},Tooltip.prototype.fixTitle=function(){var t=this.$element;(t.attr("title")||"string"!=typeof t.attr("data-original-title"))&&t.attr("data-original-title",t.attr("title")||"").attr("title","")},Tooltip.prototype.hasContent=function(){return this.getTitle()},Tooltip.prototype.getPosition=function(t){t=t||this.$element;var e=t[0],o="BODY"==e.tagName;return $.extend({},"function"==typeof e.getBoundingClientRect?e.getBoundingClientRect():null,{scroll:o?document.documentElement.scrollTop||document.body.scrollTop:t.scrollTop(),width:o?$(window).width():t.outerWidth(),height:o?$(window).height():t.outerHeight()},o?{top:0,left:0}:t.offset())},Tooltip.prototype.getCalculatedOffset=function(t,e,o,i){return"bottom"==t?{top:e.top+e.height,left:e.left+e.width/2-o/2}:"top"==t?{top:e.top-i,left:e.left+e.width/2-o/2}:"left"==t?{top:e.top+e.height/2-i/2,left:e.left-o}:{top:e.top+e.height/2-i/2,left:e.left+e.width}},Tooltip.prototype.getViewportAdjustedDelta=function(t,e,o,i){var s={top:0,left:0};if(!this.$viewport)return s;var n=this.options.viewport&&this.options.viewport.padding||0,l=this.getPosition(this.$viewport);if(/right|left/.test(t)){var p=e.top-n-l.scroll,r=e.top+n-l.scroll+i;p<l.top?s.top=l.top-p:r>l.top+l.height&&(s.top=l.top+l.height-r)}else{var a=e.left-n,h=e.left+n+o;a<l.left?s.left=l.left-a:h>l.width&&(s.left=l.left+l.width-h)}return s},Tooltip.prototype.getTitle=function(){var t,e=this.$element,o=this.options;return t=e.attr("data-original-title")||("function"==typeof o.title?o.title.call(e[0]):o.title)},Tooltip.prototype.tip=function(){return this.$tip=this.$tip||$(this.options.template)},Tooltip.prototype.arrow=function(){return this.$arrow=this.$arrow||this.tip().find(".tooltip-arrow")},Tooltip.prototype.validate=function(){this.$element[0].parentNode||(this.hide(),this.$element=null,this.options=null)},Tooltip.prototype.enable=function(){this.enabled=!0},Tooltip.prototype.disable=function(){this.enabled=!1},Tooltip.prototype.toggleEnabled=function(){this.enabled=!this.enabled},Tooltip.prototype.toggle=function(t){var e=t?$(t.currentTarget)[this.type](this.getDelegateOptions()).data("bs."+this.type):this;e.tip().hasClass("in")?e.leave(e):e.enter(e)},Tooltip.prototype.destroy=function(){clearTimeout(this.timeout),this.hide().$element.off("."+this.type).removeData("bs."+this.type)};var old=$.fn.tooltip;$.fn.tooltip=function(t){return this.each(function(){var e=$(this),o=e.data("bs.tooltip"),i="object"==typeof t&&t;(o||"destroy"!=t)&&(o||e.data("bs.tooltip",o=new Tooltip(this,i)),"string"==typeof t&&o[t]())})},$.fn.tooltip.Constructor=Tooltip,$.fn.tooltip.noConflict=function(){return $.fn.tooltip=old,this},$(document).ready(function(){$('[data-toggle="tooltips"]').tooltip()}),module.exports=Tooltip;
+'use strict';
+
+var $ = require('jquery');
+
+  // MODAL CLASS DEFINITION
+  // ======================
+
+  var Modal = function (element, options) {
+    this.options   = options
+    this.$element  = $(element)
+    this.$backdrop =
+    this.isShown   = null
+
+    if (this.options.remote) this.$element.load(this.options.remote)
+  }
+
+  Modal.DEFAULTS = {
+      backdrop: true
+    , keyboard: true
+    , show: true
+  }
+
+  Modal.prototype.toggle = function (_relatedTarget) {
+    return this[!this.isShown ? 'show' : 'hide'](_relatedTarget)
+  }
+
+  Modal.prototype.show = function (_relatedTarget) {
+    var that = this
+    var e    = $.Event('show.bs.modal', { relatedTarget: _relatedTarget })
+
+    this.$element.trigger(e)
+
+    if (this.isShown || e.isDefaultPrevented()) return
+
+    this.isShown = true
+
+    this.escape()
+
+    this.$element.on('click.dismiss.modal', '[data-dismiss="modal"]', $.proxy(this.hide, this))
+
+    this.backdrop(function () {
+      var transition = $.support.transition && that.$element.hasClass('fade')
+
+      if (!that.$element.parent().length) {
+        that.$element.appendTo(document.body) // don't move modals dom position
+      }
+
+      that.$element.show()
+
+      if (transition) {
+        that.$element[0].offsetWidth // force reflow
+      }
+
+      that.$element
+        .addClass('in')
+        .attr('aria-hidden', false)
+
+      that.enforceFocus()
+
+      var e = $.Event('shown.bs.modal', { relatedTarget: _relatedTarget })
+
+      transition ?
+        that.$element.find('.modal-dialog') // wait for modal to slide in
+          .one($.support.transition.end, function () {
+            that.$element.focus().trigger(e)
+          })
+          .emulateTransitionEnd(300) :
+        that.$element.focus().trigger(e)
+    })
+  }
+
+  Modal.prototype.hide = function (e) {
+    if (e) e.preventDefault()
+
+    e = $.Event('hide.bs.modal')
+
+    this.$element.trigger(e)
+
+    if (!this.isShown || e.isDefaultPrevented()) return
+
+    this.isShown = false
+
+    this.escape()
+
+    $(document).off('focusin.bs.modal')
+
+    this.$element
+      .removeClass('in')
+      .attr('aria-hidden', true)
+      .off('click.dismiss.modal')
+
+    $.support.transition && this.$element.hasClass('fade') ?
+      this.$element
+        .one($.support.transition.end, $.proxy(this.hideModal, this))
+        .emulateTransitionEnd(300) :
+      this.hideModal()
+  }
+
+  Modal.prototype.enforceFocus = function () {
+    $(document)
+      .off('focusin.bs.modal') // guard against infinite focus loop
+      .on('focusin.bs.modal', $.proxy(function (e) {
+        if (this.$element[0] !== e.target && !this.$element.has(e.target).length) {
+          this.$element.focus()
+        }
+      }, this))
+  }
+
+  Modal.prototype.escape = function () {
+    if (this.isShown && this.options.keyboard) {
+      this.$element.on('keyup.dismiss.bs.modal', $.proxy(function (e) {
+        e.which == 27 && this.hide()
+      }, this))
+    } else if (!this.isShown) {
+      this.$element.off('keyup.dismiss.bs.modal')
+    }
+  }
+
+  Modal.prototype.hideModal = function () {
+    var that = this
+    this.$element.hide()
+    this.backdrop(function () {
+      that.removeBackdrop()
+      that.$element.trigger('hidden.bs.modal')
+
+    })
+  }
+
+  Modal.prototype.removeBackdrop = function () {
+    this.$backdrop && this.$backdrop.remove()
+    this.$backdrop = null
+  }
+
+  Modal.prototype.backdrop = function (callback) {
+    var that    = this
+    var animate = this.$element.hasClass('fade') ? 'fade' : ''
+
+    if (this.isShown && this.options.backdrop) {
+      var doAnimate = $.support.transition && animate
+
+      this.$backdrop = $('<div class="modal__backdrop ' + animate + '" />')
+        .appendTo(document.body)
+
+      this.$element.on('click.dismiss.modal', $.proxy(function (e) {
+        if (e.target !== e.currentTarget) return
+        this.options.backdrop == 'static'
+          ? this.$element[0].focus.call(this.$element[0])
+          : this.hide.call(this)
+      }, this))
+
+      if (doAnimate) this.$backdrop[0].offsetWidth // force reflow
+
+      this.$backdrop.addClass('in')
+
+      if (!callback) return
+
+      doAnimate ?
+        this.$backdrop
+          .one($.support.transition.end, callback)
+          .emulateTransitionEnd(150) :
+        callback()
+
+    } else if (!this.isShown && this.$backdrop) {
+      this.$backdrop.removeClass('in')
+
+      $.support.transition && this.$element.hasClass('fade') ?
+        this.$backdrop
+          .one($.support.transition.end, callback)
+          .emulateTransitionEnd(150) :
+        callback()
+
+    } else if (callback) {
+      callback()
+    }
+  }
 
 
-},{"jquery":11}],9:[function(require,module,exports){
-!function(t,e,i){"use strict";var r={filterId:0},n=function(t,n){var u={intensity:5},l=i.extend(u,n);this.$elm=t instanceof i?t:i(t);var s=!1,o=" -webkit- -moz- -o- -ms- ".split(" "),f={},a=function(t){if(f[t]||""===f[t])return f[t]+t;var i=e.createElement("div"),r=["","Moz","Webkit","O","ms","Khtml"];for(var n in r)if("undefined"!=typeof i.style[r[n]+t])return f[t]=r[n],r[n]+t;return t.toLowerCase()},d=function(){var t=e.createElement("div");return t.style.cssText=o.join("filter:blur(2px); "),!!t.style.length&&(void 0===e.documentMode||e.documentMode>9)}(),c=function(){var t=!1;try{t=void 0!==typeof SVGFEColorMatrixElement&&2==SVGFEColorMatrixElement.SVG_FECOLORMATRIX_TYPE_SATURATE}catch(e){}return t}(),v=function(){var t="<svg id='vague-svg-blur'><filter id='blur-effect-id-"+r.filterId+"'><feGaussianBlur stdDeviation='"+l.intensity+"' /></filter></svg>";i("body").append(t)};return this.init=function(){c&&v(),this.$elm.data("vague-filter-id",r.filterId),r.filterId++},this.blur=function(){var t,e=this.$elm.data("vague-filter-id"),i={};t=d?"blur("+l.intensity+"px)":c?"url(#blur-effect-id-"+e+")":"progid:DXImageTransform.Microsoft.Blur(pixelradius="+l.intensity+")",i[a("Filter")]=t,this.$elm.css(i),s=!0},this.unblur=function(){var t={};t[a("Filter")]="none",this.$elm.css(t),s=!1},this.toggleblur=function(){s?this.unblur():this.blur()},this.destroy=function(){c&&i("filter#blur-effect-id-"+this.$elm.data("vague-filter-id")).parent().remove(),this.unblur()},this.init()};i.fn.Vague=function(t){return new n(this,t)},t.Vague=n}(window,document,jQuery);
+  // MODAL PLUGIN DEFINITION
+  // =======================
+
+  var old = $.fn.modal
+
+  $.fn.modal = function (option, _relatedTarget) {
+    return this.each(function () {
+      var $this   = $(this)
+      var data    = $this.data('bs.modal')
+      var options = $.extend({}, Modal.DEFAULTS, $this.data(), typeof option == 'object' && option)
+
+      if (!data) $this.data('bs.modal', (data = new Modal(this, options)))
+      if (typeof option == 'string') data[option](_relatedTarget)
+      else if (options.show) data.show(_relatedTarget)
+    })
+  }
+
+  $.fn.modal.Constructor = Modal
 
 
-},{}],10:[function(require,module,exports){
-!function(t){var e={topSpacing:0,bottomSpacing:0,className:"is-sticky",wrapperClassName:"sticky-wrapper",center:!1,getWidthFrom:"",responsiveWidth:!1},i=t(window),n=t(document),s=[],r=i.height(),o=function(){for(var e=i.scrollTop(),o=n.height(),a=o-r,c=e>a?a-e:0,p=0;p<s.length;p++){var l=s[p],d=l.stickyWrapper.offset().top,h=d-l.topSpacing-c;if(h>=e)null!==l.currentTop&&(l.stickyElement.css("position","").css("top",""),l.stickyElement.trigger("sticky-end",[l]).parent().removeClass(l.className),l.currentTop=null);else{var u=o-l.stickyElement.outerHeight()-l.topSpacing-l.bottomSpacing-e-c;0>u?u+=l.topSpacing:u=l.topSpacing,l.currentTop!=u&&(l.stickyElement.css("position","fixed").css("top",u),"undefined"!=typeof l.getWidthFrom&&l.stickyElement.css("width",t(l.getWidthFrom).width()),l.stickyElement.trigger("sticky-start",[l]).parent().addClass(l.className),l.currentTop=u)}}},a=function(){r=i.height();for(var e=0;e<s.length;e++){var n=s[e];"undefined"!=typeof n.getWidthFrom&&n.responsiveWidth===!0&&n.stickyElement.css("width",t(n.getWidthFrom).width())}},c={init:function(i){var n=t.extend({},e,i);return this.each(function(){var i=t(this),r=i.attr("id"),o=(r?r+"-"+e.wrapperClassName:e.wrapperClassName,t("<div></div>").attr("id",r+"-sticky-wrapper").addClass(n.wrapperClassName));i.wrapAll(o),n.center&&i.parent().css({width:i.outerWidth(),marginLeft:"auto",marginRight:"auto"}),"right"==i.css("float")&&i.css({"float":"none"}).parent().css({"float":"right"});var a=i.parent();a.css("height",i.outerHeight()),s.push({topSpacing:n.topSpacing,bottomSpacing:n.bottomSpacing,stickyElement:i,currentTop:null,stickyWrapper:a,className:n.className,getWidthFrom:n.getWidthFrom,responsiveWidth:n.responsiveWidth})})},update:o,unstick:function(){return this.each(function(){for(var e=t(this),i=-1,n=0;n<s.length;n++)s[n].stickyElement.get(0)==e.get(0)&&(i=n);-1!=i&&(s.splice(i,1),e.unwrap(),e.removeAttr("style"))})}};window.addEventListener?(window.addEventListener("scroll",o,!1),window.addEventListener("resize",a,!1)):window.attachEvent&&(window.attachEvent("onscroll",o),window.attachEvent("onresize",a)),t.fn.sticky=function(e){return c[e]?c[e].apply(this,Array.prototype.slice.call(arguments,1)):"object"!=typeof e&&e?void t.error("Method "+e+" does not exist on jQuery.sticky"):c.init.apply(this,arguments)},t.fn.unstick=function(e){return c[e]?c[e].apply(this,Array.prototype.slice.call(arguments,1)):"object"!=typeof e&&e?void t.error("Method "+e+" does not exist on jQuery.sticky"):c.unstick.apply(this,arguments)},t(function(){setTimeout(o,0)})}(jQuery);
+  // MODAL NO CONFLICT
+  // =================
 
+  $.fn.modal.noConflict = function () {
+    $.fn.modal = old
+    return this
+  }
+
+
+  // MODAL DATA-API
+  // ==============
+
+  $(document).on('click.bs.modal.data-api', '[data-toggle="modal"]', function (e) {
+    var $this   = $(this)
+    var href    = $this.attr('href')
+    var $target = $($this.attr('data-target') || (href && href.replace(/.*(?=#[^\s]+$)/, ''))) //strip for ie7
+    var option  = $target.data('modal') ? 'toggle' : $.extend({ remote: !/#/.test(href) && href }, $target.data(), $this.data())
+
+    e.preventDefault()
+
+    $target
+      .modal(option, this)
+      .one('hide', function () {
+        $this.is(':visible') && $this.focus()
+      })
+  })
+
+  $(document)
+    .on('show.bs.modal',  '.modal', function () { $(document.body).addClass('modal-open') })
+    .on('hidden.bs.modal', '.modal', function () {
+      // $(this).removeData('bs.modal').empty()
+      $(document.body).removeClass('modal-open')
+    })
+
+module.exports = Modal;
+
+},{"jquery":22}],7:[function(require,module,exports){
+/* ========================================================================
+ * Bootstrap: popover.js v3.0.0
+ * http://twbs.github.com/bootstrap/javascript.html#popovers
+ * ========================================================================
+ * Copyright 2012 Twitter, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * ======================================================================== */
+
+'use strict';
+
+var $ = require('jquery'),
+    tooltip = require('./tooltip');
+
+  // POPOVER PUBLIC CLASS DEFINITION
+  // ===============================
+
+  var Popover = function (element, options) {
+    this.init('popover', element, options)
+  }
+
+  if (!$.fn.tooltip) throw new Error('Popover requires tooltip.js')
+
+  Popover.DEFAULTS = $.extend({} , $.fn.tooltip.Constructor.DEFAULTS, {
+    placement: 'right'
+  , trigger: 'click'
+  , content: ''
+  , template: '<div class="popover"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
+  })
+
+
+  // NOTE: POPOVER EXTENDS tooltip.js
+  // ================================
+
+  Popover.prototype = $.extend({}, $.fn.tooltip.Constructor.prototype)
+
+  Popover.prototype.constructor = Popover
+
+  Popover.prototype.getDefaults = function () {
+    return Popover.DEFAULTS
+  }
+
+  Popover.prototype.setContent = function () {
+    var $tip    = this.tip()
+    var title   = this.getTitle()
+    var content = this.getContent()
+
+    $tip.find('.popover-title')[this.options.html ? 'html' : 'text'](title)
+    $tip.find('.popover-content')[this.options.html ? 'html' : 'text'](content)
+
+    $tip.removeClass('fade top bottom left right in')
+
+    $tip.find('.popover-title:empty').hide()
+  }
+
+  Popover.prototype.hasContent = function () {
+    return this.getTitle() || this.getContent()
+  }
+
+  Popover.prototype.getContent = function () {
+    var $e = this.$element
+    var o  = this.options
+
+    return $e.attr('data-content')
+      || (typeof o.content == 'function' ?
+            o.content.call($e[0]) :
+            o.content)
+  }
+
+  Popover.prototype.arrow =function () {
+    return this.$arrow = this.$arrow || this.tip().find('.arrow')
+  }
+
+  Popover.prototype.tip = function () {
+    if (!this.$tip) this.$tip = $(this.options.template)
+    return this.$tip
+  }
+
+
+  // POPOVER PLUGIN DEFINITION
+  // =========================
+
+  var old = $.fn.popover
+
+  $.fn.popover = function (option) {
+    return this.each(function () {
+      var $this   = $(this)
+      var data    = $this.data('bs.popover')
+      var options = typeof option == 'object' && option
+
+      if (!data) $this.data('bs.popover', (data = new Popover(this, options)))
+      if (typeof option == 'string') data[option]()
+    })
+  }
+
+  $.fn.popover.Constructor = Popover
+
+
+  // POPOVER NO CONFLICT
+  // ===================
+
+  $.fn.popover.noConflict = function () {
+    $.fn.popover = old
+    return this
+  }
+
+  $(document).ready(function() {
+    $('[data-toggle="popover"]').popover();
+  });
+
+module.exports = Popover;
+
+},{"./tooltip":9,"jquery":22}],8:[function(require,module,exports){
+/* ========================================================================
+ * Bootstrap: tab.js v3.0.0
+ * http://twbs.github.com/bootstrap/javascript.html#tabs
+ * ========================================================================
+ * Copyright 2012 Twitter, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * ======================================================================== */
+
+"use strict";
+
+var $ = require('jquery');
+
+	// TAB CLASS DEFINITION
+	// ====================
+
+	var Tab = function (element) {
+		this.element = $(element)
+	}
+
+	Tab.prototype.show = function () {
+		var $this    = this.element
+		var $ul      = $this.closest('ul:not(.dropdown-menu)')
+		var selector = $this.attr('data-target')
+
+		if (!selector) {
+			selector = $this.attr('href')
+			selector = selector && selector.replace(/.*(?=#[^\s]*$)/, '') //strip for ie7
+		}
+
+		if ($this.parent('li').hasClass('is-active')) return
+
+		var previous = $ul.find('.is-active:last a')[0]
+		var e        = $.Event('show.bs.tab', {
+			relatedTarget: previous
+		})
+
+		$this.trigger(e)
+
+		if (e.isDefaultPrevented()) return
+
+		var $target = $(selector)
+
+		// If we have sub-tabs, selecting the parent should activate and highlight the first one
+		if (!$target.length)  {
+		var firstTab = $('li > a', $this.parent())
+			if ($(firstTab).attr('href').substring(0,1) === "#") {
+					firstTab.parent().removeClass('is-active').first().addClass('is-active')
+					$target = $($(firstTab).attr('href'))
+			}
+		}
+
+		this.activate($this.parent('li'), $ul)
+		this.activate($target, $target.parent(), function () {
+			$this.trigger({
+				type: 'shown.bs.tab'
+			, relatedTarget: previous
+			})
+		})
+
+		$('.tab__pane').css('min-height', $('.tabs__list').height());
+	}
+
+	Tab.prototype.activate = function (element, container, callback) {
+		var $active    = container.find('> .is-active')
+		var transition = callback
+			&& $.support.transition
+			&& $active.hasClass('fade')
+
+		function next() {
+			$active
+				.removeClass('is-active')
+				.find('> .dropdown-menu > .is-active')
+				.removeClass('is-active')
+
+			element.addClass('is-active')
+
+			if (transition) {
+				element[0].offsetWidth // reflow for transition
+				element.addClass('in')
+			} else {
+				element.removeClass('fade')
+			}
+
+			if (element.parent('.dropdown-menu')) {
+				element.closest('li.dropdown').addClass('is-active')
+			}
+
+			callback && callback()
+		}
+
+		transition ?
+			$active
+				.one($.support.transition.end, next)
+				.emulateTransitionEnd(150) :
+			next()
+
+		$active.removeClass('in')
+	}
+
+
+	// TAB PLUGIN DEFINITION
+	// =====================
+
+	var old = $.fn.tab
+
+	$.fn.tab = function ( option ) {
+		return this.each(function () {
+			var $this = $(this)
+			var data  = $this.data('bs.tab')
+
+			if (!data) $this.data('bs.tab', (data = new Tab(this)))
+			if (typeof option == 'string') data[option]()
+		})
+	}
+
+	$.fn.tab.Constructor = Tab
+
+
+	// TAB NO CONFLICT
+	// ===============
+
+	$.fn.tab.noConflict = function () {
+		$.fn.tab = old
+		return this
+	}
+
+
+	// TAB DATA-API
+	// ============
+
+	$(document).on('click.bs.tab.data-api', '[data-toggle="tab"], [data-toggle="pill"]', function (e) {
+		e.preventDefault()
+		$(this).tab('show')
+	})
+
+	$(document).ready(function() {
+		// Make sure tab panes are at least as high as the tab list (otherwise they just look weird)
+		$('.tabs > .tabs__content > .tab__pane').css('min-height', $('.tabs__list').height());
+	});
+
+module.exports = Tab;
+
+
+},{"jquery":22}],9:[function(require,module,exports){
+/* ========================================================================
+ * Bootstrap: tooltip.js v3.1.1
+ * http://getbootstrap.com/javascript/#tooltip
+ * Inspired by the original jQuery.tipsy by Jason Frame
+ * ========================================================================
+ * Copyright 2011-2014 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+"use strict";
+
+var $ = require('jquery');
+
+  // TOOLTIP PUBLIC CLASS DEFINITION
+  // ===============================
+
+  var Tooltip = function (element, options) {
+    this.type       =
+    this.options    =
+    this.enabled    =
+    this.timeout    =
+    this.hoverState =
+    this.$element   = null
+
+    this.init('tooltip', element, options)
+  }
+
+  Tooltip.DEFAULTS = {
+    animation: true,
+    placement: 'top',
+    selector: false,
+    template: '<div class="tooltip" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>',
+    trigger: 'hover focus',
+    title: '',
+    delay: 0,
+    html: false,
+    container: false,
+    viewport: {
+      selector: 'body',
+      padding: 0
+    }
+  }
+
+  Tooltip.prototype.init = function (type, element, options) {
+    this.enabled   = true
+    this.type      = type
+    this.$element  = $(element)
+    this.options   = this.getOptions(options)
+    this.$viewport = this.options.viewport && $(this.options.viewport.selector || this.options.viewport)
+
+    var triggers = this.options.trigger.split(' ')
+
+    for (var i = triggers.length; i--;) {
+      var trigger = triggers[i]
+
+      if (trigger == 'click') {
+        this.$element.on('click.' + this.type, this.options.selector, $.proxy(this.toggle, this))
+      } else if (trigger != 'manual') {
+        var eventIn  = trigger == 'hover' ? 'mouseenter' : 'focusin'
+        var eventOut = trigger == 'hover' ? 'mouseleave' : 'focusout'
+
+        this.$element.on(eventIn  + '.' + this.type, this.options.selector, $.proxy(this.enter, this))
+        this.$element.on(eventOut + '.' + this.type, this.options.selector, $.proxy(this.leave, this))
+      }
+    }
+
+    this.options.selector ?
+      (this._options = $.extend({}, this.options, { trigger: 'manual', selector: '' })) :
+      this.fixTitle()
+  }
+
+  Tooltip.prototype.getDefaults = function () {
+    return Tooltip.DEFAULTS
+  }
+
+  Tooltip.prototype.getOptions = function (options) {
+    options = $.extend({}, this.getDefaults(), this.$element.data(), options)
+
+    if (options.delay && typeof options.delay == 'number') {
+      options.delay = {
+        show: options.delay,
+        hide: options.delay
+      }
+    }
+
+    return options
+  }
+
+  Tooltip.prototype.getDelegateOptions = function () {
+    var options  = {}
+    var defaults = this.getDefaults()
+
+    this._options && $.each(this._options, function (key, value) {
+      if (defaults[key] != value) options[key] = value
+    })
+
+    return options
+  }
+
+  Tooltip.prototype.enter = function (obj) {
+    var self = obj instanceof this.constructor ?
+      obj : $(obj.currentTarget)[this.type](this.getDelegateOptions()).data('bs.' + this.type)
+
+    clearTimeout(self.timeout)
+
+    self.hoverState = 'in'
+
+    if (!self.options.delay || !self.options.delay.show) return self.show()
+
+    self.timeout = setTimeout(function () {
+      if (self.hoverState == 'in') self.show()
+    }, self.options.delay.show)
+  }
+
+  Tooltip.prototype.leave = function (obj) {
+    var self = obj instanceof this.constructor ?
+      obj : $(obj.currentTarget)[this.type](this.getDelegateOptions()).data('bs.' + this.type)
+
+    clearTimeout(self.timeout)
+
+    self.hoverState = 'out'
+
+    if (!self.options.delay || !self.options.delay.hide) return self.hide()
+
+    self.timeout = setTimeout(function () {
+      if (self.hoverState == 'out') self.hide()
+    }, self.options.delay.hide)
+  }
+
+  Tooltip.prototype.show = function () {
+    var e = $.Event('show.bs.' + this.type)
+
+    if (this.hasContent() && this.enabled) {
+      this.$element.trigger(e)
+
+      if (e.isDefaultPrevented()) return
+      var that = this;
+
+      var $tip = this.tip()
+
+      this.setContent()
+
+      if (this.options.animation) $tip.addClass('fade')
+
+      var placement = typeof this.options.placement == 'function' ?
+        this.options.placement.call(this, $tip[0], this.$element[0]) :
+        this.options.placement
+
+      var autoToken = /\s?auto?\s?/i
+      var autoPlace = autoToken.test(placement)
+      if (autoPlace) placement = placement.replace(autoToken, '') || 'top'
+
+      $tip
+        .detach()
+        .css({ top: 0, left: 0, display: 'block' })
+        .addClass(placement)
+
+      this.options.container ? $tip.appendTo(this.options.container) : $tip.insertAfter(this.$element)
+
+      var pos          = this.getPosition()
+      var actualWidth  = $tip[0].offsetWidth
+      var actualHeight = $tip[0].offsetHeight
+
+      if (autoPlace) {
+        var orgPlacement = placement
+        var $parent      = this.$element.parent()
+        var parentDim    = this.getPosition($parent)
+
+        placement = placement == 'bottom' && pos.top   + pos.height       + actualHeight - parentDim.scroll > parentDim.height ? 'top'    :
+                    placement == 'top'    && pos.top   - parentDim.scroll - actualHeight < 0                                   ? 'bottom' :
+                    placement == 'right'  && pos.right + actualWidth      > parentDim.width                                    ? 'left'   :
+                    placement == 'left'   && pos.left  - actualWidth      < parentDim.left                                     ? 'right'  :
+                    placement
+
+        $tip
+          .removeClass(orgPlacement)
+          .addClass(placement)
+      }
+
+      var calculatedOffset = this.getCalculatedOffset(placement, pos, actualWidth, actualHeight)
+
+      this.applyPlacement(calculatedOffset, placement)
+      this.hoverState = null
+
+      var complete = function() {
+        that.$element.trigger('shown.bs.' + that.type)
+      }
+
+      $.support.transition && this.$tip.hasClass('fade') ?
+        $tip
+          .one($.support.transition.end, complete)
+          .emulateTransitionEnd(150) :
+        complete()
+    }
+  }
+
+  Tooltip.prototype.applyPlacement = function (offset, placement) {
+    var $tip   = this.tip()
+    var width  = $tip[0].offsetWidth
+    var height = $tip[0].offsetHeight
+
+    // manually read margins because getBoundingClientRect includes difference
+    var marginTop = parseInt($tip.css('margin-top'), 10)
+    var marginLeft = parseInt($tip.css('margin-left'), 10)
+
+    // we must check for NaN for ie 8/9
+    if (isNaN(marginTop))  marginTop  = 0
+    if (isNaN(marginLeft)) marginLeft = 0
+
+    offset.top  = offset.top  + marginTop
+    offset.left = offset.left + marginLeft
+
+    // $.fn.offset doesn't round pixel values
+    // so we use setOffset directly with our own function B-0
+    $.offset.setOffset($tip[0], $.extend({
+      using: function (props) {
+        $tip.css({
+          top: Math.round(props.top),
+          left: Math.round(props.left)
+        })
+      }
+    }, offset), 0)
+
+    $tip.addClass('in')
+
+    // check to see if placing tip in new offset caused the tip to resize itself
+    var actualWidth  = $tip[0].offsetWidth
+    var actualHeight = $tip[0].offsetHeight
+
+    if (placement == 'top' && actualHeight != height) {
+      offset.top = offset.top + height - actualHeight
+    }
+
+    var delta = this.getViewportAdjustedDelta(placement, offset, actualWidth, actualHeight)
+
+    if (delta.left) offset.left += delta.left
+    else offset.top += delta.top
+
+    var arrowDelta          = delta.left ? delta.left * 2 - width + actualWidth : delta.top * 2 - height + actualHeight
+    var arrowPosition       = delta.left ? 'left'        : 'top'
+    var arrowOffsetPosition = delta.left ? 'offsetWidth' : 'offsetHeight'
+
+    $tip.offset(offset)
+    this.replaceArrow(arrowDelta, $tip[0][arrowOffsetPosition], arrowPosition)
+  }
+
+  Tooltip.prototype.replaceArrow = function (delta, dimension, position) {
+    this.arrow().css(position, delta ? (50 * (1 - delta / dimension) + '%') : '')
+  }
+
+  Tooltip.prototype.setContent = function () {
+    var $tip  = this.tip()
+    var title = this.getTitle()
+
+    $tip.find('.tooltip-inner')[this.options.html ? 'html' : 'text'](title)
+    $tip.removeClass('fade in top bottom left right')
+  }
+
+  Tooltip.prototype.hide = function () {
+    var that = this
+    var $tip = this.tip()
+    var e    = $.Event('hide.bs.' + this.type)
+
+    function complete() {
+      if (that.hoverState != 'in') $tip.detach()
+      that.$element.trigger('hidden.bs.' + that.type)
+    }
+
+    this.$element.trigger(e)
+
+    if (e.isDefaultPrevented()) return
+
+    $tip.removeClass('in')
+
+    $.support.transition && this.$tip.hasClass('fade') ?
+      $tip
+        .one($.support.transition.end, complete)
+        .emulateTransitionEnd(150) :
+      complete()
+
+    this.hoverState = null
+
+    return this
+  }
+
+  Tooltip.prototype.fixTitle = function () {
+    var $e = this.$element
+    if ($e.attr('title') || typeof($e.attr('data-original-title')) != 'string') {
+      $e.attr('data-original-title', $e.attr('title') || '').attr('title', '')
+    }
+  }
+
+  Tooltip.prototype.hasContent = function () {
+    return this.getTitle()
+  }
+
+  Tooltip.prototype.getPosition = function ($element) {
+    $element   = $element || this.$element
+    var el     = $element[0]
+    var isBody = el.tagName == 'BODY'
+    return $.extend({}, (typeof el.getBoundingClientRect == 'function') ? el.getBoundingClientRect() : null, {
+      scroll: isBody ? document.documentElement.scrollTop || document.body.scrollTop : $element.scrollTop(),
+      width:  isBody ? $(window).width()  : $element.outerWidth(),
+      height: isBody ? $(window).height() : $element.outerHeight()
+    }, isBody ? {top: 0, left: 0} : $element.offset())
+  }
+
+  Tooltip.prototype.getCalculatedOffset = function (placement, pos, actualWidth, actualHeight) {
+    return placement == 'bottom' ? { top: pos.top + pos.height,   left: pos.left + pos.width / 2 - actualWidth / 2  } :
+           placement == 'top'    ? { top: pos.top - actualHeight, left: pos.left + pos.width / 2 - actualWidth / 2  } :
+           placement == 'left'   ? { top: pos.top + pos.height / 2 - actualHeight / 2, left: pos.left - actualWidth } :
+        /* placement == 'right' */ { top: pos.top + pos.height / 2 - actualHeight / 2, left: pos.left + pos.width   }
+
+  }
+
+  Tooltip.prototype.getViewportAdjustedDelta = function (placement, pos, actualWidth, actualHeight) {
+    var delta = { top: 0, left: 0 }
+    if (!this.$viewport) return delta
+
+    var viewportPadding = this.options.viewport && this.options.viewport.padding || 0
+    var viewportDimensions = this.getPosition(this.$viewport)
+
+    if (/right|left/.test(placement)) {
+      var topEdgeOffset    = pos.top - viewportPadding - viewportDimensions.scroll
+      var bottomEdgeOffset = pos.top + viewportPadding - viewportDimensions.scroll + actualHeight
+      if (topEdgeOffset < viewportDimensions.top) { // top overflow
+        delta.top = viewportDimensions.top - topEdgeOffset
+      } else if (bottomEdgeOffset > viewportDimensions.top + viewportDimensions.height) { // bottom overflow
+        delta.top = viewportDimensions.top + viewportDimensions.height - bottomEdgeOffset
+      }
+    } else {
+      var leftEdgeOffset  = pos.left - viewportPadding
+      var rightEdgeOffset = pos.left + viewportPadding + actualWidth
+      if (leftEdgeOffset < viewportDimensions.left) { // left overflow
+        delta.left = viewportDimensions.left - leftEdgeOffset
+      } else if (rightEdgeOffset > viewportDimensions.width) { // right overflow
+        delta.left = viewportDimensions.left + viewportDimensions.width - rightEdgeOffset
+      }
+    }
+
+    return delta
+  }
+
+  Tooltip.prototype.getTitle = function () {
+    var title
+    var $e = this.$element
+    var o  = this.options
+
+    title = $e.attr('data-original-title')
+      || (typeof o.title == 'function' ? o.title.call($e[0]) :  o.title)
+
+    return title
+  }
+
+  Tooltip.prototype.tip = function () {
+    return this.$tip = this.$tip || $(this.options.template)
+  }
+
+  Tooltip.prototype.arrow = function () {
+    return this.$arrow = this.$arrow || this.tip().find('.tooltip-arrow')
+  }
+
+  Tooltip.prototype.validate = function () {
+    if (!this.$element[0].parentNode) {
+      this.hide()
+      this.$element = null
+      this.options  = null
+    }
+  }
+
+  Tooltip.prototype.enable = function () {
+    this.enabled = true
+  }
+
+  Tooltip.prototype.disable = function () {
+    this.enabled = false
+  }
+
+  Tooltip.prototype.toggleEnabled = function () {
+    this.enabled = !this.enabled
+  }
+
+  Tooltip.prototype.toggle = function (e) {
+    var self = e ? $(e.currentTarget)[this.type](this.getDelegateOptions()).data('bs.' + this.type) : this
+    self.tip().hasClass('in') ? self.leave(self) : self.enter(self)
+  }
+
+  Tooltip.prototype.destroy = function () {
+    clearTimeout(this.timeout)
+    this.hide().$element.off('.' + this.type).removeData('bs.' + this.type)
+  }
+
+
+  // TOOLTIP PLUGIN DEFINITION
+  // =========================
+
+  var old = $.fn.tooltip
+
+  $.fn.tooltip = function (option) {
+    return this.each(function () {
+      var $this   = $(this)
+      var data    = $this.data('bs.tooltip')
+      var options = typeof option == 'object' && option
+
+      if (!data && option == 'destroy') return
+      if (!data) $this.data('bs.tooltip', (data = new Tooltip(this, options)))
+      if (typeof option == 'string') data[option]()
+    })
+  }
+
+  $.fn.tooltip.Constructor = Tooltip
+
+
+  // TOOLTIP NO CONFLICT
+  // ===================
+
+  $.fn.tooltip.noConflict = function () {
+    $.fn.tooltip = old
+    return this
+  }
+
+  $(document).ready(function() {
+    $('[data-toggle="tooltips"]').tooltip();
+  });
+
+module.exports = Tooltip;
+
+},{"jquery":22}],10:[function(require,module,exports){
+/**
+*
+* Version: 0.0.2
+* Author: Gianluca Guarini
+* Contact: gianluca.guarini@gmail.com
+* Website: http://www.gianlucaguarini.com/
+* Twitter: @gianlucaguarini
+*
+* Copyright (c) 2013 Gianluca Guarini
+*
+* Permission is hereby granted, free of charge, to any person
+* obtaining a copy of this software and associated documentation
+* files (the "Software"), to deal in the Software without
+* restriction, including without limitation the rights to use,
+* copy, modify, merge, publish, distribute, sublicense, and/or sell
+* copies of the Software, and to permit persons to whom the
+* Software is furnished to do so, subject to the following
+* conditions:
+*
+* The above copyright notice and this permission notice shall be
+* included in all copies or substantial portions of the Software.
+*
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+* EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+* OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+* NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+* HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+* WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+* FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+* OTHER DEALINGS IN THE SOFTWARE.
+**/
+
+;(function (window,document,$) {
+	"use strict";
+
+	// Plugin private cache
+
+	var cache = {
+			filterId: 0
+		};
+
+	var Vague = function ( elm, customOptions) {
+		// Default oprions
+		var defaultOptions = {
+				intensity:5
+			},
+			options = $.extend( defaultOptions, customOptions);
+
+		/*
+		*
+		* PUBLIC VARS
+		*
+		*/
+
+		this.$elm = elm instanceof $ ? elm : $(elm);
+
+		/*
+		*
+		* PRIVATE VARS
+		*
+		*/
+
+	
+		var blurred = false;
+
+		/*
+		*
+		* features detection
+		*
+		*/
+
+		var browserPrefixes = ' -webkit- -moz- -o- -ms- '.split(' ');
+
+		var cssPrefixString = {};
+		var cssPrefix = function(property) {
+			if (cssPrefixString[property] || cssPrefixString[property] === '') return cssPrefixString[property] + property;
+			var e = document.createElement('div');
+			var prefixes = ['', 'Moz', 'Webkit', 'O', 'ms', 'Khtml']; // Various supports...
+			for (var i in prefixes) {
+				if (typeof e.style[prefixes[i] + property] !== 'undefined') {
+					cssPrefixString[property] = prefixes[i];
+					return prefixes[i] + property;
+				}
+			}
+			return property.toLowerCase();
+		};
+
+		// https://github.com/Modernizr/Modernizr/blob/master/feature-detects/css-filters.js
+		var cssfilters = function () {
+			var el = document.createElement('div');
+			el.style.cssText = browserPrefixes.join('filter' + ':blur(2px); ');
+			return !!el.style.length && ((document.documentMode === undefined || document.documentMode > 9));
+		}();
+
+		// https://github.com/Modernizr/Modernizr/blob/master/feature-detects/svg-filters.js
+		var svgfilters = function(){
+			var result = false;
+			try {
+				result = typeof SVGFEColorMatrixElement !== undefined &&
+				SVGFEColorMatrixElement.SVG_FECOLORMATRIX_TYPE_SATURATE == 2;
+			}
+			catch(e) {}
+				return result;
+		}();
+
+		/*
+		*
+		* PRIVATE METHODS
+		*
+		*/
+
+		var appendSVGFilter = function () {
+
+			var filterMarkup = "<svg id='vague-svg-blur'>" +
+									"<filter id='blur-effect-id-" + cache.filterId + "'>" +
+										"<feGaussianBlur stdDeviation='" + options.intensity + "' />" +
+									"</filter>" +
+								"</svg>";
+
+			$("body").append(filterMarkup);
+
+		};
+
+		/*
+		*
+		* PUBLIC METHODS
+		*
+		*/
+
+		this.init = function () {
+			// checking the css filter feature
+
+			if (svgfilters) {
+				appendSVGFilter();
+			}
+
+			this.$elm.data("vague-filter-id",cache.filterId);
+
+			cache.filterId ++;
+
+		};
+
+		this.blur = function () {
+			var filterValue,
+				filterId = this.$elm.data("vague-filter-id"),
+				cssProp = {};
+			if (cssfilters) {
+				filterValue = "blur("+ options.intensity + "px)";
+			} else if (svgfilters) {
+				filterValue = "url(#blur-effect-id-" + filterId + ")";
+			} else {
+				filterValue = "progid:DXImageTransform.Microsoft.Blur(pixelradius=" + options.intensity + ")";
+			}
+			cssProp[cssPrefix('Filter')] = filterValue;
+
+			this.$elm.css(cssProp);
+
+			blurred = true;
+		};
+
+		this.unblur = function () {
+			var cssProp = {};
+			cssProp[cssPrefix('Filter')] = "none";
+			this.$elm.css(cssProp);
+			blurred = false;
+		};
+
+		this.toggleblur = function () {
+			if (blurred) {
+				this.unblur();
+			} else {
+				this.blur();
+			}
+		};
+
+		this.destroy = function () {
+			if (svgfilters) {
+				$("filter#blur-effect-id-"+ this.$elm.data("vague-filter-id")).parent().remove();
+			}
+			this.unblur();
+		};
+		return this.init();
+	};
+
+	$.fn.Vague = function(options) {
+		return new Vague(this,options);
+	};
+
+	window.Vague = Vague;
+
+}(window,document,jQuery));
 
 },{}],11:[function(require,module,exports){
+var Highlight = function() {
+
+  /* Utility functions */
+
+  function escape(value) {
+    return value.replace(/&/gm, '&amp;').replace(/</gm, '&lt;').replace(/>/gm, '&gt;');
+  }
+
+  function tag(node) {
+    return node.nodeName.toLowerCase();
+  }
+
+  function testRe(re, lexeme) {
+    var match = re && re.exec(lexeme);
+    return match && match.index == 0;
+  }
+
+  function blockText(block) {
+    return Array.prototype.map.call(block.childNodes, function(node) {
+      if (node.nodeType == 3) {
+        return options.useBR ? node.nodeValue.replace(/\n/g, '') : node.nodeValue;
+      }
+      if (tag(node) == 'br') {
+        return '\n';
+      }
+      return blockText(node);
+    }).join('');
+  }
+
+  function blockLanguage(block) {
+    var classes = (block.className + ' ' + (block.parentNode ? block.parentNode.className : '')).split(/\s+/);
+    classes = classes.map(function(c) {return c.replace(/^language-/, '');});
+    return classes.filter(function(c) {return getLanguage(c) || c == 'no-highlight';})[0];
+  }
+
+  function inherit(parent, obj) {
+    var result = {};
+    for (var key in parent)
+      result[key] = parent[key];
+    if (obj)
+      for (var key in obj)
+        result[key] = obj[key];
+    return result;
+  };
+
+  /* Stream merging */
+
+  function nodeStream(node) {
+    var result = [];
+    (function _nodeStream(node, offset) {
+      for (var child = node.firstChild; child; child = child.nextSibling) {
+        if (child.nodeType == 3)
+          offset += child.nodeValue.length;
+        else if (tag(child) == 'br')
+          offset += 1;
+        else if (child.nodeType == 1) {
+          result.push({
+            event: 'start',
+            offset: offset,
+            node: child
+          });
+          offset = _nodeStream(child, offset);
+          result.push({
+            event: 'stop',
+            offset: offset,
+            node: child
+          });
+        }
+      }
+      return offset;
+    })(node, 0);
+    return result;
+  }
+
+  function mergeStreams(original, highlighted, value) {
+    var processed = 0;
+    var result = '';
+    var nodeStack = [];
+
+    function selectStream() {
+      if (!original.length || !highlighted.length) {
+        return original.length ? original : highlighted;
+      }
+      if (original[0].offset != highlighted[0].offset) {
+        return (original[0].offset < highlighted[0].offset) ? original : highlighted;
+      }
+
+      /*
+      To avoid starting the stream just before it should stop the order is
+      ensured that original always starts first and closes last:
+
+      if (event1 == 'start' && event2 == 'start')
+        return original;
+      if (event1 == 'start' && event2 == 'stop')
+        return highlighted;
+      if (event1 == 'stop' && event2 == 'start')
+        return original;
+      if (event1 == 'stop' && event2 == 'stop')
+        return highlighted;
+
+      ... which is collapsed to:
+      */
+      return highlighted[0].event == 'start' ? original : highlighted;
+    }
+
+    function open(node) {
+      function attr_str(a) {return ' ' + a.nodeName + '="' + escape(a.value) + '"';}
+      result += '<' + tag(node) + Array.prototype.map.call(node.attributes, attr_str).join('') + '>';
+    }
+
+    function close(node) {
+      result += '</' + tag(node) + '>';
+    }
+
+    function render(event) {
+      (event.event == 'start' ? open : close)(event.node);
+    }
+
+    while (original.length || highlighted.length) {
+      var stream = selectStream();
+      result += escape(value.substr(processed, stream[0].offset - processed));
+      processed = stream[0].offset;
+      if (stream == original) {
+        /*
+        On any opening or closing tag of the original markup we first close
+        the entire highlighted node stack, then render the original tag along
+        with all the following original tags at the same offset and then
+        reopen all the tags on the highlighted stack.
+        */
+        nodeStack.reverse().forEach(close);
+        do {
+          render(stream.splice(0, 1)[0]);
+          stream = selectStream();
+        } while (stream == original && stream.length && stream[0].offset == processed);
+        nodeStack.reverse().forEach(open);
+      } else {
+        if (stream[0].event == 'start') {
+          nodeStack.push(stream[0].node);
+        } else {
+          nodeStack.pop();
+        }
+        render(stream.splice(0, 1)[0]);
+      }
+    }
+    return result + escape(value.substr(processed));
+  }
+
+  /* Initialization */
+
+  function compileLanguage(language) {
+
+    function reStr(re) {
+        return (re && re.source) || re;
+    }
+
+    function langRe(value, global) {
+      return RegExp(
+        reStr(value),
+        'm' + (language.case_insensitive ? 'i' : '') + (global ? 'g' : '')
+      );
+    }
+
+    function compileMode(mode, parent) {
+      if (mode.compiled)
+        return;
+      mode.compiled = true;
+
+      mode.keywords = mode.keywords || mode.beginKeywords;
+      if (mode.keywords) {
+        var compiled_keywords = {};
+
+        function flatten(className, str) {
+          if (language.case_insensitive) {
+            str = str.toLowerCase();
+          }
+          str.split(' ').forEach(function(kw) {
+            var pair = kw.split('|');
+            compiled_keywords[pair[0]] = [className, pair[1] ? Number(pair[1]) : 1];
+          });
+        }
+
+        if (typeof mode.keywords == 'string') { // string
+          flatten('keyword', mode.keywords);
+        } else {
+          Object.keys(mode.keywords).forEach(function (className) {
+            flatten(className, mode.keywords[className]);
+          });
+        }
+        mode.keywords = compiled_keywords;
+      }
+      mode.lexemesRe = langRe(mode.lexemes || /\b[A-Za-z0-9_]+\b/, true);
+
+      if (parent) {
+        if (mode.beginKeywords) {
+          mode.begin = mode.beginKeywords.split(' ').join('|');
+        }
+        if (!mode.begin)
+          mode.begin = /\B|\b/;
+        mode.beginRe = langRe(mode.begin);
+        if (!mode.end && !mode.endsWithParent)
+          mode.end = /\B|\b/;
+        if (mode.end)
+          mode.endRe = langRe(mode.end);
+        mode.terminator_end = reStr(mode.end) || '';
+        if (mode.endsWithParent && parent.terminator_end)
+          mode.terminator_end += (mode.end ? '|' : '') + parent.terminator_end;
+      }
+      if (mode.illegal)
+        mode.illegalRe = langRe(mode.illegal);
+      if (mode.relevance === undefined)
+        mode.relevance = 1;
+      if (!mode.contains) {
+        mode.contains = [];
+      }
+      var expanded_contains = [];
+      mode.contains.forEach(function(c) {
+        if (c.variants) {
+          c.variants.forEach(function(v) {expanded_contains.push(inherit(c, v));});
+        } else {
+          expanded_contains.push(c == 'self' ? mode : c);
+        }
+      });
+      mode.contains = expanded_contains;
+      mode.contains.forEach(function(c) {compileMode(c, mode);});
+
+      if (mode.starts) {
+        compileMode(mode.starts, parent);
+      }
+
+      var terminators =
+        mode.contains.map(function(c) {
+          return c.beginKeywords ? '\\.?\\b(' + c.begin + ')\\b\\.?' : c.begin;
+        })
+        .concat([mode.terminator_end])
+        .concat([mode.illegal])
+        .map(reStr)
+        .filter(Boolean);
+      mode.terminators = terminators.length ? langRe(terminators.join('|'), true) : {exec: function(s) {return null;}};
+
+      mode.continuation = {};
+    }
+
+    compileMode(language);
+  }
+
+  /*
+  Core highlighting function. Accepts a language name, or an alias, and a
+  string with the code to highlight. Returns an object with the following
+  properties:
+
+  - relevance (int)
+  - value (an HTML string with highlighting markup)
+
+  */
+  function highlight(name, value, ignore_illegals, continuation) {
+
+    function subMode(lexeme, mode) {
+      for (var i = 0; i < mode.contains.length; i++) {
+        if (testRe(mode.contains[i].beginRe, lexeme)) {
+          return mode.contains[i];
+        }
+      }
+    }
+
+    function endOfMode(mode, lexeme) {
+      if (testRe(mode.endRe, lexeme)) {
+        return mode;
+      }
+      if (mode.endsWithParent) {
+        return endOfMode(mode.parent, lexeme);
+      }
+    }
+
+    function isIllegal(lexeme, mode) {
+      return !ignore_illegals && testRe(mode.illegalRe, lexeme);
+    }
+
+    function keywordMatch(mode, match) {
+      var match_str = language.case_insensitive ? match[0].toLowerCase() : match[0];
+      return mode.keywords.hasOwnProperty(match_str) && mode.keywords[match_str];
+    }
+
+    function buildSpan(classname, insideSpan, leaveOpen, noPrefix) {
+      var classPrefix = noPrefix ? '' : options.classPrefix,
+          openSpan    = '<span class="' + classPrefix,
+          closeSpan   = leaveOpen ? '' : '</span>';
+
+      openSpan += classname + '">';
+
+      return openSpan + insideSpan + closeSpan;
+    }
+
+    function processKeywords() {
+      var buffer = escape(mode_buffer);
+      if (!top.keywords)
+        return buffer;
+      var result = '';
+      var last_index = 0;
+      top.lexemesRe.lastIndex = 0;
+      var match = top.lexemesRe.exec(buffer);
+      while (match) {
+        result += buffer.substr(last_index, match.index - last_index);
+        var keyword_match = keywordMatch(top, match);
+        if (keyword_match) {
+          relevance += keyword_match[1];
+          result += buildSpan(keyword_match[0], match[0]);
+        } else {
+          result += match[0];
+        }
+        last_index = top.lexemesRe.lastIndex;
+        match = top.lexemesRe.exec(buffer);
+      }
+      return result + buffer.substr(last_index);
+    }
+
+    function processSubLanguage() {
+      if (top.subLanguage && !languages[top.subLanguage]) {
+        return escape(mode_buffer);
+      }
+      var result = top.subLanguage ? highlight(top.subLanguage, mode_buffer, true, top.continuation.top) : highlightAuto(mode_buffer);
+      // Counting embedded language score towards the host language may be disabled
+      // with zeroing the containing mode relevance. Usecase in point is Markdown that
+      // allows XML everywhere and makes every XML snippet to have a much larger Markdown
+      // score.
+      if (top.relevance > 0) {
+        relevance += result.relevance;
+      }
+      if (top.subLanguageMode == 'continuous') {
+        top.continuation.top = result.top;
+      }
+      return buildSpan(result.language, result.value, false, true);
+    }
+
+    function processBuffer() {
+      return top.subLanguage !== undefined ? processSubLanguage() : processKeywords();
+    }
+
+    function startNewMode(mode, lexeme) {
+      var markup = mode.className? buildSpan(mode.className, '', true): '';
+      if (mode.returnBegin) {
+        result += markup;
+        mode_buffer = '';
+      } else if (mode.excludeBegin) {
+        result += escape(lexeme) + markup;
+        mode_buffer = '';
+      } else {
+        result += markup;
+        mode_buffer = lexeme;
+      }
+      top = Object.create(mode, {parent: {value: top}});
+    }
+
+    function processLexeme(buffer, lexeme) {
+
+      mode_buffer += buffer;
+      if (lexeme === undefined) {
+        result += processBuffer();
+        return 0;
+      }
+
+      var new_mode = subMode(lexeme, top);
+      if (new_mode) {
+        result += processBuffer();
+        startNewMode(new_mode, lexeme);
+        return new_mode.returnBegin ? 0 : lexeme.length;
+      }
+
+      var end_mode = endOfMode(top, lexeme);
+      if (end_mode) {
+        var origin = top;
+        if (!(origin.returnEnd || origin.excludeEnd)) {
+          mode_buffer += lexeme;
+        }
+        result += processBuffer();
+        do {
+          if (top.className) {
+            result += '</span>';
+          }
+          relevance += top.relevance;
+          top = top.parent;
+        } while (top != end_mode.parent);
+        if (origin.excludeEnd) {
+          result += escape(lexeme);
+        }
+        mode_buffer = '';
+        if (end_mode.starts) {
+          startNewMode(end_mode.starts, '');
+        }
+        return origin.returnEnd ? 0 : lexeme.length;
+      }
+
+      if (isIllegal(lexeme, top))
+        throw new Error('Illegal lexeme "' + lexeme + '" for mode "' + (top.className || '<unnamed>') + '"');
+
+      /*
+      Parser should not reach this point as all types of lexemes should be caught
+      earlier, but if it does due to some bug make sure it advances at least one
+      character forward to prevent infinite looping.
+      */
+      mode_buffer += lexeme;
+      return lexeme.length || 1;
+    }
+
+    var language = getLanguage(name);
+    if (!language) {
+      throw new Error('Unknown language: "' + name + '"');
+    }
+
+    compileLanguage(language);
+    var top = continuation || language;
+    var result = '';
+    for(var current = top; current != language; current = current.parent) {
+      if (current.className) {
+        result = buildSpan(current.className, result, true);
+      }
+    }
+    var mode_buffer = '';
+    var relevance = 0;
+    try {
+      var match, count, index = 0;
+      while (true) {
+        top.terminators.lastIndex = index;
+        match = top.terminators.exec(value);
+        if (!match)
+          break;
+        count = processLexeme(value.substr(index, match.index - index), match[0]);
+        index = match.index + count;
+      }
+      processLexeme(value.substr(index));
+      for(var current = top; current.parent; current = current.parent) { // close dangling modes
+        if (current.className) {
+          result += '</span>';
+        }
+      };
+      return {
+        relevance: relevance,
+        value: result,
+        language: name,
+        top: top
+      };
+    } catch (e) {
+      if (e.message.indexOf('Illegal') != -1) {
+        return {
+          relevance: 0,
+          value: escape(value)
+        };
+      } else {
+        throw e;
+      }
+    }
+  }
+
+  /*
+  Highlighting with language detection. Accepts a string with the code to
+  highlight. Returns an object with the following properties:
+
+  - language (detected language)
+  - relevance (int)
+  - value (an HTML string with highlighting markup)
+  - second_best (object with the same structure for second-best heuristically
+    detected language, may be absent)
+
+  */
+  function highlightAuto(text, languageSubset) {
+    languageSubset = languageSubset || options.languages || Object.keys(languages);
+    var result = {
+      relevance: 0,
+      value: escape(text)
+    };
+    var second_best = result;
+    languageSubset.forEach(function(name) {
+      if (!getLanguage(name)) {
+        return;
+      }
+      var current = highlight(name, text, false);
+      current.language = name;
+      if (current.relevance > second_best.relevance) {
+        second_best = current;
+      }
+      if (current.relevance > result.relevance) {
+        second_best = result;
+        result = current;
+      }
+    });
+    if (second_best.language) {
+      result.second_best = second_best;
+    }
+    return result;
+  }
+
+  /*
+  Post-processing of the highlighted markup:
+
+  - replace TABs with something more useful
+  - replace real line-breaks with '<br>' for non-pre containers
+
+  */
+  function fixMarkup(value) {
+    if (options.tabReplace) {
+      value = value.replace(/^((<[^>]+>|\t)+)/gm, function(match, p1, offset, s) {
+        return p1.replace(/\t/g, options.tabReplace);
+      });
+    }
+    if (options.useBR) {
+      value = value.replace(/\n/g, '<br>');
+    }
+    return value;
+  }
+
+  /*
+  Applies highlighting to a DOM node containing code. Accepts a DOM node and
+  two optional parameters for fixMarkup.
+  */
+  function highlightBlock(block) {
+    var text = blockText(block);
+    var language = blockLanguage(block);
+    if (language == 'no-highlight')
+        return;
+    var result = language ? highlight(language, text, true) : highlightAuto(text);
+    var original = nodeStream(block);
+    if (original.length) {
+      var pre = document.createElementNS('http://www.w3.org/1999/xhtml', 'pre');
+      pre.innerHTML = result.value;
+      result.value = mergeStreams(original, nodeStream(pre), text);
+    }
+    result.value = fixMarkup(result.value);
+
+    block.innerHTML = result.value;
+    block.className += ' hljs ' + (!language && result.language || '');
+    block.result = {
+      language: result.language,
+      re: result.relevance
+    };
+    if (result.second_best) {
+      block.second_best = {
+        language: result.second_best.language,
+        re: result.second_best.relevance
+      };
+    }
+  }
+
+  var options = {
+    classPrefix: 'hljs-',
+    tabReplace: null,
+    useBR: false,
+    languages: undefined
+  };
+
+  /*
+  Updates highlight.js global options with values passed in the form of an object
+  */
+  function configure(user_options) {
+    options = inherit(options, user_options);
+  }
+
+  /*
+  Applies highlighting to all <pre><code>..</code></pre> blocks on a page.
+  */
+  function initHighlighting() {
+    if (initHighlighting.called)
+      return;
+    initHighlighting.called = true;
+
+    var blocks = document.querySelectorAll('pre code');
+    Array.prototype.forEach.call(blocks, highlightBlock);
+  }
+
+  /*
+  Attaches highlighting to the page load event.
+  */
+  function initHighlightingOnLoad() {
+    addEventListener('DOMContentLoaded', initHighlighting, false);
+    addEventListener('load', initHighlighting, false);
+  }
+
+  var languages = {};
+  var aliases = {};
+
+  function registerLanguage(name, language) {
+    var lang = languages[name] = language(this);
+    if (lang.aliases) {
+      lang.aliases.forEach(function(alias) {aliases[alias] = name;});
+    }
+  }
+
+  function getLanguage(name) {
+    return languages[name] || languages[aliases[name]];
+  }
+
+  /* Interface definition */
+
+  this.highlight = highlight;
+  this.highlightAuto = highlightAuto;
+  this.fixMarkup = fixMarkup;
+  this.highlightBlock = highlightBlock;
+  this.configure = configure;
+  this.initHighlighting = initHighlighting;
+  this.initHighlightingOnLoad = initHighlightingOnLoad;
+  this.registerLanguage = registerLanguage;
+  this.getLanguage = getLanguage;
+  this.inherit = inherit;
+
+  // Common regexps
+  this.IDENT_RE = '[a-zA-Z][a-zA-Z0-9_]*';
+  this.UNDERSCORE_IDENT_RE = '[a-zA-Z_][a-zA-Z0-9_]*';
+  this.NUMBER_RE = '\\b\\d+(\\.\\d+)?';
+  this.C_NUMBER_RE = '(\\b0[xX][a-fA-F0-9]+|(\\b\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)'; // 0x..., 0..., decimal, float
+  this.BINARY_NUMBER_RE = '\\b(0b[01]+)'; // 0b...
+  this.RE_STARTERS_RE = '!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|-|-=|/=|/|:|;|<<|<<=|<=|<|===|==|=|>>>=|>>=|>=|>>>|>>|>|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~';
+
+  // Common modes
+  this.BACKSLASH_ESCAPE = {
+    begin: '\\\\[\\s\\S]', relevance: 0
+  };
+  this.APOS_STRING_MODE = {
+    className: 'string',
+    begin: '\'', end: '\'',
+    illegal: '\\n',
+    contains: [this.BACKSLASH_ESCAPE]
+  };
+  this.QUOTE_STRING_MODE = {
+    className: 'string',
+    begin: '"', end: '"',
+    illegal: '\\n',
+    contains: [this.BACKSLASH_ESCAPE]
+  };
+  this.C_LINE_COMMENT_MODE = {
+    className: 'comment',
+    begin: '//', end: '$'
+  };
+  this.C_BLOCK_COMMENT_MODE = {
+    className: 'comment',
+    begin: '/\\*', end: '\\*/'
+  };
+  this.HASH_COMMENT_MODE = {
+    className: 'comment',
+    begin: '#', end: '$'
+  };
+  this.NUMBER_MODE = {
+    className: 'number',
+    begin: this.NUMBER_RE,
+    relevance: 0
+  };
+  this.C_NUMBER_MODE = {
+    className: 'number',
+    begin: this.C_NUMBER_RE,
+    relevance: 0
+  };
+  this.BINARY_NUMBER_MODE = {
+    className: 'number',
+    begin: this.BINARY_NUMBER_RE,
+    relevance: 0
+  };
+  this.REGEXP_MODE = {
+    className: 'regexp',
+    begin: /\//, end: /\/[gim]*/,
+    illegal: /\n/,
+    contains: [
+      this.BACKSLASH_ESCAPE,
+      {
+        begin: /\[/, end: /\]/,
+        relevance: 0,
+        contains: [this.BACKSLASH_ESCAPE]
+      }
+    ]
+  };
+  this.TITLE_MODE = {
+    className: 'title',
+    begin: this.IDENT_RE,
+    relevance: 0
+  };
+  this.UNDERSCORE_TITLE_MODE = {
+    className: 'title',
+    begin: this.UNDERSCORE_IDENT_RE,
+    relevance: 0
+  };
+};
+module.exports = Highlight;
+},{}],12:[function(require,module,exports){
+var Highlight = require('./highlight');
+var hljs = new Highlight();
+hljs.registerLanguage('bash', require('./languages/bash.js'));
+hljs.registerLanguage('javascript', require('./languages/javascript.js'));
+hljs.registerLanguage('xml', require('./languages/xml.js'));
+hljs.registerLanguage('markdown', require('./languages/markdown.js'));
+hljs.registerLanguage('css', require('./languages/css.js'));
+hljs.registerLanguage('http', require('./languages/http.js'));
+hljs.registerLanguage('ini', require('./languages/ini.js'));
+hljs.registerLanguage('json', require('./languages/json.js'));
+module.exports = hljs;
+},{"./highlight":11,"./languages/bash.js":13,"./languages/css.js":14,"./languages/http.js":15,"./languages/ini.js":16,"./languages/javascript.js":17,"./languages/json.js":18,"./languages/markdown.js":19,"./languages/xml.js":20}],13:[function(require,module,exports){
+module.exports = function(hljs) {
+  var VAR = {
+    className: 'variable',
+    variants: [
+      {begin: /\$[\w\d#@][\w\d_]*/},
+      {begin: /\$\{(.*?)\}/}
+    ]
+  };
+  var QUOTE_STRING = {
+    className: 'string',
+    begin: /"/, end: /"/,
+    contains: [
+      hljs.BACKSLASH_ESCAPE,
+      VAR,
+      {
+        className: 'variable',
+        begin: /\$\(/, end: /\)/,
+        contains: [hljs.BACKSLASH_ESCAPE]
+      }
+    ]
+  };
+  var APOS_STRING = {
+    className: 'string',
+    begin: /'/, end: /'/
+  };
+
+  return {
+    lexemes: /-?[a-z\.]+/,
+    keywords: {
+      keyword:
+        'if then else elif fi for break continue while in do done exit return set '+
+        'declare case esac export exec',
+      literal:
+        'true false',
+      built_in:
+        'printf echo read cd pwd pushd popd dirs let eval unset typeset readonly '+
+        'getopts source shopt caller type hash bind help sudo',
+      operator:
+        '-ne -eq -lt -gt -f -d -e -s -l -a' // relevance booster
+    },
+    contains: [
+      {
+        className: 'shebang',
+        begin: /^#![^\n]+sh\s*$/,
+        relevance: 10
+      },
+      {
+        className: 'function',
+        begin: /\w[\w\d_]*\s*\(\s*\)\s*\{/,
+        returnBegin: true,
+        contains: [hljs.inherit(hljs.TITLE_MODE, {begin: /\w[\w\d_]*/})],
+        relevance: 0
+      },
+      hljs.HASH_COMMENT_MODE,
+      hljs.NUMBER_MODE,
+      QUOTE_STRING,
+      APOS_STRING,
+      VAR
+    ]
+  };
+};
+},{}],14:[function(require,module,exports){
+module.exports = function(hljs) {
+  var IDENT_RE = '[a-zA-Z-][a-zA-Z0-9_-]*';
+  var FUNCTION = {
+    className: 'function',
+    begin: IDENT_RE + '\\(', end: '\\)',
+    contains: ['self', hljs.NUMBER_MODE, hljs.APOS_STRING_MODE, hljs.QUOTE_STRING_MODE]
+  };
+  return {
+    case_insensitive: true,
+    illegal: '[=/|\']',
+    contains: [
+      hljs.C_BLOCK_COMMENT_MODE,
+      {
+        className: 'id', begin: '\\#[A-Za-z0-9_-]+'
+      },
+      {
+        className: 'class', begin: '\\.[A-Za-z0-9_-]+',
+        relevance: 0
+      },
+      {
+        className: 'attr_selector',
+        begin: '\\[', end: '\\]',
+        illegal: '$'
+      },
+      {
+        className: 'pseudo',
+        begin: ':(:)?[a-zA-Z0-9\\_\\-\\+\\(\\)\\"\\\']+'
+      },
+      {
+        className: 'at_rule',
+        begin: '@(font-face|page)',
+        lexemes: '[a-z-]+',
+        keywords: 'font-face page'
+      },
+      {
+        className: 'at_rule',
+        begin: '@', end: '[{;]', // at_rule eating first "{" is a good thing
+                                 // because it doesn’t let it to be parsed as
+                                 // a rule set but instead drops parser into
+                                 // the default mode which is how it should be.
+        contains: [
+          {
+            className: 'keyword',
+            begin: /\S+/
+          },
+          {
+            begin: /\s/, endsWithParent: true, excludeEnd: true,
+            relevance: 0,
+            contains: [
+              FUNCTION,
+              hljs.APOS_STRING_MODE, hljs.QUOTE_STRING_MODE,
+              hljs.NUMBER_MODE
+            ]
+          }
+        ]
+      },
+      {
+        className: 'tag', begin: IDENT_RE,
+        relevance: 0
+      },
+      {
+        className: 'rules',
+        begin: '{', end: '}',
+        illegal: '[^\\s]',
+        relevance: 0,
+        contains: [
+          hljs.C_BLOCK_COMMENT_MODE,
+          {
+            className: 'rule',
+            begin: '[^\\s]', returnBegin: true, end: ';', endsWithParent: true,
+            contains: [
+              {
+                className: 'attribute',
+                begin: '[A-Z\\_\\.\\-]+', end: ':',
+                excludeEnd: true,
+                illegal: '[^\\s]',
+                starts: {
+                  className: 'value',
+                  endsWithParent: true, excludeEnd: true,
+                  contains: [
+                    FUNCTION,
+                    hljs.NUMBER_MODE,
+                    hljs.QUOTE_STRING_MODE,
+                    hljs.APOS_STRING_MODE,
+                    hljs.C_BLOCK_COMMENT_MODE,
+                    {
+                      className: 'hexcolor', begin: '#[0-9A-Fa-f]+'
+                    },
+                    {
+                      className: 'important', begin: '!important'
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  };
+};
+},{}],15:[function(require,module,exports){
+module.exports = function(hljs) {
+  return {
+    illegal: '\\S',
+    contains: [
+      {
+        className: 'status',
+        begin: '^HTTP/[0-9\\.]+', end: '$',
+        contains: [{className: 'number', begin: '\\b\\d{3}\\b'}]
+      },
+      {
+        className: 'request',
+        begin: '^[A-Z]+ (.*?) HTTP/[0-9\\.]+$', returnBegin: true, end: '$',
+        contains: [
+          {
+            className: 'string',
+            begin: ' ', end: ' ',
+            excludeBegin: true, excludeEnd: true
+          }
+        ]
+      },
+      {
+        className: 'attribute',
+        begin: '^\\w', end: ': ', excludeEnd: true,
+        illegal: '\\n|\\s|=',
+        starts: {className: 'string', end: '$'}
+      },
+      {
+        begin: '\\n\\n',
+        starts: {subLanguage: '', endsWithParent: true}
+      }
+    ]
+  };
+};
+},{}],16:[function(require,module,exports){
+module.exports = function(hljs) {
+  return {
+    case_insensitive: true,
+    illegal: /\S/,
+    contains: [
+      {
+        className: 'comment',
+        begin: ';', end: '$'
+      },
+      {
+        className: 'title',
+        begin: '^\\[', end: '\\]'
+      },
+      {
+        className: 'setting',
+        begin: '^[a-z0-9\\[\\]_-]+[ \\t]*=[ \\t]*', end: '$',
+        contains: [
+          {
+            className: 'value',
+            endsWithParent: true,
+            keywords: 'on off true false yes no',
+            contains: [hljs.QUOTE_STRING_MODE, hljs.NUMBER_MODE],
+            relevance: 0
+          }
+        ]
+      }
+    ]
+  };
+};
+},{}],17:[function(require,module,exports){
+module.exports = function(hljs) {
+  return {
+    aliases: ['js'],
+    keywords: {
+      keyword:
+        'in if for while finally var new function do return void else break catch ' +
+        'instanceof with throw case default try this switch continue typeof delete ' +
+        'let yield const class',
+      literal:
+        'true false null undefined NaN Infinity',
+      built_in:
+        'eval isFinite isNaN parseFloat parseInt decodeURI decodeURIComponent ' +
+        'encodeURI encodeURIComponent escape unescape Object Function Boolean Error ' +
+        'EvalError InternalError RangeError ReferenceError StopIteration SyntaxError ' +
+        'TypeError URIError Number Math Date String RegExp Array Float32Array ' +
+        'Float64Array Int16Array Int32Array Int8Array Uint16Array Uint32Array ' +
+        'Uint8Array Uint8ClampedArray ArrayBuffer DataView JSON Intl arguments require'
+    },
+    contains: [
+      {
+        className: 'pi',
+        begin: /^\s*('|")use strict('|")/,
+        relevance: 10
+      },
+      hljs.APOS_STRING_MODE,
+      hljs.QUOTE_STRING_MODE,
+      hljs.C_LINE_COMMENT_MODE,
+      hljs.C_BLOCK_COMMENT_MODE,
+      hljs.C_NUMBER_MODE,
+      { // "value" container
+        begin: '(' + hljs.RE_STARTERS_RE + '|\\b(case|return|throw)\\b)\\s*',
+        keywords: 'return throw case',
+        contains: [
+          hljs.C_LINE_COMMENT_MODE,
+          hljs.C_BLOCK_COMMENT_MODE,
+          hljs.REGEXP_MODE,
+          { // E4X
+            begin: /</, end: />;/,
+            relevance: 0,
+            subLanguage: 'xml'
+          }
+        ],
+        relevance: 0
+      },
+      {
+        className: 'function',
+        beginKeywords: 'function', end: /\{/,
+        contains: [
+          hljs.inherit(hljs.TITLE_MODE, {begin: /[A-Za-z$_][0-9A-Za-z$_]*/}),
+          {
+            className: 'params',
+            begin: /\(/, end: /\)/,
+            contains: [
+              hljs.C_LINE_COMMENT_MODE,
+              hljs.C_BLOCK_COMMENT_MODE
+            ],
+            illegal: /["'\(]/
+          }
+        ],
+        illegal: /\[|%/
+      },
+      {
+        begin: /\$[(.]/ // relevance booster for a pattern common to JS libs: `$(something)` and `$.something`
+      },
+      {
+        begin: '\\.' + hljs.IDENT_RE, relevance: 0 // hack: prevents detection of keywords after dots
+      }
+    ]
+  };
+};
+},{}],18:[function(require,module,exports){
+module.exports = function(hljs) {
+  var LITERALS = {literal: 'true false null'};
+  var TYPES = [
+    hljs.QUOTE_STRING_MODE,
+    hljs.C_NUMBER_MODE
+  ];
+  var VALUE_CONTAINER = {
+    className: 'value',
+    end: ',', endsWithParent: true, excludeEnd: true,
+    contains: TYPES,
+    keywords: LITERALS
+  };
+  var OBJECT = {
+    begin: '{', end: '}',
+    contains: [
+      {
+        className: 'attribute',
+        begin: '\\s*"', end: '"\\s*:\\s*', excludeBegin: true, excludeEnd: true,
+        contains: [hljs.BACKSLASH_ESCAPE],
+        illegal: '\\n',
+        starts: VALUE_CONTAINER
+      }
+    ],
+    illegal: '\\S'
+  };
+  var ARRAY = {
+    begin: '\\[', end: '\\]',
+    contains: [hljs.inherit(VALUE_CONTAINER, {className: null})], // inherit is also a workaround for a bug that makes shared modes with endsWithParent compile only the ending of one of the parents
+    illegal: '\\S'
+  };
+  TYPES.splice(TYPES.length, 0, OBJECT, ARRAY);
+  return {
+    contains: TYPES,
+    keywords: LITERALS,
+    illegal: '\\S'
+  };
+};
+},{}],19:[function(require,module,exports){
+module.exports = function(hljs) {
+  return {
+    contains: [
+      // highlight headers
+      {
+        className: 'header',
+        variants: [
+          { begin: '^#{1,6}', end: '$' },
+          { begin: '^.+?\\n[=-]{2,}$' }
+        ]
+      },
+      // inline html
+      {
+        begin: '<', end: '>',
+        subLanguage: 'xml',
+        relevance: 0
+      },
+      // lists (indicators only)
+      {
+        className: 'bullet',
+        begin: '^([*+-]|(\\d+\\.))\\s+'
+      },
+      // strong segments
+      {
+        className: 'strong',
+        begin: '[*_]{2}.+?[*_]{2}'
+      },
+      // emphasis segments
+      {
+        className: 'emphasis',
+        variants: [
+          { begin: '\\*.+?\\*' },
+          { begin: '_.+?_'
+          , relevance: 0
+          }
+        ]
+      },
+      // blockquotes
+      {
+        className: 'blockquote',
+        begin: '^>\\s+', end: '$'
+      },
+      // code snippets
+      {
+        className: 'code',
+        variants: [
+          { begin: '`.+?`' },
+          { begin: '^( {4}|\t)', end: '$'
+          , relevance: 0
+          }
+        ]
+      },
+      // horizontal rules
+      {
+        className: 'horizontal_rule',
+        begin: '^[-\\*]{3,}', end: '$'
+      },
+      // using links - title and link
+      {
+        begin: '\\[.+?\\][\\(\\[].+?[\\)\\]]',
+        returnBegin: true,
+        contains: [
+          {
+            className: 'link_label',
+            begin: '\\[', end: '\\]',
+            excludeBegin: true,
+            returnEnd: true,
+            relevance: 0
+          },
+          {
+            className: 'link_url',
+            begin: '\\]\\(', end: '\\)',
+            excludeBegin: true, excludeEnd: true
+          },
+          {
+            className: 'link_reference',
+            begin: '\\]\\[', end: '\\]',
+            excludeBegin: true, excludeEnd: true,
+          }
+        ],
+        relevance: 10
+      },
+      {
+        begin: '^\\[\.+\\]:', end: '$',
+        returnBegin: true,
+        contains: [
+          {
+            className: 'link_reference',
+            begin: '\\[', end: '\\]',
+            excludeBegin: true, excludeEnd: true
+          },
+          {
+            className: 'link_url',
+            begin: '\\s', end: '$'
+          }
+        ]
+      }
+    ]
+  };
+};
+},{}],20:[function(require,module,exports){
+module.exports = function(hljs) {
+  var XML_IDENT_RE = '[A-Za-z0-9\\._:-]+';
+  var PHP = {
+    begin: /<\?(php)?(?!\w)/, end: /\?>/,
+    subLanguage: 'php', subLanguageMode: 'continuous'
+  };
+  var TAG_INTERNALS = {
+    endsWithParent: true,
+    illegal: /</,
+    relevance: 0,
+    contains: [
+      PHP,
+      {
+        className: 'attribute',
+        begin: XML_IDENT_RE,
+        relevance: 0
+      },
+      {
+        begin: '=',
+        relevance: 0,
+        contains: [
+          {
+            className: 'value',
+            variants: [
+              {begin: /"/, end: /"/},
+              {begin: /'/, end: /'/},
+              {begin: /[^\s\/>]+/}
+            ]
+          }
+        ]
+      }
+    ]
+  };
+  return {
+    aliases: ['html'],
+    case_insensitive: true,
+    contains: [
+      {
+        className: 'doctype',
+        begin: '<!DOCTYPE', end: '>',
+        relevance: 10,
+        contains: [{begin: '\\[', end: '\\]'}]
+      },
+      {
+        className: 'comment',
+        begin: '<!--', end: '-->',
+        relevance: 10
+      },
+      {
+        className: 'cdata',
+        begin: '<\\!\\[CDATA\\[', end: '\\]\\]>',
+        relevance: 10
+      },
+      {
+        className: 'tag',
+        /*
+        The lookahead pattern (?=...) ensures that 'begin' only matches
+        '<style' as a single word, followed by a whitespace or an
+        ending braket. The '$' is needed for the lexeme to be recognized
+        by hljs.subMode() that tests lexemes outside the stream.
+        */
+        begin: '<style(?=\\s|>|$)', end: '>',
+        keywords: {title: 'style'},
+        contains: [TAG_INTERNALS],
+        starts: {
+          end: '</style>', returnEnd: true,
+          subLanguage: 'css'
+        }
+      },
+      {
+        className: 'tag',
+        // See the comment in the <style tag about the lookahead pattern
+        begin: '<script(?=\\s|>|$)', end: '>',
+        keywords: {title: 'script'},
+        contains: [TAG_INTERNALS],
+        starts: {
+          end: '</script>', returnEnd: true,
+          subLanguage: 'javascript'
+        }
+      },
+      {
+        begin: '<%', end: '%>',
+        subLanguage: 'vbscript'
+      },
+      PHP,
+      {
+        className: 'pi',
+        begin: /<\?\w+/, end: /\?>/,
+        relevance: 10
+      },
+      {
+        className: 'tag',
+        begin: '</?', end: '/?>',
+        contains: [
+          {
+            className: 'title', begin: '[^ /><]+', relevance: 0
+          },
+          TAG_INTERNALS
+        ]
+      }
+    ]
+  };
+};
+},{}],21:[function(require,module,exports){
+// Sticky Plugin v1.0.0 for jQuery
+// =============
+// Author: Anthony Garand
+// Improvements by German M. Bravo (Kronuz) and Ruud Kamphuis (ruudk)
+// Improvements by Leonardo C. Daronco (daronco)
+// Created: 2/14/2011
+// Date: 2/12/2012
+// Website: http://labs.anthonygarand.com/sticky
+// Description: Makes an element on the page stick on the screen as you scroll
+//       It will only set the 'top' and 'position' of your element, you
+//       might need to adjust the width in some cases.
+
+(function($) {
+  var defaults = {
+      topSpacing: 0,
+      bottomSpacing: 0,
+      className: 'is-sticky',
+      wrapperClassName: 'sticky-wrapper',
+      center: false,
+      getWidthFrom: '',
+      responsiveWidth: false
+    },
+    $window = $(window),
+    $document = $(document),
+    sticked = [],
+    windowHeight = $window.height(),
+    scroller = function() {
+      var scrollTop = $window.scrollTop(),
+        documentHeight = $document.height(),
+        dwh = documentHeight - windowHeight,
+        extra = (scrollTop > dwh) ? dwh - scrollTop : 0;
+
+      for (var i = 0; i < sticked.length; i++) {
+        var s = sticked[i],
+          elementTop = s.stickyWrapper.offset().top,
+          etse = elementTop - s.topSpacing - extra;
+
+        if (scrollTop <= etse) {
+          if (s.currentTop !== null) {
+            s.stickyElement
+              .css('position', '')
+              .css('top', '');
+            s.stickyElement.trigger('sticky-end', [s]).parent().removeClass(s.className);
+            s.currentTop = null;
+          }
+        }
+        else {
+          var newTop = documentHeight - s.stickyElement.outerHeight()
+            - s.topSpacing - s.bottomSpacing - scrollTop - extra;
+          if (newTop < 0) {
+            newTop = newTop + s.topSpacing;
+          } else {
+            newTop = s.topSpacing;
+          }
+          if (s.currentTop != newTop) {
+            s.stickyElement
+              .css('position', 'fixed')
+              .css('top', newTop);
+
+            if (typeof s.getWidthFrom !== 'undefined') {
+              s.stickyElement.css('width', $(s.getWidthFrom).width());
+            }
+
+            s.stickyElement.trigger('sticky-start', [s]).parent().addClass(s.className);
+            s.currentTop = newTop;
+          }
+        }
+      }
+    },
+    resizer = function() {
+      windowHeight = $window.height();
+
+      for (var i = 0; i < sticked.length; i++) {
+        var s = sticked[i];
+        if (typeof s.getWidthFrom !== 'undefined' && s.responsiveWidth === true) {
+          s.stickyElement.css('width', $(s.getWidthFrom).width());
+        }
+      }
+    },
+    methods = {
+      init: function(options) {
+        var o = $.extend({}, defaults, options);
+        return this.each(function() {
+          var stickyElement = $(this);
+
+          var stickyId = stickyElement.attr('id');
+          var wrapperId = stickyId ? stickyId + '-' + defaults.wrapperClassName : defaults.wrapperClassName 
+          var wrapper = $('<div></div>')
+            .attr('id', stickyId + '-sticky-wrapper')
+            .addClass(o.wrapperClassName);
+          stickyElement.wrapAll(wrapper);
+
+          if (o.center) {
+            stickyElement.parent().css({width:stickyElement.outerWidth(),marginLeft:"auto",marginRight:"auto"});
+          }
+
+          if (stickyElement.css("float") == "right") {
+            stickyElement.css({"float":"none"}).parent().css({"float":"right"});
+          }
+
+          var stickyWrapper = stickyElement.parent();
+          stickyWrapper.css('height', stickyElement.outerHeight());
+          sticked.push({
+            topSpacing: o.topSpacing,
+            bottomSpacing: o.bottomSpacing,
+            stickyElement: stickyElement,
+            currentTop: null,
+            stickyWrapper: stickyWrapper,
+            className: o.className,
+            getWidthFrom: o.getWidthFrom,
+            responsiveWidth: o.responsiveWidth
+          });
+        });
+      },
+      update: scroller,
+      unstick: function(options) {
+        return this.each(function() {
+          var unstickyElement = $(this);
+
+          var removeIdx = -1;
+          for (var i = 0; i < sticked.length; i++)
+          {
+            if (sticked[i].stickyElement.get(0) == unstickyElement.get(0))
+            {
+                removeIdx = i;
+            }
+          }
+          if(removeIdx != -1)
+          {
+            sticked.splice(removeIdx,1);
+            unstickyElement.unwrap();
+            unstickyElement.removeAttr('style');
+          }
+        });
+      }
+    };
+
+  // should be more efficient than using $window.scroll(scroller) and $window.resize(resizer):
+  if (window.addEventListener) {
+    window.addEventListener('scroll', scroller, false);
+    window.addEventListener('resize', resizer, false);
+  } else if (window.attachEvent) {
+    window.attachEvent('onscroll', scroller);
+    window.attachEvent('onresize', resizer);
+  }
+
+  $.fn.sticky = function(method) {
+    if (methods[method]) {
+      return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
+    } else if (typeof method === 'object' || !method ) {
+      return methods.init.apply( this, arguments );
+    } else {
+      $.error('Method ' + method + ' does not exist on jQuery.sticky');
+    }
+  };
+
+  $.fn.unstick = function(method) {
+    if (methods[method]) {
+      return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
+    } else if (typeof method === 'object' || !method ) {
+      return methods.unstick.apply( this, arguments );
+    } else {
+      $.error('Method ' + method + ' does not exist on jQuery.sticky');
+    }
+
+  };
+  $(function() {
+    setTimeout(scroller, 0);
+  });
+})(jQuery);
+
+},{}],22:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v1.11.2
  * http://jquery.com/
@@ -10384,4 +13517,4 @@ return jQuery;
 
 }));
 
-},{}]},{},[4]);
+},{}]},{},[5]);

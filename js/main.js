@@ -17,4 +17,5 @@ var $          = require('jquery'),
 	modal      = require('./modal'),
 	tab        = require('./tab'),
 	popover    = require('./popover'),
+	highlight  = require('./highlight'),
 	tooltip    = require('./tooltip');

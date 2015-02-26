@@ -1,24 +1,13 @@
 {
   "name": "highlightjs",
-  "version": "8.4.0",
-  "main": [
-    "highlight.pack.js",
-    "styles/default.css"
-  ],
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "vendor",
-    "components"
-  ],
-  "homepage": "https://github.com/components/highlightjs",
-  "_release": "8.4.0",
+  "homepage": "https://github.com/jadu/highlight-redux",
+  "_release": "905c9a9e55",
   "_resolution": {
-    "type": "version",
-    "tag": "8.4.0",
-    "commit": "f27b85bc25d6c70c69347e77193688ec562ce2eb"
+    "type": "branch",
+    "branch": "master",
+    "commit": "905c9a9e55f7fbdc63a14423fad8e3a5d32cc8fe"
   },
-  "_source": "git://github.com/components/highlightjs.git",
+  "_source": "git://github.com/jadu/highlight-redux.git",
   "_target": "*",
-  "_originalSource": "highlightjs"
+  "_originalSource": "jadu/highlight-redux"
 }
