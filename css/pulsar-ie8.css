@@ -1,10 +1,6 @@
 @charset "UTF-8";
 @import url(../libs/normalize-css/normalize.css);
 @import url(../libs/font-awesome/css/font-awesome.css);
-@import url(../libs/highlightjs/styles/rainbow.css);
-@import url(../libs/summernote/dist/summernote.css);
-@import url(../libs/summernote/dist/summernote-bs3.css);
-@import url(../libs/codemirror/lib/codemirror.css);
 @import url(../libs/jquery-toggles/css/toggles-full.css);
 /**
                           88
@@ -7395,6 +7391,49 @@ tr.is-collapsed td, tr.is-collapsed th {
 /**
  * Utilities
  */
+.hljs {
+  display: block;
+  overflow-x: auto;
+  background: #f8f8f8;
+  color: #4d4d4c;
+  padding: 0.5em;
+  -webkit-text-size-adjust: none; }
+
+/* Tomorrow Comment */
+.hljs-comment {
+  color: #8e908c; }
+
+/* Tomorrow Red */
+.hljs-variable, .hljs-attribute, .hljs-tag, .hljs-regexp, .ruby .hljs-constant, .xml .hljs-tag .hljs-title, .xml .hljs-pi, .xml .hljs-doctype, .html .hljs-doctype, .css .hljs-id, .css .hljs-class, .css .hljs-pseudo {
+  color: #c82829; }
+
+/* Tomorrow Orange */
+.hljs-number, .hljs-preprocessor, .hljs-pragma, .hljs-built_in, .hljs-literal, .hljs-params, .hljs-constant {
+  color: #f5871f; }
+
+/* Tomorrow Yellow */
+.ruby .hljs-class .hljs-title, .css .hljs-rules .hljs-attribute {
+  color: #eab700; }
+
+/* Tomorrow Green */
+.hljs-string, .hljs-value, .hljs-inheritance, .hljs-header, .ruby .hljs-symbol, .xml .hljs-cdata {
+  color: #718c00; }
+
+/* Tomorrow Aqua */
+.hljs-title, .css .hljs-hexcolor {
+  color: #3e999f; }
+
+/* Tomorrow Blue */
+.hljs-function, .python .hljs-decorator, .python .hljs-title, .ruby .hljs-function .hljs-title, .ruby .hljs-title .hljs-keyword, .perl .hljs-sub, .javascript .hljs-title, .coffeescript .hljs-title {
+  color: #4271ae; }
+
+/* Tomorrow Purple */
+.hljs-keyword, .javascript .hljs-function {
+  color: #8959a8; }
+
+.coffeescript .javascript, .javascript .xml, .tex .hljs-formula, .xml .javascript, .xml .vbscript, .xml .css, .xml .hljs-cdata {
+  opacity: 0.5; }
+
 .show-baseline {
   background-image: -webkit-linear-gradient(0deg, transparent 200px, transparent 20px), -webkit-linear-gradient(top, transparent 95%, rgba(0, 0, 0, 0.2) 100%);
   background-image: -moz-linear-gradient(0deg, transparent 200px, transparent 20px), -moz-linear-gradient(top, transparent 95%, rgba(0, 0, 0, 0.2) 100%);
