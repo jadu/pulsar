@@ -2,13 +2,13 @@
 
 Example:
 
-    <a href="#" data-toggle="tooltip" title="first tooltip">Hover over me</a>
+    <a href="#" data-toggle="tooltips" title="first tooltip">Hover over me</a>
 
-<a href="#" data-toggle="tooltip" title="first tooltip">Hover over me</a>   
+<a href="#" data-toggle="tooltips" title="first tooltip">Hover over me</a>
 
 ## Variations
 
-<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="left" title="" data-original-title="Tooltip on left">Tooltip on left</button> <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tooltip on top">Tooltip on top</button> <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Tooltip on bottom">Tooltip on bottom</button> <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="right" title="" data-original-title="Tooltip on right">Tooltip on right</button>
+<button type="button" class="btn btn-default" data-toggle="tooltips" data-placement="left" title="" data-original-title="Tooltip on left">Tooltip on left</button> <button type="button" class="btn btn-default" data-toggle="tooltips" data-placement="top" title="" data-original-title="Tooltip on top">Tooltip on top</button> <button type="button" class="btn btn-default" data-toggle="tooltips" data-placement="bottom" title="" data-original-title="Tooltip on bottom">Tooltip on bottom</button> <button type="button" class="btn btn-default" data-toggle="tooltips" data-placement="right" title="" data-original-title="Tooltip on right">Tooltip on right</button>
 
 ## Options
 
