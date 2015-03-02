@@ -13,6 +13,15 @@
   border: 0;
 }
 
+.show {
+  clip: auto;
+  display: inline-block;
+  height: auto;
+  overflow: visible;
+  position: static;
+  width: auto;
+}
+
 .visually-hidden {
   display: none;
 }
