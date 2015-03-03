@@ -18,4 +18,5 @@ var $          = require('jquery'),
 	tab        = require('./tab'),
 	popover    = require('./popover'),
 	highlight  = require('./highlight'),
-	tooltip    = require('./tooltip');
+	tooltip    = require('./tooltip'),
+	signin     = require('./area/signin/signinForm');

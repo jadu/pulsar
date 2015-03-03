@@ -2,6 +2,27 @@
 'use strict';
 
 var $ = require('jquery'),
+	vide = require('../../../libs/vide/dist/jquery.vide.min');
+
+$(function() {
+
+	$('.signin-backdrop').vide('../../../images/video/galaxy.mp4');
+
+	$('[href=#forgot]').on('click', function(e) {
+		$('.signin__inner').addClass('active-reset')
+		e.preventDefault();
+	});
+
+	$('[href=#signin]').on('click', function(e) {
+		$('.signin__inner').removeClass('active-reset')
+		e.preventDefault();
+	});
+});
+
+},{"../../../libs/vide/dist/jquery.vide.min":23,"jquery":24}],2:[function(require,module,exports){
+'use strict';
+
+var $ = require('jquery'),
 	vague = require('../libs/Vague.js/Vague');
 
 //require(['jquery', 'jquery-mousewheel', 'vague'], function ($) {
@@ -235,7 +256,7 @@ var $ = require('jquery'),
 
   });
 
-},{"../libs/Vague.js/Vague":10,"jquery":22}],2:[function(require,module,exports){
+},{"../libs/Vague.js/Vague":11,"jquery":24}],3:[function(require,module,exports){
 /* ========================================================================
  * Bootstrap: dropdown.js v3.0.0
  * http://twbs.github.com/bootstrap/javascript.html#dropdowns
@@ -390,7 +411,7 @@ var $ = require('jquery');
 
 module.exports = Dropdown;
 
-},{"jquery":22}],3:[function(require,module,exports){
+},{"jquery":24}],4:[function(require,module,exports){
 /**
  * Jadu Flash Message Handler
  *
@@ -575,7 +596,7 @@ var $ = require('jquery'),
   });
 
 
-},{"../libs/sticky/jquery.sticky":21,"jquery":22}],4:[function(require,module,exports){
+},{"../libs/sticky/jquery.sticky":22,"jquery":24}],5:[function(require,module,exports){
 var $ = require('jquery'),
 	hljs = require('../libs/highlightjs/lib/index');
 
@@ -589,7 +610,7 @@ $(function () {
 
 });
 
-},{"../libs/highlightjs/lib/index":12,"jquery":22}],5:[function(require,module,exports){
+},{"../libs/highlightjs/lib/index":13,"jquery":24}],6:[function(require,module,exports){
 /**
  * Pulsar
  *
@@ -610,9 +631,10 @@ var $          = require('jquery'),
 	tab        = require('./tab'),
 	popover    = require('./popover'),
 	highlight  = require('./highlight'),
-	tooltip    = require('./tooltip');
+	tooltip    = require('./tooltip'),
+	signin     = require('./area/signin/signinForm');
 
-},{"./deck":1,"./dropdown":2,"./flash":3,"./highlight":4,"./modal":6,"./popover":7,"./tab":8,"./tooltip":9,"jquery":22}],6:[function(require,module,exports){
+},{"./area/signin/signinForm":1,"./deck":2,"./dropdown":3,"./flash":4,"./highlight":5,"./modal":7,"./popover":8,"./tab":9,"./tooltip":10,"jquery":24}],7:[function(require,module,exports){
 /* ========================================================================
  * Bootstrap: modal.js v3.0.3
  * http://twbs.github.com/bootstrap/javascript.html#modals
@@ -866,7 +888,7 @@ var $ = require('jquery');
 
 module.exports = Modal;
 
-},{"jquery":22}],7:[function(require,module,exports){
+},{"jquery":24}],8:[function(require,module,exports){
 /* ========================================================================
  * Bootstrap: popover.js v3.0.0
  * http://twbs.github.com/bootstrap/javascript.html#popovers
@@ -989,7 +1011,7 @@ var $ = require('jquery'),
 
 module.exports = Popover;
 
-},{"./tooltip":9,"jquery":22}],8:[function(require,module,exports){
+},{"./tooltip":10,"jquery":24}],9:[function(require,module,exports){
 /* ========================================================================
  * Bootstrap: tab.js v3.0.0
  * http://twbs.github.com/bootstrap/javascript.html#tabs
@@ -1144,7 +1166,7 @@ var $ = require('jquery');
 module.exports = Tab;
 
 
-},{"jquery":22}],9:[function(require,module,exports){
+},{"jquery":24}],10:[function(require,module,exports){
 /* ========================================================================
  * Bootstrap: tooltip.js v3.1.1
  * http://getbootstrap.com/javascript/#tooltip
@@ -1571,7 +1593,7 @@ var $ = require('jquery');
 
 module.exports = Tooltip;
 
-},{"jquery":22}],10:[function(require,module,exports){
+},{"jquery":24}],11:[function(require,module,exports){
 /**
 *
 * Version: 0.0.2
@@ -1764,7 +1786,7 @@ module.exports = Tooltip;
 
 }(window,document,jQuery));
 
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 var Highlight = function() {
 
   /* Utility functions */
@@ -2443,7 +2465,7 @@ var Highlight = function() {
   };
 };
 module.exports = Highlight;
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 var Highlight = require('./highlight');
 var hljs = new Highlight();
 hljs.registerLanguage('bash', require('./languages/bash.js'));
@@ -2455,7 +2477,7 @@ hljs.registerLanguage('http', require('./languages/http.js'));
 hljs.registerLanguage('ini', require('./languages/ini.js'));
 hljs.registerLanguage('json', require('./languages/json.js'));
 module.exports = hljs;
-},{"./highlight":11,"./languages/bash.js":13,"./languages/css.js":14,"./languages/http.js":15,"./languages/ini.js":16,"./languages/javascript.js":17,"./languages/json.js":18,"./languages/markdown.js":19,"./languages/xml.js":20}],13:[function(require,module,exports){
+},{"./highlight":12,"./languages/bash.js":14,"./languages/css.js":15,"./languages/http.js":16,"./languages/ini.js":17,"./languages/javascript.js":18,"./languages/json.js":19,"./languages/markdown.js":20,"./languages/xml.js":21}],14:[function(require,module,exports){
 module.exports = function(hljs) {
   var VAR = {
     className: 'variable',
@@ -2517,7 +2539,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 module.exports = function(hljs) {
   var IDENT_RE = '[a-zA-Z-][a-zA-Z0-9_-]*';
   var FUNCTION = {
@@ -2619,7 +2641,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     illegal: '\\S',
@@ -2653,7 +2675,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     case_insensitive: true,
@@ -2683,7 +2705,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],17:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     aliases: ['js'],
@@ -2754,7 +2776,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],18:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 module.exports = function(hljs) {
   var LITERALS = {literal: 'true false null'};
   var TYPES = [
@@ -2792,7 +2814,7 @@ module.exports = function(hljs) {
     illegal: '\\S'
   };
 };
-},{}],19:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 module.exports = function(hljs) {
   return {
     contains: [
@@ -2893,7 +2915,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],20:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 module.exports = function(hljs) {
   var XML_IDENT_RE = '[A-Za-z0-9\\._:-]+';
   var PHP = {
@@ -2997,7 +3019,7 @@ module.exports = function(hljs) {
     ]
   };
 };
-},{}],21:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 // Sticky Plugin v1.0.0 for jQuery
 // =============
 // Author: Anthony Garand
@@ -3169,7 +3191,17 @@ module.exports = function(hljs) {
   });
 })(jQuery);
 
-},{}],22:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
+/*
+ *  Vide - v0.3.1
+ *  Easy as hell jQuery plugin for video backgrounds.
+ *  http://vodkabears.github.io/vide/
+ *
+ *  Made by Ilya Makarov
+ *  Under MIT License
+ */
+!function(a,b,c,d){"use strict";function e(a){var b,c,d,e,f,g,h,i={};for(f=a.replace(/\s*:\s*/g,":").replace(/\s*,\s*/g,",").split(","),h=0,g=f.length;g>h&&(c=f[h],-1===c.search(/^(http|https|ftp):\/\//)&&-1!==c.search(":"));h++)b=c.indexOf(":"),d=c.substring(0,b),e=c.substring(b+1),e||(e=void 0),"string"==typeof e&&(e="true"===e||("false"===e?!1:e)),"string"==typeof e&&(e=isNaN(e)?e:+e),i[d]=e;return null==d&&null==e?a:i}function f(a){a=""+a;var b,c,d,e=a.split(/\s+/),f="50%",g="50%";for(d=0,b=e.length;b>d;d++)c=e[d],"left"===c?f="0%":"right"===c?f="100%":"top"===c?g="0%":"bottom"===c?g="100%":"center"===c?0===d?f="50%":g="50%":0===d?f=c:g=c;return{x:f,y:g}}function g(b,c){var d=function(){c(this.src)};a('<img src="'+b+'.gif">').load(d),a('<img src="'+b+'.jpg">').load(d),a('<img src="'+b+'.jpeg">').load(d),a('<img src="'+b+'.png">').load(d)}function h(a){a.$video.prop({autoplay:a.settings.autoplay,loop:a.settings.loop,volume:a.settings.volume,muted:a.settings.muted,playbackRate:a.settings.playbackRate})}function i(b,c,d){if(this.$element=a(b),"string"==typeof c&&(c=e(c)),d?"string"==typeof d&&(d=e(d)):d={},"string"==typeof c)c=c.replace(/\.\w*$/,"");else if("object"==typeof c)for(var f in c)c.hasOwnProperty(f)&&(c[f]=c[f].replace(/\.\w*$/,""));this.settings=a.extend({},k,d),this.path=c,this.init()}var j="vide",k={volume:1,playbackRate:1,muted:!0,loop:!0,autoplay:!0,position:"50% 50%",posterType:"detect",resizing:!0},l=/iPad|iPhone|iPod/i.test(d.userAgent),m=/Android/i.test(d.userAgent);i.prototype.init=function(){var b,c,d=this,e=f(d.settings.position);d.$wrapper=a("<div>").css({position:"absolute","z-index":-1,top:0,left:0,bottom:0,right:0,overflow:"hidden","-webkit-background-size":"cover","-moz-background-size":"cover","-o-background-size":"cover","background-size":"cover","background-repeat":"no-repeat","background-position":e.x+" "+e.y}),c=d.path,"object"==typeof d.path&&(d.path.poster?c=d.path.poster:d.path.mp4?c=d.path.mp4:d.path.webm?c=d.path.webm:d.path.ogv&&(c=d.path.ogv)),"detect"===d.settings.posterType?g(c,function(a){d.$wrapper.css("background-image","url("+a+")")}):"none"!==d.settings.posterType&&d.$wrapper.css("background-image","url("+c+"."+d.settings.posterType+")"),"static"===d.$element.css("position")&&d.$element.css("position","relative"),d.$element.prepend(d.$wrapper),l||m||(b="","object"==typeof d.path?(d.path.mp4&&(b+='<source src="'+d.path.mp4+'.mp4" type="video/mp4">'),d.path.webm&&(b+='<source src="'+d.path.webm+'.webm" type="video/webm">'),d.path.ogv&&(b+='<source src="'+d.path.ogv+'.ogv" type="video/ogv">'),d.$video=a("<video>"+b+"</video>")):d.$video=a('<video><source src="'+d.path+'.mp4" type="video/mp4"><source src="'+d.path+'.webm" type="video/webm"><source src="'+d.path+'.ogv" type="video/ogg"></video>'),d.$video.css("visibility","hidden"),h(d),d.$wrapper.append(d.$video),d.$video.css({margin:"auto",position:"absolute","z-index":-1,top:e.y,left:e.x,"-webkit-transform":"translate(-"+e.x+", -"+e.y+")","-ms-transform":"translate(-"+e.x+", -"+e.y+")",transform:"translate(-"+e.x+", -"+e.y+")"}),d.$video.on("canplaythrough."+j,function(){d.$video.css("visibility","visible"),h(d),d.settings.autoplay&&d.$video[0].play(),d.resize(),d.$wrapper.css("background-image","none")}),d.$element.on("resize."+j,function(){d.settings.resizing&&d.resize()}))},i.prototype.getVideoObject=function(){return this.$video?this.$video[0]:null},i.prototype.resize=function(){if(this.$video){var a=this.$video[0].videoHeight,b=this.$video[0].videoWidth,c=this.$wrapper.height(),d=this.$wrapper.width();this.$video.css(d/b>c/a?{width:d+2,height:"auto"}:{width:"auto",height:c+2})}},i.prototype.destroy=function(){this.$element.off(j),this.$video&&this.$video.off(j),delete a[j].lookup[this.index],this.$element.removeData(j),this.$wrapper.remove()},a[j]={lookup:[]},a.fn[j]=function(b,c){var d;return this.each(function(){d=a.data(this,j),d&&d.destroy(),d=new i(this,b,c),d.index=a[j].lookup.push(d)-1,a.data(this,j,d)}),this},a(c).ready(function(){a(b).on("resize."+j,function(){for(var b,c=a[j].lookup.length,d=0;c>d;d++)b=a[j].lookup[d],b&&b.settings.resizing&&b.resize()}),a(c).find("[data-"+j+"-bg]").each(function(b,c){var d=a(c),e=d.data(j+"-options"),f=d.data(j+"-bg");d[j](f,e)})})}(window.jQuery,window,document,navigator);
+},{}],24:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v1.11.2
  * http://jquery.com/
@@ -13517,4 +13549,4 @@ return jQuery;
 
 }));
 
-},{}]},{},[5]);
+},{}]},{},[6]);
