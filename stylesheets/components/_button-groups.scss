@@ -7,6 +7,7 @@
 
   @include respond-min($screen-phone) {
     @include inline-block;
+    width: auto;
   }
 
   // Display as block by default
