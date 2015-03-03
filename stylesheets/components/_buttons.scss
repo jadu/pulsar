@@ -99,6 +99,7 @@
     $shadow-color: darken($base-color, 10%);
 
     background-color: $base-color;
+    border-color: $shadow-color;
     box-shadow: 0 2px 0 $shadow-color;
     color: $alt-color;
     position: relative;
