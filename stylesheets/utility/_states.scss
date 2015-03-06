@@ -106,16 +106,29 @@ $danger-to-text-color: black;
               animation-fill-mode: forwards;
     }
   }
+
+  .help-block {
+    color: $info-from-text-color;
+  }
 }
 
 .has-success:not(.form__group) {
   background-color: lighten($success-color, 35);
   color: darken($success-color, 15);
+
+  .help-block {
+    color: darken($success-color, 15);
+  }
+
 }
 
 .has-warning:not(.form__group) {
   background-color: lighten($warning-color, 15);
   color: darken($warning-color, 30);
+
+  .help-block {
+    color: darken($warning-color, 30);
+  }
 }
 
 .has-error,
@@ -140,9 +153,8 @@ $danger-to-text-color: black;
          -moz-animation-fill-mode: forwards;
               animation-fill-mode: forwards;
     }
-
-    .help-block {
-      color: $danger-from-text-color;
-    }
+  }
+  .help-block {
+    color: $danger-from-text-color;
   }
 }
