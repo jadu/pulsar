@@ -124,7 +124,7 @@ $danger-to-text-color: black;
 .has-danger:hover {
   &:not(.form__group) {
     background-color: $danger-from-bg-color;
-    color: $danger-from-text-color;
+    color: $danger-from-text-color !important;
 
     &.fade {
       -webkit-animation: dangerFade ease-out 1;
