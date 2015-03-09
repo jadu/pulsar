@@ -19,6 +19,7 @@ window.it = it;
 window.sinon = sinon;
 
 require('./tabbedLayoutTest');
+require('./signinTest');
 
 if (typeof mochaPhantomJS !== 'undefined') {
     mochaPhantomJS.run();

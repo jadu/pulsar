@@ -3,6 +3,11 @@ $signin-bg-image: '../images/branding/logo-cms-white.svg';
 $signin-bg-height: 65px;
 $signin-bg-width: 65px;
 
+// Fixes an issue with Safari where animations break when on top of a video
+.signin-container {
+	transform: translate3d(0, 0, 0);
+}
+
 .signin {
 	background-color: $signin-bg-color;
 	border-radius: 2px;
@@ -11,14 +16,34 @@ $signin-bg-width: 65px;
 	height: 320px;
 	margin: 0 auto;
 	padding: 0 0 20px 0;
+	opacity: 1;
 	overflow: hidden;
 	position: relative;
 	top: 5em;
 	width: 400px;
 	zoom: 1;
 
+	transition: background-color .25s;
+
+
+	&--error {
+		background-color: $danger-color;
+		animation: shake 400ms ease-in-out;
+	}
+
+	&--success {
+		background-color: $success-color;
+	}
+
 	form {
 		overflow: visible;
+	}
+
+	input, button {
+		&:focus {
+			outline: none;
+			box-shadow: 0 0 5px black;
+		}
 	}
 
 	input {
@@ -28,65 +53,46 @@ $signin-bg-width: 65px;
 	a {
 		color: white;
 	}
+
+	.btn {
+		background: none;
+		border: 2px solid white;
+		box-shadow: none;
+
+		&:hover,
+		&:focus {
+			background-color: rgba(0, 0, 0, .1);
+			top: 0;
+		}
+
+		&:active {
+			top: 1px;
+		}
+	}
+
+
 }
 
+
+
 .signin__inner {
-	-webkit-transition: margin-left 0.5s;
-	transition: margin-left 0.5s;
+	transition: background-color 0.5s, margin-left 0.5s;
 	float: left;
 	width: 805px;
+
+	.active-reset & {
+		position: relative;
+		margin-left: -400px;
+	}
 }
+
 
 .signin__panel {
 	float: left;
 	text-align: center;
 	width: 400px;
-}
-
-.signin-reset {
-	top: 0;
-}
-
-.signin-form {
-	background-image: url($signin-bg-image);
-	background-size: $signin-bg-height $signin-bg-width;
-	background-position: 50% 20px;
-	background-repeat: no-repeat;
-	padding-top: 90px;
-}
-
-.active-reset {
-	position: relative;
-	margin-left: -400px;
-}
 
 
-
-.signin--error {
-	background-color: $danger-color;
-	background-image: none;
-	padding-top: 15px;
-}
-
-.signin--success {
-	background-color: $success-color;
-}
-
-.signin-reset,
-.signin-twostep,
-.signin-success {
-	background-image: none;
-	padding-top: 15px;
-}
-
-.signin__icon {
-	font-size: $signin-bg-height;
-}
-
-.signin__help {
-	display: block;
-	margin-bottom: 1em;
-	text-align: center;
 }
 
 .signin__actions {
@@ -98,7 +104,7 @@ $signin-bg-width: 65px;
 	border: none;
 	box-shadow: inset 0 3px 0 #efefef;
 	border-radius: 2px;
-	display: block;
+	display: inline-block;
 	margin: 0 auto 1em auto;
 	padding: 10px;
 	width: 80%;
@@ -142,7 +148,7 @@ $signin-bg-width: 65px;
 	}
 }
 
-.signin__sitename {
+.signin__info {
 	display: block;
 	margin-bottom: 1em;
 }
@@ -150,5 +156,89 @@ $signin-bg-width: 65px;
 .signin__link {
 	display: inline-block;
 	font-size: .8em;
+
+	&:focus {
+		outline-color: white;
+	}
 }
+
+.signin__hint {
+	animation-duration: 1s;
+	animation-fill-mode: both;
+	animation-iteration-count: infinite;
+	animation-name: hint-wobble;
+	display: inline-block;
+	font-size: 1.5em;
+	left: 12px;
+	margin-right: ($greeter-padding / 2);
+	position: absolute;
+	top: 5px;
+}
+
+.shake {
+  animation: shake 500ms ease-in-out;
+}
+
+@keyframes hint-wobble {
+  0%, 50%, 100% { transform: translateX(0); }
+  25%, 75% { transform: translateX(-5px); }
+}
+
+@keyframes shake {
+  0%    { transform: translateX(0);}
+  12.5% { transform: translateX(-10px) rotateY(-5deg)}
+  37.5% { transform: translateX(10px) rotateY(4deg)}
+  62.5% { transform: translateX(-5px) rotateY(-2deg)}
+  87.5% { transform: translateX(5px) rotateY(1deg)}
+  100%  { transform: translateX(0)}
+}
+
+@keyframes fade-in {
+	from { opacity: 0; }
+	to   { opacity: 1; }
+}
+
+.signin__icon {
+	background-image: url($signin-bg-image);
+	background-size: $signin-bg-height $signin-bg-width;
+	background-position: 50% 0;
+	background-repeat: no-repeat;
+	border-radius: 65px;
+	display: inline-block;
+	margin: 20px auto 0 auto;
+	height: 65px;
+	width: 65px;
+
+	.signin--error &,
+	.signin-reset & {
+		@include icon-FontAwesome();
+		background-image: none;
+		line-height: 65px;
+		margin-bottom: 6px;
+	}
+
+	.signin--error &:before {
+		content: '\f119';
+		font-size: 75px;
+	}
+
+	.signin-reset & {
+		background-color: #fff;
+
+		&:before {
+			//content: '\f003';
+			content: '\f0e0';
+			display: inline-block;
+			color: #2f8dbd;
+			font-size: 35px;
+			width: 66px;
+		}
+	}
+}
+
+
+
+
+
+
 

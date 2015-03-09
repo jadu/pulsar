@@ -10,13 +10,19 @@
 window.jQuery = require('jquery');
 
 // Global UI components
-var $          = require('jquery'),
-	deck       = require('./deck'),
-	dropdown   = require('./dropdown'),
-	flash      = require('./flash'),
-	modal      = require('./modal'),
-	tab        = require('./tab'),
-	popover    = require('./popover'),
-	highlight  = require('./highlight'),
-	tooltip    = require('./tooltip'),
-	signin     = require('./area/signin/signinForm');
+var $               = require('jquery'),
+	deck            = require('./deck'),
+	dropdown        = require('./dropdown'),
+	flash           = require('./flash'),
+	modal           = require('./modal'),
+	tab             = require('./tab'),
+	popover         = require('./popover'),
+	highlight       = require('./highlight'),
+	tooltip         = require('./tooltip'),
+	SignInComponent = require('./area/signin/signin');
+
+$(function () {
+    signIn = new SignInComponent($('html'));
+    signIn.initialize();
+});
+

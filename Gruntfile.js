@@ -10,7 +10,8 @@ module.exports = function(grunt) {
 	browserify: {
 		dist: {
 			files: {
-				'dist/js/bundle.js': ['js/main.js']
+				'dist/js/bundle.js': ['js/main.js'],
+				'dist/js/test.js': ['tests/js/index.js']
 			},
 			options: {
 				// transform: ['uglifyify']
@@ -62,12 +63,11 @@ module.exports = function(grunt) {
 
 	autoprefixer: {
 		dev: {
-		options: {
-			browsers: ['last 2 version', 'ie 7', 'ie 8', 'ie 9']
-		},
-		expand: true,
-		src:    'css/*.css',
-		dest:   'css/'
+			options: {
+				browsers: ['last 2 version', 'ie 7', 'ie 8', 'ie 9']
+			},
+			expand: true,
+			src:    'css/*.css'
 		}
 	},
 
@@ -80,7 +80,7 @@ module.exports = function(grunt) {
 			},
 		},
 		js: {
-			files: ['js/**/*.js', 'package.json'],
+			files: ['js/**/*.js', 'tests/js/**/*', 'package.json'],
 			tasks: ['browserify']
 		}
 	},
@@ -90,6 +90,16 @@ module.exports = function(grunt) {
 		jshintrc: '.jshintrc'
 		},
 		all: ['js/**/*.js']
+	},
+
+	mocha: {
+		test: {
+			src: ['tests/**/*.html'],
+			options: {
+				reporter: 'Nyan',
+				run: true
+			}
+		},
 	},
 
 	uglify: {
@@ -188,7 +198,7 @@ module.exports = function(grunt) {
 	]
   });
 
- grunt.registerTask('default', ['sass:dev', 'watch']);
+ grunt.registerTask('default', ['sass:dev', 'browserify', 'watch']);
 
  grunt.registerTask('pre-commit', [
 	'asciify',
