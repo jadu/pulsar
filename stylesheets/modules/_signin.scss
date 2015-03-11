@@ -3,6 +3,11 @@ $signin-bg-image: '../images/branding/logo-cms-white.svg';
 $signin-bg-height: 65px;
 $signin-bg-width: 65px;
 
+html, body {
+	height: 100%;
+	margin: 0;
+}
+
 // Fixes an issue with Safari where animations break when on top of a video
 .signin-container {
 	transform: translate3d(0, 0, 0);

@@ -34,7 +34,7 @@ SignInComponent.prototype.initialize = function () {
 	component.twoStepAttempt = 0;
 
 	// Full screen video background
-	this.$html.find('body').vide('../../../images/video/galaxy.mp4');
+	this.$html.find('body').vide('../../../images/video/galaxy_720.mp4');
 
 	// Forgotten password
 	this.$html.find('[href="#forgot"]').on('click', function (e) {
