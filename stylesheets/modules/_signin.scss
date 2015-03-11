@@ -70,10 +70,14 @@ $signin-bg-width: 65px;
 		}
 	}
 
-
+	&.active-success {
+		animation-delay: .8s;
+		animation-duration: .25s;
+		animation-fill-mode: both;
+		animation-name: success-container;
+		background-color: rgba(41, 124, 70, .9);
+	}
 }
-
-
 
 .signin__inner {
 	transition: background-color 0.5s, margin-left 0.5s;
@@ -84,15 +88,43 @@ $signin-bg-width: 65px;
 		position: relative;
 		margin-left: -400px;
 	}
+
+	.active-twostep & {
+
+		.signin-form,
+		.signin-reset {
+			opacity: 0;
+			z-index: -1;
+		}
+
+		.signin-twostep {
+			opacity: 1;
+			z-index: 1;
+		}
+	}
+
+	.active-success & {
+		.signin-form,
+		.signin-reset,
+		.signin-twostep {
+			opacity: 0;
+			z-index: -1;
+		}
+
+		.signin-success {
+			opacity: 1;
+			z-index: 1;
+		}
+	}
+
 }
 
 
 .signin__panel {
 	float: left;
 	text-align: center;
+	transition: opacity 0.5s, z-index 0.5s;
 	width: 400px;
-
-
 }
 
 .signin__actions {
@@ -121,8 +153,7 @@ $signin-bg-width: 65px;
 	font-family: courier;
 	letter-spacing: 5px;
 	margin: 0 5px 1em 5px;
-	padding: 10px 10px 10px 15px;
-	text-align: center;
+	padding: 10px 10px 10px 20px;
 	width: 20%;
 }
 
@@ -163,6 +194,7 @@ $signin-bg-width: 65px;
 }
 
 .signin__hint {
+	@include icon-FontAwesome();
 	animation-duration: 1s;
 	animation-fill-mode: both;
 	animation-iteration-count: infinite;
@@ -170,13 +202,132 @@ $signin-bg-width: 65px;
 	display: inline-block;
 	font-size: 1.5em;
 	left: 12px;
-	margin-right: ($greeter-padding / 2);
 	position: absolute;
-	top: 5px;
+	width: 25px;
+	top: 6px;
+
+	&:before {
+		content: '\f0a4';
+	}
+
+	.signin-twostep & {
+		left: 85px;
+	}
+
+	.signin__code2 + & {
+		left: inherit;
+		right: 80px;
+
+		&:before {
+			content: '\f0a5';
+		}
+	}
 }
 
 .shake {
   animation: shake 500ms ease-in-out;
+}
+
+.test {
+	outline: 1px solid red;
+}
+
+
+.signin__icon {
+	background-image: url($signin-bg-image);
+	background-size: $signin-bg-height $signin-bg-width;
+	background-position: 50% 0;
+	background-repeat: no-repeat;
+	border-radius: 65px;
+	display: inline-block;
+	margin: 20px auto 0 auto;
+	height: 65px;
+	width: 65px;
+
+	.signin--error &,
+	.signin-reset &,
+	.signin-twostep &,
+	.signin-success & {
+		@include icon-FontAwesome();
+		background-image: none;
+		line-height: 65px;
+		margin-bottom: 6px;
+	}
+
+	.signin-reset &,
+	.signin-twostep &,
+	.signin-success & {
+		background-color: #fff;
+
+		&:before {
+			display: inline-block;
+			color: #2f8dbd;
+			width: 66px;
+		}
+	}
+
+	.signin--error &:before {
+		content: '\f119';
+		font-size: 75px;
+	}
+
+	.signin-twostep &:before {
+		content: '\f10b';
+		font-size: 65px;
+
+		.signin--error & {
+			color: $danger-color;
+		}
+	}
+
+	.signin-reset & {
+		background-color: #fff;
+
+		&:before {
+			content: '\f0e0';
+			display: inline-block;
+			color: #2f8dbd;
+			font-size: 35px;
+			width: 66px;
+		}
+	}
+
+	.active-success .signin-success & {
+		animation-duration: 1s;
+		animation-fill-mode: both;
+		animation-name: success-icon;
+
+		&:before {
+			content: '\f087';
+			color: $success-color;
+			font-size: 35px;
+		}
+	}
+}
+
+.signin-twostep,
+.signin-success {
+
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+
+	.signin__group {
+		margin-top: 1.5em;
+	}
+}
+
+@keyframes success-icon {
+  0%    { transform: translateY(0) scale(1); }
+  80%	{ transform: translateY(150%) }
+  100%	{ transform: scale(20); }
+}
+
+@keyframes success-container {
+  0%    { transform: scale(1); }
+  100%	{ transform: scale(20); }
 }
 
 @keyframes hint-wobble {
@@ -197,47 +348,6 @@ $signin-bg-width: 65px;
 	from { opacity: 0; }
 	to   { opacity: 1; }
 }
-
-.signin__icon {
-	background-image: url($signin-bg-image);
-	background-size: $signin-bg-height $signin-bg-width;
-	background-position: 50% 0;
-	background-repeat: no-repeat;
-	border-radius: 65px;
-	display: inline-block;
-	margin: 20px auto 0 auto;
-	height: 65px;
-	width: 65px;
-
-	.signin--error &,
-	.signin-reset & {
-		@include icon-FontAwesome();
-		background-image: none;
-		line-height: 65px;
-		margin-bottom: 6px;
-	}
-
-	.signin--error &:before {
-		content: '\f119';
-		font-size: 75px;
-	}
-
-	.signin-reset & {
-		background-color: #fff;
-
-		&:before {
-			//content: '\f003';
-			content: '\f0e0';
-			display: inline-block;
-			color: #2f8dbd;
-			font-size: 35px;
-			width: 66px;
-		}
-	}
-}
-
-
-
 
 
 

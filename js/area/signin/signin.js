@@ -14,16 +14,23 @@ SignInComponent.prototype.initialize = function () {
 	component.$container = this.$html.find('.signin'),
 	component.$signinInner = this.$html.find('.signin__inner'),
 	component.$errorPane = this.$html.find('.signin-error'),
+	component.$twostep = this.$html.find('.signin-twostep'),
 	component.$usernameField = this.$html.find('[name="username"]'),
 	component.$passwordField = this.$html.find('[name="password"]'),
 	component.$signInButton = this.$html.find('[name="signin-submit"]'),
+	component.$signInTwoStep = this.$html.find('[name="signin-twostep"]'),
 	component.$resetEmailField = this.$html.find('[name="reset-email"]'),
+	component.$resetSubmit = this.$html.find('[name="reset-submit"]'),
+	component.$twoStepOne = this.$html.find('[name="twoStepOne"]'),
+	component.$twoStepTwo = this.$html.find('[name="twoStepTwo"]'),
 	component.$info = this.$html.find('.signin-form .signin__info'),
-	component.$hint = $('<i class="signin__hint icon-hand-right"></i>'),
+	component.$twoStepInfo = this.$html.find('.signin-twostep .signin__info'),
+	component.hint = '<i class="signin__hint"></i>',
 	component.infoText = component.$info.text(),
 	component.signInButtonValue = component.$signInButton.html(),
 	component.animationEnd = 'webkitAnimationEnd oanimationend oAnimationEnd msAnimationEnd animationend';
-	component.transitionEnd = 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend';
+	component.transitionEnd = 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend',
+	component.twoStepAttempt = 0;
 
 	// Full screen video background
 	this.$html.find('body').vide('../../../images/video/galaxy.mp4');
@@ -72,18 +79,48 @@ SignInComponent.prototype.initialize = function () {
 
 			if (component.$usernameField.val() && !component.$passwordField.val()) {
 				infoText = 'Enter your password';
-				component.$passwordField
-					.focus()
-					.before(component.$hint);
+
+				component.$passwordField.focus();
+
+				if (!component.$passwordField.prev('.signin__hint').length) {
+
+					component.$passwordField
+						.before(component.hint)
+						.on('keyup', function() {
+							if ($(this).val().length > 0) {
+								$(this).prev('.signin__hint').fadeOut(150);
+							} else {
+								$(this).prev('.signin__hint').fadeIn(150);
+							}
+						});
+				};
 			} else if (!component.$usernameField.val() && component.$passwordField.val()) {
 				infoText = 'Enter your username';
-				component.$usernameField
-					.focus()
-					.before(component.$hint);
+				component.$usernameField.focus();
+
+				if (!component.$usernameField.prev('.signin__hint').length) {
+					component.$usernameField.before(component.hint)
+						.on('keyup', function() {
+							if ($(this).val().length > 0) {
+								$(this).prev('.signin__hint').fadeOut(150);
+							} else {
+								$(this).prev('.signin__hint').fadeIn(150);
+							}
+						});
+				};
 			} else {
-				component.$usernameField
-					.focus()
-					.before(component.$hint);
+				component.$usernameField.focus();
+
+				if (!component.$usernameField.prev('.signin__hint').length) {
+					component.$usernameField.before(component.hint)
+						.on('keyup', function() {
+							if ($(this).val().length > 0) {
+								$(this).prev('.signin__hint').fadeOut(150);
+							} else {
+								$(this).prev('.signin__hint').fadeIn(150);
+							}
+						});
+				};
 			}
 
 			component.$info.animate({
@@ -94,16 +131,46 @@ SignInComponent.prototype.initialize = function () {
 					.animate({
 						opacity: 1
 					}, 150);
-			});
+ 			});
+
 
 		} else {
-			// fake incorrect login
-			component.loginFail();
+
+			// PRETEND WE'VE AUTHED AND GO TO 2FA SCREEN
+			component.twoStep();
 		}
 
 	});
 
+	this.$html.find('[name="reset-submit"]').on('click', function(e) {
+		e.preventDefault();
+
+		if (!component.$resetEmailField.val()) {
+
+			component.$container
+				.addClass('shake')
+				.one(component.animationEnd, function () {
+					$(this).removeClass('shake');
+				});
+
+			component.$resetEmailField
+				.focus()
+				.before(component.hint)
+				.on('keyup', function() {
+					if ($(this).val().length > 0) {
+						$(this).prev('.signin__hint').fadeOut(150);
+					} else {
+						$(this).prev('.signin__hint').fadeIn(150);
+					}
+				});
+		}
+	});
+
 };
+
+SignInComponent.prototype.hintEmpty = function () {
+
+}
 
 SignInComponent.prototype.reset = function () {
 
@@ -143,7 +210,7 @@ SignInComponent.prototype.reset = function () {
 	};
 
 	component.$container
-		.removeClass('active-reset')
+		.removeClass('active-reset active-twostep')
 		.one(component.transitionEnd, function () {
 			component.$usernameField.focus();
 		});
@@ -184,6 +251,130 @@ SignInComponent.prototype.loginFail = function () {
 
 	// return false here so that focus() can be correctly assigned
 	return false;
+
+}
+
+SignInComponent.prototype.twoStep = function() {
+
+	var component = this;
+
+	component.$container
+		.addClass('active-twostep')
+		.one(component.transitionEnd, function () {
+			component.$twoStepOne.focus();
+		});
+
+	component.$twoStepOne.on('keyup', function () {
+		var $stepOneField = $(this);
+
+		if ($stepOneField.val().length === parseInt($stepOneField.attr('maxlength'))) {
+			component.$twoStepTwo.focus();
+		}
+	});
+
+	component.$twoStepTwo.on('keyup', function () {
+		if($(this).val().length === 0) {
+			component.$twoStepOne.focus();
+		}
+	});
+
+	this.$html.find('[name="signin-twostep"]').on('click', function(e) {
+		e.preventDefault();
+
+		if (!component.$twoStepOne.val() || !component.$twoStepTwo.val()) {
+
+			component.$container
+				.addClass('shake')
+				.one(component.animationEnd, function () {
+					$(this).removeClass('shake');
+				});
+		}
+
+		if (component.$twoStepOne.val().length < 3) {
+
+			component.$twoStepOne.focus();
+
+			if (!component.$twoStepOne.prev('.signin__hint').length) {
+				component.$twoStepOne
+					.before(component.hint)
+					.on('keyup', function() {
+						if ($(this).val().length > 0) {
+							$(this).prev('.signin__hint').fadeOut(150);
+						} else {
+							$(this).prev('.signin__hint').fadeIn(150);
+						}
+					});
+			};
+		}
+		else if (component.$twoStepOne.val().length == 3 && component.$twoStepTwo.val().length < 3) {
+
+			component.$twoStepTwo.focus();
+
+			if (!component.$twoStepTwo.next('.signin__hint').length) {
+
+				component.$twoStepTwo
+					.after(component.hint)
+					.on('keyup', function() {
+						if ($(this).val().length > 0) {
+							$(this).prev('.signin__hint').fadeOut(150);
+						} else {
+							$(this).prev('.signin__hint').fadeIn(150);
+						}
+					});
+			};
+		}
+
+		else {
+			component.success();
+		}
+
+	});
+
+
+};
+
+SignInComponent.prototype.twoStepFail = function() {
+
+	var component = this;
+
+	if (component.twoStepAttempt >= 1) {
+		component.$twoStepInfo.animate({
+			opacity: 0
+		}, 150, function() {
+			$(this)
+				.html('<i class="icon-question-sign"></i> Having trouble?<br />check our <a href="#">two-step help page</a>')
+				.animate({
+					opacity: 1
+				}, 150);
+		});
+	};
+
+	if (!component.$container.hasClass('signin--error')) {
+		component.$container.addClass('signin--error');
+		component.$twoStepOne.focus();
+
+		component.$signInTwoStep.animate({
+			opacity: 0
+		}, 150, function() {
+			$(this)
+				.html('Try Again')
+				.animate({
+					opacity: 1
+				}, 150);
+		});
+	}
+
+	component.twoStepAttempt++;
+
+};
+
+
+SignInComponent.prototype.success = function () {
+
+	var component = this;
+
+	component.$container.addClass('active-success');
+
 
 }
 

@@ -15,16 +15,23 @@ SignInComponent.prototype.initialize = function () {
 	component.$container = this.$html.find('.signin'),
 	component.$signinInner = this.$html.find('.signin__inner'),
 	component.$errorPane = this.$html.find('.signin-error'),
+	component.$twostep = this.$html.find('.signin-twostep'),
 	component.$usernameField = this.$html.find('[name="username"]'),
 	component.$passwordField = this.$html.find('[name="password"]'),
 	component.$signInButton = this.$html.find('[name="signin-submit"]'),
+	component.$signInTwoStep = this.$html.find('[name="signin-twostep"]'),
 	component.$resetEmailField = this.$html.find('[name="reset-email"]'),
+	component.$resetSubmit = this.$html.find('[name="reset-submit"]'),
+	component.$twoStepOne = this.$html.find('[name="twoStepOne"]'),
+	component.$twoStepTwo = this.$html.find('[name="twoStepTwo"]'),
 	component.$info = this.$html.find('.signin-form .signin__info'),
-	component.$hint = $('<i class="signin__hint icon-hand-right"></i>'),
+	component.$twoStepInfo = this.$html.find('.signin-twostep .signin__info'),
+	component.hint = '<i class="signin__hint"></i>',
 	component.infoText = component.$info.text(),
 	component.signInButtonValue = component.$signInButton.html(),
 	component.animationEnd = 'webkitAnimationEnd oanimationend oAnimationEnd msAnimationEnd animationend';
-	component.transitionEnd = 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend';
+	component.transitionEnd = 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend',
+	component.twoStepAttempt = 0;
 
 	// Full screen video background
 	this.$html.find('body').vide('../../../images/video/galaxy.mp4');
@@ -73,18 +80,48 @@ SignInComponent.prototype.initialize = function () {
 
 			if (component.$usernameField.val() && !component.$passwordField.val()) {
 				infoText = 'Enter your password';
-				component.$passwordField
-					.focus()
-					.before(component.$hint);
+
+				component.$passwordField.focus();
+
+				if (!component.$passwordField.prev('.signin__hint').length) {
+
+					component.$passwordField
+						.before(component.hint)
+						.on('keyup', function() {
+							if ($(this).val().length > 0) {
+								$(this).prev('.signin__hint').fadeOut(150);
+							} else {
+								$(this).prev('.signin__hint').fadeIn(150);
+							}
+						});
+				};
 			} else if (!component.$usernameField.val() && component.$passwordField.val()) {
 				infoText = 'Enter your username';
-				component.$usernameField
-					.focus()
-					.before(component.$hint);
+				component.$usernameField.focus();
+
+				if (!component.$usernameField.prev('.signin__hint').length) {
+					component.$usernameField.before(component.hint)
+						.on('keyup', function() {
+							if ($(this).val().length > 0) {
+								$(this).prev('.signin__hint').fadeOut(150);
+							} else {
+								$(this).prev('.signin__hint').fadeIn(150);
+							}
+						});
+				};
 			} else {
-				component.$usernameField
-					.focus()
-					.before(component.$hint);
+				component.$usernameField.focus();
+
+				if (!component.$usernameField.prev('.signin__hint').length) {
+					component.$usernameField.before(component.hint)
+						.on('keyup', function() {
+							if ($(this).val().length > 0) {
+								$(this).prev('.signin__hint').fadeOut(150);
+							} else {
+								$(this).prev('.signin__hint').fadeIn(150);
+							}
+						});
+				};
 			}
 
 			component.$info.animate({
@@ -95,16 +132,46 @@ SignInComponent.prototype.initialize = function () {
 					.animate({
 						opacity: 1
 					}, 150);
-			});
+ 			});
+
 
 		} else {
-			// fake incorrect login
-			component.loginFail();
+
+			// PRETEND WE'VE AUTHED AND GO TO 2FA SCREEN
+			component.twoStep();
 		}
 
 	});
 
+	this.$html.find('[name="reset-submit"]').on('click', function(e) {
+		e.preventDefault();
+
+		if (!component.$resetEmailField.val()) {
+
+			component.$container
+				.addClass('shake')
+				.one(component.animationEnd, function () {
+					$(this).removeClass('shake');
+				});
+
+			component.$resetEmailField
+				.focus()
+				.before(component.hint)
+				.on('keyup', function() {
+					if ($(this).val().length > 0) {
+						$(this).prev('.signin__hint').fadeOut(150);
+					} else {
+						$(this).prev('.signin__hint').fadeIn(150);
+					}
+				});
+		}
+	});
+
 };
+
+SignInComponent.prototype.hintEmpty = function () {
+
+}
 
 SignInComponent.prototype.reset = function () {
 
@@ -144,7 +211,7 @@ SignInComponent.prototype.reset = function () {
 	};
 
 	component.$container
-		.removeClass('active-reset')
+		.removeClass('active-reset active-twostep')
 		.one(component.transitionEnd, function () {
 			component.$usernameField.focus();
 		});
@@ -185,6 +252,130 @@ SignInComponent.prototype.loginFail = function () {
 
 	// return false here so that focus() can be correctly assigned
 	return false;
+
+}
+
+SignInComponent.prototype.twoStep = function() {
+
+	var component = this;
+
+	component.$container
+		.addClass('active-twostep')
+		.one(component.transitionEnd, function () {
+			component.$twoStepOne.focus();
+		});
+
+	component.$twoStepOne.on('keyup', function () {
+		var $stepOneField = $(this);
+
+		if ($stepOneField.val().length === parseInt($stepOneField.attr('maxlength'))) {
+			component.$twoStepTwo.focus();
+		}
+	});
+
+	component.$twoStepTwo.on('keyup', function () {
+		if($(this).val().length === 0) {
+			component.$twoStepOne.focus();
+		}
+	});
+
+	this.$html.find('[name="signin-twostep"]').on('click', function(e) {
+		e.preventDefault();
+
+		if (!component.$twoStepOne.val() || !component.$twoStepTwo.val()) {
+
+			component.$container
+				.addClass('shake')
+				.one(component.animationEnd, function () {
+					$(this).removeClass('shake');
+				});
+		}
+
+		if (component.$twoStepOne.val().length < 3) {
+
+			component.$twoStepOne.focus();
+
+			if (!component.$twoStepOne.prev('.signin__hint').length) {
+				component.$twoStepOne
+					.before(component.hint)
+					.on('keyup', function() {
+						if ($(this).val().length > 0) {
+							$(this).prev('.signin__hint').fadeOut(150);
+						} else {
+							$(this).prev('.signin__hint').fadeIn(150);
+						}
+					});
+			};
+		}
+		else if (component.$twoStepOne.val().length == 3 && component.$twoStepTwo.val().length < 3) {
+
+			component.$twoStepTwo.focus();
+
+			if (!component.$twoStepTwo.next('.signin__hint').length) {
+
+				component.$twoStepTwo
+					.after(component.hint)
+					.on('keyup', function() {
+						if ($(this).val().length > 0) {
+							$(this).prev('.signin__hint').fadeOut(150);
+						} else {
+							$(this).prev('.signin__hint').fadeIn(150);
+						}
+					});
+			};
+		}
+
+		else {
+			component.success();
+		}
+
+	});
+
+
+};
+
+SignInComponent.prototype.twoStepFail = function() {
+
+	var component = this;
+
+	if (component.twoStepAttempt >= 1) {
+		component.$twoStepInfo.animate({
+			opacity: 0
+		}, 150, function() {
+			$(this)
+				.html('<i class="icon-question-sign"></i> Having trouble?<br />check our <a href="#">two-step help page</a>')
+				.animate({
+					opacity: 1
+				}, 150);
+		});
+	};
+
+	if (!component.$container.hasClass('signin--error')) {
+		component.$container.addClass('signin--error');
+		component.$twoStepOne.focus();
+
+		component.$signInTwoStep.animate({
+			opacity: 0
+		}, 150, function() {
+			$(this)
+				.html('Try Again')
+				.animate({
+					opacity: 1
+				}, 150);
+		});
+	}
+
+	component.twoStepAttempt++;
+
+};
+
+
+SignInComponent.prototype.success = function () {
+
+	var component = this;
+
+	component.$container.addClass('active-success');
+
 
 }
 
@@ -23688,13 +23879,35 @@ describe('Sign-in module', function() {
 		<form class="signin__panel signin-reset">\
 			<i class="icon-envelope-alt signin__icon"></i>\
 			<span class="signin__help">Enter the email address you use for your Jadu account and we’ll send you a link to reset your password</span>\
-			<input class="signin__input" name="reset-email" type="text" placeholder="Email address" tabindex="-1" />\
+\
+			<div class="signin__group">\
+				<input class="signin__input" name="reset-email" type="text" placeholder="Email address" tabindex="-1" />\
+			</div>\
+\
 			<div class="signin__actions">\
 				<button class="btn btn--primary signin__submit" name="reset-submit" type="submit" tabindex="-1">Email Me</button>\
 			</div>\
+\
 			<a class="signin__link" href="#" tabindex="-1">Don’t know your email address?</a><br />\
 			<a class="signin__link" href="#signin" tabindex="-1">Cancel</a>\
 		</form>\
+\
+		<form class="signin__panel signin-twostep" name="twostep">\
+				<div class="signin__icon"></div>\
+\
+				<span class="signin__info">2-step verification is enabled for your account<br />Enter the code generated by your <a href="#">authenticator app</a></span>\
+\
+				<div class="signin__group">\
+					<input class="signin__code1" name="twoStepOne" maxlength="3" type="text" placeholder="123" autofocus tab-index="-1" />\
+					<input class="signin__code2" name="twoStepTwo" maxlength="3" type="text" placeholder="456" tab-index="-1"  />\
+				</div>\
+\
+				<div class="signin__actions">\
+					<button class="btn btn--primary signin__submit" type="submit" tab-index="-1">Verify Me</button>\
+				</div>\
+\
+				<a class="signin__link" href="#" tab-index="-1">What does this mean?</a>\
+			</form>\
 	</div>\
 </div>').appendTo(this.$html);
 
@@ -23708,8 +23921,10 @@ describe('Sign-in module', function() {
 		this.$usernameField = this.$html.find('[name="username"]');
 		this.$passwordField = this.$html.find('[name="password"]');
 		this.$emailField = this.$html.find('[name="reset-email"]');
-		this.$signInButton = this.$html.find('[name="signin-submit"]');
+		this.$signInButton = this.$html.find('[name="signin-submit"]'),
 		this.$info = this.$html.find('.signin-form .signin__info'),
+		this.$twoStepOne = this.$html.find('[name="twoStepOne"]'),
+		this.$twoStepTwo = this.$html.find('[name="twoStepTwo"]');
 
 		this.signIn = new SignInComponent(this.$html);
 
@@ -23900,6 +24115,10 @@ describe('Sign-in module', function() {
 				return $($collection).is(this.$usernameField);
 			}.bind(this)));
 		});
+
+		it('should add a hint element before the username field', function() {
+			expect(this.$usernameField.prev().hasClass('signin__hint')).to.be.true;
+		});
 	});
 
 
@@ -23936,6 +24155,10 @@ describe('Sign-in module', function() {
 				return $($collection).is(this.$passwordField);
 			}.bind(this)));
 		});
+
+		it('should add a hint element before the password field', function() {
+			expect(this.$passwordField.prev().hasClass('signin__hint')).to.be.true;
+		});
 	});
 
 	describe('attempting to sign in with a password, but no username', function() {
@@ -23970,6 +24193,10 @@ describe('Sign-in module', function() {
 			expect($.fn.focus).to.have.been.calledOn(sinon.match(function ($collection) {
 				return $($collection).is(this.$usernameField);
 			}.bind(this)));
+		});
+
+		it('should add a hint element before the username field', function() {
+			expect(this.$usernameField.prev().hasClass('signin__hint')).to.be.true;
 		});
 	});
 
@@ -24037,6 +24264,68 @@ describe('Sign-in module', function() {
 				return $($collection).is(this.$usernameField);
 			}.bind(this)));
 		});
+	});
+
+	describe('the two-step verification form', function() {
+
+		beforeEach(function() {
+			sinon.spy($.fn, 'focus');
+			this.signIn.initialize();
+			this.signIn.twoStep();
+			this.$container.finish();
+		});
+
+		afterEach(function () {
+			$.fn.focus.restore();
+		});
+
+		it('should focus the first field', function() {
+			this.$innerPane.trigger('transitionend');
+			expect($.fn.focus).to.have.been.calledOn(sinon.match(function ($collection) {
+				return $($collection).is(this.$twoStepOne);
+			}.bind(this)));
+		});
+
+		it('should focus the second field when the first has been filled in', function() {
+			this.$innerPane.trigger('transitionend');
+
+			this.$twoStepOne.val('123');
+
+			var keyupEvent = $.Event('keyup', { keyCode: 52 }); // #4
+			this.$twoStepOne.trigger(keyupEvent);
+
+			expect($.fn.focus).to.have.been.calledOn(sinon.match(function ($collection) {
+				return $($collection).is(this.$twoStepTwo);
+			}.bind(this)));
+		});
+
+
+		it('should allow the second field to be focused', function() {
+			this.$innerPane.trigger('transitionend');
+
+			$.fn.focus.reset();
+
+			this.$twoStepTwo.focus();
+
+			expect($.fn.focus).to.have.been.calledOn(sinon.match(function ($collection) {
+				return $($collection).is(this.$twoStepTwo);
+			}.bind(this)));
+		});
+
+		it('should focus the first field if the second field is cleared', function() {
+			this.$innerPane.trigger('transitionend');
+
+			this.$twoStepTwo.focus();
+			$.fn.focus.reset();
+
+			var keyEvent = $.Event('keyup', { keyCode: 8 }); // backspace
+			this.$twoStepTwo.trigger(keyEvent);
+
+			expect($.fn.focus).to.have.been.calledOn(sinon.match(function ($collection) {
+				return $($collection).is(this.$twoStepOne);
+			}.bind(this)));
+		});
+
 	});
 });
 
