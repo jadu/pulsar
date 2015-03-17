@@ -24,28 +24,31 @@ fieldset {
   border: 0;
 }
 
-legend {
-  padding: 0 $gutter-width 0 0;
-  margin-left: $gutter-width;
-  margin-bottom: $line-height-base * 0.681818182;
-  font-size: $font-size-base * 1.5;
-  line-height: $line-height-base * 1.272727273;
-  color: $gray-dark;
-  border: 0;
-  border-bottom: 1px solid $legend-border-color;
+.form--horizontal,
+.form-v2 {
+	legend {
+	  padding: 0 $gutter-width 0 0;
+	  margin-left: $gutter-width;
+	  margin-bottom: $line-height-base * 0.681818182;
+	  font-size: $font-size-base * 1.5;
+	  line-height: $line-height-base * 1.272727273;
+	  color: $gray-dark;
+	  border: 0;
+	  border-bottom: 1px solid $legend-border-color;
 
-  // Make it appear as though the legend has gutter on the right even though it doesn't because it's stupid and won't obey display: block;
-  position: relative;
-  &:before {
-    background-color: $white;
-    bottom: -1px;
-    content: '';
-    display: block;
-    height: 1px;
-    position: absolute;
-    right: 0;
-    width: $gutter-width * 2;
-  }
+	  // Make it appear as though the legend has gutter on the right even though it doesn't because it's stupid and won't obey display: block;
+	  position: relative;
+	  &:before {
+	    background-color: $white;
+	    bottom: -1px;
+	    content: '';
+	    display: block;
+	    height: 1px;
+	    position: absolute;
+	    right: 0;
+	    width: $gutter-width * 2;
+	  }
+	}
 }
 
 label,

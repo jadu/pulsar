@@ -1,6 +1,5 @@
-'use strict';
-
 var $ = require('jquery'),
+	placeholder = require('../../../libs/jquery-placeholder/jquery.placeholder'),
 	vide = require('../../../libs/vide/dist/jquery.vide.min');
 
 function SignInComponent(html) {
@@ -13,8 +12,12 @@ SignInComponent.prototype.initialize = function () {
 
 	component.$container = this.$html.find('.signin'),
 	component.$signinInner = this.$html.find('.signin__inner'),
+
 	component.$errorPane = this.$html.find('.signin-error'),
-	component.$twostep = this.$html.find('.signin-twostep'),
+	component.$signInPane = this.$html.find('.signin-form'),
+	component.$resetPane = this.$html.find('.signin-reset'),
+	component.$twoStepPane = this.$html.find('.signin-twostep'),
+
 	component.$usernameField = this.$html.find('[name="username"]'),
 	component.$passwordField = this.$html.find('[name="password"]'),
 	component.$signInButton = this.$html.find('[name="signin-submit"]'),
@@ -23,8 +26,14 @@ SignInComponent.prototype.initialize = function () {
 	component.$resetSubmit = this.$html.find('[name="reset-submit"]'),
 	component.$twoStepOne = this.$html.find('[name="twoStepOne"]'),
 	component.$twoStepTwo = this.$html.find('[name="twoStepTwo"]'),
+
 	component.$info = this.$html.find('.signin-form .signin__info'),
 	component.$twoStepInfo = this.$html.find('.signin-twostep .signin__info'),
+
+	component.$alert = $('.alert');
+	component.successMessage = 'Signed in successfully';
+	component.signInFailMessage = 'Your username and/or password was incorrect';
+
 	component.hint = '<i class="signin__hint"></i>',
 	component.infoText = component.$info.text(),
 	component.signInButtonValue = component.$signInButton.html(),
@@ -33,11 +42,16 @@ SignInComponent.prototype.initialize = function () {
 	component.twoStepAttempt = 0;
 
 	// Full screen video background
-	this.$html.find('body').vide('../../../images/video/galaxy_720.mp4');
+	this.$html.find('.video').vide('../../../images/video/galaxy.mp4');
+
+	// Polyfill placeholder behaviour in oldIE
+	this.$html.find('input').placeholder();
 
 	// Forgotten password
 	this.$html.find('[href="#forgot"]').on('click', function (e) {
 		e.preventDefault();
+
+		component.switchPanel('.signin-reset');
 
 		component.$container.removeClass('signin--error');
 
@@ -168,13 +182,12 @@ SignInComponent.prototype.initialize = function () {
 
 };
 
-SignInComponent.prototype.hintEmpty = function () {
-
-}
 
 SignInComponent.prototype.reset = function () {
 
 	var component = this;
+
+	component.switchPanel('.signin-form');
 
 	component.$container
 		.removeClass('signin--error')
@@ -216,11 +229,22 @@ SignInComponent.prototype.reset = function () {
 		});
 }
 
-SignInComponent.prototype.loginFail = function () {
+SignInComponent.prototype.signinFail = function () {
 
 	var component = this;
 
 	component.$container.find('.signin__hint').remove();
+
+	component.$info.animate({
+		opacity: 0
+	}, 150, function() {
+		$(this)
+			.html('')
+			.append(component.signInFailMessage)
+			.animate({
+				opacity: 1
+			}, 150);
+	});
 
 	if (component.$container.hasClass('signin--error')) {
 		return false;
@@ -228,16 +252,6 @@ SignInComponent.prototype.loginFail = function () {
 
 	component.$container.addClass('signin--error');
 	component.$usernameField.focus();
-
-	component.$info.animate({
-		opacity: 0
-	}, 150, function() {
-		$(this)
-			.text('Your username and/or password was incorrect')
-			.animate({
-				opacity: 1
-			}, 150);
-	});
 
 	component.$signInButton.animate({
 		opacity: 0
@@ -254,9 +268,42 @@ SignInComponent.prototype.loginFail = function () {
 
 }
 
+SignInComponent.prototype.switchPanel = function (panelClass) {
+
+	var component = this,
+		newPanel = component.$container.find(panelClass),
+		oldPanel = component.$container.find('.signin__panel:not(' + panelClass + ')'),
+		tabIndex = 1;
+
+	component.$container.removeClass('signin--error');
+
+	// This panel
+	newPanel
+		.attr('aria-hidden', 'false')
+		.find('[tabindex]')
+		.removeAttr('disabled')
+		.each(function() {
+			$(this).attr('tabindex', tabIndex);
+			tabIndex++;
+		});
+
+	// Other panels
+	oldPanel
+		.attr('aria-hidden', 'true')
+		.find('[tabindex]')
+		.attr('disabled', 'disabled')
+		.each(function() {
+			$(this).attr('tabindex', '-1');
+		});
+
+
+}
+
 SignInComponent.prototype.twoStep = function() {
 
 	var component = this;
+
+	component.switchPanel('.signin-twostep');
 
 	component.$container
 		.addClass('active-twostep')
@@ -288,6 +335,12 @@ SignInComponent.prototype.twoStep = function() {
 				.one(component.animationEnd, function () {
 					$(this).removeClass('shake');
 				});
+
+			// replace contents of info element so screenreader announces it
+			var twoStepInfo = component.$twoStepPane.find('.signin__info').html();
+			component.$twoStepInfo
+				.html('')
+				.append(twoStepInfo);
 		}
 
 		if (component.$twoStepOne.val().length < 3) {
@@ -323,7 +376,6 @@ SignInComponent.prototype.twoStep = function() {
 					});
 			};
 		}
-
 		else {
 			component.success();
 		}
@@ -373,8 +425,8 @@ SignInComponent.prototype.success = function () {
 
 	var component = this;
 
+	component.$alert.append(document.createTextNode(component.successMessage));
 	component.$container.addClass('active-success');
-
 
 }
 

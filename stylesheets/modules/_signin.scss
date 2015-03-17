@@ -8,6 +8,18 @@ html, body {
 	margin: 0;
 }
 
+body {
+	background-image: url('../images/video/galaxy.jpg');
+	background-repeat: none;
+	background-position: center center;
+	background-size: cover;
+}
+
+.video {
+	height: 100%;
+	width: 100%;
+}
+
 // Fixes an issue with Safari where animations break when on top of a video
 .signin-container {
 	transform: translate3d(0, 0, 0);
@@ -182,6 +194,10 @@ html, body {
 	.tooltip-inner {
 		background-color: $signin-bg-color;
 	}
+
+	label {
+		@extend .hide;
+	}
 }
 
 .signin__info {
@@ -309,6 +325,7 @@ html, body {
 		}
 	}
 }
+
 
 .signin-twostep,
 .signin-success {

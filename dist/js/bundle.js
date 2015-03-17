@@ -1,7 +1,6 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-'use strict';
-
 var $ = require('jquery'),
+	placeholder = require('../../../libs/jquery-placeholder/jquery.placeholder'),
 	vide = require('../../../libs/vide/dist/jquery.vide.min');
 
 function SignInComponent(html) {
@@ -14,8 +13,12 @@ SignInComponent.prototype.initialize = function () {
 
 	component.$container = this.$html.find('.signin'),
 	component.$signinInner = this.$html.find('.signin__inner'),
+
 	component.$errorPane = this.$html.find('.signin-error'),
-	component.$twostep = this.$html.find('.signin-twostep'),
+	component.$signInPane = this.$html.find('.signin-form'),
+	component.$resetPane = this.$html.find('.signin-reset'),
+	component.$twoStepPane = this.$html.find('.signin-twostep'),
+
 	component.$usernameField = this.$html.find('[name="username"]'),
 	component.$passwordField = this.$html.find('[name="password"]'),
 	component.$signInButton = this.$html.find('[name="signin-submit"]'),
@@ -24,8 +27,14 @@ SignInComponent.prototype.initialize = function () {
 	component.$resetSubmit = this.$html.find('[name="reset-submit"]'),
 	component.$twoStepOne = this.$html.find('[name="twoStepOne"]'),
 	component.$twoStepTwo = this.$html.find('[name="twoStepTwo"]'),
+
 	component.$info = this.$html.find('.signin-form .signin__info'),
 	component.$twoStepInfo = this.$html.find('.signin-twostep .signin__info'),
+
+	component.$alert = $('.alert');
+	component.successMessage = 'Signed in successfully';
+	component.signInFailMessage = 'Your username and/or password was incorrect';
+
 	component.hint = '<i class="signin__hint"></i>',
 	component.infoText = component.$info.text(),
 	component.signInButtonValue = component.$signInButton.html(),
@@ -34,11 +43,16 @@ SignInComponent.prototype.initialize = function () {
 	component.twoStepAttempt = 0;
 
 	// Full screen video background
-	this.$html.find('body').vide('../../../images/video/galaxy_720.mp4');
+	this.$html.find('.video').vide('../../../images/video/galaxy.mp4');
+
+	// Polyfill placeholder behaviour in oldIE
+	this.$html.find('input').placeholder();
 
 	// Forgotten password
 	this.$html.find('[href="#forgot"]').on('click', function (e) {
 		e.preventDefault();
+
+		component.switchPanel('.signin-reset');
 
 		component.$container.removeClass('signin--error');
 
@@ -169,13 +183,12 @@ SignInComponent.prototype.initialize = function () {
 
 };
 
-SignInComponent.prototype.hintEmpty = function () {
-
-}
 
 SignInComponent.prototype.reset = function () {
 
 	var component = this;
+
+	component.switchPanel('.signin-form');
 
 	component.$container
 		.removeClass('signin--error')
@@ -217,11 +230,22 @@ SignInComponent.prototype.reset = function () {
 		});
 }
 
-SignInComponent.prototype.loginFail = function () {
+SignInComponent.prototype.signinFail = function () {
 
 	var component = this;
 
 	component.$container.find('.signin__hint').remove();
+
+	component.$info.animate({
+		opacity: 0
+	}, 150, function() {
+		$(this)
+			.html('')
+			.append(component.signInFailMessage)
+			.animate({
+				opacity: 1
+			}, 150);
+	});
 
 	if (component.$container.hasClass('signin--error')) {
 		return false;
@@ -229,16 +253,6 @@ SignInComponent.prototype.loginFail = function () {
 
 	component.$container.addClass('signin--error');
 	component.$usernameField.focus();
-
-	component.$info.animate({
-		opacity: 0
-	}, 150, function() {
-		$(this)
-			.text('Your username and/or password was incorrect')
-			.animate({
-				opacity: 1
-			}, 150);
-	});
 
 	component.$signInButton.animate({
 		opacity: 0
@@ -255,9 +269,42 @@ SignInComponent.prototype.loginFail = function () {
 
 }
 
+SignInComponent.prototype.switchPanel = function (panelClass) {
+
+	var component = this,
+		newPanel = component.$container.find(panelClass),
+		oldPanel = component.$container.find('.signin__panel:not(' + panelClass + ')'),
+		tabIndex = 1;
+
+	component.$container.removeClass('signin--error');
+
+	// This panel
+	newPanel
+		.attr('aria-hidden', 'false')
+		.find('[tabindex]')
+		.removeAttr('disabled')
+		.each(function() {
+			$(this).attr('tabindex', tabIndex);
+			tabIndex++;
+		});
+
+	// Other panels
+	oldPanel
+		.attr('aria-hidden', 'true')
+		.find('[tabindex]')
+		.attr('disabled', 'disabled')
+		.each(function() {
+			$(this).attr('tabindex', '-1');
+		});
+
+
+}
+
 SignInComponent.prototype.twoStep = function() {
 
 	var component = this;
+
+	component.switchPanel('.signin-twostep');
 
 	component.$container
 		.addClass('active-twostep')
@@ -289,6 +336,12 @@ SignInComponent.prototype.twoStep = function() {
 				.one(component.animationEnd, function () {
 					$(this).removeClass('shake');
 				});
+
+			// replace contents of info element so screenreader announces it
+			var twoStepInfo = component.$twoStepPane.find('.signin__info').html();
+			component.$twoStepInfo
+				.html('')
+				.append(twoStepInfo);
 		}
 
 		if (component.$twoStepOne.val().length < 3) {
@@ -324,7 +377,6 @@ SignInComponent.prototype.twoStep = function() {
 					});
 			};
 		}
-
 		else {
 			component.success();
 		}
@@ -374,14 +426,14 @@ SignInComponent.prototype.success = function () {
 
 	var component = this;
 
+	component.$alert.append(document.createTextNode(component.successMessage));
 	component.$container.addClass('active-success');
-
 
 }
 
 module.exports = SignInComponent;
 
-},{"../../../libs/vide/dist/jquery.vide.min":23,"jquery":24}],2:[function(require,module,exports){
+},{"../../../libs/jquery-placeholder/jquery.placeholder":22,"../../../libs/vide/dist/jquery.vide.min":24,"jquery":25}],2:[function(require,module,exports){
 'use strict';
 
 var $ = require('jquery'),
@@ -618,7 +670,7 @@ var $ = require('jquery'),
 
   });
 
-},{"../libs/Vague.js/Vague":11,"jquery":24}],3:[function(require,module,exports){
+},{"../libs/Vague.js/Vague":11,"jquery":25}],3:[function(require,module,exports){
 /* ========================================================================
  * Bootstrap: dropdown.js v3.0.0
  * http://twbs.github.com/bootstrap/javascript.html#dropdowns
@@ -773,7 +825,7 @@ var $ = require('jquery');
 
 module.exports = Dropdown;
 
-},{"jquery":24}],4:[function(require,module,exports){
+},{"jquery":25}],4:[function(require,module,exports){
 /**
  * Jadu Flash Message Handler
  *
@@ -958,7 +1010,7 @@ var $ = require('jquery'),
   });
 
 
-},{"../libs/sticky/jquery.sticky":22,"jquery":24}],5:[function(require,module,exports){
+},{"../libs/sticky/jquery.sticky":23,"jquery":25}],5:[function(require,module,exports){
 var $ = require('jquery'),
 	hljs = require('../libs/highlightjs/lib/index');
 
@@ -972,7 +1024,7 @@ $(function () {
 
 });
 
-},{"../libs/highlightjs/lib/index":13,"jquery":24}],6:[function(require,module,exports){
+},{"../libs/highlightjs/lib/index":13,"jquery":25}],6:[function(require,module,exports){
 /**
  * Pulsar
  *
@@ -1002,7 +1054,7 @@ $(function () {
 });
 
 
-},{"./area/signin/signin":1,"./deck":2,"./dropdown":3,"./flash":4,"./highlight":5,"./modal":7,"./popover":8,"./tab":9,"./tooltip":10,"jquery":24}],7:[function(require,module,exports){
+},{"./area/signin/signin":1,"./deck":2,"./dropdown":3,"./flash":4,"./highlight":5,"./modal":7,"./popover":8,"./tab":9,"./tooltip":10,"jquery":25}],7:[function(require,module,exports){
 /* ========================================================================
  * Bootstrap: modal.js v3.0.3
  * http://twbs.github.com/bootstrap/javascript.html#modals
@@ -1256,7 +1308,7 @@ var $ = require('jquery');
 
 module.exports = Modal;
 
-},{"jquery":24}],8:[function(require,module,exports){
+},{"jquery":25}],8:[function(require,module,exports){
 /* ========================================================================
  * Bootstrap: popover.js v3.0.0
  * http://twbs.github.com/bootstrap/javascript.html#popovers
@@ -1379,7 +1431,7 @@ var $ = require('jquery'),
 
 module.exports = Popover;
 
-},{"./tooltip":10,"jquery":24}],9:[function(require,module,exports){
+},{"./tooltip":10,"jquery":25}],9:[function(require,module,exports){
 /* ========================================================================
  * Bootstrap: tab.js v3.0.0
  * http://twbs.github.com/bootstrap/javascript.html#tabs
@@ -1534,7 +1586,7 @@ var $ = require('jquery');
 module.exports = Tab;
 
 
-},{"jquery":24}],10:[function(require,module,exports){
+},{"jquery":25}],10:[function(require,module,exports){
 /* ========================================================================
  * Bootstrap: tooltip.js v3.1.1
  * http://getbootstrap.com/javascript/#tooltip
@@ -1961,7 +2013,7 @@ var $ = require('jquery');
 
 module.exports = Tooltip;
 
-},{"jquery":24}],11:[function(require,module,exports){
+},{"jquery":25}],11:[function(require,module,exports){
 /**
 *
 * Version: 0.0.2
@@ -3388,6 +3440,200 @@ module.exports = function(hljs) {
   };
 };
 },{}],22:[function(require,module,exports){
+/*! http://mths.be/placeholder v2.0.8 by @mathias */
+(function(factory) {
+ if (typeof define === 'function' && define.amd) {
+ 	// AMD
+ 	define(['jquery'], factory);
+ } else {
+ 	// Browser globals
+ 	factory(jQuery);
+ }
+}(function($) {
+	// Opera Mini v7 doesn’t support placeholder although its DOM seems to indicate so
+	var isOperaMini = Object.prototype.toString.call(window.operamini) == '[object OperaMini]';
+	var isInputSupported = 'placeholder' in document.createElement('input') && !isOperaMini;
+	var isTextareaSupported = 'placeholder' in document.createElement('textarea') && !isOperaMini;
+	var prototype = $.fn;
+	var valHooks = $.valHooks;
+	var propHooks = $.propHooks;
+	var hooks;
+	var placeholder;
+
+	if (isInputSupported && isTextareaSupported) {
+
+		placeholder = prototype.placeholder = function() {
+			return this;
+		};
+
+		placeholder.input = placeholder.textarea = true;
+
+	} else {
+
+		placeholder = prototype.placeholder = function() {
+			var $this = this;
+			$this
+				.filter((isInputSupported ? 'textarea' : ':input') + '[placeholder]')
+				.not('.placeholder')
+				.bind({
+					'focus.placeholder': clearPlaceholder,
+					'blur.placeholder': setPlaceholder
+				})
+				.data('placeholder-enabled', true)
+				.trigger('blur.placeholder');
+			return $this;
+		};
+
+		placeholder.input = isInputSupported;
+		placeholder.textarea = isTextareaSupported;
+
+		hooks = {
+			'get': function(element) {
+				var $element = $(element);
+
+				var $passwordInput = $element.data('placeholder-password');
+				if ($passwordInput) {
+					return $passwordInput[0].value;
+				}
+
+				return $element.data('placeholder-enabled') && $element.hasClass('placeholder') ? '' : element.value;
+			},
+			'set': function(element, value) {
+				var $element = $(element);
+
+				var $passwordInput = $element.data('placeholder-password');
+				if ($passwordInput) {
+					return $passwordInput[0].value = value;
+				}
+
+				if (!$element.data('placeholder-enabled')) {
+					return element.value = value;
+				}
+				if (value == '') {
+					element.value = value;
+					// Issue #56: Setting the placeholder causes problems if the element continues to have focus.
+					if (element != safeActiveElement()) {
+						// We can't use `triggerHandler` here because of dummy text/password inputs :(
+						setPlaceholder.call(element);
+					}
+				} else if ($element.hasClass('placeholder')) {
+					clearPlaceholder.call(element, true, value) || (element.value = value);
+				} else {
+					element.value = value;
+				}
+				// `set` can not return `undefined`; see http://jsapi.info/jquery/1.7.1/val#L2363
+				return $element;
+			}
+		};
+
+		if (!isInputSupported) {
+			valHooks.input = hooks;
+			propHooks.value = hooks;
+		}
+		if (!isTextareaSupported) {
+			valHooks.textarea = hooks;
+			propHooks.value = hooks;
+		}
+
+		$(function() {
+			// Look for forms
+			$(document).delegate('form', 'submit.placeholder', function() {
+				// Clear the placeholder values so they don't get submitted
+				var $inputs = $('.placeholder', this).each(clearPlaceholder);
+				setTimeout(function() {
+					$inputs.each(setPlaceholder);
+				}, 10);
+			});
+		});
+
+		// Clear placeholder values upon page reload
+		$(window).bind('beforeunload.placeholder', function() {
+			$('.placeholder').each(function() {
+				this.value = '';
+			});
+		});
+
+	}
+
+	function args(elem) {
+		// Return an object of element attributes
+		var newAttrs = {};
+		var rinlinejQuery = /^jQuery\d+$/;
+		$.each(elem.attributes, function(i, attr) {
+			if (attr.specified && !rinlinejQuery.test(attr.name)) {
+				newAttrs[attr.name] = attr.value;
+			}
+		});
+		return newAttrs;
+	}
+
+	function clearPlaceholder(event, value) {
+		var input = this;
+		var $input = $(input);
+		if (input.value == $input.attr('placeholder') && $input.hasClass('placeholder')) {
+			if ($input.data('placeholder-password')) {
+				$input = $input.hide().next().show().attr('id', $input.removeAttr('id').data('placeholder-id'));
+				// If `clearPlaceholder` was called from `$.valHooks.input.set`
+				if (event === true) {
+					return $input[0].value = value;
+				}
+				$input.focus();
+			} else {
+				input.value = '';
+				$input.removeClass('placeholder');
+				input == safeActiveElement() && input.select();
+			}
+		}
+	}
+
+	function setPlaceholder() {
+		var $replacement;
+		var input = this;
+		var $input = $(input);
+		var id = this.id;
+		if (input.value == '') {
+			if (input.type == 'password') {
+				if (!$input.data('placeholder-textinput')) {
+					try {
+						$replacement = $input.clone().attr({ 'type': 'text' });
+					} catch(e) {
+						$replacement = $('<input>').attr($.extend(args(this), { 'type': 'text' }));
+					}
+					$replacement
+						.removeAttr('name')
+						.data({
+							'placeholder-password': $input,
+							'placeholder-id': id
+						})
+						.bind('focus.placeholder', clearPlaceholder);
+					$input
+						.data({
+							'placeholder-textinput': $replacement,
+							'placeholder-id': id
+						})
+						.before($replacement);
+				}
+				$input = $input.removeAttr('id').hide().prev().attr('id', id).show();
+				// Note: `$input[0] != input` now!
+			}
+			$input.addClass('placeholder');
+			$input[0].value = $input.attr('placeholder');
+		} else {
+			$input.removeClass('placeholder');
+		}
+	}
+
+	function safeActiveElement() {
+		// Avoid IE9 `document.activeElement` of death
+		// https://github.com/mathiasbynens/jquery-placeholder/pull/99
+		try {
+			return document.activeElement;
+		} catch (exception) {}
+	}
+
+}));
+
+},{}],23:[function(require,module,exports){
 // Sticky Plugin v1.0.0 for jQuery
 // =============
 // Author: Anthony Garand
@@ -3559,7 +3805,7 @@ module.exports = function(hljs) {
   });
 })(jQuery);
 
-},{}],23:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 /*
  *  Vide - v0.3.1
  *  Easy as hell jQuery plugin for video backgrounds.
@@ -3569,7 +3815,7 @@ module.exports = function(hljs) {
  *  Under MIT License
  */
 !function(a,b,c,d){"use strict";function e(a){var b,c,d,e,f,g,h,i={};for(f=a.replace(/\s*:\s*/g,":").replace(/\s*,\s*/g,",").split(","),h=0,g=f.length;g>h&&(c=f[h],-1===c.search(/^(http|https|ftp):\/\//)&&-1!==c.search(":"));h++)b=c.indexOf(":"),d=c.substring(0,b),e=c.substring(b+1),e||(e=void 0),"string"==typeof e&&(e="true"===e||("false"===e?!1:e)),"string"==typeof e&&(e=isNaN(e)?e:+e),i[d]=e;return null==d&&null==e?a:i}function f(a){a=""+a;var b,c,d,e=a.split(/\s+/),f="50%",g="50%";for(d=0,b=e.length;b>d;d++)c=e[d],"left"===c?f="0%":"right"===c?f="100%":"top"===c?g="0%":"bottom"===c?g="100%":"center"===c?0===d?f="50%":g="50%":0===d?f=c:g=c;return{x:f,y:g}}function g(b,c){var d=function(){c(this.src)};a('<img src="'+b+'.gif">').load(d),a('<img src="'+b+'.jpg">').load(d),a('<img src="'+b+'.jpeg">').load(d),a('<img src="'+b+'.png">').load(d)}function h(a){a.$video.prop({autoplay:a.settings.autoplay,loop:a.settings.loop,volume:a.settings.volume,muted:a.settings.muted,playbackRate:a.settings.playbackRate})}function i(b,c,d){if(this.$element=a(b),"string"==typeof c&&(c=e(c)),d?"string"==typeof d&&(d=e(d)):d={},"string"==typeof c)c=c.replace(/\.\w*$/,"");else if("object"==typeof c)for(var f in c)c.hasOwnProperty(f)&&(c[f]=c[f].replace(/\.\w*$/,""));this.settings=a.extend({},k,d),this.path=c,this.init()}var j="vide",k={volume:1,playbackRate:1,muted:!0,loop:!0,autoplay:!0,position:"50% 50%",posterType:"detect",resizing:!0},l=/iPad|iPhone|iPod/i.test(d.userAgent),m=/Android/i.test(d.userAgent);i.prototype.init=function(){var b,c,d=this,e=f(d.settings.position);d.$wrapper=a("<div>").css({position:"absolute","z-index":-1,top:0,left:0,bottom:0,right:0,overflow:"hidden","-webkit-background-size":"cover","-moz-background-size":"cover","-o-background-size":"cover","background-size":"cover","background-repeat":"no-repeat","background-position":e.x+" "+e.y}),c=d.path,"object"==typeof d.path&&(d.path.poster?c=d.path.poster:d.path.mp4?c=d.path.mp4:d.path.webm?c=d.path.webm:d.path.ogv&&(c=d.path.ogv)),"detect"===d.settings.posterType?g(c,function(a){d.$wrapper.css("background-image","url("+a+")")}):"none"!==d.settings.posterType&&d.$wrapper.css("background-image","url("+c+"."+d.settings.posterType+")"),"static"===d.$element.css("position")&&d.$element.css("position","relative"),d.$element.prepend(d.$wrapper),l||m||(b="","object"==typeof d.path?(d.path.mp4&&(b+='<source src="'+d.path.mp4+'.mp4" type="video/mp4">'),d.path.webm&&(b+='<source src="'+d.path.webm+'.webm" type="video/webm">'),d.path.ogv&&(b+='<source src="'+d.path.ogv+'.ogv" type="video/ogv">'),d.$video=a("<video>"+b+"</video>")):d.$video=a('<video><source src="'+d.path+'.mp4" type="video/mp4"><source src="'+d.path+'.webm" type="video/webm"><source src="'+d.path+'.ogv" type="video/ogg"></video>'),d.$video.css("visibility","hidden"),h(d),d.$wrapper.append(d.$video),d.$video.css({margin:"auto",position:"absolute","z-index":-1,top:e.y,left:e.x,"-webkit-transform":"translate(-"+e.x+", -"+e.y+")","-ms-transform":"translate(-"+e.x+", -"+e.y+")",transform:"translate(-"+e.x+", -"+e.y+")"}),d.$video.on("canplaythrough."+j,function(){d.$video.css("visibility","visible"),h(d),d.settings.autoplay&&d.$video[0].play(),d.resize(),d.$wrapper.css("background-image","none")}),d.$element.on("resize."+j,function(){d.settings.resizing&&d.resize()}))},i.prototype.getVideoObject=function(){return this.$video?this.$video[0]:null},i.prototype.resize=function(){if(this.$video){var a=this.$video[0].videoHeight,b=this.$video[0].videoWidth,c=this.$wrapper.height(),d=this.$wrapper.width();this.$video.css(d/b>c/a?{width:d+2,height:"auto"}:{width:"auto",height:c+2})}},i.prototype.destroy=function(){this.$element.off(j),this.$video&&this.$video.off(j),delete a[j].lookup[this.index],this.$element.removeData(j),this.$wrapper.remove()},a[j]={lookup:[]},a.fn[j]=function(b,c){var d;return this.each(function(){d=a.data(this,j),d&&d.destroy(),d=new i(this,b,c),d.index=a[j].lookup.push(d)-1,a.data(this,j,d)}),this},a(c).ready(function(){a(b).on("resize."+j,function(){for(var b,c=a[j].lookup.length,d=0;c>d;d++)b=a[j].lookup[d],b&&b.settings.resizing&&b.resize()}),a(c).find("[data-"+j+"-bg]").each(function(b,c){var d=a(c),e=d.data(j+"-options"),f=d.data(j+"-bg");d[j](f,e)})})}(window.jQuery,window,document,navigator);
-},{}],24:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v1.11.2
  * http://jquery.com/
