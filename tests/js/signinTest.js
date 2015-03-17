@@ -144,7 +144,6 @@ describe('Sign-in module', function() {
 	</div>\
 </div>').appendTo(this.$html);
 
-		$.fn.vide = sinon.stub().returnsThis();
 		$.fn.placeholder = sinon.stub().returnsThis();
 
 		this.$container = this.$html.find('.signin');
@@ -164,10 +163,6 @@ describe('Sign-in module', function() {
 
 	});
 
-	afterEach(function () {
-		delete $.fn.vide;
-	});
-
 	describe('the default state of the sign in dialog', function() {
 
 		beforeEach(function() {
@@ -179,15 +174,6 @@ describe('Sign-in module', function() {
 			$.fn.focus.restore();
 		});
 
-		it('should call the Vide plugin once', function () {
-			expect($.fn.vide).to.have.been.calledOnce;
-		});
-
-		it('should call the Vide plugin on the .video element', function () {
-			expect($.fn.vide).to.have.been.calledOn(sinon.match(function ($collection) {
-				return $($collection).is(this.$html.find('.video'));
-			}.bind(this)));
-		});
 
 		it('should have the autofocus property on the username field', function() {
 			expect(this.$usernameField.prop('autofocus')).to.be.true;

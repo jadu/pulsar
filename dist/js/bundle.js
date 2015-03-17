@@ -43,7 +43,7 @@ SignInComponent.prototype.initialize = function () {
 	component.twoStepAttempt = 0;
 
 	// Full screen video background
-	this.$html.find('.video').vide('../../../images/video/galaxy.mp4');
+	//this.$html.find('.video').vide('../../../images/video/galaxy.mp4');
 
 	// Polyfill placeholder behaviour in oldIE
 	this.$html.find('input').placeholder();
