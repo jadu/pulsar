@@ -5,7 +5,8 @@
   @include inline-block;
   vertical-align: middle; // match .btn alignment given font-size hack above
 
-  > .btn {
+  > .btn,
+  > .btn__group {
     border-left: 1px solid #ccc;
     border-right: 1px solid #ccc;
     position: relative;
@@ -20,30 +21,34 @@
   }
 }
 
-.btn__group > .btn + .btn {
+.btn__group > .btn + .btn,
+.btn__group > .btn__group + .btn__group {
   margin-left: -1px;
 }
 
-.btn__group > .btn:first-child {
+.btn__group > .btn:first-child,
+.btn__group > .btn__group:first-child {
   border-left-width: 0;
   border-left-width: 0;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
 }
 
-.btn__group > .btn:last-child {
+.btn__group > .btn:last-child,
+.btn__group > .btn__group:last-child {
   border-right-width: 0;
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
 }
 
-.btn__group > .btn:not(:first-child):not(:last-child):not(.dropdown__toggle) {
+.btn__group > .btn:not(:first-child):not(:last-child):not(.dropdown__toggle),
+.btn__group > .btn__group:not(:first-child):not(:last-child) {
   border-radius: 0;
 }
 
-
 // Prevent double borders when buttons are next to each other
-.btn__group .btn + .btn {
+.btn__group .btn + .btn,
+.btn__group .btn__group + .btn__group {
   margin-left: -1px;
 }
 
@@ -70,7 +75,8 @@
 }
 
 // Set corners individual because sometimes a single button can be in a .btn__group and we need :first-child and :last-child to both match
-.btn__group > .btn:first-child {
+.btn__group > .btn:first-child,
+.btn__group > .btn__group:first-child {
   margin-left: 0;
   &:not(:last-child):not(.dropdown__toggle) {
     @include border-right-radius(0);
@@ -109,6 +115,18 @@
 
 // Split button dropdowns
 // ----------------------
+
+// Remove the box-shadow and borders from btns
+.btn__group > .btn__group > .btn {
+  box-shadow: none; 
+  border-right: none;
+  border-left: none;
+}
+
+// Add the box-shadow to the nested .btn__group rather than the .btn
+.btn__group > .btn__group {
+  box-shadow: 0 2px 0 #ccc;
+}
 
 // Give the line between buttons some depth
 .btn__group > .btn + .dropdown__toggle {
