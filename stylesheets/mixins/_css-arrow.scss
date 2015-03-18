@@ -6,12 +6,12 @@
  *
  * @example scss
  * .some-class {
- *     @include cssArrow(20px, top, $black);
- * }   
+ *     @include css-arrow(20px, top, $black);
+ * }
  *
  * @example scss
  * .some-class {
- *     @include cssArrow(2px, left, $black);
+ *     @include css-arrow(2px, left, $black);
  * }
  */
 @mixin css-arrow($size, $position, $color: inherit) {
@@ -26,19 +26,19 @@
             content: " ";
             height: 0;
             position: absolute;
-            pointer-events: none;        
+            pointer-events: none;
             width: 0;
         }
 
         &:after {
-            border-bottom-color: inherit;
+            border-bottom-color: $color;
             border-width: $size;
             margin-left: -$size;
             padding-bottom: -1px;
         }
 
         &:before {
-            border-bottom-color: inherit;
+            border-bottom-color: $color;
             border-width: $size + 2;
             margin-left: -($size + 2);
         }
@@ -53,19 +53,19 @@
             content: " ";
             height: 0;
             position: absolute;
-            pointer-events: none;        
+            pointer-events: none;
             width: 0;
         }
 
         &:after {
-            border-left-color: inherit;
+            border-left-color: $color;
             border-width: $size;
             margin-top: -$size;
             padding-left: -1px;
         }
 
         &:before {
-            border-left-color: inherit;
+            border-left-color: $color;
             border-width: $size + 2;
             margin-top: -($size + 2);
         }
@@ -80,19 +80,19 @@
             content: " ";
             height: 0;
             position: absolute;
-            pointer-events: none;        
+            pointer-events: none;
             width: 0;
         }
 
         &:after {
-            border-top-color: inherit;
+            border-top-color: $color;
             border-width: $size;
             margin-left: -$size;
             padding-top: -1px;
         }
 
         &:before {
-            border-top-color: inherit;
+            border-top-color: $color;
             border-width: $size + 2;
             margin-left: -($size + 2);
         }
@@ -107,19 +107,19 @@
             content: " ";
             height: 0;
             position: absolute;
-            pointer-events: none;        
+            pointer-events: none;
             width: 0;
         }
 
         &:after {
-            border-right-color: inherit;
+            border-right-color: $color;
             border-width: $size;
             margin-top: -$size;
             padding-right: -1px;
         }
 
         &:before {
-            border-right-color: inherit;
+            border-right-color: $color;
             border-width: $size + 2;
             margin-top: -($size + 2);
         }
