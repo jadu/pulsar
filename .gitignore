@@ -11,3 +11,5 @@
 /composer.phar
 /.bashrc
 .vagrant/
+/css
+/dist
