@@ -1,0 +1,94 @@
+{% import 'pulsar/v2/helpers/html.html.twig' as html %}
+{% import 'pulsar/v2/helpers/form.html.twig' as form %}
+{% import 'pulsar/helpers/flash.html.twig' as flash %}
+
+<h2 class="heading">Two-step verification</h2>
+
+<div class="tab__inner tab--padded">
+
+	{{
+		form.create()
+	}}
+	{{
+		form.checkbox({
+			'label': 'Set up two-factor authentication'
+		})
+	}}
+
+	<hr />
+
+	<section class="masterswitch-content is-disabled">
+
+		<div class="progress-list">
+
+	        <a href="#" class="progress-list__item progress-list__item--current">
+	            <span class="progress-list__label">
+	                <span class="badge badge--round badge--outline">1</span>
+	                Get the app
+	            </span>
+	            <span class="progress-list__arrow">&gt;</span>
+	        </a>
+
+	        <a href="#" class="progress-list__item is-disabled">
+	            <span class="progress-list__label">
+	                <span class="badge badge--round badge--outline">2</span>
+	                Set it up
+	            </span>
+	            <span class="progress-list__arrow">&gt;</span>
+	        </a>
+
+	        <a href="#" class="progress-list__item is-disabled">
+	            <span class="progress-list__label">
+	                <span class="badge badge--round badge--outline">3</span>
+	                Test it
+	            </span>
+	            <span class="progress-list__arrow">&gt;</span>
+	        </a>
+
+	        <a href="#" class="progress-list__item is-disabled">
+	            <span class="progress-list__label">
+	                <span class="badge badge--round badge--outline">4</span>
+	                Finished!
+	            </span>
+	            <span class="progress-list__arrow">&gt;</span>
+	        </a>
+
+    	</div>
+
+		<p>To get your verification code you will need to install an app on your mobile phone.</p>
+
+		<p>First, let us know what type of phone you have:</p>
+
+		<div>{{ html.icon('apple') }} iPhone</div>
+		<div>{{ html.icon('android') }} Android</div>
+		<div>{{ html.icon('windows') }} Windows</div>
+		<div>{{ html.icon('frown') }} BlackBerry</div>
+
+		<a href="#">Prefer to install a browser plug-in?</a>
+
+		<h3>Got the app?</h3>
+		{{
+			form.submit({
+				'label': 'Verify the code ' ~ html.icon('caret-right'),
+				'class': 'btn--primary'
+			})
+		}}
+		{{
+			html.button({
+				'label': 'Cancel',
+				'class': 'btn--naked'
+			})
+		}}
+
+		{{
+			form.end()
+		}}
+
+		<div class="sidebar">
+			<p>Two-step verification is an extra security measure which requires you to provide a code created by an [authenticator application] that runs on either your mobile phone (preferred) or your computer's internet browser. If you use online banking you may already be used to this idea.</p>
+
+			<p>It sounds complicated, but once you've set it up it will only take a few extra seconds to sign in, and it's much more secure.</p>
+		</div>
+	</section>
+
+</div>
