@@ -8,14 +8,11 @@ html, body {
 	margin: 0;
 }
 
-body {
+.video {
 	background-image: url('../images/video/galaxy.jpg');
 	background-repeat: none;
 	background-position: center center;
 	background-size: cover;
-}
-
-.video {
 	height: 100%;
 	width: 100%;
 }
