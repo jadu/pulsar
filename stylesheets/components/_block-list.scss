@@ -44,6 +44,7 @@
 \* -------------------------------------------------------------------------- */
 
 $padding: ($line-height-base / 2);
+$width: 500px;
 
 /* -------------------------------------------------------------------------- *\
     Default Presentation
@@ -52,7 +53,7 @@ $padding: ($line-height-base / 2);
 .block-list {
   margin-left: 0; /* [1] */
   margin-bottom: 1em;
-  max-width: 500px;
+  max-width: $width;
 
   &__item {
     display: block;
@@ -150,4 +151,40 @@ $padding: ($line-height-base / 2);
   .block-list__item:not(:last-of-type) {
     border-bottom: 1px solid $gray;
   }
+}
+
+
+.block-list--horizontal {
+	display: table;
+	width: $width;
+
+	.block-list__item {
+		display: table-cell;
+	}
+
+	&.block-list--bordered .block-list__item {
+
+		&, &:last-of-type {
+			border-bottom: 0;
+		}
+
+		&:not(:last-of-type) {
+			border-right: 1px solid $gray;
+		}
+	}
+}
+
+
+.block-list--contrast {
+	.block-list__item {
+		background-color: $gray-lighter;
+
+		&:hover {
+			background-color: darken($gray-lighter, 5);
+		}
+	}
+
+	&.block-list--horizontal .block-list__item:not(:last-of-type) {
+		border-right: 2px solid $white;
+	}
 }

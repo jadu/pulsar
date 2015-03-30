@@ -1,3 +1,53 @@
+### Horizontal
+
+	<ul class="block-list block-list--horizontal block-list--bordered">
+		<li class="block-list__item">
+			One
+		</li>
+		<li class="block-list__item">
+			Two
+		</li>
+		<li class="block-list__item">
+			Three
+		</li>
+	</ul>
+
+<ul class="block-list block-list--horizontal block-list--bordered">
+	<li class="block-list__item">
+		One
+	</li>
+	<li class="block-list__item">
+		Two
+	</li>
+	<li class="block-list__item">
+		Three
+	</li>
+</ul>
+
+<ul class="block-list block-list--horizontal">
+	<li class="block-list__item">
+		One
+	</li>
+	<li class="block-list__item">
+		Two
+	</li>
+	<li class="block-list__item">
+		Three
+	</li>
+</ul>
+
+<ul class="block-list block-list--horizontal block-list--contrast">
+	<li class="block-list__item">
+		One
+	</li>
+	<li class="block-list__item">
+		Two
+	</li>
+	<li class="block-list__item">
+		Three
+	</li>
+</ul>
+
 ### List items
 
 	<ul class="block-list block-list--bordered">
@@ -128,6 +178,46 @@
 
 ----
 
+### Contrasting
+
+	<ul class="block-list block-list--horizontal block-list--contrast">
+		<li class="block-list__item">
+			One
+		</li>
+		<li class="block-list__item">
+			Two
+		</li>
+		<li class="block-list__item">
+			Three
+		</li>
+	</ul>
+
+<ul class="block-list block-list--horizontal block-list--contrast">
+	<li class="block-list__item">
+		One
+	</li>
+	<li class="block-list__item">
+		Two
+	</li>
+	<li class="block-list__item">
+		Three
+	</li>
+</ul>
+
+<ul class="block-list block-list--contrast block-list--bordered">
+	<li class="block-list__item">
+		One
+	</li>
+	<li class="block-list__item">
+		Two
+	</li>
+	<li class="block-list__item">
+		Three
+	</li>
+</ul>
+
+----
+
 ### States, and full width
 
 	<ul class="block-list block-list--bordered block-list--full">
@@ -187,3 +277,5 @@
 		<i class="icon-ellipsis-horizontal muted"></i> Adjudicator has not responded yet
 	</li>
 </div>
+
+
