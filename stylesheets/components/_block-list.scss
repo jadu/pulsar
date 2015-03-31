@@ -156,7 +156,12 @@ $width: 500px;
 
 .block-list--horizontal {
 	display: table;
-	width: $width;
+    width: $width;
+
+    &.block-list--full {
+        min-width: 100%;
+        width: 100%;
+    }
 
 	.block-list__item {
 		display: table-cell;
@@ -179,6 +184,16 @@ $width: 500px;
 	.block-list__item {
 		background-color: $gray-lighter;
 
+        &:first-of-type {
+            border-top-left-radius: $border-radius;
+            border-bottom-left-radius: $border-radius;
+        }
+
+        &:last-of-type {
+            border-top-right-radius: $border-radius;
+            border-bottom-right-radius: $border-radius;
+        }
+
 		&:hover {
 			background-color: darken($gray-lighter, 5);
 		}
@@ -187,4 +202,8 @@ $width: 500px;
 	&.block-list--horizontal .block-list__item:not(:last-of-type) {
 		border-right: 2px solid $white;
 	}
+}
+
+.block-list--tall .block-list__item {
+    padding: $padding * 2;
 }
