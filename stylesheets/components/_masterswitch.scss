@@ -1,0 +1,8 @@
+.masterswitch-content {
+
+	&.is-disabled {
+		cursor: not-allowed;
+		opacity: .25;
+	}
+
+}
