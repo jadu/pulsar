@@ -6,93 +6,93 @@
 
 <div class="tab__inner">
 
-	{{
-		form.create()
-	}}
-	{{
-		form.checkbox({
-			'label': 'Set up two-factor authentication'
-		})
-	}}
-
-	<hr />
-
-	<section class="masterswitch-content is-disabled">
-
-		<div class="progress-list">
-
-	        <a href="#" class="progress-list__item progress-list__item--current">
-	            <span class="progress-list__label">
-	                <span class="badge badge--round badge--outline">1</span>
-	                Get the app
-	            </span>
-	            <span class="progress-list__arrow">&gt;</span>
-	        </a>
-
-	        <a href="#" class="progress-list__item is-disabled">
-	            <span class="progress-list__label">
-	                <span class="badge badge--round badge--outline">2</span>
-	                Set it up
-	            </span>
-	            <span class="progress-list__arrow">&gt;</span>
-	        </a>
-
-	        <a href="#" class="progress-list__item is-disabled">
-	            <span class="progress-list__label">
-	                <span class="badge badge--round badge--outline">3</span>
-	                Test it
-	            </span>
-	            <span class="progress-list__arrow">&gt;</span>
-	        </a>
-
-	        <a href="#" class="progress-list__item is-disabled">
-	            <span class="progress-list__label">
-	                <span class="badge badge--round badge--outline">4</span>
-	                Finished!
-	            </span>
-	            <span class="progress-list__arrow">&gt;</span>
-	        </a>
-
-    	</div>
-
-		<p>To get your verification code you will need to install an app on your mobile phone.</p>
-
-		<p>First, let us know what type of phone you have:</p>
-
-		<ul class="block-list block-list--horizontal block-list--contrast block-list--full block-list--tall medium-type bottomless">
-			<li class="block-list__item">
-				{{ html.icon('apple') }} iPhone
-			</li>
-			<li class="block-list__item">
-				{{ html.icon('android') }} Android
-			</li>
-			<li class="block-list__item">
-				{{ html.icon('windows') }} Windows
-			</li>
-			<li class="block-list__item">
-				{{ html.icon('frown') }} BlackBerry
-			</li>
-		</ul>
-
-		<a href="#" class="pull-right small-type">Prefer to install a browser plug-in?</a>
-
-		<h3 class="double-top bottomless">Got the app?</h3>
-		<p>Once you've done this step, or if you already have Google Authenticator installed then you can go ahead and verify the code.</p>
-	</section>
-	{{
-		form.end({
-			'class': 'form__actions--flush',
-            'actions': [
-                form.submit({
-                	'label': 'Verify the Code ' ~ html.icon('caret-right'),
-                	'class': 'btn--primary'
-                }),
-                html.button({
-                	'label': 'Cancel',
-                	'class': 'btn--naked'
-                })
-            ]
+    {{
+        form.create()
+    }}
+    {{
+        form.checkbox({
+            'label': 'Set up two-factor authentication'
         })
-	}}
+    }}
+
+    <hr />
+
+    <section class="masterswitch-content is-disabled">
+
+        <div class="progress-list">
+
+            <a href="#" class="progress-list__item progress-list__item--current">
+                <span class="progress-list__label">
+                    <span class="badge badge--round badge--outline">1</span>
+                    Get the app
+                </span>
+                <span class="progress-list__arrow">&gt;</span>
+            </a>
+
+            <a href="#" class="progress-list__item is-disabled">
+                <span class="progress-list__label">
+                    <span class="badge badge--round badge--outline">2</span>
+                    Set it up
+                </span>
+                <span class="progress-list__arrow">&gt;</span>
+            </a>
+
+            <a href="#" class="progress-list__item is-disabled">
+                <span class="progress-list__label">
+                    <span class="badge badge--round badge--outline">3</span>
+                    Test it
+                </span>
+                <span class="progress-list__arrow">&gt;</span>
+            </a>
+
+            <a href="#" class="progress-list__item is-disabled">
+                <span class="progress-list__label">
+                    <span class="badge badge--round badge--outline">4</span>
+                    Finished!
+                </span>
+                <span class="progress-list__arrow">&gt;</span>
+            </a>
+
+        </div>
+
+        <p>To get your verification code you will need to install an app on your mobile phone.</p>
+
+        <p>First, let us know what type of phone you have:</p>
+
+        <ul class="block-list block-list--horizontal block-list--contrast block-list--full block-list--tall medium-type bottomless">
+            <li class="block-list__item">
+                {{ html.icon('apple') }} iPhone
+            </li>
+            <li class="block-list__item">
+                {{ html.icon('android') }} Android
+            </li>
+            <li class="block-list__item">
+                {{ html.icon('windows') }} Windows
+            </li>
+            <li class="block-list__item">
+                {{ html.icon('frown') }} BlackBerry
+            </li>
+        </ul>
+
+        <a href="#" class="pull-right small-type">Prefer to install a browser plug-in?</a>
+
+        <h3 class="double-top bottomless">Got the app?</h3>
+        <p>Once you've done this step, or if you already have Google Authenticator installed then you can go ahead and verify the code.</p>
+        {{
+            form.end({
+                'class': 'form__actions--flush',
+                'actions': [
+                    form.submit({
+                        'label': 'Verify the Code ' ~ html.icon('caret-right'),
+                        'class': 'btn--primary'
+                    }),
+                    html.button({
+                        'label': 'Cancel',
+                        'class': 'btn--naked'
+                    })
+                ]
+            })
+        }}
+    </section>
 
 </div>
