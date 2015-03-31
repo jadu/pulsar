@@ -4,7 +4,7 @@
 
 <h2 class="heading">Two-step verification</h2>
 
-<div class="tab__inner tab--padded">
+<div class="tab__inner">
 
 	{{
 		form.create()
@@ -59,36 +59,40 @@
 
 		<p>First, let us know what type of phone you have:</p>
 
-		<div>{{ html.icon('apple') }} iPhone</div>
-		<div>{{ html.icon('android') }} Android</div>
-		<div>{{ html.icon('windows') }} Windows</div>
-		<div>{{ html.icon('frown') }} BlackBerry</div>
+		<ul class="block-list block-list--horizontal block-list--contrast block-list--full block-list--tall medium-type bottomless">
+			<li class="block-list__item">
+				{{ html.icon('apple') }} iPhone
+			</li>
+			<li class="block-list__item">
+				{{ html.icon('android') }} Android
+			</li>
+			<li class="block-list__item">
+				{{ html.icon('windows') }} Windows
+			</li>
+			<li class="block-list__item">
+				{{ html.icon('frown') }} BlackBerry
+			</li>
+		</ul>
 
-		<a href="#">Prefer to install a browser plug-in?</a>
+		<a href="#" class="pull-right small-type">Prefer to install a browser plug-in?</a>
 
-		<h3>Got the app?</h3>
-		{{
-			form.submit({
-				'label': 'Verify the code ' ~ html.icon('caret-right'),
-				'class': 'btn--primary'
-			})
-		}}
-		{{
-			html.button({
-				'label': 'Cancel',
-				'class': 'btn--naked'
-			})
-		}}
-
-		{{
-			form.end()
-		}}
-
-		<div class="sidebar">
-			<p>Two-step verification is an extra security measure which requires you to provide a code created by an [authenticator application] that runs on either your mobile phone (preferred) or your computer's internet browser. If you use online banking you may already be used to this idea.</p>
-
-			<p>It sounds complicated, but once you've set it up it will only take a few extra seconds to sign in, and it's much more secure.</p>
-		</div>
+		<h3 class="double-top bottomless">Got the app?</h3>
+		<p>Once you've done this step, or if you already have Google Authenticator installed then you can go ahead and verify the code.</p>
 	</section>
+	{{
+		form.end({
+			'class': 'form__actions--flush',
+            'actions': [
+                form.submit({
+                	'label': 'Verify the Code ' ~ html.icon('caret-right'),
+                	'class': 'btn--primary'
+                }),
+                html.button({
+                	'label': 'Cancel',
+                	'class': 'btn--naked'
+                })
+            ]
+        })
+	}}
 
 </div>

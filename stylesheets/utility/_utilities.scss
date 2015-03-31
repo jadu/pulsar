@@ -60,3 +60,12 @@ p.success {
   -ms-user-select: none;
   user-select: none;
 }
+
+// removes bottom margin from an element
+.bottomless {
+  margin-bottom: 0;
+}
+
+.double-top {
+  margin-top: 2em;
+}

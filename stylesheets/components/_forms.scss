@@ -217,10 +217,13 @@ input[type="number"] {
   padding: $line-height-base $gutter-width;
 
   @include respond-min($screen-desktop) {
-    padding-left: 20%;
 
-    >:first-child {
-      margin-left: $gutter-width * 2; // align left edge with controls above
+    &:not(.form__actions--flush) {
+        padding-left: 20%;
+
+        >:first-child {
+          margin-left: $gutter-width * 2; // align left edge with controls above
+        }
     }
   }
 }
