@@ -19,10 +19,17 @@ var $               = require('jquery'),
 	popover         = require('./popover'),
 	highlight       = require('./highlight'),
 	tooltip         = require('./tooltip'),
+	MasterSwitchComponent = require('./masterSwitchComponent'),
 	SignInComponent = require('./area/signin/signin');
 
 $(function () {
-    signIn = new SignInComponent($('html'));
+
+	var $html = $('html');
+
+    signIn = new SignInComponent($html);
     signIn.initialize();
+
+    masterSwitch = new MasterSwitchComponent($html);
+    masterSwitch.init();
 });
 
