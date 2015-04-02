@@ -69,3 +69,19 @@ p.success {
 .double-top {
   margin-top: 2em;
 }
+
+.margin-left {
+    margin-left: $gutter-width;
+}
+
+.margin-right {
+    margin-right: $gutter-width;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.align-top {
+    vertical-align: top;
+}

@@ -156,9 +156,13 @@ i, em {
 }
 
 .medium-type {
-    font-size: 1.5em;
+    @include respond-min($screen-tablet) {
+        font-size: 1.5em;
+    }
 }
 
 .large-type {
-    font-size: 2em;
+    @include respond-min($screen-tablet) {
+        font-size: 2em;
+    }
 }
