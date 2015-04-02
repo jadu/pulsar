@@ -31,16 +31,16 @@
   font-style: normal;
 }
 
-@font-face {
-  font-family: 'FontAwesome';
-  src: url($libs-path + 'font-awesome/font/fontawesome-webfont.eot?v=3.2.1');
-  src: url($libs-path + 'font-awesome/font/fontawesome-webfont.eot?#iefix&v=3.2.1') format('embedded-opentype'),
-       url($libs-path + 'font-awesome/font/fontawesome-webfont.woff?v=3.2.1') format('woff'),
-       url($libs-path + 'font-awesome/font/fontawesome-webfont.ttf?v=3.2.1') format('truetype'),
-       url($libs-path + 'font-awesome/font/fontawesome-webfont.svg?v=3.2.1#fontawesomeregular') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
+// Font awesome
+
+$FontAwesomePath: $libs-path + 'font-awesome/font/';
+@import '../../libs/font-awesome/scss/variables';
+@import '../../libs/font-awesome/scss/mixins';
+@import '../../libs/font-awesome/scss/path';
+@import '../../libs/font-awesome/scss/core';
+@import '../../libs/font-awesome/scss/bootstrap';
+@import '../../libs/font-awesome/scss/extras';
+@import '../../libs/font-awesome/scss/icons';
 
 // Force Webkit to only use SVG fonts, this fixes poor font rendering in Webkit on Windows
 
