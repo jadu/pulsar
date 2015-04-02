@@ -19,7 +19,7 @@
 
     <hr />
 
-    <section class="masterswitch-content is-disabled">
+    <section class="masterswitch-content">
 
         <div class="progress-list">
 
@@ -57,42 +57,96 @@
 
         </div>
 
-        <p>To get your verification code you will need to install an app on your mobile phone.</p>
+        <p>To use two-step verification you will need to install an app on your mobile phone.</p>
 
         <p>First, let us know what type of phone you have:</p>
 
-        <ul class="block-list block-list--horizontal block-list--contrast block-list--full block-list--tall medium-type bottomless">
-            <li class="block-list__item">
-                {{ html.icon('apple') }} iPhone
+<div class="tab-panel tab-panel--contrast">
+
+        <ul class="tabs__list tabs__list--horizontal tabs__list--full medium-type" role="tablist">
+
+            <li role="presentation">
+                <a href="#iphone" data-toggle="tab" role="tab" aria-controls="iphone">
+                    {{ html.icon('apple') }} iPhone
+                </a>
             </li>
-            <li class="block-list__item">
-                {{ html.icon('android') }} Android
+            <li role="presentation">
+                <a href="#android" data-toggle="tab" role="tab" aria-controls="android">
+                    {{ html.icon('android') }} Android
+                </a>
             </li>
-            <li class="block-list__item">
-                {{ html.icon('windows') }} Windows
+            <li role="presentation">
+                <a href="#windows" data-toggle="tab" role="tab" aria-controls="windows">
+                    {{ html.icon('windows') }} Windows
+                </a>
             </li>
-            <li class="block-list__item">
-                {{ html.icon('frown') }} BlackBerry
+            <li role="presentation">
+                <a href="#blackberry" data-toggle="tab" role="tab" aria-controls="blackberry">
+                    {{ html.icon('frown') }} BlackBerry
+                </a>
             </li>
+
         </ul>
 
-        <div role="tabpanel">
+        <div class="tabs__content">
+            <div role="tabpanel" class="tab__pane" id="iphone">
 
-  <!-- Nav tabs -->
-  <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
-    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
-    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
-    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
-  </ul>
+                <h4>Requirements:</h4>
+                <p>To use Google Authenticator on your iPhone, iPod Touch, or iPad, you must have iOS 5.0 or later. In addition, in order to set up the app on your iPhone using a QR code, you must have a 3G model or later.</p>
 
-  <!-- Tab panes -->
-  <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="home">...</div>
-    <div role="tabpanel" class="tab-pane" id="profile">...</div>
-    <div role="tabpanel" class="tab-pane" id="messages">...</div>
-    <div role="tabpanel" class="tab-pane" id="settings">...</div>
-  </div>
+                <h4>Installing the app:</h4>
+                <ul class="inline-block">
+                    <li>Go to the App Store on your phone</li>
+                    <li>Search for 'google authenticator'</li>
+                    <li>Get the app</li>
+                </ul>
+
+                <a href="https://itunes.apple.com/gb/app/google-authenticator/id388497605?mt=8" class="inline-block align-top margin-left"><img alt="Download on the App Store" src="../../../images/services/apple_app_store.svg" /></a>
+
+            </div>
+            <div role="tabpanel" class="tab__pane" id="android">
+
+                <h4>Requirements:</h4>
+                <p>To use Google Authenticator on your Android device, it must be running Android version 2.1 or later.</p>
+
+                <h4>Installing the app:</h4>
+                <ul class="inline-block">
+                    <li>Go to the Google Play Store on your phone</li>
+                    <li>Search for 'google authenticator'</li>
+                    <li>Install the app</li>
+                </ul>
+
+                <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en" class="inline-block margin-left"><img alt="Get it on Google Play" src="https://developer.android.com/images/brand/en_generic_rgb_wo_60.png" /></a>
+
+            </div>
+
+            <div role="tabpanel" class="tab__pane" id="windows">
+
+            <h4>Installing the app:</h4>
+                <ul class="inline-block">
+                    <li>Go to the Windows Phone Store on your phone</li>
+                    <li>Search for 'google authenticator'</li>
+                    <li>Install the app</li>
+                </ul>
+
+                <a href="http://www.windowsphone.com/en-gb/store/app/authenticator/021dd79f-0598-e011-986b-78e7d1fa76f8" class="inline-block align-top margin-left"><img alt="Get it on the Windows Phone Store" src="../../../images/services/windows_phone_store.png" /></a>
+
+            </div>
+
+            <div role="tabpanel" class="tab__pane" id="blackberry">
+
+                <h4>Requirements:</h4>
+                <p>To use Google Authenticator on your BlackBerry device, you must have OS 4.5-7.0. In addition, make sure your BlackBerry device is configured for US English -- you might not be able to download Google Authenticator if your device is operating in another language.</p>
+
+                <h4>Installing the app:</h4>
+                <ul>
+                    <li>Open browser on your BlackBerry device</li>
+                    <li>Load <a href="http://m.google.com/authenticator">m.google.com/authenticator</a></li>
+                    <li>Download and install the Google Authenticator app</li>
+                </ul>
+
+            </div>
+        </div>
 
 </div>
 

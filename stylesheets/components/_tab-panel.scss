@@ -1,0 +1,115 @@
+.tab-panel {
+
+
+	// Reset default tab layout styling
+	.tabs__list {
+		> li,
+		> li > a {
+			background-color: none;
+			border: 0;
+			box-shadow: none;
+			margin: 0;
+			padding: 0;
+		}
+		> li > a > i {
+			font-size: 1em;
+			margin-right: 10px;
+			opacity: 1;
+		}
+	}
+
+	.tabs__content {
+		top: 0;
+	}
+
+	$width: 500px;
+
+	.tabs__list {
+
+		> li > a {
+
+			padding: 0 5px;
+			text-align: center;
+
+			@include respond-min($screen-tablet) {
+				padding: .5em $gutter-width;
+				text-align: left;
+			}
+
+		}
+	}
+
+	.tabs__list--horizontal {
+		display: table;
+		width: $width;
+
+		> li {
+			display: table-cell;
+		}
+	}
+
+	.tabs__list--horizontal {
+		display: table;
+	    width: $width;
+
+	    &.tabs__list--full {
+	        min-width: 100%;
+	        width: 100%;
+
+	        + .tabs__content {
+	        	clear: both;
+	        }
+	    }
+
+		> li {
+			display: table-cell;
+		}
+
+	}
+
+}
+
+
+.tab-panel--contrast {
+
+	> .tabs__list > li {
+
+
+        &:first-of-type {
+            border-top-left-radius: $border-radius;
+            border-bottom-left-radius: $border-radius;
+        }
+
+        &:last-of-type {
+            border-top-right-radius: $border-radius;
+            border-bottom-right-radius: $border-radius;
+        }
+
+		> a {
+			background-color: $gray-lighter;
+		}
+
+		> a:hover {
+			background-color: darken($gray-lighter, 5);
+		}
+
+		&.is-active {
+			background-color: $primary-color;
+
+			> a {
+				background-color: inherit;
+				color: $white;
+			}
+		}
+	}
+
+	> .tabs__list > li:not(:last-of-type) {
+		border-right: 2px solid $white;
+	}
+
+	.tab__pane {
+		background-color: $gray-lighter;
+		margin-top: 2px;
+		padding: 1em $gutter-width .1em $gutter-width;
+	}
+}
