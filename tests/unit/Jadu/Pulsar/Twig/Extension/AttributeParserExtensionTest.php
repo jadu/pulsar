@@ -67,5 +67,19 @@ class AttributeParserExtensionTest extends \PHPUnit_Framework_TestCase
 		$this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn));
 	}
 
+	public function testParseAttributesRemovesAttributesWithNullValues()
+	{
+		$dataIn = array('foo' => null);
+		$dataOut = '';
+		$this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn));
+	}
+
+	public function testParseAttributesRemovesAttributesWithFalseValues()
+	{
+		$dataIn = array('foo' => false);
+		$dataOut = '';
+		$this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn));
+	}
+
 
 }
