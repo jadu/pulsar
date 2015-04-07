@@ -31,7 +31,8 @@
 		]
 %}
 
-{% set tab_2fa_setup %}{% include 'playground/2fa/tabs/2fa_setup.html.twig' %}{% endset %}
+{% set step_one %}{% include 'playground/2fa/tabs/step_one.html.twig' %}{% endset %}
+{% set step_two %}{% include 'playground/2fa/tabs/step_two.html.twig' %}{% endset %}
 
 {%
 	set tabs_content = [
@@ -42,7 +43,7 @@
 				{
 					"id"    : "colours",
 					"label" : html.icon("unlock-alt") ~ " Two-step verification",
-					"src"   : tab_2fa_setup
+					"src"   : step_two
 				}
 			]
 		}
