@@ -68,6 +68,9 @@
                 }),
                 html.button({
                     'label': 'Turn Off Two-Step Verification',
+                    'data-toggle': 'modal',
+                    'href': '#confirm-disable',
+                    'type': 'link',
                     'class': 'btn--danger pull-right'
                 }),
                 html.button({
@@ -80,3 +83,22 @@
     }}
 
 </div>
+
+<div class="modal modal--danger" id="confirm-disable">
+    <div class="modal__dialog">
+        <div class="modal__content">
+            <div class="modal__header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal__title">Turn off two-step verification?</h4>
+            </div>
+            <div class="modal__body">
+                <p>Turning this off will make your account <strong>less secure</strong>, we strongly advise that you keep two-step verification turned on.</p>
+                <p>If you turn it off, you will need to go through the set-up process again if you choose to turn it back on afterwards.</p>
+            </div>
+            <div class="modal__footer">
+                <button type="button" class="btn" data-dismiss="modal">Keep It Turned On</button>
+                <button type="button" class="btn btn--danger">I Understand, Turn it Off</button>
+            </div>
+        </div><!-- /.modal__content -->
+    </div><!-- /.modal__dialog -->
+</div><!-- /.modal -->
