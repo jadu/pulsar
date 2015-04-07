@@ -70,4 +70,12 @@
         }
     }
 
+    .signin__code1,
+    .signin__code2 {
+        display: inline-block;
+        font-family: courier;
+        letter-spacing: 2px;
+        width: 20%;
+    }
+
 }
