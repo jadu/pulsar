@@ -160,15 +160,17 @@ html, body {
 	}
 }
 
-.signin__code1,
-.signin__code2 {
-	@extend .signin__input;
-	display: inline-block;
-	font-family: courier;
-	letter-spacing: 5px;
-	margin: 0 5px 1em 5px;
-	padding: 10px 10px 10px 20px;
-	width: 20%;
+.signin {
+	.signin__code1,
+	.signin__code2 {
+		@extend .signin__input;
+		display: inline-block;
+		font-family: courier;
+		letter-spacing: 5px;
+		margin: 0 5px 1em 5px;
+		padding: 10px 10px 10px 20px;
+		width: 20%;
+	}
 }
 
 .signin__submit {

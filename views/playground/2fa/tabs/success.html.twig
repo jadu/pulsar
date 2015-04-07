@@ -12,7 +12,7 @@
 
     {{
         form.checkbox({
-            'label': 'Set up two-factor verification',
+            'label': 'Two-step verification is turned on',
             'class': 'masterswitch-control',
             'checked': true
         })
@@ -29,7 +29,7 @@
             <span class="progress-list__arrow">&gt;</span>
         </a>
 
-        <a href="#" class="progress-list__item progress-list__item--current">
+        <a href="#" class="progress-list__item progress-list__item--complete">
             <span class="progress-list__label">
                 <span class="badge badge--round badge--outline">2</span>
                 Set it up
@@ -37,7 +37,7 @@
             <span class="progress-list__arrow">&gt;</span>
         </a>
 
-        <a href="#" class="progress-list__item is-disabled">
+        <a href="#" class="progress-list__item  progress-list__item--complete">
             <span class="progress-list__label">
                 <span class="badge badge--round badge--outline">3</span>
                 Test it
@@ -45,7 +45,7 @@
             <span class="progress-list__arrow">&gt;</span>
         </a>
 
-        <a href="#" class="progress-list__item is-disabled">
+        <a href="#" class="progress-list__item progress-list__item--complete">
             <span class="progress-list__label">
                 <span class="badge badge--round badge--outline">4</span>
                 Finished!
@@ -54,35 +54,26 @@
         </a>
     </div>
 
-    <h4>In the authenticator app:</h4>
+    <h2>{{ html.icon('thumbs-up') }} That worked!</h2>
 
-    <ul>
-        <li>Tap the + icon</li>
-        <li>Tap ‘Scan barcode’</li>
-        <li>Use your phone camera to scan this barcode</li>
-    </ul>
-
-    <p><img src="http://www.placecage.com/gif/181/181" /></p>
-
-    <p>Having trouble? try <a href="#" data-toggle="popover" data-placement="top" data-title="Manual entry" data-html="true" data-content="<p>Tap ‘manual entry’ in the app and enter:</p>
-    <p><strong>Account:</strong><br />
-    usersemail@usersdomain.com</p>
-    <p><strong>Key:</strong><br />
-    <span class='monospace'>ABCD EFGH IJKL MNOP</span></p>
-    <p><strong>Time based:</strong><br />
-    Yes</p>">manual entry</a>.</p>
+    <p>Two-step verification is now enabled for you. Remember, you'll need to provide a verification code whenever you sign-in, so keep your phone handy.
 
     {{
         form.end({
             'class': 'form__actions--flush',
             'actions': [
                 form.submit({
-                    'label': 'Done, let’s test ' ~ html.icon('caret-right'),
+                    'label': 'Finish and Close',
                     'class': 'btn--primary'
                 }),
                 html.button({
-                    'label': 'Cancel',
-                    'class': 'btn--naked'
+                    'label': 'Turn Off Two-Step Verification',
+                    'class': 'btn--danger pull-right'
+                }),
+                html.button({
+                    'label': 'Setup Verification Again',
+                    'type': 'link',
+                    'class': 'btn--naked pull-right'
                 })
             ]
         })
