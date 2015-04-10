@@ -99,7 +99,17 @@ class AttributeParserExtension extends \Twig_Extension
 
 			// don't output attributes with empty values
 			if (!empty($value)) {
-				$html[] = htmlspecialchars($key) . '="' . htmlspecialchars($value) . '"';
+
+				// booleans should only output the key, everything else should
+				// be key="value"
+				switch (is_bool($value)) {
+					case true:
+						$html[] = htmlspecialchars($key);
+						break;
+					default:
+						$html[] = htmlspecialchars($key) . '="' . htmlspecialchars($value) . '"';
+						break;
+				}
 			}
 		}
 
