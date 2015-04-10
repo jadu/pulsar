@@ -933,7 +933,7 @@ value       | string | Specifies the value of the input
 					'id': options.id|default,
 					'name': options.name|default,
 					'placeholder': options.placeholder|default,
-					'type': 'text',
+					'type': options.type|default('text'),
 					'value': options.value|default,
 					'data': options.data|default
 				})
