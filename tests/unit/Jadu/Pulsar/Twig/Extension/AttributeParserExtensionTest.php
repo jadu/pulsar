@@ -42,7 +42,7 @@ class AttributeParserExtensionTest extends \PHPUnit_Framework_TestCase
 	public function testParseAttributesParsesMultipleAttributes()
 	{
 		$dataIn = array('slim' => 'shady', 'marshall' => 'mathers', 'eminem' => true);
-		$dataOut = 'slim="shady" marshall="mathers" eminem="1"';
+		$dataOut = 'slim="shady" marshall="mathers" eminem';
 		$this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn));
 	}
 
@@ -75,6 +75,20 @@ class AttributeParserExtensionTest extends \PHPUnit_Framework_TestCase
 	}
 
 	public function testParseAttributesRemovesAttributesWithFalseValues()
+	{
+		$dataIn = array('foo' => false);
+		$dataOut = '';
+		$this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn));
+	}
+
+	public function testParseAttributesTransformsTrueBooleanAttribute()
+	{
+		$dataIn = array('foo' => true);
+		$dataOut = 'foo';
+		$this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn));
+	}
+
+	public function testParseAttributesIgnoresFalseBooleanAttribute()
 	{
 		$dataIn = array('foo' => false);
 		$dataOut = '';
