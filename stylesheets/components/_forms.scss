@@ -252,10 +252,6 @@ textarea.form__control {
   }
 }
 
-:not(.modal) .form__group:hover {
-  box-shadow: inset 4px 0 0 $gray;
-}
-
 .controls > .form__group:hover {
   box-shadow: none;
 }
