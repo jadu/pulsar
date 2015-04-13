@@ -18,3 +18,26 @@
   -o-transform:       rotate(90deg);
   filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
 }
+
+.icon-standout {
+    background-color: $base-color;
+    border-radius: 1em;
+    display: inline-block;
+    line-height: 1.9em;
+    margin-right: 10px;
+    height: 2em;
+    text-align: center;
+    width: 2em;
+
+    // State variations
+    @each $state, $state-color, $state-color-alt in $state-colors {
+        &--#{$state} {
+            background: $state-color;
+            .icon-standout__icon:before {
+                color: $state-color-alt;
+            }
+        }
+    }
+
+}
+

@@ -8,9 +8,9 @@ Simply pass the icon name shown in the [icon list](http://fortawesome.github.io/
 
 ### Options
 
-Option  | Description
-------------- | -------------
-class | CSS classes, space separated
+Option | Description
+------ | -----------------------------------------------------------------------
+class  | CSS classes, space separated
 
     <!-- To display 'icon-ok' -->
     {{ html.icon('ok') }}
@@ -24,7 +24,21 @@ class | CSS classes, space separated
 
 <i class="icon-ok"></i> <i class="icon-ok-sign icon--success"></i>
 
+## Standout icons
 
+    <span class="icon-standout">
+        <i class="icon-standout__icon icon-info"></i>
+    </span>
+
+<span class="icon-standout">
+    <i class="icon-standout__icon icon-info"></i>
+</span>
+<span class="icon-standout icon-standout--success">
+    <i class="icon-standout__icon icon-ok"></i>
+</span>
+<span class="icon-standout icon-standout--danger">
+    <i class="icon-standout__icon icon-remove"></i>
+</span>
 ## Icon sizes
 
 Icons inherit their size and colour attributes from their parents and can be nested within other helpers, like buttons, links and tabs.
