@@ -31,11 +31,11 @@
 		]
 %}
 
-{% set step_one %}{% include 'playground/2fa/tabs/step_one.html.twig' %}{% endset %}
-{% set step_two %}{% include 'playground/2fa/tabs/step_two.html.twig' %}{% endset %}
-{% set step_three %}{% include 'playground/2fa/tabs/step_three.html.twig' %}{% endset %}
-{% set success %}{% include 'playground/2fa/tabs/success.html.twig' %}{% endset %}
-
+{% if view is defined and view is not empty %}
+	{% set tab_src %}{% include 'playground/2fa/tabs/' ~ view ~ '.html.twig' %}{% endset %}
+{% else %}
+	{% set tab_src %}{% include 'playground/2fa/tabs/step_one.html.twig' %}{% endset %}
+{% endif %}
 
 {%
 	set tabs_content = [
@@ -46,7 +46,7 @@
 				{
 					"id"    : "colours",
 					"label" : html.icon("unlock-alt") ~ " Two-step verification",
-					"src"   : success
+					"src"   : tab_src
 				}
 			]
 		}

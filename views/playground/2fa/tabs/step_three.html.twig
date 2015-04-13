@@ -20,106 +20,132 @@
 
     <hr />
 
-    <div class="progress-list">
-        <a href="#" class="progress-list__item progress-list__item--complete">
-            <span class="progress-list__label">
-                <span class="badge badge--round badge--outline">1</span>
-                Get the app
-            </span>
-            <span class="progress-list__arrow">&gt;</span>
-        </a>
+    <section class="masterswitch-content">
 
-        <a href="#" class="progress-list__item progress-list__item--complete">
-            <span class="progress-list__label">
-                <span class="badge badge--round badge--outline">2</span>
-                Set it up
-            </span>
-            <span class="progress-list__arrow">&gt;</span>
-        </a>
+        <div class="progress-list">
+            <a href="?view=step_one" class="progress-list__item progress-list__item--complete">
+                <span class="progress-list__label">
+                    <span class="badge badge--round badge--outline">1</span>
+                    Get the app
+                </span>
+                <span class="progress-list__arrow">&gt;</span>
+            </a>
 
-        <a href="#" class="progress-list__item  progress-list__item--current">
-            <span class="progress-list__label">
-                <span class="badge badge--round badge--outline">3</span>
-                Test it
-            </span>
-            <span class="progress-list__arrow">&gt;</span>
-        </a>
+            <a href="?view=step_two" class="progress-list__item progress-list__item--complete">
+                <span class="progress-list__label">
+                    <span class="badge badge--round badge--outline">2</span>
+                    Set it up
+                </span>
+                <span class="progress-list__arrow">&gt;</span>
+            </a>
 
-        <a href="#" class="progress-list__item is-disabled">
-            <span class="progress-list__label">
-                <span class="badge badge--round badge--outline">4</span>
-                Finished!
-            </span>
-            <span class="progress-list__arrow">&gt;</span>
-        </a>
-    </div>
+            <a href="#" class="progress-list__item  progress-list__item--current">
+                <span class="progress-list__label">
+                    <span class="badge badge--round badge--outline">3</span>
+                    Test it
+                </span>
+                <span class="progress-list__arrow">&gt;</span>
+            </a>
 
-    <p>When you next sign into your Jadu CMS you will be asked to provide a verification code from your authenticator app. Let’s give it a tru now to make sure it works.</p>
-
-    {{
-        form.text({
-            'label': 'Username',
-            'value': 'stanton'
-        })
-    }}
-
-    {{
-        form.password({
-            'label': 'Password'
-        })
-    }}
-
-    <p>Now open the authenticator app on your phone and enter the six-digit code it gives you.</p>
-
-    <div class="form__group ">
-        <label class="control__label">Verification code</label>
-        <div class="controls">
-            <input
-                autofocus
-                autocapitalize="off"
-                autocomplete="off"
-                autocorrect="off"
-                class="form__control signin__code1"
-                id="twoStepOne"
-                maxlength="3"
-                name="twoStepOne"
-                placeholder="123"
-                type="text"
-            />
-            <input
-                autocapitalize="off"
-                autocomplete="off"
-                autocorrect="off"
-                class="form__control signin__code2"
-                autocomplete="off"
-                id="twoStepTwo"
-                maxlength="3"
-                name="twoStepTwo"
-                placeholder="456"
-                type="text"
-            />
+            <a href="#" class="progress-list__item is-disabled">
+                <span class="progress-list__label">
+                    <span class="badge badge--round badge--outline">4</span>
+                    Finished!
+                </span>
+                <span class="progress-list__arrow">&gt;</span>
+            </a>
         </div>
-    </div>
 
-    <div class="signin__group">
+        <p>When you next sign into your Jadu CMS you will be asked to provide a verification code from your authenticator app. Let’s give it a try now to make sure it works.</p>
 
-    </div>
+        {{
+            form.text({
+                'label': 'Jadu username',
+                'value': 'stanton',
+                'disabled': true
+            })
+        }}
 
+        {{
+            form.password({
+                'label': 'Jadu password',
+                'autofocus': true
+            })
+        }}
 
-    {{
-        form.end({
-            'class': 'form__actions--flush',
-            'actions': [
-                form.submit({
-                    'label': 'Verify Me',
-                    'class': 'btn--primary'
-                }),
-                html.button({
-                    'label': 'Skip',
-                    'class': 'btn--naked'
-                })
-            ]
-        })
-    }}
+        <p>Now open the authenticator app on your phone or PC, and enter the six-digit code it gives you.</p>
+
+        <div class="form__group ">
+            <label class="control__label">Verification code</label>
+            <div class="controls">
+                <input
+                    autocapitalize="off"
+                    autocomplete="off"
+                    autocorrect="off"
+                    class="form__control signin__code1"
+                    id="twoStepOne"
+                    maxlength="3"
+                    name="twoStepOne"
+                    placeholder="123"
+                    type="text"
+                />
+                <input
+                    autocapitalize="off"
+                    autocomplete="off"
+                    autocorrect="off"
+                    class="form__control signin__code2"
+                    autocomplete="off"
+                    id="twoStepTwo"
+                    maxlength="3"
+                    name="twoStepTwo"
+                    placeholder="456"
+                    type="text"
+                />
+            </div>
+        </div>
+
+        <div class="signin__group">
+
+        </div>
+
+        {# for the purposes of prototype, we're linking to the success page
+        instead of submitting a form #}
+        {{
+            form.end({
+                'class': 'form__actions--flush',
+                'actions': [
+                    html.button({
+                        'label': 'Verify Me ' ~ html.icon('caret-right'),
+                        'class': 'btn--primary',
+                        'href': '?view=success',
+                        'type': 'link'
+                    }),
+                    html.button({
+                        'label': 'Skip',
+                        'class': 'btn--naked',
+                        'href': '?view=finish',
+                        'type': 'link'
+                    })
+                ]
+            })
+        }}
+
+        {#
+            form.end({
+                'class': 'form__actions--flush',
+                'actions': [
+                    form.submit({
+                        'label': 'Verify Me ' ~ html.icon('caret-right'),
+                        'class': 'btn--primary'
+                    }),
+                    html.button({
+                        'label': 'Skip',
+                        'class': 'btn--naked'
+                    })
+                ]
+            })
+        #}
+
+    </section>
 
 </div>

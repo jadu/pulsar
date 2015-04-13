@@ -12,7 +12,7 @@
 
     {{
         form.checkbox({
-            'label': 'Set up two-factor verification',
+            'label': 'Set up two-step verification',
             'class': 'masterswitch-control'
         })
     }}
@@ -55,9 +55,9 @@
             </a>
         </div>
 
-        <p>To use two-step verification you will need to install an app on your mobile phone.</p>
+        <p>To use two-step verification you will need to install an app on your mobile phone or PC.</p>
 
-        <p>First, let us know what type of phone you have:</p>
+        <p>First, let us know what you want to use:</p>
 
 <div class="tab-panel tab-panel--contrast">
 
@@ -75,12 +75,12 @@
             </li>
             <li role="presentation">
                 <a href="#windows" data-toggle="tab" role="tab" aria-controls="windows">
-                    {{ html.icon('windows') }} Windows
+                    {{ html.icon('windows') }} Windows phone
                 </a>
             </li>
             <li role="presentation">
-                <a href="#blackberry" data-toggle="tab" role="tab" aria-controls="blackberry">
-                    {{ html.icon('frown') }} BlackBerry
+                <a href="#pc" data-toggle="tab" role="tab" aria-controls="pc">
+                    {{ html.icon('desktop') }} Windows PC
                 </a>
             </li>
 
@@ -93,11 +93,11 @@
                 <p>To use Google Authenticator on your iPhone, iPod Touch, or iPad, you must have iOS 5.0 or later. In addition, in order to set up the app on your iPhone using a QR code, you must have a 3G model or later.</p>
 
                 <h4>Installing the app:</h4>
-                <ul class="inline-block">
+                <ol class="inline-block">
                     <li>Go to the App Store on your phone</li>
                     <li>Search for 'google authenticator'</li>
                     <li>Get the app</li>
-                </ul>
+                </ol>
 
                 <a href="https://itunes.apple.com/gb/app/google-authenticator/id388497605?mt=8" class="inline-block align-top margin-left"><img alt="Download on the App Store" src="../../../images/services/apple_app_store.svg" /></a>
 
@@ -108,11 +108,11 @@
                 <p>To use Google Authenticator on your Android device, it must be running Android version 2.1 or later.</p>
 
                 <h4>Installing the app:</h4>
-                <ul class="inline-block">
+                <ol class="inline-block">
                     <li>Go to the Google Play Store on your phone</li>
                     <li>Search for 'google authenticator'</li>
                     <li>Install the app</li>
-                </ul>
+                </ol>
 
                 <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en" class="inline-block margin-left"><img alt="Get it on Google Play" src="https://developer.android.com/images/brand/en_generic_rgb_wo_60.png" /></a>
 
@@ -120,58 +120,68 @@
 
             <div role="tabpanel" class="tab__pane" id="windows">
 
-            <h4>Installing the app:</h4>
-                <ul class="inline-block">
+                <h4>Requirements:</h4>
+                <p>To use Authenticator on your Windows phone, it must be running Windows phone version 7 or later.</p>
+
+                <h4>Installing the app:</h4>
+                <ol class="inline-block">
                     <li>Go to the Windows Phone Store on your phone</li>
                     <li>Search for 'google authenticator'</li>
                     <li>Install the app</li>
-                </ul>
+                </ol>
 
                 <a href="http://www.windowsphone.com/en-gb/store/app/authenticator/021dd79f-0598-e011-986b-78e7d1fa76f8" class="inline-block align-top margin-left"><img alt="Get it on the Windows Phone Store" src="../../../images/services/windows_phone_store.png" /></a>
 
             </div>
 
-            <div role="tabpanel" class="tab__pane" id="blackberry">
+            <div role="tabpanel" class="tab__pane" id="pc">
+
+                <p>Using your PC instead of your phone means you will only be able to sign into your Jadu CMS using that computer, or any other computer where you install the authenticator application. You will not be able to use a shared computer. You will also need to have the permissions to install applications to your computer, if you're using a managed desktop you may need to speak to whoever looks after your machines.</p>
 
                 <h4>Requirements:</h4>
-                <p>To use Google Authenticator on your BlackBerry device, you must have OS 4.5-7.0. In addition, make sure your BlackBerry device is configured for US English -- you might not be able to download Google Authenticator if your device is operating in another language.</p>
+                <ul>
+                    <li>The permissions required to install software onto your computer (often called ‘admin rights’)</li>
+                    <li><a href="http://www.microsoft.com/en-us/download/details.aspx?id=17851">Microsoft .NET Framework 4</a></li>
+                </ul>
 
                 <h4>Installing the app:</h4>
-                <ul>
-                    <li>Open browser on your BlackBerry device</li>
-                    <li>Load <a href="http://m.google.com/authenticator">m.google.com/authenticator</a></li>
-                    <li>Download and install the Google Authenticator app</li>
-                </ul>
+                <ol>
+                    <li>Download the WinAuth application from <a href="https://winauth.com/download">https://winauth.com/download</a></li>
+                    <li>Install and open WinAuth</li>
+                    <li>Click the Add button in the main WinAuth window</li>
+                    <li>Choose 'Google'</li>
+                    <li>You will be asked to give your authenticator a name, we recommend 'Jadu' but you could call it anything, like 'Colin'</li>
+                    <li>We'll give you the other bits of information in the next step, click {{ html.link({ 'label': 'Verify the Code', 'href': '?view=step_two' }) }} to continue</li>
+                </ol>
 
             </div>
         </div>
 
 </div>
 
-        <a href="#" class="pull-right small-type" data-toggle="popover" title="Download authenticator" data-content="<p>You can install a program which will let you create authenticator codes from your web browser or from Windows.</p><div class='block-list block-list--bordered'>
+        <a href="#" class="pull-right small-type" data-toggle="popover" title="Download authenticator" data-content="<p>You can get many different authenticators for whatever weird and wonderful device or software you may have, or even a simple browser plug-in if that’s your thing:</p><div class='block-list block-list--bordered'>
     <a class='block-list__item' href='https://chrome.google.com/webstore/detail/authenticator/bhghoamapcdpbohphigoooaddinpkbai?hl=en'>
         Chrome
     </a>
     <a class='block-list__item' href='https://marketplace.firefox.com/app/gauth'>
         Firefox
     </a>
-    <a class='block-list__item' href='https://winauth.com'>
-        Windows
-    </a>
     <a class='block-list__item' href='http://en.wikipedia.org/wiki/Google_Authenticator#Implementations'>
-        Others (Wikipedia page)
+        Full list (Wikipedia page)
     </a>
-</div>" data-placement="left" data-html="true">Don’t want to use your phone?</a>
+</div>" data-placement="left" data-html="true">Want to be different?</a>
 
         <h3 class="double-top bottomless">Got the app?</h3>
-        <p>Once you've done this step, or if you already have Google Authenticator installed then you can go ahead and verify the code.</p>
+        <p>Once you've done this step, or if you already have the app installed then you can go ahead and verify the code.</p>
         {{
             form.end({
                 'class': 'form__actions--flush',
                 'actions': [
-                    form.submit({
+                    html.button({
                         'label': 'Verify the Code ' ~ html.icon('caret-right'),
-                        'class': 'btn--primary'
+                        'class': 'btn--primary',
+                        'href': '?view=step_two',
+                        'type': 'link'
                     }),
                     html.button({
                         'label': 'Cancel',
