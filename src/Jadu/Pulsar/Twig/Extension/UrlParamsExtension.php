@@ -7,10 +7,10 @@ namespace Jadu\Pulsar\Twig\Extension;
  *
  * Currently retrieves the active tab index from the URL string but will be
  * extended over time to grab any url params
- * 
+ *
  * Unit tests: tests/unit/UrlParamsExtensionTest.php
  */
-class UrlParamsExtension extends \Twig_Extension 
+class UrlParamsExtension extends \Twig_Extension
 {
     /**
      * Query string parameters
@@ -23,7 +23,7 @@ class UrlParamsExtension extends \Twig_Extension
         $this->parameters = $parameters;
     }
 
-    public function getName() 
+    public function getName()
     {
         return 'url_params_extension';
     }
@@ -31,12 +31,18 @@ class UrlParamsExtension extends \Twig_Extension
     public function getGlobals()
     {
         return array(
-            'active_tab' => $this->getActiveTab()
+            'active_tab' => $this->getActiveTab(),
+            'view' => $this->getView()
         );
     }
 
     public function getActiveTab()
     {
         return (isset($this->parameters['tab'])) ? $this->parameters['tab'] : null;
+    }
+
+    public function getView()
+    {
+        return (isset($this->parameters['view'])) ? $this->parameters['view'] : null;
     }
 }

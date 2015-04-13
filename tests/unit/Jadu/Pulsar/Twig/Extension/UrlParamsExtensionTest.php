@@ -14,25 +14,32 @@ class UrlParamsExtensionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('url_params_extension', $this->ext->getName());
     }
 
-    public function testGetDefaultTab() 
+    public function testGetDefaultTab()
     {
         $this->assertEquals(null, $this->ext->getActiveTab());
     }
 
-    public function testGetActiveTab() 
+    public function testGetActiveTab()
     {
         $ext = new UrlParamsExtension(array('tab' => 3));
         $this->assertEquals(3, $ext->getActiveTab());
     }
 
-    public function testGetGlobals() 
+    public function testView()
     {
-        $key = 'active_tab';
+        $ext = new UrlParamsExtension(array('view' => 'foo'));
+        $this->assertEquals('foo', $ext->getView());
+    }
 
-        $ext = new UrlParamsExtension(array('tab' => 3));
+    public function testGetGlobals()
+    {
+        $ext = new UrlParamsExtension(array('tab' => 3, 'view' => 'foo'));
         $globals = $ext->getGlobals();
 
-        $this->assertArrayHasKey($key, $globals);
-        $this->assertEquals(3, $globals[$key]);
+        $this->assertArrayHasKey('active_tab', $globals);
+        $this->assertEquals(3, $globals['active_tab']);
+
+        $this->assertArrayHasKey('view', $globals);
+        $this->assertEquals('foo', $globals['view']);
     }
 }
