@@ -31,13 +31,17 @@
             })
         }}
 
+        <p><span class="icon-standout icon-standout--info"><i class="icon-standout__icon icon-info"></i></span> If things haven’t gone quite right you could lock yourself out of your Jadu CMS. We really recommend that you <a href="?view=step_three">test two-step verification</a>.</p>
+
         {{
             form.end({
                 'class': 'form__actions--flush',
                 'actions': [
                     form.submit({
                         'label': 'Finish and Close',
-                        'class': 'btn--primary'
+                        'class': 'btn--primary',
+                        'href': '?view=step_one',
+                        'type': 'link'
                     }),
                     html.button({
                         'label': 'Turn Off Two-Step Verification',
