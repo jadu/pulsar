@@ -11,7 +11,9 @@ MasterSwitchComponent.prototype.init = function () {
 	component.$control = this.$html.find('.masterswitch-control input');
 	component.$content = this.$html.find('.masterswitch-content');
 
-	component.disableElements();
+	if (!component.$control.prop('checked')) {
+		component.disableElements();
+	}
 
 	component.$control.on('click', function(e) {
 		if (component.$control.prop('checked') == true) {
