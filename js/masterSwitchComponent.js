@@ -15,8 +15,16 @@ MasterSwitchComponent.prototype.init = function () {
 		component.disableElements();
 	}
 
-	component.$control.on('click', function(e) {
-		if (component.$control.prop('checked') == true) {
+	$('.toggle').toggles({
+		checkbox: $('.masterswitch-control input'),
+		text: {
+			on: '',
+			off: ''
+		}
+	});
+
+	$('.toggle').on('toggle', function (e, active) {
+		if (active) {
 			component.switchOn();
 		} else {
 			component.switchOff();

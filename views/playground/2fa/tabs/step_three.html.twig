@@ -10,13 +10,13 @@
         form.create()
     }}
 
-    {{
-        form.checkbox({
-            'label': 'Set up two-factor verification',
-            'class': 'masterswitch-control',
-            'checked': true
-        })
-    }}
+    <div class="form__group masterswitch-control">
+        <label class="control__label">Set up two-step verification</label>
+        <div class="controls">
+            <div class="toggle" data-toggle-on="true"></div>
+            <input type="checkbox" class="hide" checked>
+        </div>
+    </div>
 
     <hr />
 
