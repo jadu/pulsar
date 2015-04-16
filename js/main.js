@@ -7,7 +7,7 @@
  */
 
 // Fixes issue with dependencies that expect both $ and jQuery to be set
-window.jQuery = require('jquery');
+window.jQuery = window.$ = require('jquery');
 
 // Global UI components
 var $               = require('jquery'),
@@ -18,7 +18,7 @@ var $               = require('jquery'),
 	tab             = require('./tab'),
 	popover         = require('./popover'),
 	highlight       = require('./highlight'),
-	tab             = require('./tab'),
+	toggles         = require('../libs/jquery-toggles/toggles.min'),
 	tooltip         = require('./tooltip'),
 	MasterSwitchComponent = require('./masterSwitchComponent'),
 	SignInComponent = require('./area/signin/signin');
@@ -32,5 +32,7 @@ $(function () {
 
     masterSwitch = new MasterSwitchComponent($html);
     masterSwitch.init();
+
+
 });
 
