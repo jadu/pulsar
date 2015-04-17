@@ -1,5 +1,9 @@
 ### Changelog
 
+**3.3.0** - TBC
+
+* Added new `tab-sidebar` component so that we can add instructions/guidance to a tabbed UI
+
 **3.2.0** - 26/02/2015
 
 * Switch to using Browserify instead of RequireJS, not just for t'laugh, it's just better
