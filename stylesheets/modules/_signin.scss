@@ -8,11 +8,14 @@ html, body {
 	margin: 0;
 }
 
+// body {
+// 	background-image: url('../images/video/galaxy.jpg');
+// 	background-repeat: none;
+// 	background-position: center center;
+// 	background-size: cover;
+// }
+
 .video {
-	background-image: url('../images/video/galaxy.jpg');
-	background-repeat: none;
-	background-position: center center;
-	background-size: cover;
 	height: 100%;
 	width: 100%;
 }
@@ -160,17 +163,15 @@ html, body {
 	}
 }
 
-.signin {
-	.signin__code1,
-	.signin__code2 {
-		@extend .signin__input;
-		display: inline-block;
-		font-family: courier;
-		letter-spacing: 5px;
-		margin: 0 5px 1em 5px;
-		padding: 10px 10px 10px 20px;
-		width: 20%;
-	}
+.signin__code1,
+.signin__code2 {
+	@extend .signin__input;
+	display: inline-block;
+	font-family: courier;
+	letter-spacing: 5px;
+	margin: 0 5px 1em 5px;
+	padding: 10px 10px 10px 20px;
+	width: 20%;
 }
 
 .signin__submit {
