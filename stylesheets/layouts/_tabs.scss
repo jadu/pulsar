@@ -239,7 +239,7 @@
   background-color: $white;
   border-top: 1px solid $gray;
   border-bottom: 1px solid $gray;
-  box-shadow: -3px 1px 3px rgba(0, 0, 0, 0.05);
+  // box-shadow: -3px 1px 3px rgba(0, 0, 0, 0.05);
   float: left;
   position: relative;
   width: 100%;
@@ -264,25 +264,7 @@
   }
 }
 
-.tab__sidebar {
-  border-bottom: 1px solid $gray;
-  float: left;
-  padding: 0;
-  margin-bottom: $line-height-base;
-  position: relative;
-  vertical-align: top;
-  width: 100%;
 
-  @include respond-min($screen-desktop) {
-    border-bottom: 0 none;
-    border-left: 1px solid $gray;
-    float: right;
-    left: -1px; // match left border with that of .tab__main
-    margin-bottom: 0;
-    padding: $line-height-base 0 $line-height-base $gutter-width;
-    width: 25%;
-  }
-}
 
 .tab--unpadded > p {
   clear: both;
@@ -329,3 +311,61 @@
     }
   }
 }
+
+
+.tab__container {
+	background-color: $white;
+	border: 1px solid $gray;
+	float: left;
+	width: 100%;
+
+	.tab__inner {
+		background: none;
+		border: none;
+		width: 100%;
+
+		@include respond-min($screen-tablet) {
+			border-right: 1px solid $gray;
+			width: 70%;
+		}
+	}
+}
+
+.tab-sidebar {
+	box-shadow: -1px -1px 0 $gray;
+	display: none;
+	float: left;
+	padding: 22px 20px;
+	width: 30%;
+	// font-size: .9em;
+	text-align: justify;
+
+	@include respond-min($screen-tablet) {
+		display: block;
+	}
+}
+
+.tab-sidebar__icon {
+	color: $gray-dark;
+}
+
+
+// .tab__sidebar {
+//   border-bottom: 1px solid $gray;
+//   float: left;
+//   padding: 0;
+//   margin-bottom: $line-height-base;
+//   position: relative;
+//   vertical-align: top;
+//   width: 100%;
+
+//   @include respond-min($screen-desktop) {
+//     border-bottom: 0 none;
+//     border-left: 1px solid $gray;
+//     float: right;
+//     left: -1px; // match left border with that of .tab__main
+//     margin-bottom: 0;
+//     padding: $line-height-base 0 $line-height-base $gutter-width;
+//     width: 25%;
+//   }
+// }

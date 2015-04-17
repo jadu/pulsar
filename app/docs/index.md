@@ -7,6 +7,7 @@
 * We've added a couple of utility classes for fine-tuning your layout, namely `.double-top`, which doubles the top margin and `.bottomless` which removes the default bottom margin for an element. We've not yet needed to add a `.topless` class, but it sounds like fun
 * Stopped the `form.end()` helper moaning when Twig runs with `strict_variables`
 * Fixed issue where attributes with empty values (like `checked=""`) were still included in the markup. As much as we're an optimist, having all checkboxes checked all the time wasn't ideal
+* Added new `tab-sidebar` component so that we can add instructions/guidance to a tabbed UI
 
 **3.2.0** - 26/02/2015
 

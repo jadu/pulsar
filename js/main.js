@@ -18,6 +18,7 @@ var $               = require('jquery'),
 	tab             = require('./tab'),
 	popover         = require('./popover'),
 	highlight       = require('./highlight'),
+	tab             = require('./tab'),
 	tooltip         = require('./tooltip'),
 	MasterSwitchComponent = require('./masterSwitchComponent'),
 	SignInComponent = require('./area/signin/signin');
