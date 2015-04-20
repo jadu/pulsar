@@ -48,7 +48,8 @@
   $left-offset: 20px;
   $right-offset: 2px;
 
-  // IE8 Currently has issues supporting nth-of-type and nth-child
+  // IE8 Currently has issues supporting nth-of-type and nth-child which is the
+  // reason the following abomination exists. Please don't judge me.
 
   & {
   // &:nth-of-type(1)  {
