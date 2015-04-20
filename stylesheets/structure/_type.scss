@@ -156,7 +156,7 @@ i, em {
 }
 
 .medium-type {
-    @include respond-min($screen-tablet) {
+    @include respond-min(1500px) {
         font-size: 1.5em;
     }
 }

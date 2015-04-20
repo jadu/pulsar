@@ -2,9 +2,12 @@
 {% import 'pulsar/v2/helpers/form.html.twig' as form %}
 {% import 'pulsar/helpers/flash.html.twig' as flash %}
 
-<h2 class="heading">Two-step verification</h2>
+<div class="tab__header">
+    <h2 class="heading">Two-step verification</h2>
+</div>
 
-<div class="tab__inner">
+<div class="tab__container">
+    <div class="tab__inner">
 
     {{
         form.create()
@@ -59,6 +62,20 @@
             })
         }}
 
+
+
+    </div>
+
+    <div class="sidebar">
+        <h4>{{ html.icon('info-sign', { 'class': 'sidebar-icon'}) }} Stronger security for your Jadu account</h4>
+
+        <hr />
+
+        <p>Two-step verification adds extra protection by requiring you to sign in with something you know (your username and password) and something you have with you (usually, your mobile phone).</p>
+
+        <p>When you sign in with two-step verification you will be asked to enter a six-digit code which will be given to you by an app on your phone or your personal computer. Each code can only be used once.</p>
+
+        <a href="#" class="sidebar-link">{{ html.label({ 'label': html.icon('play') ~ ' video', 'class' : 'sidebar-link__label label--inverse' }) }} Signing in with two-step verification (1m30s)</a>
     </div>
 
     <div class="modal modal--danger" id="confirm-disable">

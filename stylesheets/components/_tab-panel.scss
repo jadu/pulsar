@@ -31,7 +31,7 @@
 			padding: 0 5px;
 			text-align: center;
 
-			@include respond-min($screen-tablet) {
+			@include respond-min($screen-desktop) {
 				padding: .5em $gutter-width;
 				text-align: left;
 			}
@@ -54,6 +54,7 @@
 
 	.tabs__list--horizontal {
 		display: table;
+		table-layout: fixed;
 	    width: $width;
 
 	    &.tabs__list--full {
