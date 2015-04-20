@@ -1,0 +1,39 @@
+.sidebar {
+	background-color: white;
+	box-shadow: -1px -1px 0 $gray;
+	display: none;
+	float: none;
+	height: 100%;
+	padding: 22px 20px;
+	text-align: justify;
+	vertical-align: top;
+	width: 30%;
+
+	@include respond-min($screen-tablet) {
+		display: table-cell;
+	}
+}
+
+.sidebar__header {
+	line-height: $line-height-base;
+	text-align: left;
+}
+
+.sidebar-link {
+	display: block;
+	margin-bottom: 1em;
+	text-align: left;
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+.sidebar-link__label {
+	margin-right: 10px;
+}
+
+.sidebar-icon {
+	color: $gray-dark;
+}
