@@ -340,6 +340,19 @@ html, body {
 	}
 }
 
+// 2FA code input in control centre UI
+.form-v2 {
+	.signin__code1,
+    .signin__code2 {
+        display: inline-block;
+        font-family: courier;
+        letter-spacing: 2px;
+        min-width: 60px;
+        width: 20%;
+    }
+}
+
+
 @keyframes success-icon {
   0%    { transform: translateY(0) scale(1); }
   80%	{ transform: translateY(150%) }

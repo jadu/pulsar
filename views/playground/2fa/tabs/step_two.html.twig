@@ -2,9 +2,11 @@
 {% import 'pulsar/v2/helpers/form.html.twig' as form %}
 {% import 'pulsar/helpers/flash.html.twig' as flash %}
 
-<h2 class="heading">Two-step verification</h2>
+<div class="tab__header">
+    <h2 class="heading">Two-step verification</h2>
+</div>
 
-<div class="tab__inner">
+<div class="tab__container">
 
     {{
         form.create()
@@ -93,5 +95,6 @@
         }}
 
     </section>
+
 
 </div>

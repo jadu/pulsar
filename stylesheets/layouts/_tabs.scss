@@ -331,41 +331,29 @@
 	}
 }
 
-.tab-sidebar {
-	box-shadow: -1px -1px 0 $gray;
-	display: none;
-	float: left;
-	padding: 22px 20px;
-	width: 30%;
-	// font-size: .9em;
-	text-align: justify;
+// experimenting with new tab rendering
 
-	@include respond-min($screen-tablet) {
-		display: block;
+.tab__container {
+	display: table;
+	float: none;
+	height: 100%;
+}
+
+.tab__container .tab__inner {
+	background-color: #eee;
+	display: table-cell;
+	float: none;
+	height: 100%;
+	vertical-align: top;
+
+	.form-v2 {
+		background-color: white;
 	}
 }
 
-.tab-sidebar__icon {
-	color: $gray-dark;
+.tab__container .form__actions {
+	// The second shadow here is a sneaky fix to a rendering issue at small
+	// viewports when we have buttons that are floated right
+	box-shadow: inset 0px 4px 0px #ccc, 0 8px 0 #efefef;
+
 }
-
-
-// .tab__sidebar {
-//   border-bottom: 1px solid $gray;
-//   float: left;
-//   padding: 0;
-//   margin-bottom: $line-height-base;
-//   position: relative;
-//   vertical-align: top;
-//   width: 100%;
-
-//   @include respond-min($screen-desktop) {
-//     border-bottom: 0 none;
-//     border-left: 1px solid $gray;
-//     float: right;
-//     left: -1px; // match left border with that of .tab__main
-//     margin-bottom: 0;
-//     padding: $line-height-base 0 $line-height-base $gutter-width;
-//     width: 25%;
-//   }
-// }

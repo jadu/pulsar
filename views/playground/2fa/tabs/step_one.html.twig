@@ -2,195 +2,217 @@
 {% import 'pulsar/v2/helpers/form.html.twig' as form %}
 {% import 'pulsar/helpers/flash.html.twig' as flash %}
 
-<h2 class="heading">Two-step verification</h2>
-
-<div class="tab__inner">
-
-    {{
-        form.create()
-    }}
-
-    <div class="form__group masterswitch-control">
-        <label class="control__label">Set up two-step verification</label>
-        <div class="controls">
-            <div class="toggle"></div>
-            <input type="checkbox" class="hide">
-        </div>
-    </div>
-
-    <hr />
-
-    <section class="masterswitch-content is-disabled">
-
-        <div class="progress-list">
-            <a href="#" class="progress-list__item progress-list__item--current">
-                <span class="progress-list__label">
-                    <span class="badge badge--round badge--outline">1</span>
-                    Get the app
-                </span>
-                <span class="progress-list__arrow">&gt;</span>
-            </a>
-
-            <a href="#" class="progress-list__item is-disabled">
-                <span class="progress-list__label">
-                    <span class="badge badge--round badge--outline">2</span>
-                    Set it up
-                </span>
-                <span class="progress-list__arrow">&gt;</span>
-            </a>
-
-            <a href="#" class="progress-list__item is-disabled">
-                <span class="progress-list__label">
-                    <span class="badge badge--round badge--outline">3</span>
-                    Test it
-                </span>
-                <span class="progress-list__arrow">&gt;</span>
-            </a>
-
-            <a href="#" class="progress-list__item is-disabled">
-                <span class="progress-list__label">
-                    <span class="badge badge--round badge--outline">4</span>
-                    Finished!
-                </span>
-                <span class="progress-list__arrow">&gt;</span>
-            </a>
-        </div>
-
-        <p>To use two-step verification you will need to install an app on your mobile phone or PC.</p>
-
-        <p>First, let us know what you want to use:</p>
-
-<div class="tab-panel tab-panel--contrast">
-
-        <ul class="tabs__list tabs__list--horizontal tabs__list--full medium-type" role="tablist">
-
-            <li role="presentation">
-                <a href="#iphone" data-toggle="tab" role="tab" aria-controls="iphone">
-                    {{ html.icon('apple') }} iPhone
-                </a>
-            </li>
-            <li role="presentation">
-                <a href="#android" data-toggle="tab" role="tab" aria-controls="android">
-                    {{ html.icon('android') }} Android
-                </a>
-            </li>
-            <li role="presentation">
-                <a href="#windows" data-toggle="tab" role="tab" aria-controls="windows">
-                    {{ html.icon('windows') }} Windows phone
-                </a>
-            </li>
-            <li role="presentation">
-                <a href="#pc" data-toggle="tab" role="tab" aria-controls="pc">
-                    {{ html.icon('desktop') }} Windows PC
-                </a>
-            </li>
-
-        </ul>
-
-        <div class="tabs__content">
-            <div role="tabpanel" class="tab__pane" id="iphone">
-
-                <h4>Requirements:</h4>
-                <p>To use Google Authenticator on your iPhone, iPod Touch, or iPad, you must have iOS 5.0 or later. In addition, in order to set up the app on your iPhone using a QR code, you must have a 3G model or later.</p>
-
-                <h4>Installing the app:</h4>
-                <ol class="inline-block">
-                    <li>Go to the App Store on your phone</li>
-                    <li>Search for 'google authenticator'</li>
-                    <li>Get the app</li>
-                </ol>
-
-                <a href="https://itunes.apple.com/gb/app/google-authenticator/id388497605?mt=8" class="inline-block align-top margin-left"><img alt="Download on the App Store" src="../../../images/services/apple_app_store.svg" /></a>
-
-            </div>
-            <div role="tabpanel" class="tab__pane" id="android">
-
-                <h4>Requirements:</h4>
-                <p>To use Google Authenticator on your Android device, it must be running Android version 2.1 or later.</p>
-
-                <h4>Installing the app:</h4>
-                <ol class="inline-block">
-                    <li>Go to the Google Play Store on your phone</li>
-                    <li>Search for 'google authenticator'</li>
-                    <li>Install the app</li>
-                </ol>
-
-                <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en" class="inline-block margin-left"><img alt="Get it on Google Play" src="https://developer.android.com/images/brand/en_generic_rgb_wo_60.png" /></a>
-
-            </div>
-
-            <div role="tabpanel" class="tab__pane" id="windows">
-
-                <h4>Requirements:</h4>
-                <p>To use Authenticator on your Windows phone, it must be running Windows phone version 7 or later.</p>
-
-                <h4>Installing the app:</h4>
-                <ol class="inline-block">
-                    <li>Go to the Windows Phone Store on your phone</li>
-                    <li>Search for 'google authenticator'</li>
-                    <li>Install the app</li>
-                </ol>
-
-                <a href="http://www.windowsphone.com/en-gb/store/app/authenticator/021dd79f-0598-e011-986b-78e7d1fa76f8" class="inline-block align-top margin-left"><img alt="Get it on the Windows Phone Store" src="../../../images/services/windows_phone_store.png" /></a>
-
-            </div>
-
-            <div role="tabpanel" class="tab__pane" id="pc">
-
-                <p>Using your PC instead of your phone means you will only be able to sign into your Jadu CMS using that computer, or any other computer where you install the authenticator application. You will not be able to use a shared computer. You will also need to have the permissions to install applications to your computer, if you're using a managed desktop you may need to speak to whoever looks after your machines.</p>
-
-                <h4>Requirements:</h4>
-                <ul>
-                    <li>The permissions required to install software onto your computer (often called ‘admin rights’)</li>
-                    <li><a href="http://www.microsoft.com/en-us/download/details.aspx?id=17851">Microsoft .NET Framework 4</a></li>
-                </ul>
-
-                <h4>Installing the app:</h4>
-                <ol>
-                    <li>Download the WinAuth application from <a href="https://winauth.com/download">https://winauth.com/download</a></li>
-                    <li>Install and open WinAuth</li>
-                    <li>Click the Add button in the main WinAuth window</li>
-                    <li>Choose 'Google'</li>
-                    <li>You will be asked to give your authenticator a name, we recommend 'Jadu' but you could call it anything, like 'Colin'</li>
-                    <li>We'll give you the other bits of information in the next step, click {{ html.link({ 'label': 'Verify the Code', 'href': '?view=step_two' }) }} to continue</li>
-                </ol>
-
-            </div>
-        </div>
-
+<div class="tab__header">
+    <h2 class="heading">Two-step verification</h2>
 </div>
 
-        <a href="#" class="pull-right small-type" data-toggle="popover" title="Download authenticator" data-content="<p>You can get many different authenticators for whatever weird and wonderful device or software you may have, or even a simple browser plug-in if that’s your thing:</p><div class='block-list block-list--bordered'>
-    <a class='block-list__item' href='https://chrome.google.com/webstore/detail/authenticator/bhghoamapcdpbohphigoooaddinpkbai?hl=en'>
-        Chrome
-    </a>
-    <a class='block-list__item' href='https://marketplace.firefox.com/app/gauth'>
-        Firefox
-    </a>
-    <a class='block-list__item' href='http://en.wikipedia.org/wiki/Google_Authenticator#Implementations'>
-        Full list (Wikipedia page)
-    </a>
-</div>" data-placement="left" data-html="true">Want to be different?</a>
+<div class="tab__container">
+    <div class="tab__inner">
 
-        <h3 class="double-top bottomless">Got the app?</h3>
-        <p>Once you've done this step, or if you already have the app installed then you can go ahead and verify the code.</p>
         {{
-            form.end({
-                'class': 'form__actions--flush',
-                'actions': [
-                    html.button({
-                        'label': 'Verify the Code ' ~ html.icon('caret-right'),
-                        'class': 'btn--primary',
-                        'href': '?view=step_two',
-                        'type': 'link'
-                    }),
-                    html.button({
-                        'label': 'Cancel',
-                        'class': 'btn--naked'
-                    })
-                ]
-            })
+            form.create()
         }}
-    </section>
 
+        <div class="form__group masterswitch-control">
+            <label class="control__label">Set up two-step verification</label>
+            <div class="controls">
+                <div class="toggle"></div>
+                <input type="checkbox" class="hide">
+            </div>
+        </div>
+
+        <hr />
+
+        <section class="masterswitch-content is-disabled">
+
+            <div class="progress-list">
+                <a href="#" class="progress-list__item progress-list__item--current">
+                    <span class="progress-list__label">
+                        <span class="badge badge--round badge--outline">1</span>
+                        Get the app
+                    </span>
+                    <span class="progress-list__arrow">&gt;</span>
+                </a>
+
+                <a href="#" class="progress-list__item is-disabled">
+                    <span class="progress-list__label">
+                        <span class="badge badge--round badge--outline">2</span>
+                        Set it up
+                    </span>
+                    <span class="progress-list__arrow">&gt;</span>
+                </a>
+
+                <a href="#" class="progress-list__item is-disabled">
+                    <span class="progress-list__label">
+                        <span class="badge badge--round badge--outline">3</span>
+                        Test it
+                    </span>
+                    <span class="progress-list__arrow">&gt;</span>
+                </a>
+
+                <a href="#" class="progress-list__item is-disabled">
+                    <span class="progress-list__label">
+                        <span class="badge badge--round badge--outline">4</span>
+                        Finished!
+                    </span>
+                    <span class="progress-list__arrow">&gt;</span>
+                </a>
+            </div>
+
+            <p>To use two-step verification you will need to install an app on your mobile phone or PC.</p>
+
+            <p>First, let us know what you want to use:</p>
+
+    <div class="tab-panel tab-panel--contrast">
+
+            <ul class="tabs__list tabs__list--horizontal tabs__list--full medium-type" role="tablist">
+
+                <li role="presentation">
+                    <a href="#iphone" data-toggle="tab" role="tab" aria-controls="iphone">
+                        {{ html.icon('apple') }} iPhone
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a href="#android" data-toggle="tab" role="tab" aria-controls="android">
+                        {{ html.icon('android') }} Android
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a href="#windows" data-toggle="tab" role="tab" aria-controls="windows">
+                        {{ html.icon('windows') }} Windows phone
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a href="#pc" data-toggle="tab" role="tab" aria-controls="pc">
+                        {{ html.icon('desktop') }} Windows PC
+                    </a>
+                </li>
+
+            </ul>
+
+            <div class="tabs__content">
+                <div role="tabpanel" class="tab__pane" id="iphone">
+
+                    <h4>Requirements:</h4>
+                    <p>To use Google Authenticator on your iPhone, iPod Touch, or iPad, you must have iOS 5.0 or later. In addition, in order to set up the app on your iPhone using a QR code, you must have a 3G model or later.</p>
+
+                    <h4>Installing the app:</h4>
+                    <ol class="inline-block">
+                        <li>Go to the App Store on your phone</li>
+                        <li>Search for 'google authenticator'</li>
+                        <li>Get the app</li>
+                    </ol>
+
+                    <a href="https://itunes.apple.com/gb/app/google-authenticator/id388497605?mt=8" class="inline-block align-top margin-left"><img alt="Download on the App Store" src="../../../images/services/apple_app_store.svg" /></a>
+
+                </div>
+                <div role="tabpanel" class="tab__pane" id="android">
+
+                    <h4>Requirements:</h4>
+                    <p>To use Google Authenticator on your Android device, it must be running Android version 2.1 or later.</p>
+
+                    <h4>Installing the app:</h4>
+                    <ol class="inline-block">
+                        <li>Go to the Google Play Store on your phone</li>
+                        <li>Search for 'google authenticator'</li>
+                        <li>Install the app</li>
+                    </ol>
+
+                    <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en" class="inline-block margin-left"><img alt="Get it on Google Play" src="https://developer.android.com/images/brand/en_generic_rgb_wo_60.png" /></a>
+
+                </div>
+
+                <div role="tabpanel" class="tab__pane" id="windows">
+
+                    <h4>Requirements:</h4>
+                    <p>To use Authenticator on your Windows phone, it must be running Windows phone version 7 or later.</p>
+
+                    <h4>Installing the app:</h4>
+                    <ol class="inline-block">
+                        <li>Go to the Windows Phone Store on your phone</li>
+                        <li>Search for 'google authenticator'</li>
+                        <li>Install the app</li>
+                    </ol>
+
+                    <a href="http://www.windowsphone.com/en-gb/store/app/authenticator/021dd79f-0598-e011-986b-78e7d1fa76f8" class="inline-block align-top margin-left"><img alt="Get it on the Windows Phone Store" src="../../../images/services/windows_phone_store.png" /></a>
+
+                </div>
+
+                <div role="tabpanel" class="tab__pane" id="pc">
+
+                    <p>Using your PC instead of your phone means you will only be able to sign into your Jadu CMS using that computer, or any other computer where you install the authenticator application. You will not be able to use a shared computer. You will also need to have the permissions to install applications to your computer, if you're using a managed desktop you may need to speak to whoever looks after your machines.</p>
+
+                    <h4>Requirements:</h4>
+                    <ul>
+                        <li>The permissions required to install software onto your computer (often called ‘admin rights’)</li>
+                        <li><a href="http://www.microsoft.com/en-us/download/details.aspx?id=17851">Microsoft .NET Framework 4</a></li>
+                    </ul>
+
+                    <h4>Installing the app:</h4>
+                    <ol>
+                        <li>Download the WinAuth application from <a href="https://winauth.com/download">https://winauth.com/download</a></li>
+                        <li>Install and open WinAuth</li>
+                        <li>Click the Add button in the main WinAuth window</li>
+                        <li>Choose 'Google'</li>
+                        <li>You will be asked to give your authenticator a name, we recommend 'Jadu' but you could call it anything, like 'Colin'</li>
+                        <li>We'll give you the other bits of information in the next step, click {{ html.link({ 'label': 'Verify the Code', 'href': '?view=step_two' }) }} to continue</li>
+                    </ol>
+
+                </div>
+            </div>
+
+    </div>
+
+            <a href="#" class="pull-right small-type" data-toggle="popover" title="Download authenticator" data-content="<p>You can get many different authenticators for whatever weird and wonderful device or software you may have, or even a simple browser plug-in if that’s your thing:</p><div class='block-list block-list--bordered'>
+        <a class='block-list__item' href='https://chrome.google.com/webstore/detail/authenticator/bhghoamapcdpbohphigoooaddinpkbai?hl=en'>
+            Chrome
+        </a>
+        <a class='block-list__item' href='https://marketplace.firefox.com/app/gauth'>
+            Firefox
+        </a>
+        <a class='block-list__item' href='http://en.wikipedia.org/wiki/Google_Authenticator#Implementations'>
+            Full list (Wikipedia page)
+        </a>
+    </div>" data-placement="left" data-html="true">Want to be different?</a>
+
+            <h3 class="double-top bottomless">Got the app?</h3>
+            <p>Once you've done this step, or if you already have the app installed then you can go ahead and verify the code.</p>
+            {{
+                form.end({
+                    'class': 'form__actions--flush',
+                    'actions': [
+                        html.button({
+                            'label': 'Verify the Code ' ~ html.icon('caret-right'),
+                            'class': 'btn--primary',
+                            'href': '?view=step_two',
+                            'type': 'link'
+                        }),
+                        html.button({
+                            'label': 'Cancel',
+                            'class': 'btn--naked'
+                        })
+                    ]
+                })
+            }}<!--
+        --></section>
+
+    </div>
+
+    <div class="sidebar">
+        <h4 class="sidebar__header">{{ html.icon('info-sign', { 'class': 'sidebar-icon'}) }} Stronger security for your Jadu account</h4>
+
+        <hr />
+
+        <p>Two-step verification adds extra protection by requiring you to sign in with something you know (your username and password) and something you have with you (usually, your mobile phone).</p>
+
+        <p>When you sign in with two-step verification you will be asked to enter a six-digit code which will be given to you by an app on your phone or your personal computer. Each code can only be used once.</p>
+
+        <!-- <span class="icon-standout icon-standout--inverse">
+            <i class="icon-standout__icon icon-play"></i>
+        </span> -->
+
+        <a href="#" class="sidebar-link">{{ html.label({ 'label': html.icon('play') ~ ' video', 'class' : 'sidebar-link__label label--inverse' }) }} How to set up two-step verification (30s)</a>
+        <a href="#" class="sidebar-link">{{ html.label({ 'label': html.icon('play') ~ ' video', 'class' : 'sidebar-link__label label--inverse' }) }} Signing in with two-step verification (1m30s)</a>
+
+    </div>
 </div>
