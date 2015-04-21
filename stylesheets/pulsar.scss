@@ -32,6 +32,11 @@
 @import '_config.variables';
 @import '_config.fonts';
 
+// Structure
+@import '_structure.columns';
+@import '_structure.scaffolding';
+@import '_structure.type';
+
 // Layouts
 @import '_layout.sidebar';
 @import '_layout.signin';
