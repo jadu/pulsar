@@ -25,12 +25,17 @@
 @import '_mixin.inline-block';
 @import '_mixin.label-variant';
 @import '_mixin.media-queries';
+@import '_mixin.mixins-to-organise';
 
 // Config
-@import '_config.mixins';
 @import '_config.colours';
 @import '_config.variables';
 @import '_config.fonts';
+
+// Layouts
+@import '_layout.sidebar';
+@import '_layout.signin';
+@import '_layout.tabs';
 
 /* -------------------------------------------------------------------------- *\
 	If you're theming Pulsar and want to include your own variables, colours or
