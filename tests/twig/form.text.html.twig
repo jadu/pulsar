@@ -1,0 +1,19 @@
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+
+<h1>form.text</h1>
+
+<pre>
+form.text({
+	'label': 'Label'
+})
+</pre>
+
+{%
+	set output = form.text({
+		'label': 'Label'
+	})
+ %}
+
+{{ output }}
+
+<pre>{{ output|e }}</pre>

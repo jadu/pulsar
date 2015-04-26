@@ -1,0 +1,19 @@
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+
+<h1>form.help</h1>
+
+<pre>
+form.help({
+	'value': 'value'
+})
+</pre>
+
+{%
+	set output = form.help({
+		'value': 'value'
+	})
+ %}
+
+{{ output }}
+
+<pre>{{ output|e }}</pre>
