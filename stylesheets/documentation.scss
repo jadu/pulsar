@@ -14,7 +14,7 @@
 
 // namespace the entire output so it's specific to the .page-inner class for
 // GitBook.
-.page-inner {
+html .book .book-body .page-wrapper .page-inner {
 
 // Third party plugins
 @import '../libs/normalize-css/normalize.css';
@@ -47,9 +47,9 @@
 // @import '_component.actionsbar';
 // @import '_component.autosave';
 @import '_component.badges';
-// @import '_component.block-list';
+@import '_component.block-list';
 // @import '_component.breadcrumb';
-// @import '_component.button-groups';
+@import '_component.button-groups';
 @import '_component.buttons';
 // @import '_component.choice-matrix';
 // @import '_component.close';
@@ -57,35 +57,35 @@
 // @import '_component.datepicker';
 // @import '_component.daterange';
 // @import '_component.decks';
-// @import '_component.dropdowns';
+@import '_component.dropdowns';
 // @import '_component.editor';
 // @import '_component.filter';
 // @import '_component.filters';
 // @import '_component.flash';
 // @import '_component.footer';
-// @import '_component.forms';
-// @import '_component.forms.v2';
+@import '_component.forms';
+@import '_component.forms.v2';
 // @import '_component.greeter';
-// @import '_component.icons';
-// @import '_component.input-groups';
-// @import '_component.label-groups';
-// @import '_component.labels';
-// @import '_component.lists';
-// @import '_component.loading';
+@import '_component.icons';
+@import '_component.input-groups';
+@import '_component.label-groups';
+@import '_component.labels';
+@import '_component.lists';
+@import '_component.loading';
 // @import '_component.login';
 // @import '_component.masterswitch';
-// @import '_component.metadata';
+@import '_component.metadata';
 // @import '_component.modals';
 // @import '_component.nav-items';
 // @import '_component.nav-primary';
 // @import '_component.navbars';
 // @import '_component.notifications';
 // @import '_component.pagination';
-// @import '_component.panels';
+@import '_component.panels';
 // @import '_component.popovers';
-// @import '_component.progress-bars';
+@import '_component.progress-bars';
 // @import '_component.progress-lists';
-// @import '_component.remove-button';
+@import '_component.remove-button';
 // @import '_component.repeatable';
 // @import '_component.richer-list';
 // @import '_component.search';
