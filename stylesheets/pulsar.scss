@@ -32,6 +32,15 @@
 @import '_config.variables';
 @import '_config.fonts';
 
+// Structure
+@import '_structure.scaffolding';
+@import '_structure.type';
+
+// Layouts
+@import '_layout.tabs';
+@import '_layout.signin';
+@import '_layout.sidebar';
+
 /* -------------------------------------------------------------------------- *\
 	If you're theming Pulsar and want to include your own variables, colours or
 	mixins you should @import them here.
