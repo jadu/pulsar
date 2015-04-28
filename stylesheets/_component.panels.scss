@@ -1,0 +1,51 @@
+.panel {
+    background-color: $gray-lighter;
+    border-radius: $border-radius;
+    margin: $line-height-base 0;
+
+    &__title {
+        font-size: $font-size-xlarge;
+        line-height: 1em;
+        padding: $padding-base-vertical $padding-base-horizontal;
+
+        i::before {
+          width: 30px;
+        }
+    }
+
+    &__body {
+        margin-left: 38px;
+        padding: 0 $padding-base-horizontal 1em $padding-base-horizontal;
+
+        p:last-of-type {
+            margin-bottom: 0;
+        }
+    }
+
+    &--danger  {
+        background-color: $danger-color;
+        color: $white;
+    }
+
+    &--info    {
+        background-color: $info-color;
+        color: $black;
+    }
+
+    &--inverse {
+        background-color: $inverse-color;
+        color: $white;
+    }
+
+    &--success {
+        background-color: $success-color;
+        color: $white;
+    }
+
+    &--warning {
+        background-color: $warning-color;
+        color: $black;
+    }
+
+
+}

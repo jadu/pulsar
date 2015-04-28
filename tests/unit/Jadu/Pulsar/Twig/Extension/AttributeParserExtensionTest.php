@@ -42,7 +42,7 @@ class AttributeParserExtensionTest extends \PHPUnit_Framework_TestCase
 	public function testParseAttributesParsesMultipleAttributes()
 	{
 		$dataIn = array('slim' => 'shady', 'marshall' => 'mathers', 'eminem' => true);
-		$dataOut = 'slim="shady" marshall="mathers" eminem="1"';
+		$dataOut = 'slim="shady" marshall="mathers" eminem';
 		$this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn));
 	}
 
@@ -57,6 +57,41 @@ class AttributeParserExtensionTest extends \PHPUnit_Framework_TestCase
 	{
 		$dataIn = array('foo' => '<span>bar</span> <blink>baz</blink>');
 		$dataOut = 'foo="&lt;span&gt;bar&lt;/span&gt; &lt;blink&gt;baz&lt;/blink&gt;"';
+		$this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn));
+	}
+
+	public function testParseAttributesRemovesAttributeWithEmptyValues()
+	{
+		$dataIn = array('foo' => '');
+		$dataOut = '';
+		$this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn));
+	}
+
+	public function testParseAttributesRemovesAttributesWithNullValues()
+	{
+		$dataIn = array('foo' => null);
+		$dataOut = '';
+		$this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn));
+	}
+
+	public function testParseAttributesRemovesAttributesWithFalseValues()
+	{
+		$dataIn = array('foo' => false);
+		$dataOut = '';
+		$this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn));
+	}
+
+	public function testParseAttributesTransformsTrueBooleanAttribute()
+	{
+		$dataIn = array('foo' => true);
+		$dataOut = 'foo';
+		$this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn));
+	}
+
+	public function testParseAttributesIgnoresFalseBooleanAttribute()
+	{
+		$dataIn = array('foo' => false);
+		$dataOut = '';
 		$this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn));
 	}
 

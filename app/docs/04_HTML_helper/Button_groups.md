@@ -1,26 +1,31 @@
-Group a series of related buttons together on a single line by passing the `buttonGroup` helper an array of `button` elements.
+# Button Group
 
-### Usage
+Group a series of related buttons together on a single line by passing the `buttonGroup` helper an array of `button` elements. Great for creating toolbars.
 
- 	{{ html.button({ options }) }}
+## Example usage
 
-### Options
+```twig
+{{
+	html.button_group({
+		'buttons': [
+			html.button({ label: 'foo' }),
+			html.button({ label: 'bar' }),
+			html.button({ label: 'baz' })
+		]
+	})
+}}
+```
 
-Option  | Description
-------------- | -------------
-buttons | An array of `html.button()` items
-class | Classes to be applied to the button group (not the buttons inside it)
-id | The `id` attribute to b applied to the button group
-data | a hash of data attributes by key/value
+<div class="btn__group">
+    <button class="btn">Foo</button><button class="btn">Bar</button><button class="btn">Baz</button>
+</div>
 
-    {{
-        html.button_group({
-        	buttons: [
-            	html.button(label = 'Left'),
-            	html.button(label = 'Middle'),
-            	html.button(label = 'Right')
-        	]
-        })
-    }}
+## Options
 
-<div class="btn__group"><button class="btn">Left</button><button class="btn">Middle</button><button class="btn">Right</button></div>
+Option  | Type   | Description
+------- | ------ | -------------------------------------------------------------
+buttons | array  | An array of `html.button()` elements
+class   | string | Classes to be applied to the button group (not the buttons inside it)
+id      | string | A unique identifier, if required
+data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
+

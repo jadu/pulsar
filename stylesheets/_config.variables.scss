@@ -1,0 +1,223 @@
+// -----------------------------------------------------------------------------
+//  Paths
+// -----------------------------------------------------------------------------
+
+$font-path:                           '../fonts/' !default;
+$image-path:                          '../images/' !default;
+$libs-path:                           '../libs/' !default;
+
+// -----------------------------------------------------------------------------
+//  Typefaces
+// -----------------------------------------------------------------------------
+
+$font-family-light:                   'proxima_novalight', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
+$font-family-regular:                 'proxima_nova_regular', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
+$font-family-semibold:                'proxima_nova_semibold', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
+
+$font-family-light-italic:            'proxima_nova_lightitalic', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
+$font-family-regular-italic:          'proxima_nova_regitalic', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
+$font-family-semibold-italic:         'proxima_nova_semibolditalic', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
+
+$font-family-fallback:                'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
+$font-family-monospace:               monospace !default;
+
+@include ie-lte(7) {
+  $font-family-light:                 'Arial', sans-serif !default;
+  $font-family-regular:               'Arial', sans-serif !default;
+  $font-family-semibold:              'Arial', sans-serif !default;
+}
+
+// -----------------------------------------------------------------------------
+//  Typographic grid
+// -----------------------------------------------------------------------------
+
+$font-family-base:                    $font-family-light !default;
+@include ie-lte(8) {
+  $font-family-base:                  $font-family-regular !default;
+}
+
+$font-size-base:                      16px !default;
+$font-size-xxlarge:                   ceil($font-size-base * 2) !default;
+$font-size-xlarge:                    ceil($font-size-base * 1.5) !default;
+$font-size-large:                     ceil($font-size-base * 1.25) !default; // ~18px
+$font-size-small:                     ceil($font-size-base * 0.85) !default; // ~12px
+$line-height-base:                    22px !default;
+$line-height-large:                   1.33 !default;
+$line-height-small:                   1.5 !default;
+$line-height-computed:                $line-height-base !default;
+$font-size-small:                     ceil($font-size-base * 0.75) !default;
+$font-size-medium:                    ceil($font-size-base * 0.85) !default;
+
+// -----------------------------------------------------------------------------
+//  Columnar grid
+// -----------------------------------------------------------------------------
+
+$gutter-width:                        20px !default;
+$component-offset:                    180px !default;
+$tab-column-width:                    200px !default;
+$tab-column-width-tablet:             133px !default;
+$tab-column-width-mobile:             250px !default;
+$sidebar-column-width:                200px !default;
+$sidebar-column-width-tablet:         133px !default;
+
+// -----------------------------------------------------------------------------
+//  Breakpoints
+// -----------------------------------------------------------------------------
+
+$screen-xsmall:                       480px !default;
+$screen-phone:                        $screen-xsmall !default;
+
+// Small screen / tablet
+$screen-small:                        767px !default;
+$screen-tablet:                       $screen-small !default;
+
+// Medium screen / desktop
+$screen-medium:                       992px !default;
+$screen-desktop:                      $screen-medium !default;
+
+// So media queries don't overlap when required, provide a maximum
+$screen-small-max:                    ($screen-medium - 1) !default;
+$screen-tablet-max:                   $screen-small-max !default;
+
+// Large screen / wide desktop
+$screen-large:                        1200px !default;
+$screen-large-desktop:                $screen-large !default;
+
+// -----------------------------------------------------------------------------
+//  Borders
+// -----------------------------------------------------------------------------
+
+$border-radius:                       4px !default;
+
+// -----------------------------------------------------------------------------
+//  Dropdowns
+// -----------------------------------------------------------------------------
+
+$dropdown-font-size:                  $font-size-medium !default;
+
+// -----------------------------------------------------------------------------
+//  Components
+// -----------------------------------------------------------------------------
+
+$padding-base-vertical:               6px !default;
+$padding-base-horizontal:             12px !default;
+$padding-large-vertical:              10px !default;
+$padding-large-horizontal:            16px !default;
+$padding-small-vertical:              5px !default;
+$padding-small-horizontal:            10px !default;
+
+// -----------------------------------------------------------------------------
+//  Navigation
+// -----------------------------------------------------------------------------
+
+$nav-primary-width:                   45%;
+$nav-primary-item-width:              32%; // % of $nav-primary-width
+
+// -----------------------------------------------------------------------------
+//  Forms
+// -----------------------------------------------------------------------------
+
+$form-label-column-width:             200px !default;
+$controls-width:                      30%;
+$controls-max-width:                  300px;
+$input-bg:                            #fff !default;
+$input-bg-disabled:                   $gray-lighter !default;
+$input-border:                        #ccc !default;
+$input-border-radius:                 $border-radius !default;
+$input-border-focus:                  #66afe9 !default;
+$input-color-placeholder:             $gray-light !default;
+$input-height-base:                   $line-height-base * 2 !default;
+@include ie-lte(7) {
+  $input-height-base:                 $line-height-base * 1.2 !default;
+}
+$input-height-large:                  (floor($font-size-large * $line-height-large) + ($padding-large-vertical * 2) + 2) !default;
+$input-height-small:                  (floor($font-size-small * $line-height-small) + ($padding-small-vertical * 2) + 2) !default;
+$legend-border-color:                 #e5e5e5 !default;
+$input-group-addon-border-color:      $input-border !default;
+
+// -----------------------------------------------------------------------------
+//  Modals
+// -----------------------------------------------------------------------------
+
+$modal-inner-padding:                 20px !default;
+$modal-title-padding:                 15px !default;
+$modal-title-line-height:             $line-height-base !default;
+$modal-content-bg:                    #fff !default;
+$modal-content-border-color:          rgba(0,0,0,.2) !default;
+$modal-content-fallback-border-color: #999 !default;
+$modal-backdrop-bg:                   #000 !default;
+$modal-header-border-color:           #e5e5e5 !default;
+$modal-footer-border-color:           $modal-header-border-color !default;
+$modal-width:                         70% !default;
+
+// -----------------------------------------------------------------------------
+//  Tables
+// -----------------------------------------------------------------------------
+
+$table-cell-padding:                  8px;
+$table-condensed-cell-padding:        5px;
+
+// -----------------------------------------------------------------------------
+//  Tooltips
+// -----------------------------------------------------------------------------
+
+$tooltip-max-width:                   200px !default;
+$tooltip-bg:                          rgba(0,0,0,.9) !default;
+@include ie-lte(7) {
+  $tooltip-bg:                        rgb(0,0,0) !default;
+}
+$tooltip-color:                       #fff !default;
+$tooltip-arrow-width:                 5px !default;
+$tooltip-arrow-color:                 $tooltip-bg !default;
+
+// -----------------------------------------------------------------------------
+//  Toolbar
+// -----------------------------------------------------------------------------
+
+$toolbar-accent-height:               4px !default;
+
+$toolbar-height:                      64px !default; // including accent height
+$toolbar-height-small:                ($line-height-base * 2) !default; // including accent height
+$toolbar-internal-height:             ($toolbar-height - $toolbar-accent-height) !default;
+
+// -----------------------------------------------------------------------------
+//  Branding
+// -----------------------------------------------------------------------------
+
+$brand-image:                         $image-path + 'brand.png' !default;
+$brand-height:                        24px !default;
+$brand-width:                         75px !default;
+$brand-background-size:               100% !default;
+
+// -----------------------------------------------------------------------------
+//  Search
+// -----------------------------------------------------------------------------
+
+$search-border-radius:                0px !default;
+$search-form-height:                  $toolbar-height !default;
+$search-height:                       44px !default;
+$search-form-margin:                  ($search-form-height - $search-height - $toolbar-accent-height) / 2 0;
+$search-width:                        100% !default;
+$search-max-width:                    400px !default;
+
+// -----------------------------------------------------------------------------
+//  Popovers
+// -----------------------------------------------------------------------------
+
+$popover-max-width:                   276px !default;
+$popover-arrow-width:                 10px !default;
+$popover-arrow-outer-width:           ($popover-arrow-width + 1) !default;
+
+// -----------------------------------------------------------------------------
+//  Z-Index master list
+// -----------------------------------------------------------------------------
+
+$zindex-tour:                         1000 !default;
+$zindex-dropdown:                     1010 !default;
+$zindex-footer:                       1020 !default;
+$zindex-popover:                      1030 !default;
+$zindex-tooltip:                      1040 !default;
+$zindex-flash:                        1050 !default;
+$zindex-sticky:                       1060 !default;
+$zindex-nav:                          1070 !default;
+$zindex-modal:                        3000 !default;

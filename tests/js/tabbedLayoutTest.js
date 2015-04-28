@@ -54,29 +54,29 @@ describe('tabbedLayout', function() {
 
     });
 
-    describe('clicking the second tab link', function() {
+    // describe('clicking the second tab link', function() {
 
-        beforeEach(function() {
-            event = $.Event('click');
-            this.$tabLink2.trigger(event);
-        })
+    //     beforeEach(function() {
+    //         event = $.Event('click');
+    //         this.$tabLink2.trigger(event);
+    //     })
 
-        it('should show the second tab link as active', function() {
-            expect(this.$tabLink2.parent().hasClass('is-active')).to.be.true;
-        });
+    //     it('should show the second tab link as active', function() {
+    //         expect(this.$tabLink2.parent().hasClass('is-active')).to.be.true;
+    //     });
 
-        it('should not show the first tab as active', function() {
-            expect(this.$tabLink1.parent().hasClass('is-active')).to.be.false;
-        });
+    //     it('should not show the first tab as active', function() {
+    //         expect(this.$tabLink1.parent().hasClass('is-active')).to.be.false;
+    //     });
 
-        it('should show the second tab pane as active', function() {
-            expect(this.$tabPane2.hasClass('is-active')).to.be.true;
-        });
+    //     it('should show the second tab pane as active', function() {
+    //         expect(this.$tabPane2.hasClass('is-active')).to.be.true;
+    //     });
 
-        it('should not show the first tab pane as active', function() {
-            expect(this.$tabPane1.hasClass('is-active')).to.be.false;
-        });
+    //     it('should not show the first tab pane as active', function() {
+    //         expect(this.$tabPane1.hasClass('is-active')).to.be.false;
+    //     });
 
-    });
+    // });
 
 });

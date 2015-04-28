@@ -18,9 +18,9 @@ Examples:
     </div>
 
     {{ form.checkbox_right(
-        label = 'Pre-checked, with right label', 
-        id = 'inputCheckboxRight', 
-        name = 'inputCheckboxInline', 
+        label = 'Pre-checked, with right label',
+        id = 'inputCheckboxRight',
+        name = 'inputCheckboxInline',
         checked = true) }}
 
     <div class="form__group">
@@ -56,38 +56,42 @@ Examples:
 
 You can group checkboxes together into logical blocks by wrapping them with the `checkbox_group` helper, this is particularly useful for creating inline checkboxes if your options are relatively small.
 
-    {{ form.checkbox_group([
-        form.checkbox_inline(
-            label = 'Inline', 
-            id = 'inputCheckboxInline1', 
-            name = 'inputCheckboxInline', 
-            checked = true),
-        form.checkbox_inline(
-            label = 'Check', 
-            id = 'inputCheckboxInline2', 
-            name = 'inputCheckboxInline', 
-            checked = true),
-        form.checkbox_inline(
-            label = 'Boxes', 
-            id = 'inputCheckboxInline3', 
-            name = 'inputCheckboxInline', 
-            checked = true)
-        ]) 
-    }}
+```twig
+{{
+    form.checkbox_group([
+        form.checkbox_inline({
+            'label': 'Inline',
+            'id': 'foo',
+            'name': 'foo'
+        }),
+        form.checkbox_inline({
+            'label': 'Check',
+            'id': 'bar',
+            'name': 'bar',
+            'checked': true
+        }),
+        form.checkbox_inline({
+            'label': 'Boxes',
+            'id': 'baz',
+            'name': 'baz'
+        })
+    ])
+}}
+```
 
 <form class="form--horizontal">
 <div class="form__group">
     <div class="checkbox">
-        <label for="inputCheckboxInline1" class="checkbox--inline">
-        <input type="checkbox" id="inputCheckboxInline1" name="inputCheckboxInline" checked="">
+        <label for="foo" class="checkbox--inline">
+        <input type="checkbox" id="foo" name="foo" />
                 Inline
         </label>
-        <label for="inputCheckboxInline2" class="checkbox--inline">
-        <input type="checkbox" id="inputCheckboxInline2" name="inputCheckboxInline" checked="">
+        <label for="bar" class="checkbox--inline">
+        <input type="checkbox" id="bar" name="bar" checked="checked" />
                 Check
         </label>
-        <label for="inputCheckboxInline3" class="checkbox--inline">
-        <input type="checkbox" id="inputCheckboxInline3" name="inputCheckboxInline" checked="">
+        <label for="baz" class="checkbox--inline">
+        <input type="checkbox" id="baz" name="baz" />
                 Boxes
         </label>
     </div>

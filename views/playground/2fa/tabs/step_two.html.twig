@@ -1,0 +1,100 @@
+{% import 'pulsar/v2/helpers/html.html.twig' as html %}
+{% import 'pulsar/v2/helpers/form.html.twig' as form %}
+{% import 'pulsar/helpers/flash.html.twig' as flash %}
+
+<div class="tab__header">
+    <h2 class="heading">Two-step verification</h2>
+</div>
+
+<div class="tab__container">
+
+    {{
+        form.create()
+    }}
+
+    <div class="form__group masterswitch-control">
+        <label class="control__label">Set up two-step verification</label>
+        <div class="controls">
+            <div class="toggle" data-toggle-on="true"></div>
+            <input type="checkbox" class="hide" checked>
+        </div>
+    </div>
+
+    <hr />
+
+    <section class="masterswitch-content">
+
+        <div class="progress-list">
+            <a href="?view=step_one" class="progress-list__item progress-list__item--complete">
+                <span class="progress-list__label">
+                    <span class="badge badge--round badge--outline">1</span>
+                    Get the app
+                </span>
+                <span class="progress-list__arrow">&gt;</span>
+            </a>
+
+            <a href="#" class="progress-list__item progress-list__item--current">
+                <span class="progress-list__label">
+                    <span class="badge badge--round badge--outline">2</span>
+                    Set it up
+                </span>
+                <span class="progress-list__arrow">&gt;</span>
+            </a>
+
+            <a href="#" class="progress-list__item is-disabled">
+                <span class="progress-list__label">
+                    <span class="badge badge--round badge--outline">3</span>
+                    Test it
+                </span>
+                <span class="progress-list__arrow">&gt;</span>
+            </a>
+
+            <a href="#" class="progress-list__item is-disabled">
+                <span class="progress-list__label">
+                    <span class="badge badge--round badge--outline">4</span>
+                    Finished!
+                </span>
+                <span class="progress-list__arrow">&gt;</span>
+            </a>
+        </div>
+
+        <h4>In the authenticator app:</h4>
+
+        <ul>
+            <li>Tap the + icon</li>
+            <li>Tap ‘Scan barcode’</li>
+            <li>Use your phone camera to scan this barcode</li>
+        </ul>
+
+        <p><img src="http://www.qrstuff.com/images/default_qrcode.png" /></p>
+
+        <p>Having trouble? try <a href="#" data-toggle="popover" data-placement="top" data-title="Manual entry" data-html="true" data-content="<p>Tap ‘manual entry’ in the app and enter:</p>
+        <p><strong>Account:</strong><br />
+        usersemail@usersdomain.com</p>
+        <p><strong>Key:</strong><br />
+        <span class='monospace'>ABCD EFGH IJKL MNOP</span></p>
+        <p><strong>Time based:</strong><br />
+        Yes</p>">manual entry</a>.</p>
+
+        {{
+            form.end({
+                'class': 'form__actions--flush',
+                'actions': [
+                    html.button({
+                        'label': 'Done? Let’s Test ' ~ html.icon('caret-right'),
+                        'class': 'btn--primary',
+                        'href': '?view=step_three',
+                        'type': 'link'
+                    }),
+                    html.button({
+                        'label': 'Cancel',
+                        'class': 'btn--naked'
+                    })
+                ]
+            })
+        }}
+
+    </section>
+
+
+</div>

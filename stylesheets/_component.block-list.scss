@@ -1,0 +1,209 @@
+/**
+ * Block Lists
+ *
+ * A simple way to present lists of information which can be marked up using
+ * <div> <ul> or <ol>.
+ *
+ * Example:
+ *
+ * <ul class="block-list">
+ *   <li class="block-list__item">One</li>
+ *   <li class="block-list__item">Two</li>
+ *   <li class="block-list__item">Three</li>
+ * </ul>
+ *
+ * <div class="block-list">
+ *   <a class="block-list__item" href="#">One</a>
+ *   <a class="block-list__item" href="#">Two</a>
+ *   <a class="block-list__item" href="#">Three</a>
+ * </div>
+ *
+ * List items can be a singular block-level element, or a collection of elements
+ * in a wrapper.
+ *
+ * Example:
+ *
+ * <div class="block-list">
+ *   <a class="block-list__item" href="#">Link</a>
+ * </div>
+ *
+ * or
+ *
+ * <div class="block-list">
+ *   <div class="block-list__item">
+ *     {{ html.icon('file') }}
+ *     Filename
+ *   </div>
+ * </div>
+ *
+ * 1. Reset left margins in case we're using <ul> or <ol>
+ */
+
+/* -------------------------------------------------------------------------- *\
+    Configuration
+\* -------------------------------------------------------------------------- */
+
+$padding: ($line-height-base / 2);
+$width: 500px;
+
+/* -------------------------------------------------------------------------- *\
+    Default Presentation
+\* -------------------------------------------------------------------------- */
+
+.block-list {
+  margin-left: 0; /* [1] */
+  margin-bottom: 1em;
+  max-width: $width;
+
+  &__item {
+    display: block;
+    padding: $padding $padding;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      word-wrap: break-word;
+    }
+
+    label {
+      margin: 0;
+      text-align: left;
+      width: 100%;
+    }
+
+    &:hover {
+      background-color: $gray-lighter;
+
+      .uploader__label {
+        color: $link-color;
+        cursor: pointer;
+      }
+    }
+  }
+
+
+  &__item .remove-button,
+  &__item .badge {
+    float: right;
+  }
+
+
+  &__item .preview {
+    margin-right: $padding;
+    vertical-align: top;
+  }
+
+
+  &__item .progress {
+    @extend .progress-bar--compact;
+    margin: .5em 0 0 0;
+  }
+
+
+  .preview {
+    max-height: 75px;
+    max-width: 75px;
+    vertical-align: bottom;
+  }
+}
+
+
+
+
+
+/* -------------------------------------------------------------------------- *\
+    Variations
+\* -------------------------------------------------------------------------- */
+
+.block-list--full {
+  max-width: 100%;
+}
+
+
+.block-list--underlined {
+  .block-list__item {
+    border-bottom: 1px solid $gray;
+  }
+
+  .block-list__item.has-info {
+    border-bottom-color: lighten($info-color, 5);
+  }
+
+  .block-list__item.has-success {
+    border-bottom-color: lighten($success-color, 20);
+  }
+
+  .block-list__item.has-warning {
+    border-bottom-color: darken($warning-color, 2);
+  }
+
+  .block-list__item.has-error {
+    border-bottom-color: lighten($danger-color, 10);
+  }
+}
+
+
+.block-list--bordered {
+  @extend .block-list--padded;
+  border: 1px solid $gray;
+  border-radius: $border-radius;
+
+  .block-list__item:not(:last-of-type) {
+    border-bottom: 1px solid $gray;
+  }
+}
+
+
+.block-list--horizontal {
+	display: table;
+    width: $width;
+
+    &.block-list--full {
+        min-width: 100%;
+        width: 100%;
+    }
+
+	.block-list__item {
+		display: table-cell;
+	}
+
+	&.block-list--bordered .block-list__item {
+
+		&, &:last-of-type {
+			border-bottom: 0;
+		}
+
+		&:not(:last-of-type) {
+			border-right: 1px solid $gray;
+		}
+	}
+}
+
+
+.block-list--contrast {
+	.block-list__item {
+		background-color: $gray-lighter;
+
+        &:first-of-type {
+            border-top-left-radius: $border-radius;
+            border-bottom-left-radius: $border-radius;
+        }
+
+        &:last-of-type {
+            border-top-right-radius: $border-radius;
+            border-bottom-right-radius: $border-radius;
+        }
+
+		&:hover {
+			background-color: darken($gray-lighter, 5);
+		}
+	}
+
+	&.block-list--horizontal .block-list__item:not(:last-of-type) {
+		border-right: 2px solid $white;
+	}
+}
+
+.block-list--tall .block-list__item {
+    padding: $padding * 2;
+}

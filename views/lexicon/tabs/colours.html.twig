@@ -2,120 +2,137 @@
 {% import 'pulsar/v2/helpers/form.html.twig' as form %}
 {% import 'pulsar/helpers/flash.html.twig' as flash %}
 
-<h2 class="heading">Colours</h2>
+<div class="tab__header">
+	<h2 class="heading">Colours</h2>
+</div>
 
-<div class="tab__inner tab--padded">
+<div class="tab__container">
+	<div class="tab__inner tab--padded">
 
-	<h4>Standard 'state' colours</h4>
-	<hr />
-	<div class="swatch swatch--primary">
-		<div class="swatch__colour">
-			<span class="swatch__text">primary</span>
+		<h4>Standard 'state' colours</h4>
+		<hr />
+		<div class="swatch swatch--primary">
+			<div class="swatch__colour">
+				<span class="swatch__text">primary</span>
+			</div>
+			<div class="swatch__label">
+				<code>$primary-color</code>
+				<span>{{ html.icon('ok') }} AA Compliant</span>
+			</div>
 		</div>
-		<div class="swatch__label">
-			<code>$primary-color</code>
-			<span>{{ html.icon('ok') }} AA Compliant</span>
+
+		<div class="swatch swatch--info">
+			<div class="swatch__colour">
+				<span class="swatch__text">info</span>
+			</div>
+			<div class="swatch__label">
+				<code>$info-color</code>
+				<span>{{ html.icon('ok') }} AA Compliant</span>
+			</div>
 		</div>
+
+		<div class="swatch swatch--success">
+			<div class="swatch__colour">
+				<span class="swatch__text">success</span>
+			</div>
+			<div class="swatch__label">
+				<code>$success-color</code>
+				<span>{{ html.icon('ok') }} AA Compliant</span>
+			</div>
+		</div>
+
+		<div class="swatch swatch--warning">
+			<div class="swatch__colour">
+				<span class="swatch__text">warning</span>
+			</div>
+			<div class="swatch__label">
+				<code>$warning-color</code>
+				<span>{{ html.icon('ok') }} AA Compliant</span>
+			</div>
+		</div>
+
+		<div class="swatch swatch--danger">
+			<div class="swatch__colour">
+				<span class="swatch__text">danger</span>
+			</div>
+			<div class="swatch__label">
+				<code>$danger-color</code>
+				<span>{{ html.icon('ok') }} AA Compliant</span>
+			</div>
+		</div>
+
+		<div class="swatch swatch--inverse">
+			<div class="swatch__colour">
+				<span class="swatch__text">inverse</span>
+			</div>
+			<div class="swatch__label">
+				<code>$inverse-color</code>
+				<span>{{ html.icon('ok') }} AA Compliant</span>
+			</div>
+		</div>
+
+		<br /><br />
+		<h4>Jadu blues</h4>
+		<hr />
+
+		{%
+			set jadu_blues = [
+				"jadu-blue",
+				"jadu-blue-secondary",
+				"jadu-blue-cool",
+				"jadu-blue-warm",
+				"jadu-blue-pale"
+			]
+		%}
+
+		{% for colour in jadu_blues %}
+			<div class="swatch swatch--{{ colour }}">
+				<div class="swatch__colour">
+				</div>
+				<div class="swatch__label">
+					<code>${{ colour }}</code>
+				</div>
+			</div>
+		{% endfor %}
+
+		<br /><br />
+		<h4>Jadu brand colours</h4>
+		<hr />
+
+		{%
+			set jadu_colours = [
+				"jadu-orange",
+				"jadu-green",
+				"jadu-teal",
+				"jadu-red",
+				"jadu-yellow",
+				"jadu-black",
+				"jadu-copy-gray",
+			]
+		%}
+
+		{% for colour in jadu_colours %}
+			<div class="swatch swatch--{{ colour }}">
+				<div class="swatch__colour">
+				</div>
+				<div class="swatch__label">
+					<code>${{ colour }}</code>
+				</div>
+			</div>
+		{% endfor %}
+
 	</div>
 
-	<div class="swatch swatch--info">
-		<div class="swatch__colour">
-			<span class="swatch__text">info</span>
-		</div>
-		<div class="swatch__label">
-			<code>$info-color</code>
-			<span>{{ html.icon('ok') }} AA Compliant</span>
-		</div>
+	<div class="tab-sidebar">
+		<h4>{{ html.icon('info-sign', { 'class': 'tab-sidebar__icon'}) }} Using colour</h4>
+
+		<hr />
+
+		<p>Pulsar uses a standardised colour palette which incorporates the colours defined in Jadu’s styleguide.</p>
+
+
+		<p>Particular care should be taken to ensure that any colours that interact with each other meet the <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html">WCAG AA ratio for visual contrast</a> (4.5:1), which is especially important given that our main typeface (Proxima Nova) is rather thin.</p>
+
+		<p>Colours variables are defined in the <code>_colours.scss</code> sass file and can be used anywhere.</p>
 	</div>
-
-	<div class="swatch swatch--success">
-		<div class="swatch__colour">
-			<span class="swatch__text">success</span>
-		</div>
-		<div class="swatch__label">
-			<code>$success-color</code>
-			<span>{{ html.icon('ok') }} AA Compliant</span>
-		</div>
-	</div>
-
-	<div class="swatch swatch--warning">
-		<div class="swatch__colour">
-			<span class="swatch__text">warning</span>
-		</div>
-		<div class="swatch__label">
-			<code>$warning-color</code>
-			<span>{{ html.icon('ok') }} AA Compliant</span>
-		</div>
-	</div>
-
-	<div class="swatch swatch--danger">
-		<div class="swatch__colour">
-			<span class="swatch__text">danger</span>
-		</div>
-		<div class="swatch__label">
-			<code>$danger-color</code>
-			<span>{{ html.icon('ok') }} AA Compliant</span>
-		</div>
-	</div>
-
-	<div class="swatch swatch--inverse">
-		<div class="swatch__colour">
-			<span class="swatch__text">inverse</span>
-		</div>
-		<div class="swatch__label">
-			<code>$inverse-color</code>
-			<span>{{ html.icon('ok') }} AA Compliant</span>
-		</div>
-	</div>
-
-	<br /><br />
-	<h4>Jadu blues</h4>
-	<hr />
-
-{%
-	set jadu_blues = [
-		"jadu-blue",
-		"jadu-blue-secondary",
-		"jadu-blue-cool",
-		"jadu-blue-warm",
-		"jadu-blue-pale"
-	]
-%}
-
-{% for colour in jadu_blues %}
-	<div class="swatch swatch--{{ colour }}">
-		<div class="swatch__colour">
-		</div>
-		<div class="swatch__label">
-			<code>${{ colour }}</code>
-		</div>
-	</div>
-{% endfor %}
-
-<br /><br />
-<h4>Jadu brand colours</h4>
-<hr />
-
-{%
-	set jadu_colours = [
-		"jadu-orange",
-		"jadu-green",
-		"jadu-teal",
-		"jadu-red",
-		"jadu-yellow",
-		"jadu-black",
-		"jadu-copy-gray",
-	]
-%}
-
-{% for colour in jadu_colours %}
-	<div class="swatch swatch--{{ colour }}">
-		<div class="swatch__colour">
-		</div>
-		<div class="swatch__label">
-			<code>${{ colour }}</code>
-		</div>
-	</div>
-{% endfor %}
-
 </div>

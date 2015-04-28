@@ -1,0 +1,168 @@
+/**
+ * -----------------------------------------------------------------------------
+ *  _type.scss
+ * -----------------------------------------------------------------------------
+ */
+
+// Headings
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+  margin: 0 0 ($line-height-base / 2) 0;
+}
+
+h1,
+h2,
+h3 {
+  letter-spacing: -1px;
+}
+
+h1 {
+  font-size: $font-size-base * 2.75;                // 44px
+  line-height: $line-height-base * 2.272727272;     // 50px
+  margin: 0 0 ($line-height-base * 0.727272727) 0;  // 16px
+}
+
+h2 {
+  font-size: $font-size-small * 2.25;                                    // 27px
+  line-height: ($line-height-base / $line-height-small) * 2.11363636;    // 31px
+  margin: (($line-height-base / $line-height-small) * 2.11363636) 0 (($line-height-base / $line-height-small) * 1.09090909) 0; // 31px 0 16px 0
+
+  @include respond-min($screen-phone) {
+    font-size: $font-size-base * 2.25;                // 36px
+    line-height: $line-height-base * 2.545454546;     // 56px
+    margin: 0 0 ($line-height-base * 0.454545455) 0;  // 10px
+  }
+}
+
+h3 {
+  font-size: $font-size-base * 1.75;                // 28px
+  line-height: $line-height-base * 2.727272727;     // 60px
+  margin: 0 0 ($line-height-base * 0.272727273) 0;  //  6px
+}
+
+h4 {
+  font-size: $font-size-base * 1.25;                // 20px
+  line-height: $line-height-base * 0.863636364;     // 19px
+  margin: 0 0 ($line-height-base * 0.136363636) 0;  //  3px
+}
+
+h5, h6 {
+  font-size: $font-size-base;                       // 16px
+  line-height: $line-height-base;                   // 12px
+  margin: 0;
+}
+
+p {
+  margin: 0 0 ($line-height-base / $line-height-small) 0;
+
+  @include respond-min($screen-phone) {
+    margin-bottom: $line-height-base;
+  }
+}
+
+// Lists
+
+ul, ol {
+  list-style-position: inside;
+  margin: 0 0 $line-height-base 0;
+  padding: 0;
+
+  li {
+    display: list-item;
+  }
+}
+
+dl {
+  margin: 0 0 $line-height-base 0;
+}
+
+dt {
+  font-weight: bold;
+}
+
+dd {
+  margin-left: 1em;
+}
+
+code, pre, kbd {
+    font-size: $font-size-medium;
+}
+
+.monospace {
+  font-family: $font-family-monospace;
+
+  em {
+    font-style: normal;
+    margin-right: 3px;
+  }
+}
+
+// Horizontal layout (like forms)
+.dl-horizontal {
+  dt {
+    float: left;
+    width: ($component-offset - 20);
+    clear: left;
+    text-align: right;
+    @include text-overflow();
+  }
+  dd {
+    @include clear-fix; // Clear the floated `dt` if an empty `dd` is present
+    margin-left: $component-offset;
+  }
+}
+
+hr {
+  border: 1px solid $gray;
+  border-bottom: 0;
+  margin-bottom: ($line-height-base * 0.727272727);
+}
+
+b, strong {
+  font-family: $font-family-semibold;
+
+  i, em {
+    font-family: $font-family-semibold-italic;
+  }
+}
+
+i, em {
+  font-family: $font-family-light-italic;
+
+  b, strong {
+    font-family: $font-family-semibold-italic;
+  }
+}
+
+// Stop fonts being too thin in IE8
+@include ie-lte(8) {
+  html,
+  body {
+    font-family: Arial, Helvetica, sans-serif !important;
+  }
+}
+
+// Fix poor rendering in IE7/8 because of cleartype (ironic, huh)
+@include ie-lte(8) {
+  h1, h2, h3, h4, h5, h6, p, li, td {
+    // filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='data:image/png;base64:iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OTJBQkFGRUZFOTIyMTFFMEJDRDNEQzkxOTVGOTNBODAiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OTJBQkFGRjBFOTIyMTFFMEJDRDNEQzkxOTVGOTNBODAiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5MkFCQUZFREU5MjIxMUUwQkNEM0RDOTE5NUY5M0E4MCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5MkFCQUZFRUU5MjIxMUUwQkNEM0RDOTE5NUY5M0E4MCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PtrV+I8AAAAQSURBVHjaYvj//z8DQIABAAj8Av7bok0WAAAAAElFTkSuQmCC',sizingMethod=crop);
+    // zoom: 1;
+  }
+}
+
+.small-type {
+    font-size: .85em;
+}
+
+.medium-type {
+    @include respond-min(1500px) {
+        font-size: 1.5em;
+    }
+}
+
+.large-type {
+    @include respond-min($screen-tablet) {
+        font-size: 2em;
+    }
+}

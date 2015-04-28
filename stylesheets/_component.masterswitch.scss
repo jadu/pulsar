@@ -1,0 +1,34 @@
+/**
+ * 1. Prevent label from wrapping onto one line
+ * 2. Masterswitches will be outside the <form> element so need their own margin
+ * 3. Can't use margins here, so use padding
+ * 4. Force label field to shrink to fit the label
+ */
+
+.masterswitch-control {
+	@include text-overflow(); /* [1] */
+	margin-left: $gutter-width; /* [2] */
+
+	.control__label {
+		display: table-cell;
+		padding-right: $gutter-width; /* [3] */
+		width: 1px; /* [4] */
+	}
+
+	.controls {
+		display: table-cell;
+	}
+}
+
+.masterswitch-content {
+	.form__actions {
+        margin-left: -20px;
+        margin-right: -20px;
+    }
+
+	&.is-disabled {
+		cursor: not-allowed;
+		opacity: .25;
+	}
+
+}

@@ -1,0 +1,128 @@
+/**
+ * CSS Arrow - note border colour of the :before and :after are inherited from the parent by default
+ * @param {string} $size - size and unit of measurement (20px for example)
+ * @param {string} $position - left, right, top, bottom
+ * @param {string} $color - colour of arrow (white, #000000, default: inherit)
+ *
+ * @example scss
+ * .some-class {
+ *     @include css-arrow(20px, top, $black);
+ * }
+ *
+ * @example scss
+ * .some-class {
+ *     @include css-arrow(2px, left, $black);
+ * }
+ */
+@mixin css-arrow($size, $position, $color: inherit) {
+    position: relative;
+
+    @if ($position) == 'top' {
+        &:before,
+        &:after {
+            bottom: 100%;
+            left: 50%;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            position: absolute;
+            pointer-events: none;
+            width: 0;
+        }
+
+        &:after {
+            border-bottom-color: $color;
+            border-width: $size;
+            margin-left: -$size;
+            padding-bottom: -1px;
+        }
+
+        &:before {
+            border-bottom-color: $color;
+            border-width: $size + 2;
+            margin-left: -($size + 2);
+        }
+    }
+
+    @if ($position) == 'right' {
+        &:before,
+        &:after {
+            left: 100%;
+            top: 50%;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            position: absolute;
+            pointer-events: none;
+            width: 0;
+        }
+
+        &:after {
+            border-left-color: $color;
+            border-width: $size;
+            margin-top: -$size;
+            padding-left: -1px;
+        }
+
+        &:before {
+            border-left-color: $color;
+            border-width: $size + 2;
+            margin-top: -($size + 2);
+        }
+    }
+
+    @if ($position) == 'bottom' {
+        &:before,
+        &:after {
+            top: 100%;
+            left: 50%;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            position: absolute;
+            pointer-events: none;
+            width: 0;
+        }
+
+        &:after {
+            border-top-color: $color;
+            border-width: $size;
+            margin-left: -$size;
+            padding-top: -1px;
+        }
+
+        &:before {
+            border-top-color: $color;
+            border-width: $size + 2;
+            margin-left: -($size + 2);
+        }
+    }
+
+    @if ($position) == 'left' {
+        &:before,
+        &:after {
+            right: 100%;
+            top: 50%;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            position: absolute;
+            pointer-events: none;
+            width: 0;
+        }
+
+        &:after {
+            border-right-color: $color;
+            border-width: $size;
+            margin-top: -$size;
+            padding-right: -1px;
+        }
+
+        &:before {
+            border-right-color: $color;
+            border-width: $size + 2;
+            margin-top: -($size + 2);
+        }
+    }
+}
+

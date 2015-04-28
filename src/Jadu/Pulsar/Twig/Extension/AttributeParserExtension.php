@@ -94,24 +94,23 @@ class AttributeParserExtension extends \Twig_Extension
 
 		$html = array();
 
-		// // Handle default attributes
-		// if (array_key_exists('default', $args)) {
-		// 	foreach ($args['default'] as $key => $value) {
-
-		// 		// If attribute exists, merge it
-		// 		if (array_key_exists($key, $attributes)) {
-		// 			$attributes[$key] = $attributes[$key] . ' ' . $args['default'][$key];
-		// 			continue;
-		// 		}
-
-		// 		// Otherwise, just add a new attribute
-		// 		$html[] = htmlspecialchars($key) . '="' . htmlspecialchars($value) . '"';
-		// 	}
-		// }
-
 		// Parse the attributes
 		foreach ($attributes as $key => $value) {
-			$html[] = htmlspecialchars($key) . '="' . htmlspecialchars($value) . '"';
+
+			// don't output attributes with empty values
+			if (!empty($value)) {
+
+				// booleans should only output the key, everything else should
+				// be key="value"
+				switch (is_bool($value)) {
+					case true:
+						$html[] = htmlspecialchars($key);
+						break;
+					default:
+						$html[] = htmlspecialchars($key) . '="' . htmlspecialchars($value) . '"';
+						break;
+				}
+			}
 		}
 
 		return implode(' ', $html);

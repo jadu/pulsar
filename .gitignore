@@ -9,6 +9,8 @@
 /vendor/
 /tmp/
 /composer.phar
-/css
 /.bashrc
 .vagrant/
+/css
+/dist
+css/

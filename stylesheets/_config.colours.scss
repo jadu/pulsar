@@ -1,0 +1,217 @@
+// -----------------------------------------------------------------------------
+//  Branding
+// -----------------------------------------------------------------------------
+
+
+$jadu-blue-principle:           #3399cc;
+$jadu-blue-secondary:           #2080c0;
+$jadu-blue-cool:                #a0cdef;
+$jadu-blue-warm:                #a4c2cd;
+$jadu-blue-pale:                #e0f3f9;
+$jadu-blue:                     $jadu-blue-principle; // Alias
+
+$jadu-orange:                   #fcb130;
+$jadu-green:                    #89b029;
+$jadu-teal:                     #06a79d;
+$jadu-red:                      lighten(#d12918, 15);
+$jadu-yellow:                   #ffcc33;
+$jadu-black:                    #1e1e1e;
+$jadu-copy-gray:                #989699;
+
+// -----------------------------------------------------------------------------
+//  Colours
+// -----------------------------------------------------------------------------
+
+$black:                         $jadu-black !default;
+$blue:                          #2455c3 !default;
+$blue-light:                    lighten(#2455c3, 45%) !default;
+$gray-darker:                   lighten(#000, 25%) !default;
+$gray-dark:                     lighten(#000, 30%) !default;
+$gray:                          #ccc !default;
+$gray-light:                    lighten(#000, 60%) !default;
+$gray-lighter:                  lighten(#000, 93.5%) !default;
+$green:                         #42ab5f !default;
+$off-white:                     #fafafa !default;
+$white:                         #fff !default;
+
+// -----------------------------------------------------------------------------
+//  Accents
+// -----------------------------------------------------------------------------
+
+$accent-color:                  $jadu-blue !default;
+$accent-color-alt:              $white !default;
+
+// -----------------------------------------------------------------------------
+//  Text & Links
+// -----------------------------------------------------------------------------
+
+$text-color:                    $jadu-copy-gray !default;
+$link-color:                    $blue !default;
+$link-hover-color:              darken($blue, 20%) !default;
+$inverse-link-color:            $white !default;
+$inverse-link-hover-color:      darken($white, 10%) !default;
+
+// -----------------------------------------------------------------------------
+//  States
+//
+//  The colour and it's alternative MUST meet AA compliance for contrast
+// -----------------------------------------------------------------------------
+
+$base-color:                    $gray !default;
+$primary-color:                 #1F7BB8 !default;
+$success-color:                 #297C46 !default;
+$warning-color:                 #EAA96A !default;
+$danger-color:                  #C84D40 !default;
+$info-color:                    $jadu-blue-cool !default;
+$inverse-color:                 $gray-dark !default;
+
+$base-color-alt:                $black !default;
+$primary-color-alt:             #FFFFFF !default;
+$success-color-alt:             #FFFFFF !default;
+$warning-color-alt:             #000000 !default;
+$danger-color-alt:              #FFFFFF !default;
+$info-color-alt:                #000000 !default;
+$inverse-color-alt:             #FFFFFF !default;
+
+$state-colors: ('base', $base-color, $base-color-alt),
+               ('primary', $primary-color, $primary-color-alt),
+               ('success', $success-color, $success-color-alt),
+               ('warning', $warning-color, $warning-color-alt),
+               ('danger', $danger-color, $danger-color-alt),
+               ('info', $info-color, $info-color-alt),
+               ('inverse', $inverse-color, $inverse-color-alt);
+
+// -----------------------------------------------------------------------------
+//  Progress bars
+// -----------------------------------------------------------------------------
+
+$progress-bg:                   $gray-lighter !default;
+
+// -----------------------------------------------------------------------------
+//  Badges
+// -----------------------------------------------------------------------------
+
+$badge-bg:                      $gray !default;
+
+$badge-primary-bg:              $primary-color !default;
+$badge-primary-bg-darker:       darken($badge-primary-bg, 20%) !default;
+$badge-primary-color:           $white !default;
+
+$badge-success-bg:              $success-color !default;
+$badge-success-bg-darker:       darken($badge-success-bg, 20%) !default;
+$badge-success-color:           $white !default;
+
+$badge-info-bg:                 $info-color !default;
+$badge-info-bg-darker:          darken($badge-info-bg, 20%) !default;
+$badge-info-color:              $white !default;
+
+$badge-warning-bg:              $warning-color !default;
+$badge-warning-bg-darker:       darken($badge-warning-bg, 20%) !default;
+$badge-warning-color:           $white !default;
+
+$badge-danger-bg:               $danger-color !default;
+$badge-danger-bg-darker:        darken($badge-danger-bg, 20%) !default;
+$badge-danger-color:            $white !default;
+
+$badge-inverse-bg:              $inverse-color !default;
+$badge-inverse-bg-darker:       darken($badge-inverse-bg, 20%) !default;
+$badge-inverse-color:           $white !default;
+
+$badge-color:                   inherit !default;
+$badge-active-bg:               #fff !default;
+$badge-active-color:            #fff !default;
+$badge-link-hover-color:        #fff !default;
+
+// -----------------------------------------------------------------------------
+//  Dropdowns
+// -----------------------------------------------------------------------------
+
+$dropdown-bg:                    #fff !default;
+$dropdown-border:                rgba(0,0,0,.15) !default;
+$dropdown-fallback-border:       #ccc !default;
+$dropdown-divider-bg:            #e5e5e5 !default;
+$dropdown-link-active-color:     #fff !default;
+$dropdown-link-active-bg:        $primary-color !default;
+$dropdown-link-color:            $gray-dark !default;
+$dropdown-link-hover-color:      #fff !default;
+$dropdown-link-hover-bg:         $dropdown-link-active-bg !default;
+$dropdown-caret-color:           #000 !default;
+
+// -----------------------------------------------------------------------------
+//  Tables
+// -----------------------------------------------------------------------------
+
+$table-bg:                       transparent !default;
+$table-bg-accent:                #f9f9f9 !default;
+$table-bg-hover:                 #f5f5f5 !default;
+$table-bg-active:                $table-bg-hover !default;
+$table-border-color:             #ccc !default;
+
+// -----------------------------------------------------------------------------
+//  Toolbar
+// -----------------------------------------------------------------------------
+
+$toolbar-search-accent:          $primary-color !default;
+
+$toolbar-bg:                     $gray-darker !default;
+$toolbar-bg-hover:               $accent-color !default;
+
+$toolbar-link-color:             $white !default;
+$toolbar-link-color-hover:       $white !default;
+
+$toolbar-notification-bg:        $accent-color !default;
+$toolbar-notification-text-color: $toolbar-link-color !default;
+$toolbar-notification-item-hover: $white !default;
+
+
+$toolbar-dropdown-bg:            $white !default;
+$toolbar-dropdown-link-color:    $accent-color !default;
+$toolbar-dropdown-link-color-hover: $white !default;
+
+// -----------------------------------------------------------------------------
+//  Search
+// -----------------------------------------------------------------------------
+
+$search-bg:                      darken($toolbar-bg, 5%) !default;
+$search-bg-focus:                $search-bg !default;
+$search-text-color:              $white !default;
+$search-accent-color:            $accent-color !default;
+
+// -----------------------------------------------------------------------------
+//  Popovers
+// -----------------------------------------------------------------------------
+
+$popover-bg:                          #fff !default;
+$popover-border-color:                rgba(0,0,0,.2) !default;
+$popover-fallback-border-color:       #ccc !default;
+$popover-title-bg:                    #fff !default;
+$popover-arrow-color:                 #fff !default;
+$popover-arrow-outer-color:           rgba(0,0,0,.025) !default;
+$popover-arrow-outer-fallback-color:  #999 !default;
+
+$popover-standout-bg:                   $accent-color !default;
+$popover-standout-border-color:         darken($accent-color, 2%) !default;
+$popover-standout-text-color:           $white !default;
+$popover-standout-title-bg:             darken($popover-standout-bg, 3%) !default;
+$popover-standout-arrow-color:          $accent-color !default;
+$popover-standout-arrow-outer-color:    darken($accent-color, 2%) !default;
+
+// -----------------------------------------------------------------------------
+//  Forms
+// -----------------------------------------------------------------------------
+
+$state-warning-text:             #c09853 !default;
+$state-warning-bg:               #fcf8e3 !default;
+$state-warning-border:           darken($state-warning-bg, 10%) !default;
+
+$state-danger-text:              #b94a48 !default;
+$state-danger-bg:                #f2dede !default;
+$state-danger-border:            darken($state-danger-bg, 10%) !default;
+
+$state-success-text:             #468847 !default;
+$state-success-bg:               #dff0d8 !default;
+$state-success-border:           darken($state-success-bg, 10%) !default;
+
+$state-info-text:                #3a87ad !default;
+$state-info-bg:                  #d9edf7 !default;
+$state-info-border:              darken($state-info-bg, 10%) !default;

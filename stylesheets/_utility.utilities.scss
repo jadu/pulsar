@@ -1,0 +1,87 @@
+.show-baseline {
+  @include baseline-grid;
+}
+
+.hide {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  border: 0;
+}
+
+.show {
+  clip: auto;
+  display: inline-block;
+  height: auto;
+  overflow: visible;
+  position: static;
+  width: auto;
+}
+
+.visually-hidden {
+  display: none;
+}
+
+.muted {
+  color: $gray;
+}
+
+.centered {
+  text-align: center;
+}
+
+p.success {
+  background: rgba(0, 153, 51, .8);
+  color: $white;
+  padding: 5px 5px;
+  text-shadow: 0 0 2px rgba(0, 0, 0, .5);
+
+  i {
+    margin: 0 4px;
+  }
+}
+
+// Removes default link styling
+.naked-link,
+.naked-link:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+.no-select {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+// removes bottom margin from an element
+.bottomless {
+  margin-bottom: 0;
+}
+
+.double-top {
+  margin-top: 2em;
+}
+
+.margin-left {
+    margin-left: $gutter-width;
+}
+
+.margin-right {
+    margin-right: $gutter-width;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.align-top {
+    vertical-align: top;
+}

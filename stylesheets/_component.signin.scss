@@ -1,0 +1,389 @@
+$signin-bg-color: rgba(51,153,204,.9);
+$signin-bg-image: '../images/branding/logo-cms-white.svg';
+$signin-bg-height: 65px;
+$signin-bg-width: 65px;
+
+html, body {
+	height: 100%;
+	margin: 0;
+}
+
+// body {
+// 	background-image: url('../images/video/galaxy.jpg');
+// 	background-repeat: none;
+// 	background-position: center center;
+// 	background-size: cover;
+// }
+
+.video {
+	height: 100%;
+	width: 100%;
+}
+
+// Fixes an issue with Safari where animations break when on top of a video
+.signin-container {
+	transform: translate3d(0, 0, 0);
+}
+
+.signin {
+	background-color: $signin-bg-color;
+	border-radius: 2px;
+	box-shadow: 0 0 50px #000;
+	color: white;
+	height: 320px;
+	margin: 0 auto;
+	padding: 0 0 20px 0;
+	opacity: 1;
+	overflow: hidden;
+	position: relative;
+	top: 5em;
+	width: 400px;
+	zoom: 1;
+
+	transition: background-color .25s;
+
+
+	&--error {
+		background-color: $danger-color;
+		animation: shake 400ms ease-in-out;
+	}
+
+	&--success {
+		background-color: $success-color;
+	}
+
+	form {
+		overflow: visible;
+	}
+
+	input, button {
+		&:focus {
+			outline: none;
+			box-shadow: 0 0 5px black;
+		}
+	}
+
+	input {
+		color: black;
+	}
+
+	a {
+		color: white;
+	}
+
+	.btn {
+		background: none;
+		border: 2px solid white;
+		box-shadow: none;
+
+		&:hover,
+		&:focus {
+			background-color: rgba(0, 0, 0, .1);
+			top: 0;
+		}
+
+		&:active {
+			top: 1px;
+		}
+	}
+
+	&.active-success {
+		animation-delay: .8s;
+		animation-duration: .25s;
+		animation-fill-mode: both;
+		animation-name: success-container;
+		background-color: rgba(41, 124, 70, .9);
+	}
+}
+
+.signin__inner {
+	transition: background-color 0.5s, margin-left 0.5s;
+	float: left;
+	width: 805px;
+
+	.active-reset & {
+		position: relative;
+		margin-left: -400px;
+	}
+
+	.active-twostep & {
+
+		.signin-form,
+		.signin-reset {
+			opacity: 0;
+			z-index: -1;
+		}
+
+		.signin-twostep {
+			opacity: 1;
+			z-index: 1;
+		}
+	}
+
+	.active-success & {
+		.signin-form,
+		.signin-reset,
+		.signin-twostep {
+			opacity: 0;
+			z-index: -1;
+		}
+
+		.signin-success {
+			opacity: 1;
+			z-index: 1;
+		}
+	}
+
+}
+
+
+.signin__panel {
+	float: left;
+	text-align: center;
+	transition: opacity 0.5s, z-index 0.5s;
+	width: 400px;
+}
+
+.signin__actions {
+	margin: 0 auto 1em auto;
+}
+
+.signin__input {
+	background-color: none;
+	border: none;
+	box-shadow: inset 0 3px 0 #efefef;
+	border-radius: 2px;
+	display: inline-block;
+	margin: 0 auto 1em auto;
+	padding: 10px;
+	width: 80%;
+
+	&[type=password] {
+		padding-right: 35px;
+	}
+}
+
+.signin__code1,
+.signin__code2 {
+	@extend .signin__input;
+	display: inline-block;
+	font-family: courier;
+	letter-spacing: 5px;
+	margin: 0 5px 1em 5px;
+	padding: 10px 10px 10px 20px;
+	width: 20%;
+}
+
+.signin__submit {
+	display: inline-block;
+	margin: 0 auto;
+}
+
+.signin__group {
+	position: relative;
+	.signin__reset {
+		color: $signin-bg-color;
+		position: absolute;
+		text-decoration: none;
+		top: 10px;
+		right: 50px;
+	}
+	.tooltip-arrow {
+		border-left-color: $signin-bg-color !important;
+	}
+	.tooltip-inner {
+		background-color: $signin-bg-color;
+	}
+
+	label {
+		@extend .hide;
+	}
+}
+
+.signin__info {
+	display: block;
+	margin-bottom: 1em;
+}
+
+.signin__link {
+	display: inline-block;
+	font-size: .8em;
+
+	&:focus {
+		outline-color: white;
+	}
+}
+
+.signin__hint {
+	@include icon-FontAwesome();
+	animation-duration: 1s;
+	animation-fill-mode: both;
+	animation-iteration-count: infinite;
+	animation-name: hint-wobble;
+	display: inline-block;
+	font-size: 1.5em;
+	left: 12px;
+	position: absolute;
+	width: 25px;
+	top: 6px;
+
+	&:before {
+		content: '\f0a4';
+	}
+
+	.signin-twostep & {
+		left: 85px;
+	}
+
+	.signin__code2 + & {
+		left: inherit;
+		right: 80px;
+
+		&:before {
+			content: '\f0a5';
+		}
+	}
+}
+
+.shake {
+  animation: shake 500ms ease-in-out;
+}
+
+.test {
+	outline: 1px solid red;
+}
+
+
+.signin__icon {
+	background-image: url($signin-bg-image);
+	background-size: $signin-bg-height $signin-bg-width;
+	background-position: 50% 0;
+	background-repeat: no-repeat;
+	border-radius: 65px;
+	display: inline-block;
+	margin: 20px auto 0 auto;
+	height: 65px;
+	width: 65px;
+
+	.signin--error &,
+	.signin-reset &,
+	.signin-twostep &,
+	.signin-success & {
+		@include icon-FontAwesome();
+		background-image: none;
+		line-height: 65px;
+		margin-bottom: 6px;
+	}
+
+	.signin-reset &,
+	.signin-twostep &,
+	.signin-success & {
+		background-color: #fff;
+
+		&:before {
+			display: inline-block;
+			color: #2f8dbd;
+			width: 66px;
+		}
+	}
+
+	.signin--error &:before {
+		content: '\f119';
+		font-size: 75px;
+	}
+
+	.signin-twostep &:before {
+		content: '\f10b';
+		font-size: 65px;
+
+		.signin--error & {
+			color: $danger-color;
+		}
+	}
+
+	.signin-reset & {
+		background-color: #fff;
+
+		&:before {
+			content: '\f0e0';
+			display: inline-block;
+			color: #2f8dbd;
+			font-size: 35px;
+			width: 66px;
+		}
+	}
+
+	.active-success .signin-success & {
+		animation-duration: 1s;
+		animation-fill-mode: both;
+		animation-name: success-icon;
+
+		&:before {
+			content: '\f087';
+			color: $success-color;
+			font-size: 35px;
+		}
+	}
+}
+
+
+.signin-twostep,
+.signin-success {
+
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+
+	.signin__group {
+		margin-top: 1.5em;
+	}
+}
+
+// 2FA code input in control centre UI
+.form-v2 {
+	.signin__code1,
+    .signin__code2 {
+        display: inline-block;
+        font-family: courier;
+        letter-spacing: 2px;
+        min-width: 60px;
+        width: 20%;
+    }
+}
+
+
+@keyframes success-icon {
+  0%    { transform: translateY(0) scale(1); }
+  80%	{ transform: translateY(150%) }
+  100%	{ transform: scale(20); }
+}
+
+@keyframes success-container {
+  0%    { transform: scale(1); }
+  100%	{ transform: scale(20); }
+}
+
+@keyframes hint-wobble {
+  0%, 50%, 100% { transform: translateX(0); }
+  25%, 75% { transform: translateX(-5px); }
+}
+
+@keyframes shake {
+  0%    { transform: translateX(0);}
+  12.5% { transform: translateX(-10px) rotateY(-5deg)}
+  37.5% { transform: translateX(10px) rotateY(4deg)}
+  62.5% { transform: translateX(-5px) rotateY(-2deg)}
+  87.5% { transform: translateX(5px) rotateY(1deg)}
+  100%  { transform: translateX(0)}
+}
+
+@keyframes fade-in {
+	from { opacity: 0; }
+	to   { opacity: 1; }
+}
+
+
+
+
