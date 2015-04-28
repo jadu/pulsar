@@ -1,13 +1,18 @@
 ### Changelog
 
-**3.3.0** - TBC
+**3.3.0** - 28/04/2015
 
+* **ERMAHGHERD** Docs have been moved over to GitBook! This may be the last release of pulsar which has `/docs`
+* **New** 'Masterswitch' javascript module which allows you to disable an entire section of the UI until the switch is thrown. Shouting "IT'S ALIIIIVE!!" is optional, but recommended
 * **New** `.progress-list` component, is it a progress bar? is it a list? it's both!
 * **New** Horizontal '.block-list' variation
 * We've added a couple of utility classes for fine-tuning your layout, namely `.double-top`, which doubles the top margin and `.bottomless` which removes the default bottom margin for an element. We've not yet needed to add a `.topless` class, but it sounds like fun
 * Stopped the `form.end()` helper moaning when Twig runs with `strict_variables`
 * Fixed issue where attributes with empty values (like `checked=""`) were still included in the markup. As much as we're an optimist, having all checkboxes checked all the time wasn't ideal
 * Added new `tab-sidebar` component so that we can add instructions/guidance to a tabbed UI
+* State colours are now contained in a funky Sass map which means you can loop over this map to create state variations for your components. See `_components.icons.scss` for an example
+* That reminds me, there's a new standout icon component that I played with that snuck into this release, not sure if I'll keep it yet...
+* The Sass directory structure has been completely flattened and files are now named like `_component.forms.scss`, there‘s legitimate reasons for this but they’re too long to post here (honest)
 
 **3.2.0** - 26/02/2015
 
