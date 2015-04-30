@@ -1,0 +1,15 @@
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+
+<h1>form.fieldset_start</h1>
+
+<pre>
+form.fieldset_start()
+</pre>
+
+{%
+	set output = form.fieldset_start()
+ %}
+
+{{ output }}
+
+<pre>{{ output|e }}</pre>

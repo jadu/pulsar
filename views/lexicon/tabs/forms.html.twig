@@ -15,15 +15,6 @@
     }}
 
         {{
-            form.radio_inline({
-                'id': 'one',
-                'label': 'this is my label',
-                'input_placement': 'right',
-                'bare': true
-            })
-        }}
-
-        {{
             form.text({
                 'label': 'Text input',
                 'id': 'inputText',
@@ -180,7 +171,6 @@
         }}
         {{
             form.radio({
-                'class': 'test',
                 'label': 'Radio with left label',
                 'id': 'inputRadioLeft',
                 'name': 'inputRadioLeft',
@@ -204,109 +194,6 @@
             })
         }}
 
-        {{
-            form.group({
-                label: 'Checkbox group',
-                inputs: [
-                    form.checkbox_inline({
-                        'label': 'Grouped checkbox 1',
-                        'id': 'inputCheckboxInline1',
-                        'name': 'inputCheckboxInline',
-                        'checked': true
-                    }),
-                    form.checkbox_inline({
-                        'label': 'Grouped checkbox 2',
-                        'id': 'inputCheckboxInline2',
-                        'name': 'inputCheckboxInline',
-                        'checked': true
-                    }),
-                    form.checkbox_inline({
-                        'label': 'Grouped checkbox 3',
-                        'id': 'inputCheckboxInline3',
-                        'name': 'inputCheckboxInline',
-                        'checked': true
-                    })
-                ]
-            })
-        }}
-
-        {{
-            form.group({
-                'label': 'Grouped and inline',
-                'inputs': [
-                    form.checkbox_inline({
-                    	'label': 'Inline',
-                    	'id': 'inputCheckboxInline1',
-                    	'name': 'inputCheckboxInline',
-                    	'checked': true
-                    }),
-                    form.checkbox_inline({
-                    	'label': 'Check',
-                    	'id': 'inputCheckboxInline2',
-                    	'name': 'inputCheckboxInline',
-                    	'checked': true
-                    }),
-                    form.checkbox_inline({
-                    	'label': 'Boxes',
-                    	'id': 'inputCheckboxInline3',
-                    	'name': 'inputCheckboxInline',
-                    	'checked': true
-                    })
-                ]
-            })
-        }}
-
-        {{
-            form.group({
-                'label': 'Radio group',
-                'inputs': [
-                    form.radio_inline({
-                    	'label': 'Grouped radio 1',
-                    	'id': 'inputGroupedRadioInline1',
-                    	'name': 'inputGroupedRadioInline',
-                    	'checked': true
-                    }),
-                    form.radio_inline({
-                    	'label': 'Grouped radio 2',
-                    	'id': 'inputGroupedRadioInline2',
-                    	'name': 'inputGroupedRadioInline',
-                    	'checked': true
-                    }),
-                    form.radio_inline({
-                    	'label': 'Grouped radio 3',
-                    	'id': 'inputGroupedRadioInline3',
-                    	'name': 'inputGroupedRadioInline',
-                    	'checked': true
-                    })
-                ]
-            })
-        }}
-
-        {{
-            form.group({
-                'label': 'Grouped and inline',
-                'inputs': [
-                    form.radio_inline({
-                    	'label': 'Inline',
-                    	'id': 'inputRadioInline1',
-                    	'name': 'inputRadioInline',
-                    	'checked': true
-                   	}),
-                    form.radio_inline({
-                    	'label': 'Radio',
-                    	'id': 'inputRadioInline2',
-                    	'name': 'inputRadioInline',
-                    	'checked': true
-                    }),
-                    form.radio_inline({
-                    	'label': 'Buttons',
-                    	'id': 'inputRadioInline3',
-                    	'name': 'inputRadioInline',
-                    	'checked': true
-                    })
-                ]
-            })
-        }}
 
     {{ form.fieldset_end() }}
 

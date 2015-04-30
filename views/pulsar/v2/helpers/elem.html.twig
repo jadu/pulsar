@@ -34,7 +34,7 @@ value       | string | Specifies the value of the input
 #}
 {% macro input(options) %}
 {% spaceless %}
-	{% import 'pulsar/v2/helpers/util.html.twig' as util %}
+	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
 	<input
 		{{
@@ -131,12 +131,12 @@ value       | string | Specifies the value of the input
 #}
 {% macro select(options) %}
 {% spaceless %}
-	{% import 'pulsar/v2/helpers/util.html.twig' as util %}
+	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
 	<select
 		{{
 			attributes(options
-				|exclude('label selected value')
+				|exclude('label selected value options')
 				|defaults({
 					'class': 'form__control'
 				})
@@ -147,7 +147,7 @@ value       | string | Specifies the value of the input
 	{% for value, label in options.options %}
 		<option
 			{{ util.value(value) }}
-			{% if value == options.selected %}
+			{% if options.selected is defined and value == options.selected %}
 				selected
 			{% endif %}
 		>
@@ -191,7 +191,7 @@ value       | string  | Specifies the value of the input
 #}
 {% macro textarea(options) %}
 {% spaceless %}
-	{% import 'pulsar/v2/helpers/util.html.twig' as util %}
+	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
 	<textarea
 		{{
@@ -204,7 +204,12 @@ value       | string  | Specifies the value of the input
 			)
 		}}
 	>
+	{%
+		if options.value is defined
+		and options.value is not empty
+	%}
 		{{- options.value -}}
+	{% endif %}
 	</textarea>
 
 {% endspaceless %}

@@ -32,32 +32,32 @@ module.exports = function(grunt) {
 
 	sass: {
 		dev: {
-		options: {
-			style: 'nested',
-			sourceMap: true
-		},
-		files: [{
-			cwd:    'stylesheets/',
-			dest:   'css/',
-			expand: true,
-			ext:    '.css',
-			extDot: 'first',
-			src:    '*.scss'
-		}]
+			options: {
+				style: 'nested',
+				sourceMap: true
+			},
+			files: [{
+				cwd:    'stylesheets/',
+				dest:   'css/',
+				expand: true,
+				ext:    '.css',
+				extDot: 'first',
+				src:    '*.scss'
+			}]
 		},
 		dist: {
-		options: {
-			style: 'compressed'
-		},
-		files: [{
-			cwd:    'stylesheets/',
-			dest:   'css/',
-			expand: true,
-			flatten: true,
-			ext:    '.css',
-			extDot: 'first',
-			src:    '*.scss'
-		}]
+			options: {
+				outputStyle: 'compressed'
+			},
+			files: [{
+				cwd:    'stylesheets/',
+				dest:   'css/',
+				expand: true,
+				flatten: true,
+				ext:    '.css',
+				extDot: 'first',
+				src:    '*.scss'
+			}]
 		},
 	},
 
@@ -74,7 +74,7 @@ module.exports = function(grunt) {
 	watch: {
 		css: {
 			files: ['stylesheets/**/*.scss'],
-			tasks: ['sass:dev', 'autoprefixer'],
+			tasks: ['sass:dist', 'autoprefixer'],
 			options: {
 				livereload: true,
 			},

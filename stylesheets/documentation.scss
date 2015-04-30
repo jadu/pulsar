@@ -12,6 +12,10 @@
 
 */
 
+// namespace the entire output so it's specific to the .page-inner class for
+// GitBook.
+html .book .book-body .page-wrapper .page-inner {
+
 // Third party plugins
 @import '../libs/normalize-css/normalize.css';
 @import '../libs/jquery-toggles/css/toggles-full.css';
@@ -32,16 +36,6 @@
 @import '_config.variables';
 @import '_config.fonts';
 
-// Structure
-@import '_structure.columns';
-@import '_structure.scaffolding';
-@import '_structure.type';
-
-// Layouts
-@import '_layout.sidebar';
-@import '_layout.signin';
-@import '_layout.tabs';
-
 /* -------------------------------------------------------------------------- *\
 	If you're theming Pulsar and want to include your own variables, colours or
 	mixins you should @import them here.
@@ -50,62 +44,62 @@
 /**
  * Components
  */
-@import '_component.actionsbar';
-@import '_component.autosave';
+// @import '_component.actionsbar';
+// @import '_component.autosave';
 @import '_component.badges';
 @import '_component.block-list';
-@import '_component.breadcrumb';
+// @import '_component.breadcrumb';
 @import '_component.button-groups';
 @import '_component.buttons';
-@import '_component.choice-matrix';
-@import '_component.close';
-@import '_component.datagrid';
-@import '_component.datepicker';
-@import '_component.daterange';
-@import '_component.decks';
+// @import '_component.choice-matrix';
+// @import '_component.close';
+// @import '_component.datagrid';
+// @import '_component.datepicker';
+// @import '_component.daterange';
+// @import '_component.decks';
 @import '_component.dropdowns';
-@import '_component.editor';
-@import '_component.filter';
-@import '_component.filters';
-@import '_component.flash';
-@import '_component.footer';
+// @import '_component.editor';
+// @import '_component.filter';
+// @import '_component.filters';
+// @import '_component.flash';
+// @import '_component.footer';
 @import '_component.forms';
 @import '_component.forms.v2';
-@import '_component.greeter';
+// @import '_component.greeter';
 @import '_component.icons';
 @import '_component.input-groups';
 @import '_component.label-groups';
 @import '_component.labels';
 @import '_component.lists';
 @import '_component.loading';
-@import '_component.login';
-@import '_component.masterswitch';
+// @import '_component.login';
+// @import '_component.masterswitch';
 @import '_component.metadata';
-@import '_component.modals';
-@import '_component.nav-items';
-@import '_component.nav-primary';
-@import '_component.navbars';
-@import '_component.notifications';
-@import '_component.pagination';
+// @import '_component.modals';
+// @import '_component.nav-items';
+// @import '_component.nav-primary';
+// @import '_component.navbars';
+// @import '_component.notifications';
+// @import '_component.pagination';
 @import '_component.panels';
-@import '_component.popovers';
+// @import '_component.popovers';
 @import '_component.progress-bars';
-@import '_component.progress-lists';
+// @import '_component.progress-lists';
 @import '_component.remove-button';
-@import '_component.repeatable';
-@import '_component.richer-list';
-@import '_component.search';
-@import '_component.settings';
-@import '_component.signin';
-@import '_component.summary';
-@import '_component.tab-panel';
-@import '_component.tables';
-@import '_component.toggles';
-@import '_component.toolbar';
-@import '_component.tooltips';
-@import '_component.tour';
-@import '_component.uploader';
-@import '_component.widget';
+// @import '_component.repeatable';
+// @import '_component.richer-list';
+// @import '_component.search';
+// @import '_component.settings';
+// @import '_component.signin';
+// @import '_component.summary';
+// @import '_component.tab-panel';
+// @import '_component.tables';
+// @import '_component.toggles';
+// @import '_component.toolbar';
+// @import '_component.tooltips';
+// @import '_component.tour';
+// @import '_component.uploader';
+// @import '_component.widget';
 
 /* -------------------------------------------------------------------------- *\
 	If you're extending Pulsar and want to include your own layouts/modules etc
@@ -122,3 +116,5 @@
 @import '_override.documentation';
 @import '_override.shame';
 @import '_override.tour';
+
+}
