@@ -46,6 +46,7 @@ requirejs.config({
         'quantum'           : path + '/js/quantum',
         'rich-list'         : path + '/js/rich-list',
         'uploader'          : path + '/js/uploader',
+        'select2'           : path + '/libs/select2/dist/js/select2.min',
         'sticky'            : path + '/libs/sticky/jquery.sticky',
         'store-js'          : path + '/libs/store.js/store',
         'summernote'        : path + '/libs/summernote/dist/summernote.min',

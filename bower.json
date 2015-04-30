@@ -37,7 +37,7 @@
     "store.js": "latest",
     "summernote": "latest",
     "Vague.js": "Stanton/vague.js",
-    "zeroclipboard": "2.1.1",
+    "zeroclipboard": "2.1.1"
   },
   "devDependencies": {
     "livereload-js": "livereload/livereload-js",
