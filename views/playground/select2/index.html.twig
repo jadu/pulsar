@@ -1,0 +1,88 @@
+{% extends 'pulsar/layouts/base.html.twig' %}
+
+{% block body %}
+
+{{ form.create(action = '/login') }}
+    {{ form.fieldset_start(legend = 'Select2') }}
+        {{ form.select(
+            label = 'Choose one', 
+            options = {
+                value1: 'value one', 
+                value2: 'value two',
+                value3: 'value three',
+                value4: 'value four',
+                value5: 'value five',
+                value6: 'value six',
+            },
+            selected = null,
+            id = null,
+            class = 'select2',
+            name = null,
+            help = null,
+            multiple = true
+        )
+        }}
+    {{ form.fieldset_end() }}
+{{ form.end(html.submit(label = 'Login')) }}
+
+{{ form.create(action = '/login') }}
+    {{ form.fieldset_start(legend = 'Select2 non multiple') }}
+        {{ form.select(
+            label = 'Choose one', 
+            options = {
+                value1: 'value one', 
+                value2: 'value two',
+                value3: 'value three',
+                value4: 'value four',
+                value5: 'value five',
+                value6: 'value six',
+            },
+            selected = null,
+            id = null,
+            class = 'select2'
+        )
+        }}
+    {{ form.fieldset_end() }}
+{{ form.end(html.submit(label = 'Login')) }}
+
+{{ form.create(action = '/login') }}
+    {{ form.fieldset_start(legend = 'Non select 2 multiple') }}
+        {{ form.select(
+            label = 'Choose one', 
+            options = {
+                value1: 'value one', 
+                value2: 'value two',
+                value3: 'value three',
+                value4: 'value four',
+                value5: 'value five',
+                value6: 'value six',
+            },
+            selected = null,
+            id = null,
+            class = null,
+            name = null,
+            help = null,
+            multiple = true
+        )
+        }}
+    {{ form.fieldset_end() }}
+{{ form.end(html.submit(label = 'Login')) }}
+
+{{ form.create(action = '/login') }}
+    {{ form.fieldset_start(legend = 'Non select 2') }}
+        {{ form.select(
+            label = 'Choose one', 
+            options = {
+                value1: 'value one', 
+                value2: 'value two',
+                value3: 'value three',
+                value4: 'value four',
+                value5: 'value five',
+                value6: 'value six',
+            }
+        )
+        }}
+    {{ form.fieldset_end() }}
+{{ form.end(html.submit(label = 'Login')) }}
+
+{% endblock %}

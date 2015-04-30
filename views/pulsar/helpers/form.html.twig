@@ -171,7 +171,7 @@
     </div>
 {% endmacro %}
 
-{% macro select(label, options, selected, id, class, name, help) %}
+{% macro select(label, options, selected, id, class, name, help, multiple) %}
     {% import _self as form %}
     <div class="form__group {{ class }}">
         {% if label is not null %}
@@ -179,7 +179,7 @@
         {% endif %}
         <div class="controls">
             {{ form.loading(class) }}
-            <select class="form__control" {{ form.id(id) }} {{ form.name(name) }}>
+            <select class="form__control" {{ form.id(id) }} {{ form.name(name) }} {% if multiple is not empty %}multiple{% endif %}>
             {%- for value, option in options -%}
                 <option {{ form.value(value) }} {% if value == selected %}selected{% endif %}>{{ option }}</option>
             {%- endfor -%}

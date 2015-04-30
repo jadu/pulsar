@@ -23,6 +23,7 @@ define([
             'tooltip',
             'highlightjs',
             'jquery-placeholder',
+            'select2',
             'summernote',
             'toggles',
             'uploader'
@@ -130,6 +131,9 @@ define([
 
             // Add placholder support for browsers that don't support it
             $('input:not([data-datepicker=true]), textarea').placeholder();
+
+            // Select2
+            $('.select2 select').select2();
 
         });
 
@@ -321,10 +325,7 @@ define([
         $('[data-show]').on('click', function(e) {
             $($(this).data('show')).show();
         });
-
     });
-
-
 });
 
 
