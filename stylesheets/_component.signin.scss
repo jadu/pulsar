@@ -107,14 +107,23 @@ html, body {
 .signin__inner {
 	transition: background-color 0.5s, margin-left 0.5s;
 	float: left;
-	width: 805px;
+	width: 1210px;
 
 	.active-reset & {
 		position: relative;
-		margin-left: -$signin-mobile-width;;
+		margin-left: -$signin-mobile-width;
 
 		@include respond-min($screen-tablet) {
-			width: -$signin-full-width;
+			margin-left: -$signin-full-width;
+		}
+	}
+
+	.active-forgot & {
+		position: relative;
+		margin-left: -$signin-mobile-width * 2;
+
+		@include respond-min($screen-tablet) {
+			margin-left: -$signin-full-width * 2;
 		}
 	}
 
@@ -301,6 +310,7 @@ html, body {
 
 	.signin--error &,
 	.signin-reset &,
+	.signin-forgot &,
 	.signin-twostep &,
 	.signin-success & {
 		@include icon-FontAwesome();
@@ -310,6 +320,7 @@ html, body {
 	}
 
 	.signin-reset &,
+	.signin-forgot &,
 	.signin-twostep &,
 	.signin-success & {
 		background-color: #fff;
@@ -333,6 +344,12 @@ html, body {
 		.signin--error & {
 			color: $danger-color;
 		}
+	}
+
+	.signin-forgot &:before {
+		content: '\f128';
+		font-size: 65px;
+		width: 40px;
 	}
 
 	.signin-reset & {
