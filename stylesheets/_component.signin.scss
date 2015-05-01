@@ -243,22 +243,35 @@ html, body {
 	animation-name: hint-wobble;
 	display: inline-block;
 	font-size: 1.5em;
-	left: 12px;
+	left: 5px;
 	position: absolute;
 	width: 25px;
-	top: 6px;
+	top: 2px;
+
+	@include respond-min($screen-tablet) {
+		left: 12px;
+		top: 6px;
+	}
 
 	&:before {
 		content: '\f0a4';
 	}
 
 	.signin-twostep & {
-		left: 85px;
+		left: 55px;
+
+		@include respond-min($screen-tablet) {
+			left: 85px;
+		}
 	}
 
 	.signin__code2 + & {
 		left: inherit;
-		right: 80px;
+		right: 50px;
+
+		@include respond-min($screen-tablet) {
+			left: 80px;
+		}
 
 		&:before {
 			content: '\f0a5';
