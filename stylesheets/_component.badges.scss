@@ -20,6 +20,11 @@
   &:empty {
     display: none;
   }
+
+  // Inside a muted element
+  .muted & {
+    color: $white;
+  }
 }
 
 // Inside labels

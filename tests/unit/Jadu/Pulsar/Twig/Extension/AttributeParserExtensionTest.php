@@ -95,5 +95,12 @@ class AttributeParserExtensionTest extends \PHPUnit_Framework_TestCase
 		$this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn));
 	}
 
+	public function testParseAttributesIgnoresArrayValues()
+	{
+		$dataIn = array('foo' => array('bar'));
+		$dataOut = '';
+		$this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn));
+	}
+
 
 }

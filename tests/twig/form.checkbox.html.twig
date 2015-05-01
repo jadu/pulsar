@@ -1,0 +1,19 @@
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+
+<h1>form.checkbox</h1>
+
+<pre>
+form.checkbox({
+	'label': 'Label'
+})
+</pre>
+
+{%
+	set output = form.checkbox({
+		'label': 'Label'
+	})
+ %}
+
+{{ output }}
+
+<pre>{{ output|e }}</pre>

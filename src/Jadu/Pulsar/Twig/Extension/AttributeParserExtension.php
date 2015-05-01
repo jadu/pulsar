@@ -97,8 +97,8 @@ class AttributeParserExtension extends \Twig_Extension
 		// Parse the attributes
 		foreach ($attributes as $key => $value) {
 
-			// don't output attributes with empty values
-			if (!empty($value)) {
+			// only work with non-empty, non-array values
+			if (!empty($value) && !is_array($value)) {
 
 				// booleans should only output the key, everything else should
 				// be key="value"

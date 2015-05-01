@@ -1,0 +1,19 @@
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+
+<h1>form.radio</h1>
+
+<pre>
+form.radio({
+	'label': 'Label'
+})
+</pre>
+
+{%
+	set output = form.radio({
+		'label': 'Label'
+	})
+ %}
+
+{{ output }}
+
+<pre>{{ output|e }}</pre>
