@@ -1,7 +1,10 @@
-$signin-bg-color: rgba(51,153,204,.9);
-$signin-bg-image: '../images/branding/logo-cms-white.svg';
-$signin-bg-height: 65px;
-$signin-bg-width: 65px;
+$signin-bg-color:     rgba(51,153,204,.9);
+$signin-bg-image:     '../images/branding/logo-cms-white.svg';
+$signin-bg-height:    65px;
+$signin-bg-width:     65px;
+
+$signin-full-width:   400px;
+$signin-mobile-width: 300px;
 
 html, body {
 	height: 100%;
@@ -32,13 +35,18 @@ html, body {
 	color: white;
 	height: 320px;
 	margin: 0 auto;
-	padding: 0 0 20px 0;
+	padding: 0 0 10px 0;
 	opacity: 1;
 	overflow: hidden;
 	position: relative;
 	top: 5em;
-	width: 400px;
+	width: $signin-mobile-width;
 	zoom: 1;
+
+	@include respond-min($screen-tablet) {
+		padding: 0 0 20px 0;
+		width: $signin-full-width;
+	}
 
 	transition: background-color .25s;
 
@@ -103,7 +111,11 @@ html, body {
 
 	.active-reset & {
 		position: relative;
-		margin-left: -400px;
+		margin-left: -$signin-mobile-width;;
+
+		@include respond-min($screen-tablet) {
+			width: -$signin-full-width;
+		}
 	}
 
 	.active-twostep & {
@@ -141,7 +153,11 @@ html, body {
 	float: left;
 	text-align: center;
 	transition: opacity 0.5s, z-index 0.5s;
-	width: 400px;
+	width: $signin-mobile-width;
+
+	@include respond-min($screen-tablet) {
+		width: $signin-full-width;
+	}
 }
 
 .signin__actions {
@@ -170,8 +186,12 @@ html, body {
 	font-family: courier;
 	letter-spacing: 5px;
 	margin: 0 5px 1em 5px;
-	padding: 10px 10px 10px 20px;
+	padding: 10px 10px 10px 12px;
 	width: 20%;
+
+	@include respond-min($screen-tablet) {
+		padding: 10px 10px 10px 20px;
+	}
 }
 
 .signin__submit {
