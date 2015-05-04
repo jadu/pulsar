@@ -1,10 +1,11 @@
-$signin-bg-color:     rgba(51,153,204,.9);
-$signin-bg-image:     '../images/branding/logo-cms-white.svg';
-$signin-bg-height:    65px;
-$signin-bg-width:     65px;
+$signin-bg-color:          rgba(51,153,204,.9);
+$signin-bg-color-fallback: rgb(51,153,204);
+$signin-bg-image:          '../images/branding/logo-cms-white.svg';
+$signin-bg-height:         65px;
+$signin-bg-width:          65px;
 
-$signin-full-width:   400px;
-$signin-mobile-width: 300px;
+$signin-full-width:        400px;
+$signin-mobile-width:      300px;
 
 html, body {
 	height: 100%;
@@ -19,6 +20,7 @@ html, body {
 // }
 
 .video {
+	// background-color: $black;
 	height: 100%;
 	width: 100%;
 }
@@ -29,6 +31,7 @@ html, body {
 }
 
 .signin {
+	background-color: $signin-bg-color-fallback;
 	background-color: $signin-bg-color;
 	border-radius: 2px;
 	box-shadow: 0 0 50px #000;
@@ -100,6 +103,7 @@ html, body {
 		animation-duration: .25s;
 		animation-fill-mode: both;
 		animation-name: success-container;
+		background-color: rgb(41, 124, 70);
 		background-color: rgba(41, 124, 70, .9);
 	}
 }
@@ -350,6 +354,7 @@ html, body {
 		content: '\f128';
 		font-size: 65px;
 		width: 40px;
+		margin-left: -2px;
 	}
 
 	.signin-reset & {
