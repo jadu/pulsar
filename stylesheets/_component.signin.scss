@@ -12,15 +12,11 @@ html, body {
 	margin: 0;
 }
 
-// body {
-// 	background-image: url('../images/video/galaxy.jpg');
-// 	background-repeat: none;
-// 	background-position: center center;
-// 	background-size: cover;
-// }
-
 .video {
-	// background-color: $black;
+	background-image: url('../images/video/galaxy.jpg');
+	background-repeat: none;
+	background-position: center center;
+	background-size: cover;
 	height: 100%;
 	width: 100%;
 }
@@ -442,4 +438,27 @@ html, body {
 
 
 
+// Full-bleed background image for IE7 & 8
+// The required markup & image for this is contained in a conditional comment
+.signin-oldie-bg {
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
 
+  img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	min-width: 50%;
+	min-height: 50%;
+  }
+
+  & + .video {
+  	background: none;
+  }
+}
