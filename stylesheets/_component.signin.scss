@@ -133,6 +133,7 @@ html, body {
 		.signin-form,
 		.signin-reset {
 			opacity: 0;
+			visibility: hidden;
 			z-index: -1;
 		}
 
@@ -147,6 +148,7 @@ html, body {
 		.signin-reset,
 		.signin-twostep {
 			opacity: 0;
+			visibility: hidden;
 			z-index: -1;
 		}
 
@@ -293,11 +295,6 @@ html, body {
   animation: shake 500ms ease-in-out;
 }
 
-.test {
-	outline: 1px solid red;
-}
-
-
 .signin__icon {
 	background: url($signin-bg-image-fallback);
 	background: url($signin-bg-image), linear-gradient(transparent, transparent);
@@ -307,6 +304,7 @@ html, body {
 	border-radius: 65px;
 	display: inline-block;
 	margin: 20px auto 0 auto;
+	text-align: center;
 	height: 65px;
 	width: 65px;
 
@@ -356,9 +354,7 @@ html, body {
 	}
 
 	.signin-reset & {
-		background-color: red;
-
-			*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0e0;');
+		background-color: #fff;
 
 		&:before {
 			//&#xf0e0;
@@ -466,4 +462,15 @@ html, body {
   & + .video {
   	background: none;
   }
+}
+
+
+// IE8 fixes for icon positions
+.ie8 .signin-reset .signin__icon {
+	padding-left: 15px;
+}
+
+.ie8 .signin-twostep .signin__icon,
+.ie8 .signin-success .signin__icon {
+	padding-left: 18px;
 }
