@@ -282,7 +282,8 @@ html, body {
 		right: 50px;
 
 		@include respond-min($screen-tablet) {
-			left: 80px;
+			left: inherit;
+			right: 80px;
 		}
 
 		&:before {
