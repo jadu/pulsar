@@ -1,6 +1,7 @@
 $signin-bg-color:          rgba(51,153,204,.9);
 $signin-bg-color-fallback: rgb(51,153,204);
 $signin-bg-image:          '../images/branding/logo-cms-white.svg';
+$signin-bg-image-fallback: '../images/branding/logo-cms-white-small.png';
 $signin-bg-height:         65px;
 $signin-bg-width:          65px;
 
@@ -298,7 +299,8 @@ html, body {
 
 
 .signin__icon {
-	background-image: url($signin-bg-image);
+	background: url($signin-bg-image-fallback);
+	background: url($signin-bg-image), linear-gradient(transparent, transparent);
 	background-size: $signin-bg-height $signin-bg-width;
 	background-position: 50% 0;
 	background-repeat: no-repeat;
@@ -354,9 +356,12 @@ html, body {
 	}
 
 	.signin-reset & {
-		background-color: #fff;
+		background-color: red;
+
+			*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0e0;');
 
 		&:before {
+			//&#xf0e0;
 			content: '\f0e0';
 			display: inline-block;
 			color: #2f8dbd;
