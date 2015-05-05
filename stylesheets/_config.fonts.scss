@@ -31,19 +31,7 @@
   font-style: normal;
 }
 
-// Font awesome
-
-$FontAwesomePath: $libs-path + 'font-awesome/font/';
-@import '../libs/font-awesome/scss/variables';
-@import '../libs/font-awesome/scss/mixins';
-@import '../libs/font-awesome/scss/path';
-@import '../libs/font-awesome/scss/core';
-@import '../libs/font-awesome/scss/bootstrap';
-@import '../libs/font-awesome/scss/extras';
-@import '../libs/font-awesome/scss/icons';
-
 // Force Webkit to only use SVG fonts, this fixes poor font rendering in Webkit on Windows
-
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
   @font-face {
     font-family: 'proxima_novalight';

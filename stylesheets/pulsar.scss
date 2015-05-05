@@ -16,6 +16,10 @@
 @import '../libs/normalize-css/normalize.css';
 @import '../libs/jquery-toggles/css/toggles-full.css';
 
+// Font awesome
+$FontAwesomePath: '../libs/font-awesome/font/';
+@import '../libs/font-awesome/scss/font-awesome';
+
 // Mixins
 @import '_mixin.border-radius';
 @import '_mixin.clear-fix';
