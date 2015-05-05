@@ -20,6 +20,10 @@ html .book .book-body .page-wrapper .page-inner {
 @import '../libs/normalize-css/normalize.css';
 @import '../libs/jquery-toggles/css/toggles-full.css';
 
+// Font awesome
+$FontAwesomePath: '../libs/font-awesome/font/';
+@import '../libs/font-awesome/scss/font-awesome';
+
 // Mixins
 @import '_mixin.border-radius';
 @import '_mixin.clear-fix';
@@ -61,7 +65,7 @@ html .book .book-body .page-wrapper .page-inner {
 // @import '_component.editor';
 // @import '_component.filter';
 // @import '_component.filters';
-// @import '_component.flash';
+@import '_component.flash';
 // @import '_component.footer';
 @import '_component.forms';
 @import '_component.forms.v2';
