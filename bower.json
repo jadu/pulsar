@@ -31,6 +31,7 @@
     "requirejs": "2.1.14",
     "sticky": "latest",
     "store.js": "latest",
+    "svgeezy": "latest",
     "summernote": "latest",
     "Vague.js": "Stanton/vague.js"
   },

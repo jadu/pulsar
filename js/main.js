@@ -17,8 +17,11 @@ var $               = require('jquery'),
 	modal           = require('./modal'),
 	tab             = require('./tab'),
 	popover         = require('./popover'),
-	toggles         = require('../libs/jquery-toggles/toggles.min'),
 	tooltip         = require('./tooltip'),
+
+	svgeezy         = require('../libs/svgeezy/svgeezy.min'),
+	toggles         = require('../libs/jquery-toggles/toggles.min'),
+
 	MasterSwitchComponent = require('./masterSwitchComponent'),
 	SignInComponent = require('./area/signin/signin');
 
@@ -32,6 +35,8 @@ $(function () {
     masterSwitch = new MasterSwitchComponent($html);
     masterSwitch.init();
 
+    // Switch out .svg for .png for <img> elements in older browsers
+    svgeezy.init('nocheck', 'png');
 
 });
 
