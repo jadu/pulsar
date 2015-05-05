@@ -95,7 +95,7 @@
  * Mixin to theme button states
  */
 
-@mixin button-states($base-color, $alt-color: #000000) {
+@mixin button-states($base-color, $alt-color: #000000, $disabled-fade: 5) {
     $shadow-color: darken($base-color, 10%);
 
     background-color: $base-color;
@@ -120,7 +120,8 @@
     &:disabled,
     &.is-disabled
     &.disabled {
-      color: lighten($alt-color, 30%);
+      background-color: lighten($base-color, $disabled-fade);
+      box-shadow: 0 2px 0 lighten($shadow-color, $disabled-fade);
     }
 }
 
@@ -138,7 +139,7 @@
 }
 
 .btn--primary {
-    @include button-states($primary-color, $primary-color-alt);
+    @include button-states($primary-color, $primary-color-alt, 30);
 
     .badge {
         background-color: $badge-primary-bg-darker;
@@ -147,7 +148,7 @@
 }
 
 .btn--success {
-    @include button-states($success-color, $success-color-alt);
+    @include button-states($success-color, $success-color-alt, 30);
 
     .badge {
         background-color: $badge-success-bg-darker;
@@ -156,7 +157,7 @@
 }
 
 .btn--warning {
-    @include button-states($warning-color, $warning-color-alt);
+    @include button-states($warning-color, $warning-color-alt, 20);
 
     .badge {
         background-color: $badge-warning-bg-darker;
@@ -165,7 +166,7 @@
 }
 
 .btn--danger {
-    @include button-states($danger-color, $danger-color-alt);
+    @include button-states($danger-color, $danger-color-alt, 30);
 
     .badge {
         background-color: $badge-danger-bg-darker;
@@ -174,7 +175,7 @@
 }
 
 .btn--info {
-    @include button-states($info-color, $info-color-alt);
+    @include button-states($info-color, $info-color-alt, 10);
 
     .badge {
         background-color: $badge-info-bg-darker;
@@ -183,7 +184,7 @@
 }
 
 .btn--inverse {
-    @include button-states($inverse-color, $inverse-color-alt);
+    @include button-states($inverse-color, $inverse-color-alt, 30);
 
     .badge {
         background-color: $badge-inverse-bg-darker;
