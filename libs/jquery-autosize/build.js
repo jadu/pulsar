@@ -1,7 +1,9 @@
 var pkg = require('./package.json');
 var fs = require('fs');
-var ugly = require("uglify-js");
-var jshint = require("jshint").JSHINT;
+var ugly = require('uglify-js');
+var jshint = require('jshint').JSHINT;
+var babel = require('babel');
+var gaze = require('gaze');
 
 function writeBower() {
 	var bower = {
@@ -15,26 +17,9 @@ function writeBower() {
 		homepage: pkg.homepage,
 		ignore: pkg.config.bower.ignore,
 		repository: pkg.repository,
-		main: pkg.config.bower.main,
+		main: pkg.main,
 	};
 	fs.writeFile('bower.json', JSON.stringify(bower, null, '\t'));
-	return true;
-}
-
-function build(full) {
-	var mini = ugly.minify(full, {fromString: true}).code;
-	var header = [
-		"/*!",
-		"	"+pkg.config.title+" "+pkg.version,
-		"	license: MIT",
-		"	"+pkg.homepage,
-		"*/",
-		""
-	].join("\n");
-
-	fs.writeFile('dest/'+pkg.config.fileName+'.js', header+full);
-	fs.writeFile('dest/'+pkg.config.fileName+'.min.js', header+mini);
-
 	return true;
 }
 
@@ -47,7 +32,7 @@ function lint(full) {
 		eqeqeq: true,
 		eqnull: true,
 		noarg: true,
-		predef: ['define', 'module']
+		predef: ['define', 'module', 'exports']
 	});
 
 	if (jshint.errors.length) {
@@ -55,14 +40,45 @@ function lint(full) {
 			console.log(err.line+':'+err.character+' '+err.reason);
 		});
 	} else {
-		return true;
+		console.log('linted')
 	}
+
+	return true;
 }
 
-fs.readFile('src/'+pkg.config.fileName+'.js', 'utf8', function (err,data) {
-  if (err) {
-    return console.log(err);
-  } else {
-  	lint(data) && build(data) && writeBower();
-  }
+function build(code) {
+	var minified = ugly.minify(code, {fromString: true}).code;
+	var header = [
+		'/*!',
+		'	'+pkg.config.title+' '+pkg.version,
+		'	license: MIT',
+		'	'+pkg.homepage,
+		'*/',
+		''
+	].join('\n');
+
+	fs.writeFile('dest/'+pkg.config.filename+'.js', header+code);
+	fs.writeFile('dest/'+pkg.config.filename+'.min.js', header+minified);
+	writeBower();
+	console.log('built');
+}
+
+function transform(filepath) {
+	babel.transformFile(filepath, {modules: 'umd'}, function (err,res) {
+		if (err) {
+			return console.log(err);
+		} else {
+			lint(res.code);
+			build(res.code);
+		}
+	});
+}
+
+gaze('src/'+pkg.config.filename+'.js', function(err, watcher){
+	// On file changed
+	this.on('changed', function(filepath) {
+		transform(filepath);
+	});
 });
+
+transform('src/'+pkg.config.filename+'.js');

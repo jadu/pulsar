@@ -1,10 +1,10 @@
-define('summernote/settings', function () {
+define('summernote/defaults', function () {
   /**
-   * @class settings 
+   * @class defaults 
    * 
    * @singleton
    */
-  var settings = {
+  var defaults = {
     /** @property */
     version: '@VERSION',
 
@@ -53,6 +53,8 @@ define('summernote/settings', function () {
       placeholder: false,           // enable placeholder text
       prettifyHtml: true,           // enable prettifying html while toggling codeview
 
+      iconPrefix: 'fa fa-',         // prefix for css icon classes
+
       codemirror: {                 // codemirror options
         mode: 'text/html',
         htmlMode: true,
@@ -67,7 +69,9 @@ define('summernote/settings', function () {
       toolbar: [
         ['style', ['style']],
         ['font', ['bold', 'italic', 'underline', 'clear']],
+        // ['font', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
         ['fontname', ['fontname']],
+        // ['fontsize', ['fontsize']],
         ['color', ['color']],
         ['para', ['ul', 'ol', 'paragraph']],
         ['height', ['height']],
@@ -107,10 +111,12 @@ define('summernote/settings', function () {
       // fontName
       fontNames: [
         'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New',
-        'Helvetica Neue', 'Impact', 'Lucida Grande',
+        'Helvetica Neue', 'Helvetica', 'Impact', 'Lucida Grande',
         'Tahoma', 'Times New Roman', 'Verdana'
       ],
       fontNamesIgnoreCheck: [],
+
+      fontSizes: ['8', '9', '10', '11', '12', '14', '18', '24', '36'],
 
       // pallete colors(n x n)
       colors: [
@@ -236,7 +242,11 @@ define('summernote/settings', function () {
           underline: 'Underline',
           clear: 'Remove Font Style',
           height: 'Line Height',
-          name: 'Font Family'
+          name: 'Font Family',
+          strikethrough: 'Strikethrough',
+          subscript: 'Subscript',
+          superscript: 'Superscript',
+          size: 'Font Size'
         },
         image: {
           image: 'Picture',
@@ -331,5 +341,5 @@ define('summernote/settings', function () {
     }
   };
 
-  return settings;
+  return defaults;
 });

@@ -238,6 +238,33 @@
             </div>
 
 
+            <h4>And also can drop "up"</h4>
+
+            <div class="well">
+
+               <form class="form-horizontal">
+                 <fieldset>
+                  <div class="control-group">
+                    <div class="controls">
+                     <div class="input-prepend input-group">
+                       <span class="add-on input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span><input type="text" style="width: 200px" name="dropup" id="dropup" class="form-control" value="03/18/2013 - 03/23/2013" /> 
+                     </div>
+                    </div>
+                  </div>
+                 </fieldset>
+               </form>
+
+               <script type="text/javascript">
+               $(document).ready(function() {
+                  $('#dropup').daterangepicker({
+                      drops:'up'
+                  });
+               });
+               </script>
+
+            </div>
+
+
          </div>
       </div>
 

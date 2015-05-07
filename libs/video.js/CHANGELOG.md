@@ -6,6 +6,15 @@ _(none)_
 
 --------------------
 
+## 4.12.5 (2015-03-17)
+* Updated to videojs-swf v4.5.4 to fix a potential security issue ([view](https://github.com/videojs/video.js/pull/1955))
+
+## 4.12.4 (2015-03-05)
+* Randomized the Google Analytics calls to stay under the limit ([view](https://github.com/videojs/video.js/pull/1916))
+
+## 4.12.3 (2015-02-28)
+* @heff fixed setting the source to an empty string ([view](https://github.com/videojs/video.js/pull/1905))
+
 ## 4.12.2 (2015-02-27)
 * @gkatsev fixed disabling of default text tracks ([view](https://github.com/videojs/video.js/pull/1892))
 
