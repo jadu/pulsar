@@ -53,3 +53,14 @@
   background: -webkit-linear-gradient(#e4e4e4, #f9f9f9);
   background: linear-gradient(#e4e4e4, #f9f9f9);
 }
+
+@include ie-lte(9) {
+    .toggle {
+        background-color: #efefef;
+        border: 1px solid #999;
+    }
+
+    .toggle-blob {
+        background-color: #ccc;
+    }
+}

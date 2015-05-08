@@ -45,7 +45,7 @@ module.exports = function(grunt) {
 				src:    '*.scss'
 			}]
 		},
-		dist: {
+		dist_modern: {
 			options: {
 				outputStyle: 'compressed'
 			},
@@ -56,7 +56,21 @@ module.exports = function(grunt) {
 				flatten: true,
 				ext:    '.css',
 				extDot: 'first',
-				src:    '*.scss'
+				src:    ['pulsar.scss', 'documentation.scss']
+			}]
+		},
+		dist_ie: {
+			options: {
+				outputStyle: 'nested'
+			},
+			files: [{
+				cwd:    'stylesheets/',
+				dest:   'css/',
+				expand: true,
+				flatten: true,
+				ext:    '.css',
+				extDot: 'first',
+				src:    'pulsar-ie*.scss'
 			}]
 		},
 	},
@@ -74,7 +88,7 @@ module.exports = function(grunt) {
 	watch: {
 		css: {
 			files: ['stylesheets/**/*.scss'],
-			tasks: ['sass:dist', 'autoprefixer'],
+			tasks: ['sass:dev', 'autoprefixer'],
 			options: {
 				livereload: true,
 			},
