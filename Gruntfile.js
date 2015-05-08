@@ -213,6 +213,7 @@ module.exports = function(grunt) {
   });
 
  grunt.registerTask('default', ['sass:dev', 'browserify', 'watch']);
+ grunt.registerTask('post-merge', ['sass:dev', 'browserify']);
 
  grunt.registerTask('pre-commit', [
 	'asciify',
