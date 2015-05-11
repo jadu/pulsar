@@ -179,12 +179,13 @@ data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
 	%}
 		{% set defaults = defaults|merge({'action': options.action}) %}
 	{% endif %}
+
 	{%
-		if options.method is defined
-		and options.method is not empty
+		if options.method is not defined
 	%}
-		{% set defaults = defaults|merge({'method': options.method|default('POST')}) %}
+		{% set defaults = defaults|merge({'method': 'POST'}) %}
 	{% endif %}
+
 	{%
 		if options.enctype is defined
 		and options.enctype is not empty
