@@ -83,10 +83,40 @@
                 <div class="modal__body">
                     <p>Turning this off will make your account <strong>less secure</strong>, we strongly advise that you keep two-step verification turned on.</p>
                     <p>If you turn it off, you will need to go through the set-up process again if you choose to turn it back on afterwards.</p>
+
+                    {{
+                        form.create()
+                    }}
+                    {{
+                        form.fieldset_start({
+                            'class': 'modal_fieldset',
+                            'legend': 'To proceed, confirm your identity'
+                        })
+                    }}
+                    {{
+                        form.text({
+                            "label": "Username",
+                            'class': 'form__group--full',
+                            "id": "username"
+                        })
+                    }}
+                    {{
+                        form.password({
+                            "label": "Password",
+                            'class': 'form__group--full',
+                            "id": "password"
+                        })
+                    }}
+                    {{
+                        form.fieldset_end()
+                    }}
+                    {{
+                        form.end()
+                    }}
                 </div>
                 <div class="modal__footer">
-                    <button type="button" class="btn" data-dismiss="modal">Keep It Turned On</button>
                     <button type="button" class="btn btn--danger">I Understand, Turn it Off</button>
+                    <button type="button" class="btn btn--naked" data-dismiss="modal">Keep It Turned On</button>
                 </div>
             </div><!-- /.modal__content -->
         </div><!-- /.modal__dialog -->

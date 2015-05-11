@@ -109,7 +109,7 @@
 // Footer (for actions)
 .modal__footer {
   padding: ($modal-inner-padding - 1) $modal-inner-padding ($modal-inner-padding - 5);
-  text-align: right; // right align buttons
+  // text-align: right; // right align buttons
   border-top: 1px solid $modal-footer-border-color;
   @include clear-fix; // clear it in case folks use .pull-* classes on buttons
 
@@ -146,3 +146,28 @@
     margin-left: 0;
   }
 }
+
+.modal {
+    .form-v2 {
+        padding-top: 0;
+    }
+
+    .form-v2 > fieldset {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .form-v2 legend {
+        font-size: 20px;
+        margin-left: 0;
+
+        &:before {
+            background: none;
+        }
+    }
+
+    .form-v2 .form__group:last-of-type {
+        margin-bottom: 0;
+    }
+}
+
