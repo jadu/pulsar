@@ -52,10 +52,6 @@ html, body {
 		animation: shake 400ms ease-in-out;
 	}
 
-	&--shake {
-		animation: shake 400ms ease-in-out;
-	}
-
 	&--success {
 		background-color: $success-color;
 	}
@@ -92,6 +88,11 @@ html, body {
 
 		&:active {
 			top: 1px;
+		}
+
+		&.is-loading {
+			padding-top: 4px;
+			padding-bottom: 5px;
 		}
 	}
 
