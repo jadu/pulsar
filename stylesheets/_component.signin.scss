@@ -52,6 +52,10 @@ html, body {
 		animation: shake 400ms ease-in-out;
 	}
 
+	&--shake {
+		animation: shake 400ms ease-in-out;
+	}
+
 	&--success {
 		background-color: $success-color;
 	}
