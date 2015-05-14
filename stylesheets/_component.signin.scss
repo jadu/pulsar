@@ -50,6 +50,10 @@ html, body {
 	&--error {
 		background-color: $danger-color;
 		animation: shake 400ms ease-in-out;
+
+		.loading--circle i {
+			border: 1px solid rgba(0,0,0,.2);
+		}
 	}
 
 	&--success {
@@ -93,6 +97,10 @@ html, body {
 		&.is-loading {
 			padding-top: 4px;
 			padding-bottom: 5px;
+
+			&:hover {
+				background-color: none;
+			}
 		}
 	}
 
