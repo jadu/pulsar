@@ -54,7 +54,7 @@
   background: linear-gradient(#e4e4e4, #f9f9f9);
 }
 
-@include ie-lte(9) {
+@include ie-lte(8) {
     .toggle {
         background-color: #efefef;
         border: 1px solid #999;
