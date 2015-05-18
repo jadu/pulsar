@@ -84,16 +84,10 @@
 
   @include ie-lte(8) {
    border: none;
+   text-indent: 0;
   }
 }
 
-.loading-image {
-    display: none;
-
-    @include ie-lte(8) {
-        display: block;
-    }
-}
 
 .form__group.is-loading {
 
