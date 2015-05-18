@@ -487,5 +487,6 @@ html, body {
 }
 
 #recaptcha_widget_div {
-	margin-bottom: 1em;
+	display: inline-block;
+	margin: 0 auto 1em auto;
 }
