@@ -65,7 +65,7 @@
   width: 20px;
 }
 
-.loading--circle i {
+.loading i {
   border: 1px solid $primary-color;
   border-top-color: $white;
   border-radius: 50%;
@@ -80,6 +80,18 @@
   position: absolute;
   top: 0;
   width: 20px;
+
+  @include ie-lte(8) {
+   border: none;
+  }
+}
+
+.loading-image {
+    display: none;
+
+    @include ie-lte(8) {
+        display: block;
+    }
 }
 
 .form__group.is-loading {

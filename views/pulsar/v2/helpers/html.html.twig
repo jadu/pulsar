@@ -649,12 +649,12 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 		{{
 			attributes(options
 				|defaults({
-					'class': 'loading loading--circle'
+					'class': 'loading'
 				})
 			)
 		}}
 	>
-		<i></i>
+		<i><img src="../../images/loading.gif" class="loading-image" /></i>
 	</div>
 
 {% endspaceless %}
