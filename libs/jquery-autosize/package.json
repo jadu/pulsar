@@ -1,7 +1,7 @@
 {
   "name": "autosize",
   "description": "Autosize is a small, stand-alone script to automatically adjust textarea height to fit text.",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "keywords": [
     "textarea",
     "form",
@@ -34,5 +34,9 @@
     },
     "title": "Autosize",
     "filename": "autosize"
+  },
+  "scripts": {
+    "patch": "bower version patch && npm version patch && npm publish && git push --follow-tags",
+    "patch-release": "bower version patch && npm version patch && npm publish && git push --follow-tags"
   }
 }
