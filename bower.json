@@ -10,6 +10,7 @@
     "tests"
   ],
   "dependencies": {
+    "bootstrapx-clickover": "latest",
     "font-awesome": "3.2.1",
     "html5shiv": "latest",
     "jquery": "1.x",

@@ -19,6 +19,7 @@ var $               = require('jquery'),
 	popover         = require('./popover'),
 	tooltip         = require('./tooltip'),
 
+	clickover       = require('../libs/bootstrapx-clickover/js/bootstrapx-clickover'),
 	svgeezy         = require('../libs/svgeezy/svgeezy.min'),
 	toggles         = require('../libs/jquery-toggles/toggles.min'),
 
@@ -37,6 +38,9 @@ $(function () {
 
     // Switch out .svg for .png for <img> elements in older browsers
     svgeezy.init('nocheck', 'png');
+
+    // Use clickover enhancements for popovers
+    $('[rel="clickover"]').clickover({ 'global_close': true });
 
 });
 
