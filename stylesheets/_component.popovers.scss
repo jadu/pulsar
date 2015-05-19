@@ -255,6 +255,7 @@
   }
 }
 
-[data-toggle="popover"] {
+[data-toggle="popover"],
+[rel="clickover"] {
     cursor: pointer;
 }
