@@ -30,7 +30,7 @@ html, body {
 	box-shadow: 0 0 50px #000;
 	color: white;
 	margin: 0 auto;
-	min-height: 320px;
+	min-height: 350px;
 	padding: 0 0 10px 0;
 	opacity: 1;
 	overflow: hidden;
@@ -40,7 +40,7 @@ html, body {
 	zoom: 1;
 
 	@include respond-min($screen-tablet) {
-		min-height: 350px;
+		min-height: 320px;
 		padding: 0 0 20px 0;
 		width: $signin-full-width;
 	}
