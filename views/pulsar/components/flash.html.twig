@@ -2,9 +2,9 @@
 {% import '@pulsar/pulsar/v2/helpers/flash.html.twig' as flash %}
 {{
 	flash.message({
-		'message': flash_message.message,
-		'type': flash_message.type,
-		'autohide': flash_message.autohide
+		'message': flash_message.message|default,
+		'type': flash_message.type|default,
+		'autohide': flash_message.autohide|default
 	})
 }}
 {% endif %}
