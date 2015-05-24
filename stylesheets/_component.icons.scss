@@ -1,13 +1,12 @@
-.icon--primary {
-  color: $primary-color;
+// State variations
+@each $state, $state-color, $state-color-alt in $state-colors {
+    .icon--#{$state}::before {
+        color: $state-color;
+    }
 }
 
 .icon--muted {
   color: $gray;
-}
-
-.icon--success:before {
-  color: $success-color;
 }
 
 .icon-grid:before {
