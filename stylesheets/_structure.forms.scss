@@ -1,0 +1,106 @@
+/**
+ * Controls the principle layout of Pulsar form elements and pays very little
+ * notice to how they're styled.
+ *
+ * We rely heavily on table and table-cell layouts which (in lieu of flexbox)
+ * give us great, predictable, cross browser columnar layouts.
+ */
+
+// each 'block' of a form, usually consisting of a label and one or more inputs
+.form__group {
+    display: table;
+    width: 100%;
+
+    // the main label, usually placed in the left hand column
+    > .control__label {
+        min-width: 300px;
+        width: 30%;
+    }
+}
+
+// all labels, regardless of their placement
+.control__label {
+    display: table-cell;
+    vertical-align: top;
+}
+
+// the container around one or more form inputs
+.controls {
+    display: table-cell;
+    min-width: 300px;
+    width: 70%;
+
+    // stack inputs by default
+    > .form__control,
+    > .control__label {
+        display: table; // test this moar!
+    }
+}
+
+// inputs can be aligned next to each other if required
+.form__group--inline > .controls {
+
+    // override regular stacked styling
+    > .form__control,
+    > .control__label,
+    &:first-child > .control__label {
+        clear: none;
+        display: inline-block;
+        float: none;
+    }
+
+    // inline radio/checkboxes need spacing apart slightly
+    > .control__label:not(:first-of-type) {
+        margin-left: 10px;
+    }
+}
+
+// make sure labels next to radio/checkboxes have some space to breathe
+.control__label > .form__control {
+    margin-right: 10px;
+}
+
+// radio/checkboxes before labels
+.control__label--left {
+    text-align: right;
+
+    > .form__control {
+        float: right;
+        margin-left: 15px;
+        margin-right: 0;
+    }
+}
+
+// control group inside first column (normally used for control labels)
+.controls:first-child {
+    display: table;
+    min-width: 300px;
+    width: 30%;
+
+    > .control__label {
+        clear: left;
+        display: inline-block;
+        float: left;
+    }
+
+    > .control__label--left {
+        clear: right;
+        float: right;
+    }
+}
+
+// at narrow viewports, forms collapse into a single column view
+@media (max-width: 600px) {
+    .form__group {
+        > .control__label,
+        > .controls {
+            display: block;
+            min-width: 100%;
+            width: 100%;
+        }
+
+        .controls:first-child {
+            min-width: 100%;
+        }
+    }
+}
