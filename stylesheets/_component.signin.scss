@@ -407,17 +407,17 @@ html, body {
 }
 
 // 2FA code input in control centre UI
-.form-v2 {
+.form-v2,
+.modal {
 	.signin__code1,
     .signin__code2 {
         display: inline-block;
         font-family: courier;
         letter-spacing: 2px;
-        padding: 10px;
+        padding: 0 10px;
         width: 55px;
     }
 }
-
 
 @keyframes success-icon {
   0%    { transform: translateY(0) scale(1); }
