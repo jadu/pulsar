@@ -23,7 +23,7 @@ var $               = require('jquery'),
 	svgeezy         = require('../libs/svgeezy/svgeezy.min'),
 	toggles         = require('../libs/jquery-toggles/toggles.min'),
 
-	ButtonComponent = require('./buttonComponent'),
+	ButtonComponent = require('./ButtonComponent'),
 	MasterSwitchComponent = require('./masterSwitchComponent'),
 	SignInComponent = require('./area/signin/signin');
 
@@ -31,8 +31,8 @@ $(function () {
 
 	var $html = $('html');
 
-	buttonComponent = new ButtonComponent($html);
-    buttonComponent.init();
+	ButtonComponent = new ButtonComponent($html);
+    ButtonComponent.init();
 
     signIn = new SignInComponent($html);
     signIn.initialize();

@@ -1,7 +1,7 @@
 'use strict'
 
 var $ = require('jquery'),
-	ButtonComponent = require('../../js/buttonComponent');
+	ButtonComponent = require('../../js/ButtonComponent');
 
 describe('Button component', function() {
 
@@ -18,14 +18,14 @@ describe('Button component', function() {
 		this.$isDisabled = this.$html.find('.js-submit-disable.is-disabled');
 		this.$submitEnable = this.$html.find('.js-submit-enable');
 
-		this.buttonComponent = new ButtonComponent(this.$html);
+		this.ButtonComponent = new ButtonComponent(this.$html);
 
 	});
 
 	describe('the default state of submit buttons', function() {
 
 		beforeEach(function() {
-			this.buttonComponent.init();
+			this.ButtonComponent.init();
 		});
 
 		it('should have a js-submit-disable class', function() {
@@ -45,7 +45,7 @@ describe('Button component', function() {
 	describe('clicking a button with the js-submit-disable class', function() {
 
 		beforeEach(function() {
-			this.buttonComponent.init();
+			this.ButtonComponent.init();
 		});
 
 		it('should add the disabled class on click', function() {
@@ -69,7 +69,7 @@ describe('Button component', function() {
 	describe('clicking a button with the js-submit-enable class', function() {
 
 		beforeEach(function() {
-			this.buttonComponent.init();
+			this.ButtonComponent.init();
 		});
 
 		it('should have a js-submit-disable class', function() {
@@ -95,9 +95,9 @@ describe('Button component', function() {
 	describe('after calling the submitEnable method, the disabled button', function() {
 
 		beforeEach(function() {
-			this.buttonComponent.init();
+			this.ButtonComponent.init();
 			this.$submitDisable.trigger($.Event('click'));
-			this.buttonComponent.submitEnable();
+			this.ButtonComponent.submitEnable();
 		});
 
 		it('should have a js-submit-disable class', function() {

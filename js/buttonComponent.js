@@ -1,3 +1,7 @@
+'use strict';
+
+var $ = require('jquery');
+
 function ButtonComponent(html) {
 	this.$html = html;
 };
