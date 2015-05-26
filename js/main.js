@@ -31,8 +31,8 @@ $(function () {
 
 	var $html = $('html');
 
-	ButtonComponent = new ButtonComponent($html);
-    ButtonComponent.init();
+	buttonComponent = new ButtonComponent($html);
+    buttonComponent.init();
 
     signIn = new SignInComponent($html);
     signIn.initialize();
