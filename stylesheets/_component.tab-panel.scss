@@ -26,10 +26,8 @@
 	.tabs__list {
 
 		> li > a {
-
 			padding: 0 5px;
 			text-align: center;
-			text-overflow: clipped;
 
 			@include respond-min($screen-desktop) {
 				padding: .5em 2px .5em 15px;
