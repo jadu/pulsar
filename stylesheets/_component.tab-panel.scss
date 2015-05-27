@@ -32,7 +32,7 @@
 			text-align: center;
 
 			@include respond-min($screen-desktop) {
-				padding: .5em $gutter-width .5em 2px;
+				padding: .5em 2px .5em $gutter-width;
 				text-align: left;
 			}
 
