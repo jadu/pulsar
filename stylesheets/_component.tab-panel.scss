@@ -13,7 +13,6 @@
 		}
 		> li > a > i {
 			font-size: 1em;
-			margin-right: 10px;
 			opacity: 1;
 		}
 	}
@@ -30,9 +29,10 @@
 
 			padding: 0 5px;
 			text-align: center;
+			text-overflow: clipped;
 
 			@include respond-min($screen-desktop) {
-				padding: .5em 2px .5em $gutter-width;
+				padding: .5em 2px .5em 15px;
 				text-align: left;
 			}
 
