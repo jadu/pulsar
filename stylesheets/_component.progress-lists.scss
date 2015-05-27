@@ -59,7 +59,12 @@
     width: 100%;
 
     .badge {
+        display: none;
         margin-right: 5px;
+
+        @include respond-min($screen-desktop) {
+            display: inline-block;
+        }
     }
 
     .progress-list__item:first-of-type & {
