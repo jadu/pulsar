@@ -23,7 +23,7 @@
     "nwmatcher": "latest",
     "pikaday": "latest",
     "respond": "latest",
-    "selectivizr": "latest",
+    "selectivizr": "jadu/selectivizr",
     "sticky": "latest",
     "store.js": "latest",
     "svgeezy": "latest",
