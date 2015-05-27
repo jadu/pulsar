@@ -25,9 +25,15 @@
 
 	.tabs__list {
 
+		> li {
+			vertical-align: top;
+		}
+
 		> li > a {
-			padding: 0 5px;
+			line-height: 1em;
+			padding: .5em 5px;
 			text-align: center;
+			white-space: normal;
 
 			@include respond-min($screen-desktop) {
 				padding: .5em 2px .5em 15px;
@@ -38,6 +44,15 @@
 
 		> li > a > i {
 			width: 1em;
+		}
+
+		[class^="icon-"],
+		[class*=" icon-"] {
+			display: none;
+
+			@include respond-min($screen-desktop) {
+				display: inline-block;
+			}
 		}
 	}
 
@@ -76,7 +91,7 @@
 .tab-panel--contrast {
 
 	> .tabs__list > li {
-
+		background-color: $gray-lighter;
 
         &:first-of-type {
             border-top-left-radius: $border-radius;
@@ -88,11 +103,7 @@
             border-bottom-right-radius: $border-radius;
         }
 
-		> a {
-			background-color: $gray-lighter;
-		}
-
-		> a:hover {
+		&:hover {
 			background-color: darken($gray-lighter, 5);
 		}
 
