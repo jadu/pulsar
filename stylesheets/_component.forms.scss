@@ -610,7 +610,7 @@ textarea {
 
     @include respond-min($screen-desktop) {
       padding-top: 9px;
-      //display: inline-block;
+      display: inline-block;
       width: 20%;
     }
   }
