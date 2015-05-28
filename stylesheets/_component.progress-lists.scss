@@ -84,7 +84,7 @@
     box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
     color: $success-color-alt;
 
-    &:not(:last-of-type)::after {
+    &:not(:last-of-type):after {
         border-left-color: $success-color;
     }
 
@@ -104,7 +104,7 @@
     box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
     color: $primary-color-alt;
 
-    &:not(:last-of-type)::after {
+    &:not(:last-of-type):after {
         border-left-color: $primary-color;
     }
 
@@ -116,4 +116,12 @@
             border-left-color: darken($primary-color, 2);
         }
     }
+}
+
+@include ie-lte(8) {
+    .progress-list__item:nth-of-type(1) { z-index: 5; }
+    .progress-list__item:nth-of-type(2) { z-index: 4; }
+    .progress-list__item:nth-of-type(3) { z-index: 3; }
+    .progress-list__item:nth-of-type(4) { z-index: 2; }
+    .progress-list__item:nth-of-type(5) { z-index: 1; }
 }
