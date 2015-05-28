@@ -32,3 +32,8 @@
 	}
 
 }
+
+// override overly specific horizontal style
+.form--horizontal .masterswitch-control .control__label {
+	display: table-cell;
+}
