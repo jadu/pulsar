@@ -43,7 +43,7 @@
         background-color: darken($progress-bg, 5);
         color: $black;
 
-        &::after {
+        &:after {
             border-left-color: darken($progress-bg, 5);
         }
     }
@@ -92,7 +92,7 @@
         background-color: darken($success-color, 2);
         color: $success-color-alt;
 
-        &::after {
+        &:after {
             border-left-color: darken($success-color, 2);
         }
     }
@@ -112,7 +112,7 @@
         background-color: darken($primary-color, 2);
         color: $primary-color-alt;
 
-        &::after {
+        &:after {
             border-left-color: darken($primary-color, 2);
         }
     }
