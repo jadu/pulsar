@@ -1,11 +1,11 @@
-{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+    {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 {% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
 {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 {% import '@pulsar/pulsar/helpers/flash.html.twig' as flash %}
 
 <h2 class="heading">{{ heading|raw }}</h2>
 
-<div class="tab__inner tab--unpadded">
+<div class="tab__inner">
     {{ form.create() }}
 
     {{
@@ -81,21 +81,11 @@
 
         {{
             form.textarea({
-                'label': 'Textarea (1 row)',
-                'id': 'inputTextarea1',
-                'name': 'inputTextarea1',
-                'placeholder': 'Placeholder',
-                'rows': 1
-            })
-        }}
-
-        {{
-            form.textarea({
                 'label': 'Textarea (2 rows)',
                 'id': 'inputTextarea2',
                 'name': 'inputTextarea2',
                 'placeholder': 'Placeholder',
-                'rows': 2
+                'rows': '2'
             })
         }}
 
@@ -105,7 +95,7 @@
                 'id': 'inputTextarea3',
                 'name': 'inputTextarea3',
                 'placeholder': 'Placeholder',
-                'rows': 3
+                'rows': '3'
             })
         }}
 
@@ -115,7 +105,7 @@
                 'id': 'inputTextarea4',
                 'name': 'inputTextarea4',
                 'placeholder': 'Placeholder',
-                'rows': 4
+                'rows': '4'
             })
         }}
 
@@ -288,6 +278,7 @@
         })
     }}
 
+        <div class="form__group">
             <p>This is a plain ol' paragraph, its left edge should be on the far left.</p>
 
             <ul>
@@ -299,20 +290,21 @@
                 <li>Unordered List</li>
                 <li>Unordered List</li>
             </ol>
+        </div>
 
-            <section class="form__indent">
-                <p>This is the same plain ol' paragraph, but now we're wrapped in a <code>form__indent</code> class which should make our left edge match the form controls.</p>
+        <div class="form__group form__group--indent">
+            <p>This is the same plain ol' paragraph, but now we're wrapped in a <code>form__group--indent</code> class which should make our left edge match the form controls.</p>
 
-                <ul>
-                    <li>Unordered List</li>
-                    <li>Unordered List</li>
-                </ul>
+            <ul>
+                <li>Unordered List</li>
+                <li>Unordered List</li>
+            </ul>
 
-                <ol>
-                    <li>Unordered List</li>
-                    <li>Unordered List</li>
-                </ol>
-            </section>
+            <ol>
+                <li>Unordered List</li>
+                <li>Unordered List</li>
+            </ol>
+        </div>
 
     {{ form.fieldset_end() }}
 
@@ -322,12 +314,14 @@
         })
     }}
 
+    <div class="form__group">
         {{
             html.button({
                 'label': 'This Button Has No Form Label',
                 'class': 'form__indent'
             })
         }}
+    </div>
 
     {{ form.fieldset_end() }}
 
@@ -356,13 +350,15 @@
             })
         }}
 
-        {{
-            html.button({
-                'label': 'This Button Has No Form Label',
-                'class': 'form__indent'
-            })
-        }}
-        {{ html.remove_button() }}
+        <div class="form__group">
+            {{
+                html.button({
+                    'label': 'This Button Has No Form Label',
+                    'class': 'form__indent'
+                })
+            }}
+            {{ html.remove_button() }}
+        </div>
 
     {{ form.fieldset_end() }}
 

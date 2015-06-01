@@ -171,7 +171,7 @@ data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
 {% spaceless %}
 	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-	{% set defaults = {'class': 'form--horizontal form-v2' } %}
+	{% set defaults = { 'class': 'form' } %}
 
 	{%
 		if options.action is defined
@@ -327,7 +327,7 @@ Opens a `<fieldset>` and allows you to define an optional `<legend>`.
 
 ## Example usage
 
-```twig
+```twigx
 {{
 	form.fieldset_start({
 		'legend': 'I am Legend'
@@ -352,13 +352,19 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
 	<fieldset
-		{{ attributes(options|exclude('legend')) }}
+		{{
+			attributes(options
+				|exclude('legend')
+				|defaults({
+					'class': 'fieldset'
+				})
+			) }}
 	>
 	{%
 		if options.legend is defined
 		and options.legend is not empty
 	%}
-		<legend>{{ options.legend|raw }}</legend>
+		<legend class="legend">{{ options.legend|raw }}</legend>
 	{% endif %}
 
 {% endspaceless %}
@@ -1024,7 +1030,7 @@ form        | string  | Specific one or more forms this label belongs to
 id          | string  | A unique identifier, if required
 name        | string  | The name of this control
 placeholder | string  | A short hint that describes the expected value
-rows        | integer | The height, in rows (default 2)
+rows        | integer | The height, in rows
 value       | string  | Specifies the value of the input
 data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
@@ -1039,8 +1045,11 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 		_self.group({
 			'parent': options|only('class help label'),
 			'inputs': [
-				elem.textarea(
-					options|exclude('class help label')
+				elem.textarea(options
+					|exclude('class help label')
+					|defaults({
+						'class': 'textarea'
+					})
 				)
 			]
 		})

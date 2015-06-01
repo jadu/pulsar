@@ -6,34 +6,41 @@
  * give us great, predictable, cross browser columnar layouts.
  */
 
+$label-column-width:   25%;
+$control-column-width: 75%;
+
 // each 'block' of a form, usually consisting of a label and one or more inputs
 .form__group {
     display: table;
+    table-layout: fixed; // prevent resizable textareas from causing the column to grow in width
+
     width: 100%;
 
     // the main label, usually placed in the left hand column
     > .control__label {
-        min-width: 300px;
-        width: 30%;
+        width: $label-column-width;
+    }
+
+    .help-block {
+      margin: .5em 0 0 0;
     }
 }
 
 // all labels, regardless of their placement
-.control__label {
+.control__label,
+.controls {
     display: table-cell;
     vertical-align: top;
 }
 
 // the container around one or more form inputs
 .controls {
-    display: table-cell;
-    min-width: 300px;
-    width: 70%;
+    width: $control-column-width;
 
     // stack inputs by default
     > .form__control,
     > .control__label {
-        display: table; // test this moar!
+        display: block; // test this moar!
     }
 }
 
@@ -71,11 +78,30 @@
     }
 }
 
+.form__group--top {
+  .control__label,
+  .controls {
+    display: block;
+    min-width: 100%;
+  }
+
+  // Create a 'fake' label to fill the gap left by a missing label element which removes the need to leave empty elements in the markup
+  .controls:before {
+    content: "\00a0";
+    display: table-cell;
+    float: left;
+    width: $label-column-width;
+  }
+
+  .help-block {
+    margin-left: $label-column-width;
+  }
+}
+
 // control group inside first column (normally used for control labels)
 .controls:first-child {
     display: table;
-    min-width: 300px;
-    width: 30%;
+    width: $label-column-width;
 
     > .control__label {
         clear: left;
@@ -89,6 +115,28 @@
     }
 }
 
+.form__group--flush {
+    .controls {
+        display: table-row;
+
+        &:before {
+            display: none;
+        }
+    }
+
+    .help-block {
+        margin-left: 0;
+    }
+}
+
+.form__group--indent {
+    margin-left: $label-column-width;
+}
+
+.controls > .textarea {
+  max-width: 99%; // take into account any textarea border which might look like it’s overlapping at 100% width
+}
+
 // at narrow viewports, forms collapse into a single column view
 @media (max-width: 600px) {
     .form__group {
@@ -96,11 +144,45 @@
         > .controls {
             display: block;
             min-width: 100%;
+            overflow: hidden;
             width: 100%;
         }
 
         .controls:first-child {
             min-width: 100%;
         }
+
+       .controls:before {
+            display: none;
+       }
+
+      .help-block {
+        margin-left: 0;
+      }
     }
 }
+
+.fieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
+
+  .legend {
+    margin-bottom: .5em;
+  }
+}
+
+
+// DEBUG STYLES
+
+.form__group {
+  margin-bottom: .5em;
+}
+
+// .control__label {
+//   background-color: #999;
+// }
+
+// .controls {
+//   background-color: #ccc;
+// }
