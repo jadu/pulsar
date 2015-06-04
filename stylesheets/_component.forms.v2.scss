@@ -5,6 +5,11 @@
         margin-right: 20px;
     }
 
+    > .flash {
+        margin: 0 0 1em 0;
+        position: relative;
+    }
+
     .form__actions {
         margin-left: 0px;
         margin-right: 0px;
@@ -53,6 +58,10 @@
 
     .form__group .form__group--no-label {
         margin-left: 0;
+    }
+
+    .form__group .controls {
+        width: 100%;
     }
 
     // nested form groups

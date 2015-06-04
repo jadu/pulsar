@@ -49,5 +49,6 @@
     ]
   },
   "browserify-shim": {
+    "./libs/svgeezy/svgeezy.min.js": { "exports": "svgeezy" }
   }
 }

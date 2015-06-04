@@ -28,6 +28,7 @@
 
   @include respond-max($screen-phone) {
     min-height: $toolbar-height-small;
+    height: $toolbar-height-small;
   }
 
   .search-form {
@@ -141,7 +142,7 @@
   width: $brand-width;
 
   @include respond-max($screen-phone) {
-    margin: 0 $gutter-width / 2;
+    margin: 5px $gutter-width / 2;
     top: 3px;
   }
 
@@ -239,7 +240,7 @@
   i {
     display: block;
     font-size: 16px;
-    margin: -2px 0 -1px;
+    margin: 11px 0 -1px;
     vertical-align: top;
   }
 

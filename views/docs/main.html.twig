@@ -1,4 +1,4 @@
-{% extends '@pulsar/pulsar/layouts/tabbed.html.twig' %}
+{% extends '@pulsar/pulsar/layouts/pulsar.html.twig' %}
 {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 {% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
 {% import '@pulsar/pulsar/v2/helpers/flash.html.twig' as flash %}
@@ -7,30 +7,7 @@
 
 {% set heading = 'Pulsar UI' %}
 
-{% block tabs_list %}
-  <div class="actionsbar actionsbar--left">
-    <div class="btn__toolbar">
-      <div class="btn__group">
-        <a class="btn btn__back" href="#back" onclick="history.back(); return false;"><i class="icon-arrow-left"></i></a>
-        {% if actions_menu is defined and actions_menu is not empty %}
-          {{ html.button_dropdown({ 'label': 'Actions', 'items': actions_menu }) }}
-        {% endif %}
-      </div>
-    </div>
-  </div>
-
-  {{ tabs|raw }}
-{% endblock %}
-
-{% block tabs_content %}
-    <div class="tabs__content markdown">
-
-    	<h2 class="heading">{{ heading|raw }}</h2>
-
-      <div class="tab__pane is-active">
-          <div class="tab__inner tab--padded">
-              {{ content|raw }}
-          </div>
-      </div>
-    </div>
+{% block content %}
+    <br />
+    <p>Pulsar documentation is now on <a href="http://jadu.gitbooks.io/pulsar">http://jadu.gitbooks.io/pulsar</a>.</p>
 {% endblock %}

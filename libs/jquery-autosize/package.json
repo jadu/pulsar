@@ -1,7 +1,7 @@
 {
   "name": "autosize",
   "description": "Autosize is a small, stand-alone script to automatically adjust textarea height to fit text.",
-  "version": "2.0.0",
+  "version": "3.0.5",
   "keywords": [
     "textarea",
     "form",
@@ -12,6 +12,7 @@
     "url": "http://www.jacklmoore.com",
     "email": "hello@jacklmoore.com"
   },
+  "main": "dest/autosize.js",
   "license": "MIT",
   "homepage": "http://www.jacklmoore.com/autosize",
   "demo": "http://www.jacklmoore.com/autosize",
@@ -21,17 +22,21 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "babel": "^5.1.9",
+    "gaze": "^0.5.1",
     "jshint": "^2.5.6",
-    "uglify-js": "^2.4.15",
-    "watch": "^0.14.0"
+    "uglify-js": "^2.4.15"
   },
   "config": {
     "bower": {
       "name": "autosize",
-      "ignore": [],
-      "main": "dest/autosize.js"
+      "ignore": []
     },
     "title": "Autosize",
-    "fileName": "autosize"
+    "filename": "autosize"
+  },
+  "scripts": {
+    "patch": "bower version patch && npm version patch && npm publish && git push --follow-tags",
+    "patch-release": "bower version patch && npm version patch && npm publish && git push --follow-tags"
   }
 }

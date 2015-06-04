@@ -60,7 +60,7 @@
     text-decoration: none;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
+    // text-overflow: ellipsis;
 
     > .label {
       margin-left: .5em;
@@ -349,6 +349,10 @@
 	.form-v2 {
 		background-color: white;
 	}
+
+    &.tab--padded {
+        background-color: white;
+    }
 }
 
 .tab__container .form__actions {

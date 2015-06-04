@@ -254,3 +254,8 @@
     }
   }
 }
+
+[data-toggle="popover"],
+[rel="clickover"] {
+    cursor: pointer;
+}

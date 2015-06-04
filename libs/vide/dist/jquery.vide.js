@@ -1,25 +1,38 @@
 /*
- *  Vide - v0.3.1
+ *  Vide - v0.3.4
  *  Easy as hell jQuery plugin for video backgrounds.
  *  http://vodkabears.github.io/vide/
  *
  *  Made by Ilya Makarov
  *  Under MIT License
  */
-!(function($, window, document, navigator) {
+!(function(root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    define(['jquery'], factory);
+  } else if (typeof exports === 'object') {
+    factory(require('jquery'));
+  } else {
+    factory(root.jQuery);
+  }
+})(this, function($) {
+
   'use strict';
 
   /**
    * Name of the plugin
    * @private
+   * @const
+   * @type {String}
    */
-  var pluginName = 'vide';
+  var PLUGIN_NAME = 'vide';
 
   /**
    * Default settings
    * @private
+   * @const
+   * @type {Object}
    */
-  var defaults = {
+  var DEFAULTS = {
     volume: 1,
     playbackRate: 1,
     muted: true,
@@ -29,18 +42,6 @@
     posterType: 'detect',
     resizing: true
   };
-
-  /**
-   * Is iOs?
-   * @private
-   */
-  var isIOS = /iPad|iPhone|iPod/i.test(navigator.userAgent);
-
-  /**
-   * Is Android?
-   * @private
-   */
-  var isAndroid = /Android/i.test(navigator.userAgent);
 
   /**
    * Parse a string with options
@@ -66,9 +67,10 @@
       option = arr[i];
 
       // Ignore urls and a string without colon delimiters
-      if (option.search(/^(http|https|ftp):\/\//) !== -1 ||
-        option.search(':') === -1)
-      {
+      if (
+        option.search(/^(http|https|ftp):\/\//) !== -1 ||
+        option.search(':') === -1
+      ) {
         break;
       }
 
@@ -167,21 +169,6 @@
   }
 
   /**
-   * Refresh current settings
-   * @private
-   * @param {Vide} vide
-   */
-  function refreshSettings(vide) {
-    vide.$video.prop({
-      autoplay: vide.settings.autoplay,
-      loop: vide.settings.loop,
-      volume: vide.settings.volume,
-      muted: vide.settings.muted,
-      playbackRate: vide.settings.playbackRate
-    });
-  }
-
-  /**
    * Vide constructor
    * @param {HTMLElement} element
    * @param {Object|String} path
@@ -214,7 +201,7 @@
       }
     }
 
-    this.settings = $.extend({}, defaults, options);
+    this.settings = $.extend({}, DEFAULTS, options);
     this.path = path;
 
     this.init();
@@ -227,7 +214,7 @@
   Vide.prototype.init = function() {
     var vide = this;
     var position = parsePosition(vide.settings.position);
-    var sources;
+    var sources = '';
     var poster;
 
     // Set styles of a video wrapper
@@ -280,40 +267,43 @@
 
     vide.$element.prepend(vide.$wrapper);
 
-    if (!isIOS && !isAndroid) {
-      sources = '';
-
-      if (typeof vide.path === 'object') {
-        if (vide.path.mp4) {
-          sources += '<source src="' + vide.path.mp4 + '.mp4" type="video/mp4">';
-        }
-        if (vide.path.webm) {
-          sources += '<source src="' + vide.path.webm + '.webm" type="video/webm">';
-        }
-        if (vide.path.ogv) {
-          sources += '<source src="' + vide.path.ogv + '.ogv" type="video/ogv">';
-        }
-
-        vide.$video = $('<video>' + sources + '</video>');
-      } else {
-        vide.$video = $('<video>' +
-          '<source src="' + vide.path + '.mp4" type="video/mp4">' +
-          '<source src="' + vide.path + '.webm" type="video/webm">' +
-          '<source src="' + vide.path + '.ogv" type="video/ogg">' +
-          '</video>');
+    if (typeof vide.path === 'object') {
+      if (vide.path.mp4) {
+        sources += '<source src="' + vide.path.mp4 + '.mp4" type="video/mp4">';
       }
 
-      // Disable visibility, while loading
-      vide.$video.css('visibility', 'hidden');
+      if (vide.path.webm) {
+        sources += '<source src="' + vide.path.webm + '.webm" type="video/webm">';
+      }
+
+      if (vide.path.ogv) {
+        sources += '<source src="' + vide.path.ogv + '.ogv" type="video/ogv">';
+      }
+
+      vide.$video = $('<video>' + sources + '</video>');
+    } else {
+      vide.$video = $('<video>' +
+        '<source src="' + vide.path + '.mp4" type="video/mp4">' +
+        '<source src="' + vide.path + '.webm" type="video/webm">' +
+        '<source src="' + vide.path + '.ogv" type="video/ogg">' +
+        '</video>');
+    }
+
+    vide.$video
 
       // Set video properties
-      refreshSettings(vide);
-
-      // Append a video
-      vide.$wrapper.append(vide.$video);
+      .prop({
+        autoplay: vide.settings.autoplay,
+        loop: vide.settings.loop,
+        volume: vide.settings.volume,
+        muted: vide.settings.muted,
+        defaultMuted: vide.settings.muted,
+        playbackRate: vide.settings.playbackRate,
+        defaultPlaybackRate: vide.settings.playbackRate
+      })
 
       // Video alignment
-      vide.$video.css({
+      .css({
         margin: 'auto',
         position: 'absolute',
         'z-index': -1,
@@ -321,40 +311,39 @@
         left: position.x,
         '-webkit-transform': 'translate(-' + position.x + ', -' + position.y + ')',
         '-ms-transform': 'translate(-' + position.x + ', -' + position.y + ')',
-        transform: 'translate(-' + position.x + ', -' + position.y + ')'
-      });
+        '-moz-transform': 'translate(-' + position.x + ', -' + position.y + ')',
+        transform: 'translate(-' + position.x + ', -' + position.y + ')',
+
+        // Disable visibility, while loading
+        visibility: 'hidden'
+      })
 
       // Resize a video, when it's loaded
-      vide.$video.on('canplaythrough.' + pluginName, function() {
+      .on('canplaythrough.' + PLUGIN_NAME, function() {
         vide.$video.css('visibility', 'visible');
-
-        // https://github.com/VodkaBears/Vide/pull/48
-        refreshSettings(vide);
-
-        // Force to play, important for Safari
-        vide.settings.autoplay && vide.$video[0].play();
-
         vide.resize();
         vide.$wrapper.css('background-image', 'none');
       });
 
-      // Resize event is available only for 'window'
-      // Use another code solutions to detect DOM elements resizing
-      vide.$element.on('resize.' + pluginName, function() {
-        if (vide.settings.resizing) {
-          vide.resize();
-        }
-      });
-    }
+    // Resize event is available only for 'window'
+    // Use another code solutions to detect DOM elements resizing
+    vide.$element.on('resize.' + PLUGIN_NAME, function() {
+      if (vide.settings.resizing) {
+        vide.resize();
+      }
+    });
+
+    // Append a video
+    vide.$wrapper.append(vide.$video);
   };
 
   /**
    * Get a video element
    * @public
-   * @returns {HTMLVideoElement|null}
+   * @returns {HTMLVideoElement}
    */
   Vide.prototype.getVideoObject = function() {
-    return this.$video ? this.$video[0] : null;
+    return this.$video[0];
   };
 
   /**
@@ -396,14 +385,14 @@
    * @public
    */
   Vide.prototype.destroy = function() {
-    this.$element.off(pluginName);
+    this.$element.off(PLUGIN_NAME);
 
     if (this.$video) {
-      this.$video.off(pluginName);
+      this.$video.off(PLUGIN_NAME);
     }
 
-    delete $[pluginName].lookup[this.index];
-    this.$element.removeData(pluginName);
+    delete $[PLUGIN_NAME].lookup[this.index];
+    this.$element.removeData(PLUGIN_NAME);
     this.$wrapper.remove();
   };
 
@@ -412,7 +401,7 @@
    * @public
    * @type {Object}
    */
-  $[pluginName] = {
+  $[PLUGIN_NAME] = {
     lookup: []
   };
 
@@ -423,11 +412,11 @@
    * @returns {JQuery}
    * @constructor
    */
-  $.fn[pluginName] = function(path, options) {
+  $.fn[PLUGIN_NAME] = function(path, options) {
     var instance;
 
     this.each(function() {
-      instance = $.data(this, pluginName);
+      instance = $.data(this, PLUGIN_NAME);
 
       if (instance) {
 
@@ -437,19 +426,20 @@
 
       // Create the plugin instance
       instance = new Vide(this, path, options);
-      instance.index = $[pluginName].lookup.push(instance) - 1;
-      $.data(this, pluginName, instance);
+      instance.index = $[PLUGIN_NAME].lookup.push(instance) - 1;
+      $.data(this, PLUGIN_NAME, instance);
     });
 
     return this;
   };
 
   $(document).ready(function() {
+    var $window = $(window);
 
     // Window resize event listener
-    $(window).on('resize.' + pluginName, function() {
-      for (var len = $[pluginName].lookup.length, i = 0, instance; i < len; i++) {
-        instance = $[pluginName].lookup[i];
+    $window.on('resize.' + PLUGIN_NAME, function() {
+      for (var len = $[PLUGIN_NAME].lookup.length, i = 0, instance; i < len; i++) {
+        instance = $[PLUGIN_NAME].lookup[i];
 
         if (instance && instance.settings.resizing) {
           instance.resize();
@@ -457,16 +447,22 @@
       }
     });
 
+    // https://github.com/VodkaBears/Vide/issues/68
+    $window.on('unload.' + PLUGIN_NAME, function() {
+      return false;
+    });
+
     // Auto initialization
     // Add 'data-vide-bg' attribute with a path to the video without extension
     // Also you can pass options throw the 'data-vide-options' attribute
     // 'data-vide-options' must be like 'muted: false, volume: 0.5'
-    $(document).find('[data-' + pluginName + '-bg]').each(function(i, element) {
+    $(document).find('[data-' + PLUGIN_NAME + '-bg]').each(function(i, element) {
       var $element = $(element);
-      var options = $element.data(pluginName + '-options');
-      var path = $element.data(pluginName + '-bg');
+      var options = $element.data(PLUGIN_NAME + '-options');
+      var path = $element.data(PLUGIN_NAME + '-bg');
 
-      $element[pluginName](path, options);
+      $element[PLUGIN_NAME](path, options);
     });
   });
-})(window.jQuery, window, document, navigator);
+
+});

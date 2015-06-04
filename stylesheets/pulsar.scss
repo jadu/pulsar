@@ -16,6 +16,10 @@
 @import '../libs/normalize-css/normalize.css';
 @import '../libs/jquery-toggles/css/toggles-full.css';
 
+// Font awesome
+$FontAwesomePath: '../libs/font-awesome/font/';
+@import '../libs/font-awesome/scss/font-awesome';
+
 // Mixins
 @import '_mixin.border-radius';
 @import '_mixin.clear-fix';
@@ -25,21 +29,22 @@
 @import '_mixin.inline-block';
 @import '_mixin.label-variant';
 @import '_mixin.media-queries';
+@import '_mixin.mixins-to-organise';
 
 // Config
-@import '_config.mixins';
 @import '_config.colours';
 @import '_config.variables';
 @import '_config.fonts';
 
 // Structure
+@import '_structure.columns';
 @import '_structure.scaffolding';
 @import '_structure.type';
 
 // Layouts
-@import '_layout.tabs';
-@import '_layout.signin';
 @import '_layout.sidebar';
+@import '_layout.signin';
+@import '_layout.tabs';
 
 /* -------------------------------------------------------------------------- *\
 	If you're theming Pulsar and want to include your own variables, colours or

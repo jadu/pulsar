@@ -45,7 +45,7 @@ SignInComponent.prototype.initialize = function () {
 	this.$html.find('input').placeholder();
 
 	// Forgotten password
-	this.$html.find('[href="#forgot"]').on('click', function (e) {
+	this.$html.find('[href="#forgot-password"]').on('click', function (e) {
 		e.preventDefault();
 
 		component.switchPanel('.signin-reset');
@@ -67,6 +67,24 @@ SignInComponent.prototype.initialize = function () {
 		e.preventDefault();
 		e.stopPropagation();
 		component.reset();
+	});
+
+	// Forgotten username
+	this.$html.find('[href="#forgot-username"]').on('click', function (e) {
+		e.preventDefault();
+
+		component.switchPanel('.signin-forgot');
+
+		component.$container.removeClass('signin--error');
+
+		component.$container
+			.addClass('active-forgot')
+			.one(component.transitionEnd, function () {
+				component.$resetEmailField.focus();
+			});
+
+		$('.signin__input, .signin__submit, .signin__link', $('.signin-reset'))
+			.prop('tabindex', '');
 	});
 
 	// Escape key resets the UI back to the login pane
@@ -220,7 +238,7 @@ SignInComponent.prototype.reset = function () {
 	};
 
 	component.$container
-		.removeClass('active-reset active-twostep')
+		.removeClass('active-reset active-forgot active-twostep')
 		.one(component.transitionEnd, function () {
 			component.$usernameField.focus();
 		});

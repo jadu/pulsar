@@ -32,32 +32,46 @@ module.exports = function(grunt) {
 
 	sass: {
 		dev: {
-		options: {
-			style: 'nested',
-			sourceMap: true
+			options: {
+				style: 'nested',
+				sourceMap: true
+			},
+			files: [{
+				cwd:    'stylesheets/',
+				dest:   'css/',
+				expand: true,
+				ext:    '.css',
+				extDot: 'first',
+				src:    '*.scss'
+			}]
 		},
-		files: [{
-			cwd:    'stylesheets/',
-			dest:   'css/',
-			expand: true,
-			ext:    '.css',
-			extDot: 'first',
-			src:    '*.scss'
-		}]
+		dist_modern: {
+			options: {
+				outputStyle: 'compressed'
+			},
+			files: [{
+				cwd:    'stylesheets/',
+				dest:   'css/',
+				expand: true,
+				flatten: true,
+				ext:    '.css',
+				extDot: 'first',
+				src:    ['pulsar.scss', 'documentation.scss']
+			}]
 		},
-		dist: {
-		options: {
-			style: 'compressed'
-		},
-		files: [{
-			cwd:    'stylesheets/',
-			dest:   'css/',
-			expand: true,
-			flatten: true,
-			ext:    '.css',
-			extDot: 'first',
-			src:    '*.scss'
-		}]
+		dist_ie: {
+			options: {
+				outputStyle: 'nested'
+			},
+			files: [{
+				cwd:    'stylesheets/',
+				dest:   'css/',
+				expand: true,
+				flatten: true,
+				ext:    '.css',
+				extDot: 'first',
+				src:    'pulsar-ie*.scss'
+			}]
 		},
 	},
 
@@ -199,11 +213,11 @@ module.exports = function(grunt) {
   });
 
  grunt.registerTask('default', ['sass:dev', 'browserify', 'watch']);
+ grunt.registerTask('post-merge', ['sass:dev', 'browserify']);
 
  grunt.registerTask('pre-commit', [
 	'asciify',
 	'phpunit',
-	// 'leadingIndent:files',
 	'copy:readme'
   ]);
 

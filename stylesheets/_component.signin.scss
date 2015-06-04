@@ -1,19 +1,17 @@
-$signin-bg-color: rgba(51,153,204,.9);
-$signin-bg-image: '../images/branding/logo-cms-white.svg';
-$signin-bg-height: 65px;
-$signin-bg-width: 65px;
+$signin-bg-color:          rgba(51,153,204,.9);
+$signin-bg-color-fallback: rgb(51,153,204);
+$signin-bg-image:          '../images/branding/logo-cms-white.svg';
+$signin-bg-image-fallback: '../images/branding/logo-cms-white-small.png';
+$signin-bg-height:         65px;
+$signin-bg-width:          65px;
+
+$signin-full-width:        400px;
+$signin-mobile-width:      300px;
 
 html, body {
 	height: 100%;
 	margin: 0;
 }
-
-// body {
-// 	background-image: url('../images/video/galaxy.jpg');
-// 	background-repeat: none;
-// 	background-position: center center;
-// 	background-size: cover;
-// }
 
 .video {
 	height: 100%;
@@ -26,19 +24,26 @@ html, body {
 }
 
 .signin {
+	background-color: $signin-bg-color-fallback;
 	background-color: $signin-bg-color;
 	border-radius: 2px;
 	box-shadow: 0 0 50px #000;
 	color: white;
-	height: 320px;
 	margin: 0 auto;
-	padding: 0 0 20px 0;
+	min-height: 350px;
+	padding: 0 0 10px 0;
 	opacity: 1;
 	overflow: hidden;
 	position: relative;
 	top: 5em;
-	width: 400px;
+	width: $signin-mobile-width;
 	zoom: 1;
+
+	@include respond-min($screen-tablet) {
+		min-height: 320px;
+		padding: 0 0 20px 0;
+		width: $signin-full-width;
+	}
 
 	transition: background-color .25s;
 
@@ -46,6 +51,11 @@ html, body {
 	&--error {
 		background-color: $danger-color;
 		animation: shake 400ms ease-in-out;
+
+		.loading--circle i {
+			border: 1px solid rgba(0,0,0,.2);
+			border-top-color: white;
+		}
 	}
 
 	&--success {
@@ -85,6 +95,15 @@ html, body {
 		&:active {
 			top: 1px;
 		}
+
+		&.is-loading {
+			padding-top: 4px;
+			padding-bottom: 5px;
+
+			&:hover {
+				background-color: none;
+			}
+		}
 	}
 
 	&.active-success {
@@ -92,6 +111,7 @@ html, body {
 		animation-duration: .25s;
 		animation-fill-mode: both;
 		animation-name: success-container;
+		background-color: rgb(41, 124, 70);
 		background-color: rgba(41, 124, 70, .9);
 	}
 }
@@ -99,11 +119,24 @@ html, body {
 .signin__inner {
 	transition: background-color 0.5s, margin-left 0.5s;
 	float: left;
-	width: 805px;
+	width: 1210px;
 
 	.active-reset & {
 		position: relative;
-		margin-left: -400px;
+		margin-left: -$signin-mobile-width;
+
+		@include respond-min($screen-tablet) {
+			margin-left: -$signin-full-width;
+		}
+	}
+
+	.active-forgot & {
+		position: relative;
+		margin-left: -$signin-mobile-width * 2;
+
+		@include respond-min($screen-tablet) {
+			margin-left: -$signin-full-width * 2;
+		}
 	}
 
 	.active-twostep & {
@@ -111,6 +144,7 @@ html, body {
 		.signin-form,
 		.signin-reset {
 			opacity: 0;
+			visibility: hidden;
 			z-index: -1;
 		}
 
@@ -125,6 +159,7 @@ html, body {
 		.signin-reset,
 		.signin-twostep {
 			opacity: 0;
+			visibility: hidden;
 			z-index: -1;
 		}
 
@@ -141,7 +176,11 @@ html, body {
 	float: left;
 	text-align: center;
 	transition: opacity 0.5s, z-index 0.5s;
-	width: 400px;
+	width: $signin-mobile-width;
+
+	@include respond-min($screen-tablet) {
+		width: $signin-full-width;
+	}
 }
 
 .signin__actions {
@@ -170,8 +209,12 @@ html, body {
 	font-family: courier;
 	letter-spacing: 5px;
 	margin: 0 5px 1em 5px;
-	padding: 10px 10px 10px 20px;
+	padding: 10px 10px 10px 12px;
 	width: 20%;
+
+	@include respond-min($screen-tablet) {
+		padding: 10px 10px 10px 20px;
+	}
 }
 
 .signin__submit {
@@ -203,6 +246,7 @@ html, body {
 .signin__info {
 	display: block;
 	margin-bottom: 1em;
+	padding: 0 5px;
 }
 
 .signin__link {
@@ -222,22 +266,36 @@ html, body {
 	animation-name: hint-wobble;
 	display: inline-block;
 	font-size: 1.5em;
-	left: 12px;
+	left: 5px;
 	position: absolute;
 	width: 25px;
-	top: 6px;
+	top: 2px;
+
+	@include respond-min($screen-tablet) {
+		left: 12px;
+		top: 6px;
+	}
 
 	&:before {
 		content: '\f0a4';
 	}
 
 	.signin-twostep & {
-		left: 85px;
+		left: 55px;
+
+		@include respond-min($screen-tablet) {
+			left: 85px;
+		}
 	}
 
 	.signin__code2 + & {
 		left: inherit;
-		right: 80px;
+		right: 50px;
+
+		@include respond-min($screen-tablet) {
+			left: inherit;
+			right: 80px;
+		}
 
 		&:before {
 			content: '\f0a5';
@@ -249,24 +307,22 @@ html, body {
   animation: shake 500ms ease-in-out;
 }
 
-.test {
-	outline: 1px solid red;
-}
-
-
 .signin__icon {
-	background-image: url($signin-bg-image);
+	background: url($signin-bg-image-fallback);
+	background: url($signin-bg-image), linear-gradient(transparent, transparent);
 	background-size: $signin-bg-height $signin-bg-width;
 	background-position: 50% 0;
 	background-repeat: no-repeat;
 	border-radius: 65px;
 	display: inline-block;
 	margin: 20px auto 0 auto;
+	text-align: center;
 	height: 65px;
 	width: 65px;
 
 	.signin--error &,
 	.signin-reset &,
+	.signin-forgot &,
 	.signin-twostep &,
 	.signin-success & {
 		@include icon-FontAwesome();
@@ -276,6 +332,7 @@ html, body {
 	}
 
 	.signin-reset &,
+	.signin-forgot &,
 	.signin-twostep &,
 	.signin-success & {
 		background-color: #fff;
@@ -301,10 +358,18 @@ html, body {
 		}
 	}
 
+	.signin-forgot &:before {
+		content: '\f128';
+		font-size: 65px;
+		width: 40px;
+		margin-left: -2px;
+	}
+
 	.signin-reset & {
 		background-color: #fff;
 
 		&:before {
+			//&#xf0e0;
 			content: '\f0e0';
 			display: inline-block;
 			color: #2f8dbd;
@@ -342,17 +407,17 @@ html, body {
 }
 
 // 2FA code input in control centre UI
-.form-v2 {
+.form-v2,
+.modal {
 	.signin__code1,
     .signin__code2 {
         display: inline-block;
         font-family: courier;
         letter-spacing: 2px;
-        min-width: 60px;
-        width: 20%;
+        padding: 0 10px;
+        width: 55px;
     }
 }
-
 
 @keyframes success-icon {
   0%    { transform: translateY(0) scale(1); }
@@ -386,4 +451,48 @@ html, body {
 
 
 
+// Full-bleed background image for IE7 & 8
+// The required markup & image for this is contained in a conditional comment
+.signin-oldie-bg {
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
 
+  img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	min-width: 50%;
+	min-height: 50%;
+  }
+
+  & + .video {
+  	background: none;
+  }
+}
+
+
+// IE8 fixes for icon positions
+.ie8 .signin-reset .signin__icon {
+	padding-left: 15px;
+}
+
+.ie8 .signin-twostep .signin__icon,
+.ie8 .signin-success .signin__icon {
+	padding-left: 18px;
+}
+
+#recaptcha_widget_div {
+	display: inline-block;
+	margin: 0 auto 1em auto;
+}
+
+.signin-twostep-help {
+	text-align: left;
+	list-style-position: outside;
+}

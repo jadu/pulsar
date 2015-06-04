@@ -77,10 +77,13 @@
 .flash {
   .close {
     color: $white;
+    float: right;
     font-size: 1em;
     margin-left: $gutter-width / 4;
     margin-right: -($gutter-width / 2);
     opacity: .9;
+    text-decoration: none;
+
     &:hover {
       opacity: 1;
     }

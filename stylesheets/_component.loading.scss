@@ -65,7 +65,7 @@
   width: 20px;
 }
 
-.loading--circle i {
+.loading i {
   border: 1px solid $primary-color;
   border-top-color: $white;
   border-radius: 50%;
@@ -78,9 +78,16 @@
   height: 20px;
   left: 0;
   position: absolute;
+  text-indent: -9999px;
   top: 0;
   width: 20px;
+
+  @include ie-lte(8) {
+   border: none;
+   text-indent: 0;
+  }
 }
+
 
 .form__group.is-loading {
 
