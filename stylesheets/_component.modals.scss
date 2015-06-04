@@ -47,6 +47,10 @@
   }
 }
 
+.modal--large .modal__dialog {
+  max-width: 800px;
+}
+
 // Actual modal
 .modal__content {
   position: relative;
