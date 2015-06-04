@@ -109,6 +109,9 @@ var $ = require('jquery');
       .attr('aria-hidden', true)
       .off('click.dismiss.modal')
 
+    var $modalBody = this.$element.find('.modal__body').detach();
+    $modalBody.insertAfter(this.$element.find('.modal__header'));
+
     $.support.transition && this.$element.hasClass('fade') ?
       this.$element
         .one($.support.transition.end, $.proxy(this.hideModal, this))
@@ -246,7 +249,8 @@ var $ = require('jquery');
     .on('show.bs.modal',  '.modal', function () { $(document.body).addClass('modal-open') })
     .on('hidden.bs.modal', '.modal', function () {
       // $(this).removeData('bs.modal').empty()
-      $(document.body).removeClass('modal-open')
+      $(document.body).removeClass('modal-open');
+
     })
 
 module.exports = Modal;
