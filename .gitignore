@@ -14,3 +14,5 @@
 /css
 /dist
 css/
+libs/livereload-js
+libs/phantomcss
