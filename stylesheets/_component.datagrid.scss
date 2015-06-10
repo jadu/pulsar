@@ -1,5 +1,6 @@
 // Data grid view
 .table--datagrid {
+  background-color: #fff;
   border-collapse: separate;
   outline: 1px solid $gray;
   width: 100%;
@@ -32,7 +33,7 @@
       @include respond-min($screen-tablet) {
         border-bottom: 1px solid $gray;
       }
-      height: $line-height-base * 1.8;
+      height: floor($line-height-base * 1.8);
       @include respond-max($screen-tablet) {
         height: $line-height-base;
       }
@@ -74,6 +75,7 @@
 
   // Set up tables for smaller viewports
   tr th {
+    background-color: #fff;
     display: none;
 
     @include respond-min($screen-tablet) {

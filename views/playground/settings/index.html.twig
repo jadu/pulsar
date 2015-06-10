@@ -31,11 +31,8 @@
 		]
 %}
 
-{% if view is defined and view is not empty %}
-	{% set tab_src %}{% include 'playground/2fa/tabs/' ~ view ~ '.html.twig' %}{% endset %}
-{% else %}
-	{% set tab_src %}{% include 'playground/2fa/tabs/step_one.html.twig' %}{% endset %}
-{% endif %}
+{% set tab_2fa %}{% include 'playground/settings/tabs/step_one.html.twig' %}{% endset %}
+{% set tab_notifications %}{% include 'playground/settings/tabs/notifications.html.twig' %}{% endset %}
 
 {%
 	set tabs_content = [
@@ -44,12 +41,18 @@
 			"label"     : html.icon("cog") ~ " My Settings",
 			"sub_tabs"  : [
 				{
-					"id"    : "colours",
+					"id"    : "components",
 					"label" : html.icon("unlock-alt") ~ " Two-step verification",
-					"src"   : tab_src
+					"src"   : tab_2fa
+				},
+				{
+					"id"    : "notifications",
+					"label" : html.icon("envelope") ~ " Email Alerts",
+					"src"   : tab_notifications
 				}
 			]
-		}
+		},
+
 	]
 %}
 
