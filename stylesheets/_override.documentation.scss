@@ -45,3 +45,18 @@
 .markdown .tab__inner table {
   @extend .table;
 }
+
+.progress-list__item {
+  background: $progress-bg !important;
+  color: $black !important;
+}
+
+.progress-list__item--current {
+  background: $primary-color !important;
+  color: white !important;
+}
+
+.progress-list__item--success {
+  background: $success-color !important;
+  color: white !important;
+}
