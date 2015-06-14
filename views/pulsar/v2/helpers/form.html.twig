@@ -43,12 +43,17 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
 
 	{{
 		_self.group({
-			'parent': options|only('class help label'),
+			'parent': options
+						|only('class help label')
+						|defaults({'class': 'checkbox-group'}),
 			'inputs': [
 				elem.input(
 					options
 						|exclude('class help label')
-						|defaults({'type': 'checkbox'})
+						|defaults({
+							'class': 'checkbox',
+							'type': 'checkbox'
+						})
 				)
 			]
 		})
@@ -107,6 +112,7 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
 
 	{%
 		set input = elem.input(options|merge({
+			'class': 'checkbox checkbox--inline',
 			'label': null,
 			'type': 'checkbox'
 		}))
@@ -126,11 +132,10 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
 			'parent': options
 				|only('class help')
 				|defaults({
-					'class': 'form__indent'
+					'class': 'checkbox-group form__indent'
 				}),
 			'inputs': [
 				elem.label({
-					'class': 'checkbox--inline-v2',
 					'for': options.id|default,
 					'label': label
 				})
@@ -730,11 +735,16 @@ data-*   | string | Data attributes, eg: `'data-foo': 'bar'`
 
 	{{
 		_self.group({
-			'parent': options|only('class help label'),
+			'parent': options
+				|only('class help label')
+				|defaults({'class': 'radio-group'}),
 			'inputs': [
 				elem.input(options
 					|exclude('class help label')
-					|defaults({'type': 'radio'})
+					|defaults({
+						'class': 'radio',
+						'type': 'radio'
+					})
 				)
 			]
 		})
@@ -791,6 +801,7 @@ value           | string | Specifies the value of the input
 
 	{%
 		set input = elem.input(options|merge({
+				'class': 'radio radio--inline',
 				'label': null,
 				'type': 'radio'
 			})
@@ -811,7 +822,7 @@ value           | string | Specifies the value of the input
 			'parent': options
 				|only('class help')
 				|defaults({
-					'class': 'form__indent'
+					'class': 'radio-group form__indent'
 				}),
 			'inputs': [
 				elem.label({

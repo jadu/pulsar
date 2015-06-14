@@ -1,19 +1,27 @@
 .form {
-    margin: 1em 20px;
+    margin: 1em 0;
+    padding: 0 20px;
 }
 
-.form__group{
-    margin-bottom: .5em;
+.form__group {
+    margin-bottom: 1em;
 }
 
 .form__actions {
     margin-left: -20px;
+    margin-right: -20px;
     position: relative;
 }
 
 .form__control {
     border-radius: $input-border-radius;
     height: $input-height-base;
+
+    &.checkbox,
+    &.radio {
+        height: $line-height-base;
+        vertical-align: bottom;
+    }
 
     &:not([type="file"]) {
         border: 1px solid $input-border;
@@ -30,6 +38,7 @@
 
 .control__label {
     padding-top: 11px;
+    padding-right: 10px;
 }
 
 .form__group--top .control__label {
@@ -55,6 +64,13 @@
             //   margin-left: $gutter-width * 2; // align left edge with controls above
             // }
         }
+    }
+}
+
+.checkbox-group,
+.radio-group {
+    .control__label {
+        padding-top: 0;
     }
 }
 
