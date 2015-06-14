@@ -1,4 +1,4 @@
-    {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 {% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
 {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 {% import '@pulsar/pulsar/helpers/flash.html.twig' as flash %}
@@ -238,37 +238,39 @@
         })
     }}
 
-            {{
-                form.text({
-                    'label': 'Prepended input',
-                    'id': 'inputPrepend',
-                    'class': 'form__group--large',
-                    'name': 'inputPrepend',
-                    'placeholder': 'Placeholder',
-                    'prepend': '@'
-                })
-            }}
-            {{
-                form.text({
-                    'label': 'Appended input',
-                    'id': 'inputAppend',
-                    'class': 'form__group--large',
-                    'name': 'inputAppend',
-                    'placeholder': 'Placeholder',
-                    'append': '.com'
-                })
-            }}
-            {{
-                form.text({
-                    'label': 'Prepended &amp; Appended',
-                    'id': 'inputPrependAppend',
-                    'class': 'form__group--medium',
-                    'name': 'inputPrependAppend',
-                    'placeholder': 'Placeholder',
-                    'prepend': 'www.',
-                    'append': '.com'
-                })
-            }}
+        {{
+            form.text({
+                'label': 'Prepended input',
+                'id': 'inputPrepend',
+                'class': 'form__group--large',
+                'name': 'inputPrepend',
+                'placeholder': 'Placeholder',
+                'prepend': '@'
+            })
+        }}
+
+        {{
+            form.text({
+                'label': 'Appended input',
+                'id': 'inputAppend',
+                'class': 'form__group--large',
+                'name': 'inputAppend',
+                'placeholder': 'Placeholder',
+                'append': '.com'
+            })
+        }}
+
+        {{
+            form.text({
+                'label': 'Prepended &amp; Appended',
+                'id': 'inputPrependAppend',
+                'class': 'form__group--medium',
+                'name': 'inputPrependAppend',
+                'placeholder': 'Placeholder',
+                'prepend': 'www.',
+                'append': '.com'
+            })
+        }}
 
     {{ form.fieldset_end() }}
 
@@ -409,6 +411,15 @@
                     'id': 'inputTextLarge',
                     'class': 'form__group--large',
                     'name': 'inputTextLarge'
+                })
+            }}
+
+            {{
+                form.text({
+                    'label': 'Extra Large',
+                    'id': 'inputTextXLarge',
+                    'class': 'form__group--xlarge',
+                    'name': 'inputTextXLarge'
                 })
             }}
 
