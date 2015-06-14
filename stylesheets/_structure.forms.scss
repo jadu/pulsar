@@ -169,7 +169,9 @@ $control-column-width: 75%;
   padding: 0;
 
   .legend {
-    margin-bottom: .5em;
+    border-bottom: 1px solid $gray;
+    margin: 0 0 .5em -20px;
+    padding: 0 20px;
   }
 }
 
@@ -180,10 +182,12 @@ $control-column-width: 75%;
   margin-bottom: .5em;
 }
 
-// .control__label {
-//   background-color: #999;
+
+
+// .form__group {
+//     outline: 1px solid red;
 // }
 
 // .controls {
-//   background-color: #ccc;
+//     outline: 1px solid blue;
 // }
