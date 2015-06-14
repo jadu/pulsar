@@ -407,27 +407,29 @@ html, body {
 }
 
 // 2FA code input in control centre UI
-.form-v2 {
+.form-v2,
+.modal {
 	.signin__code1,
     .signin__code2 {
         display: inline-block;
         font-family: courier;
         letter-spacing: 2px;
-        padding: 10px;
+        padding: 0 10px;
         width: 55px;
     }
 }
 
-
+// Scale effect is disabled in Firefox because of horrible performance issues
 @keyframes success-icon {
   0%    { transform: translateY(0) scale(1); }
   80%	{ transform: translateY(150%) }
-  100%	{ transform: scale(20); }
+  100%	{ transform: translateY(150%) scale(20); -moz-transform: translateY(150%) scale(1); }
 }
 
+// Scale effect is disabled in Firefox because of horrible performance issues
 @keyframes success-container {
-  0%    { transform: scale(1); }
-  100%	{ transform: scale(20); }
+  0%    { transform: scale(1); -moz-transform: scale(1); }
+  100%	{ transform: scale(20); -moz-transform: scale(1); }
 }
 
 @keyframes hint-wobble {

@@ -1,6 +1,6 @@
 {
   "name": "pulsar",
-  "version": "3.2.1",
+  "version": "3.4.0",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -23,7 +23,7 @@
     "nwmatcher": "latest",
     "pikaday": "latest",
     "respond": "latest",
-    "selectivizr": "latest",
+    "selectivizr": "jadu/selectivizr",
     "sticky": "latest",
     "store.js": "latest",
     "svgeezy": "latest",
@@ -32,7 +32,8 @@
   },
   "devDependencies": {
     "livereload-js": "livereload/livereload-js",
-    "phantomcss": "latest"
+    "phantomcss": "latest",
+    "vide": "~0.3.1"
   },
   "resolutions": {
     "font-awesome": "3.2.1"

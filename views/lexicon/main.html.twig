@@ -78,6 +78,8 @@
 {% set tab_filters %}{% include         'lexicon/tabs/filters.html.twig' %}{% endset %}
 {% set tab_empty_table %}{% include     'lexicon/tabs/empty_table.html.twig' %}{% endset %}
 
+{% set pattern_masterswitch %}{% include     'lexicon/patterns/masterswitch.html.twig' %}{% endset %}
+
 {%
   set tabs_content = [
     {
@@ -171,6 +173,11 @@
       "id"        : "Patterns",
       "label"     : html.icon("puzzle-piece") ~ " Patterns",
       "sub_tabs"  : [
+        {
+          "id"    : "masterswitch",
+          "label" : html.icon("check") ~ " Masterswitch",
+          "src"   : pattern_masterswitch
+        },
         {
           "id"    : "simple_uploader",
           "label" : html.icon("paperclip") ~ " Simple Uploader",

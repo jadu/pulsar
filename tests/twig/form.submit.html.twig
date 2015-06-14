@@ -1,19 +1,22 @@
+{% extends '@pulsar/pulsar/layouts/test_base.html.twig' %}
 {% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
 
-<h1>form.submit</h1>
+{% block body %}
+	<h1>form.submit</h1>
 
-<pre>
-form.submit({
-	'label': 'Label'
-})
-</pre>
-
-{%
-	set output = form.submit({
+	<pre>
+	form.submit({
 		'label': 'Label'
 	})
- %}
+	</pre>
 
-{{ output }}
+	{%
+		set output = form.submit({
+			'label': 'Label'
+		})
+	 %}
 
-<pre>{{ output|e }}</pre>
+	{{ output }}
+
+	<pre>{{ output|e }}</pre>
+{% endblock %}

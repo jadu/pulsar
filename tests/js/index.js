@@ -21,6 +21,7 @@ window.sinon = sinon;
 require('./tabbedLayoutTest');
 require('./signinTest');
 require('./masterSwitchComponentTest');
+require('./ButtonComponentTest.js');
 
 if (typeof mochaPhantomJS !== 'undefined') {
     mochaPhantomJS.run();
