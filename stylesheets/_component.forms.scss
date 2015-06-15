@@ -105,6 +105,10 @@ $inputs: (
         }
 
         @each $variant, $width in $inputs {
+
+            // 1. allow input-specific widths for fine-grained control
+            // 2. allow a class on the main group to control the width of it's controls
+            &.form__control--#{$variant},
             .form__group--#{$variant} & {
                 width: #{$width};
             }
@@ -131,4 +135,8 @@ $inputs: (
   &.has-success {
     @include form__control-validation($state-success-text, $success-color, $state-success-bg);
   }
+}
+
+.help-block {
+    color: lighten($text-color, 5%);
 }
