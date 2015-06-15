@@ -3,12 +3,13 @@
 }
 
 .controls > .toggle {
-    margin-top: 6px;
-
-    @include respond-min($screen-desktop) {
-	   margin-top: 10px;
-    }
+    margin-top: 1px;
 }
+
+//     @include respond-min($screen-desktop) {
+// 	   margin-top: 4px;
+//     }
+// }
 
 .toggle-slide {
   border-radius: 9999px;

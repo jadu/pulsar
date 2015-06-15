@@ -132,7 +132,7 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
 			'parent': options
 				|only('class help')
 				|defaults({
-					'class': 'checkbox-group form__indent'
+					'class': 'checkbox-group form__group--indent form__group--full'
 				}),
 			'inputs': [
 				elem.label({
@@ -574,7 +574,7 @@ parent.data-*    | string | Data attributes, eg: `'data-foo': 'bar'`
 				and options.parent.append is not empty
 			)
 		%}
-				{{ util.addon(append|default) }}
+				{{ util.addon(options.parent.append|default) }}
 			</div>
 		{% endif %}
 
@@ -812,7 +812,7 @@ value           | string | Specifies the value of the input
 			'parent': options
 				|only('class help')
 				|defaults({
-					'class': 'radio-group form__indent'
+					'class': 'radio-group form__group--indent form__group--full'
 				}),
 			'inputs': [
 				elem.label({
@@ -985,10 +985,10 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
 	{{
 		_self.group({
-			'parent': options|only('class help label'),
+			'parent': options|only('append class help label prepend'),
 			'inputs': [
 				elem.input(
-					options|exclude('class help label')
+					options|exclude('append class help label prepend')
 				)
 			]
 		})

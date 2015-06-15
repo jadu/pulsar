@@ -103,19 +103,20 @@ $control-column-width: 75%;
     display: table;
     width: $label-column-width;
 
-    > .control__label {
-        clear: left;
-        display: inline-block;
-        float: left;
-    }
-
     > .control__label--left {
         clear: right;
         float: right;
     }
 }
 
+.form__group--indent {
+    margin-left: $label-column-width;
+    width: $control-column-width;
+}
+
 .form__group--flush {
+    margin-left: 0;
+
     .controls {
         display: table-row;
 
@@ -127,11 +128,6 @@ $control-column-width: 75%;
     .help-block {
         margin-left: 0;
     }
-}
-
-.form__group--indent {
-    margin-left: $label-column-width;
-    width: $control-column-width;
 }
 
 .controls > .textarea {

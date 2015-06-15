@@ -1,6 +1,6 @@
 .form {
-    margin: 1em 0;
-    padding: 0 20px;
+    background-color: $white;
+    padding: 1em 20px 8px 20px;
 }
 
 .form__group {
@@ -13,8 +13,16 @@
 
     &.checkbox,
     &.radio {
-        height: $line-height-base;
-        vertical-align: bottom;
+        height: 16px;
+        vertical-align: top;
+    }
+
+    &.checkbox {
+        margin-top: 4px;
+    }
+
+    &.radio {
+        margin-top: 3px;
     }
 
     &:not([type="file"]) {
@@ -65,6 +73,10 @@
     .control__label {
         padding-top: 0;
     }
+
+    &.form__group--indent .controls {
+        width: 100%;
+    }
 }
 
 // input widths
@@ -79,7 +91,7 @@ $inputs: (
     full:    100%
 );
 
-.form__control {
+.form__control:not(.checkbox, .radio) {
 
     // form elements should be 100% on mobile
     width: 100%;
@@ -100,5 +112,3 @@ $inputs: (
     }
 
 }
-
-
