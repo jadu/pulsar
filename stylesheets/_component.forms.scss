@@ -112,3 +112,23 @@ $inputs: (
     }
 
 }
+
+// validation
+
+.form__group {
+  &.has-changed {
+    @include form__control-validation($state-info-text, $info-color, $state-info-bg);
+  }
+
+  &.has-warning {
+    @include form__control-validation($state-warning-text, $warning-color, $state-warning-bg);
+  }
+
+  &.has-error {
+    @include form__control-validation($state-danger-text, $danger-color, $state-danger-bg);
+  }
+
+  &.has-success {
+    @include form__control-validation($state-success-text, $success-color, $state-success-bg);
+  }
+}
