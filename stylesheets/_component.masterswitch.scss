@@ -1,15 +1,20 @@
 .masterswitch-control {
 
 	.control__label {
+		user-select: none; // stop unwanted selection when dragging toggles
 		padding-top: 0;
+	}
+
+	.controls {
+		overflow: visible; // prevent clipping of toggle outline
 	}
 
 @media (max-width: 600px) {
 	> .control__label,
 	> .controls {
+		display: table-cell;
 		min-width: $label-column-width;
 		width: $label-column-width;
-		outline: 1px solid red;
 	}
 }
 // 	// @include text-overflow(); /* [1] */

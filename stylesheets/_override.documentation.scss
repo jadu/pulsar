@@ -60,3 +60,13 @@
   background: $success-color !important;
   color: white !important;
 }
+
+.form__control:not(.checkbox, .radio) {
+    width: 300px;
+}
+
+@each $variant, $width in $inputs {
+    .form__group--#{$variant} .form__control:not(.checkbox, .radio) {
+        width: #{$width} !important;
+    }
+}
