@@ -18,6 +18,13 @@ html, body {
 	width: 100%;
 }
 
+// prevent white flash before video plugin is initialised
+.signin-backdrop {
+	background-color: black;
+	position: relative;
+	z-index: -1;
+}
+
 // Fixes an issue with Safari where animations break when on top of a video
 .signin-container {
 	transform: translate3d(0, 0, 0);
