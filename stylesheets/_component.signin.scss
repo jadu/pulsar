@@ -21,7 +21,11 @@ html, body {
 // prevent white flash before video plugin is initialised
 .signin-backdrop {
 	background-color: black;
-	position: relative;
+	bottom: 0;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
 	z-index: -1;
 }
 
