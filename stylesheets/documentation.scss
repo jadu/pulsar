@@ -1,20 +1,6 @@
-/**
-                          88
-                          88
-                          88
-8b,dPPYba,   88       88  88  ,adPPYba,  ,adPPYYba,  8b,dPPYba,
-88P'    "8a  88       88  88  I8[    ""  ""     `Y8  88P'   "Y8
-88       d8  88       88  88   `"Y8ba,   ,adPPPPP88  88
-88b,   ,a8"  "8a,   ,a88  88  aa    ]8I  88,    ,88  88
-88`YbbdP"'    `"YbbdP'Y8  88  `"YbbdP"'  `"8bbdP"Y8  88
-88
-88
-
-*/
-
 // namespace the entire output so it's specific to the .page-inner class for
 // GitBook.
-html .book .book-body .page-wrapper .page-inner {
+#section- {
 
 // Third party plugins
 @import '../libs/normalize-css/normalize.css';
@@ -39,11 +25,6 @@ $FontAwesomePath: '../libs/font-awesome/font/';
 @import '_config.colours';
 @import '_config.variables';
 @import '_config.fonts';
-
-/* -------------------------------------------------------------------------- *\
-	If you're theming Pulsar and want to include your own variables, colours or
-	mixins you should @import them here.
-\* -------------------------------------------------------------------------- */
 
 /**
  * Components
@@ -88,7 +69,7 @@ $FontAwesomePath: '../libs/font-awesome/font/';
 @import '_component.panels';
 // @import '_component.popovers';
 @import '_component.progress-bars';
-// @import '_component.progress-lists';
+@import '_component.progress-lists';
 @import '_component.remove-button';
 // @import '_component.repeatable';
 // @import '_component.richer-list';

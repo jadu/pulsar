@@ -2,7 +2,7 @@
 - hosts: all
   tasks:
     - name: install server components
-      apt: name={{ item }} state=present
+      apt: name={{ item }} state=present update_cache=yes
       sudo: yes
       with_items:
        - apache2

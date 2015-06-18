@@ -1,0 +1,66 @@
+{% import 'pulsar/v2/helpers/html.html.twig' as html %}
+{% import 'pulsar/v2/helpers/form.html.twig' as form %}
+{% import 'pulsar/helpers/flash.html.twig' as flash %}
+{% import 'pulsar/helpers/datagrid.html.twig' as datagrid %}
+
+<div class="tab__header">
+    <h2 class="heading">Masterswitch</h2>
+</div>
+
+<div class="tab__container">
+    <div class="tab__inner">
+
+   		{{
+            form.create()
+        }}
+
+        <div class="form__group masterswitch-control">
+            <label class="control__label">Enable masterswitch content</label>
+            <div class="controls">
+                <div class="toggle"></div>
+                <input type="checkbox" class="hide">
+            </div>
+        </div>
+
+        <hr />
+
+        <section class="masterswitch-content is-disabled">
+
+            <p>This content should be disabled until the masterswitch is turned on.</p>
+
+            {{
+	            form.text({
+	                'label': 'Text input',
+	                'id': 'inputText',
+	                'name': 'inputText',
+	                'placeholder': 'Placeholder'
+	            })
+        	}}
+
+			{{
+                form.end({
+                    'class': 'form__actions--flush',
+                    'actions': [
+                        html.button({
+                            'label': 'Save Changes',
+                            'class': 'btn--primary'
+                        }),
+                        html.button({
+                            'label': 'Cancel',
+                            'class': 'btn--naked'
+                        })
+                    ]
+                })
+            }}<!--
+     --></section>
+
+    </div>
+
+    <div class="sidebar">
+        <h4 class="sidebar__header">{{ html.icon('info-sign', { 'class': 'sidebar-icon'}) }} Masterswitch</h4>
+
+        <hr />
+
+        <p>Disable an entire UI until the main masterswitch is turned on. You should make sure that turning the masterswitch off disables the functionality contained with the rest of the UI.</p>
+    </div>
+</div>

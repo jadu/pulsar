@@ -31,3 +31,9 @@
 .flash select {
   height: 30px;
 }
+
+// inline checkboxes, make right aligned label autowidth
+.form--horizontal .form__group.form-checkbox-inline .controls {
+    width: auto;
+    max-width: 100%;
+}
