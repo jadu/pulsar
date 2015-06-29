@@ -22,6 +22,9 @@ describe('NavMain component', function() {
       <li class="nav-item">\
           <a href="#two" class="nav-link">2</a>\
       </li>\
+      <li class="nav-item">\
+          <a href="#three" class="nav-link">3</a>\
+      </li>\
     </ul>\
   </div><!--\
 \
@@ -55,6 +58,7 @@ describe('NavMain component', function() {
 
  		this.$linkOne = this.$html.find('[href="#one"]');
  		this.$linkTwo = this.$html.find('[href="#two"]');
+ 		this.$linkThree = this.$html.find('[href="#three"]');
 
 		this.navMainComponent = new NavMainComponent(this.$html);
 
@@ -85,7 +89,7 @@ describe('NavMain component', function() {
 
 	});
 
-	describe('clicking the first, then the secondy primary nav link', function() {
+	describe('clicking the first, then the secondary primary nav link', function() {
 
 		beforeEach(function() {
 			this.navMainComponent.init();
@@ -111,6 +115,31 @@ describe('NavMain component', function() {
 
 	});
 
+	describe('clicking a primary nav link that has no sub navigation', function() {
+
+		beforeEach(function() {
+			this.navMainComponent.init();
+			this.$linkThree.click();
+		});
+
+		it('should not open the secondary nav', function() {
+			expect(this.$html.find('.nav-main').hasClass('nav-main--open')).to.be.false;
+		});
+	});
+
+	describe('clicking a primary nav link that has no sub navigation when the subnavigation is open', function() {
+
+		beforeEach(function() {
+			this.navMainComponent.init();
+			this.$linkOne.click();
+			this.$linkThree.click();
+		});
+
+		it('should close the secondary nav', function() {
+			expect(this.$html.find('.nav-main').hasClass('nav-main--open')).to.be.false;
+		});
+	});
+
 	describe('clicking the close icon, when the sub navigation is closed', function() {
 
 		beforeEach(function() {
@@ -134,6 +163,10 @@ describe('NavMain component', function() {
 
 		it('should close the sub navigation', function() {
 			expect(this.$html.find('.nav-main').hasClass('nav-main--open')).to.be.false;
+		});
+
+		it('should remove all active classes', function() {
+			expect(this.$html.find('.is-active').length).to.equal(0);
 		});
 
 	});
