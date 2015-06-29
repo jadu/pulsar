@@ -25,6 +25,7 @@ var $               = require('jquery'),
 
 	ButtonComponent = require('./ButtonComponent'),
 	MasterSwitchComponent = require('./masterSwitchComponent'),
+	NavMainComponent = require('./navMainComponent'),
 	SignInComponent = require('./area/signin/signin');
 
 $(function () {
@@ -39,6 +40,9 @@ $(function () {
 
     masterSwitch = new MasterSwitchComponent($html);
     masterSwitch.init();
+
+    navMain = new NavMainComponent($html);
+    navMain.init();
 
     // Switch out .svg for .png for <img> elements in older browsers
     svgeezy.init('nocheck', 'png');

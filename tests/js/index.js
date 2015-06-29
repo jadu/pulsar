@@ -18,10 +18,11 @@ window.expect = chai.expect;
 window.it = it;
 window.sinon = sinon;
 
-require('./tabbedLayoutTest');
-require('./signinTest');
-require('./masterSwitchComponentTest');
-require('./ButtonComponentTest.js');
+// require('./tabbedLayoutTest');
+// require('./signinTest');
+// require('./masterSwitchComponentTest');
+require('./navMainComponentTest');
+// require('./buttonComponentTest');
 
 if (typeof mochaPhantomJS !== 'undefined') {
     mochaPhantomJS.run();
