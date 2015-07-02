@@ -37,17 +37,21 @@ describe('NavMain component', function() {
       <button>Go</button>\
     </form>\
 \
-    <ul data-nav="#one" class="nav-items foo">\
-      <li class="nav-item">\
-        <a href="#one_one" class="nav-link">1.1</a>\
-      </li>\
-    </ul>\
+	<div class="nav-container" data-nav="#one">\
+	    <ul class="nav-items">\
+	      <li class="nav-item">\
+	        <a href="#one_one" class="nav-link">1.1</a>\
+	      </li>\
+	    </ul>\
+	</div>\
 \
-	<ul data-nav="#two" class="nav-items">\
-      <li class="nav-item">\
-        <a href="#two_one" class="nav-link">2.1</a>\
-      </li>\
-    </ul>\
+	<div class="nav-container" data-nav="#two">\
+		<ul class="nav-items">\
+	      <li class="nav-item">\
+	        <a href="#two_one" class="nav-link">2.1</a>\
+	      </li>\
+	    </ul>\
+	</div>\
 \
   </div>\
 </nav>\
@@ -76,7 +80,7 @@ describe('NavMain component', function() {
 		});
 
 		it('should open the secondary nav', function() {
-			expect(this.$html.find('.nav-main').hasClass('nav-main--open')).to.be.true;
+			expect(this.$html.find('.nav-main').hasClass('is-open')).to.be.true;
 		});
 
 		it('should add the is-active class to the secondary sub navigation menu', function() {
@@ -123,7 +127,7 @@ describe('NavMain component', function() {
 		});
 
 		it('should not open the secondary nav', function() {
-			expect(this.$html.find('.nav-main').hasClass('nav-main--open')).to.be.false;
+			expect(this.$html.find('.nav-main').hasClass('is-open')).to.be.false;
 		});
 	});
 
@@ -162,7 +166,7 @@ describe('NavMain component', function() {
 		});
 
 		it('should close the sub navigation', function() {
-			expect(this.$html.find('.nav-main').hasClass('nav-main--open')).to.be.false;
+			expect(this.$html.find('.nav-main').hasClass('is-open')).to.be.false;
 		});
 
 		it('should remove all active classes', function() {
