@@ -1,0 +1,130 @@
+{% macro primary(options) %}
+{% spaceless %}
+    {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+
+<nav class="nav-main">
+    <div class="nav-primary"><!--
+
+     --><a href="http://jadu.net" class="jadu-branding">
+            <span class="jadu-logomark"></span><!--
+         --><span class="jadu-wordmark">Jadu</span>
+        </a><!--
+
+     --><ul class="nav-items">
+            {{
+                _self.nav_item({
+                    'label': 'Home',
+                    'icon': 'home'
+                })
+            }}
+
+            {{
+                _self.nav_item({
+                    'label': 'Search',
+                    'href': '#search',
+                    'icon': 'search'
+                })
+            }}
+
+            {% if options.data is iterable %}
+                {% for label, options in options.data %}
+                    {{ _self.nav_item(options) }}
+                {% endfor %}
+            {% endif %}
+        </ul>
+     </div><!--
+
+ --><div class="nav-secondary">
+
+        <a href="#close" class="nav-close" data-nav-action="close">{{ html.icon('remove') }}</a>
+
+        <form class="nav-search">
+            <input type="search" placeholder="Search" class="nav-search__field" />
+            <button class="nav-search__submit">{{ html.icon('search') }}</button>
+        </form>
+
+        {% if options.data is iterable %}
+            {% for options in options.data %}
+                {% if options.items is iterable %}
+
+        <div class="nav-container" data-nav="{{ options.href }}">
+            <span class="nav-title">{{ options.label }}</span>
+            {% for menu_blocks in options.items %}
+                {% for item_options in menu_blocks %}
+                    {{ _self.nav_item(item_options) }}
+                {% endfor %}
+
+                {% if not loop.last %}
+                    <li class="nav-item nav-item__divider">
+                        <hr class="nav-divider" />
+                    </li>
+                {% endif %}
+
+            {% endfor %}
+        </div>
+
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+        <div class="nav-container" data-nav="#search">
+
+            <span class="nav-title">Recent searches</span>
+
+            <ul class="nav-items">
+              <li class="nav-item">
+
+                <a href="#" class="nav-link">
+                    my awesome homepage
+                </a>
+
+                <a href="#remove-search" class="nav-remove-search">
+                    {{ html.icon('remove-sign') }}
+                </a>
+
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">04/07/81</a>
+                <a href="#remove-search" class="nav-remove-search">
+                    {{ html.icon('remove-sign') }}
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">a really really long searcg term that we have to handle</a>
+                <a href="#remove-search" class="nav-remove-search">
+                    {{ html.icon('remove-sign') }}
+                </a>
+              </li>
+            </ul>
+        </div>
+
+    </div>
+</nav>
+
+{% endspaceless %}
+{% endmacro %}
+
+
+{% macro nav_item(options) %}
+{% spaceless %}
+    {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+    {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+
+    <li
+        {{
+            attributes(options
+                |exclude('href')
+                |defaults({ 'class': 'nav-item' })
+            )
+        }}
+    >
+        <a {{ attributes(options|only('href')) }} class="nav-link">
+            {% if options.icon is defined and options.icon is not empty %}
+                {{ html.icon(options.icon, { 'class': 'nav-link__icon' }) }}
+            {% endif %}
+            {{ options.label|raw }}
+        </a>
+    </li>
+
+{% endspaceless %}
+{% endmacro %}
