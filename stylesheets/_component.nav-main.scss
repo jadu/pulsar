@@ -1,5 +1,8 @@
-$signin-bg-image:          '../images/branding/logo-cms-white.svg';
-$signin-bg-image-fallback: '../images/branding/logo-cms-white-small.png';
+$jadu-logomark:          '../images/branding/logo-cms-white.svg';
+$jadu-logomark-fallback: '../images/branding/logo-cms-white-small.png';
+
+$jadu-wordmark:          '../images/branding/jadu-white.svg';
+$jadu-wordmark-fallback: '../images/branding/jadu-white.png';
 
 $nav-color-light: #3399cc;
 $nav-color-dark:  #2d89b7;
@@ -7,9 +10,10 @@ $nav-color-dark:  #2d89b7;
 .nav-main {
     display: table-cell;
     height: 100%;
+    overflow: hidden;
 }
 
-.nav-main--open {
+.nav-main.is-open {
     width: 325px;
 }
 
@@ -33,6 +37,11 @@ $nav-color-dark:  #2d89b7;
     list-style-type: none;
 }
 
+.nav-divider {
+    border-color: lighten($nav-color-light, 5);
+    margin-bottom: 5px;
+}
+
 .nav-link {
     color: white;
     text-decoration: none;
@@ -49,55 +58,172 @@ $nav-color-dark:  #2d89b7;
     }
 
     .nav-link {
+        color: lighten($nav-color-light, 40);
         display: block;
         height: 70px;
-        font-size: 2em;
-        padding-top: 17px;
+        font-size: .8em;
+        padding-top: 16px;
         position: relative;
+        transition: background-color 50ms linear;
     }
 
     .nav-link:hover {
-        background-color: $nav-color-dark;
+        background-color: darken($nav-color-dark, 2);
         color: white;
+    }
+
+
+    .nav-link.is-active:hover {
+        background-color: $nav-color-dark;
+    }
+
+    .nav-link__icon {
+        color: white;
+        display: block;
+        font-size: 1.5em;
+        width: 100%;
     }
 }
 
 .nav-secondary {
     background-color: $nav-color-dark;
-    display: none;
     margin-left: -320px;
+    overflow-y: scroll;
     transition: margin-left 100ms ease-in-out;
     width: 250px;
     z-index: 1;
 
-    .nav-items {
+    .nav-container {
         display: none;
     }
 
-    .nav-items.is-active {
+    .nav-container.is-active {
         display: block;
+    }
+
+    .nav-item {
+        display: inline-block;
+        margin-left: 12px;
+        width: 95%;
+    }
+
+    .nav-item:not(.nav-item__divider):hover {
+        background-color: darken($nav-color-dark, 4);
+
+        .nav-remove-search {
+            opacity: 1;
+        }
+    }
+
+    .nav-link {
+        display: inline-block;
+        padding: 5px 8px;
+        width: 90%;
+    }
+
+    .nav-link:hover {
+        color: white;
     }
 }
 
-.nav-main--open .nav-secondary {
+.nav-remove-search {
+    color: white;
     display: inline-block;
+    margin-top: 6px;
+    opacity: 0;
+    text-decoration: none;
+    transition: opacity 50ms linear;
+    vertical-align: top;
+
+    &:hover {
+        color: white;
+    }
+}
+
+.is-open .nav-secondary {
+    // display: inline-block;
     margin-left: 0;
 }
 
-.jadu-brand {
-    background: url($signin-bg-image-fallback);
-    background: url($signin-bg-image), linear-gradient(transparent, transparent);
-    background-size: 60px 60px;
-    background-position: 50% 0;
+.jadu-branding {
+    display: block;
+    margin: 18px 0 10px 0;
+    text-decoration: none;
+}
+
+.jadu-logomark {
+    background: url($jadu-logomark-fallback);
+    background: url($jadu-logomark), linear-gradient(transparent, transparent);
+    background-size: 50px 50px;
     background-repeat: no-repeat;
     border-radius: 60px;
     display: inline-block;
-    margin: 7px 7px 40px 7px;
     text-align: center;
-    height: 60px;
-    padding-top: 70px;
-    width: 60px;
+    height: 50px;
+    width: 50px;
 }
+
+.jadu-wordmark {
+    background: url($jadu-wordmark-fallback);
+    background: url($jadu-wordmark), linear-gradient(transparent, transparent);
+    background-repeat: no-repeat;
+    display: inline-block;
+    margin-top: 10px;
+    text-indent: -9999px;
+    width: 35px;
+}
+
+.nav-search {
+    clear: right;
+    margin-left: 20px;
+}
+
+.nav-search__field {
+    background-color: $nav-color-dark;
+    border: 1px solid white;
+    border-radius: 4px;
+    color: white;
+    padding: .5em 30px .5em .5em;
+    width: 170px;
+
+    &::-webkit-input-placeholder {
+        color: white;
+    }
+}
+
+.nav-search__submit {
+    background: none;
+    border: none;
+    color: white;
+    margin-left: -35px;
+}
+
+.nav-close {
+    color: white;
+    display: block;
+    float: right;
+    margin-right: 0px;
+    padding: 5px 7px 3px 0;
+    text-decoration: none;
+    text-align: right;
+    width: 30px;
+
+    &:hover i:before {
+        content: "\f0a8";
+        color: white;
+    }
+}
+
+.nav-title {
+    border-bottom: 1px solid $nav-color-light;
+    color: white;
+    display: inline-block;
+    font-size: 1.5em;
+    line-height: 1;
+    margin: 20px 0 20px 18px;
+    width: 95%;
+}
+
 
 .ui {
     display: table;

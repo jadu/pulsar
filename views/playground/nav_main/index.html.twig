@@ -2,69 +2,80 @@
 
 {% block body %}
 
+{%
+    set nav_data = {
+        "1": {
+            "label": "Publishing",
+            "class": "",
+            "href": '#publishing',
+            "icon": "pencil",
+            "items": {
+                "1.1": {
+                    "1.1.1": {
+                        "label": "Address &amp; Contacts",
+                        "href": "#foo"
+                    },
+                    "1.1.2": {
+                        "label": "Document pages",
+                        "href": "#foo"
+                    },
+                    "1.1.3": {
+                        "label": "Landing pages",
+                        "href": "#foo"
+                    },
+                    "1.1.4": {
+                        "label": "Blogs",
+                        "href": "#foo"
+                    },
+                    "1.1.5": {
+                        "label": "Document Directories",
+                        "href": "#foo"
+                    }
+                },
+                "1.2": {
+                    "1.1.1": {
+                        "label": "Address &amp; Contacts",
+                        "href": "#foo"
+                    },
+                    "1.1.2": {
+                        "label": "Document pages",
+                        "href": "#foo"
+                    },
+                    "1.1.3": {
+                        "label": "Landing pages",
+                        "href": "#foo"
+                    },
+                    "1.1.4": {
+                        "label": "Blogs",
+                        "href": "#foo"
+                    },
+                    "1.1.5": {
+                        "label": "Document Directories",
+                        "href": "#foo"
+                    }
+                }
+            }
+        },
+        "2": {
+            "label": "xForms Pro",
+            "class": "",
+            "href": '#xforms',
+            "icon": "check-sign",
+            "items": {
+                "2.1": {
+                    "2.1.1": {
+                        "label": "Create form",
+                        "href": "#foo"
+                    }
+                }
+            }
+        }
+
+    }
+%}
+
 <div class="ui">
-<nav class="nav-main">
-
-  <div class="nav-primary"><!--
-
-    --><a href="http://jadu.net" class="jadu-brand">Jadu</a><!--
-
-    --><ul class="nav-items">
-      <li class="nav-item">
-          <a href="#home" class="nav-link">{{ html.icon('home') }}</a>
-      </li>
-      <li class="nav-item">
-          <a href="#publishing" class="nav-link">{{ html.icon('pencil') }}</a>
-      </li>
-      <li class="nav-item">
-          <a href="#events" class="nav-link">{{ html.icon('calendar') }}</a>
-      </li>
-      <li class="nav-item">
-          <a href="#xforms" class="nav-link">{{ html.icon('check-sign') }}</a>
-      </li>
-      <li class="nav-item">
-          <a href="#settings" class="nav-link">{{ html.icon('cog') }}</a>
-      </li>
-    </ul>
-  </div><!--
-
---><div class="nav-secondary nav-secondary--closed">
-
-    <a href="#close" data-nav-action="close">x</a>
-
-    <form>
-      <input type="search" placeholder="search" />
-      <button>Go</button>
-    </form>
-
-    <ul data-nav="#publishing" class="nav-items">
-      <li class="nav-item">
-        <a href="#documents" class="nav-link">Document pages</a>
-      </li>
-      <li class="nav-item">
-        <a href="#landing" class="nav-link">Landing pages</a>
-      </li>
-      <li class="nav-item">
-        <a href="#news" class="nav-link">News articles</a>
-      </li>
-    </ul>
-
-    <ul data-nav="#xforms" class="nav-items">
-      <li class="nav-item">
-        <a href="#forms" class="nav-link">Forms</a>
-      </li>
-    </ul>
-
-  </div>
-
-</nav><!--
-
---><div class="main">
-  This is my content This is my content This is my content This is my content This is my content This is my content This is my content This is my content This is my content This is my content This is my content This is my content This is my content This is my content This is my content This is my content This is my content This is my content This is my content This is my content This is my content This is my content This is my content This is my content This is my content This is my content This is my content This is my content This is my content This is my content This is my content This is my content This is my content This is my content This is my content This is my content This is my content This is my content This is my content This is my content This is my content This is my content This is my content This is my content This is my content This is my content
+    {{ nav.primary({ 'data': nav_data }) }}
 </div>
-
-    </div>
-</body>
-</html>
 
 {% endblock %}
