@@ -84,7 +84,7 @@
   set tabs_content = [
     {
       "id"        : "components",
-      "label"     : html.icon("th") ~ " Components",
+      "label"     : html.icon("th") ~ "Components",
       "sub_tabs"  : [
         {
           "id"    : "colours",
@@ -220,6 +220,157 @@
   ]
 %}
 
+{%
+  set nav_data = {
+    "1": {
+        "label": "Components",
+        "class": "",
+        "href": '#first-item',
+        "icon": "th",
+        "items": {
+            "1.1": {
+                "1.1.1": {
+                    "label": "Colours",
+                    "href": "#colours",
+                    "data-toggle": "tab"
+                },
+                "1.1.2": {
+                    "label": "Buttons",
+                    "href": "#buttons",
+                    "data-toggle": "tab"
+                },
+                "1.1.3": {
+                    "label": "Flash messages",
+                    "href": "#flash",
+                    "data-toggle": "tab"
+                },
+                "1.1.4": {
+                    "label": "Forms",
+                    "href": "#forms",
+                    "data-toggle": "tab"
+                },
+                "1.1.5": {
+                    "label": "Loading",
+                    "href": "#loading",
+                    "data-toggle": "tab"
+                },
+                "1.1.6": {
+                    "label": "Metadata",
+                    "href": "#metadata",
+                    "data-toggle": "tab"
+                },
+                "1.1.7": {
+                    "label": "Panels",
+                    "href": "#panels",
+                    "data-toggle": "tab"
+                },
+                "1.1.8": {
+                    "label": "Progress bars",
+                    "href": "#progress",
+                    "data-toggle": "tab"
+                },
+                "1.1.9": {
+                    "label": "Table",
+                    "href": "#table",
+                    "data-toggle": "tab"
+                },
+                "1.1.10": {
+                    "label": "Tooltips",
+                    "href": "#tooltips",
+                    "data-toggle": "tab"
+                },
+                "1.1.11": {
+                    "label": "Typography",
+                    "href": "#typographyx§",
+                    "data-toggle": "tab"
+                }
+            }
+        }
+    },
+    "2": {
+        "label": "Modules",
+        "class": "",
+        "href": "#modules",
+        "icon": "th-large",
+        "items": {
+            "2.1": {
+                "2.1.1": {
+                    "label": "Decks",
+                    "href": "#decks",
+                    "data-toggle": "tab"
+                },
+                "2.1.2": {
+                    "label": "Modals",
+                    "href": "#modals",
+                    "data-toggle": "tab"
+                },
+                "2.1.3": {
+                    "label": "Popovers",
+                    "href": "#popovers",
+                    "data-toggle": "tab"
+                },
+                "2.1.4": {
+                    "label": "Rich list",
+                    "href": "#rich_list",
+                    "data-toggle": "tab"
+                }
+            }
+        }
+    },
+    "3": {
+        "label": "Patterns",
+        "class": "",
+        "href": "#patterns",
+        "icon": "puzzle-piece",
+        "items": {
+            "4.1": {
+                "3.1.1": {
+                    "label": "Masterswitch",
+                    "href": "#masterswitch",
+                    "data-toggle": "tab"
+                },
+                "3.1.2": {
+                    "label": "Simple uploader",
+                    "href": "#simple_uploader",
+                    "data-toggle": "tab"
+                },
+                "3.1.3": {
+                    "label": "Detailed uploader",
+                    "href": "#detail_uploader",
+                    "data-toggle": "tab"
+                }
+            }
+        }
+    },
+    "4": {
+        "label": "UI Examples",
+        "class": "",
+        "href": "#ui-examples",
+        "icon": "desktop",
+        "items": {
+            "4.1": {
+                "4.1.1": {
+                    "label": "Table with summary",
+                    "href": "#summary",
+                    "data-toggle": "tab"
+                },
+                "4.1.2": {
+                    "label": "Table with filters",
+                    "href": "#filters",
+                    "data-toggle": "tab"
+                },
+                "4.1.3": {
+                    "label": "Table with no results",
+                    "href": "#empty_table",
+                    "data-toggle": "tab"
+                }
+            }
+        }
+    }
+}
+
+%}
+
 {% block summary %}
   <div class="summary hide" data-tab="#analytics">
     <div id="container"></div>
@@ -244,7 +395,7 @@
     </div>
   </div>
 
-  {{ tabs.tabs(tabs_content) }}
+
 {% endblock %}
 
 {% block tabs_content %}

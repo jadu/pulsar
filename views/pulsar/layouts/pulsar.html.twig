@@ -2,19 +2,19 @@
 
 {% block body %}
     <header id="top">
-        {% include '@pulsar/pulsar/components/toolbar.html.twig' %}
         {% include '@pulsar/pulsar/components/flash.html.twig' %}
     </header>
-    {% include '@pulsar/pulsar/components/breadcrumb.html.twig' %}
+    {# include '@pulsar/pulsar/components/breadcrumb.html.twig' #}
 
     {% block summary %}{% endblock %}
 
     <div role="main" class="container">
+        {% include '@pulsar/pulsar/components/navigation.html.twig' %}
         {% block content %}{% endblock %}
         {% block decks %}{% endblock %}
     </div>
 
-    <footer class="footer">
+    <!-- <footer class="footer">
         {{
             html.link({
                 'label': html.icon('long-arrow-up') ~ ' Top',
@@ -27,7 +27,7 @@
                 'href': '/credits'
             })
         }}
-    </footer>
+    </footer> -->
 
     <div id="modal" class="modal" role="dialog" aria-hidden="true">
         <!-- empty modal for ajax requests -->

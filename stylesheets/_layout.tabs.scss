@@ -1,3 +1,10 @@
+
+
+
+
+
+
+
 .tabs__list {
   clear: left;
   display: none;
@@ -148,7 +155,6 @@
   }
 
   + .tabs__content {
-    border: 1px solid $gray;
     clear: left;
     margin: -2px $gutter-width 1em $gutter-width;
     position: relative;
@@ -211,7 +217,9 @@
 }
 
 .tabs__content {
+  clear: left;
   display: block;
+  margin: 0 40px;
   overflow: auto;
 
   @include respond-max($screen-tablet) {
@@ -236,20 +244,12 @@
 }
 
 .tab__inner {
-  background-color: $white;
-  border-top: 1px solid $gray;
-  border-bottom: 1px solid $gray;
-  // box-shadow: -3px 1px 3px rgba(0, 0, 0, 0.05);
   float: left;
   position: relative;
   width: 100%;
 
   h2:first-of-type {
     margin-top: 0;
-  }
-
-  @include respond-min($screen-phone) {
-    border: 1px solid $gray;
   }
 }
 
@@ -264,16 +264,6 @@
   }
 }
 
-
-
-.tab--unpadded > p {
-  clear: both;
-  margin-left: $gutter-width;
-}
-
-.tab--padded {
-  padding: $line-height-base $gutter-width;
-}
 
 .tabs {
   display: inline-block;
@@ -314,18 +304,16 @@
 
 
 .tab__container {
-	background-color: $white;
-	border: 1px solid $gray;
+
 	float: left;
 	width: 100%;
 
 	.tab__inner {
-		background: none;
-		border: none;
+
 		width: 100%;
 
 		@include respond-min($screen-tablet) {
-			border-right: 1px solid $gray;
+
 			width: 70%;
 		}
 	}
@@ -340,19 +328,10 @@
 }
 
 .tab__container .tab__inner {
-	background-color: #eee;
 	display: table-cell;
 	float: none;
 	height: 100%;
 	vertical-align: top;
-
-	.form-v2 {
-		background-color: white;
-	}
-
-    &.tab--padded {
-        background-color: white;
-    }
 }
 
 .tab__container .form__actions {

@@ -56,7 +56,7 @@ NavMainComponent.prototype.closeNavs = function() {
 
 	component.$navMain.removeClass('is-open');
 
-	component.$html.find('.is-active')
+	component.$navMain.find('.is-active')
 		.removeClass('is-active');
 };
 

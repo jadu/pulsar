@@ -11,6 +11,7 @@ $nav-color-dark:  #2d89b7;
     display: table-cell;
     height: 100%;
     overflow: hidden;
+    vertical-align: top;
 }
 
 .nav-main.is-open {
@@ -38,7 +39,7 @@ $nav-color-dark:  #2d89b7;
 }
 
 .nav-divider {
-    border-color: lighten($nav-color-light, 5);
+    border-color: darken($nav-color-dark, 6);
     margin-bottom: 5px;
 }
 
@@ -49,9 +50,15 @@ $nav-color-dark:  #2d89b7;
 
 .nav-primary {
     background-color: $nav-color-light;
+    box-shadow: inset 0 0 0 $nav-color-dark;
     text-align: center;
+    transition: box-shadow 100ms linear;
     width: 75px;
     z-index: 2;
+
+    .nav-main:not(.is-open) & {
+        box-shadow: inset -4px 0 0 $nav-color-dark;
+    }
 
     .is-active {
         background-color: $nav-color-dark;
@@ -87,7 +94,9 @@ $nav-color-dark:  #2d89b7;
 
 .nav-secondary {
     background-color: $nav-color-dark;
+    box-shadow: inset -4px 0 0 darken($nav-color-dark, 4);
     margin-left: -320px;
+    overflow-x: hidden;
     overflow-y: scroll;
     transition: margin-left 100ms ease-in-out;
     width: 250px;
@@ -183,8 +192,8 @@ $nav-color-dark:  #2d89b7;
     border: 1px solid white;
     border-radius: 4px;
     color: white;
-    padding: .5em 30px .5em .5em;
-    width: 170px;
+    padding: 8px;
+    width: 190px;
 
     &::-webkit-input-placeholder {
         color: white;
@@ -195,7 +204,7 @@ $nav-color-dark:  #2d89b7;
     background: none;
     border: none;
     color: white;
-    margin-left: -35px;
+    margin-left: -30px;
 }
 
 .nav-close {
@@ -215,7 +224,7 @@ $nav-color-dark:  #2d89b7;
 }
 
 .nav-title {
-    border-bottom: 1px solid $nav-color-light;
+    border-bottom: 1px solid darken($nav-color-dark, 6);
     color: white;
     display: inline-block;
     font-size: 1.5em;

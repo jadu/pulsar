@@ -14,6 +14,7 @@
             {{
                 _self.nav_item({
                     'label': 'Home',
+                    'href': '#home',
                     'icon': 'home'
                 })
             }}
@@ -90,7 +91,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">a really really long searcg term that we have to handle</a>
+                <a href="#" class="nav-link">a really really long search term that we have to handle</a>
                 <a href="#remove-search" class="nav-remove-search">
                     {{ html.icon('remove-sign') }}
                 </a>
@@ -113,12 +114,12 @@
     <li
         {{
             attributes(options
-                |exclude('href')
+                |exclude('href data-toggle')
                 |defaults({ 'class': 'nav-item' })
             )
         }}
     >
-        <a {{ attributes(options|only('href')) }} class="nav-link">
+        <a {{ attributes(options|only('href data-toggle')) }} class="nav-link">
             {% if options.icon is defined and options.icon is not empty %}
                 {{ html.icon(options.icon, { 'class': 'nav-link__icon' }) }}
             {% endif %}
