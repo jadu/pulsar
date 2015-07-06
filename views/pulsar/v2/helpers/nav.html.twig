@@ -11,13 +11,6 @@
         </a><!--
 
      --><ul class="nav-items">
-            {{
-                _self.nav_item({
-                    'label': 'Home',
-                    'href': '#home',
-                    'icon': 'home'
-                })
-            }}
 
             {{
                 _self.nav_item({
@@ -46,7 +39,7 @@
 
         {% if options.data is iterable %}
             {% for options in options.data %}
-                {% if options.items is iterable %}
+                {% if options.items is defined and options.items is iterable %}
 
         <div class="nav-container" data-nav="{{ options.href }}">
             <span class="nav-title">{{ options.label }}</span>

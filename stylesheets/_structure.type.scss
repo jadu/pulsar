@@ -8,6 +8,7 @@
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
+  line-height: 1em;
   margin: 0 0 ($line-height-base / 2) 0;
 }
 
@@ -17,41 +18,42 @@ h3 {
   letter-spacing: -1px;
 }
 
-h1 {
-  font-size: $font-size-base * 2.75;                // 44px
-  line-height: $line-height-base * 2.272727272;     // 50px
-  margin: 0 0 ($line-height-base * 0.727272727) 0;  // 16px
-}
+// h1 {
+//   font-size: $font-size-base * 1.75;                // 44px
+//   line-height: $line-height-base * 2.272727272;     // 50px
+//   margin: 0 0 ($line-height-base * 0.727272727) 0;  // 16px
+// }
 
-h2 {
-  font-size: $font-size-small * 2.25;                                    // 27px
-  line-height: ($line-height-base / $line-height-small) * 2.11363636;    // 31px
-  margin: (($line-height-base / $line-height-small) * 2.11363636) 0 (($line-height-base / $line-height-small) * 1.09090909) 0; // 31px 0 16px 0
+// h2 {
+//   font-size: $font-size-small * 1.75;                                    // 27px
+//   line-height: ($line-height-base / $line-height-small) * 2.11363636;    // 31px
+//   margin: (($line-height-base / $line-height-small) * 2.11363636) 0 (($line-height-base / $line-height-small) * 1.09090909) 0; // 31px 0 16px 0
 
-  @include respond-min($screen-phone) {
-    font-size: $font-size-base * 2.25;                // 36px
-    line-height: $line-height-base * 2.545454546;     // 56px
-    margin: 0 0 ($line-height-base * 0.454545455) 0;  // 10px
-  }
-}
+//   @include respond-min($screen-phone) {
+//     font-size: $font-size-base * 1.75;                // 36px
+//     line-height: $line-height-base * 2.545454546;     // 56px
+//     margin: 0 0 ($line-height-base * 0.454545455) 0;  // 10px
+//   }
+// }
 
-h3 {
-  font-size: $font-size-base * 1.75;                // 28px
-  line-height: $line-height-base * 2.727272727;     // 60px
-  margin: 0 0 ($line-height-base * 0.272727273) 0;  //  6px
-}
+// h3 {
+//   font-size: $font-size-base * 1.75;                // 28px
+//   line-height: $line-height-base * 2.727272727;     // 60px
+//   margin: 0 0 ($line-height-base * 0.272727273) 0;  //  6px
+// }
 
-h4 {
-  font-size: $font-size-base * 1.25;                // 20px
-  line-height: $line-height-base * 0.863636364;     // 19px
-  margin: 0 0 ($line-height-base * 0.136363636) 0;  //  3px
-}
+// h4 {
+//   font-size: $font-size-base * 1.25;                // 20px
+//   line-height: $line-height-base * 0.863636364;     // 19px
+//   margin: 0 0 ($line-height-base * 0.136363636) 0;  //  3px
+// }
 
-h5, h6 {
-  font-size: $font-size-base;                       // 16px
-  line-height: $line-height-base;                   // 12px
-  margin: 0;
-}
+// h5, h6 {
+//   font-size: $font-size-base;                       // 16px
+//   line-height: $line-height-base;                   // 12px
+//   margin: 0;
+// }
+
 
 p {
   margin: 0 0 ($line-height-base / $line-height-small) 0;

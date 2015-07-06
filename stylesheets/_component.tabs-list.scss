@@ -1,0 +1,53 @@
+// Main container
+.tabs__list {
+	display: block;
+	list-style-type: none;
+	margin: 20px 0 0 0;
+	width: 230px;
+}
+
+
+// Nested navigation
+.tabs__list--secondary {
+	margin: 0 0 1em 0;
+}
+
+.tab-item--header {
+	border-bottom: 1px solid $gray;
+	color: darken($text-color, 10);
+	display: block;
+	line-height: 2.25em;
+	margin-left: 10px;
+	padding-left: 10px;
+	width: 220px;
+
+	&:not(:first-of-type) {
+		margin-top: 2em;
+	}
+}
+
+.tab-link {
+	color: $text-color;
+	display: block;
+	line-height: 2.25em;
+	padding-left: 20px;
+	text-decoration: none;
+	width: 100%;
+
+	&:hover,
+	.is-active & {
+		color: $black;
+	}
+
+}
+
+.tab-item {
+	&:hover {
+		background-color: #fafafa;
+	}
+
+	&.is-active {
+		background-color: #efefef;
+		box-shadow: inset 10px 0 0 0 white;
+	}
+}

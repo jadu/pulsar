@@ -12,14 +12,7 @@ $nav-color-dark:  #2d89b7;
     height: 100%;
     overflow: hidden;
     vertical-align: top;
-}
-
-.nav-main.is-open {
     width: 75px;
-
-    @include respond-min($screen-desktop) {
-        width: 325px;
-    }
 }
 
 .nav-primary,
@@ -107,10 +100,6 @@ $nav-color-dark:  #2d89b7;
     transition: margin-left 100ms ease-in-out;
     width: 250px;
     z-index: 1;
-
-    @include respond-min($screen-desktop) {
-        position: relative;
-    }
 
     .nav-container {
         display: none;

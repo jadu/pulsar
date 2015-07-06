@@ -39,6 +39,57 @@
 }
 
 
-.tabs__content {
-    margin-top: 90px;
+.nav-tertiary {
+  display: table-cell;
+  margin-top: 30px;
+  width: 250px;
+}
+
+.toolbar {
+  float: left;
+  margin-top: 30px;
+  padding: 0 20px;
+
+  .nav-search {
+    float: left;
+    margin-left: 0;
+    width: 210px;
+  }
+
+  .nav-search__field {
+    background-color: white;
+    border: 1px solid $gray;
+    color: $gray;
+
+    &::-webkit-input-placeholder {
+        color: $gray;
+    }
+  }
+
+  .nav-search__submit {
+    color: $gray;
+  }
+
+  .user-menu .dropdown__menu {
+    left: auto;
+    right: 0;
+  }
+
+}
+
+.nav-user {
+  float: right;
+}
+
+.content-main {
+  display: table;
+}
+
+.heading {
+    line-height: 1.15em;
+    margin-bottom: 1em;
+}
+
+.tab__inner > .table--datagrid {
+    outline: none;
 }

@@ -1,5 +1,11 @@
 {% extends "@pulsar/pulsar/layouts/pulsar.html.twig" %}
 
 {% block content %}
+
+	<div class="nav-tertiary">
+		{% block tabs_list %}{% endblock %}
+	</div>
+
 	{% block tabs_content %}{% endblock %}
+
 {% endblock %}
