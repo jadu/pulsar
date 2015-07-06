@@ -15,7 +15,11 @@ $nav-color-dark:  #2d89b7;
 }
 
 .nav-main.is-open {
-    width: 325px;
+    width: 75px;
+
+    @include respond-min($screen-desktop) {
+        width: 325px;
+    }
 }
 
 .nav-primary,
@@ -56,21 +60,23 @@ $nav-color-dark:  #2d89b7;
     width: 75px;
     z-index: 2;
 
-    .nav-main:not(.is-open) & {
-        box-shadow: inset -4px 0 0 $nav-color-dark;
-    }
-
     .is-active {
         background-color: $nav-color-dark;
+    }
+
+    .nav-main:not(.is-open) & {
+        box-shadow: inset -4px 0 0 $nav-color-dark;
     }
 
     .nav-link {
         color: lighten($nav-color-light, 40);
         display: block;
         height: 70px;
-        font-size: .8em;
-        padding-top: 16px;
+        font-size: .75em;
+        max-width: 75px;
+        padding: 16px 5px 0 5px;
         position: relative;
+        text-overflow: ellipsis;
         transition: background-color 50ms linear;
     }
 
@@ -78,7 +84,6 @@ $nav-color-dark:  #2d89b7;
         background-color: darken($nav-color-dark, 2);
         color: white;
     }
-
 
     .nav-link.is-active:hover {
         background-color: $nav-color-dark;
@@ -98,9 +103,14 @@ $nav-color-dark:  #2d89b7;
     margin-left: -320px;
     overflow-x: hidden;
     overflow-y: scroll;
+    position: absolute;
     transition: margin-left 100ms ease-in-out;
     width: 250px;
     z-index: 1;
+
+    @include respond-min($screen-desktop) {
+        position: relative;
+    }
 
     .nav-container {
         display: none;
@@ -116,7 +126,8 @@ $nav-color-dark:  #2d89b7;
         width: 95%;
     }
 
-    .nav-item:not(.nav-item__divider):hover {
+    .nav-item:not(.nav-item__divider):hover,
+    .nav-item:not(.nav-item__divider).is-active {
         background-color: darken($nav-color-dark, 4);
 
         .nav-remove-search {

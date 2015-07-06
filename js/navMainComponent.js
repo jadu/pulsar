@@ -8,7 +8,9 @@ NavMainComponent.prototype.init = function() {
 
 	component.$navMain = this.$html.find('.nav-main');
 	component.$navPrimary = this.$html.find('.nav-primary');
+	component.$navSecondary = this.$html.find('.nav-secondary');
 	component.$primaryNavLinks = component.$navPrimary.find('.nav-link');
+	component.$secondaryNavLinks = component.$navSecondary.find('.nav-link');
 	component.$closeLink = component.$navMain.find('[data-nav-action=close]');
 
 	component.$primaryNavLinks.on('click', function() {
@@ -17,6 +19,13 @@ NavMainComponent.prototype.init = function() {
 
 		component.switchPrimaryNav($self.attr('href'));
 		component.switchSecondaryNav($self.attr('href'));
+	});
+
+	component.$secondaryNavLinks.on('click', function() {
+
+		var $self = $(this);
+
+		component.changeActiveSecondaryNavLink($self);
 	});
 
 	component.$closeLink.on('click', function() {
@@ -50,14 +59,22 @@ NavMainComponent.prototype.switchSecondaryNav = function(target) {
 		.addClass('is-active');
 };
 
+NavMainComponent.prototype.changeActiveSecondaryNavLink = function(target) {
+
+	var component = this;
+
+	component.$html.find('.nav-secondary .nav-item.is-active').removeClass('is-active');
+	component.$html.find('[href="' + target + '"]').addClass('is-active');
+};
+
 NavMainComponent.prototype.closeNavs = function() {
 
 	var component = this;
 
 	component.$navMain.removeClass('is-open');
 
-	component.$navMain.find('.is-active')
-		.removeClass('is-active');
+	// component.$navMain.find('.is-active')
+	// 	.removeClass('is-active');
 };
 
 NavMainComponent.prototype.closeSubNavs = function() {

@@ -169,10 +169,6 @@ describe('NavMain component', function() {
 			expect(this.$html.find('.nav-main').hasClass('is-open')).to.be.false;
 		});
 
-		it('should remove all active classes', function() {
-			expect(this.$html.find('.is-active').length).to.equal(0);
-		});
-
 	});
 
 });
