@@ -239,12 +239,6 @@
   }
 }
 
-.tab__pane form {
-  // make sure forms in tabs don't add extra spacing after the form actions
-  margin-bottom: 0;
-  width: 100%;
-}
-
 .tab__inner {
   // float: left;
   position: relative;
@@ -336,6 +330,3 @@
 	vertical-align: top;
 }
 
-.tab__container .form__actions {
-	box-shadow: inset 0px 4px 0px #ccc;
-}
