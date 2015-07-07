@@ -41,7 +41,6 @@
 
 .nav-tertiary {
   display: table-cell;
-  margin-top: 30px;
   min-width: 250px;
 }
 
@@ -87,8 +86,10 @@
 }
 
 .heading {
-    line-height: 1.15em;
-    margin-bottom: 1em;
+    border-bottom: 1px solid $gray;
+    line-height: 24px;
+    margin-bottom: 19px;
+    padding-bottom: 4px;
 }
 
 .tab__inner > .table--datagrid {

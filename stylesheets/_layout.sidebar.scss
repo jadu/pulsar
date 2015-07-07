@@ -13,13 +13,16 @@
 }
 
 .sidebar__header {
-	line-height: $line-height-base;
+	border-bottom: 1px solid $gray;
+    line-height: 24px;
+    margin-bottom: 19px;
+    padding-bottom: 4px;
 	text-align: left;
 }
 
 .sidebar-link {
 	display: block;
-	margin-bottom: 1em;
+	margin-bottom: $line-height-base;
 	text-align: left;
 	text-decoration: none;
 
@@ -30,8 +33,11 @@
 
 .sidebar-link__label {
 	margin-right: 10px;
+	position: relative;
+	top: -2px;
 }
 
 .sidebar-icon {
 	color: $gray-dark;
+	line-height: 20px;
 }

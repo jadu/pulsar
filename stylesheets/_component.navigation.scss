@@ -27,7 +27,6 @@ $nav-color-dark:  #2d89b7;
 }
 
 .nav-items {
-
     margin: 0;
     padding: 0;
 }
@@ -65,7 +64,7 @@ $nav-color-dark:  #2d89b7;
     .nav-link {
         color: lighten($nav-color-light, 40);
         display: block;
-        height: 70px;
+        height: 72px;
         font-size: .75em;
         max-width: 75px;
         padding: 16px 5px 0 5px;
@@ -127,7 +126,7 @@ $nav-color-dark:  #2d89b7;
 
     .nav-link {
         display: inline-block;
-        padding: 5px 8px;
+        padding: 5.5px 8px;
         width: 90%;
     }
 
@@ -157,20 +156,20 @@ $nav-color-dark:  #2d89b7;
 
 .jadu-branding {
     display: block;
-    margin: 18px 0 10px 0;
+    margin: 24px 0 6px 0;
     text-decoration: none;
 }
 
 .jadu-logomark {
     background: url($jadu-logomark-fallback);
     background: url($jadu-logomark), linear-gradient(transparent, transparent);
-    background-size: 50px 50px;
+    background-size: 48px 48px;
     background-repeat: no-repeat;
     border-radius: 60px;
     display: inline-block;
     text-align: center;
-    height: 50px;
-    width: 50px;
+    height: 48px;
+    width: 48px;
 }
 
 .jadu-wordmark {
@@ -230,7 +229,7 @@ $nav-color-dark:  #2d89b7;
     display: inline-block;
     font-size: 1.5em;
     line-height: 1;
-    margin: 20px 0 20px 18px;
+    margin: 17px 0 18px 18px;
     width: 95%;
 }
 
