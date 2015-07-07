@@ -42,7 +42,7 @@
 .nav-tertiary {
   display: table-cell;
   margin-top: 30px;
-  width: 250px;
+  min-width: 250px;
 }
 
 .toolbar {
@@ -68,6 +68,7 @@
 
   .nav-search__submit {
     color: $gray;
+    margin-left: -39px;
   }
 
   .user-menu .dropdown__menu {

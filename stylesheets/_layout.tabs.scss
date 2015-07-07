@@ -223,15 +223,10 @@
   vertical-align: top;
   width: 100%;
 
-  @include respond-max($screen-tablet) {
-    position: relative;
-    top: -($line-height-base * 2.5);
-  }
-
   // show/hide tab panes
   > .tab__pane {
     display: none;
-    margin-top: 17px; /* magic number? */
+    margin-top: 20px;
 
     &.is-active {
       display: block;

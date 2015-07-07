@@ -1,15 +1,8 @@
-// Main container
+
 .tabs__list {
 	display: block;
 	list-style-type: none;
-	margin: 20px 0 0 0;
-	width: 230px;
-}
-
-
-// Nested navigation
-.tabs__list--secondary {
-	margin: 0 0 1em 0;
+	margin: 20px 25px 0 25px;
 }
 
 .tab-item--header {
@@ -17,9 +10,7 @@
 	color: darken($text-color, 10);
 	display: block;
 	line-height: 2.25em;
-	margin-left: 10px;
-	padding-left: 10px;
-	width: 220px;
+	padding-left: 5px;
 
 	&:not(:first-of-type) {
 		margin-top: 2em;
@@ -30,7 +21,7 @@
 	color: $text-color;
 	display: block;
 	line-height: 2.25em;
-	padding-left: 20px;
+	padding-left: 5px;
 	text-decoration: none;
 	width: 100%;
 
@@ -48,6 +39,5 @@
 
 	&.is-active {
 		background-color: #efefef;
-		box-shadow: inset 10px 0 0 0 white;
 	}
 }
