@@ -85,44 +85,40 @@ data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
 
 	{% elseif options.type is defined and options.type == 'input' %}
 
-		<input
-			{{
+		<input {{
 				attributes(options
+					|exclude('type label')
 					|defaults({
 						'class': 'btn',
-						'type': 'button'
+						'type': 'button',
+						'value': options.label
 					})
 				)
-			}}
-		/>
+		}} />
 
 	{% elseif options.type is defined and options.type == 'submit' %}
 
-		<button
-			{{
+		<button {{
 				attributes(options
 					|exclude('label')
 					|defaults({
 						'class': 'btn'
 					})
 				)
-			}}
-		>
+		}} >
 			{{- options.label|default|raw -}}
 		</button>
 
 	{% else %}
 
-		<button
-			{{
+		<button {{
 				attributes(options
 					|exclude('caret label')
 					|defaults({
 						'class': 'btn'
 					})
 				)
-			}}
-		>
+		}} >
 			{{- options.label|default|raw -}}
 			{{- util.caret(options.caret|default) -}}
 		</button>
