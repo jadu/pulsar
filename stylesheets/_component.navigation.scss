@@ -2,7 +2,7 @@ $jadu-logomark:          '../images/branding/logo-cms-white.svg';
 $jadu-logomark-fallback: '../images/branding/logo-cms-white-small.png';
 
 $jadu-wordmark:          '../images/branding/jadu-white.svg';
-$jadu-wordmark-fallback: '../images/branding/jadu-white.png';
+$jadu-wordmark-fallback: '../images/branding/jadu-white-mini.png';
 
 $nav-color-light: #3399cc;
 $nav-color-dark:  #2d89b7;
@@ -101,6 +101,11 @@ $nav-color-dark:  #2d89b7;
     width: 250px;
     z-index: 1;
 
+    // cope with presence of scrollbars in IE
+    @include ie-lte(10) {
+        width: 280px;
+    }
+
     .nav-container {
         display: none;
     }
@@ -176,6 +181,7 @@ $nav-color-dark:  #2d89b7;
     background: url($jadu-wordmark-fallback);
     background: url($jadu-wordmark), linear-gradient(transparent, transparent);
     background-repeat: no-repeat;
+    background-size: 35px auto;
     display: inline-block;
     margin-top: 10px;
     text-indent: -9999px;
