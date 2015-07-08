@@ -71,11 +71,16 @@ class ConfigExtensionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($this->ext->getGlobals(), $this->ext->getConfigVars($this->config));
     }
 
-    public function testInvalidFilenameShouldCauseMethodsToFail()
+    public function testInvalidFilenameShouldUseDefaultFile()
     {
         $brokenExt = new ConfigExtension('invalidfile.json');
-        $this->assertEquals(FALSE, $brokenExt->getConfigVars());
-        $this->assertEquals(FALSE, $brokenExt->getGlobals());
+        $config = $brokenExt->getConfigVars();
+
+        $this->assertInternalType('array', $config);
+        $this->assertArrayHasKey('name', $config);
+        $this->assertArrayHasKey('version', $config);
+        $this->assertStringMatchesFormat('%d.%d.%d', $config['version']);
+        $this->assertArrayHasKey('base_path', $config);
     }
     
 }
