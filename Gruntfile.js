@@ -14,7 +14,9 @@ module.exports = function(grunt) {
 				'dist/js/test.js': ['tests/js/index.js']
 			},
 			options: {
-				// transform: ['uglifyify']
+				browserifyOptions: {
+            		standalone: 'pulsar'
+          		},
 			}
 		}
 	},

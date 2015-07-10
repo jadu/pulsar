@@ -28,6 +28,10 @@ var $               = require('jquery'),
 	NavMainComponent = require('./navMainComponent'),
 	SignInComponent = require('./area/signin/signin');
 
+module.exports = {
+	NavMainComponent: NavMainComponent
+};
+
 $(function () {
 
 	var $html = $('html');
@@ -41,7 +45,7 @@ $(function () {
     masterSwitch = new MasterSwitchComponent($html);
     masterSwitch.init();
 
-    navMain = new NavMainComponent($html);
+    navMain = new pulsar.NavMainComponent($html);
     navMain.init();
 
     // Switch out .svg for .png for <img> elements in older browsers
