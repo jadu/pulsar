@@ -43,17 +43,12 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
 
 	{{
 		_self.group({
-			'parent': options
-						|only('class help label')
-						|defaults({'class': 'checkbox-group'}),
+			'parent': options|only('class help label'),
 			'inputs': [
 				elem.input(
 					options
 						|exclude('class help label')
-						|defaults({
-							'class': 'checkbox',
-							'type': 'checkbox'
-						})
+						|defaults({'type': 'checkbox'})
 				)
 			]
 		})
@@ -112,7 +107,6 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
 
 	{%
 		set input = elem.input(options|merge({
-			'class': 'checkbox checkbox--inline',
 			'label': null,
 			'type': 'checkbox'
 		}))
@@ -132,10 +126,11 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
 			'parent': options
 				|only('class help')
 				|defaults({
-					'class': 'checkbox-group form__group--indent form__group--full'
+					'class': 'form-checkbox-inline'
 				}),
 			'inputs': [
 				elem.label({
+					'class': 'checkbox--inline-v2',
 					'for': options.id|default,
 					'label': label
 				})
@@ -176,7 +171,7 @@ data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
 {% spaceless %}
 	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-	{% set defaults = { 'class': 'form' } %}
+	{% set defaults = {'class': 'form--horizontal form-v2' } %}
 
 	{%
 		if options.action is defined
@@ -332,7 +327,7 @@ Opens a `<fieldset>` and allows you to define an optional `<legend>`.
 
 ## Example usage
 
-```twigx
+```twig
 {{
 	form.fieldset_start({
 		'legend': 'I am Legend'
@@ -357,19 +352,13 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
 	<fieldset
-		{{
-			attributes(options
-				|exclude('legend')
-				|defaults({
-					'class': 'fieldset'
-				})
-			) }}
+		{{ attributes(options|exclude('legend')) }}
 	>
 	{%
 		if options.legend is defined
 		and options.legend is not empty
 	%}
-		<legend class="legend">{{ options.legend|raw }}</legend>
+		<legend>{{ options.legend|raw }}</legend>
 	{% endif %}
 
 {% endspaceless %}
@@ -463,6 +452,16 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 This is a constructor macro which generates an input field wrapped with
 standard markup with the ability to prepend/append extra elements. It is called
 by other macros like form.text and form.password.
+
+<div class="panel panel--info">
+    <div class="panel__title">
+        <i class="icon-info-sign"></i> Info
+    </div>
+    <div class="panel__body">
+        <p>This helper is not really intended to be called directly from a
+        view</p>
+    </div>
+</div>
 
 Usually, you’ll have a single `options` hash to this You need to specify which
 of the options you want to apply to the parent wrapper (usually a `<div>`) and
@@ -574,7 +573,7 @@ parent.data-*    | string | Data attributes, eg: `'data-foo': 'bar'`
 				and options.parent.append is not empty
 			)
 		%}
-				{{ util.addon(options.parent.append|default) }}
+				{{ util.addon(append|default) }}
 			</div>
 		{% endif %}
 
@@ -725,16 +724,11 @@ data-*   | string | Data attributes, eg: `'data-foo': 'bar'`
 
 	{{
 		_self.group({
-			'parent': options
-				|only('class help label')
-				|defaults({'class': 'radio-group'}),
+			'parent': options|only('class help label'),
 			'inputs': [
 				elem.input(options
 					|exclude('class help label')
-					|defaults({
-						'class': 'radio',
-						'type': 'radio'
-					})
+					|defaults({'type': 'radio'})
 				)
 			]
 		})
@@ -791,7 +785,6 @@ value           | string | Specifies the value of the input
 
 	{%
 		set input = elem.input(options|merge({
-				'class': 'radio radio--inline',
 				'label': null,
 				'type': 'radio'
 			})
@@ -812,7 +805,7 @@ value           | string | Specifies the value of the input
 			'parent': options
 				|only('class help')
 				|defaults({
-					'class': 'radio-group form__group--indent form__group--full'
+					'class': 'form__indent'
 				}),
 			'inputs': [
 				elem.label({
@@ -985,10 +978,10 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
 	{{
 		_self.group({
-			'parent': options|only('append class help label prepend'),
+			'parent': options|only('class help label'),
 			'inputs': [
 				elem.input(
-					options|exclude('append class help label prepend')
+					options|exclude('class help label')
 				)
 			]
 		})
@@ -1032,7 +1025,7 @@ form        | string  | Specific one or more forms this label belongs to
 id          | string  | A unique identifier, if required
 name        | string  | The name of this control
 placeholder | string  | A short hint that describes the expected value
-rows        | integer | The height, in rows
+rows        | integer | The height, in rows (default 2)
 value       | string  | Specifies the value of the input
 data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
@@ -1047,11 +1040,8 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 		_self.group({
 			'parent': options|only('class help label'),
 			'inputs': [
-				elem.textarea(options
-					|exclude('class help label')
-					|defaults({
-						'class': 'textarea'
-					})
+				elem.textarea(
+					options|exclude('class help label')
 				)
 			]
 		})
