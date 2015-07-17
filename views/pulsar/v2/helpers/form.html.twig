@@ -174,14 +174,8 @@ data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
 	{% set defaults = {'class': 'form--horizontal form-v2' } %}
 
 	{%
-		if options.action is defined
-		and options.action is not empty
-	%}
-		{% set defaults = defaults|merge({'action': options.action}) %}
-	{% endif %}
-
-	{%
-		if options.method is not defined
+		if options.method is defined
+		and options.method is not empty
 	%}
 		{% set defaults = defaults|merge({'method': 'POST'}) %}
 	{% endif %}
