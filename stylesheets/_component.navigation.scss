@@ -132,10 +132,15 @@ $nav-color-dark:  #2d89b7;
     .nav-link {
         display: inline-block;
         padding: 5.5px 8px;
-        width: 90%;
+        width: 100%;
     }
 
     .nav-link:hover {
+        color: white;
+    }
+
+    .nav-link:active {
+        background-color: darken($nav-color-dark, 8);
         color: white;
     }
 }
