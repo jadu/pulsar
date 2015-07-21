@@ -1,89 +1,95 @@
 'use strict';
 
-function NavMainComponent(html) {
-	this.$html = html;
-};
+var $ = require('jQuery');
 
-NavMainComponent.prototype.init = function() {
+(function ($) {
 
-	var component = this;
+	function NavMainComponent(html) {
+		this.$html = html;
+	};
 
-	component.$navMain = this.$html.find('.nav-main');
-	component.$navPrimary = this.$html.find('.nav-primary');
-	component.$navSecondary = this.$html.find('.nav-secondary');
-	component.$primaryNavLinks = component.$navPrimary.find('.nav-link');
-	component.$secondaryNavLinks = component.$navSecondary.find('.nav-link');
-	component.$closeLink = component.$navMain.find('[data-nav-action=close]');
+	NavMainComponent.prototype.init = function() {
 
-	component.$primaryNavLinks.on('click', function() {
+		var component = this;
 
-		var $self = $(this);
+		component.$navMain = this.$html.find('.nav-main');
+		component.$navPrimary = this.$html.find('.nav-primary');
+		component.$navSecondary = this.$html.find('.nav-secondary');
+		component.$primaryNavLinks = component.$navPrimary.find('.nav-link');
+		component.$secondaryNavLinks = component.$navSecondary.find('.nav-link');
+		component.$closeLink = component.$navMain.find('[data-nav-action=close]');
 
-		component.switchPrimaryNav($self.attr('href'));
-		component.switchSecondaryNav($self.attr('href'));
-	});
+		component.$primaryNavLinks.on('click', function() {
 
-	component.$secondaryNavLinks.on('click', function() {
+			var $self = $(this);
 
-		var $self = $(this);
+			component.switchPrimaryNav($self.attr('href'));
+			component.switchSecondaryNav($self.attr('href'));
+		});
 
-		component.changeActiveSecondaryNavLink($self);
-	});
+		component.$secondaryNavLinks.on('click', function() {
 
-	component.$closeLink.on('click', function() {
-		component.closeNavs();
-	});
-};
+			var $self = $(this);
 
-NavMainComponent.prototype.switchPrimaryNav = function(target) {
+			component.changeActiveSecondaryNavLink($self);
+		});
 
-	var component = this;
+		component.$closeLink.on('click', function() {
+			component.closeNavs();
+		});
+	};
 
-	component.$html.find('.nav-primary .nav-link').removeClass('is-active');
+	NavMainComponent.prototype.switchPrimaryNav = function(target) {
 
-	if (component.$html.find('[data-nav="' + target + '"]').length >= 1) {
-		component.$navMain.addClass('is-open');
-	} else {
-		component.closeNavs();
-	}
+		var component = this;
 
-	component.$html.find('.nav-primary .is-active').removeClass('is-active');
-	component.$html.find('[href="' + target + '"]').addClass('is-active');
-};
+		component.$html.find('.nav-primary .nav-link').removeClass('is-active');
 
-NavMainComponent.prototype.switchSecondaryNav = function(target) {
+		if (component.$html.find('[data-nav="' + target + '"]').length >= 1) {
+			component.$navMain.addClass('is-open');
+		} else {
+			component.closeNavs();
+		}
 
-	var component = this;
+		component.$html.find('.nav-primary .is-active').removeClass('is-active');
+		component.$html.find('[href="' + target + '"]').addClass('is-active');
+	};
 
-	component.closeSubNavs();
+	NavMainComponent.prototype.switchSecondaryNav = function(target) {
 
-	component.$html.find('[data-nav="' + target + '"]')
-		.addClass('is-active');
-};
+		var component = this;
 
-NavMainComponent.prototype.changeActiveSecondaryNavLink = function(target) {
+		component.closeSubNavs();
 
-	var component = this;
+		component.$html.find('[data-nav="' + target + '"]')
+			.addClass('is-active');
+	};
 
-	component.$html.find('.nav-secondary .nav-item.is-active').removeClass('is-active');
-	component.$html.find('[href="' + target + '"]').addClass('is-active');
-};
+	NavMainComponent.prototype.changeActiveSecondaryNavLink = function(target) {
 
-NavMainComponent.prototype.closeNavs = function() {
+		var component = this;
 
-	var component = this;
+		component.$html.find('.nav-secondary .nav-item.is-active').removeClass('is-active');
+		component.$html.find('[href="' + target + '"]').addClass('is-active');
+	};
 
-	component.$navMain.removeClass('is-open');
+	NavMainComponent.prototype.closeNavs = function() {
 
-	// component.$navMain.find('.is-active')
-	// 	.removeClass('is-active');
-};
+		var component = this;
 
-NavMainComponent.prototype.closeSubNavs = function() {
+		component.$navMain.removeClass('is-open');
 
-	var component = this;
+		// component.$navMain.find('.is-active')
+		// 	.removeClass('is-active');
+	};
 
-	component.$html.find('.nav-secondary .nav-container').removeClass('is-active');
-};
+	NavMainComponent.prototype.closeSubNavs = function() {
 
-module.exports = NavMainComponent;
+		var component = this;
+
+		component.$html.find('.nav-secondary .nav-container').removeClass('is-active');
+	};
+
+	module.exports = NavMainComponent;
+
+}(jQuery.noConflict()));
