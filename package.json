@@ -10,8 +10,8 @@
     "dantest": "browserify tests/js/index --standalone=pulsar --debug --outfile dist/js/test.js"
   },
   "devDependencies": {
-    "browserify": "^6.3.3",
-    "browserify-shim": "^3.8.3",
+    "browserify": "10.0.0",
+    "browserify-shim": "^3.8.9",
     "chai": "latest",
     "contextify": "latest",
     "grunt": "latest",
@@ -37,7 +37,7 @@
     "minifyify": "^6.3.0",
     "mocha": "latest",
     "mocha-phantomjs": "latest",
-    "phantomjs": "latest",
+    "phantomjs": "1.9.15",
     "sinon": "latest",
     "sinon-chai": "latest",
     "time-grunt": "latest",
