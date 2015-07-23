@@ -217,9 +217,9 @@
 // }
 
 .tabs__content {
+  @include clear-fix;
   display: table-cell;
   padding: 0 20px;
-  overflow: auto;
   vertical-align: top;
   width: 100%;
 
