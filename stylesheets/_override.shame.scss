@@ -37,3 +37,43 @@
     width: auto;
     max-width: 100%;
 }
+
+// Fix for P3 spacing on Q forms/fieldsets 
+.form--horizontal {
+  padding-top: 17px;
+
+  > fieldset {
+    padding: 22px 20px;
+
+    legend {
+      border-bottom: 1px solid #e5e5e5;
+      color: #4d4d4d;
+      display: block;
+      font-size: 24px;
+      line-height: 28.000000006px;
+      margin-bottom: 15.000000004px;
+      padding: 0 20px 0 0;
+      position: relative;
+      width: 100%;
+    }
+  }
+
+  > .form__group {
+    padding: 0 20px;
+  }
+
+  .form__actions {
+    margin: 0;
+  }
+
+  .checkbox--inline-v2,
+  .radio--inline-v2 {
+    height: 44px;
+
+    > [type="checkbox"],
+    > [type="radio"] {
+      height: auto;
+    }
+  }
+
+}
