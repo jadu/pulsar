@@ -43,11 +43,11 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
 
 	{{
 		_self.group({
-			'parent': options|only('class help label'),
+			'parent': options|only('class help label label_for'),
 			'inputs': [
 				elem.input(
 					options
-						|exclude('class help label')
+						|exclude('class help label label_for')
 						|defaults({'type': 'checkbox'})
 				)
 			]
@@ -425,10 +425,10 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
 	{{
 		_self.group({
-			'parent': options|only('class help label'),
+			'parent': options|only('class help label label_for'),
 			'inputs': [
 				elem.input(options
-					|exclude('class help label')
+					|exclude('class help label label_for')
 					|defaults({'type': 'file'})
 				)
 			]
@@ -508,6 +508,7 @@ parent.id        | string | A unique identifier, if required
 parent.help      | string | Additional guidance information to be displayed next to the input
 parent.inputs    | array  | One or more form inputs to display
 parent.label     | string | Text for the `<label>` companion element
+parent.label_for | string | ID of the input that the `<label>` elements' `for` attribute should reference
 parent.prepend   | string | Content to display before the input, usually short text or icons
 parent.removable | bool   | Whether to display a remove button after the input (default false)
 parent.data-*    | string | Data attributes, eg: `'data-foo': 'bar'`
@@ -533,7 +534,7 @@ parent.data-*    | string | Data attributes, eg: `'data-foo': 'bar'`
 	-}}>
 		{{
 			elem.label({
-				'for': options.parent.id|default,
+				'for': options.parent.label_for|default,
 				'label': options.parent.label|default
 			})
 		}}
@@ -718,10 +719,10 @@ data-*   | string | Data attributes, eg: `'data-foo': 'bar'`
 
 	{{
 		_self.group({
-			'parent': options|only('class help label'),
+			'parent': options|only('class help label label_for'),
 			'inputs': [
 				elem.input(options
-					|exclude('class help label')
+					|exclude('class help label label_for')
 					|defaults({'type': 'radio'})
 				)
 			]
@@ -867,10 +868,10 @@ size        | int     | The number of items to display when the list is shown
 
 	{{
 		_self.group({
-			'parent': options|only('class help label'),
+			'parent': options|only('class help label label_for'),
 			'inputs': [
 				elem.select(
-					options|exclude('class help label')
+					options|exclude('class help label label_for')
 				)
 			]
 		})
@@ -972,10 +973,10 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
 	{{
 		_self.group({
-			'parent': options|only('class help label'),
+			'parent': options|only('class help label label_for'),
 			'inputs': [
 				elem.input(
-					options|exclude('class help label')
+					options|exclude('class help label label_for')
 				)
 			]
 		})
@@ -1032,10 +1033,10 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
 	{{
 		_self.group({
-			'parent': options|only('class help label'),
+			'parent': options|only('class help label label_for'),
 			'inputs': [
 				elem.textarea(
-					options|exclude('class help label')
+					options|exclude('class help label label_for')
 				)
 			]
 		})
