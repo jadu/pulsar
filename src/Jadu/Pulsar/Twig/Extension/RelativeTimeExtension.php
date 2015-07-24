@@ -5,17 +5,17 @@ namespace Jadu\Pulsar\Twig\Extension;
 /**
  * Relative Time
  *
- * A filter which converts a unix timestamp into a relative string like 
+ * A filter which converts a unix timestamp into a relative string like
  * 2 hours ago, 5 days ago, 1 month ago
  *
  * Usage: "1380093916"|time_ago
- * 
+ *
  * Unit tests: tests/unit/RelativeTimeExtensionTest.php
  */
 class RelativeTimeExtension extends \Twig_Extension
 {
 
-    public function getName() 
+    public function getName()
     {
         return 'relative_time_extension';
     }
@@ -29,6 +29,10 @@ class RelativeTimeExtension extends \Twig_Extension
 
     public function timeAgo($time_from)
     {
+        if ($time_from instanceof \DateTime) {
+            $time_from = $time_from->getTimestamp();
+        }
+
         $etime = time() - $time_from;
 
         if ($etime < 1)
