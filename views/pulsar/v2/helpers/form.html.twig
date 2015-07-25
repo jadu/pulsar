@@ -47,7 +47,7 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
 			'inputs': [
 				elem.input(
 					options
-						|exclude('class help label label_for')
+						|exclude('class help label')
 						|defaults({'type': 'checkbox'})
 				)
 			]
@@ -428,7 +428,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 			'parent': options|only('class help id label'),
 			'inputs': [
 				elem.input(options
-					|exclude('class help label label_for')
+					|exclude('class help label')
 					|defaults({'type': 'file'})
 				)
 			]
@@ -721,7 +721,7 @@ data-*   | string | Data attributes, eg: `'data-foo': 'bar'`
 			'parent': options|only('class help id label'),
 			'inputs': [
 				elem.input(options
-					|exclude('class help label label_for')
+					|exclude('class help label')
 					|defaults({'type': 'radio'})
 				)
 			]
@@ -870,7 +870,7 @@ size        | int     | The number of items to display when the list is shown
 			'parent': options|only('class help id label'),
 			'inputs': [
 				elem.select(
-					options|exclude('class help label label_for')
+					options|exclude('class help label')
 				)
 			]
 		})
@@ -975,7 +975,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 			'parent': options|only('class help id label'),
 			'inputs': [
 				elem.input(
-					options|exclude('class help label label_for')
+					options|exclude('class help label')
 				)
 			]
 		})
@@ -1035,7 +1035,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 			'parent': options|only('class help id label'),
 			'inputs': [
 				elem.textarea(
-					options|exclude('class help label label_for')
+					options|exclude('class help label')
 				)
 			]
 		})
