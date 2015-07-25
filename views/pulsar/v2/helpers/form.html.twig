@@ -916,7 +916,7 @@ type    | string | Can be button (default), link, input, submit
 
 	{{
 		html.button(options|merge({
-			'class': 'js-submit-disable',
+			'class': options.class|default ~ ' js-submit-disable',
 			'type': 'submit'
 		}))
 	}}
