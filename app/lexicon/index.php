@@ -33,7 +33,15 @@ $twig->addExtension(new TabsExtension());
 $twig->addExtension(new Twig_Extension_Debug());
 //$twig->addExtension(new Twig_Extension_Profiler($profile));
 
-$template = $twig->loadTemplate('lexicon/main.html.twig');
+
+
+if (!isset($_SERVER['PATH_INFO'])) {
+    $path = 'main';
+} else {
+    $path = $_SERVER['PATH_INFO'];
+}
+
+$template = $twig->loadTemplate('lexicon/' . $path . '.html.twig');
 
 $toolbar = array(
     '<i class="icon-file"></i> Docs' => '#',

@@ -2,15 +2,11 @@
 {% import 'pulsar/v2/helpers/form.html.twig' as form %}
 {% import 'pulsar/helpers/flash.html.twig' as flash %}
 
-<div class="tab__header">
-	<h2 class="heading">Colours</h2>
-</div>
-
 <div class="tab__container">
 	<div class="tab__inner tab--padded">
 
-		<h4>Standard 'state' colours</h4>
-		<hr />
+		<h2 class="heading">Standard 'state' colours</h2>
+
 		<div class="swatch swatch--primary">
 			<div class="swatch__colour">
 				<span class="swatch__text">primary</span>
@@ -72,8 +68,7 @@
 		</div>
 
 		<br /><br />
-		<h4>Jadu blues</h4>
-		<hr />
+		<h2 class="heading">Jadu blues</h2>
 
 		{%
 			set jadu_blues = [
@@ -96,8 +91,7 @@
 		{% endfor %}
 
 		<br /><br />
-		<h4>Jadu brand colours</h4>
-		<hr />
+		<h2 class="heading">Jadu brand colours</h2>
 
 		{%
 			set jadu_colours = [
@@ -124,9 +118,7 @@
 	</div>
 
 	<div class="sidebar">
-		<h4>{{ html.icon('info-sign', { 'class': 'tab-sidebar__icon'}) }} Using colour</h4>
-
-		<hr />
+		<h2 class="heading">{{ html.icon('info-sign', { 'class': 'sidebar-icon'}) }} Using colour</h2>
 
 		<p>Pulsar uses a standardised colour palette which incorporates the colours defined in Jadu’s styleguide.</p>
 

@@ -1,30 +1,25 @@
 {%- macro tabs(tabs, editable = false) -%}
   {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
   {% set active_tab_id = get_active_tab(tabs, active_tab) %}
-  <ul class="tabs__list">
+  <ul class="tabs__list tabs__list--primary">
   {%- for tab in tabs -%}
 
-	  <li{% if (active_tab_id == null and loop.first) or (active_tab_id == tab.id) %} class="is-active"{% endif %}>
+	  <li class="tab-item tab-item--header">
 
-		{{
-			html.link({
-		  		'label': tab.label,
-		  		'href': '#' ~ tab.id,
-		  		'data-toggle': 'tab'
-		  	})
-		}}
+	  	{{ tab.label|raw }}
 
 		{%-
 			if tab.sub_tabs is defined
 			and tab.sub_tabs != null
 		%}
-		  <ul class="tabs__list">
+		  <!-- <ul class="tabs__list tabs__list--secondary"> -->
 
 			{%- for sub_tab in tab.sub_tabs -%}
-			  <li{% if (active_tab_id == null and loop.parent.loop.first and loop.first) or (active_tab == sub_tab.id) %} class="is-active"{% endif %}>
+			  <li class="tab-item {% if (active_tab_id == null and loop.parent.loop.first and loop.first) or (active_tab == sub_tab.id) %} is-active{% endif %}">
 				{{
 					html.link({
 				  		'label': sub_tab.label,
+				  		'class': 'tab-link',
 				  		'href': '#' ~ sub_tab.id,
 				  		'data-toggle': 'tab'
 				  	})
@@ -32,7 +27,7 @@
 			  </li>
 			{%- endfor -%}
 
-		  </ul>
+		  <!-- </ul> -->
 		{%- endif -%}
 
 	  </li>
@@ -95,10 +90,3 @@
   {%- endfor -%}
   </div>
 {%- endmacro -%}
-
-
-
-
-
-
-

@@ -1,0 +1,166 @@
+{% import 'pulsar/v2/helpers/html.html.twig' as html %}
+{% import 'pulsar/v2/helpers/form.html.twig' as form %}
+{% import 'pulsar/helpers/datagrid.html.twig' as datagrid %}
+
+<div class="tab__inner">
+
+    <table class="table--datagrid" id="lexicon_analytics">
+        <thead>
+            <tr>
+                  <th class="row__actions">
+    <input type="checkbox" data-action="select-all">
+  </th>
+
+                <th><a href="#">Visitor <i class="icon-sort-down"></i></a></th>
+                <th class="centered"><a href="#">Visits</a></th>
+                <th class="centered"><a href="#">Pages / Visit</a></th>
+                <th class="centered"><a href="#">Avg Time on Site</a></th>
+                <th class="centered"><a href="#">Bounce Rate</a></th>
+                <th class="centered"><a href="#">Country</a></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                  <td class="row__actions">
+    <input type="checkbox" name="datagrid-items" data-action="select" data-id="1">
+  </td>
+
+                <td>
+                    <a href="#exampledeck">123.123.123.123</a>
+                </td>
+                <td class="centered">5</td>
+                <td class="centered">10</td>
+                <td class="centered">00.02.12</td>
+                <td class="centered">10%</td>
+                <td class="centered">UK</td>
+            </tr>
+            <tr class="is-selected">
+                  <td class="row__actions">
+    <input type="checkbox" name="datagrid-items" data-action="select" data-id="2">
+  </td>
+
+                <td>
+                    <a href="#exampledeck">123.123.123.123</a>
+                </td>
+                <td class="centered">5</td>
+                <td class="centered">10</td>
+                <td class="centered">00.02.12</td>
+                <td class="centered">10%</td>
+                <td class="centered">UK</td>
+            </tr>
+            <tr>
+                  <td class="row__actions">
+    <input type="checkbox" name="datagrid-items" data-action="select" data-id="3">
+  </td>
+
+                <td>
+                    <a href="#exampledeck">123.123.123.123</a>
+                </td>
+                <td class="centered">5</td>
+                <td class="centered">10</td>
+                <td class="centered">00.02.12</td>
+                <td class="centered">10%</td>
+                <td class="centered">UK</td>
+            </tr>
+            <tr>
+                  <td class="row__actions">
+    <input type="checkbox" name="datagrid-items" data-action="select" data-id="4">
+  </td>
+
+                <td>
+                    <a href="#exampledeck">123.123.123.123</a>
+                </td>
+                <td class="centered">5</td>
+                <td class="centered">10</td>
+                <td class="centered">00.02.12</td>
+                <td class="centered">10%</td>
+                <td class="centered">UK</td>
+            </tr>
+            <tr>
+                  <td class="row__actions">
+    <input type="checkbox" name="datagrid-items" data-action="select" data-id="5">
+  </td>
+
+                <td>
+                    <a href="#exampledeck">123.123.123.123</a>
+                </td>
+                <td class="centered">5</td>
+                <td class="centered">10</td>
+                <td class="centered">00.02.12</td>
+                <td class="centered">10%</td>
+                <td class="centered">UK</td>
+            </tr>
+            <tr class="row--success-highlight">
+                  <td class="row__actions">
+    <input type="checkbox" name="datagrid-items" data-action="select" data-id="6">
+  </td>
+
+                <td>
+                    <a href="#exampledeck">123.123.123.123</a>
+                </td>
+                <td class="centered"><span class="badge badge--success">34</span></td>
+                <td class="centered">4</td>
+                <td class="centered">00.02.12</td>
+                <td class="centered">10%</td>
+                <td class="centered">UK</td>
+            </tr>
+            <tr>
+                  <td class="row__actions">
+    <input type="checkbox" name="datagrid-items" data-action="select" data-id="7">
+  </td>
+
+                <td>
+                    <a href="#exampledeck">123.123.123.123</a>
+                </td>
+                <td class="centered">5</td>
+                <td class="centered">10</td>
+                <td class="centered">00.02.12</td>
+                <td class="centered">10%</td>
+                <td class="centered">UK</td>
+            </tr>
+            <tr class="row--danger-highlight">
+                  <td class="row__actions">
+    <input type="checkbox" name="datagrid-items" data-action="select" data-id="8">
+  </td>
+
+                <td>
+                    <a href="#exampledeck">123.123.123.123</a>
+                </td>
+                <td class="centered">5</td>
+                <td class="centered">10</td>
+                <td class="centered">00.02.12</td>
+                <td class="centered"><span class="badge badge--danger">40%</span></td>
+                <td class="centered">UK</td>
+            </tr>
+            <tr>
+                  <td class="row__actions">
+    <input type="checkbox" name="datagrid-items" data-action="select" data-id="9">
+  </td>
+
+                <td>
+                    <a href="#exampledeck">123.123.123.123</a>
+                </td>
+                <td class="centered">5</td>
+                <td class="centered">10</td>
+                <td class="centered">00.02.12</td>
+                <td class="centered">10%</td>
+                <td class="centered">UK</td>
+            </tr>
+            <tr>
+                  <td class="row__actions">
+    <input type="checkbox" name="datagrid-items" data-action="select" data-id="10">
+  </td>
+
+                <td>
+                    <a href="#exampledeck">123.123.123.123</a>
+                </td>
+                <td class="centered">5</td>
+                <td class="centered">10</td>
+                <td class="centered">00.02.12</td>
+                <td class="centered">10%</td>
+                <td class="centered">UK</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

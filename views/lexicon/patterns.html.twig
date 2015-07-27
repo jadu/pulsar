@@ -56,90 +56,57 @@
     ]
 %}
 
-{% set tab_buttons %}{% include         'lexicon/tabs/buttons_labels.html.twig' %}{% endset %}
-{% set tab_colours %}{% include         'lexicon/tabs/colours.html.twig' %}{% endset %}
-{% set tab_decks %}{% include           'lexicon/tabs/decks.html.twig' %}{% endset %}
-{% set tab_flash %}{% include           'lexicon/tabs/flash.html.twig' %}{% endset %}
-{% set tab_forms %}{% include           'lexicon/tabs/forms.html.twig' %}{% endset %}
-{% set tab_loading %}{% include         'lexicon/tabs/loading.html.twig' %}{% endset %}
-{% set tab_modals %}{% include          'lexicon/tabs/modals.html.twig' %}{% endset %}
-{% set tab_tooltips %}{% include        'lexicon/tabs/tooltips.html.twig' %}{% endset %}
-{% set tab_data_grid %}{% include       'lexicon/tabs/datagrid.html.twig' %}{% endset %}
-{% set tab_metadata %}{% include        'lexicon/tabs/metadata.html.twig' %}{% endset %}
-{% set tab_panels %}{% include          'lexicon/tabs/panels.html.twig' %}{% endset %}
-{% set tab_popovers %}{% include        'lexicon/tabs/popovers.html.twig' %}{% endset %}
-{% set tab_progress_bars %}{% include   'lexicon/tabs/progress_bars.html.twig' %}{% endset %}
-{% set tab_rich_list %}{% include       'lexicon/tabs/rich_list.html.twig' %}{% endset %}
-{% set tab_simple_uploader %}{% include 'lexicon/tabs/uploader_simple.html.twig' %}{% endset %}
-{% set tab_detail_uploader %}{% include 'lexicon/tabs/uploader_detailed.html.twig' %}{% endset %}
-{% set tab_typography %}{% include      'lexicon/tabs/typography.html.twig' %}{% endset %}
-{% set tab_interactions %}{% include    'lexicon/tabs/interactions.html.twig' %}{% endset %}
+
 {% set tab_form_summary %}{% include    'lexicon/tabs/analytics.html.twig' %}{% endset %}
 {% set tab_filters %}{% include         'lexicon/tabs/filters.html.twig' %}{% endset %}
 {% set tab_empty_table %}{% include     'lexicon/tabs/empty_table.html.twig' %}{% endset %}
 
+{% set tab_simple_uploader %}{% include 'lexicon/tabs/uploader_simple.html.twig' %}{% endset %}
+{% set tab_detail_uploader %}{% include 'lexicon/tabs/uploader_detailed.html.twig' %}{% endset %}
 {% set pattern_masterswitch %}{% include     'lexicon/patterns/masterswitch.html.twig' %}{% endset %}
 
 {%
   set tabs_content = [
     {
-      "id"        : "components",
-      "label"     : "Components",
+      "id"        : "Patterns",
+      "label"     : "Patterns",
       "sub_tabs"  : [
         {
-          "id"    : "colours",
-          "label" : "Colours",
-          "src"   : tab_colours
+          "id"    : "masterswitch",
+          "label" : "Masterswitch",
+          "src"   : pattern_masterswitch
         },
         {
-          "id"    : "buttons",
-          "label" : "Buttons",
-          "src"   : tab_buttons
+          "id"    : "simple_uploader",
+          "label" : "Simple Uploader",
+          "src"   : tab_simple_uploader
         },
         {
-          "id"    : "flash",
-          "label" : "Flash messages",
-          "src"   : tab_flash
+          "id"    : "detail_uploader",
+          "label" : "Detailed Uploader",
+          "src"   : tab_detail_uploader
+        },
+      ]
+    },
+    {
+      "id"        : "examples",
+      "label"     : "UI Examples",
+      "sub_tabs"  : [
+        {
+          "id"    : "summary",
+          "label" : "Table with summary",
+          "src"   : tab_form_summary,
+          "attr"  : "data-summary=#analytics"
         },
         {
-          "id"    : "forms",
-          "label" : "Forms",
-          "src"   : tab_forms
+          "id"    : "filters",
+          "label" : "Table with filters",
+          "src"   : tab_filters
         },
         {
-          "id"    : "loading",
-          "label" : "Loading",
-          "src"   : tab_loading
-        },
-        {
-          "id"    : "metadata",
-          "label" : "Metadata",
-          "src"   : tab_metadata
-        },
-        {
-          "id"    : "panels",
-          "label" : "Panels",
-          "src"   : tab_panels
-        },
-        {
-          "id"    : "progress",
-          "label" : "Progress bars",
-          "src"   : tab_progress_bars
-        },
-        {
-          "id"    : "table",
-          "label" : "Table",
-          "src"   : tab_data_grid
-        },
-        {
-          "id"    : "tooltips",
-          "label" : "Tooltips",
-          "src"   : tab_tooltips
-        },
-        {
-          "id"    : "type",
-          "label" : "Typography",
-          "src"   : tab_typography
+          "id"    : "empty_table",
+          "label" : "Table with no results",
+          "src"   : tab_empty_table
         }
       ]
     }
@@ -157,8 +124,7 @@
                 "1.1": {
                     "1.1.1": {
                         "label": "Components",
-                        "href": "/app/lexicon/index.php/main",
-                        "class": "is-active"
+                        "href": "/app/lexicon/index.php/main"
                     },
                     "1.1.2": {
                         "label": "Modules",
@@ -166,7 +132,8 @@
                     },
                     "1.1.3": {
                         "label": "Patterns",
-                        "href": "/app/lexicon/index.php/patterns"
+                        "href": "/app/lexicon/index.php/patterns",
+                        "class": "is-active"
                     }
                 }
             }
