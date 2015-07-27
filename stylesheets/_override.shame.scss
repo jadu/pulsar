@@ -80,4 +80,34 @@
     }
   }
 
+  .form__group--small {
+    .controls {
+      @include respond-min($screen-xsmall) {
+        display: inline-block;
+        max-width: 150px;
+        min-width: 70px;
+        width:61.5%;
+      }
+
+      @include respond-min($screen-small) {
+        width: 30%;
+      }
+    }
+
+    .form__control:not(.checkbox):not(.radio) {
+      margin: 0;
+
+      @include respond-min($screen-xsmall) {
+        width: 130px;
+      }
+    }
+
+    .controls + .controls {
+      margin: 0;
+
+      @include respond-min($screen-xsmall) {
+        margin-left: 10px;
+      }
+    }
+  }
 }
