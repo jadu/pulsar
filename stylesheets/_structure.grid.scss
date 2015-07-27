@@ -14,8 +14,8 @@ $column-width-in-px : $width-without-gutters / $grid-column-count;
 $column-width : $column-width-in-px / $grid-container-width * 100;
 $gutter-size : $grid-gutter-width / $grid-container-width * 100;
 
-@import "grid-mixins";
-@import "grid-operations";
+@import "_structure.grid-mixins";
+@import "_structure.grid-operations";
 
 .show-grid {
     &:nth-child(2n + 1) {
@@ -155,4 +155,4 @@ $gutter-size : $grid-gutter-width / $grid-container-width * 100;
     margin-right: 0;
 }
 
-@import 'grid-offset';
+@import '_structure.grid-offset';

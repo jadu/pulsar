@@ -40,6 +40,7 @@ $FontAwesomePath: '../libs/font-awesome/font/';
 @import '_structure.columns';
 @import '_structure.scaffolding';
 @import '_structure.type';
+@import '_structure.forms';
 
 // Layouts
 @import '_layout.sidebar';
@@ -74,7 +75,6 @@ $FontAwesomePath: '../libs/font-awesome/font/';
 @import '_component.flash';
 @import '_component.footer';
 @import '_component.forms';
-@import '_component.forms.v2';
 @import '_component.greeter';
 @import '_component.icons';
 @import '_component.input-groups';

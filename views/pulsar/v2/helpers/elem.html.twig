@@ -185,7 +185,7 @@ form        | string  | Specific one or more forms this label belongs to
 id          | string  | A unique identifier, if required
 name        | string  | The name of this control
 placeholder | string  | A short hint that describes the expected value
-rows        | integer | The height, in rows (default 2)
+rows        | integer | The height, in rows
 value       | string  | Specifies the value of the input
 
 #}
@@ -198,8 +198,7 @@ value       | string  | Specifies the value of the input
 			attributes(options
 				|exclude('value')
 				|defaults({
-					'class': 'form__control',
-					'rows': 2
+					'class': 'form__control'
 				})
 			)
 		}}

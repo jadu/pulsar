@@ -32,12 +32,12 @@ class ConfigExtension extends \Twig_Extension
 
     public function getConfigVars()
     {
-        $file = @file_get_contents($this->configFile);
-
-        if (!$file) {
-            return false;
+        if (file_exists($this->configFile)) {
+            $file = file_get_contents($this->configFile);
+        } else {
+            $file = file_get_contents(__DIR__ . '/../../../../../pulsar.json');
         }
-        
+
         $json = json_decode($file);
         $config = array();
 
