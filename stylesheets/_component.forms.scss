@@ -105,7 +105,7 @@ $inputs: (
     full:    100%
 );
 
-.form__control:not(.checkbox, .radio) {
+.form__control:not(.checkbox):not(.radio) {
 
     // form elements should be 100% on mobile
     width: 100%;
