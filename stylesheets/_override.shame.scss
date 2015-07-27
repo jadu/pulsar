@@ -42,6 +42,10 @@
 .form--horizontal {
   padding-top: 17px;
 
+  .slide-inner & {
+    padding-top: 17px;
+  }
+
   > fieldset {
     padding: 22px 20px;
 
