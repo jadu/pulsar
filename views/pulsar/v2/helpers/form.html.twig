@@ -175,7 +175,7 @@ data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
 
 	{%
 		if options.method is not defined
-		and options.method is empty
+		or options.method is empty
 	%}
 		{% set defaults = defaults|merge({'method': 'POST'}) %}
 	{% endif %}
