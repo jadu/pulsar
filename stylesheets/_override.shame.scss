@@ -66,6 +66,12 @@
     padding: 0 20px;
   }
 
+  .form__group .form__collection .remove__control {
+    @include respond-min($screen-small) {
+      position: static;
+    }
+  }
+
   .form__actions {
     margin: 0;
   }
@@ -108,6 +114,10 @@
       @include respond-min($screen-xsmall) {
         margin-left: 10px;
       }
+    }
+
+    .form__collection ul {
+      margin-left: 0;
     }
   }
 }
