@@ -149,4 +149,20 @@
   .tabs__content {
     padding: 0 10px 10px 10px;
   }
+
+  &.table-filter fieldset {
+    padding: 0;
+
+    .control__label {
+        margin-bottom: 0;
+        padding-top: 7px;
+        text-align: right;
+    }
+
+    .legend {
+        display: inline-block;
+        margin-bottom: 0;
+        vertical-align: sub;
+    }
+  }
 }
