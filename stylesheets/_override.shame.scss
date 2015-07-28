@@ -120,4 +120,15 @@
   .form__group .form__collection ul {
     margin-left: 0;
   }
+
+  .form__indent {
+      margin-left: 25%;
+      margin-right: $gutter-width;
+      padding-left: $gutter-width;
+
+      p {
+        margin-left: 0;
+        padding-left: 0;
+      }
+    }
 }
