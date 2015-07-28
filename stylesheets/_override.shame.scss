@@ -38,7 +38,7 @@
     max-width: 100%;
 }
 
-// Fix for P3 spacing on Q forms/fieldsets 
+// Fix for P3 spacing on Q forms/fieldsets
 .form--horizontal {
   padding-top: 17px;
 
@@ -139,5 +139,14 @@
 
   .uploader__control {
     display: inline-block;
+  }
+
+  .tabs__list.tabs--horizontal,
+  .tabs__list.tabs--horizontal + .tabs__content {
+    margin: 0;
+  }
+
+  .tabs__content {
+    padding: 0 10px 10px 10px;
   }
 }
