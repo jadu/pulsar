@@ -122,13 +122,22 @@
   }
 
   .form__indent {
-      margin-left: 25%;
-      margin-right: $gutter-width;
-      padding-left: $gutter-width;
+    margin-left: 25%;
+    margin-right: $gutter-width;
+    padding-left: $gutter-width;
 
-      p {
-        margin-left: 0;
-        padding-left: 0;
-      }
+    p {
+      margin-left: 0;
+      padding-left: 0;
     }
+  }
+
+  .form__group--inline .form__control:not(.checkbox):not(.radio) {
+    max-width: none;
+    width: auto;
+  }
+
+  .uploader__control {
+    display: inline-block;
+  }
 }
