@@ -68,7 +68,7 @@
 
   .form__group .form__collection .remove__control {
     @include respond-min($screen-small) {
-      position: static;
+      position: static !important;
     }
   }
 
@@ -115,9 +115,9 @@
         margin-left: 10px;
       }
     }
+  }
 
-    .form__collection ul {
-      margin-left: 0;
-    }
+  .form__group .form__collection ul {
+    margin-left: 0;
   }
 }
