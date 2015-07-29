@@ -171,7 +171,7 @@ data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
 {% spaceless %}
 	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-	{% set defaults = {'class': 'form--horizontal form-v2' } %}
+	{% set defaults = { 'class': 'form' } %}
 
 	{%
 		if options.method is not defined
