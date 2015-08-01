@@ -1,0 +1,125 @@
+{% import 'pulsar/v2/helpers/html.html.twig' as html %}
+{% import 'pulsar/v2/helpers/form.html.twig' as form %}
+{% import 'pulsar/helpers/datagrid.html.twig' as datagrid %}
+
+<div class="tab__inner">
+
+    <div class="actionsbar">
+
+        <div class="actionsbar-right">
+            {{
+                html.button({
+                    'label': html.icon('plus') ~ ' New VM',
+                    'class': 'btn--primary'
+                })
+            }}
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr class="table__row">
+                <th class="table-actions table__head">
+                    <input type="checkbox" data-action="select-all">
+                </th>
+
+                <th class="table__head"><a href="#" class="table-link">Name</a></th>
+                <th class="table__head"><a href="#" class="table-link">IP</a></th>
+                <th class="table__head"><a href="#" class="table-link">Status</a></th>
+                <th class="table__head"><a href="#" class="table-link">Uptime</a></th>
+                <th class="table__head"><a href="#" class="table-link">Image</a></th>
+                <th class="table__head"><a href="#" class="table-link">RAM</a></th>
+                <th class="table__head centered"><a href="#" class="table-link">CPUs</a></th>
+                <th class="table__head"><a href="#" class="table-link">Actions</a></th>
+
+            </tr>
+        </thead>
+        <tbody>
+{% for i in 0..499 %}
+            <tr class="table__row">
+                <td class="table__cell table-actions">
+                    <input type="checkbox" name="datagrid-items" data-action="select" data-id="1">
+                </td>
+                <td class="table__cell"><a href="#" class="table-link">Sysadmin - Ansible 1</a></td>
+                <td class="table__cell monospace"><a href="#" class="table-link">10.101.0.175</a></td>
+                <td class="table__cell">
+                    {{
+                        html.label({
+                            'label': 'running',
+                            'class': 'label--success'
+                        })
+                    }}
+                </td>
+                <td class="table__cell">3d 4h 35m</td>
+                <td class="table__cell">{{ html.icon('linux') }} Centos 6 v1.0.2</td>
+                <td class="table__cell">4 GB</td>
+                <td class="table__cell centered">2</td>
+                <td class="table__cell">
+                    {{
+                        html.button_group({"buttons": [
+                                html.button({
+                                    'label': 'Reboot'
+                                }),
+                                html.button({
+                                    'label': 'Suspend'
+                                }),
+                                html.button({
+                                    'label': 'Shutdown'
+                                })
+                            ]
+                        })
+                    }}
+                    {{
+                        html.button({
+                            'label': 'Console'
+                        })
+                    }}
+                </td>
+            </tr>
+
+            <tr class="table__row">
+                <td class="table__cell table-actions">
+                    <input type="checkbox" name="datagrid-items" data-action="select" data-id="1">
+                </td>
+                <td class="table__cell"><a href="#" class="table-link">Sysasdmin - WISP 1</a></td>
+                <td class="table__cell monospace"><a href="#" class="table-link">10.101.0.138</a></td>
+                <td class="table__cell">
+                    {{
+                        html.label({
+                            'label': 'suspended'
+                        })
+                    }}
+                </td>
+                <td class="table__cell">17w 3d 4h 35m</td>
+                <td class="table__cell">{{ html.icon('windows') }} Windows Server 2012 R2 v1.0.0</td>
+                <td class="table__cell">2 GB</td>
+                <td class="table__cell centered">1</td>
+                <td class="table__cell">
+                    {{
+                        html.button_group({"buttons": [
+                                html.button({
+                                    'label': 'Reboot',
+                                    'class': 'disabled'
+                                }),
+                                html.button({
+                                    'label': 'Resume'
+                                }),
+                                html.button({
+                                    'label': 'Shutdown',
+                                    'class': 'disabled'
+                                })
+                            ]
+                        })
+                    }}
+                    {{
+                        html.button({
+                            'label': 'Console'
+                        })
+                    }}
+                </td>
+            </tr>
+{% endfor %}
+        </tbody>
+    </table>
+
+</div>

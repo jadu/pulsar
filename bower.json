@@ -11,6 +11,8 @@
   ],
   "dependencies": {
     "bootstrapx-clickover": "latest",
+    "datatables": "latest",
+    "DataTables-FixedHeader": "latest",
     "font-awesome": "3.2.1",
     "html5shiv": "latest",
     "jquery": "1.x",

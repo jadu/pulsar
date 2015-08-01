@@ -1,65 +1,8 @@
 .actionsbar {
-  @extend .btn__toolbar;
-  @include inline-block;
-  margin: ($line-height-base / 2) 0 ($line-height-base / 2) 0;
-
-
-  @include respond-min($screen-tablet) {
-    margin: $line-height-base 0 9px 0;
-  }
-
-  //@include ie-lte(7) {
-    .btn__group {
-      z-index: 1; // Fix issue where actions menu appears underneath tabs
-    }
-  //}
-
-  .btn__back {
-    float: left;
-  }
-
-  .btn {
-    vertical-align: bottom;
-  }
-
-  .actions-menu {
-    border-left: 1px solid #ccc;
-  }
+    margin-bottom: 8px;
+    min-height: 32px;
 }
 
-.actionsbar--left {
-  float: left;
-  margin-right: 0;
-  width: $tab-column-width;
-
-  @include respond-max($screen-tablet) {
-    float: none;
-  }
-
-  @include respond-max($screen-tablet-max) {
-    width: $sidebar-column-width-tablet;
-  }
-}
-
-@include respond-max($screen-phone) {
-  .btn__back {
-    display: none;
-  }
-  .actions-menu .btn {
-    // @extend .btn--primary;
-  }
-}
-
-.actionsbar--right {
-  float: right;
-  .btn, .btn__group {
-    float: left;
-  }
-}
-
-@include ie-lte(7) {
-  .btn__back {
-    margin-right: -1px;
-    padding: 11px;
-  }
+.actionsbar-right {
+    float: right;
 }

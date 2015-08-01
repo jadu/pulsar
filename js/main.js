@@ -23,6 +23,9 @@ var $               = require('jquery'),
 	svgeezy         = require('../libs/svgeezy/svgeezy.min'),
 	toggles         = require('../libs/jquery-toggles/toggles.min'),
 
+	datatables      = require('../libs/datatables/media/js/jquery.dataTables.min'),
+	FixedHeader 	= require('../libs/DataTables-FixedHeader/js/dataTables.fixedHeader'),
+
 	ButtonComponent = require('./ButtonComponent'),
 	MasterSwitchComponent = require('./masterSwitchComponent'),
 	NavMainComponent = require('./navMainComponent'),
@@ -53,6 +56,17 @@ $(function () {
 
     // Use clickover enhancements for popovers
     $('[rel="clickover"]').clickover({ 'global_close': true });
+
+	var table = $('.table').DataTable({
+		"dom": '<"dataTables_top"irf>t<"dataTables_bottom"lp>',
+		"aaSorting": [],
+		"columnDefs": [
+			{ "searchable": false, "targets": 0 },
+			{ "orderable": false, "targets": 0 }
+		]
+	});
+
+	new $.fn.dataTable.FixedHeader( table );
 
 });
 

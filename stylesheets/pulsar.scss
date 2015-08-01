@@ -122,6 +122,9 @@ $FontAwesomePath: '../libs/font-awesome/font/';
 @import '_utility.states';
 @import '_utility.swatches';
 
+// Deprecated styles soon to disappear
+@import '_deprecated.styles.scss';
+
 // Overrides and fixes
 @import '_override.shame';
 @import '_override.tour';
