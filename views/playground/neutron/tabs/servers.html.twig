@@ -16,33 +16,34 @@
         </div>
     </div>
 
-    <table class="table">
-        <thead>
-            <tr class="table__row">
-                <th class="table-actions table__head">
+    <table class="table responsive">
+        <thead class="table__thead">
+            <tr class="table__tr">
+                <th class="table-selection table__th" data-toggle="true">
                     <input type="checkbox" data-action="select-all">
                 </th>
 
-                <th class="table__head"><a href="#" class="table-link">Name</a></th>
-                <th class="table__head"><a href="#" class="table-link">IP</a></th>
-                <th class="table__head"><a href="#" class="table-link">Status</a></th>
-                <th class="table__head"><a href="#" class="table-link">Uptime</a></th>
-                <th class="table__head"><a href="#" class="table-link">Image</a></th>
-                <th class="table__head"><a href="#" class="table-link">RAM</a></th>
-                <th class="table__head centered"><a href="#" class="table-link">CPUs</a></th>
-                <th class="table__head"><a href="#" class="table-link">Actions</a></th>
+                <th class="table__th"><a href="#" class="table-link">Name</a></th>
+                <th class="table__th"><a href="#" class="table-link">IP</a></th>
+                <th class="table__th"><a href="#" class="table-link">Status</a></th>
+                <th class="table__th"><a href="#" class="table-link">Uptime</a></th>
+                <th class="table__th"><a href="#" class="table-link">Image</a></th>
+                <th class="table__th"><a href="#" class="table-link">RAM</a></th>
+                <th class="table__th centered"><a href="#" class="table-link">CPUs</a></th>
+                <th class="table__th"><a href="#" class="table-link">Actions</a></th>
 
             </tr>
         </thead>
-        <tbody>
+        <tbody class="table__tbody">
 {% for i in 0..499 %}
-            <tr class="table__row">
-                <td class="table__cell table-actions">
+            <tr class="table__tr">
+                <td class="table__td table-selection">
+                {{ html.icon('plus-sign', { 'class': 'table-child-toggle'}) }}
                     <input type="checkbox" name="datagrid-items" data-action="select" data-id="1">
                 </td>
-                <td class="table__cell"><a href="#" class="table-link">Sysadmin - Ansible 1</a></td>
-                <td class="table__cell monospace"><a href="#" class="table-link">10.101.0.175</a></td>
-                <td class="table__cell">
+                <td class="table__td"><a href="#" class="table-link">Sysadmin - Ansible 1</a></td>
+                <td class="table__td monospace"><a href="#" class="table-link">10.101.0.175</a></td>
+                <td class="table__td">
                     {{
                         html.label({
                             'label': 'running',
@@ -50,72 +51,42 @@
                         })
                     }}
                 </td>
-                <td class="table__cell">3d 4h 35m</td>
-                <td class="table__cell">{{ html.icon('linux') }} Centos 6 v1.0.2</td>
-                <td class="table__cell">4 GB</td>
-                <td class="table__cell centered">2</td>
-                <td class="table__cell">
-                    {{
-                        html.button_group({"buttons": [
-                                html.button({
-                                    'label': 'Reboot'
-                                }),
-                                html.button({
-                                    'label': 'Suspend'
-                                }),
-                                html.button({
-                                    'label': 'Shutdown'
-                                })
-                            ]
-                        })
-                    }}
-                    {{
-                        html.button({
-                            'label': 'Console'
-                        })
-                    }}
+                <td class="table__td">3d 4h 35m</td>
+                <td class="table__td">{{ html.icon('linux') }} Centos 6 v1.0.2</td>
+                <td class="table__td">4 GB</td>
+                <td class="table__td centered">2</td>
+                <td class="table__td">
+                    {{ html.link({ 'label': 'Reboot', 'class': 'table-action' }) }}<!--
+                    -->{{ html.link({ 'label': 'Suspend', 'class': 'table-action' }) }}<!--
+                    -->{{ html.link({ 'label': 'Shutdown', 'class': 'table-action' }) }}<!--
+                    -->{{ html.link({ 'label': 'Console', 'class': 'table-action' }) }}
                 </td>
+
             </tr>
 
-            <tr class="table__row">
-                <td class="table__cell table-actions">
+            <tr class="table__tr">
+                <td class="table__td table-selection">
+                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle'}) }}
                     <input type="checkbox" name="datagrid-items" data-action="select" data-id="1">
                 </td>
-                <td class="table__cell"><a href="#" class="table-link">Sysasdmin - WISP 1</a></td>
-                <td class="table__cell monospace"><a href="#" class="table-link">10.101.0.138</a></td>
-                <td class="table__cell">
+                <td class="table__td"><a href="#" class="table-link">Sysasdmin - WISP 1</a></td>
+                <td class="table__td monospace"><a href="#" class="table-link">10.101.0.138</a></td>
+                <td class="table__td">
                     {{
                         html.label({
                             'label': 'suspended'
                         })
                     }}
                 </td>
-                <td class="table__cell">17w 3d 4h 35m</td>
-                <td class="table__cell">{{ html.icon('windows') }} Windows Server 2012 R2 v1.0.0</td>
-                <td class="table__cell">2 GB</td>
-                <td class="table__cell centered">1</td>
-                <td class="table__cell">
-                    {{
-                        html.button_group({"buttons": [
-                                html.button({
-                                    'label': 'Reboot',
-                                    'class': 'disabled'
-                                }),
-                                html.button({
-                                    'label': 'Resume'
-                                }),
-                                html.button({
-                                    'label': 'Shutdown',
-                                    'class': 'disabled'
-                                })
-                            ]
-                        })
-                    }}
-                    {{
-                        html.button({
-                            'label': 'Console'
-                        })
-                    }}
+                <td class="table__td">17w 3d 4h 35m</td>
+                <td class="table__td">{{ html.icon('windows') }} Windows Server 2012 R2 v1.0.0</td>
+                <td class="table__td">2 GB</td>
+                <td class="table__td centered">1</td>
+                <td class="table__td">
+                    {{ html.link({ 'label': 'Reboot', 'class': 'table-action' }) }}<!--
+                    -->{{ html.link({ 'label': 'Suspend', 'class': 'table-action' }) }}<!--
+                    -->{{ html.link({ 'label': 'Shutdown', 'class': 'table-action' }) }}<!--
+                    -->{{ html.link({ 'label': 'Console', 'class': 'table-action' }) }}
                 </td>
             </tr>
 {% endfor %}

@@ -215,13 +215,13 @@
 // .tabs__list .is-active > .tabs__list {
 //   display: block;
 // }
-
+.content-main { width: 100% }
 .tabs__content {
   display: table-cell;
   padding: 0 20px;
-  overflow: auto;
+  overflow: hidden;
   vertical-align: top;
-  width: 100%;
+
 
   // show/hide tab panes
   > .tab__pane {

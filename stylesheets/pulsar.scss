@@ -16,6 +16,7 @@
 @import '../libs/normalize-css/normalize.css';
 @import '../libs/jquery-toggles/css/toggles-full.css';
 
+
 // Font awesome
 $FontAwesomePath: '../libs/font-awesome/font/';
 @import '../libs/font-awesome/scss/font-awesome';
@@ -124,6 +125,8 @@ $FontAwesomePath: '../libs/font-awesome/font/';
 
 // Deprecated styles soon to disappear
 @import '_deprecated.styles.scss';
+
+// @import '../libs/datatables-responsive/css/dataTables.responsive';
 
 // Overrides and fixes
 @import '_override.shame';

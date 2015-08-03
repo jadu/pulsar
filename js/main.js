@@ -20,11 +20,12 @@ var $               = require('jquery'),
 	tooltip         = require('./tooltip'),
 
 	clickover       = require('../libs/bootstrapx-clickover/js/bootstrapx-clickover'),
+	// footable		= require('../libs/footable/js/footable'),
 	svgeezy         = require('../libs/svgeezy/svgeezy.min'),
 	toggles         = require('../libs/jquery-toggles/toggles.min'),
 
 	datatables      = require('../libs/datatables/media/js/jquery.dataTables.min'),
-	FixedHeader 	= require('../libs/DataTables-FixedHeader/js/dataTables.fixedHeader'),
+	responsive 		= require('../libs/datatables-responsive/js/dataTables.responsive'),
 
 	ButtonComponent = require('./ButtonComponent'),
 	MasterSwitchComponent = require('./masterSwitchComponent'),
@@ -60,13 +61,23 @@ $(function () {
 	var table = $('.table').DataTable({
 		"dom": '<"dataTables_top"irf>t<"dataTables_bottom"lp>',
 		"aaSorting": [],
+		"bAutoWidth": false,
 		"columnDefs": [
 			{ "searchable": false, "targets": 0 },
 			{ "orderable": false, "targets": 0 }
-		]
+		],
+		responsive: true,
+		details: {
+            type: 'column',
+            target: '.table-child-toggle'
+        },
+        "fnDrawCallback": function( oSettings ) {
+	      console.log( 'DataTables has redrawn the table' );
+	    }
 	});
 
-	new $.fn.dataTable.FixedHeader( table );
+	table.draw();
+
 
 });
 

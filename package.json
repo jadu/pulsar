@@ -46,7 +46,9 @@
   },
   "aliasify": {
     "aliases": {
-      "datatables": "./libs/datatables/media/js/jquery.dataTables.min"
+      "datatables": "./libs/datatables/media/js/jquery.dataTables.min",
+      "footable": "./libs/footable/js/footable"
+
     }
   },
   "browserify": {
