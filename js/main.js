@@ -70,14 +70,19 @@ $(function () {
 		details: {
             type: 'column',
             target: '.table-child-toggle'
-        },
-        "fnDrawCallback": function( oSettings ) {
-	      console.log( 'DataTables has redrawn the table' );
-	    }
+        }
 	});
 
-	table.draw();
+	setTimeout(resize, 250);
 
+	function resize() {
+		$(window).resize();
+		console.log('resized');
+	}
+
+	$('.nav-tertiary__toggle').on('click', function() {
+		$('.nav-tertiary').toggleClass('is-open');
+	})
 
 });
 
