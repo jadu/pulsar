@@ -19,11 +19,7 @@
 	>
 
 		{%
-			if options.autohide is defined
-			and (
-				options.autohide == false
-				or options.autohide == 'undefined'
-			)
+			if options.autohide is not defined or options.autohide == false
 		%}
 			<button class="close" data-dismiss="flash">
 				{{ html.icon('remove') }}
