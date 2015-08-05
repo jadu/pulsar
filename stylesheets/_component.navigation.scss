@@ -93,10 +93,12 @@ $nav-color-dark:  #2d89b7;
 .nav-secondary {
     background-color: $nav-color-dark;
     box-shadow: inset -4px 0 0 darken($nav-color-dark, 4);
+    left: 75px;
     margin-left: -320px;
     overflow-x: hidden;
     overflow-y: scroll;
     position: absolute;
+    top: 0;
     transition: margin-left 100ms ease-in-out;
     width: 250px;
     z-index: 1;
