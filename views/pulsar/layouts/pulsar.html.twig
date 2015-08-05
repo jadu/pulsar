@@ -2,19 +2,55 @@
 
 {% block body %}
     <header id="top">
-        {% include '@pulsar/pulsar/components/toolbar.html.twig' %}
         {% include '@pulsar/pulsar/components/flash.html.twig' %}
     </header>
-    {% include '@pulsar/pulsar/components/breadcrumb.html.twig' %}
+    {# include '@pulsar/pulsar/components/breadcrumb.html.twig' #}
 
     {% block summary %}{% endblock %}
 
     <div role="main" class="container">
-        {% block content %}{% endblock %}
+        {% include '@pulsar/pulsar/components/navigation.html.twig' %}
+
+        <div class="toolbar">
+            <form class="nav-search">
+                <input type="search" placeholder="Search" class="nav-search__field" />
+                <button class="nav-search__submit">{{ html.icon('search') }}</button>
+            </form>
+
+            <div class="nav-user">
+                {{
+                    html.button_dropdown({
+                        "label": "Paul Stanton",
+                        "class": "user-menu btn--naked",
+                        "items": [
+                            html.link({
+                                "label": html.icon('user') ~ " My details",
+                                "href": "#foo"
+                            }),
+                            html.link({
+                                "label": html.icon('key') ~ " Change password",
+                                "href": "#foo"
+                            }),
+                            html.divider(),
+                            html.link({
+                                "label": html.icon('power-off') ~ " Sign out",
+                                "href": "#foo"
+                            }),
+                        ]
+                    })
+                }}
+            </div>
+
+        </div>
+
+        <div class="content-main">
+            {% block content %}{% endblock %}
+        </div>
+
         {% block decks %}{% endblock %}
     </div>
 
-    <footer class="footer">
+    <!-- <footer class="footer">
         {{
             html.link({
                 'label': html.icon('long-arrow-up') ~ ' Top',
@@ -27,7 +63,7 @@
                 'href': '/credits'
             })
         }}
-    </footer>
+    </footer> -->
 
     <div id="modal" class="modal" role="dialog" aria-hidden="true">
         <!-- empty modal for ajax requests -->

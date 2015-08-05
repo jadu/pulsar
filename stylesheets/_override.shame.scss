@@ -38,6 +38,64 @@
     max-width: 100%;
 }
 
+
+.nav-tertiary {
+  display: table-cell;
+  min-width: 250px;
+}
+
+.toolbar {
+  float: left;
+  margin-top: 30px;
+  padding: 0 20px;
+
+  .nav-search {
+    float: left;
+    margin-left: 0;
+    width: 210px;
+  }
+
+  .nav-search__field {
+    background-color: white;
+    border: 1px solid $gray;
+    color: $gray;
+
+    &::-webkit-input-placeholder {
+        color: $gray;
+    }
+  }
+
+  .nav-search__submit {
+    color: $gray;
+    margin-left: -39px;
+  }
+
+  .user-menu .dropdown__menu {
+    left: auto;
+    right: 0;
+  }
+
+}
+
+.nav-user {
+  float: right;
+}
+
+.content-main {
+  display: table;
+}
+
+.heading {
+    border-bottom: 1px solid $gray;
+    line-height: 24px;
+    margin-bottom: 19px;
+    padding-bottom: 4px;
+}
+
+.tab__inner > .table--datagrid {
+    outline: none;
+}
+
 // Fix for P3 spacing on Q forms/fieldsets
 .form--horizontal {
   padding-top: 17px;
