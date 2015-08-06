@@ -2,12 +2,14 @@
 {% import 'pulsar/v2/helpers/form.html.twig' as form %}
 
 <div class="tab__inner tab--padded">
-<div class="actionsbar"></div>
-    <h2>Standalone</h2>
+
+    <h1 class="tab__title">Loading indicator</h1>
+
+    <h2 class="heading">Standalone</h2>
     {{ html.loading() }}
     <br />
 
-    <h2>After form inputs</h2>
+    <h2 class="heading">After form inputs</h2>
     {{ form.create() }}
     {{
         form.select({

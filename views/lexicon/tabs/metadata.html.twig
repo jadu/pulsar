@@ -3,8 +3,9 @@
 {% import 'pulsar/helpers/flash.html.twig' as flash %}
 
 <div class="tab__inner tab--padded">
-<div class="actionsbar"></div>
-    <h2>Metadata</h2>
+
+    <h1 class="tab__title">Metadata</h1>
+
     <p>Simple key/value presentation of data</p>
 
     {%
@@ -17,7 +18,7 @@
 
     {{ html.metadata({ 'items': data }) }}
 
-    <h3>Bordered variation</h3>
+    <h2 class="heading">Bordered variation</h2>
 
     {{
         html.metadata({

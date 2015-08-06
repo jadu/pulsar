@@ -46,7 +46,7 @@
     background-color: #efefef;
   float: left;
   padding: 18px 20px;
-  margin-bottom: 7px;
+  margin-bottom: 24px;
   min-height: 24px * 3;
 
   .nav-search {
@@ -86,13 +86,35 @@
   margin-top: 2px
 }
 
+.tab__title {
+  border-bottom: 1px solid #ccc;
+  line-height: 47px;
+  margin: 0;
+  padding-left: 50px;
 
+  .has-tertiary-nav & {
+    padding-left: 0;
+  }
 
+  @include respond-min($screen-desktop) {
+    padding-left: 0;
+  }
+}
+
+<<<<<<< HEAD
+// still used?
 .heading {
+=======
+.heading,
+.legend {
+>>>>>>> Layout & responsive work for new pulsar design
     border-bottom: 1px solid $gray;
-    line-height: 24px;
-    margin-bottom: 19px;
-    padding-bottom: 4px;
+    line-height: 47px;
+}
+
+.legend {
+    margin-bottom: 24px;
+    width: 100%;
 }
 
 .tab__inner > .table--datagrid {
