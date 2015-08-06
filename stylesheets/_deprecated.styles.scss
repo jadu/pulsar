@@ -1,0 +1,19 @@
+/* -------------------------------------------------------------------------- *\
+	30/07/2015
+
+	_component.table.scss
+
+	Old table alignment classes
+\* -------------------------------------------------------------------------- */
+
+.row--align-top {
+  th, td {
+    vertical-align: top;
+  }
+}
+
+.row--align-middle {
+  th, td {
+    vertical-align: middle;
+  }
+}

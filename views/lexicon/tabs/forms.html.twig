@@ -4,6 +4,7 @@
 {% import '@pulsar/pulsar/helpers/flash.html.twig' as flash %}
 
 <div class="tab__inner">
+<div class="actionsbar"></div>
     {{ form.create() }}
 
     {{
@@ -215,7 +216,8 @@
                     'id': 'inputTextError',
                     'class': 'has-error',
                     'name': 'inputTextError',
-                    'placeholder': 'Placeholder'
+                    'placeholder': 'Placeholder',
+                    'help': 'My help text'
                 })
             }}
             {{

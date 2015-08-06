@@ -1,11 +1,18 @@
 {% extends "@pulsar/pulsar/layouts/pulsar.html.twig" %}
 
 {% block content %}
-
+	{{
+        html.button({
+            'class': 'nav-tertiary__toggle btn--inverse',
+            'label': html.icon('reorder')
+        })
+    }}
 	<div class="nav-tertiary">
 		{% block tabs_list %}{% endblock %}
 	</div>
 
-	{% block tabs_content %}{% endblock %}
+	{% block tabs_content %}
+
+	{% endblock %}
 
 {% endblock %}

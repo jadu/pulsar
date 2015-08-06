@@ -42,7 +42,7 @@ $font-size-xlarge:                    ceil($font-size-base * 1.5) !default;
 $font-size-large:                     ceil($font-size-base * 1.25) !default; // ~18px
 $font-size-small:                     ceil($font-size-base * 0.85) !default; // ~12px
 $line-height-base:                    24px !default;
-$line-height-large:                   1.33 !default;
+$line-height-large:                   ceil($line-height-base * 2) !default;
 $line-height-small:                   1.5 !default;
 $line-height-computed:                $line-height-base !default;
 $font-size-small:                     ceil($font-size-base * 0.75) !default;
@@ -130,7 +130,7 @@ $input-height-base:                   $line-height-base * 2 !default;
 @include ie-lte(7) {
   $input-height-base:                 $line-height-base * 1.2 !default;
 }
-$input-height-large:                  (floor($font-size-large * $line-height-large) + ($padding-large-vertical * 2) + 2) !default;
+$input-height-large:                  (floor($font-size-large * 2) + ($padding-large-vertical * 2) + 2) !default;
 $input-height-small:                  (floor($font-size-small * $line-height-small) + ($padding-small-vertical * 2) + 2) !default;
 $legend-border-color:                 #e5e5e5 !default;
 $input-group-addon-border-color:      $input-border !default;
