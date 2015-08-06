@@ -26,6 +26,7 @@ var $               = require('jquery'),
 
 	datatables      = require('../libs/datatables/media/js/jquery.dataTables.min'),
 	responsive 		= require('../libs/datatables-responsive/js/dataTables.responsive'),
+	TableTools 		= require('../libs/datatables-tabletools/js/dataTables.tableTools'),
 
 	ButtonComponent = require('./ButtonComponent'),
 	MasterSwitchComponent = require('./masterSwitchComponent'),
@@ -58,31 +59,46 @@ $(function () {
     // Use clickover enhancements for popovers
     $('[rel="clickover"]').clickover({ 'global_close': true });
 
-	var table = $('.table').DataTable({
-		"dom": '<"dataTables_top"irf>t<"dataTables_bottom"lp>',
-		"aaSorting": [],
-		"bAutoWidth": false,
-		"columnDefs": [
+	var table = $('.datatable').DataTable({
+		dom: '<"dataTables_top"irf><"dataTables_actions"T>t<"dataTables_bottom"lp>',
+		aaSorting: [],
+		bAutoWidth: false,
+		columnDefs: [
 			{ "searchable": false, "targets": 0 },
 			{ "orderable": false, "targets": 0 }
 		],
-		responsive: true,
-		details: {
-            type: 'column',
-            target: '.table-child-toggle'
+		oLanguage: {
+         sSearch: "Filter:"
+	    },
+		responsive: {
+			details: {
+	            type: 'column',
+	            target: '.table-child-toggle'
+	        }
+        },
+		stateSave: false,
+        tableTools: {
+            sRowSelect: "multi",
+            sRowSelector: '.js-select',
+            aButtons: [
+            	{
+                    "sExtends":    "collection",
+                    "sButtonText": '<i class="icon-check-minus"></i>',
+                    "aButtons":    [ "select_all", "select_none" ]
+                }
+            ]
         }
 	});
 
-	setTimeout(resize, 250);
-
-	function resize() {
-		$(window).resize();
-		console.log('resized');
-	}
-
 	$('.nav-tertiary__toggle').on('click', function() {
 		$('.nav-tertiary').toggleClass('is-open');
-	})
+		$('.content-main').toggleClass('has-tertiary-nav')
+	});
+
+	$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+  		$($.fn.dataTable.tables(true)).DataTable().columns.adjust().responsive.recalc();
+  		console.log('!');
+})
 
 });
 

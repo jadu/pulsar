@@ -1,5 +1,7 @@
 .content-main {
     position: relative;
+    display: table;
+    table-layout: fixed;
     width: 100%
 }
 
@@ -8,12 +10,12 @@
   padding: 0 20px;
   overflow: hidden;
   vertical-align: top;
+  width: 100%;
 
 
   // show/hide tab panes
   > .tab__pane {
     display: none;
-    margin-top: 15px;
 
     &.is-active {
       display: block;

@@ -12,7 +12,6 @@
   "dependencies": {
     "bootstrapx-clickover": "latest",
     "datatables": "latest",
-    "DataTables-FixedHeader": "latest",
     "datatables-responsive": "latest",
     "font-awesome": "3.2.1",
     "html5shiv": "latest",
@@ -31,13 +30,13 @@
     "store.js": "latest",
     "svgeezy": "latest",
     "Vague.js": "Stanton/vague.js",
-    "vide": "~0.3.1"
+    "vide": "~0.3.1",
+    "datatables-tabletools": "~2.2.4"
   },
   "devDependencies": {
     "livereload-js": "livereload/livereload-js",
     "phantomcss": "latest",
-    "vide": "~0.3.1",
-    "footable": "~2.0.3"
+    "vide": "~0.3.1"
   },
   "resolutions": {
     "font-awesome": "3.2.1"

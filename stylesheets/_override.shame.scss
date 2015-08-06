@@ -43,9 +43,11 @@
 
 
 .toolbar {
+    background-color: #efefef;
   float: left;
-  margin-top: 30px;
-  padding: 0 20px;
+  padding: 18px 20px;
+  margin-bottom: 7px;
+  min-height: 24px * 3;
 
   .nav-search {
     float: left;
@@ -68,6 +70,10 @@
     margin-left: -39px;
   }
 
+  .user-menu .btn {
+    height: 28px;
+  }
+
   .user-menu .dropdown__menu {
     left: auto;
     right: 0;
@@ -77,12 +83,10 @@
 
 .nav-user {
   float: right;
+  margin-top: 2px
 }
 
-.content-main {
-  display: table;
-  table-layout: fixed;
-}
+
 
 .heading {
     border-bottom: 1px solid $gray;

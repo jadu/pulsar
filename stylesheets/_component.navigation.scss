@@ -15,6 +15,18 @@ $nav-color-dark:  #2d89b7;
     width: 75px;
 }
 
+/**
+ * Allow the main tabbed layout to cope with the tabs__list switching between
+ * table-row and table-cell while maintaining its fixed width. Otherwise, when
+ * it switches back to table-cell it has 50% of the table width.
+ *
+ * This behaviour is only present when user shows the nav at small viewports,
+ * then manually enlarges the browser window.
+ */
+.has-tertiary-nav {
+    table-layout: auto;
+}
+
 .nav-primary,
 .nav-secondary {
     display: inline-block;
@@ -27,22 +39,24 @@ $nav-color-dark:  #2d89b7;
 }
 
 .nav-tertiary {
-
     display: none;
-
-    &.is-open {
-        display: table-cell;
-        min-width: 250px;
-        overflow: hidden;
-        width: 250px;
-    }
+    min-width: 250px;
+    max-width: 250px;
+    overflow: hidden;
+    width: 250px;
 
     @include respond-min($screen-desktop) {
         display: table-cell;
-        min-width: 250px;
-        overflow: hidden;
-        width: 250px;
     }
+
+    &.is-open {
+        display: table-row;
+
+        @include respond-min($screen-desktop) {
+            display: table-cell;
+        }
+    }
+
 }
 
 .nav-tertiary__toggle {
@@ -52,12 +66,12 @@ $nav-color-dark:  #2d89b7;
     @include respond-max($screen-desktop) {
         display: block;
         position: absolute;
-        top: 15px;
+        top: 0;
         left: 20px;
     }
 
     &:hover {
-        top: 16px;
+        top: 1px;
     }
 }
 
@@ -202,7 +216,7 @@ $nav-color-dark:  #2d89b7;
 
 .jadu-branding {
     display: block;
-    margin: 24px 0 6px 0;
+    margin: 12px 0 18px 0;
     text-decoration: none;
 }
 
@@ -230,8 +244,14 @@ $nav-color-dark:  #2d89b7;
 }
 
 .nav-search {
-    clear: right;
-    margin-left: 20px;
+    display: none;
+
+    @include respond-min($screen-tablet) {
+        clear: right;
+        display: block;
+        margin-left: 20px;
+        position: relative;
+    }
 }
 
 .nav-search__field {
@@ -239,7 +259,7 @@ $nav-color-dark:  #2d89b7;
     border: 1px solid white;
     border-radius: 4px;
     color: white;
-    padding: 8px;
+    padding: 8.5px;
     width: 192px;
 
     &::-webkit-input-placeholder {
@@ -251,7 +271,10 @@ $nav-color-dark:  #2d89b7;
     background: none;
     border: none;
     color: white;
-    margin-left: -35px;
+    position: absolute;
+    right: 2px;
+    top: 3px;
+
 }
 
 .nav-close {

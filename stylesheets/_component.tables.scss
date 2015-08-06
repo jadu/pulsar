@@ -1,5 +1,5 @@
 
-.table {
+.datatable {
     border-top: 1px solid #ccc;
     clear: both;
     width: 100%;
@@ -13,13 +13,29 @@
 
 .table__tr {
     vertical-align: top;
+
+    &.selected .table__td {
+        background-color: $jadu-blue-pale;
+    }
+
+}
+
+.table-row-select {
+    color: #666;
+    cursor: pointer;
+    font-size: 14px;
+    position: relative;
+    top: 1px
+}
+.table__tr.selected .table-row-select:before {
+    content: "\f14a";
 }
 
 .table__th,
 .table__td {
     border-bottom: 1px solid #ccc;
     height: $line-height-large;
-    padding: 11.5px 5px 12px 5px;
+    padding: 11.5px 10px 12px 10px;
     text-align: left;
     white-space: nowrap;
 
@@ -27,9 +43,11 @@
         background-color: $table-bg-hover;
     }
 
-    &:hover .table-link {
-        border-bottom: 1px solid $link-color;
-        color: $link-color;
+    &:hover .table-link,
+    &:hover .table-link:hover {
+        border-bottom: 1px dotted $black;
+        color: $black;
+        text-decoration: none;
     }
 
     &.centered {
@@ -44,8 +62,8 @@
     font-weight: normal;
     font-family: $font-family-regular;
 
-    &:hover {
-        background-color: $blue-light;
+    &:hover:not(.table-selection) {
+        background-color: #efefef;
         cursor: pointer;
     }
 }
@@ -110,8 +128,13 @@
 
 
 .dataTables_info {
+    display: none;
     float: left;
     margin-top: 12px;
+
+    @include respond-min($screen-tablet) {
+        display: block;
+    }
 }
 
 .dataTables_filter {
@@ -132,6 +155,19 @@
     float: left;
     margin-bottom: 10px;
     width: 100%;
+}
+
+.dataTables_actions {
+    position: absolute;
+    font-size: 14px;
+    left: 24px;
+    top: 112px;
+    z-index: 1;
+
+    a {
+        color: #666;
+        cursor: pointer;
+    }
 }
 
 .dataTables_bottom {
@@ -170,7 +206,7 @@
     background-color: darken(#fff, 3);
 }
 
-.table .child {
+.datatable .child {
     background-color: #efefef;
     border-bottom: 1px solid #ccc;
     padding: 11.5px 0 12px 0;
@@ -185,9 +221,10 @@
 .table-child-toggle {
     color: $jadu-blue;
     display: none;
+    font-size: 14px;
     position: absolute;
-    left: 0;
-    top: 14px;
+    left: 5px;
+    top: 17px;
 
     .collapsed & {
         display: inline-block;
@@ -206,11 +243,11 @@
 
 
 
-.table .child ul {
+.datatable .child ul {
     margin: 0 0 0 65px;
 }
 
-.table .child ul li {
+.datatable .child ul li {
     display: table-row;
 }
 
@@ -224,3 +261,35 @@
     padding: 0 5px;
 }
 
+.dataTables_empty {
+    color: $danger-color;
+    height: 73px;
+    padding-left: 10px;
+    vertical-align: middle;
+
+    &:before {
+        content: $frown;
+        color: $danger-color;
+        font-family: fontawesome;
+        font-size: 48px;
+        margin-right: 20px;
+        vertical-align: middle;
+    }
+}
+
+.dataTables_bottom {
+    margin-bottom: 24px;
+}
+
+
+.DTTT_collection {
+    opacity: 1;
+    background-color: white;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .5);
+
+    > .DTTT_button {
+        display: block;
+        padding: 5px 10px;
+        width: 100%;
+    }
+}
