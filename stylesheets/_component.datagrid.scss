@@ -126,11 +126,6 @@
     &:hover {
       background-color: $off-white;
     }
-    &:last-of-type {
-      th, td {
-        border-bottom: 0;
-      }
-    }
   }
 
   // Actions column
