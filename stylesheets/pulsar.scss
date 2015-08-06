@@ -104,7 +104,7 @@ $FontAwesomePath: '../libs/font-awesome/font/';
 @import '_component.summary';
 @import '_component.tab-panel';
 @import '_component.tabs-list';
-@import '_component.tables';
+// @import '_component.tables';
 @import '_component.toggles';
 @import '_component.toolbar';
 @import '_component.tooltips';
@@ -119,6 +119,7 @@ $FontAwesomePath: '../libs/font-awesome/font/';
 
 // Utilities
 @import '_utility.highlight';
+@import '_utility.misc';
 @import '_utility.utilities';
 @import '_utility.states';
 @import '_utility.swatches';
