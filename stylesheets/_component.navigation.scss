@@ -66,12 +66,12 @@ $nav-color-dark:  #2d89b7;
     @include respond-max($screen-desktop) {
         display: block;
         position: absolute;
-        top: 0;
+        top: 6px;
         left: 20px;
     }
 
     &:hover {
-        top: 1px;
+        top: 7px;
     }
 }
 

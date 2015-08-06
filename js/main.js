@@ -60,7 +60,7 @@ $(function () {
     $('[rel="clickover"]').clickover({ 'global_close': true });
 
 	var table = $('.datatable').DataTable({
-		dom: '<"dataTables_top"rf><"dataTables_actions"T>t<"dataTables_bottom"lp>',
+		dom: '<"dataTables_top"irf><"dataTables_actions"T>t<"dataTables_bottom"lp>',
 		aaSorting: [],
 		bAutoWidth: false,
 		columnDefs: [

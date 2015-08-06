@@ -107,13 +107,7 @@
 }
 
 
-.dataTables_length {
-    display: inline-block;
-}
 
-.dataTables_filter {
-    display: inline-block;
-}
 
 .table__th {
     &.sorting:after,
@@ -126,6 +120,17 @@
     }
 }
 
+.dataTables_wrapper {
+    position: relative;
+}
+
+.dataTables_length {
+    display: inline-block;
+}
+
+.dataTables_filter {
+    display: inline-block;
+}
 
 .dataTables_info {
     display: none;
@@ -161,7 +166,7 @@
     position: absolute;
     font-size: 14px;
     left: 24px;
-    top: 112px;
+    top: 62px;
     z-index: 1;
 
     a {
@@ -260,6 +265,9 @@
     display: table-cell;
     padding: 0 5px;
 }
+
+
+
 
 .dataTables_empty {
     color: $danger-color;
