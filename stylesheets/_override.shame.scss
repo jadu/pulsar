@@ -101,12 +101,20 @@
   }
 }
 
+<<<<<<< HEAD
 // still used?
 .heading {
+=======
+.heading,
+.legend {
+>>>>>>> Layout & responsive work for new pulsar design
     border-bottom: 1px solid $gray;
-    line-height: 24px;
-    margin-bottom: 19px;
-    padding-bottom: 4px;
+    line-height: 47px;
+}
+
+.legend {
+    margin-bottom: 24px;
+    width: 100%;
 }
 
 .tab__inner > .table--datagrid {
