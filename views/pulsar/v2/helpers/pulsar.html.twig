@@ -74,9 +74,9 @@
 {% spaceless %}
 	{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 
-	<div class="notifications btn__group pull-right">
-		<button type="button" class="btn dropdown__toggle">
-			<span class="badge">
+	<div class="notifications btn__group">
+		<button type="button" class="btn--naked dropdown__toggle">
+			<span class="notifications__badge">
 			{%
 				if options.count is defined
 				and options.count is null
