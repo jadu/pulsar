@@ -108,16 +108,14 @@ $danger-to-text-color: black;
   }
 }
 
-.has-success,
-.has-success .help-block {
+.has-success {
   &:not(.form__group) {
     background-color: lighten($success-color, 35);
     color: darken($success-color, 15);
   }
 }
 
-.has-warning,
-.has-warning .help-block {
+.has-warning {
   &:not(.form__group) {
     background-color: lighten($warning-color, 15);
     color: darken($warning-color, 30);
@@ -126,10 +124,8 @@ $danger-to-text-color: black;
 
 .has-error,
 .has-error:hover,
-.has-error .help-block,
 .has-danger,
-.has-danger:hover,
-.has-danger .help-block {
+.has-danger:hover {
   &:not(.form__group) {
     background-color: $danger-from-bg-color;
     color: $danger-from-text-color;
