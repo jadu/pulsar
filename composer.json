@@ -7,7 +7,7 @@
         }
     },
     "require": {
-        "twig/twig": "1.18.*@dev"
+        "twig/twig": "^1.18"
     },
     "require-dev": {
         "phpunit/phpunit": "*",
