@@ -18,6 +18,5 @@
   },
   "_source": "git://github.com/DataTables/TableTools.git",
   "_target": "~2.2.4",
-  "_originalSource": "datatables-tabletools",
-  "_direct": true
+  "_originalSource": "datatables-tabletools"
 }
