@@ -12,14 +12,6 @@
 
      --><ul class="nav-items">
 
-            {{
-                _self.nav_item({
-                    'label': 'Search',
-                    'href': '#search',
-                    'icon': 'search'
-                })
-            }}
-
             {% if options.data is iterable %}
                 {% for label, options in options.data %}
                     {{ _self.nav_item(options) }}
@@ -32,17 +24,12 @@
 
         <a href="#close" class="nav-close" data-nav-action="close">{{ html.icon('remove') }}</a>
 
-        <form class="nav-search">
-            <input type="search" placeholder="Search" class="nav-search__field" />
-            <button class="nav-search__submit">{{ html.icon('search') }}</button>
-        </form>
-
         {% if options.data is iterable %}
             {% for options in options.data %}
                 {% if options.items is defined and options.items is iterable %}
 
-        <div class="nav-container" data-nav="{{ options.href }}">
-            <span class="nav-title">{{ options.label }}</span>
+        <div class="nav-list" data-nav="{{ options.href }}">
+            <span class="nav-item nav-item--header">{{ options.label }}</span>
             {% for menu_blocks in options.items %}
                 {% for item_options in menu_blocks %}
                     {{ _self.nav_item(item_options) }}
@@ -60,37 +47,6 @@
                 {% endif %}
             {% endfor %}
         {% endif %}
-
-        <div class="nav-container" data-nav="#search">
-
-            <span class="nav-title">Recent searches</span>
-
-            <ul class="nav-items">
-              <li class="nav-item">
-
-                <a href="#" class="nav-link">
-                    my awesome homepage
-                </a>
-
-                <a href="#remove-search" class="nav-remove-search">
-                    {{ html.icon('remove-sign') }}
-                </a>
-
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">04/07/81</a>
-                <a href="#remove-search" class="nav-remove-search">
-                    {{ html.icon('remove-sign') }}
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">a really really long search term that we have to handle</a>
-                <a href="#remove-search" class="nav-remove-search">
-                    {{ html.icon('remove-sign') }}
-                </a>
-              </li>
-            </ul>
-        </div>
 
     </div>
 </nav>
