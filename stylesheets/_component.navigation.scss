@@ -59,6 +59,10 @@ $nav-color-dark:  #2d89b7;
         }
     }
 
+    &--light {
+        background-color: #efefef;
+    }
+
 }
 
 .nav-tertiary__toggle {
@@ -254,10 +258,9 @@ $nav-color-dark:  #2d89b7;
 .nav-close {
     color: white;
     display: block;
-    padding: 0 20px;
+    padding: 0 20px 23px 20px;
     text-decoration: none;
-    line-height: 48px;
-    margin-top: 12px;
+    margin-top: 24px;
     text-align: right;
     width: 100%;
 
