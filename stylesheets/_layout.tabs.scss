@@ -2,13 +2,12 @@
     position: relative;
     display: table;
     table-layout: fixed;
-    top: 24px;
     width: 100%
 }
 
 .tabs__content {
   display: table-cell;
-  padding: 0 20px;
+  padding: 0 40px;
   // overflow: hidden; experimenting with turning this off to allow left positioned tooltips to work, shout up if it breaks anything
   vertical-align: top;
   width: 100%;

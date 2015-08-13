@@ -39,11 +39,13 @@ $nav-color-dark:  #2d89b7;
 }
 
 .nav-tertiary {
+    background-color: $inverse-color;
     display: none;
     min-width: 250px;
     max-width: 250px;
     overflow: hidden;
     width: 250px;
+    vertical-align: top;
 
     @include respond-min($screen-desktop) {
         display: table-cell;
@@ -162,37 +164,9 @@ $nav-color-dark:  #2d89b7;
 
     .nav-container.is-active {
         display: block;
+        margin: 0 20px;
     }
 
-    .nav-item {
-        display: inline-block;
-        margin-left: 12px;
-        width: 95%;
-    }
-
-    .nav-item:not(.nav-item__divider):hover,
-    .nav-item:not(.nav-item__divider).is-active {
-        background-color: darken($nav-color-dark, 4);
-
-        .nav-remove-search {
-            opacity: 1;
-        }
-    }
-
-    .nav-link {
-        display: inline-block;
-        padding: 5.5px 8px;
-        width: 100%;
-    }
-
-    .nav-link:hover {
-        color: white;
-    }
-
-    .nav-link:active {
-        background-color: darken($nav-color-dark, 8);
-        color: white;
-    }
 }
 
 .nav-remove-search {
@@ -250,59 +224,48 @@ $nav-color-dark:  #2d89b7;
         clear: right;
         display: block;
         margin-left: 20px;
+        margin-top: 19px;
         position: relative;
     }
 }
 
 .nav-search__field {
-    background-color: $nav-color-dark;
-    border: 1px solid white;
+    background-color: #fff;
+    border: 0;
     border-radius: 4px;
-    color: white;
+    color: #555;
     padding: 8.5px;
     width: 192px;
 
     &::-webkit-input-placeholder {
-        color: white;
+        color: #555;
     }
 }
 
 .nav-search__submit {
     background: none;
     border: none;
-    color: white;
+    color: #555;
     position: absolute;
-    right: 2px;
+    left: 180px;
     top: 3px;
-
 }
 
 .nav-close {
     color: white;
     display: block;
-    float: right;
-    margin-right: 0px;
-    padding: 5px 7px 3px 0;
+    padding: 0 20px;
     text-decoration: none;
+    line-height: 48px;
+    margin-top: 12px;
     text-align: right;
-    width: 30px;
+    width: 100%;
 
     &:hover i:before {
         content: "\f0a8";
         color: white;
     }
 }
-
-.nav-title {
-    border-bottom: 1px solid darken($nav-color-dark, 6);
-    color: white;
-    display: inline-block;
-    font-size: 1.5em;
-    line-height: 1;
-    margin: 17px 0 18px 18px;
-    width: 95%;
-}
-
 
 .ui {
     display: table;

@@ -10,13 +10,16 @@
 
     <div role="main" class="container">
         {% include '@pulsar/pulsar/components/navigation.html.twig' %}
+        <div class="nav-tertiary">
 
-        <div class="toolbar">
             <form class="nav-search">
                 <input type="search" placeholder="Search" class="nav-search__field" />
                 <button class="nav-search__submit">{{ html.icon('search') }}</button>
             </form>
+            {% block tabs_list %}{% endblock %}
+        </div>
 
+        <div class="toolbar">
             <div class="nav-user">
                 {{
                     html.button_dropdown({
