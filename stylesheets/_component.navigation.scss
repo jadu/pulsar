@@ -1,11 +1,11 @@
-$jadu-logomark:          '../images/branding/logo-cms-white.svg';
-$jadu-logomark-fallback: '../images/branding/logo-cms-white-small.png';
+$jadu-logomark:          '../images/branding/logo-cms-white.svg' !default;
+$jadu-logomark-fallback: '../images/branding/logo-cms-white-small.png' !default;
 
-$jadu-wordmark:          '../images/branding/jadu-white.svg';
-$jadu-wordmark-fallback: '../images/branding/jadu-white-mini.png';
+$jadu-wordmark:          '../images/branding/jadu-white.svg' !default;
+$jadu-wordmark-fallback: '../images/branding/jadu-white-mini.png' !default;
 
-$nav-color-light: #3399cc;
-$nav-color-dark:  #2d89b7;
+$nav-color-light: #3399cc !default;
+$nav-color-dark:  #2d89b7 !default;
 
 .nav-main {
     display: table-cell;
