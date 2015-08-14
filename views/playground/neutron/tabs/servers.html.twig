@@ -4,7 +4,7 @@
 
 <div class="tab__inner">
 
-    <h1 class="tab__title">My Servers</h1>
+    <h1 class="tab__title">Comets</h1>
 
     <div class="actionsbar">
         <div class="float--left">
@@ -43,26 +43,39 @@
             </tr>
         </thead>
         <tbody class="table__tbody">
-{% for i in 0..499 %}
+{% for i in 0..999 %}
             <tr class="table__tr">
                 <td class="table__td table-selection">
                     {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
                     {{ html.icon('unchecked', { 'class': 'table-row-select js-select' }) }}
                 </td>
-                <td class="table__td"><a href="#" class="table-link">Sysadmin - Ansible 1</a></td>
-                <td class="table__td monospace"><a href="#" class="table-link">10.101.0.175</a></td>
+                <td class="table__td"><a href="#" class="table-link">{{ random(['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune']) }} {{ random(10) }}</a></td>
+                <td class="table__td monospace"><a href="#" class="table-link">10.{{ random(110) }}.{{random(255)}}.{{random(255)}}</a></td>
                 <td class="table__td">
                     {{
-                        html.label({
-                            'label': 'running',
-                            'class': 'label--success'
-                        })
+                        random([
+                            html.label({ 'label': 'running', 'class': 'label--success' }),
+                            html.label({ 'label': 'suspended' }),
+                            html.label({ 'label': 'low disk space', 'class': 'label--danger' }),
+                            html.label({ 'label': 'shutdown', 'class': 'label--inverse' })
+                        ])
                     }}
+
                 </td>
-                <td class="table__td">3d 4h 35m</td>
-                <td class="table__td">{{ html.icon('linux') }} Centos 6 v1.0.2</td>
-                <td class="table__td">4 GB</td>
-                <td class="table__td centered">2</td>
+                <td class="table__td">{{ random(24) }}d {{ random(24) }}h {{ random(59) }}m</td>
+                <td class="table__td">{{ random([
+                    html.icon('linux') ~ ' Centos 6 v1.0.2',
+                    html.icon('linux') ~ ' Debian 8',
+                    html.icon('linux') ~ ' Debian 7',
+                    html.icon('windows') ~ ' Windows Server',
+                    html.icon('windows') ~ ' Windows 98 SE',
+                    html.icon('linux') ~ ' Umbongo 14.04.03 LTS',
+                    html.icon('windows') ~ ' Microsoft Bob',
+                    html.icon('facebook-sign') ~ ' Skynet',
+                    html.icon('apple') ~ ' OSX Server'
+                ])|raw }}</td>
+                <td class="table__td">{{ random(['1', '2', '4', '8', '16']) }} GB</td>
+                <td class="table__td centered">{{ random(['1', '2', '4']) }}</td>
                 <td class="table__td">
                     {{ html.link({ 'label': 'Reboot', 'class': 'table-action' }) }}<!--
                     -->{{ html.link({ 'label': 'Suspend', 'class': 'table-action' }) }}<!--
@@ -70,32 +83,6 @@
                     -->{{ html.link({ 'label': 'Console', 'class': 'table-action' }) }}
                 </td>
 
-            </tr>
-
-            <tr class="table__tr">
-                <td class="table__td table-selection">
-                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle'}) }}
-                    {{ html.icon('unchecked', { 'class': 'table-row-select js-select' }) }}
-                </td>
-                <td class="table__td"><a href="#" class="table-link">Sysasdmin - WISP 1</a></td>
-                <td class="table__td monospace"><a href="#" class="table-link">10.101.0.138</a></td>
-                <td class="table__td">
-                    {{
-                        html.label({
-                            'label': 'suspended'
-                        })
-                    }}
-                </td>
-                <td class="table__td">17w 3d 4h 35m</td>
-                <td class="table__td">{{ html.icon('windows') }} Windows Server 2012 R2 v1.0.0</td>
-                <td class="table__td">2 GB</td>
-                <td class="table__td centered">1</td>
-                <td class="table__td">
-                    {{ html.link({ 'label': 'Reboot', 'class': 'table-action' }) }}<!--
-                    -->{{ html.link({ 'label': 'Suspend', 'class': 'table-action' }) }}<!--
-                    -->{{ html.link({ 'label': 'Shutdown', 'class': 'table-action' }) }}<!--
-                    -->{{ html.link({ 'label': 'Console', 'class': 'table-action' }) }}
-                </td>
             </tr>
 {% endfor %}
         </tbody>

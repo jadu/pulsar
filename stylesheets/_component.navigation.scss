@@ -40,6 +40,7 @@ $nav-color-dark:  #2d89b7;
 
 .nav-tertiary {
     background-color: $inverse-color;
+    box-shadow: inset -4px 0 0 rgba(0,0,0,.05);
     display: none;
     min-width: 250px;
     max-width: 250px;
@@ -235,7 +236,7 @@ $nav-color-dark:  #2d89b7;
 
 .nav-search__field {
     background-color: #fff;
-    border: 0;
+    border: 1px solid #d7d7d7;
     border-radius: 4px;
     color: #555;
     padding: 8.5px;
