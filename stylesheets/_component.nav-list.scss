@@ -2,7 +2,7 @@
 .nav-list {
 	display: block;
 	list-style-type: none;
-	margin: 19px 20px 0 20px;
+	margin: 17px 20px 0 20px;
 
 	.is-open & {
 		margin-top: 0px;
@@ -37,7 +37,7 @@
 }
 
 .nav-item {
-	&:not(.nav-item--header, .is-active):hover {
+	&:not(.nav-item--header):not(.is-active):hover {
 		background-color: darken($nav-color-dark, 2.5%);
 	}
 
@@ -51,8 +51,8 @@
 		border-bottom: 1px solid #666;
 	}
 
-	.nav-item {
-		&:not(.nav-item--header, .is-active):hover {
+	.nav-item {x§
+		&:not(.nav-item--header):not(.is-active):hover {
 			background-color: #777;
 		}
 
@@ -79,7 +79,7 @@
 
 
 	.nav-item {
-		&:not(.nav-item--header, .is-active):hover {
+		&:not(.nav-item--header):not(.is-active):hover {
 			background-color: darken(#efefef, 2.5%);
 		}
 

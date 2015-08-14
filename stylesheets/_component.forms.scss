@@ -22,7 +22,7 @@ fieldset {
 }
 
 .form__group {
-    margin-bottom: 1em;
+    margin-bottom: 24px;
 }
 
 .form__control {
@@ -109,6 +109,7 @@ $inputs: (
 .form__control:not(.checkbox):not(.radio) {
 
     // form elements should be 100% on mobile
+    background-color: #fafafa;
     width: 100%;
 
     @include respond-min($screen-tablet) {
