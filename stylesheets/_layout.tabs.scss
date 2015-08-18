@@ -103,15 +103,21 @@
 // experimenting with new tab rendering
 
 .tab__container {
-	display: table;
 	float: none;
 	height: 100%;
+
+  @include respond-min($screen-desktop) {
+    display: table;
+  }
 }
 
 .tab__container .tab__inner {
-	display: table-cell;
 	float: none;
 	height: 100%;
 	vertical-align: top;
+
+  @include respond-min($screen-desktop) {
+    display: table-cell;
+  }
 }
 
