@@ -7,7 +7,54 @@
 
 		<h1 class="tab__title">Colours</h1>
 
-		<h2 class="heading">Standard 'state' colours</h2>
+		<!-- <h2 class="heading">Standard 'state' colours</h2> -->
+
+
+
+		<div class="nav-inline">
+            {#{% block tabs_list %}{% endblock %}#}
+
+            <ul class="nav-inline__list">
+            	<li class="nav-inline__item nav-inline__item--is-active"><a href="#" class="nav-inline__link">All cases</a></li>
+            	<li class="nav-inline__item"><a href="#" class="nav-inline__link">My cases</a></li>
+            	<li class="nav-inline__item"><a href="#" class="nav-inline__link">Starred</a></li>
+            	<li class="nav-inline__item"><a href="#" class="nav-inline__link">Recent</a></li>
+            	<li class="nav-inline__item"><a href="#" class="nav-inline__link">Recent</a></li>
+            	<li class="nav-inline__item"><a href="#" class="nav-inline__link">Recent</a></li>
+            	<li class="nav-inline__item"><a href="#" class="nav-inline__link">Recent</a></li>
+            	<li class="nav-inline__item"><a href="#" class="nav-inline__link">Recent</a></li>
+            	<li class="nav-inline__item"><a href="#" class="nav-inline__link">Recent</a></li>
+            	<li class="nav-inline__item"><a href="#" class="nav-inline__link">Recent</a></li>
+            	<li class="nav-inline__item"><a href="#" class="nav-inline__link">Recent</a></li>
+            	<li class="nav-inline__item"><a href="#" class="nav-inline__link">Recent</a></li>
+            	<li class="nav-inline__item"><a href="#" class="nav-inline__link">Recent</a></li>
+            	<li class="nav-inline__item"><a href="#" class="nav-inline__link">Recent</a></li>
+            	<li class="nav-inline__item"><a href="#" class="nav-inline__link">Recent</a></li>
+            	<li class="nav-inline__item">
+			    	<div class="btn__group dropdown user-menu btn--naked">
+			    		<button class="btn dropdown__toggle" data-toggle="dropdown">
+			    			My Filters (4) <span class="caret"></span>
+			    		</button>
+			    		<ul class="dropdown__menu pull-left">
+			    			<li>
+			    				<a href="#">Filter 1</a>
+			    			</li>
+			    			<li>
+			    				<a href="#">Filter 2</a>
+			    			</li>
+			    			<li>
+			    				<a href="#">Filter 3</a>
+			    			</li>
+			    			<li>
+			    				<a href="#">Filter 4</a>
+			    			</li>
+			    		</ul>
+			    	</div>
+			    </li>
+            </ul>
+
+        </div>
+
 
 		<div class="swatch swatch--primary">
 			<div class="swatch__colour">
@@ -119,7 +166,7 @@
 
 	</div>
 
-	<div class="sidebar">
+	<!-- <div class="sidebar">
 		<h2 class="heading">{{ html.icon('info-sign', { 'class': 'sidebar-icon'}) }} Using colour</h2>
 
 		<p>Pulsar uses a standardised colour palette which incorporates the colours defined in Jadu’s styleguide.</p>
@@ -128,5 +175,5 @@
 		<p>Particular care should be taken to ensure that any colours that interact with each other meet the <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html">WCAG AA ratio for visual contrast</a> (4.5:1), which is especially important given that our main typeface (Proxima Nova) is rather thin.</p>
 
 		<p>Colours variables are defined in the <code>_colours.scss</code> sass file and can be used anywhere.</p>
-	</div>
+	</div> -->
 </div>

@@ -83,6 +83,108 @@ $nav-color-dark:  #2d89b7 !default;
 }
 
 
+.nav-inline {
+
+    -webkit-overflow-scrolling: touch;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    //width: 300px;
+
+    // @include respond-min($screen-tablet) {
+    //     overflow-x: visible;
+    //     overflow-y: visible;
+    //     white-space: nowrap;
+    //     width: $screen-desktop;
+    // }
+
+    // @include respond-min($screen-desktop) {
+    //     width: auto;
+    // }
+
+    &__list {
+        border-bottom: 1px solid $gray;
+        display: inline-block;
+        list-style: none;
+        //width: 300px;
+
+        // @include respond-min($screen-tablet) {
+        //     display: block;
+        // }
+    }
+
+    &__item {
+        display: inline-block;
+        font-size: 1.1em;
+        line-height: 2.25em;
+        margin-right: 20px;
+        padding: 0 15px 6px;
+
+        &:last-of-type {
+            margin-right: 0;
+        }
+
+        .btn {
+            color: $gray-light;
+            font-size: 1em;
+            vertical-align: baseline;
+
+            &:hover {
+                color: $black;
+                top: 0;
+
+                .caret {
+                    border-top-color: $black;
+                }
+            }
+
+            &:active {
+                vertical-align: baseline;
+            }
+
+            .caret {
+                border-top-color: $gray-light;
+            }
+        }
+
+        .open .btn {
+            color: $black;
+            top: 0;
+
+            .caret {
+                border-top-color: $black;
+            }
+        }
+    }
+
+    &__item--is-active {
+        border-bottom: 1px solid $nav-color-light;
+        margin-bottom: -1px;
+    }
+
+    &__link {
+        color: $gray-light;
+        text-decoration: none;
+
+        &:hover,
+        &:focus {
+            color: $black;
+        }
+
+        .nav-inline__item--is-active & {
+            color: $black;
+        }
+    }
+
+}
+
+
+
+
+
+
+
+
 .nav-items {
     margin: 0;
     padding: 0;
