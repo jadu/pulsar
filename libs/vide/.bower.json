@@ -1,6 +1,5 @@
 {
   "name": "vide",
-  "version": "0.3.4",
   "homepage": "http://vodkabears.github.io/vide/",
   "authors": [
     "Ilya Makarov <dfrost.00@gmail.com>"
@@ -34,14 +33,15 @@
   },
   "devDependencies": {
     "qunit": "~1.18.0",
-    "jquery": "jquery#^1.11.2",
-    "jquery2": "jquery#^2.1.3"
+    "jquery": "jquery#^1.11.3",
+    "jquery2": "jquery#^2.1.4"
   },
-  "_release": "0.3.4",
+  "version": "0.3.7",
+  "_release": "0.3.7",
   "_resolution": {
     "type": "version",
-    "tag": "0.3.4",
-    "commit": "3c8b1ef7ed15638e438c14074bb6365e65b206ab"
+    "tag": "0.3.7",
+    "commit": "ec11341874552f03476feb002134df653360f64d"
   },
   "_source": "git://github.com/VodkaBears/Vide.git",
   "_target": "~0.3.1",

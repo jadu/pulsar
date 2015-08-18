@@ -28,7 +28,7 @@
     "store.js": "latest",
     "svgeezy": "latest",
     "Vague.js": "Stanton/vague.js",
-    "vide": "~0.3.1"
+    "vide": "0.3.7"
   },
   "devDependencies": {
     "livereload-js": "livereload/livereload-js",

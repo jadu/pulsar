@@ -1,6 +1,5 @@
 {
   "name": "vide",
-  "version": "0.3.4",
   "homepage": "http://vodkabears.github.io/vide/",
   "authors": [
     "Ilya Makarov <dfrost.00@gmail.com>"
@@ -34,7 +33,7 @@
   },
   "devDependencies": {
     "qunit": "~1.18.0",
-    "jquery": "jquery#^1.11.2",
-    "jquery2": "jquery#^2.1.3"
+    "jquery": "jquery#^1.11.3",
+    "jquery2": "jquery#^2.1.4"
   }
 }
