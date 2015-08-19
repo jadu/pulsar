@@ -9,45 +9,51 @@
     {% block summary %}{% endblock %}
 
     <div role="main" class="container">
-        {% include '@pulsar/pulsar/components/navigation.html.twig' %}
-        <div class="nav-tertiary nav-tertiary--light">
 
-            <form class="nav-search">
-                <input type="search" placeholder="Search" class="nav-search__field" />
-                <button class="nav-search__submit">{{ html.icon('search') }}</button>
-            </form>
-            {% block tabs_list %}{% endblock %}
-        </div>
+        <div class="inner-wrapper">
+            {% include '@pulsar/pulsar/components/navigation.html.twig' %}
+            <div class="nav-tertiary nav-tertiary--light">
 
-        <div class="toolbar">
-            <div class="nav-user">
-                {{
-                    html.button_dropdown({
-                        "label": "Paul Stanton",
-                        "class": "user-menu btn--naked",
-                        "items": [
-                            html.link({
-                                "label": html.icon('user') ~ " My details",
-                                "href": "#foo"
-                            }),
-                            html.link({
-                                "label": html.icon('key') ~ " Change password",
-                                "href": "#foo"
-                            }),
-                            html.divider(),
-                            html.link({
-                                "label": html.icon('power-off') ~ " Sign out",
-                                "href": "#foo"
-                            }),
-                        ]
-                    })
-                }}
+                <form class="nav-search">
+                    <input type="search" placeholder="Search" class="nav-search__field" />
+                    <button class="nav-search__submit">{{ html.icon('search') }}</button>
+                </form>
+                {% block tabs_list %}{% endblock %}
             </div>
 
-        </div>
+            <div class="toolbar">
 
-        <div class="content-main">
-            {% block content %}{% endblock %}
+                <a href="#" class="mobile-menu-button">Menu</a>
+
+                <div class="nav-user">
+                    {{
+                        html.button_dropdown({
+                            "label": "Paul Stanton",
+                            "class": "user-menu btn--naked",
+                            "items": [
+                                html.link({
+                                    "label": html.icon('user') ~ " My details",
+                                    "href": "#foo"
+                                }),
+                                html.link({
+                                    "label": html.icon('key') ~ " Change password",
+                                    "href": "#foo"
+                                }),
+                                html.divider(),
+                                html.link({
+                                    "label": html.icon('power-off') ~ " Sign out",
+                                    "href": "#foo"
+                                }),
+                            ]
+                        })
+                    }}
+                </div>
+
+            </div>
+
+            <div class="content-main">
+                {% block content %}{% endblock %}
+            </div>
         </div>
     </div>
 
