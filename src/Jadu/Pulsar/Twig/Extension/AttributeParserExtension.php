@@ -83,8 +83,8 @@ class AttributeParserExtension extends \Twig_Extension
 	 *                [default] Additional attributes to be included, if the
 	 *                attribute exists in both $attributes and $args, the values
 	 *                will be merged
-	 * @return string             A space separated string of key="value"
-	 * attributes ready for including in an HTML element
+	 * @return string A space separated string of key="value" attributes ready
+	 *                for including in an HTML element
 	 */
 	public function parseAttributes($attributes, array $args = array())
 	{
@@ -97,8 +97,8 @@ class AttributeParserExtension extends \Twig_Extension
 		// Parse the attributes
 		foreach ($attributes as $key => $value) {
 
-			// only work with non-empty, non-array values
-			if (!empty($value) && !is_array($value)) {
+			// only work with non-empty, non-array values, or zero as a string
+			if ((!empty($value) && !is_array($value)) || $value === '0') {
 
 				// booleans should only output the key, everything else should
 				// be key="value"
