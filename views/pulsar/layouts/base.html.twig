@@ -6,9 +6,10 @@
 {% set jsPath   = base_path ~ 'js/' %}
 {% set libsPath = base_path ~ 'libs/' %}
 <!DOCTYPE html>
-<!--[if IE 7]>         <html class="no-js ie7"><![endif]-->
-<!--[if IE 8]>         <html class="no-js ie8"><![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"><!--<![endif]-->
+<!--[if IE 7]>         <html class="no-js ie7 lt-ie10 lt-ie8"><![endif]-->
+<!--[if IE 8]>         <html class="no-js ie8 lt-ie10 lt-ie9"><![endif]-->
+<!--[if IE 9]>         <html class="no-js ie9 lt-ie10"><![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-js"><!--<![endif]-->
 <html class="no-js">
 <head>
     <title>{% block title %}Pulsar Lexicon{% endblock %}</title>
