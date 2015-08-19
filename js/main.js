@@ -90,10 +90,15 @@ $(function () {
         }
 	});
 
-	$('.nav-tertiary__toggle').on('click', function() {
-		$('.nav-tertiary').toggleClass('is-open');
-		$('.content-main').toggleClass('has-tertiary-nav')
-	});
+	// $('.nav-tertiary__toggle').on('click', function() {
+	// 	$('.nav-tertiary').toggleClass('is-open');
+	// 	$('.content-main').toggleClass('has-tertiary-nav')
+	// });
+
+    $('.mobile-menu-button').on('click', function() {
+        $('body').toggleClass('open-nav');
+        $(this).toggleClass('open');
+    });
 
 	$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
   		$($.fn.dataTable.tables(true)).DataTable().columns.adjust().responsive.recalc();

@@ -67,15 +67,6 @@
   border-bottom: 1px solid #ccc;
   line-height: 47px;
   margin: 0 0 24px 0;
-  padding-left: 50px;
-
-  .has-tertiary-nav & {
-    padding-left: 0;
-  }
-
-  @include respond-min($screen-desktop) {
-    padding-left: 0;
-  }
 }
 
 .heading,
