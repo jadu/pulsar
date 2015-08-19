@@ -154,3 +154,30 @@ $inputs: (
 .help-block {
     color: lighten($text-color, 5%);
 }
+
+.checkbox--inline-v2,
+.radio--inline-v2 {
+    height: 44px;
+
+    > [type="checkbox"],
+    > [type="radio"] {
+      height: auto;
+    }
+}
+
+.form__button-group {
+    outline: 1px solid red;
+
+    .control__label {
+        @extend .btn;
+    }
+
+    .form__control {
+        display: none;
+    }
+
+    .checkbox--inline-v2,
+    .radio--inline-v2 {
+        height: auto;
+    }
+}

@@ -1,5 +1,68 @@
 {# -----------------------------------------------------------------------------
 
+# Button group
+
+Creates a series of buttons on a single line which are radio or checkbox input
+types.
+
+## Example usage
+
+```twig
+{{
+	form.button_group({
+		'label': 'Band',
+		'items': [
+			form.radio({
+				'label': 'AM',
+				'name': 'bands'
+			}),
+			form.radio({
+				'label': 'FM',
+				'name': 'bands'
+			}),
+			form.radio({
+				'label': 'MW',
+				'name': 'bands'
+			})
+		]
+	})
+}}
+```
+
+## Options applied to parent wrapper
+
+Option        | Type   | Description
+------------- | ------ | -------------------------------------------------------
+class         | string | A space separated list of class names
+help          | string | Additional guidance information to be displayed next to the input
+label         | string | Text for the `<label>` companion element
+
+## Options applied to input
+
+Option        | Type   | Description
+------------- | ------ | -------------------------------------------------------
+items         | array  | An array of items to put in the dropdown list (usually radios)
+
+#}
+{% macro button_group(options = {}) %}
+{% spaceless %}
+	{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
+
+	{{
+		_self.group({
+			'parent': options
+				|only('class help id label')
+				|merge({'class': 'form__button-group'}),
+			'inputs': options.items
+		})
+	}}
+
+{% endspaceless %}
+{% endmacro %}
+
+
+{# -----------------------------------------------------------------------------
+
 # Checkbox
 
 Generates a checkbox input field.

@@ -77,15 +77,7 @@
     margin: 0;
   }
 
-  .checkbox--inline-v2,
-  .radio--inline-v2 {
-    height: 44px;
 
-    > [type="checkbox"],
-    > [type="radio"] {
-      height: auto;
-    }
-  }
 
   .form__group--small {
     .controls {
