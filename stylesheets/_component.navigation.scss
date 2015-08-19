@@ -84,12 +84,10 @@ $nav-color-dark:  #2d89b7 !default;
 
 
 .nav-inline {
-
     -webkit-overflow-scrolling: touch;
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
-    //width: 300px;
 
     // @include respond-min($screen-tablet) {
     //     overflow-x: visible;
@@ -106,7 +104,6 @@ $nav-color-dark:  #2d89b7 !default;
         border-bottom: 1px solid $gray;
         display: inline-block;
         list-style: none;
-        //width: 300px;
 
         // @include respond-min($screen-tablet) {
         //     display: block;
@@ -179,6 +176,139 @@ $nav-color-dark:  #2d89b7 !default;
 }
 
 
+/*
+new animate side menu (kept all here so will need intergrating with actual classes)
+*/
+
+//@include respond-max($screen-desktop) {}
+
+.container {
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-main {
+    left: 0;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+
+    .lt-ie10 & {
+        left: -75px;
+    }
+
+    @include respond-min($screen-desktop) {
+        left: auto;
+        position: static;
+        -webkit-transform: none;
+        transform: none;
+        -webkit-backface-visibility: visible;
+        backface-visibility: visible;
+    }
+}
+
+.nav-primary .nav-items,
+.nav-primary .jadu-branding {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+    opacity: 0.7;
+    -webkit-transition: opacity 300ms 100ms, -webkit-transform 500ms ease;
+    -webkit-transition-delay: ease, 0s;
+    transition: opacity 300ms 100ms ease, transform 500ms ease;
+    -webkit-transform: translate3d(70%, 0, 0) scale3d(0.9, 0.9, 0.9);
+    transform: translate3d(70%, 0, 0) scale3d(0.9, 0.9, 0.9);
+    -webkit-transform-origin: 50% 0%;
+    transform-origin: 50% 0%;
+
+    @include respond-min($screen-desktop) {
+        filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+        opacity: 1;
+        webkit-transition: all 0s ease 0s;
+        transition: all 0s ease 0s;
+    }
+}
+
+.open-nav .nav-primary .nav-items,
+.open-nav .nav-primary .jadu-branding {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+// when menu closed
+.inner-wrapper {
+    position: relative;
+    width: 100%;
+
+    left: 0 !important;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-transition: -webkit-transform 500ms ease;
+    transition: transform 500ms ease;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+
+    .lt-ie10 & {
+        left: 0;
+    }
+
+    @include respond-min($screen-desktop) {
+        display: table-row;
+        left: auto;
+        position: static;
+    }
+}
+
+// When menu open
+.open-nav .inner-wrapper {
+    -webkit-transform: translate3d(75px, 0, 0) scale3d(1, 1, 1);
+    transform: translate3d(75px, 0, 0) scale3d(1, 1, 1);
+
+    .lt-ie10 & {
+        left: 75px;
+    }
+}
+
+.toolbar {
+    padding: 18px 10px !important;
+
+    @include respond-min($screen-tablet) {
+        padding: 18px 40px 0 40px;
+    }
+}
+
+.tabs__content {
+    padding: 0 10px;
+
+    @include respond-min($screen-tablet) {
+        padding: 0 40px;
+    }
+}
+
+.mobile-menu-button {
+    border: 1px solid $jadu-blue;
+    border-radius: 4px;
+    color: $jadu-blue;
+    display: inline-block;
+    padding: 8px 14px 6px;
+    text-decoration: none;
+
+    -webkit-transition: all 200ms ease-in;
+    transition: all 200ms ease-in;
+
+    @include respond-min($screen-desktop) {
+        display: none;
+    }
+
+    &:hover,
+    &.open {
+        background: $jadu-blue;
+        color: $white;
+    }
+}
 
 
 
