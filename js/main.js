@@ -98,6 +98,12 @@ $(function () {
     $('.mobile-menu-button').on('click', function() {
         $('body').toggleClass('open-nav');
         $(this).toggleClass('open');
+
+        if ($(this).text() == 'Menu') {
+            $(this).text('Close');
+        } else {
+            $(this).text('Menu');
+        }
     });
 
 	$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {

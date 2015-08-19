@@ -45,13 +45,11 @@ body {
 .container {
   clear: both;
   display: table;
-  margin: 0;
   height: 100%;
+  margin: 0;
+  overflow: hidden;
+  position: relative;
   width: 100%;
-
-  @include respond-min($screen-tablet) {
-    position: relative; // required for decks
-  }
 }
 
 // Links

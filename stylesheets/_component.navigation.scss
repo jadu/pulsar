@@ -8,11 +8,31 @@ $nav-color-light: #3399cc !default;
 $nav-color-dark:  #2d89b7 !default;
 
 .nav-main {
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    backface-visibility: hidden;
     display: table-cell;
     height: 100%;
-    overflow: hidden;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transform: translate3d(-100%, 0, 0);
     vertical-align: top;
     width: 75px;
+    z-index: 1;
+
+    .lt-ie10 & {
+        left: -75px;
+    }
+
+    @include respond-min($screen-desktop) {
+        left: auto;
+        position: static;
+        -webkit-transform: none;
+        transform: none;
+        -webkit-backface-visibility: visible;
+        backface-visibility: visible;
+    }
 }
 
 /**
@@ -38,6 +58,7 @@ $nav-color-dark:  #2d89b7 !default;
     vertical-align: top;
 }
 
+// Should be removed - replaced by nav-inline
 .nav-tertiary {
     background-color: $inverse-color;
     box-shadow: inset -4px 0 0 rgba(0,0,0,.05);
@@ -66,6 +87,7 @@ $nav-color-dark:  #2d89b7 !default;
 
 }
 
+// Should be removed - replaced by nav-inline
 .nav-tertiary__toggle {
     display: none;
     z-index: 1;
@@ -82,32 +104,24 @@ $nav-color-dark:  #2d89b7 !default;
     }
 }
 
-
 .nav-inline {
     -webkit-overflow-scrolling: touch;
-    overflow-x: scroll;
+    overflow-x: auto;
     overflow-y: hidden;
     white-space: nowrap;
 
-    // @include respond-min($screen-tablet) {
-    //     overflow-x: visible;
-    //     overflow-y: visible;
-    //     white-space: nowrap;
-    //     width: $screen-desktop;
-    // }
-
-    // @include respond-min($screen-desktop) {
-    //     width: auto;
-    // }
+    @include respond-min($screen-desktop) {
+        width: auto;
+    }
 
     &__list {
         border-bottom: 1px solid $gray;
         display: inline-block;
         list-style: none;
 
-        // @include respond-min($screen-tablet) {
-        //     display: block;
-        // }
+        @include respond-min($screen-tablet) {
+            display: block;
+        }
     }
 
     &__item {
@@ -119,38 +133,6 @@ $nav-color-dark:  #2d89b7 !default;
 
         &:last-of-type {
             margin-right: 0;
-        }
-
-        .btn {
-            color: $gray-light;
-            font-size: 1em;
-            vertical-align: baseline;
-
-            &:hover {
-                color: $black;
-                top: 0;
-
-                .caret {
-                    border-top-color: $black;
-                }
-            }
-
-            &:active {
-                vertical-align: baseline;
-            }
-
-            .caret {
-                border-top-color: $gray-light;
-            }
-        }
-
-        .open .btn {
-            color: $black;
-            top: 0;
-
-            .caret {
-                border-top-color: $black;
-            }
         }
     }
 
@@ -166,127 +148,63 @@ $nav-color-dark:  #2d89b7 !default;
         &:hover,
         &:focus {
             color: $black;
+
+            .caret {
+                border-top-color: $black;
+            }
         }
 
         .nav-inline__item--is-active & {
             color: $black;
         }
+
+        .caret {
+            border-top-color: $gray-light;
+        }
     }
 
-}
+    .popover {
+        font-size: 14px;
+        padding: 5px 0;
+        margin: 0;
+        list-style: none;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+        background-clip: padding-box;
+        min-width: 160px;
 
+        .arrow {
+            display: none;
+        }
 
-/*
-new animate side menu (kept all here so will need intergrating with actual classes)
-*/
+        a {
+            display: block;
+            padding: 3px 15px 3px 10px;
+            clear: both;
+            font-weight: normal;
+            line-height: 24px;
+            color: #4d4d4d;
+            white-space: nowrap;
+            text-decoration: none;
 
-//@include respond-max($screen-desktop) {}
-
-.container {
-    position: relative;
-    overflow: hidden;
-}
-
-.nav-main {
-    left: 0;
-    -webkit-transform: translate3d(-100%, 0, 0);
-    transform: translate3d(-100%, 0, 0);
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    position: absolute;
-    top: 0;
-
-    .lt-ie10 & {
-        left: -75px;
+            &:hover {
+                background-color: #1F7BB8;
+                color: #fff;
+                text-decoration: none;
+            }
+        }
     }
 
-    @include respond-min($screen-desktop) {
-        left: auto;
-        position: static;
-        -webkit-transform: none;
-        transform: none;
-        -webkit-backface-visibility: visible;
-        backface-visibility: visible;
-    }
-}
+    .popover-content {
+        padding: 0;
 
-.nav-primary .nav-items,
-.nav-primary .jadu-branding {
-    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
-    opacity: 0.7;
-    -webkit-transition: opacity 300ms 100ms, -webkit-transform 500ms ease;
-    -webkit-transition-delay: ease, 0s;
-    transition: opacity 300ms 100ms ease, transform 500ms ease;
-    -webkit-transform: translate3d(70%, 0, 0) scale3d(0.9, 0.9, 0.9);
-    transform: translate3d(70%, 0, 0) scale3d(0.9, 0.9, 0.9);
-    -webkit-transform-origin: 50% 0%;
-    transform-origin: 50% 0%;
-
-    @include respond-min($screen-desktop) {
-        filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
-        opacity: 1;
-        webkit-transition: all 0s ease 0s;
-        transition: all 0s ease 0s;
-        transform: none;
-    }
-}
-
-.open-nav .nav-primary .nav-items,
-.open-nav .nav-primary .jadu-branding {
-    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
-    opacity: 1;
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-}
-
-// when menu closed
-.inner-wrapper {
-    position: relative;
-    width: 100%;
-
-    left: 0 !important;
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-    -webkit-transition: -webkit-transform 500ms ease;
-    transition: transform 500ms ease;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-
-    .lt-ie10 & {
-        left: 0;
+        ul {
+            list-style: none;
+        }
     }
 
-    @include respond-min($screen-desktop) {
-        display: table-row;
-        left: auto;
-        position: static;
-    }
-}
-
-// When menu open
-.open-nav .inner-wrapper {
-    -webkit-transform: translate3d(75px, 0, 0) scale3d(1, 1, 1);
-    transform: translate3d(75px, 0, 0) scale3d(1, 1, 1);
-
-    .lt-ie10 & {
-        left: 75px;
-    }
-}
-
-.toolbar {
-    padding: 18px 10px !important;
-
-    @include respond-min($screen-tablet) {
-        padding: 18px 40px 0 40px;
-    }
-}
-
-.tabs__content {
-    padding: 0 10px;
-
-    @include respond-min($screen-tablet) {
-        padding: 0 40px;
-    }
 }
 
 .mobile-menu-button {
@@ -310,11 +228,6 @@ new animate side menu (kept all here so will need intergrating with actual class
         color: $white;
     }
 }
-
-
-
-
-
 
 .nav-items {
     margin: 0;
@@ -378,7 +291,44 @@ new animate side menu (kept all here so will need intergrating with actual class
         font-size: 1.5em;
         width: 100%;
     }
+
+    .nav-items,
+    .jadu-branding {
+        -webkit-transform-origin: 50% 0%;
+        -webkit-transform: translate3d(70%, 0, 0) scale3d(0.9, 0.9, 0.9);
+        -webkit-transition-delay: ease, 0s;
+        -webkit-transition: opacity 300ms 100ms, -webkit-transform 500ms ease;
+        filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+        opacity: 0.7;
+        transform-origin: 50% 0%;
+        transform: translate3d(70%, 0, 0) scale3d(0.9, 0.9, 0.9);
+        transition: opacity 300ms 100ms ease, transform 500ms ease;
+
+        @include respond-min($screen-desktop) {
+            filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+            opacity: 1;
+            transform: none;
+            transition: all 0s ease 0s;
+            webkit-transition: all 0s ease 0s;
+        }
+
+        .open-nav & {
+            -webkit-transform: translate3d(0, 0, 0);
+            filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+    }
 }
+
+// replaced by above - if above doesn't work revert to this
+// .open-nav .nav-primary .nav-items,
+// .open-nav .nav-primary .jadu-branding {
+//     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+//     opacity: 1;
+//     -webkit-transform: translate3d(0, 0, 0);
+//     transform: translate3d(0, 0, 0);
+// }
 
 .nav-secondary {
     background-color: $nav-color-dark;
@@ -386,11 +336,11 @@ new animate side menu (kept all here so will need intergrating with actual class
     left: 75px;
     margin-left: -320px;
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
     position: absolute;
     top: 0;
     transition: margin-left 100ms ease-in-out;
-    width: 250px;
+    width: 245px;
     z-index: 1;
 
     // cope with presence of scrollbars in IE
