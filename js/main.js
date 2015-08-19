@@ -95,7 +95,9 @@ $(function () {
 	// 	$('.content-main').toggleClass('has-tertiary-nav')
 	// });
 
-    $('.mobile-menu-button').on('click', function() {
+    $('.mobile-menu-button').on('click', function(e) {
+        e.preventDefault();
+
         $('body').toggleClass('open-nav');
         $(this).toggleClass('open');
 
