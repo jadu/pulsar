@@ -208,9 +208,9 @@ $nav-color-dark:  #2d89b7 !default;
 }
 
 .mobile-menu-button {
-    border: 1px solid $jadu-blue;
+    border: 1px solid $primary-color;
     border-radius: 4px;
-    color: $jadu-blue;
+    color: $primary-color;
     display: inline-block;
     padding: 8px 14px 6px;
     text-decoration: none;
@@ -224,7 +224,7 @@ $nav-color-dark:  #2d89b7 !default;
 
     &:hover,
     &.open {
-        background: $jadu-blue;
+        background: $primary-color;
         color: $white;
     }
 }
@@ -374,7 +374,6 @@ $nav-color-dark:  #2d89b7 !default;
 }
 
 .is-open .nav-secondary {
-    // display: inline-block;
     margin-left: 0;
 }
 
