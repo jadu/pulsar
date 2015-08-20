@@ -22,6 +22,7 @@
 		  <ul class="tabs__list">
 
 			{%- for sub_tab in tab.sub_tabs -%}
+			{%- if sub_tab.hidden is not defined or sub_tab.hidden != true -%}
 			  <li{% if (active_tab == sub_tab.id) %} class="is-active"{% endif %}>
 				{{
 					html.link({
