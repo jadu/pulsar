@@ -4,8 +4,7 @@
 
 	<ul class="tabs__list">
 	{%- for tab in tabs -%}
-	{%- if tab.hidden is not defined or tab.hidden != true %}
-	  <li{% if active_tab_id == tab.id %} class="is-active"{% endif %}>
+	  <li class="{% if active_tab_id == tab.id %}is-active{% endif %}{% if tab.hidden is defined and tab.hidden == true %} hide{% endif %}">
 
 		{{
 			html.link({
@@ -22,8 +21,7 @@
 		  <ul class="tabs__list">
 
 			{%- for sub_tab in tab.sub_tabs -%}
-			{%- if sub_tab.hidden is not defined or sub_tab.hidden != true %}
-			  <li{% if (active_tab == sub_tab.id) %} class="is-active"{% endif %}>
+			  <li class="{% if active_tab_id == sub_tab.id %}is-active{% endif %}{% if tab.hidden is defined and sub_tab.hidden == true %} hide{% endif %}">
 				{{
 					html.link({
 						'label': sub_tab.label,
@@ -32,14 +30,12 @@
 					})
 				}}
 			  </li>
-			{%- endif -%}
 			{%- endfor -%}
 
 		  </ul>
 		{%- endif -%}
 
 	  </li>
-	{%- endif -%}
 	{%- endfor -%}
 
   </ul>
