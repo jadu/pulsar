@@ -34,6 +34,11 @@ class TabsExtension extends \Twig_Extension
       return false;
     }
 
+    // If no active parent ID has been set, return the first tab ID
+    if ($active_parent_tab_id === null) {
+        return $ob[0]->id;
+    }
+
     // Loop through the tab items
     foreach ($ob as $item) {
 
