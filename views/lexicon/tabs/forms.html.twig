@@ -1,11 +1,10 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
 {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 {% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
 {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 {% import '@pulsar/pulsar/helpers/flash.html.twig' as flash %}
 
-<div class="tab__inner">
-
-    <h1 class="tab__title">Forms</h1>
+{% block tab_content %}
 
     {{ form.create() }}
 
@@ -612,4 +611,5 @@
             ]
         })
     }}
-</div>
+
+{% endblock tab_content %}

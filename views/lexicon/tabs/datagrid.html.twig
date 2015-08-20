@@ -1,3 +1,4 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
 {% import 'pulsar/v2/helpers/html.html.twig' as html %}
 {% import 'pulsar/v2/helpers/form.html.twig' as form %}
 {% import 'pulsar/helpers/flash.html.twig' as flash %}
@@ -13,7 +14,7 @@
     ]
 %}
 
-<div class="tab__inner tab--unpadded">
+{% block tab_content %}
 
     <h1 class="tab__title">Datatable</h1>
 
@@ -93,4 +94,5 @@
 {% endfor %}
         </tbody>
     </table>
-</div>
+
+{% endblock tab_content %}

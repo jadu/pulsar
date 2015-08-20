@@ -32,7 +32,6 @@
 {% set tab_decks %}{% include           'lexicon/tabs/decks.html.twig' %}{% endset %}
 {% set tab_modals %}{% include          'lexicon/tabs/modals.html.twig' %}{% endset %}
 {% set tab_popovers %}{% include        'lexicon/tabs/popovers.html.twig' %}{% endset %}
-{% set tab_rich_list %}{% include       'lexicon/tabs/rich_list.html.twig' %}{% endset %}
 
 {%
     set nav_data = {
@@ -84,11 +83,6 @@
           "id"    : "popovers",
           "label" : "Popovers",
           "src"   : tab_popovers
-        },
-        {
-          "id"    : "rich_list",
-          "label" : "Rich list",
-          "src"   : tab_rich_list
         }
     ]
 %}

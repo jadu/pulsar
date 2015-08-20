@@ -1,15 +1,11 @@
 {% extends "@pulsar/pulsar/components/tab.html.twig" %}
-
 {% import 'pulsar/v2/helpers/html.html.twig' as html %}
 {% import 'pulsar/v2/helpers/form.html.twig' as form %}
 {% import 'pulsar/helpers/flash.html.twig' as flash %}
 
-{% set tab_title = 'Colours' %}
-
 {% block tab_content %}
 
 	<h2 class="heading">Standard 'state' colours</h2>
-
 
 	<div class="swatch swatch--primary">
 		<div class="swatch__colour">
@@ -132,4 +128,4 @@
 	<p>Colours variables are defined in the <code>_colours.scss</code> sass file and can be used anywhere.</p>
 </div> -->
 
-{% endblock %}
+{% endblock tab_content %}

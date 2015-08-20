@@ -1,9 +1,10 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
 {% import 'pulsar/v2/helpers/html.html.twig' as html %}
 {% import 'pulsar/v2/helpers/form.html.twig' as form %}
 {% import 'pulsar/helpers/flash.html.twig' as flash %}
 
-<div class="tab__inner tab--padded">
-<h1 class="tab__title">Progress bars</h1>
+{% block tab_content %}
+
     <h2 class="heading">Variations</h2>
     {{
         html.progress({
@@ -200,4 +201,4 @@
 
     </div>
 
-</div>
+{% endblock tab_content %}

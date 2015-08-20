@@ -45,8 +45,6 @@
 
 {%- macro tabs_content(tabs, active_tab = null) -%}
 	{% set active_tab_id = get_active_tab(tabs, active_tab) %}
-
-	<div class="tabs__content">
 	{%- for tab in tabs -%}
 
 		{%-
@@ -67,9 +65,7 @@
 
 			{%- endfor -%}
 		{% endif %}
-
 	{%- endfor -%}
-	</div>
 {%- endmacro -%}
 
 
