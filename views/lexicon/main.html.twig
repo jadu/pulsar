@@ -31,31 +31,6 @@
     ]
 %}
 
-{%
-    set actions_menu = [
-        html.link({
-          'label': html.icon('plus') ~ ' Create new filter',
-          'href': '#save'
-        }),
-        html.divider(),
-        html.link({
-          'label': html.icon('pencil') ~ ' Edit this filter',
-          'href': '#print'
-        }),
-        html.link({
-          'label': html.icon('remove-sign') ~ ' Clear this filter',
-          'href': '#print'
-        }),
-        html.divider(),
-        html.link({
-          'label': html.icon('trash') ~ ' Delete this filter',
-          'href': '#delete',
-          'class': 'link--danger',
-          'attributes': 'data-on-datagrid-item-selected=enable'
-        })
-    ]
-%}
-
 {% set tab_buttons %}{% include         'lexicon/tabs/buttons_labels.html.twig' %}{% endset %}
 {% set tab_colours %}{% include         'lexicon/tabs/colours.html.twig' %}{% endset %}
 {% set tab_decks %}{% include           'lexicon/tabs/decks.html.twig' %}{% endset %}
@@ -174,14 +149,8 @@
     }
 %}
 
-{% block summary %}
-  <div class="summary hide" data-tab="#analytics">
-    <div id="container"></div>
-  </div>
-{% endblock %}
-
 {% block tabs_list %}
-    {{ tabs.tabs(tabs_content) }}
+    {{ nav.tabs(tabs_content) }}
 {% endblock %}
 
 {% block tabs_content %}

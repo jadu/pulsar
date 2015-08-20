@@ -78,3 +78,32 @@
 
 {% endspaceless %}
 {% endmacro %}
+
+
+{%- macro tabs(tabs, editable = false) -%}
+    {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+    {% set active_tab_id = get_active_tab(tabs, active_tab) %}
+    <div class="nav-inline">
+        <ul class="nav-inline__list">
+    {%- for tab in tabs -%}
+        {%-
+            if tab.sub_tabs is defined
+            and tab.sub_tabs != null
+        %}
+
+            {%- for sub_tab in tab.sub_tabs -%}
+              <li class="nav-inline__item {% if (active_tab_id == null and loop.parent.loop.first and loop.first) or (active_tab == sub_tab.id) %} nav-inline__item--is-active{% endif %}">
+                {{
+                    html.link({
+                        'label': sub_tab.label,
+                        'class': 'nav-inline__link',
+                        'href': '#' ~ sub_tab.id,
+                        'data-toggle': 'tab'
+                    })
+                }}
+              </li>
+            {%- endfor -%}
+        {%- endif -%}
+    {%- endfor -%}
+    </ul>
+{%- endmacro -%}

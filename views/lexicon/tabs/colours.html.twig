@@ -1,171 +1,135 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
+
 {% import 'pulsar/v2/helpers/html.html.twig' as html %}
 {% import 'pulsar/v2/helpers/form.html.twig' as form %}
 {% import 'pulsar/helpers/flash.html.twig' as flash %}
 
-<div class="tab__container">
-	<div class="tab__inner">
+{% set tab_title = 'Colours' %}
 
-		<h1 class="tab__title">Colours</h1>
+{% block tab_content %}
 
-		<!-- <h2 class="heading">Standard 'state' colours</h2> -->
-
+	<h2 class="heading">Standard 'state' colours</h2>
 
 
-		<div class="nav-inline">
-            {#{% block tabs_list %}{% endblock %}#}
-
-            <ul class="nav-inline__list">
-            	<li class="nav-inline__item nav-inline__item--is-active"><a href="#" class="nav-inline__link">All cases</a></li>
-            	<li class="nav-inline__item"><a href="#" class="nav-inline__link">My cases</a></li>
-            	<li class="nav-inline__item"><a href="#" class="nav-inline__link">Starred</a></li>
-            	<li class="nav-inline__item"><a href="#" class="nav-inline__link">Recent</a></li>
-            	<li class="nav-inline__item">
-            		<a
-            			href="#"
-            			class="nav-inline__link"
-            			rel="clickover"
-            			data-toggle="clickover"
-            			data-placement="bottom"
-            			data-html="true"
-            			data-content='<ul>
-			    			<li>
-			    				<a href="#">Filter 1</a>
-			    			</li>
-			    			<li>
-			    				<a href="#">Filter 2</a>
-			    			</li>
-			    			<li>
-			    				<a href="#">Filter 3</a>
-			    			</li>
-			    			<li>
-			    				<a href="#">Filter 4</a>
-			    			</li>
-			    		</ul>'>
-            			My Filters <span class="caret"></span>
-            		</a>
-            	</li>
-            </ul>
-        </div>
-
-
-		<div class="swatch swatch--primary">
-			<div class="swatch__colour">
-				<span class="swatch__text">primary</span>
-			</div>
-			<div class="swatch__label">
-				<code>$primary-color</code>
-				<span>{{ html.icon('ok') }} AA Compliant</span>
-			</div>
+	<div class="swatch swatch--primary">
+		<div class="swatch__colour">
+			<span class="swatch__text">primary</span>
 		</div>
-
-		<div class="swatch swatch--info">
-			<div class="swatch__colour">
-				<span class="swatch__text">info</span>
-			</div>
-			<div class="swatch__label">
-				<code>$info-color</code>
-				<span>{{ html.icon('ok') }} AA Compliant</span>
-			</div>
+		<div class="swatch__label">
+			<code>$primary-color</code>
+			<span>{{ html.icon('ok') }} AA Compliant</span>
 		</div>
-
-		<div class="swatch swatch--success">
-			<div class="swatch__colour">
-				<span class="swatch__text">success</span>
-			</div>
-			<div class="swatch__label">
-				<code>$success-color</code>
-				<span>{{ html.icon('ok') }} AA Compliant</span>
-			</div>
-		</div>
-
-		<div class="swatch swatch--warning">
-			<div class="swatch__colour">
-				<span class="swatch__text">warning</span>
-			</div>
-			<div class="swatch__label">
-				<code>$warning-color</code>
-				<span>{{ html.icon('ok') }} AA Compliant</span>
-			</div>
-		</div>
-
-		<div class="swatch swatch--danger">
-			<div class="swatch__colour">
-				<span class="swatch__text">danger</span>
-			</div>
-			<div class="swatch__label">
-				<code>$danger-color</code>
-				<span>{{ html.icon('ok') }} AA Compliant</span>
-			</div>
-		</div>
-
-		<div class="swatch swatch--inverse">
-			<div class="swatch__colour">
-				<span class="swatch__text">inverse</span>
-			</div>
-			<div class="swatch__label">
-				<code>$inverse-color</code>
-				<span>{{ html.icon('ok') }} AA Compliant</span>
-			</div>
-		</div>
-
-		<br /><br />
-		<h2 class="heading">Jadu blues</h2>
-
-		{%
-			set jadu_blues = [
-				"jadu-blue",
-				"jadu-blue-secondary",
-				"jadu-blue-cool",
-				"jadu-blue-warm",
-				"jadu-blue-pale"
-			]
-		%}
-
-		{% for colour in jadu_blues %}
-			<div class="swatch swatch--{{ colour }}">
-				<div class="swatch__colour">
-				</div>
-				<div class="swatch__label">
-					<code>${{ colour }}</code>
-				</div>
-			</div>
-		{% endfor %}
-
-		<br /><br />
-		<h2 class="heading">Jadu brand colours</h2>
-
-		{%
-			set jadu_colours = [
-				"jadu-orange",
-				"jadu-green",
-				"jadu-teal",
-				"jadu-red",
-				"jadu-yellow",
-				"jadu-black",
-				"jadu-copy-gray",
-			]
-		%}
-
-		{% for colour in jadu_colours %}
-			<div class="swatch swatch--{{ colour }}">
-				<div class="swatch__colour">
-				</div>
-				<div class="swatch__label">
-					<code>${{ colour }}</code>
-				</div>
-			</div>
-		{% endfor %}
-
 	</div>
 
-	<!-- <div class="sidebar">
-		<h2 class="heading">{{ html.icon('info-sign', { 'class': 'sidebar-icon'}) }} Using colour</h2>
+	<div class="swatch swatch--info">
+		<div class="swatch__colour">
+			<span class="swatch__text">info</span>
+		</div>
+		<div class="swatch__label">
+			<code>$info-color</code>
+			<span>{{ html.icon('ok') }} AA Compliant</span>
+		</div>
+	</div>
 
-		<p>Pulsar uses a standardised colour palette which incorporates the colours defined in Jadu’s styleguide.</p>
+	<div class="swatch swatch--success">
+		<div class="swatch__colour">
+			<span class="swatch__text">success</span>
+		</div>
+		<div class="swatch__label">
+			<code>$success-color</code>
+			<span>{{ html.icon('ok') }} AA Compliant</span>
+		</div>
+	</div>
+
+	<div class="swatch swatch--warning">
+		<div class="swatch__colour">
+			<span class="swatch__text">warning</span>
+		</div>
+		<div class="swatch__label">
+			<code>$warning-color</code>
+			<span>{{ html.icon('ok') }} AA Compliant</span>
+		</div>
+	</div>
+
+	<div class="swatch swatch--danger">
+		<div class="swatch__colour">
+			<span class="swatch__text">danger</span>
+		</div>
+		<div class="swatch__label">
+			<code>$danger-color</code>
+			<span>{{ html.icon('ok') }} AA Compliant</span>
+		</div>
+	</div>
+
+	<div class="swatch swatch--inverse">
+		<div class="swatch__colour">
+			<span class="swatch__text">inverse</span>
+		</div>
+		<div class="swatch__label">
+			<code>$inverse-color</code>
+			<span>{{ html.icon('ok') }} AA Compliant</span>
+		</div>
+	</div>
+
+	<br /><br />
+	<h2 class="heading">Jadu blues</h2>
+
+	{%
+		set jadu_blues = [
+			"jadu-blue",
+			"jadu-blue-secondary",
+			"jadu-blue-cool",
+			"jadu-blue-warm",
+			"jadu-blue-pale"
+		]
+	%}
+
+	{% for colour in jadu_blues %}
+		<div class="swatch swatch--{{ colour }}">
+			<div class="swatch__colour">
+			</div>
+			<div class="swatch__label">
+				<code>${{ colour }}</code>
+			</div>
+		</div>
+	{% endfor %}
+
+	<br /><br />
+	<h2 class="heading">Jadu brand colours</h2>
+
+	{%
+		set jadu_colours = [
+			"jadu-orange",
+			"jadu-green",
+			"jadu-teal",
+			"jadu-red",
+			"jadu-yellow",
+			"jadu-black",
+			"jadu-copy-gray",
+		]
+	%}
+
+	{% for colour in jadu_colours %}
+		<div class="swatch swatch--{{ colour }}">
+			<div class="swatch__colour">
+			</div>
+			<div class="swatch__label">
+				<code>${{ colour }}</code>
+			</div>
+		</div>
+	{% endfor %}
 
 
-		<p>Particular care should be taken to ensure that any colours that interact with each other meet the <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html">WCAG AA ratio for visual contrast</a> (4.5:1), which is especially important given that our main typeface (Proxima Nova) is rather thin.</p>
 
-		<p>Colours variables are defined in the <code>_colours.scss</code> sass file and can be used anywhere.</p>
-	</div> -->
-</div>
+<!-- <div class="sidebar">
+	<h2 class="heading">{{ html.icon('info-sign', { 'class': 'sidebar-icon'}) }} Using colour</h2>
+
+	<p>Pulsar uses a standardised colour palette which incorporates the colours defined in Jadu’s styleguide.</p>
+
+
+	<p>Particular care should be taken to ensure that any colours that interact with each other meet the <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html">WCAG AA ratio for visual contrast</a> (4.5:1), which is especially important given that our main typeface (Proxima Nova) is rather thin.</p>
+
+	<p>Colours variables are defined in the <code>_colours.scss</code> sass file and can be used anywhere.</p>
+</div> -->
+
+{% endblock %}

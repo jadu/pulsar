@@ -1,0 +1,9 @@
+<div class="tab__container">
+	<div class="tab__inner">
+		<h1 class="tab__title">{{ tab_title|default('MISSING TAB TITLE') }}</h1>
+
+		{% block tab_content %}{% endblock %}
+		{% block tab_help %}{% endblock %}
+
+	</div>
+</div>
