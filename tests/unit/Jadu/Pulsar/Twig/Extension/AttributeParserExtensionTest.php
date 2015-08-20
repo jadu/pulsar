@@ -74,13 +74,6 @@ class AttributeParserExtensionTest extends \PHPUnit_Framework_TestCase
 		$this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn));
 	}
 
-	public function testParseAttributesRemovesAttributesWithFalseValues()
-	{
-		$dataIn = array('foo' => false);
-		$dataOut = '';
-		$this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn));
-	}
-
 	public function testParseAttributesTransformsTrueBooleanAttribute()
 	{
 		$dataIn = array('foo' => true);
@@ -99,6 +92,13 @@ class AttributeParserExtensionTest extends \PHPUnit_Framework_TestCase
 	{
 		$dataIn = array('foo' => array('bar'));
 		$dataOut = '';
+		$this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn));
+	}
+
+	public function testParseAttributesAllowsZeroStrings()
+	{
+		$dataIn = array('foo' => '0');
+		$dataOut = 'foo="0"';
 		$this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn));
 	}
 

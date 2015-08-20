@@ -32,7 +32,7 @@ class TabsExtensionTest extends \PHPUnit_Framework_TestCase
         ]
       },
       {
-        "id": "3", 
+        "id": "3",
         "label": "three"
       }]
     ';
@@ -48,15 +48,20 @@ class TabsExtensionTest extends \PHPUnit_Framework_TestCase
     $this->assertEquals(FALSE, $this->ext->getActiveParentTabID("json.derulo"));
   }
 
-  public function testValueIsFalseIfNoIDSet()
-  {
-    $this->assertEquals(FALSE, $this->ext->getActiveParentTabID($this->tabs));
-  }
-
   public function testActiveParentTabIsCorrectlySet()
   {
     $this->assertEquals('1', $this->ext->getActiveParentTabID($this->tabs, '1_3'));
     $this->assertEquals('2', $this->ext->getActiveParentTabID($this->tabs, '2_3'));
-  }    
+  }
+
+  public function testFirstTabIsReturnedIfNoValueGiven()
+  {
+    $this->assertEquals('1', $this->ext->getActiveParentTabID($this->tabs));
+  }
+
+  public function testFirstTabIsReturnedIfNullValueGiven()
+  {
+    $this->assertEquals('1', $this->ext->getActiveParentTabID($this->tabs, null));
+  }
 
 }

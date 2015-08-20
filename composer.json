@@ -1,13 +1,13 @@
 {
     "name": "jadu/pulsar",
-    "version": "3.5.1",
+    "version": "3.6.0",
     "autoload": {
         "psr-0": {
             "Jadu\\Pulsar": "src"
         }
     },
     "require": {
-        "twig/twig": "1.18.*@dev"
+        "twig/twig": "^1.18"
     },
     "require-dev": {
         "phpunit/phpunit": "*",
