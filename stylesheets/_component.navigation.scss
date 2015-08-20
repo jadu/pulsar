@@ -344,7 +344,7 @@ $nav-color-dark:  #2d89b7 !default;
     top: 0;
     transition: margin-left 100ms ease-in-out;
     width: 245px;
-    z-index: 1;
+    z-index: $zindex-nav;
 
     // cope with presence of scrollbars in IE
     @include ie-lte(10) {
