@@ -5,11 +5,9 @@
 {% import '@pulsar/pulsar/helpers/flash.html.twig' as flash %}
 {% import '@pulsar/pulsar/helpers/tabs.html.twig' as tabs %}
 
-{% set pageModule = 'lexicon/uploaderDemo' %}
-
 {% block title %}{{ parent() }}{% endblock %}
 
-{% set heading = 'Pulsar Lexicon' %}
+{% set heading = 'Patterns' %}
 
 {%
     set actions_menu = [
@@ -31,86 +29,16 @@
     ]
 %}
 
-{%
-    set actions_menu = [
-        html.link({
-          'label': html.icon('plus') ~ ' Create new filter',
-          'href': '#save'
-        }),
-        html.divider(),
-        html.link({
-          'label': html.icon('pencil') ~ ' Edit this filter',
-          'href': '#print'
-        }),
-        html.link({
-          'label': html.icon('remove-sign') ~ ' Clear this filter',
-          'href': '#print'
-        }),
-        html.divider(),
-        html.link({
-          'label': html.icon('trash') ~ ' Delete this filter',
-          'href': '#delete',
-          'class': 'link--danger',
-          'attributes': 'data-on-datagrid-item-selected=enable'
-        })
-    ]
-%}
-
-
-{% set tab_form_summary %}{% include    'lexicon/tabs/analytics.html.twig' %}{% endset %}
-{% set tab_filters %}{% include         'lexicon/tabs/filters.html.twig' %}{% endset %}
-{% set tab_empty_table %}{% include     'lexicon/tabs/empty_table.html.twig' %}{% endset %}
-
-{% set tab_simple_uploader %}{% include 'lexicon/tabs/uploader_simple.html.twig' %}{% endset %}
-{% set tab_detail_uploader %}{% include 'lexicon/tabs/uploader_detailed.html.twig' %}{% endset %}
-{% set pattern_masterswitch %}{% include     'lexicon/patterns/masterswitch.html.twig' %}{% endset %}
+{% set pattern_masterswitch %}{% include 'lexicon/patterns/masterswitch.html.twig' %}{% endset %}
 
 {%
-  set tabs_content = [
-    {
-      "id"        : "Patterns",
-      "label"     : "Patterns",
-      "sub_tabs"  : [
+    set tabs_content = [
         {
           "id"    : "masterswitch",
           "label" : "Masterswitch",
           "src"   : pattern_masterswitch
-        },
-        {
-          "id"    : "simple_uploader",
-          "label" : "Simple Uploader",
-          "src"   : tab_simple_uploader
-        },
-        {
-          "id"    : "detail_uploader",
-          "label" : "Detailed Uploader",
-          "src"   : tab_detail_uploader
-        },
-      ]
-    },
-    {
-      "id"        : "examples",
-      "label"     : "UI Examples",
-      "sub_tabs"  : [
-        {
-          "id"    : "summary",
-          "label" : "Table with summary",
-          "src"   : tab_form_summary,
-          "attr"  : "data-summary=#analytics"
-        },
-        {
-          "id"    : "filters",
-          "label" : "Table with filters",
-          "src"   : tab_filters
-        },
-        {
-          "id"    : "empty_table",
-          "label" : "Table with no results",
-          "src"   : tab_empty_table
         }
-      ]
-    }
-  ]
+    ]
 %}
 
 {%
@@ -147,18 +75,12 @@
     }
 %}
 
-{% block summary %}
-  <div class="summary hide" data-tab="#analytics">
-    <div id="container"></div>
-  </div>
-{% endblock %}
-
 {% block tabs_list %}
-    {{ tabs.tabs(tabs_content) }}
+    {{ nav.tabs(tabs_content) }}
 {% endblock %}
 
 {% block tabs_content %}
-  {{ tabs.tabs_content(tabs_content) }}
+    {{ tabs.tabs_content(tabs_content) }}
 {% endblock %}
 
 {% block javascript %}

@@ -35,7 +35,7 @@ $twig->addExtension(new Twig_Extension_Debug());
 
 
 
-if (!isset($_SERVER['PATH_INFO'])) {
+if (!isset($_SERVER['PATH'])) {
     $path = 'main';
 } else {
     $path = $_SERVER['PATH_INFO'];

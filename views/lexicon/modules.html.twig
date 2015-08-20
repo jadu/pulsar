@@ -5,11 +5,9 @@
 {% import '@pulsar/pulsar/helpers/flash.html.twig' as flash %}
 {% import '@pulsar/pulsar/helpers/tabs.html.twig' as tabs %}
 
-{% set pageModule = 'lexicon/uploaderDemo' %}
-
 {% block title %}{{ parent() }}{% endblock %}
 
-{% set heading = 'Pulsar Lexicon' %}
+{% set heading = 'Modules' %}
 
 {%
     set actions_menu = [
@@ -31,84 +29,10 @@
     ]
 %}
 
-{%
-    set actions_menu = [
-        html.link({
-          'label': html.icon('plus') ~ ' Create new filter',
-          'href': '#save'
-        }),
-        html.divider(),
-        html.link({
-          'label': html.icon('pencil') ~ ' Edit this filter',
-          'href': '#print'
-        }),
-        html.link({
-          'label': html.icon('remove-sign') ~ ' Clear this filter',
-          'href': '#print'
-        }),
-        html.divider(),
-        html.link({
-          'label': html.icon('trash') ~ ' Delete this filter',
-          'href': '#delete',
-          'class': 'link--danger',
-          'attributes': 'data-on-datagrid-item-selected=enable'
-        })
-    ]
-%}
-
-{% set tab_buttons %}{% include         'lexicon/tabs/buttons_labels.html.twig' %}{% endset %}
-{% set tab_colours %}{% include         'lexicon/tabs/colours.html.twig' %}{% endset %}
 {% set tab_decks %}{% include           'lexicon/tabs/decks.html.twig' %}{% endset %}
-{% set tab_flash %}{% include           'lexicon/tabs/flash.html.twig' %}{% endset %}
-{% set tab_forms %}{% include           'lexicon/tabs/forms.html.twig' %}{% endset %}
-{% set tab_loading %}{% include         'lexicon/tabs/loading.html.twig' %}{% endset %}
 {% set tab_modals %}{% include          'lexicon/tabs/modals.html.twig' %}{% endset %}
-{% set tab_tooltips %}{% include        'lexicon/tabs/tooltips.html.twig' %}{% endset %}
-{% set tab_data_grid %}{% include       'lexicon/tabs/datagrid.html.twig' %}{% endset %}
-{% set tab_metadata %}{% include        'lexicon/tabs/metadata.html.twig' %}{% endset %}
-{% set tab_panels %}{% include          'lexicon/tabs/panels.html.twig' %}{% endset %}
 {% set tab_popovers %}{% include        'lexicon/tabs/popovers.html.twig' %}{% endset %}
-{% set tab_progress_bars %}{% include   'lexicon/tabs/progress_bars.html.twig' %}{% endset %}
 {% set tab_rich_list %}{% include       'lexicon/tabs/rich_list.html.twig' %}{% endset %}
-{% set tab_simple_uploader %}{% include 'lexicon/tabs/uploader_simple.html.twig' %}{% endset %}
-{% set tab_detail_uploader %}{% include 'lexicon/tabs/uploader_detailed.html.twig' %}{% endset %}
-{% set tab_interactions %}{% include    'lexicon/tabs/interactions.html.twig' %}{% endset %}
-{% set tab_form_summary %}{% include    'lexicon/tabs/analytics.html.twig' %}{% endset %}
-{% set tab_filters %}{% include         'lexicon/tabs/filters.html.twig' %}{% endset %}
-{% set tab_empty_table %}{% include     'lexicon/tabs/empty_table.html.twig' %}{% endset %}
-
-{% set pattern_masterswitch %}{% include     'lexicon/patterns/masterswitch.html.twig' %}{% endset %}
-
-{%
-  set tabs_content = [
-    {
-      "id"        : "Modules",
-      "label"     : "Modules",
-      "sub_tabs"  : [
-        {
-          "id"    : "decks",
-          "label" : "Decks",
-          "src"   : tab_decks
-        },
-        {
-          "id"    : "modals",
-          "label" : "Modals",
-          "src"   : tab_modals
-        },
-        {
-          "id"    : "popovers",
-          "label" : "Popovers",
-          "src"   : tab_popovers
-        },
-        {
-          "id"    : "rich_list",
-          "label" : "Rich list",
-          "src"   : tab_rich_list
-        },
-      ]
-    }
-  ]
-%}
 
 {%
     set nav_data = {
@@ -144,18 +68,37 @@
     }
 %}
 
-{% block summary %}
-  <div class="summary hide" data-tab="#analytics">
-    <div id="container"></div>
-  </div>
-{% endblock %}
+{%
+    set tabs_content = [
+        {
+          "id"    : "decks",
+          "label" : "Decks",
+          "src"   : tab_decks
+        },
+        {
+          "id"    : "modals",
+          "label" : "Modals",
+          "src"   : tab_modals
+        },
+        {
+          "id"    : "popovers",
+          "label" : "Popovers",
+          "src"   : tab_popovers
+        },
+        {
+          "id"    : "rich_list",
+          "label" : "Rich list",
+          "src"   : tab_rich_list
+        }
+    ]
+%}
 
 {% block tabs_list %}
-    {{ tabs.tabs(tabs_content) }}
+    {{ nav.tabs(tabs_content) }}
 {% endblock %}
 
 {% block tabs_content %}
-  {{ tabs.tabs_content(tabs_content) }}
+    {{ tabs.tabs_content(tabs_content) }}
 {% endblock %}
 
 {% block javascript %}

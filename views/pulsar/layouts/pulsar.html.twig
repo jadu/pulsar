@@ -54,7 +54,7 @@
             <div class="content-main">
                 <div class="tab__container">
                     <div class="tab__inner">
-                        <h1 class="tab__title">{{ tab_title|default('MISSING TAB TITLE') }}</h1>
+                        <h1 class="tab__title">{{ heading|default('MISSING HEADING') }}</h1>
 
                         {% block tabs_list %}{% endblock %}
                         {% block content %}{% endblock %}
