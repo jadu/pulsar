@@ -208,9 +208,9 @@ $nav-color-dark:  #2d89b7 !default;
 }
 
 .mobile-menu-button {
-    border: 1px solid $primary-color;
+    border: 1px solid $nav-color-dark;
     border-radius: 4px;
-    color: $primary-color;
+    color: $nav-color-dark;
     display: inline-block;
     padding: 8px 14px 6px;
     text-decoration: none;
@@ -224,7 +224,7 @@ $nav-color-dark:  #2d89b7 !default;
 
     &:hover,
     &.open {
-        background: $primary-color;
+        background: $nav-color-dark;
         color: $white;
     }
 }
