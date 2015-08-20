@@ -142,7 +142,7 @@ $nav-color-dark:  #2d89b7 !default;
         }
     }
 
-    &__item--is-active {
+    &__item.is-active {
         border-bottom: 1px solid $nav-color-light;
         margin-bottom: -1px;
     }
@@ -160,7 +160,7 @@ $nav-color-dark:  #2d89b7 !default;
             }
         }
 
-        .nav-inline__item--is-active & {
+        .is-active & {
             color: $black;
         }
 
