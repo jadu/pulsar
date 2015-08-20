@@ -104,6 +104,12 @@ $nav-color-dark:  #2d89b7 !default;
     }
 }
 
+.tabs__content > .nav-inline {
+    @include respond-min($screen-desktop) {
+        margin-top: 24px;
+    }
+}
+
 .nav-inline {
     -webkit-overflow-scrolling: touch;
     overflow-x: auto;
