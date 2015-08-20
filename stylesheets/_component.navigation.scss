@@ -257,7 +257,7 @@ $nav-color-dark:  #2d89b7 !default;
     text-align: center;
     transition: box-shadow 100ms linear;
     width: 75px;
-    z-index: 2;
+    z-index: $zindex-nav;
 
     .is-active {
         background-color: $nav-color-dark;
@@ -344,7 +344,7 @@ $nav-color-dark:  #2d89b7 !default;
     top: 0;
     transition: margin-left 100ms ease-in-out;
     width: 245px;
-    z-index: $zindex-nav;
+    z-index: $zindex-nav-secondary;
 
     // cope with presence of scrollbars in IE
     @include ie-lte(10) {
