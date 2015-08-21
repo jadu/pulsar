@@ -26,7 +26,7 @@ input.main-search__field {
     }
 
     @include respond-min($screen-tablet) {
-        width: auto;
+        width: 180px
     }
 }
 
@@ -41,5 +41,6 @@ input.main-search__field {
     @include respond-min($screen-tablet) {
         left: 150px;
         right: auto;
+        top: 5px;
     }
 }
