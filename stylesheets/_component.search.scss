@@ -1,6 +1,6 @@
 .main-search {
     display: block;
-    margin: 0 10px 12px;
+    margin: 0 20px 12px;
     position: relative;
 
     @include respond-min($screen-desktop) {
@@ -39,7 +39,7 @@ input.main-search__field {
     top: 3px;
 
     @include respond-min($screen-tablet) {
-        left: 155px;
+        left: 150px;
         right: auto;
     }
 }
