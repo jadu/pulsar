@@ -40,7 +40,7 @@
 .tabs__content {
   @include clear-fix;
   display: table-cell;
-  padding: 0 10px;
+  padding: 0 20px;
   // overflow: hidden; experimenting with turning this off to allow left positioned tooltips to work, shout up if it breaks anything
   vertical-align: top;
   width: 100%;
