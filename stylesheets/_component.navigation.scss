@@ -125,6 +125,12 @@ $nav-color-dark:  #2d89b7 !default;
         border-bottom: 1px solid $gray;
         display: inline-block;
         list-style: none;
+
+        margin-bottom: 0;
+
+        @include respond-min($screen-desktop) {
+            margin-bottom: 24px;
+        }
     }
 
     &__item {
@@ -283,7 +289,7 @@ $nav-color-dark:  #2d89b7 !default;
     }
 
     .nav-link:hover {
-        background-color: darken($nav-color-dark, 2);
+        background-color: darken($nav-color-dark, 2%);
         color: white;
     }
 
@@ -363,6 +369,10 @@ $nav-color-dark:  #2d89b7 !default;
         margin: 0 20px;
     }
 
+    .nav-link:hover {
+        background-color: darken($nav-color-dark, 2%);
+        color: white;
+    }
 }
 
 .nav-remove-search {

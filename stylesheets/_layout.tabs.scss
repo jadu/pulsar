@@ -45,11 +45,6 @@
   vertical-align: top;
   width: 100%;
 
-  @include respond-min($screen-desktop) {
-    padding: 0 20px;
-  }
-
-
   // show/hide tab panes
   > .tab__pane {
     display: none;

@@ -96,7 +96,7 @@
   }
 
   > fieldset {
-    padding: 22px 20px;
+    padding: 22px 0;
 
     legend {
       border-bottom: 1px solid #e5e5e5;
@@ -112,7 +112,11 @@
   }
 
   > .form__group {
-    padding: 0 20px;
+    padding: 0;
+
+    @include respond-min($screen-desktop) {
+        padding: 0 20px;
+    }
   }
 
   .form__group .form__collection .remove__control {
