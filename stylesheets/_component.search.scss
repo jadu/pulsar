@@ -36,11 +36,10 @@ input.main-search__field {
     color: #555;
     position: absolute;
     right: 10px;
-    top: 3px;
+    top: 5px;
 
     @include respond-min($screen-tablet) {
         left: 150px;
         right: auto;
-        top: 5px;
     }
 }
