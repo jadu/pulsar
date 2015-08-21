@@ -319,8 +319,10 @@ $nav-color-dark:  #2d89b7 !default;
         @include respond-min($screen-desktop) {
             filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
             opacity: 1;
+            -webkit-transform: none;
             transform: none;
             transition: all 0s ease 0s;
+            -webkit-transition: all 0s ease 0s;
             webkit-transition: all 0s ease 0s;
         }
 
