@@ -1,10 +1,9 @@
-{%- macro tabs(tabs, active_tab = null) -%}
+{%- macro tabs(tabs) -%}
 	{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
-	{% set active_tab_id = get_active_tab(tabs, active_tab) %}
 
 	<ul class="tabs__list">
 	{%- for tab in tabs -%}
-	  <li class="{% if active_tab_id == tab.id %}is-active{% endif %}{% if tab.hidden is defined and tab.hidden == true %} hide{% endif %}">
+	  <li class="{% if tab.active is defined and tab.active == tab.id %}is-active{% endif %}{% if tab.hidden is defined and tab.hidden == true %} hide{% endif %}">
 
 		{{
 			html.link({
@@ -21,7 +20,7 @@
 		  <ul class="tabs__list">
 
 			{%- for sub_tab in tab.sub_tabs -%}
-			  <li class="{% if active_tab_id == sub_tab.id %}is-active{% endif %}{% if tab.hidden is defined and sub_tab.hidden == true %} hide{% endif %}">
+			  <li class="{% if sub_tab.active is defined and tab.active == sub_tab.id %}is-active{% endif %}{% if tab.hidden is defined and sub_tab.hidden == true %} hide{% endif %}">
 				{{
 					html.link({
 						'label': sub_tab.label,
@@ -43,8 +42,7 @@
 {%- endmacro -%}
 
 
-{%- macro tabs_content(tabs, active_tab = null) -%}
-	{% set active_tab_id = get_active_tab(tabs, active_tab) %}
+{%- macro tabs_content(tabs) -%}
 
 	<div class="tabs__content">
 	{%- for tab in tabs -%}
@@ -53,7 +51,7 @@
 			if tab.src is defined
 			and tab.src != null
 		-%}
-			<div class="tab__pane{% if active_tab_id == tab.id %} is-active{% endif %}" id="{{ tab.id }}"{% if tab.attr is defined and tab.attr != null %} {{ tab.attr|raw }}{% endif %}>
+			<div class="tab__pane{% if tab.active is defined and tab.active == tab.id %} is-active{% endif %}" id="{{ tab.id }}"{% if tab.attr is defined and tab.attr != null %} {{ tab.attr|raw }}{% endif %}>
 				{{ tab.src|raw }}
 			</div>
 		{%- endif -%}
@@ -61,7 +59,7 @@
 		{% if tab.sub_tabs is defined %}
 			{%- for sub_tab in tab.sub_tabs -%}
 
-			<div class="tab__pane{% if active_tab_id == sub_tab.id %} is-active{% endif %}" id="{{ sub_tab.id }}"{% if sub_tab.attr is defined and sub_tab.attr != null %} {{ sub_tab.attr|raw }}{% endif %}>
+			<div class="tab__pane{% if sub_tab.active is defined and tab.active == sub_tab.id %} is-active{% endif %}" id="{{ sub_tab.id }}"{% if sub_tab.attr is defined and sub_tab.attr != null %} {{ sub_tab.attr|raw }}{% endif %}>
 				{{ sub_tab.src|raw }}
 			</div>
 
