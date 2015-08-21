@@ -4,9 +4,6 @@
     <header id="top">
         {% include '@pulsar/pulsar/components/flash.html.twig' %}
     </header>
-    {# include '@pulsar/pulsar/components/breadcrumb.html.twig' #}
-
-    {% block summary %}{% endblock %}
 
     <div role="main" class="container">
 
@@ -52,12 +49,10 @@
             </div>
 
             <div class="content-main">
-                <div class="tab__container">
-                    <div class="tabs__content">
-                        <h1 class="main-title">{{ heading|default('MISSING HEADING') }}</h1>
-                        {% block tabs_list %}{% endblock %}
-                        {% block content %}{% endblock %}
-                    </div>
+                <div class="tabs__content">
+                    <h1 class="main-title">{{ heading|default('MISSING HEADING') }}</h1>
+                    {% block tabs_list %}{% endblock %}
+                    {% block content %}{% endblock %}
                 </div>
             </div>
         </div>

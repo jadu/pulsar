@@ -43,27 +43,15 @@ if (!isset($_SERVER['PATH'])) {
 
 $template = $twig->loadTemplate('lexicon/' . $path . '.html.twig');
 
-$toolbar = array(
-    '<i class="icon-file"></i> Docs' => '#',
-    '<i class="icon-file"></i> Lexicon' => '#',
-    );
-
-$breadcrumb = array(
-    'Pulsar' => '/',
-    'Documentation' => '/docs',
-    'Lexicon' => null
-    );
-
 $flashMessage = array(
     'type' => 'success',
     'message' => 'This is a flash message, it lets users know that something happened. <a href="#tab_4" data-toggle="tab">read more</a>.'
     );
 
 print $template->render(array(
-    'breadcrumb' => $breadcrumb,
-    'notifications' => 3,
-    'toolbar' => $toolbar
-    ));
+    'active_tab_id' => 'stanton'
+    )
+);
 
 // $dumper = new Twig_Profiler_Dumper_Text();
 // echo '<pre>' . $dumper->dump($profile) . '</pre>';

@@ -4,7 +4,6 @@
 {% import 'pulsar/helpers/flash.html.twig' as flash %}
 
 {% block tab_content %}
-
 	<h2 class="heading">Standard 'state' colours</h2>
 
 	<div class="swatch swatch--primary">
@@ -114,10 +113,11 @@
 			</div>
 		</div>
 	{% endfor %}
+{% endblock tab_content %}
+
+{% block tab_sidebar %}
 
 
-
-<!-- <div class="sidebar">
 	<h2 class="heading">{{ html.icon('info-sign', { 'class': 'sidebar-icon'}) }} Using colour</h2>
 
 	<p>Pulsar uses a standardised colour palette which incorporates the colours defined in Jadu’s styleguide.</p>
@@ -126,6 +126,6 @@
 	<p>Particular care should be taken to ensure that any colours that interact with each other meet the <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html">WCAG AA ratio for visual contrast</a> (4.5:1), which is especially important given that our main typeface (Proxima Nova) is rather thin.</p>
 
 	<p>Colours variables are defined in the <code>_colours.scss</code> sass file and can be used anywhere.</p>
-</div> -->
 
-{% endblock tab_content %}
+
+{% endblock tab_sidebar %}

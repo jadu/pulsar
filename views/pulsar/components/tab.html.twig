@@ -1,6 +1,10 @@
 <div class="tab__container">
 	<div class="tab__inner">
-		{% block tab_content %}{% endblock %}
-		{% block tab_help %}{% endblock %}
+		<div class="tab__content">
+			{% block tab_content %}{% endblock %}
+		</div>
+		<div class="tab__sidebar">
+			{% block tab_sidebar %}{% endblock %}
+		</div>
 	</div>
 </div>
