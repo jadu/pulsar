@@ -1,11 +1,11 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
 {% import 'pulsar/v2/helpers/html.html.twig' as html %}
 {% import 'pulsar/v2/helpers/form.html.twig' as form %}
 {% import 'pulsar/helpers/flash.html.twig' as flash %}
 
-<h2 class="heading">{{ heading|raw }}</h2>
+{% block tab_content %}
 
-<div class="tab__inner tab--padded">
-    <h2>Variations</h2>
+    <h2 class="heading">Variations</h2>
     {{
         html.progress({
             value: 50
@@ -33,7 +33,7 @@
         })
     }}
 
-    <h2>Visible values</h2>
+    <h2 class="heading">Visible values</h2>
 
     {{
         html.progress({
@@ -50,7 +50,7 @@
     }}
 
 
-    <h2>Custom labels</h2>
+    <h2 class="heading">Custom labels</h2>
     {{
         html.progress({
             label:  'uploaded',
@@ -67,7 +67,7 @@
         })
     }}
 
-    <h2>Progress lists</h2>
+    <h2 class="heading">Progress lists</h2>
 
     <div class="progress-list">
 
@@ -201,4 +201,4 @@
 
     </div>
 
-</div>
+{% endblock tab_content %}

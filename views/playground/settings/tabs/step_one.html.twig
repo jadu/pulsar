@@ -2,217 +2,177 @@
 {% import 'pulsar/v2/helpers/form.html.twig' as form %}
 {% import 'pulsar/helpers/flash.html.twig' as flash %}
 
-<div class="tab__header">
-    <h2 class="heading">Two-step verification</h2>
-</div>
-
 <div class="tab__container">
     <div class="tab__inner">
 
-        {{
-            form.create()
-        }}
+        <div id="wrap_content">
+<script type="text/javascript">
+    function showHideTeaserText(selectBox) {
+        if (selectBox.options[selectBox.selectedIndex].value == 1) {
+            $('teaserTextDescription').style.display = '';
+            $('teaserTextEditor').style.display = '';
+        }
+        else {
+            $('teaserTextDescription').style.display = 'none';
+            $('teaserTextEditor').style.display = 'none';
+        }
+    }
 
-        <div class="form__group masterswitch-control">
-            <label class="control__label">Set up two-step verification</label>
-            <div class="controls">
-                <div class="toggle"></div>
-                <input type="checkbox" class="hide">
-            </div>
-        </div>
+    function showPasswordFields()
+    {
+        if (document.getElementById('changePassword').checked == true) {
+            document.getElementById('passwordFields').style.display = '';
+        }
+        else {
+            document.getElementById('passwordFields').style.display = 'none';
+        }
+    }
+</script>
+    <form action="./websection_section_details.php" method="post" enctype="multipart/form-data" name="mainForm" id="mainForm">
+    <input type="hidden" name="documentID" value="-1">
+<!-- ################### CC Content ################### -->
+    <div class="dropdown">
+        <button class="btn action dropdown-toggle">Actions</button>
+        <ul class="dropdown-menu">
+            <li><a href="#" id="lockText" onclick="return loadLightbox('content_lock', 'lb', 'contentLockDateTarget=newlockTimeoutDate&amp;contentLockTimeTarget=newlockTimeoutTime&amp;existingLockDate='+$('newlockTimeoutDate').value+'&amp;existingLockTime='+$('newlockTimeoutTime').value); return false;">Unlock</a></li>
+            <li class="divider"></li>
+        </ul>
+    </div>
 
-        <hr />
+        <!-- Metadata fields -->
+        <input type="hidden" id="metadata_creator" name="metadata_creator" value="Admin">
+        <input type="hidden" id="metadata_contributor" name="metadata_contributor" value="">
+        <input type="hidden" id="metadata_publisher" name="metadata_publisher" value="">
+        <input type="hidden" id="metadata_rights" name="metadata_rights" value="">
+        <input type="hidden" id="metadata_source" name="metadata_source" value="">
+        <input type="hidden" id="metadata_status" name="metadata_status" value="V1.0 Public Consumption">
+        <input type="hidden" id="metadata_coverage" name="metadata_coverage" value="UK">
+        <input type="hidden" id="metadata_created" name="metadata_created" value="08/07/2015">
+        <input type="hidden" id="metadata_modified" name="metadata_modified" value="">
+        <input type="hidden" id="metadata_valid" name="metadata_valid" value="">
+        <input type="hidden" id="metadata_expired" name="metadata_expired" value="">
+        <input type="hidden" id="metadata_format" name="metadata_format" value="">
+        <input type="hidden" id="metadata_language" name="metadata_language" value="">
+        <input type="hidden" id="metadata_subject" name="metadata_subject" value="">
+        <input type="hidden" id="metadata_description" name="metadata_description" value="">
+        <input type="hidden" id="metadata_completed" name="metadata_completed" value="false">
 
-        <section class="masterswitch-content is-disabled">
+        <!-- Content Scheduling Fields -->
+        <input type="hidden" id="useContentSchedule" name="useContentSchedule" value="false">
+        <input type="hidden" id="schedule_action" name="schedule_action" value="">
+        <input type="hidden" id="schedule_num_reminders" name="schedule_num_reminders" value="0">
 
-            <div class="progress-list">
-                <a href="#" class="progress-list__item progress-list__item--current">
-                    <span class="progress-list__label">
-                        <span class="badge badge--round badge--outline">1</span>
-                        Get the app
+        <!-- Content Locking Fields -->
+        <input type="hidden" id="newlockTimeoutDate" name="newlockTimeoutDate" value="08/07/2015">
+        <input type="hidden" id="newlockTimeoutTime" name="newlockTimeoutTime" value="21:08">
+
+        <table class="generic_table">
+            <tbody><tr>
+                <td class="generic_desc"><em>1.</em> <p>Document Title*</p></td>
+                <td class="generic_action">
+                    <input type="text" name="title" size="33" value="">
+<img src="../assets/img/lockedBBBBBB.png" class="unlock" id="lockIcon">             </td>
+            </tr>
+            <tr>
+                <td class="generic_desc"><em>2.</em> <p>Categories*</p></td>
+                <td class="generic_action">
+                    <input type="button" class="btn interimButton" id="assignCategories" value="Assign Categories" onclick="loadLightbox('assign_category', 'lb', '');">
+                </td>
+            </tr>
+            <tr>
+                <td class="generic_desc"><em>3.</em> <p>Metadata*</p></td>
+                <td class="generic_action">
+                    <input type="button" class="btn interimButton" id="assignMetadata" value="Assign Metadata" onclick="return loadLightbox('assign_metadata', 'lb', 'section=documents');">
+                </td>
+            </tr>
+            <tr>
+                <td class="generic_desc"><em>4.</em> <p>Page Structure</p></td>
+                <td class="generic_action">
+                    <select name="pageStructureID">
+                        <option value="1">Two column</option>
+                        <option value="2">One column</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="generic_desc"><em>5.</em> <p>Enable Document Password?</p></td>
+                <td class="generic_action">
+                    <select class="select" name="enablePassword" id="enablePassword" onchange="if(this.value=='yes') {document.getElementById('setPasswordBlock').style.display = 'block';} else {document.getElementById('setPasswordBlock').style.display = 'none';}">
+                        <option value="yes">Yes</option>
+                        <option value="no" selected="selected">No</option>
+                    </select>
+
+                    <p id="setPasswordBlock" style="display:none;">
+                        <input type="hidden" name="changePassword" id="changePassword" value="1">
+                        <span id="passwordFields">
+                            <label for="password">Password</label>
+                            <input type="password" id="newPassword" name="newPassword" size="32" value="" autocomplete="off">
+                        </span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td class="generic_desc"><em>6.</em> <p>Document Access Level</p></td>
+                <td class="generic_action">
+                    <select class="select" name="accessLevel">
+                        <option value="1" selected="selected">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="generic_finish"><em>7.</em>
+                    <span>
+                    <input type="submit" class="btn submit" name="saveDocumentHeader" value="Save">
                     </span>
-                    <span class="progress-list__arrow">&gt;</span>
-                </a>
+                </td>
+            </tr>
+        </tbody></table>
+    </form>
+<script type="text/javascript">
+    Event.observe(window, 'load', function() {
+        // Initialise who_is_online
+        var whoIsOnline = new WhoIsOnline({
+            checkFrequency: '30'
+        });
+        //attach events to the names found by the loading inside this page (avoid running 'load' immediately for every page load!)
+        whoIsOnline.attachEvents($('onlineAdminsStartActive').value);
 
-                <a href="#" class="progress-list__item is-disabled">
-                    <span class="progress-list__label">
-                        <span class="badge badge--round badge--outline">2</span>
-                        Set it up
-                    </span>
-                    <span class="progress-list__arrow">&gt;</span>
-                </a>
+        $('searchOnlineAdmins').observe('keyup', function (e) {
+            whoIsOnline.filterResults(e);
+        });
 
-                <a href="#" class="progress-list__item is-disabled">
-                    <span class="progress-list__label">
-                        <span class="badge badge--round badge--outline">3</span>
-                        Test it
-                    </span>
-                    <span class="progress-list__arrow">&gt;</span>
-                </a>
+    });
+</script>
 
-                <a href="#" class="progress-list__item is-disabled">
-                    <span class="progress-list__label">
-                        <span class="badge badge--round badge--outline">4</span>
-                        Finished!
-                    </span>
-                    <span class="progress-list__arrow">&gt;</span>
-                </a>
-            </div>
+<input type="hidden" id="canViewStats" value="1"><input type="hidden" id="canViewContent" value="1"><input type="hidden" id="onlineAdminsStartActive" value="0">
 
-            <p>To use two-step verification you will need to install an app on your mobile phone or PC.</p>
+<div id="collaborationWindow" style="display: none;">
+    <h3>Online now</h3>
+    <ul id="who_is_online">
 
-            <p>First, let us know what you want to use:</p>
+<li class="justYou">You're the only one</li>    </ul>
+    <div id="searchOnlineAdminsContainer" style="display: none;">
+        <input type="text" class="input" id="searchOnlineAdmins" value="">
+    </div>
+</div>
+<div id="collaborationMenu">
+    <div>
+        <ul>
+            <li><a href="#" class="onlineNowLink"><span id="onlineNowLink" class="disabled">Online now</span></a></li>
+        </ul>
+        <p><a href="#" onclick="scroll(0,0); return false;"><span class="top">↑</span></a> <a href="http://192.168.10.20/jadu/version.php"> Jadu Universe Continuum © 2015</a></p>
+    </div>
+</div>
 
-    <div class="tab-panel tab-panel--contrast">
-
-            <ul class="tabs__list tabs__list--horizontal tabs__list--full medium-type" role="tablist">
-
-                <li role="presentation">
-                    <a href="#iphone" data-toggle="tab" role="tab" aria-controls="iphone">
-                        {{ html.icon('apple') }} iPhone
-                    </a>
-                </li>
-                <li role="presentation">
-                    <a href="#android" data-toggle="tab" role="tab" aria-controls="android">
-                        {{ html.icon('android') }} Android
-                    </a>
-                </li>
-                <li role="presentation">
-                    <a href="#windows" data-toggle="tab" role="tab" aria-controls="windows">
-                        {{ html.icon('windows') }} Windows phone
-                    </a>
-                </li>
-                <li role="presentation">
-                    <a href="#pc" data-toggle="tab" role="tab" aria-controls="pc">
-                        {{ html.icon('desktop') }} Windows PC
-                    </a>
-                </li>
-
-            </ul>
-
-            <div class="tabs__content">
-                <div role="tabpanel" class="tab__pane" id="iphone">
-
-                    <h4>Requirements:</h4>
-                    <p>To use Google Authenticator on your iPhone, iPod Touch, or iPad, you must have iOS 5.0 or later. In addition, in order to set up the app on your iPhone using a QR code, you must have a 3G model or later.</p>
-
-                    <h4>Installing the app:</h4>
-                    <ol class="inline-block">
-                        <li>Go to the App Store on your phone</li>
-                        <li>Search for 'google authenticator'</li>
-                        <li>Get the app</li>
-                    </ol>
-
-                    <a href="https://itunes.apple.com/gb/app/google-authenticator/id388497605?mt=8" class="inline-block align-top margin-left"><img alt="Download on the App Store" src="../../../images/services/apple_app_store.svg" /></a>
-
-                </div>
-                <div role="tabpanel" class="tab__pane" id="android">
-
-                    <h4>Requirements:</h4>
-                    <p>To use Google Authenticator on your Android device, it must be running Android version 2.1 or later.</p>
-
-                    <h4>Installing the app:</h4>
-                    <ol class="inline-block">
-                        <li>Go to the Google Play Store on your phone</li>
-                        <li>Search for 'google authenticator'</li>
-                        <li>Install the app</li>
-                    </ol>
-
-                    <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en" class="inline-block margin-left"><img alt="Get it on Google Play" src="https://developer.android.com/images/brand/en_generic_rgb_wo_60.png" /></a>
-
-                </div>
-
-                <div role="tabpanel" class="tab__pane" id="windows">
-
-                    <h4>Requirements:</h4>
-                    <p>To use Authenticator on your Windows phone, it must be running Windows phone version 7 or later.</p>
-
-                    <h4>Installing the app:</h4>
-                    <ol class="inline-block">
-                        <li>Go to the Windows Phone Store on your phone</li>
-                        <li>Search for 'google authenticator'</li>
-                        <li>Install the app</li>
-                    </ol>
-
-                    <a href="http://www.windowsphone.com/en-gb/store/app/authenticator/021dd79f-0598-e011-986b-78e7d1fa76f8" class="inline-block align-top margin-left"><img alt="Get it on the Windows Phone Store" src="../../../images/services/windows_phone_store.png" /></a>
-
-                </div>
-
-                <div role="tabpanel" class="tab__pane" id="pc">
-
-                    <p>Using your PC instead of your phone means you will only be able to sign into your Jadu CMS using that computer, or any other computer where you install the authenticator application. You will not be able to use a shared computer. You will also need to have the permissions to install applications to your computer, if you're using a managed desktop you may need to speak to whoever looks after your machines.</p>
-
-                    <h4>Requirements:</h4>
-                    <ul>
-                        <li>The permissions required to install software onto your computer (often called ‘admin rights’)</li>
-                        <li><a href="http://www.microsoft.com/en-us/download/details.aspx?id=17851">Microsoft .NET Framework 4</a></li>
-                    </ul>
-
-                    <h4>Installing the app:</h4>
-                    <ol>
-                        <li>Download the WinAuth application from <a href="https://winauth.com/download">https://winauth.com/download</a></li>
-                        <li>Install and open WinAuth</li>
-                        <li>Click the Add button in the main WinAuth window</li>
-                        <li>Choose 'Google'</li>
-                        <li>You will be asked to give your authenticator a name, we recommend 'Jadu' but you could call it anything, like 'Colin'</li>
-                        <li>We'll give you the other bits of information in the next step, click {{ html.link({ 'label': 'Verify the Code', 'href': '?view=step_two' }) }} to continue</li>
-                    </ol>
-
-                </div>
-            </div>
+</div>
 
     </div>
 
-            <a href="#" class="pull-right small-type" data-toggle="popover" title="Download authenticator" data-content="<p>You can get many different authenticators for whatever weird and wonderful device or software you may have, or even a simple browser plug-in if that’s your thing:</p><div class='block-list block-list--bordered'>
-        <a class='block-list__item' href='https://chrome.google.com/webstore/detail/authenticator/bhghoamapcdpbohphigoooaddinpkbai?hl=en'>
-            Chrome
-        </a>
-        <a class='block-list__item' href='https://marketplace.firefox.com/app/gauth'>
-            Firefox
-        </a>
-        <a class='block-list__item' href='http://en.wikipedia.org/wiki/Google_Authenticator#Implementations'>
-            Full list (Wikipedia page)
-        </a>
-    </div>" data-placement="left" data-html="true">Want to be different?</a>
 
-            <h3 class="double-top bottomless">Got the app?</h3>
-            <p>Once you've done this step, or if you already have the app installed then you can go ahead and verify the code.</p>
-            {{
-                form.end({
-                    'class': 'form__actions--flush',
-                    'actions': [
-                        html.button({
-                            'label': 'Verify the Code ' ~ html.icon('caret-right'),
-                            'class': 'btn--primary',
-                            'href': '?view=step_two',
-                            'type': 'link'
-                        }),
-                        html.button({
-                            'label': 'Cancel',
-                            'class': 'btn--naked'
-                        })
-                    ]
-                })
-            }}<!--
-        --></section>
-
-    </div>
-
-    <div class="sidebar">
-        <h4 class="sidebar__header">{{ html.icon('info-sign', { 'class': 'sidebar-icon'}) }} Stronger security for your Jadu account</h4>
-
-        <hr />
-
-        <p>Two-step verification adds extra protection by requiring you to sign in with something you know (your username and password) and something you have with you (usually, your mobile phone).</p>
-
-        <p>When you sign in with two-step verification you will be asked to enter a six-digit code which will be given to you by an app on your phone or your personal computer. Each code can only be used once.</p>
-
-        <!-- <span class="icon-standout icon-standout--inverse">
-            <i class="icon-standout__icon icon-play"></i>
-        </span> -->
-
-        <a href="#" class="sidebar-link">{{ html.label({ 'label': html.icon('play') ~ ' video', 'class' : 'sidebar-link__label label--inverse' }) }} How to set up two-step verification (30s)</a>
-        <a href="#" class="sidebar-link">{{ html.label({ 'label': html.icon('play') ~ ' video', 'class' : 'sidebar-link__label label--inverse' }) }} Signing in with two-step verification (1m30s)</a>
-
-    </div>
 </div>

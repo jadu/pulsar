@@ -3,7 +3,8 @@
   padding: (($line-height-base / $line-height-small) / 2) $gutter-width;
   position: absolute;
   width: 100%;
-  z-index: $zindex-flash;
+  top: -24px;
+  //z-index: $zindex-flash;
 
   &.is-sticky {
     display: none; // Flashes should be hidden on page load, then animated in so the user sees them.
@@ -19,6 +20,11 @@
 
   @include respond-min($screen-phone) {
     padding: ($line-height-base / 2) $gutter-width;
+  }
+
+  @include respond-min($screen-desktop) {
+    top: auto;
+    z-index: $zindex-flash;
   }
 }
 

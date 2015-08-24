@@ -9,7 +9,6 @@ function writeBower() {
 	var bower = {
 		name: pkg.config.bower.name,
 		description: pkg.description,
-		version: pkg.version,
 		dependencies: pkg.dependencies,
 		keywords: pkg.keywords,
 		authors: [pkg.author],
@@ -18,6 +17,7 @@ function writeBower() {
 		ignore: pkg.config.bower.ignore,
 		repository: pkg.repository,
 		main: pkg.main,
+		moduleType: pkg.config.bower.moduleType,
 	};
 	fs.writeFile('bower.json', JSON.stringify(bower, null, '\t'));
 	return true;
@@ -57,10 +57,11 @@ function build(code) {
 		''
 	].join('\n');
 
-	fs.writeFile('dest/'+pkg.config.filename+'.js', header+code);
-	fs.writeFile('dest/'+pkg.config.filename+'.min.js', header+minified);
+	fs.writeFile('dist/'+pkg.config.filename+'.js', header+code);
+	fs.writeFile('dist/'+pkg.config.filename+'.min.js', header+minified);
 	writeBower();
-	console.log('built');
+	
+	console.log('dist built');
 }
 
 function transform(filepath) {
@@ -79,6 +80,8 @@ gaze('src/'+pkg.config.filename+'.js', function(err, watcher){
 	this.on('changed', function(filepath) {
 		transform(filepath);
 	});
+
+	console.log('watching');
 });
 
 transform('src/'+pkg.config.filename+'.js');

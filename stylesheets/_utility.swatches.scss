@@ -1,5 +1,6 @@
 .swatch {
   display: inline-block;
+  margin-bottom: $line-height-base;
   margin-right: $gutter-width * 2;
   width: 110px;
   vertical-align: top;
@@ -8,8 +9,8 @@
     border-radius: 100px;
     display: block;
     margin: 0 auto;
-    height: 100px;
-    width: 100px;
+    height: 96px;
+    width: 96px;
   }
 
   &__text {

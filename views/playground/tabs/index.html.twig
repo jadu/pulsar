@@ -1,0 +1,79 @@
+{% extends '@pulsar/pulsar/layouts/tabbed.html.twig' %}
+
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{% import '@pulsar/pulsar/helpers/flash.html.twig' as flash %}
+{% import '@pulsar/pulsar/helpers/tabs.html.twig' as tabs %}
+
+{% set pageModule = 'lexicon/uploaderDemo' %}
+
+{% block title %}{{ parent() }}{% endblock %}
+
+{% set heading = 'Pulsar Lexicon' %}
+
+{%
+		set actions_menu = [
+				html.link({
+					'label': html.icon('save') ~ ' Save',
+					'href': '#save'
+				}),
+				html.link({
+					'label': html.icon('print') ~ ' Print',
+					'href': '#print'
+				}),
+				html.divider(),
+				html.link({
+					'label': html.icon('trash') ~ ' Delete',
+					'href': '#delete',
+					'class': 'link--danger disabled',
+					'attributes': 'data-on-datagrid-item-selected=enable'
+				})
+		]
+%}
+
+{% set tab_2fa %}{% include 'playground/settings/tabs/step_one.html.twig' %}{% endset %}
+{% set tab_notifications %}{% include 'playground/settings/tabs/notifications.html.twig' %}{% endset %}
+
+{%
+	set tabs_content = [
+		{
+			"id"    : "foo",
+			"label" : html.icon("unlock-alt") ~ " Two-step verification",
+			"src"   : tab_2fa
+		},
+		{
+			"id"    : "notifications",
+			"label" : html.icon("envelope") ~ " Email Alerts",
+			"src"   : tab_notifications,
+			"hidden": true
+		}
+	]
+%}
+
+{% block tabs_list %}
+	<div class="actionsbar actionsbar--left">
+		<div class="btn__toolbar">
+			<div class="btn__group">
+				<a class="btn btn__back" href="#back" onclick="history.back(); return false;"><i class="icon-arrow-left"></i></a>
+				{% if actions_menu is not empty %}
+					{{
+						html.button_dropdown({
+							'label': 'Actions ' ~ html.badge({ 'class': 'hide' }),
+							'class': 'actions-menu',
+							'items': actions_menu
+						})
+					}}
+				{% endif %}
+			</div>
+		</div>
+	</div>
+
+	{{ tabs.tabs(tabs_content) }}
+{% endblock %}
+
+{% block tabs_content %}
+	{{ tabs.tabs_content(tabs_content) }}
+{% endblock %}
+
+{% block javascript %}
+{% endblock %}

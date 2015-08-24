@@ -1,11 +1,11 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
 {% import 'pulsar/v2/helpers/html.html.twig' as html %}
 {% import 'pulsar/v2/helpers/form.html.twig' as form %}
 {% import 'pulsar/helpers/flash.html.twig' as flash %}
 
-<h2 class="heading">{{ heading|raw }}</h2>
+{% block tab_content %}
 
-<div class="tab__inner tab--padded">
-    <h2>Button variations</h2>
+    <h2 class="heading">Button variations</h2>
 
     <p>
         <!-- The normal type of button you should use -->
@@ -75,7 +75,7 @@
         }}
     </p>
 
-    <h2>Link buttons</h2>
+    <h2 class="heading">Link buttons</h2>
 
     <p>
         <!-- The normal type of button you should use -->
@@ -149,7 +149,7 @@
         }}
     </p>
 
-    <h2>Disabled buttons</h2>
+    <h2 class="heading">Disabled buttons</h2>
 
     <p>
         <!-- The normal type of button you should use -->
@@ -218,7 +218,7 @@
         }}
     </p>
 
-    <h2>Button groups</h2>
+    <h2 class="heading">Button groups</h2>
     <p>
         <div class="btn__toolbar">
         {{
@@ -252,7 +252,7 @@
         </div>
     </p>
 
-    <h2>Labels</h2>
+    <h2 class="heading">Labels</h2>
     <p>
         {{
             html.label({
@@ -314,7 +314,7 @@
         }}
     </p>
 
-    <h2>Removable labels</h2>
+    <h2 class="heading">Removable labels</h2>
     <p>
         <span class="label label--inverse">
             <strong>Created:</strong> Last 30 days <a href="#" data-filter-action="remove"><i class="icon-remove"></i></a>
@@ -324,7 +324,7 @@
         </span>
     </p>
 
-    <h2>Badges</h2>
+    <h2 class="heading">Badges</h2>
     <p>
         {{
             html.badge({
@@ -363,7 +363,7 @@
         }}
     </p>
 
-    <h2>Dropdown/Dropup buttons</h2>
+    <h2 class="heading">Dropdown/Dropup buttons</h2>
     <p>
         <div class="btn__toolbar">
         {%
@@ -402,11 +402,19 @@
                 'label': 'Drop Up'
             })
         }}
+        {{
+            html.button_dropdown({
+                'direction': 'down',
+                'items': example_dropdown,
+                'label': 'Drop Down Right Menu',
+                'placement': 'right'
+            })
+        }}
         </div>
     </p>
 
 
-    <h2>Icons, Badges and Buttons (oh my!)</h2>
+    <h2 class="heading">Icons, Badges and Buttons (oh my!)</h2>
     <p>
         <div class="btn__toolbar">
             {{
@@ -459,7 +467,7 @@
         </div>
     </p>
 
-    <h2>All the things!</h2>
+    <h2 class="heading">All the things!</h2>
     <p>
     {{
         html.button_dropdown({
@@ -490,4 +498,5 @@
             }
         })
     }}
-</div>
+
+{% endblock tab_content %}

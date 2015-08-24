@@ -1,11 +1,11 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
 {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 {% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
 {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 {% import '@pulsar/pulsar/helpers/flash.html.twig' as flash %}
 
-<h2 class="heading">{{ heading|raw }}</h2>
+{% block tab_content %}
 
-<div class="tab__inner">
     {{ form.create() }}
 
     {{
@@ -217,7 +217,8 @@
                     'id': 'inputTextError',
                     'class': 'has-error',
                     'name': 'inputTextError',
-                    'placeholder': 'Placeholder'
+                    'placeholder': 'Placeholder',
+                    'help': 'My help text'
                 })
             }}
             {{
@@ -610,4 +611,5 @@
             ]
         })
     }}
-</div>
+
+{% endblock tab_content %}
