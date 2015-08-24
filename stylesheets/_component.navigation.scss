@@ -268,6 +268,10 @@ $nav-color-dark:  #2d89b7 !default;
     width: 75px;
     z-index: $zindex-nav;
 
+    @include respond-min($screen-desktop) {
+        position: fixed;
+    }
+
     .is-active {
         background-color: $nav-color-dark;
     }

@@ -11,6 +11,7 @@
     -webkit-transition: -webkit-transform 500ms ease;
     backface-visibility: hidden;
     display: block;
+    height: 100%;
     left: 0;
     position: relative;
     transform: translate3d(0, 0, 0);
@@ -44,6 +45,10 @@
   // overflow: hidden; experimenting with turning this off to allow left positioned tooltips to work, shout up if it breaks anything
   vertical-align: top;
   width: 100%;
+
+  @include respond-min($screen-desktop) {
+    padding: 0 40px;
+  }
 
   // show/hide tab panes
   > .tab__pane {
