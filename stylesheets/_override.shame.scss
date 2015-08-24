@@ -218,3 +218,8 @@
     }
   }
 }
+
+// fixes strange issue with content-main moving off screen when dropdown in toolbar is used
+.lt-ie10 .content-main {
+    clear: both;
+}
