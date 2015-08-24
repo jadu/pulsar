@@ -11,6 +11,7 @@ body {
   font-size: $font-size-medium;
   line-height: $line-height-small;
   margin: 0 0 ($line-height-base * 2) 0;
+  overflow-x: hidden;
   padding: 0;
 
   @include respond-min($screen-phone) {
@@ -47,7 +48,7 @@ body {
   display: table;
   height: 100%;
   margin: 0;
-  overflow-x: hidden;
+  overflow: visible;
   position: relative;
   width: 100%;
 }

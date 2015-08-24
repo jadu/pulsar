@@ -125,8 +125,8 @@ $nav-color-dark:  #2d89b7 !default;
         border-bottom: 1px solid $gray;
         display: inline-block;
         list-style: none;
-
         margin-bottom: 0;
+        min-width: 100%;
 
         @include respond-min($screen-desktop) {
             margin-bottom: 24px;
@@ -267,6 +267,10 @@ $nav-color-dark:  #2d89b7 !default;
     transition: box-shadow 100ms linear;
     width: 75px;
     z-index: $zindex-nav;
+
+    @include respond-min($screen-desktop) {
+        position: fixed;
+    }
 
     .is-active {
         background-color: $nav-color-dark;
