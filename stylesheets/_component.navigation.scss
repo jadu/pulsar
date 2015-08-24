@@ -126,7 +126,7 @@ $nav-color-dark:  #2d89b7 !default;
         display: inline-block;
         list-style: none;
         margin-bottom: 0;
-        width: 100%;
+        min-width: 100%;
 
         @include respond-min($screen-desktop) {
             margin-bottom: 24px;
