@@ -31,9 +31,9 @@ fieldset {
 
     &.checkbox,
     &.radio {
-        border: 0;
+        border: 0 !important;
         height: 16px;
-        padding: 0;
+        padding: 0 !important;
         vertical-align: top;
     }
 
