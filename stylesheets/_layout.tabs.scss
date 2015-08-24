@@ -60,6 +60,11 @@
   }
 }
 
+.tab__content {
+    display: table-cell;
+    width: auto;
+}
+
 .tab__inner {
   // float: left;
   position: relative;
