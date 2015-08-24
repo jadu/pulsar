@@ -2,12 +2,13 @@
     background-color: #efefef;
     display: block;
     float: left;
-    margin-bottom: 19px;
+    margin-bottom: 23px;
     padding: 18px 20px;
     width: 100%;
 
     @include respond-min($screen-desktop) {
         background-color: $white;
+        margin-bottom: 19px;
         padding: 18px 20px 0;
     }
 }
