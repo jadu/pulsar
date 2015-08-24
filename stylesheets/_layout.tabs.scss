@@ -10,7 +10,7 @@
     -webkit-transform: translate3d(0, 0, 0);
     -webkit-transition: -webkit-transform 500ms ease;
     backface-visibility: hidden;
-    display: block;
+    display: table;
     height: 100%;
     left: 0;
     position: relative;
@@ -32,6 +32,16 @@
 .open-nav .inner-wrapper {
     -webkit-transform: translate3d(75px, 0, 0) scale3d(1, 1, 1);
     transform: translate3d(75px, 0, 0) scale3d(1, 1, 1);
+
+    @include respond-min($screen-desktop) {
+        -webkit-backface-visibility: hidden;
+        -webkit-transform: translate3d(0, 0, 0);
+        -webkit-transition: -webkit-transform 500ms ease;
+        backface-visibility: hidden;
+        transform: translate3d(0, 0, 0);
+        transition: transform 500ms ease;
+        width: 100%;
+    }
 
     .lt-ie10 & {
         left: 75px;
