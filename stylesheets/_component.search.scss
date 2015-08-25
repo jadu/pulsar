@@ -30,6 +30,10 @@ input.main-search__field {
     }
 }
 
+input.main-search__field::-ms-clear {
+    display: none;
+}
+
 .main-search__submit {
     background: none;
     border: none;

@@ -361,6 +361,10 @@ $nav-color-dark:  #2d89b7 !default;
     width: 245px;
     z-index: $zindex-nav-secondary;
 
+    @include respond-min($screen-desktop) {
+        position: fixed;
+    }
+
     // cope with presence of scrollbars in IE
     @include ie-lte(10) {
         width: 280px;
