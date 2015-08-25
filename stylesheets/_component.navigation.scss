@@ -147,6 +147,11 @@ $nav-color-dark:  #2d89b7 !default;
         margin-bottom: -1px;
     }
 
+    &__item.is-active > &__link {
+        color: $black;
+        font-family: $font-family-semibold;
+    }
+
     &__link {
         color: $gray-light;
         text-decoration: none;
@@ -158,11 +163,6 @@ $nav-color-dark:  #2d89b7 !default;
             .caret {
                 border-top-color: $black;
             }
-        }
-
-        .is-active & {
-            color: $black;
-            font-family: $font-family-semibold;
         }
 
         .caret {
