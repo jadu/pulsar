@@ -23,9 +23,11 @@
     }
 
     @include respond-min($screen-desktop) {
+        -webkit-transform: none;
         display: table-row;
         left: auto;
         position: static;
+        transform: none;
     }
 }
 
@@ -35,10 +37,10 @@
 
     @include respond-min($screen-desktop) {
         -webkit-backface-visibility: hidden;
-        -webkit-transform: translate3d(0, 0, 0);
+        -webkit-transform: none;
         -webkit-transition: -webkit-transform 500ms ease;
         backface-visibility: hidden;
-        transform: translate3d(0, 0, 0);
+        transform: none;
         transition: transform 500ms ease;
         width: 100%;
     }
