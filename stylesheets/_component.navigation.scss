@@ -172,7 +172,7 @@ $nav-color-dark:  #2d89b7 !default;
 
     &::-webkit-scrollbar-track {
         background-color: #efefef;
-        border-radius: 50px;
+        border-radius: 50px !important;
     }
 
     &::-webkit-scrollbar {
@@ -182,6 +182,7 @@ $nav-color-dark:  #2d89b7 !default;
 
     &::-webkit-scrollbar-thumb {
         background-color: #ccc;
+        border-radius: 50px !important;
     }
 
     &::-webkit-scrollbar-corner {
