@@ -53,7 +53,8 @@ items         | array  | An array of items to put in the dropdown list (usually 
 			'parent': options
 				|only('class help id label')
 				|merge({'class': 'form__button-group'}),
-			'inputs': options.items
+			'inputs': options.items,
+			'nested': true
 		})
 	}}
 
@@ -586,6 +587,7 @@ parent.data-*    | string | Data attributes, eg: `'data-foo': 'bar'`
 		{% set hasLabelClass = ' form__group--no-label' %}
 	{% endif %}
 
+	{% if options.parent.bare is defined and options.parent.bare != true %}
 	<div {{
 		attributes(options.parent
 				|only('class')
@@ -594,13 +596,16 @@ parent.data-*    | string | Data attributes, eg: `'data-foo': 'bar'`
 				})
 			)
 	-}}>
+	{% endif %}
 		{{
 			elem.label({
 				'for': options.parent.id|default,
 				'label': options.parent.label|default
 			})
 		}}
+		{% if options.parent.bare is defined and options.parent.bare != true %}
 		<div class="controls">
+		{% endif %}
 
 		{%
 			if (
@@ -640,8 +645,12 @@ parent.data-*    | string | Data attributes, eg: `'data-foo': 'bar'`
 		{% endif %}
 
 			{{ _self.help({ 'value': options.parent.help|default }) }}
+		{% if options.parent.bare is defined and options.parent.bare != true %}
 		</div>
+		{% endif %}
+	{% if options.parent.bare is defined and options.parent.bare != true %}
 	</div>
+	{% endif %}
 
 {% endmacro %}
 
@@ -860,7 +869,7 @@ value           | string | Specifies the value of the input
 	{{
 		_self.group({
 			'parent': options
-				|only('class help id')
+				|only('class help id bare')
 				|defaults({
 					'class': 'form__indent'
 				}),

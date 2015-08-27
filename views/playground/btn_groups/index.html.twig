@@ -9,15 +9,18 @@
         'items': [
             form.radio_inline({
                 'label': 'AM',
-                'name': 'bands'
+                'name': 'bands',
+                'bare': true
             }),
             form.radio_inline({
                 'label': 'FM',
-                'name': 'bands'
+                'name': 'bands',
+                'bare': true
             }),
             form.radio_inline({
                 'label': 'MW',
-                'name': 'bands'
+                'name': 'bands',
+                'bare': true
             })
         ]
     })
@@ -25,25 +28,28 @@
 </form>
 
 <form class="form">
-<div class="form__group form__button-group"><label class="control__label">Band</label>
-<div class="btn__toolbar">
-    <div class="controls btn__group">
 
-                <label class="control__label radio--inline-v2">
-                    <input name="bands" type="radio" class="form__control">AM
-                </label>
+<div class="form__group form__button-group">
+    <label class="control__label">Band</label>
+    <div class="controls"><div class="form__group form__indent"><div class="controls"><label class="control__label radio--inline-v2"><input name="bands" type="radio" class="form__control">AM</label></div></div><div class="form__group form__indent"><div class="controls"><label class="control__label radio--inline-v2"><input name="bands" type="radio" class="form__control">FM</label></div></div><div class="form__group form__indent"><div class="controls"><label class="control__label radio--inline-v2"><input name="bands" type="radio" class="form__control">MW</label></div></div></div></div>
 
 
-                <label class="control__label radio--inline-v2">
-                    <input name="bands" type="radio" class="form__control">FM
-                </label>
+<div class="form__group form__button-group">
+    <label class="control__label">Band</label>
+    <div class="btn__toolbar">
+        <div class="controls btn__group">
+            <label class="control__label radio--inline-v2">
+                <input name="bands" type="radio" class="form__control">AM
+            </label>
 
+            <label class="control__label radio--inline-v2">
+                <input name="bands" type="radio" class="form__control">FM
+            </label>
 
-                <label class="control__label radio--inline-v2">
-                    <input name="bands" type="radio" class="form__control">MW
-                    </label>
-                </div>
-
+            <label class="control__label radio--inline-v2">
+                <input name="bands" type="radio" class="form__control">MW
+            </label>
+        </div>
     </div>
 </div>
 </form>

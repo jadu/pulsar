@@ -168,7 +168,11 @@ $inputs: (
 .form__button-group {
     outline: 1px solid red;
 
-    .control__label {
+    > .control__label {
+        padding-top: 3px;
+    }
+
+    .controls > .control__label {
         @extend .btn;
     }
 
