@@ -87,3 +87,8 @@ input.main-search__field::-ms-clear {
         }
     }
 }
+
+.main-search__checkbox,
+.main-search__filter-label {
+    vertical-align: middle;
+}
