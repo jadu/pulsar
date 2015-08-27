@@ -19,7 +19,7 @@ $nav-color-dark:  #2d89b7 !default;
     transform: translate3d(-100%, 0, 0);
     vertical-align: top;
     width: 75px;
-    z-index: 1;
+    z-index: 3;
 
     .lt-ie10 & {
         left: -75px;
@@ -424,6 +424,10 @@ $nav-color-dark:  #2d89b7 !default;
     display: block;
     margin: 12px 0 18px 0;
     text-decoration: none;
+
+    &.is-active {
+        background: none;
+    }
 }
 
 .jadu-logomark {
