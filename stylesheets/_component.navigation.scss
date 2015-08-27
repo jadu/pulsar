@@ -133,7 +133,7 @@ $nav-color-dark:  #2d89b7 !default;
     &__item {
         display: inline-block;
         font-size: 1.1em;
-        line-height: 47px;
+        line-height: 46px;
         margin-right: 20px;
         padding: 0 15px 0;
 
@@ -157,7 +157,9 @@ $nav-color-dark:  #2d89b7 !default;
         text-decoration: none;
 
         &:hover,
-        &:focus {
+        &:focus,
+        &:link,
+        &:visited {
             color: $black;
 
             .caret {
