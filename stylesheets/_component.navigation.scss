@@ -118,6 +118,7 @@ $nav-color-dark:  #2d89b7 !default;
     white-space: nowrap;
 
     @include respond-min($screen-desktop) {
+        margin-bottom: 24px;
         width: auto;
     }
 
@@ -127,10 +128,6 @@ $nav-color-dark:  #2d89b7 !default;
         list-style: none;
         margin-bottom: 0;
         min-width: 100%;
-
-        @include respond-min($screen-desktop) {
-            margin-bottom: 24px;
-        }
     }
 
     &__item {
@@ -150,6 +147,11 @@ $nav-color-dark:  #2d89b7 !default;
         margin-bottom: -1px;
     }
 
+    &__item.is-active > &__link {
+        color: $black;
+        font-family: $font-family-semibold;
+    }
+
     &__link {
         color: $gray-light;
         text-decoration: none;
@@ -163,13 +165,28 @@ $nav-color-dark:  #2d89b7 !default;
             }
         }
 
-        .is-active & {
-            color: $black;
-        }
-
         .caret {
             border-top-color: $gray-light;
         }
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: #efefef;
+        border-radius: 50px !important;
+    }
+
+    &::-webkit-scrollbar {
+        height: 6px;
+        background-color: #efefef;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #ccc;
+        border-radius: 50px !important;
+    }
+
+    &::-webkit-scrollbar-corner {
+        background: transparent;
     }
 
     .popover {
