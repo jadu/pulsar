@@ -16,7 +16,7 @@
     "contextify": "latest",
     "grunt": "latest",
     "grunt-asciify": "latest",
-    "grunt-autoprefixer": "latest",
+    "grunt-autoprefixer": "^3.0.3",
     "grunt-browserify": "latest",
     "grunt-bump": "latest",
     "grunt-contrib-clean": "latest",
@@ -49,6 +49,8 @@
     ]
   },
   "browserify-shim": {
-    "./libs/svgeezy/svgeezy.min.js": { "exports": "svgeezy" }
+    "./libs/svgeezy/svgeezy.min.js": {
+      "exports": "svgeezy"
+    }
   }
 }
