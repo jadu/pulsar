@@ -33,7 +33,7 @@ input.main-search__field {
     }
 
     @include respond-min($screen-tablet) {
-        display: table-cell;
+        display: inline-block;
         width: 180px
     }
 }
@@ -72,7 +72,6 @@ input.main-search__field::-ms-clear {
         border-left: 1px solid #ccc;
         border-top-right-radius: 4px;
         display: inline-block;
-        margin-right: -1px;
         text-align: center;
     }
 
