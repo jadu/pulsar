@@ -18,7 +18,7 @@
 }
 
 input.main-search__field {
-    background-color: #fff;
+    background-color: transparent;
     border: 0;
     box-sizing: border-box;
     color: #555;
@@ -81,6 +81,10 @@ input.main-search__field::-ms-clear {
     }
 
     &.main-search__extras--show {
-        display: inline-block;
+        display: block;
+
+        @include respond-min($screen-tablet) {
+            display: inline-block;
+        }
     }
 }
