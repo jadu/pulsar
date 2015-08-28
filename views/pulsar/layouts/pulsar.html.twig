@@ -48,6 +48,15 @@
 
             </div>
 
+            <form action="/q/app_dev.php/search" class="main-search" data-ui="search-box" >
+                <input type="search" id="cc_search_q" value="" placeholder="Search" class="main-search__field" autocomplete="off">
+                <button class="main-search__submit" type="submit" name="case-search"><i class="icon-search"></i></button>
+                <div id="cc_search_loading"></div>
+                <div id="cc_search_results" style="display:none;">
+                    <br class="clear" />
+                </div>
+            </form>
+
             <div class="content-main">
                 <div class="tabs__content">
                     <h1 class="main-title">{{ heading|default('MISSING HEADING') }}</h1>
