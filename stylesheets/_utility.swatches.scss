@@ -22,7 +22,7 @@
   }
 
   &__label {
-    color: $gray-light;
+    color: $gray;
 
     code, span {
       display: block;
@@ -123,6 +123,39 @@
 
   &--jadu-copy-gray .swatch__colour {
     background-color: $jadu-copy-gray;
-    color: white;
+  }
+
+  // Grays
+
+  &--black .swatch__colour {
+    background-color: $black;
+  }
+
+  &--gray-darker .swatch__colour {
+    background-color: $gray-darker;
+  }
+
+  &--gray-dark .swatch__colour {
+    background-color: $gray-dark;
+  }
+
+  &--gray .swatch__colour {
+    background-color: $gray;
+  }
+
+  &--gray-light .swatch__colour {
+    background-color: $gray-light;
+  }
+
+  &--gray-lighter .swatch__colour {
+    background-color: $gray-lighter;
+  }
+
+  &--off-white .swatch__colour {
+    background-color: $off-white;
+  }
+
+  &--white .swatch__colour {
+    background-color: $white;
   }
 }

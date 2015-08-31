@@ -113,6 +113,31 @@
 			</div>
 		</div>
 	{% endfor %}
+
+	<h2 class="heading">Monochrome</h2>
+
+	{%
+		set grays = [
+			"black",
+			"gray-darker",
+			"gray-dark",
+			"gray",
+			"gray-light",
+			"gray-lighter",
+			"off-white",
+			"white"
+		]
+	%}
+
+	{% for colour in grays %}
+		<div class="swatch swatch--{{ colour }}">
+			<div class="swatch__colour">
+			</div>
+			<div class="swatch__label">
+				<code>${{ colour }}</code>
+			</div>
+		</div>
+	{% endfor %}
 {% endblock tab_content %}
 
 {% block tab_sidebar %}
