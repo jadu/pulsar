@@ -34,6 +34,28 @@ $green:                         #42ab5f !default;
 $off-white:                     #fafafa !default;
 $white:                         #fff !default;
 
+$colors: (
+	'black': 		#1e1e1e,
+	'gray-darker': 	#404040,
+	'gray-dark':	#4d4d4d,
+	'gray':			#cccccc,
+	'gray-light':	#dfdfdf,
+	'gray-lighter': #f2f2f2,
+	'off-white':    #fafafa,
+	'white':		#ffffff
+);
+
+$colors-highcontrast: (
+	'black': 		#1e1e1e,
+	'gray-darker': 	darken(map-get($colors, 'gray-darker'), 5%),
+	'gray-dark':	darken(map-get($colors, 'gray-dark'), 5%),
+	'gray':			darken(map-get($colors, 'gray'), 5%),
+	'gray-light':	darken(map-get($colors, 'gray-light'), 5%),
+	'gray-lighter': darken(map-get($colors, 'gray-lighter'), 5%),
+	'off-white':    darken(map-get($colors, 'off-white'), 5%),
+	'white':		#ffffff
+);
+
 // -----------------------------------------------------------------------------
 //  Accents
 // -----------------------------------------------------------------------------

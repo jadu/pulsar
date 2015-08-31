@@ -128,34 +128,34 @@
   // Grays
 
   &--black .swatch__colour {
-    background-color: $black;
+    background-color: color('black');
   }
 
   &--gray-darker .swatch__colour {
-    background-color: $gray-darker;
+    background-color: color('gray-darker');
   }
 
   &--gray-dark .swatch__colour {
-    background-color: $gray-dark;
+    background-color: color('gray-dark');
   }
 
   &--gray .swatch__colour {
-    background-color: $gray;
+    background-color: color('gray');
   }
 
   &--gray-light .swatch__colour {
-    background-color: $gray-light;
+    background-color: color('gray-light');
   }
 
   &--gray-lighter .swatch__colour {
-    background-color: $gray-lighter;
+    background-color: color('gray-lighter');
   }
 
   &--off-white .swatch__colour {
-    background-color: $off-white;
+    background-color: color('off-white');
   }
 
   &--white .swatch__colour {
-    background-color: $white;
+    background-color: color('white');
   }
 }
