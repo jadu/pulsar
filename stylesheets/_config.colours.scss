@@ -22,19 +22,7 @@ $jadu-copy-gray:                #989699;
 //  Colours
 // -----------------------------------------------------------------------------
 
-$black:                         $jadu-black !default;
-$blue:                          #2455c3 !default;
-$blue-light:                    lighten(#2455c3, 45%) !default;
-$gray-darker:                   lighten(#000, 25%) !default;
-$gray-dark:                     lighten(#000, 30%) !default;
-$gray:                          #ccc !default;
-$gray-light:                    lighten($gray, 7.5%) !default;
-$gray-lighter:                  lighten($gray, 15%) !default;
-$green:                         #42ab5f !default;
-$off-white:                     #fafafa !default;
-$white:                         #fff !default;
-
-$colors: (
+$monochromes: (
 	'black': 		#1e1e1e,
 	'gray-darker': 	#404040,
 	'gray-dark':	#4d4d4d,
@@ -45,16 +33,29 @@ $colors: (
 	'white':		#ffffff
 );
 
-$colors-highcontrast: (
+$monochromes-highcontrast: (
 	'black': 		#1e1e1e,
-	'gray-darker': 	darken(map-get($colors, 'gray-darker'), 5%),
-	'gray-dark':	darken(map-get($colors, 'gray-dark'), 5%),
-	'gray':			darken(map-get($colors, 'gray'), 5%),
-	'gray-light':	darken(map-get($colors, 'gray-light'), 5%),
-	'gray-lighter': darken(map-get($colors, 'gray-lighter'), 5%),
-	'off-white':    darken(map-get($colors, 'off-white'), 5%),
+	'gray-darker': 	darken(map-get($monochromes, 'gray-darker'), 5%),
+	'gray-dark':	darken(map-get($monochromes, 'gray-dark'), 5%),
+	'gray':			darken(map-get($monochromes, 'gray'), 5%),
+	'gray-light':	darken(map-get($monochromes, 'gray-light'), 5%),
+	'gray-lighter': darken(map-get($monochromes, 'gray-lighter'), 5%),
+	'off-white':    darken(map-get($monochromes, 'off-white'), 5%),
 	'white':		#ffffff
 );
+
+$black:             map-get($monochromes, 'black') !default;
+$gray-darker:       map-get($monochromes, 'gray-darker') !default;
+$gray-dark:         map-get($monochromes, 'gray-dark') !default;
+$gray:              map-get($monochromes, 'gray') !default;
+$gray-light:        map-get($monochromes, 'gray-dark') !default;
+$gray-lighter:      map-get($monochromes, 'gray-dark') !default;
+$off-white:         map-get($monochromes, 'off-white') !default;
+$white:             map-get($monochromes, 'white') !default;
+
+$blue:              #2455c3 !default;
+$blue-light:        lighten(#2455c3, 45%) !default;
+$green:             #42ab5f !default;
 
 // -----------------------------------------------------------------------------
 //  Accents
@@ -237,3 +238,13 @@ $state-success-border:           darken($state-success-bg, 10%) !default;
 $state-info-text:                #3a87ad !default;
 $state-info-bg:                  #d9edf7 !default;
 $state-info-border:              darken($state-info-bg, 10%) !default;
+
+
+
+$colors: merge-maps(
+	$monochromes
+);
+
+$colors-highcontrast: merge-maps(
+	$monochromes-highcontrast
+);
