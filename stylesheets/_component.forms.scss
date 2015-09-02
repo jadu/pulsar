@@ -166,7 +166,6 @@ $inputs: (
 }
 
 .form__button-group {
-    outline: 1px solid red;
 
     > .control__label {
         padding-top: 3px;
@@ -176,12 +175,19 @@ $inputs: (
         @extend .btn;
     }
 
-    .form__control {
-        display: none;
+    .controls > .control__label:not(:first-of-type) {
+        margin-left: -1px;
     }
 
-    .checkbox--inline-v2,
-    .radio--inline-v2 {
-        height: auto;
+    // Position elements outside of the container as display:none or
+    // visibility:hidden causes the inputs to stop being interactive in IE8
+    .form__control {
+        left: -9999px;
+        position: absolute;
+        top: 0;
+    }
+
+    .form__control:checked + .control__label {
+        @extend .btn:active;
     }
 }

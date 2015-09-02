@@ -7,52 +7,24 @@
     form.button_group({
         'label': 'Band',
         'items': [
-            form.radio_inline({
+            form.radio_simple({
+                'id': 'am',
                 'label': 'AM',
-                'name': 'bands',
-                'bare': true
+                'name': 'bands'
             }),
-            form.radio_inline({
+            form.radio_simple({
+                'id': 'fm',
                 'label': 'FM',
-                'name': 'bands',
-                'bare': true
+                'name': 'bands'
             }),
-            form.radio_inline({
+            form.radio_simple({
+                'id': 'mw',
                 'label': 'MW',
-                'name': 'bands',
-                'bare': true
+                'name': 'bands'
             })
         ]
     })
 }}
-</form>
-
-<form class="form">
-
-<div class="form__group form__button-group">
-    <label class="control__label">Band</label>
-    <div class="controls"><div class="form__group form__indent"><div class="controls"><label class="control__label radio--inline-v2"><input name="bands" type="radio" class="form__control">AM</label></div></div><div class="form__group form__indent"><div class="controls"><label class="control__label radio--inline-v2"><input name="bands" type="radio" class="form__control">FM</label></div></div><div class="form__group form__indent"><div class="controls"><label class="control__label radio--inline-v2"><input name="bands" type="radio" class="form__control">MW</label></div></div></div></div>
-
-
-<div class="form__group form__button-group">
-    <label class="control__label">Band</label>
-    <div class="btn__toolbar">
-        <div class="controls btn__group">
-            <label class="control__label radio--inline-v2">
-                <input name="bands" type="radio" class="form__control">AM
-            </label>
-
-            <label class="control__label radio--inline-v2">
-                <input name="bands" type="radio" class="form__control">FM
-            </label>
-
-            <label class="control__label radio--inline-v2">
-                <input name="bands" type="radio" class="form__control">MW
-            </label>
-        </div>
-    </div>
-</div>
-</form>
 
 <div style="margin: 20px auto; width: 500px;">
     <div class="btn__toolbar">
@@ -71,7 +43,7 @@
                 <button type="button" class="btn dropdown__toggle" data-toggle="dropdown">
                     Filters <span class="caret"></span>    </button>
                     <ul class="dropdown__menu">
-                      <li>  <a href="#deck-apply-filter" data-toggle="deck">
+            p          <li>  <a href="#deck-apply-filter" data-toggle="deck">
                         <i class="icon-filter"></i>Apply filter
                     </a></li>
                     <li>  <a href="#deck-save-filter" data-toggle="deck">

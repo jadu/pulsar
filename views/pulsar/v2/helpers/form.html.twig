@@ -12,15 +12,15 @@ types.
 	form.button_group({
 		'label': 'Band',
 		'items': [
-			form.radio({
+			form.radio_simple({
 				'label': 'AM',
 				'name': 'bands'
 			}),
-			form.radio({
+			form.radio_simple({
 				'label': 'FM',
 				'name': 'bands'
 			}),
-			form.radio({
+			form.radio_simple({
 				'label': 'MW',
 				'name': 'bands'
 			})
@@ -53,8 +53,8 @@ items         | array  | An array of items to put in the dropdown list (usually 
 			'parent': options
 				|only('class help id label')
 				|merge({'class': 'form__button-group'}),
-			'inputs': options.items,
-			'nested': true
+			'controls': {'class': 'btn__group'},
+			'inputs': options.items
 		})
 	}}
 
@@ -576,6 +576,12 @@ parent.prepend   | string | Content to display before the input, usually short t
 parent.removable | bool   | Whether to display a remove button after the input (default false)
 parent.data-*    | string | Data attributes, eg: `'data-foo': 'bar'`
 
+## Options applied to the controls wrapper
+
+Option           | Type   | Description
+---------------- | ------ | ----------------------------------------------------
+controls.class   | string | A space separated list of class names
+
 #}
 {% macro group(options = {}) %}
 
@@ -587,7 +593,7 @@ parent.data-*    | string | Data attributes, eg: `'data-foo': 'bar'`
 		{% set hasLabelClass = ' form__group--no-label' %}
 	{% endif %}
 
-	{% if options.parent.bare is defined and options.parent.bare != true %}
+	{% if options.parent.bare is not defined or options.parent.bare != true %}
 	<div {{
 		attributes(options.parent
 				|only('class')
@@ -603,8 +609,8 @@ parent.data-*    | string | Data attributes, eg: `'data-foo': 'bar'`
 				'label': options.parent.label|default
 			})
 		}}
-		{% if options.parent.bare is defined and options.parent.bare != true %}
-		<div class="controls">
+		{% if options.parent.bare is not defined or options.parent.bare != true %}
+		<div class="controls{% if options.controls.class is defined %} {{ options.controls.class }}{% endif %}">
 		{% endif %}
 
 		{%
@@ -645,10 +651,10 @@ parent.data-*    | string | Data attributes, eg: `'data-foo': 'bar'`
 		{% endif %}
 
 			{{ _self.help({ 'value': options.parent.help|default }) }}
-		{% if options.parent.bare is defined and options.parent.bare != true %}
+		{% if options.parent.bare is not defined or options.parent.bare != true %}
 		</div>
 		{% endif %}
-	{% if options.parent.bare is defined and options.parent.bare != true %}
+	{% if options.parent.bare is not defined or options.parent.bare != true %}
 	</div>
 	{% endif %}
 
@@ -883,6 +889,77 @@ value           | string | Specifies the value of the input
 		})
 	}}
 
+{% endspaceless %}
+{% endmacro %}
+
+
+{# -----------------------------------------------------------------------------
+
+# Radio Simple
+
+Creates a radio input with a sibling label element, this allows other macros
+like `form.button_group()` to use the input’s `:checked` state to modify the
+label through the use of the sibling `+` CSS selector.
+
+
+
+## Example usage
+
+```twig
+{{
+	form.radio_simple({
+		'label': 'Foo',
+		'name': 'foo_group',
+		'id': 'foo'
+	})
+}}
+```
+
+## Example output
+
+```html
+<input type="radio" name="bar" id="baz" /><label for="baz">Foo</label>
+```
+
+## Options applied to input
+
+Option          | Type   | Description
+--------------- | ------ | -----------------------------------------------------
+data            | hash   | Data attributes by key/value
+form            | string | Specific one or more forms this label belongs to
+help            | string | Additional guidance information to be displayed next to the input
+id              | string | A unique identifier, will also be used as the label's `for` attribute
+name            | string | The name of this control
+selected        | bool   | Whether this radio button should be selected
+value           | string | Specifies the value of the input
+
+## Options applied to label
+
+Option          | Type   | Description
+--------------- | ------ | -----------------------------------------------------
+class           | string | A space separated list of class names
+label           | string | Text for the `<label>` companion element
+
+*Any other options not listed here will be applied to the input
+
+#}
+{% macro radio_simple(options = {}) %}
+{% spaceless %}
+	{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
+	{{
+		elem.input(options
+			|exclude('class for label')
+			|defaults({
+				'type': 'radio'
+			})
+		)
+	}}
+	{{
+		elem.label(options
+			|only('class label for')
+			|defaults({'for': options.id|default})
+		)
+	}}
 {% endspaceless %}
 {% endmacro %}
 
