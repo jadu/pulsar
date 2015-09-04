@@ -43,6 +43,22 @@
     }
 }
 
+.padding-vertical {
+    padding: 10px 0;
+
+    &--large {
+        padding: 20px 0;
+    }
+}
+
+.padding-horizontal {
+    padding: 0 10px;
+
+    &--large {
+        padding: 0 20px;
+    }
+}
+
 .padding-right {
     padding-right: 10px;
 
@@ -73,5 +89,9 @@
     &--large {
         padding-bottom: 20px;
     }
+}
+
+.vertical-align--top {
+    vertical-align: top !important;
 }
 
