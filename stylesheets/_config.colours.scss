@@ -1,250 +1,111 @@
-// -----------------------------------------------------------------------------
-//  Branding
-// -----------------------------------------------------------------------------
+/* -------------------------------------------------------------------------- *\
+    Base palettes
 
+    Defines what value a specific named colour should be. Used in conjunction
+    with _config.theme.scss to defined how specific Jadu control centre elements
+    should be styled in regards to colour.
+\* -------------------------------------------------------------------------- */
 
-$jadu-blue-principle:           #3399cc;
-$jadu-blue-secondary:           #2080c0;
-$jadu-blue-cool:                #a0cdef;
-$jadu-blue-warm:                #a4c2cd;
-$jadu-blue-pale:                #e0f3f9;
-$jadu-blue:                     $jadu-blue-principle; // Alias
-
-$jadu-orange:                   #fcb130;
-$jadu-green:                    #89b029;
-$jadu-teal:                     #06a79d;
-$jadu-red:                      lighten(#d12918, 15);
-$jadu-yellow:                   #ffcc33;
-$jadu-black:                    #1e1e1e;
-$jadu-copy-gray:                #989699;
-
-// -----------------------------------------------------------------------------
-//  Colours
-// -----------------------------------------------------------------------------
-
-$monochromes: (
-	'black': 		#1e1e1e,
-	'gray-darker': 	#404040,
-	'gray-dark':	#4d4d4d,
-	'gray':			#cccccc,
-	'gray-light':	#dfdfdf,
-	'gray-lighter': #f2f2f2,
-	'off-white':    #fafafa,
-	'white':		#ffffff
+$palette-branding: (
+    'jadu-blue-principle':  #3399cc,
+    'jadu-blue-secondary':  #2080c0,
+    'jadu-blue-cool':       #a0cdef,
+    'jadu-blue-warm':       #a4c2cd,
+    'jadu-blue-pale':       #e0f3f9,
+    'jadu-blue':            #3399cc,
+    'jadu-orange':          #fcb130,
+    'jadu-green':           #89b029,
+    'jadu-teal':            #06a79d,
+    'jadu-red':             #d12918,
+    'jadu-yellow':          #ffcc33,
+    'jadu-black':           #1e1e1e,
+    'jadu-copy-gray':       #989699
 );
 
-$monochromes-highcontrast: (
-	'black': 		#1e1e1e,
-	'gray-darker': 	darken(map-get($monochromes, 'gray-darker'), 5%),
-	'gray-dark':	darken(map-get($monochromes, 'gray-dark'), 5%),
-	'gray':			darken(map-get($monochromes, 'gray'), 5%),
-	'gray-light':	darken(map-get($monochromes, 'gray-light'), 5%),
-	'gray-lighter': darken(map-get($monochromes, 'gray-lighter'), 5%),
-	'off-white':    darken(map-get($monochromes, 'off-white'), 5%),
-	'white':		#ffffff
+$palette-monochromes: (
+    'black':                #1e1e1e,
+    'gray-darker':          #404040,
+    'gray-dark':            #4d4d4d,
+    'gray':                 #cccccc,
+    'gray-light':           #dfdfdf,
+    'gray-lighter':         #f2f2f2,
+    'off-white':            #fafafa,
+    'white':                #ffffff
 );
 
-$black:             map-get($monochromes, 'black') !default;
-$gray-darker:       map-get($monochromes, 'gray-darker') !default;
-$gray-dark:         map-get($monochromes, 'gray-dark') !default;
-$gray:              map-get($monochromes, 'gray') !default;
-$gray-light:        map-get($monochromes, 'gray-dark') !default;
-$gray-lighter:      map-get($monochromes, 'gray-dark') !default;
-$off-white:         map-get($monochromes, 'off-white') !default;
-$white:             map-get($monochromes, 'white') !default;
+$palette-monochromes-highcontrast: (
+    'black':                #1e1e1e,
+    'gray-darker':          darken(map-get($palette-monochromes, 'gray-darker'), 5%),
+    'gray-dark':            darken(map-get($palette-monochromes, 'gray-dark'), 5%),
+    'gray':                 darken(map-get($palette-monochromes, 'gray'), 5%),
+    'gray-light':           darken(map-get($palette-monochromes, 'gray-light'), 5%),
+    'gray-lighter':         darken(map-get($palette-monochromes, 'gray-lighter'), 5%),
+    'off-white':            darken(map-get($palette-monochromes, 'off-white'), 5%),
+    'white':                #ffffff
+);
 
-$blue:              #2455c3 !default;
-$blue-light:        lighten(#2455c3, 45%) !default;
-$green:             #42ab5f !default;
+/* -------------------------------------------------------------------------- *\
+    States
 
-// -----------------------------------------------------------------------------
-//  Accents
-// -----------------------------------------------------------------------------
+    The colour and its alternate MUST meet WCAG 2.0 AA compliance for contrast
+\* -------------------------------------------------------------------------- */
 
-$accent-color:                  $jadu-blue !default;
-$accent-color-alt:              $white !default;
+$palette-states: (
+    'base-color':           map_get($palette-monochromes, 'gray'),
+    'primary-color':        #1f7bb8,
+    'success-color':        #297c46,
+    'warning-color':        #eaa96a,
+    'danger-color':         #c84d40,
+    'info-color':           map_get($palette-branding, 'jadu-blue-cool'),
+    'inverse-color':        map_get($palette-monochromes, 'gray-dark'),
+    'base-color-alt':       map_get($palette-monochromes, 'black'),
+    'primary-color-alt':    #ffffff,
+    'success-color-alt':    #ffffff,
+    'warning-color-alt':    #000000,
+    'danger-color-alt':     #ffffff,
+    'info-color-alt':       #000000,
+    'inverse-color-alt':    #ffffff
+);
 
-// -----------------------------------------------------------------------------
-//  Text & Links
-// -----------------------------------------------------------------------------
+/* -------------------------------------------------------------------------- *\
+    Combined States
 
-$text-color:                    $jadu-copy-gray !default;
-$link-color:                    $blue !default;
-$link-hover-color:              darken($blue, 20%) !default;
-$inverse-link-color:            $white !default;
-$inverse-link-hover-color:      darken($white, 10%) !default;
+    Loop over this using:
 
-// -----------------------------------------------------------------------------
-//  States
-//
-//  The colour and it's alternative MUST meet AA compliance for contrast
-// -----------------------------------------------------------------------------
+    @each $state, $state-color, $state-color-alt in $state-colors { ... }
+\* -------------------------------------------------------------------------- */
 
-$base-color:                    $gray !default;
-$primary-color:                 #1F7BB8 !default;
-$success-color:                 #297C46 !default;
-$warning-color:                 #EAA96A !default;
-$danger-color:                  #C84D40 !default;
-$info-color:                    $jadu-blue-cool !default;
-$inverse-color:                 $gray-dark !default;
+$state-colors:
+    ('base', map_get($palette-states, 'base-color'), map_get($palette-states, 'base-color-alt')),
+    ('primary', map_get($palette-states, 'primary-color'), map_get($palette-states, 'primary-color-alt')),
+    ('success', map_get($palette-states, 'success-color'), map_get($palette-states, 'success-color-alt')),
+    ('warning', map_get($palette-states, 'warning-color'), map_get($palette-states, 'warning-color-alt')),
+    ('danger', map_get($palette-states, 'danger-color'), map_get($palette-states, 'danger-color-alt')),
+    ('info', map_get($palette-states, 'info-color'), map_get($palette-states, 'info-color-alt')),
+    ('inverse', map_get($palette-states, 'inverse-color'), map_get($palette-states, 'inverse-color-alt'));
 
-$base-color-alt:                $black !default;
-$primary-color-alt:             #FFFFFF !default;
-$success-color-alt:             #FFFFFF !default;
-$warning-color-alt:             #000000 !default;
-$danger-color-alt:              #FFFFFF !default;
-$info-color-alt:                #000000 !default;
-$inverse-color-alt:             #FFFFFF !default;
+/* -------------------------------------------------------------------------- *\
+    Colour maps
 
-$state-colors: ('base', $base-color, $base-color-alt),
-               ('primary', $primary-color, $primary-color-alt),
-               ('success', $success-color, $success-color-alt),
-               ('warning', $warning-color, $warning-color-alt),
-               ('danger', $danger-color, $danger-color-alt),
-               ('info', $info-color, $info-color-alt),
-               ('inverse', $inverse-color, $inverse-color-alt);
+    Use in conjunction with _mixin.colour.scss to reference colours in your
+    stylesheets without needing to use map_get and reference a palette.
 
-// -----------------------------------------------------------------------------
-//  Progress bars
-// -----------------------------------------------------------------------------
+    Example:
 
-$progress-bg:                   $gray-lighter !default;
+    background-color: colour('gray-light');
 
-// -----------------------------------------------------------------------------
-//  Badges
-// -----------------------------------------------------------------------------
-
-$badge-bg:                      $gray !default;
-
-$badge-primary-bg:              $primary-color !default;
-$badge-primary-bg-darker:       darken($badge-primary-bg, 20%) !default;
-$badge-primary-color:           $white !default;
-
-$badge-success-bg:              $success-color !default;
-$badge-success-bg-darker:       darken($badge-success-bg, 20%) !default;
-$badge-success-color:           $white !default;
-
-$badge-info-bg:                 $info-color !default;
-$badge-info-bg-darker:          darken($badge-info-bg, 20%) !default;
-$badge-info-color:              $white !default;
-
-$badge-warning-bg:              $warning-color !default;
-$badge-warning-bg-darker:       darken($badge-warning-bg, 20%) !default;
-$badge-warning-color:           $white !default;
-
-$badge-danger-bg:               $danger-color !default;
-$badge-danger-bg-darker:        darken($badge-danger-bg, 20%) !default;
-$badge-danger-color:            $white !default;
-
-$badge-inverse-bg:              $inverse-color !default;
-$badge-inverse-bg-darker:       darken($badge-inverse-bg, 20%) !default;
-$badge-inverse-color:           $white !default;
-
-$badge-color:                   inherit !default;
-$badge-active-bg:               #fff !default;
-$badge-active-color:            #fff !default;
-$badge-link-hover-color:        #fff !default;
-
-// -----------------------------------------------------------------------------
-//  Dropdowns
-// -----------------------------------------------------------------------------
-
-$dropdown-bg:                    #fff !default;
-$dropdown-border:                rgba(0,0,0,.15) !default;
-$dropdown-fallback-border:       #ccc !default;
-$dropdown-divider-bg:            #e5e5e5 !default;
-$dropdown-link-active-color:     #fff !default;
-$dropdown-link-active-bg:        $primary-color !default;
-$dropdown-link-color:            $gray-dark !default;
-$dropdown-link-hover-color:      #fff !default;
-$dropdown-link-hover-bg:         $dropdown-link-active-bg !default;
-$dropdown-caret-color:           #000 !default;
-
-// -----------------------------------------------------------------------------
-//  Tables
-// -----------------------------------------------------------------------------
-
-$table-bg:                       transparent !default;
-$table-bg-accent:                #f9f9f9 !default;
-$table-bg-hover:                 #f5f5f5 !default;
-$table-bg-active:                $table-bg-hover !default;
-$table-border-color:             #ccc !default;
-
-// -----------------------------------------------------------------------------
-//  Toolbar
-// -----------------------------------------------------------------------------
-
-$toolbar-search-accent:          $primary-color !default;
-
-$toolbar-bg:                     $gray-darker !default;
-$toolbar-bg-hover:               $accent-color !default;
-
-$toolbar-link-color:             $white !default;
-$toolbar-link-color-hover:       $white !default;
-
-$toolbar-notification-bg:        $accent-color !default;
-$toolbar-notification-text-color: $toolbar-link-color !default;
-$toolbar-notification-item-hover: $white !default;
-
-
-$toolbar-dropdown-bg:            $white !default;
-$toolbar-dropdown-link-color:    $accent-color !default;
-$toolbar-dropdown-link-color-hover: $white !default;
-
-// -----------------------------------------------------------------------------
-//  Search
-// -----------------------------------------------------------------------------
-
-$search-bg:                      darken($toolbar-bg, 5%) !default;
-$search-bg-focus:                $search-bg !default;
-$search-text-color:              $white !default;
-$search-accent-color:            $accent-color !default;
-
-// -----------------------------------------------------------------------------
-//  Popovers
-// -----------------------------------------------------------------------------
-
-$popover-bg:                          #fff !default;
-$popover-border-color:                rgba(0,0,0,.2) !default;
-$popover-fallback-border-color:       #ccc !default;
-$popover-title-bg:                    #fff !default;
-$popover-arrow-color:                 #fff !default;
-$popover-arrow-outer-color:           rgba(0,0,0,.025) !default;
-$popover-arrow-outer-fallback-color:  #999 !default;
-
-$popover-standout-bg:                   $accent-color !default;
-$popover-standout-border-color:         darken($accent-color, 2%) !default;
-$popover-standout-text-color:           $white !default;
-$popover-standout-title-bg:             darken($popover-standout-bg, 3%) !default;
-$popover-standout-arrow-color:          $accent-color !default;
-$popover-standout-arrow-outer-color:    darken($accent-color, 2%) !default;
-
-// -----------------------------------------------------------------------------
-//  Forms
-// -----------------------------------------------------------------------------
-
-$state-warning-text:             #c09853 !default;
-$state-warning-bg:               #fcf8e3 !default;
-$state-warning-border:           darken($state-warning-bg, 10%) !default;
-
-$state-danger-text:              #b94a48 !default;
-$state-danger-bg:                #f2dede !default;
-$state-danger-border:            darken($state-danger-bg, 10%) !default;
-
-$state-success-text:             #468847 !default;
-$state-success-bg:               #dff0d8 !default;
-$state-success-border:           darken($state-success-bg, 10%) !default;
-
-$state-info-text:                #3a87ad !default;
-$state-info-bg:                  #d9edf7 !default;
-$state-info-border:              darken($state-info-bg, 10%) !default;
-
-
+    If 'projector mode is enabled, then the high contrast version of any
+    colours will be used automatically.
+\* -------------------------------------------------------------------------- */
 
 $colors: merge-maps(
-	$monochromes
+    $palette-branding,
+    $palette-monochromes,
+    $palette-states
 );
 
 $colors-highcontrast: merge-maps(
-	$monochromes-highcontrast
+    $palette-branding,
+    $palette-monochromes-highcontrast,
+    $palette-states
 );

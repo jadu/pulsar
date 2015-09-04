@@ -1,4 +1,81 @@
 /* -------------------------------------------------------------------------- *\
+    30/07/2015
+
+    _config.colours.scss
+
+    Variable declarations, replaced in favour of colour maps
+\* -------------------------------------------------------------------------- */
+
+$jadu-blue-principle:       color('jadu-blue-principle') !default;
+$jadu-blue-secondary:       color('jadu-blue-secondary') !default;
+$jadu-blue-cool:            color('jadu-blue-cool') !default;
+$jadu-blue-warm:            color('jadu-blue-warm') !default;
+$jadu-blue-pale:            color('jadu-blue-pale') !default;
+$jadu-blue:                 color('jadu-blue') !default;
+$jadu-orange:               color('jadu-orange') !default;
+$jadu-green:                color('jadu-green') !default;
+$jadu-teal:                 color('jadu-teal') !default;
+$jadu-red:                  color('jadu-red') !default;
+$jadu-yellow:               color('jadu-yellow') !default;
+$jadu-black:                color('jadu-black') !default;
+$jadu-copy-gray:            color('jadu-copy-gray') !default;
+
+$black:                     color('black') !default;
+$gray-darker:               color('gray-darker') !default;
+$gray-dark:                 color('gray-dark') !default;
+$gray:                      color('gray') !default;
+$gray-light:                color('gray-dark') !default;
+$gray-lighter:              color('gray-dark') !default;
+$off-white:                 color('off-white') !default;
+$white:                     color('white') !default;
+
+$blue:                      #2455c3;
+$blue-light:                lighten(#2455c3, 45%);
+$green:                     #42ab5f;
+
+$accent-color:              color('jadu-blue') !default;
+$accent-color-alt:          color('white') !default;
+
+$inverse-link-color:        $white !default;
+$inverse-link-hover-color:  darken($white, 10%) !default;
+
+$base-color:                    $gray !default;
+$primary-color:                 #1F7BB8 !default;
+$success-color:                 #297C46 !default;
+$warning-color:                 #EAA96A !default;
+$danger-color:                  #C84D40 !default;
+$info-color:                    $jadu-blue-cool !default;
+$inverse-color:                 $gray-dark !default;
+
+$base-color-alt:                $black !default;
+$primary-color-alt:             #FFFFFF !default;
+$success-color-alt:             #FFFFFF !default;
+$warning-color-alt:             #000000 !default;
+$danger-color-alt:              #FFFFFF !default;
+$info-color-alt:                #000000 !default;
+$inverse-color-alt:             #FFFFFF !default;
+
+$popover-standout-bg:                   $accent-color !default;
+$popover-standout-border-color:         darken($accent-color, 2%) !default;
+$popover-standout-text-color:           $white !default;
+$popover-standout-title-bg:             darken($popover-standout-bg, 3%) !default;
+$popover-standout-arrow-color:          $accent-color !default;
+$popover-standout-arrow-outer-color:    darken($accent-color, 2%) !default;
+
+$toolbar-search-accent:          $primary-color !default;
+$toolbar-bg:                     $gray-darker !default;
+$toolbar-bg-hover:               $accent-color !default;
+$toolbar-link-color:             $white !default;
+$toolbar-link-color-hover:       $white !default;
+$toolbar-notification-bg:        $accent-color !default;
+$toolbar-notification-text-color: $toolbar-link-color !default;
+$toolbar-notification-item-hover: $white !default;
+$toolbar-dropdown-bg:            $white !default;
+$toolbar-dropdown-link-color:    $accent-color !default;
+$toolbar-dropdown-link-color-hover: $white !default;
+
+
+/* -------------------------------------------------------------------------- *\
 	30/07/2015
 
 	_component.table.scss
@@ -351,3 +428,5 @@
       }
     }
 }
+
+

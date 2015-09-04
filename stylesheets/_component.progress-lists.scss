@@ -40,11 +40,11 @@
     }
 
     &:hover {
-        background-color: darken($progress-bg, 5);
+        background-color: $progress-bg-hover;
         color: $black;
 
         &:after {
-            border-left-color: darken($progress-bg, 5);
+            border-left-color: $progress-bg-hover;
         }
     }
 }

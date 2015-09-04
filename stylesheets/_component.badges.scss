@@ -1,7 +1,9 @@
+@import '_config.theme';
+
 // Base classes
 .badge {
   @include inline-block;
-  background-color: $base-color;
+  background-color: $badge-bg;
   border-radius: 10px;
   font-size: $font-size-medium;
   line-height: 1;

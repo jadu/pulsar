@@ -19,7 +19,7 @@ $font-family-regular-italic:          'proxima_nova_regitalic', 'Helvetica Neue'
 $font-family-semibold-italic:         'proxima_nova_semibolditalic', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
 
 $font-family-fallback:                'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
-$font-family-monospace:               monospace !default;
+$font-family-monospace:               'Courier New', 'Andale Mono', 'Consolas', monospace !default;
 
 @include ie-lte(7) {
   $font-family-light:                 'Arial', sans-serif !default;
@@ -121,11 +121,11 @@ $form-label-column-width:             200px !default;
 $controls-width:                      30%;
 $controls-max-width:                  300px;
 $input-bg:                            #fff !default;
-$input-bg-disabled:                   $gray-lighter !default;
+$input-bg-disabled:                   color('gray-lighter') !default;
 $input-border:                        #ccc !default;
 $input-border-radius:                 $border-radius !default;
 $input-border-focus:                  #66afe9 !default;
-$input-color-placeholder:             $gray-light !default;
+$input-color-placeholder:             color('gray-light') !default;
 $input-height-base:                   $line-height-base * 2 !default;
 @include ie-lte(7) {
   $input-height-base:                 $line-height-base * 1.2 !default;
