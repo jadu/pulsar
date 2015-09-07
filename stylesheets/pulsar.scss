@@ -24,21 +24,23 @@ $FontAwesomePath: '../libs/font-awesome/font/';
 @import '_mixin.border-radius';
 @import '_mixin.clear-fix';
 @import '_mixin.content-box';
-@import '_mixin.color';
 @import '_mixin.css-arrow';
 @import '_mixin.hide-text';
 @import '_mixin.inline-block';
 @import '_mixin.label-variant';
-@import '_mixin.merge-maps';
 @import '_mixin.media-queries';
 @import '_mixin.mixins-to-organise';
 
+@import '_function.merge-maps';
 
 // Config
 @import '_config.colours';
 @import '_config.variables';
 @import '_config.fonts';
 @import '_config.theme';
+
+@import '_function.color';
+
 
 // Deprecated styles soon to disappear
 @import '_deprecated.styles.scss';

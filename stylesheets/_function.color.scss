@@ -1,0 +1,18 @@
+// $projector should be set by a top-level variable and shouldn't be set when
+// you call this mixin
+
+@function color($key: #000) {
+
+	@if ($projector) {
+		@if (map-has-key($colors-highcontrast, $key)) {
+			@return map-get($colors-highcontrast, $key);
+		}
+	}
+
+	@if (map-has-key($colors, $key)) {
+		@return map-get($colors, $key);
+	}
+
+	@warn 'Attempting to use color map with unknown key: ' + $key;
+
+}

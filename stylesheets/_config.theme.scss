@@ -1,9 +1,10 @@
+
 // -----------------------------------------------------------------------------
 //  Text & Links
 // -----------------------------------------------------------------------------
 
 $text-color:                    color('jadu-copy-gray') !default;
-$link-color:                    color('jadu-blue-secondary') !default;
+$link-color:                    map_get($colors, 'jadu-blue-secondary') !default;
 $link-hover-color:              darken($link-color, 20%) !default;
 $inverse-link-color:            #fff !default;
 $inverse-link-hover-color:      darken(#fff, 10%) !default;
@@ -84,7 +85,7 @@ $popover-arrow-outer-fallback-color:  color('gray') !default;
 //  Progress bars
 // -----------------------------------------------------------------------------
 
-$progress-bg:                         colour('gray-lighter') !default;
+$progress-bg:                         color('gray-lighter') !default;
 $progress-bg-hover:                   darken($progress-bg, 5%) !default;
 
 // -----------------------------------------------------------------------------

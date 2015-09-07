@@ -1,8 +1,0 @@
-@function color($key: 'black', $projector: false) {
-
-	@if ($projector) {
-		@return map-get($colors-highcontrast, $key);
-	}
-
-	@return map-get($colors, $key);
-}
