@@ -203,12 +203,12 @@ value       | string  | Specifies the value of the input
 			)
 		}}
 	>
-	{%
+	{%-
 		if options.value is defined
 		and options.value is not empty
-	%}{{-
-		options.value
-	-}}{% endif %}
+	-%}
+		{{- options.value -}}
+	{%- endif -%}
 	</textarea>
 
 {% endspaceless %}
