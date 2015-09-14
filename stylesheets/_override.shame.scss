@@ -43,7 +43,7 @@
 
 
 .toolbar {
-  min-height: 24px * 2;
+  min-height: 24px * 3;
 
   .user-menu .btn {
     height: 28px;
@@ -73,8 +73,9 @@
 }
 
 .main-title {
-    line-height: 23px;
-    margin-bottom: 25px;
+    font-size: 2em;
+    line-height: 1em;
+    margin-bottom: 19px;
 }
 
 .legend {

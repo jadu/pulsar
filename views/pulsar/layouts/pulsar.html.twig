@@ -9,14 +9,6 @@
 
         <div class="inner-wrapper">
             {% include '@pulsar/pulsar/components/navigation.html.twig' %}
-            <!-- <div class="nav-tertiary nav-tertiary--light">
-
-                <form class="nav-search">
-                    <input type="search" placeholder="Search" class="nav-search__field" />
-                    <button class="nav-search__submit">{{ html.icon('search') }}</button>
-                </form>
-
-            </div> -->
 
             <div class="toolbar">
 
@@ -47,6 +39,11 @@
                 </div>
 
             </div>
+
+            <form action="/search" class="main-search" data-ui="search-box">
+                <input type="search" name="q" id="case-search" value="" placeholder="Search" class="main-search__field" autocomplete="off">
+                <button class="main-search__submit" type="submit" name="case-search"><i class="icon-search"></i></button>
+            </form>
 
             <div class="content-main">
                 <div class="tabs__content">
