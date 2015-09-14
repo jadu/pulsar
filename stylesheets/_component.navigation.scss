@@ -156,6 +156,8 @@ $nav-color-dark:  #2d89b7 !default;
         color: $gray-light;
         text-decoration: none;
 
+        &:link,
+        &:active,
         &:hover,
         &:focus {
             color: $black;
