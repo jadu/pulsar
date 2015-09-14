@@ -152,26 +152,6 @@ $nav-color-dark:  #2d89b7 !default;
         font-family: $font-family-semibold;
     }
 
-    &__link {
-        color: $gray-light;
-        text-decoration: none;
-
-        &:link,
-        &:active,
-        &:hover,
-        &:focus {
-            color: $black;
-
-            .caret {
-                border-top-color: $black;
-            }
-        }
-
-        .caret {
-            border-top-color: $gray-light;
-        }
-    }
-
     &::-webkit-scrollbar-track {
         background-color: #efefef;
         border-radius: 50px !important;
@@ -233,6 +213,28 @@ $nav-color-dark:  #2d89b7 !default;
         }
     }
 
+}
+
+// needed to chain this to the 'a' element because of the specificify within
+// Jadu CMS.
+a.nav-inline__link {
+    color: $gray-light;
+    text-decoration: none;
+
+    &:link,
+    &:active,
+    &:hover,
+    &:focus {
+        color: $black;
+
+        .caret {
+            border-top-color: $black;
+        }
+    }
+
+    .caret {
+        border-top-color: $gray-light;
+    }
 }
 
 .mobile-menu-button {
