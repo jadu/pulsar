@@ -62,7 +62,7 @@
     font-weight: normal;
     font-family: $font-family-regular;
 
-    &:hover:not(.table-selection) {
+    &:hover:not(.table-selection):not(.sorting_disabled) {
         background-color: #efefef;
         cursor: pointer;
     }
@@ -75,6 +75,17 @@
     &:hover {
         color: $link-color;
         text-decoration: underline;
+    }
+}
+
+.table__th.sorting_disabled:hover {
+    border: 0;
+    text-decoration: none;
+
+    > .table-link {
+        border: 0;
+        cursor: default;
+        text-decoration: none;
     }
 }
 
@@ -95,6 +106,17 @@
     border-bottom: 1px dotted #ccc;
     color: $black;
     text-decoration: none;
+
+    .sorting_disabled & {
+        border: none;
+
+        &:hover {
+            border: 0;
+            color: $black;
+            cursor: default;
+            text-decoration: none;
+        }
+    }
 }
 
 .table-action {
@@ -299,5 +321,35 @@
         display: block;
         padding: 5px 10px;
         width: 100%;
+    }
+}
+
+// Select2 fixes when used in datatables
+.datatable td span [class*=' select2'],
+.datatable td span .selection,
+.datatable td span .dropdown-wrapper,
+.datatable td .select2-container {
+    margin-top: 0;
+    width: 100% !important;
+    max-width: 100%;
+
+    @include respond-min($screen-large) {
+        width: 90% !important;
+    }
+}
+
+.datatable td .select2-container--default .select2-selection--single .select2-selection__arrow b {
+    left: 95%;
+
+    @include respond-min($screen-large) {
+        left: 85%;
+    }
+}
+
+.datatable .remove-button {
+    vertical-align: middle;
+
+    &:hover {
+        vertical-align: middle;
     }
 }
