@@ -19,21 +19,3 @@
   font-weight: normal;
   font-style: normal;
 }
-
-// Force Webkit to only use SVG fonts, this fixes poor font rendering in Webkit on Windows
-@media screen and (-webkit-min-device-pixel-ratio: 0) {
-  @font-face {
-    font-family: 'proxima_novalight';
-    src: url($font-path + 'proxima_nova/proximanova-light.svg#proxima_novalight') format('svg');
-  }
-
-  @font-face {
-    font-family: 'proxima_novasemibold';
-    src: url($font-path + 'proxima_nova/proximanova-semibold.svg#proxima_novasemibold') format('svg');
-  }
-
-  @font-face {
-    font-family: 'FontAwesome';
-    src: url($libs-path + 'font-awesome/font/fontawesome-webfont.svg?v=3.2.1#fontawesomeregular') format('svg');
-  }
-}
