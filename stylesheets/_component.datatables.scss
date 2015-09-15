@@ -324,32 +324,3 @@
     }
 }
 
-// Select2 fixes when used in datatables
-.datatable td span [class*=' select2'],
-.datatable td span .selection,
-.datatable td span .dropdown-wrapper,
-.datatable td .select2-container {
-    margin-top: 0;
-    width: 100% !important;
-    max-width: 100%;
-
-    @include respond-min($screen-large) {
-        width: 90% !important;
-    }
-}
-
-.datatable td .select2-container--default .select2-selection--single .select2-selection__arrow b {
-    left: 95%;
-
-    @include respond-min($screen-large) {
-        left: 85%;
-    }
-}
-
-.datatable .remove-button {
-    vertical-align: middle;
-
-    &:hover {
-        vertical-align: middle;
-    }
-}
