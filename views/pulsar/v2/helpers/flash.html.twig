@@ -14,7 +14,7 @@
 	{% endif %}
 
 	<div
-		class="flash flash--{{ options.type|default }}
+		class="flash flash--{{ options.type|default('default') }}
 		{% if options.sticky is not defined or options.sticky == true %} is-sticky{% endif %}"
 	>
 
