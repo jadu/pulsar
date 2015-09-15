@@ -704,7 +704,7 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 	{% for key, value in options.items %}
 
 		   <dt class="metadata__key">{{ key }}</dt><!--
-		--><dd class="metadata__value">{{ value }}</dd>
+		--><dd class="metadata__value">{{ value|raw }}</dd>
 
 	{% endfor %}
 	</dl>
