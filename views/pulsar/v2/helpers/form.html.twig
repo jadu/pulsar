@@ -222,7 +222,7 @@ Creates the opening `<form>` element.
 
 Option  | Type   | Description
 ------- | ------ | -------------------------------------------------------------
-action  | string | URL to post to, or `GET`, `PUT` etc, will submit to self if empty
+action  | string | URL to post to, will submit to self if empty
 class   | string | A space separated list of class names
 enctype | string | How the form-data should be encoded (requires method = POST)
 id      | string | A unique identifier, if required
@@ -235,10 +235,20 @@ data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
 The `enctype` attribute will be set to `application/x-www-form-urlencoded` by
 default, unless you’re using a `method` other than `POST`.
 
+##### Example
+
+```twig
+{{ form.create() }}
+```
+
+```html
+<form method="POST" enctype="application/x-www-form-urlencoded" class="form">
+```
+
 ## Using PUT
 
-If you specify `'action': 'PUT'` then a hidden `<input name="_method" value="PUT" />
-will be created automatically after the `<form>` element.
+If you specify `'method': 'PUT'` then a hidden `<input name="_method" value="PUT" />`
+will be created automatically after the `<form>` element, and the `method` attribute on the `form` element will be set to `POST`.
 
 #}
 {% macro create(options = {}) %}
@@ -247,36 +257,24 @@ will be created automatically after the `<form>` element.
 
 	{% set defaults = { 'class': 'form' } %}
 
-	{% if options.method is defined and options.method|upper == 'PUT' %}
-		{%
-			set methodInput = _self.hidden({
-								'name': '_method',
-								'value': 'PUT'
-							 })
-		%}
-	{% endif %}
-
 	{%
 		if options.method is not defined
 		or options.method is empty
-		or options.method|upper == 'PUT'
 	%}
-		{% set options = options|merge({'method': 'POST'}) %}
+		{% set defaults = defaults|merge({'method': 'POST'}) %}
 	{% endif %}
 
-	{% if options.method is defined and (options.method|upper == 'POST') %}
-		{% set options = options|merge({'enctype': options.enctype|default('application/x-www-form-urlencoded')}) %}
+	{%
+		if options.enctype is defined
+		and options.enctype is not empty
+		and options.method == 'POST'
+	%}
+		{% set defaults = defaults|merge({'enctype': options.enctype|default('application/x-www-form-urlencoded')}) %}
 	{% endif %}
 
-	<form {{
-		attributes(options
-			|defaults({
-				'class': 'form'
-			})
-		)
-	}}>
-
-	{{ methodInput|default }}
+	<form
+		{{ attributes(options|defaults(defaults)) }}
+	>
 
 {% endspaceless %}
 {% endmacro %}
@@ -723,55 +721,6 @@ value  | string | The string or html markup to render inside the help block
 
 {# -----------------------------------------------------------------------------
 
-# Hidden
-
-Generates a hidden text input which can be used to store non user-editable data.
-
-All presentational markup and classes will be removed from this input to prevent
-it from affecting a form's layout.
-
-## Example usage
-
-```twig
-{{
-	form.hidden({
-		'value': 'Shh, you can’t see me...'
-	})
-}}
-```
-
-## Options applied to input
-
-Option      | Type   | Description
------------ | ------ | ---------------------------------------------------------
-disabled    | bool   | Stops the element from being interactive if true
-form        | string | Specific one or more forms this label belongs to
-id          | string | A unique identifier, will also be used as the label's `for` attribute
-name        | string | The name of this control
-value       | string | Specifies the value of the input
-data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
-
-#}
-{% macro hidden(options = {}) %}
-{% spaceless %}
-	{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
-
-	{{
-		elem.input(options
-			|exclude('class help label')
-			|merge({
-				'type': 'hidden',
-				'naked': true
-			})
-		)
-	}}
-
-{% endspaceless %}
-{% endmacro %}
-
-
-{# -----------------------------------------------------------------------------
-
 # Password
 
 Generates a password input field.
@@ -1188,7 +1137,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 {% spaceless %}
 	{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
-	{% set options = options|merge({'type': options.type|default('text')}) %}
+	{% set options = options|merge({ 'type': options.type|default('text') }) %}
 
 	{{
 		_self.group({
