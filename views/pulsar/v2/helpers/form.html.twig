@@ -218,19 +218,27 @@ Creates the opening `<form>` element.
 {{ form.create() }}
 ```
 
-If you specify `'action': 'PUT'` then a hidden
-
 ## Options
 
 Option  | Type   | Description
 ------- | ------ | -------------------------------------------------------------
-action  | string | URL to post to, or `GET`, `PUT `, will submit to self if empty
+action  | string | URL to post to, or `GET`, `PUT` etc, will submit to self if empty
 class   | string | A space separated list of class names
 enctype | string | How the form-data should be encoded (requires method = POST)
 id      | string | A unique identifier, if required
 name    | string | The name of the form
 method  | string | The HTTP method to be used to submit the form
 data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
+
+## Enctype
+
+The `enctype` attribute will be set to `application/x-www-form-urlencoded` by
+default, unless you’re using a `method` other than `POST`.
+
+## Using PUT
+
+If you specify `'action': 'PUT'` then a hidden `<input name="_method" value="PUT" />
+will be created automatically after the `<form>` element.
 
 #}
 {% macro create(options = {}) %}
@@ -239,14 +247,24 @@ data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
 
 	{% set defaults = { 'class': 'form' } %}
 
+	{% if options.method is defined and options.method|upper == 'PUT' %}
+		{%
+			set methodInput = _self.hidden({
+								'name': '_method',
+								'value': 'PUT'
+							 })
+		%}
+	{% endif %}
+
 	{%
 		if options.method is not defined
 		or options.method is empty
+		or options.method|upper == 'PUT'
 	%}
 		{% set options = options|merge({'method': 'POST'}) %}
 	{% endif %}
 
-	{% if options.method is defined and options.method|upper == 'POST' %}
+	{% if options.method is defined and (options.method|upper == 'POST') %}
 		{% set options = options|merge({'enctype': options.enctype|default('application/x-www-form-urlencoded')}) %}
 	{% endif %}
 
@@ -258,14 +276,7 @@ data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
 		)
 	}}>
 
-	{% if options.action is defined and options.action|upper == 'PUT' %}
-		{{
-			_self.hidden({
-				'name': '_method',
-				'value': 'PUT'
-			})
-		}}
-	{% endif %}
+	{{ methodInput|default }}
 
 {% endspaceless %}
 {% endmacro %}
