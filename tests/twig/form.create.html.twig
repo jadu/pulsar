@@ -7,8 +7,10 @@ form.create()
 </pre>
 
 {%
-	set output = form.create()
- %}
+	set output = form.create({
+		'action': 'put'
+	})
+%}
 
 {{ output }}
 
