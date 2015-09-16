@@ -1,0 +1,21 @@
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+
+<h1>form.text</h1>
+
+<pre>
+form.hidden({
+	'id': 'secret',
+	'value': 'Foo'
+})
+</pre>
+
+{%
+	set output = form.hidden({
+		'id': 'secret',
+		'value': 'Foo'
+	})
+ %}
+
+{{ output }}
+
+<pre>{{ output|e }}</pre>
