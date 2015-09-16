@@ -26,6 +26,7 @@ data        | hash   | Data attributes by key/value
 disabled    | bool   | Stops the element from being interactive if true
 id          | string | A unique identifier, if required
 form        | string | Specific one or more forms this label belongs to
+naked       | bool   | If true, removes all presentational markup and classes
 name        | string | The name of this control
 placeholder | string | A short hint that describes the expected value
 type        | string | Defines the type of input to render (default text)
@@ -36,15 +37,11 @@ value       | string | Specifies the value of the input
 {% spaceless %}
 	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-	<input
-		{{
-			attributes(options
-				|defaults({
-					'class': 'form__control'
-				})
-			)
-		}}
-	/>
+	{% if options.naked is not defined or options.naked != true %}
+		{% set options = options|defaults({'class': 'form__control'}) %}
+	{% endif %}
+
+	<input {{ attributes(options|exclude('naked')) }} />
 
 {% endspaceless %}
 {% endmacro %}
