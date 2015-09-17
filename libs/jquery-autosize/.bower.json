@@ -1,7 +1,6 @@
 {
   "name": "autosize",
   "description": "Autosize is a small, stand-alone script to automatically adjust textarea height to fit text.",
-  "version": "3.0.6",
   "dependencies": {},
   "keywords": [
     "textarea",
@@ -22,12 +21,17 @@
     "type": "git",
     "url": "http://github.com/jackmoore/autosize.git"
   },
-  "main": "dest/autosize.js",
-  "_release": "3.0.6",
+  "main": "dist/autosize.js",
+  "moduleType": [
+    "amd",
+    "node"
+  ],
+  "version": "3.0.12",
+  "_release": "3.0.12",
   "_resolution": {
     "type": "version",
-    "tag": "v3.0.6",
-    "commit": "9e7e0ccf9c6c847a2b75de138d07a2d8c8b38d6b"
+    "tag": "3.0.12",
+    "commit": "8fc5037c773d79613a4f9fe9404f021cb76860c6"
   },
   "_source": "git://github.com/jackmoore/autosize.git",
   "_target": "*",

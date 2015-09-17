@@ -1,5 +1,21 @@
+const set = (typeof Set === "function") ? new Set() : (function () {
+	const list = [];
+
+	return {
+		has(key) {
+			return Boolean(list.indexOf(key) > -1);
+		},
+		add(key) {
+			list.push(key);
+		},
+		delete(key) {
+			list.splice(list.indexOf(key), 1);
+		},
+	}
+})();
+
 function assign(ta, {setOverflowX = true, setOverflowY = true} = {}) {
-	if (!ta || !ta.nodeName || ta.nodeName !== 'TEXTAREA' || ta.hasAttribute('data-autosize-on')) return;
+	if (!ta || !ta.nodeName || ta.nodeName !== 'TEXTAREA' || set.has(ta)) return;
 
 	let heightOffset = null;
 	let overflowY = 'hidden';
@@ -18,7 +34,11 @@ function assign(ta, {setOverflowX = true, setOverflowY = true} = {}) {
 		} else {
 			heightOffset = parseFloat(style.borderTopWidth)+parseFloat(style.borderBottomWidth);
 		}
-
+		// Fix when a textarea is not on document body and heightOffset is Not a Number
+		if (isNaN(heightOffset)) {
+			heightOffset = 0;
+		}
+	
 		update();
 	}
 
@@ -42,12 +62,11 @@ function assign(ta, {setOverflowX = true, setOverflowY = true} = {}) {
 			ta.style.overflowY = value;
 		}
 
-		update();
+		resize();
 	}
 
-	function update() {
-		const startHeight = ta.style.height;
-		const htmlTop = document.documentElement.scrollTop;
+	function resize() {
+		const htmlTop = window.pageYOffset;
 		const bodyTop = document.body.scrollTop;
 		const originalHeight = ta.style.height;
 
@@ -66,18 +85,22 @@ function assign(ta, {setOverflowX = true, setOverflowY = true} = {}) {
 		// prevents scroll-position jumping
 		document.documentElement.scrollTop = htmlTop;
 		document.body.scrollTop = bodyTop;
+	}
+
+	function update() {
+		const startHeight = ta.style.height;
+		
+		resize();
 
 		const style = window.getComputedStyle(ta, null);
 
 		if (style.height !== ta.style.height) {
 			if (overflowY !== 'visible') {
 				changeOverflow('visible');
-				return;
 			}
 		} else {
 			if (overflowY !== 'hidden') {
 				changeOverflow('hidden');
-				return;
 			}
 		}
 
@@ -92,8 +115,8 @@ function assign(ta, {setOverflowX = true, setOverflowY = true} = {}) {
 		window.removeEventListener('resize', update);
 		ta.removeEventListener('input', update);
 		ta.removeEventListener('keyup', update);
-		ta.removeAttribute('data-autosize-on');
 		ta.removeEventListener('autosize:destroy', destroy);
+		set.delete(ta);
 
 		Object.keys(style).forEach(key => {
 			ta.style[key] = style[key];
@@ -118,8 +141,8 @@ function assign(ta, {setOverflowX = true, setOverflowY = true} = {}) {
 	window.addEventListener('resize', update);
 	ta.addEventListener('input', update);
 	ta.addEventListener('autosize:update', update);
-	ta.setAttribute('data-autosize-on', true);
-	
+	set.add(ta);
+
 	if (setOverflowY) {
 		ta.style.overflowY = 'hidden';
 	}

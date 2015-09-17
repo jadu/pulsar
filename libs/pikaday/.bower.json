@@ -1,6 +1,5 @@
 {
   "name": "pikaday",
-  "version": "1.3.2",
   "description": "A refreshing JavaScript Datepicker — lightweight, no dependencies, modular CSS",
   "keywords": [
     "datepicker",
@@ -26,11 +25,12 @@
     "type": "git",
     "url": "https://github.com/dbushell/Pikaday.git"
   },
-  "_release": "1.3.2",
+  "version": "1.3.3",
+  "_release": "1.3.3",
   "_resolution": {
     "type": "version",
-    "tag": "1.3.2",
-    "commit": "7674f9f6cc681fbf8520dafe94adf90902930d4e"
+    "tag": "1.3.3",
+    "commit": "fa687c53e0cf55b282c8f9c86370de031bda1d80"
   },
   "_source": "git://github.com/dbushell/Pikaday.git",
   "_target": "*",
