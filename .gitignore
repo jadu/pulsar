@@ -13,7 +13,7 @@
 .vagrant/
 /css
 /dist
-css/
+/css
 libs/livereload-js
 libs/phantomcss
 .vagrant
