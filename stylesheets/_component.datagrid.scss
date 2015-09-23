@@ -73,10 +73,6 @@
     }
   }
 
-  td {
-    padding: 5px;
-  }
-
   // Set up tables for smaller viewports
   tr th {
     background-color: #fff;
@@ -114,7 +110,7 @@
 
     @include respond-min($screen-tablet) {
       display: table-cell;
-      padding: 0 $gutter-width / 2;
+      padding: 5px $gutter-width / 2;
 
       vertical-align: middle;
       width: auto;
