@@ -3,6 +3,7 @@
   background-color: #fff;
   border-collapse: separate;
   outline: 1px solid $gray;
+  table-layout: fixed;
   width: 100%;
 
   @include ie-lte(7) {
