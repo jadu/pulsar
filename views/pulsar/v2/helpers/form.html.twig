@@ -51,7 +51,7 @@ items         | array  | An array of items to put in the dropdown list (usually 
 	{{
 		_self.group({
 			'parent': options
-				|only('class help id label')
+				|only('bare class help id label')
 				|merge({'class': 'form__button-group'}),
 			'controls': {'class': 'btn__group'},
 			'inputs': options.items
@@ -1152,9 +1152,8 @@ size        | int     | The number of items to display when the list is shown
 		_self.group({
 			'parent': options|only('class help id label'),
 			'inputs': [
-				elem.select(options
+				elem.select2(options
 					|exclude('class help label')
-					|merge({'class': 'js-select2'})
 				)
 			]
 		})
