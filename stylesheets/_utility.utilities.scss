@@ -97,3 +97,11 @@ p.success {
 .align-justify {
     text-align: justify;
 }
+
+.example {
+    margin-bottom: 1em;
+
+    .flash {
+        position: relative;
+    }
+}

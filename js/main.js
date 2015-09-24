@@ -21,6 +21,7 @@ var $               = require('jquery'),
 
 	clickover       = require('../libs/bootstrapx-clickover/js/bootstrapx-clickover'),
 	svgeezy         = require('../libs/svgeezy/svgeezy.min'),
+	select2         = require('../libs/select2/dist/js/select2.min'),
 	toggles         = require('../libs/jquery-toggles/toggles.min'),
 
 	ButtonComponent = require('./ButtonComponent'),
@@ -45,6 +46,9 @@ $(function () {
 
     // Use clickover enhancements for popovers
     $('[rel="clickover"]').clickover({ 'global_close': true });
+
+    // Select2 elements created my form.select2() helper
+    $('.js-select2').select2();
 
 });
 

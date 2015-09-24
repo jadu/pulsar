@@ -24,6 +24,7 @@
     "pikaday": "latest",
     "respond": "latest",
     "selectivizr": "jadu/selectivizr",
+    "select2": "~4.0.0",
     "sticky": "latest",
     "store.js": "latest",
     "svgeezy": "latest",

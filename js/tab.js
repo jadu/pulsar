@@ -140,9 +140,15 @@ var $ = require('jquery');
 	// ============
 
 	$(document).on('click.bs.tab.data-api', '[data-toggle="tab"]:not(.disabled), [data-toggle="pill"]', function (e) {
-		e.preventDefault()
-		$(this).tab('show')
-	})
+		e.preventDefault();
+
+		var target = $(this).attr('href');
+
+		$(this).tab('show');
+
+		$('.tabs__list a:not([href="' + target + '"])').parent().removeClass('is-active');
+		$('.tabs__list a[href="' + target + '"]').parent().addClass('is-active');
+	});
 
 	$(document).ready(function() {
 		// Make sure tab panes are at least as high as the tab list (otherwise they just look weird)
