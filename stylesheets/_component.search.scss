@@ -53,7 +53,7 @@ input.main-search__field::-ms-clear {
     z-index: 3;
 
     @include respond-min($screen-tablet) {
-        left: 150px;
+        left: 155px;
         right: auto;
     }
 }
