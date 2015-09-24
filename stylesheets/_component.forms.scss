@@ -185,3 +185,9 @@ $inputs: (
         @extend .btn:active;
     }
 }
+
+// Loading spinner (mainly for select/select2 elements)
+
+.form__control + .loading {
+  left: 310px;
+}
