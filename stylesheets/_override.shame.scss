@@ -168,3 +168,11 @@
         max-width: 100%;
     }
 }
+
+.table--datagrid .btn__group {
+    vertical-align: top;
+
+    @include respond-min($screen-small) {
+        vertical-align: middle;
+    }
+}
