@@ -162,7 +162,11 @@
 // New translations UI (CMS)
 
 .table--datagrid .select2 {
-    max-width: 50%;
+    max-width: 25%;
+
+    @include respond-min($screen-xsmall) {
+        max-width: 50%;
+    }
 
     @include respond-min($screen-small) {
         max-width: 100%;
