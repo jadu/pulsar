@@ -3,7 +3,6 @@
   background-color: #fff;
   border-collapse: separate;
   outline: 1px solid $gray;
-  table-layout: fixed;
   width: 100%;
 
   @include ie-lte(7) {
@@ -316,4 +315,8 @@ tr.row--no-results td {
 // I know this ain't following bem, but this is really old css and it needs to be moved over to datatables anyway
 .datagrid--underlined {
     outline: none;
+}
+
+.datagrid--fixed {
+    table-layout: fixed;
 }
