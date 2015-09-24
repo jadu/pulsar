@@ -130,15 +130,7 @@
     margin: 0;
   }
 
-  .checkbox--inline-v2,
-  .radio--inline-v2 {
-    height: 44px;
 
-    > [type="checkbox"],
-    > [type="radio"] {
-      height: auto;
-    }
-  }
 
   .form__group--small {
     .controls {
@@ -223,4 +215,26 @@
 // fixes strange issue with content-main moving off screen when dropdown in toolbar is used
 .lt-ie10 .content-main {
     clear: both;
+}
+
+// New translations UI (CMS)
+
+.table--datagrid .select2 {
+    max-width: 25%;
+
+    @include respond-min($screen-xsmall) {
+        max-width: 50%;
+    }
+
+    @include respond-min($screen-small) {
+        max-width: 100%;
+    }
+}
+
+.table--datagrid .btn__group {
+    vertical-align: top;
+
+    @include respond-min($screen-small) {
+        vertical-align: middle;
+    }
 }

@@ -1,10 +1,4 @@
-form {
-  p,
-  ul,
-  ol {
-    margin-left: $gutter-width;
-  }
-}
+
 
 fieldset {
   padding: 0;
@@ -157,4 +151,47 @@ $inputs: (
 
 .help-block {
     color: lighten($text-color, 5%);
+}
+
+.checkbox--inline-v2,
+.radio--inline-v2 {
+    height: 44px;
+
+    > [type="checkbox"],
+    > [type="radio"] {
+      height: auto;
+    }
+}
+
+.form__button-group {
+
+    > .control__label {
+        padding-top: 3px;
+    }
+
+    .controls > .control__label {
+        @extend .btn;
+    }
+
+    .controls > .control__label:not(:first-of-type) {
+        margin-left: -1px;
+    }
+
+    // Position elements outside of the container as display:none or
+    // visibility:hidden causes the inputs to stop being interactive in IE8
+    .form__control {
+        left: -9999px;
+        position: absolute;
+        top: 0;
+    }
+
+    .form__control:checked + .control__label {
+        @extend .btn:active;
+    }
+}
+
+// Loading spinner (mainly for select/select2 elements)
+
+.form__control + .loading {
+  left: 310px;
 }

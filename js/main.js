@@ -22,6 +22,7 @@ var $               = require('jquery'),
 	clickover       = require('../libs/bootstrapx-clickover/js/bootstrapx-clickover'),
 	// footable		= require('../libs/footable/js/footable'),
 	svgeezy         = require('../libs/svgeezy/svgeezy.min'),
+	select2         = require('../libs/select2/dist/js/select2.min'),
 	toggles         = require('../libs/jquery-toggles/toggles.min'),
 
 	datatables      = require('../libs/datatables/media/js/jquery.dataTables.min'),
@@ -58,6 +59,9 @@ $(function () {
 
     // Use clickover enhancements for popovers
     $('[rel="clickover"]').clickover({ 'global_close': true });
+
+    // Select2 elements created my form.select2() helper
+    $('.js-select2').select2();
 
 	var table = $('.datatable').DataTable({
 		dom: '<"dataTables_top"irf><"dataTables_actions"T>t<"dataTables_bottom"lp>',

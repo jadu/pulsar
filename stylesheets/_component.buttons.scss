@@ -121,6 +121,7 @@
     &.disabled {
       background-color: lighten($base-color, $disabled-fade);
       box-shadow: 0 2px 0 lighten($shadow-color, $disabled-fade);
+      color: $gray;
     }
 }
 
@@ -206,6 +207,7 @@
 }
 
 .btn--naked,
+.btn--naked:disabled,
 .btn--naked:hover:not(:disabled),
 .btn--naked:active,
 .btn--naked > .btn,

@@ -1,6 +1,6 @@
 {
   "name": "pulsar",
-  "version": "3.6.0",
+  "version": "3.7.2",
   "repository": {
     "type": "git",
     "url": "git@bitbucket.org:Stanton/pulsar.git"
@@ -18,7 +18,7 @@
     "datatables": "latest",
     "grunt": "latest",
     "grunt-asciify": "latest",
-    "grunt-autoprefixer": "latest",
+    "grunt-autoprefixer": "^3.0.3",
     "grunt-browserify": "latest",
     "grunt-bump": "latest",
     "grunt-contrib-clean": "latest",
@@ -58,6 +58,8 @@
     ]
   },
   "browserify-shim": {
-    "./libs/svgeezy/svgeezy.min.js": { "exports": "svgeezy" }
+    "./libs/svgeezy/svgeezy.min.js": {
+      "exports": "svgeezy"
+    }
   }
 }

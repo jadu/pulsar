@@ -1,0 +1,47 @@
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+
+<h1>form.button_group</h1>
+
+<pre>
+	form.button_group({
+		'label': 'Band',
+		'items': [
+			form.radio_inline({
+				'label': 'AM',
+				'name': 'bands'
+			}),
+			form.radio_inline({
+				'label': 'FM',
+				'name': 'bands'
+			}),
+			form.radio_inline({
+				'label': 'MW',
+				'name': 'bands'
+			})
+		]
+	})
+</pre>
+
+{%
+	set output = form.button_group({
+		'label': 'Band',
+		'items': [
+			form.radio({
+				'label': 'AM',
+				'name': 'bands'
+			}),
+			form.radio({
+				'label': 'FM',
+				'name': 'bands'
+			}),
+			form.radio({
+				'label': 'MW',
+				'name': 'bands'
+			})
+		]
+	})
+ %}
+
+{{ output }}
+
+<pre>{{ output|e }}</pre>
