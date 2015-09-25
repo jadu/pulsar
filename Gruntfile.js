@@ -51,7 +51,7 @@ module.exports = function(grunt) {
 			},
 			files: [{
 				cwd:    'stylesheets/',
-				dest:   'css/',
+				dest:   'dist/css/',
 				expand: true,
 				flatten: true,
 				ext:    '.css',
@@ -65,7 +65,7 @@ module.exports = function(grunt) {
 			},
 			files: [{
 				cwd:    'stylesheets/',
-				dest:   'css/',
+				dest:   'dist/css/',
 				expand: true,
 				flatten: true,
 				ext:    '.css',
@@ -213,7 +213,10 @@ module.exports = function(grunt) {
   });
 
  grunt.registerTask('default', ['sass:dev', 'browserify', 'watch']);
+
  grunt.registerTask('post-merge', ['sass:dev', 'browserify']);
+
+ grunt.registerTask('build', ['sass:dist_modern', 'sass:dist_ie', 'browserify']);
 
  grunt.registerTask('pre-commit', [
 	'asciify',
