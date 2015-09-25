@@ -8,13 +8,19 @@ module.exports = function(grunt) {
 	pulsar: grunt.file.readJSON('pulsar.json'),
 
 	browserify: {
+		dev: {
+			files: {
+				'dist/js/bundle.js': ['js/main.js'],
+				'dist/js/test.js': ['tests/js/index.js']
+			}
+		},
 		dist: {
 			files: {
 				'dist/js/bundle.js': ['js/main.js'],
 				'dist/js/test.js': ['tests/js/index.js']
 			},
 			options: {
-				// transform: ['uglifyify']
+				transform: ['uglifyify']
 			}
 		}
 	},
@@ -118,23 +124,23 @@ module.exports = function(grunt) {
 
 	uglify: {
 		concat: {
-		options: {
-			banner: '<%= pkg.banner %>',
-			beautify: true
-		},
-		files: {
-			'dist/js/<%= pkg.name %>.js': ['js/**/*.js']
-		}
-		},
-		minify: {
-		options: {
-			banner: '<%= pkg.banner %>',
-			compress: true,
-			report: 'min'
-		},
-		files: {
-			'dist/js/<%= pkg.name %>.min.js': ['js/**/*.js']
-		}
+			options: {
+				banner: '<%= pkg.banner %>',
+				beautify: true
+			},
+			files: {
+				'dist/js/<%= pkg.name %>.js': ['js/**/*.js']
+			}
+			},
+			minify: {
+			options: {
+				banner: '<%= pkg.banner %>',
+				compress: true,
+				report: 'min'
+			},
+			files: {
+				'dist/js/<%= pkg.name %>.min.js': ['js/**/*.js']
+			}
 		}
 	},
 
@@ -149,11 +155,21 @@ module.exports = function(grunt) {
 	},
 
 	copy: {
-		readme: {
-		src: 'docs/index.md',
-		dest: 'README.md',
-		}
-	},
+      dist: {
+        files: [{
+                expand: true,
+                cwd: '',
+                src: [
+                    'fonts/**/*',
+                    'images/**/*',
+                    'libs/**/*',
+                    'views/pulsar/**/*',
+                    'src/**/*'
+                ],
+                dest: 'dist/'
+            }]
+        }
+    },
 
 	clean: {
 		dist: ['dist'],
@@ -216,7 +232,12 @@ module.exports = function(grunt) {
 
  grunt.registerTask('post-merge', ['sass:dev', 'browserify']);
 
- grunt.registerTask('build', ['sass:dist_modern', 'sass:dist_ie', 'browserify']);
+ grunt.registerTask('build', [
+ 	'sass:dist_modern',
+ 	'sass:dist_ie',
+ 	'browserify:dist',
+ 	'copy:dist'
+ ]);
 
  grunt.registerTask('pre-commit', [
 	'asciify',
