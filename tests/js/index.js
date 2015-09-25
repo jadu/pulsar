@@ -20,7 +20,7 @@ window.sinon = sinon;
 
 require('./tabbedLayoutTest');
 require('./signinTest');
-require('./masterSwitchComponentTest');
+require('./MasterSwitchComponentTest');
 require('./ButtonComponentTest.js');
 
 if (typeof mochaPhantomJS !== 'undefined') {
