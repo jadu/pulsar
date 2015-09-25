@@ -25,7 +25,7 @@ var $               = require('jquery'),
 	toggles         = require('../libs/jquery-toggles/toggles.min'),
 
 	ButtonComponent = require('./ButtonComponent'),
-	MasterSwitchComponent = require('./masterSwitchComponent'),
+	MasterSwitchComponent = require('./MasterSwitchComponent'),
 	SignInComponent = require('./area/signin/signin');
 
 $(function () {
