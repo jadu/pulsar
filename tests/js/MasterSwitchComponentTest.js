@@ -10,6 +10,7 @@ describe('MasterSwitch component', function() {
 		this.$body = $('<body></body>').appendTo(this.$html);
 		this.$markup = $('\
 <div class="masterswitch-control">\
+	<div class="toggle"></div>\
 	<input type="checkbox" class="form__control">\
 </div>\
 <section class="masterswitch-content is-disabled">\
@@ -20,7 +21,7 @@ describe('MasterSwitch component', function() {
 </section>\
 ').appendTo(this.$html);
 
-		this.$control = this.$html.find('.masterswitch-control > input');
+		this.$control = this.$html.find('.masterswitch-control .form__control');
 		this.$content = this.$html.find('.masterswitch-content');
 		this.$contentLink = this.$html.find('.masterswitch-content a');
 		this.$contentButton = this.$html.find('.masterswitch-content button');
