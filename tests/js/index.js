@@ -3,7 +3,8 @@
 
 var chai = require('chai'),
     sinon = require('sinon'),
-    sinonChai = require('sinon-chai');
+    sinonChai = require('sinon-chai'),
+    toggles = require('../../libs/jquery-toggles/toggles.min');
 
 // Load Sinon-Chai
 chai.use(sinonChai);
@@ -19,9 +20,9 @@ window.it = it;
 window.sinon = sinon;
 
 require('./tabbedLayoutTest');
-require('./signinTest');
-require('./MasterSwitchComponentTest');
 require('./ButtonComponentTest.js');
+// require('./signinTest');
+//require('./MasterSwitchComponentTest');
 
 if (typeof mochaPhantomJS !== 'undefined') {
     mochaPhantomJS.run();
