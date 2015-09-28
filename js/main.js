@@ -20,7 +20,6 @@ var $               = require('jquery'),
 	tooltip         = require('./tooltip'),
 
 	clickover       = require('../libs/bootstrapx-clickover/js/bootstrapx-clickover'),
-	// footable		= require('../libs/footable/js/footable'),
 	svgeezy         = require('../libs/svgeezy/svgeezy.min'),
 	select2         = require('../libs/select2/dist/js/select2.min'),
 	toggles         = require('../libs/jquery-toggles/toggles.min'),
@@ -30,8 +29,7 @@ var $               = require('jquery'),
 	TableTools 		= require('../libs/datatables-tabletools/js/dataTables.tableTools'),
 
 	ButtonComponent = require('./ButtonComponent'),
-	MasterSwitchComponent = require('./masterSwitchComponent'),
-	NavMainComponent = require('./navMainComponent'),
+	MasterSwitchComponent = require('./MasterSwitchComponent'),
 	SignInComponent = require('./area/signin/signin');
 
 module.exports = {
