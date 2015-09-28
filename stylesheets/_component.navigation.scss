@@ -33,6 +33,10 @@ $nav-color-dark:  #2d89b7 !default;
         -webkit-backface-visibility: visible;
         backface-visibility: visible;
     }
+
+    .nav-list {
+        display: none;
+    }
 }
 
 /**
