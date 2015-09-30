@@ -301,6 +301,7 @@ $nav-color-dark:  #2d89b7 !default;
         color: lighten($nav-color-light, 40);
         display: block;
         height: 72px;
+        font-family: $font-family-regular;
         font-size: .75em;
         max-width: 75px;
         padding: 16px 5px 0 5px;
