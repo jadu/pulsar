@@ -11,7 +11,7 @@
   @include inline-block;
   vertical-align: middle; // match .btn alignment given font-size hack above
 
-  > .btn,
+  > .btn:not(.btn--naked),
   > .btn__group {
     border-left: 1px solid #ccc;
     border-right: 1px solid #ccc;
@@ -32,7 +32,7 @@
   margin-left: -1px;
 }
 
-.btn__group > .btn:first-of-type,
+.btn__group > .btn:not(.btn--naked):first-of-type,
 .btn__group > .btn__group:first-of-type {
   border-left-width: 0;
   border-left-width: 0;
