@@ -37,7 +37,7 @@
     "minifyify": "^6.3.0",
     "mocha": "latest",
     "mocha-phantomjs": "latest",
-    "phantomjs": "latest",
+    "phantomjs": "^1.9.18",
     "sinon": "latest",
     "sinon-chai": "latest",
     "time-grunt": "latest",

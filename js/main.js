@@ -26,6 +26,7 @@ var $               = require('jquery'),
 
 	ButtonComponent = require('./ButtonComponent'),
 	MasterSwitchComponent = require('./MasterSwitchComponent'),
+	PulsarFormComponent = require('./PulsarFormComponent'),
 	SignInComponent = require('./area/signin/signin');
 
 $(function () {
@@ -34,6 +35,9 @@ $(function () {
 
 	buttonComponent = new ButtonComponent($html);
     buttonComponent.init();
+
+    pulsarForm = new PulsarFormComponent($html);
+    pulsarForm.init();
 
     signIn = new SignInComponent($html);
     signIn.initialize();
@@ -46,9 +50,6 @@ $(function () {
 
     // Use clickover enhancements for popovers
     $('[rel="clickover"]').clickover({ 'global_close': true });
-
-    // Select2 elements created my form.select2() helper
-    $('.js-select2').select2();
 
 });
 
