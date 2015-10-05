@@ -163,6 +163,7 @@ $nav-color-dark:  #2d89b7 !default;
             .caret {
                 border-top-color: $black;
             }
+
         }
 
         .caret {
@@ -397,9 +398,16 @@ $nav-color-dark:  #2d89b7 !default;
         margin: 0 20px;
     }
 
-    .nav-link:hover {
-        background-color: darken($nav-color-dark, 2%);
-        color: white;
+    .nav-link {
+        &:hover {
+            background-color: darken($nav-color-dark, 2%);
+            color: white;
+        }
+
+        &:active {
+            background-color: $white;
+            color: $nav-color-dark;
+        }
     }
 }
 
