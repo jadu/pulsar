@@ -58,6 +58,7 @@ $greeter-button-border-color-disabled:  darken($greeter-bg-color, 10) !default;
 
 // Branding
 $greeter-brand-top-image:               '../images/branding/logo-cms-white.svg' !default;
+$greeter-brand-top-image-fallback:      '../images/branding/logo-cms-white.png' !default;
 $greeter-brand-top-width:               65px !default;
 $greeter-brand-top-height:              $greeter-brand-top-width !default;
 $greeter-brand-bottom-image:            '../images/branding/jadu-white.svg' !default;
@@ -81,9 +82,12 @@ $greeter-brand-bottom-height:           40px !default;
 \* -------------------------------------------------------------------------- */
 
 .greeter {
+  background-clip: border-box;
   background-color: $greeter-bg-color;
-  background-image: url($greeter-brand-top-image);
+  background-image: url($greeter-brand-top-image-fallback);
+  background-image: url($greeter-brand-top-image), linear-gradient(transparent, transparent);
   background-size: $greeter-brand-top-width $greeter-brand-top-height;
+  background-origin: padding-box;
   background-position: $greeter-padding $greeter-padding;
   background-repeat: no-repeat;
   color: $greeter-text-color;
@@ -91,7 +95,6 @@ $greeter-brand-bottom-height:           40px !default;
   max-width: $greeter-width-max;
   padding: $greeter-padding;
   width: $greeter-width-responsive;
-
 
   &__link {
     border-bottom: 1px solid $greeter-link-underline-color;
