@@ -13,7 +13,7 @@ window.jQuery = window.$ = require('jquery');
 var $               = require('jquery'),
 	deck            = require('./deck'),
 	dropdown        = require('./dropdown'),
-	flash           = require('./flash'),
+	// flash           = require('./flash'),
 	modal           = require('./modal'),
 	tab             = require('./tab'),
 	popover         = require('./popover'),
@@ -25,6 +25,7 @@ var $               = require('jquery'),
 	toggles         = require('../libs/jquery-toggles/toggles.min'),
 
 	ButtonComponent = require('./ButtonComponent'),
+	FlashMessageComponent = require('./FlashMessageComponent'),
 	MasterSwitchComponent = require('./MasterSwitchComponent'),
 	SignInComponent = require('./area/signin/signin');
 
@@ -34,6 +35,9 @@ $(function () {
 
 	buttonComponent = new ButtonComponent($html);
     buttonComponent.init();
+
+    flash = new FlashMessageComponent($html);
+    flash.init();
 
     signIn = new SignInComponent($html);
     signIn.initialize();
