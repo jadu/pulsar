@@ -92,14 +92,16 @@ FlashMessageComponent.prototype.render = function (message, type, icon) {
 	component.$container
 		.append($prototype)
 		.on('click', '[data-dismiss=flash]', function (e) {
-    		component.dismiss(this.closest('.flash'));
+    		component.dismiss($(this).closest('.flash'));
   		});
 
 	return true;
 };
 
 FlashMessageComponent.prototype.dismiss = function (target) {
-	$(target).fadeOut('100');
+	$(target).fadeOut('100', function() {
+		$(this).remove();
+	})
 };
 
 module.exports = FlashMessageComponent;

@@ -160,20 +160,24 @@ describe('FlashMessage component', function() {
 
     });
 
-    // describe('The dismiss button', function() {
+    describe('The dismiss button', function() {
 
-    //     beforeEach(function() {
-    //         this.flashMessage.init();
-    //         this.flashMessage.success();
-    //     });
+        beforeEach(function() {
+            this.flashMessage.init();
+            this.flashMessage.success();
+        });
 
-    //     it('should remove the flash message', function() {
-    //         var $flashElement = this.$container.find('.flash'),
-    //             $dismissButton = this.$container.find('[data-dismiss]');
+        it('should remove the flash message', function() {
 
-    //         this.$dismissButton.click();
-    //     });
+            var $dismissButton = this.$container.find('[data-dismiss]');
 
-    // });
+            $dismissButton.click();
+
+            console.log(this.$container.prop('outerHTML'));
+
+            expect(this.$container.find('.flash').length).to.equal(0);
+        });
+
+    });
 
 });
