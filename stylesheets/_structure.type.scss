@@ -116,19 +116,7 @@ hr {
 }
 
 b, strong {
-  font-family: $font-family-semibold;
-
-  i, em {
-    font-family: $font-family-semibold-italic;
-  }
-}
-
-i, em {
-  font-family: $font-family-light-italic;
-
-  b, strong {
-    font-family: $font-family-semibold-italic;
-  }
+  font-family: $font-family-regular;
 }
 
 // Stop fonts being too thin in IE8
