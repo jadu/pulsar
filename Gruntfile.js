@@ -10,16 +10,24 @@ module.exports = function(grunt) {
 	browserify: {
 		dev: {
 			files: {
-				'dist/js/bundle.js': ['js/main.js'],
-				'dist/js/test.js': ['tests/js/index.js']
-			}
-		},
-		dist: {
-			files: {
-				'dist/js/bundle.js': ['js/main.js'],
+				'dist/js/bundle.js': ['js/index.js'],
 				'dist/js/test.js': ['tests/js/index.js']
 			},
 			options: {
+                browserifyOptions: {
+                    standalone: 'pulsar'
+                }
+            }
+		},
+		dist: {
+			files: {
+				'dist/js/bundle.js': ['js/index.js'],
+				'dist/js/test.js': ['tests/js/index.js']
+			},
+			options: {
+				browserifyOptions: {
+                    standalone: 'pulsar'
+                },
 				transform: ['uglifyify']
 			}
 		}

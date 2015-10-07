@@ -1,58 +1,44 @@
-/**
- * Pulsar
- *
- * Core UI components that should always be present.
- *
- * Jadu Ltd.
- */
 
-// Fixes issue with dependencies that expect both $ and jQuery to be set
-window.jQuery = window.$ = require('jquery');
+var $html = $('html');
 
-// Global UI components
-var $               = require('jquery'),
-	deck            = require('./deck'),
-	dropdown        = require('./dropdown'),
-	// flash           = require('./flash'),
-	modal           = require('./modal'),
-	tab             = require('./tab'),
-	popover         = require('./popover'),
-	tooltip         = require('./tooltip'),
+pulsar.buttonComponent = new pulsar.ButtonComponent($html);
+pulsar.flash           = new pulsar.FlashMessageComponent($html);
+pulsar.signIn          = new pulsar.SignInComponent($html);
+pulsar.masterSwitch    = new pulsar.MasterSwitchComponent($html);
 
-	clickover       = require('../libs/bootstrapx-clickover/js/bootstrapx-clickover'),
-	svgeezy         = require('../libs/svgeezy/svgeezy.min'),
-	select2         = require('../libs/select2/dist/js/select2.min'),
-	toggles         = require('../libs/jquery-toggles/toggles.min'),
+    $(function () {
 
-	ButtonComponent = require('./ButtonComponent'),
-	FlashMessageComponent = require('./FlashMessageComponent'),
-	MasterSwitchComponent = require('./MasterSwitchComponent'),
-	SignInComponent = require('./area/signin/signin');
+        pulsar.buttonComponent.init();
+        pulsar.flash.init();
+        pulsar.signIn.init();
+        pulsar.masterSwitch.init();
 
-$(function () {
+        // Switch out .svg for .png for <img> elements in older browsers
+        pulsar.svgeezy.init('nocheck', 'png');
 
-	var $html = $('html');
+        // Use clickover enhancements for popovers
+        $('[rel="clickover"]').clickover({ 'global_close': true });
 
-	buttonComponent = new ButtonComponent($html);
-    buttonComponent.init();
+        // Select2 elements created by form.select2() helper
+        $('.js-select2').select2();
 
-    flash = new FlashMessageComponent($html);
-    flash.init();
+        $('.mobile-menu-button').on('click', function(e) {
+            e.preventDefault();
 
-    signIn = new SignInComponent($html);
-    signIn.initialize();
+            $('body').toggleClass('open-nav');
+            $(this).toggleClass('open');
 
-    masterSwitch = new MasterSwitchComponent($html);
-    masterSwitch.init();
+            if ($(this).text() == 'Menu') {
+                $(this).text('Close');
+            } else {
+                $(this).text('Menu');
+            }
+        });
 
-    // Switch out .svg for .png for <img> elements in older browsers
-    svgeezy.init('nocheck', 'png');
+        // Refresh datatables when tabs are switched, this fixes some layout issues
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+            $($.fn.dataTable.tables(true)).DataTable().columns.adjust().responsive.recalc();
+            console.log('!');
+        });
 
-    // Use clickover enhancements for popovers
-    $('[rel="clickover"]').clickover({ 'global_close': true });
-
-    // Select2 elements created my form.select2() helper
-    $('.js-select2').select2();
-
-});
-
+    });
