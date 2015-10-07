@@ -13,12 +13,17 @@ FlashMessageComponent.prototype.init = function () {
 		prototype = '<div class="flash flash--default"><button class="close" data-dismiss="flash"><i class="icon-remove"></i></button></div>';
 
 	component.$container = this.$html.find('.js-flash-container');
+	component.$flashes = this.$html.find('.flash');
 
 	if (!component.$container.length) {
 		throw new Error('Missing container with class .js-flash-container');
 	}
 
 	component.$prototype = $(prototype);
+
+	component.$flashes.on('click', '[data-dismiss=flash]', function (e) {
+    	component.dismiss($(this).closest('.flash'));
+  	});
 
 	return true;
 };

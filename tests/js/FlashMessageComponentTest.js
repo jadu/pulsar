@@ -3,6 +3,8 @@
 var $ = require('jquery'),
     FlashMessageComponent = require('../../js/FlashMessageComponent');
 
+    $.fx.off = true;
+
 describe('FlashMessage component', function() {
 
     beforeEach(function() {
@@ -15,7 +17,7 @@ describe('FlashMessage component', function() {
 
         this.$container = this.$html.find('.js-flash-container');
 
-        this.flashMessage = new FlashMessageComponent(this.$html);
+        this.flash = new FlashMessageComponent(this.$html);
 
     });
 
@@ -23,14 +25,14 @@ describe('FlashMessage component', function() {
 
         it('should return true if the container is found', function() {
             expect(
-                this.flashMessage.init()
+                this.flash.init()
             ).to.be.true;
         });
 
         it('should throw an error if the container is not found', function() {
-            this.flashMessageWithIncompleteDom = new FlashMessageComponent($());
+            this.flashWithIncompleteDom = new FlashMessageComponent($());
             expect(function () {
-                this.flashMessageWithIncompleteDom.init();
+                this.flashWithIncompleteDom.init();
             }.bind(this)).to.throw(Error);
         });
 
@@ -39,8 +41,8 @@ describe('FlashMessage component', function() {
     describe('The success method', function() {
 
         beforeEach(function() {
-            this.flashMessage.init();
-            this.flashMessage.success();
+            this.flash.init();
+            this.flash.success();
         });
 
         it('should populate the container with the flash element', function() {
@@ -70,8 +72,8 @@ describe('FlashMessage component', function() {
     describe('The error method', function() {
 
         beforeEach(function() {
-            this.flashMessage.init();
-            this.flashMessage.error();
+            this.flash.init();
+            this.flash.error();
         });
 
         it('should populate the container with the flash element', function() {
@@ -101,8 +103,8 @@ describe('FlashMessage component', function() {
     describe('The warning method', function() {
 
         beforeEach(function() {
-            this.flashMessage.init();
-            this.flashMessage.warning();
+            this.flash.init();
+            this.flash.warning();
         });
 
         it('should populate the container with the flash element', function() {
@@ -132,8 +134,8 @@ describe('FlashMessage component', function() {
     describe('The info method', function() {
 
         beforeEach(function() {
-            this.flashMessage.init();
-            this.flashMessage.info();
+            this.flash.init();
+            this.flash.info();
         });
 
         it('should populate the container with the flash element', function() {
@@ -163,17 +165,13 @@ describe('FlashMessage component', function() {
     describe('The dismiss button', function() {
 
         beforeEach(function() {
-            this.flashMessage.init();
-            this.flashMessage.success();
+            this.flash.init();
+            this.flash.success();
         });
 
         it('should remove the flash message', function() {
-
             var $dismissButton = this.$container.find('[data-dismiss]');
-
             $dismissButton.click();
-
-            console.log(this.$container.prop('outerHTML'));
 
             expect(this.$container.find('.flash').length).to.equal(0);
         });
