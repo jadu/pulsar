@@ -12,10 +12,10 @@ FlashMessageComponent.prototype.init = function () {
 	var component = this,
 		prototype = '<div class="flash flash--default"><button class="close" data-dismiss="flash"><i class="icon-remove"></i></button></div>';
 
-	component.$container = this.$html.find('.js-flash-message-container');
+	component.$container = this.$html.find('.js-flash-container');
 
 	if (!component.$container.length) {
-		throw new Error('Missing container with class .js-flash-message-container');
+		throw new Error('Missing container with class .js-flash-container');
 	}
 
 	component.$prototype = $(prototype);
@@ -99,7 +99,7 @@ FlashMessageComponent.prototype.render = function (message, type, icon) {
 };
 
 FlashMessageComponent.prototype.dismiss = function (target) {
-	$(target).fadeOut('100', function() {
+	$(target).slideUp('100', function() {
 		$(this).remove();
 	})
 };

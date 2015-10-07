@@ -8,12 +8,12 @@ describe('FlashMessage component', function() {
     beforeEach(function() {
         this.$html = $('<html></html>');
         this.$body = $('<body></body>').appendTo(this.$html);
-        this.$markup = $('<div class="js-flash-message-container"></div>').appendTo(this.$html);
+        this.$markup = $('<div class="js-flash-container"></div>').appendTo(this.$html);
         this.$flashElement = $('<div class="flash flash--default"><button class="close" data-dismiss="flash"><i class="icon-remove"></i></button></div>');
 
         $.fn.sticky = sinon.stub().returnsThis();
 
-        this.$container = this.$html.find('.js-flash-message-container');
+        this.$container = this.$html.find('.js-flash-container');
 
         this.flashMessage = new FlashMessageComponent(this.$html);
 
@@ -45,24 +45,24 @@ describe('FlashMessage component', function() {
 
         it('should populate the container with the flash element', function() {
             // console.log(this.$container.prop('outerHTML'));
-            var flashElement = this.$container.find('.flash');
-            expect(flashElement).to.not.equal(0);
+            var $flashElement = this.$container.find('.flash');
+            expect($flashElement).to.not.equal(0);
         });
 
         it('should remove the default class from the flash element', function() {
-            var flashElement = this.$container.find('.flash');
-            expect(flashElement.hasClass('flash--default')).to.be.false;
+            var $flashElement = this.$container.find('.flash');
+            expect($flashElement.hasClass('flash--default')).to.be.false;
         });
 
         it('should add the success class to the flash element', function() {
-            var flashElement = this.$container.find('.flash');
-            expect(flashElement.hasClass('flash--success')).to.be.true;
+            var $flashElement = this.$container.find('.flash');
+            expect($flashElement.hasClass('flash--success')).to.be.true;
         });
 
         it('should add the ok icon to the flash element', function() {
-            var flashElement = this.$container.find('.flash'),
-                flashIcon = flashElement.find('i');
-            expect(flashIcon.hasClass('icon-ok')).to.be.true;
+            var $flashElement = this.$container.find('.flash'),
+                $flashIcon = $flashElement.find('i');
+            expect($flashIcon.hasClass('icon-ok')).to.be.true;
         });
 
     });
@@ -76,24 +76,24 @@ describe('FlashMessage component', function() {
 
         it('should populate the container with the flash element', function() {
             // console.log(this.$container.prop('outerHTML'));
-            var flashElement = this.$container.find('.flash');
-            expect(flashElement).to.not.equal(0);
+            var $flashElement = this.$container.find('.flash');
+            expect($flashElement).to.not.equal(0);
         });
 
         it('should remove the default class from the flash element', function() {
-            var flashElement = this.$container.find('.flash');
-            expect(flashElement.hasClass('flash--default')).to.be.false;
+            var $flashElement = this.$container.find('.flash');
+            expect($flashElement.hasClass('flash--default')).to.be.false;
         });
 
         it('should add the error class to the flash element', function() {
-            var flashElement = this.$container.find('.flash');
-            expect(flashElement.hasClass('flash--error')).to.be.true;
+            var $flashElement = this.$container.find('.flash');
+            expect($flashElement.hasClass('flash--error')).to.be.true;
         });
 
         it('should add the warning-sign icon to the flash element', function() {
-            var flashElement = this.$container.find('.flash'),
-                flashIcon = flashElement.find('i');
-            expect(flashIcon.hasClass('icon-warning-sign')).to.be.true;
+            var $flashElement = this.$container.find('.flash'),
+                $flashIcon = $flashElement.find('i');
+            expect($flashIcon.hasClass('icon-warning-sign')).to.be.true;
         });
 
     });
@@ -107,24 +107,24 @@ describe('FlashMessage component', function() {
 
         it('should populate the container with the flash element', function() {
             // console.log(this.$container.prop('outerHTML'));
-            var flashElement = this.$container.find('.flash');
-            expect(flashElement).to.not.equal(0);
+            var $flashElement = this.$container.find('.flash');
+            expect($flashElement).to.not.equal(0);
         });
 
         it('should remove the default class from the flash element', function() {
-            var flashElement = this.$container.find('.flash');
-            expect(flashElement.hasClass('flash--default')).to.be.false;
+            var $flashElement = this.$container.find('.flash');
+            expect($flashElement.hasClass('flash--default')).to.be.false;
         });
 
         it('should add the warning class to the flash element', function() {
-            var flashElement = this.$container.find('.flash');
-            expect(flashElement.hasClass('flash--warning')).to.be.true;
+            var $flashElement = this.$container.find('.flash');
+            expect($flashElement.hasClass('flash--warning')).to.be.true;
         });
 
         it('should add the warning-sign icon to the flash element', function() {
-            var flashElement = this.$container.find('.flash'),
-                flashIcon = flashElement.find('i');
-            expect(flashIcon.hasClass('icon-warning-sign')).to.be.true;
+            var $flashElement = this.$container.find('.flash'),
+                $flashIcon = $flashElement.find('i');
+            expect($flashIcon.hasClass('icon-warning-sign')).to.be.true;
         });
 
     });
@@ -138,24 +138,24 @@ describe('FlashMessage component', function() {
 
         it('should populate the container with the flash element', function() {
             // console.log(this.$container.prop('outerHTML'));
-            var flashElement = this.$container.find('.flash');
-            expect(flashElement).to.not.equal(0);
+            var $flashElement = this.$container.find('.flash');
+            expect($flashElement).to.not.equal(0);
         });
 
         it('should remove the default class from the flash element', function() {
-            var flashElement = this.$container.find('.flash');
-            expect(flashElement.hasClass('flash--default')).to.be.false;
+            var $flashElement = this.$container.find('.flash');
+            expect($flashElement.hasClass('flash--default')).to.be.false;
         });
 
         it('should add the info class to the flash element', function() {
-            var flashElement = this.$container.find('.flash');
-            expect(flashElement.hasClass('flash--info')).to.be.true;
+            var $flashElement = this.$container.find('.flash');
+            expect($flashElement.hasClass('flash--info')).to.be.true;
         });
 
         it('should add the info-sign icon to the flash element', function() {
-            var flashElement = this.$container.find('.flash'),
-                flashIcon = flashElement.find('i');
-            expect(flashIcon.hasClass('icon-info-sign')).to.be.true;
+            var $flashElement = this.$container.find('.flash'),
+                $flashIcon = $flashElement.find('i');
+            expect($flashIcon.hasClass('icon-info-sign')).to.be.true;
         });
 
     });
