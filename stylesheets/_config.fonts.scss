@@ -2,6 +2,7 @@
   font-family: 'proxima_novalight';
   src: url($font-path + 'proxima_nova/proximanova-light.eot');
   src: url($font-path + 'proxima_nova/proximanova-light.eot?#iefix') format('embedded-opentype'),
+       url($font-path + 'proxima_nova/proximanova-light.woff2') format('woff2'),
        url($font-path + 'proxima_nova/proximanova-light.woff') format('woff'),
        url($font-path + 'proxima_nova/proximanova-light.ttf') format('truetype'),
        url($font-path + 'proxima_nova/proximanova-light.svg#proxima_novalight') format('svg');

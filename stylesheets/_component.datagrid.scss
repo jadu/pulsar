@@ -314,6 +314,7 @@ tr.row--no-results td {
 
 // I know this ain't following bem, but this is really old css and it needs to be moved over to datatables anyway
 .datagrid--underlined {
+    border-bottom: 1px solid $gray;
     outline: none;
 }
 
