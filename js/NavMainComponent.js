@@ -59,6 +59,7 @@ NavMainComponent.prototype.switchSecondaryNav = function(target) {
 
 	component.closeSubNavs();
 
+    component.$html.find('.nav-list.is-active').removeClass('is-active');
 	component.$html.find('[data-nav="' + target + '"]')
 		.addClass('is-active');
 };
