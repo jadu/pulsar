@@ -21,6 +21,7 @@ window.sinon = sinon;
 
 require('./tabbedLayoutTest');
 require('./ButtonComponentTest.js');
+require('./FlashMessageComponentTest.js');
 // require('./signinTest');
 //require('./MasterSwitchComponentTest');
 
