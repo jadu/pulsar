@@ -1,9 +1,7 @@
 // Constructor
 .flash {
   padding: (($line-height-base / $line-height-small) / 2) $gutter-width;
-  position: absolute;
   width: 100%;
-  z-index: $zindex-flash;
 
   &.is-sticky {
     display: none; // Flashes should be hidden on page load, then animated in so the user sees them.
@@ -93,4 +91,12 @@
       margin-right: -$gutter-width;
     }
   }
+}
+
+.flash-container {
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: $zindex-flash;
 }
