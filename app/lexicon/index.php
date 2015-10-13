@@ -35,13 +35,28 @@ $twig->addExtension(new Twig_Extension_Debug());
 
 
 
+<<<<<<< Updated upstream
 if (!isset($_SERVER['PATH'])) {
+=======
+<<<<<<< Updated upstream
+$breadcrumb = array(
+    'Pulsar' => '/',
+    'Documentation' => '/docs',
+    'Lexicon' => null
+    );
+=======
+if (!isset($_SERVER['PATH_INFO'])) {
+>>>>>>> Stashed changes
     $path = 'main';
 } else {
     $path = $_SERVER['PATH_INFO'];
 }
 
 $template = $twig->loadTemplate('lexicon/' . $path . '.html.twig');
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 
 $flashMessage = array(
     'type' => 'success',
