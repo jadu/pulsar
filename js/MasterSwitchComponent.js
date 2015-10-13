@@ -1,7 +1,9 @@
+'use strict';
+
+var $ = require('jquery');
+
 function MasterSwitchComponent(html) {
-
 	this.$html = html;
-
 };
 
 MasterSwitchComponent.prototype.init = function () {

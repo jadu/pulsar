@@ -1,10 +1,13 @@
+{% set _sidebar = block('tab_sidebar') %}
 <div class="tab__container">
 	<div class="tab__inner">
 		<div class="tab__content">
 			{% block tab_content %}{% endblock %}
 		</div>
+		{% if _sidebar is not empty %}
 		<div class="tab__sidebar">
-			{% block tab_sidebar %}{% endblock %}
+			{{ _sidebar|raw }}
 		</div>
+		{% endif %}
 	</div>
 </div>

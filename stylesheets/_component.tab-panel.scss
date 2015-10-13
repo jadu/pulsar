@@ -12,27 +12,32 @@
 			padding: 0;
 		}
 		> li > a > i {
-			font-size: 1em;
 			opacity: 1;
 		}
 	}
 
 	.tabs__content {
+		display: block;
+		padding: 0;
 		top: 0;
 	}
 
 	$width: 500px;
 
 	.tabs__list {
+		margin-bottom: 0;
 
 		> li {
 			vertical-align: top;
 		}
 
 		> li > a {
+			display: block;
+			color: black;
 			line-height: 1em;
 			padding: .5em 5px;
 			text-align: center;
+			text-decoration: none;
 			white-space: normal;
 
 			@include respond-min($screen-desktop) {

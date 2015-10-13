@@ -149,7 +149,7 @@ $nav-color-dark:  #2d89b7 !default;
 
     &__item.is-active > &__link {
         color: $black;
-        font-family: $font-family-semibold;
+        font-family: $font-family-regular;
     }
 
     &__link {
@@ -163,6 +163,7 @@ $nav-color-dark:  #2d89b7 !default;
             .caret {
                 border-top-color: $black;
             }
+
         }
 
         .caret {
@@ -301,6 +302,7 @@ $nav-color-dark:  #2d89b7 !default;
         color: lighten($nav-color-light, 40);
         display: block;
         height: 72px;
+        font-family: $font-family-regular;
         font-size: .75em;
         max-width: 75px;
         padding: 16px 5px 0 5px;
@@ -396,9 +398,16 @@ $nav-color-dark:  #2d89b7 !default;
         margin: 0 20px;
     }
 
-    .nav-link:hover {
-        background-color: darken($nav-color-dark, 2%);
-        color: white;
+    .nav-link {
+        &:hover {
+            background-color: darken($nav-color-dark, 2%);
+            color: white;
+        }
+
+        &:active {
+            background-color: $white;
+            color: $nav-color-dark;
+        }
     }
 }
 

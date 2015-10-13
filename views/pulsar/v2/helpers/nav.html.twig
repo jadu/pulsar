@@ -5,7 +5,7 @@
 <nav class="nav-main">
     <div class="nav-primary"><!--
 
-     --><a href="http://jadu.net" class="jadu-branding">
+     --><a href="{{ options.brand_link|default('#') }}" class="jadu-branding">
             <span class="jadu-logomark"></span><!--
          --><span class="jadu-wordmark">Jadu</span>
         </a><!--
@@ -29,7 +29,7 @@
                 {% if options.items is defined and options.items is iterable %}
 
         <div class="nav-list" data-nav="{{ options.href }}">
-            <span class="nav-item nav-item--header">{{ options.label }}</span>
+            <span class="nav-item nav-item--header">{{ options.label|raw }}</span>
             {% for menu_blocks in options.items %}
                 {% for item_options in menu_blocks %}
                     {{ _self.nav_item(item_options) }}
