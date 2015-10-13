@@ -3,37 +3,39 @@
 
     <ul class="tabs__list">
     {%- for tab in tabs -%}
-      <li class="{% if tab.active is defined and tab.active == tab.id %}is-active{% endif %}{% if tab.hidden is defined and tab.hidden == true %} hide{% endif %}">
+        <li class="{% if tab.active is defined and tab.active == tab.id %}is-active{% endif %}{% if tab.hidden is defined and tab.hidden == true %} hide{% endif %}">
+
+        {% set href = '#' ~ tab.id %}
+        {% if tab.src is defined and tab.src|slice(0, 1) == '#' %}
+            {% set href = tab.src %}
+        {% endif %}
 
         {%
             set options = {
                 'label': tab.label,
-                'href': '#' ~ tab.id,
+                'href': href,
                 'data-toggle': 'tab'
             }
         %}
 
-        {{
-            html.link(options|merge(tab.data|default({})))
-        }}
+            {{ html.link(options|merge(tab.data|default({}))) }}
 
-      </li>
+        </li>
     {%- endfor -%}
-  </ul>
+    </ul>
 {%- endmacro -%}
 
-
 {%- macro content(tabs) -%}
-    {% set existingSources = [] %}
-
     <div class="tabs__content">
     {%- for tab in tabs -%}
-
-        {%- if tab.src is defined and tab.src != null and tab.src not in existingSources -%}
+        {%-
+            if tab.src is defined
+            and tab.src != null
+            and tab.src is not iterable
+        -%}
             <div class="tab__pane{% if tab.active is defined and tab.active == tab.id %} is-active{% endif %}" id="{{ tab.id }}"{% if tab.attr is defined and tab.attr != null %} {{ tab.attr|raw }}{% endif %}>
                 {{ tab.src|raw }}
             </div>
-            {% set existingSources = existingSources|merge([tab.src]) %}
         {%- endif -%}
     {%- endfor -%}
     </div>
