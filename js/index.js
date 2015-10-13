@@ -26,12 +26,14 @@ var $         = require('jquery'),
     ButtonComponent = require('./ButtonComponent'),
     FlashMessageComponent = require('./FlashMessageComponent'),
     MasterSwitchComponent = require('./MasterSwitchComponent'),
+    NavMainComponent = require('./NavMainComponent'),
     SignInComponent = require('./area/signin/signin');
 
 module.exports = {
     ButtonComponent: ButtonComponent,
     FlashMessageComponent: FlashMessageComponent,
     MasterSwitchComponent: MasterSwitchComponent,
+    NavMainComponent: NavMainComponent,
     SignInComponent: SignInComponent,
     svgeezy: svgeezy
 };

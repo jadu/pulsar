@@ -1,24 +1,20 @@
 {% extends '@pulsar/pulsar/layouts/base.html.twig' %}
 
 {% block body %}
-<<<<<<< Updated upstream
+
     <header id="top">
         {% include '@pulsar/pulsar/components/flash.html.twig' %}
     </header>
-
-<<<<<<< Updated upstream
-    <div role="main" class="container">
-=======
-    {% block summary %}{% endblock %}
-=======
 
     <div role="main" class="container" id="top">
 
         <div class="flash-container js-flash-container">
             {% include '@pulsar/pulsar/components/flash.html.twig' %}
         </div>
->>>>>>> Stashed changes
->>>>>>> Stashed changes
+
+        {{ nav.primary({ 'data': nav_data|default() }) }}
+
+
 
         {% block content %}{% endblock %}
         {% block decks %}{% endblock %}

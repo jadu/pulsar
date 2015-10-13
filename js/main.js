@@ -1,17 +1,19 @@
 
 var $html = $('html');
 
-pulsar.buttonComponent = new pulsar.ButtonComponent($html);
-pulsar.flash           = new pulsar.FlashMessageComponent($html);
-pulsar.signIn          = new pulsar.SignInComponent($html);
-pulsar.masterSwitch    = new pulsar.MasterSwitchComponent($html);
+pulsar.button       = new pulsar.ButtonComponent($html);
+pulsar.flash        = new pulsar.FlashMessageComponent($html);
+pulsar.signIn       = new pulsar.SignInComponent($html);
+pulsar.masterSwitch = new pulsar.MasterSwitchComponent($html);
+pulsar.navMain      = new pulsar.NavMainComponent($html);
 
 $(function () {
 
-    pulsar.buttonComponent.init();
+    pulsar.button.init();
     pulsar.flash.init();
     pulsar.signIn.init();
     pulsar.masterSwitch.init();
+    pulsar.navMain.init();
 
     // Switch out .svg for .png for <img> elements in older browsers
     pulsar.svgeezy.init('nocheck', 'png');
