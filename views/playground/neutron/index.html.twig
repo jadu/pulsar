@@ -1,0 +1,68 @@
+{% extends '@pulsar/pulsar/layouts/tabbed.html.twig' %}
+
+{% import '@pulsar/pulsar/helpers/tabs.html.twig' as tabs %}
+
+{% set tab_summary %}{% include 'playground/neutron/tabs/servers.html.twig' %}{% endset %}
+
+
+{%
+    set nav_data = {
+        "1": {
+            "label": "Servers",
+            "class": "",
+            "href": '#servers',
+            "icon": "cloud"
+        },
+        "2": {
+            "label": "Templates",
+            "class": "",
+            "href": '#templates',
+            "icon": "archive"
+        },
+        "3": {
+            "label": "Users",
+            "class": "",
+            "href": '#membership',
+            "icon": "group"
+        }
+    }
+%}
+
+{%
+  set tabs_content = [
+    {
+      "id"        : "components",
+      "label"     : "Teams",
+      "sub_tabs"  : [
+        {
+          "id"    : "admin-summary",
+          "label" : "Comets",
+          "src"   : tab_summary
+        },
+        {
+          "id"    : "admin-activity",
+          "label" : "Stellar",
+          "src"   : tab_summary
+        },
+        {
+          "id"    : "admin-access",
+          "label" : "Spacecraft",
+          "src"   : tab_summary
+        },
+        {
+          "id"    : "admin-devices",
+          "label" : "Sysadmins",
+          "src"   : tab_summary
+        }
+      ]
+    }
+  ]
+%}
+
+{% block tabs_list %}
+    {{ tabs.tabs(tabs_content) }}
+{% endblock %}
+
+{% block tabs_content %}
+  {{ tabs.tabs_content(tabs_content) }}
+{% endblock %}

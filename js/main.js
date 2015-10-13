@@ -41,4 +41,58 @@ $(function () {
         console.log('!');
     });
 
+	var table = $('.datatable').DataTable({
+		dom: '<"dataTables_top"irf><"dataTables_actions"T>t<"dataTables_bottom"lp>',
+		aaSorting: [],
+		bAutoWidth: false,
+		columnDefs: [
+			{ "searchable": false, "targets": 0 },
+			{ "orderable": false, "targets": 0 }
+		],
+		oLanguage: {
+         sSearch: "Filter:"
+	    },
+		responsive: {
+			details: {
+	            type: 'column',
+	            target: '.table-child-toggle'
+	        }
+        },
+		stateSave: false,
+        tableTools: {
+            sRowSelect: "multi",
+            sRowSelector: '.js-select',
+            aButtons: [
+            	{
+                    "sExtends":    "collection",
+                    "sButtonText": '<i class="icon-check-minus"></i>',
+                    "aButtons":    [ "select_all", "select_none" ]
+                }
+            ]
+        }
+	});
+
+	// $('.nav-tertiary__toggle').on('click', function() {
+	// 	$('.nav-tertiary').toggleClass('is-open');
+	// 	$('.content-main').toggleClass('has-tertiary-nav')
+	// });
+
+    $('.mobile-menu-button').on('click', function(e) {
+        e.preventDefault();
+
+        $('body').toggleClass('open-nav');
+        $(this).toggleClass('open');
+
+        if ($(this).text() == 'Menu') {
+            $(this).text('Close');
+        } else {
+            $(this).text('Menu');
+        }
+    });
+
+	$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+  		$($.fn.dataTable.tables(true)).DataTable().columns.adjust().responsive.recalc();
+  		console.log('!');
+})
+
 });

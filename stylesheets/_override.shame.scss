@@ -38,6 +38,54 @@
     max-width: 100%;
 }
 
+
+
+
+
+.toolbar {
+  min-height: 24px * 2;
+
+  .user-menu .btn {
+    height: 28px;
+  }
+
+  .user-menu .dropdown__menu {
+    left: auto;
+    right: 0;
+  }
+
+}
+
+.nav-user {
+  float: right;
+  margin-top: 2px
+}
+
+.tab__title {
+  border-bottom: 1px solid #ccc;
+  line-height: 47px;
+  margin: 0 0 24px 0;
+}
+
+.heading,
+.legend {
+    line-height: 48px;
+}
+
+.main-title {
+    line-height: 23px;
+    margin-bottom: 25px;
+}
+
+.legend {
+    margin-bottom: 24px;
+    width: 100%;
+}
+
+.tab__inner .table--datagrid {
+    outline: none;
+}
+
 // Fix for P3 spacing on Q forms/fieldsets
 .form--horizontal,
 .form {
@@ -48,7 +96,7 @@
   }
 
   > fieldset {
-    padding: 22px 20px;
+    padding: 22px 0;
 
     legend {
       border-bottom: 1px solid #e5e5e5;
@@ -64,7 +112,11 @@
   }
 
   > .form__group {
-    padding: 0 20px;
+    padding: 0;
+
+    @include respond-min($screen-desktop) {
+        padding: 0 20px;
+    }
   }
 
   .form__group .form__collection .remove__control {
@@ -179,4 +231,9 @@
     @include respond-min($screen-small) {
         vertical-align: middle;
     }
+}
+
+// fixes strange issue with content-main moving off screen when dropdown in toolbar is used
+.lt-ie10 .content-main {
+    clear: both;
 }

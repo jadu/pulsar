@@ -1,13 +1,15 @@
 {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 {% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
 {% import '@pulsar/pulsar/v2/helpers/flash.html.twig' as flash %}
+{% import '@pulsar/pulsar/v2/helpers/nav.html.twig' as nav %}
 {% set cssPath  = base_path ~ 'css/' %}
 {% set jsPath   = base_path ~ 'js/' %}
 {% set libsPath = base_path ~ 'libs/' %}
 <!DOCTYPE html>
-<!--[if IE 7]>         <html class="no-js ie7"><![endif]-->
-<!--[if IE 8]>         <html class="no-js ie8"><![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"><!--<![endif]-->
+<!--[if IE 7]>         <html class="no-js ie7 lt-ie10 lt-ie8"><![endif]-->
+<!--[if IE 8]>         <html class="no-js ie8 lt-ie10 lt-ie9"><![endif]-->
+<!--[if IE 9]>         <html class="no-js ie9 lt-ie10"><![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-js"><!--<![endif]-->
 <html class="no-js">
 <head>
     <title>{% block title %}Pulsar Lexicon{% endblock %}</title>
@@ -31,6 +33,8 @@
     <!--[if IE 7]>
     <link rel="stylesheet" type="text/css" href="{{ libsPath ~ 'font-awesome/css/font-awesome-ie7.min.css' }}" />
     <![endif]-->
+
+    <link rel="stylesheet" href="http://basehold.it/24/">
 
     <script
         src="{{ base_path ~ 'dist/js/bundle.js' }}"

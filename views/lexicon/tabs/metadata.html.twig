@@ -1,12 +1,10 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
 {% import 'pulsar/v2/helpers/html.html.twig' as html %}
 {% import 'pulsar/v2/helpers/form.html.twig' as form %}
 {% import 'pulsar/helpers/flash.html.twig' as flash %}
 
-<h2 class="heading">{{ heading|raw }}</h2>
+{% block tab_content %}
 
-<div class="tab__inner tab--padded">
-
-    <h2>Metadata</h2>
     <p>Simple key/value presentation of data</p>
 
     {%
@@ -19,7 +17,7 @@
 
     {{ html.metadata({ 'items': data }) }}
 
-    <h3>Bordered variation</h3>
+    <h2 class="heading">Bordered variation</h2>
 
     {{
         html.metadata({
@@ -28,4 +26,4 @@
         })
     }}
 
-</div>
+{% endblock tab_content %}

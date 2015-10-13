@@ -436,7 +436,7 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 		if options.legend is defined
 		and options.legend is not empty
 	%}
-		<legend>{{ options.legend|raw }}</legend>
+		<legend class="legend">{{ options.legend|raw }}</legend>
 	{% endif %}
 
 {% endspaceless %}

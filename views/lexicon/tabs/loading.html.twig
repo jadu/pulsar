@@ -1,15 +1,14 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
 {% import 'pulsar/v2/helpers/html.html.twig' as html %}
 {% import 'pulsar/v2/helpers/form.html.twig' as form %}
 
-<h2 class="heading">{{ heading|raw }}</h2>
+{% block tab_content %}
 
-<div class="tab__inner tab--padded">
-
-    <h2>Standalone</h2>
+    <h2 class="heading">Standalone</h2>
     {{ html.loading() }}
     <br />
 
-    <h2>After form inputs</h2>
+    <h2 class="heading">After form inputs</h2>
     {{ form.create() }}
     {{
         form.select({
@@ -24,4 +23,4 @@
     }}
     </form>
 
-</div>
+{% endblock tab_content %}

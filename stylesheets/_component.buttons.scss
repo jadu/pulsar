@@ -209,11 +209,17 @@
 .btn--naked,
 .btn--naked:disabled,
 .btn--naked:hover:not(:disabled),
-.btn--naked:active {
+.btn--naked:active,
+.btn--naked > .btn,
+.btn--naked > .btn:active {
     background: none;
     border: none;
     box-shadow: none;
     display: inline-block;
     line-height: auto;
     vertical-align: top;
+}
+
+.btn--naked.btn__group.open .dropdown__toggle {
+    box-shadow: none;
 }

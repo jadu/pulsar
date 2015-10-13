@@ -33,18 +33,15 @@ $twig->addExtension(new TabsExtension());
 $twig->addExtension(new Twig_Extension_Debug());
 //$twig->addExtension(new Twig_Extension_Profiler($profile));
 
-$template = $twig->loadTemplate('lexicon/main.html.twig');
 
-$toolbar = array(
-    '<i class="icon-file"></i> Docs' => '#',
-    '<i class="icon-file"></i> Lexicon' => '#',
-    );
 
-$breadcrumb = array(
-    'Pulsar' => '/',
-    'Documentation' => '/docs',
-    'Lexicon' => null
-    );
+if (!isset($_SERVER['PATH'])) {
+    $path = 'main';
+} else {
+    $path = $_SERVER['PATH_INFO'];
+}
+
+$template = $twig->loadTemplate('lexicon/' . $path . '.html.twig');
 
 $flashMessage = array(
     'type' => 'success',
@@ -52,10 +49,9 @@ $flashMessage = array(
     );
 
 print $template->render(array(
-    'breadcrumb' => $breadcrumb,
-    'notifications' => 3,
-    'toolbar' => $toolbar
-    ));
+    'active_tab_id' => 'stanton'
+    )
+);
 
 // $dumper = new Twig_Profiler_Dumper_Text();
 // echo '<pre>' . $dumper->dump($profile) . '</pre>';

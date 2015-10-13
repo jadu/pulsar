@@ -1,8 +1,8 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
 {% import 'pulsar/v2/helpers/html.html.twig' as html %}
 {% import 'pulsar/v2/helpers/form.html.twig' as form %}
 {% import 'pulsar/helpers/flash.html.twig' as flash %}
 {% import 'pulsar/helpers/datagrid.html.twig' as datagrid %}
-<h2 class="heading">{{ heading|raw }}</h2>
 
 {%
     set heading = [
@@ -14,110 +14,85 @@
     ]
 %}
 
-<div class="tab__inner tab--unpadded">
-    <table id="component-table-example" class="table--datagrid">
-        <thead>
-            <tr>
-                {{ datagrid.select_all() }}
-                <th>
-                    {{ html.link({'label': heading[0]}) }}
-                    {{ html.icon('sort-by-alphabet') }}
+{% block tab_content %}
+
+    <h1 class="tab__title">Datatable</h1>
+
+    <table class="table datatable responsive">
+        <thead class="table__thead">
+            <tr class="table__tr">
+                <th class="table-selection table__th">
+
                 </th>
-                <th>
-                    {{ html.link({'label': heading[1]}) }}
-                </th>
-                <th>
-                    {{ html.link({'label': heading[2]}) }}
-                </th>
-                <th class="centered shrink-to-fit">
-                    {{ html.link({'label': heading[3]}) }}
-                </th>
-                <th>
-                    {{ html.link({'label': heading[4]}) }}
-                </th>
+
+                <th class="table__th"><a href="#" class="table-link">Name</a></th>
+                <th class="table__th"><a href="#" class="table-link">IP</a></th>
+                <th class="table__th"><a href="#" class="table-link">Status</a></th>
+                <th class="table__th"><a href="#" class="table-link">Uptime</a></th>
+                <th class="table__th"><a href="#" class="table-link">Image</a></th>
+                <th class="table__th"><a href="#" class="table-link">RAM</a></th>
+                <th class="table__th centered"><a href="#" class="table-link">CPUs</a></th>
+                <th class="table__th"><a href="#" class="table-link">Actions</a></th>
+
             </tr>
         </thead>
-        <tbody>
-            <tr>
-                {{ datagrid.select_item(1) }}
-                <td data-th="{{ heading[0] }}"><a href="#">This is a regular row</a></td>
-                <td data-th="{{ heading[1] }}">Monday 4th July, 2013</td>
-                <td data-th="{{ heading[2] }}">3 hours ago</td>
-                <td data-th="{{ heading[3]|e('css') }}" class="centered">{{ html.badge({ 'label': '5' }) }}</td>
-                <td data-th="{{ heading[4] }}">Paul Stanton</td>
+        <tbody class="table__tbody">
+{% for i in 0..499 %}
+            <tr class="table__tr">
+                <td class="table__td table-selection">
+                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                    {{ html.icon('unchecked', { 'class': 'table-row-select js-select' }) }}
+                </td>
+                <td class="table__td"><a href="#" class="table-link">Sysadmin - Ansible 1</a></td>
+                <td class="table__td monospace"><a href="#" class="table-link">10.101.0.175</a></td>
+                <td class="table__td">
+                    {{
+                        html.label({
+                            'label': 'running',
+                            'class': 'label--success'
+                        })
+                    }}
+                </td>
+                <td class="table__td">3d 4h 35m</td>
+                <td class="table__td">{{ html.icon('linux') }} Centos 6 v1.0.2</td>
+                <td class="table__td">4 GB</td>
+                <td class="table__td centered">2</td>
+                <td class="table__td">
+                    {{ html.link({ 'label': 'Reboot', 'class': 'table-action' }) }}<!--
+                    -->{{ html.link({ 'label': 'Suspend', 'class': 'table-action' }) }}<!--
+                    -->{{ html.link({ 'label': 'Shutdown', 'class': 'table-action' }) }}<!--
+                    -->{{ html.link({ 'label': 'Console', 'class': 'table-action' }) }}
+                </td>
+
             </tr>
-            <tr class="is-selected">
-                {{ datagrid.select_item(2) }}
-                <td data-th="{{ heading[0] }}"><a href="#">This row has .is-selected</a></td>
-                <td data-th="{{ heading[1] }}">Monday 4th July, 2013</td>
-                <td data-th="{{ heading[2] }}">3 hours ago</td>
-                <td data-th="{{ heading[3]|e('css') }}" class="centered">{{ html.badge({ 'label': '5' }) }}</td>
-                <td data-th="{{ heading[4] }}">Paul Stanton</td>
+
+            <tr class="table__tr">
+                <td class="table__td table-selection">
+                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle'}) }}
+                    {{ html.icon('unchecked', { 'class': 'table-row-select js-select' }) }}
+                </td>
+                <td class="table__td"><a href="#" class="table-link">Sysasdmin - WISP 1</a></td>
+                <td class="table__td monospace"><a href="#" class="table-link">10.101.0.138</a></td>
+                <td class="table__td">
+                    {{
+                        html.label({
+                            'label': 'suspended'
+                        })
+                    }}
+                </td>
+                <td class="table__td">17w 3d 4h 35m</td>
+                <td class="table__td">{{ html.icon('windows') }} Windows Server 2012 R2 v1.0.0</td>
+                <td class="table__td">2 GB</td>
+                <td class="table__td centered">1</td>
+                <td class="table__td">
+                    {{ html.link({ 'label': 'Reboot', 'class': 'table-action' }) }}<!--
+                    -->{{ html.link({ 'label': 'Suspend', 'class': 'table-action' }) }}<!--
+                    -->{{ html.link({ 'label': 'Shutdown', 'class': 'table-action' }) }}<!--
+                    -->{{ html.link({ 'label': 'Console', 'class': 'table-action' }) }}
+                </td>
             </tr>
-            <tr class="row--highlight">
-                {{ datagrid.select_item(3) }}
-                <td data-th="{{ heading[0] }}"><a href="#">This row has .row--highlight</a></td>
-                <td data-th="{{ heading[1] }}">Monday 4th July, 2013</td>
-                <td data-th="{{ heading[2] }}">3 hours ago</td>
-                <td data-th="{{ heading[3]|e('css') }}" class="centered">{{ html.badge({ 'label': '5' }) }}</td>
-                <td data-th="{{ heading[4] }}">Paul Stanton</td>
-            </tr>
-            <tr class="row--success-highlight">
-                {{ datagrid.select_item(4) }}
-                <td data-th="{{ heading[0] }}"><a href="#">This row has .row--success-highlight</a></td>
-                <td data-th="{{ heading[1] }}">Monday 4th July, 2013</td>
-                <td data-th="{{ heading[2] }}">3 hours ago</td>
-                <td data-th="{{ heading[3]|e('css') }}" class="centered">{{ html.badge({ 'label': '5' }) }}</td>
-                <td data-th="{{ heading[4] }}">Paul Stanton</td>
-            </tr>
-            <tr class="row--danger-highlight">
-                {{ datagrid.select_item(5) }}
-                <td data-th="{{ heading[0] }}"><a href="#">This row has .row--danger-highlight</a></td>
-                <td data-th="{{ heading[1] }}">Monday 4th July, 2013</td>
-                <td data-th="{{ heading[2] }}">3 hours ago</td>
-                <td data-th="{{ heading[3]|e('css') }}" class="centered">{{ html.badge({ 'label': '5' }) }}</td>
-                <td data-th="{{ heading[4] }}">Paul Stanton</td>
-            </tr>
-            <tr class="row--warning-highlight">
-                {{ datagrid.select_item(6) }}
-                <td data-th="{{ heading[0] }}"><a href="#">This row has .row--warning-highlight</a></td>
-                <td data-th="{{ heading[1] }}">Monday 4th July, 2013</td>
-                <td data-th="{{ heading[2] }}">3 hours ago</td>
-                <td data-th="{{ heading[3]|e('css') }}" class="centered">{{ html.badge({ 'label': '5' }) }}</td>
-                <td data-th="{{ heading[4] }}">Paul Stanton</td>
-            </tr>
-            <tr class="has-info">
-                {{ datagrid.select_item(7) }}
-                <td data-th="{{ heading[0] }}"><a href="#">.has-info</a></td>
-                <td data-th="{{ heading[1] }}">Monday 4th July, 2013</td>
-                <td data-th="{{ heading[2] }}">3 hours ago</td>
-                <td data-th="{{ heading[3]|e('css') }}" class="centered">{{ html.badge({ 'label': '5' }) }}</td>
-                <td data-th="{{ heading[4] }}">Paul Stanton</td>
-            </tr>
-            <tr class="has-success fade">
-                {{ datagrid.select_item(8) }}
-                <td data-th="{{ heading[0] }}"><a href="#">.has-success</a></td>
-                <td data-th="{{ heading[1] }}">Monday 4th July, 2013</td>
-                <td data-th="{{ heading[2] }}">3 hours ago</td>
-                <td data-th="{{ heading[3]|e('css') }}" class="centered">{{ html.badge({ 'label': '5' }) }}</td>
-                <td data-th="{{ heading[4] }}">Paul Stanton</td>
-            </tr>
-            <tr class="has-error">
-                {{ datagrid.select_item(9) }}
-                <td data-th="{{ heading[0] }}"><a href="#">.has-error</a></td>
-                <td data-th="{{ heading[1] }}">Monday 4th July, 2013</td>
-                <td data-th="{{ heading[2] }}">3 hours ago</td>
-                <td data-th="{{ heading[3]|e('css') }}" class="centered">{{ html.badge({ 'label': '5' }) }}</td>
-                <td data-th="{{ heading[4] }}">Paul Stanton</td>
-            </tr>
-            <tr class="has-warning">
-                {{ datagrid.select_item(10) }}
-                <td data-th="{{ heading[0] }}"><a href="#">.has-warning</a></td>
-                <td data-th="{{ heading[1] }}">Monday 4th July, 2013</td>
-                <td data-th="{{ heading[2] }}">3 hours ago</td>
-                <td data-th="{{ heading[3]|e('css') }}" class="centered">{{ html.badge({ 'label': '5' }) }}</td>
-                <td data-th="{{ heading[4] }}">Paul Stanton</td>
-            </tr>
+{% endfor %}
         </tbody>
     </table>
-</div>
+
+{% endblock tab_content %}

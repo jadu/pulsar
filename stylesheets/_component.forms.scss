@@ -8,11 +8,15 @@ fieldset {
 
 .form {
     background-color: $white;
-    padding: 1em 20px 0 20px;
+    // padding: 0 20px 0 20px;
+}
+
+.form--standalone {
+    padding: 0 20px 20px 20px;
 }
 
 .form__group {
-    margin-bottom: 1em;
+    margin-bottom: 24px;
 }
 
 .form__control {
@@ -21,7 +25,9 @@ fieldset {
 
     &.checkbox,
     &.radio {
+        border: 0 !important;
         height: 16px;
+        padding: 0 !important;
         vertical-align: top;
     }
 
@@ -61,12 +67,9 @@ fieldset {
 }
 
 .form__actions {
-    border-top: 1px solid #ccc;
-    box-shadow: none;
-    margin-left: -20px;
-    margin-right: -20px;
+    border-top: 1px solid $gray;
     min-height: 60px;
-    padding: $line-height-base $gutter-width;
+    padding: $line-height-base 0;
     position: relative;
 
     @include respond-min($screen-desktop) {
@@ -102,6 +105,7 @@ $inputs: (
 .form__control:not(.checkbox):not(.radio) {
 
     // form elements should be 100% on mobile
+    background-color: #fafafa;
     width: 100%;
 
     @include respond-min($screen-tablet) {
