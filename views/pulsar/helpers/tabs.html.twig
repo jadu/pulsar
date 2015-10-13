@@ -5,12 +5,16 @@
 	{%- for tab in tabs -%}
 	  <li class="{% if tab.active is defined and tab.active == tab.id %}is-active{% endif %}{% if tab.hidden is defined and tab.hidden == true %} hide{% endif %}">
 
+        {%
+            set options = {
+                'label': tab.label,
+                'href': '#' ~ tab.id,
+                'data-toggle': 'tab'
+            }
+        %}
+
 		{{
-			html.link({
-				'label': tab.label,
-				'href': '#' ~ tab.id,
-				'data-toggle': 'tab'
-			})
+			html.link(options|merge(tab.data|default({})))
 		}}
 
 		{%-
