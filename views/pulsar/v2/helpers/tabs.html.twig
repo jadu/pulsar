@@ -1,0 +1,9 @@
+{%- macro content(tabs) -%}
+    {%- for tab in tabs -%}
+        {%- if tab.src is defined and tab.src != null -%}
+            <div class="tab__pane{% if tab.active is defined and tab.active == tab.id %} is-active{% endif %}" id="{{ tab.id }}"{% if tab.attr is defined and tab.attr != null %} {{ tab.attr|raw }}{% endif %}>
+                {{ tab.src|raw }}
+            </div>
+        {%- endif -%}
+    {%- endfor -%}
+{%- endmacro -%}
