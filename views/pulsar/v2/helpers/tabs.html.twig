@@ -26,13 +26,27 @@
 {%- endmacro -%}
 
 {%- macro content(tabs) -%}
+    {%- set active_tab = '' -%}
+    {%- for tab in tabs -%}
+        {% if tab.active and tab.src|slice(0, 1) == '#' %}
+            {% set active_tab = tab.src %}
+        {% endif %}
+    {%- endfor -%}
+
     <div class="tabs__content">
     {%- for tab in tabs -%}
         {%- if tab.src is defined and tab.src != null and tab.src|slice(0, 1) != '#' -%}
-            <div class="tab__pane{% if tab.active is defined and tab.active == tab.id %} is-active{% endif %}" id="{{ tab.id }}"{% if tab.attr is defined and tab.attr != null %} {{ tab.attr|raw }}{% endif %}>
+            <div class="tab__pane{% if (tab.active is defined and tab.active == tab.id) or (active_tab == '#' ~ tab.id) %} is-active{% endif %}" id="{{ tab.id }}"{% if tab.attr is defined and tab.attr != null %} {{ tab.attr|raw }}{% endif %}>
                 {{ tab.src|raw }}
             </div>
         {%- endif -%}
     {%- endfor -%}
     </div>
 {%- endmacro -%}
+
+
+
+
+
+
+
