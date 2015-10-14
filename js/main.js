@@ -24,6 +24,7 @@ $(function () {
     // Select2 elements created by form.select2() helper
     $('.js-select2').select2();
 
+    // Open navigation (should be added to NavMainComponent)
     $('.mobile-menu-button').on('click', function(e) {
         e.preventDefault();
 
@@ -73,28 +74,5 @@ $(function () {
             ]
         }
 	});
-
-	// $('.nav-tertiary__toggle').on('click', function() {
-	// 	$('.nav-tertiary').toggleClass('is-open');
-	// 	$('.content-main').toggleClass('has-tertiary-nav')
-	// });
-
-    $('.mobile-menu-button').on('click', function(e) {
-        e.preventDefault();
-
-        $('body').toggleClass('open-nav');
-        $(this).toggleClass('open');
-
-        if ($(this).text() == 'Menu') {
-            $(this).text('Close');
-        } else {
-            $(this).text('Menu');
-        }
-    });
-
-	$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-  		$($.fn.dataTable.tables(true)).DataTable().columns.adjust().responsive.recalc();
-  		console.log('!');
-})
 
 });
