@@ -1,15 +1,64 @@
+.content-main {
+    position: relative;
+    display: table;
+    table-layout: fixed;
+    width: 100%
+}
+
+.inner-wrapper {
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: none;
+    -webkit-transition: -webkit-transform 500ms ease;
+    backface-visibility: hidden;
+    display: table;
+    height: 100%;
+    left: 0;
+    position: relative;
+    transform: none;
+    transition: transform 500ms ease;
+    width: 100%;
+
+    .lt-ie10 & {
+        left: 0;
+    }
+
+    @include respond-min($screen-desktop) {
+        display: table-row;
+        left: auto;
+        position: static;
+    }
+}
+
+.open-nav .inner-wrapper {
+    -webkit-transform: translate3d(75px, 0, 0) scale3d(1, 1, 1);
+    transform: translate3d(75px, 0, 0) scale3d(1, 1, 1);
+
+    @include respond-min($screen-desktop) {
+        -webkit-backface-visibility: hidden;
+        -webkit-transform: none;
+        -webkit-transition: -webkit-transform 500ms ease;
+        backface-visibility: hidden;
+        transform: none;
+        transition: transform 500ms ease;
+        width: 100%;
+    }
+
+    .lt-ie10 & {
+        left: 75px;
+    }
+}
 
 .tabs__content {
+  @include clear-fix;
   display: table-cell;
   padding: 0 20px;
-  overflow: auto;
+  // overflow: hidden; experimenting with turning this off to allow left positioned tooltips to work, shout up if it breaks anything
   vertical-align: top;
   width: 100%;
 
   // show/hide tab panes
   > .tab__pane {
     display: none;
-    margin-top: 32px;
 
     &.is-active {
       display: block;
@@ -77,52 +126,41 @@
 }
 
 
-.tab__container {
-
-	float: left;
-	width: 100%;
-
-	.tab__inner {
-
-		width: 100%;
-
-		@include respond-min($screen-tablet) {
-
-			width: 70%;
-		}
-	}
-}
-
 // experimenting with new tab rendering
 
 .tab__container {
-	display: table;
-	float: none;
-	height: 100%;
+    float: none;
+    height: 100%;
+
+  // @include respond-min($screen-desktop) {
+  //   display: table;
+  // }
 }
 
-.tab__container .tab__inner {
-	display: table-cell;
-	float: none;
-	height: 100%;
-	vertical-align: top;
-}
+.tab__container {
+    .tab__inner {
+        float: none;
+        height: 100%;
+        vertical-align: top;
+        width: 100%;
 
-.tab__content {
-    display: table-cell;
-}
+        @include respond-min($screen-desktop) {
+            display: table;
+        }
+    }
 
-.sidebar__header {
-    border-bottom: 0;
-    font-size: 1.2em;
-}
+    .tab__content {
+        @include respond-min($screen-desktop) {
+            display: table-cell;
+            width: 70%;
+        }
+    }
 
-.tab__sidebar {
-    display: none;
-    width: 400px;
-    margin-left: 20px;
-
-    @include respond-min($screen-desktop) {
-        display: block;
+    .tab__sidebar {
+        @include respond-min($screen-desktop) {
+            display: table-cell;
+            width: 30%;
+        }
     }
 }
+
