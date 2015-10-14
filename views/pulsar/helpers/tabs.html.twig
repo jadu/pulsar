@@ -3,15 +3,15 @@
 
 	<ul class="tabs__list">
 	{%- for tab in tabs -%}
-	  <li class="{% if tab.active is defined and tab.active == tab.id %}is-active{% endif %}{% if tab.hidden is defined and tab.hidden == true %} hide{% endif %}">
+		<li class="{% if tab.active is defined and tab.active == tab.id %}is-active{% endif %}{% if tab.hidden is defined and tab.hidden == true %} hide{% endif %}">
 
-        {%
-            set options = {
-                'label': tab.label,
-                'href': '#' ~ tab.id,
-                'data-toggle': 'tab'
-            }
-        %}
+		{%
+			set options = {
+				'label': tab.label,
+				'href': '#' ~ tab.id,
+				'data-toggle': 'tab'
+			}
+		%}
 
 		{{
 			html.link(options|merge(tab.data|default({})))
@@ -21,10 +21,10 @@
 			if tab.sub_tabs is defined
 			and tab.sub_tabs != null
 		%}
-		  <ul class="tabs__list">
+			<ul class="tabs__list">
 
 			{%- for sub_tab in tab.sub_tabs -%}
-			  <li class="{% if sub_tab.active is defined and tab.active == sub_tab.id %}is-active{% endif %}{% if tab.hidden is defined and sub_tab.hidden == true %} hide{% endif %}">
+				<li class="{% if sub_tab.active is defined and tab.active == sub_tab.id %}is-active{% endif %}{% if tab.hidden is defined and sub_tab.hidden == true %} hide{% endif %}">
 				{{
 					html.link({
 						'label': sub_tab.label,
@@ -32,16 +32,16 @@
 						'data-toggle': 'tab'
 					})
 				}}
-			  </li>
+				</li>
 			{%- endfor -%}
 
-		  </ul>
+			</ul>
 		{%- endif -%}
 
-	  </li>
+		</li>
 	{%- endfor -%}
 
-  </ul>
+	</ul>
 
 {%- endmacro -%}
 
