@@ -51,52 +51,54 @@
 
 {% block body %}
     <div role="main" class="container" id="top">
-        {{ nav.primary({ 'data': nav_data|default() }) }}
+        <div class="inner-wrapper">
+            {{ nav.primary({ 'data': nav_data|default() }) }}
 
-        <div class="flash-container js-flash-container">
-            {% include '@pulsar/pulsar/components/flash.html.twig' %}
-        </div>
-
-        <div class="toolbar">
-
-            <a href="#" class="mobile-menu-button">Menu</a>
-
-            <div class="nav-user">
-                {{
-                    html.button_dropdown({
-                        "label": "Paul Stanton",
-                        "class": "user-menu btn--naked",
-                        "items": [
-                            html.link({
-                                "label": html.icon('user') ~ " My details",
-                                "href": "#foo"
-                            }),
-                            html.link({
-                                "label": html.icon('key') ~ " Change password",
-                                "href": "#foo"
-                            }),
-                            html.divider(),
-                            html.link({
-                                "label": html.icon('power-off') ~ " Sign out",
-                                "href": "#foo"
-                            }),
-                        ]
-                    })
-                }}
+            <div class="flash-container js-flash-container">
+                {% include '@pulsar/pulsar/components/flash.html.twig' %}
             </div>
 
-        </div>
+            <div class="toolbar">
 
-        <form action="/search" class="main-search" data-ui="search-box">
-            <input type="search" name="q" id="case-search" value="" placeholder="Search" class="main-search__field" autocomplete="off">
-            <button class="main-search__submit" type="submit" name="case-search"><i class="icon-search"></i></button>
-        </form>
+                <a href="#" class="mobile-menu-button">Menu</a>
 
-        <div class="content-main">
-            <div class="tabs__content">
-                <h1 class="main-title">{{ heading|default('MISSING HEADING') }}</h1>
-                {% block tabs_list %}{% endblock %}
-                {% block tabs_content %}{% endblock %}
+                <div class="nav-user">
+                    {{
+                        html.button_dropdown({
+                            "label": "Paul Stanton",
+                            "class": "user-menu btn--naked",
+                            "items": [
+                                html.link({
+                                    "label": html.icon('user') ~ " My details",
+                                    "href": "#foo"
+                                }),
+                                html.link({
+                                    "label": html.icon('key') ~ " Change password",
+                                    "href": "#foo"
+                                }),
+                                html.divider(),
+                                html.link({
+                                    "label": html.icon('power-off') ~ " Sign out",
+                                    "href": "#foo"
+                                }),
+                            ]
+                        })
+                    }}
+                </div>
+
+            </div>
+
+            <form action="/search" class="main-search" data-ui="search-box">
+                <input type="search" name="q" id="case-search" value="" placeholder="Search" class="main-search__field" autocomplete="off">
+                <button class="main-search__submit" type="submit" name="case-search"><i class="icon-search"></i></button>
+            </form>
+
+            <div class="content-main">
+                <div class="tabs__content">
+                    <h1 class="main-title">{{ heading|default('MISSING HEADING') }}</h1>
+                    {% block tabs_list %}{% endblock %}
+                    {% block tabs_content %}{% endblock %}
+                </div>
             </div>
         </div>
     </div>
