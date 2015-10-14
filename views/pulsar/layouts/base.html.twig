@@ -45,25 +45,17 @@
 {% endif %}
     ></script>
     <script src="{{ base_path ~ 'js/main.js' }}" type="text/javascript"></script>
-
     {% block pageStyle %}{% endblock %}
-
 </head>
-<body class="language-html">
+<body class="language-html" id="top">
 
-    {% block body %}
-
-    <header id="top">
-        {% include '@pulsar/pulsar/components/flash.html.twig' %}
-    </header>
-
+{% block body %}
     <div role="main" class="container" id="top">
+        {{ nav.primary({ 'data': nav_data|default() }) }}
 
         <div class="flash-container js-flash-container">
             {% include '@pulsar/pulsar/components/flash.html.twig' %}
         </div>
-
-        {{ nav.primary({ 'data': nav_data|default() }) }}
 
         <div class="toolbar">
 

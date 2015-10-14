@@ -1,9 +1,8 @@
 {% macro primary(options) %}
 {% spaceless %}
-    {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
-
-<nav class="nav-main">
-    <div class="nav-primary"><!--
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+<nav class="nav-main"><!--
+ --><div class="nav-primary"><!--
 
      --><a href="{{ options.brand_link|default('#') }}" class="jadu-branding">
             <span class="jadu-logomark"></span><!--
