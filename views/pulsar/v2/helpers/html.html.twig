@@ -855,13 +855,14 @@ contain information about what object should be removed.
 
 ## Options
 
-Option  | Type   | Description
-------- | ------ | -------------------------------------------------------------
-class   | string | A space separated list of class names
-id      | string | A unique identifier, if required
-target  | string | CSS Selector of the item to be removed, will be turned into the `data-action-target` attribute
-type    | string | Can be `button` (default), `link`, `input`, `submit`
-data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
+Option    | Type   | Description
+--------- | ------ | -------------------------------------------------------------
+class     | string | A space separated list of class names
+id        | string | A unique identifier, if required
+target    | string | CSS Selector of the item to be removed, will be turned into the `data-action-target` attribute
+type      | string | Can be `button` (default), `link`, `input`, `submit`
+data-*    | string | Data attributes, eg: `'data-foo': 'bar'`
+placement | string | Can be `bottom`, `left`, `right`, `top`
 
 #}
 {% macro remove_button(options = {}) %}
@@ -875,7 +876,7 @@ data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
 			'type': options.type|default('button'),
 			'data-action': 'remove',
 			'data-action-target': options.target|default,
-			'data-placement': 'right',
+			'data-placement': options.placement|default('right'),
 			'data-toggle': 'tooltips',
 			'data-title': options.tooltip|default('Remove this item')
 		}))
