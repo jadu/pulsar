@@ -2,22 +2,30 @@
     background-color: #efefef;
     display: block;
     float: left;
-    margin-bottom: 23px;
+    height: 72px;
+    margin-bottom: 18px;
     padding: 18px 20px;
     width: 100%;
 
     @include respond-min($screen-desktop) {
         background-color: $white;
-        margin-bottom: 19px;
+        margin-bottom: 0;
         padding: 18px 20px 0;
     }
 }
 
 .user-menu {
-    padding-top: 5px;
+    > .btn {
+        height: 35px;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    > .dropdown__menu {
+        left: auto;
+        right: 0;
+    }
 }
 
-.user-menu > .btn {
-	padding-left: 0;
-	padding-right: 0;
+.nav-user {
+    float: right;
 }
