@@ -23,13 +23,5 @@
         &:hover {
             color: $link-color;
         }
-
-        &:last-child {
-            float: right;
-
-            @include respond-min($screen-tablet) {
-                float: none;
-            }
-        }
     }
 }

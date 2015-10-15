@@ -26,39 +26,6 @@ body {
   }
 }
 
-// Make sure flash messages properly clear header/toolbar
-#top {
-  @include clear-fix;
-}
-
-// .heading {
-//   @include inline-block;
-//   font-family: $font-family-light;
-//   line-height: $line-height-base * 2;
-//   margin: ceil($line-height-base / $line-height-small) $gutter-width 0 0;
-
-//   @include respond-max($screen-tablet) {
-//     font-size: $font-size-large;
-//     line-height: $line-height-base * 2;
-//     margin: 0 0 0 ($sidebar-column-width-tablet + $gutter-width / 2);
-//   }
-
-//   @include respond-max($screen-tablet) {
-//     margin-top: $line-height-base * 2;
-//     margin-left: $gutter-width / 2;
-//   }
-// }
-
-.container {
-  clear: both;
-  display: table;
-  height: 100%;
-  margin: 0;
-  overflow: visible;
-  position: relative;
-  width: 100%;
-}
-
 // Links
 
 a {
