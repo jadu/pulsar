@@ -1,9 +1,9 @@
-{% extends '@pulsar/pulsar/layouts/tabbed.html.twig' %}
+{% extends '@pulsar/pulsar/layouts/base.html.twig' %}
 
 {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 {% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
-{% import '@pulsar/pulsar/helpers/flash.html.twig' as flash %}
-{% import '@pulsar/pulsar/helpers/tabs.html.twig' as tabs %}
+{% import '@pulsar/pulsar/v2/helpers/tabs.html.twig' as tabs %}
+{% import '@pulsar/pulsar/v2/helpers/flash.html.twig' as flash %}
 
 {% block title %}{{ parent() }}{% endblock %}
 
@@ -29,9 +29,8 @@
     ]
 %}
 
-{% set tab_decks %}{% include           'lexicon/tabs/decks.html.twig' %}{% endset %}
-{% set tab_modals %}{% include          'lexicon/tabs/modals.html.twig' %}{% endset %}
-{% set tab_popovers %}{% include        'lexicon/tabs/popovers.html.twig' %}{% endset %}
+{% set tab_modals %}{% include   'lexicon/tabs/modals.html.twig' %}{% endset %}
+{% set tab_popovers %}{% include 'lexicon/tabs/popovers.html.twig' %}{% endset %}
 
 {%
     set nav_data = {
@@ -70,11 +69,6 @@
 {%
     set tabs_content = [
         {
-          "id"    : "decks",
-          "label" : "Decks",
-          "src"   : tab_decks
-        },
-        {
           "id"    : "modals",
           "label" : "Modals",
           "src"   : tab_modals
@@ -88,11 +82,11 @@
 %}
 
 {% block tabs_list %}
-    {{ nav.tabs(tabs_content) }}
+    {{ tabs.list(tabs_content) }}
 {% endblock %}
 
 {% block tabs_content %}
-    {{ tabs.tabs_content(tabs_content) }}
+    {{ tabs.content(tabs_content) }}
 {% endblock %}
 
 {% block javascript %}
