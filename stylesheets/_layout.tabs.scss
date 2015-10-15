@@ -157,6 +157,8 @@
     }
 
     .tab__sidebar {
+        display: none;
+
         @include respond-min($screen-desktop) {
             display: table-cell;
             width: 30%;
