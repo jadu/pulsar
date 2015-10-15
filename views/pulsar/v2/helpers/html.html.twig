@@ -22,7 +22,7 @@ label  | string | The value to display, usually an integer
 data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
-{% macro badge(options = {}) %}
+{% macro badge(options) %}
 {% spaceless %}
 	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
@@ -71,7 +71,7 @@ type    | string | Can be `button` (default), `link`, `input`, `submit`
 data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
-{% macro button(options = {}) %}
+{% macro button(options) %}
 {% spaceless %}
 	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
@@ -159,7 +159,7 @@ id      | string | A unique identifier, if required
 data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
-{% macro button_group(options = {}) %}
+{% macro button_group(options) %}
 {% spaceless %}
 	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
@@ -216,7 +216,7 @@ placement | string | the alignment of the dropdown menu, `left` (default) or `ri
 data-*    | string | Data attributes, eg: `'data-foo': 'bar'` (applied to the button)
 
 #}
-{% macro button_dropdown(options = {}) %}
+{% macro button_dropdown(options) %}
 {% spaceless %}
 	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
@@ -295,7 +295,7 @@ Option | Type   | Description
 class  | string | CSS classes, space separated
 
 #}
-{% macro icon(icon_name, options = {}) %}
+{% macro icon(icon_name, options) %}
 {% spaceless %}
 	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
@@ -331,7 +331,7 @@ label  | string | The value to display
 data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
-{% macro label(options = {}) %}
+{% macro label(options) %}
 {% spaceless %}
 	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
@@ -382,7 +382,7 @@ labels | array  | The labels to group
 data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
-{% macro label_group(options = {}) %}
+{% macro label_group(options) %}
 {% spaceless %}
 	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
@@ -431,7 +431,7 @@ label  | string | The link text label
 data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
-{% macro link(options = {}) %}
+{% macro link(options) %}
 {% spaceless %}
 	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
@@ -477,7 +477,7 @@ type        | string | `ul` (default), `ol`
 data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
-{% macro list(options = {}) %}
+{% macro list(options) %}
 {% spaceless %}
 	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 	{% set list_type = options.type|default('ul') %}
@@ -541,7 +541,7 @@ type        | string | ul (default) | ol
 data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
-{% macro link_list(options = {}) %}
+{% macro link_list(options) %}
 {% spaceless %}
 	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 	{% set items = [] %}
@@ -598,7 +598,7 @@ value  | string | The value to display
 data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
-{% macro li(options = {}) %}
+{% macro li(options) %}
 {% spaceless %}
 	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
@@ -637,7 +637,7 @@ id     | string | A unique identifier, if required
 data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
-{% macro loading(options = {}) %}
+{% macro loading(options) %}
 {% spaceless %}
 	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
@@ -688,7 +688,7 @@ items  | hash   | A hash of data where key: value = title: description
 data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
-{% macro metadata(options = {}) %}
+{% macro metadata(options) %}
 {% spaceless %}
 	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
@@ -743,7 +743,7 @@ title  | string | The title of the panel
 data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
-{% macro panel(options = {}) %}
+{% macro panel(options) %}
 {% spaceless %}
 	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
@@ -799,7 +799,7 @@ value_visible | bool   | Whether to visually display the value inside the bar (d
 data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
-{% macro progress(options = {}) %}
+{% macro progress(options) %}
 {% spaceless %}
 	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
@@ -865,7 +865,7 @@ type      | string | Can be `button` (default), `link`, `input`, `submit`
 data-*    | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
-{% macro remove_button(options = {}) %}
+{% macro remove_button(options) %}
 {% spaceless %}
 	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
