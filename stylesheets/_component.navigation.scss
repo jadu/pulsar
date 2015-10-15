@@ -35,18 +35,6 @@ $nav-color-dark:  #2d89b7 !default;
     }
 }
 
-/**
- * Allow the main tabbed layout to cope with the tabs__list switching between
- * table-row and table-cell while maintaining its fixed width. Otherwise, when
- * it switches back to table-cell it has 50% of the table width.
- *
- * This behaviour is only present when user shows the nav at small viewports,
- * then manually enlarges the browser window.
- */
-.has-tertiary-nav {
-    table-layout: auto;
-}
-
 .nav-primary,
 .nav-secondary {
     display: inline-block;
@@ -57,59 +45,6 @@ $nav-color-dark:  #2d89b7 !default;
     position: relative;
     vertical-align: top;
 }
-
-// Should be removed - replaced by nav-inline
-.nav-tertiary {
-    background-color: $inverse-color;
-    box-shadow: inset -4px 0 0 rgba(0,0,0,.05);
-    display: none;
-    min-width: 250px;
-    max-width: 250px;
-    overflow: hidden;
-    width: 250px;
-    vertical-align: top;
-
-    @include respond-min($screen-desktop) {
-        display: table-cell;
-    }
-
-    &.is-open {
-        display: table-row;
-
-        @include respond-min($screen-desktop) {
-            display: table-cell;
-        }
-    }
-
-    &--light {
-        background-color: #efefef;
-    }
-
-}
-
-// Should be removed - replaced by nav-inline
-.nav-tertiary__toggle {
-    display: none;
-    z-index: 1;
-
-    @include respond-max($screen-desktop) {
-        display: block;
-        position: absolute;
-        top: 6px;
-        left: 20px;
-    }
-
-    &:hover {
-        top: 7px;
-    }
-}
-
-// main-title should push down
-// .tabs__content > .nav-inline {
-//     @include respond-min($screen-desktop) {
-//         margin-top: 24px;
-//     }
-// }
 
 .nav-inline {
     -webkit-overflow-scrolling: touch;
@@ -357,15 +292,6 @@ $nav-color-dark:  #2d89b7 !default;
         }
     }
 }
-
-// replaced by above - if above doesn't work revert to this
-// .open-nav .nav-primary .nav-items,
-// .open-nav .nav-primary .jadu-branding {
-//     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
-//     opacity: 1;
-//     -webkit-transform: translate3d(0, 0, 0);
-//     transform: translate3d(0, 0, 0);
-// }
 
 .nav-secondary {
     background-color: $nav-color-dark;
