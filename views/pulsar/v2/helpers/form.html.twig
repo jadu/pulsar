@@ -44,7 +44,7 @@ Option        | Type   | Description
 items         | array  | An array of items to put in the dropdown list (usually radios)
 
 #}
-{% macro button_group(options) %}
+{% macro button_group(options = {}) %}
 {% spaceless %}
 	{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
@@ -101,7 +101,7 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
 *Any other options not listed here will be applied to the input.
 
 #}
-{% macro checkbox(options) %}
+{% macro checkbox(options = {}) %}
 {% spaceless %}
 	{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
@@ -165,7 +165,7 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
 *Any other options not listed here will be applied to the input.
 
 #}
-{% macro checkbox_inline(options) %}
+{% macro checkbox_inline(options = {}) %}
 {% spaceless %}
 	{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
@@ -251,7 +251,7 @@ If you specify `'method': 'PUT'` then a hidden `<input name="_method" value="PUT
 will be created automatically after the `<form>` element, and the `method` attribute on the `form` element will be set to `POST`.
 
 #}
-{% macro create(options) %}
+{% macro create(options = {}) %}
 {% spaceless %}
 	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
@@ -321,7 +321,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 *Any other options not listed here will be applied to the input.
 
 #}
-{% macro date(options) %}
+{% macro date(options = {}) %}
 {% spaceless %}
 
 	{%
@@ -371,7 +371,7 @@ actions | array  | Helpers to display as the actions, usually `form.submit()` bu
 class   | string | A space separated list of class names
 
 #}
-{% macro end(options) %}
+{% macro end(options = {}) %}
 {% spaceless %}
 	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
@@ -425,7 +425,7 @@ name   | string | The name of this control
 data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
-{% macro fieldset_start(options) %}
+{% macro fieldset_start(options = {}) %}
 {% spaceless %}
 	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
@@ -503,7 +503,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 *Any other options not listed here will be applied to the input.
 *
 #}
-{% macro file(options) %}
+{% macro file(options = {}) %}
 {% spaceless %}
 	{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
@@ -603,7 +603,7 @@ Option           | Type   | Description
 controls.class   | string | A space separated list of class names
 
 #}
-{% macro group(options) %}
+{% macro group(options = {}) %}
 
 	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 	{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
@@ -706,7 +706,7 @@ Option | Type   | Description
 value  | string | The string or html markup to render inside the help block
 
 #}
-{% macro help(options) %}
+{% macro help(options = {}) %}
 {% spaceless %}
 
 	{% if options.value is defined and options.value is not empty %}
@@ -750,7 +750,7 @@ value       | string | Specifies the value of the input
 data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
-{% macro hidden(options) %}
+{% macro hidden(options = {}) %}
 {% spaceless %}
 	{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
@@ -811,7 +811,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 *Any other options not listed here will be applied to the input.
 
 #}
-{% macro password(options) %}
+{% macro password(options = {}) %}
 {% spaceless %}
 
 	{{ _self.text(options|defaults({'type': 'password'})) }}
@@ -859,7 +859,7 @@ data-*   | string | Data attributes, eg: `'data-foo': 'bar'`
 *Any other options not listed here will be applied to the input.
 
 #}
-{% macro radio(options) %}
+{% macro radio(options = {}) %}
 {% spaceless %}
 	{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
@@ -920,7 +920,7 @@ value           | string | Specifies the value of the input
 *Any other options not listed here will be applied to the input
 
 #}
-{% macro radio_inline(options) %}
+{% macro radio_inline(options = {}) %}
 {% spaceless %}
 	{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
@@ -1012,7 +1012,7 @@ label           | string | Text for the `<label>` companion element
 *Any other options not listed here will be applied to the input
 
 #}
-{% macro radio_simple(options) %}
+{% macro radio_simple(options = {}) %}
 {% spaceless %}
 	{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 	{{
@@ -1079,7 +1079,7 @@ size        | int     | The number of items to display when the list is shown
 *Any other options not listed here will be applied to the input.
 
 #}
-{% macro select(options) %}
+{% macro select(options = {}) %}
 {% spaceless %}
 	{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
@@ -1144,7 +1144,7 @@ size        | int     | The number of items to display when the list is shown
 *Any other options not listed here will be applied to the input.
 
 #}
-{% macro select2(options) %}
+{% macro select2(options = {}) %}
 {% spaceless %}
 	{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
@@ -1193,7 +1193,7 @@ type    | string | Can be button (default), link, input, submit
 *Any other options not listed here will be applied to the input.
 
 #}
-{% macro submit(options) %}
+{% macro submit(options = {}) %}
 {% spaceless %}
 	{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 
@@ -1247,7 +1247,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 *Any other options not listed here will be applied to the input.
 
 #}
-{% macro text(options) %}
+{% macro text(options = {}) %}
 {% spaceless %}
 	{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
@@ -1309,7 +1309,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 *Any other options not listed here will be applied to the input.
 
 #}
-{% macro textarea(options) %}
+{% macro textarea(options = {}) %}
 {% spaceless %}
 	{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
