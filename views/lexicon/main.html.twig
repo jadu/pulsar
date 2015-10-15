@@ -4,7 +4,6 @@
 {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 {% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
 {% import '@pulsar/pulsar/v2/helpers/tabs.html.twig' as tabs %}
-{% import '@pulsar/pulsar/v2/helpers/nav.html.twig' as nav %}
 
 {% block title %}{{ parent() }}{% endblock %}
 
@@ -134,7 +133,7 @@
 %}
 
 {% block tabs_list %}
-    {{ nav.tabs(tabs_content) }}
+    {{ tabs.list(tabs_content) }}
 {% endblock %}
 
 {% block tabs_content %}

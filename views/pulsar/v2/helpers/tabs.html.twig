@@ -1,28 +1,27 @@
 {%- macro list(tabs) -%}
     {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 
-    <ul class="tabs__list">
+    <div class="nav-inline">
+        <ul class="nav-inline__list">
     {%- for tab in tabs -%}
-        <li class="{% if tab.active is defined and tab.active == tab.id %}is-active{% endif %}{% if tab.hidden is defined and tab.hidden == true %} hide{% endif %}">
-
-        {% set href = '#' ~ tab.id %}
-        {% if tab.src is defined and tab.src != null and tab.src|slice(0, 1) == '#' %}
-            {% set href = tab.src %}
-        {% endif %}
-
-        {%
-            set options = {
-                'label': tab.label,
-                'href': href,
-                'data-toggle': 'tab'
-            }
-        %}
-
-            {{ html.link(options|merge(tab.data|default({}))) }}
-
-        </li>
+            <li class="nav-inline__item{% if tab.active is defined and tab.active == tab.id %} nav-inline__item--is-active is-active{% endif %}{% if tab.hidden is defined and tab.hidden == true %} hide{% endif %}">
+                {% set href = '#' ~ tab.id %}
+                {% if tab.src is defined and tab.src != null and tab.src|slice(0, 1) == '#' %}
+                    {% set href = tab.src %}
+                {% endif %}
+                {%
+                    set options = {
+                        'class': 'nav-inline__link',
+                        'label': tab.label,
+                        'href': href,
+                        'data-toggle': 'tab'
+                    }
+                %}
+                {{ html.link(options|merge(tab.data|default({}))) }}
+            </li>
     {%- endfor -%}
-    </ul>
+        </ul>
+    </div>
 {%- endmacro -%}
 
 {%- macro content(tabs) -%}
@@ -33,7 +32,6 @@
         {% endif %}
     {%- endfor -%}
 
-    <div class="tabs__content">
     {%- for tab in tabs -%}
         {%- if tab.src is defined and tab.src != null and tab.src|slice(0, 1) != '#' -%}
             <div class="tab__pane{% if (tab.active is defined and tab.active == tab.id) or (active_tab == '#' ~ tab.id) %} is-active{% endif %}" id="{{ tab.id }}"{% if tab.attr is defined and tab.attr != null %} {{ tab.attr|raw }}{% endif %}>
@@ -41,5 +39,4 @@
             </div>
         {%- endif -%}
     {%- endfor -%}
-    </div>
 {%- endmacro -%}
