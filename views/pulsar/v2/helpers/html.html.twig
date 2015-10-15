@@ -859,10 +859,10 @@ Option    | Type   | Description
 --------- | ------ | -------------------------------------------------------------
 class     | string | A space separated list of class names
 id        | string | A unique identifier, if required
+placement | string | Can be `top`, `left`, `bottom`, `right`
 target    | string | CSS Selector of the item to be removed, will be turned into the `data-action-target` attribute
 type      | string | Can be `button` (default), `link`, `input`, `submit`
 data-*    | string | Data attributes, eg: `'data-foo': 'bar'`
-placement | string | Can be `bottom`, `left`, `right`, `top`
 
 #}
 {% macro remove_button(options = {}) %}
