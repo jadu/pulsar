@@ -99,9 +99,9 @@
 }
 
 .flash-container {
-    left: 75px;
-    position: absolute;
-    right: 0;
-    top: 0;
+    clear: both;
+    top: -5px;
+    margin-bottom: 0;
+    position: relative;
     z-index: $zindex-flash;
 }
