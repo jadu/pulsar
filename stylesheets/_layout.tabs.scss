@@ -157,6 +157,8 @@
     }
 
     .tab__content {
+        display: block;
+
         @include respond-min($screen-desktop) {
             display: table-cell;
             vertical-align: top;
