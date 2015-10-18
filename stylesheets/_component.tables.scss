@@ -98,5 +98,9 @@ table {
 .row--no-results {
     td {
         background-color: $grey-lighter;
+        padding: 24px 0;
+    }
+    p {
+        margin: 0;
     }
 }
