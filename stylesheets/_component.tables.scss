@@ -94,3 +94,9 @@ table {
     vertical-align: middle;
   }
 }
+
+.row--no-results {
+    td {
+        background-color: $grey-lighter;
+    }
+}
