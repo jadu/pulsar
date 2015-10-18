@@ -97,11 +97,15 @@ table {
 
 .row--no-results {
     td {
-        background-color: $gray-lighter;
+        background-color: #fafafa;
         padding: 24px 0;
     }
 
     p {
         margin: 0;
+    }
+
+    .loading {
+        margin: 0 auto;
     }
 }
