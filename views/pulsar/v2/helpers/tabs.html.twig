@@ -27,7 +27,7 @@
 {%- macro content(tabs) -%}
     {%- set active_tab = '' -%}
     {%- for tab in tabs -%}
-        {% if tab.active is defined and tab.active and tab.src|json_encode|slice(0, 1) == '#' %}
+        {% if tab.active is defined and tab.active and tab.src|json_encode|slice(1, 1) == '#' %}
             {% set active_tab = tab.src %}
         {% endif %}
     {%- endfor -%}
