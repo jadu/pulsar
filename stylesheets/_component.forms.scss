@@ -21,7 +21,7 @@ fieldset {
 
     &.checkbox,
     &.radio {
-        height: 16px;
+        height: auto;
         vertical-align: top;
     }
 
@@ -149,15 +149,15 @@ $inputs: (
     color: lighten($text-color, 5%);
 }
 
-.checkbox--inline-v2,
-.radio--inline-v2 {
-    height: 44px;
+// .checkbox--inline-v2,
+// .radio--inline-v2 {
+//     height: 44px;
 
-    > [type="checkbox"],
-    > [type="radio"] {
-      height: auto;
-    }
-}
+//     > [type="checkbox"],
+//     > [type="radio"] {
+//       height: auto;
+//     }
+// }
 
 .form__button-group {
 
