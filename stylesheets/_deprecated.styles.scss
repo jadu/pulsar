@@ -28,7 +28,6 @@
 .tabs__container {
     .tabs__list {
       clear: left;
-      display: none;
       @include ie-lte(8) {
         display: block;
       }
