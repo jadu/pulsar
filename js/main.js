@@ -3,6 +3,7 @@ var $html = $('html');
 
 pulsar.button       = new pulsar.ButtonComponent($html);
 pulsar.flash        = new pulsar.FlashMessageComponent($html);
+pulsarForm          = new pulsar.PulsarFormComponent($html);
 pulsar.signIn       = new pulsar.SignInComponent($html);
 pulsar.masterSwitch = new pulsar.MasterSwitchComponent($html);
 pulsar.navMain      = new pulsar.NavMainComponent($html);
@@ -11,6 +12,7 @@ $(function () {
 
     pulsar.button.init();
     pulsar.flash.init();
+    pulsar.pulsarForm.init();
     pulsar.signIn.init();
     pulsar.masterSwitch.init();
     pulsar.navMain.init();
