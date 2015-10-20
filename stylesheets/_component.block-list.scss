@@ -57,10 +57,13 @@ $width: 500px;
 
   &__item {
     display: block;
+    overflow-wrap: break-word;
     padding: $padding $padding;
+    word-wrap: break-word;
 
     a {
       color: inherit;
+      overflow-wrap: break-word;
       text-decoration: none;
       word-wrap: break-word;
     }
