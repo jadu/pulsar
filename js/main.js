@@ -3,7 +3,7 @@ var $html = $('html');
 
 pulsar.button       = new pulsar.ButtonComponent($html);
 pulsar.flash        = new pulsar.FlashMessageComponent($html);
-pulsarForm          = new pulsar.PulsarFormComponent($html);
+pulsar.pulsarForm   = new pulsar.PulsarFormComponent($html);
 pulsar.signIn       = new pulsar.SignInComponent($html);
 pulsar.masterSwitch = new pulsar.MasterSwitchComponent($html);
 pulsar.navMain      = new pulsar.NavMainComponent($html);
@@ -22,9 +22,6 @@ $(function () {
 
     // Use clickover enhancements for popovers
     $('[rel="clickover"]').clickover({ 'global_close': true });
-
-    // Select2 elements created by form.select2() helper
-    $('.js-select2').select2();
 
     // Open navigation (should be added to NavMainComponent)
     $('.mobile-menu-button').on('click', function(e) {

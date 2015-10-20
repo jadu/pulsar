@@ -30,6 +30,7 @@ var $          = require('jquery'),
     FlashMessageComponent = require('./FlashMessageComponent'),
     MasterSwitchComponent = require('./MasterSwitchComponent'),
     NavMainComponent = require('./NavMainComponent'),
+    PulsarFormComponent = require('./PulsarFormComponent'),
     SignInComponent = require('./area/signin/signin');
 
 module.exports = {
@@ -37,6 +38,7 @@ module.exports = {
     FlashMessageComponent: FlashMessageComponent,
     MasterSwitchComponent: MasterSwitchComponent,
     NavMainComponent: NavMainComponent,
+    PulsarFormComponent: PulsarFormComponent,
     SignInComponent: SignInComponent,
     svgeezy: svgeezy
 };
