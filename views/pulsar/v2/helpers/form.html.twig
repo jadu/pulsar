@@ -171,6 +171,7 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
 
 	{%
 		set input = elem.input(options|merge({
+			'class': 'checkbox',
 			'label': null,
 			'type': 'checkbox'
 		}))
@@ -926,6 +927,7 @@ value           | string | Specifies the value of the input
 
 	{%
 		set input = elem.input(options|merge({
+				'class': 'radio',
 				'label': null,
 				'type': 'radio'
 			})
@@ -946,7 +948,7 @@ value           | string | Specifies the value of the input
 			'parent': options
 				|only('class help id bare')
 				|defaults({
-					'class': 'form__indent'
+					'class': 'form-radio-inline'
 				}),
 			'inputs': [
 				elem.label({
