@@ -1,0 +1,52 @@
+{%- macro list(tabs) -%}
+    {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+
+    <ul class="tabs__list">
+    {%- for tab in tabs -%}
+        <li class="{% if tab.active is defined and tab.active == tab.id %}is-active{% endif %}{% if tab.hidden is defined and tab.hidden == true %} hide{% endif %}">
+
+        {% set href = '#' ~ tab.id %}
+        {% if tab.src is defined and tab.src != null and tab.src|slice(0, 1) == '#' %}
+            {% set href = tab.src %}
+        {% endif %}
+
+        {%
+            set options = {
+                'label': tab.label,
+                'href': href,
+                'data-toggle': 'tab'
+            }
+        %}
+
+            {{ html.link(options|merge(tab.data|default({}))) }}
+
+        </li>
+    {%- endfor -%}
+    </ul>
+{%- endmacro -%}
+
+{%- macro content(tabs) -%}
+    {%- set active_tab = '' -%}
+    {%- for tab in tabs -%}
+        {% if tab.active and tab.src|slice(0, 1) == '#' %}
+            {% set active_tab = tab.src %}
+        {% endif %}
+    {%- endfor -%}
+
+    <div class="tabs__content">
+    {%- for tab in tabs -%}
+        {%- if tab.src is defined and tab.src != null and tab.src|slice(0, 1) != '#' -%}
+            <div class="tab__pane{% if (tab.active is defined and tab.active == tab.id) or (active_tab == '#' ~ tab.id) %} is-active{% endif %}" id="{{ tab.id }}"{% if tab.attr is defined and tab.attr != null %} {{ tab.attr|raw }}{% endif %}>
+                {{ tab.src|raw }}
+            </div>
+        {%- endif -%}
+    {%- endfor -%}
+    </div>
+{%- endmacro -%}
+
+
+
+
+
+
+

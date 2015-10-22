@@ -142,12 +142,18 @@ var $ = require('jquery');
 	$(document).on('click.bs.tab.data-api', '[data-toggle="tab"]:not(.disabled), [data-toggle="pill"]', function (e) {
 		e.preventDefault();
 
-		var target = $(this).attr('href');
+		var $this = $(this),
+			target = $this.attr('href');
 
-		$(this).tab('show');
+		$this.tab('show');
 
 		$('.tabs__list a:not([href="' + target + '"])').parent().removeClass('is-active');
-		$('.tabs__list a[href="' + target + '"]').parent().addClass('is-active');
+
+		if ($(this).closest('.tabs__list').length) {
+			$this.parent().addClass('is-active');
+		} else {
+			$('.tabs__list a[href="' + target + '"]').parent().addClass('is-active');
+		}
 	});
 
 	$(document).ready(function() {
