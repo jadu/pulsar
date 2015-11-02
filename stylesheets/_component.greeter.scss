@@ -27,7 +27,7 @@
  */
 
 /* -------------------------------------------------------------------------- *\
-	Configuration
+    Configuration
 \* -------------------------------------------------------------------------- */
 
 // Dimensions
@@ -78,7 +78,7 @@ $greeter-brand-bottom-height:           40px !default;
 
 
 /* -------------------------------------------------------------------------- *\
-	Default Presentation
+    Default Presentation
 \* -------------------------------------------------------------------------- */
 
 .greeter {
@@ -99,144 +99,135 @@ $greeter-brand-bottom-height:           40px !default;
   width: $greeter-width-responsive;
 
   &__link {
-	border-bottom: 1px solid $greeter-link-underline-color;
-	text-decoration: none;
+    border-bottom: 1px solid $greeter-link-underline-color;
+    text-decoration: none;
 
-	&,
-	&:link,
-	&:visited {
-	  color: $greeter-text-color;
-	}
+    &,
+    &:link,
+    &:visited {
+      color: $greeter-text-color;
+    }
 
-	&:hover {
-	  border-bottom-color: $greeter-text-color;
-	}
+    &:hover {
+      border-bottom-color: $greeter-text-color;
+    }
   }
 
   &__header {
-	padding-top: $greeter-brand-top-height + $gutter-width;
+    padding-top: $greeter-brand-top-height + $gutter-width;
   }
 
   &__title {
-	font-size: $greeter-font-size-large;
-	line-height: 1em;
-	margin-bottom: .25em;
+    font-size: $greeter-font-size-large;
+    line-height: 1em;
+    margin-bottom: .25em;
   }
 
   &__sub-title {
-	font-size: $greeter-font-size-medium;
-	line-height: 1em;
-	margin-bottom: .5em;
+    font-size: $greeter-font-size-medium;
+    line-height: 1em;
+    margin-bottom: .5em;
 
   }
 
   &__call-to-action {
-	font-size: $greeter-font-size-small;
+    font-size: $greeter-font-size-small;
   }
 
 
   &__form {
-	margin: 2em auto 0 auto;
-	overflow: visible;
-	text-align: right; /* [1] */
-	max-width: $greeter-form-width-max;
-	width: 100%;
+    margin: 2em auto 0 auto;
+    overflow: visible;
+    text-align: right; /* [1] */
+    max-width: $greeter-form-width-max;
+    width: 100%;
 
-	input,
-	textarea { /* [2] */
-	  color: $greeter-text-color-alt;
-	}
+    input,
+    textarea { /* [2] */
+      color: $greeter-text-color-alt;
+    }
   }
 
   &__textarea {
-	border: 0; /* [3] */
-	box-shadow: inset 0 3px 0 $gray-lighter;
-	max-width: ($greeter-width-max - ($greeter-padding * 2)); /* [4] */
-	max-height: 16em;
-	min-height: 8em; /* [5] */
-	padding: .5em;
-	resize: vertical; /* [4] */
-	width: 100%;
+    border: 0; /* [3] */
+    box-shadow: inset 0 3px 0 $gray-lighter;
+    max-width: ($greeter-width-max - ($greeter-padding * 2)); /* [4] */
+    max-height: 16em;
+    min-height: 8em; /* [5] */
+    padding: .5em;
+    resize: vertical; /* [4] */
+    width: 100%;
 
-	&:focus {
-	  outline: none; /* [6] */
-	}
+    &:focus {
+      outline: none; /* [6] */
+    }
   }
 
 
   &__actions { /* [7] */
-	display: inline-block;
-	position: relative;
+    display: inline-block;
+    position: relative;
   }
 
   &__hint {
-	display: inline-block;
-	margin: 0 ($greeter-padding / 2) 0 auto;
-	opacity: 0;
-	position: relative;
-	top: 3px; /* [8] */
+    display: inline-block;
+    margin: 0 ($greeter-padding / 2) 0 auto;
+    opacity: 0;
+    position: relative;
+    top: 3px; /* [8] */
 
-	i { /* [9] */
-	  display: inline-block;
-	  font-size: 1.5em;
-	  margin-right: ($greeter-padding / 2);
-	  -webkit-animation-duration: 1s;
-			  animation-duration: 1s;
-	  -webkit-animation-fill-mode: both;
-			  animation-fill-mode: both;
-	  -webkit-animation-iteration-count:infinite;
-			  animation-iteration-count:infinite;
-	  -webkit-animation-name: bounce;
-			  animation-name: bounce;
-	}
+    i { /* [9] */
+      display: inline-block;
+      font-size: 1.5em;
+      margin-right: ($greeter-padding / 2);
+      -webkit-animation-duration: 1s;
+              animation-duration: 1s;
+      -webkit-animation-fill-mode: both;
+              animation-fill-mode: both;
+      -webkit-animation-iteration-count:infinite;
+              animation-iteration-count:infinite;
+      -webkit-animation-name: bounce;
+              animation-name: bounce;
+    }
   }
 
 
   &__button {
-	background-color: $greeter-button-bg-color;
-	border: 0;
-	border-bottom: $greeter-button-border-width solid $greeter-button-border-color;
-	border-radius: 4px;
-	font-size: $greeter-font-size-small;
-	line-height: 1em;
-	padding: 10px 10px 7px 10px;
-	position: relative; /* [10] */
+    background-color: $greeter-button-bg-color;
+    border: 0;
+    border-bottom: $greeter-button-border-width solid $greeter-button-border-color;
+    border-radius: 4px;
+    font-size: $greeter-font-size-small;
+    line-height: 1em;
+    padding: 10px 10px 7px 10px;
+    position: relative; /* [10] */
 
-	&:hover:not(:disabled) { /* [11] */
-	  border-bottom-color: $greeter-button-border-color;
-	  border-bottom-width: $greeter-button-border-width - 1;
-	  background-color: $greeter-button-bg-color-hover;
-	  margin-bottom: 1px;
-	  top: 1px;
-	}
+    &:hover:not(:disabled) { /* [11] */
+      border-bottom-color: $greeter-button-border-color;
+      border-bottom-width: $greeter-button-border-width - 1;
+      background-color: $greeter-button-bg-color-hover;
+      margin-bottom: 1px;
+      top: 1px;
+    }
 
-	&:active,
-	&:hover:active, /* [12] */
-	&:disabled { /* [13] */
-	  border-bottom: 0;
-	  box-shadow: inset 0 1px 0 $greeter-button-border-color;
-	  margin-bottom: $greeter-button-border-width; /* [14] */
-	  top: $greeter-button-border-width; /* [15] */
-	}
+    &:active,
+    &:hover:active, /* [12] */
+    &:disabled { /* [13] */
+      border-bottom: 0;
+      box-shadow: inset 0 1px 0 $greeter-button-border-color;
+      margin-bottom: $greeter-button-border-width; /* [14] */
+      top: $greeter-button-border-width; /* [15] */
+    }
 
-	&:disabled {
-	  box-shadow: inset 0 1px 0 $greeter-button-border-color-disabled;
-	  background-color: $greeter-button-bg-color-disabled;
-	}
+    &:disabled {
+      box-shadow: inset 0 1px 0 $greeter-button-border-color-disabled;
+      background-color: $greeter-button-bg-color-disabled;
+    }
   }
 
 
   &__footer {
-	margin-top: 2em;
+    display: none;
   }
 
-  &__brand-bottom {
-	background-image: url($greeter-brand-bottom-image);
-	background-size: $greeter-brand-bottom-width $greeter-brand-bottom-height;
-	display: block;
-	height: $greeter-brand-bottom-height;
-	margin-left: auto; /* [16] */
-	text-indent: -9999px;
-	width: $greeter-brand-bottom-width;
-  }
 }
