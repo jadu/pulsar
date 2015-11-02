@@ -1,7 +1,7 @@
 .footer {
     background-color: $white;
     border-top: 1px solid $gray-lighter;
-    color: $gray-lighter;
+    color: #999;
     font-size: $font-size-small;
     padding: 0 $gutter-width;
     position: fixed;
@@ -24,4 +24,8 @@
             color: $link-color;
         }
     }
+}
+
+.branding-footer {
+    margin-left: 15px;
 }

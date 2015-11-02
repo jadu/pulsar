@@ -57,11 +57,11 @@ $greeter-button-bg-color-disabled:      $greeter-bg-color-darker !default;
 $greeter-button-border-color-disabled:  darken($greeter-bg-color, 10) !default;
 
 // Branding
-$greeter-brand-top-image:               '../images/branding/logo-cms-white.svg' !default;
-$greeter-brand-top-image-fallback:      '../images/branding/logo-cms-white.png' !default;
-$greeter-brand-top-width:               65px !default;
-$greeter-brand-top-height:              $greeter-brand-top-width !default;
-$greeter-brand-bottom-image:            '../images/branding/jadu-white.svg' !default;
+$greeter-brand-top-image:               '../images/branding/continuum-brandmark.svg' !default;
+$greeter-brand-top-image-fallback:      '../images/branding/continuum-brandmark.png' !default;
+$greeter-brand-top-width:               100% !default;
+$greeter-brand-top-height:              100px !default;
+$greeter-brand-bottom-image:            '../images/branding/jadu-brandmark.svg' !default;
 $greeter-brand-bottom-width:            100px !default;
 $greeter-brand-bottom-height:           40px !default;
 
@@ -82,14 +82,9 @@ $greeter-brand-bottom-height:           40px !default;
 \* -------------------------------------------------------------------------- */
 
 .greeter {
-  background-clip: border-box;
   background-color: $greeter-bg-color;
-  background-image: url($greeter-brand-top-image-fallback);
-  background-image: url($greeter-brand-top-image), linear-gradient(transparent, transparent);
-  background-size: $greeter-brand-top-width $greeter-brand-top-height;
-  background-origin: padding-box;
-  background-position: $greeter-padding $greeter-padding;
-  background-repeat: no-repeat;
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
   color: $greeter-text-color;
   min-height: $greeter-min-height;
   max-width: $greeter-width-max;
@@ -112,8 +107,13 @@ $greeter-brand-bottom-height:           40px !default;
   }
 
   &__header {
-    margin-left: auto;
-    max-width: 80%;
+    background-clip: border-box;
+    background-image: url($greeter-brand-top-image-fallback);
+    background-image: url($greeter-brand-top-image), linear-gradient(transparent, transparent);
+    background-size: $greeter-brand-top-width $greeter-brand-top-height;
+    background-origin: padding-box;
+    background-repeat: no-repeat;
+    padding-top: $greeter-brand-top-height + $gutter-width;
     text-align: right;
   }
 

@@ -1,9 +1,3 @@
-$jadu-logomark:          '../images/branding/logo-cms-white.svg' !default;
-$jadu-logomark-fallback: '../images/branding/logo-cms-white-small.png' !default;
-
-$jadu-wordmark:          '../images/branding/jadu-white.svg' !default;
-$jadu-wordmark-fallback: '../images/branding/jadu-white-mini.png' !default;
-
 $nav-color-light: #3399cc !default;
 $nav-color-dark:  #2d89b7 !default;
 
@@ -361,35 +355,12 @@ $nav-color-dark:  #2d89b7 !default;
 
 .jadu-branding {
     display: block;
-    margin: 12px 0 18px 0;
+    margin: 22px 0 16px 0;
     text-decoration: none;
 
     &.is-active {
         background: none;
     }
-}
-
-.jadu-logomark {
-    background: url($jadu-logomark-fallback);
-    background: url($jadu-logomark), linear-gradient(transparent, transparent);
-    background-size: 48px 48px;
-    background-repeat: no-repeat;
-    border-radius: 60px;
-    display: inline-block;
-    text-align: center;
-    height: 48px;
-    width: 48px;
-}
-
-.jadu-wordmark {
-    background: url($jadu-wordmark-fallback);
-    background: url($jadu-wordmark), linear-gradient(transparent, transparent);
-    background-repeat: no-repeat;
-    background-size: 35px auto;
-    display: inline-block;
-    margin-top: 10px;
-    text-indent: -9999px;
-    width: 35px;
 }
 
 .nav-search {

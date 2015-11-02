@@ -34,6 +34,8 @@
     <link rel="stylesheet" type="text/css" href="{{ libsPath ~ 'font-awesome/css/font-awesome-ie7.min.css' }}" />
     <![endif]-->
 
+    <!-- <link rel="stylesheet" href="http://basehold.it/24"> -->
+
     <script
         src="{{ base_path ~ 'dist/js/bundle.js' }}"
         type="text/javascript"
@@ -110,10 +112,12 @@
         }}
         {{
             html.link({
-                'label': 'Jadu Universe Continuum &copy; 2015',
-                'href': '/jadu/version.php'
+                'label': 'Jadu Continuum',
+                'href': '/jadu/version.php',
+                'class': 'branding-footer'
             })
         }}
+        &copy; 2015
     </footer>
 
     <div id="modal" class="modal" role="dialog" aria-hidden="true">
