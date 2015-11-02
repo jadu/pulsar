@@ -238,6 +238,29 @@
             })
         }}
 
+        {{
+            form.button_group({
+                'label': 'Band',
+                'items': [
+                    form.radio_simple({
+                        'id': 'am',
+                        'label': 'AM',
+                        'name': 'bands'
+                    }),
+                    form.radio_simple({
+                        'id': 'fm',
+                        'label': 'FM',
+                        'name': 'bands'
+                    }),
+                    form.radio_simple({
+                        'id': 'mw',
+                        'label': 'MW',
+                        'name': 'bands'
+                    })
+                ]
+            })
+        }}
+
 
     {{ form.fieldset_end() }}
 
