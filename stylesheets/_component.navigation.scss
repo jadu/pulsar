@@ -420,3 +420,18 @@ $nav-color-dark:  #2d89b7 !default;
 .main {
     display: table-cell;
 }
+
+.jadu-logomark {
+    background: url($branding-navigation-fallback);
+    background: url($branding-navigation), linear-gradient(transparent, transparent);
+    background-size: $branding-navigation-width $branding-navigation-height;
+    background-repeat: no-repeat;
+    display: inline-block;
+    text-align: center;
+    height: $branding-navigation-height;
+    width: $branding-navigation-width;
+}
+
+.jadu-wordmark {
+    display: none;
+}
