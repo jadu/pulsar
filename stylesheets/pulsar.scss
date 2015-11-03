@@ -17,7 +17,6 @@
 @import '../libs/jquery-toggles/css/toggles-full.css';
 @import '../libs/select2/dist/css/select2.css';
 
-
 // Font awesome
 $FontAwesomePath: '../libs/font-awesome/font/';
 @import '../libs/font-awesome/scss/font-awesome';
@@ -37,6 +36,7 @@ $FontAwesomePath: '../libs/font-awesome/font/';
 @import '_config.colours';
 @import '_config.variables';
 @import '_config.fonts';
+@import '_config.branding';
 
 // Structure
 @import '_structure.columns';
