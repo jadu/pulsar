@@ -104,7 +104,11 @@ class AttributeParserExtension extends \Twig_Extension
 				// be key="value"
 				switch (is_bool($value)) {
 					case true:
-						$html[] = htmlspecialchars($key);
+
+						// Only output the key if true, do nothing if false
+						if ($value) {
+							$html[] = htmlspecialchars($key);
+						}
 						break;
 					default:
 						$html[] = htmlspecialchars($key) . '="' . htmlspecialchars($value) . '"';
