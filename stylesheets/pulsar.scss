@@ -38,6 +38,7 @@ $FontAwesomePath: '../libs/font-awesome/font/';
 @import '_config.fonts';
 
 // Structure
+@import '_structure.grid';
 @import '_structure.columns';
 @import '_structure.scaffolding';
 @import '_structure.type';

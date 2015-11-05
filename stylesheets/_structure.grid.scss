@@ -1,158 +1,31 @@
-$grid-container-width : 1120;       /* The max-width of your containers */
-$grid-column-count : 12;            /* The number of columns you want, consider carefully. Maximum of 24 */
-$grid-gutter-width : 20;            /* The width of the space between columns. This number is the width, in pixels, of the gutters when the container is at it's max-width. */
-$mid-width : 800px;
-$small-width : 480px;
+@import '../libs/susy/sass/susy';
 
-/** Calculations used for converting grid metrics into unit-suffixed widths, don't change these unless you want something weird like an em-based container width **/
-$fixed-metric : 1px;
-$fluid-metric : 1%;
-
-/** Sassy maths to calculate the column widths, don't change this **/
-$width-without-gutters : $grid-container-width - ($grid-gutter-width * ($grid-column-count - 1));
-$column-width-in-px : $width-without-gutters / $grid-column-count;
-$column-width : $column-width-in-px / $grid-container-width * 100;
-$gutter-size : $grid-gutter-width / $grid-container-width * 100;
-
-@import "_structure.grid-mixins";
-@import "_structure.grid-operations";
-
-.show-grid {
-    &:nth-child(2n + 1) {
-        div {
-            background: rgb(250,200,240);
-        }
-    }
-    &:nth-child(3n + 1) {
-        div {
-            background: rgb(200,250,240);
-        }
-    }
-    div {
-        height: 200px;
-        background: rgb(180,200,240);
-    }
-}
+// Susy grid settings
+$susy: (
+    columns: 12,
+    container: 100%,
+    gutters: .25,
+);
 
 .grid-container {
-    width: 100%;
-    max-width: $grid-container-width * $fixed-metric;
-    padding: 0 ($grid-gutter-width / 2 * $fixed-metric);
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    margin: auto;
-    display: block;
-    margin-bottom: 1.2em;
-    -webkit-transition: width .2s;
-            transition: width .2s;
-    .mobile-view & {
-        width: $small-width;
-    }
-    .tablet-view & {
-        width: $mid-width;
-    }
+    @include container;
 }
 
-.grid-master {
-    position: absolute;
-    z-index: -1;
-    text-align: center;
-    overflow: auto;
-    width: 100%;
-    height: 100%;
-}
-
-.grid-overlay {
-    height: 100%;
-    div {
-        height: 2000px;
-        background: rgba(0,0,0,.01) !important;
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-        border-left: 1px solid #eee;
-        border-right: 1px solid #eee;
-        position: relative;
-        $gutter-margin : $grid-gutter-width / $column-width-in-px * 100;
-        $gutter-margin : $gutter-margin/2 * -1 * $fluid-metric;
-        &:after {
-            display: block;
-            position: absolute;
-            right: $gutter-margin;
-            height: 100%;
-            width: 1px;
-            border-left: 1px dashed #e5e5e5;
-            -webkit-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            box-sizing: border-box;
-            content: ' ';
-        }
-        &:first-child {
-            &:before {
-                display: block;
-                position: absolute;
-                left: $gutter-margin;
-                height: 100%;
-                width: 1px;
-                border-left: 1px dashed #e5e5e5;
-                -webkit-box-sizing: border-box;
-                -moz-box-sizing: border-box;
-                box-sizing: border-box;
-                content: ' ';
-            }
+@for $i from 1 through 12 {
+    .grid-col--#{$i} {
+        @include respond-min($screen-phone) {
+            @include span($i);
         }
     }
 }
 
-.column {
-    margin-right: $gutter-size * $fluid-metric;
-    display: block;
-    float: left;
+// playground example styles
+.grid-col {
+    margin-top: gutter();
+
     &:last-child {
-        margin-right: 0;
-    }
-    .mobile-view & {
-        width: 100% !important;
-        margin-right: 0;
-        margin-left: 0 !important;
-        float: none;
-        clear: both;
-    }
-    @media (max-width : $small-width) {
-        width: 100% !important;
-        margin-right: 0;
-        margin-left: 0 !important;
-        float: none;
-        clear: both;
-    }
-    img {
-        width: 100%;
-    }
-    -webkit-transition: width .2s;
-            transition: width .2s;
-}
-
-@for $i from 1 through $grid-column-count {
-    @if $i == 1 {
-        .grid-span-#{$i} {
-            @extend .column;
-            width: $column-width * $fluid-metric;
-        }
-    }
-    @else {
-        .grid-span-#{$i} {
-            @extend .column;
-            $gutters : $i - 1;
-            $span-width : ($column-width * $i) + $gutter-size * $gutters * $fluid-metric;
-            width: $span-width;
-            @include divisions($span-width / ($span-width * 0 + 1));
+        @include respond-min($screen-phone) {
+            @include last;
         }
     }
 }
-
-.omega {
-    margin-right: 0;
-}
-
-@import '_structure.grid-offset';
