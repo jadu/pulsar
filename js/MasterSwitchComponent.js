@@ -33,11 +33,10 @@ MasterSwitchComponent.prototype.init = function () {
         });
 
         if (!this.$control.prop('checked')) {
-            component.disableElements(component.$container);
+            component.disableElements(this.$content);
         } else {
-            component
-                .switchOn(this.$control)
-                .enableElements(component.$container);
+            component.switchOn(this.$control);
+            component.enableElements(this.$content);
         }
 
         this.$toggle.on('toggle', function (e, active) {
@@ -69,7 +68,6 @@ MasterSwitchComponent.prototype.switchOff = function (target) {
 
     component.$target.addClass('is-disabled');
     component.disableElements(component.$target);
-
 };
 
 MasterSwitchComponent.prototype.disableElements = function (target) {
