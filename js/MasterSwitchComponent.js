@@ -35,7 +35,9 @@ MasterSwitchComponent.prototype.init = function () {
         if (!this.$control.prop('checked')) {
             component.disableElements(component.$container);
         } else {
-            component.switchOn(this.$control);
+            component
+                .switchOn(this.$control)
+                .enableElements(component.$container);
         }
 
         this.$toggle.on('toggle', function (e, active) {
