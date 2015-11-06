@@ -1,6 +1,6 @@
 {
   "name": "pulsar",
-  "version": "3.12.0",
+  "version": "3.6.0",
   "repository": {
     "type": "git",
     "url": "git@bitbucket.org:Stanton/pulsar.git"
@@ -10,13 +10,15 @@
     "dantest": "browserify tests/js/index --standalone=pulsar --debug --outfile dist/js/test.js"
   },
   "devDependencies": {
-    "browserify": "^6.3.3",
-    "browserify-shim": "^3.8.3",
+    "aliasify": "latest",
+    "browserify": "10.0.0",
+    "browserify-shim": "^3.8.9",
     "chai": "latest",
     "contextify": "latest",
+    "datatables": "latest",
     "grunt": "latest",
     "grunt-asciify": "latest",
-    "grunt-autoprefixer": "^3.0.3",
+    "grunt-autoprefixer": "latest",
     "grunt-browserify": "latest",
     "grunt-bump": "latest",
     "grunt-contrib-clean": "latest",
@@ -37,20 +39,23 @@
     "minifyify": "^6.3.0",
     "mocha": "latest",
     "mocha-phantomjs": "latest",
-    "phantomjs": "latest",
     "sinon": "latest",
     "sinon-chai": "latest",
     "time-grunt": "latest",
     "uglifyify": "^3.0.1"
   },
+  "aliasify": {
+    "aliases": {
+      "datatables": "./libs/datatables/media/js/jquery.dataTables.min"
+    }
+  },
   "browserify": {
     "transform": [
-      "browserify-shim"
+        "aliasify",
+        "browserify-shim"
     ]
   },
   "browserify-shim": {
-    "./libs/svgeezy/svgeezy.min.js": {
-      "exports": "svgeezy"
-    }
+    "./libs/svgeezy/svgeezy.min.js": { "exports": "svgeezy" }
   }
 }
