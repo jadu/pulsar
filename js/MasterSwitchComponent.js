@@ -11,58 +11,69 @@ MasterSwitchComponent.prototype.init = function () {
 
 	var component = this;
 
-	component.$control = this.$html.find('.masterswitch-control input');
-	component.$content = this.$html.find('.masterswitch-content');
-	component.$toggle = this.$html.find('.toggle');
+	component.$container = this.$html.find('.masterswitch');
 
-	component.$toggle.toggles({
-		checkbox: component.$control,
-		on: component.$control.prop('checked'),
-		text: {
-			on: '',
-			off: ''
-		}
-	});
+	component.$container.each(function() {
 
-	if (!component.$control.prop('checked')) {
-		component.disableElements();
-	} else {
-		component.switchOn();
-	}
+		var $this = $(this);
 
-	component.$toggle.on('toggle', function (e, active) {
-		if (active) {
-			component.switchOn();
+		masterswitch.$control = $this.find('.masterswitch-control input');
+		masterswitch.$content = $this.find('.masterswitch-content');
+		masterswitch.$toggle = $this.find('.toggle');
+
+		masterswitch.$toggle.toggles({
+			checkbox: masterswitch.$control,
+			on: masterswitch.$control.prop('checked'),
+			text: {
+				on: '',
+				off: ''
+			}
+		});
+
+		if (!masterswitch.$control.prop('checked')) {
+			component.disableElements(component.$container);
 		} else {
-			component.switchOff();
+			component.switchOn(masterswitch.$control);
 		}
+
+		masterswitch.$toggle.on('toggle', function (e, active) {
+			if (active) {
+				component.switchOn(e.target);
+			} else {
+				component.switchOff(e.target);
+			}
+		});
 	});
 
 };
 
-MasterSwitchComponent.prototype.switchOn = function () {
+MasterSwitchComponent.prototype.switchOn = function (target) {
 
 	var component = this;
 
-	component.$content.removeClass('is-disabled');
-	component.enableElements();
+	component.$target = $(target).closest('.masterswitch').find('.masterswitch-content');
+
+	component.$target.removeClass('is-disabled');
+	component.enableElements(component.$target);
 };
 
-MasterSwitchComponent.prototype.switchOff = function () {
+MasterSwitchComponent.prototype.switchOff = function (target) {
 
 	var component = this;
 
-	component.$content.addClass('is-disabled');
-	component.disableElements();
+	component.$target = $(target).closest('.masterswitch').find('.masterswitch-content');
+
+	component.$target.addClass('is-disabled');
+	component.disableElements(component.$target);
 
 };
 
-MasterSwitchComponent.prototype.disableElements = function () {
+MasterSwitchComponent.prototype.disableElements = function (target) {
 
 	var component = this,
 		CLICKABLES_SELECTOR = 'a, button, input, select';
 
-	component.$content
+	$(target)
 		.on('click', CLICKABLES_SELECTOR, preventDefault)
 		.find(CLICKABLES_SELECTOR)
 			.addClass('disabled')
@@ -70,12 +81,12 @@ MasterSwitchComponent.prototype.disableElements = function () {
 
 };
 
-MasterSwitchComponent.prototype.enableElements = function () {
+MasterSwitchComponent.prototype.enableElements = function (target) {
 
 	var component = this,
 		CLICKABLES_SELECTOR = 'a, button, input, select';
 
-	component.$content
+	$(target)
 		.off('click', CLICKABLES_SELECTOR, preventDefault)
 		.find(CLICKABLES_SELECTOR)
 			.removeClass('disabled')
