@@ -15,7 +15,8 @@ MasterSwitchComponent.prototype.init = function () {
 
 	component.$container.each(function() {
 
-		var $this = $(this);
+		var $this = $(this),
+			masterswitch;
 
 		masterswitch.$control = $this.find('.masterswitch-control input');
 		masterswitch.$content = $this.find('.masterswitch-content');
