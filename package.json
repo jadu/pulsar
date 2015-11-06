@@ -14,7 +14,6 @@
     "browserify": "10.0.0",
     "browserify-shim": "^3.8.9",
     "chai": "latest",
-    "contextify": "latest",
     "datatables": "latest",
     "grunt": "latest",
     "grunt-asciify": "latest",
@@ -30,8 +29,7 @@
     "grunt-leading-indent": "latest",
     "grunt-mocha": "latest",
     "grunt-notify": "latest",
-    "grunt-phpunit": "latest",
-    "grunt-requirejs": "latest",
+    "grunt-phpunit": "^0.3.6",
     "grunt-sass": "latest",
     "jquery": "1.x",
     "jsdom": "latest",
@@ -51,11 +49,13 @@
   },
   "browserify": {
     "transform": [
-        "aliasify",
-        "browserify-shim"
+      "aliasify",
+      "browserify-shim"
     ]
   },
   "browserify-shim": {
-    "./libs/svgeezy/svgeezy.min.js": { "exports": "svgeezy" }
+    "./libs/svgeezy/svgeezy.min.js": {
+      "exports": "svgeezy"
+    }
   }
 }
