@@ -7,7 +7,7 @@
 }
 
 .dashboard .widget {
-  background-color: $white;
+  background-color: color('white');
   box-shadow: 0 0 5px rgba(0,0,0,.2);
   cursor: -webkit-grab;
   cursor:    -moz-grab;

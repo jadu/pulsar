@@ -1,5 +1,5 @@
 .pagination {
-  background-color: $white;
+  background-color: color('white');
 
   // We assume pagination will always sit underneath an element, and that
   // element may or may not be floated

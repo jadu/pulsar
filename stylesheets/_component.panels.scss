@@ -1,5 +1,5 @@
 .panel {
-    background-color: $gray-lighter;
+    background-color: color('gray-lighter');
     border-radius: $border-radius;
     margin: $line-height-base 0;
 
@@ -23,28 +23,28 @@
     }
 
     &--danger  {
-        background-color: $danger-color;
-        color: $white;
+        background-color: color('danger-color');
+        color: color('white');
     }
 
     &--info    {
-        background-color: $info-color;
-        color: $black;
+        background-color: color('info-color');
+        color: color('black');
     }
 
     &--inverse {
-        background-color: $inverse-color;
-        color: $white;
+        background-color: color('inverse-color');
+        color: color('white');
     }
 
     &--success {
-        background-color: $success-color;
-        color: $white;
+        background-color: color('success-color');
+        color: color('white');
     }
 
     &--warning {
-        background-color: $warning-color;
-        color: $black;
+        background-color: color('warning-color');
+        color: color('black');
     }
 
 }

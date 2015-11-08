@@ -28,7 +28,7 @@
   &,
   .popover-title {
     background-color: $accent-color;
-    color: $white;
+    color: color('white');
   }
 
   &.top .arrow::after {
@@ -52,7 +52,7 @@
     box-shadow: none;
     border: 1px solid $white;
     text-shadow: none;
-    color: $white;
+    color: color('white');
 
     &.disabled {
       border: 1px solid rgba(255, 255, 255, .25);

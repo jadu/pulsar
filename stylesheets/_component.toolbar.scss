@@ -8,7 +8,7 @@
     width: 100%;
 
     @include respond-min($screen-desktop) {
-        background-color: $white;
+        background-color: color('white');
         margin-bottom: 19px;
         padding: 18px 40px 0;
     }

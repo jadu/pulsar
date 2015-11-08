@@ -9,7 +9,7 @@
     background: none;
     box-shadow: none;
     border: none;
-    color: $white;
+    color: color('white');
     text-shadow: none;
 
     > .badge {
@@ -107,8 +107,8 @@
     background-color: darken($dropdown-link-active-bg, 20%);
   }
   &.notification--primary a {
-    background-color: $primary-color;
-    color: $white;
+    background-color: color('primary-color');;
+    color: color('white');
     &:hover {
       background-color: $toolbar-notification-item-hover;
       color: $accent-color;
@@ -120,7 +120,7 @@
   }
   &.notification--success a {
     background-color: $success-color;
-    color: $white;
+    color: color('white');
     &:hover {
       background-color: $toolbar-notification-item-hover;
       color: $success-color;
@@ -132,7 +132,7 @@
   }
   &.notification--warning a {
     background-color: $warning-color;
-    color: $white;
+    color: color('white');
     &:hover {
       background-color: $toolbar-notification-item-hover;
       color: $warning-color;
@@ -144,7 +144,7 @@
   }
   &.notification--info a {
     background-color: $info-color;
-    color: $white;
+    color: color('white');
     &:hover {
       background-color: $toolbar-notification-item-hover;
       color: $info-color;
@@ -155,11 +155,11 @@
     }
   }
   &.notification--danger a {
-    background-color: $danger-color;
-    color: $white;
+    background-color: color('danger-color');
+    color: color('white');
     &:hover {
       background-color: $toolbar-notification-item-hover;
-      color: $danger-color;
+      color: color('danger-color');
     }
     > .badge {
       @extend .badge--danger;
@@ -168,7 +168,7 @@
   }
   &.notification--inverse a {
     background-color: $inverse-color;
-    color: $white;
+    color: color('white');
     &:hover {
       background-color: $toolbar-notification-item-hover;
       color: $inverse-color;

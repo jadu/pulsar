@@ -22,7 +22,7 @@
   }
 
   &__label {
-    color: $gray;
+    color: color('gray');
 
     code, span {
       display: block;
@@ -33,96 +33,96 @@
   }
 
   &--primary .swatch__colour {
-    background-color: $primary-color;
+    background-color: color('primary-color');;
     color: white;
   }
 
   &--info .swatch__colour {
-    background-color: $info-color;
+    background-color: color('info-color');
     color: black;
   }
 
   &--success .swatch__colour {
-    background-color: $success-color;
+    background-color: color('success-color');
     color: white;
   }
 
   &--warning .swatch__colour {
-    background-color: $warning-color;
+    background-color: color('warning-color');
     color: black;
   }
 
   &--danger .swatch__colour {
-    background-color: $danger-color;
+    background-color: color('danger-color');
     color: white;
   }
 
   &--inverse .swatch__colour {
-    background-color: $inverse-color;
+    background-color: color('inverse-color');
     color: white;
   }
 
   // Jadu Blues
 
   &--jadu-blue .swatch__colour {
-    background-color: $jadu-blue;
+    background-color: color('jadu-blue');
     color: white;
   }
 
   &--jadu-blue-secondary .swatch__colour {
-    background-color: $jadu-blue-secondary;
+    background-color: color('jadu-blue-secondary');
     color: white;
   }
 
   &--jadu-blue-cool .swatch__colour {
-    background-color: $jadu-blue-cool;
+    background-color: color('jadu-blue-cool');
     color: white;
   }
 
   &--jadu-blue-warm .swatch__colour {
-    background-color: $jadu-blue-warm;
+    background-color: color('jadu-blue-warm');
     color: white;
   }
 
   &--jadu-blue-pale .swatch__colour {
-    background-color: $jadu-blue-pale;
+    background-color: color('jadu-blue-pale');
     color: white;
   }
 
   // Jadu Colours
 
   &--jadu-orange .swatch__colour {
-    background-color: $jadu-orange;
+    background-color: color('jadu-orange');
     color: white;
   }
 
   &--jadu-green .swatch__colour {
-    background-color: $jadu-green;
+    background-color: color('jadu-green');
     color: white;
   }
 
   &--jadu-teal .swatch__colour {
-    background-color: $jadu-teal;
+    background-color: color('jadu-teal');
     color: white;
   }
 
   &--jadu-red .swatch__colour {
-    background-color: $jadu-red;
+    background-color: color('jadu-red');
     color: white;
   }
 
   &--jadu-yellow .swatch__colour {
-    background-color: $jadu-yellow;
+    background-color: color('jadu-yellow');
     color: white;
   }
 
   &--jadu-black .swatch__colour {
-    background-color: $jadu-black;
+    background-color: color('jadu-black');
     color: white;
   }
 
   &--jadu-copy-gray .swatch__colour {
-    background-color: $jadu-copy-gray;
+    background-color: color('jadu-copy-gray');
   }
 
   // Grays

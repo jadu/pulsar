@@ -124,7 +124,7 @@
 }
 
 .slide-inner {
-  background-color: $white;
+  background-color: color('white');
   box-shadow: -3px 0px 3px rgba(0, 0, 0, .1);
   float: left;
   width: 100%;
@@ -260,6 +260,6 @@
   }
 
   a {
-    color: $white;
+    color: color('white');
   }
 }

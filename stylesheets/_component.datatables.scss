@@ -270,14 +270,14 @@
 
 
 .dataTables_empty {
-    color: $danger-color;
+    color: color('danger-color');
     height: 73px;
     padding-left: 10px;
     vertical-align: middle;
 
     &:before {
         content: $frown;
-        color: $danger-color;
+        color: color('danger-color');
         font-family: fontawesome;
         font-size: 48px;
         margin-right: 20px;

@@ -35,7 +35,7 @@
       text-decoration: none;
       top: 50%;
       &:hover {
-        color: $danger-color;
+        color: color('danger-color');
       }
     }
   }

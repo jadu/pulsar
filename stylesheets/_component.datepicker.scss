@@ -18,8 +18,8 @@
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 
     th {
-        background-color: $white;
-        
+        background-color: color('white');
+
         abbr {
             border-bottom: 0;
         }
@@ -54,9 +54,9 @@
     background-color: #fff;
 
     &:hover {
-        background-color: $primary-color;
+        background-color: color('primary-color');;
         border-radius: 3px;
-        color: $white;
+        color: color('white');
 
     }
 }

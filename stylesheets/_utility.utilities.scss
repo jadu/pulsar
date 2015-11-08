@@ -27,7 +27,7 @@
 }
 
 .muted {
-  color: $gray;
+  color: color('gray');
 }
 
 .centered {
@@ -36,7 +36,7 @@
 
 p.success {
   background: rgba(0, 153, 51, .8);
-  color: $white;
+  color: color('white');
   padding: 5px 5px;
   text-shadow: 0 0 2px rgba(0, 0, 0, .5);
 

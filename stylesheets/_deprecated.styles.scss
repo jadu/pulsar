@@ -209,7 +209,7 @@ $toolbar-dropdown-link-color-hover: $white !default;
       }
 
       > li.is-active > a {
-        background-color: $white;
+        background-color: color('white');
         border: 1px solid $gray;
         border-right: none;
         z-index: 1;
@@ -263,7 +263,7 @@ $toolbar-dropdown-link-color-hover: $white !default;
 
     // nested navigation
     .tabs__list > li > .tabs__list {
-      background-color: $white;
+      background-color: color('white');
       border-bottom: 1px solid $gray;
       border-left: 1px solid $gray;
       padding-bottom: 1px;
@@ -291,7 +291,7 @@ $toolbar-dropdown-link-color-hover: $white !default;
 
         &:hover {
           background-color: shade($accent-color, 25%);
-          color: $white;
+          color: color('white');
         }
       }
 
@@ -335,7 +335,7 @@ $toolbar-dropdown-link-color-hover: $white !default;
     }
 
     .tab__inner {
-      background-color: $white;
+      background-color: color('white');
       border-top: 1px solid $gray;
       border-bottom: 1px solid $gray;
       float: left;
@@ -409,15 +409,15 @@ $toolbar-dropdown-link-color-hover: $white !default;
     }
 
     .tabs__list .new {
-      background-color: $primary-color;
+      background-color: color('primary-color');;
       border-bottom: none;
       height: $line-height-base * 1.75;
 
       input {
-        background-color: $primary-color;
+        background-color: color('primary-color');;
         border: 0;
         outline: none;
-        color: $white;
+        color: color('white');
         line-height: 1.75em;
         margin: 4px 0 0 5%;
         width: 90%;

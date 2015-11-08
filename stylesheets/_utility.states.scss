@@ -7,14 +7,14 @@
   }
 }
 
-$info-from-bg-color: lighten($info-color, 30);
+$info-from-bg-color: lighten(color('info-color'), 30);
 $info-to-bg-color: transparent;
-$info-from-text-color: darken($info-color, 30);
+$info-from-text-color: darken(color('info-color'), 30);
 $info-to-text-color: black;
 
-$danger-from-bg-color: lighten($danger-color, 30);
+$danger-from-bg-color: lighten(color('danger-color'), 30);
 $danger-to-bg-color: transparent;
-$danger-from-text-color: darken($danger-color, 30);
+$danger-from-text-color: darken(color('danger-color'), 30);
 $danger-to-text-color: black;
 
 @-webkit-keyframes infoFade {
@@ -110,15 +110,15 @@ $danger-to-text-color: black;
 
 .has-success {
   &:not(.form__group) {
-    background-color: lighten($success-color, 35);
-    color: darken($success-color, 15);
+    background-color: lighten(color('success-color'), 35);
+    color: darken(color('success-color'), 15);
   }
 }
 
 .has-warning {
   &:not(.form__group) {
-    background-color: lighten($warning-color, 15);
-    color: darken($warning-color, 30);
+    background-color: lighten(color('warning-color'), 15);
+    color: darken(color('warning-color'), 30);
   }
 }
 

@@ -1,4 +1,5 @@
 @import '_function.merge-maps';
+@import '_function.color';
 
 /* -------------------------------------------------------------------------- *\
     Base palettes
@@ -35,15 +36,28 @@ $palette-monochromes: (
     'white':                #ffffff
 );
 
-$palette-monochromes-highcontrast: (
-    'black':                #1e1e1e,
-    'gray-darker':          darken(map-get($palette-monochromes, 'gray-darker'), 5%),
-    'gray-dark':            darken(map-get($palette-monochromes, 'gray-dark'), 5%),
-    'gray':                 darken(map-get($palette-monochromes, 'gray'), 5%),
-    'gray-light':           darken(map-get($palette-monochromes, 'gray-light'), 5%),
-    'gray-lighter':         darken(map-get($palette-monochromes, 'gray-lighter'), 5%),
-    'off-white':            darken(map-get($palette-monochromes, 'off-white'), 5%),
-    'white':                #ffffff
+// $palette-monochromes-highcontrast: (
+//     'black':                #1e1e1e,
+//     'gray-darker':          darken(map-get($palette-monochromes, 'gray-darker'), 5%),
+//     'gray-dark':            darken(map-get($palette-monochromes, 'gray-dark'), 5%),
+//     'gray':                 darken(map-get($palette-monochromes, 'gray'), 5%),
+//     'gray-light':           darken(map-get($palette-monochromes, 'gray-light'), 5%),
+//     'gray-lighter':         darken(map-get($palette-monochromes, 'gray-lighter'), 5%),
+//     'off-white':            darken(map-get($palette-monochromes, 'off-white'), 5%),
+//     'white':                #ffffff
+// );
+
+/* -------------------------------------------------------------------------- *\
+    Text and links
+\* -------------------------------------------------------------------------- */
+
+$palette-text: (
+    'text-color':           map-get($palette-monochromes, 'jadu-copy-gray'),
+    'text-color-light':     map-get($palette-monochromes, 'gray'),
+    'link-color':           map-get($palette-branding, 'jadu-blue-secondary'),
+    'link-hover-color':     map-get($palette-branding, 'jadu-blue-secondary'),
+    'inverse-link-color':   #ffffff,
+    'inverse-link-color-hover': darken(#ffffff, 10%)
 );
 
 /* -------------------------------------------------------------------------- *\
@@ -95,19 +109,11 @@ $state-colors:
     Example:
 
     background-color: colour('gray-light');
-
-    If 'projector mode is enabled, then the high contrast version of any
-    colours will be used automatically.
 \* -------------------------------------------------------------------------- */
 
 $colors: merge-maps(
     $palette-branding,
     $palette-monochromes,
-    $palette-states
-);
-
-$colors-highcontrast: merge-maps(
-    $palette-branding,
-    $palette-monochromes-highcontrast,
+    $palette-text,
     $palette-states
 );

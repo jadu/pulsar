@@ -115,15 +115,15 @@
 }
 
 .tabs__list .new {
-  background-color: $primary-color;
+  background-color: color('primary-color');;
   border-bottom: none;
   height: $line-height-base * 1.75;
 
   input {
-    background-color: $primary-color;
+    background-color: color('primary-color');;
     border: 0;
     outline: none;
-    color: $white;
+    color: color('white');
     line-height: 1.75em;
     margin: 4px 0 0 5%;
     width: 90%;
