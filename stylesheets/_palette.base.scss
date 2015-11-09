@@ -1,6 +1,3 @@
-@import '_function.merge-maps';
-@import '_function.color';
-
 /* -------------------------------------------------------------------------- *\
     Base palettes
 
@@ -89,20 +86,3 @@ $state-colors:
     ('info', map_get($palette-states, 'info-color'), map_get($palette-states, 'info-color-alt')),
     ('inverse', map_get($palette-states, 'inverse-color'), map_get($palette-states, 'inverse-color-alt'));
 
-/* -------------------------------------------------------------------------- *\
-    Colour maps
-
-    Use in conjunction with _mixin.colour.scss to reference colours in your
-    stylesheets without needing to use map_get and reference a palette.
-
-    Example:
-
-    background-color: colour('gray-light');
-\* -------------------------------------------------------------------------- */
-
-$colors: merge-maps(
-    $palette-branding,
-    $palette-monochromes,
-    $palette-text,
-    $palette-states
-);

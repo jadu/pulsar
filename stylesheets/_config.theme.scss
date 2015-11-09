@@ -1,13 +1,21 @@
+/* -------------------------------------------------------------------------- *\
+    Colour map
 
-// -----------------------------------------------------------------------------
-//  Text & Links
-// -----------------------------------------------------------------------------
+    Merges colour palettes into a single map to be used by the color() function.
 
-$text-color:                    color('jadu-copy-gray') !default;
-$link-color:                    map_get($colors, 'jadu-blue-secondary') !default;
-$link-hover-color:              darken($link-color, 20%) !default;
-$inverse-link-color:            #fff !default;
-$inverse-link-hover-color:      darken(#fff, 10%) !default;
+    Example:
+
+    background-color: colour('gray-light');
+\* -------------------------------------------------------------------------- */
+
+@import '_function.merge-maps';
+
+$colors: merge-maps(
+    $palette-branding,
+    $palette-monochromes,
+    $palette-text,
+    $palette-states
+);
 
 // -----------------------------------------------------------------------------
 //  Badges

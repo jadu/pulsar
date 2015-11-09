@@ -186,7 +186,7 @@ $rich-list-item-text-selected-color:  $white !default;
   vertical-align: inherit;
 
   a {
-    color: $link-color;
+    color: color('link-color');
   }
 
   &:hover a {

@@ -63,6 +63,6 @@
   }
 
   &:hover a {
-    color: $link-color;
+    color: color('link-color');
   }
 }
