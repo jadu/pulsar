@@ -5,7 +5,7 @@
     width: 100%;
 
     &:hover > .table-link {
-        color: $link-color;
+        color: color('link-color');
         outline: 1px solid red;
     }
 
@@ -73,7 +73,7 @@
     text-decoration: none;
 
     &:hover {
-        color: $link-color;
+        color: color('link-color');
         text-decoration: underline;
     }
 }

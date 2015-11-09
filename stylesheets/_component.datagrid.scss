@@ -17,7 +17,7 @@
 
   // Colour links when user hovers over the table
   &:hover tbody a {
-    color: $link-color;
+    color: color('link-color');
   }
 
   // Rows

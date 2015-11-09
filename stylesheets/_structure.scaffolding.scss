@@ -56,12 +56,12 @@ body {
 // Links
 
 a {
-  color: $link-color;
+  color: color('link-color');
   cursor: pointer;
 }
 
 a:hover {
-  color: $link-hover-color;
+  color: color('link-hover-color');
 }
 
 a.disabled {

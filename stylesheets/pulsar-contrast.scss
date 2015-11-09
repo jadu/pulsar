@@ -39,6 +39,9 @@ $FontAwesomePath: '../libs/font-awesome/font/';
 @import '_function.color';
 @import '_palette.base';
 
+// Additional colour palette
+@import '_palette.contrast';
+
 // Apply palette to components
 @import '_config.theme';
 
@@ -55,11 +58,6 @@ $FontAwesomePath: '../libs/font-awesome/font/';
 @import '_layout.sidebar';
 @import '_layout.signin';
 @import '_layout.tabs';
-
-/* -------------------------------------------------------------------------- *\
-	If you're theming Pulsar and want to include your own variables, colours or
-	mixins you should @import them here.
-\* -------------------------------------------------------------------------- */
 
 // Components
 @import '_component.actionsbar';
@@ -110,18 +108,12 @@ $FontAwesomePath: '../libs/font-awesome/font/';
 @import '_component.signin';
 @import '_component.summary';
 @import '_component.tab-panel';
-// @import '_component.tables';
 @import '_component.toggles';
 @import '_component.toolbar';
 @import '_component.tooltips';
 @import '_component.tour';
 @import '_component.uploader';
 @import '_component.widget';
-
-/* -------------------------------------------------------------------------- *\
-	If you're extending Pulsar and want to include your own layouts/modules etc
- 	you should @import them here.
-\* -------------------------------------------------------------------------- */
 
 // Utilities
 @import '_utility.highlight';
