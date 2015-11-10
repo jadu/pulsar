@@ -102,7 +102,7 @@ $palette-states: (
         alt:  #000000
     ),
     inverse:     (
-        base: map-get(map-get($palette-monochromes, gray), dark),
+        base: map-get(map-get($palette-monochromes, gray), darker),
         alt:  #ffffff
     )
 );
