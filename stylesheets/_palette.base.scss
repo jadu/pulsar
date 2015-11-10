@@ -78,7 +78,7 @@ $palette-text: (
 
 $palette-states: (
     base: (
-        base: map-get(map-get($palette-monochromes, gray), base),
+        base: map-get(map-get($palette-monochromes, gray), lighter),
         alt:  #000000
     ),
     primary: (

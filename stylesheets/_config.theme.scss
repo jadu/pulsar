@@ -21,7 +21,7 @@ $colors: merge-maps(
 //  Badges
 // -----------------------------------------------------------------------------
 
-$badge-bg:                      color(gray) !default;
+$badge-bg:                      color(gray, lighter) !default;
 
 $badge-primary-bg:              color(primary) !default;
 $badge-primary-bg-darker:       darken($badge-primary-bg, 20%) !default;
@@ -93,7 +93,7 @@ $popover-arrow-outer-fallback-color:  color(gray) !default;
 //  Progress bars
 // -----------------------------------------------------------------------------
 
-$progress-bg:                         color(gray, lighter) !default;
+$progress-bg:                         color(gray, lightest) !default;
 $progress-bg-hover:                   darken($progress-bg, 5%) !default;
 
 // -----------------------------------------------------------------------------

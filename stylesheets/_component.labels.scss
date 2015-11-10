@@ -18,7 +18,7 @@
     &:focus {
       text-decoration: none;
       cursor: pointer;
-      background-color: darken(color(gray, light), 10%);
+      background-color: color(gray, lighter);
     }
   }
 

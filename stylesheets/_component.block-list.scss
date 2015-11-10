@@ -122,7 +122,7 @@ $width: 500px;
 
 .block-list--underlined {
   .block-list__item {
-    border-bottom: 1px solid color(gray);
+    border-bottom: 1px solid color(gray, lighter);
   }
 
   .block-list__item.has-info {
@@ -145,11 +145,11 @@ $width: 500px;
 
 .block-list--bordered {
   @extend .block-list--padded;
-  border: 1px solid color(gray);
+  border: 1px solid color(gray, lighter);
   border-radius: $border-radius;
 
   .block-list__item:not(:last-of-type) {
-    border-bottom: 1px solid color(gray);
+    border-bottom: 1px solid color(gray, lighter);
   }
 }
 
@@ -174,7 +174,7 @@ $width: 500px;
 		}
 
 		&:not(:last-of-type) {
-			border-right: 1px solid color(gray);
+			border-right: 1px solid color(gray, lighter);
 		}
 	}
 }
