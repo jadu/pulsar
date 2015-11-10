@@ -11,7 +11,7 @@
     user-select: none;
 
     th {
-        background-color: color('white');
+        background-color: color(white);
         font-family: $font-family-light;
         font-size: .75em;
         font-weight: normal;
@@ -31,8 +31,8 @@
 
         &:hover,
         &.active {
-            background-color: color('primary-color');;
-            color: color('white');
+            background-color: color(primary-color);;
+            color: color(white);
             cursor: hand;
         }
     }

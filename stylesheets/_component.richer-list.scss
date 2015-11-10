@@ -58,11 +58,11 @@ $rich-list-items-width-large:         .5 !default;  // large screen
 $rich-list-items-width-xlarge:        .65 !default; // large screen
 
 // Colour
-$rich-list-border-color:              $gray !default;
-$rich-list-item-bg-color:             $white !default;
-$rich-list-item-bg-hover-color:       $gray-lighter !default;
-$rich-list-item-bg-selected-color:    $jadu-blue !default;
-$rich-list-item-text-selected-color:  $white !default;
+$rich-list-border-color:              color(gray) !default;
+$rich-list-item-bg-color:             color(white) !default;
+$rich-list-item-bg-hover-color:       color(gray, lighter) !default;
+$rich-list-item-bg-selected-color:    color(jadu-blue) !default;
+$rich-list-item-text-selected-color:  color(white) !default;
 
 
 /* -------------------------------------------------------------------------- *\
@@ -113,7 +113,7 @@ $rich-list-item-text-selected-color:  $white !default;
 
 
 .richer-list__items-container {
-  background-color: $off-white; /* [5] */
+  background-color: color(gray, off-white); /* [5] */
   border-right: 1px solid $rich-list-border-color;
   vertical-align: top; /* [6] */
   width: percentage($rich-list_items-width-default);
@@ -159,7 +159,7 @@ $rich-list-item-text-selected-color:  $white !default;
   }
 
   a { /* [13] */
-    color: $black;
+    color: color(black);
     text-decoration: none;
   }
 
@@ -180,13 +180,13 @@ $rich-list-item-text-selected-color:  $white !default;
 
 
 .richer-list__item-placeholder {
-  background-color: $off-white;
+  background-color: color(gray, off-white);
   height: ($line-height-base * 1.8) * 3;
   text-align: center;
   vertical-align: inherit;
 
   a {
-    color: color('link-color');
+    color: color(link-color);
   }
 
   &:hover a {

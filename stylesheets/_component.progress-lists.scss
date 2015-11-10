@@ -9,7 +9,7 @@
 .progress-list__item {
     background-color: $progress-bg;
     box-shadow: inset 2px 1px 2px rgba(0, 0, 0, .1);
-    color: color('black');
+    color: color(black);
     display: table-cell;
     padding: .75em 0;
     text-decoration: none;
@@ -18,7 +18,7 @@
         @include css-arrow(23px, right, $progress-bg);
 
         &:before {
-            border-left-color: color('white');
+            border-left-color: color(white);
             border-width: 27px;
             margin-top: -27px;
         }
@@ -41,7 +41,7 @@
 
     &:hover {
         background-color: $progress-bg-hover;
-        color: color('black');
+        color: color(black);
 
         &:after {
             border-left-color: $progress-bg-hover;
@@ -80,40 +80,40 @@
 
 
 .progress-list__item--complete {
-    background-color: color('success-color');
+    background-color: color(success-color);
     box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
-    color: color('success-color-alt');
+    color: color(success-color, alt);
 
     &:not(:last-of-type):after {
-        border-left-color: color('success-color');
+        border-left-color: color(success-color);
     }
 
     &:hover {
-        background-color: darken(color('success-color'), 2);
-        color: color('success-color-alt');
+        background-color: darken(color(success-color), 2);
+        color: color(success-color, alt);
 
         &:after {
-            border-left-color: darken(color('success-color'), 2);
+            border-left-color: darken(color(success-color), 2);
         }
     }
 }
 
 
 .progress-list__item--current {
-    background-color: color('primary-color');;
+    background-color: color(primary-color);;
     box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
-    color: color('primary-color-alt');
+    color: color(primary-color, alt);
 
     &:not(:last-of-type):after {
-        border-left-color: color('primary-color');
+        border-left-color: color(primary-color);
     }
 
     &:hover {
-        background-color: darken(color('primary-color'), 2);
-        color: color('primary-color-alt');
+        background-color: darken(color(primary-color), 2);
+        color: color(primary-color, alt);
 
         &:after {
-            border-left-color: darken(color('primary-color'), 2);
+            border-left-color: darken(color(primary-color), 2);
         }
     }
 }

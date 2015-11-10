@@ -60,7 +60,7 @@ $nav-color-dark:  #2d89b7 !default;
 
 // Should be removed - replaced by nav-inline
 .nav-tertiary {
-    background-color: color('inverse-color');
+    background-color: color(inverse-color);
     box-shadow: inset -4px 0 0 rgba(0,0,0,.05);
     display: none;
     min-width: 250px;
@@ -123,7 +123,7 @@ $nav-color-dark:  #2d89b7 !default;
     }
 
     &__list {
-        border-bottom: 1px solid color('gray');
+        border-bottom: 1px solid color(gray, lightest);
         display: inline-block;
         list-style: none;
         margin-bottom: 0;
@@ -148,27 +148,27 @@ $nav-color-dark:  #2d89b7 !default;
     }
 
     &__item.is-active > &__link {
-        color: color('black');
+        color: color(black);
         font-family: $font-family-semibold;
     }
 
     &__link {
-        color: color('gray-light');
+        color: color(gray, light);
         text-decoration: none;
 
         &:hover,
         &:focus,
         &:link,
         &:visited {
-            color: color('black');
+            color: color(black);
 
             .caret {
-                border-top-color: color('black');
+                border-top-color: color(black);
             }
         }
 
         .caret {
-            border-top-color: color('gray-light');
+            border-top-color: color(gray, light);
         }
     }
 
@@ -256,7 +256,7 @@ $nav-color-dark:  #2d89b7 !default;
     &:hover,
     &.open {
         background: $nav-color-dark;
-        color: color('white');
+        color: color(white);
     }
 }
 

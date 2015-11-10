@@ -28,14 +28,14 @@
       padding-right: $padding-base-horizontal * 3;
     }
     .remove__control {
-      color: $gray-light;
+      color: color(gray, light);
       margin-top: - $input-height-base / 4;
       position: absolute;
       right: $padding-base-horizontal;
       text-decoration: none;
       top: 50%;
       &:hover {
-        color: color('danger-color');
+        color: color(danger-color);
       }
     }
   }

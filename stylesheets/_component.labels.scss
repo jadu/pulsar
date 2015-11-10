@@ -10,7 +10,7 @@
   text-transform: lowercase;
   vertical-align: baseline;
   white-space: nowrap;
-  @include label-variant(color('base-color'), color('base-color-alt'));
+  @include label-variant(color(base-color), color(base-color, alt));
 
   // Add hover effects, but only for links
   &[href] {
@@ -18,7 +18,7 @@
     &:focus {
       text-decoration: none;
       cursor: pointer;
-      background-color: darken(color('gray-light'), 10%);
+      background-color: darken(color(gray, light), 10%);
     }
   }
 
@@ -44,31 +44,31 @@
 // Colors
 // Contextual variations (linked labels get darker on :hover)
 .label--primary {
-  @include label-variant(color('primary-color'), color('primary-color-alt'));
+  @include label-variant(color(primary-color), color(primary-color, alt));
 }
 
 .label--success {
-  @include label-variant(color('success-color'), color('success-color-alt'));
+  @include label-variant(color(success-color), color(success-color, alt));
 }
 
 .label--warning {
-  @include label-variant(color('warning-color'), color('warning-color-alt'));
+  @include label-variant(color(warning-color), color(warning-color, alt));
 }
 
 .label--danger {
-  @include label-variant(color('danger-color'), color('danger-color-alt'));
+  @include label-variant(color(danger-color), color(danger-color, alt));
   $badge-primary-bg: darken($badge-primary-bg, 10%);
 }
 
 .label--info {
-  @include label-variant(color('info-color'), color('info-color-alt'));
+  @include label-variant(color(info-color), color(info-color, alt));
 }
 
 .label--inverse {
-  @include label-variant(color('inverse-color'), color('inverse-color-alt'));
+  @include label-variant(color(inverse-color), color(inverse-color, alt));
 
   i {
-    color: color('white');
+    color: color(white);
   }
 }
 

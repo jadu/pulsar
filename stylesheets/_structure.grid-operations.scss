@@ -177,7 +177,7 @@ $sidebar-width : 200px;
         z-index: 999;
 
         .clear-row,
-        .remove-row, 
+        .remove-row,
         .fill-row {
             color: #333;
             text-decoration: none;
@@ -218,9 +218,9 @@ $sidebar-width : 200px;
 .widget-row {
     border-bottom: 1px solid lighten($gray, 10%);
     min-height: 130px;
-    
+
     .row-hint {
-        color: $gray-dark;
+        color: color(gray, dark);
         float: left;
         margin-top: 1%;
         text-align: center;

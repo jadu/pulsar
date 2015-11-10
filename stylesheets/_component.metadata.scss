@@ -42,7 +42,7 @@ $metadata-padding-y: $padding-small-vertical !default;
 \* -------------------------------------------------------------------------- */
 
 .metadata--bordered {
-  border: 1px solid color('gray');
+  border: 1px solid color(gray);
   border-radius: $border-radius;
 
   .metadata__key,
@@ -50,7 +50,7 @@ $metadata-padding-y: $padding-small-vertical !default;
     padding: $metadata-padding-y $metadata-padding-x;
 
     &:not(:last-of-type) {
-      border-bottom: 1px solid color('gray');
+      border-bottom: 1px solid color(gray);
     }
   }
 }

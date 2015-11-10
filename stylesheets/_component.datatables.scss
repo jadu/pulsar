@@ -5,7 +5,7 @@
     width: 100%;
 
     &:hover > .table-link {
-        color: color('link-color');
+        color: color(link-color);
         outline: 1px solid red;
     }
 
@@ -15,7 +15,7 @@
     vertical-align: top;
 
     &.selected .table__td {
-        background-color: $jadu-blue-pale;
+        background-color: color(jadu-blue, pale);
     }
 
 }
@@ -45,8 +45,8 @@
 
     &:hover .table-link,
     &:hover .table-link:hover {
-        border-bottom: 1px dotted $black;
-        color: $black;
+        border-bottom: 1px dotted color(black);
+        color: color(black);
         text-decoration: none;
     }
 
@@ -69,11 +69,11 @@
 }
 
 .table__th > .table-link {
-    color: $black;
+    color: color(black);
     text-decoration: none;
 
     &:hover {
-        color: color('link-color');
+        color: color(link-color);
         text-decoration: underline;
     }
 }
@@ -93,7 +93,7 @@
 
 .table-link {
     border-bottom: 1px dotted #ccc;
-    color: $black;
+    color: color(black);
     text-decoration: none;
 }
 
@@ -224,7 +224,7 @@
 
 
 .table-child-toggle {
-    color: $jadu-blue;
+    color: color(jadu-blue);
     display: none;
     font-size: 14px;
     position: absolute;
@@ -236,7 +236,7 @@
     }
 
     .parent &:before {
-        color: $jadu-red;
+        color: color(jadu-red);
         content: $minus-sign;
     }
 }
@@ -270,14 +270,14 @@
 
 
 .dataTables_empty {
-    color: color('danger-color');
+    color: color(danger-color);
     height: 73px;
     padding-left: 10px;
     vertical-align: middle;
 
     &:before {
         content: $frown;
-        color: color('danger-color');
+        color: color(danger-color);
         font-family: fontawesome;
         font-size: 48px;
         margin-right: 20px;

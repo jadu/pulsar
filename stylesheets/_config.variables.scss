@@ -121,11 +121,11 @@ $form-label-column-width:             200px !default;
 $controls-width:                      30%;
 $controls-max-width:                  300px;
 $input-bg:                            #fff !default;
-$input-bg-disabled:                   color('gray-lighter') !default;
+$input-bg-disabled:                   color(gray, lighter) !default;
 $input-border:                        #ccc !default;
 $input-border-radius:                 $border-radius !default;
 $input-border-focus:                  #66afe9 !default;
-$input-color-placeholder:             color('gray-light') !default;
+$input-color-placeholder:             color(gray, light) !default;
 $input-height-base:                   $line-height-base * 2 !default;
 @include ie-lte(7) {
   $input-height-base:                 $line-height-base * 1.2 !default;

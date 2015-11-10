@@ -134,11 +134,11 @@
 
 .modal--danger {
   .modal__header {
-    background-color: color('danger-color');
-    color: color('white');
+    background-color: color(danger-color);
+    color: color(white);
   }
   .close {
-    color: color('white');
+    color: color(white);
     @include opacity(.7);
   }
 }

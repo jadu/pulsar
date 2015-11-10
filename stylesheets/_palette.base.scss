@@ -7,30 +7,50 @@
 \* -------------------------------------------------------------------------- */
 
 $palette-branding: (
-    'jadu-blue-principle':  #3399cc,
-    'jadu-blue-secondary':  #2080c0,
-    'jadu-blue-cool':       #a0cdef,
-    'jadu-blue-warm':       #a4c2cd,
-    'jadu-blue-pale':       #e0f3f9,
-    'jadu-blue':            #3399cc,
-    'jadu-orange':          #fcb130,
-    'jadu-green':           #89b029,
-    'jadu-teal':            #06a79d,
-    'jadu-red':             #d12918,
-    'jadu-yellow':          #ffcc33,
-    'jadu-black':           #1e1e1e,
-    'jadu-copy-gray':       #989699
+    jadu-red: (
+        darkest:     rgb(154, 23, 23),
+        dark:        rgb(192, 28, 29),
+        base:        rgb(218, 32, 33),
+        light:       rgb(231, 58, 34)
+    ),
+    jadu-blue: (
+        dark:        rgb(11, 137, 173),
+        base:        rgb(21, 166, 209),
+        light:       rgb(84, 190, 222),
+        pale:        rgb(140, 208, 234)
+    ),
+    jadu-green: (
+        dark:        rgb(107, 156, 47),
+        base:        rgb(128, 186, 39),
+        light:       rgb(164, 200, 88),
+        pale:        rgb(189, 214, 134)
+    ),
+    jadu-teal: (
+        dark:        rgb(69, 154, 140),
+        base:        rgb(84, 185, 169),
+        light:       rgb(134, 201, 191),
+        pale:        rgb(140, 210, 202)
+    ),
+    jadu-pink: (
+        dark:        rgb(183, 67, 95),
+        base:        rgb(220, 81, 114),
+        light:       rgb(224, 105, 133),
+        pale:        rgb(239, 180, 195)
+    )
 );
 
 $palette-monochromes: (
-    'black':                #1e1e1e,
-    'gray-darker':          #404040,
-    'gray-dark':            #4d4d4d,
-    'gray':                 #cccccc,
-    'gray-light':           #dfdfdf,
-    'gray-lighter':         #f2f2f2,
-    'off-white':            #fafafa,
-    'white':                #ffffff
+    white: ( base:   rgb(255, 255, 255) ),
+    black: ( base:   rgb(30, 30, 30) ),
+    gray:  (
+        darker:      rgb(62, 62, 62),
+        dark:        rgb(95, 95, 95),
+        base:        rgb(126, 126, 126),
+        light:       rgb(157, 157, 157),
+        lighter:     rgb(190, 190, 190),
+        lightest:    rgb(222, 222, 222),
+        off-white:   rgb(236, 236, 236)
+    )
 );
 
 /* -------------------------------------------------------------------------- *\
@@ -38,12 +58,12 @@ $palette-monochromes: (
 \* -------------------------------------------------------------------------- */
 
 $palette-text: (
-    'text-color':           map-get($palette-monochromes, 'jadu-copy-gray'),
-    'text-color-light':     map-get($palette-monochromes, 'gray'),
-    'link-color':           map-get($palette-branding, 'jadu-blue-secondary'),
-    'link-hover-color':     map-get($palette-branding, 'jadu-blue-secondary'),
-    'inverse-link-color':   #ffffff,
-    'inverse-link-color-hover': darken(#ffffff, 10%)
+    text-color:               ( base: map-get($palette-monochromes, jadu-copy-gray) ),
+    text-color-light:         ( base: map-get($palette-monochromes, gray) ),
+    link-color:               ( base: map-get($palette-branding, jadu-blue-secondary) ),
+    link-hover-color:         ( base: map-get($palette-branding, jadu-blue-secondary) ),
+    inverse-link-color:       ( base: #ffffff ),
+    inverse-link-hover-color: ( base: darken(#ffffff, 10%) )
 );
 
 /* -------------------------------------------------------------------------- *\
@@ -53,20 +73,34 @@ $palette-text: (
 \* -------------------------------------------------------------------------- */
 
 $palette-states: (
-    'base-color':           map_get($palette-monochromes, 'gray'),
-    'primary-color':        #1f7bb8,
-    'success-color':        #297c46,
-    'warning-color':        #eaa96a,
-    'danger-color':         #c84d40,
-    'info-color':           map_get($palette-branding, 'jadu-blue-cool'),
-    'inverse-color':        map_get($palette-monochromes, 'gray-dark'),
-    'base-color-alt':       map_get($palette-monochromes, 'black'),
-    'primary-color-alt':    #ffffff,
-    'success-color-alt':    #ffffff,
-    'warning-color-alt':    #000000,
-    'danger-color-alt':     #ffffff,
-    'info-color-alt':       #000000,
-    'inverse-color-alt':    #ffffff
+    base-color: (
+        base: map-get(map-get($palette-monochromes, gray), base),
+        alt:  #000000
+    ),
+    primary-color: (
+        base: #1f7bb8,
+        alt:  #ffffff
+    ),
+    success-color:     (
+        base: #297c46,
+        alt:  #ffffff
+    ),
+    warning-color:     (
+        base: #eaa96a,
+        alt:  #000000
+    ),
+    danger-color:      (
+        base: #c84d40,
+        alt:  #ffffff
+    ),
+    info-color:        (
+        base: map-get(map-get($palette-branding, jadu-blue), pale),
+        alt:  #000000
+    ),
+    inverse-color:     (
+        base: map-get(map-get($palette-monochromes, gray), dark),
+        alt:  #ffffff
+    )
 );
 
 /* -------------------------------------------------------------------------- *\
@@ -78,11 +112,11 @@ $palette-states: (
 \* -------------------------------------------------------------------------- */
 
 $state-colors:
-    ('base', map_get($palette-states, 'base-color'), map_get($palette-states, 'base-color-alt')),
-    ('primary', map_get($palette-states, 'primary-color'), map_get($palette-states, 'primary-color-alt')),
-    ('success', map_get($palette-states, 'success-color'), map_get($palette-states, 'success-color-alt')),
-    ('warning', map_get($palette-states, 'warning-color'), map_get($palette-states, 'warning-color-alt')),
-    ('danger', map_get($palette-states, 'danger-color'), map_get($palette-states, 'danger-color-alt')),
-    ('info', map_get($palette-states, 'info-color'), map_get($palette-states, 'info-color-alt')),
-    ('inverse', map_get($palette-states, 'inverse-color'), map_get($palette-states, 'inverse-color-alt'));
+    (base,      map-get($palette-states, base-color),    map-get($palette-states, base-color-alt)),
+    (primary,   map-get($palette-states, primary-color), map-get($palette-states, primary-color-alt)),
+    (success,   map-get($palette-states, success-color), map-get($palette-states, success-color-alt)),
+    (warning,   map-get($palette-states, warning-color), map-get($palette-states, warning-color-alt)),
+    (danger,    map-get($palette-states, danger-color),  map-get($palette-states, danger-color-alt)),
+    (info,      map-get($palette-states, info-color),    map-get($palette-states, info-color-alt)),
+    (inverse,   map-get($palette-states, inverse-color), map-get($palette-states, inverse-color-alt));
 

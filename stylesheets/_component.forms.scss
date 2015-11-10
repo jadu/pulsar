@@ -13,7 +13,7 @@ fieldset {
 }
 
 .form {
-    background-color: color('white');
+    background-color: color(white);
     // padding: 0 20px 0 20px;
 }
 
@@ -73,7 +73,7 @@ fieldset {
 }
 
 .form__actions {
-    border-top: 1px solid color('gray');
+    border-top: 1px solid color(gray);
     min-height: 60px;
     padding: $line-height-base 0;
     position: relative;
@@ -139,22 +139,22 @@ $inputs: (
 
 .form__group {
   &.has-changed {
-    @include form__control-validation($state-info-text, color('info-color'), $state-info-bg);
+    @include form__control-validation($state-info-text, color(info-color), $state-info-bg);
   }
 
   &.has-warning {
-    @include form__control-validation($state-warning-text, color('warning-color'), $state-warning-bg);
+    @include form__control-validation($state-warning-text, color(warning-color), $state-warning-bg);
   }
 
   &.has-error {
-    @include form__control-validation($state-danger-text, color('danger-color'), $state-danger-bg);
+    @include form__control-validation($state-danger-text, color(danger-color), $state-danger-bg);
   }
 
   &.has-success {
-    @include form__control-validation($state-success-text, color('success-color'), $state-success-bg);
+    @include form__control-validation($state-success-text, color(success-color), $state-success-bg);
   }
 }
 
 .help-block {
-    color: color('text-color-light');
+    color: color(text-color-light);
 }

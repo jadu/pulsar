@@ -11,7 +11,7 @@
 }
 
 .tab-item--header {
-	border-bottom: 1px solid $gray;
+	border-bottom: 1px solid color(gray);
 	color: darken($text-color, 10);
 	display: block;
 	font-size: 1.2em;

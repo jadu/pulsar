@@ -21,29 +21,29 @@ $colors: merge-maps(
 //  Badges
 // -----------------------------------------------------------------------------
 
-$badge-bg:                      color('gray') !default;
+$badge-bg:                      color(gray) !default;
 
-$badge-primary-bg:              color('primary-color') !default;
+$badge-primary-bg:              color(primary-color) !default;
 $badge-primary-bg-darker:       darken($badge-primary-bg, 20%) !default;
 $badge-primary-color:           #fff !default;
 
-$badge-success-bg:              color('success-color') !default;
+$badge-success-bg:              color(success-color) !default;
 $badge-success-bg-darker:       darken($badge-success-bg, 20%) !default;
 $badge-success-color:           #fff !default;
 
-$badge-info-bg:                 color('info-color') !default;
+$badge-info-bg:                 color(info-color) !default;
 $badge-info-bg-darker:          darken($badge-info-bg, 20%) !default;
 $badge-info-color:              #fff !default;
 
-$badge-warning-bg:              color('warning-color') !default;
+$badge-warning-bg:              color(warning-color) !default;
 $badge-warning-bg-darker:       darken($badge-warning-bg, 20%) !default;
 $badge-warning-color:           #fff !default;
 
-$badge-danger-bg:               color('danger-color') !default;
+$badge-danger-bg:               color(danger-color) !default;
 $badge-danger-bg-darker:        darken($badge-danger-bg, 20%) !default;
 $badge-danger-color:            #fff !default;
 
-$badge-inverse-bg:              color('inverse-color') !default;
+$badge-inverse-bg:              color(inverse-color) !default;
 $badge-inverse-bg-darker:       darken($badge-inverse-bg, 20%) !default;
 $badge-inverse-color:           #fff !default;
 
@@ -57,12 +57,12 @@ $badge-link-hover-color:        #fff !default;
 // -----------------------------------------------------------------------------
 
 $dropdown-bg:                    #fff !default;
-$dropdown-border:                color('gray-light') !default;
-$dropdown-fallback-border:       color('gray') !default;
-$dropdown-divider-bg:            color('gray-light') !default;
+$dropdown-border:                color(gray, light) !default;
+$dropdown-fallback-border:       color(gray) !default;
+$dropdown-divider-bg:            color(gray, light) !default;
 $dropdown-link-active-color:     #fff !default;
-$dropdown-link-active-bg:        color('primary-color') !default;
-$dropdown-link-color:            color('gray-dark') !default;
+$dropdown-link-active-bg:        color(primary-color) !default;
+$dropdown-link-color:            color(gray, dark) !default;
 $dropdown-link-hover-color:      #fff !default;
 $dropdown-link-hover-bg:         $dropdown-link-active-bg !default;
 $dropdown-caret-color:           #000 !default;
@@ -72,28 +72,28 @@ $dropdown-caret-color:           #000 !default;
 // -----------------------------------------------------------------------------
 
 $table-bg:                       transparent !default;
-$table-bg-accent:                color('gray-light') !default;
-$table-bg-hover:                 color('gray-lighter') !default;
+$table-bg-accent:                color(gray, light) !default;
+$table-bg-hover:                 color(gray, lighter) !default;
 $table-bg-active:                $table-bg-hover !default;
-$table-border-color:             color('gray') !default;
+$table-border-color:             color(gray) !default;
 
 // -----------------------------------------------------------------------------
 //  Popovers
 // -----------------------------------------------------------------------------
 
 $popover-bg:                          #fff !default;
-$popover-border-color:                color('gray-light') !default;
-$popover-fallback-border-color:       color('gray') !default;
+$popover-border-color:                color(gray, light) !default;
+$popover-fallback-border-color:       color(gray) !default;
 $popover-title-bg:                    #fff !default;
 $popover-arrow-color:                 #fff !default;
-$popover-arrow-outer-color:           color('gray-lighter') !default;
-$popover-arrow-outer-fallback-color:  color('gray') !default;
+$popover-arrow-outer-color:           color(gray, lighter) !default;
+$popover-arrow-outer-fallback-color:  color(gray) !default;
 
 // -----------------------------------------------------------------------------
 //  Progress bars
 // -----------------------------------------------------------------------------
 
-$progress-bg:                         color('gray-lighter') !default;
+$progress-bg:                         color(gray, lighter) !default;
 $progress-bg-hover:                   darken($progress-bg, 5%) !default;
 
 // -----------------------------------------------------------------------------

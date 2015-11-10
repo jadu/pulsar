@@ -14,7 +14,7 @@
 
 // possibly redundant
 .sidebar__header {
-	border-bottom: 1px solid $gray;
+	border-bottom: 1px solid color(gray);
     line-height: 24px;
     margin-bottom: 19px;
     padding-bottom: 4px;
@@ -39,6 +39,6 @@
 }
 
 .sidebar-icon {
-	color: $gray-dark;
+	color: color(gray, dark);
 	line-height: 20px;
 }

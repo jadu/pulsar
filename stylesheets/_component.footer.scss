@@ -7,7 +7,7 @@
     text-decoration: none;
 
     &:hover {
-      color: darken($white, 10%);
+      color: darken(color(white), 10%);
     }
 
     &:last-child {

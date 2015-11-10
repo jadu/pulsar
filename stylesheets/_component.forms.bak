@@ -32,14 +32,14 @@ fieldset {
 	  margin-bottom: $line-height-base * 0.681818182;
 	  font-size: $font-size-base * 1.5;
 	  line-height: $line-height-base * 1.272727273;
-	  color: $gray-dark;
+	  color: color(gray, dark);
 	  border: 0;
 	  border-bottom: 1px solid $legend-border-color;
 
 	  // Make it appear as though the legend has gutter on the right even though it doesn't because it's stupid and won't obey display: block;
 	  position: relative;
 	  &:before {
-	    background-color: color('white');
+	    background-color: color(white);
 	    bottom: -1px;
 	    content: '';
 	    display: block;

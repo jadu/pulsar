@@ -135,11 +135,11 @@
 }
 
 .btn {
-    @include button-states(darken(color('white'), 10%));
+    @include button-states(darken(color(white), 10%));
 }
 
 .btn--primary {
-    @include button-states(color('primary-color'), color('primary-color-alt'), 30);
+    @include button-states(color(primary-color), color(primary-color, alt), 30);
 
     .badge {
         background-color: $badge-primary-bg-darker;
@@ -148,7 +148,7 @@
 }
 
 .btn--success {
-    @include button-states(color('success-color'), color('success-color-alt'), 30);
+    @include button-states(color(success-color), color(success-color, alt), 30);
 
     .badge {
         background-color: $badge-success-bg-darker;
@@ -157,7 +157,7 @@
 }
 
 .btn--warning {
-    @include button-states(color('warning-color'), color('warning-color-alt'), 20);
+    @include button-states(color(warning-color), color(warning-color, alt), 20);
 
     .badge {
         background-color: $badge-warning-bg-darker;
@@ -166,7 +166,7 @@
 }
 
 .btn--danger {
-    @include button-states(color('danger-color'), color('danger-color-alt'), 30);
+    @include button-states(color(danger-color), color(danger-color, alt), 30);
 
     .badge {
         background-color: $badge-danger-bg-darker;
@@ -175,7 +175,7 @@
 }
 
 .btn--info {
-    @include button-states(color('info-color'), color('info-color-alt'), 10);
+    @include button-states(color(info-color), color(info-color, alt), 10);
 
     .badge {
         background-color: $badge-info-bg-darker;
@@ -184,7 +184,7 @@
 }
 
 .btn--inverse {
-    @include button-states(color('inverse-color'), color('inverse-color-alt'), 30);
+    @include button-states(color(inverse-color), color(inverse-color, alt), 30);
 
     .badge {
         background-color: $badge-inverse-bg-darker;

@@ -43,13 +43,13 @@ $greeter-font-size-medium:              1.25em !default;
 $greeter-font-size-small:               .9em !default;
 
 // Colours
-$greeter-bg-color:                      $jadu-blue !default;
-$greeter-bg-color-lighter:              $jadu-blue-cool !default;
+$greeter-bg-color:                      color(jadu-blue) !default;
+$greeter-bg-color-lighter:              color(jadu-blue, light) !default;
 $greeter-bg-color-darker:               darken($greeter-bg-color, 3) !default;
-$greeter-text-color:                    $white !default;
-$greeter-text-color-alt:                $black !default;
+$greeter-text-color:                    color(white) !default;
+$greeter-text-color-alt:                color(black) !default;
 $greeter-link-underline-color:          $greeter-bg-color-lighter !default;
-$greeter-button-bg-color:               $jadu-blue-secondary !default;
+$greeter-button-bg-color:               color(jadu-blue, dark) !default;
 $greeter-button-bg-color-hover:         darken($greeter-button-bg-color, 2) !default;
 $greeter-button-border-color:           darken($greeter-button-bg-color, 10) !default;
 $greeter-button-bg-color-disabled:      $greeter-bg-color-darker !default;
@@ -143,7 +143,7 @@ $greeter-brand-bottom-height:           40px !default;
 
   &__textarea {
     border: 0; /* [3] */
-    box-shadow: inset 0 3px 0 $gray-lighter;
+    box-shadow: inset 0 3px 0 color(gray, lighter);
     max-width: ($greeter-width - ($greeter-padding * 2)); /* [4] */
     max-height: 16em;
     min-height: 8em; /* [5] */
