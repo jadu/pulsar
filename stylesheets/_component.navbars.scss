@@ -2,10 +2,10 @@
   background-color: color(black);
 
   a {
-    color: color(inverse-link-color);
+    color: color(link, inverse);
 
     &:hover {
-      color: color(inverse-link-hover-color);
+      color: color(link, inverse-hover);
     }
   }
 }

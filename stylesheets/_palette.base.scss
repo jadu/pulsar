@@ -58,12 +58,16 @@ $palette-monochromes: (
 \* -------------------------------------------------------------------------- */
 
 $palette-text: (
-    text-color:               ( base: map-get(map-get($palette-monochromes, gray), darker) ),
-    text-color-light:         ( base: map-get(map-get($palette-monochromes, gray), base) ),
-    link-color:               ( base: map-get(map-get($palette-branding, jadu-blue), darker) ),
-    link-hover-color:         ( base: map-get(map-get($palette-branding, jadu-blue), darker) ),
-    inverse-link-color:       ( base: #ffffff ),
-    inverse-link-hover-color: ( base: darken(#ffffff, 10%) )
+    text: (
+        base:  map-get(map-get($palette-monochromes, gray), darker),
+        light: map-get(map-get($palette-monochromes, gray), base)
+    ),
+    link: (
+        base:  map-get(map-get($palette-branding, jadu-blue), darker),
+        hover: map-get(map-get($palette-branding, jadu-blue), darker),
+        inverse: #ffffff,
+        inverse-hover: darken(#ffffff, 10%)
+    )
 );
 
 /* -------------------------------------------------------------------------- *\

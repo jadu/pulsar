@@ -1,4 +1,72 @@
 /* -------------------------------------------------------------------------- *\
+    10/11/2015
+
+    Old direct variable names, mapped to current colour palette.
+
+    _component.colours.scss
+\* -------------------------------------------------------------------------- */
+
+$jadu-blue-principle:           color(jadu-blue, darker);
+$jadu-blue-secondary:           color(jadu-blue);
+$jadu-blue-cool:                color(jadu-blue, light);
+$jadu-blue-warm:                color(jadu-blue);
+$jadu-blue-pale:                color(jadu-blue, pale);
+$jadu-blue:                     color(jadu-blue);
+
+$jadu-orange:                   #fcb130;
+$jadu-green:                    color(jadu-green);
+$jadu-teal:                     color(jadu-teal);
+$jadu-red:                      color(jadu-red);
+$jadu-yellow:                   #ffcc33;
+$jadu-black:                    color(black);
+$jadu-copy-gray:                color(gray, dark);
+
+$black:                         color(black);
+$blue:                          color(jadu-blue);
+$blue-light:                    color(jadu-blue, light);
+$gray-darker:                   color(gray, darker);
+$gray-dark:                     color(gray, dark);
+$gray:                          color(gray);
+$gray-light:                    color(gray, light);
+$gray-lighter:                  color(gray, lighter);
+$green:                         color(jadu-green);
+$off-white:                     color(gray, off-white);
+$white:                         color(white);
+
+$accent-color:                  color(jadu-blue);
+$accent-color-alt:              color(white);
+
+$text-color:                    color(text);
+$link-color:                    color(jadu-blue);
+$link-hover-color:              darken($blue, 20%);
+$inverse-link-color:            $white;
+$inverse-link-hover-color:      darken($white, 10%);
+
+$base-color:                    $gray;
+$primary-color:                 #1F7BB8;
+$success-color:                 #297C46;
+$warning-color:                 #EAA96A;
+$danger-color:                  #C84D40;
+$info-color:                    $jadu-blue-cool;
+$inverse-color:                 $gray-dark;
+
+$base-color-alt:                $black;
+$primary-color-alt:             #FFFFFF;
+$success-color-alt:             #FFFFFF;
+$warning-color-alt:             #000000;
+$danger-color-alt:              #FFFFFF;
+$info-color-alt:                #000000;
+$inverse-color-alt:             #FFFFFF;
+
+$state-colors: ('base', $base-color, $base-color-alt),
+               ('primary', $primary-color, $primary-color-alt),
+               ('success', $success-color, $success-color-alt),
+               ('warning', $warning-color, $warning-color-alt),
+               ('danger', $danger-color, $danger-color-alt),
+               ('info', $info-color, $info-color-alt),
+               ('inverse', $inverse-color, $inverse-color-alt);
+
+/* -------------------------------------------------------------------------- *\
     09/11/2015
 
     _component.notifications.scss
