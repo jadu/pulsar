@@ -58,10 +58,10 @@ $palette-monochromes: (
 \* -------------------------------------------------------------------------- */
 
 $palette-text: (
-    text-color:               ( base: map-get($palette-monochromes, jadu-copy-gray) ),
-    text-color-light:         ( base: map-get($palette-monochromes, gray) ),
-    link-color:               ( base: map-get($palette-branding, jadu-blue-secondary) ),
-    link-hover-color:         ( base: map-get($palette-branding, jadu-blue-secondary) ),
+    text-color:               ( base: map-get(map-get($palette-monochromes, gray), darker) ),
+    text-color-light:         ( base: map-get(map-get($palette-monochromes, gray), base) ),
+    link-color:               ( base: map-get(map-get($palette-branding, jadu-blue), darker) ),
+    link-hover-color:         ( base: map-get(map-get($palette-branding, jadu-blue), darker) ),
     inverse-link-color:       ( base: #ffffff ),
     inverse-link-hover-color: ( base: darken(#ffffff, 10%) )
 );
@@ -112,11 +112,11 @@ $palette-states: (
 \* -------------------------------------------------------------------------- */
 
 $state-colors:
-    (base,      map-get($palette-states, base-color),    map-get($palette-states, base-color-alt)),
-    (primary,   map-get($palette-states, primary-color), map-get($palette-states, primary-color-alt)),
-    (success,   map-get($palette-states, success-color), map-get($palette-states, success-color-alt)),
-    (warning,   map-get($palette-states, warning-color), map-get($palette-states, warning-color-alt)),
-    (danger,    map-get($palette-states, danger-color),  map-get($palette-states, danger-color-alt)),
-    (info,      map-get($palette-states, info-color),    map-get($palette-states, info-color-alt)),
-    (inverse,   map-get($palette-states, inverse-color), map-get($palette-states, inverse-color-alt));
+    (base,      map-get(map-get($palette-states, base-color), base),    map-get(map-get($palette-states, base-color), alt)),
+    (primary,   map-get(map-get($palette-states, primary-color), base), map-get(map-get($palette-states, primary-color), alt)),
+    (success,   map-get(map-get($palette-states, success-color), base), map-get(map-get($palette-states, success-color), alt)),
+    (warning,   map-get(map-get($palette-states, warning-color), base), map-get(map-get($palette-states, warning-color), alt)),
+    (danger,    map-get(map-get($palette-states, danger-color), base),  map-get(map-get($palette-states, danger-color), alt)),
+    (info,      map-get(map-get($palette-states, info-color), base),    map-get(map-get($palette-states, info-color), alt)),
+    (inverse,   map-get(map-get($palette-states, inverse-color), base), map-get(map-get($palette-states, inverse-color), alt));
 

@@ -14,7 +14,6 @@
     "browserify": "10.0.0",
     "browserify-shim": "^3.8.9",
     "chai": "latest",
-    "contextify": "latest",
     "datatables": "latest",
     "grunt": "latest",
     "grunt-asciify": "latest",
