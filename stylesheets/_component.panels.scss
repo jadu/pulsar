@@ -23,27 +23,27 @@
     }
 
     &--danger  {
-        background-color: color(danger-color);
+        background-color: color(danger);
         color: color(white);
     }
 
     &--info    {
-        background-color: color(info-color);
+        background-color: color(info);
         color: color(black);
     }
 
     &--inverse {
-        background-color: color(inverse-color);
+        background-color: color(inverse);
         color: color(white);
     }
 
     &--success {
-        background-color: color(success-color);
+        background-color: color(success);
         color: color(white);
     }
 
     &--warning {
-        background-color: color(warning-color);
+        background-color: color(warning);
         color: color(black);
     }
 

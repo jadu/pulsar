@@ -54,7 +54,7 @@
     background-color: #fff;
 
     &:hover {
-        background-color: color(primary-color);
+        background-color: color(primary);
         border-radius: 3px;
         color: color(white);
 
@@ -163,14 +163,14 @@
 
 .is-today .pika-button {
     background-color: darken(color(gray, lighter), 2%);
-    color: color(primary-color);
+    color: color(primary);
     font-weight: bold;
 }
 
 .is-selected .pika-button {
     color: #fff;
     font-weight: bold;
-    background: color(primary-color);
+    background: color(primary);
     border-radius: 3px;
 }
 
@@ -183,7 +183,7 @@
 
 .pika-button:hover {
     color: #fff !important;
-    background: color(primary-color) !important;
+    background: color(primary) !important;
     box-shadow: none !important;
     border-radius: 3px !important;
 }

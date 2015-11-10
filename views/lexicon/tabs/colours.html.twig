@@ -11,7 +11,7 @@
 			<span class="swatch__text">primary</span>
 		</div>
 		<div class="swatch__label">
-			<code>$primary-color</code>
+			<code>color(primary)</code>
 			<span>{{ html.icon('ok') }} AA Compliant</span>
 		</div>
 	</div>
@@ -21,7 +21,7 @@
 			<span class="swatch__text">info</span>
 		</div>
 		<div class="swatch__label">
-			<code>$info-color</code>
+			<code>color(info)</code>
 			<span>{{ html.icon('ok') }} AA Compliant</span>
 		</div>
 	</div>
@@ -31,7 +31,7 @@
 			<span class="swatch__text">success</span>
 		</div>
 		<div class="swatch__label">
-			<code>$success-color</code>
+			<code>color(success)</code>
 			<span>{{ html.icon('ok') }} AA Compliant</span>
 		</div>
 	</div>
@@ -41,7 +41,7 @@
 			<span class="swatch__text">warning</span>
 		</div>
 		<div class="swatch__label">
-			<code>$warning-color</code>
+			<code>color(warning)</code>
 			<span>{{ html.icon('ok') }} AA Compliant</span>
 		</div>
 	</div>
@@ -51,7 +51,7 @@
 			<span class="swatch__text">danger</span>
 		</div>
 		<div class="swatch__label">
-			<code>$danger-color</code>
+			<code>color(danger)</code>
 			<span>{{ html.icon('ok') }} AA Compliant</span>
 		</div>
 	</div>
@@ -61,82 +61,144 @@
 			<span class="swatch__text">inverse</span>
 		</div>
 		<div class="swatch__label">
-			<code>$inverse-color</code>
+			<code>color(inverse)</code>
 			<span>{{ html.icon('ok') }} AA Compliant</span>
 		</div>
 	</div>
 
 	<br /><br />
-	<h2 class="heading">Jadu blues</h2>
-
-	{%
-		set jadu_blues = [
-			"jadu-blue",
-			"jadu-blue-secondary",
-			"jadu-blue-cool",
-			"jadu-blue-warm",
-			"jadu-blue-pale"
-		]
-	%}
-
-	{% for colour in jadu_blues %}
-		<div class="swatch swatch--{{ colour }}">
-			<div class="swatch__colour">
-			</div>
-			<div class="swatch__label">
-				<code>${{ colour }}</code>
-			</div>
-		</div>
-	{% endfor %}
-
-	<br /><br />
-	<h2 class="heading">Jadu brand colours</h2>
-
-	{%
-		set jadu_colours = [
-			"jadu-orange",
-			"jadu-green",
-			"jadu-teal",
-			"jadu-red",
-			"jadu-yellow",
-			"jadu-black",
-			"jadu-copy-gray",
-		]
-	%}
-
-	{% for colour in jadu_colours %}
-		<div class="swatch swatch--{{ colour }}">
-			<div class="swatch__colour">
-			</div>
-			<div class="swatch__label">
-				<code>${{ colour }}</code>
-			</div>
-		</div>
-	{% endfor %}
-
-	<br /><br />
 	<h2 class="heading">Monochrome</h2>
 
 	{%
-		set grays = [
-			"black",
-			"gray-darker",
-			"gray-dark",
-			"gray",
-			"gray-light",
-			"gray-lighter",
-			"gray-lightest",
-			"off-white",
-			"white"
-		]
+		set grays = {
+			"black": "black",
+			"gray-darker": "gray, darker",
+			"gray-dark": "gray, dark",
+			"gray": "gray",
+			"gray-light": "gray, light",
+			"gray-lighter": "gray, lighter",
+			"gray-lightest": "gray, lightest",
+			"off-white": "gray, off-white",
+			"white": "white"
+		}
 	%}
 
-	{% for colour in grays %}
+	{% for colour, address in grays %}
 		<div class="swatch swatch--{{ colour }}">
 			<div class="swatch__colour">
 			</div>
 			<div class="swatch__label">
-				<code>${{ colour }}</code>
+				<code>color({{ address }})</code>
+			</div>
+		</div>
+	{% endfor %}
+
+	<br /><br />
+	<h2 class="heading">Jadu Blue</h2>
+
+	{%
+		set jadu_blue = {
+			"jadu-blue-dark": "jadu-blue, dark",
+			"jadu-blue": "jadu-blue",
+			"jadu-blue-light": "jadu-blue, light",
+			"jadu-blue-pale": "jadu-blue, pale"
+		}
+	%}
+
+	{% for colour, address in jadu_blue %}
+		<div class="swatch swatch--{{ colour }}">
+			<div class="swatch__colour">
+			</div>
+			<div class="swatch__label">
+				<code>color({{ address }})</code>
+			</div>
+		</div>
+	{% endfor %}
+
+	<br /><br />
+	<h2 class="heading">Jadu Red</h2>
+
+	{%
+		set jadu_red = {
+			"jadu-red-darkest": "jadu-red, darkest",
+			"jadu-red-dark": "jadu-red, dark",
+			"jadu-red": "jadu-red",
+			"jadu-red-light": "jadu-red, light"
+		}
+	%}
+
+	{% for colour, address in jadu_red %}
+		<div class="swatch swatch--{{ colour }}">
+			<div class="swatch__colour">
+			</div>
+			<div class="swatch__label">
+				<code>color({{ address }})</code>
+			</div>
+		</div>
+	{% endfor %}
+
+	<br /><br />
+	<h2 class="heading">Jadu Green</h2>
+
+	{%
+		set jadu_green = {
+			"jadu-green-dark": "jadu-green, dark",
+			"jadu-green": "jadu-green",
+			"jadu-green-light": "jadu-green, light",
+			"jadu-green-pale": "jadu-green, pale"
+		}
+	%}
+
+	{% for colour, address in jadu_green %}
+		<div class="swatch swatch--{{ colour }}">
+			<div class="swatch__colour">
+			</div>
+			<div class="swatch__label">
+				<code>color({{ address }})</code>
+			</div>
+		</div>
+	{% endfor %}
+
+	<br /><br />
+	<h2 class="heading">Jadu Teal</h2>
+
+	{%
+		set jadu_teal = {
+			"jadu-teal-dark": "jadu-teal, dark",
+			"jadu-teal": "jadu-teal",
+			"jadu-teal-light": "jadu-teal, light",
+			"jadu-teal-pale": "jadu-teal, pale"
+		}
+	%}
+
+	{% for colour, address in jadu_teal %}
+		<div class="swatch swatch--{{ colour }}">
+			<div class="swatch__colour">
+			</div>
+			<div class="swatch__label">
+				<code>color({{ address }})</code>
+			</div>
+		</div>
+	{% endfor %}
+
+	<br /><br />
+	<h2 class="heading">Jadu Pink</h2>
+
+	{%
+		set jadu_pink = {
+			"jadu-pink-dark": "jadu-pink, dark",
+			"jadu-pink": "jadu-pink",
+			"jadu-pink-light": "jadu-teal, light",
+			"jadu-pink-pale": "jadu-teal, pale"
+		}
+	%}
+
+	{% for colour, address in jadu_pink %}
+		<div class="swatch swatch--{{ colour }}">
+			<div class="swatch__colour">
+			</div>
+			<div class="swatch__label">
+				<code>color({{ address }})</code>
 			</div>
 		</div>
 	{% endfor %}

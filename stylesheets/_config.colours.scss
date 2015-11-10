@@ -56,20 +56,20 @@ $palette-text: (
 \* -------------------------------------------------------------------------- */
 
 $palette-states: (
-    'base-color':           map_get($palette-monochromes, 'gray'),
-    'primary-color':        #1f7bb8,
-    'success-color':        #297c46,
-    'warning-color':        #eaa96a,
-    'danger-color':         #c84d40,
-    'info-color':           map_get($palette-branding, 'jadu-blue-cool'),
-    'inverse-color':        map_get($palette-monochromes, 'gray-dark'),
-    'base-color-alt':       map_get($palette-monochromes, 'black'),
-    'primary-color-alt':    #ffffff,
-    'success-color-alt':    #ffffff,
-    'warning-color-alt':    #000000,
-    'danger-color-alt':     #ffffff,
-    'info-color-alt':       #000000,
-    'inverse-color-alt':    #ffffff
+    'base':           map_get($palette-monochromes, 'gray'),
+    'primary':        #1f7bb8,
+    'success':        #297c46,
+    'warning':        #eaa96a,
+    'danger':         #c84d40,
+    'info':           map_get($palette-branding, 'jadu-blue-cool'),
+    'inverse':        map_get($palette-monochromes, 'gray-dark'),
+    'base-alt':       map_get($palette-monochromes, 'black'),
+    'primary-alt':    #ffffff,
+    'success-alt':    #ffffff,
+    'warning-alt':    #000000,
+    'danger-alt':     #ffffff,
+    'info-alt':       #000000,
+    'inverse-alt':    #ffffff
 );
 
 /* -------------------------------------------------------------------------- *\
@@ -81,13 +81,13 @@ $palette-states: (
 \* -------------------------------------------------------------------------- */
 
 $state-colors:
-    ('base', map_get($palette-states, 'base-color'), map_get($palette-states, 'base-color-alt')),
-    ('primary', map_get($palette-states, 'primary-color'), map_get($palette-states, 'primary-color-alt')),
-    ('success', map_get($palette-states, 'success-color'), map_get($palette-states, 'success-color-alt')),
-    ('warning', map_get($palette-states, 'warning-color'), map_get($palette-states, 'warning-color-alt')),
-    ('danger', map_get($palette-states, 'danger-color'), map_get($palette-states, 'danger-color-alt')),
-    ('info', map_get($palette-states, 'info-color'), map_get($palette-states, 'info-color-alt')),
-    ('inverse', map_get($palette-states, 'inverse-color'), map_get($palette-states, 'inverse-color-alt'));
+    ('base', map_get($palette-states, 'base'), map_get($palette-states, 'base-alt')),
+    ('primary', map_get($palette-states, 'primary'), map_get($palette-states, 'primary-alt')),
+    ('success', map_get($palette-states, 'success'), map_get($palette-states, 'success-alt')),
+    ('warning', map_get($palette-states, 'warning'), map_get($palette-states, 'warning-alt')),
+    ('danger', map_get($palette-states, 'danger'), map_get($palette-states, 'danger-alt')),
+    ('info', map_get($palette-states, 'info'), map_get($palette-states, 'info-alt')),
+    ('inverse', map_get($palette-states, 'inverse'), map_get($palette-states, 'inverse-alt'));
 
 /* -------------------------------------------------------------------------- *\
     Colour maps

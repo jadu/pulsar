@@ -1,8 +1,7 @@
 .swatch {
   display: inline-block;
   margin-bottom: $line-height-base;
-  margin-right: $gutter-width * 2;
-  width: 110px;
+  width: 150px;
   vertical-align: top;
 
   &__colour {
@@ -26,88 +25,150 @@
 
     code, span {
       display: block;
-      font-size: .75em;
+      font-size: .6em;
       text-align: center;
       width: 100%;
     }
   }
 
   &--primary .swatch__colour {
-    background-color: color(primary-color);
+    background-color: color(primary);
     color: white;
   }
 
   &--info .swatch__colour {
-    background-color: color(info-color);
+    background-color: color(info);
     color: black;
   }
 
   &--success .swatch__colour {
-    background-color: color(success-color);
+    background-color: color(success);
     color: white;
   }
 
   &--warning .swatch__colour {
-    background-color: color(warning-color);
+    background-color: color(warning);
     color: black;
   }
 
   &--danger .swatch__colour {
-    background-color: color(danger-color);
+    background-color: color(danger);
     color: white;
   }
 
   &--inverse .swatch__colour {
-    background-color: color(inverse-color);
+    background-color: color(inverse);
     color: white;
   }
 
   // Jadu Blues
 
-  // &--jadu-blue .swatch__colour {
-  //   background-color: color(jadu-blue);
-  //   color: white;
-  // }
+  &--jadu-blue .swatch__colour {
+    background-color: color(jadu-blue);
+    color: white;
+  }
 
-  // &--jadu-blue-secondary .swatch__colour {
-  //   background-color: color(jadu-blue, dark);
-  //   color: white;
-  // }
+  &--jadu-blue-dark .swatch__colour {
+    background-color: color(jadu-blue, dark);
+    color: white;
+  }
 
-  // &--jadu-blue-cool .swatch__colour {
-  //   background-color: color(jadu-blue, light);
-  //   color: white;
-  // }
+  &--jadu-blue-light .swatch__colour {
+    background-color: color(jadu-blue, light);
+    color: white;
+  }
 
-  // &--jadu-blue-warm .swatch__colour {
-  //   background-color: color(jadu-blue-warm);
-  //   color: white;
-  // }
+  &--jadu-blue-pale .swatch__colour {
+    background-color: color(jadu-blue, pale);
+    color: white;
+  }
 
-  // &--jadu-blue-pale .swatch__colour {
-  //   background-color: color(jadu-blue, pale);
-  //   color: white;
-  // }
-
-  // Jadu Colours
+  // Jadu Red
 
   &--jadu-red .swatch__colour {
     background-color: color(jadu-red);
     color: white;
   }
 
+  &--jadu-red-darkest .swatch__colour {
+    background-color: color(jadu-red, darkest);
+    color: white;
+  }
+
+  &--jadu-red-dark .swatch__colour {
+    background-color: color(jadu-red, dark);
+    color: white;
+  }
+
+  &--jadu-red-light .swatch__colour {
+    background-color: color(jadu-red, light);
+    color: white;
+  }
+
+  // Jadu Green
+
   &--jadu-green .swatch__colour {
     background-color: color(jadu-green);
     color: white;
   }
+
+  &--jadu-green-dark .swatch__colour {
+    background-color: color(jadu-green, dark);
+    color: white;
+  }
+
+  &--jadu-green-light .swatch__colour {
+    background-color: color(jadu-green, light);
+    color: white;
+  }
+
+  &--jadu-green-pale .swatch__colour {
+    background-color: color(jadu-green, pale);
+    color: white;
+  }
+
+  // Jadu Teal
 
   &--jadu-teal .swatch__colour {
     background-color: color(jadu-teal);
     color: white;
   }
 
+  &--jadu-teal-dark .swatch__colour {
+    background-color: color(jadu-teal, dark);
+    color: white;
+  }
+
+  &--jadu-teal-light .swatch__colour {
+    background-color: color(jadu-teal, light);
+    color: white;
+  }
+
+  &--jadu-teal-pale .swatch__colour {
+    background-color: color(jadu-teal, pale);
+    color: white;
+  }
+
+  // Jadu Pink
+
   &--jadu-pink .swatch__colour {
     background-color: color(jadu-pink);
+    color: white;
+  }
+
+  &--jadu-pink-dark .swatch__colour {
+    background-color: color(jadu-pink, dark);
+    color: white;
+  }
+
+  &--jadu-pink-light .swatch__colour {
+    background-color: color(jadu-pink, light);
+    color: white;
+  }
+
+  &--jadu-pink-pale .swatch__colour {
+    background-color: color(jadu-pink, pale);
+    color: white;
   }
 
   // Grays
@@ -146,5 +207,6 @@
 
   &--white .swatch__colour {
     background-color: color(white);
+    border: 1px solid color(gray, off-white);
   }
 }

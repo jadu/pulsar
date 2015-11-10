@@ -23,29 +23,29 @@ $colors: merge-maps(
 
 $badge-bg:                      color(gray) !default;
 
-$badge-primary-bg:              color(primary-color) !default;
+$badge-primary-bg:              color(primary) !default;
 $badge-primary-bg-darker:       darken($badge-primary-bg, 20%) !default;
-$badge-primary-color:           #fff !default;
+$badge-primary:           #fff !default;
 
-$badge-success-bg:              color(success-color) !default;
+$badge-success-bg:              color(success) !default;
 $badge-success-bg-darker:       darken($badge-success-bg, 20%) !default;
-$badge-success-color:           #fff !default;
+$badge-success:           #fff !default;
 
-$badge-info-bg:                 color(info-color) !default;
+$badge-info-bg:                 color(info) !default;
 $badge-info-bg-darker:          darken($badge-info-bg, 20%) !default;
-$badge-info-color:              #fff !default;
+$badge-info:              #fff !default;
 
-$badge-warning-bg:              color(warning-color) !default;
+$badge-warning-bg:              color(warning) !default;
 $badge-warning-bg-darker:       darken($badge-warning-bg, 20%) !default;
-$badge-warning-color:           #fff !default;
+$badge-warning:           #fff !default;
 
-$badge-danger-bg:               color(danger-color) !default;
+$badge-danger-bg:               color(danger) !default;
 $badge-danger-bg-darker:        darken($badge-danger-bg, 20%) !default;
-$badge-danger-color:            #fff !default;
+$badge-danger:            #fff !default;
 
-$badge-inverse-bg:              color(inverse-color) !default;
+$badge-inverse-bg:              color(inverse) !default;
 $badge-inverse-bg-darker:       darken($badge-inverse-bg, 20%) !default;
-$badge-inverse-color:           #fff !default;
+$badge-inverse:           #fff !default;
 
 $badge-color:                   inherit !default;
 $badge-active-bg:               #fff !default;
@@ -61,7 +61,7 @@ $dropdown-border:                color(gray, light) !default;
 $dropdown-fallback-border:       color(gray) !default;
 $dropdown-divider-bg:            color(gray, light) !default;
 $dropdown-link-active-color:     #fff !default;
-$dropdown-link-active-bg:        color(primary-color) !default;
+$dropdown-link-active-bg:        color(primary) !default;
 $dropdown-link-color:            color(gray, dark) !default;
 $dropdown-link-hover-color:      #fff !default;
 $dropdown-link-hover-bg:         $dropdown-link-active-bg !default;

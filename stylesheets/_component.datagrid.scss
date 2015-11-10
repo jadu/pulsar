@@ -200,82 +200,82 @@ tr.row--highlight {
 }
 
 tr.row--success-highlight {
-  @include highlight-row($success-color);
+  @include highlight-row($success);
 }
 
 tr.row--danger-highlight {
-  @include highlight-row($danger-color);
+  @include highlight-row($danger);
 }
 
 tr.row--warning-highlight {
-  @include highlight-row($warning-color);
+  @include highlight-row($warning);
 }
 
 tr.row--success {
-  @include highlight-row($success-color);
+  @include highlight-row($success);
   > td {
-    background-color: lighten($success-color, 25%);
+    background-color: lighten($success, 25%);
     &:before {
-      background-color: lighten($success-color, 20%);
+      background-color: lighten($success, 20%);
     }
   }
   &:hover > td {
-    background-color: lighten($success-color, 23%);
+    background-color: lighten($success, 23%);
     &:before {
-      background-color: lighten($success-color, 18%);
+      background-color: lighten($success, 18%);
     }
     @include respond-max($screen-tablet) {
       &.row__actions {
-        background-color: lighten($success-color, 18%);
+        background-color: lighten($success, 18%);
       }
     }
-    background-color: lighten($success-color, 23%);
+    background-color: lighten($success, 23%);
   }
 }
 
 tr.row--danger {
-  @include highlight-row($danger-color);
+  @include highlight-row($danger);
   > td {
-    background-color: lighten($danger-color, 25%);
+    background-color: lighten($danger, 25%);
     &:before {
-      background-color: lighten($danger-color, 20%);
+      background-color: lighten($danger, 20%);
     }
   }
   &:hover > td {
-    background-color: lighten($danger-color, 24%);
+    background-color: lighten($danger, 24%);
     &:before {
-      background-color: lighten($danger-color, 19%);
+      background-color: lighten($danger, 19%);
     }
     @include respond-max($screen-tablet) {
       &.row__actions {
-        background-color: lighten($danger-color, 19%);
+        background-color: lighten($danger, 19%);
       }
     }
-    background-color: lighten($danger-color, 24%);
+    background-color: lighten($danger, 24%);
   }
 }
 
 tr.row--warning {
-  @include highlight-row($warning-color);
+  @include highlight-row($warning);
   > td {
-    background-color: lighten($warning-color, 25%);
+    background-color: lighten($warning, 25%);
     &:before {
-      background-color: lighten($warning-color, 20%);
+      background-color: lighten($warning, 20%);
     }
     @include respond-max($screen-tablet) {
       &.row__actions {
-        background-color: lighten($warning-color, 20%);
+        background-color: lighten($warning, 20%);
       }
     }
   }
   &:hover > td {
-    background-color: lighten($warning-color, 23%);
+    background-color: lighten($warning, 23%);
     &:before {
-      background-color: lighten($warning-color, 18%);
+      background-color: lighten($warning, 18%);
     }
     @include respond-max($screen-tablet) {
       &.row__actions {
-        background-color: lighten($warning-color, 18%);
+        background-color: lighten($warning, 18%);
       }
     }
   }

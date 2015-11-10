@@ -117,7 +117,7 @@ $toolbar-notification-item-hover: '#f00';
     background-color: darken($dropdown-link-active-bg, 20%);
   }
   &.notification--primary a {
-    background-color: color(primary-color);
+    background-color: color(primary);
     color: color(white);
     &:hover {
       background-color: $toolbar-notification-item-hover;
@@ -129,11 +129,11 @@ $toolbar-notification-item-hover: '#f00';
     }
   }
   &.notification--success a {
-    background-color: color(success-color);
+    background-color: color(success);
     color: color(white);
     &:hover {
       background-color: $toolbar-notification-item-hover;
-      color: color(success-color);
+      color: color(success);
     }
     > .badge {
       @extend .badge--success;
@@ -141,11 +141,11 @@ $toolbar-notification-item-hover: '#f00';
     }
   }
   &.notification--warning a {
-    background-color: color(warning-color);
+    background-color: color(warning);
     color: color(white);
     &:hover {
       background-color: $toolbar-notification-item-hover;
-      color: color(warning-color);
+      color: color(warning);
     }
     > .badge {
       @extend .badge--warning;
@@ -153,11 +153,11 @@ $toolbar-notification-item-hover: '#f00';
     }
   }
   &.notification--info a {
-    background-color: color(info-color);
+    background-color: color(info);
     color: color(white);
     &:hover {
       background-color: $toolbar-notification-item-hover;
-      color: color(info-color);
+      color: color(info);
     }
     > .badge {
       @extend .badge--info;
@@ -165,11 +165,11 @@ $toolbar-notification-item-hover: '#f00';
     }
   }
   &.notification--danger a {
-    background-color: color(danger-color);
+    background-color: color(danger);
     color: color(white);
     &:hover {
       background-color: $toolbar-notification-item-hover;
-      color: color(danger-color);
+      color: color(danger);
     }
     > .badge {
       @extend .badge--danger;
@@ -177,11 +177,11 @@ $toolbar-notification-item-hover: '#f00';
     }
   }
   &.notification--inverse a {
-    background-color: color(inverse-color);
+    background-color: color(inverse);
     color: color(white);
     &:hover {
       background-color: $toolbar-notification-item-hover;
-      color: color(inverse-color);
+      color: color(inverse);
     }
     > .badge {
       @extend .badge--inverse;

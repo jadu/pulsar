@@ -200,10 +200,10 @@
     background-color: darken($dropdown-link-active-bg, 20%);
   }
   &.link--primary {
-    background-color: color(primary-color);
+    background-color: color(primary);
     color: color(white);
     &:hover {
-      background-color: darken(color(primary-color), 5%);
+      background-color: darken(color(primary), 5%);
     }
     > .badge {
       @extend .badge--primary;
@@ -211,10 +211,10 @@
     }
   }
   &.link--success {
-    background-color: color(success-color);
+    background-color: color(success);
     color: color(white);
     &:hover {
-      background-color: darken(color(success-color), 5%);
+      background-color: darken(color(success), 5%);
     }
     > .badge {
       @extend .badge--success;
@@ -222,10 +222,10 @@
     }
   }
   &.link--warning {
-    background-color: color(warning-color);
+    background-color: color(warning);
     color: color(white);
     &:hover {
-      background-color: darken(color(warning-color), 5%);
+      background-color: darken(color(warning), 5%);
     }
     > .badge {
       @extend .badge--warning;
@@ -233,10 +233,10 @@
     }
   }
   &.link--info {
-    background-color: color(info-color);
+    background-color: color(info);
     color: color(white);
     &:hover {
-      background-color: darken(color(info-color), 5%);
+      background-color: darken(color(info), 5%);
     }
     > .badge {
       @extend .badge--info;
@@ -244,10 +244,10 @@
     }
   }
   &.link--danger {
-    background-color: color(danger-color);
+    background-color: color(danger);
     color: color(white);
     &:hover {
-      background-color: darken(color(danger-color), 5%);
+      background-color: darken(color(danger), 5%);
     }
     > .badge {
       @extend .badge--danger;
@@ -255,10 +255,10 @@
     }
   }
   &.link--inverse {
-    background-color: color(inverse-color);
+    background-color: color(inverse);
     color: color(white);
     &:hover {
-      background-color: darken(color(inverse-color), 5%);
+      background-color: darken(color(inverse), 5%);
     }
     > .badge {
       @extend .badge--inverse;
@@ -275,6 +275,6 @@
   height: 3px;
   margin-bottom: 0;
   .progress-bar {
-    background-color: darken(color(primary-color), 15%);
+    background-color: darken(color(primary), 15%);
   }
 }

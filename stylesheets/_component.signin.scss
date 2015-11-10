@@ -60,7 +60,7 @@ html, body {
 
 
 	&--error {
-		background-color: color(danger-color);
+		background-color: color(danger);
 		animation: shake 400ms ease-in-out;
 
 		.loading--circle i {
@@ -70,7 +70,7 @@ html, body {
 	}
 
 	&--success {
-		background-color: color(success-color);
+		background-color: color(success);
 	}
 
 	form {
@@ -365,7 +365,7 @@ html, body {
 		font-size: 65px;
 
 		.signin--error & {
-			color: color(danger-color);
+			color: color(danger);
 		}
 	}
 
@@ -396,7 +396,7 @@ html, body {
 
 		&:before {
 			content: '\f087';
-			color: color(success-color);
+			color: color(success);
 			font-size: 35px;
 		}
 	}

@@ -80,40 +80,40 @@
 
 
 .progress-list__item--complete {
-    background-color: color(success-color);
+    background-color: color(success);
     box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
-    color: color(success-color, alt);
+    color: color(success, alt);
 
     &:not(:last-of-type):after {
-        border-left-color: color(success-color);
+        border-left-color: color(success);
     }
 
     &:hover {
-        background-color: darken(color(success-color), 2);
-        color: color(success-color, alt);
+        background-color: darken(color(success), 2);
+        color: color(success, alt);
 
         &:after {
-            border-left-color: darken(color(success-color), 2);
+            border-left-color: darken(color(success), 2);
         }
     }
 }
 
 
 .progress-list__item--current {
-    background-color: color(primary-color);
+    background-color: color(primary);
     box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
-    color: color(primary-color, alt);
+    color: color(primary, alt);
 
     &:not(:last-of-type):after {
-        border-left-color: color(primary-color);
+        border-left-color: color(primary);
     }
 
     &:hover {
-        background-color: darken(color(primary-color), 2);
-        color: color(primary-color, alt);
+        background-color: darken(color(primary), 2);
+        color: color(primary, alt);
 
         &:after {
-            border-left-color: darken(color(primary-color), 2);
+            border-left-color: darken(color(primary), 2);
         }
     }
 }

@@ -60,7 +60,7 @@ $nav-color-dark:  #2d89b7 !default;
 
 // Should be removed - replaced by nav-inline
 .nav-tertiary {
-    background-color: color(inverse-color);
+    background-color: color(inverse);
     box-shadow: inset -4px 0 0 rgba(0,0,0,.05);
     display: none;
     min-width: 250px;
