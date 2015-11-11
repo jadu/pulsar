@@ -60,11 +60,11 @@ $palette-monochromes: (
 $palette-text: (
     text: (
         base:  map-get(map-get($palette-monochromes, gray), darker),
-        light: map-get(map-get($palette-monochromes, gray), base)
+        light: map-get(map-get($palette-monochromes, gray), lighter)
     ),
     link: (
         base:  map-get(map-get($palette-branding, jadu-blue), darker),
-        hover: map-get(map-get($palette-branding, jadu-blue), darker),
+        hover: map-get(map-get($palette-branding, jadu-blue), base),
         inverse: #ffffff,
         inverse-hover: darken(#ffffff, 10%)
     )
