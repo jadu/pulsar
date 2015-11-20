@@ -65,6 +65,7 @@
 {% set tab_modals %}{% include          'lexicon/tabs/modals.html.twig' %}{% endset %}
 {% set tab_tooltips %}{% include        'lexicon/tabs/tooltips.html.twig' %}{% endset %}
 {% set tab_data_grid %}{% include       'lexicon/tabs/datagrid.html.twig' %}{% endset %}
+{% set tab_message %}{% include         'lexicon/tabs/message.html.twig' %}{% endset %}
 {% set tab_metadata %}{% include        'lexicon/tabs/metadata.html.twig' %}{% endset %}
 {% set tab_panels %}{% include          'lexicon/tabs/panels.html.twig' %}{% endset %}
 {% set tab_popovers %}{% include        'lexicon/tabs/popovers.html.twig' %}{% endset %}
@@ -108,6 +109,11 @@
           "id"    : "loading",
           "label" : html.icon("spinner") ~ " Loading",
           "src"   : tab_loading
+        },
+        {
+          "id"    : "messages",
+          "label" : html.icon("envelope") ~ " Messages",
+          "src"   : tab_message
         },
         {
           "id"    : "metadata",
