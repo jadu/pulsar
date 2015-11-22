@@ -87,30 +87,6 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
 
 }
 
-// Should be removed - replaced by nav-inline
-.nav-tertiary__toggle {
-    display: none;
-    z-index: 1;
-
-    @include respond-max($screen-desktop) {
-        display: block;
-        position: absolute;
-        top: 6px;
-        left: 20px;
-    }
-
-    &:hover {
-        top: 7px;
-    }
-}
-
-// main-title should push down
-// .tabs__content > .nav-inline {
-//     @include respond-min($screen-desktop) {
-//         margin-top: 24px;
-//     }
-// }
-
 .nav-inline {
     -webkit-overflow-scrolling: touch;
     overflow-x: auto;
@@ -123,7 +99,7 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
     }
 
     &__list {
-        border-bottom: 1px solid color(gray, lightest);
+        border-bottom: 1px solid color(gray, lighter);
         display: inline-block;
         list-style: none;
         margin-bottom: 0;
