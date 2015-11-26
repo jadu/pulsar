@@ -2,22 +2,31 @@
     background-color: #efefef;
     display: block;
     float: left;
-    height: 53px;
-    margin-bottom: 23px;
-    padding: 18px 20px;
+    height: 48px;
+    margin-bottom: 5px;
+    padding: 2px 20px;
     width: 100%;
 
     @include respond-min($screen-desktop) {
         background-color: color(white);
+        height: 53px;
         margin-bottom: 19px;
         padding: 18px 40px 0;
     }
 }
 
 .user-menu > .btn {
-    height: 35px;
-	padding-left: 0;
-	padding-right: 0;
+    height: 40px;
+    padding-left: 0;
+    padding-right: 0;
+
+    &:hover {
+        top: 0;
+    }
+
+    @include respond-min($screen-desktop) {
+        height: 35px;
+    }
 }
 
 .user-menu .dropdown__menu {
