@@ -11,7 +11,7 @@ th {
 table {
   th {
     background-color: darken($white, 5%);
-    font-family: $font-family-semibold;
+    font-family: $font-family-regular;
     font-weight: normal;
   }
 }
@@ -93,4 +93,19 @@ table {
   th, td {
     vertical-align: middle;
   }
+}
+
+.row--no-results {
+    td {
+        background-color: #fafafa;
+        padding: 24px 0;
+    }
+
+    p {
+        margin: 0;
+    }
+
+    .loading {
+        margin: 0 auto;
+    }
 }

@@ -5,6 +5,11 @@
     width: 100%
 }
 
+.main-title {
+    line-height: 23px;
+    margin: 10px 0 15px 0;
+}
+
 .inner-wrapper {
     -webkit-backface-visibility: hidden;
     -webkit-transform: none;
@@ -13,6 +18,7 @@
     display: table;
     height: 100%;
     left: 0;
+    padding-bottom: 24px; // make sure content clears the footer
     position: relative;
     transform: none;
     transition: transform 500ms ease;
@@ -68,6 +74,7 @@
 
 .tab__inner {
   // float: left;
+  padding-bottom: 48px;
   position: relative;
   width: 100%;
 
@@ -126,35 +133,48 @@
 }
 
 
-.tab__container {
-
-	float: left;
-	width: 100%;
-
-	.tab__inner {
-
-		width: 100%;
-	}
-}
-
 // experimenting with new tab rendering
 
 .tab__container {
-	float: none;
-	height: 100%;
+    float: none;
+    height: 100%;
 
-  @include respond-min($screen-desktop) {
-    display: table;
-  }
+  // @include respond-min($screen-desktop) {
+  //   display: table;
+  // }
 }
 
-.tab__container .tab__inner {
-	float: none;
-	height: 100%;
-	vertical-align: top;
+.tab__container {
+    .tab__inner {
+        float: none;
+        height: 100%;
+        vertical-align: top;
+        width: 100%;
 
-  @include respond-min($screen-desktop) {
-    display: table-cell;
-  }
+        @include respond-min($screen-desktop) {
+            display: table;
+        }
+    }
+
+    .tab__content {
+        display: block;
+
+        @include respond-min($screen-desktop) {
+            display: table-cell;
+            vertical-align: top;
+            width: 70%;
+        }
+    }
+
+    .tab__sidebar {
+        display: none;
+
+        @include respond-min($screen-desktop) {
+            display: table-cell;
+            padding-left: 20px;
+            vertical-align: top;
+            width: 30%;
+        }
+    }
 }
 

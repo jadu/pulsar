@@ -1,7 +1,7 @@
 {% extends "@pulsar/pulsar/components/tab.html.twig" %}
-{% import 'pulsar/v2/helpers/html.html.twig' as html %}
-{% import 'pulsar/v2/helpers/form.html.twig' as form %}
-{% import 'pulsar/v2/helpers/flash.html.twig' as flash %}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{% import '@pulsar/pulsar/v2/helpers/flash.html.twig' as flash %}
 
 {% block tab_content %}
 
@@ -56,6 +56,18 @@
 				'type': 'success',
 				'sticky': false,
 				'autohide': false
+			})
+		}}
+	</div>
+
+	<div class="example">
+		{{
+			flash.message({
+				'message': 'You can’t dismiss this one',
+				'type': 'success',
+				'sticky': false,
+				'autohide': false,
+				"dismissable": false
 			})
 		}}
 	</div>

@@ -1,3 +1,9 @@
+/**
+ * These are HTML button groups, if you're looking for form button groups,
+ * check _component.forms.scss
+ */
+
+
 // Make the div behave like a button
 .btn__group,
 .btn__group-vertical {
@@ -5,7 +11,7 @@
   @include inline-block;
   vertical-align: middle; // match .btn alignment given font-size hack above
 
-  > .btn,
+  > .btn:not(.btn--naked),
   > .btn__group {
     border-left: 1px solid #ccc;
     border-right: 1px solid #ccc;
@@ -26,23 +32,23 @@
   margin-left: -1px;
 }
 
-.btn__group > .btn:first-child,
-.btn__group > .btn__group:first-child {
+.btn__group > .btn:not(.btn--naked):first-of-type,
+.btn__group > .btn__group:first-of-type {
   border-left-width: 0;
   border-left-width: 0;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
 }
 
-.btn__group > .btn:last-child,
-.btn__group > .btn__group:last-child {
+.btn__group > .btn:last-of-type,
+.btn__group > .btn__group:last-of-type {
   border-right-width: 0;
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
 }
 
-.btn__group > .btn:not(:first-child):not(:last-child):not(.dropdown__toggle),
-.btn__group > .btn__group:not(:first-child):not(:last-child) {
+.btn__group > .btn:not(:first-of-type):not(:last-of-type):not(.dropdown__toggle),
+.btn__group > .btn__group:not(:first-of-type):not(:last-of-type) {
   border-radius: 0;
 }
 
@@ -74,17 +80,17 @@
   }
 }
 
-// Set corners individual because sometimes a single button can be in a .btn__group and we need :first-child and :last-child to both match
-.btn__group > .btn:first-child,
-.btn__group > .btn__group:first-child {
+// Set corners individual because sometimes a single button can be in a .btn__group and we need :first-of-type and :last-of-type to both match
+.btn__group > .btn:first-of-type,
+.btn__group > .btn__group:first-of-type {
   margin-left: 0;
-  &:not(:last-child):not(.dropdown__toggle) {
+  &:not(:last-of-type):not(.dropdown__toggle) {
     @include border-right-radius(0);
   }
 }
-// Need .dropdown__toggle since :last-child doesn't apply given a .dropdown-menu immediately after it
-.btn__group > .btn:last-child:not(:first-child),
-.btn__group > .dropdown__toggle:not(:first-child) {
+// Need .dropdown__toggle since :last-of-type doesn't apply given a .dropdown-menu immediately after it
+.btn__group > .btn:last-of-type:not(:first-of-type),
+.btn__group > .dropdown__toggle:not(:first-of-type) {
   @include border-left-radius(0);
 }
 
@@ -92,16 +98,16 @@
 .btn__group > .btn__group {
   margin-left: -1px;
 }
-.btn__group > .btn__group:not(:first-child):not(:last-child) > .btn {
+.btn__group > .btn__group:not(:first-of-type):not(:last-of-type) > .btn {
   border-radius: 0;
 }
-.btn__group > .btn__group:first-child {
-  > .btn:last-child,
+.btn__group > .btn__group:first-of-type {
+  > .btn:last-of-type,
   > .dropdown__toggle {
     @include border-right-radius(0);
   }
 }
-.btn__group > .btn__group:last-child > .btn:first-child {
+.btn__group > .btn__group:last-of-type > .btn:first-of-type {
   @include border-left-radius(0);
 }
 
@@ -118,7 +124,7 @@
 
 // Remove the box-shadow and borders from btns
 .btn__group > .btn__group > .btn {
-  box-shadow: none; 
+  box-shadow: none;
   border-right: none;
   border-left: none;
 }

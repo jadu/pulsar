@@ -1,0 +1,22 @@
+.has-baseline {
+    position: relative;
+}
+
+.has-baseline:after {
+    position: absolute;
+    width: auto;
+    height: auto;
+    z-index: 9999;
+    content: '';
+    display: block;
+    pointer-events: none;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: url(../images/baseline.png) repeat top left;
+}
+
+.has-baseline:active:after {
+    display: none;
+}

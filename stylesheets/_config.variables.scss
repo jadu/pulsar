@@ -11,12 +11,7 @@ $libs-path:                           '../libs/' !default;
 // -----------------------------------------------------------------------------
 
 $font-family-light:                   'proxima_novalight', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
-$font-family-regular:                 'proxima_nova_regular', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
-$font-family-semibold:                'proxima_nova_semibold', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
-
-$font-family-light-italic:            'proxima_nova_lightitalic', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
-$font-family-regular-italic:          'proxima_nova_regitalic', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
-$font-family-semibold-italic:         'proxima_nova_semibolditalic', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
+$font-family-regular:                 'proxima_nova_rgregular', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
 
 $font-family-fallback:                'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
 $font-family-monospace:               monospace !default;
@@ -24,7 +19,6 @@ $font-family-monospace:               monospace !default;
 @include ie-lte(7) {
   $font-family-light:                 'Arial', sans-serif !default;
   $font-family-regular:               'Arial', sans-serif !default;
-  $font-family-semibold:              'Arial', sans-serif !default;
 }
 
 // -----------------------------------------------------------------------------
@@ -32,6 +26,7 @@ $font-family-monospace:               monospace !default;
 // -----------------------------------------------------------------------------
 
 $font-family-base:                    $font-family-light !default;
+
 @include ie-lte(8) {
   $font-family-base:                  $font-family-regular !default;
 }
@@ -188,6 +183,16 @@ $brand-image:                         $image-path + 'brand.png' !default;
 $brand-height:                        24px !default;
 $brand-width:                         75px !default;
 $brand-background-size:               100% !default;
+
+$branding-navigation:                 '../images/branding/jadu-continuum-cms.svg' !default;
+$branding-navigation-fallback:        '../images/branding/jadu-continuum-cms.png' !default;
+$branding-navigation-height:          50px !default;
+$branding-navigation-width:           50px !default;
+
+$branding-footer:                     '../images/branding/jadu-continuum-brandmark.svg' !default;
+$branding-footer-fallback:            '../images/branding/jadu-continuum-brandmark.png' !default;
+$branding-footer-height:              16px !default;
+$branding-footer-width:               127px !default;
 
 // -----------------------------------------------------------------------------
 //  Search

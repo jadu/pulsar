@@ -2,6 +2,30 @@
 
 {% block body %}
 
+<form class="form">
+{{
+    form.button_group({
+        'label': 'Band',
+        'items': [
+            form.radio_simple({
+                'id': 'am',
+                'label': 'AM',
+                'name': 'bands'
+            }),
+            form.radio_simple({
+                'id': 'fm',
+                'label': 'FM',
+                'name': 'bands'
+            }),
+            form.radio_simple({
+                'id': 'mw',
+                'label': 'MW',
+                'name': 'bands'
+            })
+        ]
+    })
+}}
+
 <div style="margin: 20px auto; width: 500px;">
     <div class="btn__toolbar">
         <div class="btn__group">
@@ -19,7 +43,7 @@
                 <button type="button" class="btn dropdown__toggle" data-toggle="dropdown">
                     Filters <span class="caret"></span>    </button>
                     <ul class="dropdown__menu">
-                      <li>  <a href="#deck-apply-filter" data-toggle="deck">
+            p          <li>  <a href="#deck-apply-filter" data-toggle="deck">
                         <i class="icon-filter"></i>Apply filter
                     </a></li>
                     <li>  <a href="#deck-save-filter" data-toggle="deck">
@@ -85,7 +109,7 @@
                 <button type="button" class="btn dropdown__toggle" data-toggle="dropdown">
                 Actions <span class="caret"></span>    </button>
                 <ul class="dropdown__menu">
-                    <li>  
+                    <li>
                         <a href="#modal-members" class="disabled" title="" data-toggle="tooltips" data-placement="right" data-html="true" data-container="body" data-original-title="You must select <br/>at least one case">
                         <i class="icon-group"></i> Assign to user
                         </a>
@@ -97,7 +121,7 @@
                 <button type="button" class="btn dropdown__toggle" data-toggle="dropdown">
                 Actions <span class="caret"></span>    </button>
                 <ul class="dropdown__menu">
-                    <li>  
+                    <li>
                         <a href="#modal-members" class="disabled" title="" data-toggle="tooltips" data-placement="right" data-html="true" data-container="body" data-original-title="You must select <br/>at least one case">
                         <i class="icon-group"></i> Assign to user
                         </a>
@@ -147,7 +171,7 @@
                 <button type="button" class="btn dropdown__toggle" data-toggle="dropdown">
                 Actions <span class="caret"></span>    </button>
                 <ul class="dropdown__menu">
-                    <li>  
+                    <li>
                         <a href="#modal-members" class="disabled" title="" data-toggle="tooltips" data-placement="right" data-html="true" data-container="body" data-original-title="You must select <br/>at least one case">
                         <i class="icon-group"></i> Assign to user
                         </a>
@@ -203,6 +227,8 @@
         <div class="btn__group"><button type="button" class="btn">Left</button><button type="button" class="btn">Middle</button><button type="button" class="btn">Right</button></div>
     </div>
 </div>
+
+
 
 
 {% endblock %}

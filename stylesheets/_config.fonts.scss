@@ -2,6 +2,7 @@
   font-family: 'proxima_novalight';
   src: url($font-path + 'proxima_nova/proximanova-light.eot');
   src: url($font-path + 'proxima_nova/proximanova-light.eot?#iefix') format('embedded-opentype'),
+       url($font-path + 'proxima_nova/proximanova-light.woff2') format('woff2'),
        url($font-path + 'proxima_nova/proximanova-light.woff') format('woff'),
        url($font-path + 'proxima_nova/proximanova-light.ttf') format('truetype'),
        url($font-path + 'proxima_nova/proximanova-light.svg#proxima_novalight') format('svg');
@@ -10,30 +11,13 @@
 }
 
 @font-face {
-  font-family: 'proxima_novasemibold';
-  src: url($font-path + 'proxima_nova/proximanova-semibold.eot');
-  src: url($font-path + 'proxima_nova/proximanova-semibold.eot?#iefix') format('embedded-opentype'),
-       url($font-path + 'proxima_nova/proximanova-semibold.woff') format('woff'),
-       url($font-path + 'proxima_nova/proximanova-semibold.ttf') format('truetype'),
-       url($font-path + 'proxima_nova/proximanova-semibold.svg#proxima_novasemibold') format('svg');
+  font-family: 'proxima_nova_rgregular';
+  src: url($font-path + 'proxima_nova/proximanova-regular.eot');
+  src: url($font-path + 'proxima_nova/proximanova-regular.eot?#iefix') format('embedded-opentype'),
+       url($font-path + 'proxima_nova/proximanova-regular.woff2') format('woff2'),
+       url($font-path + 'proxima_nova/proximanova-regular.woff') format('woff'),
+       url($font-path + 'proxima_nova/proximanova-regular.ttf') format('truetype'),
+       url($font-path + 'proxima_nova/proximanova-regular.svg#proxima_nova_rgregular') format('svg');
   font-weight: normal;
   font-style: normal;
-}
-
-// Force Webkit to only use SVG fonts, this fixes poor font rendering in Webkit on Windows
-@media screen and (-webkit-min-device-pixel-ratio: 0) {
-  @font-face {
-    font-family: 'proxima_novalight';
-    src: url($font-path + 'proxima_nova/proximanova-light.svg#proxima_novalight') format('svg');
-  }
-
-  @font-face {
-    font-family: 'proxima_novasemibold';
-    src: url($font-path + 'proxima_nova/proximanova-semibold.svg#proxima_novasemibold') format('svg');
-  }
-
-  @font-face {
-    font-family: 'FontAwesome';
-    src: url($libs-path + 'font-awesome/font/fontawesome-webfont.svg?v=3.2.1#fontawesomeregular') format('svg');
-  }
 }

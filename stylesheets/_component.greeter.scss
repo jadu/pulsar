@@ -32,9 +32,10 @@
 
 // Dimensions
 $greeter-min-height:                    200px !default;
-$greeter-width:                         600px !default;
+$greeter-width-responsive:              80% !default;
+$greeter-width-max:                     600px !default;
 $greeter-padding:                       $gutter-width !default;
-$greeter-form-width:                    500px;
+$greeter-form-width-max:                500px;
 $greeter-button-border-width:           3px;
 
 // Type
@@ -56,10 +57,11 @@ $greeter-button-bg-color-disabled:      $greeter-bg-color-darker !default;
 $greeter-button-border-color-disabled:  darken($greeter-bg-color, 10) !default;
 
 // Branding
-$greeter-brand-top-image:               '../images/branding/logo-cms-white.svg' !default;
-$greeter-brand-top-width:               65px !default;
-$greeter-brand-top-height:              $greeter-brand-top-width !default;
-$greeter-brand-bottom-image:            '../images/branding/jadu-white.svg' !default;
+$greeter-brand-top-image:               '../images/branding/continuum-brandmark.svg' !default;
+$greeter-brand-top-image-fallback:      '../images/branding/continuum-brandmark.png' !default;
+$greeter-brand-top-width:               100% !default;
+$greeter-brand-top-height:              100px !default;
+$greeter-brand-bottom-image:            '../images/branding/jadu-brandmark.svg' !default;
 $greeter-brand-bottom-width:            100px !default;
 $greeter-brand-bottom-height:           40px !default;
 
@@ -81,14 +83,13 @@ $greeter-brand-bottom-height:           40px !default;
 
 .greeter {
   background-color: $greeter-bg-color;
-  background-image: url($greeter-brand-top-image);
-  background-size: $greeter-brand-top-width $greeter-brand-top-height;
-  background-position: $greeter-padding $greeter-padding;
-  background-repeat: no-repeat;
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
   color: $greeter-text-color;
   min-height: $greeter-min-height;
+  max-width: $greeter-width-max;
   padding: $greeter-padding;
-  width: $greeter-width;
+  width: $greeter-width-responsive;
 
   &__link {
     border-bottom: 1px solid $greeter-link-underline-color;
@@ -106,8 +107,13 @@ $greeter-brand-bottom-height:           40px !default;
   }
 
   &__header {
-    margin-left: auto;
-    max-width: 85%;
+    background-clip: border-box;
+    background-image: url($greeter-brand-top-image-fallback);
+    background-image: url($greeter-brand-top-image), linear-gradient(transparent, transparent);
+    background-size: $greeter-brand-top-width $greeter-brand-top-height;
+    background-origin: padding-box;
+    background-repeat: no-repeat;
+    padding-top: $greeter-brand-top-height + $gutter-width;
     text-align: right;
   }
 
@@ -133,7 +139,8 @@ $greeter-brand-bottom-height:           40px !default;
     margin: 2em auto 0 auto;
     overflow: visible;
     text-align: right; /* [1] */
-    width: $greeter-form-width;
+    max-width: $greeter-form-width-max;
+    width: 100%;
 
     input,
     textarea { /* [2] */
@@ -144,7 +151,7 @@ $greeter-brand-bottom-height:           40px !default;
   &__textarea {
     border: 0; /* [3] */
     box-shadow: inset 0 3px 0 $gray-lighter;
-    max-width: ($greeter-width - ($greeter-padding * 2)); /* [4] */
+    max-width: ($greeter-width-max - ($greeter-padding * 2)); /* [4] */
     max-height: 16em;
     min-height: 8em; /* [5] */
     padding: .5em;

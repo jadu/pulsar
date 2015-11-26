@@ -6,7 +6,7 @@ function SignInComponent(html) {
 	this.$html = html;
 }
 
-SignInComponent.prototype.initialize = function () {
+SignInComponent.prototype.init = function () {
 
 	var component = this;
 

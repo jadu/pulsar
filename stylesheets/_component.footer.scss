@@ -1,23 +1,31 @@
 .footer {
-  font-size: $font-size-small;
-
-  a {
-    line-height: $line-height-base * 1.5;
+    background-color: $white;
+    border-top: 1px solid $gray-lighter;
+    color: #999;
+    font-size: $font-size-small;
     padding: 0 $gutter-width;
-    text-decoration: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: $zindex-footer;
 
-    &:hover {
-      color: darken($white, 10%);
+    @include respond-min($screen-desktop) {
+        left: 75px;
     }
 
-    &:last-child {
-      float: right;
-    }
+    a {
+        color: $gray-light;
+        line-height: $line-height-base * 1.5;
+        padding: 0;
+        text-decoration: none;
 
-    @include respond-min($screen-tablet) {
-      &:last-child {
-        float: none;
-      }
+        &:hover {
+            color: $link-color;
+        }
     }
-  }
+}
+
+.branding-footer {
+    margin-left: 15px;
 }

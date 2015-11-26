@@ -11,7 +11,7 @@
     {% set icon = 'info-sign' %}
   {% endif %}
 
-  <div class="flash flash--{{ type }}{% if sticky == true %} is-sticky{% endif %}">
+  <div class="flash flash--{{ type }}">
     {% if autohide == false or autohide == 'undefined' %}<button class="close" data-dismiss="flash">{{ html.icon('remove') }}</button>{% endif %}
     {{ html.icon(icon) }} {{ message|raw }}
   </div>

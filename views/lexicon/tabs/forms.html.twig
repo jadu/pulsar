@@ -149,6 +149,20 @@
             })
         }}
 
+        {{
+            form.select2({
+                'id': 'inputSelect',
+                'name': 'inputSelect',
+                'label': 'Select2 input',
+                'selected': 'value2',
+                'data-html': 'true',
+                'options': {
+                    'value1': '<strong>value</strong> one',
+                    'value2': '<strong>value</strong> two'
+                }
+            })
+        }}
+
     {{ form.fieldset_end() }}
 
         {{
@@ -181,6 +195,29 @@
                 'id': 'inputRadioRight',
                 'name': 'inputRadioInline',
                 'checked': true
+            })
+        }}
+
+        {{
+            form.button_group({
+                'label': 'Band',
+                'items': [
+                    form.radio_simple({
+                        'id': 'am',
+                        'label': 'AM',
+                        'name': 'bands'
+                    }),
+                    form.radio_simple({
+                        'id': 'fm',
+                        'label': 'FM',
+                        'name': 'bands'
+                    }),
+                    form.radio_simple({
+                        'id': 'mw',
+                        'label': 'MW',
+                        'name': 'bands'
+                    })
+                ]
             })
         }}
 

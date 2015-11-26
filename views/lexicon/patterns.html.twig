@@ -1,9 +1,9 @@
-{% extends '@pulsar/pulsar/layouts/tabbed.html.twig' %}
+{% extends '@pulsar/pulsar/layouts/base.html.twig' %}
 
 {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 {% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
-{% import '@pulsar/pulsar/helpers/flash.html.twig' as flash %}
-{% import '@pulsar/pulsar/helpers/tabs.html.twig' as tabs %}
+{% import '@pulsar/pulsar/v2/helpers/tabs.html.twig' as tabs %}
+{% import '@pulsar/pulsar/v2/helpers/flash.html.twig' as flash %}
 
 {% block title %}{{ parent() }}{% endblock %}
 
@@ -36,7 +36,8 @@
         {
           "id"    : "masterswitch",
           "label" : "Masterswitch",
-          "src"   : pattern_masterswitch
+          "src"   : pattern_masterswitch,
+          "active": true
         }
     ]
 %}
@@ -76,11 +77,11 @@
 %}
 
 {% block tabs_list %}
-    {{ nav.tabs(tabs_content) }}
+    {{ tabs.list(tabs_content) }}
 {% endblock %}
 
 {% block tabs_content %}
-    {{ tabs.tabs_content(tabs_content) }}
+    {{ tabs.content(tabs_content) }}
 {% endblock %}
 
 {% block javascript %}
