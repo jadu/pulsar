@@ -121,7 +121,7 @@
     &.disabled {
       background-color: lighten($base-color, $disabled-fade);
       box-shadow: 0 2px 0 lighten($shadow-color, $disabled-fade);
-      color: $gray;
+      color: $white;
     }
 }
 
