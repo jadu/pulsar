@@ -4,34 +4,41 @@
     Defines what value a specific named colour should be. Used in conjunction
     with _config.theme.scss to defined how specific Jadu control centre elements
     should be styled in regards to colour.
+
+    These colours are defined in the Jadu Brand Guidelines (version 4)
 \* -------------------------------------------------------------------------- */
 
 $palette-branding: (
     jadu-red: (
-        darkest:     rgb(154, 23, 23),
-        dark:        rgb(192, 28, 29),
-        base:        rgb(218, 32, 33),
-        light:       rgb(231, 58, 34)
+        darkest:     rgb(155, 19, 19),
+        dark:        rgb(154, 23, 23),
+        base:        rgb(192, 28, 29),
+        light:       rgb(218, 32, 33),
+        pale:        rgb(231, 58, 34)
     ),
     jadu-blue: (
-        dark:        rgb(11, 137, 173),
-        base:        rgb(21, 166, 209),
-        light:       rgb(84, 190, 222),
-        pale:        rgb(140, 208, 234)
+        darkest:     rgb(34, 101, 134),
+        dark:        rgb(45, 134, 179),
+        base:        rgb(51, 153, 204),
+        light:       rgb(96, 176, 215),
+        pale:        rgb(164, 210, 323)
     ),
     jadu-green: (
+        darkest:     rgb(81, 116, 35),
         dark:        rgb(107, 156, 47),
         base:        rgb(128, 186, 39),
         light:       rgb(164, 200, 88),
         pale:        rgb(189, 214, 134)
     ),
     jadu-teal: (
+        darkest:     rgb(51, 115, 104),
         dark:        rgb(69, 154, 140),
         base:        rgb(84, 185, 169),
         light:       rgb(134, 201, 191),
         pale:        rgb(140, 210, 202)
     ),
     jadu-pink: (
+        darkest:     rgb(137, 50, 71),
         dark:        rgb(183, 67, 95),
         base:        rgb(220, 81, 114),
         light:       rgb(224, 105, 133),
