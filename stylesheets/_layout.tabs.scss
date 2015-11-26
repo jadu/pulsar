@@ -6,8 +6,21 @@
 }
 
 .main-title {
-    line-height: 23px;
-    margin: 10px 0 15px 0;
+    display: inline-block;
+    font-size: 1.75em;
+    line-height: 47px;
+    margin-bottom: 1px;
+}
+
+.sub-title {
+    display: inline-block;
+
+    &:before {
+        content: "/ ";
+        margin-left: 10px;
+        width: 20px;
+        display: inline-block;
+    }
 }
 
 .inner-wrapper {
