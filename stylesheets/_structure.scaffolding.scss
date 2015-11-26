@@ -26,6 +26,16 @@ body {
   }
 }
 
+.container {
+  clear: both;
+  display: table;
+  height: 100%;
+  margin: 0;
+  overflow: visible;
+  position: relative;
+  width: 100%;
+}
+
 // Links
 
 a {
