@@ -6,7 +6,7 @@
 {% block tab_content %}
 	<h2 class="heading">Standard 'state' colours</h2>
 
-	<div class="swatch swatch--primary">
+	<div class="swatch swatch--primary-base">
 		<div class="swatch__colour">
 			<span class="swatch__text">primary</span>
 		</div>
@@ -16,7 +16,7 @@
 		</div>
 	</div>
 
-	<div class="swatch swatch--info">
+	<div class="swatch swatch--info-base">
 		<div class="swatch__colour">
 			<span class="swatch__text">info</span>
 		</div>
@@ -26,7 +26,7 @@
 		</div>
 	</div>
 
-	<div class="swatch swatch--success">
+	<div class="swatch swatch--success-base">
 		<div class="swatch__colour">
 			<span class="swatch__text">success</span>
 		</div>
@@ -36,7 +36,7 @@
 		</div>
 	</div>
 
-	<div class="swatch swatch--warning">
+	<div class="swatch swatch--warning-base">
 		<div class="swatch__colour">
 			<span class="swatch__text">warning</span>
 		</div>
@@ -46,7 +46,7 @@
 		</div>
 	</div>
 
-	<div class="swatch swatch--danger">
+	<div class="swatch swatch--danger-base">
 		<div class="swatch__colour">
 			<span class="swatch__text">danger</span>
 		</div>
@@ -56,7 +56,7 @@
 		</div>
 	</div>
 
-	<div class="swatch swatch--inverse">
+	<div class="swatch swatch--inverse-base">
 		<div class="swatch__colour">
 			<span class="swatch__text">inverse</span>
 		</div>
@@ -71,14 +71,14 @@
 
 	{%
 		set grays = {
-			"black": "black",
+			"black-base": "black",
 			"gray-darker": "gray, darker",
 			"gray-dark": "gray, dark",
-			"gray": "gray",
+			"gray-base": "gray",
 			"gray-light": "gray, light",
 			"gray-lighter": "gray, lighter",
 			"gray-lightest": "gray, lightest",
-			"off-white": "gray, off-white",
+			"gray-off-white": "gray, off-white",
 			"white": "white"
 		}
 	%}
@@ -98,8 +98,9 @@
 
 	{%
 		set jadu_blue = {
+			"jadu-blue-darkest": "jadu-blue, darkest",
 			"jadu-blue-dark": "jadu-blue, dark",
-			"jadu-blue": "jadu-blue",
+			"jadu-blue-base": "jadu-blue",
 			"jadu-blue-light": "jadu-blue, light",
 			"jadu-blue-pale": "jadu-blue, pale"
 		}
@@ -122,8 +123,9 @@
 		set jadu_red = {
 			"jadu-red-darkest": "jadu-red, darkest",
 			"jadu-red-dark": "jadu-red, dark",
-			"jadu-red": "jadu-red",
-			"jadu-red-light": "jadu-red, light"
+			"jadu-red-base": "jadu-red",
+			"jadu-red-light": "jadu-red, light",
+			"jadu-red-pale": "jadu-red, pale"
 		}
 	%}
 
@@ -142,8 +144,9 @@
 
 	{%
 		set jadu_green = {
+			"jadu-green-darkest": "jadu-green, darkest",
 			"jadu-green-dark": "jadu-green, dark",
-			"jadu-green": "jadu-green",
+			"jadu-green-base": "jadu-green",
 			"jadu-green-light": "jadu-green, light",
 			"jadu-green-pale": "jadu-green, pale"
 		}
@@ -164,8 +167,9 @@
 
 	{%
 		set jadu_teal = {
+			"jadu-teal-darkest": "jadu-teal, darkest",
 			"jadu-teal-dark": "jadu-teal, dark",
-			"jadu-teal": "jadu-teal",
+			"jadu-teal-base": "jadu-teal",
 			"jadu-teal-light": "jadu-teal, light",
 			"jadu-teal-pale": "jadu-teal, pale"
 		}
@@ -186,8 +190,9 @@
 
 	{%
 		set jadu_pink = {
+			"jadu-pink-darkest": "jadu-pink, darkest",
 			"jadu-pink-dark": "jadu-pink, dark",
-			"jadu-pink": "jadu-pink",
+			"jadu-pink-base": "jadu-pink",
 			"jadu-pink-light": "jadu-teal, light",
 			"jadu-pink-pale": "jadu-teal, pale"
 		}
