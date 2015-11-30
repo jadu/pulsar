@@ -20,6 +20,11 @@
 
 }
 
+.table__tr--no-results td {
+    padding: 1em 0;
+    text-align: center;
+}
+
 .table-row-select {
     color: #666;
     cursor: pointer;
@@ -27,6 +32,7 @@
     position: relative;
     top: 1px
 }
+
 .table__tr.selected .table-row-select:before {
     content: "\f14a";
 }
