@@ -10,7 +10,7 @@
 
 $palette-branding: (
     jadu-red: (
-        darkest:     rgb(155, 19, 19),
+        darkest:     rgb(115, 19, 19),
         dark:        rgb(154, 23, 23),
         base:        rgb(192, 28, 29),
         light:       rgb(218, 32, 33),
@@ -70,8 +70,8 @@ $palette-text: (
         light: map-get(map-get($palette-monochromes, gray), lighter)
     ),
     link: (
-        base:  map-get(map-get($palette-branding, jadu-blue), darker),
-        hover: map-get(map-get($palette-branding, jadu-blue), base),
+        base:  map-get(map-get($palette-branding, jadu-blue), dark),
+        hover: map-get(map-get($palette-branding, jadu-blue), darkest),
         inverse: #ffffff,
         inverse-hover: darken(#ffffff, 10%)
     )
@@ -86,31 +86,31 @@ $palette-text: (
 $palette-states: (
     base: (
         base: map-get(map-get($palette-monochromes, gray), lighter),
-        alt:  #000000
+        alt:  pick_best_color(map-get(map-get($palette-monochromes, gray), lighter), (#fff, #000))
     ),
     primary: (
-        base: map-get(map-get($palette-branding, jadu-blue), dark),
-        alt:  #ffffff
+        base: #2575b0,
+        alt:  pick_best_color(#2575b0, (#fff, #000))
     ),
     success:     (
         base: #297c46,
-        alt:  #ffffff
+        alt:  pick_best_color(#297c46, (#fff, #000))
     ),
     warning:     (
         base: #eaa96a,
-        alt:  #000000
+        alt:  pick_best_color(#eaa96a, (#fff, #000))
     ),
     danger:      (
         base: #c84d40,
-        alt:  #ffffff
+        alt:  pick_best_color(#c84d40, (#fff, #000))
     ),
     info:        (
         base: map-get(map-get($palette-branding, jadu-blue), pale),
-        alt:  #000000
+        alt:  pick_best_color(map-get(map-get($palette-branding, jadu-blue), pale), (#fff, #000))
     ),
     inverse:     (
         base: map-get(map-get($palette-monochromes, gray), darker),
-        alt:  #ffffff
+        alt:  pick_best_color(map-get(map-get($palette-monochromes, gray), darker), (#fff, #000))
     )
 );
 

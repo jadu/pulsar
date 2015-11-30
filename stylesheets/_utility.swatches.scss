@@ -17,7 +17,7 @@
         position: relative;
         top: 38%;
         text-align: center;
-        width: 100px;
+        width: 95px;
     }
 
     &__label {
@@ -40,6 +40,10 @@
                 }
             }
         }
+    }
+
+    .swatch--white .swatch__color {
+        border: 1px solid color(gray, lighter);
     }
 
 }

@@ -35,8 +35,13 @@ $FontAwesomePath: '../libs/font-awesome/font/';
 @import '_config.variables';
 @import '_config.fonts';
 
-// Base colour palette
+// Functions
+@import '_function.math';
+@import '_function.color-luminance';
+@import '_function.pick-best-color';
 @import '_function.color';
+
+// Base colour palette
 @import '_palette.base';
 
 // Apply palette to components
