@@ -45,8 +45,6 @@ $(function () {
     // Refresh datatables when tabs are switched, this fixes some layout issues
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
         $($.fn.dataTable.tables(true)).DataTable().columns.adjust().responsive.recalc();
-
-        pulsar.helpText.updateTabHelp();
     });
 
 	var table = $('.datatable').DataTable({
