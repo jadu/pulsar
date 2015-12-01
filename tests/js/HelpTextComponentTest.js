@@ -28,14 +28,9 @@ describe('HelpTextComponent', function() {
     describe('When the page loads on mobile', function() {
 
         beforeEach(function () {
+            this.window.matchMedia.returns({matches: false});
             this.helpTextComponent.init();
             this.helpTextComponent.updateTabHelp();
-
-            // this.runScenario = function () {
-            //     this.window.matchMedia.returns({matches: false});
-            // }.bind(this);
-            // any difference to the above?????
-            this.window.matchMedia.returns({matches: false});
         });
 
         it('should add the visibility-hidden class to the tab-help-container', function () {
@@ -86,12 +81,8 @@ describe('HelpTextComponent', function() {
     describe('When the side help is open and the help button is pressed', function() {
 
         beforeEach(function () {
+            this.window.matchMedia.returns({matches: false});
             this.helpTextComponent.init();
-
-            this.runScenario = function () {
-                this.window.matchMedia.returns({matches: false});
-            }.bind(this);
-
             this.clickEvent = $.Event('click');
             this.$html.addClass('open-help');
             this.$helpButton.addClass('is-open');
@@ -117,13 +108,9 @@ describe('HelpTextComponent', function() {
     describe('When the close help button is pressed', function() {
 
         beforeEach(function () {
+            this.window.matchMedia.returns({matches: false});
             this.helpTextComponent.init();
             this.helpTextComponent.updateTabHelp();
-
-            this.runScenario = function () {
-                this.window.matchMedia.returns({matches: false});
-            }.bind(this);
-
             this.clickEvent = $.Event('click');
         });
 
@@ -134,6 +121,8 @@ describe('HelpTextComponent', function() {
         })
 
         it('should close the side menu', function () {
+            this.$html.addClass('open-help');
+
             this.$tabHelp.find('.js-close-page-help').trigger(this.clickEvent);
 
             expect(this.$html.hasClass('open-help')).to.be.false;
@@ -152,13 +141,10 @@ describe('HelpTextComponent', function() {
 
     describe('If the help sidebar content does not exist', function() {
         beforeEach(function () {
+            this.window.matchMedia.returns({matches: false});
             this.$tabSidebar.empty();
             this.helpTextComponent.init();
             this.helpTextComponent.updateTabHelp();
-
-            this.runScenario = function () {
-                this.window.matchMedia.returns({matches: false});
-            }.bind(this);
         });
 
         it('should remove the has-sidebar class from the tab container', function () {
@@ -169,12 +155,9 @@ describe('HelpTextComponent', function() {
     describe('If the help sidebar does not exists', function() {
         beforeEach(function () {
             this.$tabSidebar.remove();
+            this.window.matchMedia.returns({matches: false});
             this.helpTextComponent.init();
             this.helpTextComponent.updateTabHelp();
-
-            this.runScenario = function () {
-                this.window.matchMedia.returns({matches: false});
-            }.bind(this);
         });
 
         it('should remove the has-sidebar class from the tab container', function () {
@@ -186,9 +169,7 @@ describe('HelpTextComponent', function() {
 
         beforeEach(function () {
             this.helpTextComponent.init();
-
             this.clickEvent = $.Event('click');
-
             this.$html.addClass('open-help');
             this.$helpButton.addClass('is-open');
         });
