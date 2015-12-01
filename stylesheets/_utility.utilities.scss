@@ -122,3 +122,8 @@ div.no-results {
         width: 50%;
     }
 }
+
+.no-results__message > p,
+.no-results__action {
+    margin: 12px 0;
+}
