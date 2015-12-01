@@ -54,6 +54,25 @@
     }
 }
 
+.open-help .inner-wrapper {
+    -webkit-transform: translate3d(-300px, 0, 0) scale3d(1, 1, 1);
+    transform: translate3d(-300px, 0, 0) scale3d(1, 1, 1);
+
+    @include respond-min($screen-desktop) {
+        -webkit-backface-visibility: hidden;
+        -webkit-transform: none;
+        -webkit-transition: -webkit-transform 500ms ease;
+        backface-visibility: hidden;
+        transform: none;
+        transition: transform 500ms ease;
+        width: 100%;
+    }
+}
+
+.lt-ie10.open-help .inner-wrapper {
+    left: -300px;
+}
+
 .tabs__content {
   @include clear-fix;
   display: table-cell;
@@ -161,8 +180,9 @@
 
         @include respond-min($screen-desktop) {
             display: table-cell;
+            float: left;
             vertical-align: top;
-            width: 70%;
+            width: 100%;
         }
     }
 
@@ -170,11 +190,23 @@
         display: none;
 
         @include respond-min($screen-desktop) {
-            display: table-cell;
-            padding-left: 20px;
-            vertical-align: top;
-            width: 30%;
+          display: table-cell;
+          float: right;
+          padding-left: 20px;
+          vertical-align: top;
+          width: 30%;
+        }
+
+        .no-js & {
+          display: table-cell;
+          vertical-align: top;
         }
     }
+}
+
+.tab__container.has-sidebar .tab__content {
+  @include respond-min($screen-desktop) {
+    width: 70%;
+  }
 }
 

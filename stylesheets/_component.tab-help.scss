@@ -1,0 +1,106 @@
+$nav-color-light: #3399cc !default;
+$nav-color-dark:  #2d89b7 !default;
+
+.tab-help-container {
+
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    backface-visibility: hidden;
+    background: $nav-color-dark;
+    box-shadow: inset 4px 0 0 darken($nav-color-dark, 5%);
+    color: $white;
+    display: table-cell;
+    height: 100%;
+    right: -600px;
+    position: absolute;
+    top: 0;
+    transform: translate3d(-100%, 0, 0);
+    vertical-align: top;
+    width: 300px;
+    z-index: 3;
+
+    .lt-ie10 & {
+        right: -300px;
+    }
+
+    .open-help & {
+        -webkit-transform: translate3d(0, 0, 0);
+        filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+        right: -300px;
+    }
+}
+
+// hide help button on mobile when no JS
+
+.tab-help  {
+    -webkit-transform-origin: 50% 0%;
+    -webkit-transform: translate3d(70%, 0, 0) scale3d(0.9, 0.9, 0.9);
+    -webkit-transition-delay: ease, 0s;
+    -webkit-transition: opacity 300ms 100ms, -webkit-transform 400ms ease;
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+    padding: 20px;
+    opacity: 0.7;
+    transform-origin: 50% 0%;
+    transform: translate3d(70%, 0, 0) scale3d(0.9, 0.9, 0.9);
+    transition: opacity 300ms 100ms ease, transform 400ms ease;
+
+    .open-help & {
+        -webkit-transform: translate3d(0, 0, 0);
+        filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+
+    .heading {
+        margin-top: 10px;
+    }
+
+    a {
+        color: $white;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}
+
+.show-page-help {
+    -webkit-transition: all 100ms ease-in;
+    border-radius: 4px;
+    border: 1px solid #d7d7d7;
+    color: $jadu-copy-gray;
+    display: inline-block;
+    float: right;
+    line-height: normal;
+    margin-top: 1px;
+    padding: 8px 10px 6px;
+    text-decoration: none;
+    transition: all 100ms ease-in;
+
+    @include respond-min($screen-desktop) {
+        display: none;
+    }
+
+    &:hover,
+    &.is-open {
+        background: #2d89b7;
+        border-color: #2d89b7;
+        color: $white;
+    }
+
+    &:active {
+        background: darken(#2d89b7, 10%);
+        border-color: darken(#2d89b7, 10%);
+    }
+}
+
+.close-page-help {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    text-decoration: none;
+    margin-bottom: 10px;
+    font-size: 1.5em;
+}

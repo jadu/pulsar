@@ -38,6 +38,15 @@
 }
 
 .sidebar-icon {
-	color: $gray-dark;
+	color: $white;
 	line-height: 20px;
+
+	@include respond-min($screen-desktop) {
+		color: $gray-dark;
+	}
+
+	.no-js & {
+		color: $gray-dark;
+	}
+
 }
