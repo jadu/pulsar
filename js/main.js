@@ -1,7 +1,10 @@
 
 var $html = $('html');
 
+$html.removeClass('no-js');
+
 pulsar.button       = new pulsar.ButtonComponent($html);
+pulsar.helpText     = new pulsar.HelpTextComponent($html, window, document);
 pulsar.flash        = new pulsar.FlashMessageComponent($html);
 pulsar.pulsarForm   = new pulsar.PulsarFormComponent($html);
 pulsar.signIn       = new pulsar.SignInComponent($html);
@@ -11,6 +14,8 @@ pulsar.navMain      = new pulsar.NavMainComponent($html);
 $(function () {
 
     pulsar.button.init();
+    pulsar.helpText.init();
+    pulsar.helpText.updateTabHelp();
     pulsar.flash.init();
     pulsar.pulsarForm.init();
     pulsar.signIn.init();
@@ -40,7 +45,8 @@ $(function () {
     // Refresh datatables when tabs are switched, this fixes some layout issues
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
         $($.fn.dataTable.tables(true)).DataTable().columns.adjust().responsive.recalc();
-        console.log('!');
+
+        pulsar.helpText.updateTabHelp();
     });
 
 	var table = $('.datatable').DataTable({
