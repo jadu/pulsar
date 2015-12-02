@@ -11,109 +11,89 @@ function HelpTextComponent(html, window, document) {
 
 HelpTextComponent.prototype.init = function () {
     var component = this,
-        $mobileToggleHelpButton = component.$html.find('.js-show-page-help'),
-        $activeTabContainer = component.$html.find('.tab__pane.is-active .tab__container'),
+        $tabsContent = component.$html.find('.tabs__content'),
         $tabHelpContainer = component.$html.find('.tab-help-container'),
-        $body = component.$html.find('body'),
-        $innerWrapper = component.$html.find('.inner-wrapper');
+        $activeTabContainer = component.$html.find('.tab__pane.is-active .tab__container');
 
+    // Visually hide sidebar so you can't tab to it with keyboard/screenreaders
     $tabHelpContainer.addClass('visibility-hidden');
 
-    $mobileToggleHelpButton.click(function (e) {
+    // Help toggle click bind
+    $tabsContent.on('touchstart click', '.js-show-page-help', function(e) {
         e.preventDefault();
         e.stopPropagation();
-
-        var $this = $(this);
-
-        if ($this.hasClass('is-open')) {
-            $this.removeClass('is-open')
-        } else {
-            $this.addClass('is-open')
-        }
-
-        // Closing sidebar
-        if (component.$html.hasClass('open-help')) {
-            component.$html.removeClass('open-help');
-
-            if (component.$html.hasClass('lt-ie10')) {
-                $tabHelpContainer.addClass('visibility-hidden');
-            } else {
-                $tabHelpContainer.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(e) {
-                    $tabHelpContainer.addClass('visibility-hidden');
-                });
-            }
-        } else {
-            $tabHelpContainer.removeClass('visibility-hidden');
-            component.$html.addClass('open-help');
-        }
+        component.toggleHelpSidebar();
     });
 
-    $tabHelpContainer.on('click', '.js-close-page-help', function(e) {
+    // Close help button
+    $tabHelpContainer.on('touchstart click', '.js-close-page-help', function(e) {
         e.preventDefault();
-        $mobileToggleHelpButton.removeClass('is-open');
-
-        // Closing sidebar
-        if (component.$html.hasClass('open-help')) {
-            component.$html.removeClass('open-help');
-            if (component.$html.hasClass('lt-ie10')) {
-                $tabHelpContainer.addClass('visibility-hidden');
-            } else {
-                $tabHelpContainer.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(e) {
-                    $tabHelpContainer.addClass('visibility-hidden');
-                });
-            }
-        } else {
-            $tabHelpContainer.removeClass('visibility-hidden');
-            component.$html.addClass('open-help')
-        }
+        e.stopPropagation(); // needs test
+        component.toggleHelpSidebar();
     });
 
-    // If clicked outside of sidebar, close sidebar
-    this.$document.on('touchstart click', function(e) {
-
-        // side bar help is open
-        if (component.$html.hasClass('open-help')) {
-
-            // check if inside of sidebar
-            if(!$(e.target).closest('.tab-help-container').length) {
-
-                // Remove active class from button
-                $mobileToggleHelpButton.removeClass('is-open');
-
-                // Closing sidebar
-                if (component.$html.hasClass('open-help')) {
-                    component.$html.removeClass('open-help');
-                    if (component.$html.hasClass('lt-ie10')) {
-                        $tabHelpContainer.addClass('visibility-hidden');
-                    } else {
-                        $tabHelpContainer.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(e) {
-                            $tabHelpContainer.addClass('visibility-hidden');
-                        });
-                    }
-                } else {
-                    $tabHelpContainer.removeClass('visibility-hidden');
-                    component.$html.addClass('open-help')
-                }
-            }
-        }
-    });
-
+    // Bind to tab.js event to update help text in sidebar on tab change
     component.$html.find('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-        pulsar.helpText.updateTabHelp();
+        component.updateHelpSidebar();
     });
 };
 
-HelpTextComponent.prototype.updateTabHelp = function () {
+HelpTextComponent.prototype.toggleHelpSidebar = function () {
+    var component = this,
+        $mobileToggleHelpButton = component.$html.find('.js-show-page-help'),
+        $tabHelpContainer = component.$html.find('.tab-help-container');
 
+    if ($mobileToggleHelpButton.hasClass('is-open')) {
+        $mobileToggleHelpButton.removeClass('is-open');
+    } else {
+        $mobileToggleHelpButton.addClass('is-open');
+    }
+
+    if (component.$html.hasClass('open-help')) {
+        component.$html.removeClass('open-help');
+        if (component.$html.hasClass('lt-ie10')) {
+            $tabHelpContainer.addClass('visibility-hidden');
+        } else {
+            $tabHelpContainer.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(e) {
+                $tabHelpContainer.addClass('visibility-hidden');
+            });
+        }
+    } else {
+        $tabHelpContainer.removeClass('visibility-hidden');
+        component.$html.addClass('open-help');
+    }
+};
+
+HelpTextComponent.prototype.updateHelpSidebar = function () {
     var component = this,
         $activeTabContainer = component.$html.find('.tab__pane.is-active .tab__container'),
         activeTabSideBarContentHtml = component.$html.find('.tab__pane.is-active .tab__sidebar').html(),
+        $mobileToggleHelpButton = $('<a href="#" class="show-page-help js-show-page-help"><i class="icon-question-sign"></i><span class="hide">Show on page help</span></a>'),
+        $tabContentFirstHeading = component.$html.find('.tab__pane.is-active .tab__content .heading:first'),
         $tabHelp = component.$html.find('.tab-help'),
         isMobile,
         $mobileCloseHelpButton = $('<a href="#" class="close-page-help js-close-page-help"><i class="icon-remove-sign"></i></a>');
 
     // Check if active tab has help text
     if (activeTabSideBarContentHtml && activeTabSideBarContentHtml.length > 0) {
+
+        // If clicked outside of sidebar, close sidebar
+        this.$document.on('touchstart click', function(e) {
+
+            // side bar help is open
+            if (component.$html.hasClass('open-help')) {
+
+                // check if inside of sidebar
+                if(!$(e.target).closest('.tab-help-container').length) {
+                    component.toggleHelpSidebar();
+                }
+            }
+        });
+
+        // If mobile help button doesn't already exist add it if help text exists
+        if (!$tabContentFirstHeading.find('.js-show-page-help').length) {
+            $mobileToggleHelpButton.appendTo($tabContentFirstHeading);
+        }
 
         // Add class used for setting desktop column widths
         $activeTabContainer.addClass('has-sidebar');
