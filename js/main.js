@@ -15,7 +15,7 @@ $(function () {
 
     pulsar.button.init();
     pulsar.helpText.init();
-    pulsar.helpText.updateTabHelp();
+    pulsar.helpText.updateHelpSidebar();
     pulsar.flash.init();
     pulsar.pulsarForm.init();
     pulsar.signIn.init();
