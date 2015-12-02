@@ -28,7 +28,7 @@ HelpTextComponent.prototype.init = function () {
     // Close help button
     $tabHelpContainer.on('touchstart click', '.js-close-page-help', function(e) {
         e.preventDefault();
-        e.stopPropagation(); // needs test
+        e.stopPropagation();
         component.toggleHelpSidebar();
     });
 
