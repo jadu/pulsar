@@ -10,13 +10,14 @@
     "dantest": "browserify tests/js/index --standalone=pulsar --debug --outfile dist/js/test.js"
   },
   "devDependencies": {
-    "browserify": "^6.3.3",
-    "browserify-shim": "^3.8.3",
+    "aliasify": "latest",
+    "browserify": "10.0.0",
+    "browserify-shim": "^3.8.9",
     "chai": "latest",
-    "contextify": "latest",
+    "datatables": "latest",
     "grunt": "latest",
     "grunt-asciify": "latest",
-    "grunt-autoprefixer": "^3.0.3",
+    "grunt-autoprefixer": "latest",
     "grunt-browserify": "latest",
     "grunt-bump": "latest",
     "grunt-contrib-clean": "latest",
@@ -28,8 +29,7 @@
     "grunt-leading-indent": "latest",
     "grunt-mocha": "latest",
     "grunt-notify": "latest",
-    "grunt-phpunit": "latest",
-    "grunt-requirejs": "latest",
+    "grunt-phpunit": "^0.3.6",
     "grunt-sass": "latest",
     "jquery": "1.x",
     "jsdom": "latest",
@@ -37,14 +37,19 @@
     "minifyify": "^6.3.0",
     "mocha": "latest",
     "mocha-phantomjs": "latest",
-    "phantomjs": "latest",
     "sinon": "latest",
     "sinon-chai": "latest",
     "time-grunt": "latest",
     "uglifyify": "^3.0.1"
   },
+  "aliasify": {
+    "aliases": {
+      "datatables": "./libs/datatables/media/js/jquery.dataTables.min"
+    }
+  },
   "browserify": {
     "transform": [
+      "aliasify",
       "browserify-shim"
     ]
   },

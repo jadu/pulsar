@@ -105,3 +105,25 @@ p.success {
         position: relative;
     }
 }
+
+.no-results {
+    background-color: $off-white;
+    background-image: url('../images/stripes.png');
+    background-repeat: repeat;
+    padding: 1em 0;
+    text-align: center;
+}
+
+div.no-results {
+    margin: 0 auto;
+    width: 80%;
+
+    @include respond-min($screen-desktop) {
+        width: 50%;
+    }
+}
+
+.no-results__message > p,
+.no-results__action {
+    margin: 12px 0;
+}
