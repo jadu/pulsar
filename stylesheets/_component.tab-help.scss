@@ -68,13 +68,11 @@ $nav-color-dark:  #2d89b7 !default;
 .show-page-help {
     -webkit-transition: all 100ms ease-in;
     border-radius: 4px;
-    border: 1px solid #d7d7d7;
     color: $jadu-copy-gray;
     display: inline-block;
     float: right;
+    font-size: .9em;
     line-height: normal;
-    margin-top: 1px;
-    padding: 8px 10px 6px;
     text-decoration: none;
     transition: all 100ms ease-in;
 
@@ -84,14 +82,11 @@ $nav-color-dark:  #2d89b7 !default;
 
     &:hover,
     &.is-open {
-        background: #2d89b7;
-        border-color: #2d89b7;
-        color: $white;
+        color: #2d89b7;
     }
 
     &:active {
-        background: darken(#2d89b7, 10%);
-        border-color: darken(#2d89b7, 10%);
+        color: darken(#2d89b7, 10%);
     }
 }
 

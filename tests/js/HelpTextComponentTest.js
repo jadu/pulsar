@@ -16,10 +16,10 @@ describe('HelpTextComponent', function() {
         this.$tabHelp = $('<div class="tab-help"></div>').appendTo(this.$tabHelpContainer);
         this.$contentMain = $('<div class="content-main"></div>').appendTo(this.$body);
         this.$tabsContent = $('<div class="tabs__content"></div>').appendTo(this.$contentMain);
+        this.$mainTitle = $('<h1 class="main-title">Main title</h1>').appendTo(this.$tabsContent);
         this.$tabPane = $('<div class="tab__pane is-active"></div>').appendTo(this.$tabsContent);
         this.$tabContainer = $('<div class="tab__container"></div>').appendTo(this.$tabPane)
         this.$tabContent = $('<div class="tab__content"></div>').appendTo(this.$tabContainer);
-        this.$tabContentHeader = $('<h2 class="heading">Heading</h2>').appendTo(this.$tabContent);
         this.$tabContentLink = $('<a href="#">link outside of sidebar</a>').appendTo(this.$tabContent);
         this.$tabSidebar = $('<div class="tab__sidebar">Some help text</div>').appendTo(this.$tabContainer);
 
@@ -47,7 +47,7 @@ describe('HelpTextComponent', function() {
         });
 
         it('should add the help toggle button to the first heading', function() {
-            expect(this.$tabContentHeader.find('.js-show-page-help').length).to.equal(1);
+            expect(this.$mainTitle.find('.js-show-page-help').length).to.equal(1);
         });
     });
 
@@ -61,27 +61,27 @@ describe('HelpTextComponent', function() {
         });
 
         it('should prevent the default behaviour', function () {
-            this.$tabContentHeader.find('.js-show-page-help').trigger(this.clickEvent);
+            this.$mainTitle.find('.js-show-page-help').trigger(this.clickEvent);
 
             expect(this.clickEvent.isDefaultPrevented()).to.be.true;
         });
 
         it('should stop propagation of the click event', function () {
-            this.$tabContentHeader.find('.js-show-page-help').trigger(this.clickEvent);
+            this.$mainTitle.find('.js-show-page-help').trigger(this.clickEvent);
 
             expect(this.clickEvent.isPropagationStopped()).to.be.true;
         });
 
         it('should open the side menu', function () {
-            this.$tabContentHeader.find('.js-show-page-help').trigger(this.clickEvent);
+            this.$mainTitle.find('.js-show-page-help').trigger(this.clickEvent);
 
             expect(this.$html.hasClass('open-help')).to.be.true;
         });
 
         it('should add the is-open class to the button ', function () {
-            this.$tabContentHeader.find('.js-show-page-help').trigger(this.clickEvent);
+            this.$mainTitle.find('.js-show-page-help').trigger(this.clickEvent);
 
-            expect(this.$tabContentHeader.find('.js-show-page-help').hasClass('is-open')).to.be.true;
+            expect(this.$mainTitle.find('.js-show-page-help').hasClass('is-open')).to.be.true;
         });
     });
 
@@ -93,19 +93,19 @@ describe('HelpTextComponent', function() {
             this.helpTextComponent.updateHelpSidebar();
             this.clickEvent = $.Event('click');
             this.$html.addClass('open-help');
-            this.$tabContentHeader.find('.js-show-page-help').addClass('is-open');
+            this.$mainTitle.find('.js-show-page-help').addClass('is-open');
         });
 
         it('should close the side menu', function () {
-            this.$tabContentHeader.find('.js-show-page-help').trigger(this.clickEvent);
+            this.$mainTitle.find('.js-show-page-help').trigger(this.clickEvent);
 
             expect(this.$html.hasClass('open-help')).to.be.false;
         });
 
         it('should remove the is-open class from the help button', function () {
-            this.$tabContentHeader.find('.js-show-page-help').trigger(this.clickEvent);
+            this.$mainTitle.find('.js-show-page-help').trigger(this.clickEvent);
 
-            expect(this.$tabContentHeader.find('.js-show-page-help').hasClass('is-open')).to.be.false;
+            expect(this.$mainTitle.find('.js-show-page-help').hasClass('is-open')).to.be.false;
         });
 
         it('should add the visibility-hidden class to the tab-help-container', function () {
@@ -129,7 +129,7 @@ describe('HelpTextComponent', function() {
         });
 
         it('should stop propagation of the click event', function () {
-            this.$tabContentHeader.find('.js-show-page-help').trigger(this.clickEvent);
+            this.$mainTitle.find('.js-show-page-help').trigger(this.clickEvent);
 
             expect(this.clickEvent.isPropagationStopped()).to.be.true;
         });
@@ -143,11 +143,11 @@ describe('HelpTextComponent', function() {
         });
 
         it('should remove the is-open class from the help button', function () {
-            this.$tabContentHeader.find('.js-show-page-help').addClass('is-open');
+            this.$mainTitle.find('.js-show-page-help').addClass('is-open');
 
             this.$tabHelp.find('.js-close-page-help').trigger(this.clickEvent);
 
-            expect(this.$tabContentHeader.find('.js-show-page-help').hasClass('is-open')).to.be.false;
+            expect(this.$mainTitle.find('.js-show-page-help').hasClass('is-open')).to.be.false;
         });
 
         it('should add the visibility-hidden class from the tab-help-container', function () {
@@ -189,7 +189,7 @@ describe('HelpTextComponent', function() {
             this.helpTextComponent.updateHelpSidebar();
             this.clickEvent = $.Event('click');
             this.$html.addClass('open-help');
-            this.$tabContentHeader.find('.js-show-page-help').addClass('is-open');
+            this.$mainTitle.find('.js-show-page-help').addClass('is-open');
         });
 
         it('should close the help side bar', function () {
@@ -201,7 +201,7 @@ describe('HelpTextComponent', function() {
         it('should remove the is-open class from the mobile help button', function () {
             this.$tabContentLink.trigger(this.clickEvent);
 
-            expect(this.$tabContentHeader.find('.js-show-page-help').hasClass('is-open')).to.be.false;
+            expect(this.$mainTitle.find('.js-show-page-help').hasClass('is-open')).to.be.false;
         });
 
         it('should add the visibility-hidden class from the tab-help-container', function () {

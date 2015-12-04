@@ -69,7 +69,7 @@ HelpTextComponent.prototype.updateHelpSidebar = function () {
         $activeTabContainer = component.$html.find('.tab__pane.is-active .tab__container'),
         activeTabSideBarContentHtml = component.$html.find('.tab__pane.is-active .tab__sidebar').html(),
         $mobileToggleHelpButton = $('<a href="#" class="show-page-help js-show-page-help"><i class="icon-question-sign"></i><span class="hide">Show on page help</span></a>'),
-        $tabContentFirstHeading = component.$html.find('.tab__pane.is-active .tab__content .heading:first'),
+        $pageMainTitle = component.$html.find('.main-title'),
         $tabHelp = component.$html.find('.tab-help'),
         isMobile,
         $mobileCloseHelpButton = $('<a href="#" class="close-page-help js-close-page-help"><i class="icon-remove-sign"></i></a>');
@@ -91,8 +91,8 @@ HelpTextComponent.prototype.updateHelpSidebar = function () {
         });
 
         // If mobile help button doesn't already exist add it if help text exists
-        if (!$tabContentFirstHeading.find('.js-show-page-help').length) {
-            $mobileToggleHelpButton.appendTo($tabContentFirstHeading);
+        if (!$pageMainTitle.find('.js-show-page-help').length) {
+            $mobileToggleHelpButton.appendTo($pageMainTitle);
         }
 
         // Add class used for setting desktop column widths
