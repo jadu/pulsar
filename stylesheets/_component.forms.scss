@@ -182,7 +182,7 @@ $inputs: (
 }
 
 // Paragraph as first child of .controls, assuming absence of a proper input
-.controls + p {
+.controls > p:first-child {
     margin-bottom: 0;
     min-height: 44px;
     padding-top: 12px;
