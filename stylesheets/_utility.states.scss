@@ -1,10 +1,10 @@
 .warning {
-  background: rgba(255, 137, 9, .8);
-  color: darken(rgb(255, 137, 9), 30%);
-  text-shadow: none;
-  @include ie-lte(8) {
-    background:  rgb(255, 137, 9);
-  }
+    background: rgba(255, 137, 9, .8);
+    color: darken(rgb(255, 137, 9), 30%);
+    text-shadow: none;
+    @include ie-lte(8) {
+        background:  rgb(255, 137, 9);
+    }
 }
 
 $info-from-bg-color: lighten(color(info), 30);
@@ -17,95 +17,47 @@ $danger-to-bg-color: transparent;
 $danger-from-text-color: darken(color(danger), 30);
 $danger-to-text-color: black;
 
-@-webkit-keyframes infoFade {
-  from {
-    background-color: $info-from-bg-color;
-    color: $info-from-text-color;
-  }
-  to {
-    background-color: $info-to-bg-color;
-    color: $info-to-text-color;
-  }
-}
-
-@-moz-keyframes infoFade {
-  from {
-    background-color: $info-from-bg-color;
-    color: $info-from-text-color;
-  }
-  to {
-    background-color: $info-to-bg-color;
-    color: $info-to-text-color;
-  }
-}
-
-@keyframes infoFade {
-  from {
-    background-color: $info-from-bg-color;
-    color: $info-from-text-color;
-  }
-  to {
-    background-color: $info-to-bg-color;
-    color: $info-to-text-color;
-  }
-}
-
-@-webkit-keyframes dangerFade {
-  from {
-    background-color: $danger-from-bg-color;
-    color: $danger-from-text-color;
-  }
-  to {
-    background-color: $danger-to-bg-color;
-    color: $danger-to-text-color;
-  }
-}
-
-@-moz-keyframes dangerFade {
-  from {
-    background-color: $danger-from-bg-color;
-    color: $danger-from-text-color;
-  }
-  to {
-    background-color: $danger-to-bg-color;
-    color: $danger-to-text-color;
-  }
-}
-
-@keyframes dangerFade {
-  from {
-    background-color: $danger-from-bg-color;
-    color: $danger-from-text-color;
-  }
-  to {
-    background-color: $danger-to-bg-color;
-    color: $danger-to-text-color;
-  }
-}
-
-.has-changed,
-.has-changed:hover,
-.has-info,
-.has-info:hover {
-  &:not(.form__group) {
-    background-color: $info-from-bg-color;
-    color: $info-from-text-color;
-
-    &.fade {
-      -webkit-animation: infoFade ease-out 1;
-         -moz-animation: infoFade ease-out 1;
-              animation: infoFade ease-out 1;
-      -webkit-animation-delay: 1.5s;
-         -moz-animation-delay: 1.5s;
-              animation-delay: 1.5s;
-      -webkit-animation-duration: 3s;
-         -moz-animation-duration: 3s;
-              animation-duration: 3s;
-      -webkit-animation-fill-mode: forwards;
-         -moz-animation-fill-mode: forwards;
-              animation-fill-mode: forwards;
+        &.fade {
+            animation-name: fade-out;
+            animation-delay: 5s;
+            animation-duration: 2s;
+            animation-fill-mode: forwards;
+        }
     }
-  }
+}
+
+.has-success {
+    &:not(.form__group) {
+        background-color: lighten($success-color, 50);
+
+        &:hover {
+            background-color: lighten($success-color, 47);
+        }
+
+        &.fade {
+            animation-name: fade-out;
+            animation-delay: 5s;
+            animation-duration: 2s;
+            animation-fill-mode: forwards;
+        }
+    }
+}
+
+.has-warning {
+    &:not(.form__group) {
+        background-color: lighten($warning-color, 20);
+
+        &:hover {
+            background-color: lighten($warning-color, 17);
+        }
+
+        &.fade {
+            animation-name: fade-out;
+            animation-delay: 5s;
+            animation-duration: 2s;
+            animation-fill-mode: forwards;
+        }
+    }
 }
 
 .has-success {
@@ -122,27 +74,12 @@ $danger-to-text-color: black;
   }
 }
 
-.has-error,
-.has-error:hover,
-.has-danger,
-.has-danger:hover {
-  &:not(.form__group) {
-    background-color: $danger-from-bg-color;
-    color: $danger-from-text-color;
 
-    &.fade {
-      -webkit-animation: dangerFade ease-out 1;
-         -moz-animation: dangerFade ease-out 1;
-              animation: dangerFade ease-out 1;
-      -webkit-animation-delay: 1.5s;
-         -moz-animation-delay: 1.5s;
-              animation-delay: 1.5s;
-      -webkit-animation-duration: 3s;
-         -moz-animation-duration: 3s;
-              animation-duration: 3s;
-      -webkit-animation-fill-mode: forwards;
-         -moz-animation-fill-mode: forwards;
-              animation-fill-mode: forwards;
+@keyframes fade-out {
+    from {
+        background-color: inherit;
     }
-  }
+    to {
+        background-color: #fff;
+    }
 }

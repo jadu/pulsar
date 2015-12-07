@@ -420,8 +420,8 @@ html, body {
 // 2FA code input in control centre UI
 .form__group .controls,
 .modal {
-	.signin__code1,
-    .signin__code2 {
+	.form__control.signin__code1,
+    .form__control.signin__code2 {
         display: inline-block;
         font-family: courier;
         letter-spacing: 2px;

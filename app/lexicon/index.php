@@ -22,8 +22,6 @@ $twig = new Twig_Environment($loader,
 	)
 );
 
-// $profile = new Twig_Profiler_Profile();
-
 $twig->addExtension(new ArrayExtension());
 $twig->addExtension(new AttributeParserExtension());
 $twig->addExtension(new ConfigExtension($baseDir . 'pulsar.json'));
@@ -31,11 +29,8 @@ $twig->addExtension(new RelativeTimeExtension());
 $twig->addExtension(new UrlParamsExtension($_GET));
 $twig->addExtension(new TabsExtension());
 $twig->addExtension(new Twig_Extension_Debug());
-//$twig->addExtension(new Twig_Extension_Profiler($profile));
 
-
-
-if (!isset($_SERVER['PATH'])) {
+if (!isset($_SERVER['PATH_INFO'])) {
     $path = 'main';
 } else {
     $path = $_SERVER['PATH_INFO'];
@@ -52,6 +47,3 @@ print $template->render(array(
     'active_tab_id' => 'stanton'
     )
 );
-
-// $dumper = new Twig_Profiler_Dumper_Text();
-// echo '<pre>' . $dumper->dump($profile) . '</pre>';

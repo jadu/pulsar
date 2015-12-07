@@ -14,26 +14,16 @@ body {
   overflow-x: hidden;
   padding: 0;
 
+    // Improve proxima nova rendering on Chrome for Windows
+    @media screen and (-webkit-min-device-pixel-ratio:0) {
+        color: #000;
+        -webkit-text-stroke: .2px;
+    }
+
   @include respond-min($screen-phone) {
     font-size: $font-size-base;
     line-height: $line-height-base;
   }
-}
-
-// Make sure flash messages properly clear header/toolbar
-#top {
-  @include clear-fix;
-}
-
-
-.container {
-  clear: both;
-  display: table;
-  height: 100%;
-  margin: 0;
-  overflow: visible;
-  position: relative;
-  width: 100%;
 }
 
 // Links

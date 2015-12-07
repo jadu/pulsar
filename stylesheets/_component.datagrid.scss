@@ -93,7 +93,7 @@
       background-color: darken($white, 5%);
       content: attr(data-table-header);
       display: inline-block;
-      font-family: $font-family-semibold;
+      font-family: $font-family-regular;
       font-weight: normal;
       height: 100%;
       min-width: 35%;
@@ -110,7 +110,7 @@
 
     @include respond-min($screen-tablet) {
       display: table-cell;
-      padding: 0 $gutter-width / 2;
+      padding: 5px $gutter-width / 2;
 
       vertical-align: middle;
       width: auto;
@@ -305,4 +305,14 @@ tr.is-selected {
 tr.row--no-results td {
   padding: 1em 0;
   text-align: center;
+}
+
+// I know this ain't following bem, but this is really old css and it needs to be moved over to datatables anyway
+.datagrid--underlined {
+    border-bottom: 1px solid $gray;
+    outline: none;
+}
+
+.datagrid--fixed {
+    table-layout: fixed;
 }

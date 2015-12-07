@@ -68,7 +68,7 @@
     font-weight: normal;
     font-family: $font-family-regular;
 
-    &:hover:not(.table-selection) {
+    &:hover:not(.table-selection):not(.sorting_disabled) {
         background-color: #efefef;
         cursor: pointer;
     }
@@ -81,6 +81,17 @@
     &:hover {
         color: color(link);
         text-decoration: underline;
+    }
+}
+
+.table__th.sorting_disabled:hover {
+    border: 0;
+    text-decoration: none;
+
+    > .table-link {
+        border: 0;
+        cursor: default;
+        text-decoration: none;
     }
 }
 
@@ -101,6 +112,17 @@
     border-bottom: 1px dotted #ccc;
     color: color(black);
     text-decoration: none;
+
+    .sorting_disabled & {
+        border: none;
+
+        &:hover {
+            border: 0;
+            color: $black;
+            cursor: default;
+            text-decoration: none;
+        }
+    }
 }
 
 .table-action {
@@ -307,3 +329,4 @@
         width: 100%;
     }
 }
+

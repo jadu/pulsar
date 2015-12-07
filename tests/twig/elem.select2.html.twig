@@ -1,0 +1,27 @@
+{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
+
+<h1>elem.select2</h1>
+
+<pre>
+elem.select2({
+	'label': 'Label',
+	'options': {
+		'foo': 'Foo',
+		'bar': 'Bar'
+	}
+})
+</pre>
+
+{%
+	set output = elem.select2({
+		'label': 'Label',
+		'options': {
+			'foo': 'Foo',
+			'bar': 'Bar'
+		}
+	})
+ %}
+
+{{ output }}
+
+<pre>{{ output|e }}</pre>

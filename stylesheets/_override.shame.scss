@@ -40,9 +40,11 @@
 
 
 
-
-
-
+.main-title {
+    font-size: 1.75em;
+    line-height: 47px;
+    margin-bottom: 1px;
+}
 
 .tab__title {
   border-bottom: 1px solid #ccc;
@@ -55,11 +57,6 @@
     line-height: 48px;
 }
 
-.main-title {
-    font-size: 1.75em;
-    line-height: 47px;
-    margin-bottom: 1px;
-}
 
 .legend {
     margin-bottom: 24px;
@@ -113,15 +110,7 @@
     margin: 0;
   }
 
-  .checkbox--inline-v2,
-  .radio--inline-v2 {
-    height: 44px;
 
-    > [type="checkbox"],
-    > [type="radio"] {
-      height: auto;
-    }
-  }
 
   .form__group--small {
     .controls {
@@ -201,6 +190,28 @@
         vertical-align: sub;
     }
   }
+}
+
+// New translations UI (CMS)
+
+.table--datagrid .select2 {
+    max-width: 25%;
+
+    @include respond-min($screen-xsmall) {
+        max-width: 50%;
+    }
+
+    @include respond-min($screen-small) {
+        max-width: 100%;
+    }
+}
+
+.table--datagrid .btn__group {
+    vertical-align: top;
+
+    @include respond-min($screen-small) {
+        vertical-align: middle;
+    }
 }
 
 // fixes strange issue with content-main moving off screen when dropdown in toolbar is used

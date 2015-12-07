@@ -1,6 +1,6 @@
 {
   "name": "pulsar",
-  "version": "3.6.0",
+  "version": "3.7.2",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -26,6 +26,7 @@
     "pikaday": "latest",
     "respond": "latest",
     "selectivizr": "jadu/selectivizr",
+    "select2": "~4.0.0",
     "sticky": "latest",
     "store.js": "latest",
     "svgeezy": "latest",
