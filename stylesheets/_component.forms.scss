@@ -149,16 +149,6 @@ $inputs: (
     color: lighten($text-color, 5%);
 }
 
-// .checkbox--inline-v2,
-// .radio--inline-v2 {
-//     height: 44px;
-
-//     > [type="checkbox"],
-//     > [type="radio"] {
-//       height: auto;
-//     }
-// }
-
 .form__button-group {
 
     > .control__label {
@@ -187,7 +177,13 @@ $inputs: (
 }
 
 // Loading spinner (mainly for select/select2 elements)
-
 .form__control + .loading {
   left: 310px;
+}
+
+// Paragraph as first child of .controls, assuming absence of a proper input
+.controls + p {
+    margin-bottom: 0;
+    min-height: 44px;
+    padding-top: 12px;
 }
