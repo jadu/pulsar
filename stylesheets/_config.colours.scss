@@ -57,7 +57,7 @@ $inverse-link-hover-color:      darken($white, 10%) !default;
 //  The colour and it's alternative MUST meet AA compliance for contrast
 // -----------------------------------------------------------------------------
 
-$base-color:                    $gray !default;
+$base-color:                    $gray-lighter !default;
 $primary-color:                 #1F7BB8 !default;
 $success-color:                 #297C46 !default;
 $warning-color:                 #EAA96A !default;
