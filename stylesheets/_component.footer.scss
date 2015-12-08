@@ -1,6 +1,6 @@
 .footer {
-    background-color: $white;
-    border-top: 1px solid $gray-lighter;
+    background-color: color(white);
+    border-top: 1px solid color(gray, lightest);
     color: #999;
     font-size: $font-size-small;
     padding: 0 $gutter-width;
@@ -21,7 +21,7 @@
         text-decoration: none;
 
         &:hover {
-            color: $link-color;
+            color: color(link);
         }
     }
 }
