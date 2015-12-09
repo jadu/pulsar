@@ -100,6 +100,14 @@ $progress-bg-hover:                   darken($progress-bg, 5%) !default;
 //  Forms
 // -----------------------------------------------------------------------------
 
+$input-bg:                            #fff !default;
+$input-bg-disabled:                   color(gray, lighter) !default;
+$input-border:                        color(border) !default;
+$input-border-focus:                  #66afe9 !default;
+$input-color-placeholder:             color(gray, light) !default;
+$legend-border-color:                 color(border) !default;
+$input-group-addon-border-color:      $input-border !default;
+
 $state-warning-text:             #c09853 !default;
 $state-warning-bg:               #fcf8e3 !default;
 $state-warning-border:           darken($state-warning-bg, 10%) !default;
