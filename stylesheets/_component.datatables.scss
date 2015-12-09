@@ -1,12 +1,11 @@
 
 .datatable {
-    border-top: 1px solid #ccc;
+    border-top: 1px solid color(border);
     clear: both;
     width: 100%;
 
     &:hover > .table-link {
         color: color(link);
-        outline: 1px solid red;
     }
 
 }
@@ -39,7 +38,7 @@
 
 .table__th,
 .table__td {
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid color(border);
     height: $line-height-large;
     padding: 11.5px 10px 12px 10px;
     text-align: left;
@@ -109,8 +108,8 @@
 }
 
 .table-link {
-    border-bottom: 1px dotted #ccc;
-    color: color(black);
+    border-bottom: 1px dotted color(gray, light);
+    color: color(link);
     text-decoration: none;
 
     .sorting_disabled & {
@@ -126,7 +125,7 @@
 }
 
 .table-action {
-    border-right: 1px solid #ccc;
+    border-right: 1px solid color(border);
     padding: 0 5px;
 
     &:last-child {
@@ -175,7 +174,7 @@
     margin-top: 9px;
 
     [type="search"] {
-        border: 1px solid #ccc;
+        border: 1px solid color(border);
         color: black;
         border-radius: 4px;
         margin-left: 10px;
@@ -241,7 +240,7 @@
 
 .datatable .child {
     background-color: #efefef;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid color(border);
     padding: 11.5px 0 12px 0;
 }
 

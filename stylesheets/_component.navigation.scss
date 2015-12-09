@@ -51,7 +51,7 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
     }
 
     &__list {
-        border-bottom: 1px solid color(gray, lighter);
+        border-bottom: 1px solid color(border);
         display: inline-block;
         list-style: none;
         margin-bottom: 0;
@@ -71,12 +71,12 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
     }
 
     &__item.is-active {
-        border-bottom: 3px solid $nav-color-light;
+        border-bottom: 2px solid $nav-color-light;
         margin-bottom: -1px;
 
-        @include respond-min($screen-desktop) {
-            border-bottom: 1px solid $nav-color-light;
-        }
+        // @include respond-min($screen-desktop) {
+        //     border-bottom: 1px solid $nav-color-light;
+        // }
     }
 
     &__item.is-active > &__link {

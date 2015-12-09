@@ -61,10 +61,10 @@ $palette-monochromes: (
 );
 
 /* -------------------------------------------------------------------------- *\
-    Text and links
+    Aliases
 \* -------------------------------------------------------------------------- */
 
-$palette-text: (
+$palette-alias: (
     text: (
         base:  map-get(map-get($palette-monochromes, gray), darker),
         light: map-get(map-get($palette-monochromes, gray), lighter)
@@ -74,6 +74,9 @@ $palette-text: (
         hover: map-get(map-get($palette-branding, jadu-blue), darkest),
         inverse: #ffffff,
         inverse-hover: darken(#ffffff, 10%)
+    ),
+    border: (
+        base: map-get(map-get($palette-monochromes, gray), light)
     )
 );
 

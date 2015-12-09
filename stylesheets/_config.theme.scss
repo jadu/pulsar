@@ -13,7 +13,7 @@
 $colors: merge-maps(
     $palette-branding,
     $palette-monochromes,
-    $palette-text,
+    $palette-alias,
     $palette-states
 );
 
