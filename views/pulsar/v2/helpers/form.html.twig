@@ -107,12 +107,19 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
 
 	{{
 		_self.group({
-			'parent': options|only('class help id label'),
+			'parent': options
+				|only('class help id label')
+				|defaults({
+					'class': 'form-checkbox'
+				}),
 			'inputs': [
 				elem.input(
 					options
 						|exclude('class help label')
-						|defaults({'type': 'checkbox'})
+						|defaults({
+							'class': 'checkbox',
+							'type': 'checkbox'
+						})
 				)
 			]
 		})
@@ -171,6 +178,7 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
 
 	{%
 		set input = elem.input(options|merge({
+			'class': 'checkbox',
 			'label': null,
 			'type': 'checkbox'
 		}))
@@ -194,7 +202,6 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
 				}),
 			'inputs': [
 				elem.label({
-					'class': 'checkbox--inline-v2',
 					'for': options.id|default,
 					'label': label
 				})
@@ -865,11 +872,18 @@ data-*   | string | Data attributes, eg: `'data-foo': 'bar'`
 
 	{{
 		_self.group({
-			'parent': options|only('class help id label'),
+			'parent': options
+				|only('class help id label')
+				|defaults({
+					'class': 'form-radio'
+				}),
 			'inputs': [
 				elem.input(options
 					|exclude('class help label')
-					|defaults({'type': 'radio'})
+					|defaults({
+						'class': 'radio',
+						'type': 'radio'
+					})
 				)
 			]
 		})
@@ -926,6 +940,7 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
 
 	{%
 		set input = elem.input(options|merge({
+				'class': 'radio',
 				'label': null,
 				'type': 'radio'
 			})
@@ -946,11 +961,10 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
 			'parent': options
 				|only('class help id bare')
 				|defaults({
-					'class': 'form__indent'
+					'class': 'form-radio-inline'
 				}),
 			'inputs': [
 				elem.label({
-					'class': 'radio--inline-v2',
 					'for': options.id|default,
 					'label': label
 				})
@@ -1319,7 +1333,9 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 			'parent': options|only('class help id label'),
 			'inputs': [
 				elem.textarea(
-					options|exclude('class help label')
+					options
+						|exclude('class help label')
+						|merge({ 'class': 'textarea' })
 				)
 			]
 		})

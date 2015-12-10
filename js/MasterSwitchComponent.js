@@ -1,6 +1,7 @@
 'use strict';
 
-var $ = require('jquery');
+var $ = require('jquery'),
+	toggles = require('../libs/jquery-toggles/toggles.min');
 
 function MasterSwitchComponent(html) {
 	this.$html = html;
@@ -14,17 +15,20 @@ MasterSwitchComponent.prototype.init = function () {
 	component.$content = this.$html.find('.masterswitch-content');
 	component.$toggle = this.$html.find('.toggle');
 
-	if (!component.$control.prop('checked')) {
-		component.disableElements();
-	}
-
 	component.$toggle.toggles({
 		checkbox: component.$control,
+		on: component.$control.prop('checked'),
 		text: {
 			on: '',
 			off: ''
 		}
 	});
+
+	if (!component.$control.prop('checked')) {
+		component.disableElements();
+	} else {
+		component.switchOn();
+	}
 
 	component.$toggle.on('toggle', function (e, active) {
 		if (active) {
