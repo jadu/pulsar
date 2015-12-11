@@ -401,9 +401,9 @@ $toolbar-notification-item-hover: '#f00';
       }
 
       &[data-mobile-togglable] > li.is-active > a {
-        background-color: lighten($accent-color, 10%);
+        background-color: $accent-color;
         border: 0 none;
-        border-bottom: 2px solid darken($accent-color-alt, 5%);
+        border-bottom: 2px solid $accent-color-alt;
         color: $accent-color-alt;
         i {
           opacity: 1;
@@ -463,16 +463,16 @@ $toolbar-notification-item-hover: '#f00';
     }
 
     .tabs__list[data-mobile-togglable] > li > .tabs__list {
-      background-color: shade($accent-color, 15%);
+      background-color: $accent-color;
       border: 0 none;
       padding: 0;
 
       > li > a {
         border: 0 none;
-        color: lighten($accent-color-alt, 10%);
+        color: $accent-color-alt;
 
         &:hover {
-          background-color: shade($accent-color, 25%);
+          background-color: $accent-color;
           color: $white;
         }
       }
