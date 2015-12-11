@@ -1,12 +1,11 @@
 
 .datatable {
-    border-top: 1px solid #ccc;
+    border-top: 1px solid color(border);
     clear: both;
     width: 100%;
 
     &:hover > .table-link {
-        color: $link-color;
-        outline: 1px solid red;
+        color: color(link);
     }
 
 }
@@ -15,9 +14,14 @@
     vertical-align: top;
 
     &.selected .table__td {
-        background-color: $jadu-blue-pale;
+        background-color: color(jadu-blue, pale);
     }
 
+}
+
+.table__tr--no-results td {
+    padding: 1em 0;
+    text-align: center;
 }
 
 .table-row-select {
@@ -27,13 +31,14 @@
     position: relative;
     top: 1px
 }
+
 .table__tr.selected .table-row-select:before {
     content: "\f14a";
 }
 
 .table__th,
 .table__td {
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid color(border);
     height: $line-height-large;
     padding: 11.5px 10px 12px 10px;
     text-align: left;
@@ -45,8 +50,8 @@
 
     &:hover .table-link,
     &:hover .table-link:hover {
-        border-bottom: 1px dotted $black;
-        color: $black;
+        border-bottom: 1px dotted color(black);
+        color: color(black);
         text-decoration: none;
     }
 
@@ -69,11 +74,11 @@
 }
 
 .table__th > .table-link {
-    color: $black;
+    color: color(black);
     text-decoration: none;
 
     &:hover {
-        color: $link-color;
+        color: color(link);
         text-decoration: underline;
     }
 }
@@ -103,8 +108,8 @@
 }
 
 .table-link {
-    border-bottom: 1px dotted #ccc;
-    color: $black;
+    border-bottom: 1px dotted color(gray, light);
+    color: color(link);
     text-decoration: none;
 
     .sorting_disabled & {
@@ -120,7 +125,7 @@
 }
 
 .table-action {
-    border-right: 1px solid #ccc;
+    border-right: 1px solid color(border);
     padding: 0 5px;
 
     &:last-child {
@@ -169,7 +174,7 @@
     margin-top: 9px;
 
     [type="search"] {
-        border: 1px solid #ccc;
+        border: 1px solid color(border);
         color: black;
         border-radius: 4px;
         margin-left: 10px;
@@ -235,7 +240,7 @@
 
 .datatable .child {
     background-color: #efefef;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid color(border);
     padding: 11.5px 0 12px 0;
 }
 
@@ -246,7 +251,7 @@
 
 
 .table-child-toggle {
-    color: $jadu-blue;
+    color: color(jadu-blue);
     display: none;
     font-size: 14px;
     position: absolute;
@@ -258,7 +263,7 @@
     }
 
     .parent &:before {
-        color: $jadu-red;
+        color: color(jadu-red);
         content: $minus-sign;
     }
 }
@@ -292,14 +297,14 @@
 
 
 .dataTables_empty {
-    color: $danger-color;
+    color: color(danger);
     height: 73px;
     padding-left: 10px;
     vertical-align: middle;
 
     &:before {
         content: $frown;
-        color: $danger-color;
+        color: color(danger);
         font-family: fontawesome;
         font-size: 48px;
         margin-right: 20px;

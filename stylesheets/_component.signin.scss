@@ -1,9 +1,5 @@
 $signin-bg-color:          rgba(51,153,204,.9);
 $signin-bg-color-fallback: rgb(51,153,204);
-$signin-bg-image:          '../images/branding/logo-cms-white.svg';
-$signin-bg-image-fallback: '../images/branding/logo-cms-white-small.png';
-$signin-bg-height:         65px;
-$signin-bg-width:          65px;
 
 $signin-full-width:        400px;
 $signin-mobile-width:      300px;
@@ -34,6 +30,29 @@ html, body {
 	transform: translate3d(0, 0, 0);
 }
 
+.signin-brand {
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    top: 50px;
+    width: 200px;
+}
+
+.jadu-logomark {
+    background: url($branding-navigation-fallback);
+    background: url($branding-navigation), linear-gradient(transparent, transparent);
+    background-size: $branding-navigation-width $branding-navigation-height;
+    background-repeat: no-repeat;
+    display: inline-block;
+    text-align: center;
+    height: $branding-navigation-height;
+    width: $branding-navigation-width;
+}
+
+.jadu-wordmark {
+    display: none;
+}
+
 .signin {
 	background-color: $signin-bg-color-fallback;
 	background-color: $signin-bg-color;
@@ -60,7 +79,7 @@ html, body {
 
 
 	&--error {
-		background-color: $danger-color;
+		background-color: color(danger);
 		animation: shake 400ms ease-in-out;
 
 		.loading--circle i {
@@ -70,7 +89,7 @@ html, body {
 	}
 
 	&--success {
-		background-color: $success-color;
+		background-color: color(success);
 	}
 
 	form {
@@ -319,17 +338,17 @@ html, body {
 }
 
 .signin__icon {
-	background: url($signin-bg-image-fallback);
-	background: url($signin-bg-image), linear-gradient(transparent, transparent);
-	background-size: $signin-bg-height $signin-bg-width;
+	background: url($branding-site-fallback);
+	background: url($branding-site), linear-gradient(transparent, transparent);
+	background-size: $branding-site-height $branding-site-width;
 	background-position: 50% 0;
 	background-repeat: no-repeat;
-	border-radius: 65px;
+	border-radius: $branding-site-radius;
 	display: inline-block;
 	margin: 20px auto 0 auto;
 	text-align: center;
-	height: 65px;
-	width: 65px;
+	height: $branding-site-height;
+	width: $branding-site-width;
 
 	.signin--error &,
 	.signin-reset &,
@@ -338,6 +357,7 @@ html, body {
 	.signin-success & {
 		@include icon-FontAwesome();
 		background-image: none;
+		border-radius: 65px;
 		line-height: 65px;
 		margin-bottom: 6px;
 	}
@@ -365,7 +385,7 @@ html, body {
 		font-size: 65px;
 
 		.signin--error & {
-			color: $danger-color;
+			color: color(danger);
 		}
 	}
 
@@ -396,7 +416,7 @@ html, body {
 
 		&:before {
 			content: '\f087';
-			color: $success-color;
+			color: color(success);
 			font-size: 35px;
 		}
 	}

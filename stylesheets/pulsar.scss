@@ -17,7 +17,6 @@
 @import '../libs/jquery-toggles/css/toggles-full.css';
 @import '../libs/select2/dist/css/select2.css';
 
-
 // Font awesome
 $FontAwesomePath: '../libs/font-awesome/font/';
 @import '../libs/font-awesome/scss/font-awesome';
@@ -34,10 +33,24 @@ $FontAwesomePath: '../libs/font-awesome/font/';
 @import '_mixin.mixins-to-organise';
 
 // Config
-@import '_config.colours';
 @import '_config.variables';
 @import '_config.fonts';
 @import '_config.branding';
+
+// Functions
+@import '_function.math';
+@import '_function.color-luminance';
+@import '_function.pick-best-color';
+@import '_function.color';
+
+// Base colour palette
+@import '_palette.base';
+
+// Apply palette to components
+@import '_config.theme';
+
+// Deprecated styles soon to disappear
+@import '_deprecated.styles.scss';
 
 // Structure
 @import '_structure.grid';
@@ -56,9 +69,7 @@ $FontAwesomePath: '../libs/font-awesome/font/';
 	mixins you should @import them here.
 \* -------------------------------------------------------------------------- */
 
-/**
- * Components
- */
+// Components
 @import '_component.actionsbar';
 @import '_component.autosave';
 @import '_component.badges';
@@ -88,6 +99,7 @@ $FontAwesomePath: '../libs/font-awesome/font/';
 @import '_component.loading';
 @import '_component.login';
 @import '_component.masterswitch';
+@import '_component.message';
 @import '_component.metadata';
 @import '_component.modals';
 @import '_component.navigation';
@@ -129,9 +141,6 @@ $FontAwesomePath: '../libs/font-awesome/font/';
 @import '_utility.utilities';
 @import '_utility.states';
 @import '_utility.swatches';
-
-// Deprecated styles soon to disappear
-@import '_deprecated.styles.scss';
 
 // @import '../libs/datatables-responsive/css/dataTables.responsive';
 

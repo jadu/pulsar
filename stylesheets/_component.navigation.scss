@@ -1,5 +1,5 @@
-$nav-color-light: #3399cc !default;
-$nav-color-dark:  #2d89b7 !default;
+$nav-color-light: color(jadu-blue, dark) !default;
+$nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
 
 .nav-main {
     -webkit-backface-visibility: hidden;
@@ -42,7 +42,6 @@ $nav-color-dark:  #2d89b7 !default;
 
 .nav-inline {
     -webkit-overflow-scrolling: touch;
-    margin-bottom: 24px;
     overflow-x: auto;
     overflow-y: hidden;
     white-space: nowrap;
@@ -52,7 +51,7 @@ $nav-color-dark:  #2d89b7 !default;
     }
 
     &__list {
-        border-bottom: 1px solid $gray;
+        border-bottom: 1px solid color(border);
         display: inline-block;
         list-style: none;
         margin-bottom: 0;
@@ -62,7 +61,7 @@ $nav-color-dark:  #2d89b7 !default;
     &__item {
         display: inline-block;
         font-size: 1.1em;
-        line-height: 47px;
+        line-height: 46px;
         margin-right: 20px;
         padding: 0 15px 0;
 
@@ -72,35 +71,37 @@ $nav-color-dark:  #2d89b7 !default;
     }
 
     &__item.is-active {
-        border-bottom: 3px solid $nav-color-light;
+        border-bottom: 2px solid $nav-color-light;
         margin-bottom: -1px;
 
-        @include respond-min($screen-desktop) {
-            border-bottom: 1px solid $nav-color-light;
-        }
+        // @include respond-min($screen-desktop) {
+        //     border-bottom: 1px solid $nav-color-light;
+        // }
     }
 
     &__item.is-active > &__link {
-        color: $black;
+        color: color(black);
         font-family: $font-family-regular;
     }
 
     &__link {
-        color: $gray-light;
+        color: color(gray, light);
         text-decoration: none;
 
         &:hover,
-        &:focus {
-            color: $black;
+        &:focus,
+        &:link,
+        &:visited {
+            color: color(black);
 
             .caret {
-                border-top-color: $black;
+                border-top-color: color(black);
             }
 
         }
 
         .caret {
-            border-top-color: $gray-light;
+            border-top-color: color(gray, light);
         }
     }
 
@@ -188,7 +189,7 @@ $nav-color-dark:  #2d89b7 !default;
     &:hover,
     &.open {
         background: $nav-color-dark;
-        color: $white;
+        color: color(white);
     }
 }
 
@@ -355,7 +356,7 @@ $nav-color-dark:  #2d89b7 !default;
 
 .jadu-branding {
     display: block;
-    margin: 22px 0 16px 0;
+    margin: 10px 0 4px 0;
     text-decoration: none;
 
     &.is-active {
@@ -419,4 +420,19 @@ $nav-color-dark:  #2d89b7 !default;
 
 .main {
     display: table-cell;
+}
+
+.jadu-logomark {
+    background: url($branding-navigation-fallback);
+    background: url($branding-navigation), linear-gradient(transparent, transparent);
+    background-size: $branding-navigation-width $branding-navigation-height;
+    background-repeat: no-repeat;
+    display: inline-block;
+    text-align: center;
+    height: $branding-navigation-height;
+    width: $branding-navigation-width;
+}
+
+.jadu-wordmark {
+    display: none;
 }

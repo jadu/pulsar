@@ -18,8 +18,8 @@
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 
     th {
-        background-color: $white;
-        
+        background-color: color(white);
+
         abbr {
             border-bottom: 0;
         }
@@ -54,9 +54,9 @@
     background-color: #fff;
 
     &:hover {
-        background-color: $primary-color;
+        background-color: color(primary);
         border-radius: 3px;
-        color: $white;
+        color: color(white);
 
     }
 }
@@ -162,15 +162,15 @@
 }
 
 .is-today .pika-button {
-    background-color: darken($gray-lighter, 2%);
-    color: $primary-color;
+    background-color: darken(color(gray, lighter), 2%);
+    color: color(primary);
     font-weight: bold;
 }
 
 .is-selected .pika-button {
     color: #fff;
     font-weight: bold;
-    background: $primary-color;
+    background: color(primary);
     border-radius: 3px;
 }
 
@@ -183,7 +183,7 @@
 
 .pika-button:hover {
     color: #fff !important;
-    background: $primary-color !important;
+    background: color(primary) !important;
     box-shadow: none !important;
     border-radius: 3px !important;
 }

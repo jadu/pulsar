@@ -1,0 +1,125 @@
+/* -------------------------------------------------------------------------- *\
+    Colour map
+
+    Merges colour palettes into a single map to be used by the color() function.
+
+    Example:
+
+    background-color: colour('gray-light');
+\* -------------------------------------------------------------------------- */
+
+@import '_function.merge-maps';
+
+$colors: merge-maps(
+    $palette-branding,
+    $palette-monochromes,
+    $palette-alias,
+    $palette-states
+);
+
+// -----------------------------------------------------------------------------
+//  Badges
+// -----------------------------------------------------------------------------
+
+$badge-bg:                      color(gray, lighter) !default;
+
+$badge-primary-bg:              color(primary) !default;
+$badge-primary-bg-darker:       darken($badge-primary-bg, 20%) !default;
+$badge-primary:           #fff !default;
+
+$badge-success-bg:              color(success) !default;
+$badge-success-bg-darker:       darken($badge-success-bg, 20%) !default;
+$badge-success:           #fff !default;
+
+$badge-info-bg:                 color(info) !default;
+$badge-info-bg-darker:          darken($badge-info-bg, 20%) !default;
+$badge-info:              #fff !default;
+
+$badge-warning-bg:              color(warning) !default;
+$badge-warning-bg-darker:       darken($badge-warning-bg, 20%) !default;
+$badge-warning:           #fff !default;
+
+$badge-danger-bg:               color(danger) !default;
+$badge-danger-bg-darker:        darken($badge-danger-bg, 20%) !default;
+$badge-danger:            #fff !default;
+
+$badge-inverse-bg:              color(inverse) !default;
+$badge-inverse-bg-darker:       darken($badge-inverse-bg, 20%) !default;
+$badge-inverse:           #fff !default;
+
+$badge-color:                   inherit !default;
+$badge-active-bg:               #fff !default;
+$badge-active-color:            #fff !default;
+$badge-link-hover-color:        #fff !default;
+
+// -----------------------------------------------------------------------------
+//  Dropdowns
+// -----------------------------------------------------------------------------
+
+$dropdown-bg:                    #fff !default;
+$dropdown-border:                color(gray, light) !default;
+$dropdown-fallback-border:       color(gray) !default;
+$dropdown-divider-bg:            color(gray, light) !default;
+$dropdown-link-active-color:     #fff !default;
+$dropdown-link-active-bg:        color(primary) !default;
+$dropdown-link-color:            color(gray, dark) !default;
+$dropdown-link-hover-color:      #fff !default;
+$dropdown-link-hover-bg:         $dropdown-link-active-bg !default;
+$dropdown-caret-color:           #000 !default;
+
+// -----------------------------------------------------------------------------
+//  Tables
+// -----------------------------------------------------------------------------
+
+$table-bg:                       transparent !default;
+$table-bg-accent:                color(gray, light) !default;
+$table-bg-hover:                 color(gray, lighter) !default;
+$table-bg-active:                $table-bg-hover !default;
+$table-border-color:             color(gray) !default;
+
+// -----------------------------------------------------------------------------
+//  Popovers
+// -----------------------------------------------------------------------------
+
+$popover-bg:                          #fff !default;
+$popover-border-color:                color(gray, light) !default;
+$popover-fallback-border-color:       color(gray) !default;
+$popover-title-bg:                    #fff !default;
+$popover-arrow-color:                 #fff !default;
+$popover-arrow-outer-color:           color(gray, lighter) !default;
+$popover-arrow-outer-fallback-color:  color(gray) !default;
+
+// -----------------------------------------------------------------------------
+//  Progress bars
+// -----------------------------------------------------------------------------
+
+$progress-bg:                         color(gray, lightest) !default;
+$progress-bg-hover:                   darken($progress-bg, 5%) !default;
+
+// -----------------------------------------------------------------------------
+//  Forms
+// -----------------------------------------------------------------------------
+
+$input-bg:                            #fff !default;
+$input-bg-disabled:                   color(gray, lighter) !default;
+$input-border:                        color(border) !default;
+$input-border-focus:                  #66afe9 !default;
+$input-color-placeholder:             color(gray, light) !default;
+$legend-border-color:                 color(border) !default;
+$input-group-addon-border-color:      $input-border !default;
+
+$state-warning-text:             #c09853 !default;
+$state-warning-bg:               #fcf8e3 !default;
+$state-warning-border:           darken($state-warning-bg, 10%) !default;
+
+$state-danger-text:              #b94a48 !default;
+$state-danger-bg:                #f2dede !default;
+$state-danger-border:            darken($state-danger-bg, 10%) !default;
+
+$state-success-text:             #468847 !default;
+$state-success-bg:               #dff0d8 !default;
+$state-success-border:           darken($state-success-bg, 10%) !default;
+
+$state-info-text:                #3a87ad !default;
+$state-info-bg:                  #d9edf7 !default;
+$state-info-border:              darken($state-info-bg, 10%) !default;

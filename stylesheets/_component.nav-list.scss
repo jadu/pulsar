@@ -2,7 +2,7 @@
 .nav-list {
 	display: none;
 	list-style-type: none;
-	margin: 17px 20px 0 20px;
+	margin: 0 20px 0 20px;
 
 	.is-open & {
 		margin-top: 0px;
@@ -15,7 +15,7 @@
 }
 
 .nav-item--header {
-	border-bottom: 1px solid darken($nav-color-dark, 2.5%);;
+	border-bottom: 1px solid $nav-color-light;
 	color: #fff;
 	display: block;
 	font-size: 1.2em;

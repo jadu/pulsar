@@ -1,26 +1,24 @@
+// -----------------------------------------------------------------------------
+//  Branding
+// -----------------------------------------------------------------------------
 
-.branding-footer {
-    background: url($branding-footer-fallback);
-    background: url($branding-footer), linear-gradient(transparent, transparent);
-    background-size: $branding-footer-width 35px;
-    background-repeat: no-repeat;
-    height: 35px;
-    display: inline-block;
-    text-indent: -9999px;
-    width: $branding-footer-width;
-}
+$brand-image:                         $image-path + 'brand.png' !default;
+$brand-height:                        24px !default;
+$brand-width:                         75px !default;
+$brand-background-size:               100% !default;
 
-.jadu-logomark {
-    background: url($branding-navigation-fallback);
-    background: url($branding-navigation), linear-gradient(transparent, transparent);
-    background-size: $branding-navigation-width $branding-navigation-height;
-    background-repeat: no-repeat;
-    display: inline-block;
-    text-align: center;
-    height: $branding-navigation-height;
-    width: $branding-navigation-width;
-}
+$branding-site:                       $image-path + 'branding/logo-cms-white.svg';
+$branding-site-fallback:              $image-path + 'branding/logo-cms-white.png';
+$branding-site-height:                65px;
+$branding-site-width:                 65px;
+$branding-site-radius:                0;
 
-.jadu-wordmark {
-    display: none;
-}
+$branding-navigation:                 $image-path + 'branding/logo-cms-white.svg' !default;
+$branding-navigation-fallback:        $image-path + 'branding/logo-cms-white.png' !default;
+$branding-navigation-height:          50px !default;
+$branding-navigation-width:           50px !default;
+
+$branding-footer:                     $image-path + 'branding/jadu-continuum-brandmark.svg' !default;
+$branding-footer-fallback:            $image-path + 'branding/jadu-continuum-brandmark.png' !default;
+$branding-footer-height:              16px !default;
+$branding-footer-width:               127px !default;

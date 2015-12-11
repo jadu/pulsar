@@ -54,9 +54,7 @@
         <div class="inner-wrapper">
             {{ nav.primary({ 'data': nav_data|default() }) }}
 
-            <div class="flash-container js-flash-container">
-                {% include '@pulsar/pulsar/components/flash.html.twig' %}
-            </div>
+            {% include '@pulsar/pulsar/components/flash.html.twig' %}
 
             <div class="toolbar">
 

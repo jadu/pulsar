@@ -1,0 +1,76 @@
+{% extends '@pulsar/pulsar/layouts/base.html.twig' %}
+
+{% block body %}
+    <header id="top">
+        {% include '@pulsar/pulsar/components/flash.html.twig' %}
+    </header>
+
+    <div role="main" class="container">
+
+        <div class="inner-wrapper">
+            {% include '@pulsar/pulsar/components/navigation.html.twig' %}
+            <!-- <div class="nav-tertiary nav-tertiary--light">
+
+                <form class="nav-search">
+                    <input type="search" placeholder="Search" class="nav-search__field" />
+                    <button class="nav-search__submit">{{ html.icon('search') }}</button>
+                </form>
+
+            </div> -->
+
+            <div class="toolbar">
+
+                <a href="#" class="mobile-menu-button">Menu</a>
+
+                <div class="nav-user">
+                    {{
+                        html.button_dropdown({
+                            "label": "Paul Stanton",
+                            "class": "user-menu btn--naked",
+                            "items": [
+                                html.link({
+                                    "label": html.icon('user') ~ " My details",
+                                    "href": "#foo"
+                                }),
+                                html.link({
+                                    "label": html.icon('key') ~ " Change password",
+                                    "href": "#foo"
+                                }),
+                                html.divider(),
+                                html.link({
+                                    "label": html.icon('power-off') ~ " Sign out",
+                                    "href": "#foo"
+                                }),
+                            ]
+                        })
+                    }}
+                </div>
+
+            </div>
+
+            <form action="/q/app_dev.php/search" class="main-search" data-ui="search-box" >
+                <input type="search" id="cc_search_q" value="" placeholder="Search" class="main-search__field" autocomplete="off">
+                <button class="main-search__submit" type="submit" name="case-search"><i class="icon-search"></i></button>
+                <div id="cc_search_loading"></div>
+                <div id="cc_search_results" style="display:none;">
+                    <br class="clear" />
+                </div>
+            </form>
+
+            <div class="content-main">
+                <div class="tabs__content">
+                    <h1 class="main-title">{{ heading|default('MISSING HEADING') }}</h1>
+                    {% block tabs_list %}{% endblock %}
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal" class="modal" role="dialog" aria-hidden="true">
+        <!-- empty modal for ajax requests -->
+    </div>
+
+    {% block modals %}{% endblock %}
+    {% block javascript %}{% endblock %}
+{% endblock %}

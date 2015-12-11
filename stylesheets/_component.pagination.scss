@@ -1,5 +1,5 @@
 .pagination {
-  background-color: $white;
+  background-color: color(white);
 
   // We assume pagination will always sit underneath an element, and that
   // element may or may not be floated
@@ -18,7 +18,7 @@
   }
 
   a, span {
-    color: $gray-dark;
+    color: color(gray, dark);
     font-family: $font-family-regular;
     @include inline-block;
     line-height: $line-height-base * 1.75;
@@ -30,25 +30,25 @@
   li.selected {
     & > a,
     & > span {
-      background-color: darken($white, 10%);
-      color: $black;
+      background-color: darken(color(white), 10%);
+      color: color(black);
     }
   }
 
   li.is-disabled {
     a, span {
-      color: $gray;
+      color: color(gray);
       cursor: not-allowed;
     }
   }
 
   li:not(.is-disabled) > a:hover {
-    background-color: darken($white, 5%);
-    color: $black;
+    background-color: darken(color(white), 5%);
+    color: color(black);
   }
 
   form {
-    color: $gray;
+    color: color(gray);
     float: right;
     padding-top: 0;
   }

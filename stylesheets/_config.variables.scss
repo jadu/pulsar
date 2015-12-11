@@ -14,7 +14,7 @@ $font-family-light:                   'proxima_novalight', 'Helvetica Neue', 'He
 $font-family-regular:                 'proxima_nova_rgregular', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
 
 $font-family-fallback:                'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
-$font-family-monospace:               monospace !default;
+$font-family-monospace:               'Courier New', 'Andale Mono', 'Consolas', monospace !default;
 
 @include ie-lte(7) {
   $font-family-light:                 'Arial', sans-serif !default;
@@ -115,20 +115,13 @@ $nav-primary-item-width:              32%; // % of $nav-primary-width
 $form-label-column-width:             200px !default;
 $controls-width:                      30%;
 $controls-max-width:                  300px;
-$input-bg:                            #fff !default;
-$input-bg-disabled:                   $gray-lighter !default;
-$input-border:                        #ccc !default;
 $input-border-radius:                 $border-radius !default;
-$input-border-focus:                  #66afe9 !default;
-$input-color-placeholder:             $gray-light !default;
 $input-height-base:                   $line-height-base * 2 !default;
 @include ie-lte(7) {
   $input-height-base:                 $line-height-base * 1.2 !default;
 }
 $input-height-large:                  (floor($font-size-large * 2) + ($padding-large-vertical * 2) + 2) !default;
 $input-height-small:                  (floor($font-size-small * $line-height-small) + ($padding-small-vertical * 2) + 2) !default;
-$legend-border-color:                 #e5e5e5 !default;
-$input-group-addon-border-color:      $input-border !default;
 
 // -----------------------------------------------------------------------------
 //  Modals
@@ -174,25 +167,6 @@ $toolbar-accent-height:               4px !default;
 $toolbar-height:                      64px !default; // including accent height
 $toolbar-height-small:                ($line-height-base * 2) !default; // including accent height
 $toolbar-internal-height:             ($toolbar-height - $toolbar-accent-height) !default;
-
-// -----------------------------------------------------------------------------
-//  Branding
-// -----------------------------------------------------------------------------
-
-$brand-image:                         $image-path + 'brand.png' !default;
-$brand-height:                        24px !default;
-$brand-width:                         75px !default;
-$brand-background-size:               100% !default;
-
-$branding-navigation:                 '../images/branding/jadu-continuum-cms.svg' !default;
-$branding-navigation-fallback:        '../images/branding/jadu-continuum-cms.png' !default;
-$branding-navigation-height:          50px !default;
-$branding-navigation-width:           50px !default;
-
-$branding-footer:                     '../images/branding/jadu-continuum-brandmark.svg' !default;
-$branding-footer-fallback:            '../images/branding/jadu-continuum-brandmark.png' !default;
-$branding-footer-height:              16px !default;
-$branding-footer-width:               127px !default;
 
 // -----------------------------------------------------------------------------
 //  Search

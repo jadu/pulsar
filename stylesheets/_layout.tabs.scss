@@ -6,8 +6,22 @@
 }
 
 .main-title {
-    line-height: 23px;
-    margin: 10px 0 15px 0;
+    display: inline-block;
+    font-size: 1.75em;
+    line-height: 47px;
+    margin-bottom: 1px;
+}
+
+.sub-title {
+    display: inline-block;
+    margin-bottom: 0;
+
+    &:before {
+        content: "/ ";
+        margin-left: 10px;
+        width: 20px;
+        display: inline-block;
+    }
 }
 
 .inner-wrapper {
@@ -81,6 +95,10 @@
   vertical-align: top;
   width: 100%;
 
+  @include respond-min($screen-desktop) {
+    padding: 0 40px;
+  }
+
   // show/hide tab panes
   > .tab__pane {
     display: none;
@@ -89,6 +107,11 @@
       display: block;
     }
   }
+}
+
+.tab__content {
+    display: table-cell;
+    width: auto;
 }
 
 .tab__inner {
@@ -107,7 +130,7 @@
   width: 100%;
 
   @include respond-min($screen-desktop) {
-    border-right: 1px solid $gray;
+    border-right: 1px solid color(gray);
     padding-right: $gutter-width;
     width: auto;
   }
@@ -127,20 +150,20 @@
   text-align: center;
 
   &:hover {
-    color: $gray-dark;
+    color: color(gray, dark);
   }
 }
 
 .tabs__list .new {
-  background-color: $primary-color;
+  background-color: color(primary);
   border-bottom: none;
   height: $line-height-base * 1.75;
 
   input {
-    background-color: $primary-color;
+    background-color: color(primary);
     border: 0;
     outline: none;
-    color: $white;
+    color: color(white);
     line-height: 1.75em;
     margin: 4px 0 0 5%;
     width: 90%;

@@ -1,7 +1,9 @@
+@import '_config.theme';
+
 // Base classes
 .badge {
   @include inline-block;
-  background-color: $base-color;
+  background-color: $badge-bg;
   border-radius: 10px;
   font-size: $font-size-medium;
   line-height: 1;
@@ -23,29 +25,29 @@
 
   // Inside a muted element
   .muted & {
-    color: $white;
+    color: color(white);
   }
 }
 
 // Inside labels
 .label {
   &.label--danger .badge {
-    background-color: darken($danger-color, 10%);
+    background-color: darken(color(danger), 10%);
   }
   &.label--primary .badge {
-    background-color: darken($primary-color, 10%);
+    background-color: darken(color(primary), 10%);
   }
   &.label--success .badge {
-    background-color: darken($success-color, 10%);
+    background-color: darken(color(success), 10%);
   }
   &.label--warning .badge {
-    background-color: darken($warning-color, 10%);
+    background-color: darken(color(warning), 10%);
   }
   &.label--info .badge {
-    background-color: darken($info-color, 10%);
+    background-color: darken(color(info), 10%);
   }
   &.label--inverse .badge {
-    background-color: darken($inverse-color, 10%);
+    background-color: darken(color(inverse), 10%);
   }
   .badge {
     color: white;
@@ -81,62 +83,62 @@ a.list-group-item.active > .badge,
 // Variations
 
 .badge--primary {
-  background-color: $primary-color;
-  color: $primary-color-alt;
+  background-color: color(primary);
+  color: color(primary, alt);
   text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
 
   &.badge--outline {
-  	border-color: $primary-color-alt;
+  	border-color: color(primary, alt);
   }
 }
 
 .badge--success {
-  background-color: $success-color;
-  color: $success-color-alt;
+  background-color: color(success);
+  color: color(success, alt);
   text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
 
   &.badge--outline {
-  	border-color: $success-color-alt;
+  	border-color: color(success, alt);
   }
 }
 
 .badge--warning {
-  background-color: $warning-color;
-  color: $warning-color-alt;
+  background-color: color(warning);
+  color: color(warning, alt);
   text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
 
   &.badge--outline {
-  	border-color: $warning-color-alt;
+  	border-color: color(warning, alt);
   }
 }
 
 .badge--danger {
-  background-color: $danger-color;
-  color: $danger-color-alt;
+  background-color: color(danger);
+  color: color(danger, alt);
   text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
 
   &.badge--outline {
-  	border-color: $danger-color-alt;
+  	border-color: color(danger, alt);
   }
 }
 
 .badge--info {
-  background-color: $info-color;
-  color: $info-color-alt;
+  background-color: color(info);
+  color: color(info, alt);
   text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
 
   &.badge--outline {
-  	border-color: $info-color-alt;
+  	border-color: color(info, alt);
   }
 }
 
 .badge--inverse {
-  background-color: $inverse-color;
-  color: $inverse-color-alt;
+  background-color: color(inverse);
+  color: color(inverse, alt);
   text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
 
   &.badge--outline {
-  	border-color: $inverse-color-alt;
+  	border-color: color(inverse, alt);
   }
 }
 

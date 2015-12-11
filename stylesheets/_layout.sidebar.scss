@@ -1,19 +1,20 @@
-.sidebar {
+.tab__sidebar {
 	display: none;
 	float: none;
 	height: 100%;
 	padding: 0 0 0 40px;
 	text-align: justify;
 	vertical-align: top;
-	width: 30%;
 
 	@include respond-min($screen-large-desktop) {
 		display: table-cell;
+		width: 25%;
 	}
 }
 
+// possibly redundant
 .sidebar__header {
-	border-bottom: 1px solid $gray;
+	border-bottom: 1px solid color(border);
     line-height: 24px;
     margin-bottom: 19px;
     padding-bottom: 4px;
@@ -38,7 +39,7 @@
 }
 
 .sidebar-icon {
-	color: $white;
+	color: color(gray, dark);
 	line-height: 20px;
 
 	@include respond-min($screen-desktop) {

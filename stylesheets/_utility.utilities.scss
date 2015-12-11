@@ -27,7 +27,7 @@
 }
 
 .muted {
-  color: $gray;
+  color: color(gray);
 }
 
 .centered {
@@ -36,7 +36,7 @@
 
 p.success {
   background: rgba(0, 153, 51, .8);
-  color: $white;
+  color: color(white);
   padding: 5px 5px;
   text-shadow: 0 0 2px rgba(0, 0, 0, .5);
 
@@ -98,10 +98,24 @@ p.success {
     text-align: justify;
 }
 
-.example {
-    margin-bottom: 1em;
+.no-results {
+    background-color: color(gray, off-white);
+    background-image: url('../images/stripes.png');
+    background-repeat: repeat;
+    padding: 1em 0;
+    text-align: center;
+}
 
-    .flash {
-        position: relative;
+div.no-results {
+    margin: 0 auto;
+    width: 80%;
+
+    @include respond-min($screen-desktop) {
+        width: 50%;
     }
+}
+
+.no-results__message > p,
+.no-results__action {
+    margin: 12px 0;
 }

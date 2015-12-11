@@ -21,7 +21,7 @@
   }
 
   .form__group {
-    display: inline-block;;
+    display: inline-block;
     margin: 0;
     width: 95%;
 
@@ -61,13 +61,13 @@
   }
 
   [data-action=remove-all] {
-    color: $gray-light;
+    color: color(gray, light);
     padding: 8px 14px 6px 14px;
     text-shadow: none;
     vertical-align: middle;
 
     &:hover {
-      color: $black;
+      color: color(black);
       vertical-align: middle;
     }
   }

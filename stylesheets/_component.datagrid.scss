@@ -2,7 +2,7 @@
 .table--datagrid {
   background-color: #fff;
   border-collapse: separate;
-  outline: 1px solid $gray;
+  outline: 1px solid color(border);
   width: 100%;
 
   @include ie-lte(7) {
@@ -17,7 +17,7 @@
 
   // Colour links when user hovers over the table
   &:hover tbody a {
-    color: $link-color;
+    color: color(link);
   }
 
   // Rows
@@ -31,7 +31,7 @@
 
     th, td {
       @include respond-min($screen-tablet) {
-        border-bottom: 1px solid $gray;
+        border-bottom: 1px solid color(border);
       }
       height: floor($line-height-base * 1.8);
       @include respond-max($screen-tablet) {
@@ -105,7 +105,7 @@
     }
 
     &:last-child {
-      border-bottom: 1px solid $gray;
+      border-bottom: 1px solid color(border);
     }
 
     @include respond-min($screen-tablet) {
@@ -181,7 +181,7 @@
     }
 
     .table--datagrid td {
-        border-bottom: 1px solid $gray;
+        border-bottom: 1px solid color(border);
     }
 
     /* Fixes responsive table headings being hidden (in pulsar) in mobile views for < IE9 */
@@ -309,7 +309,7 @@ tr.row--no-results td {
 
 // I know this ain't following bem, but this is really old css and it needs to be moved over to datatables anyway
 .datagrid--underlined {
-    border-bottom: 1px solid $gray;
+    border-bottom: 1px solid color(border);
     outline: none;
 }
 

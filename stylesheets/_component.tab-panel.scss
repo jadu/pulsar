@@ -96,7 +96,7 @@
 .tab-panel--contrast {
 
 	> .tabs__list > li {
-		background-color: $gray-lighter;
+		background-color: color(gray, lighter);
 
         &:first-of-type {
             border-top-left-radius: $border-radius;
@@ -109,25 +109,25 @@
         }
 
 		&:hover {
-			background-color: darken($gray-lighter, 5);
+			background-color: darken(color(gray, lighter), 5);
 		}
 
 		&.is-active {
-			background-color: $primary-color;
+			background-color: color(primary);
 
 			> a {
 				background-color: inherit;
-				color: $white;
+				color: color(white);
 			}
 		}
 	}
 
 	> .tabs__list > li:not(:last-of-type) {
-		border-right: 2px solid $white;
+		border-right: 2px solid color(white);
 	}
 
 	.tab__pane {
-		background-color: $gray-lighter;
+		background-color: color(gray, lighter);
 		margin-top: 2px;
 		padding: 1em $gutter-width .1em $gutter-width;
 	}
