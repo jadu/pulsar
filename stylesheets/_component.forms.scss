@@ -71,7 +71,7 @@ fieldset {
 
     @include respond-min($screen-desktop) {
         &:not(.form__actions--flush) {
-            padding-left: 21%;
+            padding-left: 25%;
         }
     }
 }
