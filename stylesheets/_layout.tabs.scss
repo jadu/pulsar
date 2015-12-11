@@ -6,7 +6,6 @@
 }
 
 .main-title {
-    display: inline-block;
     font-size: 1.75em;
     line-height: 47px;
     margin-bottom: 1px;
@@ -95,10 +94,6 @@
   vertical-align: top;
   width: 100%;
 
-  @include respond-min($screen-desktop) {
-    padding: 0 40px;
-  }
-
   // show/hide tab panes
   > .tab__pane {
     display: none;
@@ -107,6 +102,10 @@
       display: block;
     }
   }
+}
+
+.tab__pane {
+    margin-top: 24px;
 }
 
 .tab__content {
