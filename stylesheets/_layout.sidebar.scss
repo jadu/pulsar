@@ -50,4 +50,7 @@
 		color: $gray-dark;
 	}
 
+	.open-help & {
+		color: color(white);
+	}
 }
