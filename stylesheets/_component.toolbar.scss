@@ -2,16 +2,15 @@
     background-color: #efefef;
     display: block;
     float: left;
-    height: 48px;
     margin-bottom: 18px;
-    padding: 2px 20px;
+    padding: 12px 20px;
     width: 100%;
 
     @include respond-min($screen-desktop) {
         background-color: color(white);
         height: 53px;
         margin-bottom: 19px;
-        padding: 18px 20px 0;
+        padding: 14px 20px 0;
     }
 }
 
