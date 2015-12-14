@@ -215,6 +215,65 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
 
 {# -----------------------------------------------------------------------------
 
+# Content
+
+Generates a paragraph of text where an input would normally be positioned within
+a form while still allowing a regular form label to illustrate it.
+
+Useful for presenting non-editable information within a form where you'd prefer
+not to use a disabled input.
+
+## Example usage
+
+```twig
+{{
+	form.content({
+		'label': 'It’s the remix to ignition',
+		'value': 'Hot and fresh out the kitchen'
+	})
+}}
+```
+
+## Options applied to parent wrapper
+
+Option      | Type   | Description
+----------- | ------ | ---------------------------------------------------------
+class       | string | A space separated list of class names
+help        | string | Additional guidance information to be displayed next to the input
+label       | string | Text for the `<label>` companion element
+
+## Options applied to paragraph
+
+Option      | Type   | Description
+----------- | ------ | ---------------------------------------------------------
+id          | string | A unique identifier, will also be used as the label's `for` attribute
+value       | string | Specifies the value of the input
+data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
+
+*Any other options not listed here will be applied to the paragraph.
+
+#}
+{% macro content(options = {}) %}
+{% spaceless %}
+	{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
+
+	{{
+		_self.group({
+			'parent': options|only('class help id label'),
+			'inputs': [
+				elem.paragraph(
+					options|exclude('class help label')
+				)
+			]
+		})
+	}}
+
+{% endspaceless %}
+{% endmacro %}
+
+
+{# -----------------------------------------------------------------------------
+
 # Create
 
 Creates the opening `<form>` element.
@@ -480,11 +539,13 @@ Generates a file input.
 
 ## Example usage
 
-	{{
-		form.file({
-			'label': 'Send us a pretty picture'
-		})
-	}}
+```twig
+{{
+	form.file({
+		'label': 'Send us a pretty picture'
+	})
+}}
+```
 
 ## Options applied to parent wrapper
 
@@ -1186,11 +1247,13 @@ Creates your standard form submit button. Accepts all the same arguments as the
 
 ### Example usage
 
-	{{
-		form.submit({
-			'label': 'GO GO GO!'
-		})
-	}}
+```twig
+{{
+	form.submit({
+		'label': 'GO GO GO!'
+	})
+}}
+```
 
 ### Options
 
@@ -1232,11 +1295,13 @@ required form markup.
 
 ## Example usage
 
-	{{
-		form.text({
-			'label': 'What’s your name, boss?'
-		})
-	}}
+```twig
+{{
+	form.text({
+		'label': 'What’s your name, boss?'
+	})
+}}
+```
 
 ## Options applied to parent wrapper
 
