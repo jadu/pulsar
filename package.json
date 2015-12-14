@@ -36,6 +36,7 @@
     "matchdep": "latest",
     "minifyify": "^6.3.0",
     "mocha": "latest",
+    "mocha-phantomjs": "latest",
     "sinon": "latest",
     "sinon-chai": "latest",
     "time-grunt": "latest",
