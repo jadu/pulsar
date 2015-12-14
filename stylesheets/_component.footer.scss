@@ -24,6 +24,12 @@
             color: color(link);
         }
     }
+
+    span {
+        color: $gray-light;
+        line-height: $line-height-base * 1.5;
+        padding: 0;
+    }
 }
 
 .branding-footer {
