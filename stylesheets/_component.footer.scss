@@ -29,6 +29,10 @@
         color: $gray-light;
         line-height: $line-height-base * 1.5;
         padding: 0;
+
+        .lt-ie9 & {
+            line-height: 18px;
+        }
     }
 }
 
@@ -42,4 +46,10 @@
     display: inline-block;
     text-indent: -9999px;
     width: $branding-footer-width;
+
+    .lt-ie9 & {
+        background-size: 127px 16px;
+        height: 16px;
+        width: 127px;
+    }
 }
