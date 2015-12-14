@@ -1,0 +1,48 @@
+
+.tabs__list {
+	display: block;
+	list-style-type: none;
+	margin: 0 25px 0 25px;
+
+	.is-open & {
+		margin-top: 48px;
+		margin-bottom: 24px;
+	}
+}
+
+.tab-item--header {
+	border-bottom: 1px solid color(gray);
+	color: darken($text-color, 10);
+	display: block;
+	font-size: 1.2em;
+	line-height: 47px;
+
+	&:not(:first-of-type) {
+		margin-top: $line-height-base;
+	}
+}
+
+.tab-link {
+	color: $text-color;
+	display: block;
+	line-height: 2.25em;
+	padding-left: 5px;
+	text-decoration: none;
+	width: 100%;
+
+	&:hover,
+	.is-active & {
+		color: $black;
+	}
+
+}
+
+.tab-item {
+	&:not(.tab-item--header, .is-active):hover {
+		background-color: #fafafa;
+	}
+
+	&.is-active {
+		background-color: #efefef;
+	}
+}

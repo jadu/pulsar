@@ -22,6 +22,7 @@ window.sinon = sinon;
 require('./tabbedLayoutTest');
 require('./ButtonComponentTest.js');
 require('./FlashMessageComponentTest.js');
+require('./PulsarFormComponentTest.js');
 // require('./signinTest');
 //require('./MasterSwitchComponentTest');
 

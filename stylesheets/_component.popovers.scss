@@ -21,12 +21,6 @@
   // Overrides for proper insertion
   white-space: normal;
 
-  &.popover--standout {
-    background-color: $popover-standout-bg;
-    border-color: $popover-standout-border-color;
-    color: $popover-standout-text-color;
-  }
-
   // Offset the popover to account for the popover arrow
   &.top     { margin-top: -10px; }
   &.right   { margin-left: 10px; }
@@ -47,11 +41,6 @@
   line-height: 18px;
   background-color: $popover-title-bg;
   border-bottom: 1px solid darken($popover-title-bg, 5%);
-
-  .popover--standout & {
-    background-color: $popover-standout-title-bg;
-    border-color: $popover-standout-border-color;
-  }
 }
 
 .popover-content {
@@ -74,11 +63,6 @@
   background-color: $popover-title-bg;
   border-top: 1px solid darken($popover-title-bg, 5%);
   padding: 9px 14px;
-
-  .popover--standout & {
-    background-color: $popover-standout-title-bg;
-    border-color: $popover-standout-border-color;
-  }
 
   .btn {
     margin: 0;
@@ -124,12 +108,6 @@
       border-top-color: $popover-arrow-color;
     }
   }
-  &.popover--standout.top .arrow {
-    border-top-color: $popover-standout-arrow-outer-color;
-    &:after {
-      border-top-color: $popover-standout-arrow-color;
-    }
-  }
 
   &.right .arrow {
     top: 50%;
@@ -144,12 +122,6 @@
       bottom: -$popover-arrow-width;
       border-left-width: 0;
       border-right-color: $popover-arrow-color;
-    }
-  }
-  &.popover--standout.right .arrow {
-    border-right-color: $popover-standout-arrow-outer-color;
-    &:after {
-      border-right-color: $popover-standout-arrow-color;
     }
   }
 
@@ -168,12 +140,6 @@
       border-bottom-color: $popover-arrow-color;
     }
   }
-  &.popover--standout.bottom .arrow {
-    border-bottom-color: $popover-standout-arrow-outer-color;
-    &:after {
-      border-bottom-color: $popover-standout-arrow-color;
-    }
-  }
 
   &.left .arrow {
     top: 50%;
@@ -188,12 +154,6 @@
       border-right-width: 0;
       border-left-color: $popover-arrow-color;
       bottom: -$popover-arrow-width;
-    }
-  }
-  &.popover--standout.left .arrow {
-    border-left-color: $popover-standout-arrow-outer-color;
-    &:after {
-      border-left-color: $popover-standout-arrow-color;
     }
   }
 

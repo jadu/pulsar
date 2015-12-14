@@ -9,7 +9,7 @@
   line-height: 1em;
   margin: 0;
   padding: .5em;
-  font-family: $font-family-semibold;
+  font-family: $font-family-regular;
   font-size: 1.2em;
 }
 
@@ -89,11 +89,11 @@
 
 .setting__icon {
   & > i:before {
-    color: $gray;
+    color: color(gray);
   }
 
   &.is-enabled > i:before {
-    color: $jadu-green;
+    color: color(jadu-green);
   }
 
   > .loading {

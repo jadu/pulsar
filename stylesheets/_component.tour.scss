@@ -27,32 +27,32 @@
 
   &,
   .popover-title {
-    background-color: $accent-color;
-    color: $white;
+    background-color: color(primary);
+    color: color(white);
   }
 
   &.top .arrow::after {
-    border-top-color: $accent-color;
+    border-top-color: color(primary);
   }
 
   &.bottom .arrow::after {
-    border-bottom-color: $accent-color;
+    border-bottom-color: color(primary);
   }
 
   &.left .arrow::after {
-    border-left-color: $accent-color;
+    border-left-color: color(primary);
   }
 
   &.right .arrow::after {
-    border-right-color: $accent-color;
+    border-right-color: color(primary);
   }
 
   .btn {
     background: none;
     box-shadow: none;
-    border: 1px solid $white;
+    border: 1px solid color(white);
     text-shadow: none;
-    color: $white;
+    color: color(white);
 
     &.disabled {
       border: 1px solid rgba(255, 255, 255, .25);

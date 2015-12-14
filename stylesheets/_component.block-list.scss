@@ -72,10 +72,10 @@ $width: 500px;
     }
 
     &:hover {
-      background-color: $gray-lighter;
+      background-color: color(gray, lighter);
 
       .uploader__label {
-        color: $link-color;
+        color: color(link);
         cursor: pointer;
       }
     }
@@ -122,34 +122,34 @@ $width: 500px;
 
 .block-list--underlined {
   .block-list__item {
-    border-bottom: 1px solid $gray;
+    border-bottom: 1px solid color(gray, lighter);
   }
 
   .block-list__item.has-info {
-    border-bottom-color: lighten($info-color, 5);
+    border-bottom-color: lighten(color(info), 5);
   }
 
   .block-list__item.has-success {
-    border-bottom-color: lighten($success-color, 20);
+    border-bottom-color: lighten(color(success), 20);
   }
 
   .block-list__item.has-warning {
-    border-bottom-color: darken($warning-color, 2);
+    border-bottom-color: darken(color(warning), 2);
   }
 
   .block-list__item.has-error {
-    border-bottom-color: lighten($danger-color, 10);
+    border-bottom-color: lighten(color(danger), 10);
   }
 }
 
 
 .block-list--bordered {
   @extend .block-list--padded;
-  border: 1px solid $gray;
+  border: 1px solid color(gray, lighter);
   border-radius: $border-radius;
 
   .block-list__item:not(:last-of-type) {
-    border-bottom: 1px solid $gray;
+    border-bottom: 1px solid color(gray, lighter);
   }
 }
 
@@ -174,7 +174,7 @@ $width: 500px;
 		}
 
 		&:not(:last-of-type) {
-			border-right: 1px solid $gray;
+			border-right: 1px solid color(gray, lighter);
 		}
 	}
 }
@@ -182,7 +182,7 @@ $width: 500px;
 
 .block-list--contrast {
 	.block-list__item {
-		background-color: $gray-lighter;
+		background-color: color(gray, lighter);
 
         &:first-of-type {
             border-top-left-radius: $border-radius;
@@ -195,12 +195,12 @@ $width: 500px;
         }
 
 		&:hover {
-			background-color: darken($gray-lighter, 5);
+			background-color: darken(color(gray, lighter), 5);
 		}
 	}
 
 	&.block-list--horizontal .block-list__item:not(:last-of-type) {
-		border-right: 2px solid $white;
+		border-right: 2px solid color(white);
 	}
 }
 

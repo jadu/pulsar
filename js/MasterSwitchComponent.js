@@ -4,9 +4,7 @@ var $ = require('jquery'),
 	toggles = require('../libs/jquery-toggles/toggles.min');
 
 function MasterSwitchComponent(html) {
-
 	this.$html = html;
-
 };
 
 MasterSwitchComponent.prototype.init = function () {

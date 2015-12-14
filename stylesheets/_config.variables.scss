@@ -11,20 +11,14 @@ $libs-path:                           '../libs/' !default;
 // -----------------------------------------------------------------------------
 
 $font-family-light:                   'proxima_novalight', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
-$font-family-regular:                 'proxima_nova_regular', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
-$font-family-semibold:                'proxima_nova_semibold', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
-
-$font-family-light-italic:            'proxima_nova_lightitalic', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
-$font-family-regular-italic:          'proxima_nova_regitalic', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
-$font-family-semibold-italic:         'proxima_nova_semibolditalic', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
+$font-family-regular:                 'proxima_nova_rgregular', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
 
 $font-family-fallback:                'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
-$font-family-monospace:               monospace !default;
+$font-family-monospace:               'Courier New', 'Andale Mono', 'Consolas', monospace !default;
 
 @include ie-lte(7) {
   $font-family-light:                 'Arial', sans-serif !default;
   $font-family-regular:               'Arial', sans-serif !default;
-  $font-family-semibold:              'Arial', sans-serif !default;
 }
 
 // -----------------------------------------------------------------------------
@@ -32,6 +26,7 @@ $font-family-monospace:               monospace !default;
 // -----------------------------------------------------------------------------
 
 $font-family-base:                    $font-family-light !default;
+
 @include ie-lte(8) {
   $font-family-base:                  $font-family-regular !default;
 }
@@ -41,8 +36,8 @@ $font-size-xxlarge:                   ceil($font-size-base * 2) !default;
 $font-size-xlarge:                    ceil($font-size-base * 1.5) !default;
 $font-size-large:                     ceil($font-size-base * 1.25) !default; // ~18px
 $font-size-small:                     ceil($font-size-base * 0.85) !default; // ~12px
-$line-height-base:                    22px !default;
-$line-height-large:                   1.33 !default;
+$line-height-base:                    24px !default;
+$line-height-large:                   ceil($line-height-base * 2) !default;
 $line-height-small:                   1.5 !default;
 $line-height-computed:                $line-height-base !default;
 $font-size-small:                     ceil($font-size-base * 0.75) !default;
@@ -120,20 +115,13 @@ $nav-primary-item-width:              32%; // % of $nav-primary-width
 $form-label-column-width:             200px !default;
 $controls-width:                      30%;
 $controls-max-width:                  300px;
-$input-bg:                            #fff !default;
-$input-bg-disabled:                   $gray-lighter !default;
-$input-border:                        $gray-light !default;
 $input-border-radius:                 $border-radius !default;
-$input-border-focus:                  #66afe9 !default;
-$input-color-placeholder:             $gray-light !default;
 $input-height-base:                   $line-height-base * 2 !default;
 @include ie-lte(7) {
   $input-height-base:                 $line-height-base * 1.2 !default;
 }
-$input-height-large:                  (floor($font-size-large * $line-height-large) + ($padding-large-vertical * 2) + 2) !default;
+$input-height-large:                  (floor($font-size-large * 2) + ($padding-large-vertical * 2) + 2) !default;
 $input-height-small:                  (floor($font-size-small * $line-height-small) + ($padding-small-vertical * 2) + 2) !default;
-$legend-border-color:                 #e5e5e5 !default;
-$input-group-addon-border-color:      $input-border !default;
 
 // -----------------------------------------------------------------------------
 //  Modals
@@ -189,6 +177,16 @@ $brand-height:                        24px !default;
 $brand-width:                         75px !default;
 $brand-background-size:               100% !default;
 
+$branding-navigation:                 '../images/branding/logo-cms-white.svg' !default;
+$branding-navigation-fallback:        '../images/branding/logo-cms-white.png' !default;
+$branding-navigation-height:          50px !default;
+$branding-navigation-width:           50px !default;
+
+$branding-footer:                     '../images/branding/jadu-continuum-brandmark.svg' !default;
+$branding-footer-fallback:            '../images/branding/jadu-continuum-brandmark.png' !default;
+$branding-footer-height:              16px !default;
+$branding-footer-width:               127px !default;
+
 // -----------------------------------------------------------------------------
 //  Search
 // -----------------------------------------------------------------------------
@@ -213,11 +211,12 @@ $popover-arrow-outer-width:           ($popover-arrow-width + 1) !default;
 // -----------------------------------------------------------------------------
 
 $zindex-tour:                         1000 !default;
-$zindex-dropdown:                     1010 !default;
 $zindex-footer:                       1020 !default;
 $zindex-popover:                      1030 !default;
 $zindex-tooltip:                      1040 !default;
 $zindex-flash:                        1050 !default;
 $zindex-sticky:                       1060 !default;
-$zindex-nav:                          1070 !default;
+$zindex-dropdown:                     1060 !default;
+$zindex-nav-secondary:                1070 !default;
+$zindex-nav:                          1080 !default;
 $zindex-modal:                        3000 !default;

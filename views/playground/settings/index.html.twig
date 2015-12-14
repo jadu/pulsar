@@ -5,30 +5,12 @@
 {% import '@pulsar/pulsar/helpers/flash.html.twig' as flash %}
 {% import '@pulsar/pulsar/helpers/tabs.html.twig' as tabs %}
 
-{% set pageModule = 'lexicon/uploaderDemo' %}
+
 
 {% block title %}{{ parent() }}{% endblock %}
 
-{% set heading = 'Pulsar Lexicon' %}
-
 {%
-		set actions_menu = [
-				html.link({
-					'label': html.icon('save') ~ ' Save',
-					'href': '#save'
-				}),
-				html.link({
-					'label': html.icon('print') ~ ' Print',
-					'href': '#print'
-				}),
-				html.divider(),
-				html.link({
-					'label': html.icon('trash') ~ ' Delete',
-					'href': '#delete',
-					'class': 'link--danger disabled',
-					'attributes': 'data-on-datagrid-item-selected=enable'
-				})
-		]
+		set actions_menu = []
 %}
 
 {% set tab_2fa %}{% include 'playground/settings/tabs/step_one.html.twig' %}{% endset %}
@@ -38,16 +20,16 @@
 	set tabs_content = [
 		{
 			"id"        : "components",
-			"label"     : html.icon("cog") ~ " My Settings",
+			"label"     : "My Settings",
 			"sub_tabs"  : [
 				{
 					"id"    : "components",
-					"label" : html.icon("unlock-alt") ~ " Two-step verification",
+					"label" : "Two-step verification",
 					"src"   : tab_2fa
 				},
 				{
 					"id"    : "notifications",
-					"label" : html.icon("envelope") ~ " Email Alerts",
+					"label" : "Email Alerts",
 					"src"   : tab_notifications
 				}
 			]
@@ -56,25 +38,42 @@
 	]
 %}
 
-{% block tabs_list %}
-	<div class="actionsbar actionsbar--left">
-		<div class="btn__toolbar">
-			<div class="btn__group">
-				<a class="btn btn__back" href="#back" onclick="history.back(); return false;"><i class="icon-arrow-left"></i></a>
-				{% if actions_menu is not empty %}
-					{{
-						html.button_dropdown({
-							'label': 'Actions ' ~ html.badge({ 'class': 'hide' }),
-							'class': 'actions-menu',
-							'items': actions_menu
-						})
-					}}
-				{% endif %}
-			</div>
-		</div>
-	</div>
+{%
+    set nav_data = {
+        "1": {
+            "label": "Lexicon",
+            "class": "is-active",
+            "href": '#lexicon',
+            "icon": "info-sign",
+            "items": {
+                "1.1": {
+                    "1.1.1": {
+                        "label": "Components",
+                        "href": "/app/lexicon/index.php/main",
+                        "class": "is-active"
+                    },
+                    "1.1.2": {
+                        "label": "Modules",
+                        "href": "/app/lexicon/index.php/modules"
+                    },
+                    "1.1.3": {
+                        "label": "Patterns",
+                        "href": "/app/lexicon/index.php/patterns"
+                    }
+                }
+            }
+        },
+        "2": {
+            "label": "Docs",
+            "class": "",
+            "href": "http://jadu.gitbooks.io/pulsar/",
+            "icon": "book"
+        }
+    }
+%}
 
-	{{ tabs.tabs(tabs_content) }}
+{% block tabs_list %}
+
 {% endblock %}
 
 {% block tabs_content %}

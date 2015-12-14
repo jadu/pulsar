@@ -1,27 +1,29 @@
-.sidebar {
-	background-color: white;
-	box-shadow: -1px -1px 0 $gray-light;
+.tab__sidebar {
 	display: none;
 	float: none;
 	height: 100%;
-	padding: 22px 20px;
+	padding: 0 0 0 40px;
 	text-align: justify;
 	vertical-align: top;
-	width: 30%;
 
-	@include respond-min($screen-tablet) {
+	@include respond-min($screen-large-desktop) {
 		display: table-cell;
+		width: 25%;
 	}
 }
 
+// possibly redundant
 .sidebar__header {
-	line-height: $line-height-base;
+	border-bottom: 1px solid color(border);
+    line-height: 24px;
+    margin-bottom: 19px;
+    padding-bottom: 4px;
 	text-align: left;
 }
 
 .sidebar-link {
 	display: block;
-	margin-bottom: 1em;
+	margin-bottom: $line-height-base;
 	text-align: left;
 	text-decoration: none;
 
@@ -32,8 +34,11 @@
 
 .sidebar-link__label {
 	margin-right: 10px;
+	position: relative;
+	top: -2px;
 }
 
 .sidebar-icon {
-	color: $gray-dark;
+	color: color(gray, dark);
+	line-height: 20px;
 }

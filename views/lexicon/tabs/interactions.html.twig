@@ -1,11 +1,9 @@
-{% import 'pulsar/v2/helpers/html.html.twig' as html %}
-{% import 'pulsar/v2/helpers/form.html.twig' as form %}
-{% import 'pulsar/helpers/flash.html.twig' as flash %}
-
-<h2 class="heading">{{ heading|raw }}</h2>
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{% import '@pulsar/pulsar/helpers/flash.html.twig' as flash %}
 
 <div class="tab__inner tab--padded">
-
+<div class="actionsbar"></div>
 	<h2>Show / Hide</h2>
 
 	<button class="btn" data-ui-action="show" data-ui-target="#showhide-target">Show</button>
