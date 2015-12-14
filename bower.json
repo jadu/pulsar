@@ -12,7 +12,7 @@
   "dependencies": {
     "bootstrapx-clickover": "latest",
     "datatables": "latest",
-    "datatables-responsive": "latest",
+    "datatables-responsive": "1.0.7",
     "font-awesome": "3.2.1",
     "html5shiv": "latest",
     "jquery": "1.x",

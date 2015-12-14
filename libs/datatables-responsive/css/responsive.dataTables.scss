@@ -16,13 +16,10 @@ $close-button-background: #d33333 !default;
 	color: white;
 	border: 2px solid white;
 	border-radius: 16px;
+	text-align: center;
+	line-height: 14px;
 	box-shadow: 0 0 3px #444;
 	box-sizing: content-box;
-
-	// Use Courier New because it is common and consistent
-	font-family: 'Courier New', Courier, monospace;
-	text-indent: 4px;
-	line-height: 16px;
 }
 
 @mixin control-open() {
@@ -42,18 +39,6 @@ $close-button-background: #d33333 !default;
 table.dataTable {
 	// Styling for the `inline` type
 	&.dtr-inline.collapsed > tbody {
-		> tr {
-			> td.child,
-			> th.child,
-			> td.dataTables_empty {
-				cursor: default !important;
-
-				&:before {
-					display: none !important;
-				}
-			}
-		}
-
 		> tr > td:first-child,
 		> tr > th:first-child {
 			position: relative;
@@ -67,6 +52,10 @@ table.dataTable {
 				width: 16px;
 				@include control;
 				@include control-open;
+			}
+
+			&.dataTables_empty:before {
+				display: none;
 			}
 		}
 
@@ -94,8 +83,7 @@ table.dataTable {
 				height: 14px;
 				width: 14px;
 				border-radius: 14px;
-				line-height: 14px;
-				text-indent: 3px;
+				line-height: 12px;
 			}
 		}
 	}
@@ -167,74 +155,3 @@ table.dataTable {
 	}
 }
 
-
-div.dtr-modal {
-	position: fixed;
-	box-sizing: border-box;
-	top: 0;
-	left: 0;
-	height: 100%;
-	width: 100%;
-
-	z-index: 100;
-	padding: 10em 1em;
-
-	div.dtr-modal-display {
-		position: absolute;
-		top: 0;
-		left: 0;
-		bottom: 0;
-		right: 0;
-		width: 50%;
-		height: 50%;
-		overflow: auto;
-		margin: auto;
-		z-index: 102;
-		overflow: auto;
-		background-color: #f5f5f7;
-		border: 1px solid black;
-		border-radius: 0.5em;
-		box-shadow: 0 12px 30px rgba(0,0,0,0.6);
-	}
-
-	div.dtr-modal-content {
-		position: relative;
-		padding: 1em;
-	}
-
-	div.dtr-modal-close {
-		position: absolute;
-		top: 6px;
-		right: 6px;
-		width: 22px;
-		height: 22px;
-		border: 1px solid #eaeaea;
-		background-color: #f9f9f9;
-		text-align: center;
-		border-radius: 3px;
-		cursor: pointer;
-		z-index: 12;
-
-		&:hover {
-			background-color: #eaeaea;
-		}
-	}
-
-	div.dtr-modal-background {
-		position: fixed;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		z-index: 101;
-
-		background: rgba(0,0,0,0.6);
-	}
-}
-
-
-@media screen and (max-width: 767px) {
-	div.dtr-modal div.dtr-modal-display {
-		width: 95%;
-	}
-}
