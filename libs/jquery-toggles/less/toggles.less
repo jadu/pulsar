@@ -3,6 +3,12 @@
   cursor: pointer;
   user-select: none;
   direction: ltr;
+  text-align: center;
+
+  div.disabled > & {
+    opacity: 0.7;
+    pointer-events: none;
+  }
 
   .toggle-on, .toggle-off, .toggle-blob {
     float: left;
