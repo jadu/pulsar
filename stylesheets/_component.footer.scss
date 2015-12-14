@@ -30,7 +30,7 @@
         line-height: $line-height-base * 1.5;
         padding: 0;
 
-        .lt-ie9 & {
+        .lt-ie10 & {
             line-height: 18px;
         }
     }
@@ -47,7 +47,7 @@
     text-indent: -9999px;
     width: $branding-footer-width;
 
-    .lt-ie9 & {
+    .lt-ie10 & {
         background-size: 127px 16px;
         height: 16px;
         width: 127px;
