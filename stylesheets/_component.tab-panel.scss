@@ -96,7 +96,7 @@
 .tab-panel--contrast {
 
 	> .tabs__list > li {
-		background-color: color(gray, lighter);
+		background-color: color(gray, lightest);
 
         &:first-of-type {
             border-top-left-radius: $border-radius;
@@ -109,7 +109,7 @@
         }
 
 		&:hover {
-			background-color: darken(color(gray, lighter), 5);
+			background-color: color(gray, lighter);
 		}
 
 		&.is-active {
@@ -127,7 +127,7 @@
 	}
 
 	.tab__pane {
-		background-color: color(gray, lighter);
+		background-color: color(gray, lightest);
 		margin-top: 2px;
 		padding: 1em $gutter-width .1em $gutter-width;
 	}
