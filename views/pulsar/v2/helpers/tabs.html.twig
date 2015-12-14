@@ -6,15 +6,20 @@
     {%- for tab in tabs -%}
             <li class="nav-inline__item{% if tab.active is defined and tab.active == tab.id %} nav-inline__item--is-active is-active{% endif %}{% if tab.hidden is defined and tab.hidden == true %} hide{% endif %}">
                 {% set href = '#' ~ tab.id %}
+                {% set toggle = 'tab' %}
                 {% if tab.src is defined and tab.src != null and tab.src|json_encode|slice(1, 1) == '#' %}
                     {% set href = tab.src %}
+                {% elseif tab.href is defined and tab.href != null %}
+                    {% set href = tab.href %}
+                    {% set toggle = 'link' %}
                 {% endif %}
+
                 {%
                     set options = {
                         'class': 'nav-inline__link',
                         'label': tab.label,
                         'href': href,
-                        'data-toggle': 'tab'
+                        'data-toggle': toggle
                     }
                 %}
                 {{ html.link(options|merge(tab.data|default({}))) }}
