@@ -1,24 +1,52 @@
 .footer {
+    -ms-transform: none;
+    -webkit-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: none;
+    -webkit-transform: none;
+    -webkit-transition: -webkit-transform 500ms ease;
+    backface-visibility: hidden;
     background-color: color(white);
     border-top: 1px solid color(gray, lightest);
+    bottom: 0;
     color: #999;
     font-size: $font-size-small;
+    left: 0;
     padding: 6px $gutter-width;
     position: static;
-    bottom: 0;
-    left: 0;
     right: 0;
+    transform: none;
+    transition: transform 500ms ease;
     z-index: $zindex-footer;
 
-    // Commented out for autosat fix for branding release
-    // @include respond-min($screen-tablet) {
-    //     position: fixed;
-    // }
+    @include respond-min($screen-tablet) {
+        position: fixed;
+    }
 
     @include respond-min($screen-desktop) {
-        position: static;
-        //left: 75px;
-        margin-left: 75px;
+        left: 75px;
+    }
+
+    .open-nav & {
+        -webkit-transform: translate3d(75px, 0, 0) scale3d(1, 1, 1);
+        transform: translate3d(75px, 0, 0) scale3d(1, 1, 1);
+
+        @include respond-min($screen-desktop) {
+            left: 75px;
+            -webkit-transform: none;
+            transform: none;
+        }
+    }
+
+    .open-help & {
+        -webkit-transform: translate3d(-300px, 0, 0) scale3d(1, 1, 1);
+        transform: translate3d(-300px, 0, 0) scale3d(1, 1, 1);
+
+        @include respond-min($screen-desktop) {
+            left: 75px;
+            -webkit-transform: none;
+            transform: none;
+        }
     }
 
     a {
@@ -30,6 +58,18 @@
         &:hover {
             color: color(link);
         }
+    }
+}
+
+.lt-ie10 .open-nav .footer {
+    left: 75px;
+}
+
+.lt-ie10.open-help .footer {
+    right: 300px;
+
+    @include respond-min($screen-desktop) {
+        right: 0;
     }
 }
 
