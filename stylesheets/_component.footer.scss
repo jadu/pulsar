@@ -24,20 +24,14 @@
             color: color(link);
         }
     }
-
-    span {
-        color: $gray-light;
-        line-height: 18px;
-        padding: 0;
-    }
 }
 
 .branding-footer {
     background: url($branding-footer-fallback);
     background: url($branding-footer), linear-gradient(transparent, transparent);
-    background-size: $branding-footer-width 16px;
+    background-size: $branding-footer-width 35px;
     background-repeat: no-repeat;
-    height: 16px;
+    height: 35px;
     margin-left: 15px;
     display: inline-block;
     text-indent: -9999px;
