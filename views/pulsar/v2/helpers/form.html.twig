@@ -46,10 +46,11 @@ items         | array  | An array of items to put in the dropdown list (usually 
 #}
 {% macro button_group(options = {}) %}
 {% spaceless %}
+    {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
     {{
-        _self.group({
+        form.group({
             'parent': options
                 |only('bare class help id label')
                 |merge({'class': 'form__button-group'}),
@@ -103,10 +104,11 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
 #}
 {% macro checkbox(options = {}) %}
 {% spaceless %}
+    {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
     {{
-        _self.group({
+        form.group({
             'parent': options
                 |only('class help id label')
                 |defaults({
@@ -174,6 +176,7 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
 #}
 {% macro checkbox_inline(options = {}) %}
 {% spaceless %}
+    {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
     {%
@@ -194,7 +197,7 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
     {% endif %}
 
     {{
-        _self.group({
+        form.group({
             'parent': options
                 |only('class help id')
                 |defaults({
@@ -255,10 +258,11 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 #}
 {% macro content(options = {}) %}
 {% spaceless %}
+    {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
     {{
-        _self.group({
+        form.group({
             'parent': options|only('class help id label'),
             'inputs': [
                 elem.paragraph(
@@ -389,6 +393,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 #}
 {% macro date(options = {}) %}
 {% spaceless %}
+    {% import _self as form %}
 
     {%
         set options = options|merge({
@@ -397,7 +402,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
         })
     %}
 
-    {{ _self.text(options) }}
+    {{ form.text(options) }}
 
 {% endspaceless %}
 {% endmacro %}
@@ -573,10 +578,11 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 #}
 {% macro file(options = {}) %}
 {% spaceless %}
+    {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
     {{
-        _self.group({
+        form.group({
             'parent': options|only('class help id label'),
             'inputs': [
                 elem.input(options
@@ -674,7 +680,7 @@ controls.class   | string | A space separated list of class names
 
 #}
 {% macro group(options = {}) %}
-
+    {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
     {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
@@ -740,7 +746,7 @@ controls.class   | string | A space separated list of class names
             </div>
         {% endif %}
 
-            {{ _self.help({ 'value': options.parent.help|default }) }}
+            {{ form.help({ 'value': options.parent.help|default }) }}
         {% if options.parent.bare is not defined or options.parent.bare != true %}
         </div>
         {% endif %}
@@ -883,8 +889,9 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 #}
 {% macro password(options = {}) %}
 {% spaceless %}
+    {% import _self as form %}
 
-    {{ _self.text(options|defaults({'type': 'password'})) }}
+    {{ form.text(options|defaults({'type': 'password'})) }}
 
 {% endspaceless %}
 {% endmacro %}
@@ -931,10 +938,11 @@ data-*   | string | Data attributes, eg: `'data-foo': 'bar'`
 #}
 {% macro radio(options = {}) %}
 {% spaceless %}
+    {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
     {{
-        _self.group({
+        form.group({
             'parent': options
                 |only('class help id label')
                 |defaults({
@@ -999,6 +1007,7 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
 #}
 {% macro radio_inline(options = {}) %}
 {% spaceless %}
+    {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
     {%
@@ -1020,7 +1029,7 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
     {% endif %}
 
     {{
-        _self.group({
+        form.group({
             'parent': options
                 |only('class help id bare')
                 |defaults({
@@ -1090,6 +1099,7 @@ label    | string | Text for the `<label>` companion element
 {% macro radio_simple(options = {}) %}
 {% spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
+
     {{
         elem.input(options
             |exclude('class for label')
@@ -1104,6 +1114,7 @@ label    | string | Text for the `<label>` companion element
             |defaults({'for': options.id|default})
         )
     }}
+
 {% endspaceless %}
 {% endmacro %}
 
@@ -1156,10 +1167,11 @@ data-*      | string  | Data attributes, eg: `'data-foo': 'bar'`
 #}
 {% macro select(options = {}) %}
 {% spaceless %}
+    {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
     {{
-        _self.group({
+        form.group({
             'parent': options|only('class help id label'),
             'inputs': [
                 elem.select(
@@ -1223,10 +1235,11 @@ data-*      | string  | Data attributes, eg: `'data-foo': 'bar'`
 #}
 {% macro select2(options = {}) %}
 {% spaceless %}
+    {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
     {{
-        _self.group({
+        form.group({
             'parent': options|only('class help id label'),
             'inputs': [
                 elem.select2(options
@@ -1331,12 +1344,13 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 #}
 {% macro text(options = {}) %}
 {% spaceless %}
+    {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
     {% set options = options|merge({ 'type': options.type|default('text') }) %}
 
     {{
-        _self.group({
+        form.group({
             'parent': options|only('class help id label'),
             'inputs': [
                 elem.input(
@@ -1393,10 +1407,11 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 #}
 {% macro textarea(options = {}) %}
 {% spaceless %}
+    {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
     {{
-        _self.group({
+        form.group({
             'parent': options|only('class help id label'),
             'inputs': [
                 elem.textarea(

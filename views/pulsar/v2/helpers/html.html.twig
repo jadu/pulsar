@@ -73,12 +73,13 @@ data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
 #}
 {% macro button(options = {}) %}
 {% spaceless %}
+    {% import _self as html %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
     {% if options.type is defined and options.type == 'link' %}
 
         {{
-            _self.link(options|merge({
+            html.link(options|merge({
                 'class': 'btn ' ~ options.class|default
             }))
         }}
@@ -218,6 +219,7 @@ data-*    | string | Data attributes, eg: `'data-foo': 'bar'` (applied to the bu
 #}
 {% macro button_dropdown(options = {}) %}
 {% spaceless %}
+    {% import _self as html %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
     <div
@@ -231,7 +233,7 @@ data-*    | string | Data attributes, eg: `'data-foo': 'bar'` (applied to the bu
         }}
     >
         {{
-            _self.button({
+            html.button({
                 'caret': options.caret|default(true),
                 'class': 'dropdown__toggle',
                 'data-toggle': 'dropdown',
@@ -241,7 +243,7 @@ data-*    | string | Data attributes, eg: `'data-foo': 'bar'` (applied to the bu
         }}
 
         {{
-            _self.list({
+            html.list({
                 'class': 'dropdown__menu pull-' ~ options.placement|default('left'),
                 'items': options.items|default
             })
@@ -479,6 +481,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 #}
 {% macro list(options = {}) %}
 {% spaceless %}
+    {% import _self as html %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
     {% set list_type = options.type|default('ul') %}
 
@@ -495,7 +498,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
         {% endif %}
 
         {{
-            _self.li({
+            html.li({
                 'class': item_class,
                 'value': list_item
             })
@@ -543,13 +546,14 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 #}
 {% macro link_list(options = {}) %}
 {% spaceless %}
+    {% import _self as html %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
     {% set items = [] %}
 
     {% for label, href in options.items %}
         {%
             set items = items|merge([
-                _self.link({
+                html.link({
                     'label': label,
                     'href': href
                 })
@@ -558,7 +562,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
     {% endfor %}
 
     {{
-        _self.list({
+        html.list({
             'active_item': options.active_item|default,
             'class': options.class|default,
             'data': options.data|default,
@@ -745,6 +749,7 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 #}
 {% macro panel(options = {}) %}
 {% spaceless %}
+    {% import _self as html %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
     <div
@@ -758,7 +763,7 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
         }}
     >
         <div class="panel__title">
-            {{ _self.icon(options.icon|default) }}
+            {{ html.icon(options.icon|default) }}
             {{ options.title }}
         </div>
         <div class="panel__body">
@@ -867,12 +872,13 @@ data-*    | string | Data attributes, eg: `'data-foo': 'bar'`
 #}
 {% macro remove_button(options = {}) %}
 {% spaceless %}
+    {% import _self as html %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
     {{
-        _self.button(options|merge({
+        html.button(options|merge({
             'class': 'remove-button ' ~ options.class|default,
-            'label': _self.icon('remove-sign'),
+            'label': html.icon('remove-sign'),
             'type': options.type|default('button'),
             'data-action': 'remove',
             'data-action-target': options.target|default,

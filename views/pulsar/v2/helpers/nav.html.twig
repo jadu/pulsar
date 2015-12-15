@@ -1,6 +1,8 @@
 {% macro primary(options) %}
 {% spaceless %}
-{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+    {% import _self as nav %}
+    {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+
 <nav class="nav-main"><!--
  --><div class="nav-primary"><!--
 
@@ -13,7 +15,7 @@
 
             {% if options.data is iterable %}
                 {% for label, options in options.data %}
-                    {{ _self.nav_item(options) }}
+                    {{ nav.nav_item(options) }}
                 {% endfor %}
             {% endif %}
         </ul>
@@ -31,7 +33,7 @@
             <span class="nav-item nav-item--header">{{ options.label|raw }}</span>
             {% for menu_blocks in options.items %}
                 {% for item_options in menu_blocks %}
-                    {{ _self.nav_item(item_options) }}
+                    {{ nav.nav_item(item_options) }}
                 {% endfor %}
 
                 {% if not loop.last %}

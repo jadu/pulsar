@@ -234,8 +234,9 @@ value       | string | Specifies the value of the input
 #}
 {% macro select2(options) %}
 {% spaceless %}
+    {% import _self as elem %}
 
-    {{ _self.select(options|merge({'class': 'js-select2'})) }}
+    {{ elem.select(options|merge({'class': 'js-select2'})) }}
 
 {% endspaceless %}
 {% endmacro %}
