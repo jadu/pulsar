@@ -11,11 +11,8 @@
     z-index: $zindex-footer;
 
     @include respond-min($screen-tablet) {
-        position: fixed;
-    }
-
-    @include respond-min($screen-desktop) {
         left: 75px;
+        position: fixed;
     }
 
     a {
