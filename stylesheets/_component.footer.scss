@@ -3,7 +3,7 @@
     border-top: 1px solid color(gray, lightest);
     color: #999;
     font-size: $font-size-small;
-    padding: 0 $gutter-width;
+    padding: 6px $gutter-width;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -16,7 +16,7 @@
 
     a {
         color: $gray-light;
-        line-height: $line-height-base * 1.5;
+        line-height: 16px;
         padding: 0;
         text-decoration: none;
 
@@ -29,10 +29,10 @@
 .branding-footer {
     background: url($branding-footer-fallback);
     background: url($branding-footer), linear-gradient(transparent, transparent);
-    background-size: $branding-footer-width 32px;
+    background-size: $branding-footer-width 16px;
     background-position: 50%;
     background-repeat: no-repeat;
-    height: 32px;
+    height: 16px;
     margin-left: 15px;
     display: inline-block;
     text-indent: -9999px;
