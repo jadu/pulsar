@@ -10,9 +10,15 @@
     right: 0;
     z-index: $zindex-footer;
 
-    @include respond-min($screen-tablet) {
-        left: 75px;
-        position: fixed;
+    // Commented out for autosat fix for branding release
+    // @include respond-min($screen-tablet) {
+    //     position: fixed;
+    // }
+
+    @include respond-min($screen-desktop) {
+        position: static;
+        //left: 75px;
+        margin-left: 75px;
     }
 
     a {
