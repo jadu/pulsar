@@ -39,7 +39,7 @@ fieldset {
         margin-top: 3px;
     }
 
-    &:not([type="file"]) {
+    &:not([type="file"]):not(select) {
         border: 1px solid $input-border;
         padding: 0 $padding-base-horizontal;
     }
@@ -49,6 +49,11 @@ fieldset {
         min-height: 68px;
         padding-top: 11px;
         padding-bottom: 11px;
+    }
+
+    &.select {
+        border: 1px solid $input-border;
+        padding: 0 0 0 $padding-base-horizontal;
     }
 }
 
