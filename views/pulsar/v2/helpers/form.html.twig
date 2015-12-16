@@ -1086,7 +1086,9 @@ data-*      | string  | Data attributes, eg: `'data-foo': 'bar'`
 			'parent': options|only('class help id label'),
 			'inputs': [
 				elem.select(
-					options|exclude('class help label')
+					options
+					|exclude('class help label')
+					|merge({'class': 'select'})
 				)
 			]
 		})
