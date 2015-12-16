@@ -1,35 +1,35 @@
 {% macro addon(value) %}
 {% spaceless %}
-	{% if value is not empty %}
-	<span class="input-group-addon">{{- value -}}</span>
-	{% endif %}
+    {% if value is not empty %}
+    <span class="input-group-addon">{{- value -}}</span>
+    {% endif %}
 {% endspaceless %}
 {% endmacro %}
 
 
 {% macro caret(visible = false) %}
 {% spaceless %}
-	{% if visible %}
-		&nbsp;<span class="caret"></span>
-	{% endif  %}
+    {% if visible %}
+        &nbsp;<span class="caret"></span>
+    {% endif  %}
 {% endspaceless %}
 {% endmacro %}
 
 
 {% macro class(default = '', options) %}
 {% spaceless %}
-	{% set classes = [] %}
+    {% set classes = [] %}
 
-	{%
-		if options.bare is not defined
-		or options.bare == false
-	%}
-		{% set classes = classes|merge([default]) %}
-	{% endif %}
+    {%
+        if options.bare is not defined
+        or options.bare == false
+    %}
+        {% set classes = classes|merge([default]) %}
+    {% endif %}
 
-	{% set classes = classes|merge([options.class|default]) %}
+    {% set classes = classes|merge([options.class|default]) %}
 
-	class="{{ classes|join(' ')|trim }}"
+    class="{{ classes|join(' ')|trim }}"
 
 {% endspaceless %}
 {% endmacro %}
@@ -37,115 +37,115 @@
 
 {% macro checked(value) %}
 {% spaceless %}
-	{% if value is not empty %}
-		checked="{{ value }}"
-	{% endif %}
+    {% if value is not empty %}
+        checked="{{ value }}"
+    {% endif %}
 {% endspaceless %}
 {% endmacro %}
 
 
 {% macro data(attributes = {}) %}
 {% spaceless %}
-	{% for key, value in attributes if value is not empty %}
-		{% if key == 'checked' %}
-			checked
-		{% else %}
-			data-{{ key }}="{{ value }}"
-		{% endif %}
-	{% endfor %}
+    {% for key, value in attributes if value is not empty %}
+        {% if key == 'checked' %}
+            checked
+        {% else %}
+            data-{{ key }}="{{ value }}"
+        {% endif %}
+    {% endfor %}
 {% endspaceless %}
 {% endmacro %}
 
 
 {% macro for(value) %}
 {% spaceless %}
-	{% if value is not empty %}
-		for="{{ value }}"
-	{% endif %}
+    {% if value is not empty %}
+        for="{{ value }}"
+    {% endif %}
 {% endspaceless %}
 {% endmacro %}
 
 
 {% macro form(value) %}
 {% spaceless %}
-	{% if value is not empty %}
-		form="{{ value }}"
-	{% endif %}
+    {% if value is not empty %}
+        form="{{ value }}"
+    {% endif %}
 {% endspaceless %}
 {% endmacro %}
 
 
 {% macro href(value) %}
 {% spaceless %}
-	{% if value is null %}
-		{% set href = '#missing-href-attribute' %}
-	{% else %}
-		{% set href = value %}
-	{% endif %}
+    {% if value is null %}
+        {% set href = '#missing-href-attribute' %}
+    {% else %}
+        {% set href = value %}
+    {% endif %}
 
-	href="{{ href }}"
+    href="{{ href }}"
 {% endspaceless %}
 {% endmacro %}
 
 
 {% macro id(value) %}
 {% spaceless %}
-	{% if value is not empty %}
-		id="{{ value }}"
-	{% endif  %}
+    {% if value is not empty %}
+        id="{{ value }}"
+    {% endif  %}
 {% endspaceless %}
 {% endmacro %}
 
 
 {% macro label(value) %}
 {% spaceless %}
-	{% if value is not empty %}
-		label="{{ value }}"
-	{% endif %}
+    {% if value is not empty %}
+        label="{{ value }}"
+    {% endif %}
 {% endspaceless %}
 {% endmacro %}
 
 
 {% macro multiple(value) %}
 {% spaceless %}
-	{% if value is not empty %}
-		multiple="{{ value }}"
-	{% endif %}
+    {% if value is not empty %}
+        multiple="{{ value }}"
+    {% endif %}
 {% endspaceless %}
 {% endmacro %}
 
 
 {% macro name(value) %}
 {% spaceless %}
-	{% if value is not empty %}
-		name="{{ value }}"
-	{% endif  %}
+    {% if value is not empty %}
+        name="{{ value }}"
+    {% endif  %}
 {% endspaceless %}
 {% endmacro %}
 
 
 {% macro placeholder(value) %}
 {% spaceless %}
-	{% if value is not empty %}
-		placeholder="{{ value }}"
-	{% endif  %}
+    {% if value is not empty %}
+        placeholder="{{ value }}"
+    {% endif  %}
 {% endspaceless %}
 {% endmacro %}
 
 
 {% macro type(value) %}
 {% spaceless %}
-	{% if value is not empty %}
-		type="{{ value }}"
-	{% endif  %}
+    {% if value is not empty %}
+        type="{{ value }}"
+    {% endif  %}
 {% endspaceless %}
 {% endmacro %}
 
 
 {% macro value(value) %}
 {% spaceless %}
-	{% if value is not empty %}
-		value="{{ value }}"
-	{% endif  %}
+    {% if value is not empty %}
+        value="{{ value }}"
+    {% endif  %}
 {% endspaceless %}
 {% endmacro %}
