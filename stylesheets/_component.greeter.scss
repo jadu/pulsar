@@ -109,8 +109,8 @@ $greeter-brand-bottom-height:           40px !default;
 
   &__header {
     background-clip: border-box;
-    background-image: url($greeter-brand-top-image-fallback);
-    background-image: url($greeter-brand-top-image), linear-gradient(transparent, transparent);
+    background: url($greeter-brand-top-image-fallback);
+    background: url($greeter-brand-top-image), linear-gradient(transparent, transparent);
     background-size: $greeter-brand-top-width $greeter-brand-top-height;
     background-origin: padding-box;
     background-repeat: no-repeat;
@@ -241,8 +241,8 @@ $greeter-brand-bottom-height:           40px !default;
   }
 
   &__brand-bottom {
-    background-image: url($greeter-brand-bottom-image-fallback);
-    background-image: url($greeter-brand-bottom-image), linear-gradient(transparent, transparent);
+    background: url($greeter-brand-bottom-image-fallback);
+    background: url($greeter-brand-bottom-image), linear-gradient(transparent, transparent);
     background-size: $greeter-brand-bottom-width $greeter-brand-bottom-height;
     background-repeat: no-repeat;
     display: block;
