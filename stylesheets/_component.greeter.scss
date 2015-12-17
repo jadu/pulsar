@@ -111,7 +111,7 @@ $greeter-brand-bottom-height:           40px !default;
     background-clip: border-box;
     background: url($greeter-brand-top-image-fallback);
     background: url($greeter-brand-top-image), linear-gradient(transparent, transparent);
-    background-size: cover;
+    background-size: $greeter-brand-top-width $greeter-brand-top-height;
     background-origin: padding-box;
     background-repeat: no-repeat;
     padding-top: $greeter-brand-top-height + $gutter-width;
@@ -243,7 +243,7 @@ $greeter-brand-bottom-height:           40px !default;
   &__brand-bottom {
     background: url($greeter-brand-bottom-image-fallback);
     background: url($greeter-brand-bottom-image), linear-gradient(transparent, transparent);
-    background-size: cover;
+    background-size: $greeter-brand-bottom-width $greeter-brand-bottom-height;
     background-repeat: no-repeat;
     display: block;
     height: $greeter-brand-bottom-height;
