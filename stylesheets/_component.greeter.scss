@@ -62,6 +62,7 @@ $greeter-brand-top-image-fallback:      '../images/branding/continuum-brandmark.
 $greeter-brand-top-width:               220px !default;
 $greeter-brand-top-height:              40px !default;
 $greeter-brand-bottom-image:            '../images/branding/jadu-brandmark.svg' !default;
+$greeter-brand-bottom-image-fallback:   '../images/branding/jadu-brandmark.png' !default;
 $greeter-brand-bottom-width:            100px !default;
 $greeter-brand-bottom-height:           40px !default;
 
@@ -240,8 +241,10 @@ $greeter-brand-bottom-height:           40px !default;
   }
 
   &__brand-bottom {
-    background-image: url($greeter-brand-bottom-image);
+    background-image: url($greeter-brand-bottom-image-fallback);
+    background-image: url($greeter-brand-bottom-image), linear-gradient(transparent, transparent);
     background-size: $greeter-brand-bottom-width $greeter-brand-bottom-height;
+    background-repeat: no-repeat;
     display: block;
     height: $greeter-brand-bottom-height;
     margin-left: auto; /* [16] */
