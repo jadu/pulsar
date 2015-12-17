@@ -421,3 +421,9 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
 .main {
     display: table-cell;
 }
+
+// IE8 fix for issue with open mobile nav being cut off
+.lt-ie9 .open-nav > .container {
+    display: table-cell;
+    height: 100%;
+}

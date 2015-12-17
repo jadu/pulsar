@@ -17,7 +17,6 @@
     "commit": "435b1bd36ed29de73dd704121de0571a5c1a50a6"
   },
   "_source": "git://github.com/DataTables/Responsive.git",
-  "_target": "~1.0.7",
-  "_originalSource": "datatables-responsive",
-  "_direct": true
+  "_target": "1.0.7",
+  "_originalSource": "datatables-responsive"
 }
