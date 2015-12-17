@@ -68,6 +68,10 @@
     }
 }
 
+.lt-ie10 .open-nav .inner-wrapper {
+    left: 75px;
+}
+
 .tabs__content {
   @include clear-fix;
   display: table-cell;
@@ -88,6 +92,10 @@
       display: block;
     }
   }
+}
+
+.tab__pane {
+    margin-top: 24px;
 }
 
 .tab__content {

@@ -1,0 +1,21 @@
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+
+<h1>form.content</h1>
+
+<pre>
+form.content({
+    'label': "It’s the remix to ignition",
+    'value': 'Hot and fresh out the kitchen'
+})
+</pre>
+
+{%
+    set output = form.content({
+        'label': "It's the remix to ignition",
+        'value': 'Hot and fresh out the kitchen'
+    })
+%}
+
+{{ output }}
+
+<pre>{{ output|e }}</pre>

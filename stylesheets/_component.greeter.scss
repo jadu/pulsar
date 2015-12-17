@@ -59,9 +59,10 @@ $greeter-button-border-color-disabled:  darken($greeter-bg-color, 10) !default;
 // Branding
 $greeter-brand-top-image:               '../images/branding/continuum-brandmark.svg' !default;
 $greeter-brand-top-image-fallback:      '../images/branding/continuum-brandmark.png' !default;
-$greeter-brand-top-width:               169px !default;
-$greeter-brand-top-height:              30px !default;
+$greeter-brand-top-width:               200px !default;
+$greeter-brand-top-height:              36px !default;
 $greeter-brand-bottom-image:            '../images/branding/jadu-brandmark.svg' !default;
+$greeter-brand-bottom-image-fallback:   '../images/branding/jadu-brandmark.png' !default;
 $greeter-brand-bottom-width:            100px !default;
 $greeter-brand-bottom-height:           40px !default;
 
@@ -114,7 +115,23 @@ $greeter-brand-bottom-height:           40px !default;
   }
 
   &__header {
+    background-clip: border-box;
+    background: url($greeter-brand-top-image-fallback);
+    background: url($greeter-brand-top-image), linear-gradient(transparent, transparent);
+    background-size: $greeter-brand-top-width $greeter-brand-top-height;
+    background-origin: padding-box;
+    background-repeat: no-repeat;
     padding-top: $greeter-brand-top-height + $gutter-width;
+    text-align: right;
+
+    // Support transparent PNG background images in IE8
+    @include ie-lte(8) {
+        border: 1px solid red;
+        background-image: url($greeter-brand-top-image-fallback) !important;
+        filter: progid:DXImageTransform.Microsoft.gradient(
+            startColorstr=#00FFFFFF, endColorstr=#00FFFFFF
+        );
+    }
   }
 
   &__title {
@@ -230,4 +247,15 @@ $greeter-brand-bottom-height:           40px !default;
     display: none;
   }
 
+  &__brand-bottom {
+    background: url($greeter-brand-bottom-image-fallback);
+    background: url($greeter-brand-bottom-image), linear-gradient(transparent, transparent);
+    background-size: $greeter-brand-bottom-width $greeter-brand-bottom-height;
+    background-repeat: no-repeat;
+    display: block;
+    height: $greeter-brand-bottom-height;
+    margin-left: auto; /* [16] */
+    text-indent: -9999px;
+    width: $greeter-brand-bottom-width;
+  }
 }

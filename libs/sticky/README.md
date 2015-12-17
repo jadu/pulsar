@@ -7,7 +7,10 @@ Sticky is a jQuery plugin that gives you the ability to make any element on your
 This is how it works:
 
 - When the target element is about to be hidden, the plugin will add the class `className` to it (and to a wrapper added as its parent), set it to `position: fixed` and calculate its new `top`, based on the element's height, the page height and the `topSpacing` and `bottomSpacing` options.
-- That's it. In some cases you might need to set a fixed width to your element when it is "sticked". Check the `example-*.html` files for some examples.
+- That's it. 
+In some cases you might need to set a fixed width to your element when it is "sticked".
+But by default (`widthFromWrapper == true`) sticky updates elements's width to the wrapper's width.
+Check the `example-*.html` files for some examples.
 
 ## Usage
 
@@ -41,17 +44,21 @@ This is how it works:
 - `className`: CSS class added to the element's wrapper when "sticked".
 - `wrapperClassName`: CSS class added to the wrapper.
 - `getWidthFrom`: Selector of element referenced to set fixed width of "sticky" element.
+- `widthFromWrapper`: boolean determining whether width of the "sticky" element should be updated to match the wrapper's width. Wrapper is a placeholder for "sticky" element while it is fixed (out of static elements flow), and it's width depends on the context and CSS rules.
 - `responsiveWidth`: boolean determining whether widths will be recalculated on window resize (using getWidthfrom).
 
 ## Methods
 
 - `sticky(options)`: Initializer. `options` is optional.
 - `sticky('update')`: Recalculates the element's position.
- 
+
 ## Events
 
 - `sticky-start`: When the element becomes sticky.
 - `sticky-end`: When the element returns to its original location
+- `sticky-update`: When the element is sticked but position must be updated for constraints reasons
+- `sticky-bottom-reached`: When the element reached the bottom space limit
+- `sticky-bottom-unreached`: When the element unreached the bottom space limit
 
 To subscribe to events use jquery:
 
@@ -59,5 +66,8 @@ To subscribe to events use jquery:
 <script>
   $('#sticker').on('sticky-start', function() { console.log("Started"); });
   $('#sticker').on('sticky-end', function() { console.log("Ended"); });
+  $('#sticker').on('sticky-update', function() { console.log("Update"); });
+  $('#sticker').on('sticky-bottom-reached', function() { console.log("Bottom reached"); });
+  $('#sticker').on('sticky-bottom-unreached', function() { console.log("Bottom unreached"); });
 </script>
 ```

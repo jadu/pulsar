@@ -1,6 +1,6 @@
 {#  ----------------------------------------------------------------------------
 
-## Input
+# Input
 
 A standard input field, accepts a `type` attribute to switch between:
 
@@ -8,15 +8,17 @@ A standard input field, accepts a `type` attribute to switch between:
  * Password
  * Text (default)
 
-### Example usage
+## Example usage
 
-	{{
-		elem.input({
-			'name': 'MyAwesomeField'
-		})
-	}}
+```twig
+{{
+    elem.input({
+        'name': 'MyAwesomeField'
+    })
+}}
+```
 
-### Options
+## Options
 
 Option      | Type   | Description
 ----------- | ------ | ---------------------------------------------------------
@@ -35,13 +37,13 @@ value       | string | Specifies the value of the input
 #}
 {% macro input(options) %}
 {% spaceless %}
-	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+    {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-	{% if options.naked is not defined or options.naked != true %}
-		{% set options = options|defaults({'class': 'form__control'}) %}
-	{% endif %}
+    {% if options.naked is not defined or options.naked != true %}
+        {% set options = options|defaults({'class': 'form__control'}) %}
+    {% endif %}
 
-	<input {{ attributes(options|exclude('naked')) }} />
+    <input {{ attributes(options|exclude('naked')) }} />
 
 {% endspaceless %}
 {% endmacro %}
@@ -49,19 +51,21 @@ value       | string | Specifies the value of the input
 
 {#  ----------------------------------------------------------------------------
 
-## Label
+# Label
 
 Generates a `<label>` element to accompany an input
 
-### Example usage
+## Example usage
 
-    {{
-        elem.label({
-            'for': 'myInput'
-        })
-    }}
+```twig
+{{
+    elem.label({
+        'for': 'myInput'
+    })
+}}
+```
 
-### Options
+## Options
 
 Option  | Type   | Description
 ------- | ------ | -------------------------------------------------------------
@@ -75,22 +79,22 @@ name    | string | The name of this control
 #}
 {% macro label(options) %}
 {% spaceless %}
-	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+    {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-	{% if options.label is not empty %}
-		<label
-			{{
-				attributes(options
-					|exclude('label')
-					|defaults({
-						'class': 'control__label'
-					})
-				)
-			}}
-		>
-			{{- options.label|raw -}}
-		</label>
-	{% endif %}
+    {% if options.label is not empty %}
+        <label
+            {{
+                attributes(options
+                    |exclude('label')
+                    |defaults({
+                        'class': 'control__label'
+                    })
+                )
+            }}
+        >
+            {{- options.label|raw -}}
+        </label>
+    {% endif %}
 
 {% endspaceless %}
 {% endmacro %}
@@ -98,19 +102,61 @@ name    | string | The name of this control
 
 {#  ----------------------------------------------------------------------------
 
-## Select
+# Paragraph
+
+Generates a `<p>` element to accompany an input
+
+## Example usage
+
+```twig
+{{
+    elem.paragraph({
+        'value': 'My content'
+    })
+}}
+```
+
+## Options
+
+Option  | Type   | Description
+------- | ------ | -------------------------------------------------------------
+class   | string | A space separated list of class names
+data    | hash   | Data attributes by key/value
+id      | string | A unique identifier, if required
+value   | string | Specifies the value of the paragraph
+
+#}
+{% macro paragraph(options) %}
+{% spaceless %}
+    {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+
+    {% if options.value is not empty %}
+        <p {{ attributes(options|exclude('value')) }}>
+            {{- options.value|raw -}}
+        </p>
+    {% endif %}
+
+{% endspaceless %}
+{% endmacro %}
+
+
+{#  ----------------------------------------------------------------------------
+
+# Select
 
 A standard select field
 
-### Example usage
+## Example usage
 
-	{{
-		elem.select({
-			'name': 'MyAwesomeField'
-		})
-	}}
+```twig
+{{
+    elem.select({
+        'name': 'MyAwesomeField'
+    })
+}}
+```
 
-### Options
+## Options
 
 Option      | Type   | Description
 ----------- | ------ | ---------------------------------------------------------
@@ -128,27 +174,27 @@ value       | string | Specifies the value of the input
 #}
 {% macro select(options) %}
 {% spaceless %}
-	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+    {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-	<select {{
-		attributes(options
-			|exclude('label selected value options')
-			|defaults({
-				'class': 'form__control'
-			})
-		)
-	}}>
+    <select {{
+        attributes(options
+            |exclude('label selected value options')
+            |defaults({
+                'class': 'form__control'
+            })
+        )
+    }}>
 
-	{% for value, label in options.options %}
-		<option {{ util.value(value) }}
-			{%- if options.selected is defined and value == options.selected -%}
-				selected
-			{%- endif -%}>
-			{{- label -}}
-		</option>
-	{% endfor %}
+    {% for value, label in options.options %}
+        <option {{ util.value(value) }}
+            {%- if options.selected is defined and value == options.selected -%}
+                selected
+            {%- endif -%}>
+            {{- label -}}
+        </option>
+    {% endfor %}
 
-	</select>
+    </select>
 
 {% endspaceless %}
 {% endmacro %}
@@ -160,15 +206,17 @@ value       | string | Specifies the value of the input
 
 A select field which uses the select2 plugin to extend functionality
 
-### Example usage
+## Example usage
 
-	{{
-		elem.select2({
-			'name': 'MyAwesomeField'
-		})
-	}}
+```twig
+{{
+    elem.select2({
+        'name': 'MyAwesomeField'
+    })
+}}
+```
 
-### Options
+## Options
 
 Option      | Type   | Description
 ----------- | ------ | ---------------------------------------------------------
@@ -186,8 +234,9 @@ value       | string | Specifies the value of the input
 #}
 {% macro select2(options) %}
 {% spaceless %}
+    {% import _self as elem %}
 
-	{{ _self.select(options|merge({'class': 'js-select2'})) }}
+    {{ elem.select(options|merge({'class': 'js-select2'})) }}
 
 {% endspaceless %}
 {% endmacro %}
@@ -195,19 +244,21 @@ value       | string | Specifies the value of the input
 
 {#  ----------------------------------------------------------------------------
 
-## Textarea
+# Textarea
 
 A standard texarea field.
 
-### Example usage
+## Example usage
 
-	{{
-		elem.textarea({
-			'name': 'MyAwesomeField'
-		})
-	}}
+```twig
+{{
+    elem.textarea({
+        'name': 'MyAwesomeField'
+    })
+}}
+```
 
-### Options
+## Options
 
 Option      | Type    | Description
 ----------- | ------- | --------------------------------------------------------
@@ -223,25 +274,25 @@ value       | string  | Specifies the value of the input
 #}
 {% macro textarea(options) %}
 {% spaceless %}
-	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+    {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-	<textarea
-		{{
-			attributes(options
-				|exclude('value')
-				|defaults({
-					'class': 'form__control'
-				})
-			)
-		}}
-	>
-	{%-
-		if options.value is defined
-		and options.value is not empty
-	-%}
-		{{- options.value -}}
-	{%- endif -%}
-	</textarea>
+    <textarea
+        {{
+            attributes(options
+                |exclude('value')
+                |defaults({
+                    'class': 'form__control'
+                })
+            )
+        }}
+    >
+    {%-
+        if options.value is defined
+        and options.value is not empty
+    -%}
+        {{- options.value -}}
+    {%- endif -%}
+    </textarea>
 
 {% endspaceless %}
 {% endmacro %}

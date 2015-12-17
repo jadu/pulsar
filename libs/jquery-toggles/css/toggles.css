@@ -6,6 +6,11 @@
       -ms-user-select: none;
           user-select: none;
   direction: ltr;
+  text-align: center;
+}
+div.disabled > .toggle-slide {
+  opacity: 0.7;
+  pointer-events: none;
 }
 .toggle-slide .toggle-on,
 .toggle-slide .toggle-off,
@@ -16,7 +21,5 @@
   position: relative;
   z-index: 99;
   cursor: hand;
-  cursor: -webkit-grab;
-  cursor: -moz-grab;
   cursor: grab;
 }

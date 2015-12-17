@@ -9,6 +9,7 @@
 \* -------------------------------------------------------------------------- */
 
 @import '_function.merge-maps';
+@import '_function.color';
 
 $colors: merge-maps(
     $palette-branding,

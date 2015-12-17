@@ -431,8 +431,21 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
     text-align: center;
     height: $branding-navigation-height;
     width: $branding-navigation-width;
+
+	// Support transparent PNG background images in IE8
+    @include ie-lte(8) {
+        filter: progid:DXImageTransform.Microsoft.gradient(
+            startColorstr=#00FFFFFF, endColorstr=#00FFFFFF
+        );
+    }
 }
 
 .jadu-wordmark {
     display: none;
+}
+
+// IE8 fix for issue with open mobile nav being cut off
+.lt-ie9 .open-nav > .container {
+    display: table-cell;
+    height: 100%;
 }

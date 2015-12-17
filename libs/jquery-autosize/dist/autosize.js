@@ -1,5 +1,5 @@
 /*!
-	Autosize 3.0.12
+	Autosize 3.0.14
 	license: MIT
 	http://www.jacklmoore.com/autosize
 */
@@ -44,10 +44,13 @@
 		if (!ta || !ta.nodeName || ta.nodeName !== 'TEXTAREA' || set.has(ta)) return;
 
 		var heightOffset = null;
-		var overflowY = 'hidden';
+		var overflowY = null;
+		var clientWidth = ta.clientWidth;
 
 		function init() {
 			var style = window.getComputedStyle(ta, null);
+
+			overflowY = style.overflowY;
 
 			if (style.resize === 'vertical') {
 				ta.style.resize = 'none';
@@ -108,6 +111,9 @@
 
 			ta.style.height = endHeight + 'px';
 
+			// used to check if an update is actually necessary on window.resize
+			clientWidth = ta.clientWidth;
+
 			// prevents scroll-position jumping
 			document.documentElement.scrollTop = htmlTop;
 			document.body.scrollTop = bodyTop;
@@ -137,11 +143,18 @@
 			}
 		}
 
+		var pageResize = function pageResize() {
+			if (ta.clientWidth !== clientWidth) {
+				update();
+			}
+		};
+
 		var destroy = (function (style) {
-			window.removeEventListener('resize', update);
-			ta.removeEventListener('input', update);
-			ta.removeEventListener('keyup', update);
-			ta.removeEventListener('autosize:destroy', destroy);
+			window.removeEventListener('resize', pageResize, false);
+			ta.removeEventListener('input', update, false);
+			ta.removeEventListener('keyup', update, false);
+			ta.removeEventListener('autosize:destroy', destroy, false);
+			ta.removeEventListener('autosize:update', update, false);
 			set['delete'](ta);
 
 			Object.keys(style).forEach(function (key) {
@@ -154,23 +167,20 @@
 			overflowX: ta.style.overflowX,
 			wordWrap: ta.style.wordWrap });
 
-		ta.addEventListener('autosize:destroy', destroy);
+		ta.addEventListener('autosize:destroy', destroy, false);
 
 		// IE9 does not fire onpropertychange or oninput for deletions,
 		// so binding to onkeyup to catch most of those events.
 		// There is no way that I know of to detect something like 'cut' in IE9.
 		if ('onpropertychange' in ta && 'oninput' in ta) {
-			ta.addEventListener('keyup', update);
+			ta.addEventListener('keyup', update, false);
 		}
 
-		window.addEventListener('resize', update);
-		ta.addEventListener('input', update);
-		ta.addEventListener('autosize:update', update);
+		window.addEventListener('resize', pageResize, false);
+		ta.addEventListener('input', update, false);
+		ta.addEventListener('autosize:update', update, false);
 		set.add(ta);
 
-		if (setOverflowY) {
-			ta.style.overflowY = 'hidden';
-		}
 		if (setOverflowX) {
 			ta.style.overflowX = 'hidden';
 			ta.style.wordWrap = 'break-word';
