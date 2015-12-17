@@ -1,101 +1,27 @@
-{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
-{% import '@pulsar/pulsar/v2/helpers/pulsar.html.twig' as pulsar %}
 <div class="toolbar">
-    <h1 class="branding" id="tour-home">{{ html.link({ 'label': 'Jadu', 'href': '/search' }) }}</h1>
-    <nav class="nav__primary">
-    {% if toolbar is defined %}
-      {% for label, items in toolbar %}
-      {{
-        pulsar.primary_nav({
-          'label': label,
-          'menu_items': items
-        })
-      }}
-      {% endfor %}
-    {% endif %}
-    </nav>
-    <a href="#" class="mobile-menu-toggle" data-mobile-toggle-button data-toggle-target=".tabs__list">
-      <i class="icon-reorder"></i>
-    </a>
-    {{
-      pulsar.notifications({
-        'items': [
-          pulsar.notification({
-            'icon': html.icon('asterisk'),
-            'href': '#',
-            'title': 'Something awesome happened',
-            'description': 'And we want to show you it',
-            'time': 'Just now'
-          }),
-          pulsar.notification({
-            'icon': html.icon('asterisk'),
-            'href': '#',
-            'title': 'Something awesome happened',
-            'description': 'And we want to show you it',
-            'time': 'Just now',
-            'class': 'notification--primary'
-          }),
-          pulsar.notification({
-            'icon': html.icon('asterisk'),
-            'href': '#',
-            'title': 'Something awesome happened',
-            'description': 'And we want to show you it',
-            'time': 'Just now',
-            'class': 'notification--success'
-          }),
-          pulsar.notification({
-            'icon': html.icon('asterisk'),
-            'href': '#',
-            'title': 'Something awesome happened',
-            'description': 'And we want to show you it',
-            'time': 'Just now',
-            'class': 'notification--warning'
-          }),
-          pulsar.notification({
-            'icon': html.icon('warning-sign'),
-            'href': '#',
-            'title': 'Something bad happened',
-            'description': 'And we want to show you it',
-            'time ':'10 mins ago',
-            'class ':'notification--danger'
-          }),
-          pulsar.notification({
-            'icon': html.icon('asterisk'),
-            'href': '#',
-            'title': 'Something awesome happened',
-            'description': 'And we want to show you it',
-            'time': 'Just now',
-            'class': 'notification--info'
-          }),
-          pulsar.notification({
-            'icon': html.icon('asterisk'),
-            'href': '#',
-            'title': 'Something awesome happened',
-            'description': 'And we want to show you it',
-            'time': 'Just now',
-            'class': 'notification--inverse'
-          })
-        ]
-      })
-    }}
+    <a href="#" class="mobile-menu-button">Menu</a>
 
-    {{
-      html.button_dropdown({
-        'label': html.icon('user') ~ ' <span>Paul Stanton</span>',
-        'class': 'user-actions pull-right',
-        'menu_items': [
-          html.link({
-              'label': html.icon('key') ~ ' Change password'
-          }),
-          html.divider(),
-          html.link({
-            'label': html.icon('signout') ~ ' Sign out'
-          })
-        ]
-      })
-    }}
-    <form class="search-form" action="/app_dev.php/">
-        <input class="search-field" type="search" name="q" id="case-search" value="" placeholder="Search for stuff">
-        <input type="submit" name="case-search" class="hide" value="Go">
-    </form>
+    <div class="nav-user">
+        {{
+            html.button_dropdown({
+                "label": "Paul Stanton",
+                "class": "user-menu btn--naked",
+                "items": [
+                    html.link({
+                        "label": html.icon('user') ~ " My details",
+                        "href": "#foo"
+                    }),
+                    html.link({
+                        "label": html.icon('key') ~ " Change password",
+                        "href": "#foo"
+                    }),
+                    html.divider(),
+                    html.link({
+                        "label": html.icon('power-off') ~ " Sign out",
+                        "href": "#foo"
+                    }),
+                ]
+            })
+        }}
+    </div>
 </div>

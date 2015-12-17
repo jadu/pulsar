@@ -1,6 +1,6 @@
 .breadcrumb {
-  background-color: $white;
-  border-bottom: 1px solid $gray;
+  background-color: color(white);
+  border-bottom: 1px solid color(gray);
 
   ul {
     list-style-type: none;
@@ -17,7 +17,7 @@
     padding: 0 ($gutter-width / 4) 0 0;
 
     &:before {
-      color: $gray-light;
+      color: color(gray, light);
       content: " / ";
       @include inline-block;
       font-size: 1.25em;
@@ -58,11 +58,11 @@
   }
 
   a {
-    color: $gray-dark;
+    color: color(gray, dark);
     text-decoration: none;
   }
 
   &:hover a {
-    color: $link-color;
+    color: color(link);
   }
 }

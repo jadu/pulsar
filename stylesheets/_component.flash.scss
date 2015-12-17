@@ -18,6 +18,11 @@
   @include respond-min($screen-phone) {
     padding: ($line-height-base / 2) $gutter-width;
   }
+
+  @include respond-min($screen-desktop) {
+    top: auto;
+    z-index: $zindex-flash;
+  }
 }
 
 // Make sure sticky flashes appear over the breadcrumb
@@ -30,11 +35,11 @@
 .flash,
 .flash--default {
   background: rgba(0, 0, 0, .8);
-  color: $white;
+  color: color(white);
   text-shadow: 0 0 2px rgba(0, 0, 0, .5);
 
   a {
-    color: $white;
+    color: color(white);
     text-decoration: underline;
   }
 
@@ -63,18 +68,18 @@
 }
 
 .flash--info {
-  background: $info-color;
+  background: color(info);
   // color: $state-info-text;
   text-shadow: none;
   @include ie-lte(8) {
-    background:  $info-color;
+    background: color(info);
   }
 }
 
 // Close buttons
 .flash {
   .close {
-    color: $white;
+    color: color(white);
     float: right;
     font-size: 1em;
     margin-left: $gutter-width / 4;
@@ -94,9 +99,9 @@
 }
 
 .flash-container {
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
+    clear: both;
+    top: -5px;
+    margin-bottom: 0;
+    position: relative;
     z-index: $zindex-flash;
 }

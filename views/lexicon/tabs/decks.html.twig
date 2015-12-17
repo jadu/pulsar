@@ -1,10 +1,9 @@
-{% import 'pulsar/v2/helpers/html.html.twig' as html %}
-{% import 'pulsar/v2/helpers/form.html.twig' as form %}
-{% import 'pulsar/helpers/flash.html.twig' as flash %}
-<h2 class="heading">{{ heading|raw }}</h2>
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{% import '@pulsar/pulsar/helpers/flash.html.twig' as flash %}
 
-<div class="tab__inner tab--padded">
-    <h2>Decks</h2>
+{% block tab_content %}
 
     {{
         html.button({
@@ -210,6 +209,7 @@
             }}
         </div>
     </div>
-</div>
 
-<div class="deck" id="deck-ajax" data-deck-source="/views/lexicon/decks/deck-example.html.twig"></div>
+    <div class="deck" id="deck-ajax" data-deck-source="/views/lexicon/decks/deck-example.html.twig"></div>
+
+{% endblock tab_content %}

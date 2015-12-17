@@ -7,12 +7,16 @@ fieldset {
 }
 
 .form {
-    background-color: $white;
-    padding: 1em 20px 0 20px;
+    background-color: color(white);
+    // padding: 0 20px 0 20px;
+}
+
+.form--standalone {
+    padding: 0 20px 20px 20px;
 }
 
 .form__group {
-    margin-bottom: 1em;
+    margin-bottom: 24px;
 }
 
 .form__control {
@@ -21,7 +25,9 @@ fieldset {
 
     &.checkbox,
     &.radio {
-        height: auto;
+        border: 0 !important;
+        height: 16px;
+        padding: 0 !important;
         vertical-align: top;
     }
 
@@ -61,12 +67,12 @@ fieldset {
 }
 
 .form__actions {
-    border-top: 1px solid $gray-light;
+    border-top: 1px solid color(border);
     box-shadow: none;
     margin-left: -20px;
     margin-right: -20px;
     min-height: 60px;
-    padding: $line-height-base $gutter-width;
+    padding: $line-height-base 0;
     position: relative;
 
     @include respond-min($screen-desktop) {
@@ -102,6 +108,7 @@ $inputs: (
 .form__control:not(.checkbox):not(.radio) {
 
     // form elements should be 100% on mobile
+    background-color: #fafafa;
     width: 100%;
 
     @include respond-min($screen-tablet) {
@@ -129,24 +136,24 @@ $inputs: (
 
 .form__group {
   &.has-changed {
-    @include form__control-validation($state-info-text, $info-color, $state-info-bg);
+    @include form__control-validation($state-info-text, color(info), $state-info-bg);
   }
 
   &.has-warning {
-    @include form__control-validation($state-warning-text, $warning-color, $state-warning-bg);
+    @include form__control-validation($state-warning-text, color(warning), $state-warning-bg);
   }
 
   &.has-error {
-    @include form__control-validation($state-danger-text, $danger-color, $state-danger-bg);
+    @include form__control-validation($state-danger-text, color(danger), $state-danger-bg);
   }
 
   &.has-success {
-    @include form__control-validation($state-success-text, $success-color, $state-success-bg);
+    @include form__control-validation($state-success-text, color(success), $state-success-bg);
   }
 }
 
 .help-block {
-    color: lighten($text-color, 5%);
+    color: color(text, light);
 }
 
 .form__button-group {

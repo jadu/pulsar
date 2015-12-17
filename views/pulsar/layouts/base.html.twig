@@ -1,13 +1,15 @@
 {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 {% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
 {% import '@pulsar/pulsar/v2/helpers/flash.html.twig' as flash %}
+{% import '@pulsar/pulsar/v2/helpers/nav.html.twig' as nav %}
 {% set cssPath  = base_path ~ 'css/' %}
 {% set jsPath   = base_path ~ 'js/' %}
 {% set libsPath = base_path ~ 'libs/' %}
 <!DOCTYPE html>
-<!--[if IE 7]>         <html class="no-js ie7"><![endif]-->
-<!--[if IE 8]>         <html class="no-js ie8"><![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"><!--<![endif]-->
+<!--[if IE 7]>         <html class="no-js ie7 lt-ie10 lt-ie8"><![endif]-->
+<!--[if IE 8]>         <html class="no-js ie8 lt-ie10 lt-ie9"><![endif]-->
+<!--[if IE 9]>         <html class="no-js ie9 lt-ie10"><![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-js"><!--<![endif]-->
 <html class="no-js">
 <head>
     <title>{% block title %}Pulsar Lexicon{% endblock %}</title>
@@ -32,6 +34,8 @@
     <link rel="stylesheet" type="text/css" href="{{ libsPath ~ 'font-awesome/css/font-awesome-ie7.min.css' }}" />
     <![endif]-->
 
+    <!-- <link rel="stylesheet" href="http://basehold.it/24"> -->
+
     <script
         src="{{ base_path ~ 'dist/js/bundle.js' }}"
         type="text/javascript"
@@ -41,13 +45,87 @@
 {% endif %}
     ></script>
     <script src="{{ base_path ~ 'js/main.js' }}" type="text/javascript"></script>
-
     {% block pageStyle %}{% endblock %}
-
 </head>
-<body class="language-html">
+<body class="language-html" id="top">
 
-    {% block body %}{% endblock %}
+{% block body %}
+    <div role="main" class="container" id="top">
+        <div class="inner-wrapper">
+            {{ nav.primary({ 'data': nav_data|default() }) }}
+
+            {% include '@pulsar/pulsar/components/flash.html.twig' %}
+
+            <div class="toolbar">
+
+                <a href="#" class="mobile-menu-button">Menu</a>
+
+                <div class="nav-user">
+                    {{
+                        html.button_dropdown({
+                            "label": "Paul Stanton",
+                            "class": "user-menu btn--naked",
+                            "items": [
+                                html.link({
+                                    "label": html.icon('user') ~ " My details",
+                                    "href": "#foo"
+                                }),
+                                html.link({
+                                    "label": html.icon('key') ~ " Change password",
+                                    "href": "#foo"
+                                }),
+                                html.divider(),
+                                html.link({
+                                    "label": html.icon('power-off') ~ " Sign out",
+                                    "href": "#foo"
+                                }),
+                            ]
+                        })
+                    }}
+                </div>
+
+            </div>
+
+            <form action="/search" class="main-search" data-ui="search-box">
+                <input type="search" name="q" id="case-search" value="" placeholder="Search" class="main-search__field" autocomplete="off">
+                <button class="main-search__submit" type="submit" name="case-search"><i class="icon-search"></i></button>
+            </form>
+
+            <div class="content-main">
+                <div class="tabs__content">
+                    <h1 class="main-title">{{ heading|default('MISSING HEADING') }}</h1>
+                    {% block tabs_list %}{% endblock %}
+                    {% block tabs_content %}{% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        {{
+            html.link({
+                'label': html.icon('circle-arrow-up'),
+                'href': '#top'
+            })
+        }}
+        {{
+            html.link({
+                'label': 'Jadu Continuum',
+                'href': '/jadu/version.php',
+                'class': 'branding-footer'
+            })
+        }}
+        &copy; 2015
+    </footer>
+
+    <div id="modal" class="modal" role="dialog" aria-hidden="true">
+        <!-- empty modal for ajax requests -->
+    </div>
+
+{% endblock body %}
+
+{% block modals %}{% endblock %}
+{% block javascript %}{% endblock %}
 
 </body>
 </html>

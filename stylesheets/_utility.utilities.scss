@@ -27,7 +27,7 @@
 }
 
 .muted {
-  color: $gray;
+  color: color(gray);
 }
 
 .centered {
@@ -36,7 +36,7 @@
 
 p.success {
   background: rgba(0, 153, 51, .8);
-  color: $white;
+  color: color(white);
   padding: 5px 5px;
   text-shadow: 0 0 2px rgba(0, 0, 0, .5);
 
@@ -98,16 +98,8 @@ p.success {
     text-align: justify;
 }
 
-.example {
-    margin-bottom: 1em;
-
-    .flash {
-        position: relative;
-    }
-}
-
 .no-results {
-    background-color: $off-white;
+    background-color: color(gray, off-white);
     background-image: url('../images/stripes.png');
     background-repeat: repeat;
     padding: 1em 0;

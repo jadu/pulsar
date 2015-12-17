@@ -12,27 +12,32 @@
 			padding: 0;
 		}
 		> li > a > i {
-			font-size: 1em;
 			opacity: 1;
 		}
 	}
 
 	.tabs__content {
+		display: block;
+		padding: 0;
 		top: 0;
 	}
 
 	$width: 500px;
 
 	.tabs__list {
+		margin-bottom: 0;
 
 		> li {
 			vertical-align: top;
 		}
 
 		> li > a {
+			display: block;
+			color: black;
 			line-height: 1em;
 			padding: .5em 5px;
 			text-align: center;
+			text-decoration: none;
 			white-space: normal;
 
 			@include respond-min($screen-desktop) {
@@ -91,7 +96,7 @@
 .tab-panel--contrast {
 
 	> .tabs__list > li {
-		background-color: $gray-lighter;
+		background-color: color(gray, lightest);
 
         &:first-of-type {
             border-top-left-radius: $border-radius;
@@ -104,25 +109,25 @@
         }
 
 		&:hover {
-			background-color: darken($gray-lighter, 5);
+			background-color: color(gray, lighter);
 		}
 
 		&.is-active {
-			background-color: $primary-color;
+			background-color: color(primary);
 
 			> a {
 				background-color: inherit;
-				color: $white;
+				color: color(white);
 			}
 		}
 	}
 
 	> .tabs__list > li:not(:last-of-type) {
-		border-right: 2px solid $white;
+		border-right: 2px solid color(white);
 	}
 
 	.tab__pane {
-		background-color: $gray-lighter;
+		background-color: color(gray, lightest);
 		margin-top: 2px;
 		padding: 1em $gutter-width .1em $gutter-width;
 	}

@@ -1,10 +1,10 @@
-{% import 'pulsar/v2/helpers/html.html.twig' as html %}
-{% import 'pulsar/v2/helpers/form.html.twig' as form %}
-{% import 'pulsar/v2/helpers/flash.html.twig' as flash %}
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{% import '@pulsar/pulsar/v2/helpers/flash.html.twig' as flash %}
 
-<h2 class="heading">{{ heading|raw }}</h2>
+{% block tab_content %}
 
-<div class="tab__inner tab--padded">
 	<div class="example">
 		{{
 			flash.message({
@@ -71,4 +71,5 @@
 			})
 		}}
 	</div>
-</div>
+
+{% endblock tab_content %}

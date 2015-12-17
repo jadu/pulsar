@@ -33,9 +33,24 @@ $FontAwesomePath: '../libs/font-awesome/font/';
 @import '_mixin.mixins-to-organise';
 
 // Config
-@import '_config.colours';
 @import '_config.variables';
 @import '_config.fonts';
+@import '_config.branding';
+
+// Functions
+@import '_function.math';
+@import '_function.color-luminance';
+@import '_function.pick-best-color';
+@import '_function.color';
+
+// Base colour palette
+@import '_palette.base';
+
+// Apply palette to components
+@import '_config.theme';
+
+// Deprecated styles soon to disappear
+@import '_deprecated.styles.scss';
 
 // Structure
 @import '_structure.columns';
@@ -53,9 +68,7 @@ $FontAwesomePath: '../libs/font-awesome/font/';
 	mixins you should @import them here.
 \* -------------------------------------------------------------------------- */
 
-/**
- * Components
- */
+// Components
 @import '_component.actionsbar';
 @import '_component.autosave';
 @import '_component.badges';
@@ -65,7 +78,7 @@ $FontAwesomePath: '../libs/font-awesome/font/';
 @import '_component.buttons';
 @import '_component.choice-matrix';
 @import '_component.close';
-@import '_component.datagrid';
+@import '_component.datatables';
 @import '_component.datepicker';
 @import '_component.daterange';
 @import '_component.decks';
@@ -88,8 +101,8 @@ $FontAwesomePath: '../libs/font-awesome/font/';
 @import '_component.message';
 @import '_component.metadata';
 @import '_component.modals';
-@import '_component.nav-items';
-@import '_component.nav-primary';
+@import '_component.navigation';
+@import '_component.nav-list';
 @import '_component.navbars';
 @import '_component.notifications';
 @import '_component.pagination';
@@ -106,7 +119,7 @@ $FontAwesomePath: '../libs/font-awesome/font/';
 @import '_component.signin';
 @import '_component.summary';
 @import '_component.tab-panel';
-@import '_component.tables';
+// @import '_component.tables';
 @import '_component.toggles';
 @import '_component.toolbar';
 @import '_component.tooltips';
@@ -120,10 +133,14 @@ $FontAwesomePath: '../libs/font-awesome/font/';
 \* -------------------------------------------------------------------------- */
 
 // Utilities
+@import '_utility.baseline';
 @import '_utility.highlight';
+@import '_utility.misc';
 @import '_utility.utilities';
 @import '_utility.states';
 @import '_utility.swatches';
+
+// @import '../libs/datatables-responsive/css/dataTables.responsive';
 
 // Overrides and fixes
 @import '_override.shame';

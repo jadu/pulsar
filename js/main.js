@@ -1,17 +1,21 @@
 
 var $html = $('html');
 
-pulsar.buttonComponent = new pulsar.ButtonComponent($html);
-pulsar.flash           = new pulsar.FlashMessageComponent($html);
-pulsar.signIn          = new pulsar.SignInComponent($html);
-pulsar.masterSwitch    = new pulsar.MasterSwitchComponent($html);
+pulsar.button       = new pulsar.ButtonComponent($html);
+pulsar.flash        = new pulsar.FlashMessageComponent($html);
+pulsar.pulsarForm   = new pulsar.PulsarFormComponent($html);
+pulsar.signIn       = new pulsar.SignInComponent($html);
+pulsar.masterSwitch = new pulsar.MasterSwitchComponent($html);
+pulsar.navMain      = new pulsar.NavMainComponent($html);
 
 $(function () {
 
-    pulsar.buttonComponent.init();
+    pulsar.button.init();
     pulsar.flash.init();
+    pulsar.pulsarForm.init();
     pulsar.signIn.init();
     pulsar.masterSwitch.init();
+    pulsar.navMain.init();
 
     // Switch out .svg for .png for <img> elements in older browsers
     pulsar.svgeezy.init('nocheck', 'png');
@@ -19,9 +23,7 @@ $(function () {
     // Use clickover enhancements for popovers
     $('[rel="clickover"]').clickover({ 'global_close': true });
 
-    // Select2 elements created by form.select2() helper
-    $('.js-select2').select2();
-
+    // Open navigation (should be added to NavMainComponent)
     $('.mobile-menu-button').on('click', function(e) {
         e.preventDefault();
 
@@ -40,5 +42,36 @@ $(function () {
         $($.fn.dataTable.tables(true)).DataTable().columns.adjust().responsive.recalc();
         console.log('!');
     });
+
+	var table = $('.datatable').DataTable({
+		dom: '<"dataTables_top"irf><"dataTables_actions"T>t<"dataTables_bottom"lp>',
+		aaSorting: [],
+		bAutoWidth: false,
+		columnDefs: [
+			{ "searchable": false, "targets": 0 },
+			{ "orderable": false, "targets": 0 }
+		],
+		oLanguage: {
+         sSearch: "Filter:"
+	    },
+		responsive: {
+			details: {
+	            type: 'column',
+	            target: '.table-child-toggle'
+	        }
+        },
+		stateSave: false,
+        tableTools: {
+            sRowSelect: "multi",
+            sRowSelector: '.js-select',
+            aButtons: [
+            	{
+                    "sExtends":    "collection",
+                    "sButtonText": '<i class="icon-check-minus"></i>',
+                    "aButtons":    [ "select_all", "select_none" ]
+                }
+            ]
+        }
+	});
 
 });

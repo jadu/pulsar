@@ -67,6 +67,10 @@
   > .form--horizontal {
     padding-top: 0;
   }
+
+  > .form {
+    padding-top: 0;
+  }
 }
 
 // Modal background
@@ -134,11 +138,11 @@
 
 .modal--danger {
   .modal__header {
-    background-color: $danger-color;
-    color: $white;
+    background-color: color(danger);
+    color: color(white);
   }
   .close {
-    color: $white;
+    color: color(white);
     @include opacity(.7);
   }
 }

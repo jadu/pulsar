@@ -66,8 +66,8 @@
 }
 
 .loading i {
-  border: 1px solid $primary-color;
-  border-top-color: $white;
+  border: 1px solid color(primary);
+  border-top-color: color(white);
   border-radius: 50%;
   -webkit-animation: spin 400ms infinite linear;
      -moz-animation: spin 400ms infinite linear;

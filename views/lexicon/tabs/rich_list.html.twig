@@ -1,7 +1,8 @@
-{% import 'pulsar/v2/helpers/html.html.twig' as html %}
-{% import 'pulsar/v2/helpers/form.html.twig' as form %}
-{% import 'pulsar/v2/helpers/flash.html.twig' as flash %}
-{% import 'pulsar/helpers/datagrid.html.twig' as datagrid %}
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{% import '@pulsar/pulsar/v2/helpers/flash.html.twig' as flash %}
+{% import '@pulsar/pulsar/helpers/datagrid.html.twig' as datagrid %}
 
 {% set lipsum = "<p>Lorizzle ipsum dolor shut the shizzle up amizzle, gizzle adipiscing doggy. Izzle shizzlin dizzle brizzle, fo volutpizzle, yippiyo quizzle, owned vizzle, arcu. Pellentesque eget boom shackalack. I saw beyonces tizzles and my pizzle went crizzle erizzle. Owned fo shizzle dolor dapibizzle shiznit tempus tempor. Maurizzle for sure gizzle et turpizzle. Gangster izzle tortor. Pellentesque eleifend rhoncizzle nisi. Doggy hac ma nizzle platea dictumst. Boom shackalack dapibizzle. Shiznit tellizzle urna, pretium fo shizzle, yo mamma bizzle, ma nizzle vitae, stuff. Check out this suscipizzle. Integizzle sempizzle sed ass.</p>
 
@@ -15,12 +16,9 @@
 
 <p>Crunk eu ligula. Bling bling porta commodo break yo neck, yall. Fo shizzle viverra, sapien izzle daahng dawg dawg, libero urna ma nizzle leo, non pizzle nunc sapien fo shizzle my nizzle nunc. Own yo' eu dolizzle. Vestibulizzle shiz felizzle. Sizzle shizznit faucibizzle . Fo nulla sem, volutpizzle izzle, volutpizzle fizzle, auctizzle egizzle, fo shizzle my nizzle. Shit pharetra. Nunc nisi. Pot sizzle amizzle own yo' mammasay mammasa mamma oo sa dope blandit dignissim. Quisque laorizzle cool i saw beyonces tizzles and my pizzle went crizzle amet enizzle. Aenean tempizzle uhuh ... yih! felizzle.</p>" %}
 
-<h2 class="heading">{{ heading|raw }}</h2>
+{% block tab_content %}
 
-<div class="tab__inner tab--padded">
-
-
-<div class="richer-list richer-list--tall richer-list__with-settings">
+	<div class="richer-list richer-list--tall richer-list__with-settings">
 		<div class="richer-list__items-container">
 			<ol class="richer-list__items">
 				<li class="richer-list__item is-selected"><span>This item has <code>.is-selected</code></span></li>
@@ -322,5 +320,4 @@
 		</div>
 	</div>
 
-
-</div>
+{% endblock tab_content %}

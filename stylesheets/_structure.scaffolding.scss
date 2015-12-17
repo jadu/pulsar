@@ -7,11 +7,11 @@ html, body {
 }
 
 body {
-  background-color: $off-white;
   font-family: $font-family-base;
   font-size: $font-size-medium;
   line-height: $line-height-small;
   margin: 0 0 ($line-height-base * 2) 0;
+  overflow-x: hidden;
   padding: 0;
 
     // Improve proxima nova rendering on Chrome for Windows
@@ -26,57 +26,15 @@ body {
   }
 }
 
-// Make sure flash messages properly clear header/toolbar
-#top {
-  @include clear-fix;
-}
-
-.heading {
-  @include inline-block;
-  font-family: $font-family-light;
-  line-height: $line-height-base * 2;
-  margin: ceil($line-height-base / $line-height-small) $gutter-width 0 0;
-
-  @include respond-max($screen-tablet) {
-    font-size: $font-size-xlarge;
-    line-height: $line-height-base * 2;
-    margin: 0 0 0 ($sidebar-column-width-tablet + $gutter-width / 2);
-  }
-
-  @include respond-max($screen-tablet) {
-    margin-top: $line-height-base * 2;
-    margin-left: $gutter-width / 2;
-  }
-}
-
-.container {
-  clear: both;
-  margin: 0;
-  height: auto;
-  @include respond-min($screen-phone) {
-    margin: 0 $gutter-width;
-  }
-  @include respond-min($screen-tablet) {
-    position: relative; // required for decks
-  }
-}
-
-.footer {
-  bottom: 0;
-  margin-top: $line-height-base;
-  position: fixed;
-  width: 100%;
-  z-index: $zindex-footer;
-}
-
 // Links
 
 a {
-  color: $link-color;
+  color: color(link);
+  cursor: pointer;
 }
 
 a:hover {
-  color: $link-hover-color;
+  color: color(link, hover);
 }
 
 a.disabled {

@@ -6,9 +6,9 @@
 
 ```twig
 {{
-	html.badge({
-		'value': '123'
-	})
+    html.badge({
+        'value': '123'
+    })
 }}
 ```
 
@@ -24,20 +24,20 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 #}
 {% macro badge(options = {}) %}
 {% spaceless %}
-	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+    {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-	<span
-		{{
-			attributes(options
-				|exclude('label')
-				|defaults({
-					'class': 'badge'
-				})
-			)
-		}}
-	>
-		{{- options.label|default|raw -}}
-	</span>
+    <span
+        {{
+            attributes(options
+                |exclude('label')
+                |defaults({
+                    'class': 'badge'
+                })
+            )
+        }}
+    >
+        {{- options.label|default|raw -}}
+    </span>
 
 {% endspaceless %}
 {% endmacro %}
@@ -51,10 +51,10 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
 ```twig
 {{
-	html.button({
-		'class': 'btn--primary',
-		'label': 'Click Me All Over'
-	})
+    html.button({
+        'class': 'btn--primary',
+        'label': 'Click Me All Over'
+    })
 }}
 ```
 
@@ -73,57 +73,58 @@ data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
 #}
 {% macro button(options = {}) %}
 {% spaceless %}
-	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+    {% import _self as html %}
+    {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-	{% if options.type is defined and options.type == 'link' %}
+    {% if options.type is defined and options.type == 'link' %}
 
-		{{
-			_self.link(options|merge({
-				'class': 'btn ' ~ options.class|default
-			}))
-		}}
+        {{
+            html.link(options|merge({
+                'class': 'btn ' ~ options.class|default
+            }))
+        }}
 
-	{% elseif options.type is defined and options.type == 'input' %}
+    {% elseif options.type is defined and options.type == 'input' %}
 
-		<input {{
-				attributes(options
-					|exclude('type label')
-					|defaults({
-						'class': 'btn',
-						'type': 'button',
-						'value': options.label
-					})
-				)
-		}} />
+        <input {{
+                attributes(options
+                    |exclude('type label')
+                    |defaults({
+                        'class': 'btn',
+                        'type': 'button',
+                        'value': options.label
+                    })
+                )
+        }} />
 
-	{% elseif options.type is defined and options.type == 'submit' %}
+    {% elseif options.type is defined and options.type == 'submit' %}
 
-		<button {{
-				attributes(options
-					|exclude('label')
-					|defaults({
-						'class': 'btn'
-					})
-				)
-		}} >
-			{{- options.label|default|raw -}}
-		</button>
+        <button {{
+                attributes(options
+                    |exclude('label')
+                    |defaults({
+                        'class': 'btn'
+                    })
+                )
+        }} >
+            {{- options.label|default|raw -}}
+        </button>
 
-	{% else %}
+    {% else %}
 
-		<button {{
-				attributes(options
-					|exclude('caret label')
-					|defaults({
-						'class': 'btn'
-					})
-				)
-		}} >
-			{{- options.label|default|raw -}}
-			{{- util.caret(options.caret|default) -}}
-		</button>
+        <button {{
+                attributes(options
+                    |exclude('caret label')
+                    |defaults({
+                        'class': 'btn'
+                    })
+                )
+        }} >
+            {{- options.label|default|raw -}}
+            {{- util.caret(options.caret|default) -}}
+        </button>
 
-	{% endif %}
+    {% endif %}
 {% endspaceless %}
 {% endmacro %}
 
@@ -139,13 +140,13 @@ toolbars.
 
 ```twig
 {{
-	html.button_group({
-		'buttons': [
-			html.button({ label: 'foo' }),
-			html.button({ label: 'bar' }),
-			html.button({ label: 'baz' })
-		]
-	})
+    html.button_group({
+        'buttons': [
+            html.button({ label: 'foo' }),
+            html.button({ label: 'bar' }),
+            html.button({ label: 'baz' })
+        ]
+    })
 }}
 ```
 
@@ -161,22 +162,22 @@ data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
 #}
 {% macro button_group(options = {}) %}
 {% spaceless %}
-	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+    {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-	<div
-		{{
-			attributes(options
-				|exclude('buttons')
-				|defaults({
-					'class': 'btn__group'
-				})
-			)
-		}}
-	>
-		{% for button in options.buttons -%}
-			{{ button }}
-		{% endfor %}
-	</div>
+    <div
+        {{
+            attributes(options
+                |exclude('buttons')
+                |defaults({
+                    'class': 'btn__group'
+                })
+            )
+        }}
+    >
+        {% for button in options.buttons -%}
+            {{ button }}
+        {% endfor %}
+    </div>
 
 {% endspaceless %}
 {% endmacro %}
@@ -192,13 +193,13 @@ Show a dropdown/dropup menu when the button is clicked.
 
 ```twig
 {{
-	html.button_dropdown({
-		'label': 'Drop Down',
-		'items': [
-			html.link({ 'label': 'foo', 'href': '#foo' }),
+    html.button_dropdown({
+        'label': 'Drop Down',
+        'items': [
+            html.link({ 'label': 'foo', 'href': '#foo' }),
             html.link({ 'label': 'bar', 'href': '#bar' })
-		]
-	})
+        ]
+    })
 }}
 ```
 
@@ -212,40 +213,42 @@ direction | string | `down` (default) or `up`
 id        | string | A unique identifier, if required (applied to the button)
 items     | array  | An array of items to put in the dropdown list (usually links)
 label     | string | The button label
+placement | string | the alignment of the dropdown menu, `left` (default) or `right`
 data-*    | string | Data attributes, eg: `'data-foo': 'bar'` (applied to the button)
 
 #}
 {% macro button_dropdown(options = {}) %}
 {% spaceless %}
-	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+    {% import _self as html %}
+    {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-	<div
-		{{
-			attributes(options
-				|only('class')
-				|defaults({
-					'class': 'btn__group drop' ~ options.direction|default('down')
-				})
-			)
-		}}
-	>
-		{{
-			_self.button({
-				'caret': options.caret|default(true),
-				'class': 'dropdown__toggle',
-				'data-toggle': 'dropdown',
-				'id': options.id|default,
-				'label': options.label|default,
-			})
-		}}
+    <div
+        {{
+            attributes(options
+                |only('class')
+                |defaults({
+                    'class': 'btn__group drop' ~ options.direction|default('down')
+                })
+            )
+        }}
+    >
+        {{
+            html.button({
+                'caret': options.caret|default(true),
+                'class': 'dropdown__toggle',
+                'data-toggle': 'dropdown',
+                'id': options.id|default,
+                'label': options.label|default,
+            })
+        }}
 
-		{{
-			_self.list({
-				'class': 'dropdown__menu',
-				'items': options.items|default
-			})
-		}}
-	</div>
+        {{
+            html.list({
+                'class': 'dropdown__menu pull-' ~ options.placement|default('left'),
+                'items': options.items|default
+            })
+        }}
+    </div>
 
 {% endspaceless %}
 {% endmacro %}
@@ -266,7 +269,7 @@ Used in html.dropdown to insert lines between items.
 #}
 {% macro divider() %}
 {% spaceless %}
-	<span class="divider"></span>
+    <span class="divider"></span>
 {% endspaceless %}
 {% endmacro %}
 
@@ -296,9 +299,9 @@ class  | string | CSS classes, space separated
 #}
 {% macro icon(icon_name, options = {}) %}
 {% spaceless %}
-	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+    {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-	<i {{ util.class('icon-' ~ icon_name, options) }}></i>
+    <i {{ util.class('icon-' ~ icon_name, options) }}></i>
 
 {% endspaceless %}
 {% endmacro %}
@@ -314,9 +317,9 @@ Provide extra contextual meaning to things.
 
 ```twig
 {{
-	html.label({
-		'label': 'new'
-	})
+    html.label({
+        'label': 'new'
+    })
 }}
 ```
 
@@ -332,20 +335,20 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 #}
 {% macro label(options = {}) %}
 {% spaceless %}
-	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+    {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-	<span
-		{{
-			attributes(options
-				|exclude('label')
-				|defaults({
-					'class': 'label'
-				})
-			)
-		}}
-	>
-		{{- options.label|default|raw -}}
-	</span>
+    <span
+        {{
+            attributes(options
+                |exclude('label')
+                |defaults({
+                    'class': 'label'
+                })
+            )
+        }}
+    >
+        {{- options.label|default|raw -}}
+    </span>
 
 {% endspaceless %}
 {% endmacro %}
@@ -362,12 +365,12 @@ another.
 
 ```twig
 {{
-	html.label_group({
-		'labels': [
-			html.label({ 'label': 'foo' }),
-			html.label({ 'label': 'bar' })
-		]
-	})
+    html.label_group({
+        'labels': [
+            html.label({ 'label': 'foo' }),
+            html.label({ 'label': 'bar' })
+        ]
+    })
 }}
 ```
 
@@ -383,22 +386,22 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 #}
 {% macro label_group(options = {}) %}
 {% spaceless %}
-	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+    {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-	<div
-		{{
-			attributes(options
-				|exclude('labels')
-				|defaults({
-					'class': 'label-group'
-				})
-			)
-		}}
-	>
-		{% for label in options.labels -%}
-			{{ label }}
-		{% endfor %}
-	</div>
+    <div
+        {{
+            attributes(options
+                |exclude('labels')
+                |defaults({
+                    'class': 'label-group'
+                })
+            )
+        }}
+    >
+        {% for label in options.labels -%}
+            {{ label }}
+        {% endfor %}
+    </div>
 
 {% endspaceless %}
 {% endmacro %}
@@ -412,10 +415,10 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
 ```twig
 {{
-	html.link({
-		'href': 'http://www.jadu.net',
-		'label': 'Jadu'
-	})
+    html.link({
+        'href': 'http://www.jadu.net',
+        'label': 'Jadu'
+    })
 }}
 ```
 
@@ -432,13 +435,13 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 #}
 {% macro link(options = {}) %}
 {% spaceless %}
-	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+    {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-	<a
-		{{ attributes(options|exclude('label')) }}
-	>
-		{{- options.label|default|raw -}}
-	</a>
+    <a
+        {{ attributes(options|exclude('label')) }}
+    >
+        {{- options.label|default|raw -}}
+    </a>
 
 {% endspaceless %}
 {% endmacro %}
@@ -455,12 +458,12 @@ particularly useful when chained with other helpers.
 
 ```twig
 {{
-	html.list({
-		'items': [
-			'foo',
-			'bar'
-		]
-	})
+    html.list({
+        'items': [
+            'foo',
+            'bar'
+        ]
+    })
 }}
 ```
 
@@ -478,31 +481,32 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 #}
 {% macro list(options = {}) %}
 {% spaceless %}
-	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
-	{% set list_type = options.type|default('ul') %}
+    {% import _self as html %}
+    {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+    {% set list_type = options.type|default('ul') %}
 
-	<{{ list_type }}
-		{{ attributes(options|exclude('active_item items type')) }}
-	>
+    <{{ list_type }}
+        {{ attributes(options|exclude('active_item items type')) }}
+    >
 
-	{% for list_item in options.items %}
+    {% for list_item in options.items %}
 
-		{% if loop.index == options.active_item|default(0) %}
-			{% set item_class = 'is-active' %}
-		{% else %}
-			{% set item_class = '' %}
-		{% endif %}
+        {% if loop.index == options.active_item|default(0) %}
+            {% set item_class = 'is-active' %}
+        {% else %}
+            {% set item_class = '' %}
+        {% endif %}
 
-		{{
-			_self.li({
-				'class': item_class,
-				'value': list_item
-			})
-		}}
+        {{
+            html.li({
+                'class': item_class,
+                'value': list_item
+            })
+        }}
 
-	{% endfor %}
+    {% endfor %}
 
-	</{{ list_type }}>
+    </{{ list_type }}>
 
 {% endspaceless %}
 {% endmacro %}
@@ -519,12 +523,12 @@ call multiple `html.link` helpers.
 
 ```twig
 {{
-	html.link_list({
-		items: {
-			'Value one': '#href_one',
-			'Value two': '#href_two'
-		}
-	})
+    html.link_list({
+        items: {
+            'Value one': '#href_one',
+            'Value two': '#href_two'
+        }
+    })
 }}
 ```
 
@@ -542,30 +546,31 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 #}
 {% macro link_list(options = {}) %}
 {% spaceless %}
-	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
-	{% set items = [] %}
+    {% import _self as html %}
+    {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+    {% set items = [] %}
 
-	{% for label, href in options.items %}
-		{%
-			set items = items|merge([
-				_self.link({
-					'label': label,
-					'href': href
-				})
-			])
-		%}
-	{% endfor %}
+    {% for label, href in options.items %}
+        {%
+            set items = items|merge([
+                html.link({
+                    'label': label,
+                    'href': href
+                })
+            ])
+        %}
+    {% endfor %}
 
-	{{
-		_self.list({
-			'active_item': options.active_item|default,
-			'class': options.class|default,
-			'data': options.data|default,
-			'id': options.id|default,
-			'items': items|default,
-			'type': options.type|default
-		})
-	}}
+    {{
+        html.list({
+            'active_item': options.active_item|default,
+            'class': options.class|default,
+            'data': options.data|default,
+            'id': options.id|default,
+            'items': items|default,
+            'type': options.type|default
+        })
+    }}
 
 {% endspaceless %}
 {% endmacro %}
@@ -581,9 +586,9 @@ Simple wrapper to create `<li>` elements, mainly used from within other helpers.
 
 ```twig
 {{
-	html.li({
-		value: 'foo'
-	})
+    html.li({
+        value: 'foo'
+    })
 }}
 ```
 
@@ -599,13 +604,13 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 #}
 {% macro li(options = {}) %}
 {% spaceless %}
-	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+    {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-	<li
-		{{ attributes(options|exclude('value')) }}
-	>
-		{{- options.value|raw -}}
-	</li>
+    <li
+        {{ attributes(options|exclude('value')) }}
+    >
+        {{- options.value|raw -}}
+    </li>
 
 {% endspaceless %}
 {% endmacro %}
@@ -638,19 +643,19 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 #}
 {% macro loading(options = {}) %}
 {% spaceless %}
-	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+    {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-	<div
-		{{
-			attributes(options
-				|defaults({
-					'class': 'loading'
-				})
-			)
-		}}
-	>
-		<i>Loading...</i>
-	</div>
+    <div
+        {{
+            attributes(options
+                |defaults({
+                    'class': 'loading'
+                })
+            )
+        }}
+    >
+        <i>Loading...</i>
+    </div>
 
 {% endspaceless %}
 {% endmacro %}
@@ -667,13 +672,13 @@ or JSON object.
 
 ```twig
 {{
-	html.metadata({
-		'items': {
-			'File': 'true_lies.avi',
-			'Size': '1.2 Gb',
-			'Type': 'Video'
-		}
-	})
+    html.metadata({
+        'items': {
+            'File': 'true_lies.avi',
+            'Size': '1.2 Gb',
+            'Type': 'Video'
+        }
+    })
 }}
 ```
 
@@ -689,25 +694,25 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 #}
 {% macro metadata(options = {}) %}
 {% spaceless %}
-	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+    {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-	<dl
-		{{
-			attributes(options
-				|exclude('items')
-				|defaults({
-					'class': 'metadata'
-				})
-			)
-		}}
-	>
-	{% for key, value in options.items %}
+    <dl
+        {{
+            attributes(options
+                |exclude('items')
+                |defaults({
+                    'class': 'metadata'
+                })
+            )
+        }}
+    >
+    {% for key, value in options.items %}
 
-		   <dt class="metadata__key">{{ key }}</dt><!--
-		--><dd class="metadata__value">{{ value|raw }}</dd>
+           <dt class="metadata__key">{{ key }}</dt><!--
+        --><dd class="metadata__value">{{ value|raw }}</dd>
 
-	{% endfor %}
-	</dl>
+    {% endfor %}
+    </dl>
 
 {% endspaceless %}
 {% endmacro %}
@@ -723,10 +728,10 @@ Display important information in a prominent container.
 
 ```twig
 {{
-	html.panel({
-		'title': 'In West Philadelphia born and raised',
-		'body': 'In the playground was where I spent most of my days.'
-	})
+    html.panel({
+        'title': 'In West Philadelphia born and raised',
+        'body': 'In the playground was where I spent most of my days.'
+    })
 }}
 ```
 
@@ -744,26 +749,27 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 #}
 {% macro panel(options = {}) %}
 {% spaceless %}
-	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+    {% import _self as html %}
+    {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-	<div
-		{{
-			attributes(options
-				|exclude('icon title body')
-				|defaults({
-					'class': 'panel'
-				})
-			)
-		}}
-	>
-		<div class="panel__title">
-			{{ _self.icon(options.icon|default) }}
-			{{ options.title }}
-		</div>
-		<div class="panel__body">
-			{{- options.body|raw -}}
-		</div>
-	</div>
+    <div
+        {{
+            attributes(options
+                |exclude('icon title body')
+                |defaults({
+                    'class': 'panel'
+                })
+            )
+        }}
+    >
+        <div class="panel__title">
+            {{ html.icon(options.icon|default) }}
+            {{ options.title }}
+        </div>
+        <div class="panel__body">
+            {{- options.body|raw -}}
+        </div>
+    </div>
 
 {% endspaceless %}
 {% endmacro %}
@@ -780,9 +786,9 @@ progress bars.
 
 ```twig
 {{
-	html.progress({
-		'value': 25
-	})
+    html.progress({
+        'value': 25
+    })
 }}
 ```
 
@@ -800,36 +806,36 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
 #}
 {% macro progress(options = {}) %}
 {% spaceless %}
-	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+    {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-	<div class="progress">
-		<div
-			{{
-				attributes(options
-					|exclude('label value value_visible')
-					|defaults({
-						'class': 'progress-bar',
-						'role': 'progressbar',
-						'aria-valuenow': options.value,
-						'aria-valuemin': '0',
-						'aria-valuemax': '100',
-						'style': 'width: ' ~ options.value ~ '%;'
-					})
-				)
-			}}
-		>
+    <div class="progress">
+        <div
+            {{
+                attributes(options
+                    |exclude('label value value_visible')
+                    |defaults({
+                        'class': 'progress-bar',
+                        'role': 'progressbar',
+                        'aria-valuenow': options.value,
+                        'aria-valuemin': '0',
+                        'aria-valuemax': '100',
+                        'style': 'width: ' ~ options.value ~ '%;'
+                    })
+                )
+            }}
+        >
 
-			{% if options.value_visible|default(false) %}
-				{{- options.value|raw ~ '%' }}
-			{% else %}
-				<span class="hide">
-					{{- options.value ~ '%' }}
-				</span>
-			{% endif %}
+            {% if options.value_visible|default(false) %}
+                {{- options.value|raw ~ '%' }}
+            {% else %}
+                <span class="hide">
+                    {{- options.value ~ '%' }}
+                </span>
+            {% endif %}
 
-			{{- options.label|default|raw -}}
-		</div>
-	</div>
+            {{- options.label|default|raw -}}
+        </div>
+    </div>
 
 {% endspaceless %}
 {% endmacro %}
@@ -846,40 +852,41 @@ contain information about what object should be removed.
 
 ```twig
 {{
-	html.remove_button({
-		'target': '#itemToRemove'
-	})
+    html.remove_button({
+        'target': '#itemToRemove'
+    })
 }}
 ```
 
 ## Options
 
-Option  | Type   | Description
-------- | ------ | -------------------------------------------------------------
-class   | string | A space separated list of class names
-id      | string | A unique identifier, if required
-target  | string | CSS Selector of the item to be removed, will be turned into the `data-action-target` attribute
-type    | string | Can be `button` (default), `link`, `input`, `submit`
-data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
+Option    | Type   | Description
+--------- | ------ | -------------------------------------------------------------
+class     | string | A space separated list of class names
+id        | string | A unique identifier, if required
+placement | string | Can be `top`, `left`, `bottom`, `right`
+target    | string | CSS Selector of the item to be removed, will be turned into the `data-action-target` attribute
+type      | string | Can be `button` (default), `link`, `input`, `submit`
+data-*    | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
 {% macro remove_button(options = {}) %}
 {% spaceless %}
-	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+    {% import _self as html %}
+    {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-	{{
-		_self.button(options|merge({
-			'class': 'remove-button ' ~ options.class|default,
-			'label': _self.icon('remove-sign'),
-			'type': options.type|default('button'),
-			'data-action': 'remove',
-			'data-action-target': options.target|default,
-			'data-placement': 'right',
-			'data-toggle': 'tooltips',
-			'data-title': options.tooltip|default('Remove this item')
-		}))
-	}}
+    {{
+        html.button(options|merge({
+            'class': 'remove-button ' ~ options.class|default,
+            'label': html.icon('remove-sign'),
+            'type': options.type|default('button'),
+            'data-action': 'remove',
+            'data-action-target': options.target|default,
+            'data-placement': options.placement|default('right'),
+            'data-toggle': 'tooltips',
+            'data-title': options.tooltip|default('Remove this item')
+        }))
+    }}
 
 {% endspaceless %}
 {% endmacro %}
-

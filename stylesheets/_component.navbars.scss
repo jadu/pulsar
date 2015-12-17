@@ -1,11 +1,11 @@
 .navbar {
-  background-color: $black;
+  background-color: color(black);
 
   a {
-    color: $inverse-link-color;
+    color: color(link, inverse);
 
     &:hover {
-      color: $inverse-link-hover-color;
+      color: color(link, inverse-hover);
     }
   }
 }

@@ -1,13 +1,10 @@
-{% import 'pulsar/v2/helpers/html.html.twig' as html %}
-{% import 'pulsar/v2/helpers/form.html.twig' as form %}
-{% import 'pulsar/helpers/flash.html.twig' as flash %}
-{% import 'pulsar/helpers/datagrid.html.twig' as datagrid %}
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{% import '@pulsar/pulsar/helpers/flash.html.twig' as flash %}
+{% import '@pulsar/pulsar/helpers/datagrid.html.twig' as datagrid %}
 
-<h2 class="heading">{{ heading|raw }}</h2>
-
-<div class="tab__inner tab--padded">
-
-	<h3>Simple Rich List</h3>
+{% block tab_content %}
 
 	<div class="richer-list">
 		<div class="richer-list__items-container">
@@ -160,5 +157,4 @@
 			<code><pre>&lt;div class="richer-list richer-list--tall richer-list--large"&gt;</pre></code>
 		</div>
 	</div>
-
-</div>
+{% endblock tab_content %}
