@@ -40,16 +40,6 @@
 	}
 }
 
-.nav-item {
-	&:not(.nav-item--header):not(.is-active):hover {
-		background-color: darken($nav-color-dark, 2.5%);
-	}
-
-	&.is-active {
-		background-color: darken($nav-color-dark, 5%);
-	}
-}
-
 .nav-tertiary {
 	.nav-item--header {
 		border-bottom: 1px solid #666;
