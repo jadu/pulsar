@@ -356,7 +356,7 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
 
 .jadu-branding {
     display: block;
-    margin: 22px 0 16px 0;
+    margin: 10px 0 4px 0;
     text-decoration: none;
 
     &.is-active {
@@ -420,6 +420,28 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
 
 .main {
     display: table-cell;
+}
+
+.jadu-logomark {
+    background: url($branding-navigation-fallback);
+    background: url($branding-navigation), linear-gradient(transparent, transparent);
+    background-size: $branding-navigation-width $branding-navigation-height;
+    background-repeat: no-repeat;
+    display: inline-block;
+    text-align: center;
+    height: $branding-navigation-height;
+    width: $branding-navigation-width;
+
+	// Support transparent PNG background images in IE8
+    @include ie-lte(8) {
+        filter: progid:DXImageTransform.Microsoft.gradient(
+            startColorstr=#00FFFFFF, endColorstr=#00FFFFFF
+        );
+    }
+}
+
+.jadu-wordmark {
+    display: none;
 }
 
 // IE8 fix for issue with open mobile nav being cut off

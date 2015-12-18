@@ -169,25 +169,6 @@ $toolbar-height-small:                ($line-height-base * 2) !default; // inclu
 $toolbar-internal-height:             ($toolbar-height - $toolbar-accent-height) !default;
 
 // -----------------------------------------------------------------------------
-//  Branding
-// -----------------------------------------------------------------------------
-
-$brand-image:                         $image-path + 'brand.png' !default;
-$brand-height:                        24px !default;
-$brand-width:                         75px !default;
-$brand-background-size:               100% !default;
-
-$branding-navigation:                 '../images/branding/logo-cms-white.svg' !default;
-$branding-navigation-fallback:        '../images/branding/logo-cms-white.png' !default;
-$branding-navigation-height:          50px !default;
-$branding-navigation-width:           50px !default;
-
-$branding-footer:                     '../images/branding/jadu-continuum-brandmark.svg' !default;
-$branding-footer-fallback:            '../images/branding/jadu-continuum-brandmark.png' !default;
-$branding-footer-height:              16px !default;
-$branding-footer-width:               127px !default;
-
-// -----------------------------------------------------------------------------
 //  Search
 // -----------------------------------------------------------------------------
 

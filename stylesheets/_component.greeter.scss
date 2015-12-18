@@ -83,7 +83,14 @@ $greeter-brand-bottom-height:           40px !default;
 \* -------------------------------------------------------------------------- */
 
 .greeter {
+  background-clip: border-box;
   background-color: $greeter-bg-color;
+  background-image: url($greeter-brand-top-image-fallback);
+  background-image: url($greeter-brand-top-image), linear-gradient(transparent, transparent);
+  background-size: $greeter-brand-top-width $greeter-brand-top-height;
+  background-position: 20px 20px;
+  background-origin: padding-box;
+  background-repeat: no-repeat;
   border-top-left-radius: 20px;
   border-bottom-right-radius: 20px;
   color: $greeter-text-color;
@@ -237,7 +244,7 @@ $greeter-brand-bottom-height:           40px !default;
 
 
   &__footer {
-    margin-top: 2em;
+    display: none;
   }
 
   &__brand-bottom {
