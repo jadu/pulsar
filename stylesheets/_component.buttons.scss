@@ -96,23 +96,24 @@
  * Mixin to theme button states
  */
 
-@mixin button-states($base, $alt-color: #000000, $disabled-fade: 5) {
-    $shadow-color: darken($base, 10%);
+@mixin button-states($state) {
 
-    background-color: $base;
+    $shadow-color: darken(color($state), 10);
+
+    background-color: color($state);
     box-shadow: 0 2px 0 $shadow-color;
-    color: $alt-color;
+    color: color($state, alt);
     position: relative;
 
     &:hover {
       box-shadow: 0 1px 0 $shadow-color;
-      color: $alt-color;
+      color: color($state, alt);
       top: 1px;
     }
 
     &:active,
     &.active {
-      background-color: darken($base, 5);
+      background-color: darken(color($state), 5);
       box-shadow: 0 0 0 $shadow-color;
       top: 2px;
     }
@@ -120,9 +121,9 @@
     &:disabled,
     &.is-disabled,
     &.disabled {
-      background-color: lighten($base, $disabled-fade);
-      box-shadow: 0 2px 0 lighten($shadow-color, $disabled-fade);
-      color: $gray;
+      background-color: color($state, light);
+      box-shadow: 0 2px 0 darken(color($state, light), 7);
+      color: pick_best_color(color($state), (#fff, color(gray, dark)));
     }
 }
 
@@ -136,11 +137,11 @@
 }
 
 .btn {
-    @include button-states(darken(color(white), 10%));
+    @include button-states('base');
 }
 
 .btn--primary {
-    @include button-states(color(primary), color(primary, alt), 30);
+    @include button-states('primary');
 
     .badge {
         background-color: $badge-primary-bg-darker;
@@ -149,7 +150,7 @@
 }
 
 .btn--success {
-    @include button-states(color(success), color(success, alt), 30);
+    @include button-states('success');
 
     .badge {
         background-color: $badge-success-bg-darker;
@@ -158,7 +159,7 @@
 }
 
 .btn--warning {
-    @include button-states(color(warning), color(warning, alt), 20);
+    @include button-states('warning');
 
     .badge {
         background-color: $badge-warning-bg-darker;
@@ -167,7 +168,7 @@
 }
 
 .btn--danger {
-    @include button-states(color(danger), color(danger, alt), 30);
+    @include button-states('danger');
 
     .badge {
         background-color: $badge-danger-bg-darker;
@@ -176,7 +177,7 @@
 }
 
 .btn--info {
-    @include button-states(color(info), color(info, alt), 10);
+    @include button-states('info');
 
     .badge {
         background-color: $badge-info-bg-darker;
@@ -185,7 +186,7 @@
 }
 
 .btn--inverse {
-    @include button-states(color(inverse), color(inverse, alt), 30);
+    @include button-states('inverse');
 
     .badge {
         background-color: $badge-inverse-bg-darker;

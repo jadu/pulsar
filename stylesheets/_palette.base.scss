@@ -88,32 +88,39 @@ $palette-alias: (
 
 $palette-states: (
     base: (
-        base: map-get(map-get($palette-monochromes, gray), lighter),
-        alt:  pick_best_color(map-get(map-get($palette-monochromes, gray), lighter), (#fff, #000))
+        base:  map-get(map-get($palette-monochromes, gray), lighter),
+        alt:   pick_best_color(map-get(map-get($palette-monochromes, gray), lighter), (#fff, #000)),
+        light: lighten(map-get(map-get($palette-monochromes, gray), lighter), 5)
     ),
     primary: (
-        base: #2575b0,
-        alt:  pick_best_color(#2575b0, (#fff, #000))
+        base:  #2575b0,
+        alt:   pick_best_color(#2575b0, (#fff, #000)),
+        light: lighten(#2575b0, 30)
     ),
-    success:     (
-        base: #297c46,
-        alt:  pick_best_color(#297c46, (#fff, #000))
+    success: (
+        base:  #297c46,
+        alt:   pick_best_color(#297c46, (#fff, #000)),
+        light: lighten(#297c46, 30)
     ),
-    warning:     (
-        base: #eaa96a,
-        alt:  pick_best_color(#eaa96a, (#fff, #000))
+    warning: (
+        base:  #eaa96a,
+        alt:   pick_best_color(#eaa96a, (#fff, #000)),
+        light: lighten(#eaa96a, 20)
     ),
-    danger:      (
-        base: #c84d40,
-        alt:  pick_best_color(#c84d40, (#fff, #000))
+    danger: (
+        base:  #c84d40,
+        alt:   pick_best_color(#c84d40, (#fff, #000)),
+        light: lighten(#c84d40, 30)
     ),
-    info:        (
-        base: map-get(map-get($palette-branding, jadu-blue), pale),
-        alt:  pick_best_color(map-get(map-get($palette-branding, jadu-blue), pale), (#fff, #000))
+    info: (
+        base:  map-get(map-get($palette-branding, jadu-blue), pale),
+        alt:   pick_best_color(map-get(map-get($palette-branding, jadu-blue), pale), (#fff, #000)),
+        light: lighten(map-get(map-get($palette-branding, jadu-blue), pale), 10)
     ),
-    inverse:     (
-        base: map-get(map-get($palette-monochromes, gray), darker),
-        alt:  pick_best_color(map-get(map-get($palette-monochromes, gray), darker), (#fff, #000))
+    inverse: (
+        base:  map-get(map-get($palette-monochromes, gray), darker),
+        alt:   pick_best_color(map-get(map-get($palette-monochromes, gray), darker), (#fff, #000)),
+        light: lighten(map-get(map-get($palette-monochromes, gray), darker), 30)
     )
 );
 
