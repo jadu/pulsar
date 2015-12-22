@@ -88,7 +88,7 @@ $palette-alias: (
 
 $palette-states: (
     base: (
-        base:  map-get(map-get($palette-monochromes, gray), lighter),
+        base:  map-get(map-get($palette-monochromes, gray), lightest),
         alt:   pick_best_color(map-get(map-get($palette-monochromes, gray), lighter), (#fff, #000)),
         light: lighten(map-get(map-get($palette-monochromes, gray), lighter), 5)
     ),
