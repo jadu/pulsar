@@ -16,11 +16,6 @@ $font-family-regular:                 'proxima_nova_rgregular', 'Helvetica Neue'
 $font-family-fallback:                'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
 $font-family-monospace:               'Courier New', 'Andale Mono', 'Consolas', monospace !default;
 
-@include ie-lte(7) {
-  $font-family-light:                 'Arial', sans-serif !default;
-  $font-family-regular:               'Arial', sans-serif !default;
-}
-
 // -----------------------------------------------------------------------------
 //  Typographic grid
 // -----------------------------------------------------------------------------
@@ -28,7 +23,9 @@ $font-family-monospace:               'Courier New', 'Andale Mono', 'Consolas', 
 $font-family-base:                    $font-family-light !default;
 
 @include ie-lte(8) {
-  $font-family-base:                  $font-family-regular !default;
+  $font-family-base:                  $font-family-fallback !default;
+  $font-family-light:                 $font-family-fallback !default;
+  $font-family-regular:               $font-family-fallback !default;
 }
 
 $font-size-base:                      16px !default;
