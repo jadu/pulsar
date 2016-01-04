@@ -29,8 +29,6 @@ fieldset {
     &.radio {
         border-radius: 0;
         border: 0;
-        height: 20px;
-        margin-top: 15px;
         padding: 0;
         vertical-align: top;
         width: 14px;
@@ -164,7 +162,8 @@ $inputs: (
 
     > [type="checkbox"],
     > [type="radio"] {
-        margin-top: 0;
+        height: auto;
+        vertical-align: baseline;
     }
 }
 
