@@ -14,7 +14,6 @@
     "browserify": "10.0.0",
     "browserify-shim": "^3.8.9",
     "chai": "latest",
-    "datatables": "latest",
     "grunt": "latest",
     "grunt-asciify": "latest",
     "grunt-autoprefixer": "latest",
@@ -44,11 +43,6 @@
     "sinon-chai": "latest",
     "time-grunt": "latest",
     "uglifyify": "^3.0.1"
-  },
-  "aliasify": {
-    "aliases": {
-      "datatables": "./libs/datatables/media/js/jquery.dataTables.min"
-    }
   },
   "browserify": {
     "transform": [

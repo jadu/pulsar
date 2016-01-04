@@ -11,7 +11,7 @@
   ],
   "dependencies": {
     "bootstrapx-clickover": "latest",
-    "datatables": "latest",
+    "datatables": "1.10.10",
     "datatables-responsive": "1.0.7",
     "font-awesome": "3.2.1",
     "html5shiv": "latest",
