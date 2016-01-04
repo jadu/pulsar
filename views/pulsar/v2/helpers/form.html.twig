@@ -113,6 +113,7 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
 					options
 						|exclude('class help label')
 						|defaults({'type': 'checkbox'})
+						|merge({'class': 'checkbox'})
 				)
 			]
 		})
@@ -172,7 +173,8 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
 	{%
 		set input = elem.input(options|merge({
 			'label': null,
-			'type': 'checkbox'
+			'type': 'checkbox',
+			'class': 'checkbox'
 		}))
 	%}
 
@@ -870,6 +872,7 @@ data-*   | string | Data attributes, eg: `'data-foo': 'bar'`
 				elem.input(options
 					|exclude('class help label')
 					|defaults({'type': 'radio'})
+					|merge({'class': 'radio'})
 				)
 			]
 		})
@@ -927,7 +930,8 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
 	{%
 		set input = elem.input(options|merge({
 				'label': null,
-				'type': 'radio'
+				'type': 'radio',
+				'class': 'radio'
 			})
 		)
 	%}
@@ -1019,6 +1023,7 @@ label    | string | Text for the `<label>` companion element
 			|defaults({
 				'type': 'radio'
 			})
+			|merge({'class': 'radio'})
 		)
 	}}
 	{{
