@@ -29,10 +29,9 @@ fieldset {
     &.radio {
         border-radius: 0;
         border: 0;
-        height: 24px;
+        height: auto;
         padding: 0;
-        vertical-align: top;
-        width: 14px;
+        vertical-align: middle;
     }
 
     &[type="file"],
