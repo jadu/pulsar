@@ -1,11 +1,11 @@
 <?php
 
-namespace Jadu\XFormsPro\Twig\Extension;
+namespace Jadu\Pulsar\Twig\Extension;
 
 use Twig_Extension;
 use Twig_SimpleFunction;
 
-class ConstantDefinedExtension extends Twig_Extension
+class ConstantDefinedExtension extends \Twig_Extension
 {
     public function getFunctions()
     {
