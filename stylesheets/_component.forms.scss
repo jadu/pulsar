@@ -54,6 +54,51 @@ fieldset {
     &.select {
         border: 1px solid $input-border;
         padding: 0 0 0 $padding-base-horizontal;
+
+        @include ie-lte(8) {
+            height: 24px;
+        }
+    }
+
+    // IE8 - position text in the middle of inputs
+    @at-root {
+        input[type="text"]#{&},
+        input[type="url"]#{&},
+        input[type="password"]#{&},
+        input[type="email"]#{&} {
+            @include ie-lte(8) {
+                line-height: 48px;
+            }
+        }
+    }
+
+    // IE8 - fix widths of inputs
+    @at-root {
+        .form__group input[type="text"]#{&} ,
+        .form__group input[type="url"]#{&},
+        .form__group input[type="password"]#{&},
+        .form__group input[type="email"]#{&},
+        .form__group select#{&},
+        .form__group textarea#{&} {
+            @include ie-lte(8) {
+                max-width: 100%;
+                width: 300px;
+            }
+        }
+    }
+
+    // IE8 - fix widths of inputs on form__group--full
+    @at-root {
+        .form__group--full input[type="text"]#{&} ,
+        .form__group--full input[type="url"]#{&},
+        .form__group--full input[type="password"]#{&},
+        .form__group--full input[type="email"]#{&},
+        .form__group--full select#{&},
+        .form__group--full textarea#{&} {
+            @include ie-lte(8) {
+                 width: 100%;
+            }
+        }
     }
 }
 

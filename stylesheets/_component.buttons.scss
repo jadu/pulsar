@@ -221,6 +221,16 @@
     vertical-align: top;
 }
 
+// IE8 fix btn--naked background and border
+.btn--naked,
+.btn--naked > .btn {
+    @include ie-lte(8) {
+        background: none;
+        border: none;
+        box-shadow: none;
+    }
+}
+
 .btn--naked.btn__group.open .dropdown__toggle {
     box-shadow: none;
 }
