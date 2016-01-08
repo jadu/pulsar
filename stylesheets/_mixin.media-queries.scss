@@ -10,7 +10,6 @@
 }
 
 @mixin respond-max($width) {
-    @debug $ie-version;
     @if $ie-version < 9 {
         @content;
     }
