@@ -29,3 +29,7 @@ $susy: (
         }
     }
 }
+
+.grid-col.grid-col--last {
+    @include last;
+}
