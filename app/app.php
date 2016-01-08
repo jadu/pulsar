@@ -8,6 +8,7 @@ require_once __DIR__ . '/' . $baseDir . 'vendor/autoload.php';
 use Jadu\Pulsar\Twig\Extension\ArrayExtension;
 use Jadu\Pulsar\Twig\Extension\AttributeParserExtension;
 use Jadu\Pulsar\Twig\Extension\ConfigExtension;
+use Jadu\Pulsar\Twig\Extension\ConstantDefinedExtension;
 use Jadu\Pulsar\Twig\Extension\RelativeTimeExtension;
 use Jadu\Pulsar\Twig\Extension\UrlParamsExtension;
 use Jadu\Pulsar\Twig\Extension\TabsExtension;
@@ -25,6 +26,7 @@ $twig = new Twig_Environment($loader,
 $twig->addExtension(new ArrayExtension());
 $twig->addExtension(new AttributeParserExtension());
 $twig->addExtension(new ConfigExtension($baseDir . 'pulsar.json'));
+$twig->addExtension(new ConstantDefinedExtension());
 $twig->addExtension(new RelativeTimeExtension());
 $twig->addExtension(new UrlParamsExtension($_GET));
 $twig->addExtension(new TabsExtension());
