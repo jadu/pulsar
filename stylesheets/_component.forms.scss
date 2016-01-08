@@ -72,7 +72,7 @@ fieldset {
         }
     }
 
-    // IE8 - fix widths of inputs
+    // IE8 - fix widths of inputs and add border/padding
     @at-root {
         .form__group input[type="text"]#{&} ,
         .form__group input[type="url"]#{&},
@@ -81,7 +81,9 @@ fieldset {
         .form__group select#{&},
         .form__group textarea#{&} {
             @include ie-lte(8) {
+                border: 1px solid $input-border;
                 max-width: 100%;
+                padding: 0 $padding-base-horizontal;
                 width: 300px;
             }
         }

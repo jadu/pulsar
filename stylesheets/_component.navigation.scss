@@ -50,6 +50,10 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
         width: auto;
     }
 
+    @include ie-lte(9) {
+        height: 49px;
+    }
+
     &__list {
         border-bottom: 1px solid color(border);
         display: inline-block;
@@ -73,10 +77,6 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
     &__item.is-active {
         border-bottom: 2px solid $nav-color-light;
         margin-bottom: -1px;
-
-        // @include respond-min($screen-desktop) {
-        //     border-bottom: 1px solid $nav-color-light;
-        // }
     }
 
     &__item.is-active > &__link {
