@@ -270,26 +270,6 @@ module.exports = function(grunt) {
             options: {
                 iconsPath: '/images/favicons/',
                 html: [ 'views/pulsar/components/favicons.html' ],
-                design: {
-                    ios: {
-                        pictureAspect: 'backgroundAndMargin',
-                        backgroundColor: '#ffffff',
-                        margin: '14%'
-                    },
-                    desktopBrowser: {},
-                    androidChrome: {
-                        pictureAspect: 'backgroundAndMargin',
-                        margin: '17%',
-                        backgroundColor: '#ffffff',
-                        themeColor: '#ffffff',
-                        manifest: {
-                            name: 'Continuum',
-                            display: 'browser',
-                            orientation: 'notSet',
-                            onConflict: 'override'
-                        }
-                    }
-                },
                 settings: {
                     scalingAlgorithm: 'Mitchell',
                     errorOnImageTooSmall: false
@@ -302,6 +282,24 @@ module.exports = function(grunt) {
                     iconsPath: '/images/favicons/cms/',
                     html: [ 'views/pulsar/components/favicons-cms.html' ],
                     design: {
+                        ios: {
+                            pictureAspect: 'backgroundAndMargin',
+                            backgroundColor: '#ffffff',
+                            margin: '14%'
+                        },
+                        desktopBrowser: {},
+                        androidChrome: {
+                            pictureAspect: 'backgroundAndMargin',
+                            margin: '17%',
+                            backgroundColor: '#ffffff',
+                            themeColor: '#ffffff',
+                            manifest: {
+                                name: 'Continuum',
+                                display: 'browser',
+                                orientation: 'notSet',
+                                onConflict: 'override'
+                            }
+                        },
                         windows: {
                             pictureAspect: 'whiteSilhouette',
                             backgroundColor: '#15a6d1',
@@ -321,6 +319,24 @@ module.exports = function(grunt) {
                     iconsPath: '/images/favicons/xfp/',
                     html: [ 'views/pulsar/components/favicons-xfp.html' ],
                     design: {
+                        ios: {
+                            pictureAspect: 'backgroundAndMargin',
+                            backgroundColor: '#ffffff',
+                            margin: '14%'
+                        },
+                        desktopBrowser: {},
+                        androidChrome: {
+                            pictureAspect: 'backgroundAndMargin',
+                            margin: '17%',
+                            backgroundColor: '#ffffff',
+                            themeColor: '#ffffff',
+                            manifest: {
+                                name: 'Continuum',
+                                display: 'browser',
+                                orientation: 'notSet',
+                                onConflict: 'override'
+                            }
+                        },
                         windows: {
                             pictureAspect: 'whiteSilhouette',
                             backgroundColor: '#80BA27',
@@ -340,6 +356,24 @@ module.exports = function(grunt) {
                     iconsPath: '/images/favicons/cxm/',
                     html: [ 'views/pulsar/components/favicons-cxm.html' ],
                     design: {
+                        ios: {
+                            pictureAspect: 'backgroundAndMargin',
+                            backgroundColor: '#ffffff',
+                            margin: '14%'
+                        },
+                        desktopBrowser: {},
+                        androidChrome: {
+                            pictureAspect: 'backgroundAndMargin',
+                            margin: '17%',
+                            backgroundColor: '#ffffff',
+                            themeColor: '#ffffff',
+                            manifest: {
+                                name: 'Continuum',
+                                display: 'browser',
+                                orientation: 'notSet',
+                                onConflict: 'override'
+                            }
+                        },
                         windows: {
                             pictureAspect: 'whiteSilhouette',
                             backgroundColor: '#54B9A9',
@@ -359,6 +393,24 @@ module.exports = function(grunt) {
                     iconsPath: '/images/favicons/cp/',
                     html: [ 'views/pulsar/components/favicons-cp.html' ],
                     design: {
+                        ios: {
+                            pictureAspect: 'backgroundAndMargin',
+                            backgroundColor: '#ffffff',
+                            margin: '14%'
+                        },
+                        desktopBrowser: {},
+                        androidChrome: {
+                            pictureAspect: 'backgroundAndMargin',
+                            margin: '17%',
+                            backgroundColor: '#ffffff',
+                            themeColor: '#ffffff',
+                            manifest: {
+                                name: 'Continuum',
+                                display: 'browser',
+                                orientation: 'notSet',
+                                onConflict: 'override'
+                            }
+                        },
                         windows: {
                             pictureAspect: 'whiteSilhouette',
                             backgroundColor: '#DC5172',
