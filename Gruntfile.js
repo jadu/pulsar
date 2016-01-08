@@ -268,8 +268,6 @@ module.exports = function(grunt) {
 
         realFavicon: {
             options: {
-                iconsPath: '/images/favicons/',
-                html: [ 'views/pulsar/components/favicons.html' ],
                 settings: {
                     scalingAlgorithm: 'Mitchell',
                     errorOnImageTooSmall: false
