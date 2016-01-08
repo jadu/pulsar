@@ -1,4 +1,8 @@
-tests = {
+require('../json')
+var store = require('../store')
+
+var tests = module.exports = {
+	output:null,
 	outputError:null,
 	assert:assert,
 	runFirstPass:runFirstPass,
@@ -7,9 +11,12 @@ tests = {
 }
 
 function assert(truthy, msg) {
+	tests.output('assert: '+msg)
 	if (!truthy) {
-		tests.outputError('bad assert: ' + msg);
-		if (store.disabled) { tests.outputError('<br>Note that store.disabled == true') }
+		if (store.disabled) {
+			msg += '\n(Note that store.disabled == true)'
+		}
+		tests.outputError('assert failed: ' + msg)
 		tests.failed = true
 	}
 }
@@ -85,10 +92,10 @@ function runFirstPass() {
 			'string'      : "Don't Panic",
 			'odd_string'  : "{ZYX'} abc:;::)))"
 		}
-		for (key in promoteValues) {
-			localStorage[key] = promoteValues[key]
+		for (var key in promoteValues) {
+			localStorage.setItem(key, promoteValues[key])
 		}
-		for (key in promoteValues) {
+		for (var key in promoteValues) {
 			assert(store.get(key) == promoteValues[key], key+" was not correctly promoted to valid JSON")
 			store.remove(key)
 		}

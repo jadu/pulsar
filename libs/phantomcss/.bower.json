@@ -1,12 +1,12 @@
 {
   "name": "phantomcss",
   "homepage": "https://github.com/Huddle/PhantomCSS",
-  "version": "0.11.0",
-  "_release": "0.11.0",
+  "version": "0.11.1",
+  "_release": "0.11.1",
   "_resolution": {
     "type": "version",
-    "tag": "v0.11.0",
-    "commit": "e477cec2e560bc90eb0ad3656626a30e59a155f5"
+    "tag": "v0.11.1",
+    "commit": "5ddcc62a07370de7896051ae3dcd85106b86cced"
   },
   "_source": "git://github.com/Huddle/PhantomCSS.git",
   "_target": "*",
