@@ -43,36 +43,36 @@
             }
         });
 
-        // Refresh datatables when tabs are switched, this fixes some layout issues
-        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-            $($.fn.dataTable.tables(true)).DataTable().columns.adjust().responsive.recalc();
-            console.log('!');
-        });
+        // // Refresh datatables when tabs are switched, this fixes some layout issues
+        // $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        //     $($.fn.dataTable.tables(true)).DataTable().columns.adjust().responsive.recalc();
+        //     console.log('!');
+        // });
 
-    	// var table = $('.datatable').DataTable({
-    	// 	dom: '<"dataTables_top"irf><"dataTables_actions"T>t<"dataTables_bottom"lp>',
-    	// 	aaSorting: [],
-    	// 	bAutoWidth: false,
-    	// 	columnDefs: [
-    	// 		{ "searchable": false, "targets": 0 },
-    	// 		{ "orderable": false, "targets": 0 }
-    	// 	],
-    	// 	oLanguage: {
-     //         sSearch: "Filter:"
-    	//     },
-    	// 	stateSave: false,
-     //        tableTools: {
-     //            sRowSelect: "multi",
-     //            sRowSelector: '.js-select',
-     //            aButtons: [
-     //            	{
-     //                    "sExtends":    "collection",
-     //                    "sButtonText": '<i class="icon-check-minus"></i>',
-     //                    "aButtons":    [ "select_all", "select_none" ]
-     //                }
-     //            ]
-     //        }
-    	// });
+        // var table = $('.datatable').DataTable({
+        //     dom: '<"dataTables_top"irf><"dataTables_actions"T>t<"dataTables_bottom"lp>',
+        //     aaSorting: [],
+        //     bAutoWidth: false,
+        //     columnDefs: [
+        //         { "searchable": false, "targets": 0 },
+        //         { "orderable": false, "targets": 0 }
+        //     ],
+        //     oLanguage: {
+        //      sSearch: "Filter:"
+        //     },
+        //     stateSave: false,
+        //     tableTools: {
+        //         sRowSelect: "multi",
+        //         sRowSelector: '.js-select',
+        //         aButtons: [
+        //             {
+        //                 "sExtends":    "collection",
+        //                 "sButtonText": '<i class="icon-check-minus"></i>',
+        //                 "aButtons":    [ "select_all", "select_none" ]
+        //             }
+        //         ]
+        //     }
+        // });
 
     });
 
