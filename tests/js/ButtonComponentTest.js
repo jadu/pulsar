@@ -12,13 +12,13 @@ describe('Button component', function() {
 			<input type="submit" class="js-submit-disable" value="disable me">\
 			<input type="submit" class="js-submit-disable is-disabled" disabled="disabled" value="disabled">\
 			<button class="js-submit-enable">enable me</button>\
-			<input type="submit" class="is-disabled qa-is-disabled" value="disabled">\
+			<input type="submit" class="is-disabled" value="disabled">\
 ').appendTo(this.$html);
 
 		this.$submitDisable = this.$html.find('.js-submit-disable:not(.is-disabled)');
 		this.$isDisabledSubmitDisabled = this.$html.find('.js-submit-disable.is-disabled');
 		this.$submitEnable = this.$html.find('.js-submit-enable');
-		this.$isDisabled = this.$html.find('.qa-is-disabled');
+		this.$isDisabled = this.$html.find('.is-disabled:not(.js-submit-disable)');
 
 		this.buttonComponent = new ButtonComponent(this.$html);
 
