@@ -277,7 +277,7 @@ module.exports = function(grunt) {
                 src: 'images/favicons/src/favicon-cms.svg',
                 dest: 'images/favicons/cms',
                 options: {
-                    iconsPath: '/images/favicons/cms/',
+                    iconsPath: '/jadu/bundles/pulsar/images/favicons/cms/',
                     html: [ 'views/pulsar/components/favicons-cms.html' ],
                     design: {
                         ios: {
