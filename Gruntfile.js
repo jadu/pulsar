@@ -214,6 +214,7 @@ module.exports = function(grunt) {
 
         clean: {
             dist: ['dist'],
+            favicons: ['views/pulsar/components/favicons-*.html'],
             smoketest: ['tmp/failures/*']
         },
 
@@ -457,6 +458,11 @@ module.exports = function(grunt) {
         'browserify:dist',
         'copy:dist',
         'emailBuilder',
+        'realFavicon'
+    ]);
+
+    grunt.registerTask('favicons', [
+        'clean:favicons',
         'realFavicon'
     ]);
 
