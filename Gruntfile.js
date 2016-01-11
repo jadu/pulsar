@@ -264,6 +264,163 @@ module.exports = function(grunt) {
             updateNpm: {
                 cmd: 'sudo npm install'
             }
+        },
+
+        realFavicon: {
+            options: {
+                settings: {
+                    scalingAlgorithm: 'Mitchell',
+                    errorOnImageTooSmall: false
+                }
+            },
+            cms: {
+                src: 'images/favicons/src/favicon-cms.svg',
+                dest: 'images/favicons/cms',
+                options: {
+                    iconsPath: '/images/favicons/cms/',
+                    html: [ 'views/pulsar/components/favicons-cms.html' ],
+                    design: {
+                        ios: {
+                            pictureAspect: 'backgroundAndMargin',
+                            backgroundColor: '#ffffff',
+                            margin: '14%'
+                        },
+                        desktopBrowser: {},
+                        androidChrome: {
+                            pictureAspect: 'backgroundAndMargin',
+                            margin: '17%',
+                            backgroundColor: '#ffffff',
+                            themeColor: '#ffffff',
+                            manifest: {
+                                name: 'Continuum',
+                                display: 'browser',
+                                orientation: 'notSet',
+                                onConflict: 'override'
+                            }
+                        },
+                        windows: {
+                            pictureAspect: 'whiteSilhouette',
+                            backgroundColor: '#15a6d1',
+                            onConflict: 'override'
+                        },
+                        safariPinnedTab: {
+                            pictureAspect: 'silhouette',
+                            themeColor: '#15a6d1'
+                        }
+                    }
+                }
+            },
+            xfp: {
+                src: 'images/favicons/src/favicon-xfp.svg',
+                dest: 'images/favicons/xfp',
+                options: {
+                    iconsPath: '/images/favicons/xfp/',
+                    html: [ 'views/pulsar/components/favicons-xfp.html' ],
+                    design: {
+                        ios: {
+                            pictureAspect: 'backgroundAndMargin',
+                            backgroundColor: '#ffffff',
+                            margin: '14%'
+                        },
+                        desktopBrowser: {},
+                        androidChrome: {
+                            pictureAspect: 'backgroundAndMargin',
+                            margin: '17%',
+                            backgroundColor: '#ffffff',
+                            themeColor: '#ffffff',
+                            manifest: {
+                                name: 'Continuum',
+                                display: 'browser',
+                                orientation: 'notSet',
+                                onConflict: 'override'
+                            }
+                        },
+                        windows: {
+                            pictureAspect: 'whiteSilhouette',
+                            backgroundColor: '#80BA27',
+                            onConflict: 'override'
+                        },
+                        safariPinnedTab: {
+                            pictureAspect: 'silhouette',
+                            themeColor: '#80BA27'
+                        }
+                    }
+                }
+            },
+            cxm: {
+                src: 'images/favicons/src/favicon-cxm.svg',
+                dest: 'images/favicons/cxm',
+                options: {
+                    iconsPath: '/images/favicons/cxm/',
+                    html: [ 'views/pulsar/components/favicons-cxm.html' ],
+                    design: {
+                        ios: {
+                            pictureAspect: 'backgroundAndMargin',
+                            backgroundColor: '#ffffff',
+                            margin: '14%'
+                        },
+                        desktopBrowser: {},
+                        androidChrome: {
+                            pictureAspect: 'backgroundAndMargin',
+                            margin: '17%',
+                            backgroundColor: '#ffffff',
+                            themeColor: '#ffffff',
+                            manifest: {
+                                name: 'Continuum',
+                                display: 'browser',
+                                orientation: 'notSet',
+                                onConflict: 'override'
+                            }
+                        },
+                        windows: {
+                            pictureAspect: 'whiteSilhouette',
+                            backgroundColor: '#54B9A9',
+                            onConflict: 'override'
+                        },
+                        safariPinnedTab: {
+                            pictureAspect: 'silhouette',
+                            themeColor: '#54B9A9'
+                        }
+                    }
+                }
+            },
+            cp: {
+                src: 'images/favicons/src/favicon-cp.svg',
+                dest: 'images/favicons/cp',
+                options: {
+                    iconsPath: '/images/favicons/cp/',
+                    html: [ 'views/pulsar/components/favicons-cp.html' ],
+                    design: {
+                        ios: {
+                            pictureAspect: 'backgroundAndMargin',
+                            backgroundColor: '#ffffff',
+                            margin: '14%'
+                        },
+                        desktopBrowser: {},
+                        androidChrome: {
+                            pictureAspect: 'backgroundAndMargin',
+                            margin: '17%',
+                            backgroundColor: '#ffffff',
+                            themeColor: '#ffffff',
+                            manifest: {
+                                name: 'Continuum',
+                                display: 'browser',
+                                orientation: 'notSet',
+                                onConflict: 'override'
+                            }
+                        },
+                        windows: {
+                            pictureAspect: 'whiteSilhouette',
+                            backgroundColor: '#DC5172',
+                            onConflict: 'override'
+                        },
+                        safariPinnedTab: {
+                            pictureAspect: 'silhouette',
+                            themeColor: '#DC5172'
+                        }
+                    }
+                }
+            }
         }
 
     });
@@ -299,7 +456,8 @@ module.exports = function(grunt) {
         'sass:dist_ie',
         'browserify:dist',
         'copy:dist',
-        'emailBuilder'
+        'emailBuilder',
+        'realFavicon'
     ]);
 
     grunt.registerTask('email-build', [
