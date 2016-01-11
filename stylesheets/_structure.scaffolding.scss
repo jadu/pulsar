@@ -28,6 +28,10 @@ body {
   overflow: hidden;
   position: relative;
   width: 100%;
+
+  @include ie-lte(8) {
+    overflow: visible;
+  }
 }
 
 // Links
