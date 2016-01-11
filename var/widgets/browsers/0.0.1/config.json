@@ -1,8 +1,0 @@
-{
-  "id": "widget_browsers",
-  "version": "0.0.1",
-  "twig": true,
-  "settings": {
-    "name": "Browser Usage"
-  }
-}
