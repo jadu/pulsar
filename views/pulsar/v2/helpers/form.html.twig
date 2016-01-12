@@ -458,7 +458,7 @@ class   | string | A space separated list of class names
             }}
         >
             {% for action in options.actions %}
-                {{- action -}}
+                {{- action|raw -}}
             {% endfor %}
         </div>
     {% endif %}
