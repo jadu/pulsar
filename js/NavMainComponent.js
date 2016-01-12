@@ -39,7 +39,8 @@ NavMainComponent.prototype.init = function() {
         component.changeActiveSecondaryNavLink($self);
     });
 
-    component.$closeLink.on('click', function() {
+    component.$closeLink.on('click', function(e) {
+        e.preventDefault();
         component.closeNavs();
     });
 };
