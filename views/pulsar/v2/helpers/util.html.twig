@@ -133,6 +133,15 @@
 {% endmacro %}
 
 
+{% macro required(required) %}
+{% spaceless %}
+    {% if required %}
+        &nbsp;<span rel="tooltip" data-toggle="tooltips" title="required">*</span>
+    {% endif  %}
+{% endspaceless %}
+{% endmacro %}
+
+
 {% macro type(value) %}
 {% spaceless %}
     {% if value is not empty %}
