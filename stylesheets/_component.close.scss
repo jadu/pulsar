@@ -4,11 +4,11 @@
   font-weight: bold;
   line-height: $line-height-base;
   color: color(black);
-
   opacity: .2;
+  text-decoration: none;
+
   &:hover {
     color: color(black);
-    text-decoration: none;
     cursor: pointer;
     opacity: .4;
   }
