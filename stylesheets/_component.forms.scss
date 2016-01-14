@@ -194,3 +194,10 @@ $inputs: (
     min-height: 44px;
     padding-top: 12px;
 }
+
+.required-indicator {
+    display: inline-block;
+    font-size: 1.2em;
+    text-align: center;
+    width: 10px;
+}

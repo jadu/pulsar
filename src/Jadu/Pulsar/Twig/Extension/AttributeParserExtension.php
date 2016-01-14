@@ -107,6 +107,14 @@ class AttributeParserExtension extends \Twig_Extension
 
 						// Only output the key if true, do nothing if false
 						if ($value) {
+
+							// Add ARIA property if 'required'
+							if ($key == 'required') {
+								$html[] = htmlspecialchars($key) . ' aria-required="true"';
+								break;
+							}
+
+							// Or just the key, by default
 							$html[] = htmlspecialchars($key);
 						}
 						break;
