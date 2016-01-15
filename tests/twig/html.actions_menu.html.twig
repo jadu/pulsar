@@ -1,0 +1,58 @@
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+
+<h1>html.actions_menu</h1>
+
+<pre>
+html.actions_menu({
+    'items': [
+        [
+            {
+                'label': 'Save',
+                'href': '/save',
+                'icon': 'save'
+            },
+            {
+                'label': 'Edit',
+                'href': '/edit',
+                'icon': 'pencil'
+            }
+        ],
+        [
+            {
+                'label': 'Delete',
+                'href': '/delete',
+                'icon': 'remove'
+            }
+        ]
+    ]
+</pre>
+
+{%
+    set output = html.actions_menu({
+        'items': [
+            [
+                {
+                    'label': 'Save',
+                    'href': '/save',
+                    'icon': 'save'
+                },
+                {
+                    'label': 'Edit',
+                    'href': '/edit',
+                    'icon': 'pencil'
+                }
+            ],
+            [
+                {
+                    'label': 'Delete',
+                    'href': '/delete',
+                    'icon': 'remove'
+                }
+            ]
+        ]
+    })
+ %}
+
+<pre>{{ output }}</pre>
+
+<pre>{{ output|e }}</pre>

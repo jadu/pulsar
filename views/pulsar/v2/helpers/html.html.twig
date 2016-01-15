@@ -1,5 +1,95 @@
 {# -----------------------------------------------------------------------------
 
+# Actions menu
+
+Accepts a nested array of options to be converted into `html.link()` elements
+and presented in a `html.button_dropdown()`.
+
+Nested groups will be separated by a `html.divider()` element.
+
+## Example usage
+
+```twig
+{{
+    html.actions_menu({
+        'items': [
+            [
+                {
+                    'label': 'one',
+                    'href': '/one'
+                },
+                {
+                    'label': 'two',
+                    'href': '/two'
+                }
+            ],
+            [
+                {
+                    'label': 'three',
+                    'href': '/three'
+                }
+            ]
+        ]
+    })
+}}
+```
+
+## Options
+
+Option | Type   | Description
+------ | ------ | --------------------------------------------------------------
+class  | string | CSS classes, space separated
+href   | string | The URL attribute
+icon   | string | An icon to place before the label
+id     | string | A unique identifier, if required
+label  | string | The link text label
+data-* | string | Data attributes, eg: `'data-foo': 'bar'`
+
+#}
+{% macro actions_menu(items = {}) %}
+{% spaceless %}
+    {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+
+    {% set actions = [] %}
+
+    {% if items is iterable %}
+        {% for item_groups in items %}
+            {% for item_group in item_groups %}
+                {% for item in item_group %}
+
+                    {%
+                        set actions = actions|merge([
+                            html.link(item)
+                        ])
+                    %}
+
+                {% endfor %}
+
+                {% if not loop.last %}
+                    {%
+                        set actions = actions|merge([
+                            html.divider()
+                        ])
+                    %}
+                {% endif %}
+
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
+
+    {{
+        html.button_dropdown({
+            'label': 'Actions',
+            'items': actions
+        })
+    }}
+
+{% endspaceless %}
+{% endmacro %}
+
+
+{# -----------------------------------------------------------------------------
+
 # Badge
 
 ## Example usage
@@ -428,22 +518,24 @@ Option | Type   | Description
 ------ | ------ | --------------------------------------------------------------
 class  | string | CSS classes, space separated
 href   | string | The URL attribute
+icon   | string | An icon to place before the label
 id     | string | A unique identifier, if required
 label  | string | The link text label
 data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
 {% macro link(options = {}) %}
-{% spaceless %}
+    {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-    <a
-        {{ attributes(options|exclude('label')) }}
-    >
+    <a {{ attributes(options|exclude('icon label')) }}>
+
+        {%- if options.icon is defined and options.icon is not empty -%}
+            {{- html.icon(options.icon) -}}&nbsp;
+        {%- endif -%}
+
         {{- options.label|default|raw -}}
     </a>
-
-{% endspaceless %}
 {% endmacro %}
 
 
