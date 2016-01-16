@@ -102,5 +102,12 @@ class AttributeParserExtensionTest extends \PHPUnit_Framework_TestCase
 		$this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn));
 	}
 
+	public function testRequiredAlsoAddsAriaRequired()
+	{
+		$dataIn = array('required' => true);
+		$dataOut = 'required aria-required="true"';
+		$this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn));
+	}
+
 
 }

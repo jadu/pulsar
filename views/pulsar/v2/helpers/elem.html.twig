@@ -82,17 +82,16 @@ name    | string | The name of this control
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
     {% if options.label is not empty %}
-        <label
-            {{
-                attributes(options
-                    |exclude('label')
-                    |defaults({
-                        'class': 'control__label'
-                    })
-                )
-            }}
-        >
+        <label {{
+            attributes(options
+                |exclude('label required')
+                |defaults({
+                    'class': 'control__label'
+                })
+            )
+        }}>
             {{- options.label|raw -}}
+            {{ util.required(options.required|default(false)) }}
         </label>
     {% endif %}
 
