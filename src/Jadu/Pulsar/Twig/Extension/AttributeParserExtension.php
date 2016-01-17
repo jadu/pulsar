@@ -94,28 +94,55 @@ class AttributeParserExtension extends \Twig_Extension
 
 		$html = array();
 
-		// Parse the attributes
-		foreach ($attributes as $key => $value) {
+		// If `class` is present, move it to the end of the attributes array so
+		// that classes can be added based on the presence of other attributes
+		if (array_key_exists('class', $attributes)) {
+			$class = $attributes['class'];
+			unset($attributes['class']);
+			$attributes['class'] = $class;
+		}
 
-			// only work with non-empty, non-array values, or zero as a string
+		// Parse the attributes
+		foreach ($attributes as $key => &$value) {
+
+			// Only work with non-empty, non-array values, or zero as a string
 			if ((!empty($value) && !is_array($value)) || $value === '0') {
 
-				// booleans should only output the key, everything else should
+				// Booleans should only output the key, everything else should
 				// be key="value"
 				switch (is_bool($value)) {
 					case true:
 
 						// Only output the key if true, do nothing if false
 						if ($value) {
-
-							// Add ARIA property if 'required'
-							if ($key == 'required') {
-								$html[] = htmlspecialchars($key) . ' aria-required="true"';
-								break;
-							}
-
-							// Or just the key, by default
 							$html[] = htmlspecialchars($key);
+
+							// Add extra things based on certain properties, but
+							// always check whether they've already been supplied
+							if ($key == 'required') {
+
+								// Add ARIA property
+								$html[] = 'aria-required="true"';
+							}
+							else if ($key == 'disabled') {
+								$disabledClass = '';
+
+								if (!array_key_exists('class', $attributes)) {
+
+									// Simply add disabled class as a string if it doesn't exist
+									$html[] = 'class="is-disabled"';
+								}
+								else if (strpos($attributes['class'], 'is-disabled') === false) {
+
+									// Merge with existing classes if they exist;
+									// Classes have been moved to the end of the
+									// array so they can be processed last
+    								$attributes['class'] .= ' is-disabled';
+								}
+
+								// Add ARIA property
+								$html[] = 'aria-disabled="true"';
+							}
 						}
 						break;
 					default:

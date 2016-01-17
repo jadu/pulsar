@@ -105,9 +105,43 @@ class AttributeParserExtensionTest extends \PHPUnit_Framework_TestCase
 	public function testRequiredAlsoAddsAriaRequired()
 	{
 		$dataIn = array('required' => true);
-		$dataOut = 'required aria-required="true"';
-		$this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn));
+		$dataOut = 'aria-required="true"';
+		$this->assertContains($dataOut, $this->ext->parseAttributes($dataIn));
 	}
 
+	public function testDisabledAddsAriaDisabled()
+	{
+		$dataIn = array('disabled' => true);
+		$dataOut = 'aria-disabled="true"';
+		$this->assertContains($dataOut, $this->ext->parseAttributes($dataIn));
+	}
+
+	public function testDisabledAddsDisabledClass()
+	{
+		$dataIn = array('disabled' => true);
+		$dataOut = 'class="is-disabled"';
+		$this->assertContains($dataOut, $this->ext->parseAttributes($dataIn));
+	}
+
+	public function testDisabledMergesDisabledClassToExistingClasses()
+	{
+		$dataIn = array('disabled' => true, 'class' => 'foo');
+		$dataOut = 'class="foo is-disabled"';
+		$this->assertContains($dataOut, $this->ext->parseAttributes($dataIn));
+	}
+
+	public function testDisabledOnlyAddsDisabledClassOnce()
+	{
+		$dataIn = array('disabled' => true, 'class' => 'is-disabled');
+		$dataOut = 'class="is-disabled"';
+		$this->assertContains($dataOut, $this->ext->parseAttributes($dataIn));
+	}
+
+	public function testDisabledOnlyMergesDisabledClassOnce()
+	{
+		$dataIn = array('disabled' => true, 'class' => 'foo is-disabled');
+		$dataOut = 'class="foo is-disabled"';
+		$this->assertContains($dataOut, $this->ext->parseAttributes($dataIn));
+	}
 
 }
