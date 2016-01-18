@@ -131,7 +131,7 @@ class AttributeParserExtension extends \Twig_Extension
             }
         }
 
-        // re-stringify the classes array, as long as we have some
+        // Re-stringify the classes array, as long as we have some
         if (!empty($classes)) {
         	$html[] = ' class="' . implode(' ', array_unique($classes)) . '"';
         }
