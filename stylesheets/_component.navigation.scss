@@ -238,7 +238,7 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
         height: 72px;
         font-family: $font-family-regular;
         font-size: .75em;
-        line-height: 2.25em;
+        line-height: 1em;
         max-width: 75px;
         padding: 16px 5px 0 5px;
         position: relative;
@@ -250,6 +250,7 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
         color: white;
         display: block;
         font-size: 1.5em;
+        margin-bottom: 7px;
         width: 100%;
     }
 
