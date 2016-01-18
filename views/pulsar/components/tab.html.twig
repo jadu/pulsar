@@ -3,15 +3,33 @@
 {% import '@pulsar/pulsar/v2/helpers/flash.html.twig' as flash %}
 
 {% set _sidebar = block('tab_sidebar') %}
+{% set _actions_left = block('actions_left') %}
+{% set _actions_right = block('actions_right') %}
 <div class="tab__container">
-	<div class="tab__inner">
-		<div class="tab__content">
-			{% block tab_content %}{% endblock %}
-		</div>
-		{% if _sidebar is not empty %}
-		<div class="tab__sidebar">
-			{{ _sidebar|raw }}
-		</div>
-		{% endif %}
-	</div>
+
+    {% if _actions_left is not empty or _actions_right is not empty %}
+    <div class="actionsbar">
+        {% if _actions_left is not empty %}
+        <div class="float--left">
+            {{ _actions_left|raw }}
+        </div>
+        {% endif %}
+        {% if _actions_right is not empty %}
+        <div class="float--right">
+            {{ _actions_right|raw }}
+        </div>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    <div class="tab__inner">
+        <div class="tab__content">
+            {% block tab_content %}{% endblock %}
+        </div>
+        {% if _sidebar is not empty %}
+        <div class="tab__sidebar">
+            {{ _sidebar|raw }}
+        </div>
+        {% endif %}
+    </div>
 </div>
