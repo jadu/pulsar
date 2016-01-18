@@ -94,13 +94,10 @@ class AttributeParserExtension extends \Twig_Extension
 
         $html = array();
 
-        // If `class` is present, move it to the end of the attributes array so
-        // that classes can be added based on the presence of other attributes
-        if (array_key_exists('class', $attributes)) {
-            $class = $attributes['class'];
-            unset($attributes['class']);
-            $attributes['class'] = $class;
-        }
+        // As classes can be supplied as a string, we'll' switch them to an
+        // array to allow us to add new classes based on other attributes
+        $classes = isset($attributes['class']) ? explode(' ', $attributes['class']) : array();
+		unset($attributes['class']);
 
         // Parse the attributes
         foreach ($attributes as $key => &$value) {
@@ -117,31 +114,13 @@ class AttributeParserExtension extends \Twig_Extension
                         if ($value) {
                             $html[] = htmlspecialchars($key);
 
-                            // Add extra things based on certain properties, but
-                            // always check whether they've already been supplied
+                            // Add extra attributes based on certain properties
                             if ($key == 'required') {
-
-                                // Add ARIA property
                                 $html[] = 'aria-required="true"';
                             }
                             else if ($key == 'disabled') {
-                                $disabledClass = '';
-
-                                if (!array_key_exists('class', $attributes)) {
-
-                                    // Simply add disabled class as a string if it doesn't exist
-                                    $html[] = 'class="is-disabled"';
-                                }
-                                else if (strpos($attributes['class'], 'is-disabled') === false) {
-
-                                    // Merge with existing classes if they exist;
-                                    // Classes have been moved to the end of the
-                                    // array so they can be processed last
-                                    $attributes['class'] .= ' is-disabled';
-                                }
-
-                                // Add ARIA property
                                 $html[] = 'aria-disabled="true"';
+                                $classes[] = 'is-disabled';
                             }
                         }
                         break;
@@ -150,6 +129,11 @@ class AttributeParserExtension extends \Twig_Extension
                         break;
                 }
             }
+        }
+
+        // re-stringify the classes array, as long as we have some
+        if (!empty($classes)) {
+        	$html[] = ' class="' . implode(' ', array_unique($classes)) . '"';
         }
 
         return implode(' ', $html);
