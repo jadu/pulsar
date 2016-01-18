@@ -31,6 +31,7 @@ var $          = require('jquery'),
     MasterSwitchComponent = require('./MasterSwitchComponent'),
     NavMainComponent = require('./NavMainComponent'),
     PulsarFormComponent = require('./PulsarFormComponent'),
+    PulsarUIComponent = require('./PulsarUIComponent'),
     SignInComponent = require('./area/signin/signin');
 
 module.exports = {
@@ -39,6 +40,7 @@ module.exports = {
     MasterSwitchComponent: MasterSwitchComponent,
     NavMainComponent: NavMainComponent,
     PulsarFormComponent: PulsarFormComponent,
+    PulsarUIComponent: PulsarUIComponent,
     SignInComponent: SignInComponent,
     svgeezy: svgeezy
 };
