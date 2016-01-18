@@ -21,27 +21,25 @@ fieldset {
 
 .form__control {
     border-radius: $input-border-radius;
+    border: 1px solid $input-border;
     height: $input-height-base;
+    padding: 0 $padding-base-horizontal;
 
     &.checkbox,
     &.radio {
-        border: 0 !important;
-        height: 16px;
-        padding: 0 !important;
-        vertical-align: top;
+        border-radius: 0;
+        border: 0;
+        height: auto;
+        padding: 0;
+        vertical-align: middle;
     }
 
-    &.checkbox {
-        margin-top: 4px;
-    }
-
+    &[type="file"],
+    &.select,
+    &.checkbox,
     &.radio {
-        margin-top: 3px;
-    }
-
-    &:not([type="file"]):not(select) {
-        border: 1px solid $input-border;
-        padding: 0 $padding-base-horizontal;
+        border: 0;
+        padding: 0;
     }
 
     &.textarea {
@@ -211,7 +209,8 @@ $inputs: (
 
     > [type="checkbox"],
     > [type="radio"] {
-      height: auto;
+        height: auto;
+        vertical-align: baseline;
     }
 }
 
