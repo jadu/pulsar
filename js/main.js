@@ -10,6 +10,7 @@
     pulsar.button       = new pulsar.ButtonComponent($html);
     pulsar.flash        = new pulsar.FlashMessageComponent($html);
     pulsar.pulsarForm   = new pulsar.PulsarFormComponent($html);
+    pulsar.pulsarUI     = new pulsar.PulsarUIComponent($html);
     pulsar.signIn       = new pulsar.SignInComponent($html);
     pulsar.masterSwitch = new pulsar.MasterSwitchComponent($html);
     pulsar.navMain      = new pulsar.NavMainComponent($html);
@@ -19,6 +20,7 @@
         pulsar.button.init();
         pulsar.flash.init();
         pulsar.pulsarForm.init();
+        pulsar.pulsarUI.init();
         pulsar.signIn.init();
         pulsar.masterSwitch.init();
         pulsar.navMain.init();
