@@ -19,12 +19,12 @@ var $          = require('jquery'),
     tooltip    = require('./tooltip'),
 
     clickover  = require('../libs/bootstrapx-clickover/js/bootstrapx-clickover'),
-    // datatables = require('../libs/datatables/media/js/jquery.dataTables.min'),
-    // responsive = require('../libs/datatables-responsive/js/dataTables.responsive'),
     svgeezy    = require('../libs/svgeezy/svgeezy.min'),
     select2    = require('../libs/select2/dist/js/select2.min'),
-    // TableTools = require('../libs/datatables-tabletools/js/dataTables.tableTools'),
     toggles    = require('../libs/jquery-toggles/toggles.min'),
+
+    dt            = require('../node_modules/datatables.net')(window, $),
+    dt_responsive = require('../node_modules/datatables.net-responsive')(window, $),
 
     ButtonComponent = require('./ButtonComponent'),
     FlashMessageComponent = require('./FlashMessageComponent'),

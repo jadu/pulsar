@@ -14,6 +14,8 @@
     "browserify": "10.0.0",
     "browserify-shim": "^3.8.9",
     "chai": "latest",
+    "datatables.net-dt": "^1.10.10",
+    "datatables.net-responsive-dt": "^2.0.0",
     "grunt": "latest",
     "grunt-asciify": "latest",
     "grunt-autoprefixer": "latest",
