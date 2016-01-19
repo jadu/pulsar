@@ -329,28 +329,34 @@ will be created automatically after the `<form>` element, and the `method` attri
 #}
 {% macro create(options = {}) %}
 {% spaceless %}
+    {% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-    {% set defaults = { 'class': 'form' } %}
+    {% set defaults = {'class': 'form'} %}
+
+    {% if options.method is defined and options.method|upper == 'PUT' %}
+        {% set methodInput = form.hidden({'name': '_method', 'value': 'PUT'}) %}
+    {% endif %}
 
     {%
         if options.method is not defined
         or options.method is empty
+        or options.method|upper == 'PUT'
     %}
-        {% set defaults = defaults|merge({'method': 'POST'}) %}
+        {% set options = options|merge({'method': 'POST'}) %}
     {% endif %}
 
     {%
-        if options.enctype is defined
-        and options.enctype is not empty
-        and options.method == 'POST'
+        if options.method is defined
+        and options.method is not empty
+        and (options.method|upper == 'POST')
     %}
-        {% set defaults = defaults|merge({'enctype': options.enctype|default('application/x-www-form-urlencoded')}) %}
+        {% set options = options|merge({'enctype': options.enctype|default('application/x-www-form-urlencoded')}) %}
     {% endif %}
 
-    <form
-        {{ attributes(options|defaults(defaults)) }}
-    >
+    <form {{ attributes(options|defaults(defaults)) }}>
+
+    {{ methodInput|default }}
 
 {% endspaceless %}
 {% endmacro %}
