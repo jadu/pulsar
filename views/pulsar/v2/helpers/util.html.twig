@@ -153,8 +153,6 @@
 
 {% macro value(value) %}
 {% spaceless %}
-    {% if value is not empty %}
-        value="{{ value }}"
-    {% endif  %}
+    value="{{ value|default }}"
 {% endspaceless %}
 {% endmacro %}
