@@ -7,6 +7,8 @@
 
     var $html = $('html');
 
+    $html.removeClass('no-js');
+
     pulsar.button       = new pulsar.ButtonComponent($html);
     pulsar.flash        = new pulsar.FlashMessageComponent($html);
     pulsar.helpText     = new pulsar.HelpTextComponent($html, window, document);
