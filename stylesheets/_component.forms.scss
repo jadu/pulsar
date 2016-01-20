@@ -80,6 +80,12 @@ fieldset {
     }
 }
 
+.modal .form__actions {
+    border: none;
+    min-height: 37px;
+    padding: 0;
+}
+
 .checkbox-group,
 .radio-group {
     .control__label {
