@@ -9,6 +9,10 @@
 		display: table-cell;
 		width: 25%;
 	}
+
+	.no-js & {
+		padding: 0;
+	}
 }
 
 // possibly redundant
@@ -41,15 +45,11 @@
 	color: color(gray, dark);
 	line-height: 20px;
 
-	@include respond-min($screen-desktop) {
-		color: $gray-dark;
-	}
-
 	.no-js & {
-		color: $gray-dark;
+		display: none;
 	}
 
-	.open-help & {
+	.tab-help-container & {
 		color: color(white);
 	}
 }
