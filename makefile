@@ -8,6 +8,7 @@ BREW = $(shell which brew)
 BOWER = $(shell which bower)
 GRUNT = $(shell which grunt)
 NODE = $(shell which node)
+IMAGEMAGICK = $(shell which convert)
 PHANTOMJS = $(shell which phantomjs)
 XCODE = $(shell pkgutil --pkg-info=com.apple.pkg.CLTools_Executables)
 
@@ -65,6 +66,14 @@ else
 	@ echo "Grunt is already installed."
 endif
 	@ npm install
+	@ echo "\n${CHECK} Done"
+
+	@ echo "${HR}\nInstalling ImageMagick...${HR}\n"
+ifeq (${IMAGEMAGICK}, )
+	brew install imagemagick
+else
+	@ echo "ImageMagick is already installed."
+endif
 	@ echo "\n${CHECK} Done"
 
 	@ echo "${HR}\nInstalling Git hooks...${HR}"

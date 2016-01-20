@@ -94,3 +94,7 @@
     border-bottom-color: $tooltip-arrow-color;
   }
 }
+
+div[data-toggle="tooltips"] {
+    display: inline-block;
+}

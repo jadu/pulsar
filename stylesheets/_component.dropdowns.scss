@@ -87,7 +87,7 @@
 
 // Hover/Focus state
 // -----------
-.dropdown__menu > li > a {
+.dropdown__menu > li > a:not(.is-disabled) {
   &:hover,
   &:focus,
   &.active {

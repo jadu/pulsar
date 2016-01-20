@@ -1,9 +1,0 @@
-{
-  "id": "widget_admins",
-  "version": "0.0.1",
-  "twig": true,
-  "settings": {
-      "name": "Administrators",
-      "grid-span": 4 
-  }
-}

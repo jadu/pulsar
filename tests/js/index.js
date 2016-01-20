@@ -23,6 +23,7 @@ require('./tabbedLayoutTest');
 require('./ButtonComponentTest.js');
 require('./FlashMessageComponentTest.js');
 require('./PulsarFormComponentTest.js');
+require('./PulsarUIComponentTest.js');
 // require('./signinTest');
 //require('./MasterSwitchComponentTest');
 

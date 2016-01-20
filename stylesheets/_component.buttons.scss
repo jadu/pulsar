@@ -123,7 +123,7 @@
     &.disabled {
       background-color: color($state, light);
       box-shadow: 0 2px 0 darken(color($state, light), 7);
-      color: pick_best_color(color($state), (#fff, color(gray, dark)));
+      color: pick_best_color(color($state, light), (#fff, color(gray, dark)));
     }
 }
 

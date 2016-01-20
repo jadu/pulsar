@@ -133,6 +133,15 @@
 {% endmacro %}
 
 
+{% macro required(required) %}
+{% spaceless %}
+    {% if required %}
+        &nbsp;<span class="required-indicator" rel="tooltip" data-toggle="tooltips" title="required">*</span>
+    {% endif  %}
+{% endspaceless %}
+{% endmacro %}
+
+
 {% macro type(value) %}
 {% spaceless %}
     {% if value is not empty %}
@@ -144,8 +153,6 @@
 
 {% macro value(value) %}
 {% spaceless %}
-    {% if value is not empty %}
-        value="{{ value }}"
-    {% endif  %}
+    value="{{ value|default }}"
 {% endspaceless %}
 {% endmacro %}

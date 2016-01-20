@@ -1,31 +1,32 @@
-These steps detail how you can run Pulsar UI completely independently of a Jadu product.
+# About Pulsar
 
-## Requirements
+Pulsar is the User Experience and Interface framework for [Jadu](http://jadu.net) software.
 
-### OSX Mavericks or above (or manual install of PHP 5.4.0+)
+Documentations is available online at: [jadu.gitbooks.io](https://jadu.gitbooks.io/pulsar/).
 
-Pulsar creates its own development server to run the documentation and to compile the stylesheets, if you're running Mountain Lion you will need to install PHP 5.4.0+, [This article](http://php-osx.liip.ch) shows how to install the latest version of PHP as `/usr/local/php5/bin/php`. This path is defined in `Gruntfile.js`.
+> Pulsar is a robust user interface framework with a collection of patterns, helpers and a user-focused design process with documented best practices that will help you to make beautiful user interfaces and amazing user experiences.
 
-----
+The Pulsar framework is included in the following Jadu products:
 
-## Pulsar repository
+| Product      | Major Pulsar version |
+| ------------ | -------------------- |
+| Jadu CXM     | 4                    |
+| Jadu CMS     | 4                    |
+| Jadu XFP     | 4                    |
 
-Pulsar uses Git and the source is published to [GitLab](https://gitlab.hq.jadu.net/pulsar/pulsar-ui), you are free to clone and [fork](https://gitlab.hq.jadu.net/pulsar/pulsar-ui/fork) this repository as needed, please submit any changes as a [merge request](https://gitlab.hq.jadu.net/pulsar/pulsar-ui/merge_requests).
+## UI Goals
+* Improve code quality and consistency
+* Enable developers to prototype in hours, not days
+* Allow the continual release of UI improvements
+* Provide a common UI language to help new developers learn our lingo
+* Provide a starting point to redesign older parts of the software
+* Improve performance
+* Make our interfaces more testable
 
-Repository URL: [https://gitlab.hq.jadu.net/pulsar/pulsar-ui](https://gitlab.hq.jadu.net/pulsar/pulsar-ui)
-
-----
-
-## Installing required packages & libraries
-
-Pulsar requires some additional packages to be installed before it'll work, you can install all dependencies by typing the following command in the pulsar directory:
-
-    $ make
-
-(Make can be installed via xCode)
-
-You can define new composer packages to be installed in `composer.json` and new front-end libraries in `bower.json`, re-running the make command will bring these into Pulsar. You can reverse the make process by using:
-
-    $ sudo make clean
-
-These dependencies should be committed to the Pulsar repository, for more information [read this article](http://addyosmani.com/blog/checking-in-front-end-dependencies/).
+## UX Goals
+* Make the users of our software happier
+* Make the people designing Jadu interfaces happier
+* Learn how our customers use our software
+* Learn what our customers need (not necessarily what they ask for) so that we can build the right thing
+* Reduce the complexity of the tasks our customers need to perform
+* Define clear, understandable guidelines for developers to build awesome things

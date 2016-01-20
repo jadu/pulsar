@@ -69,8 +69,6 @@ fieldset {
 .form__actions {
     border-top: 1px solid color(border);
     box-shadow: none;
-    margin-left: -20px;
-    margin-right: -20px;
     min-height: 60px;
     padding: $line-height-base 0;
     position: relative;
@@ -193,4 +191,11 @@ $inputs: (
     margin-bottom: 0;
     min-height: 44px;
     padding-top: 12px;
+}
+
+.required-indicator {
+    display: inline-block;
+    font-size: 1.2em;
+    text-align: center;
+    width: 10px;
 }

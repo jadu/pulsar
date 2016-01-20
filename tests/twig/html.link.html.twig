@@ -1,0 +1,21 @@
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+
+<h1>html.link</h1>
+
+<pre>
+html.link({
+    'label': 'foo',
+    'href': '/foo'
+})
+</pre>
+
+{%
+    set output = html.link({
+        'label': 'foo',
+        'href': '/foo'
+    })
+ %}
+
+{{ output }}
+
+<pre>{{ output|e }}</pre>

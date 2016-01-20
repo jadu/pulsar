@@ -73,3 +73,8 @@ $danger-to-text-color: black;
         background-color: #fff;
     }
 }
+
+body a.is-disabled {
+    color: color(link, disabled);
+    cursor: not-allowed;
+}
