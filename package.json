@@ -1,6 +1,6 @@
 {
   "name": "pulsar",
-  "version": "3.7.2",
+  "version": "4.1.0",
   "repository": {
     "type": "git",
     "url": "git@bitbucket.org:Stanton/pulsar.git"
@@ -14,10 +14,11 @@
     "browserify": "10.0.0",
     "browserify-shim": "^3.8.9",
     "chai": "latest",
-    "datatables": "latest",
+    "datatables.net-dt": "^1.10.10",
+    "datatables.net-responsive-dt": "^2.0.0",
     "grunt": "latest",
     "grunt-asciify": "latest",
-    "grunt-autoprefixer": "^3.0.3",
+    "grunt-autoprefixer": "latest",
     "grunt-browserify": "latest",
     "grunt-bump": "latest",
     "grunt-contrib-clean": "latest",
@@ -32,7 +33,8 @@
     "grunt-mailgun": "^1.0.1",
     "grunt-mocha": "latest",
     "grunt-notify": "latest",
-    "grunt-phpunit": "latest",
+    "grunt-phpunit": "^0.3.6",
+    "grunt-real-favicon": "^0.1.3",
     "grunt-sass": "latest",
     "jquery": "1.x",
     "jsdom": "latest",
@@ -40,23 +42,15 @@
     "minifyify": "^6.3.0",
     "mocha": "latest",
     "mocha-phantomjs": "latest",
-    "phantomjs": "^1.9.18",
     "sinon": "latest",
     "sinon-chai": "latest",
     "time-grunt": "latest",
     "uglifyify": "^3.0.1"
   },
-  "aliasify": {
-    "aliases": {
-      "datatables": "./libs/datatables/media/js/jquery.dataTables.min",
-      "footable": "./libs/footable/js/footable"
-
-    }
-  },
   "browserify": {
     "transform": [
-        "aliasify",
-        "browserify-shim"
+      "aliasify",
+      "browserify-shim"
     ]
   },
   "browserify-shim": {

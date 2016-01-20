@@ -10,11 +10,22 @@ ButtonComponent.prototype.init = function () {
 
 	var component = this;
 
+	component.$html.on('click', '.is-disabled', component.isDisabled);
+
 	component.$html.on('click', '.js-submit-disable', component.submitDisable);
 
 	component.$html.on('click', '.js-submit-enable', function(e) {
 		component.submitEnable();
 	});
+};
+
+/**
+ * Prevent a disabled button from opening links or modals
+ */
+ButtonComponent.prototype.isDisabled = function (e) {
+
+	e.preventDefault();
+	e.stopPropagation();
 };
 
 /**

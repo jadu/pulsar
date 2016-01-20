@@ -1,3 +1,7 @@
+.container {
+    height: 100%;
+}
+
 .content-main {
     position: relative;
     display: table;
@@ -84,6 +88,10 @@
 
 .lt-ie10.open-help .inner-wrapper {
     left: -300px;
+}
+
+.lt-ie10 .open-nav .inner-wrapper {
+    left: 75px;
 }
 
 .tabs__content {

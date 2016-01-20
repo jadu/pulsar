@@ -5,49 +5,51 @@
 
 {% block tab_content %}
 
-	{{
-        form.create()
-    }}
+    <div class="masterswitch">
+    	{{
+            form.create()
+        }}
 
-    <div class="form__group masterswitch-control">
-        <label class="control__label">Enable masterswitch content</label>
-        <div class="controls">
-            <div class="toggle"></div>
-            <input type="checkbox" class="hide">
+        <div class="form__group masterswitch-control">
+            <label class="control__label">Enable masterswitch content</label>
+            <div class="controls">
+                <div class="toggle"></div>
+                <input type="checkbox" class="hide">
+            </div>
         </div>
+
+        <hr />
+
+        <section class="masterswitch-content is-disabled">
+
+            <p>This content should be disabled until the masterswitch is turned on.</p>
+
+            {{
+                form.text({
+                    'label': 'Text input',
+                    'id': 'inputText',
+                    'name': 'inputText',
+                    'placeholder': 'Placeholder'
+                })
+        	}}
+
+    		{{
+                form.end({
+                    'class': 'form__actions--flush',
+                    'actions': [
+                        html.button({
+                            'label': 'Save Changes',
+                            'class': 'btn--primary'
+                        }),
+                        html.button({
+                            'label': 'Cancel',
+                            'class': 'btn--naked'
+                        })
+                    ]
+                })
+            }}<!--
+     --></section>
     </div>
-
-    <hr />
-
-    <section class="masterswitch-content is-disabled">
-
-        <p>This content should be disabled until the masterswitch is turned on.</p>
-
-        {{
-            form.text({
-                'label': 'Text input',
-                'id': 'inputText',
-                'name': 'inputText',
-                'placeholder': 'Placeholder'
-            })
-    	}}
-
-		{{
-            form.end({
-                'class': 'form__actions--flush',
-                'actions': [
-                    html.button({
-                        'label': 'Save Changes',
-                        'class': 'btn--primary'
-                    }),
-                    html.button({
-                        'label': 'Cancel',
-                        'class': 'btn--naked'
-                    })
-                ]
-            })
-        }}<!--
- --></section>
 
 {% endblock tab_content %}
 

@@ -12,11 +12,13 @@ describe('Button component', function() {
 			<input type="submit" class="js-submit-disable" value="disable me">\
 			<input type="submit" class="js-submit-disable is-disabled" disabled="disabled" value="disabled">\
 			<button class="js-submit-enable">enable me</button>\
+			<input type="submit" class="is-disabled" value="disabled">\
 ').appendTo(this.$html);
 
 		this.$submitDisable = this.$html.find('.js-submit-disable:not(.is-disabled)');
-		this.$isDisabled = this.$html.find('.js-submit-disable.is-disabled');
+		this.$isDisabledSubmitDisabled = this.$html.find('.js-submit-disable.is-disabled');
 		this.$submitEnable = this.$html.find('.js-submit-enable');
+		this.$isDisabled = this.$html.find('.is-disabled:not(.js-submit-disable)');
 
 		this.buttonComponent = new ButtonComponent(this.$html);
 
@@ -40,6 +42,29 @@ describe('Button component', function() {
 			expect(this.$submitDisable.attr('disabled')).to.be.undefined;
 		});
 
+	});
+
+	describe('clicking a button with the is-disabled class', function() {
+
+		beforeEach(function() {
+			this.buttonComponent.init();
+		});
+
+		it('should preventDefault', function() {
+			var clickEvent = $.Event('click');
+
+			this.$isDisabled.trigger(clickEvent);
+
+			expect(clickEvent.isDefaultPrevented()).to.be.true;
+		});
+
+		it('should stopPropagation', function() {
+			var clickEvent = $.Event('click');
+
+			this.$isDisabled.trigger(clickEvent);
+
+			expect(clickEvent.isPropagationStopped()).to.be.true;
+		});
 	});
 
 	describe('clicking a button with the js-submit-disable class', function() {
@@ -75,19 +100,19 @@ describe('Button component', function() {
 		it('should have a js-submit-disable class', function() {
 			var clickEvent = $.Event('click');
 			this.$submitEnable.trigger(clickEvent);
-			expect(this.$isDisabled.hasClass('js-submit-disable')).to.be.true;
+			expect(this.$isDisabledSubmitDisabled.hasClass('js-submit-disable')).to.be.true;
 		});
 
 		it('should not have the is-disabled class', function() {
 			var clickEvent = $.Event('click');
 			this.$submitEnable.trigger(clickEvent);
-			expect(this.$isDisabled.hasClass('is-disabled')).to.be.false;
+			expect(this.$isDisabledSubmitDisabled.hasClass('is-disabled')).to.be.false;
 		});
 
 		it('should not have the disabled attribute', function() {
 			var clickEvent = $.Event('click');
 			this.$submitEnable.trigger(clickEvent);
-			expect(this.$isDisabled.attr('disabled')).to.be.undefined;
+			expect(this.$isDisabledSubmitDisabled.attr('disabled')).to.be.undefined;
 		});
 
 	});

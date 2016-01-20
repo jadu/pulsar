@@ -70,7 +70,7 @@
 // Fix for P3 spacing on Q forms/fieldsets
 .form--horizontal,
 .form {
-  padding-top: 17px;
+  // padding-top: 17px;
 
   .slide-inner & {
     padding-top: 17px;
@@ -80,7 +80,7 @@
     padding: 22px 0;
 
     legend {
-      border-bottom: 1px solid #e5e5e5;
+      border-bottom: 1px solid $gray-light;
       color: #4d4d4d;
       display: block;
       font-size: 24px;

@@ -24,6 +24,7 @@ require('./ButtonComponentTest.js');
 require('./FlashMessageComponentTest.js');
 require('./PulsarFormComponentTest.js');
 require('./HelpTextComponentTest.js');
+require('./PulsarUIComponentTest.js');
 // require('./signinTest');
 //require('./MasterSwitchComponentTest');
 

@@ -19,7 +19,8 @@
                 'label': 'Text input',
                 'id': 'inputText',
                 'name': 'inputText',
-                'placeholder': 'Placeholder'
+                'placeholder': 'Placeholder',
+                'required': true
             })
         }}
 
@@ -183,7 +184,7 @@
         }}
         {{
             form.checkbox_inline({
-                'label': 'Checkbox with right label Checkbox with right label Checkbox with right label',
+                'label': 'Checkbox with right label',
                 'id': 'inputCheckboxRight',
                 'name': 'inputCheckboxInline',
                 'checked': true
@@ -195,6 +196,47 @@
                 'id': 'inputRadioRight',
                 'name': 'inputRadioInline',
                 'checked': true
+            })
+        }}
+        {{
+            form.checkbox_inline({
+                'class': 'form__group--indent',
+                'label': 'Checkbox with right label and indented',
+                'id': 'inputCheckboxRightIndent',
+                'name': 'inputCheckboxInlineIndent',
+                'checked': true
+            })
+        }}
+        {{
+            form.radio_inline({
+                'class': 'form__group--indent',
+                'label': 'Radio with right label and indented',
+                'id': 'inputRadioRightIndent',
+                'name': 'inputRadioInlineIndent',
+                'checked': true
+            })
+        }}
+
+        {{
+            form.button_group({
+                'label': 'Band',
+                'items': [
+                    form.radio_simple({
+                        'id': 'am',
+                        'label': 'AM',
+                        'name': 'bands'
+                    }),
+                    form.radio_simple({
+                        'id': 'fm',
+                        'label': 'FM',
+                        'name': 'bands'
+                    }),
+                    form.radio_simple({
+                        'id': 'mw',
+                        'label': 'MW',
+                        'name': 'bands'
+                    })
+                ]
             })
         }}
 

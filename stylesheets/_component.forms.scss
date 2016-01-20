@@ -203,17 +203,6 @@ $inputs: (
     color: color(text, light);
 }
 
-.checkbox--inline-v2,
-.radio--inline-v2 {
-    height: 44px;
-
-    > [type="checkbox"],
-    > [type="radio"] {
-        height: auto;
-        vertical-align: baseline;
-    }
-}
-
 .form__button-group {
 
     > .control__label {
@@ -242,7 +231,20 @@ $inputs: (
 }
 
 // Loading spinner (mainly for select/select2 elements)
-
 .form__control + .loading {
   left: 310px;
+}
+
+// Paragraph as first child of .controls, assuming absence of a proper input
+.controls > p:first-child {
+    margin-bottom: 0;
+    min-height: 44px;
+    padding-top: 12px;
+}
+
+.required-indicator {
+    display: inline-block;
+    font-size: 1.2em;
+    text-align: center;
+    width: 10px;
 }

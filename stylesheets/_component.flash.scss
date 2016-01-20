@@ -34,6 +34,7 @@
 // Default
 .flash,
 .flash--default {
+  background: rgb(0, 0, 0);
   background: rgba(0, 0, 0, .8);
   color: color(white);
   text-shadow: 0 0 2px rgba(0, 0, 0, .5);
@@ -42,18 +43,12 @@
     color: color(white);
     text-decoration: underline;
   }
-
-  @include ie-lte(8) {
-    background:  rgb(0, 0, 0);
-  }
 }
 
 // Variations
 .flash--success {
+  background: rgb(0, 153, 51);
   background: rgba(0, 153, 51, .8);
-  @include ie-lte(8) {
-    background:  rgb(0, 153, 51);
-  }
 }
 
 .flash--warning {
@@ -61,19 +56,13 @@
 }
 
 .flash--error {
+  background: rgb(204, 51, 51);
   background: rgba(204, 51, 51, .8);
-  @include ie-lte(8) {
-    background:  rgb(204, 51, 51);
-  }
 }
 
 .flash--info {
   background: color(info);
-  // color: $state-info-text;
   text-shadow: none;
-  @include ie-lte(8) {
-    background: color(info);
-  }
 }
 
 // Close buttons
