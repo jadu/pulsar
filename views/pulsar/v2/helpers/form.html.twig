@@ -461,16 +461,14 @@ class   | string | A space separated list of class names
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
     {% if options.actions is defined %}
-        <div
-            {{
-                attributes(options
-                    |exclude('actions')
-                    |defaults({
-                        'class': 'form__actions'
-                    })
-                )
-            }}
-        >
+        <div {{
+            attributes(options
+                |exclude('actions')
+                |defaults({
+                    'class': 'form__actions'
+                })
+            )
+        }}>
             {% for action in options.actions %}
                 {{- action|raw -}}
             {% endfor %}
