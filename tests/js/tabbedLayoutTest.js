@@ -27,8 +27,8 @@ describe('tabbedLayout', function() {
     </div>\
 </div>');
 
-        this.$tabLink1 = this.$tabs.find('[href=#one]');
-        this.$tabLink2 = this.$tabs.find('[href=#two]');
+        this.$tabLink1 = this.$tabs.find('[href="#one"]');
+        this.$tabLink2 = this.$tabs.find('[href="#two"]');
         this.$tabPane1 = this.$tabs.find('#one');
         this.$tabPane2 = this.$tabs.find('#two');
 
