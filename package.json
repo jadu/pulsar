@@ -1,6 +1,6 @@
 {
   "name": "pulsar",
-  "version": "4.3.3",
+  "version": "4.3.2",
   "repository": {
     "type": "git",
     "url": "git@bitbucket.org:Stanton/pulsar.git"
