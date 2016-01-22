@@ -323,10 +323,16 @@ default, unless you’re using a `method` other than `POST`.
 <form method="POST" enctype="application/x-www-form-urlencoded" class="form">
 ```
 
-## Using PUT
+## Using non-standard RESTful methods
 
-If you specify `'method': 'PUT'` then a hidden `<input name="_method" value="PUT" />`
-will be created automatically after the `<form>` element, and the `method` attribute on the `form` element will be set to `POST`.
+As well as the usual `GET` and `POST` methods, you may also specify the
+following:
+
+`DELETE`, `PATCH` or `PUT`
+
+These will then cause a hidden `<input name="_method" value="{{ method }}" />`
+to be created automatically after the `<form>` element, and the `method`
+attribute on the `form` element will be set to `POST`.
 
 #}
 {% macro create(options = {}) %}
@@ -335,15 +341,16 @@ will be created automatically after the `<form>` element, and the `method` attri
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
     {% set defaults = {'class': 'form'} %}
+    {% set alternateMethods = ['DELETE', 'PATCH', 'PUT'] %}
 
-    {% if options.method is defined and options.method|upper == 'PUT' %}
-        {% set methodInput = form.hidden({'name': '_method', 'value': 'PUT'}) %}
+    {% if options.method is defined and options.method|upper in alternateMethods %}
+        {% set methodInput = form.hidden({'name': '_method', 'value': options.method|upper}) %}
     {% endif %}
 
     {%
         if options.method is not defined
         or options.method is empty
-        or options.method|upper == 'PUT'
+        or options.method|upper in alternateMethods
     %}
         {% set options = options|merge({'method': 'POST'}) %}
     {% endif %}
