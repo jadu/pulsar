@@ -1,0 +1,10 @@
+{#
+    Test checkbox inline with right aligned input
+#}
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{{
+    form.checkbox_inline({
+        'label': 'foo',
+        'input_placement': 'right'
+    })
+}}
