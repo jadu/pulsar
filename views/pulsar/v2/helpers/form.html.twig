@@ -113,14 +113,14 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
     {{
         form.group({
             'parent': options
-                |only('class help id label required')
+                |only('bare class help id label required')
                 |defaults({
                     'class': 'form-checkbox'
                 }),
             'inputs': [
                 elem.input(
                     options
-                        |exclude('class help label')
+                        |exclude('bare class help label')
                         |defaults({
                             'class': 'checkbox',
                             'type': 'checkbox'
@@ -186,7 +186,6 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {%
         set input = elem.input(options
-            |exclude('input_placement')
             |merge({
                 'class': 'checkbox',
                 'label': null,
@@ -206,7 +205,7 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
     {{
         form.group({
             'parent': options
-                |only('class help id')
+                |only('bare class help id')
                 |defaults({
                     'class': 'form-checkbox-inline'
                 }),
@@ -271,10 +270,10 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {{
         form.group({
-            'parent': options|only('class help id label'),
+            'parent': options|only('bare class help id label'),
             'inputs': [
                 elem.paragraph(
-                    options|exclude('class help label')
+                    options|exclude('bare class help label')
                 )
             ]
         })
@@ -604,10 +603,10 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {{
         form.group({
-            'parent': options|only('class help id label required'),
+            'parent': options|only('bare class help id label required'),
             'inputs': [
                 elem.input(options
-                    |exclude('class help label')
+                    |exclude('bare class help label')
                     |defaults({'type': 'file'})
                 )
             ]
@@ -971,13 +970,13 @@ data-*   | string | Data attributes, eg: `'data-foo': 'bar'`
     {{
         form.group({
             'parent': options
-                |only('class help id label required')
+                |only('bare class help id label required')
                 |defaults({
                     'class': 'form-radio'
                 }),
             'inputs': [
                 elem.input(options
-                    |exclude('class help label')
+                    |exclude('bare class help label')
                     |defaults({
                         'class': 'radio',
                         'type': 'radio'
@@ -1041,7 +1040,6 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {%
         set input = elem.input(options
-            |exclude('input_placement')
             |merge({
                 'class': 'radio',
                 'label': null,
@@ -1136,9 +1134,7 @@ required | bool   | Visually indicates that the field must be completed
     {{
         elem.input(options
             |exclude('class for label')
-            |defaults({
-                'type': 'radio'
-            })
+            |defaults({'type': 'radio'})
         )
     }}
     {{
@@ -1207,10 +1203,10 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {{
         form.group({
-            'parent': options|only('class help id label required'),
+            'parent': options|only('bare class help id label required'),
             'inputs': [
                 elem.select(
-                    options|exclude('class help label')
+                    options|exclude('bare class help label')
                 )
             ]
         })
@@ -1277,10 +1273,10 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {{
         form.group({
-            'parent': options|only('class help id label required'),
+            'parent': options|only('bare class help id label required'),
             'inputs': [
                 elem.select2(options
-                    |exclude('class help label')
+                    |exclude('bare class help label')
                 )
             ]
         })
@@ -1390,10 +1386,10 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {{
         form.group({
-            'parent': options|only('append class help id label prepend required'),
+            'parent': options|only('bare append class help id label prepend required'),
             'inputs': [
                 elem.input(
-                    options|exclude('class help label')
+                    options|exclude('bare class help label')
                 )
             ]
         })
@@ -1453,12 +1449,12 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {{
         form.group({
-            'parent': options|only('class help id label required'),
+            'parent': options|only('bare class help id label required'),
             'inputs': [
                 elem.textarea(
                     options
-                        |exclude('class help label')
-                        |merge({ 'class': 'textarea' })
+                        |exclude('bare class help label')
+                        |merge({'class': 'textarea'})
                 )
             ]
         })

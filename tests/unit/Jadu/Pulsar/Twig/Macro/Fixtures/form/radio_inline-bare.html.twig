@@ -1,0 +1,10 @@
+{#
+    Test bare radio_inline method
+#}
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{{
+    form.radio_inline({
+        'bare': true,
+        'label': 'foo'
+    })
+}}
