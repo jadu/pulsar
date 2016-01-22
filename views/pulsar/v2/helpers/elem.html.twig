@@ -43,7 +43,7 @@ value       | string | Specifies the value of the input
         {% set options = options|defaults({'class': 'form__control'}) %}
     {% endif %}
 
-    <input {{ attributes(options|exclude('naked')) }} />
+    <input {{ attributes(options|exclude('append prepend naked')) }} />
 
 {% endspaceless %}
 {% endmacro %}
@@ -275,16 +275,14 @@ value       | string  | Specifies the value of the input
 {% spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-    <textarea
-        {{
-            attributes(options
-                |exclude('value')
-                |defaults({
-                    'class': 'form__control'
-                })
-            )
-        }}
-    >
+    <textarea {{
+        attributes(options
+            |exclude('value')
+            |defaults({
+                'class': 'form__control'
+            })
+        )
+    }}>
     {%-
         if options.value is defined
         and options.value is not empty
