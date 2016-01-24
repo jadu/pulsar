@@ -136,7 +136,11 @@ class AttributeParserExtension extends \Twig_Extension
         	$html[] = ' class="' . implode(' ', array_unique($classes)) . '"';
         }
 
-        return implode(' ', $html);
+        if (!empty($html)) {
+            return ' ' . implode(' ', $html);
+        }
+
+        return '';
     }
 
 }
