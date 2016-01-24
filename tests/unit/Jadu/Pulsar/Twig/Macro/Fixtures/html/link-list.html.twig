@@ -1,0 +1,12 @@
+{#
+    Test link list
+#}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{{
+    html.link_list({
+        'items': {
+            'Value one': '#href_one',
+            'Value two': '#href_two'
+        }
+    })
+}}

@@ -1,0 +1,32 @@
+{#
+    Test actions menu with dividers
+#}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{{
+    html.actions_menu({
+        'items': [
+            [
+                {
+                    'label': 'one',
+                    'href': '/one'
+                },
+                {
+                    'label': 'two',
+                    'href': '/two'
+                }
+            ],
+            [
+                {
+                    'label': 'three',
+                    'href': '/three'
+                }
+            ],
+            [
+                {
+                    'label': 'four',
+                    'href': '/four'
+                }
+            ]
+        ]
+    })
+}}

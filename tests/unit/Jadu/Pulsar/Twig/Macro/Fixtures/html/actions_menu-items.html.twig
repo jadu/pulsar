@@ -1,0 +1,20 @@
+{#
+    Test actions menu with items
+#}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{{
+    html.actions_menu({
+        'items': [
+            [
+                {
+                    'label': 'one',
+                    'href': '/one'
+                },
+                {
+                    'label': 'two',
+                    'href': '/two'
+                }
+            ]
+        ]
+    })
+}}
