@@ -43,7 +43,7 @@ value       | string | Specifies the value of the input
         {% set options = options|defaults({'class': 'form__control'}) %}
     {% endif %}
 
-    <input {{ attributes(options|exclude('append bare input_placement prepend naked')) }} />
+    <input{{ attributes(options|exclude('append bare input_placement prepend naked')) }} />
 
 {% endspaceless %}
 {% endmacro %}
@@ -82,7 +82,7 @@ name    | string | The name of this control
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
     {% if options.label is not empty %}
-        <label {{
+        <label{{
             attributes(options
                 |exclude('label required')
                 |defaults({
@@ -175,7 +175,7 @@ value       | string | Specifies the value of the input
 {% spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-    <select {{
+    <select{{
         attributes(options
             |exclude('bare label selected value options')
             |defaults({
@@ -275,7 +275,7 @@ value       | string  | Specifies the value of the input
 {% spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-    <textarea {{
+    <textarea{{
         attributes(options
             |exclude('append bare prepend value')
             |defaults({

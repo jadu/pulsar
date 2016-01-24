@@ -362,7 +362,7 @@ attribute on the `form` element will be set to `POST`.
         {% set options = options|merge({'enctype': options.enctype|default('application/x-www-form-urlencoded')}) %}
     {% endif %}
 
-    <form {{ attributes(options|defaults(defaults)) }}>
+    <form{{ attributes(options|defaults(defaults)) }}>
 
     {{ methodInput|default }}
 
@@ -469,7 +469,7 @@ class   | string | A space separated list of class names
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
     {% if options.actions is defined %}
-        <div {{
+        <div{{
             attributes(options
                 |exclude('actions')
                 |defaults({
@@ -711,7 +711,7 @@ controls.class   | string | A space separated list of class names
     {% endif %}
 
     {% if options.parent.bare is not defined or options.parent.bare != true %}
-    <div {{
+    <div{{
         attributes(options.parent
                 |only('class')
                 |defaults({
