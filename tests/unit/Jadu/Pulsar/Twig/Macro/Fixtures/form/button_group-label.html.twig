@@ -1,0 +1,23 @@
+{#
+    Test button_group with label
+#}
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{{
+    form.button_group({
+        'label': 'Band',
+        'items': [
+            form.radio_simple({
+                'label': 'AM',
+                'name': 'bands'
+            }),
+            form.radio_simple({
+                'label': 'FM',
+                'name': 'bands'
+            }),
+            form.radio_simple({
+                'label': 'MW',
+                'name': 'bands'
+            })
+        ]
+    })
+}}

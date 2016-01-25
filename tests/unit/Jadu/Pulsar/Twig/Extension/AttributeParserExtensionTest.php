@@ -35,28 +35,28 @@ class AttributeParserExtensionTest extends \PHPUnit_Framework_TestCase
     public function testParseAttributesParsesSingleAttribute()
     {
         $dataIn = array('slim' => 'shady');
-        $dataOut = 'slim="shady"';
+        $dataOut = ' slim="shady"';
         $this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn));
     }
 
     public function testParseAttributesParsesMultipleAttributes()
     {
         $dataIn = array('slim' => 'shady', 'marshall' => 'mathers', 'eminem' => true);
-        $dataOut = 'slim="shady" marshall="mathers" eminem';
+        $dataOut = ' slim="shady" marshall="mathers" eminem';
         $this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn));
     }
 
     public function testParseAttributesEscapesDoubleQuotes()
     {
         $dataIn = array('foo' => 'bar"baz');
-        $dataOut = 'foo="bar&quot;baz"';
+        $dataOut = ' foo="bar&quot;baz"';
         $this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn));
     }
 
     public function testParseAttributesConvertsHtmlEntities()
     {
         $dataIn = array('foo' => '<span>bar</span> <blink>baz</blink>');
-        $dataOut = 'foo="&lt;span&gt;bar&lt;/span&gt; &lt;blink&gt;baz&lt;/blink&gt;"';
+        $dataOut = ' foo="&lt;span&gt;bar&lt;/span&gt; &lt;blink&gt;baz&lt;/blink&gt;"';
         $this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn));
     }
 
@@ -77,7 +77,7 @@ class AttributeParserExtensionTest extends \PHPUnit_Framework_TestCase
     public function testParseAttributesTransformsTrueBooleanAttribute()
     {
         $dataIn = array('foo' => true);
-        $dataOut = 'foo';
+        $dataOut = ' foo';
         $this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn));
     }
 
@@ -98,49 +98,49 @@ class AttributeParserExtensionTest extends \PHPUnit_Framework_TestCase
     public function testParseAttributesAllowsZeroStrings()
     {
         $dataIn = array('foo' => '0');
-        $dataOut = 'foo="0"';
+        $dataOut = ' foo="0"';
         $this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn));
     }
 
     public function testRequiredAlsoAddsAriaRequired()
     {
         $dataIn = array('required' => true);
-        $dataOut = 'aria-required="true"';
+        $dataOut = ' aria-required="true"';
         $this->assertContains($dataOut, $this->ext->parseAttributes($dataIn));
     }
 
     public function testDisabledAddsAriaDisabled()
     {
         $dataIn = array('disabled' => true);
-        $dataOut = 'aria-disabled="true"';
+        $dataOut = ' aria-disabled="true"';
         $this->assertContains($dataOut, $this->ext->parseAttributes($dataIn));
     }
 
     public function testDisabledAddsDisabledClass()
     {
         $dataIn = array('disabled' => true);
-        $dataOut = 'class="is-disabled"';
+        $dataOut = ' class="is-disabled"';
         $this->assertContains($dataOut, $this->ext->parseAttributes($dataIn));
     }
 
     public function testDisabledMergesDisabledClassToExistingClasses()
     {
         $dataIn = array('disabled' => true, 'class' => 'foo');
-        $dataOut = 'class="foo is-disabled"';
+        $dataOut = ' class="foo is-disabled"';
         $this->assertContains($dataOut, $this->ext->parseAttributes($dataIn));
     }
 
     public function testDisabledOnlyAddsDisabledClassOnce()
     {
         $dataIn = array('disabled' => true, 'class' => 'is-disabled');
-        $dataOut = 'class="is-disabled"';
+        $dataOut = ' class="is-disabled"';
         $this->assertContains($dataOut, $this->ext->parseAttributes($dataIn));
     }
 
     public function testDisabledOnlyMergesDisabledClassOnce()
     {
         $dataIn = array('disabled' => true, 'class' => 'foo is-disabled');
-        $dataOut = 'class="foo is-disabled"';
+        $dataOut = ' class="foo is-disabled"';
         $this->assertContains($dataOut, $this->ext->parseAttributes($dataIn));
     }
 

@@ -1,0 +1,23 @@
+{#
+    Test list
+#}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{{
+    html.list({
+        'active_item': 1,
+        'items': [
+            'foo',
+            'bar'
+        ]
+    })
+}}
+
+{{
+    html.list({
+        'active_item': 2,
+        'items': [
+            'foo',
+            'bar'
+        ]
+    })
+}}

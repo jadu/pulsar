@@ -1,0 +1,13 @@
+{#
+    Test button group
+#}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{{
+    html.button_group({
+        'buttons': [
+            html.button({ label: 'foo' }),
+            html.button({ label: 'bar' }),
+            html.button({ label: 'baz' })
+        ]
+    })
+}}

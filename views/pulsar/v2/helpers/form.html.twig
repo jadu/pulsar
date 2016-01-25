@@ -113,14 +113,14 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
     {{
         form.group({
             'parent': options
-                |only('class help id label required')
+                |only('bare class help id label required')
                 |defaults({
                     'class': 'form-checkbox'
                 }),
             'inputs': [
                 elem.input(
                     options
-                        |exclude('class help label')
+                        |exclude('bare class help label')
                         |defaults({
                             'class': 'checkbox',
                             'type': 'checkbox'
@@ -185,11 +185,12 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
     {%
-        set input = elem.input(options|merge({
-            'class': 'checkbox',
-            'label': null,
-            'type': 'checkbox'
-        }))
+        set input = elem.input(options
+            |merge({
+                'class': 'checkbox',
+                'label': null,
+                'type': 'checkbox'
+            }))
     %}
 
     {% set label = input ~ options.label %}
@@ -204,7 +205,7 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
     {{
         form.group({
             'parent': options
-                |only('class help id')
+                |only('bare class help id')
                 |defaults({
                     'class': 'form-checkbox-inline'
                 }),
@@ -269,10 +270,10 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {{
         form.group({
-            'parent': options|only('class help id label'),
+            'parent': options|only('bare class help id label'),
             'inputs': [
                 elem.paragraph(
-                    options|exclude('class help label')
+                    options|exclude('bare class help label')
                 )
             ]
         })
@@ -321,10 +322,16 @@ default, unless you’re using a `method` other than `POST`.
 <form method="POST" enctype="application/x-www-form-urlencoded" class="form">
 ```
 
-## Using PUT
+## Using non-standard RESTful methods
 
-If you specify `'method': 'PUT'` then a hidden `<input name="_method" value="PUT" />`
-will be created automatically after the `<form>` element, and the `method` attribute on the `form` element will be set to `POST`.
+As well as the usual `GET` and `POST` methods, you may also specify the
+following:
+
+`DELETE`, `PATCH` or `PUT`
+
+These will then cause a hidden `<input name="_method" value="{{ method }}" />`
+to be created automatically after the `<form>` element, and the `method`
+attribute on the `form` element will be set to `POST`.
 
 #}
 {% macro create(options = {}) %}
@@ -333,15 +340,16 @@ will be created automatically after the `<form>` element, and the `method` attri
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
     {% set defaults = {'class': 'form'} %}
+    {% set alternateMethods = ['DELETE', 'PATCH', 'PUT'] %}
 
-    {% if options.method is defined and options.method|upper == 'PUT' %}
-        {% set methodInput = form.hidden({'name': '_method', 'value': 'PUT'}) %}
+    {% if options.method is defined and options.method|upper in alternateMethods %}
+        {% set methodInput = form.hidden({'name': '_method', 'value': options.method|upper}) %}
     {% endif %}
 
     {%
         if options.method is not defined
         or options.method is empty
-        or options.method|upper == 'PUT'
+        or options.method|upper in alternateMethods
     %}
         {% set options = options|merge({'method': 'POST'}) %}
     {% endif %}
@@ -354,7 +362,7 @@ will be created automatically after the `<form>` element, and the `method` attri
         {% set options = options|merge({'enctype': options.enctype|default('application/x-www-form-urlencoded')}) %}
     {% endif %}
 
-    <form {{ attributes(options|defaults(defaults)) }}>
+    <form{{ attributes(options|defaults(defaults)) }}>
 
     {{ methodInput|default }}
 
@@ -461,16 +469,14 @@ class   | string | A space separated list of class names
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
     {% if options.actions is defined %}
-        <div
-            {{
-                attributes(options
-                    |exclude('actions')
-                    |defaults({
-                        'class': 'form__actions'
-                    })
-                )
-            }}
-        >
+        <div{{
+            attributes(options
+                |exclude('actions')
+                |defaults({
+                    'class': 'form__actions'
+                })
+            )
+        }}>
             {% for action in options.actions %}
                 {{- action|raw -}}
             {% endfor %}
@@ -514,9 +520,7 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 {% spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-    <fieldset
-        {{ attributes(options|exclude('legend')) }}
-    >
+    <fieldset{{ attributes(options|exclude('legend')) }}>
     {%
         if options.legend is defined
         and options.legend is not empty
@@ -599,10 +603,10 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {{
         form.group({
-            'parent': options|only('class help id label required'),
+            'parent': options|only('bare class help id label required'),
             'inputs': [
                 elem.input(options
-                    |exclude('class help label')
+                    |exclude('bare class help label')
                     |defaults({'type': 'file'})
                 )
             ]
@@ -707,7 +711,7 @@ controls.class   | string | A space separated list of class names
     {% endif %}
 
     {% if options.parent.bare is not defined or options.parent.bare != true %}
-    <div {{
+    <div{{
         attributes(options.parent
                 |only('class')
                 |defaults({
@@ -755,7 +759,7 @@ controls.class   | string | A space separated list of class names
                 and options.parent.append is not empty
             )
         %}
-                {{ util.addon(append|default) }}
+                {{ util.addon(options.parent.append|default) }}
             </div>
         {% endif %}
 
@@ -966,13 +970,13 @@ data-*   | string | Data attributes, eg: `'data-foo': 'bar'`
     {{
         form.group({
             'parent': options
-                |only('class help id label required')
+                |only('bare class help id label required')
                 |defaults({
                     'class': 'form-radio'
                 }),
             'inputs': [
                 elem.input(options
-                    |exclude('class help label')
+                    |exclude('bare class help label')
                     |defaults({
                         'class': 'radio',
                         'type': 'radio'
@@ -1035,7 +1039,8 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
     {%
-        set input = elem.input(options|merge({
+        set input = elem.input(options
+            |merge({
                 'class': 'radio',
                 'label': null,
                 'type': 'radio'
@@ -1129,9 +1134,7 @@ required | bool   | Visually indicates that the field must be completed
     {{
         elem.input(options
             |exclude('class for label')
-            |defaults({
-                'type': 'radio'
-            })
+            |defaults({'type': 'radio'})
         )
     }}
     {{
@@ -1200,10 +1203,10 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {{
         form.group({
-            'parent': options|only('class help id label required'),
+            'parent': options|only('bare class help id label required'),
             'inputs': [
                 elem.select(
-                    options|exclude('class help label')
+                    options|exclude('bare class help label')
                 )
             ]
         })
@@ -1270,10 +1273,10 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {{
         form.group({
-            'parent': options|only('class help id label required'),
+            'parent': options|only('bare class help id label required'),
             'inputs': [
                 elem.select2(options
-                    |exclude('class help label')
+                    |exclude('bare class help label')
                 )
             ]
         })
@@ -1383,10 +1386,10 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {{
         form.group({
-            'parent': options|only('class help id label required'),
+            'parent': options|only('bare append class help id label prepend required'),
             'inputs': [
                 elem.input(
-                    options|exclude('class help label')
+                    options|exclude('bare class help label')
                 )
             ]
         })
@@ -1446,12 +1449,12 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {{
         form.group({
-            'parent': options|only('class help id label required'),
+            'parent': options|only('bare class help id label required'),
             'inputs': [
                 elem.textarea(
                     options
-                        |exclude('class help label')
-                        |merge({ 'class': 'textarea' })
+                        |exclude('bare class help label')
+                        |merge({'class': 'textarea'})
                 )
             ]
         })

@@ -43,7 +43,7 @@ value       | string | Specifies the value of the input
         {% set options = options|defaults({'class': 'form__control'}) %}
     {% endif %}
 
-    <input {{ attributes(options|exclude('naked')) }} />
+    <input{{ attributes(options|exclude('append bare input_placement prepend naked')) }} />
 
 {% endspaceless %}
 {% endmacro %}
@@ -82,7 +82,7 @@ name    | string | The name of this control
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
     {% if options.label is not empty %}
-        <label {{
+        <label{{
             attributes(options
                 |exclude('label required')
                 |defaults({
@@ -130,7 +130,7 @@ value   | string | Specifies the value of the paragraph
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
     {% if options.value is not empty %}
-        <p {{ attributes(options|exclude('value')) }}>
+        <p{{ attributes(options|exclude('value')) }}>
             {{- options.value|raw -}}
         </p>
     {% endif %}
@@ -175,9 +175,9 @@ value       | string | Specifies the value of the input
 {% spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-    <select {{
+    <select{{
         attributes(options
-            |exclude('label selected value options')
+            |exclude('bare label selected value options')
             |defaults({
                 'class': 'form__control'
             })
@@ -275,16 +275,14 @@ value       | string  | Specifies the value of the input
 {% spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-    <textarea
-        {{
-            attributes(options
-                |exclude('value')
-                |defaults({
-                    'class': 'form__control'
-                })
-            )
-        }}
-    >
+    <textarea{{
+        attributes(options
+            |exclude('append bare prepend value')
+            |defaults({
+                'class': 'form__control'
+            })
+        )
+    }}>
     {%-
         if options.value is defined
         and options.value is not empty
