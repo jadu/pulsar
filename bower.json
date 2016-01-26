@@ -33,7 +33,6 @@
   },
   "devDependencies": {
     "livereload-js": "livereload/livereload-js",
-    "phantomcss": "latest",
     "vide": "~0.3.1"
   },
   "resolutions": {
