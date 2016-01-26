@@ -110,7 +110,7 @@ var $ = require('jquery');
       .off('click.dismiss.modal')
 
     var $modalContent = this.$element.find('.modal__content').detach();
-    $modalContent.append(this.$element.find('.modal__dialog'));
+    this.$element.find('.modal__dialog').append($modalContent);
 
     $.support.transition && this.$element.hasClass('fade') ?
       this.$element
