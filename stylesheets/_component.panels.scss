@@ -17,8 +17,13 @@
         margin-left: 38px;
         padding: 0 $padding-base-horizontal .5em $padding-base-horizontal;
 
-        p:last-of-type {
-            margin-bottom: 0;
+        p,
+        ul {
+            margin-bottom: $padding-base-vertical;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
         }
     }
 
@@ -45,6 +50,23 @@
     &--warning {
         background-color: color(warning);
         color: color(black);
+    }
+
+    a {
+        font-family: $font-family-regular;
+
+        &,
+        &:visited,
+        &:hover,
+        &:active,
+        &:focus {
+            color: inherit;
+        }
+
+        &,
+        &:visited {
+            opacity: .8;
+        }
     }
 
 }
