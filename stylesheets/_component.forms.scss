@@ -204,7 +204,7 @@ $inputs: (
 // width of the label only
 .form-checkbox-inline,
 .form-radio-inline {
-    > .control__label {
+    > .controls > .control__label {
         display: inline-block;
     }
 }
