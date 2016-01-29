@@ -168,7 +168,7 @@ data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
 
         {{
             html.link(options|merge({
-                'class': 'btn' ~ options.class|default
+                'class': 'btn ' ~ options.class|default
             }))
         }}
 
