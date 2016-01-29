@@ -199,3 +199,12 @@ $inputs: (
     text-align: center;
     width: 10px;
 }
+
+// Make sure checkboxes and radios reduce the label's clickable area to the
+// width of the label only
+.form-checkbox-inline,
+.form-radio-inline {
+    > .control__label {
+        display: inline-block;
+    }
+}
