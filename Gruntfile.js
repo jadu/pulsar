@@ -478,8 +478,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('pre-commit', [
         'asciify',
-        'phpunit',
-        'copy:readme'
+        'phpunit'
     ]);
 
     grunt.registerTask('smoketest', [
