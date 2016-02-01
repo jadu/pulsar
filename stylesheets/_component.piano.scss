@@ -4,13 +4,6 @@
 }
 
 .piano {
-    @include respond-min($screen-desktop) {
-        height: 75vh;
-        overflow-x: hidden;
-    }
-}
-
-.piano {
     border-left: 1px solid #d7d7d7;
     border-right: 1px solid #d7d7d7;
     margin-bottom: 20px;
@@ -18,7 +11,9 @@
     @include respond-min($screen-desktop) {
         border-left: 0;
         float: left;
+        height: 75vh;
         margin-bottom: 0;
+        overflow-x: hidden;
         width: 30%;
     }
 
