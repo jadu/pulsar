@@ -1,19 +1,19 @@
 .piano-wrapper {
-    border-top: 1px solid #ccc;
+    border-top: 1px solid color(border);
     position: relative;
 }
 
 .piano {
-    border-left: 1px solid #d7d7d7;
-    border-right: 1px solid #d7d7d7;
+    border-left: 1px solid color(border);
+    border-right: 1px solid color(border);
     margin-bottom: 20px;
 
     @include respond-min($screen-desktop) {
+        overflow-x: hidden;
         border-left: 0;
         float: left;
         height: 75vh;
         margin-bottom: 0;
-        overflow-x: hidden;
         width: 30%;
     }
 
@@ -31,13 +31,13 @@
 }
 
 .piano__item {
-    border-bottom: 1px solid #d7d7d7;
+    border-bottom: 1px solid color(border);
     clear: both;
     overflow: hidden;
     padding: 10px;
 
     @include respond-min($screen-desktop) {
-        border-left: 1px solid #d7d7d7;
+        border-left: 1px solid color(border);
         transition: background .3s ease;
 
         &:hover {
@@ -59,7 +59,7 @@
 }
 
 .piano__item--unread {
-    border-left: 5px solid #ff0000;
+    border-left: 5px solid color(danger);
 }
 
 .piano__item-badge {
@@ -74,7 +74,7 @@
     vertical-align: top;
 
     .is-selected & {
-        border-bottom: 1px solid #ccc;
+        border-bottom: 1px solid color(border);
         padding-bottom: 5px;
 
         @include respond-min($screen-desktop) {
@@ -126,8 +126,8 @@
 
     .history {
         background-color: #e5ecf2;
-        border-bottom: 1px solid #ccc;
-        border-top: 1px solid #ccc;
+        border-bottom: 1px solid color(border);
+        border-top: 1px solid color(border);
         color: #989699;
         cursor: pointer;
         display: block;
@@ -144,7 +144,7 @@
     }
 
     date {
-        color: #bbb;
+        color: color(text, light);
         display: none;
         font-size: 14px;
 
@@ -240,7 +240,7 @@
         padding: 10px;
 
         .message-body {
-            border-top: 1px dashed $gray;
+            border-top: 1px dashed color(border);
             margin-top: .5em;
         }
 
