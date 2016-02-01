@@ -32,6 +32,10 @@ $twig->addExtension(new UrlParamsExtension($_GET));
 $twig->addExtension(new TabsExtension());
 $twig->addExtension(new Twig_Extension_Debug());
 
-$template = $twig->loadTemplate($_SERVER['PATH_INFO'] . '/index.html.twig');
+if (strstr($_SERVER['PATH_INFO'], '.html.twig')) {
+    $template = $twig->loadTemplate($_SERVER['PATH_INFO']);
+} else {
+    $template = $twig->loadTemplate($_SERVER['PATH_INFO'] . '/index.html.twig');
+}
 
 print $template->render(array());
