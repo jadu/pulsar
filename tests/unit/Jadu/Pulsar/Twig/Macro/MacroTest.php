@@ -26,6 +26,7 @@ class MacroTest extends \PHPUnit_Framework_TestCase
 
         $loader = new Twig_Loader_Filesystem($this->getFixturesPath());
         $loader->addPath($baseDir . 'views', 'pulsar');
+        $loader->addPath($baseDir . 'tests/unit/Jadu/Pulsar/Twig/Macro/Fixtures', 'tests');
 
         $this->twig = new Twig_Environment($loader, array(
             'cache' => false,

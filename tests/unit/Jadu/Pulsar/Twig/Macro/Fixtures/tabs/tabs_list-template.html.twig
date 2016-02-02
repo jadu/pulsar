@@ -1,0 +1,13 @@
+{% import '@pulsar/pulsar/v2/helpers/tabs.html.twig' as tabs %}
+{% set template %}{% include '@tests/tabs/template.twig' %}{% endset %}
+{%
+    set nav = [
+        {
+          "id"    : "foo",
+          "label" : "bar",
+          "src"   : template
+        }
+    ]
+%}
+{{ tabs.list(nav) }}
+{{ tabs.content(nav) }}
