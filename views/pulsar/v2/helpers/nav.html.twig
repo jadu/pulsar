@@ -31,18 +31,18 @@
 
         <div class="nav-list" data-nav="{{ options.href }}">
             <span class="nav-item nav-item--header">{{ options.label|raw }}</span>
-            {% for menu_blocks in options.items %}
-                {% for item_options in menu_blocks %}
-                    {{ nav.nav_item(item_options) }}
+            <ul class="nav-items">
+                {% for menu_blocks in options.items %}
+                    {% for item_options in menu_blocks %}
+                        {{ nav.nav_item(item_options) }}
+                    {% endfor %}
+                    {% if not loop.last %}
+                        <li class="nav-item nav-item__divider">
+                            <hr class="nav-divider" />
+                        </li>
+                    {% endif %}
                 {% endfor %}
-
-                {% if not loop.last %}
-                    <li class="nav-item nav-item__divider">
-                        <hr class="nav-divider" />
-                    </li>
-                {% endif %}
-
-            {% endfor %}
+            </ul>
         </div>
 
                 {% endif %}
