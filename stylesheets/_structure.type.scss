@@ -40,10 +40,6 @@ dl {
     margin: 0 0 $line-height-base 0;
 }
 
-dt {
-    font-weight: bold;
-}
-
 dd {
     margin-left: 1em;
 }
@@ -58,8 +54,9 @@ hr {
     margin-bottom: 24px;
 }
 
-b, strong {
+b, strong, dt {
     font-family: $font-family-regular;
+    font-weight: normal;
 
     // IE8 doesn't use Proxima Nova, so use regular bold variant of fallback stack
     @include ie-lte(8) {
