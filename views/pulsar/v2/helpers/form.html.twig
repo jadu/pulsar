@@ -9,23 +9,23 @@ types.
 
 ```twig
 {{
-	form.button_group({
-		'label': 'Band',
-		'items': [
-			form.radio_simple({
-				'label': 'AM',
-				'name': 'bands'
-			}),
-			form.radio_simple({
-				'label': 'FM',
-				'name': 'bands'
-			}),
-			form.radio_simple({
-				'label': 'MW',
-				'name': 'bands'
-			})
-		]
-	})
+    form.button_group({
+        'label': 'Band',
+        'items': [
+            form.radio_simple({
+                'label': 'AM',
+                'name': 'bands'
+            }),
+            form.radio_simple({
+                'label': 'FM',
+                'name': 'bands'
+            }),
+            form.radio_simple({
+                'label': 'MW',
+                'name': 'bands'
+            })
+        ]
+    })
 }}
 ```
 
@@ -46,17 +46,17 @@ items         | array  | An array of items to put in the dropdown list (usually 
 #}
 {% macro button_group(options = {}) %}
 {% spaceless %}
-	{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
+    {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
-	{{
-		_self.group({
-			'parent': options
-				|only('bare class help id label')
-				|merge({'class': 'form__button-group'}),
-			'controls': {'class': 'btn__group'},
-			'inputs': options.items
-		})
-	}}
+    {{
+        _self.group({
+            'parent': options
+                |only('bare class help id label')
+                |merge({'class': 'form__button-group'}),
+            'controls': {'class': 'btn__group'},
+            'inputs': options.items
+        })
+    }}
 
 {% endspaceless %}
 {% endmacro %}
@@ -72,9 +72,9 @@ Generates a checkbox input field.
 
 ```twig
 {{
-	form.checkbox({
-		'label': 'Are you awesome?'
-	})
+    form.checkbox({
+        'label': 'Are you awesome?'
+    })
 }}
 ```
 
@@ -103,21 +103,21 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
 #}
 {% macro checkbox(options = {}) %}
 {% spaceless %}
-	{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
+    {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
-	{{
-		_self.group({
-			'parent': options|only('class help id label'),
-			'inputs': [
-				elem.input(
-					options
-						|exclude('class help label')
-						|defaults({'type': 'checkbox'})
-						|merge({'class': 'checkbox'})
-				)
-			]
-		})
-	}}
+    {{
+        _self.group({
+            'parent': options|only('class help id label'),
+            'inputs': [
+                elem.input(
+                    options
+                        |exclude('class help label')
+                        |defaults({'type': 'checkbox'})
+                        |merge({'class': 'checkbox'})
+                )
+            ]
+        })
+    }}
 
 {% endspaceless %}
 {% endmacro %}
@@ -134,11 +134,11 @@ be positioned either before or after the label value.
 
 ```twig
 {{
-	form.checkbox_inline({
-		'id': 'areYouAwesome',
-		'label': 'Are you awesome?',
-		'name': 'areYouAwesome'
-	})
+    form.checkbox_inline({
+        'id': 'areYouAwesome',
+        'label': 'Are you awesome?',
+        'name': 'areYouAwesome'
+    })
 }}
 ```
 
@@ -168,41 +168,41 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
 #}
 {% macro checkbox_inline(options = {}) %}
 {% spaceless %}
-	{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
+    {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
-	{%
-		set input = elem.input(options|merge({
-			'label': null,
-			'type': 'checkbox',
-			'class': 'checkbox'
-		}))
-	%}
+    {%
+        set input = elem.input(options|merge({
+            'label': null,
+            'type': 'checkbox',
+            'class': 'checkbox'
+        }))
+    %}
 
-	{% set label = input ~ options.label %}
+    {% set label = input ~ options.label %}
 
-	{%
-		if options.input_placement is defined
-		and options.input_placement == 'right'
-	%}
-		{% set label = options.label ~ input %}
-	{% endif %}
+    {%
+        if options.input_placement is defined
+        and options.input_placement == 'right'
+    %}
+        {% set label = options.label ~ input %}
+    {% endif %}
 
-	{{
-		_self.group({
-			'parent': options
-				|only('class help id')
-				|defaults({
-					'class': 'form-checkbox-inline'
-				}),
-			'inputs': [
-				elem.label({
-					'class': 'checkbox--inline-v2',
-					'for': options.id|default,
-					'label': label
-				})
-			]
-		})
-	}}
+    {{
+        _self.group({
+            'parent': options
+                |only('class help id')
+                |defaults({
+                    'class': 'form-checkbox-inline'
+                }),
+            'inputs': [
+                elem.label({
+                    'class': 'checkbox--inline-v2',
+                    'for': options.id|default,
+                    'label': label
+                })
+            ]
+        })
+    }}
 
 {% endspaceless %}
 {% endmacro %}
@@ -255,28 +255,28 @@ will be created automatically after the `<form>` element, and the `method` attri
 #}
 {% macro create(options = {}) %}
 {% spaceless %}
-	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+    {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-	{% set defaults = { 'class': 'form' } %}
+    {% set defaults = { 'class': 'form' } %}
 
-	{%
-		if options.method is not defined
-		or options.method is empty
-	%}
-		{% set defaults = defaults|merge({'method': 'POST'}) %}
-	{% endif %}
+    {%
+        if options.method is not defined
+        or options.method is empty
+    %}
+        {% set defaults = defaults|merge({'method': 'POST'}) %}
+    {% endif %}
 
-	{%
-		if options.enctype is defined
-		and options.enctype is not empty
-		and options.method == 'POST'
-	%}
-		{% set defaults = defaults|merge({'enctype': options.enctype|default('application/x-www-form-urlencoded')}) %}
-	{% endif %}
+    {%
+        if options.enctype is defined
+        and options.enctype is not empty
+        and options.method == 'POST'
+    %}
+        {% set defaults = defaults|merge({'enctype': options.enctype|default('application/x-www-form-urlencoded')}) %}
+    {% endif %}
 
-	<form
-		{{ attributes(options|defaults(defaults)) }}
-	>
+    <form
+        {{ attributes(options|defaults(defaults)) }}
+    >
 
 {% endspaceless %}
 {% endmacro %}
@@ -292,9 +292,9 @@ Generates a text input field which will show a date picker when focused.
 
 ```twig
 {{
-	form.date({
-		'label': 'When is your birthday?'
-	})
+    form.date({
+        'label': 'When is your birthday?'
+    })
 }}
 ```
 
@@ -326,14 +326,14 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 {% macro date(options = {}) %}
 {% spaceless %}
 
-	{%
-		set options = options|merge({
-			'placeholder': options.placeholder|default('dd/mm/yyyy'),
-			'data-datepicker': 'true'
-		})
-	%}
+    {%
+        set options = options|merge({
+            'placeholder': options.placeholder|default('dd/mm/yyyy'),
+            'data-datepicker': 'true'
+        })
+    %}
 
-	{{ _self.text(options) }}
+    {{ _self.text(options) }}
 
 {% endspaceless %}
 {% endmacro %}
@@ -351,17 +351,17 @@ element.
 
 ```twig
 {{
-	form.end({
-		'actions': [
-			form.submit({
-				'label': 'Sign In'
-			}),
-			html.link({
-				'label': 'Cancel',
-				'href': '/home'
-			})
-		]
-	})
+    form.end({
+        'actions': [
+            form.submit({
+                'label': 'Sign In'
+            }),
+            html.link({
+                'label': 'Cancel',
+                'href': '/home'
+            })
+        ]
+    })
 }}
 ```
 
@@ -375,25 +375,25 @@ class   | string | A space separated list of class names
 #}
 {% macro end(options = {}) %}
 {% spaceless %}
-	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+    {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-	{% if options.actions is defined %}
-		<div
-			{{
-				attributes(options
-					|exclude('actions')
-					|defaults({
-						'class': 'form__actions'
-					})
-				)
-			}}
-		>
-			{% for action in options.actions %}
-				{{- action -}}
-			{% endfor %}
-		</div>
-	{% endif %}
-	</form>
+    {% if options.actions is defined %}
+        <div
+            {{
+                attributes(options
+                    |exclude('actions')
+                    |defaults({
+                        'class': 'form__actions'
+                    })
+                )
+            }}
+        >
+            {% for action in options.actions %}
+                {{- action -}}
+            {% endfor %}
+        </div>
+    {% endif %}
+    </form>
 
 {% endspaceless %}
 {% endmacro %}
@@ -409,9 +409,9 @@ Opens a `<fieldset>` and allows you to define an optional `<legend>`.
 
 ```twig
 {{
-	form.fieldset_start({
-		'legend': 'I am Legend'
-	})
+    form.fieldset_start({
+        'legend': 'I am Legend'
+    })
 }}
 ```
 
@@ -429,17 +429,17 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 #}
 {% macro fieldset_start(options = {}) %}
 {% spaceless %}
-	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+    {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-	<fieldset
-		{{ attributes(options|exclude('legend')) }}
-	>
-	{%
-		if options.legend is defined
-		and options.legend is not empty
-	%}
-		<legend class="legend">{{ options.legend|raw }}</legend>
-	{% endif %}
+    <fieldset
+        {{ attributes(options|exclude('legend')) }}
+    >
+    {%
+        if options.legend is defined
+        and options.legend is not empty
+    %}
+        <legend class="legend">{{ options.legend|raw }}</legend>
+    {% endif %}
 
 {% endspaceless %}
 {% endmacro %}
@@ -461,7 +461,7 @@ Used in conjunction with `fieldset.start()` and closes the `<fieldset>`.
 {% macro fieldset_end() %}
 {% spaceless %}
 
-	</fieldset>
+    </fieldset>
 
 {% endspaceless %}
 {% endmacro %}
@@ -475,11 +475,11 @@ Generates a file input.
 
 ## Example usage
 
-	{{
-		form.file({
-			'label': 'Send us a pretty picture'
-		})
-	}}
+    {{
+        form.file({
+            'label': 'Send us a pretty picture'
+        })
+    }}
 
 ## Options applied to parent wrapper
 
@@ -507,20 +507,20 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 #}
 {% macro file(options = {}) %}
 {% spaceless %}
-	{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
+    {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
-	{{
-		_self.group({
-			'parent': options|only('class help id label'),
-			'inputs': [
-				elem.input(options
-					|exclude('class help label')
-					|defaults({'type': 'file'})
+    {{
+        _self.group({
+            'parent': options|only('class help id label'),
+            'inputs': [
+                elem.input(options
+                    |exclude('class help label')
+                    |defaults({'type': 'file'})
                     |merge({'class': 'file'})
-				)
-			]
-		})
-	}}
+                )
+            ]
+        })
+    }}
 
 {% endspaceless %}
 {% endmacro %}
@@ -553,14 +553,14 @@ and `exclude` array functions to manipulate your options array.
 
 ```twig
 {{
-	form.group({
-		'parent': options|only('class label help')
-		'inputs': [
-			elem.input(options
-				|exclude('class label help')
-			)
-		]
-	})
+    form.group({
+        'parent': options|only('class label help')
+        'inputs': [
+            elem.input(options
+                |exclude('class label help')
+            )
+        ]
+    })
 }}
 ```
 
@@ -569,12 +569,12 @@ be placed in the markup like so:
 
 ```html
 <div class="form__group FOO">
-	<label for="inputText" class="control__label">BAR</label>
-	<div class="controls">
-		<input id="inputText" name="inputText" placeholder="Placeholder"
-			type="text" class="form__control">
-		<p class="help-block">BAZ</p>
-	</div>
+    <label for="inputText" class="control__label">BAR</label>
+    <div class="controls">
+        <input id="inputText" name="inputText" placeholder="Placeholder"
+            type="text" class="form__control">
+        <p class="help-block">BAZ</p>
+    </div>
 </div>
 ```
 
@@ -608,78 +608,78 @@ controls.class   | string | A space separated list of class names
 #}
 {% macro group(options = {}) %}
 
-	{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
-	{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
-	{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+    {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+    {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
+    {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 
-	{% if options.parent.label is defined and options.parent.label is null %}
-		{% set hasLabelClass = ' form__group--no-label' %}
-	{% endif %}
+    {% if options.parent.label is defined and options.parent.label is null %}
+        {% set hasLabelClass = ' form__group--no-label' %}
+    {% endif %}
 
-	{% if options.parent.bare is not defined or options.parent.bare != true %}
-	<div {{
-		attributes(options.parent
-				|only('class')
-				|defaults({
-					'class': 'form__group' ~ hasLabelClass|default
-				})
-			)
-	-}}>
-	{% endif %}
-		{{
-			elem.label({
-				'for': options.parent.id|default,
-				'label': options.parent.label|default
-			})
-		}}
-		{% if options.parent.bare is not defined or options.parent.bare != true %}
-		<div class="controls{% if options.controls.class is defined %} {{ options.controls.class }}{% endif %}">
-		{% endif %}
+    {% if options.parent.bare is not defined or options.parent.bare != true %}
+    <div {{
+        attributes(options.parent
+                |only('class')
+                |defaults({
+                    'class': 'form__group' ~ hasLabelClass|default
+                })
+            )
+    -}}>
+    {% endif %}
+        {{
+            elem.label({
+                'for': options.parent.id|default,
+                'label': options.parent.label|default
+            })
+        }}
+        {% if options.parent.bare is not defined or options.parent.bare != true %}
+        <div class="controls{% if options.controls.class is defined %} {{ options.controls.class }}{% endif %}">
+        {% endif %}
 
-		{%
-			if (
-				options.parent.prepend is defined
-				and options.parent.prepend is not empty
-			) or (
-				options.parent.append is defined
-				and options.parent.append is not empty
-			)
-		%}
-			<div class="input-group">
-				{{ util.addon(options.parent.prepend|default) }}
-		{% elseif options.parent.removable is defined and options.parent.removable == true %}
-			<div class="input-group is-removable">
-		{% endif %}
+        {%
+            if (
+                options.parent.prepend is defined
+                and options.parent.prepend is not empty
+            ) or (
+                options.parent.append is defined
+                and options.parent.append is not empty
+            )
+        %}
+            <div class="input-group">
+                {{ util.addon(options.parent.prepend|default) }}
+        {% elseif options.parent.removable is defined and options.parent.removable == true %}
+            <div class="input-group is-removable">
+        {% endif %}
 
-		{% for input in options.inputs %}
-				{{- input|raw -}}
-		{% endfor %}
+        {% for input in options.inputs %}
+                {{- input|raw -}}
+        {% endfor %}
 
-		{%
-			if (
-				options.parent.prepend is defined
-				and options.parent.prepend is not empty
-			) or (
-				options.parent.append is defined
-				and options.parent.append is not empty
-			)
-		%}
-				{{ util.addon(append|default) }}
-			</div>
-		{% endif %}
+        {%
+            if (
+                options.parent.prepend is defined
+                and options.parent.prepend is not empty
+            ) or (
+                options.parent.append is defined
+                and options.parent.append is not empty
+            )
+        %}
+                {{ util.addon(append|default) }}
+            </div>
+        {% endif %}
 
-		{% if options.parent.removable is defined and options.parent.removable == true %}
-				{{ html.remove_button({ 'target': options.parent.id|default }) }}
-			</div>
-		{% endif %}
+        {% if options.parent.removable is defined and options.parent.removable == true %}
+                {{ html.remove_button({ 'target': options.parent.id|default }) }}
+            </div>
+        {% endif %}
 
-			{{ _self.help({ 'value': options.parent.help|default }) }}
-		{% if options.parent.bare is not defined or options.parent.bare != true %}
-		</div>
-		{% endif %}
-	{% if options.parent.bare is not defined or options.parent.bare != true %}
-	</div>
-	{% endif %}
+            {{ _self.help({ 'value': options.parent.help|default }) }}
+        {% if options.parent.bare is not defined or options.parent.bare != true %}
+        </div>
+        {% endif %}
+    {% if options.parent.bare is not defined or options.parent.bare != true %}
+    </div>
+    {% endif %}
 
 {% endmacro %}
 
@@ -696,9 +696,9 @@ view.
 
 ```twig
 {{
-	form.help({
-		'value': 'Your password'
-	})
+    form.help({
+        'value': 'Your password'
+    })
 }}
 ```
 
@@ -712,10 +712,10 @@ value  | string | The string or html markup to render inside the help block
 {% macro help(options = {}) %}
 {% spaceless %}
 
-	{% if options.value is defined and options.value is not empty %}
-	    <p class="help-block">
-	    	{{- options.value|raw -}}
-	    </p>
+    {% if options.value is defined and options.value is not empty %}
+        <p class="help-block">
+            {{- options.value|raw -}}
+        </p>
     {% endif %}
 
 {% endspaceless %}
@@ -735,9 +735,9 @@ it from affecting a form's layout.
 
 ```twig
 {{
-	form.hidden({
-		'value': 'Shh, you can’t see me...'
-	})
+    form.hidden({
+        'value': 'Shh, you can’t see me...'
+    })
 }}
 ```
 
@@ -755,17 +755,17 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 #}
 {% macro hidden(options = {}) %}
 {% spaceless %}
-	{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
+    {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
-	{{
-		elem.input(options
-			|exclude('class help label')
-			|merge({
-				'type': 'hidden',
-				'naked': true
-			})
-		)
-	}}
+    {{
+        elem.input(options
+            |exclude('class help label')
+            |merge({
+                'type': 'hidden',
+                'naked': true
+            })
+        )
+    }}
 
 {% endspaceless %}
 {% endmacro %}
@@ -781,10 +781,10 @@ Generates a password input field.
 
 ```twig
 {{
-	form.password({
-		'label': 'Your password',
-		'id': 'example-password'
-	})
+    form.password({
+        'label': 'Your password',
+        'id': 'example-password'
+    })
 }}
 ```
 
@@ -817,7 +817,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 {% macro password(options = {}) %}
 {% spaceless %}
 
-	{{ _self.text(options|defaults({'type': 'password'})) }}
+    {{ _self.text(options|defaults({'type': 'password'})) }}
 
 {% endspaceless %}
 {% endmacro %}
@@ -833,10 +833,10 @@ Generates a radio input field.
 
 ```twig
 {{
-	form.radio({
-		'label': 'GaGa',
-		'id': 'example-radio'
-	})
+    form.radio({
+        'label': 'GaGa',
+        'id': 'example-radio'
+    })
 }}
 ```
 
@@ -864,20 +864,20 @@ data-*   | string | Data attributes, eg: `'data-foo': 'bar'`
 #}
 {% macro radio(options = {}) %}
 {% spaceless %}
-	{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
+    {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
-	{{
-		_self.group({
-			'parent': options|only('class help id label'),
-			'inputs': [
-				elem.input(options
-					|exclude('class help label')
-					|defaults({'type': 'radio'})
-					|merge({'class': 'radio'})
-				)
-			]
-		})
-	}}
+    {{
+        _self.group({
+            'parent': options|only('class help id label'),
+            'inputs': [
+                elem.input(options
+                    |exclude('class help label')
+                    |defaults({'type': 'radio'})
+                    |merge({'class': 'radio'})
+                )
+            ]
+        })
+    }}
 
 {% endspaceless %}
 {% endmacro %}
@@ -894,10 +894,10 @@ be positioned either before or after the label value.
 
 ```twig
 {{
-	form.radio_inline({
-		'label': 'Inline radio example',
-		'id': 'example-radio-inline'
-	})
+    form.radio_inline({
+        'label': 'Inline radio example',
+        'id': 'example-radio-inline'
+    })
 }}
 ```
 
@@ -926,42 +926,42 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
 #}
 {% macro radio_inline(options = {}) %}
 {% spaceless %}
-	{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
+    {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
-	{%
-		set input = elem.input(options|merge({
-				'label': null,
-				'type': 'radio',
-				'class': 'radio'
-			})
-		)
-	%}
+    {%
+        set input = elem.input(options|merge({
+                'label': null,
+                'type': 'radio',
+                'class': 'radio'
+            })
+        )
+    %}
 
-	{% set label = input ~ options.label %}
+    {% set label = input ~ options.label %}
 
-	{%
-		if options.input_placement is defined
-		and options.input_placement == 'right'
-	%}
-		{% set label = options.label ~ input %}
-	{% endif %}
+    {%
+        if options.input_placement is defined
+        and options.input_placement == 'right'
+    %}
+        {% set label = options.label ~ input %}
+    {% endif %}
 
-	{{
-		_self.group({
-			'parent': options
-				|only('class help id bare')
-				|defaults({
-					'class': 'form__indent'
-				}),
-			'inputs': [
-				elem.label({
-					'class': 'radio--inline-v2',
-					'for': options.id|default,
-					'label': label
-				})
-			]
-		})
-	}}
+    {{
+        _self.group({
+            'parent': options
+                |only('class help id bare')
+                |defaults({
+                    'class': 'form__indent'
+                }),
+            'inputs': [
+                elem.label({
+                    'class': 'radio--inline-v2',
+                    'for': options.id|default,
+                    'label': label
+                })
+            ]
+        })
+    }}
 
 {% endspaceless %}
 {% endmacro %}
@@ -979,11 +979,11 @@ label through the use of the sibling `+` CSS selector.
 
 ```twig
 {{
-	form.radio_simple({
-		'label': 'Foo',
-		'name': 'foo_group',
-		'id': 'foo'
-	})
+    form.radio_simple({
+        'label': 'Foo',
+        'name': 'foo_group',
+        'id': 'foo'
+    })
 }}
 ```
 
@@ -1017,22 +1017,22 @@ label    | string | Text for the `<label>` companion element
 #}
 {% macro radio_simple(options = {}) %}
 {% spaceless %}
-	{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
-	{{
-		elem.input(options
-			|exclude('class for label')
-			|defaults({
-				'type': 'radio'
-			})
-			|merge({'class': 'radio'})
-		)
-	}}
-	{{
-		elem.label(options
-			|only('class label for')
-			|defaults({'for': options.id|default})
-		)
-	}}
+    {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
+    {{
+        elem.input(options
+            |exclude('class for label')
+            |defaults({
+                'type': 'radio'
+            })
+            |merge({'class': 'radio'})
+        )
+    }}
+    {{
+        elem.label(options
+            |only('class label for')
+            |defaults({'for': options.id|default})
+        )
+    }}
 {% endspaceless %}
 {% endmacro %}
 
@@ -1047,15 +1047,15 @@ Generates a select input.
 
 ```twig
 {{
-	form.select({
-		'label': 'Pick a colour',
-		'id': 'example-select',
-		'options': {
-			'': 'Choose',
-			'colour_red': 'Red',
-			'colour_blue': 'Blue'
-		}
-	})
+    form.select({
+        'label': 'Pick a colour',
+        'id': 'example-select',
+        'options': {
+            '': 'Choose',
+            'colour_red': 'Red',
+            'colour_blue': 'Blue'
+        }
+    })
 }}
 ```
 
@@ -1085,20 +1085,20 @@ data-*      | string  | Data attributes, eg: `'data-foo': 'bar'`
 #}
 {% macro select(options = {}) %}
 {% spaceless %}
-	{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
+    {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
-	{{
-		_self.group({
-			'parent': options|only('class help id label'),
-			'inputs': [
-				elem.select(
-					options
-					|exclude('class help label')
-					|merge({'class': 'select'})
-				)
-			]
-		})
-	}}
+    {{
+        _self.group({
+            'parent': options|only('class help id label'),
+            'inputs': [
+                elem.select(
+                    options
+                    |exclude('class help label')
+                    |merge({'class': 'select'})
+                )
+            ]
+        })
+    }}
 
 {% endspaceless %}
 {% endmacro %}
@@ -1114,15 +1114,15 @@ Generates a select input using the select2 plugin (https://select2.github.io).
 
 ```twig
 {{
-	form.select2({
-		'label': 'Pick a colour',
-		'id': 'example-select',
-		'options': {
-			'': 'Choose',
-			'colour_red': 'Red',
-			'colour_blue': 'Blue'
-		}
-	})
+    form.select2({
+        'label': 'Pick a colour',
+        'id': 'example-select',
+        'options': {
+            '': 'Choose',
+            'colour_red': 'Red',
+            'colour_blue': 'Blue'
+        }
+    })
 }}
 ```
 
@@ -1154,18 +1154,18 @@ data-*      | string  | Data attributes, eg: `'data-foo': 'bar'`
 #}
 {% macro select2(options = {}) %}
 {% spaceless %}
-	{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
+    {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
-	{{
-		_self.group({
-			'parent': options|only('class help id label'),
-			'inputs': [
-				elem.select2(options
-					|exclude('class help label')
-				)
-			]
-		})
-	}}
+    {{
+        _self.group({
+            'parent': options|only('class help id label'),
+            'inputs': [
+                elem.select2(options
+                    |exclude('class help label')
+                )
+            ]
+        })
+    }}
 
 {% endspaceless %}
 {% endmacro %}
@@ -1180,11 +1180,11 @@ Creates your standard form submit button. Accepts all the same arguments as the
 
 ### Example usage
 
-	{{
-		form.submit({
-			'label': 'GO GO GO!'
-		})
-	}}
+    {{
+        form.submit({
+            'label': 'GO GO GO!'
+        })
+    }}
 
 ### Options
 
@@ -1204,14 +1204,14 @@ data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
 #}
 {% macro submit(options = {}) %}
 {% spaceless %}
-	{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+    {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 
-	{{
-		html.button(options|merge({
-			'class': options.class|default ~ ' js-submit-disable',
-			'type': 'submit'
-		}))
-	}}
+    {{
+        html.button(options|merge({
+            'class': options.class|default ~ ' js-submit-disable',
+            'type': 'submit'
+        }))
+    }}
 
 {% endspaceless %}
 {% endmacro %}
@@ -1226,11 +1226,11 @@ required form markup.
 
 ## Example usage
 
-	{{
-		form.text({
-			'label': 'What’s your name, boss?'
-		})
-	}}
+    {{
+        form.text({
+            'label': 'What’s your name, boss?'
+        })
+    }}
 
 ## Options applied to parent wrapper
 
@@ -1258,20 +1258,20 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 #}
 {% macro text(options = {}) %}
 {% spaceless %}
-	{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
+    {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
-	{% set options = options|merge({ 'type': options.type|default('text') }) %}
+    {% set options = options|merge({ 'type': options.type|default('text') }) %}
 
-	{{
-		_self.group({
-			'parent': options|only('class help id label'),
-			'inputs': [
-				elem.input(
-					options|exclude('class help label')
-				)
-			]
-		})
-	}}
+    {{
+        _self.group({
+            'parent': options|only('class help id label'),
+            'inputs': [
+                elem.input(
+                    options|exclude('class help label')
+                )
+            ]
+        })
+    }}
 
 {% endspaceless %}
 {% endmacro %}
@@ -1288,9 +1288,9 @@ of the element.
 
 ```twig
 {{
-	form.textarea({
-		'label': 'What is the meaning of life?'
-	})
+    form.textarea({
+        'label': 'What is the meaning of life?'
+    })
 }}
 ```
 
@@ -1320,18 +1320,18 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 #}
 {% macro textarea(options = {}) %}
 {% spaceless %}
-	{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
+    {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
-	{{
-		_self.group({
-			'parent': options|only('class help id label'),
-			'inputs': [
-				elem.textarea(
-					options|exclude('class help label')
-				)
-			]
-		})
-	}}
+    {{
+        _self.group({
+            'parent': options|only('class help id label'),
+            'inputs': [
+                elem.textarea(
+                    options|exclude('class help label')
+                )
+            ]
+        })
+    }}
 
 {% endspaceless %}
 {% endmacro %}
