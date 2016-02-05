@@ -15,6 +15,34 @@
     }}
 
         {{
+            form.choice({
+                'label': 'Choice',
+                'multiple': true,
+                'required': true,
+                'bare': true,
+                'options': [
+                    {
+                        'label': 'Foo',
+                        'name': 'choice',
+                        'value': 'foo'
+                    },
+                    {
+                        'label': 'Bar',
+                        'name': 'choice',
+                        'value': 'bar'
+                    },
+                    {
+                        'label': 'Baz',
+                        'name': 'choice',
+                        'value': 'baz'
+                    }
+                ]
+            })
+        }}
+
+
+
+        {{
             form.text({
                 'label': 'Text input',
                 'id': 'inputText',
