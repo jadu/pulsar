@@ -262,7 +262,9 @@ Option   | Type   | Description
 class    | string | A space separated list of class names
 help     | string | Additional guidance information to be displayed next to the input
 label    | string | Text for the main `<label>` companion element
-optimise | string | Switch to a select2 element if number of `options` is greater than 5 (default `auto`), can be disabled with `false`, or forced with `true`
+optimize | string | `auto` use a select2 element if number of `options` is greater than 5 (default)
+                    `few` force the use of checkboxes/radios regardless of the number of options
+                    `many` force the use of select2 regardless of the number of options
 options  | array  | An array of option hashes that will be passed to the [checkbox](checkbox.md) or  [radio](radio.md) helper, see their documentation for specifics
 required | bool   | Visually indicates that the field must be completed, will not be displayed if `type` is radio as they're implicitly required
 multiple | bool   | If `true`, uses checkboxes instead of radios, or passes the `multiple` attribute to the select2 element

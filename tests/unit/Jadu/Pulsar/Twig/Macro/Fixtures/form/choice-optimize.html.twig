@@ -1,10 +1,9 @@
 {#
-    Test basic choice method
+    Test optimized choice method
 #}
 {% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
 {{
     form.choice({
-        'optimise': 'few',
         'options': [
             {
                 'label': 'One',
@@ -39,4 +38,3 @@
         ]
     })
 }}
-
