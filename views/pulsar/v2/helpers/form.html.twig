@@ -225,6 +225,114 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
 
 {# -----------------------------------------------------------------------------
 
+# Choice
+
+Displayed as a question with multiple answers, each of which has it's own label and can allow either singular (checkboxes) or multiple (radios) choice.
+
+By default, the choice helper will will automatically adhere to Pulsar's form styleguide by switching to a [select2](select2.md) element if more than 5 options are provided.
+
+## Example usage
+
+```twig
+{{
+    form.choice({
+        'label': 'Do you like me?',
+        'options': [
+            {
+                'label': 'Yes',
+                'value': '1'
+            },
+            {
+                'No': '0',
+                'value': 'No'
+            },
+            {
+                'label': 'Maybe',
+                'value': '¯\_(ツ)_/¯'
+            }
+        ]
+    })
+}}
+```
+
+## Options
+
+Option   | Type   | Description
+-------- | ------ | -------------------------------------------------------
+class    | string | A space separated list of class names
+help     | string | Additional guidance information to be displayed next to the input
+label    | string | Text for the main `<label>` companion element
+optimize | string | `auto` use a select2 element if number of `options` is greater than 5 (default)
+                    `few` force the use of checkboxes/radios regardless of the number of options
+                    `many` force the use of select2 regardless of the number of options
+options  | array  | An array of option hashes that will be passed to the [checkbox](checkbox.md) or  [radio](radio.md) helper, see their documentation for specifics
+required | bool   | Visually indicates that the field must be completed, will not be displayed if `type` is radio as they're implicitly required
+multiple | bool   | If `true`, uses checkboxes instead of radios, or passes the `multiple` attribute to the select2 element
+
+#}
+{% macro choice(options = {}) %}
+{% spaceless %}
+    {% import _self as form %}
+    {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
+
+    {% set inputs = [] %}
+    {%
+        set options = options|merge({
+            'multiple': options.multiple|default(false),
+            'optimise': options.optimise|default('auto')
+        })
+    %}
+
+    {% if options.optimise == 'many' or (options.options|length > 5 and options.optimise == 'auto') %}
+
+        {% set select_options = {} %}
+        {% for select_option in options.options %}
+            {%
+                set select_options = select_options|merge({
+                    (select_option.value): select_option.label
+                })
+            %}
+        {% endfor %}
+
+        {%
+            set inputs = inputs|merge([
+                form.select2({
+                    'bare': true,
+                    'multiple': options.multiple,
+                    'options': select_options
+                })
+            ])
+        %}
+
+    {% else %}
+
+        {% for input_options in options.options %}
+            {% set input_options = input_options|merge({'bare': true}) %}
+            {% if options.multiple %}
+                {% set inputs = inputs|merge([ form.checkbox_inline(input_options) ]) %}
+            {% else %}
+                {% set inputs = inputs|merge([ form.radio_inline(input_options) ]) %}
+            {% endif %}
+        {% endfor %}
+
+    {% endif %}
+
+    {{
+        form.group({
+            'parent': options
+                |only('bare class help id label required')
+                |exclude('multiple')
+                |defaults({'class': 'form-choice'}),
+            'inputs': inputs
+        })
+    }}
+
+{% endspaceless %}
+{% endmacro %}
+
+
+{# -----------------------------------------------------------------------------
+
 # Content
 
 Generates a paragraph of text where an input would normally be positioned within

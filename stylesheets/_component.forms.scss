@@ -214,3 +214,10 @@ $inputs: (
         display: inline-block;
     }
 }
+
+.form-choice {
+    > .controls > .control__label {
+        clear: left;
+        float: left;
+    }
+}

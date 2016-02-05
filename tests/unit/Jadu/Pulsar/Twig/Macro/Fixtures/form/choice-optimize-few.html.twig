@@ -1,0 +1,42 @@
+{#
+    Test optimize-few choice method
+#}
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{{
+    form.choice({
+        'optimize': 'few',
+        'options': [
+            {
+                'label': 'One',
+                'name': 'choice',
+                'value': 'one'
+            },
+            {
+                'label': 'Two',
+                'name': 'choice',
+                'value': 'two'
+            },
+            {
+                'label': 'Three',
+                'name': 'choice',
+                'value': 'three'
+            },
+            {
+                'label': 'Four',
+                'name': 'choice',
+                'value': 'four'
+            },
+            {
+                'label': 'Five',
+                'name': 'choice',
+                'value': 'five'
+            },
+            {
+                'label': 'Six',
+                'name': 'choice',
+                'value': 'six'
+            }
+        ]
+    })
+}}
+
