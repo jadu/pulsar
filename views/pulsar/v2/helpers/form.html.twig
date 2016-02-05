@@ -257,15 +257,15 @@ By default, the choice helper will will automatically adhere to Pulsar's form st
 
 ## Options
 
-Option     | Type   | Description
----------- | ------ | -------------------------------------------------------
-autoswitch | bool   | Whether the control shoud use a  select2 if more than 5 options are provided. Default `true`
-class      | string | A space separated list of class names
-help       | string | Additional guidance information to be displayed next to the input
-label      | string | Text for the main `<label>` companion element
-options    | array  | An array of option hashes that will be passed to the [checkbox](checkbox.md) or  [radio](radio.md) helper, see their documentation for specifics
-required   | bool   | Visually indicates that the field must be completed, will not be displayed if `type` is radio as they're implicitly required
-multiple   | bool   | If `true`, uses checkboxes instead of radios
+Option   | Type   | Description
+-------- | ------ | -------------------------------------------------------
+class    | string | A space separated list of class names
+help     | string | Additional guidance information to be displayed next to the input
+label    | string | Text for the main `<label>` companion element
+optimise | string | Switch to a select2 element if number of `options` is greater than 5 (default `auto`), can be disabled with `false`, or forced with `true`
+options  | array  | An array of option hashes that will be passed to the [checkbox](checkbox.md) or  [radio](radio.md) helper, see their documentation for specifics
+required | bool   | Visually indicates that the field must be completed, will not be displayed if `type` is radio as they're implicitly required
+multiple | bool   | If `true`, uses checkboxes instead of radios, or passes the `multiple` attribute to the select2 element
 
 #}
 {% macro choice(options = {}) %}
@@ -273,21 +273,47 @@ multiple   | bool   | If `true`, uses checkboxes instead of radios
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
+    {% set inputs = [] %}
     {%
         set options = options|merge({
-            'multiple': options.multiple|default(false)
+            'multiple': options.multiple|default(false),
+            'optimise': options.optimise|default('auto')
         })
     %}
 
-    {% set inputs = [] %}
-    {% for input_options in options.options %}
-        {% set input_options = input_options|merge({'bare': true}) %}
-        {% if options.multiple %}
-            {% set inputs = inputs|merge([ form.checkbox_inline(input_options) ]) %}
-        {% else %}
-            {% set inputs = inputs|merge([ form.radio_inline(input_options) ]) %}
-        {% endif %}
-    {% endfor %}
+    {% if options.optimise == 'many' or (options.options|length > 5 and options.optimise == 'auto') %}
+
+        {% set select_options = {} %}
+        {% for select_option in options.options %}
+            {%
+                set select_options = select_options|merge({
+                    (select_option.value): select_option.label
+                })
+            %}
+        {% endfor %}
+
+        {%
+            set inputs = inputs|merge([
+                form.select2({
+                    'bare': true,
+                    'multiple': options.multiple,
+                    'options': select_options
+                })
+            ])
+        %}
+
+    {% else %}
+
+        {% for input_options in options.options %}
+            {% set input_options = input_options|merge({'bare': true}) %}
+            {% if options.multiple %}
+                {% set inputs = inputs|merge([ form.checkbox_inline(input_options) ]) %}
+            {% else %}
+                {% set inputs = inputs|merge([ form.radio_inline(input_options) ]) %}
+            {% endif %}
+        {% endfor %}
+
+    {% endif %}
 
     {{
         form.group({
