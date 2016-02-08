@@ -1,4 +1,6 @@
-# About Pulsar
+# Pulsar
+
+[![Build Status](https://travis-ci.org/jadu/pulsar.svg?branch=master)](https://travis-ci.org/jadu/pulsar)
 
 Pulsar is the User Experience and Interface framework for [Jadu](http://jadu.net) software.
 
