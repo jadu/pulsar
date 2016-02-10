@@ -147,10 +147,13 @@
 
 // Opacity
 @mixin opacity($opacity) {
-  opacity: $opacity;
-  // IE8 filter
-  $opacity-ie: ($opacity * 100);
-  filter: "alpha(opacity=#{$opacity-ie})";
+  @include ie-lte(8) {
+    $opacity-ie: ($opacity * 100);
+    filter: alpha(opacity=#{$opacity-ie});
+  }
+  @if ($is-ie == true and $ie-version > 8) or ($is-ie == false) {
+    opacity: $opacity;
+  }
 }
 
 // User select
