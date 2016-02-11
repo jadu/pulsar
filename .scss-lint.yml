@@ -20,7 +20,7 @@ linters:
 
   BorderZero:
     enabled: true
-    convention: 0
+    convention: zero
 
   ChainedClasses:
     enabled: false
