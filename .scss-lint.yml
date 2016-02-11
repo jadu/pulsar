@@ -1,18 +1,29 @@
-# SASS linting rules
+# Sass linting rules
 
-# Exclude from all rules
+## Exclude
+## - files that are to be excluded from all linters
 
-# rules
+
+
+## Rules
+## - correct as of v0.44.0
+
 linters:
 
   BangFormat:
     enabled: true
+    space_before_bang: true
+
+  BemDepth:
+    enabled: true
+    max_elements: 2
 
   BorderZero:
     enabled: true
+    convention: 0
 
-  CapitalizationInSelector:
-    enabled: true
+  ChainedClasses:
+    enabled: false
 
   ColorKeyword:
     enabled: true
@@ -32,21 +43,33 @@ linters:
   DeclarationOrder:
     enabled: true
 
+  DisableLinterReason:
+    enabled: true
+
   DuplicateProperty:
     enabled: false
 
   ElsePlacement:
+    enabled: true
     style: new_line
 
   EmptyLineBetweenBlocks:
     enabled: true
+    ignore_single_line_blocks: false
 
   EmptyRule:
+    enabled: true
+
+  ExtendDirective:
     enabled: false
 
   FinalNewline:
     enabled: true
     present: true
+
+  HexLength:
+    enabled: true
+    style: short
 
   HexNotation:
     enabled: true
@@ -55,14 +78,21 @@ linters:
   HexValidation:
     enabled: true
 
-  IdWithExtraneousSelector:
+  IdSelector:
     enabled: true
 
   ImportantRule:
     enabled: true
 
+  ImportPath:
+    enabled: true
+    leading_underscore: false
+    filename_extension: false
+
   Indentation:
     enabled: true
+    allow_non_nested_indentation: false
+    character: space
     width: 4
 
   LeadingZero:
@@ -70,17 +100,20 @@ linters:
     style: exclude_zero
 
   MergeableSelector:
-    enabled: false
+    enabled: true
     force_nesting: true
 
   NameFormat:
-    enabled: false
+    enabled: true
     convention: hyphenated_BEM
 
   NestingDepth:
     max_depth: 6
 
   PlaceholderInExtend:
+    enabled: true
+
+  PropertyCount:
     enabled: false
 
   PropertySortOrder:
@@ -88,11 +121,18 @@ linters:
 
   PropertySpelling:
     enabled: true
-    extra_properties:
-     - '*zoom'
+
+  PropertyUnits:
+    enabled: false
+
+  PseudoElement:
+    enabled: true
 
   QualifyingElement:
-    enabled: false
+    enabled: true
+    allow_element_with_attribute: false
+    allow_element_with_class: false
+    allow_element_with_id: false
 
   SelectorDepth:
     enabled: true
@@ -105,21 +145,35 @@ linters:
   Shorthand:
     enabled: true
 
+  SingleLinePerProperty:
+    enabled: true
+    allow_single_line_rule_sets: false
+
   SingleLinePerSelector:
     enabled: true
 
   SpaceAfterComma:
     enabled: true
+    style: one_space
 
   SpaceAfterPropertyColon:
     enabled: true
+    style: one_space
 
   SpaceAfterPropertyName:
     enabled: true
 
+  SpaceAfterVariableName:
+    enabled: true
+
+  SpaceAroundOperator:
+    enabled: true
+    style: one_space
+
   SpaceBeforeBrace:
     enabled: true
-    allow_single_line_padding: true
+    allow_single_line_padding: false
+    style: space
 
   SpaceBetweenParens:
     enabled: true
@@ -129,10 +183,22 @@ linters:
     enabled: true
     style: single_quotes
 
-  TrailingSemicolonAfterPropertyValue:
+  TrailingSemicolon:
     enabled: true
 
+  TrailingWhitespace:
+    enabled: true
+
+  TrailingZero:
+    enabled: true
+
+  TransitionAll:
+    enabled: false
+
   UnnecessaryMantissa:
+    enabled: true
+
+  UnnecessaryParentReference:
     enabled: true
 
   UrlFormat:
@@ -141,8 +207,11 @@ linters:
   UrlQuotes:
     enabled: true
 
+  VariableForProperty:
+    enabled: false
+
   VendorPrefix:
-    enabled:
+    enabled: true
 
   ZeroUnit:
     enabled: true
