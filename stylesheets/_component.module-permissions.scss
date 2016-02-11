@@ -21,6 +21,7 @@
 
 .module-page,
 .module-subpage {
+    display: none;
     float: left;
     width: 100%;
 }
@@ -29,6 +30,7 @@
 .module__titles {
     display: none;
     float: left;
+    padding-right: 60px; // cater for toggle links
     width: 100%;
 
     @include respond-min($screen-phone) {
@@ -40,6 +42,7 @@
 .module.is-open {
     .module-page {
         background-color: #efefef;
+        display: block;
     }
 
     .crud + .module-page {
@@ -51,9 +54,24 @@
 .module .module-page.is-open {
     background-color: color(white);
 
+    .module-subpage {
+        display: block;
+    }
+
+    .module-subpage .crud {
+        padding-right: 60px; // cater for toggle links
+    }
+
     .crud + .module-subpage {
         border-top: 2px dotted #ccc;
     }
+}
+
+.module-toggle,
+.refine-toggle {
+    float: right;
+    line-height: 44px;
+    text-decoration: none;
 }
 
 // View/Create/Update/Delete controls
@@ -67,7 +85,9 @@
 }
 
 .crud__label,
-.crud__permission {
+.crud__permission,
+.module-toggle,
+.refine-toggle {
     display: inline-block;
     position: relative;
     text-align: center;
