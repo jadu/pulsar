@@ -1,0 +1,114 @@
+.module-permissions {
+    border-top: 1px solid color(gray, lighter);
+}
+
+.module {
+    border-bottom: 1px solid color(gray, lighter);
+    float: left;
+    width: 100%;
+
+    .control__label {
+        display: inline-block;
+        line-height: 44px;
+        padding: 0 10px;
+    }
+
+    .form__control.checkbox {
+        margin-top: 0;
+        vertical-align: text-bottom;
+    }
+}
+
+.module-page,
+.module-subpage {
+    float: left;
+    width: 100%;
+}
+
+// wrapper to allow correct positioning of top-leve CRUD labels
+.module__titles {
+    display: none;
+    float: left;
+    width: 100%;
+
+    @include respond-min($screen-phone) {
+        display: block;
+    }
+}
+
+// Expanded module pages
+.module.is-open {
+    .module-page {
+        background-color: #efefef;
+    }
+
+    .crud + .module-page {
+        border-top: 1px solid color(border);
+    }
+}
+
+// Expanded module subpages / tabs
+.module .module-page.is-open {
+    background-color: color(white);
+
+    .crud + .module-subpage {
+        border-top: 2px dotted #ccc;
+    }
+}
+
+// View/Create/Update/Delete controls
+.crud {
+    display: none;
+    float: right;
+
+    @at-root .is-open & {
+        display: inline-block;
+    }
+}
+
+.crud__label,
+.crud__permission {
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    min-width: 60px;
+}
+
+// Control visibility of individual CRUD control labels
+.crud__permission {
+    cursor: pointer;
+    padding: 0 5px;
+    line-height: 44px;
+    height: 44px;
+
+    @include respond-min($screen-phone) {
+        padding: 0;
+    }
+
+    &:hover {
+        background-color: rgba(0, 0, 0, .05);
+    }
+
+    .form__control.checkbox {
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    > span {
+        display: inline-block;
+        line-height: 44px;
+
+        @include respond-min($screen-phone) {
+            display: none;
+        }
+    }
+}
+
+.crud__label {
+    padding-top: 0;
+
+    @include respond-min($screen-phone) {
+        padding-top: 5px;
+    }
+}
