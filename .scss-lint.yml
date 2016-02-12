@@ -104,7 +104,7 @@ linters:
     force_nesting: true
 
   NameFormat:
-    enabled: true
+    enabled: false
     convention: hyphenated_BEM
 
   NestingDepth:
