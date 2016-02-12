@@ -29,24 +29,24 @@ describe('Module permissions component', function() {
          --></div>\
         </div>\
 \
-        <label class="control__label"><input type="checkbox" class="form__control checkbox">Publishing</label>\
+        <label class="control__label"><input type="checkbox" class="form__control checkbox" data-select="all">Publishing</label>\
         <a class="js-module-toggle" href="#"><i class="icon-caret-up"></i></a>\
 \
         <div class="crud"><!--\
          --><label class="crud__permission">\
-                <input type="checkbox" class="form__control checkbox">\
+                <input type="checkbox" class="form__control checkbox" data-select="view">\
                 <span>View</span>\
             </label><!--\
          --><label class="crud__permission">\
-                <input type="checkbox" class="form__control checkbox">\
+                <input type="checkbox" class="form__control checkbox" data-select="create">\
                 <span>Create</span>\
             </label><!--\
          --><label class="crud__permission">\
-                <input type="checkbox" class="form__control checkbox">\
+                <input type="checkbox" class="form__control checkbox" data-select="update">\
                 <span>Update</span>\
             </label><!--\
          --><label class="crud__permission">\
-                <input type="checkbox" class="form__control checkbox">\
+                <input type="checkbox" class="form__control checkbox" data-select="delete">\
                 <span>Delete</span>\
             </label><!--\
      --></div>\
@@ -57,19 +57,19 @@ describe('Module permissions component', function() {
 \
             <div class="crud"><!--\
              --><label class="crud__permission">\
-                    <input type="checkbox" class="form__control checkbox">\
+                    <input type="checkbox" class="form__control checkbox" data-crud="view">\
                     <span>View</span>\
                 </label><!--\
              --><label class="crud__permission">\
-                    <input type="checkbox" class="form__control checkbox">\
+                    <input type="checkbox" class="form__control checkbox" data-crud="create">\
                     <span>Create</span>\
                 </label><!--\
              --><label class="crud__permission">\
-                    <input type="checkbox" class="form__control checkbox">\
+                    <input type="checkbox" class="form__control checkbox" data-crud="update">\
                     <span>Update</span>\
                 </label><!--\
              --><label class="crud__permission">\
-                    <input type="checkbox" class="form__control checkbox">\
+                    <input type="checkbox" class="form__control checkbox" data-crud="delete">\
                     <span>Delete</span>\
                 </label><!--\
          --></div>\
@@ -77,23 +77,23 @@ describe('Module permissions component', function() {
             <div class="module-subpage">\
                 <label class="control__label"><input type="checkbox" class="form__control checkbox"><span class="label">tab</span> Address</label>\
                 <div class="crud"><!--\
-             --><label class="crud__permission">\
-                    <input type="checkbox" class="form__control checkbox">\
-                    <span>View</span>\
-                </label><!--\
-             --><label class="crud__permission">\
-                    <input type="checkbox" class="form__control checkbox">\
-                    <span>Create</span>\
-                </label><!--\
-             --><label class="crud__permission">\
-                    <input type="checkbox" class="form__control checkbox">\
-                    <span>Update</span>\
-                </label><!--\
-             --><label class="crud__permission">\
-                    <input type="checkbox" class="form__control checkbox">\
-                    <span>Delete</span>\
-                </label><!--\
-         --></div>\
+                 --><label class="crud__permission">\
+                        <input type="checkbox" class="form__control checkbox" data-crud="view">\
+                        <span>View</span>\
+                    </label><!--\
+                 --><label class="crud__permission">\
+                        <input type="checkbox" class="form__control checkbox" data-crud="create">\
+                        <span>Create</span>\
+                    </label><!--\
+                 --><label class="crud__permission">\
+                        <input type="checkbox" class="form__control checkbox" data-crud="update">\
+                        <span>Update</span>\
+                    </label><!--\
+                 --><label class="crud__permission">\
+                        <input type="checkbox" class="form__control checkbox" data-crud="delete">\
+                        <span>Delete</span>\
+                    </label><!--\
+             --></div>\
 \
         </div>\
     </div>\
@@ -105,6 +105,9 @@ describe('Module permissions component', function() {
 
         this.$refineToggle = this.$html.find('.js-refine-toggle');
         this.$modulePage = this.$refineToggle.closest('.module-page');
+
+        this.$moduleSelectAll = this.$module.find('[data-select="all"]');
+        this.$moduleAllCheckboxes = this.$module.find('.checkbox');
 
         this.modulePermissions = new ModulePermissionsComponent(this.$html);
 
@@ -165,6 +168,44 @@ describe('Module permissions component', function() {
         });
     });
 
+    describe('clicking the main module selection control', function() {
+
+        beforeEach(function() {
+            this.modulePermissions.init();
+
+            var clickEvent = $.Event('click');
+            this.$moduleSelectAll.trigger(clickEvent);
+        });
+
+        it('should check all checkboxes within this module', function() {
+            expect(this.$moduleAllCheckboxes.length).to.equal(this.$moduleAllCheckboxes.length);
+        });
+
+        it('should uncheck all checkboxes within this module if clicked again', function() {
+            var clickEvent = $.Event('click');
+            this.$moduleSelectAll.trigger(clickEvent);
+
+            expect($(':checked', this.$moduleAllCheckboxes).length).to.equal(0);
+        });
+
+    });
+
+    describe('selecting a crud control', function() {
+        beforeEach(function() {
+            this.modulePermissions.init();
+
+            var changeEvent = $.Event('change');
+            this.$module.find('[data-crud="view"]').trigger(changeEvent);
+        });
+
+        it('should make the main module selection indeterminate', function() {
+            expect(this.$moduleSelectAll.prop('indeterminate')).to.be.true;
+        });
+
+        it('should make the crud type header indeterminate', function() {
+            expect(this.$module.find('[data-select="view"]').prop('indeterminate')).to.be.true;
+        });
+    });
 
 });
 

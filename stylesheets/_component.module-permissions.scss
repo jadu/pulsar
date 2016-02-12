@@ -1,3 +1,5 @@
+$module-permissions-breakpoint: $screen-tablet;
+
 .module-permissions {
     border-top: 1px solid color(gray, lighter);
 }
@@ -33,7 +35,7 @@
     padding-right: 60px; // cater for toggle links
     width: 100%;
 
-    @include respond-min($screen-phone) {
+    @include respond-min($module-permissions-breakpoint) {
         display: block;
     }
 }
@@ -101,7 +103,7 @@
     line-height: 44px;
     height: 44px;
 
-    @include respond-min($screen-phone) {
+    @include respond-min($module-permissions-breakpoint) {
         padding: 0;
     }
 
@@ -119,7 +121,7 @@
         display: inline-block;
         line-height: 44px;
 
-        @include respond-min($screen-phone) {
+        @include respond-min($module-permissions-breakpoint) {
             display: none;
         }
     }
@@ -128,7 +130,7 @@
 .crud__label {
     padding-top: 0;
 
-    @include respond-min($screen-phone) {
+    @include respond-min($module-permissions-breakpoint) {
         padding-top: 5px;
     }
 }
