@@ -44,7 +44,7 @@ linters:
     enabled: true
 
   DisableLinterReason:
-    enabled: true
+    enabled: false
 
   DuplicateProperty:
     enabled: false
@@ -82,7 +82,7 @@ linters:
     enabled: true
 
   ImportantRule:
-    enabled: true
+    enabled: false
 
   ImportPath:
     enabled: true
@@ -100,7 +100,7 @@ linters:
     style: exclude_zero
 
   MergeableSelector:
-    enabled: true
+    enabled: false
     force_nesting: true
 
   NameFormat:
@@ -111,13 +111,13 @@ linters:
     max_depth: 6
 
   PlaceholderInExtend:
-    enabled: true
+    enabled: false
 
   PropertyCount:
     enabled: false
 
   PropertySortOrder:
-    enabled: true
+    enabled: false
 
   PropertySpelling:
     enabled: true
@@ -129,7 +129,7 @@ linters:
     enabled: true
 
   QualifyingElement:
-    enabled: true
+    enabled: false
     allow_element_with_attribute: false
     allow_element_with_class: false
     allow_element_with_id: false
@@ -211,7 +211,7 @@ linters:
     enabled: false
 
   VendorPrefix:
-    enabled: true
+    enabled: false
 
   ZeroUnit:
     enabled: true
