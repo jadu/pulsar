@@ -51,7 +51,6 @@ ModulePermissionsComponent.prototype.toggleModuleVisibility = function () {
         $target.addClass('is-open');
         $toggle.html('<i class="icon-caret-up"></i>');
     }
-
 };
 
 ModulePermissionsComponent.prototype.toggleModulePagesVisibility = function () {
@@ -81,7 +80,6 @@ ModulePermissionsComponent.prototype.setModuleMasterState = function () {
     if (
         $scope.find(targetSelector + ':not(:checked):not(:indeterminate)').length == $targets.length
     ) {
-        // if all unchecked
         $component.prop('indeterminate', false).prop('checked', false);
     }
     else if (
@@ -123,7 +121,6 @@ ModulePermissionsComponent.prototype.setModuleRowState = function () {
     }
 
     $('[data-toggle="module-master"]', $parentScope).trigger('pulsar:crud:update');
-
 };
 
 ModulePermissionsComponent.prototype.setModuleState = function () {
@@ -185,16 +182,13 @@ ModulePermissionsComponent.prototype.toggleModuleMasterState = function () {
 
     if ($component.is(':checked')) {
         $('[data-crud]', $scope)
-            .prop('indeterminate', false)
-            .prop('checked', true);
+            .prop('indeterminate', false).prop('checked', true);
     } else {
         $('[data-crud]', $scope)
-            .prop('indeterminate', false)
-            .prop('checked', false);
+            .prop('indeterminate', false).prop('checked', false);
     }
 
     $('[data-toggle="module-row"]', $scope).trigger('pulsar:crud:update');
-
 };
 
 ModulePermissionsComponent.prototype.toggleModuleRowState = function () {
@@ -206,12 +200,10 @@ ModulePermissionsComponent.prototype.toggleModuleRowState = function () {
 
     if ($component.is(':checked')) {
         $('[data-crud]', $scope)
-            .prop('indeterminate', false)
-            .prop('checked', true);
+            .prop('indeterminate', false).prop('checked', true);
     } else {
         $('[data-crud]', $scope)
-            .prop('indeterminate', false)
-            .prop('checked', false);
+            .prop('indeterminate', false).prop('checked', false);
     }
 
     $('[data-toggle="module-crud"]', $component.closest('.module')).trigger('pulsar:crud:update');
@@ -228,18 +220,13 @@ ModulePermissionsComponent.prototype.toggleModule = function () {
 
     if ($component.is(':checked')) {
         $('[data-crud="' + $component.data('crud') + '"]:not([data-toggle="module-crud"])', $scope)
-            .prop('indeterminate', false)
-            .prop('checked', true);
+            .prop('indeterminate', false).prop('checked', true);
     } else {
         $('[data-crud="' + $component.data('crud') + '"]:not([data-toggle="module-crud"])', $scope)
-            .prop('indeterminate', false)
-            .prop('checked', false);
+            .prop('indeterminate', false).prop('checked', false);
     }
 
     $('[data-toggle="module-row"]', $scope).trigger('pulsar:crud:update');
-
-
-    // $('[data-toggle="module-crud"][data-crud="' + $component.data('crud') + '"]', $component.closest('.module')).trigger('pulsar:crud:update');
 };
 
 ModulePermissionsComponent.prototype.togglePage = function () {
@@ -250,17 +237,13 @@ ModulePermissionsComponent.prototype.togglePage = function () {
         $scope = $component.closest('.module-page');
 
     if ($component.is(':checked')) {
-        $('[data-toggle="subpage"][data-crud="' + $component.data('crud') + '"]', $scope).prop('checked', true);
+        $('[data-toggle="subpage"][data-crud="' + $component.data('crud') + '"]', $scope)
+            .prop('checked', true);
     } else {
         $('[data-toggle="subpage"][data-crud="' + $component.data('crud') + '"]', $scope).prop('checked', false);
     }
 
     $('[data-toggle="module-crud"][data-crud="' + $component.data('crud') + '"]', $component.closest('.module')).trigger('pulsar:crud:update');
-
-    // console.log($component);
-    // console.log($('[data-toggle="module-row"]', $scope));
-
-    // $('[data-toggle="module-row"]', $scope).trigger('pulsar:crud:update');
 };
 
 ModulePermissionsComponent.prototype.toggleSubPage = function () {
@@ -272,8 +255,6 @@ ModulePermissionsComponent.prototype.toggleSubPage = function () {
         $parentScope = $scope.closest('.module-page');
 
     $('[data-toggle="page"][data-crud="' + $component.data('crud') + '"]', $parentScope).trigger('pulsar:crud:update');
-    // $('[data-toggle="module-row"]', $scope).trigger('pulsar:crud:update');
 };
-
 
 module.exports = ModulePermissionsComponent;
