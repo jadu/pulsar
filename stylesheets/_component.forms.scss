@@ -108,6 +108,114 @@ fieldset {
     }
 }
 
+.controls > .toggle-switch-label {
+    margin-top: 10px;
+}
+
+.toggle-switch {
+    @extend %hide;
+
+    @include ie-lte(8) {
+        margin-left: 0;
+        margin-top: 15px;
+        position: static;
+        visibility: visible;
+        width: auto;
+        clip: auto;
+        overflow: visible;
+    }
+
+    &:checked + .toggle-switch-label,
+    &:checked + .toggle-switch-label:before {
+        background-color: color(success);
+    }
+
+    &:checked + .toggle-switch-label:after {
+        background-color: color(white);
+        margin-left: 22px;
+    }
+
+    &:indeterminate + .toggle-switch-label,
+    &:indeterminate + .toggle-switch-label:before {
+        background-color: color(warning);
+    }
+
+    &:indeterminate + .toggle-switch-label:after {
+        background-color: color(white);
+        margin-left: 11px;
+    }
+}
+
+.toggle-switch.toggle-switch--large {
+    &:checked + .toggle-switch-label--large:after {
+        margin-left: 50px;
+    }
+     &:indeterminate + .toggle-switch-label--large:after {
+        margin-left: 25px;
+    }
+}
+
+.toggle-switch-label.toggle-switch-label--large {
+    height: 50px;
+    width: 100px;
+
+    &:after {
+        width: 42px;
+    }
+}
+
+.toggle-switch-label {
+    background-color: color(grey, light); //#B3B3B3
+    border-radius: 60px;
+    cursor: pointer;
+    display: block;
+    height: 30px;
+    outline: none;
+    position: relative;
+    transition: background 0.4s;
+    user-select: none;
+    width: 52px;
+
+    @include ie-lte(8) {
+        display: none;
+    }
+
+    &:hover {
+        background-color: color(grey);
+
+        &:after {
+            background-color: color(grey);
+        }
+    }
+
+    &:before,
+    &:after {
+        content: "";
+        display: block;
+        position: absolute;
+    }
+
+    &:before {
+        background-color: #fff;
+        border-radius: 60px;
+        bottom: 1px;
+        left: 1px;
+        right: 1px;
+        top: 1px;
+        transition: background 0.4s;
+    }
+
+    &:after {
+        background-color: color(grey, light); //#B3B3B3
+        border-radius: 52px;
+        bottom: 4px;
+        left: 4px;
+        top: 4px;
+        transition: margin 0.4s, background 0.4s;
+        width: 22px;
+    }
+}
+
 // input widths
 
 $inputs: (
