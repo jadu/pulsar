@@ -8,7 +8,6 @@ fieldset {
 
 .form {
     background-color: color(white);
-    // padding: 0 20px 0 20px;
 }
 
 .form--standalone {
@@ -21,7 +20,6 @@ fieldset {
 
 .form__control {
     border-radius: $input-border-radius;
-    border: 1px solid $input-border;
     height: $input-height-base;
     line-height: $input-height-base;
 
@@ -40,6 +38,11 @@ fieldset {
     &.radio {
         border: 0;
         padding: 0;
+    }
+
+    &:not([type="file"]) {
+        border: 1px solid $input-border;
+        padding: 0 $padding-base-horizontal;
     }
 
     &.textarea {
