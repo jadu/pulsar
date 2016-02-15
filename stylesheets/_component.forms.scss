@@ -18,8 +18,10 @@ fieldset {
 
 .form__control {
     border-radius: $input-border-radius;
+    border: 1px solid $input-border;
     height: $input-height-base;
     line-height: $input-height-base;
+    padding: 0 $padding-base-horizontal;
 
     &.checkbox,
     &.radio {
@@ -35,11 +37,6 @@ fieldset {
     &.radio {
         border: 0;
         padding: 0;
-    }
-
-    &:not([type="file"]) {
-        border: 1px solid $input-border;
-        padding: 0 $padding-base-horizontal;
     }
 
     &.textarea {
@@ -63,6 +60,7 @@ fieldset {
         background: none;
         border: 0;
         height: auto;
+        line-height: normal;
         padding: 0;
 
         @include respond-min($screen-tablet) {
