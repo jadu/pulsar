@@ -15,6 +15,47 @@
     }}
 
         {{
+            form.choice({
+                'label': 'Choice',
+                'multiple': true,
+                'options': [
+                    {
+                        'label': 'Foo',
+                        'name': 'choice',
+                        'value': 'foo'
+                    },
+                    {
+                        'label': 'Bar',
+                        'name': 'choice',
+                        'value': 'bar'
+                    },
+                    {
+                        'label': 'Baz',
+                        'name': 'choice',
+                        'value': 'baz'
+                    },
+                    {
+                        'label': 'FooFoo',
+                        'name': 'choice',
+                        'value': 'foofoo'
+                    },
+                    {
+                        'label': 'BarBar',
+                        'name': 'choice',
+                        'value': 'barbar'
+                    },
+                    {
+                        'label': 'BazBaz',
+                        'name': 'choice',
+                        'value': 'bazbaz'
+                    }
+                ]
+            })
+        }}
+
+
+
+        {{
             form.text({
                 'label': 'Text input',
                 'id': 'inputText',

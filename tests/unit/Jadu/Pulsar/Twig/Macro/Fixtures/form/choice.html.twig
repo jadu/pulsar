@@ -1,0 +1,25 @@
+{#
+    Test basic choice method
+#}
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{{
+    form.choice({
+        'options': [
+            {
+                'label': 'Foo',
+                'name': 'choice',
+                'value': 'foo'
+            },
+            {
+                'label': 'Bar',
+                'name': 'choice',
+                'value': 'bar'
+            },
+            {
+                'label': 'Baz',
+                'name': 'choice',
+                'value': 'baz'
+            }
+        ]
+    })
+}}

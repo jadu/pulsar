@@ -1,18 +1,15 @@
-# About Pulsar
+# Pulsar
+
+| Branch | Build status |
+| ------ | ------------ |
+| Master | [![Build Status](https://travis-ci.org/jadu/pulsar.svg?branch=master)](https://travis-ci.org/jadu/pulsar) |
+| Develop | [![Build Status](https://travis-ci.org/jadu/pulsar.svg?branch=develop)](https://travis-ci.org/jadu/pulsar) |
 
 Pulsar is the User Experience and Interface framework for [Jadu](http://jadu.net) software.
 
 Documentations is available online at: [jadu.gitbooks.io](https://jadu.gitbooks.io/pulsar/).
 
 > Pulsar is a robust user interface framework with a collection of patterns, helpers and a user-focused design process with documented best practices that will help you to make beautiful user interfaces and amazing user experiences.
-
-The Pulsar framework is included in the following Jadu products:
-
-| Product      | Major Pulsar version |
-| ------------ | -------------------- |
-| Jadu CXM     | 4                    |
-| Jadu CMS     | 4                    |
-| Jadu XFP     | 4                    |
 
 ## UI Goals
 * Improve code quality and consistency
