@@ -1,0 +1,11 @@
+{#
+    Test button link type
+#}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{{
+    html.button({
+        'label': 'foo',
+        'type': 'link',
+        'class': 'foo'
+    })
+}}

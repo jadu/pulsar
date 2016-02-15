@@ -1,0 +1,12 @@
+{#
+    Test metadata
+#}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{{
+    html.metadata({
+        'items': {
+            'foo': 'bar',
+            'bar': 'baz'
+        }
+    })
+}}

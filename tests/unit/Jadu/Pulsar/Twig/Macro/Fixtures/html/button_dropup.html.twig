@@ -1,0 +1,14 @@
+{#
+    Test button_dropdown
+#}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{{
+    html.button_dropdown({
+        'direction': 'up',
+        'label': 'foo',
+        'items': [
+            html.link({ 'label': 'foo', 'href': '#foo' }),
+            html.link({ 'label': 'bar', 'href': '#bar' })
+        ]
+    })
+}}

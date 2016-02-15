@@ -109,8 +109,8 @@ var $ = require('jquery');
       .attr('aria-hidden', true)
       .off('click.dismiss.modal')
 
-    var $modalBody = this.$element.find('.modal__body').detach();
-    $modalBody.insertAfter(this.$element.find('.modal__header'));
+    var $modalContent = this.$element.find('.modal__content').detach();
+    this.$element.find('.modal__dialog').append($modalContent);
 
     $.support.transition && this.$element.hasClass('fade') ?
       this.$element

@@ -141,16 +141,19 @@
   &:focus {
     border-color: $color;
     outline: 0;
-    box-shadow: "inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px #{color-rgba}";
+    box-shadow: "inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px #{$color-rgba}";
   }
 }
 
 // Opacity
 @mixin opacity($opacity) {
-  opacity: $opacity;
-  // IE8 filter
-  $opacity-ie: ($opacity * 100);
-  filter: "alpha(opacity=#{opacity-ie})";
+  @include ie-lte(8) {
+    $opacity-ie: ($opacity * 100);
+    filter: alpha(opacity=#{$opacity-ie});
+  }
+  @if ($is-ie == true and $ie-version > 8) or ($is-ie == false) {
+    opacity: $opacity;
+  }
 }
 
 // User select

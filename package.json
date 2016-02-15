@@ -1,13 +1,13 @@
 {
   "name": "pulsar",
-  "version": "4.1.0",
+  "version": "5.0.1",
   "repository": {
     "type": "git",
-    "url": "git@bitbucket.org:Stanton/pulsar.git"
+    "url": "https://github.com/jadu/pulsar.git"
   },
   "scripts": {
-    "test": "npm run dantest && mocha-phantomjs --path ./node_modules/.bin/phantomjs tests/js/index.html --reporter spec",
-    "dantest": "browserify tests/js/index --standalone=pulsar --debug --outfile dist/js/test.js"
+    "test": "npm run pulsartest && mocha-phantomjs --path ./node_modules/.bin/phantomjs tests/js/index.html --reporter spec",
+    "pulsartest": "browserify tests/js/index --standalone=pulsar --debug --outfile dist/js/test.js"
   },
   "devDependencies": {
     "aliasify": "latest",

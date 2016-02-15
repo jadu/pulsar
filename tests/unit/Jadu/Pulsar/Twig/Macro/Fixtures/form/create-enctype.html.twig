@@ -1,0 +1,10 @@
+{#
+    Test 'enctype' option overrides default
+#}
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{{
+    form.create({
+        'method': 'POST',
+        'enctype': 'multipart/form-data'
+    })
+}}

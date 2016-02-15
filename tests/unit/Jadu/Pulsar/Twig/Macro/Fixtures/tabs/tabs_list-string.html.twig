@@ -1,0 +1,12 @@
+{% import '@pulsar/pulsar/v2/helpers/tabs.html.twig' as tabs %}
+{%
+    set nav = [
+        {
+          "id"    : "foo",
+          "label" : "bar",
+          "src"   : 'baz'
+        }
+    ]
+%}
+{{ tabs.list(nav) }}
+{{ tabs.content(nav) }}

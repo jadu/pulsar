@@ -1,0 +1,13 @@
+{#
+    Test ordered list
+#}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{{
+    html.list({
+        'type': 'ol',
+        'items': [
+            'foo',
+            'bar'
+        ]
+    })
+}}

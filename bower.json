@@ -1,6 +1,6 @@
 {
   "name": "pulsar",
-  "version": "4.1.0",
+  "version": "5.0.1",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -34,7 +34,6 @@
   },
   "devDependencies": {
     "livereload-js": "livereload/livereload-js",
-    "phantomcss": "latest",
     "vide": "~0.3.1"
   },
   "resolutions": {

@@ -1,4 +1,4 @@
-<?php 
-	header('Location: app/docs'); 
+<?php
+	header('Location: app/app.php/lexicon');
 	exit;
 ?>

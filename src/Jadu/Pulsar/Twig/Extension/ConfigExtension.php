@@ -10,7 +10,7 @@ namespace Jadu\Pulsar\Twig\Extension;
  *
  * Unit tests: tests/unit/ConfigExtensionTest.php
  */
-class ConfigExtension extends \Twig_Extension
+class ConfigExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface
 {
 
     protected $configFile;

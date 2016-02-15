@@ -1,0 +1,18 @@
+{#
+    Test end method with form actions
+#}
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{{
+    form.end({
+        'actions': [
+            form.submit({
+                'label': 'foo'
+            }),
+            html.link({
+                'label': 'bar',
+                'href': '/home'
+            })
+        ]
+    })
+}}

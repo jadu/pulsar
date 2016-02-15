@@ -1,0 +1,345 @@
+.piano-wrapper {
+    border-top: 1px solid color(border);
+    position: relative;
+}
+
+.piano {
+    border-left: 1px solid color(border);
+    border-right: 1px solid color(border);
+    margin-bottom: 20px;
+
+    @include respond-min($screen-desktop) {
+        overflow-x: hidden;
+        border-left: 0;
+        float: left;
+        height: 75vh;
+        margin-bottom: 0;
+        width: 30%;
+    }
+
+    .no-messages {
+        display: block;
+        margin: 20px auto;
+        text-align: center;
+    }
+}
+
+.piano__items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.piano__item {
+    border-bottom: 1px solid color(border);
+    clear: both;
+    overflow: hidden;
+    padding: 10px;
+
+    @include respond-min($screen-desktop) {
+        border-left: 1px solid color(border);
+        transition: background .3s ease;
+
+        &:hover {
+          background: lighten(#e5ecf2, 4%);
+        }
+    }
+
+    a {
+        text-decoration: none;
+    }
+}
+
+.piano__item.is-selected {
+    background: #e5ecf2;
+
+    &:hover {
+        background: #e5ecf2;
+    }
+}
+
+.piano__item--unread {
+    border-left: 5px solid color(danger);
+}
+
+.piano__item-badge {
+    float: right;
+    font-family: $font-family-light;
+    font-weight: normal;
+}
+
+.piano__item-header {
+    color: #6a6a6a;
+    margin-top: 5px;
+    vertical-align: top;
+
+    .is-selected & {
+        border-bottom: 1px solid color(border);
+        padding-bottom: 5px;
+
+        @include respond-min($screen-desktop) {
+            border: 0;
+            padding: 0;
+        }
+    }
+}
+
+.piano__item-content {
+    clear: both;
+
+    @include ie-lte(8) {
+        padding-bottom: 50px;
+    }
+
+    .is-selected & {
+        margin-top: 10px;
+
+        @include respond-min($screen-desktop) {
+            margin-top: 0;
+            padding-top: 10px;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            width: 68%;
+        }
+    }
+
+    .piano-active-content & {
+        display: block;
+    }
+
+    .message-reply {
+        margin: 10px 0 0;
+        @include ie-lte(8) {
+            width: 100%;
+        }
+    }
+
+    .message {
+        padding: 10px 0 0;
+        width: 100%;
+
+        time {
+            float: right;
+        }
+    }
+
+    .history {
+        background-color: #e5ecf2;
+        border-bottom: 1px solid color(border);
+        border-top: 1px solid color(border);
+        color: #989699;
+        cursor: pointer;
+        display: block;
+        margin: 1em 0;
+        position: relative;
+        text-align: center;
+
+        span {
+            background-color: #e5ecf2;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+    }
+
+    date {
+        color: color(text, light);
+        display: none;
+        font-size: 14px;
+
+        .piano-active-content & {
+            display: inline-block;
+            float: right;
+        }
+    }
+
+    h4 {
+        font-size: 16px;
+
+        .piano-active-content & {
+            font-size: 18px;
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+    }
+
+    p {
+        margin-bottom: 10px;
+    }
+}
+
+.piano__item-content-header {
+    margin-bottom: 10px;
+}
+
+.piano__avatar {
+    border-radius: 50%;
+    float: left;
+    height: 25px;
+    margin-bottom: 5px;
+    margin-right: 10px;
+    width: 25px;
+}
+
+.piano__user {
+    color: #000;
+    font-size: 14px;
+}
+
+.piano__title {
+    clear: both;
+    font-size: 14px;
+    margin: 0;
+}
+
+.piano__time {
+    clear: both;
+    display: block;
+    font-size: 14px;
+}
+
+.piano__form {
+    background: none;
+    margin-bottom: 10px;
+    padding: 0;
+}
+
+.piano__item-toggle {
+    font-size: 20px;
+    position: absolute;
+    right: 20px;
+    text-decoration: none;
+    top: 10px;
+
+    @include respond-min($screen-desktop) {
+        display: none;
+    }
+}
+
+.piano__item-content .message > .preview {
+    display: block;
+}
+
+.message-old.message--open {
+    border-bottom: 3px double $gray;
+}
+
+.message {
+    overflow: hidden;
+    padding: 1em $gutter-width 0;
+
+    &.message--open {
+        .message-body {
+            height: auto;
+        }
+    }
+
+    &.message--closed {
+        color: lighten($text-color, 2%);
+        padding: 10px;
+
+        .message-body {
+            border-top: 1px dashed color(border);
+            margin-top: .5em;
+        }
+
+        .message-body {
+            > * {
+                display: none;
+            }
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        &:nth-of-type(odd) {
+            background-color: lighten($gray, 17%);
+            &:hover {
+                background-color: lighten($gray, 16%);
+            }
+        }
+
+        &:nth-of-type(even) {
+            background-color: lighten($gray, 15%);
+            &:hover {
+                background-color: lighten($gray, 14%);
+            }
+        }
+    }
+
+    .preview > p {
+        display: inline;
+    }
+
+    .sender {
+        display: none;
+        font-family: $font-family-regular;
+
+        @include respond-min($screen-desktop) {
+            display: inline;
+        }
+    }
+
+    time {
+        display: none;
+
+        @include respond-min($screen-desktop) {
+            display: inline;
+        }
+    }
+}
+
+.with-settings.piano__item-content {
+    @include respond-min($screen-desktop) {
+        padding-right: 35px;
+    }
+}
+
+.with-settings .settings {
+    -webkit-transition: none;
+    height: auto;
+    padding: 0 0 10px;
+    position: static;
+    transition: none;
+    @include respond-min($screen-desktop) {
+        -moz-transition: all .5s ease-in-out;
+        -ms-transition: all .5s ease-in-out;
+        -o-transition: all .5s ease-in-out;
+        -webkit-transition: all .5s ease-in-out;
+        height: 74vh;
+        position: absolute;
+        right: -230px;
+        top: 0;
+        transition: all .5s ease-in-out;
+    }
+}
+
+.settings {
+    background: none;
+    width: 100%;
+
+    @include respond-min($screen-desktop) {
+        background-color: #fff;
+        display: block;
+        width: 250px;
+    }
+
+    .warning {
+        padding: 10px;
+    }
+}
+
+.settings__toggle,
+.settings__title {
+    display: none;
+
+    @include respond-min($screen-desktop) {
+        display: table-cell;
+    }
+}
+
+.setting__actions {
+    padding: 10px;
+}
