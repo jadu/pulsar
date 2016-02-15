@@ -13,6 +13,10 @@ ModulePermissionsComponent.prototype.init = function () {
     component.$html.on('click', '.js-module-toggle', component.toggleModuleVisibility);
     component.$html.on('click', '.js-refine-toggle', component.toggleModulePagesVisibility);
 
+
+
+
+
     // Module-master
     component.$html.find('.module')
         .on('click', '[data-toggle="module-master"]', component.toggleModuleMasterState)
@@ -36,6 +40,8 @@ ModulePermissionsComponent.prototype.init = function () {
     // Module-subpage
     component.$html.find('.module-subpage')
         .on('click', '[data-toggle="subpage"]', component.toggleSubPage);
+
+    component.$html.find('[data-toggle="page"]:checked').trigger('pulsar:crud:update');
 };
 
 ModulePermissionsComponent.prototype.toggleModuleVisibility = function () {
@@ -98,7 +104,7 @@ ModulePermissionsComponent.prototype.setModuleMasterState = function () {
 };
 
 ModulePermissionsComponent.prototype.setModuleRowState = function () {
-    // console.log('module row state');
+    console.log('module row state');
 
     var component = this,
         $component = $(component),
@@ -149,7 +155,7 @@ ModulePermissionsComponent.prototype.setModuleState = function () {
 };
 
 ModulePermissionsComponent.prototype.setPageState = function () {
-    // console.log('page state');
+    console.log('page state');
 
     var component = this,
         $component = $(component),
