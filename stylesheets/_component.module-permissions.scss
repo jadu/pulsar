@@ -98,10 +98,14 @@ $module-permissions-breakpoint: $screen-tablet;
 
 // Control visibility of individual CRUD control labels
 .crud__permission {
+    border-radius: 4px;
     cursor: pointer;
     padding: 0 5px;
     line-height: 44px;
+    margin: 4px 2px;
     height: 44px;
+
+    transition: background-color .2s linear;
 
     @include respond-min($module-permissions-breakpoint) {
         padding: 0;
@@ -132,5 +136,21 @@ $module-permissions-breakpoint: $screen-tablet;
 
     @include respond-min($module-permissions-breakpoint) {
         padding-top: 5px;
+    }
+}
+
+.is-checked {
+    background-color: color(jadu-green, pale);
+
+    &:hover {
+        background-color: darken(color(jadu-green, pale), 5);
+    }
+}
+
+.is-indeterminate {
+    background-color: lighten(color(warning), 20);
+
+    &:hover {
+        background-color: lighten(color(warning), 15);
     }
 }
