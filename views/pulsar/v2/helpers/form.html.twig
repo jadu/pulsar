@@ -716,6 +716,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
                 elem.input(options
                     |exclude('bare class help label')
                     |defaults({'type': 'file'})
+                    |merge({'class': 'file'})
                 )
             ]
         })
