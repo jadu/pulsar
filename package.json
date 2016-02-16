@@ -6,7 +6,7 @@
     "url": "https://github.com/jadu/pulsar.git"
   },
   "scripts": {
-    "test": "npm run pulsartest && mocha-phantomjs --path ./node_modules/.bin/phantomjs tests/js/index.html --reporter spec",
+    "test": "npm run pulsartest && mocha-phantomjs tests/js/index.html --reporter spec",
     "pulsartest": "browserify tests/js/index --standalone=pulsar --debug --outfile dist/js/test.js"
   },
   "devDependencies": {
