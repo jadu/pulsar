@@ -5,8 +5,8 @@ php:
 
 before_script:
   - npm install -g grunt-cli
-  - npm install -S console-browserify
   - npm install
+  - mkdir -p dist/js
 
 install:
   - composer self-update
