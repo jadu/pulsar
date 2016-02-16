@@ -4,10 +4,12 @@ php:
   - 5.5
 
 before_script:
-- npm install
+  - npm install -g grunt-cli
+  - npm install
 
 install:
   - composer install --no-interaction
+  - composer self-update
 
 script:
   - phpunit
