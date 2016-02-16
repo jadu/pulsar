@@ -5,11 +5,12 @@ php:
 
 before_script:
   - npm install -g grunt-cli
+  - npm install -S console-browserify
   - npm install
 
 install:
-  - composer install --no-interaction
   - composer self-update
+  - composer install --no-interaction
 
 script:
   - phpunit
