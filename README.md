@@ -6,7 +6,7 @@ Pulsar is the User Experience and Interface framework for [Jadu](http://jadu.net
 
 ## Documentation
 
-Documentation is available online at: [jadu.gitbooks.io](https://jadu.gitbooks.io/pulsar/).
+Documentation is available online at [jadu.gitbooks.io/pulsar](https://jadu.gitbooks.io/pulsar/), we welcome any feedback on areas which may need improvement.
 
 ## Contributing
 
