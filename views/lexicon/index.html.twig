@@ -30,6 +30,7 @@
 %}
 
 {% set tab_buttons %}{% include   'lexicon/tabs/buttons_labels.html.twig' %}{% endset %}
+{% set tab_checkgrid %}{% include 'lexicon/tabs/checkgrid.html.twig' %}{% endset %}
 {% set tab_colours %}{% include   'lexicon/tabs/colours.html.twig' %}{% endset %}
 {% set tab_decks %}{% include     'lexicon/tabs/decks.html.twig' %}{% endset %}
 {% set tab_flash %}{% include     'lexicon/tabs/flash.html.twig' %}{% endset %}
@@ -80,10 +81,15 @@
 {%
     set tabs_content = [
         {
+          "id"    : "checkgrid",
+          "label" : "Checkgrid",
+          "src"   : tab_checkgrid,
+          "active": true
+        },
+        {
           "id"    : "colours",
           "label" : "Colours",
-          "src"   : tab_colours,
-          "active": true
+          "src"   : tab_colours
         },
         {
           "id"    : "buttons",
