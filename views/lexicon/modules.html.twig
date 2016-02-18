@@ -29,8 +29,12 @@
     ]
 %}
 
-{% set tab_modals %}{% include   'lexicon/tabs/modals.html.twig' %}{% endset %}
-{% set tab_popovers %}{% include 'lexicon/tabs/popovers.html.twig' %}{% endset %}
+{% set tab_modals %}
+    {% include 'lexicon/tabs/modals.html.twig' %}
+{% endset %}
+{% set tab_popovers %}
+    {% include 'lexicon/tabs/popovers.html.twig' %}
+{% endset %}
 
 {%
     set nav_data = {
