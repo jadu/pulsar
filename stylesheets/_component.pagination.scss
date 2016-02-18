@@ -18,7 +18,7 @@
   }
 
   a, span {
-    color: color(gray, dark);
+    color: color(text);
     font-family: $font-family-regular;
     @include inline-block;
     line-height: $line-height-base * 1.75;
@@ -31,20 +31,20 @@
     & > a,
     & > span {
       background-color: darken(color(white), 10%);
-      color: color(black);
+      color: color(text);
     }
   }
 
   li.is-disabled {
     a, span {
-      color: color(gray);
+      color: color(text, disabled);
       cursor: not-allowed;
     }
   }
 
   li:not(.is-disabled) > a:hover {
     background-color: darken(color(white), 5%);
-    color: color(black);
+    color: color(text);
   }
 
   form {
