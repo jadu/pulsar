@@ -17,5 +17,5 @@ script:
   - phpunit
   - npm test
 
-after_success:
-  - travis_retry php vendor/bin/coveralls
+after_script:
+  - php vendor/bin/coveralls -v
