@@ -83,7 +83,6 @@
   &:disabled,
   &.is-disabled,
   &.disabled {
-    // padding-top: 9px;
     cursor: not-allowed !important;
 
     &:hover {
@@ -194,14 +193,6 @@
     }
 }
 
-
-
-/*
- * Override Bourbon's defaults
- */
-
-
-
 @include ie-lte(7) {
     a.btn {
         line-height: 20px;
@@ -209,6 +200,7 @@
 }
 
 .btn--naked,
+.btn--naked.is-disabled,
 .btn--naked:disabled,
 .btn--naked:hover:not(:disabled),
 .btn--naked:active,
@@ -221,6 +213,15 @@
     display: inline-block;
     line-height: auto;
     vertical-align: top;
+}
+
+.btn--naked.is-disabled,
+.btn--naked:disabled {
+    color: color(text, disabled);
+
+    &:hover {
+        color: color(text, disabled);
+    }
 }
 
 .btn--naked.btn__group.open .dropdown__toggle {
