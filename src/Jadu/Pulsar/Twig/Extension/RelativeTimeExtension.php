@@ -57,6 +57,8 @@ class RelativeTimeExtension extends \Twig_Extension
                 return $r . ' ' . $str . ($r > 1 ? 's' : '') . ' ago';
             }
         }
+
+        return false;
     }
 
 }
