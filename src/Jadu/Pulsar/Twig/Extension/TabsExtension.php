@@ -53,7 +53,5 @@ class TabsExtension extends \Twig_Extension
         }
       }
     }
-
-    return false;
   }
 }
