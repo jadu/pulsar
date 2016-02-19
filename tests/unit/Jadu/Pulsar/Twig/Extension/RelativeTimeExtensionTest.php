@@ -14,6 +14,11 @@ class RelativeTimeExtensionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('relative_time_extension', $this->ext->getName());
     }
 
+    public function testNullReturnsFalse()
+    {
+        $this->assertEquals(false, $this->ext->timeAgo());
+    }
+
     public function testJustNow()
     {
         $this->assertEquals('just now', $this->ext->timeAgo(time()));

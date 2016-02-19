@@ -39,6 +39,8 @@ class TabsExtension extends \Twig_Extension
             return $ob[0]->id;
         }
 
+        $active_id = 1;
+
         // Loop through the tab items
         foreach ($ob as $item) {
 
@@ -48,14 +50,15 @@ class TabsExtension extends \Twig_Extension
                 // Loop through its sub tabs
                 foreach($item->sub_tabs as $sub_tab) {
                     if ($sub_tab->id === $active_parent_tab_id) {
-                        return $item->id;
+                        $active_id = $item->id;
+                        break;
                     }
                 }
 
             }
         }
 
-        return false;
+        return $active_id;
 
     }
 

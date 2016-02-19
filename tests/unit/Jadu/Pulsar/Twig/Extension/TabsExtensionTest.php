@@ -69,7 +69,7 @@ class TabsExtensionTest extends \PHPUnit_Framework_TestCase
     $this->assertEquals(false, $this->ext->getActiveParentTabID());
   }
 
-  public function testTabsAsArrayIsConvertedToJson()
+  public function testTabsAsArrayIsConvertedJson()
   {
     $tabsArray = json_decode($this->tabs, true);
     $this->assertEquals('1', $this->ext->getActiveParentTabID($tabsArray));
