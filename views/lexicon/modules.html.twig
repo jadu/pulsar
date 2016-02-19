@@ -29,8 +29,12 @@
     ]
 %}
 
-{% set tab_modals %}{% include   'lexicon/tabs/modals.html.twig' %}{% endset %}
-{% set tab_popovers %}{% include 'lexicon/tabs/popovers.html.twig' %}{% endset %}
+{% set tab_modals %}
+    {% include 'lexicon/tabs/modals.html.twig' %}
+{% endset %}
+{% set tab_popovers %}
+    {% include 'lexicon/tabs/popovers.html.twig' %}
+{% endset %}
 
 {%
     set nav_data = {
@@ -43,7 +47,7 @@
                 "1.1": {
                     "1.1.1": {
                         "label": "Components",
-                        "href": "/app/app.php/lexicon/main"
+                        "href": "/app/app.php/lexicon"
                     },
                     "1.1.2": {
                         "label": "Modules",

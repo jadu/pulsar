@@ -81,6 +81,13 @@
                 class: 'active'
             })
         }}
+
+        {{
+            html.button({
+                label: 'Naked',
+                class: 'btn--naked'
+            })
+        }}
     </p>
 
     <h2 class="heading">Link buttons</h2>
@@ -155,6 +162,14 @@
                 type: 'link'
             })
         }}
+
+        {{
+            html.button({
+                label: 'Naked',
+                type: 'link',
+                class: 'btn--naked'
+            })
+        }}
     </p>
 
     <h2 class="heading">Disabled buttons</h2>
@@ -222,6 +237,13 @@
             html.button({
                 label: 'Active',
                 class: 'active is-disabled'
+            })
+        }}
+
+        {{
+            html.button({
+                label: 'Naked',
+                class: 'btn--naked is-disabled'
             })
         }}
     </p>
