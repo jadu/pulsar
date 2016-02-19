@@ -243,7 +243,16 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
         padding: 16px 5px 0 5px;
         position: relative;
         text-overflow: ellipsis;
-        transition: background-color 50ms linear;
+        transition: background-color 50ms linear, color 50ms linear;
+    }
+
+    .nav-link:hover {
+        background-color: darken($nav-color-dark, 2%);
+        color: white;
+    }
+
+    .nav-link.is-active:hover {
+        background-color: $nav-color-dark;
     }
 
     .nav-link__icon {
