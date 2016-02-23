@@ -6,12 +6,15 @@
     "url": "https://github.com/jadu/pulsar.git"
   },
   "scripts": {
-    "test": "npm run pulsartest && mocha-phantomjs tests/js/index.html --reporter spec",
-    "pulsartest": "browserify tests/js/index --standalone=pulsar --debug --outfile dist/js/test.js"
+    "pretest": "browserify tests/js/index --standalone=pulsar --debug --outfile dist/js/test.js",
+    "test": "mocha-phantomjs tests/js/index.html --reporter spec",
+    "precoverage": "browserify tests/js/index -t browserify-istanbul --standalone=pulsar --debug --outfile dist/js/coverage.js",
+    "coverage": "mocha-phantomjs tests/js/coverage.html --reporter json-cov | json2lcov > tmp/coverage.lcov"
   },
   "devDependencies": {
     "aliasify": "^1.9.0",
     "browserify": "10.0.0",
+    "browserify-istanbul": "^0.2.1",
     "browserify-shim": "^3.8.9",
     "chai": "latest",
     "datatables.net-dt": "^1.10.10",
@@ -39,9 +42,11 @@
     "grunt-sass": "^1.1.0",
     "jquery": "1.x",
     "jsdom": "latest",
+    "json2lcov": "^0.1.7",
     "matchdep": "^1.0.1",
     "minifyify": "^6.3.0",
     "mocha": "^2.4.5",
+    "mocha-lcov-reporter": "^1.2.0",
     "mocha-phantomjs": "^4.0.2",
     "phantomjs": "^1.9.19",
     "sinon": "^1.17.3",
