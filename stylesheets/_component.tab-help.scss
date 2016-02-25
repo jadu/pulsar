@@ -3,8 +3,6 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
 
 .tab-help-container {
 
-    -webkit-backface-visibility: hidden;
-    -webkit-transform: translate3d(-100%, 0, 0);
     backface-visibility: hidden;
     background: $nav-color-dark;
     box-shadow: inset 4px 0 0 darken($nav-color-dark, 5%);
@@ -23,7 +21,6 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
     }
 
     .open-help & {
-        -webkit-transform: translate3d(0, 0, 0);
         filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
         opacity: 1;
         transform: translate3d(0, 0, 0);
@@ -34,19 +31,15 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
 // hide help button on mobile when no JS
 
 .tab-help  {
-    -webkit-transform-origin: 50% 0%;
-    -webkit-transform: translate3d(70%, 0, 0) scale3d(0.9, 0.9, 0.9);
-    -webkit-transition-delay: ease, 0s;
-    -webkit-transition: opacity 300ms 100ms, -webkit-transform 400ms ease;
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
     padding: 20px;
     opacity: 0.7;
+    transition-delay: ease, 0s;
     transform-origin: 50% 0%;
     transform: translate3d(70%, 0, 0) scale3d(0.9, 0.9, 0.9);
     transition: opacity 300ms 100ms ease, transform 400ms ease;
 
     .open-help & {
-        -webkit-transform: translate3d(0, 0, 0);
         filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
         opacity: 1;
         transform: translate3d(0, 0, 0);
@@ -66,7 +59,6 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
 }
 
 .show-page-help {
-    -webkit-transition: all 100ms ease-in;
     border-radius: 4px;
     color: color(gray, dark);
     display: inline-block;
