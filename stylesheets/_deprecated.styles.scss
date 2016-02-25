@@ -515,7 +515,7 @@ $toolbar-notification-item-hover: '#f00';
 
       &[data-mobile-togglable] > li > a {
         color: $accent-color-alt;
-        border: 0 none;
+        border: 0;
 
         &:hover {
           color: $accent-color;
@@ -539,7 +539,7 @@ $toolbar-notification-item-hover: '#f00';
 
       &[data-mobile-togglable] > li.is-active > a {
         background-color: $accent-color;
-        border: 0 none;
+        border: 0;
         border-bottom: 2px solid $accent-color-alt;
         color: $accent-color-alt;
         i {
@@ -601,11 +601,11 @@ $toolbar-notification-item-hover: '#f00';
 
     .tabs__list[data-mobile-togglable] > li > .tabs__list {
       background-color: $accent-color;
-      border: 0 none;
+      border: 0;
       padding: 0;
 
       > li > a {
-        border: 0 none;
+        border: 0;
         color: $accent-color-alt;
 
         &:hover {
