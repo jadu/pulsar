@@ -1,11 +1,21 @@
 @mixin respond-min($width) {
-  @media screen and (min-width: $width) {
-    @content;
-  }
+    @if $ie-version < 9 {
+        @content;
+    }
+    @else {
+        @media screen and (min-width: $width) {
+            @content;
+        }
+    }
 }
 
 @mixin respond-max($width) {
-    @media screen and (max-width: $width) {
-      @content;
+    @if $ie-version < 9 {
+        @content;
+    }
+    @else {
+        @media screen and (max-width: $width) {
+            @content;
+        }
     }
 }

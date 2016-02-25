@@ -95,3 +95,11 @@
     vertical-align: top !important;
 }
 
+.visibility-hidden {
+    visibility: hidden;
+
+    .lt-ie10 & {
+        display: none;
+    }
+}
+
