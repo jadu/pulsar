@@ -3,6 +3,9 @@ language: php
 php:
   - 5.5
 
+before_install:
+  - pip install --user codecov
+
 before_script:
   - npm install -g grunt-cli
   - npm install
@@ -17,5 +20,5 @@ script:
   - phpunit
   - npm test
 
-after_script:
-  - php vendor/bin/coveralls -v
+after_success:
+  - codecov

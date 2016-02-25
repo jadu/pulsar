@@ -19,6 +19,7 @@
                     {% set type = 'link' %}
                     {% set href = tab.src %}
                 {% elseif tab.href is defined and tab.href != null %}
+                    {% set type = 'link' %}
                     {% set href = tab.href %}
                 {% endif %}
 

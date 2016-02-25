@@ -27,8 +27,12 @@ class RelativeTimeExtension extends \Twig_Extension
         );
     }
 
-    public function timeAgo($time_from)
+    public function timeAgo($time_from = null)
     {
+        if ($time_from === null) {
+            return false;
+        }
+
         if ($time_from instanceof \DateTime) {
             $time_from = $time_from->getTimestamp();
         }
@@ -54,9 +58,12 @@ class RelativeTimeExtension extends \Twig_Extension
             if ($d >= 1)
             {
                 $r = round($d);
-                return $r . ' ' . $str . ($r > 1 ? 's' : '') . ' ago';
+                break;
             }
         }
+
+        return $r . ' ' . $str . ($r > 1 ? 's' : '') . ' ago';
+
     }
 
 }
