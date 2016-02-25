@@ -3,10 +3,14 @@ language: php
 php:
   - 5.5
 
+before_install:
+  - pip install --user codecov
+
 before_script:
   - npm install -g grunt-cli
   - npm install
   - mkdir -p dist/js
+  - mkdir -p tests/logs
 
 install:
   - composer self-update
@@ -15,3 +19,6 @@ install:
 script:
   - phpunit
   - npm test
+
+after_success:
+  - codecov
