@@ -437,6 +437,19 @@ module.exports = function(grunt) {
                     'css/pulsar-ie9-blessed.css': 'css/pulsar-ie9.css'
                 }
             }
+        },
+
+        compress: {
+            dist: {
+                options: {
+                    archive: 'pulsar.zip'
+                },
+                files: [{
+                    expand: true,
+                    cwd: 'dist/',
+                    src: ['**/*']
+                }]
+            }
         }
 
     });
@@ -474,7 +487,8 @@ module.exports = function(grunt) {
         'browserify:dist',
         'copy:dist',
         'emailBuilder',
-        'realFavicon'
+        'realFavicon',
+        'compress'
     ]);
 
     grunt.registerTask('favicons', [
