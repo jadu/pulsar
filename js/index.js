@@ -25,8 +25,8 @@ var $                     = require('jquery'),
     select2    = require('../libs/select2/dist/js/select2.min'),
     toggles    = require('../libs/jquery-toggles/toggles.min'),
 
-    dt            = require('../node_modules/datatables.net')(window, $),
-    dt_responsive = require('../node_modules/datatables.net-responsive')(window, $),
+    dt            = require('datatables.net')(window, $),
+    dt_responsive = require('datatables.net-responsive')(window, $),
 
     ButtonComponent = require('./ButtonComponent'),
     HelpTextComponent = require('./HelpTextComponent'),
