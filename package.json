@@ -24,6 +24,7 @@
     "grunt-browserify": "latest",
     "grunt-bump": "latest",
     "grunt-contrib-clean": "latest",
+    "grunt-contrib-compress": "^1.0.0",
     "grunt-contrib-copy": "latest",
     "grunt-contrib-jshint": "latest",
     "grunt-contrib-uglify": "latest",

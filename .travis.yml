@@ -19,6 +19,15 @@ install:
 script:
   - phpunit
   - npm test
+  - grunt build
 
 after_success:
   - codecov
+
+deploy:
+  provider: releases
+  api_key: "99cf62656806a7c2c77813330acf5ab2b9606330"
+  file: "pulsar.zip"
+  skip_cleanup: true
+  on:
+    tags: true
