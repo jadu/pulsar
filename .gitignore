@@ -13,8 +13,10 @@
 .vagrant/
 /css
 /dist
+/tests/logs
 /css
 libs/livereload-js
 libs/phantomcss
 .vagrant
 pulsar.zip
+
