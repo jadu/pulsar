@@ -24,3 +24,10 @@ script:
 after_success:
   - codecov
 
+deploy:
+  provider: releases
+  api_key:
+    secure: q/5L4w87ve2sbEgQOLqIHGrXqBBTV7hCFg8koh+RjovnBl/z6ZDucQMmI5SAf1GEVzh30XXhYvVnpO6DQ0vJw99TESiIFyECW45lswHzW40bZ9jqgm969Xtrw97ifdZLWMmRxQp9q/OgYejPA1UpYLKNJTWJ9ddcl9BTWPRImdYAM//mVbImp7GnKWZlX1MLow443J4d/uWeW9kOmqUCp5gTmGJGHe4inTq+ooFuL5ceSaq26J7yAvQuzP1BYdwSV7yphVrP+jmfd3enayxQJrozcZ618bHscYy1Fa6r3ruM1s9vR7FQ5vDmR9SiEpikjDQ8TqCI5z64LI9x0MGB81ivb8o3z+hD7lFacSqUNjoBvytKAEKVc+//8EvQU07Rlw2N0yp31aBfByZyH5ZKQ4NkmLdMeeLrzo+FmlFX/3g7M0ah2X9TJJ4Qr1h7XTOyuqrVwx67AbSCXdg8+45+M+VONIy9+Yjj9NCwvNEtDbNCU/F0Hfb+0cX2YdCjY6eDmIGRUEylxj7OUrcZQ88vYZow6WidCEfNQTaqsn6cL+wg1gPT/KjxkL2c7YMHVRO64AADa0ppMBqgza1EWpRXsmuhCQSF2pkOeX7aqJ3CR5YEJYCZ4dn94aSyeBipny5DH1MWgeP3hAKf32iOtuGk0wFN/nllTqASLK3nrg6nmPU=
+  file: pulsar.zip
+  on:
+    repo: jadu/pulsar
