@@ -491,6 +491,14 @@ module.exports = function(grunt) {
         'compress'
     ]);
 
+    grunt.registerTask('deploy', [
+        'sass:dist_modern',
+        'sass:dist_ie',
+        'browserify:dist',
+        'copy:dist',
+        'compress'
+    ]);
+
     grunt.registerTask('favicons', [
         'clean:favicons',
         'realFavicon'

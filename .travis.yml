@@ -19,7 +19,7 @@ install:
 script:
   - phpunit
   - npm test
-  - grunt build
+  - grunt deploy
 
 after_success:
   - codecov
