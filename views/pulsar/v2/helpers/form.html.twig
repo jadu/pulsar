@@ -713,6 +713,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
                 elem.input(options
                     |exclude('bare class help label')
                     |defaults({'type': 'file'})
+                    |merge({'class': 'file'})
                 )
             ]
         })
@@ -1239,7 +1240,10 @@ required | bool   | Visually indicates that the field must be completed
     {{
         elem.input(options
             |exclude('class for label')
-            |defaults({'type': 'radio'})
+            |defaults({
+                'type': 'radio'
+            })
+			|merge({'class': 'radio'})
         )
     }}
     {{
@@ -1311,7 +1315,9 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
             'parent': options|only('bare class help id label required'),
             'inputs': [
                 elem.select(
-                    options|exclude('bare class help label')
+                    options
+					|exclude('bare class help label')
+					|merge({'class': 'select'})
                 )
             ]
         })

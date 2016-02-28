@@ -10,23 +10,26 @@
 window.jQuery = window.$ = require('jquery');
 
 // Global UI components
-var $          = require('jquery'),
-    deck       = require('./deck'),
-    dropdown   = require('./dropdown'),
-    modal      = require('./modal'),
-    tab        = require('./tab'),
-    popover    = require('./popover'),
-    tooltip    = require('./tooltip'),
+var $                     = require('jquery'),
+    deck                  = require('./deck'),
+    dropdown              = require('./dropdown'),
+    modal                 = require('./modal'),
+    tab                   = require('./tab'),
+    popover               = require('./popover'),
+    tooltip               = require('./tooltip'),
+    matchMedia            = require('./polyfills/matchMedia'),
+    matchMediaAddListener = require('./polyfills/matchMedia.addListener');
 
     clickover  = require('../libs/bootstrapx-clickover/js/bootstrapx-clickover'),
     svgeezy    = require('../libs/svgeezy/svgeezy.min'),
     select2    = require('../libs/select2/dist/js/select2.min'),
     toggles    = require('../libs/jquery-toggles/toggles.min'),
 
-    dt            = require('../node_modules/datatables.net')(window, $),
-    dt_responsive = require('../node_modules/datatables.net-responsive')(window, $),
+    dt            = require('datatables.net')(window, $),
+    dt_responsive = require('datatables.net-responsive')(window, $),
 
     ButtonComponent = require('./ButtonComponent'),
+    HelpTextComponent = require('./HelpTextComponent'),
     FlashMessageComponent = require('./FlashMessageComponent'),
     MasterSwitchComponent = require('./MasterSwitchComponent'),
     NavMainComponent = require('./NavMainComponent'),
@@ -36,6 +39,7 @@ var $          = require('jquery'),
 
 module.exports = {
     ButtonComponent: ButtonComponent,
+    HelpTextComponent: HelpTextComponent,
     FlashMessageComponent: FlashMessageComponent,
     MasterSwitchComponent: MasterSwitchComponent,
     NavMainComponent: NavMainComponent,
