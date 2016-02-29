@@ -31,4 +31,6 @@ deploy:
   file: pulsar.zip
   skip_cleanup: true
   on:
-    repo: jadu/pulsar
+    tags: true
+    all_branches: true
+
