@@ -23,7 +23,7 @@ install:
 
 script:
   - phpunit
-  - bash <(curl -s https://codecov.io/bash)
+  - codecov
   - npm run coverage
 
 after_success:
