@@ -1,5 +1,11 @@
 language: php
 
+cache:
+  bundler: true
+  directories:
+    - node_modules
+    - vendor
+
 php:
   - 5.5
 
