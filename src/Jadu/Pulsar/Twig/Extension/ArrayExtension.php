@@ -45,8 +45,12 @@ class ArrayExtension extends \Twig_Extension
 	 * @param  string|array $excludes The list of items to exclude
 	 * @return array                  The filtered array
 	 */
-	public function excludeFromArray(array $array, $excludes = null)
+	public function excludeFromArray($array, $excludes = null)
 	{
+		if (is_null($array)) {
+			return array();
+		}
+
 		if (!is_array($excludes) && !is_string($excludes)) {
 			return $array;
 		}
@@ -75,8 +79,12 @@ class ArrayExtension extends \Twig_Extension
 	 * @param  string|array $excludes The list of items to include
 	 * @return array                  The filtered array
 	 */
-	public function onlyFromArray(array $array, $only = null)
+	public function onlyFromArray($array, $only = null)
 	{
+		if (is_null($array)) {
+			return array();
+		}
+
 		if (!is_array($only) && !is_string($only)) {
 			return array();
 		}
