@@ -27,10 +27,10 @@ install:
 script:
   - phpunit
   - npm test
-  - grunt deploy
 
 after_success:
   - codecov
+  - grunt deploy
 
 deploy:
   provider: releases
