@@ -7,16 +7,16 @@
 {% endmacro %}
 
 
-{% macro caret(visible = false) %}
+{% macro caret(visible) %}
 {% spaceless %}
-    {% if visible %}
+    {% if visible|default(false) %}
         &nbsp;<span class="caret"></span>
     {% endif  %}
 {% endspaceless %}
 {% endmacro %}
 
 
-{% macro class(default = '', options) %}
+{% macro class(default, options) %}
 {% spaceless %}
     {% set classes = [] %}
 
@@ -44,7 +44,7 @@
 {% endmacro %}
 
 
-{% macro data(attributes = {}) %}
+{% macro data(attributes) %}
 {% spaceless %}
     {% for key, value in attributes if value is not empty %}
         {% if key == 'checked' %}
