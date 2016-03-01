@@ -81,7 +81,7 @@ class ArrayExtension extends \Twig_Extension
 	 */
 	public function onlyFromArray($array, $only = null)
 	{
-		if ((!is_array($only) && !is_string($only)) || is_null($array)) {
+		if (is_null($array) || (!is_array($only) && !is_string($only))) {
 			return array();
 		}
 
