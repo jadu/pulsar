@@ -4,7 +4,8 @@ cache:
   directories:
     - node_modules
     - vendor
-    - .cache/pip
+    - $HOME/.composer/cache
+    - $HOME/.cache/pip
 
 php:
   - 5.5
