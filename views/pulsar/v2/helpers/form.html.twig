@@ -113,18 +113,18 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
     {{
         form.group({
             'parent': options
+                |only('bare class help id label required')
                 |defaults({
                     'class': 'form-checkbox'
-                })
-                |only('bare class help id label required'),
+                }),
             'inputs': [
                 elem.input(
                     options
+                        |exclude('bare class help label')
                         |defaults({
                             'class': 'checkbox',
                             'type': 'checkbox'
                         })
-                        |exclude('bare class help label')
                 )
             ]
         })
