@@ -23,16 +23,3 @@ window.describe = describe;
 window.expect = chai.expect;
 window.it = it;
 window.sinon = sinon;
-
-require('./tabbedLayoutTest');
-require('./ButtonComponentTest.js');
-require('./FlashMessageComponentTest.js');
-require('./PulsarFormComponentTest.js');
-require('./HelpTextComponentTest.js');
-require('./PulsarUIComponentTest.js');
-
-if (typeof mochaPhantomJS !== 'undefined') {
-    mochaPhantomJS.run();
-} else {
-    mocha.run();
-}
