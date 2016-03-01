@@ -7,7 +7,7 @@
   },
   "scripts": {
     "test": "mochify --reporter spec --recursive ./tests/js/index ./tests/*Test.js --grep '^(?!MasterSwitch|Sign-in)'",
-    "coverage": "mochify --plugin [ mochify-istanbul --exclude '**/+(tests|node_modules)/**/*' --report lcov --dir ./coverage ] --reporter spec --recursive ./tests/js/index ./tests/*Test.js --grep '^(?!MasterSwitch|Sign-in)'"
+    "coverage": "mochify --plugin [ mochify-istanbul --exclude '**/+(tests|node_modules|libs)/**/*' --report lcov --dir ./coverage ] --reporter spec --recursive ./tests/js/index ./tests/*Test.js --grep '^(?!MasterSwitch|Sign-in)'"
   },
   "devDependencies": {
     "aliasify": "^1.9.0",
