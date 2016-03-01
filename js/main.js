@@ -7,8 +7,11 @@
 
     var $html = $('html');
 
+    $html.removeClass('no-js');
+
     pulsar.button       = new pulsar.ButtonComponent($html);
     pulsar.flash        = new pulsar.FlashMessageComponent($html);
+    pulsar.helpText     = new pulsar.HelpTextComponent($html, window, document);
     pulsar.pulsarForm   = new pulsar.PulsarFormComponent($html);
     pulsar.pulsarUI     = new pulsar.PulsarUIComponent($html);
     pulsar.signIn       = new pulsar.SignInComponent($html);
@@ -19,6 +22,8 @@
 
         pulsar.button.init();
         pulsar.flash.init();
+        pulsar.helpText.init();
+        pulsar.helpText.updateHelpSidebar();
         pulsar.pulsarForm.init();
         pulsar.pulsarUI.init();
         pulsar.signIn.init();
@@ -60,6 +65,12 @@
             ],
             oLanguage: {
              sSearch: "Filter:"
+            },
+            responsive: {
+			    details: {
+	                type: 'column',
+	                target: '.table-child-toggle'
+	            }
             },
             stateSave: false,
             tableTools: {

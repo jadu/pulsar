@@ -81,9 +81,9 @@
 {% endmacro %}
 
 
-{%- macro tabs(tabs, active_tab = null) -%}
+{%- macro tabs(tabs, active_tab) -%}
     {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
-    {% set active_tab_id = get_active_tab(tabs, active_tab) %}
+    {% set active_tab_id = get_active_tab(tabs, active_tab|default) %}
 
     <div class="nav-inline">
         <ul class="nav-inline__list">

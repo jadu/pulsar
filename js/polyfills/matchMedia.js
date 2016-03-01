@@ -1,84 +1,46 @@
-/*! matchMedia() polyfill - Test a CSS media type/query in JS. Authors & copyright (c) 2012: Scott Jehl, Paul Irish, Nicholas Zakas. Dual MIT/BSD license */
+/*! matchMedia() polyfill - Test a CSS media type/query in JS. Authors & copyright (c) 2012: Scott Jehl, Paul Irish, Nicholas Zakas, David Knight. Dual MIT/BSD license */
 
-// Override the default matchMedia in respond
-if (window.matchMedia && !window.matchMedia('only all').matches) {
-    window.matchMedia = null;
-}
+window.matchMedia || (window.matchMedia = function() {
+    "use strict";
 
-window.matchMedia = window.matchMedia || (function(doc, undefined){
+    // For browsers that support matchMedium api such as IE 9 and webkit
+    var styleMedia = (window.styleMedia || window.media);
 
-  var docElem  = doc.documentElement,
-      refNode  = docElem.firstElementChild || docElem.firstChild,
-      // fakeBody required for <FF4 when executed in <head>
-      fakeBody = doc.createElement('body'),
-      div      = doc.createElement('div');
+    // For those that don't support matchMedium
+    if (!styleMedia) {
+        var style       = document.createElement('style'),
+            script      = document.getElementsByTagName('script')[0],
+            info        = null;
 
-  div.id = 'mq-test-1';
-  div.style.cssText = "position:absolute;top:-100em";
-  fakeBody.style.background = "none";
-  fakeBody.appendChild(div);
+        style.type  = 'text/css';
+        style.id    = 'matchmediajs-test';
 
-  var mqRun = function ( mq ) {
-    div.innerHTML = '&shy;<style media="' + mq + '"> #mq-test-1 { width: 42px; }</style>';
-    docElem.insertBefore( fakeBody, refNode );
-    bool = div.offsetWidth === 42;
-    docElem.removeChild( fakeBody );
-    
-    return { matches: bool, media: mq };
-  },
-  
-  getEmValue = function () {
-    var ret,
-        body = docElem.body,
-        fakeUsed = false;
+        script.parentNode.insertBefore(style, script);
 
-    div.style.cssText = "position:absolute;font-size:1em;width:1em";
+        // 'style.currentStyle' is used by IE <= 8 and 'window.getComputedStyle' for all other browsers
+        info = ('getComputedStyle' in window) && window.getComputedStyle(style, null) || style.currentStyle;
 
-    if( !body ) {
-      body = fakeUsed = doc.createElement( "body" );
-      body.style.background = "none";
+        styleMedia = {
+            matchMedium: function(media) {
+                var text = '@media ' + media + '{ #matchmediajs-test { width: 1px; } }';
+
+                // 'style.styleSheet' is used by IE <= 8 and 'style.textContent' for all other browsers
+                if (style.styleSheet) {
+                    style.styleSheet.cssText = text;
+                } else {
+                    style.textContent = text;
+                }
+
+                // Test if media query is true or false
+                return info.width === '1px';
+            }
+        };
     }
 
-    body.appendChild( div );
-
-    docElem.insertBefore( body, docElem.firstChild );
-
-    if( fakeUsed ) {
-      docElem.removeChild( body );
-    } else {
-      body.removeChild( div );
-    }
-    
-    //also update eminpx before returning
-    ret = eminpx = parseFloat( div.offsetWidth );
-
-    return ret;
-  },
-  
-  //cached container for 1em value, populated the first time it's needed 
-  eminpx,
-  
-  // verify that we have support for a simple media query
-  mqSupport = mqRun( '(min-width: 0px)' ).matches;
-
-  return function ( mq ) {
-    if( mqSupport ) {
-      return mqRun( mq );
-    } else {
-      var min = mq.match( /\(min\-width[\s]*:[\s]*([\s]*[0-9\.]+)(px|em)[\s]*\)/ ) && parseFloat( RegExp.$1 ) + ( RegExp.$2 || "" ),
-          max = mq.match( /\(max\-width[\s]*:[\s]*([\s]*[0-9\.]+)(px|em)[\s]*\)/ ) && parseFloat( RegExp.$1 ) + ( RegExp.$2 || "" ),
-          minnull = min === null,
-          maxnull = max === null,
-          currWidth = doc.body.offsetWidth,
-          em = 'em';
-      
-      if( !!min ) { min = parseFloat( min ) * ( min.indexOf( em ) > -1 ? ( eminpx || getEmValue() ) : 1 ); }
-      if( !!max ) { max = parseFloat( max ) * ( max.indexOf( em ) > -1 ? ( eminpx || getEmValue() ) : 1 ); }
-      
-      bool = ( !minnull || !maxnull ) && ( minnull || currWidth >= min ) && ( maxnull || currWidth <= max );
-
-      return { matches: bool, media: mq };
-    }
-  };
-
-}( document ));
+    return function(media) {
+        return {
+            matches: styleMedia.matchMedium(media || 'all'),
+            media: media || 'all'
+        };
+    };
+}());

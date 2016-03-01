@@ -1,6 +1,6 @@
 {
   "name": "pulsar",
-  "version": "5.0.1",
+  "version": "5.3.6",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -27,6 +27,7 @@
     "select2": "~4.0.0",
     "sticky": "latest",
     "store.js": "latest",
+    "susy" : "~2.2.6",
     "svgeezy": "latest",
     "Vague.js": "Stanton/vague.js",
     "vide": "~0.3.1"

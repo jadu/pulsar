@@ -1,6 +1,6 @@
 {
   "name": "pulsar",
-  "version": "5.0.1",
+  "version": "5.3.6",
   "repository": {
     "type": "git",
     "url": "https://github.com/jadu/pulsar.git"
@@ -15,7 +15,9 @@
     "browserify-istanbul": "^0.2.1",
     "browserify-shim": "^3.8.9",
     "chai": "latest",
+    "datatables.net": "^1.10.11",
     "datatables.net-dt": "^1.10.10",
+    "datatables.net-responsive": "^2.0.2",
     "datatables.net-responsive-dt": "^2.0.0",
     "grunt": "^0.4.5",
     "grunt-asciify": "latest",
@@ -24,6 +26,7 @@
     "grunt-browserify": "latest",
     "grunt-bump": "latest",
     "grunt-contrib-clean": "latest",
+    "grunt-contrib-compress": "^1.0.0",
     "grunt-contrib-copy": "latest",
     "grunt-contrib-jshint": "latest",
     "grunt-contrib-uglify": "latest",
