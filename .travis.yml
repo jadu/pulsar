@@ -10,9 +10,6 @@ cache:
 php:
   - 5.5
 
-before_install:
-  - pip install --user codecov
-
 before_script:
   - phpenv config-rm xdebug.ini
   - npm install -g grunt-cli
@@ -26,10 +23,10 @@ install:
 
 script:
   - phpunit
+  - bash <(curl -s https://codecov.io/bash)
   - npm run coverage
 
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
   - grunt deploy
 
 deploy:
