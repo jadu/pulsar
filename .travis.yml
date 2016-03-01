@@ -14,6 +14,7 @@ before_install:
   - pip install --user codecov
 
 before_script:
+  - phpenv config-rm xdebug.ini
   - npm install -g grunt-cli
   - npm install
   - mkdir -p dist/js
@@ -21,7 +22,7 @@ before_script:
 
 install:
   - composer self-update
-  - composer install --no-interaction
+  - composer install --prefer-dist --no-interaction
 
 script:
   - phpunit
