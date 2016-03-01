@@ -21,11 +21,11 @@ install:
 
 script:
   - phpunit
+  - npm run coverage
 
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
   - grunt deploy
-  - npm run coverage
+  - bash <(curl -s https://codecov.io/bash)
 
 deploy:
   provider: releases
