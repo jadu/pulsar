@@ -26,7 +26,7 @@ install:
 
 script:
   - phpunit
-  - npm test
+  - npm run coverage
 
 after_success:
   - codecov
