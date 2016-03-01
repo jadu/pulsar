@@ -6,10 +6,8 @@
     "url": "https://github.com/jadu/pulsar.git"
   },
   "scripts": {
-    "pretest": "browserify tests/js/index --standalone=pulsar --debug --outfile dist/js/test.js",
-    "test": "mocha-phantomjs tests/js/index.html --reporter spec",
-    "precoverage": "browserify tests/js/index -t browserify-istanbul --standalone=pulsar --debug --outfile dist/js/coverage.js",
-    "coverage": "mocha-phantomjs tests/js/coverage.html --reporter json-cov | json2lcov > tmp/coverage.lcov"
+    "test": "mochify --reporter spec --recursive ./tests/js/index ./tests/*Test.js --grep '^(?!MasterSwitch|Sign-in)'",
+    "coverage": "mochify --plugin [ mochify-istanbul --exclude '**/+(tests|node_modules)/**/*' --report lcov --dir ./coverage ] --reporter spec --recursive ./tests/js/index ./tests/*Test.js --grep '^(?!MasterSwitch|Sign-in)'"
   },
   "devDependencies": {
     "aliasify": "^1.9.0",
@@ -48,6 +46,8 @@
     "mocha": "^2.4.5",
     "mocha-lcov-reporter": "^1.2.0",
     "mocha-phantomjs": "^4.0.2",
+    "mochify": "~2.15.0",
+    "mochify-istanbul": "^2.4.1",
     "phantomjs": "^1.9.19",
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0",
