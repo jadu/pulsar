@@ -7,7 +7,7 @@
   },
   "scripts": {
     "test": "mochify --reporter spec --recursive ./tests/js/index ./tests/*Test.js --grep '^(?!MasterSwitch|Sign-in)'",
-    "coverage": "mochify --plugin [ mochify-istanbul --exclude '**/+(tests|node_modules|libs)/**/*' --report lcov --dir ./coverage ] --reporter spec --recursive ./tests/js/index ./tests/*Test.js --grep '^(?!MasterSwitch|Sign-in)'"
+    "coverage": "mochify --plugin [ mochify-istanbul --exclude '**/+(tests|node_modules|libs)/**/*' --report lcov --dir ./coverage ] --reporter spec --recursive ./tests/js/index ./tests/*Test.js --grep '^(?!MasterSwitch|Sign-in)' && ./node_modules/.bin/codecov"
   },
   "devDependencies": {
     "aliasify": "^1.9.0",
@@ -15,6 +15,7 @@
     "browserify-istanbul": "^0.2.1",
     "browserify-shim": "^3.8.9",
     "chai": "latest",
+    "codecov": "^1.0.1",
     "datatables.net": "^1.10.11",
     "datatables.net-dt": "^1.10.10",
     "datatables.net-responsive": "^2.0.2",
