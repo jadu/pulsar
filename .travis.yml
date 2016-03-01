@@ -10,7 +10,6 @@ php:
   - 5.5
 
 before_script:
-  - phpenv config-rm xdebug.ini
   - npm install -g grunt-cli
   - npm install
   - mkdir -p dist/js
@@ -26,6 +25,7 @@ script:
 after_success:
   - bash <(curl -s https://codecov.io/bash)
   - grunt deploy
+  - npm run coverage
 
 deploy:
   provider: releases
