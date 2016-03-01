@@ -285,7 +285,7 @@ multiple | bool   | If `true`, uses checkboxes instead of radios, or passes the 
 
     {% if options.optimize == 'many' or (options.options|length > 5 and options.optimize == 'auto') %}
 
-        {% set select_options %}
+        {% set select_options = {} %}
         {% for select_option in options.options %}
             {%
                 set select_options = select_options|merge({
