@@ -24,7 +24,6 @@ install:
 script:
   - phpunit
   - codecov
-  - npm run coverage
 
 after_success:
   - grunt deploy
