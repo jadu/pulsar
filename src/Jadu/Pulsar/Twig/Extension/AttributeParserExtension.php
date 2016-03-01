@@ -55,8 +55,12 @@ class AttributeParserExtension extends \Twig_Extension
         );
     }
 
-    public function defaultAttributes(array $attributes, array $default)
+    public function defaultAttributes($attributes, array $default)
     {
+        if (is_null($attributes)) {
+            $attributes = array();
+        }
+
         $out = $attributes;
 
         foreach ($default as $key => $value) {
