@@ -13,7 +13,6 @@ before_script:
   - npm install -g grunt-cli
   - npm install
   - mkdir -p dist/js
-  - mkdir -p tests/logs
 
 install:
   - composer self-update
