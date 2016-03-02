@@ -8,7 +8,9 @@
 .btn__group,
 .btn__group-vertical {
   position: relative;
-  @include inline-block;
+  &:not(.controls) {
+    @include inline-block;
+  }
   vertical-align: middle; // match .btn alignment given font-size hack above
 
   > .btn:not(.btn--naked),

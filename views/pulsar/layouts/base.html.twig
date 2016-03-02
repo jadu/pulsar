@@ -100,6 +100,8 @@
                     {% block tabs_content %}{% endblock %}
                 </div>
             </div>
+
+            <div class="tab-help-container"><div class="tab-help"></div></div>
         </div>
     </div>
 
@@ -117,7 +119,7 @@
                 'class': 'branding-footer'
             })
         }}
-        &copy; 2015
+        &copy; {{ ''|date('Y') }}
     </footer>
 
     <div id="modal" class="modal" role="dialog" aria-hidden="true">

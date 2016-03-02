@@ -1,6 +1,8 @@
 {
     "name": "jadu/pulsar",
-    "version": "5.0.1",
+    "description": "The User Experience and Interface framework for the Jadu Continuum Platform",
+    "version": "5.3.6",
+    "license": "MIT",
     "autoload": {
         "psr-0": {
             "Jadu\\Pulsar": "src"
@@ -10,11 +12,6 @@
         "twig/twig": "^1.21"
     },
     "require-dev": {
-        "phpunit/phpunit": "*",
-        "behat/behat": "~2.5",
-        "behat/mink": "*",
-        "behat/mink-extension": "*",
-        "behat/mink-goutte-driver": "*",
-        "behat/mink-selenium2-driver": "*"
+        "phpunit/phpunit": "*"
     }
 }

@@ -233,7 +233,6 @@ define([
             // actionsMenu();
 
             // Refresh positions of sticky elements
-            console.log($('.is-sticky'));
             $('.is-sticky').sticky('update');
 
             $('.tabs__list[data-mobile-togglable]').css({'top': ($('.toolbar').outerHeight() - 3)});

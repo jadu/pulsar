@@ -19,6 +19,7 @@ $control-column-width: 75%;
     // the main label, usually placed in the left hand column
     > .control__label {
         width: $label-column-width;
+        word-wrap: break-word;
     }
 
     .help-block {
@@ -141,7 +142,6 @@ $control-column-width: 75%;
         > .controls {
             display: block;
             min-width: 100%;
-            overflow: hidden;
             width: 100%;
         }
 

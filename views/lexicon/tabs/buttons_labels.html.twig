@@ -3,6 +3,14 @@
 {% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
 {% import '@pulsar/pulsar/helpers/flash.html.twig' as flash %}
 
+{% block tab_sidebar %}
+
+    <h2 class="heading">{{ html.icon('info-sign', { 'class': 'sidebar-icon'}) }} Some button help</h2>
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tellus dolor, condimentum efficitur arcu sed, feugiat pellentesque lacus. Pellentesque ac ipsum ac mauris cursus volutpat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+{% endblock tab_sidebar %}
+
+
 {% block tab_content %}
 
     <h2 class="heading">Button variations</h2>
@@ -71,6 +79,13 @@
             html.button({
                 label: 'Active',
                 class: 'active'
+            })
+        }}
+
+        {{
+            html.button({
+                label: 'Naked',
+                class: 'btn--naked'
             })
         }}
     </p>
@@ -147,6 +162,14 @@
                 type: 'link'
             })
         }}
+
+        {{
+            html.button({
+                label: 'Naked',
+                type: 'link',
+                class: 'btn--naked'
+            })
+        }}
     </p>
 
     <h2 class="heading">Disabled buttons</h2>
@@ -214,6 +237,13 @@
             html.button({
                 label: 'Active',
                 class: 'active is-disabled'
+            })
+        }}
+
+        {{
+            html.button({
+                label: 'Naked',
+                class: 'btn--naked is-disabled'
             })
         }}
     </p>

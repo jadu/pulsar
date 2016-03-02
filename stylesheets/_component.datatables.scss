@@ -17,6 +17,12 @@
         background-color: color(jadu-blue, pale);
     }
 
+    &.is-disabled .table__td {
+        &,
+        & > * {
+            color: color(text, disabled);
+        }
+    }
 }
 
 .table__tr--no-results td {
