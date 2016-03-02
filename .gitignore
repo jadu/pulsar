@@ -11,6 +11,7 @@
 /composer.phar
 /.bashrc
 .vagrant/
+/coverage
 /css
 /dist
 /tests/logs
