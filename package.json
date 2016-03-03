@@ -1,6 +1,6 @@
 {
   "name": "pulsar",
-  "version": "5.3.6",
+  "version": "5.3.7",
   "repository": {
     "type": "git",
     "url": "https://github.com/jadu/pulsar.git"
