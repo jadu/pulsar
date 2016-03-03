@@ -206,4 +206,29 @@ describe('FlashMessage component', function() {
 
     });
 
+    describe('Flash messages that exist in the DOM on load', function() {
+
+        beforeEach(function() {
+            this.$flashElement.appendTo(this.$html);
+            this.flash.init();
+        });
+
+        it('should call the dismiss method', function() {
+            sinon.spy(this.flash, 'dismiss');
+
+            var $dismissButton = this.$html.find('[data-dismiss]');
+            $dismissButton.click();
+
+            expect(this.flash.dismiss).to.have.been.called;
+        });
+
+        it('should remove the flash message', function() {
+            var $dismissButton = this.$html.find('[data-dismiss]');
+            $dismissButton.click();
+
+            expect(this.$html.find('.flash').length).to.equal(0);
+        });
+
+    });
+
 });
