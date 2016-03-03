@@ -46,7 +46,6 @@ describe('FlashMessage component', function() {
         });
 
         it('should populate the container with the flash element', function() {
-            // console.log(this.$container.prop('outerHTML'));
             var $flashElement = this.$container.find('.flash');
             expect($flashElement).to.not.equal(0);
         });
@@ -162,11 +161,40 @@ describe('FlashMessage component', function() {
 
     });
 
+    describe('The render method', function() {
+
+        beforeEach(function() {
+            this.flash.init();
+            this.flash.render('foo');
+        });
+
+        it('should use the success type by default', function() {
+            var $flashElement = this.$container.find('.flash');
+            expect($flashElement.hasClass('flash--success')).to.be.true;
+        });
+
+        it('should use the info icon by default', function() {
+            var $flashElement = this.$container.find('.flash'),
+                $flashIcon = $flashElement.find('i');
+            expect($flashIcon.hasClass('icon-info-sign')).to.be.true;
+        });
+
+    });
+
     describe('The dismiss button', function() {
 
         beforeEach(function() {
             this.flash.init();
             this.flash.success();
+        });
+
+        it('should call the dismiss method', function() {
+            sinon.spy(this.flash, 'dismiss');
+
+            var $dismissButton = this.$container.find('[data-dismiss]');
+            $dismissButton.click();
+
+            expect(this.flash.dismiss).to.have.been.called;
         });
 
         it('should remove the flash message', function() {
