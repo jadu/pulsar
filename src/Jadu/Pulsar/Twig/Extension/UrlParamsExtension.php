@@ -10,7 +10,7 @@ namespace Jadu\Pulsar\Twig\Extension;
  *
  * Unit tests: tests/unit/UrlParamsExtensionTest.php
  */
-class UrlParamsExtension extends \Twig_Extension
+class UrlParamsExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface
 {
     /**
      * Query string parameters

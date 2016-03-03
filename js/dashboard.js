@@ -76,7 +76,6 @@ define([
       },
 
       initDashboard: function () {
-        console.log('init dashboard');
 
         var _this = this;
 
@@ -85,7 +84,6 @@ define([
           forcePlaceholderSize: this.settings.sortableForcePlaceholderSize,
           opacity: this.settings.sortableOpacity,
           receive: function(e, ui) {
-            console.log('received');
 
             var $this = $(this);
 
@@ -141,7 +139,6 @@ define([
 
         // action - rename dashboard
         $('[data-action=rename]').submit(function(e) {
-          console.log('rename');
           var values = {};
 
           e.preventDefault();
@@ -151,7 +148,7 @@ define([
           });
 
           _this.settings.title = values.name;
-          
+
           $(_this.settings.titleContainer).text(_this.settings.title);
 
           // update the name used in the 'delete widget' modal
@@ -206,17 +203,16 @@ define([
       },
 
       getState: function () {
-        console.log('get state');
 
         var state = [];
-        
+
         // check for a stored state object first, then try localstorage
         if (this.state) {
           state = this.state;
         }
         else if (store.enabled) {
           state = store.get(this.settings.storageStateName);
-        } 
+        }
         else {
           return false;
         }
@@ -225,8 +221,6 @@ define([
       },
 
       saveState: function(showFlash) {
-        console.log('saving state... (' + this.api.save + ')');
-        console.log(this.state);
 
         var _this = this,
             state = this.getState();
@@ -254,7 +248,7 @@ define([
             if (this.tryCount <= this.retryLimit) {
               $.ajax(this);
               return;
-            }            
+            }
             return;
           }
           if (xhr.status == 500) {
@@ -265,7 +259,7 @@ define([
         });
 
       }
-      
+
     };
 
     $.fn[pluginName] = function (options) {

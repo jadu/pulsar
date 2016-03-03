@@ -131,7 +131,7 @@ module.exports = function(grunt) {
         watch: {
             css: {
                 files: ['stylesheets/**/*.scss'],
-                tasks: ['sass:dev', 'autoprefixer'],
+                tasks: ['sass:dev', 'autoprefixer', 'bless'],
                 options: {
                     livereload: true,
                 },
@@ -422,6 +422,34 @@ module.exports = function(grunt) {
                     }
                 }
             }
+        },
+
+        bless: {
+            css: {
+                options: {
+                    cacheBuster: false,
+                    compress: true,
+                    logCount: true
+                },
+                files: {
+                    'css/pulsar-ie7-blessed.css': 'css/pulsar-ie7.css',
+                    'css/pulsar-ie8-blessed.css': 'css/pulsar-ie8.css',
+                    'css/pulsar-ie9-blessed.css': 'css/pulsar-ie9.css'
+                }
+            }
+        },
+
+        compress: {
+            dist: {
+                options: {
+                    archive: 'pulsar.zip'
+                },
+                files: [{
+                    expand: true,
+                    cwd: 'dist/',
+                    src: ['**/*']
+                }]
+            }
         }
 
     });
@@ -445,6 +473,7 @@ module.exports = function(grunt) {
     grunt.registerTask('default', [
         'copy',
         'sass:dev',
+        'bless',
         'browserify',
         'watch',
         'email-build'
@@ -458,7 +487,16 @@ module.exports = function(grunt) {
         'browserify:dist',
         'copy:dist',
         'emailBuilder',
-        'realFavicon'
+        'realFavicon',
+        'compress'
+    ]);
+
+    grunt.registerTask('deploy', [
+        'sass:dist_modern',
+        'sass:dist_ie',
+        'browserify:dist',
+        'copy:dist',
+        'compress'
     ]);
 
     grunt.registerTask('favicons', [

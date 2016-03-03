@@ -3,12 +3,15 @@
 	float: none;
 	height: 100%;
 	padding: 0 0 0 40px;
-	text-align: justify;
 	vertical-align: top;
 
 	@include respond-min($screen-large-desktop) {
 		display: table-cell;
 		width: 25%;
+	}
+
+	.no-js & {
+		padding: 0;
 	}
 }
 
@@ -41,4 +44,12 @@
 .sidebar-icon {
 	color: color(gray, dark);
 	line-height: 20px;
+
+	.no-js & {
+		display: none;
+	}
+
+	.tab-help-container & {
+		color: color(white);
+	}
 }

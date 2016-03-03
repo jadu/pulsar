@@ -12,6 +12,8 @@
 
 */
 
+$ie-version: 12 !default;
+
 // Third party plugins
 @import '../libs/normalize-css/normalize.css';
 @import '../libs/jquery-toggles/css/toggles-full.css';
@@ -53,6 +55,7 @@ $FontAwesomePath: '../libs/font-awesome/font/';
 @import '_deprecated.styles.scss';
 
 // Structure
+@import '_structure.grid';
 @import '_structure.columns';
 @import '_structure.scaffolding';
 @import '_structure.type';
@@ -84,8 +87,6 @@ $FontAwesomePath: '../libs/font-awesome/font/';
 @import '_component.decks';
 @import '_component.dropdowns';
 @import '_component.editor';
-@import '_component.filter';
-@import '_component.filters';
 @import '_component.flash';
 @import '_component.footer';
 @import '_component.forms';
@@ -119,6 +120,7 @@ $FontAwesomePath: '../libs/font-awesome/font/';
 @import '_component.settings';
 @import '_component.signin';
 @import '_component.summary';
+@import '_component.tab-help';
 @import '_component.tab-panel';
 // @import '_component.tables';
 @import '_component.toggles';

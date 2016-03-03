@@ -1,0 +1,24 @@
+{#
+    Test using both form and html macros as group inputs
+#}
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{{
+    form.group({
+        'parent': {
+            'label': 'foo'
+        },
+        'inputs': [
+            form.select({
+                'bare': true,
+                'options': {
+                    'foo': 'bar'
+                }
+            }),
+            html.button({
+                'label': 'foo',
+                'type': 'submit'
+            })
+        ]
+    })
+}}

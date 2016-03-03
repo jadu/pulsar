@@ -45,7 +45,7 @@ Option        | Type   | Description
 items         | array  | An array of items to put in the dropdown list (usually radios)
 
 #}
-{% macro button_group(options = {}) %}
+{% macro button_group(options) %}
 {% spaceless %}
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
@@ -105,7 +105,7 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
 *Any other options not listed here will be applied to the input.
 
 #}
-{% macro checkbox(options = {}) %}
+{% macro checkbox(options) %}
 {% spaceless %}
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
@@ -179,7 +179,7 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
 *Any other options not listed here will be applied to the input.
 
 #}
-{% macro checkbox_inline(options = {}) %}
+{% macro checkbox_inline(options) %}
 {% spaceless %}
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
@@ -343,14 +343,14 @@ required | bool   | Visually indicates that the field must be completed, will no
 multiple | bool   | If `true`, uses checkboxes instead of radios, or passes the `multiple` attribute to the select2 element
 
 #}
-{% macro choice(options = {}) %}
+{% macro choice(options) %}
 {% spaceless %}
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
     {% set inputs = [] %}
     {%
-        set options = options|merge({
+        set options = options|default({})|merge({
             'multiple': options.multiple|default(false),
             'optimize': options.optimize|default('auto')
         })
@@ -444,7 +444,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 *Any other options not listed here will be applied to the paragraph.
 
 #}
-{% macro content(options = {}) %}
+{% macro content(options) %}
 {% spaceless %}
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
@@ -515,7 +515,7 @@ to be created automatically after the `<form>` element, and the `method`
 attribute on the `form` element will be set to `POST`.
 
 #}
-{% macro create(options = {}) %}
+{% macro create(options) %}
 {% spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
@@ -532,7 +532,7 @@ attribute on the `form` element will be set to `POST`.
         or options.method is empty
         or options.method|upper in alternateMethods
     %}
-        {% set options = options|merge({'method': 'POST'}) %}
+        {% set options = options|default({})|merge({'method': 'POST'}) %}
     {% endif %}
 
     {%
@@ -594,12 +594,12 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 *Any other options not listed here will be applied to the input.
 
 #}
-{% macro date(options = {}) %}
+{% macro date(options) %}
 {% spaceless %}
     {% import _self as form %}
 
     {%
-        set options = options|merge({
+        set options = options|default({})|merge({
             'placeholder': options.placeholder|default('dd/mm/yyyy'),
             'data-datepicker': 'true'
         })
@@ -645,8 +645,7 @@ actions | array  | Helpers to display as the actions, usually `form.submit()` bu
 class   | string | A space separated list of class names
 
 #}
-{% macro end(options = {}) %}
-{% spaceless %}
+{% macro end(options) %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
     {% if options.actions is defined %}
@@ -659,13 +658,11 @@ class   | string | A space separated list of class names
             )
         }}>
             {% for action in options.actions %}
-                {{- action|raw -}}
+                {{ action|raw }}
             {% endfor %}
         </div>
     {% endif %}
     </form>
-
-{% endspaceless %}
 {% endmacro %}
 
 
@@ -697,7 +694,7 @@ name   | string | The name of this control
 data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
-{% macro fieldset_start(options = {}) %}
+{% macro fieldset_start(options) %}
 {% spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
@@ -777,7 +774,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 *Any other options not listed here will be applied to the input.
 *
 #}
-{% macro file(options = {}) %}
+{% macro file(options) %}
 {% spaceless %}
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
@@ -789,6 +786,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
                 elem.input(options
                     |exclude('bare class help label')
                     |defaults({'type': 'file'})
+                    |merge({'class': 'file'})
                 )
             ]
         })
@@ -881,7 +879,7 @@ Option           | Type   | Description
 controls.class   | string | A space separated list of class names
 
 #}
-{% macro group(options = {}) %}
+{% macro group(options) %}
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
@@ -985,7 +983,7 @@ Option | Type   | Description
 value  | string | The string or html markup to render inside the help block
 
 #}
-{% macro help(options = {}) %}
+{% macro help(options) %}
 {% spaceless %}
 
     {% if options.value is defined and options.value is not empty %}
@@ -1029,7 +1027,7 @@ value       | string | Specifies the value of the input
 data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
-{% macro hidden(options = {}) %}
+{% macro hidden(options) %}
 {% spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
@@ -1092,7 +1090,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 *Any other options not listed here will be applied to the input.
 
 #}
-{% macro password(options = {}) %}
+{% macro password(options) %}
 {% spaceless %}
     {% import _self as form %}
 
@@ -1143,7 +1141,7 @@ data-*   | string | Data attributes, eg: `'data-foo': 'bar'`
 *Any other options not listed here will be applied to the input.
 
 #}
-{% macro radio(options = {}) %}
+{% macro radio(options) %}
 {% spaceless %}
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
@@ -1214,7 +1212,7 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
 *Any other options not listed here will be applied to the input
 
 #}
-{% macro radio_inline(options = {}) %}
+{% macro radio_inline(options) %}
 {% spaceless %}
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
@@ -1308,14 +1306,17 @@ required | bool   | Visually indicates that the field must be completed
 *Any other options not listed here will be applied to the input
 
 #}
-{% macro radio_simple(options = {}) %}
+{% macro radio_simple(options) %}
 {% spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
     {{
         elem.input(options
             |exclude('class for label')
-            |defaults({'type': 'radio'})
+            |defaults({
+                'type': 'radio'
+            })
+			|merge({'class': 'radio'})
         )
     }}
     {{
@@ -1377,7 +1378,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 *Any other options not listed here will be applied to the input.
 
 #}
-{% macro select(options = {}) %}
+{% macro select(options) %}
 {% spaceless %}
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
@@ -1387,7 +1388,9 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
             'parent': options|only('bare class help id label required'),
             'inputs': [
                 elem.select(
-                    options|exclude('bare class help label')
+                    options
+					|exclude('bare class help label')
+					|merge({'class': 'select'})
                 )
             ]
         })
@@ -1447,7 +1450,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 *Any other options not listed here will be applied to the input.
 
 #}
-{% macro select2(options = {}) %}
+{% macro select2(options) %}
 {% spaceless %}
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
@@ -1500,7 +1503,7 @@ data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
 *Any other options not listed here will be applied to the input.
 
 #}
-{% macro submit(options = {}) %}
+{% macro submit(options) %}
 {% spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 
@@ -1558,12 +1561,12 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 *Any other options not listed here will be applied to the input.
 
 #}
-{% macro text(options = {}) %}
+{% macro text(options) %}
 {% spaceless %}
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
-    {% set options = options|merge({ 'type': options.type|default('text') }) %}
+    {% set options = options|default({})|merge({ 'type': options.type|default('text') }) %}
 
     {{
         form.group({
@@ -1623,7 +1626,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 *Any other options not listed here will be applied to the input.
 
 #}
-{% macro textarea(options = {}) %}
+{% macro textarea(options) %}
 {% spaceless %}
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}

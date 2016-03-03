@@ -29,19 +29,48 @@
     ]
 %}
 
-{% set tab_buttons %}{% include   'lexicon/tabs/buttons_labels.html.twig' %}{% endset %}
-{% set tab_colours %}{% include   'lexicon/tabs/colours.html.twig' %}{% endset %}
-{% set tab_decks %}{% include     'lexicon/tabs/decks.html.twig' %}{% endset %}
-{% set tab_flash %}{% include     'lexicon/tabs/flash.html.twig' %}{% endset %}
-{% set tab_forms %}{% include     'lexicon/tabs/forms.html.twig' %}{% endset %}
-{% set tab_loading %}{% include   'lexicon/tabs/loading.html.twig' %}{% endset %}
-{% set tab_message %}{% include   'lexicon/tabs/message.html.twig' %}{% endset %}
-{% set tab_modals %}{% include    'lexicon/tabs/modals.html.twig' %}{% endset %}
-{% set tab_panels %}{% include    'lexicon/tabs/panels.html.twig' %}{% endset %}
-{% set tab_progress_bars %}{% include 'lexicon/tabs/progress_bars.html.twig' %}{% endset %}
-{% set tab_tooltips %}{% include  'lexicon/tabs/tooltips.html.twig' %}{% endset %}
-{% set tab_data_grid %}{% include 'lexicon/tabs/datagrid.html.twig' %}{% endset %}
-{% set tab_metadata %}{% include  'lexicon/tabs/metadata.html.twig' %}{% endset %}
+{% set tab_buttons %}
+    {% include 'lexicon/tabs/buttons_labels.html.twig' %}
+{% endset %}
+{% set tab_colours %}
+    {% include 'lexicon/tabs/colours.html.twig' %}
+{% endset %}
+{% set tab_decks %}
+    {% include 'lexicon/tabs/decks.html.twig' %}
+{% endset %}
+{% set tab_flash %}
+    {% include 'lexicon/tabs/flash.html.twig' %}
+{% endset %}
+{% set tab_forms %}
+    {% include 'lexicon/tabs/forms.html.twig' %}
+{% endset %}
+{% set tab_loading %}
+    {% include 'lexicon/tabs/loading.html.twig' %}
+{% endset %}
+{% set tab_message %}
+    {% include 'lexicon/tabs/message.html.twig' %}
+{% endset %}
+{% set tab_modals %}
+    {% include 'lexicon/tabs/modals.html.twig' %}
+{% endset %}
+{% set tab_pagination %}
+    {% include 'lexicon/tabs/pagination.html.twig' %}
+{% endset %}
+{% set tab_panels %}
+    {% include 'lexicon/tabs/panels.html.twig' %}
+{% endset %}
+{% set tab_progress_bars %}
+    {% include 'lexicon/tabs/progress_bars.html.twig' %}
+{% endset %}
+{% set tab_tooltips %}
+    {% include 'lexicon/tabs/tooltips.html.twig' %}
+{% endset %}
+{% set tab_data_grid %}
+    {% include 'lexicon/tabs/datagrid.html.twig' %}
+{% endset %}
+{% set tab_metadata %}
+    {% include 'lexicon/tabs/metadata.html.twig' %}
+{% endset %}
 
 {%
     set nav_data = {
@@ -54,7 +83,7 @@
                 "1.1": {
                     "1.1.1": {
                         "label": "Components",
-                        "href": "/app/app.php/lexicon/main",
+                        "href": "/app/app.php/lexicon",
                         "class": "is-active"
                     },
                     "1.1.2": {
@@ -107,13 +136,18 @@
         },
         {
           "id"    : "messages",
-          "label" : html.icon("envelope") ~ " Messages",
+          "label" : "Messages",
           "src"   : tab_message
         },
         {
           "id"    : "metadata",
           "label" : "Metadata",
           "src"   : tab_metadata
+        },
+        {
+          "id"    : "pagination",
+          "label" : "Pagination",
+          "src"   : tab_pagination
         },
         {
           "id"    : "panels",

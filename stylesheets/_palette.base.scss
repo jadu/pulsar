@@ -67,7 +67,8 @@ $palette-monochromes: (
 $palette-alias: (
     text: (
         base:  map-get(map-get($palette-monochromes, gray), darker),
-        light: map-get(map-get($palette-monochromes, gray), lighter)
+        light: map-get(map-get($palette-monochromes, gray), lighter),
+        disabled: map-get(map-get($palette-monochromes, gray), lighter)
     ),
     link: (
         base:  map-get(map-get($palette-branding, jadu-blue), dark),
