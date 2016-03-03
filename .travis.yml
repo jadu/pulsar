@@ -5,20 +5,14 @@ cache:
     - node_modules
     - vendor
     - $HOME/.composer/cache
-    - $HOME/.cache/pip
 
 php:
   - 5.5
 
-before_install:
-  - pip install --user codecov
-
 before_script:
-  - phpenv config-rm xdebug.ini
   - npm install -g grunt-cli
   - npm install
   - mkdir -p dist/js
-  - mkdir -p tests/logs
 
 install:
   - composer self-update
@@ -26,11 +20,11 @@ install:
 
 script:
   - phpunit
-  - npm test
-  - grunt deploy
+  - npm run coverage
 
 after_success:
-  - codecov
+  - grunt deploy
+  - bash <(curl -s https://codecov.io/bash)
 
 deploy:
   provider: releases

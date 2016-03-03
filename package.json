@@ -6,12 +6,13 @@
     "url": "https://github.com/jadu/pulsar.git"
   },
   "scripts": {
-    "test": "npm run pulsartest && mocha-phantomjs tests/js/index.html --reporter spec",
-    "pulsartest": "browserify tests/js/index --standalone=pulsar --debug --outfile dist/js/test.js"
+    "test": "mochify --reporter spec --recursive ./tests/js/index ./tests/*Test.js --grep '^(?!MasterSwitch|Sign-in)'",
+    "coverage": "mochify --plugin [ mochify-istanbul --exclude '**/+(tests|node_modules|libs)/**/*' --report lcov --dir ./coverage ] --reporter spec --recursive ./tests/js/index ./tests/*Test.js --grep '^(?!MasterSwitch|Sign-in)'"
   },
   "devDependencies": {
     "aliasify": "^1.9.0",
     "browserify": "10.0.0",
+    "browserify-istanbul": "^0.2.1",
     "browserify-shim": "^3.8.9",
     "chai": "latest",
     "datatables.net": "^1.10.11",
@@ -46,6 +47,8 @@
     "minifyify": "^6.3.0",
     "mocha": "^2.4.5",
     "mocha-phantomjs": "^4.0.2",
+    "mochify": "~2.15.0",
+    "mochify-istanbul": "^2.4.1",
     "phantomjs": "^1.9.19",
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0",
