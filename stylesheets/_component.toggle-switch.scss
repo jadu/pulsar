@@ -1,6 +1,10 @@
 .toggle-switch {
     @extend %hide;
 
+    @include ie-lte(8) {
+        @extend %show;
+    }
+
     &:checked + .toggle-switch-label {
         background-color: color(success); //#1ABC9C
         border-color: transparent;
@@ -48,9 +52,13 @@
     font-size: 2em;
     height: 1em;
     position: relative;
-    transition: all .4s ease;
+    transition: .4s;
     vertical-align: middle;
     width: 2em;
+
+    @include ie-lte(8) {
+        display: none !important;
+    }
 
     &:before {
         background-clip: padding-box;
@@ -63,8 +71,7 @@
         position: absolute;
         right: 50%;
         top: 0;
-        transition: all .3s ease-in-out;
-        transform: translate3d(0, 0, 0);
+        transition: .3s;
         z-index: 2;
     }
 
@@ -77,7 +84,7 @@
         line-height: 2;
         position: absolute;
         top: 0;
-        transition: all .3s ease;
+        transition: .3s;
         width: 100%;
         z-index: 1;
     }
