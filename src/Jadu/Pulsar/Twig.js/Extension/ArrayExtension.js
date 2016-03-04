@@ -51,7 +51,7 @@ ArrayExtension.prototype.onlyFromArray = function (arr, only) {
     if (typeof(only) === 'string') {
         only = only.split(' ');
     }
-    
+
     if (only.length === 0) {
         return {};
     }
