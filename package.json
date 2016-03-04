@@ -7,7 +7,7 @@
   },
   "scripts": {
     "test": "mochify --reporter spec --recursive ./tests/js/index ./tests/*Test.js",
-    "coverage": "mochify --plugin [ mochify-istanbul --exclude '**/+(tests|node_modules|libs|js/libs)/**/*' --report lcov --dir ./coverage ] --reporter spec --recursive ./tests/js/index ./tests/*Test.js"
+    "coverage": "mochify --plugin [ mochify-istanbul --exclude '**/+(tests|node_modules|libs)/**/*' --report lcov --dir ./coverage ] --reporter spec --recursive ./tests/js/index ./tests/*Test.js"
   },
   "devDependencies": {
     "aliasify": "^1.9.0",
