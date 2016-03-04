@@ -115,7 +115,7 @@ describe('HelpTextComponent', function() {
             expect(this.$tabHelpContainer.hasClass('visibility-hidden')).to.be.true;
         });
 
-        it('should add the visibility-hidden class to the tab-help-container if lt-ie', function () {
+        it('should add the visibility-hidden class to the tab-help-container if lt-ie10', function () {
             this.$html.addClass('lt-ie10');
             this.$mainTitle.find('.js-show-page-help').trigger(this.clickEvent);
 
@@ -166,6 +166,7 @@ describe('HelpTextComponent', function() {
     });
 
     describe('If the help sidebar content does not exist', function() {
+
         beforeEach(function () {
             this.window.matchMedia.returns({matches: false});
             this.$tabSidebar.empty();
@@ -179,6 +180,7 @@ describe('HelpTextComponent', function() {
     });
 
     describe('If the help sidebar does not exists', function() {
+
         beforeEach(function () {
             this.$tabSidebar.remove();
             this.window.matchMedia.returns({matches: false});
@@ -220,6 +222,7 @@ describe('HelpTextComponent', function() {
     });
 
     describe('When the active tab is changed', function() {
+
         beforeEach(function () {
             this.window.matchMedia.returns({matches: false});
             this.helpTextComponent.init();
@@ -231,5 +234,24 @@ describe('HelpTextComponent', function() {
         it('should call the update help sidebar method', function () {
             expect(this.helpTextComponent.updateHelpSidebar).to.have.been.called;
         });
+    });
+
+    describe('When the window is resized', function() {
+
+        beforeEach(function () {
+            this.window.matchMedia.returns({matches: false});
+            this.helpTextComponent.init();
+            this.helpTextComponent.updateHelpSidebar();
+            this.$window.trigger('resize');
+        });
+
+        it('should copy the active tabs sidebar contents to the tab-help container', function() {
+            expect(this.$tabHelp.html()).to.equal('<a href="#" class="close-page-help js-close-page-help"><i class="icon-remove-sign"></i></a>Some help text');
+        });
+
+        it('should add the help-close button to the tab-help container', function() {
+            expect(this.$tabHelp.find('.js-close-page-help').length).to.equal(1);
+        });
+
     });
 });
