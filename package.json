@@ -6,8 +6,9 @@
     "url": "https://github.com/jadu/pulsar.git"
   },
   "scripts": {
-    "test": "mochify --reporter spec --recursive ./tests/js/index ./tests/*Test.js",
     "coverage": "mochify --plugin [ mochify-istanbul --exclude '**/+(tests|node_modules|libs)/**/*' --report lcov --dir ./coverage ] --reporter spec --recursive ./tests/js/index ./tests/*Test.js"
+    "test": "npm run web-test && npm run twig.js-test",
+    "web-test": "mochify --reporter spec --recursive ./tests/js/web/index ./tests/js/web/*Test.js",
     "twig.js-test": "mocha --reporter spec ./tests/js/twig/",
   },
   "devDependencies": {
