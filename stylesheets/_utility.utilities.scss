@@ -2,6 +2,7 @@
   @include baseline-grid;
 }
 
+%hide,
 .hide {
   position: absolute;
   width: 1px;
@@ -13,6 +14,7 @@
   border: 0;
 }
 
+%show,
 .show {
   clip: auto;
   display: inline-block;
