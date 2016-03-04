@@ -1,7 +1,7 @@
 'use strict'
 
 var $ = require('jquery'),
-    PulsarUIComponent = require('../../js/PulsarUIComponent');
+    PulsarUIComponent = require('../../../js/PulsarUIComponent');
 
 describe('Pulsar UI Component', function() {
 
