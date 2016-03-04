@@ -21,6 +21,7 @@ install:
 script:
   - phpunit
   - npm run coverage
+  - npm test
 
 after_success:
   - grunt deploy
