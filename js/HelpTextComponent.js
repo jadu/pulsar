@@ -1,6 +1,6 @@
 'use strict';
 
-require('./tab');
+require('./libs/tab');
 var $ = require('jquery');
 
 function HelpTextComponent(html, window, document) {
