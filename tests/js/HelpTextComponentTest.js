@@ -3,6 +3,8 @@
 var $ = require('jquery'),
     HelpTextComponent = require('../../js/HelpTextComponent');
 
+$.fx.off = !$.fx.off
+
 describe('HelpTextComponent', function() {
 
     beforeEach(function() {
