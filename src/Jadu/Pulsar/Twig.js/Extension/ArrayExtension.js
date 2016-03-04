@@ -4,68 +4,63 @@ function ArrayExtension() {
 }
 
 ArrayExtension.prototype.getName = function () {
-	return 'array_extension';
-}
+    return 'array_extension';
+};
 
 ArrayExtension.prototype.excludeFromArray = function (arr, exclude) {
-	arr = _.fromPairs(_.toPairs(arr));
+    arr = _.fromPairs(_.toPairs(arr));
 
-	if (typeof(arr) !== 'object') {
-		console.log('stuff');
-		return arr;
-	}
+    if (typeof(arr) !== 'object') {
+        return arr;
+    }
 
-	if (exclude === false || exclude === null || exclude === '') {
-		return arr;
-	}
+    if (exclude === false || exclude === null || exclude === '') {
+        return arr;
+    }
 
-	if (typeof(exclude) === 'string') {
-		exclude = exclude.split(' ');
-	}
+    if (typeof(exclude) === 'string') {
+        exclude = exclude.split(' ');
+    }
 
-	if (exclude.length === 0) {
-		return arr;
-	}
+    if (exclude.length === 0) {
+        return arr;
+    }
 
-	exclude = _.map(exclude, function (value) {
-		return value.toLowerCase();
-	});
+    exclude = _.map(exclude, function (value) {
+        return value.toLowerCase();
+    });
 
-	var omitted = _.filter(_.keys(arr), function (value, key) {
-		return !_.includes(exclude, value);
-	});
+    var omitted = _.filter(_.keys(arr), function (value, key) {
+        return !_.includes(exclude, value);
+    });
 
-	var final = _.pick(arr,omitted);
-
-	return final;
+    return _.pick(arr,omitted);
 };
 
 ArrayExtension.prototype.onlyFromArray = function (arr, only) {
-	arr = _.fromPairs(_.toPairs(arr));
+    arr = _.fromPairs(_.toPairs(arr));
 
-	if (typeof(arr) !== 'object') {
-		return arr;
-	}
+    if (typeof(arr) !== 'object') {
+        return arr;
+    }
 
-	if (only === false || only === null || only === '') {
-                return {};
-       	}
+    if (only === false || only === null || only === '') {
+        return {};
+    }
 
-        if (typeof(only) === 'string') {
-                only = only.split(' ');
-       	}
+    if (typeof(only) === 'string') {
+        only = only.split(' ');
+    }
+    
+    if (only.length === 0) {
+        return {};
+    }
 
-        if (only.length === 0) {
-               	return {};
-       	}
+    only = _.map(only, function (value) {
+        return value.toLowerCase();
+    });
 
-        only = _.map(only, function (value) {
-               	return value.toLowerCase();
-       	});
-
-	var included = _.pick(arr, only);
-
-	return included;
+    return _.pick(arr, only);
 };
 
 module.exports = ArrayExtension;
