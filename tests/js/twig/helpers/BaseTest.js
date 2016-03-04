@@ -117,7 +117,6 @@ BaseTest.prototype.run = function () {
 	php.expose(this, 'nameSetter');
 	php.expose(this.asserter, 'asserter');
 
-console.log(test);
 	describe(this.testName, function () {
 		php.execute(test);
 	});
