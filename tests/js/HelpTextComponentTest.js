@@ -16,6 +16,7 @@ describe('HelpTextComponent', function() {
         this.$tabHelp = $('<div class="tab-help"></div>').appendTo(this.$tabHelpContainer);
         this.$contentMain = $('<div class="content-main"></div>').appendTo(this.$body);
         this.$tabsContent = $('<div class="tabs__content"></div>').appendTo(this.$contentMain);
+        this.$tabLink = $('<a href="#" data-toggle="tab">tab</a>').appendTo(this.$tabsContent);
         this.$mainTitle = $('<h1 class="main-title">Main title</h1>').appendTo(this.$tabsContent);
         this.$tabPane = $('<div class="tab__pane is-active"></div>').appendTo(this.$tabsContent);
         this.$tabContainer = $('<div class="tab__container"></div>').appendTo(this.$tabPane)
@@ -109,6 +110,15 @@ describe('HelpTextComponent', function() {
         });
 
         it('should add the visibility-hidden class to the tab-help-container', function () {
+            this.$mainTitle.find('.js-show-page-help').trigger(this.clickEvent);
+
+            expect(this.$tabHelpContainer.hasClass('visibility-hidden')).to.be.true;
+        });
+
+        it('should add the visibility-hidden class to the tab-help-container if lt-ie', function () {
+            this.$html.addClass('lt-ie10');
+            this.$mainTitle.find('.js-show-page-help').trigger(this.clickEvent);
+
             expect(this.$tabHelpContainer.hasClass('visibility-hidden')).to.be.true;
         });
     });
@@ -206,6 +216,20 @@ describe('HelpTextComponent', function() {
 
         it('should add the visibility-hidden class from the tab-help-container', function () {
             expect(this.$tabHelpContainer.hasClass('visibility-hidden')).to.be.true;
+        });
+    });
+
+    describe('When the active tab is changed', function() {
+        beforeEach(function () {
+            this.window.matchMedia.returns({matches: false});
+            this.helpTextComponent.init();
+            this.helpTextComponent.updateHelpSidebar();
+            sinon.spy(this.helpTextComponent, 'updateHelpSidebar');
+            this.$tabLink.trigger('shown.bs.tab');
+        });
+
+        it('should call the update help sidebar method', function () {
+            expect(this.helpTextComponent.updateHelpSidebar).to.have.been.called;
         });
     });
 });
