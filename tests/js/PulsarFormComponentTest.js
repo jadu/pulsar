@@ -10,7 +10,7 @@ describe('Pulsar Form Component', function() {
 		this.$body = $('<body></body>').appendTo(this.$html);
 		this.$markup = $('\
 <form class="form">\
-	<select class="js-select2">\
+	<select class="js-select2" data-html="true">\
 		<option>foo</option>\
 		<option>bar</option>\
 		<option>baz</option>\
@@ -18,21 +18,18 @@ describe('Pulsar Form Component', function() {
 </form>\
 ').appendTo(this.$html);
 
-		this.$form = this.$html.find('.form');
-		this.$select2 = this.$form.find('.js-select2');
-
 		this.pulsarForm = new PulsarFormComponent(this.$html);
 
 	});
 
-	describe('Select2 elements', function() {
+	describe('Select2 elements within a form', function() {
 
 		beforeEach(function() {
 			sinon.spy($.fn, 'select2');
 			this.pulsarForm.init();
 		});
 
-		it('should have called the select2 plugin', function() {
+		it('should call the select2 plugin', function() {
 			expect($.fn.select2).to.have.been.called;
 		});
 
