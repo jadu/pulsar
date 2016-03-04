@@ -61,7 +61,7 @@ class ArrayExtensionTest extends \PHPUnit_Framework_TestCase
 	public function testExcludeFromArrayExcludesArray()
 	{
 		$excludes = ['slim', 'class'];
-		$dataOut = array('eminem' => '1', 'marshall' => 'mathers');
+		$dataOut = array('eminem' => true, 'marshall' => 'mathers');
 
         $this->assertEquals(
         	$dataOut,
@@ -75,7 +75,7 @@ class ArrayExtensionTest extends \PHPUnit_Framework_TestCase
 	public function testExcludeFromArrayIsCaseInsensitive()
 	{
 		$excludes = ['SLIM', 'Class'];
-		$dataOut = array('eminem' => '1', 'marshall' => 'mathers');
+		$dataOut = array('eminem' => true, 'marshall' => 'mathers');
 
         $this->assertEquals(
         	$dataOut,
@@ -103,7 +103,7 @@ class ArrayExtensionTest extends \PHPUnit_Framework_TestCase
 	public function testOnlyFromArrayIncludesOnlyFromSingleString()
 	{
 		$only = 'eminem';
-		$dataOut = array('eminem' => '1');
+		$dataOut = array('eminem' => true);
 
         $this->assertEquals(
         	$dataOut,
