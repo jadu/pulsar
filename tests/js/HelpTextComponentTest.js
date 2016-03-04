@@ -3,8 +3,6 @@
 var $ = require('jquery'),
     HelpTextComponent = require('../../js/HelpTextComponent');
 
-$.fx.off = !$.fx.off
-
 describe('HelpTextComponent', function() {
 
     beforeEach(function() {
@@ -113,7 +111,7 @@ describe('HelpTextComponent', function() {
 
         it('should add the visibility-hidden class to the tab-help-container', function () {
             this.$mainTitle.find('.js-show-page-help').trigger(this.clickEvent);
-
+            this.$tabHelpContainer.trigger('transitionend');
             expect(this.$tabHelpContainer.hasClass('visibility-hidden')).to.be.true;
         });
 
