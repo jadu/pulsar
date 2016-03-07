@@ -21,9 +21,9 @@ class PHPUnit_Framework_TestCase
 	}
 
 	//Run the tests
-	public function run($tests, $testsCount) {
+	public function run($tests) {
 		//$tests is an array of strings; the names of the test functions
-		for($i = 0; $i < $testsCount; $i++) {
+		for($i = 0; $i < count($tests); $i++) {
 			$testToRun = $tests[$i];
 
 			//Set the test name (calls it() in JavaScript)

@@ -6,11 +6,21 @@ global.assert = require('chai').assert;
 global.expect = require('chai').expect;
 var Asserter = require('./Asserter');
 
-var php = require('uniter').createEngine('PHP');
-php.getStdout().on('data', function (text) { console.log(text); });
-php.getStderr().on('data', function (text) {
-    console.error('Bang:');
-    console.error(text);
+var phpParser = require('phptoast').create(),
+    phpToJS = require('phptojs'),
+    phpRuntime = require('phpruntime/sync'); // Require the sync entrypoint so you can actually read the stack trace
+
+phpRuntime.install({
+    functionGroups: [
+        function (internals) {
+            return {
+                'count': function (argReference) {
+                    var arrayValue = argReference.getValue();
+                    return internals.valueFactory.createInteger(arrayValue.getLength());
+                }
+            };
+        }
+    ]
 });
 
 function BaseTest() {
@@ -110,16 +120,25 @@ BaseTest.prototype.run = function () {
 	this.calculateTestsToRun(test);
 	test = this.rewriteTest(test);
 
-	php.expose(this.extension, 'javascriptExtension');
-	php.expose(this.testName, 'testName');
-	php.expose(this.testsToRun, 'tests');
-	php.expose(this.testsToRun.length, 'testsCount');
-	php.expose(this, 'nameSetter');
-	php.expose(this.asserter, 'asserter');
+    var wrapper = new Function('return ' + phpToJS.transpile(phpParser.parse(test), {bare: true}) + ';')(),
+        module = phpRuntime.compile(wrapper),
+        engine = module();
+
+    engine.getStdout().on('data', function (text) { console.log(text); });
+    engine.getStderr().on('data', function (text) {
+        console.error('Bang:');
+        console.error(text);
+    });
+
+    engine.expose(this.extension, 'javascriptExtension');
+    engine.expose(this.testName, 'testName');
+    engine.expose(this.testsToRun, 'tests');
+    engine.expose(this, 'nameSetter');
+    engine.expose(this.asserter, 'asserter');
 
 	describe(this.testName, function () {
-		php.execute(test);
+        engine.execute();
 	});
-}
+};
 
 module.exports = BaseTest;

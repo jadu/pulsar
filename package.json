@@ -53,10 +53,12 @@
     "mochify-istanbul": "^2.4.1",
     "node-sass": "^3.7.0",
     "phantomjs": "^1.9.19",
+    "phpruntime": "^4.3.0",
+    "phptoast": "^3.15.1",
+    "phptojs": "^3.13.1",
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0",
-    "uglifyify": "^3.0.1",
-    "uniter": "^2.6.0"
+    "uglifyify": "^3.0.1"
   },
   "browserify": {
     "transform": [

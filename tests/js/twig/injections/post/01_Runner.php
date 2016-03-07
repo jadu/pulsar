@@ -10,4 +10,4 @@ $test->setAsserter($asserter);
 $test->setNameSetter($nameSetter);
 
 //Run the tests
-$test->run($tests, $testsCount);
+$test->run($tests);
