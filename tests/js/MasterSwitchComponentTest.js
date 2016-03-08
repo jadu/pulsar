@@ -10,9 +10,14 @@ describe('MasterSwitch component', function() {
 		this.$body = $('<body></body>').appendTo(this.$html);
 		this.$markup = $('\
 <div class="masterswitch">\
-	<div class="masterswitch-control">\
-		<div class="toggle"></div>\
-		<input type="checkbox" class="form__control">\
+	<div class="form__group masterswitch-control">\
+		<label for="toggletest" class="control__label">toggle</label>\
+		<div class="controls">\
+			<input label="Enable masterswitch content" id="toggletest" type="checkbox" class="form__control toggle-switch">\
+			<label for="toggletest" class="control__label toggle-switch-label">\
+				<span class="hide">Enable masterswitch content</span>\
+			</label>\
+		</div>\
 	</div>\
 	<section class="masterswitch-content is-disabled">\
 		<a href="#">foo</a>\
@@ -126,8 +131,5 @@ describe('MasterSwitch component', function() {
 	// 	it('should add the disabled attribute to selects', function() {
 	// 		expect(this.$contentSelect.attr('disabled')).to.equal('disabled');
 	// 	});
-
-	// });
-
 
 });
