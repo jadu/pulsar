@@ -1,32 +1,12 @@
-.masterswitch-control {
-
-	margin: 0 0 23px 0;
-
-	.control__label {
-		user-select: none; // stop unwanted selection when dragging toggles
-		padding-top: 0;
-	}
-
-	.controls {
-		overflow: visible; // prevent clipping of toggle outline
-	}
-
 @media (max-width: 600px) {
-	> .control__label,
-	> .controls {
-		display: table-cell;
-		min-width: $label-column-width;
-		width: $label-column-width;
+	.masterswitch-control {
+		> .control__label,
+		> .controls {
+			display: table-cell;
+			min-width: $label-column-width;
+			width: $label-column-width;
+		}
 	}
-}
-// 	// @include text-overflow(); /* [1] */
-
-// 	.control__label {
-// 		padding-top: 0;
-// 		padding-right: $gutter-width; /* [3] */
-// 		vertical-align: middle;
-// 	}
-
 }
 
 .masterswitch-content {
@@ -35,8 +15,3 @@
 		opacity: .25;
 	}
 }
-
-// // override overly specific horizontal style
-// .form--horizontal .masterswitch-control .control__label {
-// 	display: table-cell;
-// }
