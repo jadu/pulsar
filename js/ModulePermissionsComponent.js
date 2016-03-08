@@ -38,30 +38,48 @@ ModulePermissionsComponent.prototype.init = function () {
         .on('click', '[data-toggle="subpage"]', component.toggleSubPage)
         .on('pulsar:crud:update', '[data-toggle="subpage"]', component.setPageState);
 
+    // Set up initial state of module row toggles on page load
+    // component.$html.find('.module').each(function() {
 
-    // Set up initial state on page load
-    component.$html.find('[data-toggle="page"]:checked').each(function() {
-        $('[data-toggle="module-crud"][data-crud="' + $(this).data('crud') + '"]', $(this).closest('.module')).trigger('pulsar:crud:update');
+    //     var $module = $(this),
+    //         $toggle = $(this).find('[data-toggle=module-master]'),
+    //         checkboxes = $module.find('.crud [data-toggle]').length,
+    //         checked = $module.find('.crud [data-toggle]:checked').length;
 
-        if ($(this).is(':checked')) {
-            $(this).parent().addClass('is-checked');
-        } else {
-            $(this).parent().removeClass('is-checked');
-        }
-    });
+    //     if (checkboxes === checked) {
+    //         $toggle.prop('checked', true);
+    //     }
+    //     else if (checked === 0) {
+    //         $toggle.prop('checked', false);
+    //     }
+    //     else {
+    //         $toggle.prop('indeterminate', true);
+    //     }
+    // });
 
-    component.$html.find('[data-toggle="subpage"]:checked').each(function() {
-        $('[data-toggle="page"][data-crud="' + $(this).data('crud') + '"]', $(this).closest('.module-page')).trigger('pulsar:crud:update');
+    // component.$html.find('[data-toggle="page"]:checked').each(function() {
+    //     $('[data-toggle="module-crud"][data-crud="' + $(this).data('crud') + '"]', $(this).closest('.module')).trigger('pulsar:crud:update');
 
-        if ($(this).is(':checked')) {
-            $(this).parent().addClass('is-checked');
-        } else {
-            $(this).parent().removeClass('is-checked');
-        }
-    });
+    //     if ($(this).is(':checked')) {
+    //         $(this).parent().addClass('is-checked');
+    //     } else {
+    //         $(this).parent().removeClass('is-checked');
+    //     }
+    // });
+
+    // component.$html.find('[data-toggle="subpage"]:checked').each(function() {
+    //     $('[data-toggle="page"][data-crud="' + $(this).data('crud') + '"]', $(this).closest('.module-page')).trigger('pulsar:crud:update');
+
+    //     if ($(this).is(':checked')) {
+    //         $(this).parent().addClass('is-checked');
+    //     } else {
+    //         $(this).parent().removeClass('is-checked');
+    //     }
+    // });
 };
 
 ModulePermissionsComponent.prototype.toggleModuleVisibility = function () {
+    console.log('toggle module visibility');
 
     var $toggle = $(this),
         $target = $toggle.closest('.module');
@@ -74,6 +92,8 @@ ModulePermissionsComponent.prototype.toggleModuleVisibility = function () {
         $target.addClass('is-open');
         $toggle.html('<i class="icon-caret-up"></i>');
     }
+
+
 };
 
 ModulePermissionsComponent.prototype.toggleModulePagesVisibility = function () {
@@ -147,7 +167,7 @@ ModulePermissionsComponent.prototype.setModuleRowState = function () {
 };
 
 ModulePermissionsComponent.prototype.setModuleState = function () {
-    // console.log('module state');
+    console.log('module state');
 
     var component = this,
         $component = $(component),
@@ -231,7 +251,7 @@ ModulePermissionsComponent.prototype.setSubPageState = function () {
 };
 
 ModulePermissionsComponent.prototype.toggleModuleMasterState = function () {
-    // console.log('toggle module global');
+    console.log('toggle module global');
 
     var component = this,
         $component = $(component),
@@ -251,7 +271,7 @@ ModulePermissionsComponent.prototype.toggleModuleMasterState = function () {
 };
 
 ModulePermissionsComponent.prototype.toggleModuleRowState = function () {
-    // console.log('toggle module row state');
+    console.log('toggle module row state');
 
     var component = this,
         $component = $(component),
@@ -273,7 +293,7 @@ ModulePermissionsComponent.prototype.toggleModuleRowState = function () {
 };
 
 ModulePermissionsComponent.prototype.toggleModule = function () {
-    // console.log('toggle module');
+    console.log('toggle module');
 
     var component = this,
         $component = $(component),
@@ -297,7 +317,7 @@ ModulePermissionsComponent.prototype.toggleModule = function () {
 };
 
 ModulePermissionsComponent.prototype.togglePage = function () {
-    // console.log('toggle page');
+    console.log('toggle page');
 
     var component = this,
         $component = $(component),
@@ -320,7 +340,7 @@ ModulePermissionsComponent.prototype.togglePage = function () {
 };
 
 ModulePermissionsComponent.prototype.toggleSubPage = function () {
-    // console.log('toggle subpage');
+    console.log('toggle subpage');
 
     var component = this,
         $component = $(component),
