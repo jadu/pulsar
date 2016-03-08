@@ -63,6 +63,8 @@ describe('NavMain component', function() {
  		this.$linkOne = this.$html.find('[href="#one"]');
  		this.$linkTwo = this.$html.find('[href="#two"]');
  		this.$linkThree = this.$html.find('[href="#three"]');
+ 		this.$secondaryLinkOne = this.$html.find('[href="#one_one"]');
+ 		this.$secondaryLinkTwo = this.$html.find('[href="#two_one"]');
 
 		this.navMainComponent = new NavMainComponent(this.$html);
 
@@ -93,7 +95,7 @@ describe('NavMain component', function() {
 
 	});
 
-	describe('clicking the first, then the secondary primary nav link', function() {
+	describe('clicking the first, then the second primary nav link', function() {
 
 		beforeEach(function() {
 			this.navMainComponent.init();
@@ -115,6 +117,35 @@ describe('NavMain component', function() {
 
 		it('should remove the is-active class from the first sub navigation menu', function() {
 			expect(this.$html.find('[data-nav="#one"]').hasClass('is-active')).to.be.false;
+		});
+
+	});
+
+	describe('clicking a secondary nav link', function() {
+
+		beforeEach(function() {
+			this.navMainComponent.init();
+			this.$linkOne.click();
+			this.$secondaryLinkOne.click();
+		});
+
+		it('should add the is-active class to the clicked link', function() {
+			expect(this.$secondaryLinkOne.hasClass('is-active')).to.be.true;
+		});
+
+	});
+
+	describe('clicking a second secondary nav link', function() {
+
+		beforeEach(function() {
+			this.navMainComponent.init();
+			this.$linkOne.click();
+			this.$secondaryLinkOne.click();
+			this.$secondaryLinkTwo.click();
+		});
+
+		it('should add the is-active class to the clicked link', function() {
+			expect(this.$secondaryLinkTwo.hasClass('is-active')).to.be.true;
 		});
 
 	});

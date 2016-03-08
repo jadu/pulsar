@@ -33,10 +33,7 @@ NavMainComponent.prototype.init = function() {
     });
 
     component.$secondaryNavLinks.on('click', function() {
-
-        var $self = $(this);
-
-        component.changeActiveSecondaryNavLink($self);
+        component.changeActiveSecondaryNavLink($(this).attr('href'));
     });
 
     component.$closeLink.on('click', function(e) {
