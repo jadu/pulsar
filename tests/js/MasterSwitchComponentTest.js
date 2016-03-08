@@ -75,6 +75,39 @@ describe('MasterSwitch component', function() {
 
 	});
 
+	describe('the checked state of the masterswitch markup', function() {
+
+		beforeEach(function() {
+			this.$control.prop('checked', true);
+			this.masterSwitch.init();
+		});
+
+		it('should enable the content container', function() {
+			expect(this.$html.find('.masterswitch-content').hasClass('is-disabled')).to.be.false;
+		});
+
+		it('should allow any links to be clicked', function() {
+			var clickEvent = $.Event('click');
+
+			this.$contentLink.trigger(clickEvent);
+
+			expect(clickEvent.isDefaultPrevented()).to.be.false;
+		});
+
+		it('should remove the disabled attribute from buttons', function() {
+			expect(this.$contentButton.attr('disabled')).to.be.undefined;
+		});
+
+		it('should remove the disabled attribute from inputs', function() {
+			expect(this.$contentInput.attr('disabled')).to.be.undefined;
+		});
+
+		it('should remove the disabled attribute from selects', function() {
+			expect(this.$contentSelect.attr('disabled')).to.be.undefined;
+		});
+
+	});
+
 	describe('checking the control', function() {
 
 		beforeEach(function() {
