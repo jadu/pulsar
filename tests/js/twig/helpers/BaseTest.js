@@ -17,10 +17,31 @@ phpRuntime.install({
                 'count': function (argReference) {
                     var arrayValue = argReference.getValue();
                     return internals.valueFactory.createInteger(arrayValue.getLength());
+                },
+                'time': function () {
+                    return internals.valueFactory.createInteger(Math.floor(new Date().getTime() / 1000));
+                },
+                'date_default_timezone_set': function () {
+                    return null;
                 }
             };
         }
-    ]
+    ],
+    classes: {
+        'DateTime': function () {
+            function DateTime() {}
+
+            DateTime.prototype.setTimezone = function () {};
+
+            return DateTime;
+        },
+        'DateTimeZone': function () {
+            function DateTimeZone() {}
+
+            return DateTimeZone;
+        }
+    }
+
 });
 
 function BaseTest() {
