@@ -87,6 +87,9 @@
 .input-group-addon:first-child {
   border-right: 0;
   margin-right: -4px;
+  @-moz-document url-prefix() {
+    margin-right: -5px;
+  }
 }
 .input-group .form__control:last-child,
 .input-group-addon:last-child,
@@ -98,6 +101,9 @@
 }
 .input-group-addon:last-child {
   margin-left: -4px;
+  @-moz-document url-prefix() {
+    margin-left: -5px;
+  }
   z-index: 999;
 }
 
