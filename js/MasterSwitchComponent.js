@@ -1,7 +1,6 @@
 'use strict';
 
-var $ = require('jquery'),
-    toggles = require('../libs/jquery-toggles/toggles.min');
+var $ = require('jquery');
 
 function MasterSwitchComponent(html) {
 
@@ -21,16 +20,6 @@ MasterSwitchComponent.prototype.init = function () {
 
         this.$control = $this.find('.masterswitch-control input');
         this.$content = $this.find('.masterswitch-content');
-        this.$toggle = $this.find('.toggle');
-
-        this.$toggle.toggles({
-            checkbox: this.$control,
-            on: this.$control.prop('checked'),
-            text: {
-                on: '',
-                off: ''
-            }
-        });
 
         if (!this.$control.prop('checked')) {
             component.disableElements(this.$content);
@@ -39,15 +28,14 @@ MasterSwitchComponent.prototype.init = function () {
             component.enableElements(this.$content);
         }
 
-        this.$toggle.on('toggle', function (e, active) {
-            if (active) {
+        this.$control.on('click change', function (e, active) {
+            if ($(this).prop('checked')) {
                 component.switchOn(e.target);
             } else {
                 component.switchOff(e.target);
             }
         });
     });
-
 };
 
 MasterSwitchComponent.prototype.switchOn = function (target) {
@@ -80,7 +68,6 @@ MasterSwitchComponent.prototype.disableElements = function (target) {
         .find(CLICKABLES_SELECTOR)
             .addClass('disabled')
             .attr('disabled', 'disabled');
-
 };
 
 MasterSwitchComponent.prototype.enableElements = function (target) {
@@ -92,8 +79,7 @@ MasterSwitchComponent.prototype.enableElements = function (target) {
         .off('click', CLICKABLES_SELECTOR, preventDefault)
         .find(CLICKABLES_SELECTOR)
             .removeClass('disabled')
-            .removeAttr('disabled')
-
+            .removeAttr('disabled');
 };
 
 function preventDefault(e) {
