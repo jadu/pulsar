@@ -34,7 +34,7 @@ class GetConstantExtensionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('foo', $twig->render('index.html'));
     }
 
-    public function testGetConstantReturnsNullByDefault()
+    public function testGetConstantReturnsNullFallbackByDefault()
     {
         $this->assertEquals(null, $this->ext->getConstant());
     }
@@ -62,5 +62,10 @@ class GetConstantExtensionTest extends \PHPUnit_Framework_TestCase
     public function testGetNullConstantReturnsNull()
     {
         $this->assertEquals(null, $this->ext->getConstant('NULL'));
+    }
+
+    public function testGetConstantReturnsFallback()
+    {
+        $this->assertEquals('bar', $this->ext->getConstant(null, 'bar'));
     }
 }

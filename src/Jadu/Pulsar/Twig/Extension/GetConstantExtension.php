@@ -7,6 +7,12 @@ use Twig_SimpleFunction;
 
 class GetConstantExtension extends Twig_Extension
 {
+
+    /**
+     * Register the `get_constant` function with Twig
+     *
+     * @return array The Twig function
+     */
     public function getFunctions()
     {
         return array(
@@ -28,12 +34,14 @@ class GetConstantExtension extends Twig_Extension
      * Get constant value if defined, null if not
      *
      * @param  string $name The name of the constant
-     * @return string       The value of the constant, null if not defined
+     * @param  string $fallback A fallback value, or type
+     *
+     * @return string The value of the constant, null if not defined
      */
-    public function getConstant($name = '')
+    public function getConstant($name = '', $fallback = null)
     {
         if (empty($name) || !defined($name)) {
-            return null;
+            return $fallback;
         }
 
         return constant($name);
