@@ -51,6 +51,11 @@ phpRuntime.install({
             function DateTimeZone() {}
 
             return DateTimeZone;
+        },
+        'Twig_Environment': function () {
+            function Twig_Environment() {}
+
+            return Twig_Environment;
         }
     }
 
