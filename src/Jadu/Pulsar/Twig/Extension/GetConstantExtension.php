@@ -2,6 +2,9 @@
 
 namespace Jadu\Pulsar\Twig\Extension;
 
+use Twig_Extension;
+use Twig_SimpleFunction;
+
 class GetConstantExtension extends \Twig_Extension
 {
     public function getFunctions()
