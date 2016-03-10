@@ -42,4 +42,8 @@ class PHPUnit_Framework_TestCase
 	private function assertContains($a, $b) {
 		return $this->asserter->contains($a, $b);
 	}
+
+	private function assertArrayHasKey($key, $array) {
+	    return $this->asserter->contains($key, $array);
+	}
 }
