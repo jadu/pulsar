@@ -11,7 +11,7 @@ Asserter.prototype.equal = function (expected, actual) {
     }
 
     //Unwrap Uniter objects to plain Objects
-    if (actual.objectValue) {
+    if (actual && actual.objectValue) {
         actual = actual.objectValue.value;
     }
 
@@ -33,7 +33,7 @@ Asserter.prototype.contains = function (needle, haystack) {
     }
 
     //Unwrap Uniter objects to plain Objects
-    if (haystack.objectValue) {
+    if (haystack && haystack.objectValue) {
         haystack = haystack.objectValue.value;
     }
 
