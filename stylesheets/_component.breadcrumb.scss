@@ -2,11 +2,14 @@
     color: color(gray, light);
     font-size: $font-size-small;
 
-    a {
+    a,
+    a:link,
+    a:visited {
         color: color(gray, light);
+    }
 
-        &:hover {
-            color: color(gray);
-        }
+    a:active,
+    a:hover {
+        color: color(gray);
     }
 }
