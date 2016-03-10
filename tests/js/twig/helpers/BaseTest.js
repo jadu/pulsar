@@ -27,6 +27,9 @@ phpRuntime.install({
                 },
                 'date_default_timezone_set': function () {
                     return null;
+                },
+                'json_decode': function (json) {
+                    return '';
                 }
             };
         }
