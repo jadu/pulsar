@@ -113,9 +113,6 @@ BaseTest.prototype.rewriteTest = function (test) {
     //Reattach the opening php tag
     test = '<?php\n' + test;
 
-    //Strip the closing brace on the class
-    test = test.replace(/}[\s]*$/, '');
-
     //Inject all post injections
     _.each(this.postInjections, function (postInjection) {
         test += postInjection;
