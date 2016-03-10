@@ -45,7 +45,7 @@ class TabsExtensionTest extends \PHPUnit_Framework_TestCase
 
   public function testGenerateTabsShouldFailWithInvalidJson()
   {
-    $this->assertEquals(FALSE, $this->ext->getActiveParentTabID("json.derulo"));
+    $this->assertEquals(false, $this->ext->getActiveParentTabID("json.derulo"));
   }
 
   public function testActiveParentTabIsCorrectlySet()
