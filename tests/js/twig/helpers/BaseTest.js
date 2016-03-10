@@ -5,6 +5,7 @@ global.path = require('path');
 global.assert = require('chai').assert;
 global.expect = require('chai').expect;
 global.sinon = require('sinon');
+global.moment = require('moment');
 var Asserter = require('./Asserter');
 
 var phpParser = require('phptoast').create(),
@@ -32,9 +33,14 @@ phpRuntime.install({
     ],
     classes: {
         'DateTime': function () {
-            function DateTime() {}
+            function DateTime(time) {
+                this.time = moment(time);
+            }
 
             DateTime.prototype.setTimezone = function () {};
+            DateTime.prototype.__toJS = function () {
+                return this.time.toDate();
+            };
 
             return DateTime;
         },
