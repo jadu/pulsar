@@ -2,7 +2,7 @@ var _ = require('lodash'),
     moment = require('moment');
 
 function RelativeTimeExtension() {
-    moment.locale('en', {
+    moment.updateLocale('en', {
         relativeTime : {
             future: "in %s",
             past:   "%s ago",
