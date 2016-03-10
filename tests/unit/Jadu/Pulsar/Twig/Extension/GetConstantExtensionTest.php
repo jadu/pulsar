@@ -7,6 +7,7 @@ class GetConstantExtensionTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->ext = new GetConstantExtension(array());
+
         defined('STRING') or define('STRING', 'foo');
         defined('BOOL') or define('BOOL', true);
         defined('INT') or define('INT', 42);
