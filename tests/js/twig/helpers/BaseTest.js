@@ -4,11 +4,14 @@ global.util = require('util');
 global.path = require('path');
 global.assert = require('chai').assert;
 global.expect = require('chai').expect;
+global.sinon = require('sinon');
 var Asserter = require('./Asserter');
 
 var phpParser = require('phptoast').create(),
     phpToJS = require('phptojs'),
     phpRuntime = require('phpruntime/sync'); // Require the sync entrypoint so you can actually read the stack trace
+
+var timeNow = new Date('2016-01-01 12:00').getTime();
 
 phpRuntime.install({
     functionGroups: [
@@ -19,7 +22,7 @@ phpRuntime.install({
                     return internals.valueFactory.createInteger(arrayValue.getLength());
                 },
                 'time': function () {
-                    return internals.valueFactory.createInteger(Math.floor(new Date().getTime() / 1000));
+                    return internals.valueFactory.createInteger(timeNow/1000);
                 },
                 'date_default_timezone_set': function () {
                     return null;
@@ -156,6 +159,8 @@ BaseTest.prototype.run = function () {
     engine.expose(this.testsToRun, 'tests');
     engine.expose(this, 'nameSetter');
     engine.expose(this.asserter, 'asserter');
+
+    sinon.useFakeTimers(timeNow);
 
     describe(this.testName, function () {
         engine.execute();
