@@ -9,5 +9,6 @@ function ArrayExtensionTest() {
 
 util.inherits(ArrayExtensionTest, BaseTest);
 
-var arrayExtensionTest = new ArrayExtensionTest();
-arrayExtensionTest.run();
+var test = new ArrayExtensionTest();
+test.injectClass('ArrayExtension', ArrayExtension);
+test.run();

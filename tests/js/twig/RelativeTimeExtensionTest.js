@@ -10,4 +10,5 @@ function RelativeTimeExtensionTest() {
 util.inherits(RelativeTimeExtensionTest, BaseTest);
 
 var test = new RelativeTimeExtensionTest();
+test.injectClass('RelativeTimeExtension', RelativeTimeExtension);
 test.run();

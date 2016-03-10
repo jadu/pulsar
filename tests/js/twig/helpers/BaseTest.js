@@ -140,6 +140,17 @@ BaseTest.prototype.setTestName = function (testName) {
     this.nextTest = testName;
 };
 
+BaseTest.prototype.injectClass = function (name, jsClass) {
+    var classes = {};
+    classes[name] = function () {
+        return jsClass;
+    };
+
+    phpRuntime.install({
+        classes: classes
+    });
+};
+
 BaseTest.prototype.run = function () {
     this.test = this.testName + '.php';
 

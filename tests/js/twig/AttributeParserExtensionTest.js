@@ -10,4 +10,5 @@ function AttributeParserExtensionTest() {
 util.inherits(AttributeParserExtensionTest, BaseTest);
 
 var test = new AttributeParserExtensionTest();
+test.injectClass('AttributeParserExtension', AttributeParserExtension);
 test.run();

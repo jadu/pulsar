@@ -10,4 +10,5 @@ function TabsExtensionTest() {
 util.inherits(TabsExtensionTest, BaseTest);
 
 var test = new TabsExtensionTest();
+test.injectClass('TabsExtension', TabsExtension);
 test.run();
