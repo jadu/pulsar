@@ -2,6 +2,9 @@
 
 namespace Jadu\Pulsar\Twig\Extension;
 
+use Twig_Environment;
+use Twig_Loader_Array;
+
 class GetConstantExtensionTest extends \PHPUnit_Framework_TestCase
 {
     public function setUp()
@@ -17,6 +20,18 @@ class GetConstantExtensionTest extends \PHPUnit_Framework_TestCase
     public function testGetName()
     {
         $this->assertEquals('get_constant_extension', $this->ext->getName());
+    }
+
+    public function testGetConstantFunction()
+    {
+        $loader = new Twig_Loader_Array(array(
+            'index.html' => '{{ get_constant("STRING") }}',
+        ));
+
+        $twig = new Twig_Environment($loader);
+        $twig->addExtension(new GetConstantExtension());
+
+        $this->assertEquals('foo', $twig->render('index.html'));
     }
 
     public function testGetConstantReturnsNullByDefault()
