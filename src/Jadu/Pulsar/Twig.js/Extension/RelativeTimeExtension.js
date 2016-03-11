@@ -37,9 +37,9 @@ RelativeTimeExtension.prototype.timeAgo = function (time_from) {
         time_from = time_from.getTime()/1000;
     }
 
-    var time_now = new Date().getTime();
+    var time_now = new Date().getTime()/1000;
 
-    if ((time_from*1000-time_now) === 0) {
+    if ((time_from-time_now) === 0) {
         return 'just now';
     }
 
