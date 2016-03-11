@@ -18,10 +18,6 @@ phpRuntime.install({
     functionGroups: [
         function (internals) {
             return {
-                'count': function (argReference) {
-                    var arrayValue = argReference.getValue();
-                    return internals.valueFactory.createInteger(arrayValue.getLength());
-                },
                 'time': function () {
                     return internals.valueFactory.createInteger(timeNow/1000);
                 },
