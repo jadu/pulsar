@@ -1,68 +1,15 @@
 .breadcrumb {
-  background-color: color(white);
-  border-bottom: 1px solid color(gray);
+    color: color(gray, light);
+    font-size: $font-size-small;
 
-  ul {
-    list-style-type: none;
-    margin: $padding-small-vertical 0 $padding-small-vertical $gutter-width;
-
-    @include respond-min($screen-phone) {
-      margin: 0 0 0 $gutter-width;
-    }
-  }
-
-  li {
-    @include inline-block;
-    margin: 0;
-    padding: 0 ($gutter-width / 4) 0 0;
-
-    &:before {
-      color: color(gray, light);
-      content: " / ";
-      @include inline-block;
-      font-size: 1.25em;
-      margin-left: $gutter-width / 8;
-      padding-right: $gutter-width / 2 - 3;
-      position: relative;
-      top: 1px;
-
-      @include respond-min($screen-phone) {
-        font-size: 1.5em;
-        margin-left: $gutter-width / 4;
-        padding-right: $gutter-width - 6;
-        top: 3px;
-      }
+    a,
+    a:link,
+    a:visited {
+        color: color(gray, light);
     }
 
-    @include respond-min($screen-phone) {
-      padding: 0 ($gutter-width / 2) 0 0;
+    a:active,
+    a:hover {
+        color: color(gray);
     }
-
-    &:first-child {
-      padding-left: 0;
-    }
-
-    &:first-child:before {
-      display: none;
-    }
-  }
-
-  li > a,
-  li > span {
-    @include inline-block;
-    line-height: $line-height-base - 1;
-
-    @include respond-min($screen-phone) {
-      line-height: ($line-height-base * 2) - 1;
-    }
-  }
-
-  a {
-    color: color(gray, dark);
-    text-decoration: none;
-  }
-
-  &:hover a {
-    color: color(link);
-  }
 }

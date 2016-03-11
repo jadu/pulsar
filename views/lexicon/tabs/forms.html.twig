@@ -2,7 +2,7 @@
 {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 {% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
 {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
-{% import '@pulsar/pulsar/helpers/flash.html.twig' as flash %}
+{% import '@pulsar/pulsar/v2/helpers/flash.html.twig' as flash %}
 
 {% block tab_content %}
 
@@ -255,6 +255,14 @@
                 'id': 'inputRadioRightIndent',
                 'name': 'inputRadioInlineIndent',
                 'checked': true
+            })
+        }}
+
+        {{
+            form.toggle_switch({
+                'checked': false,
+                'label': 'Toggle',
+                'id': 'toggletest'
             })
         }}
 

@@ -11,12 +11,11 @@ window.jQuery = window.$ = require('jquery');
 
 // Global UI components
 var $                     = require('jquery'),
-    deck                  = require('./deck'),
-    dropdown              = require('./dropdown'),
-    modal                 = require('./modal'),
-    tab                   = require('./tab'),
-    popover               = require('./popover'),
-    tooltip               = require('./tooltip'),
+    dropdown              = require('./libs/dropdown'),
+    modal                 = require('./libs/modal'),
+    tab                   = require('./libs/tab'),
+    popover               = require('./libs/popover'),
+    tooltip               = require('./libs/tooltip'),
     matchMedia            = require('./polyfills/matchMedia'),
     matchMediaAddListener = require('./polyfills/matchMedia.addListener');
 

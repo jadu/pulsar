@@ -1,0 +1,91 @@
+.toggle-switch {
+    @extend %hide;
+
+    @include ie-lte(8) {
+        @extend %show;
+    }
+
+    &:checked + .toggle-switch-label {
+        background-color: color(success); //#1ABC9C
+        border-color: transparent;
+        color: color(white);
+
+        &:before {
+            left: 50%;
+            right: 0%;
+        }
+    }
+
+    &:indeterminate + .toggle-switch-label {
+        background-color: color(warning);
+
+        &:before {
+            left: 25%;
+            right: 25%;
+        }
+
+        &:after {
+            color: color(white);
+            opacity: 0;
+        }
+    }
+
+    &.toggle-switch--large + .toggle-switch-label {
+        height: 2em;
+        width: 4em;
+
+        &:after {
+            font-size: 32px;
+            left: 15px;
+            letter-spacing: 32px;
+        }
+    }
+}
+
+.toggle-switch-label {
+    background-clip: padding-box;
+    background-color: color(grey, light);
+    border-color: transparent;
+    border-radius: 1.5em;
+    color: color(white);
+    display: inline-block;
+    font-size: 2em;
+    height: 1em;
+    position: relative;
+    transition: .4s;
+    vertical-align: middle;
+    width: 2em;
+
+    @include ie-lte(8) {
+        display: none !important;
+    }
+
+    &:before {
+        background-clip: padding-box;
+        background-color: color(white);
+        border-radius: 100%;
+        border: .125em solid transparent;
+        bottom: 0;
+        content: "";
+        left: 0;
+        position: absolute;
+        right: 50%;
+        top: 0;
+        transition: .3s;
+        z-index: 2;
+    }
+
+    &:after {
+        content: "\F00C \F00D";
+        font-family: "FontAwesome";
+        font-size: 16px;
+        left: 10px;
+        letter-spacing: 14.4px;
+        line-height: 2;
+        position: absolute;
+        top: 0;
+        transition: .3s;
+        width: 100%;
+        z-index: 1;
+    }
+}
