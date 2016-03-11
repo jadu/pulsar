@@ -24,8 +24,14 @@ phpRuntime.install({
                 'date_default_timezone_set': function () {
                     return null;
                 },
-                'json_decode': function (json) {
-                    return '';
+                'json_decode': function (json, assoc) {
+                    var parsed = JSON.parse(json.getValue().unwrapForJS());
+
+                    if (assoc) {
+                        return internals.valueFactory.createFromNative(parsed);
+                    }
+
+                    return internals.valueFactory.createObject(parsed, internals.globalNamespace.getClass('JSObject'));
                 }
             };
         }
