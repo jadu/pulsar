@@ -54,8 +54,8 @@
     "node-sass": "^3.7.0",
     "phantomjs": "^1.9.19",
     "phpruntime": "^4.5.0",
-    "phptoast": "^3.16.0",
-    "phptojs": "^3.13.1",
+    "phptoast": "^3.16.1",
+    "phptojs": "^3.13.2",
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0",
     "uglifyify": "^3.0.1"
