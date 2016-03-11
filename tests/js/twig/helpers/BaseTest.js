@@ -7,6 +7,7 @@ global.expect = require('chai').expect;
 global.sinon = require('sinon');
 global.moment = require('moment');
 var Asserter = require('./Asserter');
+var KeyValuePair = require('phpruntime/node_modules/phpcore/src/KeyValuePair');
 
 var phpParser = require('phptoast').create(),
     phpToJS = require('phptojs'),
@@ -17,6 +18,49 @@ var timeNow = new Date('2016-01-01 12:00').getTime();
 phpRuntime.install({
     functionGroups: [
         function (internals) {
+            _.extend(internals.valueFactory, {
+                createFromNative: function (nativeValue) {
+                    var factory = this;
+
+                    if (nativeValue === null || typeof nativeValue === 'undefined') {
+                        return factory.createNull();
+                    }
+
+                    if (_.isString(nativeValue)) {
+                        return factory.createString(nativeValue);
+                    }
+
+                    if (_.isNumber(nativeValue)) {
+                        return factory.createInteger(nativeValue);
+                    }
+
+                    if (_.isBoolean(nativeValue)) {
+                        return factory.createBoolean(nativeValue);
+                    }
+
+                    if (_.isArray(nativeValue)) {
+                        return factory.createFromNativeArray(nativeValue);
+                    }
+
+                    // Handle plain objects -> associative arrays
+                    if (Object.getPrototypeOf(nativeValue) === Object.prototype) {
+                        return factory.createFromPlainObject(nativeValue);
+                    }
+
+                    return factory.createObject(nativeValue, factory.globalNamespace.getClass('JSObject'));
+                },
+                createFromPlainObject: function (plainObject) {
+                    var factory = this,
+                        orderedElements = [];
+
+                    _.forOwn(plainObject, function (value, key) {
+                        orderedElements.push(new KeyValuePair(factory.coerce(key), factory.coerce(value)));
+                    });
+
+                    return factory.createArray(orderedElements);
+                }
+            });
+
             return {
                 'time': function () {
                     return internals.valueFactory.createInteger(timeNow/1000);
