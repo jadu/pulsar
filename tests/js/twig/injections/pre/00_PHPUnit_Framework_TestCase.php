@@ -1,10 +1,6 @@
 //Re-implement PHPUnit's TestCase
 class PHPUnit_Framework_TestCase
 {
-	//Setup a static constructor so that our Test Cases can inherit
-	static function __construct() {
-	}
-
 	//Override the PHP Twig Extension with the JavaScript implementation
 	public function setJavaScriptExtension($ext) {
 		$this->ext = $ext;
