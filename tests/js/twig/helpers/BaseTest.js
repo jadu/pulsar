@@ -37,15 +37,20 @@ phpRuntime.install({
         }
     ],
     classes: {
-        'DateTime': function () {
+        'DateTime': function (internals) {
             function DateTime(time) {
-                this.time = moment(time);
+                switch (time) {
+                    case 'now':
+                    default:
+                        this.time = moment();
+                }
             }
 
             DateTime.prototype.setTimezone = function () {};
-            DateTime.prototype.__toJS = function () {
+
+            internals.defineUnwrapper(function () {
                 return this.time.toDate();
-            };
+            });
 
             return DateTime;
         },
