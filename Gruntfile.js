@@ -85,7 +85,7 @@ module.exports = function(grunt) {
                     flatten: true,
                     ext:    '.css',
                     extDot: 'first',
-                    src:    ['pulsar.scss', 'documentation.scss']
+                    src:    ['pulsar.scss']
                 }]
             },
             dist_ie: {

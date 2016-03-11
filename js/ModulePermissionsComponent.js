@@ -38,44 +38,9 @@ ModulePermissionsComponent.prototype.init = function () {
         .on('click', '[data-toggle="subpage"]', component.toggleSubPage)
         .on('pulsar:crud:update', '[data-toggle="subpage"]', component.setPageState);
 
-    // Set up initial state of module row toggles on page load
-    // component.$html.find('.module').each(function() {
+    // Set up indeterminate checkboxes on page load
+    component.$html.find('.checkbox[indeterminate]').prop('indeterminate', true);
 
-    //     var $module = $(this),
-    //         $toggle = $(this).find('[data-toggle=module-master]'),
-    //         checkboxes = $module.find('.crud [data-toggle]').length,
-    //         checked = $module.find('.crud [data-toggle]:checked').length;
-
-    //     if (checkboxes === checked) {
-    //         $toggle.prop('checked', true);
-    //     }
-    //     else if (checked === 0) {
-    //         $toggle.prop('checked', false);
-    //     }
-    //     else {
-    //         $toggle.prop('indeterminate', true);
-    //     }
-    // });
-
-    // component.$html.find('[data-toggle="page"]:checked').each(function() {
-    //     $('[data-toggle="module-crud"][data-crud="' + $(this).data('crud') + '"]', $(this).closest('.module')).trigger('pulsar:crud:update');
-
-    //     if ($(this).is(':checked')) {
-    //         $(this).parent().addClass('is-checked');
-    //     } else {
-    //         $(this).parent().removeClass('is-checked');
-    //     }
-    // });
-
-    // component.$html.find('[data-toggle="subpage"]:checked').each(function() {
-    //     $('[data-toggle="page"][data-crud="' + $(this).data('crud') + '"]', $(this).closest('.module-page')).trigger('pulsar:crud:update');
-
-    //     if ($(this).is(':checked')) {
-    //         $(this).parent().addClass('is-checked');
-    //     } else {
-    //         $(this).parent().removeClass('is-checked');
-    //     }
-    // });
 };
 
 ModulePermissionsComponent.prototype.toggleModuleVisibility = function () {
