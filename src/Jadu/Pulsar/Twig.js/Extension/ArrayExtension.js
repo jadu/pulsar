@@ -8,8 +8,6 @@ ArrayExtension.prototype.getName = function () {
 };
 
 ArrayExtension.prototype.excludeFromArray = function (arr, exclude) {
-    arr = _.fromPairs(_.toPairs(arr));
-
     if (typeof(arr) !== 'object') {
         return arr;
     }
@@ -38,8 +36,6 @@ ArrayExtension.prototype.excludeFromArray = function (arr, exclude) {
 };
 
 ArrayExtension.prototype.onlyFromArray = function (arr, only) {
-    arr = _.fromPairs(_.toPairs(arr));
-
     if (typeof(arr) !== 'object') {
         return arr;
     }

@@ -5,16 +5,6 @@ var Asserter = function (testInstance) {
 
 //Provide a generic equality asserter
 Asserter.prototype.equal = function (expected, actual) {
-    //Convert strange Uniter arrays to Objects
-    if (_.isArray(expected)) {
-        expected = _.fromPairs(_.toPairs(expected));
-    }
-
-    //Unwrap Uniter objects to plain Objects
-    if (actual && actual.objectValue) {
-        actual = actual.objectValue.value;
-    }
-
     it(this.testInstance.nextTest, function () {
         //If the Objects to compare are like Objects with properties, we need to deeply compare them
         if (_.isObjectLike(expected) && _.isObjectLike(actual)) {
@@ -27,17 +17,11 @@ Asserter.prototype.equal = function (expected, actual) {
 };
 
 Asserter.prototype.contains = function (needle, haystack) {
-    //Convert strange Uniter arrays to Objects
-    if (_.isArray(needle)) {
-        needle = _.fromPairs(_.toPairs(needle));
-    }
-
-    //Unwrap Uniter objects to plain Objects
-    if (haystack && haystack.objectValue) {
-        haystack = haystack.objectValue.value;
-    }
-
     it(this.testInstance.nextTest, function () {
+        if (_.isObjectLike(haystack)) {
+            return assert.property(haystack, needle);
+        }
+
         return assert.include(haystack, needle);
     });
 };

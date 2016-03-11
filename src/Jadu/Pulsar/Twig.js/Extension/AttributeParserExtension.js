@@ -12,9 +12,7 @@ AttributeParserExtension.prototype.getName = function () {
 };
 
 AttributeParserExtension.prototype.parseAttributes = function (attributes, args) {
-    attributes = _.fromPairs(_.toPairs(attributes));
-
-    if (Object.keys(attributes).length === 0) {
+    if (!attributes || Object.keys(attributes).length === 0) {
         return false;
     }
 
