@@ -6,8 +6,8 @@ var $ = require('jquery'),
 describe('Module permissions component', function() {
 
     beforeEach(function() {
-        this.$html = $('<html></html>');
-        this.$body = $('<body></body>').appendTo(this.$html);
+        this.$html = $('<div class="fake-html"></div>').appendTo('html');
+        this.$body = $('<div class="fake-body"></div>').appendTo(this.$html);
         this.$code = $('\
 <div class="module-permissions">\
     <div class="module module-row">\
@@ -37,7 +37,7 @@ describe('Module permissions component', function() {
 \
         <div class="crud">\
             <label class="crud__permission">\
-                <input type="checkbox" class="form__control checkbox" data-toggle="module-crud" data-crud="view">\
+                <input type="checkbox" class="form__control checkbox qa-view-header" data-toggle="module-crud" data-crud="view">\
                 <span>View</span>\
             </label>\
             <label class="crud__permission">\
@@ -63,7 +63,7 @@ describe('Module permissions component', function() {
 \
             <div class="crud">\
                 <label class="crud__permission">\
-                    <input type="checkbox" class="form__control checkbox" data-toggle="page" data-crud="view">\
+                    <input type="checkbox" class="form__control checkbox qa-view-control" data-toggle="page" data-crud="view">\
                     <span>View</span>\
                 </label>\
                 <label class="crud__permission">\
@@ -85,7 +85,7 @@ describe('Module permissions component', function() {
                 </label>\
                 <div class="crud">\
                     <label class="crud__permission">\
-                        <input type="checkbox" class="form__control checkbox" data-toggle="subpage" data-crud="view">\
+                        <input type="checkbox" class="form__control checkbox qa-view-control" data-toggle="subpage" data-crud="view">\
                         <span>View</span>\
                     </label>\
                     <label class="crud__permission">\
@@ -105,7 +105,7 @@ describe('Module permissions component', function() {
         </div>\
     </div>\
 </div>\
-').appendTo(this.$html);
+').appendTo(this.$body);
 
         this.$moduleToggle = this.$html.find('.js-module-toggle');
         this.$module = this.$moduleToggle.closest('.module');
@@ -118,7 +118,14 @@ describe('Module permissions component', function() {
         this.$moduleSelectAll = this.$module.find('[data-toggle="module-master"]');
         this.$moduleAllCheckboxes = this.$module.find('.checkbox');
 
-        this.modulePermissions = new ModulePermissionsComponent(this.$html);
+        this.$header = this.$html.find('.qa-view-header'),
+        this.$controls = this.$html.find('.qa-view-control');
+
+        this.modulePermissions = new ModulePermissionsComponent($('html'));
+    });
+
+    afterEach(function() {
+        this.$html.remove();
     });
 
     describe('clicking a module toggle', function() {
@@ -207,13 +214,6 @@ describe('Module permissions component', function() {
             this.$moduleSubpage.find('[data-crud="view"]').trigger(clickEvent);
         });
 
-        it('should check the control', function() {
-            expect(
-                this.$html.find('[data-toggle="subpage"][data-crud="view"]')
-                .prop('checked')
-            ).to.be.true;
-        });
-
         // it('should make the main module selection indeterminate', function() {
 
         //     console.log(this.$html.find('[data-toggle="module-master"]'));
@@ -233,24 +233,23 @@ describe('Module permissions component', function() {
         // });
     });
 
-    describe('selecting a crud header', function() {
+    describe('clicking a crud header', function() {
 
         beforeEach(function() {
             this.modulePermissions.init();
 
             var clickEvent = $.Event('click')
-            this.$html.find('[data-toggle="module-crud"][data-crud="view"]').trigger(clickEvent);
+            this.$header.trigger(clickEvent);
         });
 
         it('should check all page controls under the header', function() {
-            console.log($(':checked', this.$html.find('[data-toggle="page"][data-crud="view"]')).length);
-            console.log(this.$html.find('[data-toggle="page"][data-crud="view"]').length);
+
+            // console.log('checked' + $(':checked', this.$controls).length);
+            // console.log('unchecked' + this.$controls.length);
 
             expect(
-                $(':checked', this.$html.find('[data-toggle="page"][data-crud="view"]')).length
-            ).to.equal(this.$html.find('[data-toggle="page"][data-crud="view"]').length);
-
-            // expect(this.$moduleAllCheckboxes.length).to.equal(this.$moduleAllCheckboxes.length);
+                $(':checked', this.$controls).length == this.$controls.length
+            ).to.be.true;
         });
 
     });

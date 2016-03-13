@@ -57,11 +57,10 @@ ModulePermissionsComponent.prototype.toggleModuleVisibility = function () {
         $target.addClass('is-open');
         $toggle.html('<i class="icon-caret-up"></i>');
     }
-
-
 };
 
 ModulePermissionsComponent.prototype.toggleModulePagesVisibility = function () {
+    console.log('toggle module pages visibility');
 
     var $toggle = $(this),
         $target = $toggle.closest('.module-page');
