@@ -6,8 +6,8 @@ var $ = require('jquery'),
 describe('Module permissions component', function() {
 
     beforeEach(function() {
-        this.$html = $('<div class="fake-html"></div>').appendTo('html');
-        this.$body = $('<div class="fake-body"></div>').appendTo(this.$html);
+        this.$html = $('<html></html>');
+        this.$body = $('<body></body>').appendTo(this.$html);
         this.$code = $('\
 <div class="module-permissions">\
     <div class="module module-row">\
@@ -30,7 +30,7 @@ describe('Module permissions component', function() {
         </div>\
 \
         <label class="control__label">\
-            <input type="checkbox" class="form__control checkbox" data-toggle="module-master">\
+            <input type="checkbox" class="form__control checkbox qa-module-master" data-toggle="module-master">\
                 Publishing\
         </label>\
         <a class="js-module-toggle" href="#"><i class="icon-caret-up"></i></a>\
@@ -115,17 +115,10 @@ describe('Module permissions component', function() {
 
         this.$moduleSubpage = this.$module.find('.module-subpage');
 
-        this.$moduleSelectAll = this.$module.find('[data-toggle="module-master"]');
+        this.$moduleSelectAll = this.$html.find('[data-toggle="module-master"]');
         this.$moduleAllCheckboxes = this.$module.find('.checkbox');
 
-        this.$header = this.$html.find('.qa-view-header'),
-        this.$controls = this.$html.find('.qa-view-control');
-
-        this.modulePermissions = new ModulePermissionsComponent($('html'));
-    });
-
-    afterEach(function() {
-        this.$html.remove();
+        this.modulePermissions = new ModulePermissionsComponent(this.$html);
     });
 
     describe('clicking a module toggle', function() {
@@ -183,74 +176,53 @@ describe('Module permissions component', function() {
         });
     });
 
+    describe('clicking a refine toggle twice', function() {
+
+        beforeEach(function() {
+            this.modulePermissions.init();
+
+            var clickEvent = $.Event('click');
+            this.$refineToggle.trigger(clickEvent);
+            this.$refineToggle.trigger(clickEvent);
+        });
+
+        it('should remove the .is-open class to it’s parent module page', function() {
+            expect(this.$modulePage.hasClass('is-open')).to.be.false;
+        });
+
+        it('should change the refine toggle label to refine’', function() {
+            expect(this.$refineToggle.text()).to.equal('refine');
+        });
+    });
+
     describe('clicking the main module selection control', function() {
 
         beforeEach(function() {
             this.modulePermissions.init();
+            console.log('!');
+            console.log(this.$html.find('[data-toggle="module-master"]').length);
 
             var clickEvent = $.Event('click');
-            this.$moduleSelectAll.trigger(clickEvent);
+            this.$html.find('[data-toggle="module-master"]').trigger(clickEvent);
         });
 
         it('should check all checkboxes within this module', function() {
-            expect(this.$moduleAllCheckboxes.length).to.equal(this.$moduleAllCheckboxes.length);
+
+            var checkboxes = this.$html.find('.module .checkbox'),
+                checked = $(':checked', checkboxes);
+
+            expect(checked.length).to.equal(checkboxes.length);
+
         });
 
-        it('should uncheck all checkboxes within this module if clicked again', function() {
-            var clickEvent = $.Event('click');
-            this.$moduleSelectAll.trigger(clickEvent);
+        // it('should uncheck all checkboxes within this module if clicked again', function() {
 
-            expect($(':checked', this.$moduleAllCheckboxes).length).to.equal(0);
-        });
+        //     var clickEvent = $.Event('click');
+        //     this.$moduleSelectAll.trigger(clickEvent);
 
-    });
 
-    describe('selecting a crud control', function() {
-
-        beforeEach(function() {
-            this.modulePermissions.init();
-
-            var clickEvent = $.Event('click')
-            this.$moduleSubpage.find('[data-crud="view"]').trigger(clickEvent);
-        });
-
-        // it('should make the main module selection indeterminate', function() {
-
-        //     console.log(this.$html.find('[data-toggle="module-master"]'));
-        //     console.log(this.$html.find('[data-toggle="module-master"]').prop('indeterminate'));
-
-        //     expect(
-        //         this.$html.find('[data-toggle="module-master"]')
-        //         .prop('indeterminate')
-        //     ).to.be.true;
+        //     expect($(':checked', this.$moduleAllCheckboxes).length).to.equal(0);
         // });
-
-        // it('should make the crud type header indeterminate', function() {
-
-        //     console.log(this.$html.find('[data-toggle="module-crud"][data-crud="view"]'));
-
-        //     expect(this.$html.find('[data-toggle="module-crud"][data-crud="view"]').prop('indeterminate')).to.be.true;
-        // });
-    });
-
-    describe('clicking a crud header', function() {
-
-        beforeEach(function() {
-            this.modulePermissions.init();
-
-            var clickEvent = $.Event('click')
-            this.$header.trigger(clickEvent);
-        });
-
-        it('should check all page controls under the header', function() {
-
-            // console.log('checked' + $(':checked', this.$controls).length);
-            // console.log('unchecked' + this.$controls.length);
-
-            expect(
-                $(':checked', this.$controls).length == this.$controls.length
-            ).to.be.true;
-        });
 
     });
 
