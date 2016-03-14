@@ -53,7 +53,7 @@
     "mochify-istanbul": "^2.4.1",
     "node-sass": "^3.7.0",
     "phantomjs": "^1.9.19",
-    "phpruntime": "^4.5.0",
+    "phpruntime": "^5.0.0",
     "phptoast": "^3.16.1",
     "phptojs": "^3.13.2",
     "sinon": "^1.17.3",

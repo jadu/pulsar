@@ -16,113 +16,11 @@ var phpParser = require('phptoast').create(),
     phpToJS = require('phptojs'),
     phpRuntime = require('phpruntime/sync'); // Require the sync entrypoint so you can actually read the stack trace
 
-ArrayValue.prototype.getNative = function () {
-    var result = [];
-    var hasNonNumericKey = false;
-
-    _.each(this.value, function (element) {
-        if (!_.isNumber(element.getKey().getNative())) {
-            hasNonNumericKey = true;
-        }
-    });
-
-    result = hasNonNumericKey ? {} : [];
-
-    _.each(this.value, function (element) {
-        result[element.getKey().getNative()] = element.getValue().getNative();
-    });
-
-    return result;
-};
-
-ClassClass.prototype.instantiate = function (args) {
-    var classObject = this,
-        nativeObject = Object.create(classObject.InternalClass.prototype),
-        objectValue;
-
-    classObject.InternalClass.apply(nativeObject, _.map(args, function (value) {
-        return value.unwrapForJS();
-    }));
-
-    objectValue = classObject.valueFactory.createObject(nativeObject, classObject);
-
-    classObject.construct(objectValue, args);
-
-    return objectValue;
-};
-
-var oldCallMethod = ObjectValue.prototype.callMethod;
-ObjectValue.prototype.callMethod = function (name, args) {
-    var realMethodFunc,
-        result;
-
-    if (this.classObject.getName() !== 'UrlParamsExtension') {
-        return oldCallMethod.call(this, name, args);
-    }
-
-    realMethodFunc = this.value[name];
-    this.value[name] = function () {
-        var thisObj = this.value,
-            args = _.map(arguments, function (arg) {
-                return arg.unwrapForJS();
-            });
-
-        return realMethodFunc.apply(thisObj, args);
-    };
-    result = oldCallMethod.call(this, name, args);
-    this.value[name] = realMethodFunc; // Restore
-
-    return result;
-};
-
 var timeNow = new Date('2016-01-01 12:00').getTime();
 
 phpRuntime.install({
     functionGroups: [
         function (internals) {
-            _.extend(internals.valueFactory, {
-                createFromNative: function (nativeValue) {
-                    var factory = this;
-
-                    if (nativeValue === null || typeof nativeValue === 'undefined') {
-                        return factory.createNull();
-                    }
-
-                    if (_.isString(nativeValue)) {
-                        return factory.createString(nativeValue);
-                    }
-
-                    if (_.isNumber(nativeValue)) {
-                        return factory.createInteger(nativeValue);
-                    }
-
-                    if (_.isBoolean(nativeValue)) {
-                        return factory.createBoolean(nativeValue);
-                    }
-
-                    if (_.isArray(nativeValue)) {
-                        return factory.createFromNativeArray(nativeValue);
-                    }
-
-                    // Handle plain objects -> associative arrays
-                    if (Object.getPrototypeOf(nativeValue) === Object.prototype) {
-                        return factory.createFromPlainObject(nativeValue);
-                    }
-
-                    return factory.createObject(nativeValue, factory.globalNamespace.getClass('JSObject'));
-                },
-                createFromPlainObject: function (plainObject) {
-                    var factory = this,
-                        orderedElements = [];
-
-                    _.forOwn(plainObject, function (value, key) {
-                        orderedElements.push(new KeyValuePair(factory.coerce(key), factory.coerce(value)));
-                    });
-
-                    return factory.createArray(orderedElements);
-                }
-            });
-
             return {
                 'time': function () {
                     return internals.valueFactory.createInteger(timeNow/1000);
@@ -131,7 +29,7 @@ phpRuntime.install({
                     return null;
                 },
                 'json_decode': function (json, assoc) {
-                    var parsed = JSON.parse(json.getValue().unwrapForJS());
+                    var parsed = JSON.parse(json.getValue().getNative());
 
                     if (assoc) {
                         return internals.valueFactory.createFromNative(parsed);
