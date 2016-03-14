@@ -7,16 +7,13 @@ global.expect = require('chai').expect;
 global.sinon = require('sinon');
 global.moment = require('moment');
 var Asserter = require('./Asserter');
-var KeyValuePair = require('phpruntime/node_modules/phpcore/src/KeyValuePair');
-var ArrayValue = require('phpruntime/node_modules/phpcore/src/Value/Array').sync();
-var ObjectValue = require('phpruntime/node_modules/phpcore/src/Value/Object').sync();
-var ClassClass = require('phpruntime/node_modules/phpcore/src/Class').sync();
 
 var phpParser = require('phptoast').create(),
     phpToJS = require('phptojs'),
     phpRuntime = require('phpruntime/sync'); // Require the sync entrypoint so you can actually read the stack trace
 
 var timeNow = new Date('2016-01-01 12:00').getTime();
+var testInstance;
 
 phpRuntime.install({
     functionGroups: [
@@ -67,6 +64,34 @@ phpRuntime.install({
             function Twig_Environment() {}
 
             return Twig_Environment;
+        },
+        'PHPUnit_Framework_TestCase': function () {
+            function PHPUnit_Framework_TestCase() {}
+
+            PHPUnit_Framework_TestCase.prototype.run = function (tests) {
+                var self = this.value,
+                    native = this.getNative();
+
+                tests = tests.getValue().getNative();
+                _.each(tests, function (test) {
+                    testInstance.setTestName(self[test].funcName);
+                    native.callMethod(self[test].funcName);
+                });
+            };
+
+            PHPUnit_Framework_TestCase.prototype.assertEquals = function (a, b) {
+                return testInstance.asserter.equal(a.getNative(), b.getNative());
+            };
+
+            PHPUnit_Framework_TestCase.prototype.assertContains = function (a, b) {
+                return testInstance.asserter.contains(a.getNative(), b.getNative());
+            };
+
+            PHPUnit_Framework_TestCase.prototype.assertArrayHasKey = function (key, array) {
+                return testInstance.asserter.contains(key.getNative(), array.getNative());
+            };
+
+            return PHPUnit_Framework_TestCase;
         }
     }
 
@@ -167,7 +192,7 @@ BaseTest.prototype.injectClass = function (name, jsClass) {
 BaseTest.prototype.run = function () {
     this.test = this.testName + '.php';
 
-    var testInstance = this;
+    testInstance = this;
 
     this.loadInjections();
 
