@@ -99,35 +99,15 @@ phpRuntime.install({
 
 function BaseTest() {
     this.testsPath = path.resolve(__dirname + '/../../../unit/Jadu/Pulsar/Twig/Extension/');
-    this.injectionsPath = path.resolve(__dirname + '/../injections/');
     this.asserter = new Asserter(this);
 }
 
-BaseTest.prototype.loadPostInjections = function () {
-    var postInjectionsPath = path.resolve(this.injectionsPath + '/post/');
-    var postInjections = fs.readdirSync(postInjectionsPath);
-
-    var loadedPostInjections = {};
-    _.each(postInjections, function (injection) {
-        var postInjectionPath = path.resolve(postInjectionsPath + '/' + injection);
-        loadedPostInjections[injection] = fs.readFileSync(postInjectionPath).toString();
-    });
-
-    this.postInjections = loadedPostInjections;
-};
-
-BaseTest.prototype.loadInjections = function () {
-    this.loadPostInjections();
-};
-
 BaseTest.prototype.rewriteTest = function (test) {
-    //Inject all post injections
-    _.each(this.postInjections, function (postInjection) {
-        test += postInjection;
-    });
-
     //Remove namespaces
     test = test.replace('namespace Jadu\\Pulsar\\Twig\\Extension;\n', '');
+
+    //Test runner
+    test = test + '$test = new $testName(); $test->setUp(); $test->run($tests);';
 
     return test;
 };
@@ -165,8 +145,6 @@ BaseTest.prototype.run = function () {
     this.test = this.testName + '.php';
 
     testInstance = this;
-
-    this.loadInjections();
 
     var testPath = path.resolve(this.testsPath + '/' + this.test);
     var test = fs.readFileSync(testPath).toString();
