@@ -71,6 +71,9 @@ $FontAwesomePath: '../libs/font-awesome/font/';
 	mixins you should @import them here.
 \* -------------------------------------------------------------------------- */
 
+// Objects
+@import 'objects/_object.media';
+
 // Components
 @import '_component.actionsbar';
 @import '_component.autosave';
