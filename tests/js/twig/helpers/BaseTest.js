@@ -103,19 +103,6 @@ function BaseTest() {
     this.asserter = new Asserter(this);
 }
 
-BaseTest.prototype.loadPreInjections = function () {
-    var preInjectionsPath = path.resolve(this.injectionsPath + '/pre/');
-    var preInjections = fs.readdirSync(preInjectionsPath);
-
-    var loadedPreInjections = {};
-    _.each(preInjections, function (injection) {
-        var preInjectionPath = path.resolve(preInjectionsPath + '/' + injection);
-        loadedPreInjections[injection] = fs.readFileSync(preInjectionPath).toString();
-    });
-
-    this.preInjections = loadedPreInjections;
-};
-
 BaseTest.prototype.loadPostInjections = function () {
     var postInjectionsPath = path.resolve(this.injectionsPath + '/post/');
     var postInjections = fs.readdirSync(postInjectionsPath);
@@ -130,25 +117,10 @@ BaseTest.prototype.loadPostInjections = function () {
 };
 
 BaseTest.prototype.loadInjections = function () {
-    this.loadPreInjections();
     this.loadPostInjections();
 };
 
 BaseTest.prototype.rewriteTest = function (test) {
-    //Strip out the opening php tag
-    test = test.replace(/^[\s]*\<\?php\n/, '');
-
-    var preInjections = '';
-    //Inject all pre injections
-    _.each(this.preInjections, function (preInjection) {
-        preInjections += preInjection;
-    });
-
-    test = preInjections + test;
-
-    //Reattach the opening php tag
-    test = '<?php\n' + test;
-
     //Inject all post injections
     _.each(this.postInjections, function (postInjection) {
         test += postInjection;
@@ -212,11 +184,8 @@ BaseTest.prototype.run = function () {
         console.error(text);
     });
 
-    engine.expose(this.extension, 'javascriptExtension');
     engine.expose(this.testName, 'testName');
     engine.expose(this.testsToRun, 'tests');
-    engine.expose(this, 'nameSetter');
-    engine.expose(this.asserter, 'asserter');
 
     sinon.useFakeTimers(timeNow);
 
