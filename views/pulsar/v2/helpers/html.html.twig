@@ -963,3 +963,64 @@ data-*    | string | Data attributes, eg: `'data-foo': 'bar'`
 
 {% endspaceless %}
 {% endmacro %}
+
+
+{# -----------------------------------------------------------------------------
+
+# Status
+
+Displays a small visual indication of state, helpful when used within table
+cells or piano list keys to avoid the need for a user to check many items
+individually to determine their state.
+
+## Example usage
+
+```twig
+{{ html.status('online') }}
+```
+
+The 'state' will be used for both the title attribute, and for the stateful
+class name, eg:
+
+```html
+<span class="status is-online" title="online"></span>
+```
+
+### States
+
+ * online (default)
+ * offline
+ * active
+ * inactive
+
+Some states are simply synonyms of each other, the choice of verb will be
+defined by the context in which it is to be used.
+
+## Options
+
+Option | Type   | Description
+------ | ------ | --------------------------------------------------------------
+class  | string | CSS classes, space separated
+id     | string | A unique identifier, if required
+title  | string | Title attribute, defaults to 'state' if not supplied
+data-* | string | Data attributes, eg: `'data-foo': 'bar'`
+
+#}
+{% macro status(state, options) %}
+{% spaceless %}
+
+{% if options.title is not defined %}
+    {% set options = options|default({})|merge({ 'title': state|default('active') }) %}
+{% endif %}
+
+    <span{{
+        attributes(options
+            |exclude('state')
+            |defaults({
+                'class': 'status is-' ~ state|default('active')
+            })
+        )
+    }}></span>
+
+{% endspaceless %}
+{% endmacro %}
