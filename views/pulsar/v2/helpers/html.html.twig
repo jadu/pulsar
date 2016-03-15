@@ -316,7 +316,7 @@ data-*    | string | Data attributes, eg: `'data-foo': 'bar'` (applied to the bu
         {{
             html.button({
                 'caret': options.caret|default(true),
-                'class': 'dropdown__toggle ' ~ options.class|default,
+                'class': 'dropdown__toggle' ~ (options.class is defined ? ' ' ~ options.class : ''),
                 'data-toggle': 'dropdown',
                 'id': options.id|default,
                 'label': options.label|default,
