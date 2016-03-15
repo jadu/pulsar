@@ -310,7 +310,6 @@ data-*    | string | Data attributes, eg: `'data-foo': 'bar'` (applied to the bu
 
     <div{{
         attributes(options
-            |only('class')
             |defaults({
                 'class': 'btn__group drop' ~ options.direction|default('down')
             })
@@ -319,7 +318,7 @@ data-*    | string | Data attributes, eg: `'data-foo': 'bar'` (applied to the bu
         {{
             html.button({
                 'caret': options.caret|default(true),
-                'class': 'dropdown__toggle',
+                'class': 'dropdown__toggle ' ~ options.class|default,
                 'data-toggle': 'dropdown',
                 'id': options.id|default,
                 'label': options.label|default,
