@@ -11,7 +11,8 @@
   height: 0;
   margin-left: 2px;
   vertical-align: middle;
-  border-top:   4px solid $dropdown-caret-color;
+  border-top:   4px solid;
+  border-top-color: $dropdown-caret-color;
   border-right: 4px solid transparent;
   border-left:  4px solid transparent;
   content: "";
@@ -183,7 +184,8 @@
   // Reverse the caret
   .caret {
     border-top: 0;
-    border-bottom: 4px solid $dropdown-caret-color;
+    border-bottom: 4px solid;
+    border-bottom-color: $dropdown-caret-color;
     content: "";
   }
   // Different positioning for bottom up menu

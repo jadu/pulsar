@@ -294,7 +294,7 @@ Show a dropdown/dropup menu when the button is clicked.
 Option    | Type   | Description
 --------- | ------ | -----------------------------------------------------------
 caret     | bool   | Whether to show the caret arrow in the label (default true)
-class     | string | A space separated list of class names (applied to the container)
+class     | string | A space separated list of class names (applied to the button)
 direction | string | `down` (default) or `up`
 id        | string | A unique identifier, if required (applied to the button)
 items     | array  | An array of items to put in the dropdown list (usually links)
@@ -309,17 +309,14 @@ data-*    | string | Data attributes, eg: `'data-foo': 'bar'` (applied to the bu
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
     <div{{
-        attributes(options
-            |only('class')
-            |defaults({
-                'class': 'btn__group drop' ~ options.direction|default('down')
-            })
-        )
+        attributes({
+            'class': 'btn__group drop' ~ options.direction|default('down')
+        })
     }}>
         {{
             html.button({
                 'caret': options.caret|default(true),
-                'class': 'dropdown__toggle',
+                'class': 'dropdown__toggle' ~ (options.class is defined ? ' ' ~ options.class : ''),
                 'data-toggle': 'dropdown',
                 'id': options.id|default,
                 'label': options.label|default,

@@ -66,7 +66,7 @@ $dropdown-link-active-bg:        color(primary) !default;
 $dropdown-link-color:            color(gray, dark) !default;
 $dropdown-link-hover-color:      #fff !default;
 $dropdown-link-hover-bg:         $dropdown-link-active-bg !default;
-$dropdown-caret-color:           #000 !default;
+$dropdown-caret-color:           inherit !default;
 
 // -----------------------------------------------------------------------------
 //  Tables
