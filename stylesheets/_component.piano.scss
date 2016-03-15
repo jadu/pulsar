@@ -194,6 +194,23 @@
     width: 25px;
 }
 
+.piano__icon {
+    border-radius: 50%;
+    float: left;
+    height: 48px;
+    margin-bottom: 5px;
+    margin-right: 10px;
+    width: 48px;
+
+    .is-inactive & {
+        -webkit-filter: grayscale(100%); // Webkit
+        -webkit-filter: grayscale(1); // Webkit
+        filter: grayscale(1); // W3C
+        filter: gray; // IE 6-9
+        opacity: 0.25;
+    }
+}
+
 .piano__user {
     color: #000;
     font-size: 14px;
@@ -215,6 +232,10 @@
     background: none;
     margin-bottom: 10px;
     padding: 0;
+}
+
+.piano__service + .piano__title {
+    clear: none;
 }
 
 .piano__item-toggle {
