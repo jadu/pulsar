@@ -78,7 +78,7 @@ $palette-alias: (
         disabled: map-get(map-get($palette-monochromes, gray), lighter)
     ),
     border: (
-        base: map-get(map-get($palette-monochromes, gray), light)
+        base: map-get(map-get($palette-monochromes, gray), lighter)
     )
 );
 
