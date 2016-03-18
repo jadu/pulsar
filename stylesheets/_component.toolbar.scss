@@ -7,10 +7,10 @@
     width: 100%;
 
     @include respond-min($screen-desktop) {
-        background-color: color(white);
-        height: 53px;
-        margin-bottom: 19px;
-        padding: 14px 20px 0;
+        // background-color: color(white);
+        height: 72px;
+        margin-bottom: 11px;
+        padding: 14px 20px;
     }
 }
 
@@ -34,5 +34,48 @@
 }
 
 .nav-user {
-  float: right;
+    float: right;
+    font-size: $font-size-base;
+
+    .btn {
+        font-size: $font-size-base;
+        padding: 12px 0;
+    }
+
+    .dropdown {
+        float: left;
+        margin-left: 20px;
+        z-index: $zindex-dropdown;
+    }
+
+    .dropdown-toggle {
+        height: 35px;
+    }
+
+    .dropdown__header {
+        border-bottom: 1px solid $gray-lighter;
+        font-family: $font-family-regular;
+        padding: 3px 15px 3px 10px;
+    }
+
+    .dropdown__menu {
+        float: right;
+        right: 0;
+        left: auto;
+    }
+
+    .dropdown__menu .is-active {
+        background-color: color(jadu-blue, pale);
+    }
+}
+
+.site-switcher__label {
+    color: color('text');
+    padding: 9px 0;
+    display: inline-block;
+    text-decoration: none;
+
+    .ie8 & {
+        padding-top: 8px;
+    }
 }
