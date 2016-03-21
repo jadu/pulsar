@@ -8,6 +8,12 @@
     margin-right: 10px;
 }
 
+// only paragraphs in the middle of the body have a bottom margin
 .media__body p {
-    margin-bottom: 0;
+    margin-bottom: 1em;
+
+    &:first-of-type,
+    &:last-of-type {
+        margin-bottom: 0;
+    }
 }
