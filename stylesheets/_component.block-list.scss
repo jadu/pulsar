@@ -40,153 +40,153 @@
  */
 
 /* -------------------------------------------------------------------------- *\
-	Configuration
+    Configuration
 \* -------------------------------------------------------------------------- */
 
 $padding: ($line-height-base / 2);
 $width: 500px;
 
 /* -------------------------------------------------------------------------- *\
-	Default Presentation
+    Default Presentation
 \* -------------------------------------------------------------------------- */
 
 .block-list {
-	margin-left: 0; /* [1] */
-	margin-bottom: 1em;
-	max-width: $width;
+    margin-left: 0; /* [1] */
+    margin-bottom: 1em;
+    max-width: $width;
 
-	.preview {
-		max-height: 75px;
-		max-width: 75px;
-		vertical-align: bottom;
-	}
+    .preview {
+        max-height: 75px;
+        max-width: 75px;
+        vertical-align: bottom;
+    }
 }
 
 .block-list__item {
-	display: block;
-	overflow-wrap: break-word;
-	padding: $padding $padding;
-	word-wrap: break-word;
+    display: block;
+    overflow-wrap: break-word;
+    padding: $padding $padding;
+    word-wrap: break-word;
 
-	label {
-		margin: 0;
-		text-align: left;
-		width: 100%;
-	}
+    label {
+        margin: 0;
+        text-align: left;
+        width: 100%;
+    }
 
-	.remove-button,
-	.badge {
-		float: right;
-	}
+    .remove-button,
+    .badge {
+        float: right;
+    }
 
-	.preview {
-		margin-right: $padding;
-		vertical-align: top;
-	}
+    .preview {
+        margin-right: $padding;
+        vertical-align: top;
+    }
 
-	.progress {
-		@extend .progress-bar--compact;
-		margin: .5em 0 0 0;
-	}
+    .progress {
+        @extend .progress-bar--compact;
+        margin: .5em 0 0 0;
+    }
 }
 
 a.block-list__item:hover {
-	background-color: lighten(#e5ecf2, 4%);
+    background-color: lighten(#e5ecf2, 4%);
 
-	.uploader__label {
-		color: color(link);
-		cursor: pointer;
-	}
+    .uploader__label {
+        color: color(link);
+        cursor: pointer;
+    }
 }
 
 /* -------------------------------------------------------------------------- *\
-	Variations
+    Variations
 \* -------------------------------------------------------------------------- */
 
 .block-list--full {
-	max-width: 100%;
+    max-width: 100%;
 }
 
 .block-list--underlined {
-	.block-list__item {
-		border-bottom: 1px solid color(gray, lighter);
-	}
+    .block-list__item {
+        border-bottom: 1px solid color(gray, lighter);
+    }
 
-	.block-list__item.has-info {
-		border-bottom-color: lighten(color(info), 5);
-	}
+    .block-list__item.has-info {
+        border-bottom-color: lighten(color(info), 5);
+    }
 
-	.block-list__item.has-success {
-		border-bottom-color: lighten(color(success), 20);
-	}
+    .block-list__item.has-success {
+        border-bottom-color: lighten(color(success), 20);
+    }
 
-	.block-list__item.has-warning {
-		border-bottom-color: darken(color(warning), 2);
-	}
+    .block-list__item.has-warning {
+        border-bottom-color: darken(color(warning), 2);
+    }
 
-	.block-list__item.has-error {
-		border-bottom-color: lighten(color(danger), 10);
-	}
+    .block-list__item.has-error {
+        border-bottom-color: lighten(color(danger), 10);
+    }
 }
 
 .block-list--bordered {
-	@extend .block-list--padded;
-	border: 1px solid color(gray, lighter);
-	border-radius: $border-radius;
+    @extend .block-list--padded;
+    border: 1px solid color(gray, lighter);
+    border-radius: $border-radius;
 
-	.block-list__item:not(:last-of-type) {
-		border-bottom: 1px solid color(gray, lighter);
-	}
+    .block-list__item:not(:last-of-type) {
+        border-bottom: 1px solid color(gray, lighter);
+    }
 }
 
 .block-list--horizontal {
-	display: table;
-	width: $width;
+    display: table;
+    width: $width;
 
-	&.block-list--full {
-		min-width: 100%;
-		width: 100%;
-	}
+    &.block-list--full {
+        min-width: 100%;
+        width: 100%;
+    }
 
-	.block-list__item {
-		display: table-cell;
-	}
+    .block-list__item {
+        display: table-cell;
+    }
 
-	&.block-list--bordered .block-list__item {
-		&, &:last-of-type {
-			border-bottom: 0;
-		}
+    &.block-list--bordered .block-list__item {
+        &, &:last-of-type {
+            border-bottom: 0;
+        }
 
-		&:not(:last-of-type) {
-			border-right: 1px solid color(gray, lighter);
-		}
-	}
+        &:not(:last-of-type) {
+            border-right: 1px solid color(gray, lighter);
+        }
+    }
 }
 
 .block-list--contrast {
-	.block-list__item {
-		background-color: color(gray, lighter);
+    .block-list__item {
+        background-color: color(gray, lighter);
 
-		&:first-of-type {
-			border-top-left-radius: $border-radius;
-			border-bottom-left-radius: $border-radius;
-		}
+        &:first-of-type {
+            border-top-left-radius: $border-radius;
+            border-bottom-left-radius: $border-radius;
+        }
 
-		&:last-of-type {
-			border-top-right-radius: $border-radius;
-			border-bottom-right-radius: $border-radius;
-		}
+        &:last-of-type {
+            border-top-right-radius: $border-radius;
+            border-bottom-right-radius: $border-radius;
+        }
 
-		&:hover {
-			background-color: darken(color(gray, lighter), 5);
-		}
-	}
+        &:hover {
+            background-color: darken(color(gray, lighter), 5);
+        }
+    }
 
-	&.block-list--horizontal .block-list__item:not(:last-of-type) {
-		border-right: 2px solid color(white);
-	}
+    &.block-list--horizontal .block-list__item:not(:last-of-type) {
+        border-right: 2px solid color(white);
+    }
 }
 
 .block-list--tall .block-list__item {
-	padding: $padding * 2;
+    padding: $padding * 2;
 }
