@@ -90,7 +90,7 @@ FlashMessageComponent.prototype.render = function (message, type, icon) {
         $prototype = $(component.$prototype.clone());
 
     if (!type) {
-        type = 'flash--success';
+        type = 'success';
     }
 
     if (!icon) {

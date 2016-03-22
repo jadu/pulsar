@@ -1,0 +1,11 @@
+{#
+    Test status with options
+#}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{{
+    html.status('online', {
+        'class': 'foo',
+        'data-foo': 'bar',
+        'id': 'baz'
+    })
+}}

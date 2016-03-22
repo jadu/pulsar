@@ -294,7 +294,7 @@ Show a dropdown/dropup menu when the button is clicked.
 Option    | Type   | Description
 --------- | ------ | -----------------------------------------------------------
 caret     | bool   | Whether to show the caret arrow in the label (default true)
-class     | string | A space separated list of class names (applied to the container)
+class     | string | A space separated list of class names (applied to the button)
 direction | string | `down` (default) or `up`
 id        | string | A unique identifier, if required (applied to the button)
 items     | array  | An array of items to put in the dropdown list (usually links)
@@ -309,17 +309,14 @@ data-*    | string | Data attributes, eg: `'data-foo': 'bar'` (applied to the bu
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
     <div{{
-        attributes(options
-            |only('class')
-            |defaults({
-                'class': 'btn__group drop' ~ options.direction|default('down')
-            })
-        )
+        attributes({
+            'class': 'btn__group drop' ~ options.direction|default('down')
+        })
     }}>
         {{
             html.button({
                 'caret': options.caret|default(true),
-                'class': 'dropdown__toggle',
+                'class': 'dropdown__toggle' ~ (options.class is defined ? ' ' ~ options.class : ''),
                 'data-toggle': 'dropdown',
                 'id': options.id|default,
                 'label': options.label|default,
@@ -960,6 +957,71 @@ data-*    | string | Data attributes, eg: `'data-foo': 'bar'`
             })
         )
     }}
+
+{% endspaceless %}
+{% endmacro %}
+
+
+{# -----------------------------------------------------------------------------
+
+# Status
+
+Displays a small visual indication of state, helpful when used within table
+cells or piano list keys to avoid the need for a user to check many items
+individually to determine their state.
+
+## Example usage
+
+```twig
+{{ html.status('online') }}
+```
+
+The 'state' will be used for both the title attribute, and for the stateful
+class name, eg:
+
+```html
+<span class="status is-online" title="online"></span>
+```
+
+### States
+
+ * online (default)
+ * offline
+ * active
+ * inactive
+
+Some states are simply synonyms of each other, the choice of verb will be
+defined by the context in which it is to be used.
+
+## Options
+
+Option | Type   | Description
+------ | ------ | --------------------------------------------------------------
+class  | string | CSS classes, space separated
+id     | string | A unique identifier, if required
+title  | string | Title attribute, defaults to 'state' if not supplied
+data-* | string | Data attributes, eg: `'data-foo': 'bar'`
+
+#}
+{% macro status(state, options) %}
+{% spaceless %}
+
+{% if options.title is not defined %}
+    {% set options = options|default({})|merge({ 'title': state|default('active') }) %}
+{% endif %}
+
+    <span{{
+        attributes(options
+            |exclude('state')
+            |merge({
+                'data-placement': options['data-placement']|default('top')
+            })
+            |defaults({
+                'class': 'status is-' ~ state|default('active'),
+                'data-toggle': 'tooltips'
+            })
+        )
+    }}></span>
 
 {% endspaceless %}
 {% endmacro %}

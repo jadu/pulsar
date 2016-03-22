@@ -1,7 +1,7 @@
 {% extends "@pulsar/pulsar/components/tab.html.twig" %}
 {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 {% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
-{% import '@pulsar/pulsar/helpers/flash.html.twig' as flash %}
+{% import '@pulsar/pulsar/v2/helpers/flash.html.twig' as flash %}
 
 {% block tab_sidebar %}
 
@@ -273,9 +273,19 @@
         {{
             html.button_group({
                 buttons: [
-                    html.button({ label: 'Left' }),
-                    html.button({ label: 'Middle' }),
-                    html.button({ label: 'Right' })
+                    html.button({ label: 'Left', 'class': 'btn--primary' }),
+                    html.button({ label: 'Middle', 'class': 'btn--primary' }),
+                    html.button({ label: 'Right', 'class': 'btn--primary' })
+                ]
+            })
+        }}
+
+        {{
+            html.button_group({
+                buttons: [
+                    html.button({ label: 'Left', 'class': 'btn--danger' }),
+                    html.button({ label: 'Middle', 'class': 'btn--danger' }),
+                    html.button({ label: 'Right', 'class': 'btn--danger' })
                 ]
             })
         }}
@@ -393,6 +403,12 @@
         }}
     </p>
 
+    <h2 class="heading">Status indicators</h2>
+    <p>I am online {{ html.status('online') }}</p>
+    <p>I am offline {{ html.status('offline') }}</p>
+    <p>I am active {{ html.status('active') }}</p>
+    <p>I am inactive {{ html.status('inactive') }}</p>
+
     <h2 class="heading">Dropdown/Dropup buttons</h2>
     <p>
         <div class="btn__toolbar">
@@ -439,6 +455,14 @@
                 'items': example_dropdown,
                 'label': 'Drop Down Right Menu',
                 'placement': 'right'
+            })
+        }}
+        {{
+            html.button_dropdown({
+                'direction': 'down',
+                'items': example_dropdown,
+                'label': 'Primary Action Drop Down',
+                'class': 'btn--primary'
             })
         }}
         </div>

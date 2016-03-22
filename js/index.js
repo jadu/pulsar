@@ -11,19 +11,17 @@ window.jQuery = window.$ = require('jquery');
 
 // Global UI components
 var $                     = require('jquery'),
-    deck                  = require('./deck'),
-    dropdown              = require('./dropdown'),
-    modal                 = require('./modal'),
-    tab                   = require('./tab'),
-    popover               = require('./popover'),
-    tooltip               = require('./tooltip'),
+    dropdown              = require('./libs/dropdown'),
+    modal                 = require('./libs/modal'),
+    tab                   = require('./libs/tab'),
+    popover               = require('./libs/popover'),
+    tooltip               = require('./libs/tooltip'),
     matchMedia            = require('./polyfills/matchMedia'),
     matchMediaAddListener = require('./polyfills/matchMedia.addListener');
 
     clickover  = require('../libs/bootstrapx-clickover/js/bootstrapx-clickover'),
     svgeezy    = require('../libs/svgeezy/svgeezy.min'),
     select2    = require('../libs/select2/dist/js/select2.min'),
-    toggles    = require('../libs/jquery-toggles/toggles.min'),
 
     dt            = require('datatables.net')(window, $),
     dt_responsive = require('datatables.net-responsive')(window, $),

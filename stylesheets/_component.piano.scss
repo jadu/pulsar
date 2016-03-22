@@ -1,6 +1,14 @@
 .piano-wrapper {
     border-top: 1px solid color(border);
     position: relative;
+
+    @include respond-min($screen-desktop) {
+        overflow: hidden;
+    }
+
+    @include ie-lte(8) {
+        position: static;
+    }
 }
 
 .piano {
@@ -87,20 +95,24 @@
 .piano__item-content {
     clear: both;
 
-    @include ie-lte(8) {
-        padding-bottom: 50px;
-    }
-
     .is-selected & {
         margin-top: 10px;
 
         @include respond-min($screen-desktop) {
+            height: 100%;
             margin-top: 0;
             padding-top: 10px;
             position: absolute;
+            overflow-y: auto;
             right: 10px;
             top: 10px;
             width: 68%;
+        }
+
+        @include ie-lte(8) {
+            height: auto;
+            padding-bottom: 50px;
+            overflow-y: visible;
         }
     }
 
@@ -162,10 +174,6 @@
             font-weight: 400;
             margin-bottom: 20px;
         }
-    }
-
-    p {
-        margin-bottom: 10px;
     }
 }
 

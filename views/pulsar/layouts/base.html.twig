@@ -63,6 +63,9 @@
                 <a href="#" class="mobile-menu-button">Menu</a>
 
                 <div class="nav-user">
+                    <div class="dropdown">
+                        <span class="site-switcher__label">Pulsar</span>
+                    </div>
                     {{
                         html.button_dropdown({
                             "label": "Paul Stanton",
@@ -86,6 +89,8 @@
                     }}
                 </div>
 
+                {% include '@pulsar/lexicon/includes/notifications.html.twig' %}
+
             </div>
 
             <form action="/search" class="main-search" data-ui="search-box">
@@ -95,6 +100,9 @@
 
             <div class="content-main">
                 <div class="tabs__content">
+                    <nav class="breadcrumb">
+                        <a href="#">Bread</a> / <a href="#">Crumb</a> / Trail
+                    </nav>
                     <h1 class="main-title">{{ heading|default('MISSING HEADING') }}</h1>
                     {% block tabs_list %}{% endblock %}
                     {% block tabs_content %}{% endblock %}

@@ -2,6 +2,7 @@
   @include baseline-grid;
 }
 
+%hide,
 .hide {
   position: absolute;
   width: 1px;
@@ -13,6 +14,7 @@
   border: 0;
 }
 
+%show,
 .show {
   clip: auto;
   display: inline-block;
@@ -118,4 +120,11 @@ div.no-results {
 .no-results__message > p,
 .no-results__action {
     margin: 12px 0;
+}
+
+// Replicates <hr /> but with nicer spacing
+.divider {
+    border-top: 1px solid color(border);
+    display: block;
+    margin: 10px 0;
 }

@@ -10,8 +10,6 @@ var $ = require('jquery'),
 // Expose jQuery globals
 window.$ = window.jQuery = $;
 
-toggles = require('../../libs/jquery-toggles/toggles.min');
-
 // Load Sinon-Chai
 chai.use(sinonChai);
 
