@@ -56,7 +56,7 @@ $palette-monochromes: (
         light:       rgb(157, 157, 157),
         lighter:     rgb(190, 190, 190),
         lightest:    rgb(222, 222, 222),
-        off-white:   rgb(236, 236, 236)
+        off-white:   rgb(239, 239, 239)
     )
 );
 
@@ -79,6 +79,10 @@ $palette-alias: (
     ),
     border: (
         base: map-get(map-get($palette-monochromes, gray), lighter)
+    ),
+    background: (
+        base: map-get(map-get($palette-monochromes, gray), off-white),
+        light: lighten(map-get(map-get($palette-monochromes, gray), off-white), 2)
     )
 );
 
@@ -123,6 +127,10 @@ $palette-states: (
         base:  map-get(map-get($palette-monochromes, gray), darker),
         alt:   pick_best_color(map-get(map-get($palette-monochromes, gray), darker), (#fff, #000)),
         light: lighten(map-get(map-get($palette-monochromes, gray), darker), 30)
+    ),
+    new: (
+        base:  #e5ecf2,
+        alt:   #000
     )
 );
 
@@ -141,5 +149,6 @@ $state-colors:
     (warning,   map-get(map-get($palette-states, warning), base), map-get(map-get($palette-states, warning), alt)),
     (danger,    map-get(map-get($palette-states, danger), base),  map-get(map-get($palette-states, danger), alt)),
     (info,      map-get(map-get($palette-states, info), base),    map-get(map-get($palette-states, info), alt)),
-    (inverse,   map-get(map-get($palette-states, inverse), base), map-get(map-get($palette-states, inverse), alt));
+    (inverse,   map-get(map-get($palette-states, inverse), base), map-get(map-get($palette-states, inverse), alt)),
+    (new,       map-get(map-get($palette-states, new), base),     map-get(map-get($palette-states, new), alt));
 

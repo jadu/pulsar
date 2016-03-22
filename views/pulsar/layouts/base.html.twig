@@ -36,7 +36,7 @@
     <link rel="stylesheet" type="text/css" href="{{ libsPath ~ 'font-awesome/css/font-awesome-ie7.min.css' }}" />
     <![endif]-->
 
-    <link rel="stylesheet" href="http://basehold.it/24">
+    <!-- <link rel="stylesheet" href="http://basehold.it/24"> -->
 
     <script
         src="{{ base_path ~ 'dist/js/bundle.js' }}"
@@ -63,6 +63,9 @@
                 <a href="#" class="mobile-menu-button">Menu</a>
 
                 <div class="nav-user">
+                    <div class="dropdown">
+                        <span class="site-switcher__label">Pulsar</span>
+                    </div>
                     {{
                         html.button_dropdown({
                             "label": "Paul Stanton",
@@ -85,6 +88,8 @@
                         })
                     }}
                 </div>
+
+                {% include '@pulsar/lexicon/includes/notifications.html.twig' %}
 
             </div>
 
