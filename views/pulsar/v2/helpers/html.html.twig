@@ -1013,8 +1013,12 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
     <span{{
         attributes(options
             |exclude('state')
+            |merge({
+                'data-placement': options['data-placement']|default('top')
+            })
             |defaults({
-                'class': 'status is-' ~ state|default('active')
+                'class': 'status is-' ~ state|default('active'),
+                'data-toggle': 'tooltips'
             })
         )
     }}></span>

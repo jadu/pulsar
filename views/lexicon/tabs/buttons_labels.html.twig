@@ -394,10 +394,10 @@
     </p>
 
     <h2 class="heading">Status indicators</h2>
-    <p>I am online <span class="status is-online" title="online"></span></p>
-    <p>I am offline <span class="status is-offline" title="offline"></span></p>
-    <p>I am active <span class="status is-active" title="active"></span></p>
-    <p>I am inactive <span class="status is-inactive" title="inactive"></span></p>
+    <p>I am online {{ html.status('online') }}</p>
+    <p>I am offline {{ html.status('offline') }}</p>
+    <p>I am active {{ html.status('active') }}</p>
+    <p>I am inactive {{ html.status('inactive') }}</p>
 
     <h2 class="heading">Dropdown/Dropup buttons</h2>
     <p>
