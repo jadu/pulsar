@@ -273,9 +273,19 @@
         {{
             html.button_group({
                 buttons: [
-                    html.button({ label: 'Left' }),
-                    html.button({ label: 'Middle' }),
-                    html.button({ label: 'Right' })
+                    html.button({ label: 'Left', 'class': 'btn--primary' }),
+                    html.button({ label: 'Middle', 'class': 'btn--primary' }),
+                    html.button({ label: 'Right', 'class': 'btn--primary' })
+                ]
+            })
+        }}
+
+        {{
+            html.button_group({
+                buttons: [
+                    html.button({ label: 'Left', 'class': 'btn--danger' }),
+                    html.button({ label: 'Middle', 'class': 'btn--danger' }),
+                    html.button({ label: 'Right', 'class': 'btn--danger' })
                 ]
             })
         }}
