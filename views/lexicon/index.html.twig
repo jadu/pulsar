@@ -32,6 +32,9 @@
 {% set tab_buttons %}
     {% include 'lexicon/tabs/buttons_labels.html.twig' %}
 {% endset %}
+{% set tab_block_list %}
+    {% include 'lexicon/tabs/block-list.html.twig' %}
+{% endset %}
 {% set tab_colours %}
     {% include 'lexicon/tabs/colours.html.twig' %}
 {% endset %}
@@ -128,6 +131,11 @@
           "id"    : "forms",
           "label" : "Forms",
           "src"   : tab_forms
+        },
+        {
+          "id"    : "block-list",
+          "label" : "Block List",
+          "src"   : tab_block_list
         },
         {
           "id"    : "loading",
