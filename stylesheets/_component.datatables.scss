@@ -54,13 +54,6 @@
         background-color: $table-bg-hover;
     }
 
-    &:hover .table-link,
-    &:hover .table-link:hover {
-        border-bottom: 1px dotted color(black);
-        color: color(black);
-        text-decoration: none;
-    }
-
     &.centered {
         text-align: center;
     }
@@ -117,6 +110,12 @@
     border-bottom: 1px dotted color(gray, light);
     color: color(link);
     text-decoration: none;
+
+    &:hover {
+        border-bottom: 1px dotted color(black);
+        color: color(black);
+        text-decoration: none;
+    }
 
     .sorting_disabled & {
         border: none;
