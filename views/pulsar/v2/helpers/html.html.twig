@@ -291,16 +291,17 @@ Show a dropdown/dropup menu when the button is clicked.
 
 ## Options
 
-Option    | Type   | Description
---------- | ------ | -----------------------------------------------------------
-caret     | bool   | Whether to show the caret arrow in the label (default true)
-class     | string | A space separated list of class names (applied to the button)
-direction | string | `down` (default) or `up`
-id        | string | A unique identifier, if required (applied to the button)
-items     | array  | An array of items to put in the dropdown list (usually links)
-label     | string | The button label
-placement | string | the alignment of the dropdown menu, `left` (default) or `right`
-data-*    | string | Data attributes, eg: `'data-foo': 'bar'` (applied to the button)
+Option       | Type   | Description
+------------ | ------ | -----------------------------------------------------------
+caret        | bool   | Whether to show the caret arrow in the label (default true)
+class        | string | A space separated list of class names (applied to the button)
+direction    | string | `down` (default) or `up`
+id           | string | A unique identifier, if required (applied to the button)
+items        | array  | An array of items to put in the dropdown list (usually links)
+label        | string | The button label
+placement    | string | the alignment of the dropdown menu, `left` (default) or `right`
+parent_class | string | A space separated list of class names (applied to the wrapper)
+data-*       | string | Data attributes, eg: `'data-foo': 'bar'` (applied to the button)
 
 #}
 {% macro button_dropdown(options) %}
@@ -310,7 +311,7 @@ data-*    | string | Data attributes, eg: `'data-foo': 'bar'` (applied to the bu
 
     <div{{
         attributes({
-            'class': 'btn__group drop' ~ options.direction|default('down')
+            'class': 'btn__group drop' ~ options.direction|default('down') ~ (options.parent_class is defined ? ' ' ~ options.parent_class : '')
         })
     }}>
         {{
