@@ -25,14 +25,23 @@
 }
 
 .notifications-toggle {
-    color: color(text, light);
     float: right;
     font-size: 24px;
     padding: 4px 0;
     text-decoration: none;
 
+    &,
+    &:link,
+    &:visited {
+        color: color(text, light);
+    }
+
+    &:hover {
+        color: color(text);
+    }
+
     @include respond-min($screen-phone) {
-        padding: 10px 0 0 0;
+        padding: 2px 0 0 0;
     }
 
     &.is-active {
