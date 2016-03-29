@@ -122,7 +122,7 @@
 
     // prevent large images from cropping outside the container
     img {
-        max-width: 100%;
+        max-width: 100% !important;
     }
 }
 
