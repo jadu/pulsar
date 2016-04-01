@@ -226,10 +226,6 @@ html, body {
 	margin: 0 auto 1em auto;
 	padding: 10px;
 	width: 80%;
-
-	&[type=password] {
-		padding-right: 35px;
-	}
 }
 
 .signin__code1,
