@@ -34,9 +34,8 @@ i {
 // Default
 .flash,
 .flash--default {
-    background: rgb(0, 0, 0);
-    background: rgba(0, 0, 0, .8);
-    color: color(white);
+    background: color(inverse, flash);
+    color: color(inverse, alt);
     text-shadow: 0 0 2px rgba(0, 0, 0, .5);
 
     a {
@@ -47,21 +46,24 @@ i {
 
 // Variations
 .flash--success {
-    background: rgb(0, 153, 51);
-    background: rgba(0, 153, 51, .8);
+    background: color(success, flash);
+    color: color(success, alt);
 }
 
 .flash--warning {
-    @extend .warning;
+    background: color(warning, flash);
+    color: color(warning, alt);
+    text-shadow: none;
 }
 
 .flash--error {
-    background: rgb(204, 51, 51);
-    background: rgba(204, 51, 51, .8);
+    background: color(danger, flash);
+    color: color(danger, alt);
 }
 
 .flash--info {
     background: color(info);
+    color: color(info, alt);
     text-shadow: none;
 }
 
