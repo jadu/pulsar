@@ -120,6 +120,16 @@ $input-height-base:                   $line-height-base * 2 !default;
 $input-height-large:                  (floor($font-size-large * 2) + ($padding-large-vertical * 2) + 2) !default;
 $input-height-small:                  (floor($font-size-small * $line-height-small) + ($padding-small-vertical * 2) + 2) !default;
 
+$inputs: (
+    mini:    50px,
+    small:   100px,
+    medium:  200px,
+    regular: 300px,
+    large:   400px,
+    xlarge:  500px,
+    full:    100%
+);
+
 // -----------------------------------------------------------------------------
 //  Modals
 // -----------------------------------------------------------------------------

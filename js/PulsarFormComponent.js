@@ -33,6 +33,28 @@ PulsarFormComponent.prototype.init = function () {
         }
     });
 
+    // Block styled checkboxes and radios
+    var choiceBlock = component.$html.find(".choice--block");
+    choiceBlock.on('change', '.controls input[type="checkbox"], .controls input[type="radio"]', component.selectionButtons);
+
+};
+
+PulsarFormComponent.prototype.selectionButtons = function() {
+
+    var $target = $(this);
+
+    var $controls = $target.closest('.controls');
+
+    $controls.find('input[type="checkbox"]:not(:checked), input[type="radio"]:not(:checked)')
+        .closest('.control__label')
+        .removeClass('is-selected');
+
+    if ($target.is(':checked')) {
+        $target.closest('.control__label').addClass('is-selected');
+    } else {
+        $target.closest('.control__label').removeClass('is-selected');
+    }
+
 };
 
 module.exports = PulsarFormComponent;
