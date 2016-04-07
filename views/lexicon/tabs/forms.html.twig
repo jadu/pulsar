@@ -259,6 +259,55 @@
         }}
 
         {{
+            form.choice({
+                'class': 'choice--block form__group--medium',
+                'label': 'Choice block radios',
+                'options': [
+                    {
+                        'label': html.icon('bold') ~ ' Bold',
+                        'value': 'bold',
+                        'name': 'foo'
+                    },
+                    {
+                        'label': html.icon('italic') ~ ' Italic',
+                        'value': 'italic',
+                        'name': 'foo'
+                    },
+                    {
+                        'label': html.icon('underline') ~ ' Underline',
+                        'value': 'underline',
+                        'name': 'foo'
+                    },
+                ]
+            })
+        }}
+
+        {{
+            form.choice({
+                'class': 'choice--block choice--block-inline form__group--medium',
+                'label': 'Choice block checkboxes (& inline)',
+                'multiple': true,
+                'options': [
+                    {
+                        'label': html.icon('bold') ~ ' Bold',
+                        'value': 'bold',
+                        'name': 'foo'
+                    },
+                    {
+                        'label': html.icon('italic') ~ ' Italic',
+                        'value': 'italic',
+                        'name': 'foo'
+                    },
+                    {
+                        'label': html.icon('underline') ~ ' Underline',
+                        'value': 'underline',
+                        'name': 'foo'
+                    },
+                ]
+            })
+        }}
+
+        {{
             form.toggle_switch({
                 'checked': false,
                 'label': 'Toggle',
