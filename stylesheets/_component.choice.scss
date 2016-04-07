@@ -7,12 +7,14 @@
     }
 }
 
-.choice--block > .controls {
-
-    // width modifiers are used on the control__labels
+// width modifiers are used on the control__labels, has to be extra specific to
+// override default form group widths
+.form .form__group.choice--block .controls {
     max-width: 100%;
     width: 75%;
+}
 
+.choice--block > .controls {
     .control__label {
         box-shadow: inset 0 0 0 1px color(border); // nicer border effects
         border-radius: $border-radius;
