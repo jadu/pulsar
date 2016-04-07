@@ -14,16 +14,12 @@
 }
 
 .user-menu > .btn {
-    height: 40px;
+    padding: 0;
     padding-left: 0;
     padding-right: 0;
 
     &:hover {
         top: 0;
-    }
-
-    @include respond-min($screen-desktop) {
-        height: 35px;
     }
 }
 
@@ -38,17 +34,12 @@
 
     .btn {
         font-size: $font-size-base;
-        padding: 12px 0;
     }
 
     .dropdown {
         float: left;
         margin-left: 20px;
         z-index: $zindex-dropdown;
-    }
-
-    .dropdown-toggle {
-        height: 35px;
     }
 
     .dropdown__header {
@@ -70,11 +61,19 @@
 
 .site-switcher__label {
     color: color('text');
-    padding: 9px 0;
     display: inline-block;
     text-decoration: none;
+}
 
-    .ie8 & {
-        padding-top: 8px;
+// Height of toolbar right hand actions
+.nav-user > .dropdown > .btn,
+.site-switcher__label {
+    line-height: 42px;
+    padding: 0;
+    vertical-align: top;
+    top: 0;
+
+    @include respond-min($screen-desktop) {
+        line-height: 42px;
     }
 }
