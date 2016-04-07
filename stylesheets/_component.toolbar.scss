@@ -66,7 +66,8 @@
 }
 
 // Height of toolbar right hand actions
-.nav-user > .dropdown > .btn,
+.nav-user > .dropdown > .btn, // pulsar
+.nav-user > .dropdown > .dropdown-toggle, // cms
 .site-switcher__label {
     line-height: 42px;
     padding: 0;
