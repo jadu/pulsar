@@ -96,7 +96,8 @@ $palette-states: (
     base: (
         base:  map-get(map-get($palette-monochromes, gray), lightest),
         alt:   pick_best_color(map-get(map-get($palette-monochromes, gray), lighter), (#fff, #000)),
-        light: lighten(map-get(map-get($palette-monochromes, gray), lighter), 5)
+        light: lighten(map-get(map-get($palette-monochromes, gray), lighter), 5),
+        flash: map-get(map-get($palette-monochromes, gray), black),
     ),
     primary: (
         base:  #2575b0,
@@ -106,27 +107,32 @@ $palette-states: (
     success: (
         base:  #297c46,
         alt:   pick_best_color(#297c46, (#fff, #000)),
-        light: lighten(#297c46, 30)
+        light: lighten(#297c46, 30),
+        flash: rgba(0, 153, 51, .8),
     ),
     warning: (
         base:  #eaa96a,
         alt:   pick_best_color(#eaa96a, (#fff, #000)),
-        light: lighten(#eaa96a, 20)
+        light: lighten(#eaa96a, 20),
+        flash: rgba(255, 137, 9, .8)
     ),
     danger: (
         base:  #c84d40,
         alt:   pick_best_color(#c84d40, (#fff, #000)),
-        light: lighten(#c84d40, 30)
+        light: lighten(#c84d40, 30),
+        flash: rgba(204, 51, 51, .8)
     ),
     info: (
         base:  map-get(map-get($palette-branding, jadu-blue), pale),
         alt:   pick_best_color(map-get(map-get($palette-branding, jadu-blue), pale), (#fff, #000)),
-        light: lighten(map-get(map-get($palette-branding, jadu-blue), pale), 10)
+        light: lighten(map-get(map-get($palette-branding, jadu-blue), pale), 10),
+        flash: map-get(map-get($palette-branding, jadu-blue), pale)
     ),
     inverse: (
         base:  map-get(map-get($palette-monochromes, gray), darker),
         alt:   pick_best_color(map-get(map-get($palette-monochromes, gray), darker), (#fff, #000)),
-        light: lighten(map-get(map-get($palette-monochromes, gray), darker), 30)
+        light: lighten(map-get(map-get($palette-monochromes, gray), darker), 30),
+        flash: map-get(map-get($palette-monochromes, gray), darker),
     ),
     new: (
         base:  #e5ecf2,
