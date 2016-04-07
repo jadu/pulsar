@@ -8,6 +8,13 @@
         color: color(link);
     }
 
+    .btn {
+        &,
+        &:hover:not(:disabled) {
+            margin: 8px 0 9px;
+            vertical-align: top;
+        }
+    }
 }
 
 .table__tr {
