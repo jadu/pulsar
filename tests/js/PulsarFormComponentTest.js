@@ -91,12 +91,12 @@ describe('Pulsar Form Component - Select2 elements', function() {
             this.pulsarForm.init();
         });
 
-        it('Should add the is-selected class to the label', function() {
+        it('Should add the is-selected class to the label when input clicked', function() {
             this.$radioFoo.click();
             expect(this.$radioLabelFoo.hasClass('is-selected')).to.be.true;
         });
 
-        it('Should remove the is-selected class to the label if another option selected', function() {
+        it('Should remove the is-selected class to the label if another option selected on click', function() {
             this.$radioFoo.click();
             this.$radioBar.click();
             expect(this.$radioLabelFoo.hasClass('is-selected')).to.be.false;
@@ -110,15 +110,21 @@ describe('Pulsar Form Component - Select2 elements', function() {
             this.pulsarForm.init();
         });
 
-        it('Should add the is-selected class to the label', function() {
+        it('Should add the is-selected class to the label on click', function() {
             this.$checkFoo.click();
             expect(this.$checkLabelFoo.hasClass('is-selected')).to.be.true;
         });
 
-        it('Should not remove the is-selected class if another option selected', function() {
+        it('Should not remove the is-selected class if another option selected on click', function() {
             this.$checkFoo.click();
             this.$checkBar.click();
             expect(this.$checkLabelFoo.hasClass('is-selected')).to.be.true;
+        });
+
+        it('Should remove the is-selected class from the label if unchecked on click', function() {
+            this.$checkFoo.click();
+            this.$checkFoo.click();
+            expect(this.$checkLabelFoo.hasClass('is-selected')).to.be.false;
         });
 
     });
