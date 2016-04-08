@@ -1,6 +1,7 @@
 .notifications {
     float: right;
     position: static; // override default dropdown behaviour for small screens
+    z-index: $zindex-dropdown;
 
     @include respond-min($screen-phone) {
         position: relative; // restore default dropdown behaviour
