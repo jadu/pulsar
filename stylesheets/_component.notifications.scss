@@ -6,6 +6,15 @@
     @include respond-min($screen-phone) {
         position: relative; // restore default dropdown behaviour
     }
+
+    .dropdown {
+        position: static;
+
+        @include respond-min($screen-phone) {
+            position: relative; // restore default dropdown behaviour
+        }
+    }
+
 }
 
 .notifications-container {
@@ -29,6 +38,7 @@
     float: right;
     font-size: 24px;
     padding: 4px 0;
+    position: relative; // stop is-new indicator wandering off when parents switch to static position
     text-decoration: none;
 
     &,
