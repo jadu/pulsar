@@ -59,12 +59,12 @@
 // Text input groups
 // -------------------------
 .input-group-addon {
-  padding: $padding-base-vertical $padding-base-horizontal;
+  padding: 0 $padding-base-horizontal;
   font-size: $font-size-base;
   font-weight: normal;
-  line-height: $line-height-base * 1.4;
+  line-height: $input-height-base - 2;
   text-align: center;
-  background-color: color(gray, lighter);
+  background-color: color(gray, lightest);
   border: 1px solid $input-group-addon-border-color;
   border-radius: $border-radius;
 
@@ -84,10 +84,11 @@
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
+
 .input-group-addon:first-child {
   border-right: 0;
-  margin-right: -4px;
 }
+
 .input-group .form__control:last-child,
 .input-group-addon:last-child,
 .input-group-btn:last-child > .btn,
@@ -96,8 +97,9 @@
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
+
 .input-group-addon:last-child {
-  margin-left: -4px;
+  border-left: 0;
   z-index: 999;
 }
 

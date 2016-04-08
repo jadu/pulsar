@@ -1,90 +1,92 @@
 // Constructor
 .flash {
-  padding: (($line-height-base / $line-height-small) / 2) $gutter-width;
-  width: 100%;
+    padding: (($line-height-base / $line-height-small) / 2) $gutter-width;
+    width: 100%;
 
-  &.is-sticky {
+    &.is-sticky {
     display: none; // Flashes should be hidden on page load, then animated in so the user sees them.
-  }
+}
 
-  i {
+i {
     margin: 0 ($gutter-width / 4) 0 0;
 
     @include respond-min($screen-phone) {
-      margin-right: $gutter-width / 2;
+        margin-right: $gutter-width / 2;
     }
-  }
+}
 
-  @include respond-min($screen-phone) {
+@include respond-min($screen-phone) {
     padding: ($line-height-base / 2) $gutter-width;
-  }
+}
 
-  @include respond-min($screen-desktop) {
+@include respond-min($screen-desktop) {
     top: auto;
     z-index: $zindex-flash;
-  }
+}
 }
 
 // Make sure sticky flashes appear over the breadcrumb
 .flash__wrapper--sticky {
-  position: absolute;
-  width: 100%;
+    position: absolute;
+    width: 100%;
 }
 
 // Default
 .flash,
 .flash--default {
-  background: rgb(0, 0, 0);
-  background: rgba(0, 0, 0, .8);
-  color: color(white);
-  text-shadow: 0 0 2px rgba(0, 0, 0, .5);
+    background: color(inverse, flash);
+    color: color(inverse, alt);
+    text-shadow: 0 0 2px rgba(0, 0, 0, .5);
 
-  a {
-    color: inherit;
-    text-decoration: underline;
-  }
+    a {
+        color: inherit;
+        text-decoration: underline;
+    }
 }
 
 // Variations
 .flash--success {
-  background: rgb(0, 153, 51);
-  background: rgba(0, 153, 51, .8);
+    background: color(success, flash);
+    color: color(success, alt);
 }
 
 .flash--warning {
-  @extend .warning;
+    background: color(warning, flash);
+    color: color(warning, alt);
+    text-shadow: none;
 }
 
 .flash--error {
-  background: rgb(204, 51, 51);
-  background: rgba(204, 51, 51, .8);
+    background: color(danger, flash);
+    color: color(danger, alt);
 }
 
 .flash--info {
-  background: color(info);
-  text-shadow: none;
+    background: color(info);
+    color: color(info, alt);
+    text-shadow: none;
 }
 
 // Close buttons
 .flash {
-  .close {
-    color: inherit;
-    float: right;
-    font-size: 1em;
-    margin-left: $gutter-width / 4;
-    margin-right: -($gutter-width / 2);
-    opacity: .9;
-    text-decoration: none;
+    .close {
+        color: inherit;
+        float: right;
+        font-size: 1em;
+        margin-left: $gutter-width / 4;
+        margin-right: -($gutter-width / 2);
+        opacity: .9;
+        text-decoration: none;
 
-    &:hover {
-      opacity: 1;
-    }
+        &:hover {
+            opacity: 1;
+        }
 
-    @include respond-min($screen-phone) {
-      margin-left: $gutter-width / 2;
-      margin-right: -$gutter-width;
+        @include respond-min($screen-phone) {
+            margin-left: $gutter-width / 2;
+            margin-right: -$gutter-width;
+        }
     }
-  }
 }
 
 .flash-container {

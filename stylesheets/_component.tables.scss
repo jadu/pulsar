@@ -1,98 +1,98 @@
 table {
-  background-color: $table-bg;
-  border-collapse: collapse;
+    background-color: $table-bg;
+    border-collapse: collapse;
 }
 
 th {
-  text-align: left;
+    text-align: left;
 }
 
 // Columns
 table {
-  th {
-    background-color: darken($white, 5%);
-    font-family: $font-family-regular;
-    font-weight: normal;
-  }
+    th {
+        background-color: darken($white, 5%);
+        font-family: $font-family-regular;
+        font-weight: normal;
+    }
 }
 
 .table {
-  margin-top: -6px;
-  margin-bottom: $line-height-base + 5;
+    margin-top: -6px;
+    margin-bottom: $line-height-base + 5;
 
-  width: 97.7%;
+    width: 97.7%;
 
-  // Cells
-  thead,
-  tbody,
-  tfoot {
-    > tr {
-      > th,
-      > td {
-        padding: 0 5px;
-        line-height: $line-height-base * 2 - 1; // account for border
-        vertical-align: top;
-        border-top: 1px solid $table-border-color;
-      }
+    // Cells
+    thead,
+    tbody,
+    tfoot {
+        > tr {
+            > th,
+            > td {
+                padding: 0 5px;
+                line-height: $line-height-base * 2 - 1; // account for border
+                vertical-align: top;
+                border-top: 1px solid $table-border-color;
+            }
+        }
     }
-  }
-  // Bottom align for column headings
-  thead > tr > th {
-    vertical-align: bottom;
-  }
-  // Remove top border from thead by default
-  caption + thead,
-  colgroup + thead,
-  thead:first-child {
-    tr:first-child {
-      th, td {
-        border-top: 1px solid transparent;
-      }
+    // Bottom align for column headings
+    thead > tr > th {
+        vertical-align: bottom;
     }
-  }
-  // Account for multiple tbody instances
-  tbody + tbody {
-    border-top: 2px solid $table-border-color;
-  }
+    // Remove top border from thead by default
+    caption + thead,
+    colgroup + thead,
+    thead:first-child {
+        tr:first-child {
+            th, td {
+                border-top: 1px solid transparent;
+            }
+        }
+    }
+    // Account for multiple tbody instances
+    tbody + tbody {
+        border-top: 2px solid $table-border-color;
+    }
 
 }
 
 .table--bordered {
-  border: 1px solid $table-border-color;
-  > thead,
-  > tbody,
-  > tfoot {
-    > tr {
-      > th,
-      > td {
-        border: 1px solid $table-border-color;
-      }
+    border: 1px solid $table-border-color;
+    > thead,
+    > tbody,
+    > tfoot {
+        > tr {
+            > th,
+            > td {
+                border: 1px solid $table-border-color;
+            }
+        }
     }
-  }
 }
 
 .table--striped {
-  > tbody {
-    > tr:nth-child(odd) {
-      > td,
-      > th {
-        background-color: $table-bg-accent;
-      }
+    > tbody {
+        > tr:nth-child(odd) {
+            > td,
+            > th {
+                background-color: $table-bg-accent;
+            }
+        }
     }
-  }
 }
 
 
 .row--align-top {
-  th, td {
-    vertical-align: top;
-  }
+    th, td {
+        vertical-align: top;
+    }
 }
 
 .row--align-middle {
-  th, td {
-    vertical-align: middle;
-  }
+    th, td {
+        vertical-align: middle;
+    }
 }
 
 .row--no-results {

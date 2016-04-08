@@ -1,0 +1,56 @@
+
+// align inputs with the text labels properly
+.form-choice.choice--block .form__control {
+    &.checkbox,
+    &.radio {
+        vertical-align: baseline;
+    }
+}
+
+.choice--block > .controls {
+
+    // width modifiers are used on the control__labels
+    max-width: 100%;
+    width: 75%;
+
+    .control__label {
+        box-shadow: inset 0 0 0 1px color(border); // nicer border effects
+        border-radius: $border-radius;
+        margin: 0 5px 5px 0;
+        max-width: 100%;
+        padding: 10px;
+        user-select: none; // stop nasty blue text selection when clicking
+        width: 100%; // mobile-first width
+
+        &:last-child {
+            margin: 0;
+        }
+
+        @include ie-lte(8) {
+            border: 1px solid color(border);
+        }
+    }
+
+    .control__label.is-selected {
+        background-color: color(background, light);
+        box-shadow: inset 0 0 0 2px color(black);
+
+        @include ie-lte(8) {
+            border: 1px solid color(black);
+        }
+    }
+}
+
+@include respond-min($screen-tablet) {
+    @each $variant, $width in $inputs {
+        .form-choice.form__group--#{$variant} > .controls > .control__label {
+            width: #{$width};
+        }
+    }
+}
+
+.choice--block-inline {
+    > .controls > .control__label {
+        clear: none;
+    }
+}
