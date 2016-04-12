@@ -15,8 +15,6 @@
 
 .user-menu > .btn {
     padding: 0;
-    padding-left: 0;
-    padding-right: 0;
 
     &:hover {
         top: 0;
@@ -71,8 +69,8 @@
 .site-switcher__label {
     line-height: 42px;
     padding: 0;
-    vertical-align: top;
     top: 0;
+    vertical-align: top;
 
     @include respond-min($screen-desktop) {
         line-height: 42px;
