@@ -17,6 +17,15 @@
     }
 }
 
+.datatable--fixed {
+    table-layout: fixed;
+
+    td {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
 .table__tr {
     vertical-align: top;
 
@@ -111,6 +120,7 @@
     max-width: 60px;
     position: relative;
     width: 60px;
+    z-index: -1;
 }
 
 .table-link {
