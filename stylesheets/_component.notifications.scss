@@ -28,7 +28,7 @@
 
     @include respond-min($screen-phone) {
         left: auto;
-        right: -180px;
+        right: -150px;
         top: 40px;
         width: 400px;
     }
@@ -78,7 +78,6 @@
     float: left;
     max-height: 75vh;
     overflow-x: hidden;
-    overflow-y: scroll;
     width: 100%;
 }
 
