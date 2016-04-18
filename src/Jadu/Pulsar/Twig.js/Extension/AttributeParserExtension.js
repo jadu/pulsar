@@ -38,6 +38,7 @@ AttributeParserExtension.prototype.parseAttributes = function (attributes, args)
                         break;
                     case 'disabled':
                         html.push('aria-disabled="true"');
+                        html.push(key);
                         addDisabledClass = true;
                         break;
                     default:
