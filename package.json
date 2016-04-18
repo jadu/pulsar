@@ -18,7 +18,8 @@
     "browserify": "10.0.0",
     "browserify-istanbul": "^0.2.1",
     "browserify-shim": "^3.8.9",
-    "chai": "^3.5.0",
+    "chai": "latest",
+    "chai-hiff": "^1.0.0",
     "datatables.net": "^1.10.11",
     "datatables.net-dt": "^1.10.10",
     "datatables.net-responsive": "^2.0.2",
@@ -60,6 +61,7 @@
     "phptojs": "^3.13.2",
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0",
+    "twigged": "^0.9.0",
     "uglifyify": "^3.0.1"
   },
   "browserify": {
