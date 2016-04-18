@@ -8,6 +8,10 @@ ArrayExtension.prototype.getName = function () {
 };
 
 ArrayExtension.prototype.excludeFromArray = function (arr, exclude) {
+    if (arr === undefined) {
+        return [];
+    }
+
     if (typeof(arr) !== 'object') {
         return arr;
     }
@@ -38,7 +42,7 @@ ArrayExtension.prototype.excludeFromArray = function (arr, exclude) {
         return !_.includes(exclude, value);
     });
 
-    return _.pick(arr,omitted);
+    return _.pick(arr, omitted);
 };
 
 ArrayExtension.prototype.onlyFromArray = function (arr, only) {
