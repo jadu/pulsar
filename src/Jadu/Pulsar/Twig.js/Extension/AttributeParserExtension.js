@@ -13,7 +13,7 @@ AttributeParserExtension.prototype.getName = function () {
 
 AttributeParserExtension.prototype.parseAttributes = function (attributes, args) {
     if (!attributes || Object.keys(attributes).length === 0) {
-        return false;
+        return '';
     }
 
     var classes = attributes['class'];
