@@ -31,27 +31,29 @@ describe('Macros', function () {
             _.each(fixtures, function (fixture) {
                 if (fixture.indexOf('twig') >= 0) {
                     var base = path.basename(fixture, '.html.twig'),
-                        htmlBase = path.basename(fixture, '.twig');
+                        htmlBase = path.basename(fixture, '.twig'),
+                        htmlFixturePath = path.resolve(fixturePath, htmlBase),
+                        twigFixturePath = path.resolve(fixturePath, fixture);
 
-                    it('should correctly render ' + base + ' template', function () {
-                        var htmlFixturePath = path.resolve(fixturePath, htmlBase);
-                        var htmlFixture = fs.readFileSync(htmlFixturePath).toString();
-                        var twigFixturePath = path.resolve(fixturePath, fixture);
-                        var twigFixture = fs.readFileSync(twigFixturePath).toString();
+                    if (fs.existsSync(htmlFixturePath) && fs.existsSync(twigFixturePath)) {
+                        it('should correctly render ' + base + ' template', function () {
+                            var htmlFixture = fs.readFileSync(htmlFixturePath).toString();
+                            var twigFixture = fs.readFileSync(twigFixturePath).toString();
 
-                        var template = twig({
-                            async: false,
-                            data: twigFixture,
-                            namespaces: {
-                                'pulsar': './views/'
-                            }
+                            var template = twig({
+                                async: false,
+                                data: twigFixture,
+                                namespaces: {
+                                    'pulsar': './views/'
+                                }
+                            });
+
+                            var renderedTemplate = normalizeOutput(template.render() || "");
+                            var expectedValue = normalizeOutput(htmlFixture);
+
+                            expect(renderedTemplate).to.hiffEqual(expectedValue);
                         });
-
-                        var renderedTemplate = normalizeOutput(template.render() || "");
-                        var expectedValue = normalizeOutput(htmlFixture);
-
-                        expect(renderedTemplate).to.hiffEqual(expectedValue);
-                    });
+                    }
                 }
             });
         });
