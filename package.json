@@ -5,6 +5,7 @@
     "type": "git",
     "url": "https://github.com/jadu/pulsar.git"
   },
+  "main": "./src/Jadu/Pulsar/Twig.js/Pulsar.js",
   "scripts": {
     "coverage": "mochify --plugin [ mochify-istanbul --exclude '**/+(tests|node_modules|libs)/**/*' --report lcov --dir ./coverage ] --reporter spec --recursive ./tests/js/index ./tests/*Test.js"
     "test": "npm run web-test && npm run twig.js-test",
