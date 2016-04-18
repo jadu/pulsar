@@ -28,6 +28,9 @@ ArrayExtension.prototype.excludeFromArray = function (arr, exclude) {
         return arr;
     }
 
+    //Cleanup twig.js special key
+    delete arr._keys;
+
     exclude = _.flatten(_.map(exclude, function (value) {
         if (value.indexOf(' ') >= 0) {
             return _.map(value.split(' '), function (splitValue) {
@@ -61,6 +64,9 @@ ArrayExtension.prototype.onlyFromArray = function (arr, only) {
     if (only.length === 0) {
         return {};
     }
+
+    //Cleanup twig.js special key
+    delete arr._keys;
 
     only = _.flatten(_.map(only, function (value) {
         if (value.indexOf(' ') >= 0) {
