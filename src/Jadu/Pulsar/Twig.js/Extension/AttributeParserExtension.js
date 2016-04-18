@@ -65,6 +65,37 @@ AttributeParserExtension.prototype.parseAttributes = function (attributes, args)
     return html.join(' ');
 };
 
+AttributeParserExtension.prototype.defaultAttributes = function (attributes, defaults) {
+    if (attributes === undefined || attributes === null) {
+        attributes = [];
+    }
+
+    if (defaults.length !== 1) {
+        throw new Error('Defaults not in expected format');
+    }
+
+    defaults = defaults.pop();
+
+    //Clean up twig.js special feature
+    delete defaults._keys;
+
+    //Every attribute should come through, with only their values replaced with defaults.
+    var out = {};
+
+    _.each(attributes, function (value, key) {
+        out[key] = value;
+    });
+
+    _.each(defaults, function (value, key) {
+        if (attributes[key]) {
+            out[key] = value + ' ' + attributes[key];
+        } else {
+            out[key] = value;
+        }
+    });
+
+    return out;
+};
 
 AttributeParserExtension.prototype.install = function (Twig) {
     Twig.extendFilter('defaults', this.defaultAttributes);
