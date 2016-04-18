@@ -8,9 +8,10 @@
   "main": "./src/Jadu/Pulsar/Twig.js/Pulsar.js",
   "scripts": {
     "coverage": "mochify --plugin [ mochify-istanbul --exclude '**/+(tests|node_modules|libs)/**/*' --report lcov --dir ./coverage ] --reporter spec --recursive ./tests/js/index ./tests/*Test.js"
-    "test": "npm run web-test && npm run twig.js-test",
+    "test": "npm run web-test && npm run js-ext-test && npm run js-macro-test",
     "web-test": "mochify --reporter spec --recursive ./tests/js/web/index ./tests/js/web/*Test.js",
-    "twig.js-test": "mocha --reporter spec ./tests/js/twig/",
+    "js-ext-test": "mocha --reporter spec ./tests/js/twig/Extension/*Test.js",
+    "js-macro-test": "mocha --reporter spec ./tests/js/twig/Macro/*Test.js",
   },
   "devDependencies": {
     "aliasify": "^1.9.0",
