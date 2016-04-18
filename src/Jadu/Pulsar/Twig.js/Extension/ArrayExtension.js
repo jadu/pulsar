@@ -24,9 +24,15 @@ ArrayExtension.prototype.excludeFromArray = function (arr, exclude) {
         return arr;
     }
 
-    exclude = _.map(exclude, function (value) {
+    exclude = _.flatten(_.map(exclude, function (value) {
+        if (value.indexOf(' ') >= 0) {
+            return _.map(value.split(' '), function (splitValue) {
+                return splitValue.toLowerCase();
+            });
+        }
+
         return value.toLowerCase();
-    });
+    }));
 
     var omitted = _.filter(_.keys(arr), function (value, key) {
         return !_.includes(exclude, value);
@@ -52,9 +58,15 @@ ArrayExtension.prototype.onlyFromArray = function (arr, only) {
         return {};
     }
 
-    only = _.map(only, function (value) {
+    only = _.flatten(_.map(only, function (value) {
+        if (value.indexOf(' ') >= 0) {
+            return _.map(value.split(' '), function (splitValue) {
+                return splitValue.toLowerCase();
+            });
+        }
+
         return value.toLowerCase();
-    });
+    }));
 
     return _.pick(arr, only);
 };
