@@ -46,4 +46,8 @@ RelativeTimeExtension.prototype.timeAgo = function (time_from) {
     return moment.unix(time_from).fromNow();
 };
 
+RelativeTimeExtension.prototype.install = function (Twig) {
+    Twig.extendFilter('time_ago', this.timeAgo);
+};
+
 module.exports = RelativeTimeExtension;

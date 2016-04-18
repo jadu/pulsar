@@ -24,4 +24,7 @@ UrlParamsExtension.prototype.getGlobals = function () {
     };
 };
 
+UrlParamsExtension.prototype.install = function (Twig) {
+};
+
 module.exports = UrlParamsExtension;

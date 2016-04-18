@@ -64,4 +64,10 @@ AttributeParserExtension.prototype.parseAttributes = function (attributes, args)
     return html.join(' ');
 };
 
+
+AttributeParserExtension.prototype.install = function (Twig) {
+    Twig.extendFilter('defaults', this.defaultAttributes);
+    Twig.extendFunction('attributes', this.parseAttributes);
+};
+
 module.exports = AttributeParserExtension;

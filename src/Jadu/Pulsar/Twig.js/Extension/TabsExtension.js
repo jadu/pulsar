@@ -45,4 +45,8 @@ TabsExtension.prototype.getActiveParentTabID = function (tabs, active_parent_tab
     return active_id;
 };
 
+TabsExtension.prototype.install = function (Twig) {
+    Twig.extendFunction('get_active_tab', this.getActiveParentTabID);
+};
+
 module.exports = TabsExtension;

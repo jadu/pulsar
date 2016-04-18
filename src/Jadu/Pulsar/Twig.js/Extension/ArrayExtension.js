@@ -59,4 +59,9 @@ ArrayExtension.prototype.onlyFromArray = function (arr, only) {
     return _.pick(arr, only);
 };
 
+ArrayExtension.prototype.install = function (Twig) {
+    Twig.extendFilter('exclude', this.excludeFromArray);
+    Twig.extendFilter('only', this.onlyFromArray);
+};
+
 module.exports = ArrayExtension;
