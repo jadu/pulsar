@@ -1,0 +1,44 @@
+.google-result {
+    background-color: color(gray, off-white);
+    padding: 10px;
+    font-family: arial, sans-serif;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.google-result__link,
+.google-result__cite,
+.google-result__description {
+    display: block;
+}
+
+.google-result__link {
+    font-size: 18px;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+
+    &,
+    &:link,
+    &:visited {
+        color: #1a0dab;
+    }
+}
+
+.google-result__cite {
+    color: #006621;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 14px;
+    margin-bottom: 5px;
+    white-space: nowrap;
+}
+
+.google-result__description {
+    color: #545454;
+    font-size: 14px;
+    line-height: 1.4;
+    word-wrap: break-word;
+}

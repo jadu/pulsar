@@ -11,6 +11,8 @@
 
 .slider__back {
     background-color: rgb(51, 153, 204);
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
     bottom: 20px;
     color: #fff;
     width: 100%;
@@ -21,6 +23,7 @@
 
 .slider__front {
     background-color: #fff;
+    border-bottom-right-radius: 20px;
     left: 50%;
     float: right;
 }
