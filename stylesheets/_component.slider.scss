@@ -1,0 +1,71 @@
+.slider-container {
+    margin: 5em auto 0 auto;
+    width: 600px;
+}
+
+.slider {
+    display: inline-block;
+    position: relative;
+    width: 600px;
+}
+
+.slider__back {
+    background-color: rgb(51, 153, 204);
+    bottom: 20px;
+    color: #fff;
+    width: 100%;
+    top: 20px;
+    position: absolute;
+    z-index: -1;
+}
+
+.slider__front {
+    background-color: #fff;
+    left: 50%;
+    float: right;
+}
+
+.slider__inner {
+    overflow: hidden;
+    padding: 20px;
+    width: 300px;
+}
+
+.slider-logo {
+    float: left;
+    margin: 0 10px 10px 0;
+    width: 45px;
+}
+
+.slider-title {
+    font-size: 1.2em;
+    line-height: 1.2;
+}
+
+// form alignment
+.slider {
+    .legend {
+        line-height: 1em;
+        margin-bottom: 5px;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .form__group {
+        margin-bottom: 5px;
+    }
+
+    .form__group--top .control__label {
+        margin-bottom: 0px;
+    }
+
+    .form__control {
+        height: 32px;
+        line-height: 32px;
+        padding: 0 8px;
+    }
+
+    .form__actions {
+        border-top: 0;
+        padding-bottom: 0;
+    }
+}
