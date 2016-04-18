@@ -44,7 +44,8 @@ describe('Macros', function () {
                                 async: false,
                                 data: twigFixture,
                                 namespaces: {
-                                    'pulsar': './views/'
+                                    'pulsar': './views/',
+                                    'tests': './tests/unit/Jadu/Pulsar/Twig/Macro/Fixtures/'
                                 }
                             });
 
