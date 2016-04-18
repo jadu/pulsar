@@ -1,5 +1,5 @@
 var BaseTest = require('./helpers/BaseTest');
-var UrlParamsExtension = require('../../../src/Jadu/Pulsar/Twig.js/Extension/UrlParamsExtension');
+var UrlParamsExtension = require('../../../../src/Jadu/Pulsar/Twig.js/Extension/UrlParamsExtension');
 
 function UrlParamsExtensionTest() {
     BaseTest.call(this);

@@ -1,5 +1,5 @@
 var BaseTest = require('./helpers/BaseTest');
-var ArrayExtension = require('../../../src/Jadu/Pulsar/Twig.js/Extension/ArrayExtension');
+var ArrayExtension = require('../../../../src/Jadu/Pulsar/Twig.js/Extension/ArrayExtension');
 
 function ArrayExtensionTest() {
 	BaseTest.call(this);

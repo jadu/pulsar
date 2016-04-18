@@ -1,5 +1,5 @@
 var BaseTest = require('./helpers/BaseTest');
-var AttributeParserExtension = require('../../../src/Jadu/Pulsar/Twig.js/Extension/AttributeParserExtension');
+var AttributeParserExtension = require('../../../../src/Jadu/Pulsar/Twig.js/Extension/AttributeParserExtension');
 
 function AttributeParserExtensionTest() {
 	BaseTest.call(this);

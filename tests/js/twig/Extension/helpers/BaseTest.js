@@ -98,7 +98,7 @@ phpRuntime.install({
 });
 
 function BaseTest() {
-    this.testsPath = path.resolve(__dirname + '/../../../unit/Jadu/Pulsar/Twig/Extension/');
+    this.testsPath = path.resolve(__dirname + '/../../../../unit/Jadu/Pulsar/Twig/Extension/');
     this.asserter = new Asserter(this);
 }
 

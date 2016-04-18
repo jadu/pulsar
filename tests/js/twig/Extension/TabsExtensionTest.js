@@ -1,5 +1,5 @@
 var BaseTest = require('./helpers/BaseTest');
-var TabsExtension = require('../../../src/Jadu/Pulsar/Twig.js/Extension/TabsExtension');
+var TabsExtension = require('../../../../src/Jadu/Pulsar/Twig.js/Extension/TabsExtension');
 
 function TabsExtensionTest() {
     BaseTest.call(this);

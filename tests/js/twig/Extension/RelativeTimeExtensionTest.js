@@ -1,5 +1,5 @@
 var BaseTest = require('./helpers/BaseTest');
-var RelativeTimeExtension = require('../../../src/Jadu/Pulsar/Twig.js/Extension/RelativeTimeExtension');
+var RelativeTimeExtension = require('../../../../src/Jadu/Pulsar/Twig.js/Extension/RelativeTimeExtension');
 
 function RelativeTimeExtensionTest() {
     BaseTest.call(this);
