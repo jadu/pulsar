@@ -19,7 +19,7 @@
     "datatables.net-dt": "^1.10.10",
     "datatables.net-responsive": "^2.0.2",
     "datatables.net-responsive-dt": "^2.0.0",
-    "grunt": "^0.4.5",
+    "grunt": "^1.0.1",
     "grunt-asciify": "latest",
     "grunt-autoprefixer": "latest",
     "grunt-bless": "^0.2.0",
