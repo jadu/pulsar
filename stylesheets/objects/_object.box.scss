@@ -1,0 +1,8 @@
+.box {
+    background-color: color(background, light);
+    padding: $padding-base;
+}
+
+.box--rounded {
+    border-radius: $border-radius;
+}

@@ -242,6 +242,7 @@ $inputs: (
 
 .help-block {
     color: color(text, light);
+    font-size: $font-size-small;
 }
 
 // if help block is next to the main label, space it appropriately
