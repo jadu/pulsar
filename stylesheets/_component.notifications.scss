@@ -28,9 +28,9 @@
 
     @include respond-min($screen-phone) {
         left: auto;
-        right: -180px;
+        right: -160px;
         top: 40px;
-        width: 400px;
+        width: 380px;
     }
 }
 
