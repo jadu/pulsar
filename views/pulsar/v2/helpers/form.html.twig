@@ -647,7 +647,7 @@ value  | string, array  | The string, or array of strings to render inside the e
 
 
         {% for error in errors %}
-            <span class="is-error">
+            <span class="help-block is-error">
                 {{- error|raw -}}
             </span>
         {% endfor %}
@@ -989,9 +989,9 @@ value  | string | The string or html markup to render inside the help block
 {% spaceless %}
 
     {% if options.value is defined and options.value is not empty %}
-        <p class="help-block">
+        <span class="help-block">
             {{- options.value|raw -}}
-        </p>
+        </span>
     {% endif %}
 
 {% endspaceless %}

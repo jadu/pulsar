@@ -89,6 +89,13 @@
     color: $text-color;
   }
 
+  // For backwards compatibility, a help block on it's own needs to match the
+  // state text colour for now (21/4/2016), but if it's a sibling of an error
+  // help block, then a standalone help block should be gray
+  .help-block.is-error + .help-block:not(.is-error) {
+    color: color(text, light);
+  }
+
   // Set the border and box shadow on specific inputs to match
   .form__control {
     background-color: $background-color;
