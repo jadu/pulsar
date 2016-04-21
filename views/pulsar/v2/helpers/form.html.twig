@@ -160,7 +160,7 @@ be positioned either before or after the label value.
 Option          | Type   | Description
 --------------- | ------ | -----------------------------------------------------
 class           | string | A space separated list of class names
-error         | string | Text to explain an error/validation condition. Also adds error state styling
+error           | string | Text to explain an error/validation condition. Also adds error state styling
 help            | string | Additional guidance information to be displayed next to the input
 required        | bool   | Visually indicates that the field must be completed
 
@@ -187,10 +187,20 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
+    {% set inputClass = 'checkbox' %}
+    {%
+        if options.bare is defined
+        and options.bare
+        and options.class is defined
+        and options.class is not empty
+    %}
+        {% set inputClass = inputClass ~ ' ' ~ options.class %}
+    {% endif %}
+
     {%
         set input = elem.input(options
             |merge({
-                'class': 'checkbox',
+                'class': inputClass,
                 'label': null,
                 'type': 'checkbox'
             }))
@@ -1223,11 +1233,21 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
+    {% set inputClass = 'radio' %}
+    {%
+        if options.bare is defined
+        and options.bare
+        and options.class is defined
+        and options.class is not empty
+    %}
+        {% set inputClass = inputClass ~ ' ' ~ options.class %}
+    {% endif %}
+
     {%
         set input = elem.input(options
             |exclude('error')
             |merge({
-                'class': 'radio',
+                'class': inputClass,
                 'label': null,
                 'type': 'radio'
             })
