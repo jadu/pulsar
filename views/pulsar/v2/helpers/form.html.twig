@@ -34,6 +34,7 @@ types.
 Option        | Type   | Description
 ------------- | ------ | -------------------------------------------------------
 class         | string | A space separated list of class names
+error         | string | Text to explain an error/validation condition. Also adds error state styling
 help          | string | Additional guidance information to be displayed next to the input
 label         | string | Text for the `<label>` companion element
 required      | bool   | Visually indicates that the field must be completed
@@ -53,7 +54,7 @@ items         | array  | An array of items to put in the dropdown list (usually 
     {{
         form.group({
             'parent': options
-                |only('bare class help id label required')
+                |only('bare class error help id label required')
                 |merge({'class': 'form__button-group'}),
             'controls': {'class': 'btn__group'},
             'inputs': options.items
@@ -85,6 +86,7 @@ Generates a checkbox input field.
 Option        | Type   | Description
 ------------- | ------ | -------------------------------------------------------
 class         | string | A space separated list of class names
+error         | string | Text to explain an error/validation condition. Also adds error state styling
 help          | string | Additional guidance information to be displayed next to the input
 label         | string | Text for the `<label>` companion element
 required      | bool   | Visually indicates that the field must be completed
@@ -113,14 +115,14 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
     {{
         form.group({
             'parent': options
-                |only('bare class help id label required')
+                |only('bare class error help id label required')
                 |defaults({
                     'class': 'form-checkbox'
                 }),
             'inputs': [
                 elem.input(
                     options
-                        |exclude('bare class help label')
+                        |exclude('bare class error help label')
                         |defaults({
                             'class': 'checkbox',
                             'type': 'checkbox'
@@ -158,6 +160,7 @@ be positioned either before or after the label value.
 Option          | Type   | Description
 --------------- | ------ | -----------------------------------------------------
 class           | string | A space separated list of class names
+error         | string | Text to explain an error/validation condition. Also adds error state styling
 help            | string | Additional guidance information to be displayed next to the input
 required        | bool   | Visually indicates that the field must be completed
 
@@ -225,79 +228,6 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
 
 {# -----------------------------------------------------------------------------
 
-# Toggle Switch
-
-Generates a checkbox input field with Toggle styling.
-
-## Example usage
-
-```twig
-{{
-    form.toggle_switch({
-        'label': 'Flip the switch'
-    })
-}}
-```
-
-## Options applied to parent wrapper
-
-Option        | Type   | Description
-------------- | ------ | -------------------------------------------------------
-class         | string | A space separated list of class names
-help          | string | Additional guidance information to be displayed next to the input
-label         | string | Text for the `<label>` companion element
-required      | bool   | Visually indicates that the field must be completed
-
-## Options applied to input
-
-Option        | Type   | Description
-------------- | ------ | -------------------------------------------------------
-checked       | bool   | Whether the input is checked
-form          | string | Specify one or more forms this label belongs to
-id            | string | A unique identifier, will also be applied as the label's `for` attribute
-indeterminate | bool   | Shows the checkbox as [-], overrides the value of `checked`
-name          | string | The name of this control
-required      | bool   | Adds `required` and `aria-required="true"` attributes
-value         | string | Specifies the value of the input
-data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
-
-*Any other options not listed here will be applied to the input.
-
-#}
-{% macro toggle_switch(options) %}
-{% spaceless %}
-    {% import _self as form %}
-    {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
-
-    {% set toggleLabel = '<span class="hide">' ~ options.label ~ '</span>' %}
-
-    {%
-        set toggle = elem.input(options
-            |merge({
-                'class': 'toggle-switch',
-                'type': 'checkbox'
-            })
-        ) ~ elem.label({
-                'for': options.id|default,
-                'label': toggleLabel,
-                'class': 'toggle-switch-label',
-                'required': options.required|default
-            })
-    %}
-
-    {{
-        form.group({
-            'parent': options
-                |only('bare class help id label required'),
-            'inputs': [toggle]
-        })
-    }}
-
-{% endspaceless %}
-{% endmacro %}
-
-{# -----------------------------------------------------------------------------
-
 # Choice
 
 Displayed as a question with multiple answers, each of which has it's own label and can allow either singular (checkboxes) or multiple (radios) choice.
@@ -333,6 +263,7 @@ By default, the choice helper will will automatically adhere to Pulsar's form st
 Option   | Type   | Description
 -------- | ------ | -------------------------------------------------------
 class    | string | A space separated list of class names
+error    | string | Text to explain an error/validation condition. Also adds error state styling
 help     | string | Additional guidance information to be displayed next to the input
 label    | string | Text for the main `<label>` companion element
 optimize | string | `auto` use a select2 element if number of `options` is greater than 5 (default)
@@ -393,7 +324,7 @@ multiple | bool   | If `true`, uses checkboxes instead of radios, or passes the 
     {{
         form.group({
             'parent': options
-                |only('bare class help id label required')
+                |only('bare class error help id label required')
                 |exclude('multiple')
                 |defaults({'class': 'form-choice'}),
             'inputs': inputs
@@ -430,6 +361,7 @@ not to use a disabled input.
 Option      | Type   | Description
 ----------- | ------ | ---------------------------------------------------------
 class       | string | A space separated list of class names
+error       | string | Text to explain an error/validation condition. Also adds error state styling
 help        | string | Additional guidance information to be displayed next to the input
 label       | string | Text for the `<label>` companion element
 
@@ -451,10 +383,10 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {{
         form.group({
-            'parent': options|only('bare class help id label'),
+            'parent': options|only('bare class error help id label'),
             'inputs': [
                 elem.paragraph(
-                    options|exclude('bare class help label')
+                    options|exclude('bare class error help label')
                 )
             ]
         })
@@ -573,6 +505,7 @@ Option      | Type   | Description
 ----------- | ------ | ---------------------------------------------------------
 autofocus   | bool   | Whether the field should have input focus on page load
 class       | string | A space separated list of class names
+error       | string | Text to explain an error/validation condition. Also adds error state styling
 help        | string | Additional guidance information to be displayed next to the input
 label       | string | Text for the `<label>` companion element
 required    | bool   | Visually indicates that the field must be completed
@@ -668,6 +601,66 @@ class   | string | A space separated list of class names
 
 {# -----------------------------------------------------------------------------
 
+# Error
+
+Error text to be displayed with a form control, normally called by
+the `form.group()` helper and not really intended to be called directly from a
+view.
+
+## Example usage
+
+```twig
+{{
+    form.errors({
+        'value': 'Something went wrong'
+    })
+}}
+```
+
+or
+
+```twig
+{{
+    form.errors({
+        'value': ['Something went wrong', 'This'
+    })
+}}
+```
+
+## Options
+
+Option | Type           | Description
+------ | -------------- | ------------------------------------------------------
+value  | string, array  | The string, or array of strings to render inside the error block
+
+#}
+{% macro error(options) %}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{% spaceless %}
+
+    {% if options.value is defined and options.value is not empty %}
+
+        {% if options.value is not iterable %}
+            {% set errors = [options.value] %}
+        {% else %}
+            {% set errors = options.value %}
+        {% endif %}
+
+
+        {% for error in errors %}
+            <span class="help-block is-error">
+                {{ html.icon('warning-sign') }} {{ error|raw -}}
+            </span>
+        {% endfor %}
+
+    {% endif %}
+
+{% endspaceless %}
+{% endmacro %}
+
+
+{# -----------------------------------------------------------------------------
+
 # Fieldset start
 
 Opens a `<fieldset>` and allows you to define an optional `<legend>`.
@@ -753,6 +746,7 @@ Generates a file input.
 Option      | Type   | Description
 ----------- | ------ | ---------------------------------------------------------
 class       | string | A space separated list of class names
+error       | string | Text to explain an error/validation condition. Also adds error state styling
 help        | string | Additional guidance information to be displayed next to the input
 label       | string  | Text for the `<label>` companion element
 required    | bool   | Visually indicates that the field must be completed
@@ -781,10 +775,10 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {{
         form.group({
-            'parent': options|only('bare class help id label required'),
+            'parent': options|only('bare class error help id label required'),
             'inputs': [
                 elem.input(options
-                    |exclude('bare class help label')
+                    |exclude('bare class error help label')
                     |defaults({'type': 'file'})
                     |merge({'class': 'file'})
                 )
@@ -863,6 +857,7 @@ Option           | Type   | Description
 ---------------- | ------ | ----------------------------------------------------
 parent.append    | string | Content to display after the input, usually short text or icons
 parent.class     | string | A space separated list of class names
+parent.error     | string | Text to explain an error/validation condition. Also adds error state styling
 parent.id        | string | A unique identifier, will also be used as the label's `for` attribute
 parent.help      | string | Additional guidance information to be displayed next to the input
 parent.inputs    | array  | One or more form inputs to display
@@ -885,8 +880,14 @@ controls.class   | string | A space separated list of class names
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
     {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 
+    {% set groupClass = 'form__group' %}
+
+    {% if options.parent.error is defined and options.parent.error is not empty %}
+        {% set groupClass = groupClass ~ ' has-error' %}
+    {% endif %}
+
     {% if options.parent.label is defined and options.parent.label is null %}
-        {% set hasLabelClass = ' form__group--no-label' %}
+        {% set groupClass = groupClass ~ ' form__group--no-label' %}
     {% endif %}
 
     {% if options.parent.bare is not defined or options.parent.bare != true %}
@@ -894,7 +895,7 @@ controls.class   | string | A space separated list of class names
         attributes(options.parent
                 |only('class')
                 |defaults({
-                    'class': 'form__group' ~ hasLabelClass|default
+                    'class': groupClass
                 })
             )
     -}}>
@@ -947,7 +948,9 @@ controls.class   | string | A space separated list of class names
             </div>
         {% endif %}
 
+            {{ form.error({ 'value': options.parent.error|default }) }}
             {{ form.help({ 'value': options.parent.help|default }) }}
+
         {% if options.parent.bare is not defined or options.parent.bare != true %}
         </div>
         {% endif %}
@@ -987,9 +990,9 @@ value  | string | The string or html markup to render inside the help block
 {% spaceless %}
 
     {% if options.value is defined and options.value is not empty %}
-        <p class="help-block">
+        <span class="help-block">
             {{- options.value|raw -}}
-        </p>
+        </span>
     {% endif %}
 
 {% endspaceless %}
@@ -1068,6 +1071,7 @@ Option      | Type   | Description
 ----------- | ------ | ---------------------------------------------------------
 append      | string | Text or markup to include after the input element
 class       | string | A space separated list of class names
+error       | string | Text to explain an error/validation condition. Also adds error state styling
 help        | string | Additional guidance information to be displayed next to the input
 label       | string | Text for the `<label>` companion element
 prepend     | string | Text or markup to include before the input element
@@ -1122,6 +1126,7 @@ Generates a radio input field.
 Option   | Type   | Description
 -------- | ------ | ------------------------------------------------------------
 class    | string | A space separated list of class names
+error    | string | Text to explain an error/validation condition. Also adds error state styling
 help     | string | Additional guidance information to be displayed next to the input
 label    | string | Text for the `<label>` companion element
 required | bool   | Visually indicates that the field must be completed
@@ -1149,13 +1154,13 @@ data-*   | string | Data attributes, eg: `'data-foo': 'bar'`
     {{
         form.group({
             'parent': options
-                |only('bare class help id label required')
+                |only('bare class error help id label required')
                 |defaults({
                     'class': 'form-radio'
                 }),
             'inputs': [
                 elem.input(options
-                    |exclude('bare class help label')
+                    |exclude('bare class error help label')
                     |defaults({
                         'class': 'radio',
                         'type': 'radio'
@@ -1192,6 +1197,7 @@ be positioned either before or after the label value.
 Option          | Type   | Description
 --------------- | ------ | -----------------------------------------------------
 class           | string | A space separated list of class names
+error           | string | Text to explain an error/validation condition. Also adds error state styling
 help            | string | Additional guidance information to be displayed next to the input
 required        | bool   | Visually indicates that the field must be completed
 
@@ -1219,6 +1225,7 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {%
         set input = elem.input(options
+            |exclude('error')
             |merge({
                 'class': 'radio',
                 'label': null,
@@ -1239,7 +1246,7 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
     {{
         form.group({
             'parent': options
-                |only('class help id bare radio')
+                |only('class help error id bare radio')
                 |defaults({
                     'class': 'form-radio-inline'
                 }),
@@ -1357,6 +1364,7 @@ Generates a select input.
 Option      | Type   | Description
 ----------- | ------ | --------------------------------------------------------
 class       | string | A space separated list of class names
+error       | string | Text to explain an error/validation condition. Also adds error state styling
 help        | string | Additional guidance information to be displayed next to the input
 label       | string | Text for the `<label>` companion element
 required    | bool   | Visually indicates that the field must be completed
@@ -1385,11 +1393,11 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {{
         form.group({
-            'parent': options|only('bare class help id label required'),
+            'parent': options|only('bare class error help id label required'),
             'inputs': [
                 elem.select(
                     options
-					|exclude('bare class help label')
+					|exclude('bare class error help label')
 					|merge({'class': 'select'})
                 )
             ]
@@ -1427,6 +1435,7 @@ Generates a select input using the select2 plugin (https://select2.github.io).
 Option      | Type   | Description
 ----------- | ------ | --------------------------------------------------------
 class       | string | A space separated list of class names
+error       | string | Text to explain an error/validation condition. Also adds error state styling
 help        | string | Additional guidance information to be displayed next to the input
 label       | string | Text for the `<label>` companion element
 required    | bool   | Visually indicates that the field must be completed
@@ -1457,10 +1466,10 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {{
         form.group({
-            'parent': options|only('bare class help id label required'),
+            'parent': options|only('bare class error help id label required'),
             'inputs': [
                 elem.select2(options
-                    |exclude('bare class help label')
+                    |exclude('bare class error help label')
                 )
             ]
         })
@@ -1540,6 +1549,7 @@ required form markup.
 Option      | Type   | Description
 ----------- | ------ | ---------------------------------------------------------
 class       | string | A space separated list of class names
+error       | string | Text to explain an error/validation condition. Also adds error state styling
 help        | string | Additional guidance information to be displayed next to the input
 label       | string | Text for the `<label>` companion element
 required    | bool   | Visually indicates that the field must be completed
@@ -1570,10 +1580,10 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {{
         form.group({
-            'parent': options|only('bare append class help id label prepend required'),
+            'parent': options|only('append bare class error help id label prepend required'),
             'inputs': [
                 elem.input(
-                    options|exclude('bare class help label')
+                    options|exclude('bare class error help label')
                 )
             ]
         })
@@ -1605,6 +1615,7 @@ of the element.
 Option      | Type   | Description
 ----------- | ------ | ---------------------------------------------------------
 class       | string | A space separated list of class names
+error       | string | Text to explain an error/validation condition. Also adds error state styling
 help        | string | Additional guidance information to be displayed next to the input
 label       | string | Text for the `<label>` companion element
 required    | bool   | Visually indicates that the field must be completed
@@ -1633,14 +1644,90 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {{
         form.group({
-            'parent': options|only('bare class help id label required'),
+            'parent': options|only('bare class error help id label required'),
             'inputs': [
                 elem.textarea(
                     options
-                        |exclude('bare class help label')
+                        |exclude('bare class error help label')
                         |merge({'class': 'textarea'})
                 )
             ]
+        })
+    }}
+
+{% endspaceless %}
+{% endmacro %}
+
+
+{# -----------------------------------------------------------------------------
+
+# Toggle Switch
+
+Generates a checkbox input field with Toggle styling.
+
+## Example usage
+
+```twig
+{{
+    form.toggle_switch({
+        'label': 'Flip the switch'
+    })
+}}
+```
+
+## Options applied to parent wrapper
+
+Option        | Type   | Description
+------------- | ------ | -------------------------------------------------------
+class         | string | A space separated list of class names
+error       | string | Text to explain an error/validation condition. Also adds error state styling
+help          | string | Additional guidance information to be displayed next to the input
+label         | string | Text for the `<label>` companion element
+required      | bool   | Visually indicates that the field must be completed
+
+## Options applied to input
+
+Option        | Type   | Description
+------------- | ------ | -------------------------------------------------------
+checked       | bool   | Whether the input is checked
+form          | string | Specify one or more forms this label belongs to
+id            | string | A unique identifier, will also be applied as the label's `for` attribute
+indeterminate | bool   | Shows the checkbox as [-], overrides the value of `checked`
+name          | string | The name of this control
+required      | bool   | Adds `required` and `aria-required="true"` attributes
+value         | string | Specifies the value of the input
+data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
+
+*Any other options not listed here will be applied to the input.
+
+#}
+{% macro toggle_switch(options) %}
+{% spaceless %}
+    {% import _self as form %}
+    {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
+
+    {% set toggleLabel = '<span class="hide">' ~ options.label ~ '</span>' %}
+
+    {%
+        set toggle = elem.input(options
+            |exclude('error')
+            |merge({
+                'class': 'toggle-switch',
+                'type': 'checkbox'
+            })
+        ) ~ elem.label({
+                'for': options.id|default,
+                'label': toggleLabel,
+                'class': 'toggle-switch-label',
+                'required': options.required|default
+            })
+    %}
+
+    {{
+        form.group({
+            'parent': options
+                |only('bare class error help id label required'),
+            'inputs': [toggle]
         })
     }}
 

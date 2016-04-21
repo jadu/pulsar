@@ -23,7 +23,11 @@ $control-column-width: 75%;
     }
 
     .help-block {
-      margin: .5em 0 0 0;
+        margin: 0;
+
+        &:nth-of-type(1) {
+            margin-top: .5em;
+        }
     }
 }
 

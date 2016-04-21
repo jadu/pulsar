@@ -7,33 +7,10 @@
 
 {% block title %}{{ parent() }}{% endblock %}
 
-{% set heading = 'Modules' %}
+{% set heading = 'Form Helpers' %}
 
-{%
-    set actions_menu = [
-        html.link({
-          'label': html.icon('save') ~ ' Save',
-          'href': '#save'
-        }),
-        html.link({
-          'label': html.icon('print') ~ ' Print',
-          'href': '#print'
-        }),
-        html.divider(),
-        html.link({
-          'label': html.icon('trash') ~ ' Delete',
-          'href': '#delete',
-          'class': 'link--danger disabled',
-          'attributes': 'data-on-datagrid-item-selected=enable'
-        })
-    ]
-%}
-
-{% set tab_modals %}
-    {% include 'lexicon/tabs/modals.html.twig' %}
-{% endset %}
-{% set tab_popovers %}
-    {% include 'lexicon/tabs/popovers.html.twig' %}
+{% set tab_text %}
+    {% include 'lexicon/forms/text.html.twig' %}
 {% endset %}
 
 {%
@@ -79,15 +56,10 @@
 {%
     set tabs_content = [
         {
-          "id"    : "modals",
-          "label" : "Modals",
-          "src"   : tab_modals,
+          "id"    : "text",
+          "label" : "Text",
+          "src"   : tab_text,
           "active": true
-        },
-        {
-          "id"    : "popovers",
-          "label" : "Popovers",
-          "src"   : tab_popovers
         }
     ]
 %}

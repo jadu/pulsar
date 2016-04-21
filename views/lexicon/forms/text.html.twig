@@ -1,0 +1,218 @@
+{% extends '@pulsar/pulsar/components/tab.html.twig' %}
+
+{% block tab_content %}
+
+    {{
+        form.create()
+    }}
+
+    {{
+        form.text({
+            'label': 'Text field'
+        })
+    }}
+
+    {{
+        form.text({
+            'label': 'Required',
+            'required': true
+        })
+    }}
+
+    {{
+        form.text({
+            'label': 'Placeholder',
+            'placeholder': 'Oh, hello'
+        })
+    }}
+
+    {{
+        form.text({
+            'label': 'Text field with help',
+            'help': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{ form.fieldset_start({ 'legend': 'Errors &amp; Validation' }) }}
+
+    {{
+        form.text({
+            'label': 'Text field with error',
+            'error': 'Please complete this field'
+        })
+    }}
+
+    {{
+        form.text({
+            'label': 'Text field with multiple errors',
+            'error': ['Do this', 'Do this too']
+        })
+    }}
+
+    {{
+        form.text({
+            'label': 'Text field with error and help',
+            'error': 'Please complete this field',
+            'help': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{
+        form.text({
+            'class': 'has-error',
+            'label': 'Text field error with help only',
+            'help': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'States' }) }}
+
+    {{
+        form.text({
+            'label': '"class": "has-changed"',
+            'class': 'has-changed',
+            'help': 'Highlight whether an action elsewhere affects an input'
+        })
+    }}
+    {{
+        form.text({
+            'label': '"class": "has-success"',
+            'class': 'has-success',
+            'help': 'Something good happened'
+        })
+    }}
+
+    {{
+        form.text({
+            'label': '"class": "has-warning"',
+            'class': 'has-warning',
+            'help': 'Something bad happened'
+        })
+    }}
+    {{
+        form.text({
+            'label': '"class": "has-error"',
+            'class': 'has-error',
+            'help': 'Automatically added if using <code>error</code> option'
+        })
+    }}
+    {{
+        form.text({
+            'label': '"disabled": true',
+            'disabled': true,
+            'help': 'Stop! Can’t touch this'
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'Sizes' }) }}
+
+    {{
+        form.text({
+            'label': 'Mini',
+            'id': 'inputTextMini',
+            'class': 'form__group--mini',
+            'name': 'inputTextMini'
+        })
+    }}
+
+    {{
+        form.text({
+            'label': 'Small',
+            'id': 'inputTextSmall',
+            'class': 'form__group--small',
+            'name': 'inputTextSmall'
+        })
+    }}
+
+    {{
+        form.text({
+            'label': 'Medium',
+            'id': 'inputTextMedium',
+            'class': 'form__group--medium',
+            'name': 'inputTextMedium'
+        })
+    }}
+
+    {{
+        form.text({
+            'label': 'Regular',
+            'id': 'inputTextRegular',
+            'name': 'inputTextRegular'
+        })
+    }}
+
+    {{
+        form.text({
+            'label': 'Large',
+            'id': 'inputTextLarge',
+            'class': 'form__group--large',
+            'name': 'inputTextLarge'
+        })
+    }}
+
+    {{
+        form.text({
+            'label': 'Extra Large',
+            'id': 'inputTextXLarge',
+            'class': 'form__group--xlarge',
+            'name': 'inputTextXLarge'
+        })
+    }}
+
+    {{
+        form.text({
+            'label': 'Full',
+            'id': 'inputTextFull',
+            'class': 'form__group--full',
+            'name': 'inputTextFull'
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'Appended &amp; Prepended' }) }}
+
+    {{
+        form.text({
+            'label': 'Prepended',
+            'prepend': '£'
+        })
+    }}
+
+    {{
+        form.text({
+            'label': 'Appended',
+            'append': '.00'
+        })
+    }}
+
+    {{
+        form.text({
+            'label': 'Prepended &amp; Appended',
+            'append': '.00',
+
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+
+    {{
+        form.end()
+    }}
+
+{% endblock tab_content %}
+
+{% block tab_sidebar %}
+    <a href="https://jadu.gitbooks.io/pulsar/content/text.html">
+        <img src="../../../images/cover.png" alt="Pulsar documentation front cover" width="157px" />
+    </a>
+    {{
+        html.button({
+            'label': 'View Documentation',
+            'type': 'link',
+            'href': 'https://jadu.gitbooks.io/pulsar/content/text.html'
+        })
+    }}
+
+{% endblock tab_sidebar %}
