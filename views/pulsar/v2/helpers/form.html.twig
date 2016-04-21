@@ -635,6 +635,7 @@ value  | string, array  | The string, or array of strings to render inside the e
 
 #}
 {% macro error(options) %}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 {% spaceless %}
 
     {% if options.value is defined and options.value is not empty %}
@@ -648,7 +649,7 @@ value  | string, array  | The string, or array of strings to render inside the e
 
         {% for error in errors %}
             <span class="help-block is-error">
-                {{- error|raw -}}
+                {{ html.icon('warning-sign') }} {{ error|raw -}}
             </span>
         {% endfor %}
 
