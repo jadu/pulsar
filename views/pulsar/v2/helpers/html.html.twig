@@ -189,7 +189,10 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
         {% set mainTag = options.type %}
     {% endif %}
 
-    <{{ mainTag }} class="block-list">
+    <{{ mainTag }}{{ attributes(options
+        |exclude('footer header items type')
+        |defaults({'class': 'block-list'})
+    )}}>
 
     {% if options.header is defined and options.header is not empty %}
         {% set header = {'value': options.header, 'class': 'block-list__header'} %}
