@@ -1,5 +1,6 @@
 .notifications {
     float: right;
+    line-height: 40px; // maintain alignment in toolbar
     position: static; // override default dropdown behaviour for small screens
     z-index: $zindex-dropdown;
 
