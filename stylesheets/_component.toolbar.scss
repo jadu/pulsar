@@ -37,6 +37,7 @@
     .dropdown {
         float: left;
         margin-left: 20px;
+        min-width: 60px;
         z-index: $zindex-dropdown;
     }
 

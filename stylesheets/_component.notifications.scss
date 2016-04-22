@@ -37,6 +37,7 @@
 .notifications-toggle {
     float: right;
     font-size: 24px;
+    line-height: 40px; // maintain alignment in toolbar
     padding: 4px 0;
     position: relative; // stop is-new indicator wandering off when parents switch to static position
     text-decoration: none;
