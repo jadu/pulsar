@@ -59,5 +59,9 @@
     }
     > .controls > .control__label {
         clear: none;
+
+        &:last-child {
+            margin: 0 5px 5px 0;
+        }
     }
 }
