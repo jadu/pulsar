@@ -52,7 +52,16 @@
 }
 
 .choice--block-inline {
+    .controls {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100% !important;
+    }
     > .controls > .control__label {
         clear: none;
+
+        &:last-child {
+            margin: 0 5px 5px 0;
+        }
     }
 }
