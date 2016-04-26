@@ -530,7 +530,17 @@ class  | string | CSS classes, space separated
 {% spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-    <i {{ util.class('icon-' ~ icon_name, options) }}></i>
+    {% if options.class is defined and options.class is not empty %}
+        {% set class = ' ' ~ options.class %}
+    {% endif %}
+
+    <i{{
+        attributes(options
+            |defaults({
+                'class': 'icon-' ~ icon_name ~ class|default
+            })
+        )
+    }}></i>
 
 {% endspaceless %}
 {% endmacro %}

@@ -33,6 +33,13 @@
         })
     }}
 
+    {{
+        form.text({
+            'label': 'Text field with guidance',
+            'guidance': 'Help text to give more information about expected input'
+        })
+    }}
+
     {{ form.fieldset_start({ 'legend': 'Errors &amp; Validation' }) }}
 
     {{
@@ -184,6 +191,14 @@
         form.text({
             'label': 'Appended',
             'append': '.00'
+        })
+    }}
+
+    {{
+        form.text({
+            'label': 'Appended with guidance',
+            'append': '.00',
+            'guidance': 'Help text to give more information about expected input'
         })
     }}
 
