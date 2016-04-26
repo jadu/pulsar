@@ -87,6 +87,7 @@ Option        | Type   | Description
 ------------- | ------ | -------------------------------------------------------
 class         | string | A space separated list of class names
 error         | string | Text to explain an error/validation condition. Also adds error state styling
+guidance      | string | Text to be displayed in a popover, adds a (?) icon after the input
 help          | string | Additional guidance information to be displayed next to the input
 label         | string | Text for the `<label>` companion element
 required      | bool   | Visually indicates that the field must be completed
@@ -115,14 +116,14 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
     {{
         form.group({
             'parent': options
-                |only('bare class error help id label required')
+                |only('bare class error guidance help id label required')
                 |defaults({
                     'class': 'form-checkbox'
                 }),
             'inputs': [
                 elem.input(
                     options
-                        |exclude('bare class error help label')
+                        |exclude('bare class error guidance help label')
                         |defaults({
                             'class': 'checkbox',
                             'type': 'checkbox'
@@ -1187,13 +1188,13 @@ data-*   | string | Data attributes, eg: `'data-foo': 'bar'`
     {{
         form.group({
             'parent': options
-                |only('bare class error help id label required')
+                |only('bare class error guidance help id label required')
                 |defaults({
                     'class': 'form-radio'
                 }),
             'inputs': [
                 elem.input(options
-                    |exclude('bare class error help label')
+                    |exclude('bare class error guidance help label')
                     |defaults({
                         'class': 'radio',
                         'type': 'radio'

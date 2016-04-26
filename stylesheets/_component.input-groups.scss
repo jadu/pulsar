@@ -166,6 +166,11 @@
         border-radius: $border-radius;
     }
 
+    .form__control.checkbox,
+    .form__control.radio {
+        width: 20px;
+    }
+
     .input-group-addon:not(.last-child) {
         border-left-width: 0;
         border-top-right-radius: $border-radius;
