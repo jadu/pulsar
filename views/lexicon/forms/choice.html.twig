@@ -6,6 +6,69 @@
         form.create()
     }}
 
+    {{
+        form.choice({
+            'class': '',
+            'label': 'Choice radios',
+            'options': [
+                {
+                    'label': 'One',
+                    'value': 'one',
+                    'name': 'foo'
+                },
+                {
+                    'label': 'Two',
+                    'value': 'two',
+                    'name': 'foo'
+                },
+                {
+                    'label': 'Three',
+                    'value': 'three',
+                    'name': 'foo'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.choice({
+            'class': '',
+            'label': 'Choice as select2',
+            'help': 'Happens automatically when >5 items',
+            'options': [
+                {
+                    'label': 'One',
+                    'value': 'one',
+                    'name': 'foo'
+                },
+                {
+                    'label': 'Two',
+                    'value': 'two',
+                    'name': 'foo'
+                },
+                {
+                    'label': 'Three',
+                    'value': 'three',
+                    'name': 'foo'
+                },
+                {
+                    'label': 'Four',
+                    'value': 'four',
+                    'name': 'foo'
+                },
+                {
+                    'label': 'Five',
+                    'value': 'five',
+                    'name': 'foo'
+                },
+                {
+                    'label': 'Six',
+                    'value': 'six',
+                    'name': 'foo'
+                }
+            ]
+        })
+    }}
 
     {{
         form.choice({
