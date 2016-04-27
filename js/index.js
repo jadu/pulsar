@@ -22,7 +22,6 @@ var $                     = require('jquery'),
     clickover  = require('../libs/bootstrapx-clickover/js/bootstrapx-clickover'),
     svgeezy    = require('../libs/svgeezy/svgeezy.min'),
     select2    = require('../libs/select2/dist/js/select2.min'),
-    toggles    = require('../libs/jquery-toggles/toggles.min'),
 
     dt            = require('datatables.net')(window, $),
     dt_responsive = require('datatables.net-responsive')(window, $),

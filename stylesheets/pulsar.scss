@@ -16,7 +16,6 @@ $ie-version: 12 !default;
 
 // Third party plugins
 @import '../libs/normalize-css/normalize.css';
-@import '../libs/jquery-toggles/css/toggles-full.css';
 @import '../libs/select2/dist/css/select2.css';
 
 // Font awesome
@@ -71,6 +70,9 @@ $FontAwesomePath: '../libs/font-awesome/font/';
 	mixins you should @import them here.
 \* -------------------------------------------------------------------------- */
 
+// Objects
+@import 'objects/_object.media';
+
 // Components
 @import '_component.actionsbar';
 @import '_component.autosave';
@@ -90,6 +92,7 @@ $FontAwesomePath: '../libs/font-awesome/font/';
 @import '_component.flash';
 @import '_component.footer';
 @import '_component.forms';
+@import '_component.choice';
 @import '_component.greeter';
 @import '_component.icons';
 @import '_component.input-groups';
@@ -120,6 +123,7 @@ $FontAwesomePath: '../libs/font-awesome/font/';
 @import '_component.select2';
 @import '_component.settings';
 @import '_component.signin';
+@import '_component.status';
 @import '_component.summary';
 @import '_component.tab-help';
 @import '_component.tab-panel';

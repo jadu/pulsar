@@ -1,0 +1,27 @@
+.status {
+    display: inline-block;
+    height: 12px;
+    width: 12px;
+    position: relative;
+    top: 1px;
+    vertical-align: baseline;
+}
+
+.status {
+    &.is-active,
+    &.is-online {
+        background-color: #297c46;
+        border-radius: 6px;
+    }
+
+    &.is-offline {
+        background-color: #c84d40;
+        border-radius: 2px;
+    }
+
+    &.is-inactive {
+        background-color: #fff;
+        border: 2px solid #ccc;
+        border-radius: 6px;
+    }
+}

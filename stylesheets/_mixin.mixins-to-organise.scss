@@ -19,61 +19,61 @@
 }
 
 @mixin highlight-row($color) {
-  > td:before {
-      box-shadow: inset 4px 0 0 $color;
-  }
-  @include respond-min($screen-tablet) {
-    > td:first-of-type {
+    > td:before {
         box-shadow: inset 4px 0 0 $color;
     }
-  }
-  @include ie-lte(7) {
-      border-left: 4px solid $color !important;
-  }
+    @include respond-min($screen-tablet) {
+        > td:first-of-type {
+            box-shadow: inset 4px 0 0 $color;
+        }
+    }
+    @include ie-lte(7) {
+        border-left: 4px solid $color !important;
+    }
 }
 
 
 // Text overflow
 // Requires inline-block or block for proper styling
 @mixin text-overflow() {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 // Single side border-radius
 @mixin border-top-radius($radius) {
-  border-top-right-radius: $radius;
-   border-top-left-radius: $radius;
+    border-top-right-radius: $radius;
+    border-top-left-radius: $radius;
 }
 @mixin border-right-radius($radius) {
-  border-bottom-right-radius: $radius;
-     border-top-right-radius: $radius;
+    border-bottom-right-radius: $radius;
+    border-top-right-radius: $radius;
 }
 @mixin border-bottom-radius($radius) {
-  border-bottom-right-radius: $radius;
-   border-bottom-left-radius: $radius;
+    border-bottom-right-radius: $radius;
+    border-bottom-left-radius: $radius;
 }
 @mixin border-left-radius($radius) {
-  border-bottom-left-radius: $radius;
-     border-top-left-radius: $radius;
+    border-bottom-left-radius: $radius;
+    border-top-left-radius: $radius;
 }
 
 // Webkit-style focus
 @mixin tab-focus() {
-  // Default
-  outline: thin dotted #333;
-  // Webkit
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
+    // Default
+    outline: thin dotted #333;
+    // Webkit
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
 }
 
 // Placeholder text
 @mixin placeholder($color: $input-color-placeholder) {
-  &:-moz-placeholder            { color: $color; } // Firefox 4-18
-  &::-moz-placeholder           { color: $color; } // Firefox 19+
-  &:-ms-input-placeholder       { color: $color; } // Internet Explorer 10+
-  &::-webkit-input-placeholder  { color: $color; } // Safari and Chrome
+    &:-moz-placeholder            { color: $color; } // Firefox 4-18
+    &::-moz-placeholder           { color: $color; } // Firefox 19+
+    &:-ms-input-placeholder       { color: $color; } // Internet Explorer 10+
+    &::-webkit-input-placeholder  { color: $color; } // Safari and Chrome
 }
 
 // Form validation states
@@ -83,44 +83,55 @@
 
 @mixin form__control-validation($text-color: #555, $border-color: #ccc, $background-color: #f5f5f5) {
 
-  // Color the label and help text
-  .help-block,
-  .control__label {
-    color: $text-color;
-  }
-
-  // Set the border and box shadow on specific inputs to match
-  .form__control {
-    background-color: $background-color;
-    border-color: $border-color;
-
-    &:focus {
-      border-color: darken($border-color, 10%);
-      $shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 6px lighten($border-color, 20%);
-      box-shadow: $shadow;
+    // Color the label and help text
+    .help-block,
+    .control__label {
+        color: $text-color;
     }
 
-    &::-webkit-input-placeholder { /* Webkit */
-      color: lighten($text-color, 20%);
+    .help-block.is-error {
+        font-family: $font-family-regular;
     }
 
-    &:-ms-input-placeholder { /* Internet Explorer 10+ */
-      color: lighten($text-color, 20%);
+    // For backwards compatibility, a help block on it's own needs to match the
+    // state text colour for now (21/4/2016), but if it's a sibling of an error
+    // help block, then a standalone help block should be gray
+    .help-block.is-error + .help-block:not(.is-error) {
+        color: color(text, light);
+        font-family: $font-family-base;
     }
 
-    &:-moz-placeholder, /* Mozilla Firefox 4 to 18 */
-    &::-moz-placeholder { /* Mozilla Firefox 19+ */
-      color: lighten($text-color, 20%);
-      opacity:  1;
+    // Set the border and box shadow on specific inputs to match
+    .form__control {
+        background-color: $background-color;
+        border-color: $border-color;
+
+        &:focus {
+            border-color: darken($border-color, 10%);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 6px lighten($border-color, 20%);
+        }
+
+        &::-webkit-input-placeholder { /* Webkit */
+            color: lighten($text-color, 20%);
+        }
+
+        &:-ms-input-placeholder { /* Internet Explorer 10+ */
+            color: lighten($text-color, 20%);
+        }
+
+        &:-moz-placeholder, /* Mozilla Firefox 4 to 18 */
+        &::-moz-placeholder { /* Mozilla Firefox 19+ */
+            color: lighten($text-color, 20%);
+            opacity:  1;
+        }
     }
 
-  }
-  // Set validation states also for addons
-  .input-group-addon {
-    color: $text-color;
-    border-color: $border-color;
-    background-color: $background-color;
-  }
+    // Set validation states also for addons
+    .input-group-addon {
+        color: $text-color;
+        border-color: $border-color;
+        background-color: $background-color;
+    }
 }
 
 // Form control focus state
@@ -137,47 +148,44 @@
 // contrast against a dark gray background.
 
 @mixin form__control-focus($color: $input-border-focus) {
-  $color-rgba: rgba(red($color), green($color), blue($color), .6);
-  &:focus {
-    border-color: $color;
-    outline: 0;
-    box-shadow: "inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px #{$color-rgba}";
-  }
+    $color-rgba: rgba(red($color), green($color), blue($color), .6);
+
+    &:focus {
+        border-color: $color;
+        outline: 0;
+        box-shadow: "inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px #{$color-rgba}";
+    }
 }
 
 // Opacity
 @mixin opacity($opacity) {
-  @include ie-lte(8) {
-    $opacity-ie: ($opacity * 100);
-    filter: alpha(opacity=#{$opacity-ie});
-  }
-  @if ($is-ie == true and $ie-version > 8) or ($is-ie == false) {
-    opacity: $opacity;
-  }
+    @include ie-lte(8) {
+        $opacity-ie: ($opacity * 100);
+        filter: alpha(opacity=#{$opacity-ie});
+    }
+    @if ($is-ie == true and $ie-version > 8) or ($is-ie == false) {
+        opacity: $opacity;
+    }
 }
 
 // User select
 @mixin user-select($value: inherit) {
-  -webkit-touch-callout: $value;
-  -webkit-user-select: $value;
-  -khtml-user-select: $value;
-  -moz-user-select: $value;
-  -ms-user-select: $value;
-  user-select: $value;
-}
-
-@mixin ghostbuster {
-  cursor: not-allowed;
+    -webkit-touch-callout: $value;
+    -webkit-user-select: $value;
+    -khtml-user-select: $value;
+    -moz-user-select: $value;
+    -ms-user-select: $value;
+    user-select: $value;
 }
 
 // Add percentage of white to a color
 @function tint($color, $percent){
-  @return mix(white, $color, $percent);
+    @return mix(white, $color, $percent);
 }
 
 // Add percentage of black to a color
 @function shade($color, $percent){
-  @return mix(black, $color, $percent);
+    @return mix(black, $color, $percent);
 }
 
 // Usage:
@@ -196,17 +204,17 @@
 $is-ie: false !default;
 
 @mixin ie-lte($version) {
-  @if $is-ie {
-    @if $ie-version <= $version {
-      @content;
+    @if $is-ie {
+        @if $ie-version <= $version {
+            @content;
+        }
     }
-  }
 }
 
 @mixin ie($version) {
-  @if $is-ie {
-    @if $ie-version == $version {
-      @content;
+    @if $is-ie {
+        @if $ie-version == $version {
+            @content;
+        }
     }
-  }
 }

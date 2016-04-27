@@ -121,3 +121,10 @@ div.no-results {
 .no-results__action {
     margin: 12px 0;
 }
+
+// Replicates <hr /> but with nicer spacing
+.divider {
+    border-top: 1px solid color(border);
+    display: block;
+    margin: 10px 0;
+}

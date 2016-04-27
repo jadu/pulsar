@@ -1,0 +1,13 @@
+{#
+    Test basic select2 input with error
+#}
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{{
+    form.select2({
+        'error': 'my error',
+        'options': {
+            'foo': 'bar',
+            'bar': 'baz'
+        }
+    })
+}}
