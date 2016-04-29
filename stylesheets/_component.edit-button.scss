@@ -1,4 +1,4 @@
-.remove-button {
+.edit-button {
   @extend .btn--naked;
   background-color: transparent;
   border: 0;
@@ -21,6 +21,6 @@
   }
 }
 
-a + .remove-button {
+a + .edit-button {
   margin-left: 10px;
 }
