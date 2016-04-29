@@ -507,7 +507,7 @@ Used in html.dropdown to insert lines between items.
 
 # Edit button
 
-Used by other helpers to add the edit icons . Uses data-attributes to
+Used by other helpers to add the edit icons. Uses data-attributes to
 contain information about what object should be removed.
 
 ## Example usage
@@ -537,19 +537,21 @@ data-*    | string | Data attributes, eg: `'data-foo': 'bar'`
         {% import _self as html %}
         {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-        {{ html.button(options
-        |exclude('target placement')
-        |merge({
-            'class': options.class|default ~ ' edit-button',
-            'type': options.type|default('button'),
-            'data-action': 'edit',
-            'data-action-target': options.target|default,
-            'data-placement': options.placement|default('right'),
-            'data-toggle': 'tooltips',
-            'data-title': options.tooltip|default('Edit this item'),
-            'label': html.icon('pencil')
-        })
-        ) }}
+        {{
+            html.button(options
+                |exclude('target placement')
+                |merge({
+                    'class': options.class|default ~ ' edit-button',
+                    'data-action': 'edit',
+                    'data-action-target': options.target|default,
+                    'data-placement': options.placement|default('right'),
+                    'data-title': options.tooltip|default('Edit this item'),
+                    'data-toggle': 'tooltips',
+                    'label': html.icon('pencil'),
+                    'type': options.type|default('button')
+                })
+            )
+        }}
 
     {% endspaceless %}
 {% endmacro %}
