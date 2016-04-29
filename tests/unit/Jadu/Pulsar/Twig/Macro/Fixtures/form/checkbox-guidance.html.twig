@@ -1,11 +1,10 @@
 {#
-    Test appended text input
+    Test basic checkbox method
 #}
 {% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
 {{
-    form.text({
+    form.checkbox({
         'label': 'foo',
-        'append': 'bar',
-        'guidance': 'baz'
+        'guidance': 'bar'
     })
 }}

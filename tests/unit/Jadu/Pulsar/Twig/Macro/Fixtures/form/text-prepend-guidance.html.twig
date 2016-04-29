@@ -1,11 +1,11 @@
 {#
-    Test appended text input
+    Test prepended text input
 #}
 {% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
 {{
     form.text({
         'label': 'foo',
-        'append': 'bar',
+        'prepend': 'bar',
         'guidance': 'baz'
     })
 }}

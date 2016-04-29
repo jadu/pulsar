@@ -160,6 +160,18 @@
 
 }
 
+.input-group-guidance {
+    background-color: color(white);
+    border: none;
+    color: color(jadu-blue);
+    line-height: 24px;
+    vertical-align: baseline;
+
+    &:hover {
+        color: color(jadu-blue, dark);
+    }
+}
+
 // guidance popovers for various configurations
 .input-group-with-guidance {
     .form__control:first-child {
@@ -175,17 +187,6 @@
         border-left-width: 0;
         border-top-right-radius: $border-radius;
         border-bottom-right-radius: $border-radius;
-    }
-
-    .input-group-guidance {
-        background-color: color(white);
-        border: none;
-        color: color(text, light);
-        line-height: 48px;
-
-        &:hover {
-            color: color(text);
-        }
     }
 }
 

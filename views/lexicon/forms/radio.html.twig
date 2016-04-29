@@ -40,6 +40,41 @@
         })
     }}
 
+    {{ form.fieldset_start({ 'legend': 'Alternative alignment inline radios' }) }}
+
+    {{
+        form.radio_inline({
+            'label': 'Radio inline'
+        })
+    }}
+
+    {{
+        form.radio_inline({
+            'label': 'Radio inline plus extras',
+            'help': 'Help text to give more information about expected input',
+            'guidance': 'Help text to give more information about expected input',
+            'required': true
+        })
+    }}
+
+    {{
+        form.radio_inline({
+            'label': 'Radio inline and indented',
+            'class': 'form__group--indent form__group--full'
+        })
+    }}
+
+    {{
+        form.radio_inline({
+            'label': 'Radio inline, indented plus extras',
+            'class': 'form__group--indent form__group--full',
+            'help': 'Help text to give more information about expected input',
+            'guidance': 'Help text to give more information about expected input',
+            'required': true
+        })
+    }}
+
+    {{ form.fieldset_end() }}
     {{ form.fieldset_start({ 'legend': 'Errors &amp; Validation' }) }}
 
     {{

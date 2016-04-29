@@ -1,11 +1,10 @@
 {#
-    Test appended text input
+    Test basic checkbox_inline method
 #}
 {% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
 {{
-    form.text({
+    form.radio_inline({
         'label': 'foo',
-        'append': 'bar',
-        'guidance': 'baz'
+        'guidance': 'bar'
     })
 }}

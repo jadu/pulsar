@@ -200,6 +200,7 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {%
         set input = elem.input(options
+            |exclude('error guidance')
             |merge({
                 'class': inputClass,
                 'label': null,
@@ -219,7 +220,7 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
     {{
         form.group({
             'parent': options
-                |only('bare class help id')
+                |only('bare class error help id')
                 |defaults({
                     'class': 'form-checkbox-inline'
                 }),
@@ -227,7 +228,8 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
                 elem.label({
                     'for': options.id|default,
                     'label': label,
-                    'required': options.required|default
+                    'required': options.required|default,
+                    'guidance': options.guidance|default
                 })
             ]
         })
@@ -915,10 +917,12 @@ controls.class   | string | A space separated list of class names
         {{
             elem.label({
                 'for': options.parent.id|default,
+                'guidance': options.parent.guidance|default,
                 'label': options.parent.label|default,
                 'required': options.parent.required|default
             })
         }}
+
         {% if options.parent.bare is not defined or options.parent.bare != true %}
         <div class="controls{% if options.controls.class is defined %} {{ options.controls.class }}{% endif %}">
         {% endif %}
@@ -932,11 +936,6 @@ controls.class   | string | A space separated list of class names
         %}
             {% set input_group = true %}
             {% set input_group_classes = input_group_classes ~ ' input-group-with-addon' %}
-        {% endif %}
-
-        {% if options.parent.guidance is defined and options.parent.guidance is not empty %}
-            {% set input_group = true %}
-            {% set input_group_classes = input_group_classes ~ ' input-group-with-guidance' %}
         {% endif %}
 
         {% if options.parent.removable is defined and options.parent.removable == true %}
@@ -954,24 +953,12 @@ controls.class   | string | A space separated list of class names
         {% endfor %}
 
         {%
-            if (
-                options.parent.guidance is defined
-                and options.parent.guidance is not empty
-            ) or (
-                options.parent.prepend is defined
-                and options.parent.prepend is not empty
-            ) or (
-                options.parent.append is defined
-                and options.parent.append is not empty
-            )
+            if (options.parent.prepend is defined and options.parent.prepend is not empty)
+            or (options.parent.append is defined and options.parent.append is not empty)
         %}
 
             {% if options.parent.append is defined and options.parent.append is not empty %}
                 {{ util.addon(options.parent.append|default) }}
-            {% endif %}
-
-            {% if options.parent.guidance is defined and options.parent.guidance is not empty %}
-                {{ util.guidance(options.parent.guidance|default) }}
             {% endif %}
 
             </div>
@@ -1269,7 +1256,7 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {%
         set input = elem.input(options
-            |exclude('error')
+            |exclude('error guidance')
             |merge({
                 'class': inputClass,
                 'label': null,
@@ -1290,14 +1277,16 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
     {{
         form.group({
             'parent': options
-                |only('class help error id bare radio')
+                |only('bare class error help id')
                 |defaults({
                     'class': 'form-radio-inline'
                 }),
             'inputs': [
                 elem.label({
                     'for': options.id|default,
-                    'label': label
+                    'label': label,
+                    'required': options.required|default,
+                    'guidance': options.guidance|default
                 })
             ]
         })
