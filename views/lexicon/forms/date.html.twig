@@ -1,0 +1,285 @@
+{% extends '@pulsar/pulsar/components/tab.html.twig' %}
+
+{% block tab_content %}
+
+    {{
+        form.create()
+    }}
+
+    {{
+        form.date({
+            'label': 'Date field'
+        })
+    }}
+
+    {{
+        form.date({
+            'label': 'Date field with value',
+            'value': '04/07/1981'
+        })
+    }}
+
+    {{
+        form.date({
+            'label': 'Required',
+            'required': true
+        })
+    }}
+
+    {{
+        form.date({
+            'label': 'Placeholder',
+            'placeholder': 'Oh, hello'
+        })
+    }}
+
+    {{
+        form.date({
+            'label': 'Date field with help',
+            'help': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{
+        form.date({
+            'label': 'Date field with guidance',
+            'guidance': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{
+        form.date({
+            'label': 'Required with guidance',
+            'guidance': 'Help text to give more information about expected input',
+            'required': true
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'Alignment' }) }}
+
+    {{
+        form.date({
+            'label': 'Text input with a longer than expected label which will probably wrap multple lines and push the following input onto the next baseline',
+            'name': 'inputTextLong',
+            'placeholder': 'Placeholder',
+            'help': 'Example block-level help text here',
+            'guidance': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{
+        form.date({
+            'label': 'Text input with a longer than expected label but this time we use the form__group--top class to keep the label on a single line',
+            'class': 'form__group--top',
+            'name': 'inputTextLong',
+            'placeholder': 'Placeholder',
+            'help': 'Example block-level help text here',
+            'guidance': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{
+        form.date({
+            'label': 'The same as above, but this time we also add the .form__group--flush class to keep everything on the left edge',
+            'class': 'form__group--top form__group--flush',
+            'name': 'inputTextLong',
+            'placeholder': 'Placeholder',
+            'help': 'Example block-level help text here',
+            'guidance': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'Errors &amp; Validation' }) }}
+
+    {{
+        form.date({
+            'label': 'Date field with error',
+            'error': 'Please complete this field'
+        })
+    }}
+
+    {{
+        form.date({
+            'label': 'Date field with multiple errors',
+            'error': ['Do this', 'Do this too']
+        })
+    }}
+
+    {{
+        form.date({
+            'label': 'Date field with error and help',
+            'error': 'Please complete this field',
+            'help': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{
+        form.date({
+            'class': 'has-error',
+            'label': 'Date field error with help only',
+            'help': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'States' }) }}
+
+    {{
+        form.date({
+            'label': '"class": "has-changed"',
+            'class': 'has-changed',
+            'help': 'Highlight whether an action elsewhere affects an input'
+        })
+    }}
+    {{
+        form.date({
+            'label': '"class": "has-success"',
+            'class': 'has-success',
+            'help': 'Something good happened'
+        })
+    }}
+
+    {{
+        form.date({
+            'label': '"class": "has-warning"',
+            'class': 'has-warning',
+            'help': 'Something bad happened'
+        })
+    }}
+    {{
+        form.date({
+            'label': '"class": "has-error"',
+            'class': 'has-error',
+            'help': 'Automatically added if using <code>error</code> option'
+        })
+    }}
+    {{
+        form.date({
+            'label': '"disabled": true',
+            'disabled': true,
+            'help': 'Stop! Can’t touch this'
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'Sizes' }) }}
+
+    {{
+        form.date({
+            'label': 'Mini',
+            'id': 'inputTextMini',
+            'class': 'form__group--mini',
+            'name': 'inputTextMini'
+        })
+    }}
+
+    {{
+        form.date({
+            'label': 'Small',
+            'id': 'inputTextSmall',
+            'class': 'form__group--small',
+            'name': 'inputTextSmall'
+        })
+    }}
+
+    {{
+        form.date({
+            'label': 'Medium',
+            'id': 'inputTextMedium',
+            'class': 'form__group--medium',
+            'name': 'inputTextMedium'
+        })
+    }}
+
+    {{
+        form.date({
+            'label': 'Regular',
+            'id': 'inputTextRegular',
+            'name': 'inputTextRegular'
+        })
+    }}
+
+    {{
+        form.date({
+            'label': 'Large',
+            'id': 'inputTextLarge',
+            'class': 'form__group--large',
+            'name': 'inputTextLarge'
+        })
+    }}
+
+    {{
+        form.date({
+            'label': 'Extra Large',
+            'id': 'inputTextXLarge',
+            'class': 'form__group--xlarge',
+            'name': 'inputTextXLarge'
+        })
+    }}
+
+    {{
+        form.date({
+            'label': 'Full',
+            'id': 'inputTextFull',
+            'class': 'form__group--full',
+            'name': 'inputTextFull'
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'Appended &amp; Prepended' }) }}
+
+    {{
+        form.date({
+            'label': 'Prepended',
+            'prepend': html.icon('calendar')
+        })
+    }}
+
+    {{
+        form.date({
+            'label': 'Appended',
+            'append': html.icon('calendar')
+        })
+    }}
+
+    {{
+        form.date({
+            'label': 'Appended with guidance',
+            'append': html.icon('calendar'),
+            'guidance': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{
+        form.date({
+            'label': 'Prepended &amp; Appended',
+            'append': html.icon('calendar'),
+            'prepend': html.icon('calendar')
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+
+    {{
+        form.end()
+    }}
+
+{% endblock tab_content %}
+
+{% block tab_sidebar %}
+    <a href="https://jadu.gitbooks.io/pulsar/content/text.html">
+        <img src="../../../images/cover.png" alt="Pulsar documentation front cover" width="157px" />
+    </a>
+    <br />
+    {{
+        html.button({
+            'label': 'View Documentation',
+            'type': 'link',
+            'href': 'https://jadu.gitbooks.io/pulsar/content/text.html'
+        })
+    }}
+
+{% endblock tab_sidebar %}
