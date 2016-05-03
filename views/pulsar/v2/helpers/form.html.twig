@@ -23,6 +23,7 @@ types.
             form.radio_simple({
                 'label': 'MW',
                 'name': 'bands'
+
             })
         ]
     })
@@ -35,6 +36,7 @@ Option        | Type   | Description
 ------------- | ------ | -------------------------------------------------------
 class         | string | A space separated list of class names
 error         | string | Text to explain an error/validation condition. Also adds error state styling
+guidance      | string | Text to be displayed in a popover, adds a (?) icon after the input
 help          | string | Additional guidance information to be displayed next to the input
 label         | string | Text for the `<label>` companion element
 required      | bool   | Visually indicates that the field must be completed
@@ -162,6 +164,7 @@ Option          | Type   | Description
 --------------- | ------ | -----------------------------------------------------
 class           | string | A space separated list of class names
 error           | string | Text to explain an error/validation condition. Also adds error state styling
+guidance        | string | Text to be displayed in a popover, adds a (?) icon after the input
 help            | string | Additional guidance information to be displayed next to the input
 required        | bool   | Visually indicates that the field must be completed
 
@@ -277,6 +280,7 @@ Option   | Type   | Description
 -------- | ------ | -------------------------------------------------------
 class    | string | A space separated list of class names
 error    | string | Text to explain an error/validation condition. Also adds error state styling
+guidance | string | Text to be displayed in a popover, adds a (?) icon after the input
 help     | string | Additional guidance information to be displayed next to the input
 label    | string | Text for the main `<label>` companion element
 optimize | string | `auto` use a select2 element if number of `options` is greater than 5 (default)
@@ -375,6 +379,7 @@ Option      | Type   | Description
 ----------- | ------ | ---------------------------------------------------------
 class       | string | A space separated list of class names
 error       | string | Text to explain an error/validation condition. Also adds error state styling
+guidance    | string | Text to be displayed in a popover, adds a (?) icon after the input
 help        | string | Additional guidance information to be displayed next to the input
 label       | string | Text for the `<label>` companion element
 
@@ -396,10 +401,10 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {{
         form.group({
-            'parent': options|only('bare class error help id label'),
+            'parent': options|only('bare class error guidance help id label'),
             'inputs': [
                 elem.paragraph(
-                    options|exclude('bare class error help label')
+                    options|exclude('bare class error guidance help label')
                 )
             ]
         })
@@ -519,6 +524,7 @@ Option      | Type   | Description
 autofocus   | bool   | Whether the field should have input focus on page load
 class       | string | A space separated list of class names
 error       | string | Text to explain an error/validation condition. Also adds error state styling
+guidance    | string | Text to be displayed in a popover, adds a (?) icon after the input
 help        | string | Additional guidance information to be displayed next to the input
 label       | string | Text for the `<label>` companion element
 required    | bool   | Visually indicates that the field must be completed
@@ -760,6 +766,7 @@ Option      | Type   | Description
 ----------- | ------ | ---------------------------------------------------------
 class       | string | A space separated list of class names
 error       | string | Text to explain an error/validation condition. Also adds error state styling
+guidance    | string | Text to be displayed in a popover, adds a (?) icon after the input
 help        | string | Additional guidance information to be displayed next to the input
 label       | string  | Text for the `<label>` companion element
 required    | bool   | Visually indicates that the field must be completed
@@ -1093,6 +1100,7 @@ Option      | Type   | Description
 append      | string | Text or markup to include after the input element
 class       | string | A space separated list of class names
 error       | string | Text to explain an error/validation condition. Also adds error state styling
+guidance    | string | Text to be displayed in a popover, adds a (?) icon after the input
 help        | string | Additional guidance information to be displayed next to the input
 label       | string | Text for the `<label>` companion element
 prepend     | string | Text or markup to include before the input element
@@ -1148,6 +1156,7 @@ Option   | Type   | Description
 -------- | ------ | ------------------------------------------------------------
 class    | string | A space separated list of class names
 error    | string | Text to explain an error/validation condition. Also adds error state styling
+guidance | string | Text to be displayed in a popover, adds a (?) icon after the input
 help     | string | Additional guidance information to be displayed next to the input
 label    | string | Text for the `<label>` companion element
 required | bool   | Visually indicates that the field must be completed
@@ -1219,6 +1228,7 @@ Option          | Type   | Description
 --------------- | ------ | -----------------------------------------------------
 class           | string | A space separated list of class names
 error           | string | Text to explain an error/validation condition. Also adds error state styling
+guidance        | string | Text to be displayed in a popover, adds a (?) icon after the input
 help            | string | Additional guidance information to be displayed next to the input
 required        | bool   | Visually indicates that the field must be completed
 
@@ -1398,6 +1408,7 @@ Option      | Type   | Description
 ----------- | ------ | --------------------------------------------------------
 class       | string | A space separated list of class names
 error       | string | Text to explain an error/validation condition. Also adds error state styling
+guidance    | string | Text to be displayed in a popover, adds a (?) icon after the input
 help        | string | Additional guidance information to be displayed next to the input
 label       | string | Text for the `<label>` companion element
 required    | bool   | Visually indicates that the field must be completed
@@ -1469,6 +1480,7 @@ Option      | Type   | Description
 ----------- | ------ | --------------------------------------------------------
 class       | string | A space separated list of class names
 error       | string | Text to explain an error/validation condition. Also adds error state styling
+guidance    | string | Text to be displayed in a popover, adds a (?) icon after the input
 help        | string | Additional guidance information to be displayed next to the input
 label       | string | Text for the `<label>` companion element
 required    | bool   | Visually indicates that the field must be completed
@@ -1650,6 +1662,7 @@ Option      | Type   | Description
 ----------- | ------ | ---------------------------------------------------------
 class       | string | A space separated list of class names
 error       | string | Text to explain an error/validation condition. Also adds error state styling
+guidance    | string | Text to be displayed in a popover, adds a (?) icon after the input
 help        | string | Additional guidance information to be displayed next to the input
 label       | string | Text for the `<label>` companion element
 required    | bool   | Visually indicates that the field must be completed
@@ -1713,7 +1726,8 @@ Generates a checkbox input field with Toggle styling.
 Option        | Type   | Description
 ------------- | ------ | -------------------------------------------------------
 class         | string | A space separated list of class names
-error       | string | Text to explain an error/validation condition. Also adds error state styling
+error         | string | Text to explain an error/validation condition. Also adds error state styling
+guidance      | string | Text to be displayed in a popover, adds a (?) icon after the input
 help          | string | Additional guidance information to be displayed next to the input
 label         | string | Text for the `<label>` companion element
 required      | bool   | Visually indicates that the field must be completed
