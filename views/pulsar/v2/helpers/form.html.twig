@@ -54,8 +54,8 @@ items         | array  | An array of items to put in the dropdown list (usually 
     {{
         form.group({
             'parent': options
-                |only('bare class error help id label required')
-                |merge({'class': 'form__button-group'}),
+                |only('bare class error guidance help id label required')
+                |merge({'class': options.class|default ~ ' form__button-group'}),
             'controls': {'class': 'btn__group'},
             'inputs': options.items
         })

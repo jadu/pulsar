@@ -139,7 +139,7 @@ fieldset {
 }
 
 .form__group--top {
-    .control__label {
+    > .control__label {
         margin-bottom: .5em;
     }
 
@@ -275,6 +275,10 @@ $inputs: (
 
     .form__control:checked + .control__label {
         @extend .btn:active;
+    }
+
+    .btn__group {
+        vertical-align: top;
     }
 }
 

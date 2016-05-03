@@ -84,7 +84,7 @@ $control-column-width: 75%;
 }
 
 .form__group--top {
-  .control__label,
+  > .control__label,
   .controls {
     display: block;
     min-width: 100%;
