@@ -788,10 +788,10 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {{
         form.group({
-            'parent': options|only('bare class error help id label required'),
+            'parent': options|only('bare class error guidance help id label required'),
             'inputs': [
                 elem.input(options
-                    |exclude('bare class error help label')
+                    |exclude('bare class guidance error help label')
                     |defaults({'type': 'file'})
                     |merge({'class': 'file'})
                 )

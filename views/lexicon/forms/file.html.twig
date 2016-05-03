@@ -7,43 +7,37 @@
     }}
 
     {{
-        form.password({
-            'label': 'Password field'
+        form.file({
+            'label': 'File field'
         })
     }}
 
     {{
-        form.password({
+        form.file({
             'label': 'Required',
             'required': true
         })
     }}
 
     {{
-        form.password({
-            'label': 'Password field with value',
-            'value': 'My value'
-        })
-    }}
-
-    {{
-        form.password({
-            'label': 'Placeholder',
-            'placeholder': 'Oh, hello'
-        })
-    }}
-
-    {{
-        form.password({
-            'label': 'Password field with help',
+        form.file({
+            'label': 'File field with help',
             'help': 'Help text to give more information about expected input'
         })
     }}
 
     {{
-        form.password({
-            'label': 'Password field with guidance',
+        form.file({
+            'label': 'File field with guidance',
             'guidance': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{
+        form.file({
+            'label': 'Required with guidance',
+            'guidance': 'Help text to give more information about expected input',
+            'required': true
         })
     }}
 
@@ -51,66 +45,65 @@
     {{ form.fieldset_start({ 'legend': 'Alignment' }) }}
 
     {{
-        form.password({
-            'label': 'Text input with a longer than expected label which will probably wrap multple lines and push the following input onto the next baseline',
-            'name': 'inputTextLong',
-            'placeholder': 'Placeholder',
-            'help': 'Example block-level help text here',
-            'guidance': 'Help text to give more information about expected input'
-        })
-    }}
+            form.file({
+                'label': 'Text input with a longer than expected label which will probably wrap multple lines and push the following input onto the next baseline',
+                'name': 'inputTextLong',
+                'placeholder': 'Placeholder',
+                'help': 'Example block-level help text here',
+                'guidance': 'Help text to give more information about expected input'
+            })
+        }}
 
-    {{
-        form.password({
-            'label': 'Text input with a longer than expected label but this time we use the form__group--top class to keep the label on a single line',
-            'class': 'form__group--top',
-            'name': 'inputTextLong',
-            'placeholder': 'Placeholder',
-            'help': 'Example block-level help text here',
-            'guidance': 'Help text to give more information about expected input'
-        })
-    }}
+        {{
+            form.file({
+                'label': 'Text input with a longer than expected label but this time we use the form__group--top class to keep the label on a single line',
+                'class': 'form__group--top',
+                'name': 'inputTextLong',
+                'placeholder': 'Placeholder',
+                'help': 'Example block-level help text here',
+                'guidance': 'Help text to give more information about expected input'
+            })
+        }}
 
-    {{
-        form.password({
-            'label': 'The same as above, but this time we also add the .form__group--flush class to keep everything on the left edge',
-            'class': 'form__group--top form__group--flush',
-            'name': 'inputTextLong',
-            'placeholder': 'Placeholder',
-            'help': 'Example block-level help text here',
-            'guidance': 'Help text to give more information about expected input'
-        })
-    }}
+        {{
+            form.file({
+                'label': 'The same as above, but this time we also add the .form__group--flush class to keep everything on the left edge',
+                'class': 'form__group--top form__group--flush',
+                'name': 'inputTextLong',
+                'placeholder': 'Placeholder',
+                'help': 'Example block-level help text here',
+                'guidance': 'Help text to give more information about expected input'
+            })
+        }}
 
-    {{ form.fieldset_end() }}
     {{ form.fieldset_start({ 'legend': 'Errors &amp; Validation' }) }}
 
     {{
-        form.password({
-            'label': 'Password field with error',
+        form.file({
+            'label': 'File field with error',
             'error': 'Please complete this field'
         })
     }}
 
     {{
-        form.password({
-            'label': 'Password field with multiple errors',
+        form.file({
+            'label': 'File field with multiple errors',
             'error': ['Do this', 'Do this too']
         })
     }}
 
     {{
-        form.password({
-            'label': 'Password field with error and help',
+        form.file({
+            'label': 'File field with error and help',
             'error': 'Please complete this field',
             'help': 'Help text to give more information about expected input'
         })
     }}
 
     {{
-        form.password({
+        form.file({
             'class': 'has-error',
-            'label': 'Password field error with help only',
+            'label': 'File field error with help only',
             'help': 'Help text to give more information about expected input'
         })
     }}
@@ -119,14 +112,14 @@
     {{ form.fieldset_start({ 'legend': 'States' }) }}
 
     {{
-        form.password({
+        form.file({
             'label': '"class": "has-changed"',
             'class': 'has-changed',
             'help': 'Highlight whether an action elsewhere affects an input'
         })
     }}
     {{
-        form.password({
+        form.file({
             'label': '"class": "has-success"',
             'class': 'has-success',
             'help': 'Something good happened'
@@ -134,21 +127,21 @@
     }}
 
     {{
-        form.password({
+        form.file({
             'label': '"class": "has-warning"',
             'class': 'has-warning',
             'help': 'Something bad happened'
         })
     }}
     {{
-        form.password({
+        form.file({
             'label': '"class": "has-error"',
             'class': 'has-error',
             'help': 'Automatically added if using <code>error</code> option'
         })
     }}
     {{
-        form.password({
+        form.file({
             'label': '"disabled": true',
             'disabled': true,
             'help': 'Stop! Can’t touch this'
@@ -159,7 +152,7 @@
     {{ form.fieldset_start({ 'legend': 'Sizes' }) }}
 
     {{
-        form.password({
+        form.file({
             'label': 'Mini',
             'id': 'inputTextMini',
             'class': 'form__group--mini',
@@ -168,7 +161,7 @@
     }}
 
     {{
-        form.password({
+        form.file({
             'label': 'Small',
             'id': 'inputTextSmall',
             'class': 'form__group--small',
@@ -177,7 +170,7 @@
     }}
 
     {{
-        form.password({
+        form.file({
             'label': 'Medium',
             'id': 'inputTextMedium',
             'class': 'form__group--medium',
@@ -186,7 +179,7 @@
     }}
 
     {{
-        form.password({
+        form.file({
             'label': 'Regular',
             'id': 'inputTextRegular',
             'name': 'inputTextRegular'
@@ -194,7 +187,7 @@
     }}
 
     {{
-        form.password({
+        form.file({
             'label': 'Large',
             'id': 'inputTextLarge',
             'class': 'form__group--large',
@@ -203,7 +196,7 @@
     }}
 
     {{
-        form.password({
+        form.file({
             'label': 'Extra Large',
             'id': 'inputTextXLarge',
             'class': 'form__group--xlarge',
@@ -212,7 +205,7 @@
     }}
 
     {{
-        form.password({
+        form.file({
             'label': 'Full',
             'id': 'inputTextFull',
             'class': 'form__group--full',
@@ -224,32 +217,32 @@
     {{ form.fieldset_start({ 'legend': 'Appended &amp; Prepended' }) }}
 
     {{
-        form.password({
+        form.file({
             'label': 'Prepended',
-            'prepend': html.icon('key')
+            'prepend': '£'
         })
     }}
 
     {{
-        form.password({
+        form.file({
             'label': 'Appended',
-            'append': html.icon('ok')
+            'append': '.00'
         })
     }}
 
     {{
-        form.password({
+        form.file({
             'label': 'Appended with guidance',
-            'append': html.icon('remove'),
+            'append': '.00',
             'guidance': 'Help text to give more information about expected input'
         })
     }}
 
     {{
-        form.password({
+        form.file({
             'label': 'Prepended &amp; Appended',
-            'append': html.icon('ok'),
-            'prepend': html.icon('key')
+            'append': '.00',
+            'prepend': '£'
         })
     }}
 

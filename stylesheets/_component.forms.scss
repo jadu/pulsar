@@ -138,8 +138,14 @@ fieldset {
     padding-right: 10px;
 }
 
-.form__group--top .control__label {
-    margin-bottom: .5em;
+.form__group--top {
+    .control__label {
+        margin-bottom: .5em;
+    }
+
+    .controls > .form__control {
+        display: inline-block;
+    }
 }
 
 .legend {
