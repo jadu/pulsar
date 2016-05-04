@@ -1,0 +1,383 @@
+{% extends '@pulsar/pulsar/components/tab.html.twig' %}
+
+{% block tab_content %}
+
+    {{
+        form.create()
+    }}
+
+    {{
+        form.select({
+            'label': 'Select field',
+            'options': {
+                'value1': 'value one',
+                'value2': 'value two'
+            }
+
+        })
+    }}
+
+    {{
+        form.select({
+            'label': 'Required',
+            'required': true,
+            'options': {
+                'value1': 'value one',
+                'value2': 'value two'
+            }
+        })
+    }}
+
+    {{
+        form.select({
+            'label': 'Select field with help',
+            'help': 'Help text to give more information about expected input',
+            'options': {
+                'value1': 'value one',
+                'value2': 'value two'
+            }
+        })
+    }}
+
+    {{
+        form.select({
+            'label': 'Select field with guidance',
+            'guidance': 'Help text to give more information about expected input',
+            'options': {
+                'value1': 'value one',
+                'value2': 'value two'
+            }
+        })
+    }}
+
+    {{
+        form.select({
+            'label': 'Required with guidance',
+            'guidance': 'Help text to give more information about expected input',
+            'required': true,
+            'options': {
+                'value1': 'value one',
+                'value2': 'value two'
+            }
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'Alignment' }) }}
+
+    {{
+            form.select({
+                'label': 'Select input with a longer than expected label which will probably wrap multple lines and push the following input onto the next baseline',
+                'name': 'inputSelectLong',
+                'placeholder': 'Placeholder',
+                'help': 'Example block-level help text here',
+                'guidance': 'Help text to give more information about expected input',
+                'options': {
+                    'value1': 'value one',
+                    'value2': 'value two'
+                }
+            })
+        }}
+
+        {{
+            form.select({
+                'label': 'Select input with a longer than expected label but this time we use the form__group--top class to keep the label on a single line',
+                'class': 'form__group--top',
+                'name': 'inputSelectLong',
+                'placeholder': 'Placeholder',
+                'help': 'Example block-level help text here',
+                'guidance': 'Help text to give more information about expected input',
+                'options': {
+                    'value1': 'value one',
+                    'value2': 'value two'
+                }
+            })
+        }}
+
+        {{
+            form.select({
+                'label': 'The same as above, but this time we also add the .form__group--flush class to keep everything on the left edge',
+                'class': 'form__group--top form__group--flush',
+                'name': 'inputSelectLong',
+                'placeholder': 'Placeholder',
+                'help': 'Example block-level help text here',
+                'guidance': 'Help text to give more information about expected input',
+                'options': {
+                    'value1': 'value one',
+                    'value2': 'value two'
+                }
+            })
+        }}
+
+    {{ form.fieldset_start({ 'legend': 'Errors &amp; Validation' }) }}
+
+    {{
+        form.select({
+            'label': 'Select field with error',
+            'error': 'Please complete this field',
+            'options': {
+                'value1': 'value one',
+                'value2': 'value two'
+            }
+        })
+    }}
+
+    {{
+        form.select({
+            'label': 'Select field with multiple errors',
+            'error': ['Do this', 'Do this too'],
+            'options': {
+                'value1': 'value one',
+                'value2': 'value two'
+            }
+        })
+    }}
+
+    {{
+        form.select({
+            'label': 'Select field with error and help',
+            'error': 'Please complete this field',
+            'help': 'Help text to give more information about expected input',
+            'options': {
+                'value1': 'value one',
+                'value2': 'value two'
+            }
+        })
+    }}
+
+    {{
+        form.select({
+            'class': 'has-error',
+            'label': 'Select field error with help only',
+            'help': 'Help text to give more information about expected input',
+            'options': {
+                'value1': 'value one',
+                'value2': 'value two'
+            }
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'States' }) }}
+
+    {{
+        form.select({
+            'label': '"class": "has-changed"',
+            'class': 'has-changed',
+            'help': 'Highlight whether an action elsewhere affects an input',
+            'options': {
+                'value1': 'value one',
+                'value2': 'value two'
+            }
+        })
+    }}
+    {{
+        form.select({
+            'label': '"class": "has-success"',
+            'class': 'has-success',
+            'help': 'Something good happened',
+            'options': {
+                'value1': 'value one',
+                'value2': 'value two'
+            }
+        })
+    }}
+
+    {{
+        form.select({
+            'label': '"class": "has-warning"',
+            'class': 'has-warning',
+            'help': 'Something bad happened',
+            'options': {
+                'value1': 'value one',
+                'value2': 'value two'
+            }
+        })
+    }}
+    {{
+        form.select({
+            'label': '"class": "has-error"',
+            'class': 'has-error',
+            'help': 'Automatically added if using <code>error</code> option',
+            'options': {
+                'value1': 'value one',
+                'value2': 'value two'
+            }
+        })
+    }}
+    {{
+        form.select({
+            'label': '"disabled": true',
+            'disabled': true,
+            'help': 'Stop! Can’t touch this',
+            'options': {
+                'value1': 'value one',
+                'value2': 'value two'
+            }
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'Sizes' }) }}
+
+    {{
+        form.select({
+            'label': 'Mini',
+            'id': 'inputSelectMini',
+            'class': 'form__group--mini',
+            'name': 'inputSelectMini',
+            'options': {
+                'value1': 'value one',
+                'value2': 'value two'
+            }
+        })
+    }}
+
+    {{
+        form.select({
+            'label': 'Small',
+            'id': 'inputSelectSmall',
+            'class': 'form__group--small',
+            'name': 'inputSelectSmall',
+            'options': {
+                'value1': 'value one',
+                'value2': 'value two'
+            }
+        })
+    }}
+
+    {{
+        form.select({
+            'label': 'Medium',
+            'id': 'inputSelectMedium',
+            'class': 'form__group--medium',
+            'name': 'inputSelectMedium',
+            'options': {
+                'value1': 'value one',
+                'value2': 'value two'
+            }
+        })
+    }}
+
+    {{
+        form.select({
+            'label': 'Regular',
+            'id': 'inputSelectRegular',
+            'name': 'inputSelectRegular',
+            'options': {
+                'value1': 'value one',
+                'value2': 'value two'
+            }
+        })
+    }}
+
+    {{
+        form.select({
+            'label': 'Large',
+            'id': 'inputSelectLarge',
+            'class': 'form__group--large',
+            'name': 'inputSelectLarge',
+            'options': {
+                'value1': 'value one',
+                'value2': 'value two'
+            }
+        })
+    }}
+
+    {{
+        form.select({
+            'label': 'Extra Large',
+            'id': 'inputSelectXLarge',
+            'class': 'form__group--xlarge',
+            'name': 'inputSelectXLarge',
+            'options': {
+                'value1': 'value one',
+                'value2': 'value two'
+            }
+        })
+    }}
+
+    {{
+        form.select({
+            'label': 'Full',
+            'id': 'inputSelectFull',
+            'class': 'form__group--full',
+            'name': 'inputSelectFull',
+            'options': {
+                'value1': 'value one',
+                'value2': 'value two'
+            }
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'Appended &amp; Prepended' }) }}
+
+    {{
+        form.select({
+            'label': 'Prepended',
+            'prepend': '£',
+            'options': {
+                'value1': 'value one',
+                'value2': 'value two'
+            }
+        })
+    }}
+
+    {{
+        form.select({
+            'label': 'Appended',
+            'append': '.00',
+            'options': {
+                'value1': 'value one',
+                'value2': 'value two'
+            }
+        })
+    }}
+
+    {{
+        form.select({
+            'label': 'Appended with guidance',
+            'append': '.00',
+            'guidance': 'Help text to give more information about expected input',
+            'options': {
+                'value1': 'value one',
+                'value2': 'value two'
+            }
+        })
+    }}
+
+    {{
+        form.select({
+            'label': 'Prepended &amp; Appended',
+            'append': '.00',
+            'prepend': '£',
+            'options': {
+                'value1': 'value one',
+                'value2': 'value two'
+            }
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+
+    {{
+        form.end()
+    }}
+
+{% endblock tab_content %}
+
+{% block tab_sidebar %}
+    <a href="https://jadu.gitbooks.io/pulsar/content/Select.html">
+        <img src="../../../images/cover.png" alt="Pulsar documentation front cover" width="157px" />
+    </a>
+    <br />
+    {{
+        html.button({
+            'label': 'View Documentation',
+            'type': 'link',
+            'href': 'https://jadu.gitbooks.io/pulsar/content/Select.html'
+        })
+    }}
+
+{% endblock tab_sidebar %}

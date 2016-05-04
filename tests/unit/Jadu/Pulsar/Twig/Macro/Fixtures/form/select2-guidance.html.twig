@@ -1,0 +1,14 @@
+{#
+    Test basic select2 input
+#}
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{{
+    form.select2({
+        'label': 'foo',
+        'guidance': 'bar',
+        'options': {
+            'baz': 'baz',
+            'qux': 'qux'
+        }
+    })
+}}

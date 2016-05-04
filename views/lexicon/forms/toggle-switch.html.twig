@@ -1,0 +1,163 @@
+{% extends '@pulsar/pulsar/components/tab.html.twig' %}
+
+{% block tab_content %}
+
+    {{
+        form.create()
+    }}
+
+    {{
+        form.toggle_switch({
+            'label': 'Toggle switch',
+            'id': 'toggle'
+        })
+    }}
+
+    {{
+        form.toggle_switch({
+            'label': 'Required',
+            'id': '1',
+            'required': true
+        })
+    }}
+
+    {{
+        form.toggle_switch({
+            'label': 'Toggle switch with help',
+            'help': 'Help text to give more information about expected input',
+            'id': '2'
+        })
+    }}
+
+    {{
+        form.toggle_switch({
+            'label': 'Toggle switch with guidance',
+            'guidance': 'Help text to give more information about expected input',
+            'id': '3'
+        })
+    }}
+
+    {{
+        form.toggle_switch({
+            'label': 'Required guidance',
+            'guidance': 'Help text to give more information about expected input',
+            'id': '4',
+            'required': true
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'Alignment' }) }}
+
+    {{
+        form.toggle_switch({
+            'label': 'Toggle switch with a longer than expected label which will probably wrap multple lines and push the following input onto the next baseline',
+            'id': '5',
+            'help': 'Example block-level help text here',
+            'guidance': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{ form.fieldset_start({ 'legend': 'Errors &amp; Validation' }) }}
+
+    {{
+        form.toggle_switch({
+            'label': 'Text field with error',
+            'id': '6',
+            'error': 'Please complete this field'
+        })
+    }}
+
+    {{
+        form.toggle_switch({
+            'label': 'Text field with multiple errors',
+            'id': '7',
+            'error': ['Do this', 'Do this too']
+        })
+    }}
+
+    {{
+        form.toggle_switch({
+            'label': 'Text field with error and help',
+            'error': 'Please complete this field',
+            'help': 'Help text to give more information about expected input',
+            'id': '8'
+        })
+    }}
+
+    {{
+        form.toggle_switch({
+            'class': 'has-error',
+            'label': 'Text field error with help only',
+            'help': 'Help text to give more information about expected input',
+            'id': '9'
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'States' }) }}
+
+    {{
+        form.toggle_switch({
+            'label': '"class": "has-changed"',
+            'class': 'has-changed',
+            'help': 'Highlight whether an action elsewhere affects an input',
+            'id': '10'
+        })
+    }}
+    {{
+        form.toggle_switch({
+            'label': '"class": "has-success"',
+            'class': 'has-success',
+            'help': 'Something good happened',
+            'id': '11'
+        })
+    }}
+
+    {{
+        form.toggle_switch({
+            'label': '"class": "has-warning"',
+            'class': 'has-warning',
+            'help': 'Something bad happened',
+            'id': '12'
+        })
+    }}
+    {{
+        form.toggle_switch({
+            'label': '"class": "has-error"',
+            'class': 'has-error',
+            'help': 'Automatically added if using <code>error</code> option',
+            'id': '13'
+        })
+    }}
+    {{
+        form.toggle_switch({
+            'label': '"disabled": true',
+            'disabled': true,
+            'help': 'Stop! Can’t touch this',
+            'id': '14'
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+
+    {{
+        form.end()
+    }}
+
+{% endblock tab_content %}
+
+{% block tab_sidebar %}
+    <a href="https://jadu.gitbooks.io/pulsar/content/text.html">
+        <img src="../../../images/cover.png" alt="Pulsar documentation front cover" width="157px" />
+    </a>
+    <br />
+    {{
+        html.button({
+            'label': 'View Documentation',
+            'type': 'link',
+            'href': 'https://jadu.gitbooks.io/pulsar/content/text.html'
+        })
+    }}
+
+{% endblock tab_sidebar %}

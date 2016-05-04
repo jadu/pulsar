@@ -84,7 +84,7 @@ $control-column-width: 75%;
 }
 
 .form__group--top {
-  .control__label,
+  > .control__label,
   .controls {
     display: block;
     min-width: 100%;
@@ -115,8 +115,11 @@ $control-column-width: 75%;
 }
 
 .form__group--indent {
-    margin-left: $label-column-width;
     width: $control-column-width;
+
+    @include respond-min($screen-tablet) {
+        margin-left: $label-column-width;
+    }
 }
 
 .form__group--flush {
