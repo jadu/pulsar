@@ -71,6 +71,20 @@ fieldset {
             border: 1px solid $input-border;
             border-radius: 0;
         }
+
+        &.is-disabled {
+            background-color: color(white);
+            color: color(text, disabled);
+        }
+    }
+
+    @include respond-min($screen-tablet) {
+        .has-changed &.file,
+        .has-success &.file,
+        .has-warning &.file,
+        .has-error &.file {
+            padding: 11px 10px;
+        }
     }
 
     // IE8 - position text in the middle of inputs
