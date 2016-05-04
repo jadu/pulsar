@@ -108,19 +108,19 @@ $palette-states: (
         base:  #297c46,
         alt:   pick_best_color(#297c46, (#fff, #000)),
         light: lighten(#297c46, 30),
-        flash: rgba(0, 153, 51, .8),
+        flash: rgb(0, 153, 51),
     ),
     warning: (
         base:  #eaa96a,
         alt:   pick_best_color(#eaa96a, (#fff, #000)),
         light: lighten(#eaa96a, 20),
-        flash: rgba(255, 137, 9, .8)
+        flash: rgb(255, 137, 9)
     ),
     danger: (
         base:  #c84d40,
         alt:   pick_best_color(#c84d40, (#fff, #000)),
         light: lighten(#c84d40, 30),
-        flash: rgba(204, 51, 51, .8)
+        flash: rgb(204, 51, 51)
     ),
     info: (
         base:  map-get(map-get($palette-branding, jadu-blue), pale),

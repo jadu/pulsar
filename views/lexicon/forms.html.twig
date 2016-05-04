@@ -9,9 +9,8 @@
 
 {% set heading = 'Form Helpers' %}
 
-{% set tab_text %}
-    {% include 'lexicon/forms/text.html.twig' %}
-{% endset %}
+{% set tab_text %}{% include 'lexicon/forms/text.html.twig' %}{% endset %}
+{% set tab_choice %}{% include 'lexicon/forms/choice.html.twig' %}{% endset %}
 
 {%
     set nav_data = {
@@ -56,10 +55,15 @@
 {%
     set tabs_content = [
         {
+          "id"    : "choice",
+          "label" : "Choice",
+          "src"   : tab_choice,
+          "active": true
+        },
+        {
           "id"    : "text",
           "label" : "Text",
-          "src"   : tab_text,
-          "active": true
+          "src"   : tab_text
         }
     ]
 %}
