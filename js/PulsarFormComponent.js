@@ -35,7 +35,22 @@ PulsarFormComponent.prototype.init = function () {
 
     // Block styled checkboxes and radios
     var choiceBlock = component.$html.find(".choice--block");
+
+    // set up choice block states on load
+    $.each(choiceBlock, function() {
+        component.initSelectionButtons($(this));
+    });
+
+    // choice block click behaviour
     choiceBlock.on('change', '.controls input[type="checkbox"], .controls input[type="radio"]', component.selectionButtons);
+
+};
+
+PulsarFormComponent.prototype.initSelectionButtons = function(e) {
+
+    e.find('input[type="checkbox"]:checked, input[type="radio"]:checked')
+        .closest('.control__label')
+        .addClass('is-selected');
 
 };
 
