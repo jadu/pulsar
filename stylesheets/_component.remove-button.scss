@@ -24,26 +24,3 @@
         }
     }
 }
-
-a + .remove-button {
-    margin-left: 10px;
-}
-
-
-[class^="icon-"],
-[class*=" icon-"] {
-    color: color(gray, light);
-    font-size: 1.2em;
-    vertical-align: middle;
-}
-
-&:hover {
-    [class^="icon-"],
-    [class*=" icon-"] {
-        color: color(black);
-    }
-}
-
-a + .remove-button {
-    margin-left: 10px;
-}
