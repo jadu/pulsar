@@ -14,6 +14,13 @@
 
     {{
         form.text({
+            'label': 'Text field with value',
+            'value': 'My value'
+        })
+    }}
+
+    {{
+        form.text({
             'label': 'Required',
             'required': true
         })
@@ -33,6 +40,57 @@
         })
     }}
 
+    {{
+        form.text({
+            'label': 'Text field with guidance',
+            'guidance': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{
+        form.text({
+            'label': 'Required with guidance',
+            'guidance': 'Help text to give more information about expected input',
+            'required': true
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'Alignment' }) }}
+
+    {{
+        form.text({
+            'label': 'Text input with a longer than expected label which will probably wrap multple lines and push the following input onto the next baseline',
+            'name': 'inputTextLong',
+            'placeholder': 'Placeholder',
+            'help': 'Example block-level help text here',
+            'guidance': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{
+        form.text({
+            'label': 'Text input with a longer than expected label but this time we use the form__group--top class to keep the label on a single line',
+            'class': 'form__group--top',
+            'name': 'inputTextLong',
+            'placeholder': 'Placeholder',
+            'help': 'Example block-level help text here',
+            'guidance': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{
+        form.text({
+            'label': 'The same as above, but this time we also add the .form__group--flush class to keep everything on the left edge',
+            'class': 'form__group--top form__group--flush',
+            'name': 'inputTextLong',
+            'placeholder': 'Placeholder',
+            'help': 'Example block-level help text here',
+            'guidance': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{ form.fieldset_end() }}
     {{ form.fieldset_start({ 'legend': 'Errors &amp; Validation' }) }}
 
     {{
@@ -189,6 +247,14 @@
 
     {{
         form.text({
+            'label': 'Appended with guidance',
+            'append': '.00',
+            'guidance': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{
+        form.text({
             'label': 'Prepended &amp; Appended',
             'append': '.00',
             'prepend': '£'
@@ -207,6 +273,7 @@
     <a href="https://jadu.gitbooks.io/pulsar/content/text.html">
         <img src="../../../images/cover.png" alt="Pulsar documentation front cover" width="157px" />
     </a>
+    <br />
     {{
         html.button({
             'label': 'View Documentation',

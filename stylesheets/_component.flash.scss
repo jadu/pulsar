@@ -47,17 +47,20 @@ i {
 // Variations
 .flash--success {
     background: color(success, flash);
+    background: rgba(color(success, flash), .8);
     color: color(success, alt);
 }
 
 .flash--warning {
     background: color(warning, flash);
+    background: rgba(color(warning, flash), .8);
     color: color(warning, alt);
     text-shadow: none;
 }
 
 .flash--error {
     background: color(danger, flash);
+    background: rgba(color(danger, flash), .8);
     color: color(danger, alt);
 }
 

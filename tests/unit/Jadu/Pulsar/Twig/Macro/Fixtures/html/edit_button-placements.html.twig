@@ -1,0 +1,27 @@
+{#
+    Test remove button placements
+#}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{{
+    html.edit_button({
+        'placement': 'top'
+    })
+}}
+
+{{
+    html.edit_button({
+        'placement': 'right'
+    })
+}}
+
+{{
+    html.edit_button({
+        'placement': 'bottom'
+    })
+}}
+
+{{
+    html.edit_button({
+        'placement': 'left'
+    })
+}}

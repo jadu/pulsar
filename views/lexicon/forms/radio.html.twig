@@ -1,0 +1,171 @@
+{% extends '@pulsar/pulsar/components/tab.html.twig' %}
+
+{% block tab_content %}
+
+    {{
+        form.create()
+    }}
+
+    {{
+        form.radio({
+            'label': 'Radio'
+        })
+    }}
+
+    {{
+        form.radio({
+            'label': 'Radio selected',
+            'checked': true
+        })
+    }}
+
+    {{
+        form.radio({
+            'label': 'Required',
+            'required': true
+        })
+    }}
+
+    {{
+        form.radio({
+            'label': 'Radio with help',
+            'help': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{
+        form.radio({
+            'label': 'Radio with guidance',
+            'guidance': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{ form.fieldset_start({ 'legend': 'Alternative alignment inline radios' }) }}
+
+    {{
+        form.radio_inline({
+            'label': 'Radio inline'
+        })
+    }}
+
+    {{
+        form.radio_inline({
+            'label': 'Radio inline plus extras',
+            'help': 'Help text to give more information about expected input',
+            'guidance': 'Help text to give more information about expected input',
+            'required': true
+        })
+    }}
+
+    {{
+        form.radio_inline({
+            'label': 'Radio inline and indented',
+            'class': 'form__group--indent form__group--full'
+        })
+    }}
+
+    {{
+        form.radio_inline({
+            'label': 'Radio inline, indented plus extras',
+            'class': 'form__group--indent form__group--full',
+            'help': 'Help text to give more information about expected input',
+            'guidance': 'Help text to give more information about expected input',
+            'required': true
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'Errors &amp; Validation' }) }}
+
+    {{
+        form.radio({
+            'label': 'Radio with error',
+            'error': 'Please complete this field'
+        })
+    }}
+
+    {{
+        form.radio({
+            'label': 'Radio with multiple errors',
+            'error': ['Do this', 'Do this too']
+        })
+    }}
+
+    {{
+        form.radio({
+            'label': 'Radio with error and help',
+            'error': 'Please complete this field',
+            'help': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{
+        form.radio({
+            'class': 'has-error',
+            'label': 'Radio error with help only',
+            'help': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'States' }) }}
+
+    {{
+        form.radio({
+            'label': '"class": "has-changed"',
+            'class': 'has-changed',
+            'help': 'Highlight whether an action elsewhere affects an input'
+        })
+    }}
+    {{
+        form.radio({
+            'label': '"class": "has-success"',
+            'class': 'has-success',
+            'help': 'Something good happened'
+        })
+    }}
+
+    {{
+        form.radio({
+            'label': '"class": "has-warning"',
+            'class': 'has-warning',
+            'help': 'Something bad happened'
+        })
+    }}
+    {{
+        form.radio({
+            'label': '"class": "has-error"',
+            'class': 'has-error',
+            'help': 'Automatically added if using <code>error</code> option'
+        })
+    }}
+    {{
+        form.radio({
+            'label': '"disabled": true',
+            'disabled': true,
+            'help': 'Stop! Can’t touch this'
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+
+    {{
+        form.end()
+    }}
+
+{% endblock tab_content %}
+
+{% block tab_sidebar %}
+    <a href="https://jadu.gitbooks.io/pulsar/content/text.html">
+        <img src="../../../images/cover.png" alt="Pulsar documentation front cover" width="157px" />
+    </a>
+    <br />
+    {{
+        html.button({
+            'label': 'View Documentation',
+            'type': 'link',
+            'href': 'https://jadu.gitbooks.io/pulsar/content/text.html'
+        })
+    }}
+
+{% endblock tab_sidebar %}

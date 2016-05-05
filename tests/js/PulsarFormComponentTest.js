@@ -27,7 +27,9 @@ describe('Pulsar Form Component - Select2 elements', function() {
             <label class="control__label">\
                 <input value="foo" name="foo" type="radio" class="form__control qa-foo radio">Foo</label>\
             <label class="control__label">\
-                <input value="bar" name="foo" type="radio"class="form__control radio">Bar</label>\
+                <input value="bar" name="foo" type="radio" class="form__control radio">Bar</label>\
+            <label class="control__label">\
+                <input value="baz" name="foo" type="radio" class="form__control radio" checked>Baz</label>\
         </div>\
     </div>\
 \
@@ -37,7 +39,9 @@ describe('Pulsar Form Component - Select2 elements', function() {
             <label class="control__label">\
                 <input value="foo" name="foo" type="checkbox" class="form__control qa-foo checkbox">Foo</label>\
             <label class="control__label">\
-                <input value="bar" name="foo" type="checkbox"class="form__control checkbox">Bar</label>\
+                <input value="bar" name="foo" type="checkbox" class="form__control checkbox">Bar</label>\
+            <label class="control__label">\
+                <input value="baz" name="foo" type="checkbox" class="form__control checkbox" checked>Baz</label>\
         </div>\
     </div>\
 </form>\
@@ -45,12 +49,16 @@ describe('Pulsar Form Component - Select2 elements', function() {
 
         this.$radioFoo = this.$html.find('.radio[value="foo"]');
         this.$radioBar = this.$html.find('.radio[value="bar"]');
+        this.$radioBaz = this.$html.find('.radio[value="baz"]');
         this.$radioLabelFoo = this.$radioFoo.closest('.control__label');
+        this.$radioLabelBaz = this.$radioBaz.closest('.control__label');
 
         this.$checkFoo = this.$html.find('.checkbox[value="foo"]');
         this.$checkBar = this.$html.find('.checkbox[value="bar"]');
+        this.$checkBaz = this.$html.find('.checkbox[value="baz"]');
         this.$checkLabelFoo = this.$checkFoo.closest('.control__label');
         this.$checkLabelBar = this.$checkBar.closest('.control__label');
+        this.$checkLabelBaz = this.$checkBaz.closest('.control__label');
 
         this.pulsarForm = new PulsarFormComponent(this.$html);
 
@@ -125,6 +133,22 @@ describe('Pulsar Form Component - Select2 elements', function() {
             this.$checkFoo.click();
             this.$checkFoo.click();
             expect(this.$checkLabelFoo.hasClass('is-selected')).to.be.false;
+        });
+
+    });
+
+    describe('Pre-checked choice block inputs', function() {
+
+        beforeEach(function() {
+            this.pulsarForm.init();
+        });
+
+        it('Should have the is-selected class applied (radio)', function() {
+            expect(this.$radioLabelBaz.hasClass('is-selected')).to.be.true;
+        });
+
+        it('Should have the is-selected class applied (checkbox)', function() {
+            expect(this.$checkLabelBaz.hasClass('is-selected')).to.be.true;
         });
 
     });

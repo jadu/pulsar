@@ -1,0 +1,10 @@
+{#
+    Test basic textarea input
+#}
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{{
+    form.textarea({
+        'label': 'foo',
+        'guidance': 'bar'
+    })
+}}

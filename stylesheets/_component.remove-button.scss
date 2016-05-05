@@ -1,26 +1,49 @@
 .remove-button {
-  @extend .btn--naked;
-  background-color: transparent;
-  border: 0;
-  padding: 0;
-  vertical-align: top;
-  white-space: nowrap;
+    background: none;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    color: color(text);
+    display: inline-block;
+    line-height: auto;
+    padding: 0;
+    vertical-align: top;
+    white-space: nowrap;
 
-  [class^="icon-"],
-  [class*=" icon-"] {
-    color: color(gray, light);
-    font-size: 1.2em;
-    vertical-align: middle;
-  }
-
-  &:hover {
     [class^="icon-"],
     [class*=" icon-"] {
-      color: color(black);
+        color: color(gray, light);
+        font-size: 1.2em;
+        vertical-align: middle;
     }
-  }
+
+    &:hover {
+        [class^="icon-"],
+        [class*=" icon-"] {
+            color: color(black);
+        }
+    }
 }
 
 a + .remove-button {
-  margin-left: 10px;
+    margin-left: 10px;
+}
+
+
+[class^="icon-"],
+[class*=" icon-"] {
+    color: color(gray, light);
+    font-size: 1.2em;
+    vertical-align: middle;
+}
+
+&:hover {
+    [class^="icon-"],
+    [class*=" icon-"] {
+        color: color(black);
+    }
+}
+
+a + .remove-button {
+    margin-left: 10px;
 }
