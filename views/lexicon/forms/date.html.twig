@@ -7,48 +7,48 @@
     }}
 
     {{
-        form.text({
-            'label': 'Text field'
+        form.date({
+            'label': 'Date field'
         })
     }}
 
     {{
-        form.text({
-            'label': 'Text field with value',
-            'value': 'My value'
+        form.date({
+            'label': 'Date field with value',
+            'value': '04/07/1981'
         })
     }}
 
     {{
-        form.text({
+        form.date({
             'label': 'Required',
             'required': true
         })
     }}
 
     {{
-        form.text({
+        form.date({
             'label': 'Placeholder',
             'placeholder': 'Oh, hello'
         })
     }}
 
     {{
-        form.text({
-            'label': 'Text field with help',
+        form.date({
+            'label': 'Date field with help',
             'help': 'Help text to give more information about expected input'
         })
     }}
 
     {{
-        form.text({
-            'label': 'Text field with guidance',
+        form.date({
+            'label': 'Date field with guidance',
             'guidance': 'Help text to give more information about expected input'
         })
     }}
 
     {{
-        form.text({
+        form.date({
             'label': 'Required with guidance',
             'guidance': 'Help text to give more information about expected input',
             'required': true
@@ -59,7 +59,7 @@
     {{ form.fieldset_start({ 'legend': 'Alignment' }) }}
 
     {{
-        form.text({
+        form.date({
             'label': 'Text input with a longer than expected label which will probably wrap multple lines and push the following input onto the next baseline',
             'name': 'inputTextLong',
             'placeholder': 'Placeholder',
@@ -69,7 +69,7 @@
     }}
 
     {{
-        form.text({
+        form.date({
             'label': 'Text input with a longer than expected label but this time we use the form__group--top class to keep the label on a single line',
             'class': 'form__group--top',
             'name': 'inputTextLong',
@@ -80,7 +80,7 @@
     }}
 
     {{
-        form.text({
+        form.date({
             'label': 'The same as above, but this time we also add the .form__group--flush class to keep everything on the left edge',
             'class': 'form__group--top form__group--flush',
             'name': 'inputTextLong',
@@ -94,31 +94,31 @@
     {{ form.fieldset_start({ 'legend': 'Errors &amp; Validation' }) }}
 
     {{
-        form.text({
-            'label': 'Text field with error',
+        form.date({
+            'label': 'Date field with error',
             'error': 'Please complete this field'
         })
     }}
 
     {{
-        form.text({
-            'label': 'Text field with multiple errors',
+        form.date({
+            'label': 'Date field with multiple errors',
             'error': ['Do this', 'Do this too']
         })
     }}
 
     {{
-        form.text({
-            'label': 'Text field with error and help',
+        form.date({
+            'label': 'Date field with error and help',
             'error': 'Please complete this field',
             'help': 'Help text to give more information about expected input'
         })
     }}
 
     {{
-        form.text({
+        form.date({
             'class': 'has-error',
-            'label': 'Text field error with help only',
+            'label': 'Date field error with help only',
             'help': 'Help text to give more information about expected input'
         })
     }}
@@ -127,14 +127,14 @@
     {{ form.fieldset_start({ 'legend': 'States' }) }}
 
     {{
-        form.text({
+        form.date({
             'label': '"class": "has-changed"',
             'class': 'has-changed',
             'help': 'Highlight whether an action elsewhere affects an input'
         })
     }}
     {{
-        form.text({
+        form.date({
             'label': '"class": "has-success"',
             'class': 'has-success',
             'help': 'Something good happened'
@@ -142,21 +142,21 @@
     }}
 
     {{
-        form.text({
+        form.date({
             'label': '"class": "has-warning"',
             'class': 'has-warning',
             'help': 'Something bad happened'
         })
     }}
     {{
-        form.text({
+        form.date({
             'label': '"class": "has-error"',
             'class': 'has-error',
             'help': 'Automatically added if using <code>error</code> option'
         })
     }}
     {{
-        form.text({
+        form.date({
             'label': '"disabled": true',
             'disabled': true,
             'help': 'Stop! Can’t touch this'
@@ -167,7 +167,7 @@
     {{ form.fieldset_start({ 'legend': 'Sizes' }) }}
 
     {{
-        form.text({
+        form.date({
             'label': 'Mini',
             'id': 'inputTextMini',
             'class': 'form__group--mini',
@@ -176,7 +176,7 @@
     }}
 
     {{
-        form.text({
+        form.date({
             'label': 'Small',
             'id': 'inputTextSmall',
             'class': 'form__group--small',
@@ -185,7 +185,7 @@
     }}
 
     {{
-        form.text({
+        form.date({
             'label': 'Medium',
             'id': 'inputTextMedium',
             'class': 'form__group--medium',
@@ -194,7 +194,7 @@
     }}
 
     {{
-        form.text({
+        form.date({
             'label': 'Regular',
             'id': 'inputTextRegular',
             'name': 'inputTextRegular'
@@ -202,7 +202,7 @@
     }}
 
     {{
-        form.text({
+        form.date({
             'label': 'Large',
             'id': 'inputTextLarge',
             'class': 'form__group--large',
@@ -211,7 +211,7 @@
     }}
 
     {{
-        form.text({
+        form.date({
             'label': 'Extra Large',
             'id': 'inputTextXLarge',
             'class': 'form__group--xlarge',
@@ -220,7 +220,7 @@
     }}
 
     {{
-        form.text({
+        form.date({
             'label': 'Full',
             'id': 'inputTextFull',
             'class': 'form__group--full',
@@ -232,32 +232,32 @@
     {{ form.fieldset_start({ 'legend': 'Appended &amp; Prepended' }) }}
 
     {{
-        form.text({
+        form.date({
             'label': 'Prepended',
-            'prepend': '£'
+            'prepend': html.icon('calendar')
         })
     }}
 
     {{
-        form.text({
+        form.date({
             'label': 'Appended',
-            'append': '.00'
+            'append': html.icon('calendar')
         })
     }}
 
     {{
-        form.text({
+        form.date({
             'label': 'Appended with guidance',
-            'append': '.00',
+            'append': html.icon('calendar'),
             'guidance': 'Help text to give more information about expected input'
         })
     }}
 
     {{
-        form.text({
+        form.date({
             'label': 'Prepended &amp; Appended',
-            'append': '.00',
-            'prepend': '£'
+            'append': html.icon('calendar'),
+            'prepend': html.icon('calendar')
         })
     }}
 

@@ -1,0 +1,10 @@
+{#
+    Test basic text input
+#}
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{{
+    form.text({
+        'label': 'foo',
+        'guidance': 'foo <span class="bar">bar</span>'
+    })
+}}

@@ -84,7 +84,7 @@
     }
   }
 
-  > .form__group {
+  .form__group {
     padding: 0;
 
     @include respond-min($screen-desktop) {

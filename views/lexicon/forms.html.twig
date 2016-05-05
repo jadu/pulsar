@@ -9,8 +9,18 @@
 
 {% set heading = 'Form Helpers' %}
 
-{% set tab_text %}{% include 'lexicon/forms/text.html.twig' %}{% endset %}
+{% set tab_buttongroup %}{% include 'lexicon/forms/button-group.html.twig' %}{% endset %}
+{% set tab_checkbox %}{% include 'lexicon/forms/checkbox.html.twig' %}{% endset %}
+{% set tab_date %}{% include 'lexicon/forms/date.html.twig' %}{% endset %}
+{% set tab_password %}{% include 'lexicon/forms/password.html.twig' %}{% endset %}
 {% set tab_choice %}{% include 'lexicon/forms/choice.html.twig' %}{% endset %}
+{% set tab_file %}{% include 'lexicon/forms/file.html.twig' %}{% endset %}
+{% set tab_radio %}{% include 'lexicon/forms/radio.html.twig' %}{% endset %}
+{% set tab_select %}{% include 'lexicon/forms/select.html.twig' %}{% endset %}
+{% set tab_select2 %}{% include 'lexicon/forms/select2.html.twig' %}{% endset %}
+{% set tab_text %}{% include 'lexicon/forms/text.html.twig' %}{% endset %}
+{% set tab_textarea %}{% include 'lexicon/forms/textarea.html.twig' %}{% endset %}
+{% set tab_toggleswitch %}{% include 'lexicon/forms/toggle-switch.html.twig' %}{% endset %}
 
 {%
     set nav_data = {
@@ -55,15 +65,65 @@
 {%
     set tabs_content = [
         {
+          "id"    : "buttongroup",
+          "label" : "Button Group",
+          "src"   : tab_buttongroup
+        },
+        {
+          "id"    : "checkbox",
+          "label" : "Checkbox",
+          "src"   : tab_checkbox
+        },
+        {
           "id"    : "choice",
           "label" : "Choice",
-          "src"   : tab_choice,
+          "src"   : tab_choice
+        },
+        {
+          "id"    : "date",
+          "label" : "Date",
+          "src"   : tab_date,
           "active": true
+        },
+        {
+          "id"    : "file",
+          "label" : "File",
+          "src"   : tab_file
+        },
+        {
+          "id"    : "radio",
+          "label" : "Radio",
+          "src"   : tab_radio
+        },
+        {
+          "id"    : "select",
+          "label" : "Select",
+          "src"   : tab_select
+        },
+        {
+          "id"    : "select2",
+          "label" : "Select2",
+          "src"   : tab_select2
+        },
+        {
+          "id"    : "password",
+          "label" : "Password",
+          "src"   : tab_password
         },
         {
           "id"    : "text",
           "label" : "Text",
           "src"   : tab_text
+        },
+        {
+          "id"    : "textarea",
+          "label" : "Textarea",
+          "src"   : tab_textarea
+        },
+        {
+          "id"    : "toggleswitch",
+          "label" : "Toggle Switch",
+          "src"   : tab_toggleswitch
         }
     ]
 %}

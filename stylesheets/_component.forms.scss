@@ -29,7 +29,7 @@ fieldset {
         border: 0;
         height: auto;
         padding: 0;
-        vertical-align: middle;
+        vertical-align: baseline;
     }
 
     &.select,
@@ -138,8 +138,14 @@ fieldset {
     padding-right: 10px;
 }
 
-.form__group--top .control__label {
-    margin-bottom: .5em;
+.form__group--top {
+    > .control__label {
+        margin-bottom: .5em;
+    }
+
+    .controls > .form__control {
+        display: inline-block;
+    }
 }
 
 .legend {
@@ -270,6 +276,10 @@ $inputs: (
     .form__control:checked + .control__label {
         @extend .btn:active;
     }
+
+    .btn__group {
+        vertical-align: top;
+    }
 }
 
 // Loading spinner (mainly for select/select2 elements)
@@ -291,10 +301,19 @@ $inputs: (
     width: 10px;
 }
 
+.form-checkbox .checkbox,
+.form-radio .radio {
+    margin-top: 17px;
+}
+
 // Make sure checkboxes and radios reduce the label's clickable area to the
 // width of the label only
 .form-checkbox-inline,
 .form-radio-inline {
+    > .controls {
+        width: 100%;
+    }
+
     > .controls > .control__label {
         display: inline-block;
     }

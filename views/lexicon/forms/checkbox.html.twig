@@ -1,0 +1,171 @@
+{% extends '@pulsar/pulsar/components/tab.html.twig' %}
+
+{% block tab_content %}
+
+    {{
+        form.create()
+    }}
+
+    {{
+        form.checkbox({
+            'label': 'Checkbox'
+        })
+    }}
+
+    {{
+        form.checkbox({
+            'label': 'Checkbox checked',
+            'checked': true
+        })
+    }}
+
+    {{
+        form.checkbox({
+            'label': 'Required',
+            'required': true
+        })
+    }}
+
+    {{
+        form.checkbox({
+            'label': 'Checkbox with help',
+            'help': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{
+        form.checkbox({
+            'label': 'Checkbox with guidance',
+            'guidance': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{ form.fieldset_start({ 'legend': 'Alternative alignments with inline checkboxes' }) }}
+
+    {{
+        form.checkbox_inline({
+            'label': 'Checkbox inline'
+        })
+    }}
+
+    {{
+        form.checkbox_inline({
+            'label': 'Checkbox inline plus extras',
+            'help': 'Help text to give more information about expected input',
+            'guidance': 'Help text to give more information about expected input',
+            'required': true
+        })
+    }}
+
+    {{
+        form.checkbox_inline({
+            'label': 'Checkbox inline and indented',
+            'class': 'form__group--indent form__group--full'
+        })
+    }}
+
+    {{
+        form.checkbox_inline({
+            'label': 'Checkbox inline, indented plus extras',
+            'class': 'form__group--indent form__group--full',
+            'help': 'Help text to give more information about expected input',
+            'guidance': 'Help text to give more information about expected input',
+            'required': true
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'Errors &amp; Validation' }) }}
+
+    {{
+        form.checkbox({
+            'label': 'Checkbox with error',
+            'error': 'Please complete this field'
+        })
+    }}
+
+    {{
+        form.checkbox({
+            'label': 'Checkbox with multiple errors',
+            'error': ['Do this', 'Do this too']
+        })
+    }}
+
+    {{
+        form.checkbox({
+            'label': 'Checkbox with error and help',
+            'error': 'Please complete this field',
+            'help': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{
+        form.checkbox({
+            'class': 'has-error',
+            'label': 'Checkbox error with help only',
+            'help': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'States' }) }}
+
+    {{
+        form.checkbox({
+            'label': '"class": "has-changed"',
+            'class': 'has-changed',
+            'help': 'Highlight whether an action elsewhere affects an input'
+        })
+    }}
+    {{
+        form.checkbox({
+            'label': '"class": "has-success"',
+            'class': 'has-success',
+            'help': 'Something good happened'
+        })
+    }}
+
+    {{
+        form.checkbox({
+            'label': '"class": "has-warning"',
+            'class': 'has-warning',
+            'help': 'Something bad happened'
+        })
+    }}
+    {{
+        form.checkbox({
+            'label': '"class": "has-error"',
+            'class': 'has-error',
+            'help': 'Automatically added if using <code>error</code> option'
+        })
+    }}
+    {{
+        form.checkbox({
+            'label': '"disabled": true',
+            'disabled': true,
+            'help': 'Stop! Can’t touch this'
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+
+    {{
+        form.end()
+    }}
+
+{% endblock tab_content %}
+
+{% block tab_sidebar %}
+    <a href="https://jadu.gitbooks.io/pulsar/content/text.html">
+        <img src="../../../images/cover.png" alt="Pulsar documentation front cover" width="157px" />
+    </a>
+    <br />
+    {{
+        html.button({
+            'label': 'View Documentation',
+            'type': 'link',
+            'href': 'https://jadu.gitbooks.io/pulsar/content/text.html'
+        })
+    }}
+
+{% endblock tab_sidebar %}
