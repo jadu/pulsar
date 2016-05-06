@@ -23,47 +23,47 @@ $FontAwesomePath: '../libs/font-awesome/font/';
 @import '../libs/font-awesome/scss/font-awesome';
 
 // Mixins
-@import '_mixin.border-radius';
-@import '_mixin.clear-fix';
-@import '_mixin.content-box';
-@import '_mixin.css-arrow';
-@import '_mixin.hide-text';
-@import '_mixin.inline-block';
-@import '_mixin.label-variant';
-@import '_mixin.media-queries';
-@import '_mixin.mixins-to-organise';
+@import 'mixin.border-radius';
+@import 'mixin.clear-fix';
+@import 'mixin.content-box';
+@import 'mixin.css-arrow';
+@import 'mixin.hide-text';
+@import 'mixin.inline-block';
+@import 'mixin.label-variant';
+@import 'mixin.media-queries';
+@import 'mixin.mixins-to-organise';
 
 // Config
-@import '_config.variables';
-@import '_config.fonts';
-@import '_config.branding';
+@import 'config.variables';
+@import 'config.fonts';
+@import 'config.branding';
 
 // Functions
-@import '_function.math';
-@import '_function.color-luminance';
-@import '_function.pick-best-color';
-@import '_function.color';
+@import 'function.math';
+@import 'function.color-luminance';
+@import 'function.pick-best-color';
+@import 'function.color';
 
 // Base colour palette
-@import '_palette.base';
+@import 'palette.base';
 
 // Apply palette to components
-@import '_config.theme';
+@import 'config.theme';
 
 // Deprecated styles soon to disappear
-@import '_deprecated.styles.scss';
+@import 'deprecated.styles';
 
 // Structure
-@import '_structure.grid';
-@import '_structure.columns';
-@import '_structure.scaffolding';
-@import '_structure.type';
-@import '_structure.forms';
+@import 'structure.grid';
+@import 'structure.columns';
+@import 'structure.scaffolding';
+@import 'structure.type';
+@import 'structure.forms';
 
 // Layouts
-@import '_layout.sidebar';
-@import '_layout.signin';
-@import '_layout.tabs';
+@import 'layout.sidebar';
+@import 'layout.signin';
+@import 'layout.tabs';
 
 /* -------------------------------------------------------------------------- *\
 	If you're theming Pulsar and want to include your own variables, colours or
@@ -71,69 +71,69 @@ $FontAwesomePath: '../libs/font-awesome/font/';
 \* -------------------------------------------------------------------------- */
 
 // Objects
-@import 'objects/_object.media';
+@import 'objects/object.media';
 
 // Components
-@import '_component.actionsbar';
-@import '_component.autosave';
-@import '_component.badges';
-@import '_component.block-list';
-@import '_component.breadcrumb';
-@import '_component.button-groups';
-@import '_component.buttons';
-@import '_component.choice-matrix';
-@import '_component.close';
-@import '_component.datatables';
-@import '_component.datepicker';
-@import '_component.daterange';
-@import '_component.decks';
-@import '_component.dropdowns';
-@import '_component.edit-button';
-@import '_component.editor';
-@import '_component.flash';
-@import '_component.footer';
-@import '_component.forms';
-@import '_component.choice';
-@import '_component.greeter';
-@import '_component.icons';
-@import '_component.input-groups';
-@import '_component.label-groups';
-@import '_component.labels';
-@import '_component.lists';
-@import '_component.loading';
-@import '_component.login';
-@import '_component.masterswitch';
-@import '_component.message';
-@import '_component.metadata';
-@import '_component.modals';
-@import '_component.navigation';
-@import '_component.nav-list';
-@import '_component.navbars';
-@import '_component.notifications';
-@import '_component.pagination';
-@import '_component.panels';
-@import '_component.piano';
-@import '_component.popovers';
-@import '_component.progress-bars';
-@import '_component.progress-lists';
-@import '_component.remove-button';
-@import '_component.repeatable';
-@import '_component.richer-list';
-@import '_component.search';
-@import '_component.select2';
-@import '_component.settings';
-@import '_component.signin';
-@import '_component.status';
-@import '_component.summary';
-@import '_component.tab-help';
-@import '_component.tab-panel';
-// @import '_component.tables';
-@import '_component.toggle-switch';
-@import '_component.toolbar';
-@import '_component.tooltips';
-@import '_component.tour';
-@import '_component.uploader';
-@import '_component.widget';
+@import 'component.actionsbar';
+@import 'component.autosave';
+@import 'component.badges';
+@import 'component.block-list';
+@import 'component.breadcrumb';
+@import 'component.button-groups';
+@import 'component.buttons';
+@import 'component.choice-matrix';
+@import 'component.close';
+@import 'component.datatables';
+@import 'component.datepicker';
+@import 'component.daterange';
+@import 'component.decks';
+@import 'component.dropdowns';
+@import 'component.edit-button';
+@import 'component.editor';
+@import 'component.flash';
+@import 'component.footer';
+@import 'component.forms';
+@import 'component.choice';
+@import 'component.greeter';
+@import 'component.icons';
+@import 'component.input-groups';
+@import 'component.label-groups';
+@import 'component.labels';
+@import 'component.lists';
+@import 'component.loading';
+@import 'component.login';
+@import 'component.masterswitch';
+@import 'component.message';
+@import 'component.metadata';
+@import 'component.modals';
+@import 'component.navigation';
+@import 'component.nav-list';
+@import 'component.navbars';
+@import 'component.notifications';
+@import 'component.pagination';
+@import 'component.panels';
+@import 'component.piano';
+@import 'component.popovers';
+@import 'component.progress-bars';
+@import 'component.progress-lists';
+@import 'component.remove-button';
+@import 'component.repeatable';
+@import 'component.richer-list';
+@import 'component.search';
+@import 'component.select2';
+@import 'component.settings';
+@import 'component.signin';
+@import 'component.status';
+@import 'component.summary';
+@import 'component.tab-help';
+@import 'component.tab-panel';
+// @import 'component.tables';
+@import 'component.toggle-switch';
+@import 'component.toolbar';
+@import 'component.tooltips';
+@import 'component.tour';
+@import 'component.uploader';
+@import 'component.widget';
 
 /* -------------------------------------------------------------------------- *\
 	If you're extending Pulsar and want to include your own layouts/modules etc
@@ -141,15 +141,15 @@ $FontAwesomePath: '../libs/font-awesome/font/';
 \* -------------------------------------------------------------------------- */
 
 // Utilities
-@import '_utility.baseline';
-@import '_utility.highlight';
-@import '_utility.misc';
-@import '_utility.utilities';
-@import '_utility.states';
-@import '_utility.swatches';
+@import 'utility.baseline';
+@import 'utility.highlight';
+@import 'utility.misc';
+@import 'utility.utilities';
+@import 'utility.states';
+@import 'utility.swatches';
 
 // @import '../libs/datatables-responsive/css/dataTables.responsive';
 
 // Overrides and fixes
-@import '_override.shame';
-@import '_override.tour';
+@import 'override.shame';
+@import 'override.tour';
