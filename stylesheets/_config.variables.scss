@@ -179,7 +179,7 @@ $toolbar-internal-height:             ($toolbar-height - $toolbar-accent-height)
 //  Search
 // -----------------------------------------------------------------------------
 
-$search-border-radius:                0px !default;
+$search-border-radius:                0 !default;
 $search-form-height:                  $toolbar-height !default;
 $search-height:                       44px !default;
 $search-form-margin:                  ($search-form-height - $search-height - $toolbar-accent-height) / 2 0;
