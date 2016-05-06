@@ -131,8 +131,8 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
         list-style: none;
         background-color: #fff;
         border: 1px solid #ccc;
-        border: 1px solid rgba(0, 0, 0, 0.15);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+        border: 1px solid rgba(0, 0, 0, .15);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
         background-clip: padding-box;
         min-width: 160px;
 
@@ -266,13 +266,13 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
     .nav-items,
     .jadu-branding {
         -webkit-transform-origin: 50% 0%;
-        -webkit-transform: translate3d(70%, 0, 0) scale3d(0.9, 0.9, 0.9);
+        -webkit-transform: translate3d(70%, 0, 0) scale3d(.9, .9, .9);
         -webkit-transition-delay: ease, 0s;
         -webkit-transition: opacity 300ms 100ms, -webkit-transform 500ms ease;
         filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
-        opacity: 0.7;
+        opacity: .7;
         transform-origin: 50% 0%;
-        transform: translate3d(70%, 0, 0) scale3d(0.9, 0.9, 0.9);
+        transform: translate3d(70%, 0, 0) scale3d(.9, .9, .9);
         transition: opacity 300ms 100ms ease, transform 500ms ease;
 
         @include respond-min($screen-desktop) {

@@ -147,7 +147,7 @@ html, body {
 }
 
 .signin__inner {
-	transition: background-color 0.5s, margin-left 0.5s;
+	transition: background-color .5s, margin-left .5s;
 	float: left;
 	width: 1210px;
 
@@ -205,7 +205,7 @@ html, body {
 .signin__panel {
 	float: left;
 	text-align: center;
-	transition: opacity 0.5s, z-index 0.5s;
+	transition: opacity .5s, z-index .5s;
 	width: $signin-mobile-width;
 
 	@include respond-min($screen-tablet) {

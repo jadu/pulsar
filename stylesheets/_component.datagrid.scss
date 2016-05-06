@@ -136,7 +136,7 @@
     height: auto;
     padding-top: $padding-small-vertical;
     position: absolute;
-    left: $gutter-width * 0.75;
+    left: $gutter-width * .75;
     width: auto;
 
     @include respond-max($screen-tablet) {
