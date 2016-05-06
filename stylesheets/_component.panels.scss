@@ -34,51 +34,6 @@
         vertical-align: baseline;
     }
 
-    &--danger  {
-        background-color: color(danger);
-        color: color(white);
-
-        .btn--outline {
-            box-shadow: inset 0 0 0 2px color(danger, alt);
-        }
-    }
-
-    &--info    {
-        background-color: color(info);
-        color: color(black);
-
-        .btn--outline {
-            box-shadow: inset 0 0 0 2px color(info, alt);
-        }
-    }
-
-    &--inverse {
-        background-color: color(inverse);
-        color: color(white);
-
-        .btn--outline {
-            box-shadow: inset 0 0 0 2px color(inverse, alt);
-        }
-    }
-
-    &--success {
-        background-color: color(success);
-        color: color(white);
-
-        .btn--outline {
-            box-shadow: inset 0 0 0 2px color(success, alt);
-        }
-    }
-
-    &--warning {
-        background-color: color(warning);
-        color: color(black);
-
-        .btn--outline {
-            box-shadow: inset 0 0 0 2px color(warning, alt);
-        }
-    }
-
     a {
         font-family: $font-family-regular;
 
@@ -97,6 +52,21 @@
     }
 
 }
+
+@each $state, $state-color, $state-color-alt in $state-colors {
+        .panel--#{$state} {
+            background-color: $state-color;
+            color: $state-color-alt;
+
+            .btn--outline {
+                box-shadow: inset 0 0 0 2px $state-color-alt;
+            }
+
+            a {
+                color: $state-color-alt;
+            }
+        }
+    }
 
 .form-v2 > .panel:first-of-type {
     margin-top: 0;
