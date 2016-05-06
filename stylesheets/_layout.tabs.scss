@@ -163,7 +163,7 @@
 
 .tabs__list .new {
   background-color: color(primary);
-  border-bottom: none;
+  border-bottom: 0;
   height: $line-height-base * 1.75;
 
   input {

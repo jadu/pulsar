@@ -144,8 +144,8 @@
 // Remove the box-shadow and borders from btns
 .btn__group > .btn__group > .btn {
     box-shadow: none;
-    border-right: none;
-    border-left: none;
+    border-right: 0;
+    border-left: 0;
 }
 
 // Add the box-shadow to the nested .btn__group rather than the .btn

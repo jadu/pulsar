@@ -207,7 +207,7 @@
 .btn--naked > .btn,
 .btn--naked > .btn:active {
     background: none;
-    border: none;
+    border: 0;
     box-shadow: none;
     color: color(text);
     display: inline-block;
@@ -229,7 +229,7 @@
 .btn--naked > .btn {
     @include ie-lte(8) {
         background: none;
-        border: none;
+        border: 0;
         box-shadow: none;
     }
 }

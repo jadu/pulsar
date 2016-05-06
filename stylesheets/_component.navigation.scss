@@ -396,7 +396,7 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
 
 .nav-search__submit {
     background: none;
-    border: none;
+    border: 0;
     color: #555;
     position: absolute;
     left: 180px;

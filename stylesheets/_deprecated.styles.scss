@@ -87,7 +87,7 @@ tr.filters {
 tr.is-collapsed {
 
   td, th {
-    border: none;
+    border: 0;
     height: 0;
 
     > div {
@@ -339,7 +339,7 @@ $state-colors: ('base', $base-color, $base-color-alt),
       > li.is-active > a {
         background-color: $white;
         border: 1px solid $gray;
-        border-right: none;
+        border-right: 0;
         z-index: 1;
         &:hover {
           background-color: $gray-lighter;
@@ -374,7 +374,7 @@ $state-colors: ('base', $base-color, $base-color-alt),
 
       > li.is-active > a {
         border: 1px solid $gray;
-        border-bottom: none;
+        border-bottom: 0;
       }
 
       + .tabs__content {
@@ -538,7 +538,7 @@ $state-colors: ('base', $base-color, $base-color-alt),
 
     .tabs__list .new {
       background-color: $primary-color;
-      border-bottom: none;
+      border-bottom: 0;
       height: $line-height-base * 1.75;
 
       input {

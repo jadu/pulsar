@@ -57,11 +57,11 @@
     line-height: 0;
 
     tr:last-of-type & {
-        border-bottom: none;
+        border-bottom: 0;
     }
 
     &:last-of-type {
-        border-right: none;
+        border-right: 0;
     }
 
     label {

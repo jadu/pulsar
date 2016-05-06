@@ -83,7 +83,7 @@
   width: 20px;
 
   @include ie-lte(8) {
-   border: none;
+   border: 0;
    text-indent: 0;
   }
 }
