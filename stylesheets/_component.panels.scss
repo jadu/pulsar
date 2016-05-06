@@ -29,29 +29,54 @@
         }
     }
 
+    .btn--outline {
+        box-shadow: inset 0 0 0 2px color(base, alt);
+        vertical-align: baseline;
+    }
+
     &--danger  {
         background-color: color(danger);
         color: color(white);
+
+        .btn--outline {
+            box-shadow: inset 0 0 0 2px color(danger, alt);
+        }
     }
 
     &--info    {
         background-color: color(info);
         color: color(black);
+
+        .btn--outline {
+            box-shadow: inset 0 0 0 2px color(info, alt);
+        }
     }
 
     &--inverse {
         background-color: color(inverse);
         color: color(white);
+
+        .btn--outline {
+            box-shadow: inset 0 0 0 2px color(inverse, alt);
+        }
     }
 
     &--success {
         background-color: color(success);
         color: color(white);
+
+        .btn--outline {
+            box-shadow: inset 0 0 0 2px color(success, alt);
+        }
     }
 
     &--warning {
         background-color: color(warning);
         color: color(black);
+
+        .btn--outline {
+            box-shadow: inset 0 0 0 2px color(warning, alt);
+        }
     }
 
     a {
@@ -65,10 +90,10 @@
             color: inherit;
         }
 
-        &,
-        &:visited {
-            opacity: .8;
-        }
+        // &,
+        // &:visited {
+        //     opacity: .8;
+        // }
     }
 
 }
