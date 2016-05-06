@@ -153,7 +153,7 @@ $greeter-brand-bottom-height:           40px !default;
 
 
   &__form {
-    margin: 2em auto 0 auto;
+    margin: 2em auto 0;
     overflow: visible;
     text-align: right; /* [1] */
     max-width: $greeter-form-width-max;
@@ -216,7 +216,7 @@ $greeter-brand-bottom-height:           40px !default;
     border-radius: 4px;
     font-size: $greeter-font-size-small;
     line-height: 1em;
-    padding: 10px 10px 7px 10px;
+    padding: 10px 10px 7px;
     position: relative; /* [10] */
 
     &:hover:not(:disabled) { /* [11] */

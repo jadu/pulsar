@@ -67,7 +67,7 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
         font-size: 1.1em;
         line-height: 46px;
         margin-right: 20px;
-        padding: 0 15px 0;
+        padding: 0 15px;
 
         &:last-of-type {
             margin-right: 0;
@@ -240,7 +240,7 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
         font-size: .75em;
         line-height: 1em;
         max-width: 75px;
-        padding: 16px 5px 0 5px;
+        padding: 16px 5px 0;
         position: relative;
         text-overflow: ellipsis;
         transition: background-color 50ms linear, color 50ms linear;
@@ -361,7 +361,7 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
 
 .jadu-branding {
     display: block;
-    margin: 10px 0 4px 0;
+    margin: 10px 0 4px;
     text-decoration: none;
 
     &.is-active {
@@ -406,7 +406,7 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
 .nav-close {
     color: white;
     display: block;
-    padding: 0 20px 23px 20px;
+    padding: 0 20px 23px;
     text-decoration: none;
     margin-top: 24px;
     text-align: right;

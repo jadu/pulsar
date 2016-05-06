@@ -62,7 +62,7 @@
 .table__td {
     border-bottom: 1px solid color(border);
     height: $line-height-large;
-    padding: 11.5px 10px 12px 10px;
+    padding: 11.5px 10px 12px;
     text-align: left;
     white-space: nowrap;
 
@@ -263,7 +263,7 @@
 .datatable .child {
     background-color: #efefef;
     border-bottom: 1px solid color(border);
-    padding: 11.5px 0 12px 0;
+    padding: 11.5px 0 12px;
 }
 
 // .dtr-inline.collapsed .parent .table__td:first-child:before {

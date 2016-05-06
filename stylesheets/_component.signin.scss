@@ -61,7 +61,7 @@ html, body {
 	color: white;
 	margin: 0 auto;
 	min-height: 350px;
-	padding: 0 0 10px 0;
+	padding: 0 0 10px;
 	opacity: 1;
 	overflow: hidden;
 	position: relative;
@@ -71,7 +71,7 @@ html, body {
 
 	@include respond-min($screen-tablet) {
 		min-height: 320px;
-		padding: 0 0 20px 0;
+		padding: 0 0 20px;
 		width: $signin-full-width;
 	}
 
@@ -214,7 +214,7 @@ html, body {
 }
 
 .signin__actions {
-	margin: 0 auto 1em auto;
+	margin: 0 auto 1em;
 }
 
 .signin__input {
@@ -223,7 +223,7 @@ html, body {
 	box-shadow: inset 0 3px 0 #efefef;
 	border-radius: 2px;
 	display: inline-block;
-	margin: 0 auto 1em auto;
+	margin: 0 auto 1em;
 	padding: 10px;
 	width: 80%;
 }
@@ -234,7 +234,7 @@ html, body {
 	display: inline-block;
 	font-family: courier;
 	letter-spacing: 5px;
-	margin: 0 5px 1em 5px;
+	margin: 0 5px 1em;
 	padding: 10px 10px 10px 12px;
 	width: 20%;
 
@@ -341,7 +341,7 @@ html, body {
 	background-repeat: no-repeat;
 	border-radius: $branding-site-radius;
 	display: inline-block;
-	margin: 20px auto 0 auto;
+	margin: 20px auto 0;
 	text-align: center;
 	height: $branding-site-height;
 	width: $branding-site-width;
@@ -518,7 +518,7 @@ html, body {
 
 #recaptcha_widget_div {
 	display: inline-block;
-	margin: 0 auto 1em auto;
+	margin: 0 auto 1em;
 }
 
 .signin-twostep-help {
