@@ -4,6 +4,7 @@ $module-permissions-breakpoint: $screen-tablet;
     border-top: 1px solid color(gray, lighter);
     float: left;
     margin-bottom: 1em;
+    width: 70%;
 }
 
 .module {
@@ -15,6 +16,7 @@ $module-permissions-breakpoint: $screen-tablet;
         display: inline-block;
         line-height: 44px;
         padding: 0 10px;
+        user-select: none;
     }
 
     .form__control.checkbox {
@@ -102,16 +104,12 @@ $module-permissions-breakpoint: $screen-tablet;
 .crud__permission {
     border-radius: 4px;
     cursor: pointer;
-    padding: 0 5px;
-    line-height: 44px;
+    height: 42px;
+    line-height: 42px;
     margin: 4px 2px;
-    height: 44px;
-
+    padding: 0 10px;
     transition: background-color .2s linear;
-
-    @include respond-min($module-permissions-breakpoint) {
-        padding: 0;
-    }
+    user-select: none;
 
     &:hover {
         background-color: rgba(0, 0, 0, .05);
@@ -125,11 +123,29 @@ $module-permissions-breakpoint: $screen-tablet;
 
     > span {
         display: inline-block;
-        line-height: 44px;
+        line-height: 42px;
+        vertical-align: bottom;
+    }
 
-        @include respond-min($module-permissions-breakpoint) {
-            display: none;
+    &.is-checked {
+        background-color: color(jadu-green, pale);
+
+        &:hover {
+            background-color: darken(color(jadu-green, pale), 5);
         }
+    }
+
+    &.is-indeterminate {
+        background-color: lighten(color(warning), 20);
+
+        &:hover {
+            background-color: lighten(color(warning), 15);
+        }
+    }
+
+    &.is-disabled {
+        color: color(text, disabled);
+        cursor: not-allowed;
     }
 }
 
@@ -142,18 +158,3 @@ $module-permissions-breakpoint: $screen-tablet;
     }
 }
 
-.is-checked {
-    background-color: color(jadu-green, pale);
-
-    &:hover {
-        background-color: darken(color(jadu-green, pale), 5);
-    }
-}
-
-.is-indeterminate {
-    background-color: lighten(color(warning), 20);
-
-    &:hover {
-        background-color: lighten(color(warning), 15);
-    }
-}
