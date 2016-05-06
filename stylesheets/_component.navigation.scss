@@ -413,7 +413,7 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
     width: 100%;
 
     &:hover i:before {
-        content: "\f0a8";
+        content: '\f0a8';
         color: white;
     }
 }

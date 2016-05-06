@@ -15,7 +15,7 @@
   border-top-color: $dropdown-caret-color;
   border-right: 4px solid transparent;
   border-left:  4px solid transparent;
-  content: "";
+  content: '';
 }
 
 // The dropdown wrapper (div)
@@ -186,7 +186,7 @@
     border-top: 0;
     border-bottom: 4px solid;
     border-bottom-color: $dropdown-caret-color;
-    content: "";
+    content: '';
   }
   // Different positioning for bottom up menu
   .dropdown__menu {

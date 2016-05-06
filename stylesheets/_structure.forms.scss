@@ -92,7 +92,7 @@ $control-column-width: 75%;
 
   // Create a 'fake' label to fill the gap left by a missing label element which removes the need to leave empty elements in the markup
   .controls:before {
-    content: "\00a0";
+    content: '\00a0';
     display: table-cell;
     float: left;
     width: $label-column-width;
