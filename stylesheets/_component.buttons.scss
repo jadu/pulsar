@@ -238,9 +238,13 @@
 }
 
 .btn--outline {
-    background-color: transparent;
     box-shadow: inset 0 0 0 2px color(base);
     border: 0;
+
+    &,
+    &:active {
+        background-color: transparent;
+    }
 
     &:hover {
         top: 1px;
