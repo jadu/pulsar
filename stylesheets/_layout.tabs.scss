@@ -41,14 +41,14 @@
     transition: transform 500ms ease;
     width: 100%;
 
-    .lt-ie10 & {
-        left: 0;
-    }
-
     @include respond-min($screen-desktop) {
         display: table-row;
         left: auto;
         position: static;
+    }
+
+    .lt-ie10 & {
+        left: 0;
     }
 }
 

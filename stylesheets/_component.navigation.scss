@@ -15,10 +15,6 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
     width: 75px;
     z-index: 3;
 
-    .lt-ie10 & {
-        left: -75px;
-    }
-
     @include respond-min($screen-desktop) {
         left: auto;
         position: static;
@@ -26,6 +22,10 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
         transform: none;
         -webkit-backface-visibility: visible;
         backface-visibility: visible;
+    }
+
+    .lt-ie10 & {
+        left: -75px;
     }
 }
 

@@ -19,9 +19,9 @@
 
   a,
   span {
+    @include inline-block;
     color: color(text);
     font-family: $font-family-regular;
-    @include inline-block;
     line-height: $line-height-base * 1.75;
     padding: 0 $gutter-width;
     text-align: center;

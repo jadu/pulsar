@@ -86,11 +86,11 @@ dt {
 // Horizontal layout (like forms)
 .dl-horizontal {
     dt {
+        @include text-overflow();
         float: left;
         width: ($component-offset - 20);
         clear: left;
         text-align: right;
-        @include text-overflow();
     }
 
     dd {

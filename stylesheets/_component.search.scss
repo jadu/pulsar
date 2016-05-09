@@ -30,13 +30,13 @@ input.main-search__field {
     width: 100%;
     z-index: 2;
 
-    &::-webkit-input-placeholder {
-        color: #555;
-    }
-
     @include respond-min($screen-tablet) {
         display: inline-block;
         width: 180px;
+    }
+
+    &::-webkit-input-placeholder {
+        color: #555;
     }
 }
 

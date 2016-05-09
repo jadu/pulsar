@@ -5,6 +5,7 @@
 
 // Base class
 .tooltip {
+  @include opacity(0);
   position: absolute;
   z-index: $zindex-tooltip;
   display: block;
@@ -12,7 +13,6 @@
   font-size: $font-size-small;
   font-family: $font-family-base;
   line-height: 1.2;
-  @include opacity(0);
 
   &.in { @include opacity(1); }
 

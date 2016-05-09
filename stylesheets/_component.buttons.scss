@@ -27,6 +27,7 @@
  */
 
 .btn {
+    @include inline-block;
     -webkit-appearance: none; /* 1 */
     background: transparent;
     border: 0;
@@ -35,7 +36,6 @@
     box-sizing: border-box; /* 2 */
     color: inherit; /* 3 */
     cursor: pointer;
-    @include inline-block;
     font-size: 14px;
     font-weight: normal;
     line-height: normal; /* 4 */

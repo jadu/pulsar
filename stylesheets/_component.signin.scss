@@ -69,15 +69,13 @@ body {
 	top: 5em;
 	width: $signin-mobile-width;
 	zoom: 1;
+	transition: background-color .25s;
 
 	@include respond-min($screen-tablet) {
 		min-height: 320px;
 		padding: 0 0 20px;
 		width: $signin-full-width;
 	}
-
-	transition: background-color .25s;
-
 
 	&--error {
 		background-color: color(danger);

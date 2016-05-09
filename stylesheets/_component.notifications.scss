@@ -42,6 +42,10 @@
     position: relative; // stop is-new indicator wandering off when parents switch to static position
     text-decoration: none;
 
+    @include respond-min($screen-phone) {
+        padding: 2px 0 0;
+    }
+
     &,
     &:link,
     &:visited {
@@ -50,10 +54,6 @@
 
     &:hover {
         color: color(text);
-    }
-
-    @include respond-min($screen-phone) {
-        padding: 2px 0 0;
     }
 
     &.is-active {

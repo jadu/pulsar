@@ -1,14 +1,13 @@
 .nav-item {
+    @include user-select(none);
     display: inline-block;
+    position: relative;
+    font-size: 1.1em;
+    height: $toolbar-height;
 
   @include respond-max($screen-phone) {
     display: none;
   }
-
-    position: relative;
-    font-size: 1.1em;
-    height: $toolbar-height;
-    @include user-select(none);
 
     > a {
         color: $toolbar-link-color;

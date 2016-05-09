@@ -31,19 +31,17 @@
 
     th,
     td {
+      height: floor($line-height-base * 1.8);
+      padding: 0 $gutter-width / 2;
+      text-align: left;
+
       @include respond-min($screen-tablet) {
         border-bottom: 1px solid color(border);
       }
 
-      height: floor($line-height-base * 1.8);
-
       @include respond-max($screen-tablet) {
         height: $line-height-base;
       }
-
-      padding: 0 $gutter-width / 2;
-
-      text-align: left;
 
       &.preview {
         @include respond-min($screen-tablet) {
@@ -93,6 +91,18 @@
     vertical-align: baseline;
     width: 100%;
 
+    @include respond-min($screen-tablet) {
+      display: table-cell;
+      padding: 5px $gutter-width / 2;
+
+      vertical-align: middle;
+      width: auto;
+
+      &::before {
+        display: none;
+      }
+    }
+
     &::before {
       background-color: darken($white, 5%);
       content: attr(data-table-header);
@@ -111,18 +121,6 @@
     &:last-child {
       border-bottom: 1px solid color(border);
     }
-
-    @include respond-min($screen-tablet) {
-      display: table-cell;
-      padding: 5px $gutter-width / 2;
-
-      vertical-align: middle;
-      width: auto;
-
-      &::before {
-        display: none;
-      }
-    }
   }
 
   // Row effects
@@ -134,10 +132,6 @@
 
   // Actions column
   .row__actions {
-    &::before {
-      display: none;
-    }
-
     height: auto;
     padding-top: $padding-small-vertical;
     position: absolute;
@@ -159,6 +153,10 @@
       position: static;
       text-align: center;
       width: 50px;
+    }
+
+    &::before {
+      display: none;
     }
 
     // First column after the actions doesn't need so much space
@@ -232,17 +230,15 @@ tr.row--success {
   &:hover > td {
     background-color: lighten($success-color, 23%);
 
-    &::before {
-      background-color: lighten($success-color, 18%);
-    }
-
     @include respond-max($screen-tablet) {
       &.row__actions {
         background-color: lighten($success-color, 18%);
       }
     }
 
-    background-color: lighten($success-color, 23%);
+    &::before {
+      background-color: lighten($success-color, 18%);
+    }
   }
 }
 
@@ -260,17 +256,15 @@ tr.row--danger {
   &:hover > td {
     background-color: lighten($danger-color, 24%);
 
-    &::before {
-      background-color: lighten($danger-color, 19%);
-    }
-
     @include respond-max($screen-tablet) {
       &.row__actions {
         background-color: lighten($danger-color, 19%);
       }
     }
 
-    background-color: lighten($danger-color, 24%);
+    &::before {
+      background-color: lighten($danger-color, 19%);
+    }
   }
 }
 
@@ -280,28 +274,28 @@ tr.row--warning {
   > td {
     background-color: lighten($warning-color, 25%);
 
-    &::before {
-      background-color: lighten($warning-color, 20%);
-    }
-
     @include respond-max($screen-tablet) {
       &.row__actions {
         background-color: lighten($warning-color, 20%);
       }
+    }
+
+    &::before {
+      background-color: lighten($warning-color, 20%);
     }
   }
 
   &:hover > td {
     background-color: lighten($warning-color, 23%);
 
-    &::before {
-      background-color: lighten($warning-color, 18%);
-    }
-
     @include respond-max($screen-tablet) {
       &.row__actions {
         background-color: lighten($warning-color, 18%);
       }
+    }
+
+    &::before {
+      background-color: lighten($warning-color, 18%);
     }
   }
 }
@@ -320,14 +314,14 @@ tr.is-selected {
   &:hover > td {
     background-color: lighten($blue, 48%);
 
-    &::before {
-      background-color: lighten($blue, 43%);
-    }
-
     @include respond-max($screen-tablet) {
       &.row__actions {
         background-color: lighten($blue, 43%);
       }
+    }
+
+    &::before {
+      background-color: lighten($blue, 43%);
     }
   }
 }

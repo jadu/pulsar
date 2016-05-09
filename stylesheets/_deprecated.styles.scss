@@ -250,19 +250,22 @@ $state-colors: ('base', $base-color, $base-color-alt),
 .tabs__container {
     .tabs__list {
       clear: left;
-
-      @include ie-lte(8) {
-        display: block;
-      }
-
       float: left;
       list-style: none;
       margin: 0;
       padding: 0;
       width: $tab-column-width;
 
+      @include ie-lte(8) {
+        display: block;
+      }
+
       @include respond-max($screen-tablet-max) {
         width: $tab-column-width-tablet;
+      }
+
+      @include respond-min($screen-tablet) {
+        display: block;
       }
 
       &[data-mobile-togglable] {
@@ -286,10 +289,6 @@ $state-colors: ('base', $base-color, $base-color-alt),
         }
       }
 
-      @include respond-min($screen-tablet) {
-        display: block;
-      }
-
       > li {
         margin-bottom: -1px;
       }
@@ -304,16 +303,15 @@ $state-colors: ('base', $base-color, $base-color-alt),
         color: $black;
         display: block;
         line-height: $line-height-base * 1.75;
-
-        @include ie-lte(7) {
-          height: $line-height-base * 1.75;
-        }
-
         padding: 0 $gutter-width / 2;
         text-decoration: none;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+
+        @include ie-lte(7) {
+          height: $line-height-base * 1.75;
+        }
 
         > .label {
           margin-left: .5em;
@@ -494,12 +492,12 @@ $state-colors: ('base', $base-color, $base-color-alt),
       position: relative;
       width: 100%;
 
-      h2:first-of-type {
-        margin-top: 0;
-      }
-
       @include respond-min($screen-phone) {
         border: 1px solid $gray;
+      }
+
+      h2:first-of-type {
+        margin-top: 0;
       }
     }
 
