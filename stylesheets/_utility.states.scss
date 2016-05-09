@@ -14,7 +14,7 @@ $danger-to-text-color: black;
     text-shadow: none;
 
     @include ie-lte(8) {
-        background:  rgb(255, 137, 9);
+        background: rgb(255, 137, 9);
     }
 
     &.fade {

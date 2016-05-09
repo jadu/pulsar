@@ -110,7 +110,7 @@
         display: inline-block;
         max-width: 150px;
         min-width: 70px;
-        width:61.5%;
+        width: 61.5%;
       }
 
       @include respond-min($screen-small) {

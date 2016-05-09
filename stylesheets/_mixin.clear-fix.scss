@@ -1,5 +1,5 @@
 @mixin clear-fix() {
-  zoom:1;
+  zoom: 1;
   &:before,
   &:after {
     content: '';
