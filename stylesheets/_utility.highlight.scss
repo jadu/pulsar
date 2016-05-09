@@ -28,6 +28,7 @@
   color: #c82829;
 }
 
+// scss-lint:disable SelectorFormat
 /* Tomorrow Orange */
 .hljs-number,
 .hljs-preprocessor,
@@ -38,6 +39,7 @@
 .hljs-constant {
   color: #f5871f;
 }
+// scss-lint:enable SelectorFormat
 
 /* Tomorrow Yellow */
 .ruby .hljs-class .hljs-title,

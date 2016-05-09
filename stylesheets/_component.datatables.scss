@@ -98,6 +98,7 @@
     }
 }
 
+// scss-lint:disable SelectorFormat
 .table__th.sorting_disabled:hover {
     border: 0;
     text-decoration: none;
@@ -108,6 +109,7 @@
         text-decoration: none;
     }
 }
+// scss-lint:enable SelectorFormat
 
 .table__th--shrink,
 .table__td--shrink {
@@ -134,6 +136,7 @@
         text-decoration: none;
     }
 
+    // scss-lint:disable SelectorFormat
     .sorting_disabled & {
         border: 0;
 
@@ -144,6 +147,7 @@
             text-decoration: none;
         }
     }
+    // scss-lint:enable SelectorFormat
 }
 
 .table-action {
@@ -159,6 +163,7 @@
 
 
 .table__th {
+    // scss-lint:disable SelectorFormat
     &.sorting::after,
     &.sorting_asc::after,
     &.sorting_desc::after {
@@ -167,8 +172,10 @@
         left: 0;
         margin-left: 10px;
     }
+    // scss-lint:enable SelectorFormat
 }
 
+// scss-lint:disable SelectorFormat
 .dataTables_wrapper {
     position: relative;
 }
@@ -259,6 +266,7 @@
 .table__td.sorting_1 {
     background-color: darken(#fff, 3);
 }
+// scss-lint:enable SelectorFormat
 
 .datatable .child {
     background-color: #efefef;
@@ -318,6 +326,7 @@
 
 
 
+// scss-lint:disable SelectorFormat
 .dataTables_empty {
     color: color(danger);
     height: 73px;
@@ -350,4 +359,5 @@
         width: 100%;
     }
 }
+// scss-lint:enable SelectorFormat
 

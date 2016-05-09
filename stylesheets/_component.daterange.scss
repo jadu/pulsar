@@ -20,6 +20,7 @@
   text-align: left;
 }
 
+// scss-lint:disable SelectorFormat
 .daterangepicker .ranges .range_inputs>div {
   float: left;
 }
@@ -27,6 +28,7 @@
 .daterangepicker .ranges .range_inputs>div:nth-child(2) {
   padding-left: 11px;
 }
+// scss-lint:enable SelectorFormat
 
 .daterangepicker .calendar {
   display: none;

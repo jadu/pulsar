@@ -126,6 +126,7 @@
       margin: 0;
     }
 
+    // scss-lint:disable SelectorFormat
     .widget_summary__label {
       clear: left;
       line-height: 1em;
@@ -136,5 +137,6 @@
       font-size: 2em;
       font-family: $font-family-regular;
     }
+    // scss-lint:enable SelectorFormat
   }
 }
