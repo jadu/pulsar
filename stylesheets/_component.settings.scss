@@ -18,7 +18,7 @@
     background-color: darken(#f7f7f7, 5);
   }
 
-  i:before {
+  i::before {
     -webkit-transition: all .5s ease-in-out;
             transition: all .5s ease-in-out;
   }
@@ -27,7 +27,7 @@
 .settings.open .settings__toggle {
   background-color: darken(#f7f7f7, 5);
 
-  i:before {
+  i::before {
     -webkit-transform: rotate(180deg);
             transform: rotate(180deg);
   }
@@ -88,11 +88,11 @@
 
 
 .setting__icon {
-  & > i:before {
+  & > i::before {
     color: color(gray);
   }
 
-  &.is-enabled > i:before {
+  &.is-enabled > i::before {
     color: color(jadu-green);
   }
 

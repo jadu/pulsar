@@ -10,7 +10,7 @@
         border-color: transparent;
         color: color(white);
 
-        &:before {
+        &::before {
             left: 50%;
             right: 0%;
         }
@@ -19,12 +19,12 @@
     &:indeterminate + .toggle-switch-label {
         background-color: color(warning);
 
-        &:before {
+        &::before {
             left: 25%;
             right: 25%;
         }
 
-        &:after {
+        &::after {
             color: color(white);
             opacity: 0;
         }
@@ -34,7 +34,7 @@
         height: 2em;
         width: 4em;
 
-        &:after {
+        &::after {
             font-size: 32px;
             left: 15px;
             letter-spacing: 32px;
@@ -61,7 +61,7 @@
         display: none !important;
     }
 
-    &:before {
+    &::before {
         background-clip: padding-box;
         background-color: color(white);
         border-radius: 100%;
@@ -76,7 +76,7 @@
         z-index: 2;
     }
 
-    &:after {
+    &::after {
         content: '\F00C \F00D';
         font-family: 'FontAwesome';
         font-size: 14px;

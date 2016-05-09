@@ -19,7 +19,7 @@
 }
 
 @mixin highlight-row($color) {
-    > td:before {
+    > td::before {
         box-shadow: inset 4px 0 0 $color;
     }
     @include respond-min($screen-tablet) {
@@ -70,7 +70,6 @@
 
 // Placeholder text
 @mixin placeholder($color: $input-color-placeholder) {
-    &:-moz-placeholder { color: $color; } // Firefox 4-18
     &::-moz-placeholder { color: $color; } // Firefox 19+
     &:-ms-input-placeholder { color: $color; } // Internet Explorer 10+
     &::-webkit-input-placeholder { color: $color; } // Safari and Chrome
@@ -119,7 +118,6 @@
             color: lighten($text-color, 20%);
         }
 
-        &:-moz-placeholder, /* Mozilla Firefox 4 to 18 */
         &::-moz-placeholder { /* Mozilla Firefox 19+ */
             color: lighten($text-color, 20%);
             opacity: 1;

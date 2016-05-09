@@ -61,7 +61,7 @@
     }
 
     // the red dot indicator
-    &.has-new:before {
+    &.has-new::before {
         background-color: color(danger);
         border: 2px solid color(white);
         border-radius: 10px;

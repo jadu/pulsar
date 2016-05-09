@@ -54,7 +54,7 @@
     top: 1px;
 }
 
-.table__tr.selected .table-row-select:before {
+.table__tr.selected .table-row-select::before {
     content: '\f14a';
 }
 
@@ -159,9 +159,9 @@
 
 
 .table__th {
-    &.sorting:after,
-    &.sorting_asc:after,
-    &.sorting_desc:after {
+    &.sorting::after,
+    &.sorting_asc::after,
+    &.sorting_desc::after {
         @include icon-FontAwesome();
         font-size: 18px;
         left: 0;
@@ -243,11 +243,11 @@
     padding: 5px;
 }
 
-.table__th.sorting_asc:after {
+.table__th.sorting_asc::after {
     content: $circle-arrow-up;
 }
 
-.table__th.sorting_desc:after {
+.table__th.sorting_desc::after {
     content: $circle-arrow-down;
 }
 
@@ -284,7 +284,7 @@
         display: inline-block;
     }
 
-    .parent &:before {
+    .parent &::before {
         color: color(jadu-red);
         content: $minus-sign;
     }
@@ -324,7 +324,7 @@
     padding-left: 10px;
     vertical-align: middle;
 
-    &:before {
+    &::before {
         content: $frown;
         color: color(danger);
         font-family: fontawesome;

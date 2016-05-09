@@ -302,7 +302,7 @@ html, body {
 		top: 6px;
 	}
 
-	&:before {
+	&::before {
 		content: '\f0a4';
 	}
 
@@ -323,7 +323,7 @@ html, body {
 			right: 80px;
 		}
 
-		&:before {
+		&::before {
 			content: '\f0a5';
 		}
 	}
@@ -364,19 +364,19 @@ html, body {
 	.signin-success & {
 		background-color: #fff;
 
-		&:before {
+		&::before {
 			display: inline-block;
 			color: #2f8dbd;
 			width: 66px;
 		}
 	}
 
-	.signin--error &:before {
+	.signin--error &::before {
 		content: '\f119';
 		font-size: 75px;
 	}
 
-	.signin-twostep &:before {
+	.signin-twostep &::before {
 		content: '\f10b';
 		font-size: 65px;
 
@@ -385,7 +385,7 @@ html, body {
 		}
 	}
 
-	.signin-forgot &:before {
+	.signin-forgot &::before {
 		content: '\f128';
 		font-size: 65px;
 		width: 40px;
@@ -395,7 +395,7 @@ html, body {
 	.signin-reset & {
 		background-color: #fff;
 
-		&:before {
+		&::before {
 			//&#xf0e0;
 			content: '\f0e0';
 			display: inline-block;
@@ -410,7 +410,7 @@ html, body {
 		animation-fill-mode: both;
 		animation-name: success-icon;
 
-		&:before {
+		&::before {
 			content: '\f087';
 			color: color(success);
 			font-size: 35px;

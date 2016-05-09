@@ -55,7 +55,7 @@
         padding: 7px;
     }
 
-    &::moz-focus-inner { /* 7 */
+    &::-moz-focus-inner { /* 7 */
       border: 0;
       padding: 0;
     }

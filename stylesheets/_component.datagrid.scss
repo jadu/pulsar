@@ -89,7 +89,7 @@
     vertical-align: baseline;
     width: 100%;
 
-    &:before {
+    &::before {
       background-color: darken($white, 5%);
       content: attr(data-table-header);
       display: inline-block;
@@ -115,7 +115,7 @@
       vertical-align: middle;
       width: auto;
 
-      &:before {
+      &::before {
         display: none;
       }
     }
@@ -130,7 +130,7 @@
 
   // Actions column
   .row__actions {
-    &:before {
+    &::before {
       display: none;
     }
     height: auto;
@@ -168,7 +168,7 @@
 
 /* Fixes gaps in grey bg on table headers in responsive views */
 @include respond-max($screen-tablet) {
-    .table--datagrid tr td:before {
+    .table--datagrid tr td::before {
         padding-bottom: 8px !important;
     }
 }
@@ -190,7 +190,7 @@
     }
 
     /* Fix grey boxes in <IE10  */
-    .table--datagrid tr td:before {
+    .table--datagrid tr td::before {
         display: none !important;
     }
 }
@@ -215,13 +215,13 @@ tr.row--success {
   @include highlight-row($success-color);
   > td {
     background-color: lighten($success-color, 25%);
-    &:before {
+    &::before {
       background-color: lighten($success-color, 20%);
     }
   }
   &:hover > td {
     background-color: lighten($success-color, 23%);
-    &:before {
+    &::before {
       background-color: lighten($success-color, 18%);
     }
     @include respond-max($screen-tablet) {
@@ -237,13 +237,13 @@ tr.row--danger {
   @include highlight-row($danger-color);
   > td {
     background-color: lighten($danger-color, 25%);
-    &:before {
+    &::before {
       background-color: lighten($danger-color, 20%);
     }
   }
   &:hover > td {
     background-color: lighten($danger-color, 24%);
-    &:before {
+    &::before {
       background-color: lighten($danger-color, 19%);
     }
     @include respond-max($screen-tablet) {
@@ -259,7 +259,7 @@ tr.row--warning {
   @include highlight-row($warning-color);
   > td {
     background-color: lighten($warning-color, 25%);
-    &:before {
+    &::before {
       background-color: lighten($warning-color, 20%);
     }
     @include respond-max($screen-tablet) {
@@ -270,7 +270,7 @@ tr.row--warning {
   }
   &:hover > td {
     background-color: lighten($warning-color, 23%);
-    &:before {
+    &::before {
       background-color: lighten($warning-color, 18%);
     }
     @include respond-max($screen-tablet) {
@@ -285,13 +285,13 @@ tr.is-selected {
   @include highlight-row($blue);
   > td {
     background-color: lighten($blue, 50%);
-    &:before {
+    &::before {
       background-color: lighten($blue, 45%);
     }
   }
   &:hover > td {
     background-color: lighten($blue, 48%);
-    &:before {
+    &::before {
       background-color: lighten($blue, 43%);
     }
     @include respond-max($screen-tablet) {
