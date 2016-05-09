@@ -6,6 +6,7 @@ BUILD := build
 
 BREW = $(shell which brew)
 SASSLINT = $(shell which scss-lint)
+SASSLINTVER = 0.44.0
 BOWER = $(shell which bower)
 GRUNT = $(shell which grunt)
 NODE = $(shell which node)
@@ -37,7 +38,7 @@ endif
 
 	@ echo "${HR}\nInstalling scss-lint...${HR}\n"
 ifeq (${SASSLINT}, )
-	@ sudo gem install scss_lint
+	@ sudo gem install scss_lint -v ${SASSLINTVER}
 else
 	@ echo "$(shell scss-lint --version) is already installed.\n"
 endif
