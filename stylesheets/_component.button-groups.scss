@@ -99,6 +99,7 @@
 .btn__group > .btn:first-of-type,
 .btn__group > .btn__group:first-of-type {
     margin-left: 0;
+
     &:not(:last-of-type):not(.dropdown__toggle) {
         @include border-right-radius(0);
     }

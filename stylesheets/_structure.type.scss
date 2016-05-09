@@ -82,6 +82,7 @@ b, strong, dt {
         text-align: right;
         @include text-overflow();
     }
+
     dd {
         @include clear-fix; // Clear the floated `dt` if an empty `dd` is present
         margin-left: $component-offset;

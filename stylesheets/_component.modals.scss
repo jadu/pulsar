@@ -82,11 +82,14 @@
   left: 0;
   z-index: ($zindex-modal - 10);
   background-color: $modal-backdrop-bg;
+
   @include ie-lte(7) {
     background-color: none;
   }
+
   // Fade for backdrop
   &.fade { @include opacity(0); }
+
   &.in { @include opacity(.5); }
 }
 
@@ -141,6 +144,7 @@
     background-color: color(danger);
     color: color(white);
   }
+
   .close {
     color: color(white);
     @include opacity(.7);

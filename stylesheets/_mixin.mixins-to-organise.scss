@@ -22,11 +22,13 @@
     > td::before {
         box-shadow: inset 4px 0 0 $color;
     }
+
     @include respond-min($screen-tablet) {
         > td:first-of-type {
             box-shadow: inset 4px 0 0 $color;
         }
     }
+
     @include ie-lte(7) {
         border-left: 4px solid $color !important;
     }
@@ -46,14 +48,17 @@
     border-top-right-radius: $radius;
     border-top-left-radius: $radius;
 }
+
 @mixin border-right-radius($radius) {
     border-bottom-right-radius: $radius;
     border-top-right-radius: $radius;
 }
+
 @mixin border-bottom-radius($radius) {
     border-bottom-right-radius: $radius;
     border-bottom-left-radius: $radius;
 }
+
 @mixin border-left-radius($radius) {
     border-bottom-left-radius: $radius;
     border-top-left-radius: $radius;
@@ -71,7 +76,9 @@
 // Placeholder text
 @mixin placeholder($color: $input-color-placeholder) {
     &::-moz-placeholder { color: $color; } // Firefox 19+
+
     &:-ms-input-placeholder { color: $color; } // Internet Explorer 10+
+
     &::-webkit-input-placeholder { color: $color; } // Safari and Chrome
 }
 
@@ -161,6 +168,7 @@
         $opacity-ie: ($opacity * 100);
         filter: alpha(opacity=#{$opacity-ie});
     }
+
     @if ($is-ie == true and $ie-version > 8) or ($is-ie == false) {
         opacity: $opacity;
     }

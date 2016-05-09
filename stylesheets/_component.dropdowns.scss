@@ -201,67 +201,85 @@
     @extend .badge--primary;
     background-color: darken($dropdown-link-active-bg, 20%);
   }
+
   &.link--primary {
     background-color: color(primary);
     color: color(white);
+
     &:hover {
       background-color: darken(color(primary), 5%);
     }
+
     > .badge {
       @extend .badge--primary;
       background-color: darken($badge-primary-bg, 20%);
     }
   }
+
   &.link--success {
     background-color: color(success);
     color: color(white);
+
     &:hover {
       background-color: darken(color(success), 5%);
     }
+
     > .badge {
       @extend .badge--success;
       background-color: darken($badge-success-bg, 20%);
     }
   }
+
   &.link--warning {
     background-color: color(warning);
     color: color(white);
+
     &:hover {
       background-color: darken(color(warning), 5%);
     }
+
     > .badge {
       @extend .badge--warning;
       background-color: darken($badge-warning-bg, 20%);
     }
   }
+
   &.link--info {
     background-color: color(info);
     color: color(white);
+
     &:hover {
       background-color: darken(color(info), 5%);
     }
+
     > .badge {
       @extend .badge--info;
       background-color: darken($badge-info-bg, 20%);
     }
   }
+
   &.link--danger {
     background-color: color(danger);
     color: color(white);
+
     &:hover {
       background-color: darken(color(danger), 5%);
     }
+
     > .badge {
       @extend .badge--danger;
       background-color: darken($badge-danger-bg, 20%);
     }
   }
+
   &.link--inverse {
     background-color: color(inverse);
     color: color(white);
+
     &:hover {
       background-color: darken(color(inverse), 5%);
     }
+
     > .badge {
       @extend .badge--inverse;
       background-color: darken($badge-inverse-bg, 20%);
@@ -276,6 +294,7 @@
 .dropdown__menu > li > a > .progress {
   height: 3px;
   margin-bottom: 0;
+
   .progress-bar {
     background-color: darken(color(primary), 15%);
   }

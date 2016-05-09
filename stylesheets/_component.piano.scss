@@ -122,6 +122,7 @@
 
     .message-reply {
         margin: 10px 0 0;
+
         @include ie-lte(8) {
             width: 100%;
         }
@@ -264,6 +265,7 @@
 
         &:nth-of-type(odd) {
             background-color: lighten($gray, 17%);
+
             &:hover {
                 background-color: lighten($gray, 16%);
             }
@@ -271,6 +273,7 @@
 
         &:nth-of-type(even) {
             background-color: lighten($gray, 15%);
+
             &:hover {
                 background-color: lighten($gray, 14%);
             }
@@ -311,6 +314,7 @@
     padding: 0 0 10px;
     position: static;
     transition: none;
+
     @include respond-min($screen-desktop) {
         -moz-transition: all .5s ease-in-out;
         -ms-transition: all .5s ease-in-out;

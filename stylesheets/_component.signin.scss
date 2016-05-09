@@ -250,6 +250,7 @@ html, body {
 
 .signin__group {
 	position: relative;
+
 	.signin__reset {
 		color: $signin-bg-color;
 		position: absolute;
@@ -257,9 +258,11 @@ html, body {
 		top: 10px;
 		right: 50px;
 	}
+
 	.tooltip-arrow {
 		border-left-color: $signin-bg-color !important;
 	}
+
 	.tooltip-inner {
 		background-color: $signin-bg-color;
 	}
@@ -449,32 +452,42 @@ html, body {
 // Scale effect is disabled in Firefox because of horrible performance issues
 @keyframes success-icon {
   0% { transform: translateY(0) scale(1); }
+
   80% { transform: translateY(150%) }
+
   100% { transform: translateY(150%) scale(20); -moz-transform: translateY(150%) scale(1); }
 }
 
 // Scale effect is disabled in Firefox because of horrible performance issues
 @keyframes success-container {
   0% { transform: scale(1); -moz-transform: scale(1); }
+
   100% { transform: scale(20); -moz-transform: scale(1); }
 }
 
 @keyframes hint-wobble {
   0%, 50%, 100% { transform: translateX(0); }
+
   25%, 75% { transform: translateX(-5px); }
 }
 
 @keyframes shake {
   0% { transform: translateX(0);}
+
   12.5% { transform: translateX(-10px) rotateY(-5deg);}
+
   37.5% { transform: translateX(10px) rotateY(4deg);}
+
   62.5% { transform: translateX(-5px) rotateY(-2deg);}
+
   87.5% { transform: translateX(5px) rotateY(1deg);}
+
   100% { transform: translateX(0);}
 }
 
 @keyframes fade-in {
 	from { opacity: 0; }
+
 	to { opacity: 1; }
 }
 

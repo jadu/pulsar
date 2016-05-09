@@ -23,8 +23,11 @@
 
   // Offset the popover to account for the popover arrow
   &.top { margin-top: -10px; }
+
   &.right { margin-left: 10px; }
+
   &.bottom { margin-top: 10px; }
+
   &.left { margin-left: -10px; }
 }
 
@@ -84,9 +87,11 @@
     border-style: solid;
   }
 }
+
 .popover .arrow {
   border-width: $popover-arrow-outer-width;
 }
+
 .popover .arrow::after {
   border-width: $popover-arrow-width;
   content: '';
@@ -100,6 +105,7 @@
     border-top-color: $popover-arrow-outer-fallback-color; // IE8 fallback
     border-top-color: $popover-arrow-outer-color;
     bottom: -$popover-arrow-outer-width;
+
     &::after {
       content: ' ';
       bottom: 1px;
@@ -116,6 +122,7 @@
     border-left-width: 0;
     border-right-color: $popover-arrow-outer-fallback-color; // IE8 fallback
     border-right-color: $popover-arrow-outer-color;
+
     &::after {
       content: ' ';
       left: 1px;
@@ -132,6 +139,7 @@
     border-bottom-color: $popover-arrow-outer-fallback-color; // IE8 fallback
     border-bottom-color: $popover-arrow-outer-color;
     top: -$popover-arrow-outer-width;
+
     &::after {
       content: ' ';
       top: 1px;
@@ -148,6 +156,7 @@
     border-right-width: 0;
     border-left-color: $popover-arrow-outer-fallback-color; // IE8 fallback
     border-left-color: $popover-arrow-outer-color;
+
     &::after {
       content: ' ';
       right: 1px;
@@ -176,6 +185,7 @@
       border-bottom-color: darken($state-info-bg, 5);
       color: $state-info-text;
     }
+
     &.bottom .arrow::after {
       border-bottom-color: $state-info-bg;
     }
@@ -187,6 +197,7 @@
       border-bottom-color: darken($state-warning-bg, 10);
       color: $state-warning-text;
     }
+
     &.bottom .arrow::after {
       border-bottom-color: $state-warning-bg;
     }
@@ -198,6 +209,7 @@
       border-bottom-color: darken($state-success-bg, 5);
       color: $state-success-text;
     }
+
     &.bottom .arrow::after {
       border-bottom-color: $state-success-bg;
     }
@@ -209,6 +221,7 @@
       border-bottom-color: darken($state-danger-bg, 5);
       color: $state-danger-text;
     }
+
     &.bottom .arrow::after {
       border-bottom-color: $state-danger-bg;
     }

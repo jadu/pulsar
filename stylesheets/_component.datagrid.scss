@@ -33,10 +33,13 @@
       @include respond-min($screen-tablet) {
         border-bottom: 1px solid color(border);
       }
+
       height: floor($line-height-base * 1.8);
+
       @include respond-max($screen-tablet) {
         height: $line-height-base;
       }
+
       padding: 0 $gutter-width / 2;
 
       text-align: left;
@@ -133,6 +136,7 @@
     &::before {
       display: none;
     }
+
     height: auto;
     padding-top: $padding-small-vertical;
     position: absolute;
@@ -142,9 +146,11 @@
     @include respond-max($screen-tablet) {
       background-color: transparent;
     }
+
     @include respond-min($screen-phone) {
       left: $gutter-width * 1.75;
     }
+
     @include respond-min($screen-tablet) {
       height: $line-height-base * 1.8;
       min-width: 50px;
@@ -213,66 +219,84 @@ tr.row--warning-highlight {
 
 tr.row--success {
   @include highlight-row($success-color);
+
   > td {
     background-color: lighten($success-color, 25%);
+
     &::before {
       background-color: lighten($success-color, 20%);
     }
   }
+
   &:hover > td {
     background-color: lighten($success-color, 23%);
+
     &::before {
       background-color: lighten($success-color, 18%);
     }
+
     @include respond-max($screen-tablet) {
       &.row__actions {
         background-color: lighten($success-color, 18%);
       }
     }
+
     background-color: lighten($success-color, 23%);
   }
 }
 
 tr.row--danger {
   @include highlight-row($danger-color);
+
   > td {
     background-color: lighten($danger-color, 25%);
+
     &::before {
       background-color: lighten($danger-color, 20%);
     }
   }
+
   &:hover > td {
     background-color: lighten($danger-color, 24%);
+
     &::before {
       background-color: lighten($danger-color, 19%);
     }
+
     @include respond-max($screen-tablet) {
       &.row__actions {
         background-color: lighten($danger-color, 19%);
       }
     }
+
     background-color: lighten($danger-color, 24%);
   }
 }
 
 tr.row--warning {
   @include highlight-row($warning-color);
+
   > td {
     background-color: lighten($warning-color, 25%);
+
     &::before {
       background-color: lighten($warning-color, 20%);
     }
+
     @include respond-max($screen-tablet) {
       &.row__actions {
         background-color: lighten($warning-color, 20%);
       }
     }
   }
+
   &:hover > td {
     background-color: lighten($warning-color, 23%);
+
     &::before {
       background-color: lighten($warning-color, 18%);
     }
+
     @include respond-max($screen-tablet) {
       &.row__actions {
         background-color: lighten($warning-color, 18%);
@@ -283,17 +307,22 @@ tr.row--warning {
 
 tr.is-selected {
   @include highlight-row($blue);
+
   > td {
     background-color: lighten($blue, 50%);
+
     &::before {
       background-color: lighten($blue, 45%);
     }
   }
+
   &:hover > td {
     background-color: lighten($blue, 48%);
+
     &::before {
       background-color: lighten($blue, 43%);
     }
+
     @include respond-max($screen-tablet) {
       &.row__actions {
         background-color: lighten($blue, 43%);

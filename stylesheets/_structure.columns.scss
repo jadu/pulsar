@@ -18,6 +18,7 @@
   @include respond-min($screen-phone) {
     -webkit-column-count: 2;
   }
+
   @include respond-min($screen-desktop) {
     -webkit-column-count: 4;
   }

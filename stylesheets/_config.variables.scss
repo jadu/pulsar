@@ -114,9 +114,11 @@ $controls-width:                      30%;
 $controls-max-width:                  300px;
 $input-border-radius:                 $border-radius !default;
 $input-height-base:                   $line-height-base * 2 !default;
+
 @include ie-lte(7) {
   $input-height-base:                 $line-height-base * 1.2 !default;
 }
+
 $input-height-large:                  (floor($font-size-large * 2) + ($padding-large-vertical * 2) + 2) !default;
 $input-height-small:                  (floor($font-size-small * $line-height-small) + ($padding-small-vertical * 2) + 2) !default;
 
@@ -158,9 +160,11 @@ $table-condensed-cell-padding:        5px;
 
 $tooltip-max-width:                   200px !default;
 $tooltip-bg:                          rgba(0, 0, 0, .9) !default;
+
 @include ie-lte(7) {
   $tooltip-bg:                        rgb(0, 0, 0) !default;
 }
+
 $tooltip-color:                       #fff !default;
 $tooltip-arrow-width:                 5px !default;
 $tooltip-arrow-color:                 $tooltip-bg !default;

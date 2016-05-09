@@ -32,6 +32,7 @@
     @each $state, $state-color, $state-color-alt in $state-colors {
         &--#{$state} {
             background: $state-color;
+
             .icon-standout__icon::before {
                 color: $state-color-alt;
             }
