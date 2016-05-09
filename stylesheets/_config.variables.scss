@@ -138,7 +138,7 @@ $modal-inner-padding:                 20px !default;
 $modal-title-padding:                 15px !default;
 $modal-title-line-height:             $line-height-base !default;
 $modal-content-bg:                    #fff !default;
-$modal-content-border-color:          rgba(0,0,0,.2) !default;
+$modal-content-border-color:          rgba(0, 0, 0, .2) !default;
 $modal-content-fallback-border-color: #999 !default;
 $modal-backdrop-bg:                   #000 !default;
 $modal-header-border-color:           #e5e5e5 !default;
@@ -157,9 +157,9 @@ $table-condensed-cell-padding:        5px;
 // -----------------------------------------------------------------------------
 
 $tooltip-max-width:                   200px !default;
-$tooltip-bg:                          rgba(0,0,0,.9) !default;
+$tooltip-bg:                          rgba(0, 0, 0, .9) !default;
 @include ie-lte(7) {
-  $tooltip-bg:                        rgb(0,0,0) !default;
+  $tooltip-bg:                        rgb(0, 0, 0) !default;
 }
 $tooltip-color:                       #fff !default;
 $tooltip-arrow-width:                 5px !default;

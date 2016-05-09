@@ -148,6 +148,8 @@ $palette-states: (
     @each $state, $state-color, $state-color-alt in $state-colors { ... }
 \* -------------------------------------------------------------------------- */
 
+// scss-lint:disable SpaceAfterComma
+
 $state-colors:
     (base,      map-get(map-get($palette-states, base), base),    map-get(map-get($palette-states, base), alt)),
     (primary,   map-get(map-get($palette-states, primary), base), map-get(map-get($palette-states, primary), alt)),
@@ -158,3 +160,4 @@ $state-colors:
     (inverse,   map-get(map-get($palette-states, inverse), base), map-get(map-get($palette-states, inverse), alt)),
     (new,       map-get(map-get($palette-states, new), base),     map-get(map-get($palette-states, new), alt));
 
+// scss-lint:enable SpaceAfterComma

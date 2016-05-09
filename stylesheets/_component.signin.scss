@@ -1,5 +1,5 @@
-$signin-bg-color:          rgba(51,153,204,.9);
-$signin-bg-color-fallback: rgb(51,153,204);
+$signin-bg-color:          rgba(51, 153, 204, .9);
+$signin-bg-color-fallback: rgb(51, 153, 204);
 
 $signin-full-width:        400px;
 $signin-mobile-width:      300px;
@@ -83,7 +83,7 @@ html, body {
 		animation: shake 400ms ease-in-out;
 
 		.loading--circle i {
-			border: 1px solid rgba(0,0,0,.2);
+			border: 1px solid rgba(0, 0, 0, .2);
 			border-top-color: white;
 		}
 	}
