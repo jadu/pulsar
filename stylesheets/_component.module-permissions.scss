@@ -4,7 +4,11 @@ $module-permissions-breakpoint: $screen-tablet;
     border-top: 1px solid color(gray, lighter);
     float: left;
     margin-bottom: 1em;
-    width: 70%;
+    width: 100%;
+
+    @include respond-min($screen-large) {
+        width: 70%;
+    }
 }
 
 .module {
@@ -13,10 +17,14 @@ $module-permissions-breakpoint: $screen-tablet;
     width: 100%;
 
     .control__label {
-        display: inline-block;
+        display: block;
         line-height: 44px;
         padding: 0 10px;
         user-select: none;
+
+        @include respond-min($screen-phone) {
+            display: inline-block;
+        }
     }
 
     .form__control.checkbox {
