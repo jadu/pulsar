@@ -175,7 +175,8 @@ a.block-list__item:hover {
     }
 
     &.block-list--bordered .block-list__item {
-        &, &:last-of-type {
+        &,
+        &:last-of-type {
             border-bottom: 0;
         }
 

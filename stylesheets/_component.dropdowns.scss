@@ -76,7 +76,8 @@
     white-space: nowrap; // prevent links from randomly breaking onto new lines
     text-decoration: none;
 
-    [class^="icon-"], [class*=" icon-"] {
+    [class^="icon-"],
+    [class*=" icon-"] {
       display: inline-block; // required for icons to adhere to the following rules
       margin: 0 5px 0 2px;
       text-align: center;

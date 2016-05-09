@@ -12,7 +12,12 @@
     }
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-weight: normal;
     line-height: 1em;
     margin: 0 0 1em;
@@ -26,7 +31,8 @@ p {
     }
 }
 
-ul, ol {
+ul,
+ol {
     list-style-position: inside;
     margin: 0 0 $line-height-base;
     padding: 0;
@@ -44,7 +50,9 @@ dd {
     margin-left: 1em;
 }
 
-code, pre, kbd {
+code,
+pre,
+kbd {
     font-size: $font-size-medium;
 }
 
@@ -54,7 +62,9 @@ hr {
     margin-bottom: 24px;
 }
 
-b, strong, dt {
+b,
+strong,
+dt {
     font-family: $font-family-regular;
     font-weight: normal;
 

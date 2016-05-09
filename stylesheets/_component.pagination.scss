@@ -17,7 +17,8 @@
     list-style-type: none;
   }
 
-  a, span {
+  a,
+  span {
     color: color(text);
     font-family: $font-family-regular;
     @include inline-block;
@@ -36,7 +37,8 @@
   }
 
   li.is-disabled {
-    a, span {
+    a,
+    span {
       color: color(text, disabled);
       cursor: not-allowed;
     }

@@ -99,7 +99,8 @@ tr.filters {
 
 tr.is-collapsed {
 
-  td, th {
+  td,
+  th {
     border: 0;
     height: 0;
 
@@ -226,13 +227,15 @@ $state-colors: ('base', $base-color, $base-color-alt),
 \* -------------------------------------------------------------------------- */
 
 .row--align-top {
-  th, td {
+  th,
+  td {
     vertical-align: top;
   }
 }
 
 .row--align-middle {
-  th, td {
+  th,
+  td {
     vertical-align: middle;
   }
 }

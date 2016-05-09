@@ -4,7 +4,8 @@ $signin-bg-color-fallback: rgb(51, 153, 204);
 $signin-full-width:        400px;
 $signin-mobile-width:      300px;
 
-html, body {
+html,
+body {
 	height: 100%;
 	margin: 0;
 }
@@ -96,7 +97,8 @@ html, body {
 		overflow: visible;
 	}
 
-	input, button {
+	input,
+	button {
 		&:focus {
 			outline: none;
 			box-shadow: 0 0 5px black;

@@ -29,7 +29,8 @@
       position: static;
     }
 
-    th, td {
+    th,
+    td {
       @include respond-min($screen-tablet) {
         border-bottom: 1px solid color(border);
       }

@@ -35,7 +35,8 @@
         padding-right: 15px;
     }
 
-    &::before, &::after {
+    &::before,
+    &::after {
         z-index: 1;
     }
 

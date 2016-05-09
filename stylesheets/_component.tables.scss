@@ -45,7 +45,8 @@ table {
     colgroup + thead,
     thead:first-child {
         tr:first-child {
-            th, td {
+            th,
+            td {
                 border-top: 1px solid transparent;
             }
         }
@@ -85,13 +86,15 @@ table {
 
 
 .row--align-top {
-    th, td {
+    th,
+    td {
         vertical-align: top;
     }
 }
 
 .row--align-middle {
-    th, td {
+    th,
+    td {
         vertical-align: middle;
     }
 }
