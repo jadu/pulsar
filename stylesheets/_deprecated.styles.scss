@@ -152,7 +152,7 @@ $jadu-orange:                   #fcb130;
 $jadu-green:                    color(jadu-green);
 $jadu-teal:                     color(jadu-teal);
 $jadu-red:                      color(jadu-red);
-$jadu-yellow:                   #ffcc33;
+$jadu-yellow:                   #fc3;
 $jadu-black:                    color(black);
 $jadu-copy-gray:                color(gray, dark);
 
@@ -178,20 +178,20 @@ $inverse-link-color:            $white;
 $inverse-link-hover-color:      darken($white, 10%);
 
 $base-color:                    $gray;
-$primary-color:                 #1F7BB8;
-$success-color:                 #297C46;
-$warning-color:                 #EAA96A;
-$danger-color:                  #C84D40;
+$primary-color:                 #1f7bb8;
+$success-color:                 #297c46;
+$warning-color:                 #eaa96a;
+$danger-color:                  #cb4d40;
 $info-color:                    $jadu-blue-cool;
 $inverse-color:                 $gray-dark;
 
 $base-color-alt:                $black;
-$primary-color-alt:             #FFFFFF;
-$success-color-alt:             #FFFFFF;
-$warning-color-alt:             #000000;
-$danger-color-alt:              #FFFFFF;
-$info-color-alt:                #000000;
-$inverse-color-alt:             #FFFFFF;
+$primary-color-alt:             #fff;
+$success-color-alt:             #fff;
+$warning-color-alt:             #000;
+$danger-color-alt:              #fff;
+$info-color-alt:                #000;
+$inverse-color-alt:             #fff;
 
 $toolbar-bg-hover:              #f00;
 
