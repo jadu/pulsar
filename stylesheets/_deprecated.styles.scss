@@ -449,9 +449,11 @@ $state-colors: ('base', $base-color, $base-color-alt),
         background-color: $accent-color-alt;
         color: $accent-color;
 
+        // scss-lint:disable SelectorDepth
         i {
           opacity: 1;
         }
+        // scss-lint:enable SelectorDepth
       }
     }
 
