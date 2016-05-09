@@ -29,8 +29,8 @@
   }
 
   li.selected {
-    & > a,
-    & > span {
+    > a,
+    > span {
       background-color: darken(color(white), 10%);
       color: color(text);
     }
