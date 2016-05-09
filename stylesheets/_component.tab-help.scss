@@ -30,7 +30,7 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
 
 // hide help button on mobile when no JS
 
-.tab-help  {
+.tab-help {
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
     padding: 20px;
     opacity: .7;

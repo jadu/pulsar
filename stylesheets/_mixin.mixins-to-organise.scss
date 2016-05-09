@@ -70,10 +70,10 @@
 
 // Placeholder text
 @mixin placeholder($color: $input-color-placeholder) {
-    &:-moz-placeholder            { color: $color; } // Firefox 4-18
-    &::-moz-placeholder           { color: $color; } // Firefox 19+
-    &:-ms-input-placeholder       { color: $color; } // Internet Explorer 10+
-    &::-webkit-input-placeholder  { color: $color; } // Safari and Chrome
+    &:-moz-placeholder { color: $color; } // Firefox 4-18
+    &::-moz-placeholder { color: $color; } // Firefox 19+
+    &:-ms-input-placeholder { color: $color; } // Internet Explorer 10+
+    &::-webkit-input-placeholder { color: $color; } // Safari and Chrome
 }
 
 // Form validation states
@@ -179,12 +179,12 @@
 }
 
 // Add percentage of white to a color
-@function tint($color, $percent){
+@function tint($color, $percent) {
     @return mix(white, $color, $percent);
 }
 
 // Add percentage of black to a color
-@function shade($color, $percent){
+@function shade($color, $percent) {
     @return mix(black, $color, $percent);
 }
 
