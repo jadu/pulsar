@@ -75,11 +75,17 @@
 
 // Placeholder text
 @mixin placeholder($color: $input-color-placeholder) {
-    &::-moz-placeholder { color: $color; } // Firefox 19+
+    &::-moz-placeholder { // Firefox 19+
+        color: $color;
+    }
 
-    &:-ms-input-placeholder { color: $color; } // Internet Explorer 10+
+    &:-ms-input-placeholder { // Internet Explorer 10+
+        color: $color;
+    }
 
-    &::-webkit-input-placeholder { color: $color; } // Safari and Chrome
+    &::-webkit-input-placeholder { // Safari and Chrome
+        color: $color;
+    }
 }
 
 // Form validation states

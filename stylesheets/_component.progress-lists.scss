@@ -120,13 +120,23 @@
 }
 
 @include ie-lte(8) {
-    .progress-list__item:nth-of-type(1) { z-index: 5; }
+    .progress-list__item:nth-of-type(1) {
+        z-index: 5;
+    }
 
-    .progress-list__item:nth-of-type(2) { z-index: 4; }
+    .progress-list__item:nth-of-type(2) {
+        z-index: 4;
+    }
 
-    .progress-list__item:nth-of-type(3) { z-index: 3; }
+    .progress-list__item:nth-of-type(3) {
+        z-index: 3;
+    }
 
-    .progress-list__item:nth-of-type(4) { z-index: 2; }
+    .progress-list__item:nth-of-type(4) {
+        z-index: 2;
+    }
 
-    .progress-list__item:nth-of-type(5) { z-index: 1; }
+    .progress-list__item:nth-of-type(5) {
+        z-index: 1;
+    }
 }
