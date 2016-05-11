@@ -64,7 +64,7 @@ fieldset {
         padding: 0;
 
         @include respond-min($screen-tablet) {
-            padding: 11px 0 0;
+            padding: 14px 0 0;
         }
 
         @include ie-lte(9) {
@@ -83,7 +83,7 @@ fieldset {
         .has-success &.file,
         .has-warning &.file,
         .has-error &.file {
-            padding: 11px 10px;
+            padding: 14px 10px 13px;
         }
     }
 
