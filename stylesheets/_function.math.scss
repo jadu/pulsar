@@ -2,7 +2,8 @@
   // From: http://rosettacode.org/wiki/Greatest_common_divisor#JavaScript
   @if ($b != 0) {
     @return gcd($b, $a % $b);
-  } @else {
+  }
+  @else {
     @return abs($a);
   }
 }
@@ -10,7 +11,7 @@
 @function pow($base, $exponent, $prec: 12) {
   // Handles decimal exponents by trying to convert them into a fraction and then use a nthRoot-algorithm for parts of the calculation
   @if (floor($exponent) != $exponent) {
-    $prec2 : pow(10, $prec);
+    $prec2: pow(10, $prec);
     $exponent: round($exponent * $prec2);
     $denominator: gcd($exponent, $prec2);
     @return nthRoot(pow($base, $exponent / $denominator), $prec2 / $denominator, $prec);
@@ -21,7 +22,8 @@
     @for $i from 2 through $exponent {
       $value: $value * $base;
     }
-  } @else if $exponent < 1 {
+  }
+  @else if $exponent < 1 {
     @for $i from 0 through -$exponent {
       $value: $value / $base;
     }

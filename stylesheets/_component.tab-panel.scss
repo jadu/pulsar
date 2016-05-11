@@ -11,6 +11,7 @@
 			margin: 0;
 			padding: 0;
 		}
+
 		> li > a > i {
 			opacity: 1;
 		}
@@ -129,6 +130,6 @@
 	.tab__pane {
 		background-color: color(gray, lightest);
 		margin-top: 2px;
-		padding: 1em $gutter-width .1em $gutter-width;
+		padding: 1em $gutter-width .1em;
 	}
 }

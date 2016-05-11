@@ -6,6 +6,7 @@
    	-ms-transform: rotate(0deg);
    	transform: rotate(0deg);
  }
+
  to {
     -webkit-transform: rotate(360deg);
    	-moz-transform: rotate(360deg);
@@ -20,6 +21,7 @@
    -moz-transform: rotate(0deg);
    transform: rotate(0deg);
  }
+
  to {
    -moz-transform: rotate(360deg);
    transform: rotate(360deg);
@@ -31,6 +33,7 @@
    -webkit-transform: rotate(0deg);
    transform: rotate(0deg);
  }
+
  to {
    -webkit-transform: rotate(360deg);
    transform: rotate(360deg);
@@ -42,6 +45,7 @@
    -ms-transform: rotate(0deg);
    transform: rotate(0deg);
  }
+
  to {
    -ms-transform: rotate(360deg);
    transform: rotate(360deg);
@@ -53,6 +57,7 @@
    -o-transform: rotate(0deg);
    transform: rotate(0deg);
  }
+
  to {
    -o-transform: rotate(360deg);
    transform: rotate(360deg);
@@ -83,7 +88,7 @@
   width: 20px;
 
   @include ie-lte(8) {
-   border: none;
+   border: 0;
    text-indent: 0;
   }
 }
@@ -92,7 +97,7 @@
 .form__group.is-loading {
 
   .controls {
-    position:relative;
+    position: relative;
   }
 
   .loading {

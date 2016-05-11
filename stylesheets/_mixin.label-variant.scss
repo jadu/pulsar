@@ -8,7 +8,7 @@
   &:not(:last-child) {
       .label-group & {
         @include css-arrow(14px, right);
-        &:before {
+        &::before {
           border-left-color: darken($color, 20%) !important;
         }
       }

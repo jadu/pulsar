@@ -5,7 +5,7 @@
 .columns--2 {
   @include respond-min($screen-phone) {
     -webkit-column-count: 2;
-  }  
+  }
 }
 
 .columns--3 {
@@ -17,8 +17,9 @@
 .columns--4 {
   @include respond-min($screen-phone) {
     -webkit-column-count: 2;
-  }  
+  }
+
   @include respond-min($screen-desktop) {
     -webkit-column-count: 4;
-  }  
+  }
 }

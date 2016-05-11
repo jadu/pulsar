@@ -24,12 +24,12 @@
         user-select: none; // stop nasty blue text selection when clicking
         width: 100%; // mobile-first width
 
-        &:last-child {
-            margin: 0;
-        }
-
         @include ie-lte(8) {
             border: 1px solid color(border);
+        }
+
+        &:last-child {
+            margin: 0;
         }
     }
 
@@ -57,6 +57,7 @@
         flex-wrap: wrap;
         width: 100% !important;
     }
+
     > .controls > .control__label {
         clear: none;
 

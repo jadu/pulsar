@@ -113,12 +113,15 @@
     position: relative;
     white-space: nowrap;
 }
+
 .input-group-btn > .btn {
     position: relative;
+
     // Jankily prevent input button groups from wrapping
     + .btn {
         margin-left: -4px;
     }
+
     // Bring the "active" button to the front
     &:hover,
     &:active {
@@ -136,9 +139,11 @@
             top: -1px;
             vertical-align: baseline;
         }
+
         .input-group-addon:first-child {
             margin-right: -4px;
         }
+
         .form__control + .input-group-addon {
             margin-left: -5px;
         }
@@ -162,7 +167,7 @@
 
 .input-group-guidance {
     background-color: color(white);
-    border: none;
+    border: 0;
     color: color(jadu-blue);
     line-height: 24px;
     vertical-align: baseline;

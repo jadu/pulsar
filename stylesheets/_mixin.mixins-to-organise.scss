@@ -9,24 +9,26 @@
     $column-width: 200px;
 
     background-image: -webkit-linear-gradient(0deg, $column-color $column-width, transparent $gutter-width),
-                      -webkit-linear-gradient(top, rgba(0,0,0,0) 95%, $baseline-color 100%);
+                      -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 95%, $baseline-color 100%);
     background-image: -moz-linear-gradient(0deg, $column-color $column-width, transparent $gutter-width),
-                      -moz-linear-gradient(top, rgba(0,0,0,0) 95%, $baseline-color 100%);
+                      -moz-linear-gradient(top, rgba(0, 0, 0, 0) 95%, $baseline-color 100%);
     background-image: -o-linear-gradient(0deg, $column-color $column-width, transparent $gutter-width),
-                      -o-linear-gradient(top, rgba(0,0,0,0) 95%, $baseline-color 100%);
+                      -o-linear-gradient(top, rgba(0, 0, 0, 0) 95%, $baseline-color 100%);
     background-size: ($column-width + $gutter-width) 100%, 100% $line-height-base;
     background-position: $gutter-width -5px; // Use to offset and center your grid
 }
 
 @mixin highlight-row($color) {
-    > td:before {
+    > td::before {
         box-shadow: inset 4px 0 0 $color;
     }
+
     @include respond-min($screen-tablet) {
         > td:first-of-type {
             box-shadow: inset 4px 0 0 $color;
         }
     }
+
     @include ie-lte(7) {
         border-left: 4px solid $color !important;
     }
@@ -46,14 +48,17 @@
     border-top-right-radius: $radius;
     border-top-left-radius: $radius;
 }
+
 @mixin border-right-radius($radius) {
     border-bottom-right-radius: $radius;
     border-top-right-radius: $radius;
 }
+
 @mixin border-bottom-radius($radius) {
     border-bottom-right-radius: $radius;
     border-bottom-left-radius: $radius;
 }
+
 @mixin border-left-radius($radius) {
     border-bottom-left-radius: $radius;
     border-top-left-radius: $radius;
@@ -70,10 +75,17 @@
 
 // Placeholder text
 @mixin placeholder($color: $input-color-placeholder) {
-    &:-moz-placeholder            { color: $color; } // Firefox 4-18
-    &::-moz-placeholder           { color: $color; } // Firefox 19+
-    &:-ms-input-placeholder       { color: $color; } // Internet Explorer 10+
-    &::-webkit-input-placeholder  { color: $color; } // Safari and Chrome
+    &::-moz-placeholder { // Firefox 19+
+        color: $color;
+    }
+
+    &:-ms-input-placeholder { // Internet Explorer 10+
+        color: $color;
+    }
+
+    &::-webkit-input-placeholder { // Safari and Chrome
+        color: $color;
+    }
 }
 
 // Form validation states
@@ -108,7 +120,7 @@
 
         &:focus {
             border-color: darken($border-color, 10%);
-            box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 6px lighten($border-color, 20%);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px lighten($border-color, 20%);
         }
 
         &::-webkit-input-placeholder { /* Webkit */
@@ -119,10 +131,9 @@
             color: lighten($text-color, 20%);
         }
 
-        &:-moz-placeholder, /* Mozilla Firefox 4 to 18 */
         &::-moz-placeholder { /* Mozilla Firefox 19+ */
             color: lighten($text-color, 20%);
-            opacity:  1;
+            opacity: 1;
         }
     }
 
@@ -163,6 +174,7 @@
         $opacity-ie: ($opacity * 100);
         filter: alpha(opacity=#{$opacity-ie});
     }
+
     @if ($is-ie == true and $ie-version > 8) or ($is-ie == false) {
         opacity: $opacity;
     }
@@ -179,12 +191,12 @@
 }
 
 // Add percentage of white to a color
-@function tint($color, $percent){
+@function tint($color, $percent) {
     @return mix(white, $color, $percent);
 }
 
 // Add percentage of black to a color
-@function shade($color, $percent){
+@function shade($color, $percent) {
     @return mix(black, $color, $percent);
 }
 

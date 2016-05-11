@@ -1,6 +1,8 @@
+// scss-lint:disable SelectorFormat
 .hearing_type  .form__field-matrix {
     margin-left: 5%;
 }
+// scss-lint:enable SelectorFormat
 
 .form__field-matrix {
     -webkit-touch-callout: none;
@@ -57,11 +59,11 @@
     line-height: 0;
 
     tr:last-of-type & {
-        border-bottom: none;
+        border-bottom: 0;
     }
 
     &:last-of-type {
-        border-right: none;
+        border-right: 0;
     }
 
     label {
@@ -85,7 +87,7 @@
         width: 100%;
 
         &:hover {
-            background-color: rgba(0,0,0,.025);
+            background-color: rgba(0, 0, 0, .025);
             background-position-y: 12.5%;
         }
     }

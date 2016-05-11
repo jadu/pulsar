@@ -76,7 +76,7 @@ $width: 500px;
 .block-list__footer {
     display: block;
     overflow-wrap: break-word;
-    padding: $padding $padding;
+    padding: $padding;
     word-wrap: break-word;
 
     label {
@@ -97,7 +97,7 @@ $width: 500px;
 
     .progress {
         @extend .progress-bar--compact;
-        margin: .5em 0 0 0;
+        margin: .5em 0 0;
     }
 }
 
@@ -175,7 +175,8 @@ a.block-list__item:hover {
     }
 
     &.block-list--bordered .block-list__item {
-        &, &:last-of-type {
+        &,
+        &:last-of-type {
             border-bottom: 0;
         }
 

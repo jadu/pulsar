@@ -3,7 +3,7 @@
   overflow-x: auto;
   background: #f8f8f8;
   color: #4d4d4c;
-  padding: 0.5em;
+  padding: .5em;
   -webkit-text-size-adjust: none;
 }
 
@@ -28,6 +28,7 @@
   color: #c82829;
 }
 
+// scss-lint:disable SelectorFormat
 /* Tomorrow Orange */
 .hljs-number,
 .hljs-preprocessor,
@@ -38,6 +39,7 @@
 .hljs-constant {
   color: #f5871f;
 }
+// scss-lint:enable SelectorFormat
 
 /* Tomorrow Yellow */
 .ruby .hljs-class .hljs-title,
@@ -86,5 +88,5 @@
 .xml .vbscript,
 .xml .css,
 .xml .hljs-cdata {
-  opacity: 0.5;
+  opacity: .5;
 }

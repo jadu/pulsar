@@ -1,0 +1,217 @@
+# Sass linting rules
+
+## Exclude
+## - files that are to be excluded from all linters
+
+
+
+## Rules
+## - correct as of v0.44.0
+
+linters:
+
+  BangFormat:
+    enabled: true
+    space_before_bang: true
+
+  BemDepth:
+    enabled: true
+    max_elements: 2
+
+  BorderZero:
+    enabled: true
+    convention: zero
+
+  ChainedClasses:
+    enabled: false
+
+  ColorKeyword:
+    enabled: false
+
+  ColorVariable:
+    enabled: false
+
+  Comment:
+    enabled: false
+
+  Compass::*:
+    enabled: false
+
+  DebugStatement:
+    enabled: true
+
+  DeclarationOrder:
+    enabled: true
+
+  DisableLinterReason:
+    enabled: false
+
+  DuplicateProperty:
+    enabled: false
+
+  ElsePlacement:
+    enabled: true
+    style: new_line
+
+  EmptyLineBetweenBlocks:
+    enabled: true
+    ignore_single_line_blocks: false
+
+  EmptyRule:
+    enabled: true
+
+  ExtendDirective:
+    enabled: false
+
+  FinalNewline:
+    enabled: true
+    present: true
+
+  HexLength:
+    enabled: true
+    style: short
+
+  HexNotation:
+    enabled: true
+    style: lowercase
+
+  HexValidation:
+    enabled: true
+
+  IdSelector:
+    enabled: true
+
+  ImportantRule:
+    enabled: false
+
+  ImportPath:
+    enabled: true
+    leading_underscore: false
+    filename_extension: false
+
+  Indentation:
+    enabled: false
+    allow_non_nested_indentation: false
+    character: space
+    width: 4
+
+  LeadingZero:
+    enabled: true
+    style: exclude_zero
+
+  MergeableSelector:
+    enabled: false
+    force_nesting: true
+
+  NameFormat:
+    enabled: false
+    convention: hyphenated_BEM
+
+  NestingDepth:
+    max_depth: 6
+
+  PlaceholderInExtend:
+    enabled: false
+
+  PropertyCount:
+    enabled: false
+
+  PropertySortOrder:
+    enabled: false
+
+  PropertySpelling:
+    enabled: true
+
+  PropertyUnits:
+    enabled: false
+
+  PseudoElement:
+    enabled: true
+
+  QualifyingElement:
+    enabled: false
+    allow_element_with_attribute: false
+    allow_element_with_class: false
+    allow_element_with_id: false
+
+  SelectorDepth:
+    enabled: true
+    max_depth: 6
+
+  SelectorFormat:
+    enabled: true
+    convention: hyphenated_BEM
+
+  Shorthand:
+    enabled: true
+
+  SingleLinePerProperty:
+    enabled: true
+    allow_single_line_rule_sets: false
+
+  SingleLinePerSelector:
+    enabled: true
+
+  SpaceAfterComma:
+    enabled: true
+    style: one_space
+
+  SpaceAfterPropertyColon:
+    enabled: true
+    style: one_space
+
+  SpaceAfterPropertyName:
+    enabled: true
+
+  SpaceAfterVariableName:
+    enabled: true
+
+  SpaceAroundOperator:
+    enabled: true
+    style: one_space
+
+  SpaceBeforeBrace:
+    enabled: true
+    allow_single_line_padding: false
+    style: space
+
+  SpaceBetweenParens:
+    enabled: true
+    spaces: 0
+
+  StringQuotes:
+    enabled: true
+    style: single_quotes
+
+  TrailingSemicolon:
+    enabled: true
+
+  TrailingWhitespace:
+    enabled: true
+
+  TrailingZero:
+    enabled: true
+
+  TransitionAll:
+    enabled: false
+
+  UnnecessaryMantissa:
+    enabled: true
+
+  UnnecessaryParentReference:
+    enabled: true
+
+  UrlFormat:
+    enabled: true
+
+  UrlQuotes:
+    enabled: true
+
+  VariableForProperty:
+    enabled: false
+
+  VendorPrefix:
+    enabled: false
+
+  ZeroUnit:
+    enabled: true

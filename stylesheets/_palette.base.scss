@@ -47,8 +47,8 @@ $palette-branding: (
 );
 
 $palette-monochromes: (
-    white: ( base:   rgb(255, 255, 255) ),
-    black: ( base:   rgb(30, 30, 30) ),
+    white: (base:   rgb(255, 255, 255)),
+    black: (base:   rgb(30, 30, 30)),
     gray:  (
         darker:      rgb(62, 62, 62),
         dark:        rgb(95, 95, 95),
@@ -73,8 +73,8 @@ $palette-alias: (
     link: (
         base:  map-get(map-get($palette-branding, jadu-blue), dark),
         hover: map-get(map-get($palette-branding, jadu-blue), darkest),
-        inverse: #ffffff,
-        inverse-hover: darken(#ffffff, 10%),
+        inverse: #fff,
+        inverse-hover: darken(#fff, 10%),
         disabled: map-get(map-get($palette-monochromes, gray), lighter)
     ),
     border: (
@@ -148,6 +148,8 @@ $palette-states: (
     @each $state, $state-color, $state-color-alt in $state-colors { ... }
 \* -------------------------------------------------------------------------- */
 
+// scss-lint:disable SpaceAfterComma
+
 $state-colors:
     (base,      map-get(map-get($palette-states, base), base),    map-get(map-get($palette-states, base), alt)),
     (primary,   map-get(map-get($palette-states, primary), base), map-get(map-get($palette-states, primary), alt)),
@@ -158,3 +160,4 @@ $state-colors:
     (inverse,   map-get(map-get($palette-states, inverse), base), map-get(map-get($palette-states, inverse), alt)),
     (new,       map-get(map-get($palette-states, new), base),     map-get(map-get($palette-states, new), alt));
 
+// scss-lint:enable SpaceAfterComma

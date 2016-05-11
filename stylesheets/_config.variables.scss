@@ -32,13 +32,13 @@ $font-size-base:                      16px !default;
 $font-size-xxlarge:                   ceil($font-size-base * 2) !default;
 $font-size-xlarge:                    ceil($font-size-base * 1.5) !default;
 $font-size-large:                     ceil($font-size-base * 1.25) !default; // ~18px
-$font-size-small:                     ceil($font-size-base * 0.85) !default; // ~12px
+$font-size-small:                     ceil($font-size-base * .85) !default; // ~12px
 $line-height-base:                    24px !default;
 $line-height-large:                   ceil($line-height-base * 2) !default;
 $line-height-small:                   1.5 !default;
 $line-height-computed:                $line-height-base !default;
-$font-size-small:                     ceil($font-size-base * 0.75) !default;
-$font-size-medium:                    ceil($font-size-base * 0.85) !default;
+$font-size-small:                     ceil($font-size-base * .75) !default;
+$font-size-medium:                    ceil($font-size-base * .85) !default;
 
 // -----------------------------------------------------------------------------
 //  Columnar grid
@@ -114,9 +114,11 @@ $controls-width:                      30%;
 $controls-max-width:                  300px;
 $input-border-radius:                 $border-radius !default;
 $input-height-base:                   $line-height-base * 2 !default;
+
 @include ie-lte(7) {
   $input-height-base:                 $line-height-base * 1.2 !default;
 }
+
 $input-height-large:                  (floor($font-size-large * 2) + ($padding-large-vertical * 2) + 2) !default;
 $input-height-small:                  (floor($font-size-small * $line-height-small) + ($padding-small-vertical * 2) + 2) !default;
 
@@ -138,7 +140,7 @@ $modal-inner-padding:                 20px !default;
 $modal-title-padding:                 15px !default;
 $modal-title-line-height:             $line-height-base !default;
 $modal-content-bg:                    #fff !default;
-$modal-content-border-color:          rgba(0,0,0,.2) !default;
+$modal-content-border-color:          rgba(0, 0, 0, .2) !default;
 $modal-content-fallback-border-color: #999 !default;
 $modal-backdrop-bg:                   #000 !default;
 $modal-header-border-color:           #e5e5e5 !default;
@@ -157,10 +159,12 @@ $table-condensed-cell-padding:        5px;
 // -----------------------------------------------------------------------------
 
 $tooltip-max-width:                   200px !default;
-$tooltip-bg:                          rgba(0,0,0,.9) !default;
+$tooltip-bg:                          rgba(0, 0, 0, .9) !default;
+
 @include ie-lte(7) {
-  $tooltip-bg:                        rgb(0,0,0) !default;
+  $tooltip-bg:                        rgb(0, 0, 0) !default;
 }
+
 $tooltip-color:                       #fff !default;
 $tooltip-arrow-width:                 5px !default;
 $tooltip-arrow-color:                 $tooltip-bg !default;
@@ -179,7 +183,7 @@ $toolbar-internal-height:             ($toolbar-height - $toolbar-accent-height)
 //  Search
 // -----------------------------------------------------------------------------
 
-$search-border-radius:                0px !default;
+$search-border-radius:                0 !default;
 $search-form-height:                  $toolbar-height !default;
 $search-height:                       44px !default;
 $search-form-margin:                  ($search-form-height - $search-height - $toolbar-accent-height) / 2 0;

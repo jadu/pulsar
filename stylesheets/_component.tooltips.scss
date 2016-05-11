@@ -5,6 +5,7 @@
 
 // Base class
 .tooltip {
+  @include opacity(0);
   position: absolute;
   z-index: $zindex-tooltip;
   display: block;
@@ -12,13 +13,16 @@
   font-size: $font-size-small;
   font-family: $font-family-base;
   line-height: 1.2;
-  @include opacity(0);
 
-  &.in     { @include opacity(1); }
-  &.top    { margin-top:  -3px; padding: 5px 0; }
-  &.right  { margin-left:  3px; padding: 0 5px; }
-  &.bottom { margin-top:   3px; padding: 5px 0; }
-  &.left   { margin-left: -3px; padding: 0 5px; }
+  &.in { @include opacity(1); }
+
+  &.top { margin-top: -3px; padding: 5px 0; }
+
+  &.right { margin-left: 3px; padding: 0 5px; }
+
+  &.bottom { margin-top: 3px; padding: 5px 0; }
+
+  &.left { margin-left: -3px; padding: 0 5px; }
 }
 
 // Wrapper for the tooltip content
@@ -40,6 +44,7 @@
   border-color: transparent;
   border-style: solid;
 }
+
 .tooltip {
   &.top .tooltip-arrow {
     bottom: 0;
@@ -48,18 +53,21 @@
     border-width: $tooltip-arrow-width $tooltip-arrow-width 0;
     border-top-color: $tooltip-arrow-color;
   }
+
   &.top-left .tooltip-arrow {
     bottom: 0;
     left: 5px;
     border-width: $tooltip-arrow-width $tooltip-arrow-width 0;
     border-top-color: $tooltip-arrow-color;
   }
+
   &.top-right .tooltip-arrow {
     bottom: 0;
     right: 5px;
     border-width: $tooltip-arrow-width $tooltip-arrow-width 0;
     border-top-color: $tooltip-arrow-color;
   }
+
   &.right .tooltip-arrow {
     top: 50%;
     left: 0;
@@ -67,6 +75,7 @@
     border-width: $tooltip-arrow-width $tooltip-arrow-width $tooltip-arrow-width 0;
     border-right-color: $tooltip-arrow-color;
   }
+
   &.left .tooltip-arrow {
     top: 50%;
     right: 0;
@@ -74,6 +83,7 @@
     border-width: $tooltip-arrow-width 0 $tooltip-arrow-width $tooltip-arrow-width;
     border-left-color: $tooltip-arrow-color;
   }
+
   &.bottom .tooltip-arrow {
     top: 0;
     left: 50%;
@@ -81,12 +91,14 @@
     border-width: 0 $tooltip-arrow-width $tooltip-arrow-width;
     border-bottom-color: $tooltip-arrow-color;
   }
+
   &.bottom-left .tooltip-arrow {
     top: 0;
     left: 5px;
     border-width: 0 $tooltip-arrow-width $tooltip-arrow-width;
     border-bottom-color: $tooltip-arrow-color;
   }
+
   &.bottom-right .tooltip-arrow {
     top: 0;
     right: 5px;
