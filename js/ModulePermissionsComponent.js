@@ -13,30 +13,26 @@ ModulePermissionsComponent.prototype.init = function () {
     component.$html.on('click', '.js-module-toggle', component.toggleModuleVisibility);
     component.$html.on('click', '.js-refine-toggle', component.toggleModulePagesVisibility);
 
-    // Module-master
-    component.$html.find('.module')
-        .on('click', '[data-toggle="module-master"]', component.toggleModuleMasterState)
-        .on('pulsar:crud:update', '[data-toggle="module-master"]', component.setModuleMasterState)
+    // // Module-master
+    component.$html.find('.module').on('click', '[data-toggle="module-master"]', function () {
+        component.toggleModuleMasterState(this);
+    });
 
-    // Module-row
-    component.$html.find('.module')
-        .on('click', '[data-toggle="module-row"]', component.toggleModuleRowState)
-        .on('pulsar:crud:update', '[data-toggle="module-row"]', component.setModuleRowState)
+    component.$html.find('.module').on('click', '[data-toggle="module-row"]', function() {
+        component.toggleModuleRowState(this);
+    });
 
-    // Module-crud 'headers'
-    component.$html.find('.module')
-        .on('click', '[data-toggle="module-crud"]', component.toggleModule)
-        .on('pulsar:crud:update', '[data-toggle="module-crud"]', component.setModuleState);
+    component.$html.find('.module').on('click', '[data-crud]', function() {
+        component.toggleCrudState(this);
+    });
 
-    // Module-page
-    component.$html.find('.module-page')
-        .on('click', '[data-toggle="page"]', component.togglePage)
-        .on('pulsar:crud:update', '[data-toggle="page"]', component.setPageState);
+    component.$html.find('.module').on('click', '[data-toggle="module-crud"]', function() {
+        component.toggleModuleState(this);
+    });
 
-    // Module-subpage
-    component.$html.find('.module-subpage')
-        .on('click', '[data-toggle="subpage"]', component.toggleSubPage)
-        .on('pulsar:crud:update', '[data-toggle="subpage"]', component.setPageState);
+    component.$html.find('.module').on('click', '[data-toggle="page"]', function() {
+        component.togglePageState(this);
+    });
 
     // Set up indeterminate checkboxes on page load
     component.$html.find('.checkbox[indeterminate]').prop('indeterminate', true);
@@ -44,7 +40,7 @@ ModulePermissionsComponent.prototype.init = function () {
 };
 
 ModulePermissionsComponent.prototype.toggleModuleVisibility = function () {
-    // console.log('toggle module visibility');
+
 
     var $toggle = $(this),
         $target = $toggle.closest('.module');
@@ -60,7 +56,7 @@ ModulePermissionsComponent.prototype.toggleModuleVisibility = function () {
 };
 
 ModulePermissionsComponent.prototype.toggleModulePagesVisibility = function () {
-    // console.log('toggle module pages visibility');
+
 
     var $toggle = $(this),
         $target = $toggle.closest('.module-page');
@@ -75,330 +71,291 @@ ModulePermissionsComponent.prototype.toggleModulePagesVisibility = function () {
     }
 };
 
-ModulePermissionsComponent.prototype.setModuleMasterState = function () {
-    // console.log('set module master state');
+ModulePermissionsComponent.prototype.toggleModuleMasterState = function (target) {
 
     var component = this,
-        $component = $(component),
-        $scope = $component.closest('.module'),
-        targetSelector = '[data-toggle="module-row"]',
-        $targets = $scope.find(targetSelector);
+        $this = $(target),
+        $scope = $this.closest('.module'),
+        $rowToggles = $('[data-toggle="module-row"]', $scope),
+        $crud = $('[data-crud]', $scope),
+        $r = $('[data-crud="view"]', $scope),
+        $cud = $('[data-crud="create"], [data-crud="update"], [data-crud="delete"]', $scope);
 
-    if (
-        $scope.find(targetSelector + ':not(:checked):not(:indeterminate)').length == $targets.length
-    ) {
-        $component.prop('indeterminate', false).prop('checked', false);
-    }
-    else if (
-        $scope.find(targetSelector + ':indeterminate').length > 0
-        || (
-            $scope.find(targetSelector + ':checked').length >= 1
-            && $scope.find(targetSelector + ':checked').length != $targets.length
-        )
-    ) {
-        // if at least one intermediate
-        $component.prop('indeterminate', true);
-    }
-    else {
-        $component.prop('indeterminate', false).prop('checked', true);
+    if ($this.is(':checked')) {
+        component.setChecked($.merge($rowToggles, $crud));
+    } else if ($this.is(':not(:checked)')) {
+        component.setUnchecked($.merge($rowToggles, $r));
+        component.setDisabled($cud);
     }
 };
 
-ModulePermissionsComponent.prototype.setModuleRowState = function () {
-    // console.log('module row state');
+ModulePermissionsComponent.prototype.toggleModuleRowState = function (target) {
 
     var component = this,
-        $component = $(component),
-        $scope = $component.parent().siblings('.crud'),
-        $parentScope = $component.closest('.module'),
-        targetSelector = '[data-crud]',
-        $targets = $scope.find(targetSelector);
+        $this = $(target),
+        $scope = $this.closest('.module-row'),
+        $moduleScope = $this.closest('.module'),
+        $rowToggles = $('[data-toggle="module-row"]', $scope),
+        $crud = $('[data-crud]', $scope),
+        $r = $('[data-crud="view"]', $scope),
+        $cud = $('[data-crud="create"], [data-crud="update"], [data-crud="delete"]', $scope);
 
-    if (
-        $scope.find(targetSelector + ':checked').length < $targets.length
-        && $scope.find(targetSelector + ':checked').length != 0
-    ) {
-        $component.prop('indeterminate', true);
-    }
-    else if ($scope.find(targetSelector + ':checked').length == $targets.length) {
-        $component.prop('indeterminate', false).prop('checked', true)
-    }
-    else {
-        $component.prop('indeterminate', false).prop('checked', false);
-    }
-
-    $('[data-toggle="module-master"]', $parentScope).trigger('pulsar:crud:update');
-};
-
-ModulePermissionsComponent.prototype.setModuleState = function () {
-    // console.log('module state');
-
-    var component = this,
-        $component = $(component),
-        $scope = $component.closest('.module'),
-        targetSelector = '[data-crud="' + $component.data('crud') + '"]:not([data-toggle="module-crud"])',
-        $targets = $scope.find(targetSelector);
-
-    if (
-        $scope.find(targetSelector + ':checked').length < $targets.length
-        && $scope.find(targetSelector + ':checked').length != 0
-    ) {
-        $component.prop('indeterminate', true)
-            .parent().removeClass('is-checked').addClass('is-indeterminate');
-    }
-    else if ($scope.find(targetSelector + ':checked').length == $targets.length) {
-        $component.prop('indeterminate', false).prop('checked', true)
-            .parent().removeClass('is-indeterminate').addClass('is-checked');
-    }
-    else {
-        $component.prop('indeterminate', false).prop('checked', false)
-            .parent().removeClass('is-indeterminate');
-    }
-
-    $('[data-toggle="module-row"]', $scope).trigger('pulsar:crud:update');
-};
-
-ModulePermissionsComponent.prototype.setPageState = function () {
-    // console.log('set page state');
-
-    var component = this,
-        $component = $(component),
-        $scope = $component.closest('.module-page'),
-        targetSelector = '[data-toggle="subpage"][data-crud="' + $component.data('crud') + '"]',
-        $targets = $scope.find(targetSelector);
-
-    if (
-        $scope.find(targetSelector + ':checked').length < $targets.length
-        && $scope.find(targetSelector + ':checked').length != 0
-    ) {
-        $component.prop('indeterminate', true)
-            .parent().removeClass('is-checked').addClass('is-indeterminate')
-    }
-    else if ($scope.find(targetSelector + ':checked').length == $targets.length) {
-        $component.prop('indeterminate', false).prop('checked', true)
-            .parent().removeClass('is-indeterminate').addClass('is-checked');
-    }
-    else {
-        $component.prop('indeterminate', false).prop('checked', false)
-            .parent().removeClass('is-indeterminate is-checked');
-    }
-
-    $('[data-toggle="module-crud"][data-crud="' + $component.data('crud') + '"]', $component.closest('.module')).trigger('pulsar:crud:update');
-};
-
-ModulePermissionsComponent.prototype.setSubPageState = function () {
-    // console.log('subpage state');
-
-    var component = this,
-        $component = $(component),
-        $scope = $component.closest('.module-page'),
-        targetSelector = '[data-toggle="subpage"][data-crud="' + $component.data('crud') + '"]',
-        $targets = $scope.find(targetSelector);
-
-    if (
-        $scope.find(targetSelector + ':checked').length < $targets.length
-        && $scope.find(targetSelector + ':checked').length != 0
-    ) {
-        $component.prop('indeterminate', true)
-            .parent().removeClass('is-checked').addClass('is-indeterminate');
-    }
-    else if ($scope.find(targetSelector + ':checked').length == $targets.length) {
-        $component.prop('indeterminate', false).prop('checked', true)
-            .parent().removeClass('is-indeterminate').addClass('is-checked');
-    }
-    else {
-        $component.prop('indeterminate', false).prop('checked', false)
-            .parent().removeClass('is-indeterminate is-checked');
-    }
-
-    $('[data-toggle="module-crud"][data-crud="' + $component.data('crud') + '"]', $component.closest('.module')).trigger('pulsar:crud:update');
-};
-
-ModulePermissionsComponent.prototype.toggleModuleMasterState = function () {
-    // console.log('toggle module global');
-
-    var component = this,
-        $component = $(component),
-        $scope = $component.closest('.module');
-
-    if ($component.is(':checked')) {
-        $('[data-crud]', $scope)
-            .prop('indeterminate', false)
-            .prop('checked', true)
-            .prop('disabled', false)
-            .parent()
-            .removeClass('is-indeterminate is-disabled')
-            .addClass('is-checked');
-    } else {
-        $('[data-crud]', $scope)
-            .prop('indeterminate', false)
-            .prop('checked', false)
-            .parent()
-            .removeClass('is-indeterminate is-checked');
-
-        // disable and uncheck C,U,D if view is unchecked
-        $('.module-page [data-crud="create"], .module-page [data-crud="update"], .module-page [data-crud="delete"]', $scope)
-            .prop('disabled', true)
-            .parent()
-            .addClass('is-disabled');
-    }
-
-    $('[data-toggle="module-row"]', $scope).trigger('pulsar:crud:update');
-};
-
-ModulePermissionsComponent.prototype.toggleModuleRowState = function () {
-    // console.log('toggle module row state');
-
-    var component = this,
-        $component = $(component),
-        $scope = $component.closest('.module-row');
-
-    if ($component.is(':checked')) {
-        $('[data-crud]', $scope)
-            .prop('indeterminate', false).prop('checked', true)
-            .parent().removeClass('is-indeterminate').addClass('is-checked');
-
-        // re-enable C,U,D if view is checked
-        $('[data-crud="create"], [data-crud="update"], [data-crud="delete"]', $scope)
-            .prop('disabled', false)
-            .parent()
-            .removeClass('is-disabled');
-
-    } else {
-        $('[data-crud]', $scope)
-            .prop('indeterminate', false).prop('checked', false)
-            .parent().removeClass('is-indeterminate is-checked');
-
-        // disable and uncheck C,U,D if view is unchecked
-        $('[data-crud="create"], [data-crud="update"], [data-crud="delete"]', $scope)
-            .prop('disabled', true)
-            .parent()
-            .addClass('is-disabled');
-    }
-
-    $('[data-toggle="module-crud"]', $component.closest('.module')).trigger('pulsar:crud:update');
-
-    // $('[data-toggle="module-crud"][data-crud="' + $component.data('crud') + '"]', $component.closest('.module')).trigger('pulsar:crud:update');
-};
-
-ModulePermissionsComponent.prototype.toggleModule = function () {
-    // console.log('toggle module');
-
-    var component = this,
-        $component = $(component),
-        $scope = $component.closest('.module');
-
-    if ($component.is(':checked')) {
-        $('[data-crud="' + $component.data('crud') + '"]:not([data-toggle="module-crud"]):not([disabled])', $scope)
-            .prop('indeterminate', false)
-            .prop('checked', true)
-            .parent()
-            .removeClass('is-indeterminate')
-            .addClass('is-checked');
-
-        // enable C,U,D if view is checked
-        if ($component.data('crud') === 'view') {
-            $('[data-crud="create"], [data-crud="update"],   [data-crud="delete"]', $scope)
-                .prop('disabled', false)
-                .parent()
-                .removeClass('is-disabled');
-        }
-
-
-        if (
-            $('[data-crud="' + $component.data('crud') + '"]:not([data-toggle="module-crud"]):not([disabled])', $scope).length === $('[data-crud="' + $component.data('crud') + '"]:not([data-toggle="module-crud"])', $scope).length
-        ) {
-            $component.parent().removeClass('is-indeterminate').addClass('is-checked');
+    if ($this.is(':checked')) {
+        if ($scope.has('.module-subpage').length) {
+            component.setChecked($.merge($rowToggles, $crud));
         } else {
-            $component.parent().removeClass('is-checked').addClass('is-indeterminate');
+            component.setChecked($crud);
         }
-    } else {
-        $('[data-crud="' + $component.data('crud') + '"]:not([data-toggle="module-crud"])', $scope)
-            .prop('indeterminate', false)
-            .prop('checked', false)
-            .parent()
-            .removeClass('is-checked is-indeterminate');
-
-        // uncheck C,U,D if view is unchecked
-        if ($component.data('crud') === 'view') {
-            $('[data-crud="create"], [data-crud="update"], [data-crud="delete"]', $scope)
-                .prop('checked', false)
-                .prop('indeterminate', false)
-                .parent()
-                .removeClass('is-checked is-indeterminate');
-
-            $('.module-page [data-crud="create"], .module-page [data-crud="update"], .module-page [data-crud="delete"]', $scope)
-                .prop('disabled', true)
-                .parent()
-                .addClass('is-disabled');
+    } else if ($this.is(':not(:checked)')) {
+        if ($scope.has('.module-subpage').length) {
+            component.setUnchecked($.merge($rowToggles, $r));
+        } else {
+            component.setUnchecked($r);
         }
-
-        $component.parent().removeClass('is-checked is-indeterminate');
+        component.setDisabled($cud);
     }
 
-    $('[data-toggle="module-row"]', $scope).trigger('pulsar:crud:update');
+    if ($scope.has('.module-subpage').length) {
+        component.toggleModulePageCrud($('[data-toggle="page"][data-crud="view"]', $this.closest('.module-page')));
+        component.toggleModulePageCrud($('[data-toggle="page"][data-crud="create"]', $this.closest('.module-page')));
+        component.toggleModulePageCrud($('[data-toggle="page"][data-crud="update"]', $this.closest('.module-page')));
+        component.toggleModulePageCrud($('[data-toggle="page"][data-crud="delete"]', $this.closest('.module-page')));
+    }
+
+    component.toggleModuleCrud($('[data-toggle="module-crud"][data-crud="view"]', $this.closest('.module')));
+    component.toggleModuleCrud($('[data-toggle="module-crud"][data-crud="create"]', $this.closest('.module')));
+    component.toggleModuleCrud($('[data-toggle="module-crud"][data-crud="update"]', $this.closest('.module')));
+    component.toggleModuleCrud($('[data-toggle="module-crud"][data-crud="delete"]', $this.closest('.module')));
 };
 
-ModulePermissionsComponent.prototype.togglePage = function () {
-    console.log('toggle page');
-
+ModulePermissionsComponent.prototype.toggleCrudState = function(target) {
     var component = this,
-        $component = $(component),
-        $scope = $component.closest('.module-page');
+        $this = $(target),
+        $scope = $this.closest('.module-row'),
+        $pageScope = $this.closest('.module-page'),
+        $moduleScope = $this.closest('.module'),
+        $moduleCrudToggle = $('[data-toggle="module-crud"][data-crud="' + $this.data('crud') + '"]', $moduleScope),
+        $cud = $('[data-crud]:not([data-crud="view"])', $scope);
 
-    if ($component.is(':checked')) {
-        $('[data-toggle="subpage"][data-crud="' + $component.data('crud') + '"]', $scope)
-            .prop('checked', true)
-            .parent()
-            .removeClass('is-indeterminate is-disabled')
-            .addClass('is-checked');
-
-        // enable C,U,D if view is checked
-        if ($component.data('crud') === 'view') {
-            $('[data-crud="create"], [data-crud="update"], [data-crud="delete"]', $scope)
-                .prop('disabled', false)
-                .parent()
-                .removeClass('is-disabled');
+    if ($this.data('crud') == 'view') {
+        if ($this.prop('checked')) {
+            component.setEnabled($cud);
+        } else {
+            component.setDisabled($cud);
         }
-
-        $component.parent().removeClass('is-indeterminate').addClass('is-checked');
-    } else {
-        $('[data-toggle="subpage"][data-crud="' + $component.data('crud') + '"]', $scope)
-            .prop('checked', false)
-            .parent()
-            .removeClass('is-indeterminate is-checked');
-
-        // uncheck C,U,D if view is unchecked
-        if ($component.data('crud') === 'view') {
-            $('[data-crud="create"], [data-crud="update"], [data-crud="delete"]', $scope)
-                .prop('checked', false)
-                .prop('disabled', true)
-                .parent()
-                .removeClass('is-checked is-indeterminate')
-                .addClass('is-disabled');
-        }
-
-        $component.parent().removeClass('is-checked is-indeterminate');
     }
 
-    $('[data-toggle="module-crud"][data-crud="' + $component.data('crud') + '"]', $component.closest('.module')).trigger('pulsar:crud:update');
+    if ($this.prop('checked')) {
+        component.setChecked($this);
+    } else {
+        component.setUnchecked($this);
+    }
+
+    if ($this.data('toggle') == 'subpage') {
+
+        var subpageCrudSelector = '[data-toggle="subpage"][data-crud="' + $this.data('crud') + '"]',
+            $pageCrudToggle = $('[data-toggle="page"][data-crud="' + $this.data('crud') + '"]', $pageScope);
+
+        if ($(subpageCrudSelector + ':checked', $pageScope).length == 0) {
+           component.setUnchecked($pageCrudToggle);
+        } else if (
+            $(subpageCrudSelector + ':checked', $pageScope).length ==
+            $(subpageCrudSelector, $pageScope).length
+        ) {
+            component.setChecked($pageCrudToggle);
+        } else {
+            component.setIndeterminate($pageCrudToggle);
+        }
+
+        component.toggleModuleCrud($moduleCrudToggle);
+    }
+
+    setTimeout(function() {
+        component.updateRowToggles($moduleScope);
+    }, 0);
+
 };
 
-ModulePermissionsComponent.prototype.toggleSubPage = function () {
-    // console.log('toggle subpage');
+ModulePermissionsComponent.prototype.updateRowToggles = function (scope) {
+    var component = this,
+        $rows = $('.module-row', scope);
+
+    $rows.each(function() {
+        var $this = $(this),
+            $rowToggle = $('> .control__label > .checkbox', $this),
+            numCheckboxes = $('[data-crud]', $this).length,
+            numChecked = $('[data-crud]:checked', $this).length;
+
+        if (numChecked == 0) {
+            component.setUnchecked($rowToggle);
+        } else if (numChecked === numCheckboxes) {
+            component.setChecked($rowToggle);
+        } else {
+            component.setIndeterminate($rowToggle);
+        }
+
+        if ($this.has('.module-subpage').length && !$this.hasClass('module-subpage')) {
+            component.toggleModulePageCrud($('[data-toggle="page"][data-crud="view"]', $this.closest('.module-page')));
+            component.toggleModulePageCrud($('[data-toggle="page"][data-crud="create"]', $this.closest('.module-page')));
+            component.toggleModulePageCrud($('[data-toggle="page"][data-crud="update"]', $this.closest('.module-page')));
+            component.toggleModulePageCrud($('[data-toggle="page"][data-crud="delete"]', $this.closest('.module-page')));
+
+            component.toggleModuleCrud($('[data-toggle="module-crud"][data-crud="view"]', $this.closest('.module')));
+            component.toggleModuleCrud($('[data-toggle="module-crud"][data-crud="create"]', $this.closest('.module')));
+            component.toggleModuleCrud($('[data-toggle="module-crud"][data-crud="update"]', $this.closest('.module')));
+            component.toggleModuleCrud($('[data-toggle="module-crud"][data-crud="delete"]', $this.closest('.module')));
+        }
+    });
+}
+
+ModulePermissionsComponent.prototype.toggleModuleCrud = function (target) {
 
     var component = this,
-        $component = $(component),
-        $scope = $component.closest('.module-subpage'),
-        $parentScope = $scope.closest('.module-page');
+        $this = $(target),
+        $scope = $this.closest('.module'),
+        crudSelector = '[data-crud="' + $this.data('crud') + '"]:not([data-toggle="module-crud"])',
+        $moduleCrudToggle = $('[data-toggle="module-crud"][data-crud="' + $this.data('crud') + '"]', $scope);
 
-    if ($component.is(':checked')) {
-        $component.parent().addClass('is-checked');
+    if ($(crudSelector + ':checked', $scope).length == 0) {
+        component.setUnchecked($moduleCrudToggle);
+    } else if (
+        $(crudSelector, $scope).length ==
+        $(crudSelector + ':checked', $scope).length
+    ) {
+        component.setChecked($moduleCrudToggle);
     } else {
-        $component.parent().removeClass('is-checked');
+        component.setIndeterminate($moduleCrudToggle);
+    }
+};
+
+ModulePermissionsComponent.prototype.toggleModulePageCrud = function (target) {
+
+    var component = this,
+        $this = $(target),
+        $scope = $this.closest('.module-page'),
+        crudSelector = '[data-crud="' + $this.data('crud') + '"]:not([data-toggle="page"])',
+        $modulePageCrudToggle = $('[data-toggle="page"][data-crud="' + $this.data('crud') + '"]', $scope);
+
+    if ($(crudSelector + ':checked', $scope).length == 0) {
+        if (!$modulePageCrudToggle.prop('disabled')) {
+            component.setUnchecked($modulePageCrudToggle);
+        }
+    } else if (
+        $(crudSelector, $scope).length ==
+        $(crudSelector + ':checked', $scope).length
+    ) {
+        component.setChecked($modulePageCrudToggle);
+    } else {
+        component.setIndeterminate($modulePageCrudToggle);
+    }
+};
+
+ModulePermissionsComponent.prototype.togglePageState = function (target) {
+
+    var component = this,
+        $this = $(target),
+        $scope = $this.closest('.module-page'),
+        $moduleScope = $this.closest('.module'),
+        crudSelector = '[data-crud="' + $this.data('crud') + '"]:not([data-toggle="page"])',
+        $crudEnabledToggles = $(crudSelector + ':not(:disabled)', $scope),
+        $crudCheckedToggles = $(crudSelector + ':checked', $scope),
+        $crudDisabledToggles = $(crudSelector + ':disabled', $scope),
+        $moduleCrudToggle = $('[data-toggle="module-crud"][data-crud="' + $this.data('crud') + '"]', $moduleScope);
+
+
+    if ($crudEnabledToggles.length) {
+        if ($this.prop('checked')) {
+            component.setChecked($crudEnabledToggles);
+        } else {
+            component.setUnchecked($crudEnabledToggles);
+        }
+    }
+        if ($($crudDisabledToggles.selector, $scope).length > 0) {
+            component.setIndeterminate($this);
+        } else if (
+            $($crudEnabledToggles.selector, $scope).length ===
+            $($crudCheckedToggles.selector, $scope).length
+        ) {
+            component.setChecked($this);
+        } else {
+            component.setUnchecked($this);
+        }
+
+
+    component.toggleModuleCrud($moduleCrudToggle);
+};
+
+ModulePermissionsComponent.prototype.toggleModuleState = function (target) {
+    var component = this,
+        $this = $(target),
+        $scope = $this.closest('.module'),
+        crudSelector = '[data-crud="' + $this.data('crud') + '"]:not([data-toggle="module-crud"])',
+        $crudEnabledToggles = $(crudSelector + ':not(:disabled)', $scope),
+        $crudCheckedToggles = $(crudSelector + ':checked', $scope),
+        $crudDisabledToggles = $(crudSelector + ':disabled', $scope);
+
+    if ($this.prop('checked')) {
+        component.setChecked($crudEnabledToggles);
+    } else {
+        component.setUnchecked($crudEnabledToggles);
     }
 
-    $('[data-toggle="page"][data-crud="' + $component.data('crud') + '"]', $parentScope).trigger('pulsar:crud:update');
+    if ($($crudDisabledToggles.selector, $scope).length > 0) {
+        component.setIndeterminate($this);
+    } else if (
+        $($crudEnabledToggles.selector, $scope).length ===
+        $($crudCheckedToggles.selector, $scope).length
+    ) {
+        component.setChecked($this);
+    } else {
+        component.setUnchecked($this);
+    }
+};
+
+ModulePermissionsComponent.prototype.setChecked = function (target) {
+    target
+        .prop('indeterminate', false)
+        .prop('disabled', false)
+        .prop('checked', true)
+        .parent()
+        .removeClass('is-disabled is-indeterminate')
+        .addClass('is-checked');
+};
+
+ModulePermissionsComponent.prototype.setUnchecked = function (target) {
+    target
+        .prop('checked', false)
+        .prop('indeterminate', false)
+        .prop('disabled', false)
+        .parent()
+        .removeClass('is-checked is-disabled is-indeterminate');
+};
+
+ModulePermissionsComponent.prototype.setIndeterminate = function (target) {
+    target
+        .prop('checked', false)
+        .prop('disabled', false)
+        .prop('indeterminate', true)
+        .parent()
+        .removeClass('is-checked is-disabled')
+        .addClass('is-indeterminate');
+};
+
+ModulePermissionsComponent.prototype.setDisabled = function (target) {
+    target
+        .prop('checked', false)
+        .prop('indeterminate', false)
+        .prop('disabled', true)
+        .parent()
+        .removeClass('is-checked is-indeterminate')
+        .addClass('is-disabled');
+};
+
+ModulePermissionsComponent.prototype.setEnabled = function (target) {
+    target
+        .prop('disabled', false)
+        .parent()
+        .removeClass('is-disabled');
 };
 
 module.exports = ModulePermissionsComponent;

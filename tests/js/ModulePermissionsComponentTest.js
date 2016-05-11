@@ -6,8 +6,8 @@ var $ = require('jquery'),
 describe('Module permissions component', function() {
 
     beforeEach(function() {
-        this.$html = $('<html></html>');
-        this.$body = $('<body></body>').appendTo(this.$html);
+        this.$html = $('<div id="html"></div>').appendTo('html');
+        this.$body = $('<div id="body"></div>').appendTo(this.$html);
         this.$code = $('\
 <div class="module-permissions">\
     <div class="module module-row">\
@@ -81,7 +81,7 @@ describe('Module permissions component', function() {
             </div>\
 \
             <div class="module-row module-subpage">\
-                <label class="control__label"><input type="checkbox" class="form__control checkbox"><span class="label">tab</span> Address\
+                <label class="control__label"><input data-toggle="module-row" type="checkbox" class="form__control checkbox"><span class="label">tab</span> Address\
                 </label>\
                 <div class="crud">\
                     <label class="crud__permission">\
@@ -114,9 +114,13 @@ describe('Module permissions component', function() {
         this.$modulePage = this.$refineToggle.closest('.module-page');
 
         this.$moduleSubpage = this.$module.find('.module-subpage');
+        this.$moduleSubpageRowToggle = this.$moduleSubpage.find('[data-toggle="module-row"]');
+        this.$moduleSubpageCheckboxes = this.$moduleSubpage.find('[data-crud]');
+        this.$moduleSubpageView = this.$moduleSubpage.find('[data-crud="view"]');
 
-        this.$moduleSelectAll = this.$html.find('[data-toggle="module-master"]');
-        this.$moduleAllCheckboxes = this.$module.find('.checkbox');
+        this.$moduleMasterToggle = this.$html.find('[data-toggle="module-master"]');
+        this.$moduleAllCrudCheckboxes = this.$module.find('[data-crud]');
+        this.$moduleAllRowCheckboxes = this.$module.find('[data-toggle="module-row"]');
 
         this.modulePermissions = new ModulePermissionsComponent(this.$html);
     });
@@ -125,9 +129,7 @@ describe('Module permissions component', function() {
 
         beforeEach(function() {
             this.modulePermissions.init();
-
-            var clickEvent = $.Event('click');
-            this.$moduleToggle.trigger(clickEvent);
+            this.$moduleToggle.click();
         });
 
         it('should add the .is-open class to it’s parent module', function() {
@@ -143,10 +145,8 @@ describe('Module permissions component', function() {
 
         beforeEach(function() {
             this.modulePermissions.init();
-
-            var clickEvent = $.Event('click');
-            this.$moduleToggle.trigger(clickEvent);
-            this.$moduleToggle.trigger(clickEvent);
+            this.$moduleToggle.click();
+            this.$moduleToggle.click();
         });
 
         it('should remove the .is-open class', function() {
@@ -162,9 +162,7 @@ describe('Module permissions component', function() {
 
         beforeEach(function() {
             this.modulePermissions.init();
-
-            var clickEvent = $.Event('click');
-            this.$refineToggle.trigger(clickEvent);
+            this.$refineToggle.click();
         });
 
         it('should add the .is-open class to it’s parent module page', function() {
@@ -180,10 +178,8 @@ describe('Module permissions component', function() {
 
         beforeEach(function() {
             this.modulePermissions.init();
-
-            var clickEvent = $.Event('click');
-            this.$refineToggle.trigger(clickEvent);
-            this.$refineToggle.trigger(clickEvent);
+            this.$refineToggle.click();
+            this.$refineToggle.click();
         });
 
         it('should remove the .is-open class to it’s parent module page', function() {
@@ -195,35 +191,192 @@ describe('Module permissions component', function() {
         });
     });
 
-    describe('clicking the main module selection control', function() {
+    describe('checking a module master toggle', function() {
 
         beforeEach(function() {
             this.modulePermissions.init();
-            console.log('!');
-            console.log(this.$html.find('[data-toggle="module-master"]').length);
-
-            var clickEvent = $.Event('click');
-            this.$html.find('[data-toggle="module-master"]').trigger(clickEvent);
+            this.$moduleMasterToggle.click();
         });
 
-        it('should check all checkboxes within this module', function() {
-
-            var checkboxes = this.$html.find('.module .checkbox'),
-                checked = $(':checked', checkboxes);
-
-            expect(checked.length).to.equal(checkboxes.length);
-
+        it('should check the control', function() {
+            expect(this.$moduleMasterToggle.prop('checked')).to.be.true;
         });
 
-        // it('should uncheck all checkboxes within this module if clicked again', function() {
+        it('should check all crud checkboxes within the same module', function() {
+            expect(this.$moduleAllCrudCheckboxes.length).to.equal(this.$module.find('[data-crud]:checked').length);
+        });
 
-        //     var clickEvent = $.Event('click');
-        //     this.$moduleSelectAll.trigger(clickEvent);
+        it('should check all row toggle checkboxes within the same module', function() {
+            expect(this.$moduleAllRowCheckboxes.length).to.equal(this.$module.find('[data-toggle="module-row"]:checked').length);
+        });
 
+        it('should not disable the View checkbox', function() {
+            expect(this.$module.find('[data-crud="view"]').prop('disabled')).to.be.false;
+        });
 
-        //     expect($(':checked', this.$moduleAllCheckboxes).length).to.equal(0);
-        // });
+        it('should not disable the Create checkbox', function() {
+            expect(this.$module.find('[data-crud="create"]').prop('disabled')).to.be.false;
+        });
 
+        it('should not disable the Update checkbox', function() {
+            expect(this.$module.find('[data-crud="update"]').prop('disabled')).to.be.false;
+        });
+
+        it('should not disable the Delete checkbox', function() {
+            expect(this.$module.find('[data-crud="delete"]').prop('disabled')).to.be.false;
+        });
+    });
+
+    describe('unchecking a module master toggle', function() {
+
+        beforeEach(function() {
+            this.modulePermissions.init();
+            this.$moduleMasterToggle.click();
+            this.$moduleMasterToggle.click();
+        });
+
+        it('should uncheck the control', function() {
+            expect(this.$moduleMasterToggle.prop('checked')).to.be.false;
+        });
+
+        it('should uncheck all checkboxes within the same module', function() {
+            expect(this.$module.find('[data-crud]:checked').length).to.equal(0);
+        });
+
+        it('should uncheck all row toggle checkboxes within the same module', function() {
+            expect(this.$module.find('[data-toggle="module-row"]:checked').length).to.equal(0);
+        });
+
+        it('should not disable the View checkbox', function() {
+            expect(this.$module.find('[data-crud="view"]').prop('disabled')).to.be.false;
+        });
+
+        it('should disable the Create checkbox', function() {
+            expect(this.$module.find('[data-crud="create"]').prop('disabled')).to.be.true;
+        });
+
+        it('should disable the Update checkbox', function() {
+            expect(this.$module.find('[data-crud="update"]').prop('disabled')).to.be.true;
+        });
+
+        it('should disable the Delete checkbox', function() {
+            expect(this.$module.find('[data-crud="delete"]').prop('disabled')).to.be.true;
+        });
+    });
+
+    describe('checking a module-subpage row toggle', function() {
+
+        beforeEach(function() {
+            this.modulePermissions.init();
+            this.$moduleSubpageRowToggle.click();
+        });
+
+        it('should check the control', function() {
+            expect(this.$moduleSubpageRowToggle.prop('checked')).to.be.true;
+        });
+
+        it('should check all checkboxes within the same row', function() {
+            expect(this.$moduleSubpageCheckboxes.length).to.equal(this.$moduleSubpage.find('[data-crud]:checked').length);
+        });
+
+        it('should not disable the View checkbox', function() {
+            expect(this.$moduleSubpage.find('[data-crud="view"]').prop('disabled')).to.be.false;
+        });
+
+        it('should enable the Create checkbox', function() {
+            expect(this.$moduleSubpage.find('[data-crud="create"]').prop('disabled')).to.be.false;
+        });
+
+        it('should enable the Update checkbox', function() {
+            expect(this.$moduleSubpage.find('[data-crud="update"]').prop('disabled')).to.be.false;
+        });
+
+        it('should enable the Delete checkbox', function() {
+            expect(this.$moduleSubpage.find('[data-crud="delete"]').prop('disabled')).to.be.false;
+        });
+    });
+
+    describe('unchecking a module-subpage row toggle', function() {
+
+        beforeEach(function() {
+            this.modulePermissions.init();
+            this.$moduleSubpageRowToggle.click();
+            this.$moduleSubpageRowToggle.click();
+        });
+
+        it('should uncheck the control', function() {
+            expect(this.$moduleSubpageRowToggle.prop('checked')).to.be.false;
+        });
+
+        it('should uncheck all checkboxes within the same row', function() {
+            expect(this.$moduleSubpage.find('[data-crud]:checked').length).to.equal(0);
+        });
+
+        it('should not disable the View checkbox', function() {
+            expect(this.$moduleSubpage.find('[data-crud="view"]').prop('disabled')).to.be.false;
+        });
+
+        it('should disable the Create checkbox', function() {
+            expect(this.$moduleSubpage.find('[data-crud="create"]').prop('disabled')).to.be.true;
+        });
+
+        it('should disable the Update checkbox', function() {
+            expect(this.$moduleSubpage.find('[data-crud="update"]').prop('disabled')).to.be.true;
+        });
+
+        it('should disable the Delete checkbox', function() {
+            expect(this.$moduleSubpage.find('[data-crud="delete"]').prop('disabled')).to.be.true;
+        });
+    });
+
+    describe('checking a module-subpage view CRUD toggle', function() {
+
+        beforeEach(function() {
+            this.modulePermissions.init();
+            this.$moduleSubpageView.click();
+        });
+
+        it('should check the control', function() {
+            expect(this.$moduleSubpageView.prop('checked')).to.be.true;
+        });
+
+        it('should not disable the Create checkbox', function() {
+            expect(this.$moduleSubpage.find('[data-crud="create"]').prop('disabled')).to.be.false;
+        });
+
+        it('should not disable the Update checkbox', function() {
+            expect(this.$moduleSubpage.find('[data-crud="update"]').prop('disabled')).to.be.false;
+        });
+
+        it('should not disable the Delete checkbox', function() {
+            expect(this.$moduleSubpage.find('[data-crud="delete"]').prop('disabled')).to.be.false;
+        });
+
+    });
+
+    describe('unchecking a module-subpage view CRUD toggle', function() {
+
+        beforeEach(function() {
+            this.modulePermissions.init();
+            this.$moduleSubpageView.click();
+            this.$moduleSubpageView.click();
+        });
+
+        it('should check the control', function() {
+            expect(this.$moduleSubpageView.prop('checked')).to.be.false;
+        });
+
+        it('should disable the Create checkbox', function() {
+            expect(this.$moduleSubpage.find('[data-crud="create"]').prop('disabled')).to.be.true;
+        });
+
+        it('should disable the Update checkbox', function() {
+            expect(this.$moduleSubpage.find('[data-crud="update"]').prop('disabled')).to.be.true;
+        });
+
+        it('should disable the Delete checkbox', function() {
+            expect(this.$moduleSubpage.find('[data-crud="delete"]').prop('disabled')).to.be.true;
+        });
     });
 
 });
