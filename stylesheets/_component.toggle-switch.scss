@@ -95,3 +95,21 @@
         }
     }
 }
+
+// State class overrides to make sure internal 'icon' doesn't inherit the state
+// colour styling as they look terrible and don't meet AA
+.has-changed,
+.has-success,
+.has-warning,
+.has-info,
+.has-error,
+.has-danger {
+    .toggle-switch-label.control__label {
+        color: color(white);
+    }
+}
+
+.toggle-switch.is-disabled + .toggle-switch-label {
+    opacity: .5;
+}
+
