@@ -4,13 +4,10 @@
 var $ = require('jquery'),
     chai = require('chai'),
     sinon = require('sinon'),
-    sinonChai = require('sinon-chai'),
-    toggles;
+    sinonChai = require('sinon-chai');
 
 // Expose jQuery globals
 window.$ = window.jQuery = $;
-
-toggles = require('../../../libs/jquery-toggles/toggles.min');
 
 // Load Sinon-Chai
 chai.use(sinonChai);
