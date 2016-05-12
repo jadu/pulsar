@@ -16,22 +16,18 @@
 
 {% block tab_content %}
 
-    <table class="table datatable responsive">
-        <thead class="table__thead">
-            <tr class="table__tr">
-                <th class="table-selection table__th">
-
-                </th>
-
-                <th class="table__th"><a href="#" class="table-link">Name</a></th>
-                <th class="table__th"><a href="#" class="table-link">IP</a></th>
-                <th class="table__th"><a href="#" class="table-link">Status</a></th>
-                <th class="table__th"><a href="#" class="table-link">Uptime</a></th>
-                <th class="table__th"><a href="#" class="table-link">Image</a></th>
-                <th class="table__th"><a href="#" class="table-link">RAM</a></th>
-                <th class="table__th centered"><a href="#" class="table-link">CPUs</a></th>
-                <th class="table__th"><a href="#" class="table-link">Actions</a></th>
-
+    <table class="table table--full">
+        <thead>
+            <tr>
+                <th class="table-selection"></th>
+                <th><a href="#">Name</a></th>
+                <th><a href="#">IP</a></th>
+                <th><a href="#">Status</a></th>
+                <th><a href="#">Uptime</a></th>
+                <th><a href="#">Image</a></th>
+                <th><a href="#">RAM</a></th>
+                <th class="centered"><a href="#">CPUs</a></th>
+                <th><a href="#">Actions</a></th>
             </tr>
         </thead>
         <tbody class="table__tbody">
@@ -92,5 +88,93 @@
 {% endfor %}
         </tbody>
     </table>
+
+    <div class="form__group">
+        <label class="control__label">Choices</label>
+        <div class="controls">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Default</th>
+                        <th>Label</th>
+                        <th>Value</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="shrink-to-fit centered">{{ form.radio({ 'bare': true }) }}</td>
+                    <td>my_label</td>
+                    <td>my_value</td>
+                    <td class="centered">
+                        {{ html.edit_button({ 'placement': 'left' }) }}
+                        {{ html.remove_button({ 'placement': 'left' }) }}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="shrink-to-fit centered">{{ form.radio({ 'bare': true }) }}</td>
+                    <td>my_label</td>
+                    <td>my_value</td>
+                    <td class="centered">
+                        {{ html.edit_button({ 'placement': 'left' }) }}
+                        {{ html.remove_button({ 'placement': 'left' }) }}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="shrink-to-fit centered">{{ form.radio({ 'bare': true }) }}</td>
+                    <td>my_label</td>
+                    <td>my_value</td>
+                    <td class="centered">
+                        {{ html.edit_button({ 'placement': 'left' }) }}
+                        {{ html.remove_button({ 'placement': 'left' }) }}
+                    </td>
+                </tr>
+                </tbody>
+                <tfoot class="table__form">
+                    <tr>
+                        <td colspan="99">
+
+                            {{
+                                form.fieldset_start({'legend': 'New choice'})
+                            }}
+
+                            {{
+                                form.text({
+                                    'label': 'Label',
+                                    'help': 'The name of the choice, displayed to the user'
+                                })
+                            }}
+
+                            {{
+                                form.text({
+                                    'label': 'Value',
+                                    'help': 'The data to save when this is selected'
+                                })
+                            }}
+
+                            {{
+                                form.fieldset_end()
+                            }}
+
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+            {{
+                form.submit({
+                    'class': 'btn--primary',
+                    'label': 'Save'
+                })
+            }}
+
+            {{
+                html.link({
+                    'class': 'btn btn--naked',
+                    'label': 'Cancel'
+                })
+            }}
+
+        </div>
+    </div>
 
 {% endblock tab_content %}

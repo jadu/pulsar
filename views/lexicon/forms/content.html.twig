@@ -1,0 +1,134 @@
+{% extends '@pulsar/pulsar/components/tab.html.twig' %}
+
+{% block tab_content %}
+
+    {{
+        form.create()
+    }}
+
+    {{
+        form.content({
+            'label': 'Text field with value',
+            'value': 'My value'
+        })
+    }}
+
+    {{
+        form.content({
+            'label': 'Text field with help',
+            'value': 'My value',
+            'help': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{
+        form.content({
+            'label': 'Text field with guidance',
+            'value': 'My value',
+            'guidance': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{ form.fieldset_start({ 'legend': 'Errors &amp; Validation' }) }}
+
+    {{
+        form.content({
+            'label': 'Text field with error',
+            'value': 'My value',
+            'error': 'Please complete this field'
+        })
+    }}
+
+    {{
+        form.content({
+            'label': 'Text field with multiple errors',
+            'value': 'My value',
+            'error': ['Do this', 'Do this too']
+        })
+    }}
+
+    {{
+        form.content({
+            'label': 'Text field with error and help',
+            'value': 'My value',
+            'error': 'Please complete this field',
+            'help': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{
+        form.content({
+            'class': 'has-error',
+            'help': 'Help text to give more information about expected input',
+            'label': 'Text field error with help only',
+            'value': 'My value'
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'States' }) }}
+
+    {{
+        form.content({
+            'class': 'has-changed',
+            'help': 'Highlight whether an action elsewhere affects an input',
+            'label': '"class": "has-changed"',
+            'value': 'My value'
+        })
+    }}
+    {{
+        form.content({
+            'class': 'has-success',
+            'help': 'Something good happened',
+            'label': '"class": "has-success"',
+            'value': 'My value'
+        })
+    }}
+
+    {{
+        form.content({
+            'class': 'has-warning',
+            'help': 'Something bad happened',
+            'label': '"class": "has-warning"',
+            'value': 'My value'
+        })
+    }}
+    {{
+        form.content({
+            'class': 'has-error',
+            'help': 'Automatically added if using <code>error</code> option',
+            'label': '"class": "has-error"',
+            'value': 'My value'
+        })
+    }}
+    {{
+        form.content({
+            'disabled': true,
+            'help': 'Stop! Can’t touch this',
+            'label': '"disabled": true',
+            'value': 'My value'
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+
+    {{
+        form.end()
+    }}
+
+{% endblock tab_content %}
+
+{% block tab_sidebar %}
+    <a href="https://jadu.gitbooks.io/pulsar/content/text.html">
+        <img src="../../../images/cover.png" alt="Pulsar documentation front cover" width="157px" />
+    </a>
+    <br />
+    {{
+        html.button({
+            'label': 'View Documentation',
+            'type': 'link',
+            'href': 'https://jadu.gitbooks.io/pulsar/content/choice.html'
+        })
+    }}
+
+{% endblock tab_sidebar %}

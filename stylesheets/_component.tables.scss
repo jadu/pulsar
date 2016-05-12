@@ -1,115 +1,73 @@
-table {
-    background-color: $table-bg;
-    border-collapse: collapse;
-}
-
-th {
-    text-align: left;
-}
-
-// Columns
-table {
-    th {
-        background-color: darken($white, 5%);
-        font-family: $font-family-regular;
-        font-weight: normal;
-    }
-}
-
 .table {
-    margin-top: -6px;
-    margin-bottom: $line-height-base + 5;
+    margin-bottom: 24px;
 
-    width: 97.7%;
-
-    // Cells
-    thead,
-    tbody,
-    tfoot {
-        > tr {
-            > th,
-            > td {
-                padding: 0 5px;
-                line-height: $line-height-base * 2 - 1; // account for border
-                vertical-align: top;
-                border-top: 1px solid $table-border-color;
-            }
-        }
-    }
-    // Bottom align for column headings
-    thead > tr > th {
-        vertical-align: bottom;
-    }
-    // Remove top border from thead by default
-    caption + thead,
-    colgroup + thead,
-    thead:first-child {
-        tr:first-child {
-            th,
-            td {
-                border-top: 1px solid transparent;
-            }
-        }
-    }
-    // Account for multiple tbody instances
-    tbody + tbody {
-        border-top: 2px solid $table-border-color;
+    a {
+        border-bottom: 1px dotted color(text, link);
+        text-decoration: none;
     }
 
-}
-
-.table--bordered {
-    border: 1px solid $table-border-color;
-
-    > thead,
-    > tbody,
-    > tfoot {
-        > tr {
-            > th,
-            > td {
-                border: 1px solid $table-border-color;
-            }
-        }
+    tbody > tr:hover {
+        background-color: color(background, light);
     }
-}
 
-.table--striped {
-    > tbody {
-        > tr:nth-child(odd) {
-            > td,
-            > th {
-                background-color: $table-bg-accent;
-            }
-        }
-    }
-}
-
-
-.row--align-top {
     th,
     td {
-        vertical-align: top;
+        border-bottom: 1px solid color(border);
+        padding: 11px 10px 12px;
+        text-align: left;
+
+        &.centered {
+            @include respond-min($screen-tablet) {
+                text-align: center;
+            }
+        }
+
+        &.shrink-to-fit {
+            @include respond-min($screen-tablet) {
+                width: 1px;
+            }
+        }
+
+        &.no-wrap {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
     }
 }
 
-.row--align-middle {
-    th,
-    td {
-        vertical-align: middle;
-    }
+.table--full {
+    max-width: 100%;
+    width: 100%;
 }
 
-.row--no-results {
+.table--fixed {
+    table-layout: fixed;
+}
+
+
+.table__form {
+    background-color: color(background);
+
     td {
-        background-color: #fafafa;
-        padding: 24px 0;
+        padding: 10px 20px 24px;
     }
 
-    p {
-        margin: 0;
+    form {
+        background-color: transparent;
     }
 
-    .loading {
-        margin: 0 auto;
+    .legend {
+        line-height: 25px;
+        margin-bottom: 13px;
+    }
+
+    .form__group:last-of-type {
+        margin-bottom: 0;
+    }
+
+    .edit-button,
+    .remove-button {
+        padding: 5px;
     }
 }
