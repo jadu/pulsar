@@ -3,7 +3,7 @@ var _ = require('lodash'),
     expect = require('chai').expect,
     fs = require('fs'),
     path = require('path'),
-    Twig = require('twigged'), // Twig module
+    Twig = require('twig'), // Twig module
     twig = Twig.twig,       // Compile function
     Pulsar = require('../../../../')(Twig);
 

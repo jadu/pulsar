@@ -61,7 +61,7 @@
     "phptojs": "^3.13.2",
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0",
-    "twigged": "^0.9.0",
+    "twig": "^0.9.1",
     "uglifyify": "^3.0.1"
   },
   "browserify": {
