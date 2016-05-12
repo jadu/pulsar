@@ -6,7 +6,7 @@
     position: relative;
     display: table;
     table-layout: fixed;
-    width: 100%
+    width: 100%;
 }
 
 .main-title {
@@ -19,8 +19,8 @@
     display: inline-block;
     margin-bottom: 0;
 
-    &:before {
-        content: "/ ";
+    &::before {
+        content: '/ ';
         margin-left: 10px;
         width: 20px;
         display: inline-block;
@@ -41,14 +41,14 @@
     transition: transform 500ms ease;
     width: 100%;
 
-    .lt-ie10 & {
-        left: 0;
-    }
-
     @include respond-min($screen-desktop) {
         display: table-row;
         left: auto;
         position: static;
+    }
+
+    .lt-ie10 & {
+        left: 0;
     }
 }
 
@@ -163,7 +163,7 @@
 
 .tabs__list .new {
   background-color: color(primary);
-  border-bottom: none;
+  border-bottom: 0;
   height: $line-height-base * 1.75;
 
   input {

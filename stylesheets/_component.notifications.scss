@@ -42,6 +42,10 @@
     position: relative; // stop is-new indicator wandering off when parents switch to static position
     text-decoration: none;
 
+    @include respond-min($screen-phone) {
+        padding: 2px 0 0;
+    }
+
     &,
     &:link,
     &:visited {
@@ -52,16 +56,12 @@
         color: color(text);
     }
 
-    @include respond-min($screen-phone) {
-        padding: 2px 0 0 0;
-    }
-
     &.is-active {
         color: color(black);
     }
 
     // the red dot indicator
-    &.has-new:before {
+    &.has-new::before {
         background-color: color(danger);
         border: 2px solid color(white);
         border-radius: 10px;

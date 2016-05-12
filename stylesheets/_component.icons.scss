@@ -9,13 +9,13 @@
   color: color(gray);
 }
 
-.icon-grid:before {
-  content: "\f039";
-  -webkit-transform:  rotate(90deg);
-  -moz-transform:     rotate(90deg);
-  -ms-transform:      rotate(90deg);
-  -o-transform:       rotate(90deg);
-  filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+.icon-grid::before {
+  content: '\f039';
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
 }
 
 .icon-standout {
@@ -32,7 +32,8 @@
     @each $state, $state-color, $state-color-alt in $state-colors {
         &--#{$state} {
             background: $state-color;
-            .icon-standout__icon:before {
+
+            .icon-standout__icon::before {
                 color: $state-color-alt;
             }
         }

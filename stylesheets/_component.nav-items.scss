@@ -1,28 +1,30 @@
 .nav-item {
+    @include user-select(none);
     display: inline-block;
+    position: relative;
+    font-size: 1.1em;
+    height: $toolbar-height;
 
   @include respond-max($screen-phone) {
     display: none;
   }
 
-    position: relative;
-    font-size: 1.1em;
-    height: $toolbar-height;
-    @include user-select(none);
     > a {
         color: $toolbar-link-color;
         cursor: pointer;
         display: table-cell;
         height: $toolbar-internal-height;
         width: 100%;
-        padding: 0 $gutter-width 0;
+        padding: 0 $gutter-width;
         text-decoration: none;
         vertical-align: middle;
+
         &:hover {
             background: $toolbar-bg-hover;
             color: $toolbar-link-color-hover;
         }
     }
+
     &.open > a {
         background: $accent-color;
         color: $accent-color-alt;

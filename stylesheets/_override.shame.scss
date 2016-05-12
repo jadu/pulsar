@@ -23,7 +23,7 @@
     display: inline-block;
   }
 
-  & > .btn {
+  > .btn {
     margin-left: 20px;
   }
 }
@@ -41,7 +41,7 @@
 .tab__title {
   border-bottom: 1px solid #ccc;
   line-height: 47px;
-  margin: 0 0 24px 0;
+  margin: 0 0 24px;
 }
 
 .heading,
@@ -110,7 +110,7 @@
         display: inline-block;
         max-width: 150px;
         min-width: 70px;
-        width:61.5%;
+        width: 61.5%;
       }
 
       @include respond-min($screen-small) {
@@ -164,7 +164,7 @@
   }
 
   .tabs__content {
-    padding: 0 10px 10px 10px;
+    padding: 0 10px 10px;
   }
 
   &.table-filter fieldset {

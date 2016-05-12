@@ -1,4 +1,4 @@
-@import '_config.theme';
+@import 'config.theme';
 
 // Base classes
 .badge {
@@ -14,8 +14,8 @@
   white-space: nowrap;
 
   @include ie-lte(7) {
-    padding-left: 0px;
-    padding-right: 0px;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   // Empty labels/badges collapse
@@ -34,21 +34,27 @@
   &.label--danger .badge {
     background-color: darken(color(danger), 10%);
   }
+
   &.label--primary .badge {
     background-color: darken(color(primary), 10%);
   }
+
   &.label--success .badge {
     background-color: darken(color(success), 10%);
   }
+
   &.label--warning .badge {
     background-color: darken(color(warning), 10%);
   }
+
   &.label--info .badge {
     background-color: darken(color(info), 10%);
   }
+
   &.label--inverse .badge {
     background-color: darken(color(inverse), 10%);
   }
+
   .badge {
     color: white;
     font-size: 12px;
@@ -76,6 +82,7 @@ a.list-group-item.active > .badge,
   color: $badge-active-color;
   background-color: $badge-active-bg;
 }
+
 .nav-pills > li > a > .badge {
   margin-left: 3px;
 }

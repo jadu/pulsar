@@ -51,12 +51,10 @@
   // IE8 Currently has issues supporting nth-of-type and nth-child which is the
   // reason the following abomination exists. Please don't judge me.
 
-  & {
-  // &:nth-of-type(1)  {
-    left: $left-offset * 1;
-    right: $right-offset * 1;
-    z-index: 1;
-  }
+  // &:nth-of-type(1)
+  left: $left-offset * 1;
+  right: $right-offset * 1;
+  z-index: 1;
 
   & + & {
   // &:nth-of-type(2)  {
@@ -125,26 +123,21 @@
 
 .slide-inner {
   background-color: color(white);
-  box-shadow: -3px 0px 3px rgba(0, 0, 0, .1);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .7);
   float: left;
   width: 100%;
+
+  @include ie-lte(8) {
+      border: 1px solid color(gray);
+  }
 
   form {
     padding-top: 0;
     width: 100%;
   }
 
-  @include ie-lte(8) {
-      border: 1px solid color(gray);
-  }
-
   &.padded {
-    padding: $gutter-width $gutter-width 0 $gutter-width;
-  }
-
-  & {
-  // &:nth-of-type(1)  {
-      box-shadow: 0 5px 10px rgba(0,0,0,.7);
+    padding: $gutter-width $gutter-width 0;
   }
 
   & + & + & + & + & + & + & + & + & + & + & + & {
@@ -204,7 +197,7 @@
 .slide legend {
   border-bottom: 1px solid color(gray, lighter);
   line-height: 1.5em;
-  margin: 0 0 .5em 0;
+  margin: 0 0 .5em;
   padding-top: 24px;
 }
 
@@ -224,7 +217,7 @@
 
 // The styles applied to background elements to reduce their visual prominence
 .deck-background {
-  opacity: 0.5;
+  opacity: .5;
 }
 
 // Inverse deck styles for a white-on-black look
@@ -233,13 +226,14 @@
 
   .slide {
     border: 1px solid darken(#333, 5%);
+
     form,
     h1,
     legend {
       background-color: #333;
       border-bottom: 1px solid #222;
       color: color(gray, lighter);
-      text-shadow: 0px -1px 0px rgba(0, 0, 0, 1);
+      text-shadow: 0 -1px 0 rgba(0, 0, 0, 1);
     }
   }
 
@@ -250,7 +244,7 @@
   }
 
   .documentation {
-    text-shadow: 0px -1px 0px rgba(0, 0, 0, .9);
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, .9);
   }
 
   // The inverse label style is the same as the colour we're using for inverse

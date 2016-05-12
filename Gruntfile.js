@@ -128,6 +128,16 @@ module.exports = function(grunt) {
             }
         },
 
+        scsslint: {
+            allFiles: [
+                'stylesheets/*.scss',
+            ],
+            options: {
+                config: '.scss-lint.yml',
+                colorizeOutput: true
+            },
+        },
+
         watch: {
             css: {
                 files: ['stylesheets/**/*.scss'],
@@ -135,6 +145,10 @@ module.exports = function(grunt) {
                 options: {
                     livereload: true,
                 },
+            },
+            scsslint: {
+                files: 'stylesheets/**/*.scss',
+                tasks: ['scsslint']
             },
             emails: {
                 files: ['emails/**/*'],
@@ -472,6 +486,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('default', [
         'copy',
+        'scsslint',
         'sass:dev',
         'bless',
         'browserify',
@@ -482,6 +497,7 @@ module.exports = function(grunt) {
     grunt.registerTask('post-merge', ['sass:dev', 'browserify', 'email-build']);
 
     grunt.registerTask('build', [
+        'scsslint',
         'sass:dist_modern',
         'sass:dist_ie',
         'browserify:dist',

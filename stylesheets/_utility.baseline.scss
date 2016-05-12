@@ -2,7 +2,7 @@
     position: relative;
 }
 
-.has-baseline:after {
+.has-baseline::after {
     position: absolute;
     width: auto;
     height: auto;
@@ -14,9 +14,9 @@
     right: 0;
     bottom: 0;
     left: 0;
-    background: url(../images/baseline.png) repeat top left;
+    background: url('../images/baseline.png') repeat top left;
 }
 
-.has-baseline:active:after {
+.has-baseline:active::after {
     display: none;
 }

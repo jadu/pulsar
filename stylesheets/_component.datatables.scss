@@ -51,18 +51,18 @@
     cursor: pointer;
     font-size: 14px;
     position: relative;
-    top: 1px
+    top: 1px;
 }
 
-.table__tr.selected .table-row-select:before {
-    content: "\f14a";
+.table__tr.selected .table-row-select::before {
+    content: '\f14a';
 }
 
 .table__th,
 .table__td {
     border-bottom: 1px solid color(border);
     height: $line-height-large;
-    padding: 11.5px 10px 12px 10px;
+    padding: 11.5px 10px 12px;
     text-align: left;
     white-space: nowrap;
 
@@ -98,6 +98,7 @@
     }
 }
 
+// scss-lint:disable SelectorFormat
 .table__th.sorting_disabled:hover {
     border: 0;
     text-decoration: none;
@@ -108,6 +109,7 @@
         text-decoration: none;
     }
 }
+// scss-lint:enable SelectorFormat
 
 .table__th--shrink,
 .table__td--shrink {
@@ -134,8 +136,9 @@
         text-decoration: none;
     }
 
+    // scss-lint:disable SelectorFormat
     .sorting_disabled & {
-        border: none;
+        border: 0;
 
         &:hover {
             border: 0;
@@ -144,6 +147,7 @@
             text-decoration: none;
         }
     }
+    // scss-lint:enable SelectorFormat
 }
 
 .table-action {
@@ -159,16 +163,19 @@
 
 
 .table__th {
-    &.sorting:after,
-    &.sorting_asc:after,
-    &.sorting_desc:after {
+    // scss-lint:disable SelectorFormat
+    &.sorting::after,
+    &.sorting_asc::after,
+    &.sorting_desc::after {
         @include icon-FontAwesome();
         font-size: 18px;
         left: 0;
         margin-left: 10px;
     }
+    // scss-lint:enable SelectorFormat
 }
 
+// scss-lint:disable SelectorFormat
 .dataTables_wrapper {
     position: relative;
 }
@@ -243,11 +250,11 @@
     padding: 5px;
 }
 
-.table__th.sorting_asc:after {
+.table__th.sorting_asc::after {
     content: $circle-arrow-up;
 }
 
-.table__th.sorting_desc:after {
+.table__th.sorting_desc::after {
     content: $circle-arrow-down;
 }
 
@@ -259,11 +266,12 @@
 .table__td.sorting_1 {
     background-color: darken(#fff, 3);
 }
+// scss-lint:enable SelectorFormat
 
 .datatable .child {
     background-color: #efefef;
     border-bottom: 1px solid color(border);
-    padding: 11.5px 0 12px 0;
+    padding: 11.5px 0 12px;
 }
 
 // .dtr-inline.collapsed .parent .table__td:first-child:before {
@@ -284,7 +292,7 @@
         display: inline-block;
     }
 
-    .parent &:before {
+    .parent &::before {
         color: color(jadu-red);
         content: $minus-sign;
     }
@@ -318,13 +326,14 @@
 
 
 
+// scss-lint:disable SelectorFormat
 .dataTables_empty {
     color: color(danger);
     height: 73px;
     padding-left: 10px;
     vertical-align: middle;
 
-    &:before {
+    &::before {
         content: $frown;
         color: color(danger);
         font-family: fontawesome;
@@ -350,4 +359,5 @@
         width: 100%;
     }
 }
+// scss-lint:enable SelectorFormat
 
