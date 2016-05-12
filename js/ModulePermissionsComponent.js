@@ -41,7 +41,6 @@ ModulePermissionsComponent.prototype.init = function () {
 
 ModulePermissionsComponent.prototype.toggleModuleVisibility = function () {
 
-
     var $toggle = $(this),
         $target = $toggle.closest('.module');
 
@@ -56,7 +55,6 @@ ModulePermissionsComponent.prototype.toggleModuleVisibility = function () {
 };
 
 ModulePermissionsComponent.prototype.toggleModulePagesVisibility = function () {
-
 
     var $toggle = $(this),
         $target = $toggle.closest('.module-page');
@@ -129,6 +127,7 @@ ModulePermissionsComponent.prototype.toggleModuleRowState = function (target) {
 };
 
 ModulePermissionsComponent.prototype.toggleCrudState = function(target) {
+
     var component = this,
         $this = $(target),
         $scope = $this.closest('.module-row'),
@@ -177,6 +176,7 @@ ModulePermissionsComponent.prototype.toggleCrudState = function(target) {
 };
 
 ModulePermissionsComponent.prototype.updateRowToggles = function (scope) {
+
     var component = this,
         $rows = $('.module-row', scope);
 
@@ -199,12 +199,13 @@ ModulePermissionsComponent.prototype.updateRowToggles = function (scope) {
             component.toggleModulePageCrud($('[data-toggle="page"][data-crud="create"]', $this.closest('.module-page')));
             component.toggleModulePageCrud($('[data-toggle="page"][data-crud="update"]', $this.closest('.module-page')));
             component.toggleModulePageCrud($('[data-toggle="page"][data-crud="delete"]', $this.closest('.module-page')));
-
-            component.toggleModuleCrud($('[data-toggle="module-crud"][data-crud="view"]', $this.closest('.module')));
-            component.toggleModuleCrud($('[data-toggle="module-crud"][data-crud="create"]', $this.closest('.module')));
-            component.toggleModuleCrud($('[data-toggle="module-crud"][data-crud="update"]', $this.closest('.module')));
-            component.toggleModuleCrud($('[data-toggle="module-crud"][data-crud="delete"]', $this.closest('.module')));
         }
+
+        component.toggleModuleCrud($('[data-toggle="module-crud"][data-crud="view"]', $this.closest('.module')));
+        component.toggleModuleCrud($('[data-toggle="module-crud"][data-crud="create"]', $this.closest('.module')));
+        component.toggleModuleCrud($('[data-toggle="module-crud"][data-crud="update"]', $this.closest('.module')));
+        component.toggleModuleCrud($('[data-toggle="module-crud"][data-crud="delete"]', $this.closest('.module')));
+
     });
 }
 
@@ -214,6 +215,8 @@ ModulePermissionsComponent.prototype.toggleModuleCrud = function (target) {
         $this = $(target),
         $scope = $this.closest('.module'),
         crudSelector = '[data-crud="' + $this.data('crud') + '"]:not([data-toggle="module-crud"])',
+        $moduleMasterToggle = $('[data-toggle="module-master"]', $scope),
+        moduleCrudSelector = '[data-toggle="module-crud"]',
         $moduleCrudToggle = $('[data-toggle="module-crud"][data-crud="' + $this.data('crud') + '"]', $scope);
 
     if ($(crudSelector + ':checked', $scope).length == 0) {
@@ -225,6 +228,14 @@ ModulePermissionsComponent.prototype.toggleModuleCrud = function (target) {
         component.setChecked($moduleCrudToggle);
     } else {
         component.setIndeterminate($moduleCrudToggle);
+    }
+
+    if ($(moduleCrudSelector + ':checked', $scope).length === 0 && $(moduleCrudSelector + ':indeterminate', $scope).length === 0) {
+        component.setUnchecked($moduleMasterToggle);
+    } else if ($(moduleCrudSelector, $scope).length === $(moduleCrudSelector + ':checked', $scope).length) {
+        component.setChecked($moduleMasterToggle);
+    } else if ($(moduleCrudSelector, $scope).length > $(moduleCrudSelector + ':checked', $scope).length) {
+        component.setIndeterminate($moduleMasterToggle);
     }
 };
 
@@ -262,7 +273,6 @@ ModulePermissionsComponent.prototype.togglePageState = function (target) {
         $crudDisabledToggles = $(crudSelector + ':disabled', $scope),
         $moduleCrudToggle = $('[data-toggle="module-crud"][data-crud="' + $this.data('crud') + '"]', $moduleScope);
 
-
     if ($crudEnabledToggles.length) {
         if ($this.prop('checked')) {
             component.setChecked($crudEnabledToggles);
@@ -270,22 +280,25 @@ ModulePermissionsComponent.prototype.togglePageState = function (target) {
             component.setUnchecked($crudEnabledToggles);
         }
     }
-        if ($($crudDisabledToggles.selector, $scope).length > 0) {
-            component.setIndeterminate($this);
-        } else if (
+
+    if ($($crudDisabledToggles.selector, $scope).length > 0) {
+        component.setIndeterminate($this);
+    } else if (
             $($crudEnabledToggles.selector, $scope).length ===
             $($crudCheckedToggles.selector, $scope).length
-        ) {
+    ) {
+        if ($this.data('toggle') != 'page') {
             component.setChecked($this);
-        } else {
-            component.setUnchecked($this);
         }
-
+    } else {
+        component.setUnchecked($this);
+    }
 
     component.toggleModuleCrud($moduleCrudToggle);
 };
 
 ModulePermissionsComponent.prototype.toggleModuleState = function (target) {
+
     var component = this,
         $this = $(target),
         $scope = $this.closest('.module'),

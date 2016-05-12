@@ -30,14 +30,14 @@ describe('Module permissions component', function() {
         </div>\
 \
         <label class="control__label">\
-            <input type="checkbox" class="form__control checkbox qa-module-master" data-toggle="module-master">\
+            <input type="checkbox" class="form__control checkbox" data-toggle="module-master">\
                 Publishing\
         </label>\
         <a class="js-module-toggle" href="#"><i class="icon-caret-up"></i></a>\
 \
         <div class="crud">\
             <label class="crud__permission">\
-                <input type="checkbox" class="form__control checkbox qa-view-header" data-toggle="module-crud" data-crud="view">\
+                <input type="checkbox" class="form__control checkbox" data-toggle="module-crud" data-crud="view">\
                 <span>View</span>\
             </label>\
             <label class="crud__permission">\
@@ -63,7 +63,7 @@ describe('Module permissions component', function() {
 \
             <div class="crud">\
                 <label class="crud__permission">\
-                    <input type="checkbox" class="form__control checkbox qa-view-control" data-toggle="page" data-crud="view">\
+                    <input type="checkbox" class="form__control checkbox" data-toggle="page" data-crud="view">\
                     <span>View</span>\
                 </label>\
                 <label class="crud__permission">\
@@ -81,11 +81,33 @@ describe('Module permissions component', function() {
             </div>\
 \
             <div class="module-row module-subpage">\
-                <label class="control__label"><input data-toggle="module-row" type="checkbox" class="form__control checkbox"><span class="label">tab</span> Address\
+                <label class="control__label"><input data-toggle="module-row" type="checkbox" class="form__control checkbox"><span class="label">tab</span> One\
                 </label>\
                 <div class="crud">\
                     <label class="crud__permission">\
-                        <input type="checkbox" class="form__control checkbox qa-view-control" data-toggle="subpage" data-crud="view">\
+                        <input type="checkbox" class="form__control checkbox" data-toggle="subpage" data-crud="view">\
+                        <span>View</span>\
+                    </label>\
+                    <label class="crud__permission">\
+                        <input type="checkbox" class="form__control checkbox" data-toggle="subpage" data-crud="create">\
+                        <span>Create</span>\
+                    </label>\
+                    <label class="crud__permission">\
+                        <input type="checkbox" class="form__control checkbox" data-toggle="subpage" data-crud="update">\
+                        <span>Update</span>\
+                    </label>\
+                    <label class="crud__permission">\
+                        <input type="checkbox" class="form__control checkbox" data-toggle="subpage" data-crud="delete">\
+                        <span>Delete</span>\
+                    </label>\
+                </div>\
+            </div>\
+            <div class="module-row module-subpage">\
+                <label class="control__label"><input data-toggle="module-row" type="checkbox" class="form__control checkbox"><span class="label">tab</span> Two\
+                </label>\
+                <div class="crud">\
+                    <label class="crud__permission">\
+                        <input type="checkbox" class="form__control checkbox" data-toggle="subpage" data-crud="view">\
                         <span>View</span>\
                     </label>\
                     <label class="crud__permission">\
@@ -116,7 +138,7 @@ describe('Module permissions component', function() {
         this.$moduleSubpage = this.$module.find('.module-subpage');
         this.$moduleSubpageRowToggle = this.$moduleSubpage.find('[data-toggle="module-row"]');
         this.$moduleSubpageCheckboxes = this.$moduleSubpage.find('[data-crud]');
-        this.$moduleSubpageView = this.$moduleSubpage.find('[data-crud="view"]');
+        this.$moduleSubpageView = this.$moduleSubpage.find('[data-crud="view"]').first();
 
         this.$moduleMasterToggle = this.$html.find('[data-toggle="module-master"]');
         this.$moduleAllCrudCheckboxes = this.$module.find('[data-crud]');
@@ -350,6 +372,10 @@ describe('Module permissions component', function() {
 
         it('should not disable the Delete checkbox', function() {
             expect(this.$moduleSubpage.find('[data-crud="delete"]').prop('disabled')).to.be.false;
+        });
+
+        it('should set the module-page view toggle to indeterminate', function() {
+            expect(this.$modulePage.find('[data-toggle="page"][data-crud="view"]').prop('indeterminate')).to.be.true;
         });
 
     });
