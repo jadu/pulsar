@@ -64,12 +64,26 @@ fieldset {
         padding: 0;
 
         @include respond-min($screen-tablet) {
-            padding: 11px 0 0;
+            padding: 14px 0 0;
         }
 
         @include ie-lte(9) {
             border: 1px solid $input-border;
             border-radius: 0;
+        }
+
+        &.is-disabled {
+            background-color: color(white);
+            color: color(text, disabled);
+        }
+    }
+
+    @include respond-min($screen-tablet) {
+        .has-changed &.file,
+        .has-success &.file,
+        .has-warning &.file,
+        .has-error &.file {
+            padding: 14px 10px 13px;
         }
     }
 
