@@ -1,7 +1,7 @@
 'use strict';
 
 var $ = require('jquery'),
-    PulsarFormComponent = require('../../js/PulsarFormComponent');
+    PulsarFormComponent = require('../../../js/PulsarFormComponent');
 
 describe('Pulsar Form Component - Select2 elements', function() {
 

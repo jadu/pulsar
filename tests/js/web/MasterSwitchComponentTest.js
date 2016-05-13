@@ -1,7 +1,7 @@
 'use strict';
 
 var $ = require('jquery'),
-	MasterSwitchComponent = require('../../js/MasterSwitchComponent');
+	MasterSwitchComponent = require('../../../js/MasterSwitchComponent');
 
 describe('MasterSwitch component', function() {
 

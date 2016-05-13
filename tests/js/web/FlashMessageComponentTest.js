@@ -1,7 +1,7 @@
 'use strict';
 
 var $ = require('jquery'),
-    FlashMessageComponent = require('../../js/FlashMessageComponent');
+    FlashMessageComponent = require('../../../js/FlashMessageComponent');
 
     $.fx.off = true;
 
