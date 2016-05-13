@@ -11,6 +11,7 @@
 /composer.phar
 /.bashrc
 .vagrant/
+.idea/
 /coverage
 /css
 /dist
@@ -20,4 +21,3 @@ libs/livereload-js
 libs/phantomcss
 .vagrant
 pulsar.zip
-

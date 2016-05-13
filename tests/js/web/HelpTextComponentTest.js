@@ -1,7 +1,7 @@
 'use strict'
 
 var $ = require('jquery'),
-    HelpTextComponent = require('../../js/HelpTextComponent');
+    HelpTextComponent = require('../../../js/HelpTextComponent');
 
 describe('HelpTextComponent', function() {
 
