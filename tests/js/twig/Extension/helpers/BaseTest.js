@@ -65,7 +65,7 @@ phpRuntime.install({
 
             return Twig_Environment;
         },
-        'PHPUnit_Framework_TestCase': function () {
+        'PHPUnit_Framework_TestCase': function (internals) {
             function PHPUnit_Framework_TestCase() {}
 
             PHPUnit_Framework_TestCase.prototype.run = function (tests) {
@@ -90,6 +90,8 @@ phpRuntime.install({
             PHPUnit_Framework_TestCase.prototype.assertArrayHasKey = function (key, array) {
                 return testInstance.asserter.contains(key.getNative(), array.getNative());
             };
+
+            internals.disableAutoCoercion();
 
             return PHPUnit_Framework_TestCase;
         }
