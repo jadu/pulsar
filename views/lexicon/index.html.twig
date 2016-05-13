@@ -194,5 +194,9 @@
     {{ tabs.content(tabs_content) }}
 {% endblock %}
 
+{% block notifications %}
+    {% include '@pulsar/lexicon/includes/notifications.html.twig' %}
+{% endblock %}
+
 {% block javascript %}
 {% endblock %}
