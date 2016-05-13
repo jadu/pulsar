@@ -30,16 +30,16 @@
                 <th><a href="#">Actions</a></th>
             </tr>
         </thead>
-        <tbody class="table__tbody">
-{% for i in 0..499 %}
-            <tr class="table__tr">
-                <td class="table__td table-selection">
+        <tbody>
+
+            <tr>
+                <td class="table-selection">
                     {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
                     {{ html.icon('unchecked', { 'class': 'table-row-select js-select' }) }}
                 </td>
-                <td class="table__td"><a href="#" class="table-link">Sysadmin - Ansible 1</a></td>
-                <td class="table__td monospace"><a href="#" class="table-link">10.101.0.175</a></td>
-                <td class="table__td">
+                <td><a href="#" class="table-link">Sysadmin - Ansible 1</a></td>
+                <td class="monospace"><a href="#" class="table-link">10.101.0.175</a></td>
+                <td>
                     {{
                         html.label({
                             'label': 'running',
@@ -47,11 +47,11 @@
                         })
                     }}
                 </td>
-                <td class="table__td">3d 4h 35m</td>
-                <td class="table__td">{{ html.icon('linux') }} Centos 6 v1.0.2</td>
-                <td class="table__td">4 GB</td>
-                <td class="table__td centered">2</td>
-                <td class="table__td">
+                <td>3d 4h 35m</td>
+                <td>{{ html.icon('linux') }} Centos 6 v1.0.2</td>
+                <td>4 GB</td>
+                <td class="centered">2</td>
+                <td>
                     {{ html.link({ 'label': 'Reboot', 'class': 'table-action' }) }}<!--
                     -->{{ html.link({ 'label': 'Suspend', 'class': 'table-action' }) }}<!--
                     -->{{ html.link({ 'label': 'Shutdown', 'class': 'table-action' }) }}<!--
@@ -60,32 +60,32 @@
 
             </tr>
 
-            <tr class="table__tr">
-                <td class="table__td table-selection">
+            <tr>
+                <td class="table-selection">
                     {{ html.icon('plus-sign', { 'class': 'table-child-toggle'}) }}
                     {{ html.icon('unchecked', { 'class': 'table-row-select js-select' }) }}
                 </td>
-                <td class="table__td"><a href="#" class="table-link">Sysasdmin - WISP 1</a></td>
-                <td class="table__td monospace"><a href="#" class="table-link">10.101.0.138</a></td>
-                <td class="table__td">
+                <td><a href="#" class="table-link">Sysasdmin - WISP 1</a></td>
+                <td class="monospace"><a href="#" class="table-link">10.101.0.138</a></td>
+                <td>
                     {{
                         html.label({
                             'label': 'suspended'
                         })
                     }}
                 </td>
-                <td class="table__td">17w 3d 4h 35m</td>
-                <td class="table__td">{{ html.icon('windows') }} Windows Server 2012 R2 v1.0.0</td>
-                <td class="table__td">2 GB</td>
-                <td class="table__td centered">1</td>
-                <td class="table__td">
+                <td>17w 3d 4h 35m</td>
+                <td>{{ html.icon('windows') }} Windows Server 2012 R2 v1.0.0</td>
+                <td>2 GB</td>
+                <td class="centered">1</td>
+                <td>
                     {{ html.link({ 'label': 'Reboot', 'class': 'table-action' }) }}<!--
                     -->{{ html.link({ 'label': 'Suspend', 'class': 'table-action' }) }}<!--
                     -->{{ html.link({ 'label': 'Shutdown', 'class': 'table-action' }) }}<!--
                     -->{{ html.link({ 'label': 'Console', 'class': 'table-action' }) }}
                 </td>
             </tr>
-{% endfor %}
+
         </tbody>
     </table>
 
