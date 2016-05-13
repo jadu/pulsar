@@ -63,30 +63,29 @@
                 <a href="#" class="mobile-menu-button">Menu</a>
 
                 <div class="nav-user">
-                    <div class="dropdown">
-                        <span class="site-switcher__label">Pulsar</span>
-                    </div>
-                    {{
-                        html.button_dropdown({
-                            "label": "Paul Stanton",
-                            "parent_class": "user-menu btn--naked",
-                            "items": [
-                                html.link({
-                                    "label": html.icon('user') ~ " My details",
-                                    "href": "#foo"
-                                }),
-                                html.link({
-                                    "label": html.icon('key') ~ " Change password",
-                                    "href": "#foo"
-                                }),
-                                html.divider(),
-                                html.link({
-                                    "label": html.icon('power-off') ~ " Sign out",
-                                    "href": "#foo"
-                                }),
-                            ]
-                        })
-                    }}
+                {% block user_menu %}
+                {{
+                    html.button_dropdown({
+                        'parent_class': 'dropdown user-menu btn--naked',
+                        'label': 'Paul Stanton',
+                        'items': [
+                            html.link({
+                                "label": html.icon('user') ~ " My details",
+                                "href": "#foo"
+                            }),
+                            html.link({
+                                "label": html.icon('key') ~ " Change password",
+                                "href": "#foo"
+                            }),
+                            html.divider(),
+                            html.link({
+                                "label": html.icon('power-off') ~ " Sign out",
+                                "href": "#foo"
+                            })
+                        ]
+                    })
+                }}
+                {% endblock %}
                 </div>
 
                 {% include '@pulsar/lexicon/includes/notifications.html.twig' %}
