@@ -125,18 +125,48 @@ describe('Module permissions component', function() {
                 </div>\
             </div>\
         </div>\
+        <div class="module-row module-page">\
+            <label class="control__label">\
+                <input type="checkbox" class="form__control checkbox" data-toggle="module-row">\
+                    Address &amp; Contacts\
+            </label>\
+            <a class="js-refine-toggle" href="#">refine</a>\
+\
+            <div class="crud">\
+                <label class="crud__permission">\
+                    <input type="checkbox" class="form__control checkbox" data-toggle="page" data-crud="view">\
+                    <span>View</span>\
+                </label>\
+                <label class="crud__permission">\
+                    <input type="checkbox" class="form__control checkbox" data-toggle="page" data-crud="create">\
+                    <span>Create</span>\
+                </label>\
+                <label class="crud__permission">\
+                    <input type="checkbox" class="form__control checkbox" data-toggle="page" data-crud="update">\
+                    <span>Update</span>\
+                </label>\
+                <label class="crud__permission">\
+                    <input type="checkbox" class="form__control checkbox" data-toggle="page" data-crud="delete">\
+                    <span>Delete</span>\
+                </label>\
+            </div>\
+        </div>\
     </div>\
 </div>\
 ').appendTo(this.$body);
 
         this.$moduleToggle = this.$html.find('.js-module-toggle');
         this.$module = this.$moduleToggle.closest('.module');
-        this.$refineToggle = this.$html.find('.js-refine-toggle');
+        this.$refineToggle = this.$html.find('.js-refine-toggle').first();
 
-        this.$modulePage = this.$refineToggle.closest('.module-page');
-        this.$modulePageRowToggle = this.$modulePage.find('[data-toggle="module-row"]');
+        this.$moduleCrudView = this.$html.find('[data-toggle="module-crud"][data-crud="view"]');
+
+        this.$modulePage = this.$html.find('.module-page');
+        this.$modulePageRowToggle  = this.$modulePage.find('[data-toggle="module-row"]').first();
         this.$modulePageCheckboxes = this.$modulePage.find('[data-toggle="module-crud"]');
+        this.$modulePageCrudView = this.$html.find('[data-toggle="page"][data-crud="view"]');
 
+        this.$moduleSubpages = this.$module.find('.module-subpage');
         this.$moduleSubpage = this.$module.find('.module-subpage').first();
         this.$moduleSubpageRowToggle = this.$moduleSubpage.find('[data-toggle="module-row"]');
         this.$moduleSubpageCheckboxes = this.$moduleSubpage.find('[data-crud]');
@@ -495,57 +525,155 @@ describe('Module permissions component', function() {
         });
 
         it('should check all checkboxes within the same row', function() {
-            expect(this.$modulePageCheckboxes.length).to.equal(this.$modulePage.find('[data-toggle="page"]:checked').length);
+            expect(this.$modulePage.find('[data-toggle="page"]:checked').length).to.equal(4);
         });
 
-        it('should not disable the View checkbox', function() {
-            expect(this.$modulePage.find('[data-toggle="page"][data-crud="view"]').prop('disabled')).to.be.false;
+        it('should enable the module page CRUD toggles', function() {
+            expect(this.$modulePage.find('[data-toggle="page"]:disabled').length).to.equal(0);
         });
 
-        it('should enable the Create checkbox', function() {
-            expect(this.$modulePage.find('[data-toggle="page"][data-crud="create"]').prop('disabled')).to.be.false;
+        it('should check the module page CRUD toggles', function() {
+            expect(this.$modulePage.find('[data-toggle="page"]:checked').length).to.equal(4);
         });
 
-        it('should enable the Update checkbox', function() {
-            expect(this.$modulePage.find('[data-toggle="page"][data-crud="update"]').prop('disabled')).to.be.false;
+        it('should enable the module page CRUD toggles', function() {
+            expect(this.$modulePage.find('[data-toggle="subpage"]:disabled').length).to.equal(0);
         });
 
-        it('should enable the Delete checkbox', function() {
-            expect(this.$modulePage.find('[data-toggle="page"][data-crud="delete"]').prop('disabled')).to.be.false;
+        it('should set the module CRUD toggles to indeterminate', function() {
+            expect(this.$html.find('[data-toggle="module-crud"]:indeterminate').length).to.equal(4);
         });
 
-        // it('should set the module-page view toggle to indeterminate', function() {
-        //     expect(this.$modulePage.find('[data-toggle="module-crud"][data-crud="view"]').prop('indeterminate')).to.be.true;
-        // });
+        it('should check the module subpage CRUD toggles', function() {
+            expect(this.$modulePage.find('[data-toggle="subpage"]:checked').length).to.equal(8);
+        });
 
-        // it('should set the module-page create toggle to indeterminate', function() {
-        //     expect(this.$modulePage.find('[data-toggle="module-crud"][data-crud="create"]').prop('indeterminate')).to.be.true;
-        // });
+        it('should check the module page row toggles', function() {
+            expect(this.$html.find('.module-page > label > [data-toggle="module-row"]:checked').length).to.equal(1);
+        });
 
-        // it('should set the module-page update toggle to indeterminate', function() {
-        //     expect(this.$modulePage.find('[data-toggle="module-crud"][data-crud="update"]').prop('indeterminate')).to.be.true;
-        // });
+        it('should check the module subpage row toggles', function() {
+            expect(this.$modulePage.find('.module-subpage [data-toggle="module-row"]:checked').length).to.equal(2);
+        });
 
-        // it('should set the module-page delete toggle to indeterminate', function() {
-        //     expect(this.$modulePage.find('[data-toggle="module-crud"][data-crud="delete"]').prop('indeterminate')).to.be.true;
-        // });
-
-        // it('should set the module view toggle to indeterminate', function() {
-        //     expect(this.$module.find('[data-toggle="module-crud"][data-crud="view"]').prop('indeterminate')).to.be.true;
-        // });
-
-        // it('should set the module create toggle to indeterminate', function() {
-        //     expect(this.$module.find('[data-toggle="module-crud"][data-crud="create"]').prop('indeterminate')).to.be.true;
-        // });
-
-        // it('should set the module update toggle to indeterminate', function() {
-        //     expect(this.$module.find('[data-toggle="module-crud"][data-crud="update"]').prop('indeterminate')).to.be.true;
-        // });
-
-        // it('should set the module delete toggle to indeterminate', function() {
-        //     expect(this.$module.find('[data-toggle="module-crud"][data-crud="delete"]').prop('indeterminate')).to.be.true;
-        // });
     });
 
+    describe('unchecking a module-page row toggle', function() {
+
+        beforeEach(function() {
+            this.modulePermissions.init();
+            this.$modulePageRowToggle.click();
+            this.$modulePageRowToggle.click();
+        });
+
+        it('should uncheck the control', function() {
+            expect(this.$modulePageRowToggle.prop('checked')).to.be.false;
+        });
+
+        it('should uncheck all checkboxes within the same row', function() {
+            expect(this.$modulePage.find('[data-toggle="page"]:checked').length).to.equal(0);
+        });
+
+        it('should disable the module page CRUD toggles', function() {
+            expect(this.$modulePage.find('[data-toggle="page"]:disabled').length).to.equal(3);
+        });
+
+        it('should uncheck the module page CRUD toggles', function() {
+            expect(this.$modulePage.find('[data-toggle="page"]:checked').length).to.equal(0);
+        });
+
+        it('should disable the module page CRUD toggles', function() {
+            expect(this.$modulePage.find('[data-toggle="subpage"]:disabled').length).to.equal(6);
+        });
+
+        it('should uncheck the module CRUD toggles', function() {
+            expect(this.$html.find('[data-toggle="module-crud"]:checked').length).to.equal(0);
+        });
+
+        it('should uncheck the module subpage CRUD toggles', function() {
+            expect(this.$modulePage.find('[data-toggle="subpage"]:checked').length).to.equal(0);
+        });
+
+        it('should uncheck the module page row toggles', function() {
+            expect(this.$html.find('.module-page > label > [data-toggle="module-row"]:checked').length).to.equal(0);
+        });
+
+        it('should uncheck the module subpage row toggles', function() {
+            expect(this.$modulePage.find('.module-subpage [data-toggle="module-row"]:checked').length).to.equal(0);
+        });
+
+    });
+
+    describe('checking the view module-crud toggle', function() {
+
+        beforeEach(function() {
+            this.modulePermissions.init();
+            this.$moduleCrudView.click();
+        });
+
+        it('should check the control', function() {
+            expect(this.$moduleCrudView.prop('checked')).to.be.true;
+        });
+
+        it('should check all view [page] toggles', function() {
+            expect(this.$html.find('[data-toggle="page"][data-crud="view"]:checked').length).to.equal(2);
+        });
+
+        it('should not check other [page] toggles', function() {
+            expect(this.$html.find('[data-toggle="page"]:not([data-crud="view"]):checked').length).to.equal(0);
+        });
+
+        it('should check all view [subpage] toggles', function() {
+            expect(this.$html.find('[data-toggle="subpage"][data-crud="view"]:checked').length).to.equal(2);
+        });
+
+        it('should not check other [subpage] toggles', function() {
+            expect(this.$html.find('[data-toggle="subpage"]:not([data-crud="view"]):checked').length).to.equal(0);
+        });
+
+    });
+
+    describe('checking the view module-crud toggle', function() {
+
+        beforeEach(function() {
+            this.modulePermissions.init();
+            this.$modulePageCrudView.click();
+        });
+
+        it('should check the control', function() {
+            expect(this.$modulePageCrudView.prop('checked')).to.be.true;
+        });
+
+        it('should check all view [subpage] toggles', function() {
+            expect(this.$html.find('[data-toggle="subpage"][data-crud="view"]:checked').length).to.equal(2);
+        });
+
+        it('should not check other [subpage] toggles', function() {
+            expect(this.$html.find('[data-toggle="subpage"]:not([data-crud="view"]):checked').length).to.equal(0);
+        });
+
+    });
+
+    describe('unchecking the view module-crud toggle', function() {
+
+        beforeEach(function() {
+            this.modulePermissions.init();
+            this.$modulePageCrudView.click();
+            this.$modulePageCrudView.click();
+        });
+
+        it('should uncheck the control', function() {
+            expect(this.$modulePageCrudView.prop('checked')).to.be.false;
+        });
+
+        it('should uncheck all view [subpage] toggles', function() {
+            expect(this.$html.find('[data-toggle="subpage"][data-crud="view"]:checked').length).to.equal(0);
+        });
+
+        it('should not check other [subpage] toggles', function() {
+            expect(this.$html.find('[data-toggle="subpage"]:not([data-crud="view"]):checked').length).to.equal(0);
+        });
+
+    });
 });
 
