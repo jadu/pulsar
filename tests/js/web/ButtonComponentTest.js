@@ -1,7 +1,7 @@
 'use strict'
 
 var $ = require('jquery'),
-	ButtonComponent = require('../../js/ButtonComponent');
+	ButtonComponent = require('../../../js/ButtonComponent');
 
 describe('Button component', function() {
 
