@@ -451,7 +451,7 @@ describe('Module permissions component', function() {
 
         beforeEach(function() {
             this.modulePermissions.init();
-            this.$moduleSubpageView.click();
+            this.$html.find('.qa-child-one > .crud [data-crud="view"]').click();
         });
 
         it('should check the control', function() {
@@ -633,6 +633,37 @@ describe('Module permissions component', function() {
 
     });
 
+    describe('clicking an indeterminate view [module-crud] toggle', function() {
+
+        beforeEach(function() {
+            this.modulePermissions.init();
+            this.$moduleCrudView.click();
+            this.$html.find('.qa-child-two > .crud [data-crud="view"]').click();
+            this.$moduleCrudView.click();
+        });
+
+        it('should check the control', function() {
+            expect(this.$moduleCrudView.prop('checked')).to.be.true;
+        });
+
+        it('should check all view [page] toggles', function() {
+            expect(this.$html.find('[data-toggle="page"][data-crud="view"]:checked').length).to.equal(2);
+        });
+
+        it('should not check other [page] toggles', function() {
+            expect(this.$html.find('[data-toggle="page"]:not([data-crud="view"]):checked').length).to.equal(0);
+        });
+
+        it('should check all view [subpage] toggles', function() {
+            expect(this.$html.find('[data-toggle="subpage"][data-crud="view"]:checked').length).to.equal(2);
+        });
+
+        it('should not check other [subpage] toggles', function() {
+            expect(this.$html.find('[data-toggle="subpage"]:not([data-crud="view"]):checked').length).to.equal(0);
+        });
+
+    });
+
     describe('checking the view module-crud toggle', function() {
 
         beforeEach(function() {
@@ -681,19 +712,33 @@ describe('Module permissions component', function() {
         beforeEach(function() {
             this.modulePermissions.init();
             this.$html.find('.qa-parent > .crud [data-toggle="page"][data-crud="view"]').click();
-
+            this.$html.find('.qa-child-two > .crud [data-crud="view"]').click();
         });
 
         it('should disable the CUD controls', function() {
             expect(this.$html.find('.qa-child-one [data-crud]:not([data-crud="view"])').length).to.equal(3);
         });
 
-        it('should check the READ toggle', function() {
-            expect(this.$html.find('.qa-parent > .crud [data-toggle="page"][data-crud="view"]:checked').length).to.equal(1);
+        it('should set the READ toggle to indeterminate', function() {
+            expect(this.$html.find('.qa-parent > .crud [data-toggle="page"][data-crud="view"]:indeterminate').length).to.equal(1);
         });
 
         it('should set the master READ toggle to indeterminate', function() {
             expect(this.$html.find('.qa-master [data-toggle="module-crud"][data-crud="view"]:indeterminate').length).to.equal(1);
+        });
+
+    });
+
+    describe('checking a [subpage] toggle with an indeterminate [page]', function() {
+
+        beforeEach(function() {
+            this.modulePermissions.init();
+            this.$html.find('.qa-child-one > .crud [data-crud="view"]').click();
+            this.$html.find('.qa-child-two > .crud [data-crud="view"]').click();
+        });
+
+        it('should check the [page] view control', function() {
+            expect(this.$html.find('.qa-parent > .crud [data-crud="view"]:checked').length).to.equal(1);
         });
     });
 });
