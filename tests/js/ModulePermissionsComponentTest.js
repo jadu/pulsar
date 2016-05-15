@@ -10,7 +10,7 @@ describe('Module permissions component', function() {
         this.$body = $('<div id="body"></div>').appendTo(this.$html);
         this.$code = $('\
 <div class="module-permissions">\
-    <div class="module module-row">\
+    <div class="module module-row qa-master">\
 \
         <div class="module__titles">\
             <div class="crud">\
@@ -54,7 +54,7 @@ describe('Module permissions component', function() {
             </label>\
         </div>\
 \
-        <div class="module-row module-page">\
+        <div class="module-row module-page qa-parent">\
             <label class="control__label">\
                 <input type="checkbox" class="form__control checkbox" data-toggle="module-row">\
                     Address &amp; Contacts\
@@ -80,7 +80,7 @@ describe('Module permissions component', function() {
                 </label>\
             </div>\
 \
-            <div class="module-row module-subpage">\
+            <div class="module-row module-subpage qa-child-one">\
                 <label class="control__label"><input data-toggle="module-row" type="checkbox" class="form__control checkbox"><span class="label">tab</span> One\
                 </label>\
                 <div class="crud">\
@@ -102,7 +102,7 @@ describe('Module permissions component', function() {
                     </label>\
                 </div>\
             </div>\
-            <div class="module-row module-subpage">\
+            <div class="module-row module-subpage qa-child-two">\
                 <label class="control__label"><input data-toggle="module-row" type="checkbox" class="form__control checkbox"><span class="label">tab</span> Two\
                 </label>\
                 <div class="crud">\
@@ -674,6 +674,27 @@ describe('Module permissions component', function() {
             expect(this.$html.find('[data-toggle="subpage"]:not([data-crud="view"]):checked').length).to.equal(0);
         });
 
+    });
+
+    describe('checking a [page] toggle with a disabled [subpage]', function() {
+
+        beforeEach(function() {
+            this.modulePermissions.init();
+            this.$html.find('.qa-parent > .crud [data-toggle="page"][data-crud="view"]').click();
+
+        });
+
+        it('should disable the CUD controls', function() {
+            expect(this.$html.find('.qa-child-one [data-crud]:not([data-crud="view"])').length).to.equal(3);
+        });
+
+        it('should check the READ toggle', function() {
+            expect(this.$html.find('.qa-parent > .crud [data-toggle="page"][data-crud="view"]:checked').length).to.equal(1);
+        });
+
+        it('should set the master READ toggle to indeterminate', function() {
+            expect(this.$html.find('.qa-master [data-toggle="module-crud"][data-crud="view"]:indeterminate').length).to.equal(1);
+        });
     });
 });
 
