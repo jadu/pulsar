@@ -279,16 +279,21 @@ ModulePermissionsComponent.prototype.togglePageState = function (target) {
         }
     }
 
-    if ($($crudDisabledToggles.selector, $scope).length > 0) {
-        component.setIndeterminate($this);
-    } else if (
+    // if ($($crudDisabledToggles.selector, $scope).length > 0) {
+    //     console.log('1');
+    //     component.setIndeterminate($this);
+    // } else
+    if (
             $($crudEnabledToggles.selector, $scope).length ===
             $($crudCheckedToggles.selector, $scope).length
     ) {
-        if ($this.data('toggle') != 'page') {
-            component.setChecked($this);
-        }
+        //console.log('2');
+        // if ($this.data('toggle') != 'page') {
+        //     console.log('2a');
+        //     component.setChecked($this);
+        // }
     } else {
+        //console.log('3');
         component.setUnchecked($this);
     }
 
@@ -305,11 +310,12 @@ ModulePermissionsComponent.prototype.toggleModuleState = function (target) {
         $crudCheckedToggles = $(crudSelector + ':checked', $scope),
         $crudDisabledToggles = $(crudSelector + ':disabled', $scope);
 
-    if ($this.prop('checked')) {
+    // if ($this.prop('checked')) {
         component.setChecked($crudEnabledToggles);
-    } else {
-        component.setUnchecked($crudEnabledToggles);
-    }
+    // } else {
+    //     consooe.log("1");
+    //     component.setUnchecked($crudEnabledToggles);
+    // }
 
     if ($($crudDisabledToggles.selector, $scope).length > 0) {
         component.setIndeterminate($this);
