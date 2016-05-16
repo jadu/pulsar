@@ -148,6 +148,7 @@ $palette-alias: (
     ),
     link: (
         base:     map-get(map-get($palette-branding, jadu-blue), dark),
+        dark:     map-get(map-get($palette-branding, jadu-blue), darkest),
         hover:    map-get(map-get($palette-branding, jadu-blue), darkest),
         inverse:  #fff,
         inverse-hover: darken(#fff, 10%),

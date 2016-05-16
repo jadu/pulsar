@@ -31,6 +31,12 @@
 
     &.selected .table__td {
         background-color: color(background, selected);
+
+        a,
+        a:link {
+            border-bottom-color: color(link, dark);
+            color: color(link, dark);
+        }
     }
 
     &.is-disabled .table__td {
