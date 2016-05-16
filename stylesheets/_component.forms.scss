@@ -23,6 +23,15 @@ fieldset {
     line-height: $input-height-base;
     padding: 0 $padding-base-horizontal;
 
+    @include respond-min($screen-tablet) {
+        .has-changed &.file,
+        .has-success &.file,
+        .has-warning &.file,
+        .has-error &.file {
+            padding: 14px 10px 13px;
+        }
+    }
+
     &.checkbox,
     &.radio {
         border-radius: 0;
@@ -75,15 +84,6 @@ fieldset {
         &.is-disabled {
             background-color: color(white);
             color: color(text, disabled);
-        }
-    }
-
-    @include respond-min($screen-tablet) {
-        .has-changed &.file,
-        .has-success &.file,
-        .has-warning &.file,
-        .has-error &.file {
-            padding: 14px 10px 13px;
         }
     }
 

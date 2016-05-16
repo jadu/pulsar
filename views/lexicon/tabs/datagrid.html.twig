@@ -16,12 +16,11 @@
 
 {% block tab_content %}
 
-    <table class="table datatable responsive">
+    <table class="table datatable">
         <thead class="table__thead">
             <tr class="table__tr">
-                <th class="table-selection table__th">
-
-                </th>
+                <th class="table-responsive table__th"></th>
+                <th class="table-selection table__th"></th>
 
                 <th class="table__th"><a href="#" class="table-link">Name</a></th>
                 <th class="table__th"><a href="#" class="table-link">IP</a></th>
@@ -37,8 +36,10 @@
         <tbody class="table__tbody">
 {% for i in 0..499 %}
             <tr class="table__tr">
-                <td class="table__td table-selection">
+                <td class="table__td table-responsive">
                     {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                </td>
+                <td class="table__td table-selection">
                     {{ html.icon('unchecked', { 'class': 'table-row-select js-select' }) }}
                 </td>
                 <td class="table__td"><a href="#" class="table-link">Sysadmin - Ansible 1</a></td>
@@ -65,8 +66,10 @@
             </tr>
 
             <tr class="table__tr">
+                <td class="table__td table-responsive">
+                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                </td>
                 <td class="table__td table-selection">
-                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle'}) }}
                     {{ html.icon('unchecked', { 'class': 'table-row-select js-select' }) }}
                 </td>
                 <td class="table__td"><a href="#" class="table-link">Sysasdmin - WISP 1</a></td>

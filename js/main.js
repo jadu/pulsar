@@ -60,6 +60,7 @@
             aaSorting: [],
             bAutoWidth: false,
             columnDefs: [
+                { className: 'control', orderable: false, targets: 0 },
                 { "searchable": false, "targets": 0 },
                 { "orderable": false, "targets": 0 }
             ],
@@ -67,15 +68,16 @@
              sSearch: "Filter:"
             },
             responsive: {
-			    details: {
-	                type: 'column',
-	                target: '.table-child-toggle'
-	            }
+                details: {
+                    type: 'column'
+                }
+            },
+            select: {
+                style:    'multi',
+                selector: 'td.table-selection'
             },
             stateSave: false,
             tableTools: {
-                sRowSelect: "multi",
-                sRowSelector: '.js-select',
                 aButtons: [
                     {
                         "sExtends":    "collection",
