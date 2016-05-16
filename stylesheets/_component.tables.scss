@@ -10,6 +10,16 @@
         background-color: color(background, light);
     }
 
+    tr {
+        vertical-align: top;
+
+        a,
+        a:link {
+            border-bottom-color: color(link, dark);
+            color: color(link, dark);
+        }
+    }
+
     th,
     td {
         border-bottom: 1px solid color(border);
@@ -43,6 +53,11 @@
 
 .table--fixed {
     table-layout: fixed;
+
+    td {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 }
 
 

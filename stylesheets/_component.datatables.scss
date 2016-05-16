@@ -17,33 +17,58 @@
     }
 }
 
-.datatable--fixed {
-    table-layout: fixed;
 
-    td {
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-}
 
-.table__tr {
-    vertical-align: top;
+.datatable {
+    tr {
+        &.selected .table__td {
+            background-color: color(background, selected);
 
-    &.selected .table__td {
-        background-color: color(background, selected);
+            a,
+            a:link {
+                border-bottom-color: color(link, dark);
+                color: color(link, dark);
+            }
+        }
 
-        a,
-        a:link {
-            border-bottom-color: color(link, dark);
-            color: color(link, dark);
+        &.is-disabled .table__td {
+            &,
+            & > * {
+                color: color(text, disabled);
+            }
         }
     }
 
-    &.is-disabled .table__td {
-        &,
-        & > * {
-            color: color(text, disabled);
+    th {
+        // scss-lint:disable SelectorFormat
+        &.sorting::after,
+        &.sorting_asc::after,
+        &.sorting_desc::after {
+            @include icon-FontAwesome();
+            font-size: 18px;
+            left: 0;
+            margin-left: 10px;
         }
+
+        &.sorting_asc::after {
+            content: $circle-arrow-up;
+        }
+
+        &.sorting_desc::after {
+            content: $circle-arrow-down;
+        }
+
+        &.sorting_asc,
+        &.sorting_desc {
+            background-color: darken(#fff, 10);
+        }
+
+
+        // scss-lint:enable SelectorFormat
+    }
+
+    td.sorting_1 {
+        background-color: darken(#fff, 3);
     }
 }
 
@@ -64,35 +89,8 @@
     content: '\f14a';
 }
 
-.table__th,
-.table__td {
-    border-bottom: 1px solid color(border);
-    height: $line-height-large;
-    padding: 11.5px 10px 12px;
-    text-align: left;
-    white-space: nowrap;
-
-    &:hover > .table__td {
-        background-color: $table-bg-hover;
-    }
-
-    &.centered {
-        text-align: center;
-    }
-}
 
 
-
-.table__th {
-    background-color: #fff;
-    font-weight: normal;
-    font-family: $font-family-regular;
-
-    &:hover:not(.table-selection):not(.table-responsive):not(.sorting_disabled) {
-        background-color: #efefef;
-        cursor: pointer;
-    }
-}
 
 .table__th > .table-link {
     color: color(black);
@@ -131,57 +129,18 @@
     user-select: none;
     width: 30px;
     z-index: -1;
-}
-
-.table-link {
-    border-bottom: 1px dotted color(gray, light);
-    color: color(link);
-    text-decoration: none;
 
     &:hover {
-        border-bottom: 1px dotted color(black);
-        color: color(black);
-        text-decoration: none;
-    }
-
-    // scss-lint:disable SelectorFormat
-    .sorting_disabled & {
-        border: 0;
-
-        &:hover {
-            border: 0;
-            color: $black;
-            cursor: default;
-            text-decoration: none;
-        }
-    }
-    // scss-lint:enable SelectorFormat
-}
-
-.table-action {
-    border-right: 1px solid color(border);
-    padding: 0 5px;
-
-    &:last-child {
-        border-right: 0;
+        background: none;
+        cursor: pointer;
     }
 }
 
 
 
 
-.table__th {
-    // scss-lint:disable SelectorFormat
-    &.sorting::after,
-    &.sorting_asc::after,
-    &.sorting_desc::after {
-        @include icon-FontAwesome();
-        font-size: 18px;
-        left: 0;
-        margin-left: 10px;
-    }
-    // scss-lint:enable SelectorFormat
-}
+
+
 
 // scss-lint:disable SelectorFormat
 .dataTables_wrapper {
@@ -266,22 +225,7 @@
     padding: 5px;
 }
 
-.table__th.sorting_asc::after {
-    content: $circle-arrow-up;
-}
 
-.table__th.sorting_desc::after {
-    content: $circle-arrow-down;
-}
-
-.table__th.sorting_asc,
-.table__th.sorting_desc {
-    background-color: darken(#fff, 10);
-}
-
-.table__td.sorting_1 {
-    background-color: darken(#fff, 3);
-}
 // scss-lint:enable SelectorFormat
 
 .datatable .child {
