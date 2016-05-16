@@ -82,7 +82,7 @@
     font-weight: normal;
     font-family: $font-family-regular;
 
-    &:hover:not(.table-selection):not(.sorting_disabled) {
+    &:hover:not(.table-selection):not(.table-responsive):not(.sorting_disabled) {
         background-color: #efefef;
         cursor: pointer;
     }
@@ -116,12 +116,13 @@
     width: 1%;
 }
 
+.table-responsive,
 .table-selection {
     text-align: center;
-    min-width: 60px;
-    max-width: 60px;
+    min-width: 30px;
+    max-width: 30px;
     position: relative;
-    width: 60px;
+    width: 30px;
     z-index: -1;
 }
 
@@ -285,7 +286,6 @@
     display: none;
     font-size: 14px;
     position: absolute;
-    left: 5px;
     top: 17px;
 
     .collapsed & {
