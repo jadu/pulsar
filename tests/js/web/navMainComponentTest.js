@@ -1,7 +1,7 @@
 'use strict';
 
 var $ = require('jquery'),
-	NavMainComponent = require('../../js/NavMainComponent');
+	NavMainComponent = require('../../../js/NavMainComponent');
 
 $.fx.off = !$.fx.off
 

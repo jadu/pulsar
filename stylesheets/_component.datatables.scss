@@ -30,7 +30,13 @@
     vertical-align: top;
 
     &.selected .table__td {
-        background-color: color(jadu-blue, pale);
+        background-color: color(background, selected);
+
+        a,
+        a:link {
+            border-bottom-color: color(link, dark);
+            color: color(link, dark);
+        }
     }
 
     &.is-disabled .table__td {
@@ -82,7 +88,7 @@
     font-weight: normal;
     font-family: $font-family-regular;
 
-    &:hover:not(.table-selection):not(.sorting_disabled) {
+    &:hover:not(.table-selection):not(.table-responsive):not(.sorting_disabled) {
         background-color: #efefef;
         cursor: pointer;
     }
@@ -116,12 +122,14 @@
     width: 1%;
 }
 
+.table-responsive,
 .table-selection {
     text-align: center;
-    min-width: 60px;
-    max-width: 60px;
+    min-width: 30px;
+    max-width: 30px;
     position: relative;
-    width: 60px;
+    user-select: none;
+    width: 30px;
     z-index: -1;
 }
 
@@ -212,10 +220,18 @@
 }
 
 .dataTables_top {
-    color: #ccc;
+    color: color(text, light);
     float: left;
     margin-bottom: 10px;
     width: 100%;
+
+    .select-info {
+        @extend .label;
+        @extend .label--info;
+        color: color(text);
+        font-family: $font-family-regular;
+        margin-left: 5px;
+    }
 }
 
 .dataTables_actions {
@@ -285,7 +301,6 @@
     display: none;
     font-size: 14px;
     position: absolute;
-    left: 5px;
     top: 17px;
 
     .collapsed & {

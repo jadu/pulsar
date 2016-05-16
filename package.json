@@ -1,24 +1,31 @@
 {
   "name": "pulsar",
-  "version": "6.3.2",
+  "version": "6.3.3",
   "repository": {
     "type": "git",
     "url": "https://github.com/jadu/pulsar.git"
   },
+  "main": "./src/Jadu/Pulsar/Twig.js/Pulsar.js",
   "scripts": {
-    "test": "mochify --reporter spec --recursive ./tests/js/index ./tests/*Test.js",
-    "coverage": "mochify --plugin [ mochify-istanbul --exclude '**/+(tests|node_modules|libs)/**/*' --report lcov --dir ./coverage ] --reporter spec --recursive ./tests/js/index ./tests/*Test.js"
+    "coverage": "mochify --plugin [ mochify-istanbul --exclude '**/+(tests|node_modules|libs)/**/*' --report lcov --dir ./coverage ] --reporter spec --recursive ./tests/js/web/index ./tests/js/web/*Test.js",
+    "test": "npm run web-test && npm run js-ext-test && npm run js-macro-test",
+    "web-test": "mochify --reporter spec --recursive ./tests/js/web/index ./tests/js/web/*Test.js",
+    "js-ext-test": "mocha --reporter spec ./tests/js/twig/Extension/*Test.js",
+    "js-macro-test": "mocha --reporter spec ./tests/js/twig/Macro/*Test.js"
   },
   "devDependencies": {
     "aliasify": "^1.9.0",
     "browserify": "10.0.0",
     "browserify-istanbul": "^0.2.1",
     "browserify-shim": "^3.8.9",
-    "chai": "^3.5.0",
+    "chai": "latest",
+    "chai-hiff": "^1.0.0",
     "datatables.net": "^1.10.11",
     "datatables.net-dt": "^1.10.10",
     "datatables.net-responsive": "^2.0.2",
     "datatables.net-responsive-dt": "^2.0.0",
+    "datatables.net-select": "^1.1.2",
+    "datatables.net-select-dt": "^1.1.2",
     "grunt": "^0.4.5",
     "grunt-asciify": "^0.2.2",
     "grunt-autoprefixer": "^3.0.4",
@@ -52,8 +59,12 @@
     "mochify-istanbul": "^2.4.1",
     "node-sass": "^3.7.0",
     "phantomjs": "^1.9.19",
+    "phpruntime": "^5.0.0",
+    "phptoast": "^3.17.0",
+    "phptojs": "^3.16.0",
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0",
+    "twig": "^0.9.4",
     "uglifyify": "^3.0.1"
   },
   "browserify": {
@@ -66,5 +77,9 @@
     "./libs/svgeezy/svgeezy.min.js": {
       "exports": "svgeezy"
     }
+  },
+  "dependencies": {
+    "lodash": "^4.6.1",
+    "moment": "^2.12.0"
   }
 }

@@ -19,6 +19,7 @@
     <table class="table table--full">
         <thead>
             <tr>
+				<th class="table-responsive"></th>
                 <th class="table-selection"></th>
                 <th><a href="#">Name</a></th>
                 <th><a href="#">IP</a></th>
@@ -33,8 +34,10 @@
         <tbody>
 
             <tr>
-                <td class="table-selection">
+				<td class="table-responsive">
                     {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                </td>
+                <td class="table-selection">
                     {{ html.icon('unchecked', { 'class': 'table-row-select js-select' }) }}
                 </td>
                 <td><a href="#" class="table-link">Sysadmin - Ansible 1</a></td>
@@ -60,9 +63,11 @@
 
             </tr>
 
-            <tr>
-                <td class="table-selection">
-                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle'}) }}
+            <tr class="table__tr">
+                <td class="table__td table-responsive">
+                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                </td>
+                <td class="table__td table-selection">
                     {{ html.icon('unchecked', { 'class': 'table-row-select js-select' }) }}
                 </td>
                 <td><a href="#" class="table-link">Sysasdmin - WISP 1</a></td>
