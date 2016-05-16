@@ -60,6 +60,7 @@
             aaSorting: [],
             bAutoWidth: false,
             columnDefs: [
+                { className: 'control', orderable: false, targets: 0 },
                 { "searchable": false, "targets": 0 },
                 { "orderable": false, "targets": 0 }
             ],
