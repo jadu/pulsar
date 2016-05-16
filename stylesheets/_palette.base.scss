@@ -61,32 +61,6 @@ $palette-monochromes: (
 );
 
 /* -------------------------------------------------------------------------- *\
-    Aliases
-\* -------------------------------------------------------------------------- */
-
-$palette-alias: (
-    text: (
-        base:  map-get(map-get($palette-monochromes, gray), darker),
-        light: map-get(map-get($palette-monochromes, gray), lighter),
-        disabled: map-get(map-get($palette-monochromes, gray), lighter)
-    ),
-    link: (
-        base:  map-get(map-get($palette-branding, jadu-blue), dark),
-        hover: map-get(map-get($palette-branding, jadu-blue), darkest),
-        inverse: #fff,
-        inverse-hover: darken(#fff, 10%),
-        disabled: map-get(map-get($palette-monochromes, gray), lighter)
-    ),
-    border: (
-        base: map-get(map-get($palette-monochromes, gray), lighter)
-    ),
-    background: (
-        base: map-get(map-get($palette-monochromes, gray), off-white),
-        light: lighten(map-get(map-get($palette-monochromes, gray), off-white), 2)
-    )
-);
-
-/* -------------------------------------------------------------------------- *\
     States
 
     The colour and its alternate MUST meet WCAG 2.0 AA compliance for contrast
@@ -161,3 +135,32 @@ $state-colors:
     (new,       map-get(map-get($palette-states, new), base),     map-get(map-get($palette-states, new), alt));
 
 // scss-lint:enable SpaceAfterComma
+
+/* -------------------------------------------------------------------------- *\
+    Aliases
+\* -------------------------------------------------------------------------- */
+
+$palette-alias: (
+    text: (
+        base:     map-get(map-get($palette-monochromes, gray), darker),
+        light:    map-get(map-get($palette-monochromes, gray), lighter),
+        disabled: map-get(map-get($palette-monochromes, gray), lighter)
+    ),
+    link: (
+        base:     map-get(map-get($palette-branding, jadu-blue), dark),
+        hover:    map-get(map-get($palette-branding, jadu-blue), darkest),
+        inverse:  #fff,
+        inverse-hover: darken(#fff, 10%),
+        disabled:  map-get(map-get($palette-monochromes, gray), lighter)
+    ),
+    border: (
+        base:      map-get(map-get($palette-monochromes, gray), lighter)
+    ),
+    background: (
+        base:      map-get(map-get($palette-monochromes, gray), off-white),
+        light:     lighten(map-get(map-get($palette-monochromes, gray), off-white), 2),
+        selected:  map-get(map-get($palette-states, info), light)
+    )
+);
+
+

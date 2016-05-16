@@ -25,6 +25,7 @@ var $                     = require('jquery'),
 
     dt            = require('datatables.net')(window, $),
     dt_responsive = require('datatables.net-responsive')(window, $),
+    dt_select     = require('datatables.net-select')(window, $),
 
     ButtonComponent = require('./ButtonComponent'),
     HelpTextComponent = require('./HelpTextComponent'),
