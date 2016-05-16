@@ -2,6 +2,7 @@
 {% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
 {% import '@pulsar/pulsar/v2/helpers/flash.html.twig' as flash %}
 {% import '@pulsar/pulsar/v2/helpers/nav.html.twig' as nav %}
+
 {% set cssPath  = base_path ~ 'css/' %}
 {% set jsPath   = base_path ~ 'js/' %}
 {% set libsPath = base_path ~ 'libs/' %}
@@ -92,12 +93,12 @@
 
             </div>
 
+            {% block search %}
             <form action="/search" class="main-search" data-ui="search-box">
-                {% block search %}
                 <input type="search" name="q" id="case-search" value="" placeholder="Search" class="main-search__field" autocomplete="off">
                 <button class="main-search__submit" type="submit" name="case-search"><i class="icon-search"></i></button>
-                {% endblock %}
             </form>
+            {% endblock %}
 
             <div class="content-main">
                 <div class="tabs__content">
