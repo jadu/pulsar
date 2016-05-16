@@ -21,6 +21,8 @@
     "chai": "latest",
     "chai-hiff": "^1.0.0",
     "datatables.net": "^1.10.11",
+    "datatables.net-buttons": "^1.1.2",
+    "datatables.net-buttons-dt": "^1.1.2",
     "datatables.net-dt": "^1.10.10",
     "datatables.net-responsive": "^2.0.2",
     "datatables.net-responsive-dt": "^2.0.0",
