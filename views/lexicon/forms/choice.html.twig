@@ -163,6 +163,31 @@
 
     {{
         form.choice({
+            'class': 'choice--block choice--block-hide-input form__group--medium',
+            'label': 'Choice block radios (hidden input)',
+            'options': [
+                {
+                    'label': html.icon('bold') ~ ' Bold',
+                    'value': 'bold',
+                    'name': 'foo'
+                },
+                {
+                    'label': html.icon('italic') ~ ' Italic',
+                    'value': 'italic',
+                    'name': 'foo',
+                    'checked': true
+                },
+                {
+                    'label': html.icon('underline') ~ ' Underline',
+                    'value': 'underline',
+                    'name': 'foo'
+                },
+            ]
+        })
+    }}
+
+    {{
+        form.choice({
             'class': 'choice--block choice--block-inline form__group--medium',
             'optimize': 'few',
             'label': 'Choice block radios',
