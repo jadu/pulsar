@@ -220,10 +220,18 @@
 }
 
 .dataTables_top {
-    color: #ccc;
+    color: color(text, light);
     float: left;
     margin-bottom: 10px;
     width: 100%;
+
+    .select-info {
+        @extend .label;
+        @extend .label--info;
+        color: color(text);
+        font-family: $font-family-regular;
+        margin-left: 5px;
+    }
 }
 
 .dataTables_actions {
