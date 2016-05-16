@@ -61,8 +61,8 @@
             bAutoWidth: false,
             columnDefs: [
                 { className: 'control', orderable: false, targets: 0 },
-                { "searchable": false, "targets": 0 },
-                { "orderable": false, "targets": 0 }
+                { "searchable": false, "targets": [0, 1] },
+                { "orderable": false, "targets": [0, 1] }
             ],
             oLanguage: {
              sSearch: "Filter:"
@@ -73,8 +73,9 @@
                 }
             },
             select: {
-                style:    'multi',
-                selector: 'td.table-selection'
+                className: 'dt-row-selected',
+                style:     'multi',
+                selector:  'td.table-selection'
             },
             stateSave: false,
             tableTools: {
