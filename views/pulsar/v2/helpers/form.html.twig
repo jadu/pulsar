@@ -432,6 +432,7 @@ Option  | Type   | Description
 ------- | ------ | -------------------------------------------------------------
 action  | string | URL to post to, will submit to self if empty
 class   | string | A space separated list of class names
+nonce   | string | CSRF token, will look for a template `nonce` value by default
 enctype | string | How the form-data should be encoded (requires method = POST)
 id      | string | A unique identifier, if required
 name    | string | The name of the form
