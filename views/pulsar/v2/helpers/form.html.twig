@@ -432,6 +432,7 @@ Option  | Type   | Description
 ------- | ------ | -------------------------------------------------------------
 action  | string | URL to post to, will submit to self if empty
 class   | string | A space separated list of class names
+nonce   | string | Random string used to prevent CSRF, adds a hidden `nonce` input after `<form>`
 enctype | string | How the form-data should be encoded (requires method = POST)
 id      | string | A unique identifier, if required
 name    | string | The name of the form
@@ -493,7 +494,11 @@ attribute on the `form` element will be set to `POST`.
         {% set options = options|merge({'enctype': options.enctype|default('application/x-www-form-urlencoded')}) %}
     {% endif %}
 
-    <form{{ attributes(options|defaults(defaults)) }}>
+    <form{{ attributes(options|defaults(defaults)|exclude('nonce')) }}>
+
+    {% if options.nonce is defined and options.nonce is not empty %}
+        {{ form.hidden({'name': 'nonce', 'value': options.nonce}) }}
+    {% endif %}
 
     {{ methodInput|default }}
 
