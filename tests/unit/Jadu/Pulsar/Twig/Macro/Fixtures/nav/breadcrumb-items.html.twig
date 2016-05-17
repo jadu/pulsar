@@ -1,0 +1,9 @@
+{% import '@pulsar/pulsar/v2/helpers/nav.html.twig' as nav %}
+{%
+    set breadcrumbs = [
+        {'label': 'foo', 'href': '#foo'},
+        {'label': 'bar', 'href': '#bar'},
+        {'label': 'baz', 'href': '#baz'}
+    ]
+%}
+{{ nav.breadcrumbs(breadcrumbs) }}

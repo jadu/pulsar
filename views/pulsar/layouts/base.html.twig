@@ -37,7 +37,7 @@
     <link rel="stylesheet" type="text/css" href="{{ libsPath ~ 'font-awesome/css/font-awesome-ie7.min.css' }}" />
     <![endif]-->
 
-    <!-- <link rel="stylesheet" href="http://basehold.it/24"> -->
+    <!-- <link rel="stylesheet" href="http://basehold.it/12"> -->
 
     <script
         src="{{ base_path ~ 'dist/js/bundle.js' }}"
@@ -102,11 +102,7 @@
 
             <div class="content-main">
                 <div class="tabs__content">
-                    <nav class="breadcrumb">
-                    {% block breadcrumb %}
-                        <a href="#">Bread</a> / <a href="#">Crumb</a> / Trail
-                    {% endblock %}
-                    </nav>
+                    {{ nav.breadcrumbs(breadcrumbs|default) }}
                     <h1 class="main-title">{{ heading|default('MISSING HEADING') }}</h1>
                     {% block tabs_list %}{% endblock %}
                     {% block tabs_content %}{% endblock %}

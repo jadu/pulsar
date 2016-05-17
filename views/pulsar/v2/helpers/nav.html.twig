@@ -102,3 +102,17 @@
         </ul>
     </div>
 {%- endmacro -%}
+
+
+{%- macro breadcrumbs(items) -%}
+    {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+
+    <nav class="breadcrumb">
+    {%- for item in items -%}
+        {{ html.link(item) }}
+        {% if not loop.last %}
+            /
+        {% endif %}
+    {%- endfor -%}
+    </nav>
+{%- endmacro -%}
