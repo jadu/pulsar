@@ -10,6 +10,14 @@
 {% set heading = 'Components' %}
 
 {%
+    set breadcrumbs = [
+        {'label': 'Bread', 'href': '#'},
+        {'label': 'Crumb', 'href': '#'},
+        {'label': 'Trail', 'href': '#'}
+    ]
+%}
+
+{%
     set actions_menu = [
         html.link({
           'label': html.icon('save') ~ ' Save',
