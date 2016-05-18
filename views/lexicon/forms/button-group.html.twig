@@ -2,26 +2,6 @@
 
 {% block tab_content %}
 
-<table id="mappingsTable" class="table--datagrid">
-        <thead>
-            <tr>
-                                   <th>Title</th>
-                                    <th>Content Type</th>
-                                    <th>Translations</th>
-                            </tr>
-        </thead>
-        <tbody>
-                                <tr>
-                <td data-th="Title" data-table-header="Title"><a href="/jadu/translations/edit/1">News</a></td>
-                <td data-th="Content Type" data-table-header="Content Type">News Article</td>
-                <td data-th="Translations" data-table-header="Translations">2</td>
-            </tr>
-                                <tr id="loadingRow" class="row--no-results visually-hidden">
-                <td colspan="99" data-table-header="Title"><p></p><div class="loading"><i>Loading...</i></div><p></p></td>
-            </tr>
-        </tbody>
-    </table>
-
     {{
         form.create()
     }}
