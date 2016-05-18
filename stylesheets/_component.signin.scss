@@ -571,3 +571,13 @@ body {
 	text-align: left;
 	list-style-position: outside;
 }
+
+.signin--neutron {
+	.signin {
+		background-color: rgba(95, 95, 95, .9);
+	}
+
+	.signin__icon:before {
+		color: rgb(95, 95, 95);
+	}
+}
