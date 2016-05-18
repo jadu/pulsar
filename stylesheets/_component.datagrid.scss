@@ -91,18 +91,6 @@
     vertical-align: baseline;
     width: 100%;
 
-    @include respond-min($screen-tablet) {
-      display: table-cell;
-      padding: 5px $gutter-width / 2;
-
-      vertical-align: middle;
-      width: auto;
-
-      &::before {
-        display: none;
-      }
-    }
-
     &::before {
       background-color: darken($white, 5%);
       content: attr(data-table-header);
@@ -116,6 +104,18 @@
       text-align: right;
       vertical-align: baseline;
       width: auto;
+    }
+
+    @include respond-min($screen-tablet) {
+      display: table-cell;
+      padding: 5px $gutter-width / 2;
+
+      vertical-align: middle;
+      width: auto;
+
+      &::before {
+        display: none;
+      }
     }
 
     &:last-child {
