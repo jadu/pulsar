@@ -633,6 +633,21 @@ describe('Module permissions component', function() {
 
     });
 
+    describe('un checking the view module-crud toggle', function() {
+
+        beforeEach(function() {
+            this.modulePermissions.init();
+            this.$moduleCrudView.click();
+            this.$moduleCrudView.click();
+        });
+
+        it('should uncheck the control', function() {
+            expect(this.$moduleCrudView.prop('checked')).to.be.false;
+        });
+
+
+    });
+
     describe('clicking an indeterminate view [module-crud] toggle', function() {
 
         beforeEach(function() {
@@ -643,7 +658,7 @@ describe('Module permissions component', function() {
         });
 
         it('should check the control', function() {
-            expect(this.$moduleCrudView.prop('checked')).to.be.true;
+            expect(this.$html.find('[data-toggle="module-crud"][data-crud="view"]').prop('checked')).to.be.true;
         });
 
         it('should check all view [page] toggles', function() {
@@ -664,7 +679,7 @@ describe('Module permissions component', function() {
 
     });
 
-    describe('checking the view module-crud toggle', function() {
+    describe('checking the view module-page toggle', function() {
 
         beforeEach(function() {
             this.modulePermissions.init();
@@ -685,7 +700,7 @@ describe('Module permissions component', function() {
 
     });
 
-    describe('unchecking the view module-crud toggle', function() {
+    describe('unchecking the view module-page toggle', function() {
 
         beforeEach(function() {
             this.modulePermissions.init();

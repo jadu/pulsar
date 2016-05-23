@@ -310,12 +310,11 @@ ModulePermissionsComponent.prototype.toggleModuleState = function (target) {
         $crudCheckedToggles = $(crudSelector + ':checked', $scope),
         $crudDisabledToggles = $(crudSelector + ':disabled', $scope);
 
-    // if ($this.prop('checked')) {
+    if ($this.prop('checked')) {
         component.setChecked($crudEnabledToggles);
-    // } else {
-    //     consooe.log("1");
-    //     component.setUnchecked($crudEnabledToggles);
-    // }
+    } else {
+        component.setUnchecked($crudEnabledToggles);
+    }
 
     if ($($crudDisabledToggles.selector, $scope).length > 0) {
         component.setIndeterminate($this);
