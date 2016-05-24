@@ -78,7 +78,6 @@
 
 .piano__item-header {
     color: #6a6a6a;
-    margin-top: 5px;
     vertical-align: top;
 
     .is-selected & {
@@ -193,7 +192,7 @@
 
 .piano__user {
     color: #000;
-    font-size: 14px;
+    // font-size: 14px;
 }
 
 .piano__title {

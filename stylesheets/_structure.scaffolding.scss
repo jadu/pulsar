@@ -7,6 +7,11 @@ body {
   height: auto;
 }
 
+// Allow any content to clear the fixed footer
+html {
+  padding-bottom: 40px;
+}
+
 body {
   font-family: $font-family-base;
   font-size: $font-size-medium;

@@ -8,8 +8,8 @@ $.fx.off = !$.fx.off
 describe('NavMain component', function() {
 
 	beforeEach(function() {
-		this.$html = $('<html></html>');
-		this.$body = $('<body></body>').appendTo(this.$html);
+		this.$html = $('<div class="fake-html"></div>').appendTo('html');
+        this.$body = $('<div class="fake-body"></div>').appendTo(this.$html);
  		this.$markup = $('\
 <nav class="nav-main">\
   <div class="nav-primary">\
