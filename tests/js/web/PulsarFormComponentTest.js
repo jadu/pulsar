@@ -6,8 +6,8 @@ var $ = require('jquery'),
 describe('Pulsar Form Component - Select2 elements', function() {
 
     beforeEach(function() {
-        this.$formHtml = $('<div id="html"></div>');
-        this.$formBody = $('<div id="body"></div>').appendTo(this.$formHtml);
+        this.$html = $('<div id="html"></div>').appendTo('html');
+        this.$body = $('<div id="body"></div>').appendTo(this.$html);
         this.$markup = $('\
 <form class="form">\
     <select class="js-select2">\
@@ -45,27 +45,27 @@ describe('Pulsar Form Component - Select2 elements', function() {
         </div>\
     </div>\
 </form>\
-').appendTo(this.$formBody);
+').appendTo(this.$body);
 
-        this.$radioFoo = this.$formHtml.find('.radio[value="foo"]');
-        this.$radioBar = this.$formHtml.find('.radio[value="bar"]');
-        this.$radioBaz = this.$formHtml.find('.radio[value="baz"]');
+        this.$radioFoo = this.$html.find('.radio[value="foo"]');
+        this.$radioBar = this.$html.find('.radio[value="bar"]');
+        this.$radioBaz = this.$html.find('.radio[value="baz"]');
         this.$radioLabelFoo = this.$radioFoo.closest('.control__label');
         this.$radioLabelBaz = this.$radioBaz.closest('.control__label');
 
-        this.$checkFoo = this.$formHtml.find('.checkbox[value="foo"]');
-        this.$checkBar = this.$formHtml.find('.checkbox[value="bar"]');
-        this.$checkBaz = this.$formHtml.find('.checkbox[value="baz"]');
+        this.$checkFoo = this.$html.find('.checkbox[value="foo"]');
+        this.$checkBar = this.$html.find('.checkbox[value="bar"]');
+        this.$checkBaz = this.$html.find('.checkbox[value="baz"]');
         this.$checkLabelFoo = this.$checkFoo.closest('.control__label');
         this.$checkLabelBar = this.$checkBar.closest('.control__label');
         this.$checkLabelBaz = this.$checkBaz.closest('.control__label');
 
-        this.pulsarForm = new PulsarFormComponent(this.$formHtml);
+        this.pulsarForm = new PulsarFormComponent(this.$html);
 
     });
 
     afterEach(function() {
-        this.$formHtml.remove();
+        this.$html.remove();
     });
 
     describe('Basic select2 elements', function() {
