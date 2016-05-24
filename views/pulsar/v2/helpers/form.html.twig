@@ -436,6 +436,7 @@ enctype | string | How the form-data should be encoded (requires method = POST)
 id      | string | A unique identifier, if required
 name    | string | The name of the form
 method  | string | The HTTP method to be used to submit the form
+nonce   | string | Random string used to prevent CSRF, adds a hidden `nonce` input after `<form>`
 data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
 
 ## Enctype
@@ -493,7 +494,11 @@ attribute on the `form` element will be set to `POST`.
         {% set options = options|merge({'enctype': options.enctype|default('application/x-www-form-urlencoded')}) %}
     {% endif %}
 
-    <form{{ attributes(options|defaults(defaults)) }}>
+    <form{{ attributes(options|defaults(defaults)|exclude('nonce')) }}>
+
+    {% if options.nonce is defined and options.nonce is not empty %}
+        {{ form.hidden({'name': 'nonce', 'value': options.nonce}) }}
+    {% endif %}
 
     {{ methodInput|default }}
 
