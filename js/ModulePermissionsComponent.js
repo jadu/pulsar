@@ -325,6 +325,12 @@ ModulePermissionsComponent.prototype.toggleModuleState = function (target) {
         component.setChecked($this);
     } else {
         component.setUnchecked($this);
+
+        component.toggleModuleCrud($('[data-toggle="module-crud"][data-crud="view"]', $this.closest('.module')));
+        component.toggleModuleCrud($('[data-toggle="module-crud"][data-crud="create"]', $this.closest('.module')));
+        component.toggleModuleCrud($('[data-toggle="module-crud"][data-crud="update"]', $this.closest('.module')));
+        component.toggleModuleCrud($('[data-toggle="module-crud"][data-crud="delete"]', $this.closest('.module')));
+
     }
 };
 
