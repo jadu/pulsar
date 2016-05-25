@@ -17,7 +17,7 @@
         margin-left: 38px;
         max-height: 20em;
         overflow-y: auto;
-        padding: 0 $padding-base-horizontal .5em $padding-base-horizontal;
+        padding: 0 $padding-base-horizontal .5em;
 
         p,
         ul {
@@ -29,29 +29,9 @@
         }
     }
 
-    &--danger  {
-        background-color: color(danger);
-        color: color(white);
-    }
-
-    &--info    {
-        background-color: color(info);
-        color: color(black);
-    }
-
-    &--inverse {
-        background-color: color(inverse);
-        color: color(white);
-    }
-
-    &--success {
-        background-color: color(success);
-        color: color(white);
-    }
-
-    &--warning {
-        background-color: color(warning);
-        color: color(black);
+    .btn--outline {
+        box-shadow: inset 0 0 0 2px color(base, alt);
+        vertical-align: baseline;
     }
 
     a {
@@ -65,13 +45,32 @@
             color: inherit;
         }
 
-        &,
-        &:visited {
-            opacity: .8;
-        }
+        // &,
+        // &:visited {
+        //     opacity: .8;
+        // }
     }
 
 }
+
+@each $state, $state-color, $state-color-alt in $state-colors {
+        .panel--#{$state} {
+            background-color: $state-color;
+            color: $state-color-alt;
+
+            .btn--outline {
+                box-shadow: inset 0 0 0 2px $state-color-alt;
+            }
+
+            a,
+            a:link,
+            a:hover,
+            a:active,
+            a:visited {
+                color: $state-color-alt;
+            }
+        }
+    }
 
 .form-v2 > .panel:first-of-type {
     margin-top: 0;

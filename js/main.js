@@ -16,6 +16,7 @@
     pulsar.pulsarUI     = new pulsar.PulsarUIComponent($html);
     pulsar.signIn       = new pulsar.SignInComponent($html);
     pulsar.masterSwitch = new pulsar.MasterSwitchComponent($html);
+	pulsar.modulePermissions = new pulsar.ModulePermissionsComponent($html);
     pulsar.navMain      = new pulsar.NavMainComponent($html);
 
     $(function () {
@@ -28,6 +29,7 @@
         pulsar.pulsarUI.init();
         pulsar.signIn.init();
         pulsar.masterSwitch.init();
+        pulsar.modulePermissions.init();
         pulsar.navMain.init();
 
         // Switch out .svg for .png for <img> elements in older browsers
@@ -56,34 +58,38 @@
         });
 
         var table = $('.datatable').DataTable({
-            dom: '<"dataTables_top"irf><"dataTables_actions"T>t<"dataTables_bottom"lp>',
+            dom: '<"dataTables_top"Birf><"dataTables_actions"T>t<"dataTables_bottom"lp>',
             aaSorting: [],
             bAutoWidth: false,
+            buttons: [
+                'selectAll',
+                'selectNone'
+            ],
             columnDefs: [
-                { "searchable": false, "targets": 0 },
-                { "orderable": false, "targets": 0 }
+                { className: 'control', orderable: false, targets: 0 },
+                { "searchable": false, "targets": [0, 1] },
+                { "orderable": false, "targets": [0, 1] }
             ],
             oLanguage: {
              sSearch: "Filter:"
             },
-            responsive: {
-			    details: {
-	                type: 'column',
-	                target: '.table-child-toggle'
-	            }
+            language: {
+                buttons: {
+                    selectAll: "Select all items",
+                    selectNone: "Select none"
+                }
             },
-            stateSave: false,
-            tableTools: {
-                sRowSelect: "multi",
-                sRowSelector: '.js-select',
-                aButtons: [
-                    {
-                        "sExtends":    "collection",
-                        "sButtonText": '<i class="icon-check-minus"></i>',
-                        "aButtons":    [ "select_all", "select_none" ]
-                    }
-                ]
-            }
+            responsive: {
+                details: {
+                    type: 'column'
+                }
+            },
+            select: {
+                className: 'dt-row-selected',
+                style:     'multi',
+                selector:  'td.table-selection'
+            },
+            stateSave: false
         });
 
     });

@@ -6,7 +6,7 @@
   left: 0;
   z-index: 1100;
   background-color: #000;
-  opacity: 0.8;
+  opacity: .8;
 }
 
 .tour-step-backdrop {
@@ -77,20 +77,24 @@
 .popover[class*="tour-"] .popover-navigation *[data-role="end"] {
   float: right;
 }
+
 .popover[class*="tour-"] .popover-navigation *[data-role="prev"],
 .popover[class*="tour-"] .popover-navigation *[data-role="next"],
 .popover[class*="tour-"] .popover-navigation *[data-role="end"] {
   cursor: pointer;
 }
+
 .popover[class*="tour-"] .popover-navigation *[data-role="prev"].disabled,
 .popover[class*="tour-"] .popover-navigation *[data-role="next"].disabled,
 .popover[class*="tour-"] .popover-navigation *[data-role="end"].disabled {
   cursor: default;
 }
+
 .popover[class*="tour-"].orphan {
   position: fixed;
   margin-top: 0;
 }
+
 .popover[class*="tour-"].orphan .arrow {
   display: none;
 }

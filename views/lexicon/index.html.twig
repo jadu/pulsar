@@ -10,6 +10,14 @@
 {% set heading = 'Components' %}
 
 {%
+    set breadcrumbs = [
+        {'label': 'Bread', 'href': '#'},
+        {'label': 'Crumb', 'href': '#'},
+        {'label': 'Trail', 'href': '#'}
+    ]
+%}
+
+{%
     set actions_menu = [
         html.link({
           'label': html.icon('save') ~ ' Save',
@@ -101,6 +109,12 @@
             }
         },
         "2": {
+            "label": "Forms",
+            "class": "",
+            "href": "/app/app.php/lexicon/forms.html.twig",
+            "icon": "check"
+        },
+        "3": {
             "label": "Docs",
             "class": "",
             "href": "http://jadu.gitbooks.io/pulsar/",
@@ -112,10 +126,15 @@
 {%
     set tabs_content = [
         {
+          "id"    : "checkgrid",
+          "label" : "Checkgrid",
+          "src"   : tab_checkgrid,
+          "active": true
+        },
+        {
           "id"    : "colours",
           "label" : "Colours",
-          "src"   : tab_colours,
-          "active": true
+          "src"   : tab_colours
         },
         {
           "id"    : "buttons",
@@ -186,6 +205,10 @@
 
 {% block tabs_content %}
     {{ tabs.content(tabs_content) }}
+{% endblock %}
+
+{% block notifications %}
+    {% include '@pulsar/lexicon/includes/notifications.html.twig' %}
 {% endblock %}
 
 {% block javascript %}

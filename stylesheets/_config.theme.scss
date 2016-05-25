@@ -8,8 +8,8 @@
     background-color: colour('gray-light');
 \* -------------------------------------------------------------------------- */
 
-@import '_function.merge-maps';
-@import '_function.color';
+@import 'function.merge-maps';
+@import 'function.color';
 
 $colors: merge-maps(
     $palette-branding,

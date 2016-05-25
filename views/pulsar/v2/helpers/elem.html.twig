@@ -81,10 +81,10 @@ name    | string | The name of this control
 {% spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-    {% if options.label is not empty %}
+    {% if options.label is not empty or options.guidance is not empty %}
         <label{{
             attributes(options
-                |exclude('label required')
+                |exclude('guidance label required')
                 |defaults({
                     'class': 'control__label'
                 })
@@ -92,6 +92,7 @@ name    | string | The name of this control
         }}>
             {{- options.label|raw -}}
             {{ util.required(options.required|default(false)) }}
+            {{ util.guidance(options.guidance|default) }}
         </label>
     {% endif %}
 

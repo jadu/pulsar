@@ -5,6 +5,8 @@ CHECK=\033[32m✔\033[39m
 BUILD := build
 
 BREW = $(shell which brew)
+SASSLINT = $(shell which scss-lint)
+SASSLINTVER = 0.44.0
 BOWER = $(shell which bower)
 GRUNT = $(shell which grunt)
 NODE = $(shell which node)
@@ -32,6 +34,13 @@ ifeq (${BREW}, )
 	ruby -e "$$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
 else
 	@ echo "Homebrew v$(shell brew --version) is already installed."
+endif
+
+	@ echo "${HR}\nInstalling scss-lint...${HR}\n"
+ifeq (${SASSLINT}, )
+	@ sudo gem install scss_lint -v ${SASSLINTVER}
+else
+	@ echo "$(shell scss-lint --version) is already installed.\n"
 endif
 
 ifeq (${PHANTOMJS}, )

@@ -50,7 +50,7 @@
 
   &__name {
     display: block;
-    margin: 11px 0 0 0;
+    margin: 11px 0 0;
   }
 
   .remove-button {
@@ -62,7 +62,7 @@
 
   [data-action=remove-all] {
     color: color(gray, light);
-    padding: 8px 14px 6px 14px;
+    padding: 8px 14px 6px;
     text-shadow: none;
     vertical-align: middle;
 

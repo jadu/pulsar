@@ -2,15 +2,21 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   height: auto;
+}
+
+// Allow any content to clear the fixed footer
+html {
+  padding-bottom: 40px;
 }
 
 body {
   font-family: $font-family-base;
   font-size: $font-size-medium;
   line-height: $line-height-small;
-  margin: 0 0 ($line-height-base * 2) 0;
+  margin: 0 0 ($line-height-base * 2);
   overflow-x: hidden;
   padding: 0;
 

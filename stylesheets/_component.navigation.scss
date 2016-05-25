@@ -15,10 +15,6 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
     width: 75px;
     z-index: 3;
 
-    .lt-ie10 & {
-        left: -75px;
-    }
-
     @include respond-min($screen-desktop) {
         left: auto;
         position: static;
@@ -27,6 +23,10 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
         -webkit-backface-visibility: visible;
         backface-visibility: visible;
     }
+
+    .lt-ie10 & {
+        left: -75px;
+    }
 }
 
 .nav-primary,
@@ -34,7 +34,7 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
     display: inline-block;
     margin: 0;
     height: 100%;
-    overflow: hidden;
+    overflow: auto;
     padding: 0;
     position: relative;
     vertical-align: top;
@@ -67,7 +67,7 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
         font-size: 1.1em;
         line-height: 46px;
         margin-right: 20px;
-        padding: 0 15px 0;
+        padding: 0 15px;
 
         &:last-of-type {
             margin-right: 0;
@@ -131,8 +131,8 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
         list-style: none;
         background-color: #fff;
         border: 1px solid #ccc;
-        border: 1px solid rgba(0, 0, 0, 0.15);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+        border: 1px solid rgba(0, 0, 0, .15);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
         background-clip: padding-box;
         min-width: 160px;
 
@@ -151,7 +151,7 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
             text-decoration: none;
 
             &:hover {
-                background-color: #1F7BB8;
+                background-color: #1f7bb8;
                 color: #fff;
                 text-decoration: none;
             }
@@ -240,7 +240,7 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
         font-size: .75em;
         line-height: 1em;
         max-width: 75px;
-        padding: 16px 5px 0 5px;
+        padding: 16px 5px 0;
         position: relative;
         text-overflow: ellipsis;
         transition: background-color 50ms linear, color 50ms linear;
@@ -266,13 +266,13 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
     .nav-items,
     .jadu-branding {
         -webkit-transform-origin: 50% 0%;
-        -webkit-transform: translate3d(70%, 0, 0) scale3d(0.9, 0.9, 0.9);
+        -webkit-transform: translate3d(70%, 0, 0) scale3d(.9, .9, .9);
         -webkit-transition-delay: ease, 0s;
         -webkit-transition: opacity 300ms 100ms, -webkit-transform 500ms ease;
         filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
-        opacity: 0.7;
+        opacity: .7;
         transform-origin: 50% 0%;
-        transform: translate3d(70%, 0, 0) scale3d(0.9, 0.9, 0.9);
+        transform: translate3d(70%, 0, 0) scale3d(.9, .9, .9);
         transition: opacity 300ms 100ms ease, transform 500ms ease;
 
         @include respond-min($screen-desktop) {
@@ -282,7 +282,6 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
             transform: none;
             transition: all 0s ease 0s;
             -webkit-transition: all 0s ease 0s;
-            webkit-transition: all 0s ease 0s;
         }
 
         .open-nav & {
@@ -361,7 +360,7 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
 
 .jadu-branding {
     display: block;
-    margin: 10px 0 4px 0;
+    margin: 10px 0 4px;
     text-decoration: none;
 
     &.is-active {
@@ -396,7 +395,7 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
 
 .nav-search__submit {
     background: none;
-    border: none;
+    border: 0;
     color: #555;
     position: absolute;
     left: 180px;
@@ -406,14 +405,14 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
 .nav-close {
     color: white;
     display: block;
-    padding: 0 20px 23px 20px;
+    padding: 0 20px 23px;
     text-decoration: none;
     margin-top: 24px;
     text-align: right;
     width: 100%;
 
-    &:hover i:before {
-        content: "\f0a8";
+    &:hover i::before {
+        content: '\f0a8';
         color: white;
     }
 }

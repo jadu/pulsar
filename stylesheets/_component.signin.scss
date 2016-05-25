@@ -1,10 +1,11 @@
-$signin-bg-color:          rgba(51,153,204,.9);
-$signin-bg-color-fallback: rgb(51,153,204);
+$signin-bg-color:          rgba(51, 153, 204, .9);
+$signin-bg-color-fallback: rgb(51, 153, 204);
 
 $signin-full-width:        400px;
 $signin-mobile-width:      300px;
 
-html, body {
+html,
+body {
 	height: 100%;
 	margin: 0;
 }
@@ -61,29 +62,27 @@ html, body {
 	color: white;
 	margin: 0 auto;
 	min-height: 350px;
-	padding: 0 0 10px 0;
+	padding: 0 0 10px;
 	opacity: 1;
 	overflow: hidden;
 	position: relative;
 	top: 5em;
 	width: $signin-mobile-width;
 	zoom: 1;
+	transition: background-color .25s;
 
 	@include respond-min($screen-tablet) {
 		min-height: 320px;
-		padding: 0 0 20px 0;
+		padding: 0 0 20px;
 		width: $signin-full-width;
 	}
-
-	transition: background-color .25s;
-
 
 	&--error {
 		background-color: color(danger);
 		animation: shake 400ms ease-in-out;
 
 		.loading--circle i {
-			border: 1px solid rgba(0,0,0,.2);
+			border: 1px solid rgba(0, 0, 0, .2);
 			border-top-color: white;
 		}
 	}
@@ -96,7 +95,8 @@ html, body {
 		overflow: visible;
 	}
 
-	input, button {
+	input,
+	button {
 		&:focus {
 			outline: none;
 			box-shadow: 0 0 5px black;
@@ -147,7 +147,7 @@ html, body {
 }
 
 .signin__inner {
-	transition: background-color 0.5s, margin-left 0.5s;
+	transition: background-color .5s, margin-left .5s;
 	float: left;
 	width: 1210px;
 
@@ -205,7 +205,7 @@ html, body {
 .signin__panel {
 	float: left;
 	text-align: center;
-	transition: opacity 0.5s, z-index 0.5s;
+	transition: opacity .5s, z-index .5s;
 	width: $signin-mobile-width;
 
 	@include respond-min($screen-tablet) {
@@ -214,16 +214,16 @@ html, body {
 }
 
 .signin__actions {
-	margin: 0 auto 1em auto;
+	margin: 0 auto 1em;
 }
 
 .signin__input {
 	background-color: none;
-	border: none;
+	border: 0;
 	box-shadow: inset 0 3px 0 #efefef;
 	border-radius: 2px;
 	display: inline-block;
-	margin: 0 auto 1em auto;
+	margin: 0 auto 1em;
 	padding: 10px;
 	width: 80%;
 }
@@ -234,7 +234,7 @@ html, body {
 	display: inline-block;
 	font-family: courier;
 	letter-spacing: 5px;
-	margin: 0 5px 1em 5px;
+	margin: 0 5px 1em;
 	padding: 10px 10px 10px 12px;
 	width: 20%;
 
@@ -250,6 +250,7 @@ html, body {
 
 .signin__group {
 	position: relative;
+
 	.signin__reset {
 		color: $signin-bg-color;
 		position: absolute;
@@ -257,9 +258,11 @@ html, body {
 		top: 10px;
 		right: 50px;
 	}
+
 	.tooltip-arrow {
 		border-left-color: $signin-bg-color !important;
 	}
+
 	.tooltip-inner {
 		background-color: $signin-bg-color;
 	}
@@ -302,7 +305,7 @@ html, body {
 		top: 6px;
 	}
 
-	&:before {
+	&::before {
 		content: '\f0a4';
 	}
 
@@ -323,7 +326,7 @@ html, body {
 			right: 80px;
 		}
 
-		&:before {
+		&::before {
 			content: '\f0a5';
 		}
 	}
@@ -341,7 +344,7 @@ html, body {
 	background-repeat: no-repeat;
 	border-radius: $branding-site-radius;
 	display: inline-block;
-	margin: 20px auto 0 auto;
+	margin: 20px auto 0;
 	text-align: center;
 	height: $branding-site-height;
 	width: $branding-site-width;
@@ -364,19 +367,19 @@ html, body {
 	.signin-success & {
 		background-color: #fff;
 
-		&:before {
+		&::before {
 			display: inline-block;
 			color: #2f8dbd;
 			width: 66px;
 		}
 	}
 
-	.signin--error &:before {
+	.signin--error &::before {
 		content: '\f119';
 		font-size: 75px;
 	}
 
-	.signin-twostep &:before {
+	.signin-twostep &::before {
 		content: '\f10b';
 		font-size: 65px;
 
@@ -385,7 +388,7 @@ html, body {
 		}
 	}
 
-	.signin-forgot &:before {
+	.signin-forgot &::before {
 		content: '\f128';
 		font-size: 65px;
 		width: 40px;
@@ -395,7 +398,7 @@ html, body {
 	.signin-reset & {
 		background-color: #fff;
 
-		&:before {
+		&::before {
 			//&#xf0e0;
 			content: '\f0e0';
 			display: inline-block;
@@ -410,7 +413,7 @@ html, body {
 		animation-fill-mode: both;
 		animation-name: success-icon;
 
-		&:before {
+		&::before {
 			content: '\f087';
 			color: color(success);
 			font-size: 35px;
@@ -448,34 +451,77 @@ html, body {
 
 // Scale effect is disabled in Firefox because of horrible performance issues
 @keyframes success-icon {
-  0%    { transform: translateY(0) scale(1); }
-  80%	{ transform: translateY(150%) }
-  100%	{ transform: translateY(150%) scale(20); -moz-transform: translateY(150%) scale(1); }
+  0% {
+  	transform: translateY(0) scale(1);
+  }
+
+  80% {
+  	transform: translateY(150%);
+  }
+
+  100% {
+  	transform: translateY(150%) scale(20);
+  	-moz-transform: translateY(150%) scale(1);
+  }
 }
 
 // Scale effect is disabled in Firefox because of horrible performance issues
 @keyframes success-container {
-  0%    { transform: scale(1); -moz-transform: scale(1); }
-  100%	{ transform: scale(20); -moz-transform: scale(1); }
+  0% {
+  	transform: scale(1);
+  	-moz-transform: scale(1);
+  }
+
+  100% {
+  	transform: scale(20);
+  	-moz-transform: scale(1);
+  }
 }
 
 @keyframes hint-wobble {
-  0%, 50%, 100% { transform: translateX(0); }
-  25%, 75% { transform: translateX(-5px); }
+  0%, 50%, 100% {
+  	transform: translateX(0);
+  }
+
+  25%, 75% {
+  	transform: translateX(-5px);
+  }
 }
 
 @keyframes shake {
-  0%    { transform: translateX(0);}
-  12.5% { transform: translateX(-10px) rotateY(-5deg)}
-  37.5% { transform: translateX(10px) rotateY(4deg)}
-  62.5% { transform: translateX(-5px) rotateY(-2deg)}
-  87.5% { transform: translateX(5px) rotateY(1deg)}
-  100%  { transform: translateX(0)}
+  0% {
+  	transform: translateX(0);
+  }
+
+  12.5% {
+  	transform: translateX(-10px) rotateY(-5deg);
+  }
+
+  37.5% {
+  	transform: translateX(10px) rotateY(4deg);
+  }
+
+  62.5% {
+  	transform: translateX(-5px) rotateY(-2deg);
+  }
+
+  87.5% {
+  	transform: translateX(5px) rotateY(1deg);
+  }
+
+  100% {
+  	transform: translateX(0);
+  }
 }
 
 @keyframes fade-in {
-	from { opacity: 0; }
-	to   { opacity: 1; }
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
 }
 
 
@@ -500,7 +546,7 @@ html, body {
 	min-height: 50%;
   }
 
-  & + .video {
+  + .video {
   	background: none;
   }
 }
@@ -516,9 +562,9 @@ html, body {
 	padding-left: 18px;
 }
 
-#recaptcha_widget_div {
+[id="recaptcha_widget_div"] {
 	display: inline-block;
-	margin: 0 auto 1em auto;
+	margin: 0 auto 1em;
 }
 
 .signin-twostep-help {

@@ -27,15 +27,15 @@
  */
 
 .btn {
+    @include inline-block;
     -webkit-appearance: none; /* 1 */
     background: transparent;
-    border: 0px;
+    border: 0;
     border-radius: $border-radius;
     -moz-box-sizing: border-box;
     box-sizing: border-box; /* 2 */
     color: inherit; /* 3 */
     cursor: pointer;
-    @include inline-block;
     font-size: 14px;
     font-weight: normal;
     line-height: normal; /* 4 */
@@ -55,16 +55,15 @@
         padding: 7px;
     }
 
-    &::moz-focus-inner { /* 7 */
+    &::-moz-focus-inner { /* 7 */
       border: 0;
       padding: 0;
     }
 }
 
-
 .btn--small {
-    font-size: .75em !important;
-    padding: 0.4em 0.5em !important;
+    font-size: .8em !important;
+    padding: 3px 8px !important;
 }
 
 /**
@@ -207,7 +206,7 @@
 .btn--naked > .btn,
 .btn--naked > .btn:active {
     background: none;
-    border: none;
+    border: 0;
     box-shadow: none;
     color: color(text);
     display: inline-block;
@@ -229,11 +228,32 @@
 .btn--naked > .btn {
     @include ie-lte(8) {
         background: none;
-        border: none;
+        border: 0;
         box-shadow: none;
     }
 }
 
 .btn--naked.btn__group.open .dropdown__toggle {
     box-shadow: none;
+}
+
+.btn--outline {
+    box-shadow: inset 0 0 0 2px color(base);
+    border: 0;
+
+    &,
+    &:active {
+        background-color: transparent;
+    }
+
+    &:hover {
+        top: 1px;
+    }
+
+    @each $state, $state-color, $state-color-alt in $state-colors {
+        &.btn--#{$state} {
+            box-shadow: inset 0 0 0 2px $state-color;
+            color: $state-color-alt;
+        }
+    }
 }

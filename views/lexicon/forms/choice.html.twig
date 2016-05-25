@@ -1,0 +1,265 @@
+{% extends '@pulsar/pulsar/components/tab.html.twig' %}
+
+{% block tab_content %}
+
+    {{
+        form.create()
+    }}
+
+    {{
+        form.choice({
+            'class': '',
+            'label': 'Choice radios',
+            'options': [
+                {
+                    'label': 'One',
+                    'value': 'one',
+                    'name': 'foo'
+                },
+                {
+                    'label': 'Two',
+                    'value': 'two',
+                    'name': 'foo'
+                },
+                {
+                    'label': 'Three',
+                    'value': 'three',
+                    'name': 'foo'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.choice({
+            'class': '',
+            'label': 'Choice with guidance',
+            'guidance': 'Help text to give more information about expected input',
+            'options': [
+                {
+                    'label': 'One',
+                    'value': 'one',
+                    'name': 'foo'
+                },
+                {
+                    'label': 'Two',
+                    'value': 'two',
+                    'name': 'foo'
+                },
+                {
+                    'label': 'Three',
+                    'value': 'three',
+                    'name': 'foo'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.choice({
+            'class': '',
+            'label': 'Choice as select2',
+            'help': 'Happens automatically when >5 items',
+            'options': [
+                {
+                    'label': 'One',
+                    'value': 'one',
+                    'name': 'foo'
+                },
+                {
+                    'label': 'Two',
+                    'value': 'two',
+                    'name': 'foo'
+                },
+                {
+                    'label': 'Three',
+                    'value': 'three',
+                    'name': 'foo'
+                },
+                {
+                    'label': 'Four',
+                    'value': 'four',
+                    'name': 'foo'
+                },
+                {
+                    'label': 'Five',
+                    'value': 'five',
+                    'name': 'foo'
+                },
+                {
+                    'label': 'Six',
+                    'value': 'six',
+                    'name': 'foo'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.choice({
+            'class': '',
+            'label': 'Choice as select2 with guidance',
+            'guidance': 'Help text to give more information about expected input',
+            'help': 'Happens automatically when >5 items',
+            'options': [
+                {
+                    'label': 'One',
+                    'value': 'one',
+                    'name': 'foo'
+                },
+                {
+                    'label': 'Two',
+                    'value': 'two',
+                    'name': 'foo'
+                },
+                {
+                    'label': 'Three',
+                    'value': 'three',
+                    'name': 'foo'
+                },
+                {
+                    'label': 'Four',
+                    'value': 'four',
+                    'name': 'foo'
+                },
+                {
+                    'label': 'Five',
+                    'value': 'five',
+                    'name': 'foo'
+                },
+                {
+                    'label': 'Six',
+                    'value': 'six',
+                    'name': 'foo'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.choice({
+            'class': 'choice--block form__group--medium',
+            'label': 'Choice block radios',
+            'options': [
+                {
+                    'label': html.icon('bold') ~ ' Bold',
+                    'value': 'bold',
+                    'name': 'foo'
+                },
+                {
+                    'label': html.icon('italic') ~ ' Italic',
+                    'value': 'italic',
+                    'name': 'foo',
+                    'checked': true
+                },
+                {
+                    'label': html.icon('underline') ~ ' Underline',
+                    'value': 'underline',
+                    'name': 'foo'
+                },
+            ]
+        })
+    }}
+
+    {{
+        form.choice({
+            'class': 'choice--block choice--block-hide-input form__group--medium',
+            'label': 'Choice block radios (hidden input)',
+            'options': [
+                {
+                    'label': html.icon('bold') ~ ' Bold',
+                    'value': 'bold',
+                    'name': 'foo'
+                },
+                {
+                    'label': html.icon('italic') ~ ' Italic',
+                    'value': 'italic',
+                    'name': 'foo',
+                    'checked': true
+                },
+                {
+                    'label': html.icon('underline') ~ ' Underline',
+                    'value': 'underline',
+                    'name': 'foo'
+                },
+            ]
+        })
+    }}
+
+    {{
+        form.choice({
+            'class': 'choice--block choice--block-inline form__group--medium',
+            'optimize': 'few',
+            'label': 'Choice block radios',
+            'options': [
+                {
+                    'label': html.icon('bold') ~ ' rah rah rah rah rah rah rah rah rah rah rah rah rah ',
+                    'value': 'bold',
+                    'name': 'foo'
+                },
+                {
+                    'label': html.icon('italic') ~ ' Italic',
+                    'value': 'italic',
+                    'name': 'foo'
+                },
+                {
+                    'label': html.icon('italic') ~ ' Italic',
+                    'value': 'italic',
+                    'name': 'foo'
+                },
+                {
+                    'label': html.icon('italic') ~ ' Italic',
+                    'value': 'italic',
+                    'name': 'foo'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.choice({
+            'class': 'choice--block choice--block-inline form__group--medium',
+            'label': 'Choice block checkboxes (& inline)',
+            'multiple': true,
+            'options': [
+                {
+                    'label': html.icon('bold') ~ ' Bold',
+                    'value': 'bold',
+                    'name': 'foo'
+                },
+                {
+                    'label': html.icon('italic') ~ ' Italic',
+                    'value': 'italic',
+                    'name': 'foo',
+                    'checked': true
+                },
+                {
+                    'label': html.icon('underline') ~ ' Underline',
+                    'value': 'underline',
+                    'name': 'foo',
+                    'checked': true
+                },
+            ]
+        })
+    }}
+
+    {{
+        form.end()
+    }}
+
+{% endblock tab_content %}
+
+{% block tab_sidebar %}
+    <a href="https://jadu.gitbooks.io/pulsar/content/text.html">
+        <img src="../../../images/cover.png" alt="Pulsar documentation front cover" width="157px" />
+    </a>
+    <br />
+    {{
+        html.button({
+            'label': 'View Documentation',
+            'type': 'link',
+            'href': 'https://jadu.gitbooks.io/pulsar/content/choice.html'
+        })
+    }}
+
+{% endblock tab_sidebar %}

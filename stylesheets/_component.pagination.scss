@@ -17,10 +17,11 @@
     list-style-type: none;
   }
 
-  a, span {
+  a,
+  span {
+    @include inline-block;
     color: color(text);
     font-family: $font-family-regular;
-    @include inline-block;
     line-height: $line-height-base * 1.75;
     padding: 0 $gutter-width;
     text-align: center;
@@ -28,15 +29,16 @@
   }
 
   li.selected {
-    & > a,
-    & > span {
+    > a,
+    > span {
       background-color: darken(color(white), 10%);
       color: color(text);
     }
   }
 
   li.is-disabled {
-    a, span {
+    a,
+    span {
       color: color(text, disabled);
       cursor: not-allowed;
     }

@@ -1,0 +1,10 @@
+{#
+    Test radio_inline method with class
+#}
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{{
+    form.radio_inline({
+        'label': 'foo',
+        'class': 'foo-class'
+    })
+}}

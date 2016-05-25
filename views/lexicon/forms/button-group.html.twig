@@ -1,0 +1,459 @@
+{% extends '@pulsar/pulsar/components/tab.html.twig' %}
+
+{% block tab_content %}
+
+    {{
+        form.create()
+    }}
+
+    {{
+        form.button_group({
+            'label': 'Button group',
+            'items': [
+                form.radio_simple({
+                    'id': 'foo1',
+                    'label': 'Foo',
+                    'name': '1'
+                }),
+                form.radio_simple({
+                    'id': 'bar1',
+                    'label': 'Bar',
+                    'name': '1'
+                }),
+                form.radio_simple({
+                    'id': 'baz1',
+                    'label': 'Baz',
+                    'name': '1'
+                })
+            ]
+        })
+    }}
+
+    {{
+        form.button_group({
+            'label': 'Required',
+            'required': true,
+            'items': [
+                form.radio_simple({
+                    'id': 'foo2',
+                    'label': 'Foo',
+                    'name': '2'
+                }),
+                form.radio_simple({
+                    'id': 'bar2',
+                    'label': 'Bar',
+                    'name': '2'
+                }),
+                form.radio_simple({
+                    'id': 'baz2',
+                    'label': 'Baz',
+                    'name': '2'
+                })
+            ]
+        })
+    }}
+
+    {{
+        form.button_group({
+            'label': 'Button group with help',
+            'help': 'Help text to give more information about expected input',
+            'items': [
+                form.radio_simple({
+                    'id': 'foo3',
+                    'label': 'Foo',
+                    'name': '3'
+                }),
+                form.radio_simple({
+                    'id': 'bar3',
+                    'label': 'Bar',
+                    'name': '3'
+                }),
+                form.radio_simple({
+                    'id': 'baz3',
+                    'label': 'Baz',
+                    'name': '3'
+                })
+            ]
+        })
+    }}
+
+    {{
+        form.button_group({
+            'label': 'Button group with guidance',
+            'guidance': 'Help text to give more information about expected input',
+            'items': [
+                form.radio_simple({
+                    'id': 'foo4',
+                    'label': 'Foo',
+                    'name': '4'
+                }),
+                form.radio_simple({
+                    'id': 'bar4',
+                    'label': 'Bar',
+                    'name': '4'
+                }),
+                form.radio_simple({
+                    'id': 'baz4',
+                    'label': 'Baz',
+                    'name': '4'
+                })
+            ]
+        })
+    }}
+
+    {{
+        form.button_group({
+            'label': 'Required with guidance',
+            'guidance': 'Help text to give more information about expected input',
+            'required': true,
+            'items': [
+                form.radio_simple({
+                    'id': 'foo5',
+                    'label': 'Foo',
+                    'name': '5'
+                }),
+                form.radio_simple({
+                    'id': 'bar5',
+                    'label': 'Bar',
+                    'name': '5'
+                }),
+                form.radio_simple({
+                    'id': 'baz5',
+                    'label': 'Baz',
+                    'name': '5'
+                })
+            ]
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'Alignment' }) }}
+
+    {{
+        form.button_group({
+            'label': 'Text input with a longer than expected label which will probably wrap multple lines and push the following input onto the next baseline',
+            'help': 'Example block-level help text here',
+            'guidance': 'Help text to give more information about expected input',
+            'items': [
+                form.radio_simple({
+                    'id': 'foo6',
+                    'label': 'Foo',
+                    'name': '6'
+                }),
+                form.radio_simple({
+                    'id': 'bar6',
+                    'label': 'Bar',
+                    'name': '6'
+                }),
+                form.radio_simple({
+                    'id': 'baz6',
+                    'label': 'Baz',
+                    'name': '6'
+                })
+            ]
+        })
+    }}
+
+    {{
+        form.button_group({
+            'label': 'Text input with a longer than expected label but this time we use the form__group--top class to keep the label on a single line',
+            'class': 'form__group--top',
+            'help': 'Example block-level help text here',
+            'guidance': 'Help text to give more information about expected input',
+            'items': [
+                form.radio_simple({
+                    'id': 'foo7',
+                    'label': 'Foo',
+                    'name': '7'
+                }),
+                form.radio_simple({
+                    'id': 'bar7',
+                    'label': 'Bar',
+                    'name': '7'
+                }),
+                form.radio_simple({
+                    'id': 'baz7',
+                    'label': 'Baz',
+                    'name': '7'
+                })
+            ]
+        })
+    }}
+
+    {{
+        form.button_group({
+            'label': 'The same as above, but this time we also add the .form__group--flush class to keep everything on the left edge',
+            'class': 'form__group--top form__group--flush',
+            'help': 'Example block-level help text here',
+            'guidance': 'Help text to give more information about expected input',
+            'items': [
+                form.radio_simple({
+                    'id': 'foo8',
+                    'label': 'Foo',
+                    'name': '8'
+                }),
+                form.radio_simple({
+                    'id': 'bar8',
+                    'label': 'Bar',
+                    'name': '8'
+                }),
+                form.radio_simple({
+                    'id': 'baz8',
+                    'label': 'Baz',
+                    'name': '8'
+                })
+            ]
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'Errors &amp; Validation' }) }}
+
+    {{
+        form.button_group({
+            'label': 'Button group with error',
+            'error': 'Please choose an option',
+            'items': [
+                form.radio_simple({
+                    'id': 'foo9',
+                    'label': 'Foo',
+                    'name': '9'
+                }),
+                form.radio_simple({
+                    'id': 'bar9',
+                    'label': 'Bar',
+                    'name': '9'
+                }),
+                form.radio_simple({
+                    'id': 'baz9',
+                    'label': 'Baz',
+                    'name': '9'
+                })
+            ]
+        })
+    }}
+
+    {{
+        form.button_group({
+            'label': 'Button group with multiple errors',
+            'error': ['Do this', 'Do this too'],
+            'items': [
+                form.radio_simple({
+                    'id': 'foo10',
+                    'label': 'Foo',
+                    'name': '10'
+                }),
+                form.radio_simple({
+                    'id': 'bar10',
+                    'label': 'Bar',
+                    'name': '10'
+                }),
+                form.radio_simple({
+                    'id': 'baz10',
+                    'label': 'Baz',
+                    'name': '10'
+                })
+            ]
+        })
+    }}
+
+    {{
+        form.button_group({
+            'label': 'Button group with error and help',
+            'error': 'Please choose an option',
+            'help': 'Help text to give more information about expected input',
+            'items': [
+                form.radio_simple({
+                    'id': 'foo11',
+                    'label': 'Foo',
+                    'name': '11'
+                }),
+                form.radio_simple({
+                    'id': 'bar11',
+                    'label': 'Bar',
+                    'name': '11'
+                }),
+                form.radio_simple({
+                    'id': 'baz11',
+                    'label': 'Baz',
+                    'name': '11'
+                })
+            ]
+        })
+    }}
+
+    {{
+        form.button_group({
+            'label': 'Button group with help only',
+            'class': 'has-error',
+            'help': 'Help text to give more information about expected input',
+            'items': [
+                form.radio_simple({
+                    'id': 'foo12',
+                    'label': 'Foo',
+                    'name': '12'
+                }),
+                form.radio_simple({
+                    'id': 'bar12',
+                    'label': 'Bar',
+                    'name': '12'
+                }),
+                form.radio_simple({
+                    'id': 'baz12',
+                    'label': 'Baz',
+                    'name': '12'
+                })
+            ]
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'States' }) }}
+
+    {{
+        form.button_group({
+            'label': '"class": "has-changed"',
+            'class': 'has-changed',
+            'help': 'Highlight whether an action elsewhere affects an input',
+            'items': [
+                form.radio_simple({
+                    'id': 'foo13',
+                    'label': 'Foo',
+                    'name': '13'
+                }),
+                form.radio_simple({
+                    'id': 'bar13',
+                    'label': 'Bar',
+                    'name': '13'
+                }),
+                form.radio_simple({
+                    'id': 'baz13',
+                    'label': 'Baz',
+                    'name': '13'
+                })
+            ]
+        })
+    }}
+
+    {{
+        form.button_group({
+            'label': '"class": "has-success"',
+            'class': 'has-success',
+            'help': 'Something good happened',
+            'items': [
+                form.radio_simple({
+                    'id': 'foo14',
+                    'label': 'Foo',
+                    'name': '14'
+                }),
+                form.radio_simple({
+                    'id': 'bar14',
+                    'label': 'Bar',
+                    'name': '14'
+                }),
+                form.radio_simple({
+                    'id': 'baz14',
+                    'label': 'Baz',
+                    'name': '14'
+                })
+            ]
+        })
+    }}
+
+    {{
+        form.button_group({
+            'label': '"class": "has-warning"',
+            'class': 'has-warning',
+            'help': 'Something bad happened',
+            'items': [
+                form.radio_simple({
+                    'id': 'foo15',
+                    'label': 'Foo',
+                    'name': '15'
+                }),
+                form.radio_simple({
+                    'id': 'bar15',
+                    'label': 'Bar',
+                    'name': '15'
+                }),
+                form.radio_simple({
+                    'id': 'baz15',
+                    'label': 'Baz',
+                    'name': '15'
+                })
+            ]
+        })
+    }}
+
+    {{
+        form.button_group({
+            'label': '"class": "has-error"',
+            'class': 'has-error',
+            'help': 'Automatically added if using <code>error</code> option',
+            'items': [
+                form.radio_simple({
+                    'id': 'foo16',
+                    'label': 'Foo',
+                    'name': '16'
+                }),
+                form.radio_simple({
+                    'id': 'bar16',
+                    'label': 'Bar',
+                    'name': '16'
+                }),
+                form.radio_simple({
+                    'id': 'baz16',
+                    'label': 'Baz',
+                    'name': '16'
+                })
+            ]
+        })
+    }}
+
+    {{
+        form.button_group({
+            'label': '"disabled": true',
+            'disabled': true,
+            'help': 'Stop! Can’t touch this',
+            'items': [
+                form.radio_simple({
+                    'id': 'foo17',
+                    'label': 'Foo',
+                    'name': '17'
+                }),
+                form.radio_simple({
+                    'id': 'bar17',
+                    'label': 'Bar',
+                    'name': '17'
+                }),
+                form.radio_simple({
+                    'id': 'baz17',
+                    'label': 'Baz',
+                    'name': '17'
+                })
+            ]
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+
+    {{
+        form.end()
+    }}
+
+{% endblock tab_content %}
+
+{% block tab_sidebar %}
+    <a href="https://jadu.gitbooks.io/pulsar/content/text.html">
+        <img src="../../../images/cover.png" alt="Pulsar documentation front cover" width="157px" />
+    </a>
+    <br />
+    {{
+        html.button({
+            'label': 'View Documentation',
+            'type': 'link',
+            'href': 'https://jadu.gitbooks.io/pulsar/content/text.html'
+        })
+    }}
+
+{% endblock tab_sidebar %}

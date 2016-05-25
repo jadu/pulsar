@@ -1,0 +1,10 @@
+{#
+    Test checkbox_inline method with class
+#}
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{{
+    form.checkbox_inline({
+        'label': 'foo',
+        'class': 'foo-class'
+    })
+}}

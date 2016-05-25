@@ -1,0 +1,168 @@
+$module-permissions-breakpoint: $screen-tablet;
+
+.module-permissions {
+    border-top: 1px solid color(gray, lighter);
+    float: left;
+    margin-bottom: 1em;
+    width: 100%;
+
+    @include respond-min($screen-large) {
+        width: 70%;
+    }
+}
+
+.module {
+    border-bottom: 1px solid color(gray, lighter);
+    float: left;
+    width: 100%;
+
+    .control__label {
+        display: block;
+        line-height: 44px;
+        padding: 0 10px;
+        user-select: none;
+
+        @include respond-min($screen-phone) {
+            display: inline-block;
+        }
+    }
+
+    .form__control.checkbox {
+        margin-top: 0;
+        vertical-align: text-bottom;
+    }
+}
+
+.module-page,
+.module-subpage {
+    display: none;
+    float: left;
+    width: 100%;
+}
+
+// wrapper to allow correct positioning of top-leve CRUD labels
+.module__titles {
+    display: none;
+    float: left;
+    padding-right: 60px; // cater for toggle links
+    width: 100%;
+
+    @include respond-min($module-permissions-breakpoint) {
+        display: block;
+    }
+}
+
+// Expanded module pages
+.module.is-open {
+    .module-page {
+        background-color: #efefef;
+        display: block;
+    }
+
+    .crud + .module-page {
+        border-top: 1px solid color(border);
+    }
+}
+
+// Expanded module subpages / tabs
+.module .module-page.is-open {
+    background-color: color(white);
+
+    .module-subpage {
+        display: block;
+    }
+
+    .module-subpage .crud {
+        padding-right: 60px; // cater for toggle links
+    }
+
+    .crud + .module-subpage {
+        border-top: 2px dotted #ccc;
+    }
+}
+
+.module-toggle,
+.refine-toggle {
+    float: right;
+    line-height: 44px;
+    text-decoration: none;
+}
+
+// View/Create/Update/Delete controls
+.crud {
+    display: none;
+    float: right;
+
+    @at-root .is-open & {
+        display: inline-block;
+    }
+}
+
+.crud__label,
+.crud__permission,
+.module-toggle,
+.refine-toggle {
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    min-width: 60px;
+}
+
+// Control visibility of individual CRUD control labels
+.crud__permission {
+    border-radius: 4px;
+    cursor: pointer;
+    height: 42px;
+    line-height: 42px;
+    margin: 4px 2px;
+    padding: 0 10px;
+    transition: background-color .2s linear;
+    user-select: none;
+
+    &:hover {
+        background-color: rgba(0, 0, 0, .05);
+    }
+
+    .form__control.checkbox {
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    > span {
+        display: inline-block;
+        line-height: 42px;
+        vertical-align: bottom;
+    }
+
+    &.is-checked {
+        background-color: color(jadu-green, pale);
+
+        &:hover {
+            background-color: darken(color(jadu-green, pale), 5);
+        }
+    }
+
+    &.is-indeterminate {
+        background-color: lighten(color(warning), 20);
+
+        &:hover {
+            background-color: lighten(color(warning), 15);
+        }
+    }
+
+    &.is-disabled {
+        color: color(text, disabled);
+        cursor: not-allowed;
+    }
+}
+
+.crud__label {
+    padding-top: 0;
+
+    @include respond-min($module-permissions-breakpoint) {
+        padding-top: 5px;
+        margin: 4px 2px;
+    }
+}
+

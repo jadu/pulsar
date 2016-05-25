@@ -28,18 +28,23 @@
 
     @include respond-min($screen-phone) {
         left: auto;
-        right: -180px;
+        right: -160px;
         top: 40px;
-        width: 400px;
+        width: 380px;
     }
 }
 
 .notifications-toggle {
     float: right;
     font-size: 24px;
+    line-height: 40px; // maintain alignment in toolbar
     padding: 4px 0;
     position: relative; // stop is-new indicator wandering off when parents switch to static position
     text-decoration: none;
+
+    @include respond-min($screen-phone) {
+        padding: 2px 0 0;
+    }
 
     &,
     &:link,
@@ -51,16 +56,12 @@
         color: color(text);
     }
 
-    @include respond-min($screen-phone) {
-        padding: 2px 0 0 0;
-    }
-
     &.is-active {
         color: color(black);
     }
 
     // the red dot indicator
-    &.has-new:before {
+    &.has-new::before {
         background-color: color(danger);
         border: 2px solid color(white);
         border-radius: 10px;

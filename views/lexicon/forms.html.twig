@@ -1,0 +1,139 @@
+{% extends '@pulsar/pulsar/layouts/base.html.twig' %}
+
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{% import '@pulsar/pulsar/v2/helpers/tabs.html.twig' as tabs %}
+{% import '@pulsar/pulsar/v2/helpers/flash.html.twig' as flash %}
+
+{% block title %}{{ parent() }}{% endblock %}
+
+{% set heading = 'Form Helpers' %}
+
+{% set tab_buttongroup %}{% include 'lexicon/forms/button-group.html.twig' %}{% endset %}
+{% set tab_checkbox %}{% include 'lexicon/forms/checkbox.html.twig' %}{% endset %}
+{% set tab_date %}{% include 'lexicon/forms/date.html.twig' %}{% endset %}
+{% set tab_password %}{% include 'lexicon/forms/password.html.twig' %}{% endset %}
+{% set tab_choice %}{% include 'lexicon/forms/choice.html.twig' %}{% endset %}
+{% set tab_file %}{% include 'lexicon/forms/file.html.twig' %}{% endset %}
+{% set tab_radio %}{% include 'lexicon/forms/radio.html.twig' %}{% endset %}
+{% set tab_select %}{% include 'lexicon/forms/select.html.twig' %}{% endset %}
+{% set tab_select2 %}{% include 'lexicon/forms/select2.html.twig' %}{% endset %}
+{% set tab_text %}{% include 'lexicon/forms/text.html.twig' %}{% endset %}
+{% set tab_textarea %}{% include 'lexicon/forms/textarea.html.twig' %}{% endset %}
+{% set tab_toggleswitch %}{% include 'lexicon/forms/toggle-switch.html.twig' %}{% endset %}
+
+{%
+    set nav_data = {
+        "1": {
+            "label": "Lexicon",
+            "href": '#lexicon',
+            "icon": "info-sign",
+            "items": {
+                "1.1": {
+                    "1.1.1": {
+                        "label": "Components",
+                        "href": "/app/app.php/lexicon"
+                    },
+                    "1.1.2": {
+                        "label": "Modules",
+                        "href": "/app/app.php/lexicon/modules.html.twig",
+                        "class": "is-active"
+                    },
+                    "1.1.3": {
+                        "label": "Patterns",
+                        "href": "/app/app.php/lexicon/patterns.html.twig"
+                    }
+                }
+            }
+        },
+        "2": {
+            "label": "Forms",
+            "class": "is-active",
+            "href": "/app/app.php/lexicon/forms.html.twig",
+            "icon": "check"
+        },
+        "3": {
+            "label": "Docs",
+            "class": "",
+            "href": "http://jadu.gitbooks.io/pulsar/",
+            "icon": "book"
+        }
+    }
+%}
+
+{%
+    set tabs_content = [
+        {
+          "id"    : "buttongroup",
+          "label" : "Button Group",
+          "src"   : tab_buttongroup,
+          "active": true
+        },
+        {
+          "id"    : "checkbox",
+          "label" : "Checkbox",
+          "src"   : tab_checkbox
+        },
+        {
+          "id"    : "choice",
+          "label" : "Choice",
+          "src"   : tab_choice
+        },
+        {
+          "id"    : "date",
+          "label" : "Date",
+          "src"   : tab_date
+        },
+        {
+          "id"    : "file",
+          "label" : "File",
+          "src"   : tab_file
+        },
+        {
+          "id"    : "radio",
+          "label" : "Radio",
+          "src"   : tab_radio
+        },
+        {
+          "id"    : "select",
+          "label" : "Select",
+          "src"   : tab_select
+        },
+        {
+          "id"    : "select2",
+          "label" : "Select2",
+          "src"   : tab_select2
+        },
+        {
+          "id"    : "password",
+          "label" : "Password",
+          "src"   : tab_password
+        },
+        {
+          "id"    : "text",
+          "label" : "Text",
+          "src"   : tab_text
+        },
+        {
+          "id"    : "textarea",
+          "label" : "Textarea",
+          "src"   : tab_textarea
+        },
+        {
+          "id"    : "toggleswitch",
+          "label" : "Toggle Switch",
+          "src"   : tab_toggleswitch
+        }
+    ]
+%}
+
+{% block tabs_list %}
+    {{ tabs.list(tabs_content) }}
+{% endblock %}
+
+{% block tabs_content %}
+    {{ tabs.content(tabs_content) }}
+{% endblock %}
+
+{% block javascript %}
+{% endblock %}

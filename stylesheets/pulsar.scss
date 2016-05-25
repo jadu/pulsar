@@ -23,47 +23,47 @@ $FontAwesomePath: '../libs/font-awesome/font/';
 @import '../libs/font-awesome/scss/font-awesome';
 
 // Mixins
-@import '_mixin.border-radius';
-@import '_mixin.clear-fix';
-@import '_mixin.content-box';
-@import '_mixin.css-arrow';
-@import '_mixin.hide-text';
-@import '_mixin.inline-block';
-@import '_mixin.label-variant';
-@import '_mixin.media-queries';
-@import '_mixin.mixins-to-organise';
+@import 'mixin.border-radius';
+@import 'mixin.clear-fix';
+@import 'mixin.content-box';
+@import 'mixin.css-arrow';
+@import 'mixin.hide-text';
+@import 'mixin.inline-block';
+@import 'mixin.label-variant';
+@import 'mixin.media-queries';
+@import 'mixin.mixins-to-organise';
 
 // Config
-@import '_config.variables';
-@import '_config.fonts';
-@import '_config.branding';
+@import 'config.variables';
+@import 'config.fonts';
+@import 'config.branding';
 
 // Functions
-@import '_function.math';
-@import '_function.color-luminance';
-@import '_function.pick-best-color';
-@import '_function.color';
+@import 'function.math';
+@import 'function.color-luminance';
+@import 'function.pick-best-color';
+@import 'function.color';
 
 // Base colour palette
-@import '_palette.base';
+@import 'palette.base';
 
 // Apply palette to components
-@import '_config.theme';
+@import 'config.theme';
 
 // Deprecated styles soon to disappear
-@import '_deprecated.styles.scss';
+@import 'deprecated.styles';
 
 // Structure
-@import '_structure.grid';
-@import '_structure.columns';
-@import '_structure.scaffolding';
-@import '_structure.type';
-@import '_structure.forms';
+@import 'structure.grid';
+@import 'structure.columns';
+@import 'structure.scaffolding';
+@import 'structure.type';
+@import 'structure.forms';
 
 // Layouts
-@import '_layout.sidebar';
-@import '_layout.signin';
-@import '_layout.tabs';
+@import 'layout.sidebar';
+@import 'layout.signin';
+@import 'layout.tabs';
 
 /* -------------------------------------------------------------------------- *\
 	If you're theming Pulsar and want to include your own variables, colours or
@@ -143,15 +143,15 @@ $FontAwesomePath: '../libs/font-awesome/font/';
 \* -------------------------------------------------------------------------- */
 
 // Utilities
-@import '_utility.baseline';
-@import '_utility.highlight';
-@import '_utility.misc';
-@import '_utility.utilities';
-@import '_utility.states';
-@import '_utility.swatches';
+@import 'utility.baseline';
+@import 'utility.highlight';
+@import 'utility.misc';
+@import 'utility.utilities';
+@import 'utility.states';
+@import 'utility.swatches';
 
 // @import '../libs/datatables-responsive/css/dataTables.responsive';
 
 // Overrides and fixes
-@import '_override.shame';
-@import '_override.tour';
+@import 'override.shame';
+@import 'override.tour';

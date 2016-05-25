@@ -10,7 +10,7 @@
         border-color: transparent;
         color: color(white);
 
-        &:before {
+        &::before {
             left: 50%;
             right: 0%;
         }
@@ -19,12 +19,12 @@
     &:indeterminate + .toggle-switch-label {
         background-color: color(warning);
 
-        &:before {
+        &::before {
             left: 25%;
             right: 25%;
         }
 
-        &:after {
+        &::after {
             color: color(white);
             opacity: 0;
         }
@@ -34,7 +34,7 @@
         height: 2em;
         width: 4em;
 
-        &:after {
+        &::after {
             font-size: 32px;
             left: 15px;
             letter-spacing: 32px;
@@ -61,13 +61,13 @@
         display: none !important;
     }
 
-    &:before {
+    &::before {
         background-clip: padding-box;
         background-color: color(white);
         border-radius: 100%;
         border: .125em solid transparent;
         bottom: 0;
-        content: "";
+        content: '';
         left: 0;
         position: absolute;
         right: 50%;
@@ -76,9 +76,9 @@
         z-index: 2;
     }
 
-    &:after {
-        content: "\F00C \F00D";
-        font-family: "FontAwesome";
+    &::after {
+        content: '\F00C \F00D';
+        font-family: 'FontAwesome';
         font-size: 14px;
         left: 10px;
         letter-spacing: 10px;
@@ -95,3 +95,21 @@
         }
     }
 }
+
+// State class overrides to make sure internal 'icon' doesn't inherit the state
+// colour styling as they look terrible and don't meet AA
+.has-changed,
+.has-success,
+.has-warning,
+.has-info,
+.has-error,
+.has-danger {
+    .toggle-switch-label.control__label {
+        color: color(white);
+    }
+}
+
+.toggle-switch.is-disabled + .toggle-switch-label {
+    opacity: .5;
+}
+

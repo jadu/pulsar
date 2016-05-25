@@ -133,6 +133,106 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
 {# -----------------------------------------------------------------------------
 
+# Block list
+
+## Example usage
+
+```twig
+{{
+    html.block_list({
+        'items': [
+            {'value': 'foo'},
+            {'value': 'bar'},
+            {'value': 'baz'}
+        ]
+    })
+}}
+```
+
+## Example using `link` markup scheme
+
+```twig
+{{
+    html.block_list({
+        'type': 'link',
+        'items': [
+            {'label': 'foo', 'href': '#foo'},
+            {'label': 'bar', 'href': '#bar'},
+            {'label': 'baz', 'href': '#baz'}
+        ]
+    })
+}}
+```
+
+## Options
+
+Option | Type   | Description
+------ | ------ | --------------------------------------------------------------
+class  | string | CSS classes, space separated
+footer | string | String/Markup to display in the footer row
+header | string | String/Markup to display in the header row
+id     | string | A unique identifier, if required
+items  | array  | An `options` hash which will added as attributes to the `div`, `li` or `a` element (defined by `type`)
+type   | string | Markup scheme to use: `ul` (default), `ol`, `div` or `link`
+data-* | string | Data attributes, eg: `'data-foo': 'bar'`
+
+#}
+{% macro block_list(options) %}
+{% spaceless %}
+    {% import _self as html %}
+
+    {% set mainTag = 'ul' %}
+
+    {% if options.type is defined and options.type == 'link' %}
+        {% set mainTag = 'div' %}
+    {% elseif options.type is defined and options.type != 'ul' %}
+        {% set mainTag = options.type %}
+    {% endif %}
+
+    <{{ mainTag }}{{ attributes(options
+        |exclude('footer header items type')
+        |defaults({'class': 'block-list'})
+    )}}>
+
+    {% if options.header is defined and options.header is not empty %}
+        {% set header = {'value': options.header, 'class': 'block-list__header'} %}
+
+        {% if options.type is defined and (options.type == 'div' or options.type == 'link') %}
+            {{ html.div(header) }}
+        {% else %}
+            {{ html.li(header) }}
+        {% endif %}
+    {% endif %}
+
+    {% for item in options.items %}
+        {% set item = item|merge({'class': 'block-list__item'}) %}
+
+        {% if options.type is defined and options.type == 'div' %}
+            {{ html.div(item) }}
+        {% elseif options.type is defined and options.type == 'link' %}
+            {{ html.link(item) }}
+        {% else %}
+            {{ html.li(item) }}
+        {% endif %}
+    {% endfor %}
+
+    {% if options.footer is defined and options.footer is not empty %}
+        {% set footer = {'value': options.footer, 'class': 'block-list__footer'} %}
+
+        {% if options.type is defined and (options.type == 'div' or options.type == 'link') %}
+            {{ html.div(footer) }}
+        {% else %}
+            {{ html.li(footer) }}
+        {% endif %}
+    {% endif %}
+    </{{ mainTag }}>
+
+{% endspaceless %}
+{% endmacro %}
+
+
+{# -----------------------------------------------------------------------------
+
 # Button
 
 ## Example usage
@@ -346,6 +446,42 @@ placement    | string | the alignment of the dropdown menu, `left` (default) or 
 {% endspaceless %}
 {% endmacro %}
 
+{# -----------------------------------------------------------------------------
+
+# Div
+
+Simple wrapper to create `<div>` elements, mainly used from within other helpers..
+
+## Example usage
+
+```twig
+{{
+    html.div({
+        value: 'foo'
+    })
+}}
+```
+
+## Options
+
+Option | Type   | Description
+------ | ------ | --------------------------------------------------------------
+class  | string | CSS classes, space separated
+id     | string | A unique identifier, if required
+value  | string | The value to display
+data-* | string | Data attributes, eg: `'data-foo': 'bar'`
+
+#}
+{% macro div(options) %}
+{% spaceless %}
+
+    <div{{ attributes(options|exclude('value')) }}>
+        {{- options.value|raw -}}
+    </div>
+
+{% endspaceless %}
+{% endmacro %}
+
 
 {# -----------------------------------------------------------------------------
 
@@ -366,6 +502,61 @@ Used in html.dropdown to insert lines between items.
 {% endspaceless %}
 {% endmacro %}
 
+
+{# -----------------------------------------------------------------------------
+
+# Edit button
+
+Used by other helpers to add the edit icons. Uses data-attributes to
+contain information about what object should be removed.
+
+## Example usage
+
+```twig
+{{
+    html.edit_button({
+        'target': '#itemToEdit'
+    })
+}}
+```
+
+## Options
+
+Option    | Type   | Description
+--------- | ------ | -------------------------------------------------------------
+class     | string | A space separated list of class names
+id        | string | A unique identifier, if required
+placement | string | Can be `top`, `left`, `bottom`, `right`
+target    | string | CSS Selector of the item to be edited, will be turned into the `data-action-target` attribute
+type      | string | Can be `button` (default), `link`, `input`, `submit`
+data-*    | string | Data attributes, eg: `'data-foo': 'bar'`
+
+#}
+{% macro edit_button(options) %}
+    {% spaceless %}
+        {% import _self as html %}
+        {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+
+        {{
+            html.button(options
+                |exclude('target placement')
+                |merge({
+                    'aria-label': 'edit',
+                    'class': options.class|default ~ ' edit-button',
+                    'data-action': 'edit',
+                    'data-action-target': options.target|default,
+                    'data-placement': options.placement|default('right'),
+                    'data-title': options.tooltip|default('Edit this item'),
+                    'data-toggle': 'tooltips',
+                    'label': html.icon('pencil'),
+                    'role': 'button',
+                    'type': options.type|default('button'),
+                })
+            )
+        }}
+
+    {% endspaceless %}
+{% endmacro %}
 
 {# -----------------------------------------------------------------------------
 
@@ -394,7 +585,17 @@ class  | string | CSS classes, space separated
 {% spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-    <i {{ util.class('icon-' ~ icon_name, options) }}></i>
+    {% if options.class is defined and options.class is not empty %}
+        {% set class = ' ' ~ options.class %}
+    {% endif %}
+
+    <i{{
+        attributes(options
+            |defaults({
+                'class': 'icon-' ~ icon_name ~ class|default
+            })
+        )
+    }}></i>
 
 {% endspaceless %}
 {% endmacro %}

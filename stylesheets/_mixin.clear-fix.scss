@@ -1,11 +1,13 @@
 @mixin clear-fix() {
-  zoom:1;
-  &:before,
-  &:after {
-    content: "";
+  zoom: 1;
+
+  &::before,
+  &::after {
+    content: '';
     display: table;
   }
-  &:after {
+
+  &::after {
     clear: both;
   }
 }

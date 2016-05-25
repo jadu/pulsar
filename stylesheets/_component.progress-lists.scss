@@ -17,7 +17,7 @@
     &:not(:last-child) {
         @include css-arrow(23px, right, $progress-bg);
 
-        &:before {
+        &::before {
             border-left-color: color(white);
             border-width: 27px;
             margin-top: -27px;
@@ -35,7 +35,8 @@
         padding-right: 15px;
     }
 
-    &:before, &:after {
+    &::before,
+    &::after {
         z-index: 1;
     }
 
@@ -43,7 +44,7 @@
         background-color: $progress-bg-hover;
         color: color(black);
 
-        &:after {
+        &::after {
             border-left-color: $progress-bg-hover;
         }
     }
@@ -84,7 +85,7 @@
     box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
     color: color(success, alt);
 
-    &:not(:last-child):after {
+    &:not(:last-child)::after {
         border-left-color: color(success);
     }
 
@@ -92,7 +93,7 @@
         background-color: darken(color(success), 2);
         color: color(success, alt);
 
-        &:after {
+        &::after {
             border-left-color: darken(color(success), 2);
         }
     }
@@ -104,7 +105,7 @@
     box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
     color: color(primary, alt);
 
-    &:not(:last-child):after {
+    &:not(:last-child)::after {
         border-left-color: color(primary);
     }
 
@@ -112,16 +113,30 @@
         background-color: darken(color(primary), 2);
         color: color(primary, alt);
 
-        &:after {
+        &::after {
             border-left-color: darken(color(primary), 2);
         }
     }
 }
 
 @include ie-lte(8) {
-    .progress-list__item:nth-of-type(1) { z-index: 5; }
-    .progress-list__item:nth-of-type(2) { z-index: 4; }
-    .progress-list__item:nth-of-type(3) { z-index: 3; }
-    .progress-list__item:nth-of-type(4) { z-index: 2; }
-    .progress-list__item:nth-of-type(5) { z-index: 1; }
+    .progress-list__item:nth-of-type(1) {
+        z-index: 5;
+    }
+
+    .progress-list__item:nth-of-type(2) {
+        z-index: 4;
+    }
+
+    .progress-list__item:nth-of-type(3) {
+        z-index: 3;
+    }
+
+    .progress-list__item:nth-of-type(4) {
+        z-index: 2;
+    }
+
+    .progress-list__item:nth-of-type(5) {
+        z-index: 1;
+    }
 }

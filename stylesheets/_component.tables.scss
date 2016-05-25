@@ -1,6 +1,6 @@
 table {
     background-color: $table-bg;
-    border-collapse: collapse;
+    border-collapse: separate;
 }
 
 th {
@@ -45,7 +45,8 @@ table {
     colgroup + thead,
     thead:first-child {
         tr:first-child {
-            th, td {
+            th,
+            td {
                 border-top: 1px solid transparent;
             }
         }
@@ -59,6 +60,7 @@ table {
 
 .table--bordered {
     border: 1px solid $table-border-color;
+
     > thead,
     > tbody,
     > tfoot {
@@ -84,13 +86,15 @@ table {
 
 
 .row--align-top {
-    th, td {
+    th,
+    td {
         vertical-align: top;
     }
 }
 
 .row--align-middle {
-    th, td {
+    th,
+    td {
         vertical-align: middle;
     }
 }

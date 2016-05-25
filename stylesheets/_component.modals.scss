@@ -25,7 +25,9 @@
   z-index: $zindex-modal;
 
   form {
-    p, ul, ol {
+    p,
+    ul,
+    ol {
       margin-left: 0;
     }
   }
@@ -58,7 +60,7 @@
   border: 1px solid $modal-content-fallback-border-color; //old browsers fallback (ie8 etc)
   border: 1px solid $modal-content-border-color;
   border-radius: $border-radius;
-  box-shadow: 0 3px 9px rgba(0,0,0,.5);
+  box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
   background-clip: padding-box;
   // Remove focus outline from opened modal
   outline: none;
@@ -82,11 +84,14 @@
   left: 0;
   z-index: ($zindex-modal - 10);
   background-color: $modal-backdrop-bg;
+
   @include ie-lte(7) {
     background-color: none;
   }
+
   // Fade for backdrop
   &.fade { @include opacity(0); }
+
   &.in { @include opacity(.5); }
 }
 
@@ -116,10 +121,10 @@
 
 // Footer (for actions)
 .modal__footer {
+  @include clear-fix; // clear it in case folks use .pull-* classes on buttons
   padding: ($modal-inner-padding - 1) $modal-inner-padding ($modal-inner-padding - 5);
   // text-align: right; // right align buttons
   border-top: 1px solid $modal-footer-border-color;
-  @include clear-fix; // clear it in case folks use .pull-* classes on buttons
 
 /*   // Properly space out buttons
   .btn + .btn {
@@ -141,9 +146,10 @@
     background-color: color(danger);
     color: color(white);
   }
+
   .close {
-    color: color(white);
     @include opacity(.7);
+    color: color(white);
   }
 }
 
@@ -169,7 +175,7 @@
         font-size: 20px;
         margin-left: 0;
 
-        &:before {
+        &::before {
             background: none;
         }
     }
@@ -179,7 +185,7 @@
     }
 
     .flash {
-        margin: 0 0 1em 0;
+        margin: 0 0 1em;
         position: relative;
     }
 
