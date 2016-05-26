@@ -1,0 +1,53 @@
+.is-sortable {
+    .form__group {
+        background-color: color(background, light);
+        margin-bottom: 4px;
+        padding: 10px 10px 10px 50px;
+        position: relative;
+
+        &:hover {
+            background-color: color(background);
+
+            &::before {
+                color: color(jadu-blue);
+            }
+        }
+
+        &,
+        .control__label {
+            cursor: move; /* fallback if grab cursor is unsupported */
+            cursor: grab;
+            cursor: -moz-grab;
+            cursor: -webkit-grab;
+        }
+
+        &::before {
+            content: '\f0c9';
+            color: color(text, light);
+            font-family: fontawesome;
+            position: absolute;
+            left: 20px;
+            top: 22px;
+        }
+    }
+
+    .input-group-guidance {
+        background-color: transparent;
+    }
+}
+
+.form__group.is-sorting {
+    background-color: lighten(color(background, selected), 5);
+    border: 1px dashed color(info);
+    border-radius: 5px;
+    display: block;
+    min-height: 68px;
+
+    &::before {
+        display: none;
+    }
+}
+
+.is-dragging {
+    box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+}
