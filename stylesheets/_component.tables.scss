@@ -20,6 +20,24 @@
         }
     }
 
+    tr.selected td,
+    tr.is-selected td {
+        background-color: color(background, selected);
+
+        a,
+        a:link {
+            border-bottom-color: color(link, dark);
+            color: color(link, dark);
+        }
+    }
+
+    tr.is-disabled td {
+        &,
+        & > * {
+            color: color(text, disabled);
+        }
+    }
+
     th,
     td {
         border-bottom: 1px solid color(border);
@@ -43,6 +61,10 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
+    }
+
+    th {
+        border-bottom: 2px solid color(border);
     }
 }
 
@@ -85,4 +107,10 @@
     .remove-button {
         padding: 5px;
     }
+}
+
+// Map depracated table styles to this one
+.table--datagrid {
+    @extend .table;
+    width: 100%;
 }

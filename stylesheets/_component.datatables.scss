@@ -1,46 +1,9 @@
+// Regular table styling is handled by _component.tables.scss
+// This styles the additional behaviours added by the Datatables plugin
 
 .datatable {
-    border-top: 1px solid color(border);
-    clear: both;
-    width: 100%;
-
-    &:hover > .table-link {
-        color: color(link);
-    }
-
-    .btn {
-        &,
-        &:hover:not(:disabled) {
-            margin: 8px 0 9px;
-            vertical-align: top;
-        }
-    }
-}
-
-
-
-.datatable {
-    tr {
-        &.selected .table__td {
-            background-color: color(background, selected);
-
-            a,
-            a:link {
-                border-bottom-color: color(link, dark);
-                color: color(link, dark);
-            }
-        }
-
-        &.is-disabled .table__td {
-            &,
-            & > * {
-                color: color(text, disabled);
-            }
-        }
-    }
-
+    // scss-lint:disable SelectorFormat
     th {
-        // scss-lint:disable SelectorFormat
         &.sorting::after,
         &.sorting_asc::after,
         &.sorting_desc::after {
@@ -62,14 +25,12 @@
         &.sorting_desc {
             background-color: darken(#fff, 10);
         }
-
-
-        // scss-lint:enable SelectorFormat
     }
 
     td.sorting_1 {
         background-color: darken(#fff, 3);
     }
+    // scss-lint:enable SelectorFormat
 }
 
 .table__tr--no-results td {
@@ -85,40 +46,22 @@
     top: 1px;
 }
 
-.table__tr.selected .table-row-select::before {
+tr.selected .table-row-select::before {
     content: '\f14a';
 }
 
-
-
-
-.table__th > .table-link {
-    color: color(black);
-    text-decoration: none;
-
-    &:hover {
-        color: color(link);
-        text-decoration: underline;
-    }
-}
-
 // scss-lint:disable SelectorFormat
-.table__th.sorting_disabled:hover {
+th.sorting_disabled:hover {
     border: 0;
     text-decoration: none;
 
-    > .table-link {
+    > a {
         border: 0;
         cursor: default;
         text-decoration: none;
     }
 }
 // scss-lint:enable SelectorFormat
-
-.table__th--shrink,
-.table__td--shrink {
-    width: 1%;
-}
 
 .table-responsive,
 .table-selection {
@@ -135,12 +78,6 @@
         cursor: pointer;
     }
 }
-
-
-
-
-
-
 
 // scss-lint:disable SelectorFormat
 .dataTables_wrapper {
@@ -225,7 +162,6 @@
     padding: 5px;
 }
 
-
 // scss-lint:enable SelectorFormat
 
 .datatable .child {
@@ -233,12 +169,6 @@
     border-bottom: 1px solid color(border);
     padding: 11.5px 0 12px;
 }
-
-// .dtr-inline.collapsed .parent .table__td:first-child:before {
-//     content: $minus-sign;
-//     color: $jadu-red;
-// }
-
 
 .table-child-toggle {
     color: color(jadu-blue);
@@ -257,13 +187,6 @@
     }
 }
 
-
-
-
-
-
-
-
 .datatable .child ul {
     margin: 0 0 0 65px;
 }
@@ -281,9 +204,6 @@
     display: table-cell;
     padding: 0 5px;
 }
-
-
-
 
 // scss-lint:disable SelectorFormat
 .dataTables_empty {
@@ -305,7 +225,6 @@
 .dataTables_bottom {
     margin-bottom: 24px;
 }
-
 
 .DTTT_collection {
     opacity: 1;
