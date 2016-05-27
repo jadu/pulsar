@@ -619,27 +619,39 @@ Provide extra contextual meaning to things.
 
 ## Options
 
-Option | Type   | Description
------- | ------ | --------------------------------------------------------------
-class  | string | CSS classes, space separated
-id     | string | A unique identifier, if required
-label  | string | The value to display
-data-* | string | Data attributes, eg: `'data-foo': 'bar'`
+Option        | Type   | Description
+------------- | ------ | --------------------------------------------------------------
+class         | string | CSS classes, space separated
+id            | string | A unique identifier, if required
+label         | string | The value to display
+removable     | bool   | Displays a remove sign at the end of the label
+remove-target | string | Selector of the item to be removed, will be turned into the `data-action-target` attribute
+data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
 {% macro label(options) %}
 {% spaceless %}
+    {% import _self as html %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
     <span{{
         attributes(options
-            |exclude('label')
+            |exclude('label removable')
             |defaults({
                 'class': 'label'
             })
         )
     }}>
         {{- options.label|default|raw -}}
+        {% if options.removable is defined and options.removable %}
+        {{
+            html.remove_button({
+                'tooltip': false,
+                'target': options.target|default,
+                'type': 'link'
+            })
+        }}
+        {% endif %}
     </span>
 
 {% endspaceless %}
@@ -1155,6 +1167,16 @@ data-*    | string | Data attributes, eg: `'data-foo': 'bar'`
     {% import _self as html %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
+    {% if options.tooltip is defined and options.tooltip != false %}
+    {%
+        set options = options|default({})|merge({
+            'data-placement': options.placement|default('right'),
+            'data-toggle': 'tooltips',
+            'data-title': options.tooltip|default('Remove this item')
+        })
+    %}
+    {% endif %}
+
     {{
         html.button(options
             |exclude('target placement')
@@ -1163,9 +1185,6 @@ data-*    | string | Data attributes, eg: `'data-foo': 'bar'`
                 'type': options.type|default('button'),
                 'data-action': 'remove',
                 'data-action-target': options.target|default,
-                'data-placement': options.placement|default('right'),
-                'data-toggle': 'tooltips',
-                'data-title': options.tooltip|default('Remove this item'),
                 'label': html.icon('remove-sign')
             })
         )

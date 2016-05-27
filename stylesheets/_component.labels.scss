@@ -22,23 +22,21 @@
     }
   }
 
-  // Addable/Removable labels
-  [data-filter-action="add"],
-  [data-filter-action="remove"] {
-    border-left: 1px dotted;
-    border-color: white;
-    color: inherit;
-    margin-left: 5px;
-    text-decoration: none;
-
-    i {
-        margin-left: 7px;
+    // Addable/Removable labels
+    .remove-button,
+    .remove-button [class^="icon-"],
+    .remove-button [class*=" icon-"] {
+        &,
+        &:hover {
+            box-shadow: none;
+            color: inherit;
+            font-size: 1em;
+            line-height: 1;
+            margin-left: 2px;
+            text-decoration: none;
+            top: 0;
+        }
     }
-
-    &:hover {
-      margin-top: 1px;
-    }
-  }
 }
 
 // Colors
