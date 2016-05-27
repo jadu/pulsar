@@ -352,6 +352,12 @@
                 'data-placement': 'right'
             })
         }}
+        {{
+            html.label({
+                label: 'large label',
+                class: 'label--large'
+            })
+        }}
     </p>
 
     <h2 class="heading">Removable labels</h2>
@@ -420,6 +426,13 @@
                 'data-toggle': 'tooltips',
                 'data-title': 'You look nice',
                 'data-placement': 'right',
+                removable: true
+            })
+        }}
+        {{
+            html.label({
+                class: 'label--large',
+                label: 'label large',
                 removable: true
             })
         }}
