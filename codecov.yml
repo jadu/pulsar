@@ -1,0 +1,10 @@
+coverage:
+  notify:
+    slack:
+      default:
+        branches:
+        - develop
+        threshold: '1'
+        url: https://hooks.slack.com/services/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
+  status:
+    patch: false

@@ -352,16 +352,90 @@
                 'data-placement': 'right'
             })
         }}
+        {{
+            html.label({
+                label: 'large label',
+                class: 'label--large'
+            })
+        }}
     </p>
 
     <h2 class="heading">Removable labels</h2>
     <p>
-        <span class="label label--inverse">
-            <strong>Created:</strong> Last 30 days <a href="#" data-filter-action="remove"><i class="icon-remove"></i></a>
-        </span>
-        <span class="label label--primary">
-            UX <a href="#" data-filter-action="remove"><i class="icon-remove"></i></a>
-        </span>
+        {{
+            html.label({
+                label: 'default',
+                removable: true
+            })
+        }}
+        {{
+            html.label({
+                label: 'primary',
+                class: 'label--primary',
+                removable: true
+            })
+        }}
+        {{
+            html.label({
+                label: 'success',
+                class: 'label--success',
+                removable: true
+            })
+        }}
+        {{
+            html.label({
+                label: 'warning',
+                class: 'label--warning',
+                removable: true
+            })
+        }}
+        {{
+            html.label({
+                label: 'danger',
+                class: 'label--danger',
+                removable: true
+            })
+        }}
+        {{
+            html.label({
+                label: 'info',
+                class: 'label--info',
+                removable: true
+            })
+        }}
+        {{
+            html.label({
+                label: 'inverse',
+                class: 'label--inverse',
+                removable: true
+            })
+        }}
+        {{
+            html.label({
+                'label': 'label with tooltip',
+                'class': 'label--inverse',
+                'data-toggle': 'tooltips',
+                'data-title': 'Hello!',
+                removable: true
+            })
+        }}
+        {{
+            html.label({
+                'label': 'label with right-aligned tooltip',
+                'class': 'label--inverse',
+                'data-toggle': 'tooltips',
+                'data-title': 'You look nice',
+                'data-placement': 'right',
+                removable: true
+            })
+        }}
+        {{
+            html.label({
+                class: 'label--large',
+                label: 'label large',
+                removable: true
+            })
+        }}
     </p>
 
     <h2 class="heading">Badges</h2>

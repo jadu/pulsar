@@ -91,18 +91,6 @@
     vertical-align: baseline;
     width: 100%;
 
-    @include respond-min($screen-tablet) {
-      display: table-cell;
-      padding: 5px $gutter-width / 2;
-
-      vertical-align: middle;
-      width: auto;
-
-      &::before {
-        display: none;
-      }
-    }
-
     &::before {
       background-color: darken($white, 5%);
       content: attr(data-table-header);
@@ -117,6 +105,20 @@
       vertical-align: baseline;
       width: auto;
     }
+
+    // scss-lint:disable DeclarationOrder
+    @include respond-min($screen-tablet) {
+      display: table-cell;
+      padding: 5px $gutter-width / 2;
+
+      vertical-align: middle;
+      width: auto;
+
+      &::before {
+        display: none;
+      }
+    }
+    // scss-lint:enable DeclarationOrder
 
     &:last-child {
       border-bottom: 1px solid color(border);

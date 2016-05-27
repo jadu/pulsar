@@ -1,0 +1,284 @@
+{% extends '@pulsar/pulsar/components/tab.html.twig' %}
+
+
+{% block tab_content %}
+
+<fieldset class="fieldset">
+    <legend>Permissions</legend>
+
+
+<div class="module-permissions">
+    <div class="module-row module">
+        {{
+            form.checkbox_inline({
+                'label': 'eGov',
+                'data-toggle': 'module-master',
+                'bare': true
+            })
+        }}
+        {{
+            html.link({
+                'label': html.icon('caret-down'),
+                'class': 'module-toggle js-module-toggle',
+                'href': '#'
+            })
+        }}
+    </div>
+
+    <div class="module-row module is-open">
+
+        <div class="module__titles">
+            <div class="crud"><!--
+             --><label class="crud__label">
+                    <span>View</span>
+                </label><!--
+             --><label class="crud__label">
+                    <span>Create</span>
+                </label><!--
+             --><label class="crud__label">
+                    <span>Update</span>
+                </label><!--
+             --><label class="crud__label">
+                    <span>Delete</span>
+                </label><!--
+         --></div>
+        </div>
+
+        {{
+            form.checkbox_inline({
+                'label': 'Publishing',
+                'data-toggle': 'module-master',
+                'bare': true
+            })
+        }}
+        {{
+            html.link({
+                'label': html.icon('caret-down'),
+                'class': 'module-toggle js-module-toggle',
+                'href': '#'
+            })
+        }}
+        <div class="crud"><!--
+         --><label class="crud__permission">
+                {{ form.checkbox({'bare': true, 'data-toggle': 'module-crud', 'data-crud': 'view'}) }}
+                <span>View</span>
+            </label><!--
+         --><label class="crud__permission">
+                {{ form.checkbox({'bare': true, 'data-toggle': 'module-crud', 'data-crud': 'create'}) }}
+                <span>Create</span>
+            </label><!--
+         --><label class="crud__permission">
+                {{ form.checkbox({'bare': true, 'data-toggle': 'module-crud', 'data-crud': 'update'}) }}
+                <span>Update</span>
+            </label><!--
+         --><label class="crud__permission">
+                {{ form.checkbox({'bare': true, 'data-toggle': 'module-crud', 'data-crud': 'delete'}) }}
+                <span>Delete</span>
+            </label><!--
+     --></div>
+
+        <div class="module-row module-page">
+            {{
+                form.checkbox_inline({
+                    'label': 'Document',
+                    'data-toggle': 'module-row',
+                    'bare': true
+                })
+            }}
+            {{
+                html.link({
+                    'label': 'refine',
+                    'class': 'refine-toggle js-refine-toggle',
+                    'href': '#'
+                })
+            }}
+            <div class="crud"><!--
+             --><label class="crud__permission">
+                    {{ form.checkbox({'bare': true, 'data-toggle': 'page', 'data-crud': 'view'}) }}
+                    <span>View</span>
+                </label><!--
+             --><label class="crud__permission">
+                    {{ form.checkbox({'bare': true, 'data-toggle': 'page', 'data-crud': 'create'}) }}
+                    <span>Create</span>
+                </label><!--
+             --><label class="crud__permission">
+                    {{ form.checkbox({'bare': true, 'data-toggle': 'page', 'data-crud': 'update'}) }}
+                    <span>Update</span>
+                </label><!--
+             --><label class="crud__permission">
+                    {{ form.checkbox({'bare': true, 'data-toggle': 'page', 'data-crud': 'delete'}) }}
+                    <span>Delete</span>
+                </label><!--
+         --></div>
+        </div>
+
+        <div class="module-row module-page is-open">
+            {{
+                form.checkbox_inline({
+                    'label': 'Address &amp; Contacts',
+                    'data-toggle': 'module-row',
+                    'bare': true
+                })
+            }}
+            {{
+                html.link({
+                    'label': 'refine',
+                    'class': 'refine-toggle js-refine-toggle',
+                    'href': '#'
+                })
+            }}
+            <div class="crud"><!--
+             --><label class="crud__permission">
+                    {{ form.checkbox({'bare': true, 'data-toggle': 'page', 'data-crud': 'view'}) }}
+                    <span>View</span>
+                </label><!--
+             --><label class="crud__permission">
+                    {{ form.checkbox({'bare': true, 'data-toggle': 'page', 'data-crud': 'create'}) }}
+                    <span>Create</span>
+                </label><!--
+             --><label class="crud__permission">
+                    {{ form.checkbox({'bare': true, 'data-toggle': 'page', 'data-crud': 'update'}) }}
+                    <span>Update</span>
+                </label><!--
+             --><label class="crud__permission">
+                    {{ form.checkbox({'bare': true, 'data-toggle': 'page', 'data-crud': 'delete'}) }}
+                    <span>Delete</span>
+                </label><!--
+         --></div>
+
+            <div class="module-row module-subpage">
+                {{
+                    form.checkbox_inline({
+                        'label': html.label({'label': 'tab'}) ~ ' Address',
+                        'data-toggle': 'module-row',
+                        'bare': true
+                    })
+                }}
+                <div class="crud"><!--
+                 --><label class="crud__permission">
+                        {{ form.checkbox({'bare': true, 'data-toggle': 'subpage', 'data-crud': 'view'}) }}
+                        <span>View</span>
+                    </label><!--
+                 --><label class="crud__permission">
+                        {{ form.checkbox({'bare': true, 'data-toggle': 'subpage', 'data-crud': 'create', 'checked': true}) }}
+                        <span>Create</span>
+                    </label><!--
+                 --><label class="crud__permission">
+                        {{ form.checkbox({'bare': true, 'data-toggle': 'subpage', 'data-crud': 'update'}) }}
+                        <span>Update</span>
+                    </label><!--
+                 --><label class="crud__permission">
+                        {{ form.checkbox({'bare': true, 'data-toggle': 'subpage', 'data-crud': 'delete'}) }}
+                        <span>Delete</span>
+                    </label><!--
+             --></div>
+            </div>
+
+            <div class="module-row module-subpage">
+                {{
+                    form.checkbox_inline({
+                        'label': html.label({'label': 'tab'}) ~ ' Contacts',
+                        'data-toggle': 'module-row',
+                        'bare': true
+                    })
+                }}
+                <div class="crud"><!--
+                 --><label class="crud__permission">
+                        {{ form.checkbox({'bare': true, 'data-toggle': 'subpage', 'data-crud': 'view'}) }}
+                        <span>View</span>
+                    </label><!--
+                 --><label class="crud__permission">
+                        {{ form.checkbox({'bare': true, 'data-toggle': 'subpage', 'data-crud': 'create', 'checked': true}) }}
+                        <span>Create</span>
+                    </label><!--
+                 --><label class="crud__permission">
+                        {{ form.checkbox({'bare': true, 'data-toggle': 'subpage', 'data-crud': 'update'}) }}
+                        <span>Update</span>
+                    </label><!--
+                 --><label class="crud__permission">
+                        {{ form.checkbox({'bare': true, 'data-toggle': 'subpage', 'data-crud': 'delete', 'checked': true}) }}
+                        <span>Delete</span>
+                    </label><!--
+             --></div>
+            </div>
+
+        </div>
+        <div class="module-row module-page">
+            {{
+                form.checkbox_inline({
+                    'label': 'Document',
+                    'data-toggle': 'module-row',
+                    'bare': true
+                })
+            }}
+            {{
+                html.link({
+                    'label': 'refine',
+                    'class': 'refine-toggle js-refine-toggle',
+                    'href': '#'
+                })
+            }}
+            <div class="crud"><!--
+             --><label class="crud__permission">
+                    {{ form.checkbox({'bare': true, 'data-toggle': 'page', 'data-crud': 'view'}) }}
+                    <span>View</span>
+                </label><!--
+             --><label class="crud__permission">
+                    {{ form.checkbox({'bare': true, 'data-toggle': 'page', 'data-crud': 'create'}) }}
+                    <span>Create</span>
+                </label><!--
+             --><label class="crud__permission">
+                    {{ form.checkbox({'bare': true, 'data-toggle': 'page', 'data-crud': 'update', 'checked': true}) }}
+                    <span>Update</span>
+                </label><!--
+             --><label class="crud__permission">
+                    {{ form.checkbox({'bare': true, 'data-toggle': 'page', 'data-crud': 'delete'}) }}
+                    <span>Delete</span>
+                </label><!--
+         --></div>
+        </div>
+    </div>
+
+    <div class="module-row module">
+        {{
+            form.checkbox_inline({
+                'label': 'eGov',
+                'data-toggle': 'module-master',
+                'bare': true
+            })
+        }}
+        {{
+            html.link({
+                'label': html.icon('caret-down'),
+                'class': 'module-toggle js-module-toggle',
+                'href': '#'
+            })
+        }}
+    </div>
+
+    <div class="module">
+        {{
+            form.checkbox_inline({
+                'label': 'Marketing',
+                'data-toggle': 'module-master',
+                'bare': true
+            })
+        }}
+        {{
+            html.link({
+                'label': html.icon('caret-down'),
+                'class': 'module-toggle js-module-toggle',
+                'href': '#'
+            })
+        }}
+    </div>
+</div>
+
+
+
+</fieldset>
+{% endblock tab_content %}
+
+{% block tab_sidebar %}
+
+{% endblock tab_sidebar %}
