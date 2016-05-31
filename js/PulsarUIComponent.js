@@ -36,9 +36,6 @@ PulsarUIComponent.prototype.initTables = function () {
             $table.wrap('<div class="table-container"></div>');
         }
     });
-
-
-
 };
 
 PulsarUIComponent.prototype.initDataTables = function () {

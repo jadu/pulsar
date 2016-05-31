@@ -1,7 +1,9 @@
 'use strict'
 
 var $ = require('jquery'),
+    tab = require('../../../js/libs/tab'),
     PulsarUIComponent = require('../../../js/PulsarUIComponent');
+
 
 describe('Pulsar UI Component', function() {
 
@@ -14,8 +16,13 @@ describe('Pulsar UI Component', function() {
             <table class="table--datagrid qa-datagrid"></table>\
             <table class="table datatable qa-datatable"></table>\
             <div class="table-container"><table class="table qa-table-dupe"></table></div>\
+            <a href="#tab" data-toggle="tab">foo</a>\
+            <div class="tab__pane" id="tab">\
+                <table class="table datatable qa-tab-datatable"></table>\
+            </div>\
 ').appendTo(this.$html);
 
+        this.$tabLink = this.$html.find('a[data-toggle="tab"]');
         this.$isDisabled = this.$html.find('a[disabled]');
         this.$basicTable = this.$html.find('.qa-table');
         this.$datagridTable = this.$html.find('.qa-datagrid');
@@ -40,7 +47,7 @@ describe('Pulsar UI Component', function() {
 
     });
 
-    describe('init tables', function() {
+    describe('initialising tables', function() {
 
         beforeEach(function() {
             this.pulsarUIComponent.init();
@@ -63,5 +70,38 @@ describe('Pulsar UI Component', function() {
         });
     });
 
-});
+    // describe('clicking a tab toggle', function() {
 
+    //     beforeEach(function() {
+
+    //         this.recalc = sinon.stub();
+
+    //         $.fn.dataTable = {
+    //             tables: sinon.stub();
+    //         };
+
+    //         $.fn.DataTable = sinon.stub().returns({
+    //             columns: {
+    //                 adjust: sinon.stub().returns({
+    //                     responsive: {
+    //                         recalc: this.recalc
+    //                     }
+    //                 })
+    //             }
+    //         });
+
+    //         this.pulsarUIComponent.init();
+    //         this.$tabLink.click();
+    //         this.$tabLink.trigger('shown.bs.tab');
+    //     });
+
+    //     afterEach(function () {
+    //         delete $.fn.dataTable;
+    //         delete $.fn.DataTable;
+    //     });
+
+    //     it('should recalculate the table', function() {
+    //         expect(this.recalc).to.have.been.calledOnce;
+    //     });
+    // });
+});
