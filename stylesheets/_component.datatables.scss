@@ -4,14 +4,22 @@
 .dt-row-selected > td {
     background-color: color(background, selected);
 
+    // scss-lint:disable PseudoElement
+    @include ie-lte(8) {
+        .table-row-select:before {
+            content: '\f14a';
+        }
+    }
+    // scss-lint:enable PseudoElement
+
+    .table-row-select::before {
+        content: '\f14a';
+    }
+
     a,
     a:link {
         border-bottom-color: color(link, dark);
         color: color(link, dark);
-    }
-
-    .table-row-select::before {
-        content: '\f14a';
     }
 }
 
