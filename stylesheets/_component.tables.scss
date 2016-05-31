@@ -6,7 +6,7 @@
         text-decoration: none;
     }
 
-    tbody > tr:hover {
+    tbody > tr:hover > td {
         background-color: color(background, light);
     }
 
