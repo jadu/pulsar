@@ -7,40 +7,17 @@
 
 {% block title %}{{ parent() }}{% endblock %}
 
-{% set heading = 'Modules' %}
+{% set heading = 'Tables' %}
 
-{%
-    set actions_menu = [
-        html.link({
-          'label': html.icon('save') ~ ' Save',
-          'href': '#save'
-        }),
-        html.link({
-          'label': html.icon('print') ~ ' Print',
-          'href': '#print'
-        }),
-        html.divider(),
-        html.link({
-          'label': html.icon('trash') ~ ' Delete',
-          'href': '#delete',
-          'class': 'link--danger disabled',
-          'attributes': 'data-on-datagrid-item-selected=enable'
-        })
-    ]
-%}
-
-{% set tab_modals %}
-    {% include 'lexicon/tabs/modals.html.twig' %}
-{% endset %}
-{% set tab_popovers %}
-    {% include 'lexicon/tabs/popovers.html.twig' %}
-{% endset %}
+{% set tab_buttongroup %}{% include 'lexicon/tables/basic.html.twig' %}{% endset %}
+{% set tab_datatable %}{% include 'lexicon/tables/datatable.html.twig' %}{% endset %}
+{% set tab_datagrid %}{% include 'lexicon/tables/datagrid.html.twig' %}{% endset %}
+{% set tab_formtable %}{% include 'lexicon/tables/form-tables.html.twig' %}{% endset %}
 
 {%
     set nav_data = {
         "1": {
             "label": "Lexicon",
-            "class": "is-active",
             "href": '#lexicon',
             "icon": "info-sign",
             "items": {
@@ -63,13 +40,12 @@
         },
         "2": {
             "label": "Forms",
-            "class": "",
             "href": "/app/app.php/lexicon/forms.html.twig",
             "icon": "check"
         },
         "3": {
             "label": "Tables",
-            "class": "",
+            "class": "is-active",
             "href": "/app/app.php/lexicon/tables.html.twig",
             "icon": "table"
         }
@@ -79,15 +55,25 @@
 {%
     set tabs_content = [
         {
-          "id"    : "modals",
-          "label" : "Modals",
-          "src"   : tab_modals,
+          "id"    : "basic",
+          "label" : "Basic Table",
+          "src"   : tab_buttongroup,
           "active": true
         },
         {
-          "id"    : "popovers",
-          "label" : "Popovers",
-          "src"   : tab_popovers
+          "id"    : "datatable",
+          "label" : "DataTable",
+          "src"   : tab_datatable
+        },
+        {
+          "id"    : "datagrid",
+          "label" : "Datagrid " ~ html.label({'label': 'retired'}),
+          "src"   : tab_datagrid
+        },
+        {
+          "id"    : "formtables",
+          "label" : "Form Tables",
+          "src"   : tab_formtable
         }
     ]
 %}
