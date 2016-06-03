@@ -146,7 +146,6 @@ a.block-list__item:hover {
 }
 
 .block-list--bordered {
-    @extend .block-list--padded;
     border: 1px solid color(border);
     border-radius: $border-radius;
 
