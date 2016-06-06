@@ -70,38 +70,41 @@ describe('Pulsar UI Component', function() {
         });
     });
 
-    // describe('clicking a tab toggle', function() {
+    describe('clicking a tab toggle', function() {
 
-    //     beforeEach(function() {
+        beforeEach(function() {
 
-    //         this.recalc = sinon.stub();
+            this.recalc = sinon.stub();
 
-    //         $.fn.dataTable = {
-    //             tables: sinon.stub();
-    //         };
+            $.fn.dataTable = {
+                tables: sinon.stub()
+            };
 
-    //         $.fn.DataTable = sinon.stub().returns({
-    //             columns: {
-    //                 adjust: sinon.stub().returns({
-    //                     responsive: {
-    //                         recalc: this.recalc
-    //                     }
-    //                 })
-    //             }
-    //         });
+            $.fn.DataTable = sinon.stub().returns({
+                columns: {
+                    adjust: sinon.stub().returns({
+                        responsive: {
+                            recalc: this.recalc
+                        }
+                    })
+                }
+            });
 
-    //         this.pulsarUIComponent.init();
-    //         this.$tabLink.click();
-    //         this.$tabLink.trigger('shown.bs.tab');
-    //     });
+            this.pulsarUIComponent.init();
+            this.$tabLink.click();
+            this.$tabLink.trigger('shown.bs.tab');
 
-    //     afterEach(function () {
-    //         delete $.fn.dataTable;
-    //         delete $.fn.DataTable;
-    //     });
+        });
 
-    //     it('should recalculate the table', function() {
-    //         expect(this.recalc).to.have.been.calledOnce;
-    //     });
-    // });
+        afterEach(function () {
+            delete $.fn.dataTable;
+            delete $.fn.DataTable;
+        });
+
+        it('should recalculate the table', function() {
+            expect(this.recalc).to.have.been.calledOnce;
+        });
+
+    });
+
 });
