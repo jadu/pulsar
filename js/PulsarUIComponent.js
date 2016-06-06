@@ -18,6 +18,7 @@ PulsarUIComponent.prototype.init = function () {
 
     // Initial basic implementation of https://github.com/hilios/jQuery.countdown
     this.$html.find('.js-countdown').each(function() {
+
         var $this = $(this),
             format = '%ww %dd %Hh %Mm %S';
 
