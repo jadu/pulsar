@@ -92,7 +92,6 @@
             stateSave: false
         });
 
-
     });
 
 }(jQuery));
