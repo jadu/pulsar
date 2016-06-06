@@ -27,7 +27,7 @@ PulsarUIComponent.prototype.init = function () {
         }
 
         $this.countdown($this.data('final-date'), function(event) {
-            $(this).html(event.strftime(format));
+            $this.html(event.strftime(format));
         });
     });
 
