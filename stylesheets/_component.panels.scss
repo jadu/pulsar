@@ -75,3 +75,12 @@
 .form-v2 > .panel:first-of-type {
     margin-top: 0;
 }
+
+.panel.centered .panel__body {
+    margin-left: 0;
+}
+
+.panel--padded {
+    padding-top: 24px;
+    padding-bottom: 24px;
+}
