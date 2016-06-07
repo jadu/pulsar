@@ -1,6 +1,5 @@
 var $             = require('jquery'),
     dt            = require('datatables.net')(window, $),
-var $             = require('jquery'),
     dt_buttons    = require('datatables.net-buttons')(window, $),
     dt_responsive = require('datatables.net-responsive')(window, $),
     dt_select     = require('datatables.net-select')(window, $),
