@@ -22,22 +22,7 @@ PulsarUIComponent.prototype.init = function () {
 
     this.initTables();
     this.initDataTables();
-
-    // Initial basic implementation of https://github.com/hilios/jQuery.countdown
-    this.$html.find('.js-countdown').each(function() {
-
-        var $this = $(this),
-            format = '%ww %dd %Hh %Mm %S';
-
-        if (typeof $this.data('format') !== 'undefined') {
-            format = $this.data('format');
-        }
-
-        $this.countdown($this.data('final-date'), function(event) {
-            $this.html(event.strftime(format));
-        });
-    });
-
+    this.initCountdown();
 };
 
 PulsarUIComponent.prototype.initTables = function () {
@@ -95,6 +80,24 @@ PulsarUIComponent.prototype.initDataTables = function () {
     // Refresh datatables when tabs are switched, this fixes some layout issues
     this.$html.find('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
         $($.fn.dataTable.tables(true)).DataTable().columns.adjust().responsive.recalc();
+    });
+};
+
+PulsarUIComponent.prototype.initCountdown = function () {
+
+    // Initial basic implementation of https://github.com/hilios/jQuery.countdown
+    this.$html.find('.js-countdown').each(function() {
+
+        var $this = $(this),
+            format = '%ww %dd %Hh %Mm %S';
+
+        if (typeof $this.data('format') !== 'undefined') {
+            format = $this.data('format');
+        }
+
+        $this.countdown($this.data('final-date'), function(event) {
+            $this.html(event.strftime(format));
+        });
     });
 };
 

@@ -4,7 +4,6 @@ var $ = require('jquery'),
     tab = require('../../../js/libs/tab'),
     PulsarUIComponent = require('../../../js/PulsarUIComponent');
 
-
 describe('Pulsar UI Component', function() {
 
     beforeEach(function() {
@@ -20,6 +19,7 @@ describe('Pulsar UI Component', function() {
             <div class="tab__pane" id="tab">\
                 <table class="table datatable qa-tab-datatable"></table>\
             </div>\
+            <span class="js-countdown qa-countdown-one" data-final-date="1665243907399" data-format="%d">Expires in 6 hours</span>\
 ').appendTo(this.$html);
 
         this.$tabLink = this.$html.find('a[data-toggle="tab"]');
@@ -28,9 +28,22 @@ describe('Pulsar UI Component', function() {
         this.$datagridTable = this.$html.find('.qa-datagrid');
         this.$datatableTable = this.$html.find('.qa-datatable');
         this.$tableDupe = this.$html.find('.qa-table-dupe');
+        this.$countdownOne = this.$html.find('.qa-countdown-one');
 
         this.pulsarUIComponent = new PulsarUIComponent(this.$html);
 
+    });
+
+    describe('A countdown element', function() {
+
+        beforeEach(function() {
+            sinon.spy($.fn, 'countdown');
+            this.pulsarUIComponent.init();
+        });
+
+        it('should call the countdown plugin', function() {
+            expect($.fn.countdown).to.have.been.called;
+        });
     });
 
     describe('disabled links', function() {
@@ -107,30 +120,7 @@ describe('Pulsar UI Component', function() {
 
     });
 
+
+
 });
 
-describe('Countdown plugin', function() {
-
-    beforeEach(function() {
-        this.$html = $('<html></html>');
-        this.$body = $('<body></body>').appendTo(this.$html);
-        this.$code = $('\
-            <span class="js-countdown qa-countdown-one" data-final-date="1665243907399" data-format="%d">Expires in 6 hours</span>\
-').appendTo(this.$html);
-
-        this.$countdownOne = this.$html.find('.qa-countdown-one');
-        this.pulsarUIComponent = new PulsarUIComponent(this.$html);
-    });
-
-    describe('A countdown element', function() {
-
-        beforeEach(function() {
-            sinon.spy($.fn, 'countdown');
-            this.pulsarUIComponent.init();
-        });
-
-        it('should call the countdown plugin', function() {
-            expect($.fn.countdown).to.have.been.called;
-        });
-    });
-});
