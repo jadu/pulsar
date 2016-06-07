@@ -20,6 +20,7 @@ var $                     = require('jquery'),
     matchMediaAddListener = require('./polyfills/matchMedia.addListener');
 
     clickover  = require('../libs/bootstrapx-clickover/js/bootstrapx-clickover'),
+    countdown  = require('../libs/jquery.countdown/dist/jquery.countdown.min'),
     svgeezy    = require('../libs/svgeezy/svgeezy.min'),
     select2    = require('../libs/select2/dist/js/select2.min'),
 

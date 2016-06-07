@@ -1,0 +1,58 @@
+{
+  "name": "jquery.countdown",
+  "version": "2.1.0",
+  "description": "jQuery plugin to display a countdown clock on your page",
+  "keywords": [
+    "countdown",
+    "coupons",
+    "auction",
+    "clock",
+    "datetime",
+    "date"
+  ],
+  "author": "Edson Hilios",
+  "homepage": "http://hilios.github.io/jQuery.countdown/",
+  "license": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/hilios/jQuery.countdown/blob/2.0.4/LICENSE.md"
+    }
+  ],
+  "main": [
+    "dist/jquery.countdown.js"
+  ],
+  "ignore": [
+    "**/.*",
+    "src",
+    "test",
+    "package.json",
+    "Gruntfile.js",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "jquery": ">=1.7"
+  },
+  "devDependencies": {
+    "jquery-2.1": "jquery#~2.1",
+    "jquery-2.0": "jquery#~2.0",
+    "jquery-1.9": "jquery#~1.9",
+    "jquery-1.8": "jquery#~1.8",
+    "jquery-1.7": "jquery#~1.7",
+    "jquery-1.10": "jquery#~1.10",
+    "bootstrap": "~3"
+  },
+  "moduleType": [
+    "amd"
+  ],
+  "_release": "2.1.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "2.1.0",
+    "commit": "60e7f1deee2a50fe1b8ea85160eab03ffac2cafe"
+  },
+  "_source": "https://github.com/hilios/jQuery.countdown.git",
+  "_target": "^2.1.0",
+  "_originalSource": "jquery.countdown",
+  "_direct": true
+}
