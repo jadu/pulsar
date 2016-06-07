@@ -1057,7 +1057,7 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
     }}>
         <div class="panel__title">
             {{ html.icon(options.icon|default) }}
-            {{ options.title }}
+            {{ options.title|raw }}
         </div>
         <div class="panel__body">
             {{- options.body|raw -}}

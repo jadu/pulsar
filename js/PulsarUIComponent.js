@@ -1,8 +1,10 @@
 var $             = require('jquery'),
     dt            = require('datatables.net')(window, $),
+var $             = require('jquery'),
     dt_buttons    = require('datatables.net-buttons')(window, $),
     dt_responsive = require('datatables.net-responsive')(window, $),
-    dt_select     = require('datatables.net-select')(window, $);
+    dt_select     = require('datatables.net-select')(window, $),
+    countdown     = require('../libs/jquery.countdown/dist/jquery.countdown.min');
 
 function PulsarUIComponent(html) {
 
@@ -21,6 +23,22 @@ PulsarUIComponent.prototype.init = function () {
 
     this.initTables();
     this.initDataTables();
+
+    // Initial basic implementation of https://github.com/hilios/jQuery.countdown
+    this.$html.find('.js-countdown').each(function() {
+
+        var $this = $(this),
+            format = '%ww %dd %Hh %Mm %S';
+
+        if (typeof $this.data('format') !== 'undefined') {
+            format = $this.data('format');
+        }
+
+        $this.countdown($this.data('final-date'), function(event) {
+            $this.html(event.strftime(format));
+        });
+    });
+
 };
 
 PulsarUIComponent.prototype.initTables = function () {

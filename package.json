@@ -78,6 +78,9 @@
   "browserify-shim": {
     "./libs/svgeezy/svgeezy.min.js": {
       "exports": "svgeezy"
+    },
+    "./libs/jquery.countdown/dist/jquery.countdown.min": {
+      "exports": "countdown"
     }
   },
   "dependencies": {
