@@ -68,6 +68,14 @@
         font-family: $font-family-regular;
         font-weight: normal;
     }
+
+    th {
+        background-color: color(gray, off-white);
+        border-top: 1px solid color(border);
+        border-bottom: 1px solid color(border);
+        font-family: $font-family-regular;
+        font-weight: normal;
+    }
 }
 
 // Added by javascript, allows tthe table to scroll horizontally at narrow
