@@ -120,6 +120,10 @@ $control-column-width: 75%;
     @include respond-min($screen-tablet) {
         margin-left: $label-column-width;
     }
+
+    @include respond-min($screen-desktop) {
+        padding-left: $padding-small-horizontal;
+    }
 }
 
 .form__group--flush {
