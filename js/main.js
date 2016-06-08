@@ -57,41 +57,6 @@
             $($.fn.dataTable.tables(true)).DataTable().columns.adjust().responsive.recalc();
         });
 
-        var table = $('.datatable').DataTable({
-            dom: '<"dataTables_top"Birf><"dataTables_actions"T>t<"dataTables_bottom"lp>',
-            aaSorting: [],
-            bAutoWidth: false,
-            buttons: [
-                'selectAll',
-                'selectNone'
-            ],
-            columnDefs: [
-                { className: 'control', orderable: false, targets: 0 },
-                { "searchable": false, "targets": [0, 1] },
-                { "orderable": false, "targets": [0, 1] }
-            ],
-            oLanguage: {
-             sSearch: "Filter:"
-            },
-            language: {
-                buttons: {
-                    selectAll: "Select all items",
-                    selectNone: "Select none"
-                }
-            },
-            responsive: {
-                details: {
-                    type: 'column'
-                }
-            },
-            select: {
-                className: 'dt-row-selected',
-                style:     'multi',
-                selector:  'td.table-selection'
-            },
-            stateSave: false
-        });
-
     });
 
 }(jQuery));
