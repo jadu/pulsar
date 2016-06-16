@@ -85,7 +85,8 @@
     overflow-x: auto;
 
     @include respond-max($screen-desktop) {
-        border: 1px solid color(border);
+        border-left: 1px solid color(border);
+        border-right: 1px solid color(border);
     }
 
     .table {
