@@ -13,8 +13,8 @@
     tr {
         vertical-align: top;
 
-        a,
-        a:link {
+        [href],
+        [href]:link {
             border-bottom-color: color(link, dark);
             color: color(link, dark);
         }
@@ -24,8 +24,8 @@
     tr.is-selected td {
         background-color: color(background, selected);
 
-        a,
-        a:link {
+        [href],
+        [href]:link {
             border-bottom-color: color(link, dark);
             color: color(link, dark);
         }
