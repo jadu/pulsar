@@ -1,8 +1,10 @@
 .table {
     margin-bottom: 24px;
 
-    a {
-        border-bottom: 1px dotted color(text, link);
+    [href],
+    [href]:link {
+        border-bottom-color: color(link, dark);
+        color: color(link, dark);
         text-decoration: none;
     }
 
@@ -12,12 +14,6 @@
 
     tr {
         vertical-align: top;
-
-        [href],
-        [href]:link {
-            border-bottom-color: color(link, dark);
-            color: color(link, dark);
-        }
     }
 
     tr.selected td,
@@ -67,9 +63,6 @@
         border-bottom: 2px solid color(border);
         font-family: $font-family-regular;
         font-weight: normal;
-    }
-
-    th {
         background-color: color(gray, off-white);
         border-top: 1px solid color(border);
         border-bottom: 1px solid color(border);
@@ -128,9 +121,14 @@
         background-color: transparent;
     }
 
+    fieldset {
+        margin-top: 6px;
+    }
+
     .legend {
+        border-bottom: 1px solid color(border);
         line-height: 25px;
-        margin-bottom: 13px;
+        margin-bottom: 24px;
     }
 
     .form__group:last-of-type {
