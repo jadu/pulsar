@@ -21,7 +21,7 @@
         background-color: color(background, selected);
 
         [href],
-        [href]:link {
+        .continuum-cms & [href]:link {
             border-bottom-color: color(link, dark);
             color: color(link, dark);
         }
