@@ -60,14 +60,30 @@
     }
 
     th {
+        border-top: 1px solid color(border);
         border-bottom: 2px solid color(border);
         font-family: $font-family-regular;
         font-weight: normal;
+
+        @include respond-min($screen-desktop) {
+            border-top: 0;
+        }
     }
 
     td.table__actions {
         @include respond-min($screen-desktop) {
             border-bottom: 0;
+        }
+    }
+
+    td.table-row__actions {
+        text-align: right;
+
+        .btn {
+            box-shadow: none;
+            top: 0;
+            height: 24px;
+            width: 24px;
         }
     }
 }
