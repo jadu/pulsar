@@ -3,26 +3,26 @@
     padding: (($line-height-base / $line-height-small) / 2) $gutter-width;
     width: 100%;
 
-@include respond-min($screen-phone) {
-    padding: ($line-height-base / 2) $gutter-width;
-}
-
-@include respond-min($screen-desktop) {
-    top: auto;
-    z-index: $zindex-flash;
-}
-
-    &.is-sticky {
-    display: none; // Flashes should be hidden on page load, then animated in so the user sees them.
-}
-
-i {
-    margin: 0 ($gutter-width / 4) 0 0;
-
     @include respond-min($screen-phone) {
-        margin-right: $gutter-width / 2;
+        padding: ($line-height-base / 2) $gutter-width;
     }
-}
+
+    @include respond-min($screen-desktop) {
+        top: auto;
+        z-index: $zindex-flash;
+    }
+
+        &.is-sticky {
+        display: none; // Flashes should be hidden on page load, then animated in so the user sees them.
+    }
+
+    i {
+        margin: 0 ($gutter-width / 4) 0 0;
+
+        @include respond-min($screen-phone) {
+            margin-right: $gutter-width / 2;
+        }
+    }
 }
 
 // Make sure sticky flashes appear over the breadcrumb
@@ -95,7 +95,9 @@ i {
 .flash-container {
     clear: both;
     top: -5px;
+    left: 0;
     margin-bottom: 0;
     position: relative;
+    width: auto;
     z-index: $zindex-flash;
 }
