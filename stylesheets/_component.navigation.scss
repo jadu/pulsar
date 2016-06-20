@@ -66,8 +66,8 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
         display: inline-block;
         font-size: 1.1em;
         line-height: 46px;
-        margin-right: 20px;
-        padding: 0 15px;
+        margin-right: $padding-small-horizontal;
+        padding: 0 $gutter-width;
 
         &:last-of-type {
             margin-right: 0;
