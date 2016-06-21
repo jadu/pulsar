@@ -15,33 +15,36 @@
 %}
 
 {% block tab_content %}
+
     <table class="table datatable table--full">
-        <thead>
-            <tr>
-				<th class="table-responsive"></th>
-                <th class="table-selection"></th>
-                <th><a href="#">Name</a></th>
-                <th><a href="#">IP</a></th>
-                <th><a href="#">Status</a></th>
-                <th><a href="#">Uptime</a></th>
-                <th><a href="#">Image</a></th>
-                <th><a href="#">RAM</a></th>
-                <th class="centered"><a href="#">CPUs</a></th>
-                <th><a href="#">Actions</a></th>
+        <thead class="table__thead">
+            <tr class="table__tr">
+                <th class="table-responsive table__th"></th>
+                <th class="table-selection table__th"></th>
+
+                <th class="table__th"><a href="#" class="table-link">Name</a></th>
+                <th class="table__th"><a href="#" class="table-link">IP</a></th>
+                <th class="table__th"><a href="#" class="table-link">Status</a></th>
+                <th class="table__th"><a href="#" class="table-link">Uptime</a></th>
+                <th class="table__th"><a href="#" class="table-link">Image</a></th>
+                <th class="table__th"><a href="#" class="table-link">RAM</a></th>
+                <th class="table__th centered"><a href="#" class="table-link">CPUs</a></th>
+                <th class="table__th"><a href="#" class="table-link">Actions</a></th>
+
             </tr>
         </thead>
-        <tbody>
-
-            <tr>
-				<td class="table-responsive">
+        <tbody class="table__tbody">
+{% for i in 0..499 %}
+            <tr class="table__tr">
+                <td class="table__td table-responsive">
                     {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
                 </td>
-                <td class="table-selection">
+                <td class="table__td table-selection">
                     {{ html.icon('unchecked', { 'class': 'table-row-select js-select' }) }}
                 </td>
-                <td><a href="#" class="table-link">Sysadmin - Ansible 1</a></td>
-                <td class="monospace"><a href="#" class="table-link">10.101.0.175</a></td>
-                <td>
+                <td class="table__td"><a href="#" class="table-link">Sysadmin - Ansible 1</a></td>
+                <td class="table__td monospace"><a href="#" class="table-link">10.101.0.175</a></td>
+                <td class="table__td">
                     {{
                         html.label({
                             'label': 'running',
@@ -49,11 +52,11 @@
                         })
                     }}
                 </td>
-                <td>3d 4h 35m</td>
-                <td>{{ html.icon('linux') }} Centos 6 v1.0.2</td>
-                <td>4 GB</td>
-                <td class="centered">2</td>
-                <td>
+                <td class="table__td">3d 4h 35m</td>
+                <td class="table__td">{{ html.icon('linux') }} Centos 6 v1.0.2</td>
+                <td class="table__td">4 GB</td>
+                <td class="table__td centered">2</td>
+                <td class="table__td">
                     {{ html.link({ 'label': 'Reboot', 'class': 'table-action' }) }}<!--
                     -->{{ html.link({ 'label': 'Suspend', 'class': 'table-action' }) }}<!--
                     -->{{ html.link({ 'label': 'Shutdown', 'class': 'table-action' }) }}<!--
@@ -69,27 +72,27 @@
                 <td class="table__td table-selection">
                     {{ html.icon('unchecked', { 'class': 'table-row-select js-select' }) }}
                 </td>
-                <td><a href="#" class="table-link">Sysasdmin - WISP 1</a></td>
-                <td class="monospace"><a href="#" class="table-link">10.101.0.138</a></td>
-                <td>
+                <td class="table__td"><a href="#" class="table-link">Sysasdmin - WISP 1</a></td>
+                <td class="table__td monospace"><a href="#" class="table-link">10.101.0.138</a></td>
+                <td class="table__td">
                     {{
                         html.label({
                             'label': 'suspended'
                         })
                     }}
                 </td>
-                <td>17w 3d 4h 35m</td>
-                <td>{{ html.icon('windows') }} Windows Server 2012 R2 v1.0.0</td>
-                <td>2 GB</td>
-                <td class="centered">1</td>
-                <td>
+                <td class="table__td">17w 3d 4h 35m</td>
+                <td class="table__td">{{ html.icon('windows') }} Windows Server 2012 R2 v1.0.0</td>
+                <td class="table__td">2 GB</td>
+                <td class="table__td centered">1</td>
+                <td class="table__td">
                     {{ html.link({ 'label': 'Reboot', 'class': 'table-action' }) }}<!--
                     -->{{ html.link({ 'label': 'Suspend', 'class': 'table-action' }) }}<!--
                     -->{{ html.link({ 'label': 'Shutdown', 'class': 'table-action' }) }}<!--
                     -->{{ html.link({ 'label': 'Console', 'class': 'table-action' }) }}
                 </td>
             </tr>
-
+{% endfor %}
         </tbody>
     </table>
 
@@ -153,7 +156,6 @@
                     -->{{ html.link({ 'label': 'Console', 'class': 'table-action' }) }}
                 </td>
             </tr>
-
         </tbody>
     </table>
 
@@ -174,7 +176,7 @@
                     <td class="shrink-to-fit centered">{{ form.radio({ 'bare': true }) }}</td>
                     <td>my_label</td>
                     <td>my_value</td>
-                    <td class="centered">
+                    <td class="table-row__actions">
                         {{ html.edit_button({ 'placement': 'left' }) }}
                         {{ html.remove_button({ 'placement': 'left' }) }}
                     </td>
@@ -183,7 +185,7 @@
                     <td class="shrink-to-fit centered">{{ form.radio({ 'bare': true }) }}</td>
                     <td>my_label</td>
                     <td>my_value</td>
-                    <td class="centered">
+                    <td class="table-row__actions">
                         {{ html.edit_button({ 'placement': 'left' }) }}
                         {{ html.remove_button({ 'placement': 'left' }) }}
                     </td>
@@ -192,16 +194,16 @@
                     <td class="shrink-to-fit centered">{{ form.radio({ 'bare': true }) }}</td>
                     <td>my_label</td>
                     <td>my_value</td>
-                    <td class="centered">
+                    <td class="table-row__actions">
                         {{ html.edit_button({ 'placement': 'left' }) }}
                         {{ html.remove_button({ 'placement': 'left' }) }}
                     </td>
                 </tr>
                 </tbody>
-                <tfoot class="table__form">
+                <tfoot>
                     <tr>
-                        <td colspan="99">
-
+                        <td class="table__form" colspan="99">
+                        <button type="button" class="close" data-dismiss="table-form" aria-hidden="true">&times;</button>
                             {{
                                 form.fieldset_start({'legend': 'New choice'})
                             }}
@@ -226,24 +228,25 @@
 
                         </td>
                     </tr>
+                    <tr>
+                        <td class="table__actions" colspan="99">
+                            {{
+                                form.submit({
+                                    'class': 'btn--primary',
+                                    'label': 'Save'
+                                })
+                            }}
+
+                            {{
+                                html.link({
+                                    'class': 'btn btn--naked',
+                                    'label': 'Cancel'
+                                })
+                            }}
+                        </td>
+                    </tr>
                 </tfoot>
             </table>
-            {{
-                form.submit({
-                    'class': 'btn--primary',
-                    'label': 'Save'
-                })
-            }}
-
-            {{
-                html.link({
-                    'class': 'btn btn--naked',
-                    'label': 'Cancel'
-                })
-            }}
-
         </div>
     </div>
-
-
 {% endblock tab_content %}

@@ -23,6 +23,16 @@
     }
 }
 
+
+// scss-lint:disable SelectorFormat
+.datatable .dt-row-selected {
+    > .sorting_1,
+    &:hover > td {
+        background-color: darken(color(background, selected), 3);
+    }
+}
+// scss-lint:enable SelectorFormat
+
 .dt-buttons {
     float: left;
     margin-top: 11px;
@@ -60,6 +70,8 @@
         &.sorting_asc,
         &.sorting_desc {
             background-color: darken(#fff, 10);
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
         }
     }
 

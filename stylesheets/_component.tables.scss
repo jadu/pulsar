@@ -60,14 +60,32 @@
     }
 
     th {
+        border-top: 1px solid color(border);
         border-bottom: 2px solid color(border);
         font-family: $font-family-regular;
         font-weight: normal;
-        background-color: color(gray, off-white);
-        border-top: 1px solid color(border);
-        border-bottom: 1px solid color(border);
-        font-family: $font-family-regular;
-        font-weight: normal;
+        vertical-align: bottom;
+
+        @include respond-min($screen-desktop) {
+            border-top: 0;
+        }
+    }
+
+    td.table__actions {
+        @include respond-min($screen-desktop) {
+            border-bottom: 0;
+        }
+    }
+
+    td.table-row__actions {
+        text-align: right;
+
+        .btn {
+            box-shadow: none;
+            top: 0;
+            height: 24px;
+            width: 24px;
+        }
     }
 }
 
@@ -110,12 +128,9 @@
     }
 }
 
-.table__form {
+td.table__form {
     background-color: color(background);
-
-    td {
-        padding: 10px 20px 24px;
-    }
+    padding: 10px 10px 24px 20px;
 
     form {
         background-color: transparent;
@@ -138,6 +153,11 @@
     .edit-button,
     .remove-button {
         padding: 5px;
+    }
+
+    .close {
+        width: 25px;
+        margin-left: 10px;
     }
 }
 
