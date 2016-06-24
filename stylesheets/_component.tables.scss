@@ -34,6 +34,11 @@
         }
     }
 
+    tr.no-results td {
+      padding: 1em 0;
+      text-align: center;
+    }
+
     th,
     td {
         border-bottom: 1px solid color(border);
@@ -161,8 +166,13 @@ td.table__form {
     }
 }
 
-// Map depracated table styles to this one
+// Map depracated table styles to this one -------------------------------------
+
 .table--datagrid {
     @extend .table;
     width: 100%;
+}
+
+.datagrid--fixed {
+    @extend .table--fixed;
 }
