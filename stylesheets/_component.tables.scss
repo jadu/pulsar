@@ -34,7 +34,8 @@
         }
     }
 
-    tr.no-results td {
+    tr.no-results td,
+    tr.row--no-results td {
       padding: 1em 0;
       text-align: center;
     }
