@@ -7,7 +7,7 @@
     "branch": "master",
     "commit": "0d1186b9cac73178572521c21807eb686214c347"
   },
-  "_source": "git://github.com/lecar-red/bootstrapx-clickover.git",
+  "_source": "https://github.com/lecar-red/bootstrapx-clickover.git",
   "_target": "*",
   "_originalSource": "bootstrapx-clickover"
 }

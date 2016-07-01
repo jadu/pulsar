@@ -1,6 +1,6 @@
 {
   "name": "Vague.js",
-  "version": "0.0.2",
+  "version": "0.0.6",
   "main": "Vague.js",
   "ignore": [
     "**/.*",
@@ -9,14 +9,14 @@
     "*.jpg",
     "*.css"
   ],
-  "homepage": "https://github.com/Stanton/vague.js",
-  "_release": "0.0.2",
+  "homepage": "https://github.com/GianlucaGuarini/Vague.js",
+  "_release": "0.0.6",
   "_resolution": {
     "type": "version",
-    "tag": "v0.0.2",
-    "commit": "ff8981d6637242fdb71ccc585abd525d14f73ba7"
+    "tag": "v0.0.6",
+    "commit": "ee8aa953dcd97aadd25a13f8044f4e653d04adb3"
   },
-  "_source": "git://github.com/Stanton/vague.js.git",
+  "_source": "https://github.com/GianlucaGuarini/Vague.js.git",
   "_target": "*",
-  "_originalSource": "Stanton/vague.js"
+  "_originalSource": "Vague.js"
 }
