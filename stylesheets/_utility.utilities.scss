@@ -129,10 +129,12 @@ div.no-results {
     margin: 10px 0;
 }
 
-.u-no-wrap {
+.u-no-wrap,
+%u-no-wrap {
     white-space: nowrap !important;
 }
 
-.u-word-break {
+.u-word-break,
+%u-word-break {
     word-break: break-all !important;
 }

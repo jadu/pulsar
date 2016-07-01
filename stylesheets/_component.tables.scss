@@ -60,7 +60,7 @@
 
         &.no-wrap,
         &.u-no-wrap {
-            @extend .u-no-wrap;
+            @extend %u-no-wrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
