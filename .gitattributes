@@ -271,8 +271,8 @@
 ## we reference the unminified version within require-main.js (see line above)
 ## although this (see line below) is the one we should probably be using
 ##
-/libs/store.js/store.min.jsexport-ignore
-/libs/store.js/tests/export-ignore
+/libs/store.js/store.min.js                                     export-ignore
+/libs/store.js/tests/                                           export-ignore
 
 # susy
 /libs/susy/.bower.json                                          export-ignore
