@@ -13,7 +13,7 @@
     "tag": "v1.3.20",
     "commit": "750cac7cbbf8ee4723780edcecee6989a25eade2"
   },
-  "_source": "git://github.com/marcuswestin/store.js.git",
+  "_source": "https://github.com/marcuswestin/store.js.git",
   "_target": "*",
   "_originalSource": "store.js"
 }
