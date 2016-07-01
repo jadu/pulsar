@@ -31,278 +31,278 @@
 
 
 ##
-## libs/
+## /libs/
 ##
 
 # bootstrapx-clickover
-libs/bootstrapx-clickover/.bower.json                           export-ignore
-libs/bootstrapx-clickover/docs/                                 export-ignore
-libs/bootstrapx-clickover/js/bootstrapx-clickover.js            export-ignore
-libs/bootstrapx-clickover/README.md                             export-ignore
+/libs/bootstrapx-clickover/.bower.json                          export-ignore
+/libs/bootstrapx-clickover/docs/                                export-ignore
+/libs/bootstrapx-clickover/js/bootstrapx-clickover.js           export-ignore
+/libs/bootstrapx-clickover/README.md                            export-ignore
 
 # font-awesome
-libs/font-awesome/.bower.json                                   export-ignore
-libs/font-awesome/.gitignore                                    export-ignore
-libs/font-awesome/.ruby-version                                 export-ignore
-libs/font-awesome/_config.yml                                   export-ignore
-libs/font-awesome/composer.json                                 export-ignore
-libs/font-awesome/CONTRIBUTING.md                               export-ignore
-libs/font-awesome/css/                                          export-ignore
-libs/font-awesome/Gemfile                                       export-ignore
-libs/font-awesome/Gemfile.lock                                  export-ignore
-libs/font-awesome/less/                                         export-ignore
-libs/font-awesome/package.json                                  export-ignore
-libs/font-awesome/README.md                                     export-ignore
-libs/font-awesome/src/                                          export-ignore
+/libs/font-awesome/.bower.json                                  export-ignore
+/libs/font-awesome/.gitignore                                   export-ignore
+/libs/font-awesome/.ruby-version                                export-ignore
+/libs/font-awesome/_config.yml                                  export-ignore
+/libs/font-awesome/composer.json                                export-ignore
+/libs/font-awesome/CONTRIBUTING.md                              export-ignore
+/libs/font-awesome/css/                                         export-ignore
+/libs/font-awesome/Gemfile                                      export-ignore
+/libs/font-awesome/Gemfile.lock                                 export-ignore
+/libs/font-awesome/less/                                        export-ignore
+/libs/font-awesome/package.json                                 export-ignore
+/libs/font-awesome/README.md                                    export-ignore
+/libs/font-awesome/src/                                         export-ignore
 
 # html5shiv
-libs/html5shiv/.bower.json                                      export-ignore
-libs/html5shiv/bower.json                                       export-ignore
-libs/html5shiv/dist/html5shiv-printshiv.js                      export-ignore
-libs/html5shiv/dist/html5shiv-printshiv.min.js                  export-ignore
-# libs/html5shiv/dist/html5shiv.js
+/libs/html5shiv/.bower.json                                     export-ignore
+/libs/html5shiv/bower.json                                      export-ignore
+/libs/html5shiv/dist/html5shiv-printshiv.js                     export-ignore
+/libs/html5shiv/dist/html5shiv-printshiv.min.js                 export-ignore
+# /libs/html5shiv/dist/html5shiv.js
 ##
 ## we reference the unminified version within base.html.twig and legacy.html.twig (see line above)
 ## although this (see line below) is the one we should probably be using
 ##
-libs/html5shiv/dist/html5shiv.min.js                            export-ignore
-libs/html5shiv/Gruntfile.js                                     export-ignore
-libs/html5shiv/MIT\ and\ GPL2\ licenses.md                      export-ignore
-libs/html5shiv/package.json                                     export-ignore
-libs/html5shiv/readme.md                                        export-ignore
+/libs/html5shiv/dist/html5shiv.min.js                           export-ignore
+/libs/html5shiv/Gruntfile.js                                    export-ignore
+/libs/html5shiv/MIT\ and\ GPL2\ licenses.md                     export-ignore
+/libs/html5shiv/package.json                                    export-ignore
+/libs/html5shiv/readme.md                                       export-ignore
 
 # jquery
-libs/jquery/.bower.json                                         export-ignore
-libs/jquery/AUTHORS.txt                                         export-ignore
-libs/jquery/bower.json                                          export-ignore
-libs/jquery/dist/jquery.js                                      export-ignore
-libs/jquery/dist/jquery.min.map                                 export-ignore
-libs/jquery/external/                                           export-ignore
-libs/jquery/LICENSE.txt                                         export-ignore
-libs/jquery/README.md                                           export-ignore
-libs/jquery/src/                                                export-ignore
+/libs/jquery/.bower.json                                        export-ignore
+/libs/jquery/AUTHORS.txt                                        export-ignore
+/libs/jquery/bower.json                                         export-ignore
+/libs/jquery/dist/jquery.js                                     export-ignore
+/libs/jquery/dist/jquery.min.map                                export-ignore
+/libs/jquery/external/                                          export-ignore
+/libs/jquery/LICENSE.txt                                        export-ignore
+/libs/jquery/README.md                                          export-ignore
+/libs/jquery/src/                                               export-ignore
 
 ##
 ## REMOVE?
 ##
 # jquery-autosize
-libs/jquery-autosize/.bower.json                                export-ignore
-libs/jquery-autosize/.gitignore                                 export-ignore
-libs/jquery-autosize/bower.json                                 export-ignore
-libs/jquery-autosize/build.js                                   export-ignore
-libs/jquery-autosize/changelog.md                               export-ignore
-libs/jquery-autosize/example/index.html                         export-ignore
-libs/jquery-autosize/LICENSE.md                                 export-ignore
-libs/jquery-autosize/package.json                               export-ignore
-libs/jquery-autosize/readme.md                                  export-ignore
-libs/jquery-autosize/src/autosize.js                            export-ignore
+/libs/jquery-autosize/.bower.json                               export-ignore
+/libs/jquery-autosize/.gitignore                                export-ignore
+/libs/jquery-autosize/bower.json                                export-ignore
+/libs/jquery-autosize/build.js                                  export-ignore
+/libs/jquery-autosize/changelog.md                              export-ignore
+/libs/jquery-autosize/example/index.html                        export-ignore
+/libs/jquery-autosize/LICENSE.md                                export-ignore
+/libs/jquery-autosize/package.json                              export-ignore
+/libs/jquery-autosize/readme.md                                 export-ignore
+/libs/jquery-autosize/src/autosize.js                           export-ignore
 
 # jquery-placeholder
-libs/jquery-placeholder/.bower.json                             export-ignore
-libs/jquery-placeholder/bower.json                              export-ignore
-# libs/jquery-placeholder/jquery.placeholder.js
+/libs/jquery-placeholder/.bower.json                            export-ignore
+/libs/jquery-placeholder/bower.json                             export-ignore
+# /libs/jquery-placeholder/jquery.placeholder.js
 ##
 ## we reference the unminified version within bundle.js, signin.js and require-main.js (see line above)
 ## although this (see line below) is the one we should probably be using
 ##
-libs/jquery-placeholder/jquery.placeholder.min.js               export-ignore
-libs/jquery-placeholder/jquery.placeholder.min.js.map           export-ignore
+/libs/jquery-placeholder/jquery.placeholder.min.js              export-ignore
+/libs/jquery-placeholder/jquery.placeholder.min.js.map          export-ignore
 
 # jquery.countdown
-libs/jquery.countdown/.bower.json                               export-ignore
-libs/jquery.countdown/bower.json                                export-ignore
-libs/jquery.countdown/countdown.jquery.json                     export-ignore
-libs/jquery.countdown/dist/jquery.countdown.js                  export-ignore
-libs/jquery.countdown/karma.conf.js                             export-ignore
-libs/jquery.countdown/LICENSE.md                                export-ignore
-libs/jquery.countdown/README.md                                 export-ignore
+/libs/jquery.countdown/.bower.json                              export-ignore
+/libs/jquery.countdown/bower.json                               export-ignore
+/libs/jquery.countdown/countdown.jquery.json                    export-ignore
+/libs/jquery.countdown/dist/jquery.countdown.js                 export-ignore
+/libs/jquery.countdown/karma.conf.js                            export-ignore
+/libs/jquery.countdown/LICENSE.md                               export-ignore
+/libs/jquery.countdown/README.md                                export-ignore
 
 ##
 ## REMOVE?
 ##
 # list.js
-libs/list.js/.bower.json                                        export-ignore
-libs/list.js/bower.json                                         export-ignore
-libs/list.js/Gruntfile.js                                       export-ignore
-libs/list.js/History.md                                         export-ignore
-libs/list.js/index.js                                           export-ignore
-libs/list.js/LICENSE                                            export-ignore
-libs/list.js/package.json                                       export-ignore
-libs/list.js/README.md                                          export-ignore
-libs/list.js/src/                                               export-ignore
+/libs/list.js/.bower.json                                       export-ignore
+/libs/list.js/bower.json                                        export-ignore
+/libs/list.js/Gruntfile.js                                      export-ignore
+/libs/list.js/History.md                                        export-ignore
+/libs/list.js/index.js                                          export-ignore
+/libs/list.js/LICENSE                                           export-ignore
+/libs/list.js/package.json                                      export-ignore
+/libs/list.js/README.md                                         export-ignore
+/libs/list.js/src/                                              export-ignore
 
 ##
 ## REMOVE?
 ##
 # livereload-js
-libs/livereload-js/.bower.json                                  export-ignore
-libs/livereload-js/bower.json                                   export-ignore
-libs/livereload-js/Gruntfile.js                                 export-ignore
-libs/livereload-js/LICENSE                                      export-ignore
-libs/livereload-js/package.json                                 export-ignore
-libs/livereload-js/README.md                                    export-ignore
+/libs/livereload-js/.bower.json                                 export-ignore
+/libs/livereload-js/bower.json                                  export-ignore
+/libs/livereload-js/Gruntfile.js                                export-ignore
+/libs/livereload-js/LICENSE                                     export-ignore
+/libs/livereload-js/package.json                                export-ignore
+/libs/livereload-js/README.md                                   export-ignore
 
 # moment
-libs/moment/.bower.json                                         export-ignore
-libs/moment/bower.json                                          export-ignore
-libs/moment/CHANGELOG.md                                        export-ignore
-libs/moment/LICENSE                                             export-ignore
-libs/moment/locale/                                             export-ignore
-libs/moment/min/                                                export-ignore
-libs/moment/moment.d.ts                                         export-ignore
-libs/moment/readme.md                                           export-ignore
-libs/moment/src/                                                export-ignore
-libs/moment/templates/                                          export-ignore
+/libs/moment/.bower.json                                        export-ignore
+/libs/moment/bower.json                                         export-ignore
+/libs/moment/CHANGELOG.md                                       export-ignore
+/libs/moment/LICENSE                                            export-ignore
+/libs/moment/locale/                                            export-ignore
+/libs/moment/min/                                               export-ignore
+/libs/moment/moment.d.ts                                        export-ignore
+/libs/moment/readme.md                                          export-ignore
+/libs/moment/src/                                               export-ignore
+/libs/moment/templates/                                         export-ignore
 
 # normalize-css
-libs/normalize-css/.bower.json                                  export-ignore
-libs/normalize-css/.editorconfig                                export-ignore
-libs/normalize-css/.gitignore                                   export-ignore
-libs/normalize-css/.travis.yml                                  export-ignore
-libs/normalize-css/bower.json                                   export-ignore
-libs/normalize-css/LICENSE.md                                   export-ignore
+/libs/normalize-css/.bower.json                                 export-ignore
+/libs/normalize-css/.editorconfig                               export-ignore
+/libs/normalize-css/.gitignore                                  export-ignore
+/libs/normalize-css/.travis.yml                                 export-ignore
+/libs/normalize-css/bower.json                                  export-ignore
+/libs/normalize-css/LICENSE.md                                  export-ignore
 
 # nwmatcher
-libs/nwmatcher/.bower.json                                      export-ignore
-libs/nwmatcher/bower.json                                       export-ignore
-libs/nwmatcher/LICENSE                                          export-ignore
-libs/nwmatcher/src/modules/                                     export-ignore
-libs/nwmatcher/src/nwmatcher-base.js                            export-ignore
-libs/nwmatcher/src/nwmatcher-noqsa.js                           export-ignore
+/libs/nwmatcher/.bower.json                                     export-ignore
+/libs/nwmatcher/bower.json                                      export-ignore
+/libs/nwmatcher/LICENSE                                         export-ignore
+/libs/nwmatcher/src/modules/                                    export-ignore
+/libs/nwmatcher/src/nwmatcher-base.js                           export-ignore
+/libs/nwmatcher/src/nwmatcher-noqsa.js                          export-ignore
 
 ##
 ## REMOVE?
 ##
 # pikaday
-libs/pikaday/.bower.json                                        export-ignore
-libs/pikaday/bower.json                                         export-ignore
-libs/pikaday/CHANGELOG.md                                       export-ignore
-libs/pikaday/component.json                                     export-ignore
-libs/pikaday/examples/                                          export-ignore
-libs/pikaday/index.html                                         export-ignore
-libs/pikaday/LICENSE                                            export-ignore
-libs/pikaday/package.json                                       export-ignore
-libs/pikaday/plugins/                                           export-ignore
-libs/pikaday/README.md                                          export-ignore
-libs/pikaday/scss/                                              export-ignore
-libs/pikaday/tests/                                             export-ignore
+/libs/pikaday/.bower.json                                       export-ignore
+/libs/pikaday/bower.json                                        export-ignore
+/libs/pikaday/CHANGELOG.md                                      export-ignore
+/libs/pikaday/component.json                                    export-ignore
+/libs/pikaday/examples/                                         export-ignore
+/libs/pikaday/index.html                                        export-ignore
+/libs/pikaday/LICENSE                                           export-ignore
+/libs/pikaday/package.json                                      export-ignore
+/libs/pikaday/plugins/                                          export-ignore
+/libs/pikaday/README.md                                         export-ignore
+/libs/pikaday/scss/                                             export-ignore
+/libs/pikaday/tests/                                            export-ignore
 
 # respond
-libs/respond/.bower.json                                        export-ignore
-libs/respond/bower.json                                         export-ignore
-libs/respond/cross-domain/                                      export-ignore
-libs/respond/dest/respond.matchmedia.addListener.min.js         export-ignore
-libs/respond/dest/respond.matchmedia.addListener.src.js         export-ignore
-libs/respond/dest/respond.src.js                                export-ignore
-libs/respond/Gruntfile.js                                       export-ignore
-libs/respond/LICENSE-MIT                                        export-ignore
-libs/respond/package.json                                       export-ignore
-libs/respond/README.md                                          export-ignore
-libs/respond/src/                                               export-ignore
+/libs/respond/.bower.json                                       export-ignore
+/libs/respond/bower.json                                        export-ignore
+/libs/respond/cross-domain/                                     export-ignore
+/libs/respond/dest/respond.matchmedia.addListener.min.js        export-ignore
+/libs/respond/dest/respond.matchmedia.addListener.src.js        export-ignore
+/libs/respond/dest/respond.src.js                               export-ignore
+/libs/respond/Gruntfile.js                                      export-ignore
+/libs/respond/LICENSE-MIT                                       export-ignore
+/libs/respond/package.json                                      export-ignore
+/libs/respond/README.md                                         export-ignore
+/libs/respond/src/                                              export-ignore
 
 # select2
-libs/select2/.bower.json                                        export-ignore
-libs/select2/.editorconfig                                      export-ignore
-libs/select2/.gitignore                                         export-ignore
-libs/select2/.jshintignore                                      export-ignore
-libs/select2/.jshintrc                                          export-ignore
-libs/select2/.travis.yml                                        export-ignore
-libs/select2/bower.json                                         export-ignore
-libs/select2/component.json                                     export-ignore
-libs/select2/composer.json                                      export-ignore
-libs/select2/CONTRIBUTING.md                                    export-ignore
-# libs/select2/dist/css/select2.css
+/libs/select2/.bower.json                                       export-ignore
+/libs/select2/.editorconfig                                     export-ignore
+/libs/select2/.gitignore                                        export-ignore
+/libs/select2/.jshintignore                                     export-ignore
+/libs/select2/.jshintrc                                         export-ignore
+/libs/select2/.travis.yml                                       export-ignore
+/libs/select2/bower.json                                        export-ignore
+/libs/select2/component.json                                    export-ignore
+/libs/select2/composer.json                                     export-ignore
+/libs/select2/CONTRIBUTING.md                                   export-ignore
+# /libs/select2/dist/css/select2.css
 ##
 ## we reference the unminified version within pulsar.scss (see line above)
 ## although this (see line below) is the one we should probably be using
 ##
-libs/select2/dist/css/select2.min.css                           export-ignore
-libs/select2/dist/js/i18n/                                      export-ignore
-libs/select2/dist/js/select2.full.js                            export-ignore
-libs/select2/dist/js/select2.full.min.js                        export-ignore
-libs/select2/dist/js/select2.js                                 export-ignore
-libs/select2/docs/                                              export-ignore
-libs/select2/Gruntfile.js                                       export-ignore
-libs/select2/ISSUE_TEMPLATE.md                                  export-ignore
-libs/select2/LICENSE.md                                         export-ignore
-libs/select2/package.json                                       export-ignore
-libs/select2/PULL_REQUEST_TEMPLATE.md                           export-ignore
-libs/select2/README.md                                          export-ignore
-libs/select2/select2.jquery.json                                export-ignore
-libs/select2/src/                                               export-ignore
-libs/select2/tests/                                             export-ignore
-libs/select2/vendor/                                            export-ignore
+/libs/select2/dist/css/select2.min.css                          export-ignore
+/libs/select2/dist/js/i18n/                                     export-ignore
+/libs/select2/dist/js/select2.full.js                           export-ignore
+/libs/select2/dist/js/select2.full.min.js                       export-ignore
+/libs/select2/dist/js/select2.js                                export-ignore
+/libs/select2/docs/                                             export-ignore
+/libs/select2/Gruntfile.js                                      export-ignore
+/libs/select2/ISSUE_TEMPLATE.md                                 export-ignore
+/libs/select2/LICENSE.md                                        export-ignore
+/libs/select2/package.json                                      export-ignore
+/libs/select2/PULL_REQUEST_TEMPLATE.md                          export-ignore
+/libs/select2/README.md                                         export-ignore
+/libs/select2/select2.jquery.json                               export-ignore
+/libs/select2/src/                                              export-ignore
+/libs/select2/tests/                                            export-ignore
+/libs/select2/vendor/                                           export-ignore
 
 # selectivizr
-libs/selectivizr/.bower.json                                    export-ignore
-libs/selectivizr/bower.json                                     export-ignore
-libs/selectivizr/changelog.txt                                  export-ignore
-libs/selectivizr/README.markdown                                export-ignore
+/libs/selectivizr/.bower.json                                   export-ignore
+/libs/selectivizr/bower.json                                    export-ignore
+/libs/selectivizr/changelog.txt                                 export-ignore
+/libs/selectivizr/README.markdown                               export-ignore
 
 # sticky
-libs/sticky/.bower.json                                         export-ignore
-libs/sticky/.gitignore                                          export-ignore
-libs/sticky/bower.json                                          export-ignore
-libs/sticky/example-center.html                                 export-ignore
-libs/sticky/example-header.html                                 export-ignore
-libs/sticky/example-right.html                                  export-ignore
-libs/sticky/LICENSE.md                                          export-ignore
-libs/sticky/package.json                                        export-ignore
-libs/sticky/README.md                                           export-ignore
+/libs/sticky/.bower.json                                        export-ignore
+/libs/sticky/.gitignore                                         export-ignore
+/libs/sticky/bower.json                                         export-ignore
+/libs/sticky/example-center.html                                export-ignore
+/libs/sticky/example-header.html                                export-ignore
+/libs/sticky/example-right.html                                 export-ignore
+/libs/sticky/LICENSE.md                                         export-ignore
+/libs/sticky/package.json                                       export-ignore
+/libs/sticky/README.md                                          export-ignore
 
 # store.js
-libs/store.js/.bower.json                                       export-ignore
-libs/store.js/.gitignore                                        export-ignore
-libs/store.js/bower.json                                        export-ignore
-libs/store.js/build.js                                          export-ignore
-libs/store.js/Changelog                                         export-ignore
-libs/store.js/component.json                                    export-ignore
-libs/store.js/index.html                                        export-ignore
-libs/store.js/json.js                                           export-ignore
-libs/store.js/LICENSE                                           export-ignore
-libs/store.js/Makefile                                          export-ignore
-libs/store.js/package.json                                      export-ignore
-libs/store.js/README.md                                         export-ignore
-libs/store.js/Roadmap.md                                        export-ignore
-libs/store.js/scripts/                                          export-ignore
-libs/store.js/store+json2.min.js                                export-ignore
-# libs/store.js/store.js
+/libs/store.js/.bower.json                                      export-ignore
+/libs/store.js/.gitignore                                       export-ignore
+/libs/store.js/bower.json                                       export-ignore
+/libs/store.js/build.js                                         export-ignore
+/libs/store.js/Changelog                                        export-ignore
+/libs/store.js/component.json                                   export-ignore
+/libs/store.js/index.html                                       export-ignore
+/libs/store.js/json.js                                          export-ignore
+/libs/store.js/LICENSE                                          export-ignore
+/libs/store.js/Makefile                                         export-ignore
+/libs/store.js/package.json                                     export-ignore
+/libs/store.js/README.md                                        export-ignore
+/libs/store.js/Roadmap.md                                       export-ignore
+/libs/store.js/scripts/                                         export-ignore
+/libs/store.js/store+json2.min.js                               export-ignore
+# /libs/store.js/store.js
 ##
 ## we reference the unminified version within require-main.js (see line above)
 ## although this (see line below) is the one we should probably be using
 ##
-libs/store.js/store.min.js export-ignore
-libs/store.js/tests/ export-ignore
+/libs/store.js/store.min.jsexport-ignore
+/libs/store.js/tests/export-ignore
 
 # susy
-libs/susy/.bower.json                                           export-ignore
-libs/susy/bower.json                                            export-ignore
-libs/susy/CODE_OF_CONDUCT.md                                    export-ignore
-libs/susy/CONTRIBUTING.md                                       export-ignore
-libs/susy/eyeglass-exports.js                                   export-ignore
-libs/susy/Gemfile                                               export-ignore
-libs/susy/lib/compass-susy.rb                                   export-ignore
-libs/susy/lib/susy.rb                                           export-ignore
-libs/susy/LICENSE.txt                                           export-ignore
-libs/susy/README.md                                             export-ignore
-libs/susy/templates/                                            export-ignore
-libs/susy/VERSION                                               export-ignore
+/libs/susy/.bower.json                                          export-ignore
+/libs/susy/bower.json                                           export-ignore
+/libs/susy/CODE_OF_CONDUCT.md                                   export-ignore
+/libs/susy/CONTRIBUTING.md                                      export-ignore
+/libs/susy/eyeglass-exports.js                                  export-ignore
+/libs/susy/Gemfile                                              export-ignore
+/libs/susy/lib/compass-susy.rb                                  export-ignore
+/libs/susy/lib/susy.rb                                          export-ignore
+/libs/susy/LICENSE.txt                                          export-ignore
+/libs/susy/README.md                                            export-ignore
+/libs/susy/templates/                                           export-ignore
+/libs/susy/VERSION                                              export-ignore
 
 # svgeezy
-libs/svgeezy/.bower.json                                        export-ignore
-libs/svgeezy/bower.json                                         export-ignore
-libs/svgeezy/readme.md                                          export-ignore
-libs/svgeezy/svgeezy.js                                         export-ignore
+/libs/svgeezy/.bower.json                                       export-ignore
+/libs/svgeezy/bower.json                                        export-ignore
+/libs/svgeezy/readme.md                                         export-ignore
+/libs/svgeezy/svgeezy.js                                        export-ignore
 
 # Vague.js
-libs/Vague.js/.bower.json                                       export-ignore
-libs/Vague.js/bower.json                                        export-ignore
-libs/Vague.js/index.html                                        export-ignore
-libs/Vague.js/package.json                                      export-ignore
-libs/Vague.js/README.md                                         export-ignore
+/libs/Vague.js/.bower.json                                      export-ignore
+/libs/Vague.js/bower.json                                       export-ignore
+/libs/Vague.js/index.html                                       export-ignore
+/libs/Vague.js/package.json                                     export-ignore
+/libs/Vague.js/README.md                                        export-ignore
 
 # vide
-libs/vide/.bower.json                                           export-ignore
-libs/vide/bower.json                                            export-ignore
-libs/vide/MIT-LICENSE                                           export-ignore
-libs/vide/package.js                                            export-ignore
+/libs/vide/.bower.json                                          export-ignore
+/libs/vide/bower.json                                           export-ignore
+/libs/vide/MIT-LICENSE                                          export-ignore
+/libs/vide/package.js                                           export-ignore
