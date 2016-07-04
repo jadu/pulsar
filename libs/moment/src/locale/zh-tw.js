@@ -77,15 +77,15 @@ export default moment.defineLocale('zh-tw', {
         future : '%s內',
         past : '%s前',
         s : '幾秒',
-        m : '1分鐘',
+        m : '一分鐘',
         mm : '%d分鐘',
-        h : '1小時',
+        h : '一小時',
         hh : '%d小時',
-        d : '1天',
+        d : '一天',
         dd : '%d天',
-        M : '1個月',
+        M : '一個月',
         MM : '%d個月',
-        y : '1年',
+        y : '一年',
         yy : '%d年'
     }
 });

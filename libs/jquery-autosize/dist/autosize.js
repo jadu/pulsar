@@ -1,5 +1,5 @@
 /*!
-	Autosize 3.0.15
+	Autosize 3.0.14
 	license: MIT
 	http://www.jacklmoore.com/autosize
 */
@@ -32,20 +32,6 @@
 				list.splice(list.indexOf(key), 1);
 			} };
 	})();
-
-	var createEvent = function createEvent(name) {
-		return new Event(name);
-	};
-	try {
-		new Event('test');
-	} catch (e) {
-		// IE does not support `new Event()`
-		createEvent = function (name) {
-			var evt = document.createEvent('Event');
-			evt.initEvent(name, true, false);
-			return evt;
-		};
-	}
 
 	function assign(ta) {
 		var _ref = arguments[1] === undefined ? {} : arguments[1];
@@ -151,7 +137,8 @@
 			}
 
 			if (startHeight !== ta.style.height) {
-				var evt = createEvent('autosize:resized');
+				var evt = document.createEvent('Event');
+				evt.initEvent('autosize:resized', true, false);
 				ta.dispatchEvent(evt);
 			}
 		}
@@ -204,13 +191,15 @@
 
 	function destroy(ta) {
 		if (!(ta && ta.nodeName && ta.nodeName === 'TEXTAREA')) return;
-		var evt = createEvent('autosize:destroy');
+		var evt = document.createEvent('Event');
+		evt.initEvent('autosize:destroy', true, false);
 		ta.dispatchEvent(evt);
 	}
 
 	function update(ta) {
 		if (!(ta && ta.nodeName && ta.nodeName === 'TEXTAREA')) return;
-		var evt = createEvent('autosize:update');
+		var evt = document.createEvent('Event');
+		evt.initEvent('autosize:update', true, false);
 		ta.dispatchEvent(evt);
 	}
 

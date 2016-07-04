@@ -30,7 +30,7 @@ AttributeParserExtension.prototype.parseAttributes = function (attributes, args)
     var addDisabledClass = false;
 
     _.forEach(attributes, function (value, key) {
-        if ((value && !_.isArray(value)) || value === '0' || value === 0) {
+        if (value && !_.isArray(value)) {
             if (typeof(value) === 'boolean') {
                 switch (key) {
                     case 'required':

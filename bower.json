@@ -15,7 +15,7 @@
     "html5shiv": "latest",
     "jquery": "1.x",
     "jquery-autosize": "latest",
-    "jquery-placeholder": "latest",
+    "jquery-placeholder": "Stanton/jquery-placeholder#v.2.0.9",
     "jquery.countdown": "^2.1.0",
     "list.js": "latest",
     "moment": "latest",
@@ -29,7 +29,7 @@
     "store.js": "latest",
     "susy": "~2.2.6",
     "svgeezy": "latest",
-    "Vague.js": "latest",
+    "Vague.js": "Stanton/vague.js",
     "vide": "~0.3.1"
   },
   "devDependencies": {

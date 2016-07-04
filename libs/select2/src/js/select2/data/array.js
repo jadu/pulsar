@@ -52,7 +52,7 @@ define([
         var $existingOption = $existing.filter(onlyItem(item));
 
         var existingData = this.item($existingOption);
-        var newData = $.extend(true, {}, item, existingData);
+        var newData = $.extend(true, {}, existingData, item);
 
         var $newOption = this.option(newData);
 

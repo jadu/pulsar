@@ -53,5 +53,6 @@
   },
   "_source": "https://github.com/hilios/jQuery.countdown.git",
   "_target": "^2.1.0",
-  "_originalSource": "jquery.countdown"
+  "_originalSource": "jquery.countdown",
+  "_direct": true
 }

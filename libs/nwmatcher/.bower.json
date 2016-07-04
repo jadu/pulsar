@@ -38,7 +38,7 @@
     "tag": "v1.3.6",
     "commit": "fb8288b8aab9c7191c40475069bd0fdf3c6f99b0"
   },
-  "_source": "https://github.com/dperini/nwmatcher.git",
+  "_source": "git://github.com/dperini/nwmatcher.git",
   "_target": "*",
   "_originalSource": "nwmatcher"
 }

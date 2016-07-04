@@ -57,6 +57,5 @@ function monthDiff (a, b) {
         adjust = (b - anchor) / (anchor2 - anchor);
     }
 
-    //check for negative zero, return zero if negative zero
-    return -(wholeMonthDiff + adjust) || 0;
+    return -(wholeMonthDiff + adjust);
 }

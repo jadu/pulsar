@@ -1,4 +1,5 @@
 <section>
+
   <h1 id="tokenizer">Automatic tokenization</h1>
 
   <p>
@@ -23,10 +24,13 @@
     </p>
   </div>
 
-{% highlight js linenos %}
+  <pre data-fill-from=".js-code-tokenizer"></pre>
+
+<script type="text/x-example-code" class="js-code-tokenizer">
 $(".js-example-tokenizer").select2({
   tags: true,
   tokenSeparators: [',', ' ']
 })
-{% endhighlight %}
+</script>
+
 </section>

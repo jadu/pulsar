@@ -95,13 +95,6 @@ class AttributeParserExtensionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn));
     }
 
-    public function testParseAttributesAllowsZeroIntegers()
-    {
-        $dataIn = array('foo' => 0);
-        $dataOut = ' foo="0"';
-        $this->assertEquals($dataOut, $this->ext->parseAttributes($dataIn));
-    }
-
     public function testParseAttributesAllowsZeroStrings()
     {
         $dataIn = array('foo' => '0');
