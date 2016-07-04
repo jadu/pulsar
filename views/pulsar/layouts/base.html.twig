@@ -95,7 +95,14 @@
 
                 {% block notifications %}{% endblock %}
 
-                {{ nav.help({ 'href': '#' }) }}
+                {{
+                    nav.help({
+                        'cms': '#',
+                        'xfp': '#',
+                        'cxm': false,
+                        'cp': false
+                    })
+                }}
             </div>
 
             {% block search %}

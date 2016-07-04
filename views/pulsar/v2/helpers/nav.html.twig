@@ -120,13 +120,17 @@
 
 {%- macro help(options) -%}
     {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
-
-    {% if options.href is defined and options.href is not empty %}
+    {%
+        if options.cms is defined and options.cms == true
+        or options.xfp is defined and options.xfp == true
+        or options.cxm is defined and options.cxm == true
+        or options.cp is defined and options.cp == true
+    %}
     <div class="dropdown toolbar-help toolbar-icon">
         {{
             html.link({
                 'class': 'toolbar-help-link',
-                'href': options.href,
+                'href': '#',
                 'icon': 'question-sign',
                 'label': options.label|default('user guides'),
                 'data-toggle': 'dropdown'
@@ -134,6 +138,8 @@
         }}
 
         <div class="dropdown__menu">
+
+        {% if options.cms is defined and options.cms != false %}
             <a href="#" class="media">
                 <img src="/images/branding/logo-cms-coloured.png" alt="" class="media__image" />
                 <div class="media__body">
@@ -141,6 +147,8 @@
                     <span class="small-type muted">User Manual</span>
                 </div>
             </a>
+        {% endif %}
+        {% if options.xfp is defined and options.xfp != false %}
             <a href="#" class="media">
                 <img src="/images/branding/logo-xfp-coloured.png" alt="" class="media__image" />
                 <div class="media__body">
@@ -148,6 +156,8 @@
                     <span class="small-type muted">User Manual</span>
                 </div>
             </a>
+        {% endif %}
+        {% if options.cxm is defined and options.cxm != false %}
             <a href="#" class="media">
                 <img src="/images/branding/logo-cxm-coloured.png" alt="" class="media__image" />
                 <div class="media__body">
@@ -155,6 +165,8 @@
                     <span class="small-type muted">User Manual</span>
                 </div>
             </a>
+        {% endif %}
+        {% if options.cp is defined and options.cp != false %}
             <a href="#" class="media">
                 <img src="/images/branding/logo-cp-coloured.png" alt="" class="media__image" />
                 <div class="media__body">
@@ -162,6 +174,7 @@
                     <span class="small-type muted">User Manual</span>
                 </div>
             </a>
+        {% endif %}
         </div>
     </div>
     {% endif %}
