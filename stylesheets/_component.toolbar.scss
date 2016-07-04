@@ -120,3 +120,21 @@
     top: -4px;
     text-decoration: none;
 }
+
+.toolbar-help .dropdown__menu {
+    min-width: 180px;
+
+    .media__image {
+        width: 40px;
+    }
+
+    .media {
+        line-height: 24px;
+        padding: 10px;
+
+        &:hover {
+            background-color: color(background, light);
+        }
+    }
+}
+

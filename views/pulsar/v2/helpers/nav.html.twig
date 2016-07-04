@@ -122,15 +122,47 @@
     {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 
     {% if options.href is defined and options.href is not empty %}
-    <div class="toolbar-icon">
+    <div class="dropdown toolbar-help toolbar-icon">
         {{
             html.link({
                 'class': 'toolbar-help-link',
                 'href': options.href,
                 'icon': 'question-sign',
-                'label': options.label|default('user guide')
+                'label': options.label|default('user guides'),
+                'data-toggle': 'dropdown'
             })
         }}
+
+        <div class="dropdown__menu">
+            <a href="#" class="media">
+                <img src="/images/branding/logo-cms-coloured.png" alt="" class="media__image" />
+                <div class="media__body">
+                    <p>CMS</p>
+                    <span class="small-type muted">User Manual</span>
+                </div>
+            </a>
+            <a href="#" class="media">
+                <img src="/images/branding/logo-xfp-coloured.png" alt="" class="media__image" />
+                <div class="media__body">
+                    <p>XFP</p>
+                    <span class="small-type muted">User Manual</span>
+                </div>
+            </a>
+            <a href="#" class="media">
+                <img src="/images/branding/logo-cxm-coloured.png" alt="" class="media__image" />
+                <div class="media__body">
+                    <p>CXM</p>
+                    <span class="small-type muted">User Manual</span>
+                </div>
+            </a>
+            <a href="#" class="media">
+                <img src="/images/branding/logo-cp-coloured.png" alt="" class="media__image" />
+                <div class="media__body">
+                    <p>Content Portal</p>
+                    <span class="small-type muted">User Manual</span>
+                </div>
+            </a>
+        </div>
     </div>
     {% endif %}
 {%- endmacro -%}
