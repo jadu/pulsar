@@ -116,3 +116,21 @@
     {%- endfor -%}
     </nav>
 {%- endmacro -%}
+
+
+{%- macro help(options) -%}
+    {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+
+    {% if options.href is defined and options.href is not empty %}
+    <div class="toolbar-icon">
+        {{
+            html.link({
+                'class': 'toolbar-help-link',
+                'href': options.href,
+                'icon': 'question-sign',
+                'label': options.label|default('user guide')
+            })
+        }}
+    </div>
+    {% endif %}
+{%- endmacro -%}
