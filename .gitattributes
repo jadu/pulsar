@@ -90,14 +90,16 @@
 /libs/jquery-autosize/bower.json                                export-ignore
 /libs/jquery-autosize/build.js                                  export-ignore
 /libs/jquery-autosize/changelog.md                              export-ignore
-/libs/jquery-autosize/example/index.html                        export-ignore
+/libs/jquery-autosize/example/                                  export-ignore
 /libs/jquery-autosize/LICENSE.md                                export-ignore
 /libs/jquery-autosize/package.json                              export-ignore
 /libs/jquery-autosize/readme.md                                 export-ignore
-/libs/jquery-autosize/src/autosize.js                           export-ignore
+/libs/jquery-autosize/src/                                      export-ignore
 
 # jquery-placeholder
 /libs/jquery-placeholder/.bower.json                            export-ignore
+/libs/jquery-placeholder/.gitattributes                         export-ignore
+/libs/jquery-placeholder/.gitignore                             export-ignore
 /libs/jquery-placeholder/bower.json                             export-ignore
 /libs/jquery-placeholder/demo.html                              export-ignore
 # /libs/jquery-placeholder/jquery.placeholder.js
@@ -297,8 +299,7 @@
 /libs/susy/CONTRIBUTING.md                                      export-ignore
 /libs/susy/eyeglass-exports.js                                  export-ignore
 /libs/susy/Gemfile                                              export-ignore
-/libs/susy/lib/compass-susy.rb                                  export-ignore
-/libs/susy/lib/susy.rb                                          export-ignore
+/libs/susy/lib/                                                 export-ignore
 /libs/susy/LICENSE.txt                                          export-ignore
 /libs/susy/README.md                                            export-ignore
 /libs/susy/templates/                                           export-ignore
