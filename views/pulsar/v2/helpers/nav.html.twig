@@ -126,55 +126,57 @@
         or options.cxm is defined and options.cxm == true
         or options.cp is defined and options.cp == true
     %}
-    <div class="dropdown toolbar-help toolbar-icon">
-        {{
-            html.link({
-                'class': 'toolbar-help-link',
-                'href': '#',
-                'icon': 'question-sign',
-                'label': options.label|default('user guides'),
-                'data-toggle': 'dropdown'
-            })
-        }}
+    <div class="dropdown">
+        <div class="toolbar-help toolbar-icon">
+            {{
+                html.link({
+                    'class': 'toolbar-help-link',
+                    'href': '#',
+                    'icon': 'question-sign',
+                    'label': options.label|default('user guides'),
+                    'data-toggle': 'dropdown'
+                })
+            }}
 
-        <div class="dropdown__menu">
+            <div class="dropdown__menu">
 
-        {% if options.cms is defined and options.cms != false %}
-            <a href="#" class="media">
-                <img src="{{ options.imagePath }}/logo-cms-coloured.png" alt="" class="media__image" />
-                <div class="media__body">
-                    <p>CMS</p>
-                    <span class="small-type muted">User Manual</span>
-                </div>
-            </a>
-        {% endif %}
-        {% if options.xfp is defined and options.xfp != false %}
-            <a href="#" class="media">
-                <img src="{{ options.imagePath }}/logo-xfp-coloured.png" alt="" class="media__image" />
-                <div class="media__body">
-                    <p>XFP</p>
-                    <span class="small-type muted">User Manual</span>
-                </div>
-            </a>
-        {% endif %}
-        {% if options.cxm is defined and options.cxm != false %}
-            <a href="#" class="media">
-                <img src="{{ options.imagePath }}/logo-cxm-coloured.png" alt="" class="media__image" />
-                <div class="media__body">
-                    <p>CXM</p>
-                    <span class="small-type muted">User Manual</span>
-                </div>
-            </a>
-        {% endif %}
-        {% if options.cp is defined and options.cp != false %}
-            <a href="#" class="media">
-                <img src="{{ options.imagePath }}/logo-cp-coloured.png" alt="" class="media__image" />
-                <div class="media__body">
-                    <p>Content Portal</p>
-                    <span class="small-type muted">User Manual</span>
-                </div>
-            </a>
-        {% endif %}
+            {% if options.cms is defined and options.cms != false %}
+                <a href="#" class="media">
+                    <img src="{{ options.imagePath }}/logo-cms-coloured.png" alt="" class="media__image" />
+                    <div class="media__body">
+                        <p>CMS</p>
+                        <span class="small-type muted">User Manual</span>
+                    </div>
+                </a>
+            {% endif %}
+            {% if options.xfp is defined and options.xfp != false %}
+                <a href="#" class="media">
+                    <img src="{{ options.imagePath }}/logo-xfp-coloured.png" alt="" class="media__image" />
+                    <div class="media__body">
+                        <p>XFP</p>
+                        <span class="small-type muted">User Manual</span>
+                    </div>
+                </a>
+            {% endif %}
+            {% if options.cxm is defined and options.cxm != false %}
+                <a href="#" class="media">
+                    <img src="{{ options.imagePath }}/logo-cxm-coloured.png" alt="" class="media__image" />
+                    <div class="media__body">
+                        <p>CXM</p>
+                        <span class="small-type muted">User Manual</span>
+                    </div>
+                </a>
+            {% endif %}
+            {% if options.cp is defined and options.cp != false %}
+                <a href="#" class="media">
+                    <img src="{{ options.imagePath }}/logo-cp-coloured.png" alt="" class="media__image" />
+                    <div class="media__body">
+                        <p>Content Portal</p>
+                        <span class="small-type muted">User Manual</span>
+                    </div>
+                </a>
+            {% endif %}
+            </div>
         </div>
     </div>
     {% endif %}
