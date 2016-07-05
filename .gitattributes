@@ -37,7 +37,6 @@
 # bootstrapx-clickover
 /libs/bootstrapx-clickover/.bower.json                          export-ignore
 /libs/bootstrapx-clickover/docs/                                export-ignore
-/libs/bootstrapx-clickover/js/bootstrapx-clickover.js           export-ignore
 /libs/bootstrapx-clickover/README.md                            export-ignore
 
 # font-awesome
