@@ -123,16 +123,18 @@
     text-decoration: none;
 }
 
-.toolbar-help .dropdown__menu {
-    min-width: 180px;
-    padding: 0;
+.toolbar-help {
+    .dropdown__menu {
+        min-width: 180px;
+        padding: 0;
 
-    .media {
-        line-height: 24px;
-        padding: 10px;
+        .media {
+            line-height: 24px;
+            padding: 10px;
 
-        &:hover {
-            background-color: color(background, light);
+            &:hover {
+                background-color: color(background, light);
+            }
         }
     }
 }
