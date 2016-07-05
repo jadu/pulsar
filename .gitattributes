@@ -66,7 +66,7 @@
 ##
 /libs/html5shiv/dist/html5shiv.min.js                           export-ignore
 /libs/html5shiv/Gruntfile.js                                    export-ignore
-/libs/html5shiv/MIT\ and\ GPL2\ licenses.md                     export-ignore
+/libs/html5shiv/MIT?and?GPL2?licenses.md                        export-ignore
 /libs/html5shiv/package.json                                    export-ignore
 /libs/html5shiv/readme.md                                       export-ignore
 
