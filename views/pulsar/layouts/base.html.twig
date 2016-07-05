@@ -95,16 +95,8 @@
                 </div>
 
                 {% block notifications %}{% endblock %}
+                {% include '@pulsar/pulsar/components/nav_help.html.twig' %}
 
-                {{
-                    nav.help({
-                        'imagePath': imgPath ~ '/branding/',
-                        'cms': '#',
-                        'xfp': '#',
-                        'cxm': false,
-                        'cp': false
-                    })
-                }}
             </div>
 
             {% block search %}
