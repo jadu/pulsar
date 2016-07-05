@@ -124,6 +124,12 @@
 }
 
 .toolbar-help {
+    display: none;
+
+    @include respond-min($screen-tablet) {
+        display: block;
+    }
+
     .dropdown__menu {
         min-width: 180px;
         padding: 0;
