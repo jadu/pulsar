@@ -120,12 +120,7 @@
 
 {%- macro help(options) -%}
     {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
-    {%
-        if options.cms is defined and options.cms == true
-        or options.xfp is defined and options.xfp == true
-        or options.cxm is defined and options.cxm == true
-        or options.cp is defined and options.cp == true
-    %}
+    {% if options.items is defined and options.items is iterable %}
     <div class="toolbar-help toolbar-icon">
         <div class="dropdown">
             {{
@@ -139,43 +134,21 @@
             }}
 
             <div class="dropdown__menu">
-
-            {% if options.cms is defined and options.cms != false %}
-                <a href="#" class="media">
-                    <img src="{{ options.imagePath }}/logo-cms-coloured.png" alt="" class="media__image" />
+            {% for item in options.items %}
+                {% if item.href is defined and item.href is not empty %}
+                <a href="{{ item.href }}" class="media">
+                {% endif %}
+                    {% if item.image is defined and item.image is not empty %}
+                    <img src="{{ item.image }}" alt="" class="media__image" />
+                    {% endif %}
                     <div class="media__body">
-                        <p>CMS</p>
-                        <span class="small-type muted">User Manual</span>
+                        <p>{{ item.title }}</p>
+                        {% if item.description is defined and item.description is not empty %}
+                        <span class="small-type muted">{{ item.description }}</span>
+                        {% endif %}
                     </div>
                 </a>
-            {% endif %}
-            {% if options.xfp is defined and options.xfp != false %}
-                <a href="#" class="media">
-                    <img src="{{ options.imagePath }}/logo-xfp-coloured.png" alt="" class="media__image" />
-                    <div class="media__body">
-                        <p>XFP</p>
-                        <span class="small-type muted">User Manual</span>
-                    </div>
-                </a>
-            {% endif %}
-            {% if options.cxm is defined and options.cxm != false %}
-                <a href="#" class="media">
-                    <img src="{{ options.imagePath }}/logo-cxm-coloured.png" alt="" class="media__image" />
-                    <div class="media__body">
-                        <p>CXM</p>
-                        <span class="small-type muted">User Manual</span>
-                    </div>
-                </a>
-            {% endif %}
-            {% if options.cp is defined and options.cp != false %}
-                <a href="#" class="media">
-                    <img src="{{ options.imagePath }}/logo-cp-coloured.png" alt="" class="media__image" />
-                    <div class="media__body">
-                        <p>Content Portal</p>
-                        <span class="small-type muted">User Manual</span>
-                    </div>
-                </a>
-            {% endif %}
+            {% endfor %}
             </div>
         </div>
     </div>
