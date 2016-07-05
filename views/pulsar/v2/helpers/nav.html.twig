@@ -129,15 +129,14 @@
                     'href': '#',
                     'icon': 'question-sign',
                     'label': options.label|default('user guides'),
-                    'data-toggle': 'dropdown',
-                    'target': '_blank'
+                    'data-toggle': 'dropdown'
                 })
             }}
 
             <div class="dropdown__menu">
             {% for item in options.items %}
                 {% if item.href is defined and item.href is not empty %}
-                <a href="{{ item.href }}" class="media">
+                <a href="{{ item.href }}" class="media" target="_blank">
                 {% endif %}
                     {% if item.image is defined and item.image is not empty %}
                     <img src="{{ item.image }}" alt="" class="media__image" />
