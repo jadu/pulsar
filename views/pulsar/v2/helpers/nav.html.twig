@@ -135,19 +135,12 @@
 
             <div class="dropdown__menu">
             {% for item in options.items %}
-                {% if item.href is defined and item.href is not empty %}
-                <a href="{{ item.href }}" class="media" target="_blank">
-                {% endif %}
-                    {% if item.image is defined and item.image is not empty %}
-                    <img src="{{ item.image }}" alt="" class="media__image" />
-                    {% endif %}
-                    <div class="media__body">
-                        <p>{{ item.title }}</p>
-                        {% if item.description is defined and item.description is not empty %}
-                        <span class="small-type muted">{{ item.description }}</span>
-                        {% endif %}
-                    </div>
-                </a>
+                {{
+                    html.media(item|merge({
+                        'target': '_blank',
+                        'type': 'link'
+                    }))
+                }}
             {% endfor %}
             </div>
         </div>
