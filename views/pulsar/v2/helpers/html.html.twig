@@ -1018,6 +1018,72 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
 {# -----------------------------------------------------------------------------
 
+# Media
+
+The media object is, typically, an image on the left with descriptive content
+on the right.
+
+## Example usage
+
+```twig
+{{
+    html.media({
+        'image': 'foo.png',
+        'image_alt': 'foo alt',
+        'title': 'Bar',
+        'description': 'Baz'
+    })
+}}
+
+```
+
+## Options
+
+Option      | Type      | Description
+----------- | ------    | ------------------------------------------------------
+action      | html/twig | A button/indicator to display on the right hand side
+class       | string    | CSS classes, space separated
+description | string    | Small descriptive text to sit underneath the title
+image       | string    | URL for the image to display on the left hand side
+image_alt   | string    | Alt attribute for the `image`
+id          | string    | A unique identifier, if required
+title       | string    | The main title for this object
+data-*      | string    | Data attributes, eg: `'data-foo': 'bar'`
+
+#}
+{% macro media(options) %}
+{% spaceless %}
+
+    <div{{
+        attributes(options
+            |exclude('action description image image_alt title')
+            |defaults({
+                'class': 'media'
+            })
+        )
+    }}>
+    {% if options.image is defined and options.image is not empty %}
+        <img src="{{ options.image }}" alt="{{ options.image_alt|default }}" class="media__image" />
+    {% endif %}
+        <div class="media__body">
+        {% if options.action is defined and options.action is not empty %}
+            <span class="pull-right">
+                {{ options.action|raw }}
+            </span>
+        {% endif %}
+            <p>{{ options.title|raw }}</p>
+        {% if options.description is defined and options.description is not empty %}
+            <span class="small-type muted">{{ options.description|raw }}</span>
+        {% endif %}
+        </div>
+    </div>
+
+{% endspaceless %}
+{% endmacro %}
+
+
+{# -----------------------------------------------------------------------------
+
 # Metadata
 
 Provides a simple way to mark up key/value information provided by a Twig hash
