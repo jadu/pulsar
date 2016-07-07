@@ -102,11 +102,6 @@
     margin-bottom: 24px;
     overflow-x: auto;
 
-    @include respond-max($screen-desktop) {
-        border-left: 1px solid color(border);
-        border-right: 1px solid color(border);
-    }
-
     .table {
         margin-bottom: 0;
     }
