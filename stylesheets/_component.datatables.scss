@@ -133,6 +133,23 @@ th.sorting_disabled:hover {
 
 .dataTables_length {
     display: inline-block;
+    float: right;
+}
+
+.dataTables_bottom .dataTables_length {
+    display: block;
+    float: none;
+    margin-bottom: 10px;
+    text-align: center;
+    width: 100%;
+
+    @include respond-min($screen-tablet) {
+        display: inline-block;
+        float: right;
+        margin-bottom: 0;
+        text-align: left;
+        width: auto;
+    }
 }
 
 .dataTables_filter {
@@ -196,13 +213,19 @@ th.sorting_disabled:hover {
     width: 100%;
 }
 
-.dataTables_length {
-    float: right;
-}
-
 .dataTables_paginate > span {
     padding-left: 10px;
     padding-right: 10px;
+}
+
+.dataTables_bottom .dataTables_paginate {
+    text-align: center;
+    width: 100%;
+
+    @include respond-min($screen-tablet) {
+        text-align: left;
+        width: auto;
+    }
 }
 
 .paginate_button {
