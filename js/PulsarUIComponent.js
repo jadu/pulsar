@@ -47,12 +47,25 @@ PulsarUIComponent.prototype.initDataTables = function () {
     datatables.each(function() {
         var $this = $(this);
 
+        var select = {
+            className: 'dt-row-selected',
+            style:     'multi',
+            selector:  'td.table-selection'
+        }
+
+        var dom = '<"dataTables_top"Birf><"dataTables_actions"T>t<"dataTables_bottom"lp>';
+
         if (!$this.data('empty-table')) {
             $this.data('empty-table', 'There are currently no items to display');
         }
 
+        if ($this.data('select') == false) {
+            dom = '<"dataTables_top"irf><"dataTables_actions"T><"dt-disable-selection"t><"dataTables_bottom"lp>';
+            select = false;
+        }
+
         $this.DataTable({
-            dom: '<"dataTables_top"Birf><"dataTables_actions"T>t<"dataTables_bottom"lp>',
+            dom: dom,
             aaSorting: [],
             bAutoWidth: false,
             buttons: [
@@ -76,11 +89,7 @@ PulsarUIComponent.prototype.initDataTables = function () {
                     type: 'column'
                 }
             },
-            select: {
-                className: 'dt-row-selected',
-                style:     'multi',
-                selector:  'td.table-selection'
-            },
+            select: select,
             stateSave: false
         });
     });

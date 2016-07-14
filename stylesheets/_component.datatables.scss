@@ -23,6 +23,15 @@
     }
 }
 
+.dt-disable-selection .table-selection {
+    min-width: 0;
+    padding: 0;
+    width: 0;
+
+    .table-row-select {
+        display: none;
+    }
+}
 
 // scss-lint:disable SelectorFormat
 .datatable .dt-row-selected {
