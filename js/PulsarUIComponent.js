@@ -42,39 +42,47 @@ PulsarUIComponent.prototype.initTables = function () {
 
 PulsarUIComponent.prototype.initDataTables = function () {
 
-    this.$html.find('.datatable').DataTable({
-        dom: '<"dataTables_top"Birf><"dataTables_actions"T>t<"dataTables_bottom"lp>',
-        aaSorting: [],
-        bAutoWidth: false,
-        buttons: [
-            'selectAll',
-            'selectNone'
-        ],
-        columnDefs: [
-            { className: 'control', orderable: false, targets: 0 },
-            { "searchable": false, "targets": [0, 1] },
-            { "orderable": false, "targets": [0, 1] }
-        ],
-        oLanguage: {
-         sSearch: "Filter:"
-        },
-        language: {
-            buttons: {
-                selectAll: "Select all items",
-                selectNone: "Select none"
-            }
-        },
-        responsive: {
-            details: {
-                type: 'column'
-            }
-        },
-        select: {
-            className: 'dt-row-selected',
-            style:     'multi',
-            selector:  'td.table-selection'
-        },
-        stateSave: false
+    var datatables = this.$html.find('.datatable');
+
+    datatables.each(function() {
+        var $this = $(this);
+
+        if (!$this.data('empty-table')) {
+            $this.data('empty-table', 'There are currently no items to display');
+        }
+
+        $this.DataTable({
+            dom: '<"dataTables_top"Birf><"dataTables_actions"T>t<"dataTables_bottom"lp>',
+            aaSorting: [],
+            bAutoWidth: false,
+            buttons: [
+                'selectAll',
+                'selectNone'
+            ],
+            columnDefs: [
+                { className: 'control', orderable: false, targets: 0 },
+                { "searchable": false, "targets": [0, 1] },
+                { "orderable": false, "targets": [0, 1] }
+            ],
+            language: {
+                "emptyTable": $this.data('empty-table'),
+                "info": "Showing _START_ to _END_ of _TOTAL_ items",
+                "infoEmpty": 'No items',
+                "infoFiltered": " (filtered from _MAX_ items)",
+                "zeroRecords": "No items matched your filter, please clear it and try again"
+            },
+            responsive: {
+                details: {
+                    type: 'column'
+                }
+            },
+            select: {
+                className: 'dt-row-selected',
+                style:     'multi',
+                selector:  'td.table-selection'
+            },
+            stateSave: false
+        });
     });
 
     // Refresh datatables when tabs are switched, this fixes some layout issues

@@ -277,19 +277,7 @@ th.sorting_disabled:hover {
 
 // scss-lint:disable SelectorFormat
 .dataTables_empty {
-    color: color(danger);
-    height: 73px;
-    padding-left: 10px;
-    vertical-align: middle;
-
-    &::before {
-        content: $frown;
-        color: color(danger);
-        font-family: fontawesome;
-        font-size: 48px;
-        margin-right: 20px;
-        vertical-align: middle;
-    }
+    @extend .no-results;
 }
 
 .dataTables_bottom {
