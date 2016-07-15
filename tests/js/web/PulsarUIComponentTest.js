@@ -14,6 +14,8 @@ describe('Pulsar UI Component', function() {
             <table class="table qa-table"></table>\
             <table class="table--datagrid qa-datagrid"></table>\
             <table class="table datatable qa-datatable"></table>\
+            <table class="table datatable qa-datatable-empty-message" data-empty-table="foo"></table>\
+            <table class="table datatable qa-datatable-no-selection" data-select="false"></table>\
             <div class="table-container"><table class="table qa-table-dupe"></table></div>\
             <a href="#tab" data-toggle="tab">foo</a>\
             <div class="tab__pane" id="tab">\
@@ -27,6 +29,8 @@ describe('Pulsar UI Component', function() {
         this.$basicTable = this.$html.find('.qa-table');
         this.$datagridTable = this.$html.find('.qa-datagrid');
         this.$datatableTable = this.$html.find('.qa-datatable');
+        this.$datatableWithCustomMessage = this.$html.find('.qa-datatable-empty-message');
+        this.$datatableDisableSelection = this.$html.find('.qa-datatable-no-selection');
         this.$tableDupe = this.$html.find('.qa-table-dupe');
         this.$countdownOne = this.$html.find('.qa-countdown-one');
 
@@ -80,6 +84,18 @@ describe('Pulsar UI Component', function() {
 
         it('should NOT wrap tables which already have the container', function() {
             expect(this.$tableDupe.parent().parent().hasClass('table-container')).to.be.false;
+        });
+
+        it('should show the default empty table message', function() {
+            expect(this.$datatableTable.find('.dataTables_empty').text()).to.equal('There are currently no items to display');
+        });
+
+        it('should allow the empty table message to be overridden', function() {
+            expect(this.$datatableWithCustomMessage.find('.dataTables_empty').text()).to.equal('foo');
+        });
+
+        it('should wrap the table with the disable class when the data-select attribute is false', function() {
+            expect(this.$datatableDisableSelection.parent().hasClass('dt-disable-selection')).to.be.true;
         });
     });
 
