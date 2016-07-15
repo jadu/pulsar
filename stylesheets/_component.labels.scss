@@ -1,4 +1,5 @@
-.label {
+.label,
+%label {
     @include inline-block;
     @include content-box;
     @include label-variant(color(base), color(base, alt));

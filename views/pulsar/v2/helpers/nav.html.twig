@@ -116,3 +116,34 @@
     {%- endfor -%}
     </nav>
 {%- endmacro -%}
+
+
+{%- macro help(options) -%}
+    {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+    {% if options.items is defined and options.items is iterable %}
+    <div class="toolbar-help toolbar-icon">
+        <div class="dropdown">
+            {{
+                html.link({
+                    'class': 'toolbar-help-link',
+                    'href': '#',
+                    'icon': 'question-sign',
+                    'label': options.label|default('user guides'),
+                    'data-toggle': 'dropdown'
+                })
+            }}
+
+            <div class="dropdown__menu">
+            {% for item in options.items %}
+                {{
+                    html.media(item|merge({
+                        'target': '_blank',
+                        'type': 'link'
+                    }))
+                }}
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+{%- endmacro -%}

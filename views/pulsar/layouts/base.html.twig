@@ -3,6 +3,7 @@
 {% import '@pulsar/pulsar/v2/helpers/flash.html.twig' as flash %}
 {% import '@pulsar/pulsar/v2/helpers/nav.html.twig' as nav %}
 {% set cssPath  = base_path ~ 'css/' %}
+{% set imgPath  = base_path ~ 'images/' %}
 {% set jsPath   = base_path ~ 'js/' %}
 {% set libsPath = base_path ~ 'libs/' %}
 {# set themeFile = cssPath ~ 'themes/slate.css' #}
@@ -94,6 +95,7 @@
                 </div>
 
                 {% block notifications %}{% endblock %}
+                {% include '@pulsar/pulsar/components/nav_help.html.twig' %}
 
             </div>
 
