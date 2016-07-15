@@ -37,7 +37,6 @@
 # bootstrapx-clickover
 /libs/bootstrapx-clickover/.bower.json                          export-ignore
 /libs/bootstrapx-clickover/docs/                                export-ignore
-/libs/bootstrapx-clickover/js/bootstrapx-clickover.js           export-ignore
 /libs/bootstrapx-clickover/README.md                            export-ignore
 
 # font-awesome
@@ -67,7 +66,7 @@
 ##
 /libs/html5shiv/dist/html5shiv.min.js                           export-ignore
 /libs/html5shiv/Gruntfile.js                                    export-ignore
-/libs/html5shiv/MIT\ and\ GPL2\ licenses.md                     export-ignore
+/libs/html5shiv/MIT?and?GPL2?licenses.md                     export-ignore
 /libs/html5shiv/package.json                                    export-ignore
 /libs/html5shiv/readme.md                                       export-ignore
 
@@ -91,15 +90,18 @@
 /libs/jquery-autosize/bower.json                                export-ignore
 /libs/jquery-autosize/build.js                                  export-ignore
 /libs/jquery-autosize/changelog.md                              export-ignore
-/libs/jquery-autosize/example/index.html                        export-ignore
+/libs/jquery-autosize/example/                                  export-ignore
 /libs/jquery-autosize/LICENSE.md                                export-ignore
 /libs/jquery-autosize/package.json                              export-ignore
 /libs/jquery-autosize/readme.md                                 export-ignore
-/libs/jquery-autosize/src/autosize.js                           export-ignore
+/libs/jquery-autosize/src/                                      export-ignore
 
 # jquery-placeholder
 /libs/jquery-placeholder/.bower.json                            export-ignore
+/libs/jquery-placeholder/.gitattributes                         export-ignore
+/libs/jquery-placeholder/.gitignore                             export-ignore
 /libs/jquery-placeholder/bower.json                             export-ignore
+/libs/jquery-placeholder/demo.html                              export-ignore
 # /libs/jquery-placeholder/jquery.placeholder.js
 ##
 ## we reference the unminified version within bundle.js, signin.js and require-main.js (see line above)
@@ -107,6 +109,9 @@
 ##
 /libs/jquery-placeholder/jquery.placeholder.min.js              export-ignore
 /libs/jquery-placeholder/jquery.placeholder.min.js.map          export-ignore
+/libs/jquery-placeholder/LICENSE-MIT.txt                        export-ignore
+/libs/jquery-placeholder/README.md                              export-ignore
+/libs/jquery-placeholder/tests/                                 export-ignore
 
 # jquery.countdown
 /libs/jquery.countdown/.bower.json                              export-ignore
@@ -123,6 +128,7 @@
 # list.js
 /libs/list.js/.bower.json                                       export-ignore
 /libs/list.js/bower.json                                        export-ignore
+/libs/list.js/component.json                                    export-ignore
 /libs/list.js/Gruntfile.js                                      export-ignore
 /libs/list.js/History.md                                        export-ignore
 /libs/list.js/index.js                                          export-ignore
@@ -161,6 +167,7 @@
 /libs/normalize-css/.travis.yml                                 export-ignore
 /libs/normalize-css/bower.json                                  export-ignore
 /libs/normalize-css/LICENSE.md                                  export-ignore
+/libs/normalize-css/README.md                                   export-ignore
 
 # nwmatcher
 /libs/nwmatcher/.bower.json                                     export-ignore
@@ -169,6 +176,17 @@
 /libs/nwmatcher/src/modules/                                    export-ignore
 /libs/nwmatcher/src/nwmatcher-base.js                           export-ignore
 /libs/nwmatcher/src/nwmatcher-noqsa.js                          export-ignore
+
+# phantomcss
+/libs/phantomcss/.bower.json                                    export-ignore
+/libs/phantomcss/.gitattributes                                 export-ignore
+/libs/phantomcss/.gitignore                                     export-ignore
+/libs/phantomcss/.npmignore                                     export-ignore
+/libs/phantomcss/demo/                                          export-ignore
+/libs/phantomcss/LICENSE                                        export-ignore
+/libs/phantomcss/package.json                                   export-ignore
+/libs/phantomcss/readme_assets/                                 export-ignore
+/libs/phantomcss/README.md                                      export-ignore
 
 ##
 ## REMOVE?
@@ -281,8 +299,7 @@
 /libs/susy/CONTRIBUTING.md                                      export-ignore
 /libs/susy/eyeglass-exports.js                                  export-ignore
 /libs/susy/Gemfile                                              export-ignore
-/libs/susy/lib/compass-susy.rb                                  export-ignore
-/libs/susy/lib/susy.rb                                          export-ignore
+/libs/susy/lib/                                                 export-ignore
 /libs/susy/LICENSE.txt                                          export-ignore
 /libs/susy/README.md                                            export-ignore
 /libs/susy/templates/                                           export-ignore
