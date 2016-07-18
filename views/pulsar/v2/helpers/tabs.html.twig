@@ -5,22 +5,27 @@
         <ul class="nav-inline__list">
     {%- for tab in tabs -%}
             <li class="nav-inline__item{% if tab.active is defined and tab.active == tab.id %} nav-inline__item--is-active is-active{% endif %}{% if tab.hidden is defined and tab.hidden == true %} hide{% endif %}">
-                {% set href = '#' ~ tab.id %}
-                {% set type = 'tab' %}
-                {%
-                    if tab.src is defined
-                    and tab.src != null
-                    and (
-                           tab.src|json_encode|slice(0, 1) == '/'
-                        or tab.src|json_encode|slice(1, 1) == '#'
-                        or tab.src|json_encode|slice(1, 4) == 'http'
-                    )
-                %}
+                {% if tab.disabled is defined and tab.disabled == true %}
+                    {% set href = '#' %}
                     {% set type = 'link' %}
-                    {% set href = tab.src %}
-                {% elseif tab.href is defined and tab.href != null %}
-                    {% set type = 'link' %}
-                    {% set href = tab.href %}
+                {% else %}
+                    {% set href = '#' ~ tab.id %}
+                    {% set type = 'tab' %}
+                    {%
+                        if tab.src is defined
+                        and tab.src != null
+                        and (
+                               tab.src|json_encode|slice(0, 1) == '/'
+                            or tab.src|json_encode|slice(1, 1) == '#'
+                            or tab.src|json_encode|slice(1, 4) == 'http'
+                        )
+                    %}
+                        {% set type = 'link' %}
+                        {% set href = tab.src %}
+                    {% elseif tab.href is defined and tab.href != null %}
+                        {% set type = 'link' %}
+                        {% set href = tab.href %}
+                    {% endif %}
                 {% endif %}
 
                 {%
@@ -28,7 +33,8 @@
                         'class': 'nav-inline__link',
                         'label': tab.label,
                         'href': href,
-                        'data-toggle': type
+                        'data-toggle': type,
+                        'disabled': tab.disabled|default(false)
                     }
                 %}
                 {{ html.link(options|merge(tab.data|default({}))) }}

@@ -97,7 +97,10 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
             .caret {
                 border-top-color: color(black);
             }
+        }
 
+        &.is-disabled {
+            color: color(text, disabled);
         }
 
         .caret {
