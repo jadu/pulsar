@@ -100,12 +100,12 @@
 
     background-color: color($state);
     box-shadow: 0 2px 0 $shadow-color;
-    color: color($state, alt);
+    color: color($state, alt) !important; // should be immutable
     position: relative;
 
     &:hover {
       box-shadow: 0 1px 0 $shadow-color;
-      color: color($state, alt);
+      color: color($state, alt) !important;  // should be immutable
       top: 1px;
     }
 
