@@ -1,6 +1,10 @@
 // Regular table styling is handled by _component.tables.scss
 // This styles the additional behaviours added by the Datatables plugin
 
+.table.datatable {
+    margin-bottom: 0;
+}
+
 .dt-row-selected > td {
     background-color: color(background, selected);
 
@@ -52,9 +56,6 @@
 .dt-button {
     margin-right: 10px;
 }
-
-
-
 
 .datatable {
     // scss-lint:disable SelectorFormat
@@ -134,27 +135,6 @@ th.sorting_disabled:hover {
     position: relative;
 }
 
-.dataTables_length {
-    display: inline-block;
-    float: right;
-}
-
-.dataTables_bottom .dataTables_length {
-    display: block;
-    float: none;
-    margin-bottom: 10px;
-    text-align: center;
-    width: 100%;
-
-    @include respond-min($screen-tablet) {
-        display: inline-block;
-        float: right;
-        margin-bottom: 0;
-        text-align: left;
-        width: auto;
-    }
-}
-
 .dataTables_filter {
     display: inline-block;
 }
@@ -212,23 +192,7 @@ th.sorting_disabled:hover {
 
 .dataTables_bottom {
     display: block;
-    margin-top: 10px;
     width: 100%;
-}
-
-.dataTables_paginate > span {
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-.dataTables_bottom .dataTables_paginate {
-    text-align: center;
-    width: 100%;
-
-    @include respond-min($screen-tablet) {
-        text-align: left;
-        width: auto;
-    }
 }
 
 .paginate_button {
@@ -283,10 +247,6 @@ th.sorting_disabled:hover {
     @extend .no-results;
 }
 
-.dataTables_bottom {
-    margin-bottom: 24px;
-}
-
 .DTTT_collection {
     opacity: 1;
     background-color: white;
@@ -298,5 +258,68 @@ th.sorting_disabled:hover {
         width: 100%;
     }
 }
-// scss-lint:enable SelectorFormat
 
+.dataTables_bottom {
+    margin-bottom: 24px;
+}
+
+.dataTables_paginate {
+    font-size: $font-size-medium;
+    text-align: center;
+    width: 100%;
+
+    @include respond-min($screen-tablet) {
+        text-align: left;
+        width: auto;
+    }
+
+    .paginate_button {
+        @include inline-block;
+        color: color(text);
+        line-height: $line-height-base * 1.75;
+        padding: 0 $gutter-width;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    .paginate_button.previous::before {
+        content: '\f100';
+        font-family: 'FontAwesome';
+        padding-right: 5px;
+    }
+
+    .paginate_button.next::after {
+        content: '\f101';
+        font-family: 'FontAwesome';
+        padding-left: 5px;
+    }
+
+    .paginate_button.current {
+        background-color: darken(color(white), 10%);
+    }
+
+    .paginateButton.disabled,
+    .ellipsis {
+        color: color(text, disabled);
+    }
+}
+
+.dataTables_bottom .dataTables_length {
+    display: block;
+    float: none;
+    font-family: $font-size-small;
+    line-height: 42px;
+    margin-bottom: 10px;
+    text-align: center;
+    width: 100%;
+
+    @include respond-min($screen-tablet) {
+        display: inline-block;
+        float: right;
+        margin-bottom: 0;
+        text-align: left;
+        width: auto;
+    }
+}
+
+// scss-lint:enable SelectorFormat
