@@ -34,17 +34,19 @@
         }
     }
 
-    tr.no-results td,
-    tr.row--no-results td {
-      padding: 1em 0;
+    .no-results {
+      padding: 2em 0;
       text-align: center;
+    }
+
+    th {
+        text-align: left;
     }
 
     th,
     td {
         border-bottom: 1px solid color(border);
         padding: 11px 10px 12px;
-        text-align: left;
 
         &.centered {
             @include respond-min($screen-tablet) {

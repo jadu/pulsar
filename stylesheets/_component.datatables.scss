@@ -23,6 +23,15 @@
     }
 }
 
+.dt-disable-selection .table-selection {
+    min-width: 0;
+    padding: 0;
+    width: 0;
+
+    .table-row-select {
+        display: none;
+    }
+}
 
 // scss-lint:disable SelectorFormat
 .datatable .dt-row-selected {
@@ -271,19 +280,7 @@ th.sorting_disabled:hover {
 
 // scss-lint:disable SelectorFormat
 .dataTables_empty {
-    color: color(danger);
-    height: 73px;
-    padding-left: 10px;
-    vertical-align: middle;
-
-    &::before {
-        content: $frown;
-        color: color(danger);
-        font-family: fontawesome;
-        font-size: 48px;
-        margin-right: 20px;
-        vertical-align: middle;
-    }
+    @extend .no-results;
 }
 
 .dataTables_bottom {
