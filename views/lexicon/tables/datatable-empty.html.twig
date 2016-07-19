@@ -1,0 +1,31 @@
+{% extends '@pulsar/pulsar/components/tab.html.twig' %}
+
+{% block tab_content %}
+    <table class="table datatable table--full">
+        <thead>
+            <tr>
+                <th class="table-responsive"></th>
+                <th class="table-selection"></th>
+                <th><a href="#">Name</a></th>
+                <th><a href="#">IP</a></th>
+                <th><a href="#">Status</a></th>
+                <th><a href="#">Uptime</a></th>
+                <th><a href="#">Image</a></th>
+                <th><a href="#">RAM</a></th>
+                <th class="centered"><a href="#">CPUs</a></th>
+                <th><a href="#">Actions</a></th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
+{% endblock tab_content %}
+{% block tab_sidebar %}
+    <h2>Empty DataTable</h2>
+    <p>The 'no results' message is automatically shown, and can be customised with the `data-empty-table` attribute.</p>
+    <code class="hljs">
+        &lt;table class="table datatable table--full" data-empty-table="Your message here"&gt; &hellip; &lt;/table&gt;
+    </code>
+{% endblock tab_sidebar %}
