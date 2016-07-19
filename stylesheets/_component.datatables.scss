@@ -102,12 +102,6 @@ tr.selected .table-row-select::before {
 // scss-lint:disable SelectorFormat
 th.sorting_disabled:hover {
     text-decoration: none;
-
-    > a {
-        border: 0;
-        cursor: default;
-        text-decoration: none;
-    }
 }
 // scss-lint:enable SelectorFormat
 
