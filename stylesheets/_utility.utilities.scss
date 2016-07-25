@@ -28,7 +28,8 @@
   display: none;
 }
 
-.muted {
+.muted,
+%muted {
   color: color(gray, light);
 }
 
