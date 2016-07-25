@@ -46,7 +46,6 @@
 /libs/font-awesome/_config.yml                                  export-ignore
 /libs/font-awesome/composer.json                                export-ignore
 /libs/font-awesome/CONTRIBUTING.md                              export-ignore
-/libs/font-awesome/css/                                         export-ignore
 /libs/font-awesome/Gemfile                                      export-ignore
 /libs/font-awesome/Gemfile.lock                                 export-ignore
 /libs/font-awesome/less/                                        export-ignore
