@@ -3,6 +3,12 @@
   overflow: hidden;
 }
 
+// make sure link based media objects don't break the flow
+a.media {
+    display: block;
+    text-decoration: none;
+}
+
 .media__image {
     float: left;
     margin-right: 10px;

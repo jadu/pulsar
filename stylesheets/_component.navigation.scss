@@ -13,7 +13,7 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
     transform: translate3d(-100%, 0, 0);
     vertical-align: top;
     width: 75px;
-    z-index: 3;
+    z-index: $zindex-nav;
 
     @include respond-min($screen-desktop) {
         left: auto;
@@ -66,8 +66,8 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
         display: inline-block;
         font-size: 1.1em;
         line-height: 46px;
-        margin-right: 20px;
-        padding: 0 15px;
+        margin-right: $padding-small-horizontal;
+        padding: 0 $gutter-width;
 
         &:last-of-type {
             margin-right: 0;
@@ -97,7 +97,10 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
             .caret {
                 border-top-color: color(black);
             }
+        }
 
+        &.is-disabled {
+            color: color(text, disabled);
         }
 
         .caret {

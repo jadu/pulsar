@@ -1,6 +1,6 @@
 {
   "name": "pulsar",
-  "version": "6.3.3",
+  "version": "6.6.1",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -16,6 +16,7 @@
     "jquery": "1.x",
     "jquery-autosize": "latest",
     "jquery-placeholder": "Stanton/jquery-placeholder#v.2.0.9",
+    "jquery.countdown": "^2.1.0",
     "list.js": "latest",
     "moment": "latest",
     "normalize-css": "latest",

@@ -1,0 +1,14 @@
+{#
+    Test basic media object method
+#}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{{
+    html.media({
+        'href': '#foo',
+        'image': 'foo.png',
+        'image_alt': 'foo alt',
+        'title': 'Bar',
+        'description': 'Baz',
+        'type': 'link'
+    })
+}}

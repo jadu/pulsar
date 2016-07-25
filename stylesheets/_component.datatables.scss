@@ -1,29 +1,50 @@
-.table-responsive,
-.table-selection {
-    text-align: center;
-    min-width: 25px;
-    max-width: 25px;
-    padding-left: 5px;
-    padding-right: 5px;
-    position: relative;
-    user-select: none;
-    width: 25px;
-    z-index: 1;
+// Regular table styling is handled by _component.tables.scss
+// This styles the additional behaviours added by the Datatables plugin
+
+.table.datatable {
+    margin-bottom: 0;
 }
 
 .dt-row-selected > td {
     background-color: color(background, selected);
+
+    // scss-lint:disable PseudoElement
+    @include ie-lte(8) {
+        .table-row-select:before {
+            content: '\f14a';
+        }
+    }
+    // scss-lint:enable PseudoElement
+
+    .table-row-select::before {
+        content: '\f14a';
+    }
 
     a,
     a:link {
         border-bottom-color: color(link, dark);
         color: color(link, dark);
     }
+}
 
-    .table-row-select::before {
-        content: '\f14a';
+.dt-disable-selection .table-selection {
+    min-width: 0;
+    padding: 0;
+    width: 0;
+
+    .table-row-select {
+        display: none;
     }
 }
+
+// scss-lint:disable SelectorFormat
+.datatable .dt-row-selected {
+    > .sorting_1,
+    &:hover > td {
+        background-color: darken(color(background, selected), 3);
+    }
+}
+// scss-lint:enable SelectorFormat
 
 .dt-buttons {
     float: left;
@@ -36,45 +57,38 @@
     margin-right: 10px;
 }
 
-
-
-
 .datatable {
-    border-top: 1px solid color(border);
-    clear: both;
-    width: 100%;
+    // scss-lint:disable SelectorFormat
+    th {
+        &.sorting::after,
+        &.sorting_asc::after,
+        &.sorting_desc::after {
+            @include icon-FontAwesome();
+            font-size: 18px;
+            left: 0;
+            margin-left: 10px;
+        }
 
-    &:hover > .table-link {
-        color: color(link);
-    }
+        &.sorting_asc::after {
+            content: $circle-arrow-up;
+        }
 
-    .btn {
-        &,
-        &:hover:not(:disabled) {
-            margin: 8px 0 9px;
-            vertical-align: top;
+        &.sorting_desc::after {
+            content: $circle-arrow-down;
+        }
+
+        &.sorting_asc,
+        &.sorting_desc {
+            background-color: darken(#fff, 10);
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
         }
     }
-}
 
-.datatable--fixed {
-    table-layout: fixed;
-
-    td {
-        overflow: hidden;
-        text-overflow: ellipsis;
+    td.sorting_1 {
+        background-color: darken(#fff, 3);
     }
-}
-
-.table__tr {
-    vertical-align: top;
-
-    &.is-disabled .table__td {
-        &,
-        & > * {
-            color: color(text, disabled);
-        }
-    }
+    // scss-lint:enable SelectorFormat
 }
 
 .table__tr--no-results td {
@@ -90,123 +104,35 @@
     top: 1px;
 }
 
-.table__th,
-.table__td {
-    border-bottom: 1px solid color(border);
-    height: $line-height-large;
-    padding: 11.5px 10px 12px;
-    text-align: left;
-    white-space: nowrap;
-
-    &:hover > .table__td {
-        background-color: $table-bg-hover;
-    }
-
-    &.centered {
-        text-align: center;
-    }
-}
-
-
-
-.table__th {
-    background-color: #fff;
-    font-weight: normal;
-    font-family: $font-family-regular;
-
-    &:hover:not(.table-selection):not(.table-responsive):not(.sorting_disabled) {
-        background-color: #efefef;
-        cursor: pointer;
-    }
-}
-
-.table__th > .table-link {
-    color: color(black);
-    text-decoration: none;
-
-    &:hover {
-        color: color(link);
-        text-decoration: underline;
-    }
+tr.selected .table-row-select::before {
+    content: '\f14a';
 }
 
 // scss-lint:disable SelectorFormat
-.table__th.sorting_disabled:hover {
-    // border: 0;
+th.sorting_disabled:hover {
     text-decoration: none;
-
-    > .table-link {
-        border: 0;
-        cursor: default;
-        text-decoration: none;
-    }
 }
 // scss-lint:enable SelectorFormat
 
-.table__th--shrink,
-.table__td--shrink {
-    width: 1%;
-}
-
-
-
-.table-link {
-    border-bottom: 1px dotted color(gray, light);
-    color: color(link);
-    text-decoration: none;
+.table-responsive,
+.table-selection {
+    text-align: center;
+    min-width: 30px;
+    max-width: 30px;
+    position: relative;
+    user-select: none;
+    width: 30px;
+    z-index: -1;
 
     &:hover {
-        border-bottom: 1px dotted color(black);
-        color: color(black);
-        text-decoration: none;
+        background: none;
+        cursor: pointer;
     }
-
-    // scss-lint:disable SelectorFormat
-    .sorting_disabled & {
-        border: 0;
-
-        &:hover {
-            border: 0;
-            color: $black;
-            cursor: default;
-            text-decoration: none;
-        }
-    }
-    // scss-lint:enable SelectorFormat
-}
-
-.table-action {
-    border-right: 1px solid color(border);
-    padding: 0 5px;
-
-    &:last-child {
-        border-right: 0;
-    }
-}
-
-
-
-
-.table__th {
-    // scss-lint:disable SelectorFormat
-    &.sorting::after,
-    &.sorting_asc::after,
-    &.sorting_desc::after {
-        @include icon-FontAwesome();
-        font-size: 18px;
-        left: 0;
-        margin-left: 10px;
-    }
-    // scss-lint:enable SelectorFormat
 }
 
 // scss-lint:disable SelectorFormat
 .dataTables_wrapper {
     position: relative;
-}
-
-.dataTables_length {
-    display: inline-block;
 }
 
 .dataTables_filter {
@@ -266,39 +192,13 @@
 
 .dataTables_bottom {
     display: block;
-    margin-top: 10px;
     width: 100%;
-}
-
-.dataTables_length {
-    float: right;
-}
-
-.dataTables_paginate > span {
-    padding-left: 10px;
-    padding-right: 10px;
 }
 
 .paginate_button {
     padding: 5px;
 }
 
-.table__th.sorting_asc::after {
-    content: $circle-arrow-up;
-}
-
-.table__th.sorting_desc::after {
-    content: $circle-arrow-down;
-}
-
-.table__th.sorting_asc,
-.table__th.sorting_desc {
-    background-color: darken(#fff, 10);
-}
-
-.table__td.sorting_1 {
-    background-color: darken(#fff, 3);
-}
 // scss-lint:enable SelectorFormat
 
 .datatable .child {
@@ -306,12 +206,6 @@
     border-bottom: 1px solid color(border);
     padding: 11.5px 0 12px;
 }
-
-// .dtr-inline.collapsed .parent .table__td:first-child:before {
-//     content: $minus-sign;
-//     color: $jadu-red;
-// }
-
 
 .table-child-toggle {
     color: color(jadu-blue);
@@ -329,13 +223,6 @@
         content: $minus-sign;
     }
 }
-
-
-
-
-
-
-
 
 .datatable .child ul {
     margin: 0 0 0 65px;
@@ -355,30 +242,10 @@
     padding: 0 5px;
 }
 
-
-
-
 // scss-lint:disable SelectorFormat
 .dataTables_empty {
-    color: color(danger);
-    height: 73px;
-    padding-left: 10px;
-    vertical-align: middle;
-
-    &::before {
-        content: $frown;
-        color: color(danger);
-        font-family: fontawesome;
-        font-size: 48px;
-        margin-right: 20px;
-        vertical-align: middle;
-    }
+    @extend .no-results;
 }
-
-.dataTables_bottom {
-    margin-bottom: 24px;
-}
-
 
 .DTTT_collection {
     opacity: 1;
@@ -391,5 +258,68 @@
         width: 100%;
     }
 }
-// scss-lint:enable SelectorFormat
 
+.dataTables_bottom {
+    margin-bottom: 24px;
+}
+
+.dataTables_paginate {
+    font-size: $font-size-medium;
+    text-align: center;
+    width: 100%;
+
+    @include respond-min($screen-tablet) {
+        text-align: left;
+        width: auto;
+    }
+
+    .paginate_button {
+        @include inline-block;
+        color: color(text);
+        line-height: $line-height-base * 1.75;
+        padding: 0 $gutter-width;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    .paginate_button.previous::before {
+        content: '\f100';
+        font-family: 'FontAwesome';
+        padding-right: 5px;
+    }
+
+    .paginate_button.next::after {
+        content: '\f101';
+        font-family: 'FontAwesome';
+        padding-left: 5px;
+    }
+
+    .paginate_button.current {
+        background-color: darken(color(white), 10%);
+    }
+
+    .paginateButton.disabled,
+    .ellipsis {
+        color: color(text, disabled);
+    }
+}
+
+.dataTables_bottom .dataTables_length {
+    display: block;
+    float: none;
+    font-family: $font-size-small;
+    line-height: 42px;
+    margin-bottom: 10px;
+    text-align: center;
+    width: 100%;
+
+    @include respond-min($screen-tablet) {
+        display: inline-block;
+        float: right;
+        margin-bottom: 0;
+        text-align: left;
+        width: auto;
+    }
+}
+
+// scss-lint:enable SelectorFormat

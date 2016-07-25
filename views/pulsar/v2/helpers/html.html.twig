@@ -446,6 +446,64 @@ placement    | string | the alignment of the dropdown menu, `left` (default) or 
 {% endspaceless %}
 {% endmacro %}
 
+
+{# -----------------------------------------------------------------------------
+
+# Countdown
+
+Helper which wires up jquery.countdown functionality for live countdowns. This
+is a basic implementation for the time being, speak to Pulsar team if you need
+extra functionality as per http://hilios.github.io/jQuery.countdown/documentation.html
+
+## Example usage
+
+```twig
+{{
+    html.countdown({
+        'final-date': '2020/01/01 12:34:00',
+        'format': '%ww %dd %Hh %Mm %S',
+        'label': 'Expires 01/01/2010 at 12:34pm'
+    })
+}}
+```
+
+## Options
+
+Option     | Type   | Description
+---------- | ------ | --------------------------------------------------------------
+class      | string | CSS classes, space separated
+final-date | string | A native date() object, epoch timestamp (milliseconds) or date string
+format     | string | A `strftime` string to format the countdown output (default: `%ww %dd %Hh %Mm %S`)
+id         | string | A unique identifier, if required
+label      | string | A fallback string to display if no js available
+data-*     | string | Data attributes, eg: `'data-foo': 'bar'`
+
+#}
+{% macro countdown(options) %}
+{% spaceless %}
+
+    {%
+        set options = options|default({})|merge({
+            'data-final-date': options['final-date']|default,
+            'data-format': options.format|default
+        })
+    %}
+
+    <span{{
+        attributes(options
+            |exclude('final-date format label')
+            |defaults({
+                'class': 'js-countdown'
+            })
+        )
+    }}>
+        {{- options.label|default|raw -}}
+    </span>
+
+{% endspaceless %}
+{% endmacro %}
+
+
 {# -----------------------------------------------------------------------------
 
 # Div
@@ -619,27 +677,38 @@ Provide extra contextual meaning to things.
 
 ## Options
 
-Option | Type   | Description
------- | ------ | --------------------------------------------------------------
-class  | string | CSS classes, space separated
-id     | string | A unique identifier, if required
-label  | string | The value to display
-data-* | string | Data attributes, eg: `'data-foo': 'bar'`
+Option        | Type   | Description
+------------- | ------ | --------------------------------------------------------------
+class         | string | CSS classes, space separated
+id            | string | A unique identifier, if required
+label         | string | The value to display
+removable     | bool   | Displays a remove sign at the end of the label
+data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
 {% macro label(options) %}
 {% spaceless %}
+    {% import _self as html %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
     <span{{
         attributes(options
-            |exclude('label')
+            |exclude('label removable remove_target')
             |defaults({
                 'class': 'label'
             })
         )
     }}>
         {{- options.label|default|raw -}}
+        {% if options.removable is defined and options.removable == true %}
+        {{
+            html.remove_button({
+                'tooltip': false,
+                'target': 'this',
+                'type': 'link'
+            })
+        }}
+        {% endif %}
     </span>
 
 {% endspaceless %}
@@ -949,6 +1018,79 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
 {# -----------------------------------------------------------------------------
 
+# Media
+
+The media object is, typically, an image on the left with descriptive content
+on the right.
+
+## Example usage
+
+```twig
+{{
+    html.media({
+        'image': 'foo.png',
+        'image_alt': 'foo alt',
+        'title': 'Bar',
+        'description': 'Baz'
+    })
+}}
+
+```
+
+## Options
+
+Option      | Type      | Description
+----------- | ------    | ------------------------------------------------------
+action      | html/twig | A button/indicator to display on the right hand side
+class       | string    | CSS classes, space separated
+description | string    | Small descriptive text to sit underneath the title
+href        | string    | If `type` is `link`, set the `href` attribute on the `a`
+id          | string    | A unique identifier, if required
+image       | string    | URL for the image to display on the left hand side
+image_alt   | string    | Alt attribute for the `image`
+title       | string    | The main title for this object
+type        | string    | Markup scheme to use, can be either `div` (default) or `link`
+data-*      | string    | Data attributes, eg: `'data-foo': 'bar'`
+
+#}
+{% macro media(options) %}
+{% spaceless %}
+
+    {% set type = 'div' %}
+    {% if options.type is defined and options.type == 'link' %}
+        {% set type = 'a' %}
+    {% endif %}
+
+    <{{ type }}{{
+        attributes(options
+            |exclude('action description image image_alt title type')
+            |defaults({
+                'class': 'media'
+            })
+        )
+    }}>
+    {% if options.image is defined and options.image is not empty %}
+        <img src="{{ options.image }}" alt="{{ options.image_alt|default }}" class="media__image" />
+    {% endif %}
+        <div class="media__body">
+        {% if options.action is defined and options.action is not empty %}
+            <span class="pull-right">
+                {{ options.action|raw }}
+            </span>
+        {% endif %}
+            <p>{{ options.title|raw }}</p>
+        {% if options.description is defined and options.description is not empty %}
+            <span class="small-type muted">{{ options.description|raw }}</span>
+        {% endif %}
+        </div>
+    </{{ type }}>
+
+{% endspaceless %}
+{% endmacro %}
+
+
+{# -----------------------------------------------------------------------------
+
 # Metadata
 
 Provides a simple way to mark up key/value information provided by a Twig hash
@@ -1046,7 +1188,7 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
     }}>
         <div class="panel__title">
             {{ html.icon(options.icon|default) }}
-            {{ options.title }}
+            {{ options.title|raw }}
         </div>
         <div class="panel__body">
             {{- options.body|raw -}}
@@ -1155,6 +1297,16 @@ data-*    | string | Data attributes, eg: `'data-foo': 'bar'`
     {% import _self as html %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
+    {% if options.tooltip is not defined or options.tooltip != false %}
+    {%
+        set options = options|default({})|merge({
+            'data-placement': options.placement|default('right'),
+            'data-toggle': 'tooltips',
+            'data-title': options.tooltip|default('Remove this item')
+        })
+    %}
+    {% endif %}
+
     {{
         html.button(options
             |exclude('target placement')
@@ -1163,9 +1315,6 @@ data-*    | string | Data attributes, eg: `'data-foo': 'bar'`
                 'type': options.type|default('button'),
                 'data-action': 'remove',
                 'data-action-target': options.target|default,
-                'data-placement': options.placement|default('right'),
-                'data-toggle': 'tooltips',
-                'data-title': options.tooltip|default('Remove this item'),
                 'label': html.icon('remove-sign')
             })
         )

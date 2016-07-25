@@ -2,10 +2,11 @@
 {% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
 {% import '@pulsar/pulsar/v2/helpers/flash.html.twig' as flash %}
 {% import '@pulsar/pulsar/v2/helpers/nav.html.twig' as nav %}
-
 {% set cssPath  = base_path ~ 'css/' %}
+{% set imgPath  = base_path ~ 'images/' %}
 {% set jsPath   = base_path ~ 'js/' %}
 {% set libsPath = base_path ~ 'libs/' %}
+{# set themeFile = cssPath ~ 'themes/slate.css' #}
 <!DOCTYPE html>
 <!--[if IE 7]>         <html class="no-js ie7 lt-ie10 lt-ie8"><![endif]-->
 <!--[if IE 8]>         <html class="no-js ie8 lt-ie10 lt-ie9"><![endif]-->
@@ -37,6 +38,10 @@
     <link rel="stylesheet" type="text/css" href="{{ libsPath ~ 'font-awesome/css/font-awesome-ie7.min.css' }}" />
     <![endif]-->
 
+{% if themeFile is defined %}
+    <link rel="stylesheet" type="text/css" href="{{ themeFile }}" />
+{% endif %}
+
     <!-- <link rel="stylesheet" href="http://basehold.it/12"> -->
 
     <script
@@ -50,7 +55,7 @@
     <script src="{{ base_path ~ 'js/main.js' }}" type="text/javascript"></script>
     {% block pageStyle %}{% endblock %}
 </head>
-<body class="language-html" id="top">
+<body class="language-html theme-slate" id="top">
 
 {% block body %}
     <div role="main" class="container" id="top">
@@ -61,7 +66,7 @@
 
             <div class="toolbar">
 
-                <a href="#" class="mobile-menu-button">Menu</a>
+                <a href="#" class="mobile-menu-button t-mobile-menu-button">Menu</a>
 
                 <div class="nav-user">
                 {% block user_menu %}
@@ -90,6 +95,7 @@
                 </div>
 
                 {% block notifications %}{% endblock %}
+                {% include '@pulsar/pulsar/components/nav_help.html.twig' %}
 
             </div>
 
@@ -109,7 +115,7 @@
                 </div>
             </div>
 
-            <div class="tab-help-container"><div class="tab-help"></div></div>
+            <div class="tab-help-container t-tab-help-container"><div class="tab-help"></div></div>
         </div>
     </div>
 

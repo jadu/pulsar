@@ -29,7 +29,7 @@
 }
 
 .muted {
-  color: color(gray);
+  color: color(gray, light);
 }
 
 .centered {
@@ -127,4 +127,14 @@ div.no-results {
     border-top: 1px solid color(border);
     display: block;
     margin: 10px 0;
+}
+
+.u-no-wrap,
+%u-no-wrap {
+    white-space: nowrap !important;
+}
+
+.u-word-break,
+%u-word-break {
+    word-break: break-all !important;
 }

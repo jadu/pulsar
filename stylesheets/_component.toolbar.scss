@@ -1,3 +1,5 @@
+@import 'component.labels';
+
 .toolbar {
     display: block;
     float: left;
@@ -77,3 +79,69 @@
         line-height: 42px;
     }
 }
+
+.toolbar-icon,
+%toolbar-icon {
+    float: right;
+    font-size: 24px;
+    line-height: 42px; // maintain alignment in toolbar
+    margin-left: $gutter-width;
+    padding: 4px 0;
+    position: relative; // stop is-new indicator wandering off when parents switch to static position
+    text-decoration: none;
+
+    @include respond-min($screen-phone) {
+        padding: 0;
+    }
+
+    &,
+    &:link,
+    &:visited {
+        color: color(text, light);
+    }
+
+    &:hover,
+    & a:hover {
+        color: color(text);
+    }
+
+    &.is-active {
+        color: color(black);
+    }
+}
+
+.toolbar-help-link {
+    @extend %label;
+
+    border-radius: 15px;
+    color: color(text);
+    font-size: 14px;
+    font-weight: normal;
+    padding: 5px 8px;
+    position: relative;
+    top: -4px;
+    text-decoration: none;
+}
+
+.toolbar-help {
+    display: none;
+
+    @include respond-min($screen-tablet) {
+        display: block;
+    }
+
+    .dropdown__menu {
+        min-width: 180px;
+        padding: 0;
+
+        .media {
+            line-height: 24px;
+            padding: 10px;
+
+            &:hover {
+                background-color: color(background, light);
+            }
+        }
+    }
+}
+

@@ -1,0 +1,90 @@
+{% extends '@pulsar/pulsar/layouts/base.html.twig' %}
+
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{% import '@pulsar/pulsar/v2/helpers/tabs.html.twig' as tabs %}
+{% import '@pulsar/pulsar/v2/helpers/flash.html.twig' as flash %}
+
+{% block title %}{{ parent() }}{% endblock %}
+
+{% set heading = 'Tables' %}
+
+{% set tab_buttongroup %}{% include 'lexicon/tables/basic.html.twig' %}{% endset %}
+{% set tab_datatable %}{% include 'lexicon/tables/datatable.html.twig' %}{% endset %}
+{% set tab_datagrid %}{% include 'lexicon/tables/datagrid.html.twig' %}{% endset %}
+{% set tab_formtable %}{% include 'lexicon/tables/form-tables.html.twig' %}{% endset %}
+
+{%
+    set nav_data = {
+        "1": {
+            "label": "Lexicon",
+            "href": '#lexicon',
+            "icon": "info-sign",
+            "items": {
+                "1.1": {
+                    "1.1.1": {
+                        "label": "Components",
+                        "href": "/app/app.php/lexicon"
+                    },
+                    "1.1.2": {
+                        "label": "Modules",
+                        "href": "/app/app.php/lexicon/modules.html.twig",
+                        "class": "is-active"
+                    },
+                    "1.1.3": {
+                        "label": "Patterns",
+                        "href": "/app/app.php/lexicon/patterns.html.twig"
+                    }
+                }
+            }
+        },
+        "2": {
+            "label": "Forms",
+            "href": "/app/app.php/lexicon/forms.html.twig",
+            "icon": "check"
+        },
+        "3": {
+            "label": "Tables",
+            "class": "is-active",
+            "href": "/app/app.php/lexicon/tables.html.twig",
+            "icon": "table"
+        }
+    }
+%}
+
+{%
+    set tabs_content = [
+        {
+          "id"    : "basic",
+          "label" : "Basic Table",
+          "src"   : tab_buttongroup,
+          "active": true
+        },
+        {
+          "id"    : "datatable",
+          "label" : "DataTable",
+          "src"   : tab_datatable
+        },
+        {
+          "id"    : "datagrid",
+          "label" : "Datagrid " ~ html.label({'label': 'retired'}),
+          "src"   : tab_datagrid
+        },
+        {
+          "id"    : "formtables",
+          "label" : "Form Tables",
+          "src"   : tab_formtable
+        }
+    ]
+%}
+
+{% block tabs_list %}
+    {{ tabs.list(tabs_content) }}
+{% endblock %}
+
+{% block tabs_content %}
+    {{ tabs.content(tabs_content) }}
+{% endblock %}
+
+{% block javascript %}
+{% endblock %}

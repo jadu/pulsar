@@ -1,0 +1,200 @@
+{% extends '@pulsar/pulsar/components/tab.html.twig' %}
+
+{% block tab_content %}
+    <div class="form__group">
+        <label class="control__label">Basic table</label>
+        <div class="controls">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Label</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>my_label</td>
+                        <td>my_value</td>
+                    </tr>
+                    <tr>
+                        <td>my_label</td>
+                        <td>my_value</td>
+                    </tr>
+                    <tr>
+                        <td>my_label</td>
+                        <td>my_value</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="form__group">
+        <label class="control__label">Basic table (full)</label>
+        <div class="controls">
+            <table class="table table--full">
+                <thead>
+                    <tr>
+                        <th>Label</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>my_label</td>
+                        <td>my_value</td>
+                    </tr>
+                    <tr>
+                        <td>my_label</td>
+                        <td>my_value</td>
+                    </tr>
+                    <tr>
+                        <td>my_label</td>
+                        <td>my_value</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="form__group">
+        <label class="control__label">DataTable</label>
+        <div class="controls">
+            <table class="table datatable table--full">
+                <thead>
+                    <tr>
+                        <th class="table-responsive"></th>
+                        <th class="table-selection"></th>
+                        <th>Label</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="table-responsive">
+                            {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                        </td>
+                        <td class="table-selection">
+                            {{ html.icon('unchecked', { 'class': 'table-row-select js-select' }) }}
+                        </td>
+                        <td>my_label</td>
+                        <td>my_value</td>
+                    </tr>
+                    <tr>
+                        <td class="table-responsive">
+                            {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                        </td>
+                        <td class="table-selection">
+                            {{ html.icon('unchecked', { 'class': 'table-row-select js-select' }) }}
+                        </td>
+                        <td>my_label</td>
+                        <td>my_value</td>
+                    </tr>
+                    <tr>
+                        <td class="table-responsive">
+                            {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                        </td>
+                        <td class="table-selection">
+                            {{ html.icon('unchecked', { 'class': 'table-row-select js-select' }) }}
+                        </td>
+                        <td>my_label</td>
+                        <td>my_value</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="form__group">
+        <label class="control__label">Repeatable</label>
+        <div class="controls">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Default</th>
+                        <th>Label</th>
+                        <th>Value</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="shrink-to-fit centered">{{ form.radio({ 'bare': true, 'name': 'foo' }) }}</td>
+                        <td>my_label</td>
+                        <td>my_value</td>
+                        <td class="centered">
+                            {{ html.edit_button({ 'placement': 'left' }) }}
+                            {{ html.remove_button({ 'placement': 'right' }) }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="shrink-to-fit centered">{{ form.radio({ 'bare': true, 'name': 'foo' }) }}</td>
+                        <td>my_label</td>
+                        <td>my_value</td>
+                        <td class="centered">
+                            {{ html.edit_button({ 'placement': 'left' }) }}
+                            {{ html.remove_button({ 'placement': 'right' }) }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="shrink-to-fit centered">{{ form.radio({ 'bare': true, 'name': 'foo' }) }}</td>
+                        <td>my_label</td>
+                        <td>my_value</td>
+                        <td class="centered">
+                            {{ html.edit_button({ 'placement': 'left' }) }}
+                            {{ html.remove_button({ 'placement': 'right' }) }}
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot class="table__form">
+                    <tr>
+                        <td colspan="99">
+
+                            {{
+                                form.fieldset_start({'legend': 'New choice'})
+                            }}
+
+                            {{
+                                form.text({
+                                    'label': 'Label',
+                                    'help': 'The name of the choice, displayed to the user'
+                                })
+                            }}
+
+                            {{
+                                form.text({
+                                    'label': 'Value',
+                                    'help': 'The data to save when this is selected'
+                                })
+                            }}
+
+                            {{
+                                form.fieldset_end()
+                            }}
+
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+            {{
+                form.submit({
+                    'class': 'btn--primary',
+                    'label': 'Save'
+                })
+            }}
+
+            {{
+                html.link({
+                    'class': 'btn btn--naked',
+                    'label': 'Cancel'
+                })
+            }}
+        </div>
+    </div>
+{% endblock tab_content %}
+{% block tab_sidebar %}
+    <h2>Tables in forms</h2>
+    <ul>
+        <li>All table variants work within the forms context</li>
+    </ul>
+{% endblock tab_sidebar %}

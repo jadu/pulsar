@@ -1,74 +1,85 @@
-.label {
-  @include inline-block;
-  @include content-box;
-  @include label-variant(color(base), color(base, alt));
-  border-radius: $border-radius;
-  font-size: 75%;
-  font-weight: 500;
-  line-height: 1;
-  padding: .25em .6em;
-  text-align: center;
-  text-transform: lowercase;
-  vertical-align: baseline;
-  white-space: nowrap;
+.label,
+%label {
+    @include inline-block;
+    @include content-box;
+    @include label-variant(color(base), color(base, alt));
+    border-radius: $border-radius;
+    font-size: 75%;
+    font-weight: 500;
+    line-height: 1;
+    padding: .25em .6em;
+    text-align: center;
+    text-transform: lowercase;
+    vertical-align: baseline;
+    white-space: nowrap;
 
-  // Add hover effects, but only for links
-  &[href] {
-    &:hover,
-    &:focus {
-      text-decoration: none;
-      cursor: pointer;
-      background-color: color(gray, lighter);
-    }
-  }
-
-  // Addable/Removable labels
-  [data-filter-action="add"],
-  [data-filter-action="remove"] {
-    border-left: 1px dotted;
-    border-color: white;
-    color: inherit;
-    margin-left: 5px;
-    text-decoration: none;
-
-    i {
-        margin-left: 7px;
+    // Add hover effects, but only for links
+    &[href] {
+        &:hover,
+        &:focus {
+            text-decoration: none;
+            cursor: pointer;
+            background-color: color(gray, lighter);
+        }
     }
 
-    &:hover {
-      margin-top: 1px;
+    // Removable labels
+    .btn.remove-button,
+    .btn.remove-button [class^="icon-"],
+    .btn.remove-button [class*=" icon-"] {
+        &,
+        &:hover {
+            box-shadow: none;
+            color: inherit;
+            font-size: 1em;
+            line-height: inherit;
+            margin-left: 2px;
+            text-decoration: none;
+            top: 0;
+        }
     }
-  }
+
+    // Override default button styling
+    .btn.remove-button:active {
+        background-color: inherit;
+    }
 }
 
 // Colors
 // Contextual variations (linked labels get darker on :hover)
 .label--primary {
-  @include label-variant(color(primary), color(primary, alt));
+    @include label-variant(color(primary), color(primary, alt));
 }
 
 .label--success {
-  @include label-variant(color(success), color(success, alt));
+    @include label-variant(color(success), color(success, alt));
 }
 
 .label--warning {
-  @include label-variant(color(warning), color(warning, alt));
+    @include label-variant(color(warning), color(warning, alt));
 }
 
 .label--danger {
-  @include label-variant(color(danger), color(danger, alt));
-  $badge-primary-bg: darken($badge-primary-bg, 10%);
+    @include label-variant(color(danger), color(danger, alt));
+    $badge-primary-bg: darken($badge-primary-bg, 10%);
 }
 
 .label--info {
-  @include label-variant(color(info), color(info, alt));
+    @include label-variant(color(info), color(info, alt));
 }
 
 .label--inverse {
-  @include label-variant(color(inverse), color(inverse, alt));
+    @include label-variant(color(inverse), color(inverse, alt));
 
-  i {
-    color: color(white);
-  }
+    i {
+        color: color(white);
+    }
 }
 
+.label--large {
+    line-height: 2;
+
+    .remove-button {
+        line-height: inherit;
+    }
+}

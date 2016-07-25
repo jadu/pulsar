@@ -1,115 +1,181 @@
-table {
-    background-color: $table-bg;
-    border-collapse: separate;
-}
-
-th {
-    text-align: left;
-}
-
-// Columns
-table {
-    th {
-        background-color: darken($white, 5%);
-        font-family: $font-family-regular;
-        font-weight: normal;
-    }
-}
-
 .table {
-    margin-top: -6px;
-    margin-bottom: $line-height-base + 5;
+    margin-bottom: 24px;
 
-    width: 97.7%;
-
-    // Cells
-    thead,
-    tbody,
-    tfoot {
-        > tr {
-            > th,
-            > td {
-                padding: 0 5px;
-                line-height: $line-height-base * 2 - 1; // account for border
-                vertical-align: top;
-                border-top: 1px solid $table-border-color;
-            }
-        }
-    }
-    // Bottom align for column headings
-    thead > tr > th {
-        vertical-align: bottom;
-    }
-    // Remove top border from thead by default
-    caption + thead,
-    colgroup + thead,
-    thead:first-child {
-        tr:first-child {
-            th,
-            td {
-                border-top: 1px solid transparent;
-            }
-        }
-    }
-    // Account for multiple tbody instances
-    tbody + tbody {
-        border-top: 2px solid $table-border-color;
+    [href],
+    .continuum-cms & [href]:link {
+        border-bottom-color: color(link, dark);
+        color: color(link, dark);
+        text-decoration: none;
     }
 
-}
-
-.table--bordered {
-    border: 1px solid $table-border-color;
-
-    > thead,
-    > tbody,
-    > tfoot {
-        > tr {
-            > th,
-            > td {
-                border: 1px solid $table-border-color;
-            }
-        }
+    tbody > tr:hover > td {
+        background-color: color(background, light);
     }
-}
 
-.table--striped {
-    > tbody {
-        > tr:nth-child(odd) {
-            > td,
-            > th {
-                background-color: $table-bg-accent;
-            }
-        }
-    }
-}
-
-
-.row--align-top {
-    th,
-    td {
+    tr {
         vertical-align: top;
     }
-}
 
-.row--align-middle {
+    tr.selected td,
+    tr.is-selected td {
+        background-color: color(background, selected);
+
+        [href],
+        .continuum-cms & [href]:link {
+            border-bottom-color: color(link, dark);
+            color: color(link, dark);
+        }
+    }
+
+    tr.is-disabled td {
+        &,
+        & > * {
+            color: color(text, disabled);
+        }
+    }
+
+    .no-results {
+      padding: 2em 0;
+      text-align: center;
+    }
+
+    th {
+        text-align: left;
+    }
+
     th,
     td {
-        vertical-align: middle;
+        border-bottom: 1px solid color(border);
+        padding: 11px 10px 12px;
+
+        &.centered {
+            @include respond-min($screen-tablet) {
+                text-align: center;
+            }
+        }
+
+        &.shrink-to-fit {
+            @include respond-min($screen-tablet) {
+                width: 1px;
+            }
+        }
+
+        &.no-wrap,
+        &.u-no-wrap {
+            @extend %u-no-wrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+
+    th {
+        border-top: 1px solid color(border);
+        border-bottom: 2px solid color(border);
+        font-family: $font-family-regular;
+        font-weight: normal;
+        vertical-align: bottom;
+
+        @include respond-min($screen-desktop) {
+            border-top: 0;
+        }
+    }
+
+    td.table__actions {
+        @include respond-min($screen-desktop) {
+            border-bottom: 0;
+        }
+    }
+
+    td.table-row__actions {
+        text-align: right;
+
+        .btn {
+            box-shadow: none;
+            top: 0;
+            height: 24px;
+            width: 24px;
+        }
     }
 }
 
-.row--no-results {
+// Added by javascript, allows the table to scroll horizontally at narrow
+// viewports
+.table-container {
+    margin-bottom: 24px;
+    overflow-x: auto;
+
+    .table {
+        margin-bottom: 0;
+    }
+}
+
+.table-action {
+    display: inline-block;
+    margin-right: 5px;
+
+    &:last {
+        margin-right: 0;
+    }
+}
+
+.table--full {
+    max-width: 100%;
+    width: 100%;
+}
+
+.table--fixed {
+    table-layout: fixed;
+
     td {
-        background-color: #fafafa;
-        padding: 24px 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+td.table__form {
+    background-color: color(background);
+    padding: 10px 10px 24px 20px;
+
+    form {
+        background-color: transparent;
     }
 
-    p {
-        margin: 0;
+    fieldset {
+        margin-top: 6px;
     }
 
-    .loading {
-        margin: 0 auto;
+    .legend {
+        border-bottom: 1px solid color(border);
+        line-height: 25px;
+        margin-bottom: 24px;
     }
+
+    .form__group:last-of-type {
+        margin-bottom: 0;
+    }
+
+    .edit-button,
+    .remove-button {
+        padding: 5px;
+    }
+
+    .close {
+        width: 25px;
+        margin-left: 10px;
+    }
+}
+
+.table-container + .pagination {
+    margin-top: -24px; // negate default bottom border of .table
+}
+
+// Map depracated table styles to this one -------------------------------------
+
+.table--datagrid {
+    @extend .table;
+    width: 100%;
+}
+
+.datagrid--fixed {
+    @extend .table--fixed;
 }

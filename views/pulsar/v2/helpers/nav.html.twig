@@ -4,7 +4,7 @@
     {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 
 <nav class="nav-main"><!--
- --><div class="nav-primary"><!--
+ --><div class="nav-primary t-nav-primary"><!--
 
      --><a href="{{ options.brand_link|default('#') }}" class="jadu-branding">
             <span class="jadu-logomark"></span><!--
@@ -21,7 +21,7 @@
         </ul>
      </div><!--
 
- --><div class="nav-secondary">
+ --><div class="nav-secondary t-nav-secondary">
 
         <a href="#close" class="nav-close" data-nav-action="close">{{ html.icon('remove') }}</a>
 
@@ -30,7 +30,7 @@
                 {% if options.items is defined and options.items is iterable %}
 
         <div class="nav-list" data-nav="{{ options.href }}">
-            <span class="nav-item nav-item--header">{{ options.label|raw }}</span>
+            <span class="nav-item nav-item--header t-nav-header">{{ options.label|raw }}</span>
             <ul class="nav-items">
                 {% for menu_blocks in options.items %}
                     {% for item_options in menu_blocks %}
@@ -38,7 +38,7 @@
                     {% endfor %}
                     {% if not loop.last %}
                         <li class="nav-item nav-item__divider">
-                            <hr class="nav-divider" />
+                            <hr class="nav-divider t-nav-divider" />
                         </li>
                     {% endif %}
                 {% endfor %}
@@ -65,13 +65,13 @@
         {{
             attributes(options
                 |exclude('href data-toggle')
-                |defaults({ 'class': 'nav-item' })
+                |defaults({ 'class': 'nav-item t-nav-item' })
             )
         }}
     >
-        <a {{ attributes(options|only('href data-toggle')) }} class="nav-link">
+        <a {{ attributes(options|only('href data-toggle')) }} class="nav-link t-nav-link">
             {% if options.icon is defined and options.icon is not empty %}
-                {{ html.icon(options.icon, { 'class': 'nav-link__icon' }) }}
+                {{ html.icon(options.icon, { 'class': 'nav-link__icon t-nav-icon' }) }}
             {% endif %}
             {{ options.label|raw }}
         </a>
@@ -115,4 +115,35 @@
         {% endif %}
     {%- endfor -%}
     </nav>
+{%- endmacro -%}
+
+
+{%- macro help(options) -%}
+    {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+    {% if options.items is defined and options.items is iterable %}
+    <div class="toolbar-help toolbar-icon">
+        <div class="dropdown">
+            {{
+                html.link({
+                    'class': 'toolbar-help-link',
+                    'href': '#',
+                    'icon': 'question-sign',
+                    'label': options.label|default('user guides'),
+                    'data-toggle': 'dropdown'
+                })
+            }}
+
+            <div class="dropdown__menu">
+            {% for item in options.items %}
+                {{
+                    html.media(item|merge({
+                        'target': '_blank',
+                        'type': 'link'
+                    }))
+                }}
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
 {%- endmacro -%}
