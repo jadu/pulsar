@@ -1,0 +1,68 @@
+{% extends '@pulsar/pulsar/layouts/base.html.twig' %}
+{% import '@pulsar/pulsar/v2/helpers/tabs.html.twig' as tabs %}
+
+{% set bodyClass = 'ui-report' %}
+
+{%
+    set nav_data = {
+        "1": {
+            "label": "Lexicon",
+            "class": "is-active",
+            "href": '#lexicon',
+            "icon": "info-sign",
+            "items": {
+                "1.1": {
+                    "1.1.1": {
+                        "label": "Components",
+                        "href": "/app/app.php/lexicon",
+                        "class": "is-active"
+                    },
+                    "1.1.2": {
+                        "label": "Modules",
+                        "href": "/app/app.php/lexicon/modules.html.twig"
+                    },
+                    "1.1.3": {
+                        "label": "Patterns",
+                        "href": "/app/app.php/lexicon/patterns.html.twig"
+                    }
+                }
+            }
+        },
+        "2": {
+            "label": "Forms",
+            "class": "",
+            "href": "/app/app.php/lexicon/forms.html.twig",
+            "icon": "check"
+        },
+        "3": {
+            "label": "Tables",
+            "class": "",
+            "href": "/app/app.php/lexicon/tables.html.twig",
+            "icon": "table"
+        }
+    }
+%}
+
+{% set tab_report %}
+    {% include 'playground/reporting/report.html.twig' %}
+{% endset %}
+
+{%
+    set tabs_content = [
+        {
+          "id"    : "report",
+          "label" : "My Report",
+          "src"   : tab_report,
+          "active": true
+        }
+    ]
+%}
+
+{% block tabs_list %}
+    {{ tabs.list(tabs_content) }}
+{% endblock %}
+
+{% block tabs_content %}
+    {{ tabs.content(tabs_content) }}
+{% endblock %}
+

@@ -1,0 +1,114 @@
+{% extends '@pulsar/pulsar/components/tab.html.twig' %}
+
+{%- block actions_left -%}
+    {{
+        html.actions_menu({
+            'items': [
+                [
+                    {
+                        'label': 'Edit report settings',
+                        'href': '#',
+                        'icon': 'pencil'
+                    },
+                    {
+                        'label': 'New clone of this report',
+                        'href': '#',
+                        'icon': 'copy'
+                    }
+                ],
+                [
+                    {
+                        'label': 'Add schedule',
+                        'href': '#',
+                        'icon': 'time'
+                    }
+                ],
+                [
+                    {
+                        'label': 'Export as CSV',
+                        'href': '#',
+                        'icon': 'file'
+                    },
+                    {
+                        'label': 'Export as PDF',
+                        'href': '#',
+                        'icon': 'file'
+                    },
+                    {
+                        'label': 'Print',
+                        'href': '#',
+                        'icon': 'print'
+                    }
+                ],
+                [
+                    {
+                        'label': 'Delete',
+                        'href': '#',
+                        'icon': 'remove'
+                    }
+                ],
+            ]
+        })
+    }}
+    {{
+        html.button({
+            'label': html.icon('time') ~ ' 0'
+        })
+    }}
+{%- endblock -%}
+
+{%- block actions_right -%}
+    {{
+        html.button({
+            'label': 'Export',
+            'class': 'btn--primary'
+        })
+    }}
+{%- endblock -%}
+
+{% block tab_content %}
+
+    <div class="report">
+        <div class="report__settings">
+            <span class="report__timeframe">Created within last 30 days</span>
+            {{
+                html.button_dropdown({
+                    'label': html.icon('calendar') ~ ' Mon 1st July 2016 &mdash; Fri 30th July, 2016'
+                })
+            }}
+        </div>
+
+        <h1 class="report__title">All content owned by Paul Stanton</h1>
+        <span class="report__info">56 items found &mdash; Last run 01/08/2016 12:34pm by Paul Stanton</span>
+
+        <div class="report__data">
+            <table class="table datatable table--full">
+                <thead>
+                    <tr>
+                        <th class="table-responsive"></th>
+                        <th class="table-selection"></th>
+                        <th><a href="#">Content title</a></th>
+                        <th><a href="#">Type</a></th>
+                        <th><a href="#">Created</a></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in 0..50 %}
+                    <tr>
+                        <td class="table-responsive">
+                            {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                        </td>
+                        <td class="table-selection">
+                            {{ html.icon('unchecked', { 'class': 'table-row-select js-select' }) }}
+                        </td>
+                        <td><a href="#">My awesome document title</a></td>
+                        <td><a href="#">document</a></td>
+                        <td>01/02/2016</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

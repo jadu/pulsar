@@ -1,0 +1,80 @@
+.ui-report {
+
+    .inner-wrapper {
+        background-color: color(gray, off-white);
+    }
+
+    .tabs__content {
+        padding: 0;
+    }
+
+    .breadcrumb,
+    .main-title {
+        background-color: white;
+        padding-left: $gutter-width;
+        padding-right: $gutter-width;
+    }
+
+    .breadcrumb {
+        margin-bottom: 0;
+        padding-bottom: 11px;
+    }
+
+    .main-title {
+        margin-bottom: 0;
+        padding-bottom: 13px;
+    }
+
+    .nav-inline {
+        background-color: white;
+    }
+
+    .nav-inline__list {
+        padding-left: $gutter-width;
+    }
+
+    .tab__pane {
+        margin-top: 0;
+        padding: 12px $gutter-width 0;
+    }
+
+}
+
+.report {
+    background-color: color(white);
+    padding: 12px $gutter-width;
+}
+
+.report__title {
+    clear: right;
+    margin-bottom: 2px;
+    width: 100%;
+
+    @include respond-min($screen-desktop) {
+        clear: none;
+        width: auto;
+    }
+}
+
+.report__info {
+    @extend %muted;
+}
+
+.report__settings {
+    float: right;
+    margin-bottom: 24px;
+
+    @include respond-min($screen-desktop) {
+        margin-bottom: 0;
+    }
+}
+
+.report__timeframe {
+    display: block;
+    margin-bottom: 7px;
+    text-align: right;
+}
+
+.report__data {
+    margin-top: 48px;
+}

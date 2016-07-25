@@ -62,11 +62,11 @@
     <link rel="stylesheet" type="text/css" href="{{ themeFile }}" />
 {% endif %}
 
-    <!-- <link rel="stylesheet" href="http://basehold.it/12"> -->
+    <!-- <link rel="stylesheet" href="http://basehold.it/24"> -->
 
     {% block pageStyle %}{% endblock %}
 </head>
-<body class="language-html theme-slate" id="top">
+<body class="language-html theme-slate {{ bodyClass|default }}" id="top">
 
 {% block body %}
     <div role="main" class="container" id="top">
