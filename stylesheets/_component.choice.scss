@@ -43,6 +43,34 @@
     }
 }
 
+.choice--bubbles > .controls {
+    .control__label {
+        background-color: color(gray, off-white);
+        border-radius: 200px;
+        cursor: pointer;
+        color: color(gray, light);
+        font-size: 12px;
+        height: 40px;
+        line-height: 40px;
+        margin-right: 10px;
+        min-width: 40px;
+        padding: 0 10px;
+        text-align: center;
+        user-select: none; // stop nasty blue text selection when clicking
+    }
+
+    .control__label.is-selected {
+        background-color: color(primary);
+        color: color(primary, alt);
+        font-family: $font-family-regular;
+    }
+
+    .form__control {
+        @extend %hide;
+    }
+}
+
+
 @include respond-min($screen-tablet) {
     @each $variant, $width in $inputs {
         .form-choice.form__group--#{$variant} > .controls > .control__label {
@@ -51,7 +79,8 @@
     }
 }
 
-.choice--block-inline {
+.choice--block-inline,
+.choice--bubbles-inline {
     .controls {
         display: flex;
         flex-wrap: wrap;
@@ -69,6 +98,7 @@
 
 .choice--block-hide-input {
     > .controls .form__control {
-        @extend .hide;
+        @extend %hide;
     }
 }
+

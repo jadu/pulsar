@@ -35,14 +35,14 @@
 	float: left;
 	font-size: $dropdown-font-size;
 	min-width: 160px;
-	padding: 5px 0;
 	margin: 0; // override default ul
+	padding: 5px 0;
 	list-style: none;
 	background-color: $dropdown-bg;
-	border: 1px solid $dropdown-fallback-border; // IE8 fallback
-	border: 1px solid $dropdown-border;
+	// border: 1px solid $dropdown-fallback-border; // IE8 fallback
+	// border: 1px solid $dropdown-border;
 	// border-radius: $border-radius;
-	box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+	box-shadow: 0 6px 12px rgba(0, 0, 0, .3);
 	background-clip: padding-box;
 
 	// Aligns the dropdown menu to right
@@ -299,3 +299,26 @@
 		background-color: darken(color(primary), 15%);
 	}
 }
+
+.dropdown--medium + .dropdown__menu {
+	min-width: 300px;
+}
+
+.dropdown__title {
+	border-bottom: 1px solid color(border);
+	line-height: 48px;
+	margin: -5px 0 0;
+	padding: 0 50px 0 20px;
+
+	> .btn {
+		position: absolute;
+		top: 8px;
+		right: 8px;
+	}
+}
+
+.dropdown__body {
+	padding: 20px;
+	text-align: center;
+}
+
