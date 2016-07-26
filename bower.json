@@ -31,7 +31,8 @@
     "susy": "~2.2.6",
     "svgeezy": "latest",
     "Vague.js": "0.0.4",
-    "vide": "~0.3.1"
+    "vide": "~0.3.1",
+    "chartist": "^0.9.8"
   },
   "devDependencies": {
     "livereload-js": "livereload/livereload-js",

@@ -42,7 +42,7 @@
 
 .report {
     background-color: color(white);
-    padding: 12px $gutter-width;
+    padding: $gutter-width;
 }
 
 .report__title {
@@ -73,6 +73,11 @@
     display: block;
     margin-bottom: 7px;
     text-align: right;
+}
+
+.report__chart {
+    margin-bottom: 24px;
+    height: 240px;
 }
 
 .report__data {

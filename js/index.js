@@ -19,6 +19,7 @@ var $                     = require('jquery'),
     matchMedia            = require('./polyfills/matchMedia'),
     matchMediaAddListener = require('./polyfills/matchMedia.addListener');
 
+	chartist  = require('../libs/chartist/dist/chartist.min'),
     clickover = require('../libs/bootstrapx-clickover/js/bootstrapx-clickover'),
     history   = require('../libs/history.js/scripts/bundled/html5/jquery.history'),
     jqueryui  = require('../libs/jquery-ui/jquery-ui.min'),

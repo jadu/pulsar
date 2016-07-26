@@ -17,6 +17,8 @@ $ie-version: 12 !default;
 // Third party plugins
 @import '../libs/normalize-css/normalize.css';
 @import '../libs/select2/dist/css/select2.css';
+@import 'charts/chartist.settings';
+@import '../libs/chartist/dist/scss/chartist';
 
 // Proxima Nova (requires license)
 $font-path: '../fonts/';

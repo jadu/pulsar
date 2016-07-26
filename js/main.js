@@ -63,6 +63,19 @@
 
         tinycon.setBubble(6);
 
+
+        new chartist.Line('.ct-chart', {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August'],
+            series: [
+                [6, 8, 12, 6, 9, 7, 8, 10]
+            ]
+            }, {
+                fullWidth: true,
+                chartPadding: {
+                    right: 40
+                }
+            }
+        );
     });
 
 }(jQuery));
