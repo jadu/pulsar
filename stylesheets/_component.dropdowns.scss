@@ -6,174 +6,173 @@
 // Dropdown arrow/caret
 // --------------------
 .caret {
-  @include inline-block;
-  width: 0;
-  height: 0;
-  margin-left: 2px;
-  vertical-align: middle;
-  border-top: 4px solid;
-  border-top-color: $dropdown-caret-color;
-  border-right: 4px solid transparent;
-  border-left: 4px solid transparent;
-  content: '';
+	@include inline-block;
+	width: 0;
+	height: 0;
+	margin-left: 2px;
+	vertical-align: middle;
+	border-top: 4px solid;
+	border-top-color: $dropdown-caret-color;
+	border-right: 4px solid transparent;
+	border-left: 4px solid transparent;
+	content: '';
 }
 
 // The dropdown wrapper (div)
 // --------------------------
 .dropdown {
-  position: relative;
+	position: relative;
 }
 
 // The dropdown menu (ul)
 // ----------------------
 .dropdown__menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: $zindex-dropdown;
-  display: none; // none by default, but block on "open" of the menu
-  float: left;
-  font-size: $dropdown-font-size;
-  min-width: 160px;
-  padding: 5px 0;
-  margin: 0; // override default ul
-  list-style: none;
-  background-color: $dropdown-bg;
-  border: 1px solid $dropdown-fallback-border; // IE8 fallback
-  border: 1px solid $dropdown-border;
-  // border-radius: $border-radius;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-  background-clip: padding-box;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	z-index: $zindex-dropdown;
+	display: none; // none by default, but block on "open" of the menu
+	float: left;
+	font-size: $dropdown-font-size;
+	min-width: 160px;
+	padding: 5px 0;
+	margin: 0; // override default ul
+	list-style: none;
+	background-color: $dropdown-bg;
+	border: 1px solid $dropdown-fallback-border; // IE8 fallback
+	border: 1px solid $dropdown-border;
+	// border-radius: $border-radius;
+	box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+	background-clip: padding-box;
 
-  // Aligns the dropdown menu to right
-  &.pull-right {
-    right: 0;
-    left: auto;
-  }
+	// Aligns the dropdown menu to right
+	&.pull-right {
+		right: 0;
+		left: auto;
+	}
 
-  // Dividers (basically an hr) within the dropdown
-  .divider {
-    display: block;
-    height: 1px;
-    margin: ($line-height-base / 4) 0;
-    min-width: 160px;
-    overflow: hidden;
-    background-color: $dropdown-divider-bg;
-  }
+	// Dividers (basically an hr) within the dropdown
+	.divider {
+		display: block;
+		height: 1px;
+		margin: ($line-height-base / 4) 0;
+		min-width: 160px;
+		overflow: hidden;
+		background-color: $dropdown-divider-bg;
+	}
 
-  > li {
-    min-width: 160px;
-  }
+	> li {
+		min-width: 160px;
+	}
 
-  // Links within the dropdown menu
-  > li > a {
-    display: block;
-    padding: 3px 15px 3px 10px;
-    clear: both;
-    font-weight: normal;
-    line-height: $line-height-base;
-    color: $dropdown-link-color;
-    white-space: nowrap; // prevent links from randomly breaking onto new lines
-    text-decoration: none;
+	// Links within the dropdown menu
+	> li > a {
+		display: block;
+		padding: 3px 15px 3px 10px;
+		clear: both;
+		font-weight: normal;
+		line-height: $line-height-base;
+		color: $dropdown-link-color;
+		white-space: nowrap; // prevent links from randomly breaking onto new lines
+		text-decoration: none;
 
-    [class^="icon-"],
-    [class*=" icon-"] {
-      display: inline-block; // required for icons to adhere to the following rules
-      margin: 0 5px 0 2px;
-      text-align: center;
-      width: 23px;
-    }
-  }
-
+		[class^="icon-"],
+		[class*=" icon-"] {
+			display: inline-block; // required for icons to adhere to the following rules
+			margin: 0 5px 0 2px;
+			text-align: center;
+			width: 23px;
+		}
+	}
 }
 
 // Hover/Focus state
 // -----------
 .dropdown__menu > li > a:not(.is-disabled) {
-  &:hover,
-  &:focus,
-  &.active {
-    text-decoration: none;
-    background-color: $dropdown-link-hover-bg;
-    color: $dropdown-link-hover-color;
-  }
+	&:hover,
+	&:focus,
+	&.active {
+		text-decoration: none;
+		background-color: $dropdown-link-hover-bg;
+		color: $dropdown-link-hover-color;
+	}
 }
 
 // Active state
 // ------------
 .dropdown__menu > .active > a {
-  &,
-  &:hover,
-  &:focus {
-    background-color: $dropdown-link-active-bg;
-    color: $dropdown-link-active-color;
-    text-decoration: none;
-    outline: 0;
-  }
+	&,
+	&:hover,
+	&:focus {
+		background-color: $dropdown-link-active-bg;
+		color: $dropdown-link-active-color;
+		text-decoration: none;
+		outline: 0;
+	}
 }
 
 // Disabled state
 // --------------
 // Gray out text and ensure the hover/focus state remains gray
 .dropdown__menu > .disabled > a {
-  &,
-  &:hover,
-  &:focus {
-    color: color(gray, light);
-  }
+	&,
+	&:hover,
+	&:focus {
+		color: color(gray, light);
+	}
 }
 // Nuke hover/focus effects
 .dropdown__menu > .disabled > a {
-  &:hover,
-  &:focus {
-    text-decoration: none;
-    background-color: transparent;
-    background-image: none; // Remove CSS gradient
-    // .reset-filter();
-    cursor: not-allowed;
-  }
+	&:hover,
+	&:focus {
+		text-decoration: none;
+		background-color: transparent;
+		background-image: none; // Remove CSS gradient
+		// .reset-filter();
+		cursor: not-allowed;
+	}
 }
 
 // Open state for the dropdown
 // ---------------------------
 .open {
-  // Show the menu
-  > .dropdown__menu {
-    display: block;
-  }
+	// Show the menu
+	> .dropdown__menu {
+	display: block;
+	}
 
-  // Remove the outline when :focus is triggered
-  > a {
-    outline: 0;
-  }
+	// Remove the outline when :focus is triggered
+	> a {
+	outline: 0;
+	}
 }
 
 // Dropdown section headers
 // ---------------------------
 .dropdown-header {
-  display: block;
-  padding: 3px 20px;
-  font-size: $font-size-small;
-  line-height: $line-height-base;
-  color: color(gray, light);
+	display: block;
+	padding: 3px 20px;
+	font-size: $font-size-small;
+	line-height: $line-height-base;
+	color: color(gray, light);
 }
 
 // Backdrop to catch body clicks on mobile, etc.
 // ---------------------------
 .dropdown-backdrop {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 0;
-  z-index: $zindex-dropdown - 10;
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 0;
+	z-index: $zindex-dropdown - 10;
 }
 
 // Right aligned dropdowns
 // ---------------------------
 .pull-right > .dropdown__menu {
-  right: 0;
-  left: auto;
+	right: 0;
+	left: auto;
 }
 
 // Allow for dropdowns to go bottom up (aka, dropup-menu)
@@ -182,121 +181,121 @@
 // TODO: abstract this so that the navbar fixed styles are not placed here?
 .dropup,
 .navbar-fixed-bottom .dropdown {
-  // Reverse the caret
-  .caret {
-    border-top: 0;
-    border-bottom: 4px solid;
-    border-bottom-color: $dropdown-caret-color;
-    content: '';
-  }
-  // Different positioning for bottom up menu
-  .dropdown__menu {
-    top: auto;
-    bottom: 100%;
-    margin-bottom: 1px;
-  }
+	// Reverse the caret
+	.caret {
+		border-top: 0;
+		border-bottom: 4px solid;
+		border-bottom-color: $dropdown-caret-color;
+		content: '';
+	}
+	// Different positioning for bottom up menu
+	.dropdown__menu {
+		top: auto;
+		bottom: 100%;
+		margin-bottom: 1px;
+	}
 }
 
 .dropdown__menu > li > a {
-  &:hover > .badge {
-    @extend .badge--primary;
-    background-color: darken($dropdown-link-active-bg, 20%);
-  }
+	&:hover > .badge {
+		@extend .badge--primary;
+		background-color: darken($dropdown-link-active-bg, 20%);
+	}
 
-  &.link--primary {
-    background-color: color(primary);
-    color: color(white);
+	&.link--primary {
+		background-color: color(primary);
+		color: color(white);
 
-    &:hover {
-      background-color: darken(color(primary), 5%);
-    }
+		&:hover {
+			background-color: darken(color(primary), 5%);
+		}
 
-    > .badge {
-      @extend .badge--primary;
-      background-color: darken($badge-primary-bg, 20%);
-    }
-  }
+		> .badge {
+			@extend .badge--primary;
+			background-color: darken($badge-primary-bg, 20%);
+		}
+	}
 
-  &.link--success {
-    background-color: color(success);
-    color: color(white);
+	&.link--success {
+		background-color: color(success);
+		color: color(white);
 
-    &:hover {
-      background-color: darken(color(success), 5%);
-    }
+		&:hover {
+			background-color: darken(color(success), 5%);
+		}
 
-    > .badge {
-      @extend .badge--success;
-      background-color: darken($badge-success-bg, 20%);
-    }
-  }
+		> .badge {
+			@extend .badge--success;
+			background-color: darken($badge-success-bg, 20%);
+		}
+	}
 
-  &.link--warning {
-    background-color: color(warning);
-    color: color(white);
+	&.link--warning {
+		background-color: color(warning);
+		color: color(white);
 
-    &:hover {
-      background-color: darken(color(warning), 5%);
-    }
+		&:hover {
+			background-color: darken(color(warning), 5%);
+		}
 
-    > .badge {
-      @extend .badge--warning;
-      background-color: darken($badge-warning-bg, 20%);
-    }
-  }
+		> .badge {
+			@extend .badge--warning;
+			background-color: darken($badge-warning-bg, 20%);
+		}
+	}
 
-  &.link--info {
-    background-color: color(info);
-    color: color(white);
+	&.link--info {
+		background-color: color(info);
+		color: color(white);
 
-    &:hover {
-      background-color: darken(color(info), 5%);
-    }
+		&:hover {
+			background-color: darken(color(info), 5%);
+		}
 
-    > .badge {
-      @extend .badge--info;
-      background-color: darken($badge-info-bg, 20%);
-    }
-  }
+		> .badge {
+			@extend .badge--info;
+			background-color: darken($badge-info-bg, 20%);
+		}
+	}
 
-  &.link--danger {
-    background-color: color(danger);
-    color: color(white);
+	&.link--danger {
+		background-color: color(danger);
+		color: color(white);
 
-    &:hover {
-      background-color: darken(color(danger), 5%);
-    }
+		&:hover {
+			background-color: darken(color(danger), 5%);
+		}
 
-    > .badge {
-      @extend .badge--danger;
-      background-color: darken($badge-danger-bg, 20%);
-    }
-  }
+		> .badge {
+			@extend .badge--danger;
+			background-color: darken($badge-danger-bg, 20%);
+		}
+	}
 
-  &.link--inverse {
-    background-color: color(inverse);
-    color: color(white);
+	&.link--inverse {
+		background-color: color(inverse);
+		color: color(white);
 
-    &:hover {
-      background-color: darken(color(inverse), 5%);
-    }
+		&:hover {
+			background-color: darken(color(inverse), 5%);
+		}
 
-    > .badge {
-      @extend .badge--inverse;
-      background-color: darken($badge-inverse-bg, 20%);
-    }
-  }
+		> .badge {
+			@extend .badge--inverse;
+			background-color: darken($badge-inverse-bg, 20%);
+		}
+	}
 }
 
 .dropdown__menu .popover {
-  min-width: 300px;
+	min-width: 300px;
 }
 
 .dropdown__menu > li > a > .progress {
-  height: 3px;
-  margin-bottom: 0;
+	height: 3px;
+	margin-bottom: 0;
 
-  .progress-bar {
-    background-color: darken(color(primary), 15%);
-  }
+	.progress-bar {
+		background-color: darken(color(primary), 15%);
+	}
 }
