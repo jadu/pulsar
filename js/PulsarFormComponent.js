@@ -34,7 +34,7 @@ PulsarFormComponent.prototype.init = function () {
     });
 
     // Block styled checkboxes and radios
-    var choiceBlock = component.$html.find(".choice--block");
+    var choiceBlock = component.$html.find(".choice--block, .choice--bubbles");
 
     // set up choice block states on load
     $.each(choiceBlock, function() {
