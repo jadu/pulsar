@@ -202,3 +202,20 @@
 .lt-ie10 .content-main {
     clear: both;
 }
+
+.is-loading td {
+    vertical-align: middle;
+}
+
+tr:hover .skeleton {
+    background-color: darken(color(background), 2);
+}
+
+.skeleton {
+    background-color: color(background, light);
+    border-radius: 10px;
+    display: block;
+    height: 10px;
+    width: 70%;
+}
+

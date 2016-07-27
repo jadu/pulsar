@@ -107,3 +107,9 @@
     top: $line-height-base / 2;
   }
 }
+
+.loading--large,
+.loading--large i {
+    height: 50px;
+    width: 50px;
+}

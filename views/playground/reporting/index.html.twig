@@ -48,18 +48,22 @@
     {% include 'playground/reporting/report.html.twig' %}
 {% endset %}
 
+{% set tab_building %}
+    {% include 'playground/reporting/building.html.twig' %}
+{% endset %}
+
 {%
     set tabs_content = [
         {
           "id"    : "report",
           "label" : "Shared Reports",
-          "src"   : tab_report,
-          "active": true
+          "src"   : tab_report
         },
         {
           "id"    : "report",
           "label" : "My Reports",
-          "src"   : tab_report
+          "src"   : tab_building,
+          "active": true
         },
         {
           "id"    : "report",

@@ -83,3 +83,11 @@ body a.is-disabled {
     color: color(link, disabled);
     cursor: not-allowed;
 }
+
+.text--success {
+    color: color(success);
+}
+
+.text--danger {
+    color: color(danger);
+}
