@@ -31,7 +31,8 @@
     "svgeezy": "latest",
     "Vague.js": "Stanton/vague.js",
     "vide": "~0.3.1",
-    "chartist": "^0.9.8"
+    "chartist": "^0.9.8",
+    "bootstrap-daterangepicker": "latest"
   },
   "devDependencies": {
     "livereload-js": "livereload/livereload-js",

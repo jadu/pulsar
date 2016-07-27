@@ -26,7 +26,8 @@
 
 // The dropdown menu (ul)
 // ----------------------
-.dropdown__menu {
+.dropdown__menu,
+%dropdown__menu {
 	position: absolute;
 	top: 100%;
 	left: 0;

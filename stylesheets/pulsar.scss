@@ -19,6 +19,7 @@ $ie-version: 12 !default;
 @import '../libs/select2/dist/css/select2.css';
 @import 'charts/chartist.settings';
 @import '../libs/chartist/dist/scss/chartist';
+@import '../libs/bootstrap-daterangepicker/daterangepicker.css';
 
 // Font awesome
 $FontAwesomePath: '../libs/font-awesome/font/';
