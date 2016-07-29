@@ -200,7 +200,19 @@
         </div>
 
         <h1 class="report__title">All content owned by Paul Stanton</h1>
-        <span class="report__info">56 items found &mdash; Last run 01/08/2016 12:34pm by Paul Stanton</span>
+
+        <div class="report__query">
+            Show me {{ html.label({ 'label': 'content created in the last 30 days', 'class': 'label--primary' }) }}
+            where {{ html.label({ 'label': 'administrator is Paul Stanton', 'class': 'label--primary' }) }}
+            and {{ html.label({ 'label': 'content type is all content types', 'class': 'label--primary' }) }}
+            {{
+                html.button({
+                    'label': html.icon('pencil'),
+                    'class': 'btn--naked'
+                })
+            }}
+        </div>
+        <span class="report__info">56 items found &mdash; Last run 01/08/2016 12:34pm by Paul Stanton &mdash; {{ html.link({ 'label': 'Hide query' }) }}</span>
 
         <div class="report__data">
 
