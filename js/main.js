@@ -67,42 +67,46 @@
 
         $('input[name="daterange"]').daterangepicker({
             "ranges": {
-        "Today": [
-            "2016-07-27T11:54:09.395Z",
-            "2016-07-27T11:54:09.395Z"
-        ],
-        "Yesterday": [
-            "2016-07-26T11:54:09.395Z",
-            "2016-07-26T11:54:09.395Z"
-        ],
-        "Last 7 Days": [
-            "2016-07-21T11:54:09.395Z",
-            "2016-07-27T11:54:09.395Z"
-        ],
-        "Last 30 Days": [
-            "2016-06-28T11:54:09.395Z",
-            "2016-07-27T11:54:09.395Z"
-        ],
-        "This Month": [
-            "2016-06-30T23:00:00.000Z",
-            "2016-07-31T22:59:59.999Z"
-        ],
-        "Last Month": [
-            "2016-05-31T23:00:00.000Z",
-            "2016-06-30T22:59:59.999Z"
-        ]
-    },
-    "alwaysShowCalendars": true,
-    "startDate": "07/21/2016",
-    "endDate": "07/27/2016",
-    "locale": {
-        "format": "MM/DD/YYYY",
-        "separator": " - "
-    },
-    "opens": "left"
+                "Today": [
+                    "2016-07-27T11:54:09.395Z",
+                    "2016-07-27T11:54:09.395Z"
+                ],
+                "Yesterday": [
+                    "2016-07-26T11:54:09.395Z",
+                    "2016-07-26T11:54:09.395Z"
+                ],
+                "Last 7 Days": [
+                    "2016-07-21T11:54:09.395Z",
+                    "2016-07-27T11:54:09.395Z"
+                ],
+                "Last 30 Days": [
+                    "2016-06-28T11:54:09.395Z",
+                    "2016-07-27T11:54:09.395Z"
+                ],
+                "This Month": [
+                    "2016-06-30T23:00:00.000Z",
+                    "2016-07-31T22:59:59.999Z"
+                ],
+                "Last Month": [
+                    "2016-05-31T23:00:00.000Z",
+                    "2016-06-30T22:59:59.999Z"
+                ]
+            },
+            "alwaysShowCalendars": true,
+            "startDate": "07/21/2016",
+            "endDate": "07/27/2016",
+            "locale": {
+                "format": "MM/DD/YYYY",
+                "separator": " - "
+            },
+            "opens": "left"
         }, function(start, end, label) {
-          console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
+              console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
         });
-    });
 
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+            $('.ct-chart').get(0).__chartist__.update();
+        });
+
+    });
 }(jQuery));
