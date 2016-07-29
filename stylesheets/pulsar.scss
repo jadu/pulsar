@@ -20,6 +20,7 @@ $ie-version: 12 !default;
 
 // Font awesome
 $fa-font-path: '../libs/font-awesome/fonts';
+$fa-css-prefix: 'icon';
 @import 'deprecated.icons';
 @import '../libs/font-awesome/scss/font-awesome';
 
