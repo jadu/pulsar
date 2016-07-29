@@ -42,16 +42,10 @@
 # font-awesome
 /libs/font-awesome/.bower.json                                  export-ignore
 /libs/font-awesome/.gitignore                                   export-ignore
-/libs/font-awesome/.ruby-version                                export-ignore
-/libs/font-awesome/_config.yml                                  export-ignore
-/libs/font-awesome/composer.json                                export-ignore
-/libs/font-awesome/CONTRIBUTING.md                              export-ignore
-/libs/font-awesome/Gemfile                                      export-ignore
-/libs/font-awesome/Gemfile.lock                                 export-ignore
+/libs/font-awesome/.npmignore                                   export-ignore
+/libs/font-awesome/bower.json                                   export-ignore
 /libs/font-awesome/less/                                        export-ignore
-/libs/font-awesome/package.json                                 export-ignore
-/libs/font-awesome/README.md                                    export-ignore
-/libs/font-awesome/src/                                         export-ignore
+/libs/font-awesome/HELP-US-OUT.txt                              export-ignore
 
 # html5shiv
 /libs/html5shiv/.bower.json                                     export-ignore
@@ -65,7 +59,7 @@
 ##
 /libs/html5shiv/dist/html5shiv.min.js                           export-ignore
 /libs/html5shiv/Gruntfile.js                                    export-ignore
-/libs/html5shiv/MIT?and?GPL2?licenses.md                     export-ignore
+/libs/html5shiv/MIT?and?GPL2?licenses.md                        export-ignore
 /libs/html5shiv/package.json                                    export-ignore
 /libs/html5shiv/readme.md                                       export-ignore
 
