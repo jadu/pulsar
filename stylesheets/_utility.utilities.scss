@@ -117,6 +117,12 @@ div.no-results {
     }
 }
 
+.controls > .no-results {
+    width: 100%;
+    margin: 0;
+    padding: 1px 0;
+}
+
 .no-results__message > p,
 .no-results__action {
     margin: 12px 0;
