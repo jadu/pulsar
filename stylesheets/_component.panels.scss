@@ -2,11 +2,12 @@
     background-color: color(gray, lightest);
     border-radius: $border-radius;
     margin: $line-height-base 0;
+    position: relative;
 
     &__title {
         font-size: $font-size-xlarge;
-        line-height: 1em;
-        padding: $padding-base-vertical $padding-base-horizontal;
+        line-height: 32px;
+        padding: 5px 5px 0 10px;
 
         i::before {
           width: 30px;
@@ -14,10 +15,9 @@
     }
 
     &__body {
-        margin-left: 38px;
         max-height: 20em;
         overflow-y: auto;
-        padding: 0 $padding-base-horizontal .5em;
+        padding: 10px $padding-base-horizontal;
 
         p,
         ul {
@@ -44,13 +44,37 @@
         &:focus {
             color: inherit;
         }
-
-        // &,
-        // &:visited {
-        //     opacity: .8;
-        // }
     }
 
+    .btn.panel__remove {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+
+        &:active,
+        &:hover {
+            background-color: inherit;
+            box-shadow: none;
+            top: 12px;
+        }
+
+        &:active {
+            opacity: .5;
+        }
+    }
+
+}
+
+@each $state, $state-color, $state-color-alt in $state-colors {
+    .panel--#{$state} .remove-button > [class^="icon-"] {
+        color: color(white);
+    }
+}
+
+.panel__icon {
+    float: left;
+    font-size: 24px;
+    margin: 10px 10px 0 12px;
 }
 
 @each $state, $state-color, $state-color-alt in $state-colors {
