@@ -1002,7 +1002,7 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 {% spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-    <div{{
+    <span{{
         attributes(options
             |defaults({
                 'class': 'loading'
@@ -1010,7 +1010,7 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
         )
     }}>
         <i>Loading...</i>
-    </div>
+    </span>
 
 {% endspaceless %}
 {% endmacro %}
@@ -1186,10 +1186,15 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
             })
         )
     }}>
+        {% if options.icon is defined and options.icon is not empty %}
+            {{ html.icon(options.icon|default, { 'class': 'panel__icon' }) }}
+        {% endif %}
+
+        {% if options.title is defined and options.title is not empty %}
         <div class="panel__title">
-            {{ html.icon(options.icon|default) }}
             {{ options.title|raw }}
         </div>
+        {% endif %}
         <div class="panel__body">
             {{- options.body|raw -}}
         </div>
