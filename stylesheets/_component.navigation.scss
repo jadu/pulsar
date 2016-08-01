@@ -243,6 +243,7 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
         font-size: .75em;
         line-height: 1em;
         max-width: 75px;
+        min-width: 75px;
         padding: 16px 5px 0;
         position: relative;
         text-overflow: ellipsis;
