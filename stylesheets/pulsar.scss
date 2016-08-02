@@ -120,7 +120,6 @@ $fa-css-prefix: 'icon';
 @import 'component.progress-lists';
 @import 'component.remove-button';
 @import 'component.repeatable';
-@import 'component.richer-list';
 @import 'component.search';
 @import 'component.select2';
 @import 'component.settings';
@@ -134,9 +133,6 @@ $fa-css-prefix: 'icon';
 @import 'component.toggle-switch';
 @import 'component.toolbar';
 @import 'component.tooltips';
-@import 'component.tour';
-@import 'component.uploader';
-@import 'component.widget';
 
 /* -------------------------------------------------------------------------- *\
 	If you're extending Pulsar and want to include your own layouts/modules etc
@@ -155,4 +151,4 @@ $fa-css-prefix: 'icon';
 
 // Overrides and fixes
 @import 'override.shame';
-@import 'override.tour';
+// @import 'override.tour';
