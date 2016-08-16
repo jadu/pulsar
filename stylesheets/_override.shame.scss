@@ -84,18 +84,6 @@
     }
   }
 
-  .form__group {
-    padding: 0;
-
-    @include respond-min($screen-desktop) {
-        padding: 0 20px;
-
-        &.form__group--indent {
-          padding-left: $padding-small-horizontal;
-        }
-    }
-  }
-
   .form__group .form__collection .remove__control {
     @include respond-min($screen-small) {
       position: static !important;
