@@ -17,6 +17,7 @@
     "jquery-autosize": "latest",
     "jquery-placeholder": "Stanton/jquery-placeholder#v.2.0.9",
     "jquery.countdown": "^2.1.0",
+    "jquery-ui": "^1.11.4",
     "list.js": "latest",
     "moment": "latest",
     "normalize-css": "latest",
@@ -33,9 +34,7 @@
     "vide": "~0.3.1"
   },
   "devDependencies": {
-    "livereload-js": "livereload/livereload-js",
-    "vide": "~0.3.1",
-    "jquery-ui": "^1.11.4"
+    "livereload-js": "livereload/livereload-js"
   },
   "resolutions": {
     "font-awesome": "3.2.1"

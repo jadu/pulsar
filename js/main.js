@@ -52,7 +52,6 @@
             }
         });
 
-
         $('.is-sortable').sortable({
              placeholder: "form__group is-sorting",
              helper: "clone",
