@@ -74,6 +74,57 @@
 /libs/jquery/README.md                                          export-ignore
 /libs/jquery/src/                                               export-ignore
 
+# jquery-ui
+/libs/jquery-ui/themes/
+/libs/jquery-ui/.bower.json
+/libs/jquery-ui/.gitignore
+/libs/jquery-ui/AUTHORS.txt
+/libs/jquery-ui/bower.json
+/libs/jquery-ui/component.json
+/libs/jquery-ui/composer.json
+/libs/jquery-ui/jquery-ui.js
+/libs/jquery-ui/LICENSE.txt
+/libs/jquery-ui/package.json
+/libs/jquery-ui/README.md
+/libs/jquery-ui/ui/.jshintrc
+/libs/jquery-ui/ui/accordion.js
+/libs/jquery-ui/ui/autocomplete.js
+/libs/jquery-ui/ui/button.js
+/libs/jquery-ui/ui/core.js
+/libs/jquery-ui/ui/datepicker.js
+/libs/jquery-ui/ui/dialog.js
+/libs/jquery-ui/ui/draggable.js
+/libs/jquery-ui/ui/droppable.js
+/libs/jquery-ui/ui/effect-blind.js
+/libs/jquery-ui/ui/effect-bounce.js
+/libs/jquery-ui/ui/effect-clip.js
+/libs/jquery-ui/ui/effect-drop.js
+/libs/jquery-ui/ui/effect-explode.js
+/libs/jquery-ui/ui/effect-fade.js
+/libs/jquery-ui/ui/effect-fold.js
+/libs/jquery-ui/ui/effect-highlight.js
+/libs/jquery-ui/ui/effect-puff.js
+/libs/jquery-ui/ui/effect-pulsate.js
+/libs/jquery-ui/ui/effect-scale.js
+/libs/jquery-ui/ui/effect-shake.js
+/libs/jquery-ui/ui/effect-size.js
+/libs/jquery-ui/ui/effect-slide.js
+/libs/jquery-ui/ui/effect-transfer.js
+/libs/jquery-ui/ui/effect.js
+/libs/jquery-ui/ui/menu.js
+/libs/jquery-ui/ui/mouse.js
+/libs/jquery-ui/ui/position.js
+/libs/jquery-ui/ui/progressbar.js
+/libs/jquery-ui/ui/resizable.js
+/libs/jquery-ui/ui/selectable.js
+/libs/jquery-ui/ui/selectmenu.js
+/libs/jquery-ui/ui/slider.js
+/libs/jquery-ui/ui/sortable.js
+/libs/jquery-ui/ui/spinner.js
+/libs/jquery-ui/ui/tabs.js
+/libs/jquery-ui/ui/tooltip.js
+/libs/jquery-ui/ui/widget.js
+
 ##
 ## REMOVE?
 ##

@@ -1,0 +1,48 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
+
+{% block tab_content %}
+
+
+    <div class="is-sortable">
+    {{
+        form.text({
+            'label': 'One',
+            'value': 'My value'
+        })
+    }}
+    {{
+        form.choice({
+            'class': '',
+            'label': 'Choice with guidance',
+            'guidance': 'Help text to give more information about expected input',
+            'options': [
+                {
+                    'label': 'One',
+                    'value': 'one',
+                    'name': 'foo'
+                },
+                {
+                    'label': 'Two',
+                    'value': 'two',
+                    'name': 'foo'
+                },
+                {
+                    'label': 'Three',
+                    'value': 'three',
+                    'name': 'foo'
+                }
+            ]
+        })
+    }}
+    {{
+        form.toggle_switch({
+            'label': 'Toggle switch with a longer than expected label which will probably wrap multple lines and push the following input onto the next baseline',
+            'id': '5',
+            'help': 'Example block-level help text here',
+            'guidance': 'Help text to give more information about expected input'
+        })
+    }}
+    </div>
+
+
+{% endblock %}
