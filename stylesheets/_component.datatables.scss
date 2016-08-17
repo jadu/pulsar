@@ -119,10 +119,8 @@ th.sorting_disabled:hover {
     text-align: center;
     min-width: 30px;
     max-width: 30px;
-    position: relative;
     user-select: none;
     width: 30px;
-    z-index: -1;
 
     &:hover {
         background: none;
@@ -211,8 +209,6 @@ th.sorting_disabled:hover {
     color: color(jadu-blue);
     display: none;
     font-size: 14px;
-    position: absolute;
-    top: 17px;
 
     .collapsed & {
         display: inline-block;
