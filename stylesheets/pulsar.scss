@@ -19,7 +19,9 @@ $ie-version: 12 !default;
 @import '../libs/select2/dist/css/select2.css';
 
 // Font awesome
-$FontAwesomePath: '../libs/font-awesome/font/';
+$fa-font-path: '../libs/font-awesome/fonts';
+$fa-css-prefix: 'icon';
+@import 'deprecated.icons';
 @import '../libs/font-awesome/scss/font-awesome';
 
 // Mixins
@@ -118,7 +120,6 @@ $FontAwesomePath: '../libs/font-awesome/font/';
 @import 'component.progress-lists';
 @import 'component.remove-button';
 @import 'component.repeatable';
-@import 'component.richer-list';
 @import 'component.search';
 @import 'component.select2';
 @import 'component.settings';
@@ -132,9 +133,6 @@ $FontAwesomePath: '../libs/font-awesome/font/';
 @import 'component.toggle-switch';
 @import 'component.toolbar';
 @import 'component.tooltips';
-@import 'component.tour';
-@import 'component.uploader';
-@import 'component.widget';
 
 /* -------------------------------------------------------------------------- *\
 	If you're extending Pulsar and want to include your own layouts/modules etc
@@ -153,4 +151,4 @@ $FontAwesomePath: '../libs/font-awesome/font/';
 
 // Overrides and fixes
 @import 'override.shame';
-@import 'override.tour';
+// @import 'override.tour';
