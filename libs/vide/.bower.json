@@ -43,7 +43,7 @@
     "tag": "0.3.7",
     "commit": "ec11341874552f03476feb002134df653360f64d"
   },
-  "_source": "https://github.com/VodkaBears/Vide.git",
+  "_source": "git://github.com/VodkaBears/Vide.git",
   "_target": "~0.3.1",
   "_originalSource": "vide"
 }

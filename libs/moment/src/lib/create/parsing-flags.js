@@ -10,9 +10,7 @@ function defaultParsingFlags() {
         invalidMonth    : null,
         invalidFormat   : false,
         userInvalidated : false,
-        iso             : false,
-        parsedDateParts : [],
-        meridiem        : null
+        iso             : false
     };
 }
 

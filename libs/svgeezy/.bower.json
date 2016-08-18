@@ -9,7 +9,7 @@
     "tag": "v1.0.0",
     "commit": "0738a2192ed2b17b3fa5a2497d3d5adebc4ffd21"
   },
-  "_source": "https://github.com/benhowdle89/svgeezy.git",
+  "_source": "git://github.com/benhowdle89/svgeezy.git",
   "_target": "*",
   "_originalSource": "svgeezy"
 }

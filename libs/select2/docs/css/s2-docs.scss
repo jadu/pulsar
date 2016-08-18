@@ -1,8 +1,5 @@
 ---
 ---
-
-@import "vendor/bootstrap/variables";
-
 @import "result-repository";
 @import "sidenav";
 @import "hamburger";
@@ -19,6 +16,4 @@
 @import "anchorjs";
 @import "jumbotron";
 @import "prettify";
-@import "syntax-highlighting";
-@import "typography";
-@import "dl-panels";
+@import "typography"

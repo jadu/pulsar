@@ -19,7 +19,7 @@
     "tag": "3.7.3",
     "commit": "ed28c56c071bddfe7d635ad88995674957a016be"
   },
-  "_source": "https://github.com/aFarkas/html5shiv.git",
+  "_source": "git://github.com/aFarkas/html5shiv.git",
   "_target": "*",
   "_originalSource": "html5shiv"
 }

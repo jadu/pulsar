@@ -1,15 +1,13 @@
 define(function () {
   // Romanian
   return {
-    errorLoading: function () {
-      return 'Rezultatele nu au putut fi incărcate.';
-    },
     inputTooLong: function (args) {
       var overChars = args.input.length - args.maximum;
 
-      var message = 'Vă rugăm să ștergeți' + overChars + ' caracter';
+      var message = 'Vă rugăm să introduceți mai puțin de ' + overChars;
+      message += ' caracter';
 
-      if (overChars !== 1) {
+      if (message !== 1) {
         message += 'e';
       }
 
@@ -18,26 +16,30 @@ define(function () {
     inputTooShort: function (args) {
       var remainingChars = args.minimum - args.input.length;
 
-      var message = 'Vă rugăm să introduceți ' + remainingChars +
-        'sau mai multe caractere';
+      var message = 'Vă rugăm să introduceți incă ' + remainingChars;
+      message += ' caracter';
+
+      if (message !== 1) {
+        message += 'e';
+      }
 
       return message;
     },
     loadingMore: function () {
-      return 'Se încarcă mai multe rezultate…';
+      return 'Se încarcă…';
     },
     maximumSelected: function (args) {
       var message = 'Aveți voie să selectați cel mult ' + args.maximum;
       message += ' element';
 
-      if (args.maximum !== 1) {
+      if (message !== 1) {
         message += 'e';
       }
 
       return message;
     },
     noResults: function () {
-      return 'Nu au fost găsite rezultate';
+      return 'Nu a fost găsit nimic';
     },
     searching: function () {
       return 'Căutare…';
