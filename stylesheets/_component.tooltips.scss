@@ -32,7 +32,8 @@
   color: $tooltip-color;
   text-align: center;
   text-decoration: none;
-  background-color: $tooltip-bg;
+  background-color: rgba(color(black), .9);
+  background-color: color(black);
   border-radius: $border-radius;
 }
 
@@ -51,21 +52,24 @@
     left: 50%;
     margin-left: -$tooltip-arrow-width;
     border-width: $tooltip-arrow-width $tooltip-arrow-width 0;
-    border-top-color: $tooltip-arrow-color;
+    border-top-color: rgba(color(black), .9);
+    border-top-color: color(black);
   }
 
   &.top-left .tooltip-arrow {
     bottom: 0;
     left: 5px;
     border-width: $tooltip-arrow-width $tooltip-arrow-width 0;
-    border-top-color: $tooltip-arrow-color;
+    border-top-color: rgba(color(black), .9);
+    border-top-color: color(black);
   }
 
   &.top-right .tooltip-arrow {
     bottom: 0;
     right: 5px;
     border-width: $tooltip-arrow-width $tooltip-arrow-width 0;
-    border-top-color: $tooltip-arrow-color;
+    border-top-color: rgba(color(black), .9);
+    border-top-color: color(black);
   }
 
   &.right .tooltip-arrow {
@@ -73,7 +77,8 @@
     left: 0;
     margin-top: -$tooltip-arrow-width;
     border-width: $tooltip-arrow-width $tooltip-arrow-width $tooltip-arrow-width 0;
-    border-right-color: $tooltip-arrow-color;
+    border-right-color: rgba(color(black), .9);
+    border-right-color: color(black);
   }
 
   &.left .tooltip-arrow {
@@ -81,7 +86,8 @@
     right: 0;
     margin-top: -$tooltip-arrow-width;
     border-width: $tooltip-arrow-width 0 $tooltip-arrow-width $tooltip-arrow-width;
-    border-left-color: $tooltip-arrow-color;
+    border-left-color: rgba(color(black), .9);
+    border-left-color: color(black);
   }
 
   &.bottom .tooltip-arrow {
@@ -89,21 +95,24 @@
     left: 50%;
     margin-left: -$tooltip-arrow-width;
     border-width: 0 $tooltip-arrow-width $tooltip-arrow-width;
-    border-bottom-color: $tooltip-arrow-color;
+    border-bottom-color: rgba(color(black), .9);
+    border-bottom-color: color(black);
   }
 
   &.bottom-left .tooltip-arrow {
     top: 0;
     left: 5px;
     border-width: 0 $tooltip-arrow-width $tooltip-arrow-width;
-    border-bottom-color: $tooltip-arrow-color;
+    border-bottom-color: rgba(color(black), .9);
+    border-bottom-color: color(black);
   }
 
   &.bottom-right .tooltip-arrow {
     top: 0;
     right: 5px;
     border-width: 0 $tooltip-arrow-width $tooltip-arrow-width;
-    border-bottom-color: $tooltip-arrow-color;
+    border-bottom-color: rgba(color(black), .9);
+    border-bottom-color: color(black);
   }
 }
 
