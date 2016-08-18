@@ -112,7 +112,7 @@ tr.is-collapsed {
 }
 
 .filter {
-    display: none; // filters shouldn"t be visible on load
+    display: none; // filters shouldn't be visible on load
     text-align: center;
 
     .form__group:hover {
@@ -121,7 +121,7 @@ tr.is-collapsed {
 }
 
 .popover__content > .filter {
-    display: block; // show the filter content when it"s inside a popover
+    display: block; // show the filter content when it's inside a popover
 }
 
 [data-popover-content] + .popover {
@@ -209,13 +209,13 @@ $inverse-color-alt:             #fff;
 
 $toolbar-bg-hover:              #f00;
 
-$state-colors: ("base", $base-color, $base-color-alt),
-               ("primary", $primary-color, $primary-color-alt),
-               ("success", $success-color, $success-color-alt),
-               ("warning", $warning-color, $warning-color-alt),
-               ("danger", $danger-color, $danger-color-alt),
-               ("info", $info-color, $info-color-alt),
-               ("inverse", $inverse-color, $inverse-color-alt);
+$state-colors: ('base', $base-color, $base-color-alt),
+               ('primary', $primary-color, $primary-color-alt),
+               ('success', $success-color, $success-color-alt),
+               ('warning', $warning-color, $warning-color-alt),
+               ('danger', $danger-color, $danger-color-alt),
+               ('info', $info-color, $info-color-alt),
+               ('inverse', $inverse-color, $inverse-color-alt);
 
 
 /* -------------------------------------------------------------------------- *\
@@ -481,7 +481,7 @@ $state-colors: ("base", $base-color, $base-color-alt),
     }
 
     .tab__pane form {
-      // make sure forms in tabs don"t add extra spacing after the form actions
+      // make sure forms in tabs don't add extra spacing after the form actions
       margin-bottom: 0;
       width: 100%;
     }
