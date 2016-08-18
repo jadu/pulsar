@@ -653,17 +653,19 @@ class  | string | CSS classes, space separated
         'application/vnd.ms-powerpoint': 'file-powerpoint-o',
         'application/vnd.ms-office': 'file-o',
         'application/pdf': 'file-pdf-o',
-        'application/': 'file-o',
         'text/plain': 'file-text-o',
         'text/html': 'file-code-o',
-        'text/': 'file-text-o',
-        'video/': 'file-movie-o',
-        'audio/': 'file-audio-o',
-        'image/': 'file-image-o'
+        'application': 'file-o',
+        'text': 'file-text-o',
+        'video': 'file-movie-o',
+        'audio': 'file-audio-o',
+        'image': 'file-image-o'
     } %}
 
     {% for mime, icon in mime_types %}
-        {% if icon_name starts with mime %}
+        {% if icon_name == mime %}
+            {% set icon_name = icon %}
+        {% elseif icon_name|split('/')[0] == mime %}
             {% set icon_name = icon %}
         {% endif %}
     {% endfor %}
