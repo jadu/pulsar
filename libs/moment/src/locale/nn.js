@@ -1,5 +1,5 @@
 //! moment.js locale configuration
-//! locale : Nynorsk [nn]
+//! locale : norwegian nynorsk (nn)
 //! author : https://github.com/mechuwind
 
 import moment from '../moment';
@@ -28,7 +28,7 @@ export default moment.defineLocale('nn', {
     },
     relativeTime : {
         future : 'om %s',
-        past : '%s sidan',
+        past : 'for %s sidan',
         s : 'nokre sekund',
         m : 'eit minutt',
         mm : '%d minutt',

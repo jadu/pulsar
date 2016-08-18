@@ -14,27 +14,17 @@ const set = (typeof Set === "function") ? new Set() : (function () {
 	}
 })();
 
-let createEvent = (name)=> new Event(name);
-try {
-	new Event('test');
-} catch(e) {
-	// IE does not support `new Event()`
-	createEvent = (name)=> {
-		const evt = document.createEvent('Event');
-		evt.initEvent(name, true, false);
-		return evt;
-	};
-}
-
-function assign(ta) {
+function assign(ta, {setOverflowX = true, setOverflowY = true} = {}) {
 	if (!ta || !ta.nodeName || ta.nodeName !== 'TEXTAREA' || set.has(ta)) return;
 
 	let heightOffset = null;
+	let overflowY = null;
 	let clientWidth = ta.clientWidth;
-	let cachedHeight = null;
 
 	function init() {
 		const style = window.getComputedStyle(ta, null);
+
+		overflowY = style.overflowY;
 
 		if (style.resize === 'vertical') {
 			ta.style.resize = 'none';
@@ -69,31 +59,19 @@ function assign(ta) {
 			ta.style.width = width;
 		}
 
-		ta.style.overflowY = value;
+		overflowY = value;
+
+		if (setOverflowY) {
+			ta.style.overflowY = value;
+		}
 
 		resize();
 	}
 
-	function getParentOverflows(el) {
-		const arr = [];
-
-		while (el && el.parentNode && el.parentNode instanceof Element) {
-			if (el.parentNode.scrollTop) {
-				arr.push({
-					node: el.parentNode,
-					scrollTop: el.parentNode.scrollTop,
-				})
-			}
-			el = el.parentNode;
-		}
-
-		return arr;
-	}
-
 	function resize() {
+		const htmlTop = window.pageYOffset;
+		const bodyTop = document.body.scrollTop;
 		const originalHeight = ta.style.height;
-		const overflows = getParentOverflows(ta);
-		const docTop = document.documentElement && document.documentElement.scrollTop; // Needed for Mobile IE (ticket #240)
 
 		ta.style.height = 'auto';
 
@@ -111,38 +89,30 @@ function assign(ta) {
 		clientWidth = ta.clientWidth;
 
 		// prevents scroll-position jumping
-		overflows.forEach(el => {
-			el.node.scrollTop = el.scrollTop
-		});
-
-		if (docTop) {
-			document.documentElement.scrollTop = docTop;
-		}
+		document.documentElement.scrollTop = htmlTop;
+		document.body.scrollTop = bodyTop;
 	}
 
 	function update() {
+		const startHeight = ta.style.height;
+
 		resize();
 
-		const computed = window.getComputedStyle(ta, null);
-		const computedHeight = Math.round(parseFloat(computed.height));
-		const styleHeight = Math.round(parseFloat(ta.style.height));
+		const style = window.getComputedStyle(ta, null);
 
-		// The computed height not matching the height set via resize indicates that 
-		// the max-height has been exceeded, in which case the overflow should be set to visible.
-		if (computedHeight !== styleHeight) {
-			if (computed.overflowY !== 'visible') {
+		if (style.height !== ta.style.height) {
+			if (overflowY !== 'visible') {
 				changeOverflow('visible');
 			}
 		} else {
-			// Normally keep overflow set to hidden, to avoid flash of scrollbar as the textarea expands.
-			if (computed.overflowY !== 'hidden') {
+			if (overflowY !== 'hidden') {
 				changeOverflow('hidden');
 			}
 		}
 
-		if (cachedHeight !== computedHeight) {
-			cachedHeight = computedHeight;
-			const evt = createEvent('autosize:resized');
+		if (startHeight !== ta.style.height) {
+			const evt = document.createEvent('Event');
+			evt.initEvent('autosize:resized', true, false);
 			ta.dispatchEvent(evt);
 		}
 	}
@@ -185,21 +155,26 @@ function assign(ta) {
 	ta.addEventListener('input', update, false);
 	ta.addEventListener('autosize:update', update, false);
 	set.add(ta);
-	ta.style.overflowX = 'hidden';
-	ta.style.wordWrap = 'break-word';
+
+	if (setOverflowX) {
+		ta.style.overflowX = 'hidden';
+		ta.style.wordWrap = 'break-word';
+	}
 
 	init();
 }
 
 function destroy(ta) {
 	if (!(ta && ta.nodeName && ta.nodeName === 'TEXTAREA')) return;
-	const evt = createEvent('autosize:destroy');
+	const evt = document.createEvent('Event');
+	evt.initEvent('autosize:destroy', true, false);
 	ta.dispatchEvent(evt);
 }
 
 function update(ta) {
 	if (!(ta && ta.nodeName && ta.nodeName === 'TEXTAREA')) return;
-	const evt = createEvent('autosize:update');
+	const evt = document.createEvent('Event');
+	evt.initEvent('autosize:update', true, false);
 	ta.dispatchEvent(evt);
 }
 

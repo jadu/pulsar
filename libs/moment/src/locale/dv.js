@@ -1,5 +1,5 @@
 //! moment.js locale configuration
-//! locale : Maldivian [dv]
+//! locale : dhivehi (dv)
 //! author : Jawish Hameed : https://github.com/jawish
 
 import moment from '../moment';
@@ -44,7 +44,7 @@ export default moment.defineLocale('dv', {
     },
     meridiemParse: /މކ|މފ/,
     isPM : function (input) {
-        return 'މފ' === input;
+        return '' === input;
     },
     meridiem : function (hour, minute, isLower) {
         if (hour < 12) {

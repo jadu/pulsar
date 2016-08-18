@@ -1,5 +1,5 @@
 /*!
-	Autosize 3.0.17
+	Autosize 3.0.14
 	license: MIT
 	http://www.jacklmoore.com/autosize
 */
@@ -33,29 +33,24 @@
 			} };
 	})();
 
-	var createEvent = function createEvent(name) {
-		return new Event(name);
-	};
-	try {
-		new Event('test');
-	} catch (e) {
-		// IE does not support `new Event()`
-		createEvent = function (name) {
-			var evt = document.createEvent('Event');
-			evt.initEvent(name, true, false);
-			return evt;
-		};
-	}
-
 	function assign(ta) {
+		var _ref = arguments[1] === undefined ? {} : arguments[1];
+
+		var _ref$setOverflowX = _ref.setOverflowX;
+		var setOverflowX = _ref$setOverflowX === undefined ? true : _ref$setOverflowX;
+		var _ref$setOverflowY = _ref.setOverflowY;
+		var setOverflowY = _ref$setOverflowY === undefined ? true : _ref$setOverflowY;
+
 		if (!ta || !ta.nodeName || ta.nodeName !== 'TEXTAREA' || set.has(ta)) return;
 
 		var heightOffset = null;
+		var overflowY = null;
 		var clientWidth = ta.clientWidth;
-		var cachedHeight = null;
 
 		function init() {
 			var style = window.getComputedStyle(ta, null);
+
+			overflowY = style.overflowY;
 
 			if (style.resize === 'vertical') {
 				ta.style.resize = 'none';
@@ -90,30 +85,19 @@
 				ta.style.width = width;
 			}
 
-			ta.style.overflowY = value;
+			overflowY = value;
+
+			if (setOverflowY) {
+				ta.style.overflowY = value;
+			}
 
 			resize();
 		}
 
-		function getParentOverflows(el) {
-			var arr = [];
-
-			while (el && el.parentNode && el.parentNode instanceof Element) {
-				if (el.parentNode.scrollTop) {
-					arr.push({
-						node: el.parentNode,
-						scrollTop: el.parentNode.scrollTop });
-				}
-				el = el.parentNode;
-			}
-
-			return arr;
-		}
-
 		function resize() {
+			var htmlTop = window.pageYOffset;
+			var bodyTop = document.body.scrollTop;
 			var originalHeight = ta.style.height;
-			var overflows = getParentOverflows(ta);
-			var docTop = document.documentElement && document.documentElement.scrollTop; // Needed for Mobile IE (ticket #240)
 
 			ta.style.height = 'auto';
 
@@ -131,38 +115,30 @@
 			clientWidth = ta.clientWidth;
 
 			// prevents scroll-position jumping
-			overflows.forEach(function (el) {
-				el.node.scrollTop = el.scrollTop;
-			});
-
-			if (docTop) {
-				document.documentElement.scrollTop = docTop;
-			}
+			document.documentElement.scrollTop = htmlTop;
+			document.body.scrollTop = bodyTop;
 		}
 
 		function update() {
+			var startHeight = ta.style.height;
+
 			resize();
 
-			var computed = window.getComputedStyle(ta, null);
-			var computedHeight = Math.round(parseFloat(computed.height));
-			var styleHeight = Math.round(parseFloat(ta.style.height));
+			var style = window.getComputedStyle(ta, null);
 
-			// The computed height not matching the height set via resize indicates that
-			// the max-height has been exceeded, in which case the overflow should be set to visible.
-			if (computedHeight !== styleHeight) {
-				if (computed.overflowY !== 'visible') {
+			if (style.height !== ta.style.height) {
+				if (overflowY !== 'visible') {
 					changeOverflow('visible');
 				}
 			} else {
-				// Normally keep overflow set to hidden, to avoid flash of scrollbar as the textarea expands.
-				if (computed.overflowY !== 'hidden') {
+				if (overflowY !== 'hidden') {
 					changeOverflow('hidden');
 				}
 			}
 
-			if (cachedHeight !== computedHeight) {
-				cachedHeight = computedHeight;
-				var evt = createEvent('autosize:resized');
+			if (startHeight !== ta.style.height) {
+				var evt = document.createEvent('Event');
+				evt.initEvent('autosize:resized', true, false);
 				ta.dispatchEvent(evt);
 			}
 		}
@@ -204,21 +180,26 @@
 		ta.addEventListener('input', update, false);
 		ta.addEventListener('autosize:update', update, false);
 		set.add(ta);
-		ta.style.overflowX = 'hidden';
-		ta.style.wordWrap = 'break-word';
+
+		if (setOverflowX) {
+			ta.style.overflowX = 'hidden';
+			ta.style.wordWrap = 'break-word';
+		}
 
 		init();
 	}
 
 	function destroy(ta) {
 		if (!(ta && ta.nodeName && ta.nodeName === 'TEXTAREA')) return;
-		var evt = createEvent('autosize:destroy');
+		var evt = document.createEvent('Event');
+		evt.initEvent('autosize:destroy', true, false);
 		ta.dispatchEvent(evt);
 	}
 
 	function update(ta) {
 		if (!(ta && ta.nodeName && ta.nodeName === 'TEXTAREA')) return;
-		var evt = createEvent('autosize:update');
+		var evt = document.createEvent('Event');
+		evt.initEvent('autosize:update', true, false);
 		ta.dispatchEvent(evt);
 	}
 

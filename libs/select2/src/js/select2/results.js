@@ -97,25 +97,6 @@ define([
     return sorter(data);
   };
 
-  Results.prototype.highlightFirstItem = function () {
-    var $options = this.$results
-      .find('.select2-results__option[aria-selected]');
-
-    var $selected = $options.filter('[aria-selected=true]');
-
-    // Check if there are any selected options
-    if ($selected.length > 0) {
-      // If there are selected options, highlight the first
-      $selected.first().trigger('mouseenter');
-    } else {
-      // If there are no selected options, highlight the first option
-      // in the dropdown
-      $options.first().trigger('mouseenter');
-    }
-
-    this.ensureHighlightVisible();
-  };
-
   Results.prototype.setClasses = function () {
     var self = this;
 
@@ -143,6 +124,17 @@ define([
         }
       });
 
+      var $selected = $options.filter('[aria-selected=true]');
+
+      // Check if there are any selected options
+      if ($selected.length > 0) {
+        // If there are selected options, highlight the first
+        $selected.first().trigger('mouseenter');
+      } else {
+        // If there are no selected options, highlight the first option
+        // in the dropdown
+        $options.first().trigger('mouseenter');
+      }
     });
   };
 
@@ -253,7 +245,6 @@ define([
 
       if (container.isOpen()) {
         self.setClasses();
-        self.highlightFirstItem();
       }
     });
 
@@ -276,7 +267,6 @@ define([
       }
 
       self.setClasses();
-      self.highlightFirstItem();
     });
 
     container.on('unselect', function () {
@@ -285,7 +275,6 @@ define([
       }
 
       self.setClasses();
-      self.highlightFirstItem();
     });
 
     container.on('open', function () {
@@ -408,7 +397,11 @@ define([
       this.$results.on('mousewheel', function (e) {
         var top = self.$results.scrollTop();
 
-        var bottom = self.$results.get(0).scrollHeight - top + e.deltaY;
+        var bottom = (
+          self.$results.get(0).scrollHeight -
+          self.$results.scrollTop() +
+          e.deltaY
+        );
 
         var isAtTop = e.deltaY > 0 && top - e.deltaY <= 0;
         var isAtBottom = e.deltaY < 0 && bottom <= self.$results.height();

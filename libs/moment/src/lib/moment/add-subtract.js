@@ -3,8 +3,6 @@ import { setMonth } from '../units/month';
 import { createDuration } from '../duration/create';
 import { deprecateSimple } from '../utils/deprecate';
 import { hooks } from '../utils/hooks';
-import absRound from '../utils/abs-round';
-
 
 // TODO: remove 'name' arg after deprecation is removed
 function createAdder(direction, name) {
@@ -12,8 +10,7 @@ function createAdder(direction, name) {
         var dur, tmp;
         //invert the arguments, but complain about it
         if (period !== null && !isNaN(+period)) {
-            deprecateSimple(name, 'moment().' + name  + '(period, number) is deprecated. Please use moment().' + name + '(number, period). ' +
-            'See http://momentjs.com/guides/#/warnings/add-inverted-param/ for more info.');
+            deprecateSimple(name, 'moment().' + name  + '(period, number) is deprecated. Please use moment().' + name + '(number, period).');
             tmp = val; val = period; period = tmp;
         }
 
@@ -26,8 +23,8 @@ function createAdder(direction, name) {
 
 export function addSubtract (mom, duration, isAdding, updateOffset) {
     var milliseconds = duration._milliseconds,
-        days = absRound(duration._days),
-        months = absRound(duration._months);
+        days = duration._days,
+        months = duration._months;
 
     if (!mom.isValid()) {
         // No op
@@ -37,7 +34,7 @@ export function addSubtract (mom, duration, isAdding, updateOffset) {
     updateOffset = updateOffset == null ? true : updateOffset;
 
     if (milliseconds) {
-        mom._d.setTime(mom._d.valueOf() + milliseconds * isAdding);
+        mom._d.setTime(+mom._d + milliseconds * isAdding);
     }
     if (days) {
         set(mom, 'Date', get(mom, 'Date') + days * isAdding);

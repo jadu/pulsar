@@ -128,6 +128,7 @@ define([
 
     var newDirection = null;
 
+    var position = this.$container.position();
     var offset = this.$container.offset();
 
     offset.bottom = offset.top + this.$container.outerHeight(false);
@@ -156,19 +157,13 @@ define([
       top: container.bottom
     };
 
-    // Determine what the parent element is to use for calciulating the offset
-    var $offsetParent = this.$dropdownParent;
+    // Fix positioning with static parents
+    if (this.$dropdownParent[0].style.position !== 'static') {
+      var parentOffset = this.$dropdownParent.offset();
 
-    // For statically positoned elements, we need to get the element
-    // that is determining the offset
-    if ($offsetParent.css('position') === 'static') {
-      $offsetParent = $offsetParent.offsetParent();
+      css.top -= parentOffset.top;
+      css.left -= parentOffset.left;
     }
-
-    var parentOffset = $offsetParent.offset();
-
-    css.top -= parentOffset.top;
-    css.left -= parentOffset.left;
 
     if (!isCurrentlyAbove && !isCurrentlyBelow) {
       newDirection = 'below';
@@ -182,7 +177,7 @@ define([
 
     if (newDirection == 'above' ||
       (isCurrentlyAbove && newDirection !== 'below')) {
-      css.top = container.top - parentOffset.top - dropdown.height;
+      css.top = container.top - dropdown.height;
     }
 
     if (newDirection != null) {
@@ -204,7 +199,6 @@ define([
 
     if (this.options.get('dropdownAutoWidth')) {
       css.minWidth = css.width;
-      css.position = 'relative';
       css.width = 'auto';
     }
 
