@@ -118,7 +118,6 @@ $FontAwesomePath: '../libs/font-awesome/font/';
 @import 'component.progress-lists';
 @import 'component.remove-button';
 @import 'component.repeatable';
-@import 'component.richer-list';
 @import 'component.search';
 @import 'component.select2';
 @import 'component.settings';
@@ -132,9 +131,6 @@ $FontAwesomePath: '../libs/font-awesome/font/';
 @import 'component.toggle-switch';
 @import 'component.toolbar';
 @import 'component.tooltips';
-@import 'component.tour';
-@import 'component.uploader';
-@import 'component.widget';
 
 /* -------------------------------------------------------------------------- *\
 	If you're extending Pulsar and want to include your own layouts/modules etc
@@ -146,6 +142,7 @@ $FontAwesomePath: '../libs/font-awesome/font/';
 @import 'utility.highlight';
 @import 'utility.misc';
 @import 'utility.utilities';
+@import 'utility.sortable';
 @import 'utility.states';
 @import 'utility.swatches';
 
@@ -153,4 +150,4 @@ $FontAwesomePath: '../libs/font-awesome/font/';
 
 // Overrides and fixes
 @import 'override.shame';
-@import 'override.tour';
+// @import 'override.tour';
