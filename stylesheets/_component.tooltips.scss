@@ -32,8 +32,8 @@
   color: $tooltip-color;
   text-align: center;
   text-decoration: none;
-  background-color: rgba(0, 0, 0, .9);
-  background-color: rgb(0, 0, 0);
+  background-color: rgba(color(black), .9);
+  background-color: color(black);
   border-radius: $border-radius;
 }
 
@@ -52,24 +52,24 @@
     left: 50%;
     margin-left: -$tooltip-arrow-width;
     border-width: $tooltip-arrow-width $tooltip-arrow-width 0;
-    border-top-color: rgba(0, 0, 0, .9);
-    border-top-color: rgb(0, 0, 0);
+    border-top-color: rgba(color(black), .9);
+    border-top-color: color(black);
   }
 
   &.top-left .tooltip-arrow {
     bottom: 0;
     left: 5px;
     border-width: $tooltip-arrow-width $tooltip-arrow-width 0;
-    border-top-color: rgba(0, 0, 0, .9);
-    border-top-color: rgb(0, 0, 0);
+    border-top-color: rgba(color(black), .9);
+    border-top-color: color(black);
   }
 
   &.top-right .tooltip-arrow {
     bottom: 0;
     right: 5px;
     border-width: $tooltip-arrow-width $tooltip-arrow-width 0;
-    border-top-color: rgba(0, 0, 0, .9);
-    border-top-color: rgb(0, 0, 0);
+    border-top-color: rgba(color(black), .9);
+    border-top-color: color(black);
   }
 
   &.right .tooltip-arrow {
@@ -77,8 +77,8 @@
     left: 0;
     margin-top: -$tooltip-arrow-width;
     border-width: $tooltip-arrow-width $tooltip-arrow-width $tooltip-arrow-width 0;
-    border-right-color: rgba(0, 0, 0, .9);
-    border-right-color: rgb(0, 0, 0);
+    border-right-color: rgba(color(black), .9);
+    border-right-color: color(black);
   }
 
   &.left .tooltip-arrow {
@@ -86,8 +86,8 @@
     right: 0;
     margin-top: -$tooltip-arrow-width;
     border-width: $tooltip-arrow-width 0 $tooltip-arrow-width $tooltip-arrow-width;
-    border-left-color: rgba(0, 0, 0, .9);
-    border-left-color: rgb(0, 0, 0);
+    border-left-color: rgba(color(black), .9);
+    border-left-color: color(black);
   }
 
   &.bottom .tooltip-arrow {
@@ -95,24 +95,24 @@
     left: 50%;
     margin-left: -$tooltip-arrow-width;
     border-width: 0 $tooltip-arrow-width $tooltip-arrow-width;
-    border-bottom-color: rgba(0, 0, 0, .9);
-    border-bottom-color: rgb(0, 0, 0);
+    border-bottom-color: rgba(color(black), .9);
+    border-bottom-color: color(black);
   }
 
   &.bottom-left .tooltip-arrow {
     top: 0;
     left: 5px;
     border-width: 0 $tooltip-arrow-width $tooltip-arrow-width;
-    border-bottom-color: rgba(0, 0, 0, .9);
-    border-bottom-color: rgb(0, 0, 0);
+    border-bottom-color: rgba(color(black), .9);
+    border-bottom-color: color(black);
   }
 
   &.bottom-right .tooltip-arrow {
     top: 0;
     right: 5px;
     border-width: 0 $tooltip-arrow-width $tooltip-arrow-width;
-    border-bottom-color: rgba(0, 0, 0, .9);
-    border-bottom-color: rgb(0, 0, 0);
+    border-bottom-color: rgba(color(black), .9);
+    border-bottom-color: color(black);
   }
 }
 
