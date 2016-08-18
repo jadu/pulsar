@@ -19,8 +19,7 @@ $ie-version: 12 !default;
 @import '../libs/select2/dist/css/select2.css';
 
 // Font awesome
-$fa-font-path: '../libs/font-awesome/fonts';
-@import 'deprecated.icons';
+$FontAwesomePath: '../libs/font-awesome/font/';
 @import '../libs/font-awesome/scss/font-awesome';
 
 // Mixins
