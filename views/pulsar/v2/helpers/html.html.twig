@@ -620,16 +620,18 @@ data-*    | string | Data attributes, eg: `'data-foo': 'bar'`
 
 # Icon
 
-Help visually distinguish and provide extra meaning to certain items or actions.
+Help visually distinguish and provide extra meaning to certain items or actions. You can pass an icon name or mime type to generate the appropriate icon.
 
-Pulsar currently uses Font Awesome 3.2.1 (because IE7) but we hope to shift to
-using version 4 soon, using icon helpers will allow us to make the switch
-easier as the helper can manage the change in class syntax.
+Pulsar currently uses Font Awesome 4.6.3. Older 3.2.1 icons are still supported and are mapped to their newer version 4 icon.
 
 ## Example usage
 
 ```twig
 {{ html.icon('save') }}
+```
+
+```twig
+{{ html.icon('application/msword') }}
 ```
 
 ## Options
@@ -642,6 +644,26 @@ class  | string | CSS classes, space separated
 {% macro icon(icon_name, options) %}
 {% spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+
+    {% set mime_types = {
+        'application/msword': 'file-word-o',
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document': 'file-word-o',
+        'application/vnd.ms-excel': 'file-excel-o',
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': 'file-excel-o',
+        'application/vnd.ms-powerpoint': 'file-powerpoint-o',
+        'application/pdf': 'file-pdf-o',
+        'text/plain': 'file-text-o',
+        'text/html': 'file-code-o',
+        'video/': 'file-movie-o',
+        'audio/': 'file-audio-o',
+        'image/': 'file-image-o'
+    } %}
+
+    {% for mime, icon in mime_types %}
+        {% if icon_name starts with mime %}
+            {% set icon_name = icon %}
+        {% endif %}
+    {% endfor %}
 
     {% if options.class is defined and options.class is not empty %}
         {% set class = ' ' ~ options.class %}
