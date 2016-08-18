@@ -52,6 +52,9 @@
 {% set tab_flash %}
     {% include 'lexicon/tabs/flash.html.twig' %}
 {% endset %}
+{% set tab_icons %}
+    {% include 'lexicon/tabs/icons.html.twig' %}
+{% endset %}
 {% set tab_forms %}
     {% include 'lexicon/tabs/forms.html.twig' %}
 {% endset %}
@@ -136,6 +139,12 @@
           "src"   : tab_buttons
         },
         {
+          "id"    : "icons",
+          "label" : "Icons",
+          "src"   : tab_icons,
+          "active": true
+        },
+        {
           "id"    : "flash",
           "label" : "Flash messages",
           "src"   : tab_flash
@@ -183,8 +192,7 @@
         {
           "id"    : "table",
           "label" : "Table",
-          "src"   : tab_data_grid,
-          "active": true
+          "src"   : tab_data_grid
         },
         {
           "id"    : "tooltips",
