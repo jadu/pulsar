@@ -1,22 +1,7 @@
-// -----------------------------------------------------------------------------
-// Font Awesome 3 Backwards Compatibility Support
-// -----------------------------------------------------------------------------
-
-// A few stylesheets @include FA3's `icon-FontAwesome` mixin, so we'll pass
-// those along to FA4's mixin.
 @mixin icon-FontAwesome() {
     @include fa-icon();
 }
 
-// Because FA4 needs both `icon icon-name` but FA3 didn't, there's a high chance
-// of plain html icons in the wild, so we need to support the absence of `.icon`
-// as a base class.
-[class*="icon-"] {
-    @extend .icon;
-}
-
-// A few stylesheets use FA3's variable names to get the unicode, so I've
-// included them here so those won't break.
 // scss-lint:disable StringQuotes
 $glass: "\f000";
 $music: "\f001";
@@ -380,8 +365,7 @@ $vk: "\f189";
 $weibo: "\f18a";
 $renren: "\f18b";
 
-// Loads of icon names changed in FA4, so we map the names from FA3:FA4 then use
-// @extend to make the old names point to the new ones.
+
 $icon-remapping: (
     'envelope-alt': 'envelope-o',
     'star-empty': 'star-o',
@@ -420,10 +404,10 @@ $icon-remapping: (
     'facebook-sign': 'facebook-square',
     'thumbs-up-alt': 'thumbs-o-up',
     'thumbs-down-alt': 'thumbs-o-down',
-    'heart-empty': 'heart-o',
-    'signout': 'sign-out',
-    'linkedin-sign': 'linkedin-square',
-    'pushpin': 'thumb-tack',
+    'heart-empty': 'exclamation-triangle',
+    'signout': 'exclamation-triangle',
+    'linkedin-sign': 'exclamation-triangle',
+    'pushpin': 'exclamation-triangle',
     'signin': 'sign-in',
     'github-sign': 'github-square',
     'upload-alt': 'upload',
@@ -503,8 +487,8 @@ $icon-remapping: (
 );
 
 @each $icon-old, $icon-new in $icon-remapping {
-    .icon-#{$icon-old} {
-        @extend .icon-#{$icon-new};
+    .fa-#{$icon-old} {
+        @extend .fa-#{$icon-new};
     }
 }
 
