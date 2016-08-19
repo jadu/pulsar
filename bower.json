@@ -20,7 +20,7 @@
     "jquery-ui": "^1.11.4",
     "list.js": "latest",
     "moment": "latest",
-    "normalize-css": "latest",
+    "normalize-css": "3.0.3",
     "nwmatcher": "latest",
     "pikaday": "latest",
     "respond": "latest",
