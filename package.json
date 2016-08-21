@@ -81,6 +81,9 @@
     },
     "./libs/jquery.countdown/dist/jquery.countdown.min": {
       "exports": "countdown"
+    },
+    "./libs/tinyicon/tinycon.min": {
+      "exports": "Tinycon"
     }
   },
   "dependencies": {
