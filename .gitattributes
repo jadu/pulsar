@@ -355,6 +355,16 @@
 /libs/svgeezy/readme.md                                         export-ignore
 /libs/svgeezy/svgeezy.js                                        export-ignore
 
+# tinyicon
+/libs/tinyicon/examples/                                        export-ignore
+/libs/tinyicon/.bower.json                                      export-ignore
+/libs/tinyicon/.gitignore                                       export-ignore
+/libs/tinyicon/Gruntfile.js                                     export-ignore
+/libs/tinyicon/LICENSE                                          export-ignore
+/libs/tinyicon/package.json                                     export-ignore
+/libs/tinyicon/README.md                                        export-ignore
+/libs/tinyicon/tinyicon.js                                      export-ignore
+
 # Vague.js
 /libs/Vague.js/.bower.json                                      export-ignore
 /libs/Vague.js/bower.json                                       export-ignore
