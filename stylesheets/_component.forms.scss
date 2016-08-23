@@ -249,7 +249,19 @@ $inputs: (
             }
         }
     }
+}
 
+@include respond-min($screen-tablet) {
+
+    .form__group .input-group-with-addon .form__control {
+        width: 100%;
+    }
+
+    @each $variant, $width in $inputs {
+        .form__group--#{$variant} .input-group-with-addon {
+            width: #{$width};
+        }
+    }
 }
 
 // validation
