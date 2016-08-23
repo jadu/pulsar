@@ -8,7 +8,6 @@
     border-collapse: separate; // prevent input groups from inheriting border styles from table cells when placed within a table
     display: table;
     position: relative;
-    position: relative; // For dropdowns
 
     // Fix issue where input groups break the baseline grid
     margin-bottom: -7px;
@@ -22,8 +21,8 @@
 
     .form__control {
         display: table-cell;
-        position: relative;
         float: left;
+        position: relative;
     }
 }
 
