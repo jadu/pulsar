@@ -249,7 +249,18 @@ $inputs: (
             }
         }
     }
+}
 
+@include respond-min($screen-tablet) {
+    .form__group .input-group {
+        width: map-get($inputs, regular);
+    }
+
+    @each $variant, $width in $inputs {
+        .form__group.form__group--#{$variant} .input-group {
+            width: #{$width};
+        }
+    }
 }
 
 // validation

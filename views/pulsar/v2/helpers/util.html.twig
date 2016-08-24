@@ -1,7 +1,7 @@
 {% macro addon(value) %}
 {% spaceless %}
     {% if value is not empty %}
-    <span class="input-group-addon">{{- value -}}</span>
+    {{- value -}}
     {% endif %}
 {% endspaceless %}
 {% endmacro %}
