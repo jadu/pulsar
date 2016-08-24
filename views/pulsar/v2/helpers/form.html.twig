@@ -939,40 +939,52 @@ controls.class   | string | A space separated list of class names
         <div class="controls{% if options.controls.class is defined %} {{ options.controls.class }}{% endif %}">
         {% endif %}
 
-        {% set input_group = false %}
         {% set input_group_classes = '' %}
-
-        {%
-            if (options.parent.prepend is defined and options.parent.prepend is not empty)
-            or (options.parent.append is defined and options.parent.append is not empty)
-        %}
-            {% set input_group = true %}
-            {% set input_group_classes = input_group_classes ~ ' input-group-with-addon' %}
-        {% endif %}
 
         {% if options.parent.removable is defined and options.parent.removable == true %}
             {% set input_group = true %}
             {% set input_group_classes = input_group_classes ~ ' is-removable' %}
         {% endif %}
 
-        {% if input_group %}
-            <div class="input-group{{ input_group_classes }}">
-                {{ util.addon(options.parent.prepend|default) }}
+        {%
+            if (options.parent.prepend is defined and options.parent.prepend is not empty)
+            or (options.parent.append is defined and options.parent.append is not empty)
+        %}
+            <div class="input-group">
+
+            {% if (options.parent.prepend_type is defined and options.parent.prepend_type == 'button') %}
+                <span class="input-group-btn">
+                    {{ util.addon(options.parent.prepend|default) }}
+                </span>
+            {% elseif options.parent.prepend is defined and options.parent.prepend is not empty %}
+                <span class="input-group-addon">
+                    {{ util.addon(options.parent.prepend|default) }}
+                </span>
+            {% endif %}
         {% endif %}
 
+        {# input #}
         {% for input in options.inputs %}
                 {{- input|raw -}}
         {% endfor %}
+
+            {% if options.parent.append is defined and options.parent.append is not empty %}
+
+                {% if (options.parent.append_type is defined and options.parent.append_type == 'button') %}
+                    <span class="input-group-btn">
+                        {{ util.addon(options.parent.append|default) }}
+                    </span>
+                {% elseif options.parent.append is defined and options.parent.append is not empty %}
+                    <span class="input-group-addon">
+                        {{ util.addon(options.parent.append|default) }}
+                    </span>
+                {% endif %}
+            {% endif %}
 
         {%
             if (options.parent.prepend is defined and options.parent.prepend is not empty)
             or (options.parent.append is defined and options.parent.append is not empty)
         %}
-
-            {% if options.parent.append is defined and options.parent.append is not empty %}
-                {{ util.addon(options.parent.append|default) }}
-            {% endif %}
-
             </div>
         {% endif %}
 
@@ -1631,10 +1643,10 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {{
         form.group({
-            'parent': options|only('append bare class error guidance help id label prepend required'),
+            'parent': options|only('append append_type bare class error guidance help id label prepend prepend_type required'),
             'inputs': [
                 elem.input(
-                    options|exclude('bare class error guidance help label')
+                    options|exclude('append_type bare class error guidance help label prepend_type')
                 )
             ]
         })

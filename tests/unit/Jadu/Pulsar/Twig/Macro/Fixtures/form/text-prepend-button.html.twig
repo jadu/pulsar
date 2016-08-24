@@ -1,0 +1,13 @@
+{#
+    Test button prepended text input
+#}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{{
+    form.text({
+        'prepend': html.button({
+            'label': 'Button'
+        }),
+        'prepend_type': 'button'
+    })
+}}
