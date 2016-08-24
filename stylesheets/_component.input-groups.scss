@@ -39,8 +39,8 @@
 
 .input-group-addon {
     background-color: color(gray, lightest);
-    border-radius: $border-radius;
     border: 1px solid $input-group-addon-border-color;
+    border-radius: $border-radius;
     display: table-cell;
     vertical-align: middle;
     white-space: nowrap;
@@ -82,8 +82,8 @@
 // Text input groups
 // -------------------------
 .input-group-addon,
-.input-group-guidance,
-.input-group-btn .btn {
+.input-group-btn .btn,
+.input-group-guidance, {
     padding: 0 $padding-base-horizontal;
     font-size: $font-size-base;
     font-weight: normal;
@@ -96,8 +96,6 @@
         margin-top: 0;
     }
 }
-
-// !! borders on appended buttons aren't right!!!
 
 // Reset rounded corners
 .input-group .form__control:first-child,
