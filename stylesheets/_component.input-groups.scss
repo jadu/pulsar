@@ -8,6 +8,7 @@
     border-collapse: separate; // prevent input groups from inheriting border styles from table cells when placed within a table
     display: table;
     position: relative;
+    white-space: nowrap;
 
     // Fix issue where input groups break the baseline grid
     margin-bottom: -7px;
@@ -36,21 +37,53 @@
     }
 }
 
-.input-group-addon,
-.input-group-btn {
+.input-group-addon {
     background-color: color(gray, lightest);
-    border: 1px solid $input-group-addon-border-color;
     border-radius: $border-radius;
+    border: 1px solid $input-group-addon-border-color;
     display: table-cell;
     vertical-align: middle;
     white-space: nowrap;
     width: 1%;
 }
 
+.input-group-btn {
+    display: table-cell;
+    position: relative;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 1%;
+}
+
+.input-group-btn > .btn {
+    border: 1px solid $input-group-addon-border-color;
+    box-shadow: none;
+    position: relative;
+
+    &:hover {
+        background-color: color(gray, lighter);
+        border-color: color(gray, lighter);
+        top: 0;
+    }
+
+    @each $state, $state-color, $state-color-alt in $state-colors {
+        &.btn--#{$state}:not(.btn--naked) {
+            border-color: darken($state-color, 10);
+
+            &:hover {
+                background-color: darken($state-color, 10);
+                top: 0;
+            }
+        }
+    }
+}
+
+
 // Text input groups
 // -------------------------
 .input-group-addon,
-.input-group-guidance {
+.input-group-guidance,
+.input-group-btn .btn {
     padding: 0 $padding-base-horizontal;
     font-size: $font-size-base;
     font-weight: normal;
@@ -64,6 +97,8 @@
     }
 }
 
+// !! borders on appended buttons aren't right!!!
+
 // Reset rounded corners
 .input-group .form__control:first-child,
 .input-group-addon:first-child,
@@ -76,6 +111,13 @@
 
 .input-group-addon:first-child {
     border-right: 0;
+    margin-right: -1px;
+}
+
+.input-group-btn:first-child,
+.input-group-btn:first-child > .btn {
+    margin-right: -2px;
+    z-index: 999;
 }
 
 .input-group .form__control:last-child,
@@ -89,6 +131,12 @@
 
 .input-group-addon:last-child {
     border-left: 0;
+    margin-left: -1px;
+}
+
+.input-group-btn:last-child,
+.input-group-btn:last-child > .btn {
+    margin-left: -1px;
     z-index: 999;
 }
 
@@ -157,9 +205,4 @@
         border-top-right-radius: $border-radius;
         border-bottom-right-radius: $border-radius;
     }
-}
-
-.input-group-with-addon.input-group-with-guidance .form__control:first-child {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
 }
