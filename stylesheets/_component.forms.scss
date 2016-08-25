@@ -256,14 +256,14 @@ $inputs: (
         width: map-get($inputs, regular);
     }
 
-    .form__group .input-group .form__control:not(.checkbox):not(.radio):not(.file) {
-        width: 100%;
-    }
-
     @each $variant, $width in $inputs {
         .form__group.form__group--#{$variant} .input-group {
             width: #{$width};
         }
+    }
+
+    .form__group .input-group .form__control:not(.checkbox):not(.radio):not(.file) {
+        width: 100%;
     }
 }
 
