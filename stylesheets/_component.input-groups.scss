@@ -10,9 +10,6 @@
     position: relative;
     white-space: nowrap;
 
-    // Fix issue where input groups break the baseline grid
-    margin-bottom: -7px;
-
     // Undo padding and float of grid classes
     &.col {
         float: none;

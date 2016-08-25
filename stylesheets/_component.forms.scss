@@ -261,6 +261,10 @@ $inputs: (
             width: #{$width};
         }
     }
+
+    .form__group .input-group .form__control:not(.checkbox):not(.radio):not(.file) {
+        width: 100%;
+    }
 }
 
 // validation
