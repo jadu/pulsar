@@ -189,3 +189,9 @@ div.no-results {
         display: inline-block !important;
     }
 }
+
+.u-hidden-print {
+    @media print {
+        display: none !important;
+    }
+}
