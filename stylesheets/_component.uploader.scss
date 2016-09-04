@@ -23,6 +23,7 @@
   .form__group {
     display: inline-block;
     margin: 0;
+    padding-left: 0;
     width: 95%;
 
     &:hover {
@@ -34,18 +35,21 @@
     margin: 0;
     padding-top: 2px;
     text-align: left;
-    width: 15%;
+    width: 90%;
   }
 
   .form__control {
-    height: 26px;
-    line-height: 26px;
+    float: none;
     padding: 0 6px;
   }
 
-  .controls {
+  .controls.controls {
     display: inline-block;
     width: 83.5%;
+
+    @include respond-min($screen-medium) {
+      float: none;
+    }
   }
 
   &__name {
