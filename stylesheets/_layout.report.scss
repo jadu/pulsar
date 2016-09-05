@@ -1,6 +1,7 @@
 .ui-report {
     background-color: color(gray, off-white);
     border-top: 1px solid color(border);
+    height: 100%; // relies on the 100% height of .content-main
     margin: -1px -20px 0;
     padding: 16px 20px;
 
