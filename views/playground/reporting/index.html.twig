@@ -2,7 +2,6 @@
 {% import '@pulsar/pulsar/v2/helpers/tabs.html.twig' as tabs %}
 
 {% set heading = 'Reports' %}
-{% set bodyClass = 'ui-report' %}
 
 {%
     set nav_data = {
@@ -55,6 +54,7 @@
 {%
     set tabs_content = [
         {
+          "class" : "ui-report",
           "id"    : "report",
           "label" : "Shared Reports",
           "src"   : tab_report,
