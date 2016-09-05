@@ -1,42 +1,38 @@
 .ui-report {
+    background-color: color(gray, off-white);
+    border-top: 1px solid color(border);
+    margin: -1px -20px 0;
+    padding: 16px 20px;
 
-    .inner-wrapper {
-        background-color: color(gray, off-white);
-    }
+    // .breadcrumb,
+    // .main-title {
+    //     background-color: white;
+    //     padding-left: $gutter-width;
+    //     padding-right: $gutter-width;
+    // }
 
-    .tabs__content {
-        padding: 0;
-    }
+    // .breadcrumb {
+    //     margin-bottom: 0;
+    //     padding-bottom: 11px;
+    // }
 
-    .breadcrumb,
-    .main-title {
-        background-color: white;
-        padding-left: $gutter-width;
-        padding-right: $gutter-width;
-    }
+    // .main-title {
+    //     margin-bottom: 0;
+    //     padding-bottom: 13px;
+    // }
 
-    .breadcrumb {
-        margin-bottom: 0;
-        padding-bottom: 11px;
-    }
+    // .nav-inline {
+    //     background-color: white;
+    // }
 
-    .main-title {
-        margin-bottom: 0;
-        padding-bottom: 13px;
-    }
+    // .nav-inline__list {
+    //     padding-left: $gutter-width;
+    // }
 
-    .nav-inline {
-        background-color: white;
-    }
-
-    .nav-inline__list {
-        padding-left: $gutter-width;
-    }
-
-    .tab__pane {
-        margin-top: 0;
-        padding: 12px $gutter-width 0;
-    }
+    // .tab__pane {
+    //     margin-top: 0;
+    //     padding: 12px $gutter-width 0;
+    // }
 
 }
 
