@@ -1,5 +1,5 @@
 .is-sortable {
-    .form__group {
+    .ui-sortable-handle {
         background-color: color(background, light);
         margin-bottom: 4px;
         padding: 10px 10px 10px 50px;
@@ -27,6 +27,10 @@
             font-family: fontawesome;
             position: absolute;
             left: 20px;
+            top: 10px;
+        }
+
+        &.form__group::before {
             top: 22px;
         }
     }
@@ -36,11 +40,12 @@
     }
 }
 
-.form__group.is-sorting {
-    background-color: lighten(color(background, selected), 5);
-    border: 1px dashed color(info);
+.is-sorting {
+    background-color: color(sorting);
+    border: 1px dashed color(sorting, dark);
     border-radius: 5px;
     display: block;
+    margin-bottom: 4px;
     min-height: 68px;
 
     &::before {
