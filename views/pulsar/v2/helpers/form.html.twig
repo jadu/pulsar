@@ -56,7 +56,7 @@ items         | array  | An array of items to put in the dropdown list (usually 
     {{
         form.group({
             'parent': options
-                |only('bare class error guidance help id label required')
+                |only('bare class error guidance guidance-container help id label required')
                 |merge({'class': options.class|default ~ ' form__button-group'}),
             'controls': {'class': 'btn__group'},
             'inputs': options.items
@@ -118,14 +118,14 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
     {{
         form.group({
             'parent': options
-                |only('bare class error guidance help id label required')
+                |only('bare class error guidance guidance-container help id label required')
                 |defaults({
                     'class': 'form-checkbox'
                 }),
             'inputs': [
                 elem.input(
                     options
-                        |exclude('bare class error guidance help label')
+                        |exclude('bare class error guidance guidance-container help label')
                         |defaults({
                             'class': 'checkbox',
                             'type': 'checkbox'
@@ -203,7 +203,7 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {%
         set input = elem.input(options
-            |exclude('error guidance')
+            |exclude('error guidance guidance-container')
             |merge({
                 'class': inputClass,
                 'label': null,
@@ -232,7 +232,8 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
                     'for': options.id|default,
                     'guidance': options.guidance|default,
                     'label': label,
-                    'required': options.required|default
+                    'required': options.required|default,
+                    'guidance-container': options['guidance-container']|default
                 })
             ]
         })
@@ -341,7 +342,7 @@ multiple | bool   | If `true`, uses checkboxes instead of radios, or passes the 
     {{
         form.group({
             'parent': options
-                |only('bare class error guidance help id label required')
+                |only('bare class error guidance guidance-container help id label required')
                 |exclude('multiple')
                 |defaults({'class': 'form-choice'}),
             'inputs': inputs
@@ -401,10 +402,10 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {{
         form.group({
-            'parent': options|only('bare class error guidance help id label'),
+            'parent': options|only('bare class error guidance guidance-container help id label'),
             'inputs': [
                 elem.paragraph(
-                    options|exclude('bare class error guidance help label')
+                    options|exclude('bare class error guidance guidance-container help label')
                 )
             ]
         })
@@ -800,10 +801,10 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {{
         form.group({
-            'parent': options|only('bare class error guidance help id label required'),
+            'parent': options|only('bare class error guidance guidance-container help id label required'),
             'inputs': [
                 elem.input(options
-                    |exclude('bare class guidance error help label')
+                    |exclude('bare class guidance guidance-container error help label')
                     |defaults({'type': 'file'})
                     |merge({'class': 'file'})
                 )
@@ -931,7 +932,8 @@ controls.class   | string | A space separated list of class names
                 'for': options.parent.id|default,
                 'guidance': options.parent.guidance|default,
                 'label': options.parent.label|default,
-                'required': options.parent.required|default
+                'required': options.parent.required|default,
+                'guidance-container': options.parent['guidance-container']|default
             })
         }}
 
@@ -1201,13 +1203,13 @@ data-*   | string | Data attributes, eg: `'data-foo': 'bar'`
     {{
         form.group({
             'parent': options
-                |only('bare class error guidance help id label required')
+                |only('bare class error guidance guidance-container help id label required')
                 |defaults({
                     'class': 'form-radio'
                 }),
             'inputs': [
                 elem.input(options
-                    |exclude('bare class error guidance help label')
+                    |exclude('bare class error guidance guidance-container help label')
                     |defaults({
                         'class': 'radio',
                         'type': 'radio'
@@ -1283,7 +1285,7 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {%
         set input = elem.input(options
-            |exclude('error guidance')
+            |exclude('error guidance guidance-container')
             |merge({
                 'class': inputClass,
                 'label': null,
@@ -1304,7 +1306,7 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
     {{
         form.group({
             'parent': options
-                |only('bare class error help id')
+                |only('bare class error guidance-container help id')
                 |defaults({
                     'class': 'form-radio-inline'
                 }),
@@ -1313,7 +1315,8 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
                     'for': options.id|default,
                     'label': label,
                     'required': options.required|default,
-                    'guidance': options.guidance|default
+                    'guidance': options.guidance|default,
+                    'guidance-container': options['guidance-container']|default
                 })
             ]
         })
@@ -1379,7 +1382,7 @@ required | bool   | Visually indicates that the field must be completed
 
     {{
         elem.input(options
-            |exclude('class for label')
+            |exclude('class for guidance-container label')
             |defaults({
                 'type': 'radio'
             })
@@ -1388,7 +1391,7 @@ required | bool   | Visually indicates that the field must be completed
     }}
     {{
         elem.label(options
-            |only('class label for required')
+            |only('class label for guidance-container required')
             |defaults({'for': options.id|default})
         )
     }}
@@ -1454,11 +1457,11 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {{
         form.group({
-            'parent': options|only('bare class error guidance help id label required'),
+            'parent': options|only('bare class error guidance guidance-container help id label required'),
             'inputs': [
                 elem.select(
                     options
-					|exclude('bare class error guidance help label')
+					|exclude('bare class error guidance guidance-container help label')
 					|merge({'class': 'select'})
                 )
             ]
@@ -1528,10 +1531,10 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {{
         form.group({
-            'parent': options|only('bare class error guidance help id label required'),
+            'parent': options|only('bare class error guidance guidance-container help id label required'),
             'inputs': [
                 elem.select2(options
-                    |exclude('bare class error guidance help label')
+                    |exclude('bare class error guidance guidance-container help label')
                 )
             ]
         })
@@ -1643,10 +1646,10 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {{
         form.group({
-            'parent': options|only('append append_type bare class error guidance help id label prepend prepend_type required'),
+            'parent': options|only('append append_type bare class error guidance guidance-container help id label prepend prepend_type required'),
             'inputs': [
                 elem.input(
-                    options|exclude('append_type bare class error guidance help label prepend_type')
+                    options|exclude('append_type bare class error guidance guidance-container help label prepend_type')
                 )
             ]
         })
@@ -1708,10 +1711,10 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {{
         form.group({
-            'parent': options|only('bare class error guidance help id label required'),
+            'parent': options|only('bare class error guidance guidance-container help id label required'),
             'inputs': [
                 elem.textarea(options
-                    |exclude('bare class error guidance help label')
+                    |exclude('bare class error guidance guidance-container help label')
                     |merge({'class': 'textarea'})
                 )
             ]
@@ -1774,7 +1777,7 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {%
         set toggle = elem.input(options
-            |exclude('error guidance')
+            |exclude('error guidance guidance-container')
             |merge({
                 'class': 'toggle-switch',
                 'type': 'checkbox'
@@ -1790,7 +1793,7 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
     {{
         form.group({
             'parent': options
-                |only('bare class error guidance help id label required'),
+                |only('bare class error guidance guidance-container help id label required'),
             'inputs': [toggle]
         })
     }}

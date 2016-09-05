@@ -196,3 +196,6 @@
     }
 }
 
+.modal__backdrop.in + .popover {
+    z-index: $zindex-modal + 1;
+}
