@@ -34,7 +34,8 @@
     "vide": "~0.3.1"
   },
   "devDependencies": {
-    "livereload-js": "livereload/livereload-js"
+    "livereload-js": "livereload/livereload-js",
+    "tinyicon": "^0.6.5"
   },
   "resolutions": {
     "font-awesome": "3.2.1"

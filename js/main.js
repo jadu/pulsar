@@ -61,6 +61,8 @@
             }
         }).disableSelection();
 
+        tinycon.setBubble(6);
+
     });
 
 }(jQuery));
