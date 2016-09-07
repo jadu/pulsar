@@ -147,6 +147,18 @@
     }
 }
 
+.input-group-addon > .btn {
+    top: -8px;
+
+    &:hover {
+        top: -7px;
+    }
+
+    &:active {
+        top: -6px;
+    }
+}
+
 .input-group.is-removable {
     width: 100%;
 
