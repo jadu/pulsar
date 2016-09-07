@@ -1,11 +1,7 @@
 .remove-button {
-    background: none;
+    @extend .btn--naked;
     background-color: transparent;
     border: 0;
-    box-shadow: none;
-    color: color(text);
-    display: inline-block;
-    line-height: auto;
     padding: 0;
     vertical-align: top;
     white-space: nowrap;
@@ -23,4 +19,8 @@
             color: color(black);
         }
     }
+}
+
+a + .remove-button {
+    margin-left: 10px;
 }
