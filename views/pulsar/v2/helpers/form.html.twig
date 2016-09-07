@@ -948,11 +948,19 @@ controls.class   | string | A space separated list of class names
             {% set input_group_classes = input_group_classes ~ ' is-removable' %}
         {% endif %}
 
+        {% if (options.parent.prepend_type is defined and options.parent.prepend_type == 'button') %}
+            {% set input_group_classes = input_group_classes ~ ' has-btn-prepended' %}
+        {% endif %}
+
+        {% if (options.parent.append_type is defined and options.parent.append_type == 'button') %}
+            {% set input_group_classes = input_group_classes ~ ' has-btn-appended' %}
+        {% endif %}
+
         {%
             if (options.parent.prepend is defined and options.parent.prepend is not empty)
             or (options.parent.append is defined and options.parent.append is not empty)
         %}
-            <div class="input-group">
+            <div class="input-group{{ input_group_classes }}">
 
             {% if (options.parent.prepend_type is defined and options.parent.prepend_type == 'button') %}
                 <span class="input-group-btn">
