@@ -27,3 +27,15 @@ a + .remove-button {
 *:not(.btn__group) > .remove-button {
     padding: 0;
 }
+
+.btn__group > .remove-button {
+    padding: 0 ($padding-base-horizontal / 2);
+}
+
+.btn__group .btn + .remove-button {
+    margin-left: 0;
+}
+
+.btn__group > .remove-button:first-child {
+    margin-left: ($padding-base-horizontal / 2);
+}

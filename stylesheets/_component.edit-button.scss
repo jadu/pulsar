@@ -27,3 +27,15 @@ a + .edit-button {
 *:not(.btn__group) > .edit-button {
     padding: 0;
 }
+
+.btn__group > .edit-button {
+    padding: 0 ($padding-base-horizontal / 2);
+}
+
+.btn__group .btn + .edit-button {
+    margin-left: 0;
+}
+
+.btn__group > .edit-button:first-child {
+    margin-left: ($padding-base-horizontal / 2);
+}
