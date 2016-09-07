@@ -35,7 +35,3 @@ a + .remove-button {
 .btn__group .btn + .remove-button {
     margin-left: 0;
 }
-
-.btn__group > .remove-button:first-child {
-    margin-left: ($padding-base-horizontal / 2);
-}

@@ -35,7 +35,3 @@ a + .edit-button {
 .btn__group .btn + .edit-button {
     margin-left: 0;
 }
-
-.btn__group > .edit-button:first-child {
-    margin-left: ($padding-base-horizontal / 2);
-}

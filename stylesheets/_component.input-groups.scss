@@ -105,8 +105,9 @@
     margin-right: -1px;
 }
 
-.input-group-btn:first-child > .btn {
-    margin-right: 4px;
+.input-group-btn:first-child > .btn,
+.input-group-btn:first-child > .btn__group {
+    margin-right: $padding-base-horizontal / 2;
 }
 
 .input-group:not(.has-btn-prepended) .form__control:not(:first-child),
@@ -121,8 +122,9 @@
     margin-left: -1px;
 }
 
-.input-group-btn:last-child > .btn {
-    margin-left: 4px;
+.input-group-btn:last-child > .btn,
+.input-group-btn:last-child > .btn__group {
+    margin-left: $padding-base-horizontal / 2;
 }
 
 // Button input groups
