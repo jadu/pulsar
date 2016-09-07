@@ -28,14 +28,14 @@
 // -------------------------
 .input-group-addon,
 .input-group-btn,
-.input-group .form__control {
+.input-group:not(.has-btn-prepended):not(.has-btn-appended) .form__control {
     &:not(:first-child):not(:last-child) {
         border-radius: 0;
     }
 }
 
 .input-group-addon {
-    background-color: color(gray, lightest);
+    background-color: color(gray, off-white);
     border: 1px solid $input-group-addon-border-color;
     border-radius: $border-radius;
     display: table-cell;
@@ -53,15 +53,7 @@
 }
 
 .input-group-btn > .btn {
-    border: 1px solid $input-group-addon-border-color;
-    box-shadow: none;
     position: relative;
-
-    &:hover {
-        background-color: color(gray, lighter);
-        border-color: color(gray, lighter);
-        top: 0;
-    }
 
     @each $state, $state-color, $state-color-alt in $state-colors {
         &.btn--#{$state}:not(.btn--naked) {
@@ -69,7 +61,6 @@
 
             &:hover {
                 background-color: darken($state-color, 10);
-                top: 0;
             }
         }
     }
@@ -79,8 +70,7 @@
 // Text input groups
 // -------------------------
 .input-group-addon,
-.input-group-btn .btn,
-.input-group-guidance, {
+.input-group-guidance {
     padding: 0 $padding-base-horizontal;
     font-size: $font-size-base;
     font-weight: normal;
@@ -94,12 +84,18 @@
     }
 }
 
+.input-group-btn .btn {
+    font-size: $font-size-base;
+    line-height: $input-height-base - 2;
+    margin-top: -1px;
+    padding-bottom: 0;
+    padding-top: 0;
+}
+
 // Reset rounded corners
-.input-group .form__control:first-child,
+.input-group:not(.has-btn-appended) .form__control:not(:last-child),
 .input-group-addon:first-child,
-.input-group-btn:first-child > .btn,
-.input-group-btn:first-child > .dropdown-toggle,
-.input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle) {
+.input-group-btn:first-child > .dropdown-toggle {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
 }
@@ -109,17 +105,14 @@
     margin-right: -1px;
 }
 
-.input-group-btn:first-child,
-.input-group-btn:first-child > .btn {
-    margin-right: -2px;
-    z-index: 999;
+.input-group-btn:first-child > .btn,
+.input-group-btn:first-child > .btn__group {
+    margin-right: $padding-base-horizontal / 2;
 }
 
-.input-group .form__control:last-child,
+.input-group:not(.has-btn-prepended) .form__control:not(:first-child),
 .input-group-addon:last-child,
-.input-group-btn:last-child > .btn,
-.input-group-btn:last-child > .dropdown-toggle,
-.input-group-btn:first-child > .btn:not(:first-child) {
+.input-group-btn:last-child > .dropdown-toggle {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
 }
@@ -129,10 +122,9 @@
     margin-left: -1px;
 }
 
-.input-group-btn:last-child,
-.input-group-btn:last-child > .btn {
-    margin-left: -1px;
-    z-index: 999;
+.input-group-btn:last-child > .btn,
+.input-group-btn:last-child > .btn__group {
+    margin-left: $padding-base-horizontal / 2;
 }
 
 // Button input groups
@@ -154,6 +146,18 @@
     &:hover,
     &:active {
         z-index: 2;
+    }
+}
+
+.input-group-addon > .btn {
+    top: -8px;
+
+    &:hover {
+        top: -7px;
+    }
+
+    &:active {
+        top: -6px;
     }
 }
 
