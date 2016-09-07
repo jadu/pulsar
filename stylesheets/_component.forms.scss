@@ -14,14 +14,6 @@ fieldset {
 
 .form__group {
     margin-bottom: 24px;
-
-    @include respond-min($screen-desktop) {
-        padding: 0 20px;
-
-        &.form__group--indent {
-          padding-left: $padding-small-horizontal;
-        }
-    }
 }
 
 .modal .form__group {
