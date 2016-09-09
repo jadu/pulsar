@@ -61,6 +61,9 @@
 {% set tab_loading %}
     {% include 'lexicon/tabs/loading.html.twig' %}
 {% endset %}
+{% set tab_media %}
+    {% include 'lexicon/tabs/media.html.twig' %}
+{% endset %}
 {% set tab_message %}
     {% include 'lexicon/tabs/message.html.twig' %}
 {% endset %}
@@ -163,6 +166,11 @@
           "id"    : "loading",
           "label" : "Loading",
           "src"   : tab_loading
+        },
+        {
+          "id"    : "media",
+          "label" : "Media",
+          "src"   : tab_media
         },
         {
           "id"    : "messages",
