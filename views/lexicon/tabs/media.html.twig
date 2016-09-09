@@ -1,0 +1,33 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+
+{% block tab_content %}
+
+    {{
+        html.media({
+            'image': '/images/pulsar-brand-medium.png',
+            'image_alt': 'Pulsar logo',
+            'title': 'Media object with image',
+            'description': 'Description'
+        })
+    }}
+
+    {{
+        html.media({
+            'icon': 'ok',
+            'title': 'Media helper with icon',
+            'description': 'Description'
+        })
+    }}
+
+    {{
+        html.media({
+            'icon': 'youtube-square',
+            'icon_colour': '#e52d27',
+            'title': 'Custom icon colours',
+            'description': 'Description'
+        })
+    }}
+
+{% endblock %}
