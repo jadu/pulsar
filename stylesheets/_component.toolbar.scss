@@ -24,9 +24,9 @@
 
     .dropdown__menu {
         clear: both;
-        left: 10px;
+        left: $padding-small-horizontal;
         position: absolute;
-        right: 10px;
+        right: $padding-small-horizontal;
         top: 60px;
 
         @include respond-min($screen-xsmall) {
