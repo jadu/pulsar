@@ -674,8 +674,13 @@ class  | string | CSS classes, space separated
         {% set class = ' ' ~ options.class %}
     {% endif %}
 
+    {% if options.colour is defined and options.colour is not empty %}
+        {% set options = options|merge({ 'style': 'color: ' ~ options.colour }) %}
+    {% endif %}
+
     <i{{
         attributes(options
+            |exclude('colour')
             |defaults({
                 'class': 'icon-' ~ icon_name ~ class|default
             })
