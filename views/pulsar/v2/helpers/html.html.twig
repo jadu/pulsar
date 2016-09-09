@@ -674,8 +674,13 @@ class  | string | CSS classes, space separated
         {% set class = ' ' ~ options.class %}
     {% endif %}
 
+    {% if options.colour is defined and options.colour is not empty %}
+        {% set options = options|merge({ 'style': 'color: ' ~ options.colour }) %}
+    {% endif %}
+
     <i{{
         attributes(options
+            |exclude('colour')
             |defaults({
                 'class': 'icon-' ~ icon_name ~ class|default
             })
@@ -1072,6 +1077,8 @@ action      | html/twig | A button/indicator to display on the right hand side
 class       | string    | CSS classes, space separated
 description | string    | Small descriptive text to sit underneath the title
 href        | string    | If `type` is `link`, set the `href` attribute on the `a`
+icon        | string    | Icon name used to display on the left hand side (alternative to image)
+icon_colour | string    | Text colour to use for the `icon`, useful for branding
 id          | string    | A unique identifier, if required
 image       | string    | URL for the image to display on the left hand side
 image_alt   | string    | Alt attribute for the `image`
@@ -1081,6 +1088,7 @@ data-*      | string    | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
 {% macro media(options) %}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 {% spaceless %}
 
     {% set type = 'div' %}
@@ -1090,13 +1098,15 @@ data-*      | string    | Data attributes, eg: `'data-foo': 'bar'`
 
     <{{ type }}{{
         attributes(options
-            |exclude('action description image image_alt title type')
+            |exclude('action description icon icon_colour image image_alt title type')
             |defaults({
                 'class': 'media'
             })
         )
     }}>
-    {% if options.image is defined and options.image is not empty %}
+    {% if options.icon is defined and options.icon is not empty %}
+        {{ html.icon(options.icon, { 'class': 'media__image', 'colour': options.icon_colour|default('#000') }) }}
+    {% elseif options.image is defined and options.image is not empty %}
         <img src="{{ options.image }}" alt="{{ options.image_alt|default }}" class="media__image" />
     {% endif %}
         <div class="media__body">

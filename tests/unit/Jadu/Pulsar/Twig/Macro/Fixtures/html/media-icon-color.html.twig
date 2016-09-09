@@ -1,0 +1,12 @@
+{#
+    Test basic media object method
+#}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{{
+    html.media({
+        'icon': 'ok',
+        'icon_colour': '#f00',
+        'title': 'Bar',
+        'description': 'Baz'
+    })
+}}
