@@ -288,7 +288,7 @@ body {
 }
 
 .signin__hint {
-	@include icon-FontAwesome();
+	@include fa-icon();
 	animation-duration: 1s;
 	animation-fill-mode: both;
 	animation-iteration-count: infinite;
