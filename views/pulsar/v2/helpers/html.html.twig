@@ -620,16 +620,18 @@ data-*    | string | Data attributes, eg: `'data-foo': 'bar'`
 
 # Icon
 
-Help visually distinguish and provide extra meaning to certain items or actions.
+Help visually distinguish and provide extra meaning to certain items or actions. You can pass an icon name or mime type to generate the appropriate icon.
 
-Pulsar currently uses Font Awesome 3.2.1 (because IE7) but we hope to shift to
-using version 4 soon, using icon helpers will allow us to make the switch
-easier as the helper can manage the change in class syntax.
+Pulsar currently uses Font Awesome 4.6.3. Older 3.2.1 icons are still supported and are mapped to their newer version 4 icon.
 
 ## Example usage
 
 ```twig
 {{ html.icon('save') }}
+```
+
+```twig
+{{ html.icon('application/msword') }}
 ```
 
 ## Options
@@ -643,12 +645,42 @@ class  | string | CSS classes, space separated
 {% spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
+    {% set mime_types = {
+        'application/msword': 'file-word-o',
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document': 'file-word-o',
+        'application/vnd.ms-excel': 'file-excel-o',
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': 'file-excel-o',
+        'application/vnd.ms-powerpoint': 'file-powerpoint-o',
+        'application/vnd.ms-office': 'file-o',
+        'application/pdf': 'file-pdf-o',
+        'text/plain': 'file-text-o',
+        'text/html': 'file-code-o',
+        'application': 'file-o',
+        'text': 'file-text-o',
+        'video': 'file-movie-o',
+        'audio': 'file-audio-o',
+        'image': 'file-image-o'
+    } %}
+
+    {% for mime, icon in mime_types %}
+        {% if icon_name == mime %}
+            {% set icon_name = icon %}
+        {% elseif icon_name|split('/')[0] == mime %}
+            {% set icon_name = icon %}
+        {% endif %}
+    {% endfor %}
+
     {% if options.class is defined and options.class is not empty %}
         {% set class = ' ' ~ options.class %}
     {% endif %}
 
+    {% if options.colour is defined and options.colour is not empty %}
+        {% set options = options|merge({ 'style': 'color: ' ~ options.colour }) %}
+    {% endif %}
+
     <i{{
         attributes(options
+            |exclude('colour')
             |defaults({
                 'class': 'icon-' ~ icon_name ~ class|default
             })
@@ -1002,7 +1034,7 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 {% spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-    <div{{
+    <span{{
         attributes(options
             |defaults({
                 'class': 'loading'
@@ -1010,7 +1042,7 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
         )
     }}>
         <i>Loading...</i>
-    </div>
+    </span>
 
 {% endspaceless %}
 {% endmacro %}
@@ -1045,6 +1077,8 @@ action      | html/twig | A button/indicator to display on the right hand side
 class       | string    | CSS classes, space separated
 description | string    | Small descriptive text to sit underneath the title
 href        | string    | If `type` is `link`, set the `href` attribute on the `a`
+icon        | string    | Icon name used to display on the left hand side (alternative to image)
+icon_colour | string    | Text colour to use for the `icon`, useful for branding
 id          | string    | A unique identifier, if required
 image       | string    | URL for the image to display on the left hand side
 image_alt   | string    | Alt attribute for the `image`
@@ -1054,6 +1088,7 @@ data-*      | string    | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
 {% macro media(options) %}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 {% spaceless %}
 
     {% set type = 'div' %}
@@ -1063,13 +1098,15 @@ data-*      | string    | Data attributes, eg: `'data-foo': 'bar'`
 
     <{{ type }}{{
         attributes(options
-            |exclude('action description image image_alt title type')
+            |exclude('action description icon icon_colour image image_alt title type')
             |defaults({
                 'class': 'media'
             })
         )
     }}>
-    {% if options.image is defined and options.image is not empty %}
+    {% if options.icon is defined and options.icon is not empty %}
+        {{ html.icon(options.icon, { 'class': 'media__image', 'colour': options.icon_colour|default('#000') }) }}
+    {% elseif options.image is defined and options.image is not empty %}
         <img src="{{ options.image }}" alt="{{ options.image_alt|default }}" class="media__image" />
     {% endif %}
         <div class="media__body">
@@ -1186,10 +1223,15 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
             })
         )
     }}>
+        {% if options.icon is defined and options.icon is not empty %}
+            {{ html.icon(options.icon|default, { 'class': 'panel__icon' }) }}
+        {% endif %}
+
+        {% if options.title is defined and options.title is not empty %}
         <div class="panel__title">
-            {{ html.icon(options.icon|default) }}
             {{ options.title|raw }}
         </div>
+        {% endif %}
         <div class="panel__body">
             {{- options.body|raw -}}
         </div>

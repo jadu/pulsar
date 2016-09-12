@@ -52,6 +52,18 @@
             }
         });
 
+        $('.is-sortable').sortable({
+             placeholder: "form__group is-sorting",
+             helper: "clone",
+             opacity: 0.9,
+             start: function(e, ui) {
+                $(ui.helper).addClass('is-dragging');
+            }
+        }).disableSelection();
+
+        tinycon.setBubble(6);
+
+
         new chartist.Line('.ct-chart', {
             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August'],
             series: [
@@ -109,4 +121,5 @@
         });
 
     });
+
 }(jQuery));

@@ -1,0 +1,20 @@
+<html>
+	<head>
+		<link rel="icon" href="favicon.ico">
+		<title>Tinycon</title>
+		
+		<script src="../tinycon.js"></script>
+		<script>
+			(function(){
+				var count = 0;
+				setInterval(function(){
+					++count;
+					Tinycon.setBubble(count);
+
+				}, 1000);
+			})();
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

@@ -159,15 +159,8 @@ $table-condensed-cell-padding:        5px;
 // -----------------------------------------------------------------------------
 
 $tooltip-max-width:                   200px !default;
-$tooltip-bg:                          rgba(0, 0, 0, .9) !default;
-
-@include ie-lte(7) {
-  $tooltip-bg:                        rgb(0, 0, 0) !default;
-}
-
 $tooltip-color:                       #fff !default;
 $tooltip-arrow-width:                 5px !default;
-$tooltip-arrow-color:                 $tooltip-bg !default;
 
 // -----------------------------------------------------------------------------
 //  Toolbar

@@ -1,0 +1,15 @@
+{#
+    Test basic select input with guidance
+#}
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{{
+    form.select({
+        'label': 'foo',
+        'guidance': 'bar',
+        'guidance-container': 'baz',
+        'options': {
+            'baz': 'baz',
+            'qux': 'qux'
+        }
+    })
+}}

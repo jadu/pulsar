@@ -16,6 +16,10 @@ fieldset {
     margin-bottom: 24px;
 }
 
+.modal .form__group {
+    padding: 0;
+}
+
 .form__control {
     border-radius: $input-border-radius;
     border: 1px solid $input-border;
@@ -237,7 +241,22 @@ $inputs: (
             }
         }
     }
+}
 
+@include respond-min($screen-tablet) {
+    .form__group .input-group {
+        width: map-get($inputs, regular);
+    }
+
+    @each $variant, $width in $inputs {
+        .form__group.form__group--#{$variant} .input-group {
+            width: #{$width};
+        }
+    }
+
+    .form__group .input-group .form__control:not(.checkbox):not(.radio):not(.file) {
+        width: 100%;
+    }
 }
 
 // validation

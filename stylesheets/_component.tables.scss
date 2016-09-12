@@ -27,7 +27,7 @@
         }
     }
 
-    tr.is-disabled td {
+    tr.is-disabled td:not(.table-row__actions) {
         &,
         & > * {
             color: color(text, disabled);
