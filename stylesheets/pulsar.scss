@@ -24,6 +24,9 @@ $fa-css-prefix: 'icon';
 @import 'deprecated.icons';
 @import '../libs/font-awesome/scss/font-awesome';
 
+$font-path: '../fonts/';
+@import '../fonts/config.fonts';
+
 // Mixins
 @import 'mixin.border-radius';
 @import 'mixin.clear-fix';
@@ -37,7 +40,6 @@ $fa-css-prefix: 'icon';
 
 // Config
 @import 'config.variables';
-@import 'config.fonts';
 @import 'config.branding';
 
 // Functions
