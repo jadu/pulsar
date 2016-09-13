@@ -45,6 +45,8 @@ describe('Pulsar Form Component - Select2 elements', function() {
         </div>\
     </div>\
 </form>\
+\
+<input data-datepicker="true" type="text" />\
 ').appendTo(this.$body);
 
         this.$radioFoo = this.$html.find('.radio[value="foo"]');
@@ -59,6 +61,8 @@ describe('Pulsar Form Component - Select2 elements', function() {
         this.$checkLabelFoo = this.$checkFoo.closest('.control__label');
         this.$checkLabelBar = this.$checkBar.closest('.control__label');
         this.$checkLabelBaz = this.$checkBaz.closest('.control__label');
+
+        this.$datepicker = this.$html.find('[data-datepicker]');
 
         this.pulsarForm = new PulsarFormComponent(this.$html);
 
@@ -153,5 +157,17 @@ describe('Pulsar Form Component - Select2 elements', function() {
 
     });
 
+    describe('Datepickers', function() {
+
+        beforeEach(function() {
+            sinon.spy($.fn, 'pikaday');
+            this.pulsarForm.init();
+        });
+
+        it('Should have the pikaday plugin attached', function() {
+            expect($.fn.pikaday).to.have.been.called;
+        });
+
+    });
 
 });
