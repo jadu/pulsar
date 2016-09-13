@@ -91,7 +91,7 @@ endif
 	@ echo "\n${CHECK} Done"
 
 	@ echo "${HR}\nCopy Proxima Nova (if available)...${HR}"
-	@ git update-index --assume-unchanged ./fonts/_config.fonts.scss
+	@ git update-index --skip-worktree ./fonts/_config.fonts.scss
 	@ cp -r ../pulsar-fonts/src/* ./fonts 2>/dev/null || :
 	@ echo "\n${CHECK} Done"
 
