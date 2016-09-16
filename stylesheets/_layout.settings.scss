@@ -74,28 +74,34 @@
     }
 }
 
-.settings-section--primary .btn--primary {
+.settings-section--primary .btn {
     @include respond-max($screen-smaller) {
-        float: left;
-        margin-left: 12.5%;
         width: 25%;
     }
 
     @include respond-max($screen-xsmall) {
-        margin-left: 5%;
         width: 40%;
+    }
+}
+
+.settings-section--primary .btn--primary {
+    @include respond-max($screen-smaller) {
+        float: left;
+        margin-left: 12.5%;
+    }
+
+    @include respond-max($screen-xsmall) {
+        margin-left: 5%;
     }
 }
 
 .settings-section--primary .btn:not(.btn--primary) {
     @include respond-max($screen-smaller) {
         margin-right: 12.5%;
-        width: 25%;
     }
 
     @include respond-max($screen-xsmall) {
         margin-right: 5%;
-        width: 40%;
     }
 }
 
