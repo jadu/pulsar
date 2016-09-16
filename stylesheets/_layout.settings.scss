@@ -1,1 +1,270 @@
+/**
+ * Settings column
+ */
 
+.tab__settings {
+    @include clear-fix(true);
+
+    background-color: color(gray, off-white);
+    margin: ($padding-large-vertical * 2) (($padding-small-horizontal * 2) * -1);
+    padding: ($padding-large-vertical * 2) ($padding-small-horizontal * 2);
+
+    @include respond-min($screen-small) {
+        margin: 0 0 $line-height-large;
+    }
+
+    @include respond-min($screen-medium) {
+        float: left;
+        margin-right: 1%;
+        min-width: 370px;
+        width: 25%;
+    }
+
+    .lt-ie9 & {
+        min-width: 0;
+        width: 35%;
+    }
+
+    > *:last-child {
+        margin-bottom: 0;
+    }
+}
+
+
+/**
+ * Settings sections
+ */
+
+.settings-section {
+    &:not(:last-child) {
+        border-bottom: 1px solid color(gray, light);
+        margin-bottom: $padding-large-vertical * 2;
+        padding-bottom: $padding-large-vertical * 2;
+    }
+
+    > *:last-child {
+        margin-bottom: 0;
+    }
+}
+
+
+/**
+ * Primary settings section
+ */
+
+.settings-section--primary {
+    @include respond-max($screen-smaller) {
+        @include clear-fix(true);
+
+        text-align: center;
+    }
+}
+
+.settings-section--primary .form__group--toggle {
+    @include respond-max($screen-smaller) {
+        float: left;
+        width: 50%;
+    }
+}
+
+.settings-section--primary .toggle-switch-label {
+    @include respond-max($screen-smaller) {
+        margin: 0 auto;
+        text-align: left;
+    }
+}
+
+.settings-section--primary .btn--primary {
+    @include respond-max($screen-smaller) {
+        float: left;
+        margin-left: 12.5%;
+        width: 25%;
+    }
+
+    @include respond-max($screen-xsmall) {
+        margin-left: 5%;
+        width: 40%;
+    }
+}
+
+.settings-section--primary .btn:not(.btn--primary) {
+    @include respond-max($screen-smaller) {
+        margin-right: 12.5%;
+        width: 25%;
+    }
+
+    @include respond-max($screen-xsmall) {
+        margin-right: 5%;
+        width: 40%;
+    }
+}
+
+
+/**
+ * Toggle switches
+ */
+
+.tab__settings .form__group--toggle > .control__label {
+    padding-right: calc(4em + #{$padding-small-horizontal * 2});
+    width: 100%;
+}
+
+.tab__settings .form__group--toggle .controls {
+    float: right;
+    width: 4em;
+}
+
+
+/**
+ * Form groups with labels adjacent to their controls
+ */
+
+.tab__settings .form__group:not(.form__group--flush):not(.form__group--toggle) > .control__label {
+    padding-right: $padding-small-horizontal * 2;
+    width: 40%;
+}
+
+.tab__settings .form__group:not(.form__group--flush):not(.form__group--toggle) .controls {
+    width: 60%;
+}
+
+
+/**
+ * Form groups with labels on top
+ */
+
+.tab__settings .form__group--top .control__label {
+    display: block;
+    margin-bottom: $padding-base-vertical;
+    padding-right: 0;
+    width: 100%;
+}
+
+.tab__settings .form__group--top .controls::before {
+    display: none;
+}
+
+.tab__settings .form__group--top .form__control:not(.checkbox):not(.radio) {
+    @include respond-min($screen-small) {
+        width: 100%;
+    }
+}
+
+
+/**
+ * Align indented form groups (controls without labels) as per those with labels
+ */
+
+.tab__settings .form__group--indent {
+    margin-left: 0;
+    width: 100%;
+
+    &::before {
+        @include respond-min($screen-smaller) {
+            content: '';
+            display: table-cell;
+            width: 40%;
+        }
+    }
+}
+
+.tab__settings .form__group--indent .controls {
+    display: table-cell;
+}
+
+
+/**
+ * Adjust padding for standard form group labels at smaller views
+ */
+
+.tab__settings .form__group:not(.form__group--top) .control__label {
+    @include respond-max($screen-smaller) {
+        padding: 0 0 $padding-base-vertical;
+    }
+
+    @include respond-min-max($screen-smaller, $screen-medium) {
+        padding-right: $padding-small-horizontal;
+        width: 65%;
+    }
+}
+
+
+/**
+ * Improve presentation of file upload form controls
+ */
+
+.tab__settings .form__control.file {
+    height: $line-height-large;
+    padding-top: 14px;
+    width: 100%;
+
+    @include respond-min($screen-small) {
+        max-width: 100%;
+        width: $controls-max-width;
+    }
+}
+
+
+/**
+ * Use natural width for button group control labels, and equalise padding
+ */
+
+.tab__settings .btn__group > .control__label {
+    padding-right: 14px;
+    width: auto;
+}
+
+
+/**
+ * Make background of guidance popovers match that of settings column
+ */
+
+.tab__settings .input-group-guidance {
+    background-color: color(gray, off-white);
+}
+
+
+/**
+ * Flash messages
+ */
+
+.tab__settings .flash {
+    margin: -20px -20px 0;
+    width: auto;
+}
+
+
+/**
+ * Form actions
+ */
+
+.tab__settings .form__actions {
+    padding-bottom: 0;
+}
+
+.tab__settings .form__actions .btn--danger:last-child {
+    float: right;
+    margin-right: 0;
+}
+
+
+/**
+ * Content area
+ */
+
+.has-settings .tab__content {
+    @include respond-min($screen-small) {
+        margin: $line-height-base 0 $line-height-large;
+        padding: 0 ($padding-small-horizontal * 2) $padding-large-vertical;
+    }
+
+    @include respond-min($screen-medium) {
+        float: right;
+        max-width: calc(99% - 370px);
+        width: 74%;
+    }
+
+    .lt-ie9 & {
+        width: 64%;
+    }
+}
