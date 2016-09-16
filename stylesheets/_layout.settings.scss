@@ -38,8 +38,8 @@
 .settings-section {
     &:not(:last-child) {
         border-bottom: 1px solid color(gray, light);
-        margin-bottom: $padding-large-vertical * 2;
-        padding-bottom: $padding-large-vertical * 2;
+        margin-bottom: $line-height-base;
+        padding-bottom: $line-height-base;
     }
 
     > *:last-child {
