@@ -35,6 +35,9 @@
 {% set pattern_piano %}
     {% include 'lexicon/patterns/piano.html.twig' %}
 {% endset %}
+{% set pattern_settings %}
+    {% include 'lexicon/patterns/settings.html.twig' %}
+{% endset %}
 
 {%
     set tabs_content = [
@@ -46,7 +49,12 @@
         {
           "id"    : "piano",
           "label" : "Piano List",
-          "src"   : pattern_piano,
+          "src"   : pattern_piano
+        },
+        {
+          "id"    : "settings",
+          "label" : "Settings",
+          "src"   : pattern_settings,
                     "active": true
         }
     ]
