@@ -7,14 +7,91 @@
 
     <div class="settings-section settings-section--primary">
 
+        {{
+            form.toggle_switch({
+                'id': 'live',
+                'label': 'Live'
+            })
+        }}
+
+        {{
+            form.toggle_switch({
+                'id': 'visible',
+                'label': 'Visible'
+            })
+        }}
+
+        {{
+            form.toggle_switch({
+                'id': 'internal',
+                'label': 'Internal'
+            })
+        }}
+
+        {{
+            form.toggle_switch({
+                'id': 'embeddable',
+                'label': 'Embeddable'
+            })
+        }}
+
+        {{
+            html.button({
+                'class': 'btn--primary',
+                'id': 'save',
+                'label': 'Save'
+            })
+        }}
+
+        {{
+            html.button({
+                'class': 'float--right',
+                'id': 'view-live',
+                'label': 'View Live ' ~ html.icon('external-link'),
+                'type': 'link'
+            })
+        }}
+
     </div>
 
     <div class="settings-section">
+
+        {{
+            form.text({
+                'id': 'theme',
+                'label': 'Theme',
+                'required': true
+            })
+        }}
+
+        {{
+            form.button_group({
+                'id': 'type',
+                'items': [
+                    form.radio_simple({
+                        'label': 'Simple',
+                        'name': 'simple'
+                    }),
+                    form.radio_simple({
+                        'label': 'File',
+                        'name': 'file'
+                    }),
+                    form.radio_simple({
+                        'label': 'External',
+                        'name': 'external'
+
+                    })
+                ],
+                'label': 'Type'
+            })
+        }}
 
     </div>
 
 {% endblock tab_settings %}
 
 {% block tab_content %}
+
+    <p>Content goes here</p>
 
 {% endblock tab_content %}
