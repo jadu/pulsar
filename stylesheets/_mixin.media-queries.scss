@@ -11,7 +11,9 @@
 
 @mixin respond-max($width) {
     @if $ie-version < 9 {
-        @content;
+        @if $width >= $screen-medium {
+            @content;
+        }
     }
     @else {
         @media screen and (max-width: $width) {
