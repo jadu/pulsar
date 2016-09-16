@@ -90,6 +90,11 @@ endif
 	@ chmod -R u+x .git/hooks/*
 	@ echo "\n${CHECK} Done"
 
+	@ echo "${HR}\nCopy Proxima Nova (if available)...${HR}"
+	@ touch ./fonts/_config.fonts.scss
+	@ cp -r ../pulsar-fonts/src/* ./fonts 2>/dev/null || :
+	@ echo "\n${CHECK} Done"
+
 	@ echo "${HR}\nCompiling the stylesheets...${HR}\n"
 	@ grunt sass:dev
 	@ echo "${CHECK} Done\n"

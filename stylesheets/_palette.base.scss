@@ -111,6 +111,10 @@ $palette-states: (
     new: (
         base:  #e5ecf2,
         alt:   #000
+    ),
+    sorting: (
+        base: #ffffec,
+        dark: darken(#ffc, 50)
     )
 );
 

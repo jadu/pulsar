@@ -1,23 +1,23 @@
 @mixin label-variant($color, $text-color: $label-color-alt) {
-  background-color: $color;
-  border-color: $color;
-  border-width: 0;
-  color: $text-color;
-  text-transform: lowercase;
+    background-color: $color !important;
+    border-color: $color !important;
+    border-width: 0;
+    color: $text-color !important;
+    text-transform: lowercase;
 
-  &:not(:last-child) {
-      .label-group & {
-        @include css-arrow(14px, right);
-        &::before {
-          border-left-color: darken($color, 20%) !important;
+    &:not(:last-child) {
+        .label-group & {
+            @include css-arrow(14px, right);
+            &::before {
+                border-left-color: darken($color, 20%) !important;
+            }
         }
-      }
-  }
-
-  &[href] {
-    &:hover,
-    &:focus {
-      background-color: darken($color, 10%);
     }
-  }
+
+    &[href] {
+        &:hover,
+        &:focus {
+            background-color: darken($color, 10%);
+        }
+    }
 }

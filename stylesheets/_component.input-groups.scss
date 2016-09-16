@@ -5,15 +5,9 @@
 // Base styles
 // -------------------------
 .input-group {
-    position: relative; // For dropdowns
-    display: table;
-    height: 40px;
     border-collapse: separate; // prevent input groups from inheriting border styles from table cells when placed within a table
-
-    // Fix issue where input groups break the baseline grid
-    margin-bottom: -7px;
-
-    // Make sure add-ons stay inline
+    display: table;
+    position: relative;
     white-space: nowrap;
 
     // Undo padding and float of grid classes
@@ -24,12 +18,9 @@
     }
 
     .form__control {
-        width: 75%;
-        margin-bottom: 0;
-
-        @include respond-min($screen-phone) {
-            width: 100%;
-        }
+        display: table-cell;
+        float: left;
+        position: relative;
     }
 }
 
@@ -37,24 +28,44 @@
 // -------------------------
 .input-group-addon,
 .input-group-btn,
-.input-group .form__control {
-    @include inline-block;
-
+.input-group:not(.has-btn-prepended):not(.has-btn-appended) .form__control {
     &:not(:first-child):not(:last-child) {
         border-radius: 0;
     }
 }
-// Addon and addon wrapper for buttons
-.input-group-addon,
-.input-group-btn {
-    white-space: nowrap;
-    vertical-align: top; // Match the inputs
 
-    @include ie-lte(7) {
-        width: auto;
-        vertical-align: top;
+.input-group-addon {
+    background-color: color(gray, off-white);
+    border: 1px solid $input-group-addon-border-color;
+    border-radius: $border-radius;
+    display: table-cell;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 1%;
+}
+
+.input-group-btn {
+    display: table-cell;
+    position: relative;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 1%;
+}
+
+.input-group-btn > .btn {
+    position: relative;
+
+    @each $state, $state-color, $state-color-alt in $state-colors {
+        &.btn--#{$state}:not(.btn--naked) {
+            border-color: darken($state-color, 10);
+
+            &:hover {
+                background-color: darken($state-color, 10);
+            }
+        }
     }
 }
+
 
 // Text input groups
 // -------------------------
@@ -73,38 +84,47 @@
     }
 }
 
-.input-group-addon {
-    background-color: color(gray, lightest);
-    border: 1px solid $input-group-addon-border-color;
-    border-radius: $border-radius;
+.input-group-btn .btn {
+    font-size: $font-size-base;
+    line-height: $input-height-base - 2;
+    margin-top: -1px;
+    padding-bottom: 0;
+    padding-top: 0;
 }
 
 // Reset rounded corners
-.input-group .form__control:first-child,
+.input-group:not(.has-btn-appended) .form__control:not(:last-child),
 .input-group-addon:first-child,
-.input-group-btn:first-child > .btn,
-.input-group-btn:first-child > .dropdown-toggle,
-.input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle) {
+.input-group-btn:first-child > .dropdown-toggle {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
 }
 
 .input-group-addon:first-child {
     border-right: 0;
+    margin-right: -1px;
 }
 
-.input-group .form__control:last-child,
+.input-group-btn:first-child > .btn,
+.input-group-btn:first-child > .btn__group {
+    margin-right: $padding-base-horizontal / 2;
+}
+
+.input-group:not(.has-btn-prepended) .form__control:not(:first-child),
 .input-group-addon:last-child,
-.input-group-btn:last-child > .btn,
-.input-group-btn:last-child > .dropdown-toggle,
-.input-group-btn:first-child > .btn:not(:first-child) {
+.input-group-btn:last-child > .dropdown-toggle {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
 }
 
 .input-group-addon:last-child {
     border-left: 0;
-    z-index: 999;
+    margin-left: -1px;
+}
+
+.input-group-btn:last-child > .btn,
+.input-group-btn:last-child > .btn__group {
+    margin-left: $padding-base-horizontal / 2;
 }
 
 // Button input groups
@@ -129,24 +149,15 @@
     }
 }
 
-@include ie-lte(7) {
-    // Fix add-on positioning in IE7
-    .input-group {
-        .input-group-addon:first-child,
-        .form__control + .input-group-addon {
-            min-height: 26px;
-            position: relative;
-            top: -1px;
-            vertical-align: baseline;
-        }
+.input-group-addon > .btn {
+    top: -8px;
 
-        .input-group-addon:first-child {
-            margin-right: -4px;
-        }
+    &:hover {
+        top: -7px;
+    }
 
-        .form__control + .input-group-addon {
-            margin-left: -5px;
-        }
+    &:active {
+        top: -6px;
     }
 }
 
@@ -193,9 +204,4 @@
         border-top-right-radius: $border-radius;
         border-bottom-right-radius: $border-radius;
     }
-}
-
-.input-group-with-addon.input-group-with-guidance .form__control:first-child {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
 }

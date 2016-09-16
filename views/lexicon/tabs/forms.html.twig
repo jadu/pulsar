@@ -420,10 +420,52 @@
             form.text({
                 'label': 'Prepended input',
                 'id': 'inputPrepend',
-                'class': 'form__group--large',
                 'name': 'inputPrepend',
                 'placeholder': 'Placeholder',
-                'prepend': '@'
+                'prepend': html.icon('envelope-o'),
+            })
+        }}
+
+        {{
+            form.text({
+                'label': 'Prepended input',
+                'class': 'form__group--large',
+                'id': 'inputPrepend',
+                'name': 'inputPrepend',
+                'placeholder': 'Placeholder',
+                'prepend': html.icon('envelope-o')
+            })
+        }}
+
+        {{
+            form.text({
+                'label': 'Prepended input',
+                'class': 'form__group--xlarge',
+                'id': 'inputPrepend',
+                'name': 'inputPrepend',
+                'placeholder': 'Placeholder',
+                'prepend': html.icon('envelope-o')
+            })
+        }}
+
+        {{
+            form.text({
+                'label': 'Prepended input',
+                'class': 'form__group--full',
+                'id': 'inputPrepend',
+                'name': 'inputPrepend',
+                'placeholder': 'Placeholder',
+                'prepend': html.icon('envelope-o')
+            })
+        }}
+
+        {{
+            form.text({
+                'label': 'Appended input',
+                'id': 'inputAppend',
+                'name': 'inputAppend',
+                'placeholder': 'Placeholder',
+                'append': '.com'
             })
         }}
 
@@ -440,13 +482,114 @@
 
         {{
             form.text({
+                'label': 'Appended input',
+                'id': 'inputAppend',
+                'class': 'form__group--xlarge',
+                'name': 'inputAppend',
+                'placeholder': 'Placeholder',
+                'append': '.com'
+            })
+        }}
+
+        {{
+            form.text({
+                'label': 'Appended input',
+                'id': 'inputAppend',
+                'class': 'form__group--full',
+                'name': 'inputAppend',
+                'placeholder': 'Placeholder',
+                'append': '.com'
+            })
+        }}
+
+        {{
+            form.text({
                 'label': 'Prepended &amp; Appended',
                 'id': 'inputPrependAppend',
-                'class': 'form__group--medium',
                 'name': 'inputPrependAppend',
                 'placeholder': 'Placeholder',
                 'prepend': 'www.',
                 'append': '.com'
+            })
+        }}
+
+        {{
+            form.text({
+                'label': 'Prepended &amp; Appended',
+                'id': 'inputPrependAppend',
+                'class': 'form__group--large',
+                'name': 'inputPrependAppend',
+                'placeholder': 'Placeholder',
+                'prepend': 'www.',
+                'append': '.com'
+            })
+        }}
+
+        {{
+            form.text({
+                'label': 'Prepended &amp; Appended',
+                'id': 'inputPrependAppend',
+                'class': 'form__group--xlarge',
+                'name': 'inputPrependAppend',
+                'placeholder': 'Placeholder',
+                'prepend': 'www.',
+                'append': '.com'
+            })
+        }}
+
+        {{
+            form.text({
+                'label': 'Prepended &amp; Appended',
+                'id': 'inputPrependAppend',
+                'class': 'form__group--full',
+                'name': 'inputPrependAppend',
+                'placeholder': 'Placeholder',
+                'prepend': 'www.',
+                'append': '.com'
+            })
+        }}
+
+        {{
+            form.text({
+                'label': 'Prepended button',
+                'id': 'inputPrependAppend',
+                'name': 'inputPrepended',
+                'placeholder': 'Placeholder',
+                'prepend': html.button({
+                    'label': 'Click Me!'
+                }),
+                'prepend_type': 'button'
+            })
+        }}
+
+        {{
+            form.text({
+                'label': 'Appended button',
+                'id': 'inputPrependAppend',
+                'name': 'inputAppend',
+                'placeholder': 'Placeholder',
+                'append': html.button({
+                    'label': 'Click Me!'
+                }),
+                'append_type': 'button'
+            })
+        }}
+
+        {{
+            form.text({
+                'label': 'Appended and prepended buttons',
+                'id': 'inputPrependAppend',
+                'name': 'inputAppend',
+                'placeholder': 'Placeholder',
+                'append': html.button({
+                    'label': 'Button'
+                }),
+                'append_type': 'button',
+                'prepend': html.button({
+                    'label': 'Button',
+                    'class': 'btn--primary'
+                }),
+                'prepend_type': 'button'
             })
         }}
 

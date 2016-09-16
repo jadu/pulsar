@@ -27,7 +27,7 @@
         }
     }
 
-    > .btn:not(:first-of-type):not(.btn--naked) {
+    > .btn:not(:first-of-type):not(.btn--naked):not(.edit-button):not(.remove-button) {
         border-left: 1px solid #ccc;
         border-right: 1px solid #ccc;
     }

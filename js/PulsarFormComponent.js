@@ -1,4 +1,5 @@
 var $ = require('jquery'),
+    pikaday = require('../libs/pikaday/plugins/pikaday.jquery');
     select2 = require('../libs/select2/dist/js/select2.min');
 
 function PulsarFormComponent(html) {
@@ -10,6 +11,11 @@ function PulsarFormComponent(html) {
 PulsarFormComponent.prototype.init = function () {
 
     var component = this;
+
+    // Attach basic pikaday to datepicker fields
+    this.$html.find('[data-datepicker=true]').pikaday({
+        format: 'DD/MM/YYYY'
+    });
 
     component.$select2 = this.$html.find('.js-select2');
 

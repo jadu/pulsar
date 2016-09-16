@@ -1,6 +1,6 @@
 {
   "name": "pulsar",
-  "version": "6.7.2",
+  "version": "6.8.4",
   "repository": {
     "type": "git",
     "url": "https://github.com/jadu/pulsar.git"
@@ -81,6 +81,9 @@
     },
     "./libs/jquery.countdown/dist/jquery.countdown.min": {
       "exports": "countdown"
+    },
+    "./libs/tinyicon/tinycon.min": {
+      "exports": "Tinycon"
     }
   },
   "dependencies": {

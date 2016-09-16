@@ -1,12 +1,16 @@
 span.select2-selection.select2-selection--single {
-	height: 44px;
-	padding-top: 8px;
+    height: $input-height-base;
+    padding-top: 9px;
 }
 
 .select2-container--default .select2-selection--single .select2-selection__arrow {
-	top: 8px;
+    top: 11px;
 }
 
 .select2-dropdown {
     z-index: $zindex-modal;
+}
+
+.select2-container .select2-selection--single .select2-selection__rendered {
+    padding-left: $padding-base-horizontal;
 }

@@ -11,7 +11,14 @@ a.media {
 
 .media__image {
     float: left;
+    font-size: 50px; // for icons
     margin-right: 10px;
+    text-align: center;
+    width: 50px;
+
+    &[class^=icon] {
+        width: 50px;
+    }
 }
 
 // only paragraphs in the middle of the body have a bottom margin

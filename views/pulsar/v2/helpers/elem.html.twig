@@ -84,7 +84,7 @@ name    | string | The name of this control
     {% if options.label is not empty or options.guidance is not empty %}
         <label{{
             attributes(options
-                |exclude('guidance label required')
+                |exclude('container guidance guidance-container label required')
                 |defaults({
                     'class': 'control__label'
                 })
@@ -92,7 +92,7 @@ name    | string | The name of this control
         }}>
             {{- options.label|raw -}}
             {{ util.required(options.required|default(false)) }}
-            {{ util.guidance(options.guidance|default) }}
+            {{ util.guidance(options.guidance|default, { 'guidance-container': options['guidance-container']|default }) }}
         </label>
     {% endif %}
 

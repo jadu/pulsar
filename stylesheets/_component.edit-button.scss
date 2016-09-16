@@ -1,26 +1,37 @@
 .edit-button {
-  @extend .btn--naked;
-  background-color: transparent;
-  border: 0;
-  padding: 0;
-  vertical-align: top;
-  white-space: nowrap;
+    @extend .btn--naked;
+    background-color: transparent;
+    border: 0;
+    vertical-align: top;
+    white-space: nowrap;
 
-  [class^="icon-"],
-  [class*=" icon-"] {
-    color: color(gray, light);
-    font-size: 1.2em;
-    vertical-align: middle;
-  }
-
-  &:hover {
     [class^="icon-"],
     [class*=" icon-"] {
-      color: color(black);
+        color: color(gray, light);
+        font-size: 1.2em;
+        vertical-align: middle;
     }
-  }
+
+    &:hover {
+        [class^="icon-"],
+        [class*=" icon-"] {
+            color: color(black);
+        }
+    }
 }
 
 a + .edit-button {
-  margin-left: 10px;
+    margin-left: 10px;
+}
+
+*:not(.btn__group) > .edit-button {
+    padding: 0;
+}
+
+.btn__group > .edit-button {
+    padding: 0 ($padding-base-horizontal / 2);
+}
+
+.btn__group .btn + .edit-button {
+    margin-left: 0;
 }
