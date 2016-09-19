@@ -118,7 +118,7 @@ $form-label-column-width:             200px !default;
 $controls-width:                      30%;
 $controls-max-width:                  300px;
 $input-border-radius:                 $border-radius !default;
-$input-height-base:                   $line-height-base * 2 !default;
+$input-height-base:                   $line-height-base * 2 - 1 !default; // 47px
 
 @include ie-lte(7) {
   $input-height-base:                 $line-height-base * 1.2 !default;
