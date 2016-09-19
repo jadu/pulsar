@@ -10,11 +10,11 @@
 }
 
 .slider__back {
-    background-color: rgb(51, 153, 204);
+    background-color: color(jadu-blue);
     border-top-left-radius: $border-radius-large;
     border-bottom-right-radius: $border-radius-large;
     bottom: $padding-base * 2;
-    color: #fff;
+    color: color(white);
     width: 100%;
     top: $padding-base * 2;
     position: absolute;
@@ -22,7 +22,7 @@
 }
 
 .slider__front {
-    background-color: #fff;
+    background-color: color(white);
     border-bottom-right-radius: $border-radius-large;
     left: 50%;
     float: right;
@@ -50,7 +50,7 @@
     .legend {
         line-height: $line-height-base;
         margin-bottom: 5px;
-        border-bottom: 1px solid #ccc;
+        border-bottom: 1px solid color(border);
     }
 
     .form__group {
