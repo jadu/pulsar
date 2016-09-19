@@ -11,26 +11,26 @@
 
 .slider__back {
     background-color: rgb(51, 153, 204);
-    border-top-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    bottom: 20px;
+    border-top-left-radius: $border-radius-large;
+    border-bottom-right-radius: $border-radius-large;
+    bottom: $padding-base * 2;
     color: #fff;
     width: 100%;
-    top: 20px;
+    top: $padding-base * 2;
     position: absolute;
     z-index: -1;
 }
 
 .slider__front {
     background-color: #fff;
-    border-bottom-right-radius: 20px;
+    border-bottom-right-radius: $border-radius-large;
     left: 50%;
     float: right;
 }
 
 .slider__inner {
     overflow: hidden;
-    padding: 20px;
+    padding: $padding-base * 2;
     width: 300px;
 }
 
@@ -41,14 +41,14 @@
 }
 
 .slider-title {
-    font-size: 1.2em;
-    line-height: 1.2;
+    font-size: $font-size-large;
+    line-height: $line-height-small;
 }
 
 // form alignment
 .slider {
     .legend {
-        line-height: 1em;
+        line-height: $line-height-base;
         margin-bottom: 5px;
         border-bottom: 1px solid #ccc;
     }
@@ -62,8 +62,8 @@
     }
 
     .form__control {
-        height: 32px;
-        line-height: 32px;
+        height: $font-size-xxlarge;
+        line-height: $font-size-xxlarge;
         padding: 0 8px;
     }
 
