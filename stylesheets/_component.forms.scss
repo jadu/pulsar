@@ -223,7 +223,7 @@ $inputs: (
     background-color: #fafafa;
     width: 100%;
 
-    @include respond-min($screen-tablet) {
+    @include respond-min($screen-smaller) {
 
         // default width
         .form__group & {
@@ -243,7 +243,7 @@ $inputs: (
     }
 }
 
-@include respond-min($screen-tablet) {
+@include respond-min($screen-smaller) {
     .form__group .input-group {
         width: map-get($inputs, regular);
     }

@@ -143,7 +143,7 @@ $control-column-width: 75%;
 }
 
 // at narrow viewports, forms collapse into a single column view
-@media (max-width: 600px) {
+@include respond-max($screen-smaller) {
     .form__group {
         > .control__label,
         > .controls {
