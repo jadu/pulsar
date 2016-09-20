@@ -36,15 +36,61 @@
  */
 
 .settings-section {
+    &:not(.settings-section--primary) {
+        @include respond-min-max($screen-smaller, $screen-medium) {
+            border-left: 1px solid color(gray, lighter);
+            border-top: 0;
+            float: right;
+            margin-left: $padding-small-horizontal * 2;
+            margin-top: 0;
+            max-width: calc(100% - 200px - #{$padding-small-horizontal * 2});
+            padding-left: $padding-small-horizontal * 2;
+            padding-top: 0;
+            width: 75%;
+        }
+    }
+
     &:not(:last-child) {
-        border-bottom: 1px solid color(gray, light);
-        margin-bottom: $line-height-base;
+        border-bottom: 1px solid color(gray, lighter);
         padding-bottom: $line-height-base;
+
+        @include respond-min($screen-medium) {
+            margin-bottom: $line-height-base;
+        }
+
+        @include respond-max($screen-smaller) {
+            margin-bottom: $line-height-base;
+        }
     }
 
     > *:last-child {
         margin-bottom: 0;
     }
+}
+
+.settings-section:not(.settings-section--primary) + .settings-section {
+    @include respond-min-max($screen-smaller, $screen-medium) {
+        padding-top: $line-height-base;
+    }
+}
+
+
+/**
+ * Settings section headings
+ */
+
+.settings-section__heading {
+    font-size: $font-size-large;
+}
+
+
+/**
+ * Settings section paragraphs
+ */
+
+.settings-section__heading + p,
+.settings-section p + p {
+    margin-top: $padding-base-vertical * 2 * -1;
 }
 
 
@@ -53,17 +99,43 @@
  */
 
 .settings-section--primary {
+    @include respond-min-max($screen-smaller, $screen-medium) {
+        float: left;
+        min-width: 200px;
+        width: calc(25% - #{$padding-small-horizontal * 2});
+    }
+
     @include respond-max($screen-smaller) {
         @include clear-fix(true);
 
         text-align: center;
     }
+
+    &:not(:last-child) {
+        @include respond-min-max($screen-smaller, $screen-medium) {
+            border-bottom: 0;
+            padding-bottom: 0;
+        }
+    }
 }
+
+
+/**
+ * Primary settings section toggles
+ */
 
 .settings-section--primary .form__group--toggle {
     @include respond-max($screen-smaller) {
         float: left;
         width: 50%;
+    }
+}
+
+.settings-section--primary .form__group--toggle .control__label {
+    font-family: $font-family-regular;
+
+    @include respond-max($screen-small) {
+        padding-right: 0;
     }
 }
 
@@ -73,6 +145,11 @@
         text-align: left;
     }
 }
+
+
+/**
+ * Primary settings section buttons
+ */
 
 .settings-section--primary .btn {
     @include respond-max($screen-smaller) {
@@ -107,12 +184,47 @@
 
 
 /**
- * Toggle switches
+ * Flash messages
+ */
+
+.tab__settings .flash {
+    margin: (($padding-large-vertical * 2) * -1) (($padding-small-horizontal * 2) * -1) ($padding-large-vertical * 2);
+    width: auto;
+}
+
+
+/**
+ * Forms
+ */
+
+.tab__settings .form {
+    background-color: transparent;
+}
+
+
+/**
+ * Form actions
+ */
+
+.tab__settings .form__actions {
+    padding-bottom: 0;
+}
+
+.tab__settings .form__actions .btn--danger:last-child {
+    margin-right: 0;
+}
+
+
+/**
+ * Form toggle switches
  */
 
 .tab__settings .form__group--toggle > .control__label {
-    padding-right: calc(4em + #{$padding-small-horizontal * 2});
     width: 100%;
+
+    @include respond-min($screen-small) {
+        padding-right: calc(4em + #{$padding-small-horizontal * 2});
+    }
 }
 
 .tab__settings .form__group--toggle .controls {
@@ -143,11 +255,16 @@
     display: block;
     margin-bottom: $padding-base-vertical;
     padding-right: 0;
+    padding-top: 0;
     width: 100%;
 }
 
 .tab__settings .form__group--top .controls::before {
     display: none;
+}
+
+.tab__settings .form__group--top .controls > .form__control {
+    display: block;
 }
 
 .tab__settings .form__group--top .form__control:not(.checkbox):not(.radio) {
@@ -158,7 +275,7 @@
 
 
 /**
- * Align indented form groups (controls without labels) as per those with labels
+ * Form groups without labels indented as per those with labels
  */
 
 .tab__settings .form__group--indent {
@@ -180,23 +297,23 @@
 
 
 /**
- * Adjust padding for standard form group labels at smaller views
+ * Form group labels padding adjustments for smaller views
  */
 
-.tab__settings .form__group:not(.form__group--top) .control__label {
+.tab__settings .form__group:not(.form__group--top):not(.form__group--toggle) > .control__label {
     @include respond-max($screen-smaller) {
         padding: 0 0 $padding-base-vertical;
     }
 
     @include respond-min-max($screen-smaller, $screen-medium) {
         padding-right: $padding-small-horizontal;
-        width: 65%;
+        width: 35%;
     }
 }
 
 
 /**
- * Improve presentation of file upload form controls
+ * Form control file uploads alignment improvements
  */
 
 .tab__settings .form__control.file {
@@ -212,35 +329,11 @@
 
 
 /**
- * Make background of guidance popovers match that of settings column
+ * Guidance popover icon background colour should match settings column background colour
  */
 
 .tab__settings .input-group-guidance {
     background-color: color(gray, off-white);
-}
-
-
-/**
- * Flash messages
- */
-
-.tab__settings .flash {
-    margin: -20px -20px 0;
-    width: auto;
-}
-
-
-/**
- * Form actions
- */
-
-.tab__settings .form__actions {
-    padding-bottom: 0;
-}
-
-.tab__settings .form__actions .btn--danger:last-child {
-    float: right;
-    margin-right: 0;
 }
 
 
@@ -250,8 +343,8 @@
 
 .has-settings .tab__content {
     @include respond-min($screen-small) {
-        margin: $line-height-base 0 $line-height-large;
-        padding: 0 ($padding-small-horizontal * 2) $padding-large-vertical;
+        margin-bottom: $line-height-large;
+        padding-left: $padding-small-horizontal * 2;
     }
 
     @include respond-min($screen-medium) {
@@ -266,76 +359,15 @@
 }
 
 
-//
-//
-// UNSORTED STUFF LIES BEYOND THIS POINT
-//
-//
-
-
 /**
- * Theme colour form controls
+ * Content header
  */
 
-.theme__colour .controls .control__label {
-    margin-bottom: $padding-base-vertical;
-    padding-right: 0;
-    width: 100%;
-}
+.content-header {
+    @include clear-fix(true);
 
-.theme__colour .controls .control__label {
-    position: relative;
-
-    &::before {
-        color: color(gray, light);
-        content: 'or';
-        left: $padding-small-horizontal;
-        position: absolute;
-    }
-
-    &::after {
-        content: '#';
-        float: left;
-        margin-right: 1px;
-        padding: 0 $padding-base-horizontal;
-        speak: none;
-        visibility: hidden;
-    }
-}
-
-.theme__colour .controls .checkbox {
-    margin-right: .5em;
-    vertical-align: initial;
-}
-
-.theme__colour .form__control {
-    font-family: $font-family-monospace;
-    text-transform: uppercase;
-}
-
-
-.publish .textarea {
-    cursor: text;
-    font-family: $font-family-monospace;
-    font-size: $font-size-small;
-    line-height: $line-height-small;
-    max-width: none;
-    word-break: break-all;
-}
-
-.has-settings .tab__content .no-results {
-    width: 100%;
-}
-
-.has-settings .tab__content-header {
-    border-bottom: 1px solid color(gray, light);
-    padding-top: 20px;
-
-    &::after {
-        clear: both;
-        content: '';
-        display: table;
-    }
+    border-bottom: 1px solid color(gray, lighter);
+    padding-top: $padding-base-vertical * 2;
 
     .is-fixed & {
         background-color: color(white);
@@ -345,468 +377,63 @@
     }
 }
 
-.has-settings .tab__content-heading {
-    float: left;
-    line-height: $input-height-small; /* match page selection box height */
-    margin-bottom: $line-height-base / 2;
-    margin-right: 20px;
+
+/**
+ * Content heading
+ */
+
+.content-heading {
+    display: block;
+    line-height: $input-height-small;
+    margin-bottom: $padding-base-vertical * 2;
 }
 
-.has-settings .tab__content-navigation {
+
+/**
+ * Content actions
+ */
+
+.content-actions {
     float: right;
-    margin-bottom: 12px;
-
-    .lt-ie9 & {
-        display: none;
-    }
+    margin: 0 0 ($padding-base-vertical * 2) $padding-large-horizontal;
 }
 
-.has-settings .tab__content-navigation .form__control:not(.checkbox):not(.radio):not(.file) {
+.content-actions__pages,
+.content-actions__buttons {
+    display: inline;
+}
+
+.content-actions__pages .form__group,
+.content-actions__pages .controls,
+.content-actions__pages .form__group .form__control:not(.checkbox):not(.radio):not(.file) {
+    display: inline;
     width: auto;
 }
 
-.has-settings .tab__content-navigation .btn {
-    vertical-align: top;
+.content-actions__pages .form__group {
+    margin: 0;
+    table-layout: auto;
 }
 
-.has-settings .tab__content-navigation .btn:first-of-type {
+.content-actions__pages .form__control {
+    height: $input-height-small;
+    line-height: $input-height-small;
+}
+
+.content-actions__buttons {
     margin-left: $padding-small-horizontal;
 }
 
-.has-settings .tab__content-iframe {
-    overflow-x: auto;
-    padding-top: $line-height-base;
-}
-
-.has-settings .tab__content-iframe iframe {
-    display: block;
-    margin: 0 auto;
-}
-
-.has-settings .tab__content .panel {
-    clear: both;
-}
-
-.has-settings .tab__content-container {
-    clear: both;
-    min-height: 50vh;
-    overflow: hidden;
-    position: relative;
-
-    .lt-ie9 & {
-        display: none;
-    }
-}
-
-.has-settings .tab__content-overlay {
-    position: absolute;
-    pointer-events: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: -1;
-
-    .is-fixed & {
-        left: auto;
-        position: fixed;
-        right: auto;
-    }
-}
-
-.has-settings .tab__content-overlay,
-.has-settings .tab__content-overlay .flash {
-    opacity: 0;
-    transition-property: opacity;
-    transition-delay: 0s;
-    transition-duration: .15s;
-    transition-timing-function: ease-in-out;
-}
-
-.has-settings .tab__content-overlay.is-active {
-    background-color: rgba(color(white), .5);
-    z-index: 100;
-
-    &::after {
-        background-color: rgba(color(black), .5);
-        border-radius: 10px;
-        color: color(white);
-        content: '\F071';
-        font-family: 'FontAwesome';
-        font-size: 7.5rem;
-        line-height: (10rem / 7.5rem);
-        height: 10rem;
-        left: 50%;
-        margin-left: -5rem;
-        margin-top: -5rem;
-        position: absolute;
-        text-align: center;
-        top: 30vh;
-        width: 10rem;
-
-        @media screen and (min-height: 700px) {
-            top: 22.5vh;
-        }
-
-        .is-fixed & {
-            top: 37.5vh;
-
-            @media screen and (min-height: 700px) {
-                top: 30vh;
-            }
-        }
-    }
-}
-
-.has-settings .tab__content-overlay.is-active .flash {
-    transition-delay: .15s;
-    transition-duration: .3s;
-}
-
-.has-settings .tab__content-overlay.is-active,
-.has-settings .tab__content-overlay.is-active .flash {
-    opacity: 1;
-}
-
-.has-settings .tab__content-loading {
-    margin: 20px 0;
-    position: absolute;
-    top: 0;
-
-    + .tab__content-iframe {
-        transition-property: opacity;
-        transition-delay: 0s;
-        transition-duration: .15s;
-        transition-timing-function: ease-in-out;
-    }
-
-    &:not(.hide) + .tab__content-iframe {
-        opacity: 0;
-    }
-
-    &.hide + .tab__content-iframe {
-        opacity: 1;
-    }
+.content-actions__buttons .btn {
+    vertical-align: top;
 }
 
 
-
-
-
-
-/*
- * Publish
+/**
+ * No results component should span full width of content area
  */
 
-
-.tab__settings[data-update-access="false"] > form {
-    display: none;
-}
-
-.js-embed-container,
-.js-theme-container {
-    border-top: 1px solid color(gray, light);
-    margin-top: $line-height-base;
-    padding-top: $line-height-base;
-}
-
-.js-embed-container,
-.js-embed-options-container {
-    padding-top: $line-height-base / 2;
-}
-
-.js-embed-snippet {
-    margin-bottom: 0;
-}
-
-.js-publish-form {
-    @include respond-min-max($screen-smaller, $screen-medium) {
-        float: left;
-        min-width: 200px;
-        width: 20%;
-    }
-}
-
-.js-embed-container,
-.js-theme-container {
-    @include respond-min-max($screen-smaller, $screen-medium) {
-        border-left: 1px solid color(gray, light);
-        border-top: 0;
-        float: right;
-        margin-left: 20px;
-        margin-top: 0;
-        max-width: calc(100% - 200px - 20px);
-        padding-left: 20px;
-        padding-top: 0;
-        width: 80%;
-    }
-}
-
-.js-embed-container .form__group:last-child {
-    @minclude respond-min-max($screen-smaller, $screen-medium) {
-        margin-bottom: 0;
-    }
-}
-
-.form__control:not(.checkbox):not(.radio):not(.file).form__control--small,
-.form__group--small .form__control:not(.checkbox):not(.radio):not(.file) {
-    width: 100px;
-}
-
-.theme[data-theme-type="simple"] .theme__simple,
-.theme[data-theme-type="file"] .theme__file,
-.theme[data-theme-type="external"] .theme__external {
-    display: block;
-}
-
-.theme[data-theme-type="simple"] .theme__file,
-.theme[data-theme-type="simple"] .theme__external,
-.theme[data-theme-type="file"] .theme__simple,
-.theme[data-theme-type="file"] .theme__external,
-.theme[data-theme-type="external"] .theme__simple,
-.theme[data-theme-type="external"] .theme__file {
-    display: none;
-}
-
-.theme .form__group.has-error .help-block {
-    display: block;
-}
-
-[id="iframeThemeSave"] {
-    display: none;
-}
-
-
-/*
- * Data Retention
- */
-
-.data-retention {
-    position: relative;
-
-    .lt-ie10 & {
-        display: block !important;
-    }
-
-    .masterswitch::after {
-        clear: both;
-        content: '';
-        display: table;
-    }
-
-    .masterswitch .container {
-        background-color: color(gray, off-white);
-        margin-bottom: 12px;
-        margin-top: -24px;
-        padding: 12px 0;
-
-        .lt-ie10 & {
-            display: block;
-        }
-    }
-
-    .masterswitch-control,
-    .primary-settings .form__group {
-        margin-bottom: 0;
-
-        .control__label:not(.toggle-switch-label) {
-            font-family: "proxima_nova_rgregular", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-            padding-top: 6px;
-            width: auto;
-        }
-
-        .controls {
-            width: 4em;
-        }
-
-        .controls > .toggle-switch-label {
-            margin-top: 0;
-        }
-    }
-
-    .masterswitch__help {
-        padding-top: 6px;
-
-        i {
-            margin-right: 10px;
-        }
-    }
-
-    @media screen and (min-width: 992px) {
-        .masterswitch__toggle {
-            float: left;
-            margin-right: 1%;
-            min-width: 370px;
-            padding: 0 20px;
-            width: 25%;
-        }
-
-        .masterswitch__help {
-            float: right;
-            max-width: calc(99% - 370px);
-            padding: 6px 20px;
-            width: 74%;
-        }
-    }
-
-    .retention-type {
-        margin: -12px 0 24px;
-    }
-
-    .masterswitch-content .retention-type {
-        margin-top: 0;
-    }
-
-    .retention-type__text {
-        display: inline-block;
-        margin-right: 10px;
-    }
-
-    .countdown-timer {
-        font-family: "proxima_nova_rgregular", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-    }
-
-    .tab__content-header {
-        padding-top: 0;
-    }
-
-    .tab__content-heading {
-        display: block;
-        float: none;
-        margin-bottom: 8px;
-        margin-top: 8px;
-    }
-
-    .tab__content-navigation {
-        margin-bottom: 0;
-    }
-
-    .tab__content-navigation .btn:first-of-type {
-        margin-left: 20px;
-    }
-
-    .table {
-        margin-bottom: 0;
-        margin-top: 0;
-        width: 100%;
-    }
-
-    .hide + .table {
-        margin-top: -1px;
-    }
-
-    .status-dock {
-        margin: 12px 0;
-    }
-
-    .policy-form {
-        background: color(gray, off-white);
-        border-top: 1px solid #888;
-        display: none;
-        padding: 20px 0 10px 10px;
-    }
-
-    .policy-form .panel--danger {
-        width: calc(100% - 10px);
-        margin-top: 0;
-    }
-
-    .big-label {
-        height: 24px;
-        line-height: 2;
-        font-size: 80%;
-        padding: .25em .75em;
-        margin-top: 5px;
-        cursor: pointer;
-    }
-
-    .big-label.unselected {
-        filter: Alpha(opacity = 30);
-        opacity: .3;
-        cursor: not-allowed;
-    }
-
-    .dockable .big-label {
-        margin-right: 4px;
-    }
-
-    .policy-dock .big-label {
-        margin: 4px;
-    }
-
-    .dr-status {
-        cursor: -webkit-grab;
-        cursor: grab;
-    }
-
-    .dr-status:active {
-        cursor: -webkit-grabbing;
-        cursor: grabbing;
-    }
-
-    .is-droppable {
-        background: #a4d2df;
-    }
-
-    .tab__settings {
-        .form__group,
-        p {
-            margin: 24px 0 0;
-        }
-
-        .primary-settings {
-            border-bottom: 1px solid #ccc;
-            padding-bottom: 24px;
-
-            p {
-                margin-top: 12px;
-            }
-        }
-
-        .form__group .control__label:not(.toggle-switch-label) {
-            width: 100%;
-        }
-
-        .toggle-switch-label {
-            margin-top: 0;
-        }
-    }
-
-    .tab__settings,
-    .tab__content {
-        margin-top: 0;
-    }
-
-    .form__control--inline {
-        float: left;
-    }
-
-    .form__control--inline + .form__control--inline {
-        margin-left: 10px;
-        margin-top: 0;
-    }
-
-    .policy-dock {
-        width: 90%;
-        min-height: 48px;
-        border: 1px dashed #555;
-        -webkit-border-radius: 5px;
-        -moz-border-radius: 5px;
-        border-radius: 5px;
-        padding: 4px;
-    }
-
-    .policy-dock:empty:not(:focus):not(.is-droppable)::before {
-        content: attr(data-text);
-        line-height: 48px;
-        padding-left: 5px;
-    }
-
-    .warning-message {
-        color: #b94a48;
-    }
+.tab__content > .no-results,
+.tab__content *:not(table) .no-results {
+    width: 100%;
 }
