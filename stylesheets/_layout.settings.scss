@@ -38,7 +38,7 @@
 .settings-section {
     &:not(.settings-section--primary) {
         @include respond-min-max($screen-smaller, $screen-medium) {
-            border-left: 1px solid color(gray, lighter);
+            border-left: 1px solid color(border);
             border-top: 0;
             float: right;
             margin-left: $padding-small-horizontal * 2;
@@ -51,7 +51,7 @@
     }
 
     &:not(:last-child) {
-        border-bottom: 1px solid color(gray, lighter);
+        border-bottom: 1px solid color(border);
         padding-bottom: $line-height-base;
 
         @include respond-min($screen-medium) {
@@ -366,7 +366,7 @@
 .content-header {
     @include clear-fix(true);
 
-    border-bottom: 1px solid color(gray, lighter);
+    border-bottom: 1px solid color(border);
     padding-top: $padding-base-vertical * 2;
 
     .is-fixed & {
