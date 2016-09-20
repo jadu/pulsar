@@ -1,0 +1,74 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
+
+{% block tab_content %}
+
+    {{ form.create() }}
+
+    {{
+        form.text({
+            'label': 'Site name',
+            'class': 'form__group--xlarge',
+            'help': 'Usually the name of your organisation',
+            'value': 'Continuum City Council',
+            'required': true
+        })
+    }}
+
+    {{
+        form.textarea({
+            'label': 'Site description',
+            'class': 'form__group--xlarge',
+            'help': 'Aim for around 155 characters',
+            'rows': 4,
+            'required': true
+        })
+    }}
+
+    {{
+        form.textarea({
+            'label': 'Keywords',
+            'class': 'form__group--xlarge',
+            'help': 'Comma separated. Keywords are no longer used by most search engines and using too many can harm your site’s position in their rankings',
+            'rows': 4,
+            'required': true
+        })
+    }}
+
+    <div class="form__group">
+        <label class="control__label">Search result example</label>
+        <div class="controls">
+            <div class="google-result box box--rounded">
+                <span class="google-result__link">Continuum City Council</span>
+                <cite class="google-result__cite">www.cmsdomain.com/</cite>
+                <span class="google-result__description">Site description</span>
+            </div>
+            <p class="help-block">Search engines may use other content from your pages in their descriptions</p>
+        </div>
+    </div>
+
+
+    {{
+        form.end({
+            'actions': [
+                form.submit({
+                    'label': 'Save',
+                    'class': 'btn--primary'
+                }),
+                html.link({
+                    'label': 'Cancel',
+                    'class': 'btn btn--naked',
+                    'href': '#'
+                })
+            ]
+        })
+    }}
+
+{% endblock tab_content %}
+
+{% block tab_sidebar %}
+    <h2 class="heading">{{ html.icon('info-sign', { 'class': 'sidebar-icon'}) }} Help search engines know about your site</h2>
+
+    <p>The site name and description is used by search engines when displaying your site in their search results.</p>
+
+    <p>You can also customise the description and keywords for your individual content items and landing pages when creating your content.</p>
+{% endblock tab_sidebar %}

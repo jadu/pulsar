@@ -1,0 +1,79 @@
+{% extends '@pulsar/pulsar/layouts/base.html.twig' %}
+
+{% block body %}
+
+<!--[if lte IE 8]>
+    <div class="signin-oldie-bg">
+        <img src="../../jadu/bundles/pulsar/images/video/galaxy.jpg" alt="galaxy background">
+    </div>
+<!--<![endif]-->
+<div class="signin-backdrop"></div>
+<div class="video" data-vide-bg="../../jadu/bundles/pulsar/images/video/galaxy.mp4">
+<div class="flash-container js-flash-container"></div>
+
+<img class="signin-brand" src="../../../../images/branding/continuum-brandmark.svg" />
+<div class="slider-container">
+
+    <div class="slider">
+
+        <div class="slider__back">
+            <div class="slider__inner">
+                <img src="../../../../images/branding/logo-cms-white.svg" class="slider-logo" />
+                <h1 class="slider-title">Welcome to Continuum CMS</h1>
+                <p>To get started you will need to specify your site name, and the details of your first administrator.</p>
+            </div>
+        </div>
+
+        <div class="slider__front">
+            <div class="slider__inner">
+                <form>
+                    <fieldset>
+                        <legend class="legend">Installation</legend>
+
+                        <div class="form__group form__group--top form__group--flush">
+                            <label class="control__label">Main website name</label>
+                            <div class="controls">
+                                <input name="inputTextLong" type="text" class="form__control">
+                            </div>
+                        </div>
+
+                        <div class="form__group form__group--top form__group--flush">
+                            <label class="control__label">Main administrator email address</label>
+                            <div class="controls">
+                                <input name="inputTextLong" type="text" class="form__control">
+                            </div>
+                        </div>
+
+                        <div class="form__group form__group--top form__group--flush">
+                            <label class="control__label">Admin username</label>
+                            <div class="controls">
+                                <input name="inputTextLong" type="text" class="form__control">
+                            </div>
+                        </div>
+
+                        <div class="form__group form__group--top form__group--flush">
+                            <label class="control__label">Password</label>
+                            <div class="controls">
+                                <input name="inputTextLong" type="text" class="form__control">
+                            </div>
+                        </div>
+
+                        <div class="form__group form__group--top form__group--flush">
+                            <label class="control__label">Confirm password</label>
+                            <div class="controls">
+                                <input name="inputTextLong" type="text" class="form__control">
+                            </div>
+                        </div>
+
+                        <div class="form__actions form__actions--flush">
+                            <button type="submit" class="btn btn--primary js-submit-disable">Finish and Sign In</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

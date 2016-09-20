@@ -1,0 +1,72 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
+
+{% block tab_content %}
+
+    {{ form.create() }}
+
+    {{
+        form.text({
+            'label': 'Creator',
+            'class': 'form__group--xlarge',
+            'value': 'Continuum City Council'
+        })
+    }}
+
+    {{
+        form.text({
+            'label': 'Publisher',
+            'class': 'form__group--xlarge',
+            'value': 'Continuum City Council'
+        })
+    }}
+
+    {{
+        form.text({
+            'label': 'Language',
+            'class': 'form__group--xlarge',
+            'value': 'en'
+        })
+    }}
+
+    {{
+        form.text({
+            'label': 'Coverage',
+            'class': 'form__group--xlarge',
+            'value': 'V1.0 Public Consumption'
+        })
+    }}
+
+    {{
+        form.text({
+            'label': 'Rights',
+            'class': 'form__group--xlarge',
+            'value': 'Continuum City Council'
+        })
+    }}
+
+
+    {{
+        form.end({
+            'actions': [
+                form.submit({
+                    'label': 'Save',
+                    'class': 'btn--primary'
+                }),
+                html.link({
+                    'label': 'Cancel',
+                    'class': 'btn btn--naked',
+                    'href': '#'
+                })
+            ]
+        })
+    }}
+
+{% endblock tab_content %}
+
+{% block tab_sidebar %}
+    <h2 class="heading">{{ html.icon('info-sign', { 'class': 'sidebar-icon'}) }} Tell machines about your content</h2>
+
+    <p>Metadata is used by search engines and other programs and helps them to learn more about your website and its content.</p>
+
+    <p>Continuum CMS uses the <a href="https://en.wikipedia.org/wiki/Dublin_Core">Dublin Core</a> metadata standard. Some fields are automatically generated&mdash;like publishing dates&mdash;and some can be defined here. You can also edit the metadata for individual content items when you create them.</p>
+{% endblock tab_sidebar %}

@@ -76,6 +76,8 @@ $font-path: '../fonts/';
 \* -------------------------------------------------------------------------- */
 
 // Objects
+@import 'objects/object.box';
+@import 'objects/object.google-result';
 @import 'objects/object.media';
 
 // Components
@@ -92,7 +94,6 @@ $font-path: '../fonts/';
 @import 'component.daterange';
 @import 'component.decks';
 @import 'component.dropdowns';
-@import 'component.edit-button';
 @import 'component.editor';
 @import 'component.flash';
 @import 'component.footer';
@@ -110,7 +111,6 @@ $font-path: '../fonts/';
 @import 'component.message';
 @import 'component.metadata';
 @import 'component.modals';
-@import 'component.module-permissions';
 @import 'component.navigation';
 @import 'component.nav-list';
 @import 'component.navbars';
@@ -127,6 +127,7 @@ $font-path: '../fonts/';
 @import 'component.select2';
 @import 'component.settings';
 @import 'component.signin';
+@import 'component.slider';
 @import 'component.status';
 @import 'component.summary';
 @import 'component.tab-help';
