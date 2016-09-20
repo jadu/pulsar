@@ -65,10 +65,10 @@ $font-path: '../fonts/';
 @import 'structure.forms';
 
 // Layouts
+@import 'layout.settings';
 @import 'layout.sidebar';
 @import 'layout.signin';
 @import 'layout.tabs';
-@import 'layout.settings';
 
 /* -------------------------------------------------------------------------- *\
 	If you're theming Pulsar and want to include your own variables, colours or
