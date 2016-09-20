@@ -427,13 +427,3 @@
 .content-actions__buttons .btn {
     vertical-align: top;
 }
-
-
-/**
- * No results component should span full width of content area
- */
-
-.tab__content > .no-results,
-.tab__content *:not(table) .no-results {
-    width: 100%;
-}

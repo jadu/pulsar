@@ -117,6 +117,13 @@ div.no-results {
     }
 }
 
+
+// Should span full width of content area
+.tab__content > .no-results,
+.tab__content *:not(table) .no-results {
+    width: 100%;
+}
+
 .controls > .no-results {
     width: 100%;
     margin: 0;
