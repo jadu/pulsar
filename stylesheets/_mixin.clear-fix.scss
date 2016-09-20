@@ -1,13 +1,24 @@
-@mixin clear-fix() {
-  zoom: 1;
+@mixin clear-fix($simple: false) {
+    @if $simple != true {
+        zoom: 1;
 
-  &::before,
-  &::after {
-    content: '';
-    display: table;
-  }
+        // scss-lint:disable PseudoElement
+        &:before,
+        &:after {
+            content: '';
+            display: table;
+        }
 
-  &::after {
-    clear: both;
-  }
+        &:after {
+            clear: both;
+        }
+        // scss-lint:enable PseudoElement
+    }
+    @else {
+        &::after {
+            clear: both;
+            content: '';
+            display: table;
+        }
+    }
 }
