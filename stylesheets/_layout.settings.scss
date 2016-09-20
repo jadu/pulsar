@@ -5,7 +5,7 @@
 .tab__settings {
     @include clear-fix(true);
 
-    background-color: color(gray, off-white);
+    background-color: color(background);
     margin: ($padding-large-vertical * 2) (($padding-small-horizontal * 2) * -1);
     padding: ($padding-large-vertical * 2) ($padding-small-horizontal * 2);
 
@@ -333,7 +333,7 @@
  */
 
 .tab__settings .input-group-guidance {
-    background-color: color(gray, off-white);
+    background-color: color(background);
 }
 
 
