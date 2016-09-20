@@ -373,7 +373,7 @@
         background-color: color(white);
         position: fixed;
         top: 0;
-        z-index: 101;
+        z-index: $zindex-sticky;
     }
 }
 
