@@ -341,7 +341,7 @@
  * Content area
  */
 
-.has-settings .tab__content {
+.tab__container.has-settings .tab__content {
     @include respond-min($screen-small) {
         margin-bottom: $line-height-large;
         padding-left: $padding-small-horizontal * 2;
