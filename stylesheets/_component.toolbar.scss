@@ -24,15 +24,19 @@
 
     .dropdown__menu {
         clear: both;
+
         left: $padding-small-horizontal;
-        position: absolute;
         right: $padding-small-horizontal;
-        top: 60px;
+
+        position: absolute;
+
+        top: auto;
 
         @include respond-min($screen-xsmall) {
             left: auto;
+            min-width: 340px;
             right: 0;
-            top: auto;
+            top: 60px;
             width: auto;
         }
     }
