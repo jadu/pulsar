@@ -4,9 +4,12 @@ history_dir: shots_history
 domains:
     pulsar: 'http://192.168.13.37/tests/css/DiffTest.php'
 screen_widths:
-    - 800
+    - 600x600
 resize_or_reload: reload
 fuzz: 20%
+verbose: true
+mode: diffs_first
+threshold: 0
 paths:
     elem-paragraph-html-twig: /elem/paragraph.html.twig
     form-button_group-bare-html-twig: /form/button_group-bare.html.twig
@@ -125,5 +128,94 @@ paths:
     form-toggle_switch-guidance-container-html-twig: /form/toggle_switch-guidance-container.html.twig
     form-toggle_switch-guidance-html-twig: /form/toggle_switch-guidance.html.twig
     form-toggle_switch-html-twig: /form/toggle_switch.html.twig
-mode: diffs_first
-threshold: 1
+    html-actions_menu-dividers-html-twig: /html/actions_menu-dividers.html.twig
+    html-actions_menu-items-html-twig: /html/actions_menu-items.html.twig
+    html-actions_menu-html-twig: /html/actions_menu.html.twig
+    html-badge-html-twig: /html/badge.html.twig
+    html-block_list-class-html-twig: /html/block_list-class.html.twig
+    html-block_list-div-header-footer-html-twig: /html/block_list-div-header-footer.html.twig
+    html-block_list-div-html-twig: /html/block_list-div.html.twig
+    html-block_list-footer-html-twig: /html/block_list-footer.html.twig
+    html-block_list-header-html-twig: /html/block_list-header.html.twig
+    html-block_list-link-header-footer-html-twig: /html/block_list-link-header-footer.html.twig
+    html-block_list-link-html-twig: /html/block_list-link.html.twig
+    html-block_list-ol-html-twig: /html/block_list-ol.html.twig
+    html-block_list-html-twig: /html/block_list.html.twig
+    html-button-button-html-twig: /html/button-button.html.twig
+    html-button-disabled-html-twig: /html/button-disabled.html.twig
+    html-button-input-html-twig: /html/button-input.html.twig
+    html-button-link-html-twig: /html/button-link.html.twig
+    html-button-submit-html-twig: /html/button-submit.html.twig
+    html-button-html-twig: /html/button.html.twig
+    html-button_dropdown-parent-class-html-twig: /html/button_dropdown-parent-class.html.twig
+    html-button_dropdown-html-twig: /html/button_dropdown.html.twig
+    html-button_dropup-html-twig: /html/button_dropup.html.twig
+    html-button_group-html-twig: /html/button_group.html.twig
+    html-countdown-format-html-twig: /html/countdown-format.html.twig
+    html-countdown-html-twig: /html/countdown.html.twig
+    html-divider-html-twig: /html/divider.html.twig
+    html-edit_button-input-html-twig: /html/edit_button-input.html.twig
+    html-edit_button-link-html-twig: /html/edit_button-link.html.twig
+    html-edit_button-placements-html-twig: /html/edit_button-placements.html.twig
+    html-edit_button-submit-html-twig: /html/edit_button-submit.html.twig
+    html-edit_button-target-html-twig: /html/edit_button-target.html.twig
+    html-edit_button-html-twig: /html/edit_button.html.twig
+    html-icon-html-twig: /html/icon.html.twig
+    html-icon_colour-html-twig: /html/icon_colour.html.twig
+    html-icon_mime-application-misc-html-twig: /html/icon_mime-application-misc.html.twig
+    html-icon_mime-audio-html-twig: /html/icon_mime-audio.html.twig
+    html-icon_mime-document-html-twig: /html/icon_mime-document.html.twig
+    html-icon_mime-excel-html-twig: /html/icon_mime-excel.html.twig
+    html-icon_mime-image-html-twig: /html/icon_mime-image.html.twig
+    html-icon_mime-msoffice-html-twig: /html/icon_mime-msoffice.html.twig
+    html-icon_mime-msword-html-twig: /html/icon_mime-msword.html.twig
+    html-icon_mime-pdf-html-twig: /html/icon_mime-pdf.html.twig
+    html-icon_mime-powerpoint-html-twig: /html/icon_mime-powerpoint.html.twig
+    html-icon_mime-sheet-html-twig: /html/icon_mime-sheet.html.twig
+    html-icon_mime-text-html-html-twig: /html/icon_mime-text-html.html.twig
+    html-icon_mime-text-misc-html-twig: /html/icon_mime-text-misc.html.twig
+    html-icon_mime-text-plain-html-twig: /html/icon_mime-text-plain.html.twig
+    html-icon_mime-video-html-twig: /html/icon_mime-video.html.twig
+    html-label-removable-html-twig: /html/label-removable.html.twig
+    html-label-html-twig: /html/label.html.twig
+    html-label_group-html-twig: /html/label_group.html.twig
+    html-li-html-twig: /html/li.html.twig
+    html-link-list-html-twig: /html/link-list.html.twig
+    html-link-html-twig: /html/link.html.twig
+    html-list-active-item-html-twig: /html/list-active-item.html.twig
+    html-list-ol-html-twig: /html/list-ol.html.twig
+    html-list-ul-html-twig: /html/list-ul.html.twig
+    html-list-html-twig: /html/list.html.twig
+    html-loading-html-twig: /html/loading.html.twig
+    html-media-actions-html-twig: /html/media-actions.html.twig
+    html-media-icon-color-html-twig: /html/media-icon-color.html.twig
+    html-media-icon-html-twig: /html/media-icon.html.twig
+    html-media-type-html-twig: /html/media-type.html.twig
+    html-media-html-twig: /html/media.html.twig
+    html-metadata-html-twig: /html/metadata.html.twig
+    html-panel-icon-html-twig: /html/panel-icon.html.twig
+    html-panel-html-twig: /html/panel.html.twig
+    html-progress-value-visible-html-twig: /html/progress-value-visible.html.twig
+    html-progress-html-twig: /html/progress.html.twig
+    html-remove_button-input-html-twig: /html/remove_button-input.html.twig
+    html-remove_button-link-html-twig: /html/remove_button-link.html.twig
+    html-remove_button-placements-html-twig: /html/remove_button-placements.html.twig
+    html-remove_button-submit-html-twig: /html/remove_button-submit.html.twig
+    html-remove_button-target-html-twig: /html/remove_button-target.html.twig
+    html-remove_button-html-twig: /html/remove_button.html.twig
+    html-status-placement-html-twig: /html/status-placement.html.twig
+    html-status-title-html-twig: /html/status-title.html.twig
+    html-status-with-options-html-twig: /html/status-with-options.html.twig
+    html-status-with-state-html-twig: /html/status-with-state.html.twig
+    html-status-html-twig: /html/status.html.twig
+    nav-breadcrumb-items-html-twig: /nav/breadcrumb-items.html.twig
+    nav-breadcrumb-html-twig: /nav/breadcrumb.html.twig
+    tabs-tabs_list-disabled-html-twig: /tabs/tabs_list-disabled.html.twig
+    tabs-tabs_list-string-html-twig: /tabs/tabs_list-string.html.twig
+    tabs-tabs_list-template-html-twig: /tabs/tabs_list-template.html.twig
+    tabs-tabs_list-url-fragment-href-html-twig: /tabs/tabs_list-url-fragment-href.html.twig
+    tabs-tabs_list-url-fragment-src-html-twig: /tabs/tabs_list-url-fragment-src.html.twig
+    tabs-tabs_list-url-href-html-twig: /tabs/tabs_list-url-href.html.twig
+    tabs-tabs_list-url-relative-href-html-twig: /tabs/tabs_list-url-relative-href.html.twig
+    tabs-tabs_list-url-relative-src-html-twig: /tabs/tabs_list-url-relative-src.html.twig
+    tabs-tabs_list-url-src-html-twig: /tabs/tabs_list-url-src.html.twig
