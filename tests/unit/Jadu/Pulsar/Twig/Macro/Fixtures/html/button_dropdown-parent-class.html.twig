@@ -1,7 +1,5 @@
-{#
-    Test button_dropdown
-#}
-{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
+{% block body %}
 {{
     html.button_dropdown({
         'class': 'bar',
@@ -14,3 +12,4 @@
         'parent_class': 'baz',
     })
 }}
+{% endblock %}

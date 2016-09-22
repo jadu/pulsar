@@ -1,7 +1,5 @@
-{#
-    Test basic checkbox_inline method
-#}
-{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
+{% block body %}
 {{
     form.checkbox_inline({
         'label': 'foo',
@@ -9,3 +7,4 @@
         'guidance-container': 'baz'
     })
 }}
+{% endblock %}

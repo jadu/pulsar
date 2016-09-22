@@ -1,11 +1,9 @@
-{#
-    Test toggle switch with label
-#}
-{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
-
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
+{% block body %}
 {{
     form.toggle_switch({
         'label': 'Toggle',
         'id': 'toggletest'
     })
 }}
+{% endblock %}

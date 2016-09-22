@@ -30,6 +30,6 @@ $twig->addExtension(new UrlParamsExtension($_GET));
 $twig->addExtension(new TabsExtension());
 $twig->addExtension(new Twig_Extension_Debug());
 
-$template = $twig->loadTemplate($_SERVER['PATH_INFO'] . '.html.twig');
+$template = $twig->loadTemplate('/tests/unit/Jadu/Pulsar/Twig/Macro/Fixtures/' . $_SERVER['PATH_INFO'] . '.html.twig');
 
 print $template->render(array());

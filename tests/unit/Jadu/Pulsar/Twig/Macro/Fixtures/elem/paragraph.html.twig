@@ -1,5 +1,8 @@
-{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
-{{ elem.paragraph(
-    { 'value': 'hello' }
-)
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
+{% block body %}
+{{
+    elem.paragraph(
+        { 'value': 'hello' }
+    )
 }}
+{% endblock %}

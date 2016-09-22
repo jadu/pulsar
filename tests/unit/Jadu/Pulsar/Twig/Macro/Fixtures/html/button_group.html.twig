@@ -1,7 +1,5 @@
-{#
-    Test button group
-#}
-{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
+{% block body %}
 {{
     html.button_group({
         'buttons': [
@@ -11,3 +9,4 @@
         ]
     })
 }}
+{% endblock %}

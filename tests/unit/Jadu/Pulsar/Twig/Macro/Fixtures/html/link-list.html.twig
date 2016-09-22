@@ -1,7 +1,5 @@
-{#
-    Test link list
-#}
-{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
+{% block body %}
 {{
     html.link_list({
         'items': {
@@ -10,3 +8,4 @@
         }
     })
 }}
+{% endblock %}

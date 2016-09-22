@@ -1,8 +1,5 @@
-{#
-    Test button prepended text input
-#}
-{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
-{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
+{% block body %}
 {{
     form.text({
         'prepend': html.button({
@@ -11,3 +8,4 @@
         'prepend_type': 'button'
     })
 }}
+{% endblock %}
