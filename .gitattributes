@@ -7,6 +7,8 @@
 /node_modules/              export-ignore
 /provisioning/              export-ignore
 /coverage/                  export-ignore
+/shots/                     export-ignore
+/shots_history/             export-ignore
 /tests/                     export-ignore
 /tmp/                       export-ignore
 /vendor/                    export-ignore
@@ -28,7 +30,6 @@
 /phpunit.xml.dist           export-ignore
 /pulsar.sublime-project     export-ignore
 /Vagrantfile                export-ignore
-
 
 ##
 ## /libs/
