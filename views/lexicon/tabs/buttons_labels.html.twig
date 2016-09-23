@@ -16,6 +16,27 @@
     <h2 class="heading">Button variations</h2>
 
     <p>
+
+    {{
+    form.button_group({
+    'label': 'foo',
+        'error': 'my error',
+        'items': [
+            form.radio_simple({
+                'label': 'AM',
+                'name': 'bands'
+            }),
+            form.radio_simple({
+                'label': 'FM',
+                'name': 'bands'
+            }),
+            form.radio_simple({
+                'label': 'MW',
+                'name': 'bands'
+            })
+        ]
+    })
+}}
         <!-- The normal type of button you should use -->
         {{ html.button({ label: 'Default' }) }}
 
