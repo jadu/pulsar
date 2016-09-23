@@ -1,4 +1,4 @@
-browser: casperjs
+browser: phantomjs
 directory: shots
 history_dir: shots_history
 domains:
@@ -7,7 +7,7 @@ screen_widths:
     - 600x600
 resize_or_reload: reload
 fuzz: 20%
-verbose: true
+verbose: false
 mode: diffs_first
 threshold: 0
 paths:
