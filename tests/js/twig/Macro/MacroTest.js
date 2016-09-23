@@ -50,10 +50,10 @@ describe('Macros', function () {
                                 }
                             });
 
-                            var renderedTemplate = normalizeOutput(template.render() || "");
+                            var renderedTemplate = normalizeOutput(template.render() || "").match(/<body[^>]*>(.*?)<\/body>/)[1].toString();
                             var expectedValue = normalizeOutput(htmlFixture);
 
-                            expect(renderedTemplate.match(/<body[^>]*>(.*?)<\/body>/)[1]).to.hiffEqual(expectedValue);
+                            expect(renderedTemplate).to.hiffEqual(expectedValue);
                         });
                     }
                 }
