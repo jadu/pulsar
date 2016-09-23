@@ -79,6 +79,8 @@
 
                 <a href="#" class="mobile-menu-button t-mobile-menu-button">Menu</a>
 
+                {% block notifications %}{% endblock %}
+
                 <div class="nav-user">
                 {% block user_menu %}
                 {{
@@ -105,7 +107,6 @@
                 {% endblock %}
                 </div>
 
-                {% block notifications %}{% endblock %}
                 {% include '@pulsar/pulsar/components/nav_help.html.twig' %}
 
             </div>
