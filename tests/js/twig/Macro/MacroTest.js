@@ -45,14 +45,15 @@ describe('Macros', function () {
                                 data: twigFixture,
                                 namespaces: {
                                     'pulsar': './views/',
-                                    'tests': './tests/unit/Jadu/Pulsar/Twig/Macro/Fixtures/'
+                                    'tests': './tests/unit/Jadu/Pulsar/Twig/Macro/Fixtures/',
+                                    'cssTests': './tests/css/'
                                 }
                             });
 
                             var renderedTemplate = normalizeOutput(template.render() || "");
                             var expectedValue = normalizeOutput(htmlFixture);
 
-                            expect(renderedTemplate).to.hiffEqual(expectedValue);
+                            expect(renderedTemplate.match(/<body[^>]*>(.*?)<\/body>/)[1]).to.hiffEqual(expectedValue);
                         });
                     }
                 }
