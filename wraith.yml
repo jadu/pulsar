@@ -4,7 +4,7 @@ history_dir: shots_history
 domains:
     pulsar: 'http://192.168.13.37/tests/css/DiffTest.php'
 screen_widths:
-    - 600x600
+    - 800x800
 resize_or_reload: reload
 fuzz: 20%
 verbose: false
@@ -197,7 +197,6 @@ paths:
     html-panel-html-twig: /html/panel.html.twig
     html-progress-value-visible-html-twig: /html/progress-value-visible.html.twig
     html-progress-html-twig: /html/progress.html.twig
-    html-remove_button-input-html-twig: /html/remove_button-input.html.twig
     html-remove_button-link-html-twig: /html/remove_button-link.html.twig
     html-remove_button-placements-html-twig: /html/remove_button-placements.html.twig
     html-remove_button-submit-html-twig: /html/remove_button-submit.html.twig

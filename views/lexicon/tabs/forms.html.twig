@@ -8,25 +8,6 @@
 
     {{ form.create() }}
 
-    {{
-        form.fieldset_start({
-            'legend': 'Text inputs'
-        })
-    }}
-    {{
-    form.choice({
-        'label': 'Choice',
-        'error': 'foo',
-        'options': [
-            {
-                'label': 'Foo',
-                'name': 'choice',
-                'value': 'foo'
-            }
-        ]
-    })
-}}
-
         {{
             form.choice({
                 'label': 'Choice',
