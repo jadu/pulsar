@@ -20,7 +20,7 @@
 'use strict';
 
 var $ = require('jquery'),
-    tooltip = require('./tooltip');
+    tooltips = require('./tooltip');
 
   // POPOVER PUBLIC CLASS DEFINITION
   // ===============================
@@ -29,9 +29,9 @@ var $ = require('jquery'),
     this.init('popover', element, options)
   }
 
-  if (!$.fn.tooltip) throw new Error('Popover requires tooltip.js')
+  if (!$.fn.tooltips) throw new Error('Popover requires tooltips.js')
 
-  Popover.DEFAULTS = $.extend({} , $.fn.tooltip.Constructor.DEFAULTS, {
+  Popover.DEFAULTS = $.extend({} , $.fn.tooltips.Constructor.DEFAULTS, {
     placement: 'right'
   , trigger: 'click'
   , content: ''
@@ -42,7 +42,7 @@ var $ = require('jquery'),
   // NOTE: POPOVER EXTENDS tooltip.js
   // ================================
 
-  Popover.prototype = $.extend({}, $.fn.tooltip.Constructor.prototype)
+  Popover.prototype = $.extend({}, $.fn.tooltips.Constructor.prototype)
 
   Popover.prototype.constructor = Popover
 
