@@ -32,8 +32,7 @@
         @include respond-min($screen-xsmall) {
             left: auto;
             right: 0;
-            top: auto;
-            width: auto;
+            top: 35px;
         }
     }
 
@@ -83,14 +82,11 @@
 .nav-user > .dropdown > .btn, // pulsar
 .nav-user > .dropdown > .dropdown-toggle, // cms
 .site-switcher__label {
+    height: 42px;
     line-height: 42px;
     padding: 0;
     top: 0;
     vertical-align: top;
-
-    @include respond-min($screen-desktop) {
-        line-height: 42px;
-    }
 }
 
 .toolbar-icon,
