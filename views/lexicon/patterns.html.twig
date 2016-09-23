@@ -35,19 +35,27 @@
 {% set pattern_piano %}
     {% include 'lexicon/patterns/piano.html.twig' %}
 {% endset %}
+{% set pattern_settings %}
+    {% include 'lexicon/patterns/settings.html.twig' %}
+{% endset %}
 
 {%
     set tabs_content = [
         {
           "id"    : "masterswitch",
           "label" : "Masterswitch",
-          "src"   : pattern_masterswitch
+          "src"   : pattern_masterswitch,
+                    "active": true
         },
         {
           "id"    : "piano",
           "label" : "Piano List",
-          "src"   : pattern_piano,
-                    "active": true
+          "src"   : pattern_piano
+        },
+        {
+          "id"    : "settings",
+          "label" : "Settings",
+          "src"   : pattern_settings
         }
     ]
 %}
