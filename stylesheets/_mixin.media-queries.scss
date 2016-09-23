@@ -11,10 +11,25 @@
 
 @mixin respond-max($width) {
     @if $ie-version < 9 {
-        @content;
+        @if $width >= $screen-medium {
+            @content;
+        }
     }
     @else {
-        @media screen and (max-width: $width) {
+        @media screen and (max-width: $width - 1) {
+            @content;
+        }
+    }
+}
+
+@mixin respond-min-max($min-width, $max-width) {
+    @if $ie-version < 9 {
+        @if $max-width >= $screen-medium {
+            @content;
+        }
+    }
+    @else {
+        @media screen and (min-width: $min-width) and (max-width: $max-width - 1) {
             @content;
         }
     }

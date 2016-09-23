@@ -56,8 +56,12 @@ $sidebar-column-width-tablet:         133px !default;
 //  Breakpoints
 // -----------------------------------------------------------------------------
 
+// Extra small screen / small mobile
 $screen-xsmall:                       480px !default;
 $screen-phone:                        $screen-xsmall !default;
+
+// Smaller screen / large mobile / tiny tablet
+$screen-smaller:                      600px !default;
 
 // Small screen / tablet
 $screen-small:                        767px !default;
@@ -80,6 +84,7 @@ $screen-large-desktop:                $screen-large !default;
 // -----------------------------------------------------------------------------
 
 $border-radius:                       4px !default;
+$border-radius-large:                 20px !default;
 
 // -----------------------------------------------------------------------------
 //  Dropdowns
@@ -91,6 +96,7 @@ $dropdown-font-size:                  $font-size-medium !default;
 //  Components
 // -----------------------------------------------------------------------------
 
+$padding-base:                        10px !default;
 $padding-base-vertical:               6px !default;
 $padding-base-horizontal:             12px !default;
 $padding-large-vertical:              10px !default;

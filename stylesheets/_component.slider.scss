@@ -1,0 +1,74 @@
+.slider-container {
+    margin: 5em auto 0;
+    width: 600px;
+}
+
+.slider {
+    display: inline-block;
+    position: relative;
+    width: 600px;
+}
+
+.slider__back {
+    background-color: color(jadu-blue);
+    border-top-left-radius: $border-radius-large;
+    border-bottom-right-radius: $border-radius-large;
+    bottom: $padding-base * 2;
+    color: color(white);
+    width: 100%;
+    top: $padding-base * 2;
+    position: absolute;
+    z-index: -1;
+}
+
+.slider__front {
+    background-color: color(white);
+    border-bottom-right-radius: $border-radius-large;
+    left: 50%;
+    float: right;
+}
+
+.slider__inner {
+    overflow: hidden;
+    padding: $padding-base * 2;
+    width: 300px;
+}
+
+.slider-logo {
+    float: left;
+    margin: 0 10px 10px 0;
+    width: 45px;
+}
+
+.slider-title {
+    font-size: $font-size-large;
+    line-height: $line-height-small;
+}
+
+// form alignment
+.slider {
+    .legend {
+        line-height: $line-height-base;
+        margin-bottom: 5px;
+        border-bottom: 1px solid color(border);
+    }
+
+    .form__group {
+        margin-bottom: 5px;
+    }
+
+    .form__group--top .control__label {
+        margin-bottom: 0;
+    }
+
+    .form__control {
+        height: $font-size-xxlarge;
+        line-height: $font-size-xxlarge;
+        padding: 0 8px;
+    }
+
+    .form__actions {
+        border-top: 0;
+        padding-bottom: 0;
+    }
+}

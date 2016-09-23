@@ -143,6 +143,10 @@
         border-color: $border-color;
         background-color: $background-color;
     }
+
+    .select2-selection {
+        border-color: $border-color;
+    }
 }
 
 // Form control focus state
