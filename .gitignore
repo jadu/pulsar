@@ -15,8 +15,6 @@
 /coverage
 /css
 /dist
-/fonts
-/fonts/_config.fonts.scss
 /tests/logs
 /css
 libs/livereload-js
