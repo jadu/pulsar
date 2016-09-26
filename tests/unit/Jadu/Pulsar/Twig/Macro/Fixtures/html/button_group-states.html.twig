@@ -1,0 +1,66 @@
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
+{% block body %}
+{{
+    html.button_group({
+        'buttons': [
+            html.button({ label: 'foo' }),
+            html.button({ label: 'bar' }),
+            html.button({ label: 'baz' })
+        ]
+    })
+}}
+{{
+    html.button_group({
+        'buttons': [
+            html.button({ label: 'foo', 'class': 'btn--primary' }),
+            html.button({ label: 'bar', 'class': 'btn--primary' }),
+            html.button({ label: 'baz', 'class': 'btn--primary' })
+        ]
+    })
+}}
+{{
+    html.button_group({
+        'buttons': [
+            html.button({ label: 'foo', 'class': 'btn--success' }),
+            html.button({ label: 'bar', 'class': 'btn--success' }),
+            html.button({ label: 'baz', 'class': 'btn--success' })
+        ]
+    })
+}}
+{{
+    html.button_group({
+        'buttons': [
+            html.button({ label: 'foo', 'class': 'btn--warning' }),
+            html.button({ label: 'bar', 'class': 'btn--warning' }),
+            html.button({ label: 'baz', 'class': 'btn--warning' })
+        ]
+    })
+}}
+{{
+    html.button_group({
+        'buttons': [
+            html.button({ label: 'foo', 'class': 'btn--danger' }),
+            html.button({ label: 'bar', 'class': 'btn--danger' }),
+            html.button({ label: 'baz', 'class': 'btn--danger' })
+        ]
+    })
+}}
+{{
+    html.button_group({
+        'buttons': [
+            html.button({ label: 'foo', 'class': 'btn--info' }),
+            html.button({ label: 'bar', 'class': 'btn--info' }),
+            html.button({ label: 'baz', 'class': 'btn--info' })
+        ]
+    })
+}}
+{{
+    html.button_group({
+        'buttons': [
+            html.button({ label: 'foo', 'class': 'btn--inverse' }),
+            html.button({ label: 'bar', 'class': 'btn--inverse' }),
+            html.button({ label: 'baz', 'class': 'btn--inverse' })
+        ]
+    })
+}}
+{% endblock %}

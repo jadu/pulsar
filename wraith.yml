@@ -150,6 +150,7 @@ paths:
     html-button_dropdown-parent-class-html-twig: /html/button_dropdown-parent-class.html.twig
     html-button_dropdown-html-twig: /html/button_dropdown.html.twig
     html-button_dropup-html-twig: /html/button_dropup.html.twig
+    html-button_group-states-html-twig: /html/button_group-states.html.twig
     html-button_group-html-twig: /html/button_group.html.twig
     html-countdown-format-html-twig: /html/countdown-format.html.twig
     html-countdown-html-twig: /html/countdown.html.twig
