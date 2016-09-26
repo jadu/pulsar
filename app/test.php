@@ -1,9 +1,9 @@
 <?php
 
-$baseDir = '../';
-$templateDir = $baseDir . 'tests/twig';
+$baseDir = '/var/www/html';
+$templateDir = $baseDir . '/tests/twig';
 
-require_once __DIR__ . '/' . $baseDir . 'vendor/autoload.php';
+require_once $baseDir . '/vendor/autoload.php';
 
 use Jadu\Pulsar\Twig\Extension\ArrayExtension;
 use Jadu\Pulsar\Twig\Extension\AttributeParserExtension;

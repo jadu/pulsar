@@ -1,9 +1,9 @@
 <?php
 
-$baseDir = __DIR__ . '/../../';
-$templateDir = $baseDir . 'tests/unit/Jadu/Pulsar/Twig/Macro/Fixtures';
+$baseDir = '/var/www/html';
+$templateDir = $baseDir . '/tests/unit/Jadu/Pulsar/Twig/Macro/Fixtures';
 
-require_once $baseDir . 'vendor/autoload.php';
+require_once $baseDir . '/vendor/autoload.php';
 
 use Jadu\Pulsar\Twig\Extension\ArrayExtension;
 use Jadu\Pulsar\Twig\Extension\AttributeParserExtension;
@@ -13,9 +13,9 @@ use Jadu\Pulsar\Twig\Extension\UrlParamsExtension;
 use Jadu\Pulsar\Twig\Extension\TabsExtension;
 
 $loader = new Twig_Loader_Filesystem($templateDir);
-$loader->addPath($baseDir . 'views', 'pulsar');
-$loader->addPath($baseDir . 'tests/css', 'cssTests');
-$loader->addPath($baseDir . 'tests/unit/Jadu/Pulsar/Twig/Macro/Fixtures', 'tests');
+$loader->addPath($baseDir . '/views', 'pulsar');
+$loader->addPath($baseDir . '/tests/css', 'cssTests');
+$loader->addPath($baseDir . '/tests/unit/Jadu/Pulsar/Twig/Macro/Fixtures', 'tests');
 
 $twig = new Twig_Environment($loader,
     array(
