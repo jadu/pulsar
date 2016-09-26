@@ -1,19 +1,23 @@
 /* ========================================================================
  * Bootstrap: tooltip.js v3.1.1
- * http://getbootstrap.com/javascript/#tooltip
+ * http://getbootstrap.com/javascript/#tooltips
  * Inspired by the original jQuery.tipsy by Jason Frame
  * ========================================================================
  * Copyright 2011-2014 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ *
+ * NOTE: tooltip namespace has been changed to 'tooltips' to resolve a conflict
+ * with jQueryUI
  * ======================================================================== */
+
 "use strict";
 
 var $ = require('jquery');
 
-  // TOOLTIP PUBLIC CLASS DEFINITION
+  // TOOLTIPS PUBLIC CLASS DEFINITION
   // ===============================
 
-  var Tooltip = function (element, options) {
+  var Tooltips = function (element, options) {
     this.type       =
     this.options    =
     this.enabled    =
@@ -21,10 +25,10 @@ var $ = require('jquery');
     this.hoverState =
     this.$element   = null
 
-    this.init('tooltip', element, options)
+    this.init('tooltips', element, options)
   }
 
-  Tooltip.DEFAULTS = {
+  Tooltips.DEFAULTS = {
     animation: true,
     placement: 'top',
     selector: false,
@@ -40,7 +44,7 @@ var $ = require('jquery');
     }
   }
 
-  Tooltip.prototype.init = function (type, element, options) {
+  Tooltips.prototype.init = function (type, element, options) {
     this.enabled   = true
     this.type      = type
     this.$element  = $(element)
@@ -68,11 +72,11 @@ var $ = require('jquery');
       this.fixTitle()
   }
 
-  Tooltip.prototype.getDefaults = function () {
-    return Tooltip.DEFAULTS
+  Tooltips.prototype.getDefaults = function () {
+    return Tooltips.DEFAULTS
   }
 
-  Tooltip.prototype.getOptions = function (options) {
+  Tooltips.prototype.getOptions = function (options) {
     options = $.extend({}, this.getDefaults(), this.$element.data(), options)
 
     if (options.delay && typeof options.delay == 'number') {
@@ -85,7 +89,7 @@ var $ = require('jquery');
     return options
   }
 
-  Tooltip.prototype.getDelegateOptions = function () {
+  Tooltips.prototype.getDelegateOptions = function () {
     var options  = {}
     var defaults = this.getDefaults()
 
@@ -96,7 +100,7 @@ var $ = require('jquery');
     return options
   }
 
-  Tooltip.prototype.enter = function (obj) {
+  Tooltips.prototype.enter = function (obj) {
     var self = obj instanceof this.constructor ?
       obj : $(obj.currentTarget)[this.type](this.getDelegateOptions()).data('bs.' + this.type)
 
@@ -111,7 +115,7 @@ var $ = require('jquery');
     }, self.options.delay.show)
   }
 
-  Tooltip.prototype.leave = function (obj) {
+  Tooltips.prototype.leave = function (obj) {
     var self = obj instanceof this.constructor ?
       obj : $(obj.currentTarget)[this.type](this.getDelegateOptions()).data('bs.' + this.type)
 
@@ -126,7 +130,7 @@ var $ = require('jquery');
     }, self.options.delay.hide)
   }
 
-  Tooltip.prototype.show = function () {
+  Tooltips.prototype.show = function () {
     var e = $.Event('show.bs.' + this.type)
 
     if (this.hasContent() && this.enabled) {
@@ -193,7 +197,7 @@ var $ = require('jquery');
     }
   }
 
-  Tooltip.prototype.applyPlacement = function (offset, placement) {
+  Tooltips.prototype.applyPlacement = function (offset, placement) {
     var $tip   = this.tip()
     var width  = $tip[0].offsetWidth
     var height = $tip[0].offsetHeight
@@ -243,11 +247,11 @@ var $ = require('jquery');
     this.replaceArrow(arrowDelta, $tip[0][arrowOffsetPosition], arrowPosition)
   }
 
-  Tooltip.prototype.replaceArrow = function (delta, dimension, position) {
+  Tooltips.prototype.replaceArrow = function (delta, dimension, position) {
     this.arrow().css(position, delta ? (50 * (1 - delta / dimension) + '%') : '')
   }
 
-  Tooltip.prototype.setContent = function () {
+  Tooltips.prototype.setContent = function () {
     var $tip  = this.tip()
     var title = this.getTitle()
 
@@ -255,7 +259,7 @@ var $ = require('jquery');
     $tip.removeClass('fade in top bottom left right')
   }
 
-  Tooltip.prototype.hide = function () {
+  Tooltips.prototype.hide = function () {
     var that = this
     var $tip = this.tip()
     var e    = $.Event('hide.bs.' + this.type)
@@ -282,18 +286,18 @@ var $ = require('jquery');
     return this
   }
 
-  Tooltip.prototype.fixTitle = function () {
+  Tooltips.prototype.fixTitle = function () {
     var $e = this.$element
     if ($e.attr('title') || typeof($e.attr('data-original-title')) != 'string') {
       $e.attr('data-original-title', $e.attr('title') || '').attr('title', '')
     }
   }
 
-  Tooltip.prototype.hasContent = function () {
+  Tooltips.prototype.hasContent = function () {
     return this.getTitle()
   }
 
-  Tooltip.prototype.getPosition = function ($element) {
+  Tooltips.prototype.getPosition = function ($element) {
     $element   = $element || this.$element
     var el     = $element[0]
     var isBody = el.tagName == 'BODY'
@@ -304,7 +308,7 @@ var $ = require('jquery');
     }, isBody ? {top: 0, left: 0} : $element.offset())
   }
 
-  Tooltip.prototype.getCalculatedOffset = function (placement, pos, actualWidth, actualHeight) {
+  Tooltips.prototype.getCalculatedOffset = function (placement, pos, actualWidth, actualHeight) {
     return placement == 'bottom' ? { top: pos.top + pos.height,   left: pos.left + pos.width / 2 - actualWidth / 2  } :
            placement == 'top'    ? { top: pos.top - actualHeight, left: pos.left + pos.width / 2 - actualWidth / 2  } :
            placement == 'left'   ? { top: pos.top + pos.height / 2 - actualHeight / 2, left: pos.left - actualWidth } :
@@ -312,7 +316,7 @@ var $ = require('jquery');
 
   }
 
-  Tooltip.prototype.getViewportAdjustedDelta = function (placement, pos, actualWidth, actualHeight) {
+  Tooltips.prototype.getViewportAdjustedDelta = function (placement, pos, actualWidth, actualHeight) {
     var delta = { top: 0, left: 0 }
     if (!this.$viewport) return delta
 
@@ -340,7 +344,7 @@ var $ = require('jquery');
     return delta
   }
 
-  Tooltip.prototype.getTitle = function () {
+  Tooltips.prototype.getTitle = function () {
     var title
     var $e = this.$element
     var o  = this.options
@@ -351,15 +355,15 @@ var $ = require('jquery');
     return title
   }
 
-  Tooltip.prototype.tip = function () {
+  Tooltips.prototype.tip = function () {
     return this.$tip = this.$tip || $(this.options.template)
   }
 
-  Tooltip.prototype.arrow = function () {
+  Tooltips.prototype.arrow = function () {
     return this.$arrow = this.$arrow || this.tip().find('.tooltip-arrow')
   }
 
-  Tooltip.prototype.validate = function () {
+  Tooltips.prototype.validate = function () {
     if (!this.$element[0].parentNode) {
       this.hide()
       this.$element = null
@@ -367,59 +371,59 @@ var $ = require('jquery');
     }
   }
 
-  Tooltip.prototype.enable = function () {
+  Tooltips.prototype.enable = function () {
     this.enabled = true
   }
 
-  Tooltip.prototype.disable = function () {
+  Tooltips.prototype.disable = function () {
     this.enabled = false
   }
 
-  Tooltip.prototype.toggleEnabled = function () {
+  Tooltips.prototype.toggleEnabled = function () {
     this.enabled = !this.enabled
   }
 
-  Tooltip.prototype.toggle = function (e) {
+  Tooltips.prototype.toggle = function (e) {
     var self = e ? $(e.currentTarget)[this.type](this.getDelegateOptions()).data('bs.' + this.type) : this
     self.tip().hasClass('in') ? self.leave(self) : self.enter(self)
   }
 
-  Tooltip.prototype.destroy = function () {
+  Tooltips.prototype.destroy = function () {
     clearTimeout(this.timeout)
     this.hide().$element.off('.' + this.type).removeData('bs.' + this.type)
   }
 
 
-  // TOOLTIP PLUGIN DEFINITION
+  // TOOLTIPS PLUGIN DEFINITION
   // =========================
 
-  var old = $.fn.tooltip
+  var old = $.fn.tooltips
 
-  $.fn.tooltip = function (option) {
+  $.fn.tooltips = function (option) {
     return this.each(function () {
       var $this   = $(this)
-      var data    = $this.data('bs.tooltip')
+      var data    = $this.data('bs.tooltips')
       var options = typeof option == 'object' && option
 
       if (!data && option == 'destroy') return
-      if (!data) $this.data('bs.tooltip', (data = new Tooltip(this, options)))
+      if (!data) $this.data('bs.tooltips', (data = new Tooltips(this, options)))
       if (typeof option == 'string') data[option]()
     })
   }
 
-  $.fn.tooltip.Constructor = Tooltip
+  $.fn.tooltips.Constructor = Tooltips
 
 
-  // TOOLTIP NO CONFLICT
+  // TOOLTIPS NO CONFLICT
   // ===================
 
-  $.fn.tooltip.noConflict = function () {
-    $.fn.tooltip = old
+  $.fn.tooltips.noConflict = function () {
+    $.fn.tooltips = old
     return this
   }
 
   $(document).ready(function() {
-    $('[data-toggle="tooltips"]').tooltip();
+    $('[data-toggle="tooltips"]').tooltips();
   });
 
-module.exports = Tooltip;
+module.exports = Tooltips;
