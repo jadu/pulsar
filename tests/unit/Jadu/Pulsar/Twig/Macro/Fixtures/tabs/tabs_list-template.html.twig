@@ -1,5 +1,6 @@
-{% import '@pulsar/pulsar/v2/helpers/tabs.html.twig' as tabs %}
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
 {% set template %}{% include '@tests/tabs/template.partial.twig' %}{% endset %}
+{% block body %}
 {%
     set nav = [
         {
@@ -11,3 +12,4 @@
 %}
 {{ tabs.list(nav) }}
 {{ tabs.content(nav) }}
+{% endblock %}

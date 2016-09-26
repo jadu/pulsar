@@ -1,8 +1,5 @@
-{#
-    Test end method with form actions
-#}
-{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
-{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
+{% block body %}
 {{
     form.end({
         'actions': [
@@ -16,3 +13,4 @@
         ]
     })
 }}
+{% endblock %}

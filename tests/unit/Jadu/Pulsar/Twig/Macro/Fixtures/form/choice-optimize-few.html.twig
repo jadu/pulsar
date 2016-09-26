@@ -1,7 +1,5 @@
-{#
-    Test optimize-few choice method
-#}
-{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
+{% block body %}
 {{
     form.choice({
         'optimize': 'few',
@@ -39,4 +37,5 @@
         ]
     })
 }}
+{% endblock %}
 

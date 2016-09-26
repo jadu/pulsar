@@ -1,7 +1,5 @@
-{#
-    Test basic media object method
-#}
-{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
+{% block body %}
 {{
     html.media({
         'image': 'foo.png',
@@ -13,3 +11,4 @@
         })
     })
 }}
+{% endblock %}

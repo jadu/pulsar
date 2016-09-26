@@ -27,6 +27,7 @@ class MacroTest extends \PHPUnit_Framework_TestCase
         $loader = new Twig_Loader_Filesystem($this->getFixturesPath());
         $loader->addPath($baseDir . 'views', 'pulsar');
         $loader->addPath($baseDir . 'tests/unit/Jadu/Pulsar/Twig/Macro/Fixtures', 'tests');
+        $loader->addPath($baseDir . 'tests/css', 'cssTests');
 
         $this->twig = new Twig_Environment($loader, array(
             'cache' => false,
@@ -58,7 +59,10 @@ class MacroTest extends \PHPUnit_Framework_TestCase
         // Remove fixture path from the template name
         $templateName = substr($templateFile, strlen($this->getFixturesPath()));
 
-        $this->assertEquals($this->normalizeOutput($expectedOutput), $this->normalizeOutput($this->twig->render($templateName)));
+        $actualOutput = $this->normalizeOutput($this->twig->render($templateName));
+        preg_match("/<body[^>]*>(.*?)<\/body>/is", $actualOutput, $matches);
+
+        $this->assertEquals($this->normalizeOutput($expectedOutput), $matches[1]);
     }
 
     /**

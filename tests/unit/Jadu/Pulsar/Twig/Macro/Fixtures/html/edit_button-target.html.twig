@@ -1,9 +1,8 @@
-{#
-    Test remove button with target
-#}
-{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
+{% block body %}
 {{
     html.edit_button({
         'target': 'foo'
     })
 }}
+{% endblock %}

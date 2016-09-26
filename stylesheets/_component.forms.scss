@@ -202,7 +202,7 @@ fieldset {
 }
 
 .controls > .toggle-switch-label {
-    margin-top: $padding-small-vertical;
+    margin-top: 10px;
 }
 
 // input widths
@@ -223,7 +223,7 @@ $inputs: (
     background-color: #fafafa;
     width: 100%;
 
-    @include respond-min($screen-smaller) {
+    @include respond-min($screen-tablet) {
 
         // default width
         .form__group & {
@@ -243,7 +243,7 @@ $inputs: (
     }
 }
 
-@include respond-min($screen-smaller) {
+@include respond-min($screen-tablet) {
     .form__group .input-group {
         width: map-get($inputs, regular);
     }
@@ -280,13 +280,14 @@ $inputs: (
 }
 
 .help-block {
+    clear: both;
     color: color(text, light);
     display: block;
     font-size: $font-size-small;
 }
 
 // if help block is next to the main label, space it appropriately
-.control__label + .help-block {
+.form__group > .control__label + .help-block {
     margin: -.5em 0 .5em;
 }
 

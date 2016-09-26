@@ -1,9 +1,8 @@
-{#
-    Test 'DELETE' method also adds hidden _method input
-#}
-{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
+{% block body %}
 {{
     form.create({
         'method': 'DELETE'
     })
 }}
+{% endblock %}

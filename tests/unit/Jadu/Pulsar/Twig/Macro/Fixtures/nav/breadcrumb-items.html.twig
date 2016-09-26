@@ -1,4 +1,5 @@
-{% import '@pulsar/pulsar/v2/helpers/nav.html.twig' as nav %}
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
+{% block body %}
 {%
     set breadcrumbs = [
         {'label': 'foo', 'href': '#foo'},
@@ -7,3 +8,4 @@
     ]
 %}
 {{ nav.breadcrumbs(breadcrumbs) }}
+{% endblock %}

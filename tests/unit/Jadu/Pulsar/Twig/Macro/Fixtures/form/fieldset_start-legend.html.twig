@@ -1,9 +1,8 @@
-{#
-    Test fieldset start method with legend
-#}
-{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
+{% block body %}
 {{
     form.fieldset_start({
         'legend': 'foo'
     })
 }}
+{% endblock %}

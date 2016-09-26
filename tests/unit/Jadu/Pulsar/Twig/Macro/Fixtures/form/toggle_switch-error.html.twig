@@ -1,8 +1,5 @@
-{#
-    Test toggle switch with error
-#}
-{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
-
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
+{% block body %}
 {{
     form.toggle_switch({
         'error': 'my error',
@@ -10,3 +7,4 @@
         'id': 'toggletest'
     })
 }}
+{% endblock %}

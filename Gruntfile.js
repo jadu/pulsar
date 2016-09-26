@@ -278,6 +278,15 @@ module.exports = function(grunt) {
             },
             updateNpm: {
                 cmd: 'sudo npm install'
+            },
+            wraithUpdate: {
+                cmd: 'php tests/css/updateWraith.php'
+            },
+            wraithHistory: {
+                cmd: 'wraith history wraith.yml'
+            },
+            wraithLatest: {
+                cmd: 'wraith latest wraith.yml'
             }
         },
 
@@ -535,9 +544,13 @@ module.exports = function(grunt) {
         'phpunit'
     ]);
 
-    grunt.registerTask('smoketest', [
-        'clean:smoketest',
-        'exec:phantomcss'
+    grunt.registerTask('wraith', [
+        'exec:wraithLatest'
+    ]);
+
+    grunt.registerTask('wraith-update', [
+        'exec:wraithUpdate',
+        'exec:wraithHistory'
     ]);
 
     grunt.registerTask('update', [

@@ -9,7 +9,8 @@
         }
     },
     "require": {
-        "twig/twig": "^1.21"
+        "twig/twig": "^1.21",
+        "symfony/yaml": "^3.1"
     },
     "require-dev": {
         "phpunit/phpunit": "*"
