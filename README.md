@@ -4,7 +4,11 @@
 
 Pulsar is the User Experience and Interface framework for [Jadu](http://jadu.net) software.
 
-[![Jadu Pulsar - The UI framework for the Continuum platform](../images/youtube.jpg)](https://www.youtube.com/watch?v=rmGUTvuBvdw)
+## Introduction
+
+Watch a Jadu Academy session presented by Paul Stanton, Pulsar Product Owner which gives an overview of Pulsar and how it influences our product development.
+
+[![Jadu Pulsar - The UI framework for the Continuum platform](https://raw.githubusercontent.com/jadu/pulsar/develop/images/youtube.jpg)](https://www.youtube.com/watch?v=rmGUTvuBvdw)
 
 ## Documentation
 
