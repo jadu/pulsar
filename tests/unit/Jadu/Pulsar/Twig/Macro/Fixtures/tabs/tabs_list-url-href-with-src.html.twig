@@ -1,0 +1,16 @@
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
+{% set template %}{% include '@tests/tabs/template.partial.twig' %}{% endset %}
+{% block body %}
+{%
+    set nav = [
+        {
+          "id"    : "foo",
+          "label" : "bar",
+          "href"   : '?foo',
+          "src"   : template
+        }
+    ]
+%}
+{{ tabs.list(nav) }}
+{{ tabs.content(nav) }}
+{% endblock %}
