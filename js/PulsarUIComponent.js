@@ -20,6 +20,12 @@ PulsarUIComponent.prototype.init = function () {
         e.preventDefault();
     });
 
+    // Watch for push-state requests via data-html attribute
+    this.$html.on('click', '[data-href]', function(e) {
+        var href = $(this).data('href');
+        pulsar.history.pushState({state:1}, href, href);
+    });
+
     this.initTables();
     this.initDataTables();
     this.initCountdown();
