@@ -20,6 +20,7 @@ var $                     = require('jquery'),
     matchMediaAddListener = require('./polyfills/matchMedia.addListener');
 
     clickover = require('../libs/bootstrapx-clickover/js/bootstrapx-clickover'),
+    history   = require('../libs/history.js/scripts/bundled/html5/jquery.history'),
     jqueryui  = require('../libs/jquery-ui/jquery-ui.min'),
     countdown = require('../libs/jquery.countdown/dist/jquery.countdown.min'),
     pikaday   = require('../libs/pikaday/plugins/pikaday.jquery'),
@@ -52,5 +53,6 @@ module.exports = {
     PulsarFormComponent: PulsarFormComponent,
     PulsarUIComponent: PulsarUIComponent,
     SignInComponent: SignInComponent,
+    history: history,
     svgeezy: svgeezy
 };
