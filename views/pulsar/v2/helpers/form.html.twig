@@ -1803,7 +1803,7 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
             'parent': options
                 |only('bare class error guidance guidance-container help id label required')
                 |merge({
-                    'class': 'form__group--toggle'
+                    'class': options.class|default ~ ' form__group--toggle'
                 }),
             'inputs': [toggle]
         })
