@@ -503,7 +503,11 @@ module.exports = function(grunt) {
         'email-build'
     ]);
 
-    grunt.registerTask('post-merge', ['sass:dev', 'browserify', 'email-build']);
+    grunt.registerTask('post-merge', [
+        'sass:dev',
+        'browserify',
+        'email-build'
+    ]);
 
     grunt.registerTask('build', [
         'scsslint',
@@ -537,11 +541,6 @@ module.exports = function(grunt) {
     grunt.registerTask('email-test', [
         'email-build',
         'mailgun'
-    ]);
-
-    grunt.registerTask('pre-commit', [
-        'asciify',
-        'phpunit'
     ]);
 
     grunt.registerTask('wraith', [
