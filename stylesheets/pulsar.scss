@@ -18,6 +18,10 @@ $ie-version: 12 !default;
 @import '../libs/normalize-css/normalize.css';
 @import '../libs/select2/dist/css/select2.css';
 
+// Proxima Nova (requires license)
+$font-path: '../fonts/';
+@import '../fonts/config.fonts';
+
 // Font awesome
 $fa-font-path: '../libs/font-awesome/fonts';
 $fa-css-prefix: 'icon';
