@@ -9,10 +9,6 @@
             {# url param #}
             {% set tab_active = active_tab %}
             {% set break = true %}
-        {% elseif tab.active is defined and tab.active == true and tab.src|json_encode|slice(1, 1) == '#' and break == false %}
-            {# tabs object param + src template #}
-            {% set tab_active = tab.src %}
-            {% set break = true %}
         {% elseif tab.active is defined and tab.active == true and break == false %}
             {# tabs object param #}
             {% set tab_active = tab.id %}
@@ -89,10 +85,6 @@
         {% if active_tab is defined and active_tab is not null and break == false %}
             {# url param #}
             {% set tab_active = active_tab %}
-            {% set break = true %}
-        {% elseif tab.active is defined and tab.active == true and tab.src|json_encode|slice(1, 1) == '#' and break == false %}
-            {# tabs object param + src template #}
-            {% set tab_active = tab.src %}
             {% set break = true %}
         {% elseif tab.active is defined and tab.active == true and break == false %}
             {# tabs object param #}

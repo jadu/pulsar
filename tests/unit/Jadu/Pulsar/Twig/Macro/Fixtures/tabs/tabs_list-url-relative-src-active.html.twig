@@ -1,0 +1,20 @@
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
+{% block body %}
+{%
+    set nav = [
+        {
+          "id": "alpha",
+          "label": "Alpha",
+          "src": "/alpha"
+        },
+        {
+          "id": "bravo",
+          "label": "Bravo",
+          "src": "/bravo",
+          "active": true
+        }
+    ]
+%}
+{{ tabs.list(nav) }}
+{{ tabs.content(nav) }}
+{% endblock %}
