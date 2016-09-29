@@ -1,6 +1,7 @@
 'use strict'
 
 var $ = require('jquery'),
+    history = require('../../../libs/history.js/scripts/bundled/html5/jquery.history'),
     tab = require('../../../js/libs/tab'),
     PulsarUIComponent = require('../../../js/PulsarUIComponent');
 
@@ -18,13 +19,15 @@ describe('Pulsar UI Component', function() {
             <table class="table datatable qa-datatable-no-selection" data-select="false"></table>\
             <div class="table-container"><table class="table qa-table-dupe"></table></div>\
             <a href="#tab" data-toggle="tab">foo</a>\
+            <a data-href="?tab=foo" href="#tab-foo" data-toggle="tab">foo</a>\
             <div class="tab__pane" id="tab">\
                 <table class="table datatable qa-tab-datatable"></table>\
             </div>\
             <span class="js-countdown qa-countdown-one" data-final-date="1665243907399" data-format="%d">Expires in 6 hours</span>\
 ').appendTo(this.$html);
 
-        this.$tabLink = this.$html.find('a[data-toggle="tab"]');
+        this.$tabLink = this.$html.find('a[href="#tab"]');
+        this.$pushStateTabLink = this.$html.find('a[href="#tab-foo"]');
         this.$isDisabled = this.$html.find('a[disabled]');
         this.$basicTable = this.$html.find('.qa-table');
         this.$datagridTable = this.$html.find('.qa-datagrid');
@@ -34,7 +37,11 @@ describe('Pulsar UI Component', function() {
         this.$tableDupe = this.$html.find('.qa-table-dupe');
         this.$countdownOne = this.$html.find('.qa-countdown-one');
 
-        this.pulsarUIComponent = new PulsarUIComponent(this.$html);
+        this.history = {
+            pushState: sinon.stub()
+        };
+
+        this.pulsarUIComponent = new PulsarUIComponent(this.$html, this.history);
 
     });
 
@@ -99,6 +106,28 @@ describe('Pulsar UI Component', function() {
         });
     });
 
+    describe('Clicking a tab toggle with the data-href attribute', function() {
+
+        beforeEach(function() {
+            this.pulsarUIComponent.init();
+        });
+
+        it('should call the history plugin', function() {
+            this.$pushStateTabLink.click();
+            expect(this.history.pushState).to.have.been.calledOnce;
+        });
+
+        it('should push the correct state object onto the history stack', function () {
+            this.$pushStateTabLink.click();
+            expect(this.history.pushState).to.have.been.calledWith({state: 1});
+        });
+
+        it('should push the correct href onto the history stack', function () {
+            this.$pushStateTabLink.click();
+            expect(this.history.pushState).to.have.been.calledWith(sinon.match.any, '?tab=foo', '?tab=foo');
+        });
+    });
+
     describe('clicking a tab toggle', function() {
 
         beforeEach(function() {
@@ -135,7 +164,6 @@ describe('Pulsar UI Component', function() {
         });
 
     });
-
 
 
 });

@@ -13,7 +13,7 @@
     pulsar.flash        = new pulsar.FlashMessageComponent($html);
     pulsar.helpText     = new pulsar.HelpTextComponent($html, window, document);
     pulsar.pulsarForm   = new pulsar.PulsarFormComponent($html);
-    pulsar.pulsarUI     = new pulsar.PulsarUIComponent($html);
+    pulsar.pulsarUI     = new pulsar.PulsarUIComponent($html, pulsar.history);
     pulsar.signIn       = new pulsar.SignInComponent($html);
     pulsar.masterSwitch = new pulsar.MasterSwitchComponent($html);
 	pulsar.modulePermissions = new pulsar.ModulePermissionsComponent($html);
