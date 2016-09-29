@@ -22,3 +22,6 @@ libs/phantomcss
 .vagrant
 pulsar.zip
 /shots
+/fonts
+/fonts/_config.fonts.scss
+
