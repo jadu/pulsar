@@ -48,6 +48,32 @@
 /libs/font-awesome/less/                                        export-ignore
 /libs/font-awesome/HELP-US-OUT.txt                              export-ignore
 
+# history.js
+/libs/history.js/demo/                                          export-ignore
+/libs/history.js/scripts/bundled/html4+html5/                   export-ignore
+/libs/history.js/scripts/bundled/dojo.history                   export-ignore
+/libs/history.js/scripts/bundled/extjs.history                  export-ignore
+/libs/history.js/scripts/bundled/mootools.history               export-ignore
+/libs/history.js/scripts/bundled/native.history                 export-ignore
+/libs/history.js/scripts/bundled/right.history                  export-ignore
+/libs/history.js/scripts/bundled/zepto.history                  export-ignore
+/libs/history.js/scripts/bundled-uncompressed                   export-ignore
+/libs/history.js/scripts/compressed/                            export-ignore
+/libs/history.js/scripts/uncompressed/                          export-ignore
+/libs/history.js/scripts/tests/                                 export-ignore
+/libs/history.js/scripts/tests.src/                             export-ignore
+/libs/history.js/scripts/vendor/                                export-ignore
+/libs/history.js/scripts/bower.json                             export-ignore
+/libs/history.js/scripts/.gitignore                             export-ignore
+/libs/history.js/scripts/bower.json                             export-ignore
+/libs/history.js/scripts/buildr-uncompressed.coffee             export-ignore
+/libs/history.js/scripts/buildr.coffee                          export-ignore
+/libs/history.js/scripts/component.json                         export-ignore
+/libs/history.js/scripts/History.md                             export-ignore
+/libs/history.js/scripts/license.txt                            export-ignore
+/libs/history.js/scripts/package.json                           export-ignore
+/libs/history.js/scripts/README.md                              export-ignore
+
 # html5shiv
 /libs/html5shiv/.bower.json                                     export-ignore
 /libs/html5shiv/bower.json                                      export-ignore

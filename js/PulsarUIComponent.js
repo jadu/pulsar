@@ -5,8 +5,9 @@ var $             = require('jquery'),
     dt_select     = require('datatables.net-select')(window, $),
     countdown     = require('../libs/jquery.countdown/dist/jquery.countdown.min');
 
-function PulsarUIComponent(html) {
+function PulsarUIComponent(html, history) {
 
+    this.history = history;
     this.$html = html;
 
 };
@@ -18,6 +19,12 @@ PulsarUIComponent.prototype.init = function () {
     // Stop disabled links from being interactive
     this.$html.on('click', 'a[disabled]', function(e) {
         e.preventDefault();
+    });
+
+    // Watch for push-state requests via data-html attribute
+    this.$html.on('click', '[data-href]', function(e) {
+        var href = $(this).data('href');
+        component.history.pushState({state:1}, href, href);
     });
 
     this.initTables();
