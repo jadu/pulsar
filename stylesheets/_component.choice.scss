@@ -69,6 +69,6 @@
 
 .choice--block-hide-input {
     > .controls .form__control {
-        @extend .hide;
+        @extend %hide;
     }
 }
