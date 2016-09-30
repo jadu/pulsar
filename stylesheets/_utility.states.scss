@@ -9,12 +9,12 @@ $danger-from-text-color: darken(color(danger), 30);
 $danger-to-text-color: black;
 
 .warning:not(.form__group) {
-    background: rgba(255, 137, 9, .8);
-    color: darken(rgb(255, 137, 9), 30%);
+    background: rgba(255, 137, 9, .8) !important;
+    color: darken(rgb(255, 137, 9), 30%) !important;
     text-shadow: none;
 
     @include ie-lte(8) {
-        background: rgb(255, 137, 9);
+        background: rgb(255, 137, 9) !important;
     }
 
     &.fade {
@@ -26,10 +26,10 @@ $danger-to-text-color: black;
 }
 
 .has-success:not(.form__group) {
-    background-color: lighten($success-color, 50);
+    background-color: lighten($success-color, 50) !important;
 
     &:hover {
-        background-color: lighten($success-color, 47);
+        background-color: lighten($success-color, 47) !important;
     }
 
     &.fade {
@@ -41,10 +41,10 @@ $danger-to-text-color: black;
 }
 
 .has-warning:not(.form__group) {
-    background-color: lighten($warning-color, 20);
+    background-color: lighten($warning-color, 20) !important;
 
     &:hover {
-        background-color: lighten($warning-color, 17);
+        background-color: lighten($warning-color, 17) !important;
     }
 
     &.fade {
@@ -56,13 +56,13 @@ $danger-to-text-color: black;
 }
 
 .has-success:not(.form__group) {
-    background-color: lighten(color(success), 35);
-    color: darken(color(success), 15);
+    background-color: lighten(color(success), 35) !important;
+    color: darken(color(success), 15) !important;
 }
 
 .has-warning:not(.form__group) {
-    background-color: lighten(color(warning), 15);
-    color: darken(color(warning), 30);
+    background-color: lighten(color(warning), 15) !important;
+    color: darken(color(warning), 30) !important;
 }
 
 @keyframes fade-out {
@@ -80,6 +80,6 @@ $danger-to-text-color: black;
 }
 
 body a.is-disabled {
-    color: color(link, disabled);
+    color: color(link, disabled) !important;
     cursor: not-allowed;
 }
