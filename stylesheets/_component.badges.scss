@@ -1,7 +1,8 @@
 @import 'config.theme';
 
 // Base classes
-.badge {
+.badge,
+%badge {
   @include inline-block;
   background-color: $badge-bg;
   border-radius: 10px;
@@ -89,7 +90,8 @@ a.list-group-item.active > .badge,
 
 // Variations
 
-.badge--primary {
+.badge--primary,
+%badge--primary {
   background-color: color(primary);
   color: color(primary, alt);
   text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
@@ -99,7 +101,8 @@ a.list-group-item.active > .badge,
   }
 }
 
-.badge--success {
+.badge--success,
+%badge--success {
   background-color: color(success);
   color: color(success, alt);
   text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
@@ -109,7 +112,8 @@ a.list-group-item.active > .badge,
   }
 }
 
-.badge--warning {
+.badge--warning,
+%badge--warning {
   background-color: color(warning);
   color: color(warning, alt);
   text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
@@ -119,7 +123,8 @@ a.list-group-item.active > .badge,
   }
 }
 
-.badge--danger {
+.badge--danger,
+%badge--danger {
   background-color: color(danger);
   color: color(danger, alt);
   text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
@@ -129,7 +134,8 @@ a.list-group-item.active > .badge,
   }
 }
 
-.badge--info {
+.badge--info,
+%badge--info {
   background-color: color(info);
   color: color(info, alt);
   text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
@@ -139,7 +145,8 @@ a.list-group-item.active > .badge,
   }
 }
 
-.badge--inverse {
+.badge--inverse,
+%badge--inverse {
   background-color: color(inverse);
   color: color(inverse, alt);
   text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);

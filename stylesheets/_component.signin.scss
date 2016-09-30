@@ -268,7 +268,7 @@ body {
 	}
 
 	label {
-		@extend .hide;
+		@extend %hide;
 	}
 }
 
