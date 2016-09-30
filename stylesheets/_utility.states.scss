@@ -76,7 +76,7 @@ $danger-to-text-color: black;
 }
 
 .is-new {
-    background-color: color(new);
+    background-color: color(new) !important;
 }
 
 body a.is-disabled {
