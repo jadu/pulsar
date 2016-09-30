@@ -124,6 +124,7 @@ paths:
     form-textarea-guidance-container-html-twig: /form/textarea-guidance-container.html.twig
     form-textarea-guidance-html-twig: /form/textarea-guidance.html.twig
     form-textarea-html-twig: /form/textarea.html.twig
+    form-toggle_switch-class-html-twig: /form/toggle_switch-class.html.twig
     form-toggle_switch-error-html-twig: /form/toggle_switch-error.html.twig
     form-toggle_switch-guidance-container-html-twig: /form/toggle_switch-guidance-container.html.twig
     form-toggle_switch-guidance-html-twig: /form/toggle_switch-guidance.html.twig
@@ -211,11 +212,22 @@ paths:
     nav-breadcrumb-items-html-twig: /nav/breadcrumb-items.html.twig
     nav-breadcrumb-html-twig: /nav/breadcrumb.html.twig
     tabs-tabs_list-disabled-html-twig: /tabs/tabs_list-disabled.html.twig
+    tabs-tabs_list-string-active-html-twig: /tabs/tabs_list-string-active.html.twig
     tabs-tabs_list-string-html-twig: /tabs/tabs_list-string.html.twig
+    tabs-tabs_list-template-active-html-twig: /tabs/tabs_list-template-active.html.twig
     tabs-tabs_list-template-html-twig: /tabs/tabs_list-template.html.twig
+    tabs-tabs_list-url-fragment-href-active-html-twig: /tabs/tabs_list-url-fragment-href-active.html.twig
     tabs-tabs_list-url-fragment-href-html-twig: /tabs/tabs_list-url-fragment-href.html.twig
+    tabs-tabs_list-url-fragment-src-active-html-twig: /tabs/tabs_list-url-fragment-src-active.html.twig
     tabs-tabs_list-url-fragment-src-html-twig: /tabs/tabs_list-url-fragment-src.html.twig
+    tabs-tabs_list-url-href-active-html-twig: /tabs/tabs_list-url-href-active.html.twig
+    tabs-tabs_list-url-href-with-src-active-html-twig: /tabs/tabs_list-url-href-with-src-active.html.twig
+    tabs-tabs_list-url-href-with-src-html-twig: /tabs/tabs_list-url-href-with-src.html.twig
     tabs-tabs_list-url-href-html-twig: /tabs/tabs_list-url-href.html.twig
+    tabs-tabs_list-url-relative-href-active-html-twig: /tabs/tabs_list-url-relative-href-active.html.twig
     tabs-tabs_list-url-relative-href-html-twig: /tabs/tabs_list-url-relative-href.html.twig
+    tabs-tabs_list-url-relative-src-active-html-twig: /tabs/tabs_list-url-relative-src-active.html.twig
     tabs-tabs_list-url-relative-src-html-twig: /tabs/tabs_list-url-relative-src.html.twig
+    tabs-tabs_list-url-src-active-html-twig: /tabs/tabs_list-url-src-active.html.twig
     tabs-tabs_list-url-src-html-twig: /tabs/tabs_list-url-src.html.twig
+    tabs-tabs_multiple-html-twig: /tabs/tabs_multiple.html.twig
