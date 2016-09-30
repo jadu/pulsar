@@ -287,6 +287,9 @@ module.exports = function(grunt) {
             },
             wraithLatest: {
                 cmd: 'wraith latest wraith.yml'
+            },
+            fixProximaNova: {
+                cmd: 'git update-index --skip-worktree fonts/_config.fonts.scss'
             }
         },
 
@@ -504,6 +507,7 @@ module.exports = function(grunt) {
     ]);
 
     grunt.registerTask('post-merge', [
+        'exec:fixProximaNova',
         'sass:dev',
         'browserify',
         'email-build'
