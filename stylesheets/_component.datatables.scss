@@ -167,8 +167,8 @@ th.sorting_disabled:hover {
     width: 100%;
 
     .select-info {
-        @extend .label;
-        @extend .label--info;
+        @extend %label;
+        @extend %label--info;
         color: color(text);
         font-family: $font-family-regular;
         margin-left: 5px;
