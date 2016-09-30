@@ -1,0 +1,58 @@
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
+{% block body %}
+{{
+    html.label({
+        label: 'default',
+        removable: true
+    })
+}}
+{{
+    html.label({
+        label: 'primary',
+        class: 'label--primary',
+        removable: true
+    })
+}}
+{{
+    html.label({
+        label: 'success',
+        class: 'label--success',
+        removable: true
+    })
+}}
+{{
+    html.label({
+        label: 'warning',
+        class: 'label--warning',
+        removable: true
+    })
+}}
+{{
+    html.label({
+        label: 'danger',
+        class: 'label--danger',
+        removable: true
+    })
+}}
+{{
+    html.label({
+        label: 'info',
+        class: 'label--info',
+        removable: true
+    })
+}}
+{{
+    html.label({
+        label: 'inverse',
+        class: 'label--inverse',
+        removable: true
+    })
+}}
+{{
+    html.label({
+        class: 'label--large',
+        label: 'label large',
+        removable: true
+    })
+}}
+{% endblock %}
