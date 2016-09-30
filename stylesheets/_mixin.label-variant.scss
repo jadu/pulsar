@@ -5,6 +5,16 @@
     color: $text-color !important;
     text-transform: lowercase;
 
+    // Removable labels
+    .btn.remove-button,
+    .btn.remove-button [class^="icon-"],
+    .btn.remove-button [class*=" icon-"] {
+        &,
+        &:hover {
+            color: $text-color !important;
+        }
+    }
+
     &:not(:last-child) {
         .label-group & {
             @include css-arrow(14px, right);
