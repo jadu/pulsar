@@ -315,6 +315,10 @@
 		position: absolute;
 		top: 8px;
 		right: 8px;
+
+		&:hover {
+			top: 9px;
+		}
 	}
 }
 
