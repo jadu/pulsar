@@ -38,7 +38,8 @@
   "devDependencies": {
     "livereload-js": "livereload/livereload-js",
     "tinyicon": "^0.6.5",
-    "history.js": "^1.8.0"
+    "history.js": "^1.8.0",
+    "bootstrap-daterangepicker": "^2.1.24"
   },
   "resolutions": {
     "font-awesome": "3.2.1"

@@ -26,6 +26,7 @@
     "commit": "249b7191282c076c290c8e8bc78b3f6eee91097e"
   },
   "_source": "https://github.com/dangrossman/bootstrap-daterangepicker.git",
-  "_target": "*",
-  "_originalSource": "bootstrap-daterangepicker"
+  "_target": "^2.1.24",
+  "_originalSource": "bootstrap-daterangepicker",
+  "_direct": true
 }
