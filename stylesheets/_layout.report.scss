@@ -2,8 +2,11 @@
     background-color: color(gray, off-white);
     border-top: 1px solid color(border);
     height: 100%; // relies on the 100% height of .content-main
-    margin: -1px (-$gutter-width) 0;
     padding: 16px $gutter-width;
+
+    &.tab__pane {
+        margin: -1px (-$gutter-width) 0;
+    }
 }
 
 .report {
@@ -147,6 +150,7 @@
     z-index: 1;
 
     .loading {
+        display: block;
         margin: 0 auto 20px;
     }
 }
