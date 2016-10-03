@@ -42,22 +42,6 @@
     @include respond-min($screen-desktop) {
         margin-bottom: 0;
     }
-
-   .input-group {
-        display: inline-block;
-        height: $line-height-large;
-        vertical-align: top;
-
-        .input-group-addon {
-            line-height: 30px;
-        }
-
-        .form__control:not(.checkbox):not(.radio):not(.file) {
-            height: $line-height-large;
-            line-height: $line-height-large;
-            width: auto;
-        }
-    }
 }
 
 .report__timeframe {
