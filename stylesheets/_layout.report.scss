@@ -2,39 +2,8 @@
     background-color: color(gray, off-white);
     border-top: 1px solid color(border);
     height: 100%; // relies on the 100% height of .content-main
-    margin: -1px -20px 0;
-    padding: 16px 20px;
-
-    // .breadcrumb,
-    // .main-title {
-    //     background-color: white;
-    //     padding-left: $gutter-width;
-    //     padding-right: $gutter-width;
-    // }
-
-    // .breadcrumb {
-    //     margin-bottom: 0;
-    //     padding-bottom: 11px;
-    // }
-
-    // .main-title {
-    //     margin-bottom: 0;
-    //     padding-bottom: 13px;
-    // }
-
-    // .nav-inline {
-    //     background-color: white;
-    // }
-
-    // .nav-inline__list {
-    //     padding-left: $gutter-width;
-    // }
-
-    // .tab__pane {
-    //     margin-top: 0;
-    //     padding: 12px $gutter-width 0;
-    // }
-
+    margin: -1px (-$gutter-width) 0;
+    padding: 16px $gutter-width;
 }
 
 .report {
@@ -65,7 +34,7 @@
 
 .report__settings {
     float: right;
-    margin-bottom: 24px;
+    margin-bottom: $line-height-base;
 
     @include respond-min($screen-desktop) {
         margin-bottom: 0;
@@ -73,7 +42,7 @@
 
    .input-group {
         display: inline-block;
-        height: 32px;
+        height: $line-height-large;
         vertical-align: top;
 
         .input-group-addon {
@@ -81,8 +50,8 @@
         }
 
         .form__control:not(.checkbox):not(.radio):not(.file) {
-            height: 32px;
-            line-height: 32px;
+            height: $line-height-large;
+            line-height: $line-height-large;
             width: auto;
         }
     }
@@ -95,13 +64,13 @@
 }
 
 .report__chart {
-    margin-bottom: 24px;
+    margin-bottom: $line-height-base;
     height: 240px;
 }
 
 .report__data {
     clear: left;
-    padding-top: 48px;
+    padding-top: $line-height-large;
 }
 
 .schedule {
@@ -121,7 +90,7 @@
 
 .schedule__title {
     font-family: $font-family-regular;
-    line-height: 32px;
+    line-height: $line-height-large;
     margin-bottom: 0;
 }
 
@@ -169,10 +138,10 @@
     top: -30px;
     background-color: color(background, light);
     box-shadow: 0 6px 12px rgba(0, 0, 0, .3);
-    border-top-left-radius: 20px;
-    border-bottom-right-radius: 20px;
+    border-top-left-radius: $border-radius-large;
+    border-bottom-right-radius: $border-radius-large;
     margin: 0 auto;
-    padding: 20px;
+    padding: $gutter-width;
     text-align: center;
     width: 400px;
     z-index: 1;
@@ -188,12 +157,12 @@
     display: block;
     line-height: 30px;
     margin: 15px 0 10px;
-    padding: 10px 20px;
+    padding: 10px $gutter-width;
     width: 100%;
 
     @include respond-min($screen-desktop) {
-        border-top-right-radius: 10px;
-        border-bottom-right-radius: 10px;
+        border-top-right-radius: $border-radius-large / 2;
+        border-bottom-right-radius: $border-radius-large / 2;
         display: inline-block;
         float: left;
         margin-left: -20px;
