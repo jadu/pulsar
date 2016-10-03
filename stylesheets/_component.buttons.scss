@@ -119,8 +119,8 @@
     &:disabled,
     &.is-disabled,
     &.disabled {
-      background-color: color($state, light);
-      box-shadow: 0 2px 0 darken(color($state, light), 7);
+      background-color: color($state, light) !important;
+      box-shadow: 0 2px 0 darken(color($state, light), 7) !important;
       color: pick_best_color(color($state, light), (#fff, color(gray, dark))) !important;
     }
 }
