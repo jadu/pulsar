@@ -12,6 +12,7 @@
   "dependencies": {
     "bootstrapx-clickover": "latest",
     "font-awesome": "4.6.3",
+    "history.js": "^1.8.0",
     "html5shiv": "latest",
     "jquery": "1.x",
     "jquery-autosize": "latest",
@@ -30,16 +31,14 @@
     "store.js": "latest",
     "susy": "~2.2.6",
     "svgeezy": "latest",
+    "tinyicon": "^0.6.5",
     "Vague.js": "0.0.4",
     "vide": "~0.3.1",
     "chartist": "^0.9.8",
-    "bootstrap-daterangepicker": "latest"
+    "bootstrap-daterangepicker": "^2.1.24"
   },
   "devDependencies": {
-    "livereload-js": "livereload/livereload-js",
-    "tinyicon": "^0.6.5",
-    "history.js": "^1.8.0",
-    "bootstrap-daterangepicker": "^2.1.24"
+    "livereload-js": "livereload/livereload-js"
   },
   "resolutions": {
     "font-awesome": "3.2.1"
