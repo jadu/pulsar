@@ -247,6 +247,7 @@
     }
 
     &:hover {
+        box-shadow: inset 0 0 0 2px color(base);
         top: 1px;
     }
 
@@ -255,5 +256,9 @@
             box-shadow: inset 0 0 0 2px $state-color;
             color: $state-color-alt;
         }
+    }
+
+    &.btn--white {
+        color: color(white) !important;
     }
 }

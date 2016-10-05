@@ -1,4 +1,4 @@
-.is-sortable {
+.is-sortable:not(.sortable--unstyled) {
     .ui-sortable-handle {
         background-color: color(background, light);
         margin-bottom: 4px;
@@ -40,7 +40,7 @@
     }
 }
 
-.is-sorting {
+:not(.sortable--unstyled) > .is-sorting {
     background-color: color(sorting);
     border: 1px dashed color(sorting, dark);
     border-radius: 5px;
@@ -53,6 +53,6 @@
     }
 }
 
-.is-dragging {
+:not(.sortable--unstyled) > .is-dragging {
     box-shadow: 0 0 10px rgba(0, 0, 0, .5);
 }

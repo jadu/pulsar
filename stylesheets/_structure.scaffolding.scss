@@ -39,23 +39,3 @@ body {
     overflow: visible;
   }
 }
-
-// Links
-
-a {
-  color: color(link);
-  cursor: pointer;
-}
-
-a:hover {
-  color: color(link, hover);
-}
-
-a.disabled {
-  opacity: .5;
-  cursor: not-allowed !important;
-
-  &:hover {
-    cursor: not-allowed !important;
-  }
-}

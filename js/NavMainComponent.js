@@ -16,6 +16,12 @@ NavMainComponent.prototype.init = function() {
     component.$primaryNavLinks = component.$navPrimary.find('.nav-link');
     component.$secondaryNavLinks = component.$navSecondary.find('.nav-link');
     component.$closeLink = component.$navMain.find('[data-nav-action=close]');
+    component.$quickstart = component.$navMain.find('[data-nav="#quickstart"]');
+    component.$quickstartHint = component.$navMain.find('[data-ui="quickstart-hint"]');
+    component.$quickstartMainMenu = component.$navMain.find('[data-nav="#quickstart-main"]');
+    component.$quickstartAdditionalMenu = component.$navMain.find('[data-nav="#quickstart-additional"]');
+    component.$quickstartManageLink = component.$navMain.find('[data-nav-action=quickstart-manage]');
+    component.$quickstartSaveLink = component.$navMain.find('[data-nav-action=quickstart-save]');
 
     component.$primaryNavLinks.on('click', function(e) {
 
@@ -35,6 +41,14 @@ NavMainComponent.prototype.init = function() {
     component.$secondaryNavLinks.on('click', function() {
         component.changeActiveSecondaryNavLink($(this).attr('href'));
     });
+
+    component.$quickstartManageLink.on('click', function() {
+        component.quickstartManage();
+    });
+
+    component.$quickstartSaveLink.on('click', function() {
+        component.quickstartClose();
+    })
 
     component.$closeLink.on('click', function(e) {
         e.preventDefault();
@@ -66,7 +80,7 @@ NavMainComponent.prototype.switchSecondaryNav = function(target) {
 
     component.$html.find('.nav-list.is-active').removeClass('is-active');
     component.$html.find('[data-nav="' + target + '"]')
-        .addClass('is-active');
+        .addClass('is-active').closest('[data-ui=nav-container]').addClass('is-open');
 };
 
 NavMainComponent.prototype.changeActiveSecondaryNavLink = function(target) {
@@ -77,21 +91,97 @@ NavMainComponent.prototype.changeActiveSecondaryNavLink = function(target) {
     component.$html.find('[href="' + target + '"]').addClass('is-active');
 };
 
+NavMainComponent.prototype.quickstartManage = function() {
+
+    var component = this;
+
+    component.$quickstartManageLink.fadeOut(125, function() {
+        component.$quickstartSaveLink.fadeIn(125);
+    });
+
+    component.$quickstart
+        .animate({
+            width: '495'
+        }, 125, function() {
+            component.$quickstartHint.slideDown(125);
+        })
+
+    component.$quickstartMainMenu
+        .find('.nav-items')
+        .addClass('is-sortable')
+        .sortable({
+            connectWith: '[data-nav="#quickstart-additional"] .nav-items',
+            containment: '.nav-quickstart',
+            placeholder: 'is-sorting',
+            helper: 'clone',
+            opacity: 0.9,
+            revert: 125,
+            tolerance: 'pointer',
+            zIndex: 1080,
+            start: function(e, ui) {
+                $(ui.helper).addClass('is-dragging');
+            }
+        }).disableSelection();
+
+    component.$quickstartAdditionalMenu
+        .removeClass('hide')
+        .find('.nav-items')
+        .addClass('is-sortable')
+        .sortable({
+            connectWith: '[data-nav="#quickstart-main"] .nav-items',
+            containment: '.nav-quickstart',
+            placeholder: 'is-sorting',
+            helper: 'clone',
+            opacity: 0.9,
+            revert: 125,
+            tolerance: 'pointer',
+            zIndex: 1080,
+            start: function(e, ui) {
+                $(ui.helper).addClass('is-dragging');
+            }
+        }).disableSelection();
+
+}
+
+NavMainComponent.prototype.quickstartClose = function() {
+
+    var component = this;
+
+    component.$quickstart
+        .animate({
+            width: '245'
+        }, 125, function() {
+            component.$quickstartHint.slideUp(125);
+            component.$quickstartSaveLink.fadeOut(125, function() {
+                component.$quickstartManageLink.fadeIn(125);
+            });
+        })
+        .find('.nav-items.is-sortable')
+        .sortable('destroy')
+        .removeClass('is-sortable');
+}
+
 NavMainComponent.prototype.closeNavs = function() {
 
     var component = this;
 
-    component.$navMain.removeClass('is-open');
+    // component.$navMain.removeClass('is-open');
 
-    // component.$navMain.find('.is-active')
-    //  .removeClass('is-active');
+    component.$navMain.find('.is-open')
+        .removeClass('is-open');
+
+    component.closeSubNavs();
 };
 
 NavMainComponent.prototype.closeSubNavs = function() {
 
     var component = this;
 
-    component.$html.find('.nav-secondary .nav-container').removeClass('is-active');
+    component.$html.find('.nav-secondary .nav-container').removeClass('is-active'); // does this even work anymore?
+
+    // cleanly close quickstart menu
+    component.$html.find('[data-ui=nav-container]').width('245').removeClass('is-open');
+    component.quickstartClose();
 };
 
 module.exports = NavMainComponent;

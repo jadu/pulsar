@@ -1,6 +1,7 @@
 'use strict';
 
 var $ = require('jquery'),
+	jqueryui  = require('../../../libs/jquery-ui/jquery-ui.min'),
 	NavMainComponent = require('../../../js/NavMainComponent');
 
 $.fx.off = !$.fx.off
@@ -8,8 +9,8 @@ $.fx.off = !$.fx.off
 describe('NavMain component', function() {
 
 	beforeEach(function() {
-		this.$html = $('<div class="fake-html"></div>').appendTo('html');
-        this.$body = $('<div class="fake-body"></div>').appendTo(this.$html);
+		this.$html = $('<div id="html"></div>').appendTo('html');
+        this.$body = $('<div id="body"></div>').appendTo(this.$html);
  		this.$markup = $('\
 <nav class="nav-main">\
   <div class="nav-primary">\
@@ -55,7 +56,7 @@ describe('NavMain component', function() {
 \
   </div>\
 </nav>\
-').appendTo(this.$html);
+').appendTo(this.$body);
 
  		this.$navMain = this.$html.find('.nav-main');
  		this.$closeLink = this.$html.find('[data-nav-action="close"]');
@@ -65,6 +66,9 @@ describe('NavMain component', function() {
  		this.$linkThree = this.$html.find('[href="#three"]');
  		this.$secondaryLinkOne = this.$html.find('[href="#one_one"]');
  		this.$secondaryLinkTwo = this.$html.find('[href="#two_one"]');
+
+ 		this.sortable = sinon.stub();
+
 
 		this.navMainComponent = new NavMainComponent(this.$html);
 
@@ -197,7 +201,9 @@ describe('NavMain component', function() {
 		});
 
 		it('should close the sub navigation', function() {
-			expect(this.$html.find('.nav-main').hasClass('is-open')).to.be.false;
+			setTimeout(function() {
+				expect(this.$html.find('.nav-main').hasClass('is-open')).to.be.false;
+			}, 1000);
 		});
 
 	});
