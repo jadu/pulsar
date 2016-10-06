@@ -73,7 +73,6 @@ NavMainComponent.prototype.switchPrimaryNav = function(target) {
 };
 
 NavMainComponent.prototype.switchSecondaryNav = function(target) {
-
     var component = this;
 
     component.closeSubNavs();
@@ -96,15 +95,17 @@ NavMainComponent.prototype.quickstartManage = function() {
     var component = this;
 
     component.$quickstartManageLink.fadeOut(125, function() {
-        component.$quickstartSaveLink.fadeIn(125);
+        component.$quickstartSaveLink.fadeIn(125).removeClass('visually-hidden');
     });
 
     component.$quickstart
         .animate({
             width: '495'
         }, 125, function() {
-            component.$quickstartHint.slideDown(125);
-        })
+            component.$quickstartHint
+                .slideDown(125)
+                .removeClass('visually-hidden');
+        });
 
     component.$quickstartMainMenu
         .find('.nav-items')
