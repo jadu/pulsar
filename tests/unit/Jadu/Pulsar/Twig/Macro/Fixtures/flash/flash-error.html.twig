@@ -1,0 +1,9 @@
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
+{% block body %}
+{{
+    flash.message({
+        'message': 'This is the error message style with <a href="#">an example link</a>',
+        'type': 'error'
+    })
+}}
+{% endblock %}
