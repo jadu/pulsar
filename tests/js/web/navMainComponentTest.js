@@ -357,23 +357,4 @@ describe('NavMain component', function() {
 
     });
 
-    // describe('dragging a sortable item', function() {
-
-    //     beforeEach(function() {
-    //         jQuery.fx.off = true;
-    //         sinon.spy($.fn, 'sortable');
-    //         this.navMainComponent.init();
-    //         this.$quickstartLink.click();
-    //         $.fn.sortable.trigger('start');
-    //     });
-
-    //     afterEach(function() {
-    //         $.fn.sortable.restore();
-    //     });
-
-    //     it('should add the is-dragging class to the item', function() {
-    //         expect(this.$quickstartManageLink.hasClass('visually-hidden')).to.be.false;
-    //     });
-    // });
-
 });
