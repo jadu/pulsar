@@ -35,6 +35,9 @@
 {% set tab_popovers %}
     {% include 'lexicon/tabs/popovers.html.twig' %}
 {% endset %}
+{% set tab_filters %}
+    {% include 'lexicon/tabs/filters.html.twig' %}
+{% endset %}
 
 {%
     set nav_data = {
@@ -88,6 +91,11 @@
           "id"    : "popovers",
           "label" : "Popovers",
           "src"   : tab_popovers
+        },
+        {
+          "id"    : "filters",
+          "label" : "Filters",
+          "src"   : tab_filters
         }
     ]
 %}
