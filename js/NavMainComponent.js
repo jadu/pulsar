@@ -79,7 +79,9 @@ NavMainComponent.prototype.switchSecondaryNav = function(target) {
 
     component.$html.find('.nav-list.is-active').removeClass('is-active');
     component.$html.find('[data-nav="' + target + '"]')
-        .addClass('is-active').closest('[data-ui=nav-container]').addClass('is-open');
+        .addClass('is-active')
+        .closest('[data-ui=nav-container]')
+        .addClass('is-open');
 };
 
 NavMainComponent.prototype.changeActiveSecondaryNavLink = function(target) {
@@ -166,8 +168,6 @@ NavMainComponent.prototype.closeNavs = function() {
 
     var component = this;
 
-    // component.$navMain.removeClass('is-open');
-
     component.$navMain.find('.is-open')
         .removeClass('is-open');
 
@@ -178,10 +178,10 @@ NavMainComponent.prototype.closeSubNavs = function() {
 
     var component = this;
 
-    component.$html.find('.nav-secondary .nav-container').removeClass('is-active'); // does this even work anymore?
+    component.$html.find('[data-ui=nav-container]')
+        .width('245')
+        .removeClass('is-open');
 
-    // cleanly close quickstart menu
-    component.$html.find('[data-ui=nav-container]').width('245').removeClass('is-open');
     component.quickstartClose();
 };
 
