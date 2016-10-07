@@ -18,6 +18,7 @@
     pulsar.masterSwitch = new pulsar.MasterSwitchComponent($html);
 	pulsar.modulePermissions = new pulsar.ModulePermissionsComponent($html);
     pulsar.navMain      = new pulsar.NavMainComponent($html);
+    pulsar.filterBar    = new pulsar.FilterBarComponent($html);
 
     $(function () {
 
@@ -31,6 +32,7 @@
         pulsar.masterSwitch.init();
         pulsar.modulePermissions.init();
         pulsar.navMain.init();
+        pulsar.filterBar.init();
 
         // Switch out .svg for .png for <img> elements in older browsers
         pulsar.svgeezy.init('nocheck', 'png');
