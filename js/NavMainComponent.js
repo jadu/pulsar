@@ -48,7 +48,7 @@ NavMainComponent.prototype.init = function() {
 
     component.$quickstartSaveLink.on('click', function() {
         component.quickstartClose();
-    })
+    });
 
     component.$closeLink.on('click', function(e) {
         e.preventDefault();
@@ -152,8 +152,7 @@ NavMainComponent.prototype.quickstartManage = function() {
                 $(ui.helper).addClass('is-dragging');
             }
         }).disableSelection();
-
-}
+};
 
 NavMainComponent.prototype.quickstartClose = function() {
 
@@ -175,7 +174,7 @@ NavMainComponent.prototype.quickstartClose = function() {
         .find('.nav-items.is-sortable')
         .sortable('destroy')
         .removeClass('is-sortable');
-}
+};
 
 NavMainComponent.prototype.closeNavs = function() {
 
