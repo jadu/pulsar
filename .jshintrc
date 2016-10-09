@@ -29,7 +29,7 @@
         "beforeEach" : false,
         "after"      : false,
         "afterEach"  : false,
-        "sinon"      : false
-
+        "sinon"      : false,
+        "require"    : false
     }
 }
