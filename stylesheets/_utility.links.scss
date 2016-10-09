@@ -10,8 +10,8 @@ a {
 
 a.disabled,
 a.disabled:hover {
-    opacity: .5;
     cursor: not-allowed !important;
+    opacity: .5;
 }
 
 @each $state, $state-color, $state-color-alt in $state-colors {
