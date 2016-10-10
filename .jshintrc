@@ -18,9 +18,18 @@
     "undef": true,
     "unused": true,
     "globals": {
-        "$": false,
-        "jQuery": false,
-        "console": false,
-        "define": false
+        "$"          : false,
+        "jQuery"     : false,
+        "console"    : false,
+        "define"     : false,
+        "describe"   : false,
+        "expect"     : false,
+        "it"         : false,
+        "before"     : false,
+        "beforeEach" : false,
+        "after"      : false,
+        "afterEach"  : false,
+        "sinon"      : false,
+        "require"    : false
     }
 }

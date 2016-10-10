@@ -1,3 +1,5 @@
+/*jshint multistr: true, unused: false*/
+
 'use strict';
 
 var $ = require('jquery'),
