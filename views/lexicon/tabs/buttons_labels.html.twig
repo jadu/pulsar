@@ -177,7 +177,12 @@
 
     <p>
         <!-- The normal type of button you should use -->
-        {{ html.button({ label: 'Default' }) }}
+        {{
+            html.button({
+                label: 'Default',
+                class: 'is-disabled'
+            })
+        }}
 
         <!-- In the context of a full UI, this is the main thing we want the user to do next -->
         {{
@@ -224,20 +229,6 @@
             html.button({
                 label: 'Inverse',
                 class: 'btn--inverse is-disabled'
-            })
-        }}
-
-        {{
-            html.button({
-                label: 'Disabled',
-                class: 'is-disabled'
-            })
-        }}
-
-        {{
-            html.button({
-                label: 'Active',
-                class: 'active is-disabled'
             })
         }}
 
