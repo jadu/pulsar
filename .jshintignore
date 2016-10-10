@@ -1,0 +1,4 @@
+libs/**/*
+node_modules/**/*
+vendor/**/*
+dist/**/*
