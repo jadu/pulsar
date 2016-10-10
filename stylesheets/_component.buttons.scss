@@ -216,6 +216,8 @@
 
 .btn--naked.is-disabled,
 .btn--naked:disabled {
+    background: none !important;
+    box-shadow: none !important;
     color: color(text, disabled) !important;
 
     &:hover {
