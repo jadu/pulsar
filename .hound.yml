@@ -1,9 +1,8 @@
 scss:
   config_file: .scss-lint.yml
   exclude:
-    - "dist/**/*"
-    - "node_modules/**/*"
     - "libs/**/*"
+    - "node_modules/**/*"
     - "vendor/**/*"
 
 jshint:
