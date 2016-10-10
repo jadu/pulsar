@@ -65,7 +65,7 @@ p.success {
 
 // removes bottom margin from an element
 .bottomless {
-  margin-bottom: 0;
+  margin-bottom: 0 !important;
 }
 
 .double-top {
