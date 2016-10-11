@@ -48,7 +48,7 @@ describe('FilterBar component', function () {
             '		</fieldset>' +
             '		<div class="form__actions">' +
             '			<button type="submit" class="btn btn--primary js-submit-disable">Save</button>' +
-            '			<a href="#" class="btn btn--naked">Clear</a>' +
+            '			<a href="#" class="btn btn--naked" data-ui="clear-all-filters">Clear</a>' +
             '		</div>' +
        		'	</form>' +
 			'</div>'
