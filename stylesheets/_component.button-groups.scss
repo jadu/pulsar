@@ -45,15 +45,14 @@
     margin-left: -1px;
 }
 
-.btn__group > .btn:not(.btn--naked):first-of-type,
+.btn__group > .btn:not(.btn--naked):not(.edit-button):not(.remove-button):first-of-type,
 .btn__group > .btn__group:first-of-type {
-    border-left-width: 0;
     border-left-width: 0;
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
 }
 
-.btn__group > .btn:last-of-type,
+.btn__group > .btn:not(.btn--naked):not(.edit-button):not(.remove-button):last-of-type,
 .btn__group > .btn__group:last-of-type {
     border-right-width: 0;
     border-top-right-radius: 3px;

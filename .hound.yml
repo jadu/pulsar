@@ -1,0 +1,10 @@
+scss:
+  config_file: .scss-lint.yml
+  exclude:
+    - "libs/**/*"
+    - "node_modules/**/*"
+    - "vendor/**/*"
+
+jshint:
+  config_file: .jshintrc
+  ignore_file: .jshintignore

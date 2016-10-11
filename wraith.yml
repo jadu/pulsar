@@ -12,6 +12,12 @@ mode: diffs_first
 threshold: 0
 paths:
     elem-paragraph-html-twig: /elem/paragraph.html.twig
+    flash-flash-default-html-twig: /flash/flash-default.html.twig
+    flash-flash-error-html-twig: /flash/flash-error.html.twig
+    flash-flash-info-html-twig: /flash/flash-info.html.twig
+    flash-flash-non-dismissable-html-twig: /flash/flash-non-dismissable.html.twig
+    flash-flash-success-html-twig: /flash/flash-success.html.twig
+    flash-flash-warning-html-twig: /flash/flash-warning.html.twig
     form-button_group-bare-html-twig: /form/button_group-bare.html.twig
     form-button_group-error-html-twig: /form/button_group-error.html.twig
     form-button_group-guidance-container-html-twig: /form/button_group-guidance-container.html.twig
@@ -143,6 +149,7 @@ paths:
     html-block_list-ol-html-twig: /html/block_list-ol.html.twig
     html-block_list-html-twig: /html/block_list.html.twig
     html-button-button-html-twig: /html/button-button.html.twig
+    html-button-disabled-states-html-twig: /html/button-disabled-states.html.twig
     html-button-disabled-html-twig: /html/button-disabled.html.twig
     html-button-input-html-twig: /html/button-input.html.twig
     html-button-link-html-twig: /html/button-link.html.twig
