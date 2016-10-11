@@ -103,11 +103,6 @@ $width: 500px;
 
 a.block-list__item:hover {
     background-color: lighten(#e5ecf2, 4%);
-
-    .uploader__label {
-        color: color(link);
-        cursor: pointer;
-    }
 }
 
 /* -------------------------------------------------------------------------- *\
