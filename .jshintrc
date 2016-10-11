@@ -10,6 +10,7 @@
     "maxparams": false,
     "newcap": true,
     "noarg": true,
+    "node": true,
     "noempty": true,
     "nonew": true,
     "plusplus": false,
@@ -30,6 +31,7 @@
         "after"      : false,
         "afterEach"  : false,
         "sinon"      : false,
-        "require"    : false
+        "require"    : false,
+        "pulsar"     : false
     }
 }
