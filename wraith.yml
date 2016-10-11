@@ -189,7 +189,6 @@ paths:
     html-label-removable-html-twig: /html/label-removable.html.twig
     html-label-states-html-twig: /html/label-states.html.twig
     html-label-html-twig: /html/label.html.twig
-    html-label_group-html-twig: /html/label_group.html.twig
     html-li-html-twig: /html/li.html.twig
     html-link-list-html-twig: /html/link-list.html.twig
     html-link-html-twig: /html/link.html.twig
