@@ -4,7 +4,6 @@ var $ = require('jquery');
 
 function FilterBarComponent(html) {
     this.$html = html;
-    this.$document = $(document);
     this.$container = this.$html.find('.filter-bar');
 };
 
@@ -29,8 +28,10 @@ FilterBarComponent.prototype.init = function () {
 };
 
 function showFilterBar (component) {
-    component.$document.on('click', '[data-ui="show-filter-bar"]', function(e) {
+    component.$html.on('click', '[data-ui="show-filter-bar"]', function(e) {
         var $addFilterButton = component.$container.find('[data-ui="show-filter-list"]');
+
+        e.preventDefault();
 
         // Show add button if hidden by clear
         $addFilterButton.removeClass('display--none');
@@ -49,14 +50,14 @@ function createFilterListButton (component) {
 
     // Loop through form groups
     $formGroups.each(function() {
-        $filterList.append('<li><a href="" class="filter-bar__list-item" date-ui="filter-item" data-filter-id="'+ $(this).find('.form__control').attr('id') +'" data-filter-title="'+ $(this).find('.control__label').text() +'">'+ $(this).find('.control__label').text() +'</a></li>')
+        $filterList.append('<li><a href="" class="filter-bar__list-item" data-ui="filter-item" data-filter-id="'+ $(this).find('.form__control').attr('id') +'" data-filter-title="'+ $(this).find('.control__label').text() +'">'+ $(this).find('.control__label').text() +'</a></li>')
     });
 
     // Build up list and mark up for Add filter button
     $addFilterButton = $('<button class="btn filter-bar__add" role="button" data-ui="show-filter-list" data-toggle="popover" data-trigger="click" title="Filter by" data-html="true" data-container="body" data-placement="bottom" data-content=""><i class="icon-plus"></i></button>');
     $addFilterButton.attr('data-content', $filterList[0].outerHTML);
 
-    // Append button
+    // Append button and label wrapper
     $filterLabelsWrapper.appendTo(component.$container.find('fieldset'));
     $addFilterButton.appendTo($filterLabelsWrapper);
 
@@ -64,7 +65,7 @@ function createFilterListButton (component) {
     $addFilterButton.popover();
 
     // Prevent default on button
-    component.$document.on('click', '[data-ui="show-filter-list"]', function(e) {
+    component.$html.on('click', '[data-ui="show-filter-list"]', function(e) {
         e.preventDefault();
     });
 };
@@ -76,9 +77,10 @@ function hideFormControls (component) {
 
 function moveFormActions (component) {
     var $formActions = component.$container.find('.form__actions'),
-        $cancelButton = $formActions.find('a');
+        $cancelButton = $formActions.find('a'),
+        $fieldset = component.$container.find('fieldset');
 
-    $formActions.insertAfter('.filter-bar__labels');
+    $formActions.appendTo($fieldset);
     $formActions.addClass('display--none');
     $cancelButton.attr('data-ui', 'clear-all-filters');
 };
@@ -98,7 +100,7 @@ function showAddFilterPopover (component) {
         $select2,
         $addFilterButton = component.$container.find('[data-ui="show-filter-list"]');
 
-    component.$document.on('click', '[date-ui="filter-item"]', function(e) {
+    component.$html.on('click', '[data-ui="filter-item"]', function(e) {
         e.preventDefault();
 
         filterTitle = $(this).attr('data-filter-title');
@@ -130,6 +132,9 @@ function showAddFilterPopover (component) {
 
             // Hide the filter list button if no links remaining
             filterListButtonVisibility(component);
+
+            // Check if save button should be visible
+            formActionsVisibility(component);
 
         } else {
 
@@ -186,10 +191,12 @@ function showAddFilterPopover (component) {
                 $field.focus();
             }
 
-            // Enable button when field has value (consider and test checkboxes)
+            // Enable button when field has value
             $field.on('change keyup', function(e) {
                 if ($field.val()) {
                     $popoverControls.find('[data-ui="add-filter"]').removeClass('is-disabled').attr('disabled', false).attr('aria-disabled', false);
+                } else {
+                    $popoverControls.find('[data-ui="add-filter"]').addClass('is-disabled').attr('disabled', true).attr('aria-disabled', true);
                 }
             });
         }
@@ -197,7 +204,7 @@ function showAddFilterPopover (component) {
 };
 
 function addFilter (component) {
-    component.$document.on('click', '[data-ui="add-filter"]', function(e) {
+    component.$html.on('click', '[data-ui="add-filter"]', function(e) {
         var $field = $(this).closest('.added-popover-content').find('.form__control'),
             $popover = $(this).closest('.popover'),
             $formGroup = $popover.find('.form__group'),
@@ -257,7 +264,7 @@ function addFilter (component) {
 function removeFilter (component) {
     var $addFilterButton = component.$container.find('[data-ui="show-filter-list"]');
 
-    component.$document.on('click', '[data-ui="filter-cancel"]', function(e) {
+    component.$html.on('click', '[data-ui="filter-cancel"]', function(e) {
         var filterId = $(this).attr('data-filter-id'),
             $legend = component.$container.find('form fieldset legend'),
             $field = component.$container.find('#' + filterId),
@@ -348,7 +355,9 @@ function clearAllFilters (component) {
         addFilterList,
         $addFilterList;
 
-    component.$document.on('click', '[data-ui="clear-all-filters"]', function(e) {
+    component.$html.on('click', '[data-ui="clear-all-filters"]', function(e) {
+
+        e.preventDefault();
 
         // Close filter bar
         component.$container.addClass('display--none');
