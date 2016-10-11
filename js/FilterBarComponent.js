@@ -50,7 +50,7 @@ function createFilterListButton (component) {
 
     // Loop through form groups
     $formGroups.each(function() {
-        $filterList.append('<li><a href="" class="filter-bar__list-item" data-ui="filter-item" data-filter-id="'+ $(this).find('.form__control').attr('id') +'" data-filter-title="'+ $(this).find('.control__label').text() +'">'+ $(this).find('.control__label').text() +'</a></li>')
+        $filterList.append('<li><a href="#" class="filter-bar__list-item" data-ui="filter-item" data-filter-id="'+ $(this).find('.form__control').attr('id') +'" data-filter-title="'+ $(this).find('.control__label').text() +'">'+ $(this).find('.control__label').text() +'</a></li>')
     });
 
     // Build up list and mark up for Add filter button
@@ -71,18 +71,21 @@ function createFilterListButton (component) {
 };
 
 function hideFormControls (component) {
-    component.$container.find('.form__group').addClass('display--none');
-    component.$container.find('.form__actions').addClass('display--none');
+    component.$container
+        .find('.form__group')
+        .addClass('display--none');
+    component.$container
+        .find('.form__actions')
+        .addClass('display--none');
 };
 
 function moveFormActions (component) {
     var $formActions = component.$container.find('.form__actions'),
-        $cancelButton = $formActions.find('a'),
+        $cancelButton = $formActions.find('[data-ui="clear-all-filters"]'),
         $fieldset = component.$container.find('fieldset');
 
     $formActions.appendTo($fieldset);
     $formActions.addClass('display--none');
-    $cancelButton.attr('data-ui', 'clear-all-filters');
 };
 
 function showAddFilterPopover (component) {
@@ -128,7 +131,9 @@ function showAddFilterPopover (component) {
             $filterLabel.append('<a data-ui="filter-cancel" class="btn remove-button" data-filter-id="'+ filterId +'"><i class="icon-remove-sign"></i></a>');
 
             // Add the label
-            $filterLabel.removeClass('label--primary').addClass('label--inverse');
+            $filterLabel
+                .removeClass('label--primary')
+                .addClass('label--inverse');
 
             // Hide the filter list button if no links remaining
             filterListButtonVisibility(component);
@@ -147,8 +152,10 @@ function showAddFilterPopover (component) {
             $formGroup.addClass('form__group--flush');
 
             // Hide the control label
-            $formGroup.removeClass('display--none');
-            $formGroup.find('.control__label').addClass('hide');
+            $formGroup
+                .removeClass('display--none')
+                .find('.control__label')
+                    .addClass('hide');
 
             // Add popover controls
             $popoverControls = $('<div class="form__actions form__actions--flush"><button type="submit" class="btn btn--primary is-disabled" data-ui="add-filter" disabled="disabled">Add</button><a type="link" data-ui="filter-cancel" data-filter-id="' + filterId + '" href="#" class="btn btn--naked">Cancel</a></div>');
@@ -179,7 +186,10 @@ function showAddFilterPopover (component) {
             $filterLabel.popover('show');
 
             // Disable the add filter button
-            $addFilterButton.addClass('is-disabled').attr('disabled', true).attr('aria-disabled', true);
+            $addFilterButton
+                .addClass('is-disabled')
+                .attr('disabled', true)
+                .attr('aria-disabled', true);
 
             // Hide the filter list button if no links remaining
             filterListButtonVisibility(component);
@@ -194,9 +204,17 @@ function showAddFilterPopover (component) {
             // Enable button when field has value
             $field.on('change keyup', function(e) {
                 if ($field.val()) {
-                    $popoverControls.find('[data-ui="add-filter"]').removeClass('is-disabled').attr('disabled', false).attr('aria-disabled', false);
+                    $popoverControls
+                        .find('[data-ui="add-filter"]')
+                        .removeClass('is-disabled')
+                        .attr('disabled', false)
+                        .attr('aria-disabled', false);
                 } else {
-                    $popoverControls.find('[data-ui="add-filter"]').addClass('is-disabled').attr('disabled', true).attr('aria-disabled', true);
+                    $popoverControls
+                        .find('[data-ui="add-filter"]')
+                        .addClass('is-disabled')
+                        .attr('disabled', true)
+                        .attr('aria-disabled', true);
                 }
             });
         }
@@ -235,14 +253,18 @@ function addFilter (component) {
         }
 
         // Add it to the label
-        $label.find('.chosen-filter').text(': ' + valueForLabel);
+        $label
+            .find('.chosen-filter')
+            .text(': ' + valueForLabel);
 
         // Add the remove button to the label
         filterId = $label.attr('data-filter-id');
         $label.append('<a data-ui="filter-cancel" class="btn remove-button" data-filter-id="'+ filterId +'"><i class="icon-remove-sign"></i></a>');
 
         // Swap classes
-        $label.removeClass('label--primary').addClass('label--inverse');
+        $label
+            .removeClass('label--primary')
+            .addClass('label--inverse');
 
         // Hide the field
         $formGroup.addClass('display--none');
@@ -254,7 +276,9 @@ function addFilter (component) {
         $label.popover('destroy');
 
         // Enable add filter button
-        $addFilterButton.removeClass('is-disabled').attr('disabled', false).attr('aria-disabled', false);
+        $addFilterButton.removeClass('is-disabled')
+            .attr('disabled', false)
+            .attr('aria-disabled', false);
 
         // Check if save button should be visible
         formActionsVisibility(component);
@@ -311,7 +335,10 @@ function removeFilter (component) {
         $label.remove();
 
         // Enable add filter button
-        $addFilterButton.removeClass('is-disabled').attr('disabled', false).attr('aria-disabled', false);
+        $addFilterButton
+            .removeClass('is-disabled')
+            .attr('disabled', false)
+            .attr('aria-disabled', false);
 
         // Find any open add filter button popover
         $addFilterButton.popover('hide');
