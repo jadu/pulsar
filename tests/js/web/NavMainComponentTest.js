@@ -290,7 +290,7 @@ describe('NavMain component', function() {
         });
 
         it('should hide the manage link', function() {
-            expect(this.$quickstartManageLink.attr('style')).to.eq('display: none;');
+            expect(this.$quickstartManageLink.attr('style').trim()).to.eq('display: none;');
         });
 
         it('should show the save link', function() {
@@ -298,11 +298,11 @@ describe('NavMain component', function() {
         });
 
         it('should show the main hint', function() {
-            expect(this.$quickstartMainHint.attr('style')).to.eq('display: inline-block;');
+            expect(this.$quickstartMainHint.attr('style').trim()).to.eq('display: inline-block;');
         });
 
         it('should show the additional hint', function() {
-            expect(this.$quickstartAdditionalHint.attr('style')).to.eq('display: inline-block;');
+            expect(this.$quickstartAdditionalHint.attr('style').trim()).to.eq('display: inline-block;');
         });
 
         it('should add the sortable class to the main quickstart nav list', function() {
