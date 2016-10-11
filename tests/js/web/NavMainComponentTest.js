@@ -1,4 +1,4 @@
-/*jshint multistr: true, unused: false, jshint -W079*/
+/*jshint multistr: true, unused: false, -W079*/
 
 'use strict';
 
