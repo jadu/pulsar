@@ -4,7 +4,6 @@
 
 var $ = require('jquery'),
 jqueryui  = require('../../../libs/jquery-ui/jquery-ui.min'),
-jquerySimulate  = require('../../../libs/jquery-simulate/jquery.simulate'),
 NavMainComponent = require('../../../js/NavMainComponent');
 
 describe('NavMain component', function() {
