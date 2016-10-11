@@ -81,7 +81,6 @@ function hideFormControls (component) {
 
 function moveFormActions (component) {
     var $formActions = component.$container.find('.form__actions'),
-        $cancelButton = $formActions.find('[data-ui="clear-all-filters"]'),
         $fieldset = component.$container.find('fieldset');
 
     $formActions.appendTo($fieldset);
@@ -91,9 +90,7 @@ function moveFormActions (component) {
 function showAddFilterPopover (component) {
     var filterTitle,
         filterId,
-        addFilterList,
         select2Placeholder,
-        $addFilterList,
         $clickedFilterListItem,
         $formGroup,
         $filterLabel,
@@ -294,8 +291,6 @@ function removeFilter (component) {
             $field = component.$container.find('#' + filterId),
             $formGroup = $field.closest('.form__group'),
             $filterLabel,
-            addFilterList,
-            $addFilterList,
             $hiddenFilterListItem,
             $label;
 
@@ -377,10 +372,7 @@ function formActionsVisibility (component) {
 };
 
 function clearAllFilters (component) {
-    var $addFilterButton = component.$container.find('[data-ui="show-filter-list"]'),
-        $cancelButton = component.$container.find('[data-ui="clear-all-filters"]'),
-        addFilterList,
-        $addFilterList;
+    var $addFilterButton = component.$container.find('[data-ui="show-filter-list"]');
 
     component.$html.on('click', '[data-ui="clear-all-filters"]', function(e) {
 
