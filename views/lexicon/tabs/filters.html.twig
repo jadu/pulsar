@@ -1,7 +1,4 @@
 {% extends "@pulsar/pulsar/components/tab.html.twig" %}
-{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
-{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
-{% import '@pulsar/pulsar/v2/helpers/flash.html.twig' as flash %}
 
 {%- block actions_left -%}
     {{
@@ -101,7 +98,8 @@
                     html.link({
                         'label': 'Clear',
                         'class': 'btn btn--naked',
-                        'href': '#'
+                        'href': '#',
+                        'data-ui': 'clear-all-filters'
                     })
                 ]
             })
