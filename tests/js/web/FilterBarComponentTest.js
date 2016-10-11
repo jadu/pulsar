@@ -94,10 +94,6 @@ describe('FilterBar component', function () {
 		it('should move the form actions inside the fieldset', function () {
 			expect(this.$container.find('fieldset > .form__actions')).to.have.length(1);
 		});
-
-		it('should add the data-ui="clear-all-filters" attribute to the form cancel button', function () {
-			expect(this.$container.find('[data-ui="clear-all-filters"]')).to.have.length(1);
-		});
 	});
 
 	describe('When the filter list button is added', function() {
