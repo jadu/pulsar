@@ -4,6 +4,7 @@
 
 var $ = require('jquery'),
 jqueryui  = require('../../../libs/jquery-ui/jquery-ui.min'),
+jquerySimulate  = require('../../../libs/jquery-simulate/jquery.simulate'),
 NavMainComponent = require('../../../js/NavMainComponent');
 
 describe('NavMain component', function() {
@@ -76,6 +77,15 @@ describe('NavMain component', function() {
         </div>\
     </div>\
 \
+    <ul class="nav-items is-sortable ui-sortable">\
+        <li class="nav-item ui-sortable-handle" id="qa-drag-foo">\
+            <a href="#">drag foo</a>\
+        </li>\
+        <li class="nav-item ui-sortable-handle">\
+            <a href="#">drag bar</a>\
+        </li>\
+    </ul>\
+\
 </nav>\
 ').appendTo(this.$body);
 
@@ -99,6 +109,8 @@ describe('NavMain component', function() {
         this.$quickstartAdditionalHint = this.$navMain.find('[data-nav="#quickstart-additional"] [data-ui="quickstart-hint"]');
         this.$quickstartMainList = this.$navMain.find('[data-nav="#quickstart-main"] .nav-items');
         this.$quickstartAdditionalList = this.$navMain.find('[data-nav="#quickstart-additional"] .nav-items');
+
+        this.$quickstartDraggableFoo = this.$navMain.find('#qa-drag-foo');
 
         this.navMainComponent = new NavMainComponent(this.$html);
 

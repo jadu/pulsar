@@ -116,42 +116,46 @@ NavMainComponent.prototype.quickstartManage = function() {
                 .removeClass('visually-hidden');
         });
 
-    // Attach sortable to main menu
     component.$quickstartMainMenu
         .find('.nav-items')
-        .addClass('is-sortable')
-        .sortable({
-            connectWith: '[data-nav="#quickstart-additional"] .nav-items',
-            containment: '.nav-quickstart',
-            placeholder: 'is-sorting',
-            helper: 'clone',
-            opacity: 0.9,
-            revert: 125,
-            tolerance: 'pointer',
-            zIndex: 1080,
-            start: function(e, ui) {
-                $(ui.helper).addClass('is-dragging');
-            }
-        }).disableSelection();
+        .addClass('is-sortable');
 
-    // Attach sortable to additional menu
+    // Attach sortable to main menu
+    /* istanbul ignore next: difficult to test sortable.start method */
+    component.$quickstartMainMenu.sortable({
+        connectWith: '[data-nav="#quickstart-additional"] .nav-items',
+        containment: '.nav-quickstart',
+        placeholder: 'is-sorting',
+        helper: 'clone',
+        opacity: 0.9,
+        revert: 125,
+        tolerance: 'pointer',
+        zIndex: 1080,
+        start: function(e, ui) {
+            $(ui.helper).addClass('is-dragging');
+        }
+    }).disableSelection();
+
     component.$quickstartAdditionalMenu
         .removeClass('hide')
         .find('.nav-items')
-        .addClass('is-sortable')
-        .sortable({
-            connectWith: '[data-nav="#quickstart-main"] .nav-items',
-            containment: '.nav-quickstart',
-            placeholder: 'is-sorting',
-            helper: 'clone',
-            opacity: 0.9,
-            revert: 125,
-            tolerance: 'pointer',
-            zIndex: 1080,
-            start: function(e, ui) {
-                $(ui.helper).addClass('is-dragging');
-            }
-        }).disableSelection();
+        .addClass('is-sortable');
+
+    // Attach sortable to additional menu
+    /* istanbul ignore next: difficult to test sortable.start method */
+    component.$quickstartAdditionalMenu.sortable({
+        connectWith: '[data-nav="#quickstart-main"] .nav-items',
+        containment: '.nav-quickstart',
+        placeholder: 'is-sorting',
+        helper: 'clone',
+        opacity: 0.9,
+        revert: 125,
+        tolerance: 'pointer',
+        zIndex: 1080,
+        start: function(e, ui) {
+            $(ui.helper).addClass('is-dragging');
+        }
+    }).disableSelection();
 };
 
 NavMainComponent.prototype.quickstartClose = function() {
