@@ -292,7 +292,6 @@ function removeFilter (component) {
             $legend = component.$container.find('form fieldset legend'),
             $field = component.$container.find('#' + filterId),
             $formGroup = $field.closest('.form__group'),
-            $hiddenFilterListItem,
             $label;
 
         e.preventDefault();
