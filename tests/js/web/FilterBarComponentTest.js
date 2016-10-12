@@ -166,70 +166,30 @@ describe('FilterBar component', function () {
 		});
 
 		it('should prevent the default bahavior', function () {
-			this.$showFilterBarLink.trigger(this.clickEvent);
+			this.$showFilterListButton.trigger(this.clickEvent);
 
 			expect(this.clickEvent.isDefaultPrevented()).to.be.true;
 		});
 
 		it('should trigger a popover', function () {
-			this.$showFilterBarLink.trigger(this.clickEvent);
+			this.$showFilterListButton.trigger(this.clickEvent);
 
 			expect($.fn.popover).to.have.been.called;
 		});
 	});
 
-	describe('When an item from the filter list is clicked (and the filter field type is a checkbox)', function() {
+	describe('When an item from the filter list is clicked', function() {
 
 		beforeEach(function() {
 			this.clickEvent = $.Event('click');
 			this.filterBar.init();
+
 			this.$container.append(
 	            '<div class="popover">' +
 	            '	<ul class="filter-bar__list">' +
 	            '		<li>' +
 	            '    		<a href="#" class="filter-bar__list-item" data-ui="filter-item" data-filter-id="inStock" data-filter-title="In Stock">In Stock</a>' +
 	            '		</li>' +
-	            '	</ul>' +
-	            '</div>'
-	        );
-
-	        this.$popoverFilterLink = this.$container.find('[data-filter-id="inStock"]');
-			this.$popoverFilterLink.trigger(this.clickEvent);
-		});
-
-		it('should prevent the default bahavior', function () {
-			expect(this.clickEvent.isDefaultPrevented()).to.be.true;
-		});
-
-		it('should add a label to the filter bar for the clicked filter', function () {
-			expect(this.$container.find('span.label--inverse')).to.have.length(1);
-		});
-
-		it('should add the correct data-filter-id to the label', function () {
-			expect(this.$container.find('span[data-filter-id="inStock"]')).to.have.length(1);
-		});
-
-		it('should close the filter list popover', function () {
-			expect($.fn.popover).to.have.been.calledWith('hide');
-		});
-
-		it('should check the checkbox', function () {
-			expect(this.$container.find('input#inStock').prop('checked')).to.be.true;
-		});
-
-		it('should add the remove button to the label', function () {
-			expect(this.$container.find('span[data-filter-id="inStock"] a[data-ui="filter-cancel"]')).to.have.length(1);
-		});
-	});
-
-	describe('When an item from the filter list is clicked (and the filter field type not a checkbox)', function() {
-
-		beforeEach(function() {
-			this.clickEvent = $.Event('click');
-			this.filterBar.init();
-			this.$container.append(
-	            '<div class="popover">' +
-	            '	<ul class="filter-bar__list">' +
 	            '		<li>' +
 	            '    		<a href="#" class="filter-bar__list-item" data-ui="filter-item" data-filter-id="colour" data-filter-title="Colour">Colour</a>' +
 	            '		</li>' +
@@ -237,40 +197,20 @@ describe('FilterBar component', function () {
 	            '</div>'
 	        );
 
-	        this.$popoverFilterLink = this.$container.find('[data-filter-id="colour"]');
-			this.$popoverFilterLink.trigger(this.clickEvent);
-			this.$showFilterListButton = this.$container.find('[data-ui="show-filter-list"]');
+	        this.$showFilterListButton = this.$container.find('[data-ui="show-filter-list"]');
 		});
 
 		it('should prevent the default bahavior', function () {
+			this.$popoverFilterLink = this.$container.find('[data-filter-id="colour"]');
+			this.$popoverFilterLink.trigger(this.clickEvent);
+
 			expect(this.clickEvent.isDefaultPrevented()).to.be.true;
 		});
 
-		it('should add a label to the filter bar for the clicked filter', function () {
-			expect(this.$container.find('span.label--primary')).to.have.length(1);
-		});
-
-		it('should add the correct data-filter-id to the label', function () {
-			expect(this.$container.find('span[data-filter-id="colour"]')).to.have.length(1);
-		});
-
-		it('should add the is-disabled class to the filter list button', function () {
-			expect(this.$showFilterListButton.hasClass('is-disabled')).to.be.true;
-		});
-
-		it('should close the filter list popover', function () {
-			expect($.fn.popover).to.have.been.calledWith('hide');
-		});
-
-		it('should open the filter field popover', function () {
-			expect($.fn.popover).to.have.been.calledWith('show');
-		});
-
-		it('should disable the filter list button', function () {
-			expect(this.$showFilterListButton.prop('disabled')).to.be.true;
-		});
-
 		it('should hide the link parent in the filter list', function () {
+			this.$popoverFilterLink = this.$container.find('[data-filter-id="colour"]');
+			this.$popoverFilterLink.trigger(this.clickEvent);
+
 			var addFilterButtonList = this.$showFilterListButton.attr('data-content'),
 				$addFilterButtonList = $(addFilterButtonList),
 				$filterItem = $addFilterButtonList.find('[data-filter-id="colour"]'),
@@ -278,11 +218,88 @@ describe('FilterBar component', function () {
 
 			expect($filterItemParent.hasClass('display--none')).to.be.true;
 		});
+
+		describe('If the filter field type is a checkbox', function() {
+
+			beforeEach(function() {
+		        this.$popoverFilterLink = this.$container.find('[data-filter-id="inStock"]');
+				this.$popoverFilterLink.trigger(this.clickEvent);
+			});
+
+			it('should add a label to the filter bar for the clicked filter', function () {
+				expect(this.$container.find('span.label--inverse')).to.have.length(1);
+			});
+
+			it('should add the correct data-filter-id to the label', function () {
+				expect(this.$container.find('span[data-filter-id="inStock"]')).to.have.length(1);
+			});
+
+			it('should close the filter list popover', function () {
+				expect($.fn.popover).to.have.been.calledWith('hide');
+			});
+
+			it('should check the checkbox', function () {
+				expect(this.$container.find('input#inStock').prop('checked')).to.be.true;
+			});
+
+			it('should add the remove button to the label', function () {
+				expect(this.$container.find('span[data-filter-id="inStock"] a[data-ui="filter-cancel"]')).to.have.length(1);
+			});
+		});
+
+		describe('If the filter field type not a checkbox', function() {
+
+			beforeEach(function() {
+		        this.$popoverFilterLink = this.$container.find('[data-filter-id="colour"]');
+				this.$popoverFilterLink.trigger(this.clickEvent);
+			});
+
+			it('should add a label to the filter bar for the clicked filter', function () {
+				expect(this.$container.find('span.label--primary')).to.have.length(1);
+			});
+
+			it('should add the correct data-filter-id to the label', function () {
+				expect(this.$container.find('span[data-filter-id="colour"]')).to.have.length(1);
+			});
+
+			it('should add the is-disabled class to the filter list button', function () {
+				expect(this.$showFilterListButton.hasClass('is-disabled')).to.be.true;
+			});
+
+			it('should close the filter list popover', function () {
+				expect($.fn.popover).to.have.been.calledWith('hide');
+			});
+
+			it('should open the filter field popover', function () {
+				expect($.fn.popover).to.have.been.calledWith('show');
+			});
+
+			it('should disable the filter list button', function () {
+				expect(this.$showFilterListButton.prop('disabled')).to.be.true;
+			});
+		});
+
+		describe('If there are no more filters available to add', function() {
+
+			it('should hide the show filter list button', function () {
+				var addFilterButtonList = this.$showFilterListButton.attr('data-content'),
+				$addFilterButtonList = $(addFilterButtonList),
+				$filterItemParents = $addFilterButtonList.find('li');
+				$filterItemParents.addClass('display--none');
+				this.$showFilterListButton.attr('data-content', $addFilterButtonList[0].outerHTML);
+
+				this.$popoverFilterLink = this.$container.find('[data-filter-id="colour"]');
+				this.$popoverFilterLink.trigger(this.clickEvent);
+
+				expect(this.$showFilterListButton.hasClass('display--none')).to.be.true;
+			});
+		});
 	});
 
 	describe('When remove filter is clicked', function() {
 		beforeEach(function() {
 			this.clickEvent = $.Event('click');
+			this.clickEvent2 = $.Event('click');
 			this.filterBar.init();
 			this.$showFilterListButton = this.$container.find('[data-ui="show-filter-list"]');
 			this.$filterBarLabelsWrapper = this.$container.find('.filter-bar__labels');
@@ -295,57 +312,135 @@ describe('FilterBar component', function () {
 				'</span>'
 			).appendTo(this.$filterBarLabelsWrapper);
 
-			this.$removeFilterButton = this.$exampleAddedLabel.find('[data-ui="filter-cancel"]');
-
-			this.$addFilterButtonList = $(this.$showFilterListButton.attr('data-content'));
-			this.$filterItem = this.$addFilterButtonList.find('[data-filter-id="foo"]');
-			this.$filterItemParent = this.$filterItem.parent();
-		});
-
-		it('should remove the corresponding label', function () {
-			this.$removeFilterButton.trigger(this.clickEvent);
-
-			expect(this.$container.find('span[data-filter-id="foo"]')).to.have.length(0);
-		});
-
-		it('should unhide the filter in the filter list', function () {
-			this.$filterItemParent.addClass('display--none');
-
-			this.$removeFilterButton.trigger(this.clickEvent);
-
-			this.$addFilterButtonList = $(this.$showFilterListButton.attr('data-content'));
-			this.$filterItem = this.$addFilterButtonList.find('[data-filter-id="foo"]');
-			this.$filterItemParent = this.$filterItem.parent();
-
-			expect(this.$filterItemParent.hasClass('display--none')).to.be.false;
-		});
-
-		it('should display the filter list button', function () {
-			this.$removeFilterButton.trigger(this.clickEvent);
-
-			expect(this.$showFilterListButton.hasClass('display--none')).to.be.false;
-		});
-
-		it('should not display the form actions if no other labels exist', function () {
-			this.$removeFilterButton.trigger(this.clickEvent);
-
-			expect(this.$container.find('.form__actions:not(.display--none)')).to.have.length(0);
-		});
-
-		it('should display the form actions if other labels exist', function () {
-			this.$exampleAddedLabel2 = $(
-				'<span class="label label--large label--inverse" data-filter-id="colour" data-original-title="" title="">Colour' +
-				'	<span class="chosen-filter">: something</span>'+
-				'	<a data-ui="filter-cancel" class="btn remove-button" data-filter-id="colour">' +
+			this.$exampleAddedPopover = $(
+				'<div class="popover">' +
+				'	<a data-ui="filter-cancel" class="btn remove-button" data-filter-id="foo">' +
 				'		<i class="icon-remove-sign"></i>' +
 				'	</a>' +
-				'</span>'
+				'</div>'
 			).appendTo(this.$filterBarLabelsWrapper);
-			this.$removeFilterButton2 = this.$exampleAddedLabel2.find('[data-ui="filter-cancel"]');
 
-			this.$removeFilterButton2.trigger(this.clickEvent);
+			this.$removeFilterButton = this.$exampleAddedLabel.find('[data-ui="filter-cancel"]');
+			this.$removeFilterButtonInPopover = this.$exampleAddedPopover.find('[data-ui="filter-cancel"]');
 
-			expect(this.$container.find('.form__actions:not(.display--none)')).to.have.length(1);
+			this.$addFilterButtonList = $(this.$showFilterListButton.attr('data-content'));
+			this.$filterItem = this.$addFilterButtonList.find('[data-filter-id="foo"]');
+			this.$filterItemParent = this.$filterItem.parent();
+		});
+
+		describe('from within a label', function() {
+
+			it('should remove the corresponding label', function () {
+				this.$removeFilterButton.trigger(this.clickEvent);
+
+				expect(this.$container.find('span[data-filter-id="foo"]')).to.have.length(0);
+			});
+
+			it('should unhide the filter in the filter list', function () {
+				this.$filterItemParent.addClass('display--none');
+
+				this.$removeFilterButton.trigger(this.clickEvent);
+
+				this.$addFilterButtonList = $(this.$showFilterListButton.attr('data-content'));
+				this.$filterItem = this.$addFilterButtonList.find('[data-filter-id="foo"]');
+				this.$filterItemParent = this.$filterItem.parent();
+
+				expect(this.$filterItemParent.hasClass('display--none')).to.be.false;
+			});
+
+			it('should display the filter list button', function () {
+				this.$removeFilterButton.trigger(this.clickEvent);
+
+				expect(this.$showFilterListButton.hasClass('display--none')).to.be.false;
+			});
+
+			it('should not display the form actions if no other labels exist', function () {
+				this.$removeFilterButton.trigger(this.clickEvent);
+
+				expect(this.$container.find('.form__actions:not(.display--none)')).to.have.length(0);
+			});
+
+			it('should display the form actions if other labels exist', function () {
+				this.$exampleAddedLabel2 = $(
+					'<span class="label label--large label--inverse" data-filter-id="colour" data-original-title="" title="">Colour' +
+					'	<span class="chosen-filter">: something</span>'+
+					'	<a data-ui="filter-cancel" class="btn remove-button" data-filter-id="colour">' +
+					'		<i class="icon-remove-sign"></i>' +
+					'	</a>' +
+					'</span>'
+				).appendTo(this.$filterBarLabelsWrapper);
+				this.$removeFilterButton2 = this.$exampleAddedLabel2.find('[data-ui="filter-cancel"]');
+
+				this.$removeFilterButton2.trigger(this.clickEvent);
+
+				expect(this.$container.find('.form__actions:not(.display--none)')).to.have.length(1);
+			});
+		});
+
+		describe('from within a popover', function() {
+
+			it('should remove the corresponding label', function () {
+				this.$removeFilterButtonInPopover.trigger(this.clickEvent2);
+
+				expect(this.$container.find('span[data-filter-id="foo"]')).to.have.length(0);
+			});
+
+			it('should unhide the filter in the filter list', function () {
+				this.$filterItemParent.addClass('display--none');
+
+				this.$removeFilterButtonInPopover.trigger(this.clickEvent2);
+
+				this.$addFilterButtonList = $(this.$showFilterListButton.attr('data-content'));
+				this.$filterItem = this.$addFilterButtonList.find('[data-filter-id="foo"]');
+				this.$filterItemParent = this.$filterItem.parent();
+
+				expect(this.$filterItemParent.hasClass('display--none')).to.be.false;
+			});
+
+			it('should display the filter list button', function () {
+				this.$removeFilterButtonInPopover.trigger(this.clickEvent2);
+
+				expect(this.$showFilterListButton.hasClass('display--none')).to.be.false;
+			});
+
+			it('should not display the form actions if no other labels exist', function () {
+				this.$removeFilterButtonInPopover.trigger(this.clickEvent2);
+
+				expect(this.$container.find('.form__actions:not(.display--none)')).to.have.length(0);
+			});
+		});
+
+		describe('when the filter field is a text field', function() {
+			it('should clear the value of the filter field', function () {
+				this.$container.find('#foo').val('some value');
+
+				this.$removeFilterButton.trigger(this.clickEvent);
+
+				expect(this.$container.find('#foo').val()).to.be.empty;
+			});
+		});
+
+		describe('when the filter field is a checkbox', function() {
+			beforeEach(function() {
+				this.$exampleAddedLabelForCheckboxFilter = $(
+					'<span class="label label--large label--inverse" data-filter-id="inStock">In stock' +
+					'	<span class="chosen-filter"></span>'+
+					'	<a data-ui="filter-cancel" class="btn remove-button" data-filter-id="inStock">' +
+					'		<i class="icon-remove-sign"></i>' +
+					'	</a>' +
+					'</span>'
+				).appendTo(this.$filterBarLabelsWrapper);
+
+				this.$removeFilterButtonForCheckbox = this.$exampleAddedLabelForCheckboxFilter.find('[data-ui="filter-cancel"]');
+			});
+
+			it('should clear the value of the filter field', function () {
+				this.$container.find('#inStock').prop('checked', true);
+
+				this.$removeFilterButtonForCheckbox.trigger(this.clickEvent);
+
+				expect(this.$container.find('#inStock').prop('checked')).to.be.false;
+			});
 		});
 	});
 
