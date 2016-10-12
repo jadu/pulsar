@@ -17,7 +17,7 @@ var $                     = require('jquery'),
     popover               = require('./libs/popover'),
     tooltip               = require('./libs/tooltip'),
     matchMedia            = require('./polyfills/matchMedia'),
-    matchMediaAddListener = require('./polyfills/matchMedia.addListener');
+    matchMediaAddListener = require('./polyfills/matchMedia.addListener'),
 
     clickover = require('../libs/bootstrapx-clickover/js/bootstrapx-clickover'),
     history   = require('../libs/history.js/scripts/bundled/html5/jquery.history'),
