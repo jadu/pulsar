@@ -68,16 +68,18 @@ describe('Pulsar Form Component - Select2 elements', function() {
 
         this.pulsarForm = new PulsarFormComponent(this.$html);
 
+        $.fn.select2 = sinon.stub();
+
     });
 
     afterEach(function() {
+        delete $.fn.select2;
         this.$html.remove();
     });
 
     describe('Basic select2 elements', function() {
 
         beforeEach(function() {
-            sinon.spy($.fn, 'select2');
             this.pulsarForm.init();
         });
 
