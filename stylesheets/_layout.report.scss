@@ -51,8 +51,8 @@
 }
 
 .report__chart {
-    margin-bottom: $line-height-base;
     height: 240px;
+    margin-bottom: $line-height-base;
 }
 
 .report__data {
@@ -149,8 +149,8 @@
     width: 100%;
 
     @include respond-min($screen-desktop) {
-        border-top-right-radius: $border-radius-large / 2;
         border-bottom-right-radius: $border-radius-large / 2;
+        border-top-right-radius: $border-radius-large / 2;
         display: inline-block;
         float: left;
         margin-left: -20px;

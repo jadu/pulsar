@@ -39,12 +39,9 @@
 	margin: 0; // override default ul
 	padding: 5px 0;
 	list-style: none;
-	background-color: $dropdown-bg;
-	// border: 1px solid $dropdown-fallback-border; // IE8 fallback
-	// border: 1px solid $dropdown-border;
-	// border-radius: $border-radius;
-	box-shadow: 0 6px 12px rgba(0, 0, 0, .3);
 	background-clip: padding-box;
+	background-color: $dropdown-bg;
+	box-shadow: 0 6px 12px rgba(0, 0, 0, .3);
 
 	// Aligns the dropdown menu to right
 	&.pull-right {
@@ -313,8 +310,8 @@
 
 	> .btn {
 		position: absolute;
-		top: 8px;
 		right: 8px;
+		top: 8px;
 
 		&:hover {
 			top: 9px;

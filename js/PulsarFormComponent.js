@@ -10,7 +10,8 @@ function PulsarFormComponent(html) {
 
 PulsarFormComponent.prototype.init = function () {
 
-    var component = this;
+    var component = this,
+        choiceBlock = component.$html.find(".choice--block, .choice--bubbles");
 
     // Attach basic pikaday to datepicker fields
     this.$html.find('[data-datepicker=true]').pikaday({
@@ -38,9 +39,6 @@ PulsarFormComponent.prototype.init = function () {
             $this.select2();
         }
     });
-
-    // Block styled checkboxes and radios
-    var choiceBlock = component.$html.find(".choice--block, .choice--bubbles");
 
     // set up choice block states on load
     $.each(choiceBlock, function() {
