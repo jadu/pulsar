@@ -25,7 +25,7 @@ FilterBarComponent.prototype.init = function () {
     addFilter(component);
     removeFilter(component);
     clearAllFilters(component);
-};
+}
 
 function showFilterBar (component) {
     component.$html.on('click', '[data-ui="show-filter-bar"]', function(e) {
@@ -39,7 +39,7 @@ function showFilterBar (component) {
         // Show filter bar
         component.$container.removeClass('display--none');
     });
-};
+}
 
 function createFilterListButton (component) {
     var $formGroups = component.$container.find('.form__group'),
@@ -68,7 +68,7 @@ function createFilterListButton (component) {
     component.$html.on('click', '[data-ui="show-filter-list"]', function(e) {
         e.preventDefault();
     });
-};
+}
 
 function hideFormControls (component) {
     component.$container
@@ -77,7 +77,7 @@ function hideFormControls (component) {
     component.$container
         .find('.form__actions')
         .addClass('display--none');
-};
+}
 
 function moveFormActions (component) {
     var $formActions = component.$container.find('.form__actions'),
@@ -85,7 +85,7 @@ function moveFormActions (component) {
 
     $formActions.appendTo($fieldset);
     $formActions.addClass('display--none');
-};
+}
 
 function showAddFilterPopover (component) {
     var filterTitle,
@@ -216,7 +216,7 @@ function showAddFilterPopover (component) {
             });
         }
     });
-};
+}
 
 function addFilter (component) {
     component.$html.on('click', '[data-ui="add-filter"]', function(e) {
@@ -280,7 +280,7 @@ function addFilter (component) {
         // Check if save button should be visible
         formActionsVisibility(component);
     });
-};
+}
 
 function removeFilter (component) {
     var $addFilterButton = component.$container.find('[data-ui="show-filter-list"]');
@@ -359,7 +359,7 @@ function filterListButtonVisibility (component) {
     } else {
         $addFilterButton.addClass('display--none');
     }
-};
+}
 
 function formActionsVisibility (component) {
     var $formActions = component.$container.find('.form__actions');
@@ -369,7 +369,7 @@ function formActionsVisibility (component) {
     } else {
         $formActions.addClass('display--none');
     }
-};
+}
 
 function clearAllFilters (component) {
     var $addFilterButton = component.$container.find('[data-ui="show-filter-list"]');
@@ -393,7 +393,7 @@ function clearAllFilters (component) {
         // Reset form
         component.$container.find('form').trigger('reset');
     });
-};
+}
 
 function updateFilterList ($addFilterButton, filterId, visibility) {
     var addFilterList = $addFilterButton.attr('data-content'),
@@ -415,6 +415,6 @@ function updateFilterList ($addFilterButton, filterId, visibility) {
     }
 
     $addFilterButton.attr('data-content', $addFilterList[0].outerHTML);
-};
+}
 
 module.exports = FilterBarComponent;
