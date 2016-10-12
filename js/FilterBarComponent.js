@@ -5,7 +5,7 @@ var $ = require('jquery');
 function FilterBarComponent(html) {
     this.$html = html;
     this.$container = this.$html.find('.filter-bar');
-};
+}
 
 FilterBarComponent.prototype.init = function () {
     var component = this;
@@ -25,7 +25,7 @@ FilterBarComponent.prototype.init = function () {
     addFilter(component);
     removeFilter(component);
     clearAllFilters(component);
-}
+};
 
 function showFilterBar (component) {
     component.$html.on('click', '[data-ui="show-filter-bar"]', function(e) {
@@ -45,12 +45,11 @@ function createFilterListButton (component) {
     var $formGroups = component.$container.find('.form__group'),
         $addFilterButton,
         $filterList = $('<ul class="filter-bar__list"></ul>'),
-        $filterLabelsWrapper = $('<div class="filter-bar__labels"></div>'),
-        $target;
+        $filterLabelsWrapper = $('<div class="filter-bar__labels"></div>');
 
     // Loop through form groups
     $formGroups.each(function() {
-        $filterList.append('<li><a href="#" class="filter-bar__list-item" data-ui="filter-item" data-filter-id="'+ $(this).find('.form__control').attr('id') +'" data-filter-title="'+ $(this).find('.control__label').text() +'">'+ $(this).find('.control__label').text() +'</a></li>')
+        $filterList.append('<li><a href="#" class="filter-bar__list-item" data-ui="filter-item" data-filter-id="'+ $(this).find('.form__control').attr('id') +'" data-filter-title="'+ $(this).find('.control__label').text() +'">'+ $(this).find('.control__label').text() +'</a></li>');
     });
 
     // Build up list and mark up for Add filter button
@@ -91,7 +90,6 @@ function showAddFilterPopover (component) {
     var filterTitle,
         filterId,
         select2Placeholder,
-        $clickedFilterListItem,
         $formGroup,
         $filterLabel,
         $popoverControls,
@@ -115,7 +113,7 @@ function showAddFilterPopover (component) {
         $filterLabel.insertBefore($addFilterButton);
 
         // If checkbox, check it but no need to display it or move to popover
-        if ($field[0].type == 'checkbox') {
+        if ($field[0].type === 'checkbox') {
 
             // Hide the filter list popover
             $addFilterButton.popover('hide');
@@ -168,7 +166,7 @@ function showAddFilterPopover (component) {
             $filterLabel.popover({
                 html: true,
                 title: function () {
-                    return filterTitle
+                    return filterTitle;
                 },
                 content: function () {
                     return $popoverContent;
@@ -202,7 +200,7 @@ function showAddFilterPopover (component) {
 
             // Enable button when field has value
             /* istanbul ignore next: difficult to test due to field being inside generated popover content */
-            $field.on('change keyup', function(e) {
+            $field.on('change keyup', function() {
                 if ($field.val()) {
                     $popoverControls
                         .find('[data-ui="add-filter"]')
@@ -242,7 +240,7 @@ function addFilter (component) {
             values = $field.select2('data');
 
             $.each(values, function( index, value ) {
-                if (valueForLabel == null) {
+                if (valueForLabel === null) {
                     valueForLabel = value.text;
                 } else {
                     valueForLabel = valueForLabel + ', ' + value.text;
@@ -294,7 +292,6 @@ function removeFilter (component) {
             $legend = component.$container.find('form fieldset legend'),
             $field = component.$container.find('#' + filterId),
             $formGroup = $field.closest('.form__group'),
-            $filterLabel,
             $hiddenFilterListItem,
             $label;
 
@@ -310,9 +307,9 @@ function removeFilter (component) {
         updateFilterList($addFilterButton, filterId, 'show');
 
         // Empty values from field
-        if ($field[0].type == 'select-one' || $field[0].type == 'select-multiple') {
+        if ($field[0].type === 'select-one' || $field[0].type === 'select-multiple') {
             $field.find('option:selected').prop('selected', false);
-        } else if ($field[0].type == 'checkbox') {
+        } else if ($field[0].type === 'checkbox') {
             $field.prop('checked', false);
         } else {
             $field.val('');
