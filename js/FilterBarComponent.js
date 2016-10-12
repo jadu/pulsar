@@ -164,6 +164,7 @@ function showAddFilterPopover (component) {
             $select2.select2({placeholder: select2Placeholder});
 
             // Trigger popover with form field on added label
+            /* istanbul ignore next: difficult to test generated popover content */
             $filterLabel.popover({
                 html: true,
                 title: function () {
@@ -195,10 +196,12 @@ function showAddFilterPopover (component) {
             if ($field.hasClass('js-select2')) {
                 $field.select2('open');
             } else {
+                /* istanbul ignore next: difficult to test due to generated popover content */
                 $field.focus();
             }
 
             // Enable button when field has value
+            /* istanbul ignore next: difficult to test due to field being inside generated popover content */
             $field.on('change keyup', function(e) {
                 if ($field.val()) {
                     $popoverControls
@@ -218,6 +221,7 @@ function showAddFilterPopover (component) {
     });
 }
 
+/* istanbul ignore next: difficult to test due to field and form controls being inside generated popover content */
 function addFilter (component) {
     component.$html.on('click', '[data-ui="add-filter"]', function(e) {
         var $field = $(this).closest('.added-popover-content').find('.form__control'),
