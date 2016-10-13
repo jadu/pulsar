@@ -8,7 +8,7 @@
   "main": "./src/Jadu/Pulsar/Twig.js/Pulsar.js",
   "scripts": {
     "coverage": "mochify --plugin [ mochify-istanbul --exclude '**/+(tests|node_modules|libs)/**/*' --report lcov --dir ./coverage ] --reporter spec --recursive ./tests/js/web/index ./tests/js/web/*Test.js",
-    "test": "snyk test && npm run web-test && npm run js-ext-test && npm run js-macro-test",
+    "test": "npm run web-test && npm run js-ext-test && npm run js-macro-test",
     "web-test": "mochify --reporter spec --recursive ./tests/js/web/index ./tests/js/web/*Test.js",
     "js-ext-test": "mocha --reporter spec ./tests/js/twig/Extension/*Test.js",
     "js-macro-test": "mocha --reporter spec ./tests/js/twig/Macro/*Test.js"
