@@ -258,7 +258,7 @@
         &.btn--#{$state}:hover,
         &.btn--#{$state}:active {
             box-shadow: inset 0 0 0 2px $state-color;
-            color: $state-color-alt;
+            color: color($state, dark) !important;
         }
     }
 }
