@@ -1,0 +1,44 @@
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
+{% block body %}
+{{
+    html.button({
+        'label': 'Default'
+    })
+}}
+{{
+    html.button({
+        'label': 'Primary',
+        'class': 'btn--primary'
+    })
+}}
+{{
+    html.button({
+        'label': 'Success',
+        'class': 'btn--success'
+    })
+}}
+{{
+    html.button({
+        'label': 'Warning',
+        'class': 'btn--warning'
+    })
+}}
+{{
+    html.button({
+        'label': 'Danger',
+        'class': 'btn--danger'
+    })
+}}
+{{
+    html.button({
+        'label': 'Info',
+        'class': 'btn--info'
+    })
+}}
+{{
+    html.button({
+        'label': 'Inverse',
+        'class': 'btn--inverse'
+    })
+}}
+{% endblock %}
