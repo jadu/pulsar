@@ -71,6 +71,7 @@ $palette-states: (
         base:  map-get(map-get($palette-monochromes, gray), lightest),
         alt:   pick_best_color(map-get(map-get($palette-monochromes, gray), lighter), (#fff, #000)),
         light: lighten(map-get(map-get($palette-monochromes, gray), lightest), 5),
+        dark:  map-get(map-get($palette-monochromes, gray), base),
         flash: map-get(map-get($palette-monochromes, gray), black),
     ),
     primary: (
@@ -104,7 +105,7 @@ $palette-states: (
         base:  map-get(map-get($palette-branding, jadu-blue), pale),
         alt:   pick_best_color(map-get(map-get($palette-branding, jadu-blue), pale), (#fff, #000)),
         light: lighten(map-get(map-get($palette-branding, jadu-blue), pale), 10),
-        dark: darken(map-get(map-get($palette-branding, jadu-blue), pale), 40),
+        dark:  darken(map-get(map-get($palette-branding, jadu-blue), pale), 40),
         flash: map-get(map-get($palette-branding, jadu-blue), pale)
     ),
     inverse: (
@@ -116,7 +117,8 @@ $palette-states: (
     ),
     new: (
         base:  #e5ecf2,
-        alt:   #000
+        alt:   #000,
+        dark:  dark(#e5ecf2, 5)
     ),
     sorting: (
         base: #ffffec,
