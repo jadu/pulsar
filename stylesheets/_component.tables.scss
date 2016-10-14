@@ -169,7 +169,7 @@ td.table__form {
     margin-top: -24px; // negate default bottom border of .table
 }
 
-// Map depracated table styles to this one -------------------------------------
+// Map deprecated table styles to this one -------------------------------------
 
 .table--datagrid {
     @extend .table;
