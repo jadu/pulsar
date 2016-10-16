@@ -113,12 +113,19 @@ $palette-states: (
         alt:   pick_best_color(map-get(map-get($palette-monochromes, gray), darker), (#fff, #000)),
         light: lighten(map-get(map-get($palette-monochromes, gray), darker), 30),
         dark:  map-get(map-get($palette-monochromes, gray), darker),
-        flash: map-get(map-get($palette-monochromes, gray), darker),
+        flash: map-get(map-get($palette-monochromes, gray), darker)
+    ),
+    white: (
+        base:  #fff,
+        alt:   map-get(map-get($palette-monochromes, gray), darker),
+        light: #fff,
+        dark:  map-get(map-get($palette-monochromes, gray), off-white)
     ),
     new: (
         base:  #e5ecf2,
         alt:   #000,
-        dark:  dark(#e5ecf2, 5)
+        light: lighten(#e5ecf2, 5),
+        dark:  darken(#e5ecf2, 5)
     ),
     sorting: (
         base: #ffffec,
@@ -144,6 +151,7 @@ $state-colors:
     (danger,    map-get(map-get($palette-states, danger), base),  map-get(map-get($palette-states, danger), alt)),
     (info,      map-get(map-get($palette-states, info), base),    map-get(map-get($palette-states, info), alt)),
     (inverse,   map-get(map-get($palette-states, inverse), base), map-get(map-get($palette-states, inverse), alt)),
+    (white,  map-get(map-get($palette-states, white), base), map-get(map-get($palette-states, white), alt)),
     (new,       map-get(map-get($palette-states, new), base),     map-get(map-get($palette-states, new), alt));
 
 // scss-lint:enable SpaceAfterComma

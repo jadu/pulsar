@@ -1,7 +1,12 @@
 {% extends '@pulsar/pulsar/components/tab.html.twig' %}
 
 {% block tab_content %}
-
+<style>
+.table tbody > tr.row-inverse > td,
+.table tbody > tr.row-inverse:hover > td {
+    background-color: #2d86b3;
+}
+</style>
 <h2>Normal buttons</h2>
 <table class="table">
     <thead>
@@ -368,6 +373,57 @@
                     html.button({
                         'label': 'Button',
                         'class': 'btn--inverse btn--naked active'
+                    })
+                }}
+            </td>
+        </tr>
+        <tr class="row-inverse">
+            <td style="color: white;">White</td>
+            <td>
+                {{
+                    html.button({
+                        'label': 'Button',
+                        'class': 'btn--white'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'label': 'Button',
+                        'class': 'btn--white is-hovered'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'label': 'Button',
+                        'class': 'btn--white active'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'label': 'Button',
+                        'class': 'btn--white is-disabled'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'label': 'Button',
+                        'class': 'btn--white btn--naked'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'label': 'Button',
+                        'class': 'btn--white btn--naked active'
                     })
                 }}
             </td>
@@ -747,6 +803,57 @@
                 }}
             </td>
         </tr>
+        <tr class="row-inverse">
+            <td style="color: white;">White</td>
+            <td>
+                {{
+                    html.button({
+                        'label': 'Button',
+                        'class': 'btn--outline btn--white'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'label': 'Button',
+                        'class': 'btn--outline btn--white is-hovered'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'label': 'Button',
+                        'class': 'btn--outline btn--white active'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'label': 'Button',
+                        'class': 'btn--outline btn--white is-disabled'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'label': 'Button',
+                        'class': 'btn--outline btn--white btn--naked'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'label': 'Button',
+                        'class': 'btn--outline btn--white btn--naked active'
+                    })
+                }}
+            </td>
+        </tr>
     </tbody>
 </table>
 
@@ -1118,6 +1225,57 @@
                     html.button({
                         'label': 'Button',
                         'class': 'is-disabled btn--inverse btn--naked active'
+                    })
+                }}
+            </td>
+        </tr>
+        <tr class="row-inverse">
+            <td style="color: white;">White</td>
+            <td>
+                {{
+                    html.button({
+                        'label': 'Button',
+                        'class': 'is-disabled btn--white'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'label': 'Button',
+                        'class': 'is-disabled btn--white is-hovered'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'label': 'Button',
+                        'class': 'is-disabled btn--white active'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'label': 'Button',
+                        'class': 'is-disabled btn--white is-disabled'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'label': 'Button',
+                        'class': 'is-disabled btn--white btn--naked'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'label': 'Button',
+                        'class': 'is-disabled btn--white btn--naked active'
                     })
                 }}
             </td>
@@ -1497,6 +1655,57 @@
                 }}
             </td>
         </tr>
+        <tr class="row-inverse">
+            <td style="color: white;">White</td>
+            <td>
+                {{
+                    html.button({
+                        'label': 'Button',
+                        'class': 'is-disabled btn--outline btn--white'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'label': 'Button',
+                        'class': 'is-disabled btn--outline btn--white is-hovered'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'label': 'Button',
+                        'class': 'is-disabled btn--outline btn--white active'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'label': 'Button',
+                        'class': 'is-disabled btn--outline btn--white is-disabled'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'label': 'Button',
+                        'class': 'is-disabled btn--outline btn--white btn--naked'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'label': 'Button',
+                        'class': 'is-disabled btn--outline btn--white btn--naked active'
+                    })
+                }}
+            </td>
+        </tr>
     </tbody>
 </table>
 
@@ -1871,6 +2080,57 @@
                 }}
             </td>
         </tr>
+        <tr class="row-inverse">
+            <td style="color: white;">White</td>
+            <td>
+                {{
+                    html.button({
+                        'label': 'Button',
+                        'class': 'btn--outline btn--white'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'label': 'Button',
+                        'class': 'btn--outline btn--white is-hovered'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'label': 'Button',
+                        'class': 'btn--outline btn--white active'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'label': 'Button',
+                        'class': 'btn--outline btn--white is-disabled'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'label': 'Button',
+                        'class': 'btn--outline btn--white btn--naked'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'label': 'Button',
+                        'class': 'btn--outline btn--white btn--naked active'
+                    })
+                }}
+            </td>
+        </tr>
     </tbody>
 </table>
 
@@ -2241,6 +2501,57 @@
                     html.button({
                         'label': 'Button',
                         'class': 'btn--small btn--outline btn--inverse btn--naked active'
+                    })
+                }}
+            </td>
+        </tr>
+        <tr class="row-inverse">
+            <td style="color: white;">White</td>
+            <td>
+                {{
+                    html.button({
+                        'label': 'Button',
+                        'class': 'btn--small btn--outline btn--white'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'label': 'Button',
+                        'class': 'btn--small btn--outline btn--white is-hovered'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'label': 'Button',
+                        'class': 'btn--small btn--outline btn--white active'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'label': 'Button',
+                        'class': 'btn--small btn--outline btn--white is-disabled'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'label': 'Button',
+                        'class': 'btn--small btn--outline btn--white btn--naked'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'label': 'Button',
+                        'class': 'btn--small btn--outline btn--white btn--naked active'
                     })
                 }}
             </td>
