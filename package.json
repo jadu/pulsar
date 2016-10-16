@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "aliasify": "^1.9.0",
+    "browser-sync": "^2.17.3",
     "browserify": "10.0.0",
     "browserify-istanbul": "^0.2.1",
     "browserify-shim": "^3.8.9",
@@ -32,6 +33,7 @@
     "grunt-asciify": "^0.2.2",
     "grunt-autoprefixer": "^3.0.4",
     "grunt-bless": "^0.2.0",
+    "grunt-browser-sync": "^2.2.0",
     "grunt-browserify": "^5.0.0",
     "grunt-bump": "^0.7.2",
     "grunt-contrib-clean": "^1.0.0",
@@ -66,9 +68,9 @@
     "phptojs": "^3.16.0",
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0",
+    "snyk": "^1.19.1",
     "twig": "^0.9.4",
-    "uglifyify": "^3.0.1",
-    "snyk": "^1.19.1"
+    "uglifyify": "^3.0.1"
   },
   "browserify": {
     "transform": [
