@@ -486,7 +486,7 @@ module.exports = function(grunt) {
                 'views/**/*'
             ],
             options: {
-                proxy: 'http://192.168.13.37',
+                proxy: 'http://192.168.13.37/index.php',
                 reloadOnRestart: true,
                 watchTask: true
             }
