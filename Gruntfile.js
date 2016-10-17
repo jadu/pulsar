@@ -476,6 +476,20 @@ module.exports = function(grunt) {
                     src: ['**/*']
                 }]
             }
+        },
+
+        browserSync: {
+            files: [
+                'css/*',
+                'dist/**/*',
+                'images/**/*',
+                'views/**/*'
+            ],
+            options: {
+                proxy: 'http://192.168.13.37/index.php',
+                reloadOnRestart: true,
+                watchTask: true
+            }
         }
 
     });
@@ -502,6 +516,7 @@ module.exports = function(grunt) {
         'sass:dev',
         'bless',
         'browserify',
+        'browserSync',
         'watch',
         'email-build'
     ]);
