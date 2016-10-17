@@ -242,7 +242,9 @@ paths:
     tabs-tabs_multiple-html-twig: /tabs/tabs_multiple.html.twig
     visuals-button-states-disabled-html-twig: /visuals/button-states-disabled.html.twig
     visuals-button-states-outline-disabled-html-twig: /visuals/button-states-outline-disabled.html.twig
+    visuals-button-states-outline-small-disabled-html-twig: /visuals/button-states-outline-small-disabled.html.twig
     visuals-button-states-outline-small-html-twig: /visuals/button-states-outline-small.html.twig
     visuals-button-states-outline-html-twig: /visuals/button-states-outline.html.twig
+    visuals-button-states-small-disabled-html-twig: /visuals/button-states-small-disabled.html.twig
     visuals-button-states-small-html-twig: /visuals/button-states-small.html.twig
     visuals-button-states-html-twig: /visuals/button-states.html.twig
