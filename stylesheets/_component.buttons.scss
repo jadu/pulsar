@@ -281,3 +281,18 @@ $btn-small-padding-x:       $btn-padding-x / 2.5;
     font-size: 12px !important;
     padding: $btn-small-padding-top $btn-small-padding-x $btn-small-padding-bottom !important;
 }
+
+// The text in small, disabled buttons look like garbage on low-dpi screens,
+// so we'll disabled font smoothing for this edge case (and re-enable it
+// for retina screens).
+.btn--white,
+.btn--naked {
+    &.is-disabled,
+    &:disabled {
+        -webkit-font-smoothing: none;
+
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            -webkit-font-smoothing: subpixel-antialiased;
+        }
+    }
+}
