@@ -1,0 +1,90 @@
+/**
+ * Shortcut for easy hiding/showing at different breakpoints
+**/
+
+@mixin sr-hide {
+    border: 0 !important;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+@mixin hide {
+    display: none !important;
+}
+
+@mixin visible-on-phone {
+    @include respond-min($screen-phone) {
+        @include hide;
+    }
+}
+
+@mixin sr-visible-on-phone {
+    @include respond-min($screen-phone) {
+        @include sr-hide;
+    }
+}
+
+@mixin visible-on-tablet {
+    @media not all and (min-width: $screen-tablet) and (max-width: $screen-desktop - 1) {
+        @include hide;
+    }
+}
+
+@mixin sr-visible-on-tablet {
+    @media not all and (min-width: $screen-tablet) and (max-width: $screen-desktop - 1) {
+        @include sr-hide;
+    }
+}
+
+@mixin visible-on-desktop {
+    @include respond-max($screen-desktop - 1) {
+        @include hide;
+    }
+}
+
+@mixin sr-visible-on-desktop {
+    @include respond-max($screen-desktop - 1) {
+        @include hide;
+    }
+}
+
+@mixin hidden-on-phone {
+    @include respond-max($screen-phone) {
+        @include hide;
+    }
+}
+
+@mixin sr-hidden-on-phone {
+    @include respond-max($screen-phone) {
+        @include sr-hide;
+    }
+}
+
+@mixin hidden-on-tablet {
+    @include respond-min-max($screen-tablet, $screen-desktop) {
+        @include hide;
+    }
+}
+
+@mixin sr-hidden-on-tablet {
+    @include respond-min-max($screen-tablet, $screen-desktop) {
+        @include sr-hide;
+    }
+}
+
+@mixin hidden-on-desktop {
+    @include respond-min($screen-desktop) {
+        @include hide;
+    }
+}
+
+@mixin sr-hidden-on-desktop {
+    @include respond-min($screen-desktop) {
+        @include sr-hide;
+    }
+}
