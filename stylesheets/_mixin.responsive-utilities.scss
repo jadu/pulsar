@@ -1,5 +1,8 @@
 /**
- * Shortcut for easy hiding/showing at different breakpoints
+ * Shortcuts for easy hiding/showing at different breakpoints.
+ * mixins prepended with sr use a screen reader friendly hide,
+ * useful for input label which may still need to be read even
+ * by a screen reader even though hidden
 **/
 
 @mixin sr-hide {
