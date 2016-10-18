@@ -240,11 +240,12 @@
 }
 
 .btn--outline {
-    box-shadow: inset 0 0 0 2px color(base);
     border: 0;
 
     &,
+    &:hover,
     &:active {
+        box-shadow: inset 0 0 0 2px color(base);
         background-color: transparent;
     }
 
@@ -253,7 +254,9 @@
     }
 
     @each $state, $state-color, $state-color-alt in $state-colors {
-        &.btn--#{$state} {
+        &.btn--#{$state},
+        &.btn--#{$state}:hover,
+        &.btn--#{$state}:active {
             box-shadow: inset 0 0 0 2px $state-color;
             color: $state-color-alt;
         }
