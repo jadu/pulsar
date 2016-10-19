@@ -22,7 +22,6 @@ fieldset {
 
 .form__control {
     border-radius: $input-border-radius;
-    border: 1px solid $input-border;
     height: $input-height-base;
     line-height: $input-height-base;
     padding: 0 $padding-base-horizontal;
@@ -36,23 +35,25 @@ fieldset {
         }
     }
 
+    &[type="password"],
+    &[type="text"] {
+        border: 1px solid $input-border;
+    }
+
     &.checkbox,
     &.radio {
         border-radius: 0;
-        border: 0;
         height: auto;
         padding: 0;
         vertical-align: baseline;
-    }
 
-    &.select,
-    &.checkbox,
-    &.radio {
-        border: 0;
-        padding: 0;
+        @include ie-lte(9) {
+            border: 0;
+        }
     }
 
     &.textarea {
+        border: 1px solid $input-border;
         height: auto;
         line-height: $line-height-base;
         min-height: 68px;
