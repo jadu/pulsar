@@ -240,9 +240,6 @@ $btn-small-padding-x:       $btn-padding-x / 2.5;
     border: 0;
     box-shadow: none;
     color: color(text) !important;
-    display: inline-block;
-    line-height: auto;
-    vertical-align: top;
 
     // IE8 fix btn--naked background and border
     @include ie-lte(8) {
@@ -283,8 +280,8 @@ $btn-small-padding-x:       $btn-padding-x / 2.5;
 }
 
 // The text in small, disabled buttons look like garbage on low-dpi screens,
-// so we'll disabled font smoothing for this edge case (and re-enable it
-// for retina screens).
+// so we'll disable font smoothing for this edge case (and re-enable it
+// for hi-dpi screens).
 .btn--white,
 .btn--naked {
     &.is-disabled,
