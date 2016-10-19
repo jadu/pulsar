@@ -9,10 +9,10 @@
         }
     },
     "require": {
-        "twig/twig": "^1.21",
-        "symfony/yaml": "~2.6.0"
+        "twig/twig": "^1.21"
     },
     "require-dev": {
-        "phpunit/phpunit": "*"
+        "phpunit/phpunit": "*",
+        "symfony/yaml": "~2.6.0"
     }
 }
