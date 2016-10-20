@@ -70,6 +70,7 @@ paths:
     form-date-label-html-twig: /form/date-label.html.twig
     form-date-prepend-html-twig: /form/date-prepend.html.twig
     form-date-html-twig: /form/date.html.twig
+    form-email-html-twig: /form/email.html.twig
     form-end-actions-html-twig: /form/end-actions.html.twig
     form-end-html-twig: /form/end.html.twig
     form-error-multiple-html-twig: /form/error-multiple.html.twig
@@ -112,6 +113,7 @@ paths:
     form-select2-guidance-html-twig: /form/select2-guidance.html.twig
     form-select2-multiple-html-twig: /form/select2-multiple.html.twig
     form-select2-html-twig: /form/select2.html.twig
+    form-tel-html-twig: /form/tel.html.twig
     form-text-append-button-html-twig: /form/text-append-button.html.twig
     form-text-append-guidance-container-html-twig: /form/text-append-guidance-container.html.twig
     form-text-append-guidance-html-twig: /form/text-append-guidance.html.twig
@@ -135,6 +137,7 @@ paths:
     form-toggle_switch-guidance-container-html-twig: /form/toggle_switch-guidance-container.html.twig
     form-toggle_switch-guidance-html-twig: /form/toggle_switch-guidance.html.twig
     form-toggle_switch-html-twig: /form/toggle_switch.html.twig
+    form-url-html-twig: /form/url.html.twig
     html-actions_menu-dividers-html-twig: /html/actions_menu-dividers.html.twig
     html-actions_menu-items-html-twig: /html/actions_menu-items.html.twig
     html-actions_menu-html-twig: /html/actions_menu.html.twig
