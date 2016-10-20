@@ -36,7 +36,10 @@ fieldset {
     }
 
     &[type="password"],
-    &[type="text"] {
+    &[type="text"],
+    &[type="email"],
+    &[type="tel"],
+    &[type="url"] {
         border: 1px solid $input-border;
     }
 
