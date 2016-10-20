@@ -30,7 +30,7 @@
     }
     @else {
         @if ($reverse) {
-            @media not screen and (min-width: $screen-tablet) and (max-width: $screen-desktop - 1) {
+            @media not screen and (min-width: $min-width) and (max-width: $max-width - 1) {
                 @content;
             }
         }
