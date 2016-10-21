@@ -169,3 +169,10 @@
 .lt-ie10 .content-main {
     clear: both;
 }
+
+.icon--align-with-fields {
+    display: block;
+    font-size: $font-size-xlarge;
+    line-height: $line-height-large;
+    text-align: center;
+}
