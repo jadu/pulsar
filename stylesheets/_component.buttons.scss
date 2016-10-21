@@ -26,6 +26,14 @@
  * 7. Remove excess padding and border in Firefox 4+
  */
 
+$btn-padding-top:           10px;
+$btn-padding-bottom:        7px;
+$btn-padding-x:             14px;
+
+$btn-small-padding-top:     $btn-padding-top / 2.5;
+$btn-small-padding-bottom:  $btn-padding-bottom / 2.5;
+$btn-small-padding-x:       $btn-padding-x / 2.5;
+
 .btn {
     @include inline-block;
     -webkit-appearance: none; /* 1 */
@@ -40,7 +48,7 @@
     font-weight: normal;
     line-height: normal; /* 4 */
     margin: 0;
-    padding: 8px 14px 6px;
+    padding: $btn-padding-top $btn-padding-x $btn-padding-bottom;
     position: relative;
     text-align: center;
     text-decoration: none;
@@ -48,12 +56,8 @@
     -ms-user-select: none;
     -webkit-user-select: none;
     user-select: none; /* 5 */
-    vertical-align: bottom;
+    vertical-align: top;
     white-space: nowrap; /* 6 */
-
-    @include ie-lte(7) {
-        padding: 7px;
-    }
 
     &::-moz-focus-inner { /* 7 */
       border: 0;
@@ -61,41 +65,11 @@
     }
 }
 
-.btn--small {
-    font-size: .8em !important;
-    padding: 3px 8px !important;
-}
-
-/**
- * UI states
- */
-
-.btn {
-  border-bottom-style: solid;
-
-  &:hover,
-  &:focus,
-  &:active {
-    text-decoration: none;
-  }
-
-  &:disabled,
-  &.is-disabled,
-  &.disabled {
-    cursor: not-allowed !important;
-
-    &:hover {
-      cursor: not-allowed !important;
-    }
-  }
-}
-
 /**
  * Mixin to theme button states
  */
 
 @mixin button-states($state) {
-
     $shadow-color: darken(color($state), 10);
 
     background-color: color($state);
@@ -103,7 +77,8 @@
     color: color($state, alt) !important; // should be immutable
     position: relative;
 
-    &:hover {
+    &:hover,
+    &.is-hovered {
       box-shadow: 0 1px 0 $shadow-color;
       color: color($state, alt) !important;  // should be immutable
       top: 1px;
@@ -111,127 +86,180 @@
 
     &:active,
     &.active {
-      background-color: darken(color($state), 5);
-      box-shadow: 0 0 0 $shadow-color;
-      top: 2px;
+        background-color: darken(color($state), 5);
+        box-shadow: 0 0 0 $shadow-color;
+        top: 2px;
     }
 
     &:disabled,
     &.is-disabled,
     &.disabled {
-      background-color: color($state, light) !important;
-      box-shadow: 0 2px 0 darken(color($state, light), 7) !important;
-      color: pick_best_color(color($state, light), (#fff, color(gray, dark))) !important;
+        opacity: .5;
+
+        &.btn--naked {
+            color: color($state, dark) !important;
+
+            &:active,
+            &.active {
+                background-color: transparent !important;
+                color: color($state, dark) !important;
+            }
+        }
+    }
+
+    > .badge {
+        background-color: color($state, dark);
+        color: pick_best_color(color($state, dark), (#fff, color(gray, dark)));
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
+    }
+
+    &.btn--naked {
+        color: color($state, dark) !important;
+
+        &:active,
+        &.active {
+            background-color: color($state, light) !important;
+            color: color($state, dark) !important;
+
+            &:not(:disabled):not(.is-disabled).btn--white {
+                color: color(text) !important;
+            }
+        }
     }
 }
 
-@mixin btn-active($base) {
-    &.active {
-    $border-active: adjust-color($base, $saturation: 9%, $lightness: -14%);
-    $inset-shadow-active: adjust-color($base, $saturation: 7%, $lightness: -17%);
-    border: 1px solid $border-active;
-    box-shadow: inset 0 0 8px 4px $inset-shadow-active, inset 0 0 8px 4px $inset-shadow-active, 0 1px 1px 0 #eee;
-    }
-}
+/**
+ * UI states
+ */
 
 .btn {
     @include button-states('base');
-}
+    border-bottom-style: solid;
+    text-decoration: none;
 
-.btn--primary {
-    @include button-states('primary');
-
-    .badge {
-        background-color: $badge-primary-bg-darker;
-        text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
+    &:disabled,
+    &.is-disabled,
+    &.disabled {
+        cursor: not-allowed !important;
     }
 }
 
-.btn--success {
-    @include button-states('success');
-
-    .badge {
-        background-color: $badge-success-bg-darker;
-        text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
+@each $state, $state-color, $state-color-alt in $state-colors {
+    &.btn--#{$state} {
+        @include button-states($state);
     }
 }
 
-.btn--warning {
-    @include button-states('warning');
+.btn--outline {
+    background: none !important;
+    border: 0;
+    box-shadow: inset 0 0 0 2px color(base);
+    padding-bottom: $btn-padding-bottom + 2;
+    padding-top: $btn-padding-top;
 
-    .badge {
-        background-color: $badge-warning-bg-darker;
-        text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
+    &:hover,
+    &.is-hovered {
+        box-shadow: inset 0 0 0 2px color(base);
+        padding-bottom: $btn-padding-bottom + 1;
     }
-}
 
-.btn--danger {
-    @include button-states('danger');
-
-    .badge {
-        background-color: $badge-danger-bg-darker;
-        text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
+    &:active,
+    &.active {
+        background-color: color(base, light) !important;
+        box-shadow: inset 0 0 0 2px color(base);
+        color: pick_best_color(color(base, light), (#fff, color(gray, dark))) !important;
+        padding-bottom: $btn-padding-bottom;
+        top: 2px;
     }
-}
 
-.btn--info {
-    @include button-states('info');
-
-    .badge {
-        background-color: $badge-info-bg-darker;
-        text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
+    &.is-disabled,
+    &:disabled {
+        background-color: transparent !important;
+        box-shadow: inset 0 0 0 2px color(base) !important;
+        color: color(text, disabled) !important;
     }
-}
 
-.btn--inverse {
-    @include button-states('inverse');
+    @each $state, $state-color, $state-color-alt in $state-colors {
+        &.btn--#{$state} {
+            box-shadow: inset 0 0 0 2px $state-color !important;
+            color: color($state, dark) !important;
 
-    .badge {
-        background-color: $badge-inverse-bg-darker;
-        text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
+            &:active,
+            &.active {
+                background-color: color($state, light) !important;
+                color: color($state, dark) !important;
+
+                &.btn--white {
+                    color: color(text) !important;
+                }
+            }
+
+            &.is-disabled,
+            &:disabled {
+                &:active,
+                &.active {
+                    background-color: transparent !important;
+
+                    &.btn--white {
+                        color: color($state, dark) !important;
+                    }
+                }
+            }
+
+            &.btn--naked {
+                box-shadow: none !important;
+
+                &:active,
+                &.active {
+                    color: color($state, dark) !important;
+
+                    &.btn--white {
+                        color: color(text) !important;
+                    }
+                }
+
+                &.is-disabled,
+                &:disabled {
+                    &:active,
+                    &.active {
+                        color: color($state) !important;
+                    }
+                }
+            }
+        }
     }
-}
 
-@include ie-lte(7) {
-    a.btn {
-        line-height: 20px;
+    &.btn--naked {
+        box-shadow: none !important;
     }
 }
 
 .btn--naked,
-.btn--naked.is-disabled,
-.btn--naked:disabled,
-.btn--naked:hover:not(:disabled),
-.btn--naked:active,
-.btn--naked > .btn,
-.btn--naked > .btn:active {
+.btn--naked > .btn {
     background: none;
     border: 0;
     box-shadow: none;
-    color: color(text);
-    display: inline-block;
-    line-height: auto;
-    vertical-align: top;
-}
+    color: color(text) !important;
 
-.btn--naked.is-disabled,
-.btn--naked:disabled {
-    background: none !important;
-    box-shadow: none !important;
-    color: color(text, disabled) !important;
-
-    &:hover {
-        color: color(text, disabled) !important;
-    }
-}
-
-// IE8 fix btn--naked background and border
-.btn--naked,
-.btn--naked > .btn {
+    // IE8 fix btn--naked background and border
     @include ie-lte(8) {
         background: none;
         border: 0;
         box-shadow: none;
+    }
+
+    &:active,
+    &.active,
+    &:hover,
+    &.is-hovered {
+        box-shadow: none;
+    }
+
+    &.is-disabled,
+    &:disabled {
+        background: none !important;
+        box-shadow: none !important;
+        color: color(text, disabled) !important;
     }
 }
 
@@ -239,26 +267,29 @@
     box-shadow: none;
 }
 
-.btn--outline {
-    border: 0;
-
-    &,
-    &:hover,
-    &:active {
-        box-shadow: inset 0 0 0 2px color(base);
-        background-color: transparent;
+.btn--white {
+    &.is-disabled,
+    &:disabled {
+        opacity: .5;
     }
+}
 
-    &:hover {
-        top: 1px;
-    }
+.btn--small {
+    font-size: 12px !important;
+    padding: $btn-small-padding-top $btn-small-padding-x $btn-small-padding-bottom !important;
+}
 
-    @each $state, $state-color, $state-color-alt in $state-colors {
-        &.btn--#{$state},
-        &.btn--#{$state}:hover,
-        &.btn--#{$state}:active {
-            box-shadow: inset 0 0 0 2px $state-color;
-            color: $state-color-alt;
+// The text in small, disabled buttons look like garbage on low-dpi screens,
+// so we'll disable font smoothing for this edge case (and re-enable it
+// for hi-dpi screens).
+.btn--white,
+.btn--naked {
+    &.is-disabled,
+    &:disabled {
+        -webkit-font-smoothing: none;
+
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            -webkit-font-smoothing: subpixel-antialiased;
         }
     }
 }

@@ -152,10 +152,10 @@ paths:
     html-block_list-ol-html-twig: /html/block_list-ol.html.twig
     html-block_list-html-twig: /html/block_list.html.twig
     html-button-button-html-twig: /html/button-button.html.twig
-    html-button-disabled-states-html-twig: /html/button-disabled-states.html.twig
     html-button-disabled-html-twig: /html/button-disabled.html.twig
     html-button-input-html-twig: /html/button-input.html.twig
     html-button-link-html-twig: /html/button-link.html.twig
+    html-button-outline-states-html-twig: /html/button-outline-states.html.twig
     html-button-submit-html-twig: /html/button-submit.html.twig
     html-button-html-twig: /html/button.html.twig
     html-button_dropdown-parent-class-html-twig: /html/button_dropdown-parent-class.html.twig
@@ -243,3 +243,11 @@ paths:
     tabs-tabs_list-url-src-active-html-twig: /tabs/tabs_list-url-src-active.html.twig
     tabs-tabs_list-url-src-html-twig: /tabs/tabs_list-url-src.html.twig
     tabs-tabs_multiple-html-twig: /tabs/tabs_multiple.html.twig
+    visuals-button-states-disabled-html-twig: /visuals/button-states-disabled.html.twig
+    visuals-button-states-outline-disabled-html-twig: /visuals/button-states-outline-disabled.html.twig
+    visuals-button-states-outline-small-disabled-html-twig: /visuals/button-states-outline-small-disabled.html.twig
+    visuals-button-states-outline-small-html-twig: /visuals/button-states-outline-small.html.twig
+    visuals-button-states-outline-html-twig: /visuals/button-states-outline.html.twig
+    visuals-button-states-small-disabled-html-twig: /visuals/button-states-small-disabled.html.twig
+    visuals-button-states-small-html-twig: /visuals/button-states-small.html.twig
+    visuals-button-states-html-twig: /visuals/button-states.html.twig
