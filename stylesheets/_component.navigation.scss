@@ -12,7 +12,7 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
     top: 0;
     transform: translate3d(-100%, 0, 0);
     vertical-align: top;
-    width: 75px;
+    width: 74px;
     z-index: $zindex-nav;
 
     @include respond-min($screen-desktop) {
