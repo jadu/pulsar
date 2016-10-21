@@ -38,6 +38,7 @@ $fa-css-prefix: 'icon';
 @import 'mixin.label-variant';
 @import 'mixin.media-queries';
 @import 'mixin.mixins-to-organise';
+@import 'mixin.responsive-utilities';
 
 // Config
 @import 'config.variables';
@@ -94,6 +95,7 @@ $fa-css-prefix: 'icon';
 @import 'component.daterange';
 @import 'component.dropdowns';
 @import 'component.editor';
+@import 'component.filterbar';
 @import 'component.flash';
 @import 'component.footer';
 @import 'component.forms';

@@ -202,3 +202,51 @@ div.no-results {
         display: none !important;
     }
 }
+
+.u-visible-on-phone {
+    @include visible-on-phone;
+}
+
+.u-visible-on-tablet {
+    @include visible-on-tablet;
+}
+
+.u-visible-on-desktop {
+    @include visible-on-desktop;
+}
+
+.u-hidden-on-phone {
+    @include hidden-on-phone;
+}
+
+.u-hidden-on-tablet {
+    @include hidden-on-tablet;
+}
+
+.u-hidden-on-desktop {
+    @include hidden-on-desktop;
+}
+
+.u-sr-visible-on-phone {
+    @include sr-visible-on-phone;
+}
+
+.u-sr-visible-on-tablet {
+    @include sr-visible-on-tablet;
+}
+
+.u-sr-visible-on-desktop {
+    @include sr-visible-on-desktop;
+}
+
+.u-sr-hidden-on-phone {
+    @include sr-hidden-on-phone;
+}
+
+.u-sr-hidden-on-tablet {
+    @include sr-hidden-on-tablet;
+}
+
+.u-sr-hidden-on-desktop {
+    @include sr-hidden-on-desktop;
+}

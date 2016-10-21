@@ -17,9 +17,14 @@ $susy: (
             @include span($i);
         }
     }
+
+    .grid-col-push--#{$i} {
+        @include respond-min($screen-phone) {
+            @include push($i of 12);
+        }
+    }
 }
 
-// playground example styles
 .grid-col {
     margin-top: gutter();
 
@@ -28,8 +33,4 @@ $susy: (
             @include last;
         }
     }
-}
-
-.grid-col.grid-col--last {
-    @include last;
 }
