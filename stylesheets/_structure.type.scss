@@ -115,7 +115,7 @@ dt {
     }
 }
 
-body a.is-disabled {
+body a:not(.btn).is-disabled {
     color: color(link, disabled) !important;
     cursor: not-allowed;
 }
