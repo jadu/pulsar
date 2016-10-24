@@ -114,3 +114,8 @@ dt {
         font-size: 2em;
     }
 }
+
+body a.is-disabled {
+    color: color(link, disabled) !important;
+    cursor: not-allowed;
+}
