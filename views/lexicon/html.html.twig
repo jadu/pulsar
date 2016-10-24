@@ -10,6 +10,7 @@
 {% set heading = 'Form Helpers' %}
 
 {% set tab_buttons %}{% include 'lexicon/html/buttons.html.twig' %}{% endset %}
+{% set tab_link_buttons %}{% include 'lexicon/html/buttons-links.html.twig' %}{% endset %}
 
 {%
     set nav_data = {
@@ -60,9 +61,13 @@
     set tabs_content = [
         {
           "id"    : "buttons",
-          "label" : "Buttons",
-          "src"   : tab_buttons,
-          "active": true
+          "label" : "Normal Buttons",
+          "src"   : tab_buttons
+        },
+        {
+          "id"    : "buttons-links",
+          "label" : "Link Buttons",
+          "src"   : tab_link_buttons
         }
     ]
 %}
