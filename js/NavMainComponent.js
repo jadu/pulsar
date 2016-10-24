@@ -8,7 +8,8 @@ function NavMainComponent(html) {
 
 NavMainComponent.prototype.init = function() {
 
-    var component = this;
+    var component = this,
+        closeHandler;
 
     component.$navMain = this.$html.find('.nav-main');
     component.$navPrimary = this.$html.find('.nav-primary');
@@ -16,6 +17,10 @@ NavMainComponent.prototype.init = function() {
     component.$primaryNavLinks = component.$navPrimary.find('.nav-link');
     component.$secondaryNavLinks = component.$navSecondary.find('.nav-link');
     component.$closeLink = component.$navMain.find('[data-nav-action=close]');
+
+    component.closeHandler = function (e) {
+        component.closeNavs();
+    };
 
     component.$primaryNavLinks.on('click', function(e) {
 
@@ -30,6 +35,8 @@ NavMainComponent.prototype.init = function() {
 
         component.switchPrimaryNav(href);
         component.switchSecondaryNav(href);
+
+        component.$html.find('.content-main').on('click', component.closeHandler);
     });
 
     component.$secondaryNavLinks.on('click', function() {
@@ -83,8 +90,7 @@ NavMainComponent.prototype.closeNavs = function() {
 
     component.$navMain.removeClass('is-open');
 
-    // component.$navMain.find('.is-active')
-    //  .removeClass('is-active');
+    component.$html.find('.content-main').unbind('click', component.closeHandler);
 };
 
 NavMainComponent.prototype.closeSubNavs = function() {
