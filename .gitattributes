@@ -271,7 +271,6 @@
 /libs/pikaday/index.html                                        export-ignore
 /libs/pikaday/LICENSE                                           export-ignore
 /libs/pikaday/package.json                                      export-ignore
-/libs/pikaday/plugins/                                          export-ignore
 /libs/pikaday/README.md                                         export-ignore
 /libs/pikaday/scss/                                             export-ignore
 /libs/pikaday/tests/                                            export-ignore
