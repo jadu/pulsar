@@ -250,3 +250,11 @@ paths:
     visuals-button-states-small-disabled-html-twig: /visuals/button-states-small-disabled.html.twig
     visuals-button-states-small-html-twig: /visuals/button-states-small.html.twig
     visuals-button-states-html-twig: /visuals/button-states.html.twig
+    visuals-link-button-states-disabled-html-twig: /visuals/link-button-states-disabled.html.twig
+    visuals-link-button-states-outline-disabled-html-twig: /visuals/link-button-states-outline-disabled.html.twig
+    visuals-link-button-states-outline-small-disabled-html-twig: /visuals/link-button-states-outline-small-disabled.html.twig
+    visuals-link-button-states-outline-small-html-twig: /visuals/link-button-states-outline-small.html.twig
+    visuals-link-button-states-outline-html-twig: /visuals/link-button-states-outline.html.twig
+    visuals-link-button-states-small-disabled-html-twig: /visuals/link-button-states-small-disabled.html.twig
+    visuals-link-button-states-small-html-twig: /visuals/link-button-states-small.html.twig
+    visuals-link-button-states-html-twig: /visuals/link-button-states.html.twig
