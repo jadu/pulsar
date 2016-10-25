@@ -59,3 +59,336 @@ $info-color-alt:                #000;
 $inverse-color-alt:             #fff;
 
 $toolbar-bg-hover:              #f00;
+
+// -----------------------------------------------------------------------------
+//  24/10/2016
+//
+//  Rich list, replaced by piano lists
+//  At time of deprecation this is used in CXM History UI
+//
+//  _component.richer-list.scss
+// -----------------------------------------------------------------------------
+/**
+ * Richer lists can be displayed either as the entire layout for a tab, or as a
+ * separate component within a form.
+ *
+ * 1. Rich lists should aim to chop the last item in a list in half horizontally
+ *    in order to visually prompt the user that information has been hidden and
+ *    that they should scroll to see more items.
+ * 2. Paginated lists are set to a height which fits 10 items.
+ * 2. Outline is used here so that if the rich list is used in a container that
+ *    already has a border, it wont be doubled up.
+ * 3. The last item should always show empty space after/underneath, this helps
+ *    to indicate that the end of the list has been reached.
+ * 4. The colour to be shown 'underneath' the items, which helps to signify when
+ *    the end of the list has been reached.
+ * 5. Make sure the elements containing list items are always flush with the top
+ *    of this container (tables are normally aligned to the bottom).
+ * 6. Remove default styles from list elements used to display items.
+ * 7. Rich list items can contain selection of different element types, which
+ *    need padding applied to maintain layout.
+ * 8. Don't show bullets/numbers when using ordered/unordered lists.
+ * 9. Use pointer cursor here, as we might not always be using links to trigger
+ *    the detail changes.
+ * 10. Remove list bullets/numbers, though we probably should allow numbers as
+ *     an option at some point...
+ * 11. Make sure links & spans used as list items are treated as block-level and
+ *     100% width.
+ * 12. Reset default table styles.
+ * 13. Reset link styling used in list items, visual styling should be
+ *     handled by the list item itself.
+ * 14. Remove ability to scroll contents and simply stretch the height to fit
+ *     the number of items.
+ * 15. If streching to fit, or paginating, then we don't need the emtpy space
+ *     after the last item as created in [3].
+ * 16. Make sure .pagination element sits directly underneath the rich list.
+ * 17. Size variants only available when the screen is wide enough for them to
+ *     be useful.
+ * 18. Rich lists within decks.
+ */
+
+
+/* -------------------------------------------------------------------------- *\
+    Configuration
+\* -------------------------------------------------------------------------- */
+
+// Heights
+$rich-list-height:                    215px !default; /* [1] */
+$rich-list-height-tall:               490px !default; /* [1] */
+$rich-list-height-paginated:          428px !default; /* [2] */
+
+// Items
+$rich-list-item-padding:              .5em;
+
+// Item widths
+$rich-list-items-width-default:       .5 !default;  // small screen
+$rich-list-items-width-small:         .25 !default; // large screen
+$rich-list-items-width-medium:        .37 !default; // large screen
+$rich-list-items-width-large:         .5 !default;  // large screen
+$rich-list-items-width-xlarge:        .65 !default; // large screen
+
+// Colour
+$rich-list-border-color:              color(gray) !default;
+$rich-list-item-bg-color:             color(white) !default;
+$rich-list-item-bg-hover-color:       color(gray, lighter) !default;
+$rich-list-item-bg-selected-color:    color(jadu-blue) !default;
+$rich-list-item-text-selected-color:  color(white) !default;
+
+
+/* -------------------------------------------------------------------------- *\
+    Default Presentation
+\* -------------------------------------------------------------------------- */
+
+.richer-list {
+  display: block;
+  float: left;
+  height: $rich-list-height;
+  margin-bottom: 1em;
+  outline: 1px solid $rich-list-border-color; /* [3] */
+  width: 100%;
+}
+
+.richer-list__items-container,
+.richer-list__detail {
+  display: block;
+  float: left;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.richer-list__items-container {
+  height: $rich-list-height;
+  overflow: scroll;
+}
+
+.richer-list__items {
+  margin-bottom: 1em; /* [4] */
+  width: 100%;
+
+  ul &,
+  ol & {
+    display: block;
+  }
+}
+
+
+.richer-list__detail {
+  display: table-cell;
+  position: relative;
+  height: 100%;
+  // max-width: 90%;
+  padding: $rich-list-item-padding;
+  width: percentage(1 - $rich-list_items-width-default);
+}
+
+
+.richer-list__items-container {
+  background-color: color(gray, off-white); /* [5] */
+  border-right: 1px solid $rich-list-border-color;
+  vertical-align: top; /* [6] */
+  width: percentage($rich-list_items-width-default);
+
+  > ul,
+  > ol { /* [7] */
+    margin-left: 0;
+  }
+}
+
+.richer-list__header,
+.richer-list__item {
+  background-color: $rich-list-item-bg-color;
+  border-bottom: 1px solid $rich-list-border-color;
+
+  > a,
+  > div,
+  > span,
+  > td,
+  > th { /* [8] */
+    padding: $rich-list-item-padding;
+  }
+}
+
+.richer-list__item {
+  cursor: pointer; /* [9] */
+
+  ol &,
+  ul & { /* [10] */
+    list-style-type: none;
+  }
+
+  > a,
+  > span { /* [11] */
+    display: inline-block;
+    width: 100%;
+  }
+
+  th,
+  td { /* [12] */
+    background: none;
+    background-color: none;
+  }
+
+  a { /* [13] */
+    color: color(black);
+    text-decoration: none;
+  }
+
+  /**
+   * States
+   */
+
+  &:hover {
+    background-color: $rich-list-item-bg-hover-color;
+    cursor: pointer;
+  }
+
+  &.is-selected {
+    background-color: $rich-list-item-bg-selected-color;
+    color: $rich-list-item-text-selected-color;
+  }
+}
+
+
+.richer-list__item-placeholder {
+  background-color: color(gray, off-white);
+  height: ($line-height-base * 1.8) * 3;
+  text-align: center;
+  vertical-align: inherit;
+
+  a {
+    color: color(link);
+  }
+
+  &:hover a {
+    text-decoration: underline;
+  }
+}
+
+
+/* -------------------------------------------------------------------------- *\
+    Variations
+\* -------------------------------------------------------------------------- */
+
+.richer-list--fit-items { /* [14] */
+  &,
+  .richer-list__items-container,
+  .richer-list__detail {
+    height: auto;
+  }
+
+  .richer-list__items {
+    margin-bottom: 0; /* [15] */
+  }
+}
+
+
+.richer-list--paginated {
+  @extend .richer-list--fit-items;
+  height: $rich-list-height-paginated; /* [2] */
+  margin-bottom: 1px; /* [16] */
+
+  .richer-list__detail {
+    height: 100%;
+    overflow-y: scroll;
+  }
+}
+
+
+@include respond-min($screen-tablet) { /* [17] */
+  .richer-list {
+    .richer-list__items-container {
+      width: percentage($rich-list-items-width-small);
+    }
+
+    .richer-list__detail {
+      width: percentage(1 - $rich-list-items-width-small);
+    }
+  }
+
+
+  .richer-list--medium {
+    .richer-list__items-container {
+      width: percentage($rich-list-items-width-medium);
+    }
+
+    .richer-list__detail {
+      width: percentage(1 - $rich-list-items-width-medium);
+    }
+  }
+
+
+  .richer-list--large {
+    .richer-list__items-container {
+      width: percentage($rich-list-items-width-large);
+    }
+
+    .richer-list__detail {
+      width: percentage(1 - $rich-list-items-width-large);
+    }
+  }
+
+
+  .richer-list--xlarge {
+    .richer-list__items-container {
+      width: percentage($rich-list-items-width-xlarge);
+    }
+
+    .richer-list__detail {
+      width: percentage(1 - $rich-list-items-width-xlarge);
+    }
+  }
+}
+
+
+.richer-list--tall,
+.richer-list--tall .richer-list__items-container {
+  height: $rich-list-height-tall;
+}
+
+
+/* -------------------------------------------------------------------------- *\
+    Alternative Uses
+\* -------------------------------------------------------------------------- */
+
+.deck { /* [18] */
+  .richer-list__items,
+  .richer-list__detail {
+    height: 100%;
+    overflow-y: visible;
+  }
+}
+
+
+
+
+
+/* -------------------------------------------------------------------------- *\
+    Settings
+\* -------------------------------------------------------------------------- */
+
+.richer-list__with-settings {
+
+  .richer-list__detail {
+    padding-right: 55px;
+    position: relative;
+  }
+
+  .settings {
+    height: 100%;
+    position: absolute;
+    right: -200px;
+    top: 0;
+
+    -webkit-transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out;
+    -ms-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+
+    &.open {
+      box-shadow: -5px 0 0 rgba(0, 0, 0, .1);
+      right: 0;
+    }
+  }
+}
+
