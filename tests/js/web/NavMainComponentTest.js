@@ -5,7 +5,7 @@
 var $ = require('jquery'),
     NavMainComponent = require('../../../js/NavMainComponent');
 
-$.fx.off = !$.fx.off
+$.fx.off = !$.fx.off;
 
 describe('NavMain component', function() {
 
