@@ -4,7 +4,7 @@
 
 $brand-image:                         $image-path + 'brand.png' !default;
 $brand-height:                        24px !default;
-$brand-width:                         75px !default;
+$brand-width:                         $nav-primary-width !default;
 $brand-background-size:               100% !default;
 
 $branding-site:                       $image-path + 'branding/logo-cms-white.svg';
