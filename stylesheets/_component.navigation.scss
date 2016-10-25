@@ -22,6 +22,7 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
         transform: none;
         -webkit-backface-visibility: visible;
         backface-visibility: visible;
+        width: $nav-primary-width - 1;
     }
 
     .lt-ie10 & {
