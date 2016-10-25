@@ -17,7 +17,7 @@ NavMainComponent.prototype.init = function() {
     component.$secondaryNavLinks = component.$navSecondary.find('.nav-link');
     component.$closeLink = component.$navMain.find('[data-nav-action=close]');
 
-    component.closeHandler = function (e) {
+    component.closeHandler = function() {
         component.closeNavs();
     };
 
