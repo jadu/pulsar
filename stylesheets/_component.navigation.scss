@@ -12,7 +12,7 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
     top: 0;
     transform: translate3d(-100%, 0, 0);
     vertical-align: top;
-    width: 74px;
+    width: $nav-primary-width;
     z-index: $zindex-nav;
 
     @include respond-min($screen-desktop) {
@@ -25,7 +25,7 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
     }
 
     .lt-ie10 & {
-        left: -75px;
+        left: -($nav-primary-width);
     }
 }
 
@@ -221,7 +221,7 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
     position: fixed;
     text-align: center;
     transition: box-shadow 100ms linear;
-    width: 75px;
+    width: $nav-primary-width;
     z-index: $zindex-nav;
 
     .is-active {
@@ -239,8 +239,8 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
         font-family: $font-family-regular;
         font-size: .75em;
         line-height: 1em;
-        max-width: 75px;
-        min-width: 75px;
+        max-width: $nav-primary-width;
+        min-width: $nav-primary-width;
         padding: 16px 5px 0;
         position: relative;
         text-overflow: ellipsis;
@@ -297,7 +297,7 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
 .nav-secondary {
     background-color: $nav-color-dark;
     box-shadow: inset -4px 0 0 darken($nav-color-dark, 4);
-    left: 75px;
+    left: $nav-primary-width;
     margin-left: -320px;
     overflow-x: hidden;
     overflow-y: auto;
