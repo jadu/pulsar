@@ -8,8 +8,7 @@ function NavMainComponent(html) {
 
 NavMainComponent.prototype.init = function() {
 
-    var component = this,
-        closeHandler;
+    var component = this;
 
     component.$navMain = this.$html.find('.nav-main');
     component.$navPrimary = this.$html.find('.nav-primary');
