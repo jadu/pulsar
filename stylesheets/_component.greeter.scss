@@ -194,7 +194,9 @@ $greeter-brand-bottom-height:           40px !default;
 
     &__hint {
         display: inline-block;
-        margin: 0 ($greeter-padding / 2) 0 auto;
+        margin: 0;
+        margin-left: $greeter-padding / 2);
+        margin-right: auto;
         opacity: 0;
         position: relative;
         top: 3px; /* [8] */
