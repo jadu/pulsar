@@ -242,6 +242,7 @@ paths:
     tabs-tabs_list-url-src-active-html-twig: /tabs/tabs_list-url-src-active.html.twig
     tabs-tabs_list-url-src-html-twig: /tabs/tabs_list-url-src.html.twig
     tabs-tabs_multiple-html-twig: /tabs/tabs_multiple.html.twig
+    visuals-badge-immutability-test-html-twig: /visuals/badge-immutability-test.html.twig
     visuals-button-states-disabled-html-twig: /visuals/button-states-disabled.html.twig
     visuals-button-states-outline-disabled-html-twig: /visuals/button-states-outline-disabled.html.twig
     visuals-button-states-outline-small-disabled-html-twig: /visuals/button-states-outline-small-disabled.html.twig
