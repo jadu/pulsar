@@ -52,15 +52,15 @@
             }
         });
 
-        $('.is-sortable').sortable({
-            axis: 'y',
-            helper: 'clone',
-            opacity: 0.9,
-            placeholder: 'form__group is-sorting',
-            start: function(e, ui) {
-                $(ui.helper).addClass('is-dragging');
-            }
-        }).disableSelection();
+        // $('.is-sortable').sortable({
+        //     axis: 'y',
+        //     helper: 'clone',
+        //     opacity: 0.9,
+        //     placeholder: 'form__group is-sorting',
+        //     start: function(e, ui) {
+        //         $(ui.helper).addClass('is-dragging');
+        //     }
+        // }).disableSelection();
 
         tinycon.setBubble(6);
 
