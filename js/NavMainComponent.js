@@ -23,6 +23,10 @@ NavMainComponent.prototype.init = function() {
     component.$quickstartManageLink = component.$navMain.find('[data-nav-action=quickstart-manage]');
     component.$quickstartSaveLink = component.$navMain.find('[data-nav-action=quickstart-save]');
 
+    component.closeHandler = function() {
+        component.closeNavs();
+    };
+
     component.$primaryNavLinks.on('click', function(e) {
 
         var $self = $(this),
@@ -36,6 +40,8 @@ NavMainComponent.prototype.init = function() {
 
         component.switchPrimaryNav(href);
         component.switchSecondaryNav(href);
+
+        component.$html.find('.content-main').on('click', component.closeHandler);
     });
 
     component.$secondaryNavLinks.on('click', function() {
@@ -185,6 +191,7 @@ NavMainComponent.prototype.closeNavs = function() {
         .removeClass('is-open');
 
     component.closeSubNavs();
+    component.$html.find('.content-main').unbind('click', component.closeHandler);
 };
 
 NavMainComponent.prototype.closeSubNavs = function() {

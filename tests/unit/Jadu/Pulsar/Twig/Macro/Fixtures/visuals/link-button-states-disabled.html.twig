@@ -1,0 +1,417 @@
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
+{% block body %}
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Base</th>
+            <th>Hover</th>
+            <th>Active</th>
+            <th>Disabled</th>
+            <th>Naked</th>
+            <th>Naked Active</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Default</td>
+            <td>
+                {{
+                    html.button({
+                        'type': 'link',
+                        'label': 'Button',
+                        'class': 'is-disabled'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'type': 'link',
+                        'label': 'Button',
+                        'class': 'is-disabled is-hovered'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'type': 'link',
+                        'label': 'Button',
+                        'class': 'is-disabled active'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'type': 'link',
+                        'label': 'Button',
+                        'class': 'is-disabled'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'type': 'link',
+                        'label': 'Button',
+                        'class': 'is-disabled btn--naked'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'type': 'link',
+                        'label': 'Button',
+                        'class': 'is-disabled btn--naked active'
+                    })
+                }}
+            </td>
+        </tr>
+        <tr>
+            <td>Primary</td>
+            <td>
+                {{
+                    html.button({
+                        'type': 'link',
+                        'label': 'Button',
+                        'class': 'is-disabled btn--primary'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'type': 'link',
+                        'label': 'Button',
+                        'class': 'is-disabled btn--primary is-hovered'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'type': 'link',
+                        'label': 'Button',
+                        'class': 'is-disabled btn--primary active'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'type': 'link',
+                        'label': 'Button',
+                        'class': 'is-disabled btn--primary'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'type': 'link',
+                        'label': 'Button',
+                        'class': 'is-disabled btn--primary btn--naked'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'type': 'link',
+                        'label': 'Button',
+                        'class': 'is-disabled btn--primary btn--naked active'
+                    })
+                }}
+            </td>
+        </tr>
+        <tr>
+            <td>Success</td>
+            <td>
+                {{
+                    html.button({
+                        'type': 'link',
+                        'label': 'Button',
+                        'class': 'is-disabled btn--success'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'type': 'link',
+                        'label': 'Button',
+                        'class': 'is-disabled btn--success is-hovered'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'type': 'link',
+                        'label': 'Button',
+                        'class': 'is-disabled btn--success active'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'type': 'link',
+                        'label': 'Button',
+                        'class': 'is-disabled btn--success'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'type': 'link',
+                        'label': 'Button',
+                        'class': 'is-disabled btn--success btn--naked'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'type': 'link',
+                        'label': 'Button',
+                        'class': 'is-disabled btn--success btn--naked active'
+                    })
+                }}
+            </td>
+        </tr>
+        <tr>
+            <td>Warning</td>
+            <td>
+                {{
+                    html.button({
+                        'type': 'link',
+                        'label': 'Button',
+                        'class': 'is-disabled btn--warning'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'type': 'link',
+                        'label': 'Button',
+                        'class': 'is-disabled btn--warning is-hovered'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'type': 'link',
+                        'label': 'Button',
+                        'class': 'is-disabled btn--warning active'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'type': 'link',
+                        'label': 'Button',
+                        'class': 'is-disabled btn--warning'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'type': 'link',
+                        'label': 'Button',
+                        'class': 'is-disabled btn--warning btn--naked'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'type': 'link',
+                        'label': 'Button',
+                        'class': 'is-disabled btn--warning btn--naked active'
+                    })
+                }}
+            </td>
+        </tr>
+        <tr>
+            <td>Danger</td>
+            <td>
+                {{
+                    html.button({
+                        'type': 'link',
+                        'label': 'Button',
+                        'class': 'is-disabled btn--danger'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'type': 'link',
+                        'label': 'Button',
+                        'class': 'is-disabled btn--danger is-hovered'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'type': 'link',
+                        'label': 'Button',
+                        'class': 'is-disabled btn--danger active'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'type': 'link',
+                        'label': 'Button',
+                        'class': 'is-disabled btn--danger'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'type': 'link',
+                        'label': 'Button',
+                        'class': 'is-disabled btn--danger btn--naked'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'type': 'link',
+                        'label': 'Button',
+                        'class': 'is-disabled btn--danger btn--naked active'
+                    })
+                }}
+            </td>
+        </tr>
+        <tr>
+            <td>Info</td>
+            <td>
+                {{
+                    html.button({
+                        'type': 'link',
+                        'label': 'Button',
+                        'class': 'is-disabled btn--info'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'type': 'link',
+                        'label': 'Button',
+                        'class': 'is-disabled btn--info is-hovered'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'type': 'link',
+                        'label': 'Button',
+                        'class': 'is-disabled btn--info active'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'type': 'link',
+                        'label': 'Button',
+                        'class': 'is-disabled btn--info'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'type': 'link',
+                        'label': 'Button',
+                        'class': 'is-disabled btn--info btn--naked'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'type': 'link',
+                        'label': 'Button',
+                        'class': 'is-disabled btn--info btn--naked active'
+                    })
+                }}
+            </td>
+        </tr>
+        <tr>
+            <td>Inverse</td>
+            <td>
+                {{
+                    html.button({
+                        'type': 'link',
+                        'label': 'Button',
+                        'class': 'is-disabled btn--inverse'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'type': 'link',
+                        'label': 'Button',
+                        'class': 'is-disabled btn--inverse is-hovered'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'type': 'link',
+                        'label': 'Button',
+                        'class': 'is-disabled btn--inverse active'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'type': 'link',
+                        'label': 'Button',
+                        'class': 'is-disabled btn--inverse'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'type': 'link',
+                        'label': 'Button',
+                        'class': 'is-disabled btn--inverse btn--naked'
+                    })
+                }}
+            </td>
+            <td>
+                {{
+                    html.button({
+                        'type': 'link',
+                        'label': 'Button',
+                        'class': 'is-disabled btn--inverse btn--naked active'
+                    })
+                }}
+            </td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}

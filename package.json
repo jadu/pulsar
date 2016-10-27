@@ -1,6 +1,6 @@
 {
   "name": "pulsar",
-  "version": "6.9.5",
+  "version": "6.11.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/jadu/pulsar.git"
@@ -8,13 +8,14 @@
   "main": "./src/Jadu/Pulsar/Twig.js/Pulsar.js",
   "scripts": {
     "coverage": "mochify --plugin [ mochify-istanbul --exclude '**/+(tests|node_modules|libs)/**/*' --report lcov --dir ./coverage ] --reporter spec --recursive ./tests/js/web/index ./tests/js/web/*Test.js",
-    "test": "snyk test && npm run web-test && npm run js-ext-test && npm run js-macro-test",
+    "test": "npm run web-test && npm run js-ext-test && npm run js-macro-test",
     "web-test": "mochify --reporter spec --recursive ./tests/js/web/index ./tests/js/web/*Test.js",
     "js-ext-test": "mocha --reporter spec ./tests/js/twig/Extension/*Test.js",
     "js-macro-test": "mocha --reporter spec ./tests/js/twig/Macro/*Test.js"
   },
   "devDependencies": {
     "aliasify": "^1.9.0",
+    "browser-sync": "^2.17.3",
     "browserify": "10.0.0",
     "browserify-istanbul": "^0.2.1",
     "browserify-shim": "^3.8.9",
@@ -32,6 +33,7 @@
     "grunt-asciify": "^0.2.2",
     "grunt-autoprefixer": "^3.0.4",
     "grunt-bless": "^0.2.0",
+    "grunt-browser-sync": "^2.2.0",
     "grunt-browserify": "^5.0.0",
     "grunt-bump": "^0.7.2",
     "grunt-contrib-clean": "^1.0.0",
@@ -66,9 +68,9 @@
     "phptojs": "^3.16.0",
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0",
+    "snyk": "^1.19.1",
     "twig": "^0.9.4",
-    "uglifyify": "^3.0.1",
-    "snyk": "^1.19.1"
+    "uglifyify": "^3.0.1"
   },
   "browserify": {
     "transform": [

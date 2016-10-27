@@ -46,9 +46,6 @@
 {% set tab_colours %}
     {% include 'lexicon/tabs/colours.html.twig' %}
 {% endset %}
-{% set tab_decks %}
-    {% include 'lexicon/tabs/decks.html.twig' %}
-{% endset %}
 {% set tab_flash %}
     {% include 'lexicon/tabs/flash.html.twig' %}
 {% endset %}
@@ -114,8 +111,14 @@
                 }
             }
         },
+        "2": {
+            "label": "HTML helpers",
+            "class": "",
+            "href": "/app/app.php/lexicon/html.html.twig",
+            "icon": "code"
+        },
         "3": {
-            "label": "Forms",
+            "label": "Form helpers",
             "class": "",
             "href": "/app/app.php/lexicon/forms.html.twig",
             "icon": "check"

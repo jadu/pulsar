@@ -1,18 +1,1 @@
-// Main tour styling is handled by libs/hopscotch/css/hopscotch-0.1.1.min.css
-// A couple of things needed to be fixed for alignment
-
-div.hopscotch-bubble {
-  z-index: $zindex-tour;
-
-  .hopscotch-content {
-    font-family: $font-family-base;
-  }
-
-  .hopscotch-bubble-number {
-    padding-right: 0;
-  }
-
-  .hopscotch-bubble-close {
-    padding: 12px;
-  }
-}
+@warn '_override.tour.scss has been deprecated and needs to be removed from your main pulsar.scss file. UAT teams should not treat this as a build failure. (Stanton, 11/10/16)'

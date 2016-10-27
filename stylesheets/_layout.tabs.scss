@@ -53,8 +53,8 @@
 }
 
 .open-nav .inner-wrapper {
-    -webkit-transform: translate3d(75px, 0, 0) scale3d(1, 1, 1);
-    transform: translate3d(75px, 0, 0) scale3d(1, 1, 1);
+    -webkit-transform: translate3d($nav-primary-width, 0, 0) scale3d(1, 1, 1);
+    transform: translate3d($nav-primary-width, 0, 0) scale3d(1, 1, 1);
 
     @include respond-min($screen-desktop) {
         -webkit-backface-visibility: hidden;
@@ -67,7 +67,7 @@
     }
 
     .lt-ie10 & {
-        left: 75px;
+        left: $nav-primary-width;
     }
 }
 
@@ -91,7 +91,7 @@
 }
 
 .lt-ie10 .open-nav .inner-wrapper {
-    left: 75px;
+    left: $nav-primary-width;
 }
 
 .tabs__content {

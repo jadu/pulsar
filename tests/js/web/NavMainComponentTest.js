@@ -250,6 +250,20 @@ describe('NavMain component', function() {
 
     });
 
+	describe('clicking outside of the navigation, when the sub navigation is open', function() {
+
+        beforeEach(function() {
+            this.navMainComponent.init();
+            this.$linkOne.click();
+            this.$contentMain.click();
+        });
+
+        it('should close the sub navigation', function() {
+            expect(this.$html.find('.nav-main').hasClass('is-open')).to.be.false;
+        });
+
+    });
+
     describe('clicking the quickstart link', function() {
 
         beforeEach(function() {

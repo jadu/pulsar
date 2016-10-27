@@ -199,7 +199,7 @@
 
 .dropdown__menu > li > a {
   &:hover > .badge {
-    @extend .badge--primary;
+    @extend %badge--primary;
     background-color: darken($dropdown-link-active-bg, 20%);
   }
 
@@ -212,7 +212,7 @@
     }
 
     > .badge {
-      @extend .badge--primary;
+      @extend %badge--primary;
       background-color: darken($badge-primary-bg, 20%);
     }
   }
@@ -226,7 +226,7 @@
     }
 
     > .badge {
-      @extend .badge--success;
+      @extend %badge--success;
       background-color: darken($badge-success-bg, 20%);
     }
   }
@@ -240,7 +240,7 @@
     }
 
     > .badge {
-      @extend .badge--warning;
+      @extend %badge--warning;
       background-color: darken($badge-warning-bg, 20%);
     }
   }
@@ -254,7 +254,7 @@
     }
 
     > .badge {
-      @extend .badge--info;
+      @extend %badge--info;
       background-color: darken($badge-info-bg, 20%);
     }
   }
@@ -268,7 +268,7 @@
     }
 
     > .badge {
-      @extend .badge--danger;
+      @extend %badge--danger;
       background-color: darken($badge-danger-bg, 20%);
     }
   }
@@ -282,7 +282,7 @@
     }
 
     > .badge {
-      @extend .badge--inverse;
+      @extend %badge--inverse;
       background-color: darken($badge-inverse-bg, 20%);
     }
   }

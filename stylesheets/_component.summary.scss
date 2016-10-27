@@ -1,5 +1,1 @@
-.summary {
-  background-color: color(gray, dark);
-  color: color(white);
-  margin-top: -1px;
-}
+@warn '_component.summary.scss has been deprecated and needs to be removed from your main pulsar.scss file. UAT teams should not treat this as a build failure. (Stanton, 11/10/16)'

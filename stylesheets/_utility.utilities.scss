@@ -1,75 +1,75 @@
 .show-baseline {
-  @include baseline-grid;
+    @include baseline-grid;
 }
 
 %hide,
 .hide {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  border: 0;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    border: 0;
 }
 
 %show,
 .show {
-  clip: auto;
-  display: inline-block;
-  height: auto;
-  overflow: visible;
-  position: static;
-  width: auto;
+    clip: auto;
+    display: inline-block;
+    height: auto;
+    overflow: visible;
+    position: static;
+    width: auto;
 }
 
 .visually-hidden {
-  display: none;
+    display: none;
 }
 
 .muted {
-  color: color(gray, light);
+    color: color(gray, light);
 }
 
 .centered {
-  text-align: center;
+    text-align: center;
 }
 
 p.success {
-  background: rgba(0, 153, 51, .8);
-  color: color(white);
-  padding: 5px;
-  text-shadow: 0 0 2px rgba(0, 0, 0, .5);
+    background: rgba(0, 153, 51, .8);
+    color: color(white);
+    padding: 5px;
+    text-shadow: 0 0 2px rgba(0, 0, 0, .5);
 
-  i {
-    margin: 0 4px;
-  }
+    i {
+        margin: 0 4px;
+    }
 }
 
 // Removes default link styling
 .naked-link,
 .naked-link:hover {
-  text-decoration: none;
-  color: inherit;
+    text-decoration: none;
+    color: inherit;
 }
 
 .no-select {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 // removes bottom margin from an element
 .bottomless {
-  margin-bottom: 0;
+    margin-bottom: 0 !important;
 }
 
 .double-top {
-  margin-top: 2em;
+    margin-top: 2em;
 }
 
 .margin-left {
@@ -201,4 +201,52 @@ div.no-results {
     @media print {
         display: none !important;
     }
+}
+
+.u-visible-on-phone {
+    @include visible-on-phone;
+}
+
+.u-visible-on-tablet {
+    @include visible-on-tablet;
+}
+
+.u-visible-on-desktop {
+    @include visible-on-desktop;
+}
+
+.u-hidden-on-phone {
+    @include hidden-on-phone;
+}
+
+.u-hidden-on-tablet {
+    @include hidden-on-tablet;
+}
+
+.u-hidden-on-desktop {
+    @include hidden-on-desktop;
+}
+
+.u-sr-visible-on-phone {
+    @include sr-visible-on-phone;
+}
+
+.u-sr-visible-on-tablet {
+    @include sr-visible-on-tablet;
+}
+
+.u-sr-visible-on-desktop {
+    @include sr-visible-on-desktop;
+}
+
+.u-sr-hidden-on-phone {
+    @include sr-hidden-on-phone;
+}
+
+.u-sr-hidden-on-tablet {
+    @include sr-hidden-on-tablet;
+}
+
+.u-sr-hidden-on-desktop {
+    @include sr-hidden-on-desktop;
 }
