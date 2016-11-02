@@ -219,7 +219,7 @@ describe('NavMain component', function() {
         });
 
         it('should close the secondary nav', function() {
-            expect(this.$navMain.find('.nav-main').hasClass('nav-main--open')).to.be.false;
+            expect(this.$navMain.find('.nav-main').hasClass('is-open')).to.be.false;
         });
     });
 

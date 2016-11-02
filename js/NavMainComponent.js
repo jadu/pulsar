@@ -111,16 +111,12 @@ NavMainComponent.prototype.quickstartManage = function() {
 
     // Double the width of the quickstart container to accommodate the
     // additional menu
-    component.$quickstart
-        .animate({
-            width: '495'
-        }, 125, function() {
+    component.$quickstart.addClass('is-editing');
 
-            // Show the hints
-            component.$quickstartHint
-                .slideDown(125)
-                .removeClass('visually-hidden');
-        });
+    // Show the hints
+    component.$quickstartHint
+        .slideDown(125)
+        .removeClass('visually-hidden');
 
     // Attach sortable to main menu
     /* istanbul ignore next: difficult to test sortable.start method */
@@ -167,27 +163,27 @@ NavMainComponent.prototype.quickstartClose = function() {
 
     // Shrink back to normal size of container
     component.$quickstart
-        .animate({
-            width: '245'
-        }, 125, function() {
-
-            // Hide the hints and swap the save button for the manage button and
-            // remove sortable behaviours
-            component.$quickstartHint.slideUp(125);
-            component.$quickstartSaveLink.fadeOut(125, function() {
-                component.$quickstartManageLink.fadeIn(125);
-            });
-        })
+        .removeClass('is-editing')
         .find('.nav-items.is-sortable')
         .sortable('destroy')
         .removeClass('is-sortable');
+
+
+    // Hide the hints and swap the save button for the manage button and
+    // remove sortable behaviours
+    component.$quickstartHint.slideUp(125);
+    component.$quickstartSaveLink.fadeOut(125, function() {
+        component.$quickstartManageLink.fadeIn(125);
+    });
 };
 
 NavMainComponent.prototype.closeNavs = function() {
 
     var component = this;
 
-    component.$navMain.find('.is-open')
+    component.$navMain
+        .removeClass('is-open')
+        .find('.is-open')
         .removeClass('is-open');
 
     component.closeSubNavs();
@@ -199,7 +195,6 @@ NavMainComponent.prototype.closeSubNavs = function() {
     var component = this;
 
     component.$html.find('[data-ui=nav-container]')
-        .width('245')
         .removeClass('is-open');
 
     component.quickstartClose();

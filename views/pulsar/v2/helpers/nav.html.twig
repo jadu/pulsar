@@ -58,11 +58,13 @@
     </div>
 
     <div class="nav-quickstart t-nav-secondary" data-nav="#quickstart" data-ui="nav-container">
-        <a href="#close" class="nav-close" data-nav-action="close">{{ html.icon('remove') }}</a>
+        <div class="quickstart__header">
+            {{ html.link({ 'label': 'Save', 'class': 'quickstart-save btn btn--white pull-right', 'data-nav-action': 'quickstart-save' }) }}
+            <a href="#close" class="nav-close" data-nav-action="close">{{ html.icon('remove') }}</a>
+        </div>
         <div class="nav-list quickstart__main" data-nav="#quickstart-main">
             <span class="nav-item nav-item--header t-nav-header">Create New
                 {{ html.link({ 'label': 'Manage', 'class': 'link--inverse small-type muted pull-right', 'data-nav-action': 'quickstart-manage' }) }}
-                {{ html.link({ 'label': 'Save', 'class': 'btn btn--small btn--outline btn--white pull-right visually-hidden', 'data-nav-action': 'quickstart-save' }) }}
                 <span class="visually-hidden small-type muted" data-ui="quickstart-hint">{{ html.icon('arrows-v') }} Drag items to reorder</span>
             </span>
             <ul class="nav-items">

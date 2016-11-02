@@ -4,15 +4,15 @@ $nav-color-muted: lighten($nav-color-dark, 40);
 $nav-border-radius: 8px;
 
 .nav-main {
-    -webkit-backface-visibility: hidden;
-    -webkit-transform: translate3d(-100%, 0, 0);
+    // -webkit-backface-visibility: hidden;
+    // -webkit-transform: translate3d(-100%, 0, 0);
     backface-visibility: hidden;
     display: table-cell;
     height: 100%;
-    left: 0;
+    left: -75px;
     position: absolute;
     top: 0;
-    transform: translate3d(-100%, 0, 0);
+    // transform: translate3d(-100%, 0, 0);
     vertical-align: top;
     width: $nav-primary-width;
     z-index: $zindex-nav;
@@ -20,11 +20,19 @@ $nav-border-radius: 8px;
     @include respond-min($screen-desktop) {
         left: auto;
         position: static;
-        -webkit-transform: none;
-        transform: none;
-        -webkit-backface-visibility: visible;
-        backface-visibility: visible;
+        // -webkit-transform: none;
+        // transform: none;
+        // -webkit-backface-visibility: visible;
+        // backface-visibility: visible;
         width: $nav-primary-width - 1;
+    }
+
+    &.is-open {
+        width: 100%;
+
+        @include respond-min($screen-desktop) {
+            width: $nav-primary-width - 1;
+        }
     }
 
     .lt-ie10 & {
@@ -279,30 +287,30 @@ $nav-border-radius: 8px;
 
     .nav-items,
     .jadu-branding {
-        -webkit-transform-origin: 50% 0%;
-        -webkit-transform: translate3d(70%, 0, 0) scale3d(.9, .9, .9);
-        -webkit-transition-delay: ease, 0s;
-        -webkit-transition: opacity 300ms 100ms, -webkit-transform 500ms ease;
-        filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+        // -webkit-transform-origin: 50% 0%;
+        // -webkit-transform: translate3d(70%, 0, 0) scale3d(.9, .9, .9);
+        // -webkit-transition-delay: ease, 0s;
+        // -webkit-transition: opacity 300ms 100ms, -webkit-transform 500ms ease;
+        // filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
         opacity: .7;
-        transform-origin: 50% 0%;
-        transform: translate3d(70%, 0, 0) scale3d(.9, .9, .9);
-        transition: opacity 300ms 100ms ease, transform 500ms ease;
+        // transform-origin: 50% 0%;
+        // transform: translate3d(70%, 0, 0) scale3d(.9, .9, .9);
+        // transition: opacity 300ms 100ms ease, transform 500ms ease;
 
         @include respond-min($screen-desktop) {
-            filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+            // filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
             opacity: 1;
-            -webkit-transform: none;
-            transform: none;
-            transition: all 0s ease 0s;
-            -webkit-transition: all 0s ease 0s;
+            // -webkit-transform: none;
+            // transform: none;
+            // transition: all 0s ease 0s;
+            // -webkit-transition: all 0s ease 0s;
         }
 
         .open-nav & {
-            -webkit-transform: translate3d(0, 0, 0);
-            filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+            // -webkit-transform: translate3d(0, 0, 0);
+            // filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
             opacity: 1;
-            transform: translate3d(0, 0, 0);
+            // transform: translate3d(0, 0, 0);
         }
     }
 }
@@ -316,12 +324,13 @@ $nav-border-radius: 8px;
     overflow: hidden;
     position: absolute;
     top: 0;
-    transition: margin-left 100ms ease-in-out;
-    width: 245px;
+    // transition: margin-left 100ms ease-in-out;
+    // width: 100%;
     z-index: $zindex-nav-secondary;
 
     @include respond-min($screen-desktop) {
         position: fixed;
+        width: 245px;
     }
 
     // cope with presence of scrollbars in IE
@@ -478,16 +487,57 @@ $nav-border-radius: 8px;
     background-color: color(white);
     border-radius: 20px;
     color: $nav-color-dark;
-    height: 36px;
-    line-height: 36px;
-    margin-right: 10px;
+    font-size: 10px;
+    height: 18px;
+    line-height: 18px;
+    margin-right: 1px;
     text-align: center;
-    width: 36px;
+    width: 18px;
+
+    @include respond-min($screen-xsmall) {
+        font-size: 14px;
+        height: 36px;
+        line-height: 36px;
+        width: 36px;
+    }
+
+    // remove icons when editing on small screen devices
+    .is-editing & {
+        font-size: 10px;
+        height: 18px;
+        line-height: 18px;
+        width: 18px;
+        // display: none;
+
+        @include respond-min($screen-xsmall) {
+            display: inline-block;
+            height: 36px;
+            line-height: 36px;
+            width: 36px;
+        }
+    }
 }
 
 .nav-quickstart {
     width: 245px;
     -webkit-font-smoothing: subpixel-antialiased;
+
+    &.is-editing {
+        position: absolute;
+        width: 100%;
+        left: 0; // switch left position to padding so that width 100% is correctly calculated
+        padding-left: 75px;
+        position: absolute;
+
+        @include respond-min($screen-smaller) {
+            position: relative;
+            width: 495px;
+        }
+
+        > .nav-list {
+            width: 50%;
+        }
+    }
 
     .nav-list {
         float: left;
@@ -507,6 +557,15 @@ $nav-border-radius: 8px;
     .nav-item {
         background-clip: content-box;
         -webkit-font-smoothing: subpixel-antialiased;
+    }
+
+    // Maintain a decent hit target size for touch
+    .nav-link {
+        // margin: 0 auto 2px;
+        padding-bottom: 10px;
+        padding-top: 10px;
+
+
     }
 
     .is-sortable {
@@ -583,8 +642,37 @@ $nav-border-radius: 8px;
 .quickstart__additional {
     box-shadow: inset 1px 0 0 darken($nav-color-dark, 7), -1px 0 0 lighten($nav-color-dark, 7);
 
+    &.nav-list {
+        padding: 0 $gutter-width / 2;
+    }
+
     .remove-button {
         display: none;
     }
+
+    .nav-items {
+        margin: 0;
+    }
 }
 
+.quickstart__header {
+    height: 70px;
+
+    > .nav-close {
+        float: right;
+        height: 70px;
+        line-height: 75px;
+        margin-top: 0;
+        width: auto;
+    }
+}
+
+.nav-main .quickstart-save {
+    position: absolute;
+    top: 20px;
+    right: 53px;
+
+    &:hover {
+        top: 21px;
+    }
+}
