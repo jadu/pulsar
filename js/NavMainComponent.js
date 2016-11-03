@@ -103,11 +103,10 @@ NavMainComponent.prototype.quickstartManage = function() {
     var component = this;
 
     // Swap the manage link for the save link
-    component.$quickstartManageLink.fadeOut(125, function() {
-        component.$quickstartSaveLink
-            .fadeIn(125)
-            .removeClass('visually-hidden');
-    });
+    component.$quickstartManageLink.hide();
+    component.$quickstartSaveLink
+        .fadeIn(125)
+        .removeClass('visually-hidden');
 
     // Double the width of the quickstart container to accommodate the
     // additional menu
@@ -168,13 +167,11 @@ NavMainComponent.prototype.quickstartClose = function() {
         .sortable('destroy')
         .removeClass('is-sortable');
 
-
     // Hide the hints and swap the save button for the manage button and
     // remove sortable behaviours
     component.$quickstartHint.slideUp(125);
-    component.$quickstartSaveLink.fadeOut(125, function() {
-        component.$quickstartManageLink.fadeIn(125);
-    });
+    component.$quickstartSaveLink.hide();
+    component.$quickstartManageLink.fadeIn(125);
 };
 
 NavMainComponent.prototype.closeNavs = function() {

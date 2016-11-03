@@ -511,6 +511,7 @@ $nav-border-radius: 8px;
 
         @include respond-min($screen-xsmall) {
             display: inline-block;
+            font-size: 14px;
             height: 36px;
             line-height: 36px;
             width: 36px;
