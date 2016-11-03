@@ -135,7 +135,6 @@ $greeter-brand-bottom-height:           40px !default;
 
         // Support transparent PNG background images in IE8
         @include ie-lte(8) {
-            border: 1px solid red;
             background-image: url($greeter-brand-top-image-fallback) !important;
             filter: progid:DXImageTransform.Microsoft.gradient(
                 startColorstr=#00FFFFFF, endColorstr=#00FFFFFF

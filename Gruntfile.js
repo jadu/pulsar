@@ -62,7 +62,7 @@ module.exports = function(grunt) {
         sass: {
             dev: {
                 options: {
-                    style: 'nested',
+                    outputStyle: 'nested',
                     sourceMap: true
                 },
                 files: [{
