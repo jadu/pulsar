@@ -225,6 +225,7 @@ $greeter-brand-bottom-height:           40px !default;
         line-height: 1em;
         padding: 10px 10px 7px;
         position: relative; /* [10] */
+        text-decoration: none;
 
         &:hover:not(:disabled) { /* [11] */
             border-bottom-color: $greeter-button-border-color;
