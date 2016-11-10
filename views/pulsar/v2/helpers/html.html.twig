@@ -678,14 +678,22 @@ class  | string | CSS classes, space separated
         {% set options = options|merge({ 'style': 'color: ' ~ options.colour }) %}
     {% endif %}
 
+    {% if options is defined and options.label is not defined and options is iterable %}
+        {% set options = options|merge({ 'aria-hidden': 'true' }) %}
+    {% elseif options is defined and options.label is defined and options.label is not empty %}
+        {% set label = '<span class="hide">' ~ options.label ~ '</span>' %}
+    {% else %}
+        {% set options = { 'aria-hidden': 'true' } %}
+    {% endif %}
+
     <i{{
         attributes(options
-            |exclude('colour')
+            |exclude('colour label')
             |defaults({
                 'class': 'icon-' ~ icon_name ~ class|default
             })
         )
-    }}></i>
+    }}>{{ label|default|raw }}</i>
 
 {% endspaceless %}
 {% endmacro %}
