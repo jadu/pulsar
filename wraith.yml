@@ -172,7 +172,9 @@ paths:
     html-edit_button-submit-html-twig: /html/edit_button-submit.html.twig
     html-edit_button-target-html-twig: /html/edit_button-target.html.twig
     html-edit_button-html-twig: /html/edit_button.html.twig
+    html-icon-label-html-twig: /html/icon-label.html.twig
     html-icon-html-twig: /html/icon.html.twig
+    html-icon_colour-label-html-twig: /html/icon_colour-label.html.twig
     html-icon_colour-html-twig: /html/icon_colour.html.twig
     html-icon_mime-application-misc-html-twig: /html/icon_mime-application-misc.html.twig
     html-icon_mime-audio-html-twig: /html/icon_mime-audio.html.twig
