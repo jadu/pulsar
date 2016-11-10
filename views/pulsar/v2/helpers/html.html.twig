@@ -678,6 +678,12 @@ class  | string | CSS classes, space separated
         {% set options = options|merge({ 'style': 'color: ' ~ options.colour }) %}
     {% endif %}
 
+    {% if options is defined and options.label is not defined and options is iterable %}
+        {% set options = options|merge({ 'aria-hidden': 'true' }) %}
+    {% else %}
+        {% set options = { 'aria-hidden': 'true' } %}
+    {% endif %}
+
     <i{{
         attributes(options
             |exclude('colour')
