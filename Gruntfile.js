@@ -104,7 +104,7 @@ module.exports = function(grunt) {
             },
             email: {
                 options: {
-                    style: 'nested',
+                    outputStyle: 'nested',
                     sourceMap: true
                 },
                 files: [{
