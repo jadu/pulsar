@@ -59,6 +59,7 @@
 
 .datatable {
     // scss-lint:disable SelectorFormat
+    td,
     th {
         &.sorting::after,
         &.sorting_asc::after,
