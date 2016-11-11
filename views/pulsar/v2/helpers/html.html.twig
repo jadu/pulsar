@@ -1314,7 +1314,7 @@ data-*    | string | Data attributes, eg: `'data-foo': 'bar'`
                 'type': options.type|default('button'),
                 'data-action': 'remove',
                 'data-action-target': options.target|default,
-                'label': html.icon('remove-sign')
+                'label': html.icon('remove-sign', { 'label': 'Remove' })
             })
         )
     }}
