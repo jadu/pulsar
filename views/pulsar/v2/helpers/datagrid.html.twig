@@ -1,11 +1,11 @@
 {% macro select_all() %}
   <th class="row__actions">
-    <input type="checkbox" data-action="select-all" />
+    <input type="checkbox" data-action="select-all" title="Select all" />
   </th>
 {% endmacro %}
 
 {% macro select_item(id) %}
   <td class="row__actions">
-    <input type="checkbox" name="datagrid-items" data-action="select" data-id="{{ id }}" />
+    <input type="checkbox" name="datagrid-items" data-action="select" data-id="{{ id }}" title="Select this item" />
   </td>
 {% endmacro %}
