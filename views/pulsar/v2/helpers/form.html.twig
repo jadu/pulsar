@@ -320,6 +320,7 @@ multiple | bool   | If `true`, uses checkboxes instead of radios, or passes the 
             set inputs = inputs|merge([
                 form.select2({
                     'bare': true,
+                    'id': options.id|default,
                     'multiple': options.multiple,
                     'options': select_options
                 })
@@ -1792,7 +1793,6 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
             })
         ) ~ elem.label({
                 'class': 'toggle-switch-label',
-                'for': options.id|default,
                 'label': toggleLabel,
                 'required': options.required|default
             })

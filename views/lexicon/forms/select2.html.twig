@@ -8,6 +8,7 @@
 
     {{
         form.select2({
+            'id': 'select2-1',
             'label': 'Select field',
             'options': {
                 'value1': 'value one',
@@ -19,6 +20,7 @@
 
     {{
         form.select2({
+            'id': 'select2-2',
             'label': 'Required',
             'required': true,
             'options': {
@@ -30,6 +32,7 @@
 
     {{
         form.select2({
+            'id': 'select2-3',
             'label': 'Select field with help',
             'help': 'Help text to give more information about expected input',
             'options': {
@@ -41,6 +44,7 @@
 
     {{
         form.select2({
+            'id': 'select2-4',
             'label': 'Select field with guidance',
             'guidance': 'Help text to give more information about expected input',
             'options': {
@@ -52,6 +56,7 @@
 
     {{
         form.select2({
+            'id': 'select2-5',
             'label': 'Required with guidance',
             'guidance': 'Help text to give more information about expected input',
             'required': true,
@@ -66,53 +71,57 @@
     {{ form.fieldset_start({ 'legend': 'Alignment' }) }}
 
     {{
-            form.select2({
-                'label': 'Select input with a longer than expected label which will probably wrap multple lines and push the following input onto the next baseline',
-                'name': 'inputSelectLong',
-                'placeholder': 'Placeholder',
-                'help': 'Example block-level help text here',
-                'guidance': 'Help text to give more information about expected input',
-                'options': {
-                    'value1': 'value one',
-                    'value2': 'value two'
-                }
-            })
-        }}
+        form.select2({
+            'id': 'select2-6',
+            'label': 'Select input with a longer than expected label which will probably wrap multple lines and push the following input onto the next baseline',
+            'name': 'inputSelectLong',
+            'placeholder': 'Placeholder',
+            'help': 'Example block-level help text here',
+            'guidance': 'Help text to give more information about expected input',
+            'options': {
+                'value1': 'value one',
+                'value2': 'value two'
+            }
+        })
+    }}
 
-        {{
-            form.select2({
-                'label': 'Select input with a longer than expected label but this time we use the form__group--top class to keep the label on a single line',
-                'class': 'form__group--top',
-                'name': 'inputSelectLong',
-                'placeholder': 'Placeholder',
-                'help': 'Example block-level help text here',
-                'guidance': 'Help text to give more information about expected input',
-                'options': {
-                    'value1': 'value one',
-                    'value2': 'value two'
-                }
-            })
-        }}
+    {{
+        form.select2({
+            'id': 'select2-7',
+            'label': 'Select input with a longer than expected label but this time we use the form__group--top class to keep the label on a single line',
+            'class': 'form__group--top',
+            'name': 'inputSelectLong',
+            'placeholder': 'Placeholder',
+            'help': 'Example block-level help text here',
+            'guidance': 'Help text to give more information about expected input',
+            'options': {
+                'value1': 'value one',
+                'value2': 'value two'
+            }
+        })
+    }}
 
-        {{
-            form.select2({
-                'label': 'The same as above, but this time we also add the .form__group--flush class to keep everything on the left edge',
-                'class': 'form__group--top form__group--flush',
-                'name': 'inputSelectLong',
-                'placeholder': 'Placeholder',
-                'help': 'Example block-level help text here',
-                'guidance': 'Help text to give more information about expected input',
-                'options': {
-                    'value1': 'value one',
-                    'value2': 'value two'
-                }
-            })
-        }}
+    {{
+        form.select2({
+            'id': 'select2-8',
+            'label': 'The same as above, but this time we also add the .form__group--flush class to keep everything on the left edge',
+            'class': 'form__group--top form__group--flush',
+            'name': 'inputSelectLong',
+            'placeholder': 'Placeholder',
+            'help': 'Example block-level help text here',
+            'guidance': 'Help text to give more information about expected input',
+            'options': {
+                'value1': 'value one',
+                'value2': 'value two'
+            }
+        })
+    }}
 
     {{ form.fieldset_start({ 'legend': 'Errors &amp; Validation' }) }}
 
     {{
         form.select2({
+            'id': 'select2-9',
             'label': 'Select field with error',
             'error': 'Please complete this field',
             'options': {
@@ -124,6 +133,7 @@
 
     {{
         form.select2({
+            'id': 'select2-10',
             'label': 'Select field with multiple errors',
             'error': ['Do this', 'Do this too'],
             'options': {
@@ -135,6 +145,7 @@
 
     {{
         form.select2({
+            'id': 'select2-11',
             'label': 'Select field with error and help',
             'error': 'Please complete this field',
             'help': 'Help text to give more information about expected input',
@@ -147,6 +158,7 @@
 
     {{
         form.select2({
+            'id': 'select2-12',
             'class': 'has-error',
             'label': 'Select field error with help only',
             'help': 'Help text to give more information about expected input',
@@ -162,6 +174,7 @@
 
     {{
         form.select2({
+            'id': 'select2-13',
             'label': '"class": "has-changed"',
             'class': 'has-changed',
             'help': 'Highlight whether an action elsewhere affects an input',
@@ -173,6 +186,7 @@
     }}
     {{
         form.select2({
+            'id': 'select2-14',
             'label': '"class": "has-success"',
             'class': 'has-success',
             'help': 'Something good happened',
@@ -185,6 +199,7 @@
 
     {{
         form.select2({
+            'id': 'select2-15',
             'label': '"class": "has-warning"',
             'class': 'has-warning',
             'help': 'Something bad happened',
@@ -196,6 +211,7 @@
     }}
     {{
         form.select2({
+            'id': 'select2-16',
             'label': '"class": "has-error"',
             'class': 'has-error',
             'help': 'Automatically added if using <code>error</code> option',
@@ -207,6 +223,7 @@
     }}
     {{
         form.select2({
+            'id': 'select2-17',
             'label': '"disabled": true',
             'disabled': true,
             'help': 'Stop! Can’t touch this',
@@ -222,8 +239,8 @@
 
     {{
         form.select2({
+            'id': 'select2-18',
             'label': 'Mini',
-            'id': 'inputSelectMini',
             'class': 'form__group--mini',
             'name': 'inputSelectMini',
             'options': {
@@ -235,8 +252,8 @@
 
     {{
         form.select2({
+            'id': 'select2-19',
             'label': 'Small',
-            'id': 'inputSelectSmall',
             'class': 'form__group--small',
             'name': 'inputSelectSmall',
             'options': {
@@ -248,8 +265,8 @@
 
     {{
         form.select2({
+            'id': 'select2-20',
             'label': 'Medium',
-            'id': 'inputSelectMedium',
             'class': 'form__group--medium',
             'name': 'inputSelectMedium',
             'options': {
@@ -261,8 +278,8 @@
 
     {{
         form.select2({
+            'id': 'select2-21',
             'label': 'Regular',
-            'id': 'inputSelectRegular',
             'name': 'inputSelectRegular',
             'options': {
                 'value1': 'value one',
@@ -273,8 +290,8 @@
 
     {{
         form.select2({
+            'id': 'select2-22',
             'label': 'Large',
-            'id': 'inputSelectLarge',
             'class': 'form__group--large',
             'name': 'inputSelectLarge',
             'options': {
@@ -286,8 +303,8 @@
 
     {{
         form.select2({
+            'id': 'select2-23',
             'label': 'Extra Large',
-            'id': 'inputSelectXLarge',
             'class': 'form__group--xlarge',
             'name': 'inputSelectXLarge',
             'options': {
@@ -299,8 +316,8 @@
 
     {{
         form.select2({
+            'id': 'select2-24',
             'label': 'Full',
-            'id': 'inputSelectFull',
             'class': 'form__group--full',
             'name': 'inputSelectFull',
             'options': {
@@ -315,6 +332,7 @@
 
     {{
         form.select2({
+            'id': 'select2-25',
             'label': 'Prepended',
             'prepend': '£',
             'options': {
@@ -326,6 +344,7 @@
 
     {{
         form.select2({
+            'id': 'select2-26',
             'label': 'Appended',
             'append': '.00',
             'options': {
@@ -337,6 +356,7 @@
 
     {{
         form.select2({
+            'id': 'select2-27',
             'label': 'Appended with guidance',
             'append': '.00',
             'guidance': 'Help text to give more information about expected input',
@@ -349,6 +369,7 @@
 
     {{
         form.select2({
+            'id': 'select2-28',
             'label': 'Prepended &amp; Appended',
             'append': '.00',
             'prepend': '£',
