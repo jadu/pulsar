@@ -63,8 +63,8 @@
             <table class="table datatable table--full">
                 <thead>
                     <tr>
-                        <th class="table-responsive"></th>
-                        <th class="table-selection"></th>
+                        <td class="table-responsive"></td>
+                        <td class="table-selection"></td>
                         <th>Label</th>
                         <th>Value</th>
                     </tr>
@@ -111,15 +111,15 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Default</th>
+                        <th id="default-label">Default</th>
                         <th>Label</th>
                         <th>Value</th>
-                        <th></th>
+                        <td></td>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="shrink-to-fit centered">{{ form.radio({ 'bare': true, 'name': 'foo' }) }}</td>
+                        <td class="shrink-to-fit centered">{{ form.radio({ 'bare': true, 'name': 'foo', 'aria-labelledby': 'default-label' }) }}</td>
                         <td>my_label</td>
                         <td>my_value</td>
                         <td class="centered">
@@ -128,7 +128,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="shrink-to-fit centered">{{ form.radio({ 'bare': true, 'name': 'foo' }) }}</td>
+                        <td class="shrink-to-fit centered">{{ form.radio({ 'bare': true, 'name': 'foo', 'aria-labelledby': 'default-label' }) }}</td>
                         <td>my_label</td>
                         <td>my_value</td>
                         <td class="centered">
@@ -137,7 +137,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="shrink-to-fit centered">{{ form.radio({ 'bare': true, 'name': 'foo' }) }}</td>
+                        <td class="shrink-to-fit centered">{{ form.radio({ 'bare': true, 'name': 'foo', 'aria-labelledby': 'default-label' }) }}</td>
                         <td>my_label</td>
                         <td>my_value</td>
                         <td class="centered">
@@ -157,6 +157,7 @@
                             {{
                                 form.text({
                                     'label': 'Label',
+                                    'id': 'choice-label',
                                     'help': 'The name of the choice, displayed to the user'
                                 })
                             }}
@@ -164,6 +165,7 @@
                             {{
                                 form.text({
                                     'label': 'Value',
+                                    'id': 'choice-value',
                                     'help': 'The data to save when this is selected'
                                 })
                             }}
