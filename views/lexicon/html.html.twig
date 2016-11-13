@@ -11,6 +11,8 @@
 
 {% set tab_buttons %}{% include 'lexicon/html/buttons.html.twig' %}{% endset %}
 {% set tab_link_buttons %}{% include 'lexicon/html/buttons-links.html.twig' %}{% endset %}
+{% set tab_badges %}{% include 'lexicon/html/badges.html.twig' %}{% endset %}
+{% set tab_labels %}{% include 'lexicon/html/labels.html.twig' %}{% endset %}
 
 {%
     set nav_data = {
@@ -68,6 +70,17 @@
           "id"    : "buttons-links",
           "label" : "Link Buttons",
           "src"   : tab_link_buttons
+        },
+        {
+          "id"    : "badges",
+          "label" : "Badges",
+          "src"   : tab_badges
+        },
+        {
+          "id"    : "labels",
+          "label" : "Labels",
+          "src"   : tab_labels,
+          "active": true
         }
     ]
 %}

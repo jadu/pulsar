@@ -73,10 +73,10 @@ a.list-group-item.active > .badge,
     %badge--#{$state} {
         background-color: $state-color;
         color: pick_best_color($state-color, (#fff, color(text))) !important;
-        text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
 
         &.badge--outline {
-            border-color: $state-color-alt;
+            border-color: $state-color;
+            color: $state-color !important;
         }
     }
 }
@@ -89,4 +89,11 @@ a.list-group-item.active > .badge,
 .badge--outline {
     background-color: inherit;
     border: 1px solid;
+
+    // Base warning colour does not meet AA when used as outline button, so
+    // we use the darker shade
+    &.badge--warning {
+        border-color: color(warning, dark);
+        color: color(warning, dark) !important;
+    }
 }
