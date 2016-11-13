@@ -455,28 +455,28 @@ body {
   	transform: translateY(0) scale(1);
   }
 
-  80% {
-  	transform: translateY(150%);
+  50% {
+  	transform: translateY(160%) scale(2);
   }
 
   100% {
-  	transform: translateY(150%) scale(20);
-  	-moz-transform: translateY(150%) scale(1);
+  	transform: translateY(160%) scale(1.5);
+  	-moz-transform: translateY(160%) scale(1);
   }
 }
 
-// Scale effect is disabled in Firefox because of horrible performance issues
-@keyframes success-container {
-  0% {
-  	transform: scale(1);
-  	-moz-transform: scale(1);
-  }
+// // Scale effect is disabled in Firefox because of horrible performance issues
+// @keyframes success-container {
+//   0% {
+//   	transform: scale(1);
+//   	-moz-transform: scale(1);
+//   }
 
-  100% {
-  	transform: scale(20);
-  	-moz-transform: scale(1);
-  }
-}
+//   100% {
+//   	transform: scale(2);
+//   	-moz-transform: scale(1);
+//   }
+// }
 
 @keyframes hint-wobble {
   0%, 50%, 100% {
