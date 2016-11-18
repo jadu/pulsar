@@ -8,7 +8,7 @@
         text-decoration: none;
     }
 
-    tbody > tr:hover > td {
+    tbody > tr:hover {
         background-color: color(background, light);
     }
 
@@ -44,6 +44,10 @@
     @each $state, $state-color, $state-color-alt in $state-colors {
         tr.has-#{$state} {
             background-color: color($state, light) !important;
+
+            &:hover {
+                background-color: darken(color($state, light), 2) !important;
+            }
         }
     }
 

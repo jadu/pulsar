@@ -77,7 +77,7 @@ $palette-states: (
     primary: (
         base:  #2575b0,
         alt:   pick_best_color(#2575b0, (#fff, #000)),
-        light: lighten(#2575b0, 30),
+        light: lighten(#2575b0, 45),
         dark:  darken(#2575b0, 5)
     ),
     success: (
