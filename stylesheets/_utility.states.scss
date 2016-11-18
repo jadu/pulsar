@@ -10,8 +10,6 @@ $danger-to-text-color: black;
 
 .warning:not(.form__group) {
     background: rgba(255, 137, 9, .8) !important;
-    color: darken(rgb(255, 137, 9), 30%) !important;
-    text-shadow: none;
 
     @include ie-lte(8) {
         background: rgb(255, 137, 9) !important;
@@ -34,8 +32,8 @@ $danger-to-text-color: black;
 
     &.fade {
         animation-name: fade-out;
-        animation-delay: 5s;
-        animation-duration: 2s;
+        animation-delay: 2s;
+        animation-duration: 1s;
         animation-fill-mode: forwards;
     }
 }
@@ -57,12 +55,10 @@ $danger-to-text-color: black;
 
 .has-success:not(.form__group) {
     background-color: lighten(color(success), 35) !important;
-    color: darken(color(success), 15) !important;
 }
 
 .has-warning:not(.form__group) {
     background-color: lighten(color(warning), 15) !important;
-    color: darken(color(warning), 30) !important;
 }
 
 @keyframes fade-out {
