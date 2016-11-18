@@ -23,7 +23,7 @@
 
  --><div class="nav-secondary t-nav-secondary">
 
-        <a href="#close" class="nav-close" data-nav-action="close">{{ html.icon('remove') }}</a>
+        <a href="#close" class="nav-close" data-nav-action="close">{{ html.icon('remove', { 'label': 'Close' }) }}</a>
 
         {% if options.data is iterable %}
             {% for options in options.data %}

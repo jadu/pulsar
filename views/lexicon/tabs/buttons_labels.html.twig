@@ -337,10 +337,26 @@
         {{
             html.button_group({
                 buttons: [
-                    html.button({ label: html.icon('align-left') }),
-                    html.button({ label: html.icon('align-center') }),
-                    html.button({ label: html.icon('align-right') }),
-                    html.button({ label: html.icon('align-justify') })
+                    html.button({
+                        label: html.icon('align-left', {
+                            'label': 'Align left'
+                        })
+                    }),
+                    html.button({
+                        label: html.icon('align-center', {
+                            'label': 'Align center'
+                        })
+                    }),
+                    html.button({
+                        label: html.icon('align-right', {
+                            'label': 'Align right'
+                        })
+                    }),
+                    html.button({
+                        label: html.icon('align-justify', {
+                            'label': 'Align justify'
+                        })
+                     })
                 ]
             })
         }}

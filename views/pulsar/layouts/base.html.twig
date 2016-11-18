@@ -8,11 +8,10 @@
 {% set libsPath = base_path ~ 'libs/' %}
 {# set themeFile = cssPath ~ 'themes/slate.css' #}
 <!DOCTYPE html>
-<!--[if IE 7]>         <html class="no-js ie7 lt-ie10 lt-ie8"><![endif]-->
-<!--[if IE 8]>         <html class="no-js ie8 lt-ie10 lt-ie9"><![endif]-->
-<!--[if IE 9]>         <html class="no-js ie9 lt-ie10"><![endif]-->
-<!--[if gt IE 9]><!--> <html class="no-js"><!--<![endif]-->
-<html class="no-js">
+<!--[if IE 7]>         <html lang="en" class="no-js ie7 lt-ie10 lt-ie8"><![endif]-->
+<!--[if IE 8]>         <html lang="en" class="no-js ie8 lt-ie10 lt-ie9"><![endif]-->
+<!--[if IE 9]>         <html lang="en" class="no-js ie9 lt-ie10"><![endif]-->
+<!--[if gt IE 9]><!--> <html lang="en" class="no-js"><!--<![endif]-->
 <head>
     <title>{% block title %}Pulsar Lexicon{% endblock %}</title>
     <meta charset="utf-8">
@@ -113,8 +112,8 @@
 
             {% block search %}
             <form action="/search" class="main-search" data-ui="search-box">
-                <input type="search" name="q" id="case-search" value="" placeholder="Search" class="main-search__field" autocomplete="off">
-                <button class="main-search__submit" type="submit" name="case-search"><i class="icon-search"></i></button>
+                <input type="search" name="q" id="case-search" value="" placeholder="Search" title="search" class="main-search__field" autocomplete="off" aria-labelledby="search-submit">
+                <button id="search-submit" class="main-search__submit" type="submit" name="case-search"><i class="icon-search"><span class="hide">Search</span></i></button>
             </form>
             {% endblock %}
 
@@ -134,7 +133,7 @@
     <footer class="footer">
         {{
             html.link({
-                'label': html.icon('circle-arrow-up'),
+                'label': html.icon('circle-arrow-up', { 'label': 'Back to top' }),
                 'href': '#top'
             })
         }}
