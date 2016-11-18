@@ -34,8 +34,15 @@
         }
     }
 
+    tr.fade {
+        animation-name: fade-row-to-white !important;
+        animation-delay: 1s;
+        animation-duration: .5s;
+        animation-fill-mode: forwards;
+    }
+
     @each $state, $state-color, $state-color-alt in $state-colors {
-        tr.has-#{$state} > td {
+        tr.has-#{$state} {
             background-color: color($state, light) !important;
         }
     }
@@ -184,4 +191,14 @@ td.table__form {
 
 .datagrid--fixed {
     @extend .table--fixed;
+}
+
+@keyframes fade-row-to-white {
+    from {
+        background-color: inherit;
+    }
+
+    to {
+        background-color: #fff;
+    }
 }
