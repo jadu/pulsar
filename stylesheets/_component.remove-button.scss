@@ -22,6 +22,16 @@
     }
 }
 
+.remove-button--inverse {
+    [class^="icon-"] {
+        color: color(white);
+    }
+
+    &:hover [class^="icon-"] {
+        color: color(gray, off-white);
+    }
+}
+
 a + .remove-button {
     margin-left: 10px;
 }

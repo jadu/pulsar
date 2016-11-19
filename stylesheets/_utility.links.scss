@@ -1,0 +1,25 @@
+a {
+    color: color(link);
+    cursor: pointer;
+    text-decoration: underline;
+
+    &:hover {
+        color: color(link, hover);
+    }
+}
+
+a.disabled,
+a.disabled:hover {
+    cursor: not-allowed !important;
+    opacity: .5;
+}
+
+@each $state, $state-color, $state-color-alt in $state-colors {
+    .link--#{$state} {
+        color: $state-color-alt;
+    }
+
+    .link--#{$state}:hover {
+        color: darken($state-color-alt, 5);
+    }
+}

@@ -12,7 +12,13 @@
         </a><!--
 
      --><ul class="nav-items">
-
+            {{
+                nav.nav_item({
+                    'label': 'Quick Start',
+                    'href': '#quickstart',
+                    'icon': 'plus-sign'
+                })
+            }}
             {% if options.data is iterable %}
                 {% for label, options in options.data %}
                     {{ nav.nav_item(options) }}
@@ -21,7 +27,7 @@
         </ul>
      </div><!--
 
- --><div class="nav-secondary t-nav-secondary">
+ --><div class="nav-secondary t-nav-secondary" data-ui="nav-container">
 
         <a href="#close" class="nav-close" data-nav-action="close">{{ html.icon('remove', { 'label': 'Close' }) }}</a>
 
@@ -49,6 +55,77 @@
             {% endfor %}
         {% endif %}
 
+    </div>
+
+    <div class="nav-quickstart t-nav-secondary" data-nav="#quickstart" data-ui="nav-container">
+        <a href="#close" class="nav-close" data-nav-action="close">{{ html.icon('remove') }}</a>
+        <div class="nav-list quickstart__main" data-nav="#quickstart-main">
+            <span class="nav-item nav-item--header t-nav-header">Create New
+                {{ html.link({ 'label': 'Manage', 'class': 'link--inverse small-type muted pull-right', 'data-nav-action': 'quickstart-manage' }) }}
+                {{ html.link({ 'label': 'Save', 'class': 'btn btn--small btn--outline btn--white pull-right visually-hidden', 'data-nav-action': 'quickstart-save' }) }}
+                <span class="visually-hidden small-type muted" data-ui="quickstart-hint">{{ html.icon('arrows-v') }} Drag items to reorder</span>
+            </span>
+            <ul class="nav-items">
+                <li class="nav-item">
+                    <a href="#" class="nav-link t-nav-link">
+                        {{ html.icon('file-o', {'class': 'quickstart-icon'}) }} Document
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link t-nav-link">
+                        {{ html.icon('newspaper-o', {'class': 'quickstart-icon'}) }} News Item
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link t-nav-link">
+                        {{ html.icon('calendar-o', {'class': 'quickstart-icon'}) }} Event
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link t-nav-link">
+                        {{ html.icon('check-square-o', {'class': 'quickstart-icon'}) }} Form
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link t-nav-link">
+                        {{ html.icon('columns', {'class': 'quickstart-icon'}) }} Homepage
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="nav-list quickstart__additional hide" data-nav="#quickstart-additional">
+            <span class="nav-item nav-item--header t-nav-header">Available Links
+                <span class="visually-hidden small-type muted" data-ui="quickstart-hint">{{ html.icon('long-arrow-left') }} Drag into your quick start list</span>
+            </span>
+            <ul class="nav-items">
+                <li class="nav-item">
+                    <a href="#" class="nav-link t-nav-link">
+                        {{ html.icon('cloud-download', {'class': 'quickstart-icon'}) }} Download
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link t-nav-link">
+                        {{ html.icon('archive', {'class': 'quickstart-icon'}) }} Directory
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link t-nav-link">
+                        {{ html.icon('question', {'class': 'quickstart-icon'}) }} FAQ
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link t-nav-link">
+                        {{ html.icon('bullhorn', {'class': 'quickstart-icon'}) }} Press Release
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link t-nav-link">
+                        {{ html.icon('link', {'class': 'quickstart-icon'}) }} Friendly URL
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>
 

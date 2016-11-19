@@ -1,5 +1,7 @@
 $nav-color-light: color(jadu-blue, dark) !default;
 $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
+$nav-color-muted: lighten($nav-color-dark, 40);
+$nav-border-radius: 8px;
 
 .nav-main {
     -webkit-backface-visibility: hidden;
@@ -28,10 +30,15 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
     .lt-ie10 & {
         left: -($nav-primary-width);
     }
+
+    .muted {
+        color: $nav-color-muted;
+    }
 }
 
 .nav-primary,
-.nav-secondary {
+.nav-secondary,
+.nav-quickstart {
     display: inline-block;
     margin: 0;
     height: 100%;
@@ -204,6 +211,11 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
 
 .nav-item {
     list-style-type: none;
+
+    .remove-button {
+        line-height: 36px;
+        float: right;
+    }
 }
 
 .nav-divider {
@@ -295,13 +307,13 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
     }
 }
 
-.nav-secondary {
+.nav-secondary,
+.nav-quickstart {
     background-color: $nav-color-dark;
     box-shadow: inset -4px 0 0 darken($nav-color-dark, 4);
     left: $nav-primary-width;
     margin-left: -320px;
-    overflow-x: hidden;
-    overflow-y: auto;
+    overflow: hidden;
     position: absolute;
     top: 0;
     transition: margin-left 100ms ease-in-out;
@@ -327,8 +339,8 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
     }
 
     .nav-link {
-        border-top-right-radius: 8px;
-        border-bottom-left-radius: 8px;
+        border-top-right-radius: $nav-border-radius;
+        border-bottom-left-radius: $nav-border-radius;
 
         &:hover {
             background-color: darken($nav-color-dark, 4%);
@@ -340,6 +352,10 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
             color: $nav-color-dark;
         }
     }
+}
+
+.nav-tertiary {
+    left: 640px;
 }
 
 .nav-remove-search {
@@ -356,7 +372,8 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
     }
 }
 
-.is-open .nav-secondary {
+.nav-secondary.is-open,
+.nav-quickstart.is-open {
     margin-left: 0;
 }
 
@@ -455,3 +472,119 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
     display: table-cell;
     height: 100%;
 }
+
+// Quickstart menu
+.quickstart-icon {
+    background-color: color(white);
+    border-radius: 20px;
+    color: $nav-color-dark;
+    height: 36px;
+    line-height: 36px;
+    margin-right: 10px;
+    text-align: center;
+    width: 36px;
+}
+
+.nav-quickstart {
+    width: 245px;
+    -webkit-font-smoothing: subpixel-antialiased;
+
+    .nav-list {
+        float: left;
+        width: 245px;
+        display: table-cell;
+        margin: 0;
+        padding: 0 $gutter-width;
+        user-select: none;
+        height: 100%;
+    }
+
+    .nav-items {
+        list-style-type: none;
+        margin: 0 -10px;
+    }
+
+    .nav-item {
+        background-clip: content-box;
+        -webkit-font-smoothing: subpixel-antialiased;
+    }
+
+    .is-sortable {
+        @extend .sortable--unstyled;
+        min-height: 400px;
+
+        .nav-link {
+            border-radius: 0;
+            cursor: move;
+            cursor: grab;
+            cursor: -moz-grab;
+            cursor: -webkit-grab;
+            transition-duration: .25s;
+            transition-property: box-shadow, background-color;
+
+            &:active {
+                background-color: $nav-color-light;
+                box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+                color: color(white);
+                cursor: move;
+                cursor: grabbing;
+                cursor: -moz-grabbing;
+                cursor: -webkit-grabbing;
+            }
+        }
+
+        .ui-sortable-handle {
+            background-color: rgba(255, 255, 255, .1);
+            border-bottom: 2px dashed rgba(255, 255, 255, .1);
+
+            &:hover {
+                border-bottom: 2px solid transparent;
+                transform: rotate(2deg);
+            }
+
+            &:last-child {
+                border-bottom: 0;
+            }
+        }
+
+        .ui-sortable-handle,
+        .ui-sortable-helper {
+            transition-duration: .25s;
+            transition-property: transform;
+        }
+
+
+        > .is-sorting,
+        > .is-dragging, {
+            background-color: $nav-color-light;
+            height: 48px;
+        }
+
+        > .is-sorting {
+            border: 2px dashed $nav-color-muted;
+            height: 50px; // 48px + 2px border, prevents elements 'jumping'
+            margin-bottom: 0;
+        }
+
+        > .is-dragging {
+            box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+            transform: rotate(5deg);
+
+            .nav-link {
+                cursor: move;
+                cursor: grabbing;
+                cursor: -moz-grabbing;
+                cursor: -webkit-grabbing;
+            }
+        }
+    }
+}
+
+.quickstart__additional {
+    box-shadow: inset 1px 0 0 darken($nav-color-dark, 7), -1px 0 0 lighten($nav-color-dark, 7);
+
+    .remove-button {
+        display: none;
+    }
+}
+
