@@ -8,10 +8,11 @@
 
 .progress-list__item {
     background-color: $progress-bg;
+    border-right: 3px solid color(white);
     box-shadow: inset 2px 1px 2px rgba(0, 0, 0, .1);
     color: color(black);
     display: table-cell;
-    padding: .75em 0;
+    padding: .75em 0 .75em 40px;
     text-decoration: none;
 
     &:not(:last-child) {
@@ -27,6 +28,7 @@
     &:first-child {
         border-top-left-radius: $border-radius;
         border-bottom-left-radius: $border-radius;
+        padding-left: 15px;
     }
 
     &:last-child {
@@ -52,8 +54,9 @@
 
 
 .progress-list__label {
+    @include word-break-all;
+
     display: inline;
-    padding-left: 40px;
     position: relative;
     text-align: left;
     z-index: 2;
@@ -66,10 +69,6 @@
         @include respond-min($screen-desktop) {
             display: inline-block;
         }
-    }
-
-    .progress-list__item:first-child & {
-        padding-left: 15px;
     }
 }
 
