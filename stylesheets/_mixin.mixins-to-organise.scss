@@ -43,6 +43,17 @@
     white-space: nowrap;
 }
 
+@mixin word-break-all() {
+    // Warning: Needed for oldIE support, but words are broken up letter-by-letter
+    word-break: break-all;
+
+    // Non standard for webkit
+    word-break: break-word;
+
+    // Fancy locale-aware hyphenation
+    hyphens: auto;
+}
+
 // Single side border-radius
 @mixin border-top-radius($radius) {
     border-top-right-radius: $radius;

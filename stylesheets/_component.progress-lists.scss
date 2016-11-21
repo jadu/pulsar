@@ -8,11 +8,13 @@
 
 .progress-list__item {
     background-color: $progress-bg;
+    border-right: 3px solid color(white);
     box-shadow: inset 2px 1px 2px rgba(0, 0, 0, .1);
     color: color(black);
     display: table-cell;
-    padding: .75em 0;
+    padding: .75em 0 .75em 40px;
     text-decoration: none;
+    vertical-align: top;
 
     &:not(:last-child) {
         @include css-arrow(23px, right, $progress-bg);
@@ -27,6 +29,7 @@
     &:first-child {
         border-top-left-radius: $border-radius;
         border-bottom-left-radius: $border-radius;
+        padding-left: 15px;
     }
 
     &:last-child {
@@ -52,12 +55,13 @@
 
 
 .progress-list__label {
-    display: inline;
-    padding-left: 40px;
+    @include word-break-all;
+
+    display: inline-block;
     position: relative;
     text-align: left;
-    z-index: 2;
     width: 100%;
+    z-index: 2;
 
     .badge {
         display: none;
@@ -66,10 +70,6 @@
         @include respond-min($screen-desktop) {
             display: inline-block;
         }
-    }
-
-    .progress-list__item:first-child & {
-        padding-left: 15px;
     }
 }
 
@@ -84,6 +84,10 @@
     background-color: color(success);
     box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
     color: color(success, alt);
+
+    .badge {
+        color: color(white) !important;
+    }
 
     &:not(:last-child)::after {
         border-left-color: color(success);
@@ -104,6 +108,10 @@
     background-color: color(primary);
     box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
     color: color(primary, alt);
+
+    .badge {
+        color: color(white) !important;
+    }
 
     &:not(:last-child)::after {
         border-left-color: color(primary);
