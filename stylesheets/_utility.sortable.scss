@@ -1,4 +1,13 @@
-.is-sortable {
+@mixin sortable-handle {
+    content: '\f0c9';
+    color: color(text, light);
+    font-family: fontawesome;
+    position: absolute;
+    left: 20px;
+    top: 10px;
+}
+
+div.is-sortable {
     .ui-sortable-handle {
         background-color: color(background, light);
         margin-bottom: 4px;
@@ -15,19 +24,11 @@
 
         &,
         .control__label {
-            cursor: move; /* fallback if grab cursor is unsupported */
-            cursor: grab;
-            cursor: -moz-grab;
-            cursor: -webkit-grab;
+            @include cursor('grab');
         }
 
         &::before {
-            content: '\f0c9';
-            color: color(text, light);
-            font-family: fontawesome;
-            position: absolute;
-            left: 20px;
-            top: 10px;
+            @include sortable-handle;
         }
 
         &.form__group::before {
@@ -40,7 +41,7 @@
     }
 }
 
-.is-sorting {
+div.is-sorting {
     background-color: color(sorting);
     border: 1px dashed color(sorting, dark);
     border-radius: 5px;
@@ -50,6 +51,37 @@
 
     &::before {
         display: none;
+    }
+}
+
+
+.table.is-sortable {
+    tr > th:first-of-type,
+    tr > td:first-of-type {
+        padding-left: 50px;
+    }
+
+    .ui-sortable-handle > td:first-of-type {
+        @include cursor('grab');
+        position: relative;
+
+        &::before {
+            @include sortable-handle;
+        }
+
+        &:hover {
+            &::before {
+                color: color(jadu-blue);
+            }
+        }
+    }
+
+    .ui-sortable-helper {
+        display: table;
+    }
+
+    .is-sorting {
+        background-color: color(sorting);
     }
 }
 

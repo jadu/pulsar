@@ -245,3 +245,12 @@ $is-ie: false !default;
         }
     }
 }
+
+@mixin cursor($cursor) {
+    @if $cursor == 'grab' {
+        cursor: move; /* fallback if grab cursor is unsupported */
+        cursor: grab;
+        cursor: -moz-grab;
+        cursor: -webkit-grab;
+    }
+}

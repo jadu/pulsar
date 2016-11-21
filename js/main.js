@@ -54,9 +54,25 @@
             }
         });
 
-        $('.is-sortable').sortable({
+        $('div.is-sortable').sortable({
              placeholder: "form__group is-sorting",
              helper: "clone",
+             opacity: 0.9,
+             start: function(e, ui) {
+                $(ui.helper).addClass('is-dragging');
+            }
+        }).disableSelection();
+
+        var fixHelper = function(e, ui) {
+            ui.children().each(function() {
+                $(this).width($(this).width());
+            });
+            return ui;
+        };
+
+        $('.table.is-sortable tbody').sortable({
+             placeholder: "is-sorting",
+             helper: fixHelper,
              opacity: 0.9,
              start: function(e, ui) {
                 $(ui.helper).addClass('is-dragging');
