@@ -110,7 +110,11 @@ $btn-small-padding-x:       $btn-padding-x / 2.5;
     > .badge {
         background-color: color($state, dark);
         color: pick_best_color(color($state, dark), (#fff, color(gray, dark))) !important;
-        text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
+
+        &.badge--outline {
+            background-color: transparent;
+            color: inherit !important;
+        }
     }
 
     &.btn--naked {

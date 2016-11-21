@@ -85,7 +85,8 @@
         }
     }
 
-    th {
+    th,
+    thead td {
         border-top: 1px solid color(border);
         border-bottom: 2px solid color(border);
         font-family: $font-family-regular;

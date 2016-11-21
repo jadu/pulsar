@@ -1,0 +1,544 @@
+{% extends '@pulsar/pulsar/components/tab.html.twig' %}
+
+{% block tab_content %}
+    <style>
+        .table td.cell--inverse,
+        .table td.cell--inverse:hover {
+            background-color: #2d86b3 !important;
+        }
+    </style>
+
+    <h2>Badges</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <td></td>
+                <th>Default</th>
+                <th>Primary</th>
+                <th>Success</th>
+                <th>Warning</th>
+                <th>Danger</th>
+                <th>Inverse</th>
+                <th>White</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Default</td>
+                <td class="centered">
+                    {{
+                        html.badge({
+                            'label': '123'
+                        })
+                    }}
+                </td>
+                <td class="centered">
+                    {{
+                        html.badge({
+                            'label': '123',
+                            'class': 'badge--primary'
+                        })
+                    }}
+                </td>
+                <td class="centered">
+                    {{
+                        html.badge({
+                            'label': '123',
+                            'class': 'badge--success'
+                        })
+                    }}
+                </td>
+                <td class="centered">
+                    {{
+                        html.badge({
+                            'label': '123',
+                            'class': 'badge--warning'
+                        })
+                    }}
+                </td>
+                <td class="centered">
+                    {{
+                        html.badge({
+                            'label': '123',
+                            'class': 'badge--danger'
+                        })
+                    }}
+                </td>
+                <td class="centered">
+                    {{
+                        html.badge({
+                            'label': '123',
+                            'class': 'badge--inverse'
+                        })
+                    }}
+                </td>
+                <td class="centered cell--inverse">
+                    {{
+                        html.badge({
+                            'label': '123',
+                            'class': 'badge--white'
+                        })
+                    }}
+                </td>
+            </tr>
+
+            <tr>
+                <td>Outline</td>
+                <td class="centered">
+                    {{
+                        html.badge({
+                            'label': '123',
+                            'class': 'badge--outline'
+                        })
+                    }}
+                </td>
+                <td class="centered">
+                    {{
+                        html.badge({
+                            'label': '123',
+                            'class': 'badge--outline badge--primary'
+                        })
+                    }}
+                </td>
+                <td class="centered">
+                    {{
+                        html.badge({
+                            'label': '123',
+                            'class': 'badge--outline badge--success'
+                        })
+                    }}
+                </td>
+                <td class="centered">
+                    {{
+                        html.badge({
+                            'label': '123',
+                            'class': 'badge--outline badge--warning'
+                        })
+                    }}
+                </td>
+                <td class="centered">
+                    {{
+                        html.badge({
+                            'label': '123',
+                            'class': 'badge--outline badge--danger'
+                        })
+                    }}
+                </td>
+                <td class="centered">
+                    {{
+                        html.badge({
+                            'label': '123',
+                            'class': 'badge--outline badge--inverse'
+                        })
+                    }}
+                </td>
+                <td class="centered cell--inverse">
+                    {{
+                        html.badge({
+                            'label': '123',
+                            'class': 'badge--outline badge--white'
+                        })
+                    }}
+                </td>
+            </tr>
+
+            <tr>
+                <td>normal button / normal badge</td>
+                <td class="centered">
+                    {{
+                        html.button({
+                            'label': 'Foo ' ~ html.badge({
+                                'label': '123'
+                            })
+                        })
+                    }}
+                </td>
+                <td class="centered">
+                    {{
+                        html.button({
+                            'class': 'btn--primary',
+                            'label': 'Foo ' ~ html.badge({
+                                'label': '123'
+                            })
+                        })
+                    }}
+                </td>
+                <td class="centered">
+                    {{
+                        html.button({
+                            'class': 'btn--success',
+                            'label': 'Foo ' ~ html.badge({
+                                'label': '123'
+                            })
+                        })
+                    }}
+                </td>
+                <td class="centered">
+                    {{
+                        html.button({
+                            'class': 'btn--warning',
+                            'label': 'Foo ' ~ html.badge({
+                                'label': '123'
+                            })
+                        })
+                    }}
+                </td>
+                <td class="centered">
+                    {{
+                        html.button({
+                            'class': 'btn--danger',
+                            'label': 'Foo ' ~ html.badge({
+                                'label': '123'
+                            })
+                        })
+                    }}
+                </td>
+                <td class="centered">
+                    {{
+                        html.button({
+                            'class': 'btn--inverse',
+                            'label': 'Foo ' ~ html.badge({
+                                'label': '123'
+                            })
+                        })
+                    }}
+                </td>
+                <td class="centered cell--inverse">
+                    {{
+                        html.button({
+                            'class': 'btn--white',
+                            'label': 'Foo ' ~ html.badge({
+                                'label': '123'
+                            })
+                        })
+                    }}
+                </td>
+            </tr>
+
+            <tr>
+                <td>disabled button / normal badge</td>
+                <td class="centered">
+                    {{
+                        html.button({
+                            'class': 'is-disabled',
+                            'label': 'Foo ' ~ html.badge({
+                                'label': '123'
+                            })
+                        })
+                    }}
+                </td>
+                <td class="centered">
+                    {{
+                        html.button({
+                            'class': 'is-disabled btn--primary',
+                            'label': 'Foo ' ~ html.badge({
+                                'label': '123'
+                            })
+                        })
+                    }}
+                </td>
+                <td class="centered">
+                    {{
+                        html.button({
+                            'class': 'is-disabled btn--success',
+                            'label': 'Foo ' ~ html.badge({
+                                'label': '123'
+                            })
+                        })
+                    }}
+                </td>
+                <td class="centered">
+                    {{
+                        html.button({
+                            'class': 'is-disabled btn--warning',
+                            'label': 'Foo ' ~ html.badge({
+                                'label': '123'
+                            })
+                        })
+                    }}
+                </td>
+                <td class="centered">
+                    {{
+                        html.button({
+                            'class': 'is-disabled btn--danger',
+                            'label': 'Foo ' ~ html.badge({
+                                'label': '123'
+                            })
+                        })
+                    }}
+                </td>
+                <td class="centered">
+                    {{
+                        html.button({
+                            'class': 'is-disabled btn--inverse',
+                            'label': 'Foo ' ~ html.badge({
+                                'label': '123'
+                            })
+                        })
+                    }}
+                </td>
+                <td class="centered cell--inverse">
+                    {{
+                        html.button({
+                            'class': 'is-disabled btn--white',
+                            'label': 'Foo ' ~ html.badge({
+                                'label': '123'
+                            })
+                        })
+                    }}
+                </td>
+            </tr>
+
+            <tr>
+                <td>normal button / outline badge</td>
+                <td class="centered">
+                    {{
+                        html.button({
+                            'label': 'Foo ' ~ html.badge({
+                                'class': 'badge--outline',
+                                'label': '123'
+                            })
+                        })
+                    }}
+                </td>
+                <td class="centered">
+                    {{
+                        html.button({
+                            'class': 'btn--primary',
+                            'label': 'Foo ' ~ html.badge({
+                                'class': 'badge--outline',
+                                'label': '123'
+                            })
+                        })
+                    }}
+                </td>
+                <td class="centered">
+                    {{
+                        html.button({
+                            'class': 'btn--success',
+                            'label': 'Foo ' ~ html.badge({
+                                'class': 'badge--outline',
+                                'label': '123'
+                            })
+                        })
+                    }}
+                </td>
+                <td class="centered">
+                    {{
+                        html.button({
+                            'class': 'btn--warning',
+                            'label': 'Foo ' ~ html.badge({
+                                'class': 'badge--outline',
+                                'label': '123'
+                            })
+                        })
+                    }}
+                </td>
+                <td class="centered">
+                    {{
+                        html.button({
+                            'class': 'btn--danger',
+                            'label': 'Foo ' ~ html.badge({
+                                'class': 'badge--outline',
+                                'label': '123'
+                            })
+                        })
+                    }}
+                </td>
+                <td class="centered">
+                    {{
+                        html.button({
+                            'class': 'btn--inverse',
+                            'label': 'Foo ' ~ html.badge({
+                                'class': 'badge--outline',
+                                'label': '123'
+                            })
+                        })
+                    }}
+                </td>
+                <td class="centered cell--inverse">
+                    {{
+                        html.button({
+                            'class': 'btn--white',
+                            'label': 'Foo ' ~ html.badge({
+                                'class': 'badge--outline',
+                                'label': '123'
+                            })
+                        })
+                    }}
+                </td>
+            </tr>
+
+            <tr>
+                <td>outline button / normal badge</td>
+                <td class="centered">
+                    {{
+                        html.button({
+                            'class': 'btn--outline',
+                            'label': 'Foo ' ~ html.badge({
+                                'label': '123'
+                            })
+                        })
+                    }}
+                </td>
+                <td class="centered">
+                    {{
+                        html.button({
+                            'class': 'btn--outline btn--primary',
+                            'label': 'Foo ' ~ html.badge({
+                                'label': '123'
+                            })
+                        })
+                    }}
+                </td>
+                <td class="centered">
+                    {{
+                        html.button({
+                            'class': 'btn--outline btn--success',
+                            'label': 'Foo ' ~ html.badge({
+                                'label': '123'
+                            })
+                        })
+                    }}
+                </td>
+                <td class="centered">
+                    {{
+                        html.button({
+                            'class': 'btn--outline btn--warning',
+                            'label': 'Foo ' ~ html.badge({
+                                'label': '123'
+                            })
+                        })
+                    }}
+                </td>
+                <td class="centered">
+                    {{
+                        html.button({
+                            'class': 'btn--outline btn--danger',
+                            'label': 'Foo ' ~ html.badge({
+                                'label': '123'
+                            })
+                        })
+                    }}
+                </td>
+                <td class="centered">
+                    {{
+                        html.button({
+                            'class': 'btn--outline btn--inverse',
+                            'label': 'Foo ' ~ html.badge({
+                                'label': '123'
+                            })
+                        })
+                    }}
+                </td>
+                <td class="centered cell--inverse">
+                    {{
+                        html.button({
+                            'class': 'btn--outline btn--white',
+                            'label': 'Foo ' ~ html.badge({
+                                'label': '123'
+                            })
+                        })
+                    }}
+                </td>
+            </tr>
+
+            <tr>
+                <td>outline button / outline badge</td>
+                <td class="centered">
+                    {{
+                        html.button({
+                            'class': 'btn--outline',
+                            'label': 'Foo ' ~ html.badge({
+                                'class': 'badge--outline',
+                                'label': '123'
+                            })
+                        })
+                    }}
+                </td>
+                <td class="centered">
+                    {{
+                        html.button({
+                            'class': 'btn--outline btn--primary',
+                            'label': 'Foo ' ~ html.badge({
+                                'class': 'badge--outline',
+                                'label': '123'
+                            })
+                        })
+                    }}
+                </td>
+                <td class="centered">
+                    {{
+                        html.button({
+                            'class': 'btn--outline btn--success',
+                            'label': 'Foo ' ~ html.badge({
+                                'class': 'badge--outline',
+                                'label': '123'
+                            })
+                        })
+                    }}
+                </td>
+                <td class="centered">
+                    {{
+                        html.button({
+                            'class': 'btn--outline btn--warning',
+                            'label': 'Foo ' ~ html.badge({
+                                'class': 'badge--outline',
+                                'label': '123'
+                            })
+                        })
+                    }}
+                </td>
+                <td class="centered">
+                    {{
+                        html.button({
+                            'class': 'btn--outline btn--danger',
+                            'label': 'Foo ' ~ html.badge({
+                                'class': 'badge--outline',
+                                'label': '123'
+                            })
+                        })
+                    }}
+                </td>
+                <td class="centered">
+                    {{
+                        html.button({
+                            'class': 'btn--outline btn--inverse',
+                            'label': 'Foo ' ~ html.badge({
+                                'class': 'badge--outline',
+                                'label': '123'
+                            })
+                        })
+                    }}
+                </td>
+                <td class="centered cell--inverse">
+                    {{
+                        html.button({
+                            'class': 'btn--outline btn--white',
+                            'label': 'Foo ' ~ html.badge({
+                                'class': 'badge--outline',
+                                'label': '123'
+                            })
+                        })
+                    }}
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+{% endblock tab_content %}
+
+{% block tab_sidebar %}
+    <a href="https://jadu.gitbooks.io/pulsar/content/text.html">
+        <img src="../../../images/cover.png" alt="Pulsar documentation front cover" width="157px" />
+    </a>
+    <br />
+    {{
+        html.button({
+            'label': 'View Documentation',
+            'type': 'link',
+            'href': 'https://jadu.gitbooks.io/pulsar/content/text.html'
+        })
+    }}
+{% endblock tab_sidebar %}

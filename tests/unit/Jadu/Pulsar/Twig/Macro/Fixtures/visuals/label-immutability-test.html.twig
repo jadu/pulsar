@@ -1,0 +1,280 @@
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
+{% block body %}
+<h3>Normal</h3>
+text {{
+    html.label({
+        label: '1'
+    })
+}}
+{{
+    html.label({
+        label: '2', class: 'label--primary'
+    })
+}}
+{{
+    html.label({
+        label: '3', class: 'label--success'
+    })
+}}
+{{
+    html.label({
+        label: '4', class: 'label--warning'
+    })
+}}
+{{
+    html.label({
+        label: '5', class: 'label--danger'
+    })
+}}
+{{
+    html.label({
+        label: '6', class: 'label--info'
+    })
+}}
+{{
+    html.label({
+        label: '7', class: 'label--inverse'
+    })
+}}
+
+<hr />
+
+<h3>Test ignore muted</h3>
+
+<p class="muted">
+text {{
+    html.label({
+        label: '1'
+    })
+}}
+{{
+    html.label({
+        label: '2', class: 'label--primary'
+    })
+}}
+{{
+    html.label({
+        label: '3', class: 'label--success'
+    })
+}}
+{{
+    html.label({
+        label: '4', class: 'label--warning'
+    })
+}}
+{{
+    html.label({
+        label: '5', class: 'label--danger'
+    })
+}}
+{{
+    html.label({
+        label: '6', class: 'label--info'
+    })
+}}
+{{
+    html.label({
+        label: '7', class: 'label--inverse'
+    })
+}}
+</p>
+
+<hr>
+
+<h3>Test ignore inherited test colour</h3>
+
+<p style="color: red;">
+text {{
+    html.label({
+        label: '1'
+    })
+}}
+{{
+    html.label({
+        label: '2', class: 'label--primary'
+    })
+}}
+{{
+    html.label({
+        label: '3', class: 'label--success'
+    })
+}}
+{{
+    html.label({
+        label: '4', class: 'label--warning'
+    })
+}}
+{{
+    html.label({
+        label: '5', class: 'label--danger'
+    })
+}}
+{{
+    html.label({
+        label: '6', class: 'label--info'
+    })
+}}
+{{
+    html.label({
+        label: '7', class: 'label--inverse'
+    })
+}}
+</p>
+
+<hr />
+
+<h3>Test labels inside buttons</h3>
+
+<div class="btn__toolbar">
+    text {{
+        html.button({
+            'label': html.label({ 'label': '123' })
+        })
+    }}
+    {{
+        html.button({
+            label: html.label({ 'label': '123' }),
+            class: 'btn--primary'
+        })
+
+    }}
+    {{
+        html.button({
+            label: html.label({ 'label': '123' }),
+            class: 'btn--success'
+        })
+
+    }}
+    {{
+        html.button({
+            label: html.label({ 'label': '123' }),
+            class: 'btn--warning'
+        })
+
+    }}
+    {{
+        html.button({
+            label: html.label({ 'label': '123' }),
+            class: 'btn--danger'
+        })
+
+    }}
+    {{
+        html.button({
+            label: html.label({ 'label': '123' }),
+            class: 'btn--info'
+        })
+
+    }}
+    {{
+        html.button({
+            label: html.label({ 'label': '123' }),
+            class: 'btn--inverse'
+        })
+
+    }}
+</div>
+
+<hr />
+
+<h3>Test labels inside disabled buttons</h3>
+
+<div class="btn__toolbar">
+    text {{
+        html.button({
+            'label': html.label({ 'label': '123' }),
+            'class': 'is-disabled'
+        })
+    }}
+    {{
+        html.button({
+            label: html.label({ 'label': '123' }),
+            class: 'is-disabled btn--primary'
+        })
+
+    }}
+    {{
+        html.button({
+            label: html.label({ 'label': '123' }),
+            class: 'is-disabled btn--success'
+        })
+
+    }}
+    {{
+        html.button({
+            label: html.label({ 'label': '123' }),
+            class: 'is-disabled btn--warning'
+        })
+
+    }}
+    {{
+        html.button({
+            label: html.label({ 'label': '123' }),
+            class: 'is-disabled btn--danger'
+        })
+
+    }}
+    {{
+        html.button({
+            label: html.label({ 'label': '123' }),
+            class: 'is-disabled btn--info'
+        })
+
+    }}
+    {{
+        html.button({
+            label: html.label({ 'label': '123' }),
+            class: 'is-disabled btn--inverse'
+        })
+
+    }}
+</div>
+
+<hr />
+
+<h3>Test labels inside disabled table row</h3>
+
+<div class="btn__toolbar">
+    <table class="table">
+        <tr class="is-disabled">
+            <td>
+                text {{
+                    html.label({
+                        label: '1'
+                    })
+                }}
+                {{
+                    html.label({
+                        label: '2', class: 'label--primary'
+                    })
+                }}
+                {{
+                    html.label({
+                        label: '3', class: 'label--success'
+                    })
+                }}
+                {{
+                    html.label({
+                        label: '4', class: 'label--warning'
+                    })
+                }}
+                {{
+                    html.label({
+                        label: '5', class: 'label--danger'
+                    })
+                }}
+                {{
+                    html.label({
+                        label: '6', class: 'label--info'
+                    })
+                }}
+                {{
+                    html.label({
+                        label: '7', class: 'label--inverse'
+                    })
+                }}
+            </td>
+        </tr>
+    </table>
+</div>
+{% endblock %}
