@@ -1,0 +1,47 @@
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
+{% block body %}
+<table class="table">
+    <tbody>
+        <tr>
+            <td>default</td>
+            <td>{{ html.link({ 'label': 'link' }) }}</td>
+            <td>{{ html.icon('ok-sign') }}</td>
+        </tr>
+        <tr class="has-primary">
+            <td>has-primary</td>
+            <td>{{ html.link({ 'label': 'link' }) }}</td>
+            <td>{{ html.icon('ok-sign') }}</td>
+        </tr>
+        <tr class="has-success">
+            <td>has-success</td>
+            <td>{{ html.link({ 'label': 'link' }) }}</td>
+            <td>{{ html.icon('ok-sign') }}</td>
+        </tr>
+        <tr class="has-warning">
+            <td>has-warning</td>
+            <td>{{ html.link({ 'label': 'link' }) }}</td>
+            <td>{{ html.icon('ok-sign') }}</td>
+        </tr>
+        <tr class="has-danger">
+            <td>has-danger</td>
+            <td>{{ html.link({ 'label': 'link' }) }}</td>
+            <td>{{ html.icon('ok-sign') }}</td>
+        </tr>
+        <tr class="has-info">
+            <td>has-info</td>
+            <td>{{ html.link({ 'label': 'link' }) }}</td>
+            <td>{{ html.icon('ok-sign') }}</td>
+        </tr>
+        <tr class="has-inverse">
+            <td>has-inverse</td>
+            <td>{{ html.link({ 'label': 'link' }) }}</td>
+            <td>{{ html.icon('ok-sign') }}</td>
+        </tr>
+        <tr class="has-new">
+            <td>has-new</td>
+            <td>{{ html.link({ 'label': 'link' }) }}</td>
+            <td>{{ html.icon('ok-sign') }}</td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}
