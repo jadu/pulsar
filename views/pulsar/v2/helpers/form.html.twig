@@ -1793,6 +1793,7 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
             })
         ) ~ elem.label({
                 'class': 'toggle-switch-label',
+                'for': options.id|default,
                 'label': toggleLabel,
                 'required': options.required|default
             })
@@ -1801,7 +1802,7 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
     {{
         form.group({
             'parent': options
-                |only('bare class error guidance guidance-container help id label required')
+                |only('bare class error guidance guidance-container help label required')
                 |merge({
                     'class': options.class|default ~ ' form__group--toggle'
                 }),
