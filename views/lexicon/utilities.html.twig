@@ -7,12 +7,9 @@
 
 {% block title %}{{ parent() }}{% endblock %}
 
-{% set heading = 'Form Helpers' %}
+{% set heading = 'Utilities' %}
 
-{% set tab_buttons %}{% include 'lexicon/html/buttons.html.twig' %}{% endset %}
-{% set tab_link_buttons %}{% include 'lexicon/html/buttons-links.html.twig' %}{% endset %}
-{% set tab_badges %}{% include 'lexicon/html/badges.html.twig' %}{% endset %}
-{% set tab_labels %}{% include 'lexicon/html/labels.html.twig' %}{% endset %}
+{% set tab_responsive %}{% include 'lexicon/utilities/responsive.html.twig' %}{% endset %}
 
 {%
     set nav_data = {
@@ -28,8 +25,7 @@
                     },
                     "1.1.2": {
                         "label": "Modules",
-                        "href": "/app/app.php/lexicon/modules.html.twig",
-                        "class": "is-active"
+                        "href": "/app/app.php/lexicon/modules.html.twig"
                     },
                     "1.1.3": {
                         "label": "Patterns",
@@ -40,7 +36,7 @@
         },
         "2": {
             "label": "HTML helpers",
-            "class": "is-active",
+            "class": "",
             "href": "/app/app.php/lexicon/html.html.twig",
             "icon": "code"
         },
@@ -58,6 +54,7 @@
         },
         "10": {
             "label": "Utilities",
+            "class": "is-active",
             "href": "/app/app.php/lexicon/utilities.html.twig",
             "icon": "wrench"
         }
@@ -67,24 +64,10 @@
 {%
     set tabs_content = [
         {
-          "id"    : "buttons",
-          "label" : "Normal Buttons",
-          "src"   : tab_buttons
-        },
-        {
-          "id"    : "buttons-links",
-          "label" : "Link Buttons",
-          "src"   : tab_link_buttons
-        },
-        {
-          "id"    : "badges",
-          "label" : "Badges",
-          "src"   : tab_badges
-        },
-        {
-          "id"    : "labels",
-          "label" : "Labels",
-          "src"   : tab_labels
+          "id"    : "basic",
+          "label" : "Responsive",
+          "src"   : tab_responsive,
+          "active": true
         }
     ]
 %}
