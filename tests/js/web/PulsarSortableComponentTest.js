@@ -20,7 +20,7 @@ describe('Sortable component', function() {
 </table>\
 ').appendTo(this.$html);
 
-        this.$table = this.$html.find('.table');
+        this.$table = this.$html.find('.table.is-sortable tbody');
 
         this.pulsarSortableComponent = new PulsarSortableComponent(this.$html);
     });
