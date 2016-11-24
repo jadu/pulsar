@@ -1,3 +1,5 @@
+'use strict';
+
 var $ = require('jquery');
 
 function PulsarSortableComponent(html) {
@@ -8,9 +10,8 @@ function PulsarSortableComponent(html) {
 
 PulsarSortableComponent.prototype.init = function () {
 
-    var component = this;
-
     this.initTables();
+
 };
 
 PulsarSortableComponent.prototype.initTables = function () {
@@ -42,7 +43,7 @@ PulsarSortableComponent.prototype.initTables = function () {
     }).disableSelection();
 };
 
-PulsarSortableComponent.prototype.fixHelper = function(e, ui) {
+PulsarSortableComponent.prototype.fixHelper = function() {
 
     ui.children().each(function() {
         $(this).width($(this).width());
@@ -51,7 +52,7 @@ PulsarSortableComponent.prototype.fixHelper = function(e, ui) {
     return ui;
 };
 
-PulsarSortableComponent.prototype.addOrder = function(e, ui) {
+PulsarSortableComponent.prototype.addOrder = function() {
 
     var component = this;
 
@@ -65,15 +66,13 @@ PulsarSortableComponent.prototype.addOrder = function(e, ui) {
     });
 };
 
-PulsarSortableComponent.prototype.updateOrder = function(e, ui) {
+PulsarSortableComponent.prototype.updateOrder = function() {
 
     this.$html.find('.table.is-sortable .js-sortable-count').each(function(i) {
-        var $this = $(this),
-            label = $(this).text();
 
         i++;
 
-        $this.text(i);
+        $(this).text(i);
     });
 };
 
