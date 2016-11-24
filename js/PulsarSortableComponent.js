@@ -43,7 +43,7 @@ PulsarSortableComponent.prototype.initTables = function () {
     }).disableSelection();
 };
 
-PulsarSortableComponent.prototype.fixHelper = function() {
+PulsarSortableComponent.prototype.fixHelper = function(e, ui) {
 
     ui.children().each(function() {
         $(this).width($(this).width());
