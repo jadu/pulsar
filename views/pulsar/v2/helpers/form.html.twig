@@ -1482,7 +1482,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
             'inputs': [
                 elem.select(
                     options
-					|exclude('bare class error guidance guidance-container help label')
+					|exclude('append bare class error guidance guidance-container help label prepend')
 					|merge({'class': 'select'})
                 )
             ]

@@ -170,9 +170,21 @@ fieldset {
     }
 }
 
-.legend {
-    font-size: $font-size-large;
-    margin-bottom: .5em;
+fieldset {
+    padding: 22px 0;
+
+    legend,
+    .legend {
+        border-bottom: 1px solid $gray-light;
+        color: color(text);
+        display: block;
+        font-size: $font-size-xlarge;
+        line-height: 35px;
+        margin-bottom: 2px;
+        padding: 0 20px 0 0;
+        position: relative;
+        width: 100%;
+    }
 }
 
 .form__actions {
@@ -297,9 +309,10 @@ $inputs: (
 }
 
 .form__button-group {
+    margin-bottom: 27px;
 
     > .control__label {
-        padding-top: 3px;
+        padding-top: 7px;
     }
 
     .controls > .control__label {
