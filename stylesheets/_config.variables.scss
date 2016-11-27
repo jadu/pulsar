@@ -62,6 +62,7 @@ $screen-phone:                        $screen-xsmall !default;
 
 // Smaller screen / large mobile / tiny tablet
 $screen-smaller:                      600px !default;
+$screen-phablet:                      $screen-smaller !default;
 
 // Small screen / tablet
 $screen-small:                        767px !default;
