@@ -1,4 +1,4 @@
-(function ($) {
+    (function ($) {
 
     // Protect IE8 from any erroneous console.log uses which would break everything
     if (!window.console) {
@@ -74,7 +74,7 @@
             placeholder: "is-sorting",
             helper: fixHelper,
             opacity: 0.9,
-            create: function(e, ui) {
+            create: function() {
                 $(this).find('tr > td:first-of-type').each(function(i) {
                     var $this = $(this),
                         label = $(this).text();
@@ -100,8 +100,7 @@
 
                     console.log($(this).text());
 
-                    var $this = $(this),
-                        label = $(this).text();
+                    var $this = $(this);
 
                     i++;
 
