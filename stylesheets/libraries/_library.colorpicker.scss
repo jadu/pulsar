@@ -7,10 +7,10 @@ License: MIT
 
 // scss-lint:disable all
 .sp-container {
-    position:absolute;
-    top:0;
-    left:0;
-    display:inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
     *display: inline;
     *zoom: 1;
     /* https://github.com/bgrins/spectrum/issues/40 */
@@ -31,35 +31,35 @@ License: MIT
 
 /* http://ansciath.tumblr.com/post/7347495869/css-aspect-ratio */
 .sp-top {
-  position:relative;
+  position: relative;
   width: 100%;
-  display:inline-block;
+  display: inline-block;
 }
 .sp-top-inner {
-   position:absolute;
-   top:0;
-   left:0;
-   bottom:0;
-   right:0;
+   position: absolute;
+   top: 0;
+   left: 0;
+   bottom: 0;
+   right: 0;
 }
 .sp-color {
     position: absolute;
-    top:0;
-    left:0;
-    bottom:0;
-    right:20%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 20%;
 }
 .sp-hue {
     position: absolute;
-    top:0;
-    right:0;
-    bottom:0;
-    left:84%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 84%;
     height: 100%;
 }
 
 .sp-clear-enabled .sp-hue {
-    top:33px;
+    top: 33px;
     height: 77.5%;
 }
 
@@ -68,10 +68,10 @@ License: MIT
 }
 .sp-sat, .sp-val {
     position: absolute;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 
 .sp-alpha-enabled .sp-top {
@@ -81,8 +81,8 @@ License: MIT
     display: block;
 }
 .sp-alpha-handle {
-    position:absolute;
-    top:-4px;
+    position: absolute;
+    top: -4px;
     bottom: -4px;
     width: 6px;
     left: 50%;
@@ -113,19 +113,19 @@ License: MIT
 
 .sp-clear-enabled .sp-clear {
     display: block;
-    position:absolute;
-    top:0px;
-    right:0;
-    bottom:0;
-    left:84%;
+    position: absolute;
+    top: 0px;
+    right: 0;
+    bottom: 0;
+    left: 84%;
     height: 28px;
 }
 
 /* Don't allow text selection */
 .sp-container, .sp-replacer, .sp-preview, .sp-dragger, .sp-slider, .sp-alpha, .sp-clear, .sp-alpha-handle, .sp-container.sp-dragging .sp-input, .sp-container button  {
-    -webkit-user-select:none;
+    -webkit-user-select: none;
     -moz-user-select: -moz-none;
-    -o-user-select:none;
+    -o-user-select: none;
     user-select: none;
 }
 
@@ -186,27 +186,27 @@ License: MIT
    Yes, really.
  */
 .sp-1 {
-    height:17%;
+    height: 17%;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0000', endColorstr='#ffff00');
 }
 .sp-2 {
-    height:16%;
+    height: 16%;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffff00', endColorstr='#00ff00');
 }
 .sp-3 {
-    height:17%;
+    height: 17%;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ff00', endColorstr='#00ffff');
 }
 .sp-4 {
-    height:17%;
+    height: 17%;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ffff', endColorstr='#0000ff');
 }
 .sp-5 {
-    height:16%;
+    height: 16%;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0000ff', endColorstr='#ff00ff');
 }
 .sp-6 {
-    height:17%;
+    height: 17%;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff00ff', endColorstr='#ff0000');
 }
 
@@ -215,16 +215,33 @@ License: MIT
 }
 
 /* Clearfix hack */
-.sp-cf:before, .sp-cf:after { content: ""; display: table; }
-.sp-cf:after { clear: both; }
-.sp-cf { *zoom: 1; }
+.sp-cf:before,
+.sp-cf:after {
+    content: '';
+    display: table;
+}
+
+.sp-cf:after {
+    clear: both;
+}
+
+.sp-cf {
+    *zoom: 1;
+}
 
 /* Mobile devices, make hue slider bigger so it is easier to slide */
 @media (max-device-width: 480px) {
-    .sp-color { right: 40%; }
-    .sp-hue { left: 63%; }
-    .sp-fill { padding-top: 60%; }
+    .sp-color {
+        right: 40%;
+    }
+    .sp-hue {
+        left: 63%;
+    }
+    .sp-fill {
+        padding-top: 60%;
+    }
 }
+
 .sp-dragger {
    border-radius: 5px;
    height: 5px;
@@ -232,14 +249,15 @@ License: MIT
    border: 1px solid #fff;
    background: #000;
    cursor: pointer;
-   position:absolute;
-   top:0;
+   position: absolute;
+   top: 0;
    left: 0;
 }
+
 .sp-slider {
     position: absolute;
-    top:0;
-    cursor:pointer;
+    top: 0;
+    cursor: pointer;
     height: 3px;
     left: -1px;
     right: -1px;
@@ -260,23 +278,33 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
     border: solid 1px #f0c49B;
     padding: 0;
 }
-.sp-container, .sp-container button, .sp-container input, .sp-color, .sp-hue, .sp-clear {
-    font: normal 12px "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+
+.sp-container,
+.sp-container button,
+.sp-container input,
+.sp-color,
+.sp-hue,
+.sp-clear {
+    font: normal 12px 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     -ms-box-sizing: border-box;
     box-sizing: border-box;
 }
+
 .sp-top {
     margin-bottom: 3px;
 }
-.sp-color, .sp-hue, .sp-clear {
+
+.sp-color,
+.sp-hue,
+.sp-clear {
     border: solid 1px #666;
 }
 
 /* Input */
 .sp-input-container {
-    float:right;
+    float: right;
     width: 100px;
     margin-bottom: 4px;
 }
@@ -289,24 +317,29 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
    padding: 4px 5px;
    margin: 0;
    width: 100%;
-   background:transparent;
+   background: transparent;
    border-radius: 3px;
    color: #222;
 }
+
 .sp-input:focus  {
     border: 1px solid orange;
 }
+
 .sp-input.sp-validation-error {
     border: 1px solid red;
     background: #fdd;
 }
-.sp-picker-container , .sp-palette-container {
-    float:left;
+
+.sp-picker-container,
+.sp-palette-container {
+    float: left;
     position: relative;
     padding: 10px;
     padding-bottom: 300px;
     margin-bottom: -290px;
 }
+
 .sp-picker-container {
     width: 172px;
     border-left: solid 1px #fff;
@@ -323,17 +356,20 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
 
 .sp-palette .sp-thumb-el {
     display: block;
-    position:relative;
-    float:left;
+    position: relative;
+    float: left;
     width: 24px;
     height: 15px;
     margin: 3px;
     cursor: pointer;
-    border:solid 2px transparent;
+    border: solid 2px transparent;
 }
-.sp-palette .sp-thumb-el:hover, .sp-palette .sp-thumb-el.sp-thumb-active {
+
+.sp-palette .sp-thumb-el:hover,
+.sp-palette .sp-thumb-el.sp-thumb-active {
     border-color: orange;
 }
+
 .sp-thumb-el {
     position:relative;
 }
@@ -346,10 +382,10 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
 .sp-initial span {
     width: 30px;
     height: 25px;
-    border:none;
-    display:block;
-    float:left;
-    margin:0;
+    border: none;
+    display: block;
+    float: left;
+    margin: 0;
 }
 
 .sp-initial .sp-clear-display {
@@ -364,11 +400,11 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
 
 /* Replacer (the little preview div that shows up instead of the <input>) */
 .sp-replacer {
-    margin:0;
-    overflow:hidden;
-    cursor:pointer;
+    margin: 0;
+    overflow: hidden;
+    cursor: pointer;
     padding: 4px;
-    display:inline-block;
+    display: inline-block;
     *zoom: 1;
     *display: inline;
     border: solid 1px #91765d;
@@ -376,29 +412,33 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
     color: #333;
     vertical-align: middle;
 }
-.sp-replacer:hover, .sp-replacer.sp-active {
+
+.sp-replacer:hover,
+.sp-replacer.sp-active {
     border-color: #F0C49B;
     color: #111;
 }
 .sp-replacer.sp-disabled {
-    cursor:default;
+    cursor: default;
     border-color: silver;
     color: silver;
 }
+
 .sp-dd {
     padding: 2px 0;
     height: 16px;
     line-height: 16px;
-    float:left;
-    font-size:10px;
+    float: left;
+    font-size: 10px;
 }
+
 .sp-preview {
-    position:relative;
-    width:25px;
+    position: relative;
+    width: 25px;
     height: 20px;
     border: solid 1px #222;
     margin-right: 5px;
-    float:left;
+    float: left;
     z-index: 0;
 }
 
@@ -406,17 +446,17 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
     *width: 220px;
     max-width: 220px;
 }
+
 .sp-palette .sp-thumb-el {
-    width:16px;
+    width: 16px;
     height: 16px;
-    margin:2px 1px;
+    margin: 2px 1px;
     border: solid 1px #d0d0d0;
 }
 
 .sp-container {
     padding-bottom:0;
 }
-
 
 /* Buttons: http://hellohappy.org/css3-buttons/ */
 .sp-container button {
@@ -437,6 +477,7 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
   text-shadow: 0 1px 0 #eee;
   vertical-align: middle;
 }
+
 .sp-container button:hover {
     background-color: #dddddd;
     background-image: -webkit-linear-gradient(top, #dddddd, #bbbbbb);
@@ -449,6 +490,7 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
     cursor: pointer;
     text-shadow: 0 1px 0 #ddd;
 }
+
 .sp-container button:active {
     border: 1px solid #aaa;
     border-bottom: 1px solid #888;
@@ -458,34 +500,43 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
     -o-box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
     box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
 }
+
 .sp-cancel {
     font-size: 11px;
     color: #d93f3f !important;
-    margin:0;
-    padding:2px;
+    margin: 0;
+    padding: 2px;
     margin-right: 5px;
     vertical-align: middle;
     text-decoration:none;
-
 }
+
 .sp-cancel:hover {
     color: #d93f3f !important;
     text-decoration: underline;
 }
 
-
-.sp-palette span:hover, .sp-palette span.sp-thumb-active {
+.sp-palette span:hover,
+.sp-palette span.sp-thumb-active {
     border-color: #000;
 }
 
-.sp-preview, .sp-alpha, .sp-thumb-el {
-    position:relative;
+.sp-preview,
+.sp-alpha,
+.sp-thumb-el {
+    position: relative;
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==);
 }
-.sp-preview-inner, .sp-alpha-inner, .sp-thumb-inner {
-    display:block;
-    position:absolute;
-    top:0;left:0;bottom:0;right:0;
+
+.sp-preview-inner,
+.sp-alpha-inner,
+.sp-thumb-inner {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
 }
 
 .sp-palette .sp-thumb-inner {
@@ -502,7 +553,7 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
 }
 
 .sp-clear-display {
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
     background-position: center;
     background-image: url(data:image/gif;base64,R0lGODlhFAAUAPcAAAAAAJmZmZ2dnZ6enqKioqOjo6SkpKWlpaampqenp6ioqKmpqaqqqqurq/Hx8fLy8vT09PX19ff39/j4+Pn5+fr6+vv7+wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAP8ALAAAAAAUABQAAAihAP9FoPCvoMGDBy08+EdhQAIJCCMybCDAAYUEARBAlFiQQoMABQhKUJBxY0SPICEYHBnggEmDKAuoPMjS5cGYMxHW3IiT478JJA8M/CjTZ0GgLRekNGpwAsYABHIypcAgQMsITDtWJYBR6NSqMico9cqR6tKfY7GeBCuVwlipDNmefAtTrkSzB1RaIAoXodsABiZAEFB06gIBWC1mLVgBa0AAOw==);
 }
