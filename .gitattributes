@@ -327,6 +327,15 @@
 /libs/selectivizr/changelog.txt                                 export-ignore
 /libs/selectivizr/README.markdown                               export-ignore
 
+# spectrum
+/libs/spectrum/i18n/                                            export-ignore
+/libs/spectrum/themes                                           export-ignore
+/libs/spectrum/.bower.json                                      export-ignore
+/libs/spectrum/bower.json                                       export-ignore
+/libs/spectrum/index.html                                       export-ignore
+/libs/spectrum/package.json                                     export-ignore
+/libs/spectrum/spectrum.css                                     export-ignore
+
 # sticky
 /libs/sticky/.bower.json                                        export-ignore
 /libs/sticky/.gitignore                                         export-ignore
