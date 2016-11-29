@@ -494,11 +494,11 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
 .sp-container button:active {
     border: 1px solid #aaa;
     border-bottom: 1px solid #888;
-    -webkit-box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eee;
-    -moz-box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eee;
-    -ms-box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eee;
-    -o-box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eee;
-    box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eee;
+    -webkit-box-shadow: inset 0 0 5px 2px #aaa, 0 1px 0 0 #eee;
+    -moz-box-shadow: inset 0 0 5px 2px #aaa, 0 1px 0 0 #eee;
+    -ms-box-shadow: inset 0 0 5px 2px #aaa, 0 1px 0 0 #eee;
+    -o-box-shadow: inset 0 0 5px 2px #aaa, 0 1px 0 0 #eee;
+    box-shadow: inset 0 0 5px 2px #aaa, 0 1px 0 0 #eee;
 }
 
 .sp-cancel {
