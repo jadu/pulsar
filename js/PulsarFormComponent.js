@@ -1,6 +1,8 @@
 var $ = require('jquery'),
-    pikaday = require('../libs/pikaday/plugins/pikaday.jquery');
-    select2 = require('../libs/select2/dist/js/select2.min');
+    pikaday  = require('../libs/pikaday/plugins/pikaday.jquery'),
+    select2  = require('../libs/select2/dist/js/select2.min');
+
+    require('spectrum-colorpicker');
 
 function PulsarFormComponent(html) {
 
@@ -11,6 +13,9 @@ function PulsarFormComponent(html) {
 PulsarFormComponent.prototype.init = function () {
 
     var component = this;
+
+    // Colourpickers
+    component.initColourpickers();
 
     // Attach basic pikaday to datepicker fields
     this.$html.find('[data-datepicker=true]').pikaday({
@@ -58,6 +63,43 @@ PulsarFormComponent.prototype.initSelectionButtons = function(e) {
         .closest('.control__label')
         .addClass('is-selected');
 
+};
+
+PulsarFormComponent.prototype.initColourpickers = function() {
+
+    console.log('init colourpickers');
+
+    var component = this,
+        pickers = component.$html.find('.js-colourpicker');
+
+    // Create a shadow input to hold the colour value from the picker
+    component.$pickerInput = $($.parseHTML('<input>'));
+
+    pickers.each(function(e) {
+
+        var $this = $(this),
+            $input = $this.find('.form__control');
+
+        component.$pickerInput.insertAfter($input);
+
+        component.$pickerInput.spectrum({
+            color: '#' + $input.val(),
+            showInput: false,
+            preferredFormat: 'hex',
+            replacerClassName: 'btn',
+            change: function (color) {
+                $input.val(('' + color).substring(1));
+                $input.onChange();
+            }
+        });
+
+        $input.on('change', function () {
+            console.log($this.val());
+            component.$pickerInput.spectrum('set', '#' + $this.val());
+
+            $this.onChange();
+        });
+    });
 };
 
 PulsarFormComponent.prototype.selectionButtons = function() {

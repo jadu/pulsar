@@ -15,8 +15,11 @@
 $ie-version: 12 !default;
 
 // Third party plugins
+// scss-lint:disable all
 @import '../libs/normalize-css/normalize.css';
 @import '../libs/select2/dist/css/select2.css';
+@import '../node_modules/spectrum-colorpicker/spectrum.css';
+// scss-lint:enable all
 
 // Proxima Nova (requires license)
 $font-path: '../fonts/';
@@ -77,6 +80,9 @@ $fa-css-prefix: 'icon';
 	mixins you should @import them here.
 \* -------------------------------------------------------------------------- */
 
+// Third party code
+// @import 'libraries/library.colorpicker';
+
 // Objects
 @import 'objects/object.box';
 @import 'objects/object.google-result';
@@ -90,6 +96,7 @@ $fa-css-prefix: 'icon';
 @import 'component.breadcrumb';
 @import 'component.button-groups';
 @import 'component.buttons';
+@import 'component.colorpicker';
 @import 'component.close';
 @import 'component.datepicker';
 @import 'component.daterange';
