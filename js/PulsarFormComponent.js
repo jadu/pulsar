@@ -1,3 +1,5 @@
+'use strict';
+
 var $ = require('jquery'),
     pikaday  = require('../libs/pikaday/plugins/pikaday.jquery'),
     select2  = require('../libs/select2/dist/js/select2.min');
@@ -70,7 +72,7 @@ PulsarFormComponent.prototype.initColourpickers = function() {
     var component = this,
         pickers = component.$html.find('.js-colorpicker');
 
-    pickers.each(function(e) {
+    pickers.each(function() {
         var $this = $(this),
             $input = $this.find('.form__control'),
             $pickerInput = $($.parseHTML('<input>'));
