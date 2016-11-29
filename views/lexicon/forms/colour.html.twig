@@ -6,31 +6,6 @@
         form.create()
     }}
 
-
-    {{
-        form.text({
-            'class': 'colorpicker js-colorpicker',
-            'id': 'colourBackground',
-            'label': 'Background',
-            'maxlength': 6,
-            'name': 'colourBackground',
-            'value': '',
-            'prepend': '#'
-        })
-    }}
-
-    {{
-        form.text({
-            'class': 'colorpicker js-colorpicker',
-            'id': 'colourBackgrdsound',
-            'label': 'Background',
-            'maxlength': 6,
-            'name': 'colourBackgrounddsa',
-            'value': '#f00',
-            'prepend': '#'
-        })
-    }}
-
     {{
         form.color({
             'id': 'color-1',
@@ -38,50 +13,49 @@
         })
     }}
 
-
     {{
-        form.text({
-            'id': 'text-2',
-            'label': 'Text field with value',
-            'value': 'My value'
+        form.color({
+            'id': 'color-2',
+            'label': 'Color field with value',
+            'value': '#c00000'
         })
     }}
 
     {{
-        form.text({
-            'id': 'text-3',
+        form.color({
+            'id': 'color-3',
             'label': 'Required',
             'required': true
         })
     }}
 
     {{
-        form.text({
-            'id': 'text-4',
+        form.color({
+            'id': 'color-4',
             'label': 'Placeholder',
             'placeholder': 'Oh, hello'
         })
     }}
 
     {{
-        form.text({
-            'id': 'text-5',
-            'label': 'Text field with help',
+        form.color({
+            'id': 'color-5',
+            'label': 'Color field with help',
             'help': 'Help text to give more information about expected input'
         })
     }}
 
     {{
-        form.text({
-            'id': 'text-6',
-            'label': 'Text field with guidance',
+        form.color({
+            'id': 'color-6',
+            'label': 'Color field with guidance',
             'guidance': 'Help text to give more information about expected input'
         })
     }}
 
     {{
-        form.text({
-            'id': 'text-7',
+        form.color({
+            'id': 'color-7',
             'label': 'Required with guidance',
             'guidance': 'Help text to give more information about expected input',
             'required': true
@@ -92,8 +66,8 @@
     {{ form.fieldset_start({ 'legend': 'Alignment' }) }}
 
     {{
-        form.text({
-            'id': 'text-8',
+        form.color({
+            'id': 'color-8',
             'label': 'Text input with a longer than expected label which will probably wrap multple lines and push the following input onto the next baseline',
             'name': 'inputTextLong',
             'placeholder': 'Placeholder',
@@ -103,8 +77,8 @@
     }}
 
     {{
-        form.text({
-            'id': 'text-9',
+        form.color({
+            'id': 'color-9',
             'label': 'Text input with a longer than expected label but this time we use the form__group--top class to keep the label on a single line',
             'class': 'form__group--top',
             'name': 'inputTextLong',
@@ -115,8 +89,8 @@
     }}
 
     {{
-        form.text({
-            'id': 'text-10',
+        form.color({
+            'id': 'color-10',
             'label': 'The same as above, but this time we also add the .form__group--flush class to keep everything on the left edge',
             'class': 'form__group--top form__group--flush',
             'name': 'inputTextLong',
@@ -130,35 +104,35 @@
     {{ form.fieldset_start({ 'legend': 'Errors &amp; Validation' }) }}
 
     {{
-        form.text({
-            'id': 'text-11',
-            'label': 'Text field with error',
+        form.color({
+            'id': 'color-11',
+            'label': 'Color field with error',
             'error': 'Please complete this field'
         })
     }}
 
     {{
-        form.text({
-            'id': 'text-12',
-            'label': 'Text field with multiple errors',
+        form.color({
+            'id': 'color-12',
+            'label': 'Color field with multiple errors',
             'error': ['Do this', 'Do this too']
         })
     }}
 
     {{
-        form.text({
-            'id': 'text-13',
-            'label': 'Text field with error and help',
+        form.color({
+            'id': 'color-13',
+            'label': 'Color field with error and help',
             'error': 'Please complete this field',
             'help': 'Help text to give more information about expected input'
         })
     }}
 
     {{
-        form.text({
-            'id': 'text-14',
+        form.color({
+            'id': 'color-14',
             'class': 'has-error',
-            'label': 'Text field error with help only',
+            'label': 'Color field error with help only',
             'help': 'Help text to give more information about expected input'
         })
     }}
@@ -167,16 +141,16 @@
     {{ form.fieldset_start({ 'legend': 'States' }) }}
 
     {{
-        form.text({
-            'id': 'text-15',
+        form.color({
+            'id': 'color-15',
             'label': '"class": "has-changed"',
             'class': 'has-changed',
             'help': 'Highlight whether an action elsewhere affects an input'
         })
     }}
     {{
-        form.text({
-            'id': 'text-16',
+        form.color({
+            'id': 'color-16',
             'label': '"class": "has-success"',
             'class': 'has-success',
             'help': 'Something good happened'
@@ -184,24 +158,24 @@
     }}
 
     {{
-        form.text({
-            'id': 'text-17',
+        form.color({
+            'id': 'color-17',
             'label': '"class": "has-warning"',
             'class': 'has-warning',
             'help': 'Something bad happened'
         })
     }}
     {{
-        form.text({
-            'id': 'text-18',
+        form.color({
+            'id': 'color-18',
             'label': '"class": "has-error"',
             'class': 'has-error',
             'help': 'Automatically added if using <code>error</code> option'
         })
     }}
     {{
-        form.text({
-            'id': 'text-19',
+        form.color({
+            'id': 'color-19',
             'label': '"disabled": true',
             'disabled': true,
             'help': 'Stop! Can’t touch this'
@@ -212,8 +186,8 @@
     {{ form.fieldset_start({ 'legend': 'Sizes' }) }}
 
     {{
-        form.text({
-            'id': 'text-20',
+        form.color({
+            'id': 'color-20',
             'label': 'Mini',
             'class': 'form__group--mini',
             'name': 'inputTextMini'
@@ -221,8 +195,8 @@
     }}
 
     {{
-        form.text({
-            'id': 'text-21',
+        form.color({
+            'id': 'color-21',
             'label': 'Small',
             'class': 'form__group--small',
             'name': 'inputTextSmall'
@@ -230,8 +204,8 @@
     }}
 
     {{
-        form.text({
-            'id': 'text-22',
+        form.color({
+            'id': 'color-22',
             'label': 'Medium',
             'class': 'form__group--medium',
             'name': 'inputTextMedium'
@@ -239,16 +213,16 @@
     }}
 
     {{
-        form.text({
-            'id': 'text-23',
+        form.color({
+            'id': 'color-23',
             'label': 'Regular',
             'name': 'inputTextRegular'
         })
     }}
 
     {{
-        form.text({
-            'id': 'text-24',
+        form.color({
+            'id': 'color-24',
             'label': 'Large',
             'class': 'form__group--large',
             'name': 'inputTextLarge'
@@ -256,8 +230,8 @@
     }}
 
     {{
-        form.text({
-            'id': 'text-25',
+        form.color({
+            'id': 'color-25',
             'label': 'Extra Large',
             'class': 'form__group--xlarge',
             'name': 'inputTextXLarge'
@@ -265,8 +239,8 @@
     }}
 
     {{
-        form.text({
-            'id': 'text-26',
+        form.color({
+            'id': 'color-26',
             'label': 'Full',
             'class': 'form__group--full',
             'name': 'inputTextFull'
@@ -277,24 +251,24 @@
     {{ form.fieldset_start({ 'legend': 'Appended &amp; Prepended' }) }}
 
     {{
-        form.text({
-            'id': 'text-27',
+        form.color({
+            'id': 'color-27',
             'label': 'Prepended',
             'prepend': '£'
         })
     }}
-
+{#
     {{
-        form.text({
-            'id': 'text-28',
+        form.color({
+            'id': 'color-28',
             'label': 'Appended',
             'append': '.00'
         })
     }}
 
     {{
-        form.text({
-            'id': 'text-29',
+        form.color({
+            'id': 'color-29',
             'label': 'Appended with guidance',
             'append': '.00',
             'guidance': 'Help text to give more information about expected input'
@@ -302,14 +276,14 @@
     }}
 
     {{
-        form.text({
-            'id': 'text-30',
+        form.color({
+            'id': 'color-30',
             'label': 'Prepended &amp; Appended',
             'append': '.00',
             'prepend': '£'
         })
     }}
-
+#}
     {{ form.fieldset_end() }}
 
     {{
