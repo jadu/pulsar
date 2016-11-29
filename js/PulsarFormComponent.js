@@ -1,3 +1,5 @@
+/*globals pikaday, select2 */
+
 'use strict';
 
 var $ = require('jquery'),
