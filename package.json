@@ -91,7 +91,6 @@
   },
   "dependencies": {
     "lodash": "^4.6.1",
-    "moment": "^2.15.2",
-    "spectrum-colorpicker": "^1.8.0"
+    "moment": "^2.15.2"
   }
 }

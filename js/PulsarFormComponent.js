@@ -2,9 +2,8 @@
 
 var $ = require('jquery'),
     pikaday  = require('../libs/pikaday/plugins/pikaday.jquery'),
-    select2  = require('../libs/select2/dist/js/select2.min');
-
-    require('spectrum-colorpicker');
+    select2  = require('../libs/select2/dist/js/select2.min'),
+    spectrum = require('../libs/spectrum/spectrum');
 
 function PulsarFormComponent(html) {
 
