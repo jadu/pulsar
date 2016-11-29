@@ -67,37 +67,30 @@ PulsarFormComponent.prototype.initSelectionButtons = function(e) {
 
 PulsarFormComponent.prototype.initColourpickers = function() {
 
-    console.log('init colourpickers');
-
     var component = this,
-        pickers = component.$html.find('.js-colourpicker');
-
-    // Create a shadow input to hold the colour value from the picker
-    component.$pickerInput = $($.parseHTML('<input>'));
+        pickers = component.$html.find('.js-colorpicker');
 
     pickers.each(function(e) {
-
         var $this = $(this),
-            $input = $this.find('.form__control');
+            $input = $this.find('.form__control'),
+            $pickerInput = $($.parseHTML('<input>'));
 
-        component.$pickerInput.insertAfter($input);
+        $pickerInput.insertAfter($input);
 
-        component.$pickerInput.spectrum({
+        // changing the picker should update the input
+        $pickerInput.spectrum({
             color: '#' + $input.val(),
             showInput: false,
             preferredFormat: 'hex',
             replacerClassName: 'btn',
             change: function (color) {
                 $input.val(('' + color).substring(1));
-                $input.onChange();
             }
         });
 
+        // changing the input should update the picker
         $input.on('change', function () {
-            console.log($this.val());
-            component.$pickerInput.spectrum('set', '#' + $this.val());
-
-            $this.onChange();
+            $pickerInput.spectrum('set', '#' + $input.val());
         });
     });
 };

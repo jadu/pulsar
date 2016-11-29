@@ -9,7 +9,7 @@
 
     {{
         form.text({
-            'class': 'colourpicker js-colourpicker',
+            'class': 'colorpicker js-colorpicker',
             'id': 'colourBackground',
             'label': 'Background',
             'maxlength': 6,
@@ -19,14 +19,25 @@
         })
     }}
 
-     {{
+    {{
         form.text({
-            'id': 'text-271',
-            'label': 'Prepended',
-            'append_type': 'button',
-            'append': html.button({'label': 'foo'})
+            'class': 'colorpicker js-colorpicker',
+            'id': 'colourBackgrdsound',
+            'label': 'Background',
+            'maxlength': 6,
+            'name': 'colourBackgrounddsa',
+            'value': '#f00',
+            'prepend': '#'
         })
     }}
+
+    {{
+        form.color({
+            'id': 'color-1',
+            'label': 'Foo'
+        })
+    }}
+
 
     {{
         form.text({
