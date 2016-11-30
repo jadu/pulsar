@@ -4,6 +4,10 @@
     width: 110px;
 }
 
+.colorpicker .form__control {
+    font-family: $font-family-monospace;
+}
+
 // Be specific to our use-case in order to override styles
 .btn.sp-replacer {
     background: color(background);
