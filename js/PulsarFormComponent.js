@@ -87,6 +87,7 @@ PulsarFormComponent.prototype.initColourpickers = function() {
             replacerClassName: 'btn',
             change: function (color) {
                 $input.val(('' + color).substring(1));
+                $input.trigger('change');
             }
         });
 
