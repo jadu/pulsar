@@ -265,6 +265,17 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
         width: 100%;
     }
 
+    .nav-link__image {
+        margin-bottom: 7px;
+        height: 18px;
+        width: 18px;
+    }
+
+    .nav-link__label {
+        display: block;
+        width: 100%;
+    }
+
     .nav-items,
     .jadu-branding {
         -webkit-transform-origin: 50% 0%;
