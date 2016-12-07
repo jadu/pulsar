@@ -51,6 +51,8 @@ paths:
     form-choice-optimize-multiple-html-twig: /form/choice-optimize-multiple.html.twig
     form-choice-optimize-html-twig: /form/choice-optimize.html.twig
     form-choice-html-twig: /form/choice.html.twig
+    form-color-class-html-twig: /form/color-class.html.twig
+    form-color-html-twig: /form/color.html.twig
     form-content-bare-html-twig: /form/content-bare.html.twig
     form-content-error-html-twig: /form/content-error.html.twig
     form-content-label-html-twig: /form/content-label.html.twig
