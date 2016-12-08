@@ -173,6 +173,88 @@
         }}
     </p>
 
+    <h2 class="heading">Outline buttons</h2>
+
+    <p>
+        <!-- The normal type of button you should use -->
+        {{
+            html.button({
+                label: 'Default',
+                class: 'btn--outline'
+            })
+        }}
+
+        <!-- In the context of a full UI, this is the main thing we want the user to do next -->
+        {{
+            html.button({
+                label: 'Primary',
+                class: 'btn--outline btn--primary'
+            })
+        }}
+
+        <!-- Indicates a successful or positive action -->
+        {{
+            html.button({
+                label: 'Success',
+                class: 'btn--outline btn--success'
+            })
+        }}
+
+        <!-- Indicates a dangerous or destructive action -->
+        {{
+            html.button({
+                label: 'Danger',
+                class: 'btn--outline btn--danger',
+                type: 'link'
+            })
+        }}
+
+        <!-- Indicates caution should be taken here -->
+        {{
+            html.button({
+                label: 'Warning',
+                class: 'btn--outline btn--warning'
+            })
+        }}
+
+        <!-- Contextual button for informational alert messages -->
+        {{
+            html.button({
+                label: 'Info',
+                class: 'btn--outline btn--info'
+            })
+        }}
+
+        <!-- Rarely used, a good example is a 'locked content' button -->
+        {{
+            html.button({
+                label: 'Inverse',
+                class: 'btn--outline btn--inverse'
+            })
+        }}
+
+        {{
+            html.button({
+                label: 'Disabled',
+                class: 'btn--outline is-disabled'
+            })
+        }}
+
+        {{
+            html.button({
+                label: 'Active',
+                class: 'btn--outline active'
+            })
+        }}
+
+        {{
+            html.button({
+                label: 'Naked',
+                class: 'btn--outline btn--naked'
+            })
+        }}
+    </p>
+
     <h2 class="heading">Disabled buttons</h2>
 
     <p>
@@ -255,10 +337,26 @@
         {{
             html.button_group({
                 buttons: [
-                    html.button({ label: html.icon('align-left') }),
-                    html.button({ label: html.icon('align-center') }),
-                    html.button({ label: html.icon('align-right') }),
-                    html.button({ label: html.icon('align-justify') })
+                    html.button({
+                        label: html.icon('align-left', {
+                            'label': 'Align left'
+                        })
+                    }),
+                    html.button({
+                        label: html.icon('align-center', {
+                            'label': 'Align center'
+                        })
+                    }),
+                    html.button({
+                        label: html.icon('align-right', {
+                            'label': 'Align right'
+                        })
+                    }),
+                    html.button({
+                        label: html.icon('align-justify', {
+                            'label': 'Align justify'
+                        })
+                     })
                 ]
             })
         }}

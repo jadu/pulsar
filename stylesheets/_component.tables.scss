@@ -8,7 +8,7 @@
         text-decoration: none;
     }
 
-    tbody > tr:hover > td {
+    tbody > tr:hover {
         background-color: color(background, light);
     }
 
@@ -31,6 +31,23 @@
         &,
         & > * {
             color: color(text, disabled);
+        }
+    }
+
+    tr.fade {
+        animation-name: fade-row-to-white !important;
+        animation-delay: 1s;
+        animation-duration: .5s;
+        animation-fill-mode: forwards;
+    }
+
+    @each $state, $state-color, $state-color-alt in $state-colors {
+        tr.has-#{$state} {
+            background-color: color($state, light) !important;
+
+            &:hover {
+                background-color: darken(color($state, light), 2) !important;
+            }
         }
     }
 
@@ -68,7 +85,8 @@
         }
     }
 
-    th {
+    th,
+    thead td {
         border-top: 1px solid color(border);
         border-bottom: 2px solid color(border);
         font-family: $font-family-regular;
@@ -169,7 +187,7 @@ td.table__form {
     margin-top: -24px; // negate default bottom border of .table
 }
 
-// Map depracated table styles to this one -------------------------------------
+// Map deprecated table styles to this one -------------------------------------
 
 .table--datagrid {
     @extend .table;
@@ -178,4 +196,14 @@ td.table__form {
 
 .datagrid--fixed {
     @extend .table--fixed;
+}
+
+@keyframes fade-row-to-white {
+    from {
+        background-color: inherit;
+    }
+
+    to {
+        background-color: #fff;
+    }
 }

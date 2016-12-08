@@ -4,8 +4,7 @@
  */
 
 // Make the div behave like a button
-.btn__group,
-.btn__group-vertical {
+.btn__group {
     position: relative;
     vertical-align: middle; // match .btn alignment given font-size hack above
 

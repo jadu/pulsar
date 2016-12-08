@@ -22,7 +22,6 @@ fieldset {
 
 .form__control {
     border-radius: $input-border-radius;
-    border: 1px solid $input-border;
     height: $input-height-base;
     line-height: $input-height-base;
     padding: 0 $padding-base-horizontal;
@@ -36,23 +35,28 @@ fieldset {
         }
     }
 
+    &[type="email"],
+    &[type="password"],
+    &[type="tel"],
+    &[type="text"],
+    &[type="url"] {
+        border: 1px solid $input-border;
+    }
+
     &.checkbox,
     &.radio {
         border-radius: 0;
-        border: 0;
         height: auto;
         padding: 0;
         vertical-align: baseline;
-    }
 
-    &.select,
-    &.checkbox,
-    &.radio {
-        border: 0;
-        padding: 0;
+        @include ie-lte(9) {
+            border: 0;
+        }
     }
 
     &.textarea {
+        border: 1px solid $input-border;
         height: auto;
         line-height: $line-height-base;
         min-height: 68px;
@@ -202,7 +206,7 @@ fieldset {
 }
 
 .controls > .toggle-switch-label {
-    margin-top: 10px;
+    margin-top: $padding-small-vertical;
 }
 
 // input widths
@@ -223,7 +227,7 @@ $inputs: (
     background-color: #fafafa;
     width: 100%;
 
-    @include respond-min($screen-tablet) {
+    @include respond-min($screen-smaller) {
 
         // default width
         .form__group & {
@@ -243,7 +247,7 @@ $inputs: (
     }
 }
 
-@include respond-min($screen-tablet) {
+@include respond-min($screen-smaller) {
     .form__group .input-group {
         width: map-get($inputs, regular);
     }

@@ -29,11 +29,6 @@
         }
     }
 
-    .btn--outline {
-        box-shadow: inset 0 0 0 2px color(base, alt);
-        vertical-align: baseline;
-    }
-
     a {
         font-family: $font-family-regular;
 
@@ -81,10 +76,6 @@
         .panel--#{$state} {
             background-color: $state-color;
             color: $state-color-alt;
-
-            .btn--outline {
-                box-shadow: inset 0 0 0 2px $state-color-alt;
-            }
 
             a,
             a:link,

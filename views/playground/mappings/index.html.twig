@@ -1,0 +1,77 @@
+{% extends '@pulsar/pulsar/layouts/base.html.twig' %}
+
+{% block body %}
+
+    <fieldset class="no-required-fields">
+        <legend class="legend">Outgoing field mappings</legend>
+
+        <p>Specify which fields should push updates to Confirm when a CXM case is created (and optionally when a case is updated).</p>
+
+        <div class="grid-container u-hidden-on-phone">
+            <div class="grid-col grid-col--3">
+                CXM field
+            </div>
+            <div class="grid-col grid-col--3 grid-col-push--1">
+                Confirm field
+            </div>
+            <div class="grid-col grid-col--5">
+                Send on update
+            </div>
+        </div>
+
+        <div class="grid-container">
+            <div class="grid-col grid-col--3">
+                <div class="form__group form__group--flush">
+                    <label for="cxm-field-1" class="required control__label u-sr-visible-on-phone">CXM field</label>
+                    <div class="controls">
+                        <select class="select2 form__control select" id="cxm-field-1">
+                            <option value="option1">Option 1</option>
+                            <option value="option2">Option 2</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form__group form__group--flush">
+                    <label for="cxm-subfield-1" class="required control__label u-sr-visible-on-phone">Additional CXM field</label>
+                    <div class="controls">
+                        <select class="select2 form__control select" id="cxm-subfield-1">
+                            <option value="option1">Option 1</option>
+                            <option value="option2">Option 2</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-col grid-col--1 u-hidden-on-phone">
+                <i class="icon-long-arrow-right icon--align-with-fields" aria-hidden="true"></i>
+            </div>
+
+            <div class="grid-col grid-col--3">
+                <div class="form__group form__group--flush">
+                    <label for="cxm-field-2" class="required control__label u-sr-visible-on-phone">Confirm field</label>
+                    <div class="controls">
+                        <select class="select2 form__control select" id="external-field-1">
+                            <option value="option1">Option 1</option>
+                            <option value="option2">Option 2</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-col grid-col--3">
+                <div class="form__group form__group--flush form-checkbox">
+                    <label for="on-update-1" class="control__label u-sr-visible-on-phone">Send on update</label>
+                    <div class="controls">
+                        <input type="checkbox" id="on-update-1" class="form__control checkbox" value="1">
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-col grid-col--2 grid-col--last">
+                <button data-placement="right" data-toggle="tooltips" data-title="Remove this item" type="button" data-action="remove" class="btn remove-button" data-original-title="" title="" aria-label="Remove this item"><i class="icon-remove-sign icon--align-with-fields"></i></button>
+            </div>
+
+        </div>
+
+    </fieldset>
+{% endblock %}

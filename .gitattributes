@@ -271,7 +271,6 @@
 /libs/pikaday/index.html                                        export-ignore
 /libs/pikaday/LICENSE                                           export-ignore
 /libs/pikaday/package.json                                      export-ignore
-/libs/pikaday/plugins/                                          export-ignore
 /libs/pikaday/README.md                                         export-ignore
 /libs/pikaday/scss/                                             export-ignore
 /libs/pikaday/tests/                                            export-ignore
@@ -327,6 +326,15 @@
 /libs/selectivizr/bower.json                                    export-ignore
 /libs/selectivizr/changelog.txt                                 export-ignore
 /libs/selectivizr/README.markdown                               export-ignore
+
+# spectrum
+/libs/spectrum/i18n/                                            export-ignore
+/libs/spectrum/themes                                           export-ignore
+/libs/spectrum/.bower.json                                      export-ignore
+/libs/spectrum/bower.json                                       export-ignore
+/libs/spectrum/index.html                                       export-ignore
+/libs/spectrum/package.json                                     export-ignore
+/libs/spectrum/spectrum.css                                     export-ignore
 
 # sticky
 /libs/sticky/.bower.json                                        export-ignore

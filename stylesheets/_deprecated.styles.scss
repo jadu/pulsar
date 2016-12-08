@@ -1,153 +1,4 @@
 // -----------------------------------------------------------------------------
-//  20/02/2016
-//
-//  Styles for a filters component which never saw light of day, originally
-//  written by Adam for the first incarnation of Q.
-//
-//  _component.filters.scss
-//  _component.filter.scss
-// -----------------------------------------------------------------------------
-
-.form--horizontal .form__group {
-  > .control__label + .checkbox {
-    display: inline-block;
-    margin-left: 0;
-    width: 65%;
-  }
-
-  > .checkbox--multi {
-    padding-top: 9px;
-
-    .checkbox__label {
-      margin: 0;
-      text-align: left;
-      width: 100%;
-
-      input {
-        margin-left: 0;
-      }
-    }
-  }
-
-  .form__collection {
-    ul {
-      list-style: none;
-      margin-bottom: 0;
-    }
-
-    li {
-      margin-bottom: $padding-small-vertical;
-      position: relative;
-    }
-
-    .form__control {
-      padding-right: $padding-base-horizontal * 3;
-    }
-
-    .remove__control {
-      color: color(gray, light);
-      margin-top: - $input-height-base / 4;
-      position: absolute;
-      right: $padding-base-horizontal;
-      text-decoration: none;
-      top: 50%;
-
-      &:hover {
-        color: color(danger);
-      }
-    }
-  }
-}
-
-tr.filters {
-  .label {
-    text-transform: none;
-    user-select: none;
-    cursor: pointer;
-  }
-
-  [data-filter-type="multi"]:hover {
-    cursor: pointer;
-  }
-
-  .actions {
-    [data-filter-action="done"],
-    [data-filter-action="save-as"] {
-      // display: none;
-    }
-  }
-
-  &.edit {
-    .actions {
-      float: right;
-
-      [data-filter-action="add"] {
-        display: none;
-      }
-
-      [data-filter-action="done"],
-      [data-filter-action="save"] {
-        display: inline;
-      }
-    }
-
-    [data-filter-action="clear-all"] {
-      margin-right: -25px;
-    }
-  }
-}
-
-tr.is-collapsed {
-
-  td,
-  th {
-    border: 0;
-    height: 0;
-
-    > div {
-      height: 0;
-      overflow: hidden;
-    }
-  }
-}
-
-.filter {
-    display: none; // filters shouldn"t be visible on load
-    text-align: center;
-
-    .form__group:hover {
-        box-shadow: none;
-    }
-}
-
-.popover__content > .filter {
-    display: block; // show the filter content when it"s inside a popover
-}
-
-[data-popover-content] + .popover {
-    max-width: 500px;
-}
-
-tr.filters {
-    th:nth-of-type(2) {
-        padding: 0 10px 0 0;
-    }
-
-    .label {
-        position: relative;
-        top: -2px;
-    }
-
-    [data-filter-action="clear-all"] {
-        float: right;
-    }
-}
-
-[data-daterange]:hover {
-    cursor: pointer;
-}
-
-// -----------------------------------------------------------------------------
 //  10/11/2015
 //
 //  Old direct variable names, mapped to current colour palette.
@@ -209,375 +60,335 @@ $inverse-color-alt:             #fff;
 
 $toolbar-bg-hover:              #f00;
 
-$state-colors: ("base", $base-color, $base-color-alt),
-               ("primary", $primary-color, $primary-color-alt),
-               ("success", $success-color, $success-color-alt),
-               ("warning", $warning-color, $warning-color-alt),
-               ("danger", $danger-color, $danger-color-alt),
-               ("info", $info-color, $info-color-alt),
-               ("inverse", $inverse-color, $inverse-color-alt);
+// -----------------------------------------------------------------------------
+//  24/10/2016
+//
+//  Rich list, replaced by piano lists
+//  At time of deprecation this is used in CXM History UI
+//
+//  _component.richer-list.scss
+// -----------------------------------------------------------------------------
+/**
+ * Richer lists can be displayed either as the entire layout for a tab, or as a
+ * separate component within a form.
+ *
+ * 1. Rich lists should aim to chop the last item in a list in half horizontally
+ *    in order to visually prompt the user that information has been hidden and
+ *    that they should scroll to see more items.
+ * 2. Paginated lists are set to a height which fits 10 items.
+ * 2. Outline is used here so that if the rich list is used in a container that
+ *    already has a border, it wont be doubled up.
+ * 3. The last item should always show empty space after/underneath, this helps
+ *    to indicate that the end of the list has been reached.
+ * 4. The colour to be shown 'underneath' the items, which helps to signify when
+ *    the end of the list has been reached.
+ * 5. Make sure the elements containing list items are always flush with the top
+ *    of this container (tables are normally aligned to the bottom).
+ * 6. Remove default styles from list elements used to display items.
+ * 7. Rich list items can contain selection of different element types, which
+ *    need padding applied to maintain layout.
+ * 8. Don't show bullets/numbers when using ordered/unordered lists.
+ * 9. Use pointer cursor here, as we might not always be using links to trigger
+ *    the detail changes.
+ * 10. Remove list bullets/numbers, though we probably should allow numbers as
+ *     an option at some point...
+ * 11. Make sure links & spans used as list items are treated as block-level and
+ *     100% width.
+ * 12. Reset default table styles.
+ * 13. Reset link styling used in list items, visual styling should be
+ *     handled by the list item itself.
+ * 14. Remove ability to scroll contents and simply stretch the height to fit
+ *     the number of items.
+ * 15. If streching to fit, or paginating, then we don't need the emtpy space
+ *     after the last item as created in [3].
+ * 16. Make sure .pagination element sits directly underneath the rich list.
+ * 17. Size variants only available when the screen is wide enough for them to
+ *     be useful.
+ * 18. Rich lists within decks.
+ */
 
 
 /* -------------------------------------------------------------------------- *\
-	30/07/2015
-
-	_component.table.scss
-
-	Old table alignment classes
+    Configuration
 \* -------------------------------------------------------------------------- */
 
-.row--align-top {
-  th,
-  td {
-    vertical-align: top;
-  }
-}
+// Heights
+$rich-list-height:                    215px !default; /* [1] */
+$rich-list-height-tall:               490px !default; /* [1] */
+$rich-list-height-paginated:          428px !default; /* [2] */
 
-.row--align-middle {
-  th,
-  td {
-    vertical-align: middle;
-  }
-}
+// Items
+$rich-list-item-padding:              .5em;
+
+// Item widths
+$rich-list-items-width-default:       .5 !default;  // small screen
+$rich-list-items-width-small:         .25 !default; // large screen
+$rich-list-items-width-medium:        .37 !default; // large screen
+$rich-list-items-width-large:         .5 !default;  // large screen
+$rich-list-items-width-xlarge:        .65 !default; // large screen
+
+// Colour
+$rich-list-border-color:              color(gray) !default;
+$rich-list-item-bg-color:             color(white) !default;
+$rich-list-item-bg-hover-color:       color(gray, lighter) !default;
+$rich-list-item-bg-selected-color:    color(jadu-blue) !default;
+$rich-list-item-text-selected-color:  color(white) !default;
+
 
 /* -------------------------------------------------------------------------- *\
-    12/08/2015
-
-    _tabs.scss
-
-    Old on page tabs (used in file uploads in the Q CC)
+    Default Presentation
 \* -------------------------------------------------------------------------- */
-.tabs__container {
-    .tabs__list {
-      clear: left;
-      float: left;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      width: $tab-column-width;
 
-      @include ie-lte(8) {
-        display: block;
-      }
+.richer-list {
+  display: block;
+  float: left;
+  height: $rich-list-height;
+  margin-bottom: 1em;
+  outline: 1px solid $rich-list-border-color; /* [3] */
+  width: 100%;
+}
 
-      @include respond-max($screen-tablet-max) {
-        width: $tab-column-width-tablet;
-      }
+.richer-list__items-container,
+.richer-list__detail {
+  display: block;
+  float: left;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
 
-      @include respond-min($screen-tablet) {
-        display: block;
-      }
+.richer-list__items-container {
+  height: $rich-list-height;
+  overflow: scroll;
+}
 
-      &[data-mobile-togglable] {
-        background-color: $accent-color;
-        border-left: $toolbar-accent-height solid $accent-color;
-        display: block;
-        height: 100%;
-        margin-right: -$tab-column-width-mobile;
-        overflow-y: auto;
-        position: fixed;
-        right: 0;
-        top: 0;
-        -webkit-transition: margin-right .15s ease-out;
-        -moz-transition: margin-right .15s ease-out;
-        -transition: margin-right .15s ease-out;
-        z-index: $zindex-nav;
-        width: $tab-column-width-mobile;
+.richer-list__items {
+  margin-bottom: 1em; /* [4] */
+  width: 100%;
 
-        &.toggled {
-          margin-right: 0;
-        }
-      }
+  ul &,
+  ol & {
+    display: block;
+  }
+}
 
-      > li {
-        margin-bottom: -1px;
-      }
 
-      &[data-mobile-togglable] > li,
-      &[data-mobile-togglable] > li > .tabs__list > li {
-        margin-bottom: 0;
-      }
+.richer-list__detail {
+  display: table-cell;
+  position: relative;
+  height: 100%;
+  // max-width: 90%;
+  padding: $rich-list-item-padding;
+  width: percentage(1 - $rich-list_items-width-default);
+}
 
-      > li > a {
-        border: 1px solid transparent;
-        color: $black;
-        display: block;
-        line-height: $line-height-base * 1.75;
-        padding: 0 $gutter-width / 2;
-        text-decoration: none;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
 
-        @include ie-lte(7) {
-          height: $line-height-base * 1.75;
-        }
+.richer-list__items-container {
+  background-color: color(gray, off-white); /* [5] */
+  border-right: 1px solid $rich-list-border-color;
+  vertical-align: top; /* [6] */
+  width: percentage($rich-list_items-width-default);
 
-        > .label {
-          margin-left: .5em;
-          position: relative;
-          top: -1px;
-        }
+  > ul,
+  > ol { /* [7] */
+    margin-left: 0;
+  }
+}
 
-        > i {
-          display: inline-block;
-          font-size: 14px;
-          opacity: .6;
-          text-align: center;
-          margin-right: 3px;
-          width: 14px;
+.richer-list__header,
+.richer-list__item {
+  background-color: $rich-list-item-bg-color;
+  border-bottom: 1px solid $rich-list-border-color;
 
-          @include ie-lte(7) {
-            margin-right: 6px;
-          }
-        }
+  > a,
+  > div,
+  > span,
+  > td,
+  > th { /* [8] */
+    padding: $rich-list-item-padding;
+  }
+}
 
-        &:hover {
-          background-color: $gray-lighter;
+.richer-list__item {
+  cursor: pointer; /* [9] */
 
-          > i {
-            opacity: 1;
-          }
-        }
-      }
+  ol &,
+  ul & { /* [10] */
+    list-style-type: none;
+  }
 
-      &[data-mobile-togglable] > li > a {
-        color: $accent-color-alt;
-        border: 0;
+  > a,
+  > span { /* [11] */
+    display: inline-block;
+    width: 100%;
+  }
 
-        &:hover {
-          color: $accent-color;
-          background-color: $accent-color-alt;
-        }
-      }
+  th,
+  td { /* [12] */
+    background: none;
+    background-color: none;
+  }
 
-      > li.is-open > a {
-        outline: 1px solid red;
-      }
+  a { /* [13] */
+    color: color(black);
+    text-decoration: none;
+  }
 
-      > li.is-active > a {
-        background-color: $white;
-        border: 1px solid $gray;
-        border-right: 0;
-        z-index: 1;
+  /**
+   * States
+   */
 
-        &:hover {
-          background-color: $gray-lighter;
-        }
-      }
+  &:hover {
+    background-color: $rich-list-item-bg-hover-color;
+    cursor: pointer;
+  }
 
-      &[data-mobile-togglable] > li.is-active > a {
-        background-color: $accent-color;
-        border: 0;
-        border-bottom: 2px solid $accent-color-alt;
-        color: $accent-color-alt;
+  &.is-selected {
+    background-color: $rich-list-item-bg-selected-color;
+    color: $rich-list-item-text-selected-color;
+  }
+}
 
-        i {
-          opacity: 1;
-        }
-      }
+
+.richer-list__item-placeholder {
+  background-color: color(gray, off-white);
+  height: ($line-height-base * 1.8) * 3;
+  text-align: center;
+  vertical-align: inherit;
+
+  a {
+    color: color(link);
+  }
+
+  &:hover a {
+    text-decoration: underline;
+  }
+}
+
+
+/* -------------------------------------------------------------------------- *\
+    Variations
+\* -------------------------------------------------------------------------- */
+
+.richer-list--fit-items { /* [14] */
+  &,
+  .richer-list__items-container,
+  .richer-list__detail {
+    height: auto;
+  }
+
+  .richer-list__items {
+    margin-bottom: 0; /* [15] */
+  }
+}
+
+
+.richer-list--paginated {
+  @extend .richer-list--fit-items;
+  height: $rich-list-height-paginated; /* [2] */
+  margin-bottom: 1px; /* [16] */
+
+  .richer-list__detail {
+    height: 100%;
+    overflow-y: scroll;
+  }
+}
+
+
+@include respond-min($screen-tablet) { /* [17] */
+  .richer-list {
+    .richer-list__items-container {
+      width: percentage($rich-list-items-width-small);
     }
 
-    // horizontal navigation
-    .tabs__list.tabs--horizontal {
-      margin: 0;
-      position: relative;
-      width: auto;
-      z-index: $zindex-dropdown;
+    .richer-list__detail {
+      width: percentage(1 - $rich-list-items-width-small);
+    }
+  }
 
-      > li {
-        float: left;
-      }
 
-      > li > a:hover {
-        z-index: -1;
-      }
-
-      > li.is-active > a {
-        border: 1px solid $gray;
-        border-bottom: 0;
-      }
-
-      + .tabs__content {
-        border: 1px solid $gray;
-        clear: left;
-        position: relative;
-        top: -1px;
-
-        > .tab__pane {
-          padding: $line-height-base 0;
-        }
-      }
+  .richer-list--medium {
+    .richer-list__items-container {
+      width: percentage($rich-list-items-width-medium);
     }
 
-    // nested navigation
-    .tabs__list > li > .tabs__list {
-      background-color: $white;
-      border-bottom: 1px solid $gray;
-      border-left: 1px solid $gray;
-      padding-bottom: 1px;
-      display: none;
-      float: none;
-      width: 100%;
+    .richer-list__detail {
+      width: percentage(1 - $rich-list-items-width-medium);
+    }
+  }
 
-      > li.is-active > a {
-        background-color: $gray-lighter;
-        border-color: transparent;
 
-        &:hover {
-          background-color: $gray-lighter;
-        }
-      }
+  .richer-list--large {
+    .richer-list__items-container {
+      width: percentage($rich-list-items-width-large);
     }
 
-    .tabs__list[data-mobile-togglable] > li > .tabs__list {
-      background-color: $accent-color;
-      border: 0;
-      padding: 0;
+    .richer-list__detail {
+      width: percentage(1 - $rich-list-items-width-large);
+    }
+  }
 
-      > li > a {
-        border: 0;
-        color: $accent-color-alt;
 
-        &:hover {
-          background-color: $accent-color;
-          color: $white;
-        }
-      }
-
-      > li.is-active > a {
-        background-color: $accent-color-alt;
-        color: $accent-color;
-
-        // scss-lint:disable SelectorDepth
-        i {
-          opacity: 1;
-        }
-        // scss-lint:enable SelectorDepth
-      }
+  .richer-list--xlarge {
+    .richer-list__items-container {
+      width: percentage($rich-list-items-width-xlarge);
     }
 
-    .tabs__list .is-active > .tabs__list {
-      display: block;
+    .richer-list__detail {
+      width: percentage(1 - $rich-list-items-width-xlarge);
     }
+  }
+}
 
-    .tabs__content {
-      display: block;
-      overflow: auto;
 
-      @include respond-max($screen-tablet) {
-        position: relative;
-        top: -($line-height-base * 2.5);
-      }
+.richer-list--tall,
+.richer-list--tall .richer-list__items-container {
+  height: $rich-list-height-tall;
+}
 
-      // show/hide tab panes
-      > .tab__pane {
-        display: none;
 
-        &.is-active {
-          display: block;
-        }
-      }
+/* -------------------------------------------------------------------------- *\
+    Alternative Uses
+\* -------------------------------------------------------------------------- */
+
+.deck { /* [18] */
+  .richer-list__items,
+  .richer-list__detail {
+    height: 100%;
+    overflow-y: visible;
+  }
+}
+
+
+
+
+
+/* -------------------------------------------------------------------------- *\
+    Settings
+\* -------------------------------------------------------------------------- */
+
+.richer-list__with-settings {
+
+  .richer-list__detail {
+    padding-right: 55px;
+    position: relative;
+  }
+
+  .settings {
+    height: 100%;
+    position: absolute;
+    right: -200px;
+    top: 0;
+
+    -webkit-transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out;
+    -ms-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+
+    &.open {
+      box-shadow: -5px 0 0 rgba(0, 0, 0, .1);
+      right: 0;
     }
-
-    .tab__pane form {
-      // make sure forms in tabs don"t add extra spacing after the form actions
-      margin-bottom: 0;
-      width: 100%;
-    }
-
-    .tab__inner {
-      background-color: $white;
-      border-top: 1px solid $gray;
-      border-bottom: 1px solid $gray;
-      float: left;
-      position: relative;
-      width: 100%;
-
-      @include respond-min($screen-phone) {
-        border: 1px solid $gray;
-      }
-
-      h2:first-of-type {
-        margin-top: 0;
-      }
-    }
-
-    .tab__main {
-      overflow: hidden;
-      width: 100%;
-
-      @include respond-min($screen-desktop) {
-        border-right: 1px solid $gray;
-        padding-right: $gutter-width;
-        width: auto;
-      }
-    }
-
-    .tab__sidebar {
-      border-bottom: 1px solid $gray;
-      float: left;
-      padding: 0;
-      margin-bottom: $line-height-base;
-      position: relative;
-      vertical-align: top;
-      width: 100%;
-
-      @include respond-min($screen-desktop) {
-        border-bottom: 0 none;
-        border-left: 1px solid $gray;
-        float: right;
-        left: -1px; // match left border with that of .tab__main
-        margin-bottom: 0;
-        padding: $line-height-base 0 $line-height-base $gutter-width;
-        width: 25%;
-      }
-    }
-
-    .tab--unpadded > p {
-      clear: both;
-      margin-left: $gutter-width;
-    }
-
-    .tab--padded {
-      padding: $line-height-base $gutter-width;
-    }
-
-    .tabs {
-      display: inline-block;
-      height: 100%;
-      margin-bottom: 3.2em;
-      position: relative;
-      width: 100%;
-    }
-
-    .tabs__list > li > a[data-show="#new-tab"] {
-      @extend .muted;
-      text-align: center;
-
-      &:hover {
-        color: $gray-dark;
-      }
-    }
-
-    .tabs__list .new {
-      background-color: $primary-color;
-      border-bottom: 0;
-      height: $line-height-base * 1.75;
-
-      input {
-        background-color: $primary-color;
-        border: 0;
-        outline: none;
-        color: $white;
-        line-height: 1.75em;
-        margin: 4px 0 0 5%;
-        width: 90%;
-
-        &::selection {
-          background: white;
-        }
-      }
-    }
+  }
 }
 
