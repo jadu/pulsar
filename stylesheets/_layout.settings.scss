@@ -14,7 +14,6 @@
     }
 
     @include respond-min($screen-medium) {
-        float: left;
         margin-right: 1%;
         min-width: 370px;
         width: 25%;
@@ -348,9 +347,9 @@
     }
 
     @include respond-min($screen-medium) {
-        float: right;
+        float: none;
         max-width: calc(99% - 370px);
-        width: 74%;
+        width: 100%;
     }
 
     .lt-ie9 & {
