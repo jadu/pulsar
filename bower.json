@@ -1,6 +1,6 @@
 {
   "name": "pulsar",
-  "version": "6.9.5",
+  "version": "6.12.3",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -35,7 +35,9 @@
     "Vague.js": "0.0.4",
     "vide": "~0.3.1",
     "chartist": "^0.9.8",
-    "bootstrap-daterangepicker": "^2.1.24"
+    "bootstrap-daterangepicker": "^2.1.24",
+    "vide": "~0.3.1",
+    "spectrum": "^1.8.0"
   },
   "devDependencies": {
     "livereload-js": "livereload/livereload-js"

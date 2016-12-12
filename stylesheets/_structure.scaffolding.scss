@@ -7,11 +7,6 @@ body {
   height: auto;
 }
 
-// Allow any content to clear the fixed footer
-html {
-  padding-bottom: 40px;
-}
-
 body {
   font-family: $font-family-base;
   font-size: $font-size-medium;
@@ -30,8 +25,9 @@ body {
   clear: both;
   display: table;
   height: 100%;
-  margin: 0;
-  overflow: hidden;
+  // Allow any content to clear the fixed footer
+  margin: 0 0 40px;
+  overflow-x: hidden;
   position: relative;
   width: 100%;
 

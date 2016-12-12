@@ -62,6 +62,7 @@ $screen-phone:                        $screen-xsmall !default;
 
 // Smaller screen / large mobile / tiny tablet
 $screen-smaller:                      600px !default;
+$screen-phablet:                      $screen-smaller !default;
 
 // Small screen / tablet
 $screen-small:                        767px !default;
@@ -108,8 +109,7 @@ $padding-small-horizontal:            10px !default;
 //  Navigation
 // -----------------------------------------------------------------------------
 
-$nav-primary-width:                   45%;
-$nav-primary-item-width:              32%; // % of $nav-primary-width
+$nav-primary-width:                   75px;
 
 // -----------------------------------------------------------------------------
 //  Forms

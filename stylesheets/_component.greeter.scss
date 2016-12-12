@@ -50,8 +50,8 @@ $greeter-bg-color-darker:               darken($greeter-bg-color, 3) !default;
 $greeter-text-color:                    color(white) !default;
 $greeter-text-color-alt:                color(black) !default;
 $greeter-link-underline-color:          $greeter-bg-color-lighter !default;
-$greeter-button-bg-color:               color(jadu-blue, dark) !default;
-$greeter-button-bg-color-hover:         darken($greeter-button-bg-color, 2) !default;
+$greeter-button-bg-color:               darken(color(jadu-blue, dark), 6) !default;
+$greeter-button-bg-color-hover:         darken($greeter-button-bg-color, 8) !default;
 $greeter-button-border-color:           darken($greeter-button-bg-color, 10) !default;
 $greeter-button-bg-color-disabled:      $greeter-bg-color-darker !default;
 $greeter-button-border-color-disabled:  darken($greeter-bg-color, 10) !default;
@@ -68,204 +68,202 @@ $greeter-brand-bottom-height:           40px !default;
 
 // Animations
 @-webkit-keyframes bounce {
-  0%, 50%, 100% {
-    -webkit-transform: translateY(0);
-  }
+    0%, 50%, 100% {
+        -webkit-transform: translateY(0);
+    }
 
-  25%, 75% {
-    -webkit-transform: translateY(-5px);
-  }
+    25%, 75% {
+        -webkit-transform: translateY(-5px);
+    }
 }
 
 @keyframes bounce {
-  0%, 50%, 100% {
-    transform: translateY(0);
-  }
+    0%, 50%, 100% {
+        transform: translateY(0);
+    }
 
-  25%, 75% {
-    transform: translateY(-5px);
-  }
+    25%, 75% {
+        transform: translateY(-5px);
+    }
 }
 
-
 /* -------------------------------------------------------------------------- *\
-    Default Presentation
+	Default Presentation
 \* -------------------------------------------------------------------------- */
 
 .greeter {
-  background-clip: border-box;
-  background-color: $greeter-bg-color;
-  background-image: url($greeter-brand-top-image-fallback);
-  background-image: url($greeter-brand-top-image), linear-gradient(transparent, transparent);
-  background-size: $greeter-brand-top-width $greeter-brand-top-height;
-  background-position: 20px 20px;
-  background-origin: padding-box;
-  background-repeat: no-repeat;
-  border-top-left-radius: 20px;
-  border-bottom-right-radius: 20px;
-  color: $greeter-text-color;
-  min-height: $greeter-min-height;
-  max-width: $greeter-width-max;
-  padding: $greeter-padding;
-  width: $greeter-width-responsive;
-
-  &__link {
-    border-bottom: 1px solid $greeter-link-underline-color;
-    text-decoration: none;
-
-    &,
-    &:link,
-    &:visited {
-      color: $greeter-text-color;
-    }
-
-    &:hover {
-      border-bottom-color: $greeter-text-color;
-    }
-  }
-
-  &__header {
     background-clip: border-box;
-    background: url($greeter-brand-top-image-fallback);
-    background: url($greeter-brand-top-image), linear-gradient(transparent, transparent);
+    background-color: $greeter-bg-color;
+    background-image: url($greeter-brand-top-image-fallback);
+    background-image: url($greeter-brand-top-image), linear-gradient(transparent, transparent);
     background-size: $greeter-brand-top-width $greeter-brand-top-height;
+    background-position: 20px 20px;
     background-origin: padding-box;
     background-repeat: no-repeat;
-    padding-top: $greeter-brand-top-height + $gutter-width;
-    text-align: right;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    color: $greeter-text-color;
+    min-height: $greeter-min-height;
+    max-width: $greeter-width-max;
+    padding: $greeter-padding;
+    width: $greeter-width-responsive;
 
-    // Support transparent PNG background images in IE8
-    @include ie-lte(8) {
-        border: 1px solid red;
-        background-image: url($greeter-brand-top-image-fallback) !important;
-        filter: progid:DXImageTransform.Microsoft.gradient(
-            startColorstr=#00FFFFFF, endColorstr=#00FFFFFF
-        );
+    &__link {
+        border-bottom: 1px dotted $greeter-link-underline-color;
+        text-decoration: none;
+
+        &,
+        &:link,
+        &:visited {
+            color: $greeter-text-color;
+        }
+
+        &:hover {
+            border-bottom-color: $greeter-text-color;
+        }
     }
-  }
 
-  &__title {
-    font-size: $greeter-font-size-large;
-    line-height: 1em;
-    margin-bottom: .25em;
-  }
+    &__header {
+        background-clip: border-box;
+        background: url($greeter-brand-top-image-fallback);
+        background: url($greeter-brand-top-image), linear-gradient(transparent, transparent);
+        background-size: $greeter-brand-top-width $greeter-brand-top-height;
+        background-origin: padding-box;
+        background-repeat: no-repeat;
+        padding-top: $greeter-brand-top-height + $gutter-width;
+        text-align: right;
 
-  &__sub-title {
-    font-size: $greeter-font-size-medium;
-    line-height: 1em;
-    margin-bottom: .5em;
-
-  }
-
-  &__call-to-action {
-    font-size: $greeter-font-size-small;
-  }
-
-
-  &__form {
-    margin: 2em auto 0;
-    overflow: visible;
-    text-align: right; /* [1] */
-    max-width: $greeter-form-width-max;
-    width: 100%;
-
-    input,
-    textarea { /* [2] */
-      color: $greeter-text-color-alt;
+        // Support transparent PNG background images in IE8
+        @include ie-lte(8) {
+            background-image: url($greeter-brand-top-image-fallback) !important;
+            filter: progid:DXImageTransform.Microsoft.gradient(
+                startColorstr=#00FFFFFF, endColorstr=#00FFFFFF
+            );
+        }
     }
-  }
 
-  &__textarea {
-    border: 0; /* [3] */
-    box-shadow: inset 0 3px 0 color(gray, lighter);
-    max-width: ($greeter-width-max - ($greeter-padding * 2)); /* [4] */
-    max-height: 16em;
-    min-height: 8em; /* [5] */
-    padding: .5em;
-    resize: vertical; /* [4] */
-    width: 100%;
-
-    &:focus {
-      outline: none; /* [6] */
+    &__title {
+        font-size: $greeter-font-size-large;
+        line-height: 1em;
+        margin-bottom: .25em;
     }
-  }
 
+    &__sub-title {
+        font-size: $greeter-font-size-medium;
+        line-height: 1em;
+        margin-bottom: .5em;
+    }
 
-  &__actions { /* [7] */
-    display: inline-block;
-    position: relative;
-  }
+    &__call-to-action {
+        font-size: $greeter-font-size-small;
+    }
 
-  &__hint {
-    display: inline-block;
-    margin: 0 ($greeter-padding / 2) 0 auto;
-    opacity: 0;
-    position: relative;
-    top: 3px; /* [8] */
+    &__form {
+        margin: 2em auto 0;
+        overflow: visible;
+        text-align: right; /* [1] */
+        max-width: $greeter-form-width-max;
+        width: 100%;
 
-    i { /* [9] */
-      display: inline-block;
-      font-size: 1.5em;
-      margin-right: ($greeter-padding / 2);
-      -webkit-animation-duration: 1s;
+        input,
+        textarea { /* [2] */
+            color: $greeter-text-color-alt;
+        }
+    }
+
+    &__textarea {
+        border: 0; /* [3] */
+        box-shadow: inset 0 3px 0 color(gray, lighter);
+        max-width: ($greeter-width-max - ($greeter-padding * 2)); /* [4] */
+        max-height: 16em;
+        min-height: 8em; /* [5] */
+        padding: .5em;
+        resize: vertical; /* [4] */
+        width: 100%;
+
+        &:focus {
+            outline: none; /* [6] */
+        }
+    }
+
+    &__actions { /* [7] */
+        display: inline-block;
+        position: relative;
+    }
+
+    &__hint {
+        display: inline-block;
+        margin: 0;
+        margin-left: $greeter-padding / 2;
+        margin-right: auto;
+        opacity: 0;
+        position: relative;
+        top: 3px; /* [8] */
+
+        i { /* [9] */
+            display: inline-block;
+            font-size: 1.5em;
+            margin-right: ($greeter-padding / 2);
+            -webkit-animation-duration: 1s;
               animation-duration: 1s;
-      -webkit-animation-fill-mode: both;
+            -webkit-animation-fill-mode: both;
               animation-fill-mode: both;
-      -webkit-animation-iteration-count: infinite;
+            -webkit-animation-iteration-count: infinite;
               animation-iteration-count: infinite;
-      -webkit-animation-name: bounce;
+            -webkit-animation-name: bounce;
               animation-name: bounce;
-    }
-  }
-
-
-  &__button {
-    background-color: $greeter-button-bg-color;
-    border: 0;
-    border-bottom: $greeter-button-border-width solid $greeter-button-border-color;
-    border-radius: 4px;
-    font-size: $greeter-font-size-small;
-    line-height: 1em;
-    padding: 10px 10px 7px;
-    position: relative; /* [10] */
-
-    &:hover:not(:disabled) { /* [11] */
-      border-bottom-color: $greeter-button-border-color;
-      border-bottom-width: $greeter-button-border-width - 1;
-      background-color: $greeter-button-bg-color-hover;
-      margin-bottom: 1px;
-      top: 1px;
+        }
     }
 
-    &:active,
-    &:hover:active, /* [12] */
-    &:disabled { /* [13] */
-      border-bottom: 0;
-      box-shadow: inset 0 1px 0 $greeter-button-border-color;
-      margin-bottom: $greeter-button-border-width; /* [14] */
-      top: $greeter-button-border-width; /* [15] */
+    &__button {
+        background-color: $greeter-button-bg-color;
+        border: 0;
+        border-bottom: $greeter-button-border-width solid $greeter-button-border-color;
+        border-radius: 4px;
+        color: color(white);
+        font-size: $greeter-font-size-small;
+        line-height: 1em;
+        padding: 10px 10px 7px;
+        position: relative; /* [10] */
+        text-decoration: none;
+
+        &:hover:not(:disabled) { /* [11] */
+            border-bottom-color: $greeter-button-border-color;
+            border-bottom-width: $greeter-button-border-width - 1;
+            background-color: $greeter-button-bg-color-hover;
+            margin-bottom: 1px;
+            top: 1px;
+        }
+
+        &:active,
+        &:hover:active, /* [12] */
+        &:disabled { /* [13] */
+            border-bottom: 0;
+            box-shadow: inset 0 1px 0 $greeter-button-border-color;
+            margin-bottom: $greeter-button-border-width; /* [14] */
+            top: $greeter-button-border-width; /* [15] */
+        }
+
+        &:disabled {
+            box-shadow: inset 0 1px 0 $greeter-button-border-color-disabled;
+            background-color: $greeter-button-bg-color-disabled;
+        }
     }
 
-    &:disabled {
-      box-shadow: inset 0 1px 0 $greeter-button-border-color-disabled;
-      background-color: $greeter-button-bg-color-disabled;
+    &__footer {
+        font-size: $greeter-font-size-small;
+        text-align: right;
     }
-  }
 
-
-  &__footer {
-    display: none;
-  }
-
-  &__brand-bottom {
-    background: url($greeter-brand-bottom-image-fallback);
-    background: url($greeter-brand-bottom-image), linear-gradient(transparent, transparent);
-    background-size: $greeter-brand-bottom-width $greeter-brand-bottom-height;
-    background-repeat: no-repeat;
-    display: block;
-    height: $greeter-brand-bottom-height;
-    margin-left: auto; /* [16] */
-    text-indent: -9999px;
-    width: $greeter-brand-bottom-width;
-  }
+    &__brand-bottom {
+        background: url($greeter-brand-bottom-image-fallback);
+        background: url($greeter-brand-bottom-image), linear-gradient(transparent, transparent);
+        background-size: $greeter-brand-bottom-width $greeter-brand-bottom-height;
+        background-repeat: no-repeat;
+        display: block;
+        height: $greeter-brand-bottom-height;
+        margin-left: auto; /* [16] */
+        text-indent: -9999px;
+        width: $greeter-brand-bottom-width;
+    }
 }

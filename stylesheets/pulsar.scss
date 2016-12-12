@@ -15,11 +15,13 @@
 $ie-version: 12 !default;
 
 // Third party plugins
+// scss-lint:disable all
 @import '../libs/normalize-css/normalize.css';
 @import '../libs/select2/dist/css/select2.css';
 @import 'charts/chartist.settings';
 @import '../libs/chartist/dist/scss/chartist';
 @import '../libs/bootstrap-daterangepicker/daterangepicker.css';
+// scss-lint:enable all
 
 // Proxima Nova (requires license)
 $font-path: '../fonts/';
@@ -41,6 +43,7 @@ $fa-css-prefix: 'icon';
 @import 'mixin.label-variant';
 @import 'mixin.media-queries';
 @import 'mixin.mixins-to-organise';
+@import 'mixin.responsive-utilities';
 
 // Config
 @import 'config.variables';
@@ -80,6 +83,9 @@ $fa-css-prefix: 'icon';
 	mixins you should @import them here.
 \* -------------------------------------------------------------------------- */
 
+// Third party code
+@import 'libraries/library.colorpicker';
+
 // Objects
 @import 'objects/object.box';
 @import 'objects/object.google-result';
@@ -93,11 +99,10 @@ $fa-css-prefix: 'icon';
 @import 'component.breadcrumb';
 @import 'component.button-groups';
 @import 'component.buttons';
-@import 'component.choice-matrix';
+@import 'component.colorpicker';
 @import 'component.close';
 @import 'component.datepicker';
 @import 'component.daterange';
-@import 'component.decks';
 @import 'component.dropdowns';
 @import 'component.edit-button';
 @import 'component.editor';
@@ -109,7 +114,6 @@ $fa-css-prefix: 'icon';
 @import 'component.greeter';
 @import 'component.icons';
 @import 'component.input-groups';
-@import 'component.label-groups';
 @import 'component.labels';
 @import 'component.lists';
 @import 'component.loading';
@@ -137,7 +141,6 @@ $fa-css-prefix: 'icon';
 @import 'component.signin';
 @import 'component.slider';
 @import 'component.status';
-@import 'component.summary';
 @import 'component.tab-help';
 @import 'component.tab-panel';
 @import 'component.tables';

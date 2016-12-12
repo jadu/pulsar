@@ -2,7 +2,6 @@
 
 {% block tab_content %}
 
-
     <div class="is-sortable">
     {{
         form.text({
@@ -43,6 +42,79 @@
         })
     }}
     </div>
+
+    <br /><hr>
+
+    <h2>Sortable tables</h2>
+
+    <table class="table is-sortable table--full">
+        <thead>
+            <tr>
+                <th>File title</th>
+                <th>Type</th>
+                <th>Size</th>
+                <th>Filename / URL</th>
+                <th class="centered">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                My awesome document
+            </td>
+            <td>
+                {{ html.icon('file-word-o') }} .docx
+            </td>
+            <td>
+                685 KB
+            </td>
+            <td>
+                document.docx
+            </td>
+            <td class="centered">
+                {{ form.checkbox({'bare': 'true'}) }}
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                Innocent screensaver
+            </td>
+            <td>
+                {{ html.icon('file-code-o') }} .exe
+            </td>
+            <td>
+                3.5 MB
+            </td>
+            <td>
+                anna_kournikova.exe
+            </td>
+            <td class="centered">
+                {{ form.checkbox({'bare': 'true'}) }}
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                My awesome PDF
+            </td>
+            <td>
+                {{ html.icon('file-pdf-o') }} .pdf
+            </td>
+            <td>
+                685 KB
+            </td>
+            <td>
+                sdfghjkhjifldshjkfdshajkl.pdf
+            </td>
+            <td class="centered">
+                {{ form.checkbox({'bare': 'true'}) }}
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+
 
 
 {% endblock %}

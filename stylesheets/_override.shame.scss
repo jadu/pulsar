@@ -94,39 +94,6 @@
     margin: 0;
   }
 
-
-
-  .form__group--small {
-    .controls {
-      @include respond-min($screen-xsmall) {
-        display: inline-block;
-        max-width: 150px;
-        min-width: 70px;
-        width: 61.5%;
-      }
-
-      @include respond-min($screen-small) {
-        width: 30%;
-      }
-    }
-
-    .form__control:not(.checkbox):not(.radio) {
-      margin: 0;
-
-      @include respond-min($screen-xsmall) {
-        width: 130px;
-      }
-    }
-
-    .controls + .controls {
-      margin: 0;
-
-      @include respond-min($screen-xsmall) {
-        margin-left: 10px;
-      }
-    }
-  }
-
   .form__group .form__collection ul {
     margin-left: 0;
   }
@@ -201,6 +168,13 @@
 // fixes strange issue with content-main moving off screen when dropdown in toolbar is used
 .lt-ie10 .content-main {
     clear: both;
+}
+
+.icon--align-with-fields {
+    display: block;
+    font-size: $font-size-xlarge;
+    line-height: $line-height-large;
+    text-align: center;
 }
 
 .is-loading td {

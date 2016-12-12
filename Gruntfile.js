@@ -26,7 +26,7 @@ module.exports = function(grunt) {
             dev: {
                 files: {
                     'dist/js/bundle.js': ['js/index.js'],
-                    'dist/js/test.js': ['tests/js/index.js']
+                    'dist/js/test.js': ['tests/js/web/index.js']
                 },
                 options: {
                     browserifyOptions: {
@@ -37,7 +37,7 @@ module.exports = function(grunt) {
             dist: {
                 files: {
                     'dist/js/bundle.js': ['js/index.js'],
-                    'dist/js/test.js': ['tests/js/index.js']
+                    'dist/js/test.js': ['tests/js/web/index.js']
                 },
                 options: {
                     browserifyOptions: {
@@ -62,7 +62,7 @@ module.exports = function(grunt) {
         sass: {
             dev: {
                 options: {
-                    style: 'nested',
+                    outputStyle: 'nested',
                     sourceMap: true
                 },
                 files: [{
@@ -104,7 +104,7 @@ module.exports = function(grunt) {
             },
             email: {
                 options: {
-                    style: 'nested',
+                    outputStyle: 'nested',
                     sourceMap: true
                 },
                 files: [{
@@ -476,6 +476,20 @@ module.exports = function(grunt) {
                     src: ['**/*']
                 }]
             }
+        },
+
+        browserSync: {
+            files: [
+                'css/*',
+                'dist/**/*',
+                'images/**/*',
+                'views/**/*'
+            ],
+            options: {
+                proxy: 'http://192.168.13.37/index.php',
+                reloadOnRestart: true,
+                watchTask: true
+            }
         }
 
     });
@@ -502,6 +516,7 @@ module.exports = function(grunt) {
         'sass:dev',
         'bless',
         'browserify',
+        'browserSync',
         'watch',
         'email-build'
     ]);

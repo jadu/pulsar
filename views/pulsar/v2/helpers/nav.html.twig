@@ -23,7 +23,7 @@
 
  --><div class="nav-secondary t-nav-secondary">
 
-        <a href="#close" class="nav-close" data-nav-action="close">{{ html.icon('remove') }}</a>
+        <a href="#close" class="nav-close" data-nav-action="close">{{ html.icon('remove', { 'label': 'Close' }) }}</a>
 
         {% if options.data is iterable %}
             {% for options in options.data %}
@@ -72,8 +72,10 @@
         <a {{ attributes(options|only('href data-toggle')) }} class="nav-link t-nav-link">
             {% if options.icon is defined and options.icon is not empty %}
                 {{ html.icon(options.icon, { 'class': 'nav-link__icon t-nav-icon' }) }}
+            {% elseif options.image is defined and options.image is not empty %}
+                <img src="{{ options.image }}" alt="{{ options.image_alt|default }}" class="nav-link__image" />
             {% endif %}
-            {{ options.label|raw }}
+            <span class="nav-link__label">{{ options.label|raw }}</span>
         </a>
     </li>
 

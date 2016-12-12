@@ -62,8 +62,9 @@ body {
   border-bottom-right-radius: 20px;
   padding: 20px; }
 
-.content-block {
-  padding: 0 0 20px; }
+.action-block {
+  padding-top: 20px;
+  text-align: center; }
 
 .header {
   width: 100%;
@@ -111,10 +112,10 @@ h4 {
 
 p, ul, ol {
   margin-bottom: 10px;
+  padding-left: 0;
   font-weight: normal; }
 
 p li, ul li, ol li {
-  margin-left: 5px;
   list-style-position: inside; }
 
 /* -------------------------------------
@@ -138,6 +139,52 @@ a {
   cursor: pointer;
   display: inline-block;
   border-radius: 5px;
+  text-transform: capitalize; }
+
+.btn-positive,
+.btn-negative {
+  text-decoration: none;
+  color: #FFF;
+  background-color: #297c46;
+  border: solid #297c46;
+  border-width: 10px 20px;
+  line-height: 2em;
+  /* 2em * 14px = 28px, use px to get airier line-height also in Thunderbird, and Yahoo!, Outlook.com, AOL webmail clients */
+  /*line-height: 28px;*/
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  display: inline-block;
+  border-radius: 5px;
+  text-transform: capitalize; }
+
+.btn-negative {
+  text-decoration: none;
+  color: #FFF;
+  background-color: #c84d40;
+  border: solid #c84d40;
+  border-width: 10px 20px;
+  line-height: 2em;
+  /* 2em * 14px = 28px, use px to get airier line-height also in Thunderbird, and Yahoo!, Outlook.com, AOL webmail clients */
+  /*line-height: 28px;*/
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  display: inline-block;
+  border-radius: 5px;
+  text-transform: capitalize; }
+
+.btn-naked {
+  text-decoration: underline;
+  color: #348eda;
+  border-width: 10px 20px;
+  line-height: 2em;
+  /* 2em * 14px = 28px, use px to get airier line-height also in Thunderbird, and Yahoo!, Outlook.com, AOL webmail clients */
+  /*line-height: 28px;*/
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  display: inline-block;
   text-transform: capitalize; }
 
 /* -------------------------------------
@@ -173,8 +220,7 @@ a {
 .btn-primary {
   background-color: #0b89ad;
   border-color: #0b89ad;
-  color: #fff;
-  margin-top: 10px; }
+  color: #fff; }
 
 .continuum-cms .branding-block,
 .continuum-cms .btn-primary {
@@ -211,10 +257,22 @@ a {
 .detail-block p {
   margin-bottom: 5px; }
 
+.detail-block table tr td strong {
+    padding-right: 20px;
+}
+
 .detail-title {
   font-size: 18px;
   font-weight: normal;
   margin-top: 15px;
   margin-bottom: 10px; }
+
+.footer .content-block {
+    padding-bottom: 20px;
+}
+
+code {
+    font-family: "Monaco", "Lucida Console", monospace;
+}
 
 /*# sourceMappingURL=styles.css.map */

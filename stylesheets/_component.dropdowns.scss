@@ -196,7 +196,7 @@
 
 .dropdown__menu > li > a {
 	&:hover > .badge {
-		@extend .badge--primary;
+		@extend %badge--primary;
 		background-color: darken($dropdown-link-active-bg, 20%);
 	}
 
@@ -208,11 +208,11 @@
 			background-color: darken(color(primary), 5%);
 		}
 
-		> .badge {
-			@extend .badge--primary;
-			background-color: darken($badge-primary-bg, 20%);
-		}
-	}
+    > .badge {
+      @extend %badge--primary;
+      background-color: darken($badge-primary-bg, 20%);
+    }
+  }
 
 	&.link--success {
 		background-color: color(success);
@@ -222,11 +222,11 @@
 			background-color: darken(color(success), 5%);
 		}
 
-		> .badge {
-			@extend .badge--success;
-			background-color: darken($badge-success-bg, 20%);
-		}
-	}
+    > .badge {
+      @extend %badge--success;
+      background-color: darken($badge-success-bg, 20%);
+    }
+  }
 
 	&.link--warning {
 		background-color: color(warning);
@@ -236,11 +236,11 @@
 			background-color: darken(color(warning), 5%);
 		}
 
-		> .badge {
-			@extend .badge--warning;
-			background-color: darken($badge-warning-bg, 20%);
-		}
-	}
+    > .badge {
+      @extend %badge--warning;
+      background-color: darken($badge-warning-bg, 20%);
+    }
+  }
 
 	&.link--info {
 		background-color: color(info);
@@ -250,11 +250,11 @@
 			background-color: darken(color(info), 5%);
 		}
 
-		> .badge {
-			@extend .badge--info;
-			background-color: darken($badge-info-bg, 20%);
-		}
-	}
+    > .badge {
+      @extend %badge--info;
+      background-color: darken($badge-info-bg, 20%);
+    }
+  }
 
 	&.link--danger {
 		background-color: color(danger);
@@ -264,11 +264,11 @@
 			background-color: darken(color(danger), 5%);
 		}
 
-		> .badge {
-			@extend .badge--danger;
-			background-color: darken($badge-danger-bg, 20%);
-		}
-	}
+    > .badge {
+      @extend %badge--danger;
+      background-color: darken($badge-danger-bg, 20%);
+    }
+  }
 
 	&.link--inverse {
 		background-color: color(inverse);
@@ -278,11 +278,11 @@
 			background-color: darken(color(inverse), 5%);
 		}
 
-		> .badge {
-			@extend .badge--inverse;
-			background-color: darken($badge-inverse-bg, 20%);
-		}
-	}
+    > .badge {
+      @extend %badge--inverse;
+      background-color: darken($badge-inverse-bg, 20%);
+    }
+  }
 }
 
 .dropdown__menu .popover {

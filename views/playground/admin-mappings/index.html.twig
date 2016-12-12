@@ -1,0 +1,358 @@
+{% extends '@pulsar/pulsar/layouts/base.html.twig' %}
+
+{% block tabs_content %}
+
+{{
+    html.panel({
+        'body': 'A new CXM user will be created and connected<br /><strong>paul.stanton@jadu.net</strong>' ~ html.remove_button({ 'class': 'panel__remove', 'placement': 'left' }),
+        'class': 'panel--info'
+    })
+}}
+
+{{
+    html.panel({
+        'body': 'Waiting for user to complete registration process' ~ html.remove_button({ 'class': 'panel__remove', 'placement': 'left' }),
+        'class': 'panel--warning'
+    })
+}}
+
+{{
+    html.panel({
+        'body': 'CXM user awaiting approval by CXM administrator' ~ html.remove_button({ 'class': 'panel__remove', 'placement': 'left' }),
+        'class': 'panel--warning'
+    })
+}}
+
+{{
+    html.panel({
+        'body': 'Connected to CXM user<br /><strong>paul.stanton@jadu.net</strong>' ~ html.remove_button({ 'class': 'panel__remove', 'placement': 'left' }),
+        'class': 'panel--info'
+    })
+}}
+
+
+<div class="modal" style="display: block; position: relative;">
+    <div class="modal__dialog">
+        <div class="modal__content">
+            <div class="modal__header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal__title">Connect CXM User</h4>
+            </div>
+            <div class="modal__body">
+                <p>By connecting this user’s CXM account they will only be able to sign into Continuum CMS using their CXM username and password.</p>
+                <p>Their CMS credentials will no longer work.</p>
+
+                {{ form.create() }}
+                {{
+                    form.text({
+                        'label': 'Search by email',
+                        'class': 'form__group--large'
+                    })
+                }}
+
+            </div>
+            <div class="modal__footer">
+                {{
+                    form.end({
+                        'actions': [
+                            html.button({
+                                'label': 'Connect Account',
+                                'class': 'btn--primary',
+                                'disabled': true
+                            }),
+                            html.button({
+                                'label': 'Cancel',
+                                'class': 'btn--naked',
+                                'data-dismiss': 'modal'
+                            })
+                        ]
+                    })
+                }}
+            </div>
+        </div><!-- /.modal__content -->
+    </div><!-- /.modal__dialog -->
+</div><!-- /.modal -->
+
+
+<div class="modal" style="display: block; position: relative;">
+    <div class="modal__dialog">
+        <div class="modal__content">
+            <div class="modal__header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal__title">Connect CXM User</h4>
+            </div>
+            <div class="modal__body">
+                <p>By connecting this user’s CXM account they will only be able to sign into Continuum CMS using their CXM username and password.</p>
+                <p>Their CMS credentials will no longer work.</p>
+                {{ form.create() }}
+                {{
+                    form.text({
+                        'label': 'Search by email',
+                        'class': 'form__group--large'
+                    })
+                }}
+
+                {{
+                    form.content({
+                        'label': 'Connect account',
+                        'value': html.loading()
+                    })
+                }}
+
+            </div>
+            <div class="modal__footer">
+                {{
+                    form.end({
+                        'actions': [
+                            html.button({
+                                'label': 'Connect Account',
+                                'class': 'btn--primary',
+                                'disabled': true
+                            }),
+                            html.button({
+                                'label': 'Cancel',
+                                'class': 'btn--naked',
+                                'data-dismiss': 'modal'
+                            })
+                        ]
+                    })
+                }}
+            </div>
+        </div><!-- /.modal__content -->
+    </div><!-- /.modal__dialog -->
+</div><!-- /.modal -->
+
+
+<div class="modal" style="display: block; position: relative;">
+    <div class="modal__dialog">
+        <div class="modal__content">
+            <div class="modal__header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal__title">Connect CXM User</h4>
+            </div>
+            <div class="modal__body">
+                <p>By connecting this user’s CXM account they will only be able to sign into Continuum CMS using their CXM username and password.</p>
+                <p>Their CMS credentials will no longer work.</p>
+
+                {{
+                    form.text({
+                        'label': 'Search by email',
+                        'class': 'form__group--large'
+                    })
+                }}
+
+                {{
+                    form.choice({
+                        'label': 'Choose account',
+                        'class': 'form__group--full',
+                        'options': [
+                            {
+                                'label': 'Paul Stanton <span class="muted">&lt;paul.stanton@jadu.net&gt;</span>',
+                                'name': 'foo'
+                            },
+                            {
+                                'label': 'Paul Stanton <span class="muted">&lt;paul.stanton@jadu.net&gt;</span>',
+                                'name': 'foo'
+                            },
+                            {
+                                'label': 'Paul Stanton <span class="muted">&lt;paul.stanton@jadu.net&gt;</span>',
+                                'name': 'foo'
+                            }
+                        ]
+                    })
+                }}
+
+            </div>
+            <div class="modal__footer">
+                <button type="button" class="btn btn--primary">Connect Account</button>
+                <button type="button" class="btn" data-dismiss="modal">Cancel</button>
+            </div>
+        </div><!-- /.modal__content -->
+    </div><!-- /.modal__dialog -->
+</div><!-- /.modal -->
+
+
+<div class="modal" style="display: block; position: relative;">
+    <div class="modal__dialog">
+        <div class="modal__content">
+            <div class="modal__header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal__title">Connect CXM User</h4>
+            </div>
+            <div class="modal__body">
+                <p>By connecting this user’s CXM account they will only be able to sign into Continuum CMS using their CXM username and password.</p>
+                <p>Their CMS credentials will no longer work.</p>
+
+                {{ form.create() }}
+                {{
+                    form.text({
+                        'label': 'Search by email',
+                        'class': 'form__group--large'
+                    })
+                }}
+
+                <div class="form__group form-choice form__group--full">
+                    <label class="control__label">Choose account</label>
+                    <div class="controls">
+                        <div class="no-results">
+                            <div class="no-results__message">
+                                <p>No matching accounts found</p>
+                            </div>
+                            {{
+                                html.button({
+                                    'label': 'Create New CXM User',
+                                    'class': 'btn--primary no-results__action',
+                                    'type': 'link'
+                                })
+                            }}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal__footer">
+                {{
+                    form.end({
+                        'actions': [
+                            html.button({
+                                'label': 'Connect Account',
+                                'class': 'btn--primary',
+                                'disabled': true
+                            }),
+                            html.button({
+                                'label': 'Cancel',
+                                'class': 'btn--naked',
+                                'data-dismiss': 'modal'
+                            })
+                        ]
+                    })
+                }}
+            </div>
+        </div><!-- /.modal__content -->
+    </div><!-- /.modal__dialog -->
+</div><!-- /.modal -->
+
+
+<div class="modal" style="display: block; position: relative;">
+    <div class="modal__dialog">
+        <div class="modal__content">
+            <div class="modal__header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal__title">Create New CXM User</h4>
+            </div>
+            <div class="modal__body">
+                <p>Create a connected user account in Continuum CXM. When the user completes the registration process they will be able to sign into CMS and CXM with their CXM username and password.</p>
+
+                {{ form.create() }}
+                {{
+                    form.text({
+                        'label': 'First name',
+                        'class': 'form__group--large'
+                    })
+                }}
+                {{
+                    form.text({
+                        'label': 'Last name',
+                        'class': 'form__group--large'
+                    })
+                }}
+                {{
+                    form.text({
+                        'label': 'Email address',
+                        'class': 'form__group--large'
+                    })
+                }}
+                {{
+                    form.choice({
+                        'label': 'User group',
+                        'options': [
+                            {
+                                'label': 'Customer Service Advisor',
+                                'value': 'foo',
+                                'name': 'foo'
+                            },
+                            {
+                                'label': 'Customer Service Advisor',
+                                'value': 'foo',
+                                'name': 'foo'
+                            },
+                            {
+                                'label': 'Customer Service Advisor',
+                                'value': 'foo',
+                                'name': 'foo'
+                            },
+                            {
+                                'label': 'Customer Service Advisor',
+                                'value': 'foo',
+                                'name': 'foo'
+                            },
+                            {
+                                'label': 'Customer Service Advisor',
+                                'value': 'foo',
+                                'name': 'foo'
+                            },
+                            {
+                                'label': 'Customer Service Advisor',
+                                'value': 'foo',
+                                'name': 'foo'
+                            }
+                        ]
+                    })
+                }}
+                {{
+                    form.choice({
+                        'label': 'Role',
+                        'options': [
+                            {
+                                'label': 'Parking',
+                                'value': 'bar',
+                                'name': 'bar'
+                            },
+                            {
+                                'label': 'Content Author',
+                                'value': 'bar',
+                                'name': 'bar'
+                            },
+                            {
+                                'label': 'Editor',
+                                'value': 'bar',
+                                'name': 'bar'
+                            },
+                            {
+                                'label': 'Managing Editor',
+                                'value': 'bar',
+                                'name': 'bar'
+                            }
+                        ]
+                    })
+                }}
+            </div>
+            <div class="modal__footer">
+                {{
+                    html.panel({
+                        'body': 'An email will be sent to the supplied email address with a registration link, the user will then be able to create their account and choose their own password.',
+                        'icon': 'info-sign'
+                    })
+                }}
+                {{
+                    form.end({
+                        'actions': [
+                            html.button({
+                                'label': 'Create &amp; Connect User',
+                                'class': 'btn--primary',
+                                'disabled': true
+                            }),
+                            html.button({
+                                'label': 'Cancel',
+                                'class': 'btn--naked',
+                                'data-dismiss': 'modal'
+                            })
+                        ]
+                    })
+                }}
+            </div>
+        </div><!-- /.modal__content -->
+    </div><!-- /.modal__dialog -->
+</div><!-- /.modal -->
+
+{% endblock %}
