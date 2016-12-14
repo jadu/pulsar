@@ -65,11 +65,27 @@ fieldset {
     }
 
     &.select {
+        appearance: none;
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAFZJREFUOBFjYBgFVA+Bp0AT/xPAT/DZ6gWU/IPHgN9AOQ98BoDkMoAYlytSCWmGyXdhMaQNJkkMzQhUtBLJkGVANkiMJMABVL0PiHcBMTtJOkcVkxYCADK5Iu6w+agDAAAAAElFTkSuQmCC');
+        background-position: 97%;
+        background-repeat: no-repeat;
         border: 1px solid $input-border;
-        padding: 0 0 0 $padding-base-horizontal;
+        padding: 0 20px 0 $padding-base-horizontal;
 
         @include ie-lte(8) {
             height: 24px;
+        }
+
+        // select arrows can't be hidden in IE8 & 9, so reset to default styles
+        @include ie-lte(9) {
+            background-image: none;
+            padding-right: 0;
+        }
+
+        // remove the arrow in IE10 & 11, modern browsers are taken care of
+        // by the `appearance` property
+        &::-ms-expand {
+            display: none;
         }
     }
 
@@ -118,7 +134,7 @@ fieldset {
             @include ie-lte(8) {
                 border: 1px solid $input-border;
                 max-width: 100%;
-                padding: 0 $padding-base-horizontal;
+                padding: 0 0 0 $padding-base-horizontal;
                 width: 300px;
             }
         }
@@ -142,9 +158,9 @@ fieldset {
     // Note: HTML5 says that inputs under a fieldset > legend:first-child won't be
     // disabled if the fieldset is disabled. Due to implementation difficulty,
     // we don't honor that edge case; we style them as disabled anyway.
-    &[disabled],
-    &[readonly],
-    fieldset[disabled] & {
+    &:not(.checkbox):not(.radio):not(.file)[disabled],
+    &:not(.checkbox):not(.radio):not(.file)[readonly],
+    fieldset[disabled] &:not(.checkbox):not(.radio):not(.file) {
         cursor: not-allowed;
         background-color: $input-bg-disabled;
     }
