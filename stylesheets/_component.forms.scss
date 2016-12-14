@@ -70,7 +70,7 @@ fieldset {
         background-position: 97%;
         background-repeat: no-repeat;
         border: 1px solid $input-border;
-        padding: 0 0 0 $padding-base-horizontal;
+        padding: 0 20px 0 $padding-base-horizontal;
 
         @include ie-lte(8) {
             height: 24px;
