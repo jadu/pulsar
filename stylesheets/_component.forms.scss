@@ -75,6 +75,12 @@ fieldset {
         @include ie-lte(8) {
             height: 24px;
         }
+
+        // remove the caret in IE 11 and below, other browsers are taken care of
+        // by the `appearance` property
+        &::-ms-expand {
+            display: none;
+        }
     }
 
     &.file {
