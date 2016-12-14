@@ -76,7 +76,13 @@ fieldset {
             height: 24px;
         }
 
-        // remove the caret in IE 11 and below, other browsers are taken care of
+        // select arrows can't be hidden in IE8 & 9, so reset to default styles
+        @include ie-lte(9) {
+            background-image: none;
+            padding-right: 0;
+        }
+
+        // remove the arrow in IE10 & 11, modern browsers are taken care of
         // by the `appearance` property
         &::-ms-expand {
             display: none;
@@ -128,7 +134,7 @@ fieldset {
             @include ie-lte(8) {
                 border: 1px solid $input-border;
                 max-width: 100%;
-                padding: 0 $padding-base-horizontal;
+                padding: 0 0 0 $padding-base-horizontal;
                 width: 300px;
             }
         }
