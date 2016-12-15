@@ -385,3 +385,10 @@ $inputs: (
         float: left;
     }
 }
+
+// disabled checkbox/radio inputs within a choice helper should have their label
+// look visually disabled too (the main label for the entire choice still uses
+// normal text colour)
+.is-disabled + .form-choice__label {
+    color: color(text, disabled);
+}
