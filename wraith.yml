@@ -39,6 +39,7 @@ paths:
     form-checkbox_inline-html-twig: /form/checkbox_inline.html.twig
     form-choice-bare-html-twig: /form/choice-bare.html.twig
     form-choice-class-html-twig: /form/choice-class.html.twig
+    form-choice-disabled-html-twig: /form/choice-disabled.html.twig
     form-choice-error-html-twig: /form/choice-error.html.twig
     form-choice-guidance-container-html-twig: /form/choice-guidance-container.html.twig
     form-choice-guidance-html-twig: /form/choice-guidance.html.twig
