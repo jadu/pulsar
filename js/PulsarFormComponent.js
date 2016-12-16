@@ -75,19 +75,28 @@ PulsarFormComponent.prototype.initColourpickers = function() {
     pickers.each(function() {
         var $this = $(this),
             $input = $this.find('.form__control'),
-            $pickerInput = $($.parseHTML('<input>'));
+            $pickerInput = $($.parseHTML('<input>')),
+            disabledAttr = $input.attr('disabled'),
+            isDisabled = false;
+
+        if (typeof disabledAttr !== typeof undefined && disabledAttr !== false) {
+            isDisabled = true;
+        }
 
         $pickerInput.insertAfter($input);
 
         // changing the picker should update the input
         $pickerInput.spectrum({
             color: '#' + $input.val(),
+            disabled: isDisabled,
             showInput: false,
             preferredFormat: 'hex',
             replacerClassName: 'btn',
             change: function (color) {
-                $input.val(('' + color).substring(1));
-                $input.trigger('change');
+                if (!$input.attr('disabled')) {
+                    $input.val(('' + color).substring(1));
+                    $input.trigger('change');
+                }
             }
         });
 
