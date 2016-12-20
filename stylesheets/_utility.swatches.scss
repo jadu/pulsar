@@ -169,8 +169,62 @@
     }
 
     .branding-preview__primary {
+        color: #fff;
         display: block;
         height: 30px;
         width: 100%;
+
+        &::before {
+            content: 'A B C';
+            position: absolute;
+            text-align: center;
+            left: 35px;
+            top: 5px;
+        }
+    }
+}
+
+
+.branding-preview--signin {
+    .branding-preview-swatch {
+        background-color: #efefef;
+        position: relative;
+    }
+
+    .branding-preview__logo {
+        height: 20px;
+        left: 50px;
+        position: absolute;
+        top: 35px;
+        width: 20px;
+    }
+
+    .branding-preview__container {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        display: block;
+        bottom: 30px;
+        position: absolute;
+        top: 30px;
+        left: 90px;
+        right: 20px;
+    }
+
+    .branding-preview__primary {
+        bottom: 20px;
+        color: white;
+        display: block;
+        left: 20px;
+        position: absolute;
+        right: 95px;
+        top: 20px;
+
+        &::before {
+            content: 'A B C';
+            position: absolute;
+            text-align: center;
+            left: 20px;
+            top: 40px;
+        }
     }
 }

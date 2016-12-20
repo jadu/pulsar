@@ -1,5 +1,4 @@
 {% extends '@pulsar/pulsar/layouts/base.html.twig' %}
-<<<<<<< Updated upstream
 
 {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 {% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
@@ -11,17 +10,7 @@
 {% set heading = 'System Settings' %}
 
 {% set tab_branding %}
-    {% include 'playground/branding/branding.html.twig' %}
-=======
-{% import '@pulsar/pulsar/v2/helpers/tabs.html.twig' as tabs %}
-
-{% block title %}{{ parent() }}{% endblock %}
-
-{% set heading = 'System' %}
-
-{% set tab_branding %}
     {% include 'playground/branding/tab_branding.html.twig' %}
->>>>>>> Stashed changes
 {% endset %}
 
 {%
@@ -31,8 +20,6 @@
           "label" : "Branding",
           "src"   : tab_branding,
           "active": true
-<<<<<<< Updated upstream
-=======
         },
         {
           "id"    : "service",
@@ -48,7 +35,6 @@
           "id"    : "integrations",
           "label" : "Integrations",
           "src"   : tab_branding
->>>>>>> Stashed changes
         }
     ]
 %}
