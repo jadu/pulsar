@@ -18,14 +18,16 @@
     width: 100%;
     top: $padding-base * 2;
     position: absolute;
-    z-index: -1;
+    text-align: center;
 }
 
 .slider__front {
     background-color: color(white);
     border-bottom-right-radius: $border-radius-large;
-    left: 50%;
+    min-height: 300px;
+    position: relative;
     float: right;
+    z-index: 1;
 }
 
 .slider__inner {
@@ -35,18 +37,26 @@
 }
 
 .slider-logo {
-    float: left;
-    margin: 0 10px 10px 0;
+    display: block;
+    margin: 0 auto;
     width: 45px;
 }
 
 .slider-title {
     font-size: $font-size-large;
-    line-height: $line-height-small;
+    line-height: 45px;
 }
 
 // form alignment
-.slider {
+.slider .form {
+    fieldset {
+        padding: 0;
+    }
+
+    p {
+        margin-bottom: $line-height-base / 2;
+    }
+
     .legend {
         line-height: $line-height-base;
         margin-bottom: 5px;
