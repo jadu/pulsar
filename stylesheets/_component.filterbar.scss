@@ -141,6 +141,7 @@
 .btn.filter-bar__add {
     display: block;
     margin-bottom: $gutter-width;
+    padding: 7px 14px 6px;
     width: 100%;
 
     @include respond-min($screen-tablet) {
