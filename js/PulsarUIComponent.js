@@ -1,12 +1,13 @@
 'use strict';
 
-var $             = require('jquery'),
-    $window       = window,
-    dt            = require('datatables.net')($window, $),
-    dt_buttons    = require('datatables.net-buttons')($window, $),
-    dt_responsive = require('datatables.net-responsive')($window, $),
-    dt_select     = require('datatables.net-select')($window, $),
-    countdown     = require('../libs/jquery.countdown/dist/jquery.countdown.min');
+var $ = require('jquery'),
+    $window = window;
+
+require('datatables.net')($window, $);
+require('datatables.net-buttons')($window, $);
+require('datatables.net-responsive')($window, $);
+require('datatables.net-select')($window, $);
+require('../libs/jquery.countdown/dist/jquery.countdown.min');
 
 function PulsarUIComponent(html, history) {
 
