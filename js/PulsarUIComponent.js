@@ -34,7 +34,7 @@ PulsarUIComponent.prototype.init = function () {
     this.initTables();
     this.initDataTables();
     this.initCountdown();
-};
+}
 
 PulsarUIComponent.prototype.initTables = function () {
 
@@ -49,7 +49,7 @@ PulsarUIComponent.prototype.initTables = function () {
             $table.wrap('<div class="table-container"></div>');
         }
     });
-};
+}
 
 PulsarUIComponent.prototype.initDataTables = function () {
 
@@ -170,7 +170,7 @@ PulsarUIComponent.prototype.initDataTables = function () {
         component.refreshDatatables();
         component.styleTableOverflows();
     });
-};
+}
 
 PulsarUIComponent.prototype.refreshDatatables = function () {
 
@@ -184,7 +184,7 @@ PulsarUIComponent.prototype.refreshDatatables = function () {
             .find('.dataTables_scrollHeadInner, .dataTables_scrollHeadInner .datatable')
             .width($datatable[0].scrollWidth);
     }
-};
+}
 
 PulsarUIComponent.prototype.styleTableOverflows = function () {
 
@@ -211,10 +211,10 @@ PulsarUIComponent.prototype.styleTableOverflows = function () {
     }
 
     // Remove right hand shadow if table scrolled to right hand edge
-    if(-Math.abs((datatableFullWidth - datatableVisibleWidth - $datatable.offsetParent().offset().left)) >= $datatable.offset().left) {
+    if (-Math.abs((datatableFullWidth - datatableVisibleWidth - $datatable.offsetParent().offset().left)) >= $datatable.offset().left) {
         $container.removeClass('table--overflow-right');
     }
-};
+}
 
 PulsarUIComponent.prototype.initCountdown = function () {
 
@@ -232,6 +232,6 @@ PulsarUIComponent.prototype.initCountdown = function () {
             $this.html(event.strftime(format));
         });
     });
-};
+}
 
 module.exports = PulsarUIComponent;
