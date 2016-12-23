@@ -1,10 +1,11 @@
 'use strict';
 
 var $             = require('jquery'),
-    dt            = require('datatables.net')(window, $),
-    dt_buttons    = require('datatables.net-buttons')(window, $),
-    dt_responsive = require('datatables.net-responsive')(window, $),
-    dt_select     = require('datatables.net-select')(window, $),
+    $window       = window,
+    dt            = require('datatables.net')($window, $),
+    dt_buttons    = require('datatables.net-buttons')($window, $),
+    dt_responsive = require('datatables.net-responsive')($window, $),
+    dt_select     = require('datatables.net-select')($window, $),
     countdown     = require('../libs/jquery.countdown/dist/jquery.countdown.min');
 
 function PulsarUIComponent(html, history) {
@@ -164,7 +165,7 @@ PulsarUIComponent.prototype.initDataTables = function () {
 
     // Refresh datatables when windows resized, makes sure scrolling tables
     // calculate their headers correctly
-    $(window).on('load resize', function () {
+    $($window).on('load resize', function () {
         component.refreshDatatables();
         component.styleTableOverflows();
     });
