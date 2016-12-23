@@ -1,3 +1,5 @@
+'use strict';
+
 var $             = require('jquery'),
     dt            = require('datatables.net')(window, $),
     dt_buttons    = require('datatables.net-buttons')(window, $),
@@ -68,7 +70,7 @@ PulsarUIComponent.prototype.initDataTables = function () {
             $this.data('empty-table', 'There are currently no items to display');
         }
 
-        if ($this.data('select') == false) {
+        if ($this.data('select') === false) {
             dom = '<"dataTables_top"irf><"dataTables_actions"T><"dt-disable-selection"t><"dataTables_bottom"lp>';
             select = false;
         }
@@ -113,7 +115,7 @@ PulsarUIComponent.prototype.initDataTables = function () {
             className: 'dt-row-selected',
             style:     'multi',
             selector:  'td.table-selection'
-        }
+        };
 
         var dom = '<"dataTables_top"Birf><"dataTables_actions"T>t<"dataTables_bottom"lp>';
 
@@ -171,9 +173,8 @@ PulsarUIComponent.prototype.initDataTables = function () {
 };
 
 PulsarUIComponent.prototype.refreshDatatables = function () {
-console.log('refreshDatatables');
-    var component = this,
-        $datatable = $($.fn.dataTable.tables(true));
+
+    var $datatable = $($.fn.dataTable.tables(true));
 
     // Datatables has trouble setting header size correctly, so we'll do it
     // ourselves
@@ -183,47 +184,38 @@ console.log('refreshDatatables');
             .find('.dataTables_scrollHeadInner, .dataTables_scrollHeadInner .datatable')
             .width($datatable[0].scrollWidth);
     }
-}
+};
 
 PulsarUIComponent.prototype.styleTableOverflows = function () {
-console.log('styleTableOverflows');
-    var component = this,
-        $datatable = $($.fn.dataTable.tables(true)),
+
+    var $datatable = $($.fn.dataTable.tables(true)),
         $container = $datatable.closest('.dataTables_scroll'),
         datatableFullWidth = $datatable[0].scrollWidth,
         datatableVisibleWidth = $datatable.width();
 
     // Toggle right hand shadow, if overflowing to the right
     if (datatableFullWidth === datatableVisibleWidth) {
-        console.log('1 removeRight');
         $container
             .removeClass('table--overflow-right');
     }
     else {
-        console.log('2 addRight');
         $container.addClass('table--overflow-right');
     }
 
     // Toggle left hand shadow, if overflowing to the left
     if (($datatable.offsetParent().offset().left - $datatable.offset().left) > 0) {
-        console.log('3 addLeft');
         $container.addClass('table--overflow-left');
     }
     else {
-        console.log('4 removeLeft');
         $container.removeClass('table--overflow-left');
     }
 
     // Remove right hand shadow if table scrolled to right hand edge
-    console.log(-Math.abs((datatableFullWidth - datatableVisibleWidth - $datatable.offsetParent().offset().left)));
-    console.log($datatable.offset().left);
     if(-Math.abs((datatableFullWidth - datatableVisibleWidth - $datatable.offsetParent().offset().left)) >= $datatable.offset().left) {
         console.log('5 removeRight');
         $container.removeClass('table--overflow-right');
     }
-
-
-}
+};
 
 PulsarUIComponent.prototype.initCountdown = function () {
 
