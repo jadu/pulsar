@@ -154,7 +154,6 @@ PulsarUIComponent.prototype.initDataTables = function () {
 
         $this.closest('.dataTables_scrollBody').scroll(function() {
             component.styleTableOverflows();
-            // component.refreshDatatables();
         });
     });
 
@@ -167,65 +166,63 @@ PulsarUIComponent.prototype.initDataTables = function () {
     // calculate their headers correctly
     $(window).on('load resize', function () {
         component.refreshDatatables();
+        component.styleTableOverflows();
     });
-
-
 };
 
 PulsarUIComponent.prototype.refreshDatatables = function () {
+console.log('refreshDatatables');
+    var component = this,
+        $datatable = $($.fn.dataTable.tables(true));
 
-    var $datatable = $($.fn.dataTable.tables(true)),
-        $datatableContainer = $datatable.closest('.dataTables_scroll');
-
+    // Datatables has trouble setting header size correctly, so we'll do it
+    // ourselves
     if ($datatable.length) {
-        $datatable.DataTable().columns.adjust().responsive.recalc();
-
-        // Refresh any table--horizontal tables that are outside responsive
-        if ($datatable[0].scrollWidth === $datatable.width()) {
-            $datatableContainer.removeClass('table--overflow-right');
-            $datatable.DataTable().columns.adjust().responsive.recalc();
-        }
-        else {
-            $datatableContainer.addClass('table--overflow-right');
-        }
+        $datatable
+            .closest('.dataTables_scroll')
+            .find('.dataTables_scrollHeadInner, .dataTables_scrollHeadInner .datatable')
+            .width($datatable[0].scrollWidth);
     }
 }
 
 PulsarUIComponent.prototype.styleTableOverflows = function () {
-
+console.log('styleTableOverflows');
     var component = this,
         $datatable = $($.fn.dataTable.tables(true)),
-        $container = $datatable.closest('.dataTables_scroll');
+        $container = $datatable.closest('.dataTables_scroll'),
+        datatableFullWidth = $datatable[0].scrollWidth,
+        datatableVisibleWidth = $datatable.width();
 
-    // Switch classes when entire table width enters/leaves scrolling mode
-    if ($datatable[0].scrollWidth === $datatable.width()) {
-        console.log('a');
+    // Toggle right hand shadow, if overflowing to the right
+    if (datatableFullWidth === datatableVisibleWidth) {
+        console.log('1 removeRight');
         $container
             .removeClass('table--overflow-right');
     }
     else {
-        console.log('b');
+        console.log('2 addRight');
         $container.addClass('table--overflow-right');
     }
 
-    var leftParentOffset = $datatable.offsetParent().offset().left,
-        leftOffset = $datatable.offset().left;
-
-    if ((leftParentOffset - leftOffset) > 0) {
+    // Toggle left hand shadow, if overflowing to the left
+    if (($datatable.offsetParent().offset().left - $datatable.offset().left) > 0) {
+        console.log('3 addLeft');
         $container.addClass('table--overflow-left');
     }
     else {
+        console.log('4 removeLeft');
         $container.removeClass('table--overflow-left');
     }
 
-    // if (leftParentOffset === leftOffset) {
-    //     console.log('a');
-    //     $container.removeClass('table--overflow-right');
-    // }
-    // else {
-    //     console.log('b');
-    //     $container.addClass('table--overflow-right');
-    // }
+    // Remove right hand shadow if table scrolled to right hand edge
+    console.log(-Math.abs((datatableFullWidth - datatableVisibleWidth - $datatable.offsetParent().offset().left)));
+    console.log($datatable.offset().left);
+    if(-Math.abs((datatableFullWidth - datatableVisibleWidth - $datatable.offsetParent().offset().left)) >= $datatable.offset().left) {
+        console.log('5 removeRight');
+        $container.removeClass('table--overflow-right');
+    }
+
+
 }
 
 PulsarUIComponent.prototype.initCountdown = function () {
