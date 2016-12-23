@@ -67,14 +67,12 @@
 
 {% endblock tab_content %}
 {% block tab_sidebar %}
-    <h2>DataTable</h2>
+    <h2>Horizontally Scrolling DataTable</h2>
     <ul>
-        <li>Same structure as basic table</li>
-        <li>Addition of <code>datatable</code> class invokes DataTables plugin</li>
-        <li>Cells collapse when responsive</li>
-        <li>Automatic pagination</li>
+        <li>Addition of <code>table--horizontal</code> class adds scrolling behaviour</li>
+        <li>Cells no longer collapse</li>
     </ul>
     <code class="hljs">
-        &lt;table class="table datatable table--full"&gt; &hellip; &lt;/table&gt;
+        &lt;table class="table datatable table--horizontal table--full"&gt; &hellip; &lt;/table&gt;
     </code>
 {% endblock tab_sidebar %}
