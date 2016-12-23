@@ -12,7 +12,7 @@ function PulsarUIComponent(html, history) {
     this.history = history;
     this.$html = html;
 
-};
+}
 
 PulsarUIComponent.prototype.init = function () {
 
@@ -109,8 +109,6 @@ PulsarUIComponent.prototype.initDataTables = function () {
      scrollingDatatables.each(function() {
         var $this = $(this);
 
-        console.log($this);
-
         var select = {
             className: 'dt-row-selected',
             style:     'multi',
@@ -123,7 +121,7 @@ PulsarUIComponent.prototype.initDataTables = function () {
             $this.data('empty-table', 'There are currently no items to display');
         }
 
-        if ($this.data('select') == false) {
+        if ($this.data('select') === false) {
             dom = '<"dataTables_top"irf><"dataTables_actions"T><"dt-disable-selection"t><"dataTables_bottom"lp>';
             select = false;
         }
@@ -212,7 +210,6 @@ PulsarUIComponent.prototype.styleTableOverflows = function () {
 
     // Remove right hand shadow if table scrolled to right hand edge
     if(-Math.abs((datatableFullWidth - datatableVisibleWidth - $datatable.offsetParent().offset().left)) >= $datatable.offset().left) {
-        console.log('5 removeRight');
         $container.removeClass('table--overflow-right');
     }
 };
