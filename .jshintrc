@@ -1,4 +1,5 @@
 {
+    "browser": true,
     "curly": true,
     "eqeqeq": true,
     "expr": true,
@@ -32,7 +33,6 @@
         "afterEach"  : false,
         "sinon"      : false,
         "require"    : false,
-        "pulsar"     : false,
-        "window"     : false
+        "pulsar"     : false
     }
 }
