@@ -73,6 +73,8 @@
             float: left;
             font-size: 16px;
             height: 100%;
+            line-height: 35px;
+            margin-bottom: 0;
             padding: 0;
             vertical-align: top;
             width: 95px;
@@ -124,6 +126,12 @@
 .filter-bar__list {
     line-height: 2em;
     list-style: none;
+
+    .form__control {
+        height: 32px;
+        line-height: 32px;
+        margin-bottom: $line-height-base;
+    }
 }
 
 .filter-bar__list-item {
@@ -133,12 +141,12 @@
 .btn.filter-bar__add {
     display: block;
     margin-bottom: $gutter-width;
+    padding: 7px 14px 6px;
     width: 100%;
 
     @include respond-min($screen-tablet) {
         display: inline-block;
         margin-bottom: $gutter-width / 2;
-        padding: 7px 14px 6px;
         vertical-align: top;
         width: auto;
     }
