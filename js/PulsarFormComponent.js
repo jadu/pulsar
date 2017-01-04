@@ -57,7 +57,7 @@ PulsarFormComponent.prototype.init = function () {
     // choice block click behaviour
     choiceBlock.on('change', '.controls input[type="checkbox"], .controls input[type="radio"]', component.selectionButtons);
 
-}
+};
 
 PulsarFormComponent.prototype.initSelectionButtons = function(e) {
 
@@ -65,7 +65,7 @@ PulsarFormComponent.prototype.initSelectionButtons = function(e) {
         .closest('.control__label')
         .addClass('is-selected');
 
-}
+};
 
 PulsarFormComponent.prototype.initColourpickers = function() {
 
@@ -73,6 +73,7 @@ PulsarFormComponent.prototype.initColourpickers = function() {
         pickers = component.$html.find('.js-colorpicker');
 
     pickers.each(function() {
+
         var $this = $(this),
             $input = $this.find('.form__control'),
             $pickerInput = $($.parseHTML('<input>')),
@@ -106,13 +107,12 @@ PulsarFormComponent.prototype.initColourpickers = function() {
         });
     });
 
-}
+};
 
 PulsarFormComponent.prototype.selectionButtons = function() {
 
-    var $target = $(this);
-
-    var $controls = $target.closest('.controls');
+    var $target = $(this),
+        $controls = $target.closest('.controls');
 
     $controls.find('input[type="checkbox"]:not(:checked), input[type="radio"]:not(:checked)')
         .closest('.control__label')
@@ -124,6 +124,7 @@ PulsarFormComponent.prototype.selectionButtons = function() {
         $target.closest('.control__label').removeClass('is-selected');
     }
 
-}
+};
 
 module.exports = PulsarFormComponent;
+

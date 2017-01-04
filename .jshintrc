@@ -1,4 +1,5 @@
 {
+    "asi": true,
     "browser": true,
     "curly": true,
     "eqeqeq": true,
@@ -15,7 +16,7 @@
     "noempty": true,
     "nonew": true,
     "plusplus": false,
-    "strict": true,
+    "strict": "global",
     "trailing": true,
     "undef": true,
     "unused": true,
