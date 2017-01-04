@@ -2,15 +2,15 @@
 
 var $ = require('jquery');
 
-require('../libs/pikaday/plugins/pikaday.jquery'),
-require('../libs/select2/dist/js/select2.min'),
+require('../libs/pikaday/plugins/pikaday.jquery');
+require('../libs/select2/dist/js/select2.min');
 require('../libs/spectrum/spectrum');
 
 function PulsarFormComponent(html) {
 
     this.$html = html;
 
-};
+}
 
 PulsarFormComponent.prototype.init = function () {
 
@@ -34,7 +34,7 @@ PulsarFormComponent.prototype.init = function () {
 
             function formatOption(data) {
                 return $('<span>' + data.text + '</span>');
-            };
+            }
 
             $this.select2({
                 templateResult: formatOption,
@@ -57,7 +57,7 @@ PulsarFormComponent.prototype.init = function () {
     // choice block click behaviour
     choiceBlock.on('change', '.controls input[type="checkbox"], .controls input[type="radio"]', component.selectionButtons);
 
-};
+}
 
 PulsarFormComponent.prototype.initSelectionButtons = function(e) {
 
@@ -65,7 +65,7 @@ PulsarFormComponent.prototype.initSelectionButtons = function(e) {
         .closest('.control__label')
         .addClass('is-selected');
 
-};
+}
 
 PulsarFormComponent.prototype.initColourpickers = function() {
 
@@ -105,7 +105,8 @@ PulsarFormComponent.prototype.initColourpickers = function() {
             $pickerInput.spectrum('set', '#' + $input.val());
         });
     });
-};
+
+}
 
 PulsarFormComponent.prototype.selectionButtons = function() {
 
@@ -123,6 +124,6 @@ PulsarFormComponent.prototype.selectionButtons = function() {
         $target.closest('.control__label').removeClass('is-selected');
     }
 
-};
+}
 
 module.exports = PulsarFormComponent;
