@@ -240,7 +240,7 @@ $inputs: (
             // 1. allow input-specific widths for fine-grained control
             // 2. allow a class on the main group to control the width of it's controls
             &.form__control--#{$variant},
-            .form__group--#{$variant} & {
+            .form__group--#{$variant} .form__control:not(.checkbox):not(.radio):not(.file) {
                 width: #{$width};
             }
         }
