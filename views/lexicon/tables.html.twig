@@ -15,7 +15,6 @@
 {% set tab_datagrid %}{% include 'lexicon/tables/datagrid.html.twig' %}{% endset %}
 {% set tab_formtable %}{% include 'lexicon/tables/form-tables.html.twig' %}{% endset %}
 {% set tab_sortable %}{% include 'lexicon/tables/sortable.html.twig' %}{% endset %}
-{% set tab_datatablex %}{% include 'lexicon/tables/datatablex.html.twig' %}{% endset %}
 
 {%
     set nav_data = {
@@ -97,14 +96,9 @@
         {
           "id"    : "sortable",
           "label" : "Sortable Tables",
-          "src"   : tab_sortable
-        },
-        {
-          "id"    : "datatablex",
-          "label" : "DataTable xscroll",
-          "src"   : tab_datatablex,
+          "src"   : tab_sortable,
           "active": true
-        },
+        }
     ]
 %}
 
