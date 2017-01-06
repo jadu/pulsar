@@ -219,11 +219,14 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
 .nav-primary {
     background-color: $nav-color-light;
     box-shadow: inset 0 0 0 $nav-color-dark;
-    position: fixed;
     text-align: center;
     transition: box-shadow 100ms linear;
     width: $nav-primary-width;
     z-index: $zindex-nav;
+
+    @include respond-min($screen-desktop) {
+        position: fixed;
+    }
 
     .is-active {
         background-color: $nav-color-dark;
