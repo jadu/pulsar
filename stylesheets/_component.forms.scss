@@ -242,26 +242,27 @@ $inputs: (
     // form elements should be 100% on mobile
     background-color: #fafafa;
     width: 100%;
+}
 
-    @include respond-min($screen-smaller) {
+@include respond-min($screen-smaller) {
 
-        // default width
-        .form__group & {
-            max-width: 100%;
-            width: 300px;
-        }
+    // default width
+    .form__group .form__control:not(.checkbox):not(.radio):not(.file) {
+        max-width: 100%;
+        width: 300px;
+    }
 
-        @each $variant, $width in $inputs {
+    @each $variant, $width in $inputs {
 
-            // 1. allow input-specific widths for fine-grained control
-            // 2. allow a class on the main group to control the width of it's controls
-            &.form__control--#{$variant},
-            .form__group--#{$variant} & {
-                width: #{$width};
-            }
+        // 1. allow input-specific widths for fine-grained control
+        // 2. allow a class on the main group to control the width of it's controls
+        .form__control:not(.checkbox):not(.radio):not(.file).form__control--#{$variant},
+        .form__group--#{$variant} .form__control:not(.checkbox):not(.radio):not(.file) {
+            width: #{$width};
         }
     }
 }
+
 
 @include respond-min($screen-smaller) {
     .form__group .input-group {

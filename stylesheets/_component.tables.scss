@@ -207,3 +207,11 @@ td.table__form {
         background-color: #fff;
     }
 }
+
+.table--horizontal {
+    th,
+    td {
+        white-space: nowrap;
+    }
+}
+

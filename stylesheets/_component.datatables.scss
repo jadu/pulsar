@@ -319,4 +319,64 @@ th.sorting_disabled:hover {
     }
 }
 
+.table--overflow-left {
+    .dataTables_scrollHead,
+    .dataTables_scrollBody {
+        border-left: 1px solid red;
+    }
+}
+
+.table--overflow-right {
+    .dataTables_scrollHead,
+    .dataTables_scrollBody {
+        border-right: 1px solid red;
+    }
+
+    .dataTables_scrollHead {
+        background: linear-gradient(300deg, rgba(255, 255, 255, 0) 0%, white 3%),
+                    linear-gradient(90deg, rgba(255, 255, 255, 0) 98%, rgba(0, 0, 0, .1) 100%);
+    }
+
+    .dataTables_scrollBody {
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0) 98%, rgba(0, 0, 0, .1) 100%);
+    }
+}
+
+.table--overflow-left.table--overflow-right {
+    .dataTables_scrollHead,
+    .dataTables_scrollBody {
+        border-left: 1px solid red;
+        border-right: 1px solid red;
+    }
+
+    .dataTables_scrollHead {
+        background: linear-gradient(300deg, rgba(255, 255, 255, 0) 0%, white 3%),
+                    linear-gradient(90deg, rgba(255, 255, 255, 0) 97%, rgba(0, 0, 0, .1) 100%),
+                    linear-gradient(120deg, rgba(255, 255, 255, 0) 0%, red 3%),
+                    linear-gradient(270deg, rgba(255, 255, 255, 0) 97%, rgba(0, 0, 0, .1) 100%);
+    }
+
+    .dataTables_scrollBody {
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0) 97%, rgba(0, 0, 0, .1) 100%),
+                    linear-gradient(270deg, rgba(255, 255, 255, 0) 97%, rgba(0, 0, 0, .1) 100%);
+    }
+}
+
+.dataTables_scroll {
+    ::-webkit-scrollbar {
+      -webkit-appearance: none;
+      width: 7px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: color(background, light);
+        border-bottom: 1px solid color(border);
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: color(grey, lightest);
+        border-bottom: 1px solid color(border);
+    }
+}
+
 // scss-lint:enable SelectorFormat

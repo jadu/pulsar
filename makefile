@@ -13,16 +13,20 @@ build:
 	@ php composer.phar install
 	@ echo "\n${CHECK} Done"
 
+	@ echo "${HR}\nInstalling Homebrew...${HR}\n"
+	yes '' | ruby -e "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	@ echo "\n${CHECK} Done"
+
+	@ echo "${HR}\nInstalling Ansible...${HR}\n"
+	@ -brew install ansible
+	@ echo "\n${CHECK} Done"
+
 	@ echo "${HR}\nInstalling Vagrant...${HR}\n"
 	@ -brew cask install vagrant
 	@ echo "\n${CHECK} Done"
 
 	@ echo "${HR}\nInstalling Virtualbox...${HR}\n"
 	@ -brew cask install virtualbox
-	@ echo "\n${CHECK} Done"
-
-	@ echo "${HR}\nInstalling Homebrew...${HR}\n"
-	yes '' | ruby -e "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 	@ echo "\n${CHECK} Done"
 
 	@ echo "${HR}\nInstalling Ruby...${HR}\n"
