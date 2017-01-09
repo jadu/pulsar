@@ -79,12 +79,6 @@
 /libs/html5shiv/bower.json                                      export-ignore
 /libs/html5shiv/dist/html5shiv-printshiv.js                     export-ignore
 /libs/html5shiv/dist/html5shiv-printshiv.min.js                 export-ignore
-# /libs/html5shiv/dist/html5shiv.js
-##
-## we reference the unminified version within base.html.twig and legacy.html.twig (see line above)
-## although this (see line below) is the one we should probably be using
-##
-/libs/html5shiv/dist/html5shiv.min.js                           export-ignore
 /libs/html5shiv/Gruntfile.js                                    export-ignore
 /libs/html5shiv/MIT?and?GPL2?licenses.md                        export-ignore
 /libs/html5shiv/package.json                                    export-ignore
