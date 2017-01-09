@@ -1,45 +1,65 @@
 .slider-container {
     margin: 5em auto 0;
-    width: 600px;
+    padding: 1em;
+
+    @include respond-min($screen-tablet) {
+        padding: 0;
+        width: 600px;
+    }
 }
 
 .slider {
     display: inline-block;
     position: relative;
-    width: 600px;
+
+    @include respond-min($screen-tablet) {
+        width: 600px;
+    }
 }
 
 .slider__back {
     background-color: color(jadu-blue);
     border-top-left-radius: $border-radius-large;
-    border-bottom-right-radius: $border-radius-large;
-    bottom: $padding-base * 2;
     color: color(white);
     width: 100%;
-    top: $padding-base * 2;
-    position: absolute;
-    text-align: center;
+
+    @include respond-min($screen-tablet) {
+        border-bottom-right-radius: $border-radius-large;
+        bottom: $padding-base * 2;
+        position: absolute;
+        text-align: center;
+        top: $padding-base * 2;
+    }
 }
 
 .slider__front {
     background-color: color(white);
     border-bottom-right-radius: $border-radius-large;
     min-height: 300px;
-    position: relative;
-    float: right;
     z-index: 1;
+
+    @include respond-min($screen-tablet) {
+        position: relative;
+        float: right;
+    }
 }
 
 .slider__inner {
     overflow: hidden;
     padding: $padding-base * 2;
-    width: 300px;
+
+    @include respond-min($screen-tablet) {
+        width: 300px;
+    }
 }
 
 .slider-logo {
     display: block;
-    margin: 0 auto;
     width: 45px;
+
+    @include respond-min($screen-tablet) {
+        margin: 0 auto;
+    }
 }
 
 .slider-title {
@@ -58,9 +78,9 @@
     }
 
     .legend {
+        border-bottom: 1px solid color(border);
         line-height: $line-height-base;
         margin-bottom: 5px;
-        border-bottom: 1px solid color(border);
     }
 
     .form__group {
