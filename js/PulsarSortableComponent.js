@@ -2,19 +2,20 @@
 
 'use strict';
 
-var $ = require('jquery'),
-    jqueryui = require('../libs/jquery-ui/jquery-ui.min');
+var $ = require('jquery');
+
+require('../libs/jquery-ui/jquery-ui.min');
 
 function PulsarSortableComponent(html) {
     this.$html = html;
-}
+};
 
 PulsarSortableComponent.prototype.init = function () {
 
     var component = this;
 
     component.initTables();
-}
+};
 
 PulsarSortableComponent.prototype.initTables = function () {
 
@@ -43,7 +44,7 @@ PulsarSortableComponent.prototype.initTables = function () {
 
         }
     }).disableSelection();
-}
+};
 
 PulsarSortableComponent.prototype.fixHelper = function(e, ui) {
 
@@ -52,7 +53,7 @@ PulsarSortableComponent.prototype.fixHelper = function(e, ui) {
     });
 
     return ui;
-}
+};
 
 PulsarSortableComponent.prototype.addOrder = function() {
 
@@ -66,7 +67,7 @@ PulsarSortableComponent.prototype.addOrder = function() {
 
         $this.html('<span class="sortable__count js-sortable-count">' + i + '</span> ' + label);
     });
-}
+};
 
 PulsarSortableComponent.prototype.updateOrder = function() {
 
@@ -78,6 +79,6 @@ PulsarSortableComponent.prototype.updateOrder = function() {
 
         $(this).text(i);
     });
-}
+};
 
 module.exports = PulsarSortableComponent;
