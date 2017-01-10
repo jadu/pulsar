@@ -28,8 +28,6 @@
     }
 
     .open-nav & {
-        //-webkit-transform: translate3d($nav-primary-width, 0, 0) scale3d(1, 1, 1);
-        //transform: translate3d($nav-primary-width, 0, 0) scale3d(1, 1, 1);
 
         @include respond-min($screen-desktop) {
             left: $nav-primary-width;
@@ -39,8 +37,6 @@
     }
 
     .open-help & {
-        //-webkit-transform: translate3d(-300px, 0, 0) scale3d(1, 1, 1);
-        //transform: translate3d(-300px, 0, 0) scale3d(1, 1, 1);
 
         @include respond-min($screen-desktop) {
             left: $nav-primary-width;
