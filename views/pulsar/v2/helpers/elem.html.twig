@@ -186,10 +186,20 @@ value       | string | Specifies the value of the input
     }}>
 
     {% for value, label in options.options %}
+
+        {#
+            Detect if using nested option syntax, which allows you to add the
+            `disabled` or `selected` attributes to individual options
+        #}
+        {% if label is iterable %}
+            {% set options = label %}
+            {% set label = options.label %}
+            {% set value = options.value %}
+        {% endif %}
+
         <option {{ util.value(value) }}
-            {%- if options.selected is defined and value == options.selected -%}
-                selected
-            {%- endif -%}>
+            {%- if options.selected is defined and value == options.selected %} selected{% endif -%}
+            {%- if options.disabled is defined and options.disabled == true %} disabled="disabled"{% endif -%}>
             {{- label -}}
         </option>
     {% endfor %}

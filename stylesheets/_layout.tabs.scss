@@ -95,21 +95,20 @@
 }
 
 .tabs__content {
-  @include clear-fix;
-  display: table-cell;
-  padding: 0 20px;
-  // overflow: hidden; experimenting with turning this off to allow left positioned tooltips to work, shout up if it breaks anything
-  vertical-align: top;
-  width: 100%;
+    @include clear-fix;
+    display: table-cell;
+    padding: 0 20px;
+    vertical-align: top;
+    width: 100%;
 
-  // show/hide tab panes
-  > .tab__pane {
-    display: none;
+    // show/hide tab panes
+    > .tab__pane {
+        display: none;
 
-    &.is-active {
-      display: block;
+        &.is-active {
+            display: block;
+        }
     }
-  }
 }
 
 .tab__pane {
@@ -117,80 +116,72 @@
 }
 
 .tab__content {
-    display: table-cell;
     width: auto;
 }
 
 .tab__inner {
-  // float: left;
-  padding-bottom: 48px;
-  position: relative;
-  width: 100%;
+    padding-bottom: 48px;
+    position: relative;
+    width: 100%;
 
-  // h2:first-of-type {
-  //   margin-top: 0;
-  // }
+    @include respond-min($screen-desktop) {
+        display: table;
+    }
 }
 
 .tab__main {
-  overflow: hidden;
-  width: 100%;
+    overflow: hidden;
+    width: 100%;
 
-  @include respond-min($screen-desktop) {
-    border-right: 1px solid color(gray);
-    padding-right: $gutter-width;
-    width: auto;
-  }
+    @include respond-min($screen-desktop) {
+        border-right: 1px solid color(gray);
+        padding-right: $gutter-width;
+        width: auto;
+    }
 }
 
-
 .tabs {
-  display: inline-block;
-  height: 100%;
-  margin-bottom: 3.2em;
-  position: relative;
-  width: 100%;
+    display: inline-block;
+    height: 100%;
+    margin-bottom: 3.2em;
+    position: relative;
+    width: 100%;
 }
 
 .tabs__list > li > a[data-show="#new-tab"] {
-  @extend .muted;
-  text-align: center;
+    @extend .muted;
+    text-align: center;
 
-  &:hover {
-    color: color(gray, dark);
-  }
+    &:hover {
+        color: color(gray, dark);
+    }
 }
 
 .tabs__list .new {
-  background-color: color(primary);
-  border-bottom: 0;
-  height: $line-height-base * 1.75;
-
-  input {
     background-color: color(primary);
-    border: 0;
-    outline: none;
-    color: color(white);
-    line-height: 1.75em;
-    margin: 4px 0 0 5%;
-    width: 90%;
+    border-bottom: 0;
+    height: $line-height-base * 1.75;
 
-    &::selection {
-      background: white;
+    input {
+        background-color: color(primary);
+        border: 0;
+        outline: none;
+        color: color(white);
+        line-height: 1.75em;
+        margin: 4px 0 0 5%;
+        width: 90%;
+
+        &::selection {
+            background: white;
+        }
     }
-  }
 }
-
 
 // experimenting with new tab rendering
 
 .tab__container {
     float: none;
     height: 100%;
-
-  // @include respond-min($screen-desktop) {
-  //   display: table;
-  // }
 }
 
 .tab__container {
@@ -199,10 +190,6 @@
         height: 100%;
         vertical-align: top;
         width: 100%;
-
-        @include respond-min($screen-desktop) {
-            display: table;
-        }
     }
 
     .tab__content {
@@ -241,8 +228,7 @@
 }
 
 .tab__container.has-sidebar .tab__content {
-  @include respond-min($screen-desktop) {
-    width: 70%;
-  }
+    @include respond-min($screen-desktop) {
+        width: 70%;
+    }
 }
-

@@ -1,56 +1,86 @@
 .slider-container {
     margin: 5em auto 0;
-    width: 600px;
+    padding: $padding-base * 2;
+
+    @include respond-min($screen-tablet) {
+        padding: 0;
+        width: 600px;
+    }
 }
 
 .slider {
     display: inline-block;
     position: relative;
-    width: 600px;
+
+    @include respond-min($screen-tablet) {
+        width: 600px;
+    }
 }
 
 .slider__back {
     background-color: color(jadu-blue);
     border-top-left-radius: $border-radius-large;
-    border-bottom-right-radius: $border-radius-large;
-    bottom: $padding-base * 2;
     color: color(white);
     width: 100%;
-    top: $padding-base * 2;
-    position: absolute;
-    z-index: -1;
+
+    @include respond-min($screen-tablet) {
+        border-bottom-right-radius: $border-radius-large;
+        bottom: $padding-base * 2;
+        position: absolute;
+        text-align: center;
+        top: $padding-base * 2;
+    }
 }
 
 .slider__front {
     background-color: color(white);
     border-bottom-right-radius: $border-radius-large;
-    left: 50%;
-    float: right;
+    min-height: 300px;
+    z-index: 1;
+
+    @include respond-min($screen-tablet) {
+        position: relative;
+        float: right;
+    }
 }
 
 .slider__inner {
     overflow: hidden;
     padding: $padding-base * 2;
-    width: 300px;
+
+    @include respond-min($screen-tablet) {
+        width: 300px;
+    }
 }
 
 .slider-logo {
-    float: left;
-    margin: 0 10px 10px 0;
+    display: block;
     width: 45px;
+
+    @include respond-min($screen-tablet) {
+        margin: 0 auto;
+    }
 }
 
 .slider-title {
     font-size: $font-size-large;
-    line-height: $line-height-small;
+    line-height: 45px;
 }
 
 // form alignment
-.slider {
+.slider .form {
+    fieldset {
+        padding: 0;
+    }
+
+    p {
+        margin-bottom: $line-height-base / 2;
+    }
+
     .legend {
+        border-bottom: 1px solid color(border);
         line-height: $line-height-base;
         margin-bottom: 5px;
-        border-bottom: 1px solid color(border);
     }
 
     .form__group {

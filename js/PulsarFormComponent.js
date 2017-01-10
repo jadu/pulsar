@@ -1,16 +1,23 @@
-var $ = require('jquery'),
-    pikaday = require('../libs/pikaday/plugins/pikaday.jquery');
-    select2 = require('../libs/select2/dist/js/select2.min');
+'use strict';
+
+var $ = require('jquery');
+
+require('../libs/pikaday/plugins/pikaday.jquery');
+require('../libs/select2/dist/js/select2.min');
+require('../libs/spectrum/spectrum');
 
 function PulsarFormComponent(html) {
 
     this.$html = html;
 
-};
+}
 
 PulsarFormComponent.prototype.init = function () {
 
     var component = this;
+
+    // Colourpickers
+    component.initColourpickers();
 
     // Attach basic pikaday to datepicker fields
     this.$html.find('[data-datepicker=true]').pikaday({
@@ -20,14 +27,14 @@ PulsarFormComponent.prototype.init = function () {
     component.$select2 = this.$html.find('.js-select2');
 
     component.$select2.each(function() {
+        function formatOption(data) {
+            return $('<span>' + data.text + '</span>');
+        }
 
         var $this = $(this);
 
-        if ($this.data('html')) {
 
-            function formatOption(data) {
-                return $('<span>' + data.text + '</span>');
-            };
+        if ($this.data('html')) {
 
             $this.select2({
                 templateResult: formatOption,
@@ -58,6 +65,46 @@ PulsarFormComponent.prototype.initSelectionButtons = function(e) {
         .closest('.control__label')
         .addClass('is-selected');
 
+};
+
+PulsarFormComponent.prototype.initColourpickers = function() {
+
+    var component = this,
+        pickers = component.$html.find('.js-colorpicker');
+
+    pickers.each(function() {
+        var $this = $(this),
+            $input = $this.find('.form__control'),
+            $pickerInput = $($.parseHTML('<input>')),
+            disabledAttr = $input.attr('disabled'),
+            isDisabled = false;
+
+        if (typeof disabledAttr !== typeof undefined && disabledAttr !== false) {
+            isDisabled = true;
+        }
+
+        $pickerInput.insertAfter($input);
+
+        // changing the picker should update the input
+        $pickerInput.spectrum({
+            color: '#' + $input.val(),
+            disabled: isDisabled,
+            showInput: false,
+            preferredFormat: 'hex',
+            replacerClassName: 'btn',
+            change: function (color) {
+                if (!$input.attr('disabled')) {
+                    $input.val(('' + color).substring(1));
+                    $input.trigger('change');
+                }
+            }
+        });
+
+        // changing the input should update the picker
+        $input.on('change', function () {
+            $pickerInput.spectrum('set', '#' + $input.val());
+        });
+    });
 };
 
 PulsarFormComponent.prototype.selectionButtons = function() {

@@ -1,0 +1,48 @@
+{% extends '@pulsar/pulsar/layouts/base.html.twig' %}
+
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{% import '@pulsar/pulsar/v2/helpers/tabs.html.twig' as tabs %}
+{% import '@pulsar/pulsar/v2/helpers/flash.html.twig' as flash %}
+
+{% block title %}{{ parent() }}{% endblock %}
+
+{% set heading = 'System Settings' %}
+
+{% set tab_branding %}
+    {% include 'playground/branding/tab_branding.html.twig' %}
+{% endset %}
+
+{%
+    set tabs_content = [
+        {
+          "id"    : "branding",
+          "label" : "Branding",
+          "src"   : tab_branding,
+          "active": true
+        },
+        {
+          "id"    : "service",
+          "label" : "Service API",
+          "src"   : tab_branding
+        },
+        {
+          "id"    : "webhooks",
+          "label" : "Webhooks",
+          "src"   : tab_branding
+        },
+        {
+          "id"    : "integrations",
+          "label" : "Integrations",
+          "src"   : tab_branding
+        }
+    ]
+%}
+
+{% block tabs_list %}
+    {{ tabs.list(tabs_content) }}
+{% endblock %}
+
+{% block tabs_content %}
+    {{ tabs.content(tabs_content) }}
+{% endblock %}

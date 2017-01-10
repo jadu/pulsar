@@ -10,6 +10,7 @@
 {% set heading = 'Form Helpers' %}
 
 {% set tab_buttongroup %}{% include 'lexicon/forms/button-group.html.twig' %}{% endset %}
+{% set tab_colour %}{% include 'lexicon/forms/colour.html.twig' %}{% endset %}
 {% set tab_checkbox %}{% include 'lexicon/forms/checkbox.html.twig' %}{% endset %}
 {% set tab_date %}{% include 'lexicon/forms/date.html.twig' %}{% endset %}
 {% set tab_password %}{% include 'lexicon/forms/password.html.twig' %}{% endset %}
@@ -36,8 +37,7 @@
                     },
                     "1.1.2": {
                         "label": "Modules",
-                        "href": "/app/app.php/lexicon/modules.html.twig",
-                        "class": "is-active"
+                        "href": "/app/app.php/lexicon/modules.html.twig"
                     },
                     "1.1.3": {
                         "label": "Patterns",
@@ -54,7 +54,7 @@
         },
         "3": {
             "label": "Form helpers",
-            "class": "",
+            "class": "is-active",
             "href": "/app/app.php/lexicon/forms.html.twig",
             "icon": "check"
         },
@@ -63,6 +63,11 @@
             "class": "",
             "href": "/app/app.php/lexicon/tables.html.twig",
             "icon": "table"
+        },
+        "10": {
+            "label": "Utilities",
+            "href": "/app/app.php/lexicon/utilities.html.twig",
+            "icon": "wrench"
         }
     }
 %}
@@ -84,6 +89,11 @@
           "id"    : "choice",
           "label" : "Choice",
           "src"   : tab_choice
+        },
+        {
+          "id"    : "colour",
+          "label" : "Colour",
+          "src"   : tab_colour
         },
         {
           "id"    : "date",

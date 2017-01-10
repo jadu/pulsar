@@ -1,19 +1,33 @@
 {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 {% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 {% import '@pulsar/pulsar/v2/helpers/flash.html.twig' as flash %}
+{% import '@pulsar/pulsar/v2/helpers/datagrid.html.twig' as datagrid %}
 
-{% set _settings = block('tab_settings') %}
-{% set _sidebar = block('tab_sidebar') %}
 {% set _hasSettings = false %}
 {% set _hasSidebar = false %}
+
+{% set _settings = block('tab_settings') %}
 {% if _settings is not empty %}
     {% set _hasSettings = true %}
 {% endif %}
+
+{% set _sidebar = block('tab_sidebar') %}
 {% if _sidebar is not empty %}
     {% set _hasSidebar = true %}
 {% endif %}
+
+{% set _tab_javascript = block('tab_js') %}
+{% if _tab_javascript is not empty %}
+    {% block tab_javascript %}
+        {{ _tab_javascript }}
+    {% endblock %}
+{% endif %}
+
 {% set _actions_left = block('actions_left') %}
 {% set _actions_right = block('actions_right') %}
+
 <div class="tab__container{% if _hasSettings == true %} has-settings{% endif %}{% if _hasSidebar == true %} has-sidebar{% endif %}">
 
     {% if _actions_left is not empty or _actions_right is not empty %}
@@ -47,3 +61,5 @@
         </div>
     </div>
 </div>
+
+

@@ -1,3 +1,5 @@
+@import 'mixin.label-variant';
+
 .label,
 %label {
     @include inline-block;

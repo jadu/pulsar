@@ -57,6 +57,31 @@
 
     {{
         form.choice({
+            'class': '',
+            'label': 'Choice with disabled option',
+            'options': [
+                {
+                    'label': 'One',
+                    'value': 'one',
+                    'name': 'one'
+                },
+                {
+                    'label': 'Two',
+                    'value': 'two',
+                    'name': 'one',
+                    'disabled': true
+                },
+                {
+                    'label': 'Three',
+                    'value': 'three',
+                    'name': 'one'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.choice({
             'id': 'choice-3',
             'class': '',
             'label': 'Choice as select2',

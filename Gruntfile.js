@@ -26,7 +26,7 @@ module.exports = function(grunt) {
             dev: {
                 files: {
                     'dist/js/bundle.js': ['js/index.js'],
-                    'dist/js/test.js': ['tests/js/index.js']
+                    'dist/js/test.js': ['tests/js/web/index.js']
                 },
                 options: {
                     browserifyOptions: {
@@ -37,7 +37,7 @@ module.exports = function(grunt) {
             dist: {
                 files: {
                     'dist/js/bundle.js': ['js/index.js'],
-                    'dist/js/test.js': ['tests/js/index.js']
+                    'dist/js/test.js': ['tests/js/web/index.js']
                 },
                 options: {
                     browserifyOptions: {
@@ -514,6 +514,7 @@ module.exports = function(grunt) {
         'copy',
         'scsslint',
         'sass:dev',
+        'autoprefixer',
         'bless',
         'browserify',
         'browserSync',
@@ -532,6 +533,7 @@ module.exports = function(grunt) {
         'scsslint',
         'sass:dist_modern',
         'sass:dist_ie',
+        'autoprefixer',
         'browserify:dist',
         'copy:dist',
         'emailBuilder',
@@ -542,6 +544,7 @@ module.exports = function(grunt) {
     grunt.registerTask('deploy', [
         'sass:dist_modern',
         'sass:dist_ie',
+        'autoprefixer',
         'browserify:dist',
         'copy:dist',
         'compress'

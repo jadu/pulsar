@@ -1,18 +1,17 @@
 @mixin sortable-handle {
-    content: '\f0c9';
     color: color(text, light);
+    content: '\f0c9';
     font-family: fontawesome;
-    position: absolute;
     left: 10px;
+    position: absolute;
     top: 10px;
 }
 
 @mixin sortable-success {
-
     color: color(success);
     font-family: fontawesome;
-    position: absolute;
     left: 10px;
+    position: absolute;
     top: 10px;
 }
 
@@ -86,8 +85,8 @@ div.is-sorting {
     }
 
     .has-success > td:first-of-type::before {
-        content: '\f058';
         color: color(success);
+        content: '\f058';
     }
 
     .ui-sortable-helper {
@@ -101,8 +100,8 @@ div.is-sorting {
     .sortable__count {
         color: #777;
         font-family: $font-family-regular;
-        position: absolute;
         left: 30px;
+        position: absolute;
     }
 }
 
