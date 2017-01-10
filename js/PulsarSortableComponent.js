@@ -1,3 +1,5 @@
+/* jshint: global ui */
+
 'use strict';
 
 var $ = require('jquery'),
