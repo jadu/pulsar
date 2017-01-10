@@ -8,7 +8,7 @@ require('../libs/jquery-ui/jquery-ui.min');
 
 function PulsarSortableComponent(html) {
     this.$html = html;
-};
+}
 
 PulsarSortableComponent.prototype.init = function () {
 
