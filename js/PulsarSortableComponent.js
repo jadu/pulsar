@@ -1,4 +1,4 @@
-/* jshint: global ui */
+/* jshint: global e, ui */
 
 'use strict';
 
