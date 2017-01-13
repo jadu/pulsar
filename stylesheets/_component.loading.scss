@@ -1,4 +1,4 @@
-@keyframes "spin" {
+@keyframes spin {
     from {
         -webkit-transform: rotate(0deg);
         -moz-transform: rotate(0deg);
@@ -28,7 +28,7 @@
     }
 }
 
-@-webkit-keyframes "spin" {
+@-webkit-keyframes spin {
     from {
         -webkit-transform: rotate(0deg);
         transform: rotate(0deg);
@@ -40,7 +40,7 @@
     }
 }
 
-@-ms-keyframes "spin" {
+@-ms-keyframes spin {
     from {
         -ms-transform: rotate(0deg);
         transform: rotate(0deg);
@@ -52,7 +52,7 @@
     }
 }
 
-@-o-keyframes "spin" {
+@-o-keyframes spin {
     from {
         -o-transform: rotate(0deg);
         transform: rotate(0deg);
@@ -95,6 +95,12 @@
     @include ie-lte(8) {
         border: 0;
         text-indent: 0;
+    }
+
+    .lt-ie10 & {
+        margin: 0 0 -2px;
+        background: url('../images/ie-loading.gif') center center no-repeat;
+        border: 0;
     }
 }
 
