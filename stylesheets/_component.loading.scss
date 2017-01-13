@@ -96,6 +96,12 @@
         border: 0;
         text-indent: 0;
     }
+
+    .lt-ie10 & {
+        margin: 0 0 -2px;
+        background: url('../images/ie-loading.gif') center center no-repeat;
+        border: 0;
+    }
 }
 
 
