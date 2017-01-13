@@ -35,7 +35,7 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
     display: inline-block;
     margin: 0;
     height: 100%;
-    overflow: auto;
+    overflow-x: hidden;
     padding: 0;
     position: relative;
     vertical-align: top;
