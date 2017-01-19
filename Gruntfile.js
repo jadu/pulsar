@@ -329,10 +329,6 @@ module.exports = function(grunt) {
                             pictureAspect: 'whiteSilhouette',
                             backgroundColor: '#15a6d1',
                             onConflict: 'override'
-                        },
-                        safariPinnedTab: {
-                            pictureAspect: 'silhouette',
-                            themeColor: '#15a6d1'
                         }
                     }
                 }
@@ -366,10 +362,6 @@ module.exports = function(grunt) {
                             pictureAspect: 'whiteSilhouette',
                             backgroundColor: '#80BA27',
                             onConflict: 'override'
-                        },
-                        safariPinnedTab: {
-                            pictureAspect: 'silhouette',
-                            themeColor: '#80BA27'
                         }
                     }
                 }
@@ -403,10 +395,6 @@ module.exports = function(grunt) {
                             pictureAspect: 'whiteSilhouette',
                             backgroundColor: '#54B9A9',
                             onConflict: 'override'
-                        },
-                        safariPinnedTab: {
-                            pictureAspect: 'silhouette',
-                            themeColor: '#54B9A9'
                         }
                     }
                 }
@@ -440,10 +428,6 @@ module.exports = function(grunt) {
                             pictureAspect: 'whiteSilhouette',
                             backgroundColor: '#DC5172',
                             onConflict: 'override'
-                        },
-                        safariPinnedTab: {
-                            pictureAspect: 'silhouette',
-                            themeColor: '#DC5172'
                         }
                     }
                 }
