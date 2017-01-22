@@ -786,7 +786,7 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
     {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-    <a{{ attributes(options|exclude('icon label type')) }}>
+    <{{ attributes(options|exclude('icon label type'), {'tag': ('a')}) }}>
 
         {%- if options.icon is defined and options.icon is not empty -%}
             {{- html.icon(options.icon) -}}&nbsp;
