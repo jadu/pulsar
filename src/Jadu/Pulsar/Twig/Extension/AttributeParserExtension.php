@@ -129,11 +129,7 @@ class AttributeParserExtension extends \Twig_Extension
 
                             // Don't output `disabled` boolean on links as it
                             // throws a W3C validation error
-                            if (
-                                (!$usingTag || $args['tag'] != 'a')
-                                    ||
-                                ($usingTag && $key != 'disabled')
-                            ) {
+                            if ((!$usingTag || $args['tag'] != 'a') || ($usingTag && $key != 'disabled')) {
                                 $html[] = htmlspecialchars($key);
                             }
 

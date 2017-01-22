@@ -1,3 +1,5 @@
+'use strict';
+
 var _ = require('lodash');
 
 function htmlEntities(str) {
@@ -37,11 +39,7 @@ AttributeParserExtension.prototype.parseAttributes = function (attributes, args)
         if (value && !_.isArray(value)) {
             if (typeof(value) === 'boolean') {
 
-                if (
-                    (!usingTag || args.tag != 'a')
-                        ||
-                    (usingTag && key != 'disabled')
-                ) {
+                if ((!usingTag || args.tag !== 'a') || (usingTag && key !== 'disabled')) {
                     html.push(key);
                 }
 
