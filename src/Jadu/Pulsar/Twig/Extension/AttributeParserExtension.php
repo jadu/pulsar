@@ -80,28 +80,38 @@ class AttributeParserExtension extends \Twig_Extension
      *
      * @param  array  $attributes An array of attributes to parse
      * @param  array  $args       Arguments to affect the output:
-     *                [exclude] A list of keys to remove. This takes precedence
-     *                over other options
-     *                [include] A list of keys to be output, all others will be
-     *                ignored
-     *                [default] Additional attributes to be included, if the
-     *                attribute exists in both $attributes and $args, the values
-     *                will be merged
+     *                [tag] A tag name to also include in the output, mainly
+     *                used to allow us to prevent invalid attributes from being
+     *                passed to the markup
+     *
+     *                Example:
+     *                    attributes({'disabled'}, {'tag': ('a')})
+     *
+     *                The above example will let us pass the disabled option to
+     *                allow us to create the necessary ARIA attributes and
+     *                classes, but we can test the tag argument to then strip
+     *                the `disabled` boolean from also being output as it's
+     *                invalid HTML
      * @return string A space separated string of key="value" attributes ready
      *                for including in an HTML element
      */
     public function parseAttributes($attributes, array $args = array())
     {
-        if (empty($attributes)) {
+        $html = array();
+        $usingTag = false;
+
+        if (isset($args['tag'])) {
+            $usingTag = true;
+            $html[] = $args['tag'];
+        }
+        else if (empty($attributes)) {
             return '';
         }
-
-        $html = array();
 
         // As classes can be supplied as a string, we'll' switch them to an
         // array to allow us to add new classes based on other attributes
         $classes = isset($attributes['class']) ? explode(' ', $attributes['class']) : array();
-		unset($attributes['class']);
+        unset($attributes['class']);
 
         // Parse the attributes
         foreach ($attributes as $key => &$value) {
@@ -116,7 +126,12 @@ class AttributeParserExtension extends \Twig_Extension
 
                         // Only output the key if true, do nothing if false
                         if ($value) {
-                            $html[] = htmlspecialchars($key);
+
+                            // Don't output `disabled` boolean on links as it
+                            // throws a W3C validation error
+                            if ((!$usingTag || $args['tag'] != 'a') || ($usingTag && $key != 'disabled')) {
+                                $html[] = htmlspecialchars($key);
+                            }
 
                             // Add extra attributes based on certain properties
                             if ($key == 'required') {
@@ -137,11 +152,16 @@ class AttributeParserExtension extends \Twig_Extension
 
         // Re-stringify the classes array, as long as we have some
         if (!empty($classes)) {
-        	$html[] = ' class="' . implode(' ', array_unique($classes)) . '"';
+            $html[] = ' class="' . implode(' ', array_unique($classes)) . '"';
         }
 
         if (!empty($html)) {
-            return ' ' . implode(' ', $html);
+            if ($usingTag) {
+                return implode(' ', $html);
+            }
+            else {
+                return ' ' . implode(' ', $html);
+            }
         }
 
         return '';
