@@ -26,3 +26,5 @@ pulsar.zip
 /fonts/_config.fonts.scss
 
 /.csscomb.json
+/validation-status.json
+/validation-report.json
