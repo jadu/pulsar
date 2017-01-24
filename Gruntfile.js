@@ -157,7 +157,7 @@ module.exports = function(grunt) {
             js: {
                 files: ['js/**/*.js', 'tests/js/**/*', 'package.json'],
                 tasks: ['browserify']
-            }
+            },
         },
 
         jshint: {
@@ -474,6 +474,25 @@ module.exports = function(grunt) {
                 reloadOnRestart: true,
                 watchTask: true
             }
+        },
+
+        validation: {
+            options: {
+                reset: grunt.option('reset') || false,
+                stoponerror: false,
+                maxTry: 3,
+                relaxerror: ['Bad value X-UA-Compatible for attribute http-equiv on element meta.'], //ignores these errors 
+                generateReport: true,
+                errorHTMLRootDir: "w3cErrorFolder",
+                useTimeStamp: true,
+                errorTemplate: "w3cErrorFolder/w3c_validation_error_Template.html"
+            },
+            files: {
+                src: ['dist/views/*.html', 
+                                'emails/dist/*.html', 
+                                'emails/examples/*.html',
+                                'emails/src/*.html']
+            }
         }
 
     });
@@ -494,6 +513,8 @@ module.exports = function(grunt) {
         ]
     });
 
+    grunt.loadNpmTasks('grunt-w3c-html-validation');
+
     grunt.registerTask('default', [
         'copy',
         'scsslint',
@@ -501,9 +522,10 @@ module.exports = function(grunt) {
         'autoprefixer',
         'bless',
         'browserify',
+        'email-build',
+        'validation',
         'browserSync',
-        'watch',
-        'email-build'
+        'watch'
     ]);
 
     grunt.registerTask('post-merge', [
