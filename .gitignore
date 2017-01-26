@@ -28,4 +28,4 @@ pulsar.zip
 /.csscomb.json
 /validation-status.json
 /validation-report.json
-/tests/validation/*
+/tests/validation/w3cErrors*
