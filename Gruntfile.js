@@ -481,17 +481,17 @@ module.exports = function(grunt) {
                 reset: grunt.option('reset') || false,
                 stoponerror: false,
                 maxTry: 3,
-                relaxerror: ['Bad value X-UA-Compatible for attribute http-equiv on element meta.'], //ignores these errors 
+                relaxerror: ['Bad value X-UA-Compatible for attribute http-equiv on element meta.'], // ignores these errors 
                 generateReport: true,
-                errorHTMLRootDir: "w3cErrorFolder",
+                errorHTMLRootDir: "tests/validation",
                 useTimeStamp: true,
-                errorTemplate: "w3cErrorFolder/w3c_validation_error_Template.html"
+                errorTemplate: "tests/validation/w3c_validation_error_Template.html"
             },
             files: {
                 src: ['dist/views/*.html', 
-                                'emails/dist/*.html', 
-                                'emails/examples/*.html',
-                                'emails/src/*.html']
+                    'emails/dist/*.html', 
+                    'emails/examples/*.html',
+                    'emails/src/*.html']
             }
         }
 
@@ -513,8 +513,6 @@ module.exports = function(grunt) {
         ]
     });
 
-    grunt.loadNpmTasks('grunt-w3c-html-validation');
-
     grunt.registerTask('default', [
         'copy',
         'scsslint',
@@ -522,10 +520,9 @@ module.exports = function(grunt) {
         'autoprefixer',
         'bless',
         'browserify',
-        'email-build',
-        'validation',
         'browserSync',
-        'watch'
+        'watch',
+        'email-build'
     ]);
 
     grunt.registerTask('post-merge', [
@@ -586,6 +583,10 @@ module.exports = function(grunt) {
         'exec:updateBower',
         'exec:updateGems',
         'exec:updateNpm'
+    ]);
+
+    grunt.registerTask('validate', [
+        'validation'
     ]);
 
     // load all grunt tasks
