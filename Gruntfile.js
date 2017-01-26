@@ -488,10 +488,7 @@ module.exports = function(grunt) {
                 errorTemplate: "tests/validation/w3c_validation_error_Template.html"
             },
             files: {
-                src: ['dist/views/*.html', 
-                    'emails/dist/*.html', 
-                    'emails/examples/*.html',
-                    'emails/src/*.html']
+                src: ['dist/views/*.html']
             }
         }
 
