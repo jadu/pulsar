@@ -123,10 +123,6 @@
     padding-bottom: 48px;
     position: relative;
     width: 100%;
-
-    @include respond-min($screen-desktop) {
-        display: table;
-    }
 }
 
 .tab__main {
