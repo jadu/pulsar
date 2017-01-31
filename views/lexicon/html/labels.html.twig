@@ -21,6 +21,7 @@
                 <th>Danger</th>
                 <th>Inverse</th>
                 <th>White</th>
+                <th>Custom</th>
             </tr>
         </thead>
         <tbody>
@@ -78,6 +79,14 @@
                         html.label({
                             'label': 'Foo',
                             'class': 'label--white'
+                        })
+                    }}
+                </td>
+                <td class="centered">
+                    {{
+                        html.label({
+                            'label': 'Foo',
+                            'style': 'background-color: pink; color: red;'
                         })
                     }}
                 </td>
@@ -147,6 +156,15 @@
                         })
                     }}
                 </td>
+                <td class="centered">
+                    {{
+                        html.label({
+                            'label': 'Foo',
+                            'removable': 'true',
+                            'style': 'background-color: pink; color: red;'
+                        })
+                    }}
+                </td>
             </tr>
 
             <tr>
@@ -204,6 +222,15 @@
                         html.label({
                             'label': 'Foo',
                             'class': 'label--large label--white'
+                        })
+                    }}
+                </td>
+                <td class="centered">
+                    {{
+                        html.label({
+                            'label': 'Foo',
+                            'class': 'label--large',
+                            'style': 'background-color: pink; color: red;'
                         })
                     }}
                 </td>

@@ -201,6 +201,7 @@ paths:
     html-label-states-html-twig: /html/label-states.html.twig
     html-label-html-twig: /html/label.html.twig
     html-li-html-twig: /html/li.html.twig
+    html-link-disabled-html-twig: /html/link-disabled.html.twig
     html-link-list-html-twig: /html/link-list.html.twig
     html-link-html-twig: /html/link.html.twig
     html-list-active-item-html-twig: /html/list-active-item.html.twig
