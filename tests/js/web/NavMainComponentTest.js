@@ -86,10 +86,12 @@ describe('NavMain component', function() {
     </ul>\
 \
 </nav>\
+<div class="content-main"></div>\
 ').appendTo(this.$body);
 
         this.$navMain = this.$html.find('.nav-main');
         this.$navSecondary = this.$html.find('.nav-secondary');
+        this.$contentMain = this.$html.find('.content-main');
         this.$closeLink = this.$navMain.find('[data-nav-action="close"]');
 
         this.$linkOne = this.$navMain.find('[href="#one"]');
@@ -219,7 +221,7 @@ describe('NavMain component', function() {
         });
 
         it('should close the secondary nav', function() {
-            expect(this.$navMain.find('.nav-main').hasClass('is-open')).to.be.false;
+            expect(this.$navMain.find('.nav-main').hasClass('nav-main--open')).to.be.false;
         });
     });
 
