@@ -32,6 +32,11 @@
 /Vagrantfile                export-ignore
 
 ##
+## /images/
+##
+/images/src/logo-coloured.ai                                    export-ignore
+
+##
 ## /libs/
 ##
 
