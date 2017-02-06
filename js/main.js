@@ -110,7 +110,7 @@
             }
         }).disableSelection();
 
-        tinycon.setBubble(6);
+        // tinycon.setBubble(6);
 
     });
 
