@@ -1,0 +1,193 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{% import '@pulsar/pulsar/v2/helpers/flash.html.twig' as flash %}
+
+{% block tab_content %}
+
+<div class="piano-wrapper">
+    <div class="piano">
+        <ul class="piano__items">
+
+            <li class="piano__item">
+                <a href="./index.html.twig">
+                {{
+                    html.media({
+                        'image': '/images/services/singlepoint.png',
+                        'image_alt': 'SinglePoint logo',
+                        'title': 'SinglePoint (step 1 & 2)',
+                        'description': 'Allow address lookup by postcode in forms',
+                        'action': html.status('inactive')
+                    })
+                }}
+                </a>
+            </li>
+            <li class="piano__item">
+                <a href="./two.html.twig">
+                {{
+                    html.media({
+                        'image': '/images/services/singlepoint.png',
+                        'image_alt': 'SinglePoint logo',
+                        'title': 'SinglePoint (step 3)',
+                        'description': 'After user has connected',
+                        'action': html.status('inactive')
+                    })
+                }}
+                </a>
+            </li>
+            <li class="piano__item is-selected">
+                <a href="./three.html.twig">
+                {{
+                    html.media({
+                        'image': '/images/services/singlepoint.png',
+                        'image_alt': 'SinglePoint logo',
+                        'title': 'SinglePoint (error example)',
+                        'description': 'Standard validation styles',
+                        'action': html.status('inactive')
+                    })
+                }}
+                </a>
+
+
+                <div class="piano__item-content">
+
+                    <h2>SinglePoint</h2>
+                    <p>Connect to your SinglePoint Web Service Definition List (WSDL) and manage the order in which you would like to search the SinglePoint address databases. You will need an active SinglePoint account.</p>
+
+                    <div class="masterswitch">
+                        {{
+                            form.create()
+                        }}
+
+                        {{
+                            form.toggle_switch({
+                                'class': 'masterswitch-control',
+                                'label': 'Enable integration',
+                                'id': 'toggletest',
+                                'checked': true
+                            })
+                        }}
+
+                        <section class="masterswitch-content is-disabled">
+
+                            <div class="nav-inline t-nav-inline">
+                                <ul class="nav-inline__list">
+                                    <li class="nav-inline__item nav-inline__item--is-active is-active">
+                                        <a href="#integrations" data-toggle="tab" class="nav-inline__link">Settings</a>
+                                    </li>
+                                    <li class="nav-inline__item">
+                                        <a href="#integrations" data-toggle="tab" class="nav-inline__link id-disabled">Log</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <br /><br />
+
+                            {{
+                                form.text({
+                                    'label': 'SinglePoint WSDL URL',
+                                    'class': 'form__group--xlarge',
+                                    'id': 'inputText',
+                                    'name': 'inputText',
+                                    'value': 'http://incorrect/url/example',
+                                    'required': true,
+                                    'error': 'Unable to connect to this URL, please check your details',
+                                    'append': html.button({
+                                        'label': 'Connect'
+                                    }),
+                                    'append_type': 'button'
+                                })
+                            }}
+
+                            <div class="form__group is-disabled">
+                                <label class="control__label">Adapters <span class="required-indicator" rel="tooltip" data-toggle="tooltips" title="" data-original-title="required">*</span></label>
+                                <div class="controls">
+                                    <table class="table table--full">
+                                        <thead>
+                                            <tr>
+                                                <th>Order</th>
+                                                <th>Adapter</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="no-results" colspan="99">
+                                                    <div class="no-results__message">
+                                                        <p>There are currently no adapters to display</p>
+                                                        <a href="#" class="btn btn--primary no-results__action">Add Adapters</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+
+                            {{
+                                form.end({
+                                    'class': 'form__actions--flush',
+                                    'actions': [
+                                        html.button({
+                                            'label': 'Save',
+                                            'class': 'btn--primary is-disabled'
+                                        }),
+                                        html.button({
+                                            'label': 'Cancel',
+                                            'class': 'btn--naked'
+                                        })
+                                    ]
+                                })
+                            }}<!--
+                     --></section>
+                    </div>
+
+                </div>
+
+            </li>
+            <li class="piano__item">
+                <a href="./four.html.twig">
+                {{
+                    html.media({
+                        'image': '/images/services/singlepoint.png',
+                        'image_alt': 'SinglePoint logo',
+                        'title': 'SinglePoint (step 4)',
+                        'description': 'Fetch adapters and let user choose',
+                        'action': html.status('inactive')
+                    })
+                }}
+                </a>
+            </li>
+            <li class="piano__item">
+                <a href="./five.html.twig">
+                {{
+                    html.media({
+                        'image': '/images/services/singlepoint.png',
+                        'image_alt': 'SinglePoint logo',
+                        'title': 'SinglePoint (step 5)',
+                        'description': 'After adapters have been added & saved',
+                        'action': html.status('inactive')
+                    })
+                }}
+                </a>
+            </li>
+            <li class="piano__item">
+                <a href="./six.html.twig">
+                {{
+                    html.media({
+                        'image': '/images/services/singlepoint.png',
+                        'image_alt': 'SinglePoint logo',
+                        'title': 'SinglePoint (step 6)',
+                        'description': 'Adding more adapters',
+                        'action': html.status('active')
+                    })
+                }}
+                </a>
+            </li>
+
+        </ul>
+
+    </div>
+</div>
+
+{% endblock tab_content %}

@@ -27,7 +27,7 @@
     "tag": "1.0.3",
     "commit": "f3621e14ba6df4e3d3fa0b350743aa463c3503f2"
   },
-  "_source": "git://github.com/jadu/selectivizr.git",
+  "_source": "https://github.com/jadu/selectivizr.git",
   "_target": "*",
   "_originalSource": "jadu/selectivizr"
 }

@@ -22,7 +22,7 @@
     "moment": "latest",
     "normalize-css": "3.0.3",
     "nwmatcher": "latest",
-    "pikaday": "latest",
+    "pikaday": "stanton/pikaday#events",
     "respond": "latest",
     "selectivizr": "jadu/selectivizr",
     "select2": "~4.0.0",
