@@ -5,6 +5,7 @@ var $ = require('jquery');
 require('../libs/pikaday/plugins/pikaday.jquery');
 require('../libs/select2/dist/js/select2.min');
 require('../libs/spectrum/spectrum');
+var moment = require('../libs/moment/moment');
 
 function PulsarFormComponent(html) {
 
@@ -57,6 +58,20 @@ PulsarFormComponent.prototype.init = function () {
     // choice block click behaviour
     choiceBlock.on('change', '.controls input[type="checkbox"], .controls input[type="radio"]', component.selectionButtons);
 
+    var enabledDates = ['2017-02-09', '2017-02-10', '2017-02-13', '2017-02-14', '2017-02-15', '2017-02-16', '2017-02-17', '2017-02-25'];
+
+    $('.js-slotpicker-value').pikaday({
+        format: 'DD/MM/YYYY',
+        bound: false,
+        container: $('.js-slotpicker-calendar')[0],
+        events: ['Fri Feb 10 2017'],
+        firstDay: 1,
+        disableDayFn: function (date) {
+            if ($.inArray(moment(date).format("YYYY-MM-DD"), enabledDates) === -1) {
+                return date;
+            }
+        }
+    });
 };
 
 PulsarFormComponent.prototype.initSelectionButtons = function(e) {
