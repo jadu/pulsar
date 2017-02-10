@@ -64,7 +64,7 @@ PulsarFormComponent.prototype.init = function () {
         format: 'DD/MM/YYYY',
         bound: false,
         container: $('.js-slotpicker-calendar')[0],
-        events: ['Fri Feb 10 2017'],
+        events: ['Thu Feb 09 2017'],
         firstDay: 1,
         disableDayFn: function (date) {
             if ($.inArray(moment(date).format("YYYY-MM-DD"), enabledDates) === -1) {
