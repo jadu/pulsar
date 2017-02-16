@@ -1,5 +1,5 @@
 //! moment.js locale configuration
-//! locale : English (New Zealand) [en-nz]
+//! locale : New Zealand english (en-nz)
 
 import moment from '../moment';
 

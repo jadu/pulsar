@@ -1,14 +1,10 @@
 import extend from '../utils/extend';
 import { createUTC } from './utc';
 import getParsingFlags from '../create/parsing-flags';
-import some from '../utils/some';
 
 export function isValid(m) {
     if (m._isValid == null) {
         var flags = getParsingFlags(m);
-        var parsedParts = some.call(flags.parsedDateParts, function (i) {
-            return i != null;
-        });
         m._isValid = !isNaN(m._d.getTime()) &&
             flags.overflow < 0 &&
             !flags.empty &&
@@ -16,8 +12,7 @@ export function isValid(m) {
             !flags.invalidWeekday &&
             !flags.nullInput &&
             !flags.invalidFormat &&
-            !flags.userInvalidated &&
-            (!flags.meridiem || (flags.meridiem && parsedParts));
+            !flags.userInvalidated;
 
         if (m._strict) {
             m._isValid = m._isValid &&

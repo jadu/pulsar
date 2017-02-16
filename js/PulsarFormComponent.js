@@ -14,8 +14,7 @@ function PulsarFormComponent(html) {
 
 PulsarFormComponent.prototype.init = function () {
 
-    var component = this,
-        choiceBlock = component.$html.find(".choice--block, .choice--bubbles");
+    var component = this;
 
     // Colourpickers
     component.initColourpickers();
@@ -46,6 +45,9 @@ PulsarFormComponent.prototype.init = function () {
             $this.select2();
         }
     });
+
+    // Block styled checkboxes and radios
+    var choiceBlock = component.$html.find(".choice--block");
 
     // set up choice block states on load
     $.each(choiceBlock, function() {
