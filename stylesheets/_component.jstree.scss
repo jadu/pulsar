@@ -239,14 +239,14 @@
   width: 1px;
   height: 2.4em;
   background: color(white);
-  margin: 0 0.5em 0 0;
+  margin: 0 .5em 0 0;
   border-left: 1px solid #e2e3e3;
 }
 
 .vakata-context .vakata-contextmenu-shortcut {
-  font-size: 0.8em;
+  font-size: .8em;
   color: silver;
-  opacity: 0.5;
+  opacity: .5;
   display: none;
 }
 
@@ -281,7 +281,7 @@
 }
 
 .vakata-context-rtl li > a .vakata-contextmenu-sep {
-  margin: 0 0 0 0.5em;
+  margin: 0 0 0 .5em;
   border-left-color: color(white);
   background: #e2e3e3;
 }
@@ -290,7 +290,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  margin: -5px 0 0 0;
+  margin: -5px 0 0;
   padding: 0;
   border-right: 0;
   border-top: 5px solid transparent;
@@ -319,7 +319,7 @@
 }
 
 #jstree-dnd .jstree-ok {
-  background: green;
+  background: color(jadu-green);
 }
 
 #jstree-dnd .jstree-er {
@@ -339,25 +339,25 @@
 .jstree-default .jstree-anchor,
 .jstree-default .jstree-animated,
 .jstree-default .jstree-wholerow {
-  transition: background-color 0.15s, box-shadow 0.15s;
+  transition: background-color .15s, box-shadow .15s;
 }
 
 .jstree-default .jstree-hovered {
   background: #e7f4f9;
   border-radius: 2px;
-  box-shadow: inset 0 0 1px #cccccc;
+  box-shadow: inset 0 0 1px #ccc;
 }
 
 .jstree-default .jstree-context {
   background: #e7f4f9;
   border-radius: 2px;
-  box-shadow: inset 0 0 1px #cccccc;
+  box-shadow: inset 0 0 1px #ccc;
 }
 
 .jstree-default .jstree-clicked {
   background: #beebff;
   border-radius: 2px;
-  box-shadow: inset 0 0 1px #999999;
+  box-shadow: inset 0 0 1px #999;
 }
 
 .jstree-default .jstree-no-icons .jstree-anchor > .jstree-themeicon {
@@ -379,7 +379,7 @@
 }
 
 .jstree-default .jstree-disabled > .jstree-icon {
-  opacity: 0.8;
+  opacity: .8;
   filter: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'jstree-grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#jstree-grayscale');
   /* Firefox 10+ */
   filter: gray;
@@ -558,7 +558,7 @@
 }
 
 .jstree-default .jstree-checkbox-disabled {
-  opacity: 0.8;
+  opacity: .8;
   filter: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'jstree-grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#jstree-grayscale');
   /* Firefox 10+ */
   filter: gray;
@@ -792,7 +792,7 @@
 }
 
 .jstree-default-small .jstree-checkbox-disabled {
-  opacity: 0.8;
+  opacity: .8;
   filter: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'jstree-grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#jstree-grayscale');
   /* Firefox 10+ */
   filter: gray;
@@ -950,7 +950,7 @@
 }
 
 .jstree-default-large .jstree-node {
-  background-position: -288px 0px;
+  background-position: -288px 0;
   background-repeat: repeat-y;
 }
 
@@ -959,19 +959,19 @@
 }
 
 .jstree-default-large .jstree-open > .jstree-ocl {
-  background-position: -128px 0px;
+  background-position: -128px 0;
 }
 
 .jstree-default-large .jstree-closed > .jstree-ocl {
-  background-position: -96px 0px;
+  background-position: -96px 0;
 }
 
 .jstree-default-large .jstree-leaf > .jstree-ocl {
-  background-position: -64px 0px;
+  background-position: -64px 0;
 }
 
 .jstree-default-large .jstree-themeicon {
-  background-position: -256px 0px;
+  background-position: -256px 0;
 }
 
 .jstree-default-large > .jstree-no-dots .jstree-node,
@@ -980,7 +980,7 @@
 }
 
 .jstree-default-large > .jstree-no-dots .jstree-open > .jstree-ocl {
-  background-position: -32px 0px;
+  background-position: -32px 0;
 }
 
 .jstree-default-large > .jstree-no-dots .jstree-closed > .jstree-ocl {
@@ -1000,7 +1000,7 @@
 }
 
 .jstree-default-large .jstree-checkbox {
-  background-position: -160px 0px;
+  background-position: -160px 0;
 }
 
 .jstree-default-large .jstree-checkbox:hover {
@@ -1009,7 +1009,7 @@
 
 .jstree-default-large.jstree-checkbox-selection .jstree-clicked > .jstree-checkbox,
 .jstree-default-large .jstree-checked > .jstree-checkbox {
-  background-position: -224px 0px;
+  background-position: -224px 0;
 }
 
 .jstree-default-large.jstree-checkbox-selection .jstree-clicked > .jstree-checkbox:hover,
@@ -1018,7 +1018,7 @@
 }
 
 .jstree-default-large .jstree-anchor > .jstree-undetermined {
-  background-position: -192px 0px;
+  background-position: -192px 0;
 }
 
 .jstree-default-large .jstree-anchor > .jstree-undetermined:hover {
@@ -1026,7 +1026,7 @@
 }
 
 .jstree-default-large .jstree-checkbox-disabled {
-  opacity: 0.8;
+  opacity: .8;
   filter: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'jstree-grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#jstree-grayscale');
   /* Firefox 10+ */
   filter: gray;
@@ -1071,7 +1071,7 @@
 }
 
 .jstree-default-large.jstree-rtl > .jstree-no-dots .jstree-closed > .jstree-ocl {
-  background-position: 0px -32px;
+  background-position: 0 -32px;
 }
 
 .jstree-default-large .jstree-themeicon-custom {
@@ -1089,7 +1089,7 @@
 }
 
 .jstree-default-large .jstree-folder {
-  background: url('../images/vendor/jstree/32px.png') -256px 0px no-repeat;
+  background: url('../images/vendor/jstree/32px.png') -256px 0 no-repeat;
 }
 
 .jstree-default-large > .jstree-container-ul > .jstree-node {
@@ -1117,7 +1117,7 @@
 }
 
 #jstree-dnd.jstree-default-large .jstree-ok {
-  background-position: 0px -64px;
+  background-position: 0 -64px;
 }
 
 #jstree-dnd.jstree-default-large .jstree-er {
@@ -1243,7 +1243,7 @@
   }
 
   .jstree-default-responsive .jstree-open > .jstree-ocl {
-    background-position: 0 0px !important;
+    background-position: 0 0 !important;
   }
 
   .jstree-default-responsive .jstree-closed > .jstree-ocl {
@@ -1251,7 +1251,7 @@
   }
 
   .jstree-default-responsive.jstree-rtl .jstree-closed > .jstree-ocl {
-    background-position: -40px 0px !important;
+    background-position: -40px 0 !important;
   }
 
   .jstree-default-responsive .jstree-themeicon {
@@ -1286,8 +1286,8 @@
   }
 
   .jstree-default-responsive .jstree-wholerow {
-    border-top: 1px solid rgba(255, 255, 255, 0.7);
-    border-bottom: 1px solid rgba(64, 64, 64, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, .7);
+    border-bottom: 1px solid rgba(64, 64, 64, .2);
     background: #ebebeb;
     height: 40px;
   }
