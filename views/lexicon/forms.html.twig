@@ -22,6 +22,8 @@
 {% set tab_text %}{% include 'lexicon/forms/text.html.twig' %}{% endset %}
 {% set tab_textarea %}{% include 'lexicon/forms/textarea.html.twig' %}{% endset %}
 {% set tab_toggleswitch %}{% include 'lexicon/forms/toggle-switch.html.twig' %}{% endset %}
+{% set tab_jstree %}{% include 'lexicon/forms/jstree.html.twig' %}{% endset %}
+
 
 {%
     set nav_data = {
@@ -104,6 +106,11 @@
           "id"    : "file",
           "label" : "File",
           "src"   : tab_file
+        },
+        {
+          "id"    : "jstree",
+          "label" : "jsTree",
+          "src"   : tab_jstree
         },
         {
           "id"    : "radio",
