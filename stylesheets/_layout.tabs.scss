@@ -3,8 +3,9 @@
 }
 
 .content-main {
-    position: relative;
     display: table;
+    height: 100%;
+    position: relative;
     table-layout: fixed;
     width: 100%;
 }

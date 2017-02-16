@@ -117,6 +117,9 @@
             'plugins' : ['state']
         });
 
-    });
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+            $('.ct-chart').get(0).__chartist__.update();
+        });
 
+    });
 }(jQuery));
