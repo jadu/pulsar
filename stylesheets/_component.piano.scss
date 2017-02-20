@@ -356,7 +356,12 @@
 }
 
 .piano-wrapper {
+
     .tab__content {
+        display: table;
+    }
+
+    .tabs__content {
         display: table;
         width: 100%;
     }
