@@ -43,6 +43,7 @@ var $                     = require('jquery'),
     PulsarFormComponent = require('./PulsarFormComponent'),
     PulsarUIComponent = require('./PulsarUIComponent'),
     SignInComponent = require('./area/signin/signin');
+    SlotPickerComponent = require('./SlotPickerComponent'),
 
     require('jstree');
 
@@ -57,6 +58,7 @@ module.exports = {
     PulsarFormComponent: PulsarFormComponent,
     PulsarUIComponent: PulsarUIComponent,
     SignInComponent: SignInComponent,
+    SlotPickerComponent: SlotPickerComponent,
     history: history,
     svgeezy: svgeezy
 };
