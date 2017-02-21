@@ -246,6 +246,9 @@
         // Specify a DOM element to render the calendar in
         container: undefined,
 
+        // Blur field when date is selected
+        blurFieldOnSelect : true,
+
         // internationalization
         i18n: {
             previousMonth : 'Previous Month',
@@ -265,6 +268,7 @@
         onSelect: null,
         onOpen: null,
         onClose: null,
+        onPreDraw: null,
         onDraw: null
     },
 
@@ -442,7 +446,7 @@
                     if (opts.bound) {
                         sto(function() {
                             self.hide();
-                            if (opts.field) {
+                            if (opts.blurFieldOnSelect && opts.field) {
                                 opts.field.blur();
                             }
                         }, 100);
@@ -492,7 +496,9 @@
                 switch(e.keyCode){
                     case 13:
                     case 27:
-                        opts.field.blur();
+                        if (opts.field) {
+                            opts.field.blur();
+                        }
                         break;
                     case 37:
                         e.preventDefault();
@@ -970,6 +976,10 @@
 
             randId = 'pika-title-' + Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 2);
 
+            if (typeof this._o.onPreDraw === 'function') {
+                this._o.onPreDraw(this);
+            }
+
             for (var c = 0; c < opts.numberOfMonths; c++) {
                 html += '<div class="pika-lendar">' + renderTitle(this, c, this.calendars[c].year, this.calendars[c].month, this.calendars[0].year, randId) + this.render(this.calendars[c].year, this.calendars[c].month, randId) + '</div>';
             }
@@ -1141,13 +1151,13 @@
         show: function()
         {
             if (!this.isVisible()) {
-                removeClass(this.el, 'is-hidden');
                 this._v = true;
                 this.draw();
                 if (this._o.bound) {
                     addEvent(document, 'click', this._onClick);
                     this.adjustPosition();
                 }
+                removeClass(this.el, 'is-hidden');
                 if (typeof this._o.onOpen === 'function') {
                     this._o.onOpen.call(this);
                 }
