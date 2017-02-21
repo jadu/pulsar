@@ -1146,7 +1146,7 @@
   background: transparent;
 }
 
-@media (max-width: 768px) {
+
   #jstree-dnd.jstree-dnd-responsive {
     line-height: 40px;
     font-weight: bold;
@@ -1178,9 +1178,7 @@
     border-bottom-width: 10px;
     margin-top: -10px;
   }
-}
 
-@media (max-width: 768px) {
   .jstree-default-responsive {
     /*
     .jstree-open > .jstree-ocl,
@@ -1262,9 +1260,6 @@
   .jstree-default-responsive .jstree-checkbox:hover {
     background-position: -40px -80px;
   }
-}
-
-@media (max-width: 768px) {
 
   .jstree-default-responsive.jstree-checkbox-selection .jstree-clicked > .jstree-checkbox,
   .jstree-default-responsive.jstree-checkbox-selection .jstree-clicked > .jstree-checkbox:hover,
@@ -1315,9 +1310,7 @@
   .jstree-default-responsive .jstree-children .jstree-open + .jstree-open {
     box-shadow: none;
   }
-}
 
-@media (max-width: 768px) {
   .jstree-default-responsive .jstree-node,
   .jstree-default-responsive .jstree-icon,
   .jstree-default-responsive .jstree-node > .jstree-ocl,
@@ -1365,4 +1358,3 @@
     background-size: 120px 240px;
   }
 
-}
