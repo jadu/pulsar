@@ -16,13 +16,25 @@
 
   &.in { @include opacity(1); }
 
-  &.top { margin-top: -3px; padding: 5px 0; }
+    &.top {
+        margin-top: -3px;
+        padding: 5px 0;
+    }
 
-  &.right { margin-left: 3px; padding: 0 5px; }
+    &.right {
+        margin-left: 3px;
+        padding: 0 5px;
+    }
 
-  &.bottom { margin-top: 3px; padding: 5px 0; }
+    &.bottom {
+        margin-top: 3px;
+        padding: 5px 0;
+    }
 
-  &.left { margin-left: -3px; padding: 0 5px; }
+    &.left {
+        margin-left: -3px;
+        padding: 0 5px;
+    }
 }
 
 // Wrapper for the tooltip content
