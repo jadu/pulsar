@@ -9,6 +9,26 @@
   list-style-image: none;
 }
 
+.jstree-default {
+    background-color: color(gray, off-white);
+    height: 450px;
+    overflow: hidden;
+    width: 550px;
+
+    &:hover {
+        overflow: scroll;
+
+        &::-webkit-scrollbar {
+          width: 7px;
+        }
+        &::-webkit-scrollbar-thumb {
+          border-radius: 4px;
+          background-color: rgba(0, 0, 0, .5);
+          -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+        }
+    }
+}
+
 .jstree-node {
   white-space: nowrap;
 }
