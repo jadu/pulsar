@@ -13,13 +13,14 @@
     background-color: color(gray, off-white);
     max-height: 450px;
     overflow: hidden;
+    padding: 20px 10px;
     width: auto;
 
     &:hover {
         overflow: scroll;
 
         &::-webkit-scrollbar {
-          width: 7px;
+            width: 7px;
         }
 
         &::-webkit-scrollbar-thumb {
