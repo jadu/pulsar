@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Color &middot; Pulsar
+    
+  </title>
+
+  <!-- JS -->
+  <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+  <script type="text/javascript" src="/js/jekyll-code-example-buttons.js"></script>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/syntax.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="public/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="">
+          Pulsar
+        </a>
+      </h1>
+      <p class="lead"></p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="">Home</a>
+      
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/_pages/about/">About</a>
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+      
+
+      
+
+      
+      
+          
+          <span class="sidebar-nav-header">Form helpers</span>
+
+          <ol>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/form-helpers/button_group/">Button Group</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/form-helpers/checkbox/">Checkbox</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/form-helpers/choice/">Choice</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item active" href="/form-helpers/color/">Color</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/form-helpers/content/">Content</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/form-helpers/create/">Create form</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/form-helpers/date/">Date</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/form-helpers/end/">End form</a>
+            </li>
+          
+          </ol>
+      
+          
+          <span class="sidebar-nav-header">Html helpers</span>
+
+          <ol>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/html-helpers/badge/">Badge</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/html-helpers/button/">Button</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/html-helpers/button_dropdown/">Button dropdown</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/html-helpers/button_group/">Button group</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/html-helpers/countdown/">Countdown</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/html-helpers/divider/">Divider</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/html-helpers/icon/">Icon</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/html-helpers/label/">Label</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/html-helpers/li/">List item</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/html-helpers/link/">Link</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/html-helpers/link_list/">Link list</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/html-helpers/list/">List</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/html-helpers/loading/">Loading spinner</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/html-helpers/media/">Media</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/html-helpers/metadata/">Metadata</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/html-helpers/panel/">Panel</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/html-helpers/progress-bar/">Progress bar</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/html-helpers/remove-button/">Remove button</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/html-helpers/status/">Status</a>
+            </li>
+          
+          </ol>
+      
+          
+          <span class="sidebar-nav-header">Posts</span>
+
+          <ol>
+          
+          </ol>
+      
+    </nav>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Color</h1>
+  <p>Generates a text input with the <a href="https://bgrins.github.io/spectrum/">spectrum colourpicker</a>.</p>
+
+<div class="alert alert-danger" role="alert"><i class="fa fa-alert-sign"></i> This helper requires  <code>PulsarFormComponent</code> to be included in your javascript</div>
+
+<h2 id="example-usage">Example usage</h2>
+
+<div class="code-examples">            <div class="code-examples__buttons examples">
+              <ul class="code-examples__list">
+                <li class="code-examples__list"><a href="#" class="code-examples__button" target="twig">Twig</a></li><li class="code-examples__list"><a href="#" class="code-examples__button" target="html">Html</a></li>
+              </ul>
+            </div>
+          <div class="example language-html html">
+            <pre class="prettyprint lang-html"><code data-lang="html">&lt;div class=&quot;form__group colorpicker js-colorpicker&quot;&gt;
+    &lt;label for=&quot;foo&quot; class=&quot;control__label&quot;&gt;Pick colour&lt;/label&gt;
+    &lt;div class=&quot;controls&quot;&gt;
+        &lt;div class=&quot;input-group&quot;&gt;
+            &lt;span class=&quot;input-group-addon&quot;&gt;#&lt;/span&gt;
+            &lt;input id=&quot;foo&quot; value=&quot;123456&quot; type=&quot;text&quot; class=&quot;form__control&quot;&gt;    
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+          </div>
+          <div class="example language-twig twig">
+            <pre class="prettyprint lang-twig"><code data-lang="twig">{{
+    form.color({
+        &apos;label&apos;: &apos;Pick colour&apos;,
+        &apos;id&apos;: &apos;foo&apos;,
+        &apos;value&apos;: &apos;123456&apos;
+    })
+}}
+</code></pre>
+          </div>
+</div>
+
+<h2 id="options-applied-to-parent-wrapper">Options applied to parent wrapper</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Option</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>append</td>
+      <td>string</td>
+      <td>Text or markup to include after the input element</td>
+    </tr>
+    <tr>
+      <td>append_type</td>
+      <td>string</td>
+      <td>Use only when appending a button. <code class="highlighter-rouge">button</code> is the only valid value</td>
+    </tr>
+    <tr>
+      <td>class</td>
+      <td>string</td>
+      <td>A space separated list of class names</td>
+    </tr>
+    <tr>
+      <td>guidance</td>
+      <td>string</td>
+      <td>Text to be displayed in a popover, adds a (?) icon after the input</td>
+    </tr>
+    <tr>
+      <td>guidance-container</td>
+      <td>string</td>
+      <td>Element to bind guidance popover scroll behaviour to (default <code class="highlighter-rouge">body</code>)</td>
+    </tr>
+    <tr>
+      <td>help</td>
+      <td>string</td>
+      <td>Additional guidance information to be displayed next to the input</td>
+    </tr>
+    <tr>
+      <td>label</td>
+      <td>string</td>
+      <td>Text for the <code class="highlighter-rouge">&lt;label&gt;</code> companion element</td>
+    </tr>
+    <tr>
+      <td>prepend</td>
+      <td>string</td>
+      <td>Text or markup to include before the input element</td>
+    </tr>
+    <tr>
+      <td>prepend_type</td>
+      <td>string</td>
+      <td>Use only when prepending a button. <code class="highlighter-rouge">button</code>is the only valid value</td>
+    </tr>
+    <tr>
+      <td>required</td>
+      <td>bool</td>
+      <td>Visually indicates that the field must be completed</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="options-applied-to-input">Options applied to input</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Option</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>autofocus</td>
+      <td>bool</td>
+      <td>Whether the field should have input focus on page load</td>
+    </tr>
+    <tr>
+      <td>disabled</td>
+      <td>bool</td>
+      <td>Stops the element from being interactive if true</td>
+    </tr>
+    <tr>
+      <td>form</td>
+      <td>string</td>
+      <td>Specific one or more forms this label belongs to</td>
+    </tr>
+    <tr>
+      <td>id</td>
+      <td>string</td>
+      <td>A unique identifier, if required</td>
+    </tr>
+    <tr>
+      <td>name</td>
+      <td>string</td>
+      <td>The name of this control</td>
+    </tr>
+    <tr>
+      <td>placeholder</td>
+      <td>string</td>
+      <td>A short hint that describes the expected value</td>
+    </tr>
+    <tr>
+      <td>required</td>
+      <td>bool</td>
+      <td>Adds <code class="highlighter-rouge">required</code> and <code class="highlighter-rouge">aria-required="true"</code> attributes</td>
+    </tr>
+    <tr>
+      <td>value</td>
+      <td>string</td>
+      <td>Specifies the value of the input</td>
+    </tr>
+    <tr>
+      <td>data-*</td>
+      <td>string</td>
+      <td>Data attributes, eg: <code class="highlighter-rouge">'data-foo': 'bar'</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Any other options not listed here will be applied to the input.</p>
+
+<h2 id="error-state">Error state</h2>
+
+<div class="language-twig highlighter-rouge"><pre class="highlight"><code><span class="cp">{{</span>
+    <span class="nv">form.colour</span><span class="p">(</span><span class="err">{</span>
+        <span class="s1">'label'</span><span class="err">:</span> <span class="s1">'Pick a colour'</span><span class="p">,</span>
+        <span class="s1">'error'</span><span class="err">:</span> <span class="s1">'Something went wrong'</span><span class="p">,</span>
+        <span class="err">...</span>
+</code></pre>
+</div>
+
+
+</div>
+
+    </div>
+
+  </body>
+</html>

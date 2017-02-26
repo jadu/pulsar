@@ -1,0 +1,50 @@
+# Dependencies
+markdown: kramdown
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+# Permalinks
+permalink:          /:title/
+
+# Setup
+title:               Pulsar
+tagline:             The open-source design system for the Jadu Continuum Platform
+url:                 http://jadu.net
+paginate:            1
+baseurl:             ""
+include:             ["_pages"]
+
+# Assets
+#
+# We specify the directory for Jekyll so we can use @imports.
+sass:
+  sass_dir:          _sass
+  style:            :compressed
+
+code_example_dir:           assets/code_examples
+code_example_list_class:    code-examples__list
+code_example_buttons_class: code-examples__buttons
+code_example_button_class:  code-examples__button
+code_example_lang_order:    ['twig', 'html']
+
+# About/contact
+author:
+  name:              Paul Stanton
+  url:               https://twitter.com/stanton
+  email:             paul.stanton@jadu.net
+
+# Custom vars
+version:             2.0.0
+github:
+  repo:              https://github.com/jadu/pulsar
+
+# Collections
+collections:
+  html-helpers:
+    output: true
+    permalink: /html-helpers/:path/
+  form-helpers:
+    output: true
+    permalink: /form-helpers/:path/

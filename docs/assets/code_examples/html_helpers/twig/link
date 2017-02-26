@@ -1,0 +1,6 @@
+{{
+    html.link({
+        'href': 'http://www.jadu.net',
+        'label': 'Jadu'
+    })
+}}

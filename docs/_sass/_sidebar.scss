@@ -1,0 +1,43 @@
+.sidebar {
+    background-color: rgb(45, 134, 179);
+    box-shadow: inset -4px 0 0 rgb(34, 101, 134);
+    color: white;
+    overflow-y: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 15rem;
+    text-align: left;
+
+    ol {
+        list-style-type: none;
+        padding-left: 10px;
+    }
+
+    a {
+        color: white;
+    }
+}
+
+.sidebar-nav-item {
+    color: white;
+    display: block;
+    padding: 3px 0 3px 5px;
+
+    &.active {
+        background-color: white;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        color: rgb(45, 134, 179);
+        padding: 3px 0 3px 5px;
+    }
+}
+
+.sidebar-nav-header {
+    border-bottom: 1px solid rgba(255, 255, 255, .2);
+    color: white;
+    display: block;
+    margin: .5rem 0;
+    width: 100%;
+}
