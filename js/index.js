@@ -18,7 +18,6 @@ var $                     = require('jquery'),
     tooltip               = require('./libs/tooltip'),
     matchMedia            = require('./polyfills/matchMedia'),
     matchMediaAddListener = require('./polyfills/matchMedia.addListener'),
-    jstree                = require('jstree'),
 
     clickover = require('../libs/bootstrapx-clickover/js/bootstrapx-clickover'),
     history   = require('../libs/history.js/scripts/bundled/html5/jquery.history'),
@@ -44,6 +43,8 @@ var $                     = require('jquery'),
     PulsarFormComponent = require('./PulsarFormComponent'),
     PulsarUIComponent = require('./PulsarUIComponent'),
     SignInComponent = require('./area/signin/signin');
+
+    require('jstree')
 
 module.exports = {
     ButtonComponent: ButtonComponent,
