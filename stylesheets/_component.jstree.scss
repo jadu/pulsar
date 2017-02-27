@@ -365,7 +365,7 @@
 }
 
 .jstree-default .jstree-hovered {
-  background: #e7f4f9;
+  background: color(jadu-blue, pale);
   border-radius: 2px;
   box-shadow: inset 0 0 1px #ccc;
 }
@@ -377,7 +377,7 @@
 }
 
 .jstree-default .jstree-clicked {
-  background: #beebff;
+  background: color(jadu-blue, light);
   border-radius: 2px;
   box-shadow: inset 0 0 1px #999;
 }
