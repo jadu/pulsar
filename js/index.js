@@ -18,7 +18,6 @@ var $                     = require('jquery'),
     tooltip               = require('./libs/tooltip'),
     matchMedia            = require('./polyfills/matchMedia'),
     matchMediaAddListener = require('./polyfills/matchMedia.addListener'),
-    jstree                = require('jstree'),
 
     clickover = require('../libs/bootstrapx-clickover/js/bootstrapx-clickover'),
     history   = require('../libs/history.js/scripts/bundled/html5/jquery.history'),
