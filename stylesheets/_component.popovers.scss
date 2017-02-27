@@ -22,16 +22,22 @@
   white-space: normal;
 
   // Offset the popover to account for the popover arrow
-  &.top { margin-top: -10px; }
+    &.top {
+        margin-top: -10px;
+    }
 
-  &.right { margin-left: 10px; }
+    &.right {
+        margin-left: 10px;
+    }
 
-  &.bottom { margin-top: 10px; }
+    &.bottom {
+        margin-top: 10px;
+    }
 
-  &.left { margin-left: -10px; }
+    &.left {
+        margin-left: -10px;
+    }
 }
-
-
 
 .popover-title {
   margin: 0; // reset heading margin
