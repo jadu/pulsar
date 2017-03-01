@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
 
-  <head>
+<head>
   <link href="http://gmpg.org/xfn/11" rel="profile">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -11,7 +11,7 @@
 
   <title>
     
-      Pulsar &middot; The open-source design system for the Jadu Continuum Platform
+      Pulsar &middot; Pulsar
     
   </title>
 
@@ -19,33 +19,41 @@
   <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
   <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
   <script type="text/javascript" src="/js/jekyll-code-example-buttons.js"></script>
-  
+
   <!-- CSS -->
   <link rel="stylesheet" href="/css/styles.css">
   <link rel="stylesheet" href="/css/syntax.css">
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
 
   <!-- Icons -->
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="public/apple-touch-icon-144-precomposed.png">
-  <link rel="shortcut icon" href="public/favicon.ico">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
 
   <!-- RSS -->
   <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
 </head>
 
 
-  <body>
+<body>
 
-    <div class="sidebar">
-  <div class="container sidebar-sticky">
-    <div class="sidebar-about">
-      <h1>
-        <a href="">
-          Pulsar
-        </a>
-      </h1>
-      <p class="lead"></p>
+    <div class="header">
+        <img src="/assets/images/pulsar-brand-medium.png" class="brand-image" />
+        <h1>
+            <a href="">
+                Pulsar
+            </a>
+        </h1>
+        <p class="lead">The open-source design system for the Jadu Continuum platform</p>
+
+        <div class="header-links">
+            <a class="header-link" href="https://github.com/jadu/pulsar">View on GitHub</a>
+            <a class="header-link" href="https://github.com/jadu/pulsar/archive/develop.zip">Download .zip</a>
+            <a class="header-link" href="https://github.com/jadu/pulsar/archive/develop.tar.gz">Download .tar.gz</a>
+        </div>
     </div>
+
+    <div class="content container">
+        <div class="sidebar">
 
     <nav class="sidebar-nav">
       <a class="sidebar-nav-item" href="">Home</a>
@@ -56,12 +64,6 @@
         
       
         
-          
-            <a class="sidebar-nav-item" href="/_pages/about/">About</a>
-          
-        
-      
-        
       
         
           
@@ -74,7 +76,7 @@
 
       
       
-          
+
           <span class="sidebar-nav-header">Form helpers</span>
 
           <ol>
@@ -111,9 +113,13 @@
               <a class="sidebar-nav-item" href="/form-helpers/end/">End form</a>
             </li>
           
+            <li>
+              <a class="sidebar-nav-item" href="/form-helpers/fieldset_start/">Fieldset start</a>
+            </li>
+          
           </ol>
       
-          
+
           <span class="sidebar-nav-header">Html helpers</span>
 
           <ol>
@@ -196,7 +202,7 @@
           
           </ol>
       
-          
+
           <span class="sidebar-nav-header">Posts</span>
 
           <ol>
@@ -204,24 +210,72 @@
           </ol>
       
     </nav>
-  </div>
 </div>
 
+        <div class="page">
+            <h1 class="page-title">Pulsar</h1>
+            <p>Pulsar is the User Experience and Interface framework for <a href="http://jadu.net">Jadu</a> software.</p>
 
-    <div class="content container">
-      <div class="posts">
-  
-</div>
+<blockquote>
+  <p>Pulsar is a robust user interface framework with a collection of patterns, helpers and a user-focused design process with documented best practices that will help you to make beautiful user interfaces and amazing user experiences.</p>
+</blockquote>
 
-<div class="pagination">
-  
-    <span class="pagination-item older">Older</span>
-  
-  
-    <span class="pagination-item newer">Newer</span>
-  
-</div>
+<p>The Pulsar framework is included in the following Jadu products:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Major Pulsar version</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Jadu CXM</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <td>Jadu CMS</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <td>Jadu XFP</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <td>TPT BECK (Q)</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>MoJ ETFees</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="ui-goals">UI Goals</h2>
+<ul>
+  <li>Improve code quality and consistency</li>
+  <li>Enable developers to prototype in hours, not days</li>
+  <li>Allow the continual release of UI improvements</li>
+  <li>Provide a common UI language to help new developers learn our lingo</li>
+  <li>Provide a starting point to redesign older parts of the software</li>
+  <li>Improve performance</li>
+  <li>Make our interfaces more testable</li>
+</ul>
+
+<h2 id="ux-goals">UX Goals</h2>
+<ul>
+  <li>Make the users of our software happier</li>
+  <li>Make the people designing Jadu interfaces happier</li>
+  <li>Learn how our customers use our software</li>
+  <li>Learn what our customers need (not necessarily what they ask for) so that we can build the right thing</li>
+  <li>Reduce the complexity of the tasks our customers need to perform</li>
+  <li>Define clear, understandable guidelines for developers to build awesome things</li>
+</ul>
+
+        </div>
     </div>
 
-  </body>
+</body>
 </html>

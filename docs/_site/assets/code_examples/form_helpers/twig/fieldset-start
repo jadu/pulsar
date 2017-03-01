@@ -1,0 +1,5 @@
+{{
+    form.fieldset_start({
+        'legend': 'I am Legend'
+    })
+}}

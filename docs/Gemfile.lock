@@ -1,10 +1,3 @@
-PATH
-  remote: jekyll-code-example-tag-1.0.0
-  specs:
-    jekyll-code-example-tag (1.0.0)
-      htmlentities
-      jekyll
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -46,6 +39,9 @@ GEM
     pathutil (0.14.0)
       forwardable-extended (~> 2.6)
     public_suffix (2.0.5)
+    pulsar-jekyll-code-example (1.0.0)
+      htmlentities
+      jekyll
     rb-fsevent (0.9.8)
     rb-inotify (0.9.8)
       ffi (>= 0.5.0)
@@ -61,9 +57,9 @@ PLATFORMS
 
 DEPENDENCIES
   jekyll (= 3.4.0)
-  jekyll-code-example-tag!
   jekyll-gist
   jekyll-paginate
+  pulsar-jekyll-code-example
 
 BUNDLED WITH
    1.14.4

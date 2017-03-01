@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
 
-  <head>
+<head>
   <link href="http://gmpg.org/xfn/11" rel="profile">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -19,33 +19,41 @@
   <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
   <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
   <script type="text/javascript" src="/js/jekyll-code-example-buttons.js"></script>
-  
+
   <!-- CSS -->
   <link rel="stylesheet" href="/css/styles.css">
   <link rel="stylesheet" href="/css/syntax.css">
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
 
   <!-- Icons -->
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="public/apple-touch-icon-144-precomposed.png">
-  <link rel="shortcut icon" href="public/favicon.ico">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
 
   <!-- RSS -->
   <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
 </head>
 
 
-  <body>
+<body>
 
-    <div class="sidebar">
-  <div class="container sidebar-sticky">
-    <div class="sidebar-about">
-      <h1>
-        <a href="">
-          Pulsar
-        </a>
-      </h1>
-      <p class="lead"></p>
+    <div class="header">
+        <img src="/assets/images/pulsar-brand-medium.png" class="brand-image" />
+        <h1>
+            <a href="">
+                Pulsar
+            </a>
+        </h1>
+        <p class="lead">The open-source design system for the Jadu Continuum platform</p>
+
+        <div class="header-links">
+            <a class="header-link" href="https://github.com/jadu/pulsar">View on GitHub</a>
+            <a class="header-link" href="https://github.com/jadu/pulsar/archive/develop.zip">Download .zip</a>
+            <a class="header-link" href="https://github.com/jadu/pulsar/archive/develop.tar.gz">Download .tar.gz</a>
+        </div>
     </div>
+
+    <div class="content container">
+        <div class="sidebar">
 
     <nav class="sidebar-nav">
       <a class="sidebar-nav-item" href="">Home</a>
@@ -56,12 +64,6 @@
         
       
         
-          
-            <a class="sidebar-nav-item" href="/_pages/about/">About</a>
-          
-        
-      
-        
       
         
           
@@ -74,7 +76,7 @@
 
       
       
-          
+
           <span class="sidebar-nav-header">Form helpers</span>
 
           <ol>
@@ -111,9 +113,13 @@
               <a class="sidebar-nav-item" href="/form-helpers/end/">End form</a>
             </li>
           
+            <li>
+              <a class="sidebar-nav-item" href="/form-helpers/fieldset_start/">Fieldset start</a>
+            </li>
+          
           </ol>
       
-          
+
           <span class="sidebar-nav-header">Html helpers</span>
 
           <ol>
@@ -196,7 +202,7 @@
           
           </ol>
       
-          
+
           <span class="sidebar-nav-header">Posts</span>
 
           <ol>
@@ -204,14 +210,11 @@
           </ol>
       
     </nav>
-  </div>
 </div>
 
-
-    <div class="content container">
-      <div class="page">
-  <h1 class="page-title">Status</h1>
-  <p>Displays a small visual indication of state; helpful when used within table cells or piano list keys to avoid the need for a user to check many items individually to determine their state.</p>
+        <div class="page">
+            <h1 class="page-title">Status</h1>
+            <p>Displays a small visual indication of state; helpful when used within table cells or piano list keys to avoid the need for a user to check many items individually to determine their state.</p>
 
 <p>Status indicators should ideally have some text which indicates their context. For example, they could be sat next to a text label called ‘Active’, or within a table column entitled ‘Online’. Try not to rely on this indicator alone.</p>
 
@@ -228,7 +231,7 @@
 
 <p><em><a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-without-color.html">WCAG 2.0 Guideline 1.4.1</a></em></p>
 
-<p><img class="image--inline" src="/assets/images/status-col1.png" /><img class="image--inline" src="/assets/images/status-col2.png" /><img class="image--inline" src="/assets/images/status-col3.png" /><img class="image--inline" src="/assets/images/status-col5.png" /></p>
+<p><img class="image--inline" src="/assets/image_examples/status-col1.png" /><img class="image--inline" src="/assets/image_examples/status-col2.png" /><img class="image--inline" src="/assets/image_examples/status-col3.png" /><img class="image--inline" src="/assets/image_examples/status-col5.png" /></p>
 
 <p><em>Example of how status indicators are viewed with different types of colour blindness</em></p>
 
@@ -292,9 +295,10 @@ defined by the context in which it is to be used.</p>
 </table>
 
 
-</div>
 
+
+        </div>
     </div>
 
-  </body>
+</body>
 </html>
