@@ -7,7 +7,6 @@
     set nav_data = {
         "1": {
             "label": "Lexicon",
-            "class": "is-active",
             "href": '#lexicon',
             "icon": "info-sign",
             "items": {
@@ -29,26 +28,52 @@
             }
         },
         "2": {
-            "label": "Forms",
+            "label": "HTML helpers",
+            "class": "",
+            "href": "/app/app.php/lexicon/html.html.twig",
+            "icon": "code"
+        },
+        "3": {
+            "label": "Form helpers",
             "class": "",
             "href": "/app/app.php/lexicon/forms.html.twig",
             "icon": "check"
         },
-        "3": {
+        "4": {
+            "label": "Patterns",
+            "class": "is-active",
+            "href": "#patterns",
+            "icon": "cubes",
+            "items": {
+                "4.1": {
+                    "4.1.1": {
+                        "label": "Reporting",
+                        "href": "/app/app.php/lexicon/patterns/reporting/"
+                    }
+                }
+            }
+        },
+        "5": {
             "label": "Tables",
             "class": "",
             "href": "/app/app.php/lexicon/tables.html.twig",
             "icon": "table"
+        },
+        "6": {
+            "label": "Utilities",
+            "class": "",
+            "href": "/app/app.php/lexicon/utilities.html.twig",
+            "icon": "wrench"
         }
     }
 %}
 
 {% set tab_report %}
-    {% include 'playground/reporting/report.html.twig' %}
+    {% include '/lexicon/patterns/reporting/report.html.twig' %}
 {% endset %}
 
 {% set tab_building %}
-    {% include 'playground/reporting/building.html.twig' %}
+    {% include '/lexicon/patterns/reporting/building.html.twig' %}
 {% endset %}
 
 {%
@@ -56,21 +81,15 @@
         {
             "class" : "ui-report",
             "id"    : "report",
-            "label" : "Shared Reports",
+            "label" : "Report view",
             "src"   : tab_report,
             "active": true
         },
         {
             "class" : "ui-report",
             "id"    : "report-building",
-            "label" : "My Reports",
+            "label" : "Report building",
             "src"   : tab_building
-        },
-        {
-            "class" : "ui-report",
-            "id"    : "report-scheduled",
-            "label" : "Scheduled Reports",
-            "src"   : tab_report
         }
     ]
 %}
