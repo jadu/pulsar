@@ -307,6 +307,12 @@ $inputs: (
     font-size: $font-size-small;
 }
 
+// if a control label is in the help block (like a bare input) it doesn't need
+// the extra padding
+.help-block > .control__label {
+    padding: 0;
+}
+
 // if help block is next to the main label, space it appropriately
 .form__group > .control__label + .help-block {
     margin: -.5em 0 .5em;

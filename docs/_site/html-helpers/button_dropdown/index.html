@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Button dropdown &middot; Pulsar
+    
+  </title>
+
+  <!-- JS -->
+  <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+  <script type="text/javascript" src="/js/jekyll-code-example-buttons.js"></script>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/syntax.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="public/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="">
+          Pulsar
+        </a>
+      </h1>
+      <p class="lead"></p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="">Home</a>
+      
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/_pages/about/">About</a>
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+      
+
+      
+
+      
+      
+          
+          <span class="sidebar-nav-header">Form helpers</span>
+
+          <ol>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/form-helpers/button_group/">Button Group</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/form-helpers/checkbox/">Checkbox</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/form-helpers/choice/">Choice</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/form-helpers/color/">Color</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/form-helpers/content/">Content</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/form-helpers/create/">Create form</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/form-helpers/date/">Date</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/form-helpers/end/">End form</a>
+            </li>
+          
+          </ol>
+      
+          
+          <span class="sidebar-nav-header">Html helpers</span>
+
+          <ol>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/html-helpers/badge/">Badge</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/html-helpers/button/">Button</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item active" href="/html-helpers/button_dropdown/">Button dropdown</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/html-helpers/button_group/">Button group</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/html-helpers/countdown/">Countdown</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/html-helpers/divider/">Divider</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/html-helpers/icon/">Icon</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/html-helpers/label/">Label</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/html-helpers/li/">List item</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/html-helpers/link/">Link</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/html-helpers/link_list/">Link list</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/html-helpers/list/">List</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/html-helpers/loading/">Loading spinner</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/html-helpers/media/">Media</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/html-helpers/metadata/">Metadata</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/html-helpers/panel/">Panel</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/html-helpers/progress-bar/">Progress bar</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/html-helpers/remove-button/">Remove button</a>
+            </li>
+          
+            <li>
+              <a class="sidebar-nav-item" href="/html-helpers/status/">Status</a>
+            </li>
+          
+          </ol>
+      
+          
+          <span class="sidebar-nav-header">Posts</span>
+
+          <ol>
+          
+          </ol>
+      
+    </nav>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Button dropdown</h1>
+  <p>Show a dropdown/dropup menu when the button is clicked.</p>
+
+<h2 id="example-usage">Example usage</h2>
+
+<div class="language-twig highlighter-rouge"><pre class="highlight"><code><span class="cp">{{</span>
+    <span class="nv">html.button_dropdown</span><span class="p">(</span><span class="err">{</span>
+        <span class="s1">'label'</span><span class="err">:</span> <span class="s1">'Drop Down'</span><span class="p">,</span>
+        <span class="s1">'items'</span><span class="err">:</span> <span class="p">[</span>
+            <span class="nv">html.link</span><span class="p">(</span><span class="err">{</span> <span class="s1">'label'</span><span class="err">:</span> <span class="s1">'foo'</span><span class="p">,</span> <span class="s1">'href'</span><span class="err">:</span> <span class="s1">'#foo'</span> <span class="err">}</span><span class="p">),</span>
+            <span class="nv">html.link</span><span class="p">(</span><span class="err">{</span> <span class="s1">'label'</span><span class="err">:</span> <span class="s1">'bar'</span><span class="p">,</span> <span class="s1">'href'</span><span class="err">:</span> <span class="s1">'#bar'</span> <span class="err">}</span><span class="p">)</span>
+        <span class="p">]</span>
+    <span class="err">}</span><span class="p">)</span>
+<span class="cp">}}</span>
+</code></pre>
+</div>
+
+<div><p data-height="140" data-theme-id="24005" data-slug-hash="XjdJPp" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/XjdJPp/">docs - html - button dropdown</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async="" src="//assets.codepen.io/assets/embed/ei.js"></script></div>
+
+<h2 id="options">Options</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Option</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>caret</td>
+      <td>bool</td>
+      <td>Whether to show the caret arrow in the label (default true)</td>
+    </tr>
+    <tr>
+      <td>class</td>
+      <td>string</td>
+      <td>A space separated list of class names (applied to the button)</td>
+    </tr>
+    <tr>
+      <td>direction</td>
+      <td>string</td>
+      <td><code class="highlighter-rouge">down</code> (default) or <code class="highlighter-rouge">up</code></td>
+    </tr>
+    <tr>
+      <td>id</td>
+      <td>string</td>
+      <td>A unique identifier, if required (applied to the button)</td>
+    </tr>
+    <tr>
+      <td>items</td>
+      <td>array</td>
+      <td>An array of items to put in the dropdown list (usually links)</td>
+    </tr>
+    <tr>
+      <td>label</td>
+      <td>string</td>
+      <td>The button label</td>
+    </tr>
+    <tr>
+      <td>data-*</td>
+      <td>string</td>
+      <td>Data attributes, eg: <code class="highlighter-rouge">'data-foo': 'bar'</code> (applied to the button)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="menu-items">Menu items</h2>
+
+<p>Pass a list of <code class="highlighter-rouge">html.link</code> items to the <code class="highlighter-rouge">menu_items</code> parameter to be used as the dropdown/up menu, remember you can chain together icons, labels and badges in the link label too.</p>
+
+<div class="language-twig highlighter-rouge"><pre class="highlight"><code><span class="cp">{{</span>
+    <span class="nv">html.button_dropdown</span><span class="p">(</span><span class="err">{</span>
+        <span class="s1">'label'</span><span class="err">:</span> <span class="s1">'Drop Down'</span><span class="p">,</span>
+        <span class="s1">'items'</span><span class="err">:</span> <span class="p">[</span>
+            <span class="nv">html.link</span><span class="p">(</span><span class="err">{</span> <span class="s1">'label'</span><span class="err">:</span> <span class="s1">'foo'</span><span class="p">,</span> <span class="s1">'href'</span><span class="err">:</span> <span class="s1">'#foo'</span> <span class="err">}</span><span class="p">),</span>
+            <span class="nv">html.link</span><span class="p">(</span><span class="err">{</span> <span class="s1">'label'</span><span class="err">:</span> <span class="s1">'bar'</span><span class="p">,</span> <span class="s1">'href'</span><span class="err">:</span> <span class="s1">'#bar'</span> <span class="err">}</span><span class="p">)</span>
+        <span class="p">]</span>
+    <span class="err">}</span><span class="p">)</span>
+<span class="cp">}}</span>
+</code></pre>
+</div>
+
+<p data-height="240" data-theme-id="24005" data-slug-hash="xEVbNP" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/xEVbNP/">docs - html - button dropdown items</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async="" src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+<h2 id="dropup">Dropup</h2>
+
+<p>Change the placement of the menu with the <code class="highlighter-rouge">direction</code> option.</p>
+
+<div class="language-twig highlighter-rouge"><pre class="highlight"><code><span class="cp">{{</span>
+    <span class="nv">html.button_dropdown</span><span class="p">(</span><span class="err">{</span>
+        <span class="s1">'direction'</span><span class="err">:</span> <span class="s1">'up'</span><span class="p">,</span>
+        <span class="s1">'label'</span><span class="err">:</span> <span class="s1">'Drop Up'</span><span class="p">,</span>
+        <span class="s1">'items'</span><span class="err">:</span> <span class="p">[</span>
+            <span class="nv">html.link</span><span class="p">(</span><span class="err">{</span> <span class="s1">'label'</span><span class="err">:</span> <span class="s1">'foo'</span><span class="p">,</span> <span class="s1">'href'</span><span class="err">:</span> <span class="s1">'#foo'</span> <span class="err">}</span><span class="p">),</span>
+            <span class="nv">html.link</span><span class="p">(</span><span class="err">{</span> <span class="s1">'label'</span><span class="err">:</span> <span class="s1">'bar'</span><span class="p">,</span> <span class="s1">'href'</span><span class="err">:</span> <span class="s1">'#bar'</span> <span class="err">}</span><span class="p">)</span>
+        <span class="p">]</span>
+    <span class="err">}</span><span class="p">)</span>
+<span class="cp">}}</span>
+</code></pre>
+</div>
+
+<div><p data-height="145" data-theme-id="24005" data-slug-hash="BLKyvZ" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/BLKyvZ/">docs - html - button dropup</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async="" src="//assets.codepen.io/assets/embed/ei.js"></script></div>
+
+<h2 id="divider">Divider</h2>
+
+<p>Separate menu items with a horizontal line.</p>
+
+<div class="language-twig highlighter-rouge"><pre class="highlight"><code><span class="cp">{{</span>
+    <span class="nv">html.button_dropdown</span><span class="p">(</span><span class="err">{</span>
+        <span class="s1">'label'</span><span class="err">:</span> <span class="s1">'Drop Down'</span><span class="p">,</span>
+        <span class="s1">'items'</span><span class="err">:</span> <span class="p">[</span>
+            <span class="nv">html.link</span><span class="p">(</span><span class="err">{</span> <span class="s1">'label'</span><span class="err">:</span> <span class="s1">'foo'</span> <span class="err">}</span><span class="p">),</span>
+            <span class="nv">html.divider</span><span class="p">(),</span>
+            <span class="nv">html.link</span><span class="p">(</span><span class="err">{</span> <span class="s1">'label'</span><span class="err">:</span> <span class="s1">'bar'</span> <span class="err">}</span><span class="p">)</span>
+        <span class="p">]</span>
+    <span class="err">}</span><span class="p">)</span>
+<span class="cp">}}</span>
+</code></pre>
+</div>
+
+<div><p data-height="150" data-theme-id="24005" data-slug-hash="pEyvYg" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/pEyvYg/">docs - html - button dropdown divider</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async="" src="//assets.codepen.io/assets/embed/ei.js"></script></div>
+
+</div>
+
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,6 @@
+<div class="form__group form-checkbox">
+    <label for="foo" class="control__label">Default checkbox</label>
+    <div class="controls">
+        <input id="foo" name="bar" checked="" type="checkbox" class="form__control checkbox">
+    </div>
+</div>
