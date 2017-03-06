@@ -22,9 +22,9 @@ footer {
     color: #fff;
     display: block;
     margin-bottom: 2rem;
-    padding: 1.5rem 0 .5rem 0;
+    padding: 1.5rem 0 .5rem;
     text-align: center;
-    text-shadow: 0px 2px 1px #161e22;
+    text-shadow: 0 2px 1px #161e22;
     width: 100%;
 
     h1 {
@@ -41,7 +41,7 @@ footer {
 .brand-image {
     border: 3px solid white;
     border-radius: 100px;
-    box-shadow: 0px 2px 1px #161e22;
+    box-shadow: 0 2px 1px #161e22;
     display: block;
     margin: 0 auto;
     vertical-align: middle;
