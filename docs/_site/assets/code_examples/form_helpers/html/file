@@ -1,0 +1,6 @@
+<div class="form__group">
+    <label for="foo" class="control__label">File input</label>
+    <div class="controls">
+        <input id="foo" type="file" class="form__control file">
+    </div>
+</div>
