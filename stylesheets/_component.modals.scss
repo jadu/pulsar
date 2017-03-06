@@ -204,6 +204,11 @@
 
 // Full screen modal
 .modal--full-screen {
+  
+    // Align close button correctly in old OSX chrome and Safari
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+
     .modal__content {
         bottom: 0;
         height: 100%;
