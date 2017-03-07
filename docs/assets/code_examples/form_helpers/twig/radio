@@ -1,0 +1,7 @@
+{{
+    form.radio({
+        'label': 'Default radio',
+        'id': 'foo',
+        'name': 'bar'
+    })
+}}

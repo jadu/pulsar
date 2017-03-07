@@ -1,0 +1,9 @@
+{{
+    html.button_group({
+        'buttons': [
+            html.button({ label: 'foo' }),
+            html.button({ label: 'bar' }),
+            html.button({ label: 'baz' })
+        ]
+    })
+}}

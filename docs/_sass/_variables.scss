@@ -1,0 +1,57 @@
+$gray-1: #f9f9f9;
+$gray-2: #ccc;
+$gray-3: #767676;
+$gray-4: #515151;
+$gray-5: #313131;
+
+$red: #ac4142;
+$orange: #d28445;
+$yellow: #f4bf75;
+$green: #90a959;
+$cyan: #75b5aa;
+$blue: #268bd2;
+// $blue: #6a9fb5;
+$brown: #8f5536;
+
+$root-font-family: "PT Sans", Helvetica, Arial, sans-serif;
+$root-font-size: 16px;
+$root-line-height: 1.5;
+
+$body-color: #515151;
+$body-bg: #fff;
+$link-color: $blue;
+
+$border-color: #e5e5e5;
+
+$large-breakpoint: 38em;
+$large-font-size: 20px;
+
+$code-font-family: Menlo, Monaco, "Courier New", monospace;
+$code-color: #bf616a;
+
+$pulsar-main: #638395;
+
+
+// Extra small screen / small mobile
+$screen-xsmall:                       480px !default;
+$screen-phone:                        $screen-xsmall !default;
+
+// Smaller screen / large mobile / tiny tablet
+$screen-smaller:                      600px !default;
+$screen-phablet:                      $screen-smaller !default;
+
+// Small screen / tablet
+$screen-small:                        767px !default;
+$screen-tablet:                       $screen-small !default;
+
+// Medium screen / desktop
+$screen-medium:                       992px !default;
+$screen-desktop:                      $screen-medium !default;
+
+// So media queries don't overlap when required, provide a maximum
+$screen-small-max:                    ($screen-medium - 1) !default;
+$screen-tablet-max:                   $screen-small-max !default;
+
+// Large screen / wide desktop
+$screen-large:                        1200px !default;
+$screen-large-desktop:                $screen-large !default;

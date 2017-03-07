@@ -1,0 +1,16 @@
+{{
+    form.end({
+        'actions': [
+            form.submit({
+                'class': 'btn--primary',
+                'label': 'Primary Action'
+            }),
+            html.button({
+                'class': 'btn--naked',
+                'type': 'link',
+                'label': 'Cancel',
+                'href': '/home'
+            })
+        ]
+    })
+}}

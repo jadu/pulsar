@@ -1,0 +1,21 @@
+{{
+    form.select({
+        'label': 'Pick a colour',
+        'id': 'foo',
+        'options': [
+            {
+                'label': 'Choose',
+                'value': ''
+            },
+            {
+                'label': 'Red',
+                'value': 'colour_red'
+            },
+            {
+                'label': 'Blue',
+                'value': 'colour_blue'
+            }
+        ]
+    })
+}}
+
