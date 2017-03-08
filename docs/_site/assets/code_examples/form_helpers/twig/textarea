@@ -1,0 +1,6 @@
+{{
+    form.textarea({
+        'label': 'Textarea',
+        'id': 'foo'
+    })
+}}

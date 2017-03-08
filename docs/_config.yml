@@ -10,10 +10,10 @@ permalink:          /:title/
 
 # Setup
 title:               Pulsar
-tagline:             The open-source design system for the Jadu Continuum Platform
+tagline:             The open-source design system for the Jadu Continuum platform
 url:                 http://jadu.net
 paginate:            1
-baseurl:             ""
+baseurl:             "/pulsar"
 include:             ["_pages"]
 
 # Assets
@@ -42,9 +42,18 @@ github:
 
 # Collections
 collections:
-  html-helpers:
-    output: true
-    permalink: /html-helpers/:path/
   form-helpers:
     output: true
     permalink: /form-helpers/:path/
+  components:
+    output: true
+    permalink: /components/:path/
+  patterns:
+    output: true
+    permalink: /patterns/:path/
+  styleguides:
+    output: true
+    permalink: /styleguides/:path/
+  layout:
+    output: true
+    permalink: /layout/:path/

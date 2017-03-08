@@ -1,0 +1,7 @@
+{{
+    form.radio_simple({
+        'label': 'Foo',
+        'id' 'foo',
+        'name': 'foo_group'
+    })
+}}

@@ -28,3 +28,30 @@ $large-font-size: 20px;
 
 $code-font-family: Menlo, Monaco, "Courier New", monospace;
 $code-color: #bf616a;
+
+$pulsar-main: #638395;
+
+
+// Extra small screen / small mobile
+$screen-xsmall:                       480px !default;
+$screen-phone:                        $screen-xsmall !default;
+
+// Smaller screen / large mobile / tiny tablet
+$screen-smaller:                      600px !default;
+$screen-phablet:                      $screen-smaller !default;
+
+// Small screen / tablet
+$screen-small:                        767px !default;
+$screen-tablet:                       $screen-small !default;
+
+// Medium screen / desktop
+$screen-medium:                       992px !default;
+$screen-desktop:                      $screen-medium !default;
+
+// So media queries don't overlap when required, provide a maximum
+$screen-small-max:                    ($screen-medium - 1) !default;
+$screen-tablet-max:                   $screen-small-max !default;
+
+// Large screen / wide desktop
+$screen-large:                        1200px !default;
+$screen-large-desktop:                $screen-large !default;

@@ -1,0 +1,5 @@
+<ul class="block-list">
+    <li class="block-list__item">One</li>
+    <li class="block-list__item">Two</li>
+    <li class="block-list__item">Three</li>
+</ul>

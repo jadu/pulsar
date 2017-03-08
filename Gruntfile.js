@@ -474,6 +474,14 @@ module.exports = function(grunt) {
                 reloadOnRestart: true,
                 watchTask: true
             }
+        },
+
+        'gh-pages': {
+            options: {
+                base: 'docs/_site',
+                repo: 'https://github.com/jadu/pulsar.git'
+            },
+            src: ['**']
         }
 
     });

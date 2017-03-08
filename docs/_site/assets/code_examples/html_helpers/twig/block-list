@@ -1,0 +1,9 @@
+{{
+    html.block_list({
+        'items': [
+            {'value': 'One'},
+            {'value': 'Two'},
+            {'value': 'Three'}
+        ]
+    })
+}}
