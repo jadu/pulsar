@@ -33,7 +33,7 @@ $btn-padding-x:             14px;
 $btn-small-padding-top:     $btn-padding-top / 2.5;
 $btn-small-padding-bottom:  $btn-padding-bottom / 2.5;
 $btn-small-padding-x:       $btn-padding-x / 2.5;
-$btn-white: "white";
+$btn-white:                 "white";
 
 .btn {
     @include inline-block;
