@@ -33,7 +33,12 @@ $btn-padding-x:             14px;
 $btn-small-padding-top:     $btn-padding-top / 2.5;
 $btn-small-padding-bottom:  $btn-padding-bottom / 2.5;
 $btn-small-padding-x:       $btn-padding-x / 2.5;
-$btn-white:                 "white";
+
+// Stop compressed grunt output converting `.btn--white` to `.btn--#fff`
+// https://github.com/jadu/pulsar/pull/502
+// scss-lint:disable StringQuotes
+$btn-white:                 'white';
+// scss-lint:enable StringQuotes
 
 .btn {
     @include inline-block;
