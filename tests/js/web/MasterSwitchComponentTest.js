@@ -128,7 +128,7 @@ describe('MasterSwitch component', function() {
 
 			setTimeout(function(){
 				expect(clickEvent.isDefaultPrevented()).to.be.false;
-            }, 100);
+            }, 1000);
 		});
 
 		it('should remove the disabled attribute from buttons', function() {
