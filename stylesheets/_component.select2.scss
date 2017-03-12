@@ -275,21 +275,25 @@
 
 
 .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    background: #1e1e1e;
+    border-radius: 50px;
+    color: color(gray, lightest);
     cursor: pointer;
-    display: inline-block;
+    display: block;
     float: right;
-    visibility: hidden;
-
-    &:after {
-        content: '\f057';
-        font-family: 'FontAwesome';
-        margin-right: 5px;
-        visibility: visible;
-    }
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 15px;
+    margin-left: 10px;
+    margin-right: 5px;
+    margin-top: 8px;
+    padding: 2px 5px 1px;
+    text-align: center;
+    text-transform: uppercase;
 }
 
 .select2-container--default .select2-selection--multiple .select2-selection__choice__remove:hover {
-    color: #333;
+    color: #dedede;
 }
 
 .select2-container--default[dir="rtl"] .select2-selection--multiple .select2-selection__choice,
