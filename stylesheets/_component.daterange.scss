@@ -1,3 +1,4 @@
+// scss-lint:disable SelectorFormat
 daterangepicker.dropdown-menu {
     max-width: none;
     z-index: 3000;
@@ -24,9 +25,9 @@ daterangepicker.dropdown-menu {
     @include respond-min($screen-tablet) {
         width: 160px;
     }
+
 }
 
-// scss-lint:disable SelectorFormat
 .daterangepicker .ranges .range_inputs > div {
     float: left;
 }
@@ -34,7 +35,6 @@ daterangepicker.dropdown-menu {
 .daterangepicker .ranges .range_inputs > div:nth-child(2) {
     padding-left: 11px;
 }
-// scss-lint:enable SelectorFormat
 
 .daterangepicker .calendar {
     display: none;
@@ -297,3 +297,4 @@ daterangepicker.dropdown-menu {
 .daterangepicker .fa-calendar::before {
     content: '\f073';
 }
+// scss-lint:enable SelectorFormat
