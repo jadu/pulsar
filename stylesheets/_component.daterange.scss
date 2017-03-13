@@ -1,3 +1,11 @@
+.daterangepicker {
+    @extend .popover;
+}
+
+div.daterangepicker {
+    padding: 4px;
+}
+
 .daterangepicker.dropdown-menu {
     max-width: none;
     z-index: $zindex-modal;
@@ -126,11 +134,6 @@
     line-height: 30px;
     margin: 8px auto 0;
     text-align: center;
-}
-
-.daterangepicker {
-    @extend .popover;
-    padding: 4px;
 }
 
 .daterangepicker table {
