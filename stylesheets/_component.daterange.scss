@@ -253,11 +253,11 @@
     width: 50px;
 }
 
-.daterangepicker::before, 
+.daterangepicker::before,
 .daterangepicker::after {
     position: absolute;
     display: inline-block;
-    border-bottom-color: rgba(0, 0, 0, 0.2);
+    border-bottom-color: rgba(0, 0, 0, .2);
     content: '';
 }
 
