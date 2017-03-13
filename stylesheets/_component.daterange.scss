@@ -1,5 +1,4 @@
-// scss-lint:disable SelectorFormat
-daterangepicker.dropdown-menu {
+.daterangepicker.dropdown-menu {
     max-width: none;
     z-index: 3000;
 }
@@ -25,9 +24,9 @@ daterangepicker.dropdown-menu {
     @include respond-min($screen-tablet) {
         width: 160px;
     }
-
 }
 
+// scss-lint:disable SelectorFormat
 .daterangepicker .ranges .range_inputs > div {
     float: left;
 }
@@ -35,6 +34,7 @@ daterangepicker.dropdown-menu {
 .daterangepicker .ranges .range_inputs > div:nth-child(2) {
     padding-left: 11px;
 }
+// scss-lint:enable SelectorFormat
 
 .daterangepicker .calendar {
     display: none;
@@ -138,11 +138,11 @@ daterangepicker.dropdown-menu {
     width: 100%;
 }
 
-// scss-lint:disable SelectorFormat
 .daterangepicker .daterangepicker_input {
     position: relative;
 }
 
+// scss-lint:disable SelectorFormat
 .daterangepicker .daterangepicker_input i {
     font-size: 14px;
     position: absolute;
@@ -160,7 +160,7 @@ daterangepicker.dropdown-menu {
     line-height: 30px;
     display: block;
     vertical-align: middle;
-    margin: 0 0 5px;
+    margin: 0 0 5px 0;
     padding: 0 6px 0 28px;
     width: 100%;
 }
@@ -174,16 +174,16 @@ daterangepicker.dropdown-menu {
     width: 20px;
 }
 
-.daterangepicker .table-condensed > tbody > tr > td,
+.daterangepicker .table-condensed > tbody > tr > td, 
 .daterangepicker .table-condensed > tbody > tr > th,
 .daterangepicker .table-condensed > tfoot > tr > td,
 .daterangepicker .table-condensed > tfoot > tr > th,
-.daterangepicker .table-condensed > thead > tr > td,
+.daterangepicker .table-condensed > thead > tr > td, 
 .daterangepicker .table-condensed > thead > tr > th {
     padding: 5px;
 }
 
-.daterangepicker .calendar th,
+.daterangepicker .calendar th, 
 .daterangepicker .calendar td {
     min-width: 32px;
     text-align: center;
@@ -253,48 +253,45 @@ daterangepicker.dropdown-menu {
     width: 50px;
 }
 
-// scss-lint:disable PseudoElement
-.daterangepicker:before,
-.daterangepicker:after {
+.daterangepicker::before, 
+.daterangepicker::after {
     position: absolute;
     display: inline-block;
-    border-bottom-color: rgba(0, 0, 0, .2);
+    border-bottom-color: rgba(0, 0, 0, 0.2);
     content: '';
 }
 
-.daterangepicker:after {
+.daterangepicker::after {
     top: -6px;
     border-right: 6px solid transparent;
     border-bottom: 6px solid color(white);
     border-left: 6px solid transparent;
 }
 
-.daterangepicker:before {
+.daterangepicker::before {
     top: -7px;
     border-right: 7px solid transparent;
     border-left: 7px solid transparent;
     border-bottom: 7px solid color(gray, lightest);
 }
 
-.daterangepicker.opensleft:after {
+.daterangepicker.opensleft::after {
     right: 10px;
 }
 
-.daterangepicker.opensleft:before {
+.daterangepicker.opensleft::before {
     right: 9px;
 }
-// scss-lint:enable PseudoElement
 
 // icon fix as date range picker uses fa classes for icons
 .daterangepicker .fa-chevron-left::before {
-    content: '\f053';
+    content: "\f053";
 }
 
 .daterangepicker .fa-chevron-right::before {
-    content: '\f054';
+    content: "\f054";
 }
 
 .daterangepicker .fa-calendar::before {
-    content: '\f073';
+    content: "\f073";
 }
-// scss-lint:enable SelectorFormat
