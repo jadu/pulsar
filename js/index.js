@@ -45,6 +45,8 @@ var $                     = require('jquery'),
     SignInComponent = require('./area/signin/signin');
     SlotPickerComponent = require('./SlotPickerComponent'),
 
+    require('jstree');
+
 module.exports = {
     ButtonComponent: ButtonComponent,
     HelpTextComponent: HelpTextComponent,

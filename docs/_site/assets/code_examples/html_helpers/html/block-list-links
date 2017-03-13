@@ -1,0 +1,5 @@
+<div class="block-list">
+    <a class="block-list__item" href="#foo">Foo</a>
+    <a class="block-list__item" href="#bar">Bar</a>
+    <a class="block-list__item" href="#baz">Baz</a>
+</div>

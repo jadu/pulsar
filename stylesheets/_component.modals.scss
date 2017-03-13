@@ -2,160 +2,162 @@
 // Modals
 // --------------------------------------------------
 
-// .modal--open      - body class for killing the scroll
-// .modal           - container to scroll within
-// .modal__dialog    - positioning shell for the actual modal
-// .modal__content   - actual modal w/ bg and corners
+// .modal--open         - body class for killing the scroll
+// .modal               - container to scroll within
+// .modal__dialog       - positioning shell for the actual modal
+// .modal__content      - actual modal w/ bg and corners
+// .modal--full-screen  - modifier for a full screen modal
+
 
 // Kill the scroll on the body
-.modal--open {
-  overflow: hidden;
+.modal-open {
+    overflow: hidden;
+    -ms-overflow-style: none;
 }
 
 // Container that the modal scrolls within
 .modal {
-  display: none;
-  overflow: auto;
-  overflow-y: scroll;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: $zindex-modal;
+    display: none;
+    overflow: auto;
+    overflow-y: scroll;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: $zindex-modal;
 
-  form {
-    p,
-    ul,
-    ol {
-      margin-left: 0;
+    form {
+        p,
+        ul,
+        ol {
+            margin-left: 0;
+        }
     }
-  }
-
 }
 
 // Shell div to position the modal with bottom padding
 .modal__dialog {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 600px;
-  padding: 85px ($gutter-width / 2) 30px;
-  width: auto;
-  z-index: ($zindex-modal + 10);
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 600px;
+    padding: 85px ($gutter-width / 2) 30px;
+    width: auto;
+    z-index: ($zindex-modal + 10);
 
-  @include respond-min($screen-tablet) {
-    padding-top: 100px;
-    width: 100%;
-  }
+    @include respond-min($screen-tablet) {
+        padding-top: 100px;
+        width: 100%;
+    }
 }
 
 .modal--large .modal__dialog {
-  max-width: 800px;
+    max-width: 800px;
 }
 
 // Actual modal
 .modal__content {
-  position: relative;
-  background-color: $modal-content-bg;
-  box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
-  background-clip: padding-box;
-  // Remove focus outline from opened modal
-  outline: none;
+    position: relative;
+    background-color: $modal-content-bg;
+    box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+    background-clip: padding-box;
+    // Remove focus outline from opened modal
+    outline: none;
 
-  // prevent forms within modal from breaking the layout
-  > .form--horizontal {
-    padding-top: 0;
-  }
+    // prevent forms within modal from breaking the layout
+    > .form--horizontal {
+        padding-top: 0;
+    }
 
-  > .form {
-    padding-top: 0;
-  }
+    > .form {
+        padding-top: 0;
+    }
 }
 
 // Modal background
 .modal__backdrop {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: ($zindex-modal - 10);
-  background-color: $modal-backdrop-bg;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: ($zindex-modal - 10);
+    background-color: $modal-backdrop-bg;
 
-  @include ie-lte(7) {
-    background-color: none;
-  }
+    @include ie-lte(7) {
+        background-color: none;
+    }
 
-  // Fade for backdrop
-  &.fade { @include opacity(0); }
+    // Fade for backdrop
+    &.fade { @include opacity(0); }
 
-  &.in { @include opacity(.5); }
+    &.in { @include opacity(.5); }
 }
 
 // Modal header
 // Top section of the modal w/ title and dismiss
 .modal__header {
-  padding: $modal-title-padding;
-  border-bottom: 1px solid $modal-header-border-color;
+    padding: $modal-title-padding;
+    border-bottom: 1px solid $modal-header-border-color;
 }
 // Close icon
 .modal__header .close {
-  margin-top: -2px;
+    margin-top: -2px;
 }
 
 // Title text within header
 .modal__title {
-  margin: 0;
-  line-height: $modal-title-line-height;
+    margin: 0;
+    line-height: $modal-title-line-height;
 }
 
 // Modal body
 // Where all modal content resides (sibling of .modal-header and .modal-footer)
 .modal__body {
-  position: relative;
-  padding: $modal-inner-padding;
+    position: relative;
+    padding: $modal-inner-padding;
 }
 
 // Footer (for actions)
 .modal__footer {
-  @include clear-fix; // clear it in case folks use .pull-* classes on buttons
-  padding: ($modal-inner-padding - 1) $modal-inner-padding ($modal-inner-padding - 5);
-  // text-align: right; // right align buttons
-  border-top: 1px solid $modal-footer-border-color;
+    @include clear-fix; // clear it in case folks use .pull-* classes on buttons
+    padding: ($modal-inner-padding - 1) $modal-inner-padding ($modal-inner-padding - 5);
+    // text-align: right; // right align buttons
+    border-top: 1px solid $modal-footer-border-color;
 
 /*   // Properly space out buttons
   .btn + .btn {
     margin-left: 5px;
     margin-bottom: 0; // account for input[type="submit"] which gets the bottom margin like all other inputs
   } */
-  // but override that for button groups
-  .btn-group .btn + .btn {
-    margin-left: -1px;
-  }
-  // and override it for block buttons as well
-  .btn-block + .btn-block {
-    margin-left: 0;
-  }
+    // but override that for button groups
+    .btn-group .btn + .btn {
+        margin-left: -1px;
+    }
+
+    // and override it for block buttons as well
+    .btn-block + .btn-block {
+        margin-left: 0;
+    }
 }
 
 .modal--danger {
-  .modal__header {
-    background-color: color(danger);
-    color: color(white);
-  }
+    .modal__header {
+        background-color: color(danger);
+        color: color(white);
+    }
 
-  .close {
-    @include opacity(.7);
-    color: color(white);
-  }
+    .close {
+        @include opacity(.7);
+        color: color(white);
+    }
 }
 
 // Forms in modals
-
 .modal {
-  .control__label {
-    margin-left: 0;
-  }
+    .control__label {
+        margin-left: 0;
+    }
 }
 
 // Panels in modal footer
@@ -198,4 +200,138 @@
 
 .modal__backdrop.in + .popover {
     z-index: $zindex-modal + 1;
+}
+
+// Full screen modal
+.modal--full-screen {
+    // Align close button correctly in old OSX chrome and Safari
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+
+    .modal__content {
+        bottom: 0;
+        height: 100%;
+        left: 0;
+        position: fixed;
+        right: 0;
+        top: 0;
+        width: 100%;
+    }
+
+    .modal__header {
+        border-bottom: 1px solid color(gray, lightest);
+        display: flex;
+        font-size: 16px;
+        height: 60px;
+        padding: 0;
+    }
+
+    .modal__controls {
+        float: right;
+        white-space: nowrap;
+    }
+
+    .close,
+    .download {
+        color: color(gray);
+        font-size: 1.4em;
+        padding: 20px;
+        transition: color .1s ease;
+
+        &:hover,
+        &:focus {
+            color: color(jadu-blue);
+        }
+    }
+
+    .close {
+        margin-top: 0;
+        opacity: 1;
+    }
+
+    .download {
+        border-right: 1px solid color(gray, off-white);
+        float: right;
+
+        @include ie-lte(9) {
+            display: inline-block;
+            float: none;
+        }
+    }
+
+    .modal__header-detailed {
+        flex: 1 1 50px;
+        margin-left: 15px;
+        margin-top: 10px;
+        min-width: 0;
+        padding-left: 45px;
+
+        @include ie-lte(9) {
+            display: inline-block;
+            float: left;
+            width: 60%;
+        }
+
+        .modal__avatar {
+            background-color: color(white);
+            border-radius: 50%;
+            height: 35px;
+            left: 0;
+            margin: 15px 0 0 15px;
+            position: absolute;
+            top: 0;
+            width: 35px;
+        }
+
+        .modal__title {
+            line-height: 1.2em;
+        }
+
+        .modal__title-meta {
+            color: color(text, help);
+            font-size: 14px;
+            margin-bottom: 0;
+        }
+
+        .modal__title,
+        .modal__title-meta {
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+
+    .modal__body {
+        background-color: color(gray, off-white);
+        height: 100%;
+    }
+
+    .scaled {
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        min-height: 100%;
+        min-width: 100%;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    .scaled__image {
+        left: 0;
+        margin: auto;
+        max-height: calc(100% - 44px);
+        max-width: calc(100% - 44px);
+        position: absolute;
+        right: 0;
+        top: 20px;
+
+        @include respond-min($screen-phone) {
+            bottom: 0;
+            left: 0;
+            right: 0;
+            top: 0;
+        }
+    }
 }

@@ -357,6 +357,11 @@
     }
 }
 
+.tab__container.has-settings .tab__inner {
+    @include respond-min($screen-desktop) {
+        display: table;
+    }
+}
 
 /**
  * Content header

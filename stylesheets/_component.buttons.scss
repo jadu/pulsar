@@ -34,6 +34,12 @@ $btn-small-padding-top:     $btn-padding-top / 2.5;
 $btn-small-padding-bottom:  $btn-padding-bottom / 2.5;
 $btn-small-padding-x:       $btn-padding-x / 2.5;
 
+// Stop compressed grunt output converting `.btn--white` to `.btn--#fff`
+// https://github.com/jadu/pulsar/pull/502
+// scss-lint:disable StringQuotes
+$btn-white:                 'white';
+// scss-lint:enable StringQuotes
+
 .btn {
     @include inline-block;
     -webkit-appearance: none; /* 1 */
@@ -125,7 +131,7 @@ $btn-small-padding-x:       $btn-padding-x / 2.5;
             background-color: color($state, light) !important;
             color: color($state, dark) !important;
 
-            &:not(:disabled):not(.is-disabled).btn--white {
+            &:not(:disabled):not(.is-disabled).btn--#{$btn-white} {
                 color: color(text) !important;
             }
         }
@@ -193,7 +199,7 @@ $btn-small-padding-x:       $btn-padding-x / 2.5;
                 background-color: color($state, light) !important;
                 color: color($state, dark) !important;
 
-                &.btn--white {
+                &.btn--#{$btn-white} {
                     color: color(text) !important;
                 }
             }
@@ -204,7 +210,7 @@ $btn-small-padding-x:       $btn-padding-x / 2.5;
                 &.active {
                     background-color: transparent !important;
 
-                    &.btn--white {
+                    &.btn--#{$btn-white} {
                         color: color($state, dark) !important;
                     }
                 }
@@ -217,7 +223,7 @@ $btn-small-padding-x:       $btn-padding-x / 2.5;
                 &.active {
                     color: color($state, dark) !important;
 
-                    &.btn--white {
+                    &.btn--#{$btn-white} {
                         color: color(text) !important;
                     }
                 }
@@ -271,7 +277,7 @@ $btn-small-padding-x:       $btn-padding-x / 2.5;
     box-shadow: none;
 }
 
-.btn--white {
+.btn--#{$btn-white} {
     &.is-disabled,
     &:disabled {
         opacity: .5;
@@ -286,7 +292,7 @@ $btn-small-padding-x:       $btn-padding-x / 2.5;
 // The text in small, disabled buttons look like garbage on low-dpi screens,
 // so we'll disable font smoothing for this edge case (and re-enable it
 // for hi-dpi screens).
-.btn--white,
+.btn--#{$btn-white},
 .btn--naked {
     &.is-disabled,
     &:disabled {

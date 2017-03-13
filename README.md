@@ -12,7 +12,7 @@ Watch a Jadu Academy session presented by Paul Stanton, Pulsar Product Owner whi
 
 ## Documentation
 
-Documentation is available online at [jadu.gitbooks.io/pulsar](https://jadu.gitbooks.io/pulsar/), we welcome any feedback on areas which may need improvement.
+Documentation is available online at [https://jadu.github.io/pulsar](https://jadu.github.io/pulsar), we welcome any feedback on areas which may need improvement.
 
 ## Contributing
 

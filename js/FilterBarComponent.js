@@ -4,11 +4,12 @@ var $ = require('jquery');
 
 function FilterBarComponent(html) {
     this.$html = html;
-    this.$container = this.$html.find('.filter-bar');
 }
 
 FilterBarComponent.prototype.init = function () {
     var component = this;
+
+    this.$container = this.$html.find('.filter-bar');
 
     // Create the filter add button
     createFilterListButton(component);

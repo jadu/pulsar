@@ -1,0 +1,5 @@
+<nav class="breadcrumb">
+    <a href="#foo">foo</a> /
+    <a href="#bar">bar</a> /
+    <a href="#baz">baz</a>
+</nav>

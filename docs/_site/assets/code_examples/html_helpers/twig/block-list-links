@@ -1,0 +1,11 @@
+{{
+    html.block_list({
+        'type': 'link',
+        'items': [
+            {'label': 'Foo', 'href': '#foo'},
+            {'label': 'Bar', 'href': '#bar'},
+            {'label': 'Baz', 'href': '#baz'}
+        ]
+    })
+}}
+

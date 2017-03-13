@@ -1,0 +1,8 @@
+{{
+    html.media({
+        'image': 'github.png',
+        'image_alt': 'GitHub logo',
+        'title': 'Title',
+        'description': 'Description'
+    })
+}}

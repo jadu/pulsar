@@ -1,0 +1,6 @@
+{{
+    html.button({ 
+        'label': 'Button',
+        'type': 'input'
+    })
+}}
