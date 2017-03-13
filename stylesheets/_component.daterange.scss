@@ -1,6 +1,6 @@
 .daterangepicker.dropdown-menu {
     max-width: none;
-    z-index: 3000;
+    z-index: $zindex-modal;
 }
 
 .daterangepicker.opensleft .ranges,
@@ -78,7 +78,7 @@
 
 .daterangepicker .ranges .input-mini {
     background-color: color(gray, off-white);
-    border-radius: 4px;
+    border-radius: $border-radius;
     border: 1px solid color(gray, lightest);
     color: color(gray, darker);
     display: block;
@@ -117,7 +117,7 @@
 
 .daterangepicker .calendar-date {
     background: color(white);
-    border-radius: 4px;
+    border-radius: $border-radius;
     border: 1px solid color(gray, lightest);
     padding: 4px;
 }
@@ -153,7 +153,7 @@
 
 .daterangepicker .input-mini {
     border: 1px solid color(gray, lightest);
-    border-radius: 4px;
+    border-radius: $border-radius;
     color: color(gray, darker);
     font-size: 14px;
     height: 30px;
@@ -196,11 +196,11 @@
 }
 
 .daterangepicker td.start-date {
-    border-radius: 4px 0 0 4px;
+    border-radius: $border-radius 0 0 $border-radius;
 }
 
 .daterangepicker td.end-date {
-    border-radius: 0 4px 4px 0;
+    border-radius: 0 $border-radius $border-radius 0;
 }
 
 .daterangepicker td.off {
