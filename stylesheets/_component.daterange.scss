@@ -138,11 +138,11 @@
     width: 100%;
 }
 
+// scss-lint:disable SelectorFormat
 .daterangepicker .daterangepicker_input {
     position: relative;
 }
 
-// scss-lint:disable SelectorFormat
 .daterangepicker .daterangepicker_input i {
     font-size: 14px;
     position: absolute;
@@ -160,7 +160,7 @@
     line-height: 30px;
     display: block;
     vertical-align: middle;
-    margin: 0 0 5px 0;
+    margin: 0 0 5px;
     padding: 0 6px 0 28px;
     width: 100%;
 }
@@ -174,16 +174,16 @@
     width: 20px;
 }
 
-.daterangepicker .table-condensed > tbody > tr > td, 
+.daterangepicker .table-condensed > tbody > tr > td,
 .daterangepicker .table-condensed > tbody > tr > th,
 .daterangepicker .table-condensed > tfoot > tr > td,
 .daterangepicker .table-condensed > tfoot > tr > th,
-.daterangepicker .table-condensed > thead > tr > td, 
+.daterangepicker .table-condensed > thead > tr > td,
 .daterangepicker .table-condensed > thead > tr > th {
     padding: 5px;
 }
 
-.daterangepicker .calendar th, 
+.daterangepicker .calendar th,
 .daterangepicker .calendar td {
     min-width: 32px;
     text-align: center;
@@ -285,13 +285,13 @@
 
 // icon fix as date range picker uses fa classes for icons
 .daterangepicker .fa-chevron-left::before {
-    content: "\f053";
+    content: '\f053';
 }
 
 .daterangepicker .fa-chevron-right::before {
-    content: "\f054";
+    content: '\f054';
 }
 
 .daterangepicker .fa-calendar::before {
-    content: "\f073";
+    content: '\f073';
 }
