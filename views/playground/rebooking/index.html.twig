@@ -69,6 +69,26 @@
         </div>
     </div>
 
+    <div class="form__group">
+        <label class="control__label">Booked slot</label>
+        <div class="controls">
+            {{
+                html.panel({
+                    'class': 'panel--warning',
+                    'body': '<span class="pull-right">' ~ html.button({
+                        'label': 'Choose Another',
+                        'class': 'btn--outline btn--small btn--inverse'
+                    }) ~ '&nbsp;' ~
+                    html.button({
+                        'label': 'Cancel Change',
+                        'class': 'btn--outline btn--small btn--inverse'
+                    }) ~ '</span><strong>Booking will be changed to:</strong><br />Wed 13/09/2017 10:20am to 10:40am (20 mins)'
+
+                })
+            }}
+        </div>
+    </div>
+
     {{
         form.content({
             'label': 'Status',
