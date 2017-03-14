@@ -99,3 +99,14 @@
     padding-top: 24px;
     padding-bottom: 24px;
 }
+
+// Panels within form groups should respect their width
+@each $variant, $width in $input-widths {
+    .form__group .panel {
+        width: map-get($input-widths, xlarge);
+    }
+
+    .form__group--#{$variant} .panel {
+        width: #{$width};
+    }
+}
