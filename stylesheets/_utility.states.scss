@@ -35,3 +35,7 @@ $danger-to-text-color: black;
 .is-new {
     background-color: color(new) !important;
 }
+
+.is-bold {
+    font-family: $font-family-regular;
+}
