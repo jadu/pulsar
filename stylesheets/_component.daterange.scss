@@ -298,3 +298,9 @@ div.daterangepicker {
 .daterangepicker .fa-calendar::before {
     content: '\f073';
 }
+
+.date-range-picker__form {
+    @include respond-min($screen-phablet) {
+        width: 300px;
+    }
+}
