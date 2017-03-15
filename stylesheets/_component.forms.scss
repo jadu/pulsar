@@ -16,6 +16,15 @@ fieldset {
     margin-bottom: 24px;
 }
 
+.form__group--compact .form__control {
+    height: 33px;
+    line-height: 33px;
+}
+
+.form__group--compact .input-group-addon {
+    line-height: 30px;
+}
+
 .modal .form__group {
     padding: 0;
 }

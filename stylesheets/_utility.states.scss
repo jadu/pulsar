@@ -39,3 +39,7 @@ $danger-to-text-color: black;
 .text--success {
     color: color(success);
 }
+
+.is-bold {
+    font-family: $font-family-regular;
+}

@@ -211,3 +211,8 @@ td.table__form {
 td.row__actions {
     width: 10px;
 }
+
+.row--final td {
+    border-top: 2px solid color(border);
+    border-bottom: 2px solid color(border);
+}
