@@ -1,6 +1,6 @@
 {
   "name": "jquery.countdown",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "jQuery plugin to display a countdown clock on your page",
   "keywords": [
     "countdown",
@@ -34,25 +34,28 @@
     "jquery": ">=1.7"
   },
   "devDependencies": {
+    "jquery-3.1": "jquery#~3.1",
+    "jquery-3.0": "jquery#~3.0",
+    "jquery-2.2": "jquery#~2.2",
     "jquery-2.1": "jquery#~2.1",
     "jquery-2.0": "jquery#~2.0",
     "jquery-1.9": "jquery#~1.9",
     "jquery-1.8": "jquery#~1.8",
     "jquery-1.7": "jquery#~1.7",
     "jquery-1.10": "jquery#~1.10",
+    "jquery-1.11": "jquery#~1.11",
     "bootstrap": "~3"
   },
   "moduleType": [
     "amd"
   ],
-  "_release": "2.1.0",
+  "_release": "2.2.0",
   "_resolution": {
     "type": "version",
-    "tag": "2.1.0",
-    "commit": "60e7f1deee2a50fe1b8ea85160eab03ffac2cafe"
+    "tag": "2.2.0",
+    "commit": "f4dd04b02be1e0504c03d886efe8a94de7f2da6b"
   },
   "_source": "https://github.com/hilios/jQuery.countdown.git",
   "_target": "^2.1.0",
-  "_originalSource": "jquery.countdown",
-  "_direct": true
+  "_originalSource": "jquery.countdown"
 }

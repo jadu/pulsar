@@ -25,14 +25,13 @@
     "type": "git",
     "url": "https://github.com/dbushell/Pikaday.git"
   },
-  "version": "1.4.0",
-  "_release": "1.4.0",
+  "_release": "5489dddf9f",
   "_resolution": {
-    "type": "version",
-    "tag": "1.4.0",
-    "commit": "651842140ee0f872f3364c33a34e2b595fd72d43"
+    "type": "branch",
+    "branch": "feature/pre-on-draw-event",
+    "commit": "5489dddf9fca046a91c1066b196fe22d9a4af106"
   },
-  "_source": "git://github.com/dbushell/Pikaday.git",
-  "_target": "*",
-  "_originalSource": "pikaday"
+  "_source": "https://github.com/jadu/pikaday.git",
+  "_target": "feature/pre-on-draw-event",
+  "_originalSource": "jadu/pikaday"
 }

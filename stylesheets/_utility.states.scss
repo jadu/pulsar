@@ -36,6 +36,10 @@ $danger-to-text-color: black;
     background-color: color(new) !important;
 }
 
+.text--success {
+    color: color(success);
+}
+
 .is-bold {
     font-family: $font-family-regular;
 }

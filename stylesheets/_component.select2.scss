@@ -275,21 +275,18 @@
 
 
 .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    color: #dedede;
     cursor: pointer;
     display: inline-block;
     float: right;
-    visibility: hidden;
 
     &:after {
+        color: #000;
         content: '\f057';
         font-family: 'FontAwesome';
         margin-right: 5px;
         visibility: visible;
     }
-}
-
-.select2-container--default .select2-selection--multiple .select2-selection__choice__remove:hover {
-    color: #333;
 }
 
 .select2-container--default[dir="rtl"] .select2-selection--multiple .select2-selection__choice,
