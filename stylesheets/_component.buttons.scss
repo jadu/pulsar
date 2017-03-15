@@ -162,36 +162,48 @@ $btn-white:                 'white';
 
 .btn--outline {
     background: none !important;
-    border: 0;
-    box-shadow: inset 0 0 0 2px color(base);
-    padding-bottom: $btn-padding-bottom + 2;
-    padding-top: $btn-padding-top;
+    border: 2px solid color(base);
+    box-shadow: none;
+    padding: ($btn-padding-top - 2) ($btn-padding-x - 2) $btn-padding-bottom;
 
     &:hover,
     &.is-hovered {
-        box-shadow: inset 0 0 0 2px color(base);
-        padding-bottom: $btn-padding-bottom + 1;
+        box-shadow: none;
+        padding-bottom: $btn-padding-bottom - 1;
     }
 
     &:active,
     &.active {
         background-color: color(base, light) !important;
-        box-shadow: inset 0 0 0 2px color(base);
+        box-shadow: none;
         color: pick_best_color(color(base, light), (#fff, color(gray, dark))) !important;
-        padding-bottom: $btn-padding-bottom;
+        padding-bottom: $btn-padding-bottom - 2;
         top: 2px;
     }
 
     &.is-disabled,
     &:disabled {
         background-color: transparent !important;
-        box-shadow: inset 0 0 0 2px color(base) !important;
+        box-shadow: none !important;
         color: color(text, disabled) !important;
+    }
+
+    &.btn--naked {
+        padding: $btn-padding-top $btn-padding-x $btn-padding-bottom !important;
+    }
+
+    &.btn--small {
+        padding: ($btn-small-padding-top - 2) ($btn-small-padding-x - 2) ($btn-small-padding-bottom - 2) !important;
+
+        &.btn--naked {
+           padding: $btn-small-padding-top $btn-small-padding-x $btn-small-padding-bottom !important;
+        }
     }
 
     @each $state, $state-color, $state-color-alt in $state-colors {
         &.btn--#{$state} {
-            box-shadow: inset 0 0 0 2px $state-color !important;
+            border: 2px solid $state-color !important;
+            box-shadow: none !important;
             color: color($state, dark) !important;
 
             &:active,
@@ -217,6 +229,7 @@ $btn-white:                 'white';
             }
 
             &.btn--naked {
+                border: 0 !important;
                 box-shadow: none !important;
 
                 &:active,
