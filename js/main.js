@@ -19,7 +19,6 @@
 	pulsar.modulePermissions = new pulsar.ModulePermissionsComponent($html);
     pulsar.navMain      = new pulsar.NavMainComponent($html);
     pulsar.filterBar    = new pulsar.FilterBarComponent($html);
-    pulsar.slotPicker   = new pulsar.SlotPickerComponent($html);
 
     $(function () {
 
@@ -34,7 +33,6 @@
         pulsar.modulePermissions.init();
         pulsar.navMain.init();
         pulsar.filterBar.init();
-        pulsar.slotPicker.init();
 
         // Switch out .svg for .png for <img> elements in older browsers
         pulsar.svgeezy.init('nocheck', 'png');
