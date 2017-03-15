@@ -1,9 +1,9 @@
 .daterangepicker {
     @extend .popover;
-}
 
-div.daterangepicker {
-    padding: 4px;
+    &#{&} {
+        padding: 4px;
+    }
 }
 
 .daterangepicker.dropdown-menu {
@@ -168,6 +168,11 @@ div.daterangepicker {
     margin: 0 0 5px;
     padding: 0 6px 0 28px;
     width: 100%;
+}
+
+.daterangepicker .form__control::-ms-clear,
+.daterangepicker .form-control::-ms-clear {
+    display: none;
 }
 
 .daterangepicker td,
