@@ -1,5 +1,3 @@
-$border-radius: 4px;
-
 .slotpicker-slots__heading {
     font-size: 1.1em;
     margin-bottom: 0;
@@ -16,8 +14,8 @@ $border-radius: 4px;
 }
 
 .ui-datepicker-calendar td {
-    background-color: #fefefe;
-    border: 1px solid #ccc;
+    background-color: color(white);
+    border: 1px solid color(border);
     cursor: pointer;
     padding: 5px 0 30px;
     text-align: left;
@@ -30,24 +28,24 @@ $border-radius: 4px;
     }
 
     &:hover {
-        background-color: darken(#fafafa, 2);
+        background-color: #fafafa;
     }
 
     &.ui-datepicker-unselectable {
-        background-color: lighten(#ccc, 10);
-        color: #999;
+        background-color: color(gray, off-white);
+        color: color(text, disabled);
         cursor: not-allowed;
     }
 
     &.ui-datepicker-other-month {
-        background-color: #fff;
+        background-color: color(white);
         border: 0;
     }
 }
 
 .ui-datepicker-calendar th {
-    color: #999;
-    font-family: 'proxima_nova_rgregular', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    color: color(gray, light);
+    font-family: $font-family-regular;
     font-weight: normal;
 }
 
@@ -60,7 +58,7 @@ $border-radius: 4px;
 
 .ui-datepicker-prev,
 .ui-datepicker-next {
-    color: #999;
+    color: color(gray, light);
     font-size: .75em;
     text-transform: uppercase;
 }
@@ -89,12 +87,12 @@ $border-radius: 4px;
     position: relative;
 
     &::after {
-        background-color: #ccc;
+        background-color: color(gray, lighter);
         border-top-left-radius: $border-radius;
         border-bottom-right-radius: $border-radius;
         bottom: 3px;
-        color: #000;
-        font-size: 12px;
+        color: color(text);
+        font-size: $font-size-small;
         left: 3px;
         line-height: 1em;
         padding: 3px 0;
@@ -110,16 +108,16 @@ $border-radius: 4px;
 }
 
 .ui-datepicker-calendar td.ui-datepicker-current-day {
-    background-color: #2575b0;
-    color: #fff;
+    background-color: color(primary);
+    color: color(white);
 
     a {
-        color: #fff;
+        color: color(white);
     }
 
     &.ui-datepicker-today::after {
-        background-color: #fff;
-        color: #2575b0;
+        background-color: color(white);
+        color: color(primary);
     }
 }
 
@@ -137,8 +135,8 @@ $border-radius: 4px;
 }
 
 .slotpicker-slots__subheading {
-    border-top: 1px solid #bebebe;
-    color: #bebebe;
+    border-top: 1px solid color(border);
+    color: color(border);
     display: block;
     height: 42px;
     margin-top: 12px;
