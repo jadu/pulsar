@@ -443,12 +443,14 @@ function populateFilterList (component) {
         if ($filterField[0].type === 'checkbox') {
             if ($filterField.prop('checked') === true) {
                 filterValue = ' ';
+            } else {
+                filterValue = '';
             }
         } else {
             filterLabel = filterLabel + ': ';
         }
 
-        if (filterValue !== '') {
+        if (filterValue !== '' && filterValue !== null) {
             $labelContainer.prepend('<span class="label label--large label--inverse" data-filter-id="' + filterId + '">' + filterLabel + filterValue + '<a data-ui="filter-cancel" class="btn remove-button" data-filter-id="'+ filterId +'"><i class="icon-remove-sign"></i></a></span>');
 
             // Hide the filter item in the list
