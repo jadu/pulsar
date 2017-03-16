@@ -15,13 +15,14 @@ FilterBarComponent.prototype.init = function () {
     createFilterListButton(component);
 
     // Hide the form elements
-    hideFormControls(component);
+//    hideFormControls(component);
 
     // Move save button
     moveFormActions(component);
 
     // Handlers
     showFilterBar(component);
+    populateFilterList(component);
     showAddFilterPopover(component);
     addFilter(component);
     removeFilter(component);
@@ -416,6 +417,46 @@ function updateFilterList ($addFilterButton, filterId, visibility) {
     }
 
     $addFilterButton.attr('data-content', $addFilterList[0].outerHTML);
+}
+
+/**
+ *   Fired on load, this reads the values of the hidden filters form and
+ *   populates the filterbar with the required labels.
+**/
+function populateFilterList (component) {
+    console.log(component);
+
+    var $formGroups = component.$container.find('.form__group'),
+        $labelContainer = component.$container.find('.filter-bar__labels');
+
+    console.log($formGroups);
+
+    $formGroups.each(function() {
+        var $this = $(this),
+            $filterField = $this.find('.form__control'),
+            filterId = $filterField.attr('id'),
+            filterLabel = $this.find('.control__label').text().trim(),
+            filterValue = $filterField.val();
+
+        console.log(filterId);
+
+        if ($filterField.hasClass('select')) {
+            console.log('select');
+            filterValue = $(':selected', $filterField).text();
+        }
+
+        if ($filterField[0].type === 'checkbox') {
+            if ($filterField.prop('checked') === true) {
+                filterValue = ' ';
+            }
+        } else {
+            filterLabel = filterLabel + ': ';
+        }
+
+        if (filterValue != '') {
+            $labelContainer.prepend('<span class="label label--large label--inverse" data-filter-id="' + filterId + '">' + filterLabel + filterValue + '<a data-ui="filter-cancel" class="btn remove-button" data-filter-id="'+ filterId +'"><i class="icon-remove-sign"></i></a></span>');
+        }
+    });
 }
 
 module.exports = FilterBarComponent;

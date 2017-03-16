@@ -1,67 +1,7 @@
 {% extends '@pulsar/pulsar/layouts/base.html.twig' %}
-
-{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
-{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
 {% import '@pulsar/pulsar/v2/helpers/tabs.html.twig' as tabs %}
-{% import '@pulsar/pulsar/v2/helpers/flash.html.twig' as flash %}
 
-{% block title %}{{ parent() }}{% endblock %}
-
-{% set heading = 'Patterns' %}
-
-{%
-    set actions_menu = [
-        html.link({
-          'label': html.icon('save') ~ ' Save',
-          'href': '#save'
-        }),
-        html.link({
-          'label': html.icon('print') ~ ' Print',
-          'href': '#print'
-        }),
-        html.divider(),
-        html.link({
-          'label': html.icon('trash') ~ ' Delete',
-          'href': '#delete',
-          'class': 'link--danger disabled',
-          'attributes': 'data-on-datagrid-item-selected=enable'
-        })
-    ]
-%}
-
-{% set pattern_masterswitch %}
-    {% include 'lexicon/patterns/masterswitch.html.twig' %}
-{% endset %}
-{% set pattern_piano %}
-    {% include 'lexicon/patterns/piano.html.twig' %}
-{% endset %}
-{% set pattern_settings %}
-    {% include 'lexicon/patterns/settings.html.twig' %}
-{% endset %}
-{% set pattern_settings %}
-    {% include 'lexicon/patterns/settings.html.twig' %}
-{% endset %}
-
-{%
-    set tabs_content = [
-        {
-          "id"    : "masterswitch",
-          "label" : "Masterswitch",
-          "src"   : pattern_masterswitch,
-                    "active": true
-        },
-        {
-          "id"    : "piano",
-          "label" : "Piano List",
-          "src"   : pattern_piano
-        },
-        {
-          "id"    : "settings",
-          "label" : "Settings",
-          "src"   : pattern_settings
-        }
-    ]
-%}
+{% set heading = 'Reports' %}
 
 {%
     set nav_data = {
@@ -73,11 +13,16 @@
                 "1.1": {
                     "1.1.1": {
                         "label": "Components",
-                        "href": "/app/app.php/lexicon"
+                        "href": "/app/app.php/lexicon",
+                        "class": "is-active"
                     },
                     "1.1.2": {
                         "label": "Modules",
                         "href": "/app/app.php/lexicon/modules.html.twig"
+                    },
+                    "1.1.3": {
+                        "label": "Patterns",
+                        "href": "/app/app.php/lexicon/patterns.html.twig"
                     }
                 }
             }
@@ -102,8 +47,8 @@
             "items": {
                 "4.1": {
                     "4.1.1": {
-                        "label": "Filters",
-                        "href": "/app/app.php/lexicon/patterns/filters/"
+                        "label": "Reporting",
+                        "href": "/app/app.php/lexicon/patterns/reporting/"
                     },
                     "4.1.2": {
                         "label": "Reporting",
@@ -127,6 +72,23 @@
     }
 %}
 
+{% set tab_create %}
+    {% include '/lexicon/patterns/filters/create-filter.html.twig' %}
+{% endset %}
+
+
+{%
+    set tabs_content = [
+        {
+            "class" : "ui-report",
+            "id"    : "report",
+            "label" : "Default",
+            "src"   : tab_create,
+            "active": true
+        }
+    ]
+%}
+
 {% block tabs_list %}
     {{ tabs.list(tabs_content) }}
 {% endblock %}
@@ -135,5 +97,3 @@
     {{ tabs.content(tabs_content) }}
 {% endblock %}
 
-{% block javascript %}
-{% endblock %}
