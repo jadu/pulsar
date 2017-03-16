@@ -15,7 +15,7 @@ FilterBarComponent.prototype.init = function () {
     createFilterListButton(component);
 
     // Hide the form elements
-//    hideFormControls(component);
+    hideFormControls(component);
 
     // Move save button
     moveFormActions(component);
@@ -424,13 +424,10 @@ function updateFilterList ($addFilterButton, filterId, visibility) {
  *   populates the filterbar with the required labels.
 **/
 function populateFilterList (component) {
-    console.log(component);
 
     var $formGroups = component.$container.find('.form__group'),
         $labelContainer = component.$container.find('.filter-bar__labels'),
         $addFilterButton = component.$container.find('[data-ui="show-filter-list"]');
-
-    console.log($formGroups);
 
     $formGroups.each(function() {
         var $this = $(this),
@@ -439,10 +436,7 @@ function populateFilterList (component) {
             filterLabel = $this.find('.control__label').text().trim(),
             filterValue = $filterField.val();
 
-        console.log(filterId);
-
         if ($filterField.hasClass('select')) {
-            console.log('select');
             filterValue = $(':selected', $filterField).text();
         }
 
