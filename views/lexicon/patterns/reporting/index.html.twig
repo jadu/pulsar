@@ -1,20 +1,7 @@
 {% extends '@pulsar/pulsar/layouts/base.html.twig' %}
-
-{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
-{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
 {% import '@pulsar/pulsar/v2/helpers/tabs.html.twig' as tabs %}
-{% import '@pulsar/pulsar/v2/helpers/flash.html.twig' as flash %}
 
-{% block title %}{{ parent() }}{% endblock %}
-
-{% set heading = 'Tables' %}
-
-{% set tab_buttongroup %}{% include 'lexicon/tables/basic.html.twig' %}{% endset %}
-{% set tab_datatable %}{% include 'lexicon/tables/datatable.html.twig' %}{% endset %}
-{% set tab_datatable_empty %}{% include 'lexicon/tables/datatable-empty.html.twig' %}{% endset %}
-{% set tab_datagrid %}{% include 'lexicon/tables/datagrid.html.twig' %}{% endset %}
-{% set tab_formtable %}{% include 'lexicon/tables/form-tables.html.twig' %}{% endset %}
-{% set tab_sortable %}{% include 'lexicon/tables/sortable.html.twig' %}{% endset %}
+{% set heading = 'Reports' %}
 
 {%
     set nav_data = {
@@ -27,6 +14,7 @@
                     "1.1.1": {
                         "label": "Components",
                         "href": "/app/app.php/lexicon",
+                        "class": "is-active"
                     },
                     "1.1.2": {
                         "label": "Modules",
@@ -53,7 +41,7 @@
         },
         "4": {
             "label": "Patterns",
-            "class": "",
+            "class": "is-active",
             "href": "#patterns",
             "icon": "cubes",
             "items": {
@@ -67,7 +55,7 @@
         },
         "5": {
             "label": "Tables",
-            "class": "is-active",
+            "class": "",
             "href": "/app/app.php/lexicon/tables.html.twig",
             "icon": "table"
         },
@@ -80,38 +68,28 @@
     }
 %}
 
+{% set tab_report %}
+    {% include '/lexicon/patterns/reporting/report.html.twig' %}
+{% endset %}
+
+{% set tab_building %}
+    {% include '/lexicon/patterns/reporting/building.html.twig' %}
+{% endset %}
+
 {%
     set tabs_content = [
         {
-          "id"    : "basic",
-          "label" : "Basic Table",
-          "src"   : tab_buttongroup
+            "class" : "ui-report",
+            "id"    : "report",
+            "label" : "Report view",
+            "src"   : tab_report,
+            "active": true
         },
         {
-          "id"    : "datatable",
-          "label" : "DataTable",
-          "src"   : tab_datatable
-        },
-        {
-          "id"    : "datatable-empty",
-          "label" : "DataTable (empty)",
-          "src"   : tab_datatable_empty
-        },
-        {
-          "id"    : "datagrid",
-          "label" : "Datagrid " ~ html.label({'label': 'retired'}),
-          "src"   : tab_datagrid
-        },
-        {
-          "id"    : "formtables",
-          "label" : "Form Tables",
-          "src"   : tab_formtable
-        },
-        {
-          "id"    : "sortable",
-          "label" : "Sortable Tables",
-          "src"   : tab_sortable,
-          "active": true
+            "class" : "ui-report",
+            "id"    : "report-building",
+            "label" : "Report building",
+            "src"   : tab_building
         }
     ]
 %}
@@ -124,5 +102,3 @@
     {{ tabs.content(tabs_content) }}
 {% endblock %}
 
-{% block javascript %}
-{% endblock %}
