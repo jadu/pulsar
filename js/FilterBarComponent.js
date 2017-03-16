@@ -427,7 +427,8 @@ function populateFilterList (component) {
     console.log(component);
 
     var $formGroups = component.$container.find('.form__group'),
-        $labelContainer = component.$container.find('.filter-bar__labels');
+        $labelContainer = component.$container.find('.filter-bar__labels'),
+        $addFilterButton = component.$container.find('[data-ui="show-filter-list"]');
 
     console.log($formGroups);
 
@@ -453,8 +454,11 @@ function populateFilterList (component) {
             filterLabel = filterLabel + ': ';
         }
 
-        if (filterValue != '') {
+        if (filterValue !== '') {
             $labelContainer.prepend('<span class="label label--large label--inverse" data-filter-id="' + filterId + '">' + filterLabel + filterValue + '<a data-ui="filter-cancel" class="btn remove-button" data-filter-id="'+ filterId +'"><i class="icon-remove-sign"></i></a></span>');
+
+            // Hide the filter item in the list
+            updateFilterList($addFilterButton, filterId, 'hide');
         }
     });
 }
