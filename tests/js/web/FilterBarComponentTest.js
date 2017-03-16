@@ -200,7 +200,7 @@ describe('FilterBar component', function () {
 	        this.$showFilterListButton = this.$container.find('[data-ui="show-filter-list"]');
 		});
 
-		it('should prevent the default bahavior', function () {
+		it('should prevent the default behavior', function () {
 			this.$popoverFilterLink = this.$container.find('[data-filter-id="colour"]');
 			this.$popoverFilterLink.trigger(this.clickEvent);
 
