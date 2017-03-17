@@ -28,7 +28,7 @@
 
 {% block tab_content %}
 
-    <div class="filter-bar display--none">
+    <div class="filter-bar ">
         {{ form.create() }}
             {{ form.fieldset_start({'legend': 'Filter by'}) }}
 
@@ -38,6 +38,7 @@
                         'id': 'colour',
                         'multiple': true,
                         'placeholder': 'Choose one or more',
+                        'selected': 'colour_blue',
                         'options': {
                             'colour_red': 'Red',
                             'colour_blue': 'Blue'
@@ -50,6 +51,7 @@
                         'label': 'Size',
                         'id': 'size',
                         'placeholder': 'Choose one',
+                        'selected': 'medium',
                         'options': {
                             '': '',
                             'small': 'Small',
@@ -76,14 +78,16 @@
                 {{
                     form.date({
                         'label': 'Added to',
-                        'id': 'addedTo'
+                        'id': 'addedTo',
+                        'value': '04/07/2017'
                     })
                 }}
 
                 {{
                     form.checkbox({
                         'label': 'In stock',
-                        'id': 'inStock'
+                        'id': 'inStock',
+                        'checked': true
                     })
                 }}
 
