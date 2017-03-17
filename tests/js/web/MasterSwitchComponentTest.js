@@ -25,7 +25,6 @@ describe('MasterSwitch component', function() {
 		<a href="#">foo</a>\
 		<button>foo</button>\
 		<input type="text" />\
-		<input type="text" class="is-disabled disabled" />\
 		<select><option>foo</option></select>\
 	</section>\
 </div>\
@@ -124,11 +123,10 @@ describe('MasterSwitch component', function() {
 
 		it('should allow any links to be clicked', function() {
 			var clickEvent = $.Event('click');
+
 			this.$contentLink.trigger(clickEvent);
 
-			setTimeout(function(){
-				expect(clickEvent.isDefaultPrevented()).to.be.false;
-            }, 1000);
+			expect(clickEvent.isDefaultPrevented()).to.be.false;
 		});
 
 		it('should remove the disabled attribute from buttons', function() {
