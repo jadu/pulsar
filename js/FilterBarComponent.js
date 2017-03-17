@@ -460,8 +460,9 @@ function populateFilterList (filterbar) {
 
             // Hide the filter item in the list
             updateFilterList($addFilterButton, filterId, 'hide');
-            // console.log($filterBar);
-            // $filterBar.removeClass('display--none');
+
+            // Show the filterbar
+            filterbar.removeClass('display--none');
         }
     });
 }
