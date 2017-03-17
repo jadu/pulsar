@@ -11,7 +11,7 @@ FilterBarComponent.prototype.init = function () {
 
     this.$container = this.$html.find('.filter-bar');
 
-    this.$container.each(function(index) {
+    this.$container.each(function() {
         var $filterbar = $(this);
 
         // Create the filter add button
@@ -431,7 +431,6 @@ function updateFilterList ($addFilterButton, filterId, visibility) {
 function populateFilterList (filterbar) {
 
     var $formGroups = filterbar.find('.form__group'),
-        $filterBar = filterbar.find('.filter-bar'),
         $labelContainer = filterbar.find('.filter-bar__labels'),
         $addFilterButton = filterbar.find('[data-ui="show-filter-list"]');
 
