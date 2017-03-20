@@ -43,7 +43,7 @@
 
     // Override default button styling
     .btn.remove-button:active {
-        background-color: inherit;
+        background-color: inherit !important;
     }
 }
 
