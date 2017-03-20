@@ -6,7 +6,7 @@
 {% block tab_content %}
 
     <div class="masterswitch">
-        {{
+    	{{
             form.create()
         }}
 
@@ -31,17 +31,7 @@
                     'name': 'inputText',
                     'placeholder': 'Placeholder'
                 })
-            }}
-
-            {{
-                form.text({
-                    'label': 'Disabled input',
-                    'id': 'inputText',
-                    'name': 'inputText',
-                    'placeholder': 'Placeholder',
-                    'disabled': true
-                })
-            }}
+        	}}
 
             {{
                 html.link({

@@ -44,7 +44,7 @@
 }
 
 @include respond-min($screen-tablet) {
-    @each $variant, $width in $inputs {
+    @each $variant, $width in $input-widths {
         .form-choice.form__group--#{$variant} > .controls > .control__label {
             width: #{$width};
         }

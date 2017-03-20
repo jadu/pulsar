@@ -16,6 +16,15 @@ fieldset {
     margin-bottom: 24px;
 }
 
+.form__group--compact .form__control {
+    height: 33px;
+    line-height: 33px;
+}
+
+.form__group--compact .input-group-addon {
+    line-height: 30px;
+}
+
 .modal .form__group {
     padding: 0;
 }
@@ -225,18 +234,6 @@ fieldset {
     margin-top: $padding-small-vertical;
 }
 
-// input widths
-
-$inputs: (
-    mini:    50px,
-    small:   100px,
-    medium:  200px,
-    regular: 300px,
-    large:   400px,
-    xlarge:  500px,
-    full:    100%
-);
-
 .form__control:not(.checkbox):not(.radio):not(.file) {
 
     // form elements should be 100% on mobile
@@ -252,7 +249,7 @@ $inputs: (
         width: 300px;
     }
 
-    @each $variant, $width in $inputs {
+    @each $variant, $width in $input-widths {
 
         // 1. allow input-specific widths for fine-grained control
         // 2. allow a class on the main group to control the width of it's controls
@@ -266,10 +263,10 @@ $inputs: (
 
 @include respond-min($screen-smaller) {
     .form__group .input-group {
-        width: map-get($inputs, regular);
+        width: map-get($input-widths, regular);
     }
 
-    @each $variant, $width in $inputs {
+    @each $variant, $width in $input-widths {
         .form__group.form__group--#{$variant} .input-group {
             width: #{$width};
         }

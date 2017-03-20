@@ -176,3 +176,16 @@
     line-height: $line-height-large;
     text-align: center;
 }
+
+.slotpicker-calendar {
+    display: inline-block;
+    vertical-align: top;
+    width: 400px;
+}
+
+.slotpicker-slots {
+    display: inline-block;
+    margin-left: $gutter-width;
+    vertical-align: top;
+    width: 250px;
+}

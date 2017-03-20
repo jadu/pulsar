@@ -1,0 +1,405 @@
+{% extends '@pulsar/pulsar/components/tab.html.twig' %}
+
+{%- block actions_left -%}
+    {{
+        html.actions_menu({
+            'items': [
+                [
+                    {
+                        'label': 'Edit report settings',
+                        'href': '#',
+                        'icon': 'pencil'
+                    },
+                    {
+                        'label': 'New clone of this report',
+                        'href': '#',
+                        'icon': 'copy'
+                    }
+                ],
+                [
+                    {
+                        'label': 'Add schedule',
+                        'href': '#schedule-add',
+                        'icon': 'time',
+                        'data-toggle': 'modal'
+                    }
+                ],
+                [
+                    {
+                        'label': 'Export as CSV',
+                        'href': '#',
+                        'icon': 'file'
+                    },
+                    {
+                        'label': 'Export as PDF',
+                        'href': '#',
+                        'icon': 'file'
+                    },
+                    {
+                        'label': 'Print',
+                        'href': '#',
+                        'icon': 'print'
+                    }
+                ],
+                [
+                    {
+                        'label': 'Delete',
+                        'href': '#',
+                        'icon': 'remove'
+                    }
+                ],
+            ]
+        })
+    }}
+    {{
+        html.button_dropdown({
+            'label': html.icon('time') ~ ' 0',
+            'class': 'dropdown--medium hide',
+            'items': ['
+                <h2 class="dropdown__title">No Schedules' ~
+                html.button({
+                    'label': html.icon('plus'),
+                    'data-toggle': 'modal',
+                    'href': '#schedule-add',
+                    'type': 'link'
+                }) ~ '</h2>
+                <div class="dropdown__body">
+                    <p>A schedule runs this report (with the current settings) on a regular basis and emails the results to one or more people</p>' ~
+                    html.button({
+                        'label': html.icon('plus') ~ ' Add Schedule',
+                        'class': 'btn--primary dropdown__action',
+                        'data-toggle': 'modal',
+                        'href': '#schedule-add',
+                        'type': 'link'
+                    }) ~'
+                </div>
+            ']
+        })
+    }}
+    {{
+        html.button_dropdown({
+            'label': html.icon('time') ~ ' 2',
+            'class': 'dropdown--medium',
+            'items': ['
+                <h2 class="dropdown__title">Schedules' ~
+                html.button({
+                    'label': html.icon('plus'),
+                    'data-toggle': 'modal',
+                    'href': '#schedule-add',
+                    'type': 'link'
+                }) ~ '</h2>
+                    <div class="schedule">
+                        <div class="schedule__actions">
+                            ' ~ html.button({
+                                'class': 'btn--naked',
+                                'label': html.icon('pencil')
+                            }) ~ html.button({
+                                    'class': 'btn--naked',
+                                    'label': html.icon('remove-sign')
+                            }) ~ '
+                        </div>
+                        <h3 class="schedule__title">Content update</h3>
+                        <div class="schedule__detail">
+                            <span class="schedule__item">
+                                <span data-toggle="tooltips" title="Repeats" data-placement="left">' ~
+                                html.icon('refresh') ~ ' Weekly
+                                </span>
+                            </span>' ~
+                            '<span class="schedule__item">
+                                <span data-toggle="tooltips" title="Runs on" data-placement="right">' ~
+                                    html.label({'label': 'Mon'}) ~
+                                    html.label({'label': 'Wed'}) ~
+                                    html.label({'label': 'Thu'}) ~
+                                '</span>
+                            </span>
+                        </div>
+                        <div class="schedule__detail">
+                            <span class="schedule__item">
+                                <span data-toggle="tooltips" title="Runs at" data-placement="left">' ~ html.icon('time') ~ ' 09:00 am</span>
+                            </span>
+                            <span class="schedule__item">
+                                <span data-toggle="tooltips" title="Emails to" data-placement="right">' ~ html.icon('envelope') ~ ' 24 recipients</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="schedule">
+                        <div class="schedule__actions">
+                            ' ~ html.button({
+                                'class': 'btn--naked',
+                                'label': html.icon('pencil')
+                            }) ~ html.button({
+                                    'class': 'btn--naked',
+                                    'label': html.icon('remove-sign')
+                            }) ~ '
+                        </div>
+                        <h3 class="schedule__title">Monthly content update</h3>
+                        <div class="schedule__detail">
+                            <span class="schedule__item">
+                                <span data-toggle="tooltips" title="Repeats" data-placement="left">' ~
+                                    html.icon('refresh') ~ ' Monthly
+                                </span>
+                            </span>
+                            <span class="schedule__item">
+                                <span data-toggle="tooltips" title="Runs on" data-placement="right">' ~
+                                    html.label({'label': '1st of the month'}) ~ '
+                                </span>
+                            </span>
+                        </div>
+                        <div class="schedule__detail">
+                            <span class="schedule__item">
+                                <span data-toggle="tooltips" title="Runs at" data-placement="left">' ~ html.icon('time') ~ ' 11:59 pm</span>
+                            </span>
+                            <span class="schedule__item">
+                                <span data-toggle="tooltips" title="Emails to" data-placement="right">' ~ html.icon('envelope') ~ ' 1 recipient</span>
+                            </span>
+                        </div>
+                        <div class="schedule__detail">
+                            <span class="schedule__item">
+                                <span data-toggle="tooltips" title="Starts" data-placement="left">' ~ html.icon('play') ~ ' 04/07/2017</span>
+                            </span>
+                            <span class="schedule__item">
+                                <span data-toggle="tooltips" title="Stops" data-placement="right">' ~ html.icon('stop') ~ ' 04/07/2018</span>
+                            </span>
+                        </div>
+                    </div>
+            ']
+        })
+    }}
+{%- endblock -%}
+
+{%- block actions_right -%}
+    {{
+        html.button({
+            'label': 'Export',
+            'class': 'btn--primary'
+        })
+    }}
+{%- endblock -%}
+
+{% block tab_content %}
+
+    <div class="report">
+        <div class="report__settings">
+            <span class="report__timeframe">Created within last 30 days</span>
+            {{
+                form.text({
+                    'value': '01/01/2015 - 01/31/2015',
+                    'prepend': html.icon('calendar'),
+                    'name': 'daterange',
+                    'bare': true
+                })
+            }}
+            {#
+                html.button_group({
+                    'buttons': [
+                        html.button({ label: html.icon('bar-chart') }),
+                        html.button({ label: html.icon('table') })
+                    ]
+                })
+            #}
+        </div>
+
+        <h1 class="report__title">All content owned by Paul Stanton</h1>
+
+        <div class="report__query">
+            Show me {{ html.label({ 'label': 'content created in the last 30 days', 'class': 'label--primary' }) }}
+            where {{ html.label({ 'label': 'administrator is Paul Stanton', 'class': 'label--primary' }) }}
+            and {{ html.label({ 'label': 'content type is all content types', 'class': 'label--primary' }) }}
+            {{
+                html.button({
+                    'label': html.icon('pencil'),
+                    'class': 'btn--naked'
+                })
+            }}
+        </div>
+        <span class="report__info">56 items found &mdash; Last run 01/08/2016 12:34pm by Paul Stanton &mdash; {{ html.link({ 'label': 'Hide query' }) }}</span>
+
+        <div class="report__data">
+
+            <div class="report__chart ct-chart"></div>
+
+            <table class="table datatable table--full">
+                <thead>
+                    <tr>
+                        <th class="table-responsive"></th>
+                        <th class="table-selection"></th>
+                        <th><a href="#">Content title</a></th>
+                        <th><a href="#">Type</a></th>
+                        <th><a href="#">Created</a></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in 0..50 %}
+                    <tr>
+                        <td class="table-responsive">
+                            {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                        </td>
+                        <td class="table-selection">
+                            {{ html.icon('unchecked', { 'class': 'table-row-select js-select' }) }}
+                        </td>
+                        <td><a href="#">My awesome document title</a></td>
+                        <td><a href="#">document</a></td>
+                        <td>01/02/2016</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="modal modal--large" id="schedule-add">
+        <div class="modal__dialog">
+          <div class="modal__content">
+            <div class="modal__header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal__title">Add Schedule</h4>
+            </div>
+            <div class="modal__body">
+            {{ form.create() }}
+
+                {{
+                    form.text({
+                        'label': 'Schedule name',
+                        'class': 'form__group--full',
+                        'help': 'Used in the email subject line. Must be unique',
+                        'required': true,
+                        'autofocus': true
+                    })
+                }}
+
+                {{
+                    form.choice({
+                        'label': 'Run report on',
+                        'class': 'choice--bubbles choice--bubbles-inline',
+                        'multiple': true,
+                        'optimize': 'few',
+                        'required': true,
+                        'options': [
+                            {
+                                'label': 'MO',
+                                'value': 'mon',
+                                'name': 'days'
+                            },
+                            {
+                                'label': 'TU',
+                                'value': 'tue',
+                                'name': 'days'
+                            },
+                            {
+                                'label': 'WE',
+                                'value': 'wed',
+                                'name': 'days'
+                            },
+                            {
+                                'label': 'TH',
+                                'value': 'thu',
+                                'name': 'days'
+                            },
+                            {
+                                'label': 'FR',
+                                'value': 'fri',
+                                'name': 'days'
+                            },
+                            {
+                                'label': 'SA',
+                                'value': 'sat',
+                                'name': 'days'
+                            },
+                            {
+                                'label': 'SU',
+                                'value': 'sun',
+                                'name': 'days'
+                            }
+                        ]
+                    })
+                }}
+
+                {{
+                    form.text({
+                        'label': 'At',
+                        'class': 'form__group--small',
+                        'placeholder': 'hh:mm',
+                        'required': true,
+                        'help': 'Emails will be sent when the report has finished building'
+                    })
+                }}
+
+                {{
+                    form.content({
+                        'label': 'Start schedule',
+                        'value': 'Immediately ' ~ html.link({'href': '#', 'label': 'change'}),
+                        'class': 'form__group--full'
+                    })
+                }}
+
+                {{
+                    form.choice({
+                        'label': 'Repeat',
+                        'options': [
+                            {
+                                'label': 'Every week',
+                                'value': 'weekly'
+                            },
+                            {
+                                'label': 'Every 2 weeks',
+                                'value': 'fortnightly'
+                            },
+                            {
+                                'label': 'Every month',
+                                'value': 'monthly'
+                            },
+                            {
+                                'label': 'Every 6 months',
+                                'value': 'six-monthly'
+                            },
+                            {
+                                'label': 'Every year',
+                                'value': 'yearly'
+                            }
+                        ]
+                    })
+                }}
+
+                {{
+                    form.content({
+                        'label': 'End repeat',
+                        'value': 'Never (run indefinitely) ' ~ html.link({'href': '#', 'label': 'change'}),
+                        'class': 'form__group--full'
+                    })
+                }}
+
+                {{
+                    form.text({
+                        'label': 'Email report to',
+                        'class': 'form__group--full',
+                        'placeholder': 'Email address',
+                        'guidance': 'Recipients will be BCC’d',
+                        'required': true
+                    })
+                }}
+
+            </div>
+            <div class="modal__footer">
+                {{
+                    form.end({
+                        'actions': [
+                            form.submit({
+                                'class': 'btn--primary',
+                                'label': 'Save'
+                            }),
+                            html.button({
+                                'label': 'Cancel',
+                                'class': 'btn--naked',
+                                'data-dismiss': 'modal'
+                            })
+                        ]
+                    })
+                }}
+            </div>
+          </div><!-- /.modal__content -->
+        </div><!-- /.modal__dialog -->
+      </div><!-- /.modal -->
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %}
