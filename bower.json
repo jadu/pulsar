@@ -32,6 +32,7 @@
     "svgeezy": "latest",
     "Vague.js": "0.0.4",
     "vide": "~0.3.1",
+    "chartist": "^0.9.8",
     "spectrum": "^1.8.0"
   },
   "devDependencies": {
