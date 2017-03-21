@@ -39,6 +39,7 @@ paths:
     form-checkbox_inline-html-twig: /form/checkbox_inline.html.twig
     form-choice-bare-html-twig: /form/choice-bare.html.twig
     form-choice-class-html-twig: /form/choice-class.html.twig
+    form-choice-disabled-html-twig: /form/choice-disabled.html.twig
     form-choice-error-html-twig: /form/choice-error.html.twig
     form-choice-guidance-container-html-twig: /form/choice-guidance-container.html.twig
     form-choice-guidance-html-twig: /form/choice-guidance.html.twig
@@ -105,9 +106,12 @@ paths:
     form-radio_inline-html-twig: /form/radio_inline.html.twig
     form-radio_simple-html-twig: /form/radio_simple.html.twig
     form-select-bare-html-twig: /form/select-bare.html.twig
+    form-select-disabled-option-html-twig: /form/select-disabled-option.html.twig
+    form-select-disabled-html-twig: /form/select-disabled.html.twig
     form-select-error-html-twig: /form/select-error.html.twig
     form-select-guidance-container-html-twig: /form/select-guidance-container.html.twig
     form-select-guidance-html-twig: /form/select-guidance.html.twig
+    form-select-nested-syntax-html-twig: /form/select-nested-syntax.html.twig
     form-select-html-twig: /form/select.html.twig
     form-select2-bare-html-twig: /form/select2-bare.html.twig
     form-select2-error-html-twig: /form/select2-error.html.twig
@@ -197,6 +201,7 @@ paths:
     html-label-states-html-twig: /html/label-states.html.twig
     html-label-html-twig: /html/label.html.twig
     html-li-html-twig: /html/li.html.twig
+    html-link-disabled-html-twig: /html/link-disabled.html.twig
     html-link-list-html-twig: /html/link-list.html.twig
     html-link-html-twig: /html/link.html.twig
     html-list-active-item-html-twig: /html/list-active-item.html.twig

@@ -2,20 +2,20 @@
 
 var $ = require('jquery');
 
-require('../libs/pikaday/plugins/pikaday.jquery'),
-require('../libs/select2/dist/js/select2.min'),
+require('../libs/pikaday/plugins/pikaday.jquery');
+require('../libs/select2/dist/js/select2.min');
 require('../libs/spectrum/spectrum');
+var moment = require('../libs/moment/moment');
 
 function PulsarFormComponent(html) {
 
     this.$html = html;
 
-};
+}
 
 PulsarFormComponent.prototype.init = function () {
 
-    var component = this,
-        choiceBlock = component.$html.find(".choice--block, .choice--bubbles");
+    var component = this;
 
     // Colourpickers
     component.initColourpickers();
@@ -28,14 +28,14 @@ PulsarFormComponent.prototype.init = function () {
     component.$select2 = this.$html.find('.js-select2');
 
     component.$select2.each(function() {
+        function formatOption(data) {
+            return $('<span>' + data.text + '</span>');
+        }
 
         var $this = $(this);
 
-        if ($this.data('html')) {
 
-            function formatOption(data) {
-                return $('<span>' + data.text + '</span>');
-            };
+        if ($this.data('html')) {
 
             $this.select2({
                 templateResult: formatOption,
@@ -46,6 +46,9 @@ PulsarFormComponent.prototype.init = function () {
             $this.select2();
         }
     });
+
+    // Block styled checkboxes and radios
+    var choiceBlock = component.$html.find(".choice--block");
 
     // set up choice block states on load
     $.each(choiceBlock, function() {
@@ -73,19 +76,28 @@ PulsarFormComponent.prototype.initColourpickers = function() {
     pickers.each(function() {
         var $this = $(this),
             $input = $this.find('.form__control'),
-            $pickerInput = $($.parseHTML('<input>'));
+            $pickerInput = $($.parseHTML('<input>')),
+            disabledAttr = $input.attr('disabled'),
+            isDisabled = false;
+
+        if (typeof disabledAttr !== typeof undefined && disabledAttr !== false) {
+            isDisabled = true;
+        }
 
         $pickerInput.insertAfter($input);
 
         // changing the picker should update the input
         $pickerInput.spectrum({
             color: '#' + $input.val(),
+            disabled: isDisabled,
             showInput: false,
             preferredFormat: 'hex',
             replacerClassName: 'btn',
             change: function (color) {
-                $input.val(('' + color).substring(1));
-                $input.trigger('change');
+                if (!$input.attr('disabled')) {
+                    $input.val(('' + color).substring(1));
+                    $input.trigger('change');
+                }
             }
         });
 

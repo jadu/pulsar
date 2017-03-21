@@ -288,7 +288,7 @@ body {
 }
 
 .signin__hint {
-	@include fa-icon();
+	@include icon-FontAwesome();
 	animation-duration: 1s;
 	animation-fill-mode: both;
 	animation-iteration-count: infinite;
@@ -354,7 +354,7 @@ body {
 	.signin-forgot &,
 	.signin-twostep &,
 	.signin-success & {
-		@include fa-icon();
+		@include icon-FontAwesome();
 		background-image: none;
 		border-radius: 65px;
 		line-height: 65px;

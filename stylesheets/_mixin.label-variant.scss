@@ -1,8 +1,15 @@
-@mixin label-variant($color, $text-color: $label-color-alt) {
-    background-color: $color !important;
-    border-color: $color !important;
+@mixin label-variant($color, $text-color: $label-color-alt, $immutable: false) {
+
+    $important: '';
+
+    @if ($immutable) {
+        $important: !important;
+    }
+
+    background-color: unquote($color + $important);
+    border-color: unquote($color + $important);
     border-width: 0;
-    color: $text-color !important;
+    color: unquote($text-color + $important);
     text-transform: lowercase;
 
     // Removable labels
@@ -11,7 +18,7 @@
     .btn.remove-button [class*=" icon-"] {
         &,
         &:hover {
-            color: $text-color !important;
+            color: unquote($text-color + $important);
         }
     }
 

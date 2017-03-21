@@ -1,6 +1,6 @@
 {
   "name": "pulsar",
-  "version": "6.12.3",
+  "version": "6.16.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/jadu/pulsar.git"
@@ -44,6 +44,7 @@
     "grunt-contrib-watch": "^1.0.0",
     "grunt-email-builder": "^3.0.1",
     "grunt-exec": "^0.4.6",
+    "grunt-gh-pages": "^2.0.0",
     "grunt-inline-css": "^0.1.5",
     "grunt-leading-indent": "^0.2.0",
     "grunt-mailgun": "^1.0.1",
@@ -59,15 +60,16 @@
     "minifyify": "^6.3.0",
     "mocha": "^2.4.5",
     "mocha-phantomjs": "^4.0.2",
-    "mochify": "~2.15.0",
+    "mochify": "~2.18.1",
     "mochify-istanbul": "^2.4.1",
     "node-sass": "^3.7.0",
-    "phantomjs": "^1.9.19",
+    "phantomjs": "2.1.1",
     "phpruntime": "^5.0.0",
     "phptoast": "^3.17.0",
     "phptojs": "^3.16.0",
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0",
+    "sinon-jquery": "^1.0.2",
     "snyk": "^1.19.1",
     "twig": "^0.9.4",
     "uglifyify": "^3.0.1"
@@ -90,6 +92,7 @@
     }
   },
   "dependencies": {
+    "jstree": "^3.3.3",
     "lodash": "^4.6.1",
     "moment": "^2.15.2"
   }

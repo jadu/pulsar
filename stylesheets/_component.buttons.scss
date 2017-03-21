@@ -34,6 +34,12 @@ $btn-small-padding-top:     $btn-padding-top / 2.5;
 $btn-small-padding-bottom:  $btn-padding-bottom / 2.5;
 $btn-small-padding-x:       $btn-padding-x / 2.5;
 
+// Stop compressed grunt output converting `.btn--white` to `.btn--#fff`
+// https://github.com/jadu/pulsar/pull/502
+// scss-lint:disable StringQuotes
+$btn-white:                 'white';
+// scss-lint:enable StringQuotes
+
 .btn {
     @include inline-block;
     -webkit-appearance: none; /* 1 */
@@ -125,7 +131,7 @@ $btn-small-padding-x:       $btn-padding-x / 2.5;
             background-color: color($state, light) !important;
             color: color($state, dark) !important;
 
-            &:not(:disabled):not(.is-disabled).btn--white {
+            &:not(:disabled):not(.is-disabled).btn--#{$btn-white} {
                 color: color(text) !important;
             }
         }
@@ -156,36 +162,48 @@ $btn-small-padding-x:       $btn-padding-x / 2.5;
 
 .btn--outline {
     background: none !important;
-    border: 0;
-    box-shadow: inset 0 0 0 2px color(base);
-    padding-bottom: $btn-padding-bottom + 2;
-    padding-top: $btn-padding-top;
+    border: 2px solid color(base);
+    box-shadow: none;
+    padding: ($btn-padding-top - 2) ($btn-padding-x - 2) $btn-padding-bottom;
 
     &:hover,
     &.is-hovered {
-        box-shadow: inset 0 0 0 2px color(base);
-        padding-bottom: $btn-padding-bottom + 1;
+        box-shadow: none;
+        padding-bottom: $btn-padding-bottom - 1;
     }
 
     &:active,
     &.active {
         background-color: color(base, light) !important;
-        box-shadow: inset 0 0 0 2px color(base);
+        box-shadow: none;
         color: pick_best_color(color(base, light), (#fff, color(gray, dark))) !important;
-        padding-bottom: $btn-padding-bottom;
+        padding-bottom: $btn-padding-bottom - 2;
         top: 2px;
     }
 
     &.is-disabled,
     &:disabled {
         background-color: transparent !important;
-        box-shadow: inset 0 0 0 2px color(base) !important;
+        box-shadow: none !important;
         color: color(text, disabled) !important;
+    }
+
+    &.btn--naked {
+        padding: $btn-padding-top $btn-padding-x $btn-padding-bottom !important;
+    }
+
+    &.btn--small {
+        padding: ($btn-small-padding-top - 2) ($btn-small-padding-x - 2) ($btn-small-padding-bottom - 2) !important;
+
+        &.btn--naked {
+           padding: $btn-small-padding-top $btn-small-padding-x $btn-small-padding-bottom !important;
+        }
     }
 
     @each $state, $state-color, $state-color-alt in $state-colors {
         &.btn--#{$state} {
-            box-shadow: inset 0 0 0 2px $state-color !important;
+            border: 2px solid $state-color !important;
+            box-shadow: none !important;
             color: color($state, dark) !important;
 
             &:active,
@@ -193,7 +211,7 @@ $btn-small-padding-x:       $btn-padding-x / 2.5;
                 background-color: color($state, light) !important;
                 color: color($state, dark) !important;
 
-                &.btn--white {
+                &.btn--#{$btn-white} {
                     color: color(text) !important;
                 }
             }
@@ -204,20 +222,21 @@ $btn-small-padding-x:       $btn-padding-x / 2.5;
                 &.active {
                     background-color: transparent !important;
 
-                    &.btn--white {
+                    &.btn--#{$btn-white} {
                         color: color($state, dark) !important;
                     }
                 }
             }
 
             &.btn--naked {
+                border: 0 !important;
                 box-shadow: none !important;
 
                 &:active,
                 &.active {
                     color: color($state, dark) !important;
 
-                    &.btn--white {
+                    &.btn--#{$btn-white} {
                         color: color(text) !important;
                     }
                 }
@@ -271,7 +290,7 @@ $btn-small-padding-x:       $btn-padding-x / 2.5;
     box-shadow: none;
 }
 
-.btn--white {
+.btn--#{$btn-white} {
     &.is-disabled,
     &:disabled {
         opacity: .5;
@@ -286,7 +305,7 @@ $btn-small-padding-x:       $btn-padding-x / 2.5;
 // The text in small, disabled buttons look like garbage on low-dpi screens,
 // so we'll disable font smoothing for this edge case (and re-enable it
 // for hi-dpi screens).
-.btn--white,
+.btn--#{$btn-white},
 .btn--naked {
     &.is-disabled,
     &:disabled {

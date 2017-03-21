@@ -64,7 +64,7 @@
         &.sorting::after,
         &.sorting_asc::after,
         &.sorting_desc::after {
-            @include fa-icon();
+            @include icon-FontAwesome();
             font-size: 18px;
             left: 0;
             margin-left: 10px;

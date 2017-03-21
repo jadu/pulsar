@@ -1,3 +1,5 @@
+'use strict';
+
 var _ = require('lodash');
 
 function htmlEntities(str) {
@@ -12,7 +14,13 @@ AttributeParserExtension.prototype.getName = function () {
 };
 
 AttributeParserExtension.prototype.parseAttributes = function (attributes, args) {
-    if (!attributes || Object.keys(attributes).length === 0) {
+    var html = [''],
+        usingTag = false;
+
+    if (typeof args !== 'undefined' && 'tag' in args) {
+        usingTag = true;
+        html.push(args.tag);
+    } else if (!attributes || Object.keys(attributes).length === 0) {
         return '';
     }
 
@@ -25,24 +33,23 @@ AttributeParserExtension.prototype.parseAttributes = function (attributes, args)
 
     delete attributes['class'];
 
-    var html = [''];
-
     var addDisabledClass = false;
 
     _.forEach(attributes, function (value, key) {
         if (value && !_.isArray(value)) {
             if (typeof(value) === 'boolean') {
+
+                if ((!usingTag || args.tag !== 'a') || (usingTag && key !== 'disabled')) {
+                    html.push(key);
+                }
+
                 switch (key) {
                     case 'required':
                         html.push('aria-required="true"');
                         break;
                     case 'disabled':
                         html.push('aria-disabled="true"');
-                        html.push(key);
                         addDisabledClass = true;
-                        break;
-                    default:
-                        html.push(key);
                         break;
                 }
             }
@@ -62,7 +69,13 @@ AttributeParserExtension.prototype.parseAttributes = function (attributes, args)
         html.push('class="' + classes.join(' ') + '"');
     }
 
-    return html.join(' ');
+    if (usingTag) {
+        return html.join(' ').trim();
+    }
+    else {
+        return html.join(' ');
+    }
+
 };
 
 AttributeParserExtension.prototype.defaultAttributes = function (attributes, defaults) {

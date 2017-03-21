@@ -17,10 +17,6 @@ $ie-version: 12 !default;
 // Third party plugins
 // scss-lint:disable all
 @import '../libs/normalize-css/normalize.css';
-@import '../libs/select2/dist/css/select2.css';
-@import 'charts/chartist.settings';
-@import '../libs/chartist/dist/scss/chartist';
-@import '../libs/bootstrap-daterangepicker/daterangepicker.css';
 // scss-lint:enable all
 
 // Proxima Nova (requires license)
@@ -72,7 +68,6 @@ $fa-css-prefix: 'icon';
 @import 'structure.forms';
 
 // Layouts
-@import 'layout.report';
 @import 'layout.settings';
 @import 'layout.sidebar';
 @import 'layout.signin';
@@ -99,12 +94,12 @@ $fa-css-prefix: 'icon';
 @import 'component.breadcrumb';
 @import 'component.button-groups';
 @import 'component.buttons';
+@import 'component.calendar';
 @import 'component.colorpicker';
 @import 'component.close';
 @import 'component.datepicker';
 @import 'component.daterange';
 @import 'component.dropdowns';
-@import 'component.edit-button';
 @import 'component.editor';
 @import 'component.filterbar';
 @import 'component.flash';
@@ -122,7 +117,6 @@ $fa-css-prefix: 'icon';
 @import 'component.message';
 @import 'component.metadata';
 @import 'component.modals';
-@import 'component.module-permissions';
 @import 'component.navigation';
 @import 'component.nav-list';
 @import 'component.navbars';
@@ -148,6 +142,7 @@ $fa-css-prefix: 'icon';
 @import 'component.toggle-switch';
 @import 'component.toolbar';
 @import 'component.tooltips';
+@import 'component.jstree';
 
 /* -------------------------------------------------------------------------- *\
 	If you're extending Pulsar and want to include your own layouts/modules etc

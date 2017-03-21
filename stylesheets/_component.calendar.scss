@@ -1,0 +1,183 @@
+.slotpicker-slots__heading {
+    font-size: 1.1em;
+    margin-bottom: 0;
+    margin-top: 40px;
+}
+
+.ui-datepicker {
+    padding-bottom: 1em;
+    width: 100%;
+}
+
+.ui-datepicker-calendar {
+    width: 400px;
+}
+
+.ui-datepicker-calendar td {
+    background-color: color(white);
+    border: 1px solid color(border);
+    cursor: pointer;
+    padding: 5px 0 30px;
+    text-align: left;
+    text-indent: 5px;
+    transition: background-color .1s ease-in-out;
+
+    a {
+        color: #000;
+        text-decoration: none;
+    }
+
+    &:hover {
+        background-color: #fafafa;
+    }
+
+    &.ui-datepicker-unselectable {
+        background-color: color(gray, off-white);
+        color: color(text, disabled);
+        cursor: not-allowed;
+    }
+
+    &.ui-datepicker-other-month {
+        background-color: color(white);
+        border: 0;
+    }
+}
+
+.ui-datepicker-calendar th {
+    color: color(gray, light);
+    font-family: $font-family-regular;
+    font-weight: normal;
+}
+
+.ui-datepicker-header {
+    height: 32px;
+    margin-top: 1em;
+    text-align: center;
+    width: 400px;
+}
+
+.ui-datepicker-prev,
+.ui-datepicker-next {
+    color: color(gray, light);
+    font-size: .75em;
+    text-transform: uppercase;
+}
+
+.ui-datepicker-prev {
+    float: left;
+
+    &::before {
+        content: '\f0d9';
+        padding: 5px;
+        font-family: 'FontAwesome';
+    }
+}
+
+.ui-datepicker-next {
+    float: right;
+
+    &::after {
+        content: '\f0da';
+        padding: 5px;
+        font-family: 'FontAwesome';
+    }
+}
+
+.ui-datepicker-calendar td.ui-datepicker-today {
+    position: relative;
+
+    &::after {
+        background-color: color(gray, lighter);
+        border-top-left-radius: $border-radius;
+        border-bottom-right-radius: $border-radius;
+        bottom: 3px;
+        color: color(text);
+        font-size: $font-size-small;
+        left: 3px;
+        line-height: 1em;
+        padding: 3px 0;
+        position: absolute;
+        text-align: center;
+        text-indent: 0;
+        right: 3px;
+    }
+}
+
+.ui-datepicker-calendar td.ui-datepicker-today::after {
+    content: 'today';
+}
+
+.ui-datepicker-calendar td.ui-datepicker-current-day {
+    background-color: color(primary);
+    color: color(white);
+
+    a {
+        color: color(white);
+    }
+
+    &.ui-datepicker-today::after {
+        background-color: color(white);
+        color: color(primary);
+    }
+}
+
+.slotpicker-calendar {
+    display: inline-block;
+    vertical-align: top;
+    width: 400px;
+}
+
+.slotpicker-slots {
+    display: inline-block;
+    margin-left: 20px;
+    vertical-align: top;
+    width: 250px;
+}
+
+.slotpicker-slots__subheading {
+    border-top: 1px solid color(border);
+    color: color(border);
+    display: block;
+    height: 42px;
+    margin-top: 12px;
+    padding-top: 12px;
+}
+
+.slotpicker-slots__list {
+    list-style-type: none;
+    margin-bottom: 12px;
+}
+
+.slotpicker-slots__slot {
+    height: 32px;
+}
+
+
+.slotpicker-calendar .loading {
+    display: none;
+
+    .ui-datepicker {
+        opacity: 1;
+    }
+}
+
+.slotpicker-calendar.is-loading {
+    position: relative;
+
+    .ui-datepicker {
+        opacity: .15;
+    }
+
+    .loading {
+        display: block;
+        left: 148px;
+        position: absolute;
+        top: 165px;
+        opacity: 1;
+    }
+
+    .loading i {
+        height: 50px;
+        width: 50px;
+    }
+}

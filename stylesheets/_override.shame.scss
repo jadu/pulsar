@@ -177,19 +177,15 @@
     text-align: center;
 }
 
-.is-loading td {
-    vertical-align: middle;
+.slotpicker-calendar {
+    display: inline-block;
+    vertical-align: top;
+    width: 400px;
 }
 
-tr:hover .skeleton {
-    background-color: darken(color(background), 2);
+.slotpicker-slots {
+    display: inline-block;
+    margin-left: $gutter-width;
+    vertical-align: top;
+    width: 250px;
 }
-
-.skeleton {
-    background-color: color(background, light);
-    border-radius: 10px;
-    display: block;
-    height: 10px;
-    width: 70%;
-}
-

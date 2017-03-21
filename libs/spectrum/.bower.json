@@ -30,6 +30,5 @@
   },
   "_source": "https://github.com/bgrins/spectrum.git",
   "_target": "^1.8.0",
-  "_originalSource": "spectrum",
-  "_direct": true
+  "_originalSource": "spectrum"
 }

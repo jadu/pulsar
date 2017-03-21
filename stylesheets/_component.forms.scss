@@ -16,6 +16,15 @@ fieldset {
     margin-bottom: 24px;
 }
 
+.form__group--compact .form__control {
+    height: 33px;
+    line-height: 33px;
+}
+
+.form__group--compact .input-group-addon {
+    line-height: 30px;
+}
+
 .modal .form__group {
     padding: 0;
 }
@@ -65,11 +74,27 @@ fieldset {
     }
 
     &.select {
+        appearance: none;
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAFZJREFUOBFjYBgFVA+Bp0AT/xPAT/DZ6gWU/IPHgN9AOQ98BoDkMoAYlytSCWmGyXdhMaQNJkkMzQhUtBLJkGVANkiMJMABVL0PiHcBMTtJOkcVkxYCADK5Iu6w+agDAAAAAElFTkSuQmCC');
+        background-position: 97%;
+        background-repeat: no-repeat;
         border: 1px solid $input-border;
-        padding: 0 0 0 $padding-base-horizontal;
+        padding: 0 20px 0 $padding-base-horizontal;
 
         @include ie-lte(8) {
             height: 24px;
+        }
+
+        // select arrows can't be hidden in IE8 & 9, so reset to default styles
+        @include ie-lte(9) {
+            background-image: none;
+            padding-right: 0;
+        }
+
+        // remove the arrow in IE10 & 11, modern browsers are taken care of
+        // by the `appearance` property
+        &::-ms-expand {
+            display: none;
         }
     }
 
@@ -118,7 +143,7 @@ fieldset {
             @include ie-lte(8) {
                 border: 1px solid $input-border;
                 max-width: 100%;
-                padding: 0 $padding-base-horizontal;
+                padding: 0 0 0 $padding-base-horizontal;
                 width: 300px;
             }
         }
@@ -142,9 +167,9 @@ fieldset {
     // Note: HTML5 says that inputs under a fieldset > legend:first-child won't be
     // disabled if the fieldset is disabled. Due to implementation difficulty,
     // we don't honor that edge case; we style them as disabled anyway.
-    &[disabled],
-    &[readonly],
-    fieldset[disabled] & {
+    &:not(.checkbox):not(.radio):not(.file)[disabled],
+    &:not(.checkbox):not(.radio):not(.file)[readonly],
+    fieldset[disabled] &:not(.checkbox):not(.radio):not(.file) {
         cursor: not-allowed;
         background-color: $input-bg-disabled;
     }
@@ -209,50 +234,39 @@ fieldset {
     margin-top: $padding-small-vertical;
 }
 
-// input widths
-
-$inputs: (
-    mini:    50px,
-    small:   100px,
-    medium:  200px,
-    regular: 300px,
-    large:   400px,
-    xlarge:  500px,
-    full:    100%
-);
-
 .form__control:not(.checkbox):not(.radio):not(.file) {
 
     // form elements should be 100% on mobile
     background-color: #fafafa;
     width: 100%;
+}
 
-    @include respond-min($screen-smaller) {
+@include respond-min($screen-smaller) {
 
-        // default width
-        .form__group & {
-            max-width: 100%;
-            width: 300px;
-        }
+    // default width
+    .form__group .form__control:not(.checkbox):not(.radio):not(.file) {
+        max-width: 100%;
+        width: 300px;
+    }
 
-        @each $variant, $width in $inputs {
+    @each $variant, $width in $input-widths {
 
-            // 1. allow input-specific widths for fine-grained control
-            // 2. allow a class on the main group to control the width of it's controls
-            &.form__control--#{$variant},
-            .form__group--#{$variant} & {
-                width: #{$width};
-            }
+        // 1. allow input-specific widths for fine-grained control
+        // 2. allow a class on the main group to control the width of it's controls
+        .form__control:not(.checkbox):not(.radio):not(.file).form__control--#{$variant},
+        .form__group--#{$variant} .form__control:not(.checkbox):not(.radio):not(.file) {
+            width: #{$width};
         }
     }
 }
 
+
 @include respond-min($screen-smaller) {
     .form__group .input-group {
-        width: map-get($inputs, regular);
+        width: map-get($input-widths, regular);
     }
 
-    @each $variant, $width in $inputs {
+    @each $variant, $width in $input-widths {
         .form__group.form__group--#{$variant} .input-group {
             width: #{$width};
         }
@@ -285,9 +299,15 @@ $inputs: (
 
 .help-block {
     clear: both;
-    color: color(text, light);
+    color: color(text, help);
     display: block;
     font-size: $font-size-small;
+}
+
+// if a control label is in the help block (like a bare input) it doesn't need
+// the extra padding
+.help-block > .control__label {
+    padding: 0;
 }
 
 // if help block is next to the main label, space it appropriately
@@ -368,4 +388,11 @@ $inputs: (
         clear: left;
         float: left;
     }
+}
+
+// disabled checkbox/radio inputs within a choice helper should have their label
+// look visually disabled too (the main label for the entire choice still uses
+// normal text colour)
+.is-disabled + .form-choice__label {
+    color: color(text, disabled);
 }

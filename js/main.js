@@ -110,11 +110,13 @@
             }
         }).disableSelection();
 
-        tinycon.setBubble(6);
+        // tinycon.setBubble(6);
 
-        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-            $('.ct-chart').get(0).__chartist__.update();
+        // jsTree
+        $('#container').jstree({
+            'plugins' : ['state']
         });
 
     });
+
 }(jQuery));

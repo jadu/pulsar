@@ -36,15 +36,10 @@ $danger-to-text-color: black;
     background-color: color(new) !important;
 }
 
-body a.is-disabled {
-    color: color(link, disabled) !important;
-    cursor: not-allowed;
-}
-
 .text--success {
     color: color(success);
 }
 
-.text--danger {
-    color: color(danger);
+.is-bold {
+    font-family: $font-family-regular;
 }

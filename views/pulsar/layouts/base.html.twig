@@ -61,7 +61,7 @@
     <link rel="stylesheet" type="text/css" href="{{ themeFile }}" />
 {% endif %}
 
-    <!-- <link rel="stylesheet" href="http://basehold.it/24"> -->
+    <!-- <link rel="stylesheet" href="http://basehold.it/12"> -->
 
     <script
         src="{{ base_path ~ 'dist/js/bundle.js' }}"
@@ -75,7 +75,7 @@
 
     {% block pageStyle %}{% endblock %}
 </head>
-<body class="language-html theme-slate {{ bodyClass|default }}" id="top">
+<body class="language-html theme-slate">
 
 {% block body %}
     <div role="main" class="container" id="top">
@@ -166,6 +166,6 @@
 {% block modals %}{% endblock %}
 
 {% block javascript %}{% endblock %}
-{% block tab_javascript %}aaa{% endblock %}
+{% block tab_javascript %}{% endblock %}
 </body>
 </html>

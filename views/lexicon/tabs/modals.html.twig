@@ -1,61 +1,123 @@
 {% extends "@pulsar/pulsar/components/tab.html.twig" %}
 
 {% block tab_content %}
-      <div class="modal modal__example">
-        <div class="modal__dialog">
-          <div class="modal__content">
-            <div class="modal__header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 class="modal__title">A simple example</h4>
-            </div>
-            <div class="modal__body">
-              <p>The modal body might have instructions, a form, or other stuff.</p>
-            </div>
-            <div class="modal__footer">
-              <button type="button" class="btn" data-dismiss="modal">Cancel</button>
-              <button type="button" class="btn btn--primary">Save Changes</button>
-            </div>
-          </div><!-- /.modal__content -->
-        </div><!-- /.modal__dialog -->
-      </div><!-- /.modal -->
-
-      <div class="modal modal--danger modal__example">
-        <div class="modal__dialog">
-          <div class="modal__content">
-            <div class="modal__header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 class="modal__title"><i class="icon-warning-sign"></i> You're about to do something really, really bad</h4>
-            </div>
-            <div class="modal__body">
-              <p>We mainly use modals to get you to stop and confirm that you really want to delete something, and remind you that this action cannot be reversed.</p>
-              <p>A modal's action buttons should be written so that if a user only reads the buttons, they should get an idea of the action they're about to perform instead of blindly clicking 'OK' or 'Confirm'.</p>
-            </div>
-            <div class="modal__footer">
-              <button type="button" class="btn" data-dismiss="modal">Don't Do Anything</button>
-              <button type="button" class="btn btn--danger">Delete Everything</button>
-            </div>
-          </div><!-- /.modal__content -->
-        </div><!-- /.modal__dialog -->
-      </div><!-- /.modal -->
-
-      <p><a data-toggle="modal" href="#myModal" class="btn">Launch Demo Modal</a></p>
-
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal__dialog">
+<div class="modal modal__example">
+    <div class="modal__dialog">
         <div class="modal__content">
-          <div class="modal__header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal__title">Modal title</h4>
-          </div>
-          <div class="modal__body">
-            ...
-          </div>
-          <div class="modal__footer">
-            <button type="button" class="btn btn--primary">Save Changes</button>
-            <button type="button" class="btn" data-dismiss="modal">Close</button>
-          </div>
+            <div class="modal__header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal__title">A simple example</h4>
+            </div>
+            <div class="modal__body">
+                <p>The modal body might have instructions, a form, or other stuff.</p>
+            </div>
+            <div class="modal__footer">
+                <button type="button" class="btn" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn--primary">Save Changes</button>
+            </div>
         </div><!-- /.modal__content -->
-      </div><!-- /.modal__dialog -->
-    </div><!-- /.modal -->
+    </div><!-- /.modal__dialog -->
+</div><!-- /.modal -->
+
+<div class="modal modal--danger modal__example">
+    <div class="modal__dialog">
+        <div class="modal__content">
+            <div class="modal__header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal__title"><i class="icon-warning-sign"></i> You're about to do something really, really bad</h4>
+            </div>
+            <div class="modal__body">
+                <p>We mainly use modals to get you to stop and confirm that you really want to delete something, and remind you that this action cannot be reversed.</p>
+                <p>A modal's action buttons should be written so that if a user only reads the buttons, they should get an idea of the action they're about to perform instead of blindly clicking 'OK' or 'Confirm'.</p>
+            </div>
+            <div class="modal__footer">
+                <button type="button" class="btn" data-dismiss="modal">Don't Do Anything</button>
+                <button type="button" class="btn btn--danger">Delete Everything</button>
+            </div>
+        </div><!-- /.modal__content -->
+    </div><!-- /.modal__dialog -->
+</div><!-- /.modal -->
+
+<p><a data-toggle="modal" href="#myModal" class="btn">Launch Standard Modal</a></p>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal__dialog">
+        <div class="modal__content">
+            <div class="modal__header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal__title">Standard modal</h4>
+            </div>
+            <div class="modal__body">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pharetra dui ac congue fringilla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nunc sit amet feugiat diam. Proin eu condimentum elit. Donec facilisis urna sed tortor semper tincidunt. Maecenas tortor justo, rhoncus a luctus eget, consectetur suscipit est. In molestie posuere lectus. Vestibulum sit amet ligula odio. Nulla lobortis neque ac porta accumsan.</p>
+
+                <p>Sed non maximus ante. Morbi nec interdum velit, quis accumsan felis. Ut laoreet egestas elit. Donec vulputate ex eu posuere auctor. Mauris sodales purus porta volutpat luctus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vestibulum placerat eros eget tincidunt. Cras pellentesque vestibulum ligula, a posuere massa bibendum at. Quisque laoreet mauris eros, vel varius neque facilisis a. Suspendisse ornare aliquet tortor, id lacinia turpis commodo a. In tempus risus quis dapibus blandit. Sed semper odio id nulla faucibus consectetur. Nunc purus lectus, blandit quis est ac, lacinia cursus leo. Quisque dapibus, augue at consequat eleifend, orci sapien lacinia elit, in condimentum lacus lacus eu odio. Aliquam non sem tellus.</p>
+
+                <p>Maecenas id lacus hendrerit, accumsan massa vitae, mattis tellus. Nullam lacinia enim quis lorem blandit congue. Nullam et tincidunt magna. Pellentesque dapibus lacus nec ex congue placerat. Aliquam maximus purus at pharetra aliquet. Cras lobortis lectus a urna venenatis, at ornare turpis bibendum. Praesent et ipsum ultrices, gravida sapien in, facilisis massa. Sed vel vulputate neque. Donec augue nulla, commodo ac semper vulputate, rutrum non nunc.</p>
+
+                <p>Nulla feugiat sit amet mi et luctus. Mauris laoreet ornare massa, ac iaculis nunc auctor eu. Fusce aliquet faucibus sapien, sed semper lorem tristique consectetur. Aliquam sed pretium dolor, commodo pharetra augue. Vestibulum ultrices at orci eu varius. Proin augue purus, commodo vitae hendrerit in, finibus ac arcu. Morbi ligula dui, dignissim at dui nec, convallis finibus lacus. Phasellus dui tortor, hendrerit a mollis vitae, suscipit non sapien. Morbi dolor diam, vulputate eget hendrerit sit amet, pretium sit amet ex. Suspendisse nulla nisl, sagittis vulputate ex at, fringilla faucibus leo. Vivamus elementum purus vitae porta interdum. Vestibulum mattis pharetra urna. Sed et nibh in leo placerat posuere. Ut commodo semper felis sed posuere. Praesent aliquet neque et augue commodo finibus. Curabitur convallis molestie nulla quis sagittis.</p>
+
+                <p>Donec urna ex, tincidunt eget diam eu, pulvinar iaculis augue. Phasellus sapien eros, aliquet id egestas nec, ultricies feugiat dui. Vestibulum in massa malesuada, ullamcorper magna non, auctor justo. Sed nisl mi, mollis ut magna in, molestie aliquam est. Mauris ac suscipit risus, sit amet mattis sapien. Nam tincidunt, nisl sit amet tempor auctor, massa lorem maximus metus, vitae aliquam elit sem quis arcu. Suspendisse dolor mauris, facilisis sit amet leo a, molestie aliquet enim. Proin molestie convallis enim non scelerisque. Vivamus finibus ornare nunc ac laoreet. Aliquam dignissim odio purus, convallis facilisis elit imperdiet sed.</p>
+            </div>
+            <div class="modal__footer">
+                <button type="button" class="btn btn--primary">Save Changes</button>
+                <button type="button" class="btn" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal__content -->
+    </div><!-- /.modal__dialog -->
+</div><!-- /.modal -->
+
+<p><a data-toggle="modal" href="#myFullScreenModal" class="btn">Launch Full Screen Modal</a></p>
+
+<div class="modal modal--full-screen fade" id="myFullScreenModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal__dialog">
+        <div class="modal__content">
+            <div class="modal__header">
+                <div class="modal__header-detailed">
+                    <img src="http://www.placecage.com/g/70/70" class="modal__avatar" />
+                    <h4 class="modal__title">some_image.png</h4>
+                    <p class="modal__title-meta">Posted by James Jacobs - Today at 8:38am in GWS0000001</p>
+                </div>
+
+                <div class="modal__controls">
+                    {{
+                        html.link({
+                            'href': '#',
+                            'label': html.icon('times', {
+                                'label': 'Close'
+                            }),
+                            'class': 'close',
+                            'title': 'Close',
+                            'data-dismiss': 'modal',
+                            'data-toggle': 'tooltips',
+                            'data-placement': 'bottom',
+
+                        })
+                    }}
+                    {{
+                        html.link({
+                            'href': '#',
+                            'label': html.icon('cloud-download', {
+                                'label': 'Close'
+                            }),
+                            'class': 'download',
+                            'title': 'Download <span class="muted">(58k)</span>',
+                            'data-html': 'true',
+                            'data-toggle': 'tooltips',
+                            'data-placement': 'bottom',
+
+                        })
+                    }}
+                </div>
+            </div>
+            <div class="modal__body">
+                <div class="modal__image">
+                    <figure class="scaled">
+                        <img class="scaled__image" src="../../../images/youtube.jpg" alt="Pexample image" />
+                    </figure>
+                </div>
+            </div>
+        </div><!-- /.modal__content -->
+    </div><!-- /.modal__dialog -->
+</div><!-- /.modal -->
 
 {% endblock tab_content %}

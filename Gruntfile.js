@@ -329,10 +329,6 @@ module.exports = function(grunt) {
                             pictureAspect: 'whiteSilhouette',
                             backgroundColor: '#15a6d1',
                             onConflict: 'override'
-                        },
-                        safariPinnedTab: {
-                            pictureAspect: 'silhouette',
-                            themeColor: '#15a6d1'
                         }
                     }
                 }
@@ -366,10 +362,6 @@ module.exports = function(grunt) {
                             pictureAspect: 'whiteSilhouette',
                             backgroundColor: '#80BA27',
                             onConflict: 'override'
-                        },
-                        safariPinnedTab: {
-                            pictureAspect: 'silhouette',
-                            themeColor: '#80BA27'
                         }
                     }
                 }
@@ -403,10 +395,6 @@ module.exports = function(grunt) {
                             pictureAspect: 'whiteSilhouette',
                             backgroundColor: '#54B9A9',
                             onConflict: 'override'
-                        },
-                        safariPinnedTab: {
-                            pictureAspect: 'silhouette',
-                            themeColor: '#54B9A9'
                         }
                     }
                 }
@@ -440,10 +428,6 @@ module.exports = function(grunt) {
                             pictureAspect: 'whiteSilhouette',
                             backgroundColor: '#DC5172',
                             onConflict: 'override'
-                        },
-                        safariPinnedTab: {
-                            pictureAspect: 'silhouette',
-                            themeColor: '#DC5172'
                         }
                     }
                 }
@@ -490,6 +474,14 @@ module.exports = function(grunt) {
                 reloadOnRestart: true,
                 watchTask: true
             }
+        },
+
+        'gh-pages': {
+            options: {
+                base: 'docs/_site',
+                repo: 'https://github.com/jadu/pulsar.git'
+            },
+            src: ['**']
         }
 
     });
@@ -514,6 +506,7 @@ module.exports = function(grunt) {
         'copy',
         'scsslint',
         'sass:dev',
+        'autoprefixer',
         'bless',
         'browserify',
         'browserSync',
@@ -532,6 +525,7 @@ module.exports = function(grunt) {
         'scsslint',
         'sass:dist_modern',
         'sass:dist_ie',
+        'autoprefixer',
         'browserify:dist',
         'copy:dist',
         'emailBuilder',
@@ -542,6 +536,7 @@ module.exports = function(grunt) {
     grunt.registerTask('deploy', [
         'sass:dist_modern',
         'sass:dist_ie',
+        'autoprefixer',
         'browserify:dist',
         'copy:dist',
         'compress'

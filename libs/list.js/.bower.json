@@ -1,12 +1,11 @@
 {
   "name": "list.js",
   "main": "dist/list.js",
-  "version": "1.1.1",
   "homepage": "http://listjs.com",
   "authors": [
     "Jonny Strömberg <jonny.stromberg@gmail.com>"
   ],
-  "description": "Add search, sort and flexibility to plain HTML lists or tables with cross-browser native JavaScript.",
+  "description": "The perfect library for lists. Supports search, sort, filters and flexibility. Built to be invisible and work on existing HTML",
   "keywords": [
     "list",
     "search",
@@ -25,13 +24,14 @@
     "test",
     "tests"
   ],
-  "_release": "1.1.1",
+  "version": "1.5.0",
+  "_release": "1.5.0",
   "_resolution": {
     "type": "version",
-    "tag": "1.1.1",
-    "commit": "9754c28262b07e647e0ad3de181cdb4e323e7db7"
+    "tag": "v1.5.0",
+    "commit": "9c8ef3cc224bb6a3a0c7cd2ef70d79e8adb339c3"
   },
-  "_source": "git://github.com/javve/list.js.git",
+  "_source": "https://github.com/javve/list.js.git",
   "_target": "*",
   "_originalSource": "list.js"
 }
