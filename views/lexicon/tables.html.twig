@@ -1,4 +1,5 @@
 {% extends '@pulsar/lexicon/base.html.twig' %}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 
 {% set heading = 'Tables' %}
 
@@ -26,7 +27,8 @@
         {
           "id"    : "basic",
           "label" : "Basic Table",
-          "src"   : tab_buttongroup
+          "src"   : tab_buttongroup,
+          "active": true
         },
         {
           "id"    : "datatable",
@@ -51,8 +53,7 @@
         {
           "id"    : "sortable",
           "label" : "Sortable Tables",
-          "src"   : tab_sortable,
-          "active": true
+          "src"   : tab_sortable
         }
     ]
 %}
