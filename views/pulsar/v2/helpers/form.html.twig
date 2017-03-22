@@ -334,7 +334,10 @@ multiple           | bool   | If `true`, uses checkboxes instead of radios, or p
     {% else %}
 
         {% for input_options in options.options %}
-            {% set input_options = input_options|merge({'bare': true}) %}
+            {% set input_options = input_options|merge({
+            'bare': true,
+            'label': '<span class="form-choice__label">' ~ input_options.label ~ '</span>'
+            }) %}
             {% if options.multiple %}
                 {% set inputs = inputs|merge([ form.checkbox_inline(input_options) ]) %}
             {% else %}
@@ -353,6 +356,68 @@ multiple           | bool   | If `true`, uses checkboxes instead of radios, or p
             'inputs': inputs
         })
     }}
+
+{% endspaceless %}
+{% endmacro %}
+
+
+{# -----------------------------------------------------------------------------
+
+# Color
+
+Generates a text input with an integrated color picker.
+
+## Example usage
+
+```twig
+{{
+    form.color({
+        'label': 'Background colour'
+    })
+}}
+```
+
+## Options applied to parent wrapper
+
+Option      | Type   | Description
+----------- | ------ | ---------------------------------------------------------
+class       | string | A space separated list of class names
+error       | string | Text to explain an error/validation condition. Also adds error state styling
+guidance    | string | Text to be displayed in a popover, adds a (?) icon after the input
+help        | string | Additional guidance information to be displayed next to the input
+label       | string | Text for the `<label>` companion element
+required    | bool   | Visually indicates that the field must be completed
+
+## Options applied to input
+
+Option      | Type   | Description
+----------- | ------ | ---------------------------------------------------------
+autofocus   | bool   | Whether the field should have input focus on page load
+disabled    | bool   | Stops the element from being interactive if true
+form        | string | Specific one or more forms this label belongs to
+id          | string | A unique identifier, will also be used as the label's `for` attribute
+name        | string | The name of this control
+placeholder | string | A short hint that describes the expected value
+required    | bool   | Adds `required` and `aria-required="true"` attributes
+value       | string | Specifies the value of the input
+data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
+
+*Any other options not listed here will be applied to the input.
+
+#}
+{% macro color(options) %}
+{% spaceless %}
+    {% import _self as form %}
+
+    {%
+        set options = options|default({})|merge({
+            'class': options.class|default ~ ' colorpicker js-colorpicker',
+            'prepend': options.prepend|default('#'),
+            'type': 'text'
+        })
+    %}
+
+    {{ form.text(options) }}
 
 {% endspaceless %}
 {% endmacro %}
@@ -936,6 +1001,7 @@ controls.class   | string | A space separated list of class names
             )
     -}}>
     {% endif %}
+
         {{
             elem.label({
                 'for': options.parent.id|default,

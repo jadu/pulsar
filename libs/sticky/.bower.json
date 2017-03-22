@@ -43,14 +43,14 @@
   },
   "ignore": [],
   "homepage": "https://github.com/garand/sticky",
-  "version": "1.0.3",
-  "_release": "1.0.3",
+  "version": "1.0.4",
+  "_release": "1.0.4",
   "_resolution": {
     "type": "version",
-    "tag": "1.0.3",
-    "commit": "a0154df5c8613b9829b114a411ced103647b3de0"
+    "tag": "1.0.4",
+    "commit": "a8613b817de6cab6d4e9e041a169ade6bf5bd846"
   },
-  "_source": "git://github.com/garand/sticky.git",
+  "_source": "https://github.com/garand/sticky.git",
   "_target": "*",
   "_originalSource": "sticky"
 }

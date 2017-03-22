@@ -20,8 +20,8 @@ install:
 
 script:
   - phpunit
-  - npm run coverage
   - npm test
+  - npm run coverage
   - snyk auth $SNYK_TOKEN
   - snyk monitor
 

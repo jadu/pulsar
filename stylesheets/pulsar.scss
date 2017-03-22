@@ -15,8 +15,9 @@
 $ie-version: 12 !default;
 
 // Third party plugins
+// scss-lint:disable all
 @import '../libs/normalize-css/normalize.css';
-@import '../libs/select2/dist/css/select2.css';
+// scss-lint:enable all
 
 // Proxima Nova (requires license)
 $font-path: '../fonts/';
@@ -77,6 +78,9 @@ $fa-css-prefix: 'icon';
 	mixins you should @import them here.
 \* -------------------------------------------------------------------------- */
 
+// Third party code
+@import 'libraries/library.colorpicker';
+
 // Objects
 @import 'objects/object.box';
 @import 'objects/object.google-result';
@@ -90,6 +94,8 @@ $fa-css-prefix: 'icon';
 @import 'component.breadcrumb';
 @import 'component.button-groups';
 @import 'component.buttons';
+@import 'component.calendar';
+@import 'component.colorpicker';
 @import 'component.close';
 @import 'component.datepicker';
 @import 'component.daterange';
@@ -136,6 +142,7 @@ $fa-css-prefix: 'icon';
 @import 'component.toggle-switch';
 @import 'component.toolbar';
 @import 'component.tooltips';
+@import 'component.jstree';
 
 /* -------------------------------------------------------------------------- *\
 	If you're extending Pulsar and want to include your own layouts/modules etc

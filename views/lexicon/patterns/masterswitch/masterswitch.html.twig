@@ -1,0 +1,85 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
+
+{% block tab_content %}
+
+    <div class="masterswitch">
+        {{
+            form.create()
+        }}
+
+        {{
+            form.toggle_switch({
+                'class': 'masterswitch-control',
+                'label': 'Enable masterswitch content',
+                'id': 'toggletest'
+            })
+        }}
+
+        <hr />
+
+        <section class="masterswitch-content is-disabled">
+
+            <p>This content should be disabled until the masterswitch is turned on.</p>
+
+            {{
+                form.text({
+                    'label': 'Text input',
+                    'id': 'inputText',
+                    'name': 'inputText',
+                    'placeholder': 'Placeholder'
+                })
+            }}
+
+            {{
+                html.link({
+                    'label': 'External link',
+                    'href': 'http://google.com'
+                })
+            }}
+
+            {{
+                form.checkbox({
+                    'label': 'Normal checkbox'
+                })
+            }}
+
+            {{
+                form.checkbox({
+                    'label': 'Disabled checkbox',
+                    'disabled': true
+                })
+            }}
+
+            {{
+                html.link({
+                    'label': 'Disabled link',
+                    'href': '#normal',
+                    'disabled': true
+                })
+            }}
+
+            {{
+                form.end({
+                    'class': 'form__actions--flush',
+                    'actions': [
+                        html.button({
+                            'label': 'Save Changes',
+                            'class': 'btn--primary'
+                        }),
+                        html.button({
+                            'label': 'Cancel',
+                            'class': 'btn--naked'
+                        })
+                    ]
+                })
+            }}<!--
+     --></section>
+    </div>
+
+{% endblock tab_content %}
+
+{% block tab_sidebar %}
+    <h2 class="heading">{{ html.icon('info-sign', { 'class': 'sidebar-icon'}) }} Disabling a UI</h2>
+
+    <p>Disable an entire UI until the main masterswitch is turned on. You should make sure that turning the masterswitch off disables the functionality contained with the rest of the UI.</p>
+{% endblock tab_sidebar %}

@@ -1,5 +1,24 @@
 ## Changelog
 
+##### v.3.0.20 - 2016-12-04
+* Fixed minor bug where the `resized` event would not fire under specific conditions when changing the overflow.
+
+##### v.3.0.19 - 2016-11-23
+* Bubble dispatched events. Merged #319.
+
+##### v.3.0.18 - 2016-10-26
+* Fixed Firefox issue where calling dispatchEvent on a detached element throws an error.  Fixes #317.
+
+##### v.3.0.17 - 2016-7-25
+* Fixed Chromium issue where getComputedStyle pixel value did not exactly match the style pixel value.  Fixes #306.
+* Removed undocumented argument, minor refactoring, more comments.
+
+##### v.3.0.16 - 2016-7-13
+* Fixed issue with overflowing parent elements. Fixes #298.
+
+##### v.3.0.15 - 2016-1-26
+* Used newer Event constructor, when available. Fixes #280.
+
 ##### v.3.0.14 - 2015-11-11
 * Fixed memory leak on destroy. Merged #271, fixes #270.
 * Fixed bug in old versions of Firefox (1-5), fixes #246.
@@ -42,7 +61,7 @@
 * Reworked to respect max-height of any unit-type.  Fixes #191.
 
 ##### v.3.0.1 - 2015-04-23
-* Fixed the destroy event so that it removes it's own event handler. Fixes #218.
+* Fixed the destroy event so that it removes its own event handler. Fixes #218.
 
 ##### v.3.0.0 - 2015-04-15
 * Added new methods for updating and destroying:

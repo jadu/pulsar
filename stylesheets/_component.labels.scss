@@ -1,8 +1,10 @@
+@import 'mixin.label-variant';
+
 .label,
 %label {
     @include inline-block;
     @include content-box;
-    @include label-variant(color(base), color(base, alt));
+    @include label-variant(color(base), color(base, alt), false);
     border-radius: $border-radius;
     font-size: 75%;
     font-weight: 500;
@@ -41,7 +43,7 @@
 
     // Override default button styling
     .btn.remove-button:active {
-        background-color: inherit;
+        background-color: inherit !important;
     }
 }
 
@@ -50,7 +52,7 @@
 @each $state, $state-color, $state-color-alt in $state-colors {
     .label--#{$state},
     %label--#{$state} {
-        @include label-variant($state-color, $state-color-alt);
+        @include label-variant($state-color, $state-color-alt, true);
     }
 }
 

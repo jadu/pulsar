@@ -1,0 +1,18 @@
+{% extends '@pulsar/lexicon/base.html.twig' %}
+
+{% set heading = 'Utilities' %}
+
+{% set tab_responsive %}
+    {% include 'lexicon/utilities/responsive.html.twig' %}
+{% endset %}
+
+{%
+    set tabs_content = [
+        {
+          "id"    : "basic",
+          "label" : "Responsive",
+          "src"   : tab_responsive,
+          "active": true
+        }
+    ]
+%}

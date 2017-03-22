@@ -451,67 +451,54 @@ body {
 
 // Scale effect is disabled in Firefox because of horrible performance issues
 @keyframes success-icon {
-  0% {
-  	transform: translateY(0) scale(1);
-  }
+	0% {
+		transform: translateY(0) scale(1);
+	}
 
-  80% {
-  	transform: translateY(150%);
-  }
+	50% {
+		transform: translateY(160%) scale(2);
+	}
 
-  100% {
-  	transform: translateY(150%) scale(20);
-  	-moz-transform: translateY(150%) scale(1);
-  }
-}
-
-// Scale effect is disabled in Firefox because of horrible performance issues
-@keyframes success-container {
-  0% {
-  	transform: scale(1);
-  	-moz-transform: scale(1);
-  }
-
-  100% {
-  	transform: scale(20);
-  	-moz-transform: scale(1);
-  }
+	100% {
+		-moz-transform: translateY(160%) scale(1);
+		transform: translateY(160%) scale(1.5);
+	}
 }
 
 @keyframes hint-wobble {
-  0%, 50%, 100% {
-  	transform: translateX(0);
-  }
+	0%, 50%, 100% {
+		transform: translateX(0);
+	}
 
-  25%, 75% {
-  	transform: translateX(-5px);
-  }
+	25%, 75% {
+		transform: translateX(-5px);
+	}
 }
 
 @keyframes shake {
-  0% {
-  	transform: translateX(0);
-  }
+	0% {
+		transform: translateX(0);
+	}
 
-  12.5% {
-  	transform: translateX(-10px) rotateY(-5deg);
-  }
+	12.5% {
+		transform: translateX(-10px) rotateY(-5deg);
+	}
 
-  37.5% {
-  	transform: translateX(10px) rotateY(4deg);
-  }
+	37.5% {
+		transform: translateX(10px) rotateY(4deg);
+	}
 
-  62.5% {
-  	transform: translateX(-5px) rotateY(-2deg);
-  }
+	62.5% {
+		transform: translateX(-5px) rotateY(-2deg);
+	}
 
-  87.5% {
-  	transform: translateX(5px) rotateY(1deg);
-  }
+	87.5% {
+		transform: translateX(5px) rotateY(1deg);
+	}
 
-  100% {
-  	transform: translateX(0);
-  }
+	100% {
+		transform: translateX(0);
+	}
 }
 
 @keyframes fade-in {
@@ -529,26 +516,26 @@ body {
 // Full-bleed background image for IE7 & 8
 // The required markup & image for this is contained in a conditional comment
 .signin-oldie-bg {
-  position: fixed;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
+	position: fixed;
+	top: -50%;
+	left: -50%;
+	width: 200%;
+	height: 200%;
 
-  img {
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	margin: auto;
-	min-width: 50%;
-	min-height: 50%;
-  }
+	img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		margin: auto;
+		min-width: 50%;
+		min-height: 50%;
+	}
 
-  + .video {
-  	background: none;
-  }
+	+ .video {
+		background: none;
+	}
 }
 
 

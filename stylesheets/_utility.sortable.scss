@@ -1,9 +1,17 @@
 @mixin sortable-handle {
-    content: '\f0c9';
     color: color(text, light);
+    content: '\f0c9';
     font-family: fontawesome;
+    left: 10px;
     position: absolute;
-    left: 20px;
+    top: 10px;
+}
+
+@mixin sortable-success {
+    color: color(success);
+    font-family: fontawesome;
+    left: 10px;
+    position: absolute;
     top: 10px;
 }
 
@@ -76,12 +84,24 @@ div.is-sorting {
         }
     }
 
+    .has-success > td:first-of-type::before {
+        color: color(success);
+        content: '\f058';
+    }
+
     .ui-sortable-helper {
         display: table;
     }
 
     .is-sorting {
         background-color: color(sorting);
+    }
+
+    .sortable__count {
+        color: #777;
+        font-family: $font-family-regular;
+        left: 30px;
+        position: absolute;
     }
 }
 

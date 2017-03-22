@@ -1,0 +1,5 @@
+<div class="block-list">
+    <div class="block-list__item">Foo</div>
+    <div class="block-list__item">Bar</div>
+    <div class="block-list__item">Baz</div>
+</div>

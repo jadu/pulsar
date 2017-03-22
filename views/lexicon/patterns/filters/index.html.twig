@@ -1,0 +1,26 @@
+{% extends '@pulsar/lexicon/base.html.twig' %}
+
+{% set heading = 'Reports' %}
+
+{% set tab_create %}
+    {% include '/lexicon/patterns/filters/create-filter.html.twig' %}
+{% endset %}
+{% set tab_load %}
+    {% include '/lexicon/patterns/filters/load-filter.html.twig' %}
+{% endset %}
+
+{%
+    set tabs_content = [
+        {
+            "id"    : "create-filter",
+            "label" : "New Filter",
+            "src"   : tab_create,
+            "active": true
+        },
+        {
+            "id"    : "load-filter",
+            "label" : "Load Filter",
+            "src"   : tab_load
+        }
+    ]
+%}

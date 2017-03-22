@@ -1,0 +1,120 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
+
+{% block tab_settings %}
+
+    <div class="settings-section settings-section--primary">
+        <h2 class="settings-section__heading">Branding options</h2>
+
+        <p>You should make sure your colours meet <a href="#">AA contrast compliance</a> with your chosen icon colour.</p>
+
+        {{
+            form.color({
+                'label': 'Primary colour',
+                'id': 'brand-1',
+                'value': '2d86b3',
+                'data-html': 'true',
+                'help': 'Used for the sidebar and underlining active pages'
+            })
+        }}
+
+        {{
+            form.color({
+                'label': 'Secondary colour',
+                'id': 'brand-2',
+                'value': '28779f',
+                'data-html': 'true',
+                'help': 'Used for the sidebar flyout menu'
+            })
+        }}
+
+        {{
+            form.choice({
+                'label': 'Sidebar text/icon colour',
+                'id': 'brand-3',
+                'class': 'radio--inline',
+                'help': 'Choose the one with the highest contrast against your chosen brand colours',
+                'options': [
+                    {
+                        'label': 'Black',
+                        'name': 'choice',
+                        'value': 'black'
+                    },
+                    {
+                        'label': 'White',
+                        'name': 'choice',
+                        'value': 'white'
+                    }
+                ]
+            })
+        }}
+
+    </div>
+
+    <div class="settings-section">
+
+        <p>Simple logo</p>
+
+        <p>Detailed logo</p>
+
+        {{
+            form.end({
+                'actions': [
+                    html.button({
+                        'class': 'btn--primary',
+                        'label': 'Save'
+                    }),
+                    html.button({
+                        'class': 'btn--naked',
+                        'label': 'Cancel'
+                    }),
+                    html.button({
+                        'class': 'btn--danger pull-right',
+                        'label': 'Reset'
+                    })
+                ],
+                'class': 'form__actions--flush'
+            })
+        }}
+
+    </div>
+
+{% endblock tab_settings %}
+
+{% block tab_content %}
+
+    <h2>Preview</h2>
+
+    <div class="branding-preview branding-preview--navigation">
+        <h3 class="branding-preview__title">Navigation</h3>
+        <div class="branding-preview-swatch">
+            <span class="branding-preview__primary" style="background-color: #2d86b3;"></span>
+            <span class="branding-preview__primary-active" style="background-color: #28779f;"></span>
+            <span class="branding-preview__secondary" style="background-color: #28779f;"></span>
+            <span class="branding-preview__hr" style="background-color: #ccc;"></span>
+            <span class="branding-preview__hr" style="background-color: #2d86b3;"></span>
+            <img src="/images/branding/logo-cms-white.svg" class="branding-preview__logo" />
+
+        </div>
+    </div>
+
+    <div class="branding-preview branding-preview--email">
+        <h3 class="branding-preview__title">HTML Email</h3>
+        <div class="branding-preview-swatch">
+            <span class="branding-preview__hr"></span>
+            <span class="branding-preview__container">
+                <span class="branding-preview__primary" style="background-color: #2d86b3;"></span>
+            </span>
+            <img src="/images/branding/logo-cms-white.svg" class="branding-preview__logo" />
+        </div>
+    </div>
+
+    <div class="branding-preview branding-preview--signin">
+        <h3 class="branding-preview__title">Sign in / Registration</h3>
+        <div class="branding-preview-swatch">
+            <span class="branding-preview__container"></span>
+            <span class="branding-preview__primary" style="background-color: #2d86b3;"></span>
+            <img src="/images/branding/logo-cms-white.svg" class="branding-preview__logo" />
+        </div>
+    </div>
+
+{% endblock tab_content %}

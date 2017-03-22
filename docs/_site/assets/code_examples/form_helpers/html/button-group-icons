@@ -1,0 +1,6 @@
+<div class="btn__group">
+    <button class="btn"><i class="icon-align-left"></i></button>
+    <button class="btn"><i class="icon-align-center"></i></button>
+    <button class="btn"><i class="icon-align-right"></i></button>
+    <button class="btn"><i class="icon-align-justify"></i></button>
+</div>

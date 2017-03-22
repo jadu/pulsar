@@ -1,0 +1,103 @@
+{% extends '@pulsar/pulsar/components/tab.html.twig' %}
+
+{% block tab_content %}
+<style type="text/css">
+    .wrapper {
+        padding: 20px;
+    }
+
+    .item {
+        background-color: green;
+        color: white;
+        margin: 10px 0;
+        padding: 10px;
+    }
+</style>
+
+<div class="wrapper">
+
+    <div class="item u-visible-on-phone">
+        1. Visible on mobile, hidden on tablet and desktop
+    </div>
+
+    <div class="item u-visible-on-tablet">
+        2. Visible on tablet, hidden on mobile and desktop
+    </div>
+
+    <div class="item u-visible-on-desktop">
+        3. Visible on desktop, hidden on mobile and tablet
+    </div>
+
+    <div class="item u-hidden-on-phone">
+        4. Hidden on mobile, visible on tablet and desktop
+    </div>
+
+    <div class="item u-hidden-on-tablet">
+        5. Hidden on tablet, visible on mobile and desktop
+    </div>
+
+    <div class="item u-hidden-on-desktop">
+        6. Hidden on desktop, visible on mobile and tablet
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(window).on('resize', function() {
+        $('.item').each(function () {
+            $(this).attr('style', '');
+        });
+
+        $('.item:hidden').each(function () {
+            this.style.setProperty('display', 'block', 'important');
+            this.style.setProperty('background-color', 'red');
+        });
+    });
+
+    $('.item:hidden').each(function () {
+        this.style.setProperty('display', 'block', 'important');
+        this.style.setProperty('background-color', 'red');
+    });
+</script>
+{% endblock %}
+
+{% block tab_sidebar %}
+    <h2 class="heading">{{ html.icon('info-sign', { 'class': 'sidebar-icon'}) }} Responsive utilities</h2>
+    <p>Resize browser window to see which elements are hidden and shown at different breakpoints.</p>
+    <table class="table table--full">
+        <thead>
+            <tr>
+                <th>Device</th>
+                <th>Min width</th>
+                <th>Sass variable</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Mobile</td>
+                <td>480px</td>
+                <td><code>$screen-phone</code></td>
+            </tr>
+            <tr>
+                <td>Phablet</td>
+                <td>600px</td>
+                <td><code>$screen-phablet</code></td>
+            </tr>
+            <tr>
+                <td>Tablet</td>
+                <td>767px</td>
+                <td><code>$screen-tablet</code></td>
+            </tr>
+            <tr>
+                <td>Desktop</td>
+                <td>991px</td>
+                <td><code>$screen-desktop</code></td>
+            </tr>
+            <tr>
+                <td>Widescreen</td>
+                <td>1200px</td>
+                <td><code>$screen-large-desktop</code></td>
+            </tr>
+        </tbody>
+    </table>
+    <p>{{ html.link({'label': html.icon('book') ~' Read more', 'href': 'https://jadu.gitbooks.io/pulsar/content/responsive-utilities.html'}) }}</p>
+{% endblock tab_sidebar %}
