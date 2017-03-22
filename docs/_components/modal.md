@@ -58,6 +58,87 @@ Toggle a modal with a link (or a link button) by using the `data-toggle="modal"`
 </div>
 ```
 
+## Close modal
+
+A link or button within a modal can close itself using the `data-dismiss="modal" attribute.
+
+```html
+<a data-dismiss="modal" href="#">Cancel</a>
+```
+
+## Methods
+
+#### `.modal(options)`
+
+Activates your content as a modal. Accepts an optional options `object`.
+
+```js
+$('#myModal').modal({
+  keyboard: false
+})
+```
+
+#### `.modal('toggle')`
+
+Manually toggles a modal. **Returns to the caller before the modal has actually been shown or hidden** (i.e. before the `shown.bs.modal` or `hidden.bs.modal` event occurs).
+
+```js
+$('#myModal').modal('toggle')
+```
+
+#### `.modal('show')`
+
+Manually opens a modal. **Returns to the caller before the modal has actually been shown** (i.e. before the `shown.bs.modal` event occurs).
+
+```js
+$('#myModal').modal('show')
+```
+
+#### `.modal('hide')`
+
+Manually hides a modal. **Returns to the caller before the modal has actually been hidden** (i.e. before the `hidden.bs.modal` event occurs).
+
+```js
+$('#myModal').modal('hide')
+```
+
+### Events
+
+The modal class exposes a few events for hooking into modal functionality. All modal events are fired at the modal itself (i.e. at the `<div class="modal">`).
+
+<table class="table table-bordered table-striped table-responsive">
+  <thead>
+   <tr>
+     <th style="width: 150px;">Event Type</th>
+     <th>Description</th>
+   </tr>
+  </thead>
+  <tbody>
+   <tr>
+     <td>show.bs.modal</td>
+     <td>This event fires immediately when the <code>show</code> instance method is called. If caused by a click, the clicked element is available as the <code>relatedTarget</code> property of the event.</td>
+   </tr>
+   <tr>
+     <td>shown.bs.modal</td>
+     <td>This event is fired when the modal has been made visible to the user (will wait for CSS transitions to complete). If caused by a click, the clicked element is available as the <code>relatedTarget</code> property of the event.</td>
+   </tr>
+   <tr>
+     <td>hide.bs.modal</td>
+     <td>This event is fired immediately when the <code>hide</code> instance method has been called.</td>
+   </tr>
+   <tr>
+     <td>hidden.bs.modal</td>
+     <td>This event is fired when the modal has finished being hidden from the user (will wait for CSS transitions to complete).</td>
+   </tr>
+  </tbody>
+</table>
+
+```js
+$('#myModal').on('hidden.bs.modal', function (e) {
+  // do something...
+})
+```
+
 ## Make modals accessible
 
 Be sure to add `role="dialog"` to your primary modal div. In the example above, `div#myModal`.
