@@ -1,4 +1,56 @@
 // -----------------------------------------------------------------------------
+//  22/03/2017
+//
+//  Multiple utility classes, refining to utility classes
+//
+//  _utility.misc.scss
+//  _utility.utilities.scss
+// -----------------------------------------------------------------------------
+
+.display--inline,
+.inline-block {
+    display: inline-block;
+}
+
+.display--none {
+    display: none !important;
+}
+
+.align-top {
+    vertical-align: top;
+}
+
+.text--left,
+.align-left {
+    text-align: left;
+}
+
+.text--right,
+.align-right {
+    text-align: right;
+}
+
+.text--center {
+    text-align: center;
+}
+
+.align-justify {
+    text-align: justify;
+}
+
+.float--right {
+    float: right;
+}
+
+.float--left {
+    float: left;
+}
+
+.float--none {
+    float: none;
+}
+
+// -----------------------------------------------------------------------------
 //  10/11/2015
 //
 //  Old direct variable names, mapped to current colour palette.
