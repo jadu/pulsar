@@ -64,3 +64,19 @@ Be sure to add `role="dialog"` to your primary modal div. In the example above, 
 Also, the `aria-labelledby` attribute references your modal title. In this example, `h4#myModalLabel`.
 Finally, `aria-hidden="true"` tells assistive technologies to skip DOM elements.
 Additionally, you may give a description of your modal dialog. Use the `aria-describedby` attribute in the modal's primary `<div>` to point to this description (this is not shown in the above example).
+
+## Nested modals
+
+In certain situations you may want a modal to trigger another modal, e.g. Modal A has a delete button which triggers a delete confirmation modal.
+
+* Clicking the link which triggers Modal-2 should close Modal-1, you shouldn't 'stack' modals on top of each other
+* Clicking `Cancel` on Modal-2 should re-open Modal-1, allowing the user to step back through their actions
+
+This can be achieved by using both `data-toggle` and `data-dismiss` on the link, the `data-toggle` will open the modal referenced by `href` and `data-dismiss` will close the current modal.
+
+```html
+<!-- within modal-1 -->
+<a class="btn" data-toggle="modal" href="#modal-2" data-dismiss="modal">Open Modal 2 and Close Modal 1</a>
+```
+
+You should not nest modals more than 2 levels deep.
