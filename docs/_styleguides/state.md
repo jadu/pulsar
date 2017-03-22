@@ -81,6 +81,17 @@ As a general rule, the `has-` classes will apply a lighter version of the relate
 
 You can also make this colour fade to white after 5 seconds by adding the `fade` class.
 
+Regular text can also use the main state classes, using the colours defined in the palette. You can also extend these with the Sass `%` placeholder.
+
+* `text--primary`
+* `text--success`
+* `text--warning`
+* `text--danger`
+* `text--info`
+* `text--inverse`
+* `text--white`
+* `text--new`
+
 ##### Example
 
 ```html
