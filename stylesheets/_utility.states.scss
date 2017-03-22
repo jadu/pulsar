@@ -32,12 +32,14 @@ $danger-to-text-color: black;
     }
 }
 
-.is-new {
-    background-color: color(new) !important;
+@each $state, $state-color, $state-color-alt in $state-colors {
+    .text--#{$state} {
+        color: $state-color;
+    }
 }
 
-.text--success {
-    color: color(success);
+.is-new {
+    background-color: color(new) !important;
 }
 
 .is-bold {
