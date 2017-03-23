@@ -1,11 +1,31 @@
 ---
 layout: page
-title: Responsive utilities
+title: Utility classes
 ---
 
 There are a collection of variables and classes to allow you to control the visibility of certain elements at a varienty of screen widths.
 
-## Breakpoints
+These can be extended with sass placeholders, e.g. `@extend %u-display-none`.
+
+| Class | Style |
+| `.u-display-none` | `display: none;` |
+| `.u-display-block` | `display: block;` |
+| `.u-display-inline` | `display: inline;` |
+| `.u-display-inline-block` | `display: inline-block;` |
+| `.u-float-none` | `float: none;` |
+| `.u-float-left` | `float: left;` |
+| `.u-vertical-align-top` | `vertical-align: top;` |
+| `.u-vertical-align-middle` | `vertical-align: middle;` |
+| `.u-vertical-align-bottom` | `vertical-align: bottom;` |
+| `.u-vertical-align-baseline` | `vertical-align: baseline;` |
+| `.u-text-align-left` | `text-align: left;` |
+| `.u-text-align-center` | `text-align: center;` |
+| `.u-text-align-right` | `text-align: right;` |
+| `.u-text-align-justify` | `text-align: justify;` |
+
+## Responsive utilities
+
+### Breakpoints
 
 These are defined in `_config.variables.scss` and can be used in your own media queries.
 
@@ -17,11 +37,11 @@ These are defined in `_config.variables.scss` and can be used in your own media 
 | Desktop | 991px | `$screen-desktop` |
 | Widescreen | 1200px | `$screen-large-desktop` |
 
-## Mixins
+### Mixins
 
 Use with the breakpoint variables for easier media queries. Be aware that IE8 will only get desktop styles.
 
-### Respond min
+#### Respond min
 
 ###### Usage
 
@@ -37,7 +57,7 @@ respond-min($width)
 }
 ```
 
-### Respond max
+#### Respond max
 
 ###### Usage
 
@@ -53,7 +73,7 @@ respond-max($width)
 }
 ```
 
-### Respond min-max
+#### Respond min-max
 
 ###### Usage
 
@@ -69,7 +89,7 @@ respond-min-max($min-width, $max-width, $reverse: null) {
 }
 ```
 
-## Visibility
+### Visibility
 
 Use the following utility classes to control the visibility of elements at certain screen sizes.
 

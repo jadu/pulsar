@@ -32,10 +32,6 @@
     color: color(gray, light);
 }
 
-.centered {
-    text-align: center;
-}
-
 p.success {
     background: rgba(0, 153, 51, .8);
     color: color(white);
@@ -78,26 +74,6 @@ p.success {
 
 .margin-right {
     margin-right: $gutter-width;
-}
-
-.inline-block {
-    display: inline-block;
-}
-
-.align-top {
-    vertical-align: top;
-}
-
-.align-left {
-    text-align: left;
-}
-
-.align-right {
-    text-align: right;
-}
-
-.align-justify {
-    text-align: justify;
 }
 
 .no-results {
@@ -249,4 +225,79 @@ div.no-results {
 
 .u-sr-hidden-on-desktop {
     @include sr-hidden-on-desktop;
+}
+
+%u-display-none,
+.u-display-none {
+    display: none;
+}
+
+%u-display-block,
+.u-display-block {
+    display: block;
+}
+
+%u-display-inline,
+.u-display-inline {
+    display: inline;
+}
+
+%u-display-inline-block,
+.u-display-inline-block {
+    display: inline-block;
+}
+
+%u-float-none,
+.u-float-none {
+    float: none;
+}
+
+%u-float-left,
+.u-float-left {
+    float: left;
+}
+
+%u-float-right,
+.u-float-right {
+    float: right;
+}
+
+%u-vertical-align-top,
+.u-vertical-align-top {
+    vertical-align: top;
+}
+
+%u-vertical-align-middle,
+.u-vertical-align-middle {
+    vertical-align: middle;
+}
+
+%u-vertical-align-bottom,
+.u-vertical-align-bottom {
+    vertical-align: bottom;
+}
+
+%u-vertical-align-baseline,
+.u-vertical-align-baseline {
+    vertical-align: baseline;
+}
+
+%u-text-align-left
+.u-text-align-left {
+    text-align: left;
+}
+
+%u-text-align-center,
+.u-text-align-center {
+    text-align: left;
+}
+
+%u-text-align-right,
+.u-text-align-right {
+    text-align: right;
+}
+
+%u-text-align-justify,
+.u-text-align-justify {
+    text-align: justify;
 }
