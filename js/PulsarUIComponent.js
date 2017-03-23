@@ -164,54 +164,74 @@ PulsarUIComponent.prototype.initDataTables = function () {
         component.refreshDatatables();
     });
 
+    this.$html.find('.table--horizontal').each(function() {
+        var $table = $(this).parent();
+
+        $table.scroll(function() {
+            component.styleTableOverflows($table);
+        });
+
+        $($window).on('load resize', function () {
+            component.styleTableOverflows($table);
+        });
+    });
+
+
     // Refresh datatables when windows resized, makes sure scrolling tables
     // calculate their headers correctly
-    $($window).on('load resize', function () {
-        component.refreshDatatables();
-        component.styleTableOverflows();
-    });
+    // $($window).on('load resize', function () {
+    //     component.refreshDatatables();
+    //     component.styleTableOverflows();
+    // });
 }
 
-PulsarUIComponent.prototype.refreshDatatables = function () {
+// PulsarUIComponent.prototype.refreshDatatables = function () {
 
-    var $datatable = $($.fn.dataTable.tables(true));
+//     var $datatable = $($.fn.dataTable.tables(true));
 
-    // Datatables has trouble setting header size correctly, so we'll do it
-    // ourselves
-    if ($datatable.length) {
-        $datatable
-            .closest('.dataTables_scroll')
-            .find('.dataTables_scrollHeadInner, .dataTables_scrollHeadInner .datatable')
-            .width($datatable[0].scrollWidth);
-    }
-}
+//     // Datatables has trouble setting header size correctly, so we'll do it
+//     // ourselves
+//     if ($datatable.length) {
+//         console.log("!");
+//         $datatable
+//             .closest('.dataTables_scroll')
+//             .find('.dataTables_scrollHeadInner, .dataTables_scrollHeadInner .datatable')
+//             .width($datatable[0].scrollWidth);
+//     }
+// }
 
-PulsarUIComponent.prototype.styleTableOverflows = function () {
+PulsarUIComponent.prototype.styleTableOverflows = function ($container) {
 
-    var $datatable = $($.fn.dataTable.tables(true)),
-        $container = $datatable.closest('.dataTables_scroll'),
-        datatableFullWidth = $datatable[0].scrollWidth,
-        datatableVisibleWidth = $datatable.width();
+    var $table = $container.find('.table'),
+        tableFullWidth = $table[0].scrollWidth,
+        tableVisibleWidth = $container.width();
+        console.log(tableFullWidth);
+        console.log(tableVisibleWidth);
 
     // Toggle right hand shadow, if overflowing to the right
-    if (datatableFullWidth === datatableVisibleWidth) {
+    if (tableFullWidth === tableVisibleWidth) {
+        console.log('a');
         $container
             .removeClass('table--overflow-right');
     }
     else {
+        console.log('b');
         $container.addClass('table--overflow-right');
     }
 
     // Toggle left hand shadow, if overflowing to the left
-    if (($datatable.offsetParent().offset().left - $datatable.offset().left) > 0) {
+    if (($table.offsetParent().offset().left - $table.offset().left) > 0) {
+        console.log('c');
         $container.addClass('table--overflow-left');
     }
     else {
+        console.log('d');
         $container.removeClass('table--overflow-left');
     }
 
     // Remove right hand shadow if table scrolled to right hand edge
-    if (-Math.abs((datatableFullWidth - datatableVisibleWidth - $datatable.offsetParent().offset().left)) >= $datatable.offset().left) {
+    if (-Math.abs((tableFullWidth - tableVisibleWidth - $table.offsetParent().offset().left)) >= $table.offset().left) {
+        console.log('e');
         $container.removeClass('table--overflow-right');
     }
 }
