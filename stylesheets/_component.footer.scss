@@ -33,6 +33,10 @@
             -webkit-transform: none;
             transform: none;
         }
+
+        @include ie-lte(9) {
+            left: $nav-primary-width;
+        }
     }
 
     .open-help & {
