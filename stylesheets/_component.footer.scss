@@ -28,7 +28,6 @@
     }
 
     .open-nav & {
-
         @include respond-min($screen-desktop) {
             left: $nav-primary-width;
             -webkit-transform: none;
@@ -37,7 +36,6 @@
     }
 
     .open-help & {
-
         @include respond-min($screen-desktop) {
             left: $nav-primary-width;
             -webkit-transform: none;
@@ -54,23 +52,6 @@
         &:hover {
             color: color(link);
         }
-    }
-}
-
-.lt-ie10 .footer {
-    position: relative;
-    left: 0;
-}
-
-.lt-ie10 .open-nav .footer {
-    left: 0;
-}
-
-.lt-ie10.open-help .footer {
-    right: 300px;
-
-    @include respond-min($screen-desktop) {
-        right: 0;
     }
 }
 
