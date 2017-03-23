@@ -11,6 +11,7 @@
   ],
   "dependencies": {
     "bootstrapx-clickover": "latest",
+    "chartist": "^0.9.8",
     "font-awesome": "4.6.3",
     "html5shiv": "latest",
     "jquery": "1.x",
