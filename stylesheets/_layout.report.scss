@@ -30,7 +30,7 @@
 }
 
 .report__info {
-    @extend %muted;
+    @extend %muted !optional;
     clear: left;
     float: left;
 }
