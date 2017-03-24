@@ -29,7 +29,7 @@
     -webkit-transition: -webkit-transform 500ms ease;
     backface-visibility: hidden;
     display: table;
-    height: 100vh;
+    height: calc(100vh - 37px);
     left: 0;
     padding-bottom: 24px; // make sure content clears the footer
     position: relative;
