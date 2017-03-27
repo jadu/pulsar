@@ -6,6 +6,32 @@ fieldset {
 
 .form {
     background-color: color(white);
+
+    // Added by @stanton, not used in CXM - safe to remove?
+    .slide-inner & {
+        padding-top: 17px;
+    }
+
+    > fieldset {
+        padding: 22px 0;
+
+        legend {
+            border-bottom: 1px solid color(gray, light);
+            color: color(text);
+            display: block;
+            font-size: $font-size-xlarge;
+            line-height: $line-height-base;
+            margin-bottom: 15px;
+            padding: 0 $gutter-width 0;
+            position: relative;
+            width: 100%;
+        }
+    }
+
+    .form__group--inline .form__control:not(.checkbox):not(.radio) {
+        max-width: none;
+        width: auto;
+    }
 }
 
 .form--standalone {
@@ -395,4 +421,14 @@ fieldset {
 // normal text colour)
 .is-disabled + .form-choice__label {
     color: color(text, disabled);
+}
+
+.form__indent {
+    margin-left: 25%;
+    margin-right: $gutter-width;
+
+    p {
+        margin-left: 0;
+        padding-left: 0;
+    }
 }
