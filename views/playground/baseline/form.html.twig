@@ -1,0 +1,136 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
+
+{% block tab_content %}
+    {{
+        form.text({
+            'label': 'Hello HELLO',
+            'placeholder': 'Hello HELLO'
+        })
+    }}
+
+    {{
+        form.text({
+            'label': 'Hello HELLO',
+            'placeholder': 'Hello HELLO',
+            'append': 'Hello HELLO'
+        })
+    }}
+
+    {{
+        form.text({
+            'label': 'Hello HELLO',
+            'placeholder': 'Hello HELLO',
+            'append': html.button({ 'label': 'Hello HELLO' }),
+            'append_type': 'button'
+        })
+    }}
+
+    {{
+        form.textarea({
+            'label': 'Hello HELLO',
+            'value': 'Hello HELLO Hello HELLO Hello HELLO Hello HELLO Hello HELLO Hello HELLO Hello HELLO Hello HELLO Hello HELLO Hello HELLO Hello HELLO '
+        })
+    }}
+
+    {{
+        form.select({
+            'id': 'inputSelect',
+            'name': 'inputSelect',
+            'label': 'HHH Select input',
+            'selected': 'value2',
+            'options': {
+                'value1': 'value one',
+                'value2': 'Hvalue two'
+            }
+        })
+    }}
+
+    {{
+        form.select2({
+            'id': 'inputSelect',
+            'name': 'inputSelect',
+            'label': 'HHH Select2 input',
+            'selected': 'value2',
+            'data-html': 'true',
+            'options': {
+                'value1': '<strong>value</strong> one',
+                'value2': 'Hvalue two'
+            }
+        })
+    }}
+
+    {{
+        form.file({
+            'label': 'HHH File input',
+            'id': 'inputFile',
+            'name': 'inputFile'
+        })
+    }}
+
+        {{
+            form.checkbox({
+                'label': 'Hello HELLO',
+                'id': 'inputCheckboxLeft',
+                'name': 'inputCheckboxLeft',
+                'checked': true
+            })
+        }}
+        {{
+            form.radio({
+                'label': 'Hello HELLO',
+                'id': 'inputRadioLeft',
+                'name': 'inputRadioLeft',
+                'checked': true
+            })
+        }}
+        {{
+            form.checkbox_inline({
+                'label': 'Hello HELLO',
+                'id': 'inputCheckboxRight',
+                'name': 'inputCheckboxInline',
+                'checked': true
+            })
+        }}
+        {{
+            form.radio_inline({
+                'label': 'Hello HELLO',
+                'id': 'inputRadioRight',
+                'name': 'inputRadioInline',
+                'checked': true
+            })
+        }}
+        {{
+            form.checkbox_inline({
+                'class': 'form__group--indent',
+                'label': 'Hello HELLO',
+                'id': 'inputCheckboxRightIndent',
+                'name': 'inputCheckboxInlineIndent',
+                'checked': true
+            })
+        }}
+        {{
+            form.radio_inline({
+                'class': 'form__group--indent',
+                'label': 'Hello HELLO',
+                'id': 'inputRadioRightIndent',
+                'name': 'inputRadioInlineIndent',
+                'checked': true
+            })
+        }}
+
+        {{
+            form.toggle_switch({
+                'checked': false,
+                'label': 'Hello HELLO',
+                'id': 'toggletest'
+            })
+        }}
+        {{
+        form.text({
+            'label': 'Hello HELLO',
+            'placeholder': 'Hello HELLO'
+        })
+    }}
+
+
+{% endblock %}

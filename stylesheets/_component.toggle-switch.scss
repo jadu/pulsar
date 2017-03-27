@@ -51,7 +51,7 @@
     cursor: pointer;
     display: inline-block;
     font-size: 2em;
-    height: 1em;
+    height: $font-size-xxlarge - 1;
     position: relative;
     transition: .4s;
     vertical-align: middle;

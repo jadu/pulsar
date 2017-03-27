@@ -284,6 +284,24 @@
         })
     }}
 
+    {{
+        form.text({
+            'id': 'text-31',
+            'label': 'Prepended button',
+            'prepend_type': 'button',
+            'prepend': html.button({'label': 'Button'})
+        })
+    }}
+
+    {{
+        form.text({
+            'id': 'text-32',
+            'label': 'Appended button',
+            'append_type': 'button',
+            'append': html.button({'label': 'Button'})
+        })
+    }}
+
     {{ form.fieldset_end() }}
 
     {{

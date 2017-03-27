@@ -13,7 +13,7 @@ fieldset {
 }
 
 .form__group {
-    margin-bottom: 24px;
+    margin-bottom: 25px;
 }
 
 .form__group--compact .form__control {
@@ -32,7 +32,7 @@ fieldset {
 .form__control {
     border-radius: $input-border-radius;
     height: $input-height-base;
-    line-height: $input-height-base;
+    line-height: $input-height-base + 1;
     padding: 0 $padding-base-horizontal;
 
     @include respond-min($screen-tablet) {
@@ -68,9 +68,9 @@ fieldset {
         border: 1px solid $input-border;
         height: auto;
         line-height: $line-height-base;
-        min-height: 68px;
-        padding-top: 11px;
-        padding-bottom: 11px;
+        min-height: 83px;
+        padding-top: 12px;
+        padding-bottom: 12px;
     }
 
     &.select {
@@ -106,7 +106,7 @@ fieldset {
         padding: 0;
 
         @include respond-min($screen-tablet) {
-            padding: 14px 0 0;
+            padding: 13px 0;
         }
 
         @include ie-lte(9) {
@@ -181,7 +181,7 @@ fieldset {
 }
 
 .control__label {
-    padding-top: 11px;
+    padding-top: 13px;
     padding-right: 10px;
 }
 
@@ -195,9 +195,21 @@ fieldset {
     }
 }
 
-.legend {
-    font-size: $font-size-large;
-    margin-bottom: .5em;
+fieldset {
+    padding: 22px 0;
+
+    legend,
+    .legend {
+        border-bottom: 1px solid $gray-light;
+        color: color(text);
+        display: block;
+        font-size: $font-size-xlarge;
+        line-height: 35px;
+        margin-bottom: 2px;
+        padding: 0 20px 0 0;
+        position: relative;
+        width: 100%;
+    }
 }
 
 .form__actions {
@@ -231,7 +243,8 @@ fieldset {
 }
 
 .controls > .toggle-switch-label {
-    margin-top: $padding-small-vertical;
+    margin-top: 8px;
+    margin-bottom: 8px;
 }
 
 .form__control:not(.checkbox):not(.radio):not(.file) {
@@ -316,9 +329,10 @@ fieldset {
 }
 
 .form__button-group {
+    margin-bottom: 27px;
 
     > .control__label {
-        padding-top: 3px;
+        padding-top: 7px;
     }
 
     .controls > .control__label {
@@ -365,21 +379,44 @@ fieldset {
     width: 10px;
 }
 
-.form-checkbox .checkbox,
+.form-checkbox,
+.form-radio {
+    margin-bottom: 23px;
+}
+
+.form-checkbox .checkbox {
+    margin-top: 16px;
+}
+
 .form-radio .radio {
-    margin-top: 17px;
+    margin-top: 15px; // yep, radios are larger than checkboxes. Who knew?
 }
 
 // Make sure checkboxes and radios reduce the label's clickable area to the
 // width of the label only
 .form-checkbox-inline,
 .form-radio-inline {
+    margin-bottom: 23px;
+
     > .controls {
         width: 100%;
     }
 
     > .controls > .control__label {
         display: inline-block;
+    }
+
+    .checkbox,
+    .radio {
+        vertical-align: top;
+    }
+
+    .checkbox {
+        margin-top: 3px;
+    }
+
+    .radio {
+        margin-top: 2px;
     }
 }
 

@@ -284,6 +284,24 @@
         })
     }}
 
+    {{
+        form.date({
+            'id': 'date-31',
+            'label': 'Prepended button',
+            'prepend_type': 'button',
+            'prepend': html.button({'label': 'Button'})
+        })
+    }}
+
+    {{
+        form.date({
+            'id': 'date-32',
+            'label': 'Appended button',
+            'append_type': 'button',
+            'append': html.button({'label': 'Button'})
+        })
+    }}
+
     {{ form.fieldset_end() }}
 
     {{
