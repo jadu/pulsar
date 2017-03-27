@@ -1,6 +1,6 @@
 {
   "name": "pulsar",
-  "version": "6.14.1",
+  "version": "6.16.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/jadu/pulsar.git"
@@ -44,6 +44,7 @@
     "grunt-contrib-watch": "^1.0.0",
     "grunt-email-builder": "^3.0.1",
     "grunt-exec": "^0.4.6",
+    "grunt-gh-pages": "^2.0.0",
     "grunt-inline-css": "^0.1.5",
     "grunt-leading-indent": "^0.2.0",
     "grunt-mailgun": "^1.0.1",
@@ -92,6 +93,7 @@
     }
   },
   "dependencies": {
+    "jstree": "^3.3.3",
     "lodash": "^4.6.1",
     "moment": "^2.15.2"
   }

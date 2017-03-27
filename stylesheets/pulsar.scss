@@ -17,7 +17,6 @@ $ie-version: 12 !default;
 // Third party plugins
 // scss-lint:disable all
 @import '../libs/normalize-css/normalize.css';
-@import '../libs/select2/dist/css/select2.css';
 // scss-lint:enable all
 
 // Proxima Nova (requires license)
@@ -95,6 +94,7 @@ $fa-css-prefix: 'icon';
 @import 'component.breadcrumb';
 @import 'component.button-groups';
 @import 'component.buttons';
+@import 'component.calendar';
 @import 'component.colorpicker';
 @import 'component.close';
 @import 'component.datepicker';
@@ -142,6 +142,7 @@ $fa-css-prefix: 'icon';
 @import 'component.toggle-switch';
 @import 'component.toolbar';
 @import 'component.tooltips';
+@import 'component.jstree';
 
 /* -------------------------------------------------------------------------- *\
 	If you're extending Pulsar and want to include your own layouts/modules etc
@@ -152,10 +153,12 @@ $fa-css-prefix: 'icon';
 @import 'utility.baseline';
 @import 'utility.highlight';
 @import 'utility.misc';
-@import 'utility.utilities';
 @import 'utility.sortable';
-@import 'utility.states';
 @import 'utility.swatches';
+
+// Trumps (attempt highest inherit specificity by loading last)
+@import 'utility.utilities';
+@import 'utility.states';
 
 // @import '../libs/datatables-responsive/css/dataTables.responsive';
 

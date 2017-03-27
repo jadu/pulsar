@@ -61,7 +61,7 @@ MasterSwitchComponent.prototype.switchOff = function (target) {
 MasterSwitchComponent.prototype.disableElements = function (target) {
 
     var component = this,
-        CLICKABLES_SELECTOR = 'a, button, input, select';
+        CLICKABLES_SELECTOR = 'a:not(.is-disabled), button:not(.is-disabled), input:not(.is-disabled), select:not(.is-disabled)';
 
     $(target)
         .on('click', CLICKABLES_SELECTOR, preventDefault)
@@ -73,7 +73,7 @@ MasterSwitchComponent.prototype.disableElements = function (target) {
 MasterSwitchComponent.prototype.enableElements = function (target) {
 
     var component = this,
-        CLICKABLES_SELECTOR = 'a, button, input, select';
+        CLICKABLES_SELECTOR = 'a:not(.is-disabled), button:not(.is-disabled), input:not(.is-disabled), select:not(.is-disabled)';
 
     $(target)
         .off('click', CLICKABLES_SELECTOR, preventDefault)

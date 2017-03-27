@@ -5,6 +5,7 @@ var $ = require('jquery');
 require('../libs/pikaday/plugins/pikaday.jquery');
 require('../libs/select2/dist/js/select2.min');
 require('../libs/spectrum/spectrum');
+var moment = require('../libs/moment/moment');
 
 function PulsarFormComponent(html) {
 

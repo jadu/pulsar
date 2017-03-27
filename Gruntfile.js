@@ -157,7 +157,7 @@ module.exports = function(grunt) {
             js: {
                 files: ['js/**/*.js', 'tests/js/**/*', 'package.json'],
                 tasks: ['browserify']
-            },
+            }
         },
 
         jshint: {
@@ -474,7 +474,7 @@ module.exports = function(grunt) {
                 reloadOnRestart: true,
                 watchTask: true
             }
-        },
+	},
 
         validation: {
             options: {
@@ -490,6 +490,14 @@ module.exports = function(grunt) {
             files: {
                 src: ['dist/views/*.html']
             }
+        },
+
+	'gh-pages': {
+            options: {
+                base: 'docs/_site',
+                repo: 'https://github.com/jadu/pulsar.git'
+            },
+            src: ['**']
         }
 
     });

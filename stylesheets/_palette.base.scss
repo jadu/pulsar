@@ -52,6 +52,7 @@ $palette-monochromes: (
     gray:  (
         darker:      rgb(62, 62, 62),
         dark:        rgb(95, 95, 95),
+        dull:        rgb(117, 117, 117),
         base:        rgb(126, 126, 126),
         light:       rgb(157, 157, 157),
         lighter:     rgb(190, 190, 190),
@@ -163,6 +164,7 @@ $state-colors:
 $palette-alias: (
     text: (
         base:     map-get(map-get($palette-monochromes, gray), darker),
+        help:     map-get(map-get($palette-monochromes, gray), dull),
         light:    map-get(map-get($palette-monochromes, gray), lighter),
         disabled: map-get(map-get($palette-monochromes, gray), lighter)
     ),

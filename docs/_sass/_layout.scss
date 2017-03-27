@@ -1,0 +1,71 @@
+// Layout
+//
+// Styles for managing the structural hierarchy of the site.
+
+.content {
+    margin: 0 auto;
+    width: 95%;
+    max-width: 1000px;
+
+    @include respond-min($screen-desktop) {
+        width: 80%;
+    }
+}
+
+footer {
+  margin-bottom: 2rem;
+}
+
+.header {
+    background-color: $pulsar-main;
+    background-image: linear-gradient(to top, darken($pulsar-main, 5) 0%, $pulsar-main 100%);
+    color: #fff;
+    display: block;
+    margin-bottom: 2rem;
+    padding: 1.5rem 0 .5rem;
+    text-align: center;
+    text-shadow: 0 2px 1px #161e22;
+    width: 100%;
+
+    h1 {
+        letter-spacing: 1px;
+        margin-bottom: 0;
+        margin-top: .5rem;
+    }
+
+    a {
+        color: white;
+    }
+}
+
+.brand-image {
+    border: 3px solid white;
+    border-radius: 100px;
+    box-shadow: 0 2px 1px #161e22;
+    display: block;
+    margin: 0 auto;
+    vertical-align: middle;
+    width: 100px;
+}
+
+.header-links {
+    margin: 2rem 0;
+}
+
+.header-link {
+    border: .5px solid white;
+    border-radius: 5px;
+    color: white;
+    font-size: .9rem;
+    padding: .75rem;
+    background-color: rgba(255, 255, 255, .05);
+    margin: 0 .5rem;
+    text-shadow: none;
+    text-decoration: none;
+
+    &:hover {
+        background-color: rgba(255, 255, 255, .1);
+        text-decoration: none;
+    }
+
+}

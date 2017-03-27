@@ -1,6 +1,6 @@
 # Pulsar
 
-[![Build Status](https://travis-ci.org/jadu/pulsar.svg?branch=develop)](https://travis-ci.org/jadu/pulsar) [![codecov](https://codecov.io/gh/jadu/pulsar/branch/develop/graph/badge.svg)](https://codecov.io/gh/jadu/pulsar) [![Known Vulnerabilities](https://snyk.io/test/github/jadu/pulsar/badge.svg)](https://snyk.io/test/github/jadu/pulsar) [![license] (https://img.shields.io/github/license/jadu/pulsar.svg?maxAge=2592000)]()
+[![Build Status](https://travis-ci.org/jadu/pulsar.svg?branch=develop)](https://travis-ci.org/jadu/pulsar) [![codecov](https://codecov.io/gh/jadu/pulsar/branch/develop/graph/badge.svg)](https://codecov.io/gh/jadu/pulsar) [![license] (https://img.shields.io/github/license/jadu/pulsar.svg?maxAge=2592000)]()
 
 Pulsar is the User Experience and Interface framework for [Jadu](http://jadu.net) software.
 
@@ -12,7 +12,7 @@ Watch a Jadu Academy session presented by Paul Stanton, Pulsar Product Owner whi
 
 ## Documentation
 
-Documentation is available online at [jadu.gitbooks.io/pulsar](https://jadu.gitbooks.io/pulsar/), we welcome any feedback on areas which may need improvement.
+Documentation is available online at [https://jadu.github.io/pulsar](https://jadu.github.io/pulsar), we welcome any feedback on areas which may need improvement.
 
 ## Contributing
 

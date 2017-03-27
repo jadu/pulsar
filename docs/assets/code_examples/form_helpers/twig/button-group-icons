@@ -1,0 +1,10 @@
+{{
+    html.button_group({
+        buttons: [
+            html.button({ label: html.icon('align-left') }),
+            html.button({ label: html.icon('align-center') }),
+            html.button({ label: html.icon('align-right') }),
+            html.button({ label: html.icon('align-justify') })
+        ]
+    })
+}}

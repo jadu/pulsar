@@ -207,3 +207,12 @@ td.table__form {
         background-color: #fff;
     }
 }
+
+td.row__actions {
+    width: 10px;
+}
+
+.row--final td {
+    border-top: 2px solid color(border);
+    border-bottom: 2px solid color(border);
+}

@@ -1,0 +1,30 @@
+<div class="sidebar">
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item{% if page.url == site.baseurl %} active{% endif %}" href="{{ site.baseurl }}">Home</a>
+      {% assign pages_list = site.pages %}
+      {% for node in pages_list %}
+        {% if node.title != null %}
+          {% if node.layout == "page" %}
+            <a class="sidebar-nav-item{% if page.url == node.url %} active{% endif %}" href="{{ site.baseurl }}{{ node.url }}">{{ node.title }}</a>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+
+      {{ collections | json }}
+
+      {% assign collections = site.collections %}
+      {% for collection in collections %}
+
+          <span class="sidebar-nav-header">{{ collection.label | replace: '-', ' ' | capitalize  }}</span>
+
+          <ol>
+          {% for doc in collection.docs %}
+            <li>
+              <a class="sidebar-nav-item{% if page.url == doc.url %} active{% endif %}" href="{{ site.baseurl }}{{ doc.url }}">{{ doc.title }}</a>
+            </li>
+          {% endfor %}
+          </ol>
+      {% endfor %}
+    </nav>
+</div>
