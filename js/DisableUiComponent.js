@@ -4,7 +4,7 @@ var $ = require('jquery');
 
 function DisableUiComponent(html) {
     this.$html = html;
-};
+}
 
 function preventDefaultAndStopPropagation(e) {
     e.preventDefault();

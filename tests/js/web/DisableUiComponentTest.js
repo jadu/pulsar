@@ -86,7 +86,7 @@ describe('DisableUi component', function() {
 
 		it('should add the u-cursor-not-allowed class to form labels', function () {
 			expect(this.$label.hasClass('u-cursor-not-allowed')).to.be.true;
-		})
+		});
 
 		it('should add the disabled attribute to buttons', function() {
 			expect(this.$button.attr('disabled')).to.equal('disabled');
@@ -106,7 +106,7 @@ describe('DisableUi component', function() {
 
 		it('should wrap the container in a div with the .u-ui-disabled class', function() {
 			expect(this.$standardForm.parent().hasClass('u-ui-disabled')).to.be.true;
-		})
+		});
 
 		describe('when a masterswitch is present', function() {
 
