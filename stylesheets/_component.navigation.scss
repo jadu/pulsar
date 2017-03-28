@@ -277,7 +277,9 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
 
     .nav-link__label {
         display: block;
+        padding: 0 10px;
         width: 100%;
+        word-wrap: break-word;
     }
 
     .nav-items,
