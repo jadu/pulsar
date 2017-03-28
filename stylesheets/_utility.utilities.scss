@@ -301,3 +301,12 @@ div.no-results {
 .u-text-align-justify {
     text-align: justify;
 }
+
+.u-ui-disabled {
+    cursor: not-allowed;
+    opacity: .25;
+}
+
+.u-cursor-not-allowed {
+    cursor: not-allowed !important;
+}
