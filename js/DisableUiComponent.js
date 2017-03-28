@@ -23,7 +23,7 @@ DisableUiComponent.prototype.init = function () {
             LINK_ELEMENTS = 'a:not(.disabled)',
             LABEL_ELEMENTS = 'label';
 
-        // // Disable form elements
+        // Disable form elements
         $this.find(FORM_ELEMENTS)
             .on('click', preventDefaultAndStopPropagation)
             .addClass('disabled')
@@ -32,7 +32,7 @@ DisableUiComponent.prototype.init = function () {
         // Disable labels
         $this.find(LABEL_ELEMENTS).addClass('u-cursor-not-allowed');
 
-        // // Disable links
+        // Disable links
         $this.find(LINK_ELEMENTS)
             .on('click', preventDefaultAndStopPropagation)
             .addClass('u-cursor-not-allowed');
