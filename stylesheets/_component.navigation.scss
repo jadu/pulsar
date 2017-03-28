@@ -219,6 +219,7 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
 .nav-primary {
     background-color: $nav-color-light;
     box-shadow: inset 0 0 0 $nav-color-dark;
+    overflow-y: hidden;
     text-align: center;
     transition: box-shadow 100ms linear;
     width: $nav-primary-width;
