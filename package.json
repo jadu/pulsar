@@ -36,6 +36,7 @@
     "grunt-browser-sync": "^2.2.0",
     "grunt-browserify": "^5.0.0",
     "grunt-bump": "^0.7.2",
+    "grunt-casperjs": "^2.2.1",
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-compress": "^1.2.0",
     "grunt-contrib-copy": "^1.0.0",
