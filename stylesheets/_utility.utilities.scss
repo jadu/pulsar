@@ -303,10 +303,12 @@ div.no-results {
 }
 
 .u-ui-disabled {
-    cursor: not-allowed;
+    @extend %u-cursor-not-allowed;
+
     opacity: .25;
 }
 
+%u-cursor-not-allowed,
 .u-cursor-not-allowed {
     cursor: not-allowed !important;
 }
