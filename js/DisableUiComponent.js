@@ -38,18 +38,7 @@ DisableUiComponent.prototype.init = function () {
             .addClass('u-cursor-not-allowed');
 
         // Wrap with disabled wrapper to visually disable
-        // Check if masterswitch as we don't want to add 2 overlays
-        if ($this.hasClass('masterswitch')) {
-            // If the master switch is enabled, wrap in disabled overlay
-            if ($this.find('.form__control.toggle-switch').is(':checked')) {
-                $this.wrap('<div class="u-ui-disabled"></div>');
-            } else {
-                // If not, only wrap the control and let the master switch add the overlay
-                $this.find('.masterswitch-control').wrap('<div class="u-ui-disabled"></div>');
-            }
-        } else {
-            $this.wrap('<div class="u-ui-disabled"></div>');
-        }
+        $this.wrap('<div class="u-ui-disabled"></div>');
     });
 };
 
