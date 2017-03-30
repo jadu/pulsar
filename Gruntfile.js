@@ -31,7 +31,8 @@ module.exports = function(grunt) {
                 options: {
                     browserifyOptions: {
                         standalone: 'pulsar'
-                    }
+                    },
+                    transform: [['babelify', { presets: ['es2015'] } ]]
                 }
             },
             dist: {
@@ -43,7 +44,7 @@ module.exports = function(grunt) {
                     browserifyOptions: {
                         standalone: 'pulsar'
                     },
-                    transform: ['uglifyify']
+                    transform: [['babelify', { presets: ['es2015'] } ], 'uglifyify']
                 }
             }
         },
