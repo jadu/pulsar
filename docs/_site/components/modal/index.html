@@ -459,12 +459,111 @@
 </code></pre>
 </div>
 
+<h2 id="close-modal">Close modal</h2>
+
+<p>A link or button within a modal can close itself using the `data-dismiss=”modal” attribute.</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;a</span> <span class="na">data-dismiss=</span><span class="s">"modal"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Cancel<span class="nt">&lt;/a&gt;</span>
+</code></pre>
+</div>
+
+<h2 id="methods">Methods</h2>
+
+<h4 id="modaloptions"><code class="highlighter-rouge">.modal(options)</code></h4>
+
+<p>Activates your content as a modal. Accepts an optional options <code class="highlighter-rouge">object</code>.</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">$</span><span class="p">(</span><span class="s1">'#myModal'</span><span class="p">).</span><span class="nx">modal</span><span class="p">({</span>
+  <span class="na">keyboard</span><span class="p">:</span> <span class="kc">false</span>
+<span class="p">})</span>
+</code></pre>
+</div>
+
+<h4 id="modaltoggle"><code class="highlighter-rouge">.modal('toggle')</code></h4>
+
+<p>Manually toggles a modal. <strong>Returns to the caller before the modal has actually been shown or hidden</strong> (i.e. before the <code class="highlighter-rouge">shown.bs.modal</code> or <code class="highlighter-rouge">hidden.bs.modal</code> event occurs).</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">$</span><span class="p">(</span><span class="s1">'#myModal'</span><span class="p">).</span><span class="nx">modal</span><span class="p">(</span><span class="s1">'toggle'</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h4 id="modalshow"><code class="highlighter-rouge">.modal('show')</code></h4>
+
+<p>Manually opens a modal. <strong>Returns to the caller before the modal has actually been shown</strong> (i.e. before the <code class="highlighter-rouge">shown.bs.modal</code> event occurs).</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">$</span><span class="p">(</span><span class="s1">'#myModal'</span><span class="p">).</span><span class="nx">modal</span><span class="p">(</span><span class="s1">'show'</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h4 id="modalhide"><code class="highlighter-rouge">.modal('hide')</code></h4>
+
+<p>Manually hides a modal. <strong>Returns to the caller before the modal has actually been hidden</strong> (i.e. before the <code class="highlighter-rouge">hidden.bs.modal</code> event occurs).</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">$</span><span class="p">(</span><span class="s1">'#myModal'</span><span class="p">).</span><span class="nx">modal</span><span class="p">(</span><span class="s1">'hide'</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h3 id="events">Events</h3>
+
+<p>The modal class exposes a few events for hooking into modal functionality. All modal events are fired at the modal itself (i.e. at the <code class="highlighter-rouge">&lt;div class="modal"&gt;</code>).</p>
+
+<table class="table table-bordered table-striped table-responsive">
+  <thead>
+   <tr>
+     <th style="width: 150px;">Event Type</th>
+     <th>Description</th>
+   </tr>
+  </thead>
+  <tbody>
+   <tr>
+     <td>show.bs.modal</td>
+     <td>This event fires immediately when the <code>show</code> instance method is called. If caused by a click, the clicked element is available as the <code>relatedTarget</code> property of the event.</td>
+   </tr>
+   <tr>
+     <td>shown.bs.modal</td>
+     <td>This event is fired when the modal has been made visible to the user (will wait for CSS transitions to complete). If caused by a click, the clicked element is available as the <code>relatedTarget</code> property of the event.</td>
+   </tr>
+   <tr>
+     <td>hide.bs.modal</td>
+     <td>This event is fired immediately when the <code>hide</code> instance method has been called.</td>
+   </tr>
+   <tr>
+     <td>hidden.bs.modal</td>
+     <td>This event is fired when the modal has finished being hidden from the user (will wait for CSS transitions to complete).</td>
+   </tr>
+  </tbody>
+</table>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">$</span><span class="p">(</span><span class="s1">'#myModal'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'hidden.bs.modal'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// do something...</span>
+<span class="p">})</span>
+</code></pre>
+</div>
+
 <h2 id="make-modals-accessible">Make modals accessible</h2>
 
 <p>Be sure to add <code class="highlighter-rouge">role="dialog"</code> to your primary modal div. In the example above, <code class="highlighter-rouge">div#myModal</code>.
 Also, the <code class="highlighter-rouge">aria-labelledby</code> attribute references your modal title. In this example, <code class="highlighter-rouge">h4#myModalLabel</code>.
 Finally, <code class="highlighter-rouge">aria-hidden="true"</code> tells assistive technologies to skip DOM elements.
 Additionally, you may give a description of your modal dialog. Use the <code class="highlighter-rouge">aria-describedby</code> attribute in the modal’s primary <code class="highlighter-rouge">&lt;div&gt;</code> to point to this description (this is not shown in the above example).</p>
+
+<h2 id="nested-modals">Nested modals</h2>
+
+<p>In certain situations you may want a modal to trigger another modal, e.g. Modal A has a delete button which triggers a delete confirmation modal.</p>
+
+<ul>
+  <li>Clicking the link which triggers Modal-2 should close Modal-1, you shouldn’t ‘stack’ modals on top of each other</li>
+  <li>Clicking <code class="highlighter-rouge">Cancel</code> on Modal-2 should re-open Modal-1, allowing the user to step back through their actions</li>
+</ul>
+
+<p>This can be achieved by using both <code class="highlighter-rouge">data-toggle</code> and <code class="highlighter-rouge">data-dismiss</code> on the link, the <code class="highlighter-rouge">data-toggle</code> will open the modal referenced by <code class="highlighter-rouge">href</code> and <code class="highlighter-rouge">data-dismiss</code> will close the current modal.</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="c">&lt;!-- within modal-1 --&gt;</span>
+<span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"btn"</span> <span class="na">data-toggle=</span><span class="s">"modal"</span> <span class="na">href=</span><span class="s">"#modal-2"</span> <span class="na">data-dismiss=</span><span class="s">"modal"</span><span class="nt">&gt;</span>Open Modal 2 and Close Modal 1<span class="nt">&lt;/a&gt;</span>
+</code></pre>
+</div>
+
+<p>You should not nest modals more than 2 levels deep.</p>
 
 
 

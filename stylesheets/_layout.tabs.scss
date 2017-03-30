@@ -1,7 +1,3 @@
-.container {
-    height: 100%;
-}
-
 .content-main {
     position: relative;
     display: table;
@@ -33,7 +29,7 @@
     -webkit-transition: -webkit-transform 500ms ease;
     backface-visibility: hidden;
     display: table;
-    height: 100%;
+    height: calc(100vh - 37px);
     left: 0;
     padding-bottom: 24px; // make sure content clears the footer
     position: relative;
@@ -45,10 +41,6 @@
         display: table-row;
         left: auto;
         position: static;
-    }
-
-    .lt-ie10 & {
-        left: 0;
     }
 }
 
