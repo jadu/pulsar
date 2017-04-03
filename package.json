@@ -80,9 +80,13 @@
   },
   "browserify": {
     "transform": [
-      "aliasify",
       "browserify-shim"
     ]
+  },
+  "aliasify": {
+    "aliases": {
+      "jquery": "./node_modules/jquery/dist/jquery"
+    }
   },
   "browserify-shim": {
     "./libs/svgeezy/svgeezy.min.js": {
