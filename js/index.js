@@ -42,7 +42,8 @@ var $                     = require('jquery'),
     NavMainComponent = require('./NavMainComponent'),
     PulsarFormComponent = require('./PulsarFormComponent'),
     PulsarUIComponent = require('./PulsarUIComponent'),
-    SignInComponent = require('./area/signin/signin');
+    SignInComponent = require('./area/signin/signin'),
+    DropZoneComponent = require('./DropZoneComponent');
 
     require('jstree');
 
