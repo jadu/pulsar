@@ -11,7 +11,7 @@
 
   <title>
     
-      Responsive utilities &middot; Pulsar
+      Utility classes &middot; Pulsar
     
   </title>
 
@@ -88,16 +88,16 @@
         
       
         
-          
-            <a class="sidebar-nav-item active" href="/responsive-utilities/">Responsive utilities</a>
-          
-        
-      
-        
       
         
           
             <a class="sidebar-nav-item" href="/tagging/">Tagging a release</a>
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item active" href="/utility-classes/">Utility classes</a>
           
         
       
@@ -349,6 +349,10 @@
           <ol>
           
             <li>
+              <a class="sidebar-nav-item" href="/patterns/filterbar/">Filter bar</a>
+            </li>
+          
+            <li>
               <a class="sidebar-nav-item" href="/patterns/masterswitch/">Masterswitch</a>
             </li>
           
@@ -404,10 +408,79 @@
 </div>
 
         <div class="page">
-            <h1 class="page-title">Responsive utilities</h1>
+            <h1 class="page-title">Utility classes</h1>
             <p>There are a collection of variables and classes to allow you to control the visibility of certain elements at a varienty of screen widths.</p>
 
-<h2 id="breakpoints">Breakpoints</h2>
+<p>These can be extended with sass placeholders, e.g. <code class="highlighter-rouge">@extend %u-display-none</code>.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Class</td>
+      <td>Style</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">.u-display-none</code></td>
+      <td><code class="highlighter-rouge">display: none;</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">.u-display-block</code></td>
+      <td><code class="highlighter-rouge">display: block;</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">.u-display-inline</code></td>
+      <td><code class="highlighter-rouge">display: inline;</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">.u-display-inline-block</code></td>
+      <td><code class="highlighter-rouge">display: inline-block;</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">.u-float-none</code></td>
+      <td><code class="highlighter-rouge">float: none;</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">.u-float-left</code></td>
+      <td><code class="highlighter-rouge">float: left;</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">.u-vertical-align-top</code></td>
+      <td><code class="highlighter-rouge">vertical-align: top;</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">.u-vertical-align-middle</code></td>
+      <td><code class="highlighter-rouge">vertical-align: middle;</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">.u-vertical-align-bottom</code></td>
+      <td><code class="highlighter-rouge">vertical-align: bottom;</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">.u-vertical-align-baseline</code></td>
+      <td><code class="highlighter-rouge">vertical-align: baseline;</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">.u-text-align-left</code></td>
+      <td><code class="highlighter-rouge">text-align: left;</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">.u-text-align-center</code></td>
+      <td><code class="highlighter-rouge">text-align: center;</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">.u-text-align-right</code></td>
+      <td><code class="highlighter-rouge">text-align: right;</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">.u-text-align-justify</code></td>
+      <td><code class="highlighter-rouge">text-align: justify;</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="responsive-utilities">Responsive utilities</h2>
+
+<h3 id="breakpoints">Breakpoints</h3>
 
 <p>These are defined in <code class="highlighter-rouge">_config.variables.scss</code> and can be used in your own media queries.</p>
 
@@ -448,11 +521,11 @@
   </tbody>
 </table>
 
-<h2 id="mixins">Mixins</h2>
+<h3 id="mixins">Mixins</h3>
 
 <p>Use with the breakpoint variables for easier media queries. Be aware that IE8 will only get desktop styles.</p>
 
-<h3 id="respond-min">Respond min</h3>
+<h4 id="respond-min">Respond min</h4>
 
 <h6 id="usage">Usage</h6>
 
@@ -468,7 +541,7 @@
 </code></pre>
 </div>
 
-<h3 id="respond-max">Respond max</h3>
+<h4 id="respond-max">Respond max</h4>
 
 <h6 id="usage-1">Usage</h6>
 
@@ -484,7 +557,7 @@
 </code></pre>
 </div>
 
-<h3 id="respond-min-max">Respond min-max</h3>
+<h4 id="respond-min-max">Respond min-max</h4>
 
 <h6 id="usage-2">Usage</h6>
 
@@ -500,7 +573,7 @@
 </code></pre>
 </div>
 
-<h2 id="visibility">Visibility</h2>
+<h3 id="visibility">Visibility</h3>
 
 <p>Use the following utility classes to control the visibility of elements at certain screen sizes.</p>
 
