@@ -6,7 +6,7 @@ category: Patterns
 
 The masterswitch pattern allows you to enable and disable a larger UI with a single control. Commonly used in 'settings' interfaces it provides an easy to understand on/off switch for users.
 
-![disabled masterswitch](/assets/image_examples/masterswitch.png)
+![disabled masterswitch]({{ site.baseurl }}/assets/image_examples/masterswitch.png)
 
 The masterswitch pattern allows you to show the user the UI which they will be expected to complete before they throw the switch.
 

@@ -6,7 +6,7 @@ category: Patterns
 
 The filter bar pattern allows you to build up a list of filters to be applied to a UI. Commonly used to filter tabular data as an alternative to displaying a potentially large form.
 
-![Filter bar](/assets/image_examples/filterbar.gif)
+![Filter bar]({{ site.baseurl }}/assets/image_examples/filterbar.gif)
 
 The filter bar takes a standard form and creates a filter bar which allows you to select filter options from the form and apply them one at a time.
 

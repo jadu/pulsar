@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
  <title>Pulsar</title>
- <link href="http://localhost:4000/atom.xml" rel="self"/>
- <link href="http://localhost:4000/"/>
- <updated>2017-04-06T13:19:55+01:00</updated>
- <id>http://localhost:4000</id>
+ <link href="http://jadu.net/pulsar/atom.xml" rel="self"/>
+ <link href="http://jadu.net/pulsar/"/>
+ <updated>2017-04-06T13:58:51+01:00</updated>
+ <id>http://jadu.net</id>
  <author>
    <name>Paul Stanton</name>
    <email>paul.stanton@jadu.net</email>
