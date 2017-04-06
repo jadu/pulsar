@@ -16,7 +16,7 @@ The masterswitch pattern allows you to show the user the UI which they will be e
 
 You will need the `MasterSwitchComponent` to be included in your browserify configuration.
 
-Depending on your setup, this will probably need to be in be in a file called `index.js` or `main.js`.
+Depending on your setup, this will probably need to be in a file called `index.js` or `main.js`.
 
 ```javascript
 // index.js

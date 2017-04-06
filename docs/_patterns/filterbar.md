@@ -16,7 +16,7 @@ The filter bar takes a standard form and creates a filter bar which allows you t
 
 You will need the `FilterBarComponent` to be included in your browserify configuration.
 
-Depending on your setup, this will probably need to be in be in a file called `index.js` or `main.js`.
+Depending on your setup, this will probably need to be in a file called `index.js` or `main.js`.
 
 ```javascript
 // index.js
