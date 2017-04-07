@@ -2,14 +2,29 @@
 
 {% block tab_content %}
 
- {{
-    form.create()
- }}
+  {{
+    form.dropzone({
+        'id': 'dropzone_example_1',
+        'data-dropzone-id': 'dropzone_example_1',
+        'label': 'Default options'
+    })
+  }}
 
   {{
-    form.file({
-        'id': 'file-1',
-        'label': 'File field'
+    form.dropzone({
+        'id': 'dropzone_example_2',
+        'data-dropzone-id': 'dropzone_example_2',
+        'data-dropzone-max-files': '0',
+        'label': 'Max files: 0'
+    })
+  }}
+
+  {{
+    form.dropzone({
+        'id': 'dropzone_example_3',
+        'data-dropzone-id': 'dropzone_example_3',
+        'data-dropzone-max-size': '0',
+        'label': 'Max size: 0'
     })
   }}
 
