@@ -48,16 +48,17 @@ var $                     = require('jquery'),
     require('jstree');
 
 module.exports = {
-    ButtonComponent: ButtonComponent,
-    HelpTextComponent: HelpTextComponent,
-    FilterBarComponent: FilterBarComponent,
-    FlashMessageComponent: FlashMessageComponent,
-    MasterSwitchComponent: MasterSwitchComponent,
-    ModulePermissionsComponent: ModulePermissionsComponent,
-    NavMainComponent: NavMainComponent,
-    PulsarFormComponent: PulsarFormComponent,
-    PulsarUIComponent: PulsarUIComponent,
-    SignInComponent: SignInComponent,
-    history: history,
-    svgeezy: svgeezy
+    ButtonComponent,
+    DropZoneComponent,
+    HelpTextComponent,
+    FilterBarComponent,
+    FlashMessageComponent,
+    MasterSwitchComponent,
+    ModulePermissionsComponent,
+    NavMainComponent,
+    PulsarFormComponent,
+    PulsarUIComponent,
+    SignInComponent,
+    history,
+    svgeezy
 };
