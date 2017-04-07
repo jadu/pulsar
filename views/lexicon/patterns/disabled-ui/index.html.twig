@@ -1,0 +1,18 @@
+{% extends '@pulsar/lexicon/base.html.twig' %}
+
+{% set heading = 'Disabled UI' %}
+
+{% set tab_one %}
+    {% include '/lexicon/patterns/disabled-ui/disabled-ui.html.twig' %}
+{% endset %}
+
+{%
+    set tabs_content = [
+        {
+            "id"    : "disabledui",
+            "label" : "Disabled UI",
+            "src"   : tab_one,
+            "active": true
+        }
+    ]
+%}

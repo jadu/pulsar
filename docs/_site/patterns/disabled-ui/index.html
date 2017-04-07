@@ -11,7 +11,7 @@
 
   <title>
     
-      Radio &middot; Pulsar
+      Disabled UI &middot; Pulsar
     
   </title>
 
@@ -291,7 +291,7 @@
             </li>
           
             <li>
-              <a class="sidebar-nav-item active" href="/pulsar/form-helpers/radio/">Radio</a>
+              <a class="sidebar-nav-item" href="/pulsar/form-helpers/radio/">Radio</a>
             </li>
           
             <li>
@@ -349,7 +349,7 @@
           <ol>
           
             <li>
-              <a class="sidebar-nav-item" href="/pulsar/patterns/disabled-ui/">Disabled UI</a>
+              <a class="sidebar-nav-item active" href="/pulsar/patterns/disabled-ui/">Disabled UI</a>
             </li>
           
             <li>
@@ -412,233 +412,95 @@
 </div>
 
         <div class="page">
-            <h1 class="page-title">Radio</h1>
-            <p>Generates a radio input field. There are various different options available to control the position of the radio and labels.</p>
+            <h1 class="page-title">Disabled UI</h1>
+            <p>The Disabled UI pattern allows you to disable a parts of a UI. This can be useful when an external action needs completing before the UI can be used. A message should be shown advising the user what action needs to be taken.</p>
 
-<h2 id="example-usage">Example usage</h2>
+<p><img src="/pulsar/assets/image_examples/disabled-ui.png" alt="Disabled UI" /></p>
 
-<div class="code-examples">            <div class="code-examples__buttons examples">
-              <ul class="code-examples__list">
-                <li class="code-examples__list"><a href="#" class="code-examples__button" target="twig">Twig</a></li><li class="code-examples__list"><a href="#" class="code-examples__button" target="html">Html</a></li>
-              </ul>
-            </div>
-          <div class="example language-html html">
-            <pre class="prettyprint lang-html"><code data-lang="html">&lt;div class=&quot;form__group form-radio&quot;&gt;
-    &lt;label for=&quot;foo&quot; class=&quot;control__label&quot;&gt;Default radio&lt;/label&gt;
-    &lt;div class=&quot;controls&quot;&gt;
-        &lt;input id=&quot;foo&quot; name=&quot;bar&quot; checked=&quot;&quot; type=&quot;radio&quot; class=&quot;form__control radio&quot;&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
-          </div>
-          <div class="example language-twig twig">
-            <pre class="prettyprint lang-twig"><code data-lang="twig">{{
-    form.radio({
-        &apos;label&apos;: &apos;Default radio&apos;,
-        &apos;id&apos;: &apos;foo&apos;,
-        &apos;name&apos;: &apos;bar&apos;
-    })
-}}
-</code></pre>
-          </div>
-</div>
+<h2 id="dependencies">Dependencies</h2>
 
-<p data-height="80" data-theme-id="24005" data-slug-hash="ORXrEo" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/ORXrEo/">docs - form - radio</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-<script async="" src="//assets.codepen.io/assets/embed/ei.js"></script>
+<h5 id="javascript">Javascript</h5>
 
-<h2 id="options-applied-to-parent-wrapper">Options applied to parent wrapper</h2>
+<p>You will need the <code class="highlighter-rouge">DisableUiComponent</code> to be included in your browserify configuration.</p>
 
-<table>
-  <thead>
-    <tr>
-      <th>Option</th>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>class</td>
-      <td>string</td>
-      <td>A space separated list of class names</td>
-    </tr>
-    <tr>
-      <td>guidance</td>
-      <td>string</td>
-      <td>Text to be displayed in a popover, adds a (?) icon after the input</td>
-    </tr>
-    <tr>
-      <td>guidance-container</td>
-      <td>string</td>
-      <td>Element to bind guidance popover scroll behaviour to (default <code class="highlighter-rouge">body</code>)</td>
-    </tr>
-    <tr>
-      <td>help</td>
-      <td>string</td>
-      <td>Additional guidance information to be displayed next to the input</td>
-    </tr>
-    <tr>
-      <td>label</td>
-      <td>string</td>
-      <td>Text for the <code class="highlighter-rouge">&lt;label&gt;</code> companion element</td>
-    </tr>
-    <tr>
-      <td>required</td>
-      <td>bool</td>
-      <td>Visually indicates that the field must be completed</td>
-    </tr>
-  </tbody>
-</table>
+<p>Depending on your setup, this will probably need to be in a file called <code class="highlighter-rouge">index.js</code> or <code class="highlighter-rouge">main.js</code>.</p>
 
-<h2 id="options-applied-to-input">Options applied to input</h2>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// index.js</span>
 
-<table>
-  <thead>
-    <tr>
-      <th>Option</th>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>form</td>
-      <td>string</td>
-      <td>Specific one or more forms this label belongs to</td>
-    </tr>
-    <tr>
-      <td>id</td>
-      <td>string</td>
-      <td>A unique identifier, if required</td>
-    </tr>
-    <tr>
-      <td>name</td>
-      <td>string</td>
-      <td>The name of this control</td>
-    </tr>
-    <tr>
-      <td>required</td>
-      <td>bool</td>
-      <td>Adds <code class="highlighter-rouge">required</code> and <code class="highlighter-rouge">aria-required="true"</code> attributes</td>
-    </tr>
-    <tr>
-      <td>selected</td>
-      <td>bool</td>
-      <td>Whether the input is checked</td>
-    </tr>
-    <tr>
-      <td>value</td>
-      <td>string</td>
-      <td>Specifies the value of the input</td>
-    </tr>
-    <tr>
-      <td>data-*</td>
-      <td>string</td>
-      <td>Data attributes, eg: <code class="highlighter-rouge">'data-foo': 'bar'</code></td>
-    </tr>
-  </tbody>
-</table>
+<span class="kd">var</span> <span class="nx">DisableUiComponent</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'/path/to/pulsar/DisableUiComponent'</span><span class="p">);</span>
 
-<p>Any other options not listed here will be applied to the input.</p>
-
-<h2 id="error-state">Error state</h2>
-
-<div class="language-twig highlighter-rouge"><pre class="highlight"><code><span class="cp">{{</span>
-    <span class="nv">form.radio</span><span class="p">(</span><span class="err">{</span>
-        <span class="s1">'label'</span><span class="err">:</span> <span class="s1">'Default radio'</span><span class="p">,</span>
-        <span class="s1">'error'</span><span class="err">:</span> <span class="s1">'Something went wrong'</span><span class="p">,</span>
-        <span class="err">...</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">DisableUiComponent</span><span class="p">:</span> <span class="nx">DisableUiComponent</span>
+<span class="p">}</span>
 </code></pre>
 </div>
 
-<p data-height="95" data-theme-id="24005" data-slug-hash="NRANKk" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/NRANKk/">docs - form - radio error</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-<script async="" src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// main.js</span>
 
-<h2 id="label-alignment">Label alignment</h2>
+<span class="kd">var</span> <span class="nx">$html</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'html'</span><span class="p">);</span>
 
-<p>Labels follow the regular Pulsar form flow and are positioned down the left. Clicking the label will toggle the input.</p>
+<span class="nx">pulsar</span><span class="p">.</span><span class="nx">disableUi</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">pulsar</span><span class="p">.</span><span class="nx">DisableUiComponent</span><span class="p">(</span><span class="nx">$html</span><span class="p">);</span>
 
-<div class="language-twig highlighter-rouge"><pre class="highlight"><code><span class="cp">{{</span>
-    <span class="nv">form.radio</span><span class="p">(</span><span class="err">{</span>
-        <span class="s1">'label'</span><span class="err">:</span> <span class="s1">'Default radio'</span><span class="p">,</span>
-        <span class="s1">'id'</span><span class="err">:</span> <span class="s1">'foo'</span><span class="p">,</span>
-        <span class="s1">'name'</span><span class="err">:</span> <span class="s1">'bar'</span>
-    <span class="err">}</span><span class="p">)</span>
-<span class="cp">}}</span>
+<span class="nx">$</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">pulsar</span><span class="p">.</span><span class="nx">disableUi</span><span class="p">.</span><span class="nx">init</span><span class="p">();</span>
+<span class="p">});</span>
 </code></pre>
 </div>
 
-<p data-height="80" data-theme-id="24005" data-slug-hash="ORXrEo" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/ORXrEo/">docs - form - radio</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-<script async="" src="//assets.codepen.io/assets/embed/ei.js"></script>
+<h2 id="markup-example">Markup example</h2>
 
-<h2 id="radio-inline">Radio inline</h2>
+<p>Add <code class="highlighter-rouge">data-disable-ui="true"</code> to the element you wish to disable. All child elements will also be disabled.</p>
 
-<p>Creates a <label> element with the radio placed inside, this allows the radio to be positioned either before or after the label value through the input_placement option.</label></p>
+<div class="language-twig highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">data-disable-ui=</span><span class="s">"true"</span><span class="nt">&gt;</span>
+    <span class="cp">{{</span> <span class="nv">form.create</span><span class="p">()</span> <span class="cp">}}</span>
+        <span class="cp">{{</span> <span class="nv">form.fieldset_start</span><span class="p">(</span><span class="err">{</span><span class="s1">'legend'</span><span class="err">:</span> <span class="s1">'Filter by'</span><span class="err">}</span><span class="p">)</span> <span class="cp">}}</span>
 
-<table>
-  <thead>
-    <tr>
-      <th>Option</th>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>input_placement</td>
-      <td>string</td>
-      <td><code class="highlighter-rouge">left</code> (default), <code class="highlighter-rouge">right</code> position of the input vs the label value</td>
-    </tr>
-  </tbody>
-</table>
+        <span class="cp">{{</span>
+            <span class="nv">form.select2</span><span class="p">(</span><span class="err">{</span>
+                <span class="s1">'label'</span><span class="err">:</span> <span class="s1">'Colour'</span><span class="p">,</span>
+                <span class="s1">'id'</span><span class="err">:</span> <span class="s1">'colour'</span><span class="p">,</span>
+                <span class="s1">'multiple'</span><span class="err">:</span> <span class="nv">true</span><span class="p">,</span>
+                <span class="s1">'placeholder'</span><span class="err">:</span> <span class="s1">'Choose one or more'</span><span class="p">,</span>
+                <span class="s1">'options'</span><span class="err">:</span> <span class="err">{</span>
+                    <span class="s1">'colour_red'</span><span class="err">:</span> <span class="s1">'Red'</span><span class="p">,</span>
+                    <span class="s1">'colour_blue'</span><span class="err">:</span> <span class="s1">'Blue'</span>
+                <span class="err">}</span>
+            <span class="err">}</span><span class="p">)</span>
+        <span class="cp">}}</span>
 
-<div class="language-twig highlighter-rouge"><pre class="highlight"><code><span class="cp">{{</span>
-    <span class="nv">form.radio_inline</span><span class="p">(</span><span class="err">{</span>
-        <span class="s1">'label'</span><span class="err">:</span> <span class="s1">'Radio inline'</span><span class="p">,</span>
-        <span class="s1">'id'</span><span class="err">:</span> <span class="s1">'foo'</span><span class="p">,</span>
-        <span class="s1">'name'</span><span class="err">:</span> <span class="s1">'bar'</span>
-    <span class="err">}</span><span class="p">)</span>
-<span class="cp">}}</span>
+        <span class="cp">{{</span>
+            <span class="nv">form.text</span><span class="p">(</span><span class="err">{</span>
+                <span class="s1">'label'</span><span class="err">:</span> <span class="s1">'Text field example'</span><span class="p">,</span>
+                <span class="s1">'id'</span><span class="err">:</span> <span class="s1">'foo'</span>
+            <span class="err">}</span><span class="p">)</span>
+        <span class="cp">}}</span>
+
+        <span class="cp">{{</span>
+            <span class="nv">form.checkbox</span><span class="p">(</span><span class="err">{</span>
+                <span class="s1">'label'</span><span class="err">:</span> <span class="s1">'In stock'</span><span class="p">,</span>
+                <span class="s1">'id'</span><span class="err">:</span> <span class="s1">'inStock'</span>
+            <span class="err">}</span><span class="p">)</span>
+        <span class="cp">}}</span>
+
+    <span class="cp">{{</span> <span class="nv">form.fieldset_end</span><span class="p">()</span> <span class="cp">}}</span>
+    <span class="cp">{{</span>
+        <span class="nv">form.end</span><span class="p">(</span><span class="err">{</span>
+            <span class="s1">'actions'</span><span class="err">:</span> <span class="p">[</span>
+                <span class="nv">form.submit</span><span class="p">(</span><span class="err">{</span>
+                    <span class="s1">'label'</span><span class="err">:</span> <span class="s1">'Save'</span><span class="p">,</span>
+                    <span class="s1">'class'</span><span class="err">:</span> <span class="s1">'btn--primary'</span>
+                <span class="err">}</span><span class="p">),</span>
+                <span class="nv">html.link</span><span class="p">(</span><span class="err">{</span>
+                    <span class="s1">'label'</span><span class="err">:</span> <span class="s1">'Cancel'</span><span class="p">,</span>
+                    <span class="s1">'class'</span><span class="err">:</span> <span class="s1">'btn--naked'</span><span class="p">,</span>
+                <span class="err">}</span><span class="p">)</span>
+            <span class="p">]</span>
+        <span class="err">}</span><span class="p">)</span>
+    <span class="cp">}}</span>
+
+<span class="nt">&lt;/div&gt;</span>
 </code></pre>
 </div>
-
-<p data-height="75" data-theme-id="24005" data-slug-hash="XjKdjR" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/XjKdjR/">docs - form - radio right label</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-<script async="" src="//assets.codepen.io/assets/embed/ei.js"></script>
-
-<div class="language-twig highlighter-rouge"><pre class="highlight"><code><span class="cp">{{</span>
-    <span class="nv">form.radio_inline</span><span class="p">(</span><span class="err">{</span>
-        <span class="s1">'label'</span><span class="err">:</span> <span class="s1">'Radio on the right'</span><span class="p">,</span>
-        <span class="s1">'id'</span><span class="err">:</span> <span class="s1">'foo'</span><span class="p">,</span>
-        <span class="s1">'name'</span><span class="err">:</span> <span class="s1">'foo'</span><span class="p">,</span>
-        <span class="s1">'input_placement'</span><span class="err">:</span> <span class="s1">'right'</span>
-    <span class="err">}</span><span class="p">)</span>
-<span class="cp">}}</span>
-</code></pre>
-</div>
-
-<p data-height="75" data-theme-id="24005" data-slug-hash="BLzKoZ" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/BLzKoZ/">docs - form - radio inline right</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-<script async="" src="//assets.codepen.io/assets/embed/ei.js"></script>
-
-<h2 id="indented-radio">Indented radio</h2>
-
-<p>Using <code class="highlighter-rouge">form.radio_inline</code> will cause the radio input to not follow the normal flow of a regular pulsar form, if you want to maintain form alignment, use the <code class="highlighter-rouge">form__group--indent</code> class to restore the position.</p>
-
-<p data-height="160" data-theme-id="24005" data-slug-hash="LRkNxm" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/LRkNxm/">docs - form - radio indented</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-<script async="" src="//assets.codepen.io/assets/embed/ei.js"></script>
-
-<h2 id="alternative-styling">Alternative styling</h2>
-
-<p>Depending on your UI needs, you can display radios as <a href="/choice.md">choice blocks</a> or <a href="/form-button_group.md">button groups</a>. See their documentation for further details.</p>
-
-<h6 id="choice-block">Choice block</h6>
-
-<p data-height="180" data-theme-id="24005" data-slug-hash="YGWqVJ" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/amNRyY/">docs - form - checkbox choice block</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-<script async="" src="//assets.codepen.io/assets/embed/ei.js"></script>
-
-<h6 id="button-group">Button group</h6>
-
-<p data-height="70" data-theme-id="24005" data-slug-hash="bwZpRG" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/jrqZpy/">docs - form - checkbox button group</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-<script async="" src="//assets.codepen.io/assets/embed/ei.js"></script>
 
 
 
