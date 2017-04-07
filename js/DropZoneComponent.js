@@ -1,390 +1,312 @@
+import DropZone from './libs/DropZone';
 import _ from 'lodash';
+import $ from 'jquery';
 
-export const defaults = {
-    // HTML node that will become DropZone
-    node: document.body,
-    // limit of files within store
-    maxFiles: 5,
-    // limit total size of files (314572800 === 300mb)
-    maxSize: 314572800,
-    // prevent drag & drop default on window
-    preventWindowDefault: true,
-    // file enters window
-    windowEnter: function () {},
-    // file leaves window
-    windowLeave: function () {},
-    // dropped callback
-    dropped: function () {},
-    // dragged files enter DropZone
-    dropZoneEnter: function () {},
-    // dragged files left DropZone
-    dropZoneLeave: function () {},
-    // reject files
-    filesRejected: function () {}
-};
-
-export default class DropZone {
-    constructor (options) {
-        this.options = DropZone.createOptions(defaults, options);
-        // TODO: test this
-        this.node = window.$ && this.options.node instanceof window.$ ? this.options.node[0] : this.options.node;
-
-        // cache methods with context
-        this.handleDrop = this.handleDrop.bind(this);
-        this.handleEnter = this.handleEnter.bind(this);
-        this.handleLeave = this.handleLeave.bind(this);
-        this.handleWindowEnter = this.handleWindowEnter.bind(this);
-        this.handleWindowLeave = this.handleWindowLeave.bind(this);
-        this.updateEventTracker = this.updateEventTracker.bind(this);
-        this.initiate();
+class DropZoneComponent {
+    constructor (html) {
+        this.html = window.$ && html instanceof window.$ ? html[0] : html;
     }
 
-    initiate () {
+    /**
+     * Initiate DropZone component, this wraps and defines options for
+     * multiple instances of DropZone
+     */
+    init () {
+        this.body = window.document.body;
+        this.$body = $(this.body);
         this.eventPool = [];
-        this.files = [];
-        this.eventTracker = { node: {}, window: {} };
-        this.size = 0;
-        this.windowActive = false;
-        this.dropZoneActive = false;
+        this.removeFileHandler = this.removeFileHandler.bind(this);
+        this.nodeClasses = {
+            dropzone: 'dropzone',
+            wrapper: 'dropzone__file-wrapper',
+            validation: 'dropzone__validation',
+            error: 'dropzone__error',
+            file: 'dropzone__file',
+            name: 'dropzone__name',
+            type: 'dropzone__type',
+            size: 'dropzone__size',
+            thumbnail: 'dropzone__thumbnail'
+        };
+        this.interactionClasses = {
+            windowEnter: 'dropzone-window-active',
+            dropZoneEnter: 'dropzone-dropzone-active',
+        };
 
-        this.trackEvents('dragenter dragleave');
-        this.attachMultipleListeners('drag dragstart dragend dragover dragenter dragleave drop', this.preventer);
-        this.registerEvents();
+        this.defaults = {
+            // files have entered the window
+            windowEnter: () => {
+                this.$body.addClass(this.interactionClasses.windowEnter);
+            },
+            // files have left the window
+            windowLeave: () => {
+                this.$body.removeClass(this.interactionClasses.windowEnter);
+            },
+            // files have entered the dropzone
+            dropZoneEnter: () => {
+                this.$body.addClass(this.interactionClasses.dropZoneEnter);
+            },
+            // files have left the dropzone
+            dropZoneLeave: () => {
+                this.$body.removeClass(this.interactionClasses.dropZoneEnter);
+            },
+            // files have been dropped on the dropzone
+            dropZoneDrop: ({ files, node }) => {
+                this.handleDropZoneDrop(files, node);
+                this.resetBodyClass();
+            },
+            // files have been dropped on the window, but not the dropzone
+            windowDrop: () => {
+                this.resetBodyClass();
+            },
+            // files have been rejected
+            filesRejected: ({ status, error, node }) => {
+                this.updateDropZoneValidation(error, node);
+                this.resetBodyClass();
+            }
+        };
+
+        // get all dropzone elements
+        this.dropzones = [...this.html.querySelectorAll(`.${this.nodeClasses.dropzone}`)];
+        // get dropzone options array
+        this.options = this.buildOptsFromAttrs();
+        // instantiate each dropzone with it's options
+        this.dropzones = this.dropzones.map((node, index) => {
+            // mount our dropzone instance
+            this.options[index].node = this.mount(node);
+            return new DropZone(this.options[index]);
+        });
+    }
+
+    mount (dropzone) {
+        const node = document.createElement('div');
+        // dropzone innerHTML
+        const inner = `<p>dropzone</p>`.replace(/>\s+</g, '><');
+
+        [...dropzone.attributes].forEach(attr => {
+            const { name, value } = attr;
+
+            if (name.match(/(id|data-dropzone)/)) {
+                node.setAttribute(name, value);
+            }
+        });
+
+        node.className = 'dropzone';
+        node.innerHTML = inner;
+        dropzone.parentNode.replaceChild(node, dropzone);
+        return node;
     }
 
     /**
-     * Register drag & drop events
+     * Create a file wrapper / update with dropped files
+     * @param {Array} files
+     * @param {Element} node
      */
-    registerEvents () {
-        this.addEventAndStore(this.node, 'drop', this.handleDrop);
-        this.addEventAndStore(this.node, 'dragenter', this.handleEnter);
-        this.addEventAndStore(this.node, 'dragleave', this.handleLeave);
-        this.addEventAndStore(window, 'dragenter', this.handleWindowEnter);
-        this.addEventAndStore(window, 'dragleave', this.handleWindowLeave);
+    handleDropZoneDrop (files, node) {
+        let wrapper = node.querySelector(`.${this.nodeClasses.wrapper}`);
+
+        // if we do not already have a wrapper, create one
+        if (!wrapper) {
+            wrapper = document.createElement('div');
+            wrapper.className = this.nodeClasses.wrapper;
+            node.appendChild(wrapper);
+        }
+
+        // update wrapper HTML
+        this.updateDropZoneFiles(files, node, wrapper);
     }
 
     /**
-     * Track multiple events on the winow and DropZone
-     * @param  {String} events
+     * Update dropzone HTML
+     * - add / remove files HTML
+     * - remove wrapper if we have no files
+     * @param  {Array} files
+     * @param  {Element} node
+     * @param  {Element} wrapper
      */
-    trackEvents (events) {
-        events.split(' ').forEach(event => {
-            const updateWindow = this.updateEventTracker.bind(this, 'window', event),
-                updateNode = this.updateEventTracker.bind(this, 'node', event);
+    updateDropZoneFiles (files, node, wrapper) {
+        const validation = node.querySelector(`.${this.nodeClasses.validation}`);
+        let fileNodeString = '';
 
-            // initaite event trackers with 0
-            this.eventTracker.window[event] = 0;
-            this.eventTracker.node[event] = 0;
+        // if we've got a drop we know we don't have any errors
+        // clear any previous validation messages
+        if (validation) {
+            validation.remove();
+        }
 
-            // add window events to pool and attach handler
-            this.addEventToPool(window, event, updateWindow);
-            this.addEventAndStore(window, event, updateWindow);
-            // add DropZone node events to pool and attach handler
-            this.addEventToPool(this.node, event, updateNode);
-            this.addEventAndStore(this.node, event, updateNode);
+        // if there are no files we'll remove the wrapper
+        if (!files.length && wrapper) {
+            wrapper.remove();
+            return;
+        }
+
+        // create file html string
+        files.forEach(file => {
+            fileNodeString += this.createFileNode(file);
+        });
+
+        // update wrapper html
+        wrapper.innerHTML = fileNodeString;
+        [...wrapper.querySelectorAll(`.${this.nodeClasses.file}`)].forEach(file => {
+            file.addEventListener('click', this.removeFileHandler);
         });
     }
 
     /**
-     * Update a tracked event
-     * @param  {String} id
-     * @param  {String} event
+     * Update dropzone validation HTML
+     * @param  {String} error
+     * @param  {Element} node
      */
-    updateEventTracker (id, event) {
-        this.eventTracker[id][event]++;
+    updateDropZoneValidation (error, node) {
+        let validationNode = node.querySelector(`.${this.nodeClasses.validation}`);
+        let errorNode = node.querySelector(`.${this.nodeClasses.error}`);
+        const wrapper = node.querySelector(`.${this.nodeClasses.wrapper}`);
+
+        // if a validation element doesn't exist, create one
+        if (!validationNode) {
+            validationNode = document.createElement('div');
+            validationNode.className = this.nodeClasses.validation;
+            // if we do not have a file wrapper just append the validation
+            // to the dropzone node, otherwise insert before the file wrapper
+            if (!wrapper) {
+                node.appendChild(validationNode);
+            } else {
+                node.insertBefore(validationNode, wrapper);
+            }
+        }
+
+        // create error message and update validation
+        errorNode = `<p class="${this.nodeClasses.error}">${error}</p>`;
+        validationNode.innerHTML = errorNode;
     }
 
     /**
-     * Handle drop event. Checks to see if we can add more files to the files store
+     * Remove files from DropZone instances
      * @param  {Event} event
      */
-    handleDrop (event) {
-        const { files } = event.dataTransfer,
-            dataLength = files ? files.length : 0;
+    removeFileHandler (event) {
+        let file;
+        let dropZone;
 
-        // reset active states
-        this.windowActive = false;
-        this.dropZoneActive = false;
-
-        // determine if we can add files to the DropZone, exceptions are handled
-        // inside canAcceptFiles
-        if (this.canAcceptFiles(files)) {
-            for (let index = 0; index < dataLength; index++) {
-                this.files.push(this.processFile(files[index]));
+        // grab the file id and dropzone id, this is neccessary in the
+        // albeit unlikely event we have multiple dropzone instances
+        event.path.forEach(node => {
+            if (!file) {
+                file = node.getAttribute('data-dropzone-file');
             }
 
-            this.createCallback(this.options.dropped, this.getFiles());
-        }
+            if (!dropZone) {
+                dropZone = node.getAttribute('data-dropzone-id');
+            }
+        });
+
+        // remove file from DropZone instance
+        const instance = this.getDropZoneInstance(dropZone);
+        const wrapper = instance.node.querySelector(`.${this.nodeClasses.wrapper}`);
+
+        instance.removeFile(file);
+        // update HTML
+        this.updateDropZoneFiles(instance.getFiles(), instance.node, wrapper);
     }
 
     /**
-     * Determine if a file is currently on the window
-     */
-    fileOnWindow () {
-        const { dragenter, dragleave } = this.eventTracker.window;
-        return dragenter > dragleave;
-    }
-
-    /**
-     * Determin eif a file is in the DropZone
-     */
-    fileOnDropZone () {
-        const { dragenter, dragleave } = this.eventTracker.node;
-        return dragenter > dragleave;
-    }
-
-    /**
-     * Handle a file dragged into the window
-     */
-    handleWindowEnter () {
-        if (this.fileOnWindow() && !this.windowActive) {
-            this.createCallback(this.options.windowEnter);
-            this.windowActive = true;
-        }
-    }
-
-    /**
-     * Handle a file being dragged off of the window
-     */
-    handleWindowLeave () {
-        if (!this.fileOnWindow() && this.windowActive && !this.dropZoneActive) {
-            this.createCallback(this.options.windowLeave);
-            this.windowActive = false;
-        }
-    }
-
-    /**
-     * Handle drag entering the DropZone
-     */
-    handleEnter () {
-        if (this.fileOnDropZone() && !this.dropZoneActive) {
-            this.createCallback(this.options.dropZoneEnter);
-            this.dropZoneActive = true;
-        }
-    }
-
-    /**
-     * Handle drag leaving the DropZone
-     */
-    handleLeave () {
-        if (!this.fileOnDropZone() && this.dropZoneActive) {
-            this.createCallback(this.options.dropZoneLeave);
-            this.dropZoneActive = false;
-        }
-    }
-
-    /**
-     * Determine if the DropZone can accept files
-     * @param  {FileList} files
-     * @return {Boolean}
-     */
-    canAcceptFiles (files) {
-        const newSize = [...files].reduce((total, file) => total += file.size, 0);
-
-        if (this.getFiles().length + files.length > this.options.maxFiles) {
-            this.rejectFiles(0);
-            return false;
-        } else if (this.size + newSize > this.options.maxSize) {
-            this.rejectFiles(1);
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    /**
-     * A place we can do something with a file before we add it to the store.
+     * Create dropzone file HTML string
      * @param  {Object} file
-     * @return {Object}
+     * @return {String}
      */
-    processFile (file) {
-        this.size += file.size;
-        return {
-            file,
-            id: _.uniqueId('DropZone_'),
-            name: DropZone.getFileName(file),
-            type: DropZone.getFileType(file),
-            size: DropZone.getFileSize(file)
-        };
-    }
+    createFileNode ({ name, size, type, id, thumbnail }) {
+        const className = `class="${this.nodeClasses.thumbnail} dropzone-${type}"`;
+        let thumb = `<div ${className} src="${thumbnail}"`;
 
-    /**
-     * Handle a file rejection with error codes
-     * - 0 = the maximum number of files has been exceeded
-     * - 1 = the combined size of all files exceeds the maximum file size
-     */
-    rejectFiles (status) {
-        let text;
-
-        switch (status) {
-            case 0:
-                text = 'Maximum number of files exceeded';
-                break;
-            case 1:
-                text = 'Maximum combined file size exceeded';
-                break;
+        // add a thumbnail if DropZone has returned one
+        if (thumbnail) {
+            thumb += ` style="background-image: url(${thumbnail});"`;
         }
 
-        this.createCallback(this.options.filesRejected, { status, text });
+        thumb += '></div>';
+
+        // build file HTML, I've written this as a multi-line string for readability
+        // then remove any whitespace before adding to the DOM, not 100% certain on
+        // whether it's worth removing white space from the string
+        return `
+            <div data-dropzone-file="${id}" class="${this.nodeClasses.file}">
+                ${thumb}
+                <p class="${this.nodeClasses.name}">${name}</p>
+                <p class="${this.nodeClasses.size}">${size}</p>
+                <p class="${this.nodeClasses.type}">${type}</p>
+            </div>`.replace(/>\s+</g, '><');
     }
 
     /**
-     * Return all files in the store
+     * Remove any classes that were added as part of dropzone
+     */
+    resetBodyClass () {
+        const handlers = Object.keys(this.interactionClasses);
+        // create a string of classes that might need to be removed
+        const classes = handlers.reduce((classList, handler) => {
+            classList += `${this.interactionClasses[handler]} `;
+             return classList;
+        }, '').trim();
+
+        this.$body.removeClass(classes);
+    }
+
+    /**
+     * Create options array from dropzone nodes
      * @return {Array}
      */
-    getFiles () {
-        return this.files;
-    }
-
-    /**
-     * Remove a file from the store using it's ID
-     * @param  {String} id
-     */
-    removeFile (id) {
-        this.files = this.files.filter(file => {
-            if (file.id === id) {
-                this.size -= file.file.size;
-            } else {
-                return file;
-            }
-        });
-    }
-
-    /**
-     * Check for a callback, if it exists, call it
-     * @param  {Function} callback
-     * @param  {Object}   data
-     */
-    createCallback (callback, data = null) {
-        if (typeof callback === 'function') {
-            callback.call(this, data);
-        }
-    }
-
-    /**
-     * Attach multiple events
-     * @param  {String} events
-     * @param  {Function} handler
-     */
-    attachMultipleListeners (events, handler) {
-        events.split(' ').forEach(event => {
-            this.addEventAndStore(this.node, event, handler);
-
-            if (this.options.preventWindowDefault) {
-                this.addEventAndStore(window, event, handler);
-            }
-        });
-    }
-
-    /**
-     * Add event to event pool, the event pool is used to keep track of
-     * bound events to allow us to properly remove them if needed
-     * @param {HTMLElement} node
-     * @param {Event} event
-     * @param {Function} handler
-     */
-    addEventToPool (node, event, handler) {
-        this.eventPool.push({ node, event, handler });
-    }
-
-    /**
-     * Attach an event listener to a node and store in eventPool
-     * @param {HTMLElement} node
-     * @param {String} event
-     * @param {Function} handler
-     */
-    addEventAndStore (node, event, handler) {
-        this.addEventToPool(node, event, handler);
-        node.addEventListener(event, handler);
-    }
-
-    /**
-     * Remove any events that have been attached by DropZone
-     */
-    removeAllEvents () {
-        this.eventPool = this.eventPool.reduce((pool, item) => {
-            const { node, event, handler } = item;
-            node.removeEventListener(event, handler);
-            return pool;
+    buildOptsFromAttrs () {
+        return this.dropzones.reduce((options, node) => {
+            const dropZoneAttrs = this.getDropZoneAttrs(node);
+            // extend node attributes & defaults to build options
+            options.push(_.extend({}, dropZoneAttrs, this.defaults));
+            return options;
         }, []);
     }
 
     /**
-     * Prevent default event behaviour & propagation
-     * @param  {Event} event
-     */
-    preventer (event) {
-        event.preventDefault();
-    }
-
-    /**
-     * Reset
-     * - Remove any events attached by DropZone
-     * - re-intialise default values, and event handlers
-     */
-    reset () {
-        this.removeAllEvents();
-        this.initiate();
-    }
-
-    /**
-     * Format filename for printing
-     * @param  {Object} file
-     * @return {String}
-     */
-    static getFileName (file) {
-        // strip out any directory path in our filename
-        return file.name.replace(/.*[\\\/]/, '');
-    }
-
-    /**
-     * Format type for printing
-     * @param  {Object} file
-     * @return {String}
-     */
-    static getFileType (file) {
-        return file.type;
-    }
-
-    /**
-     * Format size for printing
-     * @param  {Object} file
-     * @return {String}
-     */
-    static getFileSize (file) {
-        return DropZone.formatBytes(file.size);
-    }
-
-    /**
-     * Merge defaults with options
-     * @param  {Object} options
+     * Derive dropzone options object from it's data-dropzone attributes,
+     * attributes are hyphenated and will be came-case-ified
+     * @param  {Element} node
      * @return {Object}
      */
-    static createOptions (defaults, options) {
-        if (typeof Object.assign !== 'function') {
-            return _.extend({}, defaults, options);
-        } else {
-            return Object.assign({}, defaults, options);
-        }
+    getDropZoneAttrs (node) {
+        return [...node.attributes].reduce((attrs, attr) => {
+            const { name, value } = attr;
+            // grab value from attributes matching data-dropzone-{option}={value}
+            if (name.match(/dropzone/)) {
+                // transform hyphen seperated attr to DropZone camelCase option
+                const option = name.replace(/data-dropzone-/, '');
+
+                attrs[DropZoneComponent.camelCaseIfy(option)] = value;
+            }
+
+            return attrs;
+        },{});
     }
 
     /**
-     * Format bytes as unit relative to amount of bytes
-     * @param  {Number} bytes
-     * @param  {Number} decimal
-     * @return {String}
+     * Return a DropZone instance by the id attribute of the node
+     * @param  {String} id
+     * @return {Object} DropZone
      */
-    static formatBytes (bytes, decimal = 1) {
-        if (!bytes) {
-            return '0 Byte';
-        }
-
-        const kb = 1000,
-            sizes = ['Bytes', 'KB', 'MB', 'GB'],
-            i = Math.floor(Math.log(bytes) / Math.log(kb));
-        return `${parseFloat((bytes / Math.pow(kb, i)).toFixed(decimal))} ${sizes[i]}`;
+    getDropZoneInstance (id) {
+        return this.dropzones.find(dz => dz.node.id === id);
     }
 
+    /**
+     * Transform a hyphen seperated string to camel case
+     * @param  {String} string
+     * @return {String}
+     */
+    static camelCaseIfy (string) {
+        return string.split('-').map((word, index) => {
+            if (index) {
+                return word[0].toUpperCase() + word.slice(1);
+            } else {
+                return word;
+            }
+        }).join('');
+    }
 }
 
-module.exports = DropZone;
+module.exports = DropZoneComponent;
