@@ -118,8 +118,6 @@ export default class DropZone {
                 for (let index = 0; index < dataLength; index++) {
                     this.files.push(this.processFile(files[index]));
                 }
-
-                // TODO - test node functionality
                 this.createCallback(this.options.dropZoneDrop, { files: this.getFiles(), node: this.node });
             }
         // dropped on thw window
@@ -374,14 +372,11 @@ export default class DropZone {
      * @return {String|Boolean}
      */
     static getFileThumbnail (file) {
-        let url = false;
-
         if (file.type.match(/\/(gif|jpeg|png|svg+xml|svg)/)) {
-            const url = URL.createObjectURL(file);
-            return url;
+            return URL.createObjectURL(file);
+        } else {
+            return false;
         }
-
-        return url;
     }
 
     /**
