@@ -1,10 +1,12 @@
 import DropZone from './libs/DropZone';
+import MimeTyper from './libs/MimeTyper';
 import _ from 'lodash';
 import $ from 'jquery';
 
 class DropZoneComponent {
     constructor (html) {
         this.html = window.$ && html instanceof window.$ ? html[0] : html;
+        this.mimeTyper = new MimeTyper();
     }
 
     /**
@@ -214,19 +216,18 @@ class DropZoneComponent {
      * @return {String}
      */
     createFileNode ({ name, size, type, id, thumbnail }) {
-        const className = `class="${this.nodeClasses.thumbnail} dropzone-${type}"`;
-        let thumb = `<div ${className} src="${thumbnail}"`;
+        let thumb = `<div class="${this.nodeClasses.thumbnail}`;
 
-        // add a thumbnail if DropZone has returned one
         if (thumbnail) {
-            thumb += ` style="background-image: url(${thumbnail});"`;
+            // add a thumbnail if DropZone has returned one
+            thumb += `" style="background-image: url(${thumbnail});"`;
+        } else {
+            // add icon class if we cannot get a file preview
+            thumb += ` icon-${this.mimeTyper.getIconClass(type)}"`;
         }
 
         thumb += '></div>';
 
-        // build file HTML, I've written this as a multi-line string for readability
-        // then remove any whitespace before adding to the DOM, not 100% certain on
-        // whether it's worth removing white space from the string
         return `
             <div data-dropzone-file="${id}" class="${this.nodeClasses.file}">
                 ${thumb}
