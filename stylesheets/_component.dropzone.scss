@@ -44,12 +44,12 @@
     }
 }
 
-$thumbnail-size: 5rem;
+$thumbnail-size: 3.5rem;
 
 .dropzone__thumbnail {
-    background-color: gray;
     background-position: center;
     background-size: cover;
+    font-size: $thumbnail-size;
     height: $thumbnail-size;
     margin: 0 auto .75rem;
     width: $thumbnail-size;
