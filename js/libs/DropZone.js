@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-export const defaults = {
+const defaults = {
     // HTML node that will become DropZone
     node: null,
     // limit of files within store
