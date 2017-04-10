@@ -79,6 +79,11 @@ class DropZoneComponent {
         });
     }
 
+    /**
+     * Mount a dropzone instance to the DOM
+     * @param  {Element} dropzone
+     * @return {Element}
+     */
     mount (dropzone) {
         const node = document.createElement('div');
         // dropzone innerHTML
@@ -197,7 +202,7 @@ class DropZoneComponent {
             }
 
             if (!dropZone) {
-                dropZone = node.getAttribute('data-dropzone-id');
+                dropZone = node.id;
             }
         });
 
