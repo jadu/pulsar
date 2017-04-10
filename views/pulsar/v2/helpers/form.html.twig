@@ -881,6 +881,92 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 {% endspaceless %}
 {% endmacro %}
 
+{# -----------------------------------------------------------------------------
+
+# DropZone
+
+Generates a file input with a dropzone class that acts as a mounting point for a
+drag and drop file upload. If javascript is enabled DropZone will empty out the regular
+file input and build a drag and drop enabled zone. This can be used for multiple drag and drop
+uploads (with previews) that can be added to the FormData prior to being sent to the server
+with a xhr request.
+
+DropZone can be instantiated with a configuration object in javascript, or have it's options
+defined as attributes on the target HTML Element.
+
+If javascript is not available, dropzone will fall back to a regular file input.
+
+## Example usage
+
+```twig
+{{
+    form.dropzone({
+        'id': 'dropzone-example',
+        'data-dropzone-max-size': '123456',
+        'data-dropzone-max-files': '5',
+        'label': 'Drag annd drop files to upload'
+    })
+}}
+```
+
+## Options applied to DropZone
+
+All DropZone options should be prefixed with `data-dropzone-`, for example `data-dropzone-max-files`.
+
+Option      | Type   | Description
+----------- | ------ | ---------------------------------------------------------
+max-files   | string | The maximum ammount of files a DropZone will accept
+max-size    | string | The combined file size limit of a group of files
+
+
+## Options applied to parent wrapper
+
+Option      | Type   | Description
+----------- | ------ | ---------------------------------------------------------
+class       | string | A space separated list of class names
+error       | string | Text to explain an error/validation condition. Also adds error state styling
+guidance    | string | Text to be displayed in a popover, adds a (?) icon after the input
+help        | string | Additional guidance information to be displayed next to the input
+label       | string  | Text for the `<label>` companion element
+required    | bool   | Visually indicates that the field must be completed
+
+## Options applied to input
+
+Option      | Type   | Description
+----------- | ------ | ---------------------------------------------------------
+autofocus   | bool   | Whether the field should have input focus on page load
+disabled    | bool   | Stops the element from being interactive if true
+form        | string | Specific one or more forms this label belongs to
+id          | string | A unique identifier, will also be used as the label's `for` attribute
+name        | string | The name of this control
+placeholder | string | A short hint that describes the expected value
+required    | bool   | Adds `required` and `aria-required="true"` attributes
+value       | string | Specifies the value of the input
+data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
+
+*Any other options not listed here will be applied to the input.
+*
+#}
+{% macro dropzone(options) %}
+{% spaceless %}
+    {% import _self as form %}
+    {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
+
+    {{
+        form.group({
+            'parent': options|only('bare class error guidance guidance-container help id label required'),
+            'inputs': [
+                elem.input(options
+                    |exclude('bare class guidance guidance-container error help label')
+                    |defaults({'type': 'file'})
+                    |merge({'class': 'file dropzone'})
+                )
+            ]
+        })
+    }}
+
+{% endspaceless %}
+{% endmacro %}
 
 {# -----------------------------------------------------------------------------
 
