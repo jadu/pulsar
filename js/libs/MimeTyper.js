@@ -7,7 +7,7 @@ export default class MimeTyper {
         this.classes = {
             code: 'file-code-o',
             text: 'file-text-o',
-            document: 'file-word-o',
+            doc: 'file-word-o',
             powerpoint: 'file-powerpoint-o',
             excel: 'file-excel-o',
             pdf: 'file-pdf-o',
@@ -30,8 +30,8 @@ export default class MimeTyper {
             'text/richtext': this.classes.text,
             'application/rtf': this.classes.text,
             // document
-            'application/msword': this.classes.document,
-            'application/vnd.openxmlformats-officedocument.wordprocessingml.document': this.classes.document,
+            'application/msword': this.classes.doc,
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document': this.classes.doc,
             // powerpoint
             'application/vnd.ms-powerpoint': this.classes.powerpoint,
             'application/mspowerpoint': this.classes.powerpoint,
