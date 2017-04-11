@@ -13,5 +13,9 @@
 	&.is-disabled {
 		cursor: not-allowed;
 		opacity: .25;
+
+		.u-ui-disabled & {
+			opacity: 1;
+		}
 	}
 }
