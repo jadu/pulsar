@@ -4,56 +4,66 @@ export default class MimeTyper {
     constructor () {
         // this will be returned in the event we cannot match the MIME type
         this.default = 'file-o';
+        this.classes = {
+            code: 'file-code-o',
+            text: 'file-text-o',
+            document: 'file-word-o',
+            powerpoint: 'file-powerpoint-o',
+            excel: 'file-excel-o',
+            pdf: 'file-pdf-o',
+            image: 'file-image-o',
+            zip: 'file-zip-o',
+            video: 'file-movie-o',
+            audio: 'file-audio-os'
+        };
         // MIME type map {MIME type}: {class name}
         this.mimes = {
             // code
-            'text/css': 'file-code-o',
-            'text/html': 'file-code-o',
-            'application/javascript': 'file-code-o',
-            'application/ecmascript': 'file-code-o',
-            'text/xml': 'file-code-o',
+            'text/css': this.classes.code,
+            'text/html': this.classes.code,
+            'application/javascript': this.classes.code,
+            'application/ecmascript': this.classes.code,
+            'text/xml': this.classes.code,
             // text
-            'text/plain': 'file-text-o',
-            'application/plain': 'file-text-o',
-            'text/richtext': 'file-text-o',
-            'application/rtf': 'file-text-o',
+            'text/plain': this.classes.text,
+            'application/plain': this.classes.text,
+            'text/richtext': this.classes.text,
+            'application/rtf': this.classes.text,
             // document
-            'application/msword': 'file-word-o',
-            'application/vnd.openxmlformats-officedocument.wordprocessingml.document': 'file-word-o',
+            'application/msword': this.classes.document,
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document': this.classes.document,
             // powerpoint
-            'application/vnd.ms-powerpoint': 'file-powerpoint-o',
-            'application/mspowerpoint': 'file-powerpoint-o',
-            'application/powerpoint': 'file-powerpoint-o',
+            'application/vnd.ms-powerpoint': this.classes.powerpoint,
+            'application/mspowerpoint': this.classes.powerpoint,
+            'application/powerpoint': this.classes.powerpoint,
             // spreadsheet
-            'application/excel': 'file-excel-o',
-            'application/vnd.ms-excel': 'file-excel-o',
-            'application/x-excel': 'file-excel-o',
-            'application/x-msexcel': 'file-excel-o',
-            'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': 'file-excel-o',
-            // office
-            'application/vnd.ms-office': 'file-o',
+            'application/excel': this.classes.excel,
+            'application/vnd.ms-excel': this.classes.excel,
+            'application/x-excel': this.classes.excel,
+            'application/x-msexcel': this.classes.excel,
+            'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': this.classes.excel,
             // pdf
-            'application/pdf': 'file-pdf-o',
+            'application/pdf': this.classes.pdf,
             // image
-            'image/jpeg': 'file-image-o',
-            'image/png': 'file-image-o',
-            'image/svg': 'file-image-o',
-            'image/svg+xml': 'file-image-o',
-            'image/gif': 'file-image-o',
+            'image/jpeg': this.classes.image,
+            'image/png': this.classes.image,
+            'image/svg': this.classes.image,
+            'image/svg+xml': this.classes.image,
+            'image/gif': this.classes.image,
             // zip
-            'application/x-compressed': 'file-zip-o',
-            'application/x-gzip': 'file-zip-o',
-            'application/zip': 'file-zip-o',
-            'application/x-zip': 'file-zip-o',
+            'application/x-compressed': this.classes.zip,
+            'application/x-gzip': this.classes.zip,
+            'application/zip': this.classes.zip,
+            'application/x-zip': this.classes.zip,
             // video
-            'video/mpeg': 'file-movie-o',
-            'video/quicktime': 'file-movie-o',
-            'video/mp4': 'file-movie-o',
+            'video/mpeg': this.classes.video,
+            'video/quicktime': this.classes.video,
+            'video/mp4': this.classes.video,
             // audio
-            'audio/mpeg': 'file-audio-o',
-            'audio/midi': 'file-audio-o',
-            'audio/wav': 'file-audio-o',
-            'audio/x-wav': 'file-audio-o'
+            'audio/mpeg': this.classes.audio,
+            'audio/midi': this.classes.audio,
+            'audio/wav': this.classes.audio,
+            'audio/x-wav': this.classes.audio
         };
     }
 
