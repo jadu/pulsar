@@ -324,4 +324,12 @@ describe('DropZoneComponent', () => {
             expect(actual).to.equal(expected);
         });
     });
+
+    describe('getEventPath()', () => {
+        it('should return an array of elements', () => {
+            const node = $html.find('#dropzone_1');
+
+            expect(DropZoneComponent.getEventPath(node[0]).length).to.equal(3);
+        });
+    });
 });

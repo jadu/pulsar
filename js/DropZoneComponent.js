@@ -194,10 +194,11 @@ class DropZoneComponent {
     removeFileHandler (event) {
         let file;
         let dropZone;
+        const path = event.path ? event.path : DropZoneComponent.getEventPath(event.target);
 
         // grab the file id and dropzone id, this is neccessary in the
         // albeit unlikely event we have multiple dropzone instances
-        event.path.forEach(node => {
+        path.forEach(node => {
             if (!file) {
                 file = node.getAttribute('data-dropzone-file');
             }
@@ -317,6 +318,23 @@ class DropZoneComponent {
                 return word;
             }
         }).join('');
+    }
+
+    /**
+     * Polyfill the lack of an event.path for some browsers
+     * @param  {Element} target
+     * @return {Array}
+     */
+    static getEventPath (target) {
+        const eventPath = [target];
+        let node = target;
+        // ensure we have an element we can query an attribute on
+        while (node.parentNode && node.parentNode.getAttribute) {
+            eventPath.push(node.parentNode);
+            node = node.parentNode;
+        }
+
+        return eventPath;
     }
 }
 
