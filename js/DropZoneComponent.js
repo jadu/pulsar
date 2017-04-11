@@ -14,7 +14,7 @@ class DropZoneComponent {
      * multiple instances of DropZone
      */
     init () {
-        this.body = window.document.body;
+        this.body = [...this.html.children].slice(1);
         this.$body = $(this.body);
         this.eventPool = [];
         this.removeFileHandler = this.removeFileHandler.bind(this);
@@ -124,6 +124,7 @@ class DropZoneComponent {
 
     /**
      * Update dropzone HTML
+     * - remove validation node if we have one
      * - add / remove files HTML
      * - remove wrapper if we have no files
      * @param  {Array} files
@@ -262,7 +263,7 @@ class DropZoneComponent {
      */
     buildOptsFromAttrs () {
         return this.dropzones.reduce((options, node) => {
-            const dropZoneAttrs = this.getDropZoneAttrs(node);
+            const dropZoneAttrs = DropZoneComponent.getDropZoneAttrs(node);
             // extend node attributes & defaults to build options
             options.push(_.extend({}, dropZoneAttrs, this.defaults));
             return options;
@@ -275,7 +276,7 @@ class DropZoneComponent {
      * @param  {Element} node
      * @return {Object}
      */
-    getDropZoneAttrs (node) {
+   static getDropZoneAttrs (node) {
         return [...node.attributes].reduce((attrs, attr) => {
             const { name, value } = attr;
             // grab value from attributes matching data-dropzone-{option}={value}
@@ -287,7 +288,7 @@ class DropZoneComponent {
             }
 
             return attrs;
-        },{});
+        }, {});
     }
 
     /**
@@ -296,7 +297,11 @@ class DropZoneComponent {
      * @return {Object} DropZone
      */
     getDropZoneInstance (id) {
-        return this.dropzones.find(dz => dz.node.id === id);
+        if (Array.prototype.find) {
+            return this.dropzones.find(dz => dz.node.id === id);
+        } else {
+            return _.find(this.dropzones, dz => dz.node.id === id);
+        }
     }
 
     /**
