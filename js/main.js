@@ -10,6 +10,7 @@
     $html.removeClass('no-js');
 
     pulsar.button       = new pulsar.ButtonComponent($html);
+    pulsar.disableUi    = new pulsar.DisableUiComponent($html);
     pulsar.flash        = new pulsar.FlashMessageComponent($html);
     pulsar.helpText     = new pulsar.HelpTextComponent($html, window, document);
     pulsar.pulsarForm   = new pulsar.PulsarFormComponent($html);
@@ -34,16 +35,7 @@
         pulsar.navMain.init();
         pulsar.filterBar.init();
         pulsar.dropzone.init();
-
-        // DropZone Examples
-        // Example 1
-        // - default options
-        const dropzoneExample1 = pulsar.dropzone.getDropZoneInstance('dropzone_example_1');
-
-        // Example 2
-        // - file limit of 0
-        const dropzoneExample2 = pulsar.dropzone.getDropZoneInstance('dropzone_example_2');
-
+        pulsar.disableUi.init();
 
         // Switch out .svg for .png for <img> elements in older browsers
         pulsar.svgeezy.init('nocheck', 'png');
