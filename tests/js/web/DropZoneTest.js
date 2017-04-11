@@ -1,6 +1,6 @@
 "use strict";
 
-import DropZone, { defaults } from '../../../js/libs/DropZone';
+import DropZone from '../../../js/libs/DropZone';
 import { assert } from 'chai';
 import $ from 'jquery';
 import _ from 'lodash';
