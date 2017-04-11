@@ -2,7 +2,6 @@ var fs = require('fs');
 var links;
 
 function getLinks() {
-// Scrape the links from primary nav of the website
     var links = document.querySelectorAll('.nav-link.t-nav-link');
     return Array.prototype.map.call(links, function (e) {
         return e.getAttribute('href')
@@ -10,17 +9,24 @@ function getLinks() {
 }
 
 casper.start('http://192.168.13.37/index.php', function() {
-    fs.write('tests/validation/html_output/index.html', this.getPageContent(), 'w');
+    fs.write('tests/validation/html_output/homepage.html', this.getPageContent(), 'w');
 });
 
 casper.then(function () {
-    links = this.evaluate(getLinks);
-    for(var i in links) {
-        console.log(i,' Outer:', links[i]);
-        casper.start(links[i], function() {
-            console.log(i, ' Inner:', links[i]);
-            fs.write('tests/validation/html_output/page-' + i + '.html', this.getPageContent(), 'w');
+    var links = this.evaluate(getLinks);
+    var current = 1;
+    var end = links.length;
+
+    for (;current < end;) {
+        //console.log(current,' Outer:', current);
+      (function(cntr) {
+        casper.thenOpen(links[cntr], function() {
+            console.log(cntr, ' Inner:', links[cntr]);
+            fs.write('tests/validation/html_output/_' + cntr + '.html', this.getPageContent(), 'w');
         });
+      })(current);
+
+      current++;
     }
 });
 
