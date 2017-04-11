@@ -138,12 +138,12 @@ class DropZoneComponent {
         // if we've got a drop we know we don't have any errors
         // clear any previous validation messages
         if (validation) {
-            validation.remove();
+            validation.parentNode.removeChild(validation);
         }
 
         // if there are no files we'll remove the wrapper
         if (!files.length && wrapper) {
-            wrapper.remove();
+            wrapper.parentNode.removeChild(wrapper);
             return;
         }
 
