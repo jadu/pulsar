@@ -14,19 +14,16 @@ casper.start('http://192.168.13.37/index.php', function() {
 
 casper.then(function () {
     var links = this.evaluate(getLinks);
-    var current = 1;
+    var current = 0;
     var end = links.length;
 
     for (;current < end;) {
-        //console.log(current,' Outer:', current);
-      (function(cntr) {
-        casper.thenOpen(links[cntr], function() {
-            console.log(cntr, ' Inner:', links[cntr]);
-            fs.write('tests/validation/html_output/_' + cntr + '.html', this.getPageContent(), 'w');
-        });
-      })(current);
-
-      current++;
+        (function(cntr) {
+            casper.thenOpen('http://192.168.13.37/' + links[cntr] + '', function() {
+                fs.write('tests/validation/html_output/_' + cntr + '.html', this.getPageContent(), 'w');
+            });
+        })(current);
+        current++;
     }
 });
 
