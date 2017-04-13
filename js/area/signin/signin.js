@@ -1,6 +1,6 @@
 var $ = require('jquery'),
-	placeholder = require('../../../libs/jquery-placeholder/jquery.placeholder'),
-	vide = require('../../../libs/vide/dist/jquery.vide.min');
+	placeholder = require('jquery-placeholder/jquery.placeholder'),
+	vide = require('vide/dist/jquery.vide.min');
 
 function SignInComponent(html) {
 	this.$html = html;
