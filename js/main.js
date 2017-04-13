@@ -34,8 +34,13 @@
         pulsar.modulePermissions.init();
         pulsar.navMain.init();
         pulsar.filterBar.init();
-        pulsar.dropzone.init();
         pulsar.disableUi.init();
+
+        // < IE10 do not support the File API, so we'll only need to initiate
+        // the DropZoneComponent for >= IE10
+        if (!$html.hasClass('lt-ie10')) {
+            pulsar.dropzone.init();
+        }
 
         // Switch out .svg for .png for <img> elements in older browsers
         pulsar.svgeezy.init('nocheck', 'png');

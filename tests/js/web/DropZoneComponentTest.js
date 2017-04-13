@@ -297,6 +297,13 @@ describe('DropZoneComponent', () => {
 
             expect(DropZoneComponent.getDropZoneAttrs(node[0])).to.deep.equal(expected);
         });
+
+        it('should convert space seperated values to an array', () => {
+            const node = $('<div data-dropzone-whitelist="foo bar"></div>');
+            const expected = { whitelist: ['foo', 'bar'] };
+
+            expect(DropZoneComponent.getDropZoneAttrs(node[0])).to.deep.equal(expected);
+        });
     });
 
     describe('getDropZoneInstance()', () => {

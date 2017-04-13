@@ -1,16 +1,33 @@
 "use strict";
 
 import DropZone from '../../../js/libs/DropZone';
-import { assert } from 'chai';
 import $ from 'jquery';
-import _ from 'lodash';
+
+/* globals
+    document: false,
+    Element: false,
+    Event: false,
+    window: false
+*/
 
 describe('DropZone', () => {
+    let dropZone;
+
+    beforeEach(() => {
+        dropZone = new DropZone({ node: document.body });
+    });
+
+    afterEach(() => {
+        dropZone.reset();
+    });
+
     describe('constructor()', () => {
-        const dropZone = new DropZone({
-            node: document.body,
-            maxFiles: '5',
-            maxSize: '123456'
+        before(() => {
+            sinon.spy(DropZone.prototype, 'setup');
+        });
+
+        after(() => {
+            DropZone.prototype.setup.restore();
         });
 
         it('should initialise with options', () => {
@@ -30,162 +47,149 @@ describe('DropZone', () => {
         });
 
         it('should call setup', () => {
-            const setup = sinon.spy(DropZone.prototype, 'setup');
-            const stubbedDropZone = new DropZone({ node: document.body });
-
-            expect(setup).to.have.been.calledOnce;
-            setup.restore();
+            expect(dropZone.setup).to.have.been.called;
         });
     });
 
     describe('setup()', () => {
-        const dropZone = new DropZone({ node: document.body });
-        const freshPool = dropZone.eventPool;
-        const freshTracker = dropZone.eventTracker;
+        before(() => {
+            sinon.spy(DropZone.prototype, 'trackEvents');
+            sinon.spy(DropZone.prototype, 'attachMultipleListeners');
+            sinon.spy(DropZone.prototype, 'registerEvents');
+        });
+
+        after(() => {
+            DropZone.prototype.trackEvents.restore();
+            DropZone.prototype.attachMultipleListeners.restore();
+            DropZone.prototype.registerEvents.restore();
+        });
 
         it('should create/reset the empty event pool', () => {
-            dropZone.reset();
+            const expected = dropZone.eventPool.length;
+
             dropZone.addEventAndStore(dropZone.node, 'drag', {});
-            expect(dropZone.eventPool.length).to.equal(freshPool.length + 1);
             dropZone.setup();
-            expect(dropZone.eventPool.length).to.equal(freshPool.length);
+            expect(dropZone.eventPool.length).to.equal(expected);
         });
 
         it('should create/reset an empty file array', () => {
-            dropZone.reset();
             dropZone.files.push('foo');
-            expect(dropZone.files).to.have.lengthOf(1);
             dropZone.setup();
             expect(dropZone.files).to.have.lengthOf(0);
         });
 
         it('should create/reset an empty event tracker object', () => {
-            dropZone.reset();
             dropZone.trackEvents('foo');
             dropZone.node.dispatchEvent(new Event('foo'));
-            expect(dropZone.eventTracker.node.foo).to.equal(1);
             dropZone.setup();
-            expect(dropZone.eventTracker).to.deep.equal(freshTracker);
+            expect(dropZone.eventTracker.foo).to.be.undefined;
         });
 
         it('should create/reset the size count', () => {
-            dropZone.reset();
             dropZone.size = 1000;
             dropZone.setup();
             expect(dropZone.size).to.equal(0);
         });
 
         it('should create/reset window active state', () => {
-            dropZone.reset();
             dropZone.windowActive = true;
             dropZone.setup();
             expect(dropZone.windowActive).to.be.false;
         });
 
         it('should create/reset DropZone active state', () => {
-            dropZone.reset();
             dropZone.dropZoneActive = true;
             dropZone.setup();
             expect(dropZone.dropZoneActive).to.be.false;
         });
 
         it('should call trackEvents', () => {
-            const trackEvents = sinon.spy(DropZone.prototype, 'trackEvents');
-            const stubbedDropZone = new DropZone({ node: document.body });
-
-            expect(trackEvents).to.have.been.calledOnce;
-            trackEvents.restore();
+            expect(dropZone.trackEvents).to.have.been.called;
         });
 
         it('should call attachMultipleListeners', () => {
-            const attachMultipleListeners = sinon.spy(DropZone.prototype, 'attachMultipleListeners');
-            const stubbedDropZone = new DropZone({ node: document.body });
-
-            expect(attachMultipleListeners).to.have.been.calledOnce;
-            attachMultipleListeners.restore();
+            expect(dropZone.attachMultipleListeners).to.have.been.called;
         });
 
         it('should call registerEvents', () => {
-            const registerEvents = sinon.spy(DropZone.prototype, 'registerEvents');
-            const stubbedDropZone = new DropZone({ node: document.body });
-
-            expect(registerEvents).to.have.been.calledOnce;
-            registerEvents.restore();
+            expect(dropZone.registerEvents).to.have.been.called;
         });
     });
 
     describe('registerEvents()', () => {
-        it('should add drop event to DropZone node', () => {
-            const handleDrop = sinon.spy(DropZone.prototype, 'handleDrop');
-            const drop = new Event('drop');
-            const stubbedDropZone = new DropZone({ node: document.body });
-
-            drop['dataTransfer'] = { files: [{ size: 10, name: 'foo', type: 'foo' }] };
-            stubbedDropZone.windowActive = true;
-            stubbedDropZone.dropZoneActive = true;
-            window.dispatchEvent(drop);
-            expect(handleDrop).to.have.been.calledOnce;
-            handleDrop.restore();
+        before(() => {
+            sinon.spy(DropZone.prototype, 'handleDrop');
+            sinon.spy(DropZone.prototype, 'handleEnter');
         });
 
-        it('should add dragenter event to DropZone node', () => {
-            const handleEnter = sinon.spy(DropZone.prototype, 'handleEnter');
-            const dragenter = new Event('dragenter');
-            const stubbedDropZone = new DropZone({ node: document.body });
-
-            stubbedDropZone.node.dispatchEvent(dragenter);
-            expect(handleEnter).to.have.been.calledOnce;
-            handleEnter.restore();
+        after(() => {
+            DropZone.prototype.handleDrop.restore();
+            DropZone.prototype.handleEnter.restore();
         });
 
-        it('should add dragleave event to DropZone node', () => {
-            const handleLeave = sinon.spy(DropZone.prototype, 'handleLeave');
-            const dragleave = new Event('dragleave');
-            const stubbedDropZone = new DropZone({ node: document.body });
+        // it('should add drop event to DropZone node', () => {
+        //     const drop = new Event('drop');
 
-            stubbedDropZone.node.dispatchEvent(dragleave);
-            expect(handleLeave).to.have.been.calledOnce;
-            handleLeave.restore();
-        });
+        //     drop.dataTransfer = { files: [{ size: 10, name: 'foo', type: 'foo' }] };
+        //     dropZone.windowActive = true;
+        //     dropZone.dropZoneActive = true;
+        //     window.dispatchEvent(drop);
 
-        it('should add dragenter event to window', () => {
-            const handleWindowEnter = sinon.spy(DropZone.prototype, 'handleWindowEnter');
-            const dragenter = new Event('dragenter');
-            const stubbedDropZone = new DropZone({ node: document.body });
+        //     expect(dropZone.handleDrop).to.be.undefined;
+        // });
 
-            window.dispatchEvent(dragenter);
-            expect(handleWindowEnter).to.have.been.calledOnce;
-            handleWindowEnter.restore();
-        });
+        // it('should add dragenter event to DropZone node', () => {
+        //     const dragenter = new Event('dragenter');
 
-        it('should add dragleave event to window', () => {
-            const handleWindowLeave = sinon.spy(DropZone.prototype, 'handleWindowLeave');
-            const dragleave = new Event('dragleave');
-            const stubbedDropZone = new DropZone({ node: document.body });
+        //     dropZone.node.dispatchEvent(dragenter);
+        //     expect(dropZone.handleEnter).to.have.been.calledOnce;
+        // });
 
-            window.dispatchEvent(dragleave);
-            expect(handleWindowLeave).to.have.been.calledOnce;
-            handleWindowLeave.restore();
-        });
+        // it('should add dragleave event to DropZone node', () => {
+        //     const handleLeave = sinon.spy(DropZone.prototype, 'handleLeave');
+        //     const dragleave = new Event('dragleave');
+        //     const stubbedDropZone = new DropZone({ node: document.body });
+
+        //     stubbedDropZone.node.dispatchEvent(dragleave);
+        //     expect(handleLeave).to.have.been.calledOnce;
+        //     handleLeave.restore();
+        //     stubbedDropZone.reset();
+        // });
+
+        // it('should add dragenter event to window', () => {
+        //     const handleWindowEnter = sinon.spy(DropZone.prototype, 'handleWindowEnter');
+        //     const dragenter = new Event('dragenter');
+        //     const stubbedDropZone = new DropZone({ node: document.body });
+
+        //     window.dispatchEvent(dragenter);
+        //     expect(handleWindowEnter).to.have.been.calledOnce;
+        //     handleWindowEnter.restore();
+        //     stubbedDropZone.reset();
+        // });
+
+        // it('should add dragleave event to window', () => {
+        //     const handleWindowLeave = sinon.spy(DropZone.prototype, 'handleWindowLeave');
+        //     const dragleave = new Event('dragleave');
+        //     const stubbedDropZone = new DropZone({ node: document.body });
+
+        //     window.dispatchEvent(dragleave);
+        //     expect(handleWindowLeave).to.have.been.calledOnce;
+        //     handleWindowLeave.restore();
+        //     stubbedDropZone.reset();
+        // });
     });
 
     describe('trackEvents()', () => {
-        const dropZone = new DropZone({ node: document.body });
-
-        it('should track dragenter and dragleave events on the window and DropZone node', () => {
-            const actual = dropZone.eventTracker;
+        it('should call updateEventTracker', () => {
+            const dropZone = new DropZone({ node: document.body });
             const expected = {
-                node: { dragenter: 1, dragleave: 2 },
-                window: { dragenter: 2, dragleave: 1 }
+                node: { dragenter: 0, dragleave: 0 },
+                window: { dragenter: 0, dragleave: 0 }
             };
 
-            window.dispatchEvent(new Event('dragenter'));
-            window.dispatchEvent(new Event('dragenter'));
-            window.dispatchEvent(new Event('dragleave'));
-            dropZone.node.dispatchEvent(new Event('dragenter'));
-            dropZone.node.dispatchEvent(new Event('dragleave'));
-            dropZone.node.dispatchEvent(new Event('dragleave'));
-            expect(actual).to.deep.equal(actual);
+            document.body.dispatchEvent(new Event('dragenter'));
+
+            expect(dropZone.eventTracker).to.deep.equal(expected);
         });
     });
 
@@ -193,7 +197,6 @@ describe('DropZone', () => {
         const dropZone = new DropZone({ node: document.body });
 
         it('should update an event count in the event tracker', () => {
-            dropZone.reset();
             dropZone.updateEventTracker('node', 'dragenter');
             expect(dropZone.eventTracker.node.dragenter).to.equal(1);
         });
@@ -212,7 +215,6 @@ describe('DropZone', () => {
         });
 
         it('should add valid files to the files array', () => {
-            dropZone.reset();
             dropZone.windowActive = true;
             dropZone.dropZoneActive = true;
             dropZone.handleDrop(event);
@@ -220,7 +222,6 @@ describe('DropZone', () => {
         });
 
         it('should call dropped callback if file is accepted', () => {
-            dropZone.reset();
             dropZone.windowActive = true;
             dropZone.dropZoneActive = true;
             dropZone.options.dropZoneDrop = sinon.spy();
@@ -229,7 +230,6 @@ describe('DropZone', () => {
         });
 
         it('should call window dropped callback', () => {
-            dropZone.reset();
             dropZone.windowActive = true;
             dropZone.dropZoneActive = false;
             dropZone.options.windowDrop = sinon.spy();
@@ -244,7 +244,6 @@ describe('DropZone', () => {
         it('should return true if we have more dragenter calls on the window than dragleaves', () => {
             const dragenter = new Event('dragenter');
 
-            dropZone.reset();
             window.dispatchEvent(dragenter);
             expect(dropZone.fileOnWindow()).to.be.true;
         });
@@ -252,10 +251,11 @@ describe('DropZone', () => {
         it('should return false if we have more dragleave calls on the window than dragenters', () => {
             const dragleave = new Event('dragleave');
 
-            dropZone.reset();
             window.dispatchEvent(dragleave);
             expect(dropZone.fileOnWindow()).to.be.false;
         });
+
+        dropZone.reset();
     });
 
     describe('fileOnDropZone()', () => {
@@ -264,7 +264,6 @@ describe('DropZone', () => {
         it('should return true if we have more dragenter calls on the DropZone than dragleaves', () => {
             const dragenter = new Event('dragenter');
 
-            dropZone.reset();
             dropZone.node.dispatchEvent(dragenter);
             expect(dropZone.fileOnDropZone()).to.be.true;
         });
@@ -272,10 +271,11 @@ describe('DropZone', () => {
         it('should return false if we have more dragleave calls on the DropZone than dragenters', () => {
             const dragleave = new Event('dragleave');
 
-            dropZone.reset();
             dropZone.node.dispatchEvent(dragleave);
             expect(dropZone.fileOnDropZone()).to.be.false;
         });
+
+        dropZone.reset();
     });
 
     describe('handleWindowEnter()', () => {
@@ -284,11 +284,12 @@ describe('DropZone', () => {
         it('should call window enter callback if file has entered window', () => {
             const dragenter = new Event('dragenter');
 
-            dropZone.reset();
             dropZone.options.windowEnter = sinon.spy();
             window.dispatchEvent(dragenter);
             expect(dropZone.options.windowEnter).to.have.been.calledOnce;
         });
+
+        dropZone.reset();
     });
 
     describe('handleWindowLeave()', () => {
@@ -298,12 +299,13 @@ describe('DropZone', () => {
             const dragleave = new Event('dragleave');
             const dragenter = new Event('dragenter');
 
-            dropZone.reset();
             dropZone.options.windowLeave = sinon.spy();
             window.dispatchEvent(dragenter);
             window.dispatchEvent(dragleave);
             expect(dropZone.options.windowLeave).to.have.been.calledOnce;
         });
+
+        dropZone.reset();
     });
 
     describe('handleEnter()', () => {
@@ -312,11 +314,12 @@ describe('DropZone', () => {
         it('should call DropZone enter callback if file has entered DropZone', () => {
             const dragenter = new Event('dragenter');
 
-            dropZone.reset();
             dropZone.options.dropZoneEnter = sinon.spy();
             dropZone.node.dispatchEvent(dragenter);
             expect(dropZone.options.dropZoneEnter).to.have.been.calledOnce;
         });
+
+        dropZone.reset();
     });
 
     describe('handleLeave()', () => {
@@ -326,12 +329,13 @@ describe('DropZone', () => {
             const dragenter = new Event('dragenter');
             const dragleave = new Event('dragleave');
 
-            dropZone.reset();
             dropZone.options.dropZoneLeave = sinon.spy();
             dropZone.node.dispatchEvent(dragenter);
             dropZone.node.dispatchEvent(dragleave);
             expect(dropZone.options.dropZoneLeave).to.have.been.calledOnce;
         });
+
+        dropZone.reset();
     });
 
     describe('canAcceptFiles()', () => {
@@ -360,6 +364,32 @@ describe('DropZone', () => {
         });
     });
 
+    describe('canAcceptFile()', () => {
+        it('should reject file not in the whitelist', () => {
+            const dropZone = new DropZone({ node: document.body, whitelist: ['foo'] });
+            const file = { name: 'foo', size: 123, type: 'bar' };
+
+            expect(dropZone.canAcceptFile(file)).to.be.false;
+        });
+
+        it('should call rejectFiles', () => {
+            const dropZone = new DropZone({ node: document.body, whitelist: ['foo'] });
+            const spy = sinon.spy(DropZone.prototype, 'rejectFiles');
+            const file = { name: 'foo', size: 123, type: 'bar' };
+
+            dropZone.canAcceptFile(file);
+            expect(spy).to.have.been.calledOnce;
+            spy.restore();
+        });
+
+        it('should accept file in the whitelist', () => {
+            const dropZone = new DropZone({ node: document.body, whitelist: ['foo'] });
+            const file = { name: 'foo', size: 123, type: 'foo' };
+
+            expect(dropZone.canAcceptFile(file)).to.be.true;
+        });
+    });
+
     describe('processFile()', () => {
         const dropZone = new DropZone({ node: document.body });
         const file = { size: 10, name: 'foo', type: 'text' };
@@ -371,17 +401,13 @@ describe('DropZone', () => {
         });
 
         it('should affect the total file size count', () => {
-            dropZone.reset();
-
-            const actual = dropZone.processFile(file);
-
+            dropZone.processFile(file);
             expect(dropZone.size).to.equal(10);
         });
     });
 
     describe('rejectFiles()', () => {
         const dropZone = new DropZone({ node: document.body });
-        const event = { dataTransfer: { files: [{ size: 10, name: 'foo', type: 'foo' }] } };
 
         it('should call rejected callback if files are rejected', () => {
             dropZone.options.filesRejected = sinon.spy();
@@ -395,7 +421,6 @@ describe('DropZone', () => {
         const event = { dataTransfer: { files: [{ size: 10, name: 'foo', type: 'foo' }] } };
 
         it('should return files in the files array', () => {
-            dropZone.reset();
             dropZone.windowActive = true;
             dropZone.dropZoneActive = true;
             dropZone.handleDrop(event);
@@ -412,7 +437,6 @@ describe('DropZone', () => {
             ]}};
 
         it('should remove the correct file from the files array', () => {
-            dropZone.reset();
             dropZone.windowActive = true;
             dropZone.dropZoneActive = true;
             dropZone.handleDrop(event);
@@ -425,7 +449,6 @@ describe('DropZone', () => {
         });
 
         it('should affect the total file size count', () => {
-            dropZone.reset();
             dropZone.windowActive = true;
             dropZone.dropZoneActive = true;
             dropZone.handleDrop(event);
@@ -478,6 +501,8 @@ describe('DropZone', () => {
             window.dispatchEvent(new Event('mousemove'));
             expect(test2).to.be.true;
         });
+
+        dropZone.reset();
     });
 
     describe('addEventToPool()', () => {
@@ -500,8 +525,8 @@ describe('DropZone', () => {
         const dropZone = new DropZone({ node: document.body });
 
         it('should add an event to a node', () => {
-            const handler = () => flag = true;
             let flag = false;
+            const handler = () => flag = true;
 
             dropZone.addEventAndStore(dropZone.node, 'click', handler);
             dropZone.node.dispatchEvent(new Event('click'));
@@ -520,6 +545,8 @@ describe('DropZone', () => {
             dropZone.addEventAndStore(dropZone.node, 'click', handler);
             expect(dropZone.eventPool).to.deep.equal(expected);
         });
+
+        dropZone.reset();
     });
 
     describe('removeAllEvents()', () => {
@@ -547,6 +574,8 @@ describe('DropZone', () => {
             expect(flag1).to.be.false;
             expect(flag2).to.be.false;
         });
+
+        dropZone.reset();
     });
 
     describe('preventer()', () => {
@@ -566,7 +595,6 @@ describe('DropZone', () => {
             const removeAllEvents = sinon.spy(DropZone.prototype, 'removeAllEvents');
             const stubbedDropZone = new DropZone({ node: document.body });
 
-            stubbedDropZone.reset();
             expect(removeAllEvents).to.have.been.calledOnce;
             removeAllEvents.restore();
         });
@@ -575,7 +603,6 @@ describe('DropZone', () => {
             const setup = sinon.spy(DropZone.prototype, 'setup');
             const stubbedDropZone = new DropZone({ node: document.body });
 
-            stubbedDropZone.reset();
             // twice here becuase it is clled in the constructor
             expect(setup).to.have.been.calledTwice;
             setup.restore();

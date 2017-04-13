@@ -7,6 +7,8 @@ const defaults = {
     maxFiles: 5,
     // limit total size of files (314572800 === 300mb)
     maxSize: 314572800,
+    // a whitelist of file types to validate against
+    whitelist: [],
     // file enters window
     windowEnter: function () {},
     // file leaves window
@@ -41,10 +43,12 @@ export default class DropZone {
     }
 
     setup () {
+        const { validation } = this.options;
+
         this.node = window.$ && this.options.node instanceof window.$ ? this.options.node[0] : this.options.node;
 
         if (!this.node) {
-            throw new Error('DropZone requires a DOM node')
+            throw new Error('DropZone requires a DOM node');
         }
 
         this.eventPool = [];
@@ -53,6 +57,7 @@ export default class DropZone {
         this.size = 0;
         this.windowActive = false;
         this.dropZoneActive = false;
+        this.customValidation = validation ? new RegExp(this.options.validation, 'g') : false;
 
         this.trackEvents('dragenter dragleave');
         this.attachMultipleListeners('drag dragstart dragend dragover dragenter dragleave drop', this.preventer);
@@ -116,11 +121,17 @@ export default class DropZone {
             // inside canAcceptFiles
             if (this.canAcceptFiles(files)) {
                 for (let index = 0; index < dataLength; index++) {
-                    this.files.push(this.processFile(files[index]));
+                    // determine if we can add this file to the DropZone, exceptions are
+                    // handled in canAcceptFile
+                    if (this.canAcceptFile(files[index])) {
+                        this.files.push(this.processFile(files[index]));
+                    }
                 }
-                this.createCallback(this.options.dropZoneDrop, { files: this.getFiles(), node: this.node });
+                this.createCallback(this.options.dropZoneDrop,
+                    { files: this.getFiles(), node: this.node }
+                );
             }
-        // dropped on thw window
+        // dropped on the window
         } else if (this.windowActive && !this.dropZoneActive) {
             this.createCallback(this.options.windowDrop);
         }
@@ -192,7 +203,7 @@ export default class DropZone {
      * @return {Boolean}
      */
     canAcceptFiles (files) {
-        const newSize = [...files].reduce((total, file) => total += file.size, 0);
+        const newSize = [...files].reduce((total, file) => total + file.size, 0);
 
         if (this.getFiles().length + files.length > this.options.maxFiles) {
             this.rejectFiles(0);
@@ -200,6 +211,26 @@ export default class DropZone {
         } else if (this.size + newSize > this.options.maxSize) {
             this.rejectFiles(1);
             return false;
+        } else {
+            return true;
+        }
+    }
+
+    canAcceptFile (file) {
+        const whitelistLength = this.options.whitelist.length;
+
+        // console.log('whitelist: ', this.options.whitelist)
+        // console.log('type: ', file.type)
+
+        if (whitelistLength) {
+            for (let i = 0; i < whitelistLength; i++) {
+                if (file.type.search(this.options.whitelist[i]) >= 0) {
+                    return true;
+                } else {
+                    this.rejectFiles(2, file);
+                    return false;
+                }
+            }
         } else {
             return true;
         }
@@ -226,6 +257,7 @@ export default class DropZone {
      * Handle a file rejection with error codes
      * - 0 = the maximum number of files has been exceeded
      * - 1 = the combined size of all files exceeds the maximum file size
+     * - 2 = a file has failed the custom validation rule
      */
     rejectFiles (status) {
         let error;
@@ -236,6 +268,9 @@ export default class DropZone {
                 break;
             case 1:
                 error = `Maximum file size ${DropZone.formatBytes(this.options.maxSize)} exceeded`;
+                break;
+            case 2:
+                error = 'File type not supported';
                 break;
         }
 
@@ -315,6 +350,7 @@ export default class DropZone {
     removeAllEvents () {
         this.eventPool = this.eventPool.reduce((pool, item) => {
             const { node, event, handler } = item;
+
             node.removeEventListener(event, handler);
             return pool;
         }, []);
@@ -372,7 +408,7 @@ export default class DropZone {
      * @return {String|Boolean}
      */
     static getFileThumbnail (file) {
-        if (file.type.match(/\/(gif|jpeg|png|svg+xml|svg)/)) {
+        if (file.type.match(/\/(gif|jpeg|png|svg+xml|svg)/) && URL.createObjectURL) {
             return URL.createObjectURL(file);
         } else {
             return false;

@@ -279,11 +279,16 @@ class DropZoneComponent {
      */
    static getDropZoneAttrs (node) {
         return [...node.attributes].reduce((attrs, attr) => {
-            const { name, value } = attr;
+            const { name } = attr;
+            let { value } = attr;
             // grab value from attributes matching data-dropzone-{option}={value}
             if (name.match(/dropzone/)) {
                 // transform hyphen seperated attr to DropZone camelCase option
                 const option = name.replace(/data-dropzone-/, '');
+
+                if (option === 'whitelist') {
+                    value = value.split(' ');
+                }
 
                 attrs[DropZoneComponent.camelCaseIfy(option)] = value;
             }

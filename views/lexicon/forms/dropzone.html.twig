@@ -25,6 +25,14 @@
     })
   }}
 
+  {{
+    form.dropzone({
+        'id': 'dropzone_example_4',
+        'data-dropzone-whitelist': 'gif image',
+        'label': 'Custom validation rule to accept only GIFs'
+    })
+  }}
+
 {% endblock tab_content %}
 
 {% block tab_sidebar %}

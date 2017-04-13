@@ -33,6 +33,9 @@
         "afterEach"  : false,
         "sinon"      : false,
         "require"    : false,
-        "pulsar"     : false
+        "pulsar"     : false,
+        "window"     : false,
+        "document"   : false,
+        "URL"        : false
     }
 }
