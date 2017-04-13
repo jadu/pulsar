@@ -30,7 +30,8 @@ module.exports = function(grunt) {
                 },
                 options: {
                     browserifyOptions: {
-                        standalone: 'pulsar'
+                        standalone: 'pulsar',
+                        paths: ['./libs']
                     },
                     transform: [['aliasify', { global: true }]]
                 }
@@ -42,7 +43,8 @@ module.exports = function(grunt) {
                 },
                 options: {
                     browserifyOptions: {
-                        standalone: 'pulsar'
+                        standalone: 'pulsar',
+                        paths: ['./libs']
                     },
                     transform: [['aliasify', { global: true }], 'uglifyify']
                 }
