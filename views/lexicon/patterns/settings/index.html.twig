@@ -1,0 +1,23 @@
+{% extends '@pulsar/lexicon/base.html.twig' %}
+
+{% set heading = 'Ref 5431 - Blue Badge Application Form' %}
+
+{% set tab_one %}
+    {% include '/lexicon/patterns/settings/tab.html.twig' %}
+{% endset %}
+
+{%
+    set tabs_content = [
+        {
+            "id"    : "responses",
+            "label" : "Form responses",
+            "src"   : tab_one,
+            "active": true
+        },
+        {
+            "id"    : "log",
+            "label" : "Log",
+            "src"   : tab_one,
+        }
+    ]
+%}
