@@ -6,6 +6,10 @@
     {% include '/playground/xfp-received/tab.html.twig' %}
 {% endset %}
 
+{% set tab_two %}
+    {% include '/playground/xfp-received/log.html.twig' %}
+{% endset %}
+
 {% block ribbon %}
     <div class="ribbon__header">
         <a href="#" class="ribbon__mobile-toggle"><i class="icon-angle-down"><span class="hide">Toggle details</span></i></a>
@@ -58,12 +62,12 @@
             "id"    : "responses",
             "label" : "Form responses",
             "src"   : tab_one,
-            "active": true
         },
         {
             "id"    : "log",
             "label" : "Log",
-            "src"   : tab_one,
+            "src"   : tab_two,
+            "active": true
         }
     ]
 %}
