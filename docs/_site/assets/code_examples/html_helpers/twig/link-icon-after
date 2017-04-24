@@ -1,6 +1,0 @@
-{{
-    html.link({
-        'href': 'http://www.jadu.net',
-        'label': 'External link ' ~ html.icon('external-link')
-    })
-}}
