@@ -1,7 +1,0 @@
-{{
-    html.button({
-        'label': 'Button',
-        'type': 'link',
-        'href': 'http://myurl.com'
-    })
-}}

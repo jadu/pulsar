@@ -1,6 +1,0 @@
-{{
-    form.text({
-        'label': 'What’s your name, boss?',
-        'id': 'foo'
-    })
-}}
