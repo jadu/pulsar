@@ -449,6 +449,7 @@ error       | string | Text to explain an error/validation condition. Also adds 
 guidance    | string | Text to be displayed in a popover, adds a (?) icon after the input
 help        | string | Additional guidance information to be displayed next to the input
 label       | string | Text for the `<label>` companion element
+raw         | bool   | Instead of wrapping the value in a `<p>`, just render the value/helper instead (default: false)
 
 ## Options applied to paragraph
 
@@ -466,14 +467,16 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
+    {% if options.raw is defined and options.raw == true %}
+        {% set input = options.value %}
+    {% else %}
+        {% set input = elem.paragraph(options|exclude('bare class error guidance guidance-container help label')) %}
+    {% endif %}
+
     {{
         form.group({
             'parent': options|only('bare class error guidance guidance-container help id label'),
-            'inputs': [
-                elem.paragraph(
-                    options|exclude('bare class error guidance guidance-container help label')
-                )
-            ]
+            'inputs': [input]
         })
     }}
 
