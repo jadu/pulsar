@@ -15,7 +15,7 @@
 
             {% if options.data is iterable %}
                 {% for label, options in options.data %}
-                    {{ nav.nav_item(options, loop.index) }}
+                    {{ nav.nav_item(options) }}
                 {% endfor %}
             {% endif %}
         </ul>
@@ -34,7 +34,7 @@
             <ul class="nav-items">
                 {% for menu_blocks in options.items %}
                     {% for item_options in menu_blocks %}
-                        {{ nav.nav_item(options, loop.index) }}
+                        {{ nav.nav_item(item_options) }}
                     {% endfor %}
                     {% if not loop.last %}
                         <li class="nav-item nav-item__divider">
@@ -56,12 +56,12 @@
 {% endmacro %}
 
 
-{% macro nav_item(options, index) %}
+{% macro nav_item(options) %}
 {% spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-    <li id="nav-item-{{ index }}"
+    <li
         {{
             attributes(options
                 |exclude('data-toggle href icon')
