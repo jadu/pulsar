@@ -6,7 +6,7 @@
     &:before {
         background: #DEDEDE;
         content: '';
-        height: 90%;
+        height: 85%;
         left: 55px;
         position: absolute;
         top: 1em;
@@ -207,6 +207,10 @@
     }
 }
 
+td.table__form fieldset.rules__step {
+    margin-top: 0;
+}
+
 .form fieldset.rules__step legend,
 .piano__item-content .form fieldset.rules__step,
 .piano__item-content form > fieldset .rules__step legend {
@@ -252,3 +256,16 @@ td.table__form .rules + .form__group:last-of-type {
 }
 
 // scss-lint:enable all
+
+// Change default form layout styling
+.rule-block__control {
+
+    .form__group {
+        display: block;
+    }
+
+    .control__label {
+        display: block;
+        width: auto;
+    }
+}

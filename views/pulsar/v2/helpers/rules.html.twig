@@ -65,16 +65,23 @@
                     </div>
 
                     <div class="rule-block__controls rule__trigger__form">
-                        <div class="rule-block__control">
-                            <label for="rule[triggers][__index__][type]" class="control__label hide">Select the rule trigger</label>
+
+                        {% if options.inputs is defined and options.inputs is not empty %}
+                            {% for input in options.inputs %}
+                                <div class="rule-block__control">
+                                    {{- input|raw -}}
+                                </div>
+                            {% endfor %}
+
+                            <!-- <label for="rule[triggers][__index__][type]" class="control__label hide">Select the rule trigger</label>
                             <select class="rule__trigger__type form__control form__control--medium select" id="rule[triggers][__index__][type]" name="rule[triggers][__index__][type]">
                                 <option value="">Choose trigger</option>
                                 <option value="date">Date</option>
                                 <option value="event">Event</option>
                                 <option value="transition">Transition applied</option>
                                 <option value="time_in_status">Time in status</option>
-                            </select>
-                        </div>
+                            </select> -->
+                        {% endif %}
 
                         <a data-action="remove" data-placement="left" data-toggle="tooltips" data-title="Remove this item"  class="remove__control js-remove-trigger"><i  class="icon-remove-sign"><span class="hide">Remove this item</span></i></a>
 

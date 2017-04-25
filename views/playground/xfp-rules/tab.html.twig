@@ -117,15 +117,49 @@
                             {% block ruleFormBlock %}{% endblock %}
 
                             {{
-                                rule.block_when()
+                                rule.block_when({
+                                    'inputs': [
+                                        form.select2({
+                                            'label': 'Pick a colour',
+                                            'id': 'foo',
+                                            'options': {
+                                                '': 'Choose',
+                                                'colour_red': 'Red',
+                                                'colour_blue': 'Blue'
+                                            }
+                                        })
+                                    ]
+                                })
                             }}
+
                             {{
-                                rule.block_and()
+                                rule.block_and({
+                                'inputs': [
+                                        form.select2({
+                                            'label': 'Pick a colour',
+                                            'id': 'foo',
+                                            'options': {
+                                                '': 'Choose',
+                                                'colour_red': 'Red',
+                                                'colour_blue': 'Blue'
+                                            },
+                                            'bare': true
+                                        })
+                                    ]
+                                })
                             }}
+
                             {{
                                 rule.block_then()
                             }}
                         </div>
+
+                        {{
+                            form.toggle_switch({
+                                'checked': true,
+                                'label': 'Enabled'
+                            })
+                        }}
 
                         {{
                             form.fieldset_end()
