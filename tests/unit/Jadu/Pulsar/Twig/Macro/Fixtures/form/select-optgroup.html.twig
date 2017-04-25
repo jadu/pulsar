@@ -1,0 +1,29 @@
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
+{% block body %}
+{{
+    form.select({
+        'options': [
+            [
+                {
+                    'label': 'optgroup-1-foo',
+                    'value': 'optgroup-1-foo'
+                },
+                {
+                    'label': 'optgroup-1-bar',
+                    'value': 'optgroup-1-bar'
+                }
+            ],
+            [
+                {
+                    'label': 'optgroup-2-foo',
+                    'value': 'optgroup-2-foo'
+                },
+                {
+                    'label': 'optgroup-2-bar',
+                    'value': 'optgroup-2-bar'
+                }
+            ]
+        ]
+    })
+}}
+{% endblock %}
