@@ -17,7 +17,6 @@ const defaults = {
     windowDrop: function () {},
     // drop on the DropZone
     dropZoneDrop: function () {},
-    // dragged files enter DropZone
     dropZoneEnter: function () {},
     // dragged files left DropZone
     dropZoneLeave: function () {},
@@ -33,19 +32,18 @@ export default class DropZone {
         this.options.maxFiles = parseInt(this.options.maxFiles);
         this.options.maxSize = parseInt(this.options.maxSize);
         // cache methods with context
-        this.handleDrop = this.handleDrop.bind(this);
-        this.handleEnter = this.handleEnter.bind(this);
-        this.handleLeave = this.handleLeave.bind(this);
-        this.handleWindowEnter = this.handleWindowEnter.bind(this);
-        this.handleWindowLeave = this.handleWindowLeave.bind(this);
-        this.updateEventTracker = this.updateEventTracker.bind(this);
+        this.handleDropWithContext = this.handleDrop.bind(this);
+        this.handleEnterWithContext = this.handleEnter.bind(this);
+        this.handleLeaveWithContext = this.handleLeave.bind(this);
+        this.handleWindowEnterWithContext = this.handleWindowEnter.bind(this);
+        this.handleWindowLeaveWithContext = this.handleWindowLeave.bind(this);
+        this.updateEventTrackerWithContext = this.updateEventTracker.bind(this);
+
         this.setup();
     }
 
     setup () {
-        const { validation } = this.options;
-
-        this.node = window.$ && this.options.node instanceof window.$ ? this.options.node[0] : this.options.node;
+        this.node = DropZone.getVanillaNode(window, this.options.node);
 
         if (!this.node) {
             throw new Error('DropZone requires a DOM node');
@@ -57,7 +55,7 @@ export default class DropZone {
         this.size = 0;
         this.windowActive = false;
         this.dropZoneActive = false;
-        this.customValidation = validation ? new RegExp(this.options.validation, 'g') : false;
+        this.customValidation = this.options.validation ? new RegExp(this.options.validation, 'g') : false;
 
         this.trackEvents('dragenter dragleave');
         this.attachMultipleListeners('drag dragstart dragend dragover dragenter dragleave drop', this.preventer);
@@ -68,11 +66,11 @@ export default class DropZone {
      * Register drag & drop events
      */
     registerEvents () {
-        this.addEventAndStore(this.node, 'dragenter', this.handleEnter);
-        this.addEventAndStore(this.node, 'dragleave', this.handleLeave);
-        this.addEventAndStore(window, 'dragenter', this.handleWindowEnter);
-        this.addEventAndStore(window, 'dragleave', this.handleWindowLeave);
-        this.addEventAndStore(window, 'drop', this.handleDrop);
+        this.addEventAndStore(this.node, 'dragenter', this.handleEnterWithContext);
+        this.addEventAndStore(this.node, 'dragleave', this.handleLeaveWithContext);
+        this.addEventAndStore(window, 'dragenter', this.handleWindowEnterWithContext);
+        this.addEventAndStore(window, 'dragleave', this.handleWindowLeaveWithContext);
+        this.addEventAndStore(window, 'drop', this.handleDropWithContext);
     }
 
     /**
@@ -375,6 +373,16 @@ export default class DropZone {
     }
 
     /**
+     * Return a vanilla node from a jQuery
+     * @param {Object} window
+     * @param {Element} node
+     * @returns {Element}
+     */
+    static getVanillaNode (window, node) {
+        return window.$ && node instanceof window.$ ? node[0] : node;
+    }
+
+    /**
      * Format filename for printing
      * @param  {Object} file
      * @return {String}
@@ -445,5 +453,3 @@ export default class DropZone {
         return `${parseFloat((bytes / Math.pow(kb, i)).toFixed(decimal))} ${sizes[i]}`;
     }
 }
-
-module.exports = DropZone;
