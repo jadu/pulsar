@@ -1386,3 +1386,27 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
 {% endspaceless %}
 {% endmacro %}
+{# -----------------------------------------------------------------------------
+
+# DropZone
+
+## Options applied to DropZone
+
+All DropZone options should be prefixed with `data-dropzone-`, for example `data-dropzone-max-files`.
+
+Option      | Type   | Description
+----------- | ------ | ---------------------------------------------------------
+max-files   | string | The maximum ammount of files a DropZone will accept
+max-size    | string | The combined file size limit of a group of files
+
+todo - improve docs
+
+#}
+{% macro dropzone(options) %}
+    {% spaceless %}
+
+        <div{{ attributes(options|defaults({ 'class': 'dropzone' })) }}></div>
+
+    {% endspaceless %}
+{% endmacro %}
+

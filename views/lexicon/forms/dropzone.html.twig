@@ -3,33 +3,8 @@
 {% block tab_content %}
 
   {{
-    form.dropzone({
-        'id': 'dropzone_example_1',
-        'label': 'Default options'
-    })
-  }}
-
-  {{
-    form.dropzone({
-        'id': 'dropzone_example_2',
-        'data-dropzone-max-files': '0',
-        'label': 'Max files: 0'
-    })
-  }}
-
-  {{
-    form.dropzone({
-        'id': 'dropzone_example_3',
-        'data-dropzone-max-size': '0',
-        'label': 'Max size: 0'
-    })
-  }}
-
-  {{
-    form.dropzone({
-        'id': 'dropzone_example_4',
-        'data-dropzone-whitelist': 'gif image',
-        'label': 'Custom validation rule to accept only GIFs'
+    html.dropzone({
+        'id': 'dropzone_example_1'
     })
   }}
 
