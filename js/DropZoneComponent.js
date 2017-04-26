@@ -6,35 +6,7 @@ import $ from 'jquery';
 class DropZoneComponent {
     constructor (html) {
         this.html = window.$ && html instanceof window.$ ? html[0] : html;
-        this.mimeTyper = new MimeTyper();
-    }
-
-    /**
-     * Initiate DropZone component, this wraps and defines options for
-     * multiple instances of DropZone
-     */
-    init () {
-        this.body = [...this.html.children].slice(1);
-        this.$body = $(this.body);
-        this.eventPool = [];
-        this.removeFileHandler = this.removeFileHandler.bind(this);
-        this.nodeClasses = {
-            dropzone: 'dropzone',
-            wrapper: 'dropzone__file-wrapper',
-            validation: 'dropzone__validation',
-            error: 'dropzone__error',
-            file: 'dropzone__file',
-            name: 'dropzone__name',
-            type: 'dropzone__type',
-            size: 'dropzone__size',
-            thumbnail: 'dropzone__thumbnail'
-        };
-        this.interactionClasses = {
-            windowEnter: 'dropzone-window-active',
-            dropZoneEnter: 'dropzone-dropzone-active',
-        };
-
-        this.defaults = {
+        this.mimeTyper = new MimeTyper();        this.defaults = {
             // files have entered the window
             windowEnter: () => {
                 this.$body.addClass(this.interactionClasses.windowEnter);
@@ -66,6 +38,33 @@ class DropZoneComponent {
                 this.resetBodyClass();
             }
         };
+    }
+
+    /**
+     * Initiate DropZone component, this wraps and defines options for
+     * multiple instances of DropZone
+     */
+    init (options) {
+        this.body = [...this.html.children].slice(1);
+        this.$body = $(this.body);
+        this.options = _.extend({}, this.defaults, options);
+        this.eventPool = [];
+        this.removeFileHandler = this.removeFileHandler.bind(this);
+        this.nodeClasses = {
+            dropzone: 'dropzone',
+            wrapper: 'dropzone__file-wrapper',
+            validation: 'dropzone__validation',
+            error: 'dropzone__error',
+            file: 'dropzone__file',
+            name: 'dropzone__name',
+            type: 'dropzone__type',
+            size: 'dropzone__size',
+            thumbnail: 'dropzone__thumbnail'
+        };
+        this.interactionClasses = {
+            windowEnter: 'dropzone-window-active',
+            dropZoneEnter: 'dropzone-dropzone-active',
+        };
 
         // get all dropzone elements
         this.dropzones = [...this.html.querySelectorAll(`.${this.nodeClasses.dropzone}`)];
@@ -74,7 +73,8 @@ class DropZoneComponent {
         // instantiate each dropzone with it's options
         this.dropzones = this.dropzones.map((node, index) => {
             // mount our dropzone instance
-            this.options[index].node = this.mount(node);
+            // this.options[index].node = this.mount(node);
+            this.options[index].node = node;
             return new DropZone(this.options[index]);
         });
     }
