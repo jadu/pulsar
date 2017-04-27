@@ -192,16 +192,44 @@ value       | string | Specifies the value of the input
             `disabled` or `selected` attributes to individual options
         #}
         {% if label is iterable %}
-            {% set options = label %}
-            {% set label = options.label %}
-            {% set value = options.value %}
-        {% endif %}
 
-        <option {{ util.value(value) }}
-            {%- if options.selected is defined and value == options.selected %} selected{% endif -%}
-            {%- if options.disabled is defined and options.disabled == true %} disabled="disabled"{% endif -%}>
-            {{- label -}}
-        </option>
+            {% set options = label %}
+
+            {% if options.options is defined and options.options is not empty %}
+
+                {# optgroup nested syntax #}
+                {% for option in options %}
+                    {% if option is iterable %}
+                        {% for item in option %}
+                            <option {{ util.value(item.value) }}
+                                {%- if item.selected is defined and item.value == item.selected %} selected{% endif -%}
+                                {%- if item.disabled is defined and item.disabled == true %} disabled="disabled"{% endif -%}>
+                                {{- item.label -}}
+                            </option>
+                            {% if loop.last %}
+                                </optgroup>
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        <optgroup label="{{ option }}">
+                    {% endif %}
+                {% endfor %}
+
+            {# non-optgroup nested syntax #}
+            {% else %}
+                <option {{ util.value(label.value) }}
+                    {%- if label.selected is defined and label.value == label.selected %} selected{% endif -%}
+                    {%- if label.disabled is defined and label.disabled == true %} disabled="disabled"{% endif -%}>
+                    {{- label.label -}}
+                </option>
+            {% endif %}
+
+        {# legacy un-nested syntax #}
+        {% else %}
+            <option {{ util.value(value) }}>
+                {{- label -}}
+            </option>
+        {% endif %}
     {% endfor %}
 
     </select>

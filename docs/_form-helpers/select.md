@@ -71,6 +71,12 @@ value       | string  | Value for the `<option>`
 ```
 {% endraw %}
 
+## Using optgroups
+
+Your options can be arranged within `optgroups` by using the optgroup syntax.
+
+{% code_example form_helpers/select-optgroup %}
+
 ## Error state
 
 {% raw %}
