@@ -120,13 +120,20 @@
                                 rule.block_when({
                                     'inputs': [
                                         form.select2({
-                                            'label': 'Pick a colour',
-                                            'id': 'foo',
-                                            'options': {
-                                                '': 'Choose',
-                                                'colour_red': 'Red',
-                                                'colour_blue': 'Blue'
-                                            }
+                                            'label': 'Choose trigger',
+                                            'placeholder': 'Choose trigger',
+                                            'options':
+                                            [
+                                                {
+                                                    'label': 'XForms Pro',
+                                                    'options': [
+                                                        {
+                                                            'label': 'Form is submitted',
+                                                            'value': 'foo'
+                                                        }
+                                                    ]
+                                                }
+                                            ]
                                         })
                                     ]
                                 })
@@ -134,23 +141,112 @@
 
                             {{
                                 rule.block_and({
-                                'inputs': [
+                                    'inputs': [
                                         form.select2({
-                                            'label': 'Pick a colour',
-                                            'id': 'foo',
-                                            'options': {
-                                                '': 'Choose',
-                                                'colour_red': 'Red',
-                                                'colour_blue': 'Blue'
-                                            },
-                                            'bare': true
+                                            'label': 'Choose trigger',
+                                            'placeholder': 'Choose condition',
+                                            'options':
+                                            [
+                                                {
+                                                    'label': 'User type',
+                                                    'value': 'foo'
+                                                }
+                                            ]
+                                        }),
+                                        form.select2({
+                                            'class': 'form__group--small',
+                                            'label': 'Choose',
+                                            'placeholder': 'Choose',
+                                            'options':
+                                            [
+                                                {
+                                                    'label': 'is',
+                                                    'value': 'foo'
+                                                },
+                                                {
+                                                    'label': 'is not',
+                                                    'value': 'foo'
+                                                }
+                                            ]
+                                        }),
+                                        form.select2({
+                                            'label': 'Choose user type',
+                                            'options':
+                                            [
+                                                {
+                                                    'label': 'Registered user',
+                                                    'value': 'foo'
+                                                },
+                                                {
+                                                    'label': 'Anonymous user',
+                                                    'value': 'foo'
+                                                },
+                                                {
+                                                    'label': 'Admin on behalf of user',
+                                                    'value': 'foo'
+                                                }
+                                            ]
                                         })
                                     ]
                                 })
                             }}
 
                             {{
-                                rule.block_then()
+                                rule.block_then({
+                                    'inputs': [
+                                        form.select2({
+                                            'label': 'Choose action',
+                                             'options':
+                                             [
+                                                {
+                                                    'label': 'Send email',
+                                                    'value': 'foo'
+                                                },
+                                                {
+                                                    'label': 'Continuum CXM',
+                                                    'options': [
+                                                        {
+                                                            'label': 'Choose',
+                                                            'value': 'foo'
+                                                        },
+                                                        {
+                                                            'label': 'Apply transition',
+                                                            'value': 'foo'
+                                                        },
+                                                        {
+                                                            'label': 'Create case',
+                                                            'value': 'foo',
+                                                            'selected': true
+                                                        },
+                                                        {
+                                                            'label': 'Set case values',
+                                                            'value': 'foo'
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }),
+                                        form.select2({
+                                            'label': 'Using template',
+                                            'data-html': 'true',
+                                            'options':
+                                             [
+                                                {
+                                                    'label': html.icon('plus') ~ ' Create template',
+                                                    'value': 'foo'
+                                                },
+                                                {
+                                                    'label': 'New brown waste case',
+                                                    'value': 'foo'
+                                                },
+                                                {
+                                                    'label': 'New green waste case',
+                                                    'value': 'foo'
+                                                },
+                                            ]
+                                        })
+                                    ]
+                                })
                             }}
                         </div>
 
