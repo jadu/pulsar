@@ -124,9 +124,9 @@
     position: relative;
     width: 100%;
 
-    @include respond-min($screen-desktop) {
-        display: table;
-    }
+    // @include respond-min($screen-desktop) {
+    //     display: table;
+    // }
 }
 
 .tab__main {
