@@ -1,0 +1,15 @@
+<div class="form__group">
+    <label class="control__label">Select with optgroups</label>
+    <div class="controls">
+        <select class="form__control select js-select2">
+            <optgroup label="optgroup one">
+                <option value="val-alpha">alpha</option>
+                <option value="val-bravo">bravo</option>
+            </optgroup>
+            <optgroup label="optgroup two">
+                <option value="val-charlie">charlie</option>
+                <option value="val-delta">delta</option>
+            </optgroup>
+        </select>
+    </div>
+</div>

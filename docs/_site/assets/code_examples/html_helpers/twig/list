@@ -1,8 +1,0 @@
-{{
-    html.list({
-        'items': [
-            'foo',
-            'bar'
-        ]
-    })
-}}

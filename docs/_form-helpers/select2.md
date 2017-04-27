@@ -78,6 +78,12 @@ data-*      | string  | Data attributes, eg: `'data-foo': 'bar'`
 
 The select2 plugin will be called on any `select` element that contain the `js-select2` class.
 
+## Using optgroups
+
+Your options can be arranged within `optgroups` by using the optgroup syntax.
+
+{% code_example form_helpers/select2-optgroup %}
+
 ## Using HTML in select options
 
 With the select2 helper you can include HTML within your `<option>` labels, the whole option label will be wrapped in a `<span>`.
