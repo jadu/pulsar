@@ -1,9 +1,0 @@
-{{
-    html.metadata({
-        'items': {
-            'File': 'true_lies.avi',
-            'Size': '1.2 Gb',
-            'Type': 'Video'
-        }
-    })
-}}

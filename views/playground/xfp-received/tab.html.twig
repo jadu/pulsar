@@ -1,0 +1,167 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
+
+{%- block actions_left -%}
+    {{
+        html.actions_menu({
+            'items': [
+                [
+                    {
+                        'label': 'Edit form',
+                        'href': '/edit',
+                        'icon': 'pencil'
+                    }
+                ],
+                [
+                    {
+                        'label': 'View CXM case',
+                        'href': '/cxm',
+                        'icon': 'arrow-right'
+                    },
+                    {
+                        'label': 'View payments',
+                        'href': '/paybridge',
+                        'icon': 'credit-card'
+                    }
+                ],
+                [
+                    {
+                        'label': 'Download PDF',
+                        'href': '/download-pdf',
+                        'icon': 'file-pdf-o'
+                    },
+                    {
+                        'label': 'Export archive',
+                        'href': '/download-archive',
+                        'icon': 'file-archive-o'
+                    },
+                    {
+                        'label': 'Print',
+                        'href': '/print',
+                        'icon': 'print'
+                    }
+                ]
+            ]
+        })
+    }}
+{%- endblock -%}
+
+{%- block actions_right -%}
+    {{
+        html.button({
+            'label': 'View CXM Case',
+            'class': 'btn--primary'
+        })
+    }}
+{%- endblock -%}
+
+{% block tab_settings %}
+
+    {{
+        flash.message({
+            'dismissable': false,
+            'message': 'Data retention policy will run on this form in 2 days',
+            'type': 'info'
+        })
+    }}
+
+    <div class="settings-section settings-section--primary">
+
+        {{
+            form.toggle_switch({
+                'id': 'optional-question',
+                'label': 'Hide optional questions with no response',
+                'checked': true
+            })
+        }}
+
+    </div>
+
+    <div class="settings-section">
+
+        <ol class="list--timeline">
+            <li class="active"><a href="#">Page 1 - Your details</a></li>
+            <li><a href="#">Page 1 - Your details</a></li>
+            <li><a href="#">Page 1 - Your details</a></li>
+            <li><a href="#">Page 1 - Your details</a></li>
+        </ol>
+
+    </div>
+
+{% endblock tab_settings %}
+
+{% block tab_content %}
+
+    <div class="content-header">
+
+        <h2 class="content-heading">Page 1 - Your details</h2>
+
+        {{
+            form.create()
+        }}
+
+        {{
+            form.content({
+                'label': 'Q1 - Title',
+                'value': 'Mr',
+                'guidance': 'Field'
+            })
+        }}
+
+        {{
+            form.content({
+                'label': 'Q2 - First name',
+                'value': 'Paul',
+                'guidance': 'Field'
+            })
+        }}
+
+        {{
+            form.content({
+                'label': 'Q3 - Last name',
+                'value': 'Stanton',
+                'guidance': 'Field'
+            })
+        }}
+
+        {{
+            form.content({
+                'label': 'Q4 - Longer content',
+                'value': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla rhoncus ut metus id mattis. Suspendisse dapibus ex at est fringilla, eu elementum leo congue. Donec id pharetra ante. Phasellus eu dolor id nunc ultrices tincidunt id vel diam. Integer imperdiet mollis lectus a efficitur. Mauris dapibus ante quam, non vehicula justo tincidunt fringilla. Phasellus eget lorem porta, dapibus augue at, vulputate lectus. Sed sollicitudin pellentesque erat quis bibendum. Maecenas ultricies sapien faucibus ullamcorper volutpat. Etiam interdum risus vel odio sagittis, et rhoncus enim malesuada. Aenean ante magna, tincidunt eget quam vestibulum, malesuada aliquet urna. Quisque rutrum, elit at ornare ultrices, tortor arcu accumsan elit, nec pulvinar felis eros in est. Ut id sodales mi. Fusce id quam dignissim turpis dignissim pulvinar. Donec at tellus condimentum, volutpat nunc in, dapibus dui.',
+                'guidance': 'Field'
+            })
+        }}
+
+        {{
+            form.content({
+                'label': 'Q5 - A branching question',
+                'value': 'Yes',
+                'guidance': 'Field',
+                'help': html.icon('arrow-circle-o-right') ~ ' Directed user to ‘Page 4 - Your application’'
+            })
+        }}
+
+        <h2 class="content-heading">Page 4 - Your application</h2>
+
+        {{
+            form.content({
+                'label': 'Q1 - Attachments',
+                'value': html.media({
+                            'icon': 'file-pdf-o',
+                            'icon_colour': '#d42825',
+                            'title': 'My awesome PDF',
+                            'description': '6.2mb'
+                        }) ~
+                        html.media({
+                            'icon': 'file-word-o',
+                            'icon_colour': '#4d81c4',
+                            'title': 'My less-awesome word document',
+                            'description': '123.45mb'
+                        }),
+                'guidance': 'Field'
+            })
+        }}
+
+
+    </div>
+
+{% endblock tab_content %}
