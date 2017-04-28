@@ -81,7 +81,7 @@
   },
   "aliasify": {
     "aliases": {
-      "jquery": "./libs/jquery/dist/jquery"
+      "jquery": "./libs/jquery/dist/jquery.min"
     }
   },
   "browserify-shim": {
