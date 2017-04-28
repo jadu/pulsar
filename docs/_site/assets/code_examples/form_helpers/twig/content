@@ -1,6 +1,0 @@
-{{
-    form.content({
-        'label': 'It’s the remix to ignition',
-        'value': 'Hot and fresh out the kitchen'
-    })
-}}
