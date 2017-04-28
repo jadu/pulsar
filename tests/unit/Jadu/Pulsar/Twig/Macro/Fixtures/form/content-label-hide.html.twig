@@ -1,0 +1,10 @@
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
+{% block body %}
+{{
+    form.content({
+        'label': 'foo',
+        'value': 'bar',
+        'show-label': false
+    })
+}}
+{% endblock %}
