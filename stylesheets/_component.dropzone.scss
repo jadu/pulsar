@@ -1,70 +1,39 @@
-.dropzone-window-active {
-    background-color: red;
-}
-
-.dropzone-dropzone-active {
-    background-color: blue;
-}
-
 /**
  * Dropzone
  */
 
 .dropzone {
-    border: 2px dotted red;
-    padding: 1rem;
-}
-
-/**
- * Validation
- */
-
-.dropzone__error {
-    color: red;
-    margin: 0;
-}
-
-/**
- * File
- */
-
-.dropzone__file {
-    border: 1px solid green;
-    display: inline-block;
-    font-size: .75rem;
-    max-width: 7rem;
-    padding: .5rem;
+    background-color: color(gray, off-white);
+    border: 2px dashed color(gray, light);
+    border-radius: $border-radius;
+    padding: 1.5em;
     text-align: center;
-    vertical-align: top;
-
-    &:hover {
-        border-color: red;
-        box-shadow: 0 0 0 2px red;
-        cursor: pointer;
-    }
 }
 
-$thumbnail-size: 3.5rem;
-
-.dropzone__thumbnail {
-    background-position: center;
-    background-size: cover;
-    font-size: $thumbnail-size;
-    height: $thumbnail-size;
-    margin: 0 auto .75rem;
-    width: $thumbnail-size;
+.dropzone__icon {
+    font-size: 1.75em;
+    margin-bottom: .5em;
 }
 
-.dropzone__name {
-    line-height: 1.1;
-    margin: 0;
-    word-wrap: break-word;
+.dropzone__label {
+    font-family: $font-family-regular;
+    line-height: 1;
+    margin-bottom: 0;
 }
 
-.dropzone__size {
-    margin: 0;
+.dropzone__helper {
+    margin-bottom: 0;
 }
 
-.dropzone__type {
-    margin: 0;
+/**
+ * State
+ */
+
+.dropzone-window-active .dropzone {
+    border: 2px solid color(primary);
+    color: color(primary);
+}
+
+.dropzone-dropzone-active .dropzone {
+    background-color: color(primary, light);
 }

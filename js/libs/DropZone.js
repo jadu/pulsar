@@ -38,6 +38,8 @@ export default class DropZone {
         this.handleWindowEnterWithContext = this.handleWindowEnter.bind(this);
         this.handleWindowLeaveWithContext = this.handleWindowLeave.bind(this);
         this.updateEventTrackerWithContext = this.updateEventTracker.bind(this);
+        // a place to be used extenally as a instance based cache
+        this.data = {};
 
         this.setup();
     }
@@ -137,6 +139,7 @@ export default class DropZone {
         // reset dropzone state
         this.windowActive = false;
         this.dropZoneActive = false;
+        this.resetEventTracker();
     }
 
     /**
@@ -302,7 +305,9 @@ export default class DropZone {
      * @param  {Function} callback
      * @param  {Object}   data
      */
-    createCallback (callback, data = null) {
+    createCallback (callback, data = {}) {
+        data = _.extend({}, data, { instance: this });
+
         if (typeof callback === 'function') {
             callback(data);
         }
@@ -370,6 +375,17 @@ export default class DropZone {
     reset () {
         this.removeAllEvents();
         this.setup();
+    }
+
+    /**
+     * Reset event tracker counters
+     */
+    resetEventTracker () {
+        Object.keys(this.eventTracker).forEach(node => {
+            Object.keys(this.eventTracker[node]).forEach(event => {
+                this.eventTracker[node][event] = 0;
+            });
+        });
     }
 
     /**

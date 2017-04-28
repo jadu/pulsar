@@ -6,48 +6,85 @@ import $ from 'jquery';
 class DropZoneComponent {
     constructor (html) {
         this.html = window.$ && html instanceof window.$ ? html[0] : html;
-        this.mimeTyper = new MimeTyper();        this.defaults = {
-            // files have entered the window
-            windowEnter: () => {
-                this.$body.addClass(this.interactionClasses.windowEnter);
-            },
-            // files have left the window
-            windowLeave: () => {
-                this.$body.removeClass(this.interactionClasses.windowEnter);
-            },
-            // files have entered the dropzone
-            dropZoneEnter: () => {
-                this.$body.addClass(this.interactionClasses.dropZoneEnter);
-            },
-            // files have left the dropzone
-            dropZoneLeave: () => {
-                this.$body.removeClass(this.interactionClasses.dropZoneEnter);
-            },
-            // files have been dropped on the dropzone
-            dropZoneDrop: ({ files, node }) => {
-                this.handleDropZoneDrop(files, node);
-                this.resetBodyClass();
-            },
-            // files have been dropped on the window, but not the dropzone
-            windowDrop: () => {
-                this.resetBodyClass();
-            },
-            // files have been rejected
-            filesRejected: ({ status, error, node }) => {
-                this.updateDropZoneValidation(error, node);
-                this.resetBodyClass();
-            }
-        };
+        this.mimeTyper = new MimeTyper();
     }
 
     /**
      * Initiate DropZone component, this wraps and defines options for
      * multiple instances of DropZone
      */
-    init (options) {
+    init (options = {}) {
         this.body = [...this.html.children].slice(1);
         this.$body = $(this.body);
-        this.options = _.extend({}, this.defaults, options);
+
+        this.helperStateHTML = _.extend({}, {
+            nodeSelector: '.dropzone__helper',
+            // this will be assigned when handling dropzone node
+            node: null,
+            // we set the idle HTML when dropzone options are derived from node attributes
+            idleHTML: null,
+            windowEnterHTML: 'Drag your files here (max <% maxFiles %>)',
+            dropZoneEnterHTML: 'Drop your files here'
+        }, options);
+
+        this.defaults = {
+            passive: false
+        };
+
+        this.callbacks = {
+            // files have entered the window
+            windowEnter: (opts) => {
+                this.$body.addClass(this.interactionClasses.windowEnter);
+                this.updateHelperState(opts.instance, this.helperStateHTML.windowEnterHTML);
+                if (options.windowEnter && typeof options.windowEnter === 'function') {
+                    options.windowEnter(this, opts);
+                }
+            },
+            // files have left the window
+            windowLeave: (opts) => {
+                this.$body.removeClass(this.interactionClasses.windowEnter);
+                if (options.windowLeave && typeof options.windowLeave === 'function') {
+                    options.windowLeave(this, opts);
+                }
+            },
+            // files have entered the dropzone
+            dropZoneEnter: (opts) => {
+                this.$body.addClass(this.interactionClasses.dropZoneEnter);
+                if (options.dropZoneEnter && typeof options.dropZoneEnter === 'function') {
+                    options.dropZoneEnter(this, opts);
+                }
+            },
+            // files have left the dropzone
+            dropZoneLeave: (opts) => {
+                this.$body.removeClass(this.interactionClasses.dropZoneEnter);
+                if (options.dropZoneLeave && typeof options.dropZoneLeave === 'function') {
+                    options.dropZoneLeave(this, opts);
+                }
+            },
+            // files have been dropped on the dropzone
+            dropZoneDrop: ({ files, node }) => {
+                this.handleDropZoneDrop(files, node);
+                this.resetBodyClass();
+                if (options.dropZoneDrop && typeof options.dropZoneDrop === 'function') {
+                    options.dropZoneDrop();
+                }
+            },
+            // files have been dropped on the window, but not the dropzone
+            windowDrop: () => {
+                this.resetBodyClass();
+                if (options.windowDrop && typeof options.windowDrop === 'function') {
+                    options.windowDrop();
+                }
+            },
+            // files have been rejected
+            filesRejected: ({ status, error, node }) => {
+                this.updateDropZoneValidation(error, node);
+                this.resetBodyClass();
+                if (options.filesRejected && typeof options.filesRejected === 'function') {
+                    options.filesRejected();
+                }
+            }
+        };
         this.eventPool = [];
         this.removeFileHandler = this.removeFileHandler.bind(this);
         this.nodeClasses = {
@@ -65,7 +102,6 @@ class DropZoneComponent {
             windowEnter: 'dropzone-window-active',
             dropZoneEnter: 'dropzone-dropzone-active',
         };
-
         // get all dropzone elements
         this.dropzones = [...this.html.querySelectorAll(`.${this.nodeClasses.dropzone}`)];
         // get dropzone options array
@@ -80,28 +116,46 @@ class DropZoneComponent {
     }
 
     /**
+     * Update dropzone helper node innerHTML
+     * has a trivial template syntax for getting variables from the dropzone instance options object
+     * <% foo %> will evaluate to --> instance.options.foo
+     * @param instance
+     * @param htmlString
+     */
+    updateHelperState (instance, htmlString) {
+        const templateString = htmlString.match(/<%\s(\w*)\s%>/);
+
+        if (!templateString) {
+            this.helperStateHTML.node.innerHTML = htmlString;
+        } else {
+            const match = templateString[1];
+            this.helperStateHTML.node.innerHTML = htmlString.replace(templateString[0], instance.options[match]);
+        }
+    }
+
+    /**
      * Mount a dropzone instance to the DOM
      * @param  {Element} dropzone
      * @return {Element}
      */
-    mount (dropzone) {
-        const node = document.createElement('div');
-        // dropzone innerHTML
-        const inner = `<p>dropzone</p>`.replace(/>\s+</g, '><');
-
-        [...dropzone.attributes].forEach(attr => {
-            const { name, value } = attr;
-
-            if (name.match(/(id|data-dropzone)/)) {
-                node.setAttribute(name, value);
-            }
-        });
-
-        node.className = 'dropzone';
-        node.innerHTML = inner;
-        dropzone.parentNode.replaceChild(node, dropzone);
-        return node;
-    }
+    // mount (dropzone) {
+    //     const node = document.createElement('div');
+    //     // dropzone innerHTML
+    //     const inner = `<p>dropzone</p>`.replace(/>\s+</g, '><');
+    //
+    //     [...dropzone.attributes].forEach(attr => {
+    //         const { name, value } = attr;
+    //
+    //         if (name.match(/(id|data-dropzone)/)) {
+    //             node.setAttribute(name, value);
+    //         }
+    //     });
+    //
+    //     node.className = 'dropzone';
+    //     node.innerHTML = inner;
+    //     dropzone.parentNode.replaceChild(node, dropzone);
+    //     return node;
+    // }
 
     /**
      * Create a file wrapper / update with dropped files
@@ -265,8 +319,13 @@ class DropZoneComponent {
     buildOptsFromAttrs () {
         return this.dropzones.reduce((options, node) => {
             const dropZoneAttrs = DropZoneComponent.getDropZoneAttrs(node);
+
+            // store reference to dropzone__helper node
+            this.helperStateHTML.node = node.querySelector(this.helperStateHTML.nodeSelector);
+            this.helperStateHTML.idleHTML = this.helperStateHTML.node.innerHTML;
+
             // extend node attributes & defaults to build options
-            options.push(_.extend({}, dropZoneAttrs, this.defaults));
+            options.push(_.extend({}, dropZoneAttrs, this.callbacks, this.defaults));
             return options;
         }, []);
     }

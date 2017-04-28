@@ -1403,9 +1403,18 @@ todo - improve docs
 
 #}
 {% macro dropzone(options) %}
+    {% import _self as html %}
     {% spaceless %}
 
-        <div{{ attributes(options|defaults({ 'class': 'dropzone' })) }}></div>
+        <div{{ attributes(options|defaults({ 'class': 'dropzone dropzone--idle' })) }}>
+            {{  html.icon('application', { 'class': 'dropzone__icon' }) }}
+            <p class="dropzone__label">Drag &amp; Drop</p>
+            <p class="dropzone__helper">your files here or
+                <a class="dropzone__alt-action" href="{{ options.alt_action_href|default('#') }}">
+                    {{ options.alt_action|default('do something else') }}
+                </a>
+            </p>
+        </div>
 
     {% endspaceless %}
 {% endmacro %}

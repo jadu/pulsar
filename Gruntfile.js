@@ -164,7 +164,7 @@ module.exports = function(grunt) {
             },
             js: {
                 files: ['js/**/*.js', 'tests/js/**/*', 'package.json'],
-                tasks: ['browserify']
+                tasks: ['browserify:dev']
             }
         },
 
@@ -516,7 +516,7 @@ module.exports = function(grunt) {
         'sass:dev',
         'autoprefixer',
         'bless',
-        'browserify',
+        'browserify:dev',
         'browserSync',
         'watch',
         'email-build'
