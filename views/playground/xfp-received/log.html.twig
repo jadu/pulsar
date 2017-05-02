@@ -1,0 +1,51 @@
+{% extends '@pulsar/pulsar/components/tab.html.twig' %}
+
+{% block tab_content %}
+    <table class="table datatable table--full" data-select="false">
+        <thead>
+            <tr>
+                <td class="table-responsive"></td>
+                <th><a href="#">Date</a></th>
+                <th class="shrink-to-fit"><a href="#">Type</a></th>
+                <th><a href="#">From</a></th>
+                <th><a href="#">Info</a></th>
+                <th><a href="#">Actions</a></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in 0..5 %}
+            <tr>
+                <td class="table-responsive">
+                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                </td>
+                <td><a href="#">01/02/2017 12:34pm</a></td>
+                <td>{{ html.label({ 'label': 'info', 'class': 'label--info' }) }}</td>
+                <td>CXM</td>
+                <td>Case created - ref AB12345678</td>
+                <td>
+                    {{ html.link({ 'label': 'View details', 'class': 'table-action' }) }}
+                </td>
+            </tr>
+
+            <tr>
+                <td class="table-responsive">
+                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                </td>
+                <td><a href="#">01/02/2017 12:34pm</a></td>
+                <td>{{ html.label({ 'label': 'error', 'class': 'label--danger' }) }}</td>
+                <td>Postcode Anywhere</td>
+                <td>Could not get list of postcodes</td>
+                <td>
+                    {{ html.link({ 'label': 'View details', 'class': 'table-action' }) }}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock tab_content %}
+{% block tab_sidebar %}
+    <h2>{{ html.icon('info-sign') }} Form actions and activity</h2>
+    <p>This log shows the actions performed by the user while progressing through the form and any actions performed by integrated systems.</p>
+
+{% endblock tab_sidebar %}
