@@ -1,6 +1,6 @@
 {
   "name": "pulsar",
-  "version": "6.16.3",
+  "version": "6.16.5",
   "repository": {
     "type": "git",
     "url": "https://github.com/jadu/pulsar.git"
@@ -81,7 +81,7 @@
   },
   "aliasify": {
     "aliases": {
-      "jquery": "./libs/jquery/dist/jquery"
+      "jquery": "./libs/jquery/dist/jquery.min"
     }
   },
   "browserify-shim": {
