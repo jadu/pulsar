@@ -1,5 +1,7 @@
 import _ from 'lodash';
 
+// todo - reject directories
+
 const defaults = {
     // HTML node that will become DropZone
     node: null,
@@ -265,7 +267,7 @@ export default class DropZone {
 
         switch (status) {
             case 0:
-                error = `Maximum of ${this.options.maxFiles} files exceeded`;
+                error = `Maximum of ${this.options.maxFiles} file${this.options.maxFiles > 1 ? 's' : ''} exceeded`;
                 break;
             case 1:
                 error = `Maximum file size ${DropZone.formatBytes(this.options.maxSize)} exceeded`;
@@ -414,7 +416,11 @@ export default class DropZone {
      * @return {String}
      */
     static getFileType (file) {
-        return file.type;
+        if (file.type.length) {
+            return file.type;
+        } else {
+            return 'application/file';
+        }
     }
 
     /**
