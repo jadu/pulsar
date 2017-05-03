@@ -20,7 +20,7 @@ Option     | Type   | Description
 buttons    | array  | An array of `html.button()` elements
 class      | string | Classes to be applied to the button group (not the buttons inside it)
 id         | string | A unique identifier, if required
-show-label | bool | Control visibility of the `<label>` element without affecting layout (default: true)
+show-label | bool   | Control visibility of the `<label>` element without affecting layout (default: true)
 data-*     | string | Data attributes, eg: `'data-foo': 'bar'`
 
 ##  Example with icons

@@ -20,9 +20,9 @@ class      | string | A space separated list of class names
 guidance   | string | Text to be displayed in a popover, adds a (?) icon after the input
 guidance-container | string | Element to bind guidance popover scroll behaviour to (default `body`)
 help       | string | Additional guidance information to be displayed next to the input
-label      | string  | Text for the `<label>` companion element
+label      | string | Text for the `<label>` companion element
 required   | bool   | Visually indicates that the field must be completed
-show-label | bool | Control visibility of the `<label>` element without affecting layout (default: true)
+show-label | bool   | Control visibility of the `<label>` element without affecting layout (default: true)
 
 ## Options applied to input
 
