@@ -25,6 +25,7 @@ guidance-container | string | Element to bind guidance popover scroll behaviour 
 help        | string | Additional guidance information to be displayed next to the input
 label       | string | Text for the `<label>` companion element
 raw         | bool   | Instead of wrapping the value in a `<p>`, just render the value/helper instead (default: false)
+show-label  | bool   | Control visibility of the `<label>` element without affecting layout (default: true)
 
 ## Options applied to paragraph (if `raw` is `false`)
 

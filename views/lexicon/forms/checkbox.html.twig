@@ -45,6 +45,15 @@
         })
     }}
 
+    {{
+        form.checkbox({
+            'label': 'Checkbox with guidance',
+            'show-label': false,
+            'help': 'This example hides the label with the <code>show-label</code> option',
+            'guidance': 'Help text to give more information about expected input'
+        })
+    }}
+
     {{ form.fieldset_start({ 'legend': 'Alternative alignments with inline checkboxes' }) }}
 
     {{

@@ -26,7 +26,7 @@ label        | string | Text for the `<label>` companion element
 prepend      | string | Text or markup to include before the input element
 prepend_type | string | Use only when prepending a button. `button`is the only valid value
 required     | bool   | Visually indicates that the field must be completed
-
+show-label   | bool   | Control visibility of the `<label>` element without affecting layout (default: true)
 
 ## Options applied to input
 
