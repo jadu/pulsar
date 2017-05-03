@@ -17,17 +17,18 @@ The choice helper will will automatically adhere to Pulsar's form styleguide by 
 
 ## Options
 
-Option   | Type   | Description
--------- | ------ | -------------------------------------------------------
-class    | string | A space separated list of class names
-guidance | string | Text to be displayed in a popover, adds a (?) icon after the input
+Option     | Type   | Description
+---------- | ------ | -------------------------------------------------------
+class      | string | A space separated list of class names
+guidance   | string | Text to be displayed in a popover, adds a (?) icon after the input
 guidance-container | string | Element to bind guidance popover scroll behaviour to (default `body`)
-help     | string | Additional guidance information to be displayed next to the input
-label    | string | Text for the main `<label>` companion element
-optimize | string | `auto` use a select2 element if number of `options` is greater than 5 (default)<br />`few` force the use of checkboxes/radios regardless of the number of options  <br />`many` force the use of select2 regardless of the number of options
-options  | array  | An array of option hashes that will be passed to the [checkbox](checkbox.md) or  [radio](radio.md) helper, see their documentation for specifics
-required | bool   | Visually indicates that the field must be completed, will not be displayed if `type` is radio as they're implicitly required
-multiple | bool   | If `true`, uses checkboxes instead of radios, or passes the `multiple` attribute to the select2 element
+help       | string | Additional guidance information to be displayed next to the input
+label      | string | Text for the main `<label>` companion element
+optimize   | string | `auto` use a select2 element if number of `options` is greater than 5 (default)<br />`few` force the use of checkboxes/radios regardless of the number of options  <br />`many` force the use of select2 regardless of the number of options
+options    | array  | An array of option hashes that will be passed to the [checkbox](checkbox.md) or  [radio](radio.md) helper, see their documentation for specifics
+required.  | bool   | Visually indicates that the field must be completed, will not be displayed if `type` is radio as they're implicitly required
+multiple   | bool   | If `true`, uses checkboxes instead of radios, or passes the `multiple` attribute to the select2 element
+show-label | bool   | Control visibility of the `<label>` element without affecting layout (default: true)
 
 ## Disabled options
 

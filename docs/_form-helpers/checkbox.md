@@ -23,6 +23,7 @@ guidance           | string | Text to be displayed in a popover, adds a (?) icon
 guidance-container | string | Element to bind guidance popover scroll behaviour to (default `body`)
 help               | string | Additional guidance information to be displayed next to the input
 required           | bool | Visually indicates that the field must be completed
+show-label | bool | Control visibility of the `<label>` element without affecting layout (default: true)
 
 ## Options applied to input
 
@@ -61,10 +62,10 @@ Labels follow the regular Pulsar form flow and are positioned down the left. Cli
 
 {% raw %}
 ```twig
-{{ 
+{{
     form.checkbox({
-        'label': 'Default checkbox', 
-        'id': 'foo', 
+        'label': 'Default checkbox',
+        'id': 'foo',
         'name': 'foo'
     })
 }}
@@ -84,10 +85,10 @@ input_placement | string | `left` (default), `right` position of the input vs th
 
 {% raw %}
 ```twig
-{{ 
+{{
     form.checkbox_inline({
-        'label': 'Checkbox inline', 
-        'id': 'foo', 
+        'label': 'Checkbox inline',
+        'id': 'foo',
         'name': 'foo'
     })
 }}
@@ -99,10 +100,10 @@ input_placement | string | `left` (default), `right` position of the input vs th
 
 {% raw %}
 ```twig
-{{ 
+{{
     form.checkbox_inline({
-        'label': 'Checkbox on the right', 
-        'id': 'foo', 
+        'label': 'Checkbox on the right',
+        'id': 'foo',
         'name': 'foo',
         'input_placement': 'right'
     })

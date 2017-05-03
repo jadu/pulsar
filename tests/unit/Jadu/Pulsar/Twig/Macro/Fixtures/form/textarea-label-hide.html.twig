@@ -1,0 +1,9 @@
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
+{% block body %}
+{{
+    form.textarea({
+        'label': 'foo',
+        'show-label': false
+    })
+}}
+{% endblock %}

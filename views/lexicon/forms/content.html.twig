@@ -8,14 +8,14 @@
 
     {{
         form.content({
-            'label': 'Text field with value',
+            'label': 'Content with value',
             'value': 'My value'
         })
     }}
 
     {{
         form.content({
-            'label': 'Text field with help',
+            'label': 'Content with help',
             'value': 'My value',
             'help': 'Help text to give more information about expected input'
         })
@@ -23,9 +23,18 @@
 
     {{
         form.content({
-            'label': 'Text field with guidance',
+            'label': 'Content with guidance',
             'value': 'My value',
             'guidance': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{
+        form.content({
+            'label': 'Content with value',
+            'value': 'My value',
+            'show-label': false,
+            'help': 'This example hides the label with the <code>show-label</code> option'
         })
     }}
 
@@ -33,7 +42,7 @@
 
     {{
         form.content({
-            'label': 'Text field with error',
+            'label': 'Content with error',
             'value': 'My value',
             'error': 'Please complete this field'
         })
@@ -41,7 +50,7 @@
 
     {{
         form.content({
-            'label': 'Text field with multiple errors',
+            'label': 'Content with multiple errors',
             'value': 'My value',
             'error': ['Do this', 'Do this too']
         })
@@ -49,7 +58,7 @@
 
     {{
         form.content({
-            'label': 'Text field with error and help',
+            'label': 'Content with error and help',
             'value': 'My value',
             'error': 'Please complete this field',
             'help': 'Help text to give more information about expected input'
@@ -60,7 +69,7 @@
         form.content({
             'class': 'has-error',
             'help': 'Help text to give more information about expected input',
-            'label': 'Text field error with help only',
+            'label': 'Content error with help only',
             'value': 'My value'
         })
     }}
