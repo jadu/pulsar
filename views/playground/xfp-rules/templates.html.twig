@@ -1,0 +1,155 @@
+{% extends '@pulsar/pulsar/components/tab.html.twig' %}
+
+{% block tab_content %}
+    <table class="table datatable table--full" data-select="false">
+        <thead>
+            <tr>
+                <td class="table-responsive"></td>
+                <th><a href="#">Template name</a></th>
+                <th><a href="#">System</a></th>
+                <th><a href="#">In use</a></th>
+                <th class="align-right"><a href="#">Actions</a></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="table-responsive">
+                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                </td>
+                <td><a href="#">Green waste subscription</a></td>
+                <td>Paybridge</td>
+                <td><a href="#">1 rule</a></td>
+                <td class="align-right">
+                    {{ html.link({ 'label': html.icon('pencil'), 'class': 'table-action' }) }}
+                    {{ html.link({ 'label': html.icon('remove-sign'), 'class': 'table-action' }) }}
+                </td>
+            </tr>
+
+            <tr>
+                <td class="table-responsive">
+                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                </td>
+                <td><a href="#">Green waste subscription</a></td>
+                <td>Paybridge</td>
+                <td><a href="#">1 rule</a></td>
+                <td class="align-right">
+                    {{ html.link({ 'label': html.icon('pencil'), 'class': 'table-action' }) }}
+                    {{ html.link({ 'label': html.icon('remove-sign'), 'class': 'table-action' }) }}
+                </td>
+            </tr>
+
+            <tr>
+                <td class="table-responsive">
+                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                </td>
+                <td><a href="#">Green waste subscription</a></td>
+                <td>Paybridge</td>
+                <td><a href="#">1 rule</a></td>
+                <td class="align-right">
+                    {{ html.link({ 'label': html.icon('pencil'), 'class': 'table-action' }) }}
+                    {{ html.link({ 'label': html.icon('remove-sign'), 'class': 'table-action' }) }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="modal modal--large show">
+    <div class="modal__dialog">
+        <div class="modal__content">
+            <div class="modal__header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal__title">Edit ‘New green waste case’ template</h4>
+            </div>
+            <div class="modal__body">
+                {{
+                    html.panel({
+                        'class': 'panel--warning',
+                        'body': 'This template is being used by 3 rules, any changes here will update all the rules using this template',
+                        'icon': 'warning-sign'
+                    })
+                }}
+                {{
+                    form.create()
+                }}
+                {{
+                    form.text({
+                        'class': 'form__group--full',
+                        'label': 'Template name',
+                        'value': 'New green waste case'
+                    })
+                }}
+                {{
+                    form.text({
+                        'class': 'form__group--full',
+                        'label': 'Case type',
+                        'value': 'green-waste'
+                    })
+                }}
+                {{
+                    form.text({
+                        'class': 'form__group--full',
+                        'label': 'Form type',
+                        'value': 'create'
+                    })
+                }}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>CXM case field</th>
+                            <th>Populate with xForm response</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                {{
+                                    form.text({
+                                        'show-label': false,
+                                        'label': 'Case field 1',
+                                        'value': 'First name'
+                                    })
+                                }}
+                            </td>
+                            <td>
+                                {{
+                                    form.text({
+                                        'show-label': false,
+                                        'label': 'Response',
+                                        'value': 'Q1 - your-name'
+                                    })
+                                }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal__footer">
+                {{
+                    html.button({
+                        'class': 'btn--primary',
+                        'label': 'Save'
+                    })
+                }}
+                {{
+                    html.button({
+                        'class': 'btn--naked',
+                        'data-dismiss': 'modal',
+                        'href': '#',
+                        'label': 'Cancel',
+                        'type': 'button'
+                    })
+                }}
+            </div>
+        </div><!-- /.modal__content -->
+    </div><!-- /.modal__dialog -->
+</div><!-- /.modal -->
+
+{% endblock tab_content %}
+{% block tab_sidebar %}
+    <h2>{{ html.icon('info-sign') }} Form actions and activity</h2>
+    <p>This log shows the actions performed by the user while progressing through the form and any actions performed by integrated systems.</p>
+{% endblock tab_sidebar %}
+
+{% block modals %}
+
+{% endblock %}

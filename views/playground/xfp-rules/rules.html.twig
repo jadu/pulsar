@@ -262,7 +262,21 @@
                         }}
 
                         {{
-                            form.end()
+                            form.end({
+                                'class': 'form__actions--flush',
+                                'actions': [
+                                    form.submit({
+                                        'class': 'btn--primary',
+                                        'label': 'Save'
+                                    }),
+                                    html.button({
+                                        'class': 'btn--naked',
+                                        'type': 'link',
+                                        'label': 'Cancel',
+                                        'href': '/home'
+                                    })
+                                ]
+                            })
                         }}
                     </div>
                 </td>
