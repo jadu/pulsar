@@ -2,38 +2,230 @@
  * Dropzone
  */
 
+$dropzone-file-size: .5em;
+$dropzone-thumb-size: 4em;
+
 .dropzone {
-    background-color: color(gray, off-white);
     border: 2px dashed color(gray, light);
     border-radius: $border-radius;
-    padding: 1.5em;
+    padding: 1.25em;
     text-align: center;
 }
 
+.dropzone__file-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    margin: (1em - $dropzone-file-size) -#{$dropzone-file-size} -#{$dropzone-file-size};
+}
+
+.dropzone__icon-wrapper {
+    padding: 1.75em .5em .5em;
+    position: relative;
+}
+
+/**
+ * Main Icon
+ */
+
 .dropzone__icon {
-    font-size: 1.75em;
-    margin-bottom: .5em;
+    color: color(gray, dark);
+    font-size: 4em;
+    text-align: center;
+}
+
+.dropzone__icon--small {
+    font-size: 1em;
+    position: absolute;
+    will-change: transform;
+}
+
+$dropzone-icon-rotation: 30deg;
+
+.dropzone__icon--left {
+    left: 0;
+    top: 0;
+    transform: rotate(-#{$dropzone-icon-rotation}) translateY(75%);
+    transition: transform 200ms 0ms;
+}
+
+.dropzone__icon--centre {
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%) translateY(25%);
+    transition: transform 200ms 50ms;
+}
+
+.dropzone__icon--right {
+    right: 0;
+    top: 0;
+    transform: rotate($dropzone-icon-rotation) translateY(75%);
+    transition: transform 200ms 100ms;
 }
 
 .dropzone__label {
     font-family: $font-family-regular;
+    font-size: 1.25em;
     line-height: 1;
     margin-bottom: 0;
 }
 
 .dropzone__helper {
+    font-size: .85em;
     margin-bottom: 0;
+}
+
+/**
+ * Error
+ */
+
+.dropzone__error {
+    color: color(danger);
+    font-family: $font-family-regular;
+    margin: .25em 0 0;
+}
+
+/**
+ * File
+ */
+
+.dropzone__file {
+    color: color(text, base);
+    padding: $dropzone-file-size;
+    width: 50%;
+}
+
+.dropzone__inner {
+    align-items: center;
+    background-color: color(gray, off-white);
+    border-radius: $border-radius;
+    display: flex;
+    flex-grow: 1;
+    height: 100%;
+    padding: $dropzone-file-size 2em $dropzone-file-size $dropzone-file-size;
+    position: relative;
+    text-align: left;
+}
+
+.dropzone__close {
+    color: color(gray);
+    cursor: pointer;
+    padding: $dropzone-file-size;
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    &:hover {
+        color: color(danger);
+    }
+}
+
+.dropzone__thumbnail {
+    border-radius: $border-radius;
+    color: color(grey);
+    height: $dropzone-thumb-size;
+    text-align: center;
+    width: $dropzone-thumb-size;
+
+    ~ .dropzone__meta {
+        width: calc(100% - #{$dropzone-thumb-size});
+    }
+}
+
+.dropzone__thumbnail--image {
+    background-size: cover;
+}
+
+.dropzone__file-icon {
+    font-size: 3em;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.dropzone__meta {
+    padding: 0 ($dropzone-file-size * 2);
+}
+
+.dropzone__name {
+    font-family: $font-family-regular;
+    font-size: .85em;
+    line-height: 1.1;
+    margin-bottom: $dropzone-file-size;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dropzone__size,
+.dropzone__type {
+    font-size: .75em;
+    line-height: 1;
+    margin-bottom: $dropzone-file-size / 2;
 }
 
 /**
  * State
  */
 
-.dropzone-window-active .dropzone {
-    border: 2px solid color(primary);
-    color: color(primary);
+@mixin dropzone-flash ($state) {
+    @keyframes #{$state}-flash {
+        0% {
+            background-color: rgba(color(#{$state}, light), 1);
+        }
+
+        15% {
+            background-color: rgba(color(#{$state}, light), 1);
+        }
+
+        100% {
+            background-color: rgba(color(#{$state}, light), 0);
+        }
+    }
 }
 
-.dropzone-dropzone-active .dropzone {
-    background-color: color(primary, light);
+@include dropzone-flash(success);
+@include dropzone-flash(danger);
+
+.dropzone-success {
+    .dropzone {
+        animation: success-flash 750ms forwards;
+        background-color: color(success, light);
+    }
+}
+
+.dropzone-error {
+    .dropzone {
+        animation: danger-flash 750ms forwards;
+        background-color: color(danger, light);
+    }
+}
+
+.dropzone-window-active {
+    .dropzone {
+        border: 2px solid color(primary);
+        color: color(primary);
+    }
+
+    .dropzone__icon {
+        color: color(primary);
+    }
+
+    .dropzone__icon--left {
+        transform: rotate(-#{$dropzone-icon-rotation}) translateY(50%);
+    }
+
+    .dropzone__icon--centre {
+        transform: translateY(0) translateX(-50%);
+    }
+
+    .dropzone__icon--right {
+        transform: rotate(#{$dropzone-icon-rotation}) translateY(50%);
+    }
+}
+
+.dropzone-dropzone-active {
+    @extend .dropzone-window-active;
+
+    .dropzone {
+        background-color: color(primary, light);
+    }
 }
