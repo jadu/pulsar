@@ -1407,7 +1407,12 @@ todo - improve docs
     {% spaceless %}
 
         <div{{ attributes(options|defaults({ 'class': 'dropzone dropzone--idle' })) }}>
-            {{  html.icon('application', { 'class': 'dropzone__icon' }) }}
+            <div class="dropzone__icon-wrapper">
+                {{  html.icon('file-pdf-o', { 'class': 'dropzone__icon dropzone__icon--small dropzone__icon--left' }) }}
+                {{  html.icon('file-image-o', { 'class': 'dropzone__icon dropzone__icon--small dropzone__icon--centre' }) }}
+                {{  html.icon('file-text-o', { 'class': 'dropzone__icon dropzone__icon--small dropzone__icon--right' }) }}
+                {{  html.icon('cloud-upload', { 'class': 'dropzone__icon dropzone__icon--main' }) }}
+            </div>
             <p class="dropzone__label">Drag &amp; Drop</p>
             <p class="dropzone__helper">your files here or
                 <a class="dropzone__alt-action" href="{{ options.alt_action_href|default('#') }}">
