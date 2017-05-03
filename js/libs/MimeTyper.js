@@ -22,6 +22,7 @@ export default class MimeTyper {
             'text/css': this.classes.code,
             'text/html': this.classes.code,
             'application/javascript': this.classes.code,
+            'text/javascript': this.classes.code,
             'application/ecmascript': this.classes.code,
             'text/xml': this.classes.code,
             // text
