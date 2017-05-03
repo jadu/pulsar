@@ -34,7 +34,12 @@ class DropZoneComponent {
         this.callbacks = {
             // files have entered the window
             windowEnter: (opts) => {
-                this.$body.addClass(this.interactionClasses.windowEnter);
+                this.resetBodyClass();
+
+                window.requestAnimationFrame(() => {
+                    this.$body.addClass(this.interactionClasses.windowEnter);
+                });
+
                 this.updateHelperState(opts.instance, this.helperStateHTML.windowEnterHTML);
                 if (options.windowEnter && typeof options.windowEnter === 'function') {
                     options.windowEnter(this, opts);
@@ -42,36 +47,61 @@ class DropZoneComponent {
             },
             // files have left the window
             windowLeave: (opts) => {
-                this.$body.removeClass(this.interactionClasses.windowEnter);
+                this.resetBodyClass();
+
+                window.requestAnimationFrame(() => {
+                    this.$body.removeClass(this.interactionClasses.windowEnter);
+                });
+
+                this.updateHelperState(opts.instance, this.helperStateHTML.idleHTML);
                 if (options.windowLeave && typeof options.windowLeave === 'function') {
                     options.windowLeave(this, opts);
                 }
             },
             // files have entered the dropzone
             dropZoneEnter: (opts) => {
-                this.$body.addClass(this.interactionClasses.dropZoneEnter);
+                this.resetBodyClass();
+
+                window.requestAnimationFrame(() => {
+                    this.$body.addClass(this.interactionClasses.dropZoneEnter);
+                });
+
+                this.updateHelperState(opts.instance, this.helperStateHTML.dropZoneEnterHTML);
                 if (options.dropZoneEnter && typeof options.dropZoneEnter === 'function') {
                     options.dropZoneEnter(this, opts);
                 }
             },
             // files have left the dropzone
             dropZoneLeave: (opts) => {
-                this.$body.removeClass(this.interactionClasses.dropZoneEnter);
+                this.resetBodyClass();
+
+                window.requestAnimationFrame(() => {
+                    this.$body.removeClass(this.interactionClasses.dropZoneEnter);
+                });
+
+                this.updateHelperState(opts.instance, this.helperStateHTML.windowEnterHTML);
                 if (options.dropZoneLeave && typeof options.dropZoneLeave === 'function') {
                     options.dropZoneLeave(this, opts);
                 }
             },
             // files have been dropped on the dropzone
-            dropZoneDrop: ({ files, node }) => {
-                this.handleDropZoneDrop(files, node);
+            dropZoneDrop: (opts) => {
+                this.handleDropZoneDrop(opts.files, opts.node);
                 this.resetBodyClass();
+
+                window.requestAnimationFrame(() => {
+                    this.$body.addClass(this.interactionClasses.dropZoneSuccess);
+                });
+
+                this.updateHelperState(opts.instance, this.helperStateHTML.idleHTML);
                 if (options.dropZoneDrop && typeof options.dropZoneDrop === 'function') {
                     options.dropZoneDrop();
                 }
             },
             // files have been dropped on the window, but not the dropzone
-            windowDrop: () => {
+            windowDrop: (opts) => {
                 this.resetBodyClass();
+                this.updateHelperState(opts.instance, this.helperStateHTML.idleHTML);
                 if (options.windowDrop && typeof options.windowDrop === 'function') {
                     options.windowDrop();
                 }
@@ -80,6 +110,11 @@ class DropZoneComponent {
             filesRejected: ({ status, error, node }) => {
                 this.updateDropZoneValidation(error, node);
                 this.resetBodyClass();
+
+                window.requestAnimationFrame(() => {
+                    this.$body.addClass(this.interactionClasses.dropZoneError);
+                });
+
                 if (options.filesRejected && typeof options.filesRejected === 'function') {
                     options.filesRejected();
                 }
@@ -91,8 +126,11 @@ class DropZoneComponent {
             dropzone: 'dropzone',
             wrapper: 'dropzone__file-wrapper',
             validation: 'dropzone__validation',
+            inner: 'dropzone__inner',
+            close: 'dropzone__close',
             error: 'dropzone__error',
             file: 'dropzone__file',
+            meta: 'dropzone__meta',
             name: 'dropzone__name',
             type: 'dropzone__type',
             size: 'dropzone__size',
@@ -101,6 +139,8 @@ class DropZoneComponent {
         this.interactionClasses = {
             windowEnter: 'dropzone-window-active',
             dropZoneEnter: 'dropzone-dropzone-active',
+            dropZoneSuccess: 'dropzone-success',
+            dropZoneError: 'dropzone-error'
         };
         // get all dropzone elements
         this.dropzones = [...this.html.querySelectorAll(`.${this.nodeClasses.dropzone}`)];
@@ -208,7 +248,7 @@ class DropZoneComponent {
 
         // update wrapper html
         wrapper.innerHTML = fileNodeString;
-        [...wrapper.querySelectorAll(`.${this.nodeClasses.file}`)].forEach(file => {
+        [...wrapper.querySelectorAll(`.${this.nodeClasses.close}`)].forEach(file => {
             file.addEventListener('click', this.removeFileHandler);
         });
     }
@@ -246,8 +286,8 @@ class DropZoneComponent {
      * @param  {Event} event
      */
     removeFileHandler (event) {
-        let file;
-        let dropZone;
+        let file = null;
+        let dropZone = null;
         const path = event.path ? event.path : DropZoneComponent.getEventPath(event.target);
 
         // grab the file id and dropzone id, this is neccessary in the
@@ -276,25 +316,30 @@ class DropZoneComponent {
      * @param  {Object} file
      * @return {String}
      */
-    createFileNode ({ name, size, type, id, thumbnail }) {
+    createFileNode (file) {
         let thumb = `<div class="${this.nodeClasses.thumbnail}`;
 
-        if (thumbnail) {
+        if (file.thumbnail) {
             // add a thumbnail if DropZone has returned one
-            thumb += `" style="background-image: url(${thumbnail});"`;
+            thumb += ` ${this.nodeClasses.thumbnail}--image" style="background-image: url(${file.thumbnail});"`;
         } else {
             // add icon class if we cannot get a file preview
-            thumb += ` icon-${this.mimeTyper.getIconClass(type)}"`;
+            thumb += `"><i class="dropzone__file-icon icon icon-${this.mimeTyper.getIconClass(file.type)}"></i`;
         }
 
         thumb += '></div>';
 
         return `
-            <div data-dropzone-file="${id}" class="${this.nodeClasses.file}">
-                ${thumb}
-                <p class="${this.nodeClasses.name}">${name}</p>
-                <p class="${this.nodeClasses.size}">${size}</p>
-                <p class="${this.nodeClasses.type}">${type}</p>
+            <div data-dropzone-file="${file.id}" class="${this.nodeClasses.file}">
+                <div class="${this.nodeClasses.inner}">
+                    <i class="${this.nodeClasses.close} icon icon-times-circle"></i>
+                    ${thumb}
+                    <div class="${this.nodeClasses.meta}">
+                        <p class="${this.nodeClasses.name}">${file.name}</p>
+                        <p class="${this.nodeClasses.size}">${file.size}</p>
+                        <p class="${this.nodeClasses.type}">${file.type}</p>
+                    </div>                
+                </div>
             </div>`.replace(/>\s+</g, '><');
     }
 
