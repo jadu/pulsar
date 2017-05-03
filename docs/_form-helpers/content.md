@@ -24,6 +24,7 @@ guidance    | string | Text to be displayed in a popover, adds a (?) icon after 
 guidance-container | string | Element to bind guidance popover scroll behaviour to (default `body`)
 help        | string | Additional guidance information to be displayed next to the input
 label       | string | Text for the `<label>` companion element
+show-label  | bool | Control visibility of the `<label>` element without affecting layout (default: true)
 
 ## Options applied to paragraph
 
