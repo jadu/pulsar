@@ -24,9 +24,10 @@ guidance    | string | Text to be displayed in a popover, adds a (?) icon after 
 guidance-container | string | Element to bind guidance popover scroll behaviour to (default `body`)
 help        | string | Additional guidance information to be displayed next to the input
 label       | string | Text for the `<label>` companion element
-show-label  | bool | Control visibility of the `<label>` element without affecting layout (default: true)
+raw         | bool   | Instead of wrapping the value in a `<p>`, just render the value/helper instead (default: false)
+show-label  | bool   | Control visibility of the `<label>` element without affecting layout (default: true)
 
-## Options applied to paragraph
+## Options applied to paragraph (if `raw` is `false`)
 
 Option      | Type   | Description
 ----------- | ------ | ---------------------------------------------------------
@@ -34,4 +35,4 @@ id          | string | A unique identifier, will also be used as the label's `fo
 value       | string | Specifies the value of the input
 data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
-Any other options not listed here will be applied to the paragraph.
+Any other options not listed here will be applied to the paragraph, unless `raw` is used, then they will not be used anywhere.
