@@ -51,6 +51,14 @@
 
     {{
         form.toggle_switch({
+            'label': 'Toggle switch',
+            'show-label': false,
+            'help': 'This example hides the label with the <code>show-label</code> option'
+        })
+    }}
+
+    {{
+        form.toggle_switch({
             'id': 'toggle-6',
             'label': 'Toggle switch with a longer than expected label which will probably wrap multple lines and push the following input onto the next baseline',
             'help': 'Example block-level help text here',
