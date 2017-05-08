@@ -40,11 +40,19 @@ class DropZoneComponent {
 
                 // add window enter class
                 window.requestAnimationFrame(() => {
-                    this.$body.addClass(this.interactionClasses.windowEnter);
+                    if (opts.valid) {
+                        this.$body.addClass(this.interactionClasses.windowEnter);
+                    } else {
+                        this.$body.addClass(this.interactionClasses.dropZoneError);
+                    }
                 });
 
                 // update helper text
-                this.updateHelperState(opts.instance, this.helperStateHTML.windowEnterHTML);
+                if (opts.valid) {
+                    this.updateHelperState(opts.instance, this.helperStateHTML.windowEnterHTML);
+                } else {
+                    this.updateHelperState(opts.instance, this.helperStateHTML.idleHTML);
+                }
 
                 // call any additional callbacks passed in via options
                 if (options.windowEnter && typeof options.windowEnter === 'function') {
@@ -59,6 +67,9 @@ class DropZoneComponent {
                 // update helper text
                 this.updateHelperState(opts.instance, this.helperStateHTML.idleHTML);
 
+                // update validation if there was any
+                this.clearDropZoneValidation(opts.instance.node);
+
                 // call any additional callbacks passed in via options
                 if (options.windowLeave && typeof options.windowLeave === 'function') {
                     options.windowLeave(this, opts);
@@ -71,11 +82,19 @@ class DropZoneComponent {
 
                 // add DropZone enter class
                 window.requestAnimationFrame(() => {
-                    this.$body.addClass(this.interactionClasses.dropZoneEnter);
+                    if (opts.valid) {
+                        this.$body.addClass(this.interactionClasses.dropZoneEnter);
+                    } else {
+                        this.$body.addClass(this.interactionClasses.dropZoneError);
+                    }
                 });
 
                 // update helper text
-                this.updateHelperState(opts.instance, this.helperStateHTML.dropZoneEnterHTML);
+                if (opts.valid) {
+                    this.updateHelperState(opts.instance, this.helperStateHTML.dropZoneEnterHTML);
+                } else {
+                    this.updateHelperState(opts.instance, this.helperStateHTML.idleHTML);
+                }
 
                 // call any additional callbacks passed in via options
                 if (options.dropZoneEnter && typeof options.dropZoneEnter === 'function') {
@@ -87,8 +106,19 @@ class DropZoneComponent {
                 // remove any state classes
                 this.resetBodyClass();
 
+                // add DropZone enter class
+                if (!opts.valid) {
+                    window.requestAnimationFrame(() => {
+                        this.$body.addClass(this.interactionClasses.dropZoneError);
+                    });
+                }
+
                 // update helper text
-                this.updateHelperState(opts.instance, this.helperStateHTML.windowEnterHTML);
+                if (opts.valid) {
+                    this.updateHelperState(opts.instance, this.helperStateHTML.windowEnterHTML);
+                } else {
+                    this.updateHelperState(opts.instance, this.helperStateHTML.idleHTML);
+                }
 
                 // call any additional callbacks passed in via options
                 if (options.dropZoneLeave && typeof options.dropZoneLeave === 'function') {
@@ -304,6 +334,16 @@ class DropZoneComponent {
 
         // create error message and update validation
         validationNode.innerHTML = errorNode;
+    }
+
+    /**
+     * Clear validation text
+     * @param node
+     */
+    clearDropZoneValidation (node) {
+        const wrapper = node.querySelector(`.${this.nodeClasses.validation}`);
+
+        wrapper && wrapper.parentNode.removeChild(wrapper);
     }
 
     /**

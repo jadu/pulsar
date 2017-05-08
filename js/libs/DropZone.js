@@ -165,8 +165,15 @@ export default class DropZone {
      */
     handleWindowEnter (event) {
         if (this.fileOnWindow() && !this.windowActive) {
-            this.validator.validate(event.dataTransfer.items, this.getFiles().length, this.size);
-            this.createCallback(this.options.windowEnter);
+            const files = event.dataTransfer.items;
+            const { valid, text } = this.validator.validate(files, this.getFiles().length, this.size);
+
+            // validate files (if possible) as soon as the user has dragged them onto the screen
+            if (!valid) {
+                this.rejectFiles(text);
+            }
+
+            this.createCallback(this.options.windowEnter, { valid });
             this.windowActive = true;
         }
     }
@@ -184,9 +191,17 @@ export default class DropZone {
     /**
      * Handle drag entering the DropZone
      */
-    handleEnter () {
+    handleEnter (event) {
         if (this.fileOnDropZone() && !this.dropZoneActive) {
-            this.createCallback(this.options.dropZoneEnter);
+            const files = event.dataTransfer.items;
+            const { valid, text } = this.validator.validate(files, this.getFiles().length, this.size);
+
+            // validate files (if possible) as soon as the user has dragged them onto the screen
+            if (!valid) {
+                this.rejectFiles(text);
+            }
+
+            this.createCallback(this.options.dropZoneEnter, { valid });
             this.dropZoneActive = true;
         }
     }
@@ -196,7 +211,15 @@ export default class DropZone {
      */
     handleLeave () {
         if (!this.fileOnDropZone() && this.dropZoneActive) {
-            this.createCallback(this.options.dropZoneLeave);
+            const files = event.dataTransfer.items;
+            const { valid, text } = this.validator.validate(files, this.getFiles().length, this.size);
+
+            // validate files (if possible) as soon as the user has dragged them onto the screen
+            if (!valid) {
+                this.rejectFiles(text);
+            }
+
+            this.createCallback(this.options.dropZoneLeave, { valid });
             this.dropZoneActive = false;
         }
     }

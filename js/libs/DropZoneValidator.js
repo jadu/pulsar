@@ -48,7 +48,6 @@ export default class DropZoneValidator {
                 }
             }
 
-
             // 3. max size
             //   - ensure we haven't exceeded our maximum size, if we can get size
             //
@@ -108,7 +107,7 @@ export default class DropZoneValidator {
      * @param {String} culprit
      * @returns {Object}
      */
-    throwError (error, culprit) {
+    throwError (error, culprit = '') {
         switch (error) {
             case 'WHITELIST':
                 return {
