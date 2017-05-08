@@ -1,13 +1,12 @@
 import DropZone from './libs/DropZone';
 import DropZoneValidator from './libs/DropZoneValidator';
-import MimeTyper from './libs/MimeTyper';
 import _ from 'lodash';
 import $ from 'jquery';
 
 class DropZoneComponent {
-    constructor (html) {
+    constructor (html, mimeTyper) {
         this.html = window.$ && html instanceof window.$ ? html[0] : html;
-        this.mimeTyper = new MimeTyper();
+        this.mimeTyper = mimeTyper;
     }
 
     /**
@@ -230,30 +229,6 @@ class DropZoneComponent {
     }
 
     /**
-     * Mount a dropzone instance to the DOM
-     * @param  {Element} dropzone
-     * @return {Element}
-     */
-    // mount (dropzone) {
-    //     const node = document.createElement('div');
-    //     // dropzone innerHTML
-    //     const inner = `<p>dropzone</p>`.replace(/>\s+</g, '><');
-    //
-    //     [...dropzone.attributes].forEach(attr => {
-    //         const { name, value } = attr;
-    //
-    //         if (name.match(/(id|data-dropzone)/)) {
-    //             node.setAttribute(name, value);
-    //         }
-    //     });
-    //
-    //     node.className = 'dropzone';
-    //     node.innerHTML = inner;
-    //     dropzone.parentNode.replaceChild(node, dropzone);
-    //     return node;
-    // }
-
-    /**
      * Create a file wrapper / update with dropped files
      * @param {Array} files
      * @param {Element} node
@@ -288,7 +263,7 @@ class DropZoneComponent {
         // if we've got a drop we know we don't have any errors
         // clear any previous validation messages
         if (validation) {
-            validation.parentNode.removeChild(validation);
+            this.clearDropZoneValidation(node);
         }
 
         // if there are no files we'll remove the wrapper

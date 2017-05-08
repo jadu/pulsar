@@ -1,3 +1,5 @@
+// todo - finish this and factor into DropZone & DropZoneComponent
+
 export default class EventHub {
     constructor () {
         this.pool = [];

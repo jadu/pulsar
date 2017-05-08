@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-export default class MimeTyper {
+class MimeTyper {
     constructor () {
         // this will be returned in the event we cannot match the MIME type
         this.default = 'file-o';
@@ -17,6 +17,7 @@ export default class MimeTyper {
             audio: 'file-audio-os'
         };
         // MIME type map {MIME type}: {class name}
+        // todo - there is definitely a much less cumbersome way to map these classes
         this.mimes = {
             // code
             'text/css': this.classes.code,
@@ -90,3 +91,5 @@ export default class MimeTyper {
         }
     }
 }
+
+module.exports = MimeTyper

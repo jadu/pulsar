@@ -1,4 +1,4 @@
-    (function ($) {
+(function ($) {
 
     // Protect IE8 from any erroneous console.log uses which would break everything
     if (!window.console) {
@@ -20,7 +20,7 @@
 	pulsar.modulePermissions = new pulsar.ModulePermissionsComponent($html);
     pulsar.navMain      = new pulsar.NavMainComponent($html);
     pulsar.filterBar    = new pulsar.FilterBarComponent($html);
-    pulsar.dropzone     = new pulsar.DropZoneComponent($html);
+    pulsar.dropzone     = new pulsar.DropZoneComponent($html, new pulsar.MimeTyper());
 
     $(function () {
         pulsar.button.init();
