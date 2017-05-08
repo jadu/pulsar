@@ -4,7 +4,8 @@ import _ from 'lodash';
 const validationText = {
     whitelist: 'Unsupported file type',
     maxFiles: 'Maximum number files exceeded',
-    maxSize: 'Maximum file size exceeded'
+    maxSize: 'Maximum file size exceeded',
+    directory: 'You are unable to upload whole directories'
 };
 
 export default class DropZoneValidator {
@@ -29,7 +30,14 @@ export default class DropZoneValidator {
 
             fileCount++;
 
-            // 1. whitelist
+            // 1. reject directories
+            if (error.valid) {
+                if (file.type === '') {
+                    error = this.throwError('DIRECTORY');
+                }
+            }
+
+            // 2. whitelist
             //   - check we have a whitelist
             //   - ensure our file is on the whitelist
             if (error.valid) {
@@ -40,7 +48,7 @@ export default class DropZoneValidator {
                 }
             }
 
-            // 2. max files
+            // 3. max files
             //   - ensure we haven't exceeded our max files
             if (error.valid) {
                 if (!this.validateCount(fileCount)) {
@@ -48,7 +56,7 @@ export default class DropZoneValidator {
                 }
             }
 
-            // 3. max size
+            // 4. max size
             //   - ensure we haven't exceeded our maximum size, if we can get size
             //
             // check to see if we can get a file, if we can't we know we cannot
@@ -73,8 +81,6 @@ export default class DropZoneValidator {
      */
     validateType (type) {
         let valid = false;
-
-        console.log('type: ' + type)
 
         this.options.whitelist.forEach(mime => {
             if (mime.includes('/')) {
@@ -139,6 +145,12 @@ export default class DropZoneValidator {
                     valid: false,
                     code: 'MAX_SIZE',
                     text: `${this.options.validationText.maxSize} (${DropZone.formatBytes(this.options.maxSize)})`
+                };
+            case 'DIRECTORY':
+                return {
+                    valid: false,
+                    code: 'DIRECTORY',
+                    text: `${this.options.validationText.directory}`
                 };
             default:
                 return {

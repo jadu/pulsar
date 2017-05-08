@@ -16,6 +16,9 @@ describe('DropZoneValidator', () => {
     const fullFileStub = Object.assign({}, partFileStub, {
         getAsFile: () => ({ size: 50 })
     });
+    const directory = Object.assign({}, partFileStub, {
+        type: ''
+    });
 
     describe('validateType()', () => {
         beforeEach(() => {
@@ -77,6 +80,12 @@ describe('DropZoneValidator', () => {
     });
 
     describe('validate()', () => {
+        it('should reject directories', () => {
+            const validator = new DropZoneValidator();
+
+            expect(validator.validate([directory]).valid).to.be.false;
+        });
+
         it('should reject a group of files if 1 fails whitelist validation', () => {
             const validator = new DropZoneValidator({ whitelist: ['application/foo'] });
             const valid = Object.assign({}, partFileStub, { type: 'application/foo' });
