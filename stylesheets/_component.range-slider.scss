@@ -12,6 +12,10 @@
         outline: none;
     }
 
+    &::-ms-tooltip {
+        display: none;
+    }
+
     // Slider thumb
     &::-webkit-slider-thumb {
         margin-top: -5px;
