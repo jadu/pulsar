@@ -118,10 +118,12 @@
 
                             {{
                                 rule.block_when({
+                                    'removeable': false,
                                     'inputs': [
                                         form.select2({
                                             'label': 'Choose trigger',
                                             'placeholder': 'Choose trigger',
+                                            'show-label': false,
                                             'options':
                                             [
                                                 {
@@ -145,6 +147,7 @@
                                         form.select2({
                                             'label': 'Choose trigger',
                                             'placeholder': 'Choose condition',
+                                            'show-label': false,
                                             'options':
                                             [
                                                 {
@@ -153,10 +156,11 @@
                                                 }
                                             ]
                                         }),
-                                        form.select2({
+                                        form.select({
                                             'class': 'form__group--small',
                                             'label': 'Choose',
                                             'placeholder': 'Choose',
+                                            'show-label': false,
                                             'options':
                                             [
                                                 {
@@ -171,6 +175,7 @@
                                         }),
                                         form.select2({
                                             'label': 'Choose user type',
+                                            'show-label': false,
                                             'options':
                                             [
                                                 {
@@ -196,8 +201,9 @@
                                     'inputs': [
                                         form.select2({
                                             'label': 'Choose action',
-                                             'options':
-                                             [
+                                            'show-label': false,
+                                            'options':
+                                            [
                                                 {
                                                     'label': 'Send email',
                                                     'value': 'foo'
@@ -229,6 +235,7 @@
                                         form.select2({
                                             'label': 'Using template',
                                             'data-html': 'true',
+                                            'show-label': false,
                                             'options':
                                              [
                                                 {
