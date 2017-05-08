@@ -27,15 +27,15 @@
         right: 10px;
     }
 
-    .conditional-block__link--when {
+    [href].conditional-block__link--when {
         color: #1292C9;
     }
 
-    .conditional-block__link--and {
+    [href].conditional-block__link--and {
         color: #646464;
     }
 
-    .conditional-block__link--then {
+    [href].conditional-block__link--then {
         color: #459A8C;
     }
 }
@@ -149,7 +149,7 @@
 
     @include respond-min($screen-tablet) {
         display: inline-block;
-        margin: 0 0 1em .4em;
+        margin: 0 0 .5em .4em;
     }
 
     .control__label {
