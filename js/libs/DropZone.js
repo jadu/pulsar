@@ -209,7 +209,7 @@ export default class DropZone {
     /**
      * Handle drag leaving the DropZone
      */
-    handleLeave () {
+    handleLeave (event) {
         if (!this.fileOnDropZone() && this.dropZoneActive) {
             const files = event.dataTransfer.items;
             const { valid, text } = this.validator.validate(files, this.getFiles().length, this.size);

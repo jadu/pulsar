@@ -2,7 +2,9 @@
 
 const DropZoneValidator = require('../../../js/libs/DropZoneValidator').default;
 const { expect } = require('chai');
-const { describe, it, beforeEach, afterEach } = require('mocha')escribe('DropZoneValidator', () => {
+const { describe, it, beforeEach } = require('mocha');
+
+describe('DropZoneValidator', () => {
     let validator;
     let validFile;
     let invalidFile;
@@ -28,6 +30,12 @@ const { describe, it, beforeEach, afterEach } = require('mocha')escribe('DropZon
 
         it('should accept a file that is in the whitelist', () => {
             expect(validator.validateType(validFile.type)).to.be.true;
+        });
+
+        it('should validate against a part mime', () => {
+            const lazyValidator = new DropZoneValidator({ whitelist: ['javascript'] });
+
+            expect(lazyValidator.validateType(validFile.type)).to.be.true;
         });
     });
 
@@ -61,7 +69,7 @@ const { describe, it, beforeEach, afterEach } = require('mocha')escribe('DropZon
 
     describe('throwError()', () => {
         it('should return an error object', () => {
-            const error = DropZoneValidator.throwError('WHITELIST');
+            const error = validator.throwError('WHITELIST');
 
             expect(error).to.be.an('object');
             expect(error.valid).to.be.false;
