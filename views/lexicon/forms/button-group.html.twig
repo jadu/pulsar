@@ -140,6 +140,31 @@
 
     {{
         form.button_group({
+            'label': 'Button group hide label',
+            'show-label': false,
+            'help': 'This example hides the label with the <code>show-label</code> option',
+            'items': [
+                form.radio_simple({
+                    'id': 'foo1',
+                    'label': 'Foo',
+                    'name': '1'
+                }),
+                form.radio_simple({
+                    'id': 'bar1',
+                    'label': 'Bar',
+                    'name': '1'
+                }),
+                form.radio_simple({
+                    'id': 'baz1',
+                    'label': 'Baz',
+                    'name': '1'
+                })
+            ]
+        })
+    }}
+
+    {{
+        form.button_group({
             'label': 'Text input with a longer than expected label which will probably wrap multple lines and push the following input onto the next baseline',
             'help': 'Example block-level help text here',
             'guidance': 'Help text to give more information about expected input',

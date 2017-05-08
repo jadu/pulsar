@@ -1,0 +1,10 @@
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
+{% block body %}
+{{
+    form.toggle_switch({
+        'label': 'Toggle',
+        'id': 'toggletest',
+        'show-label': false
+    })
+}}
+{% endblock %}
