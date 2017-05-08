@@ -74,16 +74,22 @@ export default class DropZoneValidator {
     validateType (type) {
         let valid = false;
 
+        console.log('type: ' + type)
+
         this.options.whitelist.forEach(mime => {
             if (mime.includes('/')) {
                 // if the user has specified a full mime e.g. 'image/png'
                 // we will check that against the type
-                valid = mime === type;
+                if (mime === type) {
+                    valid = true;
+                }
             } else {
                 // if the user has specified a part mime e.g. 'png'
                 // we'll split the type and check against the right hand side
                 // the equivalent of '*/png'
-                valid = type.split('/')[1] === mime;
+                if (type.split('/')[1] === mime) {
+                    valid = true;
+                }
             }
         });
 
