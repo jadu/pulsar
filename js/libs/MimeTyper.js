@@ -92,4 +92,4 @@ class MimeTyper {
     }
 }
 
-module.exports = MimeTyper
+module.exports = MimeTyper;

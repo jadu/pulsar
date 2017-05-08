@@ -69,9 +69,17 @@ $dropzone-icon-rotation: 30deg;
     margin-bottom: 0;
 }
 
-.dropzone__helper {
+.dropzone__info {
     font-size: .85em;
     margin-bottom: 0;
+}
+
+.dropzone__help {
+    display: inline-block;
+    font-size: .85em;
+    margin-bottom: 0;
+    padding-left: 1em;
+    padding-right: 1em;
 }
 
 /**

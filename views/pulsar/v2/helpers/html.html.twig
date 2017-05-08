@@ -1405,20 +1405,27 @@ todo - improve docs
 {% macro dropzone(options) %}
     {% import _self as html %}
     {% spaceless %}
-
         <div{{ attributes(options|defaults({ 'class': 'dropzone dropzone--idle' })) }}>
             <div class="dropzone__icon-wrapper">
                 {{  html.icon('file-pdf-o', { 'class': 'dropzone__icon dropzone__icon--small dropzone__icon--left' }) }}
-                {{  html.icon('file-image-o', { 'class': 'dropzone__icon dropzone__icon--small dropzone__icon--centre' }) }}
-                {{  html.icon('file-text-o', { 'class': 'dropzone__icon dropzone__icon--small dropzone__icon--right' }) }}
-                {{  html.icon('cloud-upload', { 'class': 'dropzone__icon dropzone__icon--main' }) }}
-            </div>
-            <p class="dropzone__label">Drag &amp; Drop</p>
-            <p class="dropzone__helper">your files here or
-                <a class="dropzone__alt-action" href="{{ options.alt_action_href|default('#') }}">
-                    {{ options.alt_action|default('do something else') }}
-                </a>
-            </p>
+        {{  html.icon('file-image-o', { 'class': 'dropzone__icon dropzone__icon--small dropzone__icon--centre' }) }}
+        {{  html.icon('file-text-o', { 'class': 'dropzone__icon dropzone__icon--small dropzone__icon--right' }) }}
+        {{  html.icon('cloud-upload', { 'class': 'dropzone__icon dropzone__icon--main' }) }}
+        </div>
+        <p class="dropzone__label">Drag &amp; Drop</p>
+        <p class="dropzone__info">your files here or
+            <a class="dropzone__alt-action" href="{{ options.alt_action_href|default('#') }}">
+                {{ options.alt_action|default('do something else') }}
+            </a>
+        </p>
+        <p class="dropzone__help help-block padding-top"
+           data-toggle="popover"
+           data-content="TODO: modify html.list helper to accept a space seperated string to create a simple list"
+           data-html="true"
+           data-placement="left"
+           data-container="{{ '#' ~ options.id }}"
+        >{{ html.icon('question-sign') }} Only certain file types are allowed
+        </p>
         </div>
 
     {% endspaceless %}

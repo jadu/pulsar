@@ -18,7 +18,7 @@ class DropZoneComponent {
         this.$body = $(this.body);
 
         this.helperStateHTML = _.extend({}, {
-            nodeSelector: '.dropzone__helper',
+            nodeSelector: '.dropzone__info',
             // this will be assigned when handling dropzone node
             node: null,
             // we set the idle HTML when dropzone options are derived from node attributes
