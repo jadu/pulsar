@@ -21,14 +21,6 @@ NavMainComponent.prototype.init = function() {
         component.closeNavs();
     };
 
-    // Primary Nav Items Height Adjustment
-    $('.nav-primary .nav-item .nav-link').each(function(){
-        console.log($(this));
-        if ($('.nav-primary .nav-item .nav-link span').height() >= 30) {
-            $('.nav-primary .nav-item .nav-link').css({'height': '100%', 'padding-bottom': '16px'});
-        }
-    });
-
     component.$primaryNavLinks.on('click', function(e) {
 
         var $self = $(this),
