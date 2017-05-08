@@ -69,7 +69,7 @@ export default class MimeTyper {
     }
 
     /**
-     * Search MIME keys and return corrosponding class name.
+     * Search MIME keys and return corresponding class name.
      * If we can't find the type, return the default class name.
      * @param  {String} userMime
      * @return {String}

@@ -4,7 +4,10 @@
 
   {{
     html.dropzone({
-        'id': 'dropzone_example_1'
+        'id': 'dropzone_example_1',
+        'data-dropzone-whitelist': 'image/png',
+        'data-dropzone-max-files': 99,
+        'data-dropzone-max-size': 500000
     })
   }}
 

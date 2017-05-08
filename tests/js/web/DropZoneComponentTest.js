@@ -2,8 +2,8 @@
 
 require('babel-polyfill');
 
-import DropZoneComponent from '../../../js/DropZoneComponent';
-import $ from 'jquery';
+const DropZoneComponent = require('../../../js/DropZoneComponent');
+const $ = require('jquery');
 
 describe('DropZoneComponent', () => {
     const $html = $('<div></div>');

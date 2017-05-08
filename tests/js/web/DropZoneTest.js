@@ -1,5 +1,3 @@
-"use strict";
-
 require('jsdom-global')();
 
 const DropZone = require('../../../js/libs/DropZone').default;

@@ -2,7 +2,7 @@ import _ from 'lodash';
 
 // todo - reject directories
 
-const defaults = {
+export const defaults = {
     // HTML node that will become DropZone
     node: null,
     // limit of files within store
@@ -27,7 +27,8 @@ const defaults = {
 };
 
 export default class DropZone {
-    constructor (options) {
+    constructor (options, validator) {
+        this.validator = validator;
         this.options = DropZone.createOptions(defaults, options);
         // ensure we've got integers here, there is a chance these will come
         // in as strings from a DOM node's attributes
@@ -40,7 +41,7 @@ export default class DropZone {
         this.handleWindowEnterWithContext = this.handleWindowEnter.bind(this);
         this.handleWindowLeaveWithContext = this.handleWindowLeave.bind(this);
         this.updateEventTrackerWithContext = this.updateEventTracker.bind(this);
-        // a place to be used extenally as a instance based cache
+        // a place to be used externally as a instance based cache
         this.data = {};
 
         this.setup();
@@ -86,7 +87,7 @@ export default class DropZone {
             const updateWindow = this.updateEventTracker.bind(this, 'window', event),
                 updateNode = this.updateEventTracker.bind(this, 'node', event);
 
-            // initaite event trackers with 0
+            // initiate event trackers with 0
             this.eventTracker.window[event] = 0;
             this.eventTracker.node[event] = 0;
 
@@ -113,25 +114,24 @@ export default class DropZone {
      * @param  {Event} event
      */
     handleDrop (event) {
-        const { files } = event.dataTransfer,
-            dataLength = files ? files.length : 0;
+        const files = event.dataTransfer.items;
 
         // determine where the drop has taken place
-        // dropped on the dropzone
+        // dropped on the DropZone
         if (this.windowActive && this.dropZoneActive) {
-            // determine if we can add files to the DropZone, exceptions are handled
-            // inside canAcceptFiles
-            if (this.canAcceptFiles(files)) {
-                for (let index = 0; index < dataLength; index++) {
-                    // determine if we can add this file to the DropZone, exceptions are
-                    // handled in canAcceptFile
-                    if (this.canAcceptFile(files[index])) {
-                        this.files.push(this.processFile(files[index]));
-                    }
-                }
-                this.createCallback(this.options.dropZoneDrop,
-                    { files: this.getFiles(), node: this.node }
-                );
+            // run files through validator
+            const { valid, text } = this.validator.validate(files, this.files.length, this.size);
+
+            if (valid) {
+                // add a valid set of files to the file list
+                [...files].forEach(file => {
+                    this.files.push(this.processFile(file.getAsFile()));
+                });
+                // fire dropped callback
+                this.createCallback(this.options.dropZoneDrop, { files: this.files, node: this.node });
+            } else {
+                // reject a drag if it has failed validation
+                this.rejectFiles(text);
             }
         // dropped on the window
         } else if (this.windowActive && !this.dropZoneActive) {
@@ -153,7 +153,7 @@ export default class DropZone {
     }
 
     /**
-     * Determin if a file is in the DropZone
+     * Determine if a file is in the DropZone
      */
     fileOnDropZone () {
         const { dragenter, dragleave } = this.eventTracker.node;
@@ -163,8 +163,9 @@ export default class DropZone {
     /**
      * Handle a file dragged into the window
      */
-    handleWindowEnter () {
+    handleWindowEnter (event) {
         if (this.fileOnWindow() && !this.windowActive) {
+            this.validator.validate(event.dataTransfer.items, this.getFiles().length, this.size);
             this.createCallback(this.options.windowEnter);
             this.windowActive = true;
         }
@@ -201,45 +202,6 @@ export default class DropZone {
     }
 
     /**
-     * Determine if the DropZone can accept files
-     * @param  {FileList} files
-     * @return {Boolean}
-     */
-    canAcceptFiles (files) {
-        const newSize = [...files].reduce((total, file) => total + file.size, 0);
-
-        if (this.getFiles().length + files.length > this.options.maxFiles) {
-            this.rejectFiles(0);
-            return false;
-        } else if (this.size + newSize > this.options.maxSize) {
-            this.rejectFiles(1);
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    canAcceptFile (file) {
-        const whitelistLength = this.options.whitelist.length;
-
-        // console.log('whitelist: ', this.options.whitelist)
-        // console.log('type: ', file.type)
-
-        if (whitelistLength) {
-            for (let i = 0; i < whitelistLength; i++) {
-                if (file.type.search(this.options.whitelist[i]) >= 0) {
-                    return true;
-                } else {
-                    this.rejectFiles(2, file);
-                    return false;
-                }
-            }
-        } else {
-            return true;
-        }
-    }
-
-    /**
      * A place we can do something with a file before we add it to the store.
      * @param  {Object} file
      * @return {Object}
@@ -257,27 +219,11 @@ export default class DropZone {
     }
 
     /**
-     * Handle a file rejection with error codes
-     * - 0 = the maximum number of files has been exceeded
-     * - 1 = the combined size of all files exceeds the maximum file size
-     * - 2 = a file has failed the custom validation rule
+     * Handle a file rejection
+     * @param {String} error
      */
-    rejectFiles (status) {
-        let error;
-
-        switch (status) {
-            case 0:
-                error = `Maximum of ${this.options.maxFiles} file${this.options.maxFiles > 1 ? 's' : ''} exceeded`;
-                break;
-            case 1:
-                error = `Maximum file size ${DropZone.formatBytes(this.options.maxSize)} exceeded`;
-                break;
-            case 2:
-                error = 'File type not supported';
-                break;
-        }
-
-        this.createCallback(this.options.filesRejected, { status, error, node: this.node });
+    rejectFiles (error) {
+        this.createCallback(this.options.filesRejected, { error, node: this.node });
     }
 
     /**
@@ -372,7 +318,7 @@ export default class DropZone {
     /**
      * Reset
      * - Remove any events attached by DropZone
-     * - re-intialise default values, and event handlers
+     * - re-initialise default values, and event handlers
      */
     reset () {
         this.removeAllEvents();
@@ -447,7 +393,8 @@ export default class DropZone {
 
     /**
      * Merge defaults with options
-     * @param  {Object} options
+     * @param {Object} defaults
+     * @param {Object} options
      * @return {Object}
      */
     static createOptions (defaults, options) {
