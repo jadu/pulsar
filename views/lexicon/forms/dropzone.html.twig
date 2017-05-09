@@ -2,13 +2,21 @@
 
 {% block tab_content %}
 
-  {{
-    html.dropzone({
-        'id': 'dropzone_example_1',
-        'data-dropzone-whitelist': 'png javascript',
-        'data-dropzone-max-files': '5'
-    })
-  }}
+    <pre>DropZone with file input</pre>
+
+    {{
+        form.file({
+            'id': 'dropzone_input'
+        })
+    }}
+
+    {{
+        html.dropzone({
+            'id': 'dropzone_with_input',
+            'data-dropzone-whitelist': 'png javascript',
+            'data-dropzone-max-files': '5'
+        })
+    }}
 
 {% endblock tab_content %}
 

@@ -36,12 +36,6 @@
         pulsar.filterBar.init();
         pulsar.disableUi.init();
 
-        // < IE10 do not support the File API, so we'll only need to initiate
-        // the DropZoneComponent for >= IE10
-        if (!$html.hasClass('lt-ie10')) {
-            pulsar.dropzone.init();
-        }
-
         // Switch out .svg for .png for <img> elements in older browsers
         pulsar.svgeezy.init('nocheck', 'png');
 
@@ -125,6 +119,22 @@
             'plugins' : ['state']
         });
 
+        /**
+         * DropZone related Lexicon code
+         */
+
+        // < IE10 do not support the File API, so we'll only need to initiate
+        // the DropZoneComponent for >= IE10
+        if (!$html.hasClass('lt-ie10')) {
+            pulsar.dropzone.init();
+
+            // related file input example
+            var fileInput = document.getElementById('dropzone_input');
+
+            fileInput.addEventListener('change', function (event) {
+                pulsar.dropzone.addFileToDropZone(fileInput.files, 'dropzone_with_input');
+            });
+        }
     });
 
 }(jQuery));
