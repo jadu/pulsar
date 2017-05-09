@@ -22,10 +22,27 @@
         rule.block(options
             |defaults({
                 'show_and': true,
-                'show_or': false
+                'show_or': true
             })
             |merge({
                 'type': 'and'
+            })
+        )
+    }}
+{% endspaceless %}
+{% endmacro %}
+
+{% macro block_or(options) %}
+{% spaceless %}
+    {% import _self as rule %}
+    {{
+        rule.block(options
+            |defaults({
+                'show_and': true,
+                'show_or': true
+            })
+            |merge({
+                'type': 'or'
             })
         )
     }}
