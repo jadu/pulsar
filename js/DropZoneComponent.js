@@ -430,7 +430,7 @@ class DropZoneComponent {
      * @param  {Element} node
      * @return {Object}
      */
-   static getDropZoneAttrs (node) {
+    static getDropZoneAttrs (node) {
         return [...node.attributes].reduce((attrs, attr) => {
             const { name } = attr;
             let { value } = attr;
@@ -461,6 +461,15 @@ class DropZoneComponent {
         } else {
             return _.find(this.dropzones, dz => dz.node.id === id);
         }
+    }
+
+    /**
+     * Manually add files to the DropZone API
+     * @param {FileList} files
+     * @param {String} id
+     */
+    addFileToDropZone (files, id) {
+        this.getDropZoneInstance(id).addFiles(files);
     }
 
     /**

@@ -119,29 +119,36 @@ export default class DropZone {
         // determine where the drop has taken place
         // dropped on the DropZone
         if (this.windowActive && this.dropZoneActive) {
-            // run files through validator
-            const { valid, text } = this.validator.validate(files, this.files.length, this.size);
-
-            if (valid) {
-                // add a valid set of files to the file list
-                [...files].forEach(file => {
-                    this.files.push(this.processFile(file.getAsFile()));
-                });
-                // fire dropped callback
-                this.createCallback(this.options.dropZoneDrop, { files: this.files, node: this.node });
-            } else {
-                // reject a drag if it has failed validation
-                this.rejectFiles(text);
-            }
+            this.addFiles(files);
         // dropped on the window
         } else if (this.windowActive && !this.dropZoneActive) {
             this.createCallback(this.options.windowDrop);
         }
 
-        // reset dropzone state
+        // reset DropZone state
         this.windowActive = false;
         this.dropZoneActive = false;
         this.resetEventTracker();
+    }
+
+    /**
+     * Validate and add files to the DropZone
+     * @param {FileList} files
+     */
+    addFiles (files) {
+        const { valid, text } = this.validator.validate(files, this.files.length, this.size);
+
+        if (valid) {
+            // add a valid set of files to the file list
+            [...files].forEach(file => {
+                this.files.push(this.processFile(file.getAsFile()));
+            });
+            // fire dropped callback
+            this.createCallback(this.options.dropZoneDrop, { files: this.files, node: this.node });
+        } else {
+            // reject a drag if it has failed validation
+            this.rejectFiles(text);
+        }
     }
 
     /**
