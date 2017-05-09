@@ -203,10 +203,15 @@ class DropZoneComponent {
         this.options = this.buildOptsFromAttrs();
         // instantiate each dropzone with it's options
         this.dropzones = this.dropzones.map((node, index) => {
-            // mount our dropzone instance
-            // this.options[index].node = this.mount(node);
+            // set node in options
             this.options[index].node = node;
-            return new DropZone(this.options[index], new DropZoneValidator(this.options[index]));
+            // create an instance of the DropZone API
+            const instance = new DropZone(this.options[index], new DropZoneValidator(this.options[index]));
+            // update helper state to overwrite helper HTML if a custom value was passed
+            // in as an option for the idleHMTL
+            this.updateHelperState(instance, this.helperStateHTML.idleHTML);
+            // return instance
+            return instance;
         });
     }
 
@@ -407,7 +412,11 @@ class DropZoneComponent {
 
             // store reference to dropzone__helper node
             this.helperStateHTML.node = node.querySelector(this.helperStateHTML.nodeSelector);
-            this.helperStateHTML.idleHTML = this.helperStateHTML.node.innerHTML;
+            // if we haven't got any idle HTML passed in as an option
+            // we'll set it to the current innerHTML of the helper node
+            if (this.helperStateHTML.idleHTML === null) {
+                this.helperStateHTML.idleHTML = this.helperStateHTML.node.innerHTML;
+            }
 
             // extend node attributes & defaults to build options
             options.push(_.extend({}, dropZoneAttrs, this.callbacks, this.defaults));
