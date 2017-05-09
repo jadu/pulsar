@@ -26,7 +26,7 @@ export default class DropZoneValidator {
         let sizeCount = totalSize;
 
         [...files].forEach(file => {
-            const fileObject = file.getAsFile();
+            const fileObject = file.getAsFile ? file.getAsFile() : file;
 
             fileCount++;
 

@@ -125,7 +125,7 @@ export default class DropZone {
             this.createCallback(this.options.windowDrop);
         }
 
-        // reset DropZone state
+        // reset DropZone state§
         this.windowActive = false;
         this.dropZoneActive = false;
         this.resetEventTracker();
@@ -141,7 +141,9 @@ export default class DropZone {
         if (valid) {
             // add a valid set of files to the file list
             [...files].forEach(file => {
-                this.files.push(this.processFile(file.getAsFile()));
+                // we are assuming at this point if an item in a fileList does not have the method
+                // getAsFile it is already a file object
+                this.files.push(this.processFile(file.getAsFile ? file.getAsFile() : file));
             });
             // fire dropped callback
             this.createCallback(this.options.dropZoneDrop, { files: this.files, node: this.node });
