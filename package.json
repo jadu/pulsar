@@ -87,7 +87,7 @@
   },
   "aliasify": {
     "aliases": {
-      "jquery": "./node_modules/jquery/dist/jquery"
+      "jquery": "./libs/jquery/dist/jquery"
     }
   },
   "browserify-shim": {
