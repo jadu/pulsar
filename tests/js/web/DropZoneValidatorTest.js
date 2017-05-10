@@ -39,6 +39,21 @@ describe('DropZoneValidator', () => {
             const lazyValidator = new DropZoneValidator({ whitelist: ['javascript'] });
 
             expect(lazyValidator.validateType(validFile.type)).to.be.true;
+            expect(lazyValidator.validateType(invalidFile.type)).to.be.false;
+        });
+
+        it('should validate against a wildcard mime in the first position', () => {
+            const wildValidator = new DropZoneValidator({ whitelist: ['*/javascript']});
+
+            expect(wildValidator.validateType(validFile.type)).to.equal.true;
+            expect(wildValidator.validateType(invalidFile.type)).to.equal.false;
+        });
+
+        it('should validate against a wildcard mime in the second position', () => {
+            const wildValidator = new DropZoneValidator({ whitelist: ['application/*'] });
+
+            expect(wildValidator.validateType(validFile.type)).to.be.true;
+            expect(wildValidator.validateType(invalidFile.type)).to.be.false;
         });
     });
 
@@ -83,7 +98,7 @@ describe('DropZoneValidator', () => {
         it('should reject directories', () => {
             const validator = new DropZoneValidator();
 
-            expect(validator.validate([directory]).valid).to.be.false;
+            expect(validator.validate([directory], 99, 99).valid).to.be.false;
         });
 
         it('should reject a group of files if 1 fails whitelist validation', () => {

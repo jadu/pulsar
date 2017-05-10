@@ -84,10 +84,18 @@ export default class DropZoneValidator {
 
         this.options.whitelist.forEach(mime => {
             if (mime.includes('/')) {
-                // if the user has specified a full mime e.g. 'image/png'
-                // we will check that against the type
                 if (mime === type) {
+                    // if the user has specified a full mime e.g. 'image/png'
+                    // we will check that against the type
                     valid = true;
+                } else if (mime.indexOf('*')) {
+                    // if the user has specified a wildcard mime e.g. 'image/*'
+                    // we will create a wildcard expression and test against it
+                    const re = new RegExp(mime.replace('*', '[\W\w]*'));
+
+                    if (re.exec(type)) {
+                        valid = true;
+                    }
                 }
             } else {
                 // if the user has specified a part mime e.g. 'png'
