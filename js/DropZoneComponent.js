@@ -238,6 +238,10 @@ class DropZoneComponent {
         // add files to DropZone that are added to the corresponding input
         instance.inputNode.addEventListener('change', () => {
             this.addFileToDropZone(instance.inputNode.files, instance.node.id);
+            // reset input node value, this will ensure our change event
+            // fires each time we use the browse files functionality - even
+            // if we try to add an identical value
+            instance.inputNode.value = '';
         });
         // visually hide input
         instance.inputNode.style.display = 'none';
