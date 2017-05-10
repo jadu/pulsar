@@ -75,6 +75,7 @@ $dropzone-icon-rotation: 30deg;
 }
 
 .dropzone__help {
+    color: color(text, help);
     display: inline-block;
     font-size: .85em;
     margin-bottom: 0;
