@@ -17,14 +17,14 @@ class DropZoneComponent {
         this.body = [...this.html.children].slice(1);
         this.$body = $(this.body);
 
-        this.helperStateHTML = _.extend({}, {
+        this.helperStateHtml = _.extend({}, {
             nodeSelector: '.dropzone__info',
-            // this will be assigned when handling dropzone node
+            // this will be assigned when handling DropZone node
             node: null,
-            // we set the idle HTML when dropzone options are derived from node attributes
-            idleHTML: null,
-            windowEnterHTML: 'Drag your files here (max <% maxFiles %>)',
-            dropZoneEnterHTML: 'Drop your files here'
+            // we set the idle Html when DropZone options are derived from node attributes
+            idleHtml: null,
+            windowEnterHtml: 'Drag your files here (max <% maxFiles %>)',
+            dropZoneEnterHtml: 'Drop your files here'
         }, options);
 
         this.defaults = {
@@ -49,9 +49,9 @@ class DropZoneComponent {
 
                 // update helper text
                 if (opts.valid) {
-                    this.updateHelperState(opts.instance, this.helperStateHTML.windowEnterHTML);
+                    this.updateHelperState(opts.instance, opts.instance.options.windowEnterHtml);
                 } else {
-                    this.updateHelperState(opts.instance, this.helperStateHTML.idleHTML);
+                    this.updateHelperState(opts.instance, opts.instance.options.idleHtml);
                 }
 
                 // call any additional callbacks passed in via options
@@ -65,7 +65,7 @@ class DropZoneComponent {
                 this.resetBodyClass();
 
                 // update helper text
-                this.updateHelperState(opts.instance, this.helperStateHTML.idleHTML);
+                this.updateHelperState(opts.instance, opts.instance.options.idleHtml);
 
                 // update validation if there was any
                 this.clearDropZoneValidation(opts.instance.node);
@@ -91,9 +91,9 @@ class DropZoneComponent {
 
                 // update helper text
                 if (opts.valid) {
-                    this.updateHelperState(opts.instance, this.helperStateHTML.dropZoneEnterHTML);
+                    this.updateHelperState(opts.instance, opts.instance.options.dropZoneEnterHtml);
                 } else {
-                    this.updateHelperState(opts.instance, this.helperStateHTML.idleHTML);
+                    this.updateHelperState(opts.instance, opts.instance.options.idleHtml);
                 }
 
                 // call any additional callbacks passed in via options
@@ -115,9 +115,9 @@ class DropZoneComponent {
 
                 // update helper text
                 if (opts.valid) {
-                    this.updateHelperState(opts.instance, this.helperStateHTML.windowEnterHTML);
+                    this.updateHelperState(opts.instance, opts.instance.options.windowEnterHtml);
                 } else {
-                    this.updateHelperState(opts.instance, this.helperStateHTML.idleHTML);
+                    this.updateHelperState(opts.instance, opts.instance.options.idleHtml);
                 }
 
                 // call any additional callbacks passed in via options
@@ -140,7 +140,7 @@ class DropZoneComponent {
                 });
 
                 // update helper text
-                this.updateHelperState(opts.instance, this.helperStateHTML.idleHTML);
+                this.updateHelperState(opts.instance, opts.instance.options.idleHtml);
 
                 // call any additional callbacks passed in via options
                 if (options.dropZoneDrop && typeof options.dropZoneDrop === 'function') {
@@ -150,7 +150,7 @@ class DropZoneComponent {
             // files have been dropped on the window, but not the DropZone
             windowDrop: (opts) => {
                 this.resetBodyClass();
-                this.updateHelperState(opts.instance, this.helperStateHTML.idleHTML);
+                this.updateHelperState(opts.instance, opts.instance.options.idleHtml);
                 if (options.windowDrop && typeof options.windowDrop === 'function') {
                     options.windowDrop();
                 }
@@ -164,7 +164,7 @@ class DropZoneComponent {
                 this.resetBodyClass();
 
                 // update helper text
-                this.updateHelperState(opts.instance, this.helperStateHTML.idleHTML);
+                this.updateHelperState(opts.instance, opts.instance.options.idleHtml);
 
                 // add error class
                 window.requestAnimationFrame(() => {
@@ -183,6 +183,7 @@ class DropZoneComponent {
             dropzone: 'dropzone',
             wrapper: 'dropzone__file-wrapper',
             validation: 'dropzone__validation',
+            help: 'dropzone__help',
             browse: 'dropzone__browse',
             inner: 'dropzone__inner',
             close: 'dropzone__close',
@@ -200,11 +201,11 @@ class DropZoneComponent {
             dropZoneSuccess: 'dropzone-success',
             dropZoneError: 'dropzone-error'
         };
-        // get all dropzone elements
+        // get all DropZone elements
         this.dropzones = [...this.html.querySelectorAll(`.${this.nodeClasses.dropzone}`)];
-        // get dropzone options array
+        // get DropZone options array
         this.options = this.buildOptsFromAttrs();
-        // instantiate each dropzone with it's options
+        // instantiate each DropZone with it's options
         this.dropzones = this.dropzones.map((node, index) => {
             // set node in options
             this.options[index].node = node;
@@ -214,9 +215,9 @@ class DropZoneComponent {
             if (this.options[index].inputNodeId) {
                 this.processInputNode(instance, this.options[index]);
             }
-            // update helper state to overwrite helper HTML if a custom value was passed
-            // in as an option for the idleHMTL
-            this.updateHelperState(instance, this.helperStateHTML.idleHTML);
+            // update helper state to overwrite helper Html if a custom value was passed
+            // in as an option for the idlehtml
+            this.updateHelperState(instance, this.options[index].idleHtml);
             // return instance
             return instance;
         });
@@ -258,7 +259,7 @@ class DropZoneComponent {
     }
 
     /**
-     * Update dropzone helper node innerHTML
+     * Update DropZone helper node innerHTML
      * has a trivial template syntax for getting variables from the dropzone instance options object
      * <% foo %> will evaluate to --> instance.options.foo
      * @param instance
@@ -268,14 +269,15 @@ class DropZoneComponent {
         const templateString = htmlString.match(/<%\s(\w*)\s%>/);
 
         if (!templateString) {
-            this.helperStateHTML.node.innerHTML = htmlString;
+            this.helperStateHtml.node.innerHTML = htmlString;
         } else {
             const match = templateString[1];
-            this.helperStateHTML.node.innerHTML = htmlString.replace(templateString[0], instance.options[match]);
+
+            this.helperStateHtml.node.innerHTML = htmlString.replace(templateString[0], instance.options[match]);
         }
 
         // attach "browse files" listeners
-        this.addBrowseFilesListener(instance, instance.node);
+        this.addBrowseFilesListener(instance);
     }
 
     /**
@@ -293,14 +295,14 @@ class DropZoneComponent {
             node.appendChild(wrapper);
         }
 
-        // update wrapper HTML
+        // update wrapper Html
         this.updateDropZoneFiles(files, node, wrapper);
     }
 
     /**
-     * Update dropzone HTML
+     * Update dropzone Html
      * - remove validation node if we have one
-     * - add / remove files HTML
+     * - add / remove files Html
      * - remove wrapper if we have no files
      * @param  {Array} files
      * @param  {Element} node
@@ -335,26 +337,19 @@ class DropZoneComponent {
     }
 
     /**
-     * Update dropzone validation HTML
+     * Update dropzone validation Html
      * @param  {String} error
      * @param  {Element} node
      */
     updateDropZoneValidation (error, node) {
         let validationNode = node.querySelector(`.${this.nodeClasses.validation}`);
-        const wrapper = node.querySelector(`.${this.nodeClasses.wrapper}`);
         const errorNode = `<p class="${this.nodeClasses.error}">${error}</p>`;
 
         // if a validation element doesn't exist, create one
         if (!validationNode) {
             validationNode = document.createElement('div');
             validationNode.className = this.nodeClasses.validation;
-            // if we do not have a file wrapper just append the validation
-            // to the DropZone node, otherwise insert before the file wrapper
-            if (!wrapper) {
-                node.appendChild(validationNode);
-            } else {
-                node.insertBefore(validationNode, wrapper);
-            }
+            node.insertBefore(validationNode, document.querySelector(`.${this.nodeClasses.help}`));
         }
 
         // create error message and update validation
@@ -397,12 +392,12 @@ class DropZoneComponent {
         const wrapper = instance.node.querySelector(`.${this.nodeClasses.wrapper}`);
 
         instance.removeFile(file);
-        // update HTML
+        // update Html
         this.updateDropZoneFiles(instance.getFiles(), instance.node, wrapper);
     }
 
     /**
-     * Create DropZone file HTML string
+     * Create DropZone file Html string
      * @param  {Object} file
      * @return {String}
      */
@@ -456,15 +451,15 @@ class DropZoneComponent {
             const dropZoneAttrs = DropZoneComponent.getDropZoneAttrs(node);
 
             // store reference to dropzone__helper node
-            this.helperStateHTML.node = node.querySelector(this.helperStateHTML.nodeSelector);
-            // if we haven't got any idle HTML passed in as an option
+            this.helperStateHtml.node = node.querySelector(this.helperStateHtml.nodeSelector);
+            // if we haven't got any idle Html passed in as an option
             // we'll set it to the current innerHTML of the helper node
-            if (this.helperStateHTML.idleHTML === null) {
-                this.helperStateHTML.idleHTML = this.helperStateHTML.node.innerHTML;
+            if (this.helperStateHtml.idleHtml === null && dropZoneAttrs.idleHtml === null) {
+                this.helperStateHtml.idleHtml = this.helperStateHtml.node.innerHTML;
             }
 
             // extend node attributes & defaults to build options
-            options.push(_.extend({}, this.callbacks, this.defaults, dropZoneAttrs));
+            options.push(_.extend({}, this.callbacks, this.defaults, this.helperStateHtml, dropZoneAttrs));
             return options;
         }, []);
     }

@@ -79,8 +79,7 @@ $dropzone-icon-rotation: 30deg;
     font-size: .85em;
     margin-bottom: 0;
     margin-top: 0;
-    padding-left: 1em;
-    padding-right: 1em;
+    padding: 0 1em;
 }
 
 /**
@@ -90,7 +89,8 @@ $dropzone-icon-rotation: 30deg;
 .dropzone__error {
     color: color(danger);
     font-family: $font-family-regular;
-    margin: .25em 0 0;
+    font-size: .85em;
+    margin: 0;
 }
 
 /**
@@ -212,6 +212,10 @@ $dropzone-icon-rotation: 30deg;
 .dropzone-window-active {
     .dropzone {
         border: 2px solid color(primary);
+        color: color(primary);
+    }
+
+    .dropzone__help {
         color: color(primary);
     }
 
