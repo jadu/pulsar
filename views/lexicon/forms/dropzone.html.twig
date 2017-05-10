@@ -5,16 +5,17 @@
     <pre>DropZone with file input</pre>
 
     {{
-        form.file({
-            'id': 'dropzone_input'
+        html.dropzone({
+            'id': 'dropzone_with_input',
+            'data-dropzone-whitelist': 'png javascript',
+            'data-dropzone-max-files': '5',
+            'data-dropzone-input-node-id': 'dropzone_input'
         })
     }}
 
     {{
-        html.dropzone({
-            'id': 'dropzone_with_input',
-            'data-dropzone-whitelist': 'png javascript',
-            'data-dropzone-max-files': '5'
+        form.file({
+            'id': 'dropzone_input'
         })
     }}
 

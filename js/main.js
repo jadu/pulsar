@@ -127,13 +127,6 @@
         // the DropZoneComponent for >= IE10
         if (!$html.hasClass('lt-ie10')) {
             pulsar.dropzone.init();
-
-            // related file input example
-            var fileInput = document.getElementById('dropzone_input');
-
-            fileInput.addEventListener('change', function (event) {
-                pulsar.dropzone.addFileToDropZone(fileInput.files, 'dropzone_with_input');
-            });
         }
     });
 

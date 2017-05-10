@@ -28,6 +28,7 @@ class DropZoneComponent {
         }, options);
 
         this.defaults = {
+            inputNodeId: '',
             passive: false
         };
 
@@ -129,6 +130,7 @@ class DropZoneComponent {
                 // handle dropped files
                 this.handleDropZoneDrop(opts.files, opts.node);
 
+
                 // remove any state classes
                 this.resetBodyClass();
 
@@ -181,6 +183,7 @@ class DropZoneComponent {
             dropzone: 'dropzone',
             wrapper: 'dropzone__file-wrapper',
             validation: 'dropzone__validation',
+            browse: 'dropzone__browse',
             inner: 'dropzone__inner',
             close: 'dropzone__close',
             error: 'dropzone__error',
@@ -207,12 +210,51 @@ class DropZoneComponent {
             this.options[index].node = node;
             // create an instance of the DropZone API
             const instance = new DropZone(this.options[index], new DropZoneValidator(this.options[index]));
+            // if an input node selector has been passed in, add events and hide
+            if (this.options[index].inputNodeId) {
+                this.processInputNode(instance, this.options[index]);
+            }
             // update helper state to overwrite helper HTML if a custom value was passed
             // in as an option for the idleHMTL
             this.updateHelperState(instance, this.helperStateHTML.idleHTML);
             // return instance
             return instance;
         });
+    }
+
+    /**
+     * If an input node ID has been passed in, we'll take care of linking the DropZone
+     * instance to this node
+     *  - add change listener to hijack files
+     *  - add click listener to `dropzone__browse` to leverage input's browse functionality
+     *  - visually hide input node
+     * @param {Object} instance
+     * @param {Object} options
+     */
+    processInputNode (instance, options) {
+        // todo - install the event hub here when it is complete for removing these handlers
+        instance.inputNode = document.getElementById(options.inputNodeId);
+        // add files to DropZone that are added to the corresponding input
+        instance.inputNode.addEventListener('change', () => {
+            this.addFileToDropZone(instance.inputNode.files, instance.node.id);
+        });
+        // visually hide input
+        instance.inputNode.style.display = 'none';
+    }
+
+    /**
+     * Adds the browse files functionality to our DropZone
+     * @param {Object} instance
+     */
+    addBrowseFilesListener (instance) {
+        instance.browseNode = instance.node.querySelector(`.${this.nodeClasses.browse}`);
+
+        if (instance.browseNode) {
+            instance.browseNode.addEventListener('click', event => {
+                event.preventDefault();
+                instance.inputNode.click();
+            });
+        }
     }
 
     /**
@@ -231,6 +273,9 @@ class DropZoneComponent {
             const match = templateString[1];
             this.helperStateHTML.node.innerHTML = htmlString.replace(templateString[0], instance.options[match]);
         }
+
+        // attach "browse files" listeners
+        this.addBrowseFilesListener(instance, instance.node);
     }
 
     /**
@@ -419,7 +464,7 @@ class DropZoneComponent {
             }
 
             // extend node attributes & defaults to build options
-            options.push(_.extend({}, dropZoneAttrs, this.callbacks, this.defaults));
+            options.push(_.extend({}, this.callbacks, this.defaults, dropZoneAttrs));
             return options;
         }, []);
     }
