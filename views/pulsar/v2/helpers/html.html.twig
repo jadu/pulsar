@@ -1404,8 +1404,13 @@ todo - improve docs
 #}
 {% macro dropzone(options) %}
     {% import _self as html %}
+    {%  set files = options['data-dropzone-max-files'] is defined ? options['data-dropzone-max-files'] : '5' %}
     {% spaceless %}
-        <div{{ attributes(options|defaults({ 'class': 'dropzone dropzone--idle' })) }}>
+        <div{{ attributes(options|defaults(
+            {
+                'class': 'dropzone dropzone--idle' ~ ' dropzone--files-' ~ files
+            }
+        )) }}>
             <div class="dropzone__icon-wrapper">
                 {{  html.icon('file-pdf-o', { 'class': 'dropzone__icon dropzone__icon--small dropzone__icon--left' }) }}
                 {{  html.icon('file-image-o', { 'class': 'dropzone__icon dropzone__icon--small dropzone__icon--centre' }) }}

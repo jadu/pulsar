@@ -103,6 +103,10 @@ $dropzone-icon-rotation: 30deg;
     color: color(text, base);
     padding: $dropzone-file-size;
     width: 50%;
+
+    .dropzone--files-1 & {
+        margin: auto;
+    }
 }
 
 .dropzone__inner {
