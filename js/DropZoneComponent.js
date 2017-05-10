@@ -394,6 +394,7 @@ class DropZoneComponent {
         instance.removeFile(file);
         // update Html
         this.updateDropZoneFiles(instance.getFiles(), instance.node, wrapper);
+        this.resetBodyClass();
     }
 
     /**
