@@ -42,7 +42,7 @@ casper.then(function () {
     for (;current < end;) {
         (function(cntr) {
             casper.thenOpen('http://192.168.13.37' + newlinks[cntr] + '', function() {
-                    fs.write('tests/validation/html_output/_' + match[cntr] + '.html', this.getPageContent(), 'w');
+                    fs.write('tests/validation/html_output/_' + match[cntr] + '_.html', this.getPageContent(), 'w');
             });
         })(current);
         current++;
