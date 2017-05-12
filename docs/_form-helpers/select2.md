@@ -55,6 +55,7 @@ guidance-container | string | Element to bind guidance popover scroll behaviour 
 help        | string  | Additional guidance information to be displayed next to the input
 label       | string  | Text for the `<label>` companion element
 required    | bool    | Visually indicates that the field must be completed
+show-label  | bool    | Control visibility of the `<label>` element without affecting layout (default: true)
 
 ## Options applied to the input
 
@@ -77,6 +78,12 @@ data-*      | string  | Data attributes, eg: `'data-foo': 'bar'`
 ## Manually creating select2 elements
 
 The select2 plugin will be called on any `select` element that contain the `js-select2` class.
+
+## Using optgroups
+
+Your options can be arranged within `optgroups` by using the optgroup syntax.
+
+{% code_example form_helpers/select2-optgroup %}
 
 ## Using HTML in select options
 

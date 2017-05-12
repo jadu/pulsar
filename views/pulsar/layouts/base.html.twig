@@ -130,7 +130,21 @@
             <div class="content-main">
                 <div class="tabs__content">
                     {{ nav.breadcrumbs(breadcrumbs|default) }}
-                    <h1 class="main-title">{{ heading|default('MISSING HEADING') }}</h1>
+
+                    {% set _ribbon = '' %}
+                    {% set _ribbon = block('ribbon') %}
+                    {% if _ribbon is not empty %}
+                        {% block ribbon_content %}
+                            <div class="ribbon-wrapper">
+                                <header class="ribbon">
+                                    {{ _ribbon|raw }}
+                                </header>
+                            </div>
+                        {% endblock %}
+                    {% else %}
+                        <h1 class="main-title">{{ heading|default('MISSING HEADING') }}</h1>
+                    {% endif %}
+
                     {% block tabs_list %}{% endblock %}
                     {% block tabs_content %}{% endblock %}
                 </div>

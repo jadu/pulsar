@@ -1,0 +1,12 @@
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
+{% block body %}
+{{
+    form.select({
+        'label': 'foo',
+        'options': {
+            'foo': 'bar',
+            'bar': 'baz'
+        }
+    })
+}}
+{% endblock %}

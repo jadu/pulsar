@@ -16,7 +16,7 @@ HelpTextComponent.prototype.init = function () {
         $activeTabContainer = component.$html.find('.tab__pane.is-active .tab__container');
 
     // Visually hide sidebar so you can't tab to it with keyboard/screenreaders
-    $tabHelpContainer.addClass('visibility-hidden');
+    $tabHelpContainer.addClass('hide');
 
     // Help toggle click bind
     $tabsContent.on('touchstart click', '.js-show-page-help', function(e) {
@@ -52,14 +52,14 @@ HelpTextComponent.prototype.toggleHelpSidebar = function () {
     if (component.$html.hasClass('open-help')) {
         component.$html.removeClass('open-help');
         if (component.$html.hasClass('lt-ie10')) {
-            $tabHelpContainer.addClass('visibility-hidden');
+            $tabHelpContainer.addClass('hide');
         } else {
             $tabHelpContainer.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(e) {
-                $tabHelpContainer.addClass('visibility-hidden');
+                $tabHelpContainer.addClass('hide');
             });
         }
     } else {
-        $tabHelpContainer.removeClass('visibility-hidden');
+        $tabHelpContainer.removeClass('hide');
         component.$html.addClass('open-help');
     }
 };

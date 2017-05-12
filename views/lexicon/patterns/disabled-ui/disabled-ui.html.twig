@@ -1,0 +1,71 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
+
+{% block tab_content %}
+{{
+    flash.message({
+        'dismissable': false,
+        'message': 'Something is preventing this UI from being enabled',
+        'type': 'warning'
+    })
+}}
+
+{{
+    form.create({
+        'data-disable-ui': "true" 
+    })
+}}
+
+    <p>Example text</p>
+
+    {{
+        form.text({
+            'label': 'Text input',
+            'id': 'inputText',
+            'name': 'inputText',
+            'placeholder': 'Placeholder'
+        })
+    }}
+
+    {{
+        html.link({
+            'label': 'External link',
+            'href': 'http://google.com'
+        })
+    }}
+
+    {{
+        form.checkbox({
+            'label': 'Normal checkbox'
+        })
+    }}
+
+    {{
+        form.checkbox({
+            'label': 'Disabled checkbox',
+            'disabled': true
+        })
+    }}
+
+
+{{
+    form.end({
+        'actions': [
+            html.button({
+                'label': 'Save Changes',
+                'class': 'btn--primary'
+            }),
+            html.button({
+                'label': 'Cancel',
+                'class': 'btn--naked'
+            })
+        ]
+    })
+}}
+
+{% endblock tab_content %}
+
+{% block tab_sidebar %}
+    <h2 class="heading margin-bottom">{{ html.icon('info-sign', { 'class': 'sidebar-icon'}) }} Disabling a UI</h2>
+
+    <p>You can disable parts of or a whole UI by adding data-disable-u="true" to an element. You should inform the user why the UI has been disabled and what actions need to be taken to enable it</p>
+{% endblock tab_sidebar %}
