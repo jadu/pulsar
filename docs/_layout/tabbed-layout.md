@@ -6,7 +6,7 @@ category: Layout
 
 The tabbed layout is Pulsar's default and consists of a list of tabs which switch between different content views. The tab content is usually a table or a form, but can be more complex depending on the needs of the interface.
 
-![tabbed layout example](/assets/image_examples/tabbed-layout.png)
+![tabbed layout example]({{ site.baseurl }}/assets/image_examples/tabbed-layout.png)
 
 ## File structure
 

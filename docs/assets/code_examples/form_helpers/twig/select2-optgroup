@@ -1,0 +1,34 @@
+{{
+    form.select2({
+        'label': 'Select with optgroups',
+        'options':
+        [
+            {
+                'label': 'optgroup one',
+                'options': [
+                    {
+                        'label': 'alpha',
+                        'value': 'val-alpha'
+                    },
+                    {
+                        'label': 'bravo',
+                        'value': 'val-bravo'
+                    }
+                ]
+            },
+            {
+                'label': 'optgroup two',
+                'options': [
+                    {
+                        'label': 'charlie',
+                        'value': 'val-charlie'
+                    },
+                    {
+                        'label': 'delta',
+                        'value': 'val-delta'
+                    }
+                ]
+            }
+        ]
+    })
+}}

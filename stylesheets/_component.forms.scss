@@ -6,6 +6,27 @@ fieldset {
 
 .form {
     background-color: color(white);
+
+    > fieldset {
+        padding: 22px 0;
+
+        legend {
+            border-bottom: 1px solid color(border);
+            color: color(text);
+            display: block;
+            font-size: $font-size-xlarge;
+            line-height: $line-height-base;
+            margin-bottom: 15px;
+            padding: 0 $gutter-width 0 0;
+            position: relative;
+            width: 100%;
+        }
+    }
+
+    .form__group--inline .form__control:not(.checkbox):not(.radio) {
+        max-width: none;
+        width: auto;
+    }
 }
 
 .form--standalone {
@@ -44,12 +65,23 @@ fieldset {
         }
     }
 
+    &[type="color"],
+    &[type="date"],
     &[type="email"],
+    &[type="month"],
+    &[type="number"],
     &[type="password"],
+    &[type="search"],
     &[type="tel"],
     &[type="text"],
-    &[type="url"] {
+    &[type="time"],
+    &[type="url"],
+    &[type="week"] {
         border: 1px solid $input-border;
+    }
+
+    &[type="search"] {
+        box-sizing: border-box;
     }
 
     &.checkbox,
@@ -122,10 +154,18 @@ fieldset {
 
     // IE8 - position text in the middle of inputs
     @at-root {
-        input[type="text"]#{&},
-        input[type="url"]#{&},
+        input[type="color"]#{&},
+        input[type="date"]#{&},
+        input[type="email"]#{&},
+        input[type="month"]#{&},
+        input[type="number"]#{&},
         input[type="password"]#{&},
-        input[type="email"]#{&} {
+        input[type="search"]#{&},
+        input[type="tel"]#{&},
+        input[type="text"]#{&},
+        input[type="time"]#{&},
+        input[type="url"]#{&},
+        input[type="week"]#{&} {
             @include ie-lte(8) {
                 line-height: 48px;
             }
@@ -134,10 +174,18 @@ fieldset {
 
     // IE8 - fix widths of inputs and add border/padding
     @at-root {
-        .form__group input[type="text"]#{&} ,
-        .form__group input[type="url"]#{&},
-        .form__group input[type="password"]#{&},
+        .form__group input[type="color"]#{&},
+        .form__group input[type="date"]#{&},
         .form__group input[type="email"]#{&},
+        .form__group input[type="month"]#{&},
+        .form__group input[type="number"]#{&},
+        .form__group input[type="password"]#{&},
+        .form__group input[type="search"]#{&},
+        .form__group input[type="tel"]#{&},
+        .form__group input[type="text"]#{&} ,
+        .form__group input[type="time"]#{&},
+        .form__group input[type="url"]#{&},
+        .form__group input[type="week"]#{&},
         .form__group select#{&},
         .form__group textarea#{&} {
             @include ie-lte(8) {
@@ -151,10 +199,18 @@ fieldset {
 
     // IE8 - fix widths of inputs on form__group--full
     @at-root {
-        .form__group--full input[type="text"]#{&} ,
-        .form__group--full input[type="url"]#{&},
-        .form__group--full input[type="password"]#{&},
+        .form__group--full input[type="color"]#{&},
+        .form__group--full input[type="date"]#{&},
         .form__group--full input[type="email"]#{&},
+        .form__group--full input[type="month"]#{&},
+        .form__group--full input[type="number"]#{&},
+        .form__group--full input[type="password"]#{&},
+        .form__group--full input[type="search"]#{&},
+        .form__group--full input[type="tel"]#{&},
+        .form__group--full input[type="text"]#{&} ,
+        .form__group--full input[type="time"]#{&},
+        .form__group--full input[type="url"]#{&},
+        .form__group--full input[type="week"]#{&},
         .form__group--full select#{&},
         .form__group--full textarea#{&} {
             @include ie-lte(8) {
@@ -395,4 +451,14 @@ fieldset {
 // normal text colour)
 .is-disabled + .form-choice__label {
     color: color(text, disabled);
+}
+
+.form__indent {
+    margin-left: 25%;
+    margin-right: $gutter-width;
+
+    p {
+        margin-left: 0;
+        padding-left: 0;
+    }
 }

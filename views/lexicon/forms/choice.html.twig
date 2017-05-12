@@ -82,6 +82,32 @@
 
     {{
         form.choice({
+            'class': '',
+            'label': 'Choice radios',
+            'show-label': false,
+            'help': 'This example hides the label with the <code>show-label</code> option',
+            'options': [
+                {
+                    'label': 'One',
+                    'value': 'one',
+                    'name': 'one'
+                },
+                {
+                    'label': 'Two',
+                    'value': 'two',
+                    'name': 'one'
+                },
+                {
+                    'label': 'Three',
+                    'value': 'three',
+                    'name': 'one'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.choice({
             'id': 'choice-3',
             'class': '',
             'label': 'Choice as select2',

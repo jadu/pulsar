@@ -1,0 +1,341 @@
+.ribbon-wrapper {
+    margin: 22px -20px;
+
+    @include respond-min($screen-desktop) {
+        margin: 0 -20px 22px;
+    }
+
+    .has-timeline & {
+        padding: 0 20px;
+
+        @include respond-min($screen-tablet) {
+            padding: 0;
+        }
+    }
+}
+
+.ribbon {
+    @include clear-fix;
+    background-color: color(gray, off-white);
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    color: #000;
+    font-size: 14px;
+    padding: 0 $gutter-width;
+    position: relative;
+    width: 100%;
+    word-break: break-word;
+    z-index: 1;
+}
+
+.ribbon__mobile-toggle {
+    color: #000;
+    font-size: 28px;
+    position: absolute;
+    right: 10px;
+    text-decoration: none;
+    top: 10px;
+    z-index: 2;
+
+    @include respond-min($screen-phone) {
+        top: 15px;
+    }
+
+    @include respond-min($screen-tablet) {
+        display: none;
+    }
+
+    .no-js & {
+        display: none;
+    }
+}
+
+.ribbon__owner {
+    background-color: color(gray, lightest);
+    border-bottom: 1px solid #ccc;
+    font-size: 1.1em;
+    padding: 10px;
+
+    @include respond-min($screen-tablet) {
+        padding: 10px 20px;
+    }
+
+    + .ribbon__header {
+        @include respond-min($screen-tablet) {
+            padding: 20px 20px 0 0;
+        }
+    }
+}
+
+.ribbon__header {
+    padding: 10px 28px 5px 0;
+    position: relative;
+
+    @include respond-min($screen-tablet) {
+        padding: 10px 20px 0 0;
+    }
+
+    .label {
+        font-size: 65%;
+        letter-spacing: 0;
+        margin: ($gutter-width / 4) 0 ($gutter-width / 2) ($gutter-width / 4);
+        vertical-align: middle;
+        word-break: break-all;
+
+        @include respond-min($screen-tablet) {
+            padding: -.5em 0 0 $gutter-width / 2;
+        }
+
+        + .label {
+            margin: ($gutter-width / 4) 0 ($gutter-width / 2);
+        }
+    }
+
+    .star-case-link {
+        &:hover {
+          .icon-star-empty {
+            color: darken(#9d9d9d, 10%);
+          }
+        }
+
+        .icon-star-empty {
+            color: #9d9d9d;
+            transition: color .3s ease, background-color .3s ease;
+        }
+
+        .icon-star {
+            color: #f2bc2e;
+            transition: color .3s ease, background-color .3s ease;
+        }
+    }
+}
+
+.ribbon__heading {
+    display: inline-block;
+    font-family: $font-family-light;
+    font-size: 1.5em;
+    letter-spacing: .5px;
+    line-height: 24px;
+    margin-bottom: 0;
+    margin-top: 5px;
+    padding: 0;
+
+    @include respond-min($screen-tablet) {
+        margin: 0;
+    }
+
+    .ribbon--open & {
+        margin-bottom: 0;
+    }
+}
+
+.ribbon__meta {
+    display: none;
+    margin: 11px 0 0;
+
+    @include respond-min($screen-tablet) {
+        display: inline-block;
+        margin-left: 20px;
+
+        .no-js & {
+            display: inline-block;
+        }
+    }
+
+    .no-js & {
+        display: block;
+    }
+
+    dt,
+    dd {
+        @include respond-min($screen-tablet) {
+            display: inline-block;
+        }
+    }
+
+    dt {
+        color: #6a6a6a;
+        font-weight: normal;
+        margin-right: 10px;
+    }
+
+    dd {
+        color: #4c4c4c;
+        font-family: $font-family-regular;
+        margin: 0 0 10px;
+
+        @include respond-min($screen-tablet) {
+            margin: 0 30px 0 0;
+        }
+
+        @include respond-min($screen-desktop) {
+            margin: 0 30px 0 0;
+        }
+    }
+}
+
+.ribbon__main {
+    display: none;
+    margin-bottom: 6px;
+    padding: 0 10px;
+    overflow: hidden;
+
+    @include respond-min($screen-tablet) {
+        display: block;
+        margin-top: 10px;
+        padding: 0 20px;
+    }
+
+    .no-js & {
+        display: block;
+    }
+
+    dt {
+        color: #6a6a6a;
+        font-weight: normal;
+
+        @include respond-min($screen-tablet) {
+            clear: left;
+            float: left;
+            margin-bottom: 10px;
+            max-width: 164px;
+            width: 10%;
+        }
+    }
+
+    dd {
+        color: #4c4c4c;
+        font-family: $font-family-regular;
+        margin-bottom: 10px;
+        margin-left: 0;
+
+        @include respond-min($screen-tablet) {
+            display: inline-block;
+            float: left;
+            width: 80%;
+        }
+    }
+}
+
+.ribbon--open .ribbon__meta {
+    display: block;
+
+    @include respond-min($screen-tablet) {
+        display: inline-block;
+    }
+}
+
+.ribbon--open .ribbon__main {
+    display: block;
+}
+
+.ribbon--closed {
+    .ribbon__meta {
+        display: none;
+
+        @include respond-min($screen-tablet) {
+            display: inline-block;
+        }
+
+        .no-js & {
+            display: inline-block !important;
+        }
+    }
+
+    .ribbon__main {
+        display: none;
+
+        @include respond-min($screen-tablet) {
+            display: block;
+        }
+
+        .no-js & {
+            display: block;
+        }
+    }
+}
+
+.ribbon--closed.ribbon--fixed .ribbon__main {
+    @include respond-min($screen-tablet) {
+        display: none;
+    }
+}
+
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.ribbon--fixed {
+    position: relative;
+
+    @include respond-min($screen-tablet) {
+        -webkit-animation-duration: .3s;
+        animation-duration: .3s;
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;
+        -webkit-animation-name: fadeIn;
+        animation-name: fadeIn;
+        margin-top: 0;
+        position: fixed;
+        top: 0;
+        z-index: 1;
+
+        .ribbon__mobile-toggle {
+            display: block;
+            position: fixed;
+            top: 15px;
+        }
+
+        .ribbon__header {
+            padding: 10px 20px;
+        }
+
+        &.ribbon--open .ribbon__header {
+            padding: 10px 20px 0;
+        }
+
+        .ribbon__owner + .ribbon__header .ribbon__mobile-toggle {
+            top: 63px;
+        }
+    }
+}
+
+.show-more,
+.show-less {
+    color: #2455c3;
+    font-size: .9em;
+    text-decoration: none;
+}
+
+.flash-container.has-flash:not(:empty) ~ .content-main .ribbon-wrapper {
+    @include respond-min($screen-desktop) {
+        margin-top: -20px;
+    }
+}
+
+.ribbon {
+    .metadata__key {
+        width: 30%;
+        word-wrap: nowrap;
+    }
+
+    .metadata__value {
+        width: 70%;
+    }
+}

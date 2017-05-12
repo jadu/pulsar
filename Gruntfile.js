@@ -31,7 +31,8 @@ module.exports = function(grunt) {
                 options: {
                     browserifyOptions: {
                         standalone: 'pulsar'
-                    }
+                    },
+                    transform: [['aliasify', { global: true }]]
                 }
             },
             dist: {
@@ -43,7 +44,7 @@ module.exports = function(grunt) {
                     browserifyOptions: {
                         standalone: 'pulsar'
                     },
-                    transform: ['uglifyify']
+                    transform: [['aliasify', { global: true }], 'uglifyify']
                 }
             }
         },

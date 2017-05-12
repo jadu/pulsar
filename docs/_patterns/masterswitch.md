@@ -6,7 +6,7 @@ category: Patterns
 
 The masterswitch pattern allows you to enable and disable a larger UI with a single control. Commonly used in 'settings' interfaces it provides an easy to understand on/off switch for users.
 
-![disabled masterswitch](/assets/image_examples/masterswitch.png)
+![disabled masterswitch]({{ site.baseurl }}/assets/image_examples/masterswitch.png)
 
 The masterswitch pattern allows you to show the user the UI which they will be expected to complete before they throw the switch.
 
@@ -16,7 +16,7 @@ The masterswitch pattern allows you to show the user the UI which they will be e
 
 You will need the `MasterSwitchComponent` to be included in your browserify configuration.
 
-Depending on your setup, this will probably need to be in be in a file called `index.js` or `main.js`.
+Depending on your setup, this will probably need to be in a file called `index.js` or `main.js`.
 
 ```javascript
 // index.js

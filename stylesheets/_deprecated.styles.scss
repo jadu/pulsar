@@ -11,13 +11,13 @@
     display: block;
 }
 
-.display--inline-block {
+.display--inline-block,
+.inline-block {
     display: inline-block;
 }
 
-.display--inline,
-.inline-block {
-    display: inline-block;
+.display--inline {
+    display: inline;
 }
 
 .display--none {
