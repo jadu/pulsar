@@ -19,11 +19,19 @@ casper.then(function () {
     // Get the word before .html.twig, the word before the last '/' and the word in urls like '/lexicon'
     var regex = /((\w*)(\/|.html.twig)$)|(\/\w*$)/gm;
     var match = [];
+    var newlinks = [];
+
+    // Remove links within the same page
+    for (var i = 0; i < links.length; i++) {
+        if (links[i].indexOf('#')  == -1) {
+            newlinks.push(links[i]);
+        };
+    };
 
     // Get Page Name from URL
-    for (var i = 0; i < links.length; i++) {
-        if (links[i].match(regex) != null ) { // Remove null items that didn't pass the regex
-            var link = links[i].match(regex);
+    for (var i = 0; i < newlinks.length; i++) {
+        if (newlinks[i].match(regex) != null ) { // Remove null items that didn't pass the regex
+            var link = newlinks[i].match(regex);
             var filtered = link[0]; // Get just the name from the results array
             var splited = filtered.split('.'); // Split dots to remove .html.twig part
             var replaced = splited[0].replace('/', ''); // Remove '/'
@@ -33,7 +41,7 @@ casper.then(function () {
 
     for (;current < end;) {
         (function(cntr) {
-            casper.thenOpen('http://192.168.13.37/' + links[cntr] + '', function() {
+            casper.thenOpen('http://192.168.13.37' + newlinks[cntr] + '', function() {
                     fs.write('tests/validation/html_output/_' + match[cntr] + '.html', this.getPageContent(), 'w');
             });
         })(current);
