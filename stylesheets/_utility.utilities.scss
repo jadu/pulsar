@@ -78,7 +78,7 @@ p.success {
 
 .no-results {
     background-color: color(gray, off-white);
-    background-image: url('../images/stripes.png');
+    background-image: url($image-path + 'stripes.png');
     background-repeat: repeat;
     padding: 1em 0;
     text-align: center;
