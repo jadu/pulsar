@@ -9,6 +9,7 @@ function getLinks() {
 }
 
 casper.start('http://192.168.13.37/index.php', function() {
+    "use strict";
     fs.write('tests/validation/html_output/index.html', this.getPageContent(), 'w');
 });
 
@@ -23,14 +24,14 @@ casper.then(function () {
 
     // Remove links within the same page
     for (var i = 0; i < links.length; i++) {
-        if (links[i].indexOf('#')  == -1) {
+        if (links[i].indexOf('#') === -1) {
             newlinks.push(links[i]);
-        };
-    };
+        }
+    }
 
     // Get Page Name from URL
-    for (var i = 0; i < newlinks.length; i++) {
-        if (newlinks[i].match(regex) != null ) { // Remove null items that didn't pass the regex
+    for (i = 0; i < newlinks.length; i++) {
+        if (newlinks[i].match(regex)) { // Remove null items that didn't pass the regex
             var link = newlinks[i].match(regex);
             var filtered = link[0]; // Get just the name from the results array
             var splited = filtered.split('.'); // Split dots to remove .html.twig part
@@ -50,5 +51,6 @@ casper.then(function () {
 });
 
 casper.run(function() {
+    "use strict";
     this.exit();
-})
+});
