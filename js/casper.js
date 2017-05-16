@@ -10,7 +10,7 @@ function getLinks() {
 
 casper.start('http://192.168.13.37/index.php', function() {
     "use strict";
-    fs.write('tests/validation/html_output/index.html', this.getPageContent(), 'w');
+    fs.write('tests/validation/html_output/_index.html', this.getPageContent(), 'w');
 });
 
 casper.then(function () {
