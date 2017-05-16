@@ -10,6 +10,11 @@ function getLinks() {
 
 casper.start('http://192.168.13.37/index.php', function() {
     "use strict";
+
+    if (!this.status().currentHTTPStatus) {
+        this.die('Unable to connect to Lexicon virtual machine', 1);
+    }
+    
     fs.write('tests/validation/html_output/_index.html', this.getPageContent(), 'w');
 });
 
