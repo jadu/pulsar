@@ -158,18 +158,7 @@ class DropZoneComponent {
             // files have been rejected
             filesRejected: (opts) => {
                 // update validation
-                this.updateDropZoneValidation(opts.error, opts.instance);
-
-                // remove any state classes
-                this.resetBodyClass();
-
-                // update helper text
-                this.updateHelperState(opts.instance, opts.instance.options.idleHtml);
-
-                // add error class
-                window.requestAnimationFrame(() => {
-                    this.$body.addClass(this.interactionClasses.dropZoneError);
-                });
+                this.throwValidationError(opts.error, opts.instance);
 
                 // call any additional callbacks passed in via options
                 if (options.filesRejected && typeof options.filesRejected === 'function') {
@@ -177,6 +166,7 @@ class DropZoneComponent {
                 }
             }
         };
+
         this.eventPool = [];
         this.removeFileHandler = this.removeFileHandler.bind(this);
         this.nodeClasses = {
@@ -358,6 +348,27 @@ class DropZoneComponent {
 
         // create error message and update validation
         validationNode.innerHTML = errorNode;
+    }
+
+    /**
+     * Throw a DropZone error, useful as a public method for manually triggering DropZone errors
+     * example: throwing an error returned as a response from a server
+     * @param {String} error
+     * @param {Object} instance
+     */
+    throwValidationError (error, instance) {
+        this.updateDropZoneValidation(error, instance);
+
+        // remove any state classes
+        this.resetBodyClass();
+
+        // update helper text
+        this.updateHelperState(instance, instance.options.idleHtml);
+
+        // add error class
+        window.requestAnimationFrame(() => {
+            this.$body.addClass(this.interactionClasses.dropZoneError);
+        });
     }
 
     /**
