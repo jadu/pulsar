@@ -1426,7 +1426,8 @@ todo - improve docs
 
             <p class="dropzone__help"
                data-toggle="popover"
-               data-content={{ options.helper|default('') }}
+               data-title="{{ options.helperTitle|default('Helper title')|raw }}"
+               data-content="{{ options.helperContent|default('Helper content')|raw }}"
                data-html="true"
                data-placement="left"
                data-container="{{ '#' ~ options.id }}"
