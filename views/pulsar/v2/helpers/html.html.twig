@@ -1423,14 +1423,15 @@ todo - improve docs
                     {{ options.browse|default('Browse Files') }}
                 </a>
             </p>
+
             <p class="dropzone__help"
                data-toggle="popover"
-               data-content="TODO: modify html.list helper to accept a space separated string to create a simple list"
+               data-content={{ options.helper|default('') }}
                data-html="true"
                data-placement="left"
                data-container="{{ '#' ~ options.id }}"
             >
-                {{ html.icon('question-sign') }} Only certain file types are allowed
+                {{ html.icon('question-sign') }} {{ options.helperLabel|default('Only certain file types are allowed') }}
             </p>
         </div>
     {% endspaceless %}
