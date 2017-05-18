@@ -158,7 +158,7 @@ class DropZoneComponent {
             // files have been rejected
             filesRejected: (opts) => {
                 // update validation
-                this.updateDropZoneValidation(opts.error, opts.node);
+                this.updateDropZoneValidation(opts.error, opts.instance);
 
                 // remove any state classes
                 this.resetBodyClass();
@@ -341,19 +341,19 @@ class DropZoneComponent {
     }
 
     /**
-     * Update dropzone validation Html
+     * Update DropZone validation Html
      * @param  {String} error
-     * @param  {Element} node
+     * @param  {Object} instance
      */
-    updateDropZoneValidation (error, node) {
-        let validationNode = node.querySelector(`.${this.nodeClasses.validation}`);
+    updateDropZoneValidation (error, instance) {
+        let validationNode = instance.node.querySelector(`.${this.nodeClasses.validation}`);
         const errorNode = `<p class="${this.nodeClasses.error}">${error}</p>`;
 
         // if a validation element doesn't exist, create one
         if (!validationNode) {
             validationNode = document.createElement('div');
             validationNode.className = this.nodeClasses.validation;
-            node.insertBefore(validationNode, document.querySelector(`.${this.nodeClasses.help}`));
+            instance.node.insertBefore(validationNode, document.querySelector(`.${this.nodeClasses.help}`));
         }
 
         // create error message and update validation
@@ -392,7 +392,7 @@ class DropZoneComponent {
         });
 
         // remove file from DropZone instance
-        const instance = this.getDropZoneInstance(dropZone);
+        const instance = this.getDropZoneById(dropZone);
         const wrapper = instance.node.querySelector(`.${this.nodeClasses.wrapper}`);
 
         instance.removeFile(file);
@@ -500,7 +500,7 @@ class DropZoneComponent {
      * @param  {String} id
      * @return {Object} DropZone
      */
-    getDropZoneInstance (id) {
+    getDropZoneById (id) {
         if (Array.prototype.find) {
             return this.dropzones.find(dz => dz.node.id === id);
         } else {
@@ -514,7 +514,7 @@ class DropZoneComponent {
      * @param {String} id
      */
     addFileToDropZone (files, id) {
-        this.getDropZoneInstance(id).addFiles(files);
+        this.getDropZoneById(id).addFiles(files);
     }
 
     /**

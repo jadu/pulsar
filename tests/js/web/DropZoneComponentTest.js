@@ -210,9 +210,9 @@ describe('DropZoneComponent', () => {
             const file = node.querySelector(`.${DZC.nodeClasses.file}`);
             const event = { path: [file, node] };
 
-            DZC.getDropZoneInstance('dropzone_1').files.push({ id: "1", file: { size: 123 } });
+            DZC.getDropZoneById('dropzone_1').files.push({ id: "1", file: { size: 123 } });
             DZC.removeFileHandler(event);
-            expect(DZC.getDropZoneInstance('dropzone_1').getFiles().length).to.equal(0);
+            expect(DZC.getDropZoneById('dropzone_1').getFiles().length).to.equal(0);
         });
 
         it('should call updateDropZoneFiles', () => {
@@ -306,13 +306,13 @@ describe('DropZoneComponent', () => {
         });
     });
 
-    describe('getDropZoneInstance()', () => {
+    describe('getDropZoneById()', () => {
         it('should return a DropZone instance from it\'s id', () => {
             const DZC = new DropZoneComponent($html);
             const node = $html.find('#dropzone_1');
 
             DZC.init();
-            expect(DZC.getDropZoneInstance('dropzone_1').node.id).to.equal(node.attr('id'));
+            expect(DZC.getDropZoneById('dropzone_1').node.id).to.equal(node.attr('id'));
         });
     });
 
