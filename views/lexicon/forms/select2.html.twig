@@ -673,6 +673,25 @@
     {{ form.fieldset_end() }}
 
     {{
+        form.select2({
+            'id': 'select2-30',
+            'label': 'data-init="false"',
+            'class': 'foo',
+            'data-init': 'false',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
         form.end()
     }}
 
