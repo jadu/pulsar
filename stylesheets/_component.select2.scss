@@ -255,37 +255,59 @@
 
 
 .select2-container--default .select2-selection--multiple .select2-selection__choice {
-    display: inline-block;
-    vertical-align: baseline;
-    box-sizing: content-box;
-    background-color: #dedede;
-    border-color: #dedede;
+    background-color: color(gray, lightest);
+    border-color: color(gray, lightest);
+    border-radius: $border-radius;
     border-width: 0;
-    color: #000;
-    border-radius: 4px;
+    box-sizing: content-box;
+    color: color(black);
+    display: inline-block;
     float: left;
     font-weight: 500;
     line-height: 34px;
     margin: 6px 0 0 5px;
-    padding: 0 0 0 10px;
-    text-align: center;
+    max-width: 86%;
+    overflow: hidden;
+    padding: 0 0 0 $padding-base;
+    text-align: left;
+    text-overflow: ellipsis;
+    vertical-align: baseline;
     vertical-align: baseline;
     white-space: nowrap;
+    word-wrap: normal;
+
+    @include ie-lte(9) {
+        -ms-text-overflow: ellipsis;
+        padding-right: $padding-base;
+        padding-left: 0;
+    }
 }
 
 
 .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
-    color: #dedede;
+    color: color(gray, lightest);
     cursor: pointer;
     display: inline-block;
     float: right;
 
+    @include ie-lte(9) {
+        color: color(black);
+        float: none;
+        font-size: 18px;
+        line-height: 20px;
+        padding: 0 $padding-base;
+    }
+
     &:after {
-        color: #000;
+        color: color(black);
         content: '\f057';
         font-family: 'FontAwesome';
         margin-right: 5px;
         visibility: visible;
+
+        @include ie-lte(9) {
+            content: normal;
+        }
     }
 }
 
@@ -336,11 +358,18 @@
 }
 
 .select2-container--default .select2-search--inline .select2-search__field {
+    -webkit-appearance: textfield;
     background: transparent;
     border: 0;
-    outline: 0;
     box-shadow: none;
-    -webkit-appearance: textfield;
+    height: 36px;
+    line-height: 34px;
+    outline: 0;
+    padding-left: 5px;
+
+    &::-ms-clear {
+        display: none;
+    }
 }
 
 .select2-container--default .select2-results > .select2-results__options {
