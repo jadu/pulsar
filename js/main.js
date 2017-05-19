@@ -9,18 +9,18 @@
 
     $html.removeClass('no-js');
 
-    pulsar.button       = new pulsar.ButtonComponent($html);
-    pulsar.disableUi    = new pulsar.DisableUiComponent($html);
-    pulsar.flash        = new pulsar.FlashMessageComponent($html);
-    pulsar.helpText     = new pulsar.HelpTextComponent($html, window, document);
-    pulsar.pulsarForm   = new pulsar.PulsarFormComponent($html);
-    pulsar.pulsarUI     = new pulsar.PulsarUIComponent($html, pulsar.history);
-    pulsar.signIn       = new pulsar.SignInComponent($html);
+    pulsar.button = new pulsar.ButtonComponent($html);
+    pulsar.disableUi = new pulsar.DisableUiComponent($html);
+    pulsar.flash = new pulsar.FlashMessageComponent($html);
+    pulsar.helpText = new pulsar.HelpTextComponent($html, window, document);
+    pulsar.pulsarForm = new pulsar.PulsarFormComponent($html);
+    pulsar.pulsarUI = new pulsar.PulsarUIComponent($html, pulsar.history);
+    pulsar.signIn = new pulsar.SignInComponent($html);
     pulsar.masterSwitch = new pulsar.MasterSwitchComponent($html);
 	pulsar.modulePermissions = new pulsar.ModulePermissionsComponent($html);
-    pulsar.navMain      = new pulsar.NavMainComponent($html);
-    pulsar.filterBar    = new pulsar.FilterBarComponent($html);
-    pulsar.dropzone     = new pulsar.DropZoneComponent($html, new pulsar.MimeTyper());
+    pulsar.navMain = new pulsar.NavMainComponent($html);
+    pulsar.filterBar = new pulsar.FilterBarComponent($html);
+    pulsar.dropZoneComponent = new pulsar.DropZoneComponent($html, new pulsar.MimeTyper());
 
     $(function () {
         pulsar.button.init();
@@ -119,14 +119,11 @@
             'plugins' : ['state']
         });
 
-        /**
-         * DropZone related Lexicon code
-         */
-
+        // DropZone
         // < IE10 do not support the File API, so we'll only need to initiate
         // the DropZoneComponent for >= IE10
         if (!$html.hasClass('lt-ie10')) {
-            pulsar.dropzone.init();
+            pulsar.dropZoneComponent.init();
         }
     });
 
