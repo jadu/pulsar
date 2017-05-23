@@ -25,7 +25,7 @@ PulsarFormComponent.prototype.init = function () {
         format: 'DD/MM/YYYY'
     });
 
-    component.$select2 = this.$html.find('.js-select2');
+    component.$select2 = this.$html.find('.js-select2:not([data-init="false"])');
 
     component.$select2.each(function() {
         function formatOption(data) {
