@@ -253,7 +253,6 @@
     margin-right: 10px;
 }
 
-
 .select2-container--default .select2-selection--multiple .select2-selection__choice {
     background-color: color(gray, lightest);
     border-color: color(gray, lightest);
@@ -266,7 +265,7 @@
     font-weight: 500;
     line-height: 34px;
     margin: 6px 0 0 5px;
-    max-width: 86%;
+    max-width: 86%; // Magic number - largest max-width usable to prevent the label overlapping the dropdown arrow
     overflow: hidden;
     padding: 0 0 0 $padding-base;
     text-align: left;
