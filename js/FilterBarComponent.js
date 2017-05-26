@@ -198,7 +198,7 @@ function showAddFilterPopover ($filterbar) {
             filterListButtonVisibility($filterbar);
 
             // Focus on field to avoid unnecessary extra click
-            if ($field.hasClass('js-select2:not([data-init="false"])')) {
+            if ($field.hasClass('js-select2') && $field.data('init') !== false) {
                 $field.select2('open');
             } else {
                 /* istanbul ignore next: difficult to test due to generated popover content */
