@@ -19,7 +19,7 @@
     "browserify": "10.0.0",
     "browserify-istanbul": "^0.2.1",
     "browserify-shim": "^3.8.9",
-    "chai": "latest",
+    "chai": "^1.9.2",
     "chai-hiff": "^1.0.0",
     "datatables.net": "^1.10.11",
     "datatables.net-buttons": "^1.1.2",
