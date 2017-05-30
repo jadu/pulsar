@@ -24,7 +24,7 @@ class DropZoneComponent {
             idleHtml: 'your files here or <a class="dropzone__browse" id="#">Browse Files</a>',
             windowEnterHtml: 'Drag your files here (max <% maxFiles %>)',
             dropZoneEnterHtml: 'Drop your files here'
-        }, options);
+        });
 
         this.defaults = {
             inputNodeId: '',
@@ -192,7 +192,9 @@ class DropZoneComponent {
         // get all DropZone elements
         this.dropzones = [...this.html.querySelectorAll(`.${this.nodeClasses.dropzone}`)];
         // get DropZone options array
+
         this.options = this.buildOptsFromAttrs();
+
         // instantiate each DropZone with it's options
         this.dropzones = this.dropzones.map((node, index) => {
             // set node in options
