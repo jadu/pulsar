@@ -129,7 +129,6 @@ class DropZoneComponent {
                 // handle dropped files
                 this.handleDropZoneDrop(opts.files, opts.node);
 
-
                 // remove any state classes
                 this.resetBodyClass();
 
