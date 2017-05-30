@@ -20,9 +20,8 @@ class DropZoneComponent {
         this.helperStateHtml = _.extend({}, {
             nodeSelector: '.dropzone__info',
             // this will be assigned when handling DropZone node
-            node: null,
-            // we set the idle Html when DropZone options are derived from node attributes
-            idleHtml: null,
+            helperNode: null,
+            idleHtml: 'your files here or <a class="dropzone__browse" id="#">Browse Files</a>',
             windowEnterHtml: 'Drag your files here (max <% maxFiles %>)',
             dropZoneEnterHtml: 'Drop your files here'
         }, options);
@@ -254,7 +253,7 @@ class DropZoneComponent {
 
     /**
      * Update DropZone helper node innerHTML
-     * has a trivial template syntax for getting variables from the dropzone instance options object
+     * has a trivial template syntax for getting variables from the DropZone instance options object
      * <% foo %> will evaluate to --> instance.options.foo
      * @param instance
      * @param htmlString
@@ -263,11 +262,11 @@ class DropZoneComponent {
         const templateString = htmlString.match(/<%\s(\w*)\s%>/);
 
         if (!templateString) {
-            this.helperStateHtml.node.innerHTML = htmlString;
+            instance.options.helperNode.innerHTML = htmlString;
         } else {
             const match = templateString[1];
 
-            this.helperStateHtml.node.innerHTML = htmlString.replace(templateString[0], instance.options[match]);
+            instance.options.helperNode.innerHTML = htmlString.replace(templateString[0], instance.options[match]);
         }
 
         // attach "browse files" listeners
@@ -465,17 +464,19 @@ class DropZoneComponent {
     buildOptsFromAttrs () {
         return this.dropzones.reduce((options, node) => {
             const dropZoneAttrs = DropZoneComponent.getDropZoneAttrs(node);
+            const helperState = _.assign({}, this.helperStateHtml);
 
             // store reference to dropzone__helper node
-            this.helperStateHtml.node = node.querySelector(this.helperStateHtml.nodeSelector);
+            helperState.helperNode = node.querySelector(helperState.nodeSelector);
             // if we haven't got any idle Html passed in as an option
             // we'll set it to the current innerHTML of the helper node
-            if (this.helperStateHtml.idleHtml === null && dropZoneAttrs.idleHtml === null) {
-                this.helperStateHtml.idleHtml = this.helperStateHtml.node.innerHTML;
+
+            if (!dropZoneAttrs.idleHtml) {
+                helperState.idleHtml = helperState.helperNode.innerHTML;
             }
 
             // extend node attributes & defaults to build options
-            options.push(_.extend({}, this.callbacks, this.defaults, this.helperStateHtml, dropZoneAttrs));
+            options.push(_.extend({}, this.callbacks, this.defaults, helperState, dropZoneAttrs));
             return options;
         }, []);
     }
