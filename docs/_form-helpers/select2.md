@@ -55,6 +55,7 @@ guidance-container | string | Element to bind guidance popover scroll behaviour 
 help        | string  | Additional guidance information to be displayed next to the input
 label       | string  | Text for the `<label>` companion element
 required    | bool    | Visually indicates that the field must be completed
+show-label  | bool    | Control visibility of the `<label>` element without affecting layout (default: true)
 
 ## Options applied to the input
 
@@ -70,6 +71,7 @@ options     | hash    | The `<option>` attributes formatted as `{ 'value': 'labe
 required    | bool    | Adds `required` and `aria-required="true"` attributes
 selected    | string  | The `id` of the item in `options` that should be initially selected
 size        | int     | The number of items to display when the list is shown
+data-init   | string  | If 'false', will prevent the select2 javascript behaviour being initialised
 data-*      | string  | Data attributes, eg: `'data-foo': 'bar'`
 
 *Any other options not listed here will be applied to the input.
@@ -77,6 +79,19 @@ data-*      | string  | Data attributes, eg: `'data-foo': 'bar'`
 ## Manually creating select2 elements
 
 The select2 plugin will be called on any `select` element that contain the `js-select2` class.
+
+You can prevent this from happening via the `data-init="false"` attribute, you might want to do this so that you can write your own select2 initialiser to do certain things.
+
+{% raw %}
+```twig
+{{
+    form.select2({
+        'label': 'Pick a colour',
+        'id': 'foo',
+        'data-init': 'false',
+        ...
+```
+{% endraw %}
 
 ## Using optgroups
 

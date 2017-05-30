@@ -50,6 +50,14 @@
     {{ form.fieldset_start({ 'legend': 'Alignment' }) }}
 
     {{
+        form.file({
+            'label': 'File field',
+            'show-label': false,
+            'help': 'This example hides the label with the <code>show-label</code> option'
+        })
+    }}
+
+    {{
             form.file({
                 'id': 'file-6',
                 'label': 'Text input with a longer than expected label which will probably wrap multple lines and push the following input onto the next baseline',

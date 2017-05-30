@@ -188,6 +188,24 @@
 
     {{
         form.select2({
+            'label': 'Select field',
+            'show-label': false,
+            'help': 'This example hides the label with the <code>show-label</code> option',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
             'id': 'select2-6',
             'label': 'Select input with a longer than expected label which will probably wrap multple lines and push the following input onto the next baseline',
             'name': 'inputSelectLong',
@@ -653,6 +671,25 @@
     }}
 
     {{ form.fieldset_end() }}
+
+    {{
+        form.select2({
+            'id': 'select2-30',
+            'label': 'data-init="false"',
+            'class': 'foo',
+            'data-init': 'false',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
 
     {{
         form.end()

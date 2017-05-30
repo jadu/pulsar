@@ -67,6 +67,15 @@
 
     {{
         form.color({
+            'id': 'color-1',
+            'label': 'Foo',
+            'show-label': false,
+            'help': 'This example hides the label with the <code>show-label</code> option'
+        })
+    }}
+
+    {{
+        form.color({
             'id': 'color-8',
             'label': 'Text input with a longer than expected label which will probably wrap multple lines and push the following input onto the next baseline',
             'name': 'inputTextLong',

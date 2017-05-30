@@ -78,15 +78,21 @@ name    | string | The name of this control
 
 #}
 {% macro label(options) %}
+
 {% spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+
+    {% set labelVisibilityClass = '' %}
+    {% if options['show-label'] is defined and options['show-label'] is not null and options['show-label'] == false %}
+        {% set labelVisibilityClass = ' hide' %}
+    {% endif %}
 
     {% if options.label is not empty or options.guidance is not empty %}
         <label{{
             attributes(options
-                |exclude('container guidance guidance-container label required')
+                |exclude('container guidance guidance-container label required show-label')
                 |defaults({
-                    'class': 'control__label'
+                    'class': 'control__label' ~ labelVisibilityClass|default
                 })
             )
         }}>
@@ -178,7 +184,7 @@ value       | string | Specifies the value of the input
 
     <select{{
         attributes(options
-            |exclude('bare label selected value options')
+            |exclude('append bare label prepend selected value options')
             |defaults({
                 'class': 'form__control'
             })
