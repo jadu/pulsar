@@ -21,6 +21,15 @@
         })
     }}
 
+    <pre>DropZone with default options</pre>
+
+    {{
+        html.dropzone({
+            'id': 'dropzone_defaults',
+            'data-dropzone-idle-html': 'overriding the idle text'
+        })
+    }}
+
 {% endblock tab_content %}
 
 {% block tab_sidebar %}
