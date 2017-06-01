@@ -2,7 +2,7 @@
 
 {% block tab_content %}
 
-    <pre>DropZone with file input</pre>
+    <pre>DropZone with hidden file input</pre>
 
     {{
         html.dropzone({
@@ -10,14 +10,34 @@
             'helperContent': '<h5>Multimedia</h5> <ul> <li>Images</li> <li>Video</li> <li>Audio</li> </ul> <h5>Text</h5> <ul> <li>Plain text</li> <li>Rich text</li> <li>Web page</li> </ul> <h5>Documents</h5> <ul> <li>Microsoft Word</li> <li>Microsoft Excel</li> <li>Open Document</li> <li>Open Office</li> <li>PDF</li> </ul>',
             'data-dropzone-whitelist': 'image/*',
             'data-dropzone-max-files': '1',
-            'data-dropzone-input-node-id': 'dropzone_input',
+            'data-dropzone-input-node-id': 'dropzone_input_hidden',
             'data-dropzone-idle-html': '<a class="dropzone__browse" href="#">Browse Files&hellip;</a>'
         })
     }}
 
     {{
         form.file({
-            'id': 'dropzone_input'
+            'id': 'dropzone_input_hidden'
+        })
+    }}
+
+    <pre>DropZone with visible file input</pre>
+
+    {{
+        html.dropzone({
+            'id': 'dropzone_with_input',
+            'helperContent': '<h5>Multimedia</h5> <ul> <li>Images</li> <li>Video</li> <li>Audio</li> </ul> <h5>Text</h5> <ul> <li>Plain text</li> <li>Rich text</li> <li>Web page</li> </ul> <h5>Documents</h5> <ul> <li>Microsoft Word</li> <li>Microsoft Excel</li> <li>Open Document</li> <li>Open Office</li> <li>PDF</li> </ul>',
+            'data-dropzone-whitelist': 'image/*',
+            'data-dropzone-max-files': '1',
+            'data-dropzone-input-node-id': 'dropzone_input_visible',
+            'data-dropzone-show-input-node': 'true',
+            'data-dropzone-idle-html': '<a class="dropzone__browse" href="#">Browse Files&hellip;</a>'
+        })
+    }}
+
+    {{
+        form.file({
+            'id': 'dropzone_input_visible'
         })
     }}
 

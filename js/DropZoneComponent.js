@@ -28,6 +28,7 @@ class DropZoneComponent {
 
         this.defaults = {
             inputNodeId: '',
+            showInputNode: false,
             passive: false
         };
 
@@ -234,7 +235,10 @@ class DropZoneComponent {
             instance.inputNode.value = '';
         });
         // visually hide input
-        instance.inputNode.style.display = 'none';
+
+        if (!options.showInputNode) {
+            instance.inputNode.style.display = 'none';
+        }
     }
 
     /**

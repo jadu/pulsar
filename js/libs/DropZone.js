@@ -8,7 +8,7 @@ export const defaults = {
     // limit of files within store
     maxFiles: 5,
     // limit total size of files (314572800 === 300mb)
-    maxSize: 314572800,
+    maxSize: 3e+8,
     // a whitelist of file types to validate against
     whitelist: [],
     // file enters window
@@ -43,7 +43,6 @@ export default class DropZone {
         this.updateEventTrackerWithContext = this.updateEventTracker.bind(this);
         // a place to be used externally as a instance based cache
         this.data = {};
-
         this.setup();
     }
 
