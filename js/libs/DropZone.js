@@ -259,11 +259,12 @@ export default class DropZone {
     }
 
     /**
-     * Return all files in the store
+     * Return all files in the store or a file at a specified index
+     * @param {Number} index
      * @return {Array}
      */
-    getFiles () {
-        return this.files;
+    getFiles (index = null) {
+        return index === null ? this.files : this.files[index];
     }
 
     /**
