@@ -191,15 +191,16 @@ class DropZoneComponent {
             dropZoneError: 'dropzone-error'
         };
         // get all DropZone elements
-        this.dropzones = [...this.html.querySelectorAll(`.${this.nodeClasses.dropzone}`)];
+        this.dropZoneNodes = [...this.html.querySelectorAll(`.${this.nodeClasses.dropzone}`)];
         // get DropZone options array
-
         this.options = this.buildOptsFromAttrs();
 
         // instantiate each DropZone with it's options
-        this.dropzones = this.dropzones.map((node, index) => {
+        this.dropZoneNodes = this.dropZoneNodes.map((node, index) => {
             // set node in options
             this.options[index].node = node;
+            //set dropZone ID attr
+            node.setAttribute('data-dropzone-id', index)
             // create an instance of the DropZone API
             const instance = new DropZone(this.options[index], new DropZoneValidator(this.options[index]));
             // if an input node selector has been passed in, add events and hide
@@ -213,6 +214,8 @@ class DropZoneComponent {
             // return instance
             return instance;
         });
+
+        console.log(this.dropZoneNodes)
     }
 
     /**
@@ -229,7 +232,7 @@ class DropZoneComponent {
         instance.inputNode = document.getElementById(options.inputNodeId);
         // add files to DropZone that are added to the corresponding input
         instance.inputNode.addEventListener('change', () => {
-            this.addFileToDropZone(instance.inputNode.files, instance.node.id);
+            this.addFileToDropZone(instance.inputNode.files, instance.getAttribute('data-dropzone-id'));
             // reset input node value, this will ensure our change event
             // fires each time we use the browse files functionality - even
             // if we try to add an identical value
@@ -412,7 +415,7 @@ class DropZoneComponent {
             }
 
             if (!dropZone) {
-                dropZone = node.id;
+                dropZone = node.getAttribute('data-dropzone-id');
             }
         });
 
@@ -477,7 +480,7 @@ class DropZoneComponent {
      * @return {Array}
      */
     buildOptsFromAttrs () {
-        return this.dropzones.reduce((options, node) => {
+        return this.dropZoneNodes.reduce((options, node) => {
             const dropZoneAttrs = DropZoneComponent.getDropZoneAttrs(node);
             const helperState = _.assign({}, this.helperStateHtml);
 
@@ -528,11 +531,7 @@ class DropZoneComponent {
      * @return {Object} DropZone
      */
     getDropZoneById (id) {
-        if (Array.prototype.find) {
-            return this.dropzones.find(dz => dz.node.id === id);
-        } else {
-            return _.find(this.dropzones, dz => dz.node.id === id);
-        }
+        return this.dropZoneNodes[id];
     }
 
     /**
