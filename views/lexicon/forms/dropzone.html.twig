@@ -2,6 +2,14 @@
 
 {% block tab_content %}
 
+    <pre>DropZone with default options</pre>
+
+    <div class="passive-dropzone dropzone" data-dropzone-passive="true">
+        <p class="passive-dropzone__text">This is a regular element with a passive DropZone inside</p>
+    </div>
+
+    <hr>
+
     <pre>DropZone with hidden file input</pre>
 
     {{
@@ -20,6 +28,8 @@
             'id': 'dropzone_input_hidden'
         })
     }}
+
+    <hr>
 
     <pre>DropZone with visible file input</pre>
 
@@ -41,6 +51,8 @@
         })
     }}
 
+    <hr>
+
     <pre>DropZone with default options</pre>
 
     {{
@@ -49,6 +61,8 @@
             'data-dropzone-idle-html': 'overriding the idle text'
         })
     }}
+
+    <hr>
 
 {% endblock tab_content %}
 
