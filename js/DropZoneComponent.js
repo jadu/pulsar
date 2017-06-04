@@ -206,6 +206,7 @@ class DropZoneComponent {
             if (this.options[index].inputNodeId) {
                 this.processInputNode(instance, this.options[index]);
             }
+
             // update helper state to overwrite helper Html if a custom value was passed
             // in as an option for the idlehtml
             this.updateHelperState(instance, this.options[index].idleHtml);
@@ -264,6 +265,10 @@ class DropZoneComponent {
      * @param htmlString
      */
     updateHelperState (instance, htmlString) {
+        if (!instance.options.helperNode) {
+            return;
+        }
+
         const templateString = htmlString.match(/<%\s(\w*)\s%>/);
 
         if (!templateString) {
@@ -341,6 +346,11 @@ class DropZoneComponent {
      */
     updateDropZoneValidation (error, instance) {
         let validationNode = instance.node.querySelector(`.${this.nodeClasses.validation}`);
+
+        if (!validationNode) {
+            return;
+        }
+
         const errorNode = `<p class="${this.nodeClasses.error}">${error}</p>`;
 
         // if a validation element doesn't exist, create one
@@ -476,7 +486,7 @@ class DropZoneComponent {
             // if we haven't got any idle Html passed in as an option
             // we'll set it to the current innerHTML of the helper node
 
-            if (!dropZoneAttrs.idleHtml) {
+            if (!dropZoneAttrs.idleHtml && helperState.helperNode) {
                 helperState.idleHtml = helperState.helperNode.innerHTML;
             }
 
