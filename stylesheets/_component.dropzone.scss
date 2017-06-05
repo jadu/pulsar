@@ -161,6 +161,15 @@ $dropzone-icon-rotation: 30deg;
 .dropzone__meta {
     padding: 0 ($dropzone-file-size * 2);
 
+    p {
+        font-size: .75em;
+        line-height: 1;
+        margin-bottom: $dropzone-file-size / 2;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
     p:last-of-type {
         margin-bottom: 0;
     }
@@ -171,15 +180,6 @@ $dropzone-icon-rotation: 30deg;
     font-size: .85em;
     line-height: 1.1;
     margin-bottom: $dropzone-file-size;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.dropzone__size,
-.dropzone__type {
-    font-size: .75em;
-    line-height: 1;
-    margin-bottom: $dropzone-file-size / 2;
 }
 
 /**
@@ -272,14 +272,5 @@ $dropzone-icon-rotation: 30deg;
 }
 
 .dropzone--passive {
-    bottom: 0;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    left: 0;
-    position: absolute;
-    right: 0;
     text-align: inherit;
-    top: 0;
-    z-index: -1;
 }
