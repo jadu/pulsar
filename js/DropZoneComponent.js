@@ -29,7 +29,11 @@ class DropZoneComponent {
         this.defaults = {
             inputNodeId: '',
             showInputNode: false,
-            passive: false
+            passive: false,
+            fileNodeDesc: true,
+            fileNodeName: true,
+            fileNodeSize: true,
+            fileNodeType: false
         };
 
         this.callbacks = {
@@ -128,7 +132,7 @@ class DropZoneComponent {
             // files have been dropped on the dropzone
             dropZoneDrop: (opts) => {
                 // handle dropped files
-                this.handleDropZoneDrop(opts.files, opts.node);
+                this.handleDropZoneDrop(opts.files, opts.node, opts.instance);
 
                 // remove any state classes
                 this.resetBodyClass();
@@ -289,8 +293,9 @@ class DropZoneComponent {
      * Create a file wrapper / update with dropped files
      * @param {Array} files
      * @param {Element} node
+     * @param {Object} instance
      */
-    handleDropZoneDrop (files, node) {
+    handleDropZoneDrop (files, node, instance) {
         let wrapper = node.querySelector(`.${this.nodeClasses.wrapper}`);
 
         // if we do not already have a wrapper, create one
@@ -301,7 +306,7 @@ class DropZoneComponent {
         }
 
         // update wrapper Html
-        this.updateDropZoneFiles(files, node, wrapper);
+        this.updateDropZoneFiles(files, node, wrapper, instance);
     }
 
     /**
@@ -309,11 +314,12 @@ class DropZoneComponent {
      * - remove validation node if we have one
      * - add / remove files Html
      * - remove wrapper if we have no files
-     * @param  {Array} files
-     * @param  {Element} node
-     * @param  {Element} wrapper
+     * @param {Array} files
+     * @param {Element} node
+     * @param {Element} wrapper
+     * @param {Object} instance
      */
-    updateDropZoneFiles (files, node, wrapper) {
+    updateDropZoneFiles (files, node, wrapper, instance) {
         const validation = node.querySelector(`.${this.nodeClasses.validation}`);
         let fileNodeString = '';
 
@@ -331,7 +337,7 @@ class DropZoneComponent {
 
         // create file html string
         files.forEach(file => {
-            fileNodeString += this.createFileNode(file);
+            fileNodeString += this.createFileNode(file, instance.options);
         });
 
         // update wrapper html
@@ -430,11 +436,16 @@ class DropZoneComponent {
 
     /**
      * Create DropZone file Html string
-     * @param  {Object} file
+     * @param {Object} file
+     * @param {Object} options
      * @return {String}
      */
-    createFileNode (file) {
-        const desc = file.description ? `<div class="${this.nodeClasses.description}">${file.description}</div>` : '';
+    createFileNode (file, options) {
+        const desc = file.description ? `<div class="${this.nodeClasses.description}">${file.description}</div>` : '',
+            name = file.name ? `<p class="${this.nodeClasses.name}">${file.name}</p>` : '',
+            size = file.size ? `<p class="${this.nodeClasses.size}">${file.size}</p>` : '',
+            type = file.type ? `<p class="${this.nodeClasses.type}">${file.type}</p>` : '';
+
         let thumb = `<div class="${this.nodeClasses.thumbnail}`;
 
         if (file.thumbnail) {
@@ -453,10 +464,10 @@ class DropZoneComponent {
                     <i class="${this.nodeClasses.close} icon icon-times-circle"></i>
                     ${thumb}
                     <div class="${this.nodeClasses.meta}">
-                        <p class="${this.nodeClasses.name}">${file.name}</p>
-                        ${desc}
-                        <p class="${this.nodeClasses.size}">${file.size}</p>
-                        <p class="${this.nodeClasses.type}">${file.type}</p>
+                        ${options.fileNodeName ? name : ''}
+                        ${options.fileNodeDesc ? desc : ''}
+                        ${options.fileNodeSize ? size : ''}
+                        ${options.fileNodeType ? type : ''}
                     </div>                
                 </div>
             </div>`.replace(/>\s+</g, '><');
@@ -512,11 +523,18 @@ class DropZoneComponent {
             let { value } = attr;
             // grab value from attributes matching data-dropzone-{option}={value}
             if (name.match(/dropzone/)) {
-                // transform hyphen seperated attr to DropZone camelCase option
+                // transform hyphen separated attr to DropZone camelCase option
                 const option = name.replace(/data-dropzone-/, '');
 
                 if (option === 'whitelist') {
                     value = value.split(' ');
+                }
+
+                // parse bools
+                if (value === 'false') {
+                    value = false;
+                } else if (value === 'true') {
+                    value = true;
                 }
 
                 attrs[DropZoneComponent.camelCaseIfy(option)] = value;

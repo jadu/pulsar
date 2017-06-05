@@ -160,6 +160,10 @@ $dropzone-icon-rotation: 30deg;
 
 .dropzone__meta {
     padding: 0 ($dropzone-file-size * 2);
+
+    p:last-of-type {
+        margin-bottom: 0;
+    }
 }
 
 .dropzone__name {
