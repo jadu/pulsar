@@ -1,13 +1,11 @@
 import _ from 'lodash';
 
-// todo - reject directories
-
 export const defaults = {
     // HTML node that will become DropZone
     node: null,
     // limit of files within store
     maxFiles: 5,
-    // limit total size of files (314572800 === 300mb)
+    // limit total size of files (3e+8 === 300mb)
     maxSize: 3e+8,
     // a whitelist of file types to validate against
     whitelist: [],
