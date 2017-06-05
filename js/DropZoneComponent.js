@@ -180,6 +180,7 @@ class DropZoneComponent {
             file: 'dropzone__file',
             meta: 'dropzone__meta',
             name: 'dropzone__name',
+            description: 'dropzone__description',
             type: 'dropzone__type',
             size: 'dropzone__size',
             thumbnail: 'dropzone__thumbnail'
@@ -200,7 +201,7 @@ class DropZoneComponent {
             // set node in options
             this.options[index].node = node;
             //set dropZone ID attr
-            node.setAttribute('data-dropzone-id', index)
+            node.setAttribute('data-dropzone-id', index);
             // create an instance of the DropZone API
             const instance = new DropZone(this.options[index], new DropZoneValidator(this.options[index]));
             // if an input node selector has been passed in, add events and hide
@@ -214,8 +215,6 @@ class DropZoneComponent {
             // return instance
             return instance;
         });
-
-        console.log(this.dropZoneNodes)
     }
 
     /**
@@ -435,6 +434,7 @@ class DropZoneComponent {
      * @return {String}
      */
     createFileNode (file) {
+        const desc = file.description ? `<div class="${this.nodeClasses.description}">${file.description}</div>` : '';
         let thumb = `<div class="${this.nodeClasses.thumbnail}`;
 
         if (file.thumbnail) {
@@ -454,6 +454,7 @@ class DropZoneComponent {
                     ${thumb}
                     <div class="${this.nodeClasses.meta}">
                         <p class="${this.nodeClasses.name}">${file.name}</p>
+                        ${desc}
                         <p class="${this.nodeClasses.size}">${file.size}</p>
                         <p class="${this.nodeClasses.type}">${file.type}</p>
                     </div>                

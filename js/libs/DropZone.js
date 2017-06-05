@@ -133,8 +133,9 @@ export default class DropZone {
     /**
      * Validate and add files to the DropZone
      * @param {FileList} files
+     * @param {Object} meta
      */
-    addFiles (files) {
+    addFiles (files, meta = {}) {
         const { valid, text } = this.validator.validate(files, this.files.length, this.size);
 
         if (valid) {
@@ -142,7 +143,7 @@ export default class DropZone {
             [...files].forEach(file => {
                 // we are assuming at this point if an item in a fileList does not have the method
                 // getAsFile it is already a file object
-                this.files.push(this.processFile(file.getAsFile ? file.getAsFile() : file));
+                this.files.push(this.processFile(file.getAsFile ? file.getAsFile() : file, meta));
             });
             // fire dropped callback
             this.createCallback(this.options.dropZoneDrop, { files: this.files, node: this.node });
@@ -234,19 +235,20 @@ export default class DropZone {
 
     /**
      * A place we can do something with a file before we add it to the store.
-     * @param  {Object} file
-     * @return {Object}
+     * @param {Object} file
+     * @param {Object} meta
+     * @return {Object} file object
      */
-    processFile (file) {
+    processFile (file, meta) {
         this.size += file.size;
-        return {
+        return _.extend({}, {
             file,
             thumbnail: DropZone.getFileThumbnail(file),
             id: _.uniqueId('DropZone_file_'),
             name: DropZone.getFileName(file),
             type: DropZone.getFileType(file),
             size: DropZone.getFileSize(file)
-        };
+        }, meta);
     }
 
     /**
@@ -430,11 +432,7 @@ export default class DropZone {
      * @return {Object}
      */
     static createOptions (defaults, options) {
-        if (typeof Object.assign !== 'function') {
-            return _.extend({}, defaults, options);
-        } else {
-            return Object.assign({}, defaults, options);
-        }
+        return _.extend({}, defaults, options);
     }
 
     /**
