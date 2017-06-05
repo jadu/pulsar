@@ -250,3 +250,32 @@ $dropzone-icon-rotation: 30deg;
         background-color: color(primary, light);
     }
 }
+
+/**
+ * Passive mode
+ */
+
+// lexicon example
+.passive-dropzone {
+    border: 1px solid black;
+    padding: 1rem;
+    position: relative;
+    text-align: center;
+}
+
+.passive-dropzone__text {
+    margin: 0;
+}
+
+.dropzone--passive {
+    bottom: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    text-align: inherit;
+    top: 0;
+    z-index: -1;
+}
