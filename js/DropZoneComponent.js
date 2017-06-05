@@ -33,7 +33,7 @@ class DropZoneComponent {
             fileNodeDesc: true,
             fileNodeName: true,
             fileNodeSize: true,
-            fileNodeType: false
+            fileNodeType: true
         };
 
         this.callbacks = {
