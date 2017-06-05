@@ -539,9 +539,10 @@ class DropZoneComponent {
      * Manually add files to the DropZone API
      * @param {FileList} files
      * @param {String} id
+     * @param {Object} meta
      */
-    addFileToDropZone (files, id) {
-        this.getDropZoneById(id).addFiles(files);
+    addFileToDropZone (files, id, meta = {}) {
+        this.getDropZoneById(id).addFiles(files, meta);
     }
 
     /**

@@ -135,7 +135,7 @@ export default class DropZone {
      * @param {FileList} files
      * @param {Object} meta
      */
-    addFiles (files, meta = {}) {
+    addFiles (files, meta) {
         const { valid, text } = this.validator.validate(files, this.files.length, this.size);
 
         if (valid) {
