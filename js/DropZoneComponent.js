@@ -441,7 +441,7 @@ class DropZoneComponent {
      * @return {String}
      */
     createFileNode (file, options) {
-        const desc = file.description ? `<div class="${this.nodeClasses.description}">${file.description}</div>` : '',
+        const desc = file.description ? `<p class="${this.nodeClasses.description}">${file.description}</p>` : '',
             name = file.name ? `<p class="${this.nodeClasses.name}">${file.name}</p>` : '',
             size = file.size ? `<p class="${this.nodeClasses.size}">${file.size}</p>` : '',
             type = file.type ? `<p class="${this.nodeClasses.type}">${file.type}</p>` : '';
