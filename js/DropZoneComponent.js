@@ -178,7 +178,7 @@ class DropZoneComponent {
             validation: 'dropzone__validation',
             help: 'dropzone__help',
             browse: 'dropzone__browse',
-            inner: 'dropzone__inner',
+            inner: 'dropzone__file-inner',
             close: 'dropzone__close',
             error: 'dropzone__error',
             file: 'dropzone__file',
