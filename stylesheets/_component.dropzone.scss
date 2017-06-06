@@ -101,6 +101,7 @@ $dropzone-icon-rotation: 30deg;
 
 .dropzone__file {
     color: color(text, base);
+    max-width: 100%;
     padding: $dropzone-file-size;
     width: 50%;
 

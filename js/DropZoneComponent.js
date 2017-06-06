@@ -196,12 +196,12 @@ class DropZoneComponent {
             dropZoneError: 'dropzone-error'
         };
         // get all DropZone elements
-        this.dropZoneNodes = [...this.html.querySelectorAll(`.${this.nodeClasses.dropzone}`)];
+        this.dropZoneInstances = [...this.html.querySelectorAll(`.${this.nodeClasses.dropzone}`)];
         // get DropZone options array
         this.options = this.buildOptsFromAttrs();
 
         // instantiate each DropZone with it's options
-        this.dropZoneNodes = this.dropZoneNodes.map((node, index) => {
+        this.dropZoneInstances = this.dropZoneInstances.map((node, index) => {
             // set node in options
             this.options[index].node = node;
             //set dropZone ID attr
@@ -306,32 +306,36 @@ class DropZoneComponent {
         }
 
         // update wrapper Html
-        this.updateDropZoneFiles(files, node, wrapper, instance);
+        this.updateDropZoneFiles(files, instance, wrapper);
     }
 
     /**
-     * Update dropzone Html
+     * Update DropZone Html
      * - remove validation node if we have one
      * - add / remove files Html
      * - remove wrapper if we have no files
      * @param {Array} files
-     * @param {Element} node
-     * @param {Element} wrapper
+     * @param {Element|boolean} wrapper
      * @param {Object} instance
      */
-    updateDropZoneFiles (files, node, wrapper, instance) {
-        const validation = node.querySelector(`.${this.nodeClasses.validation}`);
+    updateDropZoneFiles (files, instance, wrapper = false) {
+        const validation = instance.node.querySelector(`.${this.nodeClasses.validation}`);
         let fileNodeString = '';
+
+        wrapper = wrapper ? wrapper : instance.node.querySelector(`.${this.nodeClasses.wrapper}`);
 
         // if we've got a drop we know we don't have any errors
         // clear any previous validation messages
         if (validation) {
-            this.clearDropZoneValidation(node);
+            this.clearDropZoneValidation(instance.node);
         }
 
         // if there are no files we'll remove the wrapper
-        if (!files.length && wrapper) {
-            wrapper.parentNode.removeChild(wrapper);
+        if (!files.length) {
+            if (wrapper) {
+                wrapper.parentNode.removeChild(wrapper);
+            }
+
             return;
         }
 
@@ -430,7 +434,7 @@ class DropZoneComponent {
 
         instance.removeFile(file);
         // update Html
-        this.updateDropZoneFiles(instance.getFiles(), instance.node, wrapper);
+        this.updateDropZoneFiles(instance.getFiles(), instance, wrapper);
         this.resetBodyClass();
     }
 
@@ -492,7 +496,7 @@ class DropZoneComponent {
      * @return {Array}
      */
     buildOptsFromAttrs () {
-        return this.dropZoneNodes.reduce((options, node) => {
+        return this.dropZoneInstances.reduce((options, node) => {
             const dropZoneAttrs = DropZoneComponent.getDropZoneAttrs(node);
             const helperState = _.assign({}, this.helperStateHtml);
 
@@ -550,7 +554,7 @@ class DropZoneComponent {
      * @return {Object} DropZone
      */
     getDropZoneById (id) {
-        return this.dropZoneNodes[id];
+        return this.dropZoneInstances[id];
     }
 
     /**
@@ -561,6 +565,29 @@ class DropZoneComponent {
      */
     addFileToDropZone (files, id, meta = {}) {
         this.getDropZoneById(id).addFiles(files, meta);
+    }
+
+    /**
+     * Reset all / selected DropZones
+     * @param {Number|boolean} id
+     */
+    reset (id = null) {
+        if (id === null) {
+            this.dropZoneInstances.forEach(this.resetDropZoneInstance.bind(this));
+        } else {
+            this.resetDropZoneInstance(this.dropZoneInstances[id]);
+        }
+
+        this.resetBodyClass();
+    }
+
+    /**
+     * Reset the DropZone API instance
+     * @param {DropZone} instance
+     */
+    resetDropZoneInstance (instance) {
+        instance.reset();
+        this.updateDropZoneFiles(instance.getFiles(), instance);
     }
 
     /**
