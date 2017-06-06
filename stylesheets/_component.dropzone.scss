@@ -9,7 +9,21 @@ $dropzone-thumb-size: 4em;
     border: 2px dashed color(gray, light);
     border-radius: $border-radius;
     padding: 1.25em;
+    position: relative;
     text-align: center;
+
+    &::before {
+        bottom: 0;
+        content: '';
+        height: 100%;
+        left: 0;
+        position: absolute;
+        pointer-events: none;
+        right: 0;
+        top: 0;
+        width: 100%;
+        z-index: 0;
+    }
 }
 
 .dropzone__file-wrapper {
@@ -208,16 +222,21 @@ $dropzone-icon-rotation: 30deg;
 
 .dropzone-success {
     .dropzone {
-        animation: success-flash 750ms forwards;
-        background-color: color(success, light);
+        &::before {
+            animation: success-flash 750ms forwards;
+            background-color: color(success, light);
+        }
     }
 }
 
 .dropzone-error {
     .dropzone {
-        animation: danger-flash 750ms forwards;
-        background-color: color(danger, light);
         border: 2px solid color(danger);
+
+        &::before {
+            animation: danger-flash 750ms forwards;
+            background-color: color(danger, light);
+        }
     }
 }
 
@@ -260,18 +279,22 @@ $dropzone-icon-rotation: 30deg;
  * Passive mode
  */
 
-// lexicon example
-.passive-dropzone {
+.dropzone--passive {
+    text-align: inherit;
+}
+
+/**
+ * Lexicon code
+ */
+
+.l-passive-dropzone {
+    background-color: red;
     border: 1px solid black;
     padding: 1rem;
     position: relative;
     text-align: center;
 }
 
-.passive-dropzone__text {
+l-passive-dropzone__text {
     margin: 0;
-}
-
-.dropzone--passive {
-    text-align: inherit;
 }
