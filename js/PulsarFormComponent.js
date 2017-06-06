@@ -1,11 +1,11 @@
 'use strict';
 
 var $ = require('jquery');
+var moment = require('moment/moment');
 
-require('../libs/pikaday/plugins/pikaday.jquery');
-require('../libs/select2/dist/js/select2.min');
-require('../libs/spectrum/spectrum');
-var moment = require('../libs/moment/moment');
+require('pikaday/plugins/pikaday.jquery');
+require('select2');
+require('spectrum/spectrum');
 
 function PulsarFormComponent(html) {
 

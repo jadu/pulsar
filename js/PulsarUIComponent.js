@@ -3,7 +3,7 @@ var $             = require('jquery'),
     dt_buttons    = require('datatables.net-buttons')(window, $),
     dt_responsive = require('datatables.net-responsive')(window, $),
     dt_select     = require('datatables.net-select')(window, $),
-    countdown     = require('../libs/jquery.countdown/dist/jquery.countdown.min');
+    countdown     = require('jquery.countdown/dist/jquery.countdown.min');
 
 function PulsarUIComponent(html, history) {
 
