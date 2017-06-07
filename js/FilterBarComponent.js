@@ -164,7 +164,7 @@ function showAddFilterPopover ($filterbar) {
             $popoverControls.insertAfter($formGroup);
 
             // Refresh the select2
-            $select2 = $popoverContent.find('.js-select2');
+            $select2 = $popoverContent.find('.js-select2:not([data-init="false"])');
             select2Placeholder = $select2.attr('placeholder');
             $select2.select2({placeholder: select2Placeholder});
 
@@ -198,7 +198,7 @@ function showAddFilterPopover ($filterbar) {
             filterListButtonVisibility($filterbar);
 
             // Focus on field to avoid unnecessary extra click
-            if ($field.hasClass('js-select2')) {
+            if ($field.hasClass('js-select2') && $field.data('init') !== false) {
                 $field.select2('open');
             } else {
                 /* istanbul ignore next: difficult to test due to generated popover content */
