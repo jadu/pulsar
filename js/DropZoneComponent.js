@@ -33,7 +33,11 @@ class DropZoneComponent {
             fileNodeDesc: true,
             fileNodeName: true,
             fileNodeSize: true,
-            fileNodeType: true
+            fileNodeType: true,
+            validationWhitelist: 'Unsupported file type',
+            validationMaxFiles: 'Maximum number files exceeded',
+            validationMaxSize: 'Maximum file size exceeded',
+            validationDirectory: 'You are unable to upload whole directories'
         };
 
         this.callbacks = {
@@ -207,7 +211,10 @@ class DropZoneComponent {
             //set dropZone ID attr
             node.setAttribute('data-dropzone-id', index);
             // create an instance of the DropZone API
-            const instance = new DropZone(this.options[index], new DropZoneValidator(this.options[index]));
+            const instance = new DropZone(
+                this.options[index],
+                new DropZoneValidator(DropZoneComponent.buildValidatorOptions(this.options[index]))
+            );
             // if an input node selector has been passed in, add events and hide
             if (this.options[index].inputNodeId) {
                 this.processInputNode(instance, this.options[index]);
@@ -359,7 +366,9 @@ class DropZoneComponent {
     updateDropZoneValidation (error, instance) {
         let validationNode = instance.node.querySelector(`.${this.nodeClasses.validation}`);
 
-        if (!validationNode) {
+        // if we are in passive mode we're handing this over to the developer installing the plugin
+        // they can access validation data by using the filesRejected callback
+        if (this.options.passive) {
             return;
         }
 
@@ -588,6 +597,38 @@ class DropZoneComponent {
     resetDropZoneInstance (instance) {
         instance.reset();
         this.updateDropZoneFiles(instance.getFiles(), instance);
+    }
+
+    /**
+     * Build options object for the DropZoneValidator
+     * This allows us to define the validator options in the HTML
+     * @param {Object} options
+     * @returns {Object} validator options
+     */
+    static buildValidatorOptions (options) {
+        const validatorOptions = { validationText: {} };
+        return Object.keys(options).reduce((validatorOptions, option) => {
+            switch (option) {
+                case 'validationMaxFiles':
+                case 'validationWhitelist':
+                case 'validationDirectory':
+                case 'validationMaxSize':
+                    // todo - this could do with perhaps being re-thought about, this seems overly complicated
+                    // this is converting 'validationMaxFiles' -> 'maxFiles' so the validator options can be
+                    // set in the html e.g. 'data-validation-max-files="Too many files"'
+                    let newOption = option.replace('validation', '');
+                    newOption = newOption[0].toLowerCase() + newOption.slice(1);
+                    validatorOptions.validationText[newOption] = options[option];
+                    break;
+                case 'maxFiles':
+                case 'maxSize':
+                case 'whitelist':
+                    validatorOptions[option] = options[option];
+                    break;
+            }
+
+            return validatorOptions;
+        }, validatorOptions);
     }
 
     /**
