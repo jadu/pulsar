@@ -133,7 +133,7 @@ export default class DropZone {
      * @param {FileList} files
      * @param {Object} meta
      */
-    addFiles (files, meta) {
+    addFiles (files, meta = {}) {
         const { valid, text } = this.validator.validate(files, this.files.length, this.size);
 
         if (valid) {
@@ -175,12 +175,13 @@ export default class DropZone {
             const files = event.dataTransfer.items;
             const { valid, text } = this.validator.validate(files, this.getFiles().length, this.size);
 
+            this.createCallback(this.options.windowEnter, { valid });
+
             // validate files (if possible) as soon as the user has dragged them onto the screen
             if (!valid) {
                 this.rejectFiles(text);
             }
 
-            this.createCallback(this.options.windowEnter, { valid });
             this.windowActive = true;
         }
     }
