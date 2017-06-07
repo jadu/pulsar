@@ -82,11 +82,13 @@ $dropzone-icon-rotation: 30deg;
     font-size: 1.25em;
     line-height: 1;
     margin-bottom: 0;
+    position: relative;
 }
 
 .dropzone__info {
     font-size: .85em;
     margin-bottom: 0;
+    position: relative;
 }
 
 .dropzone__help {
@@ -96,6 +98,7 @@ $dropzone-icon-rotation: 30deg;
     margin-bottom: 0;
     margin-top: 0;
     padding: 0 1em;
+    position: relative;
 }
 
 /**
