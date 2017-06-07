@@ -60,7 +60,7 @@ class DropZoneComponent {
 
                 // call any additional callbacks passed in via options
                 if (options.windowEnter && typeof options.windowEnter === 'function') {
-                    options.windowEnter(this, opts);
+                    options.windowEnter(opts);
                 }
             },
             // files have left the window
@@ -76,7 +76,7 @@ class DropZoneComponent {
 
                 // call any additional callbacks passed in via options
                 if (options.windowLeave && typeof options.windowLeave === 'function') {
-                    options.windowLeave(this, opts);
+                    options.windowLeave(opts);
                 }
             },
             // files have entered the DropZone
@@ -102,7 +102,7 @@ class DropZoneComponent {
 
                 // call any additional callbacks passed in via options
                 if (options.dropZoneEnter && typeof options.dropZoneEnter === 'function') {
-                    options.dropZoneEnter(this, opts);
+                    options.dropZoneEnter(opts);
                 }
             },
             // files have left the DropZone
@@ -126,7 +126,7 @@ class DropZoneComponent {
 
                 // call any additional callbacks passed in via options
                 if (options.dropZoneLeave && typeof options.dropZoneLeave === 'function') {
-                    options.dropZoneLeave(this, opts);
+                    options.dropZoneLeave(opts);
                 }
             },
             // files have been dropped on the dropzone
@@ -147,7 +147,7 @@ class DropZoneComponent {
 
                 // call any additional callbacks passed in via options
                 if (options.dropZoneDrop && typeof options.dropZoneDrop === 'function') {
-                    options.dropZoneDrop();
+                    options.dropZoneDrop(opts);
                 }
             },
             // files have been dropped on the window, but not the DropZone
@@ -155,7 +155,7 @@ class DropZoneComponent {
                 this.resetBodyClass();
                 this.updateHelperState(opts.instance, opts.instance.options.idleHtml);
                 if (options.windowDrop && typeof options.windowDrop === 'function') {
-                    options.windowDrop();
+                    options.windowDrop(opts);
                 }
             },
             // files have been rejected
@@ -165,7 +165,7 @@ class DropZoneComponent {
 
                 // call any additional callbacks passed in via options
                 if (options.filesRejected && typeof options.filesRejected === 'function') {
-                    options.filesRejected();
+                    options.filesRejected(opts);
                 }
             }
         };
