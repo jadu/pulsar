@@ -11,19 +11,20 @@ $dropzone-thumb-size: 4em;
     padding: 1.25em;
     position: relative;
     text-align: center;
+}
 
-    &::before {
-        bottom: 0;
-        content: '';
-        height: 100%;
-        left: 0;
-        position: absolute;
-        pointer-events: none;
-        right: 0;
-        top: 0;
-        width: 100%;
-        z-index: 0;
-    }
+// the element responsible for creating success and error flashes
+.dropzone__state {
+    bottom: 0;
+    content: '';
+    height: 100%;
+    left: 0;
+    position: absolute;
+    pointer-events: none;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 0;
 }
 
 .dropzone__file-wrapper {
@@ -221,11 +222,9 @@ $dropzone-icon-rotation: 30deg;
 @include dropzone-flash(danger);
 
 .dropzone-success {
-    .dropzone {
-        &::before {
-            animation: success-flash 750ms forwards;
-            background-color: color(success, light);
-        }
+    .dropzone__state {
+        animation: success-flash 750ms forwards;
+        background-color: color(success, light);
     }
 }
 
@@ -233,7 +232,7 @@ $dropzone-icon-rotation: 30deg;
     .dropzone {
         border: 2px solid color(danger);
 
-        &::before {
+        .dropzone__state {
             animation: danger-flash 750ms forwards;
             background-color: color(danger, light);
         }
@@ -288,7 +287,7 @@ $dropzone-icon-rotation: 30deg;
  */
 
 .l-passive-dropzone {
-    background-color: red;
+    background-color: #f7f7f7;
     border: 1px solid black;
     padding: 1rem;
     position: relative;
@@ -297,4 +296,5 @@ $dropzone-icon-rotation: 30deg;
 
 l-passive-dropzone__text {
     margin: 0;
+    position: relative;
 }
