@@ -368,7 +368,7 @@ class DropZoneComponent {
 
         // if we are in passive mode we're handing this over to the developer installing the plugin
         // they can access validation data by using the filesRejected callback
-        if (this.options.passive) {
+        if (instance.options.passive) {
             return;
         }
 
