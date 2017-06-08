@@ -61,6 +61,10 @@ Use `.is-selected` on a `block-list__item` to highlight a currently selected ite
 <p data-height="268" data-theme-id="24005" data-slug-hash="jPoVPp" data-default-tab="result" data-user="stanton" class='codepen'>See the Pen <a href='http://codepen.io/stanton/pen/jPoVPp/'>Block list - selected item</a> by Paul Stanton (<a href='http://codepen.io/stanton'>@stanton</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
 <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
+### Disabled items
+
+Use `.is-disabled` on a `block-list__item` to add visually disabled styling to an item. If using the `link` scheme, the links won't be clickable.
+
 ### States
 
 <p data-height="268" data-theme-id="24005" data-slug-hash="zGQKgQ" data-default-tab="result" data-user="stanton" class='codepen'>See the Pen <a href='http://codepen.io/stanton/pen/zGQKgQ/'>zGQKgQ</a> by Paul Stanton (<a href='http://codepen.io/stanton'>@stanton</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
