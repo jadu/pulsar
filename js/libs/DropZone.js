@@ -34,11 +34,8 @@ export default class DropZone {
         this.options.maxSize = parseInt(this.options.maxSize);
         // cache methods with context
         this.handleDropWithContext = this.handleDrop.bind(this);
-        this.handleEnterWithContext = this.handleEnter.bind(this);
-        this.handleLeaveWithContext = this.handleLeave.bind(this);
         this.handleWindowEnterWithContext = this.handleWindowEnter.bind(this);
         this.handleWindowLeaveWithContext = this.handleWindowLeave.bind(this);
-        this.updateEventTrackerWithContext = this.updateEventTracker.bind(this);
         // a place to be used externally as a instance based cache
         this.data = {};
         this.setup();
@@ -57,53 +54,31 @@ export default class DropZone {
         this.size = 0;
         this.windowActive = false;
         this.dropZoneActive = false;
-        this.customValidation = this.options.validation ? new RegExp(this.options.validation, 'g') : false;
 
-        this.trackEvents('dragenter dragleave');
-        this.attachMultipleListeners('drag dragstart dragend dragover dragenter dragleave drop', this.preventer);
         this.registerEvents();
+        this.attachMultipleListeners(
+            [window],
+            'drag dragstart dragend dragover dragenter dragleave drop',
+            this.preventer
+        );
     }
 
     /**
      * Register drag & drop events
      */
     registerEvents () {
-        this.addEventAndStore(this.node, 'dragenter', this.handleEnterWithContext);
-        this.addEventAndStore(this.node, 'dragleave', this.handleLeaveWithContext);
+        // prevent defaults
+        this.addEventAndStore(window, 'drag', this.preventer);
+        this.addEventAndStore(window, 'dragstart', this.preventer);
+        this.addEventAndStore(window, 'dragend', this.preventer);
+        this.addEventAndStore(window, 'dragover', this.preventer);
+        this.addEventAndStore(window, 'dragenter', this.preventer);
+        this.addEventAndStore(window, 'dragleave', this.preventer);
+        this.addEventAndStore(window, 'drop', this.preventer);
+        // interactions
         this.addEventAndStore(window, 'dragenter', this.handleWindowEnterWithContext);
         this.addEventAndStore(window, 'dragleave', this.handleWindowLeaveWithContext);
         this.addEventAndStore(window, 'drop', this.handleDropWithContext);
-    }
-
-    /**
-     * Track multiple events on the winow and DropZone
-     * @param  {String} events
-     */
-    trackEvents (events) {
-        events.split(' ').forEach(event => {
-            const updateWindow = this.updateEventTracker.bind(this, 'window', event),
-                updateNode = this.updateEventTracker.bind(this, 'node', event);
-
-            // initiate event trackers with 0
-            this.eventTracker.window[event] = 0;
-            this.eventTracker.node[event] = 0;
-
-            // add window events to pool and attach handler
-            this.addEventToPool(window, event, updateWindow);
-            this.addEventAndStore(window, event, updateWindow);
-            // add DropZone node events to pool and attach handler
-            this.addEventToPool(this.node, event, updateNode);
-            this.addEventAndStore(this.node, event, updateNode);
-        });
-    }
-
-    /**
-     * Update a tracked event
-     * @param  {String} id
-     * @param  {String} event
-     */
-    updateEventTracker (id, event) {
-        this.eventTracker[id][event]++;
     }
 
     /**
@@ -112,7 +87,6 @@ export default class DropZone {
      */
     handleDrop (event) {
         const files = event.dataTransfer.items;
-
         // determine where the drop has taken place
         // dropped on the DropZone
         if (this.windowActive && this.dropZoneActive) {
@@ -154,24 +128,22 @@ export default class DropZone {
     /**
      * Determine if a file is currently on the window
      */
-    fileOnWindow () {
-        const { dragenter, dragleave } = this.eventTracker.window;
-        return dragenter > dragleave;
-    }
-
-    /**
-     * Determine if a file is in the DropZone
-     */
-    fileOnDropZone () {
-        const { dragenter, dragleave } = this.eventTracker.node;
-        return dragenter > dragleave;
+    fileOnWindow (event) {
+        const { clientX, clientY } = event;
+        const offWindow = clientX === 0 && clientY === 0;
+        return !offWindow && document.elementFromPoint(clientX, clientY);
     }
 
     /**
      * Handle a file dragged into the window
      */
     handleWindowEnter (event) {
-        if (this.fileOnWindow() && !this.windowActive) {
+        const onWindow = this.fileOnWindow(event);
+        const onDropZone = this.node.contains(onWindow);
+
+        if (onDropZone && !this.dropZoneActive) {
+            this.handleEnter(event.dataTransfer.items);
+        } else if (this.fileOnWindow(event) && !this.windowActive) {
             const files = event.dataTransfer.items;
             const { valid, text } = this.validator.validate(files, this.getFiles().length, this.size);
 
@@ -188,48 +160,50 @@ export default class DropZone {
 
     /**
      * Handle a file being dragged off of the window
+     * @param {Event} event
      */
-    handleWindowLeave () {
-        if (!this.fileOnWindow() && this.windowActive && !this.dropZoneActive) {
+    handleWindowLeave (event) {
+        const onDropZone = this.node.contains(document.elementFromPoint(event.clientX, event.clientY));
+
+        if (!onDropZone && this.dropZoneActive) {
+            this.handleLeave(event.dataTransfer.items);
+        } else if (!this.fileOnWindow(event)) {
             this.createCallback(this.options.windowLeave);
             this.windowActive = false;
+            this.dropZoneActive = false;
         }
     }
 
     /**
      * Handle drag entering the DropZone
+     * @param {DataTransferItemList} files
      */
-    handleEnter (event) {
-        if (this.fileOnDropZone() && !this.dropZoneActive) {
-            const files = event.dataTransfer.items;
-            const { valid, text } = this.validator.validate(files, this.getFiles().length, this.size);
+    handleEnter (files) {
+        const { valid, text } = this.validator.validate(files, this.getFiles().length, this.size);
 
-            // validate files (if possible) as soon as the user has dragged them onto the screen
-            if (!valid) {
-                this.rejectFiles(text);
-            }
-
-            this.createCallback(this.options.dropZoneEnter, { valid });
-            this.dropZoneActive = true;
+        // validate files (if possible) as soon as the user has dragged them onto the screen
+        if (!valid) {
+            this.rejectFiles(text);
         }
+
+        this.createCallback(this.options.dropZoneEnter, { valid });
+        this.dropZoneActive = true;
     }
 
     /**
      * Handle drag leaving the DropZone
+     * @param {DataTransferItemList} files
      */
-    handleLeave (event) {
-        if (!this.fileOnDropZone() && this.dropZoneActive) {
-            const files = event.dataTransfer.items;
-            const { valid, text } = this.validator.validate(files, this.getFiles().length, this.size);
+    handleLeave (files) {
+        const { valid, text } = this.validator.validate(files, this.getFiles().length, this.size);
 
-            // validate files (if possible) as soon as the user has dragged them onto the screen
-            if (!valid) {
-                this.rejectFiles(text);
-            }
-
-            this.createCallback(this.options.dropZoneLeave, { valid });
-            this.dropZoneActive = false;
+        // validate files (if possible) as soon as the user has dragged them onto the screen
+        if (!valid) {
+            this.rejectFiles(text);
         }
+
+        this.createCallback(this.options.dropZoneLeave, { valid });
+        this.dropZoneActive = false;
     }
 
     /**
@@ -296,13 +270,15 @@ export default class DropZone {
 
     /**
      * Attach multiple events
-     * @param  {String} events
-     * @param  {Function} handler
+     * @param {Array} nodes
+     * @param {String} events
+     * @param {Function} handler
      */
-    attachMultipleListeners (events, handler) {
-        events.split(' ').forEach(event => {
-            this.addEventAndStore(this.node, event, handler);
-            this.addEventAndStore(window, event, handler);
+    attachMultipleListeners (nodes, events, handler) {
+        nodes.forEach(node => {
+            events.split(' ').forEach(event => {
+                this.addEventAndStore(node, event, handler);
+            });
         });
     }
 
