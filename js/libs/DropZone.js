@@ -20,8 +20,6 @@ export const defaults = {
     dropZoneEnter: function () {},
     // dragged files left DropZone
     dropZoneLeave: function () {},
-    // reject files
-    filesRejected: function () {},
     // removed file
     fileRemoved: function () {}
 };
@@ -119,12 +117,9 @@ export default class DropZone {
                 // getAsFile it is already a file object
                 this.files.push(this.processFile(file.getAsFile ? file.getAsFile() : file, meta));
             });
-            // fire dropped callback
-            this.createCallback(this.options.dropZoneDrop, { files: this.files, node: this.node });
-        } else {
-            // reject a drag if it has failed validation
-            this.rejectFiles(text);
         }
+        // fire dropped callback
+        this.createCallback(this.options.dropZoneDrop, { files: this.files, node: this.node, valid, text });
     }
 
     /**
@@ -149,13 +144,7 @@ export default class DropZone {
             const files = event.dataTransfer.items;
             const { valid, text } = this.validator.validate(files, this.getFiles().length, this.size);
 
-            this.createCallback(this.options.windowEnter, { valid });
-
-            // validate files (if possible) as soon as the user has dragged them onto the screen
-            if (!valid) {
-                this.rejectFiles(text);
-            }
-
+            this.createCallback(this.options.windowEnter, { valid, text });
             this.windowActive = true;
         }
     }
@@ -183,12 +172,7 @@ export default class DropZone {
     handleEnter (files) {
         const { valid, text } = this.validator.validate(files, this.getFiles().length, this.size);
 
-        // validate files (if possible) as soon as the user has dragged them onto the screen
-        if (!valid) {
-            this.rejectFiles(text);
-        }
-
-        this.createCallback(this.options.dropZoneEnter, { valid });
+        this.createCallback(this.options.dropZoneEnter, { valid, text });
         this.dropZoneActive = true;
     }
 
@@ -199,12 +183,7 @@ export default class DropZone {
     handleLeave (files) {
         const { valid, text } = this.validator.validate(files, this.getFiles().length, this.size);
 
-        // validate files (if possible) as soon as the user has dragged them onto the screen
-        if (!valid) {
-            this.rejectFiles(text);
-        }
-
-        this.createCallback(this.options.dropZoneLeave, { valid });
+        this.createCallback(this.options.dropZoneLeave, { valid, text });
         this.dropZoneActive = false;
     }
 

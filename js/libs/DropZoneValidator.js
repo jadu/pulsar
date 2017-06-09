@@ -21,7 +21,7 @@ export default class DropZoneValidator {
      * @returns {Object} error
      */
     validate (files, totalFiles, totalSize) {
-        let error = { valid: true, stack: [] };
+        let result = { valid: true, text: '' };
         let fileCount = totalFiles;
         let sizeCount = totalSize;
 
@@ -31,28 +31,28 @@ export default class DropZoneValidator {
             fileCount++;
 
             // 1. reject directories
-            if (error.valid) {
+            if (result.valid) {
                 if (file.type === '') {
-                    error = this.throwError('DIRECTORY');
+                    result = this.throwError('DIRECTORY');
                 }
             }
 
             // 2. whitelist
             //   - check we have a whitelist
             //   - ensure our file is on the whitelist
-            if (error.valid) {
+            if (result.valid) {
                 if (this.options.whitelist && this.options.whitelist.length) {
                     if (!this.validateType(file.type)) {
-                        error = this.throwError('WHITELIST', file.type);
+                        result = this.throwError('WHITELIST', file.type);
                     }
                 }
             }
 
             // 3. max files
             //   - ensure we haven't exceeded our max files
-            if (error.valid) {
+            if (result.valid) {
                 if (!this.validateCount(fileCount)) {
-                    error = this.throwError('MAX_FILES');
+                    result = this.throwError('MAX_FILES');
                 }
             }
 
@@ -62,16 +62,16 @@ export default class DropZoneValidator {
             // check to see if we can get a file, if we can't we know we cannot
             // determine the size, so we'll pass this and handle it when we can get
             // the size
-            if (error.valid && fileObject) {
+            if (result.valid && fileObject) {
                 sizeCount += fileObject.size;
 
                 if (!this.validateSize(sizeCount)) {
-                    error = this.throwError('MAX_SIZE');
+                    result = this.throwError('MAX_SIZE');
                 }
             }
         });
 
-        return error;
+        return result;
     }
 
     /**

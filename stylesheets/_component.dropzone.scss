@@ -8,6 +8,7 @@ $dropzone-thumb-size: 4em;
 .dropzone {
     border: 2px dashed color(gray, light);
     border-radius: $border-radius;
+    color: color(text, base);
     padding: 1.25em;
     position: relative;
     text-align: center;
@@ -225,24 +226,6 @@ $dropzone-icon-rotation: 30deg;
 @include dropzone-flash(success);
 @include dropzone-flash(danger);
 
-.dropzone-success {
-    .dropzone__state {
-        animation: success-flash 750ms forwards;
-        background-color: color(success, light);
-    }
-}
-
-.dropzone-error {
-    .dropzone {
-        border: 2px solid color(danger);
-
-        .dropzone__state {
-            animation: danger-flash 750ms forwards;
-            background-color: color(danger, light);
-        }
-    }
-}
-
 .dropzone-window-active {
     .dropzone {
         border: 2px solid color(primary);
@@ -270,11 +253,30 @@ $dropzone-icon-rotation: 30deg;
     }
 }
 
-.dropzone-dropzone-active {
-    @extend .dropzone-window-active;
+.dropzone-success {
+    .dropzone__state {
+        animation: success-flash 750ms forwards;
+        background-color: color(success, light);
+    }
+}
 
+.dropzone-error {
     .dropzone {
-        background-color: color(primary, light);
+        border: 2px solid color(danger);
+        color: color(text, base);
+    }
+
+    .dropzone__help {
+        color: color(text, help);
+    }
+
+    .dropzone__icon {
+        color: color(grey, dark);
+    }
+
+    .dropzone__state {
+        animation: danger-flash 750ms forwards;
+        background-color: color(danger, light);
     }
 }
 
