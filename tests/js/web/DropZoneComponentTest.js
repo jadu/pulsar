@@ -72,7 +72,7 @@ describe('DropZoneComponent', () => {
         });
     });
 
-    describe('handleDropZoneDrop()', () => {
+    describe('handleDrop()', () => {
         it('should create a wrapper node', () => {
             const DZC = new DropZoneComponent($html);
 
@@ -80,7 +80,7 @@ describe('DropZoneComponent', () => {
 
             const node = $html.find('#dropzone_1')[0];
 
-            DZC.handleDropZoneDrop(file, node);
+            DZC.handleDrop(file, node);
             expect($html.find(`.${DZC.nodeClasses.wrapper}`).length).to.equal(1);
         });
 
@@ -92,7 +92,7 @@ describe('DropZoneComponent', () => {
 
             const node = $html.find('#dropzone_1')[0];
 
-            DZC.handleDropZoneDrop(file, node);
+            DZC.handleDrop(file, node);
             expect(spy).to.have.been.calledOnce;
             spy.restore();
         });

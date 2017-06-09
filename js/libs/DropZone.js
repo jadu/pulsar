@@ -21,7 +21,9 @@ export const defaults = {
     // dragged files left DropZone
     dropZoneLeave: function () {},
     // reject files
-    filesRejected: function () {}
+    filesRejected: function () {},
+    // removed file
+    fileRemoved: function () {}
 };
 
 export default class DropZone {
@@ -93,7 +95,7 @@ export default class DropZone {
             this.addFiles(files);
         // dropped on the window
         } else if (this.windowActive && !this.dropZoneActive) {
-            this.createCallback(this.options.windowDrop);
+            this.createCallback(this.options.windowDrop, { files: this.files, node: this.node });
         }
 
         // reset DropZone state§
@@ -253,6 +255,8 @@ export default class DropZone {
                 return file;
             }
         });
+
+        this.createCallback(this.options.fileRemoved);
     }
 
     /**

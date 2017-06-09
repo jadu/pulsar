@@ -14,7 +14,7 @@ class DropZoneComponent {
      * multiple instances of DropZone
      */
     init (options = {}) {
-        this.body = [...this.html.children].slice(1);
+        this.body = this.html.parentNode.body;
         this.$body = $(this.body);
 
         this.helperStateHtml = _.extend({}, {
@@ -43,15 +43,18 @@ class DropZoneComponent {
         this.callbacks = {
             // files have entered the window
             windowEnter: (opts) => {
-                // remove any state classes
-                this.resetBodyClass();
-
                 // add window enter class
                 window.requestAnimationFrame(() => {
                     if (opts.valid) {
-                        this.$body.addClass(this.interactionClasses.windowEnter);
+                        DropZoneComponent.setDropZoneBodyClass(
+                            this.body,
+                            [this.interactionClasses.windowEnter]
+                        );
                     } else {
-                        this.$body.addClass(this.interactionClasses.dropZoneError);
+                        DropZoneComponent.setDropZoneBodyClass(
+                            this.body,
+                            [this.interactionClasses.windowEnter, this.interactionClasses.dropZoneError]
+                        );
                     }
                 });
 
@@ -69,8 +72,8 @@ class DropZoneComponent {
             },
             // files have left the window
             windowLeave: (opts) => {
-                // remove any state classes
-                this.resetBodyClass();
+                // reset body class
+                DropZoneComponent.setDropZoneBodyClass(this.body);
 
                 // update helper text
                 this.updateHelperState(opts.instance, opts.instance.options.idleHtml);
@@ -85,15 +88,25 @@ class DropZoneComponent {
             },
             // files have entered the DropZone
             dropZoneEnter: (opts) => {
-                // remove any state classes
-                this.resetBodyClass();
-
                 // add DropZone enter class
                 window.requestAnimationFrame(() => {
                     if (opts.valid) {
-                        this.$body.addClass(this.interactionClasses.dropZoneEnter);
+                        DropZoneComponent.setDropZoneBodyClass(
+                            this.body,
+                            [
+                                this.interactionClasses.windowEnter,
+                                this.interactionClasses.dropZoneEnter
+                            ]
+                        );
                     } else {
-                        this.$body.addClass(this.interactionClasses.dropZoneError);
+                        DropZoneComponent.setDropZoneBodyClass(
+                            this.body,
+                            [
+                                this.interactionClasses.windowEnter,
+                                this.interactionClasses.dropZoneEnter,
+                                this.interactionClasses.dropZoneError
+                            ]
+                        );
                     }
                 });
 
@@ -111,13 +124,20 @@ class DropZoneComponent {
             },
             // files have left the DropZone
             dropZoneLeave: (opts) => {
-                // remove any state classes
-                this.resetBodyClass();
-
                 // add DropZone enter class
-                if (!opts.valid) {
+                if (opts.valid) {
                     window.requestAnimationFrame(() => {
-                        this.$body.addClass(this.interactionClasses.dropZoneError);
+                        DropZoneComponent.setDropZoneBodyClass(
+                            this.body,
+                            [this.interactionClasses.windowEnter]
+                        );
+                    });
+                } else {
+                    window.requestAnimationFrame(() => {
+                        DropZoneComponent.setDropZoneBodyClass(
+                            this.body,
+                            [this.interactionClasses.windowEnter, this.interactionClasses.dropZoneError]
+                        );
                     });
                 }
 
@@ -136,14 +156,14 @@ class DropZoneComponent {
             // files have been dropped on the dropzone
             dropZoneDrop: (opts) => {
                 // handle dropped files
-                this.handleDropZoneDrop(opts.files, opts.node, opts.instance);
-
-                // remove any state classes
-                this.resetBodyClass();
+                this.handleDrop(opts.files, opts.node, opts.instance);
 
                 // add DropZone drop class
                 window.requestAnimationFrame(() => {
-                    this.$body.addClass(this.interactionClasses.dropZoneSuccess);
+                    DropZoneComponent.setDropZoneBodyClass(
+                        this.body,
+                        [this.interactionClasses.dropZoneSuccess]
+                    );
                 });
 
                 // update helper text
@@ -156,8 +176,15 @@ class DropZoneComponent {
             },
             // files have been dropped on the window, but not the DropZone
             windowDrop: (opts) => {
-                this.resetBodyClass();
+                // reset body class
+                DropZoneComponent.setDropZoneBodyClass(this.body);
+
+                // handle dropped files
+                this.handleDrop(opts.files, opts.node, opts.instance);
+
+                // update helper text
                 this.updateHelperState(opts.instance, opts.instance.options.idleHtml);
+
                 if (options.windowDrop && typeof options.windowDrop === 'function') {
                     options.windowDrop(opts);
                 }
@@ -170,6 +197,16 @@ class DropZoneComponent {
                 // call any additional callbacks passed in via options
                 if (options.filesRejected && typeof options.filesRejected === 'function') {
                     options.filesRejected(opts);
+                }
+            },
+            // A file was manually removed from the DropZone
+            fileRemoved: (opts) => {
+                // reset body class
+                DropZoneComponent.setDropZoneBodyClass(this.body);
+
+                // call any additional callbacks passed in via options
+                if (options.fileRemoved && typeof options.fileRemoved === 'function') {
+                    options.fileRemoved(opts);
                 }
             }
         };
@@ -302,7 +339,7 @@ class DropZoneComponent {
      * @param {Element} node
      * @param {Object} instance
      */
-    handleDropZoneDrop (files, node, instance) {
+    handleDrop (files, node, instance) {
         let wrapper = node.querySelector(`.${this.nodeClasses.wrapper}`);
 
         // if we do not already have a wrapper, create one
@@ -394,16 +431,8 @@ class DropZoneComponent {
     throwValidationError (error, instance) {
         this.updateDropZoneValidation(error, instance);
 
-        // remove any state classes
-        this.resetBodyClass();
-
         // update helper text
         this.updateHelperState(instance, instance.options.idleHtml);
-
-        // add error class
-        window.requestAnimationFrame(() => {
-            this.$body.addClass(this.interactionClasses.dropZoneError);
-        });
     }
 
     /**
@@ -444,7 +473,6 @@ class DropZoneComponent {
         instance.removeFile(file);
         // update Html
         this.updateDropZoneFiles(instance.getFiles(), instance, wrapper);
-        this.resetBodyClass();
     }
 
     /**
@@ -484,20 +512,6 @@ class DropZoneComponent {
                     </div>                
                 </div>
             </div>`.replace(/>\s+</g, '><');
-    }
-
-    /**
-     * Remove any classes that were added as part of dropzone
-     */
-    resetBodyClass () {
-        const handlers = Object.keys(this.interactionClasses);
-        // create a string of classes that might need to be removed
-        const classes = handlers.reduce((classList, handler) => {
-            classList += `${this.interactionClasses[handler]} `;
-             return classList;
-        }, '').trim();
-
-        this.$body.removeClass(classes);
     }
 
     /**
@@ -577,20 +591,6 @@ class DropZoneComponent {
     }
 
     /**
-     * Reset all / selected DropZones
-     * @param {Number|boolean} id
-     */
-    reset (id = null) {
-        if (id === null) {
-            this.dropZoneInstances.forEach(this.resetDropZoneInstance.bind(this));
-        } else {
-            this.resetDropZoneInstance(this.dropZoneInstances[id]);
-        }
-
-        this.resetBodyClass();
-    }
-
-    /**
      * Reset the DropZone API instance
      * @param {DropZone} instance
      */
@@ -661,6 +661,18 @@ class DropZoneComponent {
         }
 
         return eventPath;
+    }
+
+    /**
+     * Reset body dropZone classes and add new state
+     * @param {Element} body
+     * @param {Array} classNames
+     * @return {String} new body className
+     */
+    static setDropZoneBodyClass (body, classNames = []) {
+        const cleanBodyClass = body.className.replace(/dropzone-[a-zA-Z0-9\-]+/g, '').trim();
+
+        body.className = classNames.length ? `${cleanBodyClass} ${classNames.join(' ')}` : cleanBodyClass;
     }
 }
 
