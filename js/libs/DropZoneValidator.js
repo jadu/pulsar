@@ -10,7 +10,7 @@ const validationText = {
 
 export default class DropZoneValidator {
     constructor (options) {
-        this.options = _.extend({}, defaults, { validationText }, options);
+        this.options = _.defaultsDeep({}, defaults, { validationText }, options);
     }
 
     /**
@@ -159,12 +159,6 @@ export default class DropZoneValidator {
                     valid: false,
                     code: 'UNKNOWN',
                     text: this.options.validationText.unknown
-                };
-            default:
-                return {
-                    valid: false,
-                    code: 'UNKNOWN',
-                    text: 'An error occurred'
                 };
         }
     }
