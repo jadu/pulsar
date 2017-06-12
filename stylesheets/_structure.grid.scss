@@ -1,36 +1,72 @@
-@import '../libs/susy/sass/susy';
+$columns:       12;
+$gutter_pc:     1;
 
-// Susy grid settings
-$susy: (
-    columns: 12,
-    container: 100%,
-    gutters: .25,
-);
+@mixin column($first: false) {
+    background-clip: padding-box !important;
+    box-sizing: border-box;
+    display: block;
+    float: left;
+    padding: 0;
+    @if $first {
+        margin-left: 0;
+    }
+    @else {
+        @include respond-min($screen-phone) {
+            margin-left: 0;
+        }
 
-.grid-container {
-    @include container;
+        @include respond-min($screen-tablet) {
+            margin-left: percentage($gutter_pc / 100);
+        }
+    }
+}
+
+@mixin span($num, $force: false, $first: false) {
+    $one_col: (100% - ($gutter_pc * ($columns - 1))) / $columns;
+    @include column($first);
+
+    @if $force == false {
+        @include respond-min($screen-phone) {
+            width: 100%;
+        }
+    }
+    @else {
+        width: ($one_col * ($num)) + ($gutter_pc * ($num - 1));
+    }
+
+    @include respond-min($screen-tablet) {
+        width: ($one_col * ($num)) + ($gutter_pc * ($num - 1));
+    }
+
+    @include respond-min($screen-desktop) {
+        width: ($one_col * $num) + ($gutter_pc * ($num - 1));
+    }
+}
+
+@mixin push($num) {
+    $one_col: (100% - ($gutter_pc * ($columns - 1))) / $columns;
+    margin-left: ($one_col * $num) + ($gutter_pc * ($num));
 }
 
 @for $i from 1 through 12 {
-    .grid-col--#{$i} {
-        @include respond-min($screen-phone) {
-            @include span($i);
-        }
+    .g-col--#{$i} {
+        @include span($i);
     }
+}
 
-    .grid-col-push--#{$i} {
-        @include respond-min($screen-phone) {
-            @include push($i of 12);
+.g-col--first {
+    margin-left: 0;
+}
+
+@for $i from 1 through 12 {
+    @include respond-min($screen-tablet) {
+        .g-col-push--#{$i} {
+            @include push($i);
         }
     }
 }
 
-.grid-col {
-    margin-top: gutter();
-
-    &:last-child {
-        @include respond-min($screen-phone) {
-            @include last;
-        }
-    }
+.g-col--example {
+    background-color: #efefef;
+    text-align: center;
 }

@@ -1,6 +1,7 @@
 .content-main {
     position: relative;
     display: table;
+    padding: 0 $gutter-width;
     table-layout: fixed;
     width: 100%;
 }
@@ -87,9 +88,9 @@
 }
 
 .tabs__content {
-    @include clear-fix;
-    display: table-cell;
-    padding: 0 20px;
+    // @include clear-fix;
+    // display: table-cell;
+    // padding: 0 20px;
     vertical-align: top;
     width: 100%;
 
@@ -105,6 +106,8 @@
 
 .tab__pane {
     margin-top: 24px;
+    // float: left;
+    width: 100%;
 }
 
 .tab__content {
@@ -192,14 +195,15 @@
     }
 
     .tab__sidebar {
+        @include span(3);
         display: none;
 
         @include respond-min($screen-desktop) {
           display: table-cell;
           float: right;
-          padding-left: 40px;
+          // padding-left: 40px;
           vertical-align: top;
-          width: 30%;
+          // width: 30%;
         }
 
         .no-js & {
@@ -216,7 +220,11 @@
 }
 
 .tab__container.has-sidebar .tab__content {
+    @include respond-min($screen-phone) {
+        @include span(12, false, true);
+    }
+
     @include respond-min($screen-desktop) {
-        width: 70%;
+        @include span(9, false, true);
     }
 }
