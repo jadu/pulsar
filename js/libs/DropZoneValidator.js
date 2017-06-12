@@ -5,7 +5,7 @@ const validationText = {
     whitelist: 'Unsupported file type',
     maxFiles: 'Maximum number files exceeded',
     maxSize: 'Maximum file size exceeded',
-    directory: 'You are unable to upload whole directories'
+    unknown: 'That file type is not recognized'
 };
 
 export default class DropZoneValidator {
@@ -30,10 +30,10 @@ export default class DropZoneValidator {
 
             fileCount++;
 
-            // 1. reject directories
+            // 1. reject items that do not have a type
             if (result.valid) {
                 if (file.type === '') {
-                    result = this.throwError('DIRECTORY');
+                    result = this.throwError('UNKNOWN');
                 }
             }
 
@@ -154,11 +154,11 @@ export default class DropZoneValidator {
                     code: 'MAX_SIZE',
                     text: `${this.options.validationText.maxSize} (${DropZone.formatBytes(this.options.maxSize)})`
                 };
-            case 'DIRECTORY':
+            case 'UNKNOWN':
                 return {
                     valid: false,
-                    code: 'DIRECTORY',
-                    text: `${this.options.validationText.directory}`
+                    code: 'UNKNOWN',
+                    text: this.options.validationText.unknown
                 };
             default:
                 return {
