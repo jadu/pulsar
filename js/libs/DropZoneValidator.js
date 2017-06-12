@@ -10,7 +10,9 @@ const validationText = {
 
 export default class DropZoneValidator {
     constructor (options) {
-        this.options = _.defaultsDeep({}, defaults, { validationText }, options);
+        // extending options.validationText (derived from html) and validationText defaults - as well as defaults and options from DropZone
+        // todo - this feels overly complicated, a possible solution is to pass the maxFiles, maxSize(etc) in as options, however we still need the default values to map to the DropZone defaults
+        this.options = _.extend({}, defaults, options, { validationText: _.extend({}, validationText, options.validationText) });
     }
 
     /**
@@ -30,7 +32,7 @@ export default class DropZoneValidator {
 
             fileCount++;
 
-            // 1. reject items that do not have a type
+            // 1. reject items that do not have a typejs/Drop
             if (result.valid) {
                 if (file.type === '') {
                     result = this.throwError('UNKNOWN');

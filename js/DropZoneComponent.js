@@ -33,11 +33,7 @@ class DropZoneComponent {
             fileNodeDesc: true,
             fileNodeName: true,
             fileNodeSize: true,
-            fileNodeType: true,
-            validationWhitelist: 'Unsupported file type',
-            validationMaxFiles: 'Maximum number files exceeded',
-            validationMaxSize: 'Maximum file size exceeded',
-            validationDirectory: 'You are unable to upload whole directories'
+            fileNodeType: true
         };
 
         this.callbacks = {
@@ -578,8 +574,8 @@ class DropZoneComponent {
             switch (option) {
                 case 'validationMaxFiles':
                 case 'validationWhitelist':
-                case 'validationDirectory':
                 case 'validationMaxSize':
+                case 'validationUnknown':
                     // todo - this could do with perhaps being re-thought about, this seems overly complicated
                     // this is converting 'validationMaxFiles' -> 'maxFiles' so the validator options can be
                     // set in the html e.g. 'data-validation-max-files="Too many files"'
