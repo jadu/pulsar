@@ -181,19 +181,21 @@ $dropzone-icon-rotation: 30deg;
 
 .dropzone__meta {
     padding: 0 ($dropzone-file-size * 2);
+}
 
-    p {
-        font-size: .75em;
-        line-height: 1;
-        margin-bottom: $dropzone-file-size / 2;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
+.dropzone__name,
+.dropzone__size,
+.dropzone__type {
+    font-size: .75em;
+    line-height: 1;
+    margin-bottom: $dropzone-file-size / 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 
-    p:last-of-type {
-        margin-bottom: 0;
-    }
+.dropzone__type {
+    margin-bottom: 0;
 }
 
 .dropzone__name {
