@@ -65,7 +65,7 @@ At phone/xsmall breakpoints, all columns will switch to 100% width by default.
 
 ![grid example]({{ site.baseurl }}/assets/image_examples/grid-4.png)
 
-Individual components or elements may override this behaviour by using setting the `force` parameter of the `span()` mixin to `true`.
+Individual components or elements may override this behaviour by setting the `force` parameter of the `span()` mixin to `true`.
 
 
 You can (and perhaps should) restrict your override to affect only the mobile breakpoint by using the `respond-max($screen-tablet)` breakpoint, for example:
