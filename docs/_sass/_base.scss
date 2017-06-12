@@ -10,14 +10,11 @@
 
 html,
 body {
-  margin: 0;
-  padding: 0;
-}
-
-html, body {
   font-family: $root-font-family !important;
   font-size: $root-font-size !important;
   line-height: $root-line-height !important;
+  margin: 0;
+  padding: 0;
 
   @media (min-width: $large-breakpoint) {
     font-size: $large-font-size !important;
