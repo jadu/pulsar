@@ -1,0 +1,164 @@
+.ui-report {
+    background-color: color(gray, off-white);
+    border-top: 1px solid color(border);
+    height: 100%; // relies on the 100% height of .content-main
+    padding: 16px $gutter-width;
+
+    &.tab__pane {
+        margin: -1px (-$gutter-width) 0;
+    }
+}
+
+.report {
+    background-color: color(white);
+    padding: $gutter-width;
+
+    &.is-loading > * {
+        opacity: .3;
+    }
+}
+
+.report__title {
+    clear: right;
+    margin-bottom: 2px;
+    width: 100%;
+
+    @include respond-min($screen-desktop) {
+        clear: none;
+        width: auto;
+    }
+}
+
+.report__info {
+    @extend %muted !optional;
+    clear: left;
+    float: left;
+}
+
+.report__settings {
+    float: right;
+    margin-bottom: $line-height-base;
+
+    @include respond-min($screen-desktop) {
+        margin-bottom: 0;
+    }
+}
+
+.report__timeframe {
+    display: block;
+    margin-bottom: 7px;
+    text-align: right;
+}
+
+.report__chart {
+    height: 240px;
+    margin-bottom: $line-height-base;
+}
+
+.report__data {
+    clear: left;
+    padding-top: $line-height-large;
+}
+
+.schedule {
+    border-bottom: 1px solid color(border);
+    display: table;
+    padding: 5px 10px 10px 20px;
+    width: 100%;
+
+    &:hover {
+        background-color: color(background, light);
+    }
+
+    &:last-child {
+        border-bottom: 0;
+    }
+}
+
+.schedule__title {
+    font-family: $font-family-regular;
+    line-height: $line-height-large;
+    margin-bottom: 0;
+}
+
+.schedule__actions {
+    float: right;
+
+    .btn {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+
+.schedule__detail {
+    color: color(gray, dark);
+    float: left;
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+
+    .label:not(:last-child) {
+        margin-right: 10px;
+    }
+}
+
+.schedule__item {
+    display: table-cell;
+
+    .tooltip {
+        white-space: nowrap;
+    }
+
+    &:nth-child(1) {
+        width: 40%;
+    }
+
+    &:nth-child(2) {
+        width: 60%;
+    }
+}
+
+.report-message {
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: -30px;
+    background-color: color(background, light);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .3);
+    border-top-left-radius: $border-radius-large;
+    border-bottom-right-radius: $border-radius-large;
+    margin: 0 auto;
+    padding: $gutter-width;
+    text-align: center;
+    width: 400px;
+    z-index: 1;
+
+    .loading {
+        display: block;
+        margin: 0 auto 20px;
+    }
+}
+
+.report__query {
+    background-color: #efefef;
+    border-radius: 0;
+    display: block;
+    line-height: 30px;
+    margin: 15px 0 10px;
+    padding: 10px $gutter-width;
+    width: 100%;
+
+    @include respond-min($screen-desktop) {
+        border-bottom-right-radius: $border-radius-large / 2;
+        border-top-right-radius: $border-radius-large / 2;
+        display: inline-block;
+        float: left;
+        margin-left: -20px;
+        width: auto;
+    }
+
+    > .label {
+        position: relative;
+        top: -1px;
+    }
+}

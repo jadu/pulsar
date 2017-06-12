@@ -38,7 +38,7 @@ There are three states of a progress list item
 
 | State                                      | Class                            |
 | ------------------------------------------ | -------------------------------- |
-| Complete (user has completed this step)    | `progress-list__item--completed` |
+| Complete (user has completed this step)    | `progress-list__item--complete` |
 | Current (the currently active step)        | `progress-list__item--current`   |
 | Disabled (user cannot yet access this step | `is-disabled`                    |
 

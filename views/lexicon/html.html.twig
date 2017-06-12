@@ -1,68 +1,19 @@
-{% extends '@pulsar/pulsar/layouts/base.html.twig' %}
-
-{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
-{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
-{% import '@pulsar/pulsar/v2/helpers/tabs.html.twig' as tabs %}
-{% import '@pulsar/pulsar/v2/helpers/flash.html.twig' as flash %}
-
-{% block title %}{{ parent() }}{% endblock %}
+{% extends '@pulsar/lexicon/base.html.twig' %}
 
 {% set heading = 'Form Helpers' %}
 
-{% set tab_buttons %}{% include 'lexicon/html/buttons.html.twig' %}{% endset %}
-{% set tab_link_buttons %}{% include 'lexicon/html/buttons-links.html.twig' %}{% endset %}
-{% set tab_badges %}{% include 'lexicon/html/badges.html.twig' %}{% endset %}
-{% set tab_labels %}{% include 'lexicon/html/labels.html.twig' %}{% endset %}
-
-{%
-    set nav_data = {
-        "1": {
-            "label": "Lexicon",
-            "href": '#lexicon',
-            "icon": "info-sign",
-            "items": {
-                "1.1": {
-                    "1.1.1": {
-                        "label": "Components",
-                        "href": "/app/app.php/lexicon"
-                    },
-                    "1.1.2": {
-                        "label": "Modules",
-                        "href": "/app/app.php/lexicon/modules.html.twig",
-                        "class": "is-active"
-                    },
-                    "1.1.3": {
-                        "label": "Patterns",
-                        "href": "/app/app.php/lexicon/patterns.html.twig"
-                    }
-                }
-            }
-        },
-        "2": {
-            "label": "HTML helpers",
-            "class": "is-active",
-            "href": "/app/app.php/lexicon/html.html.twig",
-            "icon": "code"
-        },
-        "3": {
-            "label": "Form helpers",
-            "class": "",
-            "href": "/app/app.php/lexicon/forms.html.twig",
-            "icon": "check"
-        },
-        "4": {
-            "label": "Tables",
-            "class": "",
-            "href": "/app/app.php/lexicon/tables.html.twig",
-            "icon": "table"
-        },
-        "10": {
-            "label": "Utilities",
-            "href": "/app/app.php/lexicon/utilities.html.twig",
-            "icon": "wrench"
-        }
-    }
-%}
+{% set tab_buttons %}
+    {% include 'lexicon/html/buttons.html.twig' %}
+{% endset %}
+{% set tab_link_buttons %}
+    {% include 'lexicon/html/buttons-links.html.twig' %}
+{% endset %}
+{% set tab_badges %}
+    {% include 'lexicon/html/badges.html.twig' %}
+{% endset %}
+{% set tab_labels %}
+    {% include 'lexicon/html/labels.html.twig' %}
+{% endset %}
 
 {%
     set tabs_content = [
@@ -88,14 +39,3 @@
         }
     ]
 %}
-
-{% block tabs_list %}
-    {{ tabs.list(tabs_content) }}
-{% endblock %}
-
-{% block tabs_content %}
-    {{ tabs.content(tabs_content) }}
-{% endblock %}
-
-{% block javascript %}
-{% endblock %}

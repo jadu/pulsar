@@ -1,0 +1,110 @@
+{% extends '@pulsar/pulsar/components/tab.html.twig' %}
+
+{%- block actions_left -%}
+    {{
+        html.actions_menu({
+            'items': [
+                [
+                    {
+                        'label': 'Save',
+                        'href': '/save',
+                        'icon': 'save'
+                    },
+                    {
+                        'label': 'Edit',
+                        'href': '/edit',
+                        'icon': 'pencil'
+                    }
+                ],
+                [
+                    {
+                        'label': 'Delete',
+                        'href': '/delete',
+                        'icon': 'remove'
+                    }
+                ]
+            ]
+        })
+    }}
+{%- endblock -%}
+
+{%- block actions_right -%}
+    {{
+        html.button({
+            'label': 'Primary Action',
+            'class': 'btn--primary'
+        })
+    }}
+{%- endblock -%}
+
+{% block tab_content %}
+    <h2 class="heading">Grid</h2>
+
+    <span class="g-col--1 g-col--first g-col--example">g-col--1</span>
+    <span class="g-col--11 g-col--example">g-col--11</span>
+    <br /><br />
+    <span class="g-col--2 g-col--first g-col--example">g-col--2</span>
+    <span class="g-col--10 g-col--example">g-col--10</span>
+    <br /><br />
+    <span class="g-col--3 g-col--first g-col--example">g-col--3 foo</span>
+    <span class="g-col--9 g-col--example">g-col--9</span>
+    <br /><br />
+    <span class="g-col--4 g-col--first g-col--example">g-col--4</span>
+    <span class="g-col--8 g-col--example">g-col--8</span>
+    <br /><br />
+    <span class="g-col--5 g-col--first g-col--example">g-col--5</span>
+    <span class="g-col--7 g-col--example">g-col--7</span>
+    <br /><br />
+    <span class="g-col--6 g-col--first g-col--example">g-col--6</span>
+    <span class="g-col--6 g-col--example">g-col--6</span>
+
+    <br /><br /><br />
+
+    <span class="g-col--4 g-col--first g-col--example">g-col--4</span>
+    <span class="g-col--4 g-col--example">g-col--4</span>
+    <span class="g-col--4 g-col--example">g-col--4</span>
+
+    <br /><br /><br />
+
+    <span class="g-col--1 g-col--first g-col--example">g-col--1</span>
+    <span class="g-col--1 g-col--example">g-col--1</span>
+    <span class="g-col--1 g-col--example">g-col--1</span>
+    <span class="g-col--1 g-col--example">g-col--1</span>
+    <span class="g-col--1 g-col--example">g-col--1</span>
+    <span class="g-col--1 g-col--example">g-col--1</span>
+    <span class="g-col--1 g-col--example">g-col--1</span>
+    <span class="g-col--1 g-col--example">g-col--1</span>
+    <span class="g-col--1 g-col--example">g-col--1</span>
+    <span class="g-col--1 g-col--example">g-col--1</span>
+    <span class="g-col--1 g-col--example">g-col--1</span>
+    <span class="g-col--1 g-col--example">g-col--1</span>
+
+    <br /><br />
+    <h2 class="heading">Pushed columns</h2>
+
+    <span class="g-col--2 g-col-push--1 g-col--first g-col--example">g-col-push--1</span>
+    <br /><br />
+    <span class="g-col--2 g-col-push--2 g-col--first g-col--example">g-col-push--2</span>
+    <br /><br />
+    <span class="g-col--2 g-col-push--3 g-col--first g-col--example">g-col-push--3</span>
+    <br /><br />
+    <span class="g-col--2 g-col-push--4 g-col--first g-col--example">g-col-push--4</span>
+
+    <br /><br />
+
+
+{% endblock tab_content %}
+{% block tab_sidebar %}
+
+
+    <h2 class="heading">{{ html.icon('info-sign', { 'class': 'sidebar-icon'}) }} Using colour</h2>
+
+    <p>Pulsar uses a standardised colour palette which incorporates the colours defined in Jadu’s styleguide.</p>
+
+
+    <p>Particular care should be taken to ensure that any colours that interact with each other meet the <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html">WCAG AA ratio for visual contrast</a> (4.5:1), which is especially important given that our main typeface (Proxima Nova) is rather thin.</p>
+
+    <p>Colours variables are defined in the <code>_palette.base.scss</code> file and can be used anywhere.</p>
+
+
+{% endblock tab_sidebar %}

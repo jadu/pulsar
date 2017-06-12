@@ -32,6 +32,17 @@ $danger-to-text-color: black;
     }
 }
 
+@each $state, $state-color, $state-color-alt in $state-colors {
+    %text--#{$state},
+    .text--#{$state} {
+        color: $state-color;
+    }
+}
+
 .is-new {
     background-color: color(new) !important;
+}
+
+.is-bold {
+    font-family: $font-family-regular;
 }

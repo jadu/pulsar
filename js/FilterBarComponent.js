@@ -11,26 +11,32 @@ FilterBarComponent.prototype.init = function () {
 
     this.$container = this.$html.find('.filter-bar');
 
-    // Create the filter add button
-    createFilterListButton(component);
+    this.$container.each(function() {
+        var $filterbar = $(this);
 
-    // Hide the form elements
-    hideFormControls(component);
+        // Create the filter add button
+        createFilterListButton($filterbar);
 
-    // Move save button
-    moveFormActions(component);
+        // Hide the form elements
+        hideFormControls($filterbar);
 
-    // Handlers
-    showFilterBar(component);
-    showAddFilterPopover(component);
-    addFilter(component);
-    removeFilter(component);
-    clearAllFilters(component);
+        // Move save button
+        moveFormActions($filterbar);
+
+        // Handlers
+        showFilterBar(component, $filterbar);
+        populateFilterList($filterbar);
+        showAddFilterPopover($filterbar);
+        addFilter($filterbar);
+        removeFilter($filterbar);
+        clearAllFilters($filterbar);
+    });
 };
 
-function showFilterBar (component) {
+function showFilterBar (component, $filterbar) {
+
     component.$html.on('click', '[data-ui="show-filter-bar"]', function(e) {
-        var $addFilterButton = component.$container.find('[data-ui="show-filter-list"]');
+        var $addFilterButton = $filterbar.find('[data-ui="show-filter-list"]');
 
         e.preventDefault();
 
@@ -38,12 +44,12 @@ function showFilterBar (component) {
         $addFilterButton.removeClass('display--none');
 
         // Show filter bar
-        component.$container.removeClass('display--none');
+        $filterbar.removeClass('display--none');
     });
 }
 
-function createFilterListButton (component) {
-    var $formGroups = component.$container.find('.form__group'),
+function createFilterListButton ($filterbar) {
+    var $formGroups = $filterbar.find('.form__group'),
         $addFilterButton,
         $filterList = $('<ul class="filter-bar__list"></ul>'),
         $filterLabelsWrapper = $('<div class="filter-bar__labels"></div>');
@@ -54,40 +60,40 @@ function createFilterListButton (component) {
     });
 
     // Build up list and mark up for Add filter button
-    $addFilterButton = $('<button class="btn filter-bar__add" role="button" data-ui="show-filter-list" data-toggle="popover" data-trigger="click" title="Filter by" data-html="true" data-container="body" data-placement="bottom" data-content=""><i class="icon-plus"></i></button>');
+    $addFilterButton = $('<button class="btn filter-bar__add" role="button" data-ui="show-filter-list" data-toggle="popover" data-trigger="click" title="Filter by" data-html="true" data-placement="bottom" data-content=""><i class="icon-plus"></i></button>');
     $addFilterButton.attr('data-content', $filterList[0].outerHTML);
 
     // Append button and label wrapper
-    $filterLabelsWrapper.appendTo(component.$container.find('fieldset'));
+    $filterLabelsWrapper.appendTo($filterbar.find('fieldset'));
     $addFilterButton.appendTo($filterLabelsWrapper);
 
     // Initialize popover
     $addFilterButton.popover();
 
     // Prevent default on button
-    component.$html.on('click', '[data-ui="show-filter-list"]', function(e) {
+    $filterbar.on('click', '[data-ui="show-filter-list"]', function(e) {
         e.preventDefault();
     });
 }
 
-function hideFormControls (component) {
-    component.$container
+function hideFormControls ($filterbar) {
+    $filterbar
         .find('.form__group')
         .addClass('display--none');
-    component.$container
+    $filterbar
         .find('.form__actions')
         .addClass('display--none');
 }
 
-function moveFormActions (component) {
-    var $formActions = component.$container.find('.form__actions'),
-        $fieldset = component.$container.find('fieldset');
+function moveFormActions ($filterbar) {
+    var $formActions = $filterbar.find('.form__actions'),
+        $fieldset = $filterbar.find('fieldset');
 
     $formActions.appendTo($fieldset);
     $formActions.addClass('display--none');
 }
 
-function showAddFilterPopover (component) {
+function showAddFilterPopover ($filterbar) {
     var filterTitle,
         filterId,
         select2Placeholder,
@@ -97,14 +103,14 @@ function showAddFilterPopover (component) {
         $popoverContent,
         $field,
         $select2,
-        $addFilterButton = component.$container.find('[data-ui="show-filter-list"]');
+        $addFilterButton = $filterbar.find('[data-ui="show-filter-list"]');
 
-    component.$html.on('click', '[data-ui="filter-item"]', function(e) {
+    $filterbar.on('click', '[data-ui="filter-item"]', function(e) {
         e.preventDefault();
 
         filterTitle = $(this).attr('data-filter-title');
         filterId = $(this).attr('data-filter-id');
-        $field = component.$container.find('#' + filterId);
+        $field = $filterbar.find('#' + filterId);
 
         // Hide the filter item in the list
         updateFilterList($addFilterButton, filterId, 'hide');
@@ -132,10 +138,10 @@ function showAddFilterPopover (component) {
                 .addClass('label--inverse');
 
             // Hide the filter list button if no links remaining
-            filterListButtonVisibility(component);
+            filterListButtonVisibility($filterbar);
 
             // Check if save button should be visible
-            formActionsVisibility(component);
+            formActionsVisibility($filterbar);
 
         } else {
 
@@ -143,7 +149,7 @@ function showAddFilterPopover (component) {
             $popoverContent = $('<div class="added-popover-content"></div>');
 
             // Move the field into the popover content
-            $formGroup = component.$container.find('#' + filterId).closest('.form__group');
+            $formGroup = $filterbar.find('#' + filterId).closest('.form__group');
             $formGroup.appendTo($popoverContent);
             $formGroup.addClass('form__group--flush');
 
@@ -158,7 +164,7 @@ function showAddFilterPopover (component) {
             $popoverControls.insertAfter($formGroup);
 
             // Refresh the select2
-            $select2 = $popoverContent.find('.js-select2');
+            $select2 = $popoverContent.find('.js-select2:not([data-init="false"])');
             select2Placeholder = $select2.attr('placeholder');
             $select2.select2({placeholder: select2Placeholder});
 
@@ -189,10 +195,10 @@ function showAddFilterPopover (component) {
                 .attr('aria-disabled', true);
 
             // Hide the filter list button if no links remaining
-            filterListButtonVisibility(component);
+            filterListButtonVisibility($filterbar);
 
             // Focus on field to avoid unnecessary extra click
-            if ($field.hasClass('js-select2')) {
+            if ($field.hasClass('js-select2') && $field.data('init') !== false) {
                 $field.select2('open');
             } else {
                 /* istanbul ignore next: difficult to test due to generated popover content */
@@ -221,14 +227,14 @@ function showAddFilterPopover (component) {
 }
 
 /* istanbul ignore next: difficult to test due to field and form controls being inside generated popover content */
-function addFilter (component) {
-    component.$html.on('click', '[data-ui="add-filter"]', function(e) {
+function addFilter ($filterbar) {
+    $filterbar.on('click', '[data-ui="add-filter"]', function(e) {
         var $field = $(this).closest('.added-popover-content').find('.form__control'),
             $popover = $(this).closest('.popover'),
             $formGroup = $popover.find('.form__group'),
             $label = $popover.prev('.label'),
-            $addFilterButton = component.$container.find('[data-ui="show-filter-list"]'),
-            $legend = component.$container.find('form fieldset legend'),
+            $addFilterButton = $filterbar.find('[data-ui="show-filter-list"]'),
+            $legend = $filterbar.find('form fieldset legend'),
             values,
             valueForLabel = null,
             filterId;
@@ -281,17 +287,17 @@ function addFilter (component) {
             .attr('aria-disabled', false);
 
         // Check if save button should be visible
-        formActionsVisibility(component);
+        formActionsVisibility($filterbar);
     });
 }
 
-function removeFilter (component) {
-    var $addFilterButton = component.$container.find('[data-ui="show-filter-list"]');
+function removeFilter ($filterbar) {
+    var $addFilterButton = $filterbar.find('[data-ui="show-filter-list"]');
 
-    component.$html.on('click', '[data-ui="filter-cancel"]', function(e) {
+    $filterbar.on('click', '[data-ui="filter-cancel"]', function(e) {
         var filterId = $(this).attr('data-filter-id'),
-            $legend = component.$container.find('form fieldset legend'),
-            $field = component.$container.find('#' + filterId),
+            $legend = $filterbar.find('form fieldset legend'),
+            $field = $filterbar.find('#' + filterId),
             $formGroup = $field.closest('.form__group'),
             $label;
 
@@ -340,15 +346,15 @@ function removeFilter (component) {
         $addFilterButton.popover('hide');
 
         // Check if button should be visible
-        filterListButtonVisibility(component);
+        filterListButtonVisibility($filterbar);
 
         // Check if save button should be visible
-        formActionsVisibility(component);
+        formActionsVisibility($filterbar);
     });
 }
 
-function filterListButtonVisibility (component) {
-    var $addFilterButton = component.$container.find('[data-ui="show-filter-list"]'),
+function filterListButtonVisibility ($filterbar) {
+    var $addFilterButton = $filterbar.find('[data-ui="show-filter-list"]'),
         addFilterList,
         $addFilterList;
 
@@ -362,37 +368,37 @@ function filterListButtonVisibility (component) {
     }
 }
 
-function formActionsVisibility (component) {
-    var $formActions = component.$container.find('.form__actions');
+function formActionsVisibility ($filterbar) {
+    var $formActions = $filterbar.find('.form__actions');
 
-    if (component.$container.find('.label').length) {
+    if ($filterbar.find('.label').length) {
         $formActions.removeClass('display--none');
     } else {
         $formActions.addClass('display--none');
     }
 }
 
-function clearAllFilters (component) {
-    var $addFilterButton = component.$container.find('[data-ui="show-filter-list"]');
+function clearAllFilters ($filterbar) {
+    var $addFilterButton = $filterbar.find('[data-ui="show-filter-list"]');
 
-    component.$html.on('click', '[data-ui="clear-all-filters"]', function(e) {
+    $filterbar.on('click', '[data-ui="clear-all-filters"]', function(e) {
 
         e.preventDefault();
 
         // Close filter bar
-        component.$container.addClass('display--none');
+        $filterbar.addClass('display--none');
 
         // Remove all labels
-        component.$container.find('.label').remove();
+        $filterbar.find('.label').remove();
 
         // Reset filter list
         updateFilterList($addFilterButton, null, 'reset');
 
         // Hide form actions
-        formActionsVisibility(component);
+        formActionsVisibility($filterbar);
 
         // Reset form
-        component.$container.find('form').trigger('reset');
+        $filterbar.find('form').trigger('reset');
     });
 }
 
@@ -416,6 +422,49 @@ function updateFilterList ($addFilterButton, filterId, visibility) {
     }
 
     $addFilterButton.attr('data-content', $addFilterList[0].outerHTML);
+}
+
+/**
+ *   Fired on load, this reads the values of the hidden filters form and
+ *   populates the filterbar with the required labels.
+**/
+function populateFilterList ($filterbar) {
+
+    var $formGroups = $filterbar.find('.form__group'),
+        $labelContainer = $filterbar.find('.filter-bar__labels'),
+        $addFilterButton = $filterbar.find('[data-ui="show-filter-list"]');
+
+    $formGroups.each(function() {
+        var $this = $(this),
+            $filterField = $this.find('.form__control'),
+            filterId = $filterField.attr('id'),
+            filterLabel = $this.find('.control__label').text().trim(),
+            filterValue = $filterField.val();
+
+        if ($filterField.hasClass('select')) {
+            filterValue = $(':selected', $filterField).text();
+        }
+
+        if ($filterField[0].type === 'checkbox') {
+            if ($filterField.prop('checked') === true) {
+                filterValue = ' ';
+            } else {
+                filterValue = '';
+            }
+        } else {
+            filterLabel = filterLabel + ': ';
+        }
+
+        if (filterValue !== '' && filterValue !== null) {
+            $labelContainer.prepend('<span class="label label--large label--inverse" data-filter-id="' + filterId + '">' + filterLabel + filterValue + '<a data-ui="filter-cancel" class="btn remove-button" data-filter-id="'+ filterId +'"><i class="icon-remove-sign"></i></a></span>');
+
+            // Hide the filter item in the list
+            updateFilterList($addFilterButton, filterId, 'hide');
+
+            // Show the filterbar
+            $filterbar.removeClass('display--none');
+        }
+    });
 }
 
 module.exports = FilterBarComponent;

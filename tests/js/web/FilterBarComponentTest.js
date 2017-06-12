@@ -25,7 +25,7 @@ describe('FilterBar component', function () {
 			'			<div class="form__group">' +
 			'				<label for="size" class="control__label">Size</label>' +
 			'				<div class="controls">' +
-			'					<select id="size" placeholder="Choose one" class="form__control js-select2">' +
+			'					<select id="size" placeholder="Choose one" class="form__control select  js-select2">' +
 			'						<option value=""></option>' +
 			'						<option value="small">Small</option>' +
 			'						<option value="medium">Medium</option>' +
@@ -200,7 +200,7 @@ describe('FilterBar component', function () {
 	        this.$showFilterListButton = this.$container.find('[data-ui="show-filter-list"]');
 		});
 
-		it('should prevent the default bahavior', function () {
+		it('should prevent the default behavior', function () {
 			this.$popoverFilterLink = this.$container.find('[data-filter-id="colour"]');
 			this.$popoverFilterLink.trigger(this.clickEvent);
 
@@ -485,6 +485,29 @@ describe('FilterBar component', function () {
 
 		it('should reset the form', function () {
 			expect(this.resetForm).to.have.been.called;
+		});
+	});
+
+	describe('when a filter form has a value on page load', function() {
+		beforeEach(function() {
+			this.$container.find('#foo').val('some value');
+			this.$container.find('#inStock').prop('checked', 'checked');
+			this.$container.find('#size').val('medium');
+
+			this.filterBar.init();
+
+		});
+
+		it('should add a label to the filterbar for text inputs', function () {
+			expect(this.$container.find('span[data-filter-id="foo"]')).to.have.length(1);
+		});
+
+		it('should add a label to the filterbar for checkbox inputs', function () {
+			expect(this.$container.find('span[data-filter-id="inStock"]')).to.have.length(1);
+		});
+
+		it('should add a label to the filterbar for select inputs', function () {
+			expect(this.$container.find('span[data-filter-id="size"]')).to.have.length(1);
 		});
 	});
 });

@@ -1,7 +1,0 @@
-{{
-    form.checkbox({
-        'label': 'Default checkbox',
-        'id': 'foo', 
-        'name': 'bar'
-    })
-}}

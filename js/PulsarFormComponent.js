@@ -5,6 +5,7 @@ var $ = require('jquery');
 require('../libs/pikaday/plugins/pikaday.jquery');
 require('../libs/select2/dist/js/select2.min');
 require('../libs/spectrum/spectrum');
+var moment = require('../libs/moment/moment');
 
 function PulsarFormComponent(html) {
 
@@ -24,7 +25,7 @@ PulsarFormComponent.prototype.init = function () {
         format: 'DD/MM/YYYY'
     });
 
-    component.$select2 = this.$html.find('.js-select2');
+    component.$select2 = this.$html.find('.js-select2:not([data-init="false"])');
 
     component.$select2.each(function() {
         function formatOption(data) {

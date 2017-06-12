@@ -70,6 +70,7 @@ build:
 	@ echo "\n${CHECK} Done"
 
 	@ echo "${HR}\nCopy Proxima Nova (if available)...${HR}"
+	@ mkdir -p ./fonts
 	@ touch ./fonts/_config.fonts.scss
 	@ cp -r ../pulsar-fonts/src/* ./fonts 2>/dev/null || :
 	@ git update-index --skip-worktree fonts/_config.fonts.scss

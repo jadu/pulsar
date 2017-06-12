@@ -34,6 +34,7 @@ var $                     = require('jquery'),
     dt_select     = require('datatables.net-select')(window, $),
 
     ButtonComponent = require('./ButtonComponent'),
+    DisableUiComponent = require('./DisableUiComponent'),
     HelpTextComponent = require('./HelpTextComponent'),
     FilterBarComponent = require('./FilterBarComponent'),
     FlashMessageComponent = require('./FlashMessageComponent'),
@@ -44,8 +45,11 @@ var $                     = require('jquery'),
     PulsarUIComponent = require('./PulsarUIComponent'),
     SignInComponent = require('./area/signin/signin');
 
+    require('jstree');
+
 module.exports = {
     ButtonComponent: ButtonComponent,
+    DisableUiComponent: DisableUiComponent,
     HelpTextComponent: HelpTextComponent,
     FilterBarComponent: FilterBarComponent,
     FlashMessageComponent: FlashMessageComponent,

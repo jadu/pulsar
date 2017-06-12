@@ -1,42 +1,10 @@
-{% extends '@pulsar/pulsar/layouts/base.html.twig' %}
+{% extends '@pulsar/lexicon/base.html.twig' %}
 
-{% import '@pulsar/pulsar/v2/helpers/flash.html.twig' as flash %}
-{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
-{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
-{% import '@pulsar/pulsar/v2/helpers/tabs.html.twig' as tabs %}
+{% set heading = 'Pulsar Lexicon' %}
 
-{% block title %}{{ parent() }}{% endblock %}
-
-{% set heading = 'Components' %}
-
-{%
-    set breadcrumbs = [
-        {'label': 'Bread', 'href': '#'},
-        {'label': 'Crumb', 'href': '#'},
-        {'label': 'Trail', 'href': '#'}
-    ]
-%}
-
-{%
-    set actions_menu = [
-        html.link({
-          'label': html.icon('save') ~ ' Save',
-          'href': '#save'
-        }),
-        html.link({
-          'label': html.icon('print') ~ ' Print',
-          'href': '#print'
-        }),
-        html.divider(),
-        html.link({
-          'label': html.icon('trash') ~ ' Delete',
-          'href': '#delete',
-          'class': 'link--danger disabled',
-          'attributes': 'data-on-datagrid-item-selected=enable'
-        })
-    ]
-%}
-
+{% set tab_grid %}
+    {% include 'lexicon/tabs/grid.html.twig' %}
+{% endset %}
 {% set tab_buttons %}
     {% include 'lexicon/tabs/buttons_labels.html.twig' %}
 {% endset %}
@@ -84,59 +52,13 @@
 {% endset %}
 
 {%
-    set nav_data = {
-        "1": {
-            "label": "Lexicon",
-            "class": "is-active",
-            "href": '#lexicon',
-            "icon": "info-sign",
-            "items": {
-                "1.1": {
-                    "1.1.1": {
-                        "label": "Components",
-                        "href": "/app/app.php/lexicon",
-                        "class": "is-active"
-                    },
-                    "1.1.2": {
-                        "label": "Modules",
-                        "href": "/app/app.php/lexicon/modules.html.twig"
-                    },
-                    "1.1.3": {
-                        "label": "Patterns",
-                        "href": "/app/app.php/lexicon/patterns.html.twig"
-                    }
-                }
-            }
-        },
-        "2": {
-            "label": "HTML helpers",
-            "class": "",
-            "href": "/app/app.php/lexicon/html.html.twig",
-            "icon": "code"
-        },
-        "3": {
-            "label": "Form helpers",
-            "class": "",
-            "href": "/app/app.php/lexicon/forms.html.twig",
-            "icon": "check"
-        },
-        "4": {
-            "label": "Tables",
-            "class": "",
-            "href": "/app/app.php/lexicon/tables.html.twig",
-            "icon": "table"
-        },
-        "10": {
-            "label": "Utilities",
-            "class": "",
-            "href": "/app/app.php/lexicon/utilities.html.twig",
-            "icon": "wrench"
-        }
-    }
-%}
-
-{%
     set tabs_content = [
+        {
+          "id"    : "grid",
+          "label" : "Grid",
+          "href"  : "?tab=grid",
+          "src"   : tab_grid
+        },
         {
           "id"    : "colours",
           "label" : "Colours",
@@ -223,18 +145,3 @@
         }
     ]
 %}
-
-{% block tabs_list %}
-    {{ tabs.list(tabs_content) }}
-{% endblock %}
-
-{% block tabs_content %}
-    {{ tabs.content(tabs_content) }}
-{% endblock %}
-
-{% block notifications %}
-    {% include '@pulsar/lexicon/includes/notifications.html.twig' %}
-{% endblock %}
-
-{% block javascript %}
-{% endblock %}

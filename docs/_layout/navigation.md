@@ -4,7 +4,7 @@ title: Navigation
 category: Layout
 ---
 
-![navigation example](/assets/image_examples/navigation.png)
+![navigation example]({{ site.baseurl }}/assets/image_examples/navigation.png)
 
 Creates the main Pulsar navigation from a JSON object.
 

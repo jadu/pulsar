@@ -1,0 +1,109 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
+
+{%- block actions_left -%}
+    {{
+        html.actions_menu({
+            'items': [
+                [
+                    {
+                        'label': 'New Filter',
+                        'href': '#',
+                        'icon': 'filter',
+                        'data-ui': 'show-filter-bar'
+                    }
+                ]
+            ]
+        })
+    }}
+{%- endblock -%}
+
+{%- block actions_right -%}
+    {{
+        html.button({
+            'label': 'Primary Action',
+            'class': 'btn--primary'
+        })
+    }}
+{%- endblock -%}
+
+{% block tab_content %}
+
+    <div class="filter-bar display--none">
+        {{ form.create() }}
+            {{ form.fieldset_start({'legend': 'Filter by'}) }}
+
+                {{
+                    form.select2({
+                        'label': 'Colour',
+                        'id': 'colour',
+                        'multiple': true,
+                        'placeholder': 'Choose one or more',
+                        'options': {
+                            'colour_red': 'Red',
+                            'colour_blue': 'Blue'
+                        }
+                    })
+                }}
+
+                {{
+                    form.select2({
+                        'label': 'Size',
+                        'id': 'size',
+                        'placeholder': 'Choose one',
+                        'options': {
+                            '': '',
+                            'small': 'Small',
+                            'medium': 'Medium',
+                            'large': 'Large'
+                        }
+                    })
+                }}
+
+                {{
+                    form.text({
+                        'label': 'Text field example',
+                        'id': 'foo'
+                    })
+                }}
+
+                {{
+                    form.date({
+                        'label': 'Added from',
+                        'id': 'addedFrom',
+                    })
+                }}
+
+                {{
+                    form.date({
+                        'label': 'Added to',
+                        'id': 'addedTo'
+                    })
+                }}
+
+                {{
+                    form.checkbox({
+                        'label': 'In stock',
+                        'id': 'inStock'
+                    })
+                }}
+
+            {{ form.fieldset_end() }}
+        {{
+            form.end({
+                'actions': [
+                    form.submit({
+                        'label': 'Save',
+                        'class': 'btn--primary'
+                    }),
+                    html.link({
+                        'label': 'Clear',
+                        'class': 'btn btn--naked',
+                        'href': '#',
+                        'data-ui': 'clear-all-filters'
+                    })
+                ]
+            })
+        }}
+    </div>
+
+{% endblock tab_content %}
