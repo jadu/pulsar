@@ -23,6 +23,7 @@ $gutter_pc:     1;
 
 @mixin span($num, $force: false, $first: false) {
     $one_col: (100% - ($gutter_pc * ($columns - 1))) / $columns;
+    $span_width: ($one_col * ($num)) + ($gutter_pc * ($num - 1));
     @include column($first);
 
     @if $force == false {
@@ -31,15 +32,15 @@ $gutter_pc:     1;
         }
     }
     @else {
-        width: ($one_col * ($num)) + ($gutter_pc * ($num - 1));
+        width: $span_width;
     }
 
     @include respond-min($screen-tablet) {
-        width: ($one_col * ($num)) + ($gutter_pc * ($num - 1));
+        width: $span_width;
     }
 
     @include respond-min($screen-desktop) {
-        width: ($one_col * $num) + ($gutter_pc * ($num - 1));
+        width: $span_width;
     }
 }
 
