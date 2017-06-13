@@ -108,7 +108,7 @@ export default class DropZone {
      * @param {Object} meta
      */
     addFiles (files, meta = {}) {
-        const { valid, text } = this.validator.validate(files, this.files.length, this.size);
+        const { valid, text } = this.validator.validate(files, this.getFiles().length, this.getSize());
 
         if (valid) {
             // add a valid set of files to the file list
@@ -142,7 +142,7 @@ export default class DropZone {
             this.handleEnter(event.dataTransfer.items);
         } else if (this.fileOnWindow(event) && !this.windowActive) {
             const files = event.dataTransfer.items;
-            const { valid, text } = this.validator.validate(files, this.getFiles().length, this.size);
+            const { valid, text } = this.validator.validate(files, this.getFiles().length, this.getSize());
 
             this.createCallback(this.options.windowEnter, { valid, text });
             this.windowActive = true;
@@ -170,7 +170,7 @@ export default class DropZone {
      * @param {DataTransferItemList} files
      */
     handleEnter (files) {
-        const { valid, text } = this.validator.validate(files, this.getFiles().length, this.size);
+        const { valid, text } = this.validator.validate(files, this.getFiles().length, this.getSize());
 
         this.createCallback(this.options.dropZoneEnter, { valid, text });
         this.dropZoneActive = true;
@@ -181,7 +181,7 @@ export default class DropZone {
      * @param {DataTransferItemList} files
      */
     handleLeave (files) {
-        const { valid, text } = this.validator.validate(files, this.getFiles().length, this.size);
+        const { valid, text } = this.validator.validate(files, this.getFiles().length, this.getSize());
 
         this.createCallback(this.options.dropZoneLeave, { valid, text });
         this.dropZoneActive = false;
@@ -220,6 +220,14 @@ export default class DropZone {
      */
     getFiles (index = null) {
         return index === null ? this.files : this.files[index];
+    }
+
+    /**
+     * Return total size of files on the DropZone
+     * @return {Number}
+     */
+    getSize () {
+        return this.size;
     }
 
     /**
