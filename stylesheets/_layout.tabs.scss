@@ -88,9 +88,6 @@
 }
 
 .tabs__content {
-    // @include clear-fix;
-    // display: table-cell;
-    // padding: 0 20px;
     vertical-align: top;
     width: 100%;
 
@@ -106,7 +103,6 @@
 
 .tab__pane {
     margin-top: 24px;
-    // float: left;
     width: 100%;
 }
 
@@ -201,9 +197,7 @@
         @include respond-min($screen-desktop) {
           display: table-cell;
           float: right;
-          // padding-left: 40px;
           vertical-align: top;
-          // width: 30%;
         }
 
         .no-js & {
