@@ -564,14 +564,13 @@ class DropZoneComponent {
 
     /**
      * Validate files against a DropZone instance
-     * @param {Array} files
+     * @param {FileList} files
      * @param {String} id
      */
     validateFiles (files, id) {
         const dropZone = this.getDropZoneById(id);
         return dropZone.validator.validate(
-            // create an array of "raw" files that the validator expects
-            files.map(file => file.file),
+            files,
             // we need this subtraction because the validateFiles public API method will be invoked _after_
             // a file has been dropped on the DropZone
             (dropZone.getFiles().length - files.length),
