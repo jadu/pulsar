@@ -1,10 +1,9 @@
-// scss-lint:disable all
 .rules {
     overflow: hidden;
     position: relative;
 
-    &:before {
-        background: #DEDEDE;
+    &::before {
+        background: #dedede;
         content: '';
         height: 85%;
         left: 55px;
@@ -20,7 +19,7 @@
 
     .remove__control {
         border: 0;
-        color: #999999 !important;
+        color: #999 !important;
         position: absolute;
         text-decoration: none;
         top: 10px;
@@ -28,7 +27,7 @@
     }
 
     [href].conditional-block__link--when {
-        color: #1292C9;
+        color: #1292c9;
     }
 
     [href].conditional-block__link--and {
@@ -36,7 +35,7 @@
     }
 
     [href].conditional-block__link--then {
-        color: #459A8C;
+        color: #459a8c;
     }
 }
 
@@ -46,9 +45,8 @@
 
 .rule-block {
     background: color(white);
-    border: 1px solid #D1D1D1;
-    box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.10);
-    //overflow: hidden;
+    border: 1px solid #d1d1d1;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
     padding: 0;
     position: relative;
     width: 100%;
@@ -85,12 +83,12 @@
 }
 
 .rule-block__header {
-    background: #F5F5F5;
-    border-bottom: 1px solid #D1D1D1;
+    background: #f5f5f5;
+    border-bottom: 1px solid #d1d1d1;
     display: block;
 
     @include respond-min($screen-tablet) {
-        border-right: 1px solid #D1D1D1;
+        border-right: 1px solid #d1d1d1;
         border: 0;
         display: table-cell;
         height: 100%;
@@ -102,18 +100,18 @@
 }
 
 .rule-block__header--when {
-    box-shadow: inset 4px 0px 0px 0px #128FC5;
-    color: #128FC5;
+    box-shadow: inset 4px 0 0 0 #128fc5;
+    color: #128fc5;
 }
 
 .rule-block__header--then {
-    box-shadow: inset 4px 0px 0px 0px #459A8C;
-    color: #459A8C;
+    box-shadow: inset 4px 0 0 0 #459a8c;
+    color: #459a8c;
 }
 
 .rule-block__header--and,
-.rule-block__header--or{
-    box-shadow: inset 4px 0px 0px 0px #646464;
+.rule-block__header--or {
+    box-shadow: inset 4px 0 0 0 #646464;
     color: #646464;
 }
 
@@ -162,12 +160,10 @@
 }
 
 .conditional-block--flush {
-    // margin: 24px 0 24px 58px;
-    margin: 24px 0 0 58px; // seeing whether layout still works without bottom margin
+    margin: 24px 0 0 58px;
 
     @include respond-min($screen-tablet) {
-        // margin: 24px 0 24px 68px;
-        margin: 24px 0 0 68px; // seeing whether layout still works without bottom margin
+        margin: 24px 0 0 68px;
     }
 }
 
@@ -175,8 +171,12 @@
     margin: 0 0 24px 75px;
     padding-top: 14px;
 
-    &:before {
-        background: #DEDEDE;
+    @include respond-min($screen-tablet) {
+        margin: 0 0 14px 80px;
+    }
+
+    &::before {
+        background: #dedede;
         content: '';
         height: 26px;
         left: 0;
@@ -185,10 +185,6 @@
         width: 4px;
         z-index: 1;
     }
-
-    @include respond-min($screen-tablet) {
-        margin: 0 0 14px 80px;
-    }
 }
 
 .conditional-block__link {
@@ -196,7 +192,7 @@
     font-size: 1.2em;
 
     i {
-        color: #DEDEDE;
+        color: #dedede;
         display: inline-block;
         margin-right: 5px;
         text-decoration: none;
@@ -254,8 +250,6 @@ td.table__form .rules + .form__group:last-of-type {
 .rule__actions__container .remove-button:hover {
     vertical-align: middle;
 }
-
-// scss-lint:enable all
 
 // Change default form layout styling
 .rule-block__control {
