@@ -579,6 +579,20 @@ class DropZoneComponent {
     }
 
     /**
+     * Reset all / selected DropZones
+     * @param {Number|boolean} id
+     */
+    reset (id = null) {
+        if (id === null) {
+            this.dropZoneInstances.forEach(this.resetDropZoneInstance.bind(this));
+        } else {
+            this.resetDropZoneInstance(this.dropZoneInstances[id]);
+        }
+
+        DropZoneComponent.setDropZoneBodyClass(this.body);
+    }
+
+    /**
      * Build options object for the DropZoneValidator
      * This allows us to define the validator options in the HTML
      * @param {Object} options
