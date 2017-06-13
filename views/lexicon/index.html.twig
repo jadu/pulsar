@@ -2,6 +2,9 @@
 
 {% set heading = 'Pulsar Lexicon' %}
 
+{% set tab_grid %}
+    {% include 'lexicon/tabs/grid.html.twig' %}
+{% endset %}
 {% set tab_buttons %}
     {% include 'lexicon/tabs/buttons_labels.html.twig' %}
 {% endset %}
@@ -50,6 +53,12 @@
 
 {%
     set tabs_content = [
+        {
+          "id"    : "grid",
+          "label" : "Grid",
+          "href"  : "?tab=grid",
+          "src"   : tab_grid
+        },
         {
           "id"    : "colours",
           "label" : "Colours",

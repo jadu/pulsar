@@ -10,17 +10,14 @@
 
 html,
 body {
+  font-family: $root-font-family !important;
+  font-size: $root-font-size !important;
+  line-height: $root-line-height !important;
   margin: 0;
   padding: 0;
-}
-
-html {
-  font-family: $root-font-family;
-  font-size: $root-font-size;
-  line-height: $root-line-height;
 
   @media (min-width: $large-breakpoint) {
-    font-size: $large-font-size;
+    font-size: $large-font-size !important;
   }
 }
 

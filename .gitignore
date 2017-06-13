@@ -17,6 +17,7 @@
 /css
 /dist
 /docs/_site
+/docs/.sass-cache
 /tests/logs
 /css
 libs/livereload-js
