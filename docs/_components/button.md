@@ -10,11 +10,11 @@ Pulsar buttons to perform actions, submit forms and link to things. See the [but
 
 {% code_example html_helpers/button %}
 
-<div><p data-height="65" data-theme-id="24005" data-slug-hash="PGNYKw" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/PGNYKw/">docs - html - primary button</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script></div>
+<div class="pulsar-example">
+    <button class="btn btn--primary">Button</button>
+</div>
 
 ## Options
-
 
 Option  | Type   | Description
 ------- | ------ | -------------------------------------------------------------
@@ -34,19 +34,33 @@ Regular buttons offer the best browser support and can also contain icons and ba
 
 {% code_example html_helpers/button %}
 
+<div class="pulsar-example">
+    <button class="btn btn--primary">Button</button>
+</div>
+
 Input buttons can be used if you really, really need to
 
 {% code_example html_helpers/button-input %}
+
+<div class="pulsar-example">
+    <input type="button" class="btn" value="Button" />
+</div>
 
 Submit buttons should only be used to submit forms
 
 {% code_example html_helpers/button-submit %}
 
+<div class="pulsar-example">
+    <input type="submit" class="btn" value="Button" />
+</div>
+
 A link that looks like a button, and smells like a button
 
 {% code_example html_helpers/button-link %}
 
-<div><p data-height="65" data-theme-id="24005" data-slug-hash="BLjXrg" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/BLjXrg/">docs - html - button types</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script></div>
+<div class="pulsar-example">
+    <a href="http://myurl.com" class="btn">Button</a>
+</div>
 
 ## Variations
 
