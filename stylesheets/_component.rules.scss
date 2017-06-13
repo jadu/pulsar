@@ -1,0 +1,266 @@
+.rules {
+    overflow: hidden;
+    position: relative;
+
+    &::before {
+        background: #dedede;
+        content: '';
+        height: 85%;
+        left: 55px;
+        position: absolute;
+        top: 1em;
+        width: 4px;
+        z-index: 1;
+
+        @include respond-min($screen-tablet) {
+            left: 65px;
+        }
+    }
+
+    .remove__control {
+        border: 0;
+        color: #999 !important;
+        position: absolute;
+        text-decoration: none;
+        top: 10px;
+        right: 10px;
+    }
+
+    [href].conditional-block__link--when {
+        color: #1292c9;
+    }
+
+    [href].conditional-block__link--and {
+        color: #646464;
+    }
+
+    [href].conditional-block__link--then {
+        color: #459a8c;
+    }
+}
+
+.rule-block-wrapper ~ .rule-block-wrapper {
+    margin-top: -1px;
+}
+
+.rule-block {
+    background: color(white);
+    border: 1px solid #d1d1d1;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
+    padding: 0;
+    position: relative;
+    width: 100%;
+    z-index: 1000;
+
+    @include respond-min($screen-tablet) {
+        display: table;
+        padding: 0 15px 0 0;
+    }
+}
+
+.rule-block--and {
+    margin-top: 24px;
+}
+
+.rule-block--indented {
+    border-radius: 0;
+    margin-left: 20px;
+}
+
+.rule-block--new {
+    animation-duration: 1s;
+    animation-name: blueFadeToWhite;
+
+    .rule-block {
+        animation-duration: 1s;
+        animation-name: blueFadeToWhite;
+    }
+
+    .rule-block__header {
+        animation-duration: 1s;
+        animation-name: blueFadeToGrey;
+    }
+}
+
+.rule-block__header {
+    background: #f5f5f5;
+    border-bottom: 1px solid #d1d1d1;
+    display: block;
+
+    @include respond-min($screen-tablet) {
+        border-right: 1px solid #d1d1d1;
+        border: 0;
+        display: table-cell;
+        height: 100%;
+        padding: 0 10px;
+        text-align: center;
+        vertical-align: middle;
+        width: 95px;
+    }
+}
+
+.rule-block__header--when {
+    box-shadow: inset 4px 0 0 0 #128fc5;
+    color: #128fc5;
+}
+
+.rule-block__header--then {
+    box-shadow: inset 4px 0 0 0 #459a8c;
+    color: #459a8c;
+}
+
+.rule-block__header--and,
+.rule-block__header--or {
+    box-shadow: inset 4px 0 0 0 #646464;
+    color: #646464;
+}
+
+.rule-block__heading {
+    display: inline-block;
+    font-size: 1.2em;
+    margin: 0;
+    padding: .5em 0 .5em .7em;
+    text-transform: capitalize;
+
+    @include respond-min($screen-tablet) {
+        padding: 1.3em 0;
+        text-align: center;
+    }
+}
+
+.rule-block__heading__icon {
+    font-size: 16px;
+    margin-left: 5px;
+}
+
+.rule-block__controls {
+    margin: 1em 0;
+
+    @include respond-min($screen-tablet) {
+        margin: 1em 1.7em 0 .4em;
+    }
+}
+
+.rule-block__control {
+    display: block;
+    margin: 0 10px 10px;
+
+    @include respond-min($screen-tablet) {
+        display: inline-block;
+        margin: 0 0 .5em .4em;
+    }
+
+    .control__label {
+        padding: 0;
+    }
+}
+
+.conditional-block {
+    position: relative;
+}
+
+.conditional-block--flush {
+    margin: 24px 0 0 58px;
+
+    @include respond-min($screen-tablet) {
+        margin: 24px 0 0 68px;
+    }
+}
+
+.conditional-block--indented {
+    margin: 0 0 24px 75px;
+    padding-top: 14px;
+
+    @include respond-min($screen-tablet) {
+        margin: 0 0 14px 80px;
+    }
+
+    &::before {
+        background: #dedede;
+        content: '';
+        height: 26px;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 4px;
+        z-index: 1;
+    }
+}
+
+.conditional-block__link {
+    border: 0;
+    font-size: 1.2em;
+
+    i {
+        color: #dedede;
+        display: inline-block;
+        margin-right: 5px;
+        text-decoration: none;
+    }
+
+    span {
+        text-decoration: underline;
+    }
+}
+
+td.table__form fieldset.rules__step {
+    margin-top: 0;
+}
+
+.form fieldset.rules__step legend,
+.piano__item-content .form fieldset.rules__step,
+.piano__item-content form > fieldset .rules__step legend {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.piano__item-content .rules-container .form {
+    padding-top: 12px;
+}
+
+.piano__item-content .rules-container .modal__content .form {
+    padding-top: 0;
+}
+
+td.table__form .rules + .form__group:last-of-type {
+    margin-bottom: 20px;
+
+    @include respond-min($screen-tablet) {
+        margin-bottom: 10px;
+    }
+}
+
+.rule-block__control.has-error {
+
+    .control__label {
+        color: $state-danger-text;
+    }
+
+    .form__control,
+    .select2-container .select2-selection--multiple,
+    .select2-container--default .select2-selection--multiple, {
+        background-color: $state-danger-bg;
+        border-color: color(danger);
+    }
+}
+
+.rule__triggers__collection .remove-button:hover,
+.rule__conditions__container .remove-button:hover,
+.rule__actions__container .remove-button:hover {
+    vertical-align: middle;
+}
+
+// Change default form layout styling
+.rule-block__control {
+
+    .form__group {
+        display: block;
+        margin-bottom: 0;
+    }
+
+    .control__label {
+        display: block;
+        width: auto;
+    }
+}
