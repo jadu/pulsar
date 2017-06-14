@@ -13,7 +13,9 @@ class DropZoneComponent {
      * Initiate DropZone component, this wraps and defines options for
      * multiple instances of DropZone
      */
-    init (options = {}) {
+    init () {
+        // todo - fix callback refactor
+
         this.body = this.html.parentNode.body;
         this.$body = $(this.body);
 
@@ -37,142 +39,13 @@ class DropZoneComponent {
         };
 
         this.callbacks = {
-            // files have entered the window
-            windowEnter: (opts) => {
-                // update helper text
-                if (opts.valid) {
-                    this.updateHelperState(opts.instance, opts.instance.options.windowEnterHtml);
-                    DropZoneComponent.setDropZoneBodyClass(
-                        this.body,
-                        [this.interactionClasses.windowEnter]
-                    );
-                } else {
-                    this.throwValidationError(opts.text, opts.instance);
-                    DropZoneComponent.setDropZoneBodyClass(
-                        this.body,
-                        [this.interactionClasses.windowEnter, this.interactionClasses.dropZoneError]
-                    );
-                }
-
-                // call any additional callbacks passed in via options
-                if (options.windowEnter && typeof options.windowEnter === 'function') {
-                    options.windowEnter(opts);
-                }
-            },
-            // files have left the window
-            windowLeave: (opts) => {
-                // reset body class
-                DropZoneComponent.setDropZoneBodyClass(this.body);
-
-                // update helper text
-                this.updateHelperState(opts.instance, opts.instance.options.idleHtml);
-
-                // update validation if there was any
-                this.clearDropZoneValidation(opts.instance.node);
-
-                // call any additional callbacks passed in via options
-                if (options.windowLeave && typeof options.windowLeave === 'function') {
-                    options.windowLeave(opts);
-                }
-            },
-            // files have entered the DropZone
-            dropZoneEnter: (opts) => {
-                // update helper text
-                if (opts.valid) {
-                    this.throwValidationError(opts.text, opts.instance);
-                    DropZoneComponent.setDropZoneBodyClass(
-                        this.body,
-                        [
-                            this.interactionClasses.windowEnter,
-                            this.interactionClasses.dropZoneEnter
-                        ]
-                    );
-                } else {
-                    this.updateHelperState(opts.instance, opts.instance.options.idleHtml);
-                    DropZoneComponent.setDropZoneBodyClass(
-                        this.body,
-                        [
-                            this.interactionClasses.windowEnter,
-                            this.interactionClasses.dropZoneEnter,
-                            this.interactionClasses.dropZoneError
-                        ]
-                    );
-                }
-
-                // call any additional callbacks passed in via options
-                if (options.dropZoneEnter && typeof options.dropZoneEnter === 'function') {
-                    options.dropZoneEnter(opts);
-                }
-            },
-            // files have left the DropZone
-            dropZoneLeave: (opts) => {
-                // update helper text
-                if (opts.valid) {
-                    this.updateHelperState(opts.instance, opts.instance.options.windowEnterHtml);
-                    DropZoneComponent.setDropZoneBodyClass(
-                        this.body,
-                        [this.interactionClasses.windowEnter]
-                    );
-                } else {
-                    this.updateHelperState(opts.instance, opts.instance.options.idleHtml);
-                    DropZoneComponent.setDropZoneBodyClass(
-                        this.body,
-                        [this.interactionClasses.windowEnter, this.interactionClasses.dropZoneError]
-                    );
-                }
-
-                // call any additional callbacks passed in via options
-                if (options.dropZoneLeave && typeof options.dropZoneLeave === 'function') {
-                    options.dropZoneLeave(opts);
-                }
-            },
-            // files have been dropped on the dropzone
-            dropZoneDrop: (opts) => {
-                // handle dropped files
-                this.handleDrop(opts.files, opts.node, opts.instance);
-
-                if (opts.valid) {
-                    DropZoneComponent.setDropZoneBodyClass(
-                        this.body,
-                        [this.interactionClasses.dropZoneSuccess]
-                    );
-                } else {
-                    DropZoneComponent.setDropZoneBodyClass(this.body);
-                }
-
-                // update helper text
-                this.updateHelperState(opts.instance, opts.instance.options.idleHtml);
-
-                // call any additional callbacks passed in via options
-                if (options.dropZoneDrop && typeof options.dropZoneDrop === 'function') {
-                    options.dropZoneDrop(opts);
-                }
-            },
-            // files have been dropped on the window, but not the DropZone
-            windowDrop: (opts) => {
-                // reset body class
-                DropZoneComponent.setDropZoneBodyClass(this.body);
-
-                // handle dropped files
-                this.handleDrop(opts.files, opts.node, opts.instance);
-
-                // update helper text
-                this.updateHelperState(opts.instance, opts.instance.options.idleHtml);
-
-                if (options.windowDrop && typeof options.windowDrop === 'function') {
-                    options.windowDrop(opts);
-                }
-            },
-            // A file was manually removed from the DropZone
-            fileRemoved: (opts) => {
-                // reset body class
-                DropZoneComponent.setDropZoneBodyClass(this.body);
-
-                // call any additional callbacks passed in via options
-                if (options.fileRemoved && typeof options.fileRemoved === 'function') {
-                    options.fileRemoved(opts);
-                }
-            }
+            windowEnter: this.handleWindowEnter.bind(this),
+            windowLeave: this.handleWindowLeave.bind(this),
+            dropZoneEnter: this.handleDropZoneEnter.bind(this),
+            dropZoneLeave: this.handleDropzoneLeave.bind(this),
+            dropZoneDrop: this.handleDropZoneDrop.bind(this),
+            windowDrop: this.handleWindowDrop.bind(this),
+            fileRemoved: this.handleFileRemoved.bind(this)
         };
 
         this.eventPool = [];
@@ -203,8 +76,7 @@ class DropZoneComponent {
         // get all DropZone elements
         this.dropZoneInstances = [...this.html.querySelectorAll(`.${this.nodeClasses.dropzone}`)];
         // get DropZone options array
-        this.options = this.buildOptsFromAttrs();
-
+        this.options = this.buildInstanceOptions();
         // instantiate each DropZone with it's options
         this.dropZoneInstances = this.dropZoneInstances.map((node, index) => {
             // set node in options
@@ -478,10 +350,173 @@ class DropZoneComponent {
     }
 
     /**
+     * Handle DropZone windowEnter callback
+     * @param {Object} data
+     */
+    handleWindowEnter (data) {
+        if (data.valid) {
+            this.updateHelperState(data.instance, data.instance.options.windowEnterHtml);
+            DropZoneComponent.setDropZoneBodyClass(
+                this.body,
+                [this.interactionClasses.windowEnter]
+            );
+        } else {
+            this.throwValidationError(data.text, data.instance);
+            DropZoneComponent.setDropZoneBodyClass(
+                this.body,
+                [this.interactionClasses.windowEnter, this.interactionClasses.dropZoneError]
+            );
+        }
+
+        // call any additional callbacks passed in via options
+        if (this.options.windowEnter && typeof this.options.windowEnter === 'function') {
+            this.options.windowEnter(data);
+        }
+    }
+
+    /**
+     * Handle DropZone windowLeave callback
+     * @param {Object} data
+     */
+    handleWindowLeave (data)  {
+        // reset body class
+        DropZoneComponent.setDropZoneBodyClass(this.body);
+
+        // update helper text
+        this.updateHelperState(data.instance, data.instance.options.idleHtml);
+
+        // update validation if there was any
+        this.clearDropZoneValidation(data.instance.node);
+
+        // call any additional callbacks passed in via options
+        if (this.options.windowLeave && typeof this.options.windowLeave === 'function') {
+            this.options.windowLeave(data);
+        }
+    }
+
+    /**
+     * Handle DropZone dropZoneEnter callback
+     * @param {Object} data
+     */
+    handleDropZoneEnter (data) {
+        // update helper text
+        if (data.valid) {
+            this.throwValidationError(data.text, data.instance);
+            DropZoneComponent.setDropZoneBodyClass(
+                this.body,
+                [
+                    this.interactionClasses.windowEnter,
+                    this.interactionClasses.dropZoneEnter
+                ]
+            );
+        } else {
+            this.updateHelperState(data.instance, data.instance.options.idleHtml);
+            DropZoneComponent.setDropZoneBodyClass(
+                this.body,
+                [
+                    this.interactionClasses.windowEnter,
+                    this.interactionClasses.dropZoneEnter,
+                    this.interactionClasses.dropZoneError
+                ]
+            );
+        }
+
+        // call any additional callbacks passed in via options
+        if (this.options.dropZoneEnter && typeof this.options.dropZoneEnter === 'function') {
+            this.options.dropZoneEnter(data);
+        }
+    }
+
+    /**
+     * Handle DropZone dropZoneLeave callback
+     * @param {Object} data
+     */
+    handleDropzoneLeave (data) {
+        // update helper text
+        if (data.valid) {
+            this.updateHelperState(data.instance, data.instance.options.windowEnterHtml);
+            DropZoneComponent.setDropZoneBodyClass(
+                this.body,
+                [this.interactionClasses.windowEnter]
+            );
+        } else {
+            this.updateHelperState(data.instance, data.instance.options.idleHtml);
+            DropZoneComponent.setDropZoneBodyClass(
+                this.body,
+                [this.interactionClasses.windowEnter, this.interactionClasses.dropZoneError]
+            );
+        }
+
+        // call any additional callbacks passed in via options
+        if (this.options.dropZoneLeave && typeof this.options.dropZoneLeave === 'function') {
+            this.options.dropZoneLeave(data);
+        }
+    }
+
+    /**
+     * Handle DropZone dropZoneEnter callback
+     * @param {Object} data
+     */
+    handleDropZoneDrop (data) {
+        // handle dropped files
+        this.handleDrop(data.files, data.node, data.instance);
+
+        if (data.valid) {
+            DropZoneComponent.setDropZoneBodyClass(
+                this.body,
+                [this.interactionClasses.dropZoneSuccess]
+            );
+        } else {
+            DropZoneComponent.setDropZoneBodyClass(this.body);
+        }
+
+        // update helper text
+        this.updateHelperState(data.instance, data.instance.options.idleHtml);
+
+        // call any additional callbacks passed in via options
+        if (this.options.dropZoneDrop && typeof this.options.dropZoneDrop === 'function') {
+            this.options.dropZoneDrop(data);
+        }
+    }
+
+    /**
+     * Handle DropZone windowDrop callback
+     * @param {Object} data
+     */
+    handleWindowDrop (data) {
+        // reset body class
+        DropZoneComponent.setDropZoneBodyClass(this.body);
+
+        // handle dropped files
+        this.handleDrop(data.files, data.node, data.instance);
+
+        // update helper text
+        this.updateHelperState(data.instance, data.instance.options.idleHtml);
+
+        if (this.options.windowDrop && typeof this.options.windowDrop === 'function') {
+            this.options.windowDrop(data);
+        }
+    }
+
+    /**
+     * Handle DropZone fileRemoved callback
+     * @param {Object} data
+     */
+    handleFileRemoved (data) {
+        // reset body class
+        DropZoneComponent.setDropZoneBodyClass(this.body);
+
+        // call any additional callbacks passed in via options
+        if (this.options.fileRemoved && typeof this.options.fileRemoved === 'function') {
+            this.options.fileRemoved(data);
+        }
+    }
+
+    /**
      * Create options array from dropzone nodes
      * @return {Array}
      */
-    buildOptsFromAttrs () {
+    buildInstanceOptions () {
         return this.dropZoneInstances.reduce((options, node) => {
             const dropZoneAttrs = DropZoneComponent.getDropZoneAttrs(node);
             const helperState = _.assign({}, this.helperStateHtml);
@@ -496,7 +531,7 @@ class DropZoneComponent {
             }
 
             // extend node attributes & defaults to build options
-            options.push(_.extend({}, this.callbacks, this.defaults, helperState, dropZoneAttrs));
+            options.push(_.extend({}, this.defaults, helperState, dropZoneAttrs, this.callbacks));
             return options;
         }, []);
     }

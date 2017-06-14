@@ -279,14 +279,14 @@ describe('DropZoneComponent', () => {
         });
     });
 
-    describe('buildOptsFromAttrs()', () => {
+    describe('buildInstanceOptions()', () => {
         it('should return an options object merged with defaults', () => {
             const DZC = new DropZoneComponent($html);
             const expected = [{ maxSize: '10', foo: 'bar' }];
 
             DZC.defaults = { foo: 'bar' };
             DZC.dropzones = [...$html[0].querySelectorAll(`.dropzone`)];
-            expect(DZC.buildOptsFromAttrs()).to.deep.equal(expected);
+            expect(DZC.buildInstanceOptions()).to.deep.equal(expected);
         });
     });
 

@@ -27,7 +27,7 @@ export const defaults = {
 export default class DropZone {
     constructor (options, validator) {
         this.validator = validator;
-        this.options = DropZone.createOptions(defaults, options);
+        this.options = _.extend({}, defaults, options);
         // ensure we've got integers here, there is a chance these will come
         // in as strings from a DOM node's attributes
         this.options.maxFiles = parseInt(this.options.maxFiles);
@@ -389,16 +389,6 @@ export default class DropZone {
         } else {
             return false;
         }
-    }
-
-    /**
-     * Merge defaults with options
-     * @param {Object} defaults
-     * @param {Object} options
-     * @return {Object}
-     */
-    static createOptions (defaults, options) {
-        return _.extend({}, defaults, options);
     }
 
     /**
