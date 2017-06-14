@@ -409,7 +409,7 @@ class DropZoneComponent {
                 ]
             );
         } else {
-            this.updateHelperState(data.instance, data.instance.options.idleHtml);
+            this.updateHelperState(data.instance, data.instance.options.dropZoneEnterHtml);
             DropZoneComponent.setDropZoneBodyClass(
                 this.body,
                 [
