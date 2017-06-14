@@ -49,7 +49,7 @@ PulsarUIComponent.prototype.initTables = function () {
             $table.wrap('<div class="table-container"></div>');
         }
     });
-}
+};
 
 PulsarUIComponent.prototype.initDataTables = function () {
 
@@ -175,30 +175,7 @@ PulsarUIComponent.prototype.initDataTables = function () {
             component.styleTableOverflows($table);
         });
     });
-
-
-    // Refresh datatables when windows resized, makes sure scrolling tables
-    // calculate their headers correctly
-    // $($window).on('load resize', function () {
-    //     component.refreshDatatables();
-    //     component.styleTableOverflows();
-    // });
-}
-
-// PulsarUIComponent.prototype.refreshDatatables = function () {
-
-//     var $datatable = $($.fn.dataTable.tables(true));
-
-//     // Datatables has trouble setting header size correctly, so we'll do it
-//     // ourselves
-//     if ($datatable.length) {
-//         console.log("!");
-//         $datatable
-//             .closest('.dataTables_scroll')
-//             .find('.dataTables_scrollHeadInner, .dataTables_scrollHeadInner .datatable')
-//             .width($datatable[0].scrollWidth);
-//     }
-// }
+};
 
 PulsarUIComponent.prototype.styleTableOverflows = function ($container) {
 
@@ -234,7 +211,7 @@ PulsarUIComponent.prototype.styleTableOverflows = function ($container) {
         console.log('e');
         $container.removeClass('table--overflow-right');
     }
-}
+};
 
 PulsarUIComponent.prototype.initCountdown = function () {
 
@@ -252,6 +229,6 @@ PulsarUIComponent.prototype.initCountdown = function () {
             $this.html(event.strftime(format));
         });
     });
-}
+};
 
 module.exports = PulsarUIComponent;
