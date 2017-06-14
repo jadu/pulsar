@@ -13,7 +13,7 @@ class DropZoneComponent {
      * Initiate DropZone component, this wraps and defines options for
      * multiple instances of DropZone
      */
-    init () {
+    init (options = {}) {
         // todo - fix callback refactor
 
         this.body = this.html.parentNode.body;
@@ -76,7 +76,7 @@ class DropZoneComponent {
         // get all DropZone elements
         this.dropZoneInstances = [...this.html.querySelectorAll(`.${this.nodeClasses.dropzone}`)];
         // get DropZone options array
-        this.options = this.buildInstanceOptions();
+        this.options = this.buildInstanceOptions(options);
         // instantiate each DropZone with it's options
         this.dropZoneInstances = this.dropZoneInstances.map((node, index) => {
             // set node in options
@@ -368,9 +368,8 @@ class DropZoneComponent {
             );
         }
 
-        // call any additional callbacks passed in via options
-        if (this.options.windowEnter && typeof this.options.windowEnter === 'function') {
-            this.options.windowEnter(data);
+        if (data.instance.options.customWindowEnter && typeof data.instance.options.customWindowEnter === 'function') {
+            data.instance.options.customWindowEnter(data);
         }
     }
 
@@ -389,8 +388,8 @@ class DropZoneComponent {
         this.clearDropZoneValidation(data.instance.node);
 
         // call any additional callbacks passed in via options
-        if (this.options.windowLeave && typeof this.options.windowLeave === 'function') {
-            this.options.windowLeave(data);
+        if (data.instance.options.customWindowLeave && typeof data.instance.options.customWindowLeave === 'function') {
+            data.instance.options.customWindowLeave(data);
         }
     }
 
@@ -422,8 +421,8 @@ class DropZoneComponent {
         }
 
         // call any additional callbacks passed in via options
-        if (this.options.dropZoneEnter && typeof this.options.dropZoneEnter === 'function') {
-            this.options.dropZoneEnter(data);
+        if (data.instance.options.customDropZoneEnter && typeof data.instance.options.customDropZoneEnter === 'function') {
+            data.instance.options.customDropZoneEnter(data);
         }
     }
 
@@ -448,8 +447,8 @@ class DropZoneComponent {
         }
 
         // call any additional callbacks passed in via options
-        if (this.options.dropZoneLeave && typeof this.options.dropZoneLeave === 'function') {
-            this.options.dropZoneLeave(data);
+        if (data.instance.options.customDropZoneLeave && typeof data.instance.options.customDropZoneLeave === 'function') {
+            data.instance.options.customDropZoneLeave(data);
         }
     }
 
@@ -474,8 +473,8 @@ class DropZoneComponent {
         this.updateHelperState(data.instance, data.instance.options.idleHtml);
 
         // call any additional callbacks passed in via options
-        if (this.options.dropZoneDrop && typeof this.options.dropZoneDrop === 'function') {
-            this.options.dropZoneDrop(data);
+        if (data.instance.options.customDropZoneDrop && typeof data.instance.options.customDropZoneDrop === 'function') {
+            data.instance.options.customDropZoneDrop(data);
         }
     }
 
@@ -493,8 +492,8 @@ class DropZoneComponent {
         // update helper text
         this.updateHelperState(data.instance, data.instance.options.idleHtml);
 
-        if (this.options.windowDrop && typeof this.options.windowDrop === 'function') {
-            this.options.windowDrop(data);
+        if (data.instance.options.customWindowDrop && typeof data.instance.options.customWindowDrop === 'function') {
+            data.instance.options.customWindowDrop(data);
         }
     }
 
@@ -507,8 +506,8 @@ class DropZoneComponent {
         DropZoneComponent.setDropZoneBodyClass(this.body);
 
         // call any additional callbacks passed in via options
-        if (this.options.fileRemoved && typeof this.options.fileRemoved === 'function') {
-            this.options.fileRemoved(data);
+        if (data.instance.options.customFileRemoved && typeof data.instance.options.customFileRemoved === 'function') {
+            data.instance.options.customFileRemoved(data);
         }
     }
 
@@ -516,7 +515,7 @@ class DropZoneComponent {
      * Create options array from dropzone nodes
      * @return {Array}
      */
-    buildInstanceOptions () {
+    buildInstanceOptions (userOptions) {
         return this.dropZoneInstances.reduce((options, node) => {
             const dropZoneAttrs = DropZoneComponent.getDropZoneAttrs(node);
             const helperState = _.assign({}, this.helperStateHtml);
@@ -531,7 +530,7 @@ class DropZoneComponent {
             }
 
             // extend node attributes & defaults to build options
-            options.push(_.extend({}, this.defaults, helperState, dropZoneAttrs, this.callbacks));
+            options.push(_.extend({}, this.defaults, helperState, dropZoneAttrs, this.callbacks, userOptions));
             return options;
         }, []);
     }
