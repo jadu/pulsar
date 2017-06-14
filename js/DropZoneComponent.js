@@ -400,7 +400,7 @@ class DropZoneComponent {
     handleDropZoneEnter (data) {
         // update helper text
         if (data.valid) {
-            this.throwValidationError(data.text, data.instance);
+            this.updateHelperState(data.instance, data.instance.options.dropZoneEnterHtml);
             DropZoneComponent.setDropZoneBodyClass(
                 this.body,
                 [
@@ -409,7 +409,7 @@ class DropZoneComponent {
                 ]
             );
         } else {
-            this.updateHelperState(data.instance, data.instance.options.dropZoneEnterHtml);
+            this.throwValidationError(data.text, data.instance);
             DropZoneComponent.setDropZoneBodyClass(
                 this.body,
                 [
@@ -439,7 +439,7 @@ class DropZoneComponent {
                 [this.interactionClasses.windowEnter]
             );
         } else {
-            this.updateHelperState(data.instance, data.instance.options.idleHtml);
+            this.throwValidationError(data.text, data.instance);
             DropZoneComponent.setDropZoneBodyClass(
                 this.body,
                 [this.interactionClasses.windowEnter, this.interactionClasses.dropZoneError]
