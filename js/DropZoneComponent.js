@@ -184,7 +184,6 @@ class DropZoneComponent {
      * - add / remove files Html
      * - remove wrapper if we have no files
      * @param {Array} files
-     * @param {Element|boolean} wrapper
      * @param {DropZone} instance
      */
     updateDropZoneFiles (files, instance) {
@@ -474,6 +473,9 @@ class DropZoneComponent {
             // native file input's "browse files"
             if (files.find(file => file.persist === true)) {
                 this.throwValidationError(text, instance);
+            } else {
+                // if we are not persiting validation messages, clear any that are present
+                this.clearDropZoneValidation(instance.node);
             }
 
             DropZoneComponent.setDropZoneBodyClass(this.body);
