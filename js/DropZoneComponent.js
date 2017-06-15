@@ -366,7 +366,7 @@ class DropZoneComponent {
         }
 
         if (instance.options.customWindowEnter && typeof instance.options.customWindowEnter === 'function') {
-            instance.options.customWindowEnter.apply(arguments);
+            instance.options.customWindowEnter.apply(this, arguments);
         }
     }
 
@@ -386,7 +386,7 @@ class DropZoneComponent {
 
         // call any additional callbacks passed in via options
         if (instance.options.customWindowLeave && typeof instance.options.customWindowLeave === 'function') {
-            instance.options.customWindowLeave.apply(arguments);
+            instance.options.customWindowLeave.apply(this, arguments);
         }
     }
 
@@ -421,7 +421,7 @@ class DropZoneComponent {
 
         // call any additional callbacks passed in via options
         if (instance.options.customDropZoneEnter && typeof instance.options.customDropZoneEnter === 'function') {
-            instance.options.customDropZoneEnter.apply(arguments);
+            instance.options.customDropZoneEnter.apply(this, arguments);
         }
     }
 
@@ -449,7 +449,7 @@ class DropZoneComponent {
 
         // call any additional callbacks passed in via options
         if (instance.options.customDropZoneLeave && typeof instance.options.customDropZoneLeave === 'function') {
-            instance.options.customDropZoneLeave.apply(arguments);
+            instance.options.customDropZoneLeave.apply(this, arguments);
         }
     }
 
@@ -484,7 +484,7 @@ class DropZoneComponent {
 
         // call any additional callbacks passed in via options
         if (instance.options.customDropZoneDrop && typeof instance.options.customDropZoneDrop === 'function') {
-            instance.options.customDropZoneDrop.apply(arguments);
+            instance.options.customDropZoneDrop.apply(this, arguments);
         }
     }
 
@@ -504,7 +504,7 @@ class DropZoneComponent {
         this.updateHelperState(instance, instance.options.idleHtml);
 
         if (instance.options.customWindowDrop && typeof instance.options.customWindowDrop === 'function') {
-            instance.options.customWindowDrop.apply(arguments);
+            instance.options.customWindowDrop.apply(this, arguments);
         }
     }
 
@@ -518,7 +518,7 @@ class DropZoneComponent {
 
         // call any additional callbacks passed in via options
         if (instance.options.customFileRemoved && typeof instance.options.customFileRemoved === 'function') {
-            instance.options.customFileRemoved.apply(arguments);
+            instance.options.customFileRemoved.apply(this, arguments);
         }
     }
 
