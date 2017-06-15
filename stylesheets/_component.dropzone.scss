@@ -229,7 +229,7 @@ $dropzone-icon-rotation: 30deg;
 @include dropzone-flash(danger);
 
 .dropzone-window-active {
-    .dropzone:not('.dropzone--passive') {
+    .dropzone:not(.dropzone--passive) {
         border: 2px solid color(primary);
         color: color(primary);
 
@@ -256,7 +256,7 @@ $dropzone-icon-rotation: 30deg;
 }
 
 .dropzone-success {
-    .dropzone:not('.dropzone--passive') {
+    .dropzone:not(.dropzone--passive) {
         .dropzone__state {
             animation: success-flash 750ms forwards;
             background-color: color(success, light);
@@ -265,7 +265,7 @@ $dropzone-icon-rotation: 30deg;
 }
 
 .dropzone-error {
-    .dropzone:not('.dropzone--passive') {
+    .dropzone:not(.dropzone--passive) {
         border: 2px solid color(danger);
         color: color(text, base);
 
