@@ -87,6 +87,7 @@ export default class DropZone {
      */
     handleDrop (event) {
         const files = event.dataTransfer.items;
+
         // determine where the drop has taken place
         // dropped on the DropZone
         if (this.windowActive && this.dropZoneActive) {
@@ -109,17 +110,16 @@ export default class DropZone {
      */
     addFiles (files, meta = {}) {
         const { valid, text } = this.validator.validate(files, this.getFiles().length, this.getSize());
+        const processedFiles = [...files].map(
+            file => this.processFile(file.getAsFile ? file.getAsFile() : file, meta)
+        );
 
         if (valid) {
-            // add a valid set of files to the file list
-            [...files].forEach(file => {
-                // we are assuming at this point if an item in a fileList does not have the method
-                // getAsFile it is already a file object
-                this.files.push(this.processFile(file.getAsFile ? file.getAsFile() : file, meta));
-            });
+           this.files = [...this.files, ...processedFiles];
         }
+
         // fire dropped callback
-        this.createCallback(this.options.dropZoneDrop, { files: this.files, node: this.node, valid, text });
+        this.createCallback(this.options.dropZoneDrop, { files: processedFiles, node: this.node, valid, text });
     }
 
     /**
@@ -196,7 +196,7 @@ export default class DropZone {
     processFile (file, meta) {
         this.size += file.size;
         return _.extend({}, {
-            file,
+            raw: file,
             thumbnail: DropZone.getFileThumbnail(file),
             id: _.uniqueId('DropZone_file_'),
             name: DropZone.getFileName(file),
@@ -237,7 +237,7 @@ export default class DropZone {
     removeFile (id) {
         this.files = this.files.filter(file => {
             if (file.id === id) {
-                this.size -= file.file.size;
+                this.size -= file.raw.size;
             } else {
                 return file;
             }

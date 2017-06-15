@@ -81,6 +81,8 @@ class DropZoneComponent {
         this.dropZoneInstances = this.dropZoneInstances.map((node, index) => {
             // set node in options
             this.options[index].node = node;
+            // store DropZone ID
+            this.options[index].dropZoneId = index;
             //set dropZone ID attr
             node.setAttribute('data-dropzone-id', index);
             // create an instance of the DropZone API
@@ -107,7 +109,7 @@ class DropZoneComponent {
      *  - add change listener to hijack files
      *  - add click listener to `dropzone__browse` to leverage input's browse functionality
      *  - visually hide input node
-     * @param {Object} instance
+     * @param {DropZone} instance
      * @param {Object} options
      */
     processInputNode (instance, options) {
@@ -115,14 +117,21 @@ class DropZoneComponent {
         instance.inputNode = document.getElementById(options.inputNodeId);
         // add files to DropZone that are added to the corresponding input
         instance.inputNode.addEventListener('change', () => {
-            this.addFileToDropZone(instance.inputNode.files, instance.getAttribute('data-dropzone-id'));
+            const files = instance.inputNode.files;
+
+            // we'll add a persist property to our file objects, this can be used to
+            // persist the front-end validation, which is essential when using an
+            // associated file input
+            this.addFileToDropZone(files, instance.options.dropZoneId, { persist: true });
+
             // reset input node value, this will ensure our change event
             // fires each time we use the browse files functionality - even
             // if we try to add an identical value
             instance.inputNode.value = '';
         });
-        // visually hide input
 
+        // visually hide input - this should ideally be done in the CSS also to prevent a
+        // flash on load (with some consideration for non javascript users)
         if (!options.showInputNode) {
             instance.inputNode.style.display = 'none';
         }
@@ -130,7 +139,7 @@ class DropZoneComponent {
 
     /**
      * Adds the browse files functionality to our DropZone
-     * @param {Object} instance
+     * @param {DropZone} instance
      */
     addBrowseFilesListener (instance) {
         instance.browseNode = instance.node.querySelector(`.${this.nodeClasses.browse}`);
@@ -147,8 +156,8 @@ class DropZoneComponent {
      * Update DropZone helper node innerHTML
      * has a trivial template syntax for getting variables from the DropZone instance options object
      * <% foo %> will evaluate to --> instance.options.foo
-     * @param instance
-     * @param htmlString
+     * @param {DropZone} instance
+     * @param {String} htmlString
      */
     updateHelperState (instance, htmlString) {
         if (!instance.options.helperNode) {
@@ -170,39 +179,25 @@ class DropZoneComponent {
     }
 
     /**
-     * Create a file wrapper / update with dropped files
-     * @param {Array} files
-     * @param {Element} node
-     * @param {Object} instance
-     */
-    handleDrop (files, node, instance) {
-        let wrapper = node.querySelector(`.${this.nodeClasses.wrapper}`);
-
-        // if we do not already have a wrapper, create one
-        if (!wrapper) {
-            wrapper = document.createElement('div');
-            wrapper.className = this.nodeClasses.wrapper;
-            node.appendChild(wrapper);
-        }
-
-        // update wrapper Html
-        this.updateDropZoneFiles(files, instance, wrapper);
-    }
-
-    /**
      * Update DropZone Html
      * - remove validation node if we have one
      * - add / remove files Html
      * - remove wrapper if we have no files
      * @param {Array} files
      * @param {Element|boolean} wrapper
-     * @param {Object} instance
+     * @param {DropZone} instance
      */
-    updateDropZoneFiles (files, instance, wrapper = false) {
+    updateDropZoneFiles (files, instance) {
         const validation = instance.node.querySelector(`.${this.nodeClasses.validation}`);
+        let wrapper = instance.node.querySelector(`.${this.nodeClasses.wrapper}`);
         let fileNodeString = '';
 
-        wrapper = wrapper ? wrapper : instance.node.querySelector(`.${this.nodeClasses.wrapper}`);
+        // if we do not already have a wrapper, create one
+        if (!wrapper) {
+            wrapper = document.createElement('div');
+            wrapper.className = this.nodeClasses.wrapper;
+            instance.node.appendChild(wrapper);
+        }
 
         // if we've got a drop we know we don't have any errors
         // clear any previous validation messages
@@ -234,7 +229,7 @@ class DropZoneComponent {
     /**
      * Update DropZone validation Html
      * @param  {String} error
-     * @param  {Object} instance
+     * @param  {DropZone} instance
      */
     updateDropZoneValidation (error, instance) {
         let validationNode = instance.node.querySelector(`.${this.nodeClasses.validation}`);
@@ -262,7 +257,7 @@ class DropZoneComponent {
      * Throw a DropZone error, useful as a public method for manually triggering DropZone errors
      * example: throwing an error returned as a response from a server
      * @param {String} error
-     * @param {Object} instance
+     * @param {DropZone} instance
      */
     throwValidationError (error, instance) {
         this.updateDropZoneValidation(error, instance);
@@ -351,56 +346,60 @@ class DropZoneComponent {
 
     /**
      * Handle DropZone windowEnter callback
-     * @param {Object} data
+     * @param {Boolean} valid
+     * @param {String} text
+     * @param {DropZone} instance
      */
-    handleWindowEnter (data) {
-        if (data.valid) {
-            this.updateHelperState(data.instance, data.instance.options.windowEnterHtml);
+    handleWindowEnter ({ valid, text, instance }) {
+        if (valid) {
+            this.updateHelperState(instance, instance.options.windowEnterHtml);
             DropZoneComponent.setDropZoneBodyClass(
                 this.body,
                 [this.interactionClasses.windowEnter]
             );
         } else {
-            this.throwValidationError(data.text, data.instance);
+            this.throwValidationError(text, instance);
             DropZoneComponent.setDropZoneBodyClass(
                 this.body,
                 [this.interactionClasses.windowEnter, this.interactionClasses.dropZoneError]
             );
         }
 
-        if (data.instance.options.customWindowEnter && typeof data.instance.options.customWindowEnter === 'function') {
-            data.instance.options.customWindowEnter(data);
+        if (instance.options.customWindowEnter && typeof instance.options.customWindowEnter === 'function') {
+            instance.options.customWindowEnter.apply(arguments);
         }
     }
 
     /**
      * Handle DropZone windowLeave callback
-     * @param {Object} data
+     * @param {DropZone} instance
      */
-    handleWindowLeave (data)  {
+    handleWindowLeave ({ instance })  {
         // reset body class
         DropZoneComponent.setDropZoneBodyClass(this.body);
 
         // update helper text
-        this.updateHelperState(data.instance, data.instance.options.idleHtml);
+        this.updateHelperState(instance, instance.options.idleHtml);
 
         // update validation if there was any
-        this.clearDropZoneValidation(data.instance.node);
+        this.clearDropZoneValidation(instance.node);
 
         // call any additional callbacks passed in via options
-        if (data.instance.options.customWindowLeave && typeof data.instance.options.customWindowLeave === 'function') {
-            data.instance.options.customWindowLeave(data);
+        if (instance.options.customWindowLeave && typeof instance.options.customWindowLeave === 'function') {
+            instance.options.customWindowLeave.apply(arguments);
         }
     }
 
     /**
      * Handle DropZone dropZoneEnter callback
-     * @param {Object} data
+     * @param {Boolean} valid
+     * @param {String} text
+     * @param {DropZone} instance
      */
-    handleDropZoneEnter (data) {
+    handleDropZoneEnter ({ valid, text, instance }) {
         // update helper text
-        if (data.valid) {
-            this.updateHelperState(data.instance, data.instance.options.dropZoneEnterHtml);
+        if (valid) {
+            this.updateHelperState(instance, instance.options.dropZoneEnterHtml);
             DropZoneComponent.setDropZoneBodyClass(
                 this.body,
                 [
@@ -409,7 +408,7 @@ class DropZoneComponent {
                 ]
             );
         } else {
-            this.throwValidationError(data.text, data.instance);
+            this.throwValidationError(text, instance);
             DropZoneComponent.setDropZoneBodyClass(
                 this.body,
                 [
@@ -421,25 +420,27 @@ class DropZoneComponent {
         }
 
         // call any additional callbacks passed in via options
-        if (data.instance.options.customDropZoneEnter && typeof data.instance.options.customDropZoneEnter === 'function') {
-            data.instance.options.customDropZoneEnter(data);
+        if (instance.options.customDropZoneEnter && typeof instance.options.customDropZoneEnter === 'function') {
+            instance.options.customDropZoneEnter.apply(arguments);
         }
     }
 
     /**
      * Handle DropZone dropZoneLeave callback
-     * @param {Object} data
+     * @param {Boolean} valid
+     * @param {String} text
+     * @param {DropZone} instance
      */
-    handleDropzoneLeave (data) {
+    handleDropzoneLeave ({ valid, text, instance }) {
         // update helper text
-        if (data.valid) {
-            this.updateHelperState(data.instance, data.instance.options.windowEnterHtml);
+        if (valid) {
+            this.updateHelperState(instance, instance.options.windowEnterHtml);
             DropZoneComponent.setDropZoneBodyClass(
                 this.body,
                 [this.interactionClasses.windowEnter]
             );
         } else {
-            this.throwValidationError(data.text, data.instance);
+            this.throwValidationError(text, instance);
             DropZoneComponent.setDropZoneBodyClass(
                 this.body,
                 [this.interactionClasses.windowEnter, this.interactionClasses.dropZoneError]
@@ -447,67 +448,77 @@ class DropZoneComponent {
         }
 
         // call any additional callbacks passed in via options
-        if (data.instance.options.customDropZoneLeave && typeof data.instance.options.customDropZoneLeave === 'function') {
-            data.instance.options.customDropZoneLeave(data);
+        if (instance.options.customDropZoneLeave && typeof instance.options.customDropZoneLeave === 'function') {
+            instance.options.customDropZoneLeave.apply(arguments);
         }
     }
 
     /**
      * Handle DropZone dropZoneEnter callback
-     * @param {Object} data
+     * @param {Array} files
+     * @param {Boolean} valid
+     * @param {String} text
+     * @param {DropZone} instance
      */
-    handleDropZoneDrop (data) {
-        // handle dropped files
-        this.handleDrop(data.files, data.node, data.instance);
-
-        if (data.valid) {
+    handleDropZoneDrop ({ files, valid, text, instance }) {
+        if (valid) {
+            this.updateDropZoneFiles(files, instance);
             DropZoneComponent.setDropZoneBodyClass(
                 this.body,
                 [this.interactionClasses.dropZoneSuccess]
             );
         } else {
+            // If a persist property has been set on the file, we will throw a
+            // validation error which will persist once the file is dropped, this
+            // helps us out when we need to throw an error when a user uses an associated
+            // native file input's "browse files"
+            if (files.find(file => file.persist === true)) {
+                this.throwValidationError(text, instance);
+            }
+
             DropZoneComponent.setDropZoneBodyClass(this.body);
         }
 
         // update helper text
-        this.updateHelperState(data.instance, data.instance.options.idleHtml);
+        this.updateHelperState(instance, instance.options.idleHtml);
 
         // call any additional callbacks passed in via options
-        if (data.instance.options.customDropZoneDrop && typeof data.instance.options.customDropZoneDrop === 'function') {
-            data.instance.options.customDropZoneDrop(data);
+        if (instance.options.customDropZoneDrop && typeof instance.options.customDropZoneDrop === 'function') {
+            instance.options.customDropZoneDrop.apply(arguments);
         }
     }
 
     /**
      * Handle DropZone windowDrop callback
-     * @param {Object} data
+     * @param {Array} files
+     * @param {DropZone} instance
      */
-    handleWindowDrop (data) {
+    handleWindowDrop ({ files, instance }) {
         // reset body class
         DropZoneComponent.setDropZoneBodyClass(this.body);
 
         // handle dropped files
-        this.handleDrop(data.files, data.node, data.instance);
+        this.updateDropZoneFiles(files, instance);
 
         // update helper text
-        this.updateHelperState(data.instance, data.instance.options.idleHtml);
+        this.updateHelperState(instance, instance.options.idleHtml);
 
-        if (data.instance.options.customWindowDrop && typeof data.instance.options.customWindowDrop === 'function') {
-            data.instance.options.customWindowDrop(data);
+        if (instance.options.customWindowDrop && typeof instance.options.customWindowDrop === 'function') {
+            instance.options.customWindowDrop.apply(arguments);
         }
     }
 
     /**
      * Handle DropZone fileRemoved callback
-     * @param {Object} data
+     * @param {DropZone} instance
      */
-    handleFileRemoved (data) {
+    handleFileRemoved ({ instance }) {
         // reset body class
         DropZoneComponent.setDropZoneBodyClass(this.body);
 
         // call any additional callbacks passed in via options
-        if (data.instance.options.customFileRemoved && typeof data.instance.options.customFileRemoved === 'function') {
-            data.instance.options.customFileRemoved(data);
+        if (instance.options.customFileRemoved && typeof instance.options.customFileRemoved === 'function') {
+            instance.options.customFileRemoved.apply(arguments);
         }
     }
 
@@ -571,7 +582,7 @@ class DropZoneComponent {
     /**
      * Return a DropZone instance by the id attribute of the node
      * @param  {String} id
-     * @return {Object} DropZone
+     * @return {DropZone} DropZone
      */
     getDropZoneById (id) {
         return this.dropZoneInstances[id];
@@ -600,14 +611,15 @@ class DropZoneComponent {
      * Validate files against a DropZone instance
      * @param {FileList} files
      * @param {String} id
+     * @param {Boolean} pre | files are pre / post attached
      */
-    validateFiles (files, id) {
+    validateFiles (files, id, pre = false) {
         const dropZone = this.getDropZoneById(id);
         return dropZone.validator.validate(
             files,
             // we need this subtraction because the validateFiles public API method will be invoked _after_
             // a file has been dropped on the DropZone
-            (dropZone.getFiles().length - files.length),
+            pre ? dropZone.getFiles().length : (dropZone.getFiles().length - files.length),
             dropZone.size
         );
     }
