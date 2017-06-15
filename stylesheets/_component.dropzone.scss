@@ -229,58 +229,61 @@ $dropzone-icon-rotation: 30deg;
 @include dropzone-flash(danger);
 
 .dropzone-window-active {
-    .dropzone {
+    .dropzone:not('.dropzone--passive') {
         border: 2px solid color(primary);
         color: color(primary);
-    }
 
-    .dropzone__help {
-        color: color(primary);
-    }
+        .dropzone__help {
+            color: color(primary);
+        }
 
-    .dropzone__icon {
-        color: color(primary);
-    }
+        .dropzone__icon {
+            color: color(primary);
+        }
 
-    .dropzone__icon--left {
-        transform: rotate(-#{$dropzone-icon-rotation}) translateY(50%);
-    }
+        .dropzone__icon--left {
+            transform: rotate(-#{$dropzone-icon-rotation}) translateY(50%);
+        }
 
-    .dropzone__icon--centre {
-        transform: translateY(0) translateX(-50%);
-    }
+        .dropzone__icon--centre {
+            transform: translateY(0) translateX(-50%);
+        }
 
-    .dropzone__icon--right {
-        transform: rotate(#{$dropzone-icon-rotation}) translateY(50%);
+        .dropzone__icon--right {
+            transform: rotate(#{$dropzone-icon-rotation}) translateY(50%);
+        }
     }
 }
 
 .dropzone-success {
-    .dropzone__state {
-        animation: success-flash 750ms forwards;
-        background-color: color(success, light);
+    .dropzone:not('.dropzone--passive') {
+        .dropzone__state {
+            animation: success-flash 750ms forwards;
+            background-color: color(success, light);
+        }
     }
 }
 
 .dropzone-error {
-    .dropzone {
+    .dropzone:not('.dropzone--passive') {
         border: 2px solid color(danger);
         color: color(text, base);
-    }
 
-    .dropzone__help {
-        color: color(text, help);
-    }
+        .dropzone__help {
+            color: color(text, help);
+        }
 
-    .dropzone__icon {
-        color: color(grey, dark);
-    }
+        .dropzone__icon {
+            color: color(grey, dark);
+        }
 
-    .dropzone__state {
-        animation: danger-flash 750ms forwards;
-        background-color: color(danger, light);
+        .dropzone__state {
+            animation: danger-flash 750ms forwards;
+            background-color: color(danger, light);
+        }
     }
 }
+
 
 /**
  * Passive mode
