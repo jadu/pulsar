@@ -36,7 +36,8 @@ export default class DropZone {
         this.handleDropWithContext = this.handleDrop.bind(this);
         this.handleWindowEnterWithContext = this.handleWindowEnter.bind(this);
         this.handleWindowLeaveWithContext = this.handleWindowLeave.bind(this);
-        // a place to be used externally as a instance based cache
+        this.startIdleTimerWithContext = this.startIdleTimer.bind(this);
+        // a place to be used externally as a instance based cache;
         this.data = {};
         this.setup();
     }
@@ -50,6 +51,8 @@ export default class DropZone {
 
         this.eventPool = [];
         this.files = [];
+        this.idleTimer = null;
+        this.idleDuration = 1500;
         this.eventTracker = { node: {}, window: {} };
         this.size = 0;
         this.windowActive = false;
@@ -79,6 +82,35 @@ export default class DropZone {
         this.addEventAndStore(window, 'dragenter', this.handleWindowEnterWithContext);
         this.addEventAndStore(window, 'dragleave', this.handleWindowLeaveWithContext);
         this.addEventAndStore(window, 'drop', this.handleDropWithContext);
+        // attempt to handle missed callbacks
+        // mouseout has proven to be _more_ reliable than dragleave
+        this.addEventAndStore(document, 'mouseout', this.startIdleTimerWithContext);
+    }
+
+    /**
+     * Trigger a timer to execute a manual windowLeave after x ms
+     * this is to catch window dragLeave events that are missed at high speed
+     * @param {Event} event
+     */
+    startIdleTimer (event) {
+        this.clearIdleTimer();
+        this.idleTimer = setTimeout(() => {
+
+            if (this.windowActive || this.dropZoneActive) {
+                this.handleWindowLeave(event, true);
+            }
+
+            this.idleTimer = null;
+        }, this.idleDuration);
+    }
+
+    /**
+     * Clear the current timer
+     */
+    clearIdleTimer () {
+        if (this.idleTimer !== null) {
+            clearTimeout(this.idleTimer);
+        }
     }
 
     /**
@@ -138,6 +170,8 @@ export default class DropZone {
         const onWindow = this.fileOnWindow(event);
         const onDropZone = this.node.contains(onWindow);
 
+        this.clearIdleTimer();
+
         if (onDropZone && !this.dropZoneActive) {
             this.handleEnter(event.dataTransfer.items);
         } else if (this.fileOnWindow(event) && !this.windowActive) {
@@ -152,16 +186,18 @@ export default class DropZone {
     /**
      * Handle a file being dragged off of the window
      * @param {Event} event
+     * @param {Boolean} force
      */
-    handleWindowLeave (event) {
+    handleWindowLeave (event, force = false) {
         const onDropZone = this.node.contains(document.elementFromPoint(event.clientX, event.clientY));
 
-        if (!onDropZone && this.dropZoneActive) {
-            this.handleLeave(event.dataTransfer.items);
-        } else if (!this.fileOnWindow(event)) {
-            this.createCallback(this.options.windowLeave);
+        if (force || !this.fileOnWindow(event)) {
             this.windowActive = false;
             this.dropZoneActive = false;
+            this.clearIdleTimer();
+            this.createCallback(this.options.windowLeave);
+        } else if (!onDropZone && this.dropZoneActive) {
+            this.handleLeave(event.dataTransfer.items);
         }
     }
 
@@ -172,6 +208,7 @@ export default class DropZone {
     handleEnter (files) {
         const { valid, text } = this.validator.validate(files, this.getFiles().length, this.getSize());
 
+        this.clearIdleTimer();
         this.createCallback(this.options.dropZoneEnter, { valid, text });
         this.dropZoneActive = true;
     }
@@ -183,6 +220,7 @@ export default class DropZone {
     handleLeave (files) {
         const { valid, text } = this.validator.validate(files, this.getFiles().length, this.getSize());
 
+        this.clearIdleTimer();
         this.createCallback(this.options.dropZoneLeave, { valid, text });
         this.dropZoneActive = false;
     }

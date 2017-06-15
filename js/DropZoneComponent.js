@@ -14,8 +14,6 @@ class DropZoneComponent {
      * multiple instances of DropZone
      */
     init (options = {}) {
-        // todo - fix callback refactor
-
         this.body = this.html.parentNode.body;
         this.$body = $(this.body);
 
