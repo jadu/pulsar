@@ -9,6 +9,9 @@ export const defaults = {
     maxSize: 3e+8,
     // a whitelist of file types to validate against
     whitelist: [],
+    // duration of idle timer, if we get a mouseout event on the document
+    // wait x ms before firing a window dragleave
+    idle: 1000,
     // file enters window
     windowEnter: function () {},
     // file leaves window
@@ -52,7 +55,6 @@ export default class DropZone {
         this.eventPool = [];
         this.files = [];
         this.idleTimer = null;
-        this.idleDuration = 1500;
         this.eventTracker = { node: {}, window: {} };
         this.size = 0;
         this.windowActive = false;
@@ -101,7 +103,7 @@ export default class DropZone {
             }
 
             this.idleTimer = null;
-        }, this.idleDuration);
+        }, this.options.idle);
     }
 
     /**
