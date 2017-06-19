@@ -30,7 +30,7 @@ export default class DropZoneValidator {
         // if we have files but we do not have a length we're dealing
         // with a browser with limited support, so we'll return them as valid
         // now and let them be caught later
-        if (!files || !files.length) {
+        if (!files.length) {
             return result;
         }
 

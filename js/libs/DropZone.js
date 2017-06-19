@@ -200,6 +200,7 @@ export default class DropZone {
      */
     handleWindowLeave (event, force = false) {
         const onDropZone = this.node.contains(document.elementFromPoint(event.clientX, event.clientY));
+        const files = event.dataTransfer.items || event.dataTransfer.files;
 
         if (force || !this.fileOnWindow(event)) {
             this.windowActive = false;
@@ -207,7 +208,7 @@ export default class DropZone {
             this.clearIdleTimer();
             this.createCallback(this.options.windowLeave);
         } else if (!onDropZone && this.dropZoneActive) {
-            this.handleLeave(event.dataTransfer.items);
+            this.handleLeave(files);
         }
     }
 
