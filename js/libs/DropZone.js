@@ -120,7 +120,7 @@ export default class DropZone {
      * @param  {Event} event
      */
     handleDrop (event) {
-        const files = event.dataTransfer.items;
+        const files = event.dataTransfer.files;
 
         // determine where the drop has taken place
         // dropped on the DropZone
@@ -171,13 +171,13 @@ export default class DropZone {
     handleWindowEnter (event) {
         const onWindow = this.fileOnWindow(event);
         const onDropZone = this.node.contains(onWindow);
+        const files = event.dataTransfer.files;
 
         this.clearIdleTimer();
 
         if (onDropZone && !this.dropZoneActive) {
-            this.handleEnter(event.dataTransfer.items);
+            this.handleEnter(files);
         } else if (this.fileOnWindow(event) && !this.windowActive) {
-            const files = event.dataTransfer.items;
             const { valid, text } = this.validator.validate(files, this.getFiles().length, this.getSize());
 
             this.createCallback(this.options.windowEnter, { valid, text });
