@@ -27,6 +27,13 @@ export default class DropZoneValidator {
         let fileCount = totalFiles;
         let sizeCount = totalSize;
 
+        // if we have files but we do not have a length we're dealing
+        // with a browser with limited support, so we'll return them as valid
+        // now and let them be caught later
+        if (!files.length) {
+            return result;
+        }
+
         Array.from(files).forEach(file => {
             const fileObject = file.getAsFile ? file.getAsFile() : file;
 
@@ -142,7 +149,7 @@ export default class DropZoneValidator {
                 return {
                     valid: false,
                     code: 'WHITELIST',
-                    text: `${this.options.validationText.whitelist} ${culprit}`
+                    text: `${this.options.validationText.whitelist}`
                 };
             case 'MAX_FILES':
                 return {
