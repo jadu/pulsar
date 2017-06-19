@@ -42,6 +42,8 @@ export default class DropZone {
         this.startIdleTimerWithContext = this.startIdleTimer.bind(this);
         // a place to be used externally as a instance based cache;
         this.data = {};
+        // a flag for determining support
+        this.supportsDataTransferItems = true;
         this.setup();
     }
 
@@ -120,7 +122,7 @@ export default class DropZone {
      * @param  {Event} event
      */
     handleDrop (event) {
-        const files = event.dataTransfer.files;
+        const files = event.dataTransfer.items || event.dataTransfer.files;
 
         // determine where the drop has taken place
         // dropped on the DropZone
@@ -171,13 +173,19 @@ export default class DropZone {
     handleWindowEnter (event) {
         const onWindow = this.fileOnWindow(event);
         const onDropZone = this.node.contains(onWindow);
-        const files = event.dataTransfer.files;
+        const files = event.dataTransfer.items || event.dataTransfer.files;
 
         this.clearIdleTimer();
 
+        if (!files.length) {
+            this.supportsDataTransferItems = false;
+        }
+
         if (onDropZone && !this.dropZoneActive) {
+            // handle files on DropZone
             this.handleEnter(files);
         } else if (this.fileOnWindow(event) && !this.windowActive) {
+            // handle files on window
             const { valid, text } = this.validator.validate(files, this.getFiles().length, this.getSize());
 
             this.createCallback(this.options.windowEnter, { valid, text });
@@ -243,14 +251,6 @@ export default class DropZone {
             type: DropZone.getFileType(file),
             size: DropZone.getFileSize(file)
         }, meta);
-    }
-
-    /**
-     * Handle a file rejection
-     * @param {String} error
-     */
-    rejectFiles (error) {
-        this.createCallback(this.options.filesRejected, { error, node: this.node });
     }
 
     /**

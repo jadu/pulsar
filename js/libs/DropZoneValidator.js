@@ -27,12 +27,12 @@ export default class DropZoneValidator {
         let fileCount = totalFiles;
         let sizeCount = totalSize;
 
-        [...files].forEach(file => {
+        Array.from(files).forEach(file => {
             const fileObject = file.getAsFile ? file.getAsFile() : file;
 
             fileCount++;
 
-            // 1. reject items that do not have a typejs/Drop
+            // 1. reject items that do not have a type
             if (result.valid) {
                 if (file.type === '') {
                     result = this.throwError('UNKNOWN');
