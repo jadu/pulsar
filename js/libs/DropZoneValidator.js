@@ -34,7 +34,8 @@ export default class DropZoneValidator {
             return result;
         }
 
-        Array.from(files).forEach(file => {
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
             const fileObject = file.getAsFile ? file.getAsFile() : file;
 
             fileCount++;
@@ -78,7 +79,7 @@ export default class DropZoneValidator {
                     result = this.throwError('MAX_SIZE');
                 }
             }
-        });
+        }
 
         return result;
     }
@@ -92,7 +93,7 @@ export default class DropZoneValidator {
         let valid = false;
 
         this.options.whitelist.forEach(mime => {
-            if (mime.includes('/')) {
+            if (mime.search('/')) {
                 if (mime === type) {
                     // if the user has specified a full mime e.g. 'image/png'
                     // we will check that against the type

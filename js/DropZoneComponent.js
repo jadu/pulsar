@@ -72,7 +72,7 @@ class DropZoneComponent {
             dropZoneError: 'dropzone-error'
         };
         // get all DropZone elements
-        this.dropZoneInstances = [...this.html.querySelectorAll(`.${this.nodeClasses.dropzone}`)];
+        this.dropZoneInstances = [].slice.call(this.html.querySelectorAll(`.${this.nodeClasses.dropzone}`));
         // get DropZone options array
         this.options = this.buildInstanceOptions(options);
         // instantiate each DropZone with it's options
@@ -218,7 +218,7 @@ class DropZoneComponent {
 
         // update wrapper html
         wrapper.innerHTML = fileNodeString;
-        [...wrapper.querySelectorAll(`.${this.nodeClasses.close}`)].forEach(file => {
+        [].slice.call(wrapper.querySelectorAll(`.${this.nodeClasses.close}`)).forEach(file => {
             file.addEventListener('click', this.removeFileHandler);
         });
     }
@@ -552,7 +552,7 @@ class DropZoneComponent {
      * @return {Object}
      */
     static getDropZoneAttrs (node) {
-        return [...node.attributes].reduce((attrs, attr) => {
+        return [].slice.call(node.attributes).reduce((attrs, attr) => {
             const { name } = attr;
             let { value } = attr;
             // grab value from attributes matching data-dropzone-{option}={value}

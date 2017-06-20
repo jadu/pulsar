@@ -146,9 +146,13 @@ export default class DropZone {
      */
     addFiles (files, meta = {}) {
         const { valid, text } = this.validator.validate(files, this.getFiles().length, this.getSize());
-        const processedFiles = [...files].map(
-            file => this.processFile(file.getAsFile ? file.getAsFile() : file, meta)
-        );
+        let processedFiles = []
+
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+
+            processedFiles.push(this.processFile(file.getAsFile ? file.getAsFile() : file, meta));
+        }
 
         if (valid) {
            this.files = [...this.files, ...processedFiles];

@@ -9,8 +9,6 @@
 // Fixes issue with dependencies that expect both $ and jQuery to be set
 window.jQuery = window.$ = require('jquery');
 
-require('babel-polyfill');
-
 // Global UI components
 var $                     = require('jquery'),
     dropdown              = require('./libs/dropdown'),
