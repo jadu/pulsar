@@ -468,7 +468,14 @@ class DropZoneComponent {
             // validation error which will persist once the file is dropped, this
             // helps us out when we need to throw an error when a user uses an associated
             // native file input's "browse files"
-            if (!instance.supportsDataTransferItems || files.find(file => file.persist === true)) {
+            let persist = false;
+            // a crude shim for Array.find, we just need to know if any of the files
+            // have the persist flag set to true
+            files.forEach(file => !persist && file.persist ? persist = true : null);
+
+            console.log('persist: ', persist)
+
+            if (!instance.supportsDataTransferItems || persist) {
                 this.throwValidationError(text, instance);
             } else {
                 // if we are not persiting validation messages, clear any that are present
