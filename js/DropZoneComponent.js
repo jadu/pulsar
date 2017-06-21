@@ -112,6 +112,8 @@ class DropZoneComponent {
      */
     processInputNode (instance, options) {
         // todo - install the event hub here when it is complete for removing these handlers
+        // for now they can stay anonymous, the likely hood of wanting to disable a DropZone
+        // at some point in a session seems unlikely. famous. last. words.
         instance.inputNode = document.getElementById(options.inputNodeId);
         // add files to DropZone that are added to the corresponding input
         instance.inputNode.addEventListener('change', () => {
@@ -120,7 +122,9 @@ class DropZoneComponent {
             // we'll add a persist property to our file objects, this can be used to
             // persist the front-end validation, which is essential when using an
             // associated file input
-            this.addFileToDropZone(files, instance.options.dropZoneId, { persist: true });
+            if (instance.inputNode.value) {
+                this.addFileToDropZone(files, instance.options.dropZoneId, { persist: true });
+            }
 
             // reset input node value, this will ensure our change event
             // fires each time we use the browse files functionality - even
@@ -229,6 +233,7 @@ class DropZoneComponent {
      * @param  {DropZone} instance
      */
     updateDropZoneValidation (error, instance) {
+        const helpNode = document.querySelector(`.${this.nodeClasses.help}`);
         let validationNode = instance.node.querySelector(`.${this.nodeClasses.validation}`);
 
         // if we are in passive mode we're handing this over to the developer installing the plugin
@@ -243,7 +248,7 @@ class DropZoneComponent {
         if (!validationNode) {
             validationNode = document.createElement('div');
             validationNode.className = this.nodeClasses.validation;
-            instance.node.insertBefore(validationNode, document.querySelector(`.${this.nodeClasses.help}`));
+            helpNode.parentNode.insertBefore(validationNode, helpNode);
         }
 
         // create error message and update validation
@@ -472,8 +477,6 @@ class DropZoneComponent {
             // a crude shim for Array.find, we just need to know if any of the files
             // have the persist flag set to true
             files.forEach(file => !persist && file.persist ? persist = true : null);
-
-            console.log('persist: ', persist)
 
             if (!instance.supportsDataTransferItems || persist) {
                 this.throwValidationError(text, instance);
