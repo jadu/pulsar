@@ -50,9 +50,10 @@ export default class DropZoneValidator {
             // 2. whitelist
             //   - check we have a whitelist
             //   - ensure our file is on the whitelist
+            //   - skip files that have a mock property
             if (result.valid) {
                 if (this.options.whitelist && this.options.whitelist.length) {
-                    if (!this.validateType(file.type)) {
+                    if (!this.validateType(file.type) && !file.mock) {
                         result = this.throwError('WHITELIST', file.type);
                     }
                 }
