@@ -41,30 +41,22 @@ export default class DropZoneValidator {
             fileCount++;
 
             // 1. reject items that do not have a type
-            if (result.valid) {
-                if (file.type === '') {
-                    result = this.throwError('UNKNOWN');
-                }
+            if (result.valid && file.type === '') {
+                result = this.throwError('UNKNOWN');
             }
 
             // 2. whitelist
             //   - check we have a whitelist
             //   - ensure our file is on the whitelist
             //   - skip files that have a mock property
-            if (result.valid) {
-                if (this.options.whitelist && this.options.whitelist.length) {
-                    if (!this.validateType(file.type) && !file.mock) {
-                        result = this.throwError('WHITELIST', file.type);
-                    }
-                }
+            if (result.valid && this.options.whitelist && this.options.whitelist.length && !file.mock && !this.validateType(file.type)) {
+                result = this.throwError('WHITELIST', file.type);
             }
 
             // 3. max files
             //   - ensure we haven't exceeded our max files
-            if (result.valid) {
-                if (!this.validateCount(fileCount)) {
-                    result = this.throwError('MAX_FILES');
-                }
+            if (result.valid && !this.validateCount(fileCount)) {
+                result = this.throwError('MAX_FILES');
             }
 
             // 4. max size
@@ -73,7 +65,7 @@ export default class DropZoneValidator {
             // check to see if we can get a file, if we can't we know we cannot
             // determine the size, so we'll pass this and handle it when we can get
             // the size
-            if (result.valid && fileObject) {
+            if (result.valid && fileObject && !file.mock) {
                 sizeCount += fileObject.size;
 
                 if (!this.validateSize(sizeCount)) {
