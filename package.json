@@ -7,7 +7,7 @@
   },
   "main": "./src/Jadu/Pulsar/Twig.js/Pulsar.js",
   "scripts": {
-    "start": "vagrant up && grunt",
+    "start": "vagrant reload && grunt",
     "coverage": "mochify --plugin [ mochify-istanbul --exclude '**/+(tests|node_modules|libs)/**/*' --report lcov --dir ./coverage ] --reporter spec --recursive ./tests/js/web/index ./tests/js/web/*Test.js",
     "test": "npm run web-test && npm run js-ext-test && npm run js-macro-test",
     "web-test": "mochify --reporter spec --transform [ babelify --presets [ es2015 ] ] --recursive ./tests/js/web/index ./tests/js/web/*Test.js",
@@ -104,7 +104,6 @@
     }
   },
   "dependencies": {
-    "babel-polyfill": "^6.23.0",
     "jstree": "^3.3.3",
     "lodash": "^4.6.1",
     "moment": "^2.15.2"
