@@ -236,9 +236,15 @@ fieldset {
     line-height: $input-height-base;
 }
 
-.control__label {
+.form__group > .control__label {
     padding-top: 11px;
     padding-right: 10px;
+
+    // hidden labels need to maintain their position and not break the flow of
+    // the form elements
+    &.hide {
+        position: relative;
+    }
 }
 
 .form__group--top {

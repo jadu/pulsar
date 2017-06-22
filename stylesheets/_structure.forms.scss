@@ -6,19 +6,16 @@
  * give us great, predictable, cross browser columnar layouts.
  */
 
-$label-column-width:   25%;
-$control-column-width: 75%;
-
 // each 'block' of a form, usually consisting of a label and one or more inputs
 .form__group {
     display: table;
+    margin-bottom: .5em;
     table-layout: fixed; // prevent resizable textareas from causing the column to grow in width
-
     width: 100%;
 
     // the main label, usually placed in the left hand column
     > .control__label {
-        width: $label-column-width;
+        @include span($form-label-cols, false, true);
         word-wrap: break-word;
     }
 
@@ -40,7 +37,7 @@ $control-column-width: 75%;
 
 // the container around one or more form inputs
 .controls {
-    width: $control-column-width;
+    @include span($form-control-cols);
 
     // stack inputs by default
     > .form__control,
@@ -93,21 +90,23 @@ $control-column-width: 75%;
 
   // Create a 'fake' label to fill the gap left by a missing label element which removes the need to leave empty elements in the markup
   .controls::before {
+    @include span-width($form-label-cols);
     content: '\00a0';
     display: table-cell;
     float: left;
-    width: $label-column-width;
+    // width: $label-column-width;
   }
 
   .help-block {
-    margin-left: $label-column-width;
+    @include push($form-label-cols);
   }
 }
 
 // control group inside first column (normally used for control labels)
 .controls:first-child {
+    @include span-width($form-label-cols);
     display: table;
-    width: $label-column-width;
+    // width: $label-column-width;
 
     > .control__label--left {
         clear: right;
@@ -116,11 +115,7 @@ $control-column-width: 75%;
 }
 
 .form__group--indent {
-    width: $control-column-width;
-
-    @include respond-min($screen-tablet) {
-        margin-left: $label-column-width;
-    }
+    @include push($form-label-cols);
 }
 
 .form__group--flush {
@@ -178,20 +173,3 @@ $control-column-width: 75%;
     padding: 0 20px;
   }
 }
-
-
-// DEBUG STYLES
-
-.form__group {
-  margin-bottom: .5em;
-}
-
-
-
-// .form__group {
-//     outline: 1px solid red;
-// }
-
-// .controls {
-//     outline: 1px solid blue;
-// }
