@@ -128,7 +128,7 @@ export default class DropZone {
         // dropped on the DropZone
         if (this.windowActive && this.dropZoneActive) {
             this.addFiles(files);
-        // dropped on the window
+            // dropped on the window
         } else if (this.windowActive && !this.dropZoneActive) {
             this.createCallback(this.options.windowDrop, { files: this.files, node: this.node });
         }
@@ -155,7 +155,7 @@ export default class DropZone {
         }
 
         if (valid) {
-           this.files = [...this.files, ...processedFiles];
+            this.files = [...this.files, ...processedFiles];
         }
 
         // fire dropped callback
@@ -248,13 +248,14 @@ export default class DropZone {
      */
     processFile (file, meta) {
         this.size += file.size;
+
         return _.extend({}, {
             raw: file,
-            thumbnail: DropZone.getFileThumbnail(file),
+            thumbnail: !file.mock ? DropZone.getFileThumbnail(file) : null,
             id: _.uniqueId('DropZone_file_'),
-            name: DropZone.getFileName(file),
-            type: DropZone.getFileType(file),
-            size: DropZone.getFileSize(file)
+            name: !file.mock ? DropZone.getFileName(file.name) : file.name,
+            type: !file.mock ? DropZone.getFileType(file.type) : null,
+            size: !file.mock ? DropZone.getFileSize(file.size) : null
         }, meta);
     }
 
@@ -393,22 +394,22 @@ export default class DropZone {
 
     /**
      * Format filename for printing
-     * @param  {Object} file
+     * @param  {String} filename
      * @return {String}
      */
-    static getFileName (file) {
+    static getFileName (filename) {
         // strip out any directory path in our filename
-        return file.name.replace(/.*[\\\/]/, '');
+        return filename.replace(/.*[\\\/]/, '');
     }
 
     /**
      * Format type for printing
-     * @param  {Object} file
+     * @param  {String} type
      * @return {String}
      */
-    static getFileType (file) {
-        if (file.type.length) {
-            return file.type;
+    static getFileType (type) {
+        if (type.length) {
+            return type;
         } else {
             return 'application/file';
         }
@@ -416,11 +417,11 @@ export default class DropZone {
 
     /**
      * Format size for printing
-     * @param  {Object} file
+     * @param  {Number} size
      * @return {String}
      */
-    static getFileSize (file) {
-        return DropZone.formatBytes(file.size);
+    static getFileSize (size) {
+        return DropZone.formatBytes(size);
     }
 
     /**
