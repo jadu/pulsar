@@ -33,7 +33,8 @@ class DropZoneComponent {
             fileNodeDesc: true,
             fileNodeName: true,
             fileNodeSize: true,
-            fileNodeType: true
+            fileNodeType: true,
+            supported: true
         };
 
         this.callbacks = {
@@ -88,14 +89,17 @@ class DropZoneComponent {
                 this.options[index],
                 new DropZoneValidator(DropZoneComponent.buildValidatorOptions(this.options[index]))
             );
+
             // if an input node selector has been passed in, add events and hide
-            if (this.options[index].inputNodeId) {
+            if (this.options[index].supported && this.options[index].inputNodeId) {
                 this.processInputNode(instance, this.options[index]);
             }
 
             // update helper state to overwrite helper Html if a custom value was passed
             // in as an option for the idlehtml
-            this.updateHelperState(instance, this.options[index].idleHtml);
+            if (this.options[index].supported) {
+                this.updateHelperState(instance, this.options[index].idleHtml);
+            }
             // return instance
             return instance;
         });
@@ -532,7 +536,8 @@ class DropZoneComponent {
     }
 
     /**
-     * Create options array from dropzone nodes
+     * Create options array from DropZone nodes
+     * @param {Object} userOptions
      * @return {Array}
      */
     buildInstanceOptions (userOptions) {
@@ -540,13 +545,17 @@ class DropZoneComponent {
             const dropZoneAttrs = DropZoneComponent.getDropZoneAttrs(node);
             const helperState = _.assign({}, this.helperStateHtml);
 
-            // store reference to dropzone__helper node
-            helperState.helperNode = node.querySelector(helperState.nodeSelector);
-            // if we haven't got any idle Html passed in as an option
-            // we'll set it to the current innerHTML of the helper node
+            // we only want to start storing references to nodes if we are supporting the
+            // enriched feature set
+            if (('supported' in userOptions) && !userOptions.supported) {
+                // store reference to dropzone__helper node
+                helperState.helperNode = node.querySelector(helperState.nodeSelector);
+                // if we haven't got any idle Html passed in as an option
+                // we'll set it to the current innerHTML of the helper node
 
-            if (!dropZoneAttrs.idleHtml && helperState.helperNode) {
-                helperState.idleHtml = helperState.helperNode.innerHTML;
+                if (!dropZoneAttrs.idleHtml && helperState.helperNode) {
+                    helperState.idleHtml = helperState.helperNode.innerHTML;
+                }
             }
 
             // extend node attributes & defaults to build options
