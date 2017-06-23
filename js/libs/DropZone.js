@@ -44,7 +44,11 @@ export default class DropZone {
         this.data = {};
         // a flag for determining support
         this.supportsDataTransferItems = true;
-        this.setup();
+
+        // conditionally attach events and provide enriched support for the DropZone
+        if (this.options.supported) {
+            this.setup();
+        }
     }
 
     setup () {
