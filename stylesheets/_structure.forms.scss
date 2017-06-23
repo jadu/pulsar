@@ -10,12 +10,12 @@
 .form__group {
     display: table;
     margin-bottom: .5em;
-    table-layout: fixed; // prevent resizable textareas from causing the column to grow in width
+    //table-layout: fixed; // prevent resizable textareas from causing the column to grow in width
     width: 100%;
 
     // the main label, usually placed in the left hand column
     > .control__label {
-        @include span($form-label-cols, false, true);
+        @include span($form-label-cols);
         word-wrap: break-word;
     }
 
@@ -31,7 +31,7 @@
 // all labels, regardless of their placement
 .control__label,
 .controls {
-    display: table-cell;
+    display: inline-block;
     vertical-align: top;
 }
 
@@ -90,7 +90,7 @@
 
   // Create a 'fake' label to fill the gap left by a missing label element which removes the need to leave empty elements in the markup
   .controls::before {
-    @include span-width($form-label-cols);
+    @include span($form-label-cols);
     content: '\00a0';
     display: table-cell;
     float: left;
@@ -104,7 +104,7 @@
 
 // control group inside first column (normally used for control labels)
 .controls:first-child {
-    @include span-width($form-label-cols);
+    @include span($form-label-cols);
     display: table;
     // width: $label-column-width;
 

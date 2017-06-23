@@ -29,31 +29,13 @@ $gutter_pc:     1;
  * @param  {bool} $force:  false         If true, prevents the width from becoming 100% at smaller screen sizes
  * @param  {bool} $first:  false         If true, removes the left hand column margin
  */
-@mixin span($num, $force: false, $first: false, $column: true) {
+@mixin span($num, $force: false, $gutter: false) {
     $one_col: (100% - ($gutter_pc * ($columns - 1))) / $columns;
     $span_width: ($one_col * ($num)) + ($gutter_pc * ($num - 1));
 
-    @if $force == false {
-        @include respond-min($screen-phone) {
-            width: 100%;
-        }
+    @if $gutter == true {
+        margin-left: percentage($gutter_pc / 100);
     }
-    @else {
-        width: $span_width;
-    }
-
-    @include respond-min($screen-tablet) {
-        width: $span_width;
-    }
-
-    @include respond-min($screen-desktop) {
-        width: $span_width;
-    }
-}
-
-@mixin span-width($num, $force: false) {
-    $one_col: (100% - ($gutter_pc * ($columns - 1))) / $columns;
-    $span_width: ($one_col * ($num)) + ($gutter_pc * ($num - 1));
 
     @if $force == false {
         @include respond-min($screen-phone) {

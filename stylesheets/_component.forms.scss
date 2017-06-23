@@ -306,18 +306,23 @@ fieldset {
 @include respond-min($screen-smaller) {
 
     // default width
-    .form__group .form__control:not(.checkbox):not(.radio):not(.file) {
-        max-width: 100%;
-        width: 300px;
+    .controls {
+        @include span(5, false, true)
     }
 
-    @each $variant, $width in $input-widths {
+    // @each $variant, $width in $input-widths {
 
-        // 1. allow input-specific widths for fine-grained control
-        // 2. allow a class on the main group to control the width of it's controls
-        .form__control:not(.checkbox):not(.radio):not(.file).form__control--#{$variant},
-        .form__group--#{$variant} .form__control:not(.checkbox):not(.radio):not(.file) {
-            width: #{$width};
+    //     // 1. allow input-specific widths for fine-grained control
+    //     // 2. allow a class on the main group to control the width of it's controls
+    //     .form__control:not(.checkbox):not(.radio):not(.file).form__control--#{$variant},
+    //     .form__group--#{$variant} .form__control:not(.checkbox):not(.radio):not(.file) {
+    //         width: #{$width};
+    //     }
+    // }
+
+    @for $i from 1 through 12 {
+        .form__control-col--#{$i} .controls {
+            @include span($i, false, true);
         }
     }
 }
