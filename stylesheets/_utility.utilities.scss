@@ -78,7 +78,7 @@ p.success {
 
 .no-results {
     background-color: color(gray, off-white);
-    background-image: url('../images/stripes.png');
+    background-image: url($image-path + 'stripes.png');
     background-repeat: repeat;
     padding: 1em 0;
     text-align: center;
@@ -300,4 +300,15 @@ div.no-results {
 %u-text-align-justify,
 .u-text-align-justify {
     text-align: justify;
+}
+
+.u-ui-disabled {
+    @extend %u-cursor-not-allowed;
+
+    opacity: .25;
+}
+
+%u-cursor-not-allowed,
+.u-cursor-not-allowed {
+    cursor: not-allowed !important;
 }

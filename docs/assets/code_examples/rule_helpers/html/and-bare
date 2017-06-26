@@ -1,0 +1,9 @@
+<div class="rule-block rule-block--and" data-index="__index__">
+        <div class="rule-block__header rule-block__header--and">
+            <h5 class="rule-block__heading">and</h5>
+            <i data-toggle="tooltips" data-placement="right" data-title="What should cause this rule to run" title="" aria-hidden="true" class="icon-question-sign rule-block__heading__icon" data-original-title="What should cause this rule to run"></i>
+        </div>
+        <div class="rule-block__controls rule__trigger__form">
+        </div>
+    </div>
+</div>

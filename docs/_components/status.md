@@ -19,7 +19,7 @@ You may notice 'offline' uses a square instead of a circle, this is to visually 
 
 _[WCAG 2.0 Guideline 1.4.1](http://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-without-color.html)_
 
-<img class="image--inline" src="/assets/image_examples/status-col1.png" /><img class="image--inline" src="/assets/image_examples/status-col2.png" /><img class="image--inline" src="/assets/image_examples/status-col3.png" /><img class="image--inline" src="/assets/image_examples/status-col5.png" />
+<img class="image--inline" src="{{ site.baseurl }}/assets/image_examples/status-col1.png" /><img class="image--inline" src="{{ site.baseurl }}/assets/image_examples/status-col2.png" /><img class="image--inline" src="{{ site.baseurl }}/assets/image_examples/status-col3.png" /><img class="image--inline" src="{{ site.baseurl }}/assets/image_examples/status-col5.png" />
 
 _Example of how status indicators are viewed with different types of colour blindness_
 

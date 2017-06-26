@@ -1,0 +1,121 @@
+%range-slider,
+.rangeslider {
+    -webkit-appearance: none;
+    border-radius: 5px;
+    display: block;
+    height: 75px;
+    outline: none;
+    overflow: visible;
+    width: 100%;
+
+    &:focus {
+        outline: none;
+    }
+
+    &::-ms-tooltip {
+        display: none;
+    }
+
+    // Slider thumb
+    &::-webkit-slider-thumb {
+        margin-top: -5px;
+        appearance: none;
+        background: color(primary);
+        border: 0;
+        border-radius: 50%;
+        cursor: pointer;
+        height: $gutter-width;
+        transition: background .15s ease-in-out;
+        width: $gutter-width;
+
+        &:hover {
+            background: color(primary);
+        }
+    }
+
+    &::-ms-thumb {
+        background: color(primary);
+        border: 0;
+        border-radius: 50%;
+        cursor: pointer;
+        height: $gutter-width;
+        margin-top: 1px;
+        transition: background .15s ease-in-out;
+        width: $gutter-width;
+
+        &:hover {
+            background: color(primary);
+        }
+    }
+
+    &:active::-ms-thumb {
+        background: color(primary);
+    }
+
+    &::-moz-range-thumb {
+        appearance: none;
+        background: color(primary);
+        border: 0;
+        border-radius: 50%;
+        cursor: pointer;
+        height: $gutter-width;
+        transition: background .15s ease-in-out;
+        width: $gutter-width;
+
+        &:hover {
+            background: color(primary);
+        }
+    }
+
+    &:active::-moz-range-thumb {
+        background: color(primary);
+    }
+
+    // Slider track
+    &::-webkit-slider-runnable-track {
+        background: color(gray, lighter);
+        border-radius: 5px;
+        border: 0;
+        color: transparent;
+        cursor: pointer;
+        height: $padding-base;
+        width: 100%;
+    }
+
+    &::-ms-track {
+        background: color(gray, lighter);
+        border-radius: 5px;
+        border: 0;
+        color: transparent;
+        cursor: pointer;
+        height: $padding-base;
+        width: 100%;
+        overflow: visible;
+    }
+
+    &::-ms-fill-lower {
+        background: color(gray, lighter);
+        border-radius: 5px;
+        overflow: visible;
+    }
+
+    &::-ms-fill-upper {
+        background: color(gray, lighter);
+        border-radius: 5px;
+        overflow: visible;
+    }
+
+    &::-moz-range-track {
+        background: color(gray, lighter);
+        border-radius: 5px;
+        border: 0;
+        color: transparent;
+        cursor: pointer;
+        height: $padding-base;
+        width: 100%;
+    }
+
+    &::-moz-focus-outer {
+        border: 0;
+    }
+}

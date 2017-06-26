@@ -22,6 +22,7 @@ guidance-container | string | Element to bind guidance popover scroll behaviour 
 help        | string | Additional guidance information to be displayed next to the input
 label       | string | Text for the `<label>` companion element
 required    | bool   | Visually indicates that the field must be completed
+show-label  | bool   | Control visibility of the `<label>` element without affecting layout (default: true)
 
 ## Options applied to input
 

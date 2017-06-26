@@ -67,6 +67,15 @@
 
     {{
         form.text({
+            'id': 'text-1',
+            'label': 'Text field',
+            'show-label': false,
+            'help': 'This example hides the label with the <code>show-label</code> option'
+        })
+    }}
+
+    {{
+        form.text({
             'id': 'text-8',
             'label': 'Text input with a longer than expected label which will probably wrap multple lines and push the following input onto the next baseline',
             'name': 'inputTextLong',
@@ -281,6 +290,82 @@
             'label': 'Prepended &amp; Appended',
             'append': '.00',
             'prepend': '£'
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+
+    {{ form.fieldset_start({ 'legend': 'HTML5 Input Types' }) }}
+
+    {{
+        form.text({
+            'id': 'number',
+            'label': 'Number',
+            'type': 'number'
+        })
+    }}
+
+    {{
+        form.text({
+            'id': 'tel',
+            'label': 'Tel',
+            'type': 'tel'
+        })
+    }}
+
+    {{
+        form.text({
+            'id': 'url',
+            'label': 'Url',
+            'type': 'url'
+        })
+    }}
+
+    {{
+        form.text({
+            'id': 'email',
+            'label': 'Email',
+            'type': 'email'
+        })
+    }}
+
+    {{
+        form.text({
+            'id': 'date',
+            'label': 'Date',
+            'type': 'date'
+        })
+    }}
+
+    {{
+        form.text({
+            'id': 'month',
+            'label': 'Month',
+            'type': 'month'
+        })
+    }}
+
+    {{
+        form.text({
+            'id': 'week',
+            'label': 'Week',
+            'type': 'week'
+        })
+    }}
+
+    {{
+        form.text({
+            'id': 'time',
+            'label': 'Time',
+            'type': 'time'
+        })
+    }}
+
+    {{
+        form.text({
+            'id': 'search',
+            'label': 'Search',
+            'type': 'search'
         })
     }}
 

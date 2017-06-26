@@ -1,0 +1,5 @@
+{{
+    rule.block_or({
+        // options
+    })
+}}

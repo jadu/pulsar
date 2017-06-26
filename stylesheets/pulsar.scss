@@ -17,6 +17,7 @@ $ie-version: 12 !default;
 // Third party plugins
 // scss-lint:disable all
 @import '../libs/normalize-css/normalize.css';
+@import '../libs/susy/sass/susy';
 // scss-lint:enable all
 
 // Proxima Nova (requires license)
@@ -127,8 +128,11 @@ $fa-css-prefix: 'icon';
 @import 'component.popovers';
 @import 'component.progress-bars';
 @import 'component.progress-lists';
+@import 'component.range-slider';
 @import 'component.remove-button';
 @import 'component.repeatable';
+@import 'component.ribbon';
+@import 'component.rules';
 @import 'component.search';
 @import 'component.select2';
 @import 'component.settings';

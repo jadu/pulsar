@@ -148,8 +148,61 @@
         })
     }}
 
+    {{
+        form.select2({
+            'label': 'Select2 with optgroups',
+            'options':
+            [
+                {
+                    'label': 'optgroup-1',
+                    'options': [
+                        {
+                            'label': '1-foo',
+                            'value': '1-foo-value'
+                        },
+                        {
+                            'label': '1-bar',
+                            'value': '1-bar-value'
+                        }
+                    ]
+                },
+                {
+                    'label': 'optgroup-2',
+                    'options': [
+                        {
+                            'label': '2-foo',
+                            'value': '2-foo-value'
+                        },
+                        {
+                            'label': '2-bar',
+                            'value': '2-bar-value'
+                        }
+                    ]
+                }
+            ]
+        })
+    }}
+
     {{ form.fieldset_end() }}
     {{ form.fieldset_start({ 'legend': 'Alignment' }) }}
+
+    {{
+        form.select2({
+            'label': 'Select field',
+            'show-label': false,
+            'help': 'This example hides the label with the <code>show-label</code> option',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
 
     {{
         form.select2({
@@ -618,6 +671,25 @@
     }}
 
     {{ form.fieldset_end() }}
+
+    {{
+        form.select2({
+            'id': 'select2-30',
+            'label': 'data-init="false"',
+            'class': 'foo',
+            'data-init': 'false',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
 
     {{
         form.end()

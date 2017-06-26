@@ -1,0 +1,47 @@
+{% extends '@pulsar/lexicon/base.html.twig' %}
+
+{% set heading = 'Ref 5431 - Blue Badge Application Form' %}
+
+{% set tab_rules %}
+    {% include '/playground/xfp-rules/rules.html.twig' %}
+{% endset %}
+
+{% set tab_templates %}
+    {% include '/playground/xfp-rules/templates.html.twig' %}
+{% endset %}
+
+{%
+    set tabs_content = [
+        {
+            "id"    : "details",
+            "label" : "Details",
+            "src"   : tab_rules,
+        },
+        {
+            "id"    : "pages",
+            "label" : "Pages",
+            "src"   : tab_rules,
+        },
+        {
+            "id"    : "advanced",
+            "label" : "Advanced",
+            "src"   : tab_rules,
+        },
+        {
+            "id"    : "rules",
+            "label" : "Rules",
+            "src"   : tab_rules,
+            "active": true
+        },
+        {
+            "id"    : "templates",
+            "label" : "Templates",
+            "src"   : tab_templates,
+        },
+        {
+            "id"    : "Emails",
+            "label" : "Emails",
+            "src"   : tab_rules,
+        },
+    ]
+%}

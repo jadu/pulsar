@@ -10,6 +10,7 @@
     $html.removeClass('no-js');
 
     pulsar.button       = new pulsar.ButtonComponent($html);
+    pulsar.disableUi    = new pulsar.DisableUiComponent($html);
     pulsar.flash        = new pulsar.FlashMessageComponent($html);
     pulsar.helpText     = new pulsar.HelpTextComponent($html, window, document);
     pulsar.pulsarForm   = new pulsar.PulsarFormComponent($html);
@@ -33,6 +34,7 @@
         pulsar.modulePermissions.init();
         pulsar.navMain.init();
         pulsar.filterBar.init();
+        pulsar.disableUi.init();
 
         // Switch out .svg for .png for <img> elements in older browsers
         pulsar.svgeezy.init('nocheck', 'png');
