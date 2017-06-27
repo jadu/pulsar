@@ -731,6 +731,15 @@ class DropZoneComponent {
 
         body.className = classNames.length ? `${cleanBodyClass} ${classNames.join(' ')}` : cleanBodyClass;
     }
+
+    /**
+     * Get instance idleHtml
+     * @param {String} id
+     * @returns {string}
+     */
+    getInstanceIdleHtml (id) {
+        return this.getDropZoneById(id).options.idleHtml;
+    }
 }
 
 module.exports = DropZoneComponent;
