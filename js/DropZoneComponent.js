@@ -193,7 +193,7 @@ class DropZoneComponent {
      */
     updateDropZoneFiles (instance) {
         const validation = instance.node.querySelector(`.${this.nodeClasses.validation}`);
-        const files = instance.getFiles();
+        const files = this.getFilesFromDropZone(instance.id);
         let wrapper = instance.node.querySelector(`.${this.nodeClasses.wrapper}`);
         let fileNodeString = '';
 
@@ -633,11 +633,10 @@ class DropZoneComponent {
      */
     validateFiles (files, id, pre = false) {
         const dropZone = this.getDropZoneById(id);
+        const instanceLength = this.getFilesFromDropZone(id).length;
         return dropZone.validator.validate(
             files,
-            // we need this subtraction because the validateFiles public API method will be invoked _after_
-            // a file has been dropped on the DropZone
-            pre ? dropZone.getFiles().length : (dropZone.getFiles().length - files.length),
+            pre ? instanceLength : (instanceLength - files.length),
             dropZone.size
         );
     }
@@ -733,12 +732,48 @@ class DropZoneComponent {
     }
 
     /**
+     * Get Files from DropZone instance
+     * @param {String} id
+     * @returns {Array}
+     */
+    getFilesFromDropZone (id) {
+        return this.getDropZoneById(id).getFiles();
+    }
+
+    /**
      * Get instance idleHtml
      * @param {String} id
      * @returns {string}
      */
     getInstanceIdleHtml (id) {
         return this.getDropZoneById(id).options.idleHtml;
+    }
+
+    /**
+     * Get instance windowEnterHtml
+     * @param {String} id
+     * @returns {string}
+     */
+    getInstanceWindowEnterHtml (id) {
+        return this.getDropZoneById(id).options.windowEnterHtml;
+    }
+
+    /**
+     * Get instance dropZoneEnterHtml
+     * @param {String} id
+     * @returns {string}
+     */
+    getInstanceDropZoneEnterHtml (id) {
+        return this.getDropZoneById(id).options.dropZoneEnterHtml;
+    }
+
+    /**
+     * Get instance support
+     * @param {string} id
+     * @returns {boolean}
+     */
+    getSupportsDataTransferItems (id) {
+        return this.getDropZoneById(id).supportsDataTransferItems;
     }
 }
 

@@ -45,10 +45,7 @@ export default class DropZone {
         // a flag for determining support
         this.supportsDataTransferItems = true;
 
-        // conditionally attach events and provide enriched support for the DropZone
-        if (this.options.supported) {
-            this.setup();
-        }
+        this.setup();
     }
 
     setup () {
@@ -60,9 +57,16 @@ export default class DropZone {
 
         this.eventPool = [];
         this.files = [];
+        this.size = 0;
+
+        if (this.options.supported) {
+            this.setupEvents();
+        }
+    }
+
+    setupEvents () {
         this.idleTimer = null;
         this.eventTracker = { node: {}, window: {} };
-        this.size = 0;
         this.windowActive = false;
         this.dropZoneActive = false;
 
@@ -269,6 +273,8 @@ export default class DropZone {
      * @return {Array}
      */
     getFiles (index = null) {
+        console.log('files: ', this.files)
+        console.log('files: ', this.files.length)
         return index === null ? this.files : this.files[index];
     }
 
