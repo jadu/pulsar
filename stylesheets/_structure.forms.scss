@@ -20,7 +20,7 @@
     }
 
     .help-block {
-        margin-top: .675em;
+        margin: .675em 0 0 1%;
     }
 
     .help-block ~ .help-block {
@@ -82,24 +82,18 @@
 }
 
 .form__group--top {
-  > .control__label,
-  .controls {
-    display: block;
-    min-width: 100%;
-  }
+    > .control__label {
+        @include span(12);
+    }
 
-  // Create a 'fake' label to fill the gap left by a missing label element which removes the need to leave empty elements in the markup
-  .controls::before {
-    @include span($form-label-cols);
-    content: '\00a0';
-    display: table-cell;
-    float: left;
-    // width: $label-column-width;
-  }
+    > .control__label,
+    .controls {
+        display: block;
+    }
 
-  .help-block {
-    @include push($form-label-cols);
-  }
+    .controls {
+        @include push($form-label-cols);
+    }
 }
 
 // control group inside first column (normally used for control labels)
@@ -121,12 +115,8 @@
 .form__group--flush {
     margin-left: 0;
 
-    .controls {
-        display: table-row;
-
-        &::before {
-            display: none;
-        }
+    .controls::before {
+        display: none;
     }
 
     .help-block {

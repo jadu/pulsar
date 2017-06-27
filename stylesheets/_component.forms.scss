@@ -296,7 +296,7 @@ fieldset {
     margin-top: $padding-small-vertical;
 }
 
-.form__control:not(.checkbox):not(.radio):not(.file) {
+.form__control {
 
     // form elements should be 100% on mobile
     background-color: #fafafa;
@@ -306,8 +306,8 @@ fieldset {
 @include respond-min($screen-smaller) {
 
     // default width
-    .controls {
-        @include span(5, false, true)
+    .form__control {
+        @include span(5, false, true, 9);
     }
 
     // @each $variant, $width in $input-widths {
@@ -320,9 +320,9 @@ fieldset {
     //     }
     // }
 
-    @for $i from 1 through 12 {
-        .form__control-col--#{$i} .controls {
-            @include span($i, false, true);
+    @for $i from 1 through 9 {
+        .form__control-col--#{$i} .form__control {
+            @include span($i, false, true, 9);
         }
     }
 }
