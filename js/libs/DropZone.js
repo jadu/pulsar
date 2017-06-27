@@ -1,6 +1,7 @@
 import _ from 'lodash';
 
 export const defaults = {
+    id: 0,
     // HTML node that will become DropZone
     node: null,
     // limit of files within store
@@ -35,6 +36,7 @@ export default class DropZone {
         // in as strings from a DOM node's attributes
         this.options.maxFiles = parseInt(this.options.maxFiles);
         this.options.maxSize = parseInt(this.options.maxSize);
+        this.id = this.options.dropZoneId;
         // cache methods with context
         this.handleDropWithContext = this.handleDrop.bind(this);
         this.handleWindowEnterWithContext = this.handleWindowEnter.bind(this);
@@ -390,6 +392,14 @@ export default class DropZone {
                 this.eventTracker[node][event] = 0;
             });
         });
+    }
+
+    /**
+     * Get DropZone ID
+     * @returns {String}
+     */
+    getDropZoneId () {
+        return this.id;
     }
 
     /**

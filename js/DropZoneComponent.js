@@ -193,7 +193,7 @@ class DropZoneComponent {
      */
     updateDropZoneFiles (instance) {
         const validation = instance.node.querySelector(`.${this.nodeClasses.validation}`);
-        const files = this.getFilesFromDropZone(instance.id);
+        const files = this.getFilesFromDropZone(instance.getDropZoneId());
         let wrapper = instance.node.querySelector(`.${this.nodeClasses.wrapper}`);
         let fileNodeString = '';
 
