@@ -2,13 +2,64 @@
 
 {% block tab_content %}
 
-    <pre>DropZone with default options</pre>
+    <!--
 
-    <div class="passive-dropzone dropzone" data-dropzone-passive="true">
-        <p class="passive-dropzone__text">This is a regular element with a passive DropZone inside</p>
+    <pre>DropZone using with custom callback</pre>
+
+    {{
+        html.dropzone({
+            'id': 'dropzone_callback_1',
+            'data-dropzone-max-files': '1gss',
+            'data-dropzone-idle-html': 'This is the idle HTML',
+            'data-dropzone-window-enter-html': 'This is the window enter HTML',
+            'data-dropzone-drop-zone-enter-html': 'This is the dropzone enter HTML'
+        })
+    }}
+
+    <!--
+
+    <hr>
+
+    <pre>DropZone using validation API</pre>
+
+    {{
+        html.dropzone({
+            'id': 'dropzone_validation_api',
+            'data-dropzone-max-files': '1',
+            'data-dropzone-idle-html': '<a class="dropzone__browse" href="#">Browse Files&hellip;</a>',
+            'data-dropzone-validation-max-files': 'oooooops! That is too many files',
+            'data-dropzone-validation-unknown': 'Get that file out of my (site|sight)',
+        })
+    }}
+
+    <button id="validate">Validate!</button>
+
+    <hr>
+
+    <pre>DropZone with custom validation messages</pre>
+
+    {{
+        html.dropzone({
+            'id': 'dropzone_with_input',
+            'data-dropzone-max-files': '1',
+            'data-dropzone-idle-html': '<a class="dropzone__browse" href="#">Browse Files&hellip;</a>',
+            'data-dropzone-validation-max-files': 'oooooops! That is too many files',
+            'data-dropzone-validation-unknown': 'Get that file out of my (site|sight)',
+        })
+    }}
+
+
+    <pre>Passive DropZone</pre>
+
+    <div class="l-passive-dropzone dropzone" data-dropzone-passive="true" data-dropzone-max-files="1">
+        <div class="dropzone__state"></div>
+        <p class="l-passive-dropzone__text">This is a regular element converted to a DropZone</p>
     </div>
 
     <hr>
+
+<!--
+
 
     <pre>DropZone with hidden file input</pre>
 
@@ -16,8 +67,7 @@
         html.dropzone({
             'id': 'dropzone_with_input',
             'helperContent': '<h5>Multimedia</h5> <ul> <li>Images</li> <li>Video</li> <li>Audio</li> </ul> <h5>Text</h5> <ul> <li>Plain text</li> <li>Rich text</li> <li>Web page</li> </ul> <h5>Documents</h5> <ul> <li>Microsoft Word</li> <li>Microsoft Excel</li> <li>Open Document</li> <li>Open Office</li> <li>PDF</li> </ul>',
-            'data-dropzone-whitelist': 'image/*',
-            'data-dropzone-max-files': '1',
+            'data-dropzone-max-files': '4',
             'data-dropzone-input-node-id': 'dropzone_input_hidden',
             'data-dropzone-idle-html': '<a class="dropzone__browse" href="#">Browse Files&hellip;</a>'
         })
@@ -28,6 +78,8 @@
             'id': 'dropzone_input_hidden'
         })
     }}
+
+    <!--
 
     <hr>
 
@@ -51,6 +103,8 @@
         })
     }}
 
+    -->
+
     <hr>
 
     <pre>DropZone with default options</pre>
@@ -62,7 +116,36 @@
         })
     }}
 
+    <!--
+
     <hr>
+
+    <pre>DropZone with custom file appearance</pre>
+
+    {{
+        html.dropzone({
+            'id': 'dropzone_defaults',
+            'data-dropzone-file-node-type': 'false'
+        })
+    }}
+
+    <hr>
+
+    <pre>DropZone using the reset API</pre>
+
+    {{
+        html.dropzone({
+            'id': 'dropzone_with_reset',
+            'data-dropzone-file-node-type': 'false'
+        })
+    }}
+
+    <button id="reset-dropzone">Reset</button>
+    <button id="reset-all-dropzones">Reset all DropZones</button>
+
+    <hr>
+
+    -->
 
 {% endblock tab_content %}
 

@@ -123,7 +123,40 @@
         // < IE10 do not support the File API, so we'll only need to initiate
         // the DropZoneComponent for >= IE10
         if (!$html.hasClass('lt-ie10')) {
-            pulsar.dropZoneComponent.init();
+            pulsar.dropZoneComponent.init({
+                customWindowEnter: () => console.log('windowEnter'),
+                customWindowLeave: () => console.log('windowLeave'),
+                customDropZoneEnter: () => console.log('dropZoneEnter'),
+                customDropZoneLeave: () => console.log('dropZoneLeave'),
+                customDropZoneDrop: () => console.log('dropZoneDrop'),
+                customWindowDrop: () => console.log('windowDrop')
+            });
+
+            // const validateButton = document.getElementById('validate');
+            // const validateDropZoneId = document.getElementById('dropzone_validation_api').getAttribute('data-dropzone-id');
+            // const validateDropZone = pulsar.dropZoneComponent.getDropZoneById(validateDropZoneId);
+
+            // validateButton.addEventListener('click', () => {
+            //     const files = validateDropZone.getFiles();
+            //
+            //     if (files.length) {
+            //         const result = pulsar.dropZoneComponent.validateFiles(files.map(file => file.file), validateDropZoneId);
+            //         console.log(result);
+            //     }
+            // });
+
+            // // reset API demo
+            // const dropZoneReset = document.getElementById('reset-dropzone');
+            // const dropZoneResetAll = document.getElementById('reset-all-dropzones');
+            // const resetDropZoneId = document.getElementById('dropzone_with_reset').getAttribute('data-dropzone-id');
+            //
+            // dropZoneReset.addEventListener('click', () => {
+            //     pulsar.dropZoneComponent.reset(parseInt(resetDropZoneId));
+            // });
+            //
+            // dropZoneResetAll.addEventListener('click', () => {
+            //     pulsar.dropZoneComponent.reset();
+            // });
         }
     });
 
