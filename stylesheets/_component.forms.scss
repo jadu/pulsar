@@ -23,7 +23,7 @@ fieldset {
         }
     }
 
-    .form__group--inline .form__control:not(.checkbox):not(.radio) {
+    .form__group--inline .form__control {
         max-width: none;
         width: auto;
     }
@@ -223,9 +223,9 @@ fieldset {
     // Note: HTML5 says that inputs under a fieldset > legend:first-child won't be
     // disabled if the fieldset is disabled. Due to implementation difficulty,
     // we don't honor that edge case; we style them as disabled anyway.
-    &:not(.checkbox):not(.radio):not(.file)[disabled],
-    &:not(.checkbox):not(.radio):not(.file)[readonly],
-    fieldset[disabled] &:not(.checkbox):not(.radio):not(.file) {
+    &:not(.checkbox)[disabled],
+    &:not(.checkbox)[readonly],
+    fieldset[disabled] &:not(.checkbox) {
         cursor: not-allowed;
         background-color: $input-bg-disabled;
     }
@@ -296,9 +296,8 @@ fieldset {
     margin-top: $padding-small-vertical;
 }
 
+// default (mobile first) width should be 100%
 .form__control {
-
-    // form elements should be 100% on mobile
     background-color: #fafafa;
     width: 100%;
 }
@@ -307,26 +306,34 @@ fieldset {
 
     // default width
     .form__control {
-        @include span(5, false, true, 9);
+        @include span(4, false, true, 9);
     }
 
-    // @each $variant, $width in $input-widths {
-
-    //     // 1. allow input-specific widths for fine-grained control
-    //     // 2. allow a class on the main group to control the width of it's controls
-    //     .form__control:not(.checkbox):not(.radio):not(.file).form__control--#{$variant},
-    //     .form__group--#{$variant} .form__control:not(.checkbox):not(.radio):not(.file) {
-    //         width: #{$width};
-    //     }
-    // }
-
+    // grid configuration
     @for $i from 1 through 9 {
         .form__control-col--#{$i} .form__control {
             @include span($i, false, true, 9);
         }
     }
-}
 
+    @each $variant, $width in $input-widths {
+
+        // 1. allow input-specific widths for fine-grained control
+        // 2. allow a class on the main group to control the width of it's controls
+        .form__control.form__control--#{$variant},
+        .form__group--#{$variant} .form__control {
+            width: #{$width};
+        }
+    }
+
+    // Checkboxes and radios don't need to use the grid widths, but we avoid
+    // using :not() because it makes things overly specific and is a pain to
+    // override (trust me ;)
+    .form__control.checkbox,
+    .form__control.radio {
+        width: auto;
+    }
+}
 
 @include respond-min($screen-smaller) {
     .form__group .input-group {
@@ -339,7 +346,7 @@ fieldset {
         }
     }
 
-    .form__group .input-group .form__control:not(.checkbox):not(.radio):not(.file) {
+    .form__group .input-group .form__control {
         width: 100%;
     }
 }
@@ -447,6 +454,7 @@ fieldset {
 
     > .controls > .control__label {
         display: inline-block;
+        width: 100%;
     }
 }
 
