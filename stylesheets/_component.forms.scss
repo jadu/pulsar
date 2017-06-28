@@ -223,9 +223,9 @@ fieldset {
     // Note: HTML5 says that inputs under a fieldset > legend:first-child won't be
     // disabled if the fieldset is disabled. Due to implementation difficulty,
     // we don't honor that edge case; we style them as disabled anyway.
-    &:not(.checkbox)[disabled],
-    &:not(.checkbox)[readonly],
-    fieldset[disabled] &:not(.checkbox) {
+    &[disabled],
+    &[readonly],
+    fieldset[disabled] & {
         cursor: not-allowed;
         background-color: $input-bg-disabled;
     }
