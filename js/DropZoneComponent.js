@@ -263,9 +263,11 @@ class DropZoneComponent {
      * Throw a DropZone error, useful as a public method for manually triggering DropZone errors
      * example: throwing an error returned as a response from a server
      * @param {String} error
-     * @param {DropZone} instance
+     * @param {string} id
      */
-    throwValidationError (error, instance) {
+    throwValidationError (error, id) {
+        const instance = this.getDropZoneById(id);
+
         this.updateDropZoneValidation(error, instance);
         // update helper text
         this.updateHelperState(instance, instance.options.idleHtml);
