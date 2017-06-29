@@ -274,10 +274,8 @@ export default class DropZone {
      * @param {Number} index
      * @return {Array}
      */
-    getFiles (index = null) {
-        console.log('files: ', this.files)
-        console.log('files: ', this.files.length)
-        return index === null ? this.files : this.files[index];
+    getFiles (index = -1) {
+        return index < 0 ? this.files : this.files[index];
     }
 
     /**

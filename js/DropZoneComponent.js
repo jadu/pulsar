@@ -734,10 +734,11 @@ class DropZoneComponent {
     /**
      * Get Files from DropZone instance
      * @param {String} id
+     * @param {number} fileIndex
      * @returns {Array}
      */
-    getFilesFromDropZone (id) {
-        return this.getDropZoneById(id).getFiles();
+    getFilesFromDropZone (id, fileIndex = -1) {
+        return this.getDropZoneById(id).getFiles(fileIndex);
     }
 
     /**
