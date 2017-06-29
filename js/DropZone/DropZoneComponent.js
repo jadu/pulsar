@@ -1,5 +1,7 @@
-import DropZone from './libs/DropZone';
-import DropZoneValidator from './libs/DropZoneValidator';
+import DropZone from './DropZone';
+import DropZoneValidationUtils from './DropZoneValidationUtils';
+import DropZoneErrors from './DropZoneErrors';
+import DropZoneValidator from './DropZoneValidator';
 import _ from 'lodash';
 import $ from 'jquery';
 
@@ -78,16 +80,23 @@ class DropZoneComponent {
         this.options = this.buildInstanceOptions(options);
         // instantiate each DropZone with it's options
         this.dropZoneInstances = this.dropZoneInstances.map((node, index) => {
+            const options = this.options[index];
             // set node in options
-            this.options[index].node = node;
+            options.node = node;
             // store DropZone ID
-            this.options[index].dropZoneId = index;
+            options.dropZoneId = index;
             //set dropZone ID attr
             node.setAttribute('data-dropzone-id', index);
             // create an instance of the DropZone API
             const instance = new DropZone(
-                this.options[index],
-                new DropZoneValidator(DropZoneComponent.buildValidatorOptions(this.options[index]))
+                options,
+                new DropZoneValidator(
+                    new DropZoneValidationUtils(),
+                    new DropZoneErrors(),
+                    options.whitelist,
+                    options.maxFiles,
+                    options.maxSize
+                )
             );
 
             // if an input node selector has been passed in, add events and hide
@@ -632,6 +641,7 @@ class DropZoneComponent {
      * @param {FileList} files
      * @param {String} id
      * @param {Boolean} pre | files are pre / post attached
+     * @returns {Object} validation object
      */
     validateFiles (files, id, pre = false) {
         const dropZone = this.getDropZoneById(id);
