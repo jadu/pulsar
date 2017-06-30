@@ -84,8 +84,8 @@ class DropZoneComponent {
         this.dropZoneInstances.forEach(node => {
             // merge the options from each node's attrs with the built "base" options object
             this.optionsManager.buildInstanceOptions(node);
-
-            this.instanceManager.addInstance(node, this.nodeClasses.browse);
+            // create and store DropZone instance
+            this.instanceManager.addInstance(node, this.optionsManager);
         });
 
         // iterate over our DropZoneInstanceManagerInstances to process any input nodes
@@ -98,6 +98,8 @@ class DropZoneComponent {
                 }
             }
         });
+
+        console.log(this.optionsManager.getInstanceOptions(0));
 
         // bind this here, so we have a ref
         this.removeFileHandler = this.removeFileHandler.bind(this);

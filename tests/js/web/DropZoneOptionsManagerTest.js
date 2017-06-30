@@ -29,12 +29,21 @@ describe('DropZoneOptionsManager', () => {
             const $node = $('<div></div>');
 
             optionsManager.componentOptions = { foo: 'foo' };
-            optionsManager.buildInstanceOptions($node[0]);
+            optionsManager.buildInstanceOptions($node[0], 0);
             expect(optionsManager.instanceOptions[0]).to.deep.equal({ foo: 'bar' });
+        });
+
+        it('should return the instance options', () => {
+            const $node = $('<div></div>');
+
+            expect(optionsManager.buildInstanceOptions($node[0], 0)).to.deep.equal({ foo: 'bar' });
         });
     });
 
     describe('getInstanceOptions()', () => {
-
+        it('should return a set of instance options', () => {
+            optionsManager.instanceOptions = [{ foo: 'bar' }];
+            expect(optionsManager.getInstanceOptions(0)).to.deep.equal({ foo: 'bar' });
+        });
     });
 });

@@ -1,5 +1,6 @@
 import DropZoneInstanceManager from '../../../js/DropZone/DropZoneInstanceManager';
 import DropZoneFactory from '../../../js/DropZone/DropZoneFactory';
+import DropZoneOptionsManager from '../../../js/DropZone/DropZoneOptionsManager';
 
 describe('DropZoneInstanceManager', () => {
     let $html;
@@ -7,8 +8,11 @@ describe('DropZoneInstanceManager', () => {
     let $input;
     let $browse;
     let instanceManager;
-
-    sinon.stub(DropZoneFactory, 'create', () => 'DropZone');
+    let optionsManagerStub;
+    let stubOptions = {
+        inputNodeId: 'input',
+        nodeClasses: { browse: 'browse' }
+    };
 
     beforeEach(() => {
         $html = $(document.documentElement);
@@ -16,19 +20,25 @@ describe('DropZoneInstanceManager', () => {
         $input = $('<input type="text" id="input">').appendTo($html);
         $browse = $('<p class="browse"></p>').appendTo($dropZone);
 
+        sinon.stub(DropZoneFactory, 'create', () => 'DropZone');
+        optionsManagerStub = sinon.createStubInstance(DropZoneOptionsManager);
+        optionsManagerStub.buildInstanceOptions.returns(stubOptions);
+
         instanceManager = new DropZoneInstanceManager(
             document.documentElement,
             DropZoneFactory
         );
     });
 
-    describe('addInstance()', () => {
-        const options = { inputNodeId: 'input' };
+    afterEach(() => {
+        DropZoneFactory.create.restore();
+    });
 
+    describe('addInstance()', () => {
         it('should add an instance object to memory', () => {
-            instanceManager.addInstance($dropZone[0], options, 'browse');
+            instanceManager.addInstance($dropZone[0], optionsManagerStub);
             expect(instanceManager.instances[0]).to.deep.equal({
-                options,
+                options: stubOptions,
                 id: 0,
                 browse: $browse[0],
                 input: $input[0],
@@ -37,7 +47,7 @@ describe('DropZoneInstanceManager', () => {
         });
 
         it('should add the DropZoneInstance ID as an attribute on the node', () => {
-            instanceManager.addInstance($dropZone[0], options, 'browse');
+            instanceManager.addInstance($dropZone[0], optionsManagerStub);
             expect($dropZone.attr('data-dropzone-id')).to.equal('0');
         });
     });

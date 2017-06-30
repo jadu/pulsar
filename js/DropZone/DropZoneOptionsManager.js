@@ -19,12 +19,15 @@ class DropZoneOptionsManager {
     /**
      * Build Instance options
      * @param {Element} node
+     * @param {number} id
+     * @returns {Object} options
      */
-    buildInstanceOptions (node) {
-        const id = this.instanceOptions.length;
+    buildInstanceOptions (node, id) {
         const attrOptions = this.Utils.getOptionsFromAttrs(node, this.Utils.camelCaseIfy);
+        const options = _.extend({}, this.componentOptions, attrOptions);
 
-        this.instanceOptions[id] = _.extend({}, this.componentOptions, attrOptions);
+        this.instanceOptions[id] = options;
+        return options;
     }
 
     /**

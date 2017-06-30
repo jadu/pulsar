@@ -9,13 +9,13 @@ class DropZoneInstanceManager {
     /**
      * Add DropZone instance to the manager
      * @param {Element} node
-     * @param {Object} options
-     * @param {String} browseClass | "Browse Files" node class
+     * @param {DropZoneOptionsManager} optionsManager
      */
-    addInstance (node, options, browseClass = '') {
+    addInstance (node, optionsManager) {
         const id = this.instances.length;
+        const options = optionsManager.buildInstanceOptions(node, id);
         const input = options.inputNodeId ? this.html.querySelector(`#${options.inputNodeId}`) : null;
-        const browse = browseClass ? node.querySelector(`.${browseClass}`) : null;
+        const browse = options.nodeClasses.browse ? node.querySelector(`.${options.nodeClasses.browse}`) : null;
         const dropZone = this.DropZoneFactory.create(node, options);
 
         // set DropZone ID on node
