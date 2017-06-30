@@ -30,6 +30,10 @@
         }
     }
 
+    &:focus + .toggle-switch-label {
+        box-shadow: 0 0 0 2px white, 0 0 2px 5px highlight;
+    }
+
     &.toggle-switch--large + .toggle-switch-label {
         height: 2em;
         width: 4em;
