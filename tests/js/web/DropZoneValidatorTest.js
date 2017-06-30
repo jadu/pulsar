@@ -1,6 +1,6 @@
-import DropZoneValidator from '../../../../js/DropZone/DropZoneValidator'
-import DropZoneValidationUtils from '../../../../js/DropZone/DropZoneValidationUtils';
-import DropZoneErrors from '../../../../js/DropZone/DropZoneErrors';
+import DropZoneValidator from '../../../js/DropZone/DropZoneValidator'
+import DropZoneValidationUtils from '../../../js/DropZone/DropZoneValidationUtils';
+import DropZoneErrors from '../../../js/DropZone/DropZoneErrors';
 
 describe('DropZoneValidator', () => {
     let dropZoneValidatorDispatcher;

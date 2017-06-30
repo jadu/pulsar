@@ -20,7 +20,7 @@
 	pulsar.modulePermissions = new pulsar.ModulePermissionsComponent($html);
     pulsar.navMain = new pulsar.NavMainComponent($html);
     pulsar.filterBar = new pulsar.FilterBarComponent($html);
-    pulsar.dropZoneComponent = new pulsar.DropZoneComponent($html, new pulsar.MimeTyper());
+    pulsar.dropZoneComponent = pulsar.DropZoneComponent.create($html[0]);
 
     $(function () {
         pulsar.button.init();

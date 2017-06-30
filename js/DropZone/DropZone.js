@@ -2,8 +2,6 @@ import _ from 'lodash';
 
 export const defaults = {
     id: 0,
-    // HTML node that will become DropZone
-    node: null,
     // limit of files within store
     maxFiles: 5,
     // limit total size of files (3e+8 === 300mb)
@@ -29,8 +27,9 @@ export const defaults = {
 };
 
 export default class DropZone {
-    constructor (options, validator) {
+    constructor (node, options, validator) {
         this.validator = validator;
+        this.node = DropZone.getVanillaNode(window, node);
         this.options = _.extend({}, defaults, options);
         // ensure we've got integers here, there is a chance these will come
         // in as strings from a DOM node's attributes
@@ -51,8 +50,6 @@ export default class DropZone {
     }
 
     setup () {
-        this.node = DropZone.getVanillaNode(window, this.options.node);
-
         if (!this.node) {
             throw new Error('DropZone requires a DOM node');
         }

@@ -1,14 +1,12 @@
 import DropZone from './DropZone';
-import DropZoneValidationUtils from './DropZoneValidationUtils';
-import DropZoneErrors from './DropZoneErrors';
-import DropZoneValidator from './DropZoneValidator';
 import _ from 'lodash';
 import $ from 'jquery';
 
 class DropZoneComponent {
-    constructor (html, mimeTyper) {
+    constructor (html, instanceManager, optionsManager) {
         this.html = window.$ && html instanceof window.$ ? html[0] : html;
-        this.mimeTyper = mimeTyper;
+        this.instanceManager = instanceManager;
+        this.optionsManager = optionsManager;
     }
 
     /**
@@ -19,26 +17,50 @@ class DropZoneComponent {
         this.body = this.html.parentNode.body;
         this.$body = $(this.body);
 
-        this.helperStateHtml = _.extend({}, {
-            nodeSelector: '.dropzone__info',
-            // this will be assigned when handling DropZone node
-            helperNode: null,
+        const defaults = {
+            // helper html
             idleHtml: 'your files here or <a class="dropzone__browse" id="#">Browse Files</a>',
             windowEnterHtml: 'Drag your files here (max <% maxFiles %>)',
-            dropZoneEnterHtml: 'Drop your files here'
-        });
-
-        this.defaults = {
-            inputNodeId: '',
-            showInputNode: false,
+            dropZoneEnterHtml: 'Drop your files here',
+            // passive
             passive: false,
+            // support
+            supported: true,
+            // input
+            showInputNode: false,
+            // file node config
             fileNodeDesc: true,
             fileNodeName: true,
             fileNodeSize: true,
             fileNodeType: true,
-            supported: true
+            // node classes
+            nodeClasses: {
+                dropzone: 'dropzone',
+                wrapper: 'dropzone__file-wrapper',
+                validation: 'dropzone__validation',
+                help: 'dropzone__help',
+                browse: 'dropzone__browse',
+                inner: 'dropzone__file-inner',
+                close: 'dropzone__close',
+                error: 'dropzone__error',
+                file: 'dropzone__file',
+                meta: 'dropzone__meta',
+                name: 'dropzone__name',
+                description: 'dropzone__description',
+                type: 'dropzone__type',
+                size: 'dropzone__size',
+                thumbnail: 'dropzone__thumbnail'
+            },
+            // interaction classes
+            interactionClasses: {
+                windowEnter: 'dropzone-window-active',
+                dropZoneEnter: 'dropzone-dropzone-active',
+                dropZoneSuccess: 'dropzone-success',
+                dropZoneError: 'dropzone-error'
+            }
         };
 
+        // we don't want these to be overitten
         this.callbacks = {
             windowEnter: this.handleWindowEnter.bind(this),
             windowLeave: this.handleWindowLeave.bind(this),
@@ -49,69 +71,36 @@ class DropZoneComponent {
             fileRemoved: this.handleFileRemoved.bind(this)
         };
 
-        this.eventPool = [];
-        this.removeFileHandler = this.removeFileHandler.bind(this);
-        this.nodeClasses = {
-            dropzone: 'dropzone',
-            wrapper: 'dropzone__file-wrapper',
-            validation: 'dropzone__validation',
-            help: 'dropzone__help',
-            browse: 'dropzone__browse',
-            inner: 'dropzone__file-inner',
-            close: 'dropzone__close',
-            error: 'dropzone__error',
-            file: 'dropzone__file',
-            meta: 'dropzone__meta',
-            name: 'dropzone__name',
-            description: 'dropzone__description',
-            type: 'dropzone__type',
-            size: 'dropzone__size',
-            thumbnail: 'dropzone__thumbnail'
-        };
-        this.interactionClasses = {
-            windowEnter: 'dropzone-window-active',
-            dropZoneEnter: 'dropzone-dropzone-active',
-            dropZoneSuccess: 'dropzone-success',
-            dropZoneError: 'dropzone-error'
-        };
+        // this.nodeClasses = // merge defaults & options
+        // this.interactionClasses = // merge defaults & options
+
         // get all DropZone elements
         this.dropZoneInstances = [].slice.call(this.html.querySelectorAll(`.${this.nodeClasses.dropzone}`));
-        // get DropZone options array
-        this.options = this.buildInstanceOptions(options);
-        // instantiate each DropZone with it's options
-        this.dropZoneInstances = this.dropZoneInstances.map((node, index) => {
-            const options = this.options[index];
-            // set node in options
-            options.node = node;
-            // store DropZone ID
-            options.dropZoneId = index;
-            //set dropZone ID attr
-            node.setAttribute('data-dropzone-id', index);
-            // create an instance of the DropZone API
-            const instance = new DropZone(
-                options,
-                new DropZoneValidator(
-                    new DropZoneValidationUtils(),
-                    new DropZoneErrors(),
-                    options.whitelist,
-                    options.maxFiles,
-                    options.maxSize
-                )
-            );
 
-            // if an input node selector has been passed in, add events and hide
-            if (this.options[index].supported && this.options[index].inputNodeId) {
-                this.processInputNode(instance, this.options[index]);
-            }
+        // build options from options passed to the constructor and the defaults
+        this.optionsManager.buildComponentOptions(options, defaults);
 
-            // update helper state to overwrite helper Html if a custom value was passed
-            // in as an option for the idlehtml
-            if (this.options[index].supported) {
-                this.updateHelperState(instance, this.options[index].idleHtml);
-            }
-            // return instance
-            return instance;
+        // add DropZone(s) to instance manager
+        this.dropZoneInstances.forEach(node => {
+            // merge the options from each node's attrs with the built "base" options object
+            this.optionsManager.buildInstanceOptions(node);
+
+            this.instanceManager.addInstance(node, this.nodeClasses.browse);
         });
+
+        // iterate over our DropZoneInstanceManagerInstances to process any input nodes
+        this.instanceManager.getInstance().forEach(instance => {
+            if (instance.input) {
+                this.processInputNode(instance.input, instance.id, instance.options.showInputNode);
+
+                if (instance.browse) {
+                    this.processBrowseNode(instance.browse, instance.input);
+                }
+            }
+        });
+
+        // bind this here, so we have a ref
+        this.removeFileHandler = this.removeFileHandler.bind(this);
     }
 
     /**
@@ -120,51 +109,51 @@ class DropZoneComponent {
      *  - add change listener to hijack files
      *  - add click listener to `dropzone__browse` to leverage input's browse functionality
      *  - visually hide input node
-     * @param {DropZone} instance
-     * @param {Object} options
+     * @param {Element} input
+     * @param {number} id
+     * @param {boolean} show
      */
-    processInputNode (instance, options) {
-        // todo - install the event hub here when it is complete for removing these handlers
-        // for now they can stay anonymous, the likely hood of wanting to disable a DropZone
+    processInputNode (input, id, show) {
+        // for now these handlers can stay anonymous, the likely hood of wanting to disable a DropZone
         // at some point in a session seems unlikely. famous. last. words.
-        instance.inputNode = document.getElementById(options.inputNodeId);
-        // add files to DropZone that are added to the corresponding input
-        instance.inputNode.addEventListener('change', () => {
-            const files = instance.inputNode.files;
+        input.addEventListener('change', () => {
+            console.log('changed!')
+
+            const files = input.files;
 
             // we'll add a persist property to our file objects, this can be used to
             // persist the front-end validation, which is essential when using an
             // associated file input
-            if (instance.inputNode.value) {
-                this.addFileToDropZone(files, instance.options.dropZoneId, { persist: true });
+            if (input.value) {
+                this.instanceManager.addFiles(files, id, { persist: true });
             }
 
             // reset input node value, this will ensure our change event
             // fires each time we use the browse files functionality - even
             // if we try to add an identical value
-            instance.inputNode.value = '';
+            input.value = '';
         });
 
         // visually hide input - this should ideally be done in the CSS also to prevent a
         // flash on load (with some consideration for non javascript users)
-        if (!options.showInputNode) {
-            instance.inputNode.style.display = 'none';
+        if (!show) {
+            input.style.display = 'none';
         }
     }
 
     /**
      * Adds the browse files functionality to our DropZone
-     * @param {DropZone} instance
+     * @param {Element} browse
+     * @param {Element} input
      */
-    addBrowseFilesListener (instance) {
-        instance.browseNode = instance.node.querySelector(`.${this.nodeClasses.browse}`);
+    processBrowseNode (browse, input) {
+        browse.addEventListener('click', event => {
+            event.preventDefault();
 
-        if (instance.browseNode) {
-            instance.browseNode.addEventListener('click', event => {
-                event.preventDefault();
-                instance.inputNode.click();
-            });
-        }
+            // trigger a synthetic click on the input node which will activate the
+            // native Browse Files interaction
+            input.click();
+        });
     }
 
     /**
@@ -190,7 +179,7 @@ class DropZoneComponent {
         }
 
         // attach "browse files" listeners
-        this.addBrowseFilesListener(instance);
+        this.processBrowseNode(instance);
     }
 
     /**
@@ -547,68 +536,6 @@ class DropZoneComponent {
     }
 
     /**
-     * Create options array from DropZone nodes
-     * @param {Object} userOptions
-     * @return {Array}
-     */
-    buildInstanceOptions (userOptions) {
-        return this.dropZoneInstances.reduce((options, node) => {
-            const dropZoneAttrs = DropZoneComponent.getDropZoneAttrs(node);
-            const helperState = _.assign({}, this.helperStateHtml);
-
-            // we only want to start storing references to nodes if we are supporting the
-            // enriched feature set
-            if (('supported' in userOptions) && !userOptions.supported) {
-                // store reference to dropzone__helper node
-                helperState.helperNode = node.querySelector(helperState.nodeSelector);
-                // if we haven't got any idle Html passed in as an option
-                // we'll set it to the current innerHTML of the helper node
-
-                if (!dropZoneAttrs.idleHtml && helperState.helperNode) {
-                    helperState.idleHtml = helperState.helperNode.innerHTML;
-                }
-            }
-
-            // extend node attributes & defaults to build options
-            options.push(_.extend({}, this.defaults, helperState, dropZoneAttrs, this.callbacks, userOptions));
-            return options;
-        }, []);
-    }
-
-    /**
-     * Derive dropzone options object from it's data-dropzone attributes,
-     * attributes are hyphenated and will be came-case-ified
-     * @param  {Element} node
-     * @return {Object}
-     */
-    static getDropZoneAttrs (node) {
-        return [].slice.call(node.attributes).reduce((attrs, attr) => {
-            const { name } = attr;
-            let { value } = attr;
-            // grab value from attributes matching data-dropzone-{option}={value}
-            if (name.match(/dropzone/)) {
-                // transform hyphen separated attr to DropZone camelCase option
-                const option = name.replace(/data-dropzone-/, '');
-
-                if (option === 'whitelist') {
-                    value = value.split(' ');
-                }
-
-                // parse bools
-                if (value === 'false') {
-                    value = false;
-                } else if (value === 'true') {
-                    value = true;
-                }
-
-                attrs[DropZoneComponent.camelCaseIfy(option)] = value;
-            }
-
-            return attrs;
-        }, {});
-    }
-
-    /**
      * Return a DropZone instance by the id attribute of the node
      * @param  {String} id
      * @return {DropZone} DropZone
@@ -624,7 +551,7 @@ class DropZoneComponent {
      * @param {Object} meta
      */
     addFileToDropZone (files, id, meta = {}) {
-        this.getDropZoneById(id).addFiles(files, meta);
+        // this.getDropZoneById(id).addFiles(files, meta);
     }
 
     /**
@@ -697,21 +624,6 @@ class DropZoneComponent {
 
             return validatorOptions;
         }, validatorOptions);
-    }
-
-    /**
-     * Transform a hyphen seperated string to camel case
-     * @param  {String} string
-     * @return {String}
-     */
-    static camelCaseIfy (string) {
-        return string.split('-').map((word, index) => {
-            if (index) {
-                return word[0].toUpperCase() + word.slice(1);
-            } else {
-                return word;
-            }
-        }).join('');
     }
 
     /**

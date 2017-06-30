@@ -1,4 +1,4 @@
-import DropZoneValidationUtils from '../../../../js/DropZone/DropZoneValidationUtils';
+import DropZoneValidationUtils from '../../../js/DropZone/DropZoneValidationUtils';
 
 describe('DropZoneValidationUtils', () => {
     let utils;
@@ -7,7 +7,7 @@ describe('DropZoneValidationUtils', () => {
         utils = new DropZoneValidationUtils();
     });
 
-    describe('validateType', () => {
+    describe('validateType()', () => {
         it('should return true for a file in the whitelist', () => {
             expect(utils.validateType('image/png', ['image/png'])).to.be.true;
         });
@@ -25,7 +25,7 @@ describe('DropZoneValidationUtils', () => {
         });
     });
 
-    describe('validateCount', () => {
+    describe('validateCount()', () => {
         it('should return true if the current file count is less than or equal to the max files', () => {
             expect(utils.validateCount(0, 1)).to.be.true;
         });
@@ -35,7 +35,7 @@ describe('DropZoneValidationUtils', () => {
         });
     });
 
-    describe('validateSize', () => {
+    describe('validateSize()', () => {
         it('should return true if the current file count is less than or equal to the max files', () => {
             expect(utils.validateSize(0, 1)).to.be.true;
         });
