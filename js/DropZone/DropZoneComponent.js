@@ -265,19 +265,24 @@ class DropZoneComponent {
      * @param {DropZone} instance
      */
     handleWindowEnter ({ valid, text, instance }) {
+        const id = instance.getDropZoneId();
+
         if (valid) {
-            this.updateInfoState(instance, instance.options.windowEnterHtml);
+            this.updateInfoState(id, instance.options.windowEnterHtml);
             this.classManager.update(this.body, [instance.options.interactionClasses.windowEnter]);
         } else {
-            this.throwValidationError(text, instance);
-            DropZoneComponent.setDropZoneBodyClass(
+            this.throwValidationError(text, id);
+            this.classManager.update(
                 this.body,
-                [this.interactionClasses.windowEnter, this.interactionClasses.dropZoneError]
+                [
+                    instance.options.interactionClasses.windowEnter,
+                    instance.options.interactionClasses.dropZoneError
+                ]
             );
         }
 
         if (instance.options.customWindowEnter && typeof instance.options.customWindowEnter === 'function') {
-            instance.options.customWindowEnter.apply(this, arguments);
+            instance.options.customWindowEnter.apply(this, [].slice.call(arguments));
         }
     }
 
@@ -286,18 +291,20 @@ class DropZoneComponent {
      * @param {DropZone} instance
      */
     handleWindowLeave ({ instance })  {
-        // reset body class
-        DropZoneComponent.setDropZoneBodyClass(this.body);
+        const id = instance.getDropZoneId();
 
         // update helper text
-        this.updateInfoState(instance, instance.options.idleHtml);
+        this.updateInfoState(id, instance.options.idleHtml);
+
+        // reset body class
+        this.classManager.update(this.body);
 
         // update validation if there was any
-        this.clearDropZoneValidation(instance.node);
+        this.validationManager.clear(instance.node, instance.options.nodeClasses.validation);
 
         // call any additional callbacks passed in via options
         if (instance.options.customWindowLeave && typeof instance.options.customWindowLeave === 'function') {
-            instance.options.customWindowLeave.apply(this, arguments);
+            instance.options.customWindowLeave.apply(this, [].slice.call(arguments));
         }
     }
 
@@ -308,31 +315,27 @@ class DropZoneComponent {
      * @param {DropZone} instance
      */
     handleDropZoneEnter ({ valid, text, instance }) {
+        const id = instance.getDropZoneId();
+
         // update helper text
         if (valid) {
-            this.updateInfoState(instance, instance.options.dropZoneEnterHtml);
-            DropZoneComponent.setDropZoneBodyClass(
-                this.body,
-                [
-                    this.interactionClasses.windowEnter,
-                    this.interactionClasses.dropZoneEnter
-                ]
-            );
+            this.updateInfoState(id, instance.options.dropZoneEnterHtml);
+            this.classManager.update(this.body, [
+                instance.options.interactionClasses.windowEnter,
+                instance.options.interactionClasses.dropZoneEnter
+            ]);
         } else {
-            this.throwValidationError(text, instance);
-            DropZoneComponent.setDropZoneBodyClass(
-                this.body,
-                [
-                    this.interactionClasses.windowEnter,
-                    this.interactionClasses.dropZoneEnter,
-                    this.interactionClasses.dropZoneError
-                ]
-            );
+            this.throwValidationError(text, id);
+            this.classManager.update(this.body, [
+                instance.options.windowEnter,
+                instance.options.dropZoneEnter,
+                instance.options.dropZoneError
+            ]);
         }
 
         // call any additional callbacks passed in via options
         if (instance.options.customDropZoneEnter && typeof instance.options.customDropZoneEnter === 'function') {
-            instance.options.customDropZoneEnter.apply(this, arguments);
+            instance.options.customDropZoneEnter.apply(this, [].slice.call(arguments));
         }
     }
 
@@ -343,19 +346,18 @@ class DropZoneComponent {
      * @param {DropZone} instance
      */
     handleDropzoneLeave ({ valid, text, instance }) {
+        const id = instance.getDropZoneId();
+
         // update helper text
         if (valid) {
-            this.updateInfoState(instance, instance.options.windowEnterHtml);
-            DropZoneComponent.setDropZoneBodyClass(
-                this.body,
-                [this.interactionClasses.windowEnter]
-            );
+            this.updateInfoState(id, instance.options.windowEnterHtml);
+            this.classManager.update(this.body, [instance.options.interactionClasses.windowEnter]);
         } else {
-            this.throwValidationError(text, instance);
-            DropZoneComponent.setDropZoneBodyClass(
-                this.body,
-                [this.interactionClasses.windowEnter, this.interactionClasses.dropZoneError]
-            );
+            this.throwValidationError(text, id);
+            this.classManager.update(this.body, [
+                instance.options.interactionClasses.windowEnter,
+                instance.options.interactionClasses.dropZoneError
+            ]);
         }
 
         // call any additional callbacks passed in via options
@@ -372,12 +374,11 @@ class DropZoneComponent {
      * @param {DropZone} instance
      */
     handleDropZoneDrop ({ files, valid, text, instance }) {
+        const id = instance.getDropZoneId();
+
         if (valid) {
-            this.updateDropZoneFiles(instance);
-            DropZoneComponent.setDropZoneBodyClass(
-                this.body,
-                [this.interactionClasses.dropZoneSuccess]
-            );
+            this.updateDropZoneFiles(id);
+            this.classManager.update(this.body, [instance.options.interactionClasses.dropZoneSuccess]);
         } else {
             // If a persist property has been set on the file, we will throw a
             // validation error which will persist once the file is dropped, this
@@ -389,17 +390,17 @@ class DropZoneComponent {
             files.forEach(file => !persist && file.persist ? persist = true : null);
 
             if (!instance.supportsDataTransferItems || persist) {
-                this.throwValidationError(text, instance);
+                this.throwValidationError(text, id);
             } else {
-                // if we are not persiting validation messages, clear any that are present
-                this.clearDropZoneValidation(instance.node);
+                // if we are not persisting validation messages, clear any that are present
+                this.validationManager.clear(instance.node, instance.options.nodeClasses.validation);
             }
 
-            DropZoneComponent.setDropZoneBodyClass(this.body);
+            this.classManager.update(this.body);
         }
 
         // update helper text
-        this.updateInfoState(instance, instance.options.idleHtml);
+        this.updateInfoState(id, instance.options.idleHtml);
 
         // call any additional callbacks passed in via options
         if (instance.options.customDropZoneDrop && typeof instance.options.customDropZoneDrop === 'function') {
@@ -448,16 +449,6 @@ class DropZoneComponent {
      */
     getDropZoneById (id) {
         return this.dropZoneInstances[id];
-    }
-
-    /**
-     * Manually add files to the DropZone API
-     * @param {FileList} files
-     * @param {String} id
-     * @param {Object} meta
-     */
-    addFileToDropZone (files, id, meta = {}) {
-        // this.getDropZoneById(id).addFiles(files, meta);
     }
 
     /**

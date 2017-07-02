@@ -3,6 +3,7 @@ import DropZoneOptionsManager from '../../../js/DropZone/DropZoneOptionsManager'
 import DropZoneInstanceManager from '../../../js/DropZone/DropZoneInstanceManager';
 import DropZoneComponentUtils from '../../../js/DropZone/DropZoneComponentUtils';
 import DropZoneComponentValidation from '../../../js/DropZone/DropZoneComponentValidationManager';
+import DropZoneBodyClassManager from '../../../js/DropZone/DropZoneBodyClassManager';
 
 describe('DropZoneComponent', () => {
     let $html;
@@ -15,6 +16,7 @@ describe('DropZoneComponent', () => {
     let optionsManager;
     let utils;
     let validation;
+    let classManager;
 
     beforeEach(() => {
         $html = $(document.documentElement);
@@ -27,6 +29,7 @@ describe('DropZoneComponent', () => {
         optionsManager = sinon.createStubInstance(DropZoneOptionsManager);
         utils = sinon.createStubInstance(DropZoneComponentUtils);
         validation = sinon.createStubInstance(DropZoneComponentValidation);
+        classManager = sinon.createStubInstance(DropZoneBodyClassManager);
 
         instanceManager.getInstance.returns({ node: $dropZone[0], info: $info[0] });
         instanceManager.getFiles.returns(['file']);
@@ -43,7 +46,8 @@ describe('DropZoneComponent', () => {
             instanceManager,
             optionsManager,
             utils,
-            validation
+            validation,
+            classManager
         );
     });
 
@@ -196,6 +200,436 @@ describe('DropZoneComponent', () => {
     });
 
     describe('handleWindowEnter()', () => {
-        it('should ')
+        let infoStub;
+        let throwStub;
+
+        beforeEach(() => {
+            infoStub = sinon.stub(dropZoneComponent, 'updateInfoState');
+            throwStub = sinon.stub(dropZoneComponent, 'throwValidationError');
+        });
+
+        afterEach(() => {
+            infoStub.reset();
+            throwStub.reset();
+        });
+
+        describe('valid', () => {
+            const args = {
+                valid: true,
+                text: 'foo',
+                instance: {
+                    options: {
+                        interactionClasses: {}
+                    },
+                    getDropZoneId: () => 0
+                }
+            };
+
+            // partial stub
+            it('should update info state for valid files', () => {
+                dropZoneComponent.handleWindowEnter(args);
+                expect(infoStub).to.have.been.calledOnce;
+            });
+
+            it('should call the class manager for valid files', () => {
+                dropZoneComponent.handleWindowEnter(args);
+                expect(classManager.update).to.have.been.calledOnce;
+            });
+        });
+
+        describe('invalid', () => {
+            const args = {
+                valid: false,
+                text: 'foo',
+                instance: {
+                    options: {
+                        interactionClasses: {}
+                    },
+                    getDropZoneId: () => 0
+                }
+            };
+
+            // partial stub
+            it('should throw a validation error for invalid files', () => {
+                dropZoneComponent.handleWindowEnter(args);
+                expect(throwStub).to.have.been.calledOnce;
+            });
+
+            it('should call the class manager for valid files', () => {
+                dropZoneComponent.handleWindowEnter(args);
+                expect(classManager.update).to.have.been.calledOnce;
+            });
+        });
+
+        it('should call the custom callback if passed in', () => {
+            const args = {
+                valid: false,
+                text: 'foo',
+                instance: {
+                    options: {
+                        interactionClasses: {},
+                        customWindowEnter: sinon.spy()
+                    },
+                    getDropZoneId: () => 0
+                }
+            };
+
+            dropZoneComponent.handleWindowEnter(args);
+            expect(args.instance.options.customWindowEnter).to.have.been.calledOnce;
+        });
+    });
+
+    describe('handleWindowLeave()', () => {
+        let infoStub;
+
+        beforeEach(() => {
+            infoStub = sinon.stub(dropZoneComponent, 'updateInfoState');
+        });
+
+        afterEach(() => {
+            infoStub.reset();
+        });
+
+        const args = {
+            instance: {
+                options: {
+                    interactionClasses: {},
+                    nodeClasses: {}
+                },
+                getDropZoneId: () => 0
+            }
+        };
+
+        // partial stub
+        it('should update info state for valid files', () => {
+            dropZoneComponent.handleWindowLeave(args);
+            expect(infoStub).to.have.been.calledOnce;
+        });
+
+        it('should call the class manager for valid files', () => {
+            dropZoneComponent.handleWindowLeave(args);
+            expect(classManager.update).to.have.been.calledOnce;
+        });
+
+        it('should call the custom callback if passed in', () => {
+            const args = {
+                instance: {
+                    options: {
+                        interactionClasses: {},
+                        nodeClasses: {},
+                        customWindowLeave: sinon.spy()
+                    },
+                    getDropZoneId: () => 0
+                }
+            };
+
+            dropZoneComponent.handleWindowLeave(args);
+            expect(args.instance.options.customWindowLeave).to.have.been.calledOnce;
+        });
+    });
+
+    describe('handleDropZoneEnter()', () => {
+        let infoStub;
+        let throwStub;
+
+        beforeEach(() => {
+            infoStub = sinon.stub(dropZoneComponent, 'updateInfoState');
+            throwStub = sinon.stub(dropZoneComponent, 'throwValidationError');
+        });
+
+        afterEach(() => {
+            infoStub.reset();
+            throwStub.reset();
+        });
+
+        describe('valid', () => {
+            const args = {
+                valid: true,
+                text: 'foo',
+                instance: {
+                    options: {
+                        interactionClasses: {}
+                    },
+                    getDropZoneId: () => 0
+                }
+            };
+
+            // partial stub
+            it('should update info state for valid files', () => {
+                dropZoneComponent.handleDropZoneEnter(args);
+                expect(infoStub).to.have.been.calledOnce;
+            });
+
+            it('should call the class manager for valid files', () => {
+                dropZoneComponent.handleDropZoneEnter(args);
+                expect(classManager.update).to.have.been.calledOnce;
+            });
+        });
+
+        describe('invalid', () => {
+            const args = {
+                valid: false,
+                text: 'foo',
+                instance: {
+                    options: {
+                        interactionClasses: {}
+                    },
+                    getDropZoneId: () => 0
+                }
+            };
+
+            // partial stub
+            it('should throw a validation error for invalid files', () => {
+                dropZoneComponent.handleDropZoneEnter(args);
+                expect(throwStub).to.have.been.calledOnce;
+            });
+
+            it('should call the class manager for valid files', () => {
+                dropZoneComponent.handleDropZoneEnter(args);
+                expect(classManager.update).to.have.been.calledOnce;
+            });
+        });
+
+        it('should call the custom callback if passed in', () => {
+            const args = {
+                valid: false,
+                text: 'foo',
+                instance: {
+                    options: {
+                        interactionClasses: {},
+                        customDropZoneEnter: sinon.spy()
+                    },
+                    getDropZoneId: () => 0
+                }
+            };
+
+            dropZoneComponent.handleDropZoneEnter(args);
+            expect(args.instance.options.customDropZoneEnter).to.have.been.calledOnce;
+        });
+    });
+
+    describe('handleDropzoneLeave()', () => {
+        let infoStub;
+        let throwStub;
+
+        beforeEach(() => {
+            infoStub = sinon.stub(dropZoneComponent, 'updateInfoState');
+            throwStub = sinon.stub(dropZoneComponent, 'throwValidationError');
+        });
+
+        afterEach(() => {
+            infoStub.reset();
+            throwStub.reset();
+        });
+
+        describe('valid', () => {
+            const args = {
+                valid: true,
+                text: 'foo',
+                instance: {
+                    options: {
+                        interactionClasses: {}
+                    },
+                    getDropZoneId: () => 0
+                }
+            };
+
+            // partial stub
+            it('should update info state for valid files', () => {
+                dropZoneComponent.handleDropzoneLeave(args);
+                expect(infoStub).to.have.been.calledOnce;
+            });
+
+            it('should call the class manager for valid files', () => {
+                dropZoneComponent.handleDropzoneLeave(args);
+                expect(classManager.update).to.have.been.calledOnce;
+            });
+        });
+
+        describe('invalid', () => {
+            const args = {
+                valid: false,
+                text: 'foo',
+                instance: {
+                    options: {
+                        interactionClasses: {}
+                    },
+                    getDropZoneId: () => 0
+                }
+            };
+
+            // partial stub
+            it('should throw a validation error for invalid files', () => {
+                dropZoneComponent.handleDropzoneLeave(args);
+                expect(throwStub).to.have.been.calledOnce;
+            });
+
+            it('should call the class manager for valid files', () => {
+                dropZoneComponent.handleDropzoneLeave(args);
+                expect(classManager.update).to.have.been.calledOnce;
+            });
+        });
+
+        it('should call the custom callback if passed in', () => {
+            const args = {
+                valid: false,
+                text: 'foo',
+                instance: {
+                    options: {
+                        interactionClasses: {},
+                        customDropZoneLeave: sinon.spy()
+                    },
+                    getDropZoneId: () => 0
+                }
+            };
+
+            dropZoneComponent.handleDropzoneLeave(args);
+            expect(args.instance.options.customDropZoneLeave).to.have.been.calledOnce;
+        });
+    });
+
+    describe('handleDropZoneDrop()', () => {
+        let infoStub;
+        let throwStub;
+        let updateFilesStub;
+
+        beforeEach(() => {
+            infoStub = sinon.stub(dropZoneComponent, 'updateInfoState');
+            throwStub = sinon.stub(dropZoneComponent, 'throwValidationError');
+            updateFilesStub = sinon.stub(dropZoneComponent, 'updateDropZoneFiles');
+        });
+
+        afterEach(() => {
+            infoStub.reset();
+            throwStub.reset();
+            updateFilesStub.reset();
+        });
+
+        describe('valid', () => {
+            const args = {
+                files: [],
+                valid: true,
+                text: 'foo',
+                instance: {
+                    options: {
+                        interactionClasses: {}
+                    },
+                    getDropZoneId: () => 0
+                }
+            };
+
+            // partial stub
+            it('should update files for valid files', () => {
+                dropZoneComponent.handleDropZoneDrop(args);
+                expect(updateFilesStub).to.have.been.calledOnce;
+            });
+
+            it('should call the class manager for valid files', () => {
+                dropZoneComponent.handleDropZoneDrop(args);
+                expect(classManager.update).to.have.been.calledOnce;
+            });
+        });
+
+        describe('invalid', () => {
+            const args = {
+                files: [],
+                valid: false,
+                text: 'foo',
+                instance: {
+                    supportsDataTransferItems: false,
+                    options: {
+                        interactionClasses: {}
+                    },
+                    getDropZoneId: () => 0
+                }
+            };
+
+            it('should throw a validation error if dataTransfer is not supported', () => {
+                dropZoneComponent.handleDropZoneDrop(args);
+                expect(throwStub).to.have.been.calledOnce;
+            });
+
+            it('should throw a validation error if we have files that have a persist prop', () => {
+                const args = {
+                    files: [{ persist: true }],
+                    valid: false,
+                    text: 'foo',
+                    instance: {
+                        supportsDataTransferItems: true,
+                        options: {
+                            interactionClasses: {}
+                        },
+                        getDropZoneId: () => 0
+                    }
+                };
+
+                dropZoneComponent.handleDropZoneDrop(args);
+                expect(throwStub).to.have.been.calledOnce;
+            });
+
+            it('should clear validation if we are not persisting', () => {
+                const args = {
+                    files: [],
+                    valid: false,
+                    text: 'foo',
+                    instance: {
+                        supportsDataTransferItems: true,
+                        options: {
+                            interactionClasses: {},
+                            nodeClasses: {}
+                        },
+                        getDropZoneId: () => 0
+                    }
+                };
+
+                dropZoneComponent.handleDropZoneDrop(args);
+                expect(validation.clear).to.have.been.calledOnce;
+            });
+
+            it('should call the class manager for valid files', () => {
+                dropZoneComponent.handleDropZoneDrop(args);
+                expect(classManager.update).to.have.been.calledOnce;
+            });
+
+        });
+
+        it('should update info state for valid files', () => {
+            const args = {
+                files: [],
+                valid: false,
+                text: 'foo',
+                instance: {
+                    supportsDataTransferItems: true,
+                    options: {
+                        interactionClasses: {},
+                        nodeClasses: {}
+                    },
+                    getDropZoneId: () => 0
+                }
+            };
+
+            dropZoneComponent.handleDropZoneDrop(args);
+            expect(infoStub).to.have.been.calledOnce;
+        });
+
+        it('should call the custom callback if passed in', () => {
+            const args = {
+                files: [],
+                valid: false,
+                text: 'foo',
+                instance: {
+                    supportsDataTransferItems: true,
+                    options: {
+                        interactionClasses: {},
+                        nodeClasses: {},
+                        customDropZoneDrop: sinon.spy()
+                    },
+                    getDropZoneId: () => 0
+                }
+            };
+
+            dropZoneComponent.handleDropZoneDrop(args);
+            expect(args.instance.options.customDropZoneDrop).to.have.been.calledOnce;
+        });
     });
 });

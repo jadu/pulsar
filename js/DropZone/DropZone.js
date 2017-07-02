@@ -392,7 +392,7 @@ export default class DropZone {
 
     /**
      * Get DropZone ID
-     * @returns {String}
+     * @returns {number}
      */
     getDropZoneId () {
         return this.id;
