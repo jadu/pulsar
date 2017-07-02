@@ -1,10 +1,10 @@
 import _ from 'lodash';
 
 class DropZoneOptionsManager {
-    constructor (Utils) {
+    constructor (utils) {
         this.componentOptions = {};
         this.instanceOptions = [];
-        this.Utils = Utils;
+        this.utils = utils;
     }
 
     /**
@@ -23,7 +23,7 @@ class DropZoneOptionsManager {
      * @returns {Object} options
      */
     buildInstanceOptions (node, id) {
-        const attrOptions = this.Utils.getOptionsFromAttrs(node, this.Utils.camelCaseIfy);
+        const attrOptions = this.utils.getOptionsFromAttrs(node);
         const options = _.extend({}, this.componentOptions, attrOptions);
 
         this.instanceOptions[id] = options;

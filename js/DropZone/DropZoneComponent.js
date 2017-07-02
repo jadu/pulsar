@@ -1,12 +1,14 @@
-import DropZone from './DropZone';
-import _ from 'lodash';
 import $ from 'jquery';
 
 class DropZoneComponent {
-    constructor (html, instanceManager, optionsManager) {
+    constructor (html, selector, instanceManager, optionsManager, utils, validationManager, classManager) {
         this.html = window.$ && html instanceof window.$ ? html[0] : html;
+        this.selector = selector;
         this.instanceManager = instanceManager;
         this.optionsManager = optionsManager;
+        this.utils = utils;
+        this.validationManager = validationManager;
+        this.classManager = classManager;
     }
 
     /**
@@ -35,7 +37,7 @@ class DropZoneComponent {
             fileNodeType: true,
             // node classes
             nodeClasses: {
-                dropzone: 'dropzone',
+                info: 'dropzone__info',
                 wrapper: 'dropzone__file-wrapper',
                 validation: 'dropzone__validation',
                 help: 'dropzone__help',
@@ -71,19 +73,14 @@ class DropZoneComponent {
             fileRemoved: this.handleFileRemoved.bind(this)
         };
 
-        // this.nodeClasses = // merge defaults & options
-        // this.interactionClasses = // merge defaults & options
-
         // get all DropZone elements
-        this.dropZoneInstances = [].slice.call(this.html.querySelectorAll(`.${this.nodeClasses.dropzone}`));
+        this.dropZoneInstances = [].slice.call(this.html.querySelectorAll(this.selector));
 
         // build options from options passed to the constructor and the defaults
         this.optionsManager.buildComponentOptions(options, defaults);
 
         // add DropZone(s) to instance manager
         this.dropZoneInstances.forEach(node => {
-            // merge the options from each node's attrs with the built "base" options object
-            this.optionsManager.buildInstanceOptions(node);
             // create and store DropZone instance
             this.instanceManager.addInstance(node, this.optionsManager);
         });
@@ -99,17 +96,15 @@ class DropZoneComponent {
             }
         });
 
-        console.log(this.optionsManager.getInstanceOptions(0));
-
         // bind this here, so we have a ref
-        this.removeFileHandler = this.removeFileHandler.bind(this);
+        this.removeFile = this.removeFile.bind(this);
     }
 
     /**
      * If an input node ID has been passed in, we'll take care of linking the DropZone
      * instance to this node
      *  - add change listener to hijack files
-     *  - add click listener to `dropzone__browse` to leverage input's browse functionality
+     *  - add click listener to browse files node to leverage input's browse functionality
      *  - visually hide input node
      * @param {Element} input
      * @param {number} id
@@ -119,8 +114,6 @@ class DropZoneComponent {
         // for now these handlers can stay anonymous, the likely hood of wanting to disable a DropZone
         // at some point in a session seems unlikely. famous. last. words.
         input.addEventListener('change', () => {
-            console.log('changed!')
-
             const files = input.files;
 
             // we'll add a persist property to our file objects, this can be used to
@@ -151,7 +144,6 @@ class DropZoneComponent {
     processBrowseNode (browse, input) {
         browse.addEventListener('click', event => {
             event.preventDefault();
-
             // trigger a synthetic click on the input node which will activate the
             // native Browse Files interaction
             input.click();
@@ -159,29 +151,18 @@ class DropZoneComponent {
     }
 
     /**
-     * Update DropZone helper node innerHTML
-     * has a trivial template syntax for getting variables from the DropZone instance options object
-     * <% foo %> will evaluate to --> instance.options.foo
-     * @param {DropZone} instance
-     * @param {String} htmlString
+     * Update DropZone info node innerHTML
+     * @param {number} id
+     * @param {String} string
      */
-    updateHelperState (instance, htmlString) {
-        if (!instance.options.helperNode) {
-            return;
+    updateInfoState (id, string) {
+        const { info, browse, input } = this.instanceManager.getInstance(id);
+
+        if (info) {
+            info.innerHTML = string;
+            // todo - this needs doing
+            // this.processBrowseNode(browse, input);
         }
-
-        const templateString = htmlString.match(/<%\s(\w*)\s%>/);
-
-        if (!templateString) {
-            instance.options.helperNode.innerHTML = htmlString;
-        } else {
-            const match = templateString[1];
-
-            instance.options.helperNode.innerHTML = htmlString.replace(templateString[0], instance.options[match]);
-        }
-
-        // attach "browse files" listeners
-        this.processBrowseNode(instance);
     }
 
     /**
@@ -189,26 +170,15 @@ class DropZoneComponent {
      * - remove validation node if we have one
      * - add / remove files Html
      * - remove wrapper if we have no files
-     * @param {DropZone} instance
+     * @param {number} id
      */
-    updateDropZoneFiles (instance) {
-        const validation = instance.node.querySelector(`.${this.nodeClasses.validation}`);
-        const files = this.getFilesFromDropZone(instance.getDropZoneId());
-        let wrapper = instance.node.querySelector(`.${this.nodeClasses.wrapper}`);
+    updateDropZoneFiles (id) {
+        const { node } = this.instanceManager.getInstance(id);
+        const options = this.optionsManager.getInstanceOptions(id);
+        const files = this.instanceManager.getFiles(id);
+
+        let wrapper = node.querySelector(`.${options.nodeClasses.wrapper}`);
         let fileNodeString = '';
-
-        // if we do not already have a wrapper, create one
-        if (!wrapper) {
-            wrapper = document.createElement('div');
-            wrapper.className = this.nodeClasses.wrapper;
-            instance.node.appendChild(wrapper);
-        }
-
-        // if we've got a drop we know we don't have any errors
-        // clear any previous validation messages
-        if (validation) {
-            this.clearDropZoneValidation(instance.node);
-        }
 
         // if there are no files we'll remove the wrapper
         if (!files.length) {
@@ -219,136 +189,73 @@ class DropZoneComponent {
             return;
         }
 
+        // if we do not already have a wrapper, create one
+        if (!wrapper) {
+            wrapper = document.createElement('div');
+            wrapper.className = options.nodeClasses.wrapper;
+            node.appendChild(wrapper);
+        }
+
+        // if we've got a drop we know we don't have any errors
+        // clear any previous validation messages
+        this.validationManager.clear(node, options.nodeClasses.validation);
+
         // create file html string
         files.forEach(file => {
-            fileNodeString += this.createFileNode(file, instance.options);
+            fileNodeString += this.utils.createFileNode(file, options);
         });
 
         // update wrapper html
         wrapper.innerHTML = fileNodeString;
-        [].slice.call(wrapper.querySelectorAll(`.${this.nodeClasses.close}`)).forEach(file => {
-            file.addEventListener('click', this.removeFileHandler);
+        [].slice.call(wrapper.querySelectorAll(`.${options.nodeClasses.close}`)).forEach(file => {
+            file.addEventListener('click', this.removeFile);
         });
-    }
-
-    /**
-     * Update DropZone validation Html
-     * @param  {String} error
-     * @param  {DropZone} instance
-     */
-    updateDropZoneValidation (error, instance) {
-        const helpNode = document.querySelector(`.${this.nodeClasses.help}`);
-        let validationNode = instance.node.querySelector(`.${this.nodeClasses.validation}`);
-
-        // if we are in passive mode we're handing this over to the developer installing the plugin
-        // they can access validation data by using the filesRejected callback
-        if (instance.options.passive) {
-            return;
-        }
-
-        const errorNode = `<p class="${this.nodeClasses.error}">${error}</p>`;
-
-        // if a validation element doesn't exist, create one
-        if (!validationNode) {
-            validationNode = document.createElement('div');
-            validationNode.className = this.nodeClasses.validation;
-            helpNode.parentNode.insertBefore(validationNode, helpNode);
-        }
-
-        // create error message and update validation
-        validationNode.innerHTML = errorNode;
     }
 
     /**
      * Throw a DropZone error, useful as a public method for manually triggering DropZone errors
      * example: throwing an error returned as a response from a server
      * @param {String} error
-     * @param {string} id
+     * @param {number} id
      */
     throwValidationError (error, id) {
-        const instance = this.getDropZoneById(id);
+        const { node } = this.instanceManager.getInstance(parseInt(id));
+        const options = this.optionsManager.getInstanceOptions(id);
 
-        this.updateDropZoneValidation(error, instance);
-        // update helper text
-        this.updateHelperState(instance, instance.options.idleHtml);
-    }
+        this.validationManager.update(
+            error,
+            node,
+            options.nodeClasses.validation,
+            options.nodeClasses.error,
+            options.passive
+        );
 
-    /**
-     * Clear validation text
-     * @param node
-     */
-    clearDropZoneValidation (node) {
-        const wrapper = node.querySelector(`.${this.nodeClasses.validation}`);
-
-        wrapper && wrapper.parentNode.removeChild(wrapper);
+        this.updateInfoState(id, options.idleHtml);
     }
 
     /**
      * Remove files from DropZone instances
      * @param  {Event} event
      */
-    removeFileHandler (event) {
+    removeFile (event) {
         let file = null;
         let dropZone = null;
         const path = event.path ? event.path : DropZoneComponent.getEventPath(event.target);
 
-        // grab the file id and DropZone id, this is neccessary in the
-        // albeit unlikely event we have multiple dropzone instances
+        // grab the file id and DropZone id, this is necessary in the
+        // albeit unlikely event we have multiple DropZone instances
         path.forEach(node => {
             if (!file) {
-                file = node.getAttribute('data-dropzone-file');
+                file = parseInt(node.getAttribute('data-dropzone-file'));
             }
 
             if (!dropZone) {
-                dropZone = node.getAttribute('data-dropzone-id');
+                dropZone = parseInt(node.getAttribute('data-dropzone-id'));
             }
         });
 
-        // remove file from DropZone instance
-        const instance = this.getDropZoneById(dropZone);
-
-        instance.removeFile(file);
-        // update Html
-        this.updateDropZoneFiles(instance);
-    }
-
-    /**
-     * Create DropZone file Html string
-     * @param {Object} file
-     * @param {Object} options
-     * @return {String}
-     */
-    createFileNode (file, options) {
-        const desc = file.description ? `<p class="${this.nodeClasses.description}">${file.description}</p>` : '',
-            name = file.name ? `<p class="${this.nodeClasses.name}">${file.name}</p>` : '',
-            size = file.size ? `<p class="${this.nodeClasses.size}">${file.size}</p>` : '',
-            type = file.type ? `<p class="${this.nodeClasses.type}">${file.type}</p>` : '';
-
-        let thumb = `<div class="${this.nodeClasses.thumbnail}`;
-
-        if (file.thumbnail) {
-            // add a thumbnail if DropZone has returned one
-            thumb += ` ${this.nodeClasses.thumbnail}--image" style="background-image: url(${file.thumbnail});"`;
-        } else {
-            // add icon class if we cannot get a file preview
-            thumb += `"><i class="dropzone__file-icon icon icon-${this.mimeTyper.getIconClass(file.type)}"></i`;
-        }
-
-        thumb += '></div>';
-
-        return `
-            <div data-dropzone-file="${file.id}" class="${this.nodeClasses.file}">
-                <div class="${this.nodeClasses.inner}">
-                    <i class="${this.nodeClasses.close} icon icon-times-circle"></i>
-                    ${thumb}
-                    <div class="${this.nodeClasses.meta}">
-                        ${options.fileNodeName ? name : ''}
-                        ${options.fileNodeDesc ? desc : ''}
-                        ${options.fileNodeSize ? size : ''}
-                        ${options.fileNodeType ? type : ''}
-                    </div>                
-                </div>
-            </div>`.replace(/>\s+</g, '><');
+        this.instanceManager.removeFile(dropZone, file);
+        this.updateDropZoneFiles(dropZone);
     }
 
     /**
@@ -359,11 +266,8 @@ class DropZoneComponent {
      */
     handleWindowEnter ({ valid, text, instance }) {
         if (valid) {
-            this.updateHelperState(instance, instance.options.windowEnterHtml);
-            DropZoneComponent.setDropZoneBodyClass(
-                this.body,
-                [this.interactionClasses.windowEnter]
-            );
+            this.updateInfoState(instance, instance.options.windowEnterHtml);
+            this.classManager.update(this.body, [instance.options.interactionClasses.windowEnter]);
         } else {
             this.throwValidationError(text, instance);
             DropZoneComponent.setDropZoneBodyClass(
@@ -386,7 +290,7 @@ class DropZoneComponent {
         DropZoneComponent.setDropZoneBodyClass(this.body);
 
         // update helper text
-        this.updateHelperState(instance, instance.options.idleHtml);
+        this.updateInfoState(instance, instance.options.idleHtml);
 
         // update validation if there was any
         this.clearDropZoneValidation(instance.node);
@@ -406,7 +310,7 @@ class DropZoneComponent {
     handleDropZoneEnter ({ valid, text, instance }) {
         // update helper text
         if (valid) {
-            this.updateHelperState(instance, instance.options.dropZoneEnterHtml);
+            this.updateInfoState(instance, instance.options.dropZoneEnterHtml);
             DropZoneComponent.setDropZoneBodyClass(
                 this.body,
                 [
@@ -441,7 +345,7 @@ class DropZoneComponent {
     handleDropzoneLeave ({ valid, text, instance }) {
         // update helper text
         if (valid) {
-            this.updateHelperState(instance, instance.options.windowEnterHtml);
+            this.updateInfoState(instance, instance.options.windowEnterHtml);
             DropZoneComponent.setDropZoneBodyClass(
                 this.body,
                 [this.interactionClasses.windowEnter]
@@ -495,7 +399,7 @@ class DropZoneComponent {
         }
 
         // update helper text
-        this.updateHelperState(instance, instance.options.idleHtml);
+        this.updateInfoState(instance, instance.options.idleHtml);
 
         // call any additional callbacks passed in via options
         if (instance.options.customDropZoneDrop && typeof instance.options.customDropZoneDrop === 'function') {
@@ -516,7 +420,7 @@ class DropZoneComponent {
         this.updateDropZoneFiles(instance);
 
         // update helper text
-        this.updateHelperState(instance, instance.options.idleHtml);
+        this.updateInfoState(instance, instance.options.idleHtml);
 
         if (instance.options.customWindowDrop && typeof instance.options.customWindowDrop === 'function') {
             instance.options.customWindowDrop.apply(this, arguments);
@@ -643,18 +547,6 @@ class DropZoneComponent {
         }
 
         return eventPath;
-    }
-
-    /**
-     * Reset body dropZone classes and add new state
-     * @param {Element} body
-     * @param {Array} classNames
-     * @return {String} new body className
-     */
-    static setDropZoneBodyClass (body, classNames = []) {
-        const cleanBodyClass = body.className.replace(/dropzone-[a-zA-Z0-9\-]+/g, '').trim();
-
-        body.className = classNames.length ? `${cleanBodyClass} ${classNames.join(' ')}` : cleanBodyClass;
     }
 
     /**

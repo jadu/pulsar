@@ -6,12 +6,9 @@ describe('DropZoneOptionsManager', () => {
     let utilStub;
 
     beforeEach(() => {
-        utilStub = sinon.stub(DropZoneComponentUtils, 'getOptionsFromAttrs', () => ({ foo: 'bar' }));
-        optionsManager = new DropZoneOptionsManager(DropZoneComponentUtils);
-    });
-
-    afterEach(() => {
-        utilStub.restore();
+        utilStub = sinon.createStubInstance(DropZoneComponentUtils);
+        utilStub.getOptionsFromAttrs.returns({ foo: 'bar' });
+        optionsManager = new DropZoneOptionsManager(utilStub);
     });
 
     describe('buildComponentOptions()', () => {

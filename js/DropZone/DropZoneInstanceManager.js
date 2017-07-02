@@ -15,14 +15,15 @@ class DropZoneInstanceManager {
         const id = this.instances.length;
         const options = optionsManager.buildInstanceOptions(node, id);
         const input = options.inputNodeId ? this.html.querySelector(`#${options.inputNodeId}`) : null;
-        const browse = options.nodeClasses.browse ? node.querySelector(`.${options.nodeClasses.browse}`) : null;
+        const browse = node.querySelector(`.${options.nodeClasses.browse}`);
+        const info = node.querySelector(`.${options.nodeClasses.info}`);
         const dropZone = this.DropZoneFactory.create(node, options);
 
         // set DropZone ID on node
         node.setAttribute('data-dropzone-id', id);
 
         // store instance object
-        this.instances.push({ options, dropZone, input, browse, id });
+        this.instances.push({ options, node, dropZone, input, browse, info, id });
     }
 
     /**
@@ -60,6 +61,40 @@ class DropZoneInstanceManager {
                 instance.dropZone.addFiles(files, meta);
             }
         });
+    }
+
+    /**
+     * Remove file from an instance
+     * @param {number} dropZoneId
+     * @param {number} fileId
+     */
+    removeFile (dropZoneId, fileId) {
+        this.instances.forEach(instance => {
+            if (instance.id === dropZoneId) {
+                instance.dropZone.removeFile(fileId);
+            }
+        });
+    }
+
+    /**
+     * Get Files from an instance
+     * @param {number} id
+     * @returns {Array}
+     */
+    getFiles (id) {
+        let files;
+
+        if (Array.prototype.find) {
+            files = this.instances.find(i => i.id === id).dropZone.getFiles();
+        } else {
+            this.instances.forEach(instance => {
+                if (instance.id === id) {
+                    files = instance.dropZone.getFiles();
+                }
+            });
+        }
+
+        return files;
     }
 }
 

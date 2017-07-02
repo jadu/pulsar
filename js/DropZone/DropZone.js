@@ -45,8 +45,9 @@ export default class DropZone {
         this.data = {};
         // a flag for determining support
         this.supportsDataTransferItems = true;
-
         this.setup();
+
+        console.log(this.options);
     }
 
     setup () {
@@ -285,7 +286,7 @@ export default class DropZone {
 
     /**
      * Remove a file from the store using it's ID
-     * @param  {String} id
+     * @param  {number} id
      */
     removeFile (id) {
         this.files = this.files.filter(file => {
