@@ -471,7 +471,7 @@ class DropZoneComponent {
      * @returns {Object} validation object
      */
     validateFiles (files, id) {
-        this.instanceManager.validateFiles(files, id);
+        return this.instanceManager.validateFiles(files, id);
     }
 
     /**

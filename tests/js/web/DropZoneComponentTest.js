@@ -779,6 +779,11 @@ describe('DropZoneComponent', () => {
             expect(instanceManager.validateFiles).to.have.been.calledOnce;
             expect(instanceManager.validateFiles.calledWith([], 0)).to.be.true;
         });
+
+        it('should return a validation object', () => {
+            instanceManager.validateFiles.returns('foo');
+            expect(dropZoneComponent.validateFiles([], 0)).to.equal('foo');
+        });
     });
 
     describe('reset()', () => {
