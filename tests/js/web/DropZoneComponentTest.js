@@ -798,6 +798,13 @@ describe('DropZoneComponent', () => {
         });
     });
 
+    describe('addFileToDropZone()', () => {
+        it('should call add files on the instance manager', () => {
+            dropZoneComponent.addFilesToDropZone([], 0);
+            expect(instanceManager.addFiles).to.have.been.calledOnce;
+        });
+    });
+
     describe('getFilesFromDropZone()', () => {
         it('should call get files on the instance manager', () => {
             dropZoneComponent.getFilesFromDropZone(0, 0);
@@ -805,7 +812,7 @@ describe('DropZoneComponent', () => {
         });
     });
 
-    describe('getInstanceIdleHtml', () => {
+    describe('getInstanceIdleHtml()', () => {
         it('should get idleHtml from options manager', () => {
             dropZoneComponent.getInstanceIdleHtml(0);
             expect(optionsManager.getInstanceOption).to.have.been.calledOnce;
@@ -813,7 +820,7 @@ describe('DropZoneComponent', () => {
         });
     });
 
-    describe('getInstanceWindowEnterHtml', () => {
+    describe('getInstanceWindowEnterHtml()', () => {
         it('should get idleHtml from options manager', () => {
             dropZoneComponent.getInstanceWindowEnterHtml(0);
             expect(optionsManager.getInstanceOption).to.have.been.calledOnce;
@@ -821,7 +828,7 @@ describe('DropZoneComponent', () => {
         });
     });
 
-    describe('getInstanceDropZoneEnterHtml', () => {
+    describe('getInstanceDropZoneEnterHtml()', () => {
         it('should get idleHtml from options manager', () => {
             dropZoneComponent.getInstanceDropZoneEnterHtml(0);
             expect(optionsManager.getInstanceOption).to.have.been.calledOnce;
@@ -829,7 +836,7 @@ describe('DropZoneComponent', () => {
         });
     });
 
-    describe('getSupportsDataTransferItems', () => {
+    describe('getSupportsDataTransferItems()', () => {
         it('should get data support from instance manager', () => {
             dropZoneComponent.getSupportsDataTransferItems(0);
             expect(instanceManager.getSupportsDataTransfer).to.have.been.calledOnce;

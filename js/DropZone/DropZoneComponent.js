@@ -484,6 +484,16 @@ class DropZoneComponent {
     }
 
     /**
+     * Add files to DropZone instance
+     * @param {FileList|Array} files
+     * @param {number} id
+     * @param {Object} meta
+     */
+    addFilesToDropZone (files, id, meta = {}) {
+        this.instanceManager.addFiles(files, id, meta);
+    }
+
+    /**
      * Get Files from DropZone instance
      * @param {number} id
      * @param {number} index
