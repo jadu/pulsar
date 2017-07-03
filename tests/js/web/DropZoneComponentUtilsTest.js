@@ -85,4 +85,22 @@ describe('DropZoneComponentUtils', () => {
             expect(utils.createFileNode(file, options).trim()).to.equal(expected);
         });
     });
+
+    describe('getEventPath()', () => {
+        const $body = $('<div></div>');
+        const $grandparent = $('<div class="gp"></div>').appendTo($body);
+        const $parent = $('<div class="p"></div>').appendTo($grandparent);
+        const $child = $('<div class="c"></div>').appendTo($parent);
+        const $target = $('<div class="t"></div>').appendTo($child);
+
+        it('should return an array of nodes simulating an event path', () => {
+            expect(utils.getEventPath($target[0])).to.deep.equal([
+                $target[0],
+                $child[0],
+                $parent[0],
+                $grandparent[0],
+                $body[0]
+            ]);
+        });
+    });
 });

@@ -84,6 +84,23 @@ class DropZoneComponentUtils {
                 </div>
             </div>`.replace(/>\s+</g, '><');
     }
+
+    /**
+     * Polyfill the lack of an event.path for some browsers
+     * @param  {Element} target
+     * @return {Array}
+     */
+    getEventPath (target) {
+        const eventPath = [target];
+        let node = target;
+        // ensure we have an element we can query an attribute on
+        while (node.parentNode && node.parentNode.getAttribute) {
+            eventPath.push(node.parentNode);
+            node = node.parentNode;
+        }
+
+        return eventPath;
+    }
 }
 
 module.exports = DropZoneComponentUtils;

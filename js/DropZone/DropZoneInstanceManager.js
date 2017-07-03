@@ -14,10 +14,11 @@ class DropZoneInstanceManager {
     addInstance (node, optionsManager) {
         const id = this.instances.length;
         const options = optionsManager.buildInstanceOptions(node, id);
+        const errorOptions = optionsManager.buildValidatorOptions(options);
         const input = options.inputNodeId ? this.html.querySelector(`#${options.inputNodeId}`) : null;
         const browse = node.querySelector(`.${options.nodeClasses.browse}`);
         const info = node.querySelector(`.${options.nodeClasses.info}`);
-        const dropZone = this.DropZoneFactory.create(node, options);
+        const dropZone = this.DropZoneFactory.create(node, options, errorOptions);
 
         // set DropZone ID on node
         node.setAttribute('data-dropzone-id', id);
@@ -36,9 +37,7 @@ class DropZoneInstanceManager {
 
         if (id < 0) {
             result = this.instances;
-        } else if (Array.prototype.find) {
-            result = this.instances.find(i => i.id === id);
-        } else {
+        }  else {
             this.instances.forEach(instance => {
                 if (instance.id === id) {
                     result = instance;
@@ -79,22 +78,72 @@ class DropZoneInstanceManager {
     /**
      * Get Files from an instance
      * @param {number} id
+     * @param {number} index
      * @returns {Array}
      */
-    getFiles (id) {
+    getFiles (id, index = -1) {
         let files;
 
-        if (Array.prototype.find) {
-            files = this.instances.find(i => i.id === id).dropZone.getFiles();
+        this.instances.forEach(instance => {
+            if (instance.id === id) {
+                files = instance.dropZone.getFiles(index);
+            }
+        });
+
+        return files;
+    }
+
+    /**
+     * Get data transfer support from an instance
+     * @param {number} id
+     * @returns {boolean}
+     */
+    getSupportsDataTransfer (id) {
+        let support;
+
+        this.instances.forEach(instance => {
+            if (instance.id === id) {
+                support = instance.dropZone.getSupportsDataTransfer();
+            }
+        });
+
+        return support;
+    }
+
+    /**
+     * Validate files against an instance
+     * @param {FileList} files
+     * @param {number} id
+     */
+    validateFiles (files, id) {
+        let validation;
+
+        this.instances.forEach(instance => {
+            if (instance.id === id) {
+                const length = instance.dropZone.getFiles().length;
+                const size = instance.dropZone.getSize();
+
+                validation = instance.dropZone.validator.validate(files, length, size);
+            }
+        });
+
+        return validation;
+    }
+
+    /**
+     * Reset an instance
+     * @param {number} id
+     */
+    resetInstance (id = -1) {
+        if (id < 0) {
+            this.instances.forEach(instance => instance.dropZone.reset());
         } else {
             this.instances.forEach(instance => {
                 if (instance.id === id) {
-                    files = instance.dropZone.getFiles();
+                    instance.dropZone.reset();
                 }
             });
         }
-
-        return files;
     }
 }
 

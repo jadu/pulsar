@@ -44,7 +44,7 @@ export default class DropZone {
         // a place to be used externally as a instance based cache;
         this.data = {};
         // a flag for determining support
-        this.supportsDataTransferItems = true;
+        this.supportsDataTransfer = true;
         this.setup();
 
         console.log(this.options);
@@ -190,7 +190,7 @@ export default class DropZone {
         this.clearIdleTimer();
 
         if (!files.length) {
-            this.supportsDataTransferItems = false;
+            this.supportsDataTransfer = false;
         }
 
         if (onDropZone && !this.dropZoneActive) {
@@ -396,6 +396,14 @@ export default class DropZone {
      */
     getDropZoneId () {
         return this.id;
+    }
+
+    /**
+     * Get dataTransfer support
+     * @returns {boolean}
+     */
+    getSupportsDataTransfer () {
+        return this.supportsDataTransfer;
     }
 
     /**

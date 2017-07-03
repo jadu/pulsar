@@ -240,7 +240,7 @@ class DropZoneComponent {
     removeFile (event) {
         let file = null;
         let dropZone = null;
-        const path = event.path ? event.path : DropZoneComponent.getEventPath(event.target);
+        const path = event.path ? event.path : this.utils.getEventPath(event.target);
 
         // grab the file id and DropZone id, this is necessary in the
         // albeit unlikely event we have multiple DropZone instances
@@ -362,7 +362,7 @@ class DropZoneComponent {
 
         // call any additional callbacks passed in via options
         if (instance.options.customDropZoneLeave && typeof instance.options.customDropZoneLeave === 'function') {
-            instance.options.customDropZoneLeave.apply(this, arguments);
+            instance.options.customDropZoneLeave.apply(this, [].slice.call(arguments));
         }
     }
 
@@ -404,7 +404,7 @@ class DropZoneComponent {
 
         // call any additional callbacks passed in via options
         if (instance.options.customDropZoneDrop && typeof instance.options.customDropZoneDrop === 'function') {
-            instance.options.customDropZoneDrop.apply(this, arguments);
+            instance.options.customDropZoneDrop.apply(this, [].slice.call(arguments));
         }
     }
 
@@ -414,17 +414,19 @@ class DropZoneComponent {
      * @param {DropZone} instance
      */
     handleWindowDrop ({ files, instance }) {
+        const id = instance.getDropZoneId();
+
         // reset body class
-        DropZoneComponent.setDropZoneBodyClass(this.body);
+        this.classManager.update(this.body);
 
         // handle dropped files
-        this.updateDropZoneFiles(instance);
+        this.updateDropZoneFiles(id);
 
         // update helper text
-        this.updateInfoState(instance, instance.options.idleHtml);
+        this.updateInfoState(id, instance.options.idleHtml);
 
         if (instance.options.customWindowDrop && typeof instance.options.customWindowDrop === 'function') {
-            instance.options.customWindowDrop.apply(this, arguments);
+            instance.options.customWindowDrop.apply(this, [].slice.call(arguments));
         }
     }
 
@@ -434,156 +436,77 @@ class DropZoneComponent {
      */
     handleFileRemoved ({ instance }) {
         // reset body class
-        DropZoneComponent.setDropZoneBodyClass(this.body);
+        this.classManager.update(this.body);
 
         // call any additional callbacks passed in via options
         if (instance.options.customFileRemoved && typeof instance.options.customFileRemoved === 'function') {
-            instance.options.customFileRemoved.apply(this, arguments);
+            instance.options.customFileRemoved.apply(this, [].slice.call(arguments));
         }
-    }
-
-    /**
-     * Return a DropZone instance by the id attribute of the node
-     * @param  {String} id
-     * @return {DropZone} DropZone
-     */
-    getDropZoneById (id) {
-        return this.dropZoneInstances[id];
-    }
-
-    /**
-     * Reset the DropZone API instance
-     * @param {DropZone} instance
-     */
-    resetDropZoneInstance (instance) {
-        instance.reset();
-        this.updateDropZoneFiles(instance);
     }
 
     /**
      * Validate files against a DropZone instance
      * @param {FileList} files
-     * @param {String} id
-     * @param {Boolean} pre | files are pre / post attached
+     * @param {number} id
      * @returns {Object} validation object
      */
-    validateFiles (files, id, pre = false) {
-        const dropZone = this.getDropZoneById(id);
-        const instanceLength = this.getFilesFromDropZone(id).length;
-        return dropZone.validator.validate(
-            files,
-            pre ? instanceLength : (instanceLength - files.length),
-            dropZone.size
-        );
+    validateFiles (files, id) {
+        this.instanceManager.validateFiles(files, id);
     }
 
     /**
      * Reset all / selected DropZones
-     * @param {Number|boolean} id
+     * @param {number} id
      */
-    reset (id = null) {
-        if (id === null) {
-            this.dropZoneInstances.forEach(this.resetDropZoneInstance.bind(this));
-        } else {
-            this.resetDropZoneInstance(this.dropZoneInstances[id]);
-        }
-
-        DropZoneComponent.setDropZoneBodyClass(this.body);
-    }
-
-    /**
-     * Build options object for the DropZoneValidator
-     * This allows us to define the validator options in the HTML
-     * @param {Object} options
-     * @returns {Object} validator options
-     */
-    static buildValidatorOptions (options) {
-        const validatorOptions = { validationText: {} };
-        return Object.keys(options).reduce((validatorOptions, option) => {
-            switch (option) {
-                case 'validationMaxFiles':
-                case 'validationWhitelist':
-                case 'validationMaxSize':
-                case 'validationUnknown':
-                    // todo - this could do with perhaps being re-thought about, this seems overly complicated
-                    // this is converting 'validationMaxFiles' -> 'maxFiles' so the validator options can be
-                    // set in the html e.g. 'data-validation-max-files="Too many files"'
-                    let newOption = option.replace('validation', '');
-                    newOption = newOption[0].toLowerCase() + newOption.slice(1);
-                    validatorOptions.validationText[newOption] = options[option];
-                    break;
-                case 'maxFiles':
-                case 'maxSize':
-                case 'whitelist':
-                    validatorOptions[option] = options[option];
-                    break;
-            }
-
-            return validatorOptions;
-        }, validatorOptions);
-    }
-
-    /**
-     * Polyfill the lack of an event.path for some browsers
-     * @param  {Element} target
-     * @return {Array}
-     */
-    static getEventPath (target) {
-        const eventPath = [target];
-        let node = target;
-        // ensure we have an element we can query an attribute on
-        while (node.parentNode && node.parentNode.getAttribute) {
-            eventPath.push(node.parentNode);
-            node = node.parentNode;
-        }
-
-        return eventPath;
+    reset (id) {
+        this.instanceManager.resetInstance(id);
+        this.classManager.update(this.body);
     }
 
     /**
      * Get Files from DropZone instance
-     * @param {String} id
-     * @param {number} fileIndex
+     * @param {number} id
+     * @param {number} index
      * @returns {Array}
      */
-    getFilesFromDropZone (id, fileIndex = -1) {
-        return this.getDropZoneById(id).getFiles(fileIndex);
+    getFilesFromDropZone (id, index) {
+        return this.instanceManager.getFiles(id, index);
     }
 
     /**
      * Get instance idleHtml
-     * @param {String} id
+     * @param {number} id
      * @returns {string}
      */
     getInstanceIdleHtml (id) {
-        return this.getDropZoneById(id).options.idleHtml;
+        return this.optionsManager.getInstanceOption(id, 'idleHtml');
     }
 
     /**
      * Get instance windowEnterHtml
-     * @param {String} id
+     * @param {number} id
      * @returns {string}
      */
     getInstanceWindowEnterHtml (id) {
-        return this.getDropZoneById(id).options.windowEnterHtml;
+        return this.optionsManager.getInstanceOption(id, 'windowEnterHtml');
     }
 
     /**
      * Get instance dropZoneEnterHtml
-     * @param {String} id
+     * @param {number} id
      * @returns {string}
      */
     getInstanceDropZoneEnterHtml (id) {
-        return this.getDropZoneById(id).options.dropZoneEnterHtml;
+        return this.optionsManager.getInstanceOption(id, 'dropZoneEnterHtml');
     }
 
     /**
      * Get instance support
-     * @param {string} id
+     * @param {number} id
      * @returns {boolean}
      */
     getSupportsDataTransferItems (id) {
-        return this.getDropZoneById(id).supportsDataTransferItems;
+        return this.instanceManager.getSupportsDataTransfer(id);
     }
 }
 

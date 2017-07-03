@@ -38,6 +38,49 @@ class DropZoneOptionsManager {
     getInstanceOptions (id) {
         return this.instanceOptions[id];
     }
+
+    /**
+     * Get a property from an instance options
+     * @param {number} id
+     * @param {string} prop
+     * @returns {*}
+     */
+    getInstanceOption (id, prop) {
+        return this.instanceOptions[id][prop];
+    }
+
+    /**
+     * Build options object for the DropZoneValidator
+     * This allows us to define the validator options in the HTML
+     * @param {Object} options
+     * @returns {Object} validator options
+     */
+    buildValidatorOptions (options) {
+        const validatorOptions = { validationText: {} };
+        return Object.keys(options).reduce((validatorOptions, option) => {
+            switch (option) {
+                case 'validationMaxFiles':
+                case 'validationWhitelist':
+                case 'validationMaxSize':
+                case 'validationUnknown':
+                    // todo - this could do with perhaps being re-thought about, this seems overly complicated
+                    // this is converting 'validationMaxFiles' -> 'maxFiles' so the validator options can be
+                    // set in the html e.g. 'data-validation-max-files="Too many files"'
+                    let newOption = option.replace('validation', '');
+
+                    newOption = newOption[0].toLowerCase() + newOption.slice(1);
+                    validatorOptions.validationText[newOption] = options[option];
+                    break;
+                case 'maxFiles':
+                case 'maxSize':
+                case 'whitelist':
+                    validatorOptions[option] = options[option];
+                    break;
+            }
+
+            return validatorOptions;
+        }, validatorOptions);
+    }
 }
 
 module.exports = DropZoneOptionsManager;

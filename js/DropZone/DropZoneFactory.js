@@ -10,13 +10,13 @@ class DropZoneFactory {
      * @param {Object} options
      * @returns {DropZone}
      */
-    static create (node, options) {
+    static create (node, options, errorOptions) {
         return new DropZone(
             node,
             options,
             new DropZoneValidator(
                 new DropZoneValidationUtils(),
-                new DropZoneErrors(),
+                new DropZoneErrors(errorOptions),
                 options.whitelist,
                 options.maxFiles,
                 options.maxSize

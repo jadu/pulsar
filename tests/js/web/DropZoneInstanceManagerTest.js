@@ -123,4 +123,64 @@ describe('DropZoneInstanceManager', () => {
             expect(mockInstance.dropZone.getFiles).to.have.been.calledOnce;
         });
     });
+
+    describe('getSupportsDataTransfer()', () => {
+        const mockInstance = {
+            id: 0,
+            dropZone: {
+                getSupportsDataTransfer: sinon.spy()
+            }
+        };
+
+        it('should get data support for instance', () => {
+            instanceManager.instances.push(mockInstance);
+            instanceManager.getSupportsDataTransfer(0);
+            expect(mockInstance.dropZone.getSupportsDataTransfer).to.have.been.calledOnce;
+        });
+    });
+
+    describe('validateFiles()', () => {
+        const mockInstance = {
+            id: 0,
+            dropZone: {
+                getFiles: () => [{}],
+                getSize: () => 1,
+                validator: {
+                    validate: sinon.spy()
+                }
+            }
+        };
+
+        it('should call the validator on the dropZone instance', () => {
+            instanceManager.instances.push(mockInstance);
+            instanceManager.validateFiles([], 0);
+            expect(mockInstance.dropZone.validator.validate).to.have.been.calledOnce;
+        });
+    });
+
+    describe('resetInstance', () => {
+        it('should reset all instances', () => {
+            const mockInstances = [
+                { id: 0, dropZone: { reset: sinon.spy() } },
+                { id: 1, dropZone: { reset: sinon.spy() } }
+            ];
+
+            instanceManager.instances = mockInstances;
+            instanceManager.resetInstance();
+            expect(mockInstances[0].dropZone.reset).to.have.been.calledOnce;
+            expect(mockInstances[1].dropZone.reset).to.have.been.calledOnce;
+        });
+
+        it('should reset a specific instance', () => {
+            const mockInstances = [
+                { id: 0, dropZone: { reset: sinon.spy() } },
+                { id: 1, dropZone: { reset: sinon.spy() } }
+            ];
+
+            instanceManager.instances = mockInstances;
+            instanceManager.resetInstance(1);
+            expect(mockInstances[0].dropZone.reset).to.have.not.been.called;
+            expect(mockInstances[1].dropZone.reset).to.have.been.calledOnce;
+        });
+    });
 });

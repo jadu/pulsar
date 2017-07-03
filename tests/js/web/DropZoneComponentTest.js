@@ -544,6 +544,7 @@ describe('DropZoneComponent', () => {
                 }
             };
 
+            // partial stub
             it('should throw a validation error if dataTransfer is not supported', () => {
                 dropZoneComponent.handleDropZoneDrop(args);
                 expect(throwStub).to.have.been.calledOnce;
@@ -630,6 +631,136 @@ describe('DropZoneComponent', () => {
 
             dropZoneComponent.handleDropZoneDrop(args);
             expect(args.instance.options.customDropZoneDrop).to.have.been.calledOnce;
+        });
+    });
+
+    describe('handleWindowDrop()', () => {
+        let infoStub;
+        let throwStub;
+        let updateFilesStub;
+
+        const args = {
+            instance: {
+                options: {
+                    interactionClasses: {},
+                    nodeClasses: {},
+                    customWindowDrop: sinon.spy()
+                },
+                getDropZoneId: () => 0
+            }
+        };
+
+        beforeEach(() => {
+            infoStub = sinon.stub(dropZoneComponent, 'updateInfoState');
+            throwStub = sinon.stub(dropZoneComponent, 'throwValidationError');
+            updateFilesStub = sinon.stub(dropZoneComponent, 'updateDropZoneFiles');
+        });
+
+        afterEach(() => {
+            infoStub.reset();
+            throwStub.reset();
+            updateFilesStub.reset();
+        });
+
+        it('should call the class manager for valid files', () => {
+            dropZoneComponent.handleWindowDrop(args);
+            expect(classManager.update).to.have.been.calledOnce;
+        });
+
+        // partial stub
+        it('should update files for valid files', () => {
+            dropZoneComponent.handleWindowDrop(args);
+            expect(updateFilesStub).to.have.been.calledOnce;
+        });
+
+        // partial stub
+        it('should update info state for valid files', () => {
+            dropZoneComponent.handleWindowDrop(args);
+            expect(infoStub).to.have.been.calledOnce;
+        });
+    });
+
+    describe('handleFileRemoved()', () => {
+        const args = {
+            instance: {
+                options: {}
+            }
+        };
+
+        it('should call the class manager for valid files', () => {
+            dropZoneComponent.handleFileRemoved(args);
+            expect(classManager.update).to.have.been.calledOnce;
+        });
+
+        it('should call the custom callback if passed in', () => {
+            const args = {
+                instance: {
+                    options: {
+                        customFileRemoved: sinon.spy()
+                    }
+                }
+            };
+
+            dropZoneComponent.handleFileRemoved(args);
+            expect(args.instance.options.customFileRemoved).to.have.been.calledOnce;
+        });
+    });
+
+    describe('validateFiles()', () => {
+        it('should call the validation manager', () => {
+            dropZoneComponent.validateFiles([], 0);
+            expect(instanceManager.validateFiles).to.have.been.calledOnce;
+            expect(instanceManager.validateFiles.calledWith([], 0)).to.be.true;
+        });
+    });
+
+    describe('reset()', () => {
+        it('should call the instance manager to reset DropZone', () => {
+            dropZoneComponent.reset();
+            expect(instanceManager.resetInstance).to.have.been.calledOnce;
+        });
+
+        it('should reset the body class', () => {
+            dropZoneComponent.reset();
+            expect(classManager.update).to.have.been.calledOnce;
+        });
+    });
+
+    describe('getFilesFromDropZone()', () => {
+        it('should call get files on the instance manager', () => {
+            dropZoneComponent.getFilesFromDropZone(0, 0);
+            expect(instanceManager.getFiles).to.have.been.calledOnce;
+        });
+    });
+
+    describe('getInstanceIdleHtml', () => {
+        it('should get idleHtml from options manager', () => {
+            dropZoneComponent.getInstanceIdleHtml(0);
+            expect(optionsManager.getInstanceOption).to.have.been.calledOnce;
+            expect(optionsManager.getInstanceOption.calledWith(0, 'idleHtml')).to.be.true;
+        });
+    });
+
+    describe('getInstanceWindowEnterHtml', () => {
+        it('should get idleHtml from options manager', () => {
+            dropZoneComponent.getInstanceWindowEnterHtml(0);
+            expect(optionsManager.getInstanceOption).to.have.been.calledOnce;
+            expect(optionsManager.getInstanceOption.calledWith(0, 'windowEnterHtml')).to.be.true;
+        });
+    });
+
+    describe('getInstanceDropZoneEnterHtml', () => {
+        it('should get idleHtml from options manager', () => {
+            dropZoneComponent.getInstanceDropZoneEnterHtml(0);
+            expect(optionsManager.getInstanceOption).to.have.been.calledOnce;
+            expect(optionsManager.getInstanceOption.calledWith(0, 'dropZoneEnterHtml')).to.be.true;
+        });
+    });
+
+    describe('getSupportsDataTransferItems', () => {
+        it('should get data support from instance manager', () => {
+            dropZoneComponent.getSupportsDataTransferItems(0);
+            expect(instanceManager.getSupportsDataTransfer).to.have.been.calledOnce;
         });
     });
 });

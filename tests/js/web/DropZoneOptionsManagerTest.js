@@ -43,4 +43,37 @@ describe('DropZoneOptionsManager', () => {
             expect(optionsManager.getInstanceOptions(0)).to.deep.equal({ foo: 'bar' });
         });
     });
+
+    describe('getInstanceOptions()', () => {
+        it('should get a property on a set ofinstance options', () => {
+            optionsManager.instanceOptions = [{ foo: 'bar' }];
+            expect(optionsManager.getInstanceOption(0, 'foo')).to.equal('bar');
+        });
+    });
+
+    describe('buildValidatorOptions', () => {
+        it('should create an options object', () => {
+            const options = {
+                validationMaxFiles: 'foo',
+                validationWhitelist: 'foo',
+                validationMaxSize: 'foo',
+                validationUnknown: 'foo',
+                maxFiles: 1,
+                maxSize: 2,
+                whitelist: ['foo']
+            };
+
+            expect(optionsManager.buildValidatorOptions(options)).to.deep.equal({
+                validationText: {
+                    maxFiles: 'foo',
+                    maxSize: 'foo',
+                    whitelist: 'foo',
+                    unknown: 'foo'
+                },
+                maxFiles: 1,
+                maxSize: 2,
+                whitelist: ['foo']
+            });
+        });
+    });
 });
