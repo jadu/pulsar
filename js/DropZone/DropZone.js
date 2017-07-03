@@ -1,36 +1,10 @@
 import _ from 'lodash';
 
-export const defaults = {
-    id: 0,
-    // limit of files within store
-    maxFiles: 5,
-    // limit total size of files (3e+8 === 300mb)
-    maxSize: 3e+8,
-    // a whitelist of file types to validate against
-    whitelist: [],
-    // duration of idle timer, if we get a mouseout event on the document
-    // wait x ms before firing a window dragleave
-    idle: 1000,
-    // file enters window
-    windowEnter: function () {},
-    // file leaves window
-    windowLeave: function () {},
-    // drop on the window outside of the DropZone
-    windowDrop: function () {},
-    // drop on the DropZone
-    dropZoneDrop: function () {},
-    dropZoneEnter: function () {},
-    // dragged files left DropZone
-    dropZoneLeave: function () {},
-    // removed file
-    fileRemoved: function () {}
-};
-
 export default class DropZone {
     constructor (node, options, validator) {
         this.validator = validator;
         this.node = DropZone.getVanillaNode(window, node);
-        this.options = _.extend({}, defaults, options);
+        this.options = options;
         // ensure we've got integers here, there is a chance these will come
         // in as strings from a DOM node's attributes
         this.options.maxFiles = parseInt(this.options.maxFiles);
@@ -46,8 +20,6 @@ export default class DropZone {
         // a flag for determining support
         this.supportsDataTransfer = true;
         this.setup();
-
-        console.log(this.options);
     }
 
     setup () {
@@ -260,7 +232,7 @@ export default class DropZone {
         return _.extend({}, {
             raw: file,
             thumbnail: !file.mock ? DropZone.getFileThumbnail(file) : null,
-            id: _.uniqueId('DropZone_file_'),
+            id: this.files.length,
             name: !file.mock ? DropZone.getFileName(file.name) : file.name,
             type: !file.mock ? DropZone.getFileType(file.type) : null,
             size: !file.mock ? DropZone.getFileSize(file.size) : null

@@ -11,22 +11,24 @@ class DropZoneOptionsManager {
      * Build and store base component options
      * @param {Object} defaults
      * @param {Object} options
+     * @param {Object} callbacks
      */
-    buildComponentOptions (defaults, options) {
-        this.componentOptions = _.extend({}, defaults, options);
+    buildComponentOptions (defaults, options, callbacks) {
+        this.componentOptions = _.extend({}, defaults, options, callbacks);
     }
 
     /**
      * Build Instance options
      * @param {Element} node
      * @param {number} id
-     * @returns {Object} options
      */
     buildInstanceOptions (node, id) {
         const attrOptions = this.utils.getOptionsFromAttrs(node);
         const options = _.extend({}, this.componentOptions, attrOptions);
 
+        options.dropZoneId = id;
         this.instanceOptions[id] = options;
+
         return options;
     }
 
@@ -57,6 +59,7 @@ class DropZoneOptionsManager {
      */
     buildValidatorOptions (options) {
         const validatorOptions = { validationText: {} };
+
         return Object.keys(options).reduce((validatorOptions, option) => {
             switch (option) {
                 case 'validationMaxFiles':

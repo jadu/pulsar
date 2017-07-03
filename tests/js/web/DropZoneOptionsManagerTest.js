@@ -27,13 +27,7 @@ describe('DropZoneOptionsManager', () => {
 
             optionsManager.componentOptions = { foo: 'foo' };
             optionsManager.buildInstanceOptions($node[0], 0);
-            expect(optionsManager.instanceOptions[0]).to.deep.equal({ foo: 'bar' });
-        });
-
-        it('should return the instance options', () => {
-            const $node = $('<div></div>');
-
-            expect(optionsManager.buildInstanceOptions($node[0], 0)).to.deep.equal({ foo: 'bar' });
+            expect(optionsManager.instanceOptions[0]).to.deep.equal({ foo: 'bar', dropZoneId: 0 });
         });
     });
 

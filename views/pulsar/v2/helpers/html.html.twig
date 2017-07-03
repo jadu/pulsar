@@ -1404,8 +1404,9 @@ todo - improve docs
 #}
 {% macro dropzone(options) %}
     {% import _self as html %}
-    {%  set files = options['data-dropzone-max-files'] is defined ? options['data-dropzone-max-files'] : '5' %}
-    {%  set state = options['data-dropzone-passive']|default('false') == 'true' ? 'passive' : 'idle' %}
+    {% set files = options['data-dropzone-max-files'] is defined ? options['data-dropzone-max-files'] : '5' %}
+    {% set state = options['data-dropzone-passive']|default('false') == 'true' ? 'passive' : 'idle' %}
+    {% set idle = options['data-dropzone-idle-html']|default('your files here or <a class="dropzone__browse" id="#">Browse Files</a>') %}
     {% spaceless %}
         <div{{ attributes(options|defaults(
             {
@@ -1420,11 +1421,7 @@ todo - improve docs
                 {{  html.icon('cloud-upload', { 'class': 'dropzone__icon dropzone__icon--main' }) }}
             </div>
             <p class="dropzone__label">Drag &amp; Drop</p>
-            <p class="dropzone__info">your files here or
-                <a class="dropzone__browse" href="{{ options.browse|default('#') }}">
-                    {{ options.browse|default('Browse Files') }}
-                </a>
-            </p>
+            <p class="dropzone__info">{{ idle|raw }}</p>
 
             <p class="dropzone__help"
                data-toggle="popover"

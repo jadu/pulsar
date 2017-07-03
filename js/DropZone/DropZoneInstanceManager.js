@@ -28,6 +28,20 @@ class DropZoneInstanceManager {
     }
 
     /**
+     * Update an instance property, useful if we need to re-reference elements
+     * @param {number} id
+     * @param {string} prop
+     * @param {*} value
+     */
+    updateInstance (id, prop, value) {
+        this.instances.forEach(instance => {
+            if (instance.id === id) {
+                instance[prop] = value;
+            }
+        });
+    }
+
+    /**
      * Get a DropZone instance object, will return all instances if no id arg supplied
      * @param {number} id
      * @returns {Object|Array}
@@ -117,6 +131,8 @@ class DropZoneInstanceManager {
      */
     validateFiles (files, id) {
         let validation;
+
+        console.log('validating...')
 
         this.instances.forEach(instance => {
             if (instance.id === id) {

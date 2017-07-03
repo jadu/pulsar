@@ -28,6 +28,14 @@ class DropZoneComponentUtils {
                     value = true;
                 }
 
+                // parse numbers
+                switch (option) {
+                    case 'max-files':
+                    case 'max-size':
+                        value = parseInt(value);
+                        break;
+                }
+
                 attrs[this.camelCaseIfy(option)] = value;
             }
 

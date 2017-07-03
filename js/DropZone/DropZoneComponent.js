@@ -20,9 +20,13 @@ class DropZoneComponent {
         this.$body = $(this.body);
 
         const defaults = {
+            // values
+            maxFiles: 5,
+            maxSize: 3e+8, // 300mb
+            idle: 1000,
             // helper html
             idleHtml: 'your files here or <a class="dropzone__browse" id="#">Browse Files</a>',
-            windowEnterHtml: 'Drag your files here (max <% maxFiles %>)',
+            windowEnterHtml: 'Drag your files here',
             dropZoneEnterHtml: 'Drop your files here',
             // passive
             passive: false,
@@ -62,8 +66,7 @@ class DropZoneComponent {
             }
         };
 
-        // we don't want these to be overitten
-        this.callbacks = {
+        const callbacks = {
             windowEnter: this.handleWindowEnter.bind(this),
             windowLeave: this.handleWindowLeave.bind(this),
             dropZoneEnter: this.handleDropZoneEnter.bind(this),
@@ -77,7 +80,7 @@ class DropZoneComponent {
         this.dropZoneInstances = [].slice.call(this.html.querySelectorAll(this.selector));
 
         // build options from options passed to the constructor and the defaults
-        this.optionsManager.buildComponentOptions(options, defaults);
+        this.optionsManager.buildComponentOptions(options, defaults, callbacks);
 
         // add DropZone(s) to instance manager
         this.dropZoneInstances.forEach(node => {
@@ -85,7 +88,7 @@ class DropZoneComponent {
             this.instanceManager.addInstance(node, this.optionsManager);
         });
 
-        // iterate over our DropZoneInstanceManagerInstances to process any input nodes
+        // iterate over our DropZoneInstanceManagerInstances to process any input nodes & update help state
         this.instanceManager.getInstance().forEach(instance => {
             if (instance.input) {
                 this.processInputNode(instance.input, instance.id, instance.options.showInputNode);
@@ -156,12 +159,18 @@ class DropZoneComponent {
      * @param {String} string
      */
     updateInfoState (id, string) {
-        const { info, browse, input } = this.instanceManager.getInstance(id);
+        const { info, input, node } = this.instanceManager.getInstance(id);
+        const options = this.optionsManager.getInstanceOptions(id);
+        let browse;
 
         if (info) {
             info.innerHTML = string;
-            // todo - this needs doing
-            // this.processBrowseNode(browse, input);
+            browse = node.querySelector(`.${options.nodeClasses.browse}`);
+
+            if (browse) {
+                this.instanceManager.updateInstance(id, 'browse', browse);
+                this.processBrowseNode(browse, input);
+            }
         }
     }
 
@@ -176,9 +185,12 @@ class DropZoneComponent {
         const { node } = this.instanceManager.getInstance(id);
         const options = this.optionsManager.getInstanceOptions(id);
         const files = this.instanceManager.getFiles(id);
-
         let wrapper = node.querySelector(`.${options.nodeClasses.wrapper}`);
         let fileNodeString = '';
+
+        // if we've got a drop we know we don't have any errors
+        // clear any previous validation messages
+        this.validationManager.clear(node, options.nodeClasses.validation);
 
         // if there are no files we'll remove the wrapper
         if (!files.length) {
@@ -195,10 +207,6 @@ class DropZoneComponent {
             wrapper.className = options.nodeClasses.wrapper;
             node.appendChild(wrapper);
         }
-
-        // if we've got a drop we know we don't have any errors
-        // clear any previous validation messages
-        this.validationManager.clear(node, options.nodeClasses.validation);
 
         // create file html string
         files.forEach(file => {
@@ -219,12 +227,13 @@ class DropZoneComponent {
      * @param {number} id
      */
     throwValidationError (error, id) {
-        const { node } = this.instanceManager.getInstance(parseInt(id));
+        const { node, info } = this.instanceManager.getInstance(parseInt(id));
         const options = this.optionsManager.getInstanceOptions(id);
 
         this.validationManager.update(
             error,
             node,
+            info,
             options.nodeClasses.validation,
             options.nodeClasses.error,
             options.passive
@@ -240,22 +249,28 @@ class DropZoneComponent {
     removeFile (event) {
         let file = null;
         let dropZone = null;
-        const path = event.path ? event.path : this.utils.getEventPath(event.target);
+        const path = this.utils.getEventPath(event.target);
 
         // grab the file id and DropZone id, this is necessary in the
         // albeit unlikely event we have multiple DropZone instances
         path.forEach(node => {
-            if (!file) {
-                file = parseInt(node.getAttribute('data-dropzone-file'));
+            if (file === null) {
+                const attr = node.getAttribute('data-dropzone-file');
+
+                file = attr ? parseInt(attr) : null;
             }
 
-            if (!dropZone) {
-                dropZone = parseInt(node.getAttribute('data-dropzone-id'));
+            if (dropZone === null) {
+                const attr = node.getAttribute('data-dropzone-id');
+
+                dropZone = attr ? parseInt(attr) : null;
             }
         });
 
-        this.instanceManager.removeFile(dropZone, file);
-        this.updateDropZoneFiles(dropZone);
+        if (dropZone !== null && file !== null) {
+            this.instanceManager.removeFile(dropZone, file);
+            this.updateDropZoneFiles(dropZone);
+        }
     }
 
     /**
@@ -327,9 +342,9 @@ class DropZoneComponent {
         } else {
             this.throwValidationError(text, id);
             this.classManager.update(this.body, [
-                instance.options.windowEnter,
-                instance.options.dropZoneEnter,
-                instance.options.dropZoneError
+                instance.options.interactionClasses.windowEnter,
+                instance.options.interactionClasses.dropZoneEnter,
+                instance.options.interactionClasses.dropZoneError
             ]);
         }
 
@@ -389,7 +404,7 @@ class DropZoneComponent {
             // have the persist flag set to true
             files.forEach(file => !persist && file.persist ? persist = true : null);
 
-            if (!instance.supportsDataTransferItems || persist) {
+            if (!instance.getSupportsDataTransfer() || persist) {
                 this.throwValidationError(text, id);
             } else {
                 // if we are not persisting validation messages, clear any that are present
@@ -424,6 +439,11 @@ class DropZoneComponent {
 
         // update helper text
         this.updateInfoState(id, instance.options.idleHtml);
+
+        if (instance.getSupportsDataTransfer()) {
+            // clear validation
+            this.validationManager.clear(instance.node, instance.options.nodeClasses.validation);
+        }
 
         if (instance.options.customWindowDrop && typeof instance.options.customWindowDrop === 'function') {
             instance.options.customWindowDrop.apply(this, [].slice.call(arguments));

@@ -59,6 +59,14 @@ describe('DropZoneInstanceManager', () => {
         });
     });
 
+    describe('updateInstance()', () => {
+        it('should update a property on an instance', () => {
+            instanceManager.instances = [{ id: 0, foo: 'bar' }];
+            instanceManager.updateInstance(0, 'foo', 'foo');
+            expect(instanceManager.instances[0].foo).to.equal('foo');
+        });
+    });
+
     describe('getInstance()', () => {
         const mockInstances = [{ id: 0 }, { id: 1 }];
 

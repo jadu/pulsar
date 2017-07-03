@@ -30,7 +30,8 @@ module.exports = function(grunt) {
                 },
                 options: {
                     browserifyOptions: {
-                        standalone: 'pulsar'
+                        standalone: 'pulsar',
+                        debug: true
                     },
                     transform: [
                         ['babelify', { presets: ['es2015'] } ],

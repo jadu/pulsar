@@ -21,7 +21,7 @@ describe('DropZoneComponent', () => {
     beforeEach(() => {
         $html = $(document.documentElement);
         $fileInput = $('<input type="text" id="fileInput">').appendTo($html);
-        $dropZone = $('<div class="dropzone"></div>').appendTo($html);
+        $dropZone = $('<div data-dropzone-id="0" class="dropzone"></div>').appendTo($html);
         $info = $('<p class="info"></p>').appendTo($dropZone);
         $browse = $('<span class="browse">browse</span>').appendTo($info);
 
@@ -35,7 +35,8 @@ describe('DropZoneComponent', () => {
         instanceManager.getFiles.returns(['file']);
         optionsManager.getInstanceOptions.returns({
             nodeClasses: {
-                wrapper: 'wrapper'
+                wrapper: 'wrapper',
+                browse: 'browse'
             }
         });
         utils.createFileNode.returns('<div class="file"></div>');
@@ -113,13 +114,27 @@ describe('DropZoneComponent', () => {
     });
 
     describe('updateInfoState()', () => {
+        let browseStub;
+
+        beforeEach(() => {
+            browseStub = sinon.stub(dropZoneComponent, 'processBrowseNode');
+        });
+
+        afterEach(() => {
+            browseStub.reset();
+        });
+
         it('should update the info node', () => {
-            instanceManager.getInstance.returns({ info: $info[0] });
             dropZoneComponent.updateInfoState(0, 'foo');
             expect($info.html()).to.equal('foo');
         });
 
-        it('should re-attach the Browse Files handler');
+        // partial stub
+        it('should re-attach the Browse Files handler', () => {
+            console.log($dropZone.html())
+            dropZoneComponent.updateInfoState(0, '<span class="browse"></span>');
+            expect(browseStub).to.have.been.calledOnce;
+        });
     });
 
     describe('updateDropZoneFiles()', () => {
@@ -160,8 +175,29 @@ describe('DropZoneComponent', () => {
         });
 
         it('should update the validation', () => {
+            instanceManager.getInstance.returns({
+                node: $dropZone[0],
+                info: $info[0]
+            });
+
+            optionsManager.getInstanceOptions.returns({
+                passive: 'passive',
+                nodeClasses: {
+                    validation: 'validation',
+                    error: 'error'
+                }
+            });
+
             dropZoneComponent.throwValidationError('foo', 0);
             expect(validation.update).to.have.been.calledOnce;
+            expect(validation.update.calledWith(
+                'foo',
+                $dropZone[0],
+                $info[0],
+                'validation',
+                'error',
+                'passive'
+            )).to.be.true;
         });
 
         // partial stub
@@ -180,12 +216,19 @@ describe('DropZoneComponent', () => {
         let event;
         let $file;
         let $wrapper;
+        let updateStub;
 
         beforeEach(() => {
+            updateStub = sinon.stub(dropZoneComponent, 'updateDropZoneFiles');
             instanceManager.getFiles.returns([]);
             $wrapper = $('<div class="wrapper"></div>').appendTo($dropZone);
             $file = $('<div data-dropzone-file="0" class="file"></div>').appendTo($wrapper);
-            event = { path: [$file[0], $dropZone[0]] };
+            event = { target: $file[0] };
+            utils.getEventPath.returns([ $file[0], $dropZone[0] ]);
+        });
+
+        afterEach(() => {
+            updateStub.reset();
         });
 
         it('should call remove file on the instance manager', () => {
@@ -193,9 +236,10 @@ describe('DropZoneComponent', () => {
             expect(instanceManager.removeFile).to.have.been.calledOnce;
         });
 
-        it('should update the DropZoneComponent files html', () => {
+        // partial stub
+         it('should update the DropZoneComponent files html', () => {
             dropZoneComponent.removeFile(event);
-            expect($dropZone.find('.wrapper').length).to.equal(0);
+            expect(updateStub).to.have.been.calledOnce;
         });
     });
 
@@ -536,11 +580,11 @@ describe('DropZoneComponent', () => {
                 valid: false,
                 text: 'foo',
                 instance: {
-                    supportsDataTransferItems: false,
                     options: {
                         interactionClasses: {}
                     },
-                    getDropZoneId: () => 0
+                    getDropZoneId: () => 0,
+                    getSupportsDataTransfer: () => false
                 }
             };
 
@@ -556,11 +600,11 @@ describe('DropZoneComponent', () => {
                     valid: false,
                     text: 'foo',
                     instance: {
-                        supportsDataTransferItems: true,
                         options: {
                             interactionClasses: {}
                         },
-                        getDropZoneId: () => 0
+                        getDropZoneId: () => 0,
+                        getSupportsDataTransfer: () => true
                     }
                 };
 
@@ -574,12 +618,12 @@ describe('DropZoneComponent', () => {
                     valid: false,
                     text: 'foo',
                     instance: {
-                        supportsDataTransferItems: true,
                         options: {
                             interactionClasses: {},
                             nodeClasses: {}
                         },
-                        getDropZoneId: () => 0
+                        getDropZoneId: () => 0,
+                        getSupportsDataTransfer: () => true
                     }
                 };
 
@@ -600,12 +644,12 @@ describe('DropZoneComponent', () => {
                 valid: false,
                 text: 'foo',
                 instance: {
-                    supportsDataTransferItems: true,
                     options: {
                         interactionClasses: {},
                         nodeClasses: {}
                     },
-                    getDropZoneId: () => 0
+                    getDropZoneId: () => 0,
+                    getSupportsDataTransfer: () => true
                 }
             };
 
@@ -619,13 +663,13 @@ describe('DropZoneComponent', () => {
                 valid: false,
                 text: 'foo',
                 instance: {
-                    supportsDataTransferItems: true,
                     options: {
                         interactionClasses: {},
                         nodeClasses: {},
                         customDropZoneDrop: sinon.spy()
                     },
-                    getDropZoneId: () => 0
+                    getDropZoneId: () => 0,
+                    getSupportsDataTransfer: () => true
                 }
             };
 
@@ -643,10 +687,10 @@ describe('DropZoneComponent', () => {
             instance: {
                 options: {
                     interactionClasses: {},
-                    nodeClasses: {},
-                    customWindowDrop: sinon.spy()
+                    nodeClasses: {}
                 },
-                getDropZoneId: () => 0
+                getDropZoneId: () => 0,
+                getSupportsDataTransfer: () => true
             }
         };
 
@@ -678,6 +722,29 @@ describe('DropZoneComponent', () => {
             dropZoneComponent.handleWindowDrop(args);
             expect(infoStub).to.have.been.calledOnce;
         });
+
+        it('should clear validation if we are not persisting', () => {
+            dropZoneComponent.handleWindowDrop(args);
+            expect(validation.clear).to.have.been.calledOnce;
+        });
+
+        it('should call the custom callback if passed in', () => {
+            const args = {
+                instance: {
+                    options: {
+                        interactionClasses: {},
+                        nodeClasses: {},
+                        customWindowDrop: sinon.spy()
+                    },
+                    getDropZoneId: () => 0,
+                    getSupportsDataTransfer: () => true
+                }
+            };
+
+            dropZoneComponent.handleWindowDrop(args);
+            expect(args.instance.options.customWindowDrop).to.have.been.calledOnce;
+        });
+
     });
 
     describe('handleFileRemoved()', () => {

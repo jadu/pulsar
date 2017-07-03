@@ -8,6 +8,7 @@ class DropZoneFactory {
      * Create an instance of a DropZone with it's options and dependencies
      * @param {Element} node
      * @param {Object} options
+     * @param {Object} errorOptions
      * @returns {DropZone}
      */
     static create (node, options, errorOptions) {
@@ -16,10 +17,10 @@ class DropZoneFactory {
             options,
             new DropZoneValidator(
                 new DropZoneValidationUtils(),
-                new DropZoneErrors(errorOptions),
-                options.whitelist,
-                options.maxFiles,
-                options.maxSize
+                new DropZoneErrors(errorOptions.validationText),
+                errorOptions.whitelist,
+                errorOptions.maxFiles,
+                errorOptions.maxSize
             )
         );
     }
