@@ -132,8 +132,6 @@ class DropZoneInstanceManager {
     validateFiles (files, id) {
         let validation;
 
-        console.log('validating...')
-
         this.instances.forEach(instance => {
             if (instance.id === id) {
                 const length = instance.dropZone.getFiles().length;
