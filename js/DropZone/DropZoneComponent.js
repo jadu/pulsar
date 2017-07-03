@@ -478,8 +478,19 @@ class DropZoneComponent {
      * Reset all / selected DropZones
      * @param {number} id
      */
-    reset (id) {
-        this.instanceManager.resetInstance(id);
+    reset (id = -1) {
+        if (id < 0) {
+            this.instanceManager.getInstance().forEach(instance => {
+                this.instanceManager.resetInstance(instance.id);
+                this.updateDropZoneFiles(instance.id);
+                this.updateInfoState(instance.id, this.optionsManager.getInstanceOption(instance.id, 'idleHtml'));
+            });
+        } else {
+            this.instanceManager.resetInstance(id);
+            this.updateDropZoneFiles(id);
+            this.updateInfoState(id, this.optionsManager.getInstanceOption(id, 'idleHtml'));
+        }
+
         this.classManager.update(this.body);
     }
 

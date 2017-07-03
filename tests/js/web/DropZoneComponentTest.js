@@ -792,6 +792,10 @@ describe('DropZoneComponent', () => {
             expect(instanceManager.resetInstance).to.have.been.calledOnce;
         });
 
+        it('should update the DropZone files', () => {
+            dropZoneComponent.
+        });
+
         it('should reset the body class', () => {
             dropZoneComponent.reset();
             expect(classManager.update).to.have.been.calledOnce;
