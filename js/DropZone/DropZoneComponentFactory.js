@@ -28,9 +28,7 @@ class DropZoneComonentFactory {
                 )
             ),
             new DropZoneComponentUtils(
-                new DropZoneComponentUtils(
-                    new MimeTyper()
-                )
+                new MimeTyper()
             ),
             new DropZoneComponentValidationManager(),
             new DropZoneBodyClassManager()
