@@ -15,21 +15,15 @@ class DropZoneComonentFactory {
      * @returns {DropZoneComponent}
      */
     static create (html, selector) {
+        const mimeTyper = new MimeTyper(),
+            utilsManager = new DropZoneComponentUtils(mimeTyper);
+
         return new DropZoneComponent(
             html,
             selector,
-            new DropZoneInstanceManager(
-                html,
-                DropZoneFactory
-            ),
-            new DropZoneOptionsManager(
-                new DropZoneComponentUtils(
-                    new MimeTyper()
-                )
-            ),
-            new DropZoneComponentUtils(
-                new MimeTyper()
-            ),
+            new DropZoneInstanceManager(html, DropZoneFactory),
+            new DropZoneOptionsManager(utilsManager),
+            utilsManager,
             new DropZoneComponentValidationManager(),
             new DropZoneBodyClassManager()
         );
