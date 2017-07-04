@@ -52,27 +52,73 @@ describe('DropZoneComponent', () => {
         );
     });
 
+    afterEach(() => {
+        $html.html('');
+    });
+
     describe('init()', () => {
-        it('write init tests');
+        let inputStub;
+        let browseStub;
+
+        beforeEach(() => {
+            $('<div class="dropzone test"></div>').appendTo($html);
+            $('<div class="dropzone test"></div>').appendTo($html);
+            $('<div class="dropzone test"></div>').appendTo($html);
+            $('<div class="dropzone test"></div>').appendTo($html);
+
+            inputStub = sinon.stub(dropZoneComponent, 'processInputNode');
+            browseStub = sinon.stub(dropZoneComponent, 'processBrowseNode');
+            instanceManager.getInstance.returns([
+                { id: 0 },
+                { id: 1, input: {}, options: {}, browse: {} }
+            ]);
+        });
+
+        afterEach(() => {
+            $html.find('.dropzone.test').remove();
+            inputStub.reset();
+            browseStub.reset();
+        });
+
+        it('should build the base component options', () => {
+            dropZoneComponent.init();
+            expect(optionsManager.buildComponentOptions).to.have.been.calledOnce;
+        });
+
+        it('should create an instance for each node matching the selector', () => {
+            dropZoneComponent.init();
+            expect(instanceManager.addInstance).to.have.callCount(5);
+        });
+
+        // partial stub
+        it('should process each instances input node', () => {
+            dropZoneComponent.init();
+            expect(inputStub).to.have.been.calledOnce;
+        });
+
+        // partial stub
+        it('should process each instances browse node', () => {
+            dropZoneComponent.init();
+            expect(browseStub).to.have.been.calledOnce;
+        });
     });
 
     describe('processInputNode()', () => {
-        it('should hide the input if specified in options', () => {
-            const options = { showInputNode: false, inputNodeId: 'fileInput' };
+        const options = { showInputNode: false, inputNodeId: 'fileInput' };
 
+        it('should hide the input if specified in options', () => {
             dropZoneComponent.processInputNode($fileInput[0], 0, options.showInputNode);
             expect($fileInput.css('display')).to.equal('none');
         });
 
         it('should invoke the addFiles method on the file manager on change', /*() => {
+            const change = new Event('change');
 
+            dropZoneComponent.processInputNode($fileInput[0], 0, options.showInputNode);
+            $fileInput[0].dispatchEvent(change);
 
-            dropZoneComponent.processInputNode(dropZoneStub, options);
-            $fileInput.trigger('change');
-
-            expect(fileManagerStub.addFiles).to.have.been.calledOnce;
-            expect(fileManagerStub.calledWith(dropZoneStub, { persist: true })).to.be.true;
-
+            expect(instanceManager.addFiles).to.have.been.calledOnce;
+            expect(instanceManager.calledWith(0, { persist: true })).to.be.true;
         }*/);
 
         it('should clear the input node value on change', /*() => {
@@ -787,18 +833,32 @@ describe('DropZoneComponent', () => {
     });
 
     describe('reset()', () => {
-        it('should call the instance manager to reset DropZone', () => {
-            dropZoneComponent.reset();
+        let updateStub;
+        let filesStub;
+
+        beforeEach(() => {
+            instanceManager.getInstance.returns([{ id: 0 }, { id: 1 }]);
+            updateStub = sinon.stub(dropZoneComponent, 'updateDropZoneFiles');
+            filesStub = sinon.stub(dropZoneComponent, 'updateInfoState');
+        });
+
+        afterEach(() => {
+            updateStub.reset();
+            filesStub.reset();
+        });
+
+        // partial stub
+        it('should reset a single instance if an ID is passed in', () => {
+            dropZoneComponent.reset(1);
             expect(instanceManager.resetInstance).to.have.been.calledOnce;
+            expect(instanceManager.resetInstance.calledWith(1)).to.be.true;
+            expect(updateStub).to.have.been.calledOnce;
+            expect(filesStub).to.have.been.calledOnce;
         });
 
-        it('should update the DropZone files', () => {
-            dropZoneComponent.
-        });
+        // partial stub
+        it('should reset all instances if no ID is passed in', () => {
 
-        it('should reset the body class', () => {
-            dropZoneComponent.reset();
-            expect(classManager.update).to.have.been.calledOnce;
         });
     });
 

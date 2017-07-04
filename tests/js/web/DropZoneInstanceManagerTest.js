@@ -37,6 +37,7 @@ describe('DropZoneInstanceManager', () => {
 
     afterEach(() => {
         DropZoneFactory.create.restore();
+        $html.html('');
     });
 
     describe('addInstance()', () => {

@@ -106,9 +106,6 @@ class DropZoneComponent {
     /**
      * If an input node ID has been passed in, we'll take care of linking the DropZone
      * instance to this node
-     *  - add change listener to hijack files
-     *  - add click listener to browse files node to leverage input's browse functionality
-     *  - visually hide input node
      * @param {Element} input
      * @param {number} id
      * @param {boolean} show

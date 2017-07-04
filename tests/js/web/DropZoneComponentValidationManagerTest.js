@@ -15,6 +15,10 @@ describe('DropZoneComponentValidationManager', () => {
         componentValidation = new DropZoneComponentValidationManager();
     });
 
+    afterEach(() => {
+        $html.html('');
+    });
+
     describe('clearValidation()', () => {
         it('should clear the validation node', () => {
             componentValidation.clear($html[0], 'validation');
