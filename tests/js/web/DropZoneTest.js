@@ -158,4 +158,14 @@ describe('DropZone', () => {
             ));
         });
     });
+
+    describe('fileOnWindow()', () => {
+        it('should return false if x & y are at 0', () => {
+            expect(dropZone.fileOnWindow(0, 0)).to.be.false;
+        });
+
+        it('should true for coords on the window and an element from point', () => {
+            expect(dropZone.fileOnWindow(50, 50)).to.be.true;
+        });
+    });
 });

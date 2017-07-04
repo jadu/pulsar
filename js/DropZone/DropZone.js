@@ -120,19 +120,21 @@ export default class DropZone {
     }
 
     /**
-     * Determine if a file is currently on the window
+     * Determine if file is on window
+     * @param {number} x
+     * @param {number} y
+     * @returns {boolean}
      */
-    fileOnWindow (event) {
-        const { clientX, clientY } = event;
-        const offWindow = clientX === 0 && clientY === 0;
-        return !offWindow && document.elementFromPoint(clientX, clientY);
+    fileOnWindow (x, y) {
+        const offWindow = x === 0 && y === 0;
+        return !!(!offWindow && document.elementFromPoint(x, y));
     }
 
     /**
      * Handle a file dragged into the window
      */
     handleWindowEnter (event) {
-        const onWindow = this.fileOnWindow(event);
+        const onWindow = this.fileOnWindow(event.clientX, event.clientY);
         const onDropZone = this.node.contains(onWindow);
         const files = event.dataTransfer.items || event.dataTransfer.files;
 
@@ -145,7 +147,7 @@ export default class DropZone {
         if (onDropZone && !this.dropZoneActive) {
             // handle files on DropZone
             this.handleEnter(files);
-        } else if (this.fileOnWindow(event) && !this.windowActive) {
+        } else if (this.fileOnWindow(event.clientX, event.clientY) && !this.windowActive) {
             // handle files on window
             const { valid, text } = this.validator.validate(files, this.getFiles().length, this.getSize());
 
@@ -163,7 +165,7 @@ export default class DropZone {
         const onDropZone = this.node.contains(document.elementFromPoint(event.clientX, event.clientY));
         const files = event.dataTransfer.items || event.dataTransfer.files;
 
-        if (force || !this.fileOnWindow(event)) {
+        if (force || !this.fileOnWindow(event.clientX, event.clientY)) {
             this.windowActive = false;
             this.dropZoneActive = false;
             this.clearIdleTimer();
