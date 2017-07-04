@@ -2,6 +2,9 @@ import DropZoneValidationUtils from './DropZoneValidationUtils';
 import DropZoneErrors from './DropZoneErrors';
 import DropZoneValidatorDisatcher from './DropZoneValidatorDispatcher';
 import DropZoneEventManager from './DropZoneEventManager';
+import DropZoneIdleTimer from './DropZoneIdleTimer';
+import DropZoneFileManager from './DropZoneFileManager';
+import DropZoneFileUtils from './DropZoneFileUtils';
 import DropZone from './DropZone';
 
 class DropZoneFactory {
@@ -23,7 +26,9 @@ class DropZoneFactory {
                 errorOptions.maxFiles,
                 errorOptions.maxSize
             ),
-            new DropZoneEventManager()
+            new DropZoneEventManager(),
+            new DropZoneIdleTimer(options.idleTimerDuration),
+            new DropZoneFileManager(new DropZoneFileUtils())
         );
     }
 }

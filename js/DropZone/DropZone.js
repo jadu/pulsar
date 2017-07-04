@@ -7,10 +7,13 @@ export default class DropZone {
      * @param {Object} options
      * @param {DropZoneValidatorDispatcher} validator
      * @param {DropZoneEventManager} eventManager
+     * @param {DropZoneIdleTimer} idleTimer
      */
-    constructor (node, options, validator, eventManager) {
+    constructor (node, options, validator, eventManager, idleTimer, fileManager) {
         this.validator = validator;
         this.eventManager = eventManager;
+        this.idleTimer = idleTimer;
+        this.fileManager = fileManager;
         this.node = DropZone.getVanillaNode(window, node);
         this.options = options;
         // ensure we've got integers here, there is a chance these will come
@@ -22,30 +25,23 @@ export default class DropZone {
         this.handleDropWithContext = this.handleDrop.bind(this);
         this.handleWindowEnterWithContext = this.handleWindowEnter.bind(this);
         this.handleWindowLeaveWithContext = this.handleWindowLeave.bind(this);
-        this.startIdleTimerWithContext = this.startIdleTimer.bind(this);
-        // a place to be used externally as a instance based cache;
-        this.data = {};
         // a flag for determining support
         this.supportsDataTransfer = true;
+        // setup files and size storage
+        this.files = [];
+        this.size = 0;
     }
 
     /**
      * Initialise plugin
-     * - setup files list
-     * - setup size counter
-     * - add events
      */
     init () {
         if (!this.node) {
             throw new Error('DropZone requires a DOM node');
         }
 
-        this.files = [];
-        this.size = 0;
-
         // add events for environments that support data transfer items
         if (this.options.supported) {
-            this.idleTimer = null;
             this.windowActive = false;
             this.dropZoneActive = false;
             // prevent
@@ -60,35 +56,14 @@ export default class DropZone {
             this.eventManager.add(window, 'dragenter', this.handleWindowEnterWithContext);
             this.eventManager.add(window, 'dragleave', this.handleWindowLeaveWithContext);
             this.eventManager.add(window, 'drop', this.handleDropWithContext);
+
             // attempt to handle missed callbacks
             // mouseout has proven to be _more_ reliable than dragleave
-            this.eventManager.add(document, 'mouseout', this.startIdleTimerWithContext);
-        }
-    }
-
-    /**
-     * Trigger a timer to execute a manual windowLeave after x ms
-     * this is to catch window dragLeave events that are missed at high speed
-     * @param {Event} event
-     */
-    startIdleTimer (event) {
-        this.clearIdleTimer();
-        this.idleTimer = setTimeout(() => {
-
-            if (this.windowActive || this.dropZoneActive) {
-                this.handleWindowLeave(event, true);
-            }
-
-            this.idleTimer = null;
-        }, this.options.idle);
-    }
-
-    /**
-     * Clear the current timer
-     */
-    clearIdleTimer () {
-        if (this.idleTimer !== null) {
-            clearTimeout(this.idleTimer);
+            this.eventManager.add(document, 'mouseout', this.idleTimer.start(event => {
+                if (this.windowActive || this.dropZoneActive) {
+                    this.handleWindowLeave(event, true);
+                }
+            }));
         }
     }
 
@@ -108,10 +83,9 @@ export default class DropZone {
             this.createCallback(this.options.windowDrop, { files: this.files, node: this.node });
         }
 
-        // reset DropZone state§
+        // reset DropZone state
         this.windowActive = false;
         this.dropZoneActive = false;
-        this.resetEventTracker();
     }
 
     /**
@@ -120,16 +94,24 @@ export default class DropZone {
      * @param {Object} meta
      */
     addFiles (files, meta = {}) {
-        const { valid, text } = this.validator.validate(files, this.getFiles().length, this.getSize());
-        let processedFiles = []
+        const { valid, text } = this.validator.validate(files, this.files.length, this.size);
+        let processedFiles = [];
 
         for (let i = 0; i < files.length; i++) {
-            const file = files[i];
-
-            processedFiles.push(this.processFile(file.getAsFile ? file.getAsFile() : file, meta));
+            // increment size store
+            this.size += files[i].size;
+            // process file
+            processedFiles.push(
+                this.fileManager.createFileObject(
+                    files[i].getAsFile ? files[i].getAsFile() : files[i],
+                    this.files.length,
+                    meta
+                )
+            );
         }
 
         if (valid) {
+            // add processed files to file store
             this.files = [...this.files, ...processedFiles];
         }
 
@@ -213,25 +195,6 @@ export default class DropZone {
         this.clearIdleTimer();
         this.createCallback(this.options.dropZoneLeave, { valid, text });
         this.dropZoneActive = false;
-    }
-
-    /**
-     * A place we can do something with a file before we add it to the store.
-     * @param {Object} file
-     * @param {Object} meta
-     * @return {Object} file object
-     */
-    processFile (file, meta) {
-        this.size += file.size;
-
-        return _.extend({}, {
-            raw: file,
-            thumbnail: !file.mock ? DropZone.getFileThumbnail(file) : null,
-            id: this.files.length,
-            name: !file.mock ? DropZone.getFileName(file.name) : file.name,
-            type: !file.mock ? DropZone.getFileType(file.type) : null,
-            size: !file.mock ? DropZone.getFileSize(file.size) : null
-        }, meta);
     }
 
     /**
@@ -327,67 +290,5 @@ export default class DropZone {
      */
     static getVanillaNode (window, node) {
         return window.$ && node instanceof window.$ ? node[0] : node;
-    }
-
-    /**
-     * Format filename for printing
-     * @param  {String} filename
-     * @return {String}
-     */
-    static getFileName (filename) {
-        // strip out any directory path in our filename
-        return filename.replace(/.*[\\\/]/, '');
-    }
-
-    /**
-     * Format type for printing
-     * @param  {String} type
-     * @return {String}
-     */
-    static getFileType (type) {
-        if (type.length) {
-            return type;
-        } else {
-            return 'application/file';
-        }
-    }
-
-    /**
-     * Format size for printing
-     * @param  {Number} size
-     * @return {String}
-     */
-    static getFileSize (size) {
-        return DropZone.formatBytes(size);
-    }
-
-    /**
-     * Create url for image preview
-     * @param  {Object} file
-     * @return {String|Boolean}
-     */
-    static getFileThumbnail (file) {
-        if (file.type.match(/\/(gif|jpeg|png|svg+xml|svg)/) && URL.createObjectURL) {
-            return URL.createObjectURL(file);
-        } else {
-            return false;
-        }
-    }
-
-    /**
-     * Format bytes as unit relative to amount of bytes
-     * @param  {Number} bytes
-     * @param  {Number} decimal
-     * @return {String}
-     */
-    static formatBytes (bytes, decimal = 1) {
-        if (!bytes) {
-            return '0 Byte';
-        }
-
-        const kb = 1000,
-            sizes = ['Bytes', 'KB', 'MB', 'GB'],
-            i = Math.floor(Math.log(bytes) / Math.log(kb));
-        return `${parseFloat((bytes / Math.pow(kb, i)).toFixed(decimal))} ${sizes[i]}`;
     }
 }

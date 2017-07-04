@@ -23,7 +23,7 @@ class DropZoneComponent {
             // values
             maxFiles: 5,
             maxSize: 3e+8, // 300mb
-            idle: 1000,
+            idleTimerDuration: 1000,
             // helper html
             idleHtml: 'your files here or <a class="dropzone__browse" id="#">Browse Files</a>',
             windowEnterHtml: 'Drag your files here',
