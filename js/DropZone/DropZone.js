@@ -1,8 +1,16 @@
 import _ from 'lodash';
 
 export default class DropZone {
-    constructor (node, options, validator) {
+    /**
+     * DropZone
+     * @param {Element} node
+     * @param {Object} options
+     * @param {DropZoneValidatorDispatcher} validator
+     * @param {DropZoneEventManager} eventManager
+     */
+    constructor (node, options, validator, eventManager) {
         this.validator = validator;
+        this.eventManager = eventManager;
         this.node = DropZone.getVanillaNode(window, node);
         this.options = options;
         // ensure we've got integers here, there is a chance these will come
@@ -19,56 +27,43 @@ export default class DropZone {
         this.data = {};
         // a flag for determining support
         this.supportsDataTransfer = true;
-        this.setup();
     }
 
-    setup () {
+    /**
+     * Initialise plugin
+     * - setup files list
+     * - setup size counter
+     * - add events
+     */
+    init () {
         if (!this.node) {
             throw new Error('DropZone requires a DOM node');
         }
 
-        this.eventPool = [];
         this.files = [];
         this.size = 0;
 
+        // add events for environments that support data transfer items
         if (this.options.supported) {
-            this.setupEvents();
+            this.idleTimer = null;
+            this.windowActive = false;
+            this.dropZoneActive = false;
+            // prevent
+            this.eventManager.add(window, 'drag', this.eventManager.preventer);
+            this.eventManager.add(window, 'dragstart', this.eventManager.preventer);
+            this.eventManager.add(window, 'dragend', this.eventManager.preventer);
+            this.eventManager.add(window, 'dragover', this.eventManager.preventer);
+            this.eventManager.add(window, 'dragenter', this.eventManager.preventer);
+            this.eventManager.add(window, 'dragleave', this.eventManager.preventer);
+            this.eventManager.add(window, 'drop', this.eventManager.preventer);
+            // interactions
+            this.eventManager.add(window, 'dragenter', this.handleWindowEnterWithContext);
+            this.eventManager.add(window, 'dragleave', this.handleWindowLeaveWithContext);
+            this.eventManager.add(window, 'drop', this.handleDropWithContext);
+            // attempt to handle missed callbacks
+            // mouseout has proven to be _more_ reliable than dragleave
+            this.eventManager.add(document, 'mouseout', this.startIdleTimerWithContext);
         }
-    }
-
-    setupEvents () {
-        this.idleTimer = null;
-        this.eventTracker = { node: {}, window: {} };
-        this.windowActive = false;
-        this.dropZoneActive = false;
-
-        this.registerEvents();
-        this.attachMultipleListeners(
-            [window],
-            'drag dragstart dragend dragover dragenter dragleave drop',
-            this.preventer
-        );
-    }
-
-    /**
-     * Register drag & drop events
-     */
-    registerEvents () {
-        // prevent defaults
-        this.addEventAndStore(window, 'drag', this.preventer);
-        this.addEventAndStore(window, 'dragstart', this.preventer);
-        this.addEventAndStore(window, 'dragend', this.preventer);
-        this.addEventAndStore(window, 'dragover', this.preventer);
-        this.addEventAndStore(window, 'dragenter', this.preventer);
-        this.addEventAndStore(window, 'dragleave', this.preventer);
-        this.addEventAndStore(window, 'drop', this.preventer);
-        // interactions
-        this.addEventAndStore(window, 'dragenter', this.handleWindowEnterWithContext);
-        this.addEventAndStore(window, 'dragleave', this.handleWindowLeaveWithContext);
-        this.addEventAndStore(window, 'drop', this.handleDropWithContext);
-        // attempt to handle missed callbacks
-        // mouseout has proven to be _more_ reliable than dragleave
-        this.addEventAndStore(document, 'mouseout', this.startIdleTimerWithContext);
     }
 
     /**
@@ -285,61 +280,7 @@ export default class DropZone {
         }
     }
 
-    /**
-     * Attach multiple events
-     * @param {Array} nodes
-     * @param {String} events
-     * @param {Function} handler
-     */
-    attachMultipleListeners (nodes, events, handler) {
-        nodes.forEach(node => {
-            events.split(' ').forEach(event => {
-                this.addEventAndStore(node, event, handler);
-            });
-        });
-    }
 
-    /**
-     * Add event to event pool, the event pool is used to keep track of
-     * bound events to allow us to properly remove them if needed
-     * @param {HTMLElement} node
-     * @param {Event} event
-     * @param {Function} handler
-     */
-    addEventToPool (node, event, handler) {
-        this.eventPool.push({ node, event, handler });
-    }
-
-    /**
-     * Attach an event listener to a node and store in eventPool
-     * @param {HTMLElement} node
-     * @param {String} event
-     * @param {Function} handler
-     */
-    addEventAndStore (node, event, handler) {
-        this.addEventToPool(node, event, handler);
-        node.addEventListener(event, handler);
-    }
-
-    /**
-     * Remove any events that have been attached by DropZone
-     */
-    removeAllEvents () {
-        this.eventPool = this.eventPool.reduce((pool, item) => {
-            const { node, event, handler } = item;
-
-            node.removeEventListener(event, handler);
-            return pool;
-        }, []);
-    }
-
-    /**
-     * Prevent default event behaviour & propagation
-     * @param  {Event} event
-     */
-    preventer (event) {
-        event.preventDefault();
-    }
 
     /**
      * Reset

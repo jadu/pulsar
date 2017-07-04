@@ -20,6 +20,9 @@ class DropZoneInstanceManager {
         const info = node.querySelector(`.${options.nodeClasses.info}`);
         const dropZone = this.DropZoneFactory.create(node, options, errorOptions);
 
+        // initiate dropZone
+        dropZone.init();
+
         // set DropZone ID on node
         node.setAttribute('data-dropzone-id', id);
 

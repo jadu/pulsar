@@ -1,8 +1,8 @@
-import DropZoneValidator from '../../../js/DropZone/DropZoneValidator'
+import DropZoneValidatorDispatcher from '../../../js/DropZone/DropZoneValidatorDispatcher'
 import DropZoneValidationUtils from '../../../js/DropZone/DropZoneValidationUtils';
 import DropZoneErrors from '../../../js/DropZone/DropZoneErrors';
 
-describe('DropZoneValidator', () => {
+describe('DropZoneValidatorDispatcher', () => {
     let dropZoneValidatorDispatcher;
     let validResponse = { valid: true, text: '' };
     let dropZoneErrorStub;
@@ -18,7 +18,7 @@ describe('DropZoneValidator', () => {
 
         dropZoneUtilStub = sinon.createStubInstance(DropZoneValidationUtils);
 
-        dropZoneValidatorDispatcher = new DropZoneValidator(
+        dropZoneValidatorDispatcher = new DropZoneValidatorDispatcher(
             dropZoneUtilStub,
             dropZoneErrorStub,
             whitelist,

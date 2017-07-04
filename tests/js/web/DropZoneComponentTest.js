@@ -177,7 +177,6 @@ describe('DropZoneComponent', () => {
 
         // partial stub
         it('should re-attach the Browse Files handler', () => {
-            console.log($dropZone.html())
             dropZoneComponent.updateInfoState(0, '<span class="browse"></span>');
             expect(browseStub).to.have.been.calledOnce;
         });

@@ -1,6 +1,7 @@
 import DropZoneValidationUtils from './DropZoneValidationUtils';
 import DropZoneErrors from './DropZoneErrors';
-import DropZoneValidator from './DropZoneValidator';
+import DropZoneValidatorDisatcher from './DropZoneValidatorDispatcher';
+import DropZoneEventManager from './DropZoneEventManager';
 import DropZone from './DropZone';
 
 class DropZoneFactory {
@@ -15,13 +16,14 @@ class DropZoneFactory {
         return new DropZone(
             node,
             options,
-            new DropZoneValidator(
+            new DropZoneValidatorDisatcher(
                 new DropZoneValidationUtils(),
                 new DropZoneErrors(errorOptions.validationText),
                 errorOptions.whitelist,
                 errorOptions.maxFiles,
                 errorOptions.maxSize
-            )
+            ),
+            new DropZoneEventManager()
         );
     }
 }

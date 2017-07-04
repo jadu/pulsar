@@ -1,6 +1,7 @@
 import DropZoneInstanceManager from '../../../js/DropZone/DropZoneInstanceManager';
 import DropZoneFactory from '../../../js/DropZone/DropZoneFactory';
 import DropZoneOptionsManager from '../../../js/DropZone/DropZoneOptionsManager';
+import DropZone from '../../../js/DropZone/DropZone';
 
 describe('DropZoneInstanceManager', () => {
     let $html;
@@ -10,6 +11,8 @@ describe('DropZoneInstanceManager', () => {
     let $info;
     let instanceManager;
     let optionsManagerStub;
+    let factoryStub;
+    let dropZoneStub;
     let stubOptions = {
         inputNodeId: 'input',
         nodeClasses: {
@@ -25,9 +28,12 @@ describe('DropZoneInstanceManager', () => {
         $browse = $('<p class="browse"></p>').appendTo($dropZone);
         $info = $('<p class="info"></p>').appendTo($dropZone);
 
-        sinon.stub(DropZoneFactory, 'create', () => 'DropZone');
+        dropZoneStub = sinon.createStubInstance(DropZone);
+        factoryStub = sinon.stub(DropZoneFactory, 'create');
+        factoryStub.returns(dropZoneStub);
         optionsManagerStub = sinon.createStubInstance(DropZoneOptionsManager);
         optionsManagerStub.buildInstanceOptions.returns(stubOptions);
+        optionsManagerStub.buildValidatorOptions.returns({});
 
         instanceManager = new DropZoneInstanceManager(
             document.documentElement,
@@ -36,7 +42,7 @@ describe('DropZoneInstanceManager', () => {
     });
 
     afterEach(() => {
-        DropZoneFactory.create.restore();
+        factoryStub.restore();
         $html.html('');
     });
 
@@ -50,13 +56,18 @@ describe('DropZoneInstanceManager', () => {
                 browse: $browse[0],
                 input: $input[0],
                 info: $info[0],
-                dropZone: 'DropZone'
+                dropZone: dropZoneStub
             });
         });
 
         it('should add the DropZoneInstance ID as an attribute on the node', () => {
             instanceManager.addInstance($dropZone[0], optionsManagerStub);
             expect($dropZone.attr('data-dropzone-id')).to.equal('0');
+        });
+
+        it('should initialise the instance', () => {
+            instanceManager.addInstance($dropZone[0], optionsManagerStub);
+            expect(dropZoneStub.init).to.have.been.calledOnce;
         });
     });
 
