@@ -17,6 +17,13 @@ NavMainComponent.prototype.init = function() {
     component.$secondaryNavLinks = component.$navSecondary.find('.nav-link');
     component.$closeLink = component.$navMain.find('[data-nav-action=close]');
 
+    /* Sliding Menu  */
+    component.$moreIcon = component.$navMain.find('.more-icon');
+    component.$navMainSliding = component.$navMain.find('.nav-main--sliding');
+    component.$navAdditionalSliding = component.$navMain.find('.nav-additional--sliding');
+    component.$mainSlidingLinks = component.$navMainSliding.find('.nav-link');
+    component.$additionalSlidingLinks = component.$navAdditionalSliding.find('.nav-link');
+
     component.closeHandler = function() {
         component.closeNavs();
     };
@@ -40,6 +47,32 @@ NavMainComponent.prototype.init = function() {
 
     component.$secondaryNavLinks.on('click', function() {
         component.changeActiveSecondaryNavLink($(this).attr('href'));
+    });
+
+    component.$moreIcon.on('click', function(e) {
+        component.$navMainSliding.toggleClass('is-open');
+        component.$navMainSliding.find('.nav-list').toggleClass('is-active');
+    });
+
+    component.$mainSlidingLinks.on('click', function(e) {
+
+        var $self = $(this),
+            href = $self.attr('href');
+
+        // If href is a fragment, don't add it to the URL because it breaks the
+        // back button
+        if (href.substring(0,1) === '#') {
+            e.preventDefault();
+        }
+
+        component.switchNavMainSliding(href);
+        component.switchNavAdditionalSliding(href);
+
+        component.$html.find('.content-main').on('click', component.closeHandler);
+    });
+
+    component.$additionalSlidingLinks.on('click', function() {
+        component.changeActiveAdditionalSlidingNavLink($(this).attr('href'));
     });
 
     component.$closeLink.on('click', function(e) {
@@ -75,11 +108,46 @@ NavMainComponent.prototype.switchSecondaryNav = function(target) {
         .addClass('is-active');
 };
 
+NavMainComponent.prototype.switchNavMainSliding = function(target) {
+
+    var component = this;
+
+    component.$html.find('.navMainSliding .nav-link').removeClass('is-active');
+
+    if (component.$html.find('[data-nav="' + target + '"]').length >= 1) {
+        //component.$navMain.addClass('is-open');
+    } else {
+        component.closeNavs();
+    }
+
+    component.$html.find('.navMainSliding .is-active').removeClass('is-active');
+    component.$html.find('[href="' + target + '"]').addClass('is-active');
+};
+
+NavMainComponent.prototype.switchNavAdditionalSliding = function(target) {
+
+    var component = this;
+
+    component.closeSubNavs();
+    component.$navAdditionalSliding.toggleClass('is-open');
+
+    component.$html.find('[data-nav="' + target + '"]')
+        .addClass('is-active');
+};
+
 NavMainComponent.prototype.changeActiveSecondaryNavLink = function(target) {
 
     var component = this;
 
     component.$html.find('.nav-secondary .nav-item.is-active').removeClass('is-active');
+    component.$html.find('[href="' + target + '"]').addClass('is-active');
+};
+
+NavMainComponent.prototype.changeActiveAdditionalSlidingNavLink = function(target) {
+
+    var component = this;
+
+    component.$html.find('.nav-additional--sliding .nav-item.is-active').removeClass('is-active');
     component.$html.find('[href="' + target + '"]').addClass('is-active');
 };
 
@@ -89,13 +157,18 @@ NavMainComponent.prototype.closeNavs = function() {
 
     component.$navMain.removeClass('is-open');
 
+    if(component.$navAdditionalSliding.hasClass('is-open')) {
+        component.$navAdditionalSliding.removeClass('is-open');
+    } else {
+        component.$navMainSliding.removeClass('is-open');
+    }
+
     component.$html.find('.content-main').unbind('click', component.closeHandler);
 };
 
 NavMainComponent.prototype.closeSubNavs = function() {
 
     var component = this;
-
     component.$html.find('.nav-secondary .nav-container').removeClass('is-active');
 };
 
