@@ -17,7 +17,8 @@ describe('DropZone', () => {
         options = {
             supported: true,
             windowDrop: sinon.spy(),
-            dropZoneDrop: sinon.spy()
+            dropZoneDrop: sinon.spy(),
+            windowEnter: sinon.spy()
         };
 
         $node = $('<div></div>');
@@ -106,7 +107,7 @@ describe('DropZone', () => {
     });
 
     describe('addFiles()', () => {
-        let callbackStub
+        let callbackStub;
 
         beforeEach(() => {
             validatorStub.validate.returns({ valid: true, text: '' });
@@ -165,7 +166,71 @@ describe('DropZone', () => {
         });
 
         it('should true for coords on the window and an element from point', () => {
-            expect(dropZone.fileOnWindow(50, 50)).to.be.true;
+            expect(dropZone.fileOnWindow(50, 50)).to.equal(document.documentElement);
+        });
+    });
+
+    describe('handleWindowEnter()', () => {
+        const event = { dataTransfer: { files: [] } };
+        let dropZoneEnterStub;
+        let callbackStub;
+        let containsStub;
+        let onWindowStub;
+
+        beforeEach(() => {
+            onWindowStub = sinon.stub(dropZone, 'fileOnWindow');
+            containsStub = sinon.stub(dropZone.node, 'contains');
+            validatorStub.validate.returns({ valid: true, text: '' });
+            dropZoneEnterStub = sinon.stub(dropZone, 'handleDropZoneEnter');
+            callbackStub = sinon.stub(dropZone, 'createCallback');
+        });
+
+        afterEach(() => {
+            onWindowStub.restore();
+            containsStub.restore();
+            dropZoneEnterStub.restore();
+            callbackStub.restore();
+        });
+
+        it('should clear the idle timer', () => {
+            dropZone.handleWindowEnter(event);
+            expect(timerStub.clear).to.have.been.calledOnce;
+        });
+
+        it('set the data transfer flag to false if we cannot get a length', () => {
+            dropZone.handleWindowEnter(event);
+            expect(dropZone.supportsDataTransfer).to.equal.false;
+        });
+
+        // partial stub
+        it('should call handle enter if we are on the dropZone and it is not active', () => {
+            containsStub.returns(true);
+            dropZone.dropZoneActive = false;
+            dropZone.handleWindowEnter(event);
+            expect(dropZoneEnterStub).to.have.been.calledOnce;
+        });
+
+        it('should call the validator if we are on window and it is not active', () => {
+            dropZone.windowActive = false;
+            onWindowStub.returns(true);
+            dropZone.handleWindowEnter(event);
+            expect(validatorStub.validate).to.have.been.calledOnce;
+        });
+
+        // partial stub
+        it('should create a callback for window enter', () => {
+            dropZone.windowActive = false;
+            onWindowStub.returns(true);
+            dropZone.handleWindowEnter(event);
+            expect(callbackStub).to.have.been.calledOnce;
+            expect(callbackStub.calledWith(dropZone.options.windowEnter, { valid: true, text: '' })).to.be.true;
+        });
+
+        it('should set the window active flag to true', () => {
+            dropZone.windowActive = false;
+            onWindowStub.returns(true);
+            dropZone.handleWindowEnter(event);
+            expect(dropZone.windowActive).to.be.true;
         });
     });
 });

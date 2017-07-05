@@ -123,11 +123,11 @@ export default class DropZone {
      * Determine if file is on window
      * @param {number} x
      * @param {number} y
-     * @returns {boolean}
+     * @returns {boolean|Element}
      */
     fileOnWindow (x, y) {
         const offWindow = x === 0 && y === 0;
-        return !!(!offWindow && document.elementFromPoint(x, y));
+        return !offWindow && document.elementFromPoint(x, y);
     }
 
     /**
@@ -138,18 +138,21 @@ export default class DropZone {
         const onDropZone = this.node.contains(onWindow);
         const files = event.dataTransfer.items || event.dataTransfer.files;
 
-        this.clearIdleTimer();
+        // clear idle timer
+        this.idleTimer.clear();
 
+        // if we are unable to get a length from the files we know data transfer
+        // isn't supported, so we'll set this flag to use later
         if (!files.length) {
             this.supportsDataTransfer = false;
         }
 
         if (onDropZone && !this.dropZoneActive) {
             // handle files on DropZone
-            this.handleEnter(files);
-        } else if (this.fileOnWindow(event.clientX, event.clientY) && !this.windowActive) {
+            this.handleDropZoneEnter(files);
+        } else if (onWindow && !this.windowActive) {
             // handle files on window
-            const { valid, text } = this.validator.validate(files, this.getFiles().length, this.getSize());
+            const { valid, text } = this.validator.validate(files, this.files.length, this.size);
 
             this.createCallback(this.options.windowEnter, { valid, text });
             this.windowActive = true;
@@ -171,15 +174,15 @@ export default class DropZone {
             this.clearIdleTimer();
             this.createCallback(this.options.windowLeave);
         } else if (!onDropZone && this.dropZoneActive) {
-            this.handleLeave(files);
+            this.handleDropZoneLeave(files);
         }
     }
 
     /**
      * Handle drag entering the DropZone
-     * @param {DataTransferItemList} files
+     * @param {Array} files
      */
-    handleEnter (files) {
+    handleDropZoneEnter (files) {
         const { valid, text } = this.validator.validate(files, this.getFiles().length, this.getSize());
 
         this.clearIdleTimer();
@@ -191,7 +194,7 @@ export default class DropZone {
      * Handle drag leaving the DropZone
      * @param {DataTransferItemList} files
      */
-    handleLeave (files) {
+    handleDropZoneLeave (files) {
         const { valid, text } = this.validator.validate(files, this.getFiles().length, this.getSize());
 
         this.clearIdleTimer();
