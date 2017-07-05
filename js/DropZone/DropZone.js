@@ -1,5 +1,3 @@
-import _ from 'lodash';
-
 export default class DropZone {
     /**
      * DropZone
@@ -8,13 +6,16 @@ export default class DropZone {
      * @param {DropZoneValidatorDispatcher} validator
      * @param {DropZoneEventManager} eventManager
      * @param {DropZoneIdleTimer} idleTimer
+     * @param {DropZoneFileManager} fileManager
+     * @param {DropZoneCallbackManager} callbackManager
      */
-    constructor (node, options, validator, eventManager, idleTimer, fileManager) {
+    constructor (node, options, validator, eventManager, idleTimer, fileManager, callbackManager) {
         this.validator = validator;
         this.eventManager = eventManager;
         this.idleTimer = idleTimer;
         this.fileManager = fileManager;
-        this.node = DropZone.getVanillaNode(window, node);
+        this.callbackManager = callbackManager;
+        this.node = window.$ && node instanceof window.$ ? node[0] : node;
         this.options = options;
         // ensure we've got integers here, there is a chance these will come
         // in as strings from a DOM node's attributes
@@ -80,7 +81,11 @@ export default class DropZone {
             this.addFiles(files);
             // dropped on the window
         } else if (this.windowActive && !this.dropZoneActive) {
-            this.createCallback(this.options.windowDrop, { files: this.files, node: this.node });
+            this.callbackManager.create(
+                this.options.windowDrop,
+                this,
+                { files: this.files, node: this.node }
+            );
         }
 
         // reset DropZone state
@@ -90,7 +95,7 @@ export default class DropZone {
 
     /**
      * Validate and add files to the DropZone
-     * @param {FileList} files
+     * @param {Array} files
      * @param {Object} meta
      */
     addFiles (files, meta = {}) {
@@ -116,7 +121,11 @@ export default class DropZone {
         }
 
         // fire dropped callback
-        this.createCallback(this.options.dropZoneDrop, { files: processedFiles, node: this.node, valid, text });
+        this.callbackManager.create(
+            this.options.dropZoneDrop,
+            this,
+            { files: processedFiles, node: this.node, valid, text }
+        );
     }
 
     /**
@@ -132,6 +141,7 @@ export default class DropZone {
 
     /**
      * Handle a file dragged into the window
+     * @param {Event} event
      */
     handleWindowEnter (event) {
         const onWindow = this.fileOnWindow(event.clientX, event.clientY);
@@ -154,8 +164,12 @@ export default class DropZone {
             // handle files on window
             const { valid, text } = this.validator.validate(files, this.files.length, this.size);
 
-            this.createCallback(this.options.windowEnter, { valid, text });
             this.windowActive = true;
+            this.callbackManager.create(
+                this.options.windowEnter,
+                this,
+                { valid, text }
+            );
         }
     }
 
@@ -166,13 +180,14 @@ export default class DropZone {
      */
     handleWindowLeave (event, force = false) {
         const onDropZone = this.node.contains(document.elementFromPoint(event.clientX, event.clientY));
+        const onWindow = this.fileOnWindow(event.clientX, event.clientY);
         const files = event.dataTransfer.items || event.dataTransfer.files;
 
-        if (force || !this.fileOnWindow(event.clientX, event.clientY)) {
+        if (force || !onWindow) {
             this.windowActive = false;
             this.dropZoneActive = false;
-            this.clearIdleTimer();
-            this.createCallback(this.options.windowLeave);
+            this.idleTimer.clear();
+            this.callbackManager.create(this.options.windowLeave, this);
         } else if (!onDropZone && this.dropZoneActive) {
             this.handleDropZoneLeave(files);
         }
@@ -185,27 +200,35 @@ export default class DropZone {
     handleDropZoneEnter (files) {
         const { valid, text } = this.validator.validate(files, this.getFiles().length, this.getSize());
 
-        this.clearIdleTimer();
-        this.createCallback(this.options.dropZoneEnter, { valid, text });
+        this.idleTimer.clear();
         this.dropZoneActive = true;
+        this.callbackManager.create(
+            this.options.dropZoneEnter,
+            this,
+            { valid, text }
+        );
     }
 
     /**
      * Handle drag leaving the DropZone
-     * @param {DataTransferItemList} files
+     * @param {Array} files
      */
     handleDropZoneLeave (files) {
         const { valid, text } = this.validator.validate(files, this.getFiles().length, this.getSize());
 
-        this.clearIdleTimer();
-        this.createCallback(this.options.dropZoneLeave, { valid, text });
+        this.idleTimer.clear();
         this.dropZoneActive = false;
+        this.callbackManager.create(
+            this.options.dropZoneLeave,
+            this,
+            { valid, text }
+        );
     }
 
     /**
      * Return all files in the store or a file at a specified index
      * @param {Number} index
-     * @return {Array}
+     * @return {Array|Object}
      */
     getFiles (index = -1) {
         return index < 0 ? this.files : this.files[index];
@@ -221,7 +244,7 @@ export default class DropZone {
 
     /**
      * Remove a file from the store using it's ID
-     * @param  {number} id
+     * @param {number} id
      */
     removeFile (id) {
         this.files = this.files.filter(file => {
@@ -232,23 +255,8 @@ export default class DropZone {
             }
         });
 
-        this.createCallback(this.options.fileRemoved);
+        this.callbackManager.create(this.options.fileRemoved, this);
     }
-
-    /**
-     * Check for a callback, if it exists, call it
-     * @param  {Function} callback
-     * @param  {Object}   data
-     */
-    createCallback (callback, data = {}) {
-        data = _.extend({}, data, { instance: this });
-
-        if (typeof callback === 'function') {
-            callback(data);
-        }
-    }
-
-
 
     /**
      * Reset
@@ -256,19 +264,10 @@ export default class DropZone {
      * - re-initialise default values, and event handlers
      */
     reset () {
-        this.removeAllEvents();
-        this.setup();
-    }
-
-    /**
-     * Reset event tracker counters
-     */
-    resetEventTracker () {
-        Object.keys(this.eventTracker).forEach(node => {
-            Object.keys(this.eventTracker[node]).forEach(event => {
-                this.eventTracker[node][event] = 0;
-            });
-        });
+        this.files = [];
+        this.size = 0;
+        this.eventManager.removeAll();
+        this.init();
     }
 
     /**
@@ -285,15 +284,5 @@ export default class DropZone {
      */
     getSupportsDataTransfer () {
         return this.supportsDataTransfer;
-    }
-
-    /**
-     * Return a vanilla node from a jQuery
-     * @param {Object} window
-     * @param {Element} node
-     * @returns {Element}
-     */
-    static getVanillaNode (window, node) {
-        return window.$ && node instanceof window.$ ? node[0] : node;
     }
 }

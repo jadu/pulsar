@@ -3,6 +3,7 @@ import DropZoneValidatorDispatcher from '../../../js/DropZone/DropZoneValidatorD
 import DropZoneEventManager from '../../../js/DropZone/DropZoneEventManager';
 import DropZoneIdleTimer from '../../../js/DropZone/DropZoneIdleTimer';
 import DropZoneFileManager from '../../../js/DropZone/DropZoneFileManager';
+import DropZoneCallbackManager from '../../../js/DropZone/DropZoneCallbackManager';
 
 describe('DropZone', () => {
     let dropZone;
@@ -12,13 +13,18 @@ describe('DropZone', () => {
     let timerStub;
     let options;
     let fileManagerStub;
+    let callbackStub;
 
     beforeEach(() => {
         options = {
             supported: true,
             windowDrop: sinon.spy(),
             dropZoneDrop: sinon.spy(),
-            windowEnter: sinon.spy()
+            windowEnter: sinon.spy(),
+            windowLeave: sinon.spy(),
+            dropZoneEnter: sinon.spy(),
+            dropZoneLeave: sinon.spy(),
+            fileRemoved: sinon.spy()
         };
 
         $node = $('<div></div>');
@@ -26,12 +32,21 @@ describe('DropZone', () => {
         eventStub = sinon.createStubInstance(DropZoneEventManager);
         timerStub = sinon.createStubInstance(DropZoneIdleTimer);
         fileManagerStub = sinon.createStubInstance(DropZoneFileManager);
-        dropZone = new DropZone($node, options, validatorStub, eventStub, timerStub, fileManagerStub);
+        callbackStub = sinon.createStubInstance(DropZoneCallbackManager);
+        dropZone = new DropZone(
+            $node,
+            options,
+            validatorStub,
+            eventStub,
+            timerStub,
+            fileManagerStub,
+            callbackStub
+        );
     });
 
     describe('init()', () => {
         it('should throw an error if a node is not passed in to the constructor', () => {
-            dropZone = new DropZone(null, {}, validatorStub, eventStub, timerStub, fileManagerStub);
+            dropZone = new DropZone(null, {}, validatorStub, eventStub, timerStub, fileManagerStub, callbackStub);
             expect(dropZone.init).to.throw;
         });
 
@@ -52,7 +67,15 @@ describe('DropZone', () => {
         });
 
         it('should not attach any events if enriched features are not supported', () => {
-            dropZone = new DropZone($node, { supported: false }, validatorStub, eventStub, timerStub, fileManagerStub);
+            dropZone = new DropZone(
+                $node,
+                { supported: false },
+                validatorStub,
+                eventStub,
+                timerStub,
+                fileManagerStub,
+                callbackStub
+            );
             dropZone.init();
             expect(eventStub.add).to.have.not.been.called;
         });
@@ -61,16 +84,13 @@ describe('DropZone', () => {
     describe('handleDrop()', () => {
         const event = { dataTransfer: { items: [] } };
         let filesStub;
-        let callbackStub;
 
         beforeEach(() => {
             filesStub = sinon.stub(dropZone, 'addFiles');
-            callbackStub = sinon.stub(dropZone, 'createCallback');
         });
 
         afterEach(() => {
             filesStub.restore();
-            callbackStub.restore();
         });
 
         // partial stub
@@ -82,14 +102,15 @@ describe('DropZone', () => {
             expect(filesStub.calledWith([])).to.be.true;
         });
 
-        // partial stub
         it('should create a window drop callback if the window is active but the DropZone is not', () => {
             dropZone.windowActive = true;
             dropZone.dropZoneActive = false;
             dropZone.handleDrop(event);
-            expect(callbackStub).to.have.been.calledOnce;
-            expect(callbackStub.calledWith(
-                options.windowDrop, { files: dropZone.files, node: dropZone.node }
+            expect(callbackStub.create).to.have.been.calledOnce;
+            expect(callbackStub.create.calledWith(
+                options.windowDrop,
+                dropZone,
+                { files: dropZone.files, node: dropZone.node }
             )).to.be.true;
         });
 
@@ -107,15 +128,8 @@ describe('DropZone', () => {
     });
 
     describe('addFiles()', () => {
-        let callbackStub;
-
         beforeEach(() => {
             validatorStub.validate.returns({ valid: true, text: '' });
-            callbackStub = sinon.stub(dropZone, 'createCallback');
-        });
-
-        afterEach(() => {
-            callbackStub.restore();
         });
 
         it('should call the validator', () => {
@@ -148,13 +162,13 @@ describe('DropZone', () => {
             expect(dropZone.files).to.deep.equal([{ id: 0 }]);
         });
 
-        // partial stub
         it('should create the DropZone drop callback', () => {
             fileManagerStub.createFileObject.returns({ id: 1 });
             dropZone.addFiles([{ id: 0 }]);
-            expect(dropZone.createCallback).to.have.been.calledOnce;
-            expect(dropZone.createCallback.calledWith(
+            expect(callbackStub.create).to.have.been.calledOnce;
+            expect(callbackStub.create.calledWith(
                 dropZone.options.dropZoneDrop,
+                dropZone,
                 { files: { id: 1}, node: dropZone.node, valid: true, text: '' }
             ));
         });
@@ -173,7 +187,6 @@ describe('DropZone', () => {
     describe('handleWindowEnter()', () => {
         const event = { dataTransfer: { files: [] } };
         let dropZoneEnterStub;
-        let callbackStub;
         let containsStub;
         let onWindowStub;
 
@@ -182,14 +195,12 @@ describe('DropZone', () => {
             containsStub = sinon.stub(dropZone.node, 'contains');
             validatorStub.validate.returns({ valid: true, text: '' });
             dropZoneEnterStub = sinon.stub(dropZone, 'handleDropZoneEnter');
-            callbackStub = sinon.stub(dropZone, 'createCallback');
         });
 
         afterEach(() => {
             onWindowStub.restore();
             containsStub.restore();
             dropZoneEnterStub.restore();
-            callbackStub.restore();
         });
 
         it('should clear the idle timer', () => {
@@ -198,6 +209,7 @@ describe('DropZone', () => {
         });
 
         it('set the data transfer flag to false if we cannot get a length', () => {
+            dropZone.supportsDataTransfer = true;
             dropZone.handleWindowEnter(event);
             expect(dropZone.supportsDataTransfer).to.equal.false;
         });
@@ -217,13 +229,16 @@ describe('DropZone', () => {
             expect(validatorStub.validate).to.have.been.calledOnce;
         });
 
-        // partial stub
         it('should create a callback for window enter', () => {
             dropZone.windowActive = false;
             onWindowStub.returns(true);
             dropZone.handleWindowEnter(event);
-            expect(callbackStub).to.have.been.calledOnce;
-            expect(callbackStub.calledWith(dropZone.options.windowEnter, { valid: true, text: '' })).to.be.true;
+            expect(callbackStub.create).to.have.been.calledOnce;
+            expect(callbackStub.create.calledWith(
+                dropZone.options.windowEnter,
+                dropZone,
+                { valid: true, text: '' })
+            ).to.be.true;
         });
 
         it('should set the window active flag to true', () => {
@@ -231,6 +246,224 @@ describe('DropZone', () => {
             onWindowStub.returns(true);
             dropZone.handleWindowEnter(event);
             expect(dropZone.windowActive).to.be.true;
+        });
+    });
+
+    describe('handleWindowLeave()', () => {
+        const event = { dataTransfer: { files: [] } };
+        let dropZoneLeaveStub;
+        let onDropZoneStub;
+        let onWindowStub;
+
+        beforeEach(() => {
+            dropZoneLeaveStub = sinon.stub(dropZone, 'handleDropZoneLeave');
+            onDropZoneStub = sinon.stub(dropZone.node, 'contains');
+            onWindowStub = sinon.stub(dropZone, 'fileOnWindow');
+        });
+
+        afterEach(() => {
+            dropZoneLeaveStub.restore();
+            onDropZoneStub.restore();
+            onWindowStub.restore();
+        });
+
+        it('should set window and DropZone to false if the force flag is set', () => {
+            onWindowStub.returns(true);
+            dropZone.windowActive = true;
+            dropZone.dropZoneActive = true;
+            dropZone.handleWindowLeave(event, true);
+            expect(dropZone.windowActive).to.be.false;
+            expect(dropZone.dropZoneActive).to.be.false;
+        });
+
+        it('should set window and DropZone to false if the file is not on the window', () => {
+            onWindowStub.returns(false);
+            dropZone.windowActive = true;
+            dropZone.dropZoneActive = true;
+            dropZone.handleWindowLeave(event);
+            expect(dropZone.windowActive).to.be.false;
+            expect(dropZone.dropZoneActive).to.be.false;
+        });
+
+        it('should clear timer if force flag is set', () => {
+            onWindowStub.returns(true);
+            dropZone.handleWindowLeave(event, true);
+            expect(timerStub.clear).to.have.been.calledOnce;
+        });
+
+        it('should clear timer if file is not on the window', () => {
+            onWindowStub.returns(false);
+            dropZone.handleWindowLeave(event);
+            expect(timerStub.clear).to.have.been.calledOnce;
+        });
+
+        it('should create a callback if the force flag is set', () => {
+            onWindowStub.returns(true);
+            dropZone.handleWindowLeave(event, true);
+            expect(callbackStub.create).to.have.been.calledOnce;
+            expect(callbackStub.create.calledWith(dropZone.options.windowLeave)).to.be.true;
+        });
+
+        it('should create a callback if the file is not on the window', () => {
+            onWindowStub.returns(false);
+            dropZone.handleWindowLeave(event);
+            expect(callbackStub.create).to.have.been.calledOnce;
+            expect(callbackStub.create.calledWith(dropZone.options.windowLeave)).to.be.true;
+        });
+
+        // partial stub
+        it('should call handleDropZoneLeave if the file is on the window', () => {
+            onWindowStub.returns(true);
+            onDropZoneStub.returns(false);
+            dropZone.dropZoneActive = true;
+            dropZone.handleWindowLeave(event);
+            expect(dropZoneLeaveStub).to.have.been.calledOnce;
+        });
+    });
+
+    describe('handleDropZoneEnter()', () => {
+        beforeEach(() => {
+            validatorStub.validate.returns({ valid: true, text: '' });
+        });
+
+        it('should clear idle timer', () => {
+            dropZone.handleDropZoneEnter([]);
+            expect(timerStub.clear).to.have.been.calledOnce;
+        });
+
+        it('should create dropZoneEnter callback', () => {
+            dropZone.handleDropZoneEnter([]);
+            expect(callbackStub.create).to.have.been.calledOnce;
+            expect(callbackStub.create.calledWith(
+                dropZone.options.dropZoneEnter,
+                dropZone,
+                { valid: true, text: '' })
+            ).to.be.true;
+        });
+
+        it('should set the dropZoneActive flag to true', () => {
+            dropZone.dropZoneActive = false;
+            dropZone.handleDropZoneEnter([]);
+            expect(dropZone.dropZoneActive).to.be.true;
+        });
+    });
+
+    describe('handleDropZoneLeave()', () => {
+        beforeEach(() => {
+            validatorStub.validate.returns({ valid: true, text: '' });
+        });
+
+        it('should clear idle timer', () => {
+            dropZone.handleDropZoneLeave([]);
+            expect(timerStub.clear).to.have.been.calledOnce;
+        });
+
+        it('should create dropZoneEnter callback', () => {
+            dropZone.handleDropZoneLeave([]);
+            expect(callbackStub.create).to.have.been.calledOnce;
+            expect(callbackStub.create.calledWith(
+                dropZone.options.dropZoneLeave,
+                dropZone,
+                { valid: true, text: '' }
+            )).to.be.true;
+        });
+
+        it('should set the dropZoneActive flag to false', () => {
+            dropZone.dropZoneActive = true;
+            dropZone.handleDropZoneLeave([]);
+            expect(dropZone.dropZoneActive).to.be.false;
+        });
+    });
+
+    describe('getFiles()', () => {
+        it('should return a single file if an index is given', () => {
+            dropZone.files = [{ id: 0 }, { id: 1 }];
+            expect(dropZone.getFiles(1)).to.deep.equal({ id: 1 });
+        });
+
+        it('should return all files if no index is given', () => {
+            dropZone.files = [{ id: 0 }, { id: 1 }];
+            expect(dropZone.getFiles()).to.deep.equal([{ id: 0 }, { id: 1 }]);
+        });
+    });
+
+    describe('getSize()', () => {
+        it('should return the size count', () => {
+            dropZone.size = 999;
+            expect(dropZone.getSize()).to.equal(999);
+        });
+    });
+
+    describe('removeFile()', () => {
+        it('should remove the file from the files store', () => {
+            dropZone.files = [{ id: 0, raw: { size: 50 } }, { id: 1, raw: { size: 50 } }];
+            dropZone.removeFile(1);
+            expect(dropZone.files).to.deep.equal([{ id: 0, raw: { size: 50 } }]);
+        });
+
+        it('should deduct the file size from the size store', () => {
+            dropZone.files = [{ id: 0, raw: { size: 50 } }, { id: 1, raw: { size: 50 } }];
+            dropZone.size = 100;
+            dropZone.removeFile(1);
+            expect(dropZone.size).to.equal(50);
+        });
+
+        it('should create fileRemoved callback', () => {
+            dropZone.removeFile(1);
+            expect(callbackStub.create).to.have.been.calledOnce;
+            expect(callbackStub.create.calledWith(
+                dropZone.options.fileRemoved,
+                dropZone
+            )).to.be.true;
+        });
+    });
+
+    describe('reset()', () => {
+        let initStub;
+
+        beforeEach(() => {
+            initStub = sinon.stub(dropZone, 'init');
+        });
+
+        afterEach(() => {
+            initStub.restore();
+        });
+
+        it('should clear the file store', () => {
+            dropZone.files = [{ id: 0 }];
+            dropZone.reset();
+            expect(dropZone.files).to.deep.equal([]);
+        });
+
+        it('should reset the size count to 0', () => {
+            dropZone.size = 999;
+            dropZone.reset();
+            expect(dropZone.size).to.equal(0);
+        });
+
+        it('should remove all events', () => {
+            dropZone.reset();
+            expect(eventStub.removeAll).to.have.been.calledOnce;
+        });
+
+        // partial stub
+        it('should invoke the init method to re-attach event handlers', () => {
+            dropZone.reset();
+            expect(initStub).to.have.been.calledOnce;
+        });
+    });
+
+    describe('getDropZoneId()', () => {
+        it('should return the instance id', () => {
+            dropZone.id = 5;
+            expect(dropZone.getDropZoneId()).to.equal(5);
+        });
+    });
+
+    describe('getSupportsDataTransfer()', () => {
+        it('should return the data transfer support flag', () => {
+            dropZone.supportsDataTransfer = true;
+            expect(dropZone.getSupportsDataTransfer()).to.be.true;
         });
     });
 });

@@ -5,6 +5,7 @@ import DropZoneEventManager from './DropZoneEventManager';
 import DropZoneIdleTimer from './DropZoneIdleTimer';
 import DropZoneFileManager from './DropZoneFileManager';
 import DropZoneFileUtils from './DropZoneFileUtils';
+import DropZoneCallbackManager from './DropZoneCallbackManager';
 import DropZone from './DropZone';
 
 class DropZoneFactory {
@@ -28,7 +29,8 @@ class DropZoneFactory {
             ),
             new DropZoneEventManager(),
             new DropZoneIdleTimer(options.idleTimerDuration),
-            new DropZoneFileManager(new DropZoneFileUtils())
+            new DropZoneFileManager(new DropZoneFileUtils()),
+            new DropZoneCallbackManager()
         );
     }
 }

@@ -124,12 +124,12 @@
         // the DropZoneComponent for >= IE10
         if (!$html.hasClass('lt-ie10')) {
             pulsar.dropZoneComponent.init({
-                customWindowEnter: () => console.log('windowEnter'),
-                customWindowLeave: () => console.log('windowLeave'),
-                customDropZoneEnter: () => console.log('dropZoneEnter'),
-                customDropZoneLeave: () => console.log('dropZoneLeave'),
-                customDropZoneDrop: () => console.log('dropZoneDrop'),
-                customWindowDrop: () => console.log('windowDrop')
+                // customWindowEnter: () => console.log('windowEnter'),
+                // customWindowLeave: () => console.log('windowLeave'),
+                // customDropZoneEnter: () => console.log('dropZoneEnter'),
+                // customDropZoneLeave: () => console.log('dropZoneLeave'),
+                // customDropZoneDrop: () => console.log('dropZoneDrop'),
+                // customWindowDrop: () => console.log('windowDrop')
             });
 
             // const validateButton = document.getElementById('validate');
