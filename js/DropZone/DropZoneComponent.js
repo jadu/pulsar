@@ -399,7 +399,7 @@ class DropZoneComponent {
             let persist = false;
             // a crude shim for Array.find, we just need to know if any of the files
             // have the persist flag set to true
-            files.forEach(file => !persist && file.persist ? persist = true : null);
+            files.forEach(file => !persist && file.meta.persist ? persist = true : null);
 
             if (!instance.getSupportsDataTransfer() || persist) {
                 this.throwValidationError(text, id);

@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 class DropZoneFileManager {
     /**
      * DropZoneFileManager
@@ -22,7 +24,7 @@ class DropZoneFileManager {
             thumbnail: !file.mock ? this.utils.getFileThumbnail(file) : null,
             name: !file.mock ? this.utils.getFileName(file.name) : file.name,
             type: !file.mock ? this.utils.getFileType(file.type) : null,
-            size: !file.mock ? this.utils.getFileSize(file.size) : null
+            size: !file.mock ? this.utils.getFileSize(file.size) : null,
         };
     }
 }

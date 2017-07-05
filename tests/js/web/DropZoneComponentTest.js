@@ -641,7 +641,7 @@ describe('DropZoneComponent', () => {
 
             it('should throw a validation error if we have files that have a persist prop', () => {
                 const args = {
-                    files: [{ persist: true }],
+                    files: [{ meta: { persist: true } }],
                     valid: false,
                     text: 'foo',
                     instance: {
