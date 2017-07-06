@@ -591,3 +591,7 @@ $nav-color-darker:  darken(color(jadu-blue, dark), 10%) !default;
     display: table-cell;
     height: 100%;
 }
+
+.is-hidden {
+    display: none;
+}
