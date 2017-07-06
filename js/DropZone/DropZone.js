@@ -75,7 +75,7 @@ export default class DropZone {
         // dropped on the DropZone
         if (this.windowActive && this.dropZoneActive) {
             this.addFiles(files);
-            // dropped on the window
+        // dropped on the window
         } else if (this.windowActive && !this.dropZoneActive) {
             this.callbackManager.create(
                 this.options.windowDrop,
