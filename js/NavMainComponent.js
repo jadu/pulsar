@@ -61,8 +61,6 @@ NavMainComponent.prototype.init = function() {
         var $self = $(this),
             href = $self.attr('href');
 
-        // If href is a fragment, don't add it to the URL because it breaks the
-        // back button
         if (href.substring(0,1) === '#') {
             e.preventDefault();
         }
