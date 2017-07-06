@@ -155,7 +155,7 @@ $btn-white:                 'white';
 }
 
 @each $state, $state-color, $state-color-alt in $state-colors {
-    &.btn--#{$state} {
+    .btn--#{$state} {
         @include button-states($state);
     }
 }
@@ -201,7 +201,7 @@ $btn-white:                 'white';
     }
 
     @each $state, $state-color, $state-color-alt in $state-colors {
-        &.btn--#{$state} {
+        .btn--#{$state} {
             border: 2px solid $state-color !important;
             box-shadow: none !important;
             color: color($state, dark) !important;

@@ -14,7 +14,7 @@ The Pulsar framework is included in the following Jadu products:
 | Jadu CXM     | 6                    |
 | Jadu CMS     | 6                    |
 | Jadu XFP     | 6                    |
-| TPT BECK (Q) | 3                    |
+| Quantum      | 3                    |
 | MoJ ETFees   | 2                    |
 
 ## UI Goals

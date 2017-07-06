@@ -101,6 +101,10 @@ $width: 500px;
     }
 }
 
+.block-list__item.is-disabled {
+    color: color(text, disabled);
+}
+
 a.block-list__item:hover {
     background-color: lighten(#e5ecf2, 4%);
 }
