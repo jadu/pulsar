@@ -450,7 +450,7 @@ $nav-color-darker:  darken(color(jadu-blue, dark), 10%) !default;
         border-bottom-left-radius: 8px;
 
         &:hover {
-            background-color: darken($nav-color-dark, 4%);
+            background-color: darken($nav-color-light, 4%);
             color: white;
         }
 
