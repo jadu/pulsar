@@ -155,12 +155,14 @@ NavMainComponent.prototype.closeNavs = function() {
 
     var component = this;
 
-    component.$navMain.removeClass('is-open');
-
     if(component.$navAdditionalSliding.hasClass('is-open')) {
         component.$navAdditionalSliding.removeClass('is-open');
     } else {
         component.$navMainSliding.removeClass('is-open');
+    }
+
+    if(component.$navMain.hasClass('is-open')) {
+        component.$navMain.removeClass('is-open');
     }
 
     component.$html.find('.content-main').unbind('click', component.closeHandler);
