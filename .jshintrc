@@ -36,6 +36,7 @@
         "pulsar"     : false,
         "window"     : false,
         "document"   : false,
-        "URL"        : false
+        "URL"        : false,
+        "Event"      : false
     }
 }

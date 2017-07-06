@@ -22,6 +22,6 @@ describe('DropZoneCallbackManager', () => {
             callbackManager.create(callbackSpy, dropZoneSpy);
             expect(callbackSpy).to.have.been.calledWith({ instance: dropZoneSpy });
             expect(callbackSpy).to.have.been.calledOnce;
-        })
+        });
     });
 });

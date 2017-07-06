@@ -1,5 +1,3 @@
-import _ from 'lodash';
-
 class DropZoneFileManager {
     /**
      * DropZoneFileManager
