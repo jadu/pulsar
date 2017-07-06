@@ -181,7 +181,7 @@ NavMainComponent.prototype.adjustNavItems = function() {
 
     var availableHeight = $(window).height();
     var itemsHeight = ($('.nav-items').outerHeight(true) + $('.jadu-branding').outerHeight(true));
-    var moreIconHeight = 72;
+    var moreIconHeight = 72; /* Pre calculated height of the "More" nav item */
     var navItemsCountTotal = $('.nav-primary .nav-items li').length;
     var i = 2; /* This number represents the item before the last in the nth-last-child */
 
@@ -196,12 +196,15 @@ NavMainComponent.prototype.adjustNavItems = function() {
         itemsHeight = ($('.nav-items').outerHeight(true) + $('.jadu-branding').outerHeight(true));
     }
 
+    var hiddenItemsCount = $('.nav-primary .nav-items .is-hidden').length;
+
     /* Add the "More" nav item */
-    $('.nav-primary .nav-items').append('<li label="More" class="nav-item t-nav-item more-icon"><a href="#more" class="nav-link t-nav-link"><i aria-hidden="true" class="icon-ellipsis-horizontal nav-link__icon t-nav-icon"></i><span class="nav-link__label">More</span></a></li>');
+    if((itemsHeight + moreIconHeight < availableHeight) && (hiddenItemsCount > 0)){
+        $('.nav-primary .nav-items').append('<li label="More" class="nav-item t-nav-item more-icon"><a href="#more" class="nav-link t-nav-link"><i aria-hidden="true" class="icon-ellipsis-horizontal nav-link__icon t-nav-icon"></i><span class="nav-link__label">More</span></a></li>');
+    }
 
     /* Calculate the number of visible nav items and hide them in the main sliding nav */
-    var hiddenItemsCount = $('.nav-primary .nav-items .is-hidden').length;
-    var toHideCount = navItemsCountTotal - hiddenItemsCount - 1;
+    var toHideCount = navItemsCountTotal - hiddenItemsCount - 1; /* 1 is for the "More" nav item */
     i = 1;
     do {
         $('.nav-main--sliding .nav-items li:nth-child('+ i +')').addClass('is-hidden');
