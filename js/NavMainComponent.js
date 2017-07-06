@@ -10,6 +10,8 @@ NavMainComponent.prototype.init = function() {
 
     var component = this;
 
+    component.adjustNavItems();
+
     component.$navMain = this.$html.find('.nav-main');
     component.$navPrimary = this.$html.find('.nav-primary');
     component.$navSecondary = this.$html.find('.nav-secondary');
@@ -171,5 +173,39 @@ NavMainComponent.prototype.closeSubNavs = function() {
     var component = this;
     component.$html.find('.nav-secondary .nav-container').removeClass('is-active');
 };
+
+/* Detect window height, adjust the number of items in the primary nav and check when to add "More" option */
+NavMainComponent.prototype.adjustNavItems = function() {
+
+    var availableHeight = $(window).height();
+    var itemsHeight = ($('.nav-items').outerHeight(true) + $('.jadu-branding').outerHeight(true));
+    var moreIconHeight = 72;
+    var navItemsCountTotal = $('.nav-primary .nav-items li').length;
+    var i = 2; /* This number represents the item before the last in the nth-last-child */
+
+    /* Initial Check of Height */
+    while (itemsHeight + moreIconHeight > availableHeight) {
+        if($('.nav-primary .nav-items li:last-child').css('display') == 'none') {
+            $('.nav-primary .nav-items li:nth-last-child('+ i +')').addClass('is-hidden');
+            i++;
+        } else {
+            $('.nav-primary .nav-items li:last-child').addClass('is-hidden');
+        }
+        itemsHeight = ($('.nav-items').outerHeight(true) + $('.jadu-branding').outerHeight(true));
+    }
+
+    /* Add the "More" nav item */
+    $('.nav-primary .nav-items').append('<li label="More" class="nav-item t-nav-item more-icon"><a href="#more" class="nav-link t-nav-link"><i aria-hidden="true" class="icon-ellipsis-horizontal nav-link__icon t-nav-icon"></i><span class="nav-link__label">More</span></a></li>');
+
+    /* Calculate the number of visible nav items and hide them in the main sliding nav */
+    var hiddenItemsCount = $('.nav-primary .nav-items .is-hidden').length;
+    var toHideCount = navItemsCountTotal - hiddenItemsCount - 1;
+    i = 1;
+    do {
+        $('.nav-main--sliding .nav-items li:nth-child('+ i +')').addClass('is-hidden');
+        i++;
+        toHideCount--;
+    } while(toHideCount >= 0);
+}
 
 module.exports = NavMainComponent;
