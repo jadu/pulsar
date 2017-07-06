@@ -51,7 +51,7 @@ NavMainComponent.prototype.init = function() {
         component.changeActiveSecondaryNavLink($(this).attr('href'));
     });
 
-    component.$moreIcon.on('click', function(e) {
+    component.$moreIcon.on('click', function() {
         component.$navMainSliding.toggleClass('is-open');
         component.$navMainSliding.find('.nav-list').toggleClass('is-active');
     });
