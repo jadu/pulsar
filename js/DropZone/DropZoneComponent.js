@@ -248,6 +248,8 @@ class DropZoneComponent {
         let dropZone = null;
         const path = this.utils.getEventPath(event.target);
 
+        event.preventDefault();
+
         // grab the file id and DropZone id, this is necessary in the
         // albeit unlikely event we have multiple DropZone instances
         path.forEach(node => {

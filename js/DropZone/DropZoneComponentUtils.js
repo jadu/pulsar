@@ -81,7 +81,7 @@ class DropZoneComponentUtils {
         return `
             <div data-dropzone-file="${file.id}" class="${options.nodeClasses.file}">
                 <div class="${options.nodeClasses.inner}">
-                    <i class="${options.nodeClasses.close} icon icon-times-circle"></i>
+                    <a class="${options.nodeClasses.close}" href="#"><i class="icon icon-times-circle"></i></a>
                     ${thumb}
                     <div class="${options.nodeClasses.meta}">
                         ${options.fileNodeName ? name : ''}
