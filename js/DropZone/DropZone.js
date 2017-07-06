@@ -17,10 +17,6 @@ export default class DropZone {
         this.callbackManager = callbackManager;
         this.node = window.$ && node instanceof window.$ ? node[0] : node;
         this.options = options;
-        // ensure we've got integers here, there is a chance these will come
-        // in as strings from a DOM node's attributes
-        this.options.maxFiles = parseInt(this.options.maxFiles);
-        this.options.maxSize = parseInt(this.options.maxSize);
         this.id = this.options.dropZoneId;
         // cache methods with context
         this.handleDropWithContext = this.handleDrop.bind(this);
