@@ -268,12 +268,17 @@ describe('DropZoneComponent', () => {
             instanceManager.getFiles.returns([]);
             $wrapper = $('<div class="wrapper"></div>').appendTo($dropZone);
             $file = $('<div data-dropzone-file="0" class="file"></div>').appendTo($wrapper);
-            event = { target: $file[0] };
+            event = { target: $file[0], preventDefault: sinon.spy() };
             utils.getEventPath.returns([ $file[0], $dropZone[0] ]);
         });
 
         afterEach(() => {
             updateStub.reset();
+        });
+
+        it('should call preventDefault', () => {
+            dropZoneComponent.removeFile(event);
+            expect(event.preventDefault).to.have.been.calledOnce;
         });
 
         it('should call remove file on the instance manager', () => {
