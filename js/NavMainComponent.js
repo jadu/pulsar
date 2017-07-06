@@ -114,9 +114,7 @@ NavMainComponent.prototype.switchNavMainSliding = function(target) {
 
     component.$html.find('.navMainSliding .nav-link').removeClass('is-active');
 
-    if (component.$html.find('[data-nav="' + target + '"]').length >= 1) {
-        //component.$navMain.addClass('is-open');
-    } else {
+    if (component.$html.find('[data-nav="' + target + '"]').length < 1) {
         component.closeNavs();
     }
 
