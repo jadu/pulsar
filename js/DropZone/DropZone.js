@@ -59,7 +59,7 @@ export default class DropZone {
             this.eventManager.add(window, 'drop', this.handleDropWithContext);
 
             // attempt to handle missed callbacks
-            // mouseout has proven to be _more_ reliable than dragleave
+            // mouseout has proven to be more reliable than dragleave
             this.eventManager.add(document, 'mouseout', this.idleTimer.start(event => {
                 if (this.windowActive || this.dropZoneActive) {
                     this.handleWindowLeave(event, true);
@@ -155,19 +155,21 @@ export default class DropZone {
             this.supportsDataTransfer = false;
         }
 
-        if (onDropZone && !this.dropZoneActive) {
-            // handle files on DropZone
-            this.handleDropZoneEnter(files);
-        } else if (onWindow && !this.windowActive) {
+        if (onWindow && !this.windowActive) {
             // handle files on window
-            const { valid, text } = this.validator.validate(files, this.files.length, this.size);
+            const {valid, text} = this.validator.validate(files, this.files.length, this.size);
 
             this.windowActive = true;
             this.callbackManager.create(
                 this.options.windowEnter,
                 this,
-                { valid, text }
+                {valid, text}
             );
+        }
+
+        if (onDropZone && !this.dropZoneActive) {
+            // handle files on DropZone
+            this.handleDropZoneEnter(files);
         }
     }
 
