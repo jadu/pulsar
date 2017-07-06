@@ -128,8 +128,10 @@ NavMainComponent.prototype.switchNavAdditionalSliding = function(target) {
 
     var component = this;
 
-    component.closeSubNavs();
-    component.$navAdditionalSliding.toggleClass('is-open');
+    /* Check if Category Item has options but checking if it links inside the same page */
+    if(target.indexOf('#') > -1) {
+        component.$navAdditionalSliding.addClass('is-open');
+    }
 
     component.$html.find('[data-nav="' + target + '"]')
         .addClass('is-active');
