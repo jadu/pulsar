@@ -12,12 +12,10 @@ describe('DropZoneCallbackManager', () => {
     });
 
     describe('create()', () => {
-        it('should merge the data with a reference to the instance', () => {
+        it('should merge the data with a reference to the instance and invoke callback', () => {
             callbackManager.create(callbackSpy, dropZoneSpy, { foo: 'bar' });
+            expect(callbackSpy).to.have.been.calledWith({ foo: 'bar', instance: dropZoneSpy });
             expect(callbackSpy).to.have.been.calledOnce;
-            expect(callbackSpy.calledWith({ foo: 'bar', instance: dropZoneSpy })).to.be.true;
         });
-
-        it('should invoke the callback if it is a function');
     });
 });

@@ -212,8 +212,8 @@ class DropZoneComponent {
 
         // update wrapper html
         wrapper.innerHTML = fileNodeString;
-        [].slice.call(wrapper.querySelectorAll(`.${options.nodeClasses.close}`)).forEach(file => {
-            file.addEventListener('click', this.removeFile);
+        [].slice.call(wrapper.querySelectorAll(`.${options.nodeClasses.close}`)).forEach(closeButton => {
+            closeButton.addEventListener('click', this.removeFile);
         });
     }
 

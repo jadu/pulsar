@@ -36,10 +36,11 @@ describe('DropZoneComponent', () => {
         optionsManager.getInstanceOptions.returns({
             nodeClasses: {
                 wrapper: 'wrapper',
-                browse: 'browse'
+                browse: 'browse',
+                close: 'close'
             }
         });
-        utils.createFileNode.returns('<div class="file"></div>');
+        utils.createFileNode.returns('<div class="file"><a class="close" href="#"></a></div>');
 
         dropZoneComponent = new DropZoneComponent(
             $html,
@@ -111,24 +112,24 @@ describe('DropZoneComponent', () => {
             expect($fileInput.css('display')).to.equal('none');
         });
 
-        it('should invoke the addFiles method on the file manager on change', /*() => {
+        it('should invoke the addFiles method on the file manager on change', () => {
             const change = new Event('change');
 
+            $fileInput.val('foo');
             dropZoneComponent.processInputNode($fileInput[0], 0, options.showInputNode);
             $fileInput[0].dispatchEvent(change);
-
             expect(instanceManager.addFiles).to.have.been.calledOnce;
-            expect(instanceManager.calledWith(0, { persist: true })).to.be.true;
-        }*/);
+            expect(instanceManager.addFiles).to.have.been.calledWith(null, 0, { persist: true });
+        });
 
-        it('should clear the input node value on change', /*() => {
-            const change = $.Event('change');
+        it('should clear the input node value on change', () => {
+            const change = new Event('change');
 
-            dropZoneComponent.processInputNode(dropZoneStub, options);
             $fileInput.val('foo');
-            $fileInput.trigger(change);
+            dropZoneComponent.processInputNode($fileInput[0], 0, options.showInputNode);
+            $fileInput[0].dispatchEvent(change);
             expect($fileInput.val()).to.equal('');
-        }*/);
+        });
 
         it('should not hide the input if specified in options', () => {
             const options = { showInputNode: true, inputNodeId: 'fileInput' };
@@ -140,23 +141,15 @@ describe('DropZoneComponent', () => {
     });
 
     describe('processBrowseNode()', () => {
-        it('should trigger a click on the corresponding input node', /*() => {
+        it('should trigger a click on the corresponding input node', () => {
             const clickSpy = sinon.spy();
-            const click = $.Event('click');
+            const click = new Event('click');
 
-            $fileInput.on('click', clickSpy);
+            $fileInput[0].addEventListener('click', clickSpy);
             dropZoneComponent.processBrowseNode($browse[0], $fileInput[0]);
-            $browse.trigger(click);
+            $browse[0].dispatchEvent(click);
             expect(clickSpy).to.have.been.calledOnce;
-        }*/);
-
-        it('should prevent the default behaviour of the event', /*() => {
-            const click = $.Event('click');
-
-            dropZoneComponent.processBrowseNode($browse[0], $fileInput[0]);
-            $browse.trigger(click);
-            expect(click.isDefaultPrevented()).to.be.true;
-        }*/);
+        });
     });
 
     describe('updateInfoState()', () => {
@@ -183,6 +176,16 @@ describe('DropZoneComponent', () => {
     });
 
     describe('updateDropZoneFiles()', () => {
+        let removeFileStub;
+
+        beforeEach(() => {
+            removeFileStub = sinon.stub(dropZoneComponent, 'removeFile');
+        });
+
+        afterEach(() => {
+            removeFileStub.restore();
+        });
+
         it('should create a file wrapper if one does not exist', () => {
             dropZoneComponent.updateDropZoneFiles(0);
             expect($dropZone.find('.wrapper').length).to.equal(1);
@@ -202,10 +205,17 @@ describe('DropZoneComponent', () => {
 
         it('should update the wrapper html with the files', () => {
             dropZoneComponent.updateDropZoneFiles(0);
-            expect($dropZone.find('.wrapper').html()).to.equal('<div class="file"></div>');
+            expect($dropZone.find('.wrapper').html()).to.equal('<div class="file"><a class="close" href="#"></a></div>');
         });
 
-        it('should add the remove file handler to the files');
+        // partial stub
+        it('should add the remove file handler to the files', () => {
+            const click = new Event('click');
+
+            dropZoneComponent.updateDropZoneFiles(0);
+            $html.find('.close')[0].dispatchEvent(click);
+            expect(removeFileStub).to.have.been.calledOnce;
+        });
     });
 
     describe('throwValidationError()', () => {
