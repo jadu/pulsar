@@ -65,7 +65,7 @@ export default class DropZone {
     }
 
     /**
-     * Handle drop event. Checks to see if we can add more files to the files store
+     * Handle drop event
      * @param  {Event} event
      */
     handleDrop (event) {
