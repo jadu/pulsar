@@ -12,14 +12,13 @@
         </a><!--
 
      --><ul class="nav-items">
-
             {% if options.data is iterable %}
                 {% for label, options in options.data %}
                     {{ nav.nav_item(options) }}
                 {% endfor %}
             {% endif %}
         </ul>
-     </div><!--
+    </div><!--
 
  --><div class="nav-secondary t-nav-secondary">
 
@@ -29,27 +28,74 @@
             {% for options in options.data %}
                 {% if options.items is defined and options.items is iterable %}
 
-        <div class="nav-list" data-nav="{{ options.href }}">
-            <span class="nav-item nav-item--header t-nav-header">{{ options.label|raw }}</span>
-            <ul class="nav-items">
-                {% for menu_blocks in options.items %}
-                    {% for item_options in menu_blocks %}
-                        {{ nav.nav_item(item_options) }}
-                    {% endfor %}
-                    {% if not loop.last %}
-                        <li class="nav-item nav-item__divider">
-                            <hr class="nav-divider t-nav-divider" />
-                        </li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
-        </div>
+                    <div class="nav-list" data-nav="{{ options.href }}">
+                        <span class="nav-item nav-item--header t-nav-header">{{ options.label|raw }}</span>
+                        <ul class="nav-items">
+                            {% for menu_blocks in options.items %}
+                                {% for item_options in menu_blocks %}
+                                    {{ nav.nav_item(item_options) }}
+                                {% endfor %}
+                                {% if not loop.last %}
+                                    <li class="nav-item nav-item__divider">
+                                        <hr class="nav-divider t-nav-divider" />
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
 
                 {% endif %}
             {% endfor %}
         {% endif %}
 
+    </div><!--
+
+--><div class="nav-main--sliding">
+
+    <a href="#close" class="nav-close" data-nav-action="close">{{ html.icon('remove', { 'label': 'Close' }) }}</a>
+
+        <div class="nav-list">
+            <span class="nav-item nav-item--header t-nav-header">More Categories</span>
+            {% if options.data is iterable %}
+                <ul class="nav-items">
+                    {% for label, options in options.data %}
+                        {{ nav.nav_item(options) }}
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+
+    </div><!--
+
+--><div class="nav-additional--sliding ">
+
+        <a href="#close" class="nav-close" data-nav-action="close">{{ html.icon('remove', { 'label': 'Close' }) }}</a>
+
+           {% if options.data is iterable %}
+               {% for options in options.data %}
+                   {% if options.items is defined and options.items is iterable %}
+
+                       <div class="nav-list" data-nav="{{ options.href }}">
+                           <span class="nav-item nav-item--header t-nav-header">{{ options.label|raw }}</span>
+                           <ul class="nav-items">
+                               {% for menu_blocks in options.items %}
+                                   {% for item_options in menu_blocks %}
+                                       {{ nav.nav_item(item_options) }}
+                                   {% endfor %}
+                                   {% if not loop.last %}
+                                       <li class="nav-item nav-item__divider">
+                                           <hr class="nav-divider t-nav-divider" />
+                                       </li>
+                                   {% endif %}
+                               {% endfor %}
+                           </ul>
+                       </div>
+
+                   {% endif %}
+               {% endfor %}
+           {% endif %}
     </div>
+
 </nav>
 
 {% endspaceless %}
