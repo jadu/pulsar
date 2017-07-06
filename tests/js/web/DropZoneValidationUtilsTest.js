@@ -8,6 +8,10 @@ describe('DropZoneValidationUtils', () => {
     });
 
     describe('validateType()', () => {
+        it('should return true if we do not have a whitelist', () => {
+            expect(utils.validateType('foo', [])).to.be.true;
+        });
+
         it('should return true for a file in the whitelist', () => {
             expect(utils.validateType('image/png', ['image/png'])).to.be.true;
         });

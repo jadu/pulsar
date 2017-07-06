@@ -79,8 +79,96 @@ describe('DropZoneComponentUtils', () => {
                 '<div class="inner">' +
                 '<a class="close" href="#"><i class="icon icon-times-circle"></i></a>' +
                 '<div class="thumbnail thumbnail--image" style="background-image: url(foo);"></div>' +
-                '<div class="meta"><p class="name">foo</p><p class="description">foo</p><p class="size">foo</p><p class="type">foo</p></div>' +
-                '</div></div>';
+                '<div class="meta">' +
+                '<p class="name">foo</p>' +
+                '<p class="description">foo</p>' +
+                '<p class="size">foo</p>' +
+                '<p class="type">foo</p>' +
+                '</div></div></div>';
+
+            expect(utils.createFileNode(file, options).trim()).to.equal(expected);
+        });
+
+        it('should handle no description', () => {
+            const file = {
+                id: 'foo',
+                thumbnail: 'foo',
+                type: 'foo',
+                size: 'foo',
+                name: 'foo'
+            };
+            const expected = '<div data-dropzone-file="foo" class="file">' +
+                '<div class="inner">' +
+                '<a class="close" href="#"><i class="icon icon-times-circle"></i></a>' +
+                '<div class="thumbnail thumbnail--image" style="background-image: url(foo);"></div>' +
+                '<div class="meta">' +
+                '<p class="name">foo</p>' +
+                '<p class="size">foo</p>' +
+                '<p class="type">foo</p>' +
+                '</div></div></div>';
+
+            expect(utils.createFileNode(file, options).trim()).to.equal(expected);
+        });
+
+        it('should handle no name', () => {
+            const file = {
+                description: 'foo',
+                id: 'foo',
+                thumbnail: 'foo',
+                type: 'foo',
+                size: 'foo',
+            };
+            const expected = '<div data-dropzone-file="foo" class="file">' +
+                '<div class="inner">' +
+                '<a class="close" href="#"><i class="icon icon-times-circle"></i></a>' +
+                '<div class="thumbnail thumbnail--image" style="background-image: url(foo);"></div>' +
+                '<div class="meta">' +
+                '<p class="description">foo</p>' +
+                '<p class="size">foo</p>' +
+                '<p class="type">foo</p>' +
+                '</div></div></div>';
+
+            expect(utils.createFileNode(file, options).trim()).to.equal(expected);
+        });
+
+        it('should handle no size', () => {
+            const file = {
+                description: 'foo',
+                name: 'foo',
+                id: 'foo',
+                thumbnail: 'foo',
+                type: 'foo',
+            };
+            const expected = '<div data-dropzone-file="foo" class="file">' +
+                '<div class="inner">' +
+                '<a class="close" href="#"><i class="icon icon-times-circle"></i></a>' +
+                '<div class="thumbnail thumbnail--image" style="background-image: url(foo);"></div>' +
+                '<div class="meta">' +
+                '<p class="name">foo</p>' +
+                '<p class="description">foo</p>' +
+                '<p class="type">foo</p>' +
+                '</div></div></div>';
+
+            expect(utils.createFileNode(file, options).trim()).to.equal(expected);
+        });
+
+        it('should handle no type', () => {
+            const file = {
+                description: 'foo',
+                name: 'foo',
+                id: 'foo',
+                thumbnail: 'foo',
+                size: 'foo',
+            };
+            const expected = '<div data-dropzone-file="foo" class="file">' +
+                '<div class="inner">' +
+                '<a class="close" href="#"><i class="icon icon-times-circle"></i></a>' +
+                '<div class="thumbnail thumbnail--image" style="background-image: url(foo);"></div>' +
+                '<div class="meta">' +
+                '<p class="name">foo</p>' +
+                '<p class="description">foo</p>' +
+                '<p class="size">foo</p>' +
+                '</div></div></div>';
 
             expect(utils.createFileNode(file, options).trim()).to.equal(expected);
         });
@@ -98,8 +186,12 @@ describe('DropZoneComponentUtils', () => {
                 '<div class="inner">' +
                 '<a class="close" href="#"><i class="icon icon-times-circle"></i></a>' +
                 '<div class="thumbnail"><i class="dropzone__file-icon icon icon-foo"></i></div>' +
-                '<div class="meta"><p class="name">foo</p><p class="description">foo</p><p class="size">foo</p><p class="type">foo</p></div>' +
-                '</div></div>';
+                '<div class="meta">' +
+                '<p class="name">foo</p>' +
+                '<p class="description">foo</p>' +
+                '<p class="size">foo</p>' +
+                '<p class="type">foo</p>' +
+                '</div></div></div>';
 
             expect(utils.createFileNode(file, options).trim()).to.equal(expected);
         });
