@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 class DropZoneInstanceManager {
     constructor (html, DropZoneFactory, optionsManager) {
         this.html = html;
@@ -37,11 +39,7 @@ class DropZoneInstanceManager {
      * @param {*} value
      */
     updateInstance (id, prop, value) {
-        this.instances.forEach(instance => {
-            if (instance.id === id) {
-                instance[prop] = value;
-            }
-        });
+        _.find(this.instances, i => i.id === id)[prop] = value;
     }
 
     /**
@@ -55,11 +53,7 @@ class DropZoneInstanceManager {
         if (id < 0) {
             result = this.instances;
         }  else {
-            this.instances.forEach(instance => {
-                if (instance.id === id) {
-                    result = instance;
-                }
-            });
+            result = _.find(this.instances, i => i.id === id);
         }
 
         return result;
@@ -72,24 +66,16 @@ class DropZoneInstanceManager {
      * @param {Object} meta
      */
     addFiles (files, id, meta = {}) {
-        this.instances.forEach(instance => {
-            if (instance.id === id) {
-                instance.dropZone.addFiles(files, meta);
-            }
-        });
+        _.find(this.instances, i => i.id === id).dropZone.addFiles(files, meta);
     }
 
     /**
      * Remove file from an instance
-     * @param {number} dropZoneId
+     * @param {number} id
      * @param {number} fileId
      */
-    removeFile (dropZoneId, fileId) {
-        this.instances.forEach(instance => {
-            if (instance.id === dropZoneId) {
-                instance.dropZone.removeFile(fileId);
-            }
-        });
+    removeFile (id, fileId) {
+        _.find(this.instances, i => i.id === id).dropZone.removeFile(fileId);
     }
 
     /**
@@ -99,15 +85,7 @@ class DropZoneInstanceManager {
      * @returns {Array}
      */
     getFiles (id, index = -1) {
-        let files;
-
-        this.instances.forEach(instance => {
-            if (instance.id === id) {
-                files = instance.dropZone.getFiles(index);
-            }
-        });
-
-        return files;
+        return _.find(this.instances, i => i.id === id).dropZone.getFiles(index);
     }
 
     /**
@@ -116,15 +94,7 @@ class DropZoneInstanceManager {
      * @returns {boolean}
      */
     getSupportsDataTransfer (id) {
-        let support;
-
-        this.instances.forEach(instance => {
-            if (instance.id === id) {
-                support = instance.dropZone.getSupportsDataTransfer();
-            }
-        });
-
-        return support;
+        return _.find(this.instances, i => i.id === id).dropZone.getSupportsDataTransfer();
     }
 
     /**
@@ -133,18 +103,13 @@ class DropZoneInstanceManager {
      * @param {number} id
      */
     validateFiles (files, id) {
-        let validation;
+        const instance = _.find(this.instances, i => i.id === id);
 
-        this.instances.forEach(instance => {
-            if (instance.id === id) {
-                const length = instance.dropZone.getFiles().length;
-                const size = instance.dropZone.getSize();
-
-                validation = instance.dropZone.validator.validate(files, length, size);
-            }
-        });
-
-        return validation;
+        return instance.dropZone.validator.validate(
+            files,
+            instance.dropZone.getFiles().length,
+            instance.dropZone.getSize()
+        );
     }
 
     /**
@@ -155,11 +120,7 @@ class DropZoneInstanceManager {
         if (id < 0) {
             this.instances.forEach(instance => instance.dropZone.reset());
         } else {
-            this.instances.forEach(instance => {
-                if (instance.id === id) {
-                    instance.dropZone.reset();
-                }
-            });
+            _.find(this.instances, i => i.id === id).dropZone.reset();
         }
     }
 }

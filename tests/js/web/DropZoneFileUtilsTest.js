@@ -23,6 +23,16 @@ describe('DropZoneFileUtils', () => {
         });
     });
 
+    describe('getFileType()', () => {
+        it('should return the file type', () => {
+            expect(fileUtils.getFileType('foo/bar')).to.equal('foo/bar');
+        });
+
+        it('should return the default type', () => {
+            expect(fileUtils.getFileType('')).to.equal('application/file');
+        });
+    });
+
     describe('getFileThumbnail()', () => {
         let objectUrlStub;
 

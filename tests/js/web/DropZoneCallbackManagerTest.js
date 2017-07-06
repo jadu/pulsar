@@ -17,5 +17,11 @@ describe('DropZoneCallbackManager', () => {
             expect(callbackSpy).to.have.been.calledWith({ foo: 'bar', instance: dropZoneSpy });
             expect(callbackSpy).to.have.been.calledOnce;
         });
+
+        it('should just pass the instance through if we dont have data', () => {
+            callbackManager.create(callbackSpy, dropZoneSpy);
+            expect(callbackSpy).to.have.been.calledWith({ instance: dropZoneSpy });
+            expect(callbackSpy).to.have.been.calledOnce;
+        })
     });
 });

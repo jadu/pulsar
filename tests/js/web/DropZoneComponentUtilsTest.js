@@ -15,22 +15,29 @@ describe('DropZoneComponentUtils', () => {
         it('should parse data-dropzone attributes', () => {
             const $node = $('<div data-dropzone-foo="bar" data-foo="bar"></div>');
 
-            expect(utils.getOptionsFromAttrs($node[0], utils.camelCaseIfy))
+            expect(utils.getOptionsFromAttrs($node[0]))
                 .to.deep.equal({ foo: 'bar' });
         });
 
         it('should covert the whitelist option to an array', () => {
             const $node = $('<div data-dropzone-whitelist="image/* jpeg"></div>');
 
-            expect(utils.getOptionsFromAttrs($node[0], utils.camelCaseIfy))
+            expect(utils.getOptionsFromAttrs($node[0]))
                 .to.deep.equal({ whitelist: ['image/*', 'jpeg'] });
         });
 
         it('should parse bools', () => {
-            const $node = $('<div data-dropzone-foo="true"></div>');
+            const $node = $('<div data-dropzone-foo="true" data-dropzone-bar="false"></div>');
 
-            expect(utils.getOptionsFromAttrs($node[0], utils.camelCaseIfy))
-                .to.deep.equal({ foo: true });
+            expect(utils.getOptionsFromAttrs($node[0]))
+                .to.deep.equal({ foo: true, bar: false });
+        });
+
+        it('should parse numbers', () => {
+            const $node = $('<div data-dropzone-max-files="10"></div>');
+
+            expect(utils.getOptionsFromAttrs($node[0]))
+                .to.deep.equal({ maxFiles: 10 });
         });
     });
 
@@ -61,6 +68,7 @@ describe('DropZoneComponentUtils', () => {
 
         it('should add a thumbnail if we have one', () => {
             const file = {
+                description: 'foo',
                 id: 'foo',
                 thumbnail: 'foo',
                 type: 'foo',
@@ -71,7 +79,7 @@ describe('DropZoneComponentUtils', () => {
                 '<div class="inner">' +
                 '<a class="close" href="#"><i class="icon icon-times-circle"></i></a>' +
                 '<div class="thumbnail thumbnail--image" style="background-image: url(foo);"></div>' +
-                '<div class="meta"><p class="name">foo</p><p class="size">foo</p><p class="type">foo</p></div>' +
+                '<div class="meta"><p class="name">foo</p><p class="description">foo</p><p class="size">foo</p><p class="type">foo</p></div>' +
                 '</div></div>';
 
             expect(utils.createFileNode(file, options).trim()).to.equal(expected);
@@ -79,6 +87,7 @@ describe('DropZoneComponentUtils', () => {
 
         it('should add an icon if we do not have a thumbnail', () => {
             const file = {
+                description: 'foo',
                 id: 'foo',
                 thumbnail: false,
                 type: 'foo',
@@ -89,7 +98,7 @@ describe('DropZoneComponentUtils', () => {
                 '<div class="inner">' +
                 '<a class="close" href="#"><i class="icon icon-times-circle"></i></a>' +
                 '<div class="thumbnail"><i class="dropzone__file-icon icon icon-foo"></i></div>' +
-                '<div class="meta"><p class="name">foo</p><p class="size">foo</p><p class="type">foo</p></div>' +
+                '<div class="meta"><p class="name">foo</p><p class="description">foo</p><p class="size">foo</p><p class="type">foo</p></div>' +
                 '</div></div>';
 
             expect(utils.createFileNode(file, options).trim()).to.equal(expected);

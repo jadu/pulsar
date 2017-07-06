@@ -37,10 +37,17 @@ describe('DropZoneIdleTimer', () => {
     });
 
     describe('clear()', () => {
-        it('should clear the current timer', () => {
-            timer.timer = 1;
+        it('should clear the current timer if we have one', () => {
+            timer.timer = 'foo';
             timer.clear();
-            expect(clock.clearTimeout.calledWith(1)).to.be.true;
+            expect(clock.clearTimeout).to.have.been.calledWith('foo');
+            expect(clock.clearTimeout).to.have.been.calledOnce;
+        });
+
+        it('should ignore if the current timer ref is null', () => {
+            timer.timer = null;
+            timer.clear();
+            expect(clock.clearTimeout).to.have.not.been.called;
         });
     });
 });
