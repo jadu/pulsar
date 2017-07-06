@@ -187,7 +187,7 @@ NavMainComponent.prototype.adjustNavItems = function() {
 
     /* Initial Check of Height */
     while (itemsHeight + moreIconHeight > availableHeight) {
-        if($('.nav-primary .nav-items li:last-child').css('display') == 'none') {
+        if($('.nav-primary .nav-items li:last-child').css('display') === 'none') {
             $('.nav-primary .nav-items li:nth-last-child('+ i +')').addClass('is-hidden');
             i++;
         } else {
@@ -211,6 +211,6 @@ NavMainComponent.prototype.adjustNavItems = function() {
         i++;
         toHideCount--;
     } while(toHideCount >= 0);
-}
+};
 
 module.exports = NavMainComponent;
