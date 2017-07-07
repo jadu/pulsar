@@ -13,11 +13,13 @@ class DropZoneIdleTimer {
      * @param {Function} callback
      */
     start (callback) {
+        // remove callback from args
+        const args = [].slice.call(arguments);
         this.timer = setTimeout(() => {
             // clear reference to timeout
             this.timer = null;
             // invoke callback
-            callback();
+            callback.apply(this, args.slice(1));
         }, this.duration);
     }
 

@@ -1,6 +1,16 @@
 import $ from 'jquery';
 
 class DropZoneComponent {
+    /**
+     * DropZoneComponent
+     * @param {Element} html
+     * @param {string} selector
+     * @param {DropZoneInstanceManager} instanceManager
+     * @param {DropZoneOptionsManager} optionsManager
+     * @param {DropZoneComponentUtils} utils
+     * @param {DropZoneComponentValidationManager} validationManager
+     * @param {DropZoneBodyClassManager} classManager
+     */
     constructor (html, selector, instanceManager, optionsManager, utils, validationManager, classManager) {
         this.html = window.$ && html instanceof window.$ ? html[0] : html;
         this.selector = selector;

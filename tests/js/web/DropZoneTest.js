@@ -45,11 +45,6 @@ describe('DropZone', () => {
     });
 
     describe('init()', () => {
-        it('should throw an error if a node is not passed in to the constructor', () => {
-            dropZone = new DropZone(null, {}, validatorStub, eventStub, timerStub, fileManagerStub, callbackStub);
-            expect(dropZone.init).to.throw;
-        });
-
         it('should setup events if enriched features are supported', () => {
             dropZone.init();
             expect(eventStub.add).to.have.callCount(11);
@@ -181,6 +176,33 @@ describe('DropZone', () => {
 
         it('should true for coords on the window and an element from point', () => {
             expect(dropZone.fileOnWindow(50, 50)).to.equal(document.documentElement);
+        });
+    });
+
+    describe('forceWindowLeave()', () => {
+        let windowLeaveStub;
+        let onWindowStub;
+
+        beforeEach(() => {
+            windowLeaveStub = sinon.stub(dropZone, 'handleWindowLeave');
+            onWindowStub = sinon.stub(dropZone, 'fileOnWindow');
+        });
+
+        afterEach(() => {
+            windowLeaveStub.restore();
+            onWindowStub.restore();
+        });
+
+        // partial stub
+        it('should call handleWindowLeave with the force argument', () => {
+            const event = {};
+
+            dropZone.windowActive = true;
+            dropZone.dropZoneActive = true;
+            onWindowStub.returns(null);
+            dropZone.forceWindowLeave(event);
+            expect(windowLeaveStub).to.have.been.calledOnce;
+            expect(windowLeaveStub).to.have.been.calledWith(event, true);
         });
     });
 

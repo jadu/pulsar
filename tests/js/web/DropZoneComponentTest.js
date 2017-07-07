@@ -865,14 +865,19 @@ describe('DropZoneComponent', () => {
         it('should reset a single instance if an ID is passed in', () => {
             dropZoneComponent.reset(1);
             expect(instanceManager.resetInstance).to.have.been.calledOnce;
-            expect(instanceManager.resetInstance.calledWith(1)).to.be.true;
+            expect(instanceManager.resetInstance).to.have.been.calledWith(1);
             expect(updateStub).to.have.been.calledOnce;
             expect(filesStub).to.have.been.calledOnce;
         });
 
         // partial stub
         it('should reset all instances if no ID is passed in', () => {
-
+            dropZoneComponent.reset();
+            expect(instanceManager.resetInstance).to.have.been.calledTwice;
+            expect(instanceManager.resetInstance).to.have.been.calledWith(0);
+            expect(instanceManager.resetInstance).to.have.been.calledWith(1);
+            expect(updateStub).to.have.been.calledTwice;
+            expect(filesStub).to.have.been.calledTwice;
         });
     });
 

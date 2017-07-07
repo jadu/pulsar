@@ -30,4 +30,13 @@ describe('DropZoneEventManager', () => {
             expect(eventManager.pool.length).to.equal(0);
         });
     });
+
+    describe('preventer()', () => {
+        it('should call prevent default on an event', () => {
+            const event = { preventDefault: sinon.spy() };
+
+            eventManager.preventer(event);
+            expect(event.preventDefault).to.have.been.calledOnce;
+        });
+    });
 });

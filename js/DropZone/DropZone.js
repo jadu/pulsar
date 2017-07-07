@@ -33,10 +33,6 @@ export default class DropZone {
      * Initialise plugin
      */
     init () {
-        if (!this.node) {
-            throw new Error('DropZone requires a DOM node');
-        }
-
         // add events for environments that support data transfer items
         if (this.options.supported) {
             this.windowActive = false;
@@ -56,11 +52,7 @@ export default class DropZone {
 
             // attempt to handle missed callbacks
             // mouseout has proven to be more reliable than dragleave
-            this.eventManager.add(document, 'mouseout', this.idleTimer.start(event => {
-                if (this.windowActive || this.dropZoneActive) {
-                    this.handleWindowLeave(event, true);
-                }
-            }));
+            this.eventManager.add(document, 'mouseout', this.idleTimer.start.bind(this, this.forceWindowLeave.bind(this)));
         }
     }
 
@@ -131,6 +123,18 @@ export default class DropZone {
     fileOnWindow (x, y) {
         const offWindow = x === 0 && y === 0;
         return !offWindow && document.elementFromPoint(x, y);
+    }
+
+    /**
+     * Force window leave
+     * @param {Event} event
+     */
+    forceWindowLeave (event) {
+        const active = this.windowActive || this.dropZoneActive;
+
+        if (active && !this.fileOnWindow(event.clientX, event.clientY)) {
+            this.handleWindowLeave(event, true);
+        }
     }
 
     /**
