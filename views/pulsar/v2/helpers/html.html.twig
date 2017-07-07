@@ -1394,12 +1394,20 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
 All DropZone options should be prefixed with `data-dropzone-`, for example `data-dropzone-max-files`.
 
-Option      | Type   | Description
------------ | ------ | ---------------------------------------------------------
-max-files   | string | The maximum ammount of files a DropZone will accept
-max-size    | string | The combined file size limit of a group of files
-
-todo - improve docs
+Option                              | Type      | Description
+----------------------------------- | --------- | ----------------------------------------------------
+data-dropzone-max-files             | string    | The maximum ammount of files a DropZone will accept
+data-dropzone-max-size              | string    | The combined file size limit of a group of files
+data-dropzone-idle-timer-duration   | string    | The duration
+data-dropzone-idle-html             | string    | The idle html for the DropZone info node
+data-dropzone-window-enter-html     | string    | The window enter event html for the DropZone info node
+data-dropzone-drop-zone-enter-html  | string    | The DropZone enter event html for the DropZone info node
+data-dropzone-passive               | boolean   | Enable passive mode | default false
+data-dropzone-show-input-node       | boolean   | Show associated input node | default false
+data-dropzone-file-node-desc        | boolean   | Show file description in file html | default true
+data-dropzone-file-node-name        | boolean   | Show file name in file html | default true
+data-dropzone-file-node-size        | boolean   | Show file size in file html | default true
+data-dropzone-file-node-type        | boolean   | Show file type in file html | default true
 
 #}
 {% macro dropzone(options) %}
