@@ -123,11 +123,19 @@ $dropzone-icon-rotation: 30deg;
     color: color(text, base);
     max-width: 100%;
     padding: $dropzone-file-size;
-    width: 50%;
+    width: 100%;
+
+    @include respond-min($screen-small) {
+        width: 50%;
+    }
 
     .dropzone--files-1 & {
         margin: auto;
-        width: auto;
+        width: 100%;
+
+        @include respond-min($screen-small) {
+            width: auto;
+        }
     }
 }
 
