@@ -43,6 +43,7 @@ class DropZoneComponent {
             // support
             supported: true,
             // input
+            inputNodeId: null,
             showInputNode: false,
             // file node config
             fileNodeDesc: true,
