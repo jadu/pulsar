@@ -137,9 +137,17 @@ describe('DropZone', () => {
             expect(dropZone.size).to.equal(2);
         });
 
-        it('should craete file objects for each file', () => {
+        it('should create file objects for each file', () => {
             dropZone.addFiles([{}]);
             expect(fileManagerStub.createFileObject).to.have.been.calledOnce;
+        });
+
+        it('should create file objects with unique IDs', () => {
+            dropZone.addFiles([{}, {}, {}]);
+            expect(fileManagerStub.createFileObject).to.have.been.calledThrice;
+            expect(fileManagerStub.createFileObject).to.have.been.calledWith({}, 0, {});
+            expect(fileManagerStub.createFileObject).to.have.been.calledWith({}, 1, {});
+            expect(fileManagerStub.createFileObject).to.have.been.calledWith({}, 2, {});
         });
 
         it('should concatenate the processed files with the current valid files', () => {

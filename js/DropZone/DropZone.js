@@ -92,12 +92,13 @@ export default class DropZone {
 
         for (let i = 0; i < files.length; i++) {
             const file = files[i].getAsFile ? files[i].getAsFile() : files[i];
+            const id = this.files.length + i;
 
             // increment size store
             this.size += file.size;
             // process file
             processedFiles.push(
-                this.fileManager.createFileObject(file, this.files.length, meta)
+                this.fileManager.createFileObject(file, id, meta)
             );
         }
 
