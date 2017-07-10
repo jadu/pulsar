@@ -106,6 +106,10 @@ $dropzone-icon-rotation: 30deg;
  * Error
  */
 
+.dropzone__validation {
+    margin-top: .5em;
+}
+
 .dropzone__error {
     color: color(danger);
     font-family: $font-family-regular;
