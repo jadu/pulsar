@@ -8,7 +8,11 @@ The DropZone is a component that can create a pre-formatted area for uses to dra
 
 ## Example usage
 
-"vanilla" DropZone using default configuration
+### Vanilla
+
+DropZone using default configuration.
+
+![DropZoneComponent vanilla drop]({{ site.baseurl }}/assets/image_examples/dropzone-vanilla-drop.gif){: .dropzone-example }
 
 {% raw %}
 ```twig
@@ -27,13 +31,40 @@ const dropZoneComponent = DropZoneComponentFactory.create(
     // <html> element
     document.documentElement, 
     // selector to identify DropZone elements
-    '.dropzone-selector'
+    '.dropzone'
 );
 
 dropZoneComponent.init();
 ```
 {% endraw %}
 
+---
+
+### Passive
+
+DropZone initiated in passive mode.
+
+![DropZoneComponent passive drop]({{ site.baseurl }}/assets/image_examples/dropzone-passive-drop.gif){: .dropzone-example }
+
+{% raw %}
+```html
+<div class="dropzone" data-dropzone-passive="true">
+    <p>Node to be converted to a DropZone</p>
+</div>
+```
+```javascript
+import DropZoneComponentFactory from '../path/to/DropZoneComponentFactory';
+
+const dropZoneComponent = DropZoneComponentFactory.create(
+    // <html> element
+    document.documentElement, 
+    // selector to identify DropZone elements
+    '.dropzone'
+);
+
+dropZoneComponent.init();
+```
+{% endraw %}
 
 ## Options
 
@@ -145,7 +176,7 @@ JavaScript  | `dropZoneComponent.init({ dropZoneEnterHtml: '<p>foo</p>' })`
 @deafult [false]
 ```
 
-The passive option specifies if the DropZone will be in passive mode. When in passive mode, the DropZoneComponent will not alter any HTML apart from adding file nodes once a file is added. It should be used for when you need to turn an existing element into a DropZone and do not want to use the default DropZone HTML. When in passive mode you will need to leverage the DropZoneComponent API in order to change state.
+The passive option specifies if the DropZone will be in passive mode. When in passive mode, the DropZoneComponent will not alter any HTML apart from adding file nodes once a file is added. It should be used for when you need to turn an existing element into a DropZone and do not want to use the default DropZone HTML. When in passive mode you will need to leverage the DropZoneComponent public methods (below) in order to change state.
 
 Environment | Code
 ----------- | ----------------------------------------

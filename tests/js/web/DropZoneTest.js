@@ -105,7 +105,7 @@ describe('DropZone', () => {
             expect(callbackStub.create.calledWith(
                 options.windowDrop,
                 dropZone,
-                { files: dropZone.files, node: dropZone.node }
+                { files: dropZone.files }
             )).to.be.true;
         });
 
@@ -172,7 +172,7 @@ describe('DropZone', () => {
             expect(callbackStub.create.calledWith(
                 dropZone.options.dropZoneDrop,
                 dropZone,
-                { files: { id: 1}, node: dropZone.node, valid: true, text: '' }
+                { files: { id: 1}, valid: true, text: '' }
             ));
         });
     });

@@ -14,25 +14,27 @@ class DropZoneValidationUtils {
         }
 
         whitelist.forEach(mime => {
-            if (mime.search('/') >= 0) {
-                if (mime === type) {
-                    // if the user has specified a full mime e.g. 'image/png'
-                    // we will check that against the type
-                    valid = true;
-                } else if (mime.indexOf('*') >= 0) {
-                    // if the user has specified a wildcard mime e.g. 'image/*'
-                    // we will create a wildcard expression and test against it
-                    const re = new RegExp(mime.replace('*', '[\W\w]*'));
+            if (!valid) {
+                if (mime.search('/') >= 0) {
+                    if (mime === type) {
+                        // if the user has specified a full mime e.g. 'image/png'
+                        // we will check that against the type
+                        valid = true;
+                    } else if (mime.indexOf('*') >= 0) {
+                        // if the user has specified a wildcard mime e.g. 'image/*'
+                        // we will create a wildcard expression and test against it
+                        const re = new RegExp(mime.replace('*', '[\W\w]*'));
 
-                    valid = !!(re.exec(type));
+                        valid = !!(re.exec(type));
+                    } else {
+                        valid = false;
+                    }
                 } else {
-                    valid = false;
+                    // if the user has specified a part mime e.g. 'png'
+                    // we'll split the type and check against the right hand side
+                    // the equivalent of '*/png'
+                    valid = type.split('/')[1] === mime;
                 }
-            } else {
-                // if the user has specified a part mime e.g. 'png'
-                // we'll split the type and check against the right hand side
-                // the equivalent of '*/png'
-                valid = type.split('/')[1] === mime;
             }
         });
 

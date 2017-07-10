@@ -27,6 +27,10 @@ describe('DropZoneValidationUtils', () => {
         it('should handle a wildcard suffix', () => {
             expect(utils.validateType('image/png', ['image/*'])).to.be.true;
         });
+
+        it('should return valid files in a whitelist that has valid and invalid files', () => {
+            expect(utils.validateType('image/png', ['image/*', 'foo/bar'])).to.be.true;
+        });
     });
 
     describe('validateCount()', () => {
