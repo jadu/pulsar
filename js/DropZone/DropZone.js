@@ -182,7 +182,12 @@ export default class DropZone {
     handleWindowLeave (event, force = false) {
         const onDropZone = this.node.contains(document.elementFromPoint(event.clientX, event.clientY));
         const onWindow = this.fileOnWindow(event.clientX, event.clientY);
-        const files = event.dataTransfer.items || event.dataTransfer.files;
+        let files = null;
+
+        // if we are forcing this method, there is a good chance we do not have dataTransfer items
+        if (!force) {
+            files = event.dataTransfer.items || event.dataTransfer.files;
+        }
 
         if (force || !onWindow) {
             this.windowActive = false;
