@@ -66,6 +66,46 @@ dropZoneComponent.init();
 ```
 {% endraw %}
 
+---
+
+### Enriched passive 
+
+An example of a passive DropZone leveraging the DropZoneComponent's callbacks and public methods (see below) to trigger help state changes and a backdrop.
+
+![DropZoneComponent passive enriched]({{ site.baseurl }}/assets/image_examples/dropzone-passive-enriched.gif){: .dropzone-example }
+
+---
+
+### Submission
+
+In order to use a DropZone as a file input for a form, it is required that the form is submitted as a XHR / Ajax request. This is necessary as we need to be able to query the DropZoneComponent API to retrieve files before sending the form.
+
+```javascript
+const data = new FormData(form);
+const id = parseInt(dropZoneHtmlNode.getAttribute('data-dropzone-id'));
+const file = dropZoneComponent.getFilesFromDropZone(id, 0);
+
+data.append('dropzone-file', file.raw);
+
+// ...
+```
+
+When retrieving files from a DropZone instance, you should expect the following schema.
+
+```
+{
+    id: [Number], // a unique identifier
+    raw: [FileObject], // a reference to the original FileObject
+    name: [String], // file name
+    type: [String], // file type
+    size: [String], // file size
+    thumbnail: [String|false], // file thumbnail
+    meta: [Object] // additional file information
+}
+```
+
+---
+
 ## Options
 
 Options can be initialised as part of the `init({...options})` method, or as attributes on DropZone HTML elements. Below are a list of configurable options with an environment table showing initiation examples.
@@ -213,6 +253,8 @@ JavaScript  | `dropZoneComponent.init({ supported: document.documentElement.sear
 @param {String|null}
 @deafult [null]
 ```
+
+![DropZoneComponent input node]({{ site.baseurl }}/assets/image_examples/dropzone-input-node.gif){: .dropzone-example }
 
 The input node ID option specifies whether there is a corresponding input node, the value should be the ID attribute on said node. This is useful if you need to hook the DropZone up to an already existing input node, it also allows us to use the native "Browse" functionality.
 
