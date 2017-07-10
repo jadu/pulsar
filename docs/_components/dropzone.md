@@ -4,7 +4,7 @@ title: DropZone
 category: Components
 ---
 
-The DropZone is a component that can create a pre-formatted area for uses to drag files, it can also be used to convert an existing HTML element into a droppable area. 
+The DropZone is a component that can create a pre-formatted area for users to drag files, it can also be used to convert an existing HTML element into a droppable area. 
 
 ## Example usage
 
