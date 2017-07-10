@@ -17,7 +17,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "provisioning/playbook.yml"
   end
-p
+
   config.vm.provision "shell", inline: "service apache2 restart", run: "always"
 
 end
