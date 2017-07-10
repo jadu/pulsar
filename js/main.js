@@ -5,7 +5,8 @@
         console = { log: function() {} }
     };
 
-    var $html = $('html');
+    var $html = $('html'),
+        lt10 = $html.hasClass('lt-ie10');
 
     $html.removeClass('no-js');
 
@@ -119,11 +120,10 @@
             'plugins' : ['state']
         });
 
-        console.log('has class: ', $html.hasClass('lt-ie10'))
-
         // DropZone
         pulsar.dropZoneComponent.init({
-            supported: !$html.hasClass('lt-ie10')
+            supported: !lt10,
+            showInputNode: lt10
         });
     });
 

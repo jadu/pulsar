@@ -309,15 +309,9 @@ $dropzone-icon-rotation: 30deg;
  * Lexicon code
  */
 
-.l-passive-dropzone {
-    background-color: #f7f7f7;
-    border: 1px solid black;
-    padding: 1rem;
-    position: relative;
-    text-align: center;
-}
-
-l-passive-dropzone__text {
-    margin: 0;
-    position: relative;
+// doing this with IDs to make sure this code never interferes with product css
+#lexicon-dropzone {
+    .lt-ie10 & {
+        display: none;
+    }
 }
