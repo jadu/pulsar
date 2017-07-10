@@ -4,7 +4,7 @@ title: DropZone
 category: Components
 ---
 
-The DropZone is a component that can create a pre-formatted area for uses to drag files, it can also be used to convert a pre-existing HTML element into a droppable area. 
+The DropZone is a component that can create a pre-formatted area for uses to drag files, it can also be used to convert an existing HTML element into a droppable area. 
 
 ## Example usage
 
@@ -24,7 +24,9 @@ The DropZone is a component that can create a pre-formatted area for uses to dra
 import DropZoneComponentFactory from '../path/to/DropZoneComponentFactory';
 
 const dropZoneComponent = DropZoneComponentFactory.create(
+    // <html> element
     document.documentElement, 
+    // selector to identify DropZone elements
     '.dropzone-selector'
 );
 
@@ -35,26 +37,7 @@ dropZoneComponent.init();
 
 ## Options
 
-Reference table for Twig component options, more detail on initialising in alternative environments below.
-
-Option                              | Type      | Description
------------------------------------ | --------- | ----------------------------------------------------
-helperLabel                         | string    | The label for the default helper text popup
-helperTitle                         | string    | The heading for the default helper text popup
-helperContent                       | string    | The content for the default helper text popup
-data-dropzone-max-files             | string    | The maximum ammount of files a DropZone will accept
-data-dropzone-max-size              | string    | The combined file size limit of a group of files
-data-dropzone-idle-html             | string    | The idle html for the DropZone info node
-data-dropzone-window-enter-html     | string    | The window enter event html for the DropZone info node
-data-dropzone-drop-zone-enter-html  | string    | The DropZone enter event html for the DropZone info node
-data-dropzone-passive               | boolean   | Enable passive mode
-data-dropzone-supported             | boolean   | Set whether the file API is supported 
-data-dropzone-input-node-id         | string    | ID of corresponding input node
-data-dropzone-show-input-node       | boolean   | Show associated input node
-data-dropzone-file-node-desc        | boolean   | Show file description in file html
-data-dropzone-file-node-name        | boolean   | Show file name in file html
-data-dropzone-file-node-size        | boolean   | Show file size in file html
-data-dropzone-file-node-type        | boolean   | Show file type in file html
+Options can be initialised as part of the `init({...options})` method, or as attributes on DropZone HTML elements. Below are a list of configurable options with an environment table showing initiation examples.
 
 Any option from the reference above that is prefixed with `data-dropzone-` can be initialised using the twig helper (or HTML when in passive mode) or through the DropZone's `init(...)` method as a camel case version of the attribute.
 
@@ -75,7 +58,7 @@ Twig        | `html.dropzone({ 'data-dropzone-max-files': '5' })`
 ----------- | -----------------------------------------
 HTML        | `<div data-dropzone-max-files="5"></div>`
 ----------- | -----------------------------------------
-JavaScript  | `dropZoneComponent.init({ maxfiles: 5 )`
+JavaScript  | `dropZoneComponent.init({ maxfiles: 5 })`
 
 ---
 
@@ -94,7 +77,7 @@ Twig        | `html.dropzone({ 'data-dropzone-max-size': '50000' })`
 ----------- | -----------------------------------------
 HTML        | `<div data-dropzone-max-size="50000"></div>`
 ----------- | -----------------------------------------
-JavaScript  | `dropZoneComponent.init({ maxSize: 50000 )`
+JavaScript  | `dropZoneComponent.init({ maxSize: 50000 })`
 
 ---
 
@@ -113,7 +96,7 @@ Twig        | `html.dropzone({ 'data-dropzone-idle-html': '<p>foo</p>' })`
 ----------- | -----------------------------------------
 HTML        | `<div data-dropzone-idle-html="<p>foo</p>"></div>`
 ----------- | -----------------------------------------
-JavaScript  | `dropZoneComponent.init({ idleHtml: '<p>foo</p>' )`
+JavaScript  | `dropZoneComponent.init({ idleHtml: '<p>foo</p>' })`
 
 ---
 
@@ -132,7 +115,7 @@ Twig        | `html.dropzone({ 'data-dropzone-window-enter-html': '<p>foo</p>' }
 ----------- | -----------------------------------------
 HTML        | `<div data-dropzone-window-enter-html="<p>foo</p>"></div>`
 ----------- | -----------------------------------------
-JavaScript  | `dropZoneComponent.init({ windowEnterHtml: '<p>foo</p>' )`
+JavaScript  | `dropZoneComponent.init({ windowEnterHtml: '<p>foo</p>' })`
 
 ---
 
@@ -151,7 +134,7 @@ Twig        | `html.dropzone({ 'data-dropzone-drop-zone-enter-html': '<p>foo</p>
 ----------- | -----------------------------------------
 HTML        | `<div data-dropzone-drop-zone-enter-html="<p>foo</p>"></div>`
 ----------- | -----------------------------------------
-JavaScript  | `dropZoneComponent.init({ dropZoneEnterHtml: '<p>foo</p>' )`
+JavaScript  | `dropZoneComponent.init({ dropZoneEnterHtml: '<p>foo</p>' })`
 
 ---
 
@@ -170,7 +153,7 @@ Twig        | `html.dropzone({ 'data-dropzone-passive': true })`
 ----------- | -----------------------------------------
 HTML        | `<div data-dropzone-passive="true"></div>`
 ----------- | -----------------------------------------
-JavaScript  | `dropZoneComponent.init({ passive: true )`
+JavaScript  | `dropZoneComponent.init({ passive: true })`
 
 ---
 
@@ -306,6 +289,271 @@ HTML        | `<div data-dropzone-file-node-type="false"></div>`
 JavaScript  | `dropZoneComponent.init({ fileNodeType: false })`
 
 ---
+
+## Callbacks
+
+There are several callbacks at your disposal when it comes to interacting with the DropZone API. These will come in handy when the DropZone is in `passive` mode. Each callback is fired and passed an object containing contextual information. 
+
+---
+
+#### Window enter
+
+The window enter callback is triggered once files have been dragged onto the browser window.
+
+```javascript
+dropZoneComponent.init({
+    /**
+     * @param {Boolean} valid | Determine if the files are valid
+     * @param {String} text | If the files are not valid this is the validation message
+     * @param {DropZoneComponent} instance | A reference to the DropZoneComponent
+     */
+    customWindowEnter: ({ valid, text, instance }) => 'Window entered!'
+});
+```
+
+---
+
+#### Window leave
+
+The window leave callback is triggered once files have been dragged off of the window.
+
+```javascript
+dropZoneComponent.init({
+    /**
+     * @param {DropZoneComponent} instance | A reference to the DropZoneComponent
+     */
+    customWindowLeave: ({ instance }) => 'Window exited!'
+});
+```
+
+---
+
+#### DropZone enter
+
+The DropZone enter callback is triggered once files have been dragged onto the DropZone element.
+
+```javascript
+dropZoneComponent.init({
+    /**
+     * @param {Boolean} valid | Determine if the files are valid
+     * @param {String} text | If the files are not valid this is the validation message
+     * @param {DropZoneComponent} instance | A reference to the DropZoneComponent
+     */
+    customDropZoneEnter: ({ valid, text, instance }) => 'DropZone entered!'
+});
+```
+
+---
+
+#### DropZone leave
+
+The DropZone leave callback is triggered once files have been dragged off of the DropZone element.
+
+```javascript
+dropZoneComponent.init({
+    /**
+     * @param {Boolean} valid | Determine if the files are valid
+     * @param {String} text | If the files are not valid this is the validation message
+     * @param {DropZoneComponent} instance | A reference to the DropZoneComponent
+     */
+    customDropZoneEnter: ({ valid, text, instance }) => 'DropZone exited!'
+});
+```
+
+---
+
+#### DropZone drop
+
+The DropZone drop callback is triggered once files have been dropped onto the DropZone element.
+
+```javascript
+dropZoneComponent.init({
+    /**
+     * @param {Boolean} valid | Determine if the files are valid
+     * @param {String} text | If the files are not valid this is the validation message
+     * @param {Array} files | A collection of file objects
+     * @param {DropZoneComponent} instance | A reference to the DropZoneComponent
+     */
+    customDropZoneDrop: ({ files, valid, text, instance }) => 'DropZone drop!'
+});
+```
+---
+
+#### Window drop
+
+The window drop callback is triggered once files have been dropped onto window, but _not_ the DropZone.
+
+```javascript
+dropZoneComponent.init({
+    /**
+     * @param {Array} files | A collection of file objects
+     * @param {DropZoneComponent} instance | A reference to the DropZoneComponent
+     */
+    customWindowDrop: ({ files, instance }) => 'Window drop!'
+});
+```
+
+---
+
+#### File removed
+
+The file removed callback is triggered once a file has been removed from the DropZone.
+
+```javascript
+dropZoneComponent.init({
+    /**
+     * @param {DropZoneComponent} instance | A reference to the DropZoneComponent
+     */
+    customFileRemoved: ({ instance }) => 'File removed!'
+});
+```
+
+---
+
+## Public Methods
+
+There are a few public methods at your disposal when integrating a DropZone which are intended to make creating custom instances as flexible as they can be. Most public methods will take the DropZoneId as an argument, this is an integer representing the DropZoneComponent instance. It will be added to DropZoneComponents once they have been initialised in both passive and non-passive modes.
+
+---
+
+#### Validate files
+
+The `validateFiles` method will pass files through the DropZoneComponent validator.
+
+```javascript
+const id = parseInt(dropZoneHtmlNode.getAttribute('data-dropzone-id'));
+
+/**
+ * @param {FileList} files | file(s) to pass through the validator
+ * @param {number} id | DropZoneComponent ID
+ * @returns {Object} validation object
+ */
+dropZoneComponent.validateFiles(files, id); 
+// returns { valid: [Boolean], text: [String] }
+```
+
+---
+
+#### Add files to DropZone
+
+The `addFilesToDropZone` method will add a collection of files to a DropZone instance.
+
+```javascript
+const id = parseInt(dropZoneHtmlNode.getAttribute('data-dropzone-id'));
+
+/**
+ * @param {FileList} files | file(s) to add to the instance
+ * @param {number} id | DropZoneComponent ID
+ * @param {Object} meta | an optional object of data to add to the file object 
+ */
+dropZoneComponent.addFilesToDropZone(files, id, { description: 'my file' }); 
+```
+
+---
+
+#### Reset DropZone instance
+
+The `reset` method can reset all (or specified) DropZone instances. This method will remove any files currently attached to the DropZone and reset the info HTML state.
+
+```javascript
+const id = parseInt(dropZoneHtmlNode.getAttribute('data-dropzone-id'));
+
+/**
+ * @param {number} id | optional DropZoneComponent ID
+ */
+dropZoneComponent.reset(id); 
+// reset a speciic DropZone instance
+dropZoneComponent.reset();
+// reset all DropZone instances
+```
+
+---
+
+#### Get files from DropZone instance
+
+The `getFilesFromDropZone` method can retrieve a single file at a specified index, or all files on the instance.
+
+```javascript
+const id = parseInt(dropZoneHtmlNode.getAttribute('data-dropzone-id'));
+
+/**
+ * @param {number} id | DropZoneComponent ID
+ * @param {number} index | an optional index referencing a single file 
+ * @returns {Array} files
+ */
+dropZoneComponent.addFilesToDropZone(id, index); 
+// returns [...files]
+dropZoneComponent.addFilesToDropZone(id); 
+// returns {...file}
+```
+
+---
+
+#### Get DropZone instance idleHtml
+
+The `getInstanceIdleHtml` method retrieves the `idleHtml` option on a specified instance.
+
+```javascript
+const id = parseInt(dropZoneHtmlNode.getAttribute('data-dropzone-id'));
+
+/**
+ * @param {number} id | DropZoneComponent ID
+ * @returns {String} idleHtml
+ */
+dropZoneComponent.getInstanceIdleHtml(id); 
+// returns '<pre>Some HTML</pre>'
+```
+
+---
+
+#### Get DropZone instance windowEnterHtml
+
+The `getInstanceWindowEnterHtml` method retrieves the `windowEnterHtml` option on a specified instance.
+
+```javascript
+const id = parseInt(dropZoneHtmlNode.getAttribute('data-dropzone-id'));
+
+/**
+ * @param {number} id | DropZoneComponent ID
+ * @returns {String} windowEnterHtml
+ */
+dropZoneComponent.getInstanceWindowEnterHtml(id); 
+// returns '<pre>Some HTML</pre>'
+```
+
+---
+
+#### Get DropZone instance dropZoneEnterHtml
+
+The `getInstanceDropZoneEnterHtml` method retrieves the `dropZoneEnterHtml` option on a specified instance.
+
+```javascript
+const id = parseInt(dropZoneHtmlNode.getAttribute('data-dropzone-id'));
+
+/**
+ * @param {number} id | DropZoneComponent ID
+ * @returns {String} dropZoneEnterHtml
+ */
+dropZoneComponent.getInstanceDropZoneEnterHtml(id); 
+// returns '<pre>Some HTML</pre>'
+```
+
+---
+
+#### Get DropZone instance supportsDataTransferItems
+
+The `getSupportsDataTransferItems` method retrieves the `supportsDataTransferItems` option on a specified instance.
+
+```javascript
+const id = parseInt(dropZoneHtmlNode.getAttribute('data-dropzone-id'));
+
+/**
+ * @param {number} id | DropZoneComponent ID
+ * @returns {Boolean} data transfer support
+ */
+dropZoneComponent.getSupportsDataTransferItems(id); 
+// returns [Boolean]
+```
 
 
 

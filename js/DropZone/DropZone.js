@@ -72,7 +72,7 @@ export default class DropZone {
             this.callbackManager.create(
                 this.options.windowDrop,
                 this,
-                { files: this.files, node: this.node }
+                { files: this.files }
             );
         }
 
@@ -111,7 +111,7 @@ export default class DropZone {
         this.callbackManager.create(
             this.options.dropZoneDrop,
             this,
-            { files: processedFiles, node: this.node, valid, text }
+            { files: processedFiles, valid, text }
         );
     }
 

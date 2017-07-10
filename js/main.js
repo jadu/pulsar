@@ -120,8 +120,6 @@
         });
 
         // DropZone
-        // < IE10 do not support the File API, so we'll only need to initiate
-        // the DropZoneComponent for >= IE10
         pulsar.dropZoneComponent.init({
             supported: !$html.hasClass('.lt-ie10')
         });

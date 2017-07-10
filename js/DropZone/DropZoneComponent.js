@@ -520,7 +520,7 @@ class DropZoneComponent {
      * @param {number} index
      * @returns {Array}
      */
-    getFilesFromDropZone (id, index) {
+    getFilesFromDropZone (id, index = -1) {
         return this.instanceManager.getFiles(id, index);
     }
 
