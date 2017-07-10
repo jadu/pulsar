@@ -119,9 +119,11 @@
             'plugins' : ['state']
         });
 
+        console.log('has class: ', $html.hasClass('lt-ie10'))
+
         // DropZone
         pulsar.dropZoneComponent.init({
-            supported: !$html.hasClass('.lt-ie10')
+            supported: !$html.hasClass('lt-ie10')
         });
     });
 

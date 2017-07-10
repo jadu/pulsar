@@ -91,7 +91,7 @@ class DropZoneComponent {
         this.dropZoneInstances = [].slice.call(this.html.querySelectorAll(this.selector));
 
         // build options from options passed to the constructor and the defaults
-        this.optionsManager.buildComponentOptions(options, defaults, callbacks);
+        this.optionsManager.buildComponentOptions(defaults, options, callbacks);
 
         // add DropZone(s) to instance manager
         this.dropZoneInstances.forEach(node => {

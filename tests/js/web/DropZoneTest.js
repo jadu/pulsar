@@ -61,7 +61,7 @@ describe('DropZone', () => {
             expect(eventStub.add.calledWith(document, 'mouseout')).to.be.true;
         });
 
-        it('should not attach any events if enriched features are not supported', () => {
+        it('should only prevent drop if enriched features are not supported', () => {
             dropZone = new DropZone(
                 $node,
                 { supported: false },
@@ -72,7 +72,8 @@ describe('DropZone', () => {
                 callbackStub
             );
             dropZone.init();
-            expect(eventStub.add).to.have.not.been.called;
+            expect(eventStub.add).to.have.been.calledOnce;
+            expect(eventStub.add).to.have.been.calledWith(window, 'drop', eventStub.preventer);
         });
     });
 

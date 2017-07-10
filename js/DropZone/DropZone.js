@@ -33,6 +33,8 @@ export default class DropZone {
      * Initialise plugin
      */
     init () {
+        // prevent this for all environments as the default behaviour can be frustrating
+        this.eventManager.add(window, 'drop', this.eventManager.preventer);
         // add events for environments that support data transfer items
         if (this.options.supported) {
             this.windowActive = false;
@@ -44,7 +46,6 @@ export default class DropZone {
             this.eventManager.add(window, 'dragover', this.eventManager.preventer);
             this.eventManager.add(window, 'dragenter', this.eventManager.preventer);
             this.eventManager.add(window, 'dragleave', this.eventManager.preventer);
-            this.eventManager.add(window, 'drop', this.eventManager.preventer);
             // interactions
             this.eventManager.add(window, 'dragenter', this.handleWindowEnterWithContext);
             this.eventManager.add(window, 'dragleave', this.handleWindowLeaveWithContext);
