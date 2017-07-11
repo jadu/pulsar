@@ -522,7 +522,7 @@ class DropZoneComponent {
      */
     getFilesFromDropZone (id, index = -1) {
         const files = this.instanceManager.getFiles(id, index);
-        const result = index < 0 ? files : [files];
+        const result = index < 0 ? files.map(file => file.raw) : [files.raw];
         const {valid, text} = this.instanceManager.validateFiles(result, id, true);
 
         // throw an internal validation error
