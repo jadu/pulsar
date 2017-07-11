@@ -113,8 +113,6 @@
             }
         }).disableSelection();
 
-        // tinycon.setBubble(6);
-
         // jsTree
         $('#container').jstree({
             'plugins' : ['state']

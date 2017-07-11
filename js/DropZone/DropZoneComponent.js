@@ -518,10 +518,20 @@ class DropZoneComponent {
      * Get Files from DropZone instance
      * @param {number} id
      * @param {number} index
-     * @returns {Array}
+     * @returns {Array|Object}
      */
     getFilesFromDropZone (id, index = -1) {
-        return this.instanceManager.getFiles(id, index);
+        const files = this.instanceManager.getFiles(id, index);
+        const result = index < 0 ? [files] : files;
+        const {valid, text} = this.instanceManager.validateFiles(result, id, true);
+
+        // throw an internal validation error
+        if (!valid) {
+            this.throwValidationError(text, id);
+        }
+
+        // return a files collection object
+        return { valid, text, files: result };
     }
 
     /**

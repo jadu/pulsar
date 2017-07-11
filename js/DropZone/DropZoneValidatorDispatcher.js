@@ -20,9 +20,10 @@ class DropZoneValidatorDispatcher {
      * @param {Array} files
      * @param {Number} totalFiles
      * @param {Number} totalSize
+     * @param {Boolean} retry
      * @returns {Object} error
      */
-    validate (files, totalFiles, totalSize) {
+    validate (files, totalFiles, totalSize, retry) {
         let result = { valid: true, text: '' };
         let fileCount = totalFiles;
         let sizeCount = totalSize;
@@ -38,14 +39,23 @@ class DropZoneValidatorDispatcher {
             const file = files[i];
             const fileObject = file.getAsFile ? file.getAsFile() : file;
 
-            fileCount++;
+            // if we are in retry mode we don't need to increment this count
+            // as the file will already be on the DropZone instance
+            if (!retry) {
+                fileCount++;
+            }
 
-            // 1. reject items that do not have a type
+            // reject items that do not have a type
             if (result.valid && file.type === '') {
                 result = this.errors.getFileValidationError('UNKNOWN');
             }
 
-            // 2. whitelist
+            // reject items that do not hav a size
+            if (result.valid && file.size === 0) {
+                result = this.errors.getFileValidationError('EMPTY');
+            }
+
+            // whitelist
             //   - check we have a whitelist
             //   - ensure our file is on the whitelist
             //   - skip files that have a mock property
@@ -60,20 +70,24 @@ class DropZoneValidatorDispatcher {
             }
 
 
-            // 3. max files
+            // max files
             //   - ensure we haven't exceeded our max files
             if (result.valid && !this.utils.validateCount(fileCount, this.maxFiles)) {
                 result = this.errors.getFileValidationError('MAX_FILES');
             }
 
-            // 4. max size
+            // max size
             //   - ensure we haven't exceeded our maximum size, if we can get size
             //
             // check to see if we can get a file, if we can't we know we cannot
             // determine the size, so we'll pass this and handle it when we can get
             // the size
             if (result.valid && fileObject && !file.mock) {
-                sizeCount += fileObject.size;
+                // if we are in retry mode we don't want tp add the size of each file
+                // as they will already be on the DropZone instance
+                if (!retry) {
+                    sizeCount += fileObject.size;
+                }
 
                 if (!this.utils.validateSize(sizeCount, this.maxSize)) {
                     result = this.errors.getFileValidationError('MAX_SIZE');

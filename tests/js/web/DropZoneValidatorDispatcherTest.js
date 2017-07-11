@@ -32,18 +32,31 @@ describe('DropZoneValidatorDispatcher', () => {
             expect(dropZoneValidatorDispatcher.validate([], 1, 0)).to.deep.equal(validResponse);
         });
 
+        it('should use the file API if it can when getting file objects', () => {
+            const fileMock = { getAsFile: sinon.spy() };
+
+            dropZoneValidatorDispatcher.validate([fileMock], 1, 0);
+            expect(fileMock.getAsFile).to.have.been.calledOnce;
+        });
+
         describe('unknown', () => {
             it('should return an invalid object if the file type is an empty string', () => {
                 expect(dropZoneValidatorDispatcher.validate([{ type: '' }], 1, 0)).to.equal('error');
                 expect(dropZoneErrorStub.getFileValidationError.calledWith('UNKNOWN')).to.be.true;
             });
-
+        });
+        describe('empty', () => {
+            it('should return an invalid object if the file size is zero', () => {
+                expect(dropZoneValidatorDispatcher.validate([{ type: '' }], 1, 0)).to.equal('error');
+                expect(dropZoneErrorStub.getFileValidationError.calledWith('UNKNOWN')).to.be.true;
+            });
         });
 
         describe('whitelist', () => {
             it('should return an invalid object if the file is not on the whitelist', () => {
-                expect(dropZoneValidatorDispatcher.validate([{ type: 'foo' }], 1, 0)).to.equal('error');
-                expect(dropZoneErrorStub.getFileValidationError.calledWith('WHITELIST')).to.be.true;
+                expect(dropZoneValidatorDispatcher.validate([{ size: 0, type: 'image/png' }], 1, 0)).to.equal('error');
+                expect(dropZoneErrorStub.getFileValidationError).to.have.been.calledOnce;
+                expect(dropZoneErrorStub.getFileValidationError).to.have.been.calledWith('EMPTY');
             });
 
             it('should return a valid object if the file is on the whitelist', () => {
@@ -82,6 +95,38 @@ describe('DropZoneValidatorDispatcher', () => {
                 dropZoneUtilStub.validateCount.returns(true);
                 dropZoneUtilStub.validateSize.returns(true);
                 expect(dropZoneValidatorDispatcher.validate([{ type: 'image/png', size: 10 }], 0, 0)).to.deep.equal(validResponse);
+            });
+        });
+
+        describe('retry', () => {
+            it('should increment the file count if we are not in retry mode', () => {
+                dropZoneUtilStub.validateType.returns(true);
+                dropZoneValidatorDispatcher.validate([{ type: 'image/png', size: 1 }], 1, 1, false);
+                expect(dropZoneUtilStub.validateCount).to.have.been.calledOnce;
+                expect(dropZoneUtilStub.validateCount).to.have.been.calledWith(2, 1);
+            });
+
+            it('should not increment the file count if we are in retry mode', () => {
+                dropZoneUtilStub.validateType.returns(true);
+                dropZoneValidatorDispatcher.validate([{ type: 'image/png', size: 1 }], 1, 1, true);
+                expect(dropZoneUtilStub.validateCount).to.have.been.calledOnce;
+                expect(dropZoneUtilStub.validateCount).to.have.been.calledWith(1, 1);
+            });
+
+            it('should increment the file size count if we are not in retry mode', () => {
+                dropZoneUtilStub.validateType.returns(true);
+                dropZoneUtilStub.validateCount.returns(true);
+                dropZoneValidatorDispatcher.validate([{ type: 'image/png', size: 1 }], 1, 1, false);
+                expect(dropZoneUtilStub.validateSize).to.have.been.calledOnce;
+                expect(dropZoneUtilStub.validateSize).to.have.been.calledWith(2, 1);
+            });
+
+            it('should not increment the file size count if we are in retry mode', () => {
+                dropZoneUtilStub.validateType.returns(true);
+                dropZoneUtilStub.validateCount.returns(true);
+                dropZoneValidatorDispatcher.validate([{ type: 'image/png', size: 1 }], 1, 1, true);
+                expect(dropZoneUtilStub.validateSize).to.have.been.calledOnce;
+                expect(dropZoneUtilStub.validateSize).to.have.been.calledWith(1, 1);
             });
         });
     });

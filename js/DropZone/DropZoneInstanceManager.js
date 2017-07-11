@@ -82,7 +82,7 @@ class DropZoneInstanceManager {
      * Get Files from an instance
      * @param {number} id
      * @param {number} index
-     * @returns {Array}
+     * @returns {Array|Object}
      */
     getFiles (id, index = -1) {
         return _.find(this.instances, i => i.id === id).dropZone.getFiles(index);
@@ -101,14 +101,16 @@ class DropZoneInstanceManager {
      * Validate files against an instance
      * @param {FileList} files
      * @param {number} id
+     * @param {Boolean} retry
      */
-    validateFiles (files, id) {
+    validateFiles (files, id, retry = false) {
         const instance = _.find(this.instances, i => i.id === id);
 
         return instance.dropZone.validator.validate(
             files,
             instance.dropZone.getFiles().length,
-            instance.dropZone.getSize()
+            instance.dropZone.getSize(),
+            retry
         );
     }
 

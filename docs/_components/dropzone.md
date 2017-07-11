@@ -544,7 +544,7 @@ dropZoneComponent.reset();
 
 #### Get files from DropZone instance
 
-The `getFilesFromDropZone` method can retrieve a single file at a specified index, or all files on the instance.
+The `getFilesFromDropZone` method can retrieve a single file at a specified index, or all files on the instance. Files will be passed back through the validator to catch edge cases where files are removed after being added onto the DropZone.
 
 ```javascript
 const id = parseInt(dropZoneHtmlNode.getAttribute('data-dropzone-id'));
@@ -552,12 +552,10 @@ const id = parseInt(dropZoneHtmlNode.getAttribute('data-dropzone-id'));
 /**
  * @param {number} id | DropZoneComponent ID
  * @param {number} index | an optional index referencing a single file 
- * @returns {Array} files
+ * @returns {Object} files
  */
 dropZoneComponent.addFilesToDropZone(id, index); 
-// returns [...files]
-dropZoneComponent.addFilesToDropZone(id); 
-// returns {...file}
+// returns { valid: [Boolean], text: [String], files: [Array] } 
 ```
 
 ---

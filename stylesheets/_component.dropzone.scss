@@ -2,11 +2,8 @@
  * Dropzone
  */
 
-$dropzone-file-size: .5em;
-$dropzone-thumb-size: 4em;
-
 .dropzone {
-    border: 2px dashed color(gray, light);
+    border: 2px dashed color(border);
     border-radius: $border-radius;
     color: color(text, base);
     padding: 1.25em;
@@ -27,6 +24,9 @@ $dropzone-thumb-size: 4em;
     width: 100%;
     z-index: 0;
 }
+
+$dropzone-file-size: .5em;
+$dropzone-thumb-size: 4em;
 
 .dropzone__file-wrapper {
     display: flex;
@@ -87,7 +87,7 @@ $dropzone-icon-rotation: 30deg;
 }
 
 .dropzone__info {
-    font-size: .85em;
+    font-size: $font-size-small;
     margin-bottom: 0;
     position: relative;
 }
@@ -95,7 +95,7 @@ $dropzone-icon-rotation: 30deg;
 .dropzone__help {
     color: color(text, help);
     display: inline-block;
-    font-size: .85em;
+    font-size: $font-size-small;
     margin-bottom: 0;
     margin-top: 0;
     padding: 0 1em;
@@ -113,7 +113,7 @@ $dropzone-icon-rotation: 30deg;
 .dropzone__error {
     color: color(danger);
     font-family: $font-family-regular;
-    font-size: .85em;
+    font-size: $font-size-small;
     line-height: 1.2;
     margin: 0;
     position: relative;
@@ -309,8 +309,7 @@ $dropzone-icon-rotation: 30deg;
  * Lexicon code
  */
 
-// doing this with IDs to make sure this code never interferes with product css
-#lexicon-dropzone {
+.lex-dropzone {
     .lt-ie10 & {
         display: none;
     }

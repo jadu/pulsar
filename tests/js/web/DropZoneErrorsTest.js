@@ -1,10 +1,17 @@
 import DropZoneErrors from '../../../js/DropZone/DropZoneErrors';
 
 describe('DropZoneErrors', () => {
+    const config = {
+        whitelist: 'whitelist',
+        maxFiles: 'maxFiles',
+        maxSize: 'maxSize',
+        unknown: 'unknown',
+        empty: 'empty'
+    };
     let dropZoneErrors;
 
     beforeEach(() => {
-        dropZoneErrors = new DropZoneErrors();
+        dropZoneErrors = new DropZoneErrors(config);
     });
 
     describe('getValidationError', () => {
@@ -12,16 +19,7 @@ describe('DropZoneErrors', () => {
             expect(dropZoneErrors.getFileValidationError('WHITELIST')).to.deep.equal({
                 valid: false,
                 code: 'WHITELIST',
-                text: 'Unsupported file type'
-            });
-        });
-
-        it('should return a  custom whitelist error', () => {
-            dropZoneErrors = new DropZoneErrors({ whitelist: 'foo' });
-            expect(dropZoneErrors.getFileValidationError('WHITELIST')).to.deep.equal({
-                valid: false,
-                code: 'WHITELIST',
-                text: 'foo'
+                text: config.whitelist
             });
         });
 
@@ -29,16 +27,7 @@ describe('DropZoneErrors', () => {
             expect(dropZoneErrors.getFileValidationError('MAX_FILES')).to.deep.equal({
                 valid: false,
                 code: 'MAX_FILES',
-                text: 'Maximum number files exceeded'
-            });
-        });
-
-        it('should return a custom max files error', () => {
-            dropZoneErrors = new DropZoneErrors({ maxFiles: 'foo' });
-            expect(dropZoneErrors.getFileValidationError('MAX_FILES')).to.deep.equal({
-                valid: false,
-                code: 'MAX_FILES',
-                text: 'foo'
+                text: config.maxFiles
             });
         });
 
@@ -46,16 +35,7 @@ describe('DropZoneErrors', () => {
             expect(dropZoneErrors.getFileValidationError('MAX_SIZE')).to.deep.equal({
                 valid: false,
                 code: 'MAX_SIZE',
-                text: 'Maximum file size exceeded'
-            });
-        });
-
-        it('should return a custom max size error', () => {
-            dropZoneErrors = new DropZoneErrors({ maxSize: 'foo' });
-            expect(dropZoneErrors.getFileValidationError('MAX_SIZE')).to.deep.equal({
-                valid: false,
-                code: 'MAX_SIZE',
-                text: 'foo'
+                text: config.maxSize
             });
         });
 
@@ -63,16 +43,15 @@ describe('DropZoneErrors', () => {
             expect(dropZoneErrors.getFileValidationError('UNKNOWN')).to.deep.equal({
                 valid: false,
                 code: 'UNKNOWN',
-                text: 'That file type is not recognized'
+                text: config.unknown
             });
         });
 
-        it('should return a custom unknown error', () => {
-            dropZoneErrors = new DropZoneErrors({ unknown: 'foo' });
-            expect(dropZoneErrors.getFileValidationError('UNKNOWN')).to.deep.equal({
+        it('should return an empty error', () => {
+            expect(dropZoneErrors.getFileValidationError('EMPTY')).to.deep.equal({
                 valid: false,
-                code: 'UNKNOWN',
-                text: 'foo'
+                code: 'EMPTY',
+                text: config.empty
             });
         });
     });

@@ -205,7 +205,7 @@ export default class DropZone {
      * @param {Array} files
      */
     handleDropZoneEnter (files) {
-        const { valid, text } = this.validator.validate(files, this.getFiles().length, this.getSize());
+        const { valid, text } = this.validator.validate(files, this.files.length, this.size);
 
         this.idleTimer.clear();
         this.dropZoneActive = true;
@@ -221,7 +221,7 @@ export default class DropZone {
      * @param {Array} files
      */
     handleDropZoneLeave (files) {
-        const { valid, text } = this.validator.validate(files, this.getFiles().length, this.getSize());
+        const { valid, text } = this.validator.validate(files, this.files.length, this.size);
 
         this.idleTimer.clear();
         this.dropZoneActive = false;
