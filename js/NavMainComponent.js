@@ -86,6 +86,8 @@ NavMainComponent.prototype.switchPrimaryNav = function(target) {
     var component = this;
 
     component.$html.find('.nav-primary .nav-link').removeClass('is-active');
+    component.$html.find('.nav-main--sliding').removeClass('is-open');
+    component.$html.find('.nav-additional--sliding').removeClass('is-open');
 
     if (component.$html.find('[data-nav="' + target + '"]').length >= 1) {
         component.$navMain.addClass('is-open');
