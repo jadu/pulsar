@@ -60,14 +60,14 @@ describe('NavMain component', function() {
 --><div class="nav-main--sliding">\
         <ul class="nav-items">\
             <li class="nav-item">\
-                <a href="#one_one" class="nav-link">1.1</a>\
+                <a href="#three_one" class="nav-link">1.1</a>\
             </li>\
         </ul>\
     </div><!-- \
   --><div class="nav-additional--sliding ">\
         <ul class="nav-items">\
           <li class="nav-item">\
-            <a href="#one_one" class="nav-link">1.1</a>\
+            <a href="#four_one" class="nav-link">1.1</a>\
           </li>\
         </ul>\
     </div>\
@@ -78,12 +78,16 @@ describe('NavMain component', function() {
         this.$navMain = this.$html.find('.nav-main');
         this.$closeLink = this.$html.find('[data-nav-action="close"]');
         this.$contentMain = this.$html.find('.content-main');
+        this.$navMainSliding = this.$navMain.find('.nav-main--sliding');
 
         this.$linkOne = this.$html.find('[href="#one"]');
         this.$linkTwo = this.$html.find('[href="#two"]');
         this.$linkThree = this.$html.find('[href="#three"]');
         this.$secondaryLinkOne = this.$html.find('[href="#one_one"]');
         this.$secondaryLinkTwo = this.$html.find('[href="#two_one"]');
+        this.$secondaryLinkThree = this.$html.find('[href="#three_one"]');
+        this.$secondaryLinkFour = this.$html.find('[href="#four_one"]');
+        this.$moreIcon = this.$navMain.find('.more-icon');
 
         this.navMainComponent = new NavMainComponent(this.$html);
 
@@ -231,6 +235,19 @@ describe('NavMain component', function() {
 
         it('should close the sub navigation', function() {
             expect(this.$html.find('.nav-main').hasClass('is-open')).to.be.false;
+        });
+
+    });
+
+    describe('clicking the more icon', function() {
+
+        before(function() {
+            this.navMainComponent.init();
+            this.$moreIcon.click();
+        });
+
+        it('should open the sliding main nav', function() {
+            expect(this.$navMainSliding.hasClass('is-open')).to.be.true;
         });
 
     });
