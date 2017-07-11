@@ -55,7 +55,22 @@ describe('NavMain component', function() {
         </ul>\
     </div>\
 \
-  </div>\
+  </div><!--\
+\
+--><div class="nav-main--sliding">\
+        <ul class="nav-items">\
+            <li class="nav-item">\
+                <a href="#one_one" class="nav-link">1.1</a>\
+            </li>\
+        </ul>\
+    </div><!-- \
+  --><div class="nav-additional--sliding ">\
+        <ul class="nav-items">\
+          <li class="nav-item">\
+            <a href="#one_one" class="nav-link">1.1</a>\
+          </li>\
+        </ul>\
+    </div>\
 </nav>\
 <div class="content-main"></div>\
 ').appendTo(this.$html);
