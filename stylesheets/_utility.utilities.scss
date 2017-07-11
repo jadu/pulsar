@@ -312,3 +312,13 @@ div.no-results {
 .u-cursor-not-allowed {
     cursor: not-allowed !important;
 }
+
+%u-no-hover:hover,
+.u-no-hover.u-no-hover:hover {
+    background-color: inherit !important;
+}
+
+%u-no-border,
+.u-no-border {
+    border: 0 !important;
+}
