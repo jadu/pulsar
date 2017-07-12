@@ -407,14 +407,16 @@ describe('DropZone', () => {
     });
 
     describe('getFiles()', () => {
-        it('should return a single file if an index is given', () => {
-            dropZone.files = [{ id: 0 }, { id: 1 }];
-            expect(dropZone.getFiles(1)).to.deep.equal({ id: 1 });
-        });
-
-        it('should return all files if no index is given', () => {
+        it('should return all files', () => {
             dropZone.files = [{ id: 0 }, { id: 1 }];
             expect(dropZone.getFiles()).to.deep.equal([{ id: 0 }, { id: 1 }]);
+        });
+    });
+
+    describe('getFile()', () => {
+        it('should return a single file', () => {
+            dropZone.files = [{ id: 0 }, { id: 1 }];
+            expect(dropZone.getFile(1)).to.deep.equal({ id: 1 });
         });
     });
 

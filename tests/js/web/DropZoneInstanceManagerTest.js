@@ -144,6 +144,22 @@ describe('DropZoneInstanceManager', () => {
         });
     });
 
+    describe('getFile()', () => {
+        const mockInstance = {
+            id: 0,
+            dropZone: {
+                getFile: sinon.spy()
+            }
+        };
+
+        it('should return a specific file from an instance', () => {
+            instanceManager.instances.push(mockInstance);
+            instanceManager.getFile(0, 0);
+            expect(mockInstance.dropZone.getFile).to.have.been.calledOnce;
+            expect(mockInstance.dropZone.getFile).to.have.been.calledWith(0);
+        });
+    });
+
     describe('getSupportsDataTransfer()', () => {
         const mockInstance = {
             id: 0,

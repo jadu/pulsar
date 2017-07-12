@@ -515,16 +515,13 @@ class DropZoneComponent {
     }
 
     /**
-     * Get Files from DropZone instance
+     * Get all files from DropZone instances
      * @param {number} id
-     * @param {number} index
-     * @returns {Array|Object}
+     * @returns {{valid: Boolean, text: String, files: Array}}
      */
-    getFilesFromDropZone (id, index = -1) {
-        const files = this.instanceManager.getFiles(id, index);
-        const result = index < 0 ? files : [files];
-        const raw = result.map(file => file.raw);
-        const { valid, text } = this.instanceManager.validateFiles(raw, id, true);
+    getFilesFromDropZone (id) {
+        const files = this.instanceManager.getFiles(id);
+        const { valid, text } = this.instanceManager.validateFiles(files.map(file => file.raw), id, true);
 
         // throw an internal validation error
         if (!valid) {
@@ -532,7 +529,7 @@ class DropZoneComponent {
         }
 
         // return a files collection object
-        return { valid, text, files: result };
+        return { valid, text, files };
     }
 
     /**

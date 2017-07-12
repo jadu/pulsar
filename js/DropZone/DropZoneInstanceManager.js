@@ -79,13 +79,22 @@ class DropZoneInstanceManager {
     }
 
     /**
-     * Get Files from an instance
+     * Get all files from an instance
+     * @param {number} id
+     * @returns {Array} files
+     */
+    getFiles (id) {
+        return _.find(this.instances, i => i.id === id).dropZone.getFiles();
+    }
+
+    /**
+     * Get a specific file from an instance
      * @param {number} id
      * @param {number} index
-     * @returns {Array|Object}
+     * @returns {Object} file
      */
-    getFiles (id, index = -1) {
-        return _.find(this.instances, i => i.id === id).dropZone.getFiles(index);
+    getFile (id, index) {
+         return _.find(this.instances, i => i.id === id).dropZone.getFile(index);
     }
 
     /**

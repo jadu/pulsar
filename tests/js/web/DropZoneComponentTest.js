@@ -901,14 +901,14 @@ describe('DropZoneComponent', () => {
         });
 
         it('should call get files on the instance manager', () => {
-            dropZoneComponent.getFilesFromDropZone(0, 0);
+            dropZoneComponent.getFilesFromDropZone(0);
             expect(instanceManager.getFiles).to.have.been.calledOnce;
-            expect(instanceManager.getFiles).to.have.been.calledWith(0, 0);
+            expect(instanceManager.getFiles).to.have.been.calledWith(0);
         });
 
         it('should run the files through the validator with the retry flag set to true', () => {
-            instanceManager.getFiles.returns({ raw: 'foo' });
-            dropZoneComponent.getFilesFromDropZone(0, 0);
+            instanceManager.getFiles.returns([{ raw: 'foo' }]);
+            dropZoneComponent.getFilesFromDropZone(0);
             expect(instanceManager.validateFiles).to.have.been.calledOnce;
             expect(instanceManager.validateFiles).to.have.been.calledWith(['foo'], 0, true);
         });
@@ -916,19 +916,28 @@ describe('DropZoneComponent', () => {
         // partial stub
         it('should throw a validation error if files are not valid', () => {
             instanceManager.validateFiles.returns({ valid: false, text: 'foo' });
-            dropZoneComponent.getFilesFromDropZone(0, 0);
+            dropZoneComponent.getFilesFromDropZone(0);
             expect(errorStub).to.have.been.calledOnce;
             expect(errorStub).to.have.been.calledWith('foo', 0);
         });
 
         it('should return a file collection object', () => {
-            instanceManager.getFiles.returns({ raw: 'foo' });
-            expect(dropZoneComponent.getFilesFromDropZone(0, 0)).to.deep.equal({
+            instanceManager.getFiles.returns([{ raw: 'foo' }]);
+            expect(dropZoneComponent.getFilesFromDropZone(0)).to.deep.equal({
                 valid: true,
                 text: '',
                 files: [
                     { raw: 'foo' }
                 ]
+            });
+        });
+
+        it('should return an empty collection object if no files are available', () => {
+            instanceManager.getFiles.returns([]);
+            expect(dropZoneComponent.getFilesFromDropZone(0)).to.deep.equal({
+                valid: true,
+                text: '',
+                files: []
             });
         });
     });
