@@ -12,10 +12,14 @@ describe('NavMain component', function() {
     beforeEach(function() {
         this.$html = $('<div class="fake-html"></div>').appendTo('html');
         this.$body = $('<div class="fake-body"></div>').appendTo(this.$html);
+        this.$window = $('<div></div>');
+        this.$window.height(150);
+        this.window = this.$window[0];
+
         this.$markup = $('\
 <nav class="nav-main">\
   <div class="nav-primary">\
-    <a href="http://jadu.net">Jadu</a>\
+    <a href="http://jadu.net" class="jadu-branding">Jadu</a>\
 \
     <ul class="nav-items">\
       <li class="nav-item">\
@@ -73,7 +77,7 @@ describe('NavMain component', function() {
     </div>\
 </nav>\
 <div class="content-main"></div>\
-').appendTo(this.$html);
+').appendTo(this.$body);
 
         this.$navMain = this.$html.find('.nav-main');
         this.$closeLink = this.$html.find('[data-nav-action="close"]');
@@ -87,10 +91,16 @@ describe('NavMain component', function() {
         this.$secondaryLinkTwo = this.$html.find('[href="#two_one"]');
         this.$secondaryLinkThree = this.$html.find('[href="#three_one"]');
         this.$secondaryLinkFour = this.$html.find('[href="#four_one"]');
-        this.$moreIcon = this.$navMain.find('.more-icon');
 
-        this.navMainComponent = new NavMainComponent(this.$html);
+        // set height on nav items as no css in tests
+        this.$html.find('.nav-item').height(20);
 
+        this.navMainComponent = new NavMainComponent(this.$html, this.window);
+
+    });
+
+    afterEach(function () {
+        this.$html.remove(); // Detach test DOM from the real one
     });
 
     describe('clicking on the first primary nav link', function() {
@@ -241,15 +251,14 @@ describe('NavMain component', function() {
 
     describe('clicking the more icon', function() {
 
-        before(function() {
+        beforeEach(function() {
             this.navMainComponent.init();
-            this.$moreIcon.click();
+            this.$moreIconLink = this.$navMain.find('.more-icon > .nav-link');
+            this.$moreIconLink.click();
         });
 
         it('should open the sliding main nav', function() {
             expect(this.$navMainSliding.hasClass('is-open')).to.be.true;
         });
-
     });
-
 });

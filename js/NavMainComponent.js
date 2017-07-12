@@ -2,8 +2,9 @@
 
 var $ = require('jquery');
 
-function NavMainComponent(html) {
+function NavMainComponent(html, window) {
     this.$html = html;
+    this.$window = $(window);
 };
 
 NavMainComponent.prototype.init = function() {
@@ -51,7 +52,7 @@ NavMainComponent.prototype.init = function() {
         component.changeActiveSecondaryNavLink($(this).attr('href'));
     });
 
-    component.$moreIcon.on('click', function() {
+    component.$moreIcon.find('.nav-link').on('click', function() {
         component.$navMainSliding.toggleClass('is-open');
         component.$navMainSliding.find('.nav-list').toggleClass('is-active');
     });
@@ -177,40 +178,62 @@ NavMainComponent.prototype.closeSubNavs = function() {
 };
 
 /* Detect window height, adjust the number of items in the primary nav and check when to add "More" option */
+
+/* some notes
+- Feels like the JS should handle the creation of the third level menu to avoid unlessisary markup changes
+- close icon on 3rd level menu should point the other way (direction of animation)
+- class name nav-main--sliding does not follow bem (not a modifier) suggest nav-tertiary
+- doesn't current respond to window height changes
+- more categories icon should use fixed width icons
+- you can't test $('.nav-primary 
+- lots going on here even though I've tried to simplify, suggest moving chunks of functionality into functions with 1 role each.
+- no need for this to be on prototype
+- /* comments are in compiled js // are not
+*/
+
+
 NavMainComponent.prototype.adjustNavItems = function() {
+    var component = this,
+        availableHeight = component.$window.height(),
+        navItemsHeight = (component.$html.find('.nav-primary .nav-items').outerHeight(true) + component.$html.find('.jadu-branding').outerHeight(true)),
+        moreIconHeight = 72, // Pre calculated height of the "More" nav item 
+        navItemsCountTotal = component.$html.find('.nav-primary .nav-items li').length,
+        i = 2, // This number represents the item before the last in the nth-last-child 
+        numberOfHiddenNavItems,
+        itemsToHideCount;
 
-    var availableHeight = $(window).height();
-    var itemsHeight = ($('.nav-items').outerHeight(true) + $('.jadu-branding').outerHeight(true));
-    var moreIconHeight = 72; /* Pre calculated height of the "More" nav item */
-    var navItemsCountTotal = $('.nav-primary .nav-items li').length;
-    var i = 2; /* This number represents the item before the last in the nth-last-child */
+    // While nav items and branding height is greater than the window height
+    while (navItemsHeight + moreIconHeight > availableHeight) { 
 
-    /* Initial Check of Height */
-    while (itemsHeight + moreIconHeight > availableHeight) {
-        if($('.nav-primary .nav-items li:last-child').css('display') === 'none') {
-            $('.nav-primary .nav-items li:nth-last-child('+ i +')').addClass('is-hidden');
-            i++;
+        // If last nav item is visable hide it
+        if (component.$html.find('.nav-primary .nav-items li:last-child').is(':visible')) {
+            component.$html.find('.nav-primary .nav-items li:last-child').hide();
         } else {
-            $('.nav-primary .nav-items li:last-child').addClass('is-hidden');
+            // if last nav item is hidden hide the next one up
+            component.$html.find('.nav-primary .nav-items li:nth-last-child('+ i +')').hide();
+            i++;
         }
-        itemsHeight = ($('.nav-items').outerHeight(true) + $('.jadu-branding').outerHeight(true));
+
+        // Recalculate nav items height based on items just hidden 
+        navItemsHeight = (component.$html.find('.nav-items').outerHeight(true) + component.$html.find('.jadu-branding').outerHeight(true));
     }
 
-    var hiddenItemsCount = $('.nav-primary .nav-items .is-hidden').length;
+    numberOfHiddenNavItems = component.$html.find('.nav-primary .nav-items li:hidden').length;
 
-    /* Add the "More" nav item */
-    if((itemsHeight + moreIconHeight < availableHeight) && (hiddenItemsCount > 0)){
-        $('.nav-primary .nav-items').append('<li label="More" class="nav-item t-nav-item more-icon" aria-haspopup="true"><a href="#more" class="nav-link t-nav-link"><i aria-hidden="true" class="icon-ellipsis-horizontal nav-link__icon t-nav-icon"></i><span class="nav-link__label">More</span></a></li>');
+    // Add the "More" nav item
+    if ((navItemsHeight + moreIconHeight < availableHeight) && (numberOfHiddenNavItems > 0)) { // can't we just test for numberOfHiddenNavItems here?
+        component.$html.find('.nav-primary .nav-items').append('<li label="More" class="nav-item t-nav-item more-icon" aria-haspopup="true"><a href="#more" class="nav-link t-nav-link"><i aria-hidden="true" class="icon-ellipsis-horizontal nav-link__icon t-nav-icon"></i><span class="nav-link__label">More</span></a></li>');
     }
 
-    /* Calculate the number of visible nav items and hide them in the main sliding nav */
-    var toHideCount = navItemsCountTotal - hiddenItemsCount - 1; /* 1 is for the "More" nav item */
+    // Calculate the number of visible nav items any that don't fit in the window
+    itemsToHideCount = navItemsCountTotal - numberOfHiddenNavItems - 1; // 1 is for the "More" nav item 
     i = 1;
-    do {
-        $('.nav-main--sliding .nav-items li:nth-child('+ i +')').addClass('is-hidden');
+
+    while (itemsToHideCount >= 0) {
+        component.$html.find('.nav-main--sliding .nav-items li:nth-child('+ i +')').hide();
         i++;
-        toHideCount--;
-    } while(toHideCount >= 0);
+        itemsToHideCount--;
+    }
 };
 
 module.exports = NavMainComponent;
