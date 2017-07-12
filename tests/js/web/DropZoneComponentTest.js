@@ -907,7 +907,7 @@ describe('DropZoneComponent', () => {
         });
 
         it('should run the files through the validator with the retry flag set to true', () => {
-            instanceManager.getFiles.returns(['foo']);
+            instanceManager.getFiles.returns({ raw: 'foo' });
             dropZoneComponent.getFilesFromDropZone(0, 0);
             expect(instanceManager.validateFiles).to.have.been.calledOnce;
             expect(instanceManager.validateFiles).to.have.been.calledWith(['foo'], 0, true);
@@ -922,11 +922,13 @@ describe('DropZoneComponent', () => {
         });
 
         it('should return a file collection object', () => {
-            instanceManager.getFiles.returns(['foo']);
+            instanceManager.getFiles.returns({ raw: 'foo' });
             expect(dropZoneComponent.getFilesFromDropZone(0, 0)).to.deep.equal({
                 valid: true,
                 text: '',
-                files: ['foo']
+                files: [
+                    { raw: 'foo' }
+                ]
             });
         });
     });
