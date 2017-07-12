@@ -118,7 +118,7 @@ Any option from the reference above that is prefixed with `data-dropzone-` can b
 
 ```
 @param {String|Number}
-@deafult [5]
+@default [5]
 ```
 
 The max files option sets the maximum amount of files allowed onto the DropZone, this is a running total and will persist across multiple drops. If the limit is exceeded a DropZone error will be thrown.
@@ -137,7 +137,7 @@ JavaScript  | `dropZoneComponent.init({ maxfiles: 5 })`
 
 ```
 @param {String|Number}
-@deafult [3e+8]
+@default [3e+8]
 ```
 
 The max size option sets the maximum amount of bytes allowed on the DropZone, this is a running total and will persist across multiple drops. If the limit is exceeded a DropZone error will be thrown.
@@ -156,7 +156,7 @@ JavaScript  | `dropZoneComponent.init({ maxSize: 50000 })`
 
 ```
 @param {String}
-@deafult ['your files here or <a class="dropzone__browse" id="#">Browse Files</a>']
+@default ['your files here or <a class="dropzone__browse" id="#">Browse Files</a>']
 ```
 
 The idle HTML option specifies the HTML content for the DropZone helper node when it is in it's idle state.
@@ -175,7 +175,7 @@ JavaScript  | `dropZoneComponent.init({ idleHtml: '<p>foo</p>' })`
 
 ```
 @param {String}
-@deafult ['Drag your files here']
+@default ['Drag your files here']
 ```
 
 The window enter HTML option specifies the HTML content for the DropZone helper node when files have entered the window.
@@ -194,7 +194,7 @@ JavaScript  | `dropZoneComponent.init({ windowEnterHtml: '<p>foo</p>' })`
 
 ```
 @param {String}
-@deafult ['Drop your files here']
+@default ['Drop your files here']
 ```
 
 The DropZone enter HTML option specifies the HTML content for the DropZone helper node when files have entered the DropZone.
@@ -213,7 +213,7 @@ JavaScript  | `dropZoneComponent.init({ dropZoneEnterHtml: '<p>foo</p>' })`
 
 ```
 @param {Boolean}
-@deafult [false]
+@default [false]
 ```
 
 The passive option specifies if the DropZone will be in passive mode.
@@ -232,7 +232,7 @@ JavaScript  | `dropZoneComponent.init({ passive: true })`
 
 ```
 @param {Boolean}
-@deafult [true]
+@default [true]
 ```
 
 The supported option specifies whether the plugin attaches events to the environment. This will typically be used in environments that do not support the File API, IE9 for instance. Therefore it makes most sense to set this options in the JavaScript init code as we'll be able to determine the environment at that point.
@@ -251,7 +251,7 @@ JavaScript  | `dropZoneComponent.init({ supported: document.documentElement.sear
 
 ```
 @param {String|null}
-@deafult [null]
+@default [null]
 ```
 
 ![DropZoneComponent input node]({{ site.baseurl }}/assets/image_examples/dropzone-input-node.gif){: .dropzone-example }
@@ -272,7 +272,7 @@ JavaScript  | `dropZoneComponent.init({ inputNodeId: 'foo' })`
 
 ```
 @param {Boolean}
-@deafult [false]
+@default [false]
 ```
 
 The show input node option specifies if the corresponding input node should be hidden by the DropZoneComponent. It's recommended that this is handled in CSS to prevent any flashing of the input element.
@@ -291,7 +291,7 @@ JavaScript  | `dropZoneComponent.init({ showInputNode: true })`
 
 ```
 @param {Boolean}
-@deafult [true]
+@default [true]
 ```
 
 The file node description option specifies if the file HTML that is generated includes the file description.
@@ -310,7 +310,7 @@ JavaScript  | `dropZoneComponent.init({ fileNodeDesc: false })`
 
 ```
 @param {Boolean}
-@deafult [true]
+@default [true]
 ```
 
 The file node name option specifies if the file HTML that is generated includes the file name.
@@ -329,7 +329,7 @@ JavaScript  | `dropZoneComponent.init({ fileNodeName: false })`
 
 ```
 @param {Boolean}
-@deafult [true]
+@default [true]
 ```
 
 The file node size option specifies if the file HTML that is generated includes the file size.
@@ -348,7 +348,7 @@ JavaScript  | `dropZoneComponent.init({ fileNodeSize: false })`
 
 ```
 @param {Boolean}
-@deafult [true]
+@default [true]
 ```
 
 The file node type option specifies if the file HTML that is generated includes the file type.
