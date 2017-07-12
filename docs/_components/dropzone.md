@@ -499,10 +499,9 @@ const id = parseInt(dropZoneHtmlNode.getAttribute('data-dropzone-id'));
 /**
  * @param {FileList} files | file(s) to pass through the validator
  * @param {number} id | DropZoneComponent ID
- * @returns {Object} validation object
+ * @returns {{ valid: Boolean, text: String }} validation object
  */
 dropZoneComponent.validateFiles(files, id); 
-// returns { valid: [Boolean], text: [String] }
 ```
 
 ---
@@ -535,7 +534,7 @@ const id = parseInt(dropZoneHtmlNode.getAttribute('data-dropzone-id'));
  * @param {number} id | optional DropZoneComponent ID
  */
 dropZoneComponent.reset(id); 
-// reset a speciic DropZone instance
+// reset a specific DropZone instance
 dropZoneComponent.reset();
 // reset all DropZone instances
 ```
@@ -544,7 +543,7 @@ dropZoneComponent.reset();
 
 #### Get files from DropZone instance
 
-The `getFilesFromDropZone` method can retrieve a single file at a specified index, or all files on the instance. Files will be passed back through the validator to catch edge cases where files are removed after being added onto the DropZone.
+The `getFilesFromDropZone` will return all files attached to an instance. Files will be passed back through the validator to catch edge cases where files are removed after being added onto the DropZone.
 
 ```javascript
 const id = parseInt(dropZoneHtmlNode.getAttribute('data-dropzone-id'));
@@ -552,10 +551,9 @@ const id = parseInt(dropZoneHtmlNode.getAttribute('data-dropzone-id'));
 /**
  * @param {number} id | DropZoneComponent ID
  * @param {number} index | an optional index referencing a single file 
- * @returns {Object} files
+ * @returns {{ valid: Boolean, text: String, files: Array }}
  */
-dropZoneComponent.addFilesToDropZone(id, index); 
-// returns { valid: [Boolean], text: [String], files: [Array] } 
+dropZoneComponent.getFilesFromDropZone(id); 
 ```
 
 ---
