@@ -533,10 +533,7 @@ const id = parseInt(dropZoneHtmlNode.getAttribute('data-dropzone-id'));
 /**
  * @param {number} id | optional DropZoneComponent ID
  */
-dropZoneComponent.reset(id); 
-// reset a specific DropZone instance
-dropZoneComponent.reset();
-// reset all DropZone instances
+dropZoneComponent.reset(); 
 ```
 
 ---
@@ -570,7 +567,6 @@ const id = parseInt(dropZoneHtmlNode.getAttribute('data-dropzone-id'));
  * @returns {String} idleHtml
  */
 dropZoneComponent.getInstanceIdleHtml(id); 
-// returns '<pre>Some HTML</pre>'
 ```
 
 ---
@@ -587,7 +583,6 @@ const id = parseInt(dropZoneHtmlNode.getAttribute('data-dropzone-id'));
  * @returns {String} windowEnterHtml
  */
 dropZoneComponent.getInstanceWindowEnterHtml(id); 
-// returns '<pre>Some HTML</pre>'
 ```
 
 ---
@@ -604,7 +599,6 @@ const id = parseInt(dropZoneHtmlNode.getAttribute('data-dropzone-id'));
  * @returns {String} dropZoneEnterHtml
  */
 dropZoneComponent.getInstanceDropZoneEnterHtml(id); 
-// returns '<pre>Some HTML</pre>'
 ```
 
 ---
@@ -621,7 +615,6 @@ const id = parseInt(dropZoneHtmlNode.getAttribute('data-dropzone-id'));
  * @returns {Boolean} data transfer support
  */
 dropZoneComponent.getSupportsDataTransferItems(id); 
-// returns [Boolean]
 ```
 
 
