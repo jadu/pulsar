@@ -7,7 +7,7 @@ import DropZoneComponentValidationManager from './DropZoneComponentValidationMan
 import DropZoneBodyClassManager from './DropZoneBodyClassManager';
 import MimeTyper from '../libs/MimeTyper';
 
-class DropZoneComonentFactory {
+class DropZoneComponentFactory {
     /**
      * Create an instance of the DropZoneComponent with it's dependencies
      * @param {Element} html
@@ -30,4 +30,4 @@ class DropZoneComonentFactory {
     }
 }
 
-module.exports = DropZoneComonentFactory;
+module.exports = DropZoneComponentFactory;
