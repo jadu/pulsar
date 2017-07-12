@@ -138,6 +138,7 @@ class DropZoneComponent {
             // reset input node value, this will ensure our change event
             // fires each time we use the browse files functionality - even
             // if we try to add an identical value
+            input.value = '';
             input.type = '';
             input.type = 'file';
         });
