@@ -59,90 +59,6 @@
     outline: none;
 }
 
-// Fix for P3 spacing on Q forms/fieldsets
-.form--horizontal,
-.form {
-  // padding-top: 17px;
-
-  .slide-inner & {
-    padding-top: 17px;
-  }
-
-  > fieldset {
-    padding: 22px 0;
-
-    legend {
-      border-bottom: 1px solid $gray-light;
-      color: #4d4d4d;
-      display: block;
-      font-size: 24px;
-      line-height: 28.000000006px;
-      margin-bottom: 15.000000004px;
-      padding: 0 20px 0 0;
-      position: relative;
-      width: 100%;
-    }
-  }
-
-  .form__group .form__collection .remove__control {
-    @include respond-min($screen-small) {
-      position: static !important;
-    }
-  }
-
-  .form__actions {
-    margin: 0;
-  }
-
-  .form__group .form__collection ul {
-    margin-left: 0;
-  }
-
-  .form__indent {
-    margin-left: 25%;
-    margin-right: $gutter-width;
-
-    p {
-      margin-left: 0;
-      padding-left: 0;
-    }
-  }
-
-  .form__group--inline .form__control:not(.checkbox):not(.radio) {
-    max-width: none;
-    width: auto;
-  }
-
-  .uploader__control {
-    display: inline-block;
-  }
-
-  .tabs__list.tabs--horizontal,
-  .tabs__list.tabs--horizontal + .tabs__content {
-    margin: 0;
-  }
-
-  .tabs__content {
-    padding: 0 10px 10px;
-  }
-
-  &.table-filter fieldset {
-    padding: 0;
-
-    .control__label {
-        margin-bottom: 0;
-        padding-top: 7px;
-        text-align: right;
-    }
-
-    .legend {
-        display: inline-block;
-        margin-bottom: 0;
-        vertical-align: sub;
-    }
-  }
-}
-
 // New translations UI (CMS)
 
 .table--datagrid .select2 {
@@ -175,4 +91,17 @@
     font-size: $font-size-xlarge;
     line-height: $line-height-large;
     text-align: center;
+}
+
+.slotpicker-calendar {
+    display: inline-block;
+    vertical-align: top;
+    width: 400px;
+}
+
+.slotpicker-slots {
+    display: inline-block;
+    margin-left: $gutter-width;
+    vertical-align: top;
+    width: 250px;
 }

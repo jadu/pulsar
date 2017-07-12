@@ -1,0 +1,18 @@
+{% extends '@pulsar/lexicon/base.html.twig' %}
+
+{% set heading = 'Masterswitch' %}
+
+{% set tab_one %}
+    {% include '/lexicon/patterns/masterswitch/masterswitch.html.twig' %}
+{% endset %}
+
+{%
+    set tabs_content = [
+        {
+            "id"    : "masterswitch",
+            "label" : "Masterswitch",
+            "src"   : tab_one,
+            "active": true
+        }
+    ]
+%}

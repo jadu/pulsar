@@ -17,21 +17,32 @@ $danger-to-text-color: black;
 }
 
 .has-success:not(.form__group) {
-    background-color: lighten($success-color, 50) !important;
+    background-color: lighten(color(success), 50) !important;
 
     &:hover {
-        background-color: lighten($success-color, 47) !important;
+        background-color: lighten(color(success), 47) !important;
     }
 }
 
 .has-warning:not(.form__group) {
-    background-color: lighten($warning-color, 20) !important;
+    background-color: lighten(color(warning), 20) !important;
 
     &:hover {
-        background-color: lighten($warning-color, 17) !important;
+        background-color: lighten(color(warning), 17) !important;
+    }
+}
+
+@each $state, $state-color, $state-color-alt in $state-colors {
+    %text--#{$state},
+    .text--#{$state} {
+        color: $state-color;
     }
 }
 
 .is-new {
     background-color: color(new) !important;
+}
+
+.is-bold {
+    font-family: $font-family-regular;
 }

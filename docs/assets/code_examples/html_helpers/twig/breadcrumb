@@ -1,0 +1,7 @@
+{%
+    set breadcrumbs = [
+        {'label': 'foo', 'href': '#foo'},
+        {'label': 'bar', 'href': '#bar'},
+        {'label': 'baz', 'href': '#baz'}
+    ]
+%}

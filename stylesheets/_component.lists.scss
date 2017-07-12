@@ -7,3 +7,39 @@
     display: inline-block;
   }
 }
+
+.list--timeline {
+    border-left: 2px solid color(border);
+    list-style: none;
+
+    li {
+        margin-bottom: 1em;
+        padding-left: 15px;
+        position: relative;
+    }
+
+    li::before {
+        background-color: color(background);
+        border: 2px solid color(border);
+        border-radius: 50px;
+        content: '';
+        display: block;
+        left: -8px;
+        position: absolute;
+        top: 4px;
+        height: 10px;
+        width: 10px;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .active {
+        font-family: $font-family-regular;
+
+        &::before {
+            border-color: color(primary);
+        }
+    }
+}

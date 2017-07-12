@@ -1,4 +1,72 @@
 // -----------------------------------------------------------------------------
+//  22/03/2017
+//
+//  Multiple utility classes, refining to utility classes
+//
+//  _utility.misc.scss
+//  _utility.utilities.scss
+// -----------------------------------------------------------------------------
+
+.display--block {
+    display: block;
+}
+
+.display--inline-block,
+.inline-block {
+    display: inline-block;
+}
+
+.display--inline {
+    display: inline;
+}
+
+.display--none {
+    display: none !important;
+}
+
+.align-top {
+    vertical-align: top;
+}
+
+.text--left,
+.align-left {
+    text-align: left;
+}
+
+.text--right,
+.align-right {
+    text-align: right;
+}
+
+.text--center {
+    text-align: center;
+}
+
+.align-justify {
+    text-align: justify;
+}
+
+.float--right {
+    float: right;
+}
+
+.float--left {
+    float: left;
+}
+
+.float--none {
+    float: none;
+}
+
+.vertical-align--top {
+    vertical-align: top !important;
+}
+
+.centered {
+    text-align: center;
+}
+
+// -----------------------------------------------------------------------------
 //  10/11/2015
 //
 //  Old direct variable names, mapped to current colour palette.
@@ -392,3 +460,47 @@ $rich-list-item-text-selected-color:  color(white) !default;
   }
 }
 
+// -----------------------------------------------------------------------------
+//  12/06/2017
+//
+//  Susy grid, replacing with simpler custom grid
+//  https://jadu.github.io/pulsar/layout/grid/
+//
+//  _structure.grid.scss
+// -----------------------------------------------------------------------------
+@import '../libs/susy/sass/susy';
+
+// Susy grid settings
+$susy: (
+    columns: 12,
+    container: 100%,
+    gutters: .25,
+);
+
+.grid-container {
+    @include container;
+}
+
+@for $i from 1 through 12 {
+    .grid-col--#{$i} {
+        @include respond-min($screen-phone) {
+            @include span($i);
+        }
+    }
+
+    .grid-col-push--#{$i} {
+        @include respond-min($screen-phone) {
+            @include push($i of 12);
+        }
+    }
+}
+
+.grid-col {
+    margin-top: gutter();
+
+    &:last-child {
+        @include respond-min($screen-phone) {
+            @include last;
+        }
+    }
+}

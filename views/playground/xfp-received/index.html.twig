@@ -1,0 +1,73 @@
+{% extends '@pulsar/lexicon/base.html.twig' %}
+
+{% set heading = 'Ref 5431 - Blue Badge Application Form' %}
+
+{% set tab_one %}
+    {% include '/playground/xfp-received/tab.html.twig' %}
+{% endset %}
+
+{% set tab_two %}
+    {% include '/playground/xfp-received/log.html.twig' %}
+{% endset %}
+
+{% block ribbon %}
+    <div class="ribbon__header">
+        <a href="#" class="ribbon__mobile-toggle"><i class="icon-angle-down"><span class="hide">Toggle details</span></i></a>
+        <h2 class="ribbon__heading">
+            {{ heading|default('MISSING HEADING') }}
+            {{
+                html.label({
+                    'label': 'Submitted',
+                    'class': 'label--success'
+                })
+            }}
+        </h2>
+    </div>
+
+    <div class="ribbon__content">
+        {{
+            html.metadata({
+                'items': {
+                    'Started': '04/07/2016 12:34pm',
+                    'Submitted': '04/07/2016 12:34pm'
+                },
+                'style': 'display: inline-block; width: 30%;'
+            })
+        }}
+
+        {{
+            html.metadata({
+                'items': {
+                    'CXM ref': 'AB12345678',
+                    'Payment ref': 'AB12345678'
+                },
+                'style': 'display: inline-block; width: 30%;'
+            })
+        }}
+
+        {{
+            html.metadata({
+                'items': {
+                    'Browser': 'Mobile (phone) / Safari'
+                },
+                'style': 'display: inline-block; width: 30%;'
+            })
+        }}
+    </div>
+{% endblock ribbon %}
+
+{%
+    set tabs_content = [
+        {
+            "id"    : "responses",
+            "label" : "Form responses",
+            "src"   : tab_one,
+        },
+        {
+            "id"    : "log",
+            "label" : "Log",
+            "src"   : tab_two,
+            "active": true
+        }
+    ]
+%}

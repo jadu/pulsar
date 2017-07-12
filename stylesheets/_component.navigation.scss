@@ -35,7 +35,7 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
     display: inline-block;
     margin: 0;
     height: 100%;
-    overflow: auto;
+    overflow-x: hidden;
     padding: 0;
     position: relative;
     vertical-align: top;
@@ -239,13 +239,14 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
     .nav-link {
         color: lighten($nav-color-light, 40);
         display: block;
-        height: 72px;
+        height: 100%;
         font-family: $font-family-regular;
         font-size: .75em;
         line-height: 1em;
         max-width: $nav-primary-width;
+        min-height: 72px; /* This is the optimal height for normal nav links with icon and one line text */
         min-width: $nav-primary-width;
-        padding: 16px 5px 0;
+        padding: 16px 5px;
         position: relative;
         text-overflow: ellipsis;
         transition: background-color 50ms linear, color 50ms linear;

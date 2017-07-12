@@ -28,20 +28,18 @@
     }
 
     .open-nav & {
-        -webkit-transform: translate3d($nav-primary-width, 0, 0) scale3d(1, 1, 1);
-        transform: translate3d($nav-primary-width, 0, 0) scale3d(1, 1, 1);
-
         @include respond-min($screen-desktop) {
             left: $nav-primary-width;
             -webkit-transform: none;
             transform: none;
         }
+
+        @include ie-lte(9) {
+            left: $nav-primary-width;
+        }
     }
 
     .open-help & {
-        -webkit-transform: translate3d(-300px, 0, 0) scale3d(1, 1, 1);
-        transform: translate3d(-300px, 0, 0) scale3d(1, 1, 1);
-
         @include respond-min($screen-desktop) {
             left: $nav-primary-width;
             -webkit-transform: none;
@@ -58,18 +56,6 @@
         &:hover {
             color: color(link);
         }
-    }
-}
-
-.lt-ie10 .open-nav .footer {
-    left: $nav-primary-width;
-}
-
-.lt-ie10.open-help .footer {
-    right: 300px;
-
-    @include respond-min($screen-desktop) {
-        right: 0;
     }
 }
 
