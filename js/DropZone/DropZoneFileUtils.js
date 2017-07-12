@@ -17,7 +17,7 @@ class DropZoneFileUtils {
         if (type.length) {
             return type;
         } else {
-            return 'application/file';
+            return '';
         }
     }
 

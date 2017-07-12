@@ -29,7 +29,7 @@ describe('DropZoneFileUtils', () => {
         });
 
         it('should return the default type', () => {
-            expect(fileUtils.getFileType('')).to.equal('application/file');
+            expect(fileUtils.getFileType('')).to.equal('');
         });
     });
 

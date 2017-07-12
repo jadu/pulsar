@@ -18,12 +18,13 @@ class DropZoneEventManager {
      * Remove all event listeners and return an empty pool
      */
     removeAll () {
-        this.pool = this.pool.reduce((pool, item) => {
+        this.pool.forEach(item => {
             const { node, event, handler } = item;
 
             node.removeEventListener(event, handler);
-            return pool;
-        }, []);
+        });
+
+        this.pool.length = 0;
     }
 
     /**
