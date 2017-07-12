@@ -23,7 +23,7 @@ class DropZoneValidatorDispatcher {
      * @param {Boolean} retry
      * @returns {Object} error
      */
-    validate (files, totalFiles, totalSize, retry) {
+    validate (files, totalFiles, totalSize, retry = false) {
         let result = { valid: true, text: '' };
         let fileCount = totalFiles;
         let sizeCount = totalSize;
