@@ -7,7 +7,9 @@ class DropZoneComponentValidation {
     clear (node, selector) {
         const validation = node.querySelector(`.${selector}`);
 
-        validation && validation.parentNode.removeChild(validation);
+        if (validation) {
+            validation.parentNode.removeChild(validation);
+        }
     }
 
     /**
