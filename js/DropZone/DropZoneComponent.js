@@ -3,7 +3,7 @@ import $ from 'jquery';
 class DropZoneComponent {
     /**
      * DropZoneComponent
-     * @param {Element} html
+     * @param {Element|jQuery} html
      * @param {string} selector
      * @param {DropZoneInstanceManager} instanceManager
      * @param {DropZoneOptionsManager} optionsManager
