@@ -66,7 +66,6 @@ class DropZoneOptionsManager {
                 case 'validationWhitelist':
                 case 'validationMaxSize':
                 case 'validationUnknown':
-                    // todo - this could do with perhaps being re-thought about, this seems overly complicated
                     // this is converting 'validationMaxFiles' -> 'maxFiles' so the validator options can be
                     // set in the html e.g. 'data-validation-max-files="Too many files"'
                     let newOption = option.replace('validation', '');
