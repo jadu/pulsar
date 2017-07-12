@@ -68,12 +68,14 @@ describe('DropZoneComponentUtils', () => {
 
         it('should add a thumbnail if we have one', () => {
             const file = {
-                description: 'foo',
                 id: 'foo',
                 thumbnail: 'foo',
                 type: 'foo',
                 size: 'foo',
-                name: 'foo'
+                name: 'foo',
+                meta: {
+                    description: 'foo',
+                }
             };
             const expected = '<div data-dropzone-file="foo" class="file">' +
                 '<div class="inner">' +
@@ -95,7 +97,8 @@ describe('DropZoneComponentUtils', () => {
                 thumbnail: 'foo',
                 type: 'foo',
                 size: 'foo',
-                name: 'foo'
+                name: 'foo',
+                meta: {}
             };
             const expected = '<div data-dropzone-file="foo" class="file">' +
                 '<div class="inner">' +
@@ -112,11 +115,13 @@ describe('DropZoneComponentUtils', () => {
 
         it('should handle no name', () => {
             const file = {
-                description: 'foo',
                 id: 'foo',
                 thumbnail: 'foo',
                 type: 'foo',
                 size: 'foo',
+                meta: {
+                    description: 'foo',
+                }
             };
             const expected = '<div data-dropzone-file="foo" class="file">' +
                 '<div class="inner">' +
@@ -133,11 +138,13 @@ describe('DropZoneComponentUtils', () => {
 
         it('should handle no size', () => {
             const file = {
-                description: 'foo',
                 name: 'foo',
                 id: 'foo',
                 thumbnail: 'foo',
                 type: 'foo',
+                meta: {
+                    description: 'foo',
+                }
             };
             const expected = '<div data-dropzone-file="foo" class="file">' +
                 '<div class="inner">' +
@@ -154,11 +161,13 @@ describe('DropZoneComponentUtils', () => {
 
         it('should handle no type', () => {
             const file = {
-                description: 'foo',
                 name: 'foo',
                 id: 'foo',
                 thumbnail: 'foo',
                 size: 'foo',
+                meta: {
+                    description: 'foo',
+                }
             };
             const expected = '<div data-dropzone-file="foo" class="file">' +
                 '<div class="inner">' +
@@ -175,12 +184,14 @@ describe('DropZoneComponentUtils', () => {
 
         it('should add an icon if we do not have a thumbnail', () => {
             const file = {
-                description: 'foo',
                 id: 'foo',
                 thumbnail: false,
                 type: 'foo',
                 size: 'foo',
-                name: 'foo'
+                name: 'foo',
+                meta: {
+                    description: 'foo',
+                }
             };
             const expected = '<div data-dropzone-file="foo" class="file">' +
                 '<div class="inner">' +
