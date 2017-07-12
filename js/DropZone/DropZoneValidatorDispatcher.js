@@ -69,7 +69,6 @@ class DropZoneValidatorDispatcher {
                 result = this.errors.getFileValidationError('WHITELIST');
             }
 
-
             // max files
             //   - ensure we haven't exceeded our max files
             if (result.valid && !this.utils.validateCount(fileCount, this.maxFiles)) {
