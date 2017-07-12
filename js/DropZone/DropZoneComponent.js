@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import _ from 'lodash';
 
 class DropZoneComponent {
     /**
@@ -410,10 +411,7 @@ class DropZoneComponent {
             // validation error which will persist once the file is dropped, this
             // helps us out when we need to throw an error when a user uses an associated
             // native file input's "browse files"
-            let persist = false;
-            // a crude shim for Array.find, we just need to know if any of the files
-            // have the persist flag set to true
-            files.forEach(file => !persist && file.meta.persist ? persist = true : null);
+            const persist = _.find(files, file => file.meta.persist);
 
             if (!instance.getSupportsDataTransfer() || persist) {
                 this.throwValidationError(text, id);
