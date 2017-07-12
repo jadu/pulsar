@@ -48,23 +48,27 @@ describe('DropZoneComponentUtils', () => {
     });
 
     describe('createFileNode()', () => {
-        const options = {
-            fileNodeName: true,
-            fileNodeDesc: true,
-            fileNodeSize: true,
-            fileNodeType: true,
-            nodeClasses: {
-                description: 'description',
-                name: 'name',
-                size: 'size',
-                type: 'type',
-                thumbnail: 'thumbnail',
-                file: 'file',
-                inner: 'inner',
-                close: 'close',
-                meta: 'meta'
-            }
-        };
+        let options;
+
+        beforeEach(() => {
+            options = {
+                fileNodeName: true,
+                fileNodeDesc: true,
+                fileNodeSize: true,
+                fileNodeType: true,
+                nodeClasses: {
+                    description: 'description',
+                    name: 'name',
+                    size: 'size',
+                    type: 'type',
+                    thumbnail: 'thumbnail',
+                    file: 'file',
+                    inner: 'inner',
+                    close: 'close',
+                    meta: 'meta'
+                }
+            };
+        });
 
         it('should add a thumbnail if we have one', () => {
             const file = {
