@@ -185,7 +185,7 @@ NavMainComponent.prototype.closeSubNavs = function() {
 - class name nav-main--sliding does not follow bem (not a modifier) suggest nav-tertiary
 - doesn't current respond to window height changes
 - more categories icon should use fixed width icons
-- you can't test $('.nav-primary 
+- you can't test $('.nav-primary
 - lots going on here even though I've tried to simplify, suggest moving chunks of functionality into functions with 1 role each.
 - no need for this to be on prototype
 - /* comments are in compiled js // are not
@@ -196,14 +196,14 @@ NavMainComponent.prototype.adjustNavItems = function() {
     var component = this,
         availableHeight = component.$window.height(),
         navItemsHeight = (component.$html.find('.nav-primary .nav-items').outerHeight(true) + component.$html.find('.jadu-branding').outerHeight(true)),
-        moreIconHeight = 72, // Pre calculated height of the "More" nav item 
+        moreIconHeight = 72, // Pre calculated height of the "More" nav item
         navItemsCountTotal = component.$html.find('.nav-primary .nav-items li').length,
-        i = 2, // This number represents the item before the last in the nth-last-child 
+        i = 2, // This number represents the item before the last in the nth-last-child
         numberOfHiddenNavItems,
         itemsToHideCount;
 
     // While nav items and branding height is greater than the window height
-    while (navItemsHeight + moreIconHeight > availableHeight) { 
+    while (navItemsHeight + moreIconHeight > availableHeight) {
 
         // If last nav item is visable hide it
         if (component.$html.find('.nav-primary .nav-items li:last-child').is(':visible')) {
@@ -214,8 +214,8 @@ NavMainComponent.prototype.adjustNavItems = function() {
             i++;
         }
 
-        // Recalculate nav items height based on items just hidden 
-        navItemsHeight = (component.$html.find('.nav-items').outerHeight(true) + component.$html.find('.jadu-branding').outerHeight(true));
+        // Recalculate nav items height based on items just hidden
+        navItemsHeight = (component.$html.find('.nav-primary .nav-items').outerHeight(true) + component.$html.find('.jadu-branding').outerHeight(true));
     }
 
     numberOfHiddenNavItems = component.$html.find('.nav-primary .nav-items li:hidden').length;
@@ -226,7 +226,7 @@ NavMainComponent.prototype.adjustNavItems = function() {
     }
 
     // Calculate the number of visible nav items any that don't fit in the window
-    itemsToHideCount = navItemsCountTotal - numberOfHiddenNavItems - 1; // 1 is for the "More" nav item 
+    itemsToHideCount = navItemsCountTotal - numberOfHiddenNavItems - 1; // 1 is for the "More" nav item
     i = 1;
 
     while (itemsToHideCount >= 0) {
