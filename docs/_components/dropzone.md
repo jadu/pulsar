@@ -42,7 +42,7 @@ dropZoneComponent.init();
 
 ### Passive
 
-DropZone initiated in passive mode.
+DropZone initiated in passive mode. When in passive mode, the DropZoneComponent will not alter any HTML apart from adding file nodes once a file is added. It should be used for when you need to turn an existing element into a DropZone and do not want to use the default DropZone HTML. When in passive mode you will need to leverage the DropZoneComponent public methods (below) in order to change state.
 
 ![DropZoneComponent passive drop]({{ site.baseurl }}/assets/image_examples/dropzone-passive-drop.gif){: .dropzone-example }
 
@@ -216,7 +216,7 @@ JavaScript  | `dropZoneComponent.init({ dropZoneEnterHtml: '<p>foo</p>' })`
 @deafult [false]
 ```
 
-The passive option specifies if the DropZone will be in passive mode. When in passive mode, the DropZoneComponent will not alter any HTML apart from adding file nodes once a file is added. It should be used for when you need to turn an existing element into a DropZone and do not want to use the default DropZone HTML. When in passive mode you will need to leverage the DropZoneComponent public methods (below) in order to change state.
+The passive option specifies if the DropZone will be in passive mode.
 
 Environment | Code
 ----------- | ----------------------------------------
