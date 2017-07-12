@@ -200,7 +200,7 @@ NavMainComponent.prototype.adjustNavItems = function() {
 
     /* Add the "More" nav item */
     if((itemsHeight + moreIconHeight < availableHeight) && (hiddenItemsCount > 0)){
-        $('.nav-primary .nav-items').append('<li label="More" class="nav-item t-nav-item more-icon"><a href="#more" class="nav-link t-nav-link"><i aria-hidden="true" class="icon-ellipsis-horizontal nav-link__icon t-nav-icon"></i><span class="nav-link__label">More</span></a></li>');
+        $('.nav-primary .nav-items').append('<li label="More" class="nav-item t-nav-item more-icon" aria-haspopup="true"><a href="#more" class="nav-link t-nav-link"><i aria-hidden="true" class="icon-ellipsis-horizontal nav-link__icon t-nav-icon"></i><span class="nav-link__label">More</span></a></li>');
     }
 
     /* Calculate the number of visible nav items and hide them in the main sliding nav */
