@@ -61,14 +61,14 @@ describe('NavMain component', function() {
 \
   </div><!--\
 \
---><div class="nav-main--sliding">\
+--><div class="nav-tertiary">\
         <ul class="nav-items">\
             <li class="nav-item">\
                 <a href="#three_one" class="nav-link">1.1</a>\
             </li>\
         </ul>\
     </div><!-- \
-  --><div class="nav-additional--sliding ">\
+  --><div class="nav-quaternary">\
         <ul class="nav-items">\
           <li class="nav-item">\
             <a href="#four_one" class="nav-link">1.1</a>\
@@ -82,7 +82,7 @@ describe('NavMain component', function() {
         this.$navMain = this.$html.find('.nav-main');
         this.$closeLink = this.$html.find('[data-nav-action="close"]');
         this.$contentMain = this.$html.find('.content-main');
-        this.$navMainSliding = this.$navMain.find('.nav-main--sliding');
+        this.$navTertiary = this.$navMain.find('.nav-tertiary');
 
         this.$linkOne = this.$html.find('[href="#one"]');
         this.$linkTwo = this.$html.find('[href="#two"]');
@@ -257,8 +257,9 @@ describe('NavMain component', function() {
             this.$moreIconLink.click();
         });
 
-        it('should open the sliding main nav', function() {
-            expect(this.$navMainSliding.hasClass('is-open')).to.be.true;
+        it('should open the sliding main nav if it is closed', function() {
+            expect(this.$navTertiary.hasClass('is-open')).to.be.true;
         });
+
     });
 });
