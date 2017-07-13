@@ -17,7 +17,6 @@ class MimeTyper {
             audio: 'file-audio-os'
         };
         // MIME type map {MIME type}: {class name}
-        // todo - there is definitely a much less cumbersome way to map these classes
         this.mimes = {
             // code
             'text/css': this.classes.code,
@@ -76,19 +75,9 @@ class MimeTyper {
      * @return {String}
      */
     getIconClass (userMime) {
-        let match;
+        const match = _.find(Object.keys(this.mimes), mime => mime === userMime);
 
-        if (Array.prototype.find) {
-            match = Object.keys(this.mimes).find(mime => mime === userMime);
-        } else {
-            match = _.find(Object.keys(this.mimes), mime => mime === userMime);
-        }
-
-        if (match) {
-            return this.mimes[match];
-        } else {
-            return this.default;
-        }
+        return match ? this.mimes[match] : this.default;
     }
 }
 

@@ -12,11 +12,13 @@ describe('DropZoneBodyClassManager', () => {
     describe('update()', () => {
         it('should update the body class with the new state', () => {
             classManager.update($body[0], ['bar', 'baz']);
+
             expect($body.attr('class')).to.equal('foo bar baz');
         });
 
         it('should reset the state if no modifiers passed in', () => {
             classManager.update($body[0]);
+
             expect($body.attr('class')).to.equal('foo');
         });
     });
