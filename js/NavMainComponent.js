@@ -25,6 +25,10 @@ NavMainComponent.prototype.init = function() {
     component.$moreIcon = component.$navMain.find('.more-icon');
     component.$closeLink = component.$navMain.find('[data-nav-action=close]');
 
+    window.addEventListener('resize', function(event){
+        component.adjustNavItems();
+    });
+
     component.closeHandler = function() {
         component.closeNavs();
     };
@@ -179,11 +183,8 @@ NavMainComponent.prototype.closeSubNavs = function() {
 
 /* some notes
 - Feels like the JS should handle the creation of the third level menu to avoid unlessisary markup changes
-- doesn't current respond to window height changes
-- more categories icon should use fixed width icons
 - no need for this to be on prototype
 */
-
 
 NavMainComponent.prototype.adjustNavItems = function() {
 
@@ -195,12 +196,16 @@ NavMainComponent.prototype.adjustNavItems = function() {
         i = 2, // This number represents the item before the last in the nth-last-child
         numberOfHiddenNavItems;
 
-    component.hidePrimaryNavItems(navItemsHeight, moreIconHeight, availableHeight, i);
-
-    numberOfHiddenNavItems = component.$html.find('.nav-primary .nav-items li:hidden').length;
-
-    component.addMoreNavItem(numberOfHiddenNavItems);
-    component.hideMoreCategoriesTopItems(navItemsCountTotal, numberOfHiddenNavItems);
+    if (navItemsHeight + moreIconHeight > availableHeight) {
+        component.hidePrimaryNavItems(navItemsHeight, moreIconHeight, availableHeight, i);
+        numberOfHiddenNavItems = component.$html.find('.nav-primary .nav-items li:hidden').length;
+        component.addMoreNavItem(numberOfHiddenNavItems);
+        component.hideMoreCategoriesTopItems(navItemsCountTotal, numberOfHiddenNavItems);
+    } else {
+        // Unhide items if they were hidden and there is space in the primary nav
+        component.$html.find('.nav-primary .nav-items li').show();
+        component.$html.find('.nav-primary .nav-items [label="More"]').hide();
+    }
 };
 
 NavMainComponent.prototype.hidePrimaryNavItems = function(navItemsHeight, moreIconHeight, availableHeight, i) {
@@ -229,8 +234,13 @@ NavMainComponent.prototype.addMoreNavItem = function(numberOfHiddenNavItems) {
     var component = this;
 
     // Add the "More" nav item
-    if (numberOfHiddenNavItems > 0) {
+    if ((numberOfHiddenNavItems > 0) && (component.$html.find('.more-icon').length <= 0)){
         component.$html.find('.nav-primary .nav-items').append('<li label="More" class="nav-item t-nav-item more-icon" aria-haspopup="true"><a href="#more" class="nav-link t-nav-link"><i aria-hidden="true" class="icon-ellipsis-horizontal nav-link__icon t-nav-icon"></i><span class="nav-link__label">More</span></a></li>');
+    }
+
+    // Check if "More" nav item is visible
+    if (component.$html.find('.nav-primary .nav-items [label="More"]').is(':visible') == false) {
+        component.$html.find('.nav-primary .nav-items [label="More"]').show();
     }
 };
 
