@@ -75,25 +75,36 @@ $btn-white:                 'white';
  * Mixin to theme button states
  */
 
-@mixin button-states($state) {
-    $shadow-color: darken(color($state), 10);
-
+@mixin button-color($state) {
     background-color: color($state);
-    box-shadow: 0 2px 0 $shadow-color;
-    color: color($state, alt) !important; // should be immutable
+    box-shadow: 0 2px 0 darken(color($state), 10);
+    color: color($state, alt) !important; // immutable
+}
+
+@mixin button-hover($state) {
+    background-color: color($state);
+    box-shadow: 0 1px 0 darken(color($state), 10);
+    color: color($state, alt) !important;  // immutable
+}
+
+@mixin button-active($state) {
+    background-color: darken(color($state), 5);
+    box-shadow: 0 0 0 darken(color($state), 10);
+}
+
+@mixin button-states($state) {
+    @include button-color($state);
     position: relative;
 
     &:hover,
     &.is-hovered {
-      box-shadow: 0 1px 0 $shadow-color;
-      color: color($state, alt) !important;  // should be immutable
+      @include button-hover($state);
       top: 1px;
     }
 
     &:active,
     &.active {
-        background-color: darken(color($state), 5);
-        box-shadow: 0 0 0 $shadow-color;
+        @include button-active($state);
         top: 2px;
     }
 
@@ -201,7 +212,7 @@ $btn-white:                 'white';
     }
 
     @each $state, $state-color, $state-color-alt in $state-colors {
-        .btn--#{$state} {
+        &.btn--#{$state} {
             border: 2px solid $state-color !important;
             box-shadow: none !important;
             color: color($state, dark) !important;
