@@ -181,7 +181,7 @@ NavMainComponent.prototype.closeSubNavs = function() {
 
 /* Detect window height, adjust the number of items in the primary nav and check when to add "More" option */
 
-/* some notes
+/* Notes:
 - Feels like the JS should handle the creation of the third level menu to avoid unlessisary markup changes
 - no need for this to be on prototype
 */
@@ -246,8 +246,8 @@ NavMainComponent.prototype.addMoreNavItem = function(numberOfHiddenNavItems) {
 
 NavMainComponent.prototype.hideMoreCategoriesTopItems = function(navItemsCountTotal, numberOfHiddenNavItems) {
 
-    var component = this;
-    var i = 1, // Number used to iterate nth-child
+    var component = this,
+        i = 1, // Number used to iterate nth-child
         itemsToHideCount = 0;
 
     // Reset hidden nav items
