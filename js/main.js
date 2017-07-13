@@ -21,7 +21,6 @@
 	pulsar.modulePermissions = new pulsar.ModulePermissionsComponent($html);
     pulsar.navMain = new pulsar.NavMainComponent($html);
     pulsar.filterBar = new pulsar.FilterBarComponent($html);
-    pulsar.dropZoneComponent = pulsar.DropZoneComponentFactory.create($html[0], '.dropzone');
 
     $(function () {
         pulsar.button.init();
@@ -36,6 +35,7 @@
         pulsar.navMain.init();
         pulsar.filterBar.init();
         pulsar.disableUi.init();
+        pulsar.dropZoneComponent = pulsar.DropZoneComponentFactory.create($('body')[0], '.dropzone');
 
         // Switch out .svg for .png for <img> elements in older browsers
         pulsar.svgeezy.init('nocheck', 'png');

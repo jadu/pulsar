@@ -6,7 +6,7 @@ import DropZoneComponentValidation from '../../../js/DropZone/DropZoneComponentV
 import DropZoneBodyClassManager from '../../../js/DropZone/DropZoneBodyClassManager';
 
 describe('DropZoneComponent', () => {
-    let $html;
+    let $body;
     let $fileInput;
     let $dropZone;
     let $browse;
@@ -19,9 +19,9 @@ describe('DropZoneComponent', () => {
     let classManager;
 
     beforeEach(() => {
-        $html = $(document.documentElement);
-        $fileInput = $('<input type="text" id="fileInput">').appendTo($html);
-        $dropZone = $('<div data-dropzone-id="0" class="dropzone"></div>').appendTo($html);
+        $body = $('<div></div>');
+        $fileInput = $('<input type="text" id="fileInput">').appendTo($body);
+        $dropZone = $('<div data-dropzone-id="0" class="dropzone"></div>').appendTo($body);
         $info = $('<p class="info"></p>').appendTo($dropZone);
         $browse = $('<span class="browse">browse</span>').appendTo($info);
 
@@ -43,7 +43,7 @@ describe('DropZoneComponent', () => {
         utils.createFileNode.returns('<div class="file"><a class="close" href="#"></a></div>');
 
         dropZoneComponent = new DropZoneComponent(
-            $html,
+            $body[0],
             '.dropzone',
             instanceManager,
             optionsManager,
@@ -54,7 +54,7 @@ describe('DropZoneComponent', () => {
     });
 
     afterEach(() => {
-        $html.html('');
+        console.log($body.find('#fileInput').length)
     });
 
     describe('init()', () => {
@@ -62,10 +62,10 @@ describe('DropZoneComponent', () => {
         let browseStub;
 
         beforeEach(() => {
-            $('<div class="dropzone test"></div>').appendTo($html);
-            $('<div class="dropzone test"></div>').appendTo($html);
-            $('<div class="dropzone test"></div>').appendTo($html);
-            $('<div class="dropzone test"></div>').appendTo($html);
+            $('<div class="dropzone test"></div>').appendTo($body);
+            $('<div class="dropzone test"></div>').appendTo($body);
+            $('<div class="dropzone test"></div>').appendTo($body);
+            $('<div class="dropzone test"></div>').appendTo($body);
 
             inputStub = sinon.stub(dropZoneComponent, 'processInputNode');
             browseStub = sinon.stub(dropZoneComponent, 'processBrowseNode');
@@ -73,12 +73,6 @@ describe('DropZoneComponent', () => {
                 { id: 0 },
                 { id: 1, input: {}, options: {}, browse: {} }
             ]);
-        });
-
-        afterEach(() => {
-            $html.find('.dropzone.test').remove();
-            inputStub.reset();
-            browseStub.reset();
         });
 
         it('should build the base component options', () => {
@@ -159,10 +153,6 @@ describe('DropZoneComponent', () => {
             browseStub = sinon.stub(dropZoneComponent, 'processBrowseNode');
         });
 
-        afterEach(() => {
-            browseStub.reset();
-        });
-
         it('should update the info node', () => {
             dropZoneComponent.updateInfoState(0, 'foo');
             expect($info.html()).to.equal('foo');
@@ -213,7 +203,7 @@ describe('DropZoneComponent', () => {
             const click = new Event('click');
 
             dropZoneComponent.updateDropZoneFiles(0);
-            $html.find('.close')[0].dispatchEvent(click);
+            $body.find('.close')[0].dispatchEvent(click);
             expect(removeFileStub).to.have.been.calledOnce;
         });
     });
@@ -223,10 +213,6 @@ describe('DropZoneComponent', () => {
 
         beforeEach(() => {
             partialStub = sinon.stub(dropZoneComponent, 'updateInfoState');
-        });
-
-        afterEach(() => {
-            partialStub.reset();
         });
 
         it('should update the validation', () => {
@@ -282,10 +268,6 @@ describe('DropZoneComponent', () => {
             utils.getEventPath.returns([ $file[0], $dropZone[0] ]);
         });
 
-        afterEach(() => {
-            updateStub.reset();
-        });
-
         it('should call preventDefault', () => {
             dropZoneComponent.removeFile(event);
             expect(event.preventDefault).to.have.been.calledOnce;
@@ -310,11 +292,6 @@ describe('DropZoneComponent', () => {
         beforeEach(() => {
             infoStub = sinon.stub(dropZoneComponent, 'updateInfoState');
             throwStub = sinon.stub(dropZoneComponent, 'throwValidationError');
-        });
-
-        afterEach(() => {
-            infoStub.reset();
-            throwStub.reset();
         });
 
         describe('valid', () => {
@@ -390,10 +367,6 @@ describe('DropZoneComponent', () => {
             infoStub = sinon.stub(dropZoneComponent, 'updateInfoState');
         });
 
-        afterEach(() => {
-            infoStub.reset();
-        });
-
         const args = {
             instance: {
                 options: {
@@ -439,11 +412,6 @@ describe('DropZoneComponent', () => {
         beforeEach(() => {
             infoStub = sinon.stub(dropZoneComponent, 'updateInfoState');
             throwStub = sinon.stub(dropZoneComponent, 'throwValidationError');
-        });
-
-        afterEach(() => {
-            infoStub.reset();
-            throwStub.reset();
         });
 
         describe('valid', () => {
@@ -521,11 +489,6 @@ describe('DropZoneComponent', () => {
             throwStub = sinon.stub(dropZoneComponent, 'throwValidationError');
         });
 
-        afterEach(() => {
-            infoStub.reset();
-            throwStub.reset();
-        });
-
         describe('valid', () => {
             const args = {
                 valid: true,
@@ -601,12 +564,6 @@ describe('DropZoneComponent', () => {
             infoStub = sinon.stub(dropZoneComponent, 'updateInfoState');
             throwStub = sinon.stub(dropZoneComponent, 'throwValidationError');
             updateFilesStub = sinon.stub(dropZoneComponent, 'updateDropZoneFiles');
-        });
-
-        afterEach(() => {
-            infoStub.reset();
-            throwStub.reset();
-            updateFilesStub.reset();
         });
 
         describe('valid', () => {
@@ -760,12 +717,6 @@ describe('DropZoneComponent', () => {
             updateFilesStub = sinon.stub(dropZoneComponent, 'updateDropZoneFiles');
         });
 
-        afterEach(() => {
-            infoStub.reset();
-            throwStub.reset();
-            updateFilesStub.reset();
-        });
-
         it('should call the class manager for valid files', () => {
             dropZoneComponent.handleWindowDrop(args);
             expect(classManager.update).to.have.been.calledOnce;
@@ -856,11 +807,6 @@ describe('DropZoneComponent', () => {
             filesStub = sinon.stub(dropZoneComponent, 'updateInfoState');
         });
 
-        afterEach(() => {
-            updateStub.reset();
-            filesStub.reset();
-        });
-
         // partial stub
         it('should reset a single instance if an ID is passed in', () => {
             dropZoneComponent.reset(1);
@@ -894,10 +840,6 @@ describe('DropZoneComponent', () => {
         beforeEach(() => {
             instanceManager.validateFiles.returns({ valid: true, text: '' });
             errorStub = sinon.stub(dropZoneComponent, 'throwValidationError');
-        });
-
-        afterEach(() => {
-            errorStub.restore();
         });
 
         it('should call get files on the instance manager', () => {

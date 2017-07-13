@@ -4,7 +4,7 @@ import _ from 'lodash';
 class DropZoneComponent {
     /**
      * DropZoneComponent
-     * @param {Element|jQuery} html
+     * @param {Element} body
      * @param {string} selector
      * @param {DropZoneInstanceManager} instanceManager
      * @param {DropZoneOptionsManager} optionsManager
@@ -12,8 +12,8 @@ class DropZoneComponent {
      * @param {DropZoneComponentValidationManager} validationManager
      * @param {DropZoneBodyClassManager} classManager
      */
-    constructor (html, selector, instanceManager, optionsManager, utils, validationManager, classManager) {
-        this.html = window.$ && html instanceof window.$ ? html[0] : html;
+    constructor (body, selector, instanceManager, optionsManager, utils, validationManager, classManager) {
+        this.body = body;
         this.selector = selector;
         this.instanceManager = instanceManager;
         this.optionsManager = optionsManager;
@@ -27,9 +27,6 @@ class DropZoneComponent {
      * multiple instances of DropZone
      */
     init (options = {}) {
-        this.body = this.html.parentNode.body;
-        this.$body = $(this.body);
-
         const defaults = {
             // values
             maxFiles: 5,
@@ -89,7 +86,7 @@ class DropZoneComponent {
         };
 
         // get all DropZone elements
-        this.dropZoneInstances = [].slice.call(this.html.querySelectorAll(this.selector));
+        this.dropZoneInstances = [].slice.call(this.body.querySelectorAll(this.selector));
 
         // build options from options passed to the constructor and the defaults
         this.optionsManager.buildComponentOptions(defaults, options, callbacks);
