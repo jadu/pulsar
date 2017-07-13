@@ -33,8 +33,8 @@ $nav-color-darker:  darken(color(jadu-blue, dark), 10%) !default;
 
 .nav-primary,
 .nav-secondary,
-.nav-main--sliding,
-.nav-additional--sliding {
+.nav-tertiary,
+.nav-quaternary {
     display: inline-block;
     margin: 0;
     height: 100%;
@@ -363,7 +363,7 @@ $nav-color-darker:  darken(color(jadu-blue, dark), 10%) !default;
     }
 }
 
-.nav-main--sliding {
+.nav-tertiary {
     background-color: $nav-color-dark;
     box-shadow: inset -4px 0 0 darken($nav-color-dark, 4);
     left: $nav-primary-width;
@@ -414,7 +414,7 @@ $nav-color-darker:  darken(color(jadu-blue, dark), 10%) !default;
     }
 }
 
-.nav-additional--sliding {
+.nav-quaternary {
     background-color: $nav-color-darker;
     box-shadow: inset -4px 0 0 darken($nav-color-dark, 4);
     left: $nav-primary-width + 3px;
@@ -487,11 +487,11 @@ $nav-color-darker:  darken(color(jadu-blue, dark), 10%) !default;
 }
 
 .is-open .nav-secondary,
-.nav-main--sliding.is-open {
+.nav-tertiary.is-open {
     margin-left: 0;
 }
 
-.nav-additional--sliding.is-open {
+.nav-quaternary.is-open {
     margin-left: 0;
     width: 242px;
 }
@@ -599,8 +599,4 @@ $nav-color-darker:  darken(color(jadu-blue, dark), 10%) !default;
 .lt-ie9 .open-nav > .container {
     display: table-cell;
     height: 100%;
-}
-
-.is-hidden {
-    display: none;
 }
