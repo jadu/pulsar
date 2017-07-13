@@ -179,10 +179,8 @@ NavMainComponent.prototype.closeSubNavs = function() {
 
 /* some notes
 - Feels like the JS should handle the creation of the third level menu to avoid unlessisary markup changes
-- class name nav-tertiary does not follow bem (not a modifier) suggest nav-tertiary
 - doesn't current respond to window height changes
 - more categories icon should use fixed width icons
-- lots going on here even though I've tried to simplify, suggest moving chunks of functionality into functions with 1 role each.
 - no need for this to be on prototype
 */
 
@@ -195,8 +193,19 @@ NavMainComponent.prototype.adjustNavItems = function() {
         moreIconHeight = 72, // Pre calculated height of the "More" nav item
         navItemsCountTotal = component.$html.find('.nav-primary .nav-items li').length,
         i = 2, // This number represents the item before the last in the nth-last-child
-        numberOfHiddenNavItems,
-        itemsToHideCount;
+        numberOfHiddenNavItems;
+
+    component.hidePrimaryNavItems(navItemsHeight, moreIconHeight, availableHeight, i);
+
+    numberOfHiddenNavItems = component.$html.find('.nav-primary .nav-items li:hidden').length;
+
+    component.addMoreNavItem(numberOfHiddenNavItems);
+    component.hideMoreCategoriesTopItems(navItemsCountTotal, numberOfHiddenNavItems);
+};
+
+NavMainComponent.prototype.hidePrimaryNavItems = function(navItemsHeight, moreIconHeight, availableHeight, i) {
+
+    var component = this;
 
     // While nav items and branding height is greater than the window height
     while (navItemsHeight + moreIconHeight > availableHeight) {
@@ -213,17 +222,26 @@ NavMainComponent.prototype.adjustNavItems = function() {
         // Recalculate nav items height based on items just hidden
         navItemsHeight = (component.$html.find('.nav-primary .nav-items').outerHeight(true) + component.$html.find('.jadu-branding').outerHeight(true));
     }
+};
 
-    numberOfHiddenNavItems = component.$html.find('.nav-primary .nav-items li:hidden').length;
+NavMainComponent.prototype.addMoreNavItem = function(numberOfHiddenNavItems) {
+
+    var component = this;
 
     // Add the "More" nav item
     if (numberOfHiddenNavItems > 0) {
         component.$html.find('.nav-primary .nav-items').append('<li label="More" class="nav-item t-nav-item more-icon" aria-haspopup="true"><a href="#more" class="nav-link t-nav-link"><i aria-hidden="true" class="icon-ellipsis-horizontal nav-link__icon t-nav-icon"></i><span class="nav-link__label">More</span></a></li>');
     }
+};
 
-    // Calculate the number of visible nav items any that don't fit in the window
+NavMainComponent.prototype.hideMoreCategoriesTopItems = function(navItemsCountTotal, numberOfHiddenNavItems) {
+
+    var component = this;
+    var i = 1, // Number used to iterate nth-child
+        itemsToHideCount;
+
+    // Calculate the number of visible nav items
     itemsToHideCount = navItemsCountTotal - numberOfHiddenNavItems - 1; // 1 is for the "More" nav item
-    i = 1;
 
     // Hide top items in "More Categories" equal to the number of visible items of primary nav
     while (itemsToHideCount >= 0) {
