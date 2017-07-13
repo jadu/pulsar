@@ -248,7 +248,7 @@ $nav-color-darker:  darken(color(jadu-blue, dark), 10%) !default;
         font-size: .75em;
         line-height: 1em;
         max-width: $nav-primary-width;
-        min-height: 72px; /* This is the optimal height for normal nav links with icon and one line text */
+        min-height: 72px; // This is the optimal height for normal nav links with icon and one line text
         min-width: $nav-primary-width;
         padding: 16px 5px;
         position: relative;
