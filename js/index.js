@@ -44,14 +44,14 @@ var $                     = require('jquery'),
     PulsarFormComponent = require('./PulsarFormComponent'),
     PulsarUIComponent = require('./PulsarUIComponent'),
     SignInComponent = require('./area/signin/signin'),
-    DropZoneComponent = require('./DropZone/DropZoneComponentFactory');
+    DropZoneComponentFactory = require('./DropZone/DropZoneComponentFactory');
 
     require('jstree');
 
 module.exports = {
     ButtonComponent,
-    DropZoneComponent,
-    DisableUiComponent: DisableUiComponent,
+    DropZoneComponentFactory,
+    DisableUiComponent,
     HelpTextComponent,
     FilterBarComponent,
     FlashMessageComponent,
