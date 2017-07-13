@@ -1,12 +1,15 @@
 $columns:       12;
 $gutter_pc:     1;
 
-@mixin column($first: false) {
+%column {
     background-clip: padding-box !important;
     box-sizing: border-box;
     display: block;
     float: left;
     padding: 0;
+}
+
+@mixin column($first: false) {
     @if $first {
         margin-left: 0;
     }
@@ -51,6 +54,7 @@ $gutter_pc:     1;
 
 @for $i from 1 through 12 {
     .g-col--#{$i} {
+        @extend %column;
         @include span($i);
     }
 }
