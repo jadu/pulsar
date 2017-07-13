@@ -16,16 +16,14 @@ NavMainComponent.prototype.init = function() {
     component.$navMain = this.$html.find('.nav-main');
     component.$navPrimary = this.$html.find('.nav-primary');
     component.$navSecondary = this.$html.find('.nav-secondary');
+    component.$navTertiary = component.$navMain.find('.nav-tertiary');
+    component.$navQuaternary = component.$navMain.find('.nav-quaternary');
     component.$primaryNavLinks = component.$navPrimary.find('.nav-link');
     component.$secondaryNavLinks = component.$navSecondary.find('.nav-link');
-    component.$closeLink = component.$navMain.find('[data-nav-action=close]');
-
-    /* Sliding Menu  */
+    component.$tertiaryNavLinks = component.$navTertiary.find('.nav-link');
+    component.$quaternaryNavLinks = component.$navQuaternary.find('.nav-link');
     component.$moreIcon = component.$navMain.find('.more-icon');
-    component.$navMainSliding = component.$navMain.find('.nav-main--sliding');
-    component.$navAdditionalSliding = component.$navMain.find('.nav-additional--sliding');
-    component.$mainSlidingLinks = component.$navMainSliding.find('.nav-link');
-    component.$additionalSlidingLinks = component.$navAdditionalSliding.find('.nav-link');
+    component.$closeLink = component.$navMain.find('[data-nav-action=close]');
 
     component.closeHandler = function() {
         component.closeNavs();
@@ -52,12 +50,7 @@ NavMainComponent.prototype.init = function() {
         component.changeActiveSecondaryNavLink($(this).attr('href'));
     });
 
-    component.$moreIcon.find('.nav-link').on('click', function() {
-        component.$navMainSliding.toggleClass('is-open');
-        component.$navMainSliding.find('.nav-list').toggleClass('is-active');
-    });
-
-    component.$mainSlidingLinks.on('click', function(e) {
+    component.$tertiaryNavLinks.on('click', function(e) {
 
         var $self = $(this),
             href = $self.attr('href');
@@ -66,14 +59,19 @@ NavMainComponent.prototype.init = function() {
             e.preventDefault();
         }
 
-        component.switchNavMainSliding(href);
-        component.switchNavAdditionalSliding(href);
+        component.switchTertiartyNav(href);
+        component.switchQuaternaryNav(href);
 
         component.$html.find('.content-main').on('click', component.closeHandler);
     });
 
-    component.$additionalSlidingLinks.on('click', function() {
-        component.changeActiveAdditionalSlidingNavLink($(this).attr('href'));
+    component.$quaternaryNavLinks.on('click', function() {
+        component.changeActiveQuaternaryNavLink($(this).attr('href'));
+    });
+
+    component.$moreIcon.find('.nav-link').on('click', function() {
+        component.$navTertiary.toggleClass('is-open');
+        component.$navTertiary.find('.nav-list').toggleClass('is-active');
     });
 
     component.$closeLink.on('click', function(e) {
@@ -87,8 +85,8 @@ NavMainComponent.prototype.switchPrimaryNav = function(target) {
     var component = this;
 
     component.$html.find('.nav-primary .nav-link').removeClass('is-active');
-    component.$html.find('.nav-main--sliding').removeClass('is-open');
-    component.$html.find('.nav-additional--sliding').removeClass('is-open');
+    component.$html.find('.nav-tertiary').removeClass('is-open');
+    component.$html.find('.nav-quaternary').removeClass('is-open');
 
     if (component.$html.find('[data-nav="' + target + '"]').length >= 1) {
         component.$navMain.addClass('is-open');
@@ -111,27 +109,27 @@ NavMainComponent.prototype.switchSecondaryNav = function(target) {
         .addClass('is-active');
 };
 
-NavMainComponent.prototype.switchNavMainSliding = function(target) {
+NavMainComponent.prototype.switchTertiartyNav = function(target) {
 
     var component = this;
 
-    component.$html.find('.navMainSliding .nav-link').removeClass('is-active');
+    component.$html.find('.navTertiary .nav-link').removeClass('is-active');
 
     if (component.$html.find('[data-nav="' + target + '"]').length < 1) {
         component.closeNavs();
     }
 
-    component.$html.find('.navMainSliding .is-active').removeClass('is-active');
+    component.$html.find('.navTertiary .is-active').removeClass('is-active');
     component.$html.find('[href="' + target + '"]').addClass('is-active');
 };
 
-NavMainComponent.prototype.switchNavAdditionalSliding = function(target) {
+NavMainComponent.prototype.switchQuaternaryNav = function(target) {
 
     var component = this;
 
-    /* Check if Category Item has options but checking if it links inside the same page */
+    // If Category Item has encapsulated options and if it is same-page link then open the proper menu
     if(target.indexOf('#') > -1) {
-        component.$navAdditionalSliding.addClass('is-open');
+        component.$navQuaternary.addClass('is-open');
     }
 
     component.$html.find('[data-nav="' + target + '"]')
@@ -146,11 +144,11 @@ NavMainComponent.prototype.changeActiveSecondaryNavLink = function(target) {
     component.$html.find('[href="' + target + '"]').addClass('is-active');
 };
 
-NavMainComponent.prototype.changeActiveAdditionalSlidingNavLink = function(target) {
+NavMainComponent.prototype.changeActiveQuaternaryNavLink = function(target) {
 
     var component = this;
 
-    component.$html.find('.nav-additional--sliding .nav-item.is-active').removeClass('is-active');
+    component.$html.find('.nav-quaternary .nav-item.is-active').removeClass('is-active');
     component.$html.find('[href="' + target + '"]').addClass('is-active');
 };
 
@@ -158,10 +156,10 @@ NavMainComponent.prototype.closeNavs = function() {
 
     var component = this;
 
-    if(component.$navAdditionalSliding.hasClass('is-open')) {
-        component.$navAdditionalSliding.removeClass('is-open');
+    if(component.$navQuaternary.hasClass('is-open')) {
+        component.$navQuaternary.removeClass('is-open');
     } else {
-        component.$navMainSliding.removeClass('is-open');
+        component.$navTertiary.removeClass('is-open');
     }
 
     if(component.$navMain.hasClass('is-open')) {
@@ -181,18 +179,16 @@ NavMainComponent.prototype.closeSubNavs = function() {
 
 /* some notes
 - Feels like the JS should handle the creation of the third level menu to avoid unlessisary markup changes
-- close icon on 3rd level menu should point the other way (direction of animation)
-- class name nav-main--sliding does not follow bem (not a modifier) suggest nav-tertiary
+- class name nav-tertiary does not follow bem (not a modifier) suggest nav-tertiary
 - doesn't current respond to window height changes
 - more categories icon should use fixed width icons
-- you can't test $('.nav-primary
 - lots going on here even though I've tried to simplify, suggest moving chunks of functionality into functions with 1 role each.
 - no need for this to be on prototype
-- /* comments are in compiled js // are not
 */
 
 
 NavMainComponent.prototype.adjustNavItems = function() {
+
     var component = this,
         availableHeight = component.$window.height(),
         navItemsHeight = (component.$html.find('.nav-primary .nav-items').outerHeight(true) + component.$html.find('.jadu-branding').outerHeight(true)),
@@ -221,7 +217,7 @@ NavMainComponent.prototype.adjustNavItems = function() {
     numberOfHiddenNavItems = component.$html.find('.nav-primary .nav-items li:hidden').length;
 
     // Add the "More" nav item
-    if ((navItemsHeight + moreIconHeight < availableHeight) && (numberOfHiddenNavItems > 0)) { // can't we just test for numberOfHiddenNavItems here?
+    if (numberOfHiddenNavItems > 0) {
         component.$html.find('.nav-primary .nav-items').append('<li label="More" class="nav-item t-nav-item more-icon" aria-haspopup="true"><a href="#more" class="nav-link t-nav-link"><i aria-hidden="true" class="icon-ellipsis-horizontal nav-link__icon t-nav-icon"></i><span class="nav-link__label">More</span></a></li>');
     }
 
@@ -229,8 +225,9 @@ NavMainComponent.prototype.adjustNavItems = function() {
     itemsToHideCount = navItemsCountTotal - numberOfHiddenNavItems - 1; // 1 is for the "More" nav item
     i = 1;
 
+    // Hide top items in "More Categories" equal to the number of visible items of primary nav
     while (itemsToHideCount >= 0) {
-        component.$html.find('.nav-main--sliding .nav-items li:nth-child('+ i +')').hide();
+        component.$html.find('.nav-tertiary .nav-items li:nth-child('+ i +')').hide();
         i++;
         itemsToHideCount--;
     }
