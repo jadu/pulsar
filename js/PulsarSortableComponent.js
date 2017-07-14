@@ -14,7 +14,7 @@ PulsarSortableComponent.prototype.init = function () {
     var component = this;
 
     component.initTables();
-}
+};
 
 PulsarSortableComponent.prototype.initTables = function () {
 
@@ -106,7 +106,7 @@ PulsarSortableComponent.prototype.initTables = function () {
         // Trigger sortupdate and pass the updated row
         component.$html.find('.table.is-sortable tbody').trigger('sortupdate', [fakeUi]);
     });
-}
+};
 
 PulsarSortableComponent.prototype.fixHelper = function(e, ui) {
 
@@ -115,7 +115,7 @@ PulsarSortableComponent.prototype.fixHelper = function(e, ui) {
     });
 
     return ui;
-}
+};
 
 PulsarSortableComponent.prototype.addOrder = function() {
 
@@ -129,7 +129,7 @@ PulsarSortableComponent.prototype.addOrder = function() {
 
         $this.html('<span class="sortable__count js-sortable-count">' + i + '</span> ' + label);
     });
-}
+};
 
 PulsarSortableComponent.prototype.updateOrder = function() {
 
@@ -141,6 +141,6 @@ PulsarSortableComponent.prototype.updateOrder = function() {
 
         $(this).text(i);
     });
-}
+};
 
 module.exports = PulsarSortableComponent;
