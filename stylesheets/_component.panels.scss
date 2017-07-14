@@ -60,16 +60,6 @@
 
 }
 
-%panel-icon-color {
-    color: color(white);
-}
-
-@each $state, $state-color, $state-color-alt in $state-colors {
-    .panel--#{$state} .remove-button > [class^="icon-"] {
-        @extend %panel-icon-color;
-    }
-}
-
 .panel__icon {
     float: left;
     font-size: 24px;
