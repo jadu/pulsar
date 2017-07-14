@@ -20,6 +20,7 @@
     "unused": true,
     "globals": {
         "$"          : false,
+        "e"          : false,
         "jQuery"     : false,
         "console"    : false,
         "define"     : false,
@@ -32,6 +33,7 @@
         "afterEach"  : false,
         "sinon"      : false,
         "require"    : false,
-        "pulsar"     : false
+        "pulsar"     : false,
+        "ui"         : false
     }
 }
