@@ -1,13 +1,14 @@
-/* jshint: global e, ui */
-
 'use strict';
+
+/* jshint: global e, ui */
 
 var $ = require('jquery');
 
 require('../libs/jquery-ui/jquery-ui.min');
 
-function PulsarSortableComponent(html) {
+function PulsarSortableComponent(html, window) {
     this.$html = html;
+    this.window = window;
 }
 
 PulsarSortableComponent.prototype.init = function () {
@@ -61,7 +62,7 @@ PulsarSortableComponent.prototype.initTables = function () {
         // Using keydown instead of keyup as it means that the up/down controls
         // are displayed if the tab key is being held down until the right
         // element comes into focus
-        $(window).keydown(function (e) {
+        $(component.window).keydown(function (e) {
             var code = (e.keyCode ? e.keyCode : e.which),
                 $parentElement = $(e.target.parentElement);
 
