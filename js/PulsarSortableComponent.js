@@ -110,8 +110,6 @@ PulsarSortableComponent.prototype.initTables = function () {
 
 PulsarSortableComponent.prototype.fixHelper = function(e, ui) {
 
-    var ui = ui;
-
     ui.children().each(function() {
         $(this).width($(this).width());
     });
