@@ -2,7 +2,8 @@
 
 /* jshint: global e, ui */
 
-var $ = require('jquery');
+var $ = require('jquery'),
+    jqueryui  = require('../libs/jquery-ui/jquery-ui.min');
 
 function PulsarSortableComponent(html, window) {
     this.$html = html;
@@ -18,6 +19,7 @@ PulsarSortableComponent.prototype.init = function () {
 
 PulsarSortableComponent.prototype.initTables = function () {
 
+/* istanbul ignore next: difficult to test jQueryUI sortable behaviour */
     var component = this,
         fakeUi = {},
         currentRow,
@@ -36,6 +38,7 @@ PulsarSortableComponent.prototype.initTables = function () {
 
         };
 
+    /* istanbul ignore next: difficult to test jQueryUI sortable behaviour */
     this.$html.find('.table.is-sortable tbody').sortable({
         placeholder: 'is-sorting',
         helper: component.fixHelper,
@@ -49,6 +52,7 @@ PulsarSortableComponent.prototype.initTables = function () {
     }).disableSelection();
 
      // Trigger update() on sortupdate event
+     /* istanbul ignore next: difficult to test jQueryUI sortable behaviour */
     this.$html.find('.table.is-sortable tbody').on('sortupdate', function (e, ui) {
         var $sortableElement = $(this);
         update(e, ui, $sortableElement);
@@ -85,7 +89,7 @@ PulsarSortableComponent.prototype.initTables = function () {
             linkContainer = $this.closest('td'),
             moveLinks = linkContainer.find('a');
 
-        moveLinks.hide();
+        moveLinks.addClass('hide');
         linkContainer.addClass('u-text-align-center').append('<span class="js-sortable-moved u-no-wrap"><i class="icon-ok-sign icon--success"></i></span>');
 
         if ($this.attr('data-move') === 'up') {
@@ -96,8 +100,12 @@ PulsarSortableComponent.prototype.initTables = function () {
         }
 
         setTimeout(function() {
-            linkContainer.removeClass('u-text-align-center').find('.js-sortable-moved').remove();
-            moveLinks.show();
+            linkContainer
+                .removeClass('u-text-align-center')
+                .find('.js-sortable-moved')
+                .remove();
+
+            moveLinks.removeClass('hide');
         }, 1500);
 
         // Fake the UI object created by sortable drag and drop
@@ -108,6 +116,7 @@ PulsarSortableComponent.prototype.initTables = function () {
     });
 };
 
+/* istanbul ignore next: difficult to test jQueryUI sortable behaviour */
 PulsarSortableComponent.prototype.fixHelper = function(e, ui) {
 
     ui.children().each(function() {
