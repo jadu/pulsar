@@ -26,7 +26,7 @@ PulsarSortableComponent.prototype.initTables = function () {
         update = function (e, ui, $sortableElement) {
             var $item = $(ui.item);
 
-            $item.addClass('has-success fade', function() {
+            $item.removeClass('is-dragging').addClass('has-success fade', function() {
                 setTimeout(function() {
                     $item.removeClass('has-success fade');
                 }, 2500);
@@ -55,7 +55,7 @@ PulsarSortableComponent.prototype.initTables = function () {
     });
 
     // Show arrows when row is tabbed to focus
-    this.$html.find('[data-move]').on('focus', function(e){
+    this.$html.find('[data-move]').on('focus', function () {
 
         // Using keydown instead of keyup as it means that the up/down controls
         // are displayed if the tab key is being held down until the right
@@ -65,7 +65,7 @@ PulsarSortableComponent.prototype.initTables = function () {
                 $parentElement = $(e.target.parentElement);
 
             // If tab key has been pressed
-            if (code == 9) {
+            if (code === 9) {
                 if ($(e.target).hasClass('hide')) {
                     $parentElement
                         .width($parentElement.width() + 40);
