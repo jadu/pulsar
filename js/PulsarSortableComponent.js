@@ -77,7 +77,7 @@ PulsarSortableComponent.prototype.initTables = function () {
                     $parentElement.closest('.table.is-sortable')
                         .find('[data-move]')
                         .removeClass('hide');
-                };
+                }
             }
         });
     });
