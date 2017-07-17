@@ -499,4 +499,24 @@ describe('DropZone', () => {
             expect(dropZone.getSupportsDataTransfer()).to.be.true;
         });
     });
+
+    describe('enable()', () => {
+        it('should enable the DropZone', () => {
+            dropZone.enabled = false;
+
+            dropZone.enable();
+
+            expect(dropZone.enabled).to.be.true;
+        });
+    });
+
+    describe('disable()', () => {
+        it('should disable the DropZone', () => {
+            dropZone.enabled = true;
+
+            dropZone.disable();
+
+            expect(dropZone.enabled).to.be.false;
+        });
+    });
 });

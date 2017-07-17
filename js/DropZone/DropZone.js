@@ -27,6 +27,7 @@ export default class DropZone {
         // setup files and size storage
         this.files = [];
         this.size = 0;
+        this.enabled = true;
     }
 
     /**
@@ -64,22 +65,24 @@ export default class DropZone {
     handleDrop (event) {
         const files = event.dataTransfer.items || event.dataTransfer.files;
 
-        // determine where the drop has taken place
-        // dropped on the DropZone
-        if (this.windowActive && this.dropZoneActive) {
-            this.addFiles(files);
-        // dropped on the window
-        } else if (this.windowActive && !this.dropZoneActive) {
-            this.callbackManager.create(
-                this.options.windowDrop,
-                this,
-                { files: this.files }
-            );
-        }
+        if (this.enabled) {
+            // determine where the drop has taken place
+            // dropped on the DropZone
+            if (this.windowActive && this.dropZoneActive) {
+                this.addFiles(files);
+            // dropped on the window
+            } else if (this.windowActive && !this.dropZoneActive) {
+                this.callbackManager.create(
+                    this.options.windowDrop,
+                    this,
+                    { files: this.files }
+                );
+            }
 
-        // reset DropZone state
-        this.windowActive = false;
-        this.dropZoneActive = false;
+            // reset DropZone state
+            this.windowActive = false;
+            this.dropZoneActive = false;
+        }
     }
 
     /**
@@ -157,7 +160,7 @@ export default class DropZone {
             this.supportsDataTransfer = false;
         }
 
-        if (onWindow && !this.windowActive) {
+        if (onWindow && !this.windowActive && this.enabled) {
             // handle files on window
             const {valid, text} = this.validator.validate(files, this.files.length, this.size);
 
@@ -169,7 +172,7 @@ export default class DropZone {
             );
         }
 
-        if (onDropZone && !this.dropZoneActive) {
+        if (onDropZone && !this.dropZoneActive && this.enabled) {
             // handle files on DropZone
             this.handleDropZoneEnter(files);
         }
@@ -299,5 +302,19 @@ export default class DropZone {
      */
     getSupportsDataTransfer () {
         return this.supportsDataTransfer;
+    }
+
+    /**
+     * Enable DropZoneComponent
+     */
+    enable () {
+        this.enabled = true;
+    }
+
+    /**
+     * Disable DropZoneComponent
+     */
+    disable () {
+        this.enabled = false;
     }
 }

@@ -259,4 +259,40 @@ describe('DropZoneInstanceManager', () => {
             expect(mockInstances[1].dropZone.reset).to.have.been.calledOnce;
         });
     });
+
+    describe('enableInstance()', () => {
+        let mockInstances;
+
+        beforeEach(() => {
+            mockInstances = [
+                { id: 0, dropZone: { enable: sinon.spy() } },
+                { id: 1, dropZone: { enable: sinon.spy() } }
+            ];
+        });
+
+        it('should call enable on an instance', () => {
+            instanceManager.instances = mockInstances;
+            instanceManager.enableInstance(1);
+
+            expect(mockInstances[1].dropZone.enable).to.have.been.calledOnce;
+        });
+    });
+
+    describe('disable()', () => {
+        let mockInstances;
+
+        beforeEach(() => {
+            mockInstances = [
+                { id: 0, dropZone: { disable: sinon.spy() } },
+                { id: 1, dropZone: { disable: sinon.spy() } }
+            ];
+        });
+
+        it('should call disable on an instance', () => {
+            instanceManager.instances = mockInstances;
+            instanceManager.disableInstance(1);
+
+            expect(mockInstances[1].dropZone.disable).to.have.been.calledOnce;
+        });
+    });
 });

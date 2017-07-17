@@ -19,7 +19,6 @@ class DropZoneComponent {
         this.utils = utils;
         this.validationManager = validationManager;
         this.classManager = classManager;
-        this.enabled = true;
     }
 
     /**
@@ -292,24 +291,22 @@ class DropZoneComponent {
     handleWindowEnter ({ valid, text, instance }) {
         const id = instance.getDropZoneId();
 
-        if (this.enabled) {
-            if (valid) {
-                this.updateInfoState(id, instance.options.windowEnterHtml);
-                this.classManager.update(this.body, [instance.options.interactionClasses.windowEnter]);
-            } else {
-                this.throwValidationError(text, id);
-                this.classManager.update(
-                    this.body,
-                    [
-                        instance.options.interactionClasses.windowEnter,
-                        instance.options.interactionClasses.dropZoneError
-                    ]
-                );
-            }
+        if (valid) {
+            this.updateInfoState(id, instance.options.windowEnterHtml);
+            this.classManager.update(this.body, [instance.options.interactionClasses.windowEnter]);
+        } else {
+            this.throwValidationError(text, id);
+            this.classManager.update(
+                this.body,
+                [
+                    instance.options.interactionClasses.windowEnter,
+                    instance.options.interactionClasses.dropZoneError
+                ]
+            );
+        }
 
-            if (instance.options.customWindowEnter && typeof instance.options.customWindowEnter === 'function') {
-                instance.options.customWindowEnter.apply(this, [].slice.call(arguments));
-            }
+        if (instance.options.customWindowEnter && typeof instance.options.customWindowEnter === 'function') {
+            instance.options.customWindowEnter.apply(this, [].slice.call(arguments));
         }
     }
 
@@ -320,20 +317,18 @@ class DropZoneComponent {
     handleWindowLeave ({ instance })  {
         const id = instance.getDropZoneId();
 
-        if (this.enabled) {
-            // update helper text
-            this.updateInfoState(id, instance.options.idleHtml);
+        // update helper text
+        this.updateInfoState(id, instance.options.idleHtml);
 
-            // reset body class
-            this.classManager.update(this.body);
+        // reset body class
+        this.classManager.update(this.body);
 
-            // update validation if there was any
-            this.validationManager.clear(instance.node, instance.options.nodeClasses.validation);
+        // update validation if there was any
+        this.validationManager.clear(instance.node, instance.options.nodeClasses.validation);
 
-            // call any additional callbacks passed in via options
-            if (instance.options.customWindowLeave && typeof instance.options.customWindowLeave === 'function') {
-                instance.options.customWindowLeave.apply(this, [].slice.call(arguments));
-            }
+        // call any additional callbacks passed in via options
+        if (instance.options.customWindowLeave && typeof instance.options.customWindowLeave === 'function') {
+            instance.options.customWindowLeave.apply(this, [].slice.call(arguments));
         }
     }
 
@@ -346,27 +341,25 @@ class DropZoneComponent {
     handleDropZoneEnter ({ valid, text, instance }) {
         const id = instance.getDropZoneId();
 
-        if (this.enabled) {
-            // update helper text
-            if (valid) {
-                this.updateInfoState(id, instance.options.dropZoneEnterHtml);
-                this.classManager.update(this.body, [
-                    instance.options.interactionClasses.windowEnter,
-                    instance.options.interactionClasses.dropZoneEnter
-                ]);
-            } else {
-                this.throwValidationError(text, id);
-                this.classManager.update(this.body, [
-                    instance.options.interactionClasses.windowEnter,
-                    instance.options.interactionClasses.dropZoneEnter,
-                    instance.options.interactionClasses.dropZoneError
-                ]);
-            }
+        // update helper text
+        if (valid) {
+            this.updateInfoState(id, instance.options.dropZoneEnterHtml);
+            this.classManager.update(this.body, [
+                instance.options.interactionClasses.windowEnter,
+                instance.options.interactionClasses.dropZoneEnter
+            ]);
+        } else {
+            this.throwValidationError(text, id);
+            this.classManager.update(this.body, [
+                instance.options.interactionClasses.windowEnter,
+                instance.options.interactionClasses.dropZoneEnter,
+                instance.options.interactionClasses.dropZoneError
+            ]);
+        }
 
-            // call any additional callbacks passed in via options
-            if (instance.options.customDropZoneEnter && typeof instance.options.customDropZoneEnter === 'function') {
-                instance.options.customDropZoneEnter.apply(this, [].slice.call(arguments));
-            }
+        // call any additional callbacks passed in via options
+        if (instance.options.customDropZoneEnter && typeof instance.options.customDropZoneEnter === 'function') {
+            instance.options.customDropZoneEnter.apply(this, [].slice.call(arguments));
         }
     }
 
@@ -379,23 +372,21 @@ class DropZoneComponent {
     handleDropzoneLeave ({ valid, text, instance }) {
         const id = instance.getDropZoneId();
 
-        if (this.enabled) {
-            // update helper text
-            if (valid) {
-                this.updateInfoState(id, instance.options.windowEnterHtml);
-                this.classManager.update(this.body, [instance.options.interactionClasses.windowEnter]);
-            } else {
-                this.throwValidationError(text, id);
-                this.classManager.update(this.body, [
-                    instance.options.interactionClasses.windowEnter,
-                    instance.options.interactionClasses.dropZoneError
-                ]);
-            }
+        // update helper text
+        if (valid) {
+            this.updateInfoState(id, instance.options.windowEnterHtml);
+            this.classManager.update(this.body, [instance.options.interactionClasses.windowEnter]);
+        } else {
+            this.throwValidationError(text, id);
+            this.classManager.update(this.body, [
+                instance.options.interactionClasses.windowEnter,
+                instance.options.interactionClasses.dropZoneError
+            ]);
+        }
 
-            // call any additional callbacks passed in via options
-            if (instance.options.customDropZoneLeave && typeof instance.options.customDropZoneLeave === 'function') {
-                instance.options.customDropZoneLeave.apply(this, [].slice.call(arguments));
-            }
+        // call any additional callbacks passed in via options
+        if (instance.options.customDropZoneLeave && typeof instance.options.customDropZoneLeave === 'function') {
+            instance.options.customDropZoneLeave.apply(this, [].slice.call(arguments));
         }
     }
 
@@ -409,34 +400,32 @@ class DropZoneComponent {
     handleDropZoneDrop ({ files, valid, text, instance }) {
         const id = instance.getDropZoneId();
 
-        if (this.enabled) {
-            if (valid) {
-                this.updateDropZoneFiles(id);
-                this.classManager.update(this.body, [instance.options.interactionClasses.dropZoneSuccess]);
+        if (valid) {
+            this.updateDropZoneFiles(id);
+            this.classManager.update(this.body, [instance.options.interactionClasses.dropZoneSuccess]);
+        } else {
+            // If a persist property has been set on the file, we will throw a
+            // validation error which will persist once the file is dropped, this
+            // helps us out when we need to throw an error when a user uses an associated
+            // native file input's "browse files"
+            const persist = _.find(files, file => file.meta.persist);
+
+            if (!instance.getSupportsDataTransfer() || persist) {
+                this.throwValidationError(text, id);
             } else {
-                // If a persist property has been set on the file, we will throw a
-                // validation error which will persist once the file is dropped, this
-                // helps us out when we need to throw an error when a user uses an associated
-                // native file input's "browse files"
-                const persist = _.find(files, file => file.meta.persist);
-
-                if (!instance.getSupportsDataTransfer() || persist) {
-                    this.throwValidationError(text, id);
-                } else {
-                    // if we are not persisting validation messages, clear any that are present
-                    this.validationManager.clear(instance.node, instance.options.nodeClasses.validation);
-                }
-
-                this.classManager.update(this.body);
+                // if we are not persisting validation messages, clear any that are present
+                this.validationManager.clear(instance.node, instance.options.nodeClasses.validation);
             }
 
-            // update helper text
-            this.updateInfoState(id, instance.options.idleHtml);
+            this.classManager.update(this.body);
+        }
 
-            // call any additional callbacks passed in via options
-            if (instance.options.customDropZoneDrop && typeof instance.options.customDropZoneDrop === 'function') {
-                instance.options.customDropZoneDrop.apply(this, [].slice.call(arguments));
-            }
+        // update helper text
+        this.updateInfoState(id, instance.options.idleHtml);
+
+        // call any additional callbacks passed in via options
+        if (instance.options.customDropZoneDrop && typeof instance.options.customDropZoneDrop === 'function') {
+            instance.options.customDropZoneDrop.apply(this, [].slice.call(arguments));
         }
     }
 
@@ -448,24 +437,22 @@ class DropZoneComponent {
     handleWindowDrop ({ files, instance }) {
         const id = instance.getDropZoneId();
 
-        if (this.enabled) {
-            // reset body class
-            this.classManager.update(this.body);
+        // reset body class
+        this.classManager.update(this.body);
 
-            // handle dropped files
-            this.updateDropZoneFiles(id);
+        // handle dropped files
+        this.updateDropZoneFiles(id);
 
-            // update helper text
-            this.updateInfoState(id, instance.options.idleHtml);
+        // update helper text
+        this.updateInfoState(id, instance.options.idleHtml);
 
-            if (instance.getSupportsDataTransfer()) {
-                // clear validation
-                this.validationManager.clear(instance.node, instance.options.nodeClasses.validation);
-            }
+        if (instance.getSupportsDataTransfer()) {
+            // clear validation
+            this.validationManager.clear(instance.node, instance.options.nodeClasses.validation);
+        }
 
-            if (instance.options.customWindowDrop && typeof instance.options.customWindowDrop === 'function') {
-                instance.options.customWindowDrop.apply(this, [].slice.call(arguments));
-            }
+        if (instance.options.customWindowDrop && typeof instance.options.customWindowDrop === 'function') {
+            instance.options.customWindowDrop.apply(this, [].slice.call(arguments));
         }
     }
 
@@ -579,16 +566,18 @@ class DropZoneComponent {
 
     /**
      * Enable DropZoneComponent
+     * @param {Number} id
      */
-    enable () {
-        this.enabled = true;
+    enable (id) {
+        this.instanceManager.enableInstance(id);
     }
 
     /**
      * Disable DropZoneComponent
+     * @param {Number} id
      */
-    disable () {
-        this.enabled = false;
+    disable (id) {
+        this.instanceManager.disableInstance(id);
     }
 }
 

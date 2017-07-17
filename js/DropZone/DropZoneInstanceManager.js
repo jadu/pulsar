@@ -134,6 +134,26 @@ class DropZoneInstanceManager {
             _.find(this.instances, i => i.id === id).dropZone.reset();
         }
     }
+
+    /**
+     * Disable DropZone instance
+     * @param {Number} id
+     */
+    disableInstance (id) {
+        const instance = _.find(this.instances, i => i.id === id);
+
+        instance.dropZone.disable();
+    }
+
+    /**
+     * Enable DropZone instance
+     * @param {Number} id
+     */
+    enableInstance (id) {
+        const instance = _.find(this.instances, i => i.id === id);
+
+        instance.dropZone.enable();
+    }
 }
 
 module.exports = DropZoneInstanceManager;

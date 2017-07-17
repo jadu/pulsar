@@ -911,21 +911,21 @@ describe('DropZoneComponent', () => {
         });
     });
 
-    describe('enabled()', () => {
-        it('should enable the DropZoneComponent', () => {
-            dropZoneComponent.enabled = false;
-            dropZoneComponent.enable();
+    describe('enable()', () => {
+        it('should call enable on the instance manager', () => {
+            dropZoneComponent.enable(88);
 
-            expect(dropZoneComponent.enabled).to.be.true;
+            expect(instanceManager.enableInstance).to.have.been.calledOnce;
+            expect(instanceManager.enableInstance).to.have.been.calledWith(88);
         });
     });
 
     describe('disable()', () => {
-        it('should disable the DropZoneComponent', () => {
-            dropZoneComponent.enabled = true;
-            dropZoneComponent.disable();
+        it('should call disable on the instance manager', () => {
+            dropZoneComponent.disable(88);
 
-            expect(dropZoneComponent.enabled).to.be.false;
+            expect(instanceManager.disableInstance).to.have.been.calledOnce;
+            expect(instanceManager.disableInstance).to.have.been.calledWith(88);
         });
     });
 });
