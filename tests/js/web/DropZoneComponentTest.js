@@ -53,10 +53,6 @@ describe('DropZoneComponent', () => {
         );
     });
 
-    afterEach(() => {
-        console.log($body.find('#fileInput').length)
-    });
-
     describe('init()', () => {
         let inputStub;
         let browseStub;
@@ -912,6 +908,24 @@ describe('DropZoneComponent', () => {
         it('should get data support from instance manager', () => {
             dropZoneComponent.getSupportsDataTransferItems(0);
             expect(instanceManager.getSupportsDataTransfer).to.have.been.calledOnce;
+        });
+    });
+
+    describe('enabled()', () => {
+        it('should enable the DropZoneComponent', () => {
+            dropZoneComponent.enabled = false;
+            dropZoneComponent.enable();
+
+            expect(dropZoneComponent.enabled).to.be.true;
+        });
+    });
+
+    describe('disable()', () => {
+        it('should disable the DropZoneComponent', () => {
+            dropZoneComponent.enabled = true;
+            dropZoneComponent.disable();
+
+            expect(dropZoneComponent.enabled).to.be.false;
         });
     });
 });
