@@ -62,16 +62,22 @@ describe('NavMain component', function() {
   </div><!--\
 \
 --><div class="nav-tertiary">\
+\
+    <a href="#close" data-nav-action="close">x</a>\
+\
         <ul class="nav-items">\
             <li class="nav-item">\
-                <a href="#three_one" class="nav-link">1.1</a>\
+                <a href="#three_one" class="nav-link">3.1</a>\
             </li>\
         </ul>\
     </div><!-- \
   --><div class="nav-quaternary">\
+  \
+    <a href="#close" data-nav-action="close">x</a>\
+    \
         <ul class="nav-items">\
           <li class="nav-item">\
-            <a href="#four_one" class="nav-link">1.1</a>\
+            <a href="#four_one" class="nav-link">4.1</a>\
           </li>\
         </ul>\
     </div>\
@@ -262,4 +268,33 @@ describe('NavMain component', function() {
         });
 
     });
+
+    describe('clicking the close icon, when the tertiary sub navigation is open', function() {
+
+        beforeEach(function() {
+            this.navMainComponent.init();
+            this.$secondaryLinkThree.click();
+            this.$closeLink.click();
+        });
+
+        it('should close the sub navigation', function() {
+            expect(this.$html.find('.nav-tertiary').hasClass('is-open')).to.be.false;
+        });
+
+    });
+
+    describe('clicking the close icon, when the quaternary sub navigation is open', function() {
+
+        beforeEach(function() {
+            this.navMainComponent.init();
+            this.$secondaryLinkFour.click();
+            this.$closeLink.click();
+        });
+
+        it('should close the sub navigation', function() {
+            expect(this.$html.find('.nav-quaternary').hasClass('is-open')).to.be.false;
+        });
+
+    });
+
 });
