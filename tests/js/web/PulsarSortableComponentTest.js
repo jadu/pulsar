@@ -75,7 +75,7 @@ describe('PulsarSortableComponent', function() {
 
         it('should show the move links after a delay', function() {
             setTimeout(function(){
-                expect(this.$html.find('.qa-row-one [data-move="up"]').hasClass('hide')).to.be.false
+                expect(this.$html.find('.qa-row-one [data-move="up"]').hasClass('hide')).to.be.false;
             }, 2250);
         });
 

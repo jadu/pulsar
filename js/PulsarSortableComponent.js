@@ -2,8 +2,7 @@
 
 /* jshint: global e, ui */
 
-var $ = require('jquery'),
-    jqueryui  = require('../libs/jquery-ui/jquery-ui.min');
+var $ = require('jquery');
 
 function PulsarSortableComponent(html, window) {
     this.$html = html;
