@@ -12,15 +12,13 @@ function PulsarSortableComponent(html, window) {
 }
 
 PulsarSortableComponent.prototype.init = function () {
-
     var component = this;
 
     component.initTables();
 };
 
 PulsarSortableComponent.prototype.initTables = function () {
-
-/* istanbul ignore next: difficult to test jQueryUI sortable behaviour */
+    /* istanbul ignore next: difficult to test jQueryUI sortable behaviour */
     var component = this,
         fakeUi = {},
         currentRow,
@@ -56,6 +54,7 @@ PulsarSortableComponent.prototype.initTables = function () {
      /* istanbul ignore next: difficult to test jQueryUI sortable behaviour */
     this.$html.find('.table.is-sortable tbody').on('sortupdate', function (e, ui) {
         var $sortableElement = $(this);
+
         update(e, ui, $sortableElement);
     });
 
@@ -119,7 +118,6 @@ PulsarSortableComponent.prototype.initTables = function () {
 
 /* istanbul ignore next: difficult to test jQueryUI sortable behaviour */
 PulsarSortableComponent.prototype.fixHelper = function(e, ui) {
-
     ui.children().each(function() {
         $(this).width($(this).width());
     });
@@ -128,28 +126,22 @@ PulsarSortableComponent.prototype.fixHelper = function(e, ui) {
 };
 
 PulsarSortableComponent.prototype.addOrder = function() {
-
     var component = this;
 
     component.$html.find('.table.is-sortable tr > td:first-of-type').each(function(i) {
         var $this = $(this),
-            label = $(this).text();
+            label = $this.text(),
+            count = i + 1;
 
-        i++;
-
-        $this.html('<span class="sortable__count js-sortable-count">' + i + '</span> ' + label);
+        $this.html('<span class="sortable__count js-sortable-count">' + (count) + '</span> ' + label);
     });
 };
 
 PulsarSortableComponent.prototype.updateOrder = function() {
-
     var component = this;
 
     component.$html.find('.table.is-sortable .js-sortable-count').each(function(i) {
-
-        i++;
-
-        $(this).text(i);
+        $(this).text(i + 1);
     });
 };
 
