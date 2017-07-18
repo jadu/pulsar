@@ -237,7 +237,9 @@ value       | string | Specifies the value of the input
 
         {# legacy un-nested syntax #}
         {% else %}
-            <option {{ util.value(value) }}>
+            <option {{ util.value(value) }}
+            {%- if mainOptions.selected is defined and value == mainOptions.selected %} selected{% endif -%}
+            >
                 {{- label -}}
             </option>
         {% endif %}

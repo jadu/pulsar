@@ -3,16 +3,10 @@
 {{
     form.select({
         'selected': 'bar',
-        'options': [
-            {
-                'label': 'bar',
-                'value': 'foo'
-            },
-            {
-                'label': 'baz',
-                'value': 'bar'
-            }
-        ]
+        'options': {
+            'foo': 'bar',
+            'bar': 'baz'
+        }
     })
 }}
 {% endblock %}
