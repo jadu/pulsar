@@ -13,16 +13,20 @@ build:
 	@ php composer.phar install
 	@ echo "\n${CHECK} Done"
 
+	@ echo "${HR}\nInstalling Homebrew...${HR}\n"
+	yes '' | ruby -e "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	@ echo "\n${CHECK} Done"
+
+	@ echo "${HR}\nInstalling Ansible...${HR}\n"
+	@ -brew install ansible
+	@ echo "\n${CHECK} Done"
+
 	@ echo "${HR}\nInstalling Vagrant...${HR}\n"
 	@ -brew cask install vagrant
 	@ echo "\n${CHECK} Done"
 
 	@ echo "${HR}\nInstalling Virtualbox...${HR}\n"
 	@ -brew cask install virtualbox
-	@ echo "\n${CHECK} Done"
-
-	@ echo "${HR}\nInstalling Homebrew...${HR}\n"
-	yes '' | ruby -e "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 	@ echo "\n${CHECK} Done"
 
 	@ echo "${HR}\nInstalling Ruby...${HR}\n"
@@ -66,6 +70,7 @@ build:
 	@ echo "\n${CHECK} Done"
 
 	@ echo "${HR}\nCopy Proxima Nova (if available)...${HR}"
+	@ mkdir -p ./fonts
 	@ touch ./fonts/_config.fonts.scss
 	@ cp -r ../pulsar-fonts/src/* ./fonts 2>/dev/null || :
 	@ git update-index --skip-worktree fonts/_config.fonts.scss

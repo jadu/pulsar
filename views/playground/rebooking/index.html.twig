@@ -1,0 +1,112 @@
+{% extends '@pulsar/pulsar/layouts/base.html.twig' %}
+
+{% block tabs_content %}
+
+    {{
+        form.create()
+    }}
+
+    {{
+        form.content({
+            'label': 'Form title',
+            'value': 'My awesome booking form'
+        })
+    }}
+
+    {{
+        form.content({
+            'label': 'Submitted by',
+            'value': 'paul.stanton@jadu.net'
+        })
+    }}
+
+    {{
+        form.text({
+            'label': 'Booking title'
+        })
+    }}
+
+    {{
+        form.text({
+            'label': 'Location'
+        })
+    }}
+
+    {{
+        form.textarea({
+            'label': 'Description'
+        })
+    }}
+
+    {{
+        form.content({
+            'label': 'Calendar',
+            'value': 'Bookings'
+        })
+    }}
+
+
+    <div class="form__group">
+        <label class="control__label">Booked slot</label>
+        <div class="controls">
+            <p>Wed 13/09/2017 09:00 to 09:20 am (20 mins) <button class="btn btn--small">Change</button></p>
+            <input type="hidden" class="js-slotpicker-value" value='10/02/2017' />
+            <div class="js-slotpicker-calendar slotpicker-calendar"></div>
+            <div class="js-slotpicker-slots slotpicker-slots">
+                <h3 class="slotpicker-slots__heading">Available slots on Thu 9th Feb</h3>
+                <span class="slotpicker-slots__subheading">Morning</span>
+                <ol class="slotpicker-slots__list">
+                    <li class="slotpicker-slots__slot">09:00 am &ndash; 09:20 am {{ html.label({ 'label': html.icon('ok') ~ ' Booked', 'class': 'label--success pull-right' }) }}</li>
+                    <li class="slotpicker-slots__slot">09:20 am &ndash; 09:40 am {{ html.button({ 'label': 'Choose', 'class': 'pull-right btn--small btn--outline' }) }}</li>
+                </ol>
+
+                <span class="slotpicker-slots__subheading">Afternoon</span>
+                <ol class="slotpicker-slots__list">
+                    <li class="slotpicker-slots__slot">09:00 pm &ndash; 09:20 pm {{ html.button({ 'label': 'Choose', 'class': 'pull-right btn--small btn--outline' }) }}</li>
+                    <li class="slotpicker-slots__slot">09:20 pm &ndash; 09:40 pm {{ html.button({ 'label': 'Choose', 'class': 'pull-right btn--small btn--outline' }) }}</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <div class="form__group">
+        <label class="control__label">Booked slot</label>
+        <div class="controls">
+            {{
+                html.panel({
+                    'class': 'panel--warning',
+                    'body': '<span class="pull-right">' ~ html.button({
+                        'label': 'Choose Another',
+                        'class': 'btn--outline btn--small btn--inverse'
+                    }) ~ '&nbsp;' ~
+                    html.button({
+                        'label': 'Cancel Change',
+                        'class': 'btn--outline btn--small btn--inverse'
+                    }) ~ '</span><strong>Booking will be changed to:</strong><br />Wed 13/09/2017 10:20am to 10:40am (20 mins)'
+
+                })
+            }}
+        </div>
+    </div>
+
+    {{
+        form.content({
+            'label': 'Status',
+            'value': html.label({ 'label': 'confirmed', 'class': 'label--success' })
+        })
+    }}
+
+    {{
+        form.end({
+            'actions': [
+                form.submit({
+                    'label': 'Save'
+                }),
+                html.link({
+                    'label': 'Cancel',
+                    'href': '/home'
+                })
+            ]
+        })
+    }}
+{% endblock %}

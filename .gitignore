@@ -11,10 +11,13 @@
 /composer.phar
 /.bashrc
 .vagrant/
+.grunt/
 .idea/
 /coverage
 /css
 /dist
+/docs/_site
+/docs/.sass-cache
 /tests/logs
 /css
 libs/livereload-js
@@ -25,3 +28,8 @@ pulsar.zip
 /fonts
 /fonts/_config.fonts.scss
 
+/.csscomb.json
+/validation-status.json
+/validation-report.json
+/tests/validation/error_reports/*
+/tests/validation/html_output/*

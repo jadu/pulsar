@@ -1,7 +1,7 @@
 //! moment.js locale configuration
-//! locale : talossan (tzl)
-//! author : Robin van der Vliet : https://github.com/robin0van0der0v with the help of Iustì Canun
-
+//! locale : Talossan [tzl]
+//! author : Robin van der Vliet : https://github.com/robin0van0der0v
+//! author : Iustì Canun
 
 import moment from '../moment';
 
@@ -20,6 +20,10 @@ export default moment.defineLocale('tzl', {
         LL : 'D. MMMM [dallas] YYYY',
         LLL : 'D. MMMM [dallas] YYYY HH.mm',
         LLLL : 'dddd, [li] D. MMMM [dallas] YYYY HH.mm'
+    },
+    meridiemParse: /d\'o|d\'a/i,
+    isPM : function (input) {
+        return 'd\'o' === input.toLowerCase();
     },
     meridiem : function (hours, minutes, isLower) {
         if (hours > 11) {
@@ -51,7 +55,7 @@ export default moment.defineLocale('tzl', {
         y : processRelativeTime,
         yy : processRelativeTime
     },
-    ordinalParse: /\d{1,2}\./,
+    dayOfMonthOrdinalParse: /\d{1,2}\./,
     ordinal : '%d.',
     week : {
         dow : 1, // Monday is the first day of the week.

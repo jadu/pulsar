@@ -2,6 +2,7 @@
 /.vagrant                   export-ignore
 /app/                       export-ignore
 /coverage/                  export-ignore
+/docs/                      export-ignore
 /features/                  export-ignore
 /hook/                      export-ignore
 /node_modules/              export-ignore
@@ -30,6 +31,14 @@
 /phpunit.xml.dist           export-ignore
 /pulsar.sublime-project     export-ignore
 /Vagrantfile                export-ignore
+/tests/validation/w3cError* export-ignore
+/validation-status.json     export-ignore
+/validation-report.json     export-ignore
+
+##
+## /images/
+##
+/images/src/logo-coloured.ai                                    export-ignore
 
 ##
 ## /libs/
@@ -60,31 +69,25 @@
 /libs/history.js/scripts/bundled-uncompressed                   export-ignore
 /libs/history.js/scripts/compressed/                            export-ignore
 /libs/history.js/scripts/uncompressed/                          export-ignore
-/libs/history.js/scripts/tests/                                 export-ignore
-/libs/history.js/scripts/tests.src/                             export-ignore
-/libs/history.js/scripts/vendor/                                export-ignore
-/libs/history.js/scripts/bower.json                             export-ignore
-/libs/history.js/scripts/.gitignore                             export-ignore
-/libs/history.js/scripts/bower.json                             export-ignore
-/libs/history.js/scripts/buildr-uncompressed.coffee             export-ignore
-/libs/history.js/scripts/buildr.coffee                          export-ignore
-/libs/history.js/scripts/component.json                         export-ignore
-/libs/history.js/scripts/History.md                             export-ignore
-/libs/history.js/scripts/license.txt                            export-ignore
-/libs/history.js/scripts/package.json                           export-ignore
-/libs/history.js/scripts/README.md                              export-ignore
+/libs/history.js/tests/                                         export-ignore
+/libs/history.js/tests.src/                                     export-ignore
+/libs/history.js/vendor/                                        export-ignore
+/libs/history.js/bower.json                                     export-ignore
+/libs/history.js/.gitignore                                     export-ignore
+/libs/history.js/bower.json                                     export-ignore
+/libs/history.js/buildr-uncompressed.coffee                     export-ignore
+/libs/history.js/buildr.coffee                                  export-ignore
+/libs/history.js/component.json                                 export-ignore
+/libs/history.js/History.md                                     export-ignore
+/libs/history.js/license.txt                                    export-ignore
+/libs/history.js/package.json                                   export-ignore
+/libs/history.js/README.md                                      export-ignore
 
 # html5shiv
 /libs/html5shiv/.bower.json                                     export-ignore
 /libs/html5shiv/bower.json                                      export-ignore
 /libs/html5shiv/dist/html5shiv-printshiv.js                     export-ignore
 /libs/html5shiv/dist/html5shiv-printshiv.min.js                 export-ignore
-# /libs/html5shiv/dist/html5shiv.js
-##
-## we reference the unminified version within base.html.twig and legacy.html.twig (see line above)
-## although this (see line below) is the one we should probably be using
-##
-/libs/html5shiv/dist/html5shiv.min.js                           export-ignore
 /libs/html5shiv/Gruntfile.js                                    export-ignore
 /libs/html5shiv/MIT?and?GPL2?licenses.md                        export-ignore
 /libs/html5shiv/package.json                                    export-ignore

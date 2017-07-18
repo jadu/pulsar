@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+{% include head.html %}
+
+<body>
+
+    <div class="header">
+        <img src="{{ site.baseurl }}/assets/images/pulsar-brand-medium.png" class="brand-image" />
+        <h1>
+            <a href="{{ site.baseurl }}">
+                {{ site.title }}
+            </a>
+        </h1>
+        <p class="lead">{{ site.tagline }}</p>
+
+        <div class="header-links">
+            <a class="header-link" href="https://github.com/jadu/pulsar">View on GitHub</a>
+            <a class="header-link" href="https://github.com/jadu/pulsar/archive/develop.zip">Download .zip</a>
+            <a class="header-link" href="https://github.com/jadu/pulsar/archive/develop.tar.gz">Download .tar.gz</a>
+        </div>
+    </div>
+
+    <div class="content">
+        {% include sidebar.html %}
+        <div class="page">
+            <h1 class="page-title">{{ page.title }}</h1>
+            {{ content }}
+        </div>
+    </div>
+
+</body>
+</html>

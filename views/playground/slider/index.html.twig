@@ -1,32 +1,33 @@
 {% extends '@pulsar/pulsar/layouts/base.html.twig' %}
 
 {% block body %}
-
 <!--[if lte IE 8]>
     <div class="signin-oldie-bg">
         <img src="../../jadu/bundles/pulsar/images/video/galaxy.jpg" alt="galaxy background">
     </div>
 <!--<![endif]-->
 <div class="signin-backdrop"></div>
-<div class="video" data-vide-bg="../../jadu/bundles/pulsar/images/video/galaxy.mp4">
+<div class="video" data-vide-bg="../../../images/video/galaxy.mp4">
 <div class="flash-container js-flash-container"></div>
-
 <img class="signin-brand" src="../../../images/branding/continuum-brandmark.svg" />
 <div class="slider-container">
+
+    <!--
+        CMS Example, commented out while the CXM work is underway
 
     <div class="slider">
 
         <div class="slider__back">
             <div class="slider__inner">
                 <img src="../../../images/branding/logo-cms-white.svg" class="slider-logo" />
-                <h1 class="slider-title">Welcome to Continuum CMS</h1>
+                <h1 class="slider-title">Welcome to Continuum</h1>
                 <p>To get started you will need to specify your site name, and the details of your first administrator.</p>
             </div>
         </div>
 
         <div class="slider__front">
             <div class="slider__inner">
-                <form>
+                <form class="form">
                     <fieldset>
                         <legend class="legend">Installation</legend>
 
@@ -66,10 +67,311 @@
                         </div>
 
                         <div class="form__actions form__actions--flush">
-                            <button type="submit" class="btn btn--primary js-submit-disable">Finish and Sign In</button>
+                            <button type="submit" class="btn btn--primary btn--outline js-submit-disable">Finish and Sign In</button>
                         </div>
                     </fieldset>
                 </form>
+            </div>
+        </div>
+    </div> -->
+
+    <div class="slider">
+
+        <div class="slider__back">
+            <div class="slider__inner">
+                <img src="../../../images/branding/logo-cxm-white.png" class="slider-logo" />
+                <h1 class="slider-title">Already have an account?</h1>
+                <p>Some really interesting and valid instructions, possibly configurable.</p>
+                {{
+                    html.button({
+                        'label': 'Sign In',
+                        'class': 'btn--outline btn--white'
+                    })
+                }}
+            </div>
+        </div>
+
+        <div class="slider__front">
+            <div class="slider__inner">
+                <form class="form">
+                    <fieldset>
+                        <legend class="legend">Register</legend>
+
+                        <p class="small-type muted">Create your account, it takes less than a minute. If you already have an account <a href="#">login</a>.</p>
+
+                        <div class="form__group form__group--top form__group--flush">
+                            <label class="control__label">First name</label>
+                            <div class="controls">
+                                <input name="inputTextLong" type="text" class="form__control">
+                            </div>
+                        </div>
+
+                        <div class="form__group form__group--top form__group--flush">
+                            <label class="control__label">Last name</label>
+                            <div class="controls">
+                                <input name="inputTextLong" type="text" class="form__control">
+                            </div>
+                        </div>
+
+                        <div class="form__group form__group--top form__group--flush">
+                            <label class="control__label">Postcode</label>
+                            <div class="controls">
+                                <input name="inputTextLong" type="text" class="form__control">
+                            </div>
+                        </div>
+
+                        <div class="form__group form__group--top form__group--flush">
+                            <label class="control__label">Telephone (optional)</label>
+                            <div class="controls">
+                                <input name="inputTextLong" type="text" class="form__control">
+                            </div>
+                        </div>
+
+                        <div class="form__group form__group--top form__group--flush">
+                            <label class="control__label">Email</label>
+                            <div class="controls">
+                                <input name="inputTextLong" type="text" class="form__control">
+                            </div>
+                        </div>
+
+                        <div class="form__group form__group--top form__group--flush">
+                            <label class="control__label">Password</label>
+                            <div class="controls">
+                                <input name="inputTextLong" type="password" class="form__control">
+                            </div>
+                        </div>
+
+                        <div class="form__actions form__actions--flush">
+                            {{
+                                html.button({
+                                    'label': 'Create Account',
+                                    'class': 'btn--primary btn--outline js-submit-disable'
+                                })
+                            }}
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="slider">
+
+        <div class="slider__back">
+            <div class="slider__inner">
+                <img src="../../../images/branding/logo-cxm-white.png" class="slider-logo" />
+                <h1 class="slider-title">Don’t have an account?</h1>
+                <p>Some really interesting and valid instructions, possibly configurable.</p>
+                {{
+                    html.button({
+                        'label': 'Register',
+                        'class': 'btn--outline btn--white'
+                    })
+                }}
+            </div>
+        </div>
+
+        <div class="slider__front">
+            <div class="slider__inner">
+                <form class="form">
+                    <fieldset>
+                        <legend class="legend">Sign In</legend>
+
+                        <p class="small-type muted">Don’t have an account? <a href="#">Register</a>, it takes less than a minute.</p>
+
+                        <div class="form__group form__group--top form__group--flush">
+                            <label class="control__label">Email</label>
+                            <div class="controls">
+                                <input name="inputTextLong" type="text" class="form__control">
+                            </div>
+                        </div>
+
+                        <div class="form__group form__group--top form__group--flush">
+                            <label class="control__label">Password</label>
+                            <div class="controls">
+                                <input name="inputTextLong" type="password" class="form__control">
+                            </div>
+                        </div>
+
+                        <div class="form__actions form__actions--flush">
+                            {{
+                                html.button({
+                                    'label': 'Sign In',
+                                    'class': 'btn--primary btn--outline js-submit-disable'
+                                })
+                            }}
+                            {{
+                                html.button({
+                                    'label': 'Forgotten password?',
+                                    'class': 'btn--naked'
+                                })
+                            }}
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="slider">
+        <div class="slider__back">
+            <div class="slider__inner">
+                <img src="../../../images/branding/logo-cxm-white.png" class="slider-logo" />
+                <h1 class="slider-title">What goes here?</h1>
+                <p>Some really interesting and valid instructions, possibly configurable.</p>
+                {{
+                    html.button({
+                        'label': 'Call to Action',
+                        'class': 'btn--outline btn--white'
+                    })
+                }}
+            </div>
+        </div>
+
+        <div class="slider__front">
+            <div class="slider__inner">
+
+                {{ form.create() }}
+
+                {{
+                    form.fieldset_start({
+                        'legend': 'Forgotten Password'
+                    })
+                }}
+
+                <p class="small-type muted">Enter your email address and we’ll send you a link to reset your password.</p>
+
+                {{
+                    form.text({
+                        'label': 'Your email address',
+                        'class': 'form__group--top form__group--flush'
+                    })
+                }}
+
+                {{ form.fieldset_end() }}
+
+                {{
+                    form.end({
+                        'class': 'form__actions--flush',
+                        'actions': [
+                            html.button({
+                                'label': 'Reset Password',
+                                'class': 'btn--primary btn--outline js-submit-disable'
+                            }),
+                            html.button({
+                                'label': 'Cancel',
+                                'class': 'btn--naked'
+                            })
+                        ]
+                    })
+                }}
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="slider">
+        <div class="slider__back">
+            <div class="slider__inner">
+                <img src="../../../images/branding/logo-cxm-white.png" class="slider-logo" />
+                <h1 class="slider-title">What goes here?</h1>
+                <p>Some really interesting and valid instructions, possibly configurable.</p>
+                {{
+                    html.button({
+                        'label': 'Call to Action',
+                        'class': 'btn--outline btn--white'
+                    })
+                }}
+            </div>
+        </div>
+
+        <div class="slider__front">
+            <div class="slider__inner">
+
+                {{ form.create() }}
+
+                {{
+                    form.fieldset_start({
+                        'legend': 'Forgotten Password'
+                    })
+                }}
+
+                <p class="small-type muted">Enter your email address and we’ll send you a link to reset your password.</p>
+
+                {{
+                    form.text({
+                        'label': 'Your email address',
+                        'class': 'form__group--top form__group--flush',
+                        'error': 'We could not find an account with that email address'
+                    })
+                }}
+
+                {{ form.fieldset_end() }}
+
+                {{
+                    form.end({
+                        'class': 'form__actions--flush',
+                        'actions': [
+                            html.button({
+                                'label': 'Reset Password',
+                                'class': 'btn--primary btn--outline js-submit-disable'
+                            }),
+                            html.button({
+                                'label': 'Cancel',
+                                'class': 'btn--naked'
+                            })
+                        ]
+                    })
+                }}
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="slider">
+        <div class="slider__back">
+            <div class="slider__inner">
+                <img src="../../../images/branding/logo-cxm-white.png" class="slider-logo" />
+                <h1 class="slider-title">What goes here?</h1>
+                <p>Some really interesting and valid instructions, possibly configurable.</p>
+                {{
+                    html.button({
+                        'label': 'Call to Action',
+                        'class': 'btn--outline btn--white'
+                    })
+                }}
+            </div>
+        </div>
+
+        <div class="slider__front">
+            <div class="slider__inner">
+
+                {{ form.create() }}
+
+                {{
+                    form.fieldset_start({
+                        'legend': html.icon('check') ~ ' Check your email'
+                    })
+                }}
+
+                <p>We’ve sent you an email containing instructions for resetting your password.</p>
+
+                {{
+                    html.button({
+                        'label': 'Sign In',
+                        'class': 'btn--primary btn--outline',
+                        'type': 'link',
+                        'href': '#'
+                    })
+                }}
+
+                {{ form.fieldset_end() }}
+                {{ form.end() }}
+
             </div>
         </div>
     </div>

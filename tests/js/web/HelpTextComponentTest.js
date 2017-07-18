@@ -37,8 +37,8 @@ describe('HelpTextComponent', function() {
             this.helpTextComponent.updateHelpSidebar();
         });
 
-        it('should add the visibility-hidden class to the tab-help-container', function () {
-            expect(this.$tabHelpContainer.hasClass('visibility-hidden')).to.be.true;
+        it('should add the hide class to the tab-help-container', function () {
+            expect(this.$tabHelpContainer.hasClass('hide')).to.be.true;
         });
 
         it('should copy the active tabs sidebar contents to the tab-help container', function() {
@@ -111,17 +111,17 @@ describe('HelpTextComponent', function() {
             expect(this.$mainTitle.find('.js-show-page-help').hasClass('is-open')).to.be.false;
         });
 
-        it('should add the visibility-hidden class to the tab-help-container', function () {
+        it('should add the hide class to the tab-help-container', function () {
             this.$mainTitle.find('.js-show-page-help').trigger(this.clickEvent);
             this.$tabHelpContainer.trigger('transitionend');
-            expect(this.$tabHelpContainer.hasClass('visibility-hidden')).to.be.true;
+            expect(this.$tabHelpContainer.hasClass('hide')).to.be.true;
         });
 
-        it('should add the visibility-hidden class to the tab-help-container if lt-ie10', function () {
+        it('should add the hide class to the tab-help-container if lt-ie10', function () {
             this.$html.addClass('lt-ie10');
             this.$mainTitle.find('.js-show-page-help').trigger(this.clickEvent);
 
-            expect(this.$tabHelpContainer.hasClass('visibility-hidden')).to.be.true;
+            expect(this.$tabHelpContainer.hasClass('hide')).to.be.true;
         });
     });
 
@@ -162,8 +162,8 @@ describe('HelpTextComponent', function() {
             expect(this.$mainTitle.find('.js-show-page-help').hasClass('is-open')).to.be.false;
         });
 
-        it('should add the visibility-hidden class from the tab-help-container', function () {
-            expect(this.$tabHelpContainer.hasClass('visibility-hidden')).to.be.true;
+        it('should add the hide class from the tab-help-container', function () {
+            expect(this.$tabHelpContainer.hasClass('hide')).to.be.true;
         });
     });
 
@@ -218,8 +218,8 @@ describe('HelpTextComponent', function() {
             expect(this.$mainTitle.find('.js-show-page-help').hasClass('is-open')).to.be.false;
         });
 
-        it('should add the visibility-hidden class from the tab-help-container', function () {
-            expect(this.$tabHelpContainer.hasClass('visibility-hidden')).to.be.true;
+        it('should add the hide class from the tab-help-container', function () {
+            expect(this.$tabHelpContainer.hasClass('hide')).to.be.true;
         });
     });
 

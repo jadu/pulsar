@@ -1,0 +1,39 @@
+{% extends '@pulsar/pulsar/layouts/base.html.twig' %}
+{% import '@pulsar/pulsar/v2/helpers/tabs.html.twig' as tabs %}
+
+{% set heading = 'Reports' %}
+
+{% set tab_report %}
+    {% include '/lexicon/patterns/reporting/report.html.twig' %}
+{% endset %}
+
+{% set tab_building %}
+    {% include '/lexicon/patterns/reporting/building.html.twig' %}
+{% endset %}
+
+{%
+    set tabs_content = [
+        {
+            "class" : "ui-report",
+            "id"    : "report",
+            "label" : "Report view",
+            "src"   : tab_report,
+            "active": true
+        },
+        {
+            "class" : "ui-report",
+            "id"    : "report-building",
+            "label" : "Report building",
+            "src"   : tab_building
+        }
+    ]
+%}
+
+{% block tabs_list %}
+    {{ tabs.list(tabs_content) }}
+{% endblock %}
+
+{% block tabs_content %}
+    {{ tabs.content(tabs_content) }}
+{% endblock %}
+

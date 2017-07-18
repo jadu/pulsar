@@ -1,0 +1,299 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
+{% import "@pulsar/pulsar/v2/helpers/rules.html.twig" as rule %}
+
+{%- block actions_left -%}
+    {{
+        html.actions_menu({
+            'items': [
+                [
+                    {
+                        'label': 'Edit form',
+                        'href': '/edit',
+                        'icon': 'pencil'
+                    }
+                ],
+                [
+                    {
+                        'label': 'View CXM case',
+                        'href': '/cxm',
+                        'icon': 'arrow-right'
+                    },
+                    {
+                        'label': 'View payments',
+                        'href': '/paybridge',
+                        'icon': 'credit-card'
+                    }
+                ],
+                [
+                    {
+                        'label': 'Download PDF',
+                        'href': '/download-pdf',
+                        'icon': 'file-pdf-o'
+                    },
+                    {
+                        'label': 'Export archive',
+                        'href': '/download-archive',
+                        'icon': 'file-archive-o'
+                    },
+                    {
+                        'label': 'Print',
+                        'href': '/print',
+                        'icon': 'print'
+                    }
+                ]
+            ]
+        })
+    }}
+{%- endblock -%}
+
+{%- block actions_right -%}
+    {{
+        html.button({
+            'label': 'Create Rule',
+            'class': 'btn--primary'
+        })
+    }}
+{%- endblock -%}
+
+{% block tab_content %}
+    <table class="table datatable table--full" data-select="false">
+        <thead>
+            <tr>
+                <td class="table-responsive"></td>
+                <th class="shrink-to-fit centered"><a href="#">Active</a></th>
+                <th><a href="#">Name</a></th>
+                <th><a href="#">Last triggered</a></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in 0..5 %}
+            <tr>
+                <td class="table-responsive">
+                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                </td>
+                <td class="centered">{{ html.status('active') }}</td>
+                <td><a href="#">Create green waste case</a></td>
+                <td>01/02/03 12:34pm</td>
+            </tr>
+
+            <tr>
+                <td class="table-responsive">
+                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                </td>
+                <td class="centered">{{ html.status('inactive') }}</td>
+                <td><a href="#">Create brown waste case</a></td>
+                <td>01/02/03 12:34pm</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td class="table__form" colspan="4">
+                    <div id="rule-form-container" class="rules-container">
+                        {{
+                            form.create()
+                        }}
+
+                        {{
+                            form.fieldset_start({
+                                'legend': 'Create rule'
+                            })
+                        }}
+
+                        {{
+                            form.text({
+                                'class': 'form__group--full',
+                                'id': 'rule_name',
+                                'name': 'rule[name]',
+                                'label': 'Name',
+                                'required': true,
+                                'value': 'foo'
+                            })
+                        }}
+
+                        <div class="rules">
+                            {# This block will be filled with different forms by the AjaxFormListener.js #}
+                            {# It's also overriden on the children pages - i.e. create, edit and delete rules. #}
+                            {% block ruleFormBlock %}{% endblock %}
+
+                            {{
+                                rule.block_when({
+                                    'removeable': false,
+                                    'inputs': [
+                                        form.select2({
+                                            'label': 'Choose trigger',
+                                            'placeholder': 'Choose trigger',
+                                            'show-label': false,
+                                            'options':
+                                            [
+                                                {
+                                                    'label': 'XForms Pro',
+                                                    'options': [
+                                                        {
+                                                            'label': 'Form is submitted',
+                                                            'value': 'foo'
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        })
+                                    ]
+                                })
+                            }}
+
+                            {{
+                                rule.block_and({
+                                    'inputs': [
+                                        form.select2({
+                                            'label': 'Choose trigger',
+                                            'placeholder': 'Choose condition',
+                                            'show-label': false,
+                                            'options':
+                                            [
+                                                {
+                                                    'label': 'User type',
+                                                    'value': 'foo'
+                                                }
+                                            ]
+                                        }),
+                                        form.select({
+                                            'class': 'form__group--small',
+                                            'label': 'Choose',
+                                            'placeholder': 'Choose',
+                                            'show-label': false,
+                                            'options':
+                                            [
+                                                {
+                                                    'label': 'is',
+                                                    'value': 'foo'
+                                                },
+                                                {
+                                                    'label': 'is not',
+                                                    'value': 'foo'
+                                                }
+                                            ]
+                                        }),
+                                        form.select2({
+                                            'label': 'Choose user type',
+                                            'show-label': false,
+                                            'options':
+                                            [
+                                                {
+                                                    'label': 'Registered user',
+                                                    'value': 'foo'
+                                                },
+                                                {
+                                                    'label': 'Anonymous user',
+                                                    'value': 'foo'
+                                                },
+                                                {
+                                                    'label': 'Admin on behalf of user',
+                                                    'value': 'foo'
+                                                }
+                                            ]
+                                        })
+                                    ]
+                                })
+                            }}
+
+                            {{
+                                rule.block_then({
+                                    'inputs': [
+                                        form.select2({
+                                            'label': 'Choose action',
+                                            'show-label': false,
+                                            'options':
+                                            [
+                                                {
+                                                    'label': 'Send email',
+                                                    'value': 'foo'
+                                                },
+                                                {
+                                                    'label': 'Continuum CXM',
+                                                    'options': [
+                                                        {
+                                                            'label': 'Choose',
+                                                            'value': 'foo'
+                                                        },
+                                                        {
+                                                            'label': 'Apply transition',
+                                                            'value': 'foo'
+                                                        },
+                                                        {
+                                                            'label': 'Create case',
+                                                            'value': 'foo',
+                                                            'selected': true
+                                                        },
+                                                        {
+                                                            'label': 'Set case values',
+                                                            'value': 'foo'
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }),
+                                        form.select2({
+                                            'label': 'Using template',
+                                            'data-html': 'true',
+                                            'show-label': false,
+                                            'options':
+                                             [
+                                                {
+                                                    'label': html.icon('plus') ~ ' Create template',
+                                                    'value': 'foo'
+                                                },
+                                                {
+                                                    'label': 'New brown waste case',
+                                                    'value': 'foo'
+                                                },
+                                                {
+                                                    'label': 'New green waste case',
+                                                    'value': 'foo'
+                                                },
+                                            ]
+                                        })
+                                    ]
+                                })
+                            }}
+                        </div>
+
+                        {{
+                            form.toggle_switch({
+                                'checked': true,
+                                'label': 'Enabled'
+                            })
+                        }}
+
+                        {{
+                            form.fieldset_end()
+                        }}
+
+                        {{
+                            form.end({
+                                'class': 'form__actions--flush',
+                                'actions': [
+                                    form.submit({
+                                        'class': 'btn--primary',
+                                        'label': 'Save'
+                                    }),
+                                    html.button({
+                                        'class': 'btn--naked',
+                                        'type': 'link',
+                                        'label': 'Cancel',
+                                        'href': '/home'
+                                    })
+                                ]
+                            })
+                        }}
+                    </div>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+{% endblock tab_content %}
+
+{% block tab_sidebar %}
+    <h2>{{ html.icon('info-sign') }} Create powerful event-driven rules</h2>
+    <p>Create rules to automatically perform actions when specific events occur.</p>
+    <p>Rules can do things like send emails, or make changes to integrated third-party systems too.</p>
+{% endblock tab_sidebar %}

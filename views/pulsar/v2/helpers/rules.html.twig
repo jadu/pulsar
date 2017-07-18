@@ -1,0 +1,128 @@
+{% macro block_when(options) %}
+{% spaceless %}
+    {% import _self as rule %}
+    {{
+        rule.block(options
+            |defaults({
+                'show_and': true,
+                'show_or': true
+            })
+            |merge({
+                'type': 'when'
+            })
+        )
+    }}
+{% endspaceless %}
+{% endmacro %}
+
+{% macro block_and(options) %}
+{% spaceless %}
+    {% import _self as rule %}
+    {{
+        rule.block(options
+            |defaults({
+                'show_and': true,
+                'show_or': true
+            })
+            |merge({
+                'type': 'and'
+            })
+        )
+    }}
+{% endspaceless %}
+{% endmacro %}
+
+{% macro block_or(options) %}
+{% spaceless %}
+    {% import _self as rule %}
+    {{
+        rule.block(options
+            |defaults({
+                'show_and': true,
+                'show_or': true
+            })
+            |merge({
+                'type': 'or'
+            })
+        )
+    }}
+{% endspaceless %}
+{% endmacro %}
+
+{% macro block_then(options) %}
+{% spaceless %}
+    {% import _self as rule %}
+    {{
+        rule.block(options
+            |defaults({
+                'show_and': true,
+                'show_or': false
+            })
+            |merge({
+                'type': 'then'
+            })
+        )
+    }}
+{% endspaceless %}
+{% endmacro %}
+
+
+{% macro block(options) %}
+{% spaceless %}
+    <fieldset class="rules__step">
+        <legend class="hide">{{ options.type|default }}</legend>
+        <div class="rule__triggers__container" data-index="1">
+
+            <div class="rule-block-wrapper">
+                <div class="rule-block rule-block--{{ options.type|default }}" data-index="__index__">
+
+                    <div class="rule-block__header rule-block__header--{{ options.type|default }}">
+                        <h5 class="rule-block__heading">{{ options.type|default }}</h5>
+                        <i data-toggle="tooltips" data-placement="right" data-title="What should cause this rule to run" title="What should cause this rule to run" aria-hidden="true"  class="icon-question-sign rule-block__heading__icon"></i>
+                    </div>
+
+                    <div class="rule-block__controls rule__trigger__form">
+
+                        {% if options.inputs is defined and options.inputs is not empty %}
+                            {% for input in options.inputs %}
+                                <div class="rule-block__control">
+                                    {{- input|raw -}}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+
+                        {% if (options.removeable is defined and options.removeable != false) or options.removeable is not defined %}
+                            <a data-action="remove" data-placement="left" data-toggle="tooltips" data-title="Remove this item"  class="remove__control js-remove-trigger"><i  class="icon-remove-sign"><span class="hide">Remove this item</span></i></a>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+
+            {% if options.show_or is defined and options.show_or == true %}
+            <div class="conditional-block conditional-block--indented">
+                <a href="#" class="js-add-trigger conditional-block__link conditional-block__link--{{ options.type|default }}">
+                    <i class="icon-arrow-right"></i><span>Or</span>
+                </a>
+            </div>
+            {% endif %}
+
+            {% if options.show_and is defined and options.show_and == true %}
+                {%
+                    if options.show_and is defined and options.show_and == true
+                    and options.show_or is defined and options.show_or == false
+                %}
+                    <div class="conditional-block conditional-block--indented">
+                {% else %}
+                    <div class="conditional-block conditional-block--flush">
+                {% endif %}
+
+                        <a href="#" class="js-add-condition-collection conditional-block__link conditional-block__link--{{ options.type|default }}">
+                            <i class="icon-arrow-right"></i><span>And</span>
+                        </a>
+                    </div>
+            {% endif %}
+        </div>
+    </fieldset>
+{% endspaceless %}
+{% endmacro %}

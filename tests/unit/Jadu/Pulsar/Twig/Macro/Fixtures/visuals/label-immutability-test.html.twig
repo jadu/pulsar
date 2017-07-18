@@ -277,4 +277,50 @@ text {{
         </tr>
     </table>
 </div>
+
+<h3>Test customised labels (only base should be different)</h3>
+
+<div class="btn__toolbar">
+    <table class="table">
+        <tr class="is-disabled">
+            <td>
+                text {{
+                    html.label({
+                        label: '1', style: 'background-color: pink; color: red;'
+                    })
+                }}
+                {{
+                    html.label({
+                        label: '2', class: 'label--primary', style: 'background-color: pink; color: red;'
+                    })
+                }}
+                {{
+                    html.label({
+                        label: '3', class: 'label--success', style: 'background-color: pink; color: red;'
+                    })
+                }}
+                {{
+                    html.label({
+                        label: '4', class: 'label--warning', style: 'background-color: pink; color: red;'
+                    })
+                }}
+                {{
+                    html.label({
+                        label: '5', class: 'label--danger', style: 'background-color: pink; color: red;'
+                    })
+                }}
+                {{
+                    html.label({
+                        label: '6', class: 'label--info', style: 'background-color: pink; color: red;'
+                    })
+                }}
+                {{
+                    html.label({
+                        label: '7', class: 'label--inverse', style: 'background-color: pink; color: red;'
+                    })
+                }}
+            </td>
+        </tr>
+    </table>
+</div>
 {% endblock %}

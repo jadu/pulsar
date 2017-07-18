@@ -40,7 +40,7 @@ PulsarUIComponent.prototype.initTables = function () {
 
     // Wrap non datatable tables in responsive container so they can scroll
     // when required
-    var $tables = this.$html.find('.table:not(.datatable), .table--datagrid:not(.datatable), .table--horizontal');
+    var $tables = this.$html.find('.table:not(.datatable), .table--datagrid:not(.datatable)');
 
     $tables.each(function(i, v) {
         var $table = $(v);
@@ -53,9 +53,7 @@ PulsarUIComponent.prototype.initTables = function () {
 
 PulsarUIComponent.prototype.initDataTables = function () {
 
-    var component = this,
-        datatables = this.$html.find('.datatable:not(.table--horizontal)'),
-        scrollingDatatables = this.$html.find('.datatable.table--horizontal');
+    var datatables = this.$html.find('.datatable');
 
     datatables.each(function() {
         var $this = $(this);
@@ -90,7 +88,6 @@ PulsarUIComponent.prototype.initDataTables = function () {
                 { "searchable": false, "targets": [0, 1] },
                 { "orderable": false, "targets": [0, 1] }
             ],
-            fixedColumns: true,
             language: {
                 "emptyTable": $this.data('empty-table'),
                 "info": "Showing _START_ to _END_ of _TOTAL_ items",
@@ -108,60 +105,9 @@ PulsarUIComponent.prototype.initDataTables = function () {
         });
     });
 
-     scrollingDatatables.each(function() {
-        var $this = $(this);
-
-        var select = {
-            className: 'dt-row-selected',
-            style:     'multi',
-            selector:  'td.table-selection'
-        };
-
-        var dom = '<"dataTables_top"Birf><"dataTables_actions"T>t<"dataTables_bottom"lp>';
-
-        if (!$this.data('empty-table')) {
-            $this.data('empty-table', 'There are currently no items to display');
-        }
-
-        if ($this.data('select') === false) {
-            dom = '<"dataTables_top"irf><"dataTables_actions"T><"dt-disable-selection"t><"dataTables_bottom"lp>';
-            select = false;
-        }
-
-        $this.DataTable({
-            dom: dom,
-            aaSorting: [],
-            bAutoWidth: false,
-            "bScrollCollapse": true,
-            buttons: [
-                'selectAll',
-                'selectNone'
-            ],
-            columnDefs: [
-                { className: 'control', orderable: false, targets: 0 },
-                { "searchable": false, "targets": [0, 1] },
-                { "orderable": false, "targets": [0, 1] }
-            ],
-            language: {
-                "emptyTable": $this.data('empty-table'),
-                "info": "Showing _START_ to _END_ of _TOTAL_ items",
-                "infoEmpty": 'No items',
-                "infoFiltered": " (filtered from _MAX_ items)",
-                "zeroRecords": "No items matched your filter, please clear it and try again"
-            },
-            scrollX: true,
-            select: select,
-            stateSave: false
-        });
-
-        $this.closest('.dataTables_scrollBody').scroll(function() {
-            component.styleTableOverflows();
-        });
-    });
-
     // Refresh datatables when tabs are switched, this fixes some layout issues
     this.$html.find('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-        component.refreshDatatables();
+        $($.fn.dataTable.tables(true)).DataTable().columns.adjust().responsive.recalc();
     });
 
     this.$html.find('.table--horizontal').each(function() {

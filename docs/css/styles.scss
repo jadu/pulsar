@@ -1,0 +1,83 @@
+---
+# Use a comment to ensure Jekyll reads the file to be transformed into CSS later
+# only main files contain this front matter, not partials.
+---
+
+@import "variables";
+@import "mixins";
+@import "base";
+@import "type";
+@import "syntax";
+@import "code";
+@import "layout";
+@import "posts";
+@import "prettify";
+@import "sidebar";
+@import "message";
+
+#pulsar-example {
+    all: initial;
+}
+
+$ie-version: 12 !default;
+
+// Font awesome
+$fa-font-path: '../../libs/font-awesome/fonts';
+$fa-css-prefix: 'icon';
+@import '../../stylesheets/_deprecated.icons';
+@import '../../libs/font-awesome/scss/font-awesome';
+
+#pulsar-example {
+    // Mixins
+    @import '../../stylesheets/_mixin.border-radius';
+    @import '../../stylesheets/_mixin.clear-fix';
+    @import '../../stylesheets/_mixin.content-box';
+    @import '../../stylesheets/_mixin.css-arrow';
+    @import '../../stylesheets/_mixin.hide-text';
+    @import '../../stylesheets/_mixin.inline-block';
+    @import '../../stylesheets/_mixin.label-variant';
+    @import '../../stylesheets/_mixin.mixins-to-organise';
+    @import '../../stylesheets/_mixin.media-queries';
+    @import '../../stylesheets/_mixin.responsive-utilities';
+
+    // Config
+    @import '../../stylesheets/_config.variables';
+
+    // Functions
+    @import '../../stylesheets/_function.math';
+    @import '../../stylesheets/_function.color-luminance';
+    @import '../../stylesheets/_function.pick-best-color';
+    @import '../../stylesheets/_function.color';
+
+    // Base colour palette
+    @import '../../stylesheets/_palette.base';
+
+    // Apply palette to components
+    @import '../../stylesheets/_config.theme';
+
+    // Structure
+    @import '../../stylesheets/_structure.grid';
+    @import '../../stylesheets/_structure.columns';
+    @import '../../stylesheets/_structure.scaffolding';
+    @import '../../stylesheets/_structure.type';
+    @import '../../stylesheets/_structure.forms';
+
+    // Components
+    @import '../../stylesheets/_component.buttons';
+    @import '../../stylesheets/_component.forms';
+    @import '../../stylesheets/_component.icons';
+    @import '../../stylesheets/_component.remove-button';
+    @import '../../stylesheets/_component.rules';
+    @import '../../stylesheets/_component.select2';
+
+    // Utilities
+    @import '../../stylesheets/_utility.baseline';
+    @import '../../stylesheets/_utility.highlight';
+    @import '../../stylesheets/_utility.misc';
+    @import '../../stylesheets/_utility.sortable';
+    @import '../../stylesheets/_utility.swatches';
+
+    // Trumps (attempt highest inherit specificity by loading last)
+    @import '../../stylesheets/_utility.utilities';
+    @import '../../stylesheets/_utility.states';
+}

@@ -1,0 +1,7 @@
+<div class="media">
+    <img src="github.png" alt="GitHub logo" class="media__image" />
+    <div class="media__body">
+        <p>Title</p>
+        <span class="small-type muted">Description</span>
+    </div>
+</div>

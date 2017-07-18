@@ -1,0 +1,225 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{% import '@pulsar/pulsar/v2/helpers/flash.html.twig' as flash %}
+
+{% block tab_content %}
+
+<div class="piano-wrapper">
+    <div class="piano">
+        <ul class="piano__items">
+
+            <li class="piano__item">
+                <a href="./index.html.twig">
+                {{
+                    html.media({
+                        'image': '/images/services/singlepoint.png',
+                        'image_alt': 'SinglePoint logo',
+                        'title': 'SinglePoint (step 1 & 2)',
+                        'description': 'Allow address lookup by postcode in forms',
+                        'action': html.status('inactive')
+                    })
+                }}
+                </a>
+            </li>
+            <li class="piano__item">
+                <a href="./two.html.twig">
+                {{
+                    html.media({
+                        'image': '/images/services/singlepoint.png',
+                        'image_alt': 'SinglePoint logo',
+                        'title': 'SinglePoint (step 3)',
+                        'description': 'After user has connected',
+                        'action': html.status('inactive')
+                    })
+                }}
+                </a>
+            </li>
+            <li class="piano__item">
+                <a href="./three.html.twig">
+                {{
+                    html.media({
+                        'image': '/images/services/singlepoint.png',
+                        'image_alt': 'SinglePoint logo',
+                        'title': 'SinglePoint (error example)',
+                        'description': 'Standard validation styles',
+                        'action': html.status('inactive')
+                    })
+                }}
+                </a>
+            </li>
+            <li class="piano__item">
+                <a href="./four.html.twig">
+                {{
+                    html.media({
+                        'image': '/images/services/singlepoint.png',
+                        'image_alt': 'SinglePoint logo',
+                        'title': 'SinglePoint (step 4)',
+                        'description': 'Fetch adapters and let user choose',
+                        'action': html.status('inactive')
+                    })
+                }}
+                </a>
+            </li>
+            <li class="piano__item">
+                <a href="./five.html.twig">
+                {{
+                    html.media({
+                        'image': '/images/services/singlepoint.png',
+                        'image_alt': 'SinglePoint logo',
+                        'title': 'SinglePoint (step 5)',
+                        'description': 'Allow address lookup by postcode in forms',
+                        'action': html.status('inactive')
+                    })
+                }}
+                </a>
+            </li>
+            <li class="piano__item is-selected">
+                <a href="./six.html.twig">
+                {{
+                    html.media({
+                        'image': '/images/services/singlepoint.png',
+                        'image_alt': 'SinglePoint logo',
+                        'title': 'SinglePoint (step 6)',
+                        'description': 'Adding more adapters',
+                        'action': html.status('active')
+                    })
+                }}
+                </a>
+                <div class="piano__item-content">
+
+                    <h2>SinglePoint</h2>
+                    <p>Connect to your SinglePoint Web Service Definition List (WSDL) and manage the order in which you would like to search the SinglePoint address databases. You will need an active SinglePoint account.</p>
+
+                    <div class="masterswitch">
+                        {{
+                            form.create()
+                        }}
+
+                        {{
+                            form.toggle_switch({
+                                'class': 'masterswitch-control',
+                                'label': 'Enable integration',
+                                'id': 'toggletest',
+                                'checked': true
+                            })
+                        }}
+
+                        <section class="masterswitch-content is-disabled">
+
+                            <div class="nav-inline t-nav-inline">
+                                <ul class="nav-inline__list">
+                                    <li class="nav-inline__item nav-inline__item--is-active is-active">
+                                        <a href="#integrations" data-toggle="tab" class="nav-inline__link">Settings</a>
+                                    </li>
+                                    <li class="nav-inline__item">
+                                        <a href="#integrations" data-toggle="tab" class="nav-inline__link id-disabled">Log</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <br /><br />
+
+                            <div class="form__group">
+                                <label class="control__label">SinglePoint WSDL URL <span class="required-indicator" rel="tooltip" data-toggle="tooltips" title="" data-original-title="required">*</span></label>
+                                <div class="controls">
+                                    {{
+                                        html.panel({
+                                            'body': html.button({'label': 'disconnect', 'class': 'btn--outline btn--small btn--white pull-right'}) ~ 'Connected to:<br /><code>' ~ html.icon('ok-sign') ~ ' http://www.example.com/path/to/wsdl</code>',
+                                            'class': 'panel--primary topless bottomless',
+                                            'bare': true
+                                        })
+                                    }}
+                                </div>
+                            </div>
+
+                            <div class="form__group">
+                                <label class="control__label">Adapters <span class="required-indicator" rel="tooltip" data-toggle="tooltips" title="" data-original-title="required">*</span></label>
+                                <div class="controls">
+                                    <table class="table table--full is-sortable">
+                                        <thead>
+                                            <tr>
+                                                <th>Adapter</th>
+                                                <td class="shrink-to-fit"></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Hounslow</td>
+                                                <td>{{ html.remove_button({ 'class': 'pull-right' }) }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Out of borough</td>
+                                                <td>{{ html.remove_button({ 'class': 'pull-right' }) }}</td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot class="table__form">
+                                            <tr>
+                                                <td colspan="99">
+
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                    {{
+                                                        form.fieldset_start({'legend': 'Add Adapters'})
+                                                    }}
+
+                                                    {{
+                                                        form.select2({
+                                                            'label': 'Available adapters',
+                                                            'id': 'adapters',
+                                                            'multiple': true,
+                                                            'help': 'Choose one or more',
+                                                            'options': {
+                                                                '': 'Choose',
+                                                                'colour_red': 'Red',
+                                                                'colour_blue': 'Blue'
+                                                            }
+                                                        })
+                                                    }}
+
+                                                    {{
+                                                        html.button({
+                                                            'label': 'Add'
+                                                        })
+                                                    }}
+                                                    {{
+                                                        html.button({
+                                                            'label': 'Cancel',
+                                                            'class': 'btn--naked'
+                                                        })
+                                                    }}
+
+                                                    {{
+                                                        form.fieldset_end()
+                                                    }}
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+
+                            {{
+                                form.end({
+                                    'class': 'form__actions--flush',
+                                    'actions': [
+                                        html.button({
+                                            'label': 'Save',
+                                            'class': 'btn--primary'
+                                        }),
+                                        html.button({
+                                            'label': 'Cancel',
+                                            'class': 'btn--naked'
+                                        })
+                                    ]
+                                })
+                            }}<!--
+                     --></section>
+                    </div>
+                </li>
+            </div>
+        </ul>
+
+    </div>
+</div>
+
+{% endblock tab_content %}

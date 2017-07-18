@@ -1,10 +1,7 @@
-.container {
-    height: 100%;
-}
-
 .content-main {
     position: relative;
     display: table;
+    padding: 0 $gutter-width;
     table-layout: fixed;
     width: 100%;
 }
@@ -33,7 +30,7 @@
     -webkit-transition: -webkit-transform 500ms ease;
     backface-visibility: hidden;
     display: table;
-    height: 100%;
+    height: calc(100vh - 37px);
     left: 0;
     padding-bottom: 24px; // make sure content clears the footer
     position: relative;
@@ -45,10 +42,6 @@
         display: table-row;
         left: auto;
         position: static;
-    }
-
-    .lt-ie10 & {
-        left: 0;
     }
 }
 
@@ -95,9 +88,6 @@
 }
 
 .tabs__content {
-    @include clear-fix;
-    display: table-cell;
-    padding: 0 20px;
     vertical-align: top;
     width: 100%;
 
@@ -113,6 +103,7 @@
 
 .tab__pane {
     margin-top: 24px;
+    width: 100%;
 }
 
 .tab__content {
@@ -123,10 +114,6 @@
     padding-bottom: 48px;
     position: relative;
     width: 100%;
-
-    // @include respond-min($screen-desktop) {
-    //     display: table;
-    // }
 }
 
 .tab__main {
@@ -204,14 +191,13 @@
     }
 
     .tab__sidebar {
+        @include span(3);
         display: none;
 
         @include respond-min($screen-desktop) {
           display: table-cell;
           float: right;
-          padding-left: 40px;
           vertical-align: top;
-          width: 30%;
         }
 
         .no-js & {
@@ -228,7 +214,11 @@
 }
 
 .tab__container.has-sidebar .tab__content {
+    @include respond-min($screen-phone) {
+        @include span(12, false, true);
+    }
+
     @include respond-min($screen-desktop) {
-        width: 70%;
+        @include span(9, false, true);
     }
 }
