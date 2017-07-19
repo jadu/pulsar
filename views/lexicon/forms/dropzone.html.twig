@@ -1,0 +1,40 @@
+{% extends '@pulsar/pulsar/components/tab.html.twig' %}
+
+{% block tab_content %}
+    <h2 class="heading">DropZone</h2>
+
+    {{
+        html.dropzone({
+            'class': 'lex-dropzone',
+            'id': 'lexicon-dropzone',
+            'helperContent': '<h5>Multimedia</h5> <ul> <li>Images</li> <li>Video</li> <li>Audio</li> </ul> <h5>Text</h5> <ul> <li>Plain text</li> <li>Rich text</li> <li>Web page</li> </ul> <h5>Documents</h5> <ul> <li>Microsoft Word</li> <li>Microsoft Excel</li> <li>Open Document</li> <li>Open Office</li> <li>PDF</li> </ul>',
+            'helperTitle': 'Accepted files',
+            'data-dropzone-max-files': '4',
+            'data-dropzone-input-node-id': 'dropzone_input_hidden',
+            'data-dropzone-idle-html': '<a class="dropzone__browse" href="#">Browse Files&hellip;</a>',
+            'data-dropzone-whitelist': 'audio/* image/* video/* application/ogg text/plain text/html application/pdf application/vnd.ms-office application/vnd.ms-powerpoint application/msword application/vnd.openxmlformats-officedocument.wordprocessingml.document application/vnd.ms-excel application/vnd.openxmlformats-officedocument.spreadsheetml.sheet application/vnd.ms-xpsdocument application/vnd.ms-works application/vnd.oasis.opendocument.spreadsheet application/vnd.oasis.opendocument.text application/vnd.sun.xml.calc application/vnd.sun.xml.writer application/vnd.sun.xml.writer.global application/rtf text/rtf text/richtext'
+        })
+    }}
+
+    {{
+        form.file({
+            'id': 'dropzone_input_hidden'
+        })
+    }}
+
+{% endblock tab_content %}
+
+{% block tab_sidebar %}
+    <a href="https://jadu.gitbooks.io/pulsar/content/text.html">
+        <img src="../../../images/cover.png" alt="Pulsar documentation front cover" width="157px" />
+    </a>
+    <br />
+    {{
+        html.button({
+            'label': 'View Documentation',
+            'type': 'link',
+            'href': 'https://jadu.gitbooks.io/pulsar/content/text.html'
+        })
+    }}
+
+{% endblock tab_sidebar %}
