@@ -192,7 +192,91 @@
     }}
 
     {{ form.fieldset_end() }}
-    {{ form.fieldset_start({ 'legend': 'Sizes' }) }}
+    {{ form.fieldset_start({ 'legend': 'Grid Sizes' }) }}
+
+    {{
+        form.text({
+            'id': 'text-1-col',
+            'label': 'One column',
+            'class': 'form__control-col--1',
+            'name': 'inputTextMini',
+        })
+    }}
+
+    {{
+        form.text({
+            'id': 'text-2-col',
+            'label': 'Two columns',
+            'class': 'form__control-col--2',
+            'name': 'inputTextSmall'
+        })
+    }}
+
+    {{
+        form.text({
+            'id': 'text-3-col',
+            'label': 'Three columns',
+            'class': 'form__control-col--3',
+            'name': 'inputTextMedium'
+        })
+    }}
+
+    {{
+        form.text({
+            'id': 'text-4-col',
+            'label': 'Four columns',
+            'class': 'form__control-col--4',
+            'name': 'inputTextRegular'
+        })
+    }}
+
+    {{
+        form.text({
+            'id': 'text-5-col',
+            'label': 'Five columns',
+            'class': 'form__control-col--5',
+            'name': 'inputTextLarge'
+        })
+    }}
+
+    {{
+        form.text({
+            'id': 'text-6-col',
+            'label': 'Six columns',
+            'class': 'form__control-col--6',
+            'name': 'inputTextXLarge'
+        })
+    }}
+
+    {{
+        form.text({
+            'id': 'text-7-col',
+            'label': 'Seven columns',
+            'class': 'form__control-col--7',
+            'name': 'inputTextFull'
+        })
+    }}
+
+    {{
+        form.text({
+            'id': 'text-8-col',
+            'label': 'Eight columns',
+            'class': 'form__control-col--8',
+            'name': 'inputTextFull'
+        })
+    }}
+
+    {{
+        form.text({
+            'id': 'text-9-col',
+            'label': 'Nine columns',
+            'class': 'form__control-col--9',
+            'name': 'inputTextFull'
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'Legacy Sizes' }) }}
 
     {{
         form.text({
@@ -225,6 +309,7 @@
         form.text({
             'id': 'text-23',
             'label': 'Regular',
+            'class': 'form__group--regular',
             'name': 'inputTextRegular'
         })
     }}

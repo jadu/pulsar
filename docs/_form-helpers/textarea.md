@@ -72,3 +72,17 @@ The height of a textarea can be increased by defining a number of `rows` that su
 {% endraw %}
 
 <p data-height="212" data-theme-id="24005" data-slug-hash="kkXgRQ" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/kkXgRQ/">docs - form - textarea</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+## Widths
+
+The main input can use 1-9 columns of the 12 column grid (where 3 are used for the main label), the width can be modified by passing the required column class via the `class` attribute.
+
+* `.form__content--col-1`
+* `.form__content--col-2`
+* `.form__content--col-3`
+* `.form__content--col-4` (default)
+* `.form__content--col-5`
+* `.form__content--col-6`
+* `.form__content--col-7`
+* `.form__content--col-8`
+* `.form__content--col-9`
