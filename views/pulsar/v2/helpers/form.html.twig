@@ -1141,6 +1141,8 @@ controls.class    | string | A space separated list of class names
                     {% elseif options.parent.type == 'button' %}
                         {{- html.button(input) -}}
                     {% endif %}
+                {% else %}
+                    {{- form.radio_simple(input) -}}
                 {% endif %}
             {% else %}
                 {{- input|raw -}}
