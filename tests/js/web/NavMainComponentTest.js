@@ -88,6 +88,7 @@ describe('NavMain component', function() {
         this.$navMain = this.$html.find('.nav-main');
         this.$closeLink = this.$html.find('[data-nav-action="close"]');
         this.$contentMain = this.$html.find('.content-main');
+        this.$navPrimary = this.$html.find('.nav-primary');
         this.$navTertiary = this.$navMain.find('.nav-tertiary');
 
         this.$linkOne = this.$html.find('[href="#one"]');
@@ -295,6 +296,56 @@ describe('NavMain component', function() {
             expect(this.$html.find('.nav-quaternary').hasClass('is-open')).to.be.false;
         });
 
+    });
+
+    describe('when the window is resized', function () {
+
+        beforeEach(function() {
+            this.$window.height(20);
+        });
+
+        it('should ask adjustNavItems() to handle the resize', function () {
+            expect(this.$html.find('.nav-item').height() <= 20).to.be.true;
+        });
+
+    });
+
+    describe('when navigation fits in the window height', function () {
+
+        beforeEach(function() {
+            this.$window.height(120);
+            this.$html.find('.nav-item').height(20);
+        });
+
+        it('should hide the more nav item', function () {
+            expect(this.$html.find('.nav-primary .nav-items [label="More"]').length == 0).to.be.true;
+        });
+
+    });
+
+    describe("when more nav item doesn't exist", function () {
+
+        beforeEach(function() {
+            this.navMainComponent.init();
+            this.$html.find('.nav-primary .nav-items').append('<li label="More" class="nav-item t-nav-item more-icon" aria-haspopup="true"><a href="#more" class="nav-link t-nav-link"><i aria-hidden="true" class="icon-ellipsis-horizontal nav-link__icon t-nav-icon"></i><span class="nav-link__label">More</span></a></li>');
+        });
+
+        it('should be created', function () {
+            expect(this.$html.find('.nav-primary .nav-items [label="More"]').is(':visible')).to.be.true;
+        });
+
+    });
+
+    describe('when the more item is visible', function() {
+
+        beforeEach(function() {
+            this.navMainComponent.init();
+            this.$html.find('.nav-primary .nav-items').append('<li label="More" class="nav-item t-nav-item more-icon" aria-haspopup="true"><a href="#more" class="nav-link t-nav-link"><i aria-hidden="true" class="icon-ellipsis-horizontal nav-link__icon t-nav-icon"></i><span class="nav-link__label">More</span></a></li>');
+        });
+
+        it('should hide it', function () {
+            expect(this.$html.find('.nav-primary .nav-items [label="More"]').is(':visible')).to.be.true;
+        });
     });
 
 });
