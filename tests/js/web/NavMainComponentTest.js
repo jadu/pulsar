@@ -7,7 +7,7 @@ var $ = require('jquery'),
 
 $.fx.off = !$.fx.off;
 
-describe('NavMain component', function() {
+describe('NavMainComponent', function() {
 
     beforeEach(function() {
         this.$html = $('<div class="fake-html"></div>').appendTo('html');
@@ -256,18 +256,29 @@ describe('NavMain component', function() {
 
     });
 
-    describe('clicking the more icon', function() {
+    describe("when the window is too short for the whole primary navigation to be displayed", function () {
 
         beforeEach(function() {
             this.navMainComponent.init();
-            this.$moreIconLink = this.$navMain.find('.more-icon > .nav-link');
-            this.$moreIconLink.click();
         });
 
-        it('should open the sliding main nav if it is closed', function() {
-            expect(this.$navTertiary.hasClass('is-open')).to.be.true;
+        it('should show the more icon link', function () {
+            expect(this.$html.find('.nav-primary .nav-items [label="More"]').is(':visible')).to.be.true;
         });
 
+
+        describe('whem the more link is clicked', function() {
+
+            beforeEach(function() {
+                this.$moreIconLink = this.$navMain.find('.more-icon > .nav-link');
+                this.$moreIconLink.click();
+            });
+
+            it('should open the sliding main nav if it is closed', function() {
+                expect(this.$navTertiary.hasClass('is-open')).to.be.true;
+            });
+
+        });
     });
 
     describe('clicking the close icon, when the tertiary sub navigation is open', function() {
@@ -298,86 +309,36 @@ describe('NavMain component', function() {
 
     });
 
-    describe('when the window is resized', function () {
-
-        beforeEach(function() {
-            this.$window.height(20);
-        });
-
-        it('should ask adjustNavItems() to handle the resize', function () {
-            expect(this.$html.find('.nav-item').height() <= 20).to.be.true;
-        });
-
-    });
-
-    describe('when navigation fits in the window height', function () {
-
-        beforeEach(function() {
-            this.$window.height(120);
-            this.$html.find('.nav-item').height(20);
-        });
-
-        it('should hide the more nav item', function () {
-            expect(this.$html.find('.nav-primary .nav-items [label="More"]').length == 0).to.be.true;
-        });
-
-    });
-
-    describe("when more nav item doesn't exist", function () {
+    describe("When the window is resized form very short to large enough to fit nav", function () {
 
         beforeEach(function() {
             this.navMainComponent.init();
-            this.$html.find('.nav-primary .nav-items').append('<li label="More" class="nav-item t-nav-item more-icon" aria-haspopup="true"><a href="#more" class="nav-link t-nav-link"><i aria-hidden="true" class="icon-ellipsis-horizontal nav-link__icon t-nav-icon"></i><span class="nav-link__label">More</span></a></li>');
+            this.$window.height(200);
+            this.$window.resize();
         });
 
-        it('should be created', function () {
-            expect(this.$html.find('.nav-primary .nav-items [label="More"]').is(':visible')).to.be.true;
+        it('should hide the More link', function () {
+            expect(this.$html.find('.nav-primary .nav-items [label="More"]').is(':visible')).to.be.false;
         });
 
-    });
-
-    describe('when the more item is visible', function() {
-
-        beforeEach(function() {
-            this.navMainComponent.init();
-            this.$html.find('.nav-primary .nav-items').append('<li label="More" class="nav-item t-nav-item more-icon" aria-haspopup="true"><a href="#more" class="nav-link t-nav-link"><i aria-hidden="true" class="icon-ellipsis-horizontal nav-link__icon t-nav-icon"></i><span class="nav-link__label">More</span></a></li>');
-        });
-
-        it('should hide it', function () {
-            expect(this.$html.find('.nav-primary .nav-items [label="More"]').is(':visible')).to.be.true;
-        });
-    });
-
-    describe('adjustNavItems()', function () {
-
-        beforeEach(function() {
-            this.navMainComponent.init();
-        });
-
-        it('should run at least once', function () {
-
-            var stub = sinon.stub(this.navMainComponent, 'adjustNavItems');
-            stub();
-            expect(stub).to.have.been.calledOnce;
-
+        it('should show extra nav items', function () {
+            expect(this.$html.find('.nav-primary .nav-items li:first-of-type').is(':visible')).to.be.true;
         });
 
     });
 
-    describe('run adjustNavItems() on window resize', function () {
+
+    // always passers, even when code is commented out
+    describe('When the window is resized', function () {
 
         beforeEach(function() {
-            this.navMainComponent.init();
-            this.$window.height(120);
-            this.$html.find('.nav-item').height(15);
+            this.adjustNavStub = sinon.stub(this.navMainComponent, 'adjustNavItems');
         });
 
-        it('should run at least once', function () {
-
-            var stub = sinon.stub(this.navMainComponent, 'adjustNavItems');
-            stub();
-            expect(stub).to.have.been.calledOnce;
-
+        it('should call adjustNavItems()', function () {
+            this.navMainComponent.init();
+            this.navMainComponent.$window.trigger('resize');
+            expect(this.adjustNavStub).to.have.been.called;
         });
 
     });
