@@ -348,4 +348,38 @@ describe('NavMain component', function() {
         });
     });
 
+    describe('adjustNavItems()', function () {
+
+        beforeEach(function() {
+            this.navMainComponent.init();
+        });
+
+        it('should run at least once', function () {
+
+            var stub = sinon.stub(this.navMainComponent, 'adjustNavItems');
+            stub();
+            expect(stub).to.have.been.calledOnce;
+
+        });
+
+    });
+
+    describe('run adjustNavItems() on window resize', function () {
+
+        beforeEach(function() {
+            this.navMainComponent.init();
+            this.$window.height(120);
+            this.$html.find('.nav-item').height(15);
+        });
+
+        it('should run at least once', function () {
+
+            var stub = sinon.stub(this.navMainComponent, 'adjustNavItems');
+            stub();
+            expect(stub).to.have.been.calledOnce;
+
+        });
+
+    });
+
 });

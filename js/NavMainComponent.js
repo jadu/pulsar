@@ -25,7 +25,7 @@ NavMainComponent.prototype.init = function() {
     component.$moreIcon = component.$navMain.find('.more-icon');
     component.$closeLink = component.$navMain.find('[data-nav-action=close]');
 
-    window.addEventListener('resize', function(){
+    this.$window.resize(function(){
         component.adjustNavItems();
     });
 
