@@ -20,7 +20,7 @@
     }
 
     .help-block {
-        margin: .675em 0 0 1%;
+        margin: .675em 0 0 1%; // magic number for top
     }
 
     .help-block ~ .help-block {
@@ -100,7 +100,6 @@
 .controls:first-child {
     @include span($form-label-cols);
     display: table;
-    // width: $label-column-width;
 
     > .control__label--left {
         clear: right;
@@ -125,7 +124,7 @@
 }
 
 .controls > .textarea {
-  max-width: 99%; // take into account any textarea border which might look like it’s overlapping at 100% width
+    max-width: 99%; // take into account any textarea border which might look like it’s overlapping at 100% width
 }
 
 // at narrow viewports, forms collapse into a single column view
@@ -142,24 +141,24 @@
             min-width: 100%;
         }
 
-       .controls::before {
+        .controls::before {
             display: none;
-       }
+        }
 
-      .help-block {
-        margin-left: 0;
-      }
+        .help-block {
+            margin-left: 0;
+        }
     }
 }
 
 .fieldset {
-  border: 0;
-  margin: 0;
-  padding: 0;
+    border: 0;
+    margin: 0;
+    padding: 0;
 
-  .legend {
-    border-bottom: 1px solid color(gray);
-    margin: 0 0 .5em -20px;
-    padding: 0 20px;
-  }
+    .legend {
+        border-bottom: 1px solid color(gray);
+        margin: 0 0 .5em -20px;
+        padding: 0 20px;
+    }
 }
