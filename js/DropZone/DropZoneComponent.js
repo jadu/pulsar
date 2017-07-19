@@ -170,9 +170,9 @@ class DropZoneComponent {
         const options = this.optionsManager.getInstanceOptions(id);
 
         if (info) {
-            const browse = node.querySelector(`.${options.nodeClasses.browse}`);
-
             info.innerHTML = string;
+
+            const browse = node.querySelector(`.${options.nodeClasses.browse}`);
 
             if (browse) {
                 this.instanceManager.updateInstance(id, 'browse', browse);
