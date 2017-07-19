@@ -30,9 +30,13 @@ module.exports = function(grunt) {
                 },
                 options: {
                     browserifyOptions: {
-                        standalone: 'pulsar'
+                        standalone: 'pulsar',
+                        debug: true
                     },
-                    transform: [['aliasify', { global: true }]]
+                    transform: [
+                        ['babelify', { presets: ['es2015'] } ],
+                        ['aliasify', { global: true }]
+                    ]
                 }
             },
             dist: {
@@ -44,7 +48,11 @@ module.exports = function(grunt) {
                     browserifyOptions: {
                         standalone: 'pulsar'
                     },
-                    transform: [['aliasify', { global: true }], 'uglifyify']
+                    transform: [
+                        ['babelify', { presets: ['es2015'] } ],
+                        ['aliasify', { global: true }],
+                        'uglifyify'
+                    ]
                 }
             }
         },
@@ -157,7 +165,7 @@ module.exports = function(grunt) {
             },
             js: {
                 files: ['js/**/*.js', 'tests/js/**/*', 'package.json'],
-                tasks: ['browserify']
+                tasks: ['browserify:dev']
             }
         },
 
@@ -535,7 +543,7 @@ module.exports = function(grunt) {
         'sass:dev',
         'autoprefixer',
         'bless',
-        'browserify',
+        'browserify:dev',
         'browserSync',
         'watch',
         'email-build'

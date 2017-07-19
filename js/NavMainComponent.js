@@ -45,6 +45,9 @@ NavMainComponent.prototype.init = function() {
     component.$closeLink.on('click', function(e) {
         e.preventDefault();
         component.closeNavs();
+        component.closeSubNavs();
+
+        component.$html.find('.nav-primary .nav-link').removeClass('is-active');
     });
 };
 
@@ -96,7 +99,7 @@ NavMainComponent.prototype.closeSubNavs = function() {
 
     var component = this;
 
-    component.$html.find('.nav-secondary .nav-container').removeClass('is-active');
+    component.$html.find('.nav-secondary .nav-list').removeClass('is-active');
 };
 
 module.exports = NavMainComponent;
