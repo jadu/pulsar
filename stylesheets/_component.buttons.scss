@@ -84,8 +84,8 @@ $btn-white:                 'white';
     &:disabled,
     &.is-disabled,
     &.disabled {
-        opacity: .5;
         cursor: not-allowed !important; // immutable
+        opacity: .5;
     }
 }
 
