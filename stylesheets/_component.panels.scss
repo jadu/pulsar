@@ -60,12 +60,6 @@
 
 }
 
-@each $state, $state-color, $state-color-alt in $state-colors {
-    .panel--#{$state} .remove-button > [class^="icon-"] {
-        color: color(white);
-    }
-}
-
 .panel__icon {
     float: left;
     font-size: 24px;
@@ -73,19 +67,19 @@
 }
 
 @each $state, $state-color, $state-color-alt in $state-colors {
-        .panel--#{$state} {
-            background-color: $state-color;
-            color: $state-color-alt;
+    .panel--#{$state} {
+        background-color: $state-color;
+        color: $state-color-alt;
 
-            a,
-            a:link,
-            a:hover,
-            a:active,
-            a:visited {
-                color: $state-color-alt;
-            }
+        a,
+        a:link,
+        a:hover,
+        a:active,
+        a:visited {
+            color: $state-color-alt;
         }
     }
+}
 
 .form-v2 > .panel:first-of-type {
     margin-top: 0;
@@ -101,11 +95,11 @@
 }
 
 // Panels within form groups should respect their width
-@each $variant, $width in $input-widths {
-    .form__group .panel {
-        width: map-get($input-widths, xlarge);
-    }
+.form__group .panel {
+    width: map-get($input-widths, xlarge);
+}
 
+@each $variant, $width in $input-widths {
     .form__group--#{$variant} .panel {
         width: #{$width};
     }
