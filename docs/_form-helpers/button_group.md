@@ -32,7 +32,7 @@ class      | string | Classes to be applied to the button group (not the buttons
 id         | string | A unique identifier, if required
 items      | array  | An array of options to pass to the specified `type` helper
 show-label | bool   | Control visibility of the `<label>` element without affecting layout (default: true)
-type       | string | The type of input to create `radio`, `checkbox` or `button`
+type       | string | The type of input to create `radio` (default), `checkbox` or `button`
 data-*     | string | Data attributes, eg: `'data-foo': 'bar'`
 
 ## Input types
