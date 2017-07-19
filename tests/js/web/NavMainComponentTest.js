@@ -336,25 +336,7 @@ describe('NavMain component', function() {
 
     });
 
-    describe('when the more item exists', function() {
-
-        beforeEach(function() {
-            this.navMainComponent.init();
-            this.$html.find('.nav-primary .nav-items').append('<li label="More" class="nav-item t-nav-item more-icon" aria-haspopup="true"><a href="#more" class="nav-link t-nav-link"><i aria-hidden="true" class="icon-ellipsis-horizontal nav-link__icon t-nav-icon"></i><span class="nav-link__label">More</span></a></li>');
-        });
-
-        it('should be visible', function () {
-            expect(this.$html.find('.nav-primary .nav-items [label="More"]').is(':visible')).to.be.true;
-        });
-    });
-
-    /*describe('when the more item is visible', function() {
-
-        var resize = new Event('resize');
-        var stub = sinon.stub(component, 'adjustNavItems')
-
-        window.dispatchEvent(resize);
-        expect(stub).to.have.been.calledOnce;
+    describe('when the more item is visible', function() {
 
         beforeEach(function() {
             this.navMainComponent.init();
@@ -364,6 +346,6 @@ describe('NavMain component', function() {
         it('should hide it', function () {
             expect(this.$html.find('.nav-primary .nav-items [label="More"]').is(':visible')).to.be.true;
         });
-    });*/
+    });
 
 });
