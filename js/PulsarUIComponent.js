@@ -9,14 +9,11 @@ require('datatables.net-select')(window, $);
 require('../libs/jquery.countdown/dist/jquery.countdown.min');
 
 function PulsarUIComponent(html, history) {
-
     this.history = history;
     this.$html = html;
-
 }
 
 PulsarUIComponent.prototype.init = function () {
-
     var component = this;
 
     // Stop disabled links from being interactive
@@ -33,7 +30,7 @@ PulsarUIComponent.prototype.init = function () {
     this.initTables();
     this.initDataTables();
     this.initCountdown();
-}
+};
 
 PulsarUIComponent.prototype.initTables = function () {
 
@@ -51,7 +48,6 @@ PulsarUIComponent.prototype.initTables = function () {
 };
 
 PulsarUIComponent.prototype.initDataTables = function () {
-
     var component = this,
         datatables = this.$html.find('.datatable');
 
@@ -124,7 +120,6 @@ PulsarUIComponent.prototype.initDataTables = function () {
 };
 
 PulsarUIComponent.prototype.styleTableOverflows = function ($container) {
-
     var $table = $container.find('.table'),
         tableFullWidth = $table[0].scrollWidth,
         tableVisibleWidth = $container.width();
