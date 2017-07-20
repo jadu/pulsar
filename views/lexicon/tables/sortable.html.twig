@@ -8,7 +8,7 @@
                 <th>Type</th>
                 <th>Size</th>
                 <th>Filename / URL</th>
-                <th class="centered">Delete</th>
+                <th class="shrink-to-fit"></th>
             </tr>
         </thead>
         <tbody>
@@ -25,8 +25,31 @@
                 <td>
                     document.docx
                 </td>
-                <td class="centered">
-                    {{ form.checkbox({'bare': 'true'}) }}
+                <td class="u-text-align-right ">
+                    {{
+                        html.link({
+                            'label': html.icon('arrow-up'),
+                            'class': 'hide',
+                            'title': 'Move up',
+                            'data-move': 'up',
+                            'tabindex': '0'
+                        })
+                    }}
+                    {{
+                        html.link({
+                            'label': html.icon('arrow-down'),
+                            'class': 'hide',
+                            'title': 'Move down',
+                            'data-move': 'down',
+                            'tabindex': '0'
+                        })
+                    }}
+                    {{
+                        html.link({
+                            'label': html.icon('times-circle'),
+                            'tabindex': '0'
+                        })
+                    }}
                 </td>
             </tr>
 
@@ -43,8 +66,31 @@
                 <td>
                     anna_kournikova.exe
                 </td>
-                <td class="centered">
-                    {{ form.checkbox({'bare': 'true'}) }}
+                <td class="u-text-align-right">
+                    {{
+                        html.link({
+                            'label': html.icon('arrow-up'),
+                            'class': 'hide',
+                            'title': 'Move up',
+                            'data-move': 'up',
+                            'tabindex': '0'
+                        })
+                    }}
+                    {{
+                        html.link({
+                            'label': html.icon('arrow-down'),
+                            'class': 'hide',
+                            'title': 'Move down',
+                            'data-move': 'down',
+                            'tabindex': '0'
+                        })
+                    }}
+                    {{
+                        html.link({
+                            'label': html.icon('times-circle'),
+                            'tabindex': '0'
+                        })
+                    }}
                 </td>
             </tr>
 
@@ -61,8 +107,31 @@
                 <td>
                     sdfghjkhjifldshjkfdshajkl.pdf
                 </td>
-                <td class="centered">
-                    {{ form.checkbox({'bare': 'true'}) }}
+                <td class="u-text-align-right">
+                    {{
+                        html.link({
+                            'label': html.icon('arrow-up'),
+                            'class': 'hide',
+                            'title': 'Move up',
+                            'data-move': 'up',
+                            'tabindex': '0'
+                        })
+                    }}
+                    {{
+                        html.link({
+                            'label': html.icon('arrow-down'),
+                            'class': 'hide',
+                            'title': 'Move down',
+                            'data-move': 'down',
+                            'tabindex': '0'
+                        })
+                    }}
+                    {{
+                        html.link({
+                            'label': html.icon('times-circle'),
+                            'tabindex': '0'
+                        })
+                    }}
                 </td>
             </tr>
         </tbody>
@@ -72,6 +141,7 @@
     <h2>Sortable tables</h2>
     <ul>
         <li>Does not work with datatables</li>
+        <li>Keyboard accessible controls shown when tabbing to a row</li>
     </ul>
     <code class="hljs">
         &lt;table class="table is-sortable table--full"&gt; &hellip; &lt;/table&gt;
