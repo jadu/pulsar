@@ -309,7 +309,7 @@ describe('NavMainComponent', function() {
 
     });
 
-    describe("When the window is resized form very short to large enough to fit nav", function () {
+    describe("When the window is resized from very short to large enough to fit nav", function () {
 
         beforeEach(function() {
             this.navMainComponent.init();
@@ -322,7 +322,7 @@ describe('NavMainComponent', function() {
         });
 
         it('should show extra nav items', function () {
-            expect(this.$html.find('.nav-primary .nav-items li:first-of-type').is(':visible')).to.be.true;
+            expect(this.$html.find('.nav-primary .nav-items li:not([label="More"])').is(':visible')).to.be.true;
         });
 
     });
@@ -340,7 +340,6 @@ describe('NavMainComponent', function() {
 
     });
 
-    // always passers, even when code is commented out
     describe('When the window is resized', function () {
 
         beforeEach(function() {
