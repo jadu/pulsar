@@ -8,15 +8,15 @@
         display: block !important;
     }
 
-	.form {
-		background: none;
+    .form {
+        background: none;
 
         fieldset {
             padding: 0;
         }
     }
 
-	.label {
+    .label {
         box-sizing: border-box;
         display: block;
         margin-bottom: $gutter-width / 2;
@@ -39,29 +39,29 @@
                 float: none;
             }
         }
-	}
+    }
 
-  	.popover-content .form__group,
-  	.popover-content .control__label {
-  		margin: 0;
-  		padding: 0;
-  	}
+    .popover-content .form__group,
+    .popover-content .control__label {
+        margin: 0;
+        padding: 0;
+    }
 
-  	.popover-content .form__actions {
-  		border: 0;
-  		min-height: auto;
-  		padding: 12px 0 6px;
-  	}
+    .popover-content .form__actions {
+        border: 0;
+        min-height: auto;
+        padding: 12px 0 6px;
+    }
 
-  	.popover-content .controls {
-  		width: 100%;
-  	}
+    .popover-content .controls {
+        width: 100%;
+    }
 
-  	.popover-content .select2.select2-container.select2-container--default {
-  		width: 100% !important;
-  	}
+    .popover-content .select2.select2-container.select2-container--default {
+        width: 100% !important;
+    }
 
-  	.legend {
+    .legend {
         border: 0;
         display: block;
         font-size: 16px;
@@ -73,11 +73,13 @@
             float: left;
             font-size: 16px;
             height: 100%;
+            line-height: 35px;
+            margin-bottom: 0;
             padding: 0;
             vertical-align: top;
             width: 95px;
         }
-	}
+    }
 
     fieldset {
         @include respond-min($screen-tablet) {
@@ -124,6 +126,12 @@
 .filter-bar__list {
     line-height: 2em;
     list-style: none;
+
+    .form__control {
+        height: 32px;
+        line-height: 32px;
+        margin-bottom: $line-height-base;
+    }
 }
 
 .filter-bar__list-item {
@@ -133,23 +141,23 @@
 .btn.filter-bar__add {
     display: block;
     margin-bottom: $gutter-width;
+    padding: 7px 14px 6px;
     width: 100%;
 
     @include respond-min($screen-tablet) {
         display: inline-block;
         margin-bottom: $gutter-width / 2;
-        padding: 7px 14px 6px;
         vertical-align: top;
         width: auto;
     }
 
-	&:hover,
-  	&:active,
-  	&:focus {
- 		@include button-states('primary');
+    &:hover,
+    &:active,
+    &:focus {
+        @include button-states('primary');
 
         i {
             color: color(white);
         }
-  	}
+    }
 }
