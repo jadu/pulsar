@@ -191,7 +191,91 @@
     }}
 
     {{ form.fieldset_end() }}
-    {{ form.fieldset_start({ 'legend': 'Sizes' }) }}
+    {{ form.fieldset_start({ 'legend': 'Grid Sizes' }) }}
+
+    {{
+        form.textarea({
+            'id': 'textarea-1-col',
+            'label': 'One column',
+            'class': 'form__control-col--1',
+            'name': 'inputTextareaMini',
+        })
+    }}
+
+    {{
+        form.textarea({
+            'id': 'textarea-2-col',
+            'label': 'Two columns',
+            'class': 'form__control-col--2',
+            'name': 'inputTextareaSmall'
+        })
+    }}
+
+    {{
+        form.textarea({
+            'id': 'textarea-3-col',
+            'label': 'Three columns',
+            'class': 'form__control-col--3',
+            'name': 'inputTextareaMedium'
+        })
+    }}
+
+    {{
+        form.textarea({
+            'id': 'textarea-4-col',
+            'label': 'Four columns',
+            'class': 'form__control-col--4',
+            'name': 'inputTextareaRegular'
+        })
+    }}
+
+    {{
+        form.textarea({
+            'id': 'textarea-5-col',
+            'label': 'Five columns',
+            'class': 'form__control-col--5',
+            'name': 'inputTextareaLarge'
+        })
+    }}
+
+    {{
+        form.textarea({
+            'id': 'textarea-6-col',
+            'label': 'Six columns',
+            'class': 'form__control-col--6',
+            'name': 'inputTextareaXLarge'
+        })
+    }}
+
+    {{
+        form.textarea({
+            'id': 'textarea-7-col',
+            'label': 'Seven columns',
+            'class': 'form__control-col--7',
+            'name': 'inputTextareaFull'
+        })
+    }}
+
+    {{
+        form.textarea({
+            'id': 'textarea-8-col',
+            'label': 'Eight columns',
+            'class': 'form__control-col--8',
+            'name': 'inputTextareaFull'
+        })
+    }}
+
+    {{
+        form.textarea({
+            'id': 'textarea-9-col',
+            'label': 'Nine columns',
+            'class': 'form__control-col--9',
+            'name': 'inputTextareaFull'
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'Legacy Sizes' }) }}
 
     {{
         form.textarea({
@@ -223,6 +307,7 @@
     {{
         form.textarea({
             'id': 'textarea-23',
+            'class': 'form__group--regular',
             'label': 'Regular',
             'name': 'inputTextRegular'
         })

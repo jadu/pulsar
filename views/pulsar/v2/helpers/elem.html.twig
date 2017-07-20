@@ -191,6 +191,12 @@ value       | string | Specifies the value of the input
         )
     }}>
 
+    {#
+        Helpers have options, so do selects... so for this helper:
+        * mainOptions = the main array of options passed to form.select({options})
+        * options = the individual <option> elements to be created
+    #}
+    {% set mainOptions = options %}
     {% for value, label in options.options %}
 
         {#
@@ -198,7 +204,6 @@ value       | string | Specifies the value of the input
             `disabled` or `selected` attributes to individual options
         #}
         {% if label is iterable %}
-
             {% set options = label %}
 
             {% if options.options is defined and options.options is not empty %}
@@ -208,7 +213,7 @@ value       | string | Specifies the value of the input
                     {% if option is iterable %}
                         {% for item in option %}
                             <option {{ util.value(item.value) }}
-                                {%- if item.selected is defined and item.value == item.selected %} selected{% endif -%}
+                                {%- if mainOptions.selected is defined and item.value == mainOptions.selected %} selected{% endif -%}
                                 {%- if item.disabled is defined and item.disabled == true %} disabled="disabled"{% endif -%}>
                                 {{- item.label -}}
                             </option>
@@ -224,7 +229,7 @@ value       | string | Specifies the value of the input
             {# non-optgroup nested syntax #}
             {% else %}
                 <option {{ util.value(label.value) }}
-                    {%- if label.selected is defined and label.value == label.selected %} selected{% endif -%}
+                    {%- if mainOptions.selected is defined and label.value == mainOptions.selected %} selected{% endif -%}
                     {%- if label.disabled is defined and label.disabled == true %} disabled="disabled"{% endif -%}>
                     {{- label.label -}}
                 </option>
@@ -232,7 +237,9 @@ value       | string | Specifies the value of the input
 
         {# legacy un-nested syntax #}
         {% else %}
-            <option {{ util.value(value) }}>
+            <option {{ util.value(value) }}
+            {%- if mainOptions.selected is defined and value == mainOptions.selected %} selected{% endif -%}
+            >
                 {{- label -}}
             </option>
         {% endif %}
