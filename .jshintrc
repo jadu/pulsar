@@ -1,4 +1,5 @@
 {
+    "esversion": 6,
     "curly": true,
     "eqeqeq": true,
     "expr": true,
@@ -14,7 +15,7 @@
     "noempty": true,
     "nonew": true,
     "plusplus": false,
-    "strict": true,
+    "strict": false,
     "trailing": true,
     "undef": true,
     "unused": true,
@@ -32,6 +33,10 @@
         "afterEach"  : false,
         "sinon"      : false,
         "require"    : false,
-        "pulsar"     : false
+        "pulsar"     : false,
+        "window"     : false,
+        "document"   : false,
+        "URL"        : false,
+        "Event"      : false
     }
 }

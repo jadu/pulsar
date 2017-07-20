@@ -1,17 +1,19 @@
+.form-choice > .controls > .control__label {
+    @include span(3, false, false, 9);
+}
 
 // align inputs with the text labels properly
-.form-choice.choice--block .form__control {
+.form-choice .form__control {
     &.checkbox,
     &.radio {
         vertical-align: baseline;
+        width: auto; // suppress default grid width
     }
-}
 
-// width modifiers are used on the control__labels, has to be extra specific to
-// override default form group widths
-.form .form__group.choice--block .controls {
-    max-width: 100%;
-    width: 75%;
+    &.select,
+    &.select2 {
+        @include span(5, false, false, 9);
+    }
 }
 
 .choice--block > .controls {

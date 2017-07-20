@@ -10,6 +10,10 @@ All grid classes are namespaced with the `g-` utility namespace.
 
 ![grid example]({{ site.baseurl }}/assets/image_examples/grid.png)
 
+## Column styling
+
+If you want an element to behave like a column, it must have the `.g-col` class. This will give it block level styling and floats. If you just want to control the width and margin of an element you can use the column width classes, or column push classes detailed below.
+
 ## Width of elements
 
 An element can span 1 to 12 of the available columns, using the `.g-col--x` class.
