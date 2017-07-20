@@ -11,6 +11,9 @@
 {% set tab_filters %}
     {% include 'lexicon/tabs/filters.html.twig' %}
 {% endset %}
+{% set tab_dropzone %}
+    {% include 'lexicon/forms/dropzone.html.twig' %}
+{% endset %}
 
 {%
     set tabs_content = [
@@ -29,6 +32,11 @@
           "id"    : "filters",
           "label" : "Filters",
           "src"   : tab_filters
+        },
+        {
+          "id"    : "drag-drop-zone",
+          "label" : "DropZone",
+          "src"   : tab_dropzone
         }
     ]
 %}

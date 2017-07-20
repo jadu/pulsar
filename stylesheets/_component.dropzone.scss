@@ -1,0 +1,316 @@
+/**
+ * Dropzone
+ */
+
+.dropzone {
+    border: 2px dashed color(border);
+    border-radius: $border-radius;
+    color: color(text, base);
+    padding: 1.25em;
+    position: relative;
+    text-align: center;
+}
+
+// the element responsible for creating success and error flashes
+.dropzone__state {
+    bottom: 0;
+    content: '';
+    height: 100%;
+    left: 0;
+    position: absolute;
+    pointer-events: none;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 0;
+}
+
+$dropzone-file-size: .5em;
+$dropzone-thumb-size: 4em;
+
+.dropzone__file-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    margin: (1em - $dropzone-file-size) -#{$dropzone-file-size} -#{$dropzone-file-size};
+}
+
+.dropzone__icon-wrapper {
+    padding: 1.75em .5em .5em;
+    position: relative;
+}
+
+/**
+ * Main Icon
+ */
+
+.dropzone__icon {
+    color: color(gray, dark);
+    font-size: 4em;
+    text-align: center;
+}
+
+.dropzone__icon--small {
+    font-size: 1em;
+    position: absolute;
+    will-change: transform;
+}
+
+$dropzone-icon-rotation: 30deg;
+
+.dropzone__icon--left {
+    left: 0;
+    top: 0;
+    transform: rotate(-#{$dropzone-icon-rotation}) translateY(75%);
+    transition: transform 200ms 0ms;
+}
+
+.dropzone__icon--centre {
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%) translateY(25%);
+    transition: transform 200ms 50ms;
+}
+
+.dropzone__icon--right {
+    right: 0;
+    top: 0;
+    transform: rotate($dropzone-icon-rotation) translateY(75%);
+    transition: transform 200ms 100ms;
+}
+
+.dropzone__label {
+    font-family: $font-family-regular;
+    font-size: 1.25em;
+    line-height: 1;
+    margin-bottom: 0;
+    position: relative;
+}
+
+.dropzone__info {
+    font-size: $font-size-small;
+    margin-bottom: 0;
+    position: relative;
+}
+
+.dropzone__help {
+    color: color(text, help);
+    display: inline-block;
+    font-size: $font-size-small;
+    margin-bottom: 0;
+    margin-top: 0;
+    padding: 0 1em;
+    position: relative;
+}
+
+/**
+ * Error
+ */
+
+.dropzone__validation {
+    margin-top: .5em;
+}
+
+.dropzone__error {
+    color: color(danger);
+    font-family: $font-family-regular;
+    font-size: $font-size-small;
+    line-height: 1.2;
+    margin: 0;
+    position: relative;
+}
+
+/**
+ * File
+ */
+
+.dropzone__file {
+    color: color(text, base);
+    max-width: 100%;
+    padding: $dropzone-file-size;
+    width: 100%;
+
+    @include respond-min($screen-small) {
+        width: 50%;
+    }
+
+    .dropzone--files-1 & {
+        margin: auto;
+        width: 100%;
+
+        @include respond-min($screen-small) {
+            width: auto;
+        }
+    }
+}
+
+.dropzone__file-inner {
+    align-items: center;
+    background-color: color(gray, off-white);
+    border-radius: $border-radius;
+    display: flex;
+    flex-grow: 1;
+    height: 100%;
+    padding: $dropzone-file-size 2em $dropzone-file-size $dropzone-file-size;
+    position: relative;
+    text-align: left;
+}
+
+.dropzone__close {
+    color: color(gray);
+    cursor: pointer;
+    padding: $dropzone-file-size;
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    &:hover {
+        color: color(danger);
+    }
+}
+
+.dropzone__thumbnail {
+    border-radius: $border-radius;
+    color: color(grey);
+    height: $dropzone-thumb-size;
+    text-align: center;
+    width: $dropzone-thumb-size;
+
+    ~ .dropzone__meta {
+        width: calc(100% - #{$dropzone-thumb-size});
+    }
+}
+
+.dropzone__thumbnail--image {
+    background-size: cover;
+}
+
+.dropzone__file-icon {
+    font-size: 3em;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.dropzone__meta {
+    padding: 0 ($dropzone-file-size * 2);
+}
+
+.dropzone__name,
+.dropzone__size,
+.dropzone__type {
+    font-size: .75em;
+    line-height: 1;
+    margin-bottom: $dropzone-file-size / 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.dropzone__type {
+    margin-bottom: 0;
+}
+
+.dropzone__name {
+    font-family: $font-family-regular;
+    font-size: .85em;
+    line-height: 1.1;
+    margin-bottom: $dropzone-file-size;
+}
+
+/**
+ * State
+ */
+
+@mixin dropzone-flash ($state) {
+    @keyframes #{$state}-flash {
+        0% {
+            background-color: rgba(color(#{$state}, light), 1);
+        }
+
+        15% {
+            background-color: rgba(color(#{$state}, light), 1);
+        }
+
+        100% {
+            background-color: rgba(color(#{$state}, light), 0);
+        }
+    }
+}
+
+@include dropzone-flash(success);
+@include dropzone-flash(danger);
+
+.dropzone-window-active {
+    .dropzone:not(.dropzone--passive) {
+        border: 2px solid color(primary);
+        color: color(primary);
+
+        .dropzone__help {
+            color: color(primary);
+        }
+
+        .dropzone__icon {
+            color: color(primary);
+        }
+
+        .dropzone__icon--left {
+            transform: rotate(-#{$dropzone-icon-rotation}) translateY(50%);
+        }
+
+        .dropzone__icon--centre {
+            transform: translateY(0) translateX(-50%);
+        }
+
+        .dropzone__icon--right {
+            transform: rotate(#{$dropzone-icon-rotation}) translateY(50%);
+        }
+    }
+}
+
+.dropzone-success {
+    .dropzone:not(.dropzone--passive) {
+        .dropzone__state {
+            animation: success-flash 750ms forwards;
+            background-color: color(success, light);
+        }
+    }
+}
+
+.dropzone-error {
+    .dropzone:not(.dropzone--passive) {
+        border: 2px solid color(danger);
+        color: color(text, base);
+
+        .dropzone__help {
+            color: color(text, help);
+        }
+
+        .dropzone__icon {
+            color: color(grey, dark);
+        }
+
+        .dropzone__state {
+            animation: danger-flash 750ms forwards;
+            background-color: color(danger, light);
+        }
+    }
+}
+
+
+/**
+ * Passive mode
+ */
+
+.dropzone--passive {
+    text-align: inherit;
+}
+
+/**
+ * Lexicon code
+ */
+
+.lex-dropzone {
+    .lt-ie10 & {
+        display: none;
+    }
+}

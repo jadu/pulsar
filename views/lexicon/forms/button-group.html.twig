@@ -241,6 +241,33 @@
     }}
 
     {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'Grid Sizes' }) }}
+
+    {{
+        form.button_group({
+            'class': 'form__control-col--1',
+            'label': 'Button group',
+            'items': [
+                form.radio_simple({
+                    'id': 'foo1',
+                    'label': 'Foo',
+                    'name': '1'
+                }),
+                form.radio_simple({
+                    'id': 'bar1',
+                    'label': 'Bar',
+                    'name': '1'
+                }),
+                form.radio_simple({
+                    'id': 'baz1',
+                    'label': 'Baz',
+                    'name': '1'
+                })
+            ]
+        })
+    }}
+
+    {{ form.fieldset_end() }}
     {{ form.fieldset_start({ 'legend': 'Errors &amp; Validation' }) }}
 
     {{

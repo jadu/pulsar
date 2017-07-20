@@ -11,6 +11,7 @@ php:
 
 before_script:
   - npm install -g grunt-cli
+  - npm install -g snyk
   - npm install
   - mkdir -p dist/js
 
