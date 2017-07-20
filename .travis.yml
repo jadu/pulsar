@@ -20,8 +20,8 @@ install:
 
 script:
   - phpunit
-  - snyk auth $SNYK_TOKEN
-  - snyk monitor
+  - npm test
+  - npm run coverage
 
 after_success:
   - grunt deploy

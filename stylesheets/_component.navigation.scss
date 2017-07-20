@@ -252,12 +252,14 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
         transition: background-color 50ms linear, color 50ms linear;
     }
 
-    .nav-link:hover {
+    .nav-link:hover,
+    .nav-link:focus {
         background-color: darken($nav-color-dark, 2%);
         color: white;
     }
 
-    .nav-link.is-active:hover {
+    .nav-link.is-active:hover,
+    .nav-link.is-active:focus {
         background-color: $nav-color-dark;
     }
 
@@ -345,7 +347,8 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
         border-top-right-radius: 8px;
         border-bottom-left-radius: 8px;
 
-        &:hover {
+        &:hover,
+        &:focus {
             background-color: darken($nav-color-dark, 4%);
             color: white;
         }
@@ -428,7 +431,8 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
     text-align: right;
     width: 100%;
 
-    &:hover i::before {
+    &:hover i::before,
+    &:focus i::before {
         content: '\f0a8';
         color: white;
     }

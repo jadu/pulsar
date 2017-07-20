@@ -191,7 +191,91 @@
     }}
 
     {{ form.fieldset_end() }}
-    {{ form.fieldset_start({ 'legend': 'Sizes' }) }}
+    {{ form.fieldset_start({ 'legend': 'Grid Sizes' }) }}
+
+    {{
+        form.date({
+            'id': 'date-1-col',
+            'label': 'One column',
+            'class': 'form__control-col--1',
+            'name': 'inputDateMini',
+        })
+    }}
+
+    {{
+        form.date({
+            'id': 'date-2-col',
+            'label': 'Two columns',
+            'class': 'form__control-col--2',
+            'name': 'inputDateSmall'
+        })
+    }}
+
+    {{
+        form.date({
+            'id': 'date-3-col',
+            'label': 'Three columns',
+            'class': 'form__control-col--3',
+            'name': 'inputDateMedium'
+        })
+    }}
+
+    {{
+        form.date({
+            'id': 'date-4-col',
+            'label': 'Four columns',
+            'class': 'form__control-col--4',
+            'name': 'inputDateRegular'
+        })
+    }}
+
+    {{
+        form.date({
+            'id': 'date-5-col',
+            'label': 'Five columns',
+            'class': 'form__control-col--5',
+            'name': 'inputDateLarge'
+        })
+    }}
+
+    {{
+        form.date({
+            'id': 'date-6-col',
+            'label': 'Six columns',
+            'class': 'form__control-col--6',
+            'name': 'inputDateXLarge'
+        })
+    }}
+
+    {{
+        form.date({
+            'id': 'date-7-col',
+            'label': 'Seven columns',
+            'class': 'form__control-col--7',
+            'name': 'inputDateFull'
+        })
+    }}
+
+    {{
+        form.date({
+            'id': 'date-8-col',
+            'label': 'Eight columns',
+            'class': 'form__control-col--8',
+            'name': 'inputDateFull'
+        })
+    }}
+
+    {{
+        form.date({
+            'id': 'date-9-col',
+            'label': 'Nine columns',
+            'class': 'form__control-col--9',
+            'name': 'inputDateFull'
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'Legacy Sizes' }) }}
 
     {{
         form.date({
@@ -224,6 +308,7 @@
         form.date({
             'id': 'date-23',
             'label': 'Regular',
+            'class': 'form__group--regular',
             'name': 'inputTextRegular'
         })
     }}

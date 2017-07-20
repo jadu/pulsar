@@ -39,7 +39,7 @@ describe('NavMain component', function() {
       <button>Go</button>\
     </form>\
 \
-    <div class="nav-container" data-nav="#one">\
+    <div class="nav-list" data-nav="#one">\
         <ul class="nav-items">\
           <li class="nav-item">\
             <a href="#one_one" class="nav-link">1.1</a>\
@@ -47,7 +47,7 @@ describe('NavMain component', function() {
         </ul>\
     </div>\
 \
-    <div class="nav-container" data-nav="#two">\
+    <div class="nav-list" data-nav="#two">\
         <ul class="nav-items">\
           <li class="nav-item">\
             <a href="#two_one" class="nav-link">2.1</a>\
@@ -202,6 +202,10 @@ describe('NavMain component', function() {
 
         it('should close the sub navigation', function() {
             expect(this.$html.find('.nav-main').hasClass('is-open')).to.be.false;
+        });
+
+        it('should remove the highlight from that sections primary nav item', function() {
+            expect(this.$html.find('.nav-primary .nav-link').hasClass('is-active')).to.be.false;
         });
 
     });
