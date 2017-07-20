@@ -43,6 +43,7 @@ var $                     = require('jquery'),
     NavMainComponent = require('./NavMainComponent'),
     PulsarFormComponent = require('./PulsarFormComponent'),
     PulsarUIComponent = require('./PulsarUIComponent'),
+    PulsarSortableComponent = require('./PulsarSortableComponent'),
     SignInComponent = require('./area/signin/signin'),
     DropZoneComponentFactory = require('./DropZone/DropZoneComponentFactory');
 
@@ -60,6 +61,7 @@ module.exports = {
     NavMainComponent,
     PulsarFormComponent,
     PulsarUIComponent,
+    PulsarSortableComponent,
     SignInComponent,
     history,
     svgeezy
