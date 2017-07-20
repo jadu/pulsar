@@ -327,6 +327,18 @@ describe('NavMainComponent', function() {
 
     });
 
+    describe("When nav-items is bigger than the window and More Item exists", function () {
+
+        beforeEach(function() {
+            this.navMainComponent.init();
+            this.$window.resize();
+        });
+
+        it('should show the More link', function () {
+            expect(this.$html.find('.nav-primary .nav-items [label="More"]').is(':visible')).to.be.true;
+        });
+
+    });
 
     // always passers, even when code is commented out
     describe('When the window is resized', function () {
