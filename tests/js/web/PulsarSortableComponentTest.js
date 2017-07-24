@@ -70,7 +70,7 @@ describe('PulsarSortableComponent', function() {
         it('should remove the success icon after a delay', function() {
             setTimeout(function(){
                 expect(this.$html.find('.qa-row-one [data-move="up"]').parent().find('.js-sortable-moved').length).to.equal(0);
-            }, 50);
+            }, 1000);
         });
 
         it('should show the move links after a delay', function() {
