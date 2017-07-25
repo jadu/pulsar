@@ -62,7 +62,7 @@
 
                 {%
                     set options = options|merge({
-                        'class': 'nav-inline__link',
+                        'class': tab.class|default ~ ' nav-inline__link',
                         'label': tab.label,
                         'href': href,
                         'data-toggle': type,

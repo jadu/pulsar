@@ -71,7 +71,6 @@
     "mocha-phantomjs": "^4.0.2",
     "mochify": "~2.18.1",
     "mochify-istanbul": "^2.4.2",
-    "node-sass": "^3.7.0",
     "phantomjs": "2.1.1",
     "phpruntime": "^5.0.0",
     "phptoast": "^3.17.0",
