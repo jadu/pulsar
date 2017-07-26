@@ -271,7 +271,7 @@ describe('NavMainComponent', function() {
         });
 
 
-        describe('whem the more link is clicked', function() {
+        describe('when the more link is clicked', function() {
 
             beforeEach(function() {
                 this.$moreIconLink = this.$navMain.find('.more-icon > .nav-link');
@@ -293,7 +293,7 @@ describe('NavMainComponent', function() {
             this.$closeLink.click();
         });
 
-        it('should close the sub navigation', function() {
+        it('should close the tertiary sub navigation', function() {
             expect(this.$html.find('.nav-tertiary').hasClass('is-open')).to.be.false;
         });
 
@@ -307,7 +307,7 @@ describe('NavMainComponent', function() {
             this.$closeLink.click();
         });
 
-        it('should close the sub navigation', function() {
+        it('should close the quaternary sub navigation', function() {
             expect(this.$html.find('.nav-quaternary').hasClass('is-open')).to.be.false;
         });
 
