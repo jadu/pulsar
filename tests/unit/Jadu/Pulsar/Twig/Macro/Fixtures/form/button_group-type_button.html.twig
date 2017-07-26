@@ -1,0 +1,22 @@
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
+{% block body %}
+{{
+    form.button_group({
+        'type': 'button',
+        'items': [
+            {
+                'label': 'AM',
+                'name': 'bands'
+            },
+            {
+                'label': 'FM',
+                'name': 'bands'
+            },
+            {
+                'label': 'MW',
+                'name': 'bands'
+            }
+        ]
+    })
+}}
+{% endblock %}
