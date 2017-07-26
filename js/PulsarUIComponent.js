@@ -49,7 +49,7 @@ PulsarUIComponent.prototype.initTables = function () {
 
 PulsarUIComponent.prototype.initDataTables = function () {
     var component = this,
-        datatables = this.$html.find('.datatable');
+        datatables = component.$html.find('.datatable');
 
     datatables.each(function() {
         var $this = $(this);
