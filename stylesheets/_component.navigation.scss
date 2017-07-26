@@ -215,7 +215,7 @@ $nav-color-darker: darken(color(jadu-blue, dark), 10%) !default;
 }
 
 .nav-link {
-    color: white;
+    color: color(white);
     text-decoration: none;
 }
 
@@ -259,7 +259,7 @@ $nav-color-darker: darken(color(jadu-blue, dark), 10%) !default;
     .nav-link:hover,
     .nav-link:focus {
         background-color: darken($nav-color-dark, 2%);
-        color: white;
+        color: color(white);
     }
 
     .nav-link.is-active:hover,
@@ -268,7 +268,7 @@ $nav-color-darker: darken(color(jadu-blue, dark), 10%) !default;
     }
 
     .nav-link__icon {
-        color: white;
+        color: color(white);
         display: block;
         font-size: 1.5em;
         margin-bottom: 7px;
@@ -356,60 +356,20 @@ $nav-color-darker: darken(color(jadu-blue, dark), 10%) !default;
         &:hover,
         &:focus {
             background-color: darken($nav-color-dark, 4%);
-            color: white;
+            color: color(white);
         }
 
         &:active {
-            background-color: $white;
+            background-color: color(white);
             color: $nav-color-dark;
         }
     }
 }
 
 .nav-tertiary {
-    background-color: $nav-color-dark;
-    box-shadow: inset -4px 0 0 darken($nav-color-dark, 4);
-    left: $nav-primary-width;
-    margin-left: -320px;
-    overflow-x: hidden;
-    overflow-y: auto;
-    position: absolute;
-    top: 0;
-    transition: margin-left 100ms ease-in-out;
-    width: 245px;
-    z-index: $zindex-nav-secondary;
-
-    @include respond-min($screen-desktop) {
-        position: fixed;
-    }
-
-    // cope with presence of scrollbars in IE
-    @include ie-lte(10) {
-        width: 280px;
-    }
-
-    .nav-container {
-        display: none;
-    }
-
-    .nav-container.is-active {
-        display: block;
-        margin: 0 20px;
-    }
+    @extend .nav-secondary;
 
     .nav-link {
-        border-top-right-radius: 8px;
-        border-bottom-left-radius: 8px;
-
-        &:hover {
-            background-color: darken($nav-color-dark, 4%);
-            color: white;
-        }
-
-        &:active {
-            background-color: $white;
-            color: $nav-color-dark;
-        }
 
         span {
             margin-left: 10px;
@@ -418,48 +378,17 @@ $nav-color-darker: darken(color(jadu-blue, dark), 10%) !default;
 }
 
 .nav-quaternary {
+    @extend .nav-secondary;
     background-color: $nav-color-darker;
-    box-shadow: inset -4px 0 0 darken($nav-color-dark, 4);
-    left: $nav-primary-width + 3px;
+    left: $nav-primary-width + 3px; // Extra 3px for smooth overlapping style
     margin-left: 242px;
-    overflow-x: hidden;
-    overflow-y: auto;
-    position: absolute;
-    top: 0;
     transition: all 100ms linear;
     width: 0;
-    z-index: $zindex-nav-secondary;
-
-    @include respond-min($screen-desktop) {
-        position: fixed;
-    }
-
-    // cope with presence of scrollbars in IE
-    @include ie-lte(10) {
-        width: 280px;
-    }
-
-    .nav-container {
-        display: none;
-    }
-
-    .nav-container.is-active {
-        display: block;
-        margin: 0 20px;
-    }
 
     .nav-link {
-        border-top-right-radius: 8px;
-        border-bottom-left-radius: 8px;
 
         &:hover {
             background-color: darken($nav-color-light, 4%);
-            color: white;
-        }
-
-        &:active {
-            background-color: $white;
-            color: $nav-color-dark;
         }
     }
 }
@@ -471,12 +400,12 @@ $nav-color-darker: darken(color(jadu-blue, dark), 10%) !default;
     &.is-open {
         background-color: darken($nav-color-dark, 4%);
         left: 75px;
-        z-index: 1021;
+        z-index: $zindex-nav-secondary;
     }
 }
 
 .nav-remove-search {
-    color: white;
+    color: color(white);
     display: inline-block;
     margin-top: 6px;
     opacity: 0;
@@ -485,17 +414,17 @@ $nav-color-darker: darken(color(jadu-blue, dark), 10%) !default;
     vertical-align: top;
 
     &:hover {
-        color: white;
+        color: color(white);
     }
 }
 
 .is-open .nav-secondary,
-.nav-tertiary.is-open {
+.nav-tertiary.is-open,
+.nav-quaternary.is-open {
     margin-left: 0;
 }
 
 .nav-quaternary.is-open {
-    margin-left: 0;
     width: 242px;
 }
 
@@ -544,7 +473,7 @@ $nav-color-darker: darken(color(jadu-blue, dark), 10%) !default;
 }
 
 .nav-close {
-    color: white;
+    color: color(white);
     display: block;
     padding: 0 20px 23px;
     text-decoration: none;
@@ -555,7 +484,7 @@ $nav-color-darker: darken(color(jadu-blue, dark), 10%) !default;
     &:hover i::before,
     &:focus i::before {
         content: '\f0a8';
-        color: white;
+        color: color(white);
     }
 }
 
@@ -564,7 +493,7 @@ $nav-color-darker: darken(color(jadu-blue, dark), 10%) !default;
 
     &:hover i::before {
         content: '';
-        color: white;
+        color: color(white);
     }
 }
 
