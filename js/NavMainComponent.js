@@ -112,8 +112,7 @@ NavMainComponent.prototype.switchSecondaryNav = function(target) {
     component.closeSubNavs();
 
     component.$html.find('.nav-list.is-active').removeClass('is-active');
-    component.$html.find('[data-nav="' + target + '"]')
-        .addClass('is-active');
+    component.$html.find('[data-nav="' + target + '"]').addClass('is-active');
 };
 
 NavMainComponent.prototype.switchTertiartyNav = function(target) {
@@ -134,13 +133,12 @@ NavMainComponent.prototype.switchQuaternaryNav = function(target) {
 
     var component = this;
 
-    // If Category Item has encapsulated options and if it is same-page link then open the proper menu
-    if(target.indexOf('#') > -1) {
+    // If category item has encapsulated options and if it is same-page link then open the proper menu
+    if (target.indexOf('#') > -1) {
         component.$navQuaternary.addClass('is-open');
     }
 
-    component.$html.find('[data-nav="' + target + '"]')
-        .addClass('is-active');
+    component.$html.find('[data-nav="' + target + '"]').addClass('is-active');
 };
 
 NavMainComponent.prototype.changeActiveSecondaryNavLink = function(target) {
@@ -163,13 +161,13 @@ NavMainComponent.prototype.closeNavs = function() {
 
     var component = this;
 
-    if(component.$navQuaternary.hasClass('is-open')) {
+    if (component.$navQuaternary.hasClass('is-open')) {
         component.$navQuaternary.removeClass('is-open');
     } else {
         component.$navTertiary.removeClass('is-open');
     }
 
-    if(component.$navMain.hasClass('is-open')) {
+    if (component.$navMain.hasClass('is-open')) {
         component.$navMain.removeClass('is-open');
     }
 
@@ -181,15 +179,14 @@ NavMainComponent.prototype.closeSubNavs = function() {
     var component = this;
 
     component.$html.find('.nav-secondary .nav-list').removeClass('is-active');
-  
+
 };
 
-/* Detect window height, adjust the number of items in the primary nav and check when to add "More" option */
-
-/* Notes:
-- Feels like the JS should handle the creation of the third level menu to avoid unlessisary markup changes
-- no need for this to be on prototype
-*/
+/** Detect window height, adjust the number of items in the primary nav and check when to add "More" option
+ * Notes:
+ * - Feels like the JS should handle the creation of the third level menu to avoid unlessisary markup changes
+ * - no need for this to be on prototype
+ */
 
 NavMainComponent.prototype.adjustNavItems = function() {
 
@@ -198,13 +195,17 @@ NavMainComponent.prototype.adjustNavItems = function() {
         navItemsHeight = (component.$html.find('.nav-primary .nav-items').outerHeight(true) + component.$html.find('.jadu-branding').outerHeight(true)),
         moreIconHeight = 72, // Pre calculated height of the "More" nav item
         navItemsCountTotal = component.$html.find('.nav-primary .nav-items li').length,
-        i = 2, // This number represents the item before the last in the nth-last-child
+        nthChild = 2, // This number represents the item before the last in the nth-last-child
         numberOfHiddenNavItems = 0;
 
     if (navItemsHeight + moreIconHeight > availableHeight) {
+        // If there is not enough space hide the last primary nav items
         component.hidePrimaryNavItems(navItemsHeight, moreIconHeight, availableHeight, i);
+        // Get the number of hidden items to make only them visible in the tertiary menu
         numberOfHiddenNavItems = component.$html.find('.nav-primary .nav-items li:hidden').length;
+        // Add "More" nav item and check its visibility if already exists
         component.addMoreNavItem(numberOfHiddenNavItems);
+        // Hide the primary nav items duplicate in tertiary menu
         component.hideMoreCategoriesTopItems(navItemsCountTotal, numberOfHiddenNavItems);
     } else {
         // Unhide items if they were hidden and there is space in the primary nav
@@ -213,20 +214,19 @@ NavMainComponent.prototype.adjustNavItems = function() {
     }
 };
 
-NavMainComponent.prototype.hidePrimaryNavItems = function(navItemsHeight, moreIconHeight, availableHeight, i) {
+NavMainComponent.prototype.hidePrimaryNavItems = function(navItemsHeight, moreIconHeight, availableHeight, nthChild) {
 
     var component = this;
 
-    // While nav items and branding height is greater than the window height
     while (navItemsHeight + moreIconHeight > availableHeight) {
 
-        // If last nav item is visable hide it
+        // If last nav item is visible hide it
         if (component.$html.find('.nav-primary .nav-items li:last-child').is(':visible')) {
             component.$html.find('.nav-primary .nav-items li:last-child').hide();
         } else {
-            // if last nav item is hidden hide the next one up
-            component.$html.find('.nav-primary .nav-items li:nth-last-child('+ i +')').hide();
-            i++;
+            // If last nav item is hidden hide the next one up
+            component.$html.find('.nav-primary .nav-items li:nth-last-child('+ nthChild +')').hide();
+            nthChild++;
         }
 
         // Recalculate nav items height based on items just hidden
@@ -252,7 +252,7 @@ NavMainComponent.prototype.addMoreNavItem = function(numberOfHiddenNavItems) {
 NavMainComponent.prototype.hideMoreCategoriesTopItems = function(navItemsCountTotal, numberOfHiddenNavItems) {
 
     var component = this,
-        i = 1, // Number used to iterate nth-child
+        nthChild = 1, // Number used to iterate nth-child
         itemsToHideCount = 0;
 
     // Reset hidden nav items
@@ -263,8 +263,8 @@ NavMainComponent.prototype.hideMoreCategoriesTopItems = function(navItemsCountTo
 
     // Hide top items in "More Categories" equal to the number of visible items of primary nav
     while (itemsToHideCount >= 0) {
-        component.$html.find('.nav-tertiary .nav-items li:nth-child('+ i +')').hide();
-        i++;
+        component.$html.find('.nav-tertiary .nav-items li:nth-child('+ nthChild +')').hide();
+        nthChild++;
         itemsToHideCount--;
     }
 };
