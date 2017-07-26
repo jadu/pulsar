@@ -52,6 +52,7 @@ $tab-column-width-mobile:             250px !default;
 $sidebar-column-width:                200px !default;
 $sidebar-column-width-tablet:         133px !default;
 
+
 // -----------------------------------------------------------------------------
 //  Breakpoints
 // -----------------------------------------------------------------------------
@@ -115,9 +116,11 @@ $nav-primary-width:                   75px;
 //  Forms
 // -----------------------------------------------------------------------------
 
-$form-label-column-width:             200px !default;
-$controls-width:                      30%;
+// $form-label-column-width:             200px !default;
+// $controls-width:                      30%;
 $controls-max-width:                  300px;
+$form-label-cols:                     3 !default;
+$form-control-cols:                   9 !default;
 $input-border-radius:                 $border-radius !default;
 $input-height-base:                   $line-height-base * 2 !default;
 

@@ -57,13 +57,12 @@ items         | array  | An array of items to put in the dropdown list (usually 
     {{
         form.group({
             'parent': options
-                |only('bare class error guidance guidance-container help id label required show-label')
+                |only('bare class error guidance guidance-container help id label required show-label type')
                 |merge({'class': options.class|default ~ ' form__button-group'}),
             'controls': {'class': 'btn__group'},
             'inputs': options.items
         })
     }}
-
 {% endspaceless %}
 {% endmacro %}
 
@@ -239,6 +238,79 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
                 })
             ]
         })
+    }}
+
+{% endspaceless %}
+{% endmacro %}
+
+{# -----------------------------------------------------------------------------
+
+# Checkbox Simple
+
+Creates a checkbox input with a sibling label element, this allows other macros
+like `form.button_group()` to use the input’s `:checked` state to modify the
+label through the use of the sibling `+` CSS selector.
+
+## Example usage
+
+```twig
+{{
+    form.checkbox_simple({
+        'label': 'Foo',
+        'name': 'foo_group',
+        'id': 'foo'
+    })
+}}
+```
+
+## Example output
+
+```html
+<input type="checkbox" name="bar" id="baz" /><label for="baz">Foo</label>
+```
+
+## Options applied to input
+
+Option   | Type   | Description
+-------- | ------ | ------------------------------------------------------------
+form     | string | Specific one or more forms this label belongs to
+help     | string | Additional guidance information to be displayed next to the input
+id       | string | A unique identifier, will also be used as the label's `for` attribute
+name     | string | The name of this control
+required | bool   | Adds `required` and `aria-required="true"` attributes
+selected | bool   | Whether this radio button should be selected
+value    | string | Specifies the value of the input
+data-*   | string | Data attributes, eg: `'data-foo': 'bar'`
+
+## Options applied to label
+
+Option   | Type   | Description
+-------- | ------ | ------------------------------------------------------------
+class    | string | A space separated list of class names
+label    | string | Text for the `<label>` companion element
+required | bool   | Visually indicates that the field must be completed
+
+*Any other options not listed here will be applied to the input
+
+#}
+{% macro checkbox_simple(options) %}
+{% spaceless %}
+    {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
+
+    {{
+        elem.input(options
+            |exclude('class for guidance-container label show-label')
+            |defaults({
+                'type': 'checkbox'
+            })
+            |merge({'class': 'checkbox'})
+        )
+    }}
+    {{
+        elem.label(options
+            |only('class label for guidance-container required show-label')
+            |defaults({'for': options.id|default})
+        )
     }}
 
 {% endspaceless %}
@@ -891,7 +963,6 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 {% endspaceless %}
 {% endmacro %}
 
-
 {# -----------------------------------------------------------------------------
 
 # Group
@@ -1060,7 +1131,21 @@ controls.class    | string | A space separated list of class names
 
         {# input #}
         {% for input in options.inputs %}
+            {% if input is iterable %}
+                {% if options.parent.type is defined and options.parent.type is not empty %}
+                    {% if options.parent.type == 'radio' %}
+                        {{- form.radio_simple(input) -}}
+                    {% elseif options.parent.type == 'checkbox' %}
+                        {{- form.checkbox_simple(input) -}}
+                    {% elseif options.parent.type == 'button' %}
+                        {{- html.button(input) -}}
+                    {% endif %}
+                {% else %}
+                    {{- form.radio_simple(input) -}}
+                {% endif %}
+            {% else %}
                 {{- input|raw -}}
+            {% endif %}
         {% endfor %}
 
             {% if options.parent.append is defined and options.parent.append is not empty %}
@@ -1885,8 +1970,7 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
         ) ~ elem.label({
                 'class': 'toggle-switch-label',
                 'for': options.id|default,
-                'label': toggleLabel,
-                'required': options.required|default
+                'label': toggleLabel
             })
     %}
 

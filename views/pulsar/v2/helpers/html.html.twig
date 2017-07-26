@@ -1386,3 +1386,65 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
 {% endspaceless %}
 {% endmacro %}
+{# -----------------------------------------------------------------------------
+
+# DropZone
+
+## Options applied to DropZone
+
+All DropZone options should be prefixed with `data-dropzone-`, for example `data-dropzone-max-files`.
+
+Option                              | Type      | Description
+----------------------------------- | --------- | ----------------------------------------------------
+helperLabel                         | string    | The label for the default helper text popup
+helperTitle                         | string    | The heading for the default helper text popup
+helperContent                       | string    | The content for the default helper text popup
+data-dropzone-max-files             | string    | The maximum ammount of files a DropZone will accept
+data-dropzone-max-size              | string    | The combined file size limit of a group of files
+data-dropzone-idle-timer-duration   | string    | The duration
+data-dropzone-idle-html             | string    | The idle html for the DropZone info node
+data-dropzone-window-enter-html     | string    | The window enter event html for the DropZone info node
+data-dropzone-drop-zone-enter-html  | string    | The DropZone enter event html for the DropZone info node
+data-dropzone-passive               | boolean   | Enable passive mode | default false
+data-dropzone-show-input-node       | boolean   | Show associated input node | default false
+data-dropzone-file-node-desc        | boolean   | Show file description in file html | default true
+data-dropzone-file-node-name        | boolean   | Show file name in file html | default true
+data-dropzone-file-node-size        | boolean   | Show file size in file html | default true
+data-dropzone-file-node-type        | boolean   | Show file type in file html | default true
+
+#}
+{% macro dropzone(options) %}
+    {% import _self as html %}
+    {% set files = options['data-dropzone-max-files'] is defined ? options['data-dropzone-max-files'] : '5' %}
+    {% set state = options['data-dropzone-passive']|default('false') == 'true' ? 'passive' : 'idle' %}
+    {% set idle = options['data-dropzone-idle-html']|default('your files here or <a class="dropzone__browse" id="#">Browse Files</a>') %}
+    {% spaceless %}
+        <div{{ attributes(options|defaults(
+            {
+                'class': 'dropzone dropzone--' ~ state ~ ' dropzone--files-' ~ files
+            }
+        )) }}>
+            <div class="dropzone__state"></div>
+            <div class="dropzone__icon-wrapper">
+                {{  html.icon('file-pdf-o', { 'class': 'dropzone__icon dropzone__icon--small dropzone__icon--left' }) }}
+                {{  html.icon('file-image-o', { 'class': 'dropzone__icon dropzone__icon--small dropzone__icon--centre' }) }}
+                {{  html.icon('file-text-o', { 'class': 'dropzone__icon dropzone__icon--small dropzone__icon--right' }) }}
+                {{  html.icon('cloud-upload', { 'class': 'dropzone__icon dropzone__icon--main' }) }}
+            </div>
+            <p class="dropzone__label">Drag &amp; Drop</p>
+            <p class="dropzone__info">{{ idle|raw }}</p>
+
+            <p class="dropzone__help"
+               data-toggle="popover"
+               data-title="{{ options.helperTitle|default('Helper title')|raw }}"
+               data-content="{{ options.helperContent|default('Helper content')|raw }}"
+               data-html="true"
+               data-placement="left"
+               data-container="{{ '#' ~ options.id }}"
+            >
+                {{ html.icon('question-sign') }} {{ options.helperLabel|default('Only certain file types are allowed') }}
+            </p>
+        </div>
+    {% endspaceless %}
+{% endmacro %}
+
