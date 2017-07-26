@@ -102,7 +102,7 @@ class DropZoneComponent {
                 this.processInputNode(instance.input, instance.id, instance.options.showInputNode);
 
                 if (instance.browse) {
-                    this.processBrowseNode(instance.browse, instance.input);
+                    instance.browse.addEvent('click', this.handleBrowseNodeClick.bind(this, instance.input));
                 }
             }
         });
@@ -147,17 +147,13 @@ class DropZoneComponent {
     }
 
     /**
-     * Adds the browse files functionality to our DropZone
-     * @param {Element} browse
+     * Handle browse node click
      * @param {Element} input
      */
-    processBrowseNode (browse, input) {
-        browse.addEventListener('click', event => {
-            event.preventDefault();
-            // trigger a synthetic click on the input node which will activate the
-            // native Browse Files interaction
-            input.click();
-        });
+    handleBrowseNodeClick (input) {
+        // trigger a synthetic click on the input node which will activate the
+        // native Browse Files interaction
+        input.click();
     }
 
     /**
@@ -166,7 +162,7 @@ class DropZoneComponent {
      * @param {String} string
      */
     updateInfoState (id, string) {
-        const { info, input, node } = this.instanceManager.getInstance(id);
+        const { info, node } = this.instanceManager.getInstance(id);
         const options = this.optionsManager.getInstanceOptions(id);
 
         if (info) {
@@ -175,8 +171,7 @@ class DropZoneComponent {
             const browse = node.querySelector(`.${options.nodeClasses.browse}`);
 
             if (browse) {
-                this.instanceManager.updateInstance(id, 'browse', browse);
-                this.processBrowseNode(browse, input);
+                this.instanceManager.updateBrowseNode(id, browse);
             }
         }
     }
@@ -587,7 +582,23 @@ class DropZoneComponent {
     getBrowseNode (id) {
         const { browse } = this.instanceManager.getInstance(id);
 
-        return browse;
+        return browse.getNode();
+    }
+
+    /**
+     * Disable browse node functionality
+     * @param {Number} id
+     */
+    disableBrowseNode (id) {
+        this.instanceManager.disableBrowseNode(id);
+    }
+
+    /**
+     * Enable browse node functionality
+     * @param {Number} id
+     */
+    enableBrowseNode (id) {
+        this.instanceManager.enableBrowseNode(id);
     }
 }
 

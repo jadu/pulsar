@@ -1,11 +1,11 @@
 import _ from 'lodash';
 
 class DropZoneInstanceManager {
-    constructor (html, DropZoneFactory, optionsManager) {
+    constructor (html, DropZoneFactory, BrowseNodeFactory) {
         this.html = html;
         this.instances = [];
         this.DropZoneFactory = DropZoneFactory;
-        this.optionsManager = optionsManager;
+        this.BrowseNodeFactory = BrowseNodeFactory;
     }
 
     /**
@@ -18,7 +18,7 @@ class DropZoneInstanceManager {
         const options = optionsManager.buildInstanceOptions(node, id);
         const errorOptions = optionsManager.buildValidatorOptions(options);
         const input = options.inputNodeId ? this.html.querySelector(`#${options.inputNodeId}`) : null;
-        const browse = node.querySelector(`.${options.nodeClasses.browse}`);
+        const browse = this.BrowseNodeFactory.create(node.querySelector(`.${options.nodeClasses.browse}`));
         const info = node.querySelector(`.${options.nodeClasses.info}`);
         const dropZone = this.DropZoneFactory.create(node, options, errorOptions);
 
@@ -33,13 +33,35 @@ class DropZoneInstanceManager {
     }
 
     /**
-     * Update an instance property, useful if we need to re-reference elements
-     * @param {number} id
-     * @param {string} prop
-     * @param {*} value
+     * Update ref to browse node and re-attach events
+     * @param {Number} id
+     * @param {Element} node
      */
-    updateInstance (id, prop, value) {
-        _.find(this.instances, i => i.id === id)[prop] = value;
+    updateBrowseNode (id, node) {
+        const instance = _.find(this.instances, i => i.id === id);
+
+        instance.browse.update(node);
+        instance.browse.enableEvents();
+    }
+
+    /**
+     * Enable browse node events
+     * @param {Number} id
+     */
+    enableBrowseNode (id) {
+        const instance = _.find(this.instances, i => i.id === id);
+
+        instance.browse.enableEvents();
+    }
+
+    /**
+     * Disable browse node events
+     * @param {Number} id
+     */
+    disableBrowseNode (id) {
+        const instance = _.find(this.instances, i => i.id === id);
+
+        instance.browse.disableEvents();
     }
 
     /**
