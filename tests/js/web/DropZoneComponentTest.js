@@ -31,7 +31,7 @@ describe('DropZoneComponent', () => {
         validation = sinon.createStubInstance(DropZoneComponentValidation);
         classManager = sinon.createStubInstance(DropZoneBodyClassManager);
 
-        instanceManager.getInstance.returns({ node: $dropZone[0], info: $info[0] });
+        instanceManager.getInstance.returns({ node: $dropZone[0], info: $info[0], browse: $browse[0] });
         instanceManager.getFiles.returns(['file']);
         optionsManager.getInstanceOptions.returns({
             nodeClasses: {
@@ -926,6 +926,16 @@ describe('DropZoneComponent', () => {
 
             expect(instanceManager.disableInstance).to.have.been.calledOnce;
             expect(instanceManager.disableInstance).to.have.been.calledWith(88);
+        });
+    });
+
+    describe('getBrowseNode()', () => {
+        it('should return an instances browse node', () => {
+            const browse = dropZoneComponent.getBrowseNode(0);
+
+            expect(instanceManager.getInstance).to.have.been.calledOnce;
+            expect(instanceManager.getInstance).to.have.been.calledWith(0);
+            expect(browse).to.equal($browse[0]);
         });
     });
 });

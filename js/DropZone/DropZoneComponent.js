@@ -579,6 +579,16 @@ class DropZoneComponent {
     disable (id) {
         this.instanceManager.disableInstance(id);
     }
+
+    /**
+     * Get instance Browse Files node
+     * @param {Number} id
+     */
+    getBrowseNode (id) {
+        const { browse } = this.instanceManager.getInstance(id);
+
+        return browse;
+    }
 }
 
 module.exports = DropZoneComponent;
