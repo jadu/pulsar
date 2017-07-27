@@ -1,19 +1,19 @@
-var $             = require('jquery'),
-    dt            = require('datatables.net')(window, $),
-    dt_buttons    = require('datatables.net-buttons')(window, $),
-    dt_responsive = require('datatables.net-responsive')(window, $),
-    dt_select     = require('datatables.net-select')(window, $),
-    countdown     = require('../libs/jquery.countdown/dist/jquery.countdown.min');
+'use strict';
+
+var $ = require('jquery');
+
+require('datatables.net')(window, $);
+require('datatables.net-buttons')(window, $);
+require('datatables.net-responsive')(window, $);
+require('datatables.net-select')(window, $);
+require('../libs/jquery.countdown/dist/jquery.countdown.min');
 
 function PulsarUIComponent(html, history) {
-
     this.history = history;
     this.$html = html;
-
-};
+}
 
 PulsarUIComponent.prototype.init = function () {
-
     var component = this;
 
     // Stop disabled links from being interactive
@@ -48,8 +48,8 @@ PulsarUIComponent.prototype.initTables = function () {
 };
 
 PulsarUIComponent.prototype.initDataTables = function () {
-
-    var datatables = this.$html.find('.datatable');
+    var component = this,
+        datatables = component.$html.find('.datatable');
 
     datatables.each(function() {
         var $this = $(this);
@@ -66,7 +66,7 @@ PulsarUIComponent.prototype.initDataTables = function () {
             $this.data('empty-table', 'There are currently no items to display');
         }
 
-        if ($this.data('select') == false) {
+        if ($this.data('select') === false) {
             dom = '<"dataTables_top"irf><"dataTables_actions"T><"dt-disable-selection"t><"dataTables_bottom"lp>';
             select = false;
         }
@@ -105,6 +105,46 @@ PulsarUIComponent.prototype.initDataTables = function () {
     this.$html.find('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
         $($.fn.dataTable.tables(true)).DataTable().columns.adjust().responsive.recalc();
     });
+
+    this.$html.find('.table--horizontal').each(function() {
+        var $table = $(this).parent();
+
+        $table.scroll(function() {
+            component.styleTableOverflows($table);
+        });
+
+        $(window).on('load resize', function () {
+            component.styleTableOverflows($table);
+        });
+    });
+};
+
+PulsarUIComponent.prototype.styleTableOverflows = function ($container) {
+    var $table = $container.find('.table'),
+        tableFullWidth = $table[0].scrollWidth,
+        tableVisibleWidth = $container.width();
+
+    // Toggle right hand shadow, if overflowing to the right
+    if (tableFullWidth === tableVisibleWidth) {
+        $container
+            .removeClass('table--overflow-right');
+    }
+    else {
+        $container.addClass('table--overflow-right');
+    }
+
+    // Toggle left hand shadow, if overflowing to the left
+    if (($table.offsetParent().offset().left - $table.offset().left) > 0) {
+        $container.addClass('table--overflow-left');
+    }
+    else {
+        $container.removeClass('table--overflow-left');
+    }
+
+    // Remove right hand shadow if table scrolled to right hand edge
+    if (-Math.abs((tableFullWidth - tableVisibleWidth - $table.offsetParent().offset().left)) >= $table.offset().left) {
+        $container.removeClass('table--overflow-right');
+    }
 };
 
 PulsarUIComponent.prototype.initCountdown = function () {

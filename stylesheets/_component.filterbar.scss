@@ -8,15 +8,15 @@
         display: block !important;
     }
 
-	.form {
-		background: none;
+    .form {
+        background: none;
 
         fieldset {
             padding: 0;
         }
     }
 
-	.label {
+    .label {
         box-sizing: border-box;
         display: block;
         margin-bottom: $gutter-width / 2;
@@ -39,29 +39,29 @@
                 float: none;
             }
         }
-	}
+    }
 
-  	.popover-content .form__group,
-  	.popover-content .control__label {
-  		margin: 0;
-  		padding: 0;
-  	}
+    .popover-content .form__group,
+    .popover-content .control__label {
+        margin: 0;
+        padding: 0;
+    }
 
-  	.popover-content .form__actions {
-  		border: 0;
-  		min-height: auto;
-  		padding: 12px 0 6px;
-  	}
+    .popover-content .form__actions {
+        border: 0;
+        min-height: auto;
+        padding: 12px 0 6px;
+    }
 
-  	.popover-content .controls {
-  		width: 100%;
-  	}
+    .popover-content .controls {
+        width: 100%;
+    }
 
-  	.popover-content .select2.select2-container.select2-container--default {
-  		width: 100% !important;
-  	}
+    .popover-content .select2.select2-container.select2-container--default {
+        width: 100% !important;
+    }
 
-  	.legend {
+    .legend {
         border: 0;
         display: block;
         font-size: 16px;
@@ -79,7 +79,7 @@
             vertical-align: top;
             width: 95px;
         }
-	}
+    }
 
     fieldset {
         @include respond-min($screen-tablet) {
@@ -151,13 +151,13 @@
         width: auto;
     }
 
-	&:hover,
-  	&:active,
-  	&:focus {
- 		@include button-states('primary');
+    &:hover,
+    &:active,
+    &:focus {
+        @include button-states('primary');
 
         i {
             color: color(white);
         }
-  	}
+    }
 }
