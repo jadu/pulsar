@@ -8,13 +8,10 @@ require('../libs/spectrum/spectrum');
 var moment = require('../libs/moment/moment');
 
 function PulsarFormComponent(html) {
-
     this.$html = html;
-
 }
 
 PulsarFormComponent.prototype.init = function () {
-
     var component = this;
 
     // Colourpickers
@@ -28,15 +25,13 @@ PulsarFormComponent.prototype.init = function () {
     component.$select2 = this.$html.find('.js-select2:not([data-init="false"])');
 
     component.$select2.each(function() {
+        var $this = $(this);
+
         function formatOption(data) {
             return $('<span>' + data.text + '</span>');
         }
 
-        var $this = $(this);
-
-
         if ($this.data('html')) {
-
             $this.select2({
                 templateResult: formatOption,
                 templateSelection: formatOption
@@ -61,7 +56,6 @@ PulsarFormComponent.prototype.init = function () {
 };
 
 PulsarFormComponent.prototype.initSelectionButtons = function(e) {
-
     e.find('input[type="checkbox"]:checked, input[type="radio"]:checked')
         .closest('.control__label')
         .addClass('is-selected');
@@ -69,11 +63,11 @@ PulsarFormComponent.prototype.initSelectionButtons = function(e) {
 };
 
 PulsarFormComponent.prototype.initColourpickers = function() {
-
     var component = this,
         pickers = component.$html.find('.js-colorpicker');
 
     pickers.each(function() {
+
         var $this = $(this),
             $input = $this.find('.form__control'),
             $pickerInput = $($.parseHTML('<input>')),
@@ -106,13 +100,12 @@ PulsarFormComponent.prototype.initColourpickers = function() {
             $pickerInput.spectrum('set', '#' + $input.val());
         });
     });
+
 };
 
 PulsarFormComponent.prototype.selectionButtons = function() {
-
-    var $target = $(this);
-
-    var $controls = $target.closest('.controls');
+    var $target = $(this),
+        $controls = $target.closest('.controls');
 
     $controls.find('input[type="checkbox"]:not(:checked), input[type="radio"]:not(:checked)')
         .closest('.control__label')
