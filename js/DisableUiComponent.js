@@ -18,8 +18,7 @@ DisableUiComponent.prototype.init = function () {
 };
 
 DisableUiComponent.prototype.disable = function (target) {
-    var component = this,
-        FORM_ELEMENTS = 'button:not(.disabled), input:not(.disabled), select:not(.disabled)',
+    var FORM_ELEMENTS = 'button:not(.disabled), input:not(.disabled), select:not(.disabled)',
         LINK_ELEMENTS = 'a:not(.disabled)',
         LABEL_ELEMENTS = 'label';
 
@@ -47,8 +46,7 @@ DisableUiComponent.prototype.disable = function (target) {
 };
 
 DisableUiComponent.prototype.enable = function (target) {
-    var component = this,
-        FORM_ELEMENTS = 'button.disabled, input.disabled, select.disabled',
+    var FORM_ELEMENTS = 'button.disabled, input.disabled, select.disabled',
         LINK_ELEMENTS = 'a.js-disabled',
         LABEL_ELEMENTS = 'label';
 

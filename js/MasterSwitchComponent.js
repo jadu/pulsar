@@ -24,7 +24,7 @@ MasterSwitchComponent.prototype.init = function () {
             component.switchOn(this.$control);
         }
 
-        this.$control.on('change', function (e, active) {
+        this.$control.on('change', function (e) {
             if ($(this).prop('checked')) {
                 component.switchOn(e.target);
             } else {
