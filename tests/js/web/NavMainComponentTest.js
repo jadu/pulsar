@@ -180,7 +180,7 @@ describe('NavMainComponent', function () {
         });
     });
 
-    describe('clicking a primary nav link that has no sub navigation', function ()
+    describe('clicking a primary nav link that has no sub navigation', function () {
         beforeEach(function() {
             this.navMainComponent.init();
             this.$linkThree.click();
