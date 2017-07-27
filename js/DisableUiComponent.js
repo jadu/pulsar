@@ -40,7 +40,6 @@ DisableUiComponent.prototype.disable = function (target) {
             .addClass('js-disabled u-cursor-not-allowed');
 
         // Wrap with disabled wrapper to visually disable
-        console.log('1');
         $this.wrap('<div class="u-ui-disabled"></div>');
     });
 };
