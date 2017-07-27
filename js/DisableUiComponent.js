@@ -14,14 +14,17 @@ function preventDefaultAndStopPropagation(e) {
 DisableUiComponent.prototype.init = function () {
     var component = this;
 
-    component.$container = this.$html.find('[data-disable-ui="true"]');
+    component.disable(component.$html.find('[data-disable-ui="true"]'));
+};
 
-    component.$container.each(function() {
+DisableUiComponent.prototype.disable = function (target) {
+    var component = this,
+        FORM_ELEMENTS = 'button:not(.disabled), input:not(.disabled), select:not(.disabled)',
+        LINK_ELEMENTS = 'a:not(.disabled)',
+        LABEL_ELEMENTS = 'label';
 
-        var $this = $(this),
-            FORM_ELEMENTS = 'button:not(.disabled), input:not(.disabled), select:not(.disabled)',
-            LINK_ELEMENTS = 'a:not(.disabled)',
-            LABEL_ELEMENTS = 'label';
+    target.each(function() {
+        var $this = $(this);
 
         // Disable form elements
         $this.find(FORM_ELEMENTS)
@@ -35,10 +38,42 @@ DisableUiComponent.prototype.init = function () {
         // Disable links
         $this.find(LINK_ELEMENTS)
             .on('click', preventDefaultAndStopPropagation)
-            .addClass('u-cursor-not-allowed');
+            .addClass('js-disabled u-cursor-not-allowed');
 
         // Wrap with disabled wrapper to visually disable
+        console.log('1');
         $this.wrap('<div class="u-ui-disabled"></div>');
+    });
+};
+
+DisableUiComponent.prototype.enable = function (target) {
+    var component = this,
+        FORM_ELEMENTS = 'button.disabled, input.disabled, select.disabled',
+        LINK_ELEMENTS = 'a.js-disabled',
+        LABEL_ELEMENTS = 'label';
+
+    target.each(function() {
+        var $this = $(this);
+
+        // Remove attribute used to disable a UI on load
+        $this.removeAttr('data-disable-ui');
+
+        // Enable form elements
+        $this.find(FORM_ELEMENTS)
+            .unbind('click', preventDefaultAndStopPropagation)
+            .removeClass('disabled')
+            .removeAttr('disabled');
+
+        // Enable labels
+        $this.find(LABEL_ELEMENTS).removeClass('u-cursor-not-allowed');
+
+        // Enable links
+        $this.find(LINK_ELEMENTS)
+            .unbind('click', preventDefaultAndStopPropagation)
+            .removeClass('u-cursor-not-allowed');
+
+        // Remove wrapper which provides visually disabled styling
+        $this.unwrap('<div class="u-ui-disabled"></div>');
     });
 };
 
