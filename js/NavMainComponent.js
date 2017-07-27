@@ -77,7 +77,6 @@ NavMainComponent.prototype.init = function () {
         e.preventDefault();
         component.closeNavs();
         component.closeSubNavs();
-
         component.$html.find('.nav-primary .nav-link').removeClass('is-active');
     });
 };
@@ -85,9 +84,9 @@ NavMainComponent.prototype.init = function () {
 NavMainComponent.prototype.switchPrimaryNav = function (target) {
     var component = this;
 
-    component.$html.find('.nav-primary .nav-link').removeClass('is-active');
-    component.$html.find('.nav-tertiary').removeClass('is-open');
-    component.$html.find('.nav-quaternary').removeClass('is-open');
+    component.$primaryNavLinks.removeClass('is-active');
+    component.$navTertiary.removeClass('is-open');
+    component.$navQuaternary.removeClass('is-open');
 
     if (component.$html.find('[data-nav="' + target + '"]').length >= 1) {
         component.$navMain.addClass('is-open');
@@ -111,13 +110,13 @@ NavMainComponent.prototype.switchSecondaryNav = function (target) {
 NavMainComponent.prototype.switchTertiartyNav = function (target) {
     var component = this;
 
-    component.$html.find('.navTertiary .nav-link').removeClass('is-active');
+    component.$tertiaryNavLinks.removeClass('is-active');
 
     if (component.$html.find('[data-nav="' + target + '"]').length < 1) {
         component.closeNavs();
     }
 
-    component.$html.find('.navTertiary .is-active').removeClass('is-active');
+    component.$html.find('.nav-tertiary .is-active').removeClass('is-active');
     component.$html.find('[href="' + target + '"]').addClass('is-active');
 };
 
