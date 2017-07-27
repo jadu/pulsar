@@ -213,7 +213,8 @@ NavMainComponent.prototype.hidePrimaryNavItems = function (navItemsHeight, moreI
 };
 
 NavMainComponent.prototype.addMoreNavItem = function (numberOfHiddenNavItems) {
-    var component = this;
+    var component = this,
+        navItemMore = component.$html.find('.nav-primary .nav-items [label="More"]');
 
     // Add the "More" nav item
     if ((numberOfHiddenNavItems > 0) && (!component.$html.find('.more-icon').length)){
@@ -221,8 +222,8 @@ NavMainComponent.prototype.addMoreNavItem = function (numberOfHiddenNavItems) {
     }
 
     // Check if "More" nav item is visible
-    if (component.$html.find('.nav-primary .nav-items [label="More"]').is(':visible') === false) {
-        component.$html.find('.nav-primary .nav-items [label="More"]').show();
+    if (navItemMore.is(':visible') === false) {
+        navItemMore.show();
     }
 };
 
