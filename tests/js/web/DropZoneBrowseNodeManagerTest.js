@@ -20,9 +20,16 @@ describe('DropZoneBrowseNodeManager', () => {
             });
         });
 
-        it('should add a click event to the node', () => {
+        it('should add a click event to the node if we have one', () => {
             expect(nodeStub.addEventListener).to.have.been.calledOnce;
             expect(nodeStub.addEventListener).to.have.been.calledWith('click');
+        });
+
+        it('should not add a click event to the node if we do not have one', () => {
+            nodeStub.addEventListener.reset();
+            manager = new DropZoneBrowseNodeManager();
+
+            expect(nodeStub.addEventListener).to.have.not.been.called;
         });
 
         it('should prevent the default behaviour of the click', () => {
