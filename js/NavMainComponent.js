@@ -44,7 +44,6 @@ NavMainComponent.prototype.init = function () {
 
         component.switchPrimaryNav(href);
         component.switchSecondaryNav(href);
-
         component.$html.find('.content-main').on('click', component.closeHandler);
     });
 
@@ -53,7 +52,6 @@ NavMainComponent.prototype.init = function () {
     });
 
     component.$tertiaryNavLinks.on('click', function (e) {
-
         var $self = $(this),
             href = $self.attr('href');
 
@@ -63,7 +61,6 @@ NavMainComponent.prototype.init = function () {
 
         component.switchTertiartyNav(href);
         component.switchQuaternaryNav(href);
-
         component.$html.find('.content-main').on('click', component.closeHandler);
     });
 
