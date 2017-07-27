@@ -2,7 +2,7 @@ class DropZoneBrowseNodeManager {
     constructor (node) {
         this.node = node;
         this.events = [];
-        // we always want to prevent default whether the node is enabled or not
+        // We always want to prevent default whether the node is enabled or not
         if (node) {
             this.node.addEventListener('click', event => {
                 event.preventDefault();
@@ -11,7 +11,7 @@ class DropZoneBrowseNodeManager {
     }
 
     /**
-     * Uodate node reference
+     * Update node reference
      * @param {Element} node
      */
     update (node) {
