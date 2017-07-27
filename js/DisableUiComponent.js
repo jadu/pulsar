@@ -34,7 +34,7 @@ DisableUiComponent.prototype.disable = function (target) {
         // Disable labels
         $this.find(LABEL_ELEMENTS).addClass('u-cursor-not-allowed');
 
-        // Disable links
+        // Disable links (uses .js-disable as any existing disabled)
         $this.find(LINK_ELEMENTS)
             .on('click', preventDefaultAndStopPropagation)
             .addClass('js-disabled u-cursor-not-allowed');
@@ -67,7 +67,7 @@ DisableUiComponent.prototype.enable = function (target) {
         // Enable links
         $this.find(LINK_ELEMENTS)
             .unbind('click', preventDefaultAndStopPropagation)
-            .removeClass('u-cursor-not-allowed');
+            .removeClass('js-disabled u-cursor-not-allowed');
 
         // Remove wrapper which provides visually disabled styling
         $this.unwrap('<div class="u-ui-disabled"></div>');
