@@ -195,13 +195,13 @@ NavMainComponent.prototype.adjustNavItems = function () {
 
 NavMainComponent.prototype.hidePrimaryNavItems = function (navItemsHeight, moreIconHeight, availableHeight) {
     var component = this,
-        lastNavItem = component.$html.find('.nav-primary .nav-items li:last-child'),
+        lastPrimaryNavItem = component.$html.find('.nav-primary .nav-items li:last-child'),
         nthChild = 2; // This number represents the item before the last in the nth-last-child;
 
     while (navItemsHeight + moreIconHeight > availableHeight) {
         // If last nav item is visible hide it
-        if (lastNavItem.is(':visible')) {
-            lastNavItem.hide();
+        if (lastPrimaryNavItem.is(':visible')) {
+            lastPrimaryNavItem.hide();
         } else {
             // If last nav item is hidden hide the next one up
             component.$html.find('.nav-primary .nav-items li:nth-last-child('+ nthChild +')').hide();
