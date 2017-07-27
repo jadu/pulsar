@@ -393,17 +393,6 @@ $nav-color-darker: darken(color(jadu-blue, dark), 10%) !default;
     }
 }
 
-.nav-extra-icons {
-    left: 0;
-    z-index: -2;
-
-    &.is-open {
-        background-color: darken($nav-color-dark, 4%);
-        left: 75px;
-        z-index: $zindex-nav-secondary;
-    }
-}
-
 .nav-remove-search {
     color: color(white);
     display: inline-block;
