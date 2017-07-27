@@ -49,7 +49,8 @@ PulsarUIComponent.prototype.initTables = function () {
 
 PulsarUIComponent.prototype.initDataTables = function () {
     var component = this,
-        datatables = component.$html.find('.datatable');
+        datatables = component.$html.find('.datatable:not(.table--horizontal)'),
+        datatablesHorizontal = component.$html.find('.datatable.table--horizontal');
 
     datatables.each(function() {
         var $this = $(this);
@@ -95,6 +96,51 @@ PulsarUIComponent.prototype.initDataTables = function () {
                 details: {
                     type: 'column'
                 }
+            },
+            select: select,
+            stateSave: false
+        });
+    });
+
+    datatablesHorizontal.each(function() {
+        var $this = $(this);
+
+        var select = {
+            className: 'dt-row-selected',
+            style:     'multi',
+            selector:  'td.table-selection'
+        }
+
+        var dom = '<"dataTables_top"Birf><"dataTables_actions"T><"table-container"t><"dataTables_bottom"lp>';
+
+        if (!$this.data('empty-table')) {
+            $this.data('empty-table', 'There are currently no items to display');
+        }
+
+        if ($this.data('select') === false) {
+            dom = '<"dataTables_top"irf><"dataTables_actions"T><"dt-disable-selection"<"table-container"t>><"dataTables_bottom"lp>';
+            select = false;
+        }
+
+        $this.DataTable({
+            dom: dom,
+            aaSorting: [],
+            bAutoWidth: false,
+            buttons: [
+                'selectAll',
+                'selectNone'
+            ],
+            columnDefs: [
+                { className: 'control', orderable: false, targets: 0 },
+                { "searchable": false, "targets": [0, 1] },
+                { "orderable": false, "targets": [0, 1] }
+            ],
+            language: {
+                "emptyTable": $this.data('empty-table'),
+                "info": "Showing _START_ to _END_ of _TOTAL_ items",
+                "infoEmpty": 'No items',
+                "infoFiltered": " (filtered from _MAX_ items)",
+                "zeroRecords": "No items matched your filter, please clear it and try again"
             },
             select: select,
             stateSave: false
