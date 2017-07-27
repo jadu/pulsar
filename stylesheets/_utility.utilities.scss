@@ -119,16 +119,16 @@ div.no-results {
 }
 
 %u-no-wrap,
-.u-no-wrap.u-no-wrap {
+.u-no-wrap {
     white-space: nowrap !important;
 }
 
 %u-word-break,
-.u-word-break.u-word-break {
+.u-word-break {
     word-break: break-all !important;
 }
 
-.u-visible-print.u-visible-print {
+.u-visible-print {
     display: none !important;
 
     @media print {
@@ -157,7 +157,7 @@ div.no-results {
     }
 }
 
-.u-visible-print-inline.u-visible-print-inline {
+.u-visible-print-inline {
     display: none !important;
 
     @media print {
@@ -165,7 +165,7 @@ div.no-results {
     }
 }
 
-.u-visible-print-inline-block.u-visible-print-inline-block {
+.u-visible-print-inline-block {
     display: none !important;
 
     @media print {
@@ -173,143 +173,143 @@ div.no-results {
     }
 }
 
-.u-hidden-print.u-hidden-print {
+.u-hidden-print {
     @media print {
         display: none !important;
     }
 }
 
-.u-visible-on-phone.u-visible-on-phone {
+.u-visible-on-phone {
     @include visible-on-phone;
 }
 
-.u-visible-on-tablet.u-visible-on-tablet {
+.u-visible-on-tablet {
     @include visible-on-tablet;
 }
 
-.u-visible-on-desktop.u-visible-on-desktop {
+.u-visible-on-desktop {
     @include visible-on-desktop;
 }
 
-.u-hidden-on-phone.u-hidden-on-phone {
+.u-hidden-on-phone {
     @include hidden-on-phone;
 }
 
-.u-hidden-on-tablet.u-hidden-on-tablet {
+.u-hidden-on-tablet {
     @include hidden-on-tablet;
 }
 
-.u-hidden-on-desktop.u-hidden-on-desktop {
+.u-hidden-on-desktop {
     @include hidden-on-desktop;
 }
 
-.u-sr-visible-on-phone.u-sr-visible-on-phone {
+.u-sr-visible-on-phone {
     @include sr-visible-on-phone;
 }
 
-.u-sr-visible-on-tablet.u-sr-visible-on-tablet {
+.u-sr-visible-on-tablet {
     @include sr-visible-on-tablet;
 }
 
-.u-sr-visible-on-desktop.u-sr-visible-on-desktop {
+.u-sr-visible-on-desktop {
     @include sr-visible-on-desktop;
 }
 
-.u-sr-hidden-on-phone.u-sr-hidden-on-phone {
+.u-sr-hidden-on-phone {
     @include sr-hidden-on-phone;
 }
 
-.u-sr-hidden-on-tablet.u-sr-hidden-on-tablet {
+.u-sr-hidden-on-tablet {
     @include sr-hidden-on-tablet;
 }
 
-.u-sr-hidden-on-desktop.u-sr-hidden-on-desktop {
+.u-sr-hidden-on-desktop {
     @include sr-hidden-on-desktop;
 }
 
 %u-display-none,
-.u-display-none.u-display-none {
-    display: none;
+.u-display-none {
+    display: none !important;
 }
 
 %u-display-block,
-.u-display-block.u-display-block {
-    display: block;
+.u-display-block {
+    display: block !important;
 }
 
 %u-display-inline,
-.u-display-inline.u-display-inline {
+.u-display-inline {
     display: inline;
 }
 
 %u-display-inline-block,
-.u-display-inline-block.u-display-inline-block {
-    display: inline-block;
+.u-display-inline-block {
+    display: inline-block !important;
 }
 
 %u-float-none,
-.u-float-none.u-float-none {
-    float: none;
+.u-float-none {
+    float: none !important;
 }
 
 %u-float-left,
-.u-float-left.u-float-left {
-    float: left;
+.u-float-left {
+    float: left !important;
 }
 
 %u-float-right,
-.u-float-right.u-float-right {
-    float: right;
+.u-float-right {
+    float: right !important;
 }
 
 %u-vertical-align-top,
-.u-vertical-align-top.u-vertical-align-top {
-    vertical-align: top;
+.u-vertical-align-top {
+    vertical-align: top !important;
 }
 
 %u-vertical-align-middle,
-.u-vertical-align-middle.u-vertical-align-middle {
-    vertical-align: middle;
+.u-vertical-align-middle {
+    vertical-align: middle !important;
 }
 
 %u-vertical-align-bottom,
-.u-vertical-align-bottom.u-vertical-align-bottom {
-    vertical-align: bottom;
+.u-vertical-align-bottom {
+    vertical-align: bottom !important;
 }
 
 %u-vertical-align-baseline,
-.u-vertical-align-baseline.u-vertical-align-baseline {
-    vertical-align: baseline;
+.u-vertical-align-baseline {
+    vertical-align: baseline !important;
 }
 
 %u-text-align-left
-.u-text-align-left.u-text-align-left {
-    text-align: left;
+.u-text-align-left {
+    text-align: left !important;
 }
 
 %u-text-align-center,
-.u-text-align-center.u-text-align-center {
-    text-align: center;
+.u-text-align-center {
+    text-align: center !important;
 }
 
 %u-text-align-right,
-.u-text-align-right.u-text-align-right {
-    text-align: right;
+.u-text-align-right {
+    text-align: right !important;
 }
 
 %u-text-align-justify,
-.u-text-align-justify.u-text-align-justify {
-    text-align: justify;
+.u-text-align-justify {
+    text-align: justify !important;
 }
 
 %u-ui-disabled,
 .u-ui-disabled.u-ui-disabled {
     @extend %u-cursor-not-allowed;
 
-    opacity: .25;
+    opacity: .25 !important;
 }
 
 %u-cursor-not-allowed,
-.u-cursor-not-allowed.u-cursor-not-allowed {
+.u-cursor-not-allowed {
     cursor: not-allowed !important;
 }
