@@ -2,13 +2,12 @@
 
 var $ = require('jquery');
 
-function NavMainComponent(html, window) {
+function NavMainComponent (html, window) {
     this.$html = html;
     this.$window = $(window);
 };
 
-NavMainComponent.prototype.init = function() {
-
+NavMainComponent.prototype.init = function () {
     var component = this;
 
     component.adjustNavItems();
@@ -25,16 +24,15 @@ NavMainComponent.prototype.init = function() {
     component.$moreIcon = component.$navMain.find('.more-icon');
     component.$closeLink = component.$navMain.find('[data-nav-action=close]');
 
-    component.$window.resize(function(){
+    component.$window.resize(function () {
         component.adjustNavItems();
     });
 
-    component.closeHandler = function() {
+    component.closeHandler = function () {
         component.closeNavs();
     };
 
-    component.$primaryNavLinks.on('click', function(e) {
-
+    component.$primaryNavLinks.on('click', function (e) {
         var $self = $(this),
             href = $self.attr('href');
 
@@ -50,11 +48,11 @@ NavMainComponent.prototype.init = function() {
         component.$html.find('.content-main').on('click', component.closeHandler);
     });
 
-    component.$secondaryNavLinks.on('click', function() {
+    component.$secondaryNavLinks.on('click', function () {
         component.changeActiveSecondaryNavLink($(this).attr('href'));
     });
 
-    component.$tertiaryNavLinks.on('click', function(e) {
+    component.$tertiaryNavLinks.on('click', function (e) {
 
         var $self = $(this),
             href = $self.attr('href');
@@ -69,16 +67,16 @@ NavMainComponent.prototype.init = function() {
         component.$html.find('.content-main').on('click', component.closeHandler);
     });
 
-    component.$quaternaryNavLinks.on('click', function() {
+    component.$quaternaryNavLinks.on('click', function () {
         component.changeActiveQuaternaryNavLink($(this).attr('href'));
     });
 
-    component.$moreIcon.find('.nav-link').on('click', function() {
+    component.$moreIcon.find('.nav-link').on('click', function () {
         component.$navTertiary.toggleClass('is-open');
         component.$navTertiary.find('.nav-list').toggleClass('is-active');
     });
 
-    component.$closeLink.on('click', function(e) {
+    component.$closeLink.on('click', function (e) {
         e.preventDefault();
         component.closeNavs();
         component.closeSubNavs();
@@ -87,8 +85,7 @@ NavMainComponent.prototype.init = function() {
     });
 };
 
-NavMainComponent.prototype.switchPrimaryNav = function(target) {
-
+NavMainComponent.prototype.switchPrimaryNav = function (target) {
     var component = this;
 
     component.$html.find('.nav-primary .nav-link').removeClass('is-active');
@@ -105,8 +102,7 @@ NavMainComponent.prototype.switchPrimaryNav = function(target) {
     component.$html.find('[href="' + target + '"]').addClass('is-active');
 };
 
-NavMainComponent.prototype.switchSecondaryNav = function(target) {
-
+NavMainComponent.prototype.switchSecondaryNav = function (target) {
     var component = this;
 
     component.closeSubNavs();
@@ -115,8 +111,7 @@ NavMainComponent.prototype.switchSecondaryNav = function(target) {
     component.$html.find('[data-nav="' + target + '"]').addClass('is-active');
 };
 
-NavMainComponent.prototype.switchTertiartyNav = function(target) {
-
+NavMainComponent.prototype.switchTertiartyNav = function (target) {
     var component = this;
 
     component.$html.find('.navTertiary .nav-link').removeClass('is-active');
@@ -129,8 +124,7 @@ NavMainComponent.prototype.switchTertiartyNav = function(target) {
     component.$html.find('[href="' + target + '"]').addClass('is-active');
 };
 
-NavMainComponent.prototype.switchQuaternaryNav = function(target) {
-
+NavMainComponent.prototype.switchQuaternaryNav = function (target) {
     var component = this;
 
     // If category item has encapsulated options and if it is same-page link then open the proper menu
@@ -141,24 +135,21 @@ NavMainComponent.prototype.switchQuaternaryNav = function(target) {
     component.$html.find('[data-nav="' + target + '"]').addClass('is-active');
 };
 
-NavMainComponent.prototype.changeActiveSecondaryNavLink = function(target) {
-
+NavMainComponent.prototype.changeActiveSecondaryNavLink = function (target) {
     var component = this;
 
     component.$html.find('.nav-secondary .nav-item.is-active').removeClass('is-active');
     component.$html.find('[href="' + target + '"]').addClass('is-active');
 };
 
-NavMainComponent.prototype.changeActiveQuaternaryNavLink = function(target) {
-
+NavMainComponent.prototype.changeActiveQuaternaryNavLink = function (target) {
     var component = this;
 
     component.$html.find('.nav-quaternary .nav-item.is-active').removeClass('is-active');
     component.$html.find('[href="' + target + '"]').addClass('is-active');
 };
 
-NavMainComponent.prototype.closeNavs = function() {
-
+NavMainComponent.prototype.closeNavs = function () {
     var component = this;
 
     if (component.$navQuaternary.hasClass('is-open')) {
@@ -174,22 +165,14 @@ NavMainComponent.prototype.closeNavs = function() {
     component.$html.find('.content-main').unbind('click', component.closeHandler);
 };
 
-NavMainComponent.prototype.closeSubNavs = function() {
-
+NavMainComponent.prototype.closeSubNavs = function () {
     var component = this;
 
     component.$html.find('.nav-secondary .nav-list').removeClass('is-active');
-
 };
 
-/** Detect window height, adjust the number of items in the primary nav and check when to add "More" option
- * Notes:
- * - Feels like the JS should handle the creation of the third level menu to avoid unlessisary markup changes
- * - no need for this to be on prototype
- */
-
-NavMainComponent.prototype.adjustNavItems = function() {
-
+// Detect window height, adjust the number of items in the primary nav and check when to add "More" option
+NavMainComponent.prototype.adjustNavItems = function () {
     var component = this,
         availableHeight = component.$window.height(),
         navItemsHeight = (component.$html.find('.nav-primary .nav-items').outerHeight(true) + component.$html.find('.jadu-branding').outerHeight(true)),
@@ -213,8 +196,7 @@ NavMainComponent.prototype.adjustNavItems = function() {
     }
 };
 
-NavMainComponent.prototype.hidePrimaryNavItems = function(navItemsHeight, moreIconHeight, availableHeight) {
-
+NavMainComponent.prototype.hidePrimaryNavItems = function (navItemsHeight, moreIconHeight, availableHeight) {
     var component = this,
         nthChild = 2; // This number represents the item before the last in the nth-last-child;
 
@@ -234,8 +216,7 @@ NavMainComponent.prototype.hidePrimaryNavItems = function(navItemsHeight, moreIc
     }
 };
 
-NavMainComponent.prototype.addMoreNavItem = function(numberOfHiddenNavItems) {
-
+NavMainComponent.prototype.addMoreNavItem = function (numberOfHiddenNavItems) {
     var component = this;
 
     // Add the "More" nav item
@@ -249,8 +230,7 @@ NavMainComponent.prototype.addMoreNavItem = function(numberOfHiddenNavItems) {
     }
 };
 
-NavMainComponent.prototype.hideMoreCategoriesTopItems = function(navItemsCountTotal, numberOfHiddenNavItems) {
-
+NavMainComponent.prototype.hideMoreCategoriesTopItems = function (navItemsCountTotal, numberOfHiddenNavItems) {
     var component = this,
         nthChild = 1, // Number used to iterate nth-child
         itemsToHideCount = 0;
