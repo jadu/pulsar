@@ -38,7 +38,7 @@ NavMainComponent.prototype.init = function () {
 
         // If href is a fragment, don't add it to the URL because it breaks the
         // back button
-        if (href.substring(0,1) === '#') {
+        if (href.indexOf('#') > -1) {
             e.preventDefault();
         }
 
@@ -55,7 +55,7 @@ NavMainComponent.prototype.init = function () {
         var $self = $(this),
             href = $self.attr('href');
 
-        if (href.substring(0,1) === '#') {
+        if (href.indexOf('#') > -1) {
             e.preventDefault();
         }
 
@@ -69,15 +69,16 @@ NavMainComponent.prototype.init = function () {
     });
 
     component.$moreIcon.find('.nav-link').on('click', function () {
+        component.$navSecondary.removeClass('is-open');
         component.$navTertiary.toggleClass('is-open');
-        component.$navTertiary.find('.nav-list').toggleClass('is-active');
+        component.$navTertiary.find('.nav-list').addClass('is-active');
     });
 
     component.$closeLink.on('click', function (e) {
         e.preventDefault();
         component.closeNavs();
         component.closeSubNavs();
-        component.$html.find('.nav-primary .nav-link').removeClass('is-active');
+        component.$primaryNavLinks.removeClass('is-active');
     });
 };
 
@@ -85,8 +86,8 @@ NavMainComponent.prototype.switchPrimaryNav = function (target) {
     var component = this;
 
     component.$primaryNavLinks.removeClass('is-active');
-    component.$navTertiary.removeClass('is-open');
     component.$navQuaternary.removeClass('is-open');
+    component.$navTertiary.removeClass('is-open');
 
     if (component.$html.find('[data-nav="' + target + '"]').length >= 1) {
         component.$navMain.addClass('is-open');
@@ -94,29 +95,26 @@ NavMainComponent.prototype.switchPrimaryNav = function (target) {
         component.closeNavs();
     }
 
-    component.$html.find('.nav-primary .is-active').removeClass('is-active');
-    component.$html.find('[href="' + target + '"]').addClass('is-active');
+    component.$navPrimary.find('.is-active').removeClass('is-active');
+    component.$navPrimary.find('[href="' + target + '"]').addClass('is-active');
 };
 
 NavMainComponent.prototype.switchSecondaryNav = function (target) {
     var component = this;
 
     component.closeSubNavs();
-
-    component.$html.find('.nav-list.is-active').removeClass('is-active');
-    component.$html.find('[data-nav="' + target + '"]').addClass('is-active');
+    component.$navSecondary.toggleClass('is-open');
+    component.$navSecondary.find('.nav-list.is-active').removeClass('is-active');
+    component.$navSecondary.find('[data-nav="' + target + '"]').addClass('is-active');
 };
 
 NavMainComponent.prototype.switchTertiartyNav = function (target) {
     var component = this;
 
-    component.$tertiaryNavLinks.removeClass('is-active');
-
     if (component.$html.find('[data-nav="' + target + '"]').length < 1) {
         component.closeNavs();
     }
 
-    component.$html.find('.nav-tertiary .is-active').removeClass('is-active');
     component.$html.find('[href="' + target + '"]').addClass('is-active');
 };
 
@@ -141,21 +139,15 @@ NavMainComponent.prototype.changeActiveSecondaryNavLink = function (target) {
 NavMainComponent.prototype.changeActiveQuaternaryNavLink = function (target) {
     var component = this;
 
-    component.$html.find('.nav-quaternary .nav-item.is-active').removeClass('is-active');
+    component.$html.find('.nav-quaternary .nav-list.is-active').removeClass('is-active');
     component.$html.find('[href="' + target + '"]').addClass('is-active');
 };
 
 NavMainComponent.prototype.closeNavs = function () {
     var component = this;
 
-    if (component.$navQuaternary.hasClass('is-open')) {
-        component.$navQuaternary.removeClass('is-open');
-    } else {
-        component.$navTertiary.removeClass('is-open');
-    }
-
-    if (component.$navMain.hasClass('is-open')) {
-        component.$navMain.removeClass('is-open');
+    if (component.$navSecondary.hasClass('is-open')) {
+        component.$navSecondary.removeClass('is-open');
     }
 
     component.$html.find('.content-main').unbind('click', component.closeHandler);
@@ -164,7 +156,14 @@ NavMainComponent.prototype.closeNavs = function () {
 NavMainComponent.prototype.closeSubNavs = function () {
     var component = this;
 
-    component.$html.find('.nav-secondary .nav-list').removeClass('is-active');
+    component.$navSecondary.find('.nav-list').removeClass('is-active');
+
+    if (component.$navQuaternary.hasClass('is-open')) {
+        component.$navQuaternary.removeClass('is-open');
+        component.$navQuaternary.find('.nav-list.is-active').removeClass('is-active');
+    } else {
+        component.$navTertiary.removeClass('is-open');
+    }
 };
 
 // Detect window height, adjust the number of items in the primary nav and check when to add "More" option
