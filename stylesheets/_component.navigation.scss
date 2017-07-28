@@ -318,7 +318,9 @@ $nav-color-darker: darken(color(jadu-blue, dark), 10%) !default;
     }
 }
 
-.nav-secondary {
+.nav-secondary,
+.nav-tertiary,
+.nav-quaternary {
     background-color: $nav-color-dark;
     box-shadow: inset -4px 0 0 darken($nav-color-dark, 4);
     left: $nav-primary-width;
@@ -367,8 +369,6 @@ $nav-color-darker: darken(color(jadu-blue, dark), 10%) !default;
 }
 
 .nav-tertiary {
-    @extend .nav-secondary;
-
     .nav-link {
 
         span {
@@ -378,7 +378,6 @@ $nav-color-darker: darken(color(jadu-blue, dark), 10%) !default;
 }
 
 .nav-quaternary {
-    @extend .nav-secondary;
     background-color: $nav-color-darker;
     left: $nav-primary-width + 3px; // Extra 3px for smooth overlapping style
     margin-left: 242px;
@@ -461,7 +460,8 @@ $nav-color-darker: darken(color(jadu-blue, dark), 10%) !default;
     top: 3px;
 }
 
-.nav-close {
+.nav-close,
+.nav-close-ltr {
     color: color(white);
     display: block;
     padding: 0 20px 23px;
@@ -478,8 +478,6 @@ $nav-color-darker: darken(color(jadu-blue, dark), 10%) !default;
 }
 
 .nav-close-ltr {
-    @extend .nav-close;
-
     &:hover i::before {
         content: '';
         color: color(white);
