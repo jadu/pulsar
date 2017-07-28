@@ -5,6 +5,11 @@
     margin: 0;
     position: relative;
     vertical-align: middle;
+    width: 100% !important;
+
+    @include respond-min($screen-smaller) {
+        @include span(4, false, true, 9, true);
+    }
 }
 
 .select2-container .select2-selection--single {
