@@ -52,8 +52,4 @@ MasterSwitchComponent.prototype.switchOff = function (target) {
     component.disableUi.disable(component.$target);
 };
 
-function preventDefault(e) {
-    e.preventDefault();
-}
-
 module.exports = MasterSwitchComponent;
