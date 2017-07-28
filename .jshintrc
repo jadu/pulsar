@@ -17,7 +17,7 @@
     "noempty": true,
     "nonew": true,
     "plusplus": false,
-    "strict": "global",
+    "strict": false,
     "trailing": true,
     "undef": true,
     "unused": true,

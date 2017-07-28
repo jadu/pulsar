@@ -6,6 +6,7 @@ import DropZoneComponentUtils from './DropZoneComponentUtils';
 import DropZoneComponentValidationManager from './DropZoneComponentValidationManager';
 import DropZoneBodyClassManager from './DropZoneBodyClassManager';
 import MimeTyper from '../libs/MimeTyper';
+import DropZoneBrowseNodeFactory from './DropZoneBrowseNodeFactory';
 
 class DropZoneComponentFactory {
     /**
@@ -21,7 +22,7 @@ class DropZoneComponentFactory {
         return new DropZoneComponent(
             html,
             selector,
-            new DropZoneInstanceManager(html, DropZoneFactory),
+            new DropZoneInstanceManager(html, DropZoneFactory, DropZoneBrowseNodeFactory),
             new DropZoneOptionsManager(utilsManager),
             utilsManager,
             new DropZoneComponentValidationManager(),
