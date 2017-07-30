@@ -39,24 +39,18 @@ describe('DropZoneValidatorDispatcher', () => {
             expect(fileMock.getAsFile).to.have.been.calledOnce;
         });
 
-        describe('unknown', () => {
-            it('should return an invalid object if the file type is an empty string', () => {
-                expect(dropZoneValidatorDispatcher.validate([{ type: '' }], 1, 0)).to.equal('error');
-                expect(dropZoneErrorStub.getFileValidationError.calledWith('UNKNOWN')).to.be.true;
-            });
-        });
         describe('empty', () => {
             it('should return an invalid object if the file size is zero', () => {
-                expect(dropZoneValidatorDispatcher.validate([{ type: '' }], 1, 0)).to.equal('error');
-                expect(dropZoneErrorStub.getFileValidationError.calledWith('UNKNOWN')).to.be.true;
+                expect(dropZoneValidatorDispatcher.validate([{ size: 0 }], 1, 0)).to.equal('error');
+                expect(dropZoneErrorStub.getFileValidationError.calledWith('EMPTY')).to.be.true;
             });
         });
 
         describe('whitelist', () => {
             it('should return an invalid object if the file is not on the whitelist', () => {
-                expect(dropZoneValidatorDispatcher.validate([{ size: 0, type: 'image/png' }], 1, 0)).to.equal('error');
+                expect(dropZoneValidatorDispatcher.validate([{type: 'foo/bar' }], 1, 0)).to.equal('error');
                 expect(dropZoneErrorStub.getFileValidationError).to.have.been.calledOnce;
-                expect(dropZoneErrorStub.getFileValidationError).to.have.been.calledWith('EMPTY');
+                expect(dropZoneErrorStub.getFileValidationError).to.have.been.calledWith('WHITELIST');
             });
 
             it('should return a valid object if the file is on the whitelist', () => {
