@@ -1,0 +1,18 @@
+{% extends '@pulsar/lexicon/base.html.twig' %}
+
+{% set heading = 'Rules' %}
+
+{% set tab_one %}
+    {% include '/lexicon/patterns/rules/one.html.twig' %}
+{% endset %}
+
+{%
+    set tabs_content = [
+        {
+            "id"    : "one",
+            "label" : "Rules",
+            "src"   : tab_one,
+            "active": true
+        }
+    ]
+%}

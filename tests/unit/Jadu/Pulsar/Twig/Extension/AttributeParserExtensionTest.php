@@ -9,6 +9,32 @@ class AttributeParserExtensionTest extends \PHPUnit_Framework_TestCase
         $this->ext = new AttributeParserExtension(array());
     }
 
+     /**
+     * Determine if two associative arrays are similar
+     *
+     * Both arrays must have the same indexes with identical values
+     * without respect to key ordering
+     *
+     * @param array $a
+     * @param array $b
+     * @return bool
+     */
+    public function arrays_are_similar($a, $b) {
+      // if the indexes don't match, return immediately
+      if (count(array_diff_assoc($a, $b))) {
+        return false;
+      }
+      // we know that the indexes, but maybe not values, match.
+      // compare the values between the two arrays
+      foreach($a as $k => $v) {
+        if ($v !== $b[$k]) {
+          return false;
+        }
+      }
+      // we have identical indexes, and no unequal values
+      return true;
+    }
+
     public function testGetName()
     {
         $this->assertEquals('attribute_parser_extension', $this->ext->getName());
@@ -142,6 +168,24 @@ class AttributeParserExtensionTest extends \PHPUnit_Framework_TestCase
         $dataIn = array('disabled' => true, 'class' => 'foo is-disabled');
         $dataOut = ' class="foo is-disabled"';
         $this->assertContains($dataOut, $this->ext->parseAttributes($dataIn));
+    }
+
+    public function testDefaultsFilterAddsDefaults()
+    {
+        $attributes = array();
+        $defaults = array('foo' => 'bar');
+        $dataOut = array('foo' => 'bar');
+
+        $this->assertTrue($this->arrays_are_similar($dataOut, $this->ext->defaultAttributes($attributes, $defaults)));
+    }
+
+    public function testDefaultsFilterMergesDefaults()
+    {
+        $attributes = array('foo' => 'bar');
+        $defaults = array('foo' => 'baz');
+        $dataOut = array('foo' => 'baz bar');
+
+        $this->assertTrue($this->arrays_are_similar($dataOut, $this->ext->defaultAttributes($attributes, $defaults)));
     }
 
 }

@@ -66,7 +66,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for i in 0..5 %}
+            {% for i in 0..1 %}
             <tr>
                 <td class="table-responsive">
                     {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
@@ -118,10 +118,10 @@
 
                             {{
                                 rule.block_when({
-                                    'polly': 'bar',
                                     'removeable': false,
                                     'inputs': [
                                         form.select2({
+                                            'class': 'form__group--medium',
                                             'label': 'Choose trigger',
                                             'placeholder': 'Choose trigger',
                                             'show-label': false,
@@ -144,8 +144,11 @@
 
                             {{
                                 rule.block_and({
+                                    'show_and': false,
+                                    'show_or': false,
                                     'inputs': [
                                         form.select2({
+                                            'class': 'form__group--medium',
                                             'label': 'Choose trigger',
                                             'placeholder': 'Choose condition',
                                             'show-label': false,
@@ -175,6 +178,64 @@
                                             ]
                                         }),
                                         form.select2({
+                                            'class': 'form__group--medium',
+                                            'label': 'Choose user type',
+                                            'show-label': false,
+                                            'options':
+                                            [
+                                                {
+                                                    'label': 'Registered user',
+                                                    'value': 'foo'
+                                                },
+                                                {
+                                                    'label': 'Anonymous user',
+                                                    'value': 'foo'
+                                                },
+                                                {
+                                                    'label': 'Admin on behalf of user',
+                                                    'value': 'foo'
+                                                }
+                                            ]
+                                        })
+                                    ]
+                                })
+                            }}
+                            {{
+                                rule.block_or({
+                                    'class': 'rules__step--indented',
+                                    'inputs': [
+                                        form.select2({
+                                            'class': 'form__group--medium',
+                                            'label': 'Choose trigger',
+                                            'placeholder': 'Choose condition',
+                                            'show-label': false,
+                                            'options':
+                                            [
+                                                {
+                                                    'label': 'User type',
+                                                    'value': 'foo'
+                                                }
+                                            ]
+                                        }),
+                                        form.select({
+                                            'class': 'form__group--small',
+                                            'label': 'Choose',
+                                            'placeholder': 'Choose',
+                                            'show-label': false,
+                                            'options':
+                                            [
+                                                {
+                                                    'label': 'is',
+                                                    'value': 'foo'
+                                                },
+                                                {
+                                                    'label': 'is not',
+                                                    'value': 'foo'
+                                                }
+                                            ]
+                                        }),
+                                        form.select2({
+                                            'class': 'form__group--medium',
                                             'label': 'Choose user type',
                                             'show-label': false,
                                             'options':
@@ -201,6 +262,7 @@
                                 rule.block_then({
                                     'inputs': [
                                         form.select2({
+                                            'class': 'form__group--medium',
                                             'label': 'Choose action',
                                             'show-label': false,
                                             'options':
@@ -234,6 +296,7 @@
                                             ]
                                         }),
                                         form.select2({
+                                            'class': 'form__group--medium',
                                             'label': 'Using template',
                                             'data-html': 'true',
                                             'show-label': false,

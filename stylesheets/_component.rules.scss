@@ -39,8 +39,15 @@
     }
 }
 
-.rule-block-wrapper ~ .rule-block-wrapper {
-    margin-top: -1px;
+// Sibling rule-block-wrapper was a rule prior to the helpers being written
+// rules__step--indented is the new rule for helpers, double chained to override fieldset specificity
+.rule-block-wrapper ~ .rule-block-wrapper,
+.rules__step.rules__step--indented {
+    margin-top: -2px;
+}
+
+.rules__step.rules__step--indented .rule-block-wrapper {
+    margin-left: 20px;
 }
 
 .rule-block {
@@ -58,8 +65,9 @@
     }
 }
 
-.rule-block--and {
-    margin-top: 24px;
+.rule-block--and,
+.rule-block--then {
+    margin-top: 24 - 6px; // 24px - 6px default fieldset margin
 }
 
 .rule-block--indented {
@@ -203,7 +211,8 @@
     }
 }
 
-td.table__form fieldset.rules__step {
+// Double chained to override default fieldset styling
+fieldset.rules__step {
     margin-top: 0;
 }
 
