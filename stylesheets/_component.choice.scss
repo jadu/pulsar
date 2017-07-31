@@ -1,5 +1,13 @@
-.form-choice > .controls > .control__label {
-    @include span(3, false, false, 9);
+// Align form-choice to grid
+@include respond-min($screen-smaller) {
+
+    .form-choice > .controls > .control__label {
+        @include span(4, false, true, 9);
+
+        .form__control {
+            margin-left: 0;
+        }
+    }
 }
 
 // align inputs with the text labels properly
@@ -26,12 +34,13 @@
         user-select: none; // stop nasty blue text selection when clicking
         width: 100%; // mobile-first width
 
-        @include ie-lte(8) {
-            border: 1px solid color(border);
+        // align choice-block labels to grid
+        @include respond-min($screen-smaller) {
+            @include span(4, false, true, 9);
         }
 
-        &:last-child {
-            margin: 0;
+        @include ie-lte(8) {
+            border: 1px solid color(border);
         }
     }
 
