@@ -10,6 +10,14 @@
     position: relative;
     white-space: nowrap;
 
+    @include respond-min($screen-phone) {
+        margin-left: 0;
+    }
+
+    @include respond-min($screen-tablet) {
+        margin-left: percentage($gutter_pc / 100);
+    }
+
     // Undo padding and float of grid classes
     &.col {
         float: none;
