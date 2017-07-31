@@ -61,6 +61,11 @@
     vertical-align: middle;
     width: 2em;
 
+    // align toggle to grid
+    @include respond-min($screen-smaller) {
+        margin-left: percentage($gutter_pc / 100);
+    }
+
     @include ie-lte(8) {
         display: none !important;
     }
