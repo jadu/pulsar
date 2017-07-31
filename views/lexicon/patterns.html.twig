@@ -8,8 +8,8 @@
 {% set pattern_piano %}
     {% include 'lexicon/patterns/piano.html.twig' %}
 {% endset %}
-{% set pattern_settings %}
-    {% include 'lexicon/patterns/settings.html.twig' %}
+{% set pattern_rules %}
+    {% include 'lexicon/patterns/rules.html.twig' %}
 {% endset %}
 {% set pattern_settings %}
     {% include 'lexicon/patterns/settings.html.twig' %}
@@ -20,13 +20,18 @@
         {
           "id"    : "masterswitch",
           "label" : "Masterswitch",
-          "src"   : pattern_masterswitch,
-          "active": true
+          "src"   : pattern_masterswitch
         },
         {
           "id"    : "piano",
           "label" : "Piano List",
           "src"   : pattern_piano
+        },
+        {
+          "id"    : "rules",
+          "label" : "Rules",
+          "src"   : pattern_rules,
+          "active": true
         },
         {
           "id"    : "settings",

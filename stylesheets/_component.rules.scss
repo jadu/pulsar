@@ -42,11 +42,11 @@
 // Sibling rule-block-wrapper was a rule prior to the helpers being written
 // rules__step--indented is the new rule for helpers, double chained to override fieldset specificity
 .rule-block-wrapper ~ .rule-block-wrapper,
-.rules__step.rules__step--indented {
+.rules__step.rule--indented {
     margin-top: -2px;
 }
 
-.rules__step.rules__step--indented .rule-block-wrapper {
+.rules__step.rule--indented .rule-block-wrapper {
     margin-left: 20px;
 }
 
@@ -138,14 +138,14 @@
 
 .rule-block__heading__icon {
     font-size: 16px;
-    margin-left: 5px;
+    margin-left: 10px;
 }
 
 .rule-block__controls {
     margin: 1em 0;
 
     @include respond-min($screen-tablet) {
-        margin: 1em 1.7em 0 .4em;
+        margin: .6em 1.7em 0 .4em;
     }
 }
 
