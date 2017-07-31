@@ -25,7 +25,8 @@ PulsarFormComponent.prototype.init = function () {
     component.$select2 = this.$html.find('.js-select2:not([data-init="false"])');
 
     component.$select2.each(function() {
-        var $this = $(this);
+        var $this = $(this),
+            $parent = $this.closest('.controls');
 
         function formatOption(data) {
             return $('<span>' + data.text + '</span>');
@@ -33,12 +34,15 @@ PulsarFormComponent.prototype.init = function () {
 
         if ($this.data('html')) {
             $this.select2({
+                dropdownParent: $parent,
                 templateResult: formatOption,
                 templateSelection: formatOption
             });
 
         } else {
-            $this.select2();
+            $this.select2({
+                dropdownParent: $parent,
+            });
         }
     });
 
