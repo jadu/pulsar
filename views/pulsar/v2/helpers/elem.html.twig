@@ -287,7 +287,7 @@ value       | string | Specifies the value of the input
 {% spaceless %}
     {% import _self as elem %}
 
-    {{ elem.select(options|merge({'class': 'select js-select2 g-col--4'})) }}
+    {{ elem.select(options|merge({'class': 'select js-select2'})) }}
 
 {% endspaceless %}
 {% endmacro %}
