@@ -104,7 +104,7 @@ NavMainComponent.prototype.switchSecondaryNav = function (target) {
     var component = this;
 
     component.closeSubNavs();
-    if (target.indexOf('#') != -1) {
+    if (target.indexOf('#') !== -1) {
         component.$navSecondary.toggleClass('is-open');
         component.$navSecondary.find('.nav-list.is-active').removeClass('is-active');
         component.$navSecondary.find('[data-nav="' + target + '"]').addClass('is-active');
