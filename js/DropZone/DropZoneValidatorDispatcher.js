@@ -45,11 +45,6 @@ class DropZoneValidatorDispatcher {
                 fileCount++;
             }
 
-            // reject items that do not have a type
-            if (result.valid && file.type === '') {
-                result = this.errors.getFileValidationError('UNKNOWN');
-            }
-
             // reject items that do not hav a size
             if (result.valid && file.size === 0) {
                 result = this.errors.getFileValidationError('EMPTY');
@@ -61,6 +56,7 @@ class DropZoneValidatorDispatcher {
             //   - skip files that have a mock property
             if (
                 result.valid &&
+                file.type &&
                 this.whitelist &&
                 this.whitelist.length &&
                 !file.mock &&
