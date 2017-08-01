@@ -8,9 +8,7 @@
 
 // each 'block' of a form, usually consisting of a label and one or more inputs
 .form__group {
-    display: table;
     margin-bottom: .5em;
-    //table-layout: fixed; // prevent resizable textareas from causing the column to grow in width
     width: 100%;
 
     // the main label, usually placed in the left hand column
