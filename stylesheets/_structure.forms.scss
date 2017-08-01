@@ -38,6 +38,7 @@
 // the container around one or more form inputs
 .controls {
     @include span($form-control-cols);
+    position: relative;
 
     // stack inputs by default
     > .form__control,
