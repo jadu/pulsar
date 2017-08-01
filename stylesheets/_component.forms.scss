@@ -337,7 +337,6 @@ fieldset {
 
 @include respond-min($screen-smaller) {
     .form__group .input-group {
-        margin-left: 0;
         width: map-get($input-widths, regular);
 
         .form__control {
