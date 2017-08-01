@@ -3,6 +3,7 @@
 
     .form-choice > .controls > .control__label {
         @include span(4, false, true, 9);
+        line-height: $line-height-medium;
 
         .form__control {
             margin-left: 0;

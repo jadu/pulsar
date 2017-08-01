@@ -34,6 +34,7 @@ $font-size-xlarge:                    ceil($font-size-base * 1.5) !default;
 $font-size-large:                     ceil($font-size-base * 1.25) !default; // ~18px
 $font-size-small:                     ceil($font-size-base * .85) !default; // ~12px
 $line-height-base:                    24px !default;
+$line-height-medium:                  ceil($line-height-base * 1.25) !default;
 $line-height-large:                   ceil($line-height-base * 2) !default;
 $line-height-small:                   1.5 !default;
 $line-height-computed:                $line-height-base !default;
