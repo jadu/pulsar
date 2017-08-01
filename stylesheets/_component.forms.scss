@@ -432,6 +432,7 @@ fieldset {
 // Paragraph as first child of .controls, assuming absence of a proper input
 .controls > p:first-child {
     margin-bottom: 0;
+    margin-left: percentage($gutter_pc / 100);
     min-height: 44px;
     padding-top: 12px;
 }
