@@ -113,8 +113,17 @@
 .form__group--flush {
     margin-left: 0;
 
-    .controls::before {
-        display: none;
+    .controls {
+        margin-left: 0;
+        width: 100%;
+
+        &::before {
+            display: none;
+        }
+    }
+
+    .form__control {
+        margin-left: 0;
     }
 
     .help-block {
