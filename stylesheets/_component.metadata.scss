@@ -47,6 +47,7 @@ $metadata-padding-y: $padding-small-vertical !default;
   .metadata__key,
   .metadata__value {
     padding: $metadata-padding-y $metadata-padding-x;
+    vertical-align: top;
 
     &:not(:last-of-type) {
       border-bottom: 1px solid color(gray, lighter);
