@@ -130,6 +130,19 @@ PulsarSortableComponent.prototype.initTables = function () {
         }
         component.actionsBadge();
     });
+
+    // Update "Actions" badge when checkbox is clicked
+    this.$html.find('.has-badges input.checkbox').on('click', function () {
+        var $this = $(this)
+            currentRow = $this.parent().parent();
+
+        if (currentRow.hasClass('is-selected')) {
+            currentRow.removeClass('is-selected');
+        } else {
+            currentRow.addClass('is-selected');
+        }
+        component.actionsBadge();
+    });
 };
 
 /* istanbul ignore next: difficult to test jQueryUI sortable behaviour */
@@ -159,6 +172,20 @@ PulsarSortableComponent.prototype.updateOrder = function() {
     component.$html.find('.table.is-sortable .js-sortable-count').each(function(i) {
         $(this).text(i + 1);
     });
+};
+
+// Create or update "Actions" badge when a table row is selected
+PulsarSortableComponent.prototype.actionsBadge = function() {
+    var component = this,
+        checkedBoxesCount;
+
+    checkedBoxesCount = this.$html.find('.has-badges table tr input.checkbox:checked').length;
+    if (checkedBoxesCount > 0) {
+        this.$html.find('.has-badges .btn__group.dropdown span.badge').remove();
+        $('<span class="badge">'+ checkedBoxesCount +'</span>').insertBefore('.has-badges .btn__group.dropdown span.caret');
+    } else if (checkedBoxesCount === 0) {
+        this.$html.find('.has-badges .btn__group.dropdown span.badge').remove();
+    }
 };
 
 module.exports = PulsarSortableComponent;
