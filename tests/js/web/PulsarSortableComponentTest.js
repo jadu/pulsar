@@ -126,4 +126,42 @@ describe('PulsarSortableComponent', function() {
 
     });
 
+    describe('clicking on a table row (except checkbox)', function() {
+
+        beforeEach(function() {
+
+        });
+
+        it('should toggle class "is-selected"', function() {
+
+        });
+
+        it('should toggle the row\'s checkbox', function() {
+
+        });
+
+        it('should update "Actions" dropdown badge', function() {
+
+        });
+
+    });
+
+    describe('clicking on a table row checkbox', function() {
+
+        beforeEach(function() {
+
+        });
+
+        it('should toggle class "is-selected"', function() {
+
+        });
+
+        it('should update "Actions" dropdown badge', function() {
+
+        });
+
+    });
+
+
+
 });
