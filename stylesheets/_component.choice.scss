@@ -2,7 +2,7 @@
 @include respond-min($screen-smaller) {
 
     .form-choice > .controls > .control__label {
-        @include span(4, false, true, 9);
+        @include span(4, false, false, 9);
         line-height: $line-height-medium;
 
         .form__control {
@@ -37,7 +37,7 @@
 
         // align choice-block labels to grid
         @include respond-min($screen-smaller) {
-            @include span(4, false, true, 9);
+            @include span(4, false, false, 9);
         }
 
         @include ie-lte(8) {
@@ -67,6 +67,7 @@
     .controls {
         display: flex;
         flex-wrap: wrap;
+        margin-left: 0; // remove gutter
         width: 100% !important;
     }
 

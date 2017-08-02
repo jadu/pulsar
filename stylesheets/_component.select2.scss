@@ -9,7 +9,7 @@
     width: 100% !important;
 
     @include respond-min($screen-smaller) {
-        @include span(4, false, true, 9, true);
+        @include span(4, false, false, 9, true);
     }
 }
 

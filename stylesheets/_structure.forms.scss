@@ -18,7 +18,7 @@
     }
 
     .help-block {
-        margin: .675em 0 0 1%; // magic number for top
+        margin: .675em 0 0; // magic number for top
     }
 
     .help-block ~ .help-block {
@@ -33,9 +33,15 @@
     vertical-align: top;
 }
 
+// stop .hide class adding -1px margin which misaligns form groups with
+// hidden labels
+.control__label.hide {
+    margin: 0;
+}
+
 // the container around one or more form inputs
 .controls {
-    @include span($form-control-cols);
+    @include span($form-control-cols, false, true);
     position: relative;
 
     // stack inputs by default
