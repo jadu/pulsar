@@ -114,6 +114,22 @@ PulsarSortableComponent.prototype.initTables = function () {
         // Trigger sortupdate and pass the updated row
         component.$html.find('.table.is-sortable tbody').trigger('sortupdate', [fakeUi]);
     });
+
+    // Update "Actions" badge when table row is clicked
+    this.$html.find('.has-badges table tr td:not(:last-child)').on('click', function () {
+        var $this = $(this),
+            currentRowIndex = $this.parent().index() + 1,
+            currentCheckbox = $('input.checkbox')[currentRowIndex];
+
+        if (!currentCheckbox.checked) {
+            $this.parent().addClass('is-selected');
+            $(currentCheckbox).prop('checked', true);
+        } else {
+            $this.parent().removeClass('is-selected');
+            $(currentCheckbox).prop('checked', false);
+        }
+        component.actionsBadge();
+    });
 };
 
 /* istanbul ignore next: difficult to test jQueryUI sortable behaviour */
