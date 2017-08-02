@@ -133,7 +133,7 @@ PulsarSortableComponent.prototype.initTables = function () {
 
     // Update "Actions" badge when checkbox is clicked
     this.$html.find('.has-badges input.checkbox').on('click', function () {
-        var $this = $(this)
+        var $this = $(this),
             currentRow = $this.parent().parent();
 
         if (currentRow.hasClass('is-selected')) {
@@ -179,12 +179,12 @@ PulsarSortableComponent.prototype.actionsBadge = function() {
     var component = this,
         checkedBoxesCount;
 
-    checkedBoxesCount = this.$html.find('.has-badges table tr input.checkbox:checked').length;
+    checkedBoxesCount = component.$html.find('.has-badges table tr input.checkbox:checked').length;
     if (checkedBoxesCount > 0) {
-        this.$html.find('.has-badges .btn__group.dropdown span.badge').remove();
+        component.$html.find('.has-badges .btn__group.dropdown span.badge').remove();
         $('<span class="badge">'+ checkedBoxesCount +'</span>').insertBefore('.has-badges .btn__group.dropdown span.caret');
     } else if (checkedBoxesCount === 0) {
-        this.$html.find('.has-badges .btn__group.dropdown span.badge').remove();
+        component.$html.find('.has-badges .btn__group.dropdown span.badge').remove();
     }
 };
 
