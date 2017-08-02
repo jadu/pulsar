@@ -2,6 +2,8 @@ import DropZoneInstanceManager from '../../../js/DropZone/DropZoneInstanceManage
 import DropZoneFactory from '../../../js/DropZone/DropZoneFactory';
 import DropZoneOptionsManager from '../../../js/DropZone/DropZoneOptionsManager';
 import DropZone from '../../../js/DropZone/DropZone';
+import DropZoneBrowseNodeFactory from '../../../js/DropZone/DropZoneBrowseNodeFactory';
+import DropZoneBrowseNodeManager from '../../../js/DropZone/DropZoneBrowseNodeManager';
 
 describe('DropZoneInstanceManager', () => {
     let $html;
@@ -13,6 +15,8 @@ describe('DropZoneInstanceManager', () => {
     let optionsManagerStub;
     let factoryStub;
     let dropZoneStub;
+    let browseNodeStub;
+    let browseNodeFactoryStub;
     let stubOptions = {
         inputNodeId: 'input',
         nodeClasses: {
@@ -28,21 +32,28 @@ describe('DropZoneInstanceManager', () => {
         $browse = $('<p class="browse"></p>').appendTo($dropZone);
         $info = $('<p class="info"></p>').appendTo($dropZone);
 
+        browseNodeStub = sinon.createStubInstance(DropZoneBrowseNodeManager);
+        browseNodeFactoryStub = sinon.stub(DropZoneBrowseNodeFactory, 'create');
+        browseNodeFactoryStub.returns(browseNodeStub);
+
         dropZoneStub = sinon.createStubInstance(DropZone);
         factoryStub = sinon.stub(DropZoneFactory, 'create');
         factoryStub.returns(dropZoneStub);
+
         optionsManagerStub = sinon.createStubInstance(DropZoneOptionsManager);
         optionsManagerStub.buildInstanceOptions.returns(stubOptions);
         optionsManagerStub.buildValidatorOptions.returns({});
 
         instanceManager = new DropZoneInstanceManager(
             document.documentElement,
-            DropZoneFactory
+            DropZoneFactory,
+            DropZoneBrowseNodeFactory
         );
     });
 
     afterEach(() => {
         factoryStub.restore();
+        browseNodeFactoryStub.restore();
         $html.html('');
     });
 
@@ -53,7 +64,7 @@ describe('DropZoneInstanceManager', () => {
                 node: $dropZone[0],
                 options: stubOptions,
                 id: 0,
-                browse: $browse[0],
+                browse: browseNodeStub,
                 input: $input[0],
                 info: $info[0],
                 dropZone: dropZoneStub
@@ -70,15 +81,6 @@ describe('DropZoneInstanceManager', () => {
             instanceManager.addInstance($dropZone[0], optionsManagerStub);
 
             expect(dropZoneStub.init).to.have.been.calledOnce;
-        });
-    });
-
-    describe('updateInstance()', () => {
-        it('should update a property on an instance', () => {
-            instanceManager.instances = [{ id: 0, foo: 'bar' }];
-            instanceManager.updateInstance(0, 'foo', 'foo');
-
-            expect(instanceManager.instances[0].foo).to.equal('foo');
         });
     });
 
@@ -124,6 +126,50 @@ describe('DropZoneInstanceManager', () => {
 
             expect(mockInstance.dropZone.addFiles).to.have.been.calledOnce;
             expect(mockInstance.dropZone.addFiles.calledWith(files, meta)).to.be.true;
+        });
+    });
+
+    describe('updateBrowseNode()', () => {
+        beforeEach(() => {
+            instanceManager.instances = [
+                { id: 88, browse: browseNodeStub }
+            ];
+        });
+
+        it('should update the browse node and enable events', () => {
+            instanceManager.updateBrowseNode(88, 'node');
+
+            expect(browseNodeStub.update).to.have.been.calledOnce;
+            expect(browseNodeStub.update).to.have.been.calledWith('node');
+            expect(browseNodeStub.enableEvents).to.have.been.calledOnce;
+        });
+    });
+
+    describe('enableBrowseNode()', () => {
+        beforeEach(() => {
+            instanceManager.instances = [
+                { id: 88, browse: browseNodeStub }
+            ];
+        });
+
+        it('should enable events on the browse node', () => {
+            instanceManager.enableBrowseNode(88);
+
+            expect(browseNodeStub.enableEvents).to.have.been.calledOnce;
+        });
+    });
+
+    describe('disableBrowseNode()', () => {
+        beforeEach(() => {
+            instanceManager.instances = [
+                { id: 88, browse: browseNodeStub }
+            ];
+        });
+
+        it('should disable events on the browse node', () => {
+            instanceManager.disableBrowseNode(88);
+
+            expect(browseNodeStub.disableEvents).to.have.been.calledOnce;
         });
     });
 
