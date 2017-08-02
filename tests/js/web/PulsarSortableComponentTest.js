@@ -27,6 +27,7 @@ describe('PulsarSortableComponent', function() {
             <tr class="qa-row-one">\
                 <td>foo</td>\
                 <td><a data-move="up" class=""></a><a data-move="down" class=""></a></td>\
+                <td><input type="checkbox" class="form__control checkbox"></td>\
             </tr>\
             <tr class="qa-row-two">\
                 <td>foo</td>\
@@ -126,14 +127,18 @@ describe('PulsarSortableComponent', function() {
 
     });
 
-    describe('clicking on a table row (except checkbox)', function() {
+    describe('clicking on a table row (except checkbox), first time,', function() {
 
-        beforeEach(function() {
-
+        before(function() {
+            this.pulsarSortable.init();
+            this.$html.find('.has-badges table tr td:not(:last-child)').click();
+            console.log('Clicked');
         });
 
-        it('should toggle class "is-selected"', function() {
 
+
+        it('should add class "is-selected"', function() {
+            expect(this.$html.find('.has-badges table tr').hasClass('is-selected')).to.be.true;
         });
 
         it('should toggle the row\'s checkbox', function() {
@@ -149,7 +154,7 @@ describe('PulsarSortableComponent', function() {
     describe('clicking on a table row checkbox', function() {
 
         beforeEach(function() {
-
+            this.pulsarSortable.init();
         });
 
         it('should toggle class "is-selected"', function() {
@@ -161,7 +166,5 @@ describe('PulsarSortableComponent', function() {
         });
 
     });
-
-
 
 });
