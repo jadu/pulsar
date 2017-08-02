@@ -21,6 +21,12 @@
 {% set tab_sortable %}
     {% include 'lexicon/tables/sortable.html.twig' %}
 {% endset %}
+{% set tab_tablex %}
+    {% include 'lexicon/tables/tablex.html.twig' %}
+{% endset %}
+{% set tab_datatablex %}
+    {% include 'lexicon/tables/datatablex.html.twig' %}
+{% endset %}
 
 {%
     set tabs_content = [
@@ -52,8 +58,18 @@
         {
           "id"    : "sortable",
           "label" : "Sortable Tables",
-          "src"   : tab_sortable,
-          "active": true
+          "src"   : tab_sortable
+        },
+        {
+          "id"    : "tablex",
+          "label" : "Horizontal Table",
+          "src"   : tab_tablex
+        },
+        {
+          "id"    : "datatablex",
+          "label" : "Horizontal Datatable",
+          "src"   : tab_datatablex,
+          'active': 'true'
         }
     ]
 %}

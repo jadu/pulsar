@@ -17,6 +17,7 @@ describe('DropZoneComponent', () => {
     let utils;
     let validation;
     let classManager;
+    let browseNodeInstance;
 
     beforeEach(() => {
         $body = $('<div></div>');
@@ -30,8 +31,16 @@ describe('DropZoneComponent', () => {
         utils = sinon.createStubInstance(DropZoneComponentUtils);
         validation = sinon.createStubInstance(DropZoneComponentValidation);
         classManager = sinon.createStubInstance(DropZoneBodyClassManager);
+        browseNodeInstance = {
+            addEvent: sinon.spy(),
+            getNode: () => $browse[0]
+        };
 
-        instanceManager.getInstance.returns({ node: $dropZone[0], info: $info[0] });
+        instanceManager.getInstance.returns({
+            node: $dropZone[0],
+            info: $info[0],
+            browse: browseNodeInstance
+        });
         instanceManager.getFiles.returns(['file']);
         optionsManager.getInstanceOptions.returns({
             nodeClasses: {
@@ -55,7 +64,6 @@ describe('DropZoneComponent', () => {
 
     describe('init()', () => {
         let inputStub;
-        let browseStub;
 
         beforeEach(() => {
             $('<div class="dropzone test"></div>').appendTo($body);
@@ -64,33 +72,36 @@ describe('DropZoneComponent', () => {
             $('<div class="dropzone test"></div>').appendTo($body);
 
             inputStub = sinon.stub(dropZoneComponent, 'processInputNode');
-            browseStub = sinon.stub(dropZoneComponent, 'processBrowseNode');
+
             instanceManager.getInstance.returns([
-                { id: 0 },
-                { id: 1, input: {}, options: {}, browse: {} }
+                { id: 0, input: {}, options: {}, browse: browseNodeInstance }
             ]);
         });
 
         it('should build the base component options', () => {
             dropZoneComponent.init();
+
             expect(optionsManager.buildComponentOptions).to.have.been.calledOnce;
         });
 
         it('should create an instance for each node matching the selector', () => {
             dropZoneComponent.init();
+
             expect(instanceManager.addInstance).to.have.callCount(5);
         });
 
         // partial stub
         it('should process each instances input node', () => {
             dropZoneComponent.init();
+
             expect(inputStub).to.have.been.calledOnce;
         });
 
         // partial stub
         it('should process each instances browse node', () => {
             dropZoneComponent.init();
-            expect(browseStub).to.have.been.calledOnce;
+
+            expect(browseNodeInstance.addEvent).to.have.been.calledOnce;
         });
     });
 
@@ -99,6 +110,7 @@ describe('DropZoneComponent', () => {
 
         it('should hide the input if specified in options', () => {
             dropZoneComponent.processInputNode($fileInput[0], 0, options.showInputNode);
+
             expect($fileInput.css('display')).to.equal('none');
         });
 
@@ -130,25 +142,18 @@ describe('DropZoneComponent', () => {
         });
     });
 
-    describe('processBrowseNode()', () => {
+    describe('handleBrowseNodeClick()', () => {
         it('should trigger a click on the corresponding input node', () => {
             const clickSpy = sinon.spy();
-            const click = new Event('click');
 
             $fileInput[0].addEventListener('click', clickSpy);
-            dropZoneComponent.processBrowseNode($browse[0], $fileInput[0]);
-            $browse[0].dispatchEvent(click);
+            dropZoneComponent.handleBrowseNodeClick($fileInput[0]);
+
             expect(clickSpy).to.have.been.calledOnce;
         });
     });
 
     describe('updateInfoState()', () => {
-        let browseStub;
-
-        beforeEach(() => {
-            browseStub = sinon.stub(dropZoneComponent, 'processBrowseNode');
-        });
-
         it('should update the info node', () => {
             dropZoneComponent.updateInfoState(0, 'foo');
             expect($info.html()).to.equal('foo');
@@ -157,7 +162,7 @@ describe('DropZoneComponent', () => {
         // partial stub
         it('should re-attach the Browse Files handler', () => {
             dropZoneComponent.updateInfoState(0, '<span class="browse"></span>');
-            expect(browseStub).to.have.been.calledOnce;
+            expect(instanceManager.updateBrowseNode).to.have.been.calledOnce;
         });
     });
 
@@ -926,6 +931,34 @@ describe('DropZoneComponent', () => {
 
             expect(instanceManager.disableInstance).to.have.been.calledOnce;
             expect(instanceManager.disableInstance).to.have.been.calledWith(88);
+        });
+    });
+
+    describe('getBrowseNode()', () => {
+        it('should return an instances browse node', () => {
+            const browse = dropZoneComponent.getBrowseNode(0);
+
+            expect(instanceManager.getInstance).to.have.been.calledOnce;
+            expect(instanceManager.getInstance).to.have.been.calledWith(0);
+            expect(browse).to.equal($browse[0]);
+        });
+    });
+
+    describe('disableBrowseNode()', () => {
+        it('should invoke the disableBrowseNode method on the instance manager', () => {
+            dropZoneComponent.disableBrowseNode(88);
+
+            expect(instanceManager.disableBrowseNode).to.have.been.calledOnce;
+            expect(instanceManager.disableBrowseNode).to.have.been.calledWith(88);
+        });
+    });
+
+    describe('enableBrowseNode()', () => {
+        it('should invoke the enableBrowseNode method on the instance manager', () => {
+            dropZoneComponent.enableBrowseNode(88);
+
+            expect(instanceManager.enableBrowseNode).to.have.been.calledOnce;
+            expect(instanceManager.enableBrowseNode).to.have.been.calledWith(88);
         });
     });
 });
