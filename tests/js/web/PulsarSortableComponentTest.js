@@ -12,18 +12,29 @@ describe('PulsarSortableComponent', function() {
         this.$html = $('<html></html>');
         this.$body = $('<body></body>').appendTo(this.$html);
         this.$markup = $('\
-<table class="table is-sortable">\
-    <tbody>\
-        <tr class="qa-row-one">\
-            <td>foo</td>\
-            <td><a data-move="up" class=""></a><a data-move="down" class=""></a></td>\
-        </tr>\
-        <tr class="qa-row-two">\
-            <td>foo</td>\
-            <td><a data-move="up" class=""></a><a data-move="down" class=""></a></td>\
-        </tr>\
-    </tbody>\
-</table>\
+<div class="has-badges">\
+    <div class="btn__group dropdown">\
+        <button data-toggle="dropdown" class="btn dropdown__toggle">\
+            Actions&nbsp;\
+            <span class="caret"></span>\
+        </button>\
+        <ul class="dropdown__menu pull-left">\
+            <li><a href="#" data-ui="show-filter-bar"><i aria-hidden="true" class="icon-filter"></i>&nbsp;New Filter</a></li>\
+        </ul>\
+    </div>\
+    <table class="table is-sortable">\
+        <tbody>\
+            <tr class="qa-row-one">\
+                <td>foo</td>\
+                <td><a data-move="up" class=""></a><a data-move="down" class=""></a></td>\
+            </tr>\
+            <tr class="qa-row-two">\
+                <td>foo</td>\
+                <td><a data-move="up" class=""></a><a data-move="down" class=""></a></td>\
+            </tr>\
+        </tbody>\
+    </table>\
+</div>\
 ').appendTo(this.$html);
 
         this.$table = this.$html.find('.table');
