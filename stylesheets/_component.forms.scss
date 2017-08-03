@@ -357,10 +357,6 @@ fieldset {
 
     .form__group .input-group {
         width: map-get($input-widths, regular);
-
-        .form__control {
-            margin-left: 0;
-        }
     }
 
     @each $variant, $width in $input-widths {
