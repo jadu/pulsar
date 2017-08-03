@@ -183,8 +183,22 @@ PulsarSortableComponent.prototype.actionsBadge = function() {
     if (checkedBoxesCount > 0) {
         component.$html.find('.has-badges .btn__group.dropdown span.badge').remove();
         $('<span class="badge">'+ checkedBoxesCount +'</span>').insertBefore('.has-badges .btn__group.dropdown span.caret');
+
+        if ($('.has-badges .dropdown__menu li:last-child').text().indexOf("Delete") == 1) {
+            $('<span class="badge">'+ checkedBoxesCount +'</span>').appendTo('.has-badges .dropdown__menu li:last-child a');
+
+            if (checkedBoxesCount == 1 ) {
+                component.$html.find('.has-badges .btn__group.dropdown .item-wording').remove();
+                $('<span class="item-wording">item</span>').appendTo('.has-badges .dropdown__menu li:last-child a');
+            } else {
+                component.$html.find('.has-badges .btn__group.dropdown .item-wording').remove();
+                $('<span class="item-wording">items</span>').appendTo('.has-badges .dropdown__menu li:last-child a');
+            }
+        }
+
     } else if (checkedBoxesCount === 0) {
-        component.$html.find('.has-badges .btn__group.dropdown span.badge').remove();
+        component.$html.find('.has-badges .btn__group.dropdown .badge').remove();
+        component.$html.find('.has-badges .btn__group.dropdown .item-wording').remove();
     }
 };
 
