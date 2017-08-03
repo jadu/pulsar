@@ -177,16 +177,19 @@ PulsarSortableComponent.prototype.updateOrder = function() {
 // Create or update "Actions" badge when a table row is selected
 PulsarSortableComponent.prototype.actionsBadge = function() {
     var component = this,
-        checkedBoxesCount;
+        checkedBoxesCount = component.$html.find('.has-badges table tr input.checkbox:checked').length;;
 
-    checkedBoxesCount = component.$html.find('.has-badges table tr input.checkbox:checked').length;
     if (checkedBoxesCount > 0) {
+        // Clear previous badge
         component.$html.find('.has-badges .btn__group.dropdown span.badge').remove();
+        // Add badge next to "Actions" dropdown text
         $('<span class="badge">'+ checkedBoxesCount +'</span>').insertBefore('.has-badges .btn__group.dropdown span.caret');
 
         if ($('.has-badges .dropdown__menu li:last-child').text().indexOf("Delete") === 1) {
+            // Add badge to "Delete" option of the dropdown
             $('<span class="badge">'+ checkedBoxesCount +'</span>').appendTo('.has-badges .dropdown__menu li:last-child a');
 
+            // Add the words item/items depending on the number of items
             if (checkedBoxesCount === 1 ) {
                 component.$html.find('.has-badges .btn__group.dropdown .item-wording').remove();
                 $('<span class="item-wording">item</span>').appendTo('.has-badges .dropdown__menu li:last-child a');
@@ -197,6 +200,7 @@ PulsarSortableComponent.prototype.actionsBadge = function() {
         }
 
     } else if (checkedBoxesCount === 0) {
+        // Clear previous badges if there are no selected items
         component.$html.find('.has-badges .btn__group.dropdown .badge').remove();
         component.$html.find('.has-badges .btn__group.dropdown .item-wording').remove();
     }
