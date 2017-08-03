@@ -177,32 +177,35 @@ PulsarSortableComponent.prototype.updateOrder = function() {
 // Create or update "Actions" badge when a table row is selected
 PulsarSortableComponent.prototype.actionsBadge = function() {
     var component = this,
-        checkedBoxesCount = component.$html.find('.has-badges table tr input.checkbox:checked').length;;
+        checkedBoxesCount = component.$html.find('.has-badges table tr input.checkbox:checked').length,
+        badge = component.$html.find('.has-badges .btn__group.dropdown span.badge'),
+        itemWording = component.$html.find('.has-badges .btn__group.dropdown .item-wording'),
+        deleteOption = '.has-badges .dropdown__menu li:last-child a';
 
     if (checkedBoxesCount > 0) {
-        // Clear previous badge
-        component.$html.find('.has-badges .btn__group.dropdown span.badge').remove();
+        // Remove previous badge
+        badge.remove();
         // Add badge next to "Actions" dropdown text
         $('<span class="badge">'+ checkedBoxesCount +'</span>').insertBefore('.has-badges .btn__group.dropdown span.caret');
 
-        if ($('.has-badges .dropdown__menu li:last-child').text().indexOf("Delete") === 1) {
+        if ($(deleteOption).text().indexOf("Delete") === 1) {
             // Add badge to "Delete" option of the dropdown
-            $('<span class="badge">'+ checkedBoxesCount +'</span>').appendTo('.has-badges .dropdown__menu li:last-child a');
+            $('<span class="badge">'+ checkedBoxesCount +'</span>').appendTo(deleteOption);
 
             // Add the words item/items depending on the number of items
             if (checkedBoxesCount === 1 ) {
-                component.$html.find('.has-badges .btn__group.dropdown .item-wording').remove();
-                $('<span class="item-wording">item</span>').appendTo('.has-badges .dropdown__menu li:last-child a');
+                itemWording.remove();
+                $('<span class="item-wording">item</span>').appendTo(deleteOption);
             } else {
-                component.$html.find('.has-badges .btn__group.dropdown .item-wording').remove();
-                $('<span class="item-wording">items</span>').appendTo('.has-badges .dropdown__menu li:last-child a');
+                itemWording.remove();
+                $('<span class="item-wording">items</span>').appendTo(deleteOption);
             }
         }
 
     } else if (checkedBoxesCount === 0) {
-        // Clear previous badges if there are no selected items
-        component.$html.find('.has-badges .btn__group.dropdown .badge').remove();
-        component.$html.find('.has-badges .btn__group.dropdown .item-wording').remove();
+        // Remove previous badges if there are no selected items
+        badge.remove();
+        itemWording.remove();
     }
 };
 
