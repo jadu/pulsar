@@ -118,14 +118,15 @@ PulsarSortableComponent.prototype.initTables = function () {
     // Update "Actions" badge when table row is clicked
     this.$html.find('.has-badges table tr td:not(:last-child)').on('click', function () {
         var $this = $(this),
-            currentRowIndex = $this.parent().index() + 1;
+            currentRowIndex = $this.parent().index() + 1,
+            checkbox = $('input.checkbox').eq(currentRowIndex);
 
-        if ($($('input.checkbox')[currentRowIndex]).prop('checked') == false) {
+        if (checkbox.prop('checked') === false) {
             $this.parent().addClass('is-selected');
-            $($('input.checkbox')[currentRowIndex]).prop('checked', true);
+            checkbox.prop('checked', true);
         } else {
             $this.parent().removeClass('is-selected');
-            $($('input.checkbox')[currentRowIndex]).prop('checked', false);
+            checkbox.prop('checked', false);
         }
         component.actionsBadge();
     });
