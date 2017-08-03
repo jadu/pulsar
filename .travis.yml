@@ -11,6 +11,7 @@ php:
 
 before_script:
   - npm install -g grunt-cli
+  - npm install -g snyk
   - npm install
   - mkdir -p dist/js
 
@@ -22,6 +23,8 @@ script:
   - phpunit
   - npm test
   - npm run coverage
+  - snyk auth $SNYK_TOKEN
+  - snyk monitor
 
 after_success:
   - grunt deploy
