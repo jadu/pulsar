@@ -97,3 +97,9 @@ a.list-group-item.active > .badge,
         color: color(warning, dark) !important;
     }
 }
+
+.has-badges {
+    span.badge {
+        margin: 0 5px;
+    }
+}
