@@ -102,7 +102,9 @@
     }
 
     .controls {
-        @include push($form-label-cols);
+        @include respond-min($screen-tablet) {
+            @include push($form-label-cols);
+        }
     }
 }
 
@@ -118,7 +120,9 @@
 // }
 
 .form__group--indent {
-    @include push($form-label-cols);
+    @include respond-min($screen-tablet) {
+        @include push($form-label-cols);
+    }
 }
 
 .form__group--flush {
