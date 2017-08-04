@@ -35,7 +35,9 @@ $gutter_pc:     1;
     $span_width: ($one_col * ($num)) + ($gutter_pc * ($num - 1));
 
     @if $gutter == true {
-        margin-left: percentage($gutter_pc / 100);
+        @include respond-min($screen-tablet) {
+            margin-left: percentage($gutter_pc / 100);
+        }
     }
 
     @if $force == false {

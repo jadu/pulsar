@@ -306,13 +306,13 @@ fieldset {
 
     // default width
     .form__control {
-        @include span(4, false, true, 9);
+        @include span(4, false, false, 9);
     }
 
     // grid configuration
     @for $i from 1 through 9 {
         .form__control-col--#{$i} .form__control {
-            @include span($i, false, true, 9);
+            @include span($i, false, false, 9);
         }
     }
 
@@ -449,6 +449,7 @@ fieldset {
 .form-checkbox-inline,
 .form-radio-inline {
     > .controls {
+        margin-left: 0; // remove gutter
         width: 100%;
     }
 
