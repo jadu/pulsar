@@ -127,86 +127,49 @@ describe('PulsarSortableComponent', function() {
 
     });
 
-    describe('clicking on a table row (except checkbox), first time,', function() {
-
+    describe('selecting a table row', function() {
         beforeEach(function() {
+            this.actionsBadgeStub = sinon.stub(this.pulsarSortable, 'actionsBadge');
             this.pulsarSortable.init();
-            this.$rowOne.find('td:not(:last-child)').click();
-            //this.actionsBadgeStub = sinon.stub(this.PulsarSortableComponent, 'actionsBadge');
+            this.$rowOne.click();
         });
 
-        it('should add class "is-selected"', function() {
-            //expect(this.$rowOne.hasClass('is-selected')).to.be.true;
-        });
-
-        it('should toggle the row\'s checkbox', function() {
-            //expect(this.$rowOne.find('.checkbox').prop('checked')).to.be.true;
-        });
-
-        it('should update "Actions" dropdown badge', function() {
-            //expect(this.actionsBadgeStub).to.have.been.called;
-        });
-
-    });
-
-    describe('clicking on a table row (except checkbox), second time,', function() {
-
-        beforeEach(function() {
-            this.pulsarSortable.init();
-            this.$rowOne.find('td:not(:last-child)').click();
-            this.$rowOne.find('td:not(:last-child)').click();
-            //this.actionsBadgeStub = sinon.stub(this.PulsarSortableComponent, 'actionsBadge');
-        });
-
-        it('should remove class "is-selected"', function() {
-            //expect(this.$rowOne.hasClass('is-selected')).to.be.false;
-        });
-
-        it('should toggle the row\'s checkbox', function() {
-            //expect(this.$rowOne.find('.checkbox').prop('checked')).to.be.true;
-        });
-
-        it('should update "Actions" dropdown badge', function() {
-            //expect(this.actionsBadgeStub).to.have.been.called;
-        });
-
-    });
-
-    describe('clicking on a table row checkbox, first time,', function() {
-
-        beforeEach(function() {
-            this.pulsarSortable.init();
-            this.$rowOne.find('.checkbox').click();
-            //this.actionsBadgeStub = sinon.stub(this.PulsarSortableComponent, 'actionsBadge');
+        afterEach(function () {
+            this.actionsBadgeStub.restore();
         });
 
         it('should add class "is-selected"', function() {
             expect(this.$rowOne.hasClass('is-selected')).to.be.true;
         });
 
-        it('should update "Actions" dropdown badge', function() {
-            //expect(this.actionsBadgeStub).to.have.been.called;
+        it('should toggle the row\'s checkbox', function() {
+            expect(this.$rowOne.find('.checkbox').first().prop('checked')).to.be.true;
         });
 
+        it('should update "Actions" dropdown badge', function() {
+            expect(this.actionsBadgeStub).to.have.been.called;
+        });
     });
 
-    describe('clicking on a table row checkbox, second time,', function() {
-
+    describe('deselecting a table row', function() {
         beforeEach(function() {
+            this.actionsBadgeStub = sinon.stub(this.pulsarSortable, 'actionsBadge');
             this.pulsarSortable.init();
-            this.$rowOne.find('.checkbox').click();
-            this.$rowOne.find('.checkbox').click();
-            //this.actionsBadgeStub = sinon.stub(this.PulsarSortableComponent, 'actionsBadge');
+            this.$rowOne.addClass('is-selected');
+            this.$rowOne.find('.checkbox').first().prop('checked', true);
+            this.$rowOne.click();
         });
 
-        it('should remove class "is-selected"', function() {
+        it('should add class "is-selected"', function() {
             expect(this.$rowOne.hasClass('is-selected')).to.be.false;
         });
 
-        it('should update "Actions" dropdown badge', function() {
-            //expect(this.actionsBadgeStub).to.have.been.called;
+        it('should toggle the row\'s checkbox', function() {
+            expect(this.$rowOne.find('.checkbox').first().prop('checked')).to.be.false;
         });
 
+        it('should update "Actions" dropdown badge', function() {
+            expect(this.actionsBadgeStub).to.have.been.called;
+        });
     });
-
 });

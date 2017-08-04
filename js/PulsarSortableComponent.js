@@ -116,31 +116,20 @@ PulsarSortableComponent.prototype.initTables = function () {
     });
 
     // Update "Actions" badge when table row is clicked
-    this.$html.find('.has-badges table tr td:not(:last-child)').on('click', function () {
+    this.$html.find('.has-badges table tr').on('click', function (event) {
         var $this = $(this),
-            currentRowIndex = $this.parent().index() + 1,
-            checkbox = $('input.checkbox').eq(currentRowIndex);
+            $target = $(event.target),
+            $checkbox = $this.find('.checkbox').first(),
+            selected = $checkbox.prop('checked');
 
-        if (checkbox.prop('checked') === false) {
-            $this.parent().addClass('is-selected');
-            checkbox.prop('checked', true);
-        } else {
-            $this.parent().removeClass('is-selected');
-            checkbox.prop('checked', false);
+        // toggle checkbox state if the checkbox was not the target of the event
+        if (!$target.is($checkbox)) {
+            $checkbox.prop('checked', !selected);
         }
-        component.actionsBadge();
-    });
 
-    // Update "Actions" badge when checkbox is clicked
-    this.$html.find('.has-badges input.checkbox').on('click', function () {
-        var $this = $(this),
-            currentRow = $this.parent().parent();
+        // toggle row selected class
+        $this.toggleClass('is-selected');
 
-        if (currentRow.hasClass('is-selected')) {
-            currentRow.removeClass('is-selected');
-        } else {
-            currentRow.addClass('is-selected');
-        }
         component.actionsBadge();
     });
 };
