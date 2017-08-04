@@ -1,6 +1,5 @@
 // Align form-choice to grid
 @include respond-min($screen-smaller) {
-
     .form-choice > .controls > .control__label {
         @include span(4, false, false, 9);
         line-height: $line-height-medium;
