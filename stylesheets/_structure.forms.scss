@@ -160,6 +160,10 @@
             margin-left: 0;
         }
     }
+
+    .form__group.form-choice > .control__label {
+        display: inline-block;
+    }
 }
 
 .fieldset {
