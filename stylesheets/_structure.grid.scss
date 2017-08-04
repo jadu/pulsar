@@ -35,7 +35,9 @@ $gutter_pc:     1;
     $span_width: ($one_col * ($num)) + ($gutter_pc * ($num - 1));
 
     @if $gutter == true {
-        @include gutter(true);
+        @include respond-min($screen-tablet) {
+            @include gutter(true);
+        }
     }
 
     @if $force == false {
