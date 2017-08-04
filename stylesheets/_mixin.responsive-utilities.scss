@@ -1,3 +1,6 @@
+@import 'config.variables';
+@import 'structure.grid';
+
 /**
  * Shortcuts for easy hiding/showing at different breakpoints.
  * mixins prepended with sr use a screen reader friendly hide,
