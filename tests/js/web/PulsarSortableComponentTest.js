@@ -5,8 +5,8 @@
 var $ = require('jquery'),
     PulsarSortableComponent = require('../../../js/PulsarSortableComponent');
 
-describe('PulsarSortableComponent', function() {
-    beforeEach(function() {
+describe('PulsarSortableComponent', function () {
+    beforeEach(function () {
 
         this.$html = $('<html></html>');
         this.$body = $('<body></body>').appendTo(this.$html);
@@ -19,6 +19,9 @@ describe('PulsarSortableComponent', function() {
         </button>\
         <ul class="dropdown__menu pull-left">\
             <li><a href="#" data-ui="show-filter-bar"><i aria-hidden="true" class="icon-filter"></i>&nbsp;New Filter</a></li>\
+            <li><a href="#"><i aria-hidden="true" class="icon-envelope"></i>&nbsp;Random Option</a></li>\
+            <li><span class="divider"></span></li>\
+            <li><a href="#"><i aria-hidden="true" class="icon-remove"></i>&nbsp;Delete</a></li>\
         </ul>\
     </div>\
     <table class="table is-sortable">\
@@ -46,79 +49,79 @@ describe('PulsarSortableComponent', function() {
         this.pulsarSortable = new PulsarSortableComponent(this.$html);
     });
 
-    describe('The sortable table', function() {
-        beforeEach(function() {
+    describe('The sortable table', function () {
+        beforeEach(function () {
             this.pulsarSortable.init();
         });
 
-        it('show have row one at index 0', function() {
+        it('should have row one at index 0', function () {
             expect(this.$html.find('.qa-row-one').index()).to.equal(0);
         });
 
-        it('should have row two at index 1', function() {
+        it('should have row two at index 1', function () {
             expect(this.$html.find('.qa-row-two').index()).to.equal(1);
         });
     });
 
-    describe('clicking a move control in row one', function() {
-        beforeEach(function() {
+    describe('Clicking a move control in row one', function () {
+        beforeEach(function () {
             this.pulsarSortable.init();
             this.$moveUp.click();
         });
 
-        it('should hide the move links', function() {
+        it('should hide the move links', function () {
             expect(this.$html.find('.qa-row-one [data-move="up"]').hasClass('hide')).to.be.true;
         });
 
-        it('should add the success icon', function() {
+        it('should add the success icon', function () {
             expect(this.$html.find('.qa-row-one [data-move="up"]').parent().find('.icon-ok-sign').length).to.equal(1);
         });
 
-        it('should remove the success icon after a delay', function() {
-            setTimeout(function(){
+        it('should remove the success icon after a delay', function () {
+            setTimeout(function (){
                 expect(this.$html.find('.qa-row-one [data-move="up"]').parent().find('.js-sortable-moved').length).to.equal(0);
             }, 1000);
         });
 
-        it('should show the move links after a delay', function() {
-            setTimeout(function(){
+        it('should show the move links after a delay', function () {
+            setTimeout(function (){
                 expect(this.$html.find('.qa-row-one [data-move="up"]').hasClass('hide')).to.be.false;
             }, 2250);
         });
     });
 
-    describe('clicking the move down control on row one', function() {
-        beforeEach(function() {
+    describe('Clicking the move down control on row one', function () {
+        beforeEach(function () {
             this.pulsarSortable.init();
             this.$rowOne.find('[data-move="down"]').click();
         });
 
-        it('should move the row down one position', function() {
+        it('should move the row down one position', function () {
             expect(this.$html.find('.qa-row-one').index()).to.equal(1);
         });
 
-        it('should move the other row up one position', function() {
+        it('should move the other row up one position', function () {
             expect(this.$html.find('.qa-row-two').index()).to.equal(0);
         });
     });
 
-    describe('clicking the move up control on row one', function() {
-        beforeEach(function() {
+    describe('Clicking the move up control on row one', function () {
+        beforeEach(function () {
             this.pulsarSortable.init();
             this.$rowOne.find('[data-move="up"]').click();
         });
 
-        it('should move the row up one position', function() {
+        it('should move the row up one position', function () {
             expect(this.$html.find('.qa-row-one').index()).to.equal(0);
         });
 
-        it('should move the other row down one position', function() {
+        it('should move the other row down one position', function () {
             expect(this.$html.find('.qa-row-two').index()).to.equal(1);
         });
     });
 
-    describe('selecting a table row', function() {
-        beforeEach(function() {
+    describe('Selecting a table row', function () {
+        beforeEach(function () {
             this.actionsBadgeStub = sinon.stub(this.pulsarSortable, 'actionsBadge');
             this.pulsarSortable.init();
             this.$rowOne.click();
@@ -128,22 +131,29 @@ describe('PulsarSortableComponent', function() {
             this.actionsBadgeStub.restore();
         });
 
-        it('should add class "is-selected"', function() {
+        it('should add class "is-selected"', function () {
             expect(this.$rowOne.hasClass('is-selected')).to.be.true;
         });
 
-        it('should toggle the row\'s checkbox', function() {
+        it('should toggle the row\'s checkbox', function () {
             expect(this.$rowOne.find('.checkbox').first().prop('checked')).to.be.true;
         });
 
-        it('should update "Actions" dropdown badge', function() {
+        it('should update "Actions" dropdown badge', function () {
             expect(this.actionsBadgeStub).to.have.been.called;
-            expect(this.$html.find('.has-badges .dropdown__toggle span.badge').length).to.equal(1);
+        });
+
+        it('should add a badge to "Actions" dropdown', function () {
+            expect(this.$html.find('.has-badges .dropdown__toggle .badge').is(':visible')).to.be.true;
+        });
+
+        it('should have the word "item" in the Delete dadge', function () {
+            expect(this.$html.find('.has-badges .dropdown__menu li:last-child a').text().indexOf("item") > 1).to.be.true;
         });
     });
 
-    describe('deselecting a table row', function() {
-        beforeEach(function() {
+    describe('Deselecting a table row', function () {
+        beforeEach(function () {
             this.actionsBadgeStub = sinon.stub(this.pulsarSortable, 'actionsBadge');
             this.pulsarSortable.init();
             this.$rowOne.addClass('is-selected');
@@ -151,17 +161,41 @@ describe('PulsarSortableComponent', function() {
             this.$rowOne.click();
         });
 
-        it('should add class "is-selected"', function() {
+        it('should add class "is-selected"', function () {
             expect(this.$rowOne.hasClass('is-selected')).to.be.false;
         });
 
-        it('should toggle the row\'s checkbox', function() {
+        it('should toggle the row\'s checkbox', function () {
             expect(this.$rowOne.find('.checkbox').first().prop('checked')).to.be.false;
         });
 
-        it('should update "Actions" dropdown badge', function() {
+        it('should update "Actions" dropdown badge', function () {
             expect(this.actionsBadgeStub).to.have.been.called;
-            expect(this.$html.find('.has-badges .dropdown__toggle span.badge').length).to.equal(0);
+        });
+    });
+
+    describe('When a row is already selected and another row is selected afterwords,', function () {
+        beforeEach(function () {
+            this.actionsBadgeStub = sinon.stub(this.pulsarSortable, 'actionsBadge');
+            this.pulsarSortable.init();
+            this.$rowOne.click();
+            this.$rowTwo.click();
+        });
+
+        afterEach(function () {
+            this.actionsBadgeStub.restore();
+        });
+
+        it('should update "Actions" dropdown badge', function () {
+            expect(this.actionsBadgeStub).to.have.been.called;
+        });
+
+        it('should increase the number of selected items in the "Actions" dropdown badges', function () {
+            expect(this.$html.find('.has-badges .dropdown__toggle .badge').html()).to.equal(2);
+        });
+
+        it('should have the word "items" in the Delete dadge', function () {
+            expect(this.$html.find('.has-badges .dropdown__menu li:last-child a').text().indexOf("items") > 1).to.be.true;
         });
     });
 });
