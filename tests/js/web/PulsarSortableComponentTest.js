@@ -8,8 +8,8 @@ var $ = require('jquery'),
 describe('PulsarSortableComponent', function () {
     beforeEach(function () {
 
-        this.$html = $('<html></html>');
-        this.$body = $('<body></body>').appendTo(this.$html);
+        this.$html = $('<div class="fake-html"></div>').appendTo('html');
+        this.$body = $('<div class="fake-body"></div>').appendTo(this.$html);
         this.$markup = $('\
 <div class="has-badges">\
     <div class="btn__group dropdown">\
@@ -34,11 +34,12 @@ describe('PulsarSortableComponent', function () {
             <tr class="qa-row-two">\
                 <td>foo</td>\
                 <td><a data-move="up" class=""></a><a data-move="down" class=""></a></td>\
+                <td><input type="checkbox" class="form__control checkbox"></td>\
             </tr>\
         </tbody>\
     </table>\
 </div>\
-').appendTo(this.$html);
+').appendTo(this.$body);
 
         this.$table = this.$html.find('.table');
         this.$rowOne = this.$html.find('.qa-row-one');
