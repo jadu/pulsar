@@ -192,7 +192,7 @@ describe('PulsarSortableComponent', function () {
         });
 
         it('should increase the number of selected items in the "Actions" dropdown badges', function () {
-            expect($('.has-badges .dropdown__toggle .badge').text() != "").to.be.true;
+            expect($('.has-badges .dropdown__toggle .badge').text() !== "").to.be.true;
         });
 
         it('should have the word "items" in the Delete dadge', function () {
