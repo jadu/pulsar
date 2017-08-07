@@ -151,6 +151,10 @@ describe('PulsarSortableComponent', function () {
         it('should have the word "item" in the Delete dadge', function () {
             expect($('.has-badges .dropdown__menu li:last-child a').text().indexOf("item") > 1).to.be.true;
         });
+
+        it('should display the number of selected items in the "Actions" dropdown Delete badges', function () {
+            expect($('.item-wording').is(':visible')).to.be.true;
+        });
     });
 
     describe('Deselecting a table row', function () {
@@ -172,6 +176,10 @@ describe('PulsarSortableComponent', function () {
 
         it('should update "Actions" dropdown badge', function () {
             expect(this.actionsBadgeStub).to.have.been.called;
+        });
+
+        it('should decrease the number of selected items in the "Actions" dropdown badges', function () {
+            expect(this.$html.find('.item-wording').is(':visible')).to.be.false;
         });
     });
 
