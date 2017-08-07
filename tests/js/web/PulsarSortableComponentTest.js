@@ -6,7 +6,6 @@ var $ = require('jquery'),
     PulsarSortableComponent = require('../../../js/PulsarSortableComponent');
 
 describe('PulsarSortableComponent', function() {
-
     beforeEach(function() {
 
         this.$html = $('<html></html>');
@@ -45,11 +44,9 @@ describe('PulsarSortableComponent', function() {
         this.$moveDown = this.$html.find('[data-move="down"]');
 
         this.pulsarSortable = new PulsarSortableComponent(this.$html);
-
     });
 
     describe('The sortable table', function() {
-
         beforeEach(function() {
             this.pulsarSortable.init();
         });
@@ -61,11 +58,9 @@ describe('PulsarSortableComponent', function() {
         it('should have row two at index 1', function() {
             expect(this.$html.find('.qa-row-two').index()).to.equal(1);
         });
-
     });
 
     describe('clicking a move control in row one', function() {
-
         beforeEach(function() {
             this.pulsarSortable.init();
             this.$moveUp.click();
@@ -90,11 +85,9 @@ describe('PulsarSortableComponent', function() {
                 expect(this.$html.find('.qa-row-one [data-move="up"]').hasClass('hide')).to.be.false;
             }, 2250);
         });
-
     });
 
     describe('clicking the move down control on row one', function() {
-
         beforeEach(function() {
             this.pulsarSortable.init();
             this.$rowOne.find('[data-move="down"]').click();
@@ -107,11 +100,9 @@ describe('PulsarSortableComponent', function() {
         it('should move the other row up one position', function() {
             expect(this.$html.find('.qa-row-two').index()).to.equal(0);
         });
-
     });
 
     describe('clicking the move up control on row one', function() {
-
         beforeEach(function() {
             this.pulsarSortable.init();
             this.$rowOne.find('[data-move="up"]').click();
@@ -124,7 +115,6 @@ describe('PulsarSortableComponent', function() {
         it('should move the other row down one position', function() {
             expect(this.$html.find('.qa-row-two').index()).to.equal(1);
         });
-
     });
 
     describe('selecting a table row', function() {
@@ -148,6 +138,7 @@ describe('PulsarSortableComponent', function() {
 
         it('should update "Actions" dropdown badge', function() {
             expect(this.actionsBadgeStub).to.have.been.called;
+            expect(this.$html.find('.has-badges .dropdown__toggle span.badge').length).to.equal(1);
         });
     });
 
@@ -170,6 +161,7 @@ describe('PulsarSortableComponent', function() {
 
         it('should update "Actions" dropdown badge', function() {
             expect(this.actionsBadgeStub).to.have.been.called;
+            expect(this.$html.find('.has-badges .dropdown__toggle span.badge').length).to.equal(0);
         });
     });
 });
