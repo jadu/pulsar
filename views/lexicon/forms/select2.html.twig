@@ -593,6 +593,141 @@
         })
     }}
 
+    {{ form.fieldset_start({ 'legend': 'Legacy Sizes' }) }}
+
+    {{
+        form.select2({
+            'id': 'select2-legacy-sizes-1',
+            'label': 'Mini',
+            'class': 'form__group--mini',
+            'name': 'inputTextMini',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
+            'id': 'select2-legacy-sizes-2',
+            'label': 'Small',
+            'class': 'form__group--small',
+            'name': 'inputSelectLegacySmall',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
+            'id': 'select2-legacy-sizes-3',
+            'label': 'Medium',
+            'class': 'form__group--medium',
+            'name': 'inputSelectLegacyMedium',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
+            'id': 'select2-legacy-sizes-4',
+            'label': 'Regular',
+            'class': 'form__group--regular',
+            'name': 'inputSelectLegacyRegular',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
+            'id': 'select2-legacy-sizes-5',
+            'label': 'Large',
+            'class': 'form__group--large',
+            'name': 'inputSelectLegacyLarge',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
+            'id': 'select2-legacy-sizes-6',
+            'label': 'Extra Large',
+            'class': 'form__group--xlarge',
+            'name': 'inputSelectLegacyXLarge',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
+            'id': 'select2-legacy-sizes-7',
+            'label': 'Full',
+            'class': 'form__group--full',
+            'name': 'inputSelectLegacyFull',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
     {{ form.fieldset_end() }}
     {{ form.fieldset_start({ 'legend': 'Appended &amp; Prepended' }) }}
 

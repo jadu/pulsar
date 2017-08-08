@@ -10,20 +10,28 @@ describe('Pulsar Form Component - Select2 elements', function() {
     beforeEach(function() {
         this.$html = $('<div id="html"></div>').appendTo('html');
         this.$body = $('<div id="body"></div>').appendTo(this.$html);
-        $('\
+        this.$markup = $('\
 <form class="form">\
+    <select class="js-select2">\
+        <option>foo</option>\
+        <option>bar</option>\
+        <option>baz</option>\
+    </select>\
+    <select class="js-select2" data-html="true">\
+        <option>foo</option>\
+        <option>bar</option>\
+        <option>baz</option>\
+    </select>\
+\
     <div class="form__group form-choice choice--block">\
         <label class="control__label">Radio Test</label>\
         <div class="controls">\
             <label class="control__label">\
-                <input value="foo" name="foo" type="radio" class="form__control qa-foo radio" />Foo\
-            </label>\
+                <input value="foo" name="foo" type="radio" class="form__control qa-foo radio">Foo</label>\
             <label class="control__label">\
-                <input value="bar" name="foo" type="radio" class="form__control radio" />Bar\
-            </label>\
+                <input value="bar" name="foo" type="radio" class="form__control radio">Bar</label>\
             <label class="control__label">\
-                <input value="baz" name="foo" type="radio" class="form__control radio" checked />Baz\
-            </label>\
+                <input value="baz" name="foo" type="radio" class="form__control radio" checked>Baz</label>\
         </div>\
     </div>\
 \
@@ -31,37 +39,17 @@ describe('Pulsar Form Component - Select2 elements', function() {
         <label class="control__label">Checkbox Test</label>\
         <div class="controls">\
             <label class="control__label">\
-                <input value="foo" name="foo" type="checkbox" class="form__control qa-foo checkbox" />Foo\
-            </label>\
+                <input value="foo" name="foo" type="checkbox" class="form__control qa-foo checkbox">Foo</label>\
             <label class="control__label">\
-                <input value="bar" name="foo" type="checkbox" class="form__control checkbox" />Bar\
-            </label>\
+                <input value="bar" name="foo" type="checkbox" class="form__control checkbox">Bar</label>\
             <label class="control__label">\
-                <input value="baz" name="foo" type="checkbox" class="form__control checkbox" checked />Baz\
-            </label>\
+                <input value="baz" name="foo" type="checkbox" class="form__control checkbox" checked>Baz</label>\
         </div>\
     </div>\
 </form>\
 \
 <input data-datepicker="true" type="text" />\
 ').appendTo(this.$body);
-        this.$form = this.$html.find('.form');
-
-        this.$nonHTMLSelect = $('\
-            <select class="js-select2">\
-                <option>foo</option>\
-                <option>bar</option>\
-                <option>baz</option>\
-            </select>'
-        );
-
-        this.$withHTMLSelect = $('\
-            <select class="js-select2" data-html="true">\
-                <option>foo</option>\
-                <option>bar</option>\
-                <option>baz</option>\
-            </select>'
-        );
 
         this.$radioFoo = this.$html.find('.radio[value="foo"]');
         this.$radioBar = this.$html.find('.radio[value="bar"]');
@@ -92,15 +80,11 @@ describe('Pulsar Form Component - Select2 elements', function() {
     describe('Basic select2 elements', function() {
 
         beforeEach(function() {
-            this.$nonHTMLSelect.appendTo(this.$form);
+            this.pulsarForm.init();
         });
 
-        it('should call the select2 plugin on the <select> with no options', function() {
-            this.pulsarForm.init();
-
-            expect($.fn.select2).to.have.been.calledOnce;
-            expect($.fn.select2).to.have.been.calledOn(sinon.match.jQuery(this.$nonHTMLSelect));
-            expect($.fn.select2.args[0]).to.have.length(0);
+        it('should call the select2 plugin', function() {
+            expect($.fn.select2).to.have.been.called;
         });
 
     });
@@ -108,38 +92,11 @@ describe('Pulsar Form Component - Select2 elements', function() {
     describe('Select2 elements with HTML', function() {
 
         beforeEach(function() {
-            this.$withHTMLSelect.appendTo(this.$form);
+            this.pulsarForm.init();
         });
 
-        it('should call the select2 plugin on the <select> with formatting options', function() {
-            this.pulsarForm.init();
-
-            expect($.fn.select2).to.have.been.calledOnce;
-            expect($.fn.select2).to.have.been.calledOn(sinon.match.jQuery(this.$withHTMLSelect));
-            expect($.fn.select2).to.have.been.calledWith(sinon.match({
-                templateResult: sinon.match.any,
-                templateSelection: sinon.match.any
-            }));
-        });
-
-        it('should format result options with a <span>', function () {
-            var $result;
-
-            this.pulsarForm.init();
-            $result = $.fn.select2.args[0][0].templateResult({text: 'My option'});
-
-            expect($result.is('span')).to.be.true;
-            expect($result.text()).to.equal('My option');
-        });
-
-        it('should format selection options with a <span>', function () {
-            var $result;
-
-            this.pulsarForm.init();
-            $result = $.fn.select2.args[0][0].templateSelection({text: 'My option'});
-
-            expect($result.is('span')).to.be.true;
-            expect($result.text()).to.equal('My option');
+        it('should call the select2 plugin', function() {
+            expect($.fn.select2).to.have.been.called;
         });
 
     });

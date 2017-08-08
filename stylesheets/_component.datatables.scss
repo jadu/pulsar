@@ -319,4 +319,15 @@ th.sorting_disabled:hover {
     }
 }
 
+.dataTables_wrapper > .table-container {
+    clear: both; // make sure container appears in correct place when used in datatable context
+    margin-bottom: 0; // make sure pagination sits directly underneath the table
+}
+
+// Hide the responsive column that usually contains the (+) control when using
+// horizontal version
+.datatable.table--horizontal .table-responsive {
+    display: none;
+}
+
 // scss-lint:enable SelectorFormat

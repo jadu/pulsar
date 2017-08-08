@@ -1,0 +1,79 @@
+{% extends '@pulsar/pulsar/components/tab.html.twig' %}
+
+{% block tab_content %}
+
+    <table class="table table--full table--horizontal">
+        <thead>
+            <tr>
+                <th><a href="#">XName</a></th>
+                <th><a href="#">IP</a></th>
+                <th><a href="#">Status</a></th>
+                <th><a href="#">Uptime</a></th>
+                <th><a href="#">Image</a></th>
+                <th><a href="#">RAM</a></th>
+                <th class="centered"><a href="#">CPUs</a></th>
+                <th><a href="#">Actions</a></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in 0..5 %}
+            <tr>
+                <td><a href="#" class="table-link">Sysadmin - Ansible 1</a></td>
+                <td class="monospace"><a href="#" class="table-link">10.101.0.175</a></td>
+                <td>
+                    {{
+                        html.label({
+                            'label': 'running',
+                            'class': 'label--success'
+                        })
+                    }}
+                </td>
+                <td>3d 4h 35m</td>
+                <td>{{ html.icon('linux') }} Centos 6 v1.0.2</td>
+                <td>4 GB</td>
+                <td class="centered">2</td>
+                <td>
+                    {{ html.link({ 'label': 'Reboot', 'class': 'table-action' }) }}<!--
+                    -->{{ html.link({ 'label': 'Suspend', 'class': 'table-action' }) }}<!--
+                    -->{{ html.link({ 'label': 'Shutdown', 'class': 'table-action' }) }}<!--
+                    -->{{ html.link({ 'label': 'Console', 'class': 'table-action' }) }}
+                </td>
+
+            </tr>
+
+            <tr class="table__tr">
+                <td><a href="#" class="table-link">Sysasdmin - WISP 1</a></td>
+                <td class="monospace"><a href="#" class="table-link">10.101.0.138</a></td>
+                <td>
+                    {{
+                        html.label({
+                            'label': 'suspended'
+                        })
+                    }}
+                </td>
+                <td>17w 3d 4h 35m</td>
+                <td>{{ html.icon('windows') }} Windows Server 2012 R2 v1.0.0</td>
+                <td>2 GB</td>
+                <td class="centered">1</td>
+                <td>
+                    {{ html.link({ 'label': 'Reboot', 'class': 'table-action' }) }}<!--
+                    -->{{ html.link({ 'label': 'Suspend', 'class': 'table-action' }) }}<!--
+                    -->{{ html.link({ 'label': 'Shutdown', 'class': 'table-action' }) }}<!--
+                    -->{{ html.link({ 'label': 'Console', 'class': 'table-action' }) }}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock tab_content %}
+{% block tab_sidebar %}
+    <h2>Horizontally Scrolling Table</h2>
+    <ul>
+        <li>Addition of <code>table--horizontal</code> class adds scrolling behaviour</li>
+        <li>Cells no longer collapse</li>
+    </ul>
+    <code class="hljs">
+        &lt;table class="table table--horizontal table--full"&gt; &hellip; &lt;/table&gt;
+    </code>
+{% endblock tab_sidebar %}
