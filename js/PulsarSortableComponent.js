@@ -169,7 +169,7 @@ PulsarSortableComponent.prototype.actionsBadge = function() {
         checkedBoxesCount = component.$html.find('.has-badges table tr input.checkbox:checked').length,
         badge = component.$html.find('.has-badges .btn__group.dropdown span.badge'),
         itemWording = component.$html.find('.has-badges .btn__group.dropdown .item-wording'),
-        deleteOption = '.has-badges .dropdown__menu li:last-child a';
+        deleteOption = component.$html.find('.has-badges .dropdown__menu li .delete');
 
     if (checkedBoxesCount > 0) {
         // Remove previous badge
@@ -177,7 +177,7 @@ PulsarSortableComponent.prototype.actionsBadge = function() {
         // Add badge next to "Actions" dropdown text
         $('<span class="badge">'+ checkedBoxesCount +'</span>').insertBefore('.has-badges .btn__group.dropdown span.caret');
 
-        if ($(deleteOption).text().indexOf("Delete") === 1) {
+        if (deleteOption) {
             // Add badge to "Delete" option of the dropdown
             $('<span class="badge">'+ checkedBoxesCount +'</span>').appendTo(deleteOption);
 
