@@ -21,7 +21,7 @@ describe('PulsarSortableComponent', function () {
             <li><a href="#" data-ui="show-filter-bar"><i aria-hidden="true" class="icon-filter"></i>&nbsp;New Filter</a></li>\
             <li><a href="#"><i aria-hidden="true" class="icon-envelope"></i>&nbsp;Random Option</a></li>\
             <li><span class="divider"></span></li>\
-            <li><a href="#"><i aria-hidden="true" class="icon-remove"></i>&nbsp;Delete</a></li>\
+            <li><a href="#" class="delete"><i aria-hidden="true" class="icon-remove"></i>&nbsp;Delete</a></li>\
         </ul>\
     </div>\
     <table class="table is-sortable">\
@@ -149,7 +149,7 @@ describe('PulsarSortableComponent', function () {
         });
 
         it('should have the word "item" in the Delete dadge', function () {
-            expect($('.has-badges .dropdown__menu li:last-child a').text().indexOf("item") > 1).to.be.true;
+            expect($('.has-badges .dropdown__menu li .delete').text().indexOf("item") > 1).to.be.true;
         });
 
         it('should display the number of selected items in the "Actions" dropdown Delete badges', function () {
@@ -204,7 +204,7 @@ describe('PulsarSortableComponent', function () {
         });
 
         it('should have the word "items" in the Delete dadge', function () {
-            expect($('.has-badges .dropdown__menu li:last-child a').text().indexOf("items") > 1).to.be.true;
+            expect($('.has-badges .dropdown__menu li .delete').text().indexOf("items") > 1).to.be.true;
         });
     });
 });
