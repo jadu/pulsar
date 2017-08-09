@@ -39,7 +39,7 @@ NavMainComponent.prototype.init = function () {
 
         // If href is a fragment, don't add it to the URL because it breaks the
         // back button
-        if (href.indexOf('#') > -1) {
+        if (href.indexOf('#') !== -1) {
             e.preventDefault();
         }
 
@@ -56,7 +56,7 @@ NavMainComponent.prototype.init = function () {
         var $self = $(this),
             href = $self.attr('href');
 
-        if (href.indexOf('#') > -1) {
+        if (href.indexOf('#') !== -1) {
             e.preventDefault();
         }
 
@@ -114,7 +114,7 @@ NavMainComponent.prototype.switchSecondaryNav = function (target) {
 NavMainComponent.prototype.switchTertiartyNav = function (target) {
     var component = this;
 
-    if (component.$html.find('[data-nav="' + target + '"]').length < 1) {
+    if (!component.$html.find('[data-nav="' + target + '"]').length) {
         component.closeNavs();
     }
 
@@ -125,7 +125,7 @@ NavMainComponent.prototype.switchQuaternaryNav = function (target) {
     var component = this;
 
     // If category item has encapsulated options and if it is same-page link then open the proper menu
-    if (target.indexOf('#') > -1) {
+    if (target.indexOf('#') !== -1) {
         component.$navQuaternary.addClass('is-open');
     }
 
