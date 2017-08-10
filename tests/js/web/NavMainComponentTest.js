@@ -322,6 +322,7 @@ describe('NavMainComponent', function () {
         it('should call adjustNavItems()', function () {
             this.navMainComponent.init();
             this.navMainComponent.$window.trigger('resize');
+
             expect(this.adjustNavStub).to.have.been.called;
         });
     });
