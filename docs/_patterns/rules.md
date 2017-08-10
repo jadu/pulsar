@@ -6,7 +6,7 @@ category: Patterns
 
 The rules UI allows users to build a logical ruleset using simple `WHEN` `AND/OR` & `THEN` blocks.
 
-![Rules UI example gif](/assets/image_examples/rules.gif)
+![Rules UI example gif]({{ site.baseurl }}/assets/image_examples/rules.gif)
 
 ## Layout
 
@@ -76,13 +76,13 @@ There is only one WHEN condition per ruleset, it is typically not removeable.
 
 {% code_example rule_helpers/when-bare %}
 
-![When rule example](/assets/image_examples/rule-when.png)
+![When rule example]({{ site.baseurl }}/assets/image_examples/rule-when.png)
 
 ### And
 
 {% code_example rule_helpers/and-bare %}
 
-![When rule example](/assets/image_examples/rule-and.png)
+![When rule example]({{ site.baseurl }}/assets/image_examples/rule-and.png)
 
 ### Or
 
@@ -90,7 +90,7 @@ An OR block can only be used in conjunction with a WHEN or an AND It cannot be u
 
 {% code_example rule_helpers/or-bare %}
 
-![When rule example](/assets/image_examples/rule-or.png)
+![When rule example]({{ site.baseurl }}/assets/image_examples/rule-or.png)
 
 ### Then
 
@@ -98,7 +98,7 @@ Chooses the action, or combination of actions to perform as long as the required
 
 {% code_example rule_helpers/then-bare %}
 
-![When rule example](/assets/image_examples/rule-then.png)
+![When rule example]({{ site.baseurl }}/assets/image_examples/rule-then.png)
 
 ## Example rule block with inputs
 
@@ -145,3 +145,21 @@ Where possible, you should design the labels within your rule blocks to be read 
 * AND [user] is [signed in]
 * THEN [send email confirmation] to [address]
 
+## Rule block modifiers
+
+The following classes, when applied to the top level element, will modify certain visual states of the rule block.
+
+Pass classes through the `class` attribute of the rule helpers.
+
+{% raw %}
+```twig
+{{
+    rule.block_when({
+        'class': 'rule--indented',
+        'inputs': [
+```
+{% endraw %}
+
+| Class | Effect |
+| ----- | ------ |
+| `.rule--indented` | Indents a step by 20px, used to denote sub-rules. |
