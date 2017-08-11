@@ -171,7 +171,7 @@
 
 tr.table__form,
 td.table__form {
-    background-color: color(background);
+    padding: 10px 10px 24px 20px;
 
     form {
         background-color: transparent;
@@ -204,7 +204,7 @@ td.table__form {
 
 td.table__form,
 .table__form td {
-    padding: 10px 10px 24px 20px;
+    background-color: color(background);
 }
 
 .table-container + .pagination {
