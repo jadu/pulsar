@@ -226,9 +226,21 @@
     }
 }
 
-.tab__settings .form__group--toggle .controls {
-    float: right;
-    width: 4em;
+.tab__settings .form__group--toggle {
+    > .control__label {
+        width: 100%;
+
+        @include respond-min($screen-small) {
+            padding-right: 0;
+            max-width: 75%;
+            width: auto;
+        }
+    }
+
+    .controls {
+        float: right;
+        width: 4em;
+    }
 }
 
 
