@@ -153,6 +153,7 @@
 .rule-block__control {
     display: block;
     margin: 0 10px 10px;
+    vertical-align: bottom;
 
     @include respond-min($screen-tablet) {
         display: inline-block;
