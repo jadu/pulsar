@@ -409,7 +409,181 @@
     }}
 
     {{ form.fieldset_end() }}
-    {{ form.fieldset_start({ 'legend': 'Sizes' }) }}
+    {{ form.fieldset_start({ 'legend': 'Grid sizes' }) }}
+
+    {{
+        form.select({
+            'id': 'select-1-col',
+            'label': 'One column',
+            'class': 'form__control-col--1',
+            'name': 'inputSelectOneCol',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select({
+            'id': 'select-2-col',
+            'label': 'Two columns',
+            'class': 'form__control-col--2',
+            'name': 'inputSelectTwoCol',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select({
+            'id': 'select-3-col',
+            'label': 'Three columns',
+            'class': 'form__control-col--3',
+            'name': 'inputSelectThreeCol',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select({
+            'id': 'select-4-col',
+            'label': 'Four columns',
+            'class': 'form__control-col--4',
+            'name': 'inputSelectFourCol',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select({
+            'id': 'select-5-col',
+            'label': 'Five columns',
+            'class': 'form__control-col--5',
+            'name': 'inputSelectFiveCol',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select({
+            'id': 'select-6-col',
+            'label': 'Six columns',
+            'class': 'form__control-col--6',
+            'name': 'inputSelectSixCol',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select({
+            'id': 'select-7-col',
+            'label': 'Seven columns',
+            'class': 'form__control-col--7',
+            'name': 'inputSelectSevenCol',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select({
+            'id': 'select-8-col',
+            'label': 'Eight columns',
+            'class': 'form__control-col--8',
+            'name': 'inputSelectEightCol',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select({
+            'id': 'select-9-col',
+            'label': 'Full',
+            'class': 'form__control-col--9',
+            'name': 'inputSelectNineCol',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'Legacy sizes' }) }}
 
     {{
         form.select({
