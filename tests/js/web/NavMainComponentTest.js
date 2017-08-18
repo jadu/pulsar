@@ -222,7 +222,7 @@ describe('NavMainComponent', function () {
         });
 
         it('should close the sub navigation', function () {
-            expect(this.$html.find('.nav-main').hasClass('is-open')).to.be.false;
+            expect(this.$html.find('.nav-main div').hasClass('is-open')).to.be.false;
         });
 
         it('should remove the highlight from that sections primary nav item', function () {
@@ -238,7 +238,7 @@ describe('NavMainComponent', function () {
         });
 
         it('should close the sub navigation', function () {
-            expect(this.$html.find('.nav-main').hasClass('is-open')).to.be.false;
+            expect(this.$html.find('.nav-main div').hasClass('is-open')).to.be.false;
         });
     });
 
