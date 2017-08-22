@@ -56,6 +56,16 @@
 {%- endblock -%}
 
 {% block tab_content %}
+
+    {{
+        html.panel({
+            'class': 'panel--danger',
+            'icon': 'warning-sign',
+            'title': 'Your rule cannot be saved',
+            'body': 'Please correct the highlighted errors in your rule, and try saving again.'
+        })
+    }}
+
     <table class="table datatable table--full" data-select="false">
         <thead>
             <tr>
@@ -203,6 +213,9 @@
                             {{
                                 rule.block_or({
                                     'class': 'rule--indented',
+                                    'error': [
+                                        'Please choose a user type'
+                                    ],
                                     'inputs': [
                                         form.select2({
                                             'class': 'form__group--medium',
@@ -235,13 +248,13 @@
                                             ]
                                         }),
                                         form.select2({
-                                            'class': 'form__group--medium',
+                                            'class': 'form__group--medium has-error',
                                             'label': 'Choose user type',
                                             'show-label': false,
                                             'options':
                                             [
                                                 {
-                                                    'label': 'Registered user',
+                                                    'label': 'Please choose...',
                                                     'value': 'foo'
                                                 },
                                                 {

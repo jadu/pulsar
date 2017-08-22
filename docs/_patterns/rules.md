@@ -163,3 +163,62 @@ Pass classes through the `class` attribute of the rule helpers.
 | Class | Effect |
 | ----- | ------ |
 | `.rule--indented` | Indents a step by 20px, used to denote sub-rules. |
+
+## Displaying errors
+
+You will normally need to do two things to properly indicate errors in a rule block.
+
+1. Add a danger panel to the top of the UI, explaining there are issues that need to be resolved further down in the UI
+1. Add an error message to the rule block
+1. Highlight the specific field causing the error
+
+![rule error example]({{ site.baseurl }}/assets/image_examples/rule-error-four.png)
+
+The `error` option, when supplied, will automatically apply the required error styling to the rule block.
+
+### Adding error messages to the rule block
+
+{% raw %}
+```twig
+{{
+    rule.block__or({
+        'error': 'Something went wrong...'
+        ...
+```
+{% endraw %}
+
+![rule error example]({{ site.baseurl }}/assets/image_examples/rule-error-one.png)
+
+In some cases you may need to add more than one error (e.g. field 1 has x error, field 2 has y error), the `error` field can accept an array of strings rather than a single string.
+
+{% raw %}
+```twig
+{{
+    rule.block__or({
+        'error': [
+            'This is error one',
+            'This is error two'
+        ]
+        ...
+```
+{% endraw %}
+
+![rule error example]({{ site.baseurl }}/assets/image_examples/rule-error-three.png)
+
+### Highlighting invalid fields
+
+To properly communicate which specific form elements within a rule are causing the error, you should add the common `has-error` class where appropriate.
+
+{% raw %}
+```twig
+{{
+    rule.block__or({
+        'error': 'Something went wrong...',
+        'inputs': [
+            form.select2({
+                'class': 'has-error'
+                ...
+```
+{% endraw %}
+
+![rule error example]({{ site.baseurl }}/assets/image_examples/rule-error-two.png)

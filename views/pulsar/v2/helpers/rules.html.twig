@@ -84,8 +84,16 @@
 
 
 {% macro block(options) %}
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
 {% spaceless %}
-    <fieldset{{ attributes(options|defaults({'class': 'rules__step'})|only('class')) }}>
+
+    {% set ruleClass = 'rules__step' %}
+
+    {% if options.error is defined and options.error is not empty %}
+        {% set ruleClass = ruleClass ~ ' has-error' %}
+    {% endif %}
+
+    <fieldset{{ attributes(options|defaults({'class': ruleClass})|only('class')) }}>
         <legend class="hide">{{ options.type|default }}</legend>
         <div class="rule__triggers__container" data-index="1">
 
@@ -111,6 +119,7 @@
                         {% endif %}
 
                     </div>
+                    {{ form.error({ 'value': options.error|default }) }}
                 </div>
             </div>
 
