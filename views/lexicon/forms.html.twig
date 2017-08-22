@@ -7,6 +7,7 @@
 {% set tab_content %}{% include 'lexicon/forms/content.html.twig' %}{% endset %}
 {% set tab_checkbox %}{% include 'lexicon/forms/checkbox.html.twig' %}{% endset %}
 {% set tab_date %}{% include 'lexicon/forms/date.html.twig' %}{% endset %}
+{% set tab_dropzone %}{% include 'lexicon/forms/dropzone.html.twig' %}{% endset %}
 {% set tab_password %}{% include 'lexicon/forms/password.html.twig' %}{% endset %}
 {% set tab_choice %}{% include 'lexicon/forms/choice.html.twig' %}{% endset %}
 {% set tab_file %}{% include 'lexicon/forms/file.html.twig' %}{% endset %}
@@ -46,6 +47,12 @@
           "src"   : tab_content
         },
         {
+          "id"    : "dropzone",
+          "label" : "Dropzone",
+          "src"   : tab_dropzone,
+          "active": true
+        },
+        {
           "id"    : "date",
           "label" : "Date",
           "src"   : tab_date
@@ -73,8 +80,7 @@
         {
           "id"    : "select",
           "label" : "Select",
-          "src"   : tab_select,
-          "active": true
+          "src"   : tab_select
         },
         {
           "id"    : "select2",
