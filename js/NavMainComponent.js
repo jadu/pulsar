@@ -195,7 +195,8 @@ NavMainComponent.prototype.adjustNavItems = function () {
 
 NavMainComponent.prototype.hidePrimaryNavItems = function (navItemsHeight, moreIconHeight, availableHeight) {
     var component = this,
-        lastPrimaryNavItem = component.$html.find('.nav-primary .nav-items li:last-child'),
+        navItems = component.$html.find('.nav-primary .nav-items'),
+        lastPrimaryNavItem =  navItems.find('li:last-child'),
         nthChild = 2; // This number represents the item before the last in the nth-last-child;
 
     while (navItemsHeight + moreIconHeight > availableHeight) {
@@ -204,22 +205,23 @@ NavMainComponent.prototype.hidePrimaryNavItems = function (navItemsHeight, moreI
             lastPrimaryNavItem.hide();
         } else {
             // If last nav item is hidden hide the next one up
-            component.$html.find('.nav-primary .nav-items li:nth-last-child('+ nthChild +')').hide();
+            navItems.find('li:nth-last-child('+ nthChild +')').hide();
             nthChild++;
         }
 
         // Recalculate nav items height based on items just hidden
-        navItemsHeight = (component.$html.find('.nav-primary .nav-items').outerHeight(true) + component.$html.find('.jadu-branding').outerHeight(true));
+        navItemsHeight = (navItems.outerHeight(true) + component.$html.find('.jadu-branding').outerHeight(true));
     }
 };
 
 NavMainComponent.prototype.addMoreNavItem = function (numberOfHiddenNavItems) {
     var component = this,
-        navItemMore = component.$html.find('.nav-primary .nav-items [label="More"]');
+        navItems = component.$html.find('.nav-primary .nav-items'),
+        navItemMore = navItems.find('[label="More"]');
 
     // Add the "More" nav item
     if ((numberOfHiddenNavItems > 0) && (!component.$html.find('.more-icon').length)){
-        component.$html.find('.nav-primary .nav-items').append('<li label="More" class="nav-item t-nav-item more-icon" aria-haspopup="true"><a href="#more" class="nav-link t-nav-link"><i aria-hidden="true" class="icon-ellipsis-horizontal nav-link__icon t-nav-icon"></i><span class="nav-link__label">More</span></a></li>');
+        navItems.append('<li label="More" class="nav-item t-nav-item more-icon" aria-haspopup="true"><a href="#more" class="nav-link t-nav-link"><i aria-hidden="true" class="icon-ellipsis-horizontal nav-link__icon t-nav-icon"></i><span class="nav-link__label">More</span></a></li>');
     }
 
     // Check if "More" nav item is visible
@@ -231,7 +233,7 @@ NavMainComponent.prototype.addMoreNavItem = function (numberOfHiddenNavItems) {
 NavMainComponent.prototype.hideMoreCategoriesTopItems = function (navItemsCountTotal, numberOfHiddenNavItems) {
     var component = this,
         nthChild = 1, // Number used to iterate nth-child
-        itemsToHideCount = 0;
+        itemsToHideCount;
 
     // Reset hidden nav items
     component.$html.find('.nav-tertiary .nav-items li').show();
