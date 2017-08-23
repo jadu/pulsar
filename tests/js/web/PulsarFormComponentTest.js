@@ -52,6 +52,14 @@ describe('Pulsar Form Component - Select2 elements', function() {
     <input data-datepicker="true" type="text" />\
 </div>\
 <a href="#tab-foo" data-toggle="tab">tab</a>\
+<a href="#modal-foo" data-toggle="modal">modal</a>\
+<div class="modal" id="modal-foo">\
+    <select class="js-select2">\
+        <option>foo</option>\
+        <option>bar</option>\
+        <option>baz</option>\
+    </select>\
+</div>\
 ').appendTo(this.$body);
 
         this.$radioFoo = this.$html.find('.radio[value="foo"]');
@@ -69,9 +77,10 @@ describe('Pulsar Form Component - Select2 elements', function() {
 
         this.$datepicker = this.$html.find('[data-datepicker]');
         this.$tabToggle = this.$html.find('[data-toggle="tab"]');
+        this.$modalToggle = this.$html.find('[data-toggle="modal"]');
+        this.$modal = this.$html.find('#modal-foo');
 
         this.pulsarForm = new PulsarFormComponent(this.$html);
-        this.pulsarForm.initSelect2 = sinon.stub();
 
         $.fn.select2 = sinon.stub();
     });
@@ -84,11 +93,11 @@ describe('Pulsar Form Component - Select2 elements', function() {
     describe('Basic select2 elements', function() {
 
         beforeEach(function() {
+            this.pulsarForm.initSelect2 = sinon.stub();
             this.pulsarForm.init();
         });
 
         it('should call the select2 plugin', function() {
-            // expect($.fn.select2).to.have.been.called;
             expect(this.pulsarForm.initSelect2).to.have.been.called;
         });
 
@@ -97,25 +106,43 @@ describe('Pulsar Form Component - Select2 elements', function() {
     describe('Select2 elements with HTML', function() {
 
         beforeEach(function() {
+            this.pulsarForm.initSelect2 = sinon.stub();
             this.pulsarForm.init();
+
         });
 
         it('should call the select2 plugin', function() {
-            // expect($.fn.select2).to.have.been.called;
             expect(this.pulsarForm.initSelect2).to.have.been.called;
         });
 
     });
 
-    describe('Changing tabs', function() {
+    describe('Changing to a tab that contains select2 elements', function() {
 
         beforeEach(function() {
             this.pulsarForm.init();
+            this.pulsarForm.initSelect2 = sinon.stub();
             this.$tabToggle.trigger('shown.bs.tab');
         });
 
         it('Should trigger the select2 init method', function() {
             expect(this.pulsarForm.initSelect2).to.have.been.called;
+        });
+    });
+
+    describe('Opening a modal that contains select2 elements', function() {
+
+        beforeEach(function() {
+            this.pulsarForm.init();
+            this.pulsarForm.initSelect2 = sinon.stub();
+            this.$modalToggle.click();
+            this.$modal.trigger('shown.bs.modal');
+        });
+
+        it('Should trigger the select2 init method', function() {
+            setTimeout(function() {
+                expect(this.pulsarForm.initSelect2).to.have.been.called;
+            }, 500);
         });
     });
 

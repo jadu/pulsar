@@ -46,6 +46,18 @@ PulsarFormComponent.prototype.init = function () {
         });
     });
 
+    // reinitialise select2 items when opening a modal to fix widths
+    $('[data-toggle="modal"]').on('click', function (e) {
+        var $target = $($(e.target).attr('href')),
+            $select2 = $target.find('.js-select2:not([data-init="false"])');
+
+        $target.on('shown.bs.modal', function() {
+            $.each($select2, function() {
+                component.initSelect2($(this));
+            });
+        });
+    });
+
     // choice block click behaviour
     choiceBlock.on('change', '.controls input[type="checkbox"], .controls input[type="radio"]', component.selectionButtons);
 
