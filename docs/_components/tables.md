@@ -36,6 +36,33 @@ Table rows will accept the normal collection of state classes which will highlig
 * has-inverse
 * has-new
 
+## Tables with badges in "Actions" dropdown
+
+To add badges to the "Actions" dropdown when items are selected a class "has-badges" needs to be added in an element (div or form) grouping both the dropdown and the table together.
+
+![Screenshot](../assets/image_examples/table-with-badged-dropdown.gif)
+
+```html
+<div class="has-badges">
+	<button data-toggle="dropdown" class="btn dropdown__toggle">Actions&nbsp;<span class="caret"></span></button>
+	...
+	<table class="table">
+	    <thead>
+	        <tr>
+	            <th>Column 1</th>
+	            <th>Column 2</th>
+	        </tr>
+	    </thead>
+	    <tbody>
+	        <tr>
+	            <td>Cell 1</td>
+	            <td>Cell 2</td>
+	        </tr>
+	    </tbody>
+	</table>
+</div>
+```
+
 ## Accessibility
 
 ### Empty th cells
