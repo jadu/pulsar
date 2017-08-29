@@ -190,6 +190,8 @@ NavMainComponent.prototype.adjustNavItems = function () {
         // Unhide items if they were hidden and there is space in the primary nav
         component.$navPrimary.find('.nav-items li').show();
         component.$navPrimary.find('.nav-items [label="More"]').hide();
+        component.$html.find('.nav-primary .nav-items li').show();
+        component.$html.find('.nav-primary .nav-items [label="More"]').hide();
     }
 };
 
