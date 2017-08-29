@@ -116,7 +116,7 @@ class DropZoneInstanceManager {
      * @returns {Object} file
      */
     getFile (id, index) {
-         return _.find(this.instances, i => i.id === id).dropZone.getFile(index);
+        return _.find(this.instances, i => i.id === id).dropZone.getFile(index);
     }
 
     /**
@@ -126,6 +126,15 @@ class DropZoneInstanceManager {
      */
     getSupportsDataTransfer (id) {
         return _.find(this.instances, i => i.id === id).dropZone.getSupportsDataTransfer();
+    }
+
+    /**
+     * Get supported option
+     * @param {number} id
+     * @returns {boolean}
+     */
+    getSupported (id) {
+        return _.find(this.instances, i => i.id === id).options.supported;
     }
 
     /**
