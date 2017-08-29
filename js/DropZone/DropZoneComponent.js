@@ -98,7 +98,7 @@ class DropZoneComponent {
 
         // iterate over our DropZoneInstanceManagerInstances to process any input nodes & update help state
         this.instanceManager.getInstance().forEach(instance => {
-            if (instance.input) {
+            if (instance.input && this.instanceManager.getSupported(instance.id)) {
                 this.processInputNode(instance.input, instance.id, instance.options.showInputNode);
 
                 if (instance.browse) {
