@@ -1399,6 +1399,7 @@ Option                              | Type      | Description
 helperLabel                         | string    | The label for the default helper text popup
 helperTitle                         | string    | The heading for the default helper text popup
 helperContent                       | string    | The content for the default helper text popup
+helperContainer                     | string    | The selector for the container of the helper text popup
 data-dropzone-max-files             | string    | The maximum ammount of files a DropZone will accept
 data-dropzone-max-size              | string    | The combined file size limit of a group of files
 data-dropzone-idle-timer-duration   | string    | The duration
@@ -1435,12 +1436,12 @@ data-dropzone-file-node-type        | boolean   | Show file type in file html | 
             <p class="dropzone__info">{{ idle|raw }}</p>
 
             <p class="dropzone__help"
-               data-toggle="popover"
+               rel="clickover"
                data-title="{{ options.helperTitle|default('Helper title')|raw }}"
                data-content="{{ options.helperContent|default('Helper content')|raw }}"
                data-html="true"
-               data-placement="left"
-               data-container="{{ '#' ~ options.id }}"
+               data-placement="bottom"
+               data-container="{{ options.helperContainer|default('#' ~ options.id) }}"
             >
                 {{ html.icon('question-sign') }} {{ options.helperLabel|default('Only certain file types are allowed') }}
             </p>
