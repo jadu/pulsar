@@ -255,6 +255,25 @@ describe('DropZoneInstanceManager', () => {
         });
     });
 
+    describe('getSupported()', () => {
+        let mockInstance;
+
+        beforeEach(() => {
+            mockInstance = {
+                id: 0,
+                options: {
+                    supported: true
+                }
+            };
+        });
+
+        it('should get support option for instance', () => {
+            instanceManager.instances.push(mockInstance);
+
+            expect(instanceManager.getSupported(0)).to.equal(true);
+        });
+    });
+
     describe('validateFiles()', () => {
         let mockInstance;
 
