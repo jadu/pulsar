@@ -114,6 +114,24 @@ PulsarSortableComponent.prototype.initTables = function () {
         // Trigger sortupdate and pass the updated row
         component.$html.find('.table.is-sortable tbody').trigger('sortupdate', [fakeUi]);
     });
+
+    // Update "Actions" badge when table row is clicked
+    this.$html.find('.has-badges table tr').on('click', function (event) {
+        var $this = $(this),
+            $target = $(event.target),
+            $checkbox = $this.find('.checkbox').first(),
+            selected = $checkbox.prop('checked');
+
+        // toggle checkbox state if the checkbox was not the target of the event
+        if (!$target.is($checkbox)) {
+            $checkbox.prop('checked', !selected);
+        }
+
+        // toggle row selected class
+        $this.toggleClass('is-selected');
+
+        component.actionsBadge();
+    });
 };
 
 /* istanbul ignore next: difficult to test jQueryUI sortable behaviour */
@@ -143,6 +161,41 @@ PulsarSortableComponent.prototype.updateOrder = function() {
     component.$html.find('.table.is-sortable .js-sortable-count').each(function(i) {
         $(this).text(i + 1);
     });
+};
+
+// Create or update "Actions" badge when a table row is selected
+PulsarSortableComponent.prototype.actionsBadge = function() {
+    var component = this,
+        checkedBoxesCount = component.$html.find('.has-badges table tr input.checkbox:checked').length,
+        badge = component.$html.find('.has-badges .btn__group.dropdown span.badge'),
+        itemWording = component.$html.find('.has-badges .btn__group.dropdown .item-wording'),
+        deleteOption = component.$html.find('.has-badges .dropdown__menu li .delete');
+
+    if (checkedBoxesCount > 0) {
+        // Remove previous badge
+        badge.remove();
+        // Add badge next to "Actions" dropdown text
+        $('<span class="badge">'+ checkedBoxesCount +'</span>').insertBefore('.has-badges .btn__group.dropdown span.caret');
+
+        if (deleteOption) {
+            // Add badge to "Delete" option of the dropdown
+            $('<span class="badge">'+ checkedBoxesCount +'</span>').appendTo(deleteOption);
+
+            // Add the words item/items depending on the number of items
+            if (checkedBoxesCount === 1 ) {
+                itemWording.remove();
+                $('<span class="item-wording">item</span>').appendTo(deleteOption);
+            } else {
+                itemWording.remove();
+                $('<span class="item-wording">items</span>').appendTo(deleteOption);
+            }
+        }
+
+    } else if (checkedBoxesCount === 0) {
+        // Remove previous badges if there are no selected items
+        badge.remove();
+        itemWording.remove();
+    }
 };
 
 module.exports = PulsarSortableComponent;
