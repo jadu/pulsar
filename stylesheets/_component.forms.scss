@@ -318,7 +318,7 @@ fieldset {
     // column variations
     @for $i from 1 through 12 {
         .form__control-col--#{$i} .form__control,
-        .form__group--flush > .form__control-col--#{$i} .control__label + .controls > .form__control {
+        .form__group--flush.form__control-col--#{$i} .control__label + .controls > .form__control {
             @include span($i, false, false, 12);
         }
     }
