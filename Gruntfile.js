@@ -127,6 +127,17 @@ module.exports = function(grunt) {
             }
         },
 
+        replace: {
+            example: {
+                src: ['stylesheets/pulsar.scss'],
+                dest: 'stylesheets/pulsar-theme-projector.scss',
+                replacements: [{
+                    from: 'palette.base',
+                    to: 'palette.projector'
+                }]
+            }
+        },
+
         autoprefixer: {
             dev: {
                 options: {
