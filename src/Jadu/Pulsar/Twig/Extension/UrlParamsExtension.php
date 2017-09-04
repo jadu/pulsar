@@ -32,6 +32,7 @@ class UrlParamsExtension extends \Twig_Extension implements \Twig_Extension_Glob
     {
         return array(
             'active_tab' => $this->getActiveTab(),
+            'theme' => $this->getTheme(),
             'view' => $this->getView()
         );
     }
@@ -39,6 +40,11 @@ class UrlParamsExtension extends \Twig_Extension implements \Twig_Extension_Glob
     public function getActiveTab()
     {
         return (isset($this->parameters['tab'])) ? $this->parameters['tab'] : null;
+    }
+
+    public function getTheme()
+    {
+        return (isset($this->parameters['theme'])) ? $this->parameters['theme'] : null;
     }
 
     public function getView()
