@@ -1,11 +1,14 @@
 /* -------------------------------------------------------------------------- *\
-    Base palettes
+    Projector friendly palettes
 
-    Defines what value a specific named colour should be. Used in conjunction
-    with _config.theme.scss to defined how specific Jadu control centre elements
-    should be styled in regards to colour.
+    Creates darker versions of specific colours based on the $darken-factor to
+    ensure visibility on overly bright projector screens.
 
-    These colours are defined in the Jadu Brand Guidelines (version 4)
+    Currently affected palettes:
+
+        $palette-monochromes: all colours darkened by $darken-factor
+        $palette-states: all 'light' variants darkened by $darken-factor except
+                         (info, light) which is specific lighten() value
 \* -------------------------------------------------------------------------- */
 
 $darken-factor: 20;
