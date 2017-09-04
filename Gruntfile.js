@@ -551,6 +551,7 @@ module.exports = function(grunt) {
     grunt.registerTask('default', [
         'copy',
         'scsslint',
+        'replace',
         'sass:dev',
         'autoprefixer',
         'bless',
@@ -562,6 +563,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('post-merge', [
         'exec:fixProximaNova',
+        'replace',
         'sass:dev',
         'browserify',
         'email-build'
@@ -569,6 +571,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('build', [
         'scsslint',
+        'replace',
         'sass:dist_modern',
         'sass:dist_ie',
         'autoprefixer',
@@ -580,6 +583,7 @@ module.exports = function(grunt) {
     ]);
 
     grunt.registerTask('deploy', [
+        'replace',
         'sass:dist_modern',
         'sass:dist_ie',
         'autoprefixer',
