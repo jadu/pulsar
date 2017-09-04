@@ -101,3 +101,35 @@ Separate menu items with a horizontal line.
 
 <div><p data-height="150" data-theme-id="24005" data-slug-hash="pEyvYg" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/pEyvYg/">docs - html - button dropdown divider</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p>
 <script async src="//assets.codepen.io/assets/embed/ei.js"></script></div>
+
+## Tooltips within a dropdown
+
+To add a tooltip to a dropdown menu item, you'll need to use the `container` option and append the tooltip to `body` to avoid the tooltip text wrapping incorrectly.
+
+{% raw %}
+```twig
+{{
+    html.button_dropdown({
+        'label': 'Drop Down',
+        'items': [
+            html.link({ 'label': 'No tooltip', 'href': '#foo' }),
+            html.link({ 
+                'label': 'With tooltip', 
+                'href': '#bar',
+                'title': 'My tooltip',
+                'data-toggle': 'tooltips',
+                'data-placement': 'right',
+                'data-container': 'body'
+            })
+        ]
+    })
+}}
+```
+{% endraw %}
+
+With container set to body:
+![Tooltip on dropdown menu item with container set to body]({{ site.baseurl }}/assets/image_examples/dropdown-menu-with-tooltip-on-body.png)
+
+Without container set to body:
+![Tooltip on dropdown menu item with container set to body]({{ site.baseurl }}/assets/image_examples/dropdown-menu-with-tooltip.png)
+

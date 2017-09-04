@@ -1,35 +1,50 @@
+// Align form-choice to grid
+@include respond-min($screen-smaller) {
+    .form-choice > .controls > .control__label {
+        @include span(4, false, false, 9);
+        line-height: $line-height-medium;
 
-// align inputs with the text labels properly
-.form-choice.choice--block .form__control {
-    &.checkbox,
-    &.radio {
-        vertical-align: baseline;
+        .form__control {
+            margin-left: 0;
+        }
     }
 }
 
-// width modifiers are used on the control__labels, has to be extra specific to
-// override default form group widths
-.form .form__group.choice--block .controls {
-    max-width: 100%;
-    width: 75%;
+// align inputs with the text labels properly
+.form-choice .form__control {
+    &.checkbox,
+    &.radio {
+        vertical-align: baseline;
+        width: auto; // suppress default grid width
+    }
+
+    &.select,
+    &.select2 {
+        @include span(5, false, false, 9);
+    }
 }
 
 .choice--block > .controls {
     .control__label {
         box-shadow: inset 0 0 0 1px color(border); // nicer border effects
         border-radius: $border-radius;
-        margin: 0 5px 5px 0;
+        margin: 0 0 5px;
         max-width: 100%;
         padding: 10px;
         user-select: none; // stop nasty blue text selection when clicking
         width: 100%; // mobile-first width
 
-        @include ie-lte(8) {
-            border: 1px solid color(border);
+        // default width
+        @include respond-min($screen-smaller) {
+            @include span(4, false, false, 9);
         }
 
-        &:last-child {
-            margin: 0;
+        @include respond-min($screen-tablet) {
+            margin: 0 1% 5px 0;
+        }
+
+        @include ie-lte(8) {
+            border: 1px solid color(border);
         }
     }
 
@@ -43,6 +58,7 @@
     }
 }
 
+// legacy (non-grid widths)
 @include respond-min($screen-tablet) {
     @each $variant, $width in $input-widths {
         .form-choice.form__group--#{$variant} > .controls > .control__label {
@@ -51,10 +67,30 @@
     }
 }
 
+// column variations
+@for $i from 1 through 9 {
+    .choice--block.form__control-col--#{$i} > .controls .control__label {
+        @include span($i, false, false, 9);
+
+        // remove right margin to stop the last child in a given 'row'
+        // from wrapping onto the next line because the margin makes the
+        // element exceed the container
+        //
+        // number of columns in grid / column width of choice blocks
+        $nth: 9 / $i;
+
+        &:nth-child(#{$nth}n) {
+            background-color: red;
+            margin-right: 0;
+        }
+    }
+}
+
 .choice--block-inline {
     .controls {
         display: flex;
         flex-wrap: wrap;
+        margin-left: 0; // remove gutter
         width: 100% !important;
     }
 
@@ -62,7 +98,38 @@
         clear: none;
 
         &:last-child {
-            margin: 0 5px 5px 0;
+            margin-right: 0;
+        }
+    }
+
+    // default width
+    > .controls > .control__label {
+        @include span(4, false, false, 12);
+
+        &:nth-child(3n) {
+            margin-right: 0;
+        }
+    }
+}
+
+// column variations based on 12 column grid
+@include respond-min($screen-smaller) {
+    @for $i from 1 through 12 {
+        .choice--block-inline.form__control-col--#{$i} .controls > .control__label {
+            @include span($i, false, false, 12);
+
+            margin-right: 1%; // override default nth-child(3n)
+
+            // remove right margin to stop the last child in a given 'row'
+            // from wrapping onto the next line because the margin makes the
+            // element exceed the container
+            //
+            // number of columns in grid / column width of choice blocks
+            $nth: 12 / $i;
+
+            &:nth-child(#{$nth}n) {
+                margin-right: 0;
+            }
         }
     }
 }

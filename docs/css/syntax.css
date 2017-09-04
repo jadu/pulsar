@@ -185,3 +185,7 @@
 .highlight .o {
   color: #f92672;
 }
+
+.dropzone-example {
+  max-width: 400px;
+}

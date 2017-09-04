@@ -66,7 +66,7 @@ AttributeParserExtension.prototype.parseAttributes = function (attributes, args)
     classes = _.uniq(classes);
 
     if (classes.length > 0) {
-        html.push('class="' + classes.join(' ') + '"');
+        html.push('class="' + classes.join(' ').trim() + '"');
     }
 
     if (usingTag) {

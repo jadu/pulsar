@@ -6,6 +6,8 @@
         form.create()
     }}
 
+    <a data-toggle="modal" href="#test-widths" class="btn">Test Select2 Widths in Modals</a>
+
     {{
         form.select2({
             'id': 'select2-1',
@@ -459,7 +461,181 @@
     }}
 
     {{ form.fieldset_end() }}
-    {{ form.fieldset_start({ 'legend': 'Sizes' }) }}
+    {{ form.fieldset_start({ 'legend': 'Grid Sizes' }) }}
+
+    {{
+        form.select2({
+            'id': 'select2-grid-sizes-1',
+            'label': 'One column',
+            'class': 'form__control-col--1',
+            'name': 'inputSelectColOne',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
+            'id': 'select2-grid-sizes-2',
+            'label': 'Two columns',
+            'class': 'form__control-col--2',
+            'name': 'inputSelectColTwo',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
+            'id': 'select2-grid-sizes-3',
+            'label': 'Three columns',
+            'class': 'form__control-col--3',
+            'name': 'inputSelectColThree',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
+            'id': 'select2-grid-sizes-4',
+            'label': 'Four columns',
+            'class': 'form__control-col--4',
+            'name': 'inputSelectColFour',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
+            'id': 'select2-grid-sizes-5',
+            'label': 'Five columns',
+            'class': 'form__control-col--5',
+            'name': 'inputSelectColFive',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
+            'id': 'select2-grid-sizes-6',
+            'label': 'Six columns',
+            'class': 'form__control-col--6',
+            'name': 'inputSelectColSix',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
+            'id': 'select2-grid-sizes-7',
+            'label': 'Seven columns',
+            'class': 'form__control-col--7',
+            'name': 'inputSelectColSeven',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
+            'id': 'select2-grid-sizes-8',
+            'label': 'Eight columns',
+            'class': 'form__control-col--8',
+            'name': 'inputSelectColEight',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
+            'id': 'select2-grid-sizes-9',
+            'label': 'Nine columns',
+            'class': 'form__control-col--9',
+            'name': 'inputSelectColNine',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'Legacy Sizes' }) }}
 
     {{
         form.select2({
@@ -694,6 +870,332 @@
     {{
         form.end()
     }}
+
+<div class="modal modal--large modal__example" id="test-widths">
+    <div class="modal__dialog">
+        <div class="modal__content">
+            <div class="modal__header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal__title">A simple example</h4>
+            </div>
+            <div class="modal__body">
+            {{ form.fieldset_start({ 'legend': 'Grid Sizes' }) }}
+
+    {{
+        form.select2({
+            'id': 'select2-grid-sizes-1',
+            'label': 'One column',
+            'class': 'form__control-col--1',
+            'name': 'inputSelectColOne',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
+            'id': 'select2-grid-sizes-2',
+            'label': 'Two columns',
+            'class': 'form__control-col--2',
+            'name': 'inputSelectColTwo',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
+            'id': 'select2-grid-sizes-3',
+            'label': 'Three columns',
+            'class': 'form__control-col--3',
+            'name': 'inputSelectColThree',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
+            'id': 'select2-grid-sizes-4',
+            'label': 'Four columns',
+            'class': 'form__control-col--4',
+            'name': 'inputSelectColFour',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
+            'id': 'select2-grid-sizes-5',
+            'label': 'Five columns',
+            'class': 'form__control-col--5',
+            'name': 'inputSelectColFive',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
+            'id': 'select2-grid-sizes-6',
+            'label': 'Six columns',
+            'class': 'form__control-col--6',
+            'name': 'inputSelectColSix',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
+            'id': 'select2-grid-sizes-7',
+            'label': 'Seven columns',
+            'class': 'form__control-col--7',
+            'name': 'inputSelectColSeven',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
+            'id': 'select2-grid-sizes-8',
+            'label': 'Eight columns',
+            'class': 'form__control-col--8',
+            'name': 'inputSelectColEight',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
+            'id': 'select2-grid-sizes-9',
+            'label': 'Nine columns',
+            'class': 'form__control-col--9',
+            'name': 'inputSelectColNine',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'Legacy Sizes' }) }}
+
+    {{
+        form.select2({
+            'id': 'select2-19',
+            'label': 'Mini',
+            'class': 'form__group--mini',
+            'name': 'inputSelectMini',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
+            'id': 'select2-20',
+            'label': 'Small',
+            'class': 'form__group--small',
+            'name': 'inputSelectSmall',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
+            'id': 'select2-21',
+            'label': 'Medium',
+            'class': 'form__group--medium',
+            'name': 'inputSelectMedium',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
+            'id': 'select2-22',
+            'label': 'Regular',
+            'name': 'inputSelectRegular',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
+            'id': 'select2-23',
+            'label': 'Large',
+            'class': 'form__group--large',
+            'name': 'inputSelectLarge',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
+            'id': 'select2-24',
+            'label': 'Extra Large',
+            'class': 'form__group--xlarge',
+            'name': 'inputSelectXLarge',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
+            'id': 'select2-25',
+            'label': 'Full',
+            'class': 'form__group--full',
+            'name': 'inputSelectFull',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+            </div>
+            <div class="modal__footer">
+                <button type="button" class="btn" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn--primary">Save Changes</button>
+            </div>
+        </div><!-- /.modal__content -->
+    </div><!-- /.modal__dialog -->
+</div><!-- /.modal -->
 
 {% endblock tab_content %}
 

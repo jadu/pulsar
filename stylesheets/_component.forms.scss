@@ -23,7 +23,7 @@ fieldset {
         }
     }
 
-    .form__group--inline .form__control:not(.checkbox):not(.radio) {
+    .form__group--inline .form__control {
         max-width: none;
         width: auto;
     }
@@ -103,6 +103,7 @@ fieldset {
         min-height: 68px;
         padding-top: 11px;
         padding-bottom: 11px;
+        resize: vertical;
     }
 
     &.select {
@@ -223,9 +224,9 @@ fieldset {
     // Note: HTML5 says that inputs under a fieldset > legend:first-child won't be
     // disabled if the fieldset is disabled. Due to implementation difficulty,
     // we don't honor that edge case; we style them as disabled anyway.
-    &:not(.checkbox):not(.radio):not(.file)[disabled],
-    &:not(.checkbox):not(.radio):not(.file)[readonly],
-    fieldset[disabled] &:not(.checkbox):not(.radio):not(.file) {
+    &[disabled],
+    &[readonly],
+    fieldset[disabled] & {
         cursor: not-allowed;
         background-color: $input-bg-disabled;
     }
@@ -236,9 +237,15 @@ fieldset {
     line-height: $input-height-base;
 }
 
-.control__label {
+.form__group > .control__label {
     padding-top: 11px;
     padding-right: 10px;
+
+    // hidden labels need to maintain their position and not break the flow of
+    // the form elements
+    &.hide {
+        position: relative;
+    }
 }
 
 .form__group--top {
@@ -290,34 +297,65 @@ fieldset {
     margin-top: $padding-small-vertical;
 }
 
-.form__control:not(.checkbox):not(.radio):not(.file) {
-
-    // form elements should be 100% on mobile
+// default (mobile first) width should be 100%
+.form__control {
     background-color: #fafafa;
     width: 100%;
 }
 
 @include respond-min($screen-smaller) {
 
+// if no label is provided, the width of form__control will be calculated
+// based on the full 12 column grid
+// * flush form groups also use the 12 column grid
+
     // default width
-    .form__group .form__control:not(.checkbox):not(.radio):not(.file) {
-        max-width: 100%;
-        width: 300px;
+    .form__control,
+    .form__group--flush > .control__label + .controls > .form__control {
+        @include span(4, false, false, 12);
+    }
+
+    // column variations
+    @for $i from 1 through 12 {
+        .form__control-col--#{$i} .form__control,
+        .form__group--flush.form__control-col--#{$i} .control__label + .controls > .form__control {
+            @include span($i, false, false, 12);
+        }
+    }
+
+// if a (3 col) label is provided, the width of form__control will be calculated
+// based on the remaining 9 column grid
+
+    // default width
+    .control__label + .controls > .form__control {
+        @include span(4, false, false, 9);
+    }
+
+    // column variations
+    @for $i from 1 through 9 {
+        .form__control-col--#{$i} .control__label + .controls > .form__control {
+            @include span($i, false, false, 9);
+        }
     }
 
     @each $variant, $width in $input-widths {
 
         // 1. allow input-specific widths for fine-grained control
         // 2. allow a class on the main group to control the width of it's controls
-        .form__control:not(.checkbox):not(.radio):not(.file).form__control--#{$variant},
-        .form__group--#{$variant} .form__control:not(.checkbox):not(.radio):not(.file) {
+        .form__control.form__control--#{$variant},
+        .form__group--#{$variant}.form__group--#{$variant} .control__label + .controls > .form__control {
             width: #{$width};
         }
     }
-}
 
+    // Checkboxes and radios don't need to use the grid widths, but we avoid
+    // using :not() because it makes things overly specific and is a pain to
+    // override (trust me ;)
+    .form__control.checkbox,
+    .form__control.radio {
+        width: auto;
+    }
 
-@include respond-min($screen-smaller) {
     .form__group .input-group {
         width: map-get($input-widths, regular);
     }
@@ -328,7 +366,7 @@ fieldset {
         }
     }
 
-    .form__group .input-group .form__control:not(.checkbox):not(.radio):not(.file) {
+    .form__group .input-group .form__control {
         width: 100%;
     }
 }
@@ -431,11 +469,13 @@ fieldset {
 .form-checkbox-inline,
 .form-radio-inline {
     > .controls {
+        margin-left: 0; // remove gutter
         width: 100%;
     }
 
     > .controls > .control__label {
         display: inline-block;
+        width: 100%;
     }
 }
 

@@ -100,3 +100,17 @@ If a select element's options are being loaded or updated, the placeholder shoul
 
 <p data-height="80" data-theme-id="24005" data-slug-hash="vNXdox" data-embed-version="2" data-default-tab="result" data-user="stanton" class='codepen'>See the Pen <a href='http://codepen.io/stanton/pen/vNXdox/'>vNXdox</a> by Paul Stanton (<a href='http://codepen.io/stanton'>@stanton</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
 <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+## Widths
+
+The main input can use 1-9 columns of the 12 column grid (where 3 are used for the main label), the width can be modified by passing the required column class via the `class` attribute.
+
+* `.form__content--col-1`
+* `.form__content--col-2`
+* `.form__content--col-3`
+* `.form__content--col-4` (default)
+* `.form__content--col-5`
+* `.form__content--col-6`
+* `.form__content--col-7`
+* `.form__content--col-8`
+* `.form__content--col-9`

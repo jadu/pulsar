@@ -1,6 +1,12 @@
-<div class="btn__group">
-    <button class="btn"><i class="icon-align-left"></i></button>
-    <button class="btn"><i class="icon-align-center"></i></button>
-    <button class="btn"><i class="icon-align-right"></i></button>
-    <button class="btn"><i class="icon-align-justify"></i></button>
+<div class="form__group form__button-group">
+    <div class="controls btn__group">
+        <input name="bands" type="checkbox" class="form__control checkbox" />
+        <label class="control__label"><i class="icon-align-left"></i></label>
+        <input name="bands" type="checkbox" class="form__control checkbox" />
+        <label class="control__label"><i class="icon-align-center"></i></label>
+        <input name="bands" type="checkbox" class="form__control checkbox" />
+        <label class="control__label"><i class="icon-align-right"></i></label>
+        <input name="bands" type="checkbox" class="form__control checkbox" />
+        <label class="control__label"><i class="icon-align-justify"></i></label>
+    </div>
 </div>

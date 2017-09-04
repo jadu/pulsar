@@ -92,6 +92,10 @@
     padding-top: 0;
 }
 
+.input-group-addon + .form__control {
+    margin-left: 0;
+}
+
 // Reset rounded corners
 .input-group:not(.has-btn-appended) .form__control:not(:last-child),
 .input-group-addon:first-child,

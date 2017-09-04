@@ -1,10 +1,11 @@
 {{
     html.button_group({
-        buttons: [
-            html.button({ label: html.icon('align-left') }),
-            html.button({ label: html.icon('align-center') }),
-            html.button({ label: html.icon('align-right') }),
-            html.button({ label: html.icon('align-justify') })
+        'type': 'checkbox',
+        'items': [
+            { label: html.icon('align-left') },
+            { label: html.icon('align-center') },
+            { label: html.icon('align-right') },
+            { label: html.icon('align-justify') )
         ]
     })
 }}

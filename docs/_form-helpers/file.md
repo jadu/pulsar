@@ -39,3 +39,19 @@ value       | string | Specifies the value of the input
 data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
 Any other options not listed here will be applied to the input.
+
+## Widths
+
+The file input can use 1-9 columns of the 12 column grid (where 3 are used for the main label), the width can be modified by passing the required column class via the `class` attribute.
+
+Because the file attribute is mostly styled by the browser, using small widths will likely cause unwanted visual styling by cuttung off either the filename, or part of the 'browse' button.
+
+* `.form__content--col-1`
+* `.form__content--col-2`
+* `.form__content--col-3`
+* `.form__content--col-4` (default)
+* `.form__content--col-5`
+* `.form__content--col-6`
+* `.form__content--col-7`
+* `.form__content--col-8`
+* `.form__content--col-9`

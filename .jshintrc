@@ -1,4 +1,7 @@
 {
+    "esversion": 6,
+    "asi": true,
+    "browser": true,
     "curly": true,
     "eqeqeq": true,
     "expr": true,
@@ -14,7 +17,7 @@
     "noempty": true,
     "nonew": true,
     "plusplus": false,
-    "strict": true,
+    "strict": false,
     "trailing": true,
     "undef": true,
     "unused": true,

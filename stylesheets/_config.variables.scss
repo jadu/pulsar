@@ -34,6 +34,7 @@ $font-size-xlarge:                    ceil($font-size-base * 1.5) !default;
 $font-size-large:                     ceil($font-size-base * 1.25) !default; // ~18px
 $font-size-small:                     ceil($font-size-base * .85) !default; // ~12px
 $line-height-base:                    24px !default;
+$line-height-medium:                  ceil($line-height-base * 1.25) !default;
 $line-height-large:                   ceil($line-height-base * 2) !default;
 $line-height-small:                   1.5 !default;
 $line-height-computed:                $line-height-base !default;
@@ -51,6 +52,7 @@ $tab-column-width-tablet:             133px !default;
 $tab-column-width-mobile:             250px !default;
 $sidebar-column-width:                200px !default;
 $sidebar-column-width-tablet:         133px !default;
+
 
 // -----------------------------------------------------------------------------
 //  Breakpoints
@@ -115,9 +117,11 @@ $nav-primary-width:                   75px;
 //  Forms
 // -----------------------------------------------------------------------------
 
-$form-label-column-width:             200px !default;
-$controls-width:                      30%;
+// $form-label-column-width:             200px !default;
+// $controls-width:                      30%;
 $controls-max-width:                  300px;
+$form-label-cols:                     3 !default;
+$form-control-cols:                   9 !default;
 $input-border-radius:                 $border-radius !default;
 $input-height-base:                   $line-height-base * 2 !default;
 
@@ -203,8 +207,8 @@ $popover-arrow-outer-width:           ($popover-arrow-width + 1) !default;
 
 $zindex-tour:                         1000 !default;
 $zindex-footer:                       1020 !default;
-$zindex-tooltip:                      1040 !default;
 $zindex-flash:                        1050 !default;
+$zindex-tooltip:                      1055 !default;
 $zindex-sticky:                       1060 !default;
 $zindex-dropdown:                     1060 !default;
 $zindex-nav-secondary:                1070 !default;

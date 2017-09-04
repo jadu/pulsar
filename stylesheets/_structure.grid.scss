@@ -1,33 +1,44 @@
 $columns:       12;
 $gutter_pc:     1;
 
-%column {
+.g-col {
     background-clip: padding-box !important;
     box-sizing: border-box;
     display: block;
     float: left;
     padding: 0;
-}
 
-@mixin column($first: false) {
-    @if $first {
+    @include respond-min($screen-phone) {
         margin-left: 0;
     }
-    @else {
-        @include respond-min($screen-phone) {
-            margin-left: 0;
-        }
 
-        @include respond-min($screen-tablet) {
-            margin-left: percentage($gutter_pc / 100);
-        }
+    @include respond-min($screen-tablet) {
+        margin-left: percentage($gutter_pc / 100);
     }
+
 }
 
-@mixin span($num, $force: false, $first: false) {
+.g-col--first {
+    margin-left: 0;
+}
+
+/**
+ * Creates column styling and assigns a set of responsive widths
+ *
+ * @param  {int}  $num                   The number of columns the width should span
+ * @param  {bool} $force:  false         If true, prevents the width from becoming 100% at smaller screen sizes
+ * @param  {bool} $first:  false         If true, removes the left hand column margin
+ * @param  {bool} $important:  false     If true, adds the !important declaration
+ */
+@mixin span($num, $force: false, $gutter: false, $columns: $columns, $important: false) {
     $one_col: (100% - ($gutter_pc * ($columns - 1))) / $columns;
     $span_width: ($one_col * ($num)) + ($gutter_pc * ($num - 1));
-    @include column($first);
+
+    @if $gutter == true {
+        @include respond-min($screen-tablet) {
+            @include gutter(true);
+        }
+    }
 
     @if $force == false {
         @include respond-min($screen-phone) {
@@ -35,32 +46,53 @@ $gutter_pc:     1;
         }
     }
     @else {
-        width: $span_width;
+        @if $important == false {
+            width: $span_width;
+        }
+        @else {
+            width: $span_width !important;
+        }
     }
 
     @include respond-min($screen-tablet) {
-        width: $span_width;
+        @if $important == false {
+            width: $span_width;
+        }
+        @else {
+            width: $span_width !important;
+        }
     }
 
     @include respond-min($screen-desktop) {
-        width: $span_width;
+        @if $important == false {
+            width: $span_width;
+        }
+        @else {
+            width: $span_width !important;
+        }
     }
 }
 
+// indent an element by a given number of columns
 @mixin push($num) {
     $one_col: (100% - ($gutter_pc * ($columns - 1))) / $columns;
     margin-left: ($one_col * $num) + ($gutter_pc * ($num));
 }
 
-@for $i from 1 through 12 {
-    .g-col--#{$i} {
-        @extend %column;
-        @include span($i);
+// add (or suppress) the left hand gutter on an element
+@mixin gutter($add_gutter: true) {
+    @if $add_gutter == true {
+        margin-left: percentage($gutter_pc / 100);
+    }
+    @else {
+        margin-left: 0;
     }
 }
 
-.g-col--first {
-    margin-left: 0;
+@for $i from 1 through 12 {
+    .g-col--#{$i}.g-col--#{$i} {
+        @include span($i);
+    }
 }
 
 @for $i from 1 through 12 {
@@ -72,6 +104,6 @@ $gutter_pc:     1;
 }
 
 .g-col--example {
-    background-color: #efefef;
+    background-color: pink;
     text-align: center;
 }

@@ -174,7 +174,91 @@
     }}
 
     {{ form.fieldset_end() }}
-    {{ form.fieldset_start({ 'legend': 'Sizes' }) }}
+    {{ form.fieldset_start({ 'legend': 'Grid Sizes' }) }}
+
+    {{
+        form.file({
+            'id': 'file-1-col',
+            'label': 'One column',
+            'class': 'form__control-col--1',
+            'name': 'inputFileMini',
+        })
+    }}
+
+    {{
+        form.file({
+            'id': 'file-2-col',
+            'label': 'Two columns',
+            'class': 'form__control-col--2',
+            'name': 'inputFileSmall'
+        })
+    }}
+
+    {{
+        form.file({
+            'id': 'file-3-col',
+            'label': 'Three columns',
+            'class': 'form__control-col--3',
+            'name': 'inputFileMedium'
+        })
+    }}
+
+    {{
+        form.file({
+            'id': 'file-4-col',
+            'label': 'Four columns',
+            'class': 'form__control-col--4',
+            'name': 'inputFileRegular'
+        })
+    }}
+
+    {{
+        form.file({
+            'id': 'file-5-col',
+            'label': 'Five columns',
+            'class': 'form__control-col--5',
+            'name': 'inputFileLarge'
+        })
+    }}
+
+    {{
+        form.file({
+            'id': 'file-6-col',
+            'label': 'Six columns',
+            'class': 'form__control-col--6',
+            'name': 'inputFileXLarge'
+        })
+    }}
+
+    {{
+        form.file({
+            'id': 'file-7-col',
+            'label': 'Seven columns',
+            'class': 'form__control-col--7',
+            'name': 'inputFileFull'
+        })
+    }}
+
+    {{
+        form.file({
+            'id': 'file-8-col',
+            'label': 'Eight columns',
+            'class': 'form__control-col--8',
+            'name': 'inputFileFull'
+        })
+    }}
+
+    {{
+        form.file({
+            'id': 'file-9-col',
+            'label': 'Nine columns',
+            'class': 'form__control-col--9',
+            'name': 'inputFileFull'
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'Legacy Sizes' }) }}
 
     {{
         form.file({

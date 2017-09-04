@@ -2,9 +2,8 @@
 	.masterswitch-control {
 		> .control__label,
 		> .controls {
+			@include span($form-label-cols);
 			display: table-cell;
-			min-width: $label-column-width;
-			width: $label-column-width;
 		}
 	}
 }

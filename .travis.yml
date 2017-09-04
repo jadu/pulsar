@@ -22,8 +22,6 @@ script:
   - phpunit
   - npm test
   - npm run coverage
-  - snyk auth $SNYK_TOKEN
-  - snyk monitor
 
 after_success:
   - grunt deploy

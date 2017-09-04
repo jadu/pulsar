@@ -195,10 +195,10 @@
 
 .tab__container.has-sidebar .tab__content {
     @include respond-min($screen-phone) {
-        @include span(12, false, true);
+        @include span(12);
     }
 
     @include respond-min($screen-desktop) {
-        @include span(9, false, true);
+        @include span(9);
     }
 }

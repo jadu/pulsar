@@ -11,7 +11,7 @@ describe('DisableUi component', function() {
 		this.$html = $('<html></html>');
 		this.$body = $('<body></body>').appendTo(this.$html);
 		this.$standardForm = $(
-			'<div data-disable-ui="true">' +
+			'<div class="qa-container" data-disable-ui="true">' +
 			'	<label for="inputText" class="control__label text-label">Text input</label>' +
 			'	<input id="inputText" type="text" class="form__control">' +
 			'	<a href="http://google.com">External link</a>' +
@@ -20,6 +20,7 @@ describe('DisableUi component', function() {
 	        '</div>'
         ).appendTo(this.$body);
 
+		this.$target = this.$body.find('.qa-container');
 		this.$link = this.$body.find('a');
 		this.$label = this.$body.find('.text-label');
 		this.$button = this.$body.find('.btn--primary');
@@ -31,7 +32,52 @@ describe('DisableUi component', function() {
 	describe('on init', function() {
 
 		beforeEach(function() {
+			sinon.spy(this.disableUi, 'disable');
+		});
+
+		it('should call the disable method', function() {
 			this.disableUi.init();
+			expect(this.disableUi.disable).to.have.been.calledOnce;
+		});
+	});
+
+	describe('the ‘enable’ method', function() {
+
+		beforeEach(function() {
+			this.disableUi.init();
+			this.disableUi.enable(this.$target);
+		});
+
+		it('should unwrap the div.u-ui-disabled from the container', function() {
+			expect(this.$standardForm.parent().hasClass('u-ui-disabled')).to.be.false;
+		});
+
+		it('should remove the u-cursor-not-allowed class from form labels', function() {
+			expect(this.$label.hasClass('u-cursor-not-allowed')).to.be.false;
+		});
+
+		it('should remove the disabled attribute from buttons', function() {
+			expect(this.$button.attr('disabled')).to.be.undefined;
+		});
+
+		it('should remove the disabled attribute from inputs', function() {
+			expect(this.$textInput.attr('disabled')).to.be.undefined;
+		});
+
+		it('should remove the disabled attribute from selects', function() {
+			expect(this.$select.attr('disabled')).to.be.undefined;
+		});
+
+		it('should remove the disabled class from form inputs', function() {
+			expect(this.$textInput.hasClass('disabled')).to.be.false;
+		});
+	});
+
+	describe('the ‘disable’ method', function() {
+
+		beforeEach(function() {
+			this.disableUi.init();
+			this.disableUi.disable(this.$target);
 		});
 
 		it('should prevent default on links', function() {
@@ -82,4 +128,5 @@ describe('DisableUi component', function() {
 			expect(this.$standardForm.parent().hasClass('u-ui-disabled')).to.be.true;
 		});
 	});
+
 });

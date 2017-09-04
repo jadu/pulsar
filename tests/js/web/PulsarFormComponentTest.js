@@ -10,58 +10,57 @@ describe('Pulsar Form Component - Select2 elements', function() {
     beforeEach(function() {
         this.$html = $('<div id="html"></div>').appendTo('html');
         this.$body = $('<div id="body"></div>').appendTo(this.$html);
-        $('\
-<form class="form">\
-    <div class="form__group form-choice choice--block">\
-        <label class="control__label">Radio Test</label>\
-        <div class="controls">\
-            <label class="control__label">\
-                <input value="foo" name="foo" type="radio" class="form__control qa-foo radio" />Foo\
-            </label>\
-            <label class="control__label">\
-                <input value="bar" name="foo" type="radio" class="form__control radio" />Bar\
-            </label>\
-            <label class="control__label">\
-                <input value="baz" name="foo" type="radio" class="form__control radio" checked />Baz\
-            </label>\
+        this.$markup = $('\
+<div id="tab-foo">\
+    <form class="form">\
+        <select class="js-select2">\
+            <option>foo</option>\
+            <option>bar</option>\
+            <option>baz</option>\
+        </select>\
+        <select class="js-select2" data-html="true">\
+            <option>foo</option>\
+            <option>bar</option>\
+            <option>baz</option>\
+        </select>\
+    \
+        <div class="form__group form-choice choice--block">\
+            <label class="control__label">Radio Test</label>\
+            <div class="controls">\
+                <label class="control__label">\
+                    <input value="foo" name="foo" type="radio" class="form__control qa-foo radio">Foo</label>\
+                <label class="control__label">\
+                    <input value="bar" name="foo" type="radio" class="form__control radio">Bar</label>\
+                <label class="control__label">\
+                    <input value="baz" name="foo" type="radio" class="form__control radio" checked>Baz</label>\
+            </div>\
         </div>\
-    </div>\
-\
-    <div class="form__group form-choice choice--block">\
-        <label class="control__label">Checkbox Test</label>\
-        <div class="controls">\
-            <label class="control__label">\
-                <input value="foo" name="foo" type="checkbox" class="form__control qa-foo checkbox" />Foo\
-            </label>\
-            <label class="control__label">\
-                <input value="bar" name="foo" type="checkbox" class="form__control checkbox" />Bar\
-            </label>\
-            <label class="control__label">\
-                <input value="baz" name="foo" type="checkbox" class="form__control checkbox" checked />Baz\
-            </label>\
+    \
+        <div class="form__group form-choice choice--block">\
+            <label class="control__label">Checkbox Test</label>\
+            <div class="controls">\
+                <label class="control__label">\
+                    <input value="foo" name="foo" type="checkbox" class="form__control qa-foo checkbox">Foo</label>\
+                <label class="control__label">\
+                    <input value="bar" name="foo" type="checkbox" class="form__control checkbox">Bar</label>\
+                <label class="control__label">\
+                    <input value="baz" name="foo" type="checkbox" class="form__control checkbox" checked>Baz</label>\
+            </div>\
         </div>\
-    </div>\
-</form>\
-\
-<input data-datepicker="true" type="text" />\
+    </form>\
+    \
+    <input data-datepicker="true" type="text" />\
+</div>\
+<a href="#tab-foo" data-toggle="tab">tab</a>\
+<a href="#modal-foo" data-toggle="modal">modal</a>\
+<div class="modal" id="modal-foo">\
+    <select class="js-select2">\
+        <option>foo</option>\
+        <option>bar</option>\
+        <option>baz</option>\
+    </select>\
+</div>\
 ').appendTo(this.$body);
-        this.$form = this.$html.find('.form');
-
-        this.$nonHTMLSelect = $('\
-            <select class="js-select2">\
-                <option>foo</option>\
-                <option>bar</option>\
-                <option>baz</option>\
-            </select>'
-        );
-
-        this.$withHTMLSelect = $('\
-            <select class="js-select2" data-html="true">\
-                <option>foo</option>\
-                <option>bar</option>\
-                <option>baz</option>\
-            </select>'
-        );
 
         this.$radioFoo = this.$html.find('.radio[value="foo"]');
         this.$radioBar = this.$html.find('.radio[value="bar"]');
@@ -77,11 +76,13 @@ describe('Pulsar Form Component - Select2 elements', function() {
         this.$checkLabelBaz = this.$checkBaz.closest('.control__label');
 
         this.$datepicker = this.$html.find('[data-datepicker]');
+        this.$tabToggle = this.$html.find('[data-toggle="tab"]');
+        this.$modalToggle = this.$html.find('[data-toggle="modal"]');
+        this.$modal = this.$html.find('#modal-foo');
 
         this.pulsarForm = new PulsarFormComponent(this.$html);
 
         $.fn.select2 = sinon.stub();
-
     });
 
     afterEach(function() {
@@ -92,15 +93,12 @@ describe('Pulsar Form Component - Select2 elements', function() {
     describe('Basic select2 elements', function() {
 
         beforeEach(function() {
-            this.$nonHTMLSelect.appendTo(this.$form);
+            this.pulsarForm.initSelect2 = sinon.stub();
+            this.pulsarForm.init();
         });
 
-        it('should call the select2 plugin on the <select> with no options', function() {
-            this.pulsarForm.init();
-
-            expect($.fn.select2).to.have.been.calledOnce;
-            expect($.fn.select2).to.have.been.calledOn(sinon.match.jQuery(this.$nonHTMLSelect));
-            expect($.fn.select2.args[0]).to.have.length(0);
+        it('should call the select2 plugin', function() {
+            expect(this.pulsarForm.initSelect2).to.have.been.called;
         });
 
     });
@@ -108,40 +106,44 @@ describe('Pulsar Form Component - Select2 elements', function() {
     describe('Select2 elements with HTML', function() {
 
         beforeEach(function() {
-            this.$withHTMLSelect.appendTo(this.$form);
-        });
-
-        it('should call the select2 plugin on the <select> with formatting options', function() {
+            this.pulsarForm.initSelect2 = sinon.stub();
             this.pulsarForm.init();
 
-            expect($.fn.select2).to.have.been.calledOnce;
-            expect($.fn.select2).to.have.been.calledOn(sinon.match.jQuery(this.$withHTMLSelect));
-            expect($.fn.select2).to.have.been.calledWith(sinon.match({
-                templateResult: sinon.match.any,
-                templateSelection: sinon.match.any
-            }));
         });
 
-        it('should format result options with a <span>', function () {
-            var $result;
+        it('should call the select2 plugin', function() {
+            expect(this.pulsarForm.initSelect2).to.have.been.called;
+        });
 
+    });
+
+    describe('Changing to a tab that contains select2 elements', function() {
+
+        beforeEach(function() {
             this.pulsarForm.init();
-            $result = $.fn.select2.args[0][0].templateResult({text: 'My option'});
-
-            expect($result.is('span')).to.be.true;
-            expect($result.text()).to.equal('My option');
+            this.pulsarForm.initSelect2 = sinon.stub();
+            this.$tabToggle.trigger('shown.bs.tab');
         });
 
-        it('should format selection options with a <span>', function () {
-            var $result;
+        it('Should trigger the select2 init method', function() {
+            expect(this.pulsarForm.initSelect2).to.have.been.called;
+        });
+    });
 
+    describe('Opening a modal that contains select2 elements', function() {
+
+        beforeEach(function() {
             this.pulsarForm.init();
-            $result = $.fn.select2.args[0][0].templateSelection({text: 'My option'});
-
-            expect($result.is('span')).to.be.true;
-            expect($result.text()).to.equal('My option');
+            this.pulsarForm.initSelect2 = sinon.stub();
+            this.$modalToggle.click();
+            this.$modal.trigger('shown.bs.modal');
         });
 
+        it('Should trigger the select2 init method', function() {
+            setTimeout(function() {
+                expect(this.pulsarForm.initSelect2).to.have.been.called;
+            }, 500);
+        });
     });
 
     describe('Clicking a choice block radio input', function() {

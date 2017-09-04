@@ -37,7 +37,12 @@ describe('MasterSwitch component', function() {
 		this.$contentInput = this.$html.find('.masterswitch-content input');
 		this.$contentSelect = this.$html.find('.masterswitch-content select');
 
-		this.masterSwitch = new MasterSwitchComponent(this.$html);
+		this.disableUi = {
+            enable: sinon.stub(),
+            disable: sinon.stub()
+        };
+
+		this.masterSwitch = new MasterSwitchComponent(this.$html, this.disableUi);
 
 	});
 
@@ -55,24 +60,8 @@ describe('MasterSwitch component', function() {
 			expect(this.$content.hasClass('is-disabled')).to.be.true;
 		});
 
-		it('should prevent any links from being clicked', function() {
-			var clickEvent = $.Event('click');
-
-			this.$contentLink.trigger(clickEvent);
-
-			expect(clickEvent.isDefaultPrevented()).to.be.true;
-		});
-
-		it('should add the disabled attribute to buttons', function() {
-			expect(this.$contentButton.attr('disabled')).to.equal('disabled');
-		});
-
-		it('should add the disabled attribute to inputs', function() {
-			expect(this.$contentInput.attr('disabled')).to.equal('disabled');
-		});
-
-		it('should add the disabled attribute to selects', function() {
-			expect(this.$contentSelect.attr('disabled')).to.equal('disabled');
+		it('should call the ‘disable ui’ method', function() {
+			expect(this.disableUi.disable).to.have.been.calledOnce;
 		});
 
 	});
@@ -114,31 +103,15 @@ describe('MasterSwitch component', function() {
 
 		beforeEach(function() {
 			this.masterSwitch.init();
-			this.$control.click();
+			this.$control.click().trigger('change');
 		});
 
 		it('should enable the content container', function() {
 			expect(this.$html.find('.masterswitch-content').hasClass('is-disabled')).to.be.false;
 		});
 
-		it('should allow any links to be clicked', function() {
-			var clickEvent = $.Event('click');
-
-			this.$contentLink.trigger(clickEvent);
-
-			expect(clickEvent.isDefaultPrevented()).to.be.false;
-		});
-
-		it('should remove the disabled attribute from buttons', function() {
-			expect(this.$contentButton.attr('disabled')).to.be.undefined;
-		});
-
-		it('should remove the disabled attribute from inputs', function() {
-			expect(this.$contentInput.attr('disabled')).to.be.undefined;
-		});
-
-		it('should remove the disabled attribute from selects', function() {
-			expect(this.$contentSelect.attr('disabled')).to.be.undefined;
+		it('should call the ‘enable ui’ method', function() {
+			expect(this.disableUi.enable).to.have.been.calledOnce;
 		});
 
 	});
@@ -148,23 +121,15 @@ describe('MasterSwitch component', function() {
 		beforeEach(function() {
 			this.masterSwitch.init();
 			this.$control.click();
-			this.$control.click();
+			this.$control.click().trigger('change');
 		});
 
 		it('should disable the content container', function() {
 			expect(this.$html.find('.masterswitch-content').hasClass('is-disabled')).to.be.true;
 		});
 
-		it('should add the disabled attribute to buttons', function() {
-			expect(this.$contentButton.attr('disabled')).to.equal('disabled');
-		});
-
-		it('should add the disabled attribute to inputs', function() {
-			expect(this.$contentInput.attr('disabled')).to.equal('disabled');
-		});
-
-		it('should add the disabled attribute to selects', function() {
-			expect(this.$contentSelect.attr('disabled')).to.equal('disabled');
+		it('should call the ‘disable ui’ method', function() {
+			expect(this.disableUi.disable).to.have.been.called;
 		});
 
 	});

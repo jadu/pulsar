@@ -15,7 +15,6 @@ The Pulsar framework is included in the following Jadu products:
 | Jadu CMS     | 6                    |
 | Jadu XFP     | 6                    |
 | Quantum      | 3                    |
-| MoJ ETFees   | 2                    |
 
 ## UI Goals
 * Improve code quality and consistency

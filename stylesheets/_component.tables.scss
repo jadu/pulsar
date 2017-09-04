@@ -121,6 +121,7 @@
 .table-container {
     margin-bottom: 24px;
     overflow-x: auto;
+    position: relative;
 
     .table {
         margin-bottom: 0;
@@ -212,7 +213,63 @@ td.row__actions {
     width: 10px;
 }
 
+.table--horizontal {
+    width: 100%;
+
+    th,
+    td {
+        white-space: nowrap;
+    }
+}
+
 .row--final td {
     border-top: 2px solid color(border);
     border-bottom: 2px solid color(border);
+}
+
+.table--overflow-left,
+.table--overflow-right {
+    &.table-container {
+        overflow-x: auto;
+
+        &::-webkit-scrollbar {
+            -webkit-appearance: none;
+            width: 7px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background-color: color(background, light);
+            border-bottom: 1px solid color(border);
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: color(grey, lightest);
+            border-bottom: 1px solid color(border);
+        }
+    }
+
+    td a,
+    th a {
+        position: relative;
+        z-index: 2;
+    }
+}
+
+.table--overflow-left {
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0) 97%, rgba(255, 255, 255, 1) 100%),
+                linear-gradient(180deg, rgba(255, 255, 255, 0) 97%, rgba(255, 255, 255, 1) 100%),
+                linear-gradient(270deg, rgba(255, 255, 255, 0) 99%, rgba(0, 0, 0, .1) 100%);
+}
+
+.table--overflow-right {
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0) 97%, rgba(255, 255, 255, 1) 100%),
+                linear-gradient(180deg, rgba(255, 255, 255, 0) 97%, rgba(255, 255, 255, 1) 100%),
+                linear-gradient(90deg, rgba(255, 255, 255, 0) 99%, rgba(0, 0, 0, .1) 100%);
+}
+
+.table--overflow-right.table--overflow-left {
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0) 97%, rgba(255, 255, 255, 1) 100%),
+                linear-gradient(180deg, rgba(255, 255, 255, 0) 97%, rgba(255, 255, 255, 1) 100%),
+                linear-gradient(90deg, rgba(255, 255, 255, 0) 99%, rgba(0, 0, 0, .1) 100%),
+                linear-gradient(270deg, rgba(255, 255, 255, 0) 99%, rgba(0, 0, 0, .1) 100%);
 }

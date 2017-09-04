@@ -6,24 +6,19 @@
  * give us great, predictable, cross browser columnar layouts.
  */
 
-$label-column-width:   25%;
-$control-column-width: 75%;
-
 // each 'block' of a form, usually consisting of a label and one or more inputs
 .form__group {
-    display: table;
-    table-layout: fixed; // prevent resizable textareas from causing the column to grow in width
-
+    margin-bottom: .5em;
     width: 100%;
 
     // the main label, usually placed in the left hand column
     > .control__label {
-        width: $label-column-width;
+        @include span($form-label-cols);
         word-wrap: break-word;
     }
 
     .help-block {
-        margin-top: .675em;
+        margin: .675em 0 0; // magic number for top
     }
 
     .help-block ~ .help-block {
@@ -34,19 +29,31 @@ $control-column-width: 75%;
 // all labels, regardless of their placement
 .control__label,
 .controls {
-    display: table-cell;
+    display: inline-block;
     vertical-align: top;
+}
+
+// stop .hide class adding -1px margin which misaligns form groups with
+// hidden labels
+.control__label.hide {
+    margin: 0;
 }
 
 // the container around one or more form inputs
 .controls {
-    width: $control-column-width;
+    @include span($form-control-cols + $form-label-cols, false, false);
+    position: relative;
 
     // stack inputs by default
     > .form__control,
     > .control__label {
         display: block; // test this moar!
     }
+}
+
+// Add a gutter between form labels and controls
+.control__label + .controls {
+    @include span($form-control-cols, false, true);
 }
 
 // inputs can be aligned next to each other if required
@@ -74,52 +81,47 @@ $control-column-width: 75%;
 }
 
 // radio/checkboxes before labels
-.control__label--left {
-    text-align: right;
+// .control__label--left {
+//     text-align: right;
 
-    > .form__control {
-        float: right;
-        margin-left: 15px;
-        margin-right: 0;
-    }
-}
+//     > .form__control {
+//         float: right;
+//         margin-left: 15px;
+//         margin-right: 0;
+//     }
+// }
 
 .form__group--top {
-  > .control__label,
-  .controls {
-    display: block;
-    min-width: 100%;
-  }
+    > .control__label {
+        @include span(12);
+    }
 
-  // Create a 'fake' label to fill the gap left by a missing label element which removes the need to leave empty elements in the markup
-  .controls::before {
-    content: '\00a0';
-    display: table-cell;
-    float: left;
-    width: $label-column-width;
-  }
+    > .control__label,
+    .controls {
+        display: block;
+    }
 
-  .help-block {
-    margin-left: $label-column-width;
-  }
-}
-
-// control group inside first column (normally used for control labels)
-.controls:first-child {
-    display: table;
-    width: $label-column-width;
-
-    > .control__label--left {
-        clear: right;
-        float: right;
+    .controls {
+        @include respond-min($screen-tablet) {
+            @include push($form-label-cols);
+        }
     }
 }
 
-.form__group--indent {
-    width: $control-column-width;
+// // control group inside first column (normally used for control labels)
+// .controls:first-child {
+//     @include span($form-label-cols);
+//     display: table;
 
+//     > .control__label--left {
+//         clear: right;
+//         float: right;
+//     }
+// }
+
+.form__group--indent {
     @include respond-min($screen-tablet) {
-        margin-left: $label-column-width;
+        @include push($form-label-cols);
     }
 }
 
@@ -127,20 +129,17 @@ $control-column-width: 75%;
     margin-left: 0;
 
     .controls {
-        display: table-row;
+        margin-left: 0;
+        width: 100%;
 
         &::before {
             display: none;
         }
     }
-
-    .help-block {
-        margin-left: 0;
-    }
 }
 
 .controls > .textarea {
-  max-width: 99%; // take into account any textarea border which might look like it’s overlapping at 100% width
+    max-width: 99%; // take into account any textarea border which might look like it’s overlapping at 100% width
 }
 
 // at narrow viewports, forms collapse into a single column view
@@ -157,41 +156,28 @@ $control-column-width: 75%;
             min-width: 100%;
         }
 
-       .controls::before {
+        .controls::before {
             display: none;
-       }
+        }
 
-      .help-block {
-        margin-left: 0;
-      }
+        .help-block {
+            margin-left: 0;
+        }
+    }
+
+    .form__group.form-choice > .control__label {
+        display: inline-block;
     }
 }
 
 .fieldset {
-  border: 0;
-  margin: 0;
-  padding: 0;
+    border: 0;
+    margin: 0;
+    padding: 0;
 
-  .legend {
-    border-bottom: 1px solid color(gray);
-    margin: 0 0 .5em -20px;
-    padding: 0 20px;
-  }
+    .legend {
+        border-bottom: 1px solid color(gray);
+        margin: 0 0 .5em -20px;
+        padding: 0 20px;
+    }
 }
-
-
-// DEBUG STYLES
-
-.form__group {
-  margin-bottom: .5em;
-}
-
-
-
-// .form__group {
-//     outline: 1px solid red;
-// }
-
-// .controls {
-//     outline: 1px solid blue;
-// }

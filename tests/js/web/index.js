@@ -4,16 +4,13 @@
 var $ = require('jquery'),
     chai = require('chai'),
     sinon = require('sinon'),
-    sinonChai = require('sinon-chai'),
-    sinonjQuery = require('sinon-jquery').default;
+    sinonChai = require('sinon-chai');
 
 // Expose jQuery globals
 window.$ = window.jQuery = $;
 
 // Load Sinon-Chai
 chai.use(sinonChai);
-
-sinonjQuery.useWith(sinon, $);
 
 mocha.timeout(2000);
 
