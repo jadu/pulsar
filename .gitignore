@@ -33,3 +33,7 @@ pulsar.zip
 /validation-report.json
 /tests/validation/error_reports/*
 /tests/validation/html_output/*
+/stylesheets/pulsar-ie7-theme-*
+/stylesheets/pulsar-ie8-theme-*
+/stylesheets/pulsar-ie9-theme-*
+/stylesheets/pulsar-theme-*
