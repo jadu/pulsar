@@ -128,9 +128,33 @@ module.exports = function(grunt) {
         },
 
         replace: {
-            example: {
+            pulsar: {
                 src: ['stylesheets/pulsar.scss'],
                 dest: 'stylesheets/pulsar-theme-projector.scss',
+                replacements: [{
+                    from: 'palette.base',
+                    to: 'palette.projector'
+                }]
+            },
+            pulsar_ie9: {
+                src: ['stylesheets/pulsar-ie9.scss'],
+                dest: 'stylesheets/pulsar-ie9-theme-projector.scss',
+                replacements: [{
+                    from: 'palette.base',
+                    to: 'palette.projector'
+                }]
+            },
+            pulsar_ie8: {
+                src: ['stylesheets/pulsar-ie8.scss'],
+                dest: 'stylesheets/pulsar-ie8-theme-projector.scss',
+                replacements: [{
+                    from: 'palette.base',
+                    to: 'palette.projector'
+                }]
+            },
+            pulsar_ie7: {
+                src: ['stylesheets/pulsar-ie7.scss'],
+                dest: 'stylesheets/pulsar-ie7-theme-projector.scss',
                 replacements: [{
                     from: 'palette.base',
                     to: 'palette.projector'
@@ -464,7 +488,10 @@ module.exports = function(grunt) {
                 files: {
                     'css/pulsar-ie7.min.css': 'css/pulsar-ie7.css',
                     'css/pulsar-ie8.min.css': 'css/pulsar-ie8.css',
-                    'css/pulsar-ie9.min.css': 'css/pulsar-ie9.css'
+                    'css/pulsar-ie9.min.css': 'css/pulsar-ie9.css',
+                    'css/pulsar-ie7-theme-projector.min.css': 'css/pulsar-ie7-theme-projector.css',
+                    'css/pulsar-ie8-theme-projector.min.css': 'css/pulsar-ie8-theme-projector.css',
+                    'css/pulsar-ie9-theme-projector.min.css': 'css/pulsar-ie9-theme-projector.css'
                 }
             }
         },
