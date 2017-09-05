@@ -100,6 +100,12 @@ $dropzone-icon-rotation: 30deg;
     margin-top: 0;
     padding: 0 1em;
     position: relative;
+
+    @include respond-max($screen-small) {
+        + .popover {
+            left: auto !important;
+        }
+    }
 }
 
 /**

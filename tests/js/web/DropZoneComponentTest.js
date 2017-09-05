@@ -76,6 +76,7 @@ describe('DropZoneComponent', () => {
             instanceManager.getInstance.returns([
                 { id: 0, input: {}, options: {}, browse: browseNodeInstance }
             ]);
+            instanceManager.getSupported.returns(true);
         });
 
         it('should build the base component options', () => {
@@ -102,6 +103,20 @@ describe('DropZoneComponent', () => {
             dropZoneComponent.init();
 
             expect(browseNodeInstance.addEvent).to.have.been.calledOnce;
+        });
+
+        it('should not process input node if the DropZone is not supported', () => {
+            instanceManager.getSupported.returns(false);
+            dropZoneComponent.init();
+
+            expect(inputStub).to.have.not.been.called;
+        });
+
+        it('should not process the browse node if the DropZone is not supported', () => {
+            instanceManager.getSupported.returns(false);
+            dropZoneComponent.init();
+
+            expect(browseNodeInstance.addEvent).to.have.not.been.called;
         });
     });
 
