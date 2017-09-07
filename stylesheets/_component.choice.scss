@@ -1,7 +1,7 @@
 // Align form-choice to grid
 @include respond-min($screen-smaller) {
     .form-choice > .controls > .control__label {
-        @include span(4, false, false, 9);
+        @include col-span(4, false, false, 9);
         line-height: $line-height-medium;
 
         .form__control {
@@ -20,7 +20,7 @@
 
     &.select,
     &.select2 {
-        @include span(5, false, false, 9);
+        @include col-span(5, false, false, 9);
     }
 }
 
@@ -36,7 +36,7 @@
 
         // default width
         @include respond-min($screen-smaller) {
-            @include span(4, false, false, 9);
+            @include col-span(4, false, false, 9);
         }
 
         @include respond-min($screen-tablet) {
@@ -70,7 +70,7 @@
 // column variations
 @for $i from 1 through 9 {
     .choice--block.form__control-col--#{$i} > .controls .control__label {
-        @include span($i, false, false, 9);
+        @include col-span($i, false, false, 9);
 
         // remove right margin to stop the last child in a given 'row'
         // from wrapping onto the next line because the margin makes the
@@ -104,7 +104,7 @@
 
     // default width
     > .controls > .control__label {
-        @include span(4, false, false, 12);
+        @include col-span(4, false, false, 12);
 
         &:nth-child(3n) {
             margin-right: 0;
@@ -116,7 +116,7 @@
 @include respond-min($screen-smaller) {
     @for $i from 1 through 12 {
         .choice--block-inline.form__control-col--#{$i} .controls > .control__label {
-            @include span($i, false, false, 12);
+            @include col-span($i, false, false, 12);
 
             margin-right: 1%; // override default nth-child(3n)
 
