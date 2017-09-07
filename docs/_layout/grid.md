@@ -54,11 +54,11 @@ Indent an element a certain number of column widths using the `.g-col-push--x` c
 
 ## Setting columns in Sass
 
-To make an element fit a specific number of columns, use the `span()` mixin, supplying a number from 1-12.
+To make an element fit a specific number of columns, use the `col-span()` mixin, supplying a number from 1-12.
 
 ```sass
 .my-element {
-    @include span(5);
+    @include col-span(5);
     ...
 }
 ```
@@ -69,7 +69,7 @@ At phone/xsmall breakpoints, all columns will switch to 100% width by default.
 
 ![grid example]({{ site.baseurl }}/assets/image_examples/grid-4.png)
 
-Individual components or elements may override this behaviour by setting the `force` parameter of the `span()` mixin to `true`.
+Individual components or elements may override this behaviour by setting the `force` parameter of the `col-span()` mixin to `true`.
 
 
 You can (and perhaps should) restrict your override to affect only the mobile breakpoint by using the `respond-max($screen-tablet)` breakpoint, for example:
@@ -77,7 +77,7 @@ You can (and perhaps should) restrict your override to affect only the mobile br
 ```sass
 .my-element {
     @include respond-max($screen-tablet) {
-        @include span(5, true);
+        @include col-span(5, true);
         ...
     }
 }
@@ -91,11 +91,11 @@ This method also means you don't need to declare column classes in the markup.
 
 ```sass
 .my-element {
-    @include span(10, true);
+    @include col-span(10, true);
     // mobile styles here
 
     @include respond-min($screen-tablet) {
-        @include span(5);
+        @include col-span(5);
         // tablet -> desktop styles here
     }
 }

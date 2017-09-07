@@ -30,13 +30,13 @@ $gutter_pc:     1;
  * @param  {bool} $first:  false         If true, removes the left hand column margin
  * @param  {bool} $important:  false     If true, adds the !important declaration
  */
-@mixin span($num, $force: false, $gutter: false, $columns: $columns, $important: false) {
+@mixin col-span($num, $force: false, $gutter: false, $columns: $columns, $important: false) {
     $one_col: (100% - ($gutter_pc * ($columns - 1))) / $columns;
     $span_width: ($one_col * ($num)) + ($gutter_pc * ($num - 1));
 
     @if $gutter == true {
         @include respond-min($screen-tablet) {
-            margin-left: percentage($gutter_pc / 100);
+            @include gutter(true);
         }
     }
 
@@ -73,18 +73,27 @@ $gutter_pc:     1;
     }
 }
 
+// indent an element by a given number of columns
 @mixin push($num) {
     $one_col: (100% - ($gutter_pc * ($columns - 1))) / $columns;
     margin-left: ($one_col * $num) + ($gutter_pc * ($num));
 }
 
-@for $i from 1 through 12 {
-    .g-col--#{$i}.g-col--#{$i} {
-        @include span($i);
+// add (or suppress) the left hand gutter on an element
+@mixin gutter($add_gutter: true) {
+    @if $add_gutter == true {
+        margin-left: percentage($gutter_pc / 100);
+    }
+    @else {
+        margin-left: 0;
     }
 }
 
-
+@for $i from 1 through 12 {
+    .g-col--#{$i}.g-col--#{$i} {
+        @include col-span($i);
+    }
+}
 
 @for $i from 1 through 12 {
     @include respond-min($screen-tablet) {
@@ -95,6 +104,6 @@ $gutter_pc:     1;
 }
 
 .g-col--example {
-    background-color: #efefef;
+    background-color: pink;
     text-align: center;
 }

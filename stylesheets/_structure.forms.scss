@@ -13,7 +13,7 @@
 
     // the main label, usually placed in the left hand column
     > .control__label {
-        @include span($form-label-cols);
+        @include col-span($form-label-cols);
         word-wrap: break-word;
     }
 
@@ -41,7 +41,7 @@
 
 // the container around one or more form inputs
 .controls {
-    @include span($form-control-cols, false, true);
+    @include col-span($form-control-cols + $form-label-cols, false, false);
     position: relative;
 
     // stack inputs by default
@@ -49,6 +49,11 @@
     > .control__label {
         display: block; // test this moar!
     }
+}
+
+// Add a gutter between form labels and controls
+.control__label + .controls {
+    @include col-span($form-control-cols, false, true);
 }
 
 // inputs can be aligned next to each other if required
@@ -76,19 +81,19 @@
 }
 
 // radio/checkboxes before labels
-.control__label--left {
-    text-align: right;
+// .control__label--left {
+//     text-align: right;
 
-    > .form__control {
-        float: right;
-        margin-left: 15px;
-        margin-right: 0;
-    }
-}
+//     > .form__control {
+//         float: right;
+//         margin-left: 15px;
+//         margin-right: 0;
+//     }
+// }
 
 .form__group--top {
     > .control__label {
-        @include span(12);
+        @include col-span(12);
     }
 
     > .control__label,
@@ -97,23 +102,27 @@
     }
 
     .controls {
-        @include push($form-label-cols);
+        @include respond-min($screen-tablet) {
+            @include push($form-label-cols);
+        }
     }
 }
 
-// control group inside first column (normally used for control labels)
-.controls:first-child {
-    @include span($form-label-cols);
-    display: table;
+// // control group inside first column (normally used for control labels)
+// .controls:first-child {
+//     @include col-span($form-label-cols);
+//     display: table;
 
-    > .control__label--left {
-        clear: right;
-        float: right;
-    }
-}
+//     > .control__label--left {
+//         clear: right;
+//         float: right;
+//     }
+// }
 
 .form__group--indent {
-    @include push($form-label-cols);
+    @include respond-min($screen-tablet) {
+        @include push($form-label-cols);
+    }
 }
 
 .form__group--flush {
@@ -154,6 +163,10 @@
         .help-block {
             margin-left: 0;
         }
+    }
+
+    .form__group.form-choice > .control__label {
+        display: inline-block;
     }
 }
 
