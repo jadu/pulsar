@@ -312,14 +312,14 @@ fieldset {
     // default width
     .form__control,
     .form__group--flush > .control__label + .controls > .form__control {
-        @include span(4, false, false, 12);
+        @include col-span(4, false, false, 12);
     }
 
     // column variations
     @for $i from 1 through 12 {
         .form__control-col--#{$i} .form__control,
         .form__group--flush.form__control-col--#{$i} .control__label + .controls > .form__control {
-            @include span($i, false, false, 12);
+            @include col-span($i, false, false, 12);
         }
     }
 
@@ -328,13 +328,13 @@ fieldset {
 
     // default width
     .control__label + .controls > .form__control {
-        @include span(4, false, false, 9);
+        @include col-span(4, false, false, 9);
     }
 
     // column variations
     @for $i from 1 through 9 {
         .form__control-col--#{$i} .control__label + .controls > .form__control {
-            @include span($i, false, false, 9);
+            @include col-span($i, false, false, 9);
         }
     }
 
