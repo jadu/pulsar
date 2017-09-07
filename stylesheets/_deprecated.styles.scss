@@ -459,3 +459,48 @@ $rich-list-item-text-selected-color:  color(white) !default;
     }
   }
 }
+
+// -----------------------------------------------------------------------------
+//  12/06/2017
+//
+//  Susy grid, replacing with simpler custom grid
+//  https://jadu.github.io/pulsar/layout/grid/
+//
+//  _structure.grid.scss
+// -----------------------------------------------------------------------------
+@import '../libs/susy/sass/susy';
+
+// Susy grid settings
+$susy: (
+    columns: 12,
+    container: 100%,
+    gutters: .25,
+);
+
+.grid-container {
+    @include container;
+}
+
+@for $i from 1 through 12 {
+    .grid-col--#{$i} {
+        @include respond-min($screen-phone) {
+            @include span($i);
+        }
+    }
+
+    .grid-col-push--#{$i} {
+        @include respond-min($screen-phone) {
+            @include push($i of 12);
+        }
+    }
+}
+
+.grid-col {
+    margin-top: gutter();
+
+    &:last-child {
+        @include respond-min($screen-phone) {
+            @include last;
+        }
+    }
+}

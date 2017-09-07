@@ -29,6 +29,7 @@
     "select2": "~4.0.0",
     "sticky": "latest",
     "store.js": "latest",
+    "susy": "~2.2.6",
     "svgeezy": "latest",
     "Vague.js": "0.0.4",
     "vide": "~0.3.1",
