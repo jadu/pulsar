@@ -238,8 +238,10 @@ NavMainComponent.prototype.addMoreNavItem = function (numberOfHiddenNavItems) {
     }
 
     // Check if "More" nav item is visible
-    if (navItemMore.is(':visible') === false) {
+    if (navItemMore.is(':hidden') && (numberOfHiddenNavItems > 0)) {
         navItemMore.show();
+    } else {
+        component.$html.find('.nav-tertiary').removeClass('is-open');
     }
 };
 
@@ -260,6 +262,18 @@ NavMainComponent.prototype.hideMoreCategoriesTopItems = function (navItemsCountT
         nthChild++;
         itemsToHideCount--;
     }
+};
+
+NavMainComponent.prototype.lastItemSubstitution = function () {
+    var component = this,
+        navItems = component.$html.find('.nav-primary .nav-items'),
+        navItemMore = navItems.find('[label="More"]'),
+        numberOfHiddenNavItems = navItems.find('li:hidden').length;
+
+        if (numberOfHiddenNavItems == 0) {
+            navItemMore.hide();
+            component.$html.find('.nav-tertiary').removeClass('is-open');
+        }
 };
 
 module.exports = NavMainComponent;
