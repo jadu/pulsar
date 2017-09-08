@@ -215,6 +215,18 @@ NavMainComponent.prototype.hidePrimaryNavItems = function (navItemsHeight, moreI
     }
 };
 
+NavMainComponent.prototype.unhidePrimaryNavItems = function () {
+    var component = this,
+        navItems = component.$html.find('.nav-primary .nav-items'),
+        navItemMore = navItems.find('[label="More"]'),
+        firstHiddenPrimaryNavItem = navItems.find('li:hidden').first(),
+        numberOfHiddenNavItems = navItems.find('li:hidden').length;
+
+        if ((firstHiddenPrimaryNavItem.length > 0) && (navItemMore.is(':visible'))) {
+            firstHiddenPrimaryNavItem.show();
+        }
+};
+
 NavMainComponent.prototype.addMoreNavItem = function (numberOfHiddenNavItems) {
     var component = this,
         navItems = component.$html.find('.nav-primary .nav-items'),
