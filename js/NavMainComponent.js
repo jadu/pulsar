@@ -268,7 +268,7 @@ NavMainComponent.prototype.lastItemSubstitution = function (numberOfHiddenNavIte
         navItems = component.$html.find('.nav-primary .nav-items'),
         navItemMore = navItems.find('[label="More"]');
 
-        if (numberOfHiddenNavItems == 0) {
+        if (numberOfHiddenNavItems === 0) {
             navItemMore.hide();
             component.$html.find('.nav-tertiary').removeClass('is-open');
         }
