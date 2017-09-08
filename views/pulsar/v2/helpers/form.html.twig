@@ -1638,7 +1638,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {{
         form.group({
-            'parent': options|only('bare class error guidance guidance-container help id label required show-label'),
+            'parent': options|only('append append_type bare class error guidance guidance-container help id label prepend prepend_type required show-label'),
             'inputs': [
                 elem.select(
                     options
@@ -1713,7 +1713,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {{
         form.group({
-            'parent': options|only('bare class error guidance guidance-container help id label required show-label'),
+            'parent': options|only('append append_type bare class error guidance guidance-container help id prepend prepend_type label required show-label'),
             'inputs': [
                 elem.select2(options
                     |exclude('bare class error guidance guidance-container help label show-label')
