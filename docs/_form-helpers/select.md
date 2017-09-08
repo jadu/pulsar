@@ -15,15 +15,19 @@ Generates a select input.
 
 ## Options applied to parent wrapper
 
-Option      | Type    | Description
------------ | ------- | --------------------------------------------------------
-class       | string  | A space separated list of class names
-guidance    | string  | Text to be displayed in a popover, adds a (?) icon after the input
+Option       | Type    | Description
+------------ | ------- | --------------------------------------------------------
+append       | string  | Text or markup to include after the input element
+append_type  | string  | Use only when appending a button. `button` is the only valid value
+class        | string  | A space separated list of class names
+guidance     | string  | Text to be displayed in a popover, adds a (?) icon after the input
 guidance-container | string | Element to bind guidance popover scroll behaviour to (default `body`)
-help        | string  | Additional guidance information to be displayed next to the input
-label       | string  | Text for the `<label>` companion element
-required    | bool    | Visually indicates that the field must be completed
-show-label  | bool | Control visibility of the `<label>` element without affecting layout (default: true)
+help         | string  | Additional guidance information to be displayed next to the input
+label        | string  | Text for the `<label>` companion element
+prepend      | string  | Text or markup to include before the input element
+prepend_type | string  | Use only when prepending a button. `button`is the only valid value
+required     | bool    | Visually indicates that the field must be completed
+show-label   | bool    | Control visibility of the `<label>` element without affecting layout (default: true)
 
 ## Options applied to the input
 
