@@ -89,6 +89,7 @@ describe('NavMainComponent', function () {
         this.$contentMain = this.$html.find('.content-main');
         this.$navPrimary = this.$html.find('.nav-primary');
         this.$navTertiary = this.$navMain.find('.nav-tertiary');
+        this.$navQuaternary = this.$navMain.find('.nav-quaternary');
 
         this.$linkOne = this.$html.find('[href="#one"]');
         this.$linkTwo = this.$html.find('[href="#two"]');
@@ -320,6 +321,24 @@ describe('NavMainComponent', function () {
             this.navMainComponent.$window.trigger('resize');
 
             expect(this.adjustNavStub).to.have.been.called;
+        });
+    });
+
+    describe('When "More" nav item is getting hidden and tertiary and quaternary nav is already open', function () {
+        beforeEach(function () {
+            this.adjustNavStub = sinon.stub(this.navMainComponent, 'adjustNavItems');
+        });
+
+        it('should hide the open tertiary or quaternary nav', function () {
+            this.navMainComponent.init();
+            this.$moreIconLink = this.$navMain.find('.more-icon > .nav-link');
+            this.$moreIconLink.click();
+            this.$window.height(1000);
+            this.navMainComponent.$window.trigger('resize');
+
+            expect(this.adjustNavStub).to.have.been.called;
+            expect(this.$navTertiary.hasClass('is-open')).to.be.false;
+            expect(this.$navQuaternary.hasClass('is-open')).to.be.false;
         });
     });
 });
