@@ -241,6 +241,7 @@ NavMainComponent.prototype.addMoreNavItem = function (numberOfHiddenNavItems) {
         navItemMore.show();
     } else {
         component.$html.find('.nav-tertiary').removeClass('is-open');
+        component.$html.find('.nav-quaternary').removeClass('is-open');
     }
 };
 
@@ -271,6 +272,7 @@ NavMainComponent.prototype.lastItemSubstitution = function (numberOfHiddenNavIte
         if (numberOfHiddenNavItems === 0) {
             navItemMore.hide();
             component.$html.find('.nav-tertiary').removeClass('is-open');
+            component.$html.find('.nav-quaternary').removeClass('is-open');
         }
 };
 
