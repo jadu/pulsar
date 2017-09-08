@@ -2,16 +2,24 @@
 
 {% set heading = 'Masterswitch' %}
 
-{% set tab_one %}
+{% set tab_disabled %}
     {% include '/lexicon/patterns/masterswitch/masterswitch.html.twig' %}
+{% endset %}
+{% set tab_enabled %}
+    {% include '/lexicon/patterns/masterswitch/masterswitch-enabled.html.twig' %}
 {% endset %}
 
 {%
     set tabs_content = [
         {
             "id"    : "masterswitch",
-            "label" : "Masterswitch",
-            "src"   : tab_one,
+            "label" : "Masterswitch (disabled)",
+            "src"   : tab_disabled
+        },
+        {
+            "id"    : "masterswitch-enabled",
+            "label" : "Masterswitch (enabled)",
+            "src"   : tab_enabled,
             "active": true
         }
     ]
