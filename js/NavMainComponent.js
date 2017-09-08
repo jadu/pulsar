@@ -188,8 +188,9 @@ NavMainComponent.prototype.adjustNavItems = function () {
         component.hideMoreCategoriesTopItems(navItemsCountTotal, numberOfHiddenNavItems);
     } else if (navItemsHeight + moreIconHeight < availableHeight) {
         // Unhide items if they were hidden and there is space in the primary nav
-        component.unhidePrimaryNavItems();
-        component.lastItemSubstitution();
+        numberOfHiddenNavItems = component.$html.find('.nav-primary .nav-items li:hidden').length;
+        component.unhidePrimaryNavItems(numberOfHiddenNavItems);
+        component.lastItemSubstitution(numberOfHiddenNavItems);
     }
 };
 
@@ -218,8 +219,7 @@ NavMainComponent.prototype.unhidePrimaryNavItems = function () {
     var component = this,
         navItems = component.$html.find('.nav-primary .nav-items'),
         navItemMore = navItems.find('[label="More"]'),
-        firstHiddenPrimaryNavItem = navItems.find('li:hidden').first(),
-        numberOfHiddenNavItems = navItems.find('li:hidden').length;
+        firstHiddenPrimaryNavItem = navItems.find('li:hidden').first();
 
         if ((firstHiddenPrimaryNavItem.length > 0) && (navItemMore.is(':visible'))) {
             firstHiddenPrimaryNavItem.show();
@@ -263,11 +263,10 @@ NavMainComponent.prototype.hideMoreCategoriesTopItems = function (navItemsCountT
     }
 };
 
-NavMainComponent.prototype.lastItemSubstitution = function () {
+NavMainComponent.prototype.lastItemSubstitution = function (numberOfHiddenNavItems) {
     var component = this,
         navItems = component.$html.find('.nav-primary .nav-items'),
-        navItemMore = navItems.find('[label="More"]'),
-        numberOfHiddenNavItems = navItems.find('li:hidden').length;
+        navItemMore = navItems.find('[label="More"]');
 
         if (numberOfHiddenNavItems == 0) {
             navItemMore.hide();
