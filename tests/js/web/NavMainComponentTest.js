@@ -294,10 +294,6 @@ describe('NavMainComponent', function () {
             this.$window.resize();
         });
 
-        it('should hide the More link', function () {
-            expect(this.$html.find('.nav-primary .nav-items [label="More"]').is(':visible')).to.be.false;
-        });
-
         it('should show extra nav items', function () {
             expect(this.$html.find('.nav-primary .nav-items li:not([label="More"])').is(':visible')).to.be.true;
         });
