@@ -846,11 +846,49 @@
         })
     }}
 
+    {{
+        form.select({
+            'id': 'select2-30',
+            'label': 'Prepended button',
+            'prepend': html.button({ 'label': 'foo' }),
+            'prepend_type': 'button',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select({
+            'id': 'select2-31',
+            'label': 'Appended button',
+            'append': html.button({ 'label': 'foo' }),
+            'append_type': 'button',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
     {{ form.fieldset_end() }}
 
     {{
         form.select2({
-            'id': 'select2-30',
+            'id': 'select2-32',
             'label': 'data-init="false"',
             'class': 'foo',
             'data-init': 'false',
