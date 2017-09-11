@@ -8,19 +8,35 @@
 {% set tab_enabled %}
     {% include '/lexicon/patterns/masterswitch/masterswitch-enabled.html.twig' %}
 {% endset %}
+{% set tab_disabled_form_wrapper %}
+    {% include '/lexicon/patterns/masterswitch/masterswitch-disabled-form-wrapper.html.twig' %}
+{% endset %}
+{% set tab_enabled_form_wrapper %}
+    {% include '/lexicon/patterns/masterswitch/masterswitch-enabled-form-wrapper.html.twig' %}
+{% endset %}
 
 {%
     set tabs_content = [
         {
             "id"    : "masterswitch",
             "label" : "Masterswitch (disabled)",
-            "src"   : tab_disabled
+            "src"   : tab_disabled,
+            "active": true
         },
         {
             "id"    : "masterswitch-enabled",
             "label" : "Masterswitch (enabled)",
-            "src"   : tab_enabled,
-            "active": true
+            "src"   : tab_enabled
+        },
+        {
+            "id"    : "masterswitch",
+            "label" : "Masterswitch (disabled) form wrapping",
+            "src"   : tab_disabled_form_wrapper
+        },
+        {
+            "id"    : "masterswitch",
+            "label" : "Masterswitch (enabled) form wrapping",
+            "src"   : tab_enabled_form_wrapper
         }
     ]
 %}
