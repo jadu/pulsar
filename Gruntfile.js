@@ -128,7 +128,7 @@ module.exports = function(grunt) {
         },
 
         replace: {
-            pulsar: {
+            projector: {
                 src: ['stylesheets/pulsar.scss'],
                 dest: 'stylesheets/pulsar-theme-projector.scss',
                 replacements: [{
@@ -136,7 +136,7 @@ module.exports = function(grunt) {
                     to: 'palette.projector'
                 }]
             },
-            pulsar_ie9: {
+            projector_ie9: {
                 src: ['stylesheets/pulsar-ie9.scss'],
                 dest: 'stylesheets/pulsar-ie9-theme-projector.scss',
                 replacements: [{
@@ -144,7 +144,7 @@ module.exports = function(grunt) {
                     to: 'palette.projector'
                 }]
             },
-            pulsar_ie8: {
+            projector_ie8: {
                 src: ['stylesheets/pulsar-ie8.scss'],
                 dest: 'stylesheets/pulsar-ie8-theme-projector.scss',
                 replacements: [{
@@ -152,7 +152,7 @@ module.exports = function(grunt) {
                     to: 'palette.projector'
                 }]
             },
-            pulsar_ie7: {
+            projector_ie7: {
                 src: ['stylesheets/pulsar-ie7.scss'],
                 dest: 'stylesheets/pulsar-ie7-theme-projector.scss',
                 replacements: [{
