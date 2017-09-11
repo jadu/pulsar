@@ -40,7 +40,7 @@ DisableUiComponent.prototype.disable = function (target) {
             .addClass('js-disabled u-cursor-not-allowed');
 
         // Wrap with disabled wrapper to visually disable
-        $this.wrap('<div class="u-ui-disabled"></div>');
+        // $this.wrap('<div class="u-ui-disabled"></div>');
     });
 };
 
@@ -48,6 +48,8 @@ DisableUiComponent.prototype.enable = function (target) {
     var FORM_ELEMENTS = 'button.disabled, input.disabled, select.disabled',
         LINK_ELEMENTS = 'a.js-disabled',
         LABEL_ELEMENTS = 'label';
+
+    console.log('enable');
 
     target.each(function() {
         var $this = $(this);
@@ -70,7 +72,7 @@ DisableUiComponent.prototype.enable = function (target) {
             .removeClass('js-disabled u-cursor-not-allowed');
 
         // Remove wrapper which provides visually disabled styling
-        $this.unwrap('<div class="u-ui-disabled"></div>');
+        // $this.unwrap('<div class="u-ui-disabled"></div>');
     });
 };
 
