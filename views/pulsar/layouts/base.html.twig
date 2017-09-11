@@ -7,8 +7,8 @@
 {% set jsPath   = base_path ~ 'js/' %}
 {% set libsPath = base_path ~ 'libs/' %}
 {% set themeFile = '' %}
-{% if theme is defined and theme is not empty %}
-    {% set themeFile = '-theme-' ~ theme %}
+{% if constant_defined('theme') %}
+    {% set themeFile = '-theme-' ~ get_constant('theme') %}
 {% endif %}
 <!DOCTYPE html>
 <!--[if IE 7]>         <html lang="en" class="no-js ie7 lt-ie10 lt-ie8"><![endif]-->

@@ -25,12 +25,6 @@ class UrlParamsExtensionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(3, $ext->getActiveTab());
     }
 
-    public function testGetTheme()
-    {
-        $ext = new UrlParamsExtension(array('theme' => 'foo'));
-        $this->assertEquals('foo', $ext->getTheme());
-    }
-
     public function testView()
     {
         $ext = new UrlParamsExtension(array('view' => 'foo'));
@@ -47,8 +41,5 @@ class UrlParamsExtensionTest extends \PHPUnit_Framework_TestCase
 
         $this->assertArrayHasKey('view', $globals);
         $this->assertEquals('foo', $globals['view']);
-
-        $this->assertArrayHasKey('theme', $globals);
-        $this->assertEquals('foo', $globals['theme']);
     }
 }
