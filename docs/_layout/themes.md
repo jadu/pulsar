@@ -4,7 +4,7 @@ title: Themes
 category: Layout
 ---
 
-There are currently two main colour palletes that can be used to modify the compiled Sass files
+There are currently two main colour palettes that can be used to modify the compiled sass files.
 
 | File                    | Reason |
 | ----------------------- | ------ |
