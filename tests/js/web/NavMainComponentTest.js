@@ -101,6 +101,7 @@ describe('NavMainComponent', function () {
 
         // set height on nav items as no css in tests
         this.$html.find('.nav-item').height(20);
+        this.$html.find('.more-icon').height(20);
 
         this.navMainComponent = new NavMainComponent(this.$html, this.window);
     });
@@ -326,17 +327,17 @@ describe('NavMainComponent', function () {
 
     describe('When "More" nav item is getting hidden and tertiary and quaternary nav is already open', function () {
         beforeEach(function () {
-            this.adjustNavStub = sinon.stub(this.navMainComponent, 'adjustNavItems');
-        });
-
-        it('should hide the open tertiary or quaternary nav', function () {
             this.navMainComponent.init();
+            this.$window.height(200);
+            this.$window.resize();
             this.$moreIconLink = this.$navMain.find('.more-icon > .nav-link');
             this.$moreIconLink.click();
             this.$window.height(1000);
-            this.navMainComponent.$window.trigger('resize');
+            this.$window.resize();
+            this.$window.resize();
+        });
 
-            expect(this.adjustNavStub).to.have.been.called;
+        it('should hide the open tertiary or quaternary nav', function () {
             expect(this.$navTertiary.hasClass('is-open')).to.be.false;
             expect(this.$navQuaternary.hasClass('is-open')).to.be.false;
         });
