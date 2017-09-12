@@ -97,3 +97,9 @@ a.list-group-item.active > .badge,
         color: color(warning, dark) !important;
     }
 }
+
+.btn__group.dropdown {
+    span.badge {
+        margin: 0 5px;
+    }
+}
