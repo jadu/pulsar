@@ -250,7 +250,7 @@ describe('NavMainComponent', function () {
         });
 
         it('should show the more icon link', function () {
-            expect(this.$html.find('.nav-primary .nav-items [label="More"]').is(':visible')).to.be.true;
+            expect(this.$html.find('.nav-primary .nav-items .more-icon').is(':visible')).to.be.true;
         });
 
         describe('when the more link is clicked', function () {
@@ -297,7 +297,7 @@ describe('NavMainComponent', function () {
         });
 
         it('should show extra nav items', function () {
-            expect(this.$html.find('.nav-primary .nav-items li:not([label="More"])').is(':visible')).to.be.true;
+            expect(this.$html.find('.nav-primary .nav-items li:not(.more-icon)').is(':visible')).to.be.true;
         });
     });
 
@@ -308,7 +308,7 @@ describe('NavMainComponent', function () {
         });
 
         it('should show the More link', function () {
-            expect(this.$html.find('.nav-primary .nav-items [label="More"]').is(':visible')).to.be.true;
+            expect(this.$html.find('.nav-primary .nav-items .more-icon').is(':visible')).to.be.true;
         });
     });
 
