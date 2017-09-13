@@ -502,3 +502,33 @@ fieldset {
         padding-left: 0;
     }
 }
+
+.form-range .form__control {
+    @extend %range-slider;
+}
+
+.form-range > .controls .form__control {
+    background-color: transparent;
+    height: 48px;
+    padding: 0;
+}
+
+.form-range .input-group-addon:first-child,
+.form-range .input-group-addon:last-child {
+    border: 1px solid color(border);
+    border-radius: $border-radius;
+}
+
+.form-range .input-group .form__control {
+    padding-left: 0;
+    padding-right: $gutter-width;
+}
+
+.form-range .input-group > .input-group-addon + .form__control {
+    padding-left: $gutter-width;
+    padding-right: $gutter-width;
+}
+
+.form-range .input-group > .form__control:last-child {
+    padding-right: 0;
+}

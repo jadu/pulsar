@@ -8,55 +8,48 @@
 
     {{ form.fieldset_start() }}
     {{
-        form.text({
-            'id': 'text-1',
-            'label': 'Text field'
+        form.range({
+            'id': 'range-1',
+            'label': 'Range field'
+        })
+    }}
+
+
+    {{
+        form.range({
+            'id': 'range-2',
+            'label': 'Range field with value',
+            'value': '6'
         })
     }}
 
     {{
-        form.text({
-            'id': 'text-2',
-            'label': 'Text field with value',
-            'value': 'My value'
-        })
-    }}
-
-    {{
-        form.text({
-            'id': 'text-3',
+        form.range({
+            'id': 'range-3',
             'label': 'Required',
             'required': true
         })
     }}
 
     {{
-        form.text({
-            'id': 'text-4',
-            'label': 'Placeholder',
-            'placeholder': 'Oh, hello'
-        })
-    }}
-
-    {{
-        form.text({
-            'id': 'text-5',
-            'label': 'Text field with help',
+        form.range({
+            'id': 'range-4',
+            'label': 'Range field with help',
             'help': 'Help text to give more information about expected input'
         })
     }}
 
     {{
-        form.text({
-            'id': 'text-6',
-            'label': 'Text field with guidance',
+        form.range({
+            'id': 'range-5',
+            'label': 'Range field with guidance',
             'guidance': 'Help text to give more information about expected input'
         })
     }}
 
     {{
-        form.text({
-            'id': 'text-7',
+        form.range({
+            'id': 'range-6',
             'label': 'Required with guidance',
             'guidance': 'Help text to give more information about expected input',
             'required': true
@@ -67,24 +60,24 @@
     {{ form.fieldset_start({ 'legend': 'Alignment' }) }}
 
     {{
-        form.text({
+        form.range({
             'help': 'This example omits the label option entirely'
         })
     }}
 
     {{
-        form.text({
-            'id': 'text-1',
-            'label': 'Text field',
+        form.range({
+            'id': 'range-1',
+            'label': 'Range field',
             'show-label': false,
             'help': 'This example hides the label with the <code>show-label</code> option'
         })
     }}
 
     {{
-        form.text({
-            'id': 'text-8',
-            'label': 'Text input with a longer than expected label which will probably wrap multple lines and push the following input onto the next baseline',
+        form.range({
+            'id': 'range-8',
+            'label': 'Range input with a longer than expected label which will probably wrap multple lines and push the following input onto the next baseline',
             'name': 'inputTextLong',
             'placeholder': 'Placeholder',
             'help': 'Example block-level help text here',
@@ -93,9 +86,9 @@
     }}
 
     {{
-        form.text({
-            'id': 'text-9',
-            'label': 'Text input with a longer than expected label but this time we use the form__group--top class to keep the label on a single line',
+        form.range({
+            'id': 'range-9',
+            'label': 'Range input with a longer than expected label but this time we use the form__group--top class to keep the label on a single line',
             'class': 'form__group--top',
             'name': 'inputTextLong',
             'placeholder': 'Placeholder',
@@ -105,8 +98,8 @@
     }}
 
     {{
-        form.text({
-            'id': 'text-10',
+        form.range({
+            'id': 'range-10',
             'label': 'The same as above, but this time we also add the .form__group--flush class to keep everything on the left edge',
             'class': 'form__group--top form__group--flush',
             'name': 'inputTextLong',
@@ -120,7 +113,7 @@
     {{ form.fieldset_start({ 'legend': 'Alignment top, flush and legacy sizes' }) }}
 
     {{
-        form.text({
+        form.range({
             'label': 'form__group--top form__group--flush and form__group--mini',
             'class': 'form__group--top form__group--flush form__group--mini',
             'name': 'inputTextLong',
@@ -131,7 +124,7 @@
     }}
 
     {{
-        form.text({
+        form.range({
             'label': 'form__group--top form__group--flush and form__group--small',
             'class': 'form__group--top form__group--flush form__group--small',
             'name': 'inputTextLong',
@@ -142,7 +135,7 @@
     }}
 
     {{
-        form.text({
+        form.range({
             'label': 'form__group--top form__group--flush and form__group--medium',
             'class': 'form__group--top form__group--flush form__group--medium',
             'name': 'inputTextLong',
@@ -153,7 +146,7 @@
     }}
 
     {{
-        form.text({
+        form.range({
             'label': 'form__group--top form__group--flush and form__group',
             'class': 'form__group--top form__group--flush',
             'name': 'inputTextLong',
@@ -164,7 +157,7 @@
     }}
 
     {{
-        form.text({
+        form.range({
             'label': 'form__group--top form__group--flush and form__group--large',
             'class': 'form__group--top form__group--flush form__group--large',
             'name': 'inputTextLong',
@@ -175,7 +168,7 @@
     }}
 
     {{
-        form.text({
+        form.range({
             'label': 'form__group--top form__group--flush and form__group--xlarge',
             'class': 'form__group--top form__group--flush form__group--xlarge',
             'name': 'inputTextLong',
@@ -186,7 +179,7 @@
     }}
 
     {{
-        form.text({
+        form.range({
             'label': 'form__group--top form__group--flush and form__group--full',
             'class': 'form__group--top form__group--flush form__group--full',
             'name': 'inputTextLong',
@@ -201,24 +194,24 @@
     {{ form.fieldset_start({ 'legend': 'Errors &amp; Validation' }) }}
 
     {{
-        form.text({
-            'id': 'text-11',
+        form.range({
+            'id': 'range-11',
             'label': 'Text field with error',
             'error': 'Please complete this field'
         })
     }}
 
     {{
-        form.text({
-            'id': 'text-12',
+        form.range({
+            'id': 'range-12',
             'label': 'Text field with multiple errors',
             'error': ['Do this', 'Do this too']
         })
     }}
 
     {{
-        form.text({
-            'id': 'text-13',
+        form.range({
+            'id': 'range-13',
             'label': 'Text field with error and help',
             'error': 'Please complete this field',
             'help': 'Help text to give more information about expected input'
@@ -226,8 +219,8 @@
     }}
 
     {{
-        form.text({
-            'id': 'text-14',
+        form.range({
+            'id': 'range-14',
             'class': 'has-error',
             'label': 'Text field error with help only',
             'help': 'Help text to give more information about expected input'
@@ -238,16 +231,16 @@
     {{ form.fieldset_start({ 'legend': 'States' }) }}
 
     {{
-        form.text({
-            'id': 'text-15',
+        form.range({
+            'id': 'range-15',
             'label': '"class": "has-changed"',
             'class': 'has-changed',
             'help': 'Highlight whether an action elsewhere affects an input'
         })
     }}
     {{
-        form.text({
-            'id': 'text-16',
+        form.range({
+            'id': 'range-16',
             'label': '"class": "has-success"',
             'class': 'has-success',
             'help': 'Something good happened'
@@ -255,24 +248,24 @@
     }}
 
     {{
-        form.text({
-            'id': 'text-17',
+        form.range({
+            'id': 'range-17',
             'label': '"class": "has-warning"',
             'class': 'has-warning',
             'help': 'Something bad happened'
         })
     }}
     {{
-        form.text({
-            'id': 'text-18',
+        form.range({
+            'id': 'range-18',
             'label': '"class": "has-error"',
             'class': 'has-error',
             'help': 'Automatically added if using <code>error</code> option'
         })
     }}
     {{
-        form.text({
-            'id': 'text-19',
+        form.range({
+            'id': 'range-19',
             'label': '"disabled": true',
             'disabled': true,
             'help': 'Stop! Can’t touch this'
@@ -283,8 +276,8 @@
     {{ form.fieldset_start({ 'legend': 'Grid Sizes' }) }}
 
     {{
-        form.text({
-            'id': 'text-1-col',
+        form.range({
+            'id': 'range-1-col',
             'label': 'One column',
             'class': 'form__control-col--1',
             'name': 'inputTextMini',
@@ -292,8 +285,8 @@
     }}
 
     {{
-        form.text({
-            'id': 'text-2-col',
+        form.range({
+            'id': 'range-2-col',
             'label': 'Two columns',
             'class': 'form__control-col--2',
             'name': 'inputTextSmall'
@@ -301,8 +294,8 @@
     }}
 
     {{
-        form.text({
-            'id': 'text-3-col',
+        form.range({
+            'id': 'range-3-col',
             'label': 'Three columns',
             'class': 'form__control-col--3',
             'name': 'inputTextMedium'
@@ -310,8 +303,8 @@
     }}
 
     {{
-        form.text({
-            'id': 'text-4-col',
+        form.range({
+            'id': 'range-4-col',
             'label': 'Four columns',
             'class': 'form__control-col--4',
             'name': 'inputTextRegular'
@@ -319,8 +312,8 @@
     }}
 
     {{
-        form.text({
-            'id': 'text-5-col',
+        form.range({
+            'id': 'range-5-col',
             'label': 'Five columns',
             'class': 'form__control-col--5',
             'name': 'inputTextLarge'
@@ -328,8 +321,8 @@
     }}
 
     {{
-        form.text({
-            'id': 'text-6-col',
+        form.range({
+            'id': 'range-6-col',
             'label': 'Six columns',
             'class': 'form__control-col--6',
             'name': 'inputTextXLarge'
@@ -337,8 +330,8 @@
     }}
 
     {{
-        form.text({
-            'id': 'text-7-col',
+        form.range({
+            'id': 'range-7-col',
             'label': 'Seven columns',
             'class': 'form__control-col--7',
             'name': 'inputTextFull'
@@ -346,8 +339,8 @@
     }}
 
     {{
-        form.text({
-            'id': 'text-8-col',
+        form.range({
+            'id': 'range-8-col',
             'label': 'Eight columns',
             'class': 'form__control-col--8',
             'name': 'inputTextFull'
@@ -355,8 +348,8 @@
     }}
 
     {{
-        form.text({
-            'id': 'text-9-col',
+        form.range({
+            'id': 'range-9-col',
             'label': 'Nine columns',
             'class': 'form__control-col--9',
             'name': 'inputTextFull'
@@ -367,8 +360,8 @@
     {{ form.fieldset_start({ 'legend': 'Legacy Sizes' }) }}
 
     {{
-        form.text({
-            'id': 'text-20',
+        form.range({
+            'id': 'range-20',
             'label': 'Mini',
             'class': 'form__group--mini',
             'name': 'inputTextMini'
@@ -376,8 +369,8 @@
     }}
 
     {{
-        form.text({
-            'id': 'text-21',
+        form.range({
+            'id': 'range-21',
             'label': 'Small',
             'class': 'form__group--small',
             'name': 'inputTextSmall'
@@ -385,8 +378,8 @@
     }}
 
     {{
-        form.text({
-            'id': 'text-22',
+        form.range({
+            'id': 'range-22',
             'label': 'Medium',
             'class': 'form__group--medium',
             'name': 'inputTextMedium'
@@ -394,8 +387,8 @@
     }}
 
     {{
-        form.text({
-            'id': 'text-23',
+        form.range({
+            'id': 'range-23',
             'label': 'Regular',
             'class': 'form__group--regular',
             'name': 'inputTextRegular'
@@ -403,8 +396,8 @@
     }}
 
     {{
-        form.text({
-            'id': 'text-24',
+        form.range({
+            'id': 'range-24',
             'label': 'Large',
             'class': 'form__group--large',
             'name': 'inputTextLarge'
@@ -412,8 +405,8 @@
     }}
 
     {{
-        form.text({
-            'id': 'text-25',
+        form.range({
+            'id': 'range-25',
             'label': 'Extra Large',
             'class': 'form__group--xlarge',
             'name': 'inputTextXLarge'
@@ -421,8 +414,8 @@
     }}
 
     {{
-        form.text({
-            'id': 'text-26',
+        form.range({
+            'id': 'range-26',
             'label': 'Full',
             'class': 'form__group--full',
             'name': 'inputTextFull'
@@ -433,24 +426,24 @@
     {{ form.fieldset_start({ 'legend': 'Appended &amp; Prepended' }) }}
 
     {{
-        form.text({
-            'id': 'text-27',
+        form.range({
+            'id': 'range-27',
             'label': 'Prepended',
             'prepend': '£'
         })
     }}
 
     {{
-        form.text({
-            'id': 'text-28',
+        form.range({
+            'id': 'range-28',
             'label': 'Appended',
             'append': '.00'
         })
     }}
 
     {{
-        form.text({
-            'id': 'text-29',
+        form.range({
+            'id': 'range-29',
             'label': 'Appended with guidance',
             'append': '.00',
             'guidance': 'Help text to give more information about expected input'
@@ -458,11 +451,11 @@
     }}
 
     {{
-        form.text({
-            'id': 'text-30',
+        form.range({
+            'id': 'range-30',
             'label': 'Prepended &amp; Appended',
-            'append': '.00',
-            'prepend': '£'
+            'append': html.icon('volume-up'),
+            'prepend': html.icon('volume-down')
         })
     }}
 

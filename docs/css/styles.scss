@@ -66,6 +66,7 @@ $fa-css-prefix: 'icon';
     @import '../../stylesheets/_component.buttons';
     @import '../../stylesheets/_component.forms';
     @import '../../stylesheets/_component.icons';
+    @import '../../stylesheets/_component.range-slider';
     @import '../../stylesheets/_component.remove-button';
     @import '../../stylesheets/_component.rules';
     @import '../../stylesheets/_component.select2';
@@ -80,4 +81,10 @@ $fa-css-prefix: 'icon';
     // Trumps (attempt highest inherit specificity by loading last)
     @import '../../stylesheets/_utility.utilities';
     @import '../../stylesheets/_utility.states';
+}
+
+#pulsar-example {
+    .control__label + .controls {
+        margin-left: 0;
+    }
 }

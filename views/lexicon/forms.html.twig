@@ -9,6 +9,7 @@
 {% set tab_date %}{% include 'lexicon/forms/date.html.twig' %}{% endset %}
 {% set tab_dropzone %}{% include 'lexicon/forms/dropzone.html.twig' %}{% endset %}
 {% set tab_password %}{% include 'lexicon/forms/password.html.twig' %}{% endset %}
+{% set tab_range %}{% include 'lexicon/forms/range.html.twig' %}{% endset %}
 {% set tab_choice %}{% include 'lexicon/forms/choice.html.twig' %}{% endset %}
 {% set tab_file %}{% include 'lexicon/forms/file.html.twig' %}{% endset %}
 {% set tab_radio %}{% include 'lexicon/forms/radio.html.twig' %}{% endset %}
@@ -72,6 +73,12 @@
           "src"   : tab_password
         },
         {
+          "id"    : "range",
+          "label" : "Range",
+          "src"   : tab_range,
+          "active": true
+        },
+        {
           "id"    : "radio",
           "label" : "Radio",
           "src"   : tab_radio
@@ -79,8 +86,7 @@
         {
           "id"    : "select",
           "label" : "Select",
-          "src"   : tab_select,
-          "active": true
+          "src"   : tab_select
         },
         {
           "id"    : "select2",
