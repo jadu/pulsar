@@ -5,6 +5,23 @@
 
 {% block tab_content %}
 
+{{
+    html.panel({
+        'title': 'Hello',
+        'icon': 'info-sign',
+        'body': 'You need to do a thing. ' ~
+                html.button({
+                    'label': 'Don’t Do The Thing',
+                    'class': 'btn--outline btn--small btn--inverse'
+                }) ~ '&nbsp;' ~
+                html.button({
+                    'label': 'Do The Thing',
+                    'class': 'btn--outline btn--small btn--inverse'
+                })
+
+    })
+}}
+
     {{
         html.panel({
             'title': 'Default panel',
