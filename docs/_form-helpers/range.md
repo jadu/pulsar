@@ -48,7 +48,6 @@ disabled    | bool   | Stops the element from being interactive if true
 form        | string | Specific one or more forms this label belongs to
 id          | string | A unique identifier, if required
 name        | string | The name of this control
-placeholder | string | A short hint that describes the expected value
 required    | bool   | Adds `required` and `aria-required="true"` attributes
 value       | string | Specifies the value of the input
 data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
