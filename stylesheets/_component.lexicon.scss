@@ -9,4 +9,14 @@
         margin: 10px 0;
         padding: 10px;
     }
+
+    .table td.cell--inverse,
+    .table td.cell--inverse:hover {
+        background-color: #2d86b3 !important;
+    }
+
+    .table tbody > tr.row-inverse > td,
+    .table tbody > tr.row-inverse:hover > td {
+        background-color: #2d86b3;
+    }
 }
