@@ -597,7 +597,7 @@ data-*    | string | Data attributes, eg: `'data-foo': 'bar'`
 
         {{
             html.button(options
-                |exclude('target placement')
+                |exclude('target placement role')
                 |merge({
                     'aria-label': 'edit',
                     'class': options.class|default ~ ' edit-button',
@@ -607,7 +607,6 @@ data-*    | string | Data attributes, eg: `'data-foo': 'bar'`
                     'data-title': options.tooltip|default('Edit this item'),
                     'data-toggle': 'tooltips',
                     'label': html.icon('pencil'),
-                    'role': 'button',
                     'type': options.type|default('button'),
                 })
             )
