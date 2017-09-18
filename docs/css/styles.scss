@@ -15,8 +15,8 @@
 @import "sidebar";
 @import "message";
 
-#pulsar-example {
-    all: initial;
+.pulsar-example {
+    // all: initial;
 }
 
 $ie-version: 12 !default;
@@ -27,7 +27,7 @@ $fa-css-prefix: 'icon';
 @import '../../stylesheets/_deprecated.icons';
 @import '../../libs/font-awesome/scss/font-awesome';
 
-#pulsar-example {
+.pulsar-example {
     // Mixins
     @import '../../stylesheets/_mixin.border-radius';
     @import '../../stylesheets/_mixin.clear-fix';
@@ -66,6 +66,7 @@ $fa-css-prefix: 'icon';
     @import '../../stylesheets/_component.buttons';
     @import '../../stylesheets/_component.forms';
     @import '../../stylesheets/_component.icons';
+    @import '../../stylesheets/_component.panels';
     @import '../../stylesheets/_component.remove-button';
     @import '../../stylesheets/_component.rules';
     @import '../../stylesheets/_component.select2';
@@ -81,3 +82,15 @@ $fa-css-prefix: 'icon';
     @import '../../stylesheets/_utility.utilities';
     @import '../../stylesheets/_utility.states';
 }
+
+
+.pulsar-example {
+    border: 1px solid #ccc;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    font-size: .8rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+}
+

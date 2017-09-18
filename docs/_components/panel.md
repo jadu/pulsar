@@ -10,7 +10,7 @@ Display important information in a prominent container.
 
 {% code_example html_helpers/panel %}
 
-<div class="example">
+<div class="pulsar-example">
     <div class="panel">
         <div class="panel__title">
             <i class="icon-info-sign"></i> Default panel
@@ -42,7 +42,7 @@ data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
 
 Use the standard state variations to reinforce the message your panel is displaying.
 
-<div class="example">
+<div class="pulsar-example">
     <div class="panel">
         <div class="panel__title">
             <i class="icon-info-sign"></i> Default panel
@@ -59,7 +59,7 @@ Use the standard state variations to reinforce the message your panel is display
 
 `.panel--info`
 
-<div class="example">
+<div class="pulsar-example">
     <div class="panel panel--info">
         <div class="panel__title">
             <i class="icon-question-sign"></i> Info panel
@@ -76,7 +76,7 @@ Use the standard state variations to reinforce the message your panel is display
 
 `.panel--success`
 
-<div class="example">
+<div class="pulsar-example">
     <div class="panel panel--success">
         <div class="panel__title">
             <i class="icon-ok-sign"></i> Success panel
@@ -93,7 +93,7 @@ Use the standard state variations to reinforce the message your panel is display
 
 `.panel--warning`
 
-<div class="example">
+<div class="pulsar-example">
     <div class="panel panel--warning">
         <div class="panel__title">
             <i class="icon-warning-sign"></i> Warning panel
@@ -110,7 +110,7 @@ Use the standard state variations to reinforce the message your panel is display
 
 `.panel--danger`
 
-<div class="example">
+<div class="pulsar-example">
     <div class="panel panel--danger">
         <div class="panel__title">
             <i class="icon-exclamation-sign"></i> Danger panel
@@ -126,7 +126,7 @@ Use the standard state variations to reinforce the message your panel is display
 
 `.panel--inverse`
 
-<div class="example">
+<div class="pulsar-example">
     <div class="panel panel--inverse">
         <div class="panel__title">
             <i class="icon-remove-sign"></i> Inverse panel
@@ -147,7 +147,7 @@ Chain together styles to achieve the most appropriate layout for your needs.
 
 ###### Panel without title/icon
 
-<div class="example">
+<div class="pulsar-example">
     <div class="panel">
         <div class="panel__body">
             <p>Panels don't need a title or an icon and can be used as standout containers</p>
@@ -157,7 +157,7 @@ Chain together styles to achieve the most appropriate layout for your needs.
 
 `.panel--padded`
 
-<div class="example">
+<div class="pulsar-example">
     <div class="panel panel--padded">
         <div class="panel__body">
             <p>Panels can have increased vertical padding</p>
@@ -167,7 +167,7 @@ Chain together styles to achieve the most appropriate layout for your needs.
 
 `.centered`
 
-<div class="example">
+<div class="pulsar-example">
     <div class="panel centered">
         <div class="panel__body">
             <p>Center content where appropriate</p>
@@ -202,7 +202,7 @@ For actions styles, use a combination of `.btn--outline` and `.btn--small` with 
 ```
 {% endraw %}
 
-<div class="example">
+<div class="pulsar-example">
     <div class="panel">
         <i aria-hidden="true" class="icon-info-sign panel__icon"></i>
         <div class="panel__title">
@@ -210,7 +210,10 @@ For actions styles, use a combination of `.btn--outline` and `.btn--small` with 
         </div>
         <div class="panel__body">
             You need to do a thing.
-            <button class="btn btn--outline btn--small btn--inverse">Don’t Do The Thing</button>&nbsp;<button class="btn btn--outline btn--small btn--inverse">Do The Thing</button>
+            <div class="panel__actions">
+                <button class="btn btn--outline btn--small btn--inverse">Don’t Do The Thing</button>
+                <button class="btn btn--outline btn--small btn--inverse">Do The Thing</button>
+            </div>
         </div>
     </div>
 </div>
@@ -241,14 +244,16 @@ Use the `actions_placement` option to control the positin of your action buttons
 ```
 {% endraw %}
 
-<div class="panel">
-    <i aria-hidden="true" class="icon-info-sign panel__icon"></i>
-    <div class="panel__title">Default (left) placement</div>
-    <div class="panel__body">
-        You need to do a thing.
-        <div class="panel__actions">
-            <button class="btn btn--outline btn--small btn--inverse">Don’t Do The Thing</button>
-            <button class="btn btn--outline btn--small btn--inverse">Do The Thing</button>
+<div class="pulsar-example">
+    <div class="panel">
+        <i aria-hidden="true" class="icon-info-sign panel__icon"></i>
+        <div class="panel__title">Default (left) placement</div>
+        <div class="panel__body">
+            You need to do a thing.
+            <div class="panel__actions">
+                <button class="btn btn--outline btn--small btn--inverse">Don’t Do The Thing</button>
+                <button class="btn btn--outline btn--small btn--inverse">Do The Thing</button>
+            </div>
         </div>
     </div>
 </div>
@@ -275,7 +280,7 @@ Use the `actions_placement` option to control the positin of your action buttons
 ```
 {% endraw %}
 
-<div class="example">
+<div class="pulsar-example">
     <div class="panel">
         <i aria-hidden="true" class="icon-info-sign panel__icon"></i>
         <div class="panel__title">Inline placement</div>
@@ -311,10 +316,33 @@ Use the `actions_placement` option to control the positin of your action buttons
 ```
 {% endraw %}
 
-<div class="example">
+<div class="pulsar-example">
     <div class="panel">
         <i aria-hidden="true" class="icon-info-sign panel__icon"></i>
         <div class="panel__title">Centered placement</div>
+        <div class="panel__body">
+            You need to do a thing.
+            <div class="panel__actions panel__actions--center">
+                <button class="btn btn--outline btn--small btn--inverse">Don’t Do The Thing</button>
+                <button class="btn btn--outline btn--small btn--inverse">Do The Thing</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% raw %}
+```twig
+{{
+    html.panel({
+        'title': 'Centered placement (with centered panel)',
+        'class: 'u-text-align-center',
+        ...
+```
+{% endraw %}
+
+<div class="pulsar-example">
+    <div class="panel u-text-align-center">
+        <div class="panel__title">Centered placement (with centered panel)</div>
         <div class="panel__body">
             You need to do a thing.
             <div class="panel__actions panel__actions--center">
@@ -347,7 +375,7 @@ Use the `actions_placement` option to control the positin of your action buttons
 ```
 {% endraw %}
 
-<div class="example">
+<div class="pulsar-example">
     <div class="panel">
         <i aria-hidden="true" class="icon-info-sign panel__icon"></i>
         <div class="panel__title">Right placement</div>
