@@ -71,7 +71,7 @@ DisableUiComponent.prototype.enable = function (target) {
 
         // Remove wrapper which provides visually disabled styling
         if ($this.parent().hasClass('u-ui-disabled')) {
-            $this.unwrap('.u-ui-disabled');
+            $this.unwrap();
         }
     });
 };
