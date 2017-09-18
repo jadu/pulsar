@@ -1172,9 +1172,11 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
     {% import _self as html %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
+    {% set actions_placements = ['inline', 'left', 'center', 'right'] %}
+
     <div{{
         attributes(options
-            |exclude('icon title body')
+            |exclude('actions actions_placement icon title body')
             |defaults({
                 'class': 'panel'
             })
@@ -1191,6 +1193,22 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
         {% endif %}
         <div class="panel__body">
             {{- options.body|raw -}}
+
+            {% if options.actions is defined %}
+                {% if options.actions_placement is defined and options.actions_placement in actions_placements %}
+                    {% set actions_class = ' panel__actions--' ~ options.actions_placement %}
+                {% endif %}
+
+                <div class="panel__actions{{ actions_class|default }}">
+                    {% for action in options.actions %}
+                        {% if action is iterable %}
+                            {{- html.button(action) -}}
+                        {% else %}
+                            {{- action|raw -}}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
         </div>
     </div>
 
