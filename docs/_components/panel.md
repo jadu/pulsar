@@ -30,6 +30,7 @@ Display important information in a prominent container.
 Option  | Type   | Description
 ------- | ------ | --------------------------------------------------------------
 actions | array  | An array of `html.button` options to be displayed within the panel
+actions_position | string | Position of the actions, `left` (default), `inline`, `center`, `right`
 body    | string | The main content of the panel
 class   | string | CSS classes, space separated
 icon    | string | Icon to display next to the panel title (optional)
@@ -215,6 +216,8 @@ For actions styles, use a combination of `.btn--outline` and `.btn--small` with 
 </div>
 
 ## Action positions
+
+Use the `actions_placement` option to control the positin of your action buttons, they can be `left` (default), `inline`, `center` or `right`.
 
 {% raw %}
 ```twig

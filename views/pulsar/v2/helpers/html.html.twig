@@ -1157,14 +1157,16 @@ Display important information in a prominent container.
 
 ## Options
 
-Option | Type   | Description
------- | ------ | --------------------------------------------------------------
-body   | string | The main content of the panel
-class  | string | CSS classes, space separated
-icon   | string | Icon to display next to the panel title
-id     | string | A unique identifier, if required
-title  | string | The title of the panel
-data-* | string | Data attributes, eg: `'data-foo': 'bar'`
+Option  | Type   | Description
+------- | ------ | --------------------------------------------------------------
+actions | array  | An array of `html.button` options to be displayed within the panel
+actions_position | string | Position of the actions, `left` (default), `inline`, `center`, `right`
+body    | string | The main content of the panel
+class   | string | CSS classes, space separated
+icon    | string | Icon to display next to the panel title
+id      | string | A unique identifier, if required
+title   | string | The title of the panel
+data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
 {% macro panel(options) %}
