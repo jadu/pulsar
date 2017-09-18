@@ -22,10 +22,10 @@
 $ie-version: 12 !default;
 
 // Font awesome
-$fa-font-path: '../../libs/font-awesome/fonts';
+$fa-font-path: '../assets/font-awesome/fonts';
 $fa-css-prefix: 'icon';
 @import '../../stylesheets/_deprecated.icons';
-@import '../../libs/font-awesome/scss/font-awesome';
+@import '../assets/font-awesome/scss/font-awesome';
 
 .pulsar-example {
     // Mixins
