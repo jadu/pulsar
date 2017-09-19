@@ -6,7 +6,7 @@ category: Components
 
 The actions bar is a component within a tab which is split into left/right sides and contains important controls for a given user interface.
 
-<div class="pulsar-example">
+<div class="pulsar-example" style="height: 200px;">
     <div class="actionsbar">
         <div class="u-float-left">
             <div class="btn__group dropdown">

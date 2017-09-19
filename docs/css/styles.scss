@@ -62,20 +62,35 @@ $fa-css-prefix: 'icon';
     @import '../../stylesheets/_structure.type';
     @import '../../stylesheets/_structure.forms';
 
+    // Objects
+    @import '../../stylesheets/objects/_object.media';
+
     // Components
     @import '../../stylesheets/_component.badges';
     @import '../../stylesheets/_component.block-list';
     @import '../../stylesheets/_component.buttons';
     @import '../../stylesheets/_component.button-groups';
+    @import '../../stylesheets/_component.close';
     @import '../../stylesheets/_component.dropdowns';
     @import '../../stylesheets/_component.flash';
     @import '../../stylesheets/_component.forms';
     @import '../../stylesheets/_component.icons';
+    @import '../../stylesheets/_component.labels';
+    @import '../../stylesheets/_component.loading';
+    @import '../../stylesheets/_component.metadata';
+    @import '../../stylesheets/_component.modals';
+    @import '../../stylesheets/_component.pagination';
     @import '../../stylesheets/_component.panels';
+    @import '../../stylesheets/_component.popovers';
     @import '../../stylesheets/_component.progress-bars';
+    @import '../../stylesheets/_component.progress-lists';
     @import '../../stylesheets/_component.remove-button';
     @import '../../stylesheets/_component.rules';
     @import '../../stylesheets/_component.select2';
+    @import '../../stylesheets/_component.status';
+    @import '../../stylesheets/_component.tables';
+    @import '../../stylesheets/_component.datatables';
+    @import '../../stylesheets/_component.tooltips';
 
     // Utilities
     @import '../../stylesheets/_utility.baseline';
@@ -98,14 +113,19 @@ $fa-css-prefix: 'icon';
     font-size: .8rem;
     margin-bottom: 1rem;
     padding: 1rem;
+    position: relative;
     width: 100%;
 
     p:last-child {
         margin-bottom: 0;
     }
+
+    h1, h2, h3, h4, h5, h6 {
+        color: #515151;
+    }
 }
 
-.panel {
+.pulsar-panel {
     background-color: lighten(#c84d40, 30);
     border-left: 4px solid #c84d40;
     font-size: .8rem;
@@ -120,4 +140,30 @@ $fa-css-prefix: 'icon';
         margin-bottom: 0;
     }
 }
+
+.fontawesome-icon-list {
+    a {
+        color: #515151;
+    }
+
+    .fa-hover {
+        margin-bottom: .5rem;
+    }
+
+    .fa {
+        width: 50px;
+    }
+}
+
+.pulsar-example {
+    .modal__dialog {
+        padding: 0;
+    }
+
+    .modal--danger .modal__title {
+        color: #fff;
+    }
+}
+
+
 

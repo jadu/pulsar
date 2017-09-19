@@ -10,8 +10,16 @@ Provides a simple way to mark up key/value information provided by a Twig hash o
 
 {% code_example html_helpers/metadata %}
 
-<p data-height="120" data-theme-id="24005" data-slug-hash="JYGvOg" data-default-tab="result" data-user="stanton" class='codepen'>See the Pen <a href='http://codepen.io/stanton/pen/JYGvOg/'>JYGvOg</a> by Paul Stanton (<a href='http://codepen.io/stanton'>@stanton</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example">
+    <dl class="metadata">
+        <dt class="metadata__key">File</dt><!--
+     --><dd class="metadata__value">true_lies.avi</dd>
+        <dt class="metadata__key">Size</dt><!--
+     --><dd class="metadata__value">1.2 Gb</dd>
+        <dt class="metadata__key">Type</dt><!--
+     --><dd class="metadata__value">Video</dd>
+    </dl>
+</div>
 
 ## Options
 
@@ -44,5 +52,13 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 ```
 {% endraw %}
 
-<p data-height="100" data-theme-id="24005" data-slug-hash="LpGmQY" data-default-tab="result" data-user="stanton" class='codepen'>See the Pen <a href='http://codepen.io/stanton/pen/LpGmQY/'>Metadata bordered</a> by Paul Stanton (<a href='http://codepen.io/stanton'>@stanton</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example">
+    <dl class="metadata metadata--bordered">
+        <dt class="metadata__key">File</dt><!--
+     --><dd class="metadata__value">true_lies.avi</dd>
+        <dt class="metadata__key">Size</dt><!--
+     --><dd class="metadata__value">1.2 Gb</dd>
+        <dt class="metadata__key">Type</dt><!--
+     --><dd class="metadata__value">Video</dd>
+    </dl>
+</div>

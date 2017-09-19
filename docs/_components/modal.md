@@ -28,8 +28,25 @@ Example:
 </div><!-- /.modal -->
 ```
 
-<p data-height="285" data-theme-id="20878" data-slug-hash="ebdaa8ef163066feab29b5c9fa4386d5" data-default-tab="result" data-user="stanton" class='codepen'>See the Pen <a href='http://codepen.io/stanton/pen/ebdaa8ef163066feab29b5c9fa4386d5/'>docs - modal - simple</a> by Paul Stanton (<a href='http://codepen.io/stanton'>@stanton</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example">
+    <div class="modal modal__example show">
+        <div class="modal__dialog">
+            <div class="modal__content">
+                <div class="modal__header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal__title">A simple example</h4>
+                </div>
+                <div class="modal__body">
+                    <p>The modal body might have instructions, a form, or other stuff.</p>
+                </div>
+                <div class="modal__footer">
+                    <button type="button" class="btn btn--primary">Save Changes</button>
+                  <button type="button" class="btn btn--naked" data-dismiss="modal">Cancel</button>
+                </div>
+            </div><!-- /.modal__content -->
+        </div><!-- /.modal__dialog -->
+    </div>
+</div>
 
 ## Variations
 
@@ -41,8 +58,26 @@ Use the `.modal--danger` class for situations where we're performing destructive
 </div>
 ```
 
-<p data-height="395" data-theme-id="20878" data-slug-hash="be00109e59e4dea7e0d9e723241353ee" data-default-tab="result" data-user="stanton" class='codepen'>See the Pen <a href='http://codepen.io/stanton/pen/be00109e59e4dea7e0d9e723241353ee/'>docs - modal - danger</a> by Paul Stanton (<a href='http://codepen.io/stanton'>@stanton</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example">
+    <div class="modal modal--danger modal__example show">
+        <div class="modal__dialog">
+            <div class="modal__content">
+                <div class="modal__header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal__title"><i class="icon-warning-sign"></i> You’re about to do something really, really bad</h4>
+                </div>
+                <div class="modal__body">
+                    <p>We mainly use modals to get you to stop and confirm that you really want to delete something, and remind you that this action cannot be reversed.</p>
+                    <p>A modal's action buttons should be written so that if a user only reads the buttons, they should get an idea of the action they're about to perform instead of blindly clicking 'OK' or 'Confirm'.</p>
+                </div>
+                <div class="modal__footer">
+                    <button type="button" class="btn btn--danger">Delete Everything</button>
+                  <button type="button" class="btn btn--naked" data-dismiss="modal">Don't Do Anything</button>
+                </div>
+            </div><!-- /.modal__content -->
+        </div><!-- /.modal__dialog -->
+    </div>
+</div>
 
 ## Show modal
 
@@ -53,14 +88,20 @@ Toggle a modal with a link (or a link button) by using the `data-toggle="modal"`
 <a data-toggle="modal" href="#myModal" class="btn">Launch Modal</a>
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div
+    class="modal fade"
+    id="myModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myModalLabel"
+    aria-hidden="true">
     ...
 </div>
 ```
 
 ## Close modal
 
-A link or button within a modal can close itself using the `data-dismiss="modal" attribute.
+A link or button within a modal can close itself using the `data-dismiss="modal" attribute`.
 
 ```html
 <a data-dismiss="modal" href="#">Cancel</a>
@@ -157,7 +198,13 @@ This can be achieved by using both `data-toggle` and `data-dismiss` on the link,
 
 ```html
 <!-- within modal-1 -->
-<a class="btn" data-toggle="modal" href="#modal-2" data-dismiss="modal">Open Modal 2 and Close Modal 1</a>
+<a
+    class="btn"
+    data-toggle="modal"
+    href="#modal-2"
+    data-dismiss="modal">
+    Open Modal 2 and Close Modal 1
+</a>
 ```
 
 You should not nest modals more than 2 levels deep.
