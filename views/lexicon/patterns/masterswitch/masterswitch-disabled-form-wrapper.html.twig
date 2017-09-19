@@ -2,26 +2,24 @@
 
 {% block tab_content %}
 
-    <div class="masterswitch">
+{{
+    form.create()
+}}
 
+    <div class="masterswitch">
+    
         {{
             form.toggle_switch({
                 'class': 'masterswitch-control',
                 'label': 'Enable masterswitch content',
-                'id': 'masterswitch2',
-                'checked': true
+                'id': 'toggletest4'
             })
         }}
 
         <hr />
 
         <section class="masterswitch-content is-disabled">
-
-	    {{
-                form.create()
-            }}
-
-            <h4>This content should be disabled until the masterswitch is turned on.</h4>
+            <p>This content should be disabled until the masterswitch is turned on.</p>
 
             {{
                 form.text({
@@ -58,25 +56,24 @@
                     'href': '#normal',
                     'disabled': true
                 })
-            }}
-
-            {{
-                form.end({
-                    'class': 'form__actions--flush',
-                    'actions': [
-                        html.button({
-                            'label': 'Save Changes',
-                            'class': 'btn--primary'
-                        }),
-                        html.button({
-                            'label': 'Cancel',
-                            'class': 'btn--naked'
-                        })
-                    ]
-                })
             }}<!--
      --></section>
     </div>
+{{
+    form.end({
+        'class': 'form__actions--flush',
+        'actions': [
+            html.button({
+                'label': 'Save Changes',
+                'class': 'btn--primary'
+            }),
+            html.button({
+                'label': 'Cancel',
+                'class': 'btn--naked'
+            })
+        ]
+    })
+}}
 
 {% endblock tab_content %}
 
