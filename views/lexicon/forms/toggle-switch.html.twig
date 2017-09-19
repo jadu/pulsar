@@ -24,7 +24,8 @@
     {{
         form.toggle_switch({
             'id': 'toggle-3',
-            'label': 'Toggle switch with help'
+            'label': 'Toggle switch with help',
+            'help': 'Help text to give more information about expected input'
         })
     }}
 
@@ -60,7 +61,8 @@
         form.toggle_switch({
             'id': 'toggle-6',
             'label': 'Toggle switch with a longer than expected label which will probably wrap multple lines and push the following input onto the next baseline',
-            'guidance': 'Help text to give more information about expected input'
+            'guidance': 'Help text to give more information about expected input',
+            'help': 'Example block-level help text here'
         })
     }}
 
@@ -86,7 +88,8 @@
         form.toggle_switch({
             'id': 'toggle-9',
             'label': 'Text field with error and help',
-            'error': 'Please complete this field'
+            'error': 'Please complete this field',
+            'help': 'Help text to give more information about expected input'
         })
     }}
 
@@ -94,7 +97,8 @@
         form.toggle_switch({
             'id': 'toggle-10',
             'class': 'has-error',
-            'label': 'Text field error with help only'
+            'label': 'Text field error with help only',
+            'help': 'Help text to give more information about expected input'
         })
     }}
 
@@ -105,14 +109,16 @@
         form.toggle_switch({
             'id': 'toggle-11',
             'label': '"class": "has-changed"',
-            'class': 'has-changed'
+            'class': 'has-changed',
+            'help': 'Highlight whether an action elsewhere affects an input'
         })
     }}
     {{
         form.toggle_switch({
             'id': 'toggle-12',
             'label': '"class": "has-success"',
-            'class': 'has-success'
+            'class': 'has-success',
+            'help': 'Something good happened'
         })
     }}
 
@@ -120,6 +126,7 @@
         form.toggle_switch({
             'id': 'toggle-13',
             'label': '"class": "has-warning"',
+            'help': 'Something bad happened',
             'class': 'has-warning'
         })
     }}
@@ -127,6 +134,7 @@
         form.toggle_switch({
             'id': 'toggle-14',
             'label': '"class": "has-error"',
+            'help': 'Automatically added if using <code>error</code> option',
             'class': 'has-error'
         })
     }}
@@ -134,6 +142,7 @@
         form.toggle_switch({
             'id': 'toggle-15',
             'label': '"disabled": true',
+            'help': 'Stop! Can’t touch this',
             'disabled': true
         })
     }}
