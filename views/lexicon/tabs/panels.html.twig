@@ -5,6 +5,27 @@
 
 {% block tab_content %}
 
+<div class="panel panel--danger">
+                <i aria-hidden="true" class="icon-exclamation-sign panel__icon"></i>
+                <div class="panel__title">One or more items in the basket are unavailable</div>
+                <div class="panel__body">
+                    The following items are unavailable, please remove them, or try to make a payment later:
+                    <ul>
+
+
+                                <li>Alpha</li>
+
+
+                                <li>Bravo</li>
+
+
+                                <li>Charlie</li>
+
+
+                    </ul>
+                </div>
+            </div>
+
 {{
     html.panel({
         'title': 'Hello',

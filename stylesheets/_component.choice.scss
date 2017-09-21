@@ -80,7 +80,6 @@
         $nth: 9 / $i;
 
         &:nth-child(#{$nth}n) {
-            background-color: red;
             margin-right: 0;
         }
     }
