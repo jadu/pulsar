@@ -2,8 +2,8 @@
 
 var $ = require('jquery');
 
-function NavMainComponent (html, rootWindow) {
-    this.$html = html;
+function NavMainComponent ($html, rootWindow) {
+    this.$html = $html;
     this.$window = $(rootWindow);
 };
 
