@@ -100,7 +100,6 @@
         </div>
     </div>
 
-    <br /><br />
     <h2 class="heading">Monochrome</h2>
 
     {%
@@ -127,7 +126,139 @@
         </div>
     {% endfor %}
 
-    <br /><br />
+    <h2 class="heading">States</h2>
+
+    {%
+        set states_base = {
+            "base-base": "base",
+            "base-light": "base, light",
+            "base-dark": "base, dark"
+        }
+    %}
+
+    {% for colour, address in states_base %}
+        <div class="swatch swatch--{{ colour }}">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color({{ address }})</code>
+            </div>
+        </div>
+    {% endfor %}
+<br />
+    {%
+        set states_primary = {
+            "primary-base": "primary, base",
+            "primary-light": "primary, light",
+            "primary-dark": "primary, dark"
+        }
+    %}
+
+    {% for colour, address in states_primary %}
+        <div class="swatch swatch--{{ colour }}">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color({{ address }})</code>
+            </div>
+        </div>
+    {% endfor %}
+<br />
+    {%
+        set states_success = {
+            "success-base": "success, base",
+            "success-light": "success, light",
+            "success-dark": "success, dark",
+            "success-flash": "success, flash"
+        }
+    %}
+
+    {% for colour, address in states_success %}
+        <div class="swatch swatch--{{ colour }}">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color({{ address }})</code>
+            </div>
+        </div>
+    {% endfor %}
+<br />
+    {%
+        set states_warning = {
+            "warning-base": "warning, base",
+            "warning-light": "warning, light",
+            "warning-dark": "warning, dark",
+            "warning-flash": "warning, flash"
+        }
+    %}
+
+    {% for colour, address in states_warning %}
+        <div class="swatch swatch--{{ colour }}">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color({{ address }})</code>
+            </div>
+        </div>
+    {% endfor %}
+<br />
+    {%
+        set states_danger = {
+            "danger-base": "danger, base",
+            "danger-light": "danger, light",
+            "danger-dark": "danger, dark",
+            "danger-flash": "danger, flash"
+        }
+    %}
+
+    {% for colour, address in states_danger %}
+        <div class="swatch swatch--{{ colour }}">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color({{ address }})</code>
+            </div>
+        </div>
+    {% endfor %}
+<br />
+    {%
+        set states_info = {
+            "info-base": "info, base",
+            "info-light": "info, light",
+            "info-dark": "info, dark",
+            "info-flash": "info, flash"
+        }
+    %}
+
+    {% for colour, address in states_info %}
+        <div class="swatch swatch--{{ colour }}">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color({{ address }})</code>
+            </div>
+        </div>
+    {% endfor %}
+<br />
+    {%
+        set states_inverse = {
+            "inverse-base": "inverse, base",
+            "inverse-light": "inverse, light",
+            "inverse-dark": "inverse, dark",
+            "inverse-flash": "inverse, flash"
+        }
+    %}
+
+    {% for colour, address in states_inverse %}
+        <div class="swatch swatch--{{ colour }}">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color({{ address }})</code>
+            </div>
+        </div>
+    {% endfor %}
+
     <h2 class="heading">Jadu Blue</h2>
 
     {%
@@ -150,7 +281,6 @@
         </div>
     {% endfor %}
 
-    <br /><br />
     <h2 class="heading">Jadu Red</h2>
 
     {%
@@ -173,7 +303,6 @@
         </div>
     {% endfor %}
 
-    <br /><br />
     <h2 class="heading">Jadu Green</h2>
 
     {%
@@ -196,7 +325,6 @@
         </div>
     {% endfor %}
 
-    <br /><br />
     <h2 class="heading">Jadu Teal</h2>
 
     {%
@@ -219,7 +347,6 @@
         </div>
     {% endfor %}
 
-    <br /><br />
     <h2 class="heading">Jadu Pink</h2>
 
     {%

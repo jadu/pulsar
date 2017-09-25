@@ -9,6 +9,7 @@ use Jadu\Pulsar\Twig\Extension\ArrayExtension;
 use Jadu\Pulsar\Twig\Extension\AttributeParserExtension;
 use Jadu\Pulsar\Twig\Extension\ConfigExtension;
 use Jadu\Pulsar\Twig\Extension\ConstantDefinedExtension;
+use Jadu\Pulsar\Twig\Extension\GetConstantExtension;
 use Jadu\Pulsar\Twig\Extension\RelativeTimeExtension;
 use Jadu\Pulsar\Twig\Extension\UrlParamsExtension;
 use Jadu\Pulsar\Twig\Extension\TabsExtension;
@@ -27,6 +28,7 @@ $twig->addExtension(new ArrayExtension());
 $twig->addExtension(new AttributeParserExtension());
 $twig->addExtension(new ConfigExtension($baseDir . 'pulsar.json'));
 $twig->addExtension(new ConstantDefinedExtension());
+$twig->addExtension(new GetConstantExtension());
 $twig->addExtension(new RelativeTimeExtension());
 $twig->addExtension(new UrlParamsExtension($_GET));
 $twig->addExtension(new TabsExtension());
@@ -37,5 +39,7 @@ if (strstr($_SERVER['PATH_INFO'], '.html.twig')) {
 } else {
     $template = $twig->loadTemplate($_SERVER['PATH_INFO'] . '/index.html.twig');
 }
+
+// define('theme', 'projector');
 
 print $template->render(array());
