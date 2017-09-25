@@ -16,7 +16,7 @@ describe('FilterBar component', function () {
 			'			<div class="form__group">' +
 			'				<label for="colour" class="control__label">Colour</label>' +
 			'				<div class="controls">' +
-			'					<select id="colour" multiple="" placeholder="Choose one or more" class="form__control js-select2">' +
+			'					<select id="colour" multiple="" placeholder="Choose one or more" class="form__control js-select2 select2-hidden-accessible">' +
 			'						<option value="colour_red">Red</option>' +
 			'						<option value="colour_blue">Blue</option>' +
 			'					</select>' +
@@ -25,7 +25,7 @@ describe('FilterBar component', function () {
 			'			<div class="form__group">' +
 			'				<label for="size" class="control__label">Size</label>' +
 			'				<div class="controls">' +
-			'					<select id="size" placeholder="Choose one" class="form__control select  js-select2">' +
+			'					<select id="size" placeholder="Choose one" class="form__control select js-select2 select2-hidden-accessible">' +
 			'						<option value=""></option>' +
 			'						<option value="small">Small</option>' +
 			'						<option value="medium">Medium</option>' +

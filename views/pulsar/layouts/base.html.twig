@@ -6,7 +6,10 @@
 {% set imgPath  = base_path ~ 'images/' %}
 {% set jsPath   = base_path ~ 'js/' %}
 {% set libsPath = base_path ~ 'libs/' %}
-{# set themeFile = cssPath ~ 'themes/slate.css' #}
+{% set themeFile = '' %}
+{% if constant_defined('theme') %}
+    {% set themeFile = '-theme-' ~ get_constant('theme') %}
+{% endif %}
 <!DOCTYPE html>
 <!--[if IE 7]>         <html lang="en" class="no-js ie7 lt-ie10 lt-ie8"><![endif]-->
 <!--[if IE 8]>         <html lang="en" class="no-js ie8 lt-ie10 lt-ie9"><![endif]-->
@@ -41,10 +44,10 @@
     <meta name="msapplication-config" content="{{ imgPath }}favicons/cms/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
 
-    <!--[if IE 7]><link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'pulsar-ie7.min.css' }}" /><![endif]-->
-    <!--[if IE 8]><link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'pulsar-ie8.min.css' }}" /><![endif]-->
-    <!--[if IE 9]><link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'pulsar-ie9.min.css' }}" /><![endif]-->
-    <!--[if gt IE 9]><!--> <link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'pulsar.css' }}" /> <!--<![endif]-->
+    <!--[if IE 7]><link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'pulsar-ie7' ~ themeFile ~ '.min.css' }}" /><![endif]-->
+    <!--[if IE 8]><link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'pulsar-ie8' ~ themeFile ~ '.min.css' }}" /><![endif]-->
+    <!--[if IE 9]><link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'pulsar-ie9' ~ themeFile ~ '.min.css' }}" /><![endif]-->
+    <!--[if gt IE 9]><!--> <link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'pulsar' ~ themeFile ~ '.css' }}" /> <!--<![endif]-->
 
     <!--[if lt IE 9]>
     <script type="text/javascript" src="{{ libsPath ~ 'html5shiv/dist/html5shiv.js' }}"></script>
@@ -56,10 +59,6 @@
     <!--[if IE 7]>
     <link rel="stylesheet" type="text/css" href="{{ libsPath ~ 'font-awesome/css/font-awesome-ie7.min.css' }}" />
     <![endif]-->
-
-{% if themeFile is defined %}
-    <link rel="stylesheet" type="text/css" href="{{ themeFile }}" />
-{% endif %}
 
     <!-- <link rel="stylesheet" href="http://basehold.it/12"> -->
 

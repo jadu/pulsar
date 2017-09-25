@@ -1,0 +1,483 @@
+{% extends '@pulsar/pulsar/components/tab.html.twig' %}
+
+{% block tab_content %}
+
+    {{
+        form.create()
+    }}
+
+    {{ form.fieldset_start() }}
+    {{
+        form.range({
+            'id': 'range-1',
+            'label': 'Range field'
+        })
+    }}
+
+
+    {{
+        form.range({
+            'id': 'range-2',
+            'label': 'Range field with value',
+            'value': '6'
+        })
+    }}
+
+    {{
+        form.range({
+            'id': 'range-3',
+            'label': 'Required',
+            'required': true
+        })
+    }}
+
+    {{
+        form.range({
+            'id': 'range-4',
+            'label': 'Range field with help',
+            'help': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{
+        form.range({
+            'id': 'range-5',
+            'label': 'Range field with guidance',
+            'guidance': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{
+        form.range({
+            'id': 'range-6',
+            'label': 'Required with guidance',
+            'guidance': 'Help text to give more information about expected input',
+            'required': true
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'Alignment' }) }}
+
+    {{
+        form.range({
+            'help': 'This example omits the label option entirely'
+        })
+    }}
+
+    {{
+        form.range({
+            'id': 'range-7',
+            'label': 'Range field',
+            'show-label': false,
+            'help': 'This example hides the label with the <code>show-label</code> option'
+        })
+    }}
+
+    {{
+        form.range({
+            'id': 'range-8',
+            'label': 'Range input with a longer than expected label which will probably wrap multple lines and push the following input onto the next baseline',
+            'name': 'inputTextLong',
+            'placeholder': 'Placeholder',
+            'help': 'Example block-level help text here',
+            'guidance': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{
+        form.range({
+            'id': 'range-9',
+            'label': 'Range input with a longer than expected label but this time we use the form__group--top class to keep the label on a single line',
+            'class': 'form__group--top',
+            'name': 'inputTextLong',
+            'placeholder': 'Placeholder',
+            'help': 'Example block-level help text here',
+            'guidance': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{
+        form.range({
+            'id': 'range-10',
+            'label': 'The same as above, but this time we also add the .form__group--flush class to keep everything on the left edge',
+            'class': 'form__group--top form__group--flush',
+            'name': 'inputTextLong',
+            'placeholder': 'Placeholder',
+            'help': 'Example block-level help text here',
+            'guidance': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'Alignment top, flush and legacy sizes' }) }}
+
+    {{
+        form.range({
+            'label': 'form__group--top form__group--flush and form__group--mini',
+            'class': 'form__group--top form__group--flush form__group--mini',
+            'name': 'inputTextLong',
+            'placeholder': 'Placeholder',
+            'help': 'Example block-level help text here',
+            'guidance': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{
+        form.range({
+            'label': 'form__group--top form__group--flush and form__group--small',
+            'class': 'form__group--top form__group--flush form__group--small',
+            'name': 'inputTextLong',
+            'placeholder': 'Placeholder',
+            'help': 'Example block-level help text here',
+            'guidance': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{
+        form.range({
+            'label': 'form__group--top form__group--flush and form__group--medium',
+            'class': 'form__group--top form__group--flush form__group--medium',
+            'name': 'inputTextLong',
+            'placeholder': 'Placeholder',
+            'help': 'Example block-level help text here',
+            'guidance': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{
+        form.range({
+            'label': 'form__group--top form__group--flush and form__group',
+            'class': 'form__group--top form__group--flush',
+            'name': 'inputTextLong',
+            'placeholder': 'Placeholder',
+            'help': 'Example block-level help text here',
+            'guidance': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{
+        form.range({
+            'label': 'form__group--top form__group--flush and form__group--large',
+            'class': 'form__group--top form__group--flush form__group--large',
+            'name': 'inputTextLong',
+            'placeholder': 'Placeholder',
+            'help': 'Example block-level help text here',
+            'guidance': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{
+        form.range({
+            'label': 'form__group--top form__group--flush and form__group--xlarge',
+            'class': 'form__group--top form__group--flush form__group--xlarge',
+            'name': 'inputTextLong',
+            'placeholder': 'Placeholder',
+            'help': 'Example block-level help text here',
+            'guidance': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{
+        form.range({
+            'label': 'form__group--top form__group--flush and form__group--full',
+            'class': 'form__group--top form__group--flush form__group--full',
+            'name': 'inputTextLong',
+            'placeholder': 'Placeholder',
+            'help': 'Example block-level help text here',
+            'guidance': 'Help text to give more information about expected input'
+        })
+    }}
+
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'Errors &amp; Validation' }) }}
+
+    {{
+        form.range({
+            'id': 'range-11',
+            'label': 'Text field with error',
+            'error': 'Please complete this field'
+        })
+    }}
+
+    {{
+        form.range({
+            'id': 'range-12',
+            'label': 'Text field with multiple errors',
+            'error': ['Do this', 'Do this too']
+        })
+    }}
+
+    {{
+        form.range({
+            'id': 'range-13',
+            'label': 'Text field with error and help',
+            'error': 'Please complete this field',
+            'help': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{
+        form.range({
+            'id': 'range-14',
+            'class': 'has-error',
+            'label': 'Text field error with help only',
+            'help': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'States' }) }}
+
+    {{
+        form.range({
+            'id': 'range-15',
+            'label': '"class": "has-changed"',
+            'class': 'has-changed',
+            'help': 'Highlight whether an action elsewhere affects an input'
+        })
+    }}
+    {{
+        form.range({
+            'id': 'range-16',
+            'label': '"class": "has-success"',
+            'class': 'has-success',
+            'help': 'Something good happened'
+        })
+    }}
+
+    {{
+        form.range({
+            'id': 'range-17',
+            'label': '"class": "has-warning"',
+            'class': 'has-warning',
+            'help': 'Something bad happened'
+        })
+    }}
+    {{
+        form.range({
+            'id': 'range-18',
+            'label': '"class": "has-error"',
+            'class': 'has-error',
+            'help': 'Automatically added if using <code>error</code> option'
+        })
+    }}
+    {{
+        form.range({
+            'id': 'range-19',
+            'label': '"disabled": true',
+            'disabled': true,
+            'help': 'Stop! Can’t touch this'
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'Grid Sizes' }) }}
+
+    {{
+        form.range({
+            'id': 'range-1-col',
+            'label': 'One column',
+            'class': 'form__control-col--1',
+            'name': 'inputTextMini',
+        })
+    }}
+
+    {{
+        form.range({
+            'id': 'range-2-col',
+            'label': 'Two columns',
+            'class': 'form__control-col--2',
+            'name': 'inputTextSmall'
+        })
+    }}
+
+    {{
+        form.range({
+            'id': 'range-3-col',
+            'label': 'Three columns',
+            'class': 'form__control-col--3',
+            'name': 'inputTextMedium'
+        })
+    }}
+
+    {{
+        form.range({
+            'id': 'range-4-col',
+            'label': 'Four columns',
+            'class': 'form__control-col--4',
+            'name': 'inputTextRegular'
+        })
+    }}
+
+    {{
+        form.range({
+            'id': 'range-5-col',
+            'label': 'Five columns',
+            'class': 'form__control-col--5',
+            'name': 'inputTextLarge'
+        })
+    }}
+
+    {{
+        form.range({
+            'id': 'range-6-col',
+            'label': 'Six columns',
+            'class': 'form__control-col--6',
+            'name': 'inputTextXLarge'
+        })
+    }}
+
+    {{
+        form.range({
+            'id': 'range-7-col',
+            'label': 'Seven columns',
+            'class': 'form__control-col--7',
+            'name': 'inputTextFull'
+        })
+    }}
+
+    {{
+        form.range({
+            'id': 'range-8-col',
+            'label': 'Eight columns',
+            'class': 'form__control-col--8',
+            'name': 'inputTextFull'
+        })
+    }}
+
+    {{
+        form.range({
+            'id': 'range-9-col',
+            'label': 'Nine columns',
+            'class': 'form__control-col--9',
+            'name': 'inputTextFull'
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'Legacy Sizes' }) }}
+
+    {{
+        form.range({
+            'id': 'range-20',
+            'label': 'Mini',
+            'class': 'form__group--mini',
+            'name': 'inputTextMini'
+        })
+    }}
+
+    {{
+        form.range({
+            'id': 'range-21',
+            'label': 'Small',
+            'class': 'form__group--small',
+            'name': 'inputTextSmall'
+        })
+    }}
+
+    {{
+        form.range({
+            'id': 'range-22',
+            'label': 'Medium',
+            'class': 'form__group--medium',
+            'name': 'inputTextMedium'
+        })
+    }}
+
+    {{
+        form.range({
+            'id': 'range-23',
+            'label': 'Regular',
+            'class': 'form__group--regular',
+            'name': 'inputTextRegular'
+        })
+    }}
+
+    {{
+        form.range({
+            'id': 'range-24',
+            'label': 'Large',
+            'class': 'form__group--large',
+            'name': 'inputTextLarge'
+        })
+    }}
+
+    {{
+        form.range({
+            'id': 'range-25',
+            'label': 'Extra Large',
+            'class': 'form__group--xlarge',
+            'name': 'inputTextXLarge'
+        })
+    }}
+
+    {{
+        form.range({
+            'id': 'range-26',
+            'label': 'Full',
+            'class': 'form__group--full',
+            'name': 'inputTextFull'
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'Appended &amp; Prepended' }) }}
+
+    {{
+        form.range({
+            'id': 'range-27',
+            'label': 'Prepended',
+            'prepend': '£'
+        })
+    }}
+
+    {{
+        form.range({
+            'id': 'range-28',
+            'label': 'Appended',
+            'append': '.00'
+        })
+    }}
+
+    {{
+        form.range({
+            'id': 'range-29',
+            'label': 'Appended with guidance',
+            'append': '.00',
+            'guidance': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{
+        form.range({
+            'id': 'range-30',
+            'label': 'Prepended &amp; Appended',
+            'append': html.icon('volume-up'),
+            'prepend': html.icon('volume-down')
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+
+    {{
+        form.end()
+    }}
+
+{% endblock tab_content %}
+
+{% block tab_sidebar %}
+    <a href="https://jadu.gitbooks.io/pulsar/content/text.html">
+        <img src="../../../images/cover.png" alt="Pulsar documentation front cover" width="157px" />
+    </a>
+    <br />
+    {{
+        html.button({
+            'label': 'View Documentation',
+            'type': 'link',
+            'href': 'https://jadu.gitbooks.io/pulsar/content/text.html'
+        })
+    }}
+
+{% endblock tab_sidebar %}
