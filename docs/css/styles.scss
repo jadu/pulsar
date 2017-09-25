@@ -67,6 +67,7 @@ $fa-css-prefix: 'icon';
     @import '../../stylesheets/_component.forms';
     @import '../../stylesheets/_component.icons';
     @import '../../stylesheets/_component.panels';
+    @import '../../stylesheets/_component.range-slider';
     @import '../../stylesheets/_component.remove-button';
     @import '../../stylesheets/_component.rules';
     @import '../../stylesheets/_component.select2';
@@ -92,5 +93,8 @@ $fa-css-prefix: 'icon';
     font-size: .8rem;
     margin-bottom: 1rem;
     padding: 1rem;
-}
 
+    .control__label + .controls {
+        margin-left: 0;
+    }
+}
