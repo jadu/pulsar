@@ -74,3 +74,37 @@ Chain together styles to achieve the most appropriate layout for your needs.
 
 <p data-height="130" data-theme-id="24005" data-slug-hash="ALKdAO" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/ALKdAO/">docs - html - panel centered</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p>
 <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+## Call to Action
+
+Use a combination of `.btn--outline` and `.btn--small` with either `.btn--inverse` or `.btn--white` depending on the colour of the panel you're using.
+
+{% raw %}
+```
+{{
+    html.panel({
+        'title': 'Hello',
+        'body': 'You need to do a thing. ' ~
+                html.button({
+                    'label': 'Don’t Do The Thing',
+                    'class': 'btn--outline btn--small btn--inverse'
+                }) ~ '&nbsp;' ~
+                html.button({
+                    'label': 'Do The Thing',
+                    'class': 'btn--outline btn--small btn--inverse'
+                })
+    })
+}}
+```
+{% endraw %}
+
+<div class="panel">
+    <i aria-hidden="true" class="icon-info-sign panel__icon"></i>
+    <div class="panel__title">
+        Hello
+    </div>
+    <div class="panel__body">
+        You need to do a thing.
+        <button class="btn btn--outline btn--small btn--inverse">Don’t Do The Thing</button>&nbsp;<button class="btn btn--outline btn--small btn--inverse">Do The Thing</button>
+    </div>
+</div>
