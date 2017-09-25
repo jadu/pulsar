@@ -165,7 +165,7 @@ Chain together styles to achieve the most appropriate layout for your needs.
     </div>
 </div>
 
-`.centered`
+`.u-text-align-center`
 
 <div class="pulsar-example">
     <div class="panel centered">

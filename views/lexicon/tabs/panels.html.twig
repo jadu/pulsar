@@ -5,44 +5,6 @@
 
 {% block tab_content %}
 
-<div class="panel panel--danger">
-                <i aria-hidden="true" class="icon-exclamation-sign panel__icon"></i>
-                <div class="panel__title">One or more items in the basket are unavailable</div>
-                <div class="panel__body">
-                    The following items are unavailable, please remove them, or try to make a payment later:
-                    <ul>
-
-
-                                <li>Alpha</li>
-
-
-                                <li>Bravo</li>
-
-
-                                <li>Charlie</li>
-
-
-                    </ul>
-                </div>
-            </div>
-
-{{
-    html.panel({
-        'title': 'Hello',
-        'icon': 'info-sign',
-        'body': 'You need to do a thing. ' ~
-                html.button({
-                    'label': 'Don’t Do The Thing',
-                    'class': 'btn--outline btn--small btn--inverse'
-                }) ~ '&nbsp;' ~
-                html.button({
-                    'label': 'Do The Thing',
-                    'class': 'btn--outline btn--small btn--inverse'
-                })
-
-    })
-}}
-
     {{
         html.panel({
             'title': 'Default panel',
@@ -127,6 +89,85 @@
     Trying to do what I did
     Mama-unh mama-unh mama come closer
     In the middle of the club with the rub-a-dub, unh <a href="#" class="btn btn--outline btn--small btn--inverse">Call to Action</a>'
+        })
+    }}
+
+    {{
+        html.panel({
+            'title': 'Default (left) placement',
+            'icon': 'info-sign',
+            'body': 'You need to do a thing.',
+            'actions': [
+                {
+                    'label': 'Don’t Do The Thing',
+                    'class': 'btn--outline btn--small btn--inverse'
+                },
+                {
+                    'label': 'Do The Thing',
+                    'class': 'btn--outline btn--small btn--inverse'
+                }
+            ]
+
+        })
+    }}
+
+    {{
+        html.panel({
+            'title': 'inline',
+            'icon': 'info-sign',
+            'body': 'You need to do a thing.',
+            'actions_placement': 'inline',
+            'actions': [
+                {
+                    'label': 'Don’t Do The Thing',
+                    'class': 'btn--outline btn--small btn--inverse'
+                },
+                {
+                    'label': 'Do The Thing',
+                    'class': 'btn--outline btn--small btn--inverse'
+                }
+            ]
+
+        })
+    }}
+
+    {{
+        html.panel({
+            'title': 'center',
+            'icon': 'info-sign',
+            'body': 'You need to do a thing.',
+            'actions_placement': 'center',
+            'actions': [
+                {
+                    'label': 'Don’t Do The Thing',
+                    'class': 'btn--outline btn--small btn--inverse'
+                },
+                {
+                    'label': 'Do The Thing',
+                    'class': 'btn--outline btn--small btn--inverse'
+                }
+            ]
+
+        })
+    }}
+
+    {{
+        html.panel({
+            'title': 'right',
+            'icon': 'info-sign',
+            'body': 'You need to do a thing.',
+            'actions_placement': 'right',
+            'actions': [
+                {
+                    'label': 'Don’t Do The Thing',
+                    'class': 'btn--outline btn--small btn--inverse'
+                },
+                {
+                    'label': 'Do The Thing',
+                    'class': 'btn--outline btn--small btn--inverse'
+                }
+            ]
+
         })
     }}
 

@@ -356,10 +356,19 @@ fieldset {
         width: auto;
     }
 
+    // input-groups default
     .form__group .input-group {
-        width: map-get($input-widths, regular);
+        @include col-span(4, false, false, 9);
     }
 
+    // input-groups column variations
+    @for $i from 1 through 9 {
+        .form__group.form__control-col--#{$i} .input-group {
+            @include col-span($i, false, false, 9);
+        }
+    }
+
+    // input-groups legacy sizes
     @each $variant, $width in $input-widths {
         .form__group.form__group--#{$variant} .input-group {
             width: #{$width};
@@ -501,4 +510,34 @@ fieldset {
         margin-left: 0;
         padding-left: 0;
     }
+}
+
+.form-range .form__control {
+    @extend %range-slider;
+}
+
+.form-range > .controls .form__control {
+    background-color: transparent;
+    height: 48px;
+    padding: 0;
+}
+
+.form-range .input-group-addon:first-child,
+.form-range .input-group-addon:last-child {
+    border: 1px solid color(border);
+    border-radius: $border-radius;
+}
+
+.form-range .input-group .form__control {
+    padding-left: 0;
+    padding-right: $gutter-width;
+}
+
+.form-range .input-group > .input-group-addon + .form__control {
+    padding-left: $gutter-width;
+    padding-right: $gutter-width;
+}
+
+.form-range .input-group > .form__control:last-child {
+    padding-right: 0;
 }
