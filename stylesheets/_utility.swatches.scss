@@ -1,23 +1,23 @@
 .swatch {
     display: inline-block;
-    margin-bottom: $line-height-base;
+    margin-bottom: $line-height-medium;
     width: 150px;
     vertical-align: top;
 
     &__colour {
-        border-radius: 100px;
+        border-top-left-radius: 10px;
+        border-bottom-right-radius: 10px;
         display: block;
         margin: 0 auto;
-        height: 96px;
-        width: 96px;
+        height: 30px;
+        width: 100px;
     }
 
     &__text {
         display: block;
-        position: relative;
-        top: 38%;
+        line-height: 30px;
         text-align: center;
-        width: 95px;
+        width: 100px;
     }
 
     &__label {
