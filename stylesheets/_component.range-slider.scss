@@ -1,5 +1,5 @@
 %range-slider,
-.rangeslider {
+.range-slider {
     -webkit-appearance: none;
     border-radius: 5px;
     display: block;
@@ -117,5 +117,9 @@
 
     &::-moz-focus-outer {
         border: 0;
+    }
+
+    &:focus {
+        box-shadow: 0 0 0 2px white, 0 0 2px 5px highlight;
     }
 }

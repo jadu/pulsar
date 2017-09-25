@@ -4,7 +4,7 @@ title: DropZone
 category: Components
 ---
 
-The DropZone is a component that can create a pre-formatted area for users to drag files, it can also be used to convert an existing HTML element into a droppable area. 
+The DropZone is a component that can create a pre-formatted area for users to drag files, it can also be used to convert an existing HTML element into a droppable area.
 
 ## Example usage
 
@@ -29,7 +29,7 @@ import DropZoneComponentFactory from '../path/to/DropZoneComponentFactory';
 
 const dropZoneComponent = DropZoneComponentFactory.create(
     // <html> element
-    document.documentElement, 
+    document.documentElement,
     // selector to identify DropZone elements
     '.dropzone'
 );
@@ -57,7 +57,7 @@ import DropZoneComponentFactory from '../path/to/DropZoneComponentFactory';
 
 const dropZoneComponent = DropZoneComponentFactory.create(
     // <html> element
-    document.documentElement, 
+    document.documentElement,
     // selector to identify DropZone elements
     '.dropzone'
 );
@@ -68,7 +68,7 @@ dropZoneComponent.init();
 
 ---
 
-### Enriched passive 
+### Enriched passive
 
 An example of a passive DropZone leveraging the DropZoneComponent's callbacks and public methods (see below) to trigger help state changes and a backdrop.
 
@@ -365,7 +365,7 @@ JavaScript  | `dropZoneComponent.init({ fileNodeType: false })`
 
 ## Callbacks
 
-There are several callbacks at your disposal when it comes to interacting with the DropZone API. These will come in handy when the DropZone is in `passive` mode. Each callback is fired and passed an object containing contextual information. 
+There are several callbacks at your disposal when it comes to interacting with the DropZone API. These will come in handy when the DropZone is in `passive` mode. Each callback is fired and passed an object containing contextual information.
 
 ---
 
@@ -493,6 +493,7 @@ There are a few public methods at your disposal when integrating a DropZone whic
 
 The `validateFiles` method will pass files through the DropZoneComponent validator.
 
+{% raw %}
 ```javascript
 const id = parseInt(dropZoneHtmlNode.getAttribute('data-dropzone-id'));
 
@@ -501,8 +502,9 @@ const id = parseInt(dropZoneHtmlNode.getAttribute('data-dropzone-id'));
  * @param {number} id | DropZoneComponent ID
  * @returns {{ valid: Boolean, text: String }} validation object
  */
-dropZoneComponent.validateFiles(files, id); 
+dropZoneComponent.validateFiles(files, id);
 ```
+{% endraw %}
 
 ---
 
@@ -516,9 +518,9 @@ const id = parseInt(dropZoneHtmlNode.getAttribute('data-dropzone-id'));
 /**
  * @param {FileList} files | file(s) to add to the instance
  * @param {number} id | DropZoneComponent ID
- * @param {Object} meta | an optional object of data to add to the file object 
+ * @param {Object} meta | an optional object of data to add to the file object
  */
-dropZoneComponent.addFilesToDropZone(files, id, { description: 'my file' }); 
+dropZoneComponent.addFilesToDropZone(files, id, { description: 'my file' });
 ```
 
 ---
@@ -533,7 +535,7 @@ const id = parseInt(dropZoneHtmlNode.getAttribute('data-dropzone-id'));
 /**
  * @param {number} id | optional DropZoneComponent ID
  */
-dropZoneComponent.reset(); 
+dropZoneComponent.reset();
 ```
 
 ---
@@ -542,16 +544,18 @@ dropZoneComponent.reset();
 
 The `getFilesFromDropZone` will return all files attached to an instance. Files will be passed back through the validator to catch edge cases where files are removed after being added onto the DropZone.
 
+{% raw %}
 ```javascript
 const id = parseInt(dropZoneHtmlNode.getAttribute('data-dropzone-id'));
 
 /**
  * @param {number} id | DropZoneComponent ID
- * @param {number} index | an optional index referencing a single file 
+ * @param {number} index | an optional index referencing a single file
  * @returns {{ valid: Boolean, text: String, files: Array }}
  */
-dropZoneComponent.getFilesFromDropZone(id); 
+dropZoneComponent.getFilesFromDropZone(id);
 ```
+{% endraw %}
 
 ---
 
@@ -566,7 +570,7 @@ const id = parseInt(dropZoneHtmlNode.getAttribute('data-dropzone-id'));
  * @param {number} id | DropZoneComponent ID
  * @returns {String} idleHtml
  */
-dropZoneComponent.getInstanceIdleHtml(id); 
+dropZoneComponent.getInstanceIdleHtml(id);
 ```
 
 ---
@@ -582,7 +586,7 @@ const id = parseInt(dropZoneHtmlNode.getAttribute('data-dropzone-id'));
  * @param {number} id | DropZoneComponent ID
  * @returns {String} windowEnterHtml
  */
-dropZoneComponent.getInstanceWindowEnterHtml(id); 
+dropZoneComponent.getInstanceWindowEnterHtml(id);
 ```
 
 ---
@@ -598,7 +602,7 @@ const id = parseInt(dropZoneHtmlNode.getAttribute('data-dropzone-id'));
  * @param {number} id | DropZoneComponent ID
  * @returns {String} dropZoneEnterHtml
  */
-dropZoneComponent.getInstanceDropZoneEnterHtml(id); 
+dropZoneComponent.getInstanceDropZoneEnterHtml(id);
 ```
 
 ---
@@ -614,7 +618,7 @@ const id = parseInt(dropZoneHtmlNode.getAttribute('data-dropzone-id'));
  * @param {number} id | DropZoneComponent ID
  * @returns {Boolean} data transfer support
  */
-dropZoneComponent.getSupportsDataTransferItems(id); 
+dropZoneComponent.getSupportsDataTransferItems(id);
 ```
 
 
