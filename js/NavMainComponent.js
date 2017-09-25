@@ -10,7 +10,7 @@ function NavMainComponent (html, rootWindow) {
 NavMainComponent.prototype.init = function () {
     var component = this;
 
-    if (!component.html.length) {
+    if (!component.$html.length) {
         throw new Error('html must be passed to NavMainComponent');
     }
 
