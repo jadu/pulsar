@@ -110,6 +110,26 @@ describe('NavMainComponent', function () {
         this.$html.remove(); // Detach test DOM from the real one
     });
 
+    describe('when component is initalised, if html arguement is missing', function () {
+        it('should throw the error \'html must be passed to NavMainComponent\' ', function () {
+            this.navMainComponentWithoutHtmlArg = new NavMainComponent({}, this.window);
+
+            expect(() => {
+                this.navMainComponentWithoutHtmlArg.init();
+            }).to.throw('html must be passed to NavMainComponent');
+        })
+    });
+
+    describe('when component is initalised, if window arguement is missing', function () {
+        it('should throw the error \'window must be passed to NavMainComponent\' ', function () {
+            this.navMainComponentWithoutWindowArg = new NavMainComponent(this.$html, undefined);
+
+            expect(() => {
+                this.navMainComponentWithoutWindowArg.init();
+            }).to.throw('window must be passed to NavMainComponent');
+        })
+    });
+
     describe('clicking on the first primary nav link', function () {
         beforeEach(function () {
             this.navMainComponent.init();
