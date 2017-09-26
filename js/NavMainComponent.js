@@ -2,13 +2,21 @@
 
 var $ = require('jquery');
 
-function NavMainComponent (html, window) {
-    this.$html = html;
-    this.$window = $(window);
+function NavMainComponent ($html, rootWindow) {
+    this.$html = $html;
+    this.$window = $(rootWindow);
 };
 
 NavMainComponent.prototype.init = function () {
     var component = this;
+
+    if (!component.$html.length) {
+        throw new Error('html must be passed to NavMainComponent');
+    }
+
+    if (!component.$window.length) {
+        throw new Error('window must be passed to NavMainComponent');
+    }
 
     component.adjustNavItems();
 
@@ -147,6 +155,8 @@ NavMainComponent.prototype.changeActiveQuaternaryNavLink = function (target) {
 
 NavMainComponent.prototype.closeNavs = function () {
     var component = this;
+
+    component.$navMain.removeClass('is-open');
 
     if (component.$navSecondary.hasClass('is-open')) {
         component.$navSecondary.removeClass('is-open');
