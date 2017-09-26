@@ -77,7 +77,7 @@
         // element exceed the container
         //
         // number of columns in grid / column width of choice blocks
-        $nth: 9 / $i;
+        $nth: ceil(9 / $i);
 
         &:nth-child(#{$nth}n) {
             margin-right: 0;
@@ -124,7 +124,7 @@
             // element exceed the container
             //
             // number of columns in grid / column width of choice blocks
-            $nth: 12 / $i;
+            $nth: ceil(12 / $i);
 
             &:nth-child(#{$nth}n) {
                 margin-right: 0;

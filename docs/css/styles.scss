@@ -62,6 +62,9 @@ $fa-css-prefix: 'icon';
     @import '../../stylesheets/_structure.type';
     @import '../../stylesheets/_structure.forms';
 
+    // Third party code
+    @import '../../stylesheets/libraries/library.colorpicker';
+
     // Objects
     @import '../../stylesheets/objects/_object.media';
 
@@ -71,12 +74,14 @@ $fa-css-prefix: 'icon';
     @import '../../stylesheets/_component.breadcrumb';
     @import '../../stylesheets/_component.buttons';
     @import '../../stylesheets/_component.button-groups';
+    @import '../../stylesheets/_component.colorpicker';
     @import '../../stylesheets/_component.close';
     @import '../../stylesheets/_component.dropdowns';
     @import '../../stylesheets/_component.flash';
     @import '../../stylesheets/_component.forms';
     @import '../../stylesheets/_component.choice';
     @import '../../stylesheets/_component.icons';
+    @import '../../stylesheets/_component.input-groups';
     @import '../../stylesheets/_component.labels';
     @import '../../stylesheets/_component.loading';
     @import '../../stylesheets/_component.metadata';

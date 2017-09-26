@@ -11,10 +11,12 @@
     $html.removeClass('no-js');
 
     pulsar.button = new pulsar.ButtonComponent($html);
+    pulsar.pulsarForm = new pulsar.PulsarFormComponent($html);
     pulsar.pulsarUI = new pulsar.PulsarUIComponent($html, pulsar.history);
 
     $(function () {
         pulsar.button.init();
+        pulsar.pulsarForm.init();
         pulsar.pulsarUI.init();
 
         // Switch out .svg for .png for <img> elements in older browsers
