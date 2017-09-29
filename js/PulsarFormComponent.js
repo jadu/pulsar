@@ -144,7 +144,7 @@ PulsarFormComponent.prototype.initSelect2 = function(target) {
         }
 
         $this.select2(config);
-        $this.removeAttr('style');
+        $this.parent().find('.select2-container').removeAttr('style');
     });
 
 }
