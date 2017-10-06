@@ -13,6 +13,10 @@ UrlParamsExtension.prototype.getActiveTab = function () {
     return this.parameters.tab ? this.parameters.tab : null;
 };
 
+UrlParamsExtension.prototype.getTheme = function () {
+    return this.parameters.theme ? this.parameters.theme : null;
+};
+
 UrlParamsExtension.prototype.getView = function () {
     return this.parameters.view ? this.parameters.view : null;
 };
@@ -20,6 +24,7 @@ UrlParamsExtension.prototype.getView = function () {
 UrlParamsExtension.prototype.getGlobals = function () {
     return {
         'active_tab': this.getActiveTab(),
+        'theme': this.getTheme(),
         'view': this.getView()
     };
 };

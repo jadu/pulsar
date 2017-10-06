@@ -191,7 +191,7 @@
     }
 
     .tab__sidebar {
-        @include span(3);
+        @include col-span(3);
         display: none;
 
         @include respond-min($screen-desktop) {
@@ -215,10 +215,10 @@
 
 .tab__container.has-sidebar .tab__content {
     @include respond-min($screen-phone) {
-        @include span(12);
+        @include col-span(12);
     }
 
     @include respond-min($screen-desktop) {
-        @include span(9);
+        @include col-span(9);
     }
 }

@@ -1157,14 +1157,16 @@ Display important information in a prominent container.
 
 ## Options
 
-Option | Type   | Description
------- | ------ | --------------------------------------------------------------
-body   | string | The main content of the panel
-class  | string | CSS classes, space separated
-icon   | string | Icon to display next to the panel title
-id     | string | A unique identifier, if required
-title  | string | The title of the panel
-data-* | string | Data attributes, eg: `'data-foo': 'bar'`
+Option  | Type   | Description
+------- | ------ | --------------------------------------------------------------
+actions | array  | An array of `html.button` options to be displayed within the panel
+actions_position | string | Position of the actions, `left` (default), `inline`, `center`, `right`
+body    | string | The main content of the panel
+class   | string | CSS classes, space separated
+icon    | string | Icon to display next to the panel title
+id      | string | A unique identifier, if required
+title   | string | The title of the panel
+data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
 {% macro panel(options) %}
@@ -1172,9 +1174,11 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
     {% import _self as html %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
+    {% set actions_placements = ['inline', 'left', 'center', 'right'] %}
+
     <div{{
         attributes(options
-            |exclude('icon title body')
+            |exclude('actions actions_placement icon title body')
             |defaults({
                 'class': 'panel'
             })
@@ -1191,6 +1195,22 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
         {% endif %}
         <div class="panel__body">
             {{- options.body|raw -}}
+
+            {% if options.actions is defined %}
+                {% if options.actions_placement is defined and options.actions_placement in actions_placements %}
+                    {% set actions_class = ' panel__actions--' ~ options.actions_placement %}
+                {% endif %}
+
+                <div class="panel__actions{{ actions_class|default }}">
+                    {% for action in options.actions %}
+                        {% if action is iterable %}
+                            {{- html.button(action) -}}
+                        {% else %}
+                            {{- action|raw -}}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
         </div>
     </div>
 
@@ -1399,6 +1419,7 @@ Option                              | Type      | Description
 helperLabel                         | string    | The label for the default helper text popup
 helperTitle                         | string    | The heading for the default helper text popup
 helperContent                       | string    | The content for the default helper text popup
+helperContainer                     | string    | The selector for the container of the helper text popup
 data-dropzone-max-files             | string    | The maximum ammount of files a DropZone will accept
 data-dropzone-max-size              | string    | The combined file size limit of a group of files
 data-dropzone-idle-timer-duration   | string    | The duration
@@ -1439,8 +1460,8 @@ data-dropzone-file-node-type        | boolean   | Show file type in file html | 
                data-title="{{ options.helperTitle|default('Helper title')|raw }}"
                data-content="{{ options.helperContent|default('Helper content')|raw }}"
                data-html="true"
-               data-placement="left"
-               data-container="{{ '#' ~ options.id }}"
+               data-placement="bottom"
+               data-container="{{ options.helperContainer|default('#' ~ options.id) }}"
             >
                 {{ html.icon('question-sign') }} {{ options.helperLabel|default('Only certain file types are allowed') }}
             </p>

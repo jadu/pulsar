@@ -7,7 +7,7 @@
     vertical-align: middle;
 
     @include respond-min($screen-smaller) {
-        @include span(4, false, false, 9);
+        @include col-span(4, false, false, 9);
     }
 }
 

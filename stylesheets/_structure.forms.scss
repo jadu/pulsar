@@ -13,7 +13,7 @@
 
     // the main label, usually placed in the left hand column
     > .control__label {
-        @include span($form-label-cols);
+        @include col-span($form-label-cols);
         word-wrap: break-word;
     }
 
@@ -41,7 +41,7 @@
 
 // the container around one or more form inputs
 .controls {
-    @include span($form-control-cols + $form-label-cols, false, false);
+    @include col-span($form-control-cols + $form-label-cols, false, false);
     position: relative;
 
     // stack inputs by default
@@ -53,7 +53,7 @@
 
 // Add a gutter between form labels and controls
 .control__label + .controls {
-    @include span($form-control-cols, false, true);
+    @include col-span($form-control-cols, false, true);
 }
 
 // inputs can be aligned next to each other if required
@@ -93,7 +93,7 @@
 
 .form__group--top {
     > .control__label {
-        @include span(12);
+        @include col-span(12);
     }
 
     > .control__label,
@@ -110,7 +110,7 @@
 
 // // control group inside first column (normally used for control labels)
 // .controls:first-child {
-//     @include span($form-label-cols);
+//     @include col-span($form-label-cols);
 //     display: table;
 
 //     > .control__label--left {

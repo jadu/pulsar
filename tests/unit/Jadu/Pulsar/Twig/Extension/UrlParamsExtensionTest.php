@@ -33,7 +33,7 @@ class UrlParamsExtensionTest extends \PHPUnit_Framework_TestCase
 
     public function testGetGlobals()
     {
-        $ext = new UrlParamsExtension(array('tab' => 3, 'view' => 'foo'));
+        $ext = new UrlParamsExtension(array('tab' => 3, 'theme' => 'foo', 'view' => 'foo'));
         $globals = $ext->getGlobals();
 
         $this->assertArrayHasKey('active_tab', $globals);

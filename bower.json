@@ -1,6 +1,6 @@
 {
   "name": "pulsar",
-  "version": "6.20.1",
+  "version": "6.20.11",
   "ignore": [
     "**/.*",
     "node_modules",

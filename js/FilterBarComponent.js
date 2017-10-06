@@ -322,7 +322,7 @@ function removeFilter ($filterbar) {
         }
 
         // Destroy select2
-        if ($field.hasClass('js-select2')) {
+        if ($field.hasClass('select2-hidden-accessible')) {
             $field.select2('destroy');
         }
 

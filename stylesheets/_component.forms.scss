@@ -90,6 +90,7 @@ fieldset {
         height: auto;
         padding: 0;
         vertical-align: baseline;
+        width: auto;
 
         @include ie-lte(9) {
             border: 0;
@@ -103,6 +104,7 @@ fieldset {
         min-height: 68px;
         padding-top: 11px;
         padding-bottom: 11px;
+        resize: vertical;
     }
 
     &.select {
@@ -311,14 +313,14 @@ fieldset {
     // default width
     .form__control,
     .form__group--flush > .control__label + .controls > .form__control {
-        @include span(4, false, false, 12);
+        @include col-span(4, false, false, 12);
     }
 
     // column variations
     @for $i from 1 through 12 {
         .form__control-col--#{$i} .form__control,
-        .form__group--flush > .form__control-col--#{$i} .control__label + .controls > .form__control {
-            @include span($i, false, false, 12);
+        .form__group--flush.form__control-col--#{$i} .control__label + .controls > .form__control {
+            @include col-span($i, false, false, 12);
         }
     }
 
@@ -326,14 +328,14 @@ fieldset {
 // based on the remaining 9 column grid
 
     // default width
-    .control__label + .controls > .form__control {
-        @include span(4, false, false, 9);
+    .control__label + .controls > .form__control:not(.checkbox) {
+        @include col-span(4, false, false, 9);
     }
 
     // column variations
     @for $i from 1 through 9 {
         .form__control-col--#{$i} .control__label + .controls > .form__control {
-            @include span($i, false, false, 9);
+            @include col-span($i, false, false, 9);
         }
     }
 
@@ -347,18 +349,19 @@ fieldset {
         }
     }
 
-    // Checkboxes and radios don't need to use the grid widths, but we avoid
-    // using :not() because it makes things overly specific and is a pain to
-    // override (trust me ;)
-    .form__control.checkbox,
-    .form__control.radio {
-        width: auto;
-    }
-
+    // input-groups default
     .form__group .input-group {
-        width: map-get($input-widths, regular);
+        @include col-span(4, false, false, 9);
     }
 
+    // input-groups column variations
+    @for $i from 1 through 9 {
+        .form__group.form__control-col--#{$i} .input-group {
+            @include col-span($i, false, false, 9);
+        }
+    }
+
+    // input-groups legacy sizes
     @each $variant, $width in $input-widths {
         .form__group.form__group--#{$variant} .input-group {
             width: #{$width};
@@ -500,4 +503,34 @@ fieldset {
         margin-left: 0;
         padding-left: 0;
     }
+}
+
+.form-range .form__control {
+    @extend %range-slider;
+}
+
+.form-range > .controls .form__control {
+    background-color: transparent;
+    height: 48px;
+    padding: 0;
+}
+
+.form-range .input-group-addon:first-child,
+.form-range .input-group-addon:last-child {
+    border: 1px solid color(border);
+    border-radius: $border-radius;
+}
+
+.form-range .input-group .form__control {
+    padding-left: 0;
+    padding-right: $gutter-width;
+}
+
+.form-range .input-group > .input-group-addon + .form__control {
+    padding-left: $gutter-width;
+    padding-right: $gutter-width;
+}
+
+.form-range .input-group > .form__control:last-child {
+    padding-right: 0;
 }

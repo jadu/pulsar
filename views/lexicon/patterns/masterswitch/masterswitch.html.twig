@@ -3,21 +3,22 @@
 {% block tab_content %}
 
     <div class="masterswitch">
-        {{
-            form.create()
-        }}
 
         {{
             form.toggle_switch({
                 'class': 'masterswitch-control',
                 'label': 'Enable masterswitch content',
-                'id': 'toggletest'
+                'id': 'toggletest1'
             })
         }}
 
         <hr />
 
         <section class="masterswitch-content is-disabled">
+
+            {{
+                form.create()
+            }}
 
             <p>This content should be disabled until the masterswitch is turned on.</p>
 

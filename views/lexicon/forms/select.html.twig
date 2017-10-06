@@ -6,6 +6,8 @@
         form.create()
     }}
 
+    {{ form.fieldset_start({ 'legend': 'Appended &amp; Prepended' }) }}
+
     {{
         form.select({
             'id': 'select-1',
@@ -781,6 +783,44 @@
             'label': 'Prepended &amp; Appended',
             'append': '.00',
             'prepend': '£',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select({
+            'id': 'select-30',
+            'label': 'Prepended button',
+            'prepend': html.button({ 'label': 'foo' }),
+            'prepend_type': 'button',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select({
+            'id': 'select-31',
+            'label': 'Appended button',
+            'append': html.button({ 'label': 'foo' }),
+            'append_type': 'button',
             'options': [
                 {
                     'label': 'Value one',

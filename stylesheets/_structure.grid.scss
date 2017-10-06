@@ -30,7 +30,7 @@ $gutter_pc:     1;
  * @param  {bool} $first:  false         If true, removes the left hand column margin
  * @param  {bool} $important:  false     If true, adds the !important declaration
  */
-@mixin span($num, $force: false, $gutter: false, $columns: $columns, $important: false) {
+@mixin col-span($num, $force: false, $gutter: false, $columns: $columns, $important: false) {
     $one_col: (100% - ($gutter_pc * ($columns - 1))) / $columns;
     $span_width: ($one_col * ($num)) + ($gutter_pc * ($num - 1));
 
@@ -91,7 +91,7 @@ $gutter_pc:     1;
 
 @for $i from 1 through 12 {
     .g-col--#{$i}.g-col--#{$i} {
-        @include span($i);
+        @include col-span($i);
     }
 }
 
