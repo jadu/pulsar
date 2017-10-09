@@ -2,9 +2,9 @@
 
 var $ = require('jquery');
 
-require('../libs/pikaday/plugins/pikaday.jquery');
-require('../libs/select2/dist/js/select2.min');
-require('../libs/spectrum/spectrum');
+require('../node_modules/pikaday/plugins/pikaday.jquery');
+require('select2');
+require('spectrum-colorpicker');
 
 function PulsarFormComponent(html) {
     this.$html = html;

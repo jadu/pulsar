@@ -72,7 +72,11 @@ module.exports = function(grunt) {
             dev: {
                 options: {
                     outputStyle: 'nested',
-                    sourceMap: true
+                    sourceMap: true,
+                    includePaths: [
+                        'node_modules',
+                        'stylesheets'
+                    ]
                 },
                 files: [{
                     cwd:    'stylesheets/',
@@ -85,7 +89,11 @@ module.exports = function(grunt) {
             },
             dist_modern: {
                 options: {
-                    outputStyle: 'compressed'
+                    outputStyle: 'compressed',
+                    includePaths: [
+                        'node_modules',
+                        'stylesheets'
+                    ]
                 },
                 files: [{
                     cwd:    'stylesheets/',
@@ -99,7 +107,11 @@ module.exports = function(grunt) {
             },
             dist_ie: {
                 options: {
-                    outputStyle: 'nested'
+                    outputStyle: 'nested',
+                    includePaths: [
+                        'node_modules',
+                        'stylesheets'
+                    ]
                 },
                 files: [{
                     cwd:    'stylesheets/',

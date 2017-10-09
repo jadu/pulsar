@@ -16,8 +16,8 @@ $ie-version: 12 !default;
 
 // Third party plugins
 // scss-lint:disable all
-@import '../libs/normalize-css/normalize.css';
-@import '../libs/susy/sass/susy';
+@import 'normalize.css/normalize.css';
+@import 'susy/sass/susy';
 // scss-lint:enable all
 
 // Proxima Nova (requires license)
@@ -25,10 +25,10 @@ $font-path: '../fonts/';
 @import '../fonts/config.fonts';
 
 // Font awesome
-$fa-font-path: '../libs/font-awesome/fonts';
+$fa-font-path: '../node_modules/font-awesome/fonts';
 $fa-css-prefix: 'icon';
 @import 'deprecated.icons';
-@import '../libs/font-awesome/scss/font-awesome';
+@import 'font-awesome/scss/font-awesome';
 
 // Mixins
 @import 'mixin.border-radius';

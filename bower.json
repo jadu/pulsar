@@ -12,35 +12,21 @@
   "dependencies": {
     "bootstrapx-clickover": "latest",
     "chartist": "^0.9.8",
-    "font-awesome": "4.6.3",
     "html5shiv": "latest",
-    "jquery": "1.x",
     "jquery-autosize": "latest",
     "jquery-placeholder": "2.3.1",
-    "jquery.countdown": "^2.1.0",
-    "jquery-ui": "^1.11.4",
     "list.js": "latest",
     "moment": "^2.18.1",
-    "normalize-css": "3.0.3",
     "nwmatcher": "latest",
-    "pikaday": "latest",
     "respond": "latest",
     "selectivizr": "jadu/selectivizr",
-    "select2": "~4.0.0",
     "sticky": "latest",
     "store.js": "latest",
-    "susy": "~2.2.6",
-    "svgeezy": "latest",
     "Vague.js": "0.0.4",
-    "vide": "~0.3.1",
-    "spectrum": "^1.8.0"
+    "vide": "~0.3.1"
   },
   "devDependencies": {
     "livereload-js": "livereload/livereload-js",
-    "tinyicon": "^0.6.5",
-    "history.js": "^1.8.0"
-  },
-  "resolutions": {
-    "font-awesome": "3.2.1"
+    "tinyicon": "^0.6.5"
   }
 }

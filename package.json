@@ -105,8 +105,18 @@
     }
   },
   "dependencies": {
+    "font-awesome": "^4.7.0",
+    "historyjs": "^1.8.0-b2",
+    "jquery-ui": "^1.12.1",
+    "jquery.countdown": "^1.2.8",
     "jstree": "^3.3.3",
     "lodash": "^4.6.1",
-    "moment": "^2.15.2"
+    "moment": "^2.15.2",
+    "normalize.css": "^7.0.0",
+    "pikaday": "^1.6.1",
+    "select2": "^4.0.4",
+    "spectrum-colorpicker": "^1.8.0",
+    "susy": "^2.2.6",
+    "svgeezy": "git+https://github.com/benhowdle89/svgeezy.git"
   }
 }
