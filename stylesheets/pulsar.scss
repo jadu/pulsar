@@ -16,8 +16,7 @@ $ie-version: 12 !default;
 
 // Third party plugins
 // scss-lint:disable all
-@import 'normalize.css/normalize.css';
-@import 'susy/sass/susy';
+@import '../node_modules/normalize.css/normalize.css';
 // scss-lint:enable all
 
 // Proxima Nova (requires license)
