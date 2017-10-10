@@ -3,7 +3,7 @@
 var $ = require('jquery');
 
 require('../node_modules/pikaday/plugins/pikaday.jquery');
-require('select2');
+require('select2')();
 require('spectrum-colorpicker');
 
 function PulsarFormComponent(html) {
