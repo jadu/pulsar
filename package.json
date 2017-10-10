@@ -87,11 +87,6 @@
       "browserify-shim"
     ]
   },
-  "aliasify": {
-    "aliases": {
-      "jquery": "./libs/jquery/dist/jquery.min"
-    }
-  },
   "browserify-shim": {
     "./libs/svgeezy/svgeezy.min.js": {
       "exports": "svgeezy"

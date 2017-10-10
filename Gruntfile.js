@@ -91,7 +91,6 @@ module.exports = function(grunt) {
                 options: {
                     outputStyle: 'compressed',
                     includePaths: [
-                        'node_modules',
                         'stylesheets'
                     ]
                 },
@@ -109,7 +108,6 @@ module.exports = function(grunt) {
                 options: {
                     outputStyle: 'nested',
                     includePaths: [
-                        'node_modules',
                         'stylesheets'
                     ]
                 },
