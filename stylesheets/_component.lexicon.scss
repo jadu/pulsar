@@ -1,22 +1,20 @@
-.example {
-    .wrapper {
-        padding: 20px;
-    }
+.example .wrapper {
+    padding: 20px;
+}
 
-    .item {
-        background-color: green;
-        color: white;
-        margin: 10px 0;
-        padding: 10px;
-    }
+.example .item {
+    background-color: green;
+    color: white;
+    margin: 10px 0;
+    padding: 10px;
+}
 
-    .table td.cell--inverse,
-    .table td.cell--inverse:hover {
-        background-color: #2d86b3 !important;
-    }
+.example .table td.cell--inverse,
+.example .table td.cell--inverse:hover {
+    background-color: #2d86b3 !important;
+}
 
-    .table tbody > tr.row-inverse > td,
-    .table tbody > tr.row-inverse:hover > td {
-        background-color: #2d86b3;
-    }
+.example .table tbody > tr.row-inverse > td,
+.example .table tbody > tr.row-inverse:hover > td {
+    background-color: #2d86b3;
 }
