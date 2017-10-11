@@ -90,6 +90,7 @@ fieldset {
         height: auto;
         padding: 0;
         vertical-align: baseline;
+        width: auto;
 
         @include ie-lte(9) {
             border: 0;
@@ -327,7 +328,7 @@ fieldset {
 // based on the remaining 9 column grid
 
     // default width
-    .control__label + .controls > .form__control {
+    .control__label + .controls > .form__control:not(.checkbox) {
         @include col-span(4, false, false, 9);
     }
 
@@ -346,14 +347,6 @@ fieldset {
         .form__group--#{$variant}.form__group--#{$variant} .control__label + .controls > .form__control {
             width: #{$width};
         }
-    }
-
-    // Checkboxes and radios don't need to use the grid widths, but we avoid
-    // using :not() because it makes things overly specific and is a pain to
-    // override (trust me ;)
-    .form__control.checkbox,
-    .form__control.radio {
-        width: auto;
     }
 
     // input-groups default
