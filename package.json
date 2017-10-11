@@ -27,14 +27,6 @@
     "browserify-shim": "^3.8.9",
     "chai": "^1.9.2",
     "chai-hiff": "^1.0.0",
-    "datatables.net": "^1.10.11",
-    "datatables.net-buttons": "^1.1.2",
-    "datatables.net-buttons-dt": "^1.1.2",
-    "datatables.net-dt": "^1.10.10",
-    "datatables.net-responsive": "^2.0.2",
-    "datatables.net-responsive-dt": "^2.0.0",
-    "datatables.net-select": "^1.1.2",
-    "datatables.net-select-dt": "^1.1.2",
     "grunt": "^0.4.5",
     "grunt-asciify": "^0.2.2",
     "grunt-autoprefixer": "^3.0.4",
@@ -82,23 +74,15 @@
     "twig": "^0.9.4",
     "uglifyify": "^3.0.1"
   },
-  "browserify": {
-    "transform": [
-      "browserify-shim"
-    ]
-  },
-  "browserify-shim": {
-    "./libs/svgeezy/svgeezy.min.js": {
-      "exports": "svgeezy"
-    },
-    "./libs/jquery.countdown/dist/jquery.countdown.min": {
-      "exports": "countdown"
-    },
-    "./libs/tinyicon/tinycon.min": {
-      "exports": "Tinycon"
-    }
-  },
   "dependencies": {
+    "datatables.net": "^1.10.11",
+    "datatables.net-buttons": "^1.1.2",
+    "datatables.net-buttons-dt": "^1.1.2",
+    "datatables.net-dt": "^1.10.10",
+    "datatables.net-responsive": "^2.0.2",
+    "datatables.net-responsive-dt": "^2.0.0",
+    "datatables.net-select": "^1.1.2",
+    "datatables.net-select-dt": "^1.1.2",
     "font-awesome": "^4.7.0",
     "historyjs": "^1.8.0-b2",
     "jquery": "1.x",
@@ -116,6 +100,7 @@
     "selectivizr": "^1.0.3",
     "spectrum-colorpicker": "^1.8.0",
     "susy": "^2.2.6",
-    "svgeezy": "git+https://github.com/benhowdle89/svgeezy.git"
+    "svgeezy": "git+https://github.com/benhowdle89/svgeezy.git",
+    "vide": "^0.5.1"
   }
 }

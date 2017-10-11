@@ -4,7 +4,7 @@
 
 var $ = require('jquery');
 
-require('jquery-ui');
+require('jquery-ui/sortable');
 
 function PulsarSortableComponent(html, window) {
     this.$html = html;
