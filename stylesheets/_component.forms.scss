@@ -330,8 +330,8 @@ fieldset {
 // based on the remaining 9 column grid
 
     // default width
-    .control__label + .controls > .form__control,
-    .control__label + .controls > .form__control + .select2 {
+    .control__label + .controls > .form__control:not(.checkbox),
+    .control__label + .controls > .form__control:not(.checkbox) + .select2 {
         @include col-span(4, false, false, 9);
     }
 
