@@ -2,9 +2,21 @@
 {% import 'pulsar/v2/helpers/form.html.twig' as form %}
 {% import 'pulsar/v2/helpers/flash.html.twig' as flash %}
 
-<h2 class="heading">Message</h2>
+<h2 class="heading">Text</h2>
 
 <div class="tab__inner tab--padded">
+
+    <ul>
+        <li>This is regular text</li>
+        <li><strong>This is bold text</strong></li>
+        <li><i>This is italic text</i></li>
+        <li><strong><i>This is bold, italic text</i></strong></li>
+        <li><a href="#" title="This is a link">This is a link</a></li>
+        <li><abbr title="This is the description">This is an abbreviation</abbr></li>
+        <li><a href="#" title="This is the link description">This is a link with an <abbr title="This is the abbreviation description">abbr</abbr> inside it</a></li>
+    </ul>
+
+    <h2>Messages</h2>
     <div class="message">
         <div class="message__time"><time>16:32</time> <small>(2 days ago)</small></div>
         <span class="message__sender">Paul Stanton</span>
