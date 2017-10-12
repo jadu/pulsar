@@ -311,7 +311,7 @@ fieldset {
 // * flush form groups also use the 12 column grid
 
     // default width
-    .form__control,
+    .form__group .form__control,
     .form__group--flush > .control__label + .controls > .form__control {
         @include col-span(4, false, false, 12);
     }
