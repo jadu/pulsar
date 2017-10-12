@@ -74,6 +74,11 @@
     "twig": "^0.9.4",
     "uglifyify": "^3.0.1"
   },
+  "aliasify": {
+    "aliases": {
+      "jquery": "./node_modules/jquery/dist/jquery.min"
+    }
+  },
   "dependencies": {
     "datatables.net": "^1.10.11",
     "datatables.net-buttons": "^1.1.2",
@@ -87,7 +92,7 @@
     "historyjs": "^1.8.0-b2",
     "jquery": "1.x",
     "jquery-sticky": "^1.0.4",
-    "jquery-ui": "^1.12.1",
+    "jquery-ui": "^1.11.4",
     "jquery.countdown": "^1.2.8",
     "jstree": "^3.3.3",
     "lodash": "^4.6.1",
