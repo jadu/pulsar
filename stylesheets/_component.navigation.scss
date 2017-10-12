@@ -276,14 +276,13 @@ $nav-color-darker: darken(color(jadu-blue, dark), 10%) !default;
     }
 
     .nav-link__image {
-        margin-bottom: 7px;
         height: 18px;
+        margin-bottom: 7px;
         width: 18px;
     }
 
     .nav-link__label {
         display: block;
-        padding: 0 10px;
         width: 100%;
         word-wrap: break-word;
     }

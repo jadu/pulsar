@@ -2019,7 +2019,7 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {%
         set toggle = elem.input(options
-            |exclude('error guidance guidance-container show-label')
+            |exclude('error guidance guidance-container show-label label')
             |merge({
                 'class': 'toggle-switch',
                 'type': 'checkbox'
