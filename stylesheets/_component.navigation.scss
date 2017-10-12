@@ -1,5 +1,6 @@
 $nav-color-light: color(jadu-blue, dark) !default;
-$nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
+$nav-color-dark: darken(color(jadu-blue, dark), 5%) !default;
+$nav-color-darker: darken(color(jadu-blue, dark), 10%) !default;
 
 .nav-main {
     -webkit-backface-visibility: hidden;
@@ -31,7 +32,9 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
 }
 
 .nav-primary,
-.nav-secondary {
+.nav-secondary,
+.nav-tertiary,
+.nav-quaternary {
     display: inline-block;
     margin: 0;
     height: 100%;
@@ -212,13 +215,14 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
 }
 
 .nav-link {
-    color: white;
+    color: color(white);
     text-decoration: none;
 }
 
 .nav-primary {
     background-color: $nav-color-light;
     box-shadow: inset 0 0 0 $nav-color-dark;
+    overflow-y: hidden;
     text-align: center;
     transition: box-shadow 100ms linear;
     width: $nav-primary-width;
@@ -244,7 +248,7 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
         font-size: .75em;
         line-height: 1em;
         max-width: $nav-primary-width;
-        min-height: 72px; /* This is the optimal height for normal nav links with icon and one line text */
+        min-height: 72px; // This is the optimal height for normal nav links with icon and one line text
         min-width: $nav-primary-width;
         padding: 16px 5px;
         position: relative;
@@ -255,7 +259,7 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
     .nav-link:hover,
     .nav-link:focus {
         background-color: darken($nav-color-dark, 2%);
-        color: white;
+        color: color(white);
     }
 
     .nav-link.is-active:hover,
@@ -264,7 +268,7 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
     }
 
     .nav-link__icon {
-        color: white;
+        color: color(white);
         display: block;
         font-size: 1.5em;
         margin-bottom: 7px;
@@ -272,14 +276,15 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
     }
 
     .nav-link__image {
-        margin-bottom: 7px;
         height: 18px;
+        margin-bottom: 7px;
         width: 18px;
     }
 
     .nav-link__label {
         display: block;
         width: 100%;
+        word-wrap: break-word;
     }
 
     .nav-items,
@@ -312,7 +317,9 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
     }
 }
 
-.nav-secondary {
+.nav-secondary,
+.nav-tertiary,
+.nav-quaternary {
     background-color: $nav-color-dark;
     box-shadow: inset -4px 0 0 darken($nav-color-dark, 4);
     left: $nav-primary-width;
@@ -350,18 +357,42 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
         &:hover,
         &:focus {
             background-color: darken($nav-color-dark, 4%);
-            color: white;
+            color: color(white);
         }
 
         &:active {
-            background-color: $white;
+            background-color: color(white);
             color: $nav-color-dark;
         }
     }
 }
 
+.nav-tertiary {
+    .nav-link {
+
+        span {
+            margin-left: 10px;
+        }
+    }
+}
+
+.nav-quaternary {
+    background-color: $nav-color-darker;
+    left: $nav-primary-width + 3px; // Extra 3px for smooth overlapping style
+    margin-left: 242px;
+    transition: all 100ms linear;
+    width: 0;
+
+    .nav-link {
+
+        &:hover {
+            background-color: darken($nav-color-light, 4%);
+        }
+    }
+}
+
 .nav-remove-search {
-    color: white;
+    color: color(white);
     display: inline-block;
     margin-top: 6px;
     opacity: 0;
@@ -370,12 +401,18 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
     vertical-align: top;
 
     &:hover {
-        color: white;
+        color: color(white);
     }
 }
 
-.is-open .nav-secondary {
+.nav-secondary.is-open,
+.nav-tertiary.is-open,
+.nav-quaternary.is-open {
     margin-left: 0;
+}
+
+.nav-quaternary.is-open {
+    width: 242px;
 }
 
 .jadu-branding {
@@ -422,8 +459,9 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
     top: 3px;
 }
 
-.nav-close {
-    color: white;
+.nav-close,
+.nav-close-ltr {
+    color: color(white);
     display: block;
     padding: 0 20px 23px;
     text-decoration: none;
@@ -434,7 +472,14 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
     &:hover i::before,
     &:focus i::before {
         content: '\f0a8';
-        color: white;
+        color: color(white);
+    }
+}
+
+.nav-close-ltr {
+    &:hover i::before {
+        content: '';
+        color: color(white);
     }
 }
 

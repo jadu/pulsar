@@ -20,7 +20,7 @@
     pulsar.signIn = new pulsar.SignInComponent($html);
     pulsar.masterSwitch = new pulsar.MasterSwitchComponent($html, pulsar.disableUi);
 	pulsar.modulePermissions = new pulsar.ModulePermissionsComponent($html);
-    pulsar.navMain = new pulsar.NavMainComponent($html);
+    pulsar.navMain = new pulsar.NavMainComponent($html, window);
     pulsar.filterBar = new pulsar.FilterBarComponent($html);
 
     $(function () {

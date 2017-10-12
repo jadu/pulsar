@@ -70,7 +70,9 @@ DisableUiComponent.prototype.enable = function (target) {
             .removeClass('js-disabled u-cursor-not-allowed');
 
         // Remove wrapper which provides visually disabled styling
-        $this.unwrap('<div class="u-ui-disabled"></div>');
+        if ($this.parent().hasClass('u-ui-disabled')) {
+            $this.unwrap();
+        }
     });
 };
 

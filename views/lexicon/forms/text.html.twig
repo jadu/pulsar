@@ -6,6 +6,7 @@
         form.create()
     }}
 
+    {{ form.fieldset_start() }}
     {{
         form.text({
             'id': 'text-1',
@@ -467,82 +468,6 @@
 
     {{ form.fieldset_end() }}
 
-    {{ form.fieldset_start({ 'legend': 'HTML5 Input Types' }) }}
-
-    {{
-        form.text({
-            'id': 'number',
-            'label': 'Number',
-            'type': 'number'
-        })
-    }}
-
-    {{
-        form.text({
-            'id': 'tel',
-            'label': 'Tel',
-            'type': 'tel'
-        })
-    }}
-
-    {{
-        form.text({
-            'id': 'url',
-            'label': 'Url',
-            'type': 'url'
-        })
-    }}
-
-    {{
-        form.text({
-            'id': 'email',
-            'label': 'Email',
-            'type': 'email'
-        })
-    }}
-
-    {{
-        form.text({
-            'id': 'date',
-            'label': 'Date',
-            'type': 'date'
-        })
-    }}
-
-    {{
-        form.text({
-            'id': 'month',
-            'label': 'Month',
-            'type': 'month'
-        })
-    }}
-
-    {{
-        form.text({
-            'id': 'week',
-            'label': 'Week',
-            'type': 'week'
-        })
-    }}
-
-    {{
-        form.text({
-            'id': 'time',
-            'label': 'Time',
-            'type': 'time'
-        })
-    }}
-
-    {{
-        form.text({
-            'id': 'search',
-            'label': 'Search',
-            'type': 'search'
-        })
-    }}
-
-    {{ form.fieldset_end() }}
-
     {{
         form.end()
     }}
@@ -551,7 +476,7 @@
 
 {% block tab_sidebar %}
     <a href="https://jadu.gitbooks.io/pulsar/content/text.html">
-        <img src="../../../images/cover.png" alt="Pulsar documentation front cover" width="157px" />
+        <img src="../../../images/cover.png" alt="Pulsar documentation front cover" width="157" />
     </a>
     <br />
     {{

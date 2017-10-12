@@ -1,0 +1,6 @@
+{{
+    form.range({
+        'label': 'Size',
+        'id': 'foo'
+    })
+}}

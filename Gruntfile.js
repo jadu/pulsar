@@ -127,6 +127,41 @@ module.exports = function(grunt) {
             }
         },
 
+        replace: {
+            projector: {
+                src: ['stylesheets/pulsar.scss'],
+                dest: 'stylesheets/pulsar-theme-projector.scss',
+                replacements: [{
+                    from: 'palette.base',
+                    to: 'palette.projector'
+                }]
+            },
+            projector_ie9: {
+                src: ['stylesheets/pulsar-ie9.scss'],
+                dest: 'stylesheets/pulsar-ie9-theme-projector.scss',
+                replacements: [{
+                    from: 'palette.base',
+                    to: 'palette.projector'
+                }]
+            },
+            projector_ie8: {
+                src: ['stylesheets/pulsar-ie8.scss'],
+                dest: 'stylesheets/pulsar-ie8-theme-projector.scss',
+                replacements: [{
+                    from: 'palette.base',
+                    to: 'palette.projector'
+                }]
+            },
+            projector_ie7: {
+                src: ['stylesheets/pulsar-ie7.scss'],
+                dest: 'stylesheets/pulsar-ie7-theme-projector.scss',
+                replacements: [{
+                    from: 'palette.base',
+                    to: 'palette.projector'
+                }]
+            }
+        },
+
         autoprefixer: {
             dev: {
                 options: {
@@ -453,7 +488,10 @@ module.exports = function(grunt) {
                 files: {
                     'css/pulsar-ie7.min.css': 'css/pulsar-ie7.css',
                     'css/pulsar-ie8.min.css': 'css/pulsar-ie8.css',
-                    'css/pulsar-ie9.min.css': 'css/pulsar-ie9.css'
+                    'css/pulsar-ie9.min.css': 'css/pulsar-ie9.css',
+                    'css/pulsar-ie7-theme-projector.min.css': 'css/pulsar-ie7-theme-projector.css',
+                    'css/pulsar-ie8-theme-projector.min.css': 'css/pulsar-ie8-theme-projector.css',
+                    'css/pulsar-ie9-theme-projector.min.css': 'css/pulsar-ie9-theme-projector.css'
                 }
             }
         },
@@ -492,7 +530,7 @@ module.exports = function(grunt) {
                 },
                 silent: false
             },
-            files: ['../pulsar/js/casper.js']
+            files: ['../pulsar/tests/js/casper.js']
         },
 
         validation: {
@@ -540,6 +578,7 @@ module.exports = function(grunt) {
     grunt.registerTask('default', [
         'copy',
         'scsslint',
+        'replace',
         'sass:dev',
         'autoprefixer',
         'bless',
@@ -551,6 +590,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('post-merge', [
         'exec:fixProximaNova',
+        'replace',
         'sass:dev',
         'browserify',
         'email-build'
@@ -558,6 +598,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('build', [
         'scsslint',
+        'replace',
         'sass:dist_modern',
         'sass:dist_ie',
         'autoprefixer',
@@ -569,6 +610,7 @@ module.exports = function(grunt) {
     ]);
 
     grunt.registerTask('deploy', [
+        'replace',
         'sass:dist_modern',
         'sass:dist_ie',
         'autoprefixer',

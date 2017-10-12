@@ -1582,6 +1582,63 @@ required | bool   | Visually indicates that the field must be completed
 
 {# -----------------------------------------------------------------------------
 
+# Range
+
+Generates a range input field.
+
+## Example usage
+
+```twig
+{{
+    form.range({
+        'label': 'Width',
+        'id': 'example-range'
+    })
+}}
+```
+
+## Options applied to parent wrapper
+
+Option      | Type   | Description
+----------- | ------ | ---------------------------------------------------------
+append      | string | Text or markup to include after the input element
+class       | string | A space separated list of class names
+error       | string | Text to explain an error/validation condition. Also adds error state styling
+guidance    | string | Text to be displayed in a popover, adds a (?) icon after the input
+help        | string | Additional guidance information to be displayed next to the input
+label       | string | Text for the `<label>` companion element
+prepend     | string | Text or markup to include before the input element
+required    | bool   | Visually indicates that the field must be completed
+show-label  | bool   | Control visibility of the `<label>` element without affecting layout (default: true)
+
+## Options applied to input
+
+Option      | Type   | Description
+----------- | ------ | ---------------------------------------------------------
+autofocus   | bool   | Whether the field should have input focus on page load
+disabled    | bool   | Stops the element from being interactive if true
+form        | string | Specific one or more forms this label belongs to
+id          | string | A unique identifier, will also be used as the label's `for` attribute
+name        | string | The name of this control
+required    | bool   | Adds `required` and `aria-required="true"` attributes
+value       | string | Specifies the value of the input
+data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
+
+*Any other options not listed here will be applied to the input.
+
+#}
+{% macro range(options) %}
+{% spaceless %}
+    {% import _self as form %}
+
+    {{ form.text(options|defaults({'type': 'range', 'class': 'form-range'})) }}
+
+{% endspaceless %}
+{% endmacro %}
+
+
+{# -----------------------------------------------------------------------------
+
 # Select
 
 Generates a select input.
@@ -1638,7 +1695,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {{
         form.group({
-            'parent': options|only('bare class error guidance guidance-container help id label required show-label'),
+            'parent': options|only('append append_type bare class error guidance guidance-container help id label prepend prepend_type required show-label'),
             'inputs': [
                 elem.select(
                     options
@@ -1713,7 +1770,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {{
         form.group({
-            'parent': options|only('bare class error guidance guidance-container help id label required show-label'),
+            'parent': options|only('append append_type bare class error guidance guidance-container help id prepend prepend_type label required show-label'),
             'inputs': [
                 elem.select2(options
                     |exclude('bare class error guidance guidance-container help label show-label')
@@ -1962,7 +2019,7 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {%
         set toggle = elem.input(options
-            |exclude('error guidance guidance-container show-label')
+            |exclude('error guidance guidance-container show-label label')
             |merge({
                 'class': 'toggle-switch',
                 'type': 'checkbox'
