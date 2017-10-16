@@ -23,7 +23,6 @@ var $                     = require('jquery'),
     history   = require('../node_modules/historyjs/scripts/bundled/html4+html5/jquery.history.js'),
     jqueryui  = require('jquery-ui'),
     countdown = require('jquery.countdown'),
-    svgeezy   = require('svgeezy'),
 
     dt            = require('datatables.net')(window, $),
     dt_buttons    = require('datatables.net-buttons')(window, $),
@@ -45,6 +44,7 @@ var $                     = require('jquery'),
     DropZoneComponentFactory = require('./DropZone/DropZoneComponentFactory');
 
     require('jstree');
+    require('svgeezy');
 
 module.exports = {
     ButtonComponent,
@@ -61,5 +61,5 @@ module.exports = {
     PulsarSortableComponent,
     SignInComponent,
     history,
-    svgeezy
+    svgeezy: window.svgeezy
 };
