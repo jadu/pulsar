@@ -27,6 +27,9 @@ $fa-css-prefix: 'icon';
 @import '../../stylesheets/_deprecated.icons';
 @import '../assets/font-awesome/scss/font-awesome';
 
+// Third party code
+@import '../../stylesheets/libraries/_library.colorpicker';
+
 .pulsar-example {
     // Mixins
     @import '../../stylesheets/_mixin.border-radius';
@@ -62,9 +65,6 @@ $fa-css-prefix: 'icon';
     @import '../../stylesheets/_structure.type';
     @import '../../stylesheets/_structure.forms';
 
-    // Third party code
-    @import '../../stylesheets/libraries/library.colorpicker';
-
     // Objects
     @import '../../stylesheets/objects/_object.media';
 
@@ -74,8 +74,14 @@ $fa-css-prefix: 'icon';
     @import '../../stylesheets/_component.breadcrumb';
     @import '../../stylesheets/_component.buttons';
     @import '../../stylesheets/_component.button-groups';
-    @import '../../stylesheets/_component.colorpicker';
     @import '../../stylesheets/_component.close';
+
+    @at-root {
+        @import '../../stylesheets/_component.colorpicker';
+        @import '../../stylesheets/_component.datepicker';
+    }
+
+    @import '../../stylesheets/_component.daterange';
     @import '../../stylesheets/_component.dropdowns';
     @import '../../stylesheets/_component.flash';
     @import '../../stylesheets/_component.forms';
