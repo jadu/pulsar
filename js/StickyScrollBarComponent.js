@@ -4,10 +4,12 @@ class StickyScrollerComponent {
      * StickyScrollerComponent
      * @constructor
      * @param {jQuery} $rootWindow - jQuery wrapper of the window object
+     * @param {jQuery} $html - jQuery wrapper of the html node
      */
-    constructor ($rootWindow) {
+    constructor ($rootWindow, $html) {
         this.$scrollableElement = {};
         this.$window = $rootWindow;
+        this.$html = $html;
         this.$scroller = $('<div class="sticky-scrollbar"><div class="sticky-scrollbar__inner"></div></div>');
         this.$scrollerInner = this.$scroller.children();
         // cache methods with context
@@ -27,6 +29,10 @@ class StickyScrollerComponent {
 
         if (!this.$window.length) {
             throw new Error('window must be passed to StickyScrollerComponent');
+        }
+
+        if (!this.$html.length) {
+            throw new Error('$html must be passed to StickyScrollerComponent');
         }
 
         // Set element
@@ -79,8 +85,15 @@ class StickyScrollerComponent {
     updateStickyScrollBar () {
         const top = this.$scrollableElement.offset().top;
         const bottom = top + this.$scrollableElement.height();
-        const viewportBottom = this.$window.scrollTop() + this.$window.height();
         const topOffset = 30;
+        let viewportBottom;
+
+        // Allow for footer
+        if (this.$html.find('.footer').css('position') === 'fixed') {
+            viewportBottom = this.$window.scrollTop() + this.$window.height() - this.$html.find('.footer').height();
+        } else {
+            viewportBottom = this.$window.scrollTop() + this.$window.height();
+        }
 
         // Check if the scrollableElement is visible but bottom is outside of viewport
         if (top + topOffset < viewportBottom && bottom > viewportBottom) {

@@ -13,7 +13,7 @@ function PulsarUIComponent(html, history) {
     this.history = history;
     this.$html = html;
     this.$window = $(window);
-    this.stickyScrollBarComponent = new StickyScrollBarComponent(this.$window);
+    this.stickyScrollBarComponent = new StickyScrollBarComponent(this.$window, this.$html);
 }
 
 PulsarUIComponent.prototype.init = function () {
