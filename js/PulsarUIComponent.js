@@ -106,8 +106,7 @@ PulsarUIComponent.prototype.initDataTables = function () {
     });
 
     datatablesHorizontal.each(function() {
-        var $this = $(this),
-            $tableParent;
+        var $this = $(this);
 
         var select = {
             className: 'dt-row-selected',
