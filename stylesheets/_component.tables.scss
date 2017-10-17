@@ -273,3 +273,42 @@ td.row__actions {
                 linear-gradient(90deg, rgba(255, 255, 255, 0) 99%, rgba(0, 0, 0, .1) 100%),
                 linear-gradient(270deg, rgba(255, 255, 255, 0) 99%, rgba(0, 0, 0, .1) 100%);
 }
+
+.sticky-scrollbar {
+    bottom: 0;
+    height: 30px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    position: fixed;
+    z-index: $zindex-sticky;
+
+    @include respond-min($screen-tablet) {
+        bottom: 37px;
+    }
+}
+
+.sticky-scrollbar__inner {
+    border: 1px solid color(white);
+    opacity: .01;
+}
+
+.table-container.table--overflow-left .sticky-scrollbar::-webkit-scrollbar,
+.table-container.table--overflow-right .sticky-scrollbar::-webkit-scrollbar {
+    -webkit-appearance: none;
+    background: color(background, light);
+    width: 7px;
+}
+
+.table-container.table--overflow-left .sticky-scrollbar::-webkit-scrollbar-track,
+.table-container.table--overflow-right .sticky-scrollbar::-webkit-scrollbar-track {
+    background: color(background, light);
+    border-bottom: 1px solid color(border);
+    border-top: 1px solid color(border);
+}
+
+.table-container.table--overflow-left .sticky-scrollbar::-webkit-scrollbar-thumb,
+.table-container.table--overflow-right .sticky-scrollbar::-webkit-scrollbar-thumb {
+    background: color(grey, lightest);
+    border-bottom: 1px solid color(border);
+    border-top: 1px solid color(border);
+}
