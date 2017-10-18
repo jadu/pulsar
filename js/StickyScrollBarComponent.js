@@ -87,8 +87,6 @@ class StickyScrollerComponent {
         const topOffset = 30;
         let viewportBottom;
 
-        console.log(this.$html.find('.footer').outerHeight());
-
         // Allow for footer
         if (this.$html.find('.footer').css('position') === 'fixed') {
             viewportBottom = this.$window.scrollTop() + this.$window.height() - this.$html.find('.footer').outerHeight();
