@@ -304,6 +304,10 @@ td.row__actions {
     background: color(background, light);
     border-bottom: 1px solid color(border);
     border-top: 1px solid color(border);
+
+    @include respond-min($screen-tablet) {
+        border-bottom: 0;
+    }
 }
 
 .table-container.table--overflow-left .sticky-scrollbar::-webkit-scrollbar-thumb,
@@ -311,4 +315,8 @@ td.row__actions {
     background: color(grey, lightest);
     border-bottom: 1px solid color(border);
     border-top: 1px solid color(border);
+
+    @include respond-min($screen-tablet) {
+        border-bottom: 0;
+    }
 }
