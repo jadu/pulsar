@@ -1,7 +1,7 @@
-class StickyScrollerComponent {
+class StickyScrollBarComponent {
 
     /**
-     * StickyScrollerComponent
+     * StickyScrollBarComponent
      * @constructor
      * @param {jQuery} $rootWindow - jQuery wrapper of the window object
      * @param {jQuery} $html - jQuery wrapper of the html node
@@ -24,15 +24,15 @@ class StickyScrollerComponent {
      */
     init ($element) {
         if (!$element.length) {
-            throw new Error('an element to add the scroller to must be passed to StickyScrollerComponent');
+            throw new Error('an element to add the scroller to must be passed to StickyScrollBarComponent');
         }
 
         if (!this.$window.length) {
-            throw new Error('window must be passed to StickyScrollerComponent');
+            throw new Error('window must be passed to StickyScrollBarComponent');
         }
 
         if (!this.$html.length) {
-            throw new Error('$html must be passed to StickyScrollerComponent');
+            throw new Error('$html must be passed to StickyScrollBarComponent');
         }
 
         // Set $elementWithStickyScrollBar
@@ -135,4 +135,4 @@ class StickyScrollerComponent {
     }
 }
 
-module.exports = StickyScrollerComponent;
+module.exports = StickyScrollBarComponent;
