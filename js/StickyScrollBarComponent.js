@@ -7,20 +7,20 @@ class StickyScrollerComponent {
      * @param {jQuery} $html - jQuery wrapper of the html node
      */
     constructor ($rootWindow, $html) {
-        this.$scrollableElement = {};
+        this.$elementWithStickyScrollBar = {};
         this.$window = $rootWindow;
         this.$html = $html;
-        this.$scroller = $('<div class="sticky-scrollbar"><div class="sticky-scrollbar__inner"></div></div>');
-        this.$scrollerInner = this.$scroller.children();
+        this.$stickyScrollBar = $('<div class="sticky-scrollbar"><div class="sticky-scrollbar__inner"></div></div>');
+        this.$stickyScrollBarInner = this.$stickyScrollBar.children();
         // cache methods with context
         this.scrollStickyScrollBarWithContext = this.scrollStickyScrollBar.bind(this);
-        this.scrollScrollableElemtentByScrollBarWithContext = this.scrollScrollableElemtentByScrollBar.bind(this);
+        this.scrollElementWithStickyScrollBarByScrollBarWithContext = this.scrollElementWithStickyScrollBarByScrollBar.bind(this);
         this.updateStickyScrollBarWithContext = this.updateStickyScrollBar.bind(this);
     }
 
     /**
      * Initialise
-     * @param {jQuery} $element - jQuery object of the element that requires a sticky scroller
+     * @param {jQuery} $element - jQuery object of the element that requires a sticky scroll bar
      */
     init ($element) {
         if (!$element.length) {
@@ -35,103 +35,104 @@ class StickyScrollerComponent {
             throw new Error('$html must be passed to StickyScrollerComponent');
         }
 
-        // Set element
-        this.$scrollableElement = $element;
+        // Set $elementWithStickyScrollBar
+        this.$elementWithStickyScrollBar = $element;
     
-        // Add scroller
-        this.$scroller.appendTo(this.$scrollableElement);
+        // Add the sticky scroll bar
+        this.$stickyScrollBar.appendTo(this.$elementWithStickyScrollBar);
 
         // Init the sticky scroll bar
-        this.$scroller
+        this.$stickyScrollBar
             .addClass('hide')
-            .on('scroll', this.scrollScrollableElemtentByScrollBarWithContext);
+            .on('scroll', this.scrollElementWithStickyScrollBarByScrollBarWithContext);
 
         // Call on load
         this.updateStickyScrollBarWithContext();
 
         // Call on scroll and window resize
-        this.$window.on('resize', this.updateStickyScrollBarWithContext);
-        this.$window.on('scroll', this.updateStickyScrollBarWithContext);
+        this.$window.on('scroll resize', this.updateStickyScrollBarWithContext);
     }
 
     /**
-     * Set $scrollableElement scroll when scrolled by sticky scroll bar
+     * Set $elementWithStickyScrollBar scroll when scrolled by sticky scroll bar
      */
-    scrollScrollableElemtentByScrollBar () {
-        this.$scrollableElement.scrollLeft(this.$scroller.scrollLeft());
+    scrollElementWithStickyScrollBarByScrollBar () {
+        this.$elementWithStickyScrollBar.scrollLeft(this.$stickyScrollBar.scrollLeft());
     }
 
     /**
-     * Set $scroller scroll when $scrollableElement is scrolled
+     * Set $stickyScrollBar scroll when $elementWithStickyScrollBar is scrolled
      */
     scrollStickyScrollBar () {
-        this.$scroller.scrollLeft(this.$scrollableElement.scrollLeft());
+        this.$stickyScrollBar.scrollLeft(this.$elementWithStickyScrollBar.scrollLeft());
     }
 
     /**
-     * Toggle visiblity of fake scroll bar
+     * Toggle visiblity of sticky scroll bar
      */
-    showScrollBar (option) {
+    showStickyScrollBar (option) {
         if (option) {
-            this.$scroller.removeClass('hide');
+            this.$stickyScrollBar.removeClass('hide');
         } else {
-            this.$scroller.addClass('hide');
+            this.$stickyScrollBar.addClass('hide');
         }
     }
 
     /**
-     * Update fake scroll bar visibility, thumb position and width
+     * Update sticky scroll bar visibility, thumb position and width
      */
     updateStickyScrollBar () {
-        const top = this.$scrollableElement.offset().top;
-        const bottom = top + this.$scrollableElement.height();
+        const top = this.$elementWithStickyScrollBar.offset().top;
+        const bottom = top + this.$elementWithStickyScrollBar.height();
         const topOffset = 30;
         let viewportBottom;
 
+        console.log(this.$html.find('.footer').outerHeight());
+
         // Allow for footer
         if (this.$html.find('.footer').css('position') === 'fixed') {
-            viewportBottom = this.$window.scrollTop() + this.$window.height() - this.$html.find('.footer').height();
+            viewportBottom = this.$window.scrollTop() + this.$window.height() - this.$html.find('.footer').outerHeight();
         } else {
             viewportBottom = this.$window.scrollTop() + this.$window.height();
         }
 
-        // Check if the scrollableElement is visible but bottom is outside of viewport
+        // Check if the $elementWithStickyScrollBar is visible but bottom is outside of viewport
         if (top + topOffset < viewportBottom && bottom > viewportBottom) {
 
-            // Check if the $scrollableElement has a scrollbar
-            const scroll = this.$scrollableElement.scrollLeft();
-            const scrollMax = this.$scrollableElement.scrollLeft(99999999).scrollLeft(); // Magic number, get the max scroll by scrolling futher than any potential window size
-            const widthOuter = this.$scrollableElement.innerWidth();
+            // Check if the $elementWithStickyScrollBar has a scrollbar
+            const scroll = this.$elementWithStickyScrollBar.scrollLeft();
+            const scrollMax = this.$elementWithStickyScrollBar.scrollLeft(99999999).scrollLeft(); // Magic number, get the max scroll by scrolling futher than any potential window size
+            const widthOuter = this.$elementWithStickyScrollBar.innerWidth();
             const widthInner = widthOuter + scrollMax;
 
-            this.$scrollableElement.scrollLeft(scroll);
+            this.$elementWithStickyScrollBar.scrollLeft(scroll);
 
-            // Abort if the scrollableElement doesn't have a scrollbar
+            // Abort if the $elementWithStickyScrollBar doesn't have a scrollbar
             if (widthInner <= widthOuter) {
                 return; 
             }
 
-            // Show fake scroll bar
-            this.showScrollBar(true);
+            // Show sticky scroll bar
+            this.showStickyScrollBar(true);
 
-            // Sync floating scrollbar if scrollableElement content is scrolled
-            this.$scrollableElement.off('scroll', this.scrollStickyScrollBarWithContext);
-            this.$scrollableElement.on('scroll', this.scrollStickyScrollBarWithContext);
+            // Sync sticky scroll bar if $elementWithStickyScrollBar content is scrolled
+            this.$elementWithStickyScrollBar.off('scroll', this.scrollStickyScrollBarWithContext);
+            this.$elementWithStickyScrollBar.on('scroll', this.scrollStickyScrollBarWithContext);
 
-            // Adjust the floating scrollbar
-            this.$scroller
+            // Adjust the sticky scroll bar scrollbar
+            this.$stickyScrollBar
                 .css({
-                    left: this.$scrollableElement.offset().left - this.$window.scrollLeft(),
+                    left: this.$elementWithStickyScrollBar.offset().left - this.$window.scrollLeft(),
                     width: widthOuter
                 })
                 .scrollLeft(scroll);
 
-            // Set fake scrollbar width
-            this.$scrollerInner.width(widthInner);
+            // Set sticky scroll bar width
+            this.$stickyScrollBarInner.width(widthInner);
 
         } else {
             // Hide when not needed
-            this.showScrollBar(false);
+            this.showStickyScrollBar(false);
         }
     }
 }
