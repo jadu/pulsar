@@ -43,7 +43,7 @@ class StickyScrollerComponent {
 
         // Init the sticky scroll bar
         this.$stickyScrollBar
-            .addClass('hide')
+            .addClass('u-display-none')
             .on('scroll', this.scrollElementWithStickyScrollBarByScrollBarWithContext);
 
         // Call on load
@@ -72,9 +72,9 @@ class StickyScrollerComponent {
      */
     showStickyScrollBar (option) {
         if (option) {
-            this.$stickyScrollBar.removeClass('hide');
+            this.$stickyScrollBar.removeClass('u-display-none');
         } else {
-            this.$stickyScrollBar.addClass('hide');
+            this.$stickyScrollBar.addClass('u-display-none');
         }
     }
 
