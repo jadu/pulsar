@@ -23,15 +23,15 @@ class StickyScrollBarComponent {
      * @param {jQuery} $element - jQuery object of the element that requires a sticky scroll bar
      */
     init ($element) {
-        if (!$element.length) {
+        if (typeof $element === 'undefined' || !$element) {
             throw new Error('an element to add the scroller to must be passed to StickyScrollBarComponent');
         }
 
-        if (!this.$window.length) {
+        if (typeof this.$window === 'undefined' || !this.$window) {
             throw new Error('window must be passed to StickyScrollBarComponent');
         }
 
-        if (!this.$html.length) {
+        if (typeof this.$html === 'undefined' || !this.$html) {
             throw new Error('$html must be passed to StickyScrollBarComponent');
         }
 
@@ -99,7 +99,7 @@ class StickyScrollBarComponent {
 
             // Check if the $elementWithStickyScrollBar has a scrollbar
             const scroll = this.$elementWithStickyScrollBar.scrollLeft();
-            const scrollMax = this.$elementWithStickyScrollBar.scrollLeft(99999999).scrollLeft(); // Magic number, get the max scroll by scrolling futher than any potential window size
+            const scrollMax = this.$elementWithStickyScrollBar.scrollLeft(this.$elementWithStickyScrollBar[0].scrollWidth).scrollLeft();
             const widthOuter = this.$elementWithStickyScrollBar.innerWidth();
             const widthInner = widthOuter + scrollMax;
 
