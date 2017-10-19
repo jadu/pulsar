@@ -99,7 +99,7 @@ class StickyScrollBarComponent {
 
             // Check if the $elementWithStickyScrollBar has a scrollbar
             const scroll = this.$elementWithStickyScrollBar.scrollLeft();
-            const scrollMax = this.$elementWithStickyScrollBar.scrollLeft(this.$elementWithStickyScrollBar[0].scrollWidth).scrollLeft();
+            const scrollMax = this.$elementWithStickyScrollBar[0].scrollWidth - this.$elementWithStickyScrollBar[0].clientWidth
             const widthOuter = this.$elementWithStickyScrollBar.innerWidth();
             const widthInner = widthOuter + scrollMax;
 
