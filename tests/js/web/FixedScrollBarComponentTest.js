@@ -69,7 +69,7 @@ describe('StickyScrollBarComponent', () => {
 
     describe('init()', () => {
 
-		it('should throw an error if $window isn\'t passed to the component', () => {
+		it('should throw an error if $window isn’t passed to the component', () => {
 			stickyScrollBarComponentWithoutWindow = new StickyScrollBarComponent(undefined, $body);
 
 			expect(() => {
@@ -77,7 +77,7 @@ describe('StickyScrollBarComponent', () => {
             }).to.throw('window must be passed to StickyScrollBarComponent');
 		});
 
-		it('should throw an error if $html isn\'t passed to the component', () => {
+		it('should throw an error if $html isn’t passed to the component', () => {
 			stickyScrollBarComponentWithoutHtml = new StickyScrollBarComponent($window, undefined);
 
 			expect(() => {
@@ -85,7 +85,7 @@ describe('StickyScrollBarComponent', () => {
             }).to.throw('$html must be passed to StickyScrollBarComponent');
 		});
 
-		it('should throw an error if $container isn\'t passed to the component', () => {
+		it('should throw an error if $container isn’t passed to the component', () => {
 			stickyScrollBarComponentWithoutContainer = new StickyScrollBarComponent($window, $body);
 		
 			expect(() => {
@@ -114,7 +114,6 @@ describe('StickyScrollBarComponent', () => {
 
 			expect($container.find('.sticky-scrollbar').hasClass('u-display-none')).to.be.false;
 		});
-
 	});
 
 	describe('When the container with the sticky scroll bar is scrolled', () => {
@@ -125,8 +124,7 @@ describe('StickyScrollBarComponent', () => {
 			$container.scrollLeft(50).trigger('scroll');
 
 			expect($container.find('.sticky-scrollbar').scrollLeft()).to.equal(50);
-		});		
-	
+		});
 	})
 
 	describe('When the sticky scroll bar is scrolled', () => {
@@ -138,7 +136,6 @@ describe('StickyScrollBarComponent', () => {
 
 			expect($container.scrollLeft()).to.equal(50);
 		});
-	
 	})
 
 	describe('When a footer is displayed', () => {
@@ -153,6 +150,5 @@ describe('StickyScrollBarComponent', () => {
 
 			expect($container.find('.sticky-scrollbar').hasClass('u-display-none')).to.be.false;
 		});
-	
 	})
 });
