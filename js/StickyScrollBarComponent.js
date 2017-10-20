@@ -7,7 +7,6 @@ class StickyScrollBarComponent {
      * @param {jQuery} $html - jQuery wrapper of the html node
      */
     constructor ($rootWindow, $html) {
-        this.$elementWithStickyScrollBar = {};
         this.$window = $rootWindow;
         this.$html = $html;
         this.$stickyScrollBar = $('<div class="sticky-scrollbar"><div class="sticky-scrollbar__inner"></div></div>');
@@ -47,7 +46,7 @@ class StickyScrollBarComponent {
             .on('scroll', this.scrollElementWithStickyScrollBarByScrollBarWithContext);
 
         // Call on load
-        this.updateStickyScrollBarWithContext();
+        this.updateStickyScrollBar();
 
         // Call on scroll and window resize
         this.$window.on('scroll resize', this.updateStickyScrollBarWithContext);
@@ -82,7 +81,7 @@ class StickyScrollBarComponent {
      * Update sticky scroll bar visibility, thumb position and width
      */
     updateStickyScrollBar () {
-        const top = this.$elementWithStickyScrollBar.offset().top;
+        const { top } = this.$elementWithStickyScrollBar.offset();
         const bottom = top + this.$elementWithStickyScrollBar.height();
         const topOffset = 30;
         let viewportBottom;
