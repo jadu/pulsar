@@ -2,8 +2,9 @@
 
 /* jshint: global e, ui */
 
-var $ = require('jquery'),
-    jqueryui  = require('jquery-ui');
+var $ = require('jquery');
+
+require('jquery-ui');
 
 // var mouse = require('jquery-ui/ui/widgets/mouse'),
 //     sortable = require('jquery-ui/ui/widgets/sortable');
