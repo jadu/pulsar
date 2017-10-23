@@ -1,7 +1,6 @@
 'use strict';
 
 var $ = require('jquery'),
-    history = require('../node_modules/historyjs/scripts/bundled/html4+html5/jquery.history.js'),
     StickyScrollBarComponent = require('./StickyScrollBarComponent');
 
 require('datatables.net')(window, $);
@@ -10,8 +9,7 @@ require('datatables.net-responsive')(window, $);
 require('datatables.net-select')(window, $);
 require('jquery.countdown');
 
-function PulsarUIComponent(html, history) {
-    this.history = history;
+function PulsarUIComponent(html) {
     this.$html = html;
     this.$window = $(window);
     this.stickyScrollBarComponent = new StickyScrollBarComponent(this.$window, this.$html);
@@ -28,7 +26,7 @@ PulsarUIComponent.prototype.init = function () {
     // Watch for push-state requests via data-html attribute
     this.$html.on('click', '[data-href]', function(e) {
         var href = $(this).data('href');
-        component.history.pushState({state:1}, href, href);
+        window.history.pushState({state:1}, href, href);
     });
 
     this.initTables();

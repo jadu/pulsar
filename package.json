@@ -84,7 +84,6 @@
     "datatables.net-select": "^1.1.2",
     "datatables.net-select-dt": "^1.1.2",
     "font-awesome": "^4.7.0",
-    "historyjs": "^1.8.0-b2",
     "jquery": "1.x",
     "jquery-placeholder": "^2.3.1",
     "jquery-sticky": "^1.0.4",
