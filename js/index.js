@@ -20,15 +20,6 @@ var $                     = require('jquery'),
     matchMediaAddListener = require('./polyfills/matchMedia.addListener'),
     clickover             = require('./libs/bootstrapx-clickover'),
 
-    history   = require('../node_modules/historyjs/scripts/bundled/html4+html5/jquery.history.js'),
-    jqueryui  = require('jquery-ui'),
-    countdown = require('jquery.countdown'),
-
-    dt            = require('datatables.net')(window, $),
-    dt_buttons    = require('datatables.net-buttons')(window, $),
-    dt_responsive = require('datatables.net-responsive')(window, $),
-    dt_select     = require('datatables.net-select')(window, $),
-
     ButtonComponent = require('./ButtonComponent'),
     DisableUiComponent = require('./DisableUiComponent'),
     HelpTextComponent = require('./HelpTextComponent'),

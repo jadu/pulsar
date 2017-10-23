@@ -1,6 +1,7 @@
 'use strict';
 
-var $ = require('jquery');
+var $ = require('jquery'),
+    history = require('../node_modules/historyjs/scripts/bundled/html4+html5/jquery.history.js');
 
 require('datatables.net')(window, $);
 require('datatables.net-buttons')(window, $);
