@@ -1,7 +1,8 @@
 'use strict';
 
 var $ = require('jquery'),
-    history = require('../node_modules/historyjs/scripts/bundled/html4+html5/jquery.history.js');
+    history = require('../node_modules/historyjs/scripts/bundled/html4+html5/jquery.history.js'),
+    StickyScrollBarComponent = require('./StickyScrollBarComponent');
 
 require('datatables.net')(window, $);
 require('datatables.net-buttons')(window, $);
@@ -12,6 +13,8 @@ require('jquery.countdown');
 function PulsarUIComponent(html, history) {
     this.history = history;
     this.$html = html;
+    this.$window = $(window);
+    this.stickyScrollBarComponent = new StickyScrollBarComponent(this.$window, this.$html);
 }
 
 PulsarUIComponent.prototype.init = function () {
@@ -146,6 +149,9 @@ PulsarUIComponent.prototype.initDataTables = function () {
             select: select,
             stateSave: false
         });
+
+        // Add sticky scroll bar
+        component.stickyScrollBarComponent.init($this.parent());
     });
 
     // Refresh datatables when tabs are switched, this fixes some layout issues
@@ -163,6 +169,9 @@ PulsarUIComponent.prototype.initDataTables = function () {
         $(window).on('load resize', function () {
             component.styleTableOverflows($table);
         });
+
+        // Add sticky scroll bar
+        component.stickyScrollBarComponent.init($table);
     });
 };
 
