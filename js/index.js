@@ -18,7 +18,6 @@ var $                     = require('jquery'),
     tooltip               = require('./libs/tooltip'),
     matchMedia            = require('./polyfills/matchMedia'),
     matchMediaAddListener = require('./polyfills/matchMedia.addListener'),
-    clickover             = require('./libs/bootstrapx-clickover'),
 
     ButtonComponent = require('./ButtonComponent'),
     DisableUiComponent = require('./DisableUiComponent'),
@@ -34,6 +33,7 @@ var $                     = require('jquery'),
     SignInComponent = require('./area/signin/signin'),
     DropZoneComponentFactory = require('./DropZone/DropZoneComponentFactory');
 
+    require('./libs/bootstrapx-clickover');
     require('jstree');
     require('svgeezy');
 
