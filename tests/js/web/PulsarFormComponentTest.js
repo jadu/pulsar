@@ -5,7 +5,7 @@
 var $ = require('jquery'),
     PulsarFormComponent = require('../../../js/PulsarFormComponent');
 
-describe('Pulsar Form Component - Select2 elements', function() {
+describe('Pulsar Form Component', function() {
 
     beforeEach(function() {
         this.$html = $('<div id="html"></div>').appendTo('html');
@@ -47,6 +47,12 @@ describe('Pulsar Form Component - Select2 elements', function() {
                     <input value="baz" name="foo" type="checkbox" class="form__control checkbox" checked>Baz</label>\
             </div>\
         </div>\
+    \   <div class="form__group">\
+            <label class="control__label">Time picker test</label>\
+            <div class="controls">\
+                    <input value="foo" name="foo" type="text" data-timepicker="true" class="form__control qa-foo" />\
+            </div>\
+        </div>\
     </form>\
     \
     <input data-datepicker="true" type="text" />\
@@ -79,14 +85,17 @@ describe('Pulsar Form Component - Select2 elements', function() {
         this.$tabToggle = this.$html.find('[data-toggle="tab"]');
         this.$modalToggle = this.$html.find('[data-toggle="modal"]');
         this.$modal = this.$html.find('#modal-foo');
+        this.$timepicker = this.$html.find('[data-timepicker="true"]');
 
         this.pulsarForm = new PulsarFormComponent(this.$html);
 
         $.fn.select2 = sinon.stub();
+        $.fn.timepicker = sinon.stub();
     });
 
     afterEach(function() {
         delete $.fn.select2;
+        delete $.fn.timepicker;
         this.$html.remove();
     });
 
@@ -217,6 +226,18 @@ describe('Pulsar Form Component - Select2 elements', function() {
             expect($.fn.pikaday).to.have.been.called;
         });
 
+    });
+
+    describe('Timepickers', function() {
+
+        beforeEach(function() {
+            this.pulsarForm.timePickerComponent.bindTimePicker = sinon.stub();
+            this.pulsarForm.init();
+        });
+
+        it('should call the timePickerComponents bindTimePicker method', function() {
+            expect(this.pulsarForm.timePickerComponent.bindTimePicker).to.have.been.called;
+        });
     });
 
 });
