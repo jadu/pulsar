@@ -9,7 +9,7 @@ require('../libs/spectrum/spectrum');
 
 function PulsarFormComponent(html) {
     this.$html = html;
-    this.timePickerComponent = new TimePickerComponent;
+    this.timePickerComponent = new TimePickerComponent();
 }
 
 PulsarFormComponent.prototype.init = function () {
