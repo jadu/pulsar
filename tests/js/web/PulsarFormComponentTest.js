@@ -139,9 +139,10 @@ describe('Pulsar Form Component - Select2 elements', function() {
             this.$modal.trigger('shown.bs.modal');
         });
 
-        it('Should trigger the select2 init method', function() {
-            setTimeout(function() {
+        it('Should trigger the select2 init method', function(done) {
+            setTimeout(() => {
                 expect(this.pulsarForm.initSelect2).to.have.been.called;
+                done();
             }, 500);
         });
     });
