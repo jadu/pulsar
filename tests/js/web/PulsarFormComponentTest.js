@@ -232,12 +232,12 @@ describe('Pulsar Form Component', function() {
     describe('Timepickers', function() {
 
         beforeEach(function() {
-            this.pulsarForm.timePickerComponent.bindTimePicker = sinon.stub();
+            this.pulsarForm.timePickerComponent.init = sinon.stub();
             this.pulsarForm.init();
         });
 
-        it('should call the timePickerComponents bindTimePicker method', function() {
-            expect(this.pulsarForm.timePickerComponent.bindTimePicker).to.have.been.called;
+        it('should call the timePickerComponents init method', function() {
+            expect(this.pulsarForm.timePickerComponent.init).to.have.been.called;
         });
     });
 

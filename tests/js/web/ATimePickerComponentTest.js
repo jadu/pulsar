@@ -17,16 +17,16 @@ describe('TimePickerComponent', () => {
         delete $.fn.timepicker;
     });
 
-    describe('bindTimePicker()', () => {
+    describe('init()', () => {
 
 		it('should throw an error if $element isn’t passed to the component', () => {
 			expect(() => {
-                timePickerComponent.bindTimePicker();
+                timePickerComponent.init();
             }).to.throw('$element must be passed to TimePickerComponent');
 		});
 
 		it('should initialize a timepicker on the $element', () => {
-			timePickerComponent.bindTimePicker($element);
+			timePickerComponent.init($element);
 			
 			expect($.fn.timepicker).to.have.been.called;
 		});
