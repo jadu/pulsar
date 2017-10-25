@@ -25,8 +25,6 @@ $(function () {
 
 This will then affect all input elements with the `data-timepicker="true"` attribute (which will be included automatically if you're using the helpers).
 
-You'll also need to add `"timepicker": "^1.11.12"` to your dependencies in `package.json`.
-
 ## Example usage
 
 {% code_example form_helpers/time %}

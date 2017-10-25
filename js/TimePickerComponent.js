@@ -1,4 +1,4 @@
-import 'timepicker';
+import '../libs/jt.timepicker/jquery.timepicker.min';
 
 class TimePickerComponent {
 
