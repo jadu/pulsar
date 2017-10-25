@@ -8,7 +8,7 @@ Generates a text input using the [timepicker](https://github.com/jonthornton/jqu
 
 ## Dependencies
 
-Time elements need the `PulsarFormComponent` to be included in your browserify configuration. You'll also need to add `"timepicker": "^1.11.12"` to your dependencies in `package.json`.
+Time elements need the `PulsarFormComponent` to be included in your browserify configuration.
 
 Depending on your setup, this will probably need to be in be in a file called `index.js` or `main.js`.
 
@@ -24,6 +24,8 @@ $(function () {
 ```
 
 This will then affect all input elements with the `data-timepicker="true"` attribute (which will be included automatically if you're using the helpers).
+
+You'll also need to add `"timepicker": "^1.11.12"` to your dependencies in `package.json`.
 
 ## Example usage
 
@@ -68,7 +70,7 @@ Options can be passed via data attributes or JavaScript. For data attributes, ap
 Option              | Type   | Description
 ------------------- | ------ | ---------------------------------------------------------
 appendTo            | string | Override where the dropdown is appended, `default: body`
-className           | string | A class name to apply to the HTML element that contains the timepicker dropdown
+className           | string | A class name to apply to the input that has the timepicker dropdown
 closeOnWindowScroll | bool   | Close the timepicker when the window is scrolled, `default: false`
 disableTimeRanges   | array  | Disable selection of certain time ranges. Input is an array of time pairs, like `[['3:00am', '4:30am'], ['5:00pm', '8:00pm']]`. The start of the interval will be disabled but the end won't. `default: []`
 disableTextInput    | bool   | Disable typing in the timepicker input box; force users to select from list. `default: false`
