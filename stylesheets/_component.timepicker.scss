@@ -10,6 +10,20 @@
     overflow-y: auto;
     width: 6.5em;
     z-index: $zindex-popover;
+
+    &::-webkit-scrollbar {
+        background-color: color(gray, off-white);
+        width: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #ccc;
+        border-radius: 15px;
+    }
+
+    &::-webkit-scrollbar-corner {
+        background: transparent;
+    }
 }
 
 .ui-timepicker-wrapper.ui-timepicker-with-duration {
