@@ -4,7 +4,7 @@ title: Text
 category: Form helpers
 ---
 
-Generates a text input which allows the input and selection of times.
+Generates a text input.
 
 ## Example usage
 
