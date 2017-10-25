@@ -65,11 +65,7 @@ PulsarFormComponent.prototype.init = function () {
 
     // initialise tinepickers
     var $timePickers = this.$html.find('[data-timepicker=true]');
-
-    $.each($timePickers, function() {
-        component.timePickerComponent.init($(this));
-    });
-
+    component.timePickerComponent.init($timePickers);
 };
 
 PulsarFormComponent.prototype.initSelectionButtons = function(e) {
