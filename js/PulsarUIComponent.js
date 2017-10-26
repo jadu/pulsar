@@ -7,7 +7,6 @@ require('datatables.net')(window, $);
 require('datatables.net-buttons')(window, $);
 require('datatables.net-responsive')(window, $);
 require('datatables.net-select')(window, $);
-require('jquery.countdown');
 
 function PulsarUIComponent(html) {
     this.$html = html;
@@ -31,7 +30,6 @@ PulsarUIComponent.prototype.init = function () {
 
     this.initTables();
     this.initDataTables();
-    this.initCountdown();
 };
 
 PulsarUIComponent.prototype.initTables = function () {
@@ -199,24 +197,6 @@ PulsarUIComponent.prototype.styleTableOverflows = function ($container) {
     if (-Math.abs((tableFullWidth - tableVisibleWidth - $table.offsetParent().offset().left)) >= $table.offset().left) {
         $container.removeClass('table--overflow-right');
     }
-};
-
-PulsarUIComponent.prototype.initCountdown = function () {
-
-    // Initial basic implementation of https://github.com/hilios/jQuery.countdown
-    this.$html.find('.js-countdown').each(function() {
-
-        var $this = $(this),
-            format = '%ww %dd %Hh %Mm %S';
-
-        if (typeof $this.data('format') !== 'undefined') {
-            format = $this.data('format');
-        }
-
-        $this.countdown($this.data('final-date'), function(event) {
-            $this.html(event.strftime(format));
-        });
-    });
 };
 
 module.exports = PulsarUIComponent;
