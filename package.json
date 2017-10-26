@@ -107,6 +107,7 @@
   "dependencies": {
     "jstree": "^3.3.3",
     "lodash": "^4.6.1",
-    "moment": "^2.15.2"
+    "moment": "^2.15.2",
+    "password-strength-meter": "^1.2.1"
   }
 }
