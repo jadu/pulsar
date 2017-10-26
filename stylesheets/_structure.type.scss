@@ -74,6 +74,11 @@ dt {
     }
 }
 
+// normalize-css needs updating to 7.0.0, for now we'll use this
+abbr[title] {
+    text-decoration: none;
+}
+
 .monospace {
     font-family: $font-family-monospace;
 
