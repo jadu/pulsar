@@ -10,17 +10,15 @@ Generates a range slider input.
 
 {% code_example form_helpers/range %}
 
-<div id="pulsar-example">
-    <form class="form">
-        <div class="form__group form-range">
-            <label for="foo" class="control__label">
-                Size
-            </label>
-            <div class="controls">
-                <input id="foo" type="range" class="form__control">
-            </div>
+<div class="pulsar-example form">
+    <div class="form__group form-range">
+        <label for="foo" class="control__label">
+            Size
+        </label>
+        <div class="controls">
+            <input id="foo" type="range" class="form__control">
         </div>
-    </form>
+    </div>
 </div>
 
 ## Options applied to parent wrapper
@@ -66,18 +64,16 @@ Any other options not listed here will be applied to the input.
 ```
 {% endraw %}
 
-<div id="pulsar-example">
-    <form class="form">
-        <div class="form__group form-range has-error">
-            <label for="foo" class="control__label">
-                Example
-            </label>
-            <div class="controls">
-                <input id="foo" type="range" class="form__control">
-                <span class="help-block is-error"><i class="icon-warning-sign"></i> Something went wrong</span>
-            </div>
+<div class="pulsar-example form">
+    <div class="form__group form-range has-error">
+        <label for="foo" class="control__label">
+            Example
+        </label>
+        <div class="controls">
+            <input id="foo" type="range" class="form__control">
+            <span class="help-block is-error"><i class="icon-warning-sign"></i> Something went wrong</span>
         </div>
-    </form>
+    </div>
 </div>
 
 ## Widths

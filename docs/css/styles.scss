@@ -20,6 +20,7 @@
 }
 
 $ie-version: 12 !default;
+$image-path: '../assets/images/';
 
 // Font awesome
 $fa-font-path: '../assets/font-awesome/fonts';
@@ -45,6 +46,7 @@ $fa-css-prefix: 'icon';
 
     // Config
     @import '../../stylesheets/_config.variables';
+    @import '../../stylesheets/_config.branding';
 
     // Functions
     @import '../../stylesheets/_function.math';
@@ -90,18 +92,30 @@ $fa-css-prefix: 'icon';
     @import '../../stylesheets/_component.input-groups';
     @import '../../stylesheets/_component.labels';
     @import '../../stylesheets/_component.loading';
+    @import '../../stylesheets/_component.masterswitch';
     @import '../../stylesheets/_component.metadata';
     @import '../../stylesheets/_component.modals';
+    @import '../../stylesheets/_component.navigation';
+    @import '../../stylesheets/_component.nav-list';
+    @import '../../stylesheets/_component.notifications';
     @import '../../stylesheets/_component.pagination';
     @import '../../stylesheets/_component.panels';
-    @import '../../stylesheets/_component.popovers';
+
+    @at-root {
+        @import '../../stylesheets/_component.popovers';
+    }
+
     @import '../../stylesheets/_component.progress-bars';
     @import '../../stylesheets/_component.progress-lists';
     @import '../../stylesheets/_component.panels';
     @import '../../stylesheets/_component.range-slider';
     @import '../../stylesheets/_component.remove-button';
     @import '../../stylesheets/_component.rules';
-    @import '../../stylesheets/_component.select2';
+
+    @at-root {
+        @import '../../stylesheets/_component.select2';
+    }
+
     @import '../../stylesheets/_component.status';
     @import '../../stylesheets/_component.tables';
     @import '../../stylesheets/_component.datatables';
