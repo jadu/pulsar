@@ -541,7 +541,7 @@ module.exports = function(grunt) {
                 },
                 silent: false
             },
-            files: ['../pulsar/js/casper.js']
+            files: ['../pulsar/tests/js/casper.js']
         },
 
         validation: {
