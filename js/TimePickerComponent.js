@@ -8,11 +8,13 @@ class TimePickerComponent {
      * @param {Object} options - Options for the date picker, see https://github.com/jonthornton/jquery-timepicker
      */
     init ($element, options) {
-        if (typeof $element === 'undefined' || !$element || !$element.length) {
+        if (typeof $element === 'undefined' || !$element) {
             throw new Error('$element must be passed to TimePickerComponent');
         }
 
-        $element.timepicker(options);
+        if ($element.length) {
+            $element.timepicker(options);
+        }
     }
 }
 
