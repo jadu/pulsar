@@ -5,6 +5,7 @@ var $ = require('jquery');
 require('../libs/pikaday/plugins/pikaday.jquery');
 require('../libs/select2/dist/js/select2.min');
 require('../libs/spectrum/spectrum');
+require('../js/libs/password.js');
 
 function PulsarFormComponent(html) {
     this.$html = html;
@@ -15,6 +16,8 @@ PulsarFormComponent.prototype.init = function () {
 
     // Colourpickers
     component.initColourpickers();
+
+    component.passwordStrengthMeter();
 
     // Attach basic pikaday to datepicker fields
     this.$html.find('[data-datepicker=true]').pikaday({
@@ -146,6 +149,24 @@ PulsarFormComponent.prototype.initSelect2 = function(target) {
         $this.select2(config);
     });
 
+}
+
+PulsarFormComponent.prototype.passwordStrengthMeter = function() {
+    $('#password-toggle').password({
+        shortPass: 'The password is too short',
+        badPass: 'Weak: try combining letters & numbers',
+        goodPass: 'Medium: try using special charecters',
+        strongPass: 'Strong password',
+        containsUsername: 'The password contains the username',
+        enterPass: 'Type your password',
+        showPercent: false,
+        showText: true, // shows the text tips
+        animate: true, // whether or not to animate the progress bar on input blur/focus
+        animateSpeed: 'fast', // the above animation speed
+        username: false, // select the username field (selector or jQuery instance) for better password checks
+        usernamePartialMatch: true, // whether to check for username partials
+        minimumLength: 12 // minimum password length (below this threshold, the score is 0)
+    });
 }
 
 module.exports = PulsarFormComponent;
