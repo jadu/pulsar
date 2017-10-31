@@ -117,8 +117,8 @@ module.exports = function(grunt) {
                     sourceMap: true
                 },
                 files: [{
-                    cwd:    'emails/stylesheets/',
-                    dest:   'emails/css/',
+                    cwd:    'emails/src/stylesheets/',
+                    dest:   'emails/src/css/',
                     expand: true,
                     ext:    '.css',
                     extDot: 'first',
