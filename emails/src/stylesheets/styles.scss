@@ -53,6 +53,7 @@ body {
     margin: 0 auto !important;
     /* makes it centered */
     clear: both !important;
+    overflow: visible;
 }
 
 .content {
@@ -60,6 +61,7 @@ body {
     margin: 0 auto;
     display: block;
     padding: 20px;
+    overflow: visible;
 }
 
 /* -------------------------------------
@@ -81,6 +83,10 @@ body {
 
 .content-block {
     padding: 0 0 20px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-all;
+    word-break: break-word;
 }
 
 .header {
