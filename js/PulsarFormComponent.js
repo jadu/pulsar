@@ -151,6 +151,19 @@ PulsarFormComponent.prototype.initSelect2 = function(target) {
 
 }
 
+PulsarFormComponent.prototype.togglePasswordVisibility = function() {
+    var passwordInput = document.getElementById('password-toggle'),
+        passStatus = $('#pass-status i');
+
+    if (passwordInput.type == 'password')     {
+        passwordInput.type='text';
+        passStatus.className='eye-slash';
+    } else {
+        passwordInput.type='password';
+        passStatus.className='eye';
+    }
+}
+
 PulsarFormComponent.prototype.passwordStrengthMeter = function() {
     $('#password-toggle').password({
         shortPass: 'The password is too short',
