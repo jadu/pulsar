@@ -319,6 +319,7 @@ fieldset {
 
     // column variations
     @for $i from 1 through 12 {
+        .form__control-col--#{$i}.form__control,
         .form__control-col--#{$i} .form__control,
         .form__control-col--#{$i} .form__control + .select2,
         .form__group--flush.form__control-col--#{$i} .control__label + .controls > .form__control {
@@ -337,6 +338,7 @@ fieldset {
 
     // column variations
     @for $i from 1 through 9 {
+        .control__label + .controls > .form__control.form__control-col--#{$i},
         .form__control-col--#{$i} .control__label + .controls > .form__control,
         .form__control-col--#{$i} .control__label + .controls > .form__control + .select2 {
             @include col-span($i, false, false, 9);
@@ -538,4 +540,47 @@ fieldset {
 
 .form-range .input-group > .form__control:last-child {
     padding-right: 0;
+}
+
+// undo default fieldset padding
+fieldset.form__group--collection {
+    padding: 0;
+}
+
+.form__group--collection {
+    > .control__label {
+        border-bottom: 0;
+        float: left; // as we can't use inline-block
+        font-size: inherit;
+        line-height: inherit;
+    }
+
+    > .controls {
+        // override regular stacked styling
+        > .form__control,
+        > .control__label,
+        &:first-child > .control__label {
+            clear: none;
+            display: inline-block;
+            float: none;
+            vertical-align: top;
+        }
+
+        // make sure inputs are suitably spaced when they stack with 100% width
+        // at small screen widths
+        .form__control:not(:last-child) {
+            margin-right: 1%; // needs to be grid gutter var
+            margin-top: 5px;
+
+            @include respond-min($screen-small) {
+                margin-right: 10px;
+                margin-top: 0;
+            }
+        }
+
+        // inline radio/checkboxes need spacing apart slightly
+        > .control__label:not(:first-of-type) {
+            margin-left: 10px;
+        }
+    }
 }

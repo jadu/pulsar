@@ -17,7 +17,7 @@ body {
   padding: 0;
 
   @media (min-width: $large-breakpoint) {
-    font-size: $large-font-size !important;
+    font-size: $root-font-size !important;
   }
 }
 
@@ -54,7 +54,6 @@ img {
 table {
   margin-bottom: 1rem;
   width: 100%;
-  font-size: 85%;
   border: 1px solid #e5e5e5;
   border-collapse: collapse;
 }
