@@ -21,8 +21,14 @@ A generic component to use wherever suitable, can be used within an empty tab if
 </div>
 ```
 
-<p data-height="200" data-theme-id="24005" data-slug-hash="23007709f1b7599bd02e9a900d0728fc" data-default-tab="result" data-user="stanton" class='codepen'>See the Pen <a href='http://codepen.io/stanton/pen/23007709f1b7599bd02e9a900d0728fc/'>docs - no results - div</a> by Paul Stanton (<a href='http://codepen.io/stanton'>@stanton</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example">
+    <div class="no-results">
+        <div class="no-results__message">
+            <p>There are currently no {things} to display</p>
+        </div>
+        <a href="#" class="btn btn--primary no-results__action">Create {Thing}</a>
+    </div>
+</div>
 
 ## Empty tables
 
@@ -45,5 +51,33 @@ Use the following markup inside your `<table>`:
 </tbody>
 ```
 
-<p data-height="250" data-theme-id="24005" data-slug-hash="5910a7eb9ebf079c8f2bddd1acafb645" data-default-tab="result" data-user="stanton" class='codepen'>See the Pen <a href='http://codepen.io/stanton/pen/5910a7eb9ebf079c8f2bddd1acafb645/'>docs - table - no results</a> by Paul Stanton (<a href='http://codepen.io/stanton'>@stanton</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script
+<div class="pulsar-example">
+    <table class="datatable">
+        <thead>
+            <tr class="table__tr">
+                <th class="table__th">
+                    <a href="#">Title</a>
+                </th>
+                <th class="table__th">
+                    <a href="#">Created</a>
+                </th>
+                <th class="table__th">
+                    <a href="#">Modified</a>
+                </th>
+                <th class="table__th">
+                    <a href="#">Author</a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table__tr">
+                <td class="table__td no-results" colspan="99">
+                  <div class="no-results__message">
+                    <p>There are currently no {things} to display</p>
+                  </div>
+                  <a href="#" class="btn btn--primary no-results__action">Create {Thing}</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

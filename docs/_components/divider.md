@@ -6,8 +6,17 @@ category: Components
 
 Used to visually group or separate links in [html.button_dropdown](button_dropdown.md) elements.
 
-<p data-height="180" data-theme-id="24005" data-slug-hash="dGVOZg" data-default-tab="result" data-user="stanton" class='codepen'>See the Pen <a href='http://codepen.io/stanton/pen/dGVOZg/'>dGVOZg</a> by Paul Stanton (<a href='http://codepen.io/stanton'>@stanton</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example" style="height: 200px">
+    <div class="btn__group dropdown open">
+        <button class="btn dropdown__toggle" data-toggle="dropdown">Actions&nbsp;<span class="caret"></span></button>
+        <ul class="dropdown__menu pull-left">
+            <li><a href="/save"><i class="icon-save"></i>&nbsp;Save</a></li>
+            <li><a href="/edit"><i class="icon-pencil"></i>&nbsp;Edit</a></li>
+            <li><span class="divider"></span></li>
+            <li><a href="/delete" class="link--danger"><i class="icon-remove"></i>&nbsp;Delete</a></li>
+        </ul>
+    </div>
+</div>
 
 ## Basic usage
 
@@ -23,19 +32,19 @@ You'll mainly use this when building [html.button_dropdown](button_dropdown.md) 
     html.button_dropdown({
         'label': 'Drop Down',
         'items': [
-            html.link({ 
-                'label': 'Save', 
+            html.link({
+                'label': 'Save',
                 'href': '/save',
                 'icon': 'save'
             }),
-            html.link({ 
-                'label': 'Edit', 
+            html.link({
+                'label': 'Edit',
                 'href': '/edit',
                 'icon': 'pencil'
             }),
             html.divider(),
-            html.link({ 
-                'label': 'Delete', 
+            html.link({
+                'label': 'Delete',
                 'href': '/delete',
                 'icon': 'remove'
             }),
@@ -87,5 +96,18 @@ An example might be to separate actions relating to publishing from those which 
 
 Delete actions should ideally be placed as the last item, and be separated with a divider. Multiple delete actions should be grouped (delete / delete all).
 
-<p data-height="280" data-theme-id="24005" data-slug-hash="XXeNXM" data-default-tab="result" data-user="stanton" class='codepen'>See the Pen <a href='http://codepen.io/stanton/pen/XXeNXM/'>XXeNXM</a> by Paul Stanton (<a href='http://codepen.io/stanton'>@stanton</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example" style="height: 300px">
+    <div class="btn__group dropdown open">
+        <button class="btn dropdown__toggle" data-toggle="dropdown">Actions&nbsp;<span class="caret"></span></button>
+        <ul class="dropdown__menu pull-left">
+            <li><a href="/save"><i class="icon-save"></i>&nbsp;Save</a></li>
+            <li><a href="/edit"><i class="icon-pencil"></i>&nbsp;Edit</a></li>
+            <li><span class="divider"></span></li>
+            <li><a href="/publish"><i class="icon-cloud-upload"></i>&nbsp;Publish</a></li>
+            <li><a href="/translate"><i class="icon-globe"></i>&nbsp;Translate</a></li>
+            <li><a href="/locl"><i class="icon-lock"></i>&nbsp;Lock</a></li>
+            <li><span class="divider"></span></li>
+            <li><a href="/delete" class="link--danger"><i class="icon-remove"></i>&nbsp;Delete</a></li>
+        </ul>
+    </div>
+</div>

@@ -10,7 +10,14 @@ Generates a text input.
 
 {% code_example form_helpers/text %}
 
-<p data-height="80" data-theme-id="24005" data-slug-hash="ZpOBKZ" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/ZpOBKZ/">docs - form - text</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example form">
+    <div class="form__group">
+        <label for="inputText" class="control__label">Text input</label>
+        <div class="controls">
+            <input id="inputText" name="inputText" type="text" class="form__control">
+        </div>
+    </div>
+</div>
 
 ## Options applied to parent wrapper
 
@@ -56,7 +63,14 @@ Any other options not listed here will be applied to the input.
 ```
 {% endraw %}
 
-<p data-height="105" data-theme-id="24005" data-slug-hash="rrLjNY" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/rrLjNY/">docs - form - text error</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example form">
+    <div class="form__group has-error">
+        <label for="inputText" class="control__label">Text input</label>
+        <div class="controls">
+            <input id="inputText" name="inputText" type="text" class="form__control"><span class="help-block is-error"><i class="icon-warning-sign"></i> Something went wrong</span>
+        </div>
+    </div>
+</div>
 
 ## Widths
 

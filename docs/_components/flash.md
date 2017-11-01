@@ -6,7 +6,7 @@ category: Components
 
 Flash messages alert the user when things happen, this may be to confirm that something has occurred successfully, like saving a document, or when something goes wrong. Flash messages may also highlight problems with the system that the user may need to know about, like a loss of network connectivity which is preventing auto-save.
 
-## Dependencies 
+## Dependencies
 
 ##### Javascript
 
@@ -45,23 +45,25 @@ Your main view should have a container with the classes of `flash-container js-f
 {% raw %}
 ```twig
 <div class="flash-container js-flash-container">
-{{ 
+{{
     flash.message({
         'message': 'You did something right!',
         'type': 'success'
-    }) 
+    })
 }}
 </div>
 ```
 {% endraw %}
 
-<p data-height="80" data-theme-id="24005" data-slug-hash="wzzJXX" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/wzzJXX/">docs - component - flash success</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example">
+    <div class="flash flash--success"><a class="close" href="#" data-dismiss="flash"><i class="icon-remove"></i></a><i class="icon-ok"></i> This is a success message</div>
+</div>
 
 ## Options
 
 Option      | Type   | Description
 ----------- | ------ | --------------------------------------------------------------
-dismissable | bool   | If false, will hide the dismiss (x) icon (default: `true`) 
+dismissable | bool   | If false, will hide the dismiss (x) icon (default: `true`)
 message     | string | The text to display, can contain HTML/Twig helpers
 type        | string | The style of message to display `success`, `warning`, `error`, `info`
 
@@ -69,55 +71,63 @@ type        | string | The style of message to display `success`, `warning`, `er
 
 {% raw %}
 ```twig
-{{ 
+{{
     flash.message({
         'message': 'This is a success message',
         'type': 'success'
-    }) 
+    })
 }}
 ```
 {% endraw %}
 
-<p data-height="80" data-theme-id="24005" data-slug-hash="wzzJXX" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/wzzJXX/">docs - component - flash success</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example">
+    <div class="flash flash--success"><a class="close" href="#" data-dismiss="flash"><i class="icon-remove"></i></a><i class="icon-ok"></i> This is a success message</div>
+</div>
 
 {% raw %}
 ```twig
-{{ 
+{{
     flash.message({
         'message': 'This is a warning message',
         'type': 'warning'
-    }) 
+    })
 }}
 ```
 {% endraw %}
 
-<p data-height="80" data-theme-id="24005" data-slug-hash="VKKpBp" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/VKKpBp/">docs - component - flash warning</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example">
+    <div class="flash flash--warning"><a class="close" href="#" data-dismiss="flash"><i class="icon-remove"></i></a><i class="icon-warning-sign"></i> This is a warning message</div>
+</div>
 
 {% raw %}
 ```twig
-{{ 
+{{
     flash.message({
         'message': 'This is an error message',
         'type': 'error'
-    }) 
+    })
 }}
 ```
 {% endraw %}
 
-<p data-height="80" data-theme-id="24005" data-slug-hash="RGGpYL" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/RGGpYL/">docs - component - flash error</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example">
+    <div class="flash flash--error"><a class="close" href="#" data-dismiss="flash"><i class="icon-remove"></i></a><i class="icon-warning-sign"></i> This is an error message</div>
+</div>
 
 {% raw %}
 ```twig
-{{ 
+{{
     flash.message({
         'message': 'This is an info message',
         'type': 'info'
-    }) 
+    })
 }}
 ```
 {% endraw %}
 
-<p data-height="80" data-theme-id="24005" data-slug-hash="ammJRd" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/ammJRd/">docs - component - flash success</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example">
+    <div class="flash flash--success"><a class="close" href="#" data-dismiss="flash"><i class="icon-remove"></i></a><i class="icon-info-sign"></i> This is an info message</div>
+</div>
 
 ## Icons
 
@@ -133,11 +143,13 @@ If you want to disable the ability to close a flash message (useful when you hav
 }
 ```
 
-<p data-height="80" data-theme-id="24005" data-slug-hash="wzzJQx" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/wzzJQx/">docs - component - flash not dismissable</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example">
+    <div class="flash flash--error"><a class="close" href="#" data-dismiss="flash"></a><i class="icon-warning"></i> This flash cannot be dismissed</div>
+</div>
 
 ## Triggering with Javascript
 
-You can throw Flash messages with JS, and like the Twig helper your styles and icons will be defined automatically. 
+You can throw Flash messages with JS, and like the Twig helper your styles and icons will be defined automatically.
 
 ```javascript
 pulsar.flash.success('Something great happened!');

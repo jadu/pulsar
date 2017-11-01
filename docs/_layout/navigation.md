@@ -83,8 +83,3 @@ The `items` element should contain nested elements that will be turned into the 
 ## Secondary navigation
 
 Secondary navigation items can be grouped together in blocks which will be visually separated for the user. Blocks are defined by nesting multiple objects.
-
-## Codepen
-
-<p data-height="550" data-theme-id="16461" data-slug-hash="rVJKWM" data-default-tab="result" data-user="stanton" class='codepen'>See the Pen <a href='http://codepen.io/stanton/pen/rVJKWM/'>Navigation component</a> by Paul Stanton (<a href='http://codepen.io/stanton'>@stanton</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
