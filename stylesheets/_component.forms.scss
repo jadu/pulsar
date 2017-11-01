@@ -543,11 +543,11 @@ fieldset {
 }
 
 // undo default fieldset padding
-fieldset.form__group--collection {
+fieldset.form__group--compound {
     padding: 0;
 }
 
-.form__group--collection {
+.form__group--compound {
     > .control__label {
         border-bottom: 0;
         float: left; // as we can't use inline-block

@@ -496,13 +496,13 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 {% endmacro %}
 
 
-{% macro collection(options) %}
+{% macro compound(options) %}
 {% spaceless %}
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
-    {% set groupClass = 'form__group form__group--collection' %}
+    {% set groupClass = 'form__group form__group--compound' %}
 
     {% if options.error is defined and options.error is not empty %}
         {% set groupClass = groupClass ~ ' has-error' %}

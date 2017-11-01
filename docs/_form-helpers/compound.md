@@ -1,15 +1,15 @@
 ---
 layout: page
-title: Collection
+title: Compound
 category: Form helpers
 ---
 
-The collection helper allows you to build a form group using multiple separate inputs with a single common label, and render those in a screenreader-friendly way.
+The compound helper allows you to build a form group using multiple separate inputs with a single common label, and render those in a screenreader-friendly way.
 
 ## Options
 
-Option            | Type   | Description
------------------ | ------ | ----------------------------------------------------
+Option     | Type   | Description
+---------- | ------ | ----------------------------------------------------
 append     | string | Content to display after the input, usually short text or icons
 class      | string | A space separated list of class names
 error      | string | Text to explain an error/validation condition. Also adds error state styling
@@ -33,7 +33,7 @@ You should provide sensible labels as well as unique IDs for each individual inp
 {% raw %}
 ```twig
 {{
-    form.collection({
+    form.compound({
         'id': 'foo',
         'label': 'Example'
         'inputs': [
@@ -51,12 +51,12 @@ You should provide sensible labels as well as unique IDs for each individual inp
 ```
 {% endraw %}
 
-## Example patterns using form.collection
+## Example patterns using form.compound
 
-{% code_example form_helpers/collection-dob %}
+{% code_example form_helpers/compound-dob %}
 
 <div class="pulsar-example form">
-    <fieldset id="bar" class="form__group form__group--collection">
+    <fieldset id="bar" class="form__group form__group--compound">
         <legend class="control__label" id="bar[label]">Date of birth</legend>
         <div class="controls">
             <label for="dd" id="dd[label]" class="control__label hide">Day</label>
@@ -73,10 +73,10 @@ You should provide sensible labels as well as unique IDs for each individual inp
     </fieldset>
 </div>
 
-{% code_example form_helpers/collection-timeout %}
+{% code_example form_helpers/compound-timeout %}
 
 <div class="pulsar-example form">
-<fieldset id="foo" class="form__group form__group--collection">
+<fieldset id="foo" class="form__group form__group--compound">
     <legend class="control__label" id="foo[label]">Timeout</legend>
     <div class="controls">
         <label for="value" id="value[label]" class="control__label hide">Value</label>

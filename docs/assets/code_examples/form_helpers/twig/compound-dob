@@ -1,5 +1,5 @@
 {{
-    form.collection({
+    form.compound({
         'id': 'bar',
         'help': 'For example: 25 12 1980',
         'label': 'Date of birth',

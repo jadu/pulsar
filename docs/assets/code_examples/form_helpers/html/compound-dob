@@ -1,4 +1,4 @@
-<fieldset id="bar" class="form__group form__group--collection">
+<fieldset id="bar" class="form__group form__group--compound">
     <legend class="control__label" id="bar[label]">Date of birth</legend>
     <div class="controls">
         <label for="dd" id="dd[label]" class="control__label hide">Day</label>
