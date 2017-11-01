@@ -12,8 +12,12 @@ Useful for presenting non-editable information within a form where you'd prefer 
 
 {% code_example form_helpers/content %}
 
-<p data-height="90" data-theme-id="24005" data-slug-hash="8ee5353bcb656212de2d2a63e29f0db5" data-default-tab="result" data-user="stanton" class='codepen'>See the Pen <a href='http://codepen.io/stanton/pen/8ee5353bcb656212de2d2a63e29f0db5/'>docs - form - content</a> by Paul Stanton (<a href='http://codepen.io/stanton'>@stanton</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example form">
+    <div class="form__group">
+        <label class="control__label">it’s the remix to ignition</label>
+        <div class="controls"><p>Hot and fresh out the kitchen</p></div>
+    </div>
+</div>
 
 ## Options applied to parent wrapper
 

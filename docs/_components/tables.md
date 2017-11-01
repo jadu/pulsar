@@ -40,7 +40,7 @@ Table rows will accept the normal collection of state classes which will highlig
 
 To add badges to the "Actions" dropdown when items are selected a class "has-badges" needs to be added in an element (div or form) grouping both the dropdown and the table together.
 
-![Screenshot](../assets/image_examples/table-with-badged-dropdown.gif)
+![Screenshot](/assets/image_examples/table-with-badged-dropdown.gif)
 
 ```html
 <div class="has-badges">

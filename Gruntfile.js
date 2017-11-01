@@ -221,8 +221,8 @@ module.exports = function(grunt) {
         },
 
         copy: {
-          dist: {
-            files: [{
+            dist: {
+                files: [{
                     expand: true,
                     cwd: '',
                     src: [
@@ -233,6 +233,17 @@ module.exports = function(grunt) {
                         'src/**/*'
                     ],
                     dest: 'dist/'
+                }]
+            },
+            docs: {
+                files: [{
+                    cwd: '',
+                    expand: true,
+                    flatten: true,
+                    src: [
+                        'dist/js/bundle.js'
+                    ],
+                    dest: 'docs/assets/'
                 }]
             }
         },
