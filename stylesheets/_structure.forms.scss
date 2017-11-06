@@ -53,7 +53,7 @@
 
 // Add a gutter between form labels and controls
 .control__label + .controls {
-    @include col-span($form-control-cols, false, true);
+    @include col-span($form-control-cols, false);
 }
 
 // inputs can be aligned next to each other if required

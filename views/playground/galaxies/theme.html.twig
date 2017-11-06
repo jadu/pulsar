@@ -1,0 +1,198 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
+
+{%- block actions_left -%}
+    {{
+        html.actions_menu({
+            'items': [
+                [
+                    {
+                        'label': 'Create site',
+                        'href': '/create',
+                        'icon': 'plus'
+                    }
+                ],
+                [
+                    {
+                        'label': 'Archive site',
+                        'href': '/archive',
+                        'icon': 'archive'
+                    },
+                    {
+                        'label': 'Delete site',
+                        'href': '/delete',
+                        'icon': 'times'
+                    }
+                ]
+            ]
+        })
+    }}
+{%- endblock -%}
+
+{%- block actions_right -%}
+    {{
+        html.button({
+            'label': html.icon('eye-open') ~ ' View Site'
+        })
+    }}
+    {{
+        html.button({
+            'label': html.icon('external-link') ~ ' Control Center'
+        })
+    }}
+    {{
+        html.button({
+            'label': 'Save',
+            'class': 'btn--primary'
+        })
+    }}
+    {{
+        html.button({
+            'label': 'Publish',
+            'class': 'btn--success'
+        })
+    }}
+{%- endblock -%}
+
+{% block tab_settings %}
+
+    {{
+        flash.message({
+            'dismissable': false,
+            'message': 'You have unpublished changes to your theme ' ~ html.button({ 'label': 'Publish Changes', 'class': 'btn--outline btn--inverse btn--small' }) ~ '&nbsp;' ~ html.button({ 'label': 'Discard', 'class': 'btn--outline btn--inverse btn--small' }),
+            'type': 'warning'
+        })
+    }}
+
+    <div class="settings-section settings-section--primary">
+
+        {{
+            form.create()
+        }}
+
+        {{
+            form.select({
+                'label': 'Accent colour',
+                'class': 'form__group--full',
+                'options': [
+                    {
+                        'label': 'Blue',
+                        'value': 'blue'
+                    },
+                    {
+                        'label': 'Red',
+                        'value': 'red'
+                    },
+                    {
+                        'label': 'Orange',
+                        'value': 'orange'
+                    },
+                    {
+                        'label': 'Green',
+                        'value': 'geen'
+                    }
+                ]
+            })
+        }}
+
+        {{
+            form.select({
+                'label': 'Font stack',
+                'class': 'form__group--top form__group--flush',
+                'options': [
+                    {
+                        'label': 'Helvetica, Arial, Sans Serif',
+                        'value': '1'
+                    },
+                    {
+                        'label': 'Comic sans, Impact, Papyrus',
+                        'value': 'red'
+                    }
+                ]
+            })
+        }}
+
+        {{
+            form.end({
+                'class': 'form__actions--flush',
+                'actions': [
+                    form.submit({
+                        'class': 'btn--primary',
+                        'label': 'Save'
+                    }),
+                    html.button({
+                        'class': 'btn--naked',
+                        'type': 'link',
+                        'label': 'Cancel',
+                        'href': '/home'
+                    })
+                ]
+            })
+        }}
+
+    </div>
+
+{% endblock tab_settings %}
+
+{% block tab_content %}
+
+<div class="g-row">
+    <div class="card card--rounded g-col g-col--3 g-col--first">
+        <div class="card__body card__body--padded card__body--light u-text-align-center">
+            <img src="https://www.placecage.com/1000/700" class="card-img" />
+            <h3>School</h3>
+            {{
+                html.label({
+                    'label': html.icon('check-circle') ~ ' active',
+                    'class': 'label--success label--large'
+                })
+            }}
+        </div>
+    </div>
+
+    <div class="card card--rounded g-col g-col--3">
+        <div class="card__body card__body--padded card__body--light u-text-align-center">
+            <img src="https://www.placecage.com/1000/700" class="card-img" />
+            <h3>Venue</h3>
+            <a href="#" class="card-link card-link--padded">Preview</a>
+            <a href="#" class="card-link card-link--padded">Choose</a>
+        </div>
+    </div>
+
+    <div class="card card--rounded g-col g-col--3">
+        <div class="card__body card__body--padded card__body--light u-text-align-center">
+            <img src="https://www.placecage.com/1000/700" class="card-img" />
+            <h3>Event</h3>
+            <a href="#" class="card-link card-link--padded">Preview</a>
+            <a href="#" class="card-link card-link--padded">Choose</a>
+        </div>
+    </div>
+
+    <div class="card card--rounded g-col g-col--3">
+        <div class="card__body card__body--padded card__body--light u-text-align-center">
+            <img src="https://www.placecage.com/1000/700" class="card-img" />
+            <h3>Event</h3>
+            <a href="#" class="card-link card-link--padded">Preview</a>
+            <a href="#" class="card-link card-link--padded">Choose</a>
+        </div>
+    </div>
+</div>
+<div class="g-row">
+    <div class="card card--rounded g-col g-col--3 g-col--first">
+        <div class="card__body card__body--padded card__body--light u-text-align-center">
+            <img src="https://www.placecage.com/1000/700" class="card-img" />
+            <h3>Tourism</h3>
+            <a href="#" class="card-link card-link--padded">Preview</a>
+            <a href="#" class="card-link card-link--padded">Choose</a>
+        </div>
+    </div>
+
+    <div class="card card--rounded g-col g-col--3">
+        <div class="card__body card__body--padded card__body--light u-text-align-center">
+            <img src="https://www.placecage.com/1000/700" class="card-img" />
+            <h3>Custom</h3>
+            <a href="#" class="card-link card-link--padded">Preview</a>
+            <a href="#" class="card-link card-link--padded">Choose</a>
+        </div>
+    </div>
+</div>
+{% endblock tab_content %}
