@@ -1,0 +1,196 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
+
+{%- block actions_left -%}
+    {{
+        html.actions_menu({
+            'items': [
+                [
+                    {
+                        'label': 'Add administrator',
+                        'href': '/add',
+                        'icon': 'plus'
+                    }
+                ],
+                [
+                    {
+                        'label': 'Suspend',
+                        'href': '/suspend',
+                        'icon': 'pause-circle'
+                    },
+                    {
+                        'label': 'Delete',
+                        'href': '/delete',
+                        'icon': 'times'
+                    }
+                ]
+            ]
+        })
+    }}
+{%- endblock -%}
+
+{%- block actions_right -%}
+    {{
+        html.button({
+            'label': 'Add Administrator',
+            'class': 'btn--primary',
+            'data-toggle': 'modal',
+            'href': '#create-site-1',
+            'type': 'link'
+        })
+    }}
+{%- endblock -%}
+
+{% block tab_content %}
+    <table class="table datatable table--full">
+        <thead>
+            <tr>
+                <td class="table-responsive"></td>
+                <td class="table-selection"></td>
+                <th><a href="#">Administrator</a></th>
+                <th><a href="#">Privileges</a></th>
+                <th class="centered shrink-to-fit"><a href="#">Translator</a></th>
+                <th><a href="#">Status</a></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <td class="table-responsive">
+                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                </td>
+                <td class="table-selection">
+                    {{ html.icon('square-o', { 'class': 'table-row-select js-select' }) }}
+                </td>
+                <td><a href="#">Tabatha Harm</a> {{ html.label({'label': 'owner', 'class': 'label--primary'}) }}</td>
+                <td>Full access</td>
+                <td class="centered shrink-to-fit">{{ html.icon('check') }}</td>
+                <td>{{ html.status('active') }} Active</td>
+            </tr>
+
+            <tr>
+                <td class="table-responsive">
+                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                </td>
+                <td class="table-selection">
+                    {{ html.icon('square-o', { 'class': 'table-row-select js-select' }) }}
+                </td>
+                <td><a href="#">Otis Hillary</a></td>
+                <td>Full access</td>
+                <td class="centered shrink-to-fit"></td>
+                <td>{{ html.status('active') }} Active</td>
+            </tr>
+
+            <tr>
+                <td class="table-responsive">
+                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                </td>
+                <td class="table-selection">
+                    {{ html.icon('square-o', { 'class': 'table-row-select js-select' }) }}
+                </td>
+                <td><a href="#">Randal Mawson</a></td>
+                <td><del>Full access (no admin privileges)</del></td>
+                <td class="centered shrink-to-fit"></td>
+                <td>{{ html.status('offline') }} Suspended</td>
+            </tr>
+
+            <tr>
+                <td class="table-responsive">
+                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                </td>
+                <td class="table-selection">
+                    {{ html.icon('square-o', { 'class': 'table-row-select js-select' }) }}
+                </td>
+                <td><a href="#">William Mcconnaughey</a></td>
+                <td>Full access</td>
+                <td class="centered shrink-to-fit"></td>
+                <td>{{ html.status('active') }} Active</td>
+            </tr>
+
+            <tr>
+                <td class="table-responsive">
+                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                </td>
+                <td class="table-selection">
+                    {{ html.icon('square-o', { 'class': 'table-row-select js-select' }) }}
+                </td>
+                <td><a href="#">Margaret Myers</a></td>
+                <td>Full access</td>
+                <td class="centered shrink-to-fit">{{ html.icon('check') }}</td>
+                <td>{{ html.status('inactive') }} <span class="muted">Never logged in</span></td>
+            </tr>
+
+            <tr>
+                <td class="table-responsive">
+                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                </td>
+                <td class="table-selection">
+                    {{ html.icon('square-o', { 'class': 'table-row-select js-select' }) }}
+                </td>
+                <td><a href="#">Shandi Pryzbylski</a></td>
+                <td>Full access</td>
+                <td class="centered shrink-to-fit">{{ html.icon('check') }}</td>
+                <td>{{ html.status('active') }} Active</td>
+            </tr>
+
+            <tr>
+                <td class="table-responsive">
+                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                </td>
+                <td class="table-selection">
+                    {{ html.icon('square-o', { 'class': 'table-row-select js-select' }) }}
+                </td>
+                <td><a href="#">Monroe Rayos</a></td>
+                <td>Full access</td>
+                <td class="centered shrink-to-fit"></td>
+                <td>{{ html.status('active') }} Active</td>
+            </tr>
+
+            <tr>
+                <td class="table-responsive">
+                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                </td>
+                <td class="table-selection">
+                    {{ html.icon('square-o', { 'class': 'table-row-select js-select' }) }}
+                </td>
+                <td><a href="#">Natasha Sackrider</a></td>
+                <td>Full access (no admin privileges)</td>
+                <td class="centered shrink-to-fit"></td>
+                <td>{{ html.status('active') }} Active</td>
+            </tr>
+
+            <tr>
+                <td class="table-responsive">
+                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                </td>
+                <td class="table-selection">
+                    {{ html.icon('square-o', { 'class': 'table-row-select js-select' }) }}
+                </td>
+                <td><a href="#">Carisa Vanderhost</a></td>
+                <td>Full access</td>
+                <td class="centered shrink-to-fit"></td>
+                <td>{{ html.status('active') }} Active</td>
+            </tr>
+
+            <tr>
+                <td class="table-responsive">
+                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                </td>
+                <td class="table-selection">
+                    {{ html.icon('square-o', { 'class': 'table-row-select js-select' }) }}
+                </td>
+                <td><a href="#">Stephen Volem</a></td>
+                <td>Full access</td>
+                <td class="centered shrink-to-fit"></td>
+                <td>{{ html.status('active') }} Active</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+{% endblock tab_content %}
+
+{% block tab_sidebar %}
+    <h2>{{ html.icon('info-sign') }} Galaxies administrators</h2>
+    <p>Control who has access to your Galaxies control centre by adding administrators from your existing Continuum CMS admins.</p>
+    <p>If you're implementing a translation workflow you will need to add the Administrators who have been configured as translators for the same locale as this Galaxies site. Read more about [translation workflows] in the Galaxies user guide.</p>
+{% endblock tab_sidebar %}

@@ -1,6 +1,12 @@
 $columns:       12;
 $gutter_pc:     .5;
 
+.g-row {
+    display: block;
+    float: left;
+    margin-bottom: 24px;
+}
+
 .g-col {
     background-clip: padding-box !important;
     box-sizing: border-box;

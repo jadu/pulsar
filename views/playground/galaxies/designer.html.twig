@@ -1,0 +1,42 @@
+{% extends '@pulsar/lexicon/base.html.twig' %}
+
+{% set heading = 'Continuum Festival' %}
+
+{% set tab_settings %}
+    {% include '/playground/galaxies/settings.html.twig' %}
+{% endset %}
+{% set tab_theme %}
+    {% include '/playground/galaxies/theme.html.twig' %}
+{% endset %}
+{% set tab_security %}
+    {% include '/playground/galaxies/security.html.twig' %}
+{% endset %}
+{% set tab_admins %}
+    {% include '/playground/galaxies/admins.html.twig' %}
+{% endset %}
+
+{%
+    set tabs_content = [
+        {
+            "id"    : "settings",
+            "label" : "Settings",
+            "src"   : tab_settings,
+        },
+        {
+            "id"    : "theme",
+            "label" : "Theme",
+            "src"   : tab_theme,
+            'active': true
+        },
+        {
+            "id"    : "security",
+            "label" : "Security",
+            "src"   : tab_security,
+        },
+        {
+            "id"    : "admins",
+            "label" : "Admins",
+            "src"   : tab_admins,
+        }
+    ]
+%}
