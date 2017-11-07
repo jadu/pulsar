@@ -64,6 +64,18 @@ $fa-css-prefix: 'icon';
 
     // Components
     @import '../../stylesheets/_component.buttons';
+    @import '../../stylesheets/_component.button-groups';
+    @import '../../stylesheets/_component.cards';
+    @import '../../stylesheets/_component.close';
+
+    @at-root {
+        @import '../../stylesheets/_component.colorpicker';
+        @import '../../stylesheets/_component.datepicker';
+    }
+
+    @import '../../stylesheets/_component.daterange';
+    @import '../../stylesheets/_component.dropdowns';
+    @import '../../stylesheets/_component.flash';
     @import '../../stylesheets/_component.forms';
     @import '../../stylesheets/_component.icons';
     @import '../../stylesheets/_component.panels';
