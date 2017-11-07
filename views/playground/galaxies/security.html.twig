@@ -83,9 +83,76 @@
                             <td colspan="2" class="muted">You have not added any website accounts</td>
                         </tr>
                     </tbody>
+<<<<<<< Updated upstream
                 </table>
             </div>
             <button class="btn">Add</button>
+=======
+                    <tfoot>
+                        <tr>
+                            <td class="table__form" colspan="2">
+                                {{
+                                    form.fieldset_start({
+                                        'legend': 'Add Access Account'
+                                    })
+                                }}
+                                {{
+                                    form.text({
+                                        'label': 'Actual name',
+                                        'class': 'form__control-col--8',
+                                        'required': true
+                                    })
+                                }}
+                                {{
+                                    form.text({
+                                        'label': 'Email address',
+                                        'class': 'form__control-col--8',
+                                        'required': true
+                                    })
+                                }}
+                                {{
+                                    form.text({
+                                        'label': 'Username',
+                                        'class': 'form__control-col--8',
+                                        'required': true
+                                    })
+                                }}
+                                {{
+                                    form.text({
+                                        'label': 'Password',
+                                        'class': 'form__control-col--8',
+                                        'required': true
+                                    })
+                                }}
+                                {{
+                                    form.text({
+                                        'label': 'Confirm password',
+                                        'class': 'form__control-col--8',
+                                        'required': true
+                                    })
+                                }}
+
+                                <div class="form__actions">
+                                    {{
+                                        html.button({
+                                            'label': 'Add',
+                                            'class': 'btn--primary'
+                                        })
+                                    }}
+                                    {{
+                                        html.button({
+                                            'label': 'Cancel',
+                                            'class': 'btn--naked'
+                                        })
+                                    }}
+                                </div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <button class="btn is-disabled" disabled>Add</button>
+>>>>>>> Stashed changes
         </div>
     </div>
 
