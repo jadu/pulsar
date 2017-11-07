@@ -152,12 +152,11 @@
     }
 
     &:hover,
-    &:active,
     &:focus {
-        @include button-states('primary');
+        @include button-hover(primary);
+    }
 
-        i {
-            color: color(white);
-        }
+    &:active {
+        @include button-active(primary);
     }
 }

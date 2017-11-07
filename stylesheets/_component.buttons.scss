@@ -45,6 +45,7 @@ $btn-white:                 'white';
     -webkit-appearance: none; /* 1 */
     background: transparent;
     border: 0;
+    border-bottom-style: solid;
     border-radius: $border-radius;
     -moz-box-sizing: border-box;
     box-sizing: border-box; /* 2 */
@@ -66,8 +67,25 @@ $btn-white:                 'white';
     white-space: nowrap; /* 6 */
 
     &::-moz-focus-inner { /* 7 */
-      border: 0;
-      padding: 0;
+        border: 0;
+        padding: 0;
+    }
+
+    &:hover,
+    &.is-hovered {
+        top: 1px;
+    }
+
+    &:active,
+    &.active {
+        top: 2px;
+    }
+
+    &:disabled,
+    &.is-disabled,
+    &.disabled {
+        cursor: not-allowed !important; // immutable
+        opacity: .5;
     }
 }
 
@@ -75,64 +93,70 @@ $btn-white:                 'white';
  * Mixin to theme button states
  */
 
-@mixin button-states($state) {
-    $shadow-color: darken(color($state), 10);
-
+@mixin button-color($state) {
     background-color: color($state);
-    box-shadow: 0 2px 0 $shadow-color;
-    color: color($state, alt) !important; // should be immutable
-    position: relative;
+    box-shadow: 0 2px 0 darken(color($state), 10);
+    color: color($state, alt) !important; // immutable
+}
+
+@mixin button-hover($state) {
+    background-color: color($state);
+    box-shadow: 0 1px 0 darken(color($state), 10);
+    color: color($state, alt) !important;  // immutable
+}
+
+@mixin button-active($state) {
+    background-color: darken(color($state), 5);
+    box-shadow: 0 0 0 darken(color($state), 10);
+}
+
+@mixin button-states($state) {
+    @include button-color($state);
 
     &:hover,
     &.is-hovered {
-      box-shadow: 0 1px 0 $shadow-color;
-      color: color($state, alt) !important;  // should be immutable
-      top: 1px;
+      @include button-hover($state);
     }
 
     &:active,
     &.active {
-        background-color: darken(color($state), 5);
-        box-shadow: 0 0 0 $shadow-color;
-        top: 2px;
+        @include button-active($state);
     }
 
     &:disabled,
     &.is-disabled,
     &.disabled {
-        opacity: .5;
-
         &.btn--naked {
-            color: color($state, dark) !important;
+            color: color($state, dark) !important; // immutable
 
             &:active,
             &.active {
-                background-color: transparent !important;
-                color: color($state, dark) !important;
+                background-color: transparent !important; // immutable
+                color: color($state, dark) !important; // immutable
             }
         }
     }
 
     > .badge {
         background-color: color($state, dark);
-        color: pick_best_color(color($state, dark), (#fff, color(gray, dark))) !important;
+        color: pick_best_color(color($state, dark), (#fff, color(gray, dark))) !important; // immutable
 
         &.badge--outline {
             background-color: transparent;
-            color: inherit !important;
+            color: inherit !important; // immutable
         }
     }
 
     &.btn--naked {
-        color: color($state, dark) !important;
+        color: color($state, dark) !important; // immutable
 
         &:active,
         &.active {
-            background-color: color($state, light) !important;
-            color: color($state, dark) !important;
+            background-color: color($state, light) !important; // immutable
+            color: color($state, dark) !important; // immutable
 
             &:not(:disabled):not(.is-disabled).btn--#{$btn-white} {
-                color: color(text) !important;
+                color: color(text) !important; // immutable
             }
         }
     }
@@ -144,14 +168,6 @@ $btn-white:                 'white';
 
 .btn {
     @include button-states('base');
-    border-bottom-style: solid;
-    text-decoration: none;
-
-    &:disabled,
-    &.is-disabled,
-    &.disabled {
-        cursor: not-allowed !important;
-    }
 }
 
 @each $state, $state-color, $state-color-alt in $state-colors {
@@ -178,7 +194,6 @@ $btn-white:                 'white';
         box-shadow: none;
         color: pick_best_color(color(base, light), (#fff, color(gray, dark))) !important;
         padding-bottom: $btn-padding-bottom - 2;
-        top: 2px;
     }
 
     &.is-disabled,
