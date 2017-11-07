@@ -1,0 +1,7 @@
+<div class="card">
+    <div class="card__body">
+        <h3 class="card__title">Card Title</h3>
+        <p>This is the card body, it should be helpful and descriptive.</p>
+        <a href="#cta" class="btn btn--primary">Call to Action</a>
+    </div>
+</div>
