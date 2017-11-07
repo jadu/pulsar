@@ -23,8 +23,18 @@ class   | string | A space separated list of class names
 
 Normally form actions are positioned so that they're inline with the form controls above it.
 
-<p data-height="165" data-theme-id="24005" data-slug-hash="0881ae6084601501bd83ac8047bcb5ba" data-default-tab="result" data-user="stanton" class='codepen'>See the Pen <a href='http://codepen.io/stanton/pen/0881ae6084601501bd83ac8047bcb5ba/'>docs - form actions</a> by Paul Stanton (<a href='http://codepen.io/stanton'>@stanton</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example form">
+    <div class="form__group">
+        <label for="example" class="control__label">Example</label>
+        <div class="controls">
+            <input id="example" name="example" type="text" class="form__control">
+        </div>
+    </div>
+    <div class="form__actions">
+        <button class="btn btn--primary js-submit-disable" type="submit">Primary Action</button>
+        <button class="btn btn--naked js-submit-disable" type="submit">Cancel</button>
+    </div>
+</div>
 
 ### Flush-aligned actions
 
@@ -41,8 +51,18 @@ You can make the form actions align to the left hand edge of a form by adding th
 ```
 {% endraw %}
 
-<p data-height="165" data-theme-id="24005" data-slug-hash="dfb307e75d83561ed21d6a55eb2c5c81" data-default-tab="result" data-user="stanton" class='codepen'>See the Pen <a href='http://codepen.io/stanton/pen/dfb307e75d83561ed21d6a55eb2c5c81/'>docs - form actions flush</a> by Paul Stanton (<a href='http://codepen.io/stanton'>@stanton</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example form">
+    <div class="form__group">
+        <label for="example" class="control__label">Example</label>
+        <div class="controls">
+            <input id="example" name="example" type="text" class="form__control">
+        </div>
+    </div>
+    <div class="form__actions form__actions--flush">
+        <button class="btn btn--primary js-submit-disable" type="submit">Primary Action</button>
+            <button class="btn btn--naked js-submit-disable" type="submit">Cancel</button>
+    </div>
+</div>
 
 ## Button placement
 
@@ -50,8 +70,13 @@ Primary actions should be the first buttons in a form actions element, where pos
 
 If the UI is one which could/should allow the user to delete the item you can add a delete button to the form actions. You should use the `pull-right` class to align this on the right hand side.
 
-<p data-height="90" data-theme-id="24005" data-slug-hash="b5fc1c0fb7f715f11fb350f8a62d2140" data-default-tab="result" data-user="stanton" class='codepen'>See the Pen <a href='http://codepen.io/stanton/pen/b5fc1c0fb7f715f11fb350f8a62d2140/'>docs - form actions buttons</a> by Paul Stanton (<a href='http://codepen.io/stanton'>@stanton</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example form">
+    <div class="form__actions form__actions--flush">
+        <button class="btn btn--primary js-submit-disable" type="submit">Primary Action</button>
+        <button class="btn btn--naked js-submit-disable" type="submit">Cancel</button>
+        <button class="btn btn--danger js-submit-disable pull-right" type="submit">Delete</button>
+    </div>
+</div>
 
 ## Tooltips on disabled actions
 

@@ -8,8 +8,12 @@ Displays a small visual indication of state; helpful when used within table cell
 
 Status indicators should ideally have some text which indicates their context. For example, they could be sat next to a text label called 'Active', or within a table column entitled 'Online'. Try not to rely on this indicator alone.
 
-<p data-height="200" data-theme-id="24005" data-slug-hash="mPrvqZ" data-default-tab="result" data-user="pulsar" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/mPrvqZ/">docs - status indicators</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example">
+    <p>I am online <span class="status is-online" title="online"></span></p>
+    <p>I am offline <span class="status is-offline" title="offline"></span></p>
+    <p>I am active <span class="status is-active" title="active"></span></p>
+    <p>I am inactive <span class="status is-inactive" title="inactive"></span></p>
+</div>
 
 ### Accessibility
 

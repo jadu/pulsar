@@ -69,7 +69,7 @@ a.list-group-item.active > .badge,
 
 // Variations
 @each $state, $state-color, $state-color-alt in $state-colors {
-    &.badge--#{$state},
+    .badge--#{$state},
     %badge--#{$state} {
         background-color: $state-color;
         color: pick_best_color($state-color, (#fff, color(text))) !important;
