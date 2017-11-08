@@ -1,80 +1,68 @@
 .card {
-    background: color(gray, off-white);
-    border: 1px solid color(gray, lightest);
-}
+    border: 1px solid color(border);
+    border-radius: $border-radius;
+    margin-bottom: $line-height-base;
 
-.card--rounded {
-    border-radius: .25em;
-
-    // if card__header absent, apply rounded corners to card body
-    > .card__body {
-        border-top-left-radius: .25em;
-        border-top-right-radius: .25em;
-    }
-
-    .card__body {
-        border-bottom-right-radius: .25em;
-        border-bottom-left-radius: .25em;
-    }
-
-    .card__footer {
-        margin-top: -.25em;
+    @include respond-min($screen-small) {
+        margin-bottom: 0;
     }
 }
 
 .card__header {
+    background: color(gray, off-white);
+    border-bottom: 1px solid color(border);
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+    font-family: $font-family-regular;
     padding: .75em;
 }
 
 .card__heading {
-    display: inline-block;
     margin: 0;
 }
 
+.card__title {
+    font-family: $font-family-regular;
+}
+
 .card__body {
+    padding: .75em;
+
     li:last-child {
         border-bottom: 0;
     }
 }
 
-.card__body--padded {
-    padding: .75em;
-}
-
-.card__body--light {
-    background-color: color(white);
-
-    + .card__header {
-        border-top: 1px solid color(gray, lightest);
-    }
-
-    + .card__footer {
-        border-top: 1px solid color(gray, lightest);
-    }
-}
-
 .card__footer {
     background: color(gray, off-white);
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+    border-top: 1px solid color(border);
     padding: .25em .75em;
-
-    > *:last-child {
-        margin-bottom: 0;
-        padding-bottom: 0;
-    }
 }
 
-.card-link {
-    text-decoration: none;
-
-    &:hover {
-        text-decoration: underlined;
-    }
-}
-
-.card-link--padded {
-    padding: 0 5px;
+.card-link + .card-link {
+    margin-left: $padding-base;
 }
 
 .card-img {
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+    display: block;
     max-width: 100%;
+    width: 100%;
+}
+
+.card-img + .card__body {
+    border-top: 1px solid color(border);
+}
+
+.card--full-bleed {
+    border: 0;
+
+    .card__body {
+        border: 1px solid color(border);
+        border-bottom-left-radius: $border-radius;
+        border-bottom-right-radius: $border-radius;
+    }
 }
