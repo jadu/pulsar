@@ -2107,3 +2107,75 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
 
 {% endspaceless %}
 {% endmacro %}
+
+{% macro repeatable_start(options) %}
+{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{% import _self as form %}
+{% spaceless %}
+    <div class="repeater">
+        <div class="repeater__saved-data"></div>
+        <div class="form__group">
+            {{
+                elem.label({
+                    'label': options.label,
+                    'required': options.required|default(false)
+                })
+            }}
+            <div class="controls">
+                <div class="table-container">
+                    <table class="table table--full repeatable__table">
+                        <thead class="repeater__preview-headings">
+                            <tr>
+                                {% for heading in options.headings %}
+                                    <th data-repeater-for-name="{{ heading.name }}">{{ heading.label }}</th>
+                                {% endfor %}
+                            </tr>
+                        </thead>
+                        <tbody class="repeater__preview-data">
+                            <tr class="repeater__empty-placeholder">
+                                <td colspan="2" class="muted">{{ options.empty }}</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr class="repeater__group">
+                            <td class="table__form" colspan="2">
+
+{% endspaceless %}
+{% endmacro %}
+
+{% macro repeatable_end() %}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{% spaceless %}
+                                <div class="form__actions repeater__group-actions">
+                                    {{
+                                        html.button({
+                                            'label': 'Add',
+                                            'class': 'btn--primary repeater__save-group',
+                                            'type': 'button'
+                                        })
+                                    }}
+
+                                    {{
+                                        html.button({
+                                            'label': 'Cancel',
+                                            'class': 'btn--naked repeater__cancel-group',
+                                            'type': 'button'
+                                        })
+                                    }}
+                                </div>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                {{
+                    html.button({
+                        'label': 'Add',
+                        'class': 'btn--primary repeater__add-group'
+                    })
+                }}
+            </div>
+        </div>
+{% endspaceless %}
+{% endmacro %}

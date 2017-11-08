@@ -45,7 +45,8 @@ var $                     = require('jquery'),
     PulsarUIComponent = require('./PulsarUIComponent'),
     PulsarSortableComponent = require('./PulsarSortableComponent'),
     SignInComponent = require('./area/signin/signin'),
-    DropZoneComponentFactory = require('./DropZone/DropZoneComponentFactory');
+    DropZoneComponentFactory = require('./DropZone/DropZoneComponentFactory'),
+    Repeater = require('./Repeater/RepeaterComponent');
 
     require('jstree');
 
@@ -64,5 +65,6 @@ module.exports = {
     PulsarSortableComponent,
     SignInComponent,
     history,
-    svgeezy
+    svgeezy,
+    Repeater
 };

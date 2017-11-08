@@ -1,0 +1,63 @@
+{% extends '@pulsar/pulsar/components/tab.html.twig' %}
+
+{% block tab_content %}
+    <h2 class="heading">Repeatable</h2>
+
+    {{ form.create({
+        'id': 'repeater-submit-debug'
+    }) }}
+
+        {{ form.repeatable_start({
+            'label': 'Add Access Account',
+            'empty': 'You have not added any website accounts',
+            'headings': [
+                { 'label': 'Name', 'name': 'full_name' },
+                { 'label': 'email', 'name': 'email_address' }
+            ]
+        }) }}
+
+            {{
+                form.fieldset_start({
+                    'legend': 'Add Access Account'
+                })
+            }}
+
+            {{
+                form.text({
+                    'label': 'Full name',
+                    'class': 'form__control-col--8',
+                    'name': 'full_name'
+                })
+            }}
+
+            {{
+                form.text({
+                    'label': 'Email address',
+                    'class': 'form__control-col--8',
+                    'name': 'email_address',
+                    'value': 'test_email'
+                })
+            }}
+
+        {{ form.repeatable_end() }}
+
+        <input type="submit"/>
+
+    {{ form.end() }}
+
+{% endblock tab_content %}
+
+{% block tab_sidebar %}
+    <a href="https://jadu.gitbooks.io/pulsar/content/text.html">
+        <img src="../../../images/cover.png" alt="Pulsar documentation front cover" width="157" />
+    </a>
+    <br />
+    {{
+        html.button({
+            'label': 'View Documentation',
+            'type': 'link',
+            'href': 'https://jadu.gitbooks.io/pulsar/content/text.html'
+        })
+    }}
+
+{% endblock tab_sidebar %}
