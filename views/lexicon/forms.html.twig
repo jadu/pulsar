@@ -20,6 +20,7 @@
 {% set tab_time %}{% include 'lexicon/forms/time.html.twig' %}{% endset %}
 {% set tab_toggleswitch %}{% include 'lexicon/forms/toggle-switch.html.twig' %}{% endset %}
 {% set tab_jstree %}{% include 'lexicon/forms/jstree.html.twig' %}{% endset %}
+{% set tab_repeatable %}{% include 'lexicon/forms/repeatable.html.twig' %}{% endset %}
 
 {%
     set tabs_content = [
@@ -86,8 +87,7 @@
         {
           "id"    : "select",
           "label" : "Select",
-          "src"   : tab_select,
-          "active": true
+          "src"   : tab_select
         },
         {
           "id"    : "select2",
@@ -118,6 +118,12 @@
           "id"    : "toggleswitch",
           "label" : "Toggle Switch",
           "src"   : tab_toggleswitch
+        },
+        {
+          "id"    : "repeatable",
+          "label" : "Repeatable",
+          "src"   : tab_repeatable,
+          "active": true
         }
     ]
 %}

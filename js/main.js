@@ -22,6 +22,7 @@
 	pulsar.modulePermissions = new pulsar.ModulePermissionsComponent($html);
     pulsar.navMain = new pulsar.NavMainComponent($html, window);
     pulsar.filterBar = new pulsar.FilterBarComponent($html);
+    pulsar.repeater = new pulsar.Repeater(window);
 
     $(function () {
         pulsar.button.init();
@@ -38,6 +39,7 @@
         pulsar.filterBar.init();
         pulsar.disableUi.init();
         pulsar.dropZoneComponent = pulsar.DropZoneComponentFactory.create($('body')[0], '.dropzone');
+        pulsar.repeater.init(document.querySelector('.repeater'));
 
         // Switch out .svg for .png for <img> elements in older browsers
         pulsar.svgeezy.init('nocheck', 'png');
@@ -68,6 +70,12 @@
         pulsar.dropZoneComponent.init({
             supported: !lt10,
             showInputNode: lt10
+        });
+
+        // Repeater debug
+        document.getElementById('repeater-submit-debug').addEventListener('submit', event => {
+            event.preventDefault();
+            console.log('data: ', $(event.target).serialize());
         });
     });
 
