@@ -187,6 +187,7 @@
 .progress-steps__step--complete {
     background-color: color(success, light);
     border-color: color(success);
+    color: color(success);
 
     &:not(:last-child)::after {
         border-bottom: 3px solid color(success);
