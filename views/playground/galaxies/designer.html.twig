@@ -26,7 +26,6 @@
             "id"    : "theme",
             "label" : "Theme",
             "src"   : tab_theme,
-            'active': true
         },
         {
             "id"    : "security",
@@ -37,6 +36,11 @@
             "id"    : "admins",
             "label" : "Admins",
             "src"   : tab_admins,
+            'active': true
         }
     ]
 %}
+
+{% block header_actions %}
+{{ html.button({'label': '<strong>Site Status:</strong>&nbsp;&nbsp;' ~ html.status('warning') ~ '&nbsp;&nbsp;Unpublished', 'class': 'btn--outline pull-right'}) }}
+{% endblock header_actions %}

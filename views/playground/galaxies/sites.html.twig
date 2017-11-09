@@ -41,10 +41,11 @@
 {%- endblock -%}
 
 {% block tab_content %}
-    <table class="table datatable table--full" data-select="false">
+    <table class="table datatable table--full">
         <thead>
             <tr>
                 <td class="table-responsive"></td>
+                <td class="table-selection"></td>
                 <th class="shrink-to-fit centered"><a href="#">Status</a></th>
                 <th><a href="#">Site Name</a></th>
                 <th><a href="#">Locale</a></th>
@@ -57,13 +58,16 @@
                 <td class="table-responsive">
                     {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
                 </td>
+                <td class="table-selection">
+                    {{ html.icon('square-o', { 'class': 'table-row-select js-select' }) }}
+                </td>
                 <td class="centered">{{ html.status('online') }}</td>
-                <td><a href="#">Godiva Festival</a></td>
+                <td><a href="galaxies/designer.html.twig">Godiva Festival</a></td>
                 <td>English (EN)</td>
                 <td>
-                    {{ html.link({ 'label': 'Visit Site' }) }}
-                    {{ html.link({ 'label': 'Settings' }) }}
-                    {{ html.link({ 'label': 'Control Center' }) }}
+                    {{ html.link({ 'label': 'Settings', 'class': 'table-action', 'href': 'galaxies/designer.html.twig' }) }}
+                    {{ html.link({ 'label': 'Control Center', 'class': 'table-action' }) }}
+                    {{ html.link({ 'label': 'Visit Site', 'class': 'table-action' }) }}
                 </td>
             </tr>
 
@@ -71,13 +75,16 @@
                 <td class="table-responsive">
                     {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
                 </td>
+                <td class="table-selection">
+                    {{ html.icon('square-o', { 'class': 'table-row-select js-select' }) }}
+                </td>
                 <td class="centered">{{ html.status('online') }}</td>
-                <td><a href="#">Oxford Town Hall</a></td>
+                <td><a href="galaxies/designer.html.twig">Oxford Town Hall</a></td>
                 <td>English (EN)</td>
                 <td>
-                    {{ html.link({ 'label': 'Visit Site' }) }}
-                    {{ html.link({ 'label': 'Settings' }) }}
-                    {{ html.link({ 'label': 'Control Center' }) }}
+                    {{ html.link({ 'label': 'Settings', 'class': 'table-action', 'href': 'galaxies/designer.html.twig' }) }}
+                    {{ html.link({ 'label': 'Control Center', 'class': 'table-action' }) }}
+                    {{ html.link({ 'label': 'Visit Site', 'class': 'table-action' }) }}
                 </td>
             </tr>
 
@@ -85,55 +92,67 @@
                 <td class="table-responsive">
                     {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
                 </td>
+                <td class="table-selection">
+                    {{ html.icon('square-o', { 'class': 'table-row-select js-select' }) }}
+                </td>
                 <td class="centered">{{ html.status('online') }}</td>
-                <td><a href="#">Oxford Town Hall</a></td>
+                <td><a href="galaxies/designer.html.twig">Oxford Town Hall</a></td>
                 <td>Japanese</td>
                 <td>
-                    {{ html.link({ 'label': 'Visit Site' }) }}
-                    {{ html.link({ 'label': 'Settings' }) }}
-                    {{ html.link({ 'label': 'Control Center' }) }}
+                    {{ html.link({ 'label': 'Settings', 'class': 'table-action', 'href': 'galaxies/designer.html.twig' }) }}
+                    {{ html.link({ 'label': 'Control Center', 'class': 'table-action' }) }}
+                    {{ html.link({ 'label': 'Visit Site', 'class': 'table-action' }) }}
                 </td>
             </tr>
 
             <tr>
                 <td class="table-responsive">
                     {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                </td>
+                <td class="table-selection">
+                    {{ html.icon('square-o', { 'class': 'table-row-select js-select' }) }}
                 </td>
                 <td class="centered">{{ html.status('online') }}</td>
-                <td><a href="#">Royal Pump Rooms</a></td>
+                <td><a href="galaxies/designer.html.twig">Royal Pump Rooms</a></td>
                 <td>English (EN)</td>
                 <td>
-                    {{ html.link({ 'label': 'Visit Site' }) }}
-                    {{ html.link({ 'label': 'Settings' }) }}
-                    {{ html.link({ 'label': 'Control Center' }) }}
+                    {{ html.link({ 'label': 'Settings', 'class': 'table-action', 'href': 'galaxies/designer.html.twig' }) }}
+                    {{ html.link({ 'label': 'Control Center', 'class': 'table-action' }) }}
+                    {{ html.link({ 'label': 'Visit Site', 'class': 'table-action' }) }}
                 </td>
             </tr>
 
             <tr>
                 <td class="table-responsive">
                     {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                </td>
+                <td class="table-selection">
+                    {{ html.icon('square-o', { 'class': 'table-row-select js-select' }) }}
                 </td>
                 <td class="centered">{{ html.status('offline') }}</td>
-                <td><a href="#">Royal Space Centre</a></td>
+                <td><a href="galaxies/designer.html.twig">Royal Space Centre</a></td>
                 <td>English (EN)</td>
                 <td>
-                    {{ html.link({ 'label': 'Visit Site' }) }}
-                    {{ html.link({ 'label': 'Settings' }) }}
-                    {{ html.link({ 'label': 'Control Center' }) }}
+                    {{ html.link({ 'label': 'Settings', 'class': 'table-action', 'href': 'galaxies/designer.html.twig' }) }}
+                    {{ html.link({ 'label': 'Control Center', 'class': 'table-action' }) }}
+                    {{ html.link({ 'label': 'Visit Site', 'class': 'table-action' }) }}
                 </td>
             </tr>
 
             <tr>
                 <td class="table-responsive">
                     {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                </td>
+                <td class="table-selection">
+                    {{ html.icon('square-o', { 'class': 'table-row-select js-select' }) }}
                 </td>
                 <td class="centered">{{ html.status('online') }}</td>
-                <td><a href="#">St Mary's Guildhall</a></td>
+                <td><a href="galaxies/designer.html.twig">St Mary's Guildhall</a></td>
                 <td>English (EN)</td>
                 <td>
-                    {{ html.link({ 'label': 'Visit Site' }) }}
-                    {{ html.link({ 'label': 'Settings' }) }}
-                    {{ html.link({ 'label': 'Control Center' }) }}
+                    {{ html.link({ 'label': 'Settings', 'class': 'table-action', 'href': 'galaxies/designer.html.twig' }) }}
+                    {{ html.link({ 'label': 'Control Center', 'class': 'table-action' }) }}
+                    {{ html.link({ 'label': 'Visit Site', 'class': 'table-action' }) }}
                 </td>
             </tr>
 
@@ -141,13 +160,16 @@
                 <td class="table-responsive">
                     {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
                 </td>
+                <td class="table-selection">
+                    {{ html.icon('square-o', { 'class': 'table-row-select js-select' }) }}
+                </td>
                 <td class="centered">{{ html.status('offline') }}</td>
-                <td><a href="#">Visit Coventry and Warwickshire</a></td>
+                <td><a href="galaxies/designer.html.twig">Visit Coventry and Warwickshire</a></td>
                 <td>English (EN)</td>
                 <td>
-                    {{ html.link({ 'label': 'Visit Site' }) }}
-                    {{ html.link({ 'label': 'Settings' }) }}
-                    {{ html.link({ 'label': 'Control Center' }) }}
+                    {{ html.link({ 'label': 'Settings', 'class': 'table-action', 'href': 'galaxies/designer.html.twig' }) }}
+                    {{ html.link({ 'label': 'Control Center', 'class': 'table-action' }) }}
+                    {{ html.link({ 'label': 'Visit Site', 'class': 'table-action' }) }}
                 </td>
             </tr>
 
@@ -155,13 +177,16 @@
                 <td class="table-responsive">
                     {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
                 </td>
+                <td class="table-selection">
+                    {{ html.icon('square-o', { 'class': 'table-row-select js-select' }) }}
+                </td>
                 <td class="centered">{{ html.status('offline') }}</td>
-                <td><a href="#">War Memorial Park Tennis Club</a></td>
+                <td><a href="galaxies/designer.html.twig">War Memorial Park Tennis Club</a></td>
                 <td>English (EN)</td>
                 <td>
-                    {{ html.link({ 'label': 'Visit Site' }) }}
-                    {{ html.link({ 'label': 'Settings' }) }}
-                    {{ html.link({ 'label': 'Control Center' }) }}
+                    {{ html.link({ 'label': 'Settings', 'class': 'table-action', 'href': 'galaxies/designer.html.twig' }) }}
+                    {{ html.link({ 'label': 'Control Center', 'class': 'table-action' }) }}
+                    {{ html.link({ 'label': 'Visit Site', 'class': 'table-action' }) }}
                 </td>
             </tr>
 
@@ -174,6 +199,19 @@
                 <div class="modal__header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal__title">Create Galaxies Site</h4>
+                </div>
+                <div class="modal__ribbon">
+                    <ol class="progress-steps">
+                        <li class="progress-steps__step progress-steps__step--current">
+                            1
+                        </li>
+                        <li class="progress-steps__step progress-steps__step">
+                            2
+                        </li>
+                        <li class="progress-steps__step">
+                            {{ html.icon('flag-checkered') }}
+                        </li>
+                    </ol>
                 </div>
                 <div class="modal__body">
                     <p>Let's start by choosing a name and the first web address for your new site, <strong>nothing will be published live at this point</strong>, and everything can be changed later, so don't worry about making any mistakes.</p>
@@ -251,6 +289,19 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal__title">Create Galaxies Site</h4>
                 </div>
+                <div class="modal__ribbon">
+                    <ol class="progress-steps">
+                        <li class="progress-steps__step progress-steps__step--complete">
+                            1
+                        </li>
+                        <li class="progress-steps__step progress-steps__step progress-steps__step--current">
+                            2
+                        </li>
+                        <li class="progress-steps__step">
+                            {{ html.icon('flag-checkered') }}
+                        </li>
+                    </ol>
+                </div>
                 <div class="modal__body">
                     <p>Create your first administrator account, this account will have full control over the new Galaxies site and will be able to create more administrators.</p>
 
@@ -311,6 +362,19 @@
                 <div class="modal__header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal__title">Create Galaxies Site</h4>
+                </div>
+                <div class="modal__ribbon">
+                    <ol class="progress-steps">
+                        <li class="progress-steps__step progress-steps__step--complete">
+                            1
+                        </li>
+                        <li class="progress-steps__step progress-steps__step--complete">
+                            2
+                        </li>
+                        <li class="progress-steps__step progress-steps__step--complete">
+                            {{ html.icon('flag-checkered') }}
+                        </li>
+                    </ol>
                 </div>
                 <div class="modal__body u-text-align-center">
                     <h1>You're almost done!</h1>

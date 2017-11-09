@@ -148,3 +148,56 @@
         z-index: 1;
     }
 }
+
+.progress-steps {
+    margin-bottom: 0;
+}
+
+.progress-steps__step {
+    background-color: color(white);
+    border: 2px solid color(border);
+    border-radius: 50px;
+    display: inline-block;
+    height: 36px;
+    line-height: 36px;
+    margin-right: 20px;
+    position: relative;
+    text-align: center;
+    vertical-align: middle;
+    width: 36px;
+
+    &:not(:last-child)::after {
+        content: '';
+        border-bottom: 3px dotted #ccc;
+        display: inline-block;
+        position: absolute;
+        width: 24px;
+        top: 15px; // 50% height - borders
+        left: 34px;
+    }
+}
+
+.progress-steps__step--current {
+    background-color: color(primary, light);
+    border-color: color(primary);
+    border-radius: 4px;
+    font-family: $font-family-regular;
+}
+
+.progress-steps__step--complete {
+    background-color: color(success, light);
+    border-color: color(success);
+
+    &:not(:last-child)::after {
+        border-bottom: 3px solid color(success);
+    }
+}
+
+// .progress-steps-link {
+//     color: inherit;
+//     display: block;
+//     left: -2px; // make sure centered vs border
+//     position: relative;
+//     text-decoration: none;
+//     width: 36px;
+// }

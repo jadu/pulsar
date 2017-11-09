@@ -34,7 +34,7 @@
             'label': 'Add Administrator',
             'class': 'btn--primary',
             'data-toggle': 'modal',
-            'href': '#create-site-1',
+            'href': '#add-admin',
             'type': 'link'
         })
     }}
@@ -186,6 +186,165 @@
 
         </tbody>
     </table>
+
+
+    <div class="modal modal--large" id="add-admin" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal__dialog">
+            <div class="modal__content">
+                <div class="modal__header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal__title">Add Administrator</h4>
+                </div>
+                <div class="modal__body">
+                    <p>Choose which administrators you want to grant access to this Galaxies site.</p>
+
+                    <table class="table datatable table--full table--bordered">
+                        <thead>
+                            <tr>
+                                <td class="table-selection"></td>
+                                <th><a href="#">Administrator</a></th>
+                                <th><a href="#">Translator</a></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr>
+                                <td class="table-selection">
+                                    {{ html.icon('square-o', { 'class': 'table-row-select js-select' }) }}
+                                </td>
+                                <td><a href="#">Tabatha Harm</a></td>
+                                <td>Japanese</td>
+                            </tr>
+
+                            <tr>
+                                <td class="table-selection">
+                                    {{ html.icon('square-o', { 'class': 'table-row-select js-select' }) }}
+                                </td>
+                                <td><a href="#">Otis Hillary</a></td>
+                                <td>Japanese (and 2 others)</td>
+                            </tr>
+
+                            <tr>
+                                <td class="table-selection">
+                                    {{ html.icon('square-o', { 'class': 'table-row-select js-select' }) }}
+                                </td>
+                                <td><a href="#">Randal Mawson</a></td>
+                                <td>Japanese</td>
+                            </tr>
+
+                            <tr>
+                                <td class="table-selection">
+                                    {{ html.icon('square-o', { 'class': 'table-row-select js-select' }) }}
+                                </td>
+                                <td><a href="#">William Mcconnaughey</a></td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td class="table-selection">
+                                    {{ html.icon('square-o', { 'class': 'table-row-select js-select' }) }}
+                                </td>
+                                <td><a href="#">Margaret Myers</a></td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td class="table-selection">
+                                    {{ html.icon('square-o', { 'class': 'table-row-select js-select' }) }}
+                                </td>
+                                <td><a href="#">Shandi Pryzbylski</a></td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td class="table-selection">
+                                    {{ html.icon('square-o', { 'class': 'table-row-select js-select' }) }}
+                                </td>
+                                <td><a href="#">Monroe Rayos</a></td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td class="table-selection">
+                                    {{ html.icon('square-o', { 'class': 'table-row-select js-select' }) }}
+                                </td>
+                                <td><a href="#">Natasha Sackrider</a></td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td class="table-selection">
+                                    {{ html.icon('square-o', { 'class': 'table-row-select js-select' }) }}
+                                </td>
+                                <td><a href="#">Carisa Vanderhost</a></td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td class="table-selection">
+                                    {{ html.icon('square-o', { 'class': 'table-row-select js-select' }) }}
+                                </td>
+                                <td><a href="#">Stephen Volem</a></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    {{
+                        form.select({
+                            'label': 'Admin access',
+                            'id': 'admin-access',
+                            'class': 'form__control-col--9',
+                            'options': [
+                                {
+                                    'label': 'Full access',
+                                    'value': 'full-access'
+                                },
+                                {
+                                    'label': 'Full access (no admin privileges)',
+                                    'value': 'full-access-no-admin'
+                                }
+                            ]
+                        })
+                    }}
+
+                    {{
+                        form.select({
+                            'label': 'Document editor preset',
+                            'id': 'admin-editor',
+                            'class': 'form__control-col--9',
+                            'options': [
+                                {
+                                    'label': 'Full editor',
+                                    'value': 'full-editor'
+                                },
+                                {
+                                    'label': 'Full editor (no tables)',
+                                    'value': 'full-editor-no-tables'
+                                }
+                            ]
+                        })
+                    }}
+                </div>
+                <div class="modal__footer">
+                    {{
+                        html.button({
+                            'label': 'Add $x Admins',
+                            'class': 'btn--primary',
+                            'data-dismiss': 'modal'
+                        })
+                    }}
+                    {{
+                        html.button({
+                            'label': 'Cancel',
+                            'class': 'btn--naked',
+                            'data-dismiss': 'modal'
+                        })
+                    }}
+                </div>
+            </div><!-- /.modal__content -->
+        </div><!-- /.modal__dialog -->
+    </div><!-- /.modal -->
 
 {% endblock tab_content %}
 

@@ -335,3 +335,9 @@
         }
     }
 }
+
+.modal__ribbon {
+    background-color: color(gray, off-white);
+    border-bottom: 1px solid #e5e5e5;
+    padding: $line-height-base 20px;
+}
