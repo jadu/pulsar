@@ -21,6 +21,7 @@
             "id"    : "settings",
             "label" : "Settings",
             "src"   : tab_settings,
+            'active': true
         },
         {
             "id"    : "theme",
@@ -36,11 +37,10 @@
             "id"    : "admins",
             "label" : "Admins",
             "src"   : tab_admins,
-            'active': true
         }
     ]
 %}
 
 {% block header_actions %}
-{{ html.button({'label': '<strong>Site Status:</strong>&nbsp;&nbsp;' ~ html.status('warning') ~ '&nbsp;&nbsp;Unpublished', 'class': 'btn--outline pull-right'}) }}
+    {{ html.button({'label': '<strong>Site Status:</strong>&nbsp;&nbsp;' ~ html.status('warning') ~ '&nbsp;&nbsp;Unpublished', 'class': 'btn--outline pull-right'}) }}
 {% endblock header_actions %}
