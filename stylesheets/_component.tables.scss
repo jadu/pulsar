@@ -129,11 +129,15 @@
 }
 
 .table-action {
+    border-right: 1px solid color(border);
     display: inline-block;
     margin-right: 5px;
+    padding-right: 8px;
 
-    &:last {
+    &:last-of-type {
+        border-right: 0;
         margin-right: 0;
+        padding-right: 0;
     }
 }
 

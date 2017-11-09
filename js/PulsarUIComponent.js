@@ -85,7 +85,7 @@ PulsarUIComponent.prototype.initDataTables = function () {
             ],
             columnDefs: [
                 { className: 'control', orderable: false, targets: 0 },
-                { "searchable": false, "targets": [0, 1] },
+                { "searchable": false, "targets": [0] },
                 { "orderable": false, "targets": [0, 1] }
             ],
             language: {
@@ -135,7 +135,7 @@ PulsarUIComponent.prototype.initDataTables = function () {
             ],
             columnDefs: [
                 { className: 'control', orderable: false, targets: 0 },
-                { "searchable": false, "targets": [0, 1] },
+                { "searchable": false, "targets": [0] },
                 { "orderable": false, "targets": [0, 1] }
             ],
             language: {
