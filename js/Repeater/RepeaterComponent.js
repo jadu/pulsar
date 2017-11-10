@@ -9,25 +9,49 @@ class Repeater {
         this.repeaterEntries = 0;
         this.window = window;
 
-        // Merge these with options
-        this.repeaterQueries = {
-            newGroup: { query: '.repeater__group' },
-            addGroup: { query: '.repeater__add-group' },
-            cancelGroup: { query: '.repeater__cancel-group' },
-            saveGroup: { query: '.repeater__save-group' },
-            savedEntryRoot: { query: '.repeater__saved-data' },
-            previewDataRoot: { query: '.repeater__preview-data' },
-            entryData: { query: '.repeater__entry-data' },
-            previewHeadings: { query: '[data-repeater-for-name]' },
-            placeholder: { query: '.repeater__empty-placeholder' }
-        };
-
         // read-only
         this.repeaterAttributes = {
             name: 'data-repeater-name',
+            newGroup: 'data-repeater-new-group',
+            addGroup: 'data-repeater-add-group',
+            editGroup: 'data-repeater-edit-group',
+            deleteGroup: 'data-repeater-delete-group',
             forName: 'data-repeater-for-name',
-            entryId: 'data-repeater-entry-id'
+            entryId: 'data-repeater-entry-id',
+            previewId: 'data-repeater-preview-id',
+            editId: 'data-repeater-edit-id',
+            saveGroup: 'data-repeater-save-group',
+            cancelSave: 'data-repeater-cancel-save',
+            updateId: 'data-repeater-update-id'
         };
+
+        // Merge these with options
+        // TODO: These will probably be read-only
+        this.repeaterQueries = {
+            newGroup: { query: `[${this.repeaterAttributes.newGroup}]` },
+            addGroup: { query: `[${this.repeaterAttributes.addGroup}]` },
+            saveGroup: { query: `[${this.repeaterAttributes.saveGroup}]` },
+            cancelSave: { query: `[${this.repeaterAttributes.cancelSave}]` },
+            savedEntryRoot: { query: '.repeater__saved-data' },
+            previewDataRoot: { query: '.repeater__preview-data' },
+            entryData: { query: '.repeater__entry-data' },
+            previewHeadings: { query: `[${this.repeaterAttributes.forName}]` },
+            placeholder: { query: '.repeater__empty-placeholder' },
+            editGroup: { query: `[${this.repeaterAttributes.editGroup}]` },
+            deleteGroup: { query: `[${this.repeaterAttributes.deleteGroup}]` }
+        };
+
+        // Preview UI HTML
+        this.previewUiHTML = `
+            <td class="table__td table__td--align-right table-row__actions">                
+                <a ${this.repeaterAttributes.editGroup} href="#edit" class="remove__control alt-link margin-right">
+                    <i class="icon-pencil"><span class="hide">Edit</span></i>
+                </a>
+                <a ${this.repeaterAttributes.deleteGroup} href="#delete" class="remove__control alt-link margin-right">
+                    <i class="icon-remove-sign"><span class="hide">Delete</span></i>
+                </a>
+            </td>
+        `;
     }
 
     /**
@@ -38,7 +62,7 @@ class Repeater {
         this.repeater = repeater;
 
         // remove repeater group input names to prevent their values being submitted
-        this.removeGroupInputNames();
+        this.removeGroupInputNames(this.getQueryReference(this.repeaterQueries.newGroup));
 
         this.getQueryReference(this.repeaterQueries.addGroup)
             .addEventListener('click', this.handleAddGroup.bind(this));
@@ -46,7 +70,7 @@ class Repeater {
         this.getQueryReference(this.repeaterQueries.saveGroup)
             .addEventListener('click', this.handleSaveGroup.bind(this));
 
-        this.getQueryReference(this.repeaterQueries.cancelGroup)
+        this.getQueryReference(this.repeaterQueries.cancelSave)
             .addEventListener('click', this.handleCancelGroup.bind(this));
     }
 
@@ -55,8 +79,10 @@ class Repeater {
      * @param event
      */
     handleAddGroup (event) {
+        const newGroup = this.getQueryReference(this.repeaterQueries.newGroup);
+
+        $(newGroup).show();
         event.preventDefault();
-        this.toggleGroupFields();
     }
 
     /**
@@ -64,30 +90,62 @@ class Repeater {
      * @param event
      */
     handleSaveGroup (event) {
+        const newGroup = this.getQueryReference(this.repeaterQueries.newGroup);
         const entry = this.saveGroupAsEntry();
+        const preview = this.createEntryPreview(entry.data);
 
-        event.preventDefault();
-        this.createEntryPreview(entry);
+        this.createEntryPreviewUi(preview);
+        this.createEditEntryGroup(entry.clone, preview);
         this.removePlaceholder();
-        this.toggleGroupFields();
         this.resetGroupFields();
         this.repeaterEntries++;
-    }
 
-    handleCancelGroup (event) {
-        this.resetGroupFields();
-        this.toggleGroupFields();
+        $(newGroup).hide();
+        $(entry.clone).hide()
         event.preventDefault();
     }
 
-    toggleGroupFields () {
-        const group = this.getQueryReference(this.repeaterQueries.newGroup);
+    /**
+     * Add edit / delete UI elements to a group preview
+     * @param previewElement {HTMLElement}
+     */
+    createEntryPreviewUi (previewElement) {
+        $(previewElement).append(this.previewUiHTML);
 
-        this.window.getComputedStyle(group).display === 'none' ?
-            group.style.display = 'table-row' :
-            group.style.display = 'none';
+        previewElement.querySelector(this.repeaterQueries.editGroup.query)
+            .addEventListener('click', this.handleEditGroup.bind(this, this.repeaterEntries));
+
+        previewElement.querySelector(this.repeaterQueries.deleteGroup.query)
+            .addEventListener('click', this.handleDeleteGroup.bind(this, this.repeaterEntries));
     }
 
+    handleEditGroup (repeaterId, event) {
+        const previewDataRoot = this.getQueryReference(this.repeaterQueries.previewDataRoot);
+        const editGroup = previewDataRoot.querySelector(`[${this.repeaterAttributes.editId}="${repeaterId}"]`);
+
+        $(editGroup).show();
+        event.preventDefault();
+    }
+
+    handleDeleteGroup (repeaterId, event) {
+        event.preventDefault();
+    }
+
+    /**
+     * Handle the cancel interaction when adding a new group
+     * @param event
+     */
+    handleCancelGroup (event) {
+        const newGroup = this.getQueryReference(this.repeaterQueries.newGroup);
+
+        this.resetGroupFields();
+        $(newGroup).hide();
+        event.preventDefault();
+    }
+
+    /**
+     * Reset each of the new group fields
+     */
     resetGroupFields () {
         const group = this.getQueryReference(this.repeaterQueries.newGroup);
         const $tempFormWrapper = $(group).wrap('<form></form>').closest('form');
@@ -124,22 +182,64 @@ class Repeater {
     }
 
     /**
-     * Create table data that acts as a preview of an entry
-     * @param entryData
+     * Create an inline edit form beneath each preview row
+     * @param groupClone {HTMLElement}
+     * @param preview {HTMLElement}
+     */
+    createEditEntryGroup (groupClone, preview) {
+        // Add repeater ID to the group
+        groupClone.setAttribute(this.repeaterAttributes.editId, this.repeaterEntries);
+        // Remove the new group attr
+        groupClone.removeAttribute(this.repeaterAttributes.newGroup);
+        // Insert the group after the preview row
+        $(preview).after(groupClone);
+        // Add events to the save / cancel UI within the group
+        groupClone.querySelector(this.repeaterQueries.saveGroup.query)
+            .addEventListener('click', this.handleUpdateGroup.bind(this, groupClone, this.repeaterEntries));
+        groupClone.querySelector(this.repeaterQueries.cancelSave.query)
+            .addEventListener('click', this.handleCancelGroupUpdate.bind(this, groupClone));
+    }
+
+    handleUpdateGroup (group, repeaterId, event) {
+        const $inputs = $(group).find(':input').not('button');
+        const preview = this.getQueryReference(this.repeaterQueries.previewDataRoot);
+
+
+        $inputs.each((index, input) => {
+            const query = `[${this.repeaterAttributes.updateId}="${input.getAttribute('name')}_${repeaterId}"]`;
+
+            preview.querySelector(query).innerText = input.value;
+        });
+
+        $(group).hide();
+        event.preventDefault();
+    }
+
+    handleCancelGroupUpdate (repeaterId, event) {
+        event.preventDefault();
+    }
+
+    /**
+     * Create table data that acts as a preview of an entry and add to DOM
+     * @param entryData {Array}
+     * @returns HTMLElement
      */
     createEntryPreview (entryData) {
         const previewHeadings = this.getQueryReference(this.repeaterQueries.previewHeadings, { all: true });
         const previewDataRoot = this.getQueryReference(this.repeaterQueries.previewDataRoot);
 
         // build preview data
-        const previewElements = [].slice.call(previewHeadings)
+        const previewElements = previewHeadings
             .reduce(this.createPreviewDataElement.bind(this, entryData), []);
 
         // append preview data
         const entryRow = document.createElement('tr');
 
+        entryRow.setAttribute(this.repeaterAttributes.previewId, this.repeaterEntries);
         previewElements.forEach(element => entryRow.appendChild(element));
         previewDataRoot.appendChild(entryRow);
+
+        return entryRow;
     }
 
     /**
@@ -153,11 +253,12 @@ class Repeater {
         const name = headingElement.getAttribute(this.repeaterAttributes.forName);
         const match = _.find(entryData, entry => entry.name === name);
 
-
         // create UI and attach events
         if (match) {
             const element = document.createElement('td');
 
+            // todo: add test for this attr
+            element.setAttribute(this.repeaterAttributes.updateId, `${match.name}_${this.repeaterEntries}`);
             element.textContent = match.value;
             collection.push(element);
         }
@@ -166,51 +267,59 @@ class Repeater {
     }
 
     /**
-     * Save a group as a data entry, this will clone
-     * @returns Array {Array}
+     * Remove custom name attr and add real name attr, this will enable
+     * the input's data to be sent in a request
+     * @param group {HTMLElement|Node}
      */
-    saveGroupAsEntry () {
-        const repeaterGroup = this.getQueryReference(this.repeaterQueries.newGroup);
-        const repeaterEntryRoot = this.getQueryReference(this.repeaterQueries.savedEntryRoot);
-        const $inputs = $(repeaterGroup).find(':input').not('button');
-        const newEntry = document.createElement('div');
-        const entry = [];
-
-        newEntry.className = this.repeaterQueries.entryData.query.slice(1);
-        newEntry.setAttribute(this.repeaterAttributes.entryId, this.repeaterEntries);
+    addGroupInputNames (group) {
+        const $inputs = $(group).find(':input').not('button');
 
         $inputs.each((index, input) => {
-            // get custom name attr from group input
             const name = input.getAttribute(this.repeaterAttributes.name);
-            // create a clone from the input
-            const clone = input.cloneNode(true);
-
-            // add entry object to entries
-            entry.push({ name, value: input.value });
-            // set a real name attr on the cloned input
-            clone.setAttribute('name', name);
-            // remove the custom name attr to avoid confusion
-            clone.removeAttribute(this.repeaterAttributes.name);
-            // append clone to data element
-            newEntry.appendChild(clone);
+            // set name attr on cloned group
+            input.setAttribute('name', name);
+            // remove custom name attr on group
+            input.removeAttribute(this.repeaterAttributes.name);
         });
-
-        repeaterEntryRoot.appendChild(newEntry);
-
-        return entry;
     }
 
     /**
-     * Remove name attributes form each form input and set as custom attributes
+     * Remove name attribute and add custom name attribute, this will
+     * omit the input's data from requests
+     * @param group {HTMLElement|Node}
      */
-    removeGroupInputNames () {
-        const repeaterGroup = this.getQueryReference(this.repeaterQueries.newGroup);
-        const $inputs = $(repeaterGroup).find(':input').not('button');
+    removeGroupInputNames (group) {
+        const $inputs = $(group).find(':input').not('button');
 
         $inputs.each((index, input) => {
-            input.setAttribute(this.repeaterAttributes.name, input.getAttribute('name'));
+            const name = input.getAttribute('name');
+            // set name attr on cloned group
+            input.setAttribute(this.repeaterAttributes.name, name);
+            // remove custom name attr on group
             input.removeAttribute('name');
         });
+    }
+
+    /**
+     * Save a group as a data entry, this will clone the new group form
+     * @returns {{ data: Array, clone: HTMLElement|Node }}
+     */
+    saveGroupAsEntry () {
+        const repeaterGroup = this.getQueryReference(this.repeaterQueries.newGroup);
+        const clonedGroup = repeaterGroup.cloneNode(true);
+        const $clonedInputs = $(clonedGroup).find(':input').not('button');
+        const entry = { data: [], clone: clonedGroup, id: this.repeaterEntries };
+
+        $clonedInputs.each((index, input) => {
+            entry.data.push({
+                name: input.getAttribute(this.repeaterAttributes.name),
+                value: input.value
+            });
+        });
+
+        this.addGroupInputNames(clonedGroup);
+
+        return entry;
     }
 
     /**
@@ -223,7 +332,7 @@ class Repeater {
      */
     getQueryReference ({ query, ref }, { all = false, fresh = false } = {}) {
         if (ref === undefined || fresh) {
-            ref = all ? this.repeater.querySelectorAll(query) : this.repeater.querySelector(query);
+            ref = all ? [].slice.call(this.repeater.querySelectorAll(query)) : this.repeater.querySelector(query);
         }
 
         return ref;
