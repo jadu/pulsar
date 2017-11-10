@@ -8,17 +8,16 @@
     }) }}
 
         {{ form.repeatable_start({
-            'label': 'Add Access Account',
-            'empty': 'You have not added any website accounts',
+            'label': 'The Pulsar team',
+            'empty': 'You have not added any team members',
             'headings': [
-                { 'label': 'Name', 'name': 'full_name' },
-                { 'label': 'email', 'name': 'email_address' }
+                { 'label': 'Name', 'name': 'full_name' }
             ]
         }) }}
 
             {{
                 form.fieldset_start({
-                    'legend': 'Add Access Account'
+                    'legend': 'Team Member'
                 })
             }}
 
@@ -27,15 +26,6 @@
                     'label': 'Full name',
                     'class': 'form__control-col--8',
                     'name': 'full_name'
-                })
-            }}
-
-            {{
-                form.text({
-                    'label': 'Email address',
-                    'class': 'form__control-col--8',
-                    'name': 'email_address',
-                    'value': 'test_email'
                 })
             }}
 

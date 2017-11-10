@@ -231,14 +231,20 @@ describe('RepeaterComponent', () => {
         });
 
         it('should insert an edit form after the preview', () => {
-            const entry = repeaterComponent.saveGroupAsEntry();
-            const preview = repeaterComponent.createEntryPreview(entry.data);
+            const { data, clone } = repeaterComponent.saveGroupAsEntry();
+            const preview = repeaterComponent.createEntryPreview(data);
+            let $clonedInputs;
 
-            repeaterComponent.createEditEntryGroup(entry.clone, preview);
+            repeaterComponent.createEditEntryGroup(clone, preview);
+            $clonedInputs = $(clone).find(':input').not('button');
 
             // expect the entry clone to be inserted after the preview with a corresponding ID
             expect($previewData.find('[data-repeater-preview-id="0"]').next().attr('data-repeater-edit-id'))
                 .to.equal('0');
+
+            $clonedInputs.each((index, input) => {
+                expect(input.getAttribute('name')).to.be.falsy;
+            });
 
             // expect the new-group attr to have been removed from the cloned group
             expect($previewData.find('[data-repeater-edit-id="0"]').attr('data-repeater-new-group')).to.be.undefined;
@@ -281,16 +287,72 @@ describe('RepeaterComponent', () => {
 
         it('should update the preview value', () => {
             const event = { preventDefault: sinon.spy () }
-            const entry = repeaterComponent.saveGroupAsEntry();
-            const preview = repeaterComponent.createEntryPreview(entry.data);
+            const { data, clone } = repeaterComponent.saveGroupAsEntry();
+            const preview = repeaterComponent.createEntryPreview(data);
+            const $dataRoot = $repeater.find('.repeater__saved-data');
             let $updateInput;
+            let $savedInput;
 
-            repeaterComponent.createEditEntryGroup(entry.clone, preview);
-            $updateInput = $(entry.clone).find('#input-text');
+            repeaterComponent.createEditEntryGroup(clone, preview);
+            repeaterComponent.createEntryGroupData(clone);
+            $updateInput = $(clone).find('#input-text');
+            $savedInput = $dataRoot.find('#input-text');
             $updateInput.val('updated_value');
-            repeaterComponent.handleUpdateGroup(entry.clone, 0, event);
+            repeaterComponent.handleUpdateGroup(clone, 0, event);
 
             expect($(preview).first().text()).to.equal('updated_value');
+            expect($savedInput.val()).to.equal('updated_value');
+        });
+    });
+
+    describe('createEntryGroupData', () => {
+        let $input;
+
+        beforeEach(() => {
+            repeaterComponent.init($repeater[0]);
+            $input = $repeater.find('#input-text');
+            $input.val('test_input');
+        });
+
+        it('should create a saved entry data element and append to the DOM', () => {
+            const { data, clone } = repeaterComponent.saveGroupAsEntry();
+            const $dataRoot = $repeater.find('.repeater__saved-data');
+            let $savedInput;
+
+            repeaterComponent.removeGroupInputNames(clone);
+            repeaterComponent.createEntryGroupData(clone);
+            $savedInput = $dataRoot.find('#input-text');
+
+            // expect the saved input to have a name attribute
+            expect($savedInput.attr('name')).to.equal('input-text');
+            // expect there to be a child input for each entry in the entry data
+            expect($dataRoot.find('[data-repeater-saved-data-id="0"]').children(':input')).to.have.length.of(data.length);
+        });
+    });
+
+    describe('handleCancelGroupUpdate', () => {
+        let $input;
+
+        beforeEach(() => {
+            repeaterComponent.init($repeater[0]);
+            $input = $repeater.find('#input-text');
+            $input.val('test_input');
+        });
+
+        it('should restore changes to edit group if update is cancelled', () => {
+            const event = { preventDefault: sinon.spy () }
+            const { data, clone } = repeaterComponent.saveGroupAsEntry();
+            const preview = repeaterComponent.createEntryPreview(data);
+            let $updateInput;
+
+            repeaterComponent.createEditEntryGroup(clone, preview);
+            repeaterComponent.createEntryGroupData(clone);
+            $updateInput = $(clone).find('#input-text');
+            $updateInput.val('updated_input');
+            repeaterComponent.handleCancelGroupUpdate(clone, 0, event);
+
+            // expect inputs with edited values to be restored if the edit is cancelled
+            expect($updateInput.val()).to.equal('test_input');
         });
     });
 });
