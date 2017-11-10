@@ -2114,7 +2114,7 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
 {% import _self as form %}
 {% spaceless %}
     <div class="repeater">
-        <div class="repeater__saved-data"></div>
+        <div class="repeater__saved-data" style="display: none;"></div>
         <div class="form__group">
             {{
                 elem.label({
@@ -2133,9 +2133,10 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
                                 <th rowspan="1" colspan="1"></th>
                             </tr>
                         </thead>
+                        {#TODO // colspan needs to be dynamic#}
                         <tbody class="repeater__preview-data">
                             <tr class="repeater__empty-placeholder">
-                                <td colspan="2" class="muted">{{ options.empty }}</td>
+                                <td colspan="1" class="muted">{{ options.empty }}</td>
                                 <td class="table__td table__td--align-right table-row__actions"></td>
                             </tr>
                         </tbody>
