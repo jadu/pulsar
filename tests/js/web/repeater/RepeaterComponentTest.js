@@ -100,7 +100,6 @@ describe('RepeaterComponent', () => {
     describe('saveGroupAsEntry', () => {
         let event;
         let $repeaterGroup;
-        let $groupInputClones;
 
         beforeEach(() => {
             repeaterComponent.init($repeater[0]);
@@ -109,33 +108,16 @@ describe('RepeaterComponent', () => {
         });
 
         it('should create a new repeater entry in the repeater entry root', () => {
-            const $entryRoot = $repeater.find('.repeater__saved-data');
             const value = 'test_value';
             let entry;
 
             // add a value to one of the inputs
             $repeaterGroup.find(':input').filter('#input-text').val(value);
-
-            // clone repeater group inputs so we can compare
-            // $groupInputClones = $repeaterGroup.find(':input').clone();
             // // save repeater group
             entry = repeaterComponent.saveGroupAsEntry();
 
             expect(entry.data[0]).to.deep.equal({ name: 'input-text', value: value });
             expect(entry.id).to.equal(0);
-
-            // // get saved data
-            // $entry = $entryRoot.children('.repeater__entry-data').first();
-            //
-            // $groupInputClones.each((index, child) => {
-            //     // expect each clone's data-repeater-name attr to be converted to a regular name attr
-            //     expect($(child).attr('data-repeater-name')).to.equal($entry.children().eq(index).attr('name'));
-            //     // expect the cloned input value to match the saved data input
-            //     expect($(child).prop('value')).to.equal(value);
-            //     expect($entry.children().eq(index).prop('value')).to.equal(value);
-            // });
-            // // expect a new repeater entry to be given a zero indexed ID
-            // expect($entry.attr('data-repeater-entry-id')).to.equal('0');
         });
     });
 
@@ -147,6 +129,7 @@ describe('RepeaterComponent', () => {
             const [ actual ] = repeaterComponent.createPreviewDataElement(data.data, [], element);
 
            expect(actual.textContent).to.equal('test_value');
+           expect(actual.getAttribute('data-repeater-update-id')).to.equal('test_name_0');
         });
     });
 
@@ -353,6 +336,39 @@ describe('RepeaterComponent', () => {
 
             // expect inputs with edited values to be restored if the edit is cancelled
             expect($updateInput.val()).to.equal('test_input');
+        });
+    });
+
+    describe('handleDeleteGroup', () => {
+        let $input;
+        let $savedData;
+
+        beforeEach(() => {
+            repeaterComponent.init($repeater[0]);
+            $input = $repeater.find('#input-text');
+            $savedData = $repeater.find('.repeater__saved-data');
+            $input.val('test_input');
+        });
+
+        it('should remove the preview row and saved data', () => {
+            const event = { preventDefault: sinon.spy () }
+            const { data, clone } = repeaterComponent.saveGroupAsEntry();
+            const preview = repeaterComponent.createEntryPreview(data);
+
+            repeaterComponent.createEditEntryGroup(clone, preview);
+            repeaterComponent.createEntryGroupData(clone);
+
+            // expect all of our DOM to be in place before removing
+            expect($savedData.children()).to.have.length.of(1);
+            expect(preview).to.be.truthy;
+            expect(clone).to.be.truthy;
+
+            repeaterComponent.handleDeleteGroup(0, event);
+
+            // expect all the things to be removed
+            expect($savedData.children()).to.have.length.of(0);
+            expect(preview).to.be.falsy;
+            expect(clone).to.be.falsy;
         });
     });
 });
