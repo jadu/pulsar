@@ -119,7 +119,6 @@ class Repeater {
         // Add an identifier to an entry in the saved data
         savedData.setAttribute(this.repeaterAttributes.savedDataId, this.repeaterEntries);
         // Clone each input in the group and append to the saved data
-        // TODO consider duplicate name attr here, might not need to as the savedData node has an ID
         $inputs.each((index, input) => {
             const name = input.getAttribute(this.repeaterAttributes.name);
             const clone = input.cloneNode(true);
@@ -148,6 +147,11 @@ class Repeater {
             .addEventListener('click', this.handleDeleteGroup.bind(this, this.repeaterEntries));
     }
 
+    /**
+     * Handle edit group action
+     * @param repeaterId {number}
+     * @param event
+     */
     handleEditGroup (repeaterId, event) {
         const previewDataRoot = this.getQueryReference(this.repeaterQueries.previewDataRoot);
         const editGroup = previewDataRoot.querySelector(`[${this.repeaterAttributes.editId}="${repeaterId}"]`);
@@ -156,7 +160,25 @@ class Repeater {
         event.preventDefault();
     }
 
+    /**
+     * Handle delete group action
+     * @param repeaterId {number}
+     * @param event
+     */
     handleDeleteGroup (repeaterId, event) {
+        // remove preview-id
+        const preview = this.getQueryReference(this.repeaterQueries.previewDataRoot)
+            .querySelector(`[${this.repeaterAttributes.previewId}="${repeaterId}"]`);
+        // remove edit-id
+        const edit = this.getQueryReference(this.repeaterQueries.previewDataRoot)
+            .querySelector(`[${this.repeaterAttributes.editId}="${repeaterId}"]`);
+        // remove saved-data-id
+        const saved = this.getQueryReference(this.repeaterQueries.savedEntryRoot)
+            .querySelector(`[${this.repeaterAttributes.savedDataId}="${repeaterId}"]`);
+
+        preview.remove();
+        edit.remove();
+        saved.remove();
         event.preventDefault();
     }
 
