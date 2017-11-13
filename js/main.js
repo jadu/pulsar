@@ -72,19 +72,18 @@
         });
 
         // TODO, tidy this up
-        const repeatable = document.querySelector('.repeater');
+        const repeatable = document.querySelector('.repeater'),
+            debugSubmit = document.getElementById('repeater-submit-debug');
 
         // TODO, handle multiple instances of a repeater
         if (repeatable) {
             pulsar.repeater.init(repeatable);
+            // Repeater debug
+            debugSubmit.addEventListener('submit', event => {
+                event.preventDefault();
+                console.log('data: ', $(event.target).serialize());
+            });
         }
-
-
-        // Repeater debug
-        document.getElementById('repeater-submit-debug').addEventListener('submit', event => {
-            event.preventDefault();
-            console.log('data: ', $(event.target).serialize());
-        });
     });
 
 }(jQuery));
