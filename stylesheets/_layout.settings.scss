@@ -221,8 +221,8 @@
         width: 100%;
 
         @include respond-min($screen-small) {
-            padding-right: 0;
             max-width: 75%;
+            padding-right: 0;
             width: auto;
         }
     }
