@@ -60,8 +60,22 @@ Highlight fields that contain invalid values which will need resolving before a 
 ```css
 .has-error
 ```
+<div class="pulsar-example form">
+    <div class="form__group has-error">
+        <label for="inputText" class="control__label">Text input</label>
+        <div class="controls">
+            <input id="inputText" name="inputText" type="text" class="form__control">
+        </div>
+    </div>
 
-<p data-height="220" data-theme-id="24005" data-slug-hash="dppvzp" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/dppvzp/">docs - form - text error states</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+    <div class="form__group has-error">
+        <label for="inputText" class="control__label">Text input</label>
+        <div class="controls">
+            <input id="inputText" name="inputText" type="text" class="form__control">
+            <span class="help-block is-error"><i class="icon-warning-sign"></i> Helpful error message</span>
+        </div>
+    </div>
+</div>
 
 ##### Success
 
@@ -71,7 +85,14 @@ Show that a field has the expected value, or that it has been saved/updated succ
 .has-success
 ```
 
-<p data-height="80" data-theme-id="24005" data-slug-hash="ZppZJN" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/ZppZJN/">docs - form - text success</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example form">
+    <div class="form__group has-success">
+        <label for="inputText" class="control__label">Text input</label>
+        <div class="controls">
+            <input id="inputText" name="inputText" type="text" class="form__control">
+        </div>
+    </div>
+</div>
 
 ##### Warning
 
@@ -81,7 +102,14 @@ Use to highlight non-critical issues with form data, such as a textarea containi
 .has-warning
 ```
 
-<p data-height="80" data-theme-id="24005" data-slug-hash="ZppZXN" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/ZppZXN/">docs - form - text warning</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example form">
+    <div class="form__group has-warning">
+        <label for="inputText" class="control__label">Text input</label>
+        <div class="controls">
+            <input id="inputText" name="inputText" type="text" class="form__control">
+        </div>
+    </div>
+</div>
 
 ##### Changed
 
@@ -91,7 +119,14 @@ Use to visually highlight when a field value may have changed. Particularly impo
 .has-changed
 ```
 
-<p data-height="80" data-theme-id="24005" data-slug-hash="RGGpLV" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/RGGpLV/">docs - form - text changed</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example form">
+    <div class="form__group has-changed">
+        <label for="inputText" class="control__label">Text input</label>
+        <div class="controls">
+            <input id="inputText" name="inputText" type="text" class="form__control">
+        </div>
+    </div>
+</div>
 
 ## Placeholders
 
@@ -115,7 +150,14 @@ Placeholders should:
 ```
 {% endraw %}
 
-<p data-height="80" data-theme-id="24005" data-slug-hash="EgyNQo" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/EgyNQo/">docs - form - text placeholder</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example form">
+    <div class="form__group">
+        <label for="text-example-1" class="control__label">National Insurance Nō</label>
+        <div class="controls">
+            <input id="text-example-1" placeholder="AB 12 34 56 C" type="text" class="form__control">
+        </div>
+    </div>
+</div>
 
 ## Help text
 
@@ -138,7 +180,15 @@ Help text should:
 ```
 {% endraw %}
 
-<p data-height="110" data-theme-id="24005" data-slug-hash="WGxozA" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/WGxozA/">docs - form - text help</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example form">
+    <div class="form__group form__group--medium">
+        <label for="text-example-2" class="control__label">National Insurance Nō</label>
+        <div class="controls">
+            <input id="text-example-2" type="text" class="form__control">
+            <span class="help-block">You can find this on your payslip. For example, AB 12 34 56 C</span>
+        </div>
+    </div>
+</div>
 
 ## Guidance
 
@@ -156,7 +206,14 @@ Provide extra information to help a user understand a form field. Guidance is on
 ```
 {% endraw %}
 
-<p data-height="200" data-theme-id="24005" data-slug-hash="QKEpKk" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/QKEpKk/">docs - form - text guidance</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example form">
+    <div class="form__group" data-toggle="tooltips" title="" data-original-title="">
+        <label for="inputText" class="control__label">Text input <i data-container="body" data-content="Keywords aren’t used by most search engines and using too many can harm your site’s position in their rankings" data-placement="bottom" data-toggle="popover" class="icon-question-sign input-group-guidance" data-original-title="" title=""></i></label>
+        <div class="controls">
+            <input id="inputText" name="inputText" type="text" class="form__control">
+        </div>
+    </div>
+</div>
 
 ## Input widths
 
@@ -212,41 +269,81 @@ form__control--full
 { 'class': 'form__group--mini' }
 ```
 
-<div><p data-height="110" data-theme-id="24005" data-slug-hash="zKAOEJ" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/zKAOEJ/">docs - form - text mini</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script></div>
-
+<div class="pulsar-example form">
+    <div class="form__group form__group--mini">
+        <label class="control__label">Mini</label>
+        <div class="controls">
+            <input id="inputText" name="inputText" type="text" class="form__control">
+        </div>
+    </div>
+</div>
 
 ```twig
 { 'class': 'form__group--small' }
 ```
 
-<div><p data-height="110" data-theme-id="24005" data-slug-hash="ALEAxg" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/ALEAxg/">docs - form - text small</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script></div>
-
+<div class="pulsar-example form">
+    <div class="form__group form__group--small">
+        <label class="control__label">Small</label>
+        <div class="controls">
+            <input id="inputText" name="inputText" type="text" class="form__control">
+        </div>
+    </div>
+</div>
 
 ```twig
 { 'class': 'form__group--medium' }
 ```
 
-<div><p data-height="110" data-theme-id="24005" data-slug-hash="WGAZrO" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/WGAZrO/">docs - form - text medium</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script></div>
+<div class="pulsar-example form">
+    <div class="form__group form__group--medium">
+        <label class="control__label">Medium</label>
+        <div class="controls">
+            <input id="inputText" name="inputText" type="text" class="form__control">
+        </div>
+    </div>
+</div>
 
 
 ```twig
 { 'class': 'form__group--regular' }
 ```
 
-<div><p data-height="110" data-theme-id="24005" data-slug-hash="ZpQzAR" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/ZpQzAR/">docs - form - text regular</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script></div>
+<div class="pulsar-example form">
+    <div class="form__group">
+        <label class="control__label">Regular</label>
+        <div class="controls">
+            <input id="inputText" name="inputText" type="text" class="form__control">
+        </div>
+    </div>
+</div>
 
 ```twig
 { 'class': 'form__group--large' }
 ```
 
-<div><p data-height="110" data-theme-id="24005" data-slug-hash="RGAbrP" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/RGAbrP/">docs - form - text large</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script></div>
+<div class="pulsar-example form">
+    <div class="form__group form__group--large">
+        <label class="control__label">Large</label>
+        <div class="controls">
+            <input id="inputText" name="inputText" type="text" class="form__control">
+        </div>
+    </div>
+</div>
 
 
 ```twig
 { 'class': 'form__group--full' }
 ```
 
-<div><p data-height="110" data-theme-id="24005" data-slug-hash="amdoGX" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/amdoGX/">docs - form - text full</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script></div>
+<div class="pulsar-example form">
+    <div class="form__group form__group--full">
+        <label class="control__label">Full</label>
+        <div class="controls">
+            <input id="inputText" name="inputText" type="text" class="form__control">
+        </div>
+    </div>
+</div>
 
 ## Label alignment
 
@@ -258,7 +355,15 @@ The default style of forms is to have the label next to the input however there 
 { 'class': 'form__group--top' }
 ```
 
-<div><p data-height="190" data-theme-id="24005" data-slug-hash="ALEAJJ" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/ALEAJJ/">docs - form - top label</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script></div>
+<div class="pulsar-example form">
+    <div class="form__group form__group--top">
+        <label class="control__label">Long label that we want to put on its own line for whatever reason</label>
+        <div class="controls">
+            <input placeholder="Placeholder" type="text" class="form__control">
+            <p class="help-block">Example block-level help text here.</p>
+        </div>
+    </div>
+</div>
 
 ### Flush top label
 
@@ -266,7 +371,15 @@ The default style of forms is to have the label next to the input however there 
 { 'class': 'form__group--top form__group--flush' }
 ```
 
-<div><p data-height="190" data-theme-id="24005" data-slug-hash="PGkYxb" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/PGkYxb/">docs - form - top label flush</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script></div>
+<div class="pulsar-example form">
+    <div class="form__group form__group--top form__group--flush">
+        <label class="control__label">The same as above, but this time we also add the .form__group--flush class to keep everything on the left edge</label>
+        <div class="controls">
+            <input placeholder="Placeholder" type="text" class="form__control">
+            <p class="help-block">Example block-level help text here.</p>
+        </div>
+    </div>
+</div>
 
 ## Indented elements
 
@@ -276,11 +389,38 @@ Often you will need to use elements other than full form inputs which you to be 
 { 'class': 'form__indent' }
 ```
 
-<div><p data-height="100" data-theme-id="24005" data-slug-hash="wzrrZb" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/wzrrZb/">docs - form - indented button</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script></div>
+<div class="pulsar-example form">
+    <button class="btn form__indent">This Button Has No Form Label</button>
+</div>
 
 ## Regular HTML elements
 
-<div><p data-height="440" data-theme-id="24005" data-slug-hash="PGkkKV" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/PGkkKV/">docs - form - regular elements</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script></div>
+<div class="pulsar-example form">
+
+    <p>This is a plain ol’ paragraph and a couple of lists, their left edge should be on the far left.</p>
+
+    <ul>
+        <li>Unordered List</li>
+        <li>Unordered List</li>
+    </ul>
+
+    <ol>
+        <li>Unordered List</li>
+        <li>Unordered List</li>
+    </ol>
+
+    <div class="form__indent">
+        <p>This is the same plain ol’ paragraph, but now we're wrapped in a <code>form__indent</code> class which should make our left edge match the form controls.</p>
+        <ul>
+            <li>Unordered List</li>
+            <li>Unordered List</li>
+        </ul>
+        <ol>
+            <li>Unordered List</li>
+            <li>Unordered List</li>
+        </ol>
+    </div>
+</div>
 
 ## Appended and Prepend inputs
 
@@ -306,7 +446,49 @@ prepend_type | string | Use only when prepending a button. `button` is the only 
 ```
 {% endraw %}
 
-<p data-height="388" data-theme-id="24005" data-slug-hash="xEGakp" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/xEGakp/">Appended and prepended icons and text </a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example form">
+
+    <div class="form__group">
+        <label for="inputPrepend" class="control__label">Prepended input with icon</label>
+        <div class="controls">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="icon-envelope-o"></i></span>
+                <input id="inputPrepend" name="inputPrepend" placeholder="Email address" type="text" class="form__control">
+            </div>
+        </div>
+    </div>
+
+    <div class="form__group">
+        <label for="inputPrepend" class="control__label">Appended input with icon</label>
+        <div class="controls">
+            <div class="input-group">
+                <input id="inputPrepend" name="inputPrepend" placeholder="Telephone number" type="text" class="form__control">
+                <span class="input-group-addon"><i class="icon-phone"></i></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form__group">
+        <label for="inputAppend" class="control__label">Appended input with text</label>
+        <div class="controls">
+            <div class="input-group">
+                <input id="inputAppend" name="inputAppend" placeholder="Placeholder" type="text" class="form__control">
+                <span class="input-group-addon">.com</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form__group">
+        <label for="inputPrependAppend" class="control__label">Prepended &amp; Appended with text</label>
+        <div class="controls">
+            <div class="input-group">
+                <span class="input-group-addon">www.</span>
+                <input id="inputPrependAppend" name="inputPrependAppend" placeholder="Placeholder" type="text" class="form__control">
+                <span class="input-group-addon">.com</span>
+            </div>
+        </div>
+    </div>
+</div>
 
 Whilst buttons can be used to link an input to a related action:
 
@@ -322,8 +504,60 @@ Whilst buttons can be used to link an input to a related action:
 ```
 {% endraw %}
 
-<p data-height="88" data-theme-id="24005" data-slug-hash="JRdaYr" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/JRdaYr/">Appended and prepended buttons - postcode example</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example form">
+    <div class="form__group">
+        <label for="inputPrependAppend" class="control__label">Postcode</label>
+        <div class="controls">
+            <div class="input-group has-btn-appended">
+                <input id="inputPrependAppend" name="inputAppend" placeholder="For example, LE19 1RJ" type="text" class="form__control">
+                <span class="input-group-btn">
+                    <button class="btn">Find</button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
 
 Like icons and text, buttons can be appended, prepended or both:
 
-<p data-height="243" data-theme-id="24005" data-slug-hash="kkWjoY" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/kkWjoY/">Appended and prepended buttons</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example form">
+    <div class="form__group">
+        <label for="inputPrependAppend" class="control__label">Prepended button</label>
+        <div class="controls">
+            <div class="input-group has-btn-prepended">
+                <span class="input-group-btn">
+                    <button class="btn">Button</button>
+                </span>
+                <input id="inputPrependAppend" name="inputPrepended" placeholder="Placeholder" type="text" class="form__control">
+            </div>
+        </div>
+    </div>
+
+    <div class="form__group">
+        <label for="inputPrependAppend" class="control__label">Appended button</label>
+        <div class="controls">
+            <div class="input-group has-btn-appended">
+                <input id="inputPrependAppend" name="inputAppend" placeholder="Placeholder" type="text" class="form__control">
+                <span class="input-group-btn">
+                    <button class="btn">Button</button>
+                </span>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form__group">
+        <label for="inputPrependAppend" class="control__label">Appended and prepended buttons</label>
+        <div class="controls">
+            <div class="input-group has-btn-prepended has-btn-appended">
+                <span class="input-group-btn">
+                    <button class="btn btn--primary">Button</button>
+                </span>
+                <input id="inputPrependAppend" name="inputAppend" placeholder="Placeholder" type="text" class="form__control">
+                <span class="input-group-btn">
+                    <button class="btn">Button</button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

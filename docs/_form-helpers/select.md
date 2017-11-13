@@ -10,8 +10,18 @@ Generates a select input.
 
 {% code_example form_helpers/select %}
 
-<p data-height="110" data-theme-id="24005" data-slug-hash="meVKpx" data-default-tab="result" data-embed-version="2" data-user="stanton" class='codepen'>See the Pen <a href='http://codepen.io/stanton/pen/meVKpx/'>form - select</a> by Paul Stanton (<a href='http://codepen.io/stanton'>@stanton</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example form">
+    <div class="form__group">
+        <label class="control__label">Pick a colour</label>
+        <div class="controls">
+            <select class="form__control select">
+                <option value="">Choose</option>
+                <option value="colour_red">Red</option>
+                <option value="colour_blue">Blue</option>
+            </select>
+        </div>
+    </div>
+</div>
 
 ## Options applied to parent wrapper
 
@@ -94,16 +104,19 @@ Your options can be arranged within `optgroups` by using the optgroup syntax.
 ```
 {% endraw %}
 
-<p data-height="110" data-theme-id="24005" data-slug-hash="ALXXWd" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/ALXXWd/">form - select error</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script>
-
-## Loading state
-
-Add the [loading spinner](loading.md) markup via Javascript after the select element to communicate that the user's selection is causing something else to happen on the page.
-
-If a select element's options are being loaded or updated, the placeholder should be changed to 'Loading...' and the field disabled until this is complete.
-
-<p data-height="80" data-theme-id="24005" data-slug-hash="vNXdox" data-embed-version="2" data-default-tab="result" data-user="stanton" class='codepen'>See the Pen <a href='http://codepen.io/stanton/pen/vNXdox/'>vNXdox</a> by Paul Stanton (<a href='http://codepen.io/stanton'>@stanton</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example form">
+    <div class="form__group has-error">
+        <label class="control__label">Pick a colour</label>
+        <div class="controls">
+            <select class="form__control select">
+                <option value="">Choose</option>
+                <option value="colour_red">Red</option>
+                <option value="colour_blue">Blue</option>
+            </select>
+            <span class="help-block is-error"><i aria-hidden="true" class="icon-warning-sign"></i> Something went wrong</span>
+        </div>
+    </div>
+</div>
 
 ## Widths
 

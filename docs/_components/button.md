@@ -71,7 +71,7 @@ Buttons accept the normal state variations through the `class` option
 {# Default button #}
 {{ html.button({ 'label': 'Default' }) }}
 
-{# Visually highlight the main action the user should perform on a given UI #}
+{# Visually highlight the main action the user should perform on a UI #}
 {{ html.button({ 'class': 'btn--primary', 'label': 'Primary' }) }}
 
 {# Indicate a successful or positive action #}
@@ -94,7 +94,18 @@ Buttons accept the normal state variations through the `class` option
 ```
 {% endraw %}
 
-<div><p data-height="65" data-theme-id="24005" data-slug-hash="mAVNoa" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/mAVNoa/">docs - html - button variations</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script></div>
+<div class="pulsar-example">
+    <p>
+        <button class="btn">Default</button>
+        <button class="btn btn--primary">Primary</button>
+        <button class="btn btn--success">Success</button>
+        <button class="btn btn--warning">Warning</button>
+        <button class="btn btn--danger">Danger</button>
+        <button class="btn btn--info">Info</button>
+        <button class="btn btn--inverse">Inverse</button>
+        <button class="btn btn--naked">Naked</button>
+    </p>
+</div>
 
 ## Disabled buttons
 
@@ -114,7 +125,9 @@ Adding the `is-disabled` class to a button will automatically add the `disabled`
 ```
 {% endraw %}
 
-<div><p data-height="65" data-theme-id="24005" data-slug-hash="ALEZzq" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/ALEZzq/">docs - html - disabled button</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script></div>
+<div class="pulsar-example">
+    <button class="btn is-disabled" disabled="">Disabled Button</button>
+</div>
 
 ### Adding tooltips to disabled buttons
 
@@ -122,7 +135,10 @@ The `disabled` parameter prevents mouse events from firing and stops tooltips fr
 
 {% raw %}
 ```html
-<div rel="tooltip" data-toggle="tooltip" title="My tooltip brings all the boys to the yard">
+<div
+    rel="tooltip"
+    data-toggle="tooltip"
+    title="My tooltip brings all the boys to the yard">
   {{ html.button({ ... }) }}
 </div>
 ```
@@ -134,6 +150,10 @@ The standard button pattern for forms is for the submit action to be a primary b
 
 Delete buttons, if required, should be on the right hand side.
 
-<p data-height="90" data-theme-id="24005" data-slug-hash="b5fc1c0fb7f715f11fb350f8a62d2140" data-default-tab="result" data-user="stanton" class='codepen'>See the Pen <a href='http://codepen.io/stanton/pen/b5fc1c0fb7f715f11fb350f8a62d2140/'>docs - form actions buttons</a> by Paul Stanton (<a href='http://codepen.io/stanton'>@stanton</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example">
+    <div class="form__actions form__actions--flush">
+        <button class="btn btn--primary js-submit-disable" type="submit">Primary Action</button>
+        <button class="btn btn--naked js-submit-disable" type="submit">Cancel</button>
+        <button class="btn btn--danger js-submit-disable pull-right" type="submit">Delete</button>
+    </div>
+</div>

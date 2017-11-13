@@ -1,6 +1,7 @@
 'use strict';
 
-var $ = require('jquery');
+var $ = require('jquery'),
+    TimePickerComponent = require('./TimePickerComponent');
 
 require('../libs/pikaday/plugins/pikaday.jquery');
 require('../libs/select2/dist/js/select2.min');
@@ -8,6 +9,7 @@ require('../libs/spectrum/spectrum');
 
 function PulsarFormComponent(html) {
     this.$html = html;
+    this.timePickerComponent = new TimePickerComponent();
 }
 
 PulsarFormComponent.prototype.init = function () {
@@ -61,6 +63,9 @@ PulsarFormComponent.prototype.init = function () {
     // choice block click behaviour
     choiceBlock.on('change', '.controls input[type="checkbox"], .controls input[type="radio"]', component.selectionButtons);
 
+    // initialise tinepickers
+    var $timePickers = this.$html.find('[data-timepicker=true]');
+    component.timePickerComponent.init($timePickers);
 };
 
 PulsarFormComponent.prototype.initSelectionButtons = function(e) {
@@ -144,6 +149,7 @@ PulsarFormComponent.prototype.initSelect2 = function(target) {
         }
 
         $this.select2(config);
+        $this.parent().find('.select2-container').removeAttr('style');
     });
 
 }
