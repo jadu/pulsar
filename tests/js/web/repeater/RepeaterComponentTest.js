@@ -365,6 +365,10 @@ describe('RepeaterComponent', () => {
 
             // expect inputs with edited values to be restored if the edit is cancelled
             expect($updateInput.val()).to.equal('test_input');
+            // expect add group button to be enabled
+            expect($repeater.find('[data-repeater-add-group]').hasClass('disabled')).to.be.false;
+            // expect edit group to be hidden
+            expect($(clone).css('display')).to.equal('none');
         });
     });
 
@@ -489,6 +493,67 @@ describe('RepeaterComponent', () => {
             $repeater.find('[data-repeater-preview-ui]').each((index, element) => {
                 expect($(element).hasClass('disabled')).to.be.false;
             });
+        });
+    });
+
+    describe('handleEditGroup', () => {
+        let event;
+
+        beforeEach(() => {
+            event = { preventDefault: sinon.spy() };
+            repeaterComponent.init($repeater[0]);
+            repeaterComponent.handleSaveGroup(event);
+            repeaterComponent.handleSaveGroup(event);
+            event.preventDefault.reset();
+        });
+
+        it('should toggle the state of the preview UI', () => {
+            const $ui = $repeater.find('[data-repeater-preview-ui]');
+
+            // expect to have some UI
+            expect($ui).to.have.length.of(4);
+
+            // expect preview UI to be enabled by default
+            $ui.each((index, element) => {
+                expect($(element).hasClass('disabled')).to.be.false;
+            });
+
+            repeaterComponent.handleEditGroup(0, event);
+
+            // expect preview UI to be enabled by default
+            $ui.each((index, element) => {
+                const $preview = $(element).closest('[data-repeater-preview-id]');
+
+                if ($preview.attr('data-repeater-preview-id') !== '0') {
+                    // expect previews that do not match the current ID to be disabled
+                    expect($(element).hasClass('disabled')).to.be.true;
+                } else {
+                    // expect previews that do match the current ID to be enabled
+                    expect($(element).hasClass('disabled')).to.be.false;
+                }
+            });
+        });
+
+        it('should disable the new group button', () => {
+            repeaterComponent.handleEditGroup(0, event);
+
+            expect($repeater.find('[data-repeater-add-group]').hasClass('disabled')).to.be.true;
+        });
+
+        it('should show the edit group form', () => {
+            const $editGroup = $repeater.find('[data-repeater-edit-id]').filter((index, element) => {
+                return element.getAttribute('data-repeater-edit-id') === '0';
+            });
+
+            repeaterComponent.handleEditGroup(0, event);
+
+            expect($editGroup.css('display')).to.not.equal('none');
+        });
+
+        it('should prevent the default behaviour of the event', () => {
+            repeaterComponent.handleEditGroup(0, event);
+
+            expect(event.preventDefault).to.have.been.calledOnce;
         });
     });
 });
