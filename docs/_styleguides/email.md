@@ -107,9 +107,9 @@ It's extremely handy for some actions to be performed by the call to action dire
 
 ## HTML templates
 
-Email templates are built and distributed from within Pulsar and there are build tasks which perform the inlining of the CSS, products can then take the distributed versions to implement as they see fit. Products are responsible for inserting the correct links as well as content into the templates.
+Email templates are built and distributed from within Pulsar, products can then take the templates and implement as they see fit. Products are responsible for inserting the correct links as well as content into the templates.
 
-Built HTML templates are available in the Pulsar repository in `/emails/dist/`. Products using a Pulsar gruntfile should update their `copy:pulsar_dist` task to include these in their Pulsar bundle.
+HTML templates are available in the Pulsar repository in `/emails/templates/`. Products using a Pulsar gruntfile should update their `copy:pulsar_dist` task to include these in their Pulsar bundle.
 
 ### Simple message
 
@@ -118,8 +118,7 @@ Built HTML templates are available in the Pulsar repository in `/emails/dist/`. 
 * Email confirmation
 * Password reset
 
-<p data-height="470" data-theme-id="16461" data-slug-hash="940d28dfc57a4c7822ccce00cf8c9201" data-default-tab="result" data-user="stanton" class='codepen'>See the Pen <a href='http://codepen.io/stanton/pen/940d28dfc57a4c7822ccce00cf8c9201/'>docs - email - cms action template</a> by Paul Stanton (<a href='http://codepen.io/stanton'>@stanton</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+![Email simple example]({{ site.baseurl }}/assets/image_examples/email-simple-example.png)
 
 ### Detailed message
 
@@ -131,5 +130,4 @@ Use when you want to tell the user that something has happened, and also give br
 * Scheduled content going live
 * New CXM case submission, or changes to a case
 
-<p data-height="580" data-theme-id="16461" data-slug-hash="229ba635a4dff95556159b8199db768f" data-default-tab="result" data-user="stanton" class='codepen'>See the Pen <a href='http://codepen.io/stanton/pen/229ba635a4dff95556159b8199db768f/'>docs - email - cxm detail template</a> by Paul Stanton (<a href='http://codepen.io/stanton'>@stanton</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+![Email detail example]({{ site.baseurl }}/assets/image_examples/email-detail-example.png)

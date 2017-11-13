@@ -6,11 +6,23 @@ category: Form helpers
 
 Generates a text input with the [spectrum colourpicker](https://bgrins.github.io/spectrum/).
 
-<div class="alert alert-danger" role="alert"><i class="fa fa-alert-sign"></i> This helper requires  <code>PulsarFormComponent</code> to be included in your javascript</div>
+<div class="pulsar-panel">This helper requires  <code>PulsarFormComponent</code> to be included in your javascript</div>
 
 ## Example usage
 
 {% code_example form_helpers/color %}
+
+<div class="pulsar-example form">
+    <div class="form__group colorpicker js-colorpicker">
+        <label for="color-1" class="control__label">Foo</label>
+        <div class="controls">
+            <div class="input-group">
+                <span class="input-group-addon">#</span>
+                <input id="color-1" type="text" class="form__control">
+            </div>
+        </div>
+    </div>
+</div>
 
 ## Options applied to parent wrapper
 

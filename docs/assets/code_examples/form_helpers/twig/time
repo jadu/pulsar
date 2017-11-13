@@ -1,0 +1,6 @@
+{{
+    form.time({
+        'label': 'When would you like your appointment?',
+        'id': 'foo'
+    })
+}}

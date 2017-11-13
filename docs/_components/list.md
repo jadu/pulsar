@@ -13,9 +13,11 @@ Lists are purposely left unstyled, but you can use [block lists](block_list.md) 
 
 {% code_example html_helpers/list %}
 
-<div>
-<p data-height="75" data-theme-id="24005" data-slug-hash="qakOqW" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/qakOqW/">docs - html - list</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example">
+    <ul>
+        <li>foo</li>
+        <li>bar</li>
+    </ul>
 </div>
 
 ## Options
@@ -33,5 +35,16 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
 Add prettier styling around your lists with the `.block-list` variations. See the [block list page](block_list.md) for more information.
 
-<div><p data-height="175" data-theme-id="24005" data-slug-hash="mAPZkB" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/mAPZkB/">docs - html - block list regular</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script></div>
+<div class="pulsar-example">
+    <ul class="block-list block-list--bordered">
+        <li class="block-list__item">
+            One
+        </li>
+        <li class="block-list__item">
+            Two
+        </li>
+        <li class="block-list__item">
+            Three
+        </li>
+    </ul>
+</div>

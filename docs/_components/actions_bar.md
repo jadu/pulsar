@@ -6,8 +6,24 @@ category: Components
 
 The actions bar is a component within a tab which is split into left/right sides and contains important controls for a given user interface.
 
-<p data-height="90" data-theme-id="24005" data-slug-hash="bEoRMr" data-default-tab="result" data-user="stanton" class='codepen'>See the Pen <a href='http://codepen.io/stanton/pen/bEoRMr/'>bEoRMr</a> by Paul Stanton (<a href='http://codepen.io/stanton'>@stanton</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example" style="height: 200px;">
+    <div class="actionsbar">
+        <div class="u-float-left">
+            <div class="btn__group dropdown">
+                <button class="btn dropdown__toggle" data-toggle="dropdown">Actions&nbsp;<span class="caret"></span></button>
+                <ul class="dropdown__menu pull-left">
+                    <li><a href="/save"><i class="icon-save"></i>&nbsp;Save</a></li>
+                    <li><a href="/edit"><i class="icon-pencil"></i>&nbsp;Edit</a></li>
+                    <li><span class="divider"></span></li>
+                    <li><a href="/delete"><i class="icon-remove"></i>&nbsp;Delete</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="u-float-right">
+            <button class="btn btn--primary">Primary Action</button>
+        </div>
+    </div>
+</div>
 
 The actions bar is optional and can be omitted if the UI doesn't require  an actions menu or primary actions.
 
@@ -65,8 +81,21 @@ The actions menu items should relate to the main user interface a user is in, no
 
 If a UI has multiple tabs, the actions menu should provide links to the primary actions within each tab, without the need for the user to navigate to that tab first.
 
-<p data-height="280" data-theme-id="24005" data-slug-hash="XXeNXM" data-default-tab="result" data-user="stanton" class='codepen'>See the Pen <a href='http://codepen.io/stanton/pen/XXeNXM/'>XXeNXM</a> by Paul Stanton (<a href='http://codepen.io/stanton'>@stanton</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example" style="height: 300px;">
+    <div class="btn__group dropdown open">
+        <button class="btn dropdown__toggle" data-toggle="dropdown">Actions&nbsp;<span class="caret"></span></button>
+        <ul class="dropdown__menu pull-left">
+            <li><a href="/save"><i class="icon-save"></i>&nbsp;Save</a></li>
+            <li><a href="/edit"><i class="icon-pencil"></i>&nbsp;Edit</a></li>
+            <li><span class="divider"></span></li>
+            <li><a href="/publish"><i class="icon-cloud-upload"></i>&nbsp;Publish</a></li>
+            <li><a href="/translate"><i class="icon-globe"></i>&nbsp;Translate</a></li>
+            <li><a href="/locl"><i class="icon-lock"></i>&nbsp;Lock</a></li>
+            <li><span class="divider"></span></li>
+            <li><a href="/delete"><i class="icon-remove"></i>&nbsp;Delete</a></li>
+        </ul>
+    </div>
+</div>
 
 ### Adding actions menu items
 
@@ -117,5 +146,14 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 ```
 {% endraw %}
 
-<p data-height="180" data-theme-id="24005" data-slug-hash="dGVOZg" data-default-tab="result" data-user="stanton" class='codepen'>See the Pen <a href='http://codepen.io/stanton/pen/dGVOZg/'>dGVOZg</a> by Paul Stanton (<a href='http://codepen.io/stanton'>@stanton</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example" style="height: 200px;">
+    <div class="btn__group dropdown open">
+        <button class="btn dropdown__toggle" data-toggle="dropdown">Actions&nbsp;<span class="caret"></span></button>
+        <ul class="dropdown__menu pull-left">
+            <li><a href="/save"><i class="icon-save"></i>&nbsp;Save</a></li>
+            <li><a href="/edit"><i class="icon-pencil"></i>&nbsp;Edit</a></li>
+            <li><span class="divider"></span></li>
+            <li><a href="/delete"><i class="icon-remove"></i>&nbsp;Delete</a></li>
+        </ul>
+    </div>
+</div>
