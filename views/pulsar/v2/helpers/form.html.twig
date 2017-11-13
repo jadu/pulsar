@@ -2116,8 +2116,9 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
 {% spaceless %}
     <div
         class="repeater"
-        data-add-new-group-text="{{ options['add-new-group-text']|default('Add') }}"
-        data-add-another-group-text="{{ options['add-another-group-text']|default('Add another') }}"
+        data-repeater-add-new-group-text="{{ options['add-new-group-text']|default('Add') }}"
+        data-repeater-add-another-group-text="{{ options['add-another-group-text']|default('Add another') }}"
+        data-repeater-max-entries="{{ options['max-entries']|default(false) }}"
     >
         <div class="repeater__saved-data" style="display: none;"></div>
         <div class="form__group">
@@ -2138,7 +2139,6 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
                                 <th rowspan="1" colspan="1"></th>
                             </tr>
                         </thead>
-                        {#TODO // colspan needs to be dynamic#}
                         <tbody class="repeater__preview-data">
                             <tr class="repeater__empty-placeholder">
                                 <td colspan="{{ headingLength }}" class="muted">{{ options.empty }}</td>
@@ -2183,7 +2183,8 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
                     html.button({
                         'data-repeater-add-group': 'true',
                         'label': 'Add',
-                        'class': 'btn--primary repeater__add-group'
+                        'class': 'btn--primary repeater__add-group',
+                        'type': 'button'
                     })
                 }}
             </div>
