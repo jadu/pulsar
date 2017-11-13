@@ -2,13 +2,21 @@
 
 var $ = require('jquery');
 
-function NavMainComponent (html, window) {
-    this.$html = html;
-    this.$window = $(window);
+function NavMainComponent ($html, rootWindow) {
+    this.$html = $html;
+    this.$window = $(rootWindow);
 };
 
 NavMainComponent.prototype.init = function () {
     var component = this;
+
+    if (!component.$html.length) {
+        throw new Error('html must be passed to NavMainComponent');
+    }
+
+    if (!component.$window.length) {
+        throw new Error('window must be passed to NavMainComponent');
+    }
 
     component.adjustNavItems();
 
@@ -148,6 +156,8 @@ NavMainComponent.prototype.changeActiveQuaternaryNavLink = function (target) {
 NavMainComponent.prototype.closeNavs = function () {
     var component = this;
 
+    component.$navMain.removeClass('is-open');
+
     if (component.$navSecondary.hasClass('is-open')) {
         component.$navSecondary.removeClass('is-open');
     }
@@ -218,7 +228,7 @@ NavMainComponent.prototype.hidePrimaryNavItems = function (navItemsHeight, moreI
 NavMainComponent.prototype.unhidePrimaryNavItems = function () {
     var component = this,
         navItems = component.$html.find('.nav-primary .nav-items'),
-        navItemMore = navItems.find('[label="More"]'),
+        navItemMore = navItems.find('.more-icon'),
         firstHiddenPrimaryNavItem = navItems.find('li:hidden').first();
 
         if ((firstHiddenPrimaryNavItem.length > 0) && (navItemMore.is(':visible'))) {
@@ -229,11 +239,11 @@ NavMainComponent.prototype.unhidePrimaryNavItems = function () {
 NavMainComponent.prototype.addMoreNavItem = function (numberOfHiddenNavItems) {
     var component = this,
         navItems = component.$html.find('.nav-primary .nav-items'),
-        navItemMore = navItems.find('[label="More"]');
+        navItemMore = navItems.find('.more-icon');
 
     // Add the "More" nav item
     if ((numberOfHiddenNavItems > 0) && (!component.$html.find('.more-icon').length)){
-        navItems.append('<li label="More" class="nav-item t-nav-item more-icon" aria-haspopup="true"><a href="#more" class="nav-link t-nav-link"><i aria-hidden="true" class="icon-ellipsis-horizontal nav-link__icon t-nav-icon"></i><span class="nav-link__label">More</span></a></li>');
+        navItems.append('<li aria-haspopup="true" class="nav-item t-nav-item more-icon"><a href="#more" class="nav-link t-nav-link"><i aria-hidden="true" class="icon-ellipsis-horizontal nav-link__icon t-nav-icon"></i><span class="nav-link__label">More</span></a></li>');
     }
 
     // Check if "More" nav item is visible
@@ -267,7 +277,7 @@ NavMainComponent.prototype.hideMoreCategoriesTopItems = function (navItemsCountT
 NavMainComponent.prototype.lastItemSubstitution = function (numberOfHiddenNavItems) {
     var component = this,
         navItems = component.$html.find('.nav-primary .nav-items'),
-        navItemMore = navItems.find('[label="More"]');
+        navItemMore = navItems.find('.more-icon');
 
         if (numberOfHiddenNavItems === 0) {
             navItemMore.hide();

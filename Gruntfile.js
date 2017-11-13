@@ -6,21 +6,6 @@ module.exports = function(grunt) {
 
         pkg:     grunt.file.readJSON('package.json'),
         pulsar:  grunt.file.readJSON('pulsar.json'),
-        secrets: grunt.file.readJSON('secrets.json'),
-
-        mailgun: {
-            cmsDetail: {
-                options: {
-                    key: '<%= secrets.mailgun.api_key %>',
-                    sender: '<%= secrets.mailgun.sender %>',
-                    recipient: '<%= secrets.mailgun.recipient %>',
-                    subject: 'Test Pulsar Email Template',
-                    preventThreading: true,
-                    hideRecipient: true
-                },
-                src: ['emails/dist/*.html']
-            }
-        },
 
         browserify: {
             dev: {
@@ -110,19 +95,40 @@ module.exports = function(grunt) {
                     extDot: 'first',
                     src:    'pulsar-ie*.scss'
                 }]
+            }
+        },
+
+        replace: {
+            projector: {
+                src: ['stylesheets/pulsar.scss'],
+                dest: 'stylesheets/pulsar-theme-projector.scss',
+                replacements: [{
+                    from: 'palette.base',
+                    to: 'palette.projector'
+                }]
             },
-            email: {
-                options: {
-                    outputStyle: 'nested',
-                    sourceMap: true
-                },
-                files: [{
-                    cwd:    'emails/stylesheets/',
-                    dest:   'emails/css/',
-                    expand: true,
-                    ext:    '.css',
-                    extDot: 'first',
-                    src:    '*.scss'
+            projector_ie9: {
+                src: ['stylesheets/pulsar-ie9.scss'],
+                dest: 'stylesheets/pulsar-ie9-theme-projector.scss',
+                replacements: [{
+                    from: 'palette.base',
+                    to: 'palette.projector'
+                }]
+            },
+            projector_ie8: {
+                src: ['stylesheets/pulsar-ie8.scss'],
+                dest: 'stylesheets/pulsar-ie8-theme-projector.scss',
+                replacements: [{
+                    from: 'palette.base',
+                    to: 'palette.projector'
+                }]
+            },
+            projector_ie7: {
+                src: ['stylesheets/pulsar-ie7.scss'],
+                dest: 'stylesheets/pulsar-ie7-theme-projector.scss',
+                replacements: [{
+                    from: 'palette.base',
+                    to: 'palette.projector'
                 }]
             }
         },
@@ -158,10 +164,6 @@ module.exports = function(grunt) {
             scsslint: {
                 files: 'stylesheets/**/*.scss',
                 tasks: ['scsslint']
-            },
-            emails: {
-                files: ['emails/**/*'],
-                tasks: ['emailBuilder']
             },
             js: {
                 files: ['js/**/*.js', 'tests/js/**/*', 'package.json'],
@@ -219,8 +221,8 @@ module.exports = function(grunt) {
         },
 
         copy: {
-          dist: {
-            files: [{
+            dist: {
+                files: [{
                     expand: true,
                     cwd: '',
                     src: [
@@ -231,6 +233,17 @@ module.exports = function(grunt) {
                         'src/**/*'
                     ],
                     dest: 'dist/'
+                }]
+            },
+            docs: {
+                files: [{
+                    cwd: '',
+                    expand: true,
+                    flatten: true,
+                    src: [
+                        'dist/js/bundle.js'
+                    ],
+                    dest: 'docs/assets/'
                 }]
             }
         },
@@ -252,20 +265,6 @@ module.exports = function(grunt) {
                 tagName: '%VERSION%',
                 push: true,
                 pushTo: 'origin'
-            }
-        },
-
-        emailBuilder: {
-            inline: {
-                files : [{
-                    expand: true,
-                    flatten: true,
-                    src: ['emails/src/**/*.html'],
-                    dest: 'emails/dist/'
-                }]
-            },
-            options: {
-                encodeSpecialChars: true
             }
         },
 
@@ -453,7 +452,10 @@ module.exports = function(grunt) {
                 files: {
                     'css/pulsar-ie7.min.css': 'css/pulsar-ie7.css',
                     'css/pulsar-ie8.min.css': 'css/pulsar-ie8.css',
-                    'css/pulsar-ie9.min.css': 'css/pulsar-ie9.css'
+                    'css/pulsar-ie9.min.css': 'css/pulsar-ie9.css',
+                    'css/pulsar-ie7-theme-projector.min.css': 'css/pulsar-ie7-theme-projector.css',
+                    'css/pulsar-ie8-theme-projector.min.css': 'css/pulsar-ie8-theme-projector.css',
+                    'css/pulsar-ie9-theme-projector.min.css': 'css/pulsar-ie9-theme-projector.css'
                 }
             }
         },
@@ -492,7 +494,7 @@ module.exports = function(grunt) {
                 },
                 silent: false
             },
-            files: ['../pulsar/js/casper.js']
+            files: ['../pulsar/tests/js/casper.js']
         },
 
         validation: {
@@ -540,35 +542,36 @@ module.exports = function(grunt) {
     grunt.registerTask('default', [
         'copy',
         'scsslint',
+        'replace',
         'sass:dev',
         'autoprefixer',
         'bless',
         'browserify:dev',
         'browserSync',
-        'watch',
-        'email-build'
+        'watch'
     ]);
 
     grunt.registerTask('post-merge', [
         'exec:fixProximaNova',
+        'replace',
         'sass:dev',
-        'browserify',
-        'email-build'
+        'browserify'
     ]);
 
     grunt.registerTask('build', [
         'scsslint',
+        'replace',
         'sass:dist_modern',
         'sass:dist_ie',
         'autoprefixer',
         'browserify:dist',
         'copy:dist',
-        'emailBuilder',
         'realFavicon',
         'compress'
     ]);
 
     grunt.registerTask('deploy', [
+        'replace',
         'sass:dist_modern',
         'sass:dist_ie',
         'autoprefixer',
@@ -580,16 +583,6 @@ module.exports = function(grunt) {
     grunt.registerTask('favicons', [
         'clean:favicons',
         'realFavicon'
-    ]);
-
-    grunt.registerTask('email-build', [
-        'sass:email',
-        'emailBuilder'
-    ]);
-
-    grunt.registerTask('email-test', [
-        'email-build',
-        'mailgun'
     ]);
 
     grunt.registerTask('wraith', [

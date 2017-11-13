@@ -1,0 +1,15 @@
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
+{% block body %}
+{{
+    html.panel({
+        'title': 'foo',
+        'body': 'bar',
+        'actions_placement': 'center',
+        'actions': [
+            {'label': 'alpha'},
+            {'label': 'bravo'},
+            {'label': 'charlie'}
+        ]
+    })
+}}
+{% endblock %}

@@ -78,16 +78,20 @@ describe('PulsarSortableComponent', function () {
             expect(this.$html.find('.qa-row-one [data-move="up"]').parent().find('.icon-ok-sign').length).to.equal(1);
         });
 
-        it('should remove the success icon after a delay', function () {
-            setTimeout(function (){
+        it('should remove the success icon after a delay', function (done) {
+            this.timeout(5000);
+            setTimeout(() => {
                 expect(this.$html.find('.qa-row-one [data-move="up"]').parent().find('.js-sortable-moved').length).to.equal(0);
-            }, 1000);
+                done();
+            }, 3000);
         });
 
-        it('should show the move links after a delay', function () {
-            setTimeout(function (){
+        it('should show the move links after a delay', function (done) {
+            this.timeout(5000);
+            setTimeout(() => {
                 expect(this.$html.find('.qa-row-one [data-move="up"]').hasClass('hide')).to.be.false;
-            }, 2250);
+                done()
+            }, 3000);
         });
     });
 
