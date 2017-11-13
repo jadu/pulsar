@@ -10,7 +10,11 @@ describe('RepeaterComponent', () => {
     beforeEach(() => {
         $html = $(`
             <div id="html">
-                <div class="repeater">
+                <div 
+                    class="repeater"
+                    data-add-new-group-text="test_add"
+                    data-add-another-group-text="test_add_another"
+                >
                     <div class="repeater__saved-data"></div>
                     <table class="table table--full repeatable__table">
                         <thead class="repeater__preview-headings">
@@ -387,6 +391,42 @@ describe('RepeaterComponent', () => {
 
             // Expect placeholder to be re-added once the last entry is deleted
             expect($repeater.find('.repeater__empty-placeholder')).to.have.length.of(1);
+        });
+
+        it('should update the add new group button text if there are no previews', () => {
+            const event = { preventDefault: sinon.spy () }
+            const { data, clone } = repeaterComponent.saveGroupAsEntry();
+            const preview = repeaterComponent.createEntryPreview(data);
+
+            repeaterComponent.createEditEntryGroup(clone, preview);
+            repeaterComponent.createEntryGroupData(clone);
+            repeaterComponent.handleSaveGroup(event);
+
+            // Expect the placeholder to not be present when we have entries
+            expect($repeater.find('[data-repeater-add-group]').text()).to.equal('test_add_another');
+
+            repeaterComponent.handleDeleteGroup(0, event);
+
+            // Expect placeholder to be re-added once the last entry is deleted
+            expect($repeater.find('[data-repeater-add-group]').text()).to.equal('test_add');
+        })
+    });
+
+    describe('handleSaveGroup', () => {
+        beforeEach(() => {
+            repeaterComponent.init($repeater[0]);
+        });
+
+        it('should update the add new entry button text', () => {
+            const event = { preventDefault: sinon.spy () }
+            const { data, clone } = repeaterComponent.saveGroupAsEntry();
+            const preview = repeaterComponent.createEntryPreview(data);
+
+            repeaterComponent.createEditEntryGroup(clone, preview);
+            repeaterComponent.createEntryGroupData(clone);
+            repeaterComponent.handleSaveGroup(event)
+
+            expect($repeater.find('[data-repeater-add-group]').text()).to.equal('test_add_another');
         });
     });
 });

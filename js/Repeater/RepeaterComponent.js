@@ -24,7 +24,9 @@ class Repeater {
             saveGroup: 'data-repeater-save-group',
             cancelSave: 'data-repeater-cancel-save',
             updateId: 'data-repeater-update-id',
-            savedDataId: 'data-repeater-saved-data-id'
+            savedDataId: 'data-repeater-saved-data-id',
+            addNewGroupText: 'data-add-new-group-text',
+            addAnotherGroupText: 'data-add-another-group-text'
         };
 
         // Merge these with options
@@ -95,7 +97,9 @@ class Repeater {
         const newGroup = this.getQueryReference(this.repeaterQueries.newGroup);
         const { data, clone } = this.saveGroupAsEntry();
         const preview = this.createEntryPreview(data);
+        const addGroup = this.getQueryReference(this.repeaterQueries.addGroup);
 
+        event.preventDefault();
         this.createEntryPreviewUi(preview);
         this.createEditEntryGroup(clone, preview);
         this.createEntryGroupData(clone);
@@ -104,9 +108,9 @@ class Repeater {
         this.repeaterEntries++;
         this.savedEntries++;
 
+        addGroup.innerText = this.repeater.getAttribute(this.repeaterAttributes.addAnotherGroupText);
         $(newGroup).hide();
         $(clone).hide();
-        event.preventDefault();
     }
 
     /**
@@ -168,6 +172,7 @@ class Repeater {
      * @param event
      */
     handleDeleteGroup (repeaterId, event) {
+        const addGroup = this.getQueryReference(this.repeaterQueries.addGroup);
         // remove preview-id
         const preview = this.getQueryReference(this.repeaterQueries.previewDataRoot)
             .querySelector(`[${this.repeaterAttributes.previewId}="${repeaterId}"]`);
@@ -185,6 +190,7 @@ class Repeater {
         this.savedEntries--;
 
         if (!this.savedEntries) {
+            addGroup.innerText = this.repeater.getAttribute(this.repeaterAttributes.addNewGroupText);
             this.addPlaceholder();
         }
     }

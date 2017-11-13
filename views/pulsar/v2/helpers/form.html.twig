@@ -2114,7 +2114,11 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
 {% import _self as form %}
 {% set headingLength = options.headings|length %}
 {% spaceless %}
-    <div class="repeater">
+    <div
+        class="repeater"
+        data-add-new-group-text="{{ options['add-new-group-text']|default('Add') }}"
+        data-add-another-group-text="{{ options['add-another-group-text']|default('Add another') }}"
+    >
         <div class="repeater__saved-data" style="display: none;"></div>
         <div class="form__group">
             {{
