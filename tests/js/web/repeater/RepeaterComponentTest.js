@@ -370,5 +370,23 @@ describe('RepeaterComponent', () => {
             expect(preview).to.be.falsy;
             expect(clone).to.be.falsy;
         });
+
+        it('should add the placeholder if there are no previews', () => {
+            const event = { preventDefault: sinon.spy () }
+            const { data, clone } = repeaterComponent.saveGroupAsEntry();
+            const preview = repeaterComponent.createEntryPreview(data);
+
+            repeaterComponent.createEditEntryGroup(clone, preview);
+            repeaterComponent.createEntryGroupData(clone);
+            repeaterComponent.handleSaveGroup(event);
+
+            // Expect the placeholder to not be present when we have entries
+            expect($repeater.find('.repeater__empty-placeholder')).to.have.length.of(0);
+
+            repeaterComponent.handleDeleteGroup(0, event);
+
+            // Expect placeholder to be re-added once the last entry is deleted
+            expect($repeater.find('.repeater__empty-placeholder')).to.have.length.of(1);
+        });
     });
 });
