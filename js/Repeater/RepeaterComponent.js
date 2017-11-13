@@ -7,6 +7,7 @@ class Repeater {
      */
     constructor (window) {
         this.repeaterEntries = 0;
+        this.savedEntries = 0;
         this.window = window;
 
         // read-only
@@ -101,6 +102,7 @@ class Repeater {
         this.removePlaceholder();
         this.resetGroupFields();
         this.repeaterEntries++;
+        this.savedEntries++;
 
         $(newGroup).hide();
         $(clone).hide();
@@ -176,10 +178,15 @@ class Repeater {
         const saved = this.getQueryReference(this.repeaterQueries.savedEntryRoot)
             .querySelector(`[${this.repeaterAttributes.savedDataId}="${repeaterId}"]`);
 
+        event.preventDefault();
         preview.remove();
         edit.remove();
         saved.remove();
-        event.preventDefault();
+        this.savedEntries--;
+
+        if (!this.savedEntries) {
+            this.addPlaceholder();
+        }
     }
 
     /**
@@ -216,7 +223,7 @@ class Repeater {
 
         // add a manual cached reference here, as the remove method will lob the original
         // ref in the bin
-        this.repeaterQueries.placeholder.ref = placeholder.cloneNode();
+        this.repeaterQueries.placeholder.ref = placeholder.cloneNode(true);
 
         // remove the placeholder from the DOM
         placeholder.remove();
@@ -338,7 +345,6 @@ class Repeater {
         if (match) {
             const element = document.createElement('td');
 
-            // todo: add test for this attr
             element.setAttribute(this.repeaterAttributes.updateId, `${match.name}_${this.repeaterEntries}`);
             element.textContent = match.value;
             collection.push(element);
