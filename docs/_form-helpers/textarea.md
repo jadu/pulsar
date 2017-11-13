@@ -11,7 +11,14 @@ of the element.
 
 {% code_example form_helpers/textarea %}
 
-<p data-height="105" data-theme-id="24005" data-slug-hash="mAERWZ" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/mAERWZ/">docs - form - textarea</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example form">
+    <div class="form__group">
+        <label for="foo" class="control__label">Textarea</label>
+        <div class="controls">
+            <textarea id="foo" rows="2" class="form__control textarea"></textarea>
+        </div>
+    </div>
+</div>
 
 ## Options applied to parent wrapper
 
@@ -39,7 +46,7 @@ rows        | integer | The height, in rows (default `2`)
 value       | string  | Specifies the value of the input
 data-*      | string  | Data attributes, eg: `'data-foo': 'bar'`
 
-*Any other options not listed here will be applied to the input.
+* Any other options not listed here will be applied to the input.
 
 ## Error state
 
@@ -53,7 +60,15 @@ data-*      | string  | Data attributes, eg: `'data-foo': 'bar'`
 ```
 {% endraw %}
 
-<p data-height="130" data-theme-id="24005" data-slug-hash="qaNRAG" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/qaNRAG/">docs - form - textarea error</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example form">
+    <div class="form__group has-error">
+        <label for="foo" class="control__label">Textarea</label>
+        <div class="controls">
+            <textarea id="foo" rows="2" class="form__control textarea"></textarea>
+            <span class="help-block is-error"><i class="icon-warning-sign"></i> Something went wrong</span>
+        </div>
+    </div>
+</div>
 
 ## Rows
 
@@ -71,7 +86,14 @@ The height of a textarea can be increased by defining a number of `rows` that su
 ```
 {% endraw %}
 
-<p data-height="212" data-theme-id="24005" data-slug-hash="kkXgRQ" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/kkXgRQ/">docs - form - textarea</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example form">
+    <div class="form__group">
+        <label for="foo" class="control__label">Large textarea</label>
+        <div class="controls">
+            <textarea id="foo" rows="5" class="form__control textarea"></textarea>
+        </div>
+    </div>
+</div>
 
 ## Widths
 

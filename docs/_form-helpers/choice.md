@@ -6,8 +6,22 @@ category: Form helpers
 
 Displayed as a question with multiple answers, each of which has its own label and can allow either singular (checkboxes) or multiple (radios) choice.
 
-<p data-height="185" data-theme-id="24005" data-slug-hash="QNagrB" data-default-tab="result" data-user="pulsar" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/QNagrB/">QNagrB</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example form">
+    <div class="form__group form-choice form__group--medium">
+        <label class="control__label">Assign blame to</label>
+        <div class="controls">
+
+          <label class="control__label"><input value="sunshine" name="foo" type="radio" class="form__control radio">Sunshine</label>
+
+          <label class="control__label"><input value="italic" name="foo" type="radio" class="form__control radio">Moonlight</label>
+
+          <label class="control__label"><input value="italic" name="foo" type="radio" class="form__control radio">Good times</label>
+
+          <label class="control__label is-selected"><input value="underline" name="foo" type="radio" checked="" class="form__control radio">Boogie</label>
+
+        </div>
+    </div>
+</div>
 
 The choice helper will will automatically adhere to Pulsar's form styleguide by switching to a [select2](select2.md) element if more than 5 options are provided.
 
@@ -64,8 +78,22 @@ You can disable individual choices by adding the `disabled` attribute to the opt
 ```
 {% endraw %}
 
-<p data-height="185" data-theme-id="24005" data-slug-hash="RoqxPe" data-default-tab="result" data-user="pulsar" data-embed-version="2" data-pen-title="docs - choice - disabled" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/RoqxPe/">docs - choice - disabled</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example form">
+    <div class="form__group form-choice form__group--medium">
+        <label class="control__label">Assign blame to</label>
+        <div class="controls">
+
+          <label class="control__label"><input value="sunshine" name="foo" type="radio" class="form__control radio"><span class="form-choice__label">Sunshine</span></label>
+
+          <label class="control__label"><input value="italic" name="foo" type="radio" class="form__control radio" disabled="disabled"><span class="form-choice__label">Moonlight</span></label>
+
+          <label class="control__label"><input value="italic" name="foo" type="radio" class="form__control radio"><span class="form-choice__label">Good times</span></label>
+
+          <label class="control__label is-selected"><input value="underline" name="foo" type="radio" checked="" class="form__control radio"><span class="form-choice__label">Boogie</span></label>
+
+        </div>
+    </div>
+</div>
 
 ## Choice Block
 
@@ -83,10 +111,21 @@ Block styling is available for the choice helper, add the `choice--block` modifi
 ```
 {% endraw %}
 
-<p data-height="180" data-theme-id="24005" data-slug-hash="XdzwME" data-default-tab="result" data-user="pulsar" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/XdzwME/">XdzwME</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example form">
+    <div class="form__group form-choice choice--block form__group--medium">
+      <label class="control__label">Radios
+        </label><div class="controls"><label class="control__label"><input value="bold" name="foo" type="radio" class="form__control radio"><i class="icon-bold"></i> Bold
+        </label><label class="control__label is-selected"><input value="italic" name="foo" type="radio" checked="" class="form__control radio"><i class="icon-italic"></i> Italic
+        </label><label class="control__label"><input value="underline" name="foo" type="radio" class="form__control radio"><i class="icon-underline"></i> Underline
+        </label></div></div>
+</div>
 
 Add `choice--block choice--block-inline` to lay the options out horizontally.
 
-<p data-height="120" data-theme-id="24005" data-slug-hash="pydmrr" data-default-tab="result" data-user="pulsar" data-embed-version="2" data-pen-title="pydmrr" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/pydmrr/">pydmrr</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example form">
+    <div class="form__group form-choice choice--block choice--block-inline form__group--small">
+      <label class="control__label">Radios
+        </label><div class="controls"><label class="control__label is-selected"><input value="bold" checked="" name="foo" type="radio" class="form__control radio">Yes
+        </label><label class="control__label"><input value="underline" name="foo" type="radio" class="form__control radio">No
+        </label></div></div>
+</div>

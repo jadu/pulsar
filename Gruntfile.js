@@ -6,21 +6,6 @@ module.exports = function(grunt) {
 
         pkg:     grunt.file.readJSON('package.json'),
         pulsar:  grunt.file.readJSON('pulsar.json'),
-        secrets: grunt.file.readJSON('secrets.json'),
-
-        mailgun: {
-            cmsDetail: {
-                options: {
-                    key: '<%= secrets.mailgun.api_key %>',
-                    sender: '<%= secrets.mailgun.sender %>',
-                    recipient: '<%= secrets.mailgun.recipient %>',
-                    subject: 'Test Pulsar Email Template',
-                    preventThreading: true,
-                    hideRecipient: true
-                },
-                src: ['emails/dist/*.html']
-            }
-        },
 
         browserify: {
             dev: {
@@ -110,20 +95,6 @@ module.exports = function(grunt) {
                     extDot: 'first',
                     src:    'pulsar-ie*.scss'
                 }]
-            },
-            email: {
-                options: {
-                    outputStyle: 'nested',
-                    sourceMap: true
-                },
-                files: [{
-                    cwd:    'emails/stylesheets/',
-                    dest:   'emails/css/',
-                    expand: true,
-                    ext:    '.css',
-                    extDot: 'first',
-                    src:    '*.scss'
-                }]
             }
         },
 
@@ -194,10 +165,6 @@ module.exports = function(grunt) {
                 files: 'stylesheets/**/*.scss',
                 tasks: ['scsslint']
             },
-            emails: {
-                files: ['emails/**/*'],
-                tasks: ['emailBuilder']
-            },
             js: {
                 files: ['js/**/*.js', 'tests/js/**/*', 'package.json'],
                 tasks: ['browserify:dev']
@@ -254,8 +221,8 @@ module.exports = function(grunt) {
         },
 
         copy: {
-          dist: {
-            files: [{
+            dist: {
+                files: [{
                     expand: true,
                     cwd: '',
                     src: [
@@ -266,6 +233,17 @@ module.exports = function(grunt) {
                         'src/**/*'
                     ],
                     dest: 'dist/'
+                }]
+            },
+            docs: {
+                files: [{
+                    cwd: '',
+                    expand: true,
+                    flatten: true,
+                    src: [
+                        'dist/js/bundle.js'
+                    ],
+                    dest: 'docs/assets/'
                 }]
             }
         },
@@ -287,20 +265,6 @@ module.exports = function(grunt) {
                 tagName: '%VERSION%',
                 push: true,
                 pushTo: 'origin'
-            }
-        },
-
-        emailBuilder: {
-            inline: {
-                files : [{
-                    expand: true,
-                    flatten: true,
-                    src: ['emails/src/**/*.html'],
-                    dest: 'emails/dist/'
-                }]
-            },
-            options: {
-                encodeSpecialChars: true
             }
         },
 
@@ -530,7 +494,7 @@ module.exports = function(grunt) {
                 },
                 silent: false
             },
-            files: ['../pulsar/js/casper.js']
+            files: ['../pulsar/tests/js/casper.js']
         },
 
         validation: {
@@ -584,16 +548,14 @@ module.exports = function(grunt) {
         'bless',
         'browserify:dev',
         'browserSync',
-        'watch',
-        'email-build'
+        'watch'
     ]);
 
     grunt.registerTask('post-merge', [
         'exec:fixProximaNova',
         'replace',
         'sass:dev',
-        'browserify',
-        'email-build'
+        'browserify'
     ]);
 
     grunt.registerTask('build', [
@@ -604,7 +566,6 @@ module.exports = function(grunt) {
         'autoprefixer',
         'browserify:dist',
         'copy:dist',
-        'emailBuilder',
         'realFavicon',
         'compress'
     ]);
@@ -622,16 +583,6 @@ module.exports = function(grunt) {
     grunt.registerTask('favicons', [
         'clean:favicons',
         'realFavicon'
-    ]);
-
-    grunt.registerTask('email-build', [
-        'sass:email',
-        'emailBuilder'
-    ]);
-
-    grunt.registerTask('email-test', [
-        'email-build',
-        'mailgun'
     ]);
 
     grunt.registerTask('wraith', [

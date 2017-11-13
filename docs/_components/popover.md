@@ -6,42 +6,26 @@ category: Components
 
 Add small overlays of content for super concise functions or toggle-able options.
 
-Examples:
+{% code_example html_helpers/popover %}
 
-As raw HTML:
+<div class="pulsar-example" style="height: 170px;">
+    <p style="margin-top: 50px;">
+        <a
+            href="#"
+            data-title="Popover Title"
+            data-content="This is the popover content. It can (optionally) contain <strong><u>HTML</u></strong>"
+            data-placement="right"
+            data-toggle="popover"
+            data-html="true"
+            data-original-title="" title="">
+            Click to toggle a popover
+        </a>
+    </p>
+</div>
 
-```html
-<a
-    href="#"
-    class="btn"
-    data-toggle="popover"
-    data-content="This is the popover content. It can (optionally) contain <strong><u>HTML</u></strong>"
-    data-title="Popover Title"
-    data-html="true">Click to toggle popover</a>
-```
-
-Or as helper parameters:
-
-{% raw %}
-```twig
-{{
-    html.link({
-        'href': '#',
-        'label': 'Click to toggle popover',
-        'data-toggle': 'popover',
-        'data-title': 'Popover Title',
-        'data-content': 'This is the popover content. It can (optionally) contain <strong><u>HTML</u></strong>',
-        'data-html': true
-    })
-}}
-```
-{% endraw %}
-
-<p data-height="165" data-theme-id="24005" data-slug-hash="QKKgjK" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/QKKgjK/">docs - form - popover</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script>
-
-<div class="alert alert-info" role="alert">
- <h5><i class="fa fa-info-circle"></i> Popovers on disabled elements require wrapper elements</h5>
- <p>To add a popover to a disabled or <code>.disabled</code> element, put the element inside of a <code>&lt;div&gt;</code> and apply the popover to that <code>&lt;div&gt;</code> instead.</p>
+<div class="pulsar-panel">
+    <div class="panel__title"><i class="fa fa-info-circle"></i> Popovers on disabled elements require a wrapper</div>
+    <div class="panel__body">To add a popover to a disabled or <code>.disabled</code> element, put the element inside of a <code>&lt;div&gt;</code> and apply the popover to that <code>&lt;div&gt;</code> instead.</div>
 </div>
 
 ## Options

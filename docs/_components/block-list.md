@@ -10,8 +10,13 @@ A simple way to present lists of information using whatever markup scheme is mos
 
 {% code_example html_helpers/block-list %}
 
-<p data-height="268" data-theme-id="24005" data-slug-hash="zGQryX" data-default-tab="result" data-user="stanton" class='codepen'>See the Pen <a href='http://codepen.io/stanton/pen/zGQryX/'>zGQryX</a> by Paul Stanton (<a href='http://codepen.io/stanton'>@stanton</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example">
+    <ul class="block-list">
+        <li class="block-list__item">One</li>
+        <li class="block-list__item">Two</li>
+        <li class="block-list__item">Three</li>
+    </ul>
+</div>
 
 List items can be a singular block-level element, or a collection of elements in a wrapper.
 
@@ -56,19 +61,30 @@ Add an optional header and/or footer row to your block list.
 
 ### Selected item
 
-Use `.is-selected` on a `block-list__item` to highlight a currently selected item.
+Use `.is-selected` on a `.block-list__item` to highlight a currently selected item.
 
-<p data-height="268" data-theme-id="24005" data-slug-hash="jPoVPp" data-default-tab="result" data-user="stanton" class='codepen'>See the Pen <a href='http://codepen.io/stanton/pen/jPoVPp/'>Block list - selected item</a> by Paul Stanton (<a href='http://codepen.io/stanton'>@stanton</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example">
+    <ul class="block-list block-list--underlined">
+        <li class="block-list__item">One</li>
+        <li class="block-list__item is-selected">Two</li>
+        <li class="block-list__item">Three</li>
+    </ul>
+</div>
 
-### Disabled items
+## Disabled items
 
-Use `.is-disabled` on a `block-list__item` to add visually disabled styling to an item. If using the `link` scheme, the links won't be clickable.
+Use `.is-disabled` on a `.block-list__item` to add visually disabled styling to an item. If using the `link` scheme, the links won't be clickable.
 
 ### States
 
-<p data-height="268" data-theme-id="24005" data-slug-hash="zGQKgQ" data-default-tab="result" data-user="stanton" class='codepen'>See the Pen <a href='http://codepen.io/stanton/pen/zGQKgQ/'>zGQKgQ</a> by Paul Stanton (<a href='http://codepen.io/stanton'>@stanton</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example">
+    <ul class="block-list">
+        <li class="block-list__item has-info">.has-info</li>
+        <li class="block-list__item has-success">.has-success</li>
+        <li class="block-list__item has-warning">.has-warning</li>
+        <li class="block-list__item has-danger">.has-danger / .has-error</li>
+    </ul>
+</div>
 
 ## Variations
 
@@ -76,35 +92,101 @@ Use `.is-disabled` on a `block-list__item` to add visually disabled styling to a
 
 `.block-list--underlined`
 
-<p data-height="268" data-theme-id="24005" data-slug-hash="jPoWdx" data-default-tab="result" data-user="stanton" class='codepen'>See the Pen <a href='http://codepen.io/stanton/pen/jPoWdx/'>jPoWdx</a> by Paul Stanton (<a href='http://codepen.io/stanton'>@stanton</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example">
+    <ul class="block-list block-list--underlined">
+        <li class="block-list__item">One</li>
+        <li class="block-list__item">Two</li>
+        <li class="block-list__item">Three</li>
+    </ul>
+</div>
 
 ### Bordered
 
 `.block-list--bordered`
 
-<p data-height="268" data-theme-id="24005" data-slug-hash="mJYVoO" data-default-tab="result" data-user="stanton" class='codepen'>See the Pen <a href='http://codepen.io/stanton/pen/mJYVoO/'>mJYVoO</a> by Paul Stanton (<a href='http://codepen.io/stanton'>@stanton</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example">
+    <ul class="block-list block-list--bordered">
+        <li class="block-list__item">One</li>
+        <li class="block-list__item">Two</li>
+        <li class="block-list__item">Three</li>
+    </ul>
+</div>
 
 ### Full width
 
-`.block-list--full`
+`.block-list--full` (bordered, to show width)
 
-<p data-height="268" data-theme-id="24005" data-slug-hash="doEpKy" data-default-tab="result" data-user="stanton" class='codepen'>See the Pen <a href='http://codepen.io/stanton/pen/doEpKy/'>doEpKy</a> by Paul Stanton (<a href='http://codepen.io/stanton'>@stanton</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example">
+    <ul class="block-list block-list--bordered block-list--full">
+        <li class="block-list__item">One</li>
+        <li class="block-list__item">Two</li>
+        <li class="block-list__item">Three</li>
+    </ul>
+</div>
 
 ### Horizontal
 
 `.block-list--horizontal`
 
-<p data-height="429" data-theme-id="24005" data-slug-hash="ZGNpRM" data-default-tab="result" data-user="stanton" class='codepen'>See the Pen <a href='http://codepen.io/stanton/pen/ZGNpRM/'>Block list - horizontal</a> by Paul Stanton (<a href='http://codepen.io/stanton'>@stanton</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example">
+    <ul class="block-list block-list--horizontal">
+        <li class="block-list__item">One</li>
+        <li class="block-list__item">Two</li>
+        <li class="block-list__item">Three</li>
+    </ul>
 
+    <ul class="block-list block-list--underlined block-list--horizontal">
+        <li class="block-list__item">Underlined One</li>
+        <li class="block-list__item">Underlined Two</li>
+        <li class="block-list__item">Underlined Three</li>
+    </ul>
+
+    <ul class="block-list block-list--bordered block-list--horizontal">
+        <li class="block-list__item">Bordered One</li>
+        <li class="block-list__item">Bordered Two</li>
+        <li class="block-list__item">Bordered Three</li>
+    </ul>
+
+    <ul class="block-list block-list--full block-list--horizontal">
+        <li class="block-list__item">Full One</li>
+        <li class="block-list__item">Full Two</li>
+        <li class="block-list__item">Full Three</li>
+    </ul>
+
+    <ul class="block-list block-list--full block-list--horizontal block-list--underlined">
+        <li class="block-list__item">Full Underlined One</li>
+        <li class="block-list__item">Full Underlined Two</li>
+        <li class="block-list__item">Full Underlined Three</li>
+    </ul>
+
+    <ul class="block-list block-list--full block-list--horizontal block-list--bordered">
+        <li class="block-list__item">Full Bordered One</li>
+        <li class="block-list__item">Full Bordered Two</li>
+        <li class="block-list__item">Full Bordered Three</li>
+    </ul>
+</div>
 
 ### Contrast
 
 `.block-list--contrast`
 
-<p data-height="509" data-theme-id="24005" data-slug-hash="eNadxb" data-default-tab="result" data-user="stanton" class='codepen'>See the Pen <a href='http://codepen.io/stanton/pen/eNadxb/'>Block list - contrast</a> by Paul Stanton (<a href='http://codepen.io/stanton'>@stanton</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example">
+    <ul class="block-list block-list--contrast">
+        <li class="block-list__item">One</li>
+        <li class="block-list__item">Two</li>
+        <li class="block-list__item">Three</li>
+    </ul>
+
+    <ul class="block-list block-list--underlined block-list--contrast">
+        <li class="block-list__item">Underlined One</li>
+        <li class="block-list__item">Underlined Two</li>
+        <li class="block-list__item">Underlined Three</li>
+    </ul>
+
+    <ul class="block-list block-list--bordered block-list--contrast">
+        <li class="block-list__item">Bordered One</li>
+        <li class="block-list__item">Bordered Two</li>
+        <li class="block-list__item">Bordered Three</li>
+    </ul>
+</div>
 
