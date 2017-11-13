@@ -12,8 +12,9 @@ describe('RepeaterComponent', () => {
             <div id="html">
                 <div 
                     class="repeater"
-                    data-add-new-group-text="test_add"
-                    data-add-another-group-text="test_add_another"
+                    data-repeater-add-new-group-text="test_add"
+                    data-repeater-add-another-group-text="test_add_another"
+                    data-repeater-max-entries="2"
                 >
                     <div class="repeater__saved-data"></div>
                     <table class="table table--full repeatable__table">
@@ -452,10 +453,42 @@ describe('RepeaterComponent', () => {
 
             expect($repeater.find('[data-repeater-add-group]').hasClass('disabled')).to.be.true;
 
-            repeaterComponent.handleSaveGroup(event)
+            repeaterComponent.handleSaveGroup(event);
 
             expect($repeater.find('[data-repeater-add-group]').hasClass('disabled')).to.be.false;
             expect($repeater.find('[data-repeater-add-group]').text()).to.equal('test_add_another');
+        });
+    });
+
+    describe('togglePreviewUi', () => {
+        beforeEach(() => {
+            repeaterComponent.init($repeater[0]);
+        });
+
+        it('should toggle the enabled state of the preview UI', () => {
+            const { data } = repeaterComponent.saveGroupAsEntry();
+            const preview = repeaterComponent.createEntryPreview(data);
+
+            repeaterComponent.createEntryPreviewUi(preview);
+
+            // expect preview UI to be enabled by default
+            $repeater.find('[data-repeater-preview-ui]').each((index, element) => {
+               expect($(element).hasClass('disabled')).to.be.false;
+            });
+
+            repeaterComponent.togglePreviewUi(666);
+
+            // expect preview UI (without id 666) to be disabled
+            $repeater.find('[data-repeater-preview-ui]').each((index, element) => {
+                expect($(element).hasClass('disabled')).to.be.true;
+            });
+
+            repeaterComponent.togglePreviewUi(666);
+
+            // expect preview UI to be toggled back
+            $repeater.find('[data-repeater-preview-ui]').each((index, element) => {
+                expect($(element).hasClass('disabled')).to.be.false;
+            });
         });
     });
 });

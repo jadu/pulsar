@@ -25,8 +25,10 @@ class Repeater {
             cancelSave: 'data-repeater-cancel-save',
             updateId: 'data-repeater-update-id',
             savedDataId: 'data-repeater-saved-data-id',
-            addNewGroupText: 'data-add-new-group-text',
-            addAnotherGroupText: 'data-add-another-group-text'
+            addNewGroupText: 'data-repeater-add-new-group-text',
+            addAnotherGroupText: 'data-repeater-add-another-group-text',
+            maxEntries: 'data-repeater-max-entries',
+            previewUi: 'data-repeater-preview-ui'
         };
 
         // Merge these with options
@@ -42,16 +44,18 @@ class Repeater {
             previewHeadings: { query: `[${this.repeaterAttributes.forName}]` },
             placeholder: { query: '.repeater__empty-placeholder' },
             editGroup: { query: `[${this.repeaterAttributes.editGroup}]` },
-            deleteGroup: { query: `[${this.repeaterAttributes.deleteGroup}]` }
+            deleteGroup: { query: `[${this.repeaterAttributes.deleteGroup}]` },
+            preview: { query: `[${this.repeaterAttributes.previewId}]` },
+            previewUi: { query: `[${this.repeaterAttributes.previewUi}]` }
         };
 
         // Preview UI HTML
         this.previewUiHTML = `
             <td class="table__td table__td--align-right table-row__actions">                
-                <a ${this.repeaterAttributes.editGroup} href="#edit" class="remove__control alt-link margin-right">
+                <a ${this.repeaterAttributes.editGroup} ${this.repeaterAttributes.previewUi} href="#edit" class="remove__control alt-link margin-right">
                     <i class="icon-pencil"><span class="hide">Edit</span></i>
                 </a>
-                <a ${this.repeaterAttributes.deleteGroup} href="#delete" class="remove__control alt-link margin-right">
+                <a ${this.repeaterAttributes.deleteGroup} ${this.repeaterAttributes.previewUi} href="#delete" class="remove__control alt-link margin-right">
                     <i class="icon-remove-sign"><span class="hide">Delete</span></i>
                 </a>
             </td>
@@ -69,7 +73,11 @@ class Repeater {
         this.removeGroupInputNames(this.getQueryReference(this.repeaterQueries.newGroup));
 
         this.getQueryReference(this.repeaterQueries.addGroup)
-            .addEventListener('click', this.handleAddGroup.bind(this));
+            .addEventListener('click', this.activeHandler.bind(
+                null,
+                this.getQueryReference(this.repeaterQueries.addGroup),
+                this.handleAddGroup.bind(this)
+            ));
 
         this.getQueryReference(this.repeaterQueries.saveGroup)
             .addEventListener('click', this.handleSaveGroup.bind(this));
@@ -92,6 +100,16 @@ class Repeater {
     }
 
     /**
+     * Toggle the enabled state of the preview UI
+     * @param repeaterId {number}
+     */
+    togglePreviewUi (repeaterId) {
+        this.getQueryReference(this.repeaterQueries.preview, { all: true })
+            .filter(preview => parseInt(preview.getAttribute(this.repeaterAttributes.previewId), 10) !== repeaterId)
+            .forEach(preview => $(preview).find(this.repeaterQueries.previewUi.query).toggleClass('disabled'));
+    }
+
+    /**
      * Handle the save group action
      * @param event
      */
@@ -100,6 +118,8 @@ class Repeater {
         const { data, clone } = this.saveGroupAsEntry();
         const preview = this.createEntryPreview(data);
         const addGroup = this.getQueryReference(this.repeaterQueries.addGroup);
+        const maxItems = this.repeater.getAttribute(this.repeaterAttributes.maxEntries);
+        const parsedMaxItems = maxItems === 'false' ? Infinity : parseInt(maxItems, 10);
 
         event.preventDefault();
         this.createEntryPreviewUi(preview);
@@ -110,8 +130,11 @@ class Repeater {
         this.repeaterEntries++;
         this.savedEntries++;
 
+        if (this.savedEntries < parsedMaxItems) {
+            $(addGroup).removeClass('disabled');
+        }
+
         addGroup.innerText = this.repeater.getAttribute(this.repeaterAttributes.addAnotherGroupText);
-        $(addGroup).removeClass('disabled');
         $(newGroup).hide();
         $(clone).hide();
     }
@@ -147,13 +170,24 @@ class Repeater {
      * @param previewElement {HTMLElement}
      */
     createEntryPreviewUi (previewElement) {
+        let edit;
+        let remove;
+
         $(previewElement).append(this.previewUiHTML);
+        edit = previewElement.querySelector(this.repeaterQueries.editGroup.query);
+        remove = previewElement.querySelector(this.repeaterQueries.deleteGroup.query);
 
-        previewElement.querySelector(this.repeaterQueries.editGroup.query)
-            .addEventListener('click', this.handleEditGroup.bind(this, this.repeaterEntries));
+        edit.addEventListener('click', this.activeHandler.bind(
+            null,
+            edit,
+            this.handleEditGroup.bind(this, this.repeaterEntries)
+        ));
 
-        previewElement.querySelector(this.repeaterQueries.deleteGroup.query)
-            .addEventListener('click', this.handleDeleteGroup.bind(this, this.repeaterEntries));
+        remove.addEventListener('click', this.activeHandler.bind(
+            null,
+            remove,
+            this.handleDeleteGroup.bind(this, this.repeaterEntries)
+        ));
     }
 
     /**
@@ -165,6 +199,7 @@ class Repeater {
         const previewDataRoot = this.getQueryReference(this.repeaterQueries.previewDataRoot);
         const editGroup = previewDataRoot.querySelector(`[${this.repeaterAttributes.editId}="${repeaterId}"]`);
 
+        this.togglePreviewUi(repeaterId);
         $(editGroup).show();
         event.preventDefault();
     }
@@ -176,6 +211,8 @@ class Repeater {
      */
     handleDeleteGroup (repeaterId, event) {
         const addGroup = this.getQueryReference(this.repeaterQueries.addGroup);
+        const maxItems = this.repeater.getAttribute(this.repeaterAttributes.maxEntries);
+        const parsedMaxItems = maxItems === 'false' ? Infinity : parseInt(maxItems, 10);
         // remove preview-id
         const preview = this.getQueryReference(this.repeaterQueries.previewDataRoot)
             .querySelector(`[${this.repeaterAttributes.previewId}="${repeaterId}"]`);
@@ -192,6 +229,10 @@ class Repeater {
         saved.remove();
         this.savedEntries--;
 
+        if (this.savedEntries < parsedMaxItems) {
+            $(addGroup).removeClass('disabled');
+        }
+
         if (!this.savedEntries) {
             addGroup.innerText = this.repeater.getAttribute(this.repeaterAttributes.addNewGroupText);
             this.addPlaceholder();
@@ -205,9 +246,14 @@ class Repeater {
     handleCancelGroup (event) {
         const newGroup = this.getQueryReference(this.repeaterQueries.newGroup);
         const addGroup = this.getQueryReference(this.repeaterQueries.addGroup);
+        const maxItems = this.repeater.getAttribute(this.repeaterAttributes.maxEntries);
+        const parsedMaxItems = maxItems === 'false' ? Infinity : parseInt(maxItems, 10);
+
+        if (this.savedEntries < parsedMaxItems) {
+            $(addGroup).removeClass('disabled');
+        }
 
         this.resetGroupFields();
-        $(addGroup).removeClass('disabled');
         $(newGroup).hide();
         event.preventDefault();
     }
@@ -293,6 +339,7 @@ class Repeater {
             savedData.querySelector(`[name="${name}"]`).value = input.value;
         });
 
+        this.togglePreviewUi(repeaterId);
         $(group).hide();
         event.preventDefault();
     }
@@ -314,6 +361,7 @@ class Repeater {
                 .querySelector(`[name="${input.getAttribute(this.repeaterAttributes.name)}"]`).value;
         });
 
+        this.togglePreviewUi(repeaterId);
         $(group).hide();
         event.preventDefault();
     }
@@ -434,6 +482,18 @@ class Repeater {
         }
 
         return ref;
+    }
+
+    /**
+     * Wrap event handlers with enabled/disabled logic, to conditionally invoke handlers
+     * @param element {HTMLElement}
+     * @param handler {function}
+     * @param event
+     */
+    activeHandler(element, handler, event) {
+        if (!$(element).hasClass('disabled')) {
+            handler(event);
+        }
     }
 }
 
