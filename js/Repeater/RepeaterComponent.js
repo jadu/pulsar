@@ -328,7 +328,7 @@ class Repeater {
     handleUpdateGroup (group, repeaterId, event) {
         const $inputs = $(group).find(':input').not('button');
         const preview = this.getQueryReference(this.repeaterQueries.previewDataRoot);
-        const newGroup = this.getQueryReference(this.repeaterQueries.newGroup);
+        const addGroup = this.getQueryReference(this.repeaterQueries.addGroup);
         const savedData = this.getQueryReference(this.repeaterQueries.savedEntryRoot)
             .querySelector(`[${this.repeaterAttributes.savedDataId}="${repeaterId}"]`);
 
@@ -343,7 +343,7 @@ class Repeater {
         });
 
         this.togglePreviewUi(repeaterId);
-        $(newGroup).removeClass('disabled');
+        $(addGroup).removeClass('disabled');
         $(group).hide();
         event.preventDefault();
     }
@@ -361,6 +361,7 @@ class Repeater {
             .querySelector(`[${this.repeaterAttributes.savedDataId}="${repeaterId}"]`);
 
         // Restore un-saved changes to edit group
+        // TODO file inputs break this, they just need to be reset
         $inputs.each((index, input) => {
             input.value = savedData
                 .querySelector(`[name="${input.getAttribute(this.repeaterAttributes.name)}"]`).value;
