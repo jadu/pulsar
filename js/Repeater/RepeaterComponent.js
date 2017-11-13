@@ -198,8 +198,10 @@ class Repeater {
     handleEditGroup (repeaterId, event) {
         const previewDataRoot = this.getQueryReference(this.repeaterQueries.previewDataRoot);
         const editGroup = previewDataRoot.querySelector(`[${this.repeaterAttributes.editId}="${repeaterId}"]`);
+        const addGroup = this.getQueryReference(this.repeaterQueries.addGroup);
 
         this.togglePreviewUi(repeaterId);
+        $(addGroup).addClass('disabled');
         $(editGroup).show();
         event.preventDefault();
     }
@@ -326,6 +328,7 @@ class Repeater {
     handleUpdateGroup (group, repeaterId, event) {
         const $inputs = $(group).find(':input').not('button');
         const preview = this.getQueryReference(this.repeaterQueries.previewDataRoot);
+        const newGroup = this.getQueryReference(this.repeaterQueries.newGroup);
         const savedData = this.getQueryReference(this.repeaterQueries.savedEntryRoot)
             .querySelector(`[${this.repeaterAttributes.savedDataId}="${repeaterId}"]`);
 
@@ -340,6 +343,7 @@ class Repeater {
         });
 
         this.togglePreviewUi(repeaterId);
+        $(newGroup).removeClass('disabled');
         $(group).hide();
         event.preventDefault();
     }
@@ -352,6 +356,7 @@ class Repeater {
      */
     handleCancelGroupUpdate (group, repeaterId, event) {
         const $inputs = $(group).find(':input').not('button');
+        const addGroup = this.getQueryReference(this.repeaterQueries.addGroup);
         const savedData = this.getQueryReference(this.repeaterQueries.savedEntryRoot)
             .querySelector(`[${this.repeaterAttributes.savedDataId}="${repeaterId}"]`);
 
@@ -362,6 +367,7 @@ class Repeater {
         });
 
         this.togglePreviewUi(repeaterId);
+        $(addGroup).removeClass('disabled');
         $(group).hide();
         event.preventDefault();
     }
