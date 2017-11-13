@@ -361,10 +361,16 @@ class Repeater {
             .querySelector(`[${this.repeaterAttributes.savedDataId}="${repeaterId}"]`);
 
         // Restore un-saved changes to edit group
-        // TODO file inputs break this, they just need to be reset
-        $inputs.each((index, input) => {
+        $inputs.not('[type="file"]').each((index, input) => {
             input.value = savedData
                 .querySelector(`[name="${input.getAttribute(this.repeaterAttributes.name)}"]`).value;
+        });
+        // File inputs have to be reset here as we can't programmatically change their input
+        $inputs.filter('[type="file"]').each((index, input) => {
+            const $input = $(input);
+
+            $input.wrap('<form></form>').closest('form').trigger('reset');
+            $input.unwrap('<form></form>');
         });
 
         this.togglePreviewUi(repeaterId);
