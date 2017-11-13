@@ -84,8 +84,10 @@ class Repeater {
      */
     handleAddGroup (event) {
         const newGroup = this.getQueryReference(this.repeaterQueries.newGroup);
+        const addGroup = this.getQueryReference(this.repeaterQueries.addGroup);
 
         $(newGroup).show();
+        $(addGroup).addClass('disabled');
         event.preventDefault();
     }
 
@@ -109,6 +111,7 @@ class Repeater {
         this.savedEntries++;
 
         addGroup.innerText = this.repeater.getAttribute(this.repeaterAttributes.addAnotherGroupText);
+        $(addGroup).removeClass('disabled');
         $(newGroup).hide();
         $(clone).hide();
     }
@@ -201,8 +204,10 @@ class Repeater {
      */
     handleCancelGroup (event) {
         const newGroup = this.getQueryReference(this.repeaterQueries.newGroup);
+        const addGroup = this.getQueryReference(this.repeaterQueries.addGroup);
 
         this.resetGroupFields();
+        $(addGroup).removeClass('disabled');
         $(newGroup).hide();
         event.preventDefault();
     }

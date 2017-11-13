@@ -95,9 +95,33 @@ describe('RepeaterComponent', () => {
         it('should display the repeater new group fields', () => {
             repeaterComponent.handleAddGroup(event);
 
-
-
             expect($repeaterGroup.css('display')).to.not.equal('none');
+        });
+
+        it('should disable the add new group button', () => {
+            repeaterComponent.handleAddGroup(event);
+
+            expect($repeater.find('[data-repeater-add-group]').hasClass('disabled')).to.be.true;
+        });
+    });
+
+    describe('handleCancelGroup', () => {
+        beforeEach(() => {
+            repeaterComponent.init($repeater[0]);
+        });
+
+        it('should enable the add new group button', () => {
+            const event = { preventDefault: sinon.stub() };
+
+            repeaterComponent.handleAddGroup(event);
+
+            // expect button to be disabled
+            expect($repeater.find('[data-repeater-add-group]').hasClass('disabled')).to.be.true;
+
+            repeaterComponent.handleCancelGroup(event);
+
+            // expect button to be enabled
+            expect($repeater.find('[data-repeater-add-group]').hasClass('disabled')).to.be.false;
         });
     });
 
@@ -417,15 +441,20 @@ describe('RepeaterComponent', () => {
             repeaterComponent.init($repeater[0]);
         });
 
-        it('should update the add new entry button text', () => {
+        it('should update the add new entry button text and enable it', () => {
             const event = { preventDefault: sinon.spy () }
             const { data, clone } = repeaterComponent.saveGroupAsEntry();
             const preview = repeaterComponent.createEntryPreview(data);
 
+            repeaterComponent.handleAddGroup(event);
             repeaterComponent.createEditEntryGroup(clone, preview);
             repeaterComponent.createEntryGroupData(clone);
+
+            expect($repeater.find('[data-repeater-add-group]').hasClass('disabled')).to.be.true;
+
             repeaterComponent.handleSaveGroup(event)
 
+            expect($repeater.find('[data-repeater-add-group]').hasClass('disabled')).to.be.false;
             expect($repeater.find('[data-repeater-add-group]').text()).to.equal('test_add_another');
         });
     });
