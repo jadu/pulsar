@@ -39,7 +39,6 @@
         pulsar.filterBar.init();
         pulsar.disableUi.init();
         pulsar.dropZoneComponent = pulsar.DropZoneComponentFactory.create($('body')[0], '.dropzone');
-        pulsar.repeater.init(document.querySelector('.repeater'));
 
         // Switch out .svg for .png for <img> elements in older browsers
         pulsar.svgeezy.init('nocheck', 'png');
@@ -71,6 +70,15 @@
             supported: !lt10,
             showInputNode: lt10
         });
+
+        // TODO, tidy this up
+        const repeatable = document.querySelector('.repeater');
+
+        // TODO, handle multiple instances of a repeater
+        if (repeatable) {
+            pulsar.repeater.init(repeatable);
+        }
+
 
         // Repeater debug
         document.getElementById('repeater-submit-debug').addEventListener('submit', event => {
