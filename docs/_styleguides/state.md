@@ -5,13 +5,41 @@ title: State Styleguide
 
 Actions which **modify** a state should (principally) be verbs:
 
-<p data-height="145" data-theme-id="19151" data-slug-hash="MajaBa" data-default-tab="result" data-user="stanton" class='codepen'>See the Pen <a href='http://codepen.io/stanton/pen/MajaBa/'>MajaBa</a> by Paul Stanton (<a href='http://codepen.io/stanton'>@stanton</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example">
+    <p>
+      <button class="btn">Lock</button>
+      <button class="btn btn--inverse">Unlock</button>
+    </p>
+
+    <p>
+      <button class="btn btn--primary">Show</button>
+      <button class="btn">Hide</button>
+    </p>
+
+    <p>
+      <button class="btn btn--success">Publish</button>
+      <button class="btn btn--danger">Unpublish</button>
+    </p>
+</div>
 
 Labels which **indicate** the state should be past-participles or adjectives:
 
-<p data-height="120" data-theme-id="19151" data-slug-hash="Kdgdbw" data-default-tab="result" data-user="stanton" class='codepen'>See the Pen <a href='http://codepen.io/stanton/pen/Kdgdbw/'>docs - state - labels</a> by Paul Stanton (<a href='http://codepen.io/stanton'>@stanton</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example">
+    <p>
+      <span class="label label--inverse">Locked</span>
+      <span class="label">Unlocked</span>
+    </p>
+
+    <p>
+      <span class="label label--success">Visible</span>
+      <span class="label label--danger">Hidden</span>
+    </p>
+
+    <p>
+      <span class="label label--success">Published</span>
+      <span class="label label--danger">Offline</span>
+    </p>
+</div>
 
 Use the most appropriate mix of verbs/adjectives to describe a related action or state. In the example above for the 'Unpublish' action, 'offline' is a better adjective to use than 'unpublished'.
 
@@ -51,8 +79,10 @@ Colour should be used where possible to reinforce the action or state that you a
 
 When using iconography there may be the opportunity to use different icons to reflect the state and action; They may often appear together in the same interface.
 
-<p data-height="79" data-theme-id="19151" data-slug-hash="PPGPBx" data-default-tab="result" data-user="stanton" class='codepen'>See the Pen <a href='http://codepen.io/stanton/pen/PPGPBx/'>docs - state - labels</a> by Paul Stanton (<a href='http://codepen.io/stanton'>@stanton</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example">
+    <p>Action: <button class="btn"><i class="icon-unlock"></i> Unlock</button></p>
+    <p>State: <span class="label label--inverse"><i class="icon-lock"></i> Locked</span></p>
+</div>
 
 ## Communicating state changes
 

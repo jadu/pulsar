@@ -90,6 +90,7 @@ fieldset {
         height: auto;
         padding: 0;
         vertical-align: baseline;
+        width: auto;
 
         @include ie-lte(9) {
             border: 0;
@@ -271,7 +272,7 @@ fieldset {
 
     @include respond-min($screen-desktop) {
         &:not(.form__actions--flush) {
-            padding-left: 25%;
+            padding-left: 24.5%;
         }
     }
 }
@@ -311,6 +312,7 @@ fieldset {
 
     // default width
     .form__control,
+    .form__control + .select2,
     .form__group--flush > .control__label + .controls > .form__control {
         @include col-span(4, false, false, 12);
     }
@@ -318,6 +320,7 @@ fieldset {
     // column variations
     @for $i from 1 through 12 {
         .form__control-col--#{$i} .form__control,
+        .form__control-col--#{$i} .form__control + .select2,
         .form__group--flush.form__control-col--#{$i} .control__label + .controls > .form__control {
             @include col-span($i, false, false, 12);
         }
@@ -327,13 +330,15 @@ fieldset {
 // based on the remaining 9 column grid
 
     // default width
-    .control__label + .controls > .form__control {
+    .control__label + .controls > .form__control:not(.checkbox),
+    .control__label + .controls > .form__control:not(.checkbox) + .select2 {
         @include col-span(4, false, false, 9);
     }
 
     // column variations
     @for $i from 1 through 9 {
-        .form__control-col--#{$i} .control__label + .controls > .form__control {
+        .form__control-col--#{$i} .control__label + .controls > .form__control,
+        .form__control-col--#{$i} .control__label + .controls > .form__control + .select2 {
             @include col-span($i, false, false, 9);
         }
     }
@@ -343,17 +348,10 @@ fieldset {
         // 1. allow input-specific widths for fine-grained control
         // 2. allow a class on the main group to control the width of it's controls
         .form__control.form__control--#{$variant},
-        .form__group--#{$variant}.form__group--#{$variant} .control__label + .controls > .form__control {
+        .form__group--#{$variant}.form__group--#{$variant} .control__label + .controls > .form__control,
+        .form__group--#{$variant}.form__group--#{$variant} .control__label + .controls > .form__control + .select2 {
             width: #{$width};
         }
-    }
-
-    // Checkboxes and radios don't need to use the grid widths, but we avoid
-    // using :not() because it makes things overly specific and is a pain to
-    // override (trust me ;)
-    .form__control.checkbox,
-    .form__control.radio {
-        width: auto;
     }
 
     // input-groups default
@@ -510,4 +508,34 @@ fieldset {
         margin-left: 0;
         padding-left: 0;
     }
+}
+
+.form-range .form__control {
+    @extend %range-slider;
+}
+
+.form-range > .controls .form__control {
+    background-color: transparent;
+    height: 48px;
+    padding: 0;
+}
+
+.form-range .input-group-addon:first-child,
+.form-range .input-group-addon:last-child {
+    border: 1px solid color(border);
+    border-radius: $border-radius;
+}
+
+.form-range .input-group .form__control {
+    padding-left: 0;
+    padding-right: $gutter-width;
+}
+
+.form-range .input-group > .input-group-addon + .form__control {
+    padding-left: $gutter-width;
+    padding-right: $gutter-width;
+}
+
+.form-range .input-group > .form__control:last-child {
+    padding-right: 0;
 }

@@ -1,0 +1,10 @@
+{{
+    html.link({
+        'href': '#',
+        'label': 'Click to toggle popover',
+        'data-toggle': 'popover',
+        'data-title': 'Popover Title',
+        'data-content': 'This is the popover content. It can (optionally) contain <strong><u>HTML</u></strong>',
+        'data-html': true
+    })
+}}
