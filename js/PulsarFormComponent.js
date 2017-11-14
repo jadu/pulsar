@@ -17,7 +17,9 @@ PulsarFormComponent.prototype.init = function () {
     // Colourpickers
     component.initColourpickers();
 
-    component.passwordStrengthMeter();
+    // Password Strength Meter
+    component.passwordStrengthMeter('#password__meter');
+    component.passwordStrengthMeter('#password__metertoggle');
 
     // Attach basic pikaday to datepicker fields
     this.$html.find('[data-datepicker=true]').pikaday({
@@ -64,13 +66,15 @@ PulsarFormComponent.prototype.init = function () {
     // choice block click behaviour
     choiceBlock.on('change', '.controls input[type="checkbox"], .controls input[type="radio"]', component.selectionButtons);
 
+    // Hide/Show Eye Icon Toggle
+    component.$html.find('#password__toggle__button').bind('click', component.togglePasswordVisibility);
+    component.$html.find('#password__metertoggle__button').bind('click', component.togglePasswordVisibility);
 };
 
 PulsarFormComponent.prototype.initSelectionButtons = function(e) {
     e.find('input[type="checkbox"]:checked, input[type="radio"]:checked')
         .closest('.control__label')
         .addClass('is-selected');
-
 };
 
 PulsarFormComponent.prototype.initColourpickers = function() {
@@ -111,7 +115,6 @@ PulsarFormComponent.prototype.initColourpickers = function() {
             $pickerInput.spectrum('set', '#' + $input.val());
         });
     });
-
 };
 
 PulsarFormComponent.prototype.selectionButtons = function() {
@@ -127,7 +130,6 @@ PulsarFormComponent.prototype.selectionButtons = function() {
     } else {
         $target.closest('.control__label').removeClass('is-selected');
     }
-
 };
 
 PulsarFormComponent.prototype.initSelect2 = function(target) {
@@ -148,24 +150,30 @@ PulsarFormComponent.prototype.initSelect2 = function(target) {
 
         $this.select2(config);
     });
-
 }
 
 PulsarFormComponent.prototype.togglePasswordVisibility = function() {
-    var passwordInput = document.getElementById('password-toggle'),
-        passStatus = $('#pass-status i');
+    var component = this,
+        passwordStatusIcon = $('#password__metertoggle__button i'),
+        passwordInput = $('#password__metertoggle');
 
-    if (passwordInput.type == 'password')     {
-        passwordInput.type='text';
-        passStatus.className='eye-slash';
+    if (passwordInput.attr('type') === 'password') {
+        passwordInput.attr('type', 'text');
+        passwordStatusIcon.removeClass('icon-eye');
+        passwordStatusIcon.addClass('icon-eye-slash');
     } else {
-        passwordInput.type='password';
-        passStatus.className='eye';
-    }
+        passwordInput.attr('type', 'password');
+        passwordStatusIcon.removeClass('icon-eye-slash');
+        passwordStatusIcon.addClass('icon-eye');
+    };
 }
 
-PulsarFormComponent.prototype.passwordStrengthMeter = function() {
-    $('#password-toggle').password({
+PulsarFormComponent.prototype.passwordStrengthMeter = function(target) {
+    var component = this,
+        $target = target,
+        element = component.$html.find(target);
+
+    element.password({
         shortPass: 'The password is too short',
         badPass: 'Weak: try combining letters & numbers',
         goodPass: 'Medium: try using special charecters',
