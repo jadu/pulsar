@@ -67,8 +67,8 @@ PulsarFormComponent.prototype.init = function () {
     choiceBlock.on('change', '.controls input[type="checkbox"], .controls input[type="radio"]', component.selectionButtons);
 
     // Hide/Show Eye Icon Toggle
-    component.$html.find('#password__toggle__button').bind('click', component.togglePasswordVisibility);
-    component.$html.find('#password__metertoggle__button').bind('click', component.togglePasswordVisibility);
+    component.$html.find('#password__toggle__button').on('click', { input : '#password__toggle', buttonIcon : '#password__toggle__button i' }, component.togglePasswordVisibility);
+    component.$html.find('#password__metertoggle__button').on('click', { input : '#password__metertoggle', buttonIcon : '#password__metertoggle__button i' }, component.togglePasswordVisibility);
 };
 
 PulsarFormComponent.prototype.initSelectionButtons = function(e) {
@@ -152,19 +152,19 @@ PulsarFormComponent.prototype.initSelect2 = function(target) {
     });
 }
 
-PulsarFormComponent.prototype.togglePasswordVisibility = function() {
+PulsarFormComponent.prototype.togglePasswordVisibility = function({data}) {
     var component = this,
-        passwordStatusIcon = $('#password__metertoggle__button i'),
-        passwordInput = $('#password__metertoggle');
+        passwordInput = $(data.input),
+        passwordButtonIcon = $(data.buttonIcon);
 
     if (passwordInput.attr('type') === 'password') {
         passwordInput.attr('type', 'text');
-        passwordStatusIcon.removeClass('icon-eye');
-        passwordStatusIcon.addClass('icon-eye-slash');
+        passwordButtonIcon.removeClass('icon-eye');
+        passwordButtonIcon.addClass('icon-eye-slash');
     } else {
         passwordInput.attr('type', 'password');
-        passwordStatusIcon.removeClass('icon-eye-slash');
-        passwordStatusIcon.addClass('icon-eye');
+        passwordButtonIcon.removeClass('icon-eye-slash');
+        passwordButtonIcon.addClass('icon-eye');
     };
 }
 
