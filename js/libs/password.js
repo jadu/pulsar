@@ -175,26 +175,26 @@
       var shown = true;
       var $text = options.showText;
       var $percentage = options.showPercent;
-      var $graybar = $('<div>').addClass('pass-graybar');
-      var $colorbar = $('<div>').addClass('pass-colorbar');
-      var $insert = $('<div>').addClass('pass-wrapper').append(
+      var $graybar = $('<div>').addClass('password__graybar');
+      var $colorbar = $('<div>').addClass('password__colorbar');
+      var $insert = $('<div>').addClass('password__wrapper form__control').append(
         $graybar.append($colorbar)
       );
 
-      $object.parent().addClass('pass-strength-visible');
+      $object.parent().addClass('password__strength--visible');
       if (options.animate) {
         $insert.css('display', 'none');
         shown = false;
-        $object.parent().removeClass('pass-strength-visible');
+        $object.parent().removeClass('password__strength--visible');
       }
 
       if (options.showPercent) {
-        $percentage = $('<span>').addClass('pass-percent').text('0%');
+        $percentage = $('<span>').addClass('password__percent').text('0%');
         $insert.append($percentage);
       }
 
       if (options.showText) {
-        $text = $('<span>').addClass('pass-text').html(options.enterPass);
+        $text = $('<span>').addClass('password__text').html(options.enterPass);
         $insert.append($text);
       }
 
@@ -236,7 +236,7 @@
           if (!shown) {
             $insert.slideDown(options.animateSpeed, function () {
               shown = true;
-              $object.parent().addClass('pass-strength-visible');
+              $object.parent().addClass('password__strength--visible');
             });
           }
         });
@@ -245,7 +245,7 @@
           if (!$object.val().length && shown) {
             $insert.slideUp(options.animateSpeed, function () {
               shown = false;
-              $object.parent().removeClass('pass-strength-visible')
+              $object.parent().removeClass('password__strength--visible')
             });
           }
         });
