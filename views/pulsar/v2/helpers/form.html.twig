@@ -2119,6 +2119,7 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
         data-repeater-add-new-group-text="{{ options['add-new-group-text']|default('Add') }}"
         data-repeater-add-another-group-text="{{ options['add-another-group-text']|default('Add another') }}"
         data-repeater-max-entries="{{ options['max-entries']|default(false) }}"
+        data-repeater-preview-colspan="{{ options.headings|length + 1 }}"
     >
         <div class="repeater__saved-data" style="display: none;"></div>
         <div class="form__group">
@@ -2147,7 +2148,7 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
                         </tbody>
                         <tfoot>
                         <tr class="repeater__group" data-repeater-new-group>
-                            <td class="table__form" colspan={{ headingLength + 1 }}>
+                            <td class="table__form" colspan="{{ headingLength + 1 }}" data-repeater-new-group-controls>
 
 {% endspaceless %}
 {% endmacro %}
