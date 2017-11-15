@@ -5,7 +5,7 @@
 var $ = require('jquery'),
     PulsarFormComponent = require('../../../js/PulsarFormComponent');
 
-describe('Pulsar Form Component - Select2 elements', function() {
+describe('Pulsar Form Component', function() {
 
     beforeEach(function() {
         this.$html = $('<div id="html"></div>').appendTo('html');
@@ -47,7 +47,13 @@ describe('Pulsar Form Component - Select2 elements', function() {
                     <input value="baz" name="foo" type="checkbox" class="form__control checkbox" checked>Baz</label>\
             </div>\
         </div>\
-        <div class="form__group password__meter password__toggle">\
+	<div class="form__group">\
+            <label class="control__label">Time picker test</label>\
+            <div class="controls">\
+                    <input value="foo" name="foo" type="text" data-timepicker="true" class="form__control qa-foo" />\
+            </div>\
+        </div>\
+	<div class="form__group password__meter password__toggle">\
             <label for="password__metertoggle" class="control__label">Composite Password field with Meter and Toggle</label>\
             <div class="controls">\
                 <div class="input-group has-btn-appended">\
@@ -95,6 +101,7 @@ describe('Pulsar Form Component - Select2 elements', function() {
         this.$tabToggle = this.$html.find('[data-toggle="tab"]');
         this.$modalToggle = this.$html.find('[data-toggle="modal"]');
         this.$modal = this.$html.find('#modal-foo');
+        this.$timepicker = this.$html.find('[data-timepicker="true"]');
 
         this.$password = this.$html.find('#password__metertoggle');
         this.$eyeButton = this.$html.find('#password__metertoggle__button');
@@ -103,10 +110,12 @@ describe('Pulsar Form Component - Select2 elements', function() {
         this.pulsarForm = new PulsarFormComponent(this.$html);
 
         $.fn.select2 = sinon.stub();
+        $.fn.timepicker = sinon.stub();
     });
 
     afterEach(function() {
         delete $.fn.select2;
+        delete $.fn.timepicker;
         this.$html.remove();
     });
 
@@ -159,9 +168,10 @@ describe('Pulsar Form Component - Select2 elements', function() {
             this.$modal.trigger('shown.bs.modal');
         });
 
-        it('Should trigger the select2 init method', function() {
-            setTimeout(function() {
+        it('Should trigger the select2 init method', function(done) {
+            setTimeout(() => {
                 expect(this.pulsarForm.initSelect2).to.have.been.called;
+                done();
             }, 500);
         });
     });
@@ -275,6 +285,18 @@ describe('Pulsar Form Component - Select2 elements', function() {
             expect(this.$password.attr('type') === 'password').to.be.true;
         });
 
+    });
+
+    describe('Timepickers', function() {
+
+        beforeEach(function() {
+            this.pulsarForm.timePickerComponent.init = sinon.stub();
+            this.pulsarForm.init();
+        });
+
+        it('should call the timePickerComponents init method', function() {
+            expect(this.pulsarForm.timePickerComponent.init).to.have.been.called;
+        });
     });
 
 });

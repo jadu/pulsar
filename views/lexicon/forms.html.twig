@@ -18,6 +18,7 @@
 {% set tab_select2 %}{% include 'lexicon/forms/select2.html.twig' %}{% endset %}
 {% set tab_text %}{% include 'lexicon/forms/text.html.twig' %}{% endset %}
 {% set tab_textarea %}{% include 'lexicon/forms/textarea.html.twig' %}{% endset %}
+{% set tab_time %}{% include 'lexicon/forms/time.html.twig' %}{% endset %}
 {% set tab_toggleswitch %}{% include 'lexicon/forms/toggle-switch.html.twig' %}{% endset %}
 
 
@@ -26,8 +27,7 @@
         {
           "id"    : "buttongroup",
           "label" : "Button Group",
-          "src"   : tab_buttongroup,
-          "active": true
+          "src"   : tab_buttongroup
         },
         {
           "id"    : "checkbox",
@@ -87,7 +87,8 @@
         {
           "id"    : "select",
           "label" : "Select",
-          "src"   : tab_select
+          "src"   : tab_select,
+          "active": true
         },
         {
           "id"    : "select2",
@@ -103,6 +104,11 @@
           "id"    : "textarea",
           "label" : "Textarea",
           "src"   : tab_textarea
+        },
+        {
+          "id"    : "time",
+          "label" : "Time",
+          "src"   : tab_time
         },
         {
           "id"    : "toggleswitch",

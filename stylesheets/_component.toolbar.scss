@@ -62,7 +62,7 @@
     }
 
     .dropdown__header {
-        border-bottom: 1px solid $gray-lighter;
+        border-bottom: 1px solid color(gray, lighter);
         font-family: $font-family-regular;
         padding: 3px 15px 3px 10px;
     }
