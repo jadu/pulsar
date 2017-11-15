@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import _ from 'lodash';
+import InputCloneService from './InputCloneService';
 
 class Repeater {
     /**
@@ -9,6 +10,7 @@ class Repeater {
         this.repeaterEntries = 0;
         this.savedEntries = 0;
         this.window = window;
+        this.inputCloneService = new InputCloneService();
 
         // read-only
         this.repeaterAttributes = {
@@ -28,7 +30,9 @@ class Repeater {
             addNewGroupText: 'data-repeater-add-new-group-text',
             addAnotherGroupText: 'data-repeater-add-another-group-text',
             maxEntries: 'data-repeater-max-entries',
-            previewUi: 'data-repeater-preview-ui'
+            previewUi: 'data-repeater-preview-ui',
+            colspan: 'data-repeater-preview-colspan',
+            newGroupControls: 'data-repeater-new-group-controls'
         };
 
         // Merge these with options
@@ -67,6 +71,8 @@ class Repeater {
      * @param repeater {HTMLElement}
      */
     init (repeater) {
+        // TODO add a unique attr to each repeater instance, then use that
+        // as a root to query any other elements
         this.repeater = repeater;
 
         // remove repeater group input names to prevent their values being submitted
@@ -115,7 +121,7 @@ class Repeater {
      */
     handleSaveGroup (event) {
         const newGroup = this.getQueryReference(this.repeaterQueries.newGroup);
-        const { data, clone } = this.saveGroupAsEntry();
+        const { data, clone } = this.saveGroupAsEntry(newGroup);
         const preview = this.createEntryPreview(data);
         const addGroup = this.getQueryReference(this.repeaterQueries.addGroup);
         const maxItems = this.repeater.getAttribute(this.repeaterAttributes.maxEntries);
@@ -123,8 +129,8 @@ class Repeater {
 
         event.preventDefault();
         this.createEntryPreviewUi(preview);
+        this.createEntryGroupData(newGroup);
         this.createEditEntryGroup(clone, preview);
-        this.createEntryGroupData(clone);
         this.removePlaceholder();
         this.resetGroupFields();
         this.repeaterEntries++;
@@ -153,7 +159,7 @@ class Repeater {
         // Clone each input in the group and append to the saved data
         $inputs.each((index, input) => {
             const name = input.getAttribute(this.repeaterAttributes.name);
-            const clone = input.cloneNode(true);
+            const clone = this.inputCloneService.clone(input);
             // Add name attr to
             clone.setAttribute('name', name);
             // Remove the new group attr
@@ -312,6 +318,8 @@ class Repeater {
         this.removeGroupInputNames(group);
         // Insert the group after the preview row
         $(preview).after(group);
+
+        console.log(group.innerHTML)
         // Add events to the save / cancel UI within the group
         group.querySelector(this.repeaterQueries.saveGroup.query)
             .addEventListener('click', this.handleUpdateGroup.bind(this, group, this.repeaterEntries));
@@ -336,6 +344,7 @@ class Repeater {
             const updateIdAttr = this.repeaterAttributes.updateId;
             const name = input.getAttribute(this.repeaterAttributes.name);
             const query = `[${updateIdAttr}="${name}_${repeaterId}"]`;
+
             // Set preview text value to value of the updated input
             preview.querySelector(query).innerText = input.value;
             // Update the saved representation of the input
@@ -387,6 +396,7 @@ class Repeater {
     createEntryPreview (entryData) {
         const previewHeadings = this.getQueryReference(this.repeaterQueries.previewHeadings, { all: true });
         const previewDataRoot = this.getQueryReference(this.repeaterQueries.previewDataRoot);
+        const colspan = parseInt(this.repeater.getAttribute(this.repeaterAttributes.colspan), 10);
 
         // build preview data
         const previewElements = previewHeadings
@@ -395,6 +405,7 @@ class Repeater {
         // append preview data
         const entryRow = document.createElement('tr');
 
+        entryRow.setAttribute('colspan', colspan);
         entryRow.setAttribute(this.repeaterAttributes.previewId, this.repeaterEntries);
         previewElements.forEach(element => entryRow.appendChild(element));
         previewDataRoot.appendChild(entryRow);
@@ -463,13 +474,16 @@ class Repeater {
      * Save a group as a data entry, this will clone the new group form
      * @returns {{ data: Array, clone: HTMLElement|Node }}
      */
-    saveGroupAsEntry () {
-        const repeaterGroup = this.getQueryReference(this.repeaterQueries.newGroup);
-        const clonedGroup = repeaterGroup.cloneNode(true);
-        const $clonedInputs = $(clonedGroup).find(':input').not('button');
-        const entry = { data: [], clone: clonedGroup, id: this.repeaterEntries };
+    saveGroupAsEntry (group) {
+        const $inputs = $(group).find(':input').not('button');
+        const clonedGroup = group.cloneNode(true);
+        const entry = { data: [], clone: clonedGroup };
+        const controls = group.querySelector(`[${this.repeaterAttributes.newGroupControls}]`);
 
-        $clonedInputs.each((index, input) => {
+        controls.innerHTML = '';
+
+        $inputs.each((index, input) => {
+            controls.appendChild(this.inputCloneService.clone(input));
             entry.data.push({
                 name: input.getAttribute(this.repeaterAttributes.name),
                 value: input.value

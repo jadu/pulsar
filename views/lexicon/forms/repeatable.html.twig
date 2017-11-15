@@ -11,14 +11,7 @@
             'label': 'The Pulsar team',
             'empty': 'You have not added any team members',
             'headings': [
-                { name: 'checkbox', label: 'Checkbox' },
-                { name: 'date_picker', label: 'Date' },
-                { name: 'password', label: 'Password' },
-                { name: 'size', label: 'Range' },
-                { name: 'text', label: 'Text' },
-                { name: 'textarea', label: 'Textarea' },
-                { name: 'time', label: 'Time' },
-                { name: 'switch', label: 'Switch' }
+                { name: 'select', label: 'select' }
             ],
             'max-entries': 3,
             'add-new-group-text': 'Add',
@@ -32,67 +25,24 @@
             }}
 
             {{
-                form.checkbox({
-                    'label': 'Default checkbox',
-                    'id': 'checkbox',
-                    'name': 'checkbox'
-                })
-            }}
-
-            {{
-                form.date({
-                    'label': 'Date picker',
-                    'id': 'date_picker',
-                    'name': 'date_picker'
-                })
-            }}
-
-            {{
-                form.password({
-                    'label': 'Your password',
-                    'id': 'password',
-                    'name': 'password'
-                })
-            }}
-
-            {{
-                form.range({
-                    'label': 'Size',
-                    'id': 'size',
-                    'name': 'size'
-                })
-            }}
-
-            {{
-                form.text({
-                    'label': 'text',
-                    'id': 'text',
-                    'name': 'text'
-                })
-            }}
-
-            {{
-                form.textarea({
-                    'label': 'Textarea',
-                    'id': 'textarea',
-                    'name': 'textarea'
-                })
-            }}
-
-            {{
-                form.time({
-                    'label': 'Time',
-                    'id': 'time',
-                    'name': 'time'
-                })
-            }}
-
-            {{
-                form.toggle_switch({
-                    'checked': false,
-                    'id': 'switch',
-                    'label': 'Switch',
-                    'name': 'switch'
+                form.select({
+                    'label': 'Select',
+                    'id': 'select',
+                    'name': 'select',
+                    'options': [
+                    {
+                        'label': 'Choose',
+                        'value': ''
+                    },
+                    {
+                        'label': 'Red',
+                        'value': 'colour_red'
+                    },
+                    {
+                        'label': 'Blue',
+                        'value': 'colour_blue'
+                    }
+                    ]
                 })
             }}
 

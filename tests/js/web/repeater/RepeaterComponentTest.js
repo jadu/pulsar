@@ -30,9 +30,11 @@ describe('RepeaterComponent', () => {
                         </tbody>
                     </table>
                     <div class="repeater__group" data-repeater-new-group>
-                        <input id="input-text" type="text" name="input-text"/>
-                        <a href="#" class="repeater__update-group" data-repeater-save-group>save</a>
-                        <a href="#" class="repeater__save-group" data-repeater-cancel-save>cancel</a>
+                        <div data-repeater-new-group-controls>
+                            <input id="input-text" type="text" name="input-text"/>
+                            <a href="#" class="repeater__update-group" data-repeater-save-group>save</a>
+                            <a href="#" class="repeater__save-group" data-repeater-cancel-save>cancel</a>
+                        </div>
                     </div>
                     <div class="repeater__group-actions">
                         <a href="#" class="repeater__add-group" data-repeater-add-group>Add</a>
@@ -142,11 +144,10 @@ describe('RepeaterComponent', () => {
 
             // add a value to one of the inputs
             $repeaterGroup.find(':input').filter('#input-text').val(value);
-            // // save repeater group
-            entry = repeaterComponent.saveGroupAsEntry();
+            // save repeater group
+            entry = repeaterComponent.saveGroupAsEntry($repeaterGroup[0]);
 
             expect(entry.data[0]).to.deep.equal({ name: 'input-text', value: value });
-            expect(entry.id).to.equal(0);
         });
     });
 
@@ -165,16 +166,18 @@ describe('RepeaterComponent', () => {
     describe('createEntryPreview', () => {
         let $input;
         let $entryRoot;
+        let $repeaterGroup;
 
         beforeEach(() => {
             repeaterComponent.init($repeater[0]);
+            $repeaterGroup = $repeater.find('[data-repeater-new-group]'),
             $entryRoot = $repeater.find('.repeater__preview-data');
             $input = $repeater.find('#input-text');
             $input.val('test_input');
         });
 
         it('should create an entry preview for a saved group', () => {
-            const entry = repeaterComponent.saveGroupAsEntry();
+            const entry = repeaterComponent.saveGroupAsEntry($repeaterGroup[0]);
             let $preview;
 
             repeaterComponent.createEntryPreview(entry.data);
@@ -236,14 +239,14 @@ describe('RepeaterComponent', () => {
 
         beforeEach(() => {
             repeaterComponent.init($repeater[0]);
-            $repeaterGroup = $repeater.find('.repeater__group');
+            $repeaterGroup = $repeater.find('[data-repeater-new-group]');
             $previewData = $repeater.find('.repeater__preview-data');
             $input = $repeater.find('#input-text');
             $input.val('test_input');
         });
 
         it('should insert an edit form after the preview', () => {
-            const { data, clone } = repeaterComponent.saveGroupAsEntry();
+            const { data, clone } = repeaterComponent.saveGroupAsEntry($repeaterGroup[0]);
             const preview = repeaterComponent.createEntryPreview(data);
             let $clonedInputs;
 
@@ -266,16 +269,18 @@ describe('RepeaterComponent', () => {
     describe('createPreviewUi', () => {
         let $previewData;
         let $input;
+        let $repeaterGroup;
 
         beforeEach(() => {
             repeaterComponent.init($repeater[0]);
+            $repeaterGroup = $repeater.find('[data-repeater-new-group]');
             $previewData = $repeater.find('.repeater__preview-data');
             $input = $repeater.find('#input-text');
             $input.val('test_input');
         });
 
         it('should add UI HTML to the preview row', () => {
-            const entry = repeaterComponent.saveGroupAsEntry();
+            const entry = repeaterComponent.saveGroupAsEntry($repeaterGroup[0]);
             const preview = repeaterComponent.createEntryPreview(entry.data);
             let $previewElement;
 
@@ -290,16 +295,18 @@ describe('RepeaterComponent', () => {
 
     describe('handleUpdateGroup', () => {
         let $input;
+        let $repeaterGroup;
 
         beforeEach(() => {
             repeaterComponent.init($repeater[0]);
+            $repeaterGroup = $repeater.find('[data-repeater-new-group]');
             $input = $repeater.find('#input-text');
             $input.val('test_input');
         });
 
         it('should update the preview value', () => {
             const event = { preventDefault: sinon.spy () }
-            const { data, clone } = repeaterComponent.saveGroupAsEntry();
+            const { data, clone } = repeaterComponent.saveGroupAsEntry($repeaterGroup[0]);
             const preview = repeaterComponent.createEntryPreview(data);
             const $dataRoot = $repeater.find('.repeater__saved-data');
             let $updateInput;
@@ -319,15 +326,17 @@ describe('RepeaterComponent', () => {
 
     describe('createEntryGroupData', () => {
         let $input;
+        let $repeaterGroup;
 
         beforeEach(() => {
             repeaterComponent.init($repeater[0]);
+            $repeaterGroup = $repeater.find('[data-repeater-new-group]');
             $input = $repeater.find('#input-text');
             $input.val('test_input');
         });
 
         it('should create a saved entry data element and append to the DOM', () => {
-            const { data, clone } = repeaterComponent.saveGroupAsEntry();
+            const { data, clone } = repeaterComponent.saveGroupAsEntry($repeaterGroup[0]);
             const $dataRoot = $repeater.find('.repeater__saved-data');
             let $savedInput;
 
@@ -344,16 +353,18 @@ describe('RepeaterComponent', () => {
 
     describe('handleCancelGroupUpdate', () => {
         let $input;
+        let $repeaterGroup;
 
         beforeEach(() => {
             repeaterComponent.init($repeater[0]);
+            $repeaterGroup = $repeater.find('[data-repeater-new-group]');
             $input = $repeater.find('#input-text');
             $input.val('test_input');
         });
 
         it('should restore changes to edit group if update is cancelled', () => {
             const event = { preventDefault: sinon.spy () }
-            const { data, clone } = repeaterComponent.saveGroupAsEntry();
+            const { data, clone } = repeaterComponent.saveGroupAsEntry($repeaterGroup[0]);
             const preview = repeaterComponent.createEntryPreview(data);
             let $updateInput;
 
@@ -375,9 +386,11 @@ describe('RepeaterComponent', () => {
     describe('handleDeleteGroup', () => {
         let $input;
         let $savedData;
+        let $repeaterGroup;
 
         beforeEach(() => {
             repeaterComponent.init($repeater[0]);
+            $repeaterGroup = $repeater.find('[data-repeater-new-group]');
             $input = $repeater.find('#input-text');
             $savedData = $repeater.find('.repeater__saved-data');
             $input.val('test_input');
@@ -385,9 +398,10 @@ describe('RepeaterComponent', () => {
 
         it('should remove the preview row and saved data', () => {
             const event = { preventDefault: sinon.spy () }
-            const { data, clone } = repeaterComponent.saveGroupAsEntry();
+            const { data, clone } = repeaterComponent.saveGroupAsEntry($repeaterGroup[0]);
             const preview = repeaterComponent.createEntryPreview(data);
 
+            repeaterComponent.createEntryPreviewUi(preview);
             repeaterComponent.createEditEntryGroup(clone, preview);
             repeaterComponent.createEntryGroupData(clone);
 
@@ -406,11 +420,12 @@ describe('RepeaterComponent', () => {
 
         it('should add the placeholder if there are no previews', () => {
             const event = { preventDefault: sinon.spy () }
-            const { data, clone } = repeaterComponent.saveGroupAsEntry();
-            const preview = repeaterComponent.createEntryPreview(data);
-
-            repeaterComponent.createEditEntryGroup(clone, preview);
-            repeaterComponent.createEntryGroupData(clone);
+            // const { data, clone } = repeaterComponent.saveGroupAsEntry($repeaterGroup[0]);
+            // const preview = repeaterComponent.createEntryPreview(data);
+            //
+            // repeaterComponent.createEntryPreviewUi(preview);
+            // repeaterComponent.createEditEntryGroup(clone, preview);
+            // repeaterComponent.createEntryGroupData(clone);
             repeaterComponent.handleSaveGroup(event);
 
             // Expect the placeholder to not be present when we have entries
@@ -423,12 +438,13 @@ describe('RepeaterComponent', () => {
         });
 
         it('should update the add new group button text if there are no previews', () => {
-            const event = { preventDefault: sinon.spy () }
-            const { data, clone } = repeaterComponent.saveGroupAsEntry();
-            const preview = repeaterComponent.createEntryPreview(data);
-
-            repeaterComponent.createEditEntryGroup(clone, preview);
-            repeaterComponent.createEntryGroupData(clone);
+            const event = { preventDefault: sinon.spy () };
+            // const { data, clone } = repeaterComponent.saveGroupAsEntry($repeaterGroup[0]);
+            // const preview = repeaterComponent.createEntryPreview(data);
+            //
+            // repeaterComponent.createEntryPreviewUi(preview);
+            // repeaterComponent.createEditEntryGroup(clone, preview);
+            // repeaterComponent.createEntryGroupData(clone);
             repeaterComponent.handleSaveGroup(event);
 
             // Expect the placeholder to not be present when we have entries
@@ -438,22 +454,26 @@ describe('RepeaterComponent', () => {
 
             // Expect placeholder to be re-added once the last entry is deleted
             expect($repeater.find('[data-repeater-add-group]').text()).to.equal('test_add');
-        })
+        });
     });
 
     describe('handleSaveGroup', () => {
+        let $repeaterGroup;
+
         beforeEach(() => {
             repeaterComponent.init($repeater[0]);
+            $repeaterGroup = $repeater.find('[data-repeater-new-group]');
         });
 
         it('should update the add new entry button text and enable it', () => {
             const event = { preventDefault: sinon.spy () }
-            const { data, clone } = repeaterComponent.saveGroupAsEntry();
-            const preview = repeaterComponent.createEntryPreview(data);
-
-            repeaterComponent.handleAddGroup(event);
-            repeaterComponent.createEditEntryGroup(clone, preview);
-            repeaterComponent.createEntryGroupData(clone);
+            // const { data, clone } = repeaterComponent.saveGroupAsEntry($repeaterGroup[0]);
+            // const preview = repeaterComponent.createEntryPreview(data);
+            //
+            // repeaterComponent.createEntryPreviewUi(preview);
+            // repeaterComponent.handleAddGroup(event);
+            // repeaterComponent.createEditEntryGroup(clone, preview);
+            // repeaterComponent.createEntryGroupData(clone);
 
             expect($repeater.find('[data-repeater-add-group]').hasClass('disabled')).to.be.true;
 
@@ -465,12 +485,15 @@ describe('RepeaterComponent', () => {
     });
 
     describe('togglePreviewUi', () => {
+        let $repeaterGroup;
+
         beforeEach(() => {
             repeaterComponent.init($repeater[0]);
+            $repeaterGroup = $repeater.find('[data-repeater-new-group]');
         });
 
         it('should toggle the enabled state of the preview UI', () => {
-            const { data } = repeaterComponent.saveGroupAsEntry();
+            const { data } = repeaterComponent.saveGroupAsEntry($repeaterGroup[0]);
             const preview = repeaterComponent.createEntryPreview(data);
 
             repeaterComponent.createEntryPreviewUi(preview);
