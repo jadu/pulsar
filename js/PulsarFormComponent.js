@@ -165,7 +165,7 @@ PulsarFormComponent.prototype.togglePasswordVisibility = function({data}) {
         passwordInput.attr('type', 'password');
         passwordButtonIcon.removeClass('icon-eye-slash');
         passwordButtonIcon.addClass('icon-eye');
-    };
+    }
 }
 
 PulsarFormComponent.prototype.passwordStrengthMeter = function(target) {
