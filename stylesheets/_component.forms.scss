@@ -466,9 +466,10 @@ fieldset {
     width: 10px;
 }
 
-.form-checkbox .checkbox,
-.form-radio .radio {
+.form__group.form-checkbox .form__control.checkbox,
+.form__group.form-radio .form__control.radio {
     margin-top: 17px;
+    width: auto;
 }
 
 // Make sure checkboxes and radios reduce the label's clickable area to the
@@ -483,6 +484,10 @@ fieldset {
     > .controls > .control__label {
         display: inline-block;
         width: 100%;
+    }
+
+    .control__label > .form__control {
+        width: auto;
     }
 }
 
