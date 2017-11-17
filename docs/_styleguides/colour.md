@@ -40,8 +40,69 @@ Use these in your Sass in place of regular colour values.
 
 This palette helps to communicate state, and the effect of a particular action.
 
-<p data-height="160" data-theme-id="19151" data-slug-hash="VvjEVP" data-default-tab="result" data-user="stanton" class='codepen'>See the Pen <a href='http://codepen.io/stanton/pen/VvjEVP/'>docs - colour</a> by Paul Stanton (<a href='http://codepen.io/stanton'>@stanton</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example">
+
+        <div class="swatch swatch--primary-base">
+            <div class="swatch__colour">
+                <span class="swatch__text">primary</span>
+            </div>
+            <div class="swatch__label">
+                <code>color(primary)</code>
+                <span><i class="icon-ok"></i> AA Compliant</span>
+            </div>
+        </div>
+
+        <div class="swatch swatch--info-base">
+            <div class="swatch__colour">
+                <span class="swatch__text">info</span>
+            </div>
+            <div class="swatch__label">
+                <code>color(info)</code>
+                <span><i class="icon-ok"></i> AA Compliant</span>
+            </div>
+        </div>
+
+        <div class="swatch swatch--success-base">
+            <div class="swatch__colour">
+                <span class="swatch__text">success</span>
+            </div>
+            <div class="swatch__label">
+                <code>color(success)</code>
+                <span><i class="icon-ok"></i> AA Compliant</span>
+            </div>
+        </div>
+
+        <div class="swatch swatch--warning-base">
+            <div class="swatch__colour">
+                <span class="swatch__text">warning</span>
+            </div>
+            <div class="swatch__label">
+                <code>color(warning)</code>
+                <span><i class="icon-ok"></i> AA Compliant</span>
+            </div>
+        </div>
+
+        <div class="swatch swatch--danger-base">
+            <div class="swatch__colour">
+                <span class="swatch__text">danger</span>
+            </div>
+            <div class="swatch__label">
+                <code>color(danger)</code>
+                <span><i class="icon-ok"></i> AA Compliant</span>
+            </div>
+        </div>
+
+        <div class="swatch swatch--inverse-base">
+            <div class="swatch__colour">
+                <span class="swatch__text">inverse</span>
+            </div>
+            <div class="swatch__label">
+                <code>color(inverse)</code>
+                <span><i class="icon-ok"></i> AA Compliant</span>
+            </div>
+        </div>
+
+</div>
 
 Each of the state variables has an alternate version which is used to define the colour of any overlaid text or icons. Eg: `color(success, alt)`.
 
@@ -49,13 +110,114 @@ Each of the state variables has an alternate version which is used to define the
 
 Used for colouring UI elements and providing contrast
 
-<p data-height="300" data-theme-id="19151" data-slug-hash="qONQMV" data-default-tab="result" data-user="stanton" class='codepen'>See the Pen <a href='http://codepen.io/stanton/pen/qONQMV/'>docs - colour - monochromes</a> by Paul Stanton (<a href='http://codepen.io/stanton'>@stanton</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example">
+    <div class="swatch swatch--black">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color(black)</code>
+                <span><i class="icon-ok"></i> AA Compliant</span>
+            </div>
+        </div>
+            <div class="swatch swatch--gray-darker">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color(gray, darker)</code>
+                <span><i class="icon-ok"></i> AA Compliant</span>
+            </div>
+        </div>
+            <div class="swatch swatch--gray-dark">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color(gray, dark)</code>
+<span><i class="icon-ok"></i> AA Compliant</span>
+            </div>
+        </div>
+            <div class="swatch swatch--gray-base">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color(gray)</code>
+<span><i class="icon-ok"></i> AA Compliant</span>
+            </div>
+        </div>
+            <div class="swatch swatch--gray-light">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color(gray, light)</code>
+            </div>
+        </div>
+            <div class="swatch swatch--gray-lighter">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color(gray, lighter)</code>
+            </div>
+        </div>
+<div class="swatch swatch--gray-lightest">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color(gray, lightest)</code>
+            </div>
+        </div>
+            <div class="swatch swatch--gray-off-white">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color(gray, off-white)</code>
+            </div>
+        </div>
+            <div class="swatch swatch--white">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color(white)</code>
+            </div>
+        </div>
+
+        </div>
+</div>
 
 ### Text and links
 
-<p data-height="130" data-theme-id="19151" data-slug-hash="PPxBjx" data-default-tab="result" data-user="stanton" class='codepen'>See the Pen <a href='http://codepen.io/stanton/pen/PPxBjx/'>docs - colour - text & links</a> by Paul Stanton (<a href='http://codepen.io/stanton'>@stanton</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example">
+
+            <div class="swatch swatch--text-base">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color(text)</code>
+            </div>
+        </div>
+
+            <div class="swatch swatch--text-light">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color(text, light)</code>
+            </div>
+        </div>
+
+            <div class="swatch swatch--link-base">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color(link)</code>
+            </div>
+</div>
+
+            <div class="swatch swatch--link-hover">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color(link, hover)</code>
+            </div>
+        </div>
+</div>
 
 ---
 
@@ -63,8 +225,48 @@ Used for colouring UI elements and providing contrast
 
 Our colours are what give us our personality. We’re bright, bold and confident. We’re clever but clear.
 
-<p data-height="130" data-theme-id="19151" data-slug-hash="RWqBGM" data-default-tab="result" data-user="stanton" class='codepen'>See the Pen <a href='http://codepen.io/stanton/pen/RWqBGM/'>docs - colour - jadu branding</a> by Paul Stanton (<a href='http://codepen.io/stanton'>@stanton</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example">
+
+            <div class="swatch swatch--jadu-red-base">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color(jadu-red)</code>
+            </div>
+        </div>
+
+            <div class="swatch swatch--jadu-blue-base">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color(jadu-blue)</code>
+            </div>
+        </div>
+
+            <div class="swatch swatch--jadu-green-base">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color(jadu-green)</code>
+            </div>
+        </div>
+
+            <div class="swatch swatch--jadu-teal-base">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color(jadu-teal)</code>
+            </div>
+        </div>
+
+            <div class="swatch swatch--jadu-pink-base">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color(jadu-pink)</code>
+            </div>
+        </div>
+</div>
 
 Each of the principle colours has its individual palette. These can be used as combinations but with care and good reason. If in doubt, stick to the palette.
 
@@ -72,33 +274,231 @@ Each of the principle colours has its individual palette. These can be used as c
 
 Associated with CONTINUUM.
 
-<p data-height="155" data-theme-id="19151" data-slug-hash="dYQzBy" data-default-tab="result" data-user="stanton" class='codepen'>See the Pen <a href='http://codepen.io/stanton/pen/dYQzBy/'>docs - color - jadu red</a> by Paul Stanton (<a href='http://codepen.io/stanton'>@stanton</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example">
+    <div class="swatch swatch--jadu-red-darkest">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color(jadu-red, darkest)</code>
+            </div>
+        </div>
+
+            <div class="swatch swatch--jadu-red-dark">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color(jadu-red, dark)</code>
+            </div>
+        </div>
+
+            <div class="swatch swatch--jadu-red-base">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color(jadu-red)</code>
+            </div>
+        </div>
+
+            <div class="swatch swatch--jadu-red-light">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color(jadu-red, light)</code>
+            </div>
+        </div>
+
+            <div class="swatch swatch--jadu-red-pale">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color(jadu-red, pale)</code>
+            </div>
+        </div>
+
+
+</div>
 
 ### Jadu blue
 
 Associated with CMS.
 
-<p data-height="155" data-theme-id="19151" data-slug-hash="epQEoL" data-default-tab="result" data-user="stanton" class='codepen'>See the Pen <a href='http://codepen.io/stanton/pen/epQEoL/'>epQEoL</a> by Paul Stanton (<a href='http://codepen.io/stfdsanton'>@stanton</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example">
+    <div class="swatch swatch--jadu-blue-darkest">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color(jadu-blue, darkest)</code>
+            </div>
+        </div>
+
+            <div class="swatch swatch--jadu-blue-dark">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color(jadu-blue, dark)</code>
+            </div>
+        </div>
+
+            <div class="swatch swatch--jadu-blue-base">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color(jadu-blue)</code>
+            </div>
+        </div>
+
+            <div class="swatch swatch--jadu-blue-light">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color(jadu-blue, light)</code>
+            </div>
+        </div>
+
+            <div class="swatch swatch--jadu-blue-pale">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color(jadu-blue, pale)</code>
+            </div>
+        </div>
+</div>
 
 ### Jadu green
 
 Associated with XFP.
 
-<p data-height="155" data-theme-id="19151" data-slug-hash="gaQGMm" data-default-tab="result" data-user="stanton" class='codepen'>See the Pen <a href='http://codepen.io/stanton/pen/gaQGMm/'>docs - colour - jadu green</a> by Paul Stanton (<a href='http://codepen.io/stanton'>@stanton</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example">
+    <div class="swatch swatch--jadu-green-darkest">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color(jadu-green, darkest)</code>
+            </div>
+        </div>
+
+            <div class="swatch swatch--jadu-green-dark">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color(jadu-green, dark)</code>
+            </div>
+        </div>
+
+            <div class="swatch swatch--jadu-green-base">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color(jadu-green)</code>
+            </div>
+        </div>
+
+            <div class="swatch swatch--jadu-green-light">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color(jadu-green, light)</code>
+            </div>
+        </div>
+
+            <div class="swatch swatch--jadu-green-pale">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color(jadu-green, pale)</code>
+            </div>
+        </div>
+</div>
 
 ### Jadu teal
 
 Associated with CXM.
 
-<p data-height="155" data-theme-id="19151" data-slug-hash="yYQzJx" data-default-tab="result" data-user="stanton" class='codepen'>See the Pen <a href='http://codepen.io/stanton/pen/yYQzJx/'>docs - colour - teal</a> by Paul Stanton (<a href='http://codepen.io/stanton'>@stanton</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example">
+                <div class="swatch swatch--jadu-teal-darkest">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color(jadu-teal, darkest)</code>
+            </div>
+        </div>
+
+            <div class="swatch swatch--jadu-teal-dark">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color(jadu-teal, dark)</code>
+            </div>
+        </div>
+
+            <div class="swatch swatch--jadu-teal-base">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color(jadu-teal)</code>
+            </div>
+        </div>
+
+            <div class="swatch swatch--jadu-teal-light">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color(jadu-teal, light)</code>
+            </div>
+        </div>
+
+            <div class="swatch swatch--jadu-teal-pale">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color(jadu-teal, pale)</code>
+            </div>
+        </div>
+</div>
 
 ### Jadu pink
 
 Associated with CP.
 
-<p data-height="155" data-theme-id="19151" data-slug-hash="meQBrR" data-default-tab="result" data-user="stanton" class='codepen'>See the Pen <a href='http://codepen.io/stanton/pen/meQBrR/'>docs - colour - pink</a> by Paul Stanton (<a href='http://codepen.io/stanton'>@stanton</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example">
+
+            <div class="swatch swatch--jadu-pink-darkest">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color(jadu-pink, darkest)</code>
+            </div>
+        </div>
+
+            <div class="swatch swatch--jadu-pink-dark">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color(jadu-pink, dark)</code>
+            </div>
+        </div>
+
+            <div class="swatch swatch--jadu-pink-base">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color(jadu-pink)</code>
+            </div>
+        </div>
+
+            <div class="swatch swatch--jadu-pink-light">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color(jadu-pink, light)</code>
+            </div>
+        </div>
+
+            <div class="swatch swatch--jadu-pink-pale">
+            <div class="swatch__colour">
+            </div>
+            <div class="swatch__label">
+                <code>color(jadu-pink, pale)</code>
+            </div>
+        </div>
+</div>

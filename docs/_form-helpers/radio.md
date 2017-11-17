@@ -10,7 +10,14 @@ Generates a radio input field. There are various different options available to 
 
 {% code_example form_helpers/radio %}
 
-<p data-height="80" data-theme-id="24005" data-slug-hash="ORXrEo" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/ORXrEo/">docs - form - radio</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example form">
+    <div class="form__group form-radio">
+        <label for="inputRadioLeft" class="control__label">Default radio</label>
+        <div class="controls">
+            <input id="inputRadioLeft" name="inputRadioLeft" checked="" type="radio" class="form__control radio">
+        </div>
+    </div>
+</div>
 
 ## Options applied to parent wrapper
 
@@ -50,7 +57,15 @@ Any other options not listed here will be applied to the input.
 ```
 {% endraw %}
 
-<p data-height="95" data-theme-id="24005" data-slug-hash="NRANKk" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/NRANKk/">docs - form - radio error</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example form">
+    <div class="form__group has-error form-radio">
+        <label for="inputRadioLeft" class="control__label">Default radio</label>
+        <div class="controls">
+            <input id="inputRadioLeft" name="inputRadioLeft" checked="" type="radio" class="form__control radio">
+            <span class="help-block is-error"><i class="icon-warning-sign"></i> Something went wrong</span>
+        </div>
+    </div>
+</div>
 
 ## Label alignment
 
@@ -68,7 +83,14 @@ Labels follow the regular Pulsar form flow and are positioned down the left. Cli
 ```
 {% endraw %}
 
-<p data-height="80" data-theme-id="24005" data-slug-hash="ORXrEo" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/ORXrEo/">docs - form - radio</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example form">
+    <div class="form__group form-radio">
+        <label for="inputRadioLeft" class="control__label">Default radio</label>
+        <div class="controls">
+            <input id="inputRadioLeft" name="inputRadioLeft" checked="" type="radio" class="form__control radio">
+        </div>
+    </div>
+</div>
 
 ## Radio inline
 
@@ -90,7 +112,13 @@ input_placement | string | `left` (default), `right` position of the input vs th
 ```
 {% endraw %}
 
-<p data-height="75" data-theme-id="24005" data-slug-hash="XjKdjR" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/XjKdjR/">docs - form - radio right label</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example form">
+    <div class="form__group form-radio-inline">
+        <div class="controls">
+            <label for="inputRadioRight" class="control__label"><input id="inputRadioRight" name="inputRadioInline" checked="" type="radio" class="form__control radio">Radio inline</label>
+        </div>
+    </div>
+</div>
 
 {% raw %}
 ```twig
@@ -105,13 +133,30 @@ input_placement | string | `left` (default), `right` position of the input vs th
 ```
 {% endraw %}
 
-<p data-height="75" data-theme-id="24005" data-slug-hash="BLzKoZ" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/BLzKoZ/">docs - form - radio inline right</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example form">
+    <div class="form__group form-radio-inline">
+        <div class="controls">
+            <label for="inputRadioRight" class="control__label">Radio on the right <input id="inputRadioRight" name="inputRadioInline" checked="" type="radio" class="form__control radio"></label>
+        </div>
+    </div>
+</div>
 
 ## Indented radio
 
 Using `form.radio_inline` will cause the radio input to not follow the normal flow of a regular pulsar form, if you want to maintain form alignment, use the `form__group--indent` class to restore the position.
 
-<p data-height="160" data-theme-id="24005" data-slug-hash="LRkNxm" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/LRkNxm/">docs - form - radio indented</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example form">
+    <div class="form__group form-radio-inline">
+        <div class="controls">
+            <label for="inputRadioRight" class="control__label"><input id="inputRadioRight" name="inputRadioInline" checked="" type="radio" class="form__control radio">Radio inline</label>
+        </div>
+    </div>
+    <div class="form__group form-radio-inline form__group--indent">
+        <div class="controls">
+            <label for="inputRadioIndented" class="control__label"><input id="inputRadioIndented" name="inputRadioInline" checked="" type="radio" class="form__control radio">Radio inline &amp; indented</label>
+        </div>
+    </div>
+</div>
 
 ## Alternative styling
 
@@ -119,8 +164,26 @@ Depending on your UI needs, you can display radios as [choice blocks](/choice.md
 
 ###### Choice block
 
-<p data-height="180" data-theme-id="24005" data-slug-hash="YGWqVJ" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/amNRyY/">docs - form - checkbox choice block</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example form">
+    <div class="form__group form-choice choice--block form__group--medium">
+        <label class="control__label">Choice block</label>
+        <div class="controls">
+            <label class="control__label"><input value="bold" name="foo" type="radio" class="form__control radio"><i class="icon-bold"></i> Bold</label>
+            <label class="control__label"><input value="italic" name="foo" type="radio" class="form__control radio"><i class="icon-italic"></i> Italic</label>
+            <label class="control__label"><input value="underline" name="foo" type="radio" class="form__control radio"><i class="icon-underline"></i> Underline</label>
+        </div>
+    </div>
+</div>
 
 ###### Button group
 
-<p data-height="70" data-theme-id="24005" data-slug-hash="bwZpRG" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/jrqZpy/">docs - form - checkbox button group</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example form">
+    <div class="form__group  form__button-group">
+        <label class="control__label">Band</label>
+        <div class="controls btn__group">
+            <input id="am" name="bands" type="radio" class="form__control radio"><label for="am" class="control__label">AM</label>
+            <input id="fm" name="bands" type="radio" class="form__control radio"><label for="fm" class="control__label">FM</label>
+            <input id="mw" name="bands" type="radio" class="form__control radio"><label for="mw" class="control__label">MW</label>
+        </div>
+    </div>
+</div>

@@ -10,8 +10,14 @@ Generates a file input.
 
 {% code_example form_helpers/file %}
 
-<p data-height="75" data-theme-id="24005" data-slug-hash="ZpOQpg" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/ZpOQpg/">docs - form - file</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script>
-
+<div class="pulsar-example form">
+    <div class="form__group">
+        <label for="inputFile" class="control__label">File input</label>
+        <div class="controls">
+            <input id="inputFile" name="inputFile" type="file" class="form__control file">
+        </div>
+    </div>
+</div>
 
 ## Options applied to parent wrapper
 
