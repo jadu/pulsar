@@ -22,8 +22,11 @@ Group a series of related buttons together on a single line. Great for creating 
 ```
 {% endraw %}
 
-<div><p data-height="65" data-theme-id="24005" data-slug-hash="ozxgEo" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/ozxgEo/">docs - html - button group</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script></div>
+<div class="pulsar-example">
+    <div class="btn__group">
+        <button class="btn">Foo</button><button class="btn">Bar</button><button class="btn">Baz</button>
+    </div>
+</div>
 
 ## Options
 
@@ -51,5 +54,6 @@ data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
 ```
 {% endraw %}
 
-<div><p data-height="65" data-theme-id="24005" data-slug-hash="ZpWYoO" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/ZpWYoO/">docs - html - button group with icons</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script></div>
+<div class="pulsar-example">
+    <div class="btn__group"><button class="btn"><i class="icon-align-left"></i></button><button class="btn"><i class="icon-align-center"></i></button><button class="btn"><i class="icon-align-right"></i></button><button class="btn"><i class="icon-align-justify"></i></button></div>
+</div>
