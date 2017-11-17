@@ -100,6 +100,7 @@ $fa-css-prefix: 'icon';
     @import '../../stylesheets/_component.notifications';
     @import '../../stylesheets/_component.pagination';
     @import '../../stylesheets/_component.panels';
+    @import '../../stylesheets/_component.password';
 
     @at-root {
         @import '../../stylesheets/_component.popovers';
@@ -107,7 +108,6 @@ $fa-css-prefix: 'icon';
 
     @import '../../stylesheets/_component.progress-bars';
     @import '../../stylesheets/_component.progress-lists';
-    @import '../../stylesheets/_component.panels';
     @import '../../stylesheets/_component.range-slider';
     @import '../../stylesheets/_component.remove-button';
     @import '../../stylesheets/_component.rules';
@@ -198,6 +198,3 @@ $fa-css-prefix: 'icon';
         color: #fff;
     }
 }
-
-
-
