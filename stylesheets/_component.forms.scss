@@ -382,22 +382,58 @@ fieldset {
 
 // validation
 
-.form__group {
+.form__group:not(.form__group--partial-state) {
   &.has-changed {
-    @include form__control-validation($state-info-text, color(info), $state-info-bg);
+    @include form__group-validation($state-info-text, color(info), $state-info-bg);
   }
 
   &.has-warning {
-    @include form__control-validation($state-warning-text, color(warning), $state-warning-bg);
+    @include form__group-validation($state-warning-text, color(warning), $state-warning-bg);
   }
 
   &.has-error {
-    @include form__control-validation($state-danger-text, color(danger), $state-danger-bg);
+    @include form__group-validation($state-danger-text, color(danger), $state-danger-bg);
   }
 
   &.has-success {
-    @include form__control-validation($state-success-text, color(success), $state-success-bg);
+    @include form__group-validation($state-success-text, color(success), $state-success-bg);
   }
+}
+
+.form__group--partial-state {
+    &.has-changed {
+        @include form__group-partial-validation($state-info-text, color(info));
+    }
+
+    &.has-warning {
+        @include form__group-partial-validation($state-warning-text, color(warning));
+    }
+
+    &.has-error {
+        @include form__group-partial-validation($state-danger-text, color(danger));
+    }
+
+    &.has-success {
+        @include form__group-partial-validation($state-success-text, color(success));
+    }
+}
+
+.form__control {
+    &.has-changed {
+        @include form__control-validation($state-info-text, color(info), $state-info-bg);
+    }
+
+    &.has-warning {
+        @include form__control-validation($state-warning-text, color(warning), $state-warning-bg);
+    }
+
+    &.has-error {
+        @include form__control-validation($state-danger-text, color(danger), $state-danger-bg);
+    }
+
+    &.has-success {
+        @include form__control-validation($state-success-text, color(success), $state-success-bg);
+    }
 }
 
 .help-block {
