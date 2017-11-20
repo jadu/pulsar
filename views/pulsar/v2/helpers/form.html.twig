@@ -526,7 +526,7 @@ https://jadu.github.io/pulsar/form-helpers/compound
                 })
             )
     -}}>
-    <legend class="control__label" {{ util.id(options.id ~ '[label]') }}>{{ options.label|default }}</legend>
+    <legend class="control__label" {{ util.id(options.id ~ '[label]') }}>{{ options.label|default }} {{ util.guidance(options.guidance|default, { 'guidance-container': options['guidance-container']|default }) }}</legend>
 
     <div class="controls">
         {% for input in options.inputs %}
