@@ -1,4 +1,4 @@
-import _ from 'lodash';
+const _ = require('lodash');
 
 class InputCloneService {
     clone (element) {
@@ -17,14 +17,14 @@ class InputCloneService {
      */
     cloneSelect (select) {
         const selectClone = select.cloneNode(true);
-        const originalOptions = [].slice.call(select.children);
 
-        [].slice.call(selectClone.children).forEach(option => {
-            const opt = _.find(originalOptions, o => o.value === option.value);
+        // Empty out options
+        selectClone.innerHTML = '';
 
-            option.selected = opt.selected;
+        // Re-create each option with the state from the cloned select
+        [].slice.call(select.children).forEach(option => {
+            selectClone.appendChild(new Option(option.innerText, option.value, option.selected, option.selected));
         });
-
         return selectClone;
     }
 }

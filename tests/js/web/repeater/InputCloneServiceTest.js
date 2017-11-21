@@ -12,14 +12,14 @@ describe('InputCloneService', () => {
         it('<select/>', () => {
             const $select = $(`
                 <select>
-                    <option value="">Choose a colour</option>
+                    <option value="choose">Choose a colour</option>
                     <option value="red">Red</option>
                     <option value="blue">Blue</option>
                 </select>
             `);
             let clone;
 
-            $select.find('[value="blue"]').prop('selected', true);
+            $select.val('blue');
             clone = inputCloneService.clone($select[0]);
 
             expect(clone.value).to.equal('blue');

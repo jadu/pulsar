@@ -32,6 +32,8 @@ describe('RepeaterComponent', () => {
                     <div class="repeater__group" data-repeater-new-group>
                         <div data-repeater-new-group-controls>
                             <input id="input-text" type="text" name="input-text"/>
+                        </div>
+                        <div>
                             <a href="#" class="repeater__update-group" data-repeater-save-group>save</a>
                             <a href="#" class="repeater__save-group" data-repeater-cancel-save>cancel</a>
                         </div>
@@ -250,16 +252,20 @@ describe('RepeaterComponent', () => {
             const preview = repeaterComponent.createEntryPreview(data);
             let $clonedInputs;
 
-            repeaterComponent.createEditEntryGroup(clone, preview);
+            repeaterComponent.createEditEntryGroup(clone, $repeaterGroup[0], preview);
             $clonedInputs = $(clone).find(':input').not('button');
 
             // expect the entry clone to be inserted after the preview with a corresponding ID
             expect($previewData.find('[data-repeater-preview-id="0"]').next().attr('data-repeater-edit-id'))
                 .to.equal('0');
 
+            // expect each input to have it's name removed
             $clonedInputs.each((index, input) => {
                 expect(input.getAttribute('name')).to.be.falsy;
             });
+
+            // expect the cloned inputs to have the same value as their origin
+            expect($clonedInputs.first().val()).to.equal('test_input');
 
             // expect the new-group attr to have been removed from the cloned group
             expect($previewData.find('[data-repeater-edit-id="0"]').attr('data-repeater-new-group')).to.be.undefined;
@@ -402,7 +408,7 @@ describe('RepeaterComponent', () => {
             const preview = repeaterComponent.createEntryPreview(data);
 
             repeaterComponent.createEntryPreviewUi(preview);
-            repeaterComponent.createEditEntryGroup(clone, preview);
+            repeaterComponent.createEditEntryGroup(clone,$repeaterGroup[0], preview);
             repeaterComponent.createEntryGroupData(clone);
 
             // expect all of our DOM to be in place before removing
@@ -420,12 +426,7 @@ describe('RepeaterComponent', () => {
 
         it('should add the placeholder if there are no previews', () => {
             const event = { preventDefault: sinon.spy () }
-            // const { data, clone } = repeaterComponent.saveGroupAsEntry($repeaterGroup[0]);
-            // const preview = repeaterComponent.createEntryPreview(data);
-            //
-            // repeaterComponent.createEntryPreviewUi(preview);
-            // repeaterComponent.createEditEntryGroup(clone, preview);
-            // repeaterComponent.createEntryGroupData(clone);
+
             repeaterComponent.handleSaveGroup(event);
 
             // Expect the placeholder to not be present when we have entries
@@ -439,12 +440,7 @@ describe('RepeaterComponent', () => {
 
         it('should update the add new group button text if there are no previews', () => {
             const event = { preventDefault: sinon.spy () };
-            // const { data, clone } = repeaterComponent.saveGroupAsEntry($repeaterGroup[0]);
-            // const preview = repeaterComponent.createEntryPreview(data);
-            //
-            // repeaterComponent.createEntryPreviewUi(preview);
-            // repeaterComponent.createEditEntryGroup(clone, preview);
-            // repeaterComponent.createEntryGroupData(clone);
+
             repeaterComponent.handleSaveGroup(event);
 
             // Expect the placeholder to not be present when we have entries
@@ -467,13 +463,8 @@ describe('RepeaterComponent', () => {
 
         it('should update the add new entry button text and enable it', () => {
             const event = { preventDefault: sinon.spy () }
-            // const { data, clone } = repeaterComponent.saveGroupAsEntry($repeaterGroup[0]);
-            // const preview = repeaterComponent.createEntryPreview(data);
-            //
-            // repeaterComponent.createEntryPreviewUi(preview);
-            // repeaterComponent.handleAddGroup(event);
-            // repeaterComponent.createEditEntryGroup(clone, preview);
-            // repeaterComponent.createEntryGroupData(clone);
+
+            repeaterComponent.handleAddGroup(event);
 
             expect($repeater.find('[data-repeater-add-group]').hasClass('disabled')).to.be.true;
 
