@@ -177,14 +177,14 @@
                 $graybar = $('<div>').addClass('password__graybar'),
                 $colorbar = $('<div>').addClass('password__colorbar'),
                 $insert = $('<div>').addClass('password__wrapper form__control').append($graybar.append($colorbar)),
-                $criteriaGroup = $('<div>').addClass('password__criteria').html('<ul> \
-                                                                                    <li>8 characters minimum</li> \
-                                                                                    <li>1 UPPERCASE character</li> \
-                                                                                    <li>1 lowercase character</li> \
-                                                                                    <li>1 Special character</li> \
-                                                                                    <li>1 number</li> \
-                                                                                    <li>Not a common password</li> \
-                                                                                 </ul>');
+                $criteriaGroup = $('<div>').addClass('password__criteria').html('<ul>' +
+                                                                                '<li class="minimumLength">8 characters minimum</li>' +
+                                                                                '<li class="uppercase">1 UPPERCASE character</li>' +
+                                                                                '<li class="lowercase">1 lowercase character</li>' +
+                                                                                '<li class="specialChar">1 Special character</li>' +
+                                                                                '<li class="number">1 number</li>' +
+                                                                                '<li class="commonPassword">Not a common password</li>' +
+                                                                                '</ul>');
 
             $object.parent().addClass('password__strength--visible');
             if (options.animate) {
@@ -235,6 +235,8 @@
                         $object.trigger('password.text', [text, score]);
                     }
                 }
+
+                detectCriteria($object.val());
             });
 
             if (options.animate) {
@@ -264,6 +266,47 @@
                 } else if ((options.criteriaPosition === 'down') && (($('.password__meter .controls').has('.password__criteria').length) < ($('.password__meter input').length))) {
                     $('.password__meter .controls').append($criteriaGroup);
                 }
+            }
+
+            return this;
+        }
+
+        // Toggle Criteria based on score
+        function detectCriteria(password, minimumLength) {
+
+            // Detect Password Length
+            if (password.length >= options.minimumLength) {
+                $('.password__criteria .minimumLength').addClass('passed');
+            } else {
+                $('.password__criteria .minimumLength').removeClass('passed');
+            }
+
+            // Detect Lowercase
+            if (password.match(/([a-z])/)) {
+                $('.password__criteria .lowercase').addClass('passed');
+            } else {
+                $('.password__criteria .lowercase').removeClass('passed');
+            }
+
+            // Detect Upperacase
+            if (password.match(/([A-Z])/)) {
+                $('.password__criteria .uppercase').addClass('passed');
+            } else {
+                $('.password__criteria .uppercase').removeClass('passed');
+            }
+
+            // Detect Number
+            if (password.match(/([0-9])/)) {
+                $('.password__criteria .number').addClass('passed');
+            } else {
+                $('.password__criteria .number').removeClass('passed');
+            }
+
+            // Detect Special Character
+            if (password.match(/([!,@,#,$,%,^,&,*,?,_,~])/)) {
+                $('.password__criteria .specialChar').addClass('passed');
+            } else {
+                $('.password__criteria .specialChar').removeClass('passed');
             }
 
             return this;
