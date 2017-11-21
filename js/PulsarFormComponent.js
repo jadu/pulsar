@@ -20,8 +20,39 @@ PulsarFormComponent.prototype.init = function () {
     component.initColourpickers();
 
     // Password Strength Meter
-    component.passwordStrengthMeter('#password__meter');
-    component.passwordStrengthMeter('#password__metertoggle');
+    this.$html.find('#password__meter').password({
+        shortPass: 'The password is too short',
+        badPass: 'Weak: try combining letters & numbers',
+        goodPass: 'Medium: try using special charecters',
+        strongPass: 'Strong password',
+        enterPass: 'Type your password',
+        showCriteria: true,
+        criteriaPosition: 'up', //up or down
+        showPercent: false,
+        showText: true, // shows the text tips
+        animate: true, // whether or not to animate the progress bar on input blur/focus
+        animateSpeed: 'fast', // the above animation speed
+        username: false, // select the username field (selector or jQuery instance) for better password checks
+        usernamePartialMatch: false, // whether to check for username partials
+        minimumLength: 8 // minimum password length (below this threshold, the score is 0)
+    });
+
+    this.$html.find('#password__metertoggle').password({
+        shortPass: 'The password is too short',
+        badPass: 'Weak: try combining letters & numbers',
+        goodPass: 'Medium: try using special charecters',
+        strongPass: 'Strong password',
+        enterPass: 'Type your password',
+        showCriteria: true,
+        criteriaPosition: 'down', //up or down
+        showPercent: true,
+        showText: true, // shows the text tips
+        animate: true, // whether or not to animate the progress bar on input blur/focus
+        animateSpeed: 'fast', // the above animation speed
+        username: false, // select the username field (selector or jQuery instance) for better password checks
+        usernamePartialMatch: false, // whether to check for username partials
+        minimumLength: 8 // minimum password length (below this threshold, the score is 0)
+    });
 
     // Attach basic pikaday to datepicker fields
     this.$html.find('[data-datepicker=true]').pikaday({
@@ -174,29 +205,6 @@ PulsarFormComponent.prototype.togglePasswordVisibility = function({data}) {
         passwordButtonIcon.removeClass('icon-eye-slash');
         passwordButtonIcon.addClass('icon-eye');
     }
-}
-
-PulsarFormComponent.prototype.passwordStrengthMeter = function(target) {
-    var component = this,
-        $target = target,
-        element = component.$html.find(target);
-
-    element.password({
-        shortPass: 'The password is too short',
-        badPass: 'Weak: try combining letters & numbers',
-        goodPass: 'Medium: try using special charecters',
-        strongPass: 'Strong password',
-        enterPass: 'Type your password',
-        showCriteria: true,
-        criteriaPosition: 'up', //up or down
-        showPercent: false,
-        showText: true, // shows the text tips
-        animate: true, // whether or not to animate the progress bar on input blur/focus
-        animateSpeed: 'fast', // the above animation speed
-        username: false, // select the username field (selector or jQuery instance) for better password checks
-        usernamePartialMatch: false, // whether to check for username partials
-        minimumLength: 8 // minimum password length (below this threshold, the score is 0)
-    });
 }
 
 module.exports = PulsarFormComponent;
