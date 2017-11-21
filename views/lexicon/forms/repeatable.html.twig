@@ -11,7 +11,7 @@
             'label': 'The Pulsar team',
             'empty': 'You have not added any team members',
             'headings': [
-                { name: 'select', label: 'select' }
+                { name: 'checkbox', label: 'checkbox' }
             ],
             'max-entries': 3,
             'add-new-group-text': 'Add',
@@ -25,24 +25,10 @@
             }}
 
             {{
-                form.select({
-                    'label': 'Select',
-                    'id': 'select',
-                    'name': 'select',
-                    'options': [
-                    {
-                        'label': 'Choose',
-                        'value': ''
-                    },
-                    {
-                        'label': 'Red',
-                        'value': 'colour_red'
-                    },
-                    {
-                        'label': 'Blue',
-                        'value': 'colour_blue'
-                    }
-                    ]
+                form.checkbox({
+                    'label': 'checkbox',
+                    'id': 'checkbox',
+                    'name': 'checkbox'
                 })
             }}
 

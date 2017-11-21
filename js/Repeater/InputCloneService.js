@@ -1,6 +1,12 @@
 const _ = require('lodash');
 
 class InputCloneService {
+    /**
+     * Dispatch input clone methods
+     * returns a clone node (deep) by default
+     * @param element
+     * @returns {*|Node}
+     */
     clone (element) {
         const type = {
             'select-one': this.cloneSelect.bind(this),
