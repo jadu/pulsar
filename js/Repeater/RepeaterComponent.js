@@ -1,6 +1,7 @@
 const $ = require('jquery');
 const _ = require('lodash');
 const InputCloneService = require('./InputCloneService');
+const InputValueService = require('./InputValueService');
 
 class Repeater {
     /**
@@ -10,7 +11,10 @@ class Repeater {
         this.repeaterEntries = 0;
         this.savedEntries = 0;
         this.window = window;
+
+        // DI these
         this.inputCloneService = new InputCloneService();
+        this.inputValueService = new InputValueService();
 
         // read-only
         this.repeaterAttributes = {
@@ -36,7 +40,7 @@ class Repeater {
         };
 
         // Merge these with options
-        // TODO: These will probably be read-only
+        // TODO: These will probably be read-only also
         this.repeaterQueries = {
             newGroup: { query: `[${this.repeaterAttributes.newGroup}]` },
             addGroup: { query: `[${this.repeaterAttributes.addGroup}]` },
@@ -363,11 +367,12 @@ class Repeater {
             const updateIdAttr = this.repeaterAttributes.updateId;
             const name = input.getAttribute(this.repeaterAttributes.name);
             const query = `[${updateIdAttr}="${name}_${repeaterId}"]`;
+            const value = this.inputValueService.getValue(input);
 
             // Set preview text value to value of the updated input
-            preview.querySelector(query).innerText = input.value;
+            preview.querySelector(query).innerText = value;
             // Update the saved representation of the input
-            savedData.querySelector(`[name="${name}"]`).value = input.value;
+            this.inputValueService.setValue(savedData.querySelector(`[name="${name}"]`), value);
         });
 
         this.togglePreviewUi(repeaterId);
@@ -390,8 +395,11 @@ class Repeater {
 
         // Restore un-saved changes to edit group
         $inputs.not('[type="file"]').each((index, input) => {
-            input.value = savedData
-                .querySelector(`[name="${input.getAttribute(this.repeaterAttributes.name)}"]`).value;
+            const value = this.inputValueService.getValue(
+                savedData.querySelector(`[name="${input.getAttribute(this.repeaterAttributes.name)}"]`)
+            );
+
+            this.inputValueService.setValue(input, value);
         });
         // File inputs have to be reset here as we can't programmatically change their input
         $inputs.filter('[type="file"]').each((index, input) => {
@@ -416,7 +424,6 @@ class Repeater {
         const previewHeadings = this.getQueryReference(this.repeaterQueries.previewHeadings, { all: true });
         const previewDataRoot = this.getQueryReference(this.repeaterQueries.previewDataRoot);
         const colspan = parseInt(this.repeater.getAttribute(this.repeaterAttributes.colspan), 10);
-
 
         // build preview data
         const previewElements = previewHeadings
@@ -449,7 +456,7 @@ class Repeater {
             const element = document.createElement('td');
 
             element.setAttribute(this.repeaterAttributes.updateId, `${match.name}_${this.repeaterEntries}`);
-            element.textContent = match.value;
+            element.textContent = this.inputValueService.getValue(match);
             collection.push(element);
         }
 
@@ -502,7 +509,7 @@ class Repeater {
         $inputs.each((index, input) => {
             entry.data.push({
                 name: input.getAttribute(this.repeaterAttributes.name),
-                value: input.value
+                value: this.inputValueService.getValue(input)
             });
         });
 
