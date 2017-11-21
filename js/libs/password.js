@@ -143,7 +143,8 @@
          * @return string
          */
         function checkRepetition(rLen, str) {
-            var res = "", repeated = false;
+            var res = "",
+                repeated = false;
 
             for (var i = 0; i < str.length; i++) {
                 repeated = true;
@@ -308,6 +309,13 @@
             } else {
                 $('.password__criteria .specialChar').removeClass('passed');
             }
+
+            // Detect Common Passwords
+            /*if (password.match(/([!,@,#,$,%,^,&,*,?,_,~])/)) {
+                $('.password__criteria .specialChar').addClass('passed');
+            } else {
+                $('.password__criteria .specialChar').removeClass('passed');
+            }*/
 
             return this;
         }
