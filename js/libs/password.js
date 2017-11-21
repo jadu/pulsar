@@ -10,15 +10,15 @@
             strongPass: 'Strong password',
             containsUsername: 'The password contains the username',
             enterPass: 'Type your password',
-            showCriteria: true,
+            showCriteria: false,
             criteriaPosition: 'up',
             showPercent: false,
-            showText: true,
-            animate: true,
+            showText: false,
+            animate: false,
             animateSpeed: 'fast',
             username: false,
-            usernamePartialMatch: true,
-            minimumLength: 4
+            usernamePartialMatch: false,
+            minimumLength: 6
         };
 
         options = $.extend({}, defaults, options);
