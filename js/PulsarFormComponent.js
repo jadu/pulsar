@@ -116,9 +116,11 @@ PulsarFormComponent.prototype.init = function () {
     // choice block click behaviour
     choiceBlock.on('change', '.controls input[type="checkbox"], .controls input[type="radio"]', component.selectionButtons);
 
-    // Hide/Show Eye Icon Toggle
-    component.$html.find('#password__toggle__button').on('click', { input : '#password__toggle', buttonIcon : '#password__toggle__button i' }, component.togglePasswordVisibility);
+    // Hide/Show Text & Eye Icon Toggle
+    component.$html.find('#password__texttoggle__button').on('click', { input : '#password__texttoggle', button : '#password__texttoggle__button' }, component.togglePasswordVisibility);
+    component.$html.find('#password__toggle__button').on('click', { input : '#password__toggle',  buttonIcon : '#password__toggle__button i' }, component.togglePasswordVisibility);
     component.$html.find('#password__metertoggle__button').on('click', { input : '#password__metertoggle', buttonIcon : '#password__metertoggle__button i' }, component.togglePasswordVisibility);
+    component.$html.find('#password__metertoggle__button-2').on('click', { input : '#password__metertoggle-2', button : '#password__metertoggle__button-2' }, component.togglePasswordVisibility);
 
     // initialise tinepickers
     var $timePickers = this.$html.find('[data-timepicker=true]');
@@ -211,16 +213,21 @@ PulsarFormComponent.prototype.initSelect2 = function(target) {
 PulsarFormComponent.prototype.togglePasswordVisibility = function({data}) {
     var component = this,
         passwordInput = $(data.input),
+        passwordButton = $(data.button),
         passwordButtonIcon = $(data.buttonIcon);
+
+        console.log(passwordButton.text());
 
     if (passwordInput.attr('type') === 'password') {
         passwordInput.attr('type', 'text');
         passwordButtonIcon.removeClass('icon-eye');
         passwordButtonIcon.addClass('icon-eye-slash');
+        passwordButton.text('HIDE');
     } else {
         passwordInput.attr('type', 'password');
         passwordButtonIcon.removeClass('icon-eye-slash');
         passwordButtonIcon.addClass('icon-eye');
+        passwordButton.text('SHOW');
     }
 }
 
