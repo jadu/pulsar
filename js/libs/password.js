@@ -175,6 +175,7 @@
                 $text = options.showText,
                 $criteria = options.showCriteria,
                 $percentage = options.showPercent,
+                objectID = '#'+$object.attr('id'),
                 $graybar = $('<div>').addClass('password__graybar'),
                 $colorbar = $('<div>').addClass('password__colorbar'),
                 $insert = $('<div>').addClass('password__wrapper form__control').append($graybar.append($colorbar)),
