@@ -54,6 +54,23 @@ PulsarFormComponent.prototype.init = function () {
         minimumLength: 8 // minimum password length (below this threshold, the score is 0)
     });
 
+    this.$html.find('#password__metertoggle-2').password({
+        shortPass: 'The password is too short',
+        badPass: 'Weak: try combining letters & numbers',
+        goodPass: 'Medium: try using special charecters',
+        strongPass: 'Strong password',
+        enterPass: 'Type your password',
+        showCriteria: true,
+        criteriaPosition: 'down', //up or down
+        showPercent: true,
+        showText: true, // shows the text tips
+        animate: true, // whether or not to animate the progress bar on input blur/focus
+        animateSpeed: 'fast', // the above animation speed
+        username: false, // select the username field (selector or jQuery instance) for better password checks
+        usernamePartialMatch: false, // whether to check for username partials
+        minimumLength: 8 // minimum password length (below this threshold, the score is 0)
+    });
+
     // Attach basic pikaday to datepicker fields
     this.$html.find('[data-datepicker=true]').pikaday({
         format: 'DD/MM/YYYY'
