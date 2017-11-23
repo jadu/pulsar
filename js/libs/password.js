@@ -275,40 +275,41 @@
 
         // Toggle Criteria based on score
         function detectCriteria(password, minimumLength) {
+            var objectID = '#'+$object.attr('id');
 
             // Detect Password Length
             if (password.length >= options.minimumLength) {
-                $('.password__criteria .minimumLength').addClass('passed');
+                $(objectID).siblings('.password__criteria').find('.minimumLength').addClass('passed');
             } else {
-                $('.password__criteria .minimumLength').removeClass('passed');
+                $(objectID).siblings('.password__criteria').find('.minimumLength').removeClass('passed');
             }
 
             // Detect Lowercase
             if (password.match(/([a-z])/)) {
-                $('.password__criteria .lowercase').addClass('passed');
+                $(objectID).siblings('.password__criteria').find('.lowercase').addClass('passed');
             } else {
-                $('.password__criteria .lowercase').removeClass('passed');
+                $(objectID).siblings('.password__criteria').find('.lowercase').removeClass('passed');
             }
 
             // Detect Upperacase
             if (password.match(/([A-Z])/)) {
-                $('.password__criteria .uppercase').addClass('passed');
+                $(objectID).siblings('.password__criteria').find('.uppercase').addClass('passed');
             } else {
-                $('.password__criteria .uppercase').removeClass('passed');
+                $(objectID).siblings('.password__criteria').find('.uppercase').removeClass('passed');
             }
 
             // Detect Number
             if (password.match(/([0-9])/)) {
-                $('.password__criteria .number').addClass('passed');
+                $(objectID).siblings('.password__criteria').find('.number').addClass('passed');
             } else {
-                $('.password__criteria .number').removeClass('passed');
+                $(objectID).siblings('.password__criteria').find('.number').removeClass('passed');
             }
 
             // Detect Special Character
-            if (password.match(/([!,@,#,$,%,^,&,*,?,_,~])/)) {
-                $('.password__criteria .specialChar').addClass('passed');
+            if (password.match(/([ !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])/)) {
+                $(objectID).siblings('.password__criteria').find('.specialChar').addClass('passed');
             } else {
-                $('.password__criteria .specialChar').removeClass('passed');
+                $(objectID).siblings('.password__criteria').find('.specialChar').removeClass('passed');
             }
 
             // Detect Common Passwords
