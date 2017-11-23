@@ -263,10 +263,10 @@
 
             // Show Criteria
             if (options.showCriteria) {
-                if ((options.criteriaPosition === 'up') && (($('.password__meter input').siblings('.password__criteria').length) < ($('.password__meter input').length))) {
-                    $('.password__meter input').before($criteriaGroup);
-                } else if ((options.criteriaPosition === 'down') && (($('.password__meter .controls').has('.password__criteria').length) < ($('.password__meter input').length))) {
-                    $('.password__meter .controls').append($criteriaGroup);
+                if (options.criteriaPosition === 'up') {
+                    $(objectID).before($criteriaGroup);
+                } else if (options.criteriaPosition === 'down')  {
+                    $(objectID).parent().find('.input-group-btn').before($criteriaGroup);
                 }
             }
 
