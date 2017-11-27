@@ -270,11 +270,13 @@ fieldset {
     padding: $line-height-base 0;
     position: relative;
 
-    @include respond-min($screen-desktop) {
-        &:not(.form__actions--flush) {
-            padding-left: 24.5%;
-        }
+    @include respond-min($screen-tablet) {
+        @include push-padding(3);
     }
+}
+
+.form__actions--flush {
+    padding-left: 0;
 }
 
 .modal .form__actions {
