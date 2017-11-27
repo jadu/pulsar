@@ -1,6 +1,7 @@
 .content-main {
     position: relative;
     display: table;
+    height: 100%;
     padding: 0 $gutter-width;
     table-layout: fixed;
     width: 100%;
@@ -30,7 +31,7 @@
     -webkit-transition: -webkit-transform 500ms ease;
     backface-visibility: hidden;
     display: table;
-    height: calc(100vh - 37px);
+    height: calc(100vh);
     left: 0;
     padding-bottom: 24px; // make sure content clears the footer
     position: relative;
@@ -88,6 +89,7 @@
 }
 
 .tabs__content {
+    height: 100%;
     vertical-align: top;
     width: 100%;
 
@@ -193,21 +195,22 @@
     .tab__sidebar {
         @include col-span(3);
         display: none;
+        height: 100%;
+        vertical-align: top;
 
         @include respond-min($screen-desktop) {
           display: table-cell;
           float: right;
-          vertical-align: top;
+          padding-left: $padding-base;
         }
 
         .no-js & {
           display: table-cell;
-          vertical-align: top;
         }
 
         .heading {
             font-size: $font-size-large;
-            line-height: 1.25;
+            line-height: $line-height-large;
             margin: 0;
         }
     }
