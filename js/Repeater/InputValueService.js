@@ -22,10 +22,34 @@ class InputValueService {
      */
     setValue (element, value) {
         const type = {
-            'checkbox': this.setCheckboxValue.bind(this)
+            'checkbox': this.setCheckboxValue.bind(this),
+            'file': this.setFileValue.bind(this)
         };
 
         return type[element.type] === undefined ? element.value = value : type[element.type](element, value);
+    }
+
+    /**
+     * Get the selected attribute from a for input
+     * if an input does not have a checked property we'll assume it is active
+     * @param element
+     * @returns {*}
+     */
+    getSelected (element) {
+        const type = {
+            'checkbox': this.isSelected.bind(this),
+            'radio': this.isSelected.bind(this)
+        }
+
+        return type[element.type] === undefined ? true : type[element.type](element);
+    }
+
+    /**
+     * Check if an element is selected
+     * @param element
+     */
+    isSelected (element) {
+        return element.checked;
     }
 
     /**
@@ -46,6 +70,16 @@ class InputValueService {
         checkbox.checked = !!value;
     }
 
+    /**
+     * Reset a file input if we attempt to set it's value
+     * @param file
+     */
+    setFileValue (file) {
+        const $input = $(file);
+
+        $input.wrap('<form></form>').closest('form').trigger('reset');
+        $input.unwrap('<form></form>');
+    }
 }
 
 module.exports = InputValueService;

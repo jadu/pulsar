@@ -11,7 +11,8 @@
             'label': 'The Pulsar team',
             'empty': 'You have not added any team members',
             'headings': [
-                { name: 'checkbox', label: 'checkbox' }
+                { name: 'checkbox', label: 'checkbox' },
+                { name: 'text', label: 'text' }
             ],
             'max-entries': 3,
             'add-new-group-text': 'Add',
@@ -21,6 +22,14 @@
             {{
                 form.fieldset_start({
                     'legend': 'Team Member'
+                })
+            }}
+
+            {{
+                form.text({
+                    'label': 'text',
+                    'id': 'text',
+                    'name': 'text'
                 })
             }}
 
