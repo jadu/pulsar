@@ -2122,7 +2122,7 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
         data-repeater-preview-colspan="{{ options.headings|length + 1 }}"
     >
         <pre>DEBUG SAVED DATA</pre>
-        <div class="repeater__saved-data"></div>
+        <div class="repeater__saved-data" data-repeater-saved-entries-root></div>
         <pre>================</pre>
         <div class="form__group">
             {{
@@ -2142,8 +2142,8 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
                                 <th rowspan="1" colspan="1"></th>
                             </tr>
                         </thead>
-                        <tbody class="repeater__preview-data">
-                            <tr class="repeater__empty-placeholder">
+                        <tbody class="repeater__preview-data" data-repeater-preview-root>
+                            <tr class="repeater__empty-placeholder" data-repeater-preview-placeholder>
                                 <td colspan="{{ headingLength }}" class="muted">{{ options.empty }}</td>
                                 <td class="table__td table__td--align-right table-row__actions"></td>
                             </tr>

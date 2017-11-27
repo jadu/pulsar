@@ -1,5 +1,3 @@
-const _ = require('lodash');
-
 class InputCloneService {
     /**
      * Dispatch input clone methods
@@ -31,6 +29,7 @@ class InputCloneService {
         [].slice.call(select.children).forEach(option => {
             selectClone.appendChild(new Option(option.innerText, option.value, option.selected, option.selected));
         });
+
         return selectClone;
     }
 }
