@@ -79,6 +79,12 @@ $gutter_pc:     .5;
     margin-left: ($one_col * $num) + ($gutter_pc * ($num));
 }
 
+// indent an element using padding-left by a given number of columns
+@mixin push-padding($num) {
+    $one_col: (100% - ($gutter_pc * ($columns - 1))) / $columns;
+    padding-left: ($one_col * $num) + ($gutter_pc * ($num));
+}
+
 // add (or suppress) the left hand gutter on an element
 @mixin gutter($add_gutter: true) {
     @if $add_gutter == true {
