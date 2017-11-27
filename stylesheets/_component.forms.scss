@@ -270,7 +270,7 @@ fieldset {
     padding: $line-height-base 0;
     position: relative;
 
-    @include respond-min($screen-desktop) {
+    @include respond-min($screen-tablet) {
         @include push-padding(3);
     }
 }
