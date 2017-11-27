@@ -1,12 +1,11 @@
-.ui-report {
+.ui-report.tab__pane {
     background-color: color(gray, off-white);
     border-top: 1px solid color(border);
     height: 100%; // relies on the 100% height of .content-main
+    margin: -1px (-$gutter-width) 0;
+    overflow: auto; // stop chart container breaking grey background colour
     padding: 16px $gutter-width;
-
-    &.tab__pane {
-        margin: -1px (-$gutter-width) 0;
-    }
+    width: auto; // make sure megative left/right margins work
 }
 
 .report {
@@ -37,6 +36,8 @@
 
 .report__settings {
     float: right;
+    margin-top: 20px;
+    min-width: 225px;
     margin-bottom: $line-height-base;
 
     @include respond-min($screen-desktop) {
