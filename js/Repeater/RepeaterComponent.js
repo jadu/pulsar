@@ -75,6 +75,10 @@ class Repeater {
             this.queryService,
             this.activeFunctionService
         );
+        this.pseudoRadioInputService = new PseudoRadioInputService(
+            this.repeater,
+            this.queryService.getAttr('name')
+        );
 
         // Preview UI HTML that is dynamically added to preview rows
         this.previewUiHTML = `           
@@ -88,11 +92,11 @@ class Repeater {
 
         const maxItemsAttr = this.repeater.getAttribute(this.queryService.getAttr('max-saved-groups'));
 
+        // Store max repeater groups as an integer
         this.maxSavedGroups = maxItemsAttr === 'false' ? Infinity : parseInt(maxItemsAttr, 10);
 
-        // TODO: refactor with query service
-        // this.pseudoRadioInputService = new PseudoRadioInputService(this.repeater, this.repeaterAttributes.name);
-        // this.pseudoRadioInputService.init();
+        // Initiate pseudo radio service to polyfill radio inputs without name attrs
+        this.pseudoRadioInputService.init();
 
         // Remove repeater group input names to prevent their values being submitted
         this.removeGroupInputNames(this.queryService.get('add-group-form'));
@@ -102,7 +106,7 @@ class Repeater {
             .addEventListener(
                 'click',
                 this.activeFunctionService.wrap.bind(
-                    null,
+                    this.activeFunctionService,
                     this.queryService.get('add-group-button'),
                     this.handleAddGroup.bind(this)
                 )
@@ -258,7 +262,7 @@ class Repeater {
         });
 
         // Refresh radio state
-        // this.pseudoRadioInputService.refresh();
+        this.pseudoRadioInputService.refresh();
 
         // Hide edit form
         $(clone).hide();
@@ -384,17 +388,21 @@ class Repeater {
     handleUpdateGroup (group, repeaterId, event) {
         event.preventDefault();
 
+        // Update state
         this.state[repeaterId] = this.createState(group);
 
+        // Update preview elements
         this.repeaterPreviewService.update(
             this.state[repeaterId],
             this.queryService.get('preview-heading'),
             this.queryService.get('preview-root')
         );
 
-        this.repeaterDataService.update(group, repeaterId);
+        // Update saved data
+        this.repeaterDataService.update(this.state[repeaterId], repeaterId);
 
-        // this.togglePreviewUi(repeaterId);
+        // Enable preview UI
+        this.repeaterPreviewService.toggleUi();
 
         // enable "add group" button
         $(this.queryService.get('add-group-button')).removeClass('disabled');

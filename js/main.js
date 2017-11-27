@@ -81,7 +81,8 @@
             // Repeater debug
             debugSubmit.addEventListener('submit', event => {
                 event.preventDefault();
-                console.log('data: ', $(event.target).serialize());
+                $(event.target).next().filter('pre').remove();
+                $(event.target).after(`<pre>${$(event.target).serialize()}</pre>`);
             });
         }
     });
