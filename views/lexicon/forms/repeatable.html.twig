@@ -12,7 +12,9 @@
             'empty': 'You have not added any team members',
             'headings': [
                 { name: 'checkbox', label: 'checkbox' },
-                { name: 'text', label: 'text' }
+                { name: 'text', label: 'text' },
+                { name: 'radio', label: 'radio' },
+                { name: 'radio2', label: 'radio2' }
             ],
             'max-entries': 3,
             'add-new-group-text': 'Add',
@@ -41,6 +43,53 @@
                 })
             }}
 
+            {{
+                form.choice({
+                    'label': 'radio',
+                    'id': 'radio',
+                    'options': [
+                        {
+                            'label': 'foo',
+                            'value': 'foo',
+                            'name': 'radio'
+                        },
+                        {
+                            'label': 'bar',
+                            'value': 'bar',
+                            'name': 'radio'
+                        },
+                        {
+                            'label': 'baz',
+                            'value': 'baz',
+                            'name': 'radio'
+                        }
+                    ]
+                })
+            }}
+
+            {{
+                form.choice({
+                    'label': 'radio2',
+                    'id': 'radio2',
+                    'options': [
+                    {
+                        'label': 'mike',
+                        'value': 'mike',
+                        'name': 'radio2'
+                    },
+                    {
+                        'label': 'dan',
+                        'value': 'dan',
+                        'name': 'radio2'
+                    },
+                    {
+                        'label': 'robin',
+                        'value': 'robin',
+                        'name': 'radio2'
+                    }
+                    ]
+                })
+            }}
         {{ form.repeatable_end() }}
 
         <input type="submit"/>

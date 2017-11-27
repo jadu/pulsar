@@ -16,17 +16,20 @@ class InputValueService {
     /**
      * Dispatch input value set methods
      * will set the value prop by default
+     * accepts a "state" object for inputs we control the state of
      * @param element
      * @param value
+     * @param state
      * @returns {*}
      */
-    setValue (element, value) {
+    setValue (element, value, state) {
         const type = {
             'checkbox': this.setCheckboxValue.bind(this),
-            'file': this.setFileValue.bind(this)
+            'file': this.setFileValue.bind(this),
+            'radio': this.setRadioValue.bind(this)
         };
 
-        return type[element.type] === undefined ? element.value = value : type[element.type](element, value);
+        return type[element.type] === undefined ? element.value = value : type[element.type](element, value, state);
     }
 
     /**
@@ -79,6 +82,18 @@ class InputValueService {
 
         $input.wrap('<form></form>').closest('form').trigger('reset');
         $input.unwrap('<form></form>');
+    }
+
+    /**
+     * Set radio input value based on internally managed state (PseudoRadioService)
+     * @param radio
+     * @param value
+     * @param state
+     */
+    setRadioValue (radio, value, state) {
+        if (state.selected) {
+            radio.value = value;
+        }
     }
 }
 

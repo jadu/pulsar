@@ -50,17 +50,17 @@ class RepeaterDataService {
     /**
      * Update repeater data group
      */
-    update (group, savedEntryId) {
-        const $inputs = $(group).find(this.queryService.getQuery('name'));
+    update (state, savedEntryId) {
         const dataRoot = this.queryService.get('saved-entries-root');
         const savedData = dataRoot.querySelector(`[${this.queryService.getAttr('saved-entry-id')}="${savedEntryId}"]`);
 
-        $inputs.each((index, input) => {
-            const name = input.getAttribute(this.queryService.getAttr('name'));
-            const value = this.inputValueService.getValue(input);
-
-            // Update the saved representation of the input
-            this.inputValueService.setValue(savedData.querySelector(`[name="${name}"]`), value);
+        // Iterate each input in the saved data
+        $(savedData).find('[name]').each((index, element) => {
+            state[element.getAttribute('name')]
+                .forEach(input => {
+                    // Update the value for selected inputs
+                    this.inputValueService.setValue(element, input.value, { selected: input.selected });
+                });
         });
     }
 }

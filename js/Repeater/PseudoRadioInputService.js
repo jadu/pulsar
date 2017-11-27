@@ -3,16 +3,16 @@ class PseudoRadioInputService {
      * Create pseudo radio input behaviour in the
      * absence of a name attribute
      * @param root {HTMLElement}
-     * @param pseudoName {string}
+     * @param pseudoNameAttr
      */
     constructor (
         root,
-        pseudoName
+        pseudoNameAttr
     ) {
         this.root = root;
         this.name = {
             init: 'name',
-            pseudo: pseudoName
+            pseudo: pseudoNameAttr
         };
     }
 
@@ -20,20 +20,20 @@ class PseudoRadioInputService {
      * Create initial radio state for each matching input
      */
     init () {
-        let index = 1;
+        let id = 1;
 
         this.state = [].slice.call(this.root.querySelectorAll('[type="radio"]'))
             .reduce((state, input) => {
                 const key = input.getAttribute(this.name.init);
 
                 if (state[key] === undefined) {
-                    index = 1;
+                    id = 1;
                     state[key] = [];
                 }
 
-                input.setAttribute('data-pseudo-radio-id', index);
+                input.setAttribute('data-pseudo-radio-id', id);
                 state[key].push({ value: input.value, checked: input.checked });
-                index++;
+                id++;
 
                 return state;
             }, {});
