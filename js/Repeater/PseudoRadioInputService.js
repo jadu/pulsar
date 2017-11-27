@@ -79,6 +79,19 @@ class PseudoRadioInputService {
     }
 
     /**
+     * Set the state of the radio inputs based on an external state
+     * @param state
+     */
+    setState (state) {
+        Object.keys(state).forEach(input => {
+            if (this.state[input]) {
+                // Set state using the selected input in the state argument
+                this.updateState(input, state[input].find(i => i.selected).value);
+            }
+        });
+    }
+
+    /**
      * Refresh a radio group based on the internal state
      */
     refresh () {
