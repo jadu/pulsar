@@ -91,7 +91,11 @@ class InputValueService {
      * @param state
      */
     setRadioValue (radio, value, state) {
-        if (state.selected) {
+        // We only need to make this fairly destructive change if the input has a name
+        // attr. Once this value is set, the input values in a set of radios will be set
+        // to the selected value – which will render them useless (apart from our use case)
+        // which is to simply submit the correct value
+        if (state.selected && radio.hasAttribute('name')) {
             radio.value = value;
         }
     }

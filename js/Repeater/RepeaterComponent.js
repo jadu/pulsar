@@ -9,6 +9,10 @@ const QueryService = require('./QueryService');
 const ActiveFunctionService = require('./ActiveFunctionService');
 const RepeaterDataService = require('./RepeaterDataService');
 
+// TODO
+// 1. create factory
+// 2. handle no preview heading
+
 class Repeater {
     /**
      * Repeater
@@ -418,20 +422,19 @@ class Repeater {
      * @param event
      */
     handleCancelGroupUpdate (group, repeaterId, event) {
-        const $inputs = $(group).find(this.queryService.getAttr('name'));
-        const savedData = this.queryService.get('saved-entries-root')
-            .querySelector(`[${this.queryService.getAttr('saved-entry-id')}="${repeaterId}"]`);
-
         event.preventDefault();
 
-        // Restore un-saved changes to edit group
-        $inputs.each((index, input) => {
-            const value = this.inputValueService.getValue(
-                savedData.querySelector(`[name="${input.getAttribute(this.queryService.getAttr('name'))}"]`)
-            );
-
-            this.inputValueService.setValue(input, value);
+        // Reset input values to pre-edited state
+        $(group).find(this.queryService.getQuery('name')).each((index, element) => {
+            this.state[repeaterId][element.getAttribute(this.queryService.getAttr('name'))]
+                .forEach(input => {
+                    // Update the value for selected inputs
+                    this.inputValueService.setValue(element, input.value, { selected: input.selected });
+                });
         });
+
+        // Revert radio inputs to pre-edited values
+        this.pseudoRadioInputService.setState(this.state[repeaterId])
 
         // Enable preview UI
         this.repeaterPreviewService.toggleUi();
