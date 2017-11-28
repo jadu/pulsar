@@ -25,11 +25,37 @@ class InputValueService {
     setValue (element, value, state) {
         const type = {
             'checkbox': this.setCheckboxValue.bind(this),
-            'file': this.setFileValue.bind(this),
             'radio': this.setRadioValue.bind(this)
         };
 
         return type[element.type] === undefined ? element.value = value : type[element.type](element, value, state);
+    }
+
+    /**
+     * Dispatch print methods for values, by default
+     * we will simply return the input's value
+     * @param element
+     * @param value
+     * @param state
+     * @returns {*}
+     */
+    printValue (element, value, state) {
+        const type = {
+            'password': this.printPassword.bind(this)
+        };
+
+        return type[element.type] === undefined ? element.value : type[element.type](element, value, state);
+    }
+
+    /**
+     * Print passwords in a hidden state
+     * @param element
+     */
+    printPassword (element) {
+        return element.value.replace(
+            new RegExp(/./g),
+            '*'
+        );
     }
 
     /**
@@ -71,17 +97,6 @@ class InputValueService {
      */
     setCheckboxValue (checkbox, value) {
         checkbox.checked = !!value;
-    }
-
-    /**
-     * Reset a file input if we attempt to set it's value
-     * @param file
-     */
-    setFileValue (file) {
-        const $input = $(file);
-
-        $input.wrap('<form></form>').closest('form').trigger('reset');
-        $input.unwrap('<form></form>');
     }
 
     /**

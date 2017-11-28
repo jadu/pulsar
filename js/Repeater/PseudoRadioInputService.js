@@ -85,8 +85,11 @@ class PseudoRadioInputService {
     setState (state) {
         Object.keys(state).forEach(input => {
             if (this.state[input]) {
+                const selected = state[input].find(i => i.selected);
                 // Set state using the selected input in the state argument
-                this.updateState(input, state[input].find(i => i.selected).value);
+                if (selected) {
+                    this.updateState(input, selected.value);
+                }
             }
         });
     }
