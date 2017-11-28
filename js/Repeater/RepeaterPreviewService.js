@@ -3,13 +3,16 @@ class RepeaterPreviewService {
      * Create / Update Repeater preview elements
      * @param queryService {QueryService}
      * @param activeFunctionService {ActiveFunctionService}
+     * @param inputValueService {InputValueService}
      * @param options
      */
     constructor (
         queryService,
         activeFunctionService,
+        inputValueService,
         options = {}
     ) {
+        this.inputValueService = inputValueService;
         this.queryService = queryService;
         this.activeFunctionService = activeFunctionService;
         this.emptyHTML = options.empty || 'empty';
@@ -39,7 +42,7 @@ class RepeaterPreviewService {
                     preview.setAttribute(this.queryService.getAttr('preview-update-id'), name);
 
                     if (input.selected && input.value) {
-                        value = value === this.emptyHTML ? input.value : `${value}, ${input.value}`;
+                        value = this.print(input.ref, value, input.value);
                     }
                 });
 
@@ -70,7 +73,7 @@ class RepeaterPreviewService {
                 // Set the value for each input in the state
                 data.forEach(input => {
                     if (input.selected && input.value) {
-                        value = value === this.emptyHTML ? input.value : `${value}, ${input.value}`;
+                        value = this.print(input.ref, value, input.value);
                     }
                 });
 
@@ -94,6 +97,24 @@ class RepeaterPreviewService {
             .forEach(preview => {
                 $(preview).find(this.queryService.getQuery('preview-ui')).toggleClass('disabled');
             });
+    }
+
+    /**
+     * Print a preview value, this handles sanitizing values via
+     * the InputValueService as well as concatenating multiple values
+     * @param input
+     * @param value
+     * @param newValue
+     * @returns {*}
+     */
+    print (input, value, newValue) {
+        const printedValue = this.inputValueService.printValue(input, newValue);
+
+        if (value === this.emptyHTML) {
+            return printedValue;
+        } else {
+            return `${value}, ${printedValue}`;
+        }
     }
 }
 

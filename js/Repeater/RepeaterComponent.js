@@ -77,7 +77,8 @@ class Repeater {
         );
         this.repeaterPreviewService = new RepeaterPreviewService(
             this.queryService,
-            this.activeFunctionService
+            this.activeFunctionService,
+            this.inputValueService
         );
         this.pseudoRadioInputService = new PseudoRadioInputService(
             this.repeater,
@@ -147,6 +148,8 @@ class Repeater {
 
         // Create state object from the current form
         this.state[this.repeaterEntries] = this.createState(this.queryService.get('add-group-form'));
+
+        console.log(this.state[this.repeaterEntries]);
 
         // Create preview HTML
         const preview = this.repeaterPreviewService.create(
@@ -226,7 +229,8 @@ class Repeater {
 
             state[input.getAttribute(this.queryService.getAttr('name'))].push({
                 value: this.inputValueService.getValue(input),
-                selected: this.inputValueService.getSelected(input)
+                selected: this.inputValueService.getSelected(input),
+                ref: input
             });
 
             return state;
