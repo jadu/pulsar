@@ -1,0 +1,608 @@
+{% extends '@pulsar/pulsar/components/tab.html.twig' %}
+
+{% block tab_content %}
+
+    {{
+        form.create()
+    }}
+
+    {{ form.fieldset_start() }}
+    
+    {{
+        form.compound({
+            'id': 'comp-1',
+            'help': 'For example: 25 12 1980',
+            'label': 'Date of birth',
+            'inputs': [
+                {
+                    'class': 'form__control-col--1',
+                    'label': 'Day',
+                    'id': 'dd-1',
+                    'placeholder': 'DD',
+                    'show-label': false,
+                    'type': 'text'
+                },
+                {
+                    'class': 'form__control-col--1',
+                    'label': 'Month',
+                    'id': 'mm-1',
+                    'placeholder': 'MM',
+                    'show-label': false,
+                    'type': 'text'
+                },
+                {
+                    'class': 'form__control-col--1',
+                    'label': 'Year',
+                    'id': 'yyyy-1',
+                    'placeholder': 'YYYY',
+                    'show-label': false,
+                    'type': 'text'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.compound({
+            'id': 'comp-2',
+            'help': 'How long the system should wait for a response, usually 30 seconds',
+            'label': 'Timeout',
+            'inputs': [
+                {
+                    'class': 'form__control-col--1',
+                    'label': 'Value',
+                    'id': 'value-1',
+                    'maxlength': '3',
+                    'show-label': false,
+                    'type': 'text'
+                },
+                {
+                    'class': 'u-width-auto',
+                    'label': 'Unit of time',
+                    'id': 'Unit-1',
+                    'show-label': false,
+                    'type': 'select',
+                    'options': [
+                        {
+                            'label': 'Seconds',
+                            'value': 'sec'
+                        },
+                        {
+                            'label': 'Minutes',
+                            'value': 'min'
+                        }
+                    ]
+                }
+            ]
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+    
+
+    {{ form.fieldset_start({ 'legend': 'Alignment' }) }}
+
+    {{
+        form.compound({
+            'id': 'comp-3',
+            'help': 'This example omits the label option entirely',
+            'inputs': [
+                {
+                    'class': 'form__control-col--1',
+                    'label': 'Day',
+                    'id': 'dd-2',
+                    'placeholder': 'DD',
+                    'show-label': false,
+                    'type': 'text'
+                },
+                {
+                    'class': 'form__control-col--1',
+                    'label': 'Month',
+                    'id': 'mm-2',
+                    'placeholder': 'MM',
+                    'show-label': false,
+                    'type': 'text'
+                },
+                {
+                    'class': 'form__control-col--1',
+                    'label': 'Year',
+                    'id': 'yyyy-2',
+                    'placeholder': 'YYYY',
+                    'show-label': false,
+                    'type': 'text'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.compound({
+            'id': 'comp-4',
+            'help': 'How long the system should wait for a response, usually 30 seconds',
+            'label': 'Form compound with a longer than expected label which will probably wrap multple lines and push the following input onto the next baseline',
+            'guidance': 'Help text to give more information about expected input',
+            'inputs': [
+                {
+                    'class': 'form__control-col--1',
+                    'label': 'Value',
+                    'id': 'value-2',
+                    'maxlength': '3',
+                    'show-label': false,
+                    'type': 'text'
+                },
+                {
+                    'class': 'u-width-auto',
+                    'label': 'Unit of time',
+                    'id': 'Unit-2',
+                    'show-label': false,
+                    'type': 'select',
+                    'options': [
+                        {
+                            'label': 'Seconds',
+                            'value': 'sec'
+                        },
+                        {
+                            'label': 'Minutes',
+                            'value': 'min'
+                        }
+                    ]
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.compound({
+            'id': 'comp-5',
+            'help': 'How long the system should wait for a response, usually 30 seconds',
+            'label': 'Form compound with a longer than expected label but this time we use the form__group--top class to keep the label on a single line',
+            'guidance': 'Help text to give more information about expected input',
+            'class': 'form__group--top',
+            'inputs': [
+                {
+                    'class': 'form__control-col--1',
+                    'label': 'Value',
+                    'id': 'value-3',
+                    'maxlength': '3',
+                    'show-label': false,
+                    'type': 'text'
+                },
+                {
+                    'class': 'u-width-auto',
+                    'label': 'Unit of time',
+                    'id': 'Unit-3',
+                    'show-label': false,
+                    'type': 'select',
+                    'options': [
+                        {
+                            'label': 'Seconds',
+                            'value': 'sec'
+                        },
+                        {
+                            'label': 'Minutes',
+                            'value': 'min'
+                        }
+                    ]
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.compound({
+            'id': 'comp-6',
+            'help': 'How long the system should wait for a response, usually 30 seconds',
+            'label': 'The same as above, but this time we also add the .form__group--flush class to keep everything on the left edge',
+            'guidance': 'Help text to give more information about expected input',
+            'class': 'form__group--top form__group--flush',
+            'inputs': [
+                {
+                    'class': 'form__control-col--1',
+                    'label': 'Value',
+                    'id': 'value-4',
+                    'maxlength': '3',
+                    'show-label': false,
+                    'type': 'text'
+                },
+                {
+                    'class': 'u-width-auto',
+                    'label': 'Unit of time',
+                    'id': 'Unit-4',
+                    'show-label': false,
+                    'type': 'select',
+                    'options': [
+                        {
+                            'label': 'Seconds',
+                            'value': 'sec'
+                        },
+                        {
+                            'label': 'Minutes',
+                            'value': 'min'
+                        }
+                    ]
+                }
+            ]
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'Errors &amp; Validation' }) }}
+
+    {{
+        form.compound({
+            'id': 'comp-7',
+            'help': 'For example: 25 12 1980',
+            'label': 'Date of birth',
+            'error': 'Please complete this field',
+            'inputs': [
+                {
+                    'class': 'form__control-col--1',
+                    'label': 'Day',
+                    'id': 'dd-3',
+                    'placeholder': 'DD',
+                    'show-label': false,
+                    'type': 'text'
+                },
+                {
+                    'class': 'form__control-col--1',
+                    'label': 'Month',
+                    'id': 'mm-3',
+                    'placeholder': 'MM',
+                    'show-label': false,
+                    'type': 'text'
+                },
+                {
+                    'class': 'form__control-col--1',
+                    'label': 'Year',
+                    'id': 'yyyy-3',
+                    'placeholder': 'YYYY',
+                    'show-label': false,
+                    'type': 'text'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.compound({
+            'id': 'comp-8',
+            'help': 'For example: 25 12 1980',
+            'label': 'Date of birth',
+            'error': ['Do this', 'Do this too'],
+            'inputs': [
+                {
+                    'class': 'form__control-col--1',
+                    'label': 'Day',
+                    'id': 'dd-4',
+                    'placeholder': 'DD',
+                    'show-label': false,
+                    'type': 'text'
+                },
+                {
+                    'class': 'form__control-col--1',
+                    'label': 'Month',
+                    'id': 'mm-4',
+                    'placeholder': 'MM',
+                    'show-label': false,
+                    'type': 'text'
+                },
+                {
+                    'class': 'form__control-col--1',
+                    'label': 'Year',
+                    'id': 'yyyy-4',
+                    'placeholder': 'YYYY',
+                    'show-label': false,
+                    'type': 'text'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.compound({
+            'id': 'comp-9',
+            'help': 'For example: 25 12 1980',
+            'label': 'Example with help text and error',
+            'error': 'Please complete your date of birth',
+            'inputs': [
+                {
+                    'class': 'form__control-col--1',
+                    'label': 'Day',
+                    'id': 'dd-5',
+                    'placeholder': 'DD',
+                    'show-label': false,
+                    'type': 'text'
+                },
+                {
+                    'class': 'form__control-col--1',
+                    'label': 'Month',
+                    'id': 'mm-5',
+                    'placeholder': 'MM',
+                    'show-label': false,
+                    'type': 'text'
+                },
+                {
+                    'class': 'form__control-col--1',
+                    'label': 'Year',
+                    'id': 'yyyy-5',
+                    'placeholder': 'YYYY',
+                    'show-label': false,
+                    'type': 'text'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.compound({
+            'id': 'comp-10',
+            'help': 'For example: 25 12 1980',
+            'label': 'Example with one invalid field and error',
+            'error': 'Please complete your month of birth',
+            'class': 'form__group--partial-state',
+            'inputs': [
+                {
+                    'class': 'form__control-col--1',
+                    'label': 'Day',
+                    'id': 'dd-6',
+                    'placeholder': 'DD',
+                    'show-label': false,
+                    'type': 'text'
+                },
+                {
+                    'class': 'form__control-col--1 has-error',
+                    'label': 'Month',
+                    'id': 'mm-6',
+                    'placeholder': 'MM',
+                    'show-label': false,
+                    'type': 'text'
+                },
+                {
+                    'class': 'form__control-col--1',
+                    'label': 'Year',
+                    'id': 'yyyy-6',
+                    'placeholder': 'YYYY',
+                    'show-label': false,
+                    'type': 'text'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.compound({
+            'id': 'comp-11',
+            'help': 'For example: 25 12 1980',
+            'label': 'Example error with help text only',
+            'class': 'has-error',
+            'inputs': [
+                {
+                    'class': 'form__control-col--1',
+                    'label': 'Day',
+                    'id': 'dd-7',
+                    'placeholder': 'DD',
+                    'show-label': false,
+                    'type': 'text'
+                },
+                {
+                    'class': 'form__control-col--1',
+                    'label': 'Month',
+                    'id': 'mm-7',
+                    'placeholder': 'MM',
+                    'show-label': false,
+                    'type': 'text'
+                },
+                {
+                    'class': 'form__control-col--1',
+                    'label': 'Year',
+                    'id': 'yyyy-7',
+                    'placeholder': 'YYYY',
+                    'show-label': false,
+                    'type': 'text'
+                }
+            ]
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'States' }) }}
+
+    {{
+        form.compound({
+            'id': 'comp-12',
+            'help': 'Highlight whether an action elsewhere affects an input',
+            'label': '"class": "has-changed"',
+            'class': 'has-changed',
+            'inputs': [
+                {
+                    'class': 'form__control-col--1',
+                    'label': 'Day',
+                    'id': 'dd-8',
+                    'placeholder': 'DD',
+                    'show-label': false,
+                    'type': 'text'
+                },
+                {
+                    'class': 'form__control-col--1',
+                    'label': 'Month',
+                    'id': 'mm-8',
+                    'placeholder': 'MM',
+                    'show-label': false,
+                    'type': 'text'
+                },
+                {
+                    'class': 'form__control-col--1',
+                    'label': 'Year',
+                    'id': 'yyyy-8',
+                    'placeholder': 'YYYY',
+                    'show-label': false,
+                    'type': 'text'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.compound({
+            'id': 'comp-13',
+            'help': 'Something good happened',
+            'label': '"class": "has-success"',
+            'class': 'has-success',
+            'inputs': [
+                {
+                    'class': 'form__control-col--1',
+                    'label': 'Day',
+                    'id': 'dd-9',
+                    'placeholder': 'DD',
+                    'show-label': false,
+                    'type': 'text'
+                },
+                {
+                    'class': 'form__control-col--1',
+                    'label': 'Month',
+                    'id': 'mm-9',
+                    'placeholder': 'MM',
+                    'show-label': false,
+                    'type': 'text'
+                },
+                {
+                    'class': 'form__control-col--1',
+                    'label': 'Year',
+                    'id': 'yyyy-9',
+                    'placeholder': 'YYYY',
+                    'show-label': false,
+                    'type': 'text'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.compound({
+            'id': 'comp-14',
+            'help': 'Something bad happened',
+            'label': '"class": "has-warning"',
+            'class': 'has-warning',
+            'inputs': [
+                {
+                    'class': 'form__control-col--1',
+                    'label': 'Day',
+                    'id': 'dd-10',
+                    'placeholder': 'DD',
+                    'show-label': false,
+                    'type': 'text'
+                },
+                {
+                    'class': 'form__control-col--1',
+                    'label': 'Month',
+                    'id': 'mm-10',
+                    'placeholder': 'MM',
+                    'show-label': false,
+                    'type': 'text'
+                },
+                {
+                    'class': 'form__control-col--1',
+                    'label': 'Year',
+                    'id': 'yyyy-10',
+                    'placeholder': 'YYYY',
+                    'show-label': false,
+                    'type': 'text'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.compound({
+            'id': 'comp-15',
+            'help': 'Automatically added if using <code>error</code> option',
+            'label': '"class": "has-error"',
+            'class': 'has-error',
+            'inputs': [
+                {
+                    'class': 'form__control-col--1',
+                    'label': 'Day',
+                    'id': 'dd-11',
+                    'placeholder': 'DD',
+                    'show-label': false,
+                    'type': 'text'
+                },
+                {
+                    'class': 'form__control-col--1',
+                    'label': 'Month',
+                    'id': 'mm-11',
+                    'placeholder': 'MM',
+                    'show-label': false,
+                    'type': 'text'
+                },
+                {
+                    'class': 'form__control-col--1',
+                    'label': 'Year',
+                    'id': 'yyyy-12',
+                    'placeholder': 'YYYY',
+                    'show-label': false,
+                    'type': 'text'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.compound({
+            'id': 'comp-16',
+            'help': 'Stop! Can’t touch this',
+            'label': '"disabled": true',
+            'inputs': [
+                {
+                    'class': 'form__control-col--1',
+                    'label': 'Day',
+                    'id': 'dd-13',
+                    'placeholder': 'DD',
+                    'show-label': false,
+                    'type': 'text',
+                    'disabled': true
+                },
+                {
+                    'class': 'form__control-col--1',
+                    'label': 'Month',
+                    'id': 'mm-13',
+                    'placeholder': 'MM',
+                    'show-label': false,
+                    'type': 'text',
+                    'disabled': true
+                },
+                {
+                    'class': 'form__control-col--1',
+                    'label': 'Year',
+                    'id': 'yyyy-13',
+                    'placeholder': 'YYYY',
+                    'show-label': false,
+                    'type': 'text',
+                    'disabled': true
+                }
+            ]
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+
+    {{
+        form.end()
+    }}
+
+{% endblock tab_content %}
+
+{% block tab_sidebar %}
+    <a href="https://jadu.gitbooks.io/pulsar/content/text.html">
+        <img src="../../../images/cover.png" alt="Pulsar documentation front cover" width="157" />
+    </a>
+    <br />
+    {{
+        html.button({
+            'label': 'View Documentation',
+            'type': 'link',
+            'href': 'https://jadu.gitbooks.io/pulsar/content/text.html'
+        })
+    }}
+
+{% endblock tab_sidebar %}
