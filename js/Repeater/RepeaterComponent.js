@@ -12,6 +12,7 @@ const RepeaterDataService = require('./RepeaterDataService');
 // TODO
 // 1. create factory
 // 2. handle no preview heading
+// 3. default selected radios & checkboxes
 
 class Repeater {
     /**
@@ -148,8 +149,6 @@ class Repeater {
 
         // Create state object from the current form
         this.state[this.repeaterEntries] = this.createState(this.queryService.get('add-group-form'));
-
-        console.log(this.state[this.repeaterEntries]);
 
         // Create preview HTML
         const preview = this.repeaterPreviewService.create(
