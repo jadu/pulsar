@@ -246,9 +246,10 @@ class Repeater {
         );
         const clone = group.cloneNode(true);
         const clonedControls = clone.querySelector(this.queryService.getQuery('add-group-controls'));
-        const inputsWithState = $(group).find('[name]').toArray().map(input => {
-            return this.inputCloneService.clone(input);
-        });
+        const inputsWithState = $(group)
+            .find(this.queryService.getQuery('name'))
+            .toArray()
+            .map(this.inputCloneService.clone.bind(this.inputCloneService));
 
         // Add repeater ID to the group
         clone.setAttribute(this.queryService.getAttr('edit-id'), this.repeaterEntries);
