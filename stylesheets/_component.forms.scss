@@ -321,6 +321,7 @@ fieldset {
 
     // column variations
     @for $i from 1 through 12 {
+        .form__control-col--#{$i}.form__control,
         .form__control-col--#{$i} .form__control,
         .form__control-col--#{$i} .form__control + .select2,
         .form__group--flush.form__control-col--#{$i} .control__label + .controls > .form__control {
@@ -339,6 +340,7 @@ fieldset {
 
     // column variations
     @for $i from 1 through 9 {
+        .control__label + .controls > .form__control.form__control-col--#{$i},
         .form__control-col--#{$i} .control__label + .controls > .form__control,
         .form__control-col--#{$i} .control__label + .controls > .form__control + .select2 {
             @include col-span($i, false, false, 9);
@@ -382,22 +384,58 @@ fieldset {
 
 // validation
 
-.form__group {
+.form__group:not(.form__group--partial-state) {
   &.has-changed {
-    @include form__control-validation($state-info-text, color(info), $state-info-bg);
+    @include form__group-validation($state-info-text, color(info), $state-info-bg);
   }
 
   &.has-warning {
-    @include form__control-validation($state-warning-text, color(warning), $state-warning-bg);
+    @include form__group-validation($state-warning-text, color(warning), $state-warning-bg);
   }
 
   &.has-error {
-    @include form__control-validation($state-danger-text, color(danger), $state-danger-bg);
+    @include form__group-validation($state-danger-text, color(danger), $state-danger-bg);
   }
 
   &.has-success {
-    @include form__control-validation($state-success-text, color(success), $state-success-bg);
+    @include form__group-validation($state-success-text, color(success), $state-success-bg);
   }
+}
+
+.form__group--partial-state {
+    &.has-changed {
+        @include form__group-partial-validation($state-info-text, color(info));
+    }
+
+    &.has-warning {
+        @include form__group-partial-validation($state-warning-text, color(warning));
+    }
+
+    &.has-error {
+        @include form__group-partial-validation($state-danger-text, color(danger));
+    }
+
+    &.has-success {
+        @include form__group-partial-validation($state-success-text, color(success));
+    }
+}
+
+.form__control {
+    &.has-changed {
+        @include form__control-validation($state-info-text, color(info), $state-info-bg);
+    }
+
+    &.has-warning {
+        @include form__control-validation($state-warning-text, color(warning), $state-warning-bg);
+    }
+
+    &.has-error {
+        @include form__control-validation($state-danger-text, color(danger), $state-danger-bg);
+    }
+
+    &.has-success {
+        @include form__control-validation($state-success-text, color(success), $state-success-bg);
+    }
 }
 
 .help-block {
@@ -545,4 +583,47 @@ fieldset {
 
 .form-range .input-group > .form__control:last-child {
     padding-right: 0;
+}
+
+// undo default fieldset padding
+fieldset.form__group--compound {
+    padding: 0;
+}
+
+.form__group--compound {
+    > .control__label {
+        border-bottom: 0;
+        float: left; // as we can't use inline-block
+        font-size: inherit;
+        line-height: inherit;
+    }
+
+    > .controls {
+        // override regular stacked styling
+        > .form__control,
+        > .control__label,
+        &:first-child > .control__label {
+            clear: none;
+            display: inline-block;
+            float: none;
+            vertical-align: top;
+        }
+
+        // make sure inputs are suitably spaced when they stack with 100% width
+        // at small screen widths
+        .form__control:not(:last-child) {
+            margin-right: 1%; // needs to be grid gutter var
+            margin-top: 5px;
+
+            @include respond-min($screen-small) {
+                margin-right: 10px;
+                margin-top: 0;
+            }
+        }
+
+        // inline radio/checkboxes need spacing apart slightly
+        > .control__label:not(:first-of-type) {
+            margin-left: 10px;
+        }
+    }
 }
