@@ -41,7 +41,8 @@ class InputValueService {
      */
     printValue (element, value, state) {
         const type = {
-            'password': this.printPassword.bind(this)
+            'password': this.printPassword.bind(this),
+            'select-one': this.printSelect.bind(this)
         };
 
         return type[element.type] === undefined ? element.value : type[element.type](element, value, state);
@@ -56,6 +57,17 @@ class InputValueService {
             new RegExp(/./g),
             '*'
         );
+    }
+
+    /**
+     * Get the text content of selected options when printing select values
+     * @param element
+     */
+    printSelect (element) {
+        return [].slice.call(element.children)
+            .filter(option => option.selected)
+            .map(option => option.textContent)
+            .join(', ')
     }
 
     /**
