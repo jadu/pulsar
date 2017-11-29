@@ -69,7 +69,7 @@ $gutter_pc:     .5;
  * built in responsiveness. Useful when assigning grid width to an element within a media query.
  *
  * @param  {int}  $num                   The number of columns the width should span
- * @param  {int} $columns: $columns      The total number of grid columns to use for grid calculations, defaults to $columns (12)
+ * @param  {int}  $columns: $columns      The total number of grid columns to use for grid calculations, defaults to $columns (12)
  * @param  {bool} $important:  false     If true, adds the !important declaration
  */
 @mixin col-span-width($num, $columns: $columns, $important: false) {
