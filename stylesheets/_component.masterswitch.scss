@@ -1,12 +1,15 @@
-@media (max-width: 600px) {
-	.masterswitch-control {
-		> .control__label,
-		> .controls {
-			@include col-span($form-label-cols);
-			display: table-cell;
+.masterswitch-control {
+	> .control__label,
+	> .controls {
+		display: table-cell;
+
+		@include respond-min($screen-tablet) {
+			@include col-span-width($form-label-cols);
+			display: inline-block;
 		}
 	}
 }
+
 
 .masterswitch-content {
 	&.is-disabled {
