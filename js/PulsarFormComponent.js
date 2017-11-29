@@ -19,7 +19,7 @@ PulsarFormComponent.prototype.init = function () {
     // Colourpickers
     component.initColourpickers();
 
-    // Password Strength Meter
+    // Initialize Password Strength Meters
     this.$html.find('#password__meter').password({
         shortPass: 'The password is too short',
         badPass: 'Weak: try combining letters & numbers',
