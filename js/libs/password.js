@@ -241,6 +241,7 @@
                 detectCriteria($object.val());
             });
 
+            // Animate Hidden Password Strength Meter Bar
             if (options.animate) {
                 $object.focus(function() {
                     if (!shown) {
