@@ -39,8 +39,15 @@
     }
 }
 
-.rule-block-wrapper ~ .rule-block-wrapper {
-    margin-top: -1px;
+// Sibling rule-block-wrapper was a rule prior to the helpers being written
+// rules__step--indented is the new rule for helpers, double chained to override fieldset specificity
+.rule-block-wrapper ~ .rule-block-wrapper,
+.rules__step.rule--indented {
+    margin-top: -2px;
+}
+
+.rules__step.rule--indented .rule-block-wrapper {
+    margin-left: 20px;
 }
 
 .rule-block {
@@ -58,13 +65,15 @@
     }
 }
 
-.rule-block--and {
-    margin-top: 24px;
+.rule-block--and,
+.rule-block--then {
+    margin-top: 24 - 6px; // 24px - 6px default fieldset margin
 }
 
 .rule-block--indented {
     border-radius: 0;
-    margin-left: 20px;
+    margin-left: 2%;
+    width: 98%;
 }
 
 .rule-block--new {
@@ -130,20 +139,21 @@
 
 .rule-block__heading__icon {
     font-size: 16px;
-    margin-left: 5px;
+    margin-left: 10px;
 }
 
 .rule-block__controls {
     margin: 1em 0;
 
     @include respond-min($screen-tablet) {
-        margin: 1em 1.7em 0 .4em;
+        margin: .6em 1.7em 0 .4em;
     }
 }
 
 .rule-block__control {
     display: block;
     margin: 0 10px 10px;
+    vertical-align: bottom;
 
     @include respond-min($screen-tablet) {
         display: inline-block;
@@ -203,7 +213,8 @@
     }
 }
 
-td.table__form fieldset.rules__step {
+// Double chained to override default fieldset styling
+fieldset.rules__step {
     margin-top: 0;
 }
 
@@ -228,6 +239,29 @@ td.table__form .rules + .form__group:last-of-type {
 
     @include respond-min($screen-tablet) {
         margin-bottom: 10px;
+    }
+}
+
+.rules__step.has-error {
+    .rule-block__header {
+        background-color: $state-danger-bg;
+        box-shadow: inset 4px 0 0 0 color(danger);
+    }
+
+    .rule-block__heading {
+        color: color(danger);
+    }
+
+    .help-block {
+        margin: 0 0 0 1em;
+    }
+
+    .help-block:last-of-type {
+        margin-bottom: .6em;
+    }
+
+    .is-error {
+        color: color(danger);
     }
 }
 
