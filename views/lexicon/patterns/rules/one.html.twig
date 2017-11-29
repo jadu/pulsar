@@ -56,6 +56,16 @@
 {%- endblock -%}
 
 {% block tab_content %}
+
+    {{
+        html.panel({
+            'class': 'panel--danger',
+            'icon': 'warning-sign',
+            'title': 'Your rule cannot be saved',
+            'body': 'Please correct the highlighted errors in your rule, and try saving again.'
+        })
+    }}
+
     <table class="table datatable table--full" data-select="false">
         <thead>
             <tr>
@@ -66,179 +76,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="u-no-border">
-                <td class="table-responsive">
-                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
-                </td>
-                <td class="centered">{{ html.status('active') }}</td>
-                <td><a href="#">Create green waste case</a></td>
-                <td>01/02/03 12:34pm</td>
-            </tr>
-            <tr data-col="2" class="temporary-branch page is-branched is-branched--from-1 is-open u-no-hover">
-                <td class="shrink-to-fit centered no-border"></td>
-                <td class="route no-border">
-                    <span class="ri--no-dot ri--vertical"></span>
-                    <span class="ri--dot ri--vertical"></span>
-                    <span class="ri--no-dot ri--vertical"></span>
-                </td>
-                <td class="no-border" colspan="4">
-
-                    <table class="table table--full is-sortable table--contrast table--white-bg">
-                        <thead>
-                            <tr>
-                                <th>Priority</th>
-                                <th>Branching rule</th>
-                                <td></td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>{{ html.icon('reorder') }} 1</td>
-                                <td><a href="#" class="js-expand-rule">Awesome branch number one</a></td>
-                                <td class="u-text-align-right">
-                                    {{ html.icon('pencil') }}
-                                    {{ html.icon('times-circle') }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>{{ html.icon('reorder') }} 2</td>
-                                <td><a href="#" class="js-expand-rule">Awesome branch number two</a></td>
-                                <td class="u-text-align-right">
-                                    {{ html.icon('pencil') }}
-                                    {{ html.icon('times-circle') }}
-                                </td>
-                            </tr>
-                            <tr class="is-editing">
-                                <td>{{ html.icon('reorder') }} 3</td>
-                                <td><a href="#" class="js-expand-rule">Awesome branch number three</a></td>
-                                <td class="u-text-align-right">
-                                    {{
-                                        html.label({
-                                            'label': 'editing',
-                                            'class': 'label--warning'
-                                        })
-                                    }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="table__form" colspan="3">
-                                <fieldset>
-                                    <legend class="legend">Edit rule</legend>
-
-<div class="wrapper">
-
-    {{
-        form.text({
-            'label': 'Name'
-        })
-    }}
-    <div class="rules">
-        <input type="hidden" class="branching-is-new" value="false">
-        <div data-block-type="triggers" class="rule-block-triggers">
-            <div class="rule-block rule-block--when">
-                <div class="rule-block__header rule-block__header--when">
-                    <h4 class="rule-block__heading">When</h4>
-                </div>
-                <div class="rule-block__controls">
-                    <div class="rule-block__control">
-                        <label class="control__label hide">Select input</label>
-                        <select class="form__control form__control--medium select branching-question">
-                            <option value="{&quot;questionName&quot;:&quot;&quot;,&quot;sectionName&quot;:&quot;&quot;,&quot;pageID&quot;:&quot;-1&quot;}">Select...</option>
-                            <optgroup label="Logic" class="js-opt-logic">
-                                <option value="new-logic">Create new...</option>
-                            </optgroup>
-                            <optgroup label="Foo">
-                                <option value="{&quot;questionName&quot;:&quot;q7038a37ecd0b6c7904eb7b6673797c3ccb06e12a&quot;,&quot;sectionName&quot;:&quot;main&quot;,&quot;pageID&quot;:&quot;11&quot;}" data-options="undefined">far</option>
-                            </optgroup>
-                        </select>
-                    </div>
-                    <div class="rule-block__control">
-                        <label class="control__label hide">Select input</label>
-                        <select class="form__control form__control--medium select branching-operator">
-                            <option value="equal">is equal to</option>
-                            <option class="js-literal-op" value="less">is less than</option>
-                            <option class="js-literal-op" value="greater">is more than</option>
-                            <option class="js-literal-op" value="less equal">is less than or equal to</option>
-                            <option class="js-literal-op" value="greater equal">is more than or equal to</option>
-                            <option value="not equal">is not equal to</option>
-                            <option class="js-literal-op" value="contains">contains</option>
-                            <option class="js-literal-op" value="not contains">does not contain</option>
-                        </select>
-                    </div>
-                    <div class="rule-block__control">
-                        <label class="control__label hide">Select input</label>
-                        <input type="text" class="form__control form__control--medium branching-value">
-                        <select class="form__control form__control--medium branching-value-opt hide"></select>
-                    </div>
-                </div>
-            </div>
-            <div class="conditional-block conditional-block--indented">
-                <a href="#" class="conditional-block__link conditional-block__link--when js-or-link"><i class="icon-arrow-right"></i><span>Or</span></a>
-            </div>
-        </div>
-        <div data-block-type="actions" class="rule-block-actions">
-            <div class="rule-block rule-block--then">
-                <div class="rule-block__header rule-block__header--then">
-                    <h4 class="rule-block__heading">Then</h4>
-                </div>
-                <div class="rule-block__controls">
-                    <div class="rule-block__control">
-                        <label class="control__label hide">Select input</label>
-                        <select class="form__control form__control--medium select branching-action">
-                            <option value="branch">Branch</option>
-                        </select>
-                    </div>
-                    <div class="rule-block__control"> to </div>
-                    <div class="rule-block__control">
-                        <input type="hidden" class="branching-target" value="13"><strong><span class="branching-target-label">fdsafdsadsadsa</span></strong>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-{{
-    form.end({
-        'class': 'form__actions--flush',
-        'actions': [
-            form.submit({
-                'class': 'btn--primary',
-                'label': 'Save'
-            }),
-            html.button({
-                'class': 'btn--naked',
-                'type': 'link',
-                'label': 'Cancel',
-                'href': '/home'
-            })
-        ]
-    })
-}}
-                                    </fieldset>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>{{ html.icon('reorder') }} 4</td>
-                                <td><a href="#" class="js-expand-rule">Awesome branch number four</a></td>
-                                <td class="u-text-align-right">
-                                    {{ html.icon('pencil') }}
-                                    {{ html.icon('times-circle') }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>{{ html.icon('reorder') }} 5</td>
-                                <td><a href="#" class="js-expand-rule">Awesome branch number five</a></td>
-                                <td class="u-text-align-right">
-                                    {{ html.icon('pencil') }}
-                                    {{ html.icon('times-circle') }}
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-            </td>
-        </tr>
-            {% for i in 0..5 %}
+            {% for i in 0..1 %}
             <tr>
                 <td class="table-responsive">
                     {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
@@ -257,7 +95,6 @@
                 <td>01/02/03 12:34pm</td>
             </tr>
             {% endfor %}
-
         </tbody>
         <tfoot>
             <tr>
@@ -291,10 +128,10 @@
 
                             {{
                                 rule.block_when({
-                                    'polly': 'bar',
                                     'removeable': false,
                                     'inputs': [
                                         form.select2({
+                                            'class': 'form__group--medium',
                                             'label': 'Choose trigger',
                                             'placeholder': 'Choose trigger',
                                             'show-label': false,
@@ -317,8 +154,11 @@
 
                             {{
                                 rule.block_and({
+                                    'show_and': false,
+                                    'show_or': false,
                                     'inputs': [
                                         form.select2({
+                                            'class': 'form__group--medium',
                                             'label': 'Choose trigger',
                                             'placeholder': 'Choose condition',
                                             'show-label': false,
@@ -348,6 +188,7 @@
                                             ]
                                         }),
                                         form.select2({
+                                            'class': 'form__group--medium',
                                             'label': 'Choose user type',
                                             'show-label': false,
                                             'options':
@@ -369,11 +210,72 @@
                                     ]
                                 })
                             }}
+                            {{
+                                rule.block_or({
+                                    'class': 'rule--indented',
+                                    'error': [
+                                        'Please choose a user type'
+                                    ],
+                                    'inputs': [
+                                        form.select2({
+                                            'class': 'form__group--medium',
+                                            'label': 'Choose trigger',
+                                            'placeholder': 'Choose condition',
+                                            'show-label': false,
+                                            'options':
+                                            [
+                                                {
+                                                    'label': 'User type',
+                                                    'value': 'foo'
+                                                }
+                                            ]
+                                        }),
+                                        form.select({
+                                            'class': 'form__group--small',
+                                            'label': 'Choose',
+                                            'placeholder': 'Choose',
+                                            'show-label': false,
+                                            'options':
+                                            [
+                                                {
+                                                    'label': 'is',
+                                                    'value': 'foo'
+                                                },
+                                                {
+                                                    'label': 'is not',
+                                                    'value': 'foo'
+                                                }
+                                            ]
+                                        }),
+                                        form.select2({
+                                            'class': 'form__group--medium has-error',
+                                            'label': 'Choose user type',
+                                            'show-label': false,
+                                            'options':
+                                            [
+                                                {
+                                                    'label': 'Please choose...',
+                                                    'value': 'foo'
+                                                },
+                                                {
+                                                    'label': 'Anonymous user',
+                                                    'value': 'foo'
+                                                },
+                                                {
+                                                    'label': 'Admin on behalf of user',
+                                                    'value': 'foo'
+                                                }
+                                            ]
+                                        })
+                                    ]
+                                })
+                            }}
 
                             {{
                                 rule.block_then({
                                     'inputs': [
                                         form.select2({
+                                            'class': 'form__group--medium',
                                             'label': 'Choose action',
                                             'show-label': false,
                                             'options':
@@ -407,6 +309,7 @@
                                             ]
                                         }),
                                         form.select2({
+                                            'class': 'form__group--medium',
                                             'label': 'Using template',
                                             'data-html': 'true',
                                             'show-label': false,
@@ -464,8 +367,6 @@
             </tr>
         </tfoot>
     </table>
-
-
 {% endblock tab_content %}
 
 {% block tab_sidebar %}
@@ -473,6 +374,3 @@
     <p>Create rules to automatically perform actions when specific events occur.</p>
     <p>Rules can do things like send emails, or make changes to integrated third-party systems too.</p>
 {% endblock tab_sidebar %}
-
-
-

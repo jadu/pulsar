@@ -195,21 +195,22 @@
     .tab__sidebar {
         @include col-span(3);
         display: none;
+        height: 100%;
+        vertical-align: top;
 
         @include respond-min($screen-desktop) {
           display: table-cell;
           float: right;
-          vertical-align: top;
+          padding-left: $padding-base;
         }
 
         .no-js & {
           display: table-cell;
-          vertical-align: top;
         }
 
         .heading {
             font-size: $font-size-large;
-            line-height: 1.25;
+            line-height: $line-height-large;
             margin: 0;
         }
     }
