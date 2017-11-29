@@ -11,6 +11,9 @@
 {% set tab_block_list %}
     {% include 'lexicon/tabs/block-list.html.twig' %}
 {% endset %}
+{% set tab_cards %}
+    {% include 'lexicon/tabs/cards.html.twig' %}
+{% endset %}
 {% set tab_colours %}
     {% include 'lexicon/tabs/colours.html.twig' %}
 {% endset %}
@@ -57,14 +60,20 @@
           "id"    : "grid",
           "label" : "Grid",
           "href"  : "?tab=grid",
-          "src"   : tab_grid
+          "src"   : tab_grid,
+        },
+        {
+          "id"    : "cards",
+          "label" : "Cards",
+          "href"  : "?tab=cards",
+          "src"   : tab_cards,
+          "active": true
         },
         {
           "id"    : "colours",
           "label" : "Colours",
           "href"  : "?tab=colours",
           "src"   : tab_colours,
-          "active": true
         },
         {
           "id"    : "buttons",
