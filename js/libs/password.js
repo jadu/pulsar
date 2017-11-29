@@ -326,10 +326,32 @@
         return init.call(this);
     }
 
+    function togglePasswordVisibility ({data}) {
+        var passwordInput = $(data.input),
+            passwordButton = $(data.button),
+            passwordButtonIcon = $(data.buttonIcon);
+
+        if (passwordInput.attr('type') === 'password') {
+            passwordInput.attr('type', 'text');
+            passwordButtonIcon.removeClass('icon-eye');
+            passwordButtonIcon.addClass('icon-eye-slash');
+            passwordButton.text('HIDE');
+        } else {
+            passwordInput.attr('type', 'password');
+            passwordButtonIcon.removeClass('icon-eye-slash');
+            passwordButtonIcon.addClass('icon-eye');
+            passwordButton.text('SHOW');
+        }
+    }
+
     // Bind to jquery
     $.fn.password = function(options) {
         return this.each(function() {
             new Password($(this), options);
         });
+    };
+
+    $.fn.togglePasswordVisibility = function({data}) {
+        togglePasswordVisibility({data});
     };
 })(jQuery);
