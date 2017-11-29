@@ -116,11 +116,11 @@ PulsarFormComponent.prototype.init = function () {
     // choice block click behaviour
     choiceBlock.on('change', '.controls input[type="checkbox"], .controls input[type="radio"]', component.selectionButtons);
 
-    // Hide/Show Text & Eye Icon Toggle
-    component.$html.find('#password__texttoggle__button').on('click', { input : '#password__texttoggle', button : '#password__texttoggle__button' }, component.togglePasswordVisibility);
-    component.$html.find('#password__toggle__button').on('click', { input : '#password__toggle',  buttonIcon : '#password__toggle__button i' }, component.togglePasswordVisibility);
-    component.$html.find('#password__metertoggle__button').on('click', { input : '#password__metertoggle', buttonIcon : '#password__metertoggle__button i' }, component.togglePasswordVisibility);
-    component.$html.find('#password__metertoggle__button-2').on('click', { input : '#password__metertoggle-2', button : '#password__metertoggle__button-2' }, component.togglePasswordVisibility);
+    // Bind onClick Events for Hide/Show Text & Eye Icon Toggle
+    this.$html.find('#password__icontoggle__btn').on('click', { input : '#password__icontoggle', buttonIcon : '#password__icontoggle__btn i' }, $.fn.togglePasswordVisibility);
+    this.$html.find('#password__texttoggle__btn').on('click', { input : '#password__texttoggle', button : '#password__texttoggle__btn' }, $.fn.togglePasswordVisibility);
+    this.$html.find('#password__metertoggle__btn').on('click', { input : '#password__metertoggle', buttonIcon : '#password__metertoggle__btn i' }, $.fn.togglePasswordVisibility);
+    this.$html.find('#password__metertoggle__btn-2').on('click', { input : '#password__metertoggle-2', button : '#password__metertoggle__btn-2' }, $.fn.togglePasswordVisibility);
 
     // initialise tinepickers
     var $timePickers = this.$html.find('[data-timepicker=true]');
