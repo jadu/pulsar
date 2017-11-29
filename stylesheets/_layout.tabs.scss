@@ -193,7 +193,7 @@
     }
 
     .tab__sidebar {
-        @include col-span(3);
+        @include col-span-width(3);
         display: none;
         height: 100%;
         vertical-align: top;
@@ -217,11 +217,7 @@
 }
 
 .tab__container.has-sidebar .tab__content {
-    @include respond-min($screen-phone) {
-        @include col-span(12);
-    }
-
     @include respond-min($screen-desktop) {
-        @include col-span(9);
+        @include col-span-width(9);
     }
 }
