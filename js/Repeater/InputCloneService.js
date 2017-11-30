@@ -1,5 +1,18 @@
 class InputCloneService {
     /**
+     * Input clone service
+     * @param pulsarFormComponent
+     * @param queryService {QueryService}
+     */
+    constructor (
+        pulsarFormComponent,
+        queryService
+    ) {
+        this.queryService = queryService;
+        this.pulsarFormComponent = pulsarFormComponent;
+    }
+
+    /**
      * Dispatch input clone methods
      * returns a clone node (deep) by default
      * @param element
@@ -20,7 +33,13 @@ class InputCloneService {
      * @param select
      */
     cloneSelect (select) {
+        const $select = $(select);
         const selectClone = select.cloneNode(true);
+
+        if ($select.hasClass('js-select2') && $select.data('select2')) {
+            select.setAttribute(this.queryService.getAttr('select2-data'), JSON.stringify($select.select2('data')));
+            $select.select2('destroy');
+        }
 
         // Empty out options
         selectClone.innerHTML = '';

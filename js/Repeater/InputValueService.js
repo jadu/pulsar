@@ -7,10 +7,14 @@ class InputValueService {
      */
     getValue (element) {
         const type = {
-            'checkbox': this.getCheckboxValue.bind(this)
+            'checkbox': this.getCheckboxValue.bind(this),
+            'select-multiple': this.getMultiSelectValue.bind(this),
+            'radio': this.getRadioValue.bind(this)
         };
 
-        return type[element.type] === undefined ? element.value : type[element.type](element);
+        return type[element.type] === undefined ?
+            { value: element.value, selected: this.getSelected(element) } :
+            type[element.type](element);
     }
 
     /**
@@ -25,7 +29,8 @@ class InputValueService {
     setValue (element, value, state) {
         const type = {
             'checkbox': this.setCheckboxValue.bind(this),
-            'radio': this.setRadioValue.bind(this)
+            'radio': this.setRadioValue.bind(this),
+            'select-multiple': this.setMultiSelectValue.bind(this)
         };
 
         return type[element.type] === undefined ? element.value = value : type[element.type](element, value, state);
@@ -42,7 +47,8 @@ class InputValueService {
     printValue (element, value, state) {
         const type = {
             'password': this.printPassword.bind(this),
-            'select-one': this.printSelect.bind(this)
+            'select-one': this.printSelect.bind(this),
+            'select-multiple': this.printSelect.bind(this)
         };
 
         return type[element.type] === undefined ? element.value : type[element.type](element, value, state);
@@ -67,7 +73,7 @@ class InputValueService {
         return [].slice.call(element.children)
             .filter(option => option.selected)
             .map(option => option.textContent)
-            .join(', ')
+            .join(', ');
     }
 
     /**
@@ -99,7 +105,22 @@ class InputValueService {
      * @returns {*}
      */
     getCheckboxValue (checkbox) {
-        return checkbox.checked ? checkbox.value : '';
+        return { value: checkbox.value, selected: checkbox.checked };
+    }
+
+    getRadioValue (radio) {
+        return { value: radio.value, selected: radio.checked };
+    }
+
+    /**
+     * Get multi select values
+     * @param select
+     */
+    getMultiSelectValue (select) {
+        return [].slice.call(select.children)
+            .map(option => {
+                return { value: option.value, selected: option.selected };
+            });
     }
 
     /**
@@ -125,6 +146,18 @@ class InputValueService {
         if (state.selected && radio.hasAttribute('name')) {
             radio.value = value;
         }
+    }
+
+    /**
+     * Set the value of a multi select input
+     * @param select
+     * @param value
+     * @param state
+     */
+    setMultiSelectValue (select, value, state) {
+        [].slice.call(select.children)
+            .find(option => option.value === value)
+            .selected = state.selected;
     }
 }
 
