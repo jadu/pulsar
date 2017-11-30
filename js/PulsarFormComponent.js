@@ -43,10 +43,10 @@ PulsarFormComponent.prototype.init = function () {
         goodPass: 'Medium: try using special charecters',
         strongPass: 'Strong password',
         enterPass: 'Type your password',
-        showCriteria: true,
+        showCriteria: false,
         criteriaPosition: 'down', //up or down
         showPercent: true,
-        showText: true, // shows the text tips
+        showText: false, // shows the text tips
         animate: true, // whether or not to animate the progress bar on input blur/focus
         animateSpeed: 'fast', // the above animation speed
         username: false, // select the username field (selector or jQuery instance) for better password checks
@@ -62,8 +62,8 @@ PulsarFormComponent.prototype.init = function () {
         enterPass: 'Type your password',
         showCriteria: true,
         criteriaPosition: 'down', //up or down
-        showPercent: true,
-        showText: true, // shows the text tips
+        showPercent: false,
+        showText: false, // shows the text tips
         animate: true, // whether or not to animate the progress bar on input blur/focus
         animateSpeed: 'fast', // the above animation speed
         username: false, // select the username field (selector or jQuery instance) for better password checks
