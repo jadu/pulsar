@@ -241,6 +241,16 @@
                 detectCriteria($object.val());
             });
 
+            // On Submit check for unmet Criteria
+            $object.submit(function() {
+                if($(objectID).siblings('.password__criteria').find('li').not('.passed').length > 0) {
+                    $(objectID).siblings('.password__criteria').find('li').not('.passed').addClass('failed');
+                    $(objectID).addClass('has-error');
+                } else {
+                    $(objectID).addClass('has-success');
+                }
+            });
+
             // Animate Hidden Password Strength Meter Bar
             if (options.animate) {
                 $object.focus(function() {
@@ -278,6 +288,11 @@
         function detectCriteria(password, minimumLength) {
             var objectID = '#'+$object.attr('id');
 
+            // Clear Password Criteria and Input during checking
+            $(objectID).siblings('.password__criteria').find('li').not('.passed').removeClass('failed');
+            $(objectID).removeClass('has-error');
+            $(objectID).removeClass('has-success');
+
             // Detect Password Length
             if (password.length >= options.minimumLength) {
                 $(objectID).siblings('.password__criteria').find('.minimumLength').addClass('passed');
@@ -307,25 +322,18 @@
             }
 
             // Detect Special Character
-            if (password.match(/([ !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])/)) {
+            if (password.match(/([ !"#$£%&'()*+,-./:;<=>?@[\]^_`{|}~])/)) {
                 $(objectID).siblings('.password__criteria').find('.specialChar').addClass('passed');
             } else {
                 $(objectID).siblings('.password__criteria').find('.specialChar').removeClass('passed');
+
             }
-
-            // Detect Common Passwords
-            /*if (password.match(/([!,@,#,$,%,^,&,*,?,_,~])/)) {
-                $('.password__criteria .specialChar').addClass('passed');
-            } else {
-                $('.password__criteria .specialChar').removeClass('passed');
-            }*/
-
-            return this;
         }
 
         return init.call(this);
     }
 
+    // Hide/Show Password
     function togglePasswordVisibility ({data}) {
         var passwordInput = $(data.input),
             passwordButton = $(data.button),
