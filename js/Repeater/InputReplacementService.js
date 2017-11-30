@@ -49,7 +49,8 @@ class InputReplacementService {
     }
 
     /**
-     * Replace select inputs, select2 needs some manual intervention
+     * We don't need to replace the select2s here, we can update the original clone
+     * we'll replace regular selects with their state-full clones
      * @param select
      * @param replacement
      */
@@ -57,11 +58,20 @@ class InputReplacementService {
         const $select = $(select);
 
         if ($select.hasClass('js-select2')) {
+            // Parse our dumped select2 data
             const select2Data = JSON.parse(select.getAttribute(this.queryService.getAttr('select2-data')));
 
-            this.pulsarFormComponent.initSelect2($select);
+            // Set each options's selected value based on the parsed select2 data
+            [].slice.call(select.children)
+                .forEach(option => {
+                    const previousState = select2Data.find(s2 => s2.id === option.value);
 
-            // TODO: programmatically select the selected options here using select2Data
+                    option.selected = previousState ? previousState.selected : false;
+                });
+
+            this.pulsarFormComponent.initSelect2($select);
+        } else {
+            $select.replaceWith(replacement);
         }
     }
 }
