@@ -34,7 +34,6 @@ class RepeaterDataService {
         $inputs.each((index, input) => {
             const name = input.getAttribute(this.queryService.getAttr('name'));
             const clone = this.inputCloneService.clone(input);
-
             // Add name attr to
             clone.setAttribute('name', name);
             // Remove the new group attr
@@ -56,7 +55,7 @@ class RepeaterDataService {
 
         // Iterate each input in the saved data
         $(savedData).find('[name]').each((index, element) => {
-            state[element.getAttribute('name')]
+            state[element.getAttribute('name')].value
                 .forEach(input => {
                     // Update the value for selected inputs
                     this.inputValueService.setValue(element, input.value, { selected: input.selected });

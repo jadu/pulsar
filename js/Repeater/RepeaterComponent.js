@@ -17,8 +17,14 @@ const RepeaterDataService = require('./RepeaterDataService');
 class Repeater {
     /**
      * Repeater
+     * @param pulsarFormComponent
+     * @param window
      */
-    constructor (window) {
+    constructor (
+        pulsarFormComponent,
+        window
+    ) {
+        this.pulsarFormComponent = pulsarFormComponent;
         this.repeaterEntries = 0;
         this.savedEntries = 0;
         this.window = window;
@@ -33,7 +39,7 @@ class Repeater {
         // TODO add a unique attr to each repeater instance, then use that
         this.repeater = repeater;
 
-        // TODO DI this, maybe not have an init method either :/
+        // TODO DI these
         this.queryService = new QueryService(
             this.repeater,
             {
@@ -60,17 +66,23 @@ class Repeater {
                 'preview-heading': 'data-repeater-for-name',
                 'preview-placeholder': 'data-repeater-preview-placeholder',
                 'preview-update-id': 'data-repeater-preview-update-id',
+                'select2-data': 'data-repeater-select2-data',
                 'saved-entry-id': 'data-repeater-saved-data-id',
                 'saved-entries-root': 'data-repeater-saved-entries-root',
                 activeInput: 'data-repeater-active-input'
             }
         );
 
-        // TODO DI these
         this.activeFunctionService = new ActiveFunctionService();
-        this.inputCloneService = new InputCloneService();
+        this.inputCloneService = new InputCloneService(
+            this.pulsarFormComponent,
+            this.queryService,
+        );
         this.inputValueService = new InputValueService();
-        this.inputReplacementService = new InputReplacementService();
+        this.inputReplacementService = new InputReplacementService(
+            this.pulsarFormComponent,
+            this.queryService
+        );
         this.repeaterDataService = new RepeaterDataService(
             this.queryService,
             this.inputCloneService,
@@ -220,17 +232,25 @@ class Repeater {
      */
     createState (group) {
         const $inputs = $(group).find(this.queryService.getQuery('name'));
+        const name = this.queryService.getAttr('name');
 
         return $inputs.toArray().reduce((state, input) => {
-            if (!state[input.getAttribute(this.queryService.getAttr('name'))]) {
-                state[input.getAttribute(this.queryService.getAttr('name'))] = [];
+            const value = this.inputValueService.getValue(input);
+            const valueArray = Array.isArray(value) ? value : [value];
+
+            // Add a reference to yhr
+            valueArray.forEach(value => value.ref = input);
+
+            if (state[input.getAttribute(name)] === undefined) {
+                state[input.getAttribute(name)] = {};
             }
 
-            state[input.getAttribute(this.queryService.getAttr('name'))].push({
-                value: this.inputValueService.getValue(input),
-                selected: this.inputValueService.getSelected(input),
-                ref: input
-            });
+
+            if (!Array.isArray(state[input.getAttribute(name)].value)) {
+                state[input.getAttribute(name)].value = valueArray;
+            } else {
+                valueArray.forEach(value => state[input.getAttribute(name)].value.push(value));
+            }
 
             return state;
         }, {});
@@ -244,6 +264,7 @@ class Repeater {
         const preview = this.repeater.querySelector(
             `[${this.queryService.getAttr('preview-id')}="${this.repeaterEntries}"]`
         );
+
         const clone = group.cloneNode(true);
         const clonedControls = clone.querySelector(this.queryService.getQuery('add-group-controls'));
         const inputsWithState = $(group)
