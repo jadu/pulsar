@@ -68,12 +68,12 @@ class InputValueService {
     /**
      * Get the text content of selected options when printing select values
      * @param element
+     * @param value
      */
-    printSelect (element) {
+    printSelect (element, value) {
         return [].slice.call(element.children)
-            .filter(option => option.selected)
-            .map(option => option.textContent)
-            .join(', ');
+            .find(option => option.value === value)
+            .textContent;
     }
 
     /**

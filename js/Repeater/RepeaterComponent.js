@@ -451,7 +451,7 @@ class Repeater {
 
         // Reset input values to pre-edited state
         $(group).find(this.queryService.getQuery('name')).each((index, element) => {
-            this.state[repeaterId][element.getAttribute(this.queryService.getAttr('name'))]
+            this.state[repeaterId][element.getAttribute(this.queryService.getAttr('name'))].value
                 .forEach(input => {
                     // Update the value for selected inputs
                     this.inputValueService.setValue(element, input.value, { selected: input.selected });
