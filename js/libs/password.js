@@ -180,12 +180,11 @@
                 $colorbar = $('<div>').addClass('password__colorbar'),
                 $insert = $('<div>').addClass('password__wrapper form__control').append($graybar.append($colorbar)),
                 $criteriaGroup = $('<div>').addClass('password__criteria').html('<ul>' +
-                                                                                '<li class="minimumLength">8 characters minimum</li>' +
-                                                                                '<li class="uppercase">1 UPPERCASE character</li>' +
-                                                                                '<li class="lowercase">1 lowercase character</li>' +
-                                                                                '<li class="specialChar">1 Special character</li>' +
-                                                                                '<li class="number">1 number</li>' +
-                                                                                '<li class="commonPassword">Not a common password</li>' +
+                                                                                '<li class="minimumLength"><span>8 characters minimum</span></li>' +
+                                                                                '<li class="uppercase"><span>1 UPPERCASE character</span></li>' +
+                                                                                '<li class="lowercase"><span>1 lowercase character</span></li>' +
+                                                                                '<li class="specialChar"><span>1 Special character</span></li>' +
+                                                                                '<li class="number"><span>1 number</span></li>' +
                                                                                 '</ul>');
 
             $object.parent().addClass('password__strength--visible');
@@ -326,7 +325,6 @@
                 $(objectID).siblings('.password__criteria').find('.specialChar').addClass('passed');
             } else {
                 $(objectID).siblings('.password__criteria').find('.specialChar').removeClass('passed');
-
             }
         }
 
