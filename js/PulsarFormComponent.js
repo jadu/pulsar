@@ -115,10 +115,10 @@ PulsarFormComponent.prototype.initColourpickers = function () {
 
         var $this = $(this),
             $input = $this.find('.form__control'),
-            $pickerInput = $('<input data-colour-picker>'),
+            $pickerInput = $('<input data-colour-picker-input>'),
             disabledAttr = $input.attr('disabled'),
             isDisabled = false,
-            existingPicker = $input.next('[data-colour-picker]');
+            existingPicker = $input.next('[data-colour-picker-input]');
 
         if (typeof disabledAttr !== typeof undefined && disabledAttr !== false) {
             isDisabled = true;
@@ -131,7 +131,6 @@ PulsarFormComponent.prototype.initColourpickers = function () {
             $pickerInput.spectrum('destroy');
             existingPicker.remove();
             $input.siblings('.sp-replacer').remove();
-
         }
 
         $pickerInput.insertAfter($input);
@@ -158,13 +157,24 @@ PulsarFormComponent.prototype.initColourpickers = function () {
     });
 }
 
-PulsarFormComponent.prototype.destroyColourPicker = function ($colourPicker) {
-    $colourPicker
-        .find('.form__control')
-        .next('input')
-        .spectrum('destroy');
+/**
+ * Update colour pickers within a scope
+ * @param $root
+ */
+PulsarFormComponent.prototype.updateColourPicker = function ($root) {
+    const $input = $root.find('.js-colorpicker .form__control');
+
+    $input.each((index, element) => {
+        const $input = $(element);
+        const $picker = $input.next();
+
+        $picker.spectrum('set', `#${$input.val()}`);
+    });
 }
 
+/**
+ * Selection Button className logic
+ */
 PulsarFormComponent.prototype.selectionButtons = function () {
     var $target = $(this),
         $controls = $target.closest('.controls');
@@ -180,6 +190,10 @@ PulsarFormComponent.prototype.selectionButtons = function () {
     }
 }
 
+/**
+ * Initiate Select2
+ * @param target
+ */
 PulsarFormComponent.prototype.initSelect2 = function (target) {
     var $target = target;
 
@@ -199,7 +213,6 @@ PulsarFormComponent.prototype.initSelect2 = function (target) {
         $this.select2(config);
         $this.parent().find('.select2-container').removeAttr('style');
     });
-
 }
 
 module.exports = PulsarFormComponent;
