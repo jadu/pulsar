@@ -223,6 +223,9 @@ class Repeater {
                 .innerText = this.repeater.getAttribute(this.queryService.getAttr('add-another-group-text'));
         }
 
+        // Re-initialise select2 instances in the "edit" and "new group" form
+        this.pulsarFormComponent.initSelect2($(this.queryService.get('add-group-form')).find('.js-select2'));
+
         // Hide new repeater group form
         $(this.queryService.get('add-group-form')).hide();
     }
@@ -261,12 +264,9 @@ class Repeater {
      * @param group {HTMLElement}
      */
     createEditEntryGroup (group) {
-        // this.pulsarFormComponent.destroyColourPicker($(group).find('.js-colorpicker'));
-
         const preview = this.repeater.querySelector(
             `[${this.queryService.getAttr('preview-id')}="${this.repeaterEntries}"]`
         );
-
         const clone = group.cloneNode(true);
         const clonedControls = clone.querySelector(this.queryService.getQuery('add-group-controls'));
         const inputsWithState = $(group)
@@ -390,6 +390,9 @@ class Repeater {
         // form element and trigger that form to reset
         $tempFormWrapper.trigger('reset');
         $(this.queryService.get('add-group-form')).unwrap($tempFormWrapper);
+
+        // Update any colour pickers that might exist
+        this.pulsarFormComponent.updateColourPicker($(this.queryService.get('add-group-form')));
     }
 
     /**
@@ -472,6 +475,9 @@ class Repeater {
 
         // Enable "add group" form
         $(this.queryService.get('add-group-button')).removeClass('disabled');
+
+        // Update any colour pickers that might exist
+        this.pulsarFormComponent.updateColourPicker($(group));
 
         // Hide edit group
         $(group).hide();

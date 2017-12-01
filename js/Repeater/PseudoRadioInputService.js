@@ -42,7 +42,7 @@ class PseudoRadioInputService {
     }
 
     /**
-     * Listen ofr input changes and update state
+     * Listen for input changes and update state
      */
     listen () {
         this.root.addEventListener('change', event => {
