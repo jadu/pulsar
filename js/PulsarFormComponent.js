@@ -27,14 +27,15 @@ PulsarFormComponent.prototype.init = function () {
         strongPass: 'Strong password',
         enterPass: 'Type your password',
         showCriteria: true,
-        criteriaPosition: 'up', //up or down
+        criteriaPosition: 'up',
         showPercent: false,
-        showText: true, // shows the text tips
-        animate: true, // whether or not to animate the progress bar on input blur/focus
-        animateSpeed: 'fast', // the above animation speed
-        username: false, // select the username field (selector or jQuery instance) for better password checks
-        usernamePartialMatch: false, // whether to check for username partials
-        minimumLength: 8 // minimum password length (below this threshold, the score is 0)
+        showText: true,
+        animate: true,
+        animateSpeed: 'fast',
+        username: false,
+        usernamePartialMatch: false,
+        minimumLength: 8,
+        showCommonPasswords: false
     });
 
     this.$html.find('#password__metertoggle').password({
@@ -44,14 +45,15 @@ PulsarFormComponent.prototype.init = function () {
         strongPass: 'Strong password',
         enterPass: 'Type your password',
         showCriteria: false,
-        criteriaPosition: 'down', //up or down
+        criteriaPosition: 'down',
         showPercent: true,
-        showText: false, // shows the text tips
-        animate: true, // whether or not to animate the progress bar on input blur/focus
-        animateSpeed: 'fast', // the above animation speed
-        username: false, // select the username field (selector or jQuery instance) for better password checks
-        usernamePartialMatch: false, // whether to check for username partials
-        minimumLength: 8 // minimum password length (below this threshold, the score is 0)
+        showText: false,
+        animate: true,
+        animateSpeed: 'fast',
+        username: false,
+        usernamePartialMatch: false,
+        minimumLength: 8,
+        showCommonPasswords: false
     });
 
     this.$html.find('#password__metertoggle-2').password({
@@ -61,14 +63,16 @@ PulsarFormComponent.prototype.init = function () {
         strongPass: 'Strong password',
         enterPass: 'Type your password',
         showCriteria: true,
-        criteriaPosition: 'down', //up or down
+        criteriaPosition: 'down',
         showPercent: false,
-        showText: false, // shows the text tips
-        animate: true, // whether or not to animate the progress bar on input blur/focus
-        animateSpeed: 'fast', // the above animation speed
-        username: false, // select the username field (selector or jQuery instance) for better password checks
-        usernamePartialMatch: false, // whether to check for username partials
-        minimumLength: 8 // minimum password length (below this threshold, the score is 0)
+        showText: false,
+        animate: true,
+        animateSpeed: 'fast',
+        username: false,
+        usernamePartialMatch: false,
+        minimumLength: 8,
+        showCommonPasswords: true,
+        commonPasswordsList: 'Admin123$'
     });
 
     // Attach basic pikaday to datepicker fields
@@ -77,7 +81,7 @@ PulsarFormComponent.prototype.init = function () {
     });
 
     // Block styled checkboxes and radios
-    var choiceBlock = component.$html.find(".choice--block");
+    var choiceBlock = component.$html.find('.choice--block');
 
     // set up choice block states on load
     $.each(choiceBlock, function() {
