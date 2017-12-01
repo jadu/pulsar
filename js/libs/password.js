@@ -175,7 +175,6 @@
         function init() {
             var shown = true,
                 $text = options.showText,
-                $criteria = options.showCriteria,
                 $percentage = options.showPercent,
                 objectID = '#'+$object.attr('id'),
                 $graybar = $('<div>').addClass('password__graybar'),
