@@ -281,6 +281,11 @@
                 }
             }
 
+            // Toggle Common Passwords Criteria Option
+            if (options.showCommonPasswords === true) {
+                $(objectID).siblings('.password__criteria').find('ul').append('<li class="commonPassword"><span>Not a common password</span></li>');
+            }
+
             return this;
         }
 
