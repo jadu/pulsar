@@ -11,14 +11,16 @@
             containsUsername: 'The password contains the username',
             enterPass: 'Type your password',
             showCriteria: false,
-            criteriaPosition: 'up',
+            criteriaPosition: 'up', // up or down
             showPercent: false,
-            showText: false,
-            animate: false,
-            animateSpeed: 'fast',
-            username: false,
-            usernamePartialMatch: false,
-            minimumLength: 6
+            showText: false, // shows the text tips
+            animate: false, // whether or not to animate the progress bar on input blur/focus
+            animateSpeed: 'fast', // the above animation speed
+            username: false, // select the username field (selector or jQuery instance) for better password checks
+            usernamePartialMatch: false, // whether to check for username partials
+            minimumLength: 6, // minimum password length (below this threshold, the score is 0)
+            showCommonPasswords: false,
+            commonPasswordsList: ' ' // expects a list of the blacklisted passwords
         };
 
         options = $.extend({}, defaults, options);
