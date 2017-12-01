@@ -11,19 +11,21 @@
             'label': 'The Pulsar team',
             'empty': 'You have not added any team members',
             'headings': [
-            { name: 'text', label: 'text' },
-            { name: 'checkbox', label: 'checkbox' },
-            { name: 'choice', label: 'choice' },
-            { name: 'colour', label: 'colour' },
-            { name: 'date', label: 'date' },
-            { name: 'file', label: 'file' },
-            { name: 'password', label: 'password' },
-            { name: 'radio', label: 'radio' },
-            { name: 'radio_simple', label: 'radio_simple' },
-            { name: 'range', label: 'range' },
-            { name: 'select', label: 'select' },
+                { name: 'text', label: 'text' },
+                { name: 'checkbox', label: 'checkbox' },
+                { name: 'choice', label: 'choice' },
+                { name: 'colour', label: 'colour' },
+                { name: 'date', label: 'date' },
+                { name: 'file', label: 'file' },
+                { name: 'password', label: 'password' },
+                { name: 'radio', label: 'radio' },
+                { name: 'radio_simple', label: 'radio_simple' },
+                { name: 'range', label: 'range' },
+                { name: 'select', label: 'select' },
                 { name: 'select2', label: 'select2' },
-                { name: 'select2multi', label: 'select2multi' }
+                { name: 'select2multi', label: 'select2multi' },
+                { name: 'textarea', label: 'textarea' },
+                { name: 'time', label: 'time' }
             ],
             'max-entries': 3,
             'add-new-group-text': 'Add',
@@ -181,6 +183,22 @@
                     'colour_blue': 'Blue'
                 }
             })
+        }}
+
+        {{
+        form.textarea({
+            'label': 'textarea',
+            'id': 'textarea',
+            'name': 'textarea'
+        })
+        }}
+
+        {{
+        form.time({
+            'label': 'time',
+            'id': 'time',
+            'name': 'time'
+        })
         }}
 
         {{ form.repeatable_end() }}

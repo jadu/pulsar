@@ -261,6 +261,8 @@ class Repeater {
      * @param group {HTMLElement}
      */
     createEditEntryGroup (group) {
+        // this.pulsarFormComponent.destroyColourPicker($(group).find('.js-colorpicker'));
+
         const preview = this.repeater.querySelector(
             `[${this.queryService.getAttr('preview-id')}="${this.repeaterEntries}"]`
         );
@@ -271,6 +273,7 @@ class Repeater {
             .find(this.queryService.getQuery('name'))
             .toArray()
             .map(this.inputCloneService.clone.bind(this.inputCloneService));
+
 
         // Add repeater ID to the group
         clone.setAttribute(this.queryService.getAttr('edit-id'), this.repeaterEntries);
@@ -292,6 +295,9 @@ class Repeater {
 
         // Refresh radio state
         this.pseudoRadioInputService.refresh();
+
+        // Refresh the PulsarFormComponent services
+        this.pulsarFormComponent.refresh();
 
         // Hide edit form
         $(clone).hide();
