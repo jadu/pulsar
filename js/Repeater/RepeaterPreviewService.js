@@ -34,22 +34,22 @@ class RepeaterPreviewService {
             const data = state[name];
             let value = this.emptyHTML;
 
-
-            // If our heading exists inside the state object
-            if (data) {
-                const preview = document.createElement('td');
-
-                preview.setAttribute(this.queryService.getAttr('preview-update-id'), `${name}_${id}`);
-
-                data.value
-                    .filter(input => input.selected && input.value)
-                    .forEach(input => {
-                        value = this.print(input.ref, value, input.value);
-                    });
-
-                preview.textContent = value;
-                previewRow.appendChild(preview);
+            if (data === undefined) {
+                throw new Error(`The input "${name}" was not found in the Repeater.`);
             }
+
+            const preview = document.createElement('td');
+
+            preview.setAttribute(this.queryService.getAttr('preview-update-id'), `${name}_${id}`);
+
+            data.value
+                .filter(input => input.selected && input.value)
+                .forEach(input => {
+                    value = this.print(input.ref, value, input.value);
+                });
+
+            preview.textContent = value;
+            previewRow.appendChild(preview);
         });
 
         return previewRow;
