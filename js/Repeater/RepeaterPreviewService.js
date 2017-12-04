@@ -22,9 +22,10 @@ class RepeaterPreviewService {
      * Create a repeater preview
      * @param state
      * @param headings
+     * @param id
      * @returns {HTMLElement}
      */
-    create (state, headings) {
+    create (state, headings, id) {
         const previewRow = document.createElement('tr');
 
         // For each heading, create a repeater preview
@@ -38,7 +39,7 @@ class RepeaterPreviewService {
             if (data) {
                 const preview = document.createElement('td');
 
-                preview.setAttribute(this.queryService.getAttr('preview-update-id'), name);
+                preview.setAttribute(this.queryService.getAttr('preview-update-id'), `${name}_${id}`);
 
                 data.value
                     .filter(input => input.selected && input.value)
@@ -59,8 +60,9 @@ class RepeaterPreviewService {
      * @param state
      * @param headings
      * @param root
+     * @param id
      */
-    update (state, headings, root) {
+    update (state, headings, root, id) {
         headings.forEach(heading => {
             const name = heading.getAttribute('data-repeater-for-name');
             const data = state[name];
@@ -68,7 +70,7 @@ class RepeaterPreviewService {
 
             // If our heading exists inside the state object
             if (state[name]) {
-                const preview = root.querySelector(`[${this.queryService.getAttr('preview-update-id')}="${name}"]`);
+                const preview = root.querySelector(`[${this.queryService.getAttr('preview-update-id')}="${name}_${id}"]`);
 
                 // Set the value for each input in the state
                 data.value

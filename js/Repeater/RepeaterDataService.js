@@ -6,15 +6,18 @@ class RepeaterDataService {
      * @param queryService {QueryService}
      * @param inputCloneService {InputCloneService}
      * @param inputValueService {InputValueService}
+     * @param uniqueIdService {UniqueIdService}
      */
     constructor (
         queryService,
         inputCloneService,
-        inputValueService
+        inputValueService,
+        uniqueIdService
     ) {
         this.queryService = queryService;
         this.inputCloneService = inputCloneService;
         this.inputValueService = inputValueService;
+        this.uniqueIdService = uniqueIdService;
     }
 
     /**
@@ -41,6 +44,8 @@ class RepeaterDataService {
             // Add cloned input to entry
             savedData.appendChild(clone);
         });
+
+        this.uniqueIdService.uniquifyIds(savedData);
 
         // Append saved entry to the DOM
         dataRoot.appendChild(savedData);
