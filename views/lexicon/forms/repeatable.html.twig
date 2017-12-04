@@ -25,144 +25,145 @@
                 { name: 'select2', label: 'select2' },
                 { name: 'select2multi', label: 'select2multi' },
                 { name: 'textarea', label: 'textarea' },
-                { name: 'time', label: 'time' }
+                { name: 'time', label: 'time' },
+                { name: 'toggle', label: 'toggle' }
             ],
             'max-entries': 3,
             'add-new-group-text': 'Add',
             'add-another-group-text': 'Add another'
         }) }}
 
-    {{
-    form.fieldset_start({
-        'legend': 'Team Member'
-    })
-    }}
+        {{
+            form.fieldset_start({
+                'legend': 'Team Member'
+            })
+        }}
 
-    {{
-    form.text({
-        'label': 'text',
-        'id': 'text',
-        'name': 'text'
-    })
-    }}
+        {{
+            form.text({
+                'label': 'text',
+                'id': 'repeater-text',
+                'name': 'text'
+            })
+        }}
 
-    {{
-    form.checkbox({
-        'label': 'checkbox',
-        'id': 'checkbox',
-        'name': 'checkbox'
-    })
-    }}
+        {{
+            form.checkbox({
+                'label': 'checkbox',
+                'id': 'repeater-checkbox',
+                'name': 'checkbox'
+            })
+        }}
 
-    {{
-    form.choice({
-        'label': 'choice',
-        'id': 'choice',
-        'options': [
-        {
-            'label': 'foo',
-            'value': 'foo',
-            'name': 'choice'
-        },
-        {
-            'label': 'bar',
-            'value': 'bar',
-            'name': 'choice'
-        },
-        {
-            'label': 'baz',
-            'value': 'baz',
-            'name': 'choice'
-        }
-        ]
-    })
-    }}
+        {{
+            form.choice({
+                'label': 'choice',
+                'id': 'repeater-choice',
+                'options': [
+                    {
+                        'label': 'foo',
+                        'value': 'foo',
+                        'name': 'choice'
+                    },
+                    {
+                        'label': 'bar',
+                        'value': 'bar',
+                        'name': 'choice'
+                    },
+                    {
+                        'label': 'baz',
+                        'value': 'baz',
+                        'name': 'choice'
+                    }
+                ]
+            })
+        }}
 
-    {{
-    form.color({
-        'label': 'colour',
-        'id': 'colour',
-        'value': '123456',
-        'name': 'colour'
-    })
-    }}
+        {{
+            form.color({
+                'label': 'colour',
+                'id': 'repeater-colour',
+                'value': '123456',
+                'name': 'colour'
+            })
+        }}
 
-    {{
-    form.date({
-        'label': 'date',
-        'id': 'date',
-        'name': 'date'
-    })
-    }}
+        {{
+            form.date({
+                'label': 'date',
+                'id': 'repeater-date',
+                'name': 'date'
+            })
+        }}
 
-    {{
-    form.file({
-        'label': 'file',
-        'id': 'file',
-        'name': 'file'
-    })
-    }}
+        {{
+            form.file({
+                'label': 'file',
+                'id': 'repeater-file',
+                'name': 'file'
+            })
+        }}
 
-    {{
-    form.password({
-        'label': 'password',
-        'id': 'password',
-        'name': 'password'
-    })
-    }}
+        {{
+            form.password({
+                'label': 'password',
+                'id': 'repeater-password',
+                'name': 'password'
+            })
+        }}
 
-    {{
-    form.radio({
-        'label': 'radio',
-        'id': 'radio',
-        'name': 'radio',
-        'value': 'radio'
-    })
-    }}
+        {{
+            form.radio({
+                'label': 'radio',
+                'id': 'repeater-radio',
+                'name': 'radio',
+                'value': 'radio'
+            })
+        }}
 
-    {{
-    form.radio_simple({
-        'label': 'radio_simple',
-        'id': 'radio_simple',
-        'name': 'radio_simple',
-        'value': 'radio_simple'
-    })
-    }}
+            {{
+            form.radio_simple({
+                'label': 'radio_simple',
+                'id': 'repeater-radio_simple',
+                'name': 'radio_simple',
+                'value': 'radio_simple'
+            })
+        }}
 
-    {{
-    form.range({
-        'label': 'range',
-        'id': 'range',
-        'name': 'range'
-    })
-    }}
+        {{
+            form.range({
+                'label': 'range',
+                'id': 'repeater-range',
+                'name': 'range'
+            })
+        }}
 
-    {{
-        form.select({
-            'label': 'select',
-            'id': 'select',
-            'name': 'select',
-            options: [
-        {
-            'label': 'Choose',
-            'value': ''
-        },
-        {
-            'label': 'Red',
-            'value': 'colour_red'
-        },
-        {
-            'label': 'Blue',
-            'value': 'colour_blue'
-        }
-        ]
-    })
-    }}
+        {{
+            form.select({
+                'label': 'select',
+                'id': 'repeater-select',
+                'name': 'select',
+                options: [
+                    {
+                        'label': 'Choose',
+                        'value': ''
+                    },
+                    {
+                        'label': 'Red',
+                        'value': 'colour_red'
+                    },
+                    {
+                        'label': 'Blue',
+                        'value': 'colour_blue'
+                    }
+                ]
+            })
+        }}
 
         {{
             form.select2({
                 'label': 'select2',
-                'id': 'select2',
+                'id': 'repeater-select2',
                 'name': 'select2',
                 'options': {
                     '': 'Choose',
@@ -175,7 +176,7 @@
         {{
             form.select2({
                 'label': 'select2multi',
-                'id': 'select2multi',
+                'id': 'repeater-select2multi',
                 'name': 'select2multi',
                 'multiple': true,
                 'options': {
@@ -186,19 +187,27 @@
         }}
 
         {{
-        form.textarea({
-            'label': 'textarea',
-            'id': 'textarea',
-            'name': 'textarea'
-        })
+            form.textarea({
+                'label': 'textarea',
+                'id': 'repeater-textarea',
+                'name': 'textarea'
+            })
         }}
 
         {{
-        form.time({
-            'label': 'time',
-            'id': 'time',
-            'name': 'time'
-        })
+            form.time({
+                'label': 'time',
+                'id': 'repeater-time',
+                'name': 'time'
+            })
+        }}
+
+        {{
+            form.toggle_switch({
+                'label': 'toggle',
+                'id': 'toggle',
+                'name': 'toggle'
+            })
         }}
 
         {{ form.repeatable_end() }}
