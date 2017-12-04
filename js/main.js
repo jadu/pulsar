@@ -22,7 +22,11 @@
 	pulsar.modulePermissions = new pulsar.ModulePermissionsComponent($html);
     pulsar.navMain = new pulsar.NavMainComponent($html, window);
     pulsar.filterBar = new pulsar.FilterBarComponent($html);
-    pulsar.repeater = new pulsar.Repeater(pulsar.pulsarForm, window);
+    pulsar.repeater = new pulsar.Repeater(
+        pulsar.pulsarForm,
+        pulsar.masterSwitch,
+        window
+    );
 
     $(function () {
         pulsar.button.init();
