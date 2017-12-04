@@ -8,6 +8,8 @@ const RepeaterPreviewService = require('./RepeaterPreviewService');
 const QueryService = require('./QueryService');
 const ActiveFunctionService = require('./ActiveFunctionService');
 const RepeaterDataService = require('./RepeaterDataService');
+const UniqueIdService = require('./UniqueIdService');
+const HashService = require('./HashService');
 
 // TODO
 // 1. create factory
@@ -18,13 +20,16 @@ class Repeater {
     /**
      * Repeater
      * @param pulsarFormComponent
+     * @param masterSwitch
      * @param window
      */
     constructor (
         pulsarFormComponent,
+        masterSwitch,
         window
     ) {
         this.pulsarFormComponent = pulsarFormComponent;
+        this.masterSwicth = masterSwitch;
         this.repeaterEntries = 0;
         this.savedEntries = 0;
         this.window = window;
@@ -72,21 +77,24 @@ class Repeater {
                 activeInput: 'data-repeater-active-input'
             }
         );
-
         this.activeFunctionService = new ActiveFunctionService();
         this.inputCloneService = new InputCloneService(
             this.pulsarFormComponent,
-            this.queryService,
+            this.queryService
         );
         this.inputValueService = new InputValueService();
         this.inputReplacementService = new InputReplacementService(
             this.pulsarFormComponent,
             this.queryService
         );
+        this.uniqueIdService = new UniqueIdService(
+            new HashService()
+        );
         this.repeaterDataService = new RepeaterDataService(
             this.queryService,
             this.inputCloneService,
-            this.inputValueService
+            this.inputValueService,
+            this.uniqueIdService
         );
         this.repeaterPreviewService = new RepeaterPreviewService(
             this.queryService,
@@ -165,7 +173,8 @@ class Repeater {
         // Create preview HTML
         const preview = this.repeaterPreviewService.create(
             this.state[this.repeaterEntries],
-            this.queryService.get('preview-heading', { all: true })
+            this.queryService.get('preview-heading', { all: true }),
+            this.repeaterEntries
         );
 
         // Set preview attributes and append to the DOM
@@ -241,13 +250,12 @@ class Repeater {
             const value = this.inputValueService.getValue(input);
             const valueArray = Array.isArray(value) ? value : [value];
 
-            // Add a reference to yhr
+            // Add a reference to the element
             valueArray.forEach(value => value.ref = input);
 
             if (state[input.getAttribute(name)] === undefined) {
                 state[input.getAttribute(name)] = {};
             }
-
 
             if (!Array.isArray(state[input.getAttribute(name)].value)) {
                 state[input.getAttribute(name)].value = valueArray;
@@ -272,17 +280,22 @@ class Repeater {
         const inputsWithState = $(group)
             .find(this.queryService.getQuery('name'))
             .toArray()
-            .map(this.inputCloneService.clone.bind(this.inputCloneService));
-
+            .map(input => {
+                return this.inputCloneService.clone(input, group);
+            });
 
         // Add repeater ID to the group
         clone.setAttribute(this.queryService.getAttr('edit-id'), this.repeaterEntries);
+
         // Remove the new group attr
         clone.removeAttribute(this.queryService.getAttr('add-group-form'));
+
         // Remove group input name attrs
         this.removeGroupInputNames(clone);
+
         // Add cloned group after preview, this will act as the edit group
         $(preview).after(clone);
+
         // Append our "deep" cloned inputs
         inputsWithState.forEach(input => {
             const name = input.getAttribute(this.queryService.getAttr('name'));
@@ -293,11 +306,17 @@ class Repeater {
             );
         });
 
+        // create unique for/id
+        this.uniqueIdService.uniquifyFors(preview.nextElementSibling);
+
         // Refresh radio state
         this.pseudoRadioInputService.refresh();
 
         // Refresh the PulsarFormComponent services
         this.pulsarFormComponent.refresh();
+
+        // Refresh master switch
+        this.masterSwicth.init();
 
         // Hide edit form
         $(clone).hide();
@@ -433,7 +452,8 @@ class Repeater {
         this.repeaterPreviewService.update(
             this.state[repeaterId],
             this.queryService.get('preview-heading'),
-            this.queryService.get('preview-root')
+            this.queryService.get('preview-root'),
+            repeaterId
         );
 
         // Update saved data
