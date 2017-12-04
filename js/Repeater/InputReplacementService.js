@@ -61,13 +61,15 @@ class InputReplacementService {
             // Parse our dumped select2 data
             const select2Data = JSON.parse(select.getAttribute(this.queryService.getAttr('select2-data')));
 
-            // Set each options's selected value based on the parsed select2 data
-            [].slice.call(select.children)
-                .forEach(option => {
-                    const previousState = select2Data.find(s2 => s2.id === option.value);
+            if (select2Data) {
+                // Set each options's selected value based on the parsed select2 data
+                [].slice.call(select.children)
+                    .forEach(option => {
+                        const previousState = select2Data.find(s2 => s2.id === option.value);
 
-                    option.selected = previousState ? previousState.selected : false;
-                });
+                        option.selected = previousState ? previousState.selected : false;
+                    });
+            }
 
             this.pulsarFormComponent.initSelect2($select);
         } else {
