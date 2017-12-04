@@ -25,7 +25,7 @@ class InputCloneService {
         };
 
         // If the input type is not defined in our type list we'll just return a deep clone
-        return type[element.type] === undefined ? element.cloneNode(true) : type[element.type](element)
+        return type[element.type] === undefined ? element.cloneNode(true) : type[element.type](element);
     }
 
     /**
