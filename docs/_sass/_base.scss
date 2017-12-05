@@ -17,7 +17,7 @@ body {
   padding: 0;
 
   @media (min-width: $large-breakpoint) {
-    font-size: $large-font-size !important;
+    font-size: $root-font-size !important;
   }
 }
 
@@ -47,8 +47,6 @@ a {
 img {
   display: block;
   max-width: 100%;
-  margin: 0 0 1rem;
-  border-radius: 5px;
 }
 
 table:not(.table) {

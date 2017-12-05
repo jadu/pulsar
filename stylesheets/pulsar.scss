@@ -73,6 +73,7 @@ $fa-css-prefix: 'icon';
 @import 'layout.sidebar';
 @import 'layout.signin';
 @import 'layout.tabs';
+@import 'layout.report';
 
 /* -------------------------------------------------------------------------- *\
 	If you're theming Pulsar and want to include your own variables, colours or
@@ -96,6 +97,7 @@ $fa-css-prefix: 'icon';
 @import 'component.button-groups';
 @import 'component.buttons';
 @import 'component.calendar';
+@import 'component.cards';
 @import 'component.colorpicker';
 @import 'component.close';
 @import 'component.datepicker';
