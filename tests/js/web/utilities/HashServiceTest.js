@@ -2,10 +2,14 @@ const HashService = require('../../../../js/utilities/HashService');
 
 describe('HashService', () => {
     let hashService;
+    let dateStub;
 
     beforeEach(() => {
-        hashService = new HashService();
+        dateStub = { now: () => 666 };
+        hashService = new HashService(dateStub);
     });
+
+    describe('test', () => {});
 
     describe('generate', () => {
         it('should return a truthy string value', () => {
@@ -14,10 +18,6 @@ describe('HashService', () => {
         });
 
         it('should return unique hashes within the instance lifetime', () => {
-            const nowStub = sinon.stub(Date, 'now');
-
-            nowStub.returns(666);
-
             expect(hashService.generate('test')).to.equal('test_666');
             expect(hashService.generate('test')).to.equal('test_667');
             expect(hashService.generate('test')).to.equal('test_668');

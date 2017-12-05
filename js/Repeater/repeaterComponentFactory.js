@@ -36,7 +36,7 @@ function repeaterComponentFactory (
         queryService
     );
     const uniqueIdService = new UniqueIdService(
-        new HashService()
+        new HashService(Date)
     );
     const repeaterDataService = new RepeaterDataService(
         queryService,
