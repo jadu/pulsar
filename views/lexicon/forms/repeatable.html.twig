@@ -12,203 +12,262 @@
             'empty': 'You have not added any team members',
             'headings': [
                 { name: 'text', label: 'text' },
-                { name: 'checkbox', label: 'checkbox' },
                 { name: 'choice', label: 'choice' },
                 { name: 'colour', label: 'colour' },
-                { name: 'date', label: 'date' },
-                { name: 'file', label: 'file' },
                 { name: 'password', label: 'password' },
                 { name: 'radio', label: 'radio' },
-                { name: 'radio_simple', label: 'radio_simple' },
-                { name: 'range', label: 'range' },
                 { name: 'select', label: 'select' },
                 { name: 'select2', label: 'select2' },
-                { name: 'select2multi', label: 'select2multi' },
-                { name: 'textarea', label: 'textarea' },
-                { name: 'time', label: 'time' },
-                { name: 'toggle', label: 'toggle' }
+                { name: 'select2multi', label: 'select2multi' }
             ],
             'max-entries': 3,
             'add-new-group-text': 'Add',
             'add-another-group-text': 'Add another'
         }) }}
 
-        {{
-            form.fieldset_start({
-                'legend': 'Team Member'
-            })
-        }}
-
-        {{
-            form.text({
-                'label': 'text',
-                'id': 'repeater-text',
-                'name': 'text'
-            })
-        }}
-
-        {{
-            form.checkbox({
-                'label': 'checkbox',
-                'id': 'repeater-checkbox',
-                'name': 'checkbox'
-            })
-        }}
-
-        {{
-            form.choice({
-                'label': 'choice',
-                'id': 'repeater-choice',
-                'options': [
-                    {
-                        'label': 'foo',
-                        'value': 'foo',
-                        'name': 'choice'
-                    },
-                    {
-                        'label': 'bar',
-                        'value': 'bar',
-                        'name': 'choice'
-                    },
-                    {
-                        'label': 'baz',
-                        'value': 'baz',
-                        'name': 'choice'
-                    }
-                ]
-            })
-        }}
-
-        {{
-            form.color({
-                'label': 'colour',
-                'id': 'repeater-colour',
-                'value': '123456',
-                'name': 'colour'
-            })
-        }}
-
-        {{
-            form.date({
-                'label': 'date',
-                'id': 'repeater-date',
-                'name': 'date'
-            })
-        }}
-
-        {{
-            form.file({
-                'label': 'file',
-                'id': 'repeater-file',
-                'name': 'file'
-            })
-        }}
-
-        {{
-            form.password({
-                'label': 'password',
-                'id': 'repeater-password',
-                'name': 'password'
-            })
-        }}
-
-        {{
-            form.radio({
-                'label': 'radio',
-                'id': 'repeater-radio',
-                'name': 'radio',
-                'value': 'radio'
-            })
-        }}
+            {{
+                form.fieldset_start({
+                    'legend': 'Team Member'
+                })
+            }}
 
             {{
-            form.radio_simple({
-                'label': 'radio_simple',
-                'id': 'repeater-radio_simple',
-                'name': 'radio_simple',
-                'value': 'radio_simple'
-            })
-        }}
+                form.text({
+                    'label': 'text',
+                    'id': 'repeater-text',
+                    'name': 'text'
+                })
+            }}
 
-        {{
-            form.range({
-                'label': 'range',
-                'id': 'repeater-range',
-                'name': 'range'
-            })
-        }}
+            {{
+                form.choice({
+                    'label': 'choice',
+                    'id': 'repeater-choice',
+                    'options': [
+                        {
+                            'label': 'foo',
+                            'value': 'foo',
+                            'name': 'choice'
+                        },
+                        {
+                            'label': 'bar',
+                            'value': 'bar',
+                            'name': 'choice'
+                        },
+                        {
+                            'label': 'baz',
+                            'value': 'baz',
+                            'name': 'choice'
+                        }
+                    ]
+                })
+            }}
 
-        {{
-            form.select({
-                'label': 'select',
-                'id': 'repeater-select',
-                'name': 'select',
-                options: [
-                    {
-                        'label': 'Choose',
-                        'value': ''
-                    },
-                    {
-                        'label': 'Red',
-                        'value': 'colour_red'
-                    },
-                    {
-                        'label': 'Blue',
-                        'value': 'colour_blue'
+            {{
+                form.color({
+                    'label': 'colour',
+                    'id': 'repeater-colour',
+                    'value': '123456',
+                    'name': 'colour'
+                })
+            }}
+
+            {{
+                form.password({
+                    'label': 'password',
+                    'id': 'repeater-password',
+                    'name': 'password'
+                })
+            }}
+
+            {{
+                form.radio({
+                    'label': 'radio',
+                    'id': 'repeater-radio',
+                    'name': 'radio',
+                    'value': 'radio'
+                })
+            }}
+
+            {{
+                form.select({
+                    'label': 'select',
+                    'id': 'repeater-select',
+                    'name': 'select',
+                    options: [
+                        {
+                            'label': 'Choose',
+                            'value': ''
+                        },
+                        {
+                            'label': 'Red',
+                            'value': 'colour_red'
+                        },
+                        {
+                            'label': 'Blue',
+                            'value': 'colour_blue'
+                        }
+                    ]
+                })
+            }}
+
+            {{
+                form.select2({
+                    'label': 'select2',
+                    'id': 'repeater-select2',
+                    'name': 'select2',
+                    'options': {
+                        '': 'Choose',
+                        'colour_red': 'Red',
+                        'colour_blue': 'Blue'
                     }
-                ]
-            })
-        }}
+                })
+            }}
 
-        {{
-            form.select2({
-                'label': 'select2',
-                'id': 'repeater-select2',
-                'name': 'select2',
-                'options': {
-                    '': 'Choose',
-                    'colour_red': 'Red',
-                    'colour_blue': 'Blue'
-                }
-            })
-        }}
+            {{
+                form.select2({
+                    'label': 'select2multi',
+                    'id': 'repeater-select2multi',
+                    'name': 'select2multi',
+                    'multiple': true,
+                    'options': [
+                        { value: 'colour_red', label: 'Red' },
+                        { value: 'colour_blue', label: 'Blue' }
+                    ]
+                })
+            }}
 
-        {{
-            form.select2({
-                'label': 'select2multi',
-                'id': 'repeater-select2multi',
-                'name': 'select2multi',
-                'multiple': true,
-                'options': {
-                    'colour_red': 'Red',
-                    'colour_blue': 'Blue'
-                }
-            })
-        }}
+        {{ form.repeatable_end() }}
 
-        {{
-            form.textarea({
-                'label': 'textarea',
-                'id': 'repeater-textarea',
-                'name': 'textarea'
-            })
-        }}
+        {{ form.repeatable_start({
+            'label': 'The Pulsar team',
+            'empty': 'You have not added any team members',
+            'headings': [
+                { name: 'text2', label: 'text' },
+                { name: 'choice2', label: 'choice' },
+                { name: 'colour2', label: 'colour' },
+                { name: 'password2', label: 'password' },
+                { name: 'radio2', label: 'radio' },
+                { name: 'select2', label: 'select' },
+                { name: 'select22', label: 'select2' },
+                { name: 'select2multi2', label: 'select2multi' }
+            ],
+            'max-entries': 3,
+            'add-new-group-text': 'Add',
+            'add-another-group-text': 'Add another'
+        }) }}
 
-        {{
-            form.time({
-                'label': 'time',
-                'id': 'repeater-time',
-                'name': 'time'
-            })
-        }}
+            {{
+                form.fieldset_start({
+                    'legend': 'Team Member'
+                })
+            }}
 
-        {{
-            form.toggle_switch({
-                'label': 'toggle',
-                'id': 'toggle',
-                'name': 'toggle'
-            })
-        }}
+            {{
+                form.text({
+                    'label': 'text',
+                    'id': 'repeater-text2',
+                    'name': 'text2'
+                })
+            }}
+
+            {{
+                form.choice({
+                    'label': 'choice',
+                    'id': 'repeater-choice2',
+                    'options': [
+                        {
+                            'label': 'foo',
+                            'value': 'foo',
+                            'name': 'choice2'
+                        },
+                        {
+                            'label': 'bar',
+                            'value': 'bar',
+                            'name': 'choice2'
+                        },
+                        {
+                            'label': 'baz',
+                            'value': 'baz',
+                            'name': 'choice2'
+                        }
+                    ]
+                })
+            }}
+
+            {{
+                form.color({
+                    'label': 'colour',
+                    'id': 'repeater-colour2',
+                    'value': '123456',
+                    'name': 'colour2'
+                })
+            }}
+
+            {{
+                form.password({
+                    'label': 'password',
+                    'id': 'repeater-password2',
+                    'name': 'password2'
+                })
+            }}
+
+            {{
+                form.radio({
+                    'label': 'radio',
+                    'id': 'repeater-radio2',
+                    'name': 'radio2',
+                    'value': 'radio'
+                })
+            }}
+
+            {{
+                form.select({
+                    'label': 'select',
+                    'id': 'repeater-select2',
+                    'name': 'select2',
+                    options: [
+                        {
+                            'label': 'Choose',
+                            'value': ''
+                        },
+                        {
+                            'label': 'Red',
+                            'value': 'colour_red'
+                        },
+                        {
+                            'label': 'Blue',
+                            'value': 'colour_blue'
+                        }
+                    ]
+                })
+            }}
+
+            {{
+                form.select2({
+                    'label': 'select2',
+                    'id': 'repeater-select22',
+                    'name': 'select22',
+                    'options': {
+                        '': 'Choose',
+                        'colour_red': 'Red',
+                        'colour_blue': 'Blue'
+                    }
+                })
+            }}
+
+            {{
+                form.select2({
+                    'label': 'select2multi',
+                    'id': 'repeater-select2multi2',
+                    'name': 'select2multi2',
+                    'multiple': true,
+                    'options': [
+                        { value: 'colour_red', label: 'Red' },
+                        { value: 'colour_blue', label: 'Blue' }
+                    ]
+                })
+            }}
 
         {{ form.repeatable_end() }}
 
