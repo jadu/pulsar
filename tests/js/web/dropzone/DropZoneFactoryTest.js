@@ -1,5 +1,5 @@
-import DropZoneFactory from '../../../js/DropZone/DropZoneFactory';
-import DropZone from '../../../js/DropZone/DropZone';
+import DropZoneFactory from '../../../../js/DropZone/DropZoneFactory';
+import DropZone from '../../../../js/DropZone/DropZone';
 
 describe('DropZoneFactory', () => {
     describe('create()', () => {

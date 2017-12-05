@@ -1,5 +1,5 @@
-import DropZoneComponentUtils from '../../../js/DropZone/DropZoneComponentUtils';
-import MimeTyper from '../../../js/libs/MimeTyper';
+import DropZoneComponentUtils from '../../../../js/DropZone/DropZoneComponentUtils';
+import MimeTyper from '../../../../js/libs/MimeTyper';
 
 describe('DropZoneComponentUtils', () => {
     let utils;

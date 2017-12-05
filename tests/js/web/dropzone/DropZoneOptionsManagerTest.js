@@ -1,5 +1,5 @@
-import DropZoneOptionsManager from '../../../js/DropZone/DropZoneOptionsManager';
-import DropZoneComponentUtils from '../../../js/DropZone/DropZoneComponentUtils';
+import DropZoneOptionsManager from '../../../../js/DropZone/DropZoneOptionsManager';
+import DropZoneComponentUtils from '../../../../js/DropZone/DropZoneComponentUtils';
 
 describe('DropZoneOptionsManager', () => {
     let optionsManager;

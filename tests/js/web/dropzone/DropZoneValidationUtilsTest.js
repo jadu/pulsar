@@ -1,4 +1,4 @@
-import DropZoneValidationUtils from '../../../js/DropZone/DropZoneValidationUtils';
+import DropZoneValidationUtils from '../../../../js/DropZone/DropZoneValidationUtils';
 
 describe('DropZoneValidationUtils', () => {
     let utils;

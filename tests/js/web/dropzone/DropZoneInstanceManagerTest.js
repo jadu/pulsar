@@ -1,9 +1,9 @@
-import DropZoneInstanceManager from '../../../js/DropZone/DropZoneInstanceManager';
-import DropZoneFactory from '../../../js/DropZone/DropZoneFactory';
-import DropZoneOptionsManager from '../../../js/DropZone/DropZoneOptionsManager';
-import DropZone from '../../../js/DropZone/DropZone';
-import DropZoneBrowseNodeFactory from '../../../js/DropZone/DropZoneBrowseNodeFactory';
-import DropZoneBrowseNodeManager from '../../../js/DropZone/DropZoneBrowseNodeManager';
+import DropZoneInstanceManager from '../../../../js/DropZone/DropZoneInstanceManager';
+import DropZoneFactory from '../../../../js/DropZone/DropZoneFactory';
+import DropZoneOptionsManager from '../../../../js/DropZone/DropZoneOptionsManager';
+import DropZone from '../../../../js/DropZone/DropZone';
+import DropZoneBrowseNodeFactory from '../../../../js/DropZone/DropZoneBrowseNodeFactory';
+import DropZoneBrowseNodeManager from '../../../../js/DropZone/DropZoneBrowseNodeManager';
 
 describe('DropZoneInstanceManager', () => {
     let $html;

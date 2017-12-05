@@ -1,5 +1,5 @@
-import DropZoneFileManager from '../../../js/DropZone/DropZoneFileManager';
-import DropZoneUtilsManager from '../../../js/DropZone/DropZoneFileUtils';
+import DropZoneFileManager from '../../../../js/DropZone/DropZoneFileManager';
+import DropZoneUtilsManager from '../../../../js/DropZone/DropZoneFileUtils';
 
 describe('DropZoneFileManager', () => {
     let fileManager;
