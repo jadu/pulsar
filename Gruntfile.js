@@ -158,7 +158,7 @@ module.exports = function(grunt) {
                 files: ['stylesheets/**/*.scss'],
                 tasks: ['sass:dev', 'autoprefixer', 'bless:css'],
                 options: {
-                    livereload: true,
+                    livereload: 1338,
                 },
             },
             scsslint: {
