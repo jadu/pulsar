@@ -1,4 +1,4 @@
-import RepeaterComponent from '../../../../js/Repeater/RepeaterComponent';
+import RepeaterComponent from '../../../../js/Repeater/Repeater';
 import $ from 'jquery';
 
 describe('RepeaterComponent', () => {

@@ -1,6 +1,6 @@
 const RepeaterPreviewService = require('../../../../js/Repeater/RepeaterPreviewService');
-const QueryService = require('../../../../js/Repeater/QueryService');
-const ActiveFunctionService = require('../../../../js/Repeater/ActiveFunctionService');
+const QueryService = require('../../../../js/utilities/QueryService');
+const ActiveFunctionService = require('../../../../js/utilities/ActiveFunctionService');
 const $ = require('jquery');
 
 describe('RepeaterPreviewService', () => {

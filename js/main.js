@@ -22,11 +22,6 @@
 	pulsar.modulePermissions = new pulsar.ModulePermissionsComponent($html);
     pulsar.navMain = new pulsar.NavMainComponent($html, window);
     pulsar.filterBar = new pulsar.FilterBarComponent($html);
-    pulsar.repeater = new pulsar.Repeater(
-        pulsar.pulsarForm,
-        pulsar.masterSwitch,
-        window
-    );
 
     $(function () {
         pulsar.button.init();
@@ -81,7 +76,11 @@
 
         // TODO, handle multiple instances of a repeater
         if (repeatable) {
-            pulsar.repeater.init(repeatable);
+            // pulsar.repeater.init(repeatable);
+            const repeater = pulsar.repeaterComponentFactory(repeatable, pulsar.pulsarForm);
+
+            repeater.init();
+
             // Repeater debug
             debugSubmit.addEventListener('submit', event => {
                 event.preventDefault();
