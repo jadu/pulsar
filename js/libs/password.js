@@ -363,6 +363,13 @@
             }
         }
 
+        // Check Common Passwords
+        function detectCommonPasswords(commonPasswordsList, password) {
+            if (!!~options.commonPasswordsList.indexOf(password)) {
+                return true;
+            }
+        }
+
         return init.call(this);
     }
 
