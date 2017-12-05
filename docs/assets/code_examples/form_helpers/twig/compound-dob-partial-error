@@ -1,0 +1,35 @@
+{{
+    form.compound({
+        'id': 'bar',
+        'help': 'For example: 25 12 1980',
+        'label': 'Example with one invalid field and error',
+        'error': 'Please complete your month of birth',
+        'class': 'form__group--partial-state',
+        'inputs': [
+            {
+                'class': 'form__control-col--1',
+                'label': 'Day',
+                'id': 'dd',
+                'placeholder': 'DD',
+                'show-label': false,
+                'type': 'text'
+            },
+            {
+                'class': 'form__control-col--1 has-error',
+                'label': 'Month',
+                'id': 'mm',
+                'placeholder': 'MM',
+                'show-label': false,
+                'type': 'text'
+            },
+            {
+                'class': 'form__control-col--1',
+                'label': 'Year',
+                'id': 'yyyy',
+                'placeholder': 'YYYY',
+                'show-label': false,
+                'type': 'text'
+            }
+        ]
+    })
+}}
