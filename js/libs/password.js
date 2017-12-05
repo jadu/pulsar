@@ -238,6 +238,14 @@
                     }
                 }
 
+                // Keep input field border radius while typing
+                if ($(objectID).siblings('.password__wrapper.form__control').is(':visible')) {
+                    $(objectID).css({
+                        'border-bottom-left-radius': '0',
+                        'border-bottom-right-radius': '0'
+                    });
+                }
+
                 detectCriteria($object.val());
             });
 
@@ -258,6 +266,10 @@
                         $insert.slideDown(options.animateSpeed, function () {
                             shown = true;
                             $object.parent().addClass('password__strength--visible');
+                            $(objectID).css({
+                                'border-bottom-left-radius': '0',
+                                'border-bottom-right-radius': '0'
+                            });
                         });
                     }
                 });
@@ -266,9 +278,20 @@
                     if (!$object.val().length && shown) {
                         $insert.slideUp(options.animateSpeed, function () {
                             shown = false;
-                            $object.parent().removeClass('password__strength--visible')
+                            $object.parent().removeClass('password__strength--visible');
+                            $(objectID).css({
+                                'border-bottom-left-radius': '4px',
+                                'border-bottom-right-radius': '4px'
+                            });
                         });
                     }
+                });
+            }
+
+            if (shown) {
+                $(objectID).css({
+                    'border-bottom-left-radius': '0',
+                    'border-bottom-right-radius': '0'
                 });
             }
 
