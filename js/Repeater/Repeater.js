@@ -1,111 +1,55 @@
 const $ = require('jquery');
 const _ = require('lodash');
-const InputCloneService = require('./InputCloneService');
-const InputValueService = require('./InputValueService');
-const PseudoRadioInputService = require('./PseudoRadioInputService');
-const InputReplacementService = require('./InputReplacementService');
-const RepeaterPreviewService = require('./RepeaterPreviewService');
-const QueryService = require('./QueryService');
-const ActiveFunctionService = require('./ActiveFunctionService');
-const RepeaterDataService = require('./RepeaterDataService');
-const UniqueIdService = require('./UniqueIdService');
-const HashService = require('./HashService');
-
-// TODO
-// 1. create factory
-// 2. handle no preview heading
-// 3. default selected radios & checkboxes
 
 class Repeater {
     /**
      * Repeater
-     * @param pulsarFormComponent
-     * @param masterSwitch
-     * @param window
+     * @param repeater
+     * @param pulsarFormComponent {PulsarFormComponent}
+     * @param queryService {QueryService}
+     * @param activeFunctionService {ActiveFunctionService}
+     * @param inputCloneService {InputCloneService}
+     * @param inputValueService {InputValueService}
+     * @param inputReplacementService {InputReplacementService}
+     * @param uniqueIdService {UniqueIdService}
+     * @param repeaterPreviewService {RepeaterPreviewService}
+     * @param pseudoRadioInputService {PseudoRadioInputService}
+     * @param repeaterDataService {RepeaterDataService}
      */
     constructor (
+        repeater,
         pulsarFormComponent,
-        masterSwitch,
-        window
+        queryService,
+        activeFunctionService,
+        inputCloneService,
+        inputValueService,
+        inputReplacementService,
+        uniqueIdService,
+        repeaterPreviewService,
+        pseudoRadioInputService,
+        repeaterDataService
     ) {
         this.pulsarFormComponent = pulsarFormComponent;
-        this.masterSwicth = masterSwitch;
+        this.queryService = queryService;
+        this.activeFunctionService = activeFunctionService;
+        this.inputCloneService = inputCloneService;
+        this.inputValueService = inputValueService;
+        this.inputReplacementService = inputReplacementService;
+        this.uniqueIdService = uniqueIdService;
+        this.repeaterPreviewService = repeaterPreviewService;
+        this.pseudoRadioInputService = pseudoRadioInputService;
+        this.repeaterDataService = repeaterDataService;
+
+        this.repeater = repeater;
         this.repeaterEntries = 0;
         this.savedEntries = 0;
-        this.window = window;
         this.state = [];
     }
 
     /**
-     * init
-     * @param repeater {HTMLElement}
+     * Initialise
      */
-    init (repeater) {
-        // TODO add a unique attr to each repeater instance, then use that
-        this.repeater = repeater;
-
-        // TODO DI these
-        this.queryService = new QueryService(
-            this.repeater,
-            {
-                name: 'data-repeater-name',
-                'add-another-group-text': 'data-repeater-add-another-group-text',
-                'add-group-form': 'data-repeater-new-group',
-                'add-group-button': 'data-repeater-add-group',
-                'add-group-controls': 'data-repeater-new-group-controls',
-                'edit-group': 'data-repeater-edit-group',
-                'delete-group': 'data-repeater-delete-group',
-                forName: 'data-repeater-for-name',
-                entryId: 'data-repeater-entry-id',
-                'edit-id': 'data-repeater-edit-id',
-                'save-group-button': 'data-repeater-save-group',
-                'cancel-save-group-button': 'data-repeater-cancel-save',
-                updateId: 'data-repeater-update-id',
-                addNewGroupText: 'data-repeater-add-new-group-text',
-                'max-saved-groups': 'data-repeater-max-entries',
-                'preview-colspan': 'data-repeater-preview-colspan',
-                'preview-element': 'data-repeater-preview-id',
-                'preview-id': 'data-repeater-preview-id',
-                'preview-root': 'data-repeater-preview-root',
-                'preview-ui': 'data-repeater-preview-ui',
-                'preview-heading': 'data-repeater-for-name',
-                'preview-placeholder': 'data-repeater-preview-placeholder',
-                'preview-update-id': 'data-repeater-preview-update-id',
-                'select2-data': 'data-repeater-select2-data',
-                'saved-entry-id': 'data-repeater-saved-data-id',
-                'saved-entries-root': 'data-repeater-saved-entries-root',
-                activeInput: 'data-repeater-active-input'
-            }
-        );
-        this.activeFunctionService = new ActiveFunctionService();
-        this.inputCloneService = new InputCloneService(
-            this.pulsarFormComponent,
-            this.queryService
-        );
-        this.inputValueService = new InputValueService();
-        this.inputReplacementService = new InputReplacementService(
-            this.pulsarFormComponent,
-            this.queryService
-        );
-        this.uniqueIdService = new UniqueIdService(
-            new HashService()
-        );
-        this.repeaterDataService = new RepeaterDataService(
-            this.queryService,
-            this.inputCloneService,
-            this.inputValueService,
-            this.uniqueIdService
-        );
-        this.repeaterPreviewService = new RepeaterPreviewService(
-            this.queryService,
-            this.activeFunctionService,
-            this.inputValueService
-        );
-        this.pseudoRadioInputService = new PseudoRadioInputService(
-            this.repeater,
-            this.queryService.getAttr('name')
-        );
-
+    init () {
         // Preview UI HTML that is dynamically added to preview rows
         this.previewUiHTML = `           
             <a ${this.queryService.getAttr('edit-group')} ${this.queryService.getAttr('preview-ui')} href="#edit" class="remove__control alt-link margin-right">
@@ -314,9 +258,6 @@ class Repeater {
 
         // Refresh the PulsarFormComponent services
         this.pulsarFormComponent.refresh();
-
-        // Refresh master switch
-        this.masterSwicth.init();
 
         // Hide edit form
         $(clone).hide();
