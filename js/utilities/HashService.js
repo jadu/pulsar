@@ -1,6 +1,11 @@
 class HashService {
-    constructor () {
+    /**
+     * Hash Service
+     * @param date {Date}
+     */
+    constructor (date) {
         this.hashCache = [];
+        this.date = date;
     }
 
     /**
@@ -10,7 +15,7 @@ class HashService {
      * @returns {string}
      */
     generate (value) {
-        let hash = Date.now();
+        let hash = this.date.now();
 
         // Increment our numeric hash if it exists in the hash cache
         while (this.hashCache.indexOf(`${value}_${hash}`) !== -1) {
