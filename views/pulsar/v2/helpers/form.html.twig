@@ -480,6 +480,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 {% macro color(options) %}
 {% spaceless %}
     {% import _self as form %}
+    {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
     {%
         set options = options|default({})|merge({
@@ -490,6 +491,72 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
     %}
 
     {{ form.text(options) }}
+
+{% endspaceless %}
+{% endmacro %}
+
+
+{# -----------------------------------------------------------------------------
+
+# Compound
+
+Allows you to build a form group using multiple separate inputs with a single 
+common label, and render those in a screenreader-friendly way.
+
+https://jadu.github.io/pulsar/form-helpers/compound
+
+#}
+{% macro compound(options) %}
+{% spaceless %}
+    {% import _self as form %}
+    {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
+    {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+
+    {% set groupClass = 'form__group form__group--compound' %}
+
+    {% if options.error is defined and options.error is not empty %}
+        {% set groupClass = groupClass ~ ' has-error' %}
+    {% endif %}
+
+    <fieldset{{
+        attributes(options
+                |only('class id')
+                |defaults({
+                    'class': groupClass
+                })
+            )
+    -}}>
+    <legend class="control__label" {{ util.id(options.id ~ '[label]') }}>{{ options.label|default }} {{ util.guidance(options.guidance|default, { 'guidance-container': options['guidance-container']|default }) }}</legend>
+
+    <div class="controls">
+        {% for input in options.inputs %}
+            {{
+                elem.label(input
+                    |only('label guidance-container required show-label')
+                    |merge({
+                        'for': input.id,
+                        'id': input.id ~ '[label]'
+                    })
+                )
+            }}
+
+            {% set inputOptions = input|exclude('error label guidance-container required show-label') %}
+
+            {% if input.type == 'select' %}
+                {{ elem.select(inputOptions|merge({'class': inputOptions.class|default ~ ' select'})) }}
+            {% elseif input.type == 'select2' %}
+                {{ elem.select2(inputOptions) }}
+            {% elseif input.type == 'textarea' %}
+                {{ elem.textarea(inputOptions) }}
+            {% else %}
+                {{ elem.input(inputOptions) }}
+            {% endif %}
+        {% endfor %}
+
+        {{ form.error({ 'value': options.error|default }) }}
+        {{ form.help({ 'value': options.help|default }) }}
+    </div>
+</fieldset>
 
 {% endspaceless %}
 {% endmacro %}

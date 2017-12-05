@@ -5,9 +5,10 @@
     margin: 0;
     position: relative;
     vertical-align: middle;
+    width: 100%;
 
-    @include respond-min($screen-smaller) {
-        @include col-span(4, false, false, 9);
+    @include respond-min($screen-tablet) {
+        @include col-span-width(4, 9);
     }
 }
 
