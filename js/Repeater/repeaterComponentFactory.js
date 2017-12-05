@@ -13,12 +13,13 @@ const config = require('./repeaterConfig');
 
 /**
  * Create a repeater component instance
+ * @param pulsarFormComponent {PulsarFormComponent}
  * @param repeater {HTMLElement}
  * @returns {Repeater}
  */
 function repeaterComponentFactory (
-    repeater,
     pulsarFormComponent,
+    repeater
 ) {
     const queryService = new QueryService(
         repeater,

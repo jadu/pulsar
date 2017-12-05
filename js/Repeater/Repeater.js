@@ -4,7 +4,7 @@ const _ = require('lodash');
 class Repeater {
     /**
      * Repeater
-     * @param repeater
+     * @param repeater {HTMLElement}
      * @param pulsarFormComponent {PulsarFormComponent}
      * @param queryService {QueryService}
      * @param activeFunctionService {ActiveFunctionService}
@@ -224,9 +224,7 @@ class Repeater {
         const inputsWithState = $(group)
             .find(this.queryService.getQuery('name'))
             .toArray()
-            .map(input => {
-                return this.inputCloneService.clone(input, group);
-            });
+            .map(input => this.inputCloneService.clone(input));
 
         // Add repeater ID to the group
         clone.setAttribute(this.queryService.getAttr('edit-id'), this.repeaterEntries);
