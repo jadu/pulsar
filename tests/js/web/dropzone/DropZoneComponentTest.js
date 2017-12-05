@@ -1,9 +1,9 @@
-import DropZoneComponent from '../../../js/DropZone/DropZoneComponent';
-import DropZoneOptionsManager from '../../../js/DropZone/DropZoneOptionsManager';
-import DropZoneInstanceManager from '../../../js/DropZone/DropZoneInstanceManager';
-import DropZoneComponentUtils from '../../../js/DropZone/DropZoneComponentUtils';
-import DropZoneComponentValidation from '../../../js/DropZone/DropZoneComponentValidationManager';
-import DropZoneBodyClassManager from '../../../js/DropZone/DropZoneBodyClassManager';
+import DropZoneComponent from '../../../../js/DropZone/DropZoneComponent';
+import DropZoneOptionsManager from '../../../../js/DropZone/DropZoneOptionsManager';
+import DropZoneInstanceManager from '../../../../js/DropZone/DropZoneInstanceManager';
+import DropZoneComponentUtils from '../../../../js/DropZone/DropZoneComponentUtils';
+import DropZoneComponentValidation from '../../../../js/DropZone/DropZoneComponentValidationManager';
+import DropZoneBodyClassManager from '../../../../js/DropZone/DropZoneBodyClassManager';
 
 describe('DropZoneComponent', () => {
     let $body;

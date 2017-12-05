@@ -1,4 +1,4 @@
-import DropZoneBrowseNodeManager from '../../../js/DropZone/DropZoneBrowseNodeManager';
+import DropZoneBrowseNodeManager from '../../../../js/DropZone/DropZoneBrowseNodeManager';
 
 describe('DropZoneBrowseNodeManager', () => {
     let manager;

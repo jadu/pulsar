@@ -1,9 +1,9 @@
-import DropZone from '../../../js/DropZone/DropZone';
-import DropZoneValidatorDispatcher from '../../../js/DropZone/DropZoneValidatorDispatcher';
-import DropZoneEventManager from '../../../js/DropZone/DropZoneEventManager';
-import DropZoneIdleTimer from '../../../js/DropZone/DropZoneIdleTimer';
-import DropZoneFileManager from '../../../js/DropZone/DropZoneFileManager';
-import DropZoneCallbackManager from '../../../js/DropZone/DropZoneCallbackManager';
+import DropZone from '../../../../js/DropZone/DropZone';
+import DropZoneValidatorDispatcher from '../../../../js/DropZone/DropZoneValidatorDispatcher';
+import DropZoneEventManager from '../../../../js/DropZone/DropZoneEventManager';
+import DropZoneIdleTimer from '../../../../js/DropZone/DropZoneIdleTimer';
+import DropZoneFileManager from '../../../../js/DropZone/DropZoneFileManager';
+import DropZoneCallbackManager from '../../../../js/DropZone/DropZoneCallbackManager';
 
 describe('DropZone', () => {
     let dropZone;

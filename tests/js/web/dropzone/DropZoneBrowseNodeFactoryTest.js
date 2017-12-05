@@ -1,5 +1,5 @@
-import DropZoneBrowseNodeFactory from '../../../js/DropZone/DropZoneBrowseNodeFactory';
-import DropZoneBrowseNodeManager from '../../../js/DropZone/DropZoneBrowseNodeManager';
+import DropZoneBrowseNodeFactory from '../../../../js/DropZone/DropZoneBrowseNodeFactory';
+import DropZoneBrowseNodeManager from '../../../../js/DropZone/DropZoneBrowseNodeManager';
 
 describe('DropZoneBrowseNodeFactory', () => {
     describe('create', () => {

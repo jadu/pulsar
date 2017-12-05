@@ -1,4 +1,4 @@
-import DropZoneComponentValidationManager from '../../../js/DropZone/DropZoneComponentValidationManager';
+import DropZoneComponentValidationManager from '../../../../js/DropZone/DropZoneComponentValidationManager';
 
 describe('DropZoneComponentValidationManager', () => {
     let $html;

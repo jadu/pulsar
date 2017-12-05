@@ -1,4 +1,4 @@
-import DropZoneCallbackManager from '../../../js/DropZone/DropZoneCallbackManager';
+import DropZoneCallbackManager from '../../../../js/DropZone/DropZoneCallbackManager';
 
 describe('DropZoneCallbackManager', () => {
     let callbackManager;

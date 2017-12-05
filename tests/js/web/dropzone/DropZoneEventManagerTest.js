@@ -1,4 +1,4 @@
-import DropZoneEventManager from '../../../js/DropZone/DropZoneEventManager';
+import DropZoneEventManager from '../../../../js/DropZone/DropZoneEventManager';
 
 describe('DropZoneEventManager', () => {
     let eventManager;

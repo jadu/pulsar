@@ -1,4 +1,4 @@
-import DropZoneIdleTimer from '../../../js/DropZone/DropZoneIdleTimer';
+import DropZoneIdleTimer from '../../../../js/DropZone/DropZoneIdleTimer';
 
 describe('DropZoneIdleTimer', () => {
     let clock;

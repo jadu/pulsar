@@ -1,4 +1,4 @@
-import DropZoneBodyClassManager from '../../../js/DropZone/DropZoneBodyClassManager';
+import DropZoneBodyClassManager from '../../../../js/DropZone/DropZoneBodyClassManager';
 
 describe('DropZoneBodyClassManager', () => {
     let $body;

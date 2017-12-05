@@ -1,4 +1,4 @@
-import DropZoneFileUtils from '../../../js/DropZone/DropZoneFileUtils';
+import DropZoneFileUtils from '../../../../js/DropZone/DropZoneFileUtils';
 
 describe('DropZoneFileUtils', () => {
     let fileUtils;

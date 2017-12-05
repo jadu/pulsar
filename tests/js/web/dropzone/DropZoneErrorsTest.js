@@ -1,4 +1,4 @@
-import DropZoneErrors from '../../../js/DropZone/DropZoneErrors';
+import DropZoneErrors from '../../../../js/DropZone/DropZoneErrors';
 
 describe('DropZoneErrors', () => {
     const config = {
