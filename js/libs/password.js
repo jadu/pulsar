@@ -313,7 +313,7 @@
         }
 
         // Toggle Criteria based on score
-        function detectCriteria(password, minimumLength) {
+        function detectCriteria(password, minimumLength, showCommonPasswords, commonPasswordsList) {
             var objectID = '#'+$object.attr('id');
 
             // Clear Password Criteria and Input during checking
@@ -324,8 +324,14 @@
             // Detect Password Length
             if (password.length >= options.minimumLength) {
                 $(objectID).siblings('.password__criteria').find('.minimumLength').addClass('passed');
+
+                // Detect Common Password
+                if (!detectCommonPasswords(commonPasswordsList, password)) {
+                    $(objectID).siblings('.password__criteria').find('.commonPassword').addClass('passed');
+                }
             } else {
                 $(objectID).siblings('.password__criteria').find('.minimumLength').removeClass('passed');
+                $(objectID).siblings('.password__criteria').find('.commonPassword').removeClass('passed');
             }
 
             // Detect Lowercase
