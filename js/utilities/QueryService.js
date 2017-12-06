@@ -65,11 +65,11 @@ class QueryService {
      * @param name
      */
     getAttr (name) {
-        if (this.queries[name]) {
-            return this.queries[name].attr;
-        } else {
+        if (!this.queries[name]) {
             throw new Error(`Could not find query "${name}"`);
         }
+
+        return this.queries[name].attr;
     }
 
     /**
@@ -77,11 +77,11 @@ class QueryService {
      * @param name
      */
     getQuery (name) {
-        if (this.queries[name]) {
-            return this.queries[name].query;
-        } else {
+        if (!this.queries[name]) {
             throw new Error(`Could not find query "${name}"`);
         }
+
+        return this.queries[name].query;
     }
 }
 
