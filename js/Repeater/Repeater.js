@@ -55,7 +55,7 @@ class Repeater {
             <a ${this.queryService.getAttr('edit-group')} ${this.queryService.getAttr('preview-ui')} href="#edit" class="remove__control alt-link margin-right">
                 <i class="icon-pencil"><span class="hide">Edit</span></i>
             </a>
-            <a ${this.queryService.getAttr('delete-group')} ${this.queryService.getAttr('preview-ui')} href="#delete" class="remove__control alt-link margin-right">
+            <a ${this.queryService.getAttr('delete-group')} ${this.queryService.getAttr('preview-ui')} href="#delete" class="remove__control alt-link">
                 <i class="icon-remove-sign"><span class="hide">Delete</span></i>
             </a>
         `;
