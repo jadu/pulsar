@@ -1,3 +1,8 @@
 .repeater__group {
     display: none;
 }
+
+.repeater__group-actions {
+	margin-top: $line-height-base;
+	padding: $line-height-base 0 0;
+}
