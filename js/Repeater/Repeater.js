@@ -15,6 +15,7 @@ class Repeater {
      * @param repeaterPreviewService {RepeaterPreviewService}
      * @param pseudoRadioInputService {PseudoRadioInputService}
      * @param repeaterDataService {RepeaterDataService}
+     * @param repeaterPlaceholderService {RepeaterPlaceholderService}
      */
     constructor (
         repeater,
@@ -27,7 +28,8 @@ class Repeater {
         uniqueIdService,
         repeaterPreviewService,
         pseudoRadioInputService,
-        repeaterDataService
+        repeaterDataService,
+        repeaterPlaceholderService
     ) {
         this.pulsarFormComponent = pulsarFormComponent;
         this.queryService = queryService;
@@ -39,6 +41,7 @@ class Repeater {
         this.repeaterPreviewService = repeaterPreviewService;
         this.pseudoRadioInputService = pseudoRadioInputService;
         this.repeaterDataService = repeaterDataService;
+        this.repeaterPlaceholderService = repeaterPlaceholderService;
 
         this.repeater = repeater;
         this.repeaterEntries = 0;
@@ -160,8 +163,8 @@ class Repeater {
         // Create the edit form
         this.createEditEntryGroup(this.queryService.get('add-group-form'));
 
-        // Remove empty placeholder
-        this.removePlaceholder();
+        // Remove "empty" placeholder
+        this.repeaterPlaceholderService.remove();
 
         // Reset new repeater group form
         this.resetGroupFields();
@@ -322,7 +325,9 @@ class Repeater {
         if (!this.savedEntries) {
             this.queryService.get('add-group-button').innerText =
                 this.repeater.getAttribute(this.queryService.getAttr('add-another-group-text'));
-            this.addPlaceholder();
+
+            // Add "empty" placeholder
+            this.repeaterPlaceholderService.add();
         }
     }
 
@@ -354,28 +359,6 @@ class Repeater {
 
         // Update any colour pickers that might exist
         this.pulsarFormComponent.updateColourPicker($(this.queryService.get('add-group-form')));
-    }
-
-    /**
-     * Cache a reference to, and remove the empty placeholder
-     */
-    removePlaceholder () {
-        // remove placeholder
-        const placeholder = this.queryService.get('preview-placeholder');
-
-        // add a manual cached reference
-        this.queryService.updateRef('preview-placeholder', placeholder.cloneNode(true));
-
-        // remove the placeholder from the DOM
-        placeholder.remove();
-    }
-
-    /**
-     * Add empty placeholder to data preview
-     */
-    addPlaceholder () {
-        $(this.queryService.get('preview-root'))
-            .prepend(this.queryService.get('preview-placeholder'));
     }
 
     /**
