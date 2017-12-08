@@ -114,6 +114,8 @@ class Repeater {
         // Create state object from the current form
         this.state[this.repeaterEntries] = this.createState(this.queryService.get('add-group-form'));
 
+        console.log(this.state[this.repeaterEntries]);
+
         // Create preview HTML
         const preview = this.repeaterPreviewService.create(
             this.state[this.repeaterEntries],
@@ -185,6 +187,7 @@ class Repeater {
 
     /**
      * Convert the "create new repeater group" to a state object
+     * @returns {Object.<string, {value: {string}, selected: {boolean}, ref: {HTMLElement}}[]>}
      */
     createState (group) {
         const $inputs = $(group).find(this.queryService.getQuery('name'));

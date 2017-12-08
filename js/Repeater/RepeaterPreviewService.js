@@ -79,7 +79,7 @@ class RepeaterPreviewService {
                         value = this.print(input.ref, value, input.value);
                     });
 
-                preview.textContent = value;
+                preview.innerText = value;
             }
         });
     }
@@ -87,9 +87,10 @@ class RepeaterPreviewService {
     /**
      * Toggle disabled state of preview UI, if a preview ID is not passed in
      * we'll disabled all preview UI elements
-     * @param previewId
+     * @param previewId?
      */
     toggleUi (previewId) {
+
         this.queryService.get('preview-element', { all: true })
             .filter(preview => {
                 return previewId !== undefined ?
@@ -97,6 +98,8 @@ class RepeaterPreviewService {
                     true;
             })
             .forEach(preview => {
+                console.log(preview.outerHTML)
+
                 $(preview).find(this.queryService.getQuery('preview-ui')).toggleClass('disabled');
             });
     }

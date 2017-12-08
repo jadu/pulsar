@@ -9,8 +9,6 @@ describe('HashService', () => {
         hashService = new HashService(dateStub);
     });
 
-    describe('test', () => {});
-
     describe('generate', () => {
         it('should return a truthy string value', () => {
             expect(hashService.generate('foo')).to.be.truthy;
