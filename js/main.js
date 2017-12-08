@@ -25,8 +25,8 @@
     pulsar.dataTableService = new pulsar.DataTableService();
     pulsar.repeaterManager = new pulsar.RepeaterManagerComponent(
         pulsar.pulsarForm,
-        pulsar.dataTableService,
         pulsar.repeaterComponentFactory,
+        pulsar.dataTableService,
         $html
     );
 
