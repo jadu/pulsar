@@ -9,6 +9,7 @@ const RepeaterDataService = require('./RepeaterDataService');
 const UniqueIdService = require('../utilities/UniqueIdService');
 const HashService = require('../utilities/HashService');
 const Repeater = require('./Repeater');
+const RepeaterPlaceholderService = require('./RepeaterPlaceholderService');
 const config = require('./repeaterConfig');
 
 /**
@@ -53,6 +54,9 @@ function repeaterComponentFactory (
         repeater,
         queryService.getAttr('name')
     );
+    const repeaterPlaceholderService = new RepeaterPlaceholderService(
+        queryService
+    );
 
     return new Repeater(
         repeater,
@@ -65,7 +69,8 @@ function repeaterComponentFactory (
         uniqueIdService,
         repeaterPreviewService,
         pseudoRadioInputService,
-        repeaterDataService
+        repeaterDataService,
+        repeaterPlaceholderService
     );
 }
 
