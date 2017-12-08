@@ -1,50 +1,43 @@
 const $ = require('jquery');
-const dt = require('datatables.net')(window, $),
-const dt_buttons = require('datatables.net-buttons')(window, $),
-const dt_responsive = require('datatables.net-responsive')(window, $),
-const dt_select = require('datatables.net-select')(window, $),
 
 /**
  * @todo Expand service to cover swapping between scrolling tables and responsive
  * @todo Expand service to accept an options object so options can be set in JS as well as by element data attributes
  */
 class DataTableService {
-    
+
     /**
      * Bind DataTables to element
-     * @param {jQuery} $element - jQuery object of the element that will initialised as a datatable
+     * @param {jQuery} $datatables - jQuery object of the element that will initialised as a datatable
      */
-    init ($element) {
-        let options;
-
-        if (typeof $element === 'undefined' || !$element) {
+    init ($datatables) {
+        if (typeof $datatables === 'undefined' || !$datatables.length) {
             throw new Error('$element must be passed to DataTableService');
         }
 
-        if ($element.length) {
-            
-            // Build options from data attributes
-            options = this.optionBuilder($element);
+        // Initiate each table in the collection with options
+        $datatables.each((index, table) => {
+            const $table = $(table);
 
-            // Init datatable with options
-            $element.DataTable(options);
-        }
+            $table.DataTable(this.buildOptions($table));
+        });
+
     }
 
     /**
      * Destroys the DataTable on the element
-     * @param {jQuery} $element - jQuery object of the element that will initialised as a datatable
+     * @param {jQuery} $datatable - jQuery object of the element that will initialised as a datatable
      */
-    destroy ($element) {
+    destroy ($datatable) {
         $datatable.dataTable().fnDestroy();
     }
 
     /**
      * Build options for DataTable
-     * @param {jQuery} $element - jQuery object of the element that will initialised as a datatable
+     * @param {jQuery} $datatable - jQuery object of the element that will initialised as a datatable
      */
-    optionBuilder ($datatable) {
-        let options = {
+    buildOptions ($datatable) {
+        const options = {
             'autoWidth': false,
             'buttons': [],
             'dom': '<"dataTables_top"Birf><"dataTables_actions"T><"table-container"t><"dataTables_bottom"lp>',
@@ -76,7 +69,7 @@ class DataTableService {
             };
         }
 
-        if (typeof $datatable.attr('data-datatable-empty-text') !== 'undefined') {
+        if ($datatable.attr('data-datatable-empty-text') !== 'undefined') {
             options.language.emptyTable = $datatable.attr('data-datatable-empty-text');
         }
 

@@ -3,14 +3,18 @@ class RepeaterManagerComponent {
      * Repeater Manager
      * @param pulsarFormComponent {PulsarFormComponent}
      * @param repeaterComponentFactory {repeaterComponentFactory}
+     * @param dataTablesService {DataTableService}
+     * @param $html {$}
      */
     constructor (
         pulsarFormComponent,
         repeaterComponentFactory,
+        dataTablesService,
         $html
     ) {
         this.pulsarFormComponent = pulsarFormComponent;
         this.repeaterComponentFactory = repeaterComponentFactory;
+        this.dataTableService = dataTablesService;
         this.$html = $html;
     }
 
