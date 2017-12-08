@@ -22,8 +22,10 @@
 	pulsar.modulePermissions = new pulsar.ModulePermissionsComponent($html);
     pulsar.navMain = new pulsar.NavMainComponent($html, window);
     pulsar.filterBar = new pulsar.FilterBarComponent($html);
+    pulsar.dataTableService = new pulsar.DataTableService();
     pulsar.repeaterManager = new pulsar.RepeaterManagerComponent(
         pulsar.pulsarForm,
+        pulsar.dataTableService,
         pulsar.repeaterComponentFactory,
         $html
     );
