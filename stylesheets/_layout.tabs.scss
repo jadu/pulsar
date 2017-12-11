@@ -50,16 +50,6 @@
     -webkit-transform: translate3d($nav-primary-width, 0, 0) scale3d(1, 1, 1);
     transform: translate3d($nav-primary-width, 0, 0) scale3d(1, 1, 1);
 
-    @include respond-min($screen-desktop) {
-        -webkit-backface-visibility: hidden;
-        -webkit-transform: none;
-        -webkit-transition: -webkit-transform 500ms ease;
-        backface-visibility: hidden;
-        transform: none;
-        transition: transform 500ms ease;
-        width: 100%;
-    }
-
     .lt-ie10 & {
         left: $nav-primary-width;
     }
@@ -68,16 +58,6 @@
 .open-help .inner-wrapper {
     -webkit-transform: translate3d(-300px, 0, 0) scale3d(1, 1, 1);
     transform: translate3d(-300px, 0, 0) scale3d(1, 1, 1);
-
-    @include respond-min($screen-desktop) {
-        -webkit-backface-visibility: hidden;
-        -webkit-transform: none;
-        -webkit-transition: -webkit-transform 500ms ease;
-        backface-visibility: hidden;
-        transform: none;
-        transition: transform 500ms ease;
-        width: 100%;
-    }
 }
 
 .lt-ie10.open-help .inner-wrapper {
