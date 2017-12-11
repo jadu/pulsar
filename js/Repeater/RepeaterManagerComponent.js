@@ -22,9 +22,14 @@ class RepeaterManagerComponent {
      * Initiate repeaters on the page
      */
     init () {
-        this.$html.find('.repeater').each((index, element) => {
-            this.repeaterComponentFactory(this.pulsarFormComponent, this.dataTableService, element)
-                .init();
+        this.$html.find('.repeater').each((index, repeaterElement) => {
+            const repeater = this.repeaterComponentFactory(
+                this.pulsarFormComponent,
+                this.dataTableService,
+                repeaterElement
+            );
+
+           repeater.init();
         });
     }
 }
