@@ -15,13 +15,16 @@ const config = require('./repeaterConfig');
 /**
  * Create a repeater component instance
  * @param pulsarFormComponent {PulsarFormComponent}
+ * @param dataTableService {DataTableService}
  * @param repeater {HTMLElement}
+ * @param dataTableSupport {boolean}
  * @returns {Repeater}
  */
 function repeaterComponentFactory (
     pulsarFormComponent,
     dataTableService,
-    repeater
+    repeater,
+    dataTableSupport
 ) {
     const queryService = new QueryService(
         repeater,
@@ -72,7 +75,8 @@ function repeaterComponentFactory (
         repeaterPreviewService,
         pseudoRadioInputService,
         repeaterDataService,
-        repeaterPlaceholderService
+        repeaterPlaceholderService,
+        dataTableSupport
     );
 }
 

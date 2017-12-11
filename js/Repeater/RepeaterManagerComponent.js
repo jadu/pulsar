@@ -23,10 +23,12 @@ class RepeaterManagerComponent {
      */
     init () {
         this.$html.find('.repeater').each((index, repeaterElement) => {
+            const dataTableSupport = !!repeaterElement.querySelector('[data-datatable]');
             const repeater = this.repeaterComponentFactory(
                 this.pulsarFormComponent,
                 this.dataTableService,
-                repeaterElement
+                repeaterElement,
+                dataTableSupport
             );
 
            repeater.init();

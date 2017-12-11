@@ -17,6 +17,7 @@ class Repeater {
      * @param pseudoRadioInputService {PseudoRadioInputService}
      * @param repeaterDataService {RepeaterDataService}
      * @param repeaterPlaceholderService {RepeaterPlaceholderService}
+     * @param dataTableSupport {boolean}
      */
     constructor (
         repeater,
@@ -31,7 +32,8 @@ class Repeater {
         repeaterPreviewService,
         pseudoRadioInputService,
         repeaterDataService,
-        repeaterPlaceholderService
+        repeaterPlaceholderService,
+        dataTableSupport
     ) {
         this.pulsarFormComponent = pulsarFormComponent;
         this.dataTableService = dataTableService;
@@ -47,6 +49,7 @@ class Repeater {
         this.repeaterPlaceholderService = repeaterPlaceholderService;
 
         this.repeater = repeater;
+        this.dataTableSupport = dataTableSupport;
         this.repeaterEntries = 0;
         this.savedEntries = 0;
         this.state = [];
@@ -56,9 +59,8 @@ class Repeater {
      * Initialise
      */
     init () {
-        const $repeater = $(this.repeater);
-
         // Preview UI HTML that is dynamically added to preview rows
+        // TODO put this somewhere else, maybe it's own service
         this.previewUiHTML = `           
             <a ${this.queryService.getAttr('edit-group')} ${this.queryService.getAttr('preview-ui')} href="#edit" class="remove__control alt-link margin-right">
                 <i class="icon-pencil"><span class="hide">Edit</span></i>
@@ -70,11 +72,11 @@ class Repeater {
 
         const maxItemsAttr = this.repeater.getAttribute(this.queryService.getAttr('max-saved-groups'));
 
-        // Check if the table needs to be a datatable
-        if ($repeater.find('[data-datatable]')) {
-            $repeater.find('tbody').empty();
-
-            this.dataTableService.init($repeater.find('.table')) 
+        // Initiate DataTable if supported
+        if (this.dataTableSupport) {
+            // Remove the placeholder for DataTables
+            this.repeaterPlaceholderService.remove();
+            this.dataTableService.init($(this.queryService.get('table')));
         }
 
         // Store max repeater groups as an integer
@@ -130,8 +132,6 @@ class Repeater {
         // Create state object from the current form
         this.state[this.repeaterEntries] = this.createState(this.queryService.get('add-group-form'));
 
-        console.log(this.state[this.repeaterEntries]);
-
         // Create preview HTML
         const preview = this.repeaterPreviewService.create(
             this.state[this.repeaterEntries],
@@ -145,12 +145,10 @@ class Repeater {
 
         // Attach preview element to the DOM
         this.queryService.get('preview-root').appendChild(preview);
-        console.log(preview);
 
         // Attach preview UI to preview row
         previewUi.innerHTML = this.previewUiHTML;
         preview.appendChild(previewUi);
-        console.log(previewUi);
 
         // Attach preview "edit group" handler
         preview.querySelector(this.queryService.getQuery('edit-group')).addEventListener(
