@@ -2175,6 +2175,8 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
 {% endspaceless %}
 {% endmacro %}
 
+
+
 {% macro repeatable_start(options) %}
 {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
@@ -2197,8 +2199,8 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
                 })
             }}
             <div class="controls">
-                <div class="table-container">
-                    <table class="table table--full table--horizontal repeatable__table">
+                <div class="table-container"> <!-- remove this if is DT as DT adds it! -->
+                    <table class="table table--full repeatable__table" data-datatable data-datatable-responsive> <!-- conditionally add the DT stuff -->
                         <thead class="repeater__preview-headings">
                             <tr>
                                 {% for heading in options.headings %}

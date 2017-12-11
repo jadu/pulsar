@@ -41,12 +41,12 @@ class DataTableService {
             'autoWidth': false,
             'buttons': [],
             'dom': '<"dataTables_top"Birf><"dataTables_actions"T><"table-container"t><"dataTables_bottom"lp>',
-            'info': false,
+            'info': true,
             'ordering': false,
             'paging': false,
-            'searching': false,
+            'searching': true,
             'language': {
-                'emptyTable': 'There are currently no items to display',
+                'emptyTable': 'There are currently no items to display', // this aint working!
                 'info': 'Showing _START_ to _END_ of _TOTAL_ items',
                 'infoEmpty': 'No items',
                 'infoFiltered': ' (filtered from _MAX_ items)',
@@ -74,6 +74,10 @@ class DataTableService {
         }
 
         return options;
+    }
+
+    addRows () {
+        
     }
 }
 
