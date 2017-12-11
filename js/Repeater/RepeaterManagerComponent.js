@@ -23,7 +23,7 @@ class RepeaterManagerComponent {
      */
     init () {
         this.$html.find('.repeater').each((index, element) => {
-            this.repeaterComponentFactory(this.pulsarFormComponent, element)
+            this.repeaterComponentFactory(this.pulsarFormComponent, this.dataTableService, element)
                 .init();
         });
     }

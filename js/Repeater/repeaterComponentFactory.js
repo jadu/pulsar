@@ -20,6 +20,7 @@ const config = require('./repeaterConfig');
  */
 function repeaterComponentFactory (
     pulsarFormComponent,
+    dataTableService,
     repeater
 ) {
     const queryService = new QueryService(
@@ -61,6 +62,7 @@ function repeaterComponentFactory (
     return new Repeater(
         repeater,
         pulsarFormComponent,
+        dataTableService,
         queryService,
         activeFunctionService,
         inputCloneService,
