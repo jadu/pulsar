@@ -90,7 +90,6 @@ class RepeaterPreviewService {
      * @param previewId?
      */
     toggleUi (previewId) {
-
         this.queryService.get('preview-element', { all: true })
             .filter(preview => {
                 return previewId !== undefined ?
@@ -98,8 +97,6 @@ class RepeaterPreviewService {
                     true;
             })
             .forEach(preview => {
-                console.log(preview.outerHTML)
-
                 $(preview).find(this.queryService.getQuery('preview-ui')).toggleClass('disabled');
             });
     }
