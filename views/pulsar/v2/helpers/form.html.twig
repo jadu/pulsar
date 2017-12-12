@@ -500,7 +500,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
 # Compound
 
-Allows you to build a form group using multiple separate inputs with a single
+Allows you to build a form group using multiple separate inputs with a single 
 common label, and render those in a screenreader-friendly way.
 
 https://jadu.github.io/pulsar/form-helpers/compound
@@ -2175,8 +2175,6 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
 {% endspaceless %}
 {% endmacro %}
 
-
-
 {% macro repeatable_start(options) %}
 {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
@@ -2199,8 +2197,8 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
                 })
             }}
             <div class="controls">
-                <div class="table-container"> <!-- remove this if is DT as DT adds it! -->
-                    <table class="table table--full repeatable__table" data-repeater-table data-datatable data-datatable-responsive> <!-- conditionally add the DT stuff -->
+                <div class="table-container">
+                    <table class="table table--full table--horizontal repeatable__table">
                         <thead class="repeater__preview-headings">
                             <tr>
                                 {% for heading in options.headings %}

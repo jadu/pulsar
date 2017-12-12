@@ -34,7 +34,6 @@ var $                     = require('jquery'),
     dt_select     = require('datatables.net-select')(window, $),
 
     ButtonComponent = require('./ButtonComponent'),
-    DataTableService = require('./DataTableService'),
     DisableUiComponent = require('./DisableUiComponent'),
     HelpTextComponent = require('./HelpTextComponent'),
     FilterBarComponent = require('./FilterBarComponent'),
@@ -54,7 +53,6 @@ var $                     = require('jquery'),
 
 module.exports = {
     ButtonComponent,
-    DataTableService,
     DropZoneComponentFactory,
     DisableUiComponent,
     HelpTextComponent,
