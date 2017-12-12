@@ -6,7 +6,6 @@ class Repeater {
      * Repeater
      * @param repeater {HTMLElement}
      * @param pulsarFormComponent {PulsarFormComponent}
-     * @param dataTableService {DataTableService}
      * @param queryService {QueryService}
      * @param activeFunctionService {ActiveFunctionService}
      * @param inputCloneService {InputCloneService}
@@ -17,12 +16,10 @@ class Repeater {
      * @param pseudoRadioInputService {PseudoRadioInputService}
      * @param repeaterDataService {RepeaterDataService}
      * @param repeaterPlaceholderService {RepeaterPlaceholderService}
-     * @param dataTableSupport {boolean}
      */
     constructor (
         repeater,
         pulsarFormComponent,
-        dataTableService,
         queryService,
         activeFunctionService,
         inputCloneService,
@@ -32,11 +29,9 @@ class Repeater {
         repeaterPreviewService,
         pseudoRadioInputService,
         repeaterDataService,
-        repeaterPlaceholderService,
-        dataTableSupport
+        repeaterPlaceholderService
     ) {
         this.pulsarFormComponent = pulsarFormComponent;
-        this.dataTableService = dataTableService;
         this.queryService = queryService;
         this.activeFunctionService = activeFunctionService;
         this.inputCloneService = inputCloneService;
@@ -49,7 +44,6 @@ class Repeater {
         this.repeaterPlaceholderService = repeaterPlaceholderService;
 
         this.repeater = repeater;
-        this.dataTableSupport = dataTableSupport;
         this.repeaterEntries = 0;
         this.savedEntries = 0;
         this.state = [];
@@ -60,7 +54,6 @@ class Repeater {
      */
     init () {
         // Preview UI HTML that is dynamically added to preview rows
-        // TODO put this somewhere else, maybe it's own service
         this.previewUiHTML = `           
             <a ${this.queryService.getAttr('edit-group')} ${this.queryService.getAttr('preview-ui')} href="#edit" class="remove__control alt-link margin-right">
                 <i class="icon-pencil"><span class="hide">Edit</span></i>
@@ -71,13 +64,6 @@ class Repeater {
         `;
 
         const maxItemsAttr = this.repeater.getAttribute(this.queryService.getAttr('max-saved-groups'));
-
-        // Initiate DataTable if supported
-        if (this.dataTableSupport) {
-            // Remove the placeholder for DataTables
-            this.repeaterPlaceholderService.remove();
-            this.dataTableService.init($(this.queryService.get('table')));
-        }
 
         // Store max repeater groups as an integer
         this.maxSavedGroups = maxItemsAttr === 'false' ? Infinity : parseInt(maxItemsAttr, 10);
@@ -125,12 +111,13 @@ class Repeater {
     handleSaveGroup (event) {
         const colspan = parseInt(this.repeater.getAttribute(this.queryService.getAttr('preview-colspan')), 10);
         const previewUi = document.createElement('td');
-        // const $repeater = $(this.repeater);
 
         event.preventDefault();
 
         // Create state object from the current form
         this.state[this.repeaterEntries] = this.createState(this.queryService.get('add-group-form'));
+
+        console.log(this.state[this.repeaterEntries]);
 
         // Create preview HTML
         const preview = this.repeaterPreviewService.create(
@@ -139,42 +126,36 @@ class Repeater {
             this.repeaterEntries
         );
 
-        console.log('preview: ', preview)
-
-
-
-        this.dataTableService.addRow($(this.queryService.get('table')), preview);
-
         // Set preview attributes and append to the DOM
-        // preview.setAttribute('colspan', colspan);
-        // preview.setAttribute(this.queryService.getAttr('preview-id'), this.repeaterEntries);
+        preview.setAttribute('colspan', colspan);
+        preview.setAttribute(this.queryService.getAttr('preview-id'), this.repeaterEntries);
 
         // Attach preview element to the DOM
-        // this.queryService.get('preview-root').appendChild(preview);
+        this.queryService.get('preview-root').appendChild(preview);
 
         // Attach preview UI to preview row
-        // previewUi.innerHTML = this.previewUiHTML;
-        // preview.appendChild(previewUi);
+        previewUi.innerHTML = this.previewUiHTML;
+        preview.appendChild(previewUi);
 
         // Attach preview "edit group" handler
-        // preview.querySelector(this.queryService.getQuery('edit-group')).addEventListener(
-        //     'click',
-        //     this.activeFunctionService.wrap.bind(
-        //         this.activeFunctionService,
-        //         preview.querySelector(this.queryService.getQuery('edit-group')),
-        //         this.handleEditGroup.bind(this, this.repeaterEntries)
-        //     )
-        // );
+        preview.querySelector(this.queryService.getQuery('edit-group')).addEventListener(
+            'click',
+            this.activeFunctionService.wrap.bind(
+                this.activeFunctionService,
+                preview.querySelector(this.queryService.getQuery('edit-group')),
+                this.handleEditGroup.bind(this, this.repeaterEntries)
+            )
+        );
 
-        // Attach preview "delete group" handler
-        // preview.querySelector(this.queryService.getQuery('delete-group')).addEventListener(
-        //     'click',
-        //     this.activeFunctionService.wrap.bind(
-        //         this.activeFunctionService,
-        //         preview.querySelector(this.queryService.getQuery('edit-group')),
-        //         this.handleDeleteGroup.bind(this, this.repeaterEntries)
-        //     )
-        // );
+        // Attach preview "edit group" handler
+        preview.querySelector(this.queryService.getQuery('delete-group')).addEventListener(
+            'click',
+            this.activeFunctionService.wrap.bind(
+                this.activeFunctionService,
+                preview.querySelector(this.queryService.getQuery('edit-group')),
+                this.handleDeleteGroup.bind(this, this.repeaterEntries)
+            )
+        );
 
         // Create saved data
         this.repeaterDataService.create(this.queryService.get('add-group-form'), this.repeaterEntries);
@@ -183,15 +164,7 @@ class Repeater {
         this.createEditEntryGroup(this.queryService.get('add-group-form'));
 
         // Remove "empty" placeholder
-        // if ($repeater.find('[data-datatable]')) {
-        //     console.log('is DT so destory');
-        //     $repeater.find('[data-datatable]').dataTable().fnDestroy();
-        //     console.log('is DT so reinit after destroy');
-        //     this.dataTableService.init($repeater.find('.table'));
-        //     console.log($repeater.find('.table'));
-        // } else {
-        //     this.repeaterPlaceholderService.remove();
-        // }
+        this.repeaterPlaceholderService.remove();
 
         // Reset new repeater group form
         this.resetGroupFields();

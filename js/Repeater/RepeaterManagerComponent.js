@@ -3,18 +3,14 @@ class RepeaterManagerComponent {
      * Repeater Manager
      * @param pulsarFormComponent {PulsarFormComponent}
      * @param repeaterComponentFactory {repeaterComponentFactory}
-     * @param dataTablesService {DataTableService}
-     * @param $html {$}
      */
     constructor (
         pulsarFormComponent,
         repeaterComponentFactory,
-        dataTablesService,
         $html
     ) {
         this.pulsarFormComponent = pulsarFormComponent;
         this.repeaterComponentFactory = repeaterComponentFactory;
-        this.dataTableService = dataTablesService;
         this.$html = $html;
     }
 
@@ -22,16 +18,9 @@ class RepeaterManagerComponent {
      * Initiate repeaters on the page
      */
     init () {
-        this.$html.find('.repeater').each((index, repeaterElement) => {
-            const dataTableSupport = !!repeaterElement.querySelector('[data-datatable]');
-            const repeater = this.repeaterComponentFactory(
-                this.pulsarFormComponent,
-                this.dataTableService,
-                repeaterElement,
-                dataTableSupport
-            );
-
-           repeater.init();
+        this.$html.find('.repeater').each((index, element) => {
+            this.repeaterComponentFactory(this.pulsarFormComponent, element)
+                .init();
         });
     }
 }
