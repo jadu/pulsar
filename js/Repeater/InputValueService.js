@@ -145,6 +145,7 @@ class InputValueService {
         // which is to simply submit the correct value
         if (state.selected && radio.hasAttribute('name')) {
             radio.value = value;
+            radio.checked = true;
         }
     }
 
