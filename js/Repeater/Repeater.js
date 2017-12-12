@@ -125,7 +125,7 @@ class Repeater {
     handleSaveGroup (event) {
         const colspan = parseInt(this.repeater.getAttribute(this.queryService.getAttr('preview-colspan')), 10);
         const previewUi = document.createElement('td');
-        const $repeater = $(this.repeater);
+        // const $repeater = $(this.repeater);
 
         event.preventDefault();
 
@@ -139,36 +139,42 @@ class Repeater {
             this.repeaterEntries
         );
 
+        console.log('preview: ', preview)
+
+
+
+        this.dataTableService.addRow($(this.queryService.get('table')), preview);
+
         // Set preview attributes and append to the DOM
-        preview.setAttribute('colspan', colspan);
-        preview.setAttribute(this.queryService.getAttr('preview-id'), this.repeaterEntries);
+        // preview.setAttribute('colspan', colspan);
+        // preview.setAttribute(this.queryService.getAttr('preview-id'), this.repeaterEntries);
 
         // Attach preview element to the DOM
-        this.queryService.get('preview-root').appendChild(preview);
+        // this.queryService.get('preview-root').appendChild(preview);
 
         // Attach preview UI to preview row
-        previewUi.innerHTML = this.previewUiHTML;
-        preview.appendChild(previewUi);
+        // previewUi.innerHTML = this.previewUiHTML;
+        // preview.appendChild(previewUi);
 
         // Attach preview "edit group" handler
-        preview.querySelector(this.queryService.getQuery('edit-group')).addEventListener(
-            'click',
-            this.activeFunctionService.wrap.bind(
-                this.activeFunctionService,
-                preview.querySelector(this.queryService.getQuery('edit-group')),
-                this.handleEditGroup.bind(this, this.repeaterEntries)
-            )
-        );
+        // preview.querySelector(this.queryService.getQuery('edit-group')).addEventListener(
+        //     'click',
+        //     this.activeFunctionService.wrap.bind(
+        //         this.activeFunctionService,
+        //         preview.querySelector(this.queryService.getQuery('edit-group')),
+        //         this.handleEditGroup.bind(this, this.repeaterEntries)
+        //     )
+        // );
 
         // Attach preview "delete group" handler
-        preview.querySelector(this.queryService.getQuery('delete-group')).addEventListener(
-            'click',
-            this.activeFunctionService.wrap.bind(
-                this.activeFunctionService,
-                preview.querySelector(this.queryService.getQuery('edit-group')),
-                this.handleDeleteGroup.bind(this, this.repeaterEntries)
-            )
-        );
+        // preview.querySelector(this.queryService.getQuery('delete-group')).addEventListener(
+        //     'click',
+        //     this.activeFunctionService.wrap.bind(
+        //         this.activeFunctionService,
+        //         preview.querySelector(this.queryService.getQuery('edit-group')),
+        //         this.handleDeleteGroup.bind(this, this.repeaterEntries)
+        //     )
+        // );
 
         // Create saved data
         this.repeaterDataService.create(this.queryService.get('add-group-form'), this.repeaterEntries);
@@ -177,15 +183,15 @@ class Repeater {
         this.createEditEntryGroup(this.queryService.get('add-group-form'));
 
         // Remove "empty" placeholder
-        if ($repeater.find('[data-datatable]')) {
-            console.log('is DT so destory');
-            $repeater.find('[data-datatable]').dataTable().fnDestroy();
-            console.log('is DT so reinit after destroy');
-            this.dataTableService.init($repeater.find('.table'));
-            console.log($repeater.find('.table'));
-        } else {
-            this.repeaterPlaceholderService.remove();
-        }
+        // if ($repeater.find('[data-datatable]')) {
+        //     console.log('is DT so destory');
+        //     $repeater.find('[data-datatable]').dataTable().fnDestroy();
+        //     console.log('is DT so reinit after destroy');
+        //     this.dataTableService.init($repeater.find('.table'));
+        //     console.log($repeater.find('.table'));
+        // } else {
+        //     this.repeaterPlaceholderService.remove();
+        // }
 
         // Reset new repeater group form
         this.resetGroupFields();

@@ -15,8 +15,6 @@ class DataTableService {
             throw new Error('$element must be passed to DataTableService');
         }
 
-        console.log('initiating data table');
-
         // Initiate each table in the collection with options
         $datatables.each((index, table) => {
             const $table = $(table);
@@ -78,8 +76,11 @@ class DataTableService {
         return options;
     }
 
-    addRows () {
+    addRow ($datatable, row) {
+        console.log('adding rows...')
 
+        console.log($datatable.DataTable().data();
+        // $datatable.DataTable().row.add(row).draw();
     }
 }
 
