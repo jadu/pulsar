@@ -1,4 +1,5 @@
 const $ = require('jquery');
+const _ = require('lodash');
 
 class InputReplacementService {
     /**
@@ -43,7 +44,10 @@ class InputReplacementService {
      * @param replacement
      */
     replaceRadioInput (radio, replacement) {
-        if (radio.getAttribute('data-pseudo-radio-id') === replacement.getAttribute('data-pseudo-radio-id')) {
+        const originalId = radio.getAttribute(this.queryService.getAttr('pseudo-radio-id'));
+        const replacementId = replacement.getAttribute(this.queryService.getAttr('pseudo-radio-id'));
+
+        if (originalId === replacementId) {
             $(radio).replaceWith(replacement);
         }
     }
@@ -65,7 +69,7 @@ class InputReplacementService {
                 // Set each options's selected value based on the parsed select2 data
                 [].slice.call(select.children)
                     .forEach(option => {
-                        const previousState = select2Data.find(s2 => s2.id === option.value);
+                        const previousState = _.find(select2Data, s2 => s2.id === option.value);
 
                         option.selected = previousState ? previousState.selected : false;
                     });
