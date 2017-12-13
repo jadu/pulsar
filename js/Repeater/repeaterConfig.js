@@ -22,6 +22,7 @@ module.exports = {
     'preview-heading': 'data-repeater-for-name',
     'preview-placeholder': 'data-repeater-preview-placeholder',
     'preview-update-id': 'data-repeater-preview-update-id',
+    'pseudo-radio-id': 'data-pseudo-radio-id',
     'select2-data': 'data-repeater-select2-data',
     'saved-entry-id': 'data-repeater-saved-data-id',
     'saved-entries-root': 'data-repeater-saved-entries-root'
