@@ -1,3 +1,5 @@
+const _ = require('lodash');
+
 class InputValueService {
     /**
      * Dispatch input value get methods
@@ -71,8 +73,7 @@ class InputValueService {
      * @param value
      */
     printSelect (element, value) {
-        return [].slice.call(element.children)
-            .find(option => option.value === value)
+        return _.find([].slice.call(element.children), option => option.value === value)
             .textContent;
     }
 
@@ -100,7 +101,7 @@ class InputValueService {
     }
 
     /**
-     * Get a checkbox value if it has been checked
+     * Get a checkbox value
      * @param checkbox
      * @returns {*}
      */
@@ -108,6 +109,11 @@ class InputValueService {
         return { value: checkbox.value, selected: checkbox.checked };
     }
 
+    /**
+     * Get a radio value
+     * @param radio
+     * @returns {{value: *, selected: boolean}}
+     */
     getRadioValue (radio) {
         return { value: radio.value, selected: radio.checked };
     }
@@ -156,8 +162,7 @@ class InputValueService {
      * @param state
      */
     setMultiSelectValue (select, value, state) {
-        [].slice.call(select.children)
-            .find(option => option.value === value)
+        _.find([].slice.call(select.children), option => option.value === value)
             .selected = state.selected;
     }
 }
