@@ -1,0 +1,33 @@
+{{
+    form.compound({
+        'id': 'bar',
+        'help': 'For example: 25 12 1980',
+        'label': 'Date of birth',
+        'inputs': [
+            {
+                'class': 'form__control-col--1',
+                'label': 'Day',
+                'id': 'dd',
+                'placeholder': 'DD',
+                'show-label': false,
+                'type': 'text'
+            },
+            {
+                'class': 'form__control-col--1',
+                'label': 'Month',
+                'id': 'mm',
+                'placeholder': 'MM',
+                'show-label': false,
+                'type': 'text'
+            },
+            {
+                'class': 'form__control-col--1',
+                'label': 'Year',
+                'id': 'yyyy',
+                'placeholder': 'YYYY',
+                'show-label': false,
+                'type': 'text'
+            }
+        ]
+    })
+}}

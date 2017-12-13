@@ -34,6 +34,10 @@
         }
     }
 
+    tr.u-no-border > td {
+        border-bottom: 0;
+    }
+
     tr.fade {
         animation-name: fade-row-to-white !important;
         animation-delay: 1s;
@@ -116,6 +120,20 @@
     }
 }
 
+.table--white-bg {
+    background-color: white;
+}
+
+.table--contrast {
+    thead {
+        background-color: color(grey, off-white);
+    }
+
+    tbody {
+        background-color: lighten(color(grey, off-white), 4);
+    }
+}
+
 // Added by javascript, allows the table to scroll horizontally at narrow
 // viewports
 .table-container {
@@ -151,8 +169,8 @@
     }
 }
 
+tr.table__form,
 td.table__form {
-    background-color: color(background);
     padding: 10px 10px 24px 20px;
 
     form {
@@ -182,6 +200,11 @@ td.table__form {
         width: 25px;
         margin-left: 10px;
     }
+}
+
+td.table__form,
+.table__form td {
+    background-color: color(background);
 }
 
 .table-container + .pagination {
