@@ -1,5 +1,3 @@
-const $ = require('jquery');
-
 class RepeaterPlaceholderService {
     /**
      * Repater placeholder service
