@@ -3,6 +3,7 @@ class RepeaterManagerComponent {
      * Repeater Manager
      * @param pulsarFormComponent {PulsarFormComponent}
      * @param repeaterComponentFactory {repeaterComponentFactory}
+     * @param $html {$}
      */
     constructor (
         pulsarFormComponent,
@@ -18,9 +19,10 @@ class RepeaterManagerComponent {
      * Initiate repeaters on the page
      */
     init () {
-        this.$html.find('.repeater').each((index, element) => {
-            this.repeaterComponentFactory(this.pulsarFormComponent, element)
-                .init();
+        this.$html.find('[data-repeater]').each((index, element) => {
+            const repeater = this.repeaterComponentFactory(this.pulsarFormComponent, element);
+
+            repeater.init();
         });
     }
 }
