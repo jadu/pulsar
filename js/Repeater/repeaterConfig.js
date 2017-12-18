@@ -4,6 +4,7 @@
  */
 module.exports = {
     'name': 'data-repeater-name',
+    'add-new-group-text': 'data-repeater-add-new-group-text',
     'add-another-group-text': 'data-repeater-add-another-group-text',
     'add-group-form': 'data-repeater-new-group',
     'add-group-button': 'data-repeater-add-group',

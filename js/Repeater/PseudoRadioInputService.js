@@ -31,7 +31,7 @@ class PseudoRadioInputService {
                     state[key] = [];
                 }
 
-                input.setAttribute('data-pseudo-radio-id', id);
+                input.setAttribute;('data-pseudo-radio-id', id);
                 state[key].push({ value: input.value, checked: input.checked });
                 id++;
 
