@@ -16,6 +16,7 @@ class Repeater {
      * @param pseudoRadioInputService {PseudoRadioInputService}
      * @param repeaterDataService {RepeaterDataService}
      * @param repeaterPlaceholderService {RepeaterPlaceholderService}
+     * @param formFieldResetService {FormFieldResetService}
      */
     constructor (
         repeater,
@@ -29,7 +30,8 @@ class Repeater {
         repeaterPreviewService,
         pseudoRadioInputService,
         repeaterDataService,
-        repeaterPlaceholderService
+        repeaterPlaceholderService,
+        formFieldResetService
     ) {
         this.pulsarFormComponent = pulsarFormComponent;
         this.queryService = queryService;
@@ -42,6 +44,7 @@ class Repeater {
         this.pseudoRadioInputService = pseudoRadioInputService;
         this.repeaterDataService = repeaterDataService;
         this.repeaterPlaceholderService = repeaterPlaceholderService;
+        this.formFieldResetService = formFieldResetService;
 
         this.repeater = repeater;
         this.repeaterEntries = 0;
@@ -87,11 +90,17 @@ class Repeater {
 
         // Attach the "save new group" handler
         this.queryService.get('save-group-button')
-            .addEventListener('click', this.handleSaveGroup.bind(this));
+            .addEventListener(
+                'click',
+                this.handleSaveGroup.bind(this)
+            );
 
         // Attach the "cancel new group" handler
         this.queryService.get('cancel-save-group-button')
-            .addEventListener('click', this.handleCancelGroup.bind(this));
+            .addEventListener(
+                'click',
+                this.handleCancelGroup.bind(this)
+            );
     }
 
     /**
@@ -116,8 +125,6 @@ class Repeater {
 
         // Create state object from the current form
         this.state[this.repeaterEntries] = this.createState(this.queryService.get('add-group-form'));
-
-        console.log(this.state[this.repeaterEntries]);
 
         // Create preview HTML
         const preview = this.repeaterPreviewService.create(
@@ -167,7 +174,10 @@ class Repeater {
         this.repeaterPlaceholderService.remove();
 
         // Reset new repeater group form
-        this.resetGroupFields();
+        this.formFieldResetService.reset(this.queryService.get('add-group-form'));
+
+        // Reset Pulsar colour pickers
+        this.pulsarFormComponent.updateColourPicker($(this.queryService.get('add-group-form')));
 
         // Update internal state
         this.repeaterEntries++;
@@ -190,6 +200,7 @@ class Repeater {
 
     /**
      * Convert the "create new repeater group" to a state object
+     * @param group {HTMLElement}
      * @returns {Object.<string, {value: {string}, selected: {boolean}, ref: {HTMLElement}}[]>}
      */
     createState (group) {
@@ -322,9 +333,9 @@ class Repeater {
         }
 
         // Update "add group" button text and add placeholder if we have removed all entries
-        if (!this.savedEntries) {
+        if (this.savedEntries <= 0) {
             this.queryService.get('add-group-button').innerText =
-                this.repeater.getAttribute(this.queryService.getAttr('add-another-group-text'));
+                this.repeater.getAttribute(this.queryService.getAttr('add-new-group-text'));
 
             // Add "empty" placeholder
             this.repeaterPlaceholderService.add();
@@ -341,24 +352,15 @@ class Repeater {
         }
 
         event.preventDefault();
-        this.resetGroupFields();
-        $(this.queryService.get('add-group-form')).hide();
-    }
 
-    /**
-     * Reset each of the new group fields
-     */
-    resetGroupFields () {
-        const $tempFormWrapper = $(this.queryService.get('add-group-form'))
-            .wrap('<form></form>').closest('form');
+        // Reset new repeater group form
+        this.formFieldResetService.reset(this.queryService.get('add-group-form'));
 
-        // A catch-all brute-force input reset, wrap the elements in a temporary
-        // form element and trigger that form to reset
-        $tempFormWrapper.trigger('reset');
-        $(this.queryService.get('add-group-form')).unwrap($tempFormWrapper);
-
-        // Update any colour pickers that might exist
+        // Reset Pulsar colour pickers
         this.pulsarFormComponent.updateColourPicker($(this.queryService.get('add-group-form')));
+
+        // Hide the "add group" form
+        $(this.queryService.get('add-group-form')).hide();
     }
 
     /**
@@ -387,8 +389,10 @@ class Repeater {
         // Enable preview UI
         this.repeaterPreviewService.toggleUi();
 
-        // enable "add group" button
-        $(this.queryService.get('add-group-button')).removeClass('disabled');
+        // Enable "add group" button if we have not exceeded max saved entries
+        if (this.savedEntries < this.maxSavedGroups) {
+            $(this.queryService.get('add-group-button')).removeClass('disabled');
+        }
 
         // Hide edit group form
         $(group).hide();
@@ -418,8 +422,10 @@ class Repeater {
         // Enable preview UI
         this.repeaterPreviewService.toggleUi();
 
-        // Enable "add group" form
-        $(this.queryService.get('add-group-button')).removeClass('disabled');
+        // Enable "add group" button if we have not exceeded max saved entries
+        if (this.savedEntries < this.maxSavedGroups) {
+            $(this.queryService.get('add-group-button')).removeClass('disabled');
+        }
 
         // Update any colour pickers that might exist
         this.pulsarFormComponent.updateColourPicker($(group));

@@ -76,7 +76,7 @@
     "phpruntime": "^5.0.0",
     "phptoast": "^3.17.0",
     "phptojs": "^3.16.0",
-    "sinon": "^1.17.3",
+    "sinon": "^2.4.1",
     "sinon-chai": "^2.8.0",
     "sinon-jquery": "^1.0.2",
     "twig": "^0.9.4",
