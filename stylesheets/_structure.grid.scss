@@ -32,7 +32,7 @@ $gutter_pc:     .5;
  */
 @mixin col-span($num, $force: false, $gutter: false, $columns: $columns, $important: false) {
     $one_col: (100% - ($gutter_pc * ($columns - 1))) / $columns;
-    $span_width: ($one_col * ($num)) + ($gutter_pc * ($num - 1));
+    $span_width: floor(($one_col * ($num)) + ($gutter_pc * ($num - 1)));
 
     @if $gutter == true {
         @include respond-min($screen-tablet) {
@@ -74,7 +74,7 @@ $gutter_pc:     .5;
  */
 @mixin col-span-width($num, $columns: $columns, $important: false) {
     $one_col: (100% - ($gutter_pc * ($columns - 1))) / $columns;
-    $span_width: ($one_col * ($num)) + ($gutter_pc * ($num - 1));
+    $span_width: floor(($one_col * ($num)) + ($gutter_pc * ($num - 1)));
 
     @if $important == false {
         width: $span_width;
