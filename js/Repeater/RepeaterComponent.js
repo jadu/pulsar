@@ -69,7 +69,7 @@ class Repeater {
         const maxItemsAttr = this.repeater.getAttribute(this.queryService.getAttr('max-saved-groups'));
 
         // Store max repeater groups as an integer
-        this.maxSavedGroups = maxItemsAttr === 'false' ? Infinity : parseInt(maxItemsAttr, 10);
+        this.maxSavedGroups = maxItemsAttr === null ? Infinity : parseInt(maxItemsAttr, 10);
 
         // Initiate pseudo radio service to polyfill radio inputs without name attrs
         this.pseudoRadioInputService.init();
