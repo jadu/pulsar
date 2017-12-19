@@ -37,9 +37,10 @@ describe('QueryService', () => {
 
     describe('get', () => {
         it('should throw if a query is not recognised', () => {
-            expect(() => {
-                queryService.get('slfdhglsfjgh');
-            }).to.throw();
+            expect(queryService.get.bind(queryService, 'error')).to.throw(
+                Error,
+                'Could not find query "error"'
+            );
         });
 
         it('should return a single element', () => {
@@ -61,9 +62,10 @@ describe('QueryService', () => {
 
     describe('updateRef', () => {
         it('should throw if a query name is not found', () => {
-            expect(() => {
-                queryService.updateRef('asdfghjkl');
-            }).to.throw();
+            expect(queryService.updateRef.bind(queryService, 'error')).to.throw(
+                Error,
+                'Could not find query "error"'
+            );
         });
 
         it('should update an existing reference manually', () => {
@@ -76,9 +78,10 @@ describe('QueryService', () => {
     describe('getAttr', () => {
         it('should get the attribute value for a query', () => {
             it('should throw if a query name is not found', () => {
-                expect(() => {
-                    queryService.getAttr('asdfghjkl');
-                }).to.throw();
+                expect(queryService.getAttr.bind(queryService, 'error')).to.throw(
+                    Error,
+                    'Could not find query "error"'
+                );
             });
         });
 
@@ -90,9 +93,10 @@ describe('QueryService', () => {
     describe('getQuery', () => {
         it('should get the attribute value for a query', () => {
             it('should throw if a query name is not found', () => {
-                expect(() => {
-                    queryService.getQuery('asdfghjkl');
-                }).to.throw();
+                expect(queryService.getQuery.bind(queryService, 'error')).to.throw(
+                    Error,
+                    'Could not find query "error"'
+                );
             });
         });
 

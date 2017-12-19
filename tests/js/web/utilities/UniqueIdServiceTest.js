@@ -17,6 +17,8 @@ describe('UniqueIdService', () => {
 
                 <label for="bar">bar</label>
                 <input id="bar">
+                
+                <label for="no_id_on_page">baz</label>
             </div>
         `);
         hashServiceStub = sinon.createStubInstance(HashService);
@@ -41,6 +43,12 @@ describe('UniqueIdService', () => {
 
             expect($root.find('[for="foo_102"]')).to.have.length.of(1);
             expect($root.find('[id="foo_102"]')).to.have.length.of(1);
+        });
+
+        it('should ignore for elements that do not have corresponding IDs', () => {
+            uniqueIdServive.uniquifyFors($root[0]);
+
+            expect($root.find('[for="no_id_on_page"]')).to.have.length.of(1);
         });
     });
 
