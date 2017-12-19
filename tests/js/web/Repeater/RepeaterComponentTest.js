@@ -139,6 +139,15 @@ describe('RepeaterComponent', () => {
 
             expect($html.find('[name]')).to.have.length.of(0);
         });
+
+        it('should set maxItems to infinity if the maxItems attribute is not set', () => {
+            const $element = $(`<div class="repeater"></div>`);
+
+            repeaterComponent.repeater = $element[0];
+            repeaterComponent.init();
+
+            expect(repeaterComponent.maxSavedGroups).to.equal(Infinity);
+        });
     });
 
     describe('handleAddGroup', () => {
@@ -306,6 +315,44 @@ describe('RepeaterComponent', () => {
         });
 
         it('should return a state object from a form group', () => {
+            expect(repeaterComponent.createState($fields[0])).to.deep.equal({
+                text: {
+                    value: [
+                        {
+                            ref: $fields.find(queryService.getQuery('name'))[0],
+                            value: 'test_value',
+                            selected: true
+                        }
+                    ]
+                },
+                radio: {
+                    value: [
+                        {
+                            ref: $fields.find(queryService.getQuery('name'))[1],
+                            value: 'test_value',
+                            selected: true
+                        }
+                    ]
+                },
+                checkbox: {
+                    value: [
+                        {
+                            ref: $fields.find(queryService.getQuery('name'))[2],
+                            value: 'test_value',
+                            selected: true
+                        }
+                    ]
+                }
+            });
+        });
+
+        it('should handle an array returned from the inputValueService', () => {
+            inputValueServiceStub.getValue.callsFake((el) => [{
+                value: 'test_value',
+                ref: el,
+                selected: true
+            }]);
+
             expect(repeaterComponent.createState($fields[0])).to.deep.equal({
                 text: {
                     value: [
@@ -560,6 +607,18 @@ describe('RepeaterComponent', () => {
 
             expect($repeater.find(queryService.getQuery('add-group-form')).css('display')).to.equal('none');
         });
+
+        it('should enable the "add group" button if we are not at capacity', () => {
+            const $button = $repeater.find(queryService.getQuery('add-group-button'));
+
+            $button.addClass('disabled');
+
+            // need to init here to parse the maxSavedEntries
+            repeaterComponent.init();
+            repeaterComponent.handleCancelGroup(event);
+
+            expect($button.hasClass('disabled')).to.be.false;
+        });
     });
 
     describe('handleUpdateGroup', () => {
@@ -610,16 +669,12 @@ describe('RepeaterComponent', () => {
         it('should enable the "add group" button if we are not at capacity', () => {
             const $button = $repeater.find(queryService.getQuery('add-group-button'));
 
-            repeaterComponent.handleUpdateGroup($group[0], 666, event);
-
-            expect($button.hasClass('disabled')).to.be.false;
-
-            repeaterComponent.maxEntries = -1;
+            repeaterComponent.init();
             $button.addClass('disabled');
 
             repeaterComponent.handleUpdateGroup($group[0], 666, event);
 
-            expect($button.hasClass('disabled')).to.be.true;
+            expect($button.hasClass('disabled')).to.be.false;
         });
 
         it('should hide the group', () => {
@@ -687,16 +742,12 @@ describe('RepeaterComponent', () => {
         it('should enable the "add group" button if we are not at capacity', () => {
             const $button = $repeater.find(queryService.getQuery('add-group-button'));
 
-            repeaterComponent.handleCancelGroupUpdate($group[0], 0, event);
-
-            expect($button.hasClass('disabled')).to.be.false;
-
-            repeaterComponent.maxEntries = -1;
+            repeaterComponent.init();
             $button.addClass('disabled');
 
             repeaterComponent.handleCancelGroupUpdate($group[0], 0, event);
 
-            expect($button.hasClass('disabled')).to.be.true;
+            expect($button.hasClass('disabled')).to.be.false;
         });
 
         it('should update colour pickers', () => {
