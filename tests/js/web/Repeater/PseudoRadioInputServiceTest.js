@@ -1,4 +1,5 @@
 const PseudoRadioInputService = require('../../../../js/Repeater/PseudoRadioInputService');
+const $ = require('jquery');
 
 describe('PseudoRadioInputService', () => {
     let pseudoRadioInputService;
@@ -83,5 +84,90 @@ describe('PseudoRadioInputService', () => {
             expect($root.find('[value="bar"]').prop('checked')).to.be.false;
             expect($root.find('[value="baz"]').prop('checked')).to.be.true;
         });
+    });
+
+    describe('handleChange', () => {
+        it('should update the stage on change events', () => {
+            const target = $root.find('[value="bar"]')[0];
+
+            pseudoRadioInputService.init();
+            pseudoRadioInputService.handleChange({ target });
+
+            expect(pseudoRadioInputService.state).to.deep.equal({
+                test: [
+                    { value: 'foo', checked: false },
+                    { value: 'bar', checked: true },
+                    { value: 'baz', checked: false }
+                ]
+            });
+        });
+
+        it('should not do anything for non-radio inputs', () => {
+            const target = $('<input type="text"/>')[0];
+
+            pseudoRadioInputService.init();
+            pseudoRadioInputService.handleChange({ target });
+
+            expect(pseudoRadioInputService.state).to.deep.equal({
+                test: [
+                    { value: 'foo', checked: false },
+                    { value: 'bar', checked: false },
+                    { value: 'baz', checked: false }
+                ]
+            });
+        });
+    });
+
+    describe('setState', () => {
+        it('should update the state based on an external state object', () => {
+            const state = {
+                test: { value: [{ value: 'baz', selected: true }] }
+            };
+
+            pseudoRadioInputService.init();
+            pseudoRadioInputService.setState(state);
+
+            expect(pseudoRadioInputService.state).to.deep.equal({
+                test: [
+                    { value: 'foo', checked: false },
+                    { value: 'bar', checked: false },
+                    { value: 'baz', checked: true }
+                ]
+            });
+        });
+
+        it('should not update the state if the external radio state is not selected', () => {
+            const state = {
+                test: { value: [{ value: 'baz', selected: false }] }
+            };
+
+            pseudoRadioInputService.init();
+            pseudoRadioInputService.setState(state);
+
+            expect(pseudoRadioInputService.state).to.deep.equal({
+                test: [
+                    { value: 'foo', checked: false },
+                    { value: 'bar', checked: false },
+                    { value: 'baz', checked: false }
+                ]
+            });
+        });
+
+        it('should handle not being able to map the pseudo radio state to the external state', () => {
+            const state = {
+                not_in_pseudo_state: {}
+            };
+
+            pseudoRadioInputService.init();
+            pseudoRadioInputService.setState(state);
+
+            expect(pseudoRadioInputService.state).to.deep.equal({
+                test: [
+                    { value: 'foo', checked: false },
+                    { value: 'bar', checked: false },
+                    { value: 'baz', checked: false }
+                ]
+            });
+        })
     });
 });

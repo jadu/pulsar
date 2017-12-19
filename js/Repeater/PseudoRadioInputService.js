@@ -1,3 +1,5 @@
+const _ = require('lodash');
+
 class PseudoRadioInputService {
     /**
      * Create pseudo radio input behaviour in the
@@ -38,23 +40,21 @@ class PseudoRadioInputService {
                 return state;
             }, {});
 
-        this.listen();
+        this.root.addEventListener('change', this.handleChange.bind(this));
     }
 
     /**
      * Listen for input changes and update state
      */
-    listen () {
-        this.root.addEventListener('change', event => {
-            const { target } = event;
+    handleChange (event) {
+        const { target } = event;
 
-            if (target.type === 'radio') {
-                this.updateState(
-                    target.getAttribute(this.name.pseudo),
-                    target.value
-                );
-            }
-        });
+        if (target.type === 'radio') {
+            this.updateState(
+                target.getAttribute(this.name.pseudo),
+                target.value
+            );
+        }
     }
 
     /**
@@ -80,12 +80,12 @@ class PseudoRadioInputService {
 
     /**
      * Set the state of the radio inputs based on an external state
-     * @param state
+     * @param state {Object.<string, { value: { value: {string}, selected: {boolean}, ref: {HTMLElement} }[] }>}
      */
     setState (state) {
         Object.keys(state).forEach(input => {
-            if (this.state[input]) {
-                const selected = state[input].value.find(i => i.checked);
+            if (this.state[input] !== undefined) {
+                const selected = _.find(state[input].value, i => i.selected);
                 // Set state using the selected input in the state argument
                 if (selected) {
                     this.updateState(input, selected.value);
