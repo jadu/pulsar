@@ -201,7 +201,7 @@ class Repeater {
     /**
      * Convert the "create new repeater group" to a state object
      * @param group {HTMLElement}
-     * @returns {Object.<string, {value: {string}, selected: {boolean}, ref: {HTMLElement}}[]>}
+     * @returns {Object.<string, { value: { value: {string}, selected: {boolean}, ref: {HTMLElement} }[] }>}
      */
     createState (group) {
         const $inputs = $(group).find(this.queryService.getQuery('name'));
