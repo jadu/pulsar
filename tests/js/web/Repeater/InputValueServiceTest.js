@@ -1,4 +1,4 @@
-const InputValueService = require('../../../../js/repeater/InputValueService');
+const InputValueService = require('../../../../js/Repeater/InputValueService');
 const $ = require('jquery');
 
 describe('InputValueService', () => {
