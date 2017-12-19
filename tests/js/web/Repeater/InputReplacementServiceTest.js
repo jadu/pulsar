@@ -23,15 +23,7 @@ describe('InputReplacementService', () => {
        let $html;
        let select2Data;
 
-       // [{"selected":true,"disabled":false,"text":"Red","id":"colour_red","title":"","_resultId":"select2-repeater-select2multi-result-t384-colour_red","element":{"jQuery11240037265588672245054":3048}},{"selected":true,"disabled":false,"text":"Blue","id":"colour_blue","title":"","_resultId":"select2-repeater-select2multi-result-2em6-colour_blue","element":{"jQuery11240037265588672245054":3049}}]
-
        beforeEach(() => {
-           select2Data = JSON.stringify([
-               { id: 'foo', selected: false },
-               { id: 'bar', selected: true },
-               { id: 'baz', selected: false }
-           ]);
-
            $html = $(`
                 <div id="root">
                     <input data-clone="false" type="text"/>
@@ -48,8 +40,6 @@ describe('InputReplacementService', () => {
                     </select>
                 </div>
             `);
-
-           $html.find('.js-select2').attr('data-select2', select2Data);
        });
 
        it('should replace radio inputs', () => {
@@ -61,6 +51,18 @@ describe('InputReplacementService', () => {
             inputReplacementService.replace(radio, clone);
 
             expect($html.find('[type="radio"]').attr('data-clone')).to.equal('true');
+       });
+
+       it('should not replace radio inputs with mismatched IDs', () => {
+           const radio = $html[0].querySelectorAll(('[type="radio"]'));
+           const clone = radio[0].cloneNode();
+
+           clone.setAttribute('data-clone', 'true');
+           clone.setAttribute('data-pseudo-radio-id', '665');
+
+           inputReplacementService.replace(radio, clone);
+
+           expect($html.find('[type="radio"]').attr('data-clone')).to.equal('false');
        });
 
        it('should replace single select inputs', () => {
@@ -77,10 +79,28 @@ describe('InputReplacementService', () => {
        it('should re-init select2 inputs instead of replacing whilst maintaining option state', () => {
            const select = $html[0].querySelectorAll('#select2');
 
+           select[0].setAttribute('data-select2', JSON.stringify([
+               { id: 'baz', selected: true },
+               { id: 'foo', selected: false },
+               { id: 'bar', selected: false },
+               { id: 'not_in_select' }
+           ]));
+
            inputReplacementService.replace(select, {});
 
            expect(select[0].children[0].selected).to.be.false;
-           expect(select[0].children[1].selected).to.be.true;
+           expect(select[0].children[1].selected).to.be.false;
+           expect(select[0].children[2].selected).to.be.true;
+           expect(pulsarFormComponentStub.initSelect2).to.have.been.calledOnce;
+       });
+
+       it('should re-init select2 inputs whilst handling no cached select2 data', () => {
+           const select = $html[0].querySelectorAll('#select2');
+
+           inputReplacementService.replace(select, {});
+
+           expect(select[0].children[0].selected).to.be.true;
+           expect(select[0].children[1].selected).to.be.false;
            expect(select[0].children[2].selected).to.be.false;
            expect(pulsarFormComponentStub.initSelect2).to.have.been.calledOnce;
        });
