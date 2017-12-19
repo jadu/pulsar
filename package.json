@@ -8,7 +8,7 @@
   "main": "./src/Jadu/Pulsar/Twig.js/Pulsar.js",
   "scripts": {
     "start": "vagrant reload && grunt",
-    "coverage": "mochify --transform [ babelify ] --plugin [ mochify-istanbul --exclude '**/+(tests|node_modules|libs)/**/*' --report lcov --dir ./coverage --instrumenter babel-istanbul] --reporter spec --recursive ./tests/js/web/index ./tests/js/web/**/*Test.js",
+    "coverage": "mochify --transform [ babelify ] --plugin [ mochify-istanbul --exclude '**/+(tests|node_modules|libs)/**/*' --report lcov --dir ./coverage --instrumenter babel-istanbul] --reporter spec ./tests/js/web/index './tests/js/web/**/*Test.js'",
     "test": "npm run web-test && npm run js-ext-test && npm run js-macro-test",
     "web-test": "mochify --reporter spec --transform [ babelify ] ./tests/js/web/index './tests/js/web/**/*Test.js'",
     "js-ext-test": "mocha --reporter spec ./tests/js/twig/Extension/*Test.js",
