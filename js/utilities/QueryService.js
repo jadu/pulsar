@@ -32,7 +32,7 @@ class QueryService {
      * @returns {Element}
      */
     get (query, { all = false, fresh = false } = {}) {
-        if (!this.queries[query]) {
+        if (this.queries[query] === undefined) {
             throw new Error(`Could not find query "${query}"`);
         }
 
@@ -53,7 +53,7 @@ class QueryService {
      * @param ref
      */
     updateRef (query, ref) {
-        if (!this.queries[query]) {
+        if (this.queries[query] === undefined) {
             throw new Error(`Could not find query "${query}"`);
         }
 
@@ -65,7 +65,7 @@ class QueryService {
      * @param name
      */
     getAttr (name) {
-        if (!this.queries[name]) {
+        if (this.queries[name] === undefined) {
             throw new Error(`Could not find query "${name}"`);
         }
 
@@ -77,7 +77,7 @@ class QueryService {
      * @param name
      */
     getQuery (name) {
-        if (!this.queries[name]) {
+        if (this.queries[name] === undefined) {
             throw new Error(`Could not find query "${name}"`);
         }
 

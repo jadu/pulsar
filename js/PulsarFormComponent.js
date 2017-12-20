@@ -90,21 +90,6 @@ PulsarFormComponent.prototype.initDatePickers = function () {
 }
 
 /**
- * Initiate Selection Buttons
- */
-PulsarFormComponent.prototype.initSelectionButtons = function () {
-    const choiceblock = this.$html.find('.choice--block');
-
-    choiceblock
-        .find('input[type="checkbox"]:checked, input[type="radio"]:checked')
-        .closest('.control__label')
-        .addClass('is-selected');
-
-    choiceblock
-        .on('change', '.controls input[type="checkbox"], .controls input[type="radio"]', this.selectionButtons);
-}
-
-/**
  * Initiate colour pickers
  */
 PulsarFormComponent.prototype.initColourpickers = function () {
@@ -170,6 +155,21 @@ PulsarFormComponent.prototype.updateColourPicker = function ($root) {
 
         $picker.spectrum('set', `#${$input.val()}`);
     });
+}
+
+/**
+ * Initiate Selection Buttons
+ */
+PulsarFormComponent.prototype.initSelectionButtons = function () {
+    const choiceblock = this.$html.find('.choice--block');
+
+    choiceblock
+        .find('input[type="checkbox"]:checked, input[type="radio"]:checked')
+        .closest('.control__label')
+        .addClass('is-selected');
+
+    choiceblock
+        .on('change', '.controls input[type="checkbox"], .controls input[type="radio"]', this.selectionButtons);
 }
 
 /**
