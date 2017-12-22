@@ -10,7 +10,7 @@ php:
   - 5.5
 
 before_script:
-  - npm update -g npm
+  - npm update -g npm@5.2.0
   - npm -v
   - npm install -g grunt-cli
   - npm install
