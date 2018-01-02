@@ -9,9 +9,6 @@ cache:
 php:
   - 5.5
 
-node_js:
-  - "7"
-
 before_install:
   - npm install -g npm@5.5.1
 
