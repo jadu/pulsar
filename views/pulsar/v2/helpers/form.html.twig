@@ -2177,48 +2177,50 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
 
 {# -----------------------------------------------------------------------------
 
-# Toggle Switch
+# Repeater Start & End
 
-Generates a checkbox input field with Toggle styling.
+The opening Repeater macro. Additional components can be nested within the repeater_start and repeater_end macros.
+The Repeater allows users to define a repeatable set of for fields that can be added, removed & edited.
 
 ## Example usage
 
 ```twig
 {{
-    form.toggle_switch({
-        'label': 'Flip the switch'
-    })
+    {{ form.repeater_start({
+        'label': 'My first repeater',
+        'empty': 'You have not added any repeater entries',
+        'headings': [
+            { name: 'text', label: 'text' }
+        ],
+        'max-entries': 3,
+        'add-new-group-text': 'Add',
+        'add-another-group-text': 'Add another'
+    }) }}
+
+        {{
+            form.text({
+                'label': 'text',
+                'id': 'repeater-text',
+                'name': 'text'
+            })
+        }}
+
+    {{  form.repeater_end() }}
 }}
 ```
 
-## Options applied to parent wrapper
+## Options
 
-Option        | Type   | Description
-------------- | ------ | -------------------------------------------------------
-class         | string | A space separated list of class names
-error         | string | Text to explain an error/validation condition. Also adds error state styling
-guidance      | string | Text to be displayed in a popover, adds a (?) icon after the input
-help          | string | Additional guidance information to be displayed next to the input
-label         | string | Text for the `<label>` companion element
-required      | bool   | Visually indicates that the field must be completed
-show-label    | bool   | Control visibility of the `<label>` element without affecting layout (default: true)
+Option                  | Type   | Description
+-------------           | ------ | -------------------------------------------------------
+label                   | string | The repeater input label text
+empty                   | string | The empty placeholder text when no items have been added
+headings                | Array  | An array of heading config objects: { name: string, label: string }
+max-entries             | int    | Maximum (inclusive) number of entries that can be added
+add-new-group-text      | string | The text content of the add new entry button
+add-another-group-text  | string | The text content of the add another new entry button
 
-## Options applied to input
-
-Option        | Type   | Description
-------------- | ------ | -------------------------------------------------------
-checked       | bool   | Whether the input is checked
-form          | string | Specify one or more forms this label belongs to
-id            | string | A unique identifier, will also be applied as the label's `for` attribute
-indeterminate | bool   | Shows the checkbox as [-], overrides the value of `checked`
-name          | string | The name of this control
-required      | bool   | Adds `required` and `aria-required="true"` attributes
-value         | string | Specifies the value of the input
-data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
-
-*Any other options not listed here will be applied to the input.
-
-#}
+0#}
 {% macro repeater_start(options) %}
 {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
