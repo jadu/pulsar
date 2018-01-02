@@ -87,10 +87,11 @@ Nested fields are the input components inside a Repeater. All Pulsar form compon
 
 ```javascript
 const $html = $('html');
+const pulsarFormComponent = new pulsar.PulsarFormComponent($html);
 
 // expects 'pulsar' to be exposed as a global variable
 const repeaterManager = new pulsar.RepeaterManagerComponent(
-    new pulsar.PulsarFormComponent($html),
+    pulsarFormComponent,
     pulsar.repeaterComponentFactory,
     $html
 );
