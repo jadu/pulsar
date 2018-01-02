@@ -9,6 +9,12 @@ cache:
 php:
   - 5.5
 
+node_js:
+  - "7"
+
+before_install:
+  - npm install -g npm@5.5.1
+
 before_script:
   - npm install -g grunt-cli
   - npm install
