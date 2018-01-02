@@ -11,14 +11,8 @@
             'label': 'The Pulsar team',
             'empty': 'You have not added any team members',
             'headings': [
-                { name: 'text', label: 'text' },
-                { name: 'choice', label: 'choice' },
-                { name: 'colour', label: 'colour' },
-                { name: 'password', label: 'password' },
-                { name: 'radio', label: 'radio' },
-                { name: 'select', label: 'select' },
-                { name: 'select2', label: 'select2' },
-                { name: 'select2multi', label: 'select2multi' }
+                { name: 'text', label: 'Name' },
+                { name: 'select2multi', label: 'Favourite food' }
             ],
             'max-entries': 3,
             'add-new-group-text': 'Add',
@@ -33,106 +27,22 @@
 
             {{
                 form.text({
-                    'label': 'text',
+                    'label': 'name',
                     'id': 'repeater-text',
                     'name': 'text'
                 })
             }}
 
             {{
-                form.choice({
-                    'label': 'choice',
-                    'id': 'repeater-choice',
-                    'options': [
-                        {
-                            'label': 'foo',
-                            'value': 'foo',
-                            'name': 'choice'
-                        },
-                        {
-                            'label': 'bar',
-                            'value': 'bar',
-                            'name': 'choice'
-                        },
-                        {
-                            'label': 'baz',
-                            'value': 'baz',
-                            'name': 'choice'
-                        }
-                    ]
-                })
-            }}
-
-            {{
-                form.color({
-                    'label': 'colour',
-                    'id': 'repeater-colour',
-                    'value': '123456',
-                    'name': 'colour'
-                })
-            }}
-
-            {{
-                form.password({
-                    'label': 'password',
-                    'id': 'repeater-password',
-                    'name': 'password'
-                })
-            }}
-
-            {{
-                form.radio({
-                    'label': 'radio',
-                    'id': 'repeater-radio',
-                    'name': 'radio',
-                    'value': 'radio'
-                })
-            }}
-
-            {{
-                form.select({
-                    'label': 'select',
-                    'id': 'repeater-select',
-                    'name': 'select',
-                    options: [
-                        {
-                            'label': 'Choose',
-                            'value': ''
-                        },
-                        {
-                            'label': 'Red',
-                            'value': 'colour_red'
-                        },
-                        {
-                            'label': 'Blue',
-                            'value': 'colour_blue'
-                        }
-                    ]
-                })
-            }}
-
-            {{
                 form.select2({
-                    'label': 'select2',
-                    'id': 'repeater-select2',
-                    'name': 'select2',
-                    'options': {
-                        '': 'Choose',
-                        'colour_red': 'Red',
-                        'colour_blue': 'Blue'
-                    }
-                })
-            }}
-
-            {{
-                form.select2({
-                    'label': 'select2multi',
+                    'label': 'Favourite food',
                     'id': 'repeater-select2multi',
                     'name': 'select2multi',
                     'multiple': true,
                     'options': [
-                        { value: 'colour_red', label: 'Red' },
-                        { value: 'colour_blue', label: 'Blue' }
+                        { value: 'food_pizza', label: 'Pizza' },
+                        { value: 'food_gravy', label: 'Gravy' },
+                        { value: 'food_puds', label: 'Yorkshire Pudding' }
                     ]
                 })
             }}

@@ -75,14 +75,6 @@
             supported: !lt10,
             showInputNode: lt10
         });
-
-        const debugSubmit = document.getElementById('repeater-submit-debug');
-        // Repeater debug
-        debugSubmit.addEventListener('submit', event => {
-            event.preventDefault();
-            $(event.target).next().filter('pre').remove();
-            $(event.target).after(`<pre>${$(event.target).serialize()}</pre>`);
-        });
     });
 
 }(jQuery));
