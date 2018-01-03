@@ -2235,7 +2235,7 @@ add-another-group-text  | string | The text content of the add another new entry
         data-repeater-max-entries="{{ options['max-entries']|default(false) }}"
         data-repeater-preview-colspan="{{ options.headings|length + 1 }}"
     >
-        <div class="repeater__saved-data" style="display: none;" data-repeater-saved-entries-root></div>
+        <div class="repeater__saved-data u-display-none" data-repeater-saved-entries-root></div>
         <div class="form__group">
             {{
                 elem.label({
@@ -2276,7 +2276,7 @@ add-another-group-text  | string | The text content of the add another new entry
                                     html.button({
                                         'data-repeater-save-group': 'true',
                                         'label': 'Save',
-                                        'class': 'btn--primary repeater__save-group',
+                                        'class': 'repeater__save-group',
                                         'type': 'button'
                                     })
                                 }}
@@ -2298,7 +2298,7 @@ add-another-group-text  | string | The text content of the add another new entry
                     html.button({
                         'data-repeater-add-group': 'true',
                         'label': 'Add',
-                        'class': 'btn--primary repeater__add-group',
+                        'class': 'repeater__add-group',
                         'type': 'button'
                     })
                 }}
