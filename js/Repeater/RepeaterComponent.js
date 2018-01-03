@@ -1,5 +1,4 @@
 const $ = require('jquery');
-const _ = require('lodash');
 
 class Repeater {
     /**
