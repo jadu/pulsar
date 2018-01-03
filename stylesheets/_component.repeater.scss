@@ -1,5 +1,9 @@
 .repeater__group {
     display: none;
+
+    td {
+        white-space: normal;
+    }
 }
 
 .repeater__group-actions {
