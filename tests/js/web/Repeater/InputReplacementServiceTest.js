@@ -21,7 +21,6 @@ describe('InputReplacementService', () => {
 
    describe('replace', () => {
        let $html;
-       let select2Data;
 
        beforeEach(() => {
            $html = $(`
