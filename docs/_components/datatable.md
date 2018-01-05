@@ -597,7 +597,7 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
 Datatables allow selection of rows by default, this behaviour can be disabled through the `data-selection` attribute. This will hide the related elements in the UI.
 
 ```html
-<table class="table datatable" data-selection="false">
+<table class="table datatable table--full" data-select="false">
  ...
 </table>
 ```
