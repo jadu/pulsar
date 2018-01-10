@@ -1,0 +1,16 @@
+<fieldset id="foo" class="form__group form__group--compound">
+    <legend class="control__label" id="foo[label]">Timeout</legend>
+
+    <div class="controls">
+        <label for="value" id="value[label]" class="control__label hide">Value</label>
+        <input id="value" maxlength="3" type="text" class="form__control form__control-col--1">
+
+        <label for="Unit" id="Unit[label]" class="control__label hide">Unit of time</label>
+        <select id="Unit" type="select" class="form__control u-width-auto select">
+            <option value="sec">Seconds</option>
+            <option value="min">Minutes</option>
+        </select>
+
+        <span class="help-block">How long the system should wait for a response, usually 30 seconds</span>
+    </div>
+</fieldset>

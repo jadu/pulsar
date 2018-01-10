@@ -1,0 +1,18 @@
+{% extends '@pulsar/lexicon/base.html.twig' %}
+
+{% set heading = 'Timeout pattern examples' %}
+
+{% set tab_one %}
+    {% include '/lexicon/patterns/timeout/tab.html.twig' %}
+{% endset %}
+
+{%
+    set tabs_content = [
+        {
+            "id"    : "examples",
+            "label" : "Examples",
+            "src"   : tab_one,
+            "active": true
+        }
+    ]
+%}
