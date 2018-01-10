@@ -690,6 +690,7 @@ span.select2-selection.select2-selection--single {
 }
 
 .select2-dropdown {
+    box-shadow: 0 5px 10px rgba(0,0,0,.4);
     z-index: $zindex-modal;
 }
 
