@@ -2,10 +2,10 @@
 {% spaceless %}
     {% import _self as rule %}
 
-    {% if options['show_and'] is not defined %}
+    {% if options['show_and'] is not defined or options['show_and'] != false %}
         {% set options = options|merge({ 'show_and': true }) %}
     {% endif %}
-    {% if options['show_or'] is not defined %}
+    {% if options['show_or'] is not defined or options['show_or'] != false %}
         {% set options = options|merge({ 'show_or': true }) %}
     {% endif %}
 
@@ -23,10 +23,10 @@
 {% spaceless %}
     {% import _self as rule %}
 
-    {% if options['show_and'] is not defined %}
+    {% if options['show_and'] is not defined or options['show_and'] != false %}
         {% set options = options|merge({ 'show_and': true }) %}
     {% endif %}
-    {% if options['show_or'] is not defined %}
+    {% if options['show_or'] is not defined or options['show_or'] != false %}
         {% set options = options|merge({ 'show_or': true }) %}
     {% endif %}
 
@@ -44,10 +44,10 @@
 {% spaceless %}
     {% import _self as rule %}
 
-    {% if options['show_and'] is not defined %}
+    {% if options['show_and'] is not defined or options['show_and'] != false %}
         {% set options = options|merge({ 'show_and': true }) %}
     {% endif %}
-    {% if options['show_or'] is not defined %}
+    {% if options['show_or'] is not defined or options['show_or'] != false %}
         {% set options = options|merge({ 'show_or': true }) %}
     {% endif %}
 
@@ -65,10 +65,10 @@
 {% spaceless %}
     {% import _self as rule %}
 
-    {% if options['show_and'] is not defined %}
+    {% if options['show_and'] is not defined or options['show_and'] != false %}
         {% set options = options|merge({ 'show_and': true }) %}
     {% endif %}
-    {% if options['show_or'] is not defined %}
+    {% if options['show_or'] is not defined or options['show_or'] != false %}
         {% set options = options|merge({ 'show_or': false }) %}
     {% endif %}
 
