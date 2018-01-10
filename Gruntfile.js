@@ -156,10 +156,7 @@ module.exports = function(grunt) {
         watch: {
             css: {
                 files: ['stylesheets/**/*.scss'],
-                tasks: ['sass:dev', 'autoprefixer', 'bless:css'],
-                options: {
-                    livereload: 1338,
-                },
+                tasks: ['sass:dev', 'autoprefixer', 'bless:css']
             },
             scsslint: {
                 files: 'stylesheets/**/*.scss',
