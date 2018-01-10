@@ -25,11 +25,20 @@ $module-permissions-breakpoint: $screen-tablet;
         @include respond-min-max($screen-medium, $screen-large) {
             width: 100%;
         }
+
+        @include respond-max($screen-small) {
+            width: 100%;
+        }
     }
 
     .form__control.checkbox {
         margin-top: 0;
         vertical-align: text-bottom;
+
+        @include respond-max($screen-small) {
+            height: 14px;
+            width: 14px;
+        }
     }
 }
 
