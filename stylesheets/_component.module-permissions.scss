@@ -5,10 +5,6 @@ $module-permissions-breakpoint: $screen-tablet;
     float: left;
     margin-bottom: 1em;
     width: 100%;
-
-    @include respond-min($screen-large) {
-        width: 70%;
-    }
 }
 
 .module {
@@ -24,6 +20,10 @@ $module-permissions-breakpoint: $screen-tablet;
 
         @include respond-min($screen-phone) {
             display: inline-block;
+        }
+
+        @include respond-min-max($screen-medium, $screen-large) {
+            width: 100%;
         }
     }
 
@@ -95,6 +95,14 @@ $module-permissions-breakpoint: $screen-tablet;
 
     @at-root .is-open & {
         display: inline-block;
+    }
+
+    @include respond-min-max($screen-medium, $screen-large) {
+        float: left;
+    }
+
+    @include respond-min($screen-small) {
+        float: left;
     }
 }
 
