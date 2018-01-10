@@ -2,12 +2,14 @@ language: php
 
 cache:
   directories:
-    - node_modules
     - vendor
     - $HOME/.composer/cache
 
 php:
   - 5.5
+
+before_install:
+  - npm install -g npm@5.5.1
 
 before_script:
   - npm install -g npm@5.2.0
