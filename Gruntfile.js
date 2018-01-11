@@ -159,7 +159,7 @@ module.exports = function(grunt) {
 
         scsslint: {
             allFiles: [
-                'stylesheets/*.scss',
+                'stylesheets/**/*.scss',
             ],
             options: {
                 config: '.scss-lint.yml',
@@ -170,7 +170,7 @@ module.exports = function(grunt) {
         watch: {
             css: {
                 files: ['stylesheets/**/*.scss'],
-                tasks: ['sass:dev', 'autoprefixer', 'bless:css']
+                tasks: ['sass:dev', 'sass:lexicon', 'autoprefixer', 'bless:css']
             },
             scsslint: {
                 files: 'stylesheets/**/*.scss',
