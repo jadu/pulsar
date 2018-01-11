@@ -95,6 +95,20 @@ module.exports = function(grunt) {
                     extDot: 'first',
                     src:    'pulsar-ie*.scss'
                 }]
+            },
+            lexicon: {
+                options: {
+                    outputStyle: 'nested',
+                    sourceMap: true
+                },
+                files: [{
+                    cwd: 'stylesheets/lexicon/',
+                    dest:   'css/',
+                    expand: true,
+                    ext:    '.css',
+                    extDot: 'first',
+                    src:    '*.scss'
+                }]
             }
         },
 
@@ -531,7 +545,6 @@ module.exports = function(grunt) {
             'docs/**/*.php',
             'css/**/*',
             'js/**/*',
-            'lexicon/**/*',
             'src/**/*',
             'stylesheets/**/*',
             'tests/**/*',
@@ -544,6 +557,7 @@ module.exports = function(grunt) {
         'scsslint',
         'replace',
         'sass:dev',
+        'sass:lexicon',
         'autoprefixer',
         'bless',
         'browserify:dev',
