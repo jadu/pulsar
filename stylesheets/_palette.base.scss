@@ -72,8 +72,7 @@ $palette-states: (
         base:  map-get(map-get($palette-monochromes, gray), lightest),
         alt:   pick_best_color(map-get(map-get($palette-monochromes, gray), lighter), (#fff, #000)),
         light: lighten(map-get(map-get($palette-monochromes, gray), lightest), 5),
-        dark:  map-get(map-get($palette-monochromes, gray), darker),
-        flash: map-get(map-get($palette-monochromes, gray), black),
+        dark:  map-get(map-get($palette-monochromes, gray), darker)
     ),
     primary: (
         base:  #2575b0,
@@ -85,36 +84,31 @@ $palette-states: (
         base:  #297c46,
         alt:   pick_best_color(#297c46, (#fff, #000)),
         light: lighten(#297c46, 55),
-        dark:  darken(#297c46, 5),
-        flash: rgb(0, 153, 51),
+        dark:  darken(#297c46, 5)
     ),
     warning: (
         base:  #eaa96a,
         alt:   pick_best_color(#eaa96a, (#fff, #000)),
         light: lighten(#eaa96a, 25),
-        dark:  darken(#eaa96a, 35),
-        flash: rgb(255, 137, 9)
+        dark:  darken(#eaa96a, 35)
     ),
     danger: (
         base:  #c84d40,
         alt:   pick_best_color(#c84d40, (#fff, #000)),
         light: lighten(#c84d40, 40),
-        dark:  darken(#c84d40, 5),
-        flash: rgb(204, 51, 51)
+        dark:  darken(#c84d40, 5)
     ),
     info: (
         base:  map-get(map-get($palette-branding, jadu-blue), pale),
         alt:   pick_best_color(map-get(map-get($palette-branding, jadu-blue), pale), (#fff, #000)),
         light: lighten(map-get(map-get($palette-branding, jadu-blue), pale), 15),
-        dark:  darken(map-get(map-get($palette-branding, jadu-blue), pale), 40),
-        flash: map-get(map-get($palette-branding, jadu-blue), pale)
+        dark:  darken(map-get(map-get($palette-branding, jadu-blue), pale), 40)
     ),
     inverse: (
         base:  map-get(map-get($palette-monochromes, gray), darker),
         alt:   pick_best_color(map-get(map-get($palette-monochromes, gray), darker), (#fff, #000)),
         light: lighten(map-get(map-get($palette-monochromes, gray), darker), 60),
-        dark:  map-get(map-get($palette-monochromes, gray), darker),
-        flash: map-get(map-get($palette-monochromes, gray), darker)
+        dark:  map-get(map-get($palette-monochromes, gray), darker)
     ),
     white: (
         base:  #fff,
