@@ -300,3 +300,23 @@
     background-color: darken(color(primary), 15%);
   }
 }
+
+.dropdown--medium ~ ul {
+    width: 300px;
+}
+
+.dropdown__title {
+    border-bottom: 1px solid color(border);
+    margin: 0;
+    padding-bottom: 4px;
+
+    a {
+        float: right;
+        margin-right: 12px;
+    }
+
+    span {
+        display: inline-block;
+        padding: 8px 8px 8px 18px;
+    }
+}
