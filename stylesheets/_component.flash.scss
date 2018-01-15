@@ -34,9 +34,8 @@
 // Default
 .flash,
 .flash--default {
-    background: color(inverse, flash);
+    background: color(inverse);
     color: color(inverse, alt);
-    text-shadow: 0 0 2px rgba(0, 0, 0, .5);
 
     a {
         color: inherit;
@@ -45,29 +44,27 @@
 }
 
 // Variations
-.flash--success {
-    background: color(success, flash);
-    background: rgba(color(success, flash), .8);
-    color: color(success, alt);
+@each $state, $state-color, $state-color-alt in $state-colors {
+    // Exclude unneeded states
+    @if $state != base and $state != new and $state != white {
+        .flash--#{$state} {
+            background-color: $state-color;
+            color: $state-color-alt;
+
+            a,
+            a:link,
+            a:hover,
+            a:active,
+            a:visited {
+                color: $state-color-alt;
+            }
+        }
+    }
 }
 
-.flash--warning {
-    background: color(warning, flash);
-    background: rgba(color(warning, flash), .8);
-    color: color(warning, alt);
-    text-shadow: none;
-}
-
+// For backwards compatibility with old flash error class name
 .flash--error {
-    background: color(danger, flash);
-    background: rgba(color(danger, flash), .8);
-    color: color(danger, alt);
-}
-
-.flash--info {
-    background: color(info);
-    color: color(info, alt);
-    text-shadow: none;
+    @extend .flash--danger;
 }
 
 // Close buttons
