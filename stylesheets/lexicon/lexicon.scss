@@ -1,0 +1,21 @@
+
+.lex-item {
+    background-color: green;
+    color: white;
+    margin: 10px 0;
+    padding: 10px;
+}
+
+.lex-table td.cell--inverse,
+.lex-table td.cell--inverse:hover {
+    background-color: #2d86b3 !important;
+}
+
+.lex-table tbody > tr.row-inverse > td,
+.lex-table tbody > tr.row-inverse:hover > td {
+    background-color: #2d86b3;
+}
+
+.lex-wrapper {
+    padding: 20px;
+}
