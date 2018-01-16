@@ -46,15 +46,26 @@
 }
 // scss-lint:enable SelectorFormat
 
-.dt-buttons {
-    border-right: 1px solid #ccc;
+.dt-buttons > a {
+    float: left;
+    margin-top: 11px;
+    padding-right: 10px;
+    border-right: 1px solid color(border);
+}
+
+a.dt-button {
+    margin-right: 10px;
+}
+
+.dt-buttons > button {
+    border-right: 1px solid color(border);
     float: left;
     margin-top: 11px;
     margin-right: 10px;
     padding-right: 6px;
 }
 
-.dt-button {
+button.dt-button {
     background-color: transparent;
     border: 0;
     color: color(jadu-blue, dark);
