@@ -62,7 +62,7 @@ describe('Pulsar Password Library', function() {
         this.$eyeIcon = this.$html.find('#password__metertoggle__button i')
 
         $.fn.password = sinon.stub();
-        $.fn.togglePasswordVisibility = sinon.stub();
+        // $.fn.togglePasswordVisibility = sinon.stub();
     });
 
     describe('Clicking the eye icon button next to the password field', function() {

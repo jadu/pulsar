@@ -392,14 +392,127 @@
         }
     }
 
-    // Bind to jquery
-    $.fn.password = function(options) {
-        return this.each(function() {
-            new Password($(this), options);
-        });
-    };
+    // // Bind to jquery
+    // $.fn.password = function(options) {
+    //     return this.each(function() {
+    //         new Password($(this), options);
+    //     });
+    // };
 
-    $.fn.togglePasswordVisibility = function({data}) {
-        togglePasswordVisibility({data});
-    };
+    // $.fn.togglePasswordVisibility = function({data}) {
+    //     console.log('toggle');
+
+    //     togglePasswordVisibility({data});
+    // };
 })(jQuery);
+
+
+// Another approach to consider maybe...
+// It'd be nice to get away from all of these difficult-to-test named functions
+
+// first things first, let's add dependencies
+const $ = require('jquery');
+
+// we'll store these defaults in the scope of the file / module object, this will mean that
+// our PasswordStrengthChecker will have access to them, but nothing outside of the file will
+const defaults = {
+    // put your default opitions here....
+}
+
+// Let's start off by defining the class, this will be the base "component"
+class PasswordStrengthChecker {
+
+    // our constructor is the function that will be invoked
+    // when we call `new PasswordStrengthChecker()`, this is a good place
+    // to pass in some user options
+    constructor (options) {
+        // as before, we'll merge out defaults with options amd assign them
+        // to our object with `this.property = value`
+        this.options = $.extend({}, defaults, options);
+    }
+
+    // for each one of our functions defined above we'll attempt to
+    // refactor them into methods. This is the interesting part....
+    // It's this splitting down which is important.
+    //
+    // For this example I'm going to attempt to put ALL the above functions into methods on the
+    // PasswordStrengthChecker class, however (and it's a big however) we should aim to have classes
+    // that Do One Thing.
+    //
+    // There will likely be instances where these methods should live on other classes
+    // which are then injected into the PasswordStrengthChecker. This approach is used
+    // heavily in the DropZone component, check out that directory and you'll see 15-20
+    // classes that make up a sigle component. The beauty in this approach is that anything
+    // that we inject can be stubbed in tests, meaning we can ignore it's behaviour completely
+    // when testing this component.
+    //
+    // For the sake of this first pass on this component we'll keep it to one file, it is
+    // a fairly trivial task to refactor behaviour out to a dependency at a later date, so
+    // we don'y need to worry too much about it yet.
+
+    // defining a method like this means that we can invoke it on an instance of PasswordStrengthChecker
+    // e.g.
+    // `
+    // const password = new PasswordStrengthChecker();
+    //
+    // password.scoreText(88);
+    // `
+    //
+    // not only does this method become Public (you can use it on an instance), it is also accessible
+    // by anything in the context of the PasswordStrengthChecker, so we can invoke this method from
+    // inside another one.
+    //
+    // This also helps us to test methods as a unit, as we can write a test a long the lines of...
+    //
+    // `
+    // const password = new PasswordStrengthChecker();
+    //
+    // we can test just the functionality of this method without having to worry about any
+    // other implementation details
+    // expect(password.score(666)).to.be.okay;
+    // `
+    scoreText (score) {
+        // if we need to access anything within the class we just use `this`
+        // we don't need to pass options in, we can simply get a reference using `this.options`
+
+        if (score === 666) {
+            return this.options.satan;
+        }
+
+        // ...
+    }
+
+
+    calculateScore (foo) {
+        // repeat as above, we want to try to reduce calling methods from inside other methods
+        // as this becomes difficult to test efficiently, however it's not the end of the world
+        var bar = foo + 'bar';
+
+        // this is an example of calling another method from inside a method, it's not something
+        // to worry about, but ideally we want to reduce it as much as possible, as now we cant test
+        // calculateScore without having to worryabout checkRepetition
+        this.checkRepetition(bar);
+    }
+
+    init () {
+        console.log('PasswordStrengthChecker init!');
+    }
+
+    checkRepetition (args) {}
+
+    detectCriteria (args) {}
+
+    detectCommonPasswords (args) {}
+
+    togglePasswordVisibility (args) {}
+}
+
+// I'd reccommend starting out by refactoring the code above into this skeleton class (which is
+// by no means perfect, however its a starting point)
+
+// I've set up the initiation code as well for now, this won't be how we do it once this is finished
+// but for now it'll be handy for debugging, if you go to lexicon and open the console you should
+// see the init method being invoked. Check the git diff to see how it is loaded into index.js & main.js
+
+// we'll need to export the component so we can use it in other files
+module.exports = PasswordStrengthChecker;

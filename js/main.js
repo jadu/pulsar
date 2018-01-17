@@ -22,6 +22,7 @@
 	pulsar.modulePermissions = new pulsar.ModulePermissionsComponent($html);
     pulsar.navMain = new pulsar.NavMainComponent($html, window);
     pulsar.filterBar = new pulsar.FilterBarComponent($html);
+    pulsar.passwordStrengthChecker = new pulsar.PasswordStrengthChecker();
 
     $(function () {
         pulsar.button.init();
@@ -69,6 +70,9 @@
             supported: !lt10,
             showInputNode: lt10
         });
+
+        // DEBUG PASSWORD CODE
+        pulsar.passwordStrengthChecker.init();
     });
 
 }(jQuery));
