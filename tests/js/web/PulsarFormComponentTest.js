@@ -117,7 +117,6 @@ describe('Pulsar Form Component', function() {
         beforeEach(function() {
             this.pulsarForm.initSelect2 = sinon.stub();
             this.pulsarForm.init();
-
         });
 
         it('should call the select2 plugin', function() {

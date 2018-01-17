@@ -59,23 +59,24 @@ describe('Pulsar Password Library', function() {
 
         this.$password = this.$html.find('#password__metertoggle');
         this.$eyeButton = this.$html.find('#password__metertoggle__button');
-        this.$eyeIcon = this.$html.find('#password__metertoggle__button i');
+        this.$eyeIcon = this.$html.find('#password__metertoggle__button i')
 
+        $.fn.password = sinon.stub();
+        $.fn.togglePasswordVisibility = sinon.stub();
     });
 
     describe('Clicking the eye icon button next to the password field', function() {
 
         beforeEach(function() {
-            this.pulsarForm.init();
+            // Need to trigger the togglePasswordVisibility() from within PasswordStrengthCheckerComponent.js
+            this.$eyeButton.click();
         });
 
-        it('Should change the icon class to eye-slash', function() {
-            this.$eyeButton.click();
+        it('should change the icon class to eye-slash', function() {
             expect(this.$eyeIcon.hasClass('icon-eye-slash')).to.be.true;
         });
 
-        it('Should change the inputs type to text', function() {
-            this.$eyeButton.click();
+        it('should change the inputs type to text', function() {
             expect(this.$password.attr('type') === 'text').to.be.true;
         });
 
@@ -84,18 +85,15 @@ describe('Pulsar Password Library', function() {
     describe('Clicking the eye-slash icon button next to the password field', function() {
 
         beforeEach(function() {
-            this.pulsarForm.init();
+            this.$eyeButton.click();
+            this.$eyeButton.click();
         });
 
-        it('Should change the icon class to eye', function() {
-            this.$eyeButton.click();
-            this.$eyeButton.click();
+        it('should change the icon class to eye', function() {
             expect(this.$eyeIcon.hasClass('icon-eye')).to.be.true;
         });
 
-        it('Should change the inputs type to password', function() {
-            this.$eyeButton.click();
-            this.$eyeButton.click();
+        it('should change the inputs type to password', function() {
             expect(this.$password.attr('type') === 'password').to.be.true;
         });
 
