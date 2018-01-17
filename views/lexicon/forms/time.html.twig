@@ -1,0 +1,401 @@
+{% extends '@pulsar/pulsar/components/tab.html.twig' %}
+
+{% block tab_content %}
+
+    {{
+        form.create()
+    }}
+
+    {{
+        form.time({
+            'id': 'time-1',
+            'label': 'Time field'
+        })
+    }}
+
+    {{
+        form.time({
+            'id': 'time-2',
+            'label': 'Time field with value',
+            'value': '10:00'
+        })
+    }}
+
+    {{
+        form.time({
+            'id': 'time-3',
+            'label': 'Required',
+            'required': true
+        })
+    }}
+
+    {{
+        form.time({
+            'id': 'time-4',
+            'label': 'Placeholder',
+            'placeholder': 'Oh, hello'
+        })
+    }}
+
+    {{
+        form.time({
+            'id': 'time-5',
+            'label': 'Time field with help',
+            'help': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{
+        form.time({
+            'id': 'time-6',
+            'label': 'Time field with guidance',
+            'guidance': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{
+        form.time({
+            'id': 'time-7',
+            'label': 'Required with guidance',
+            'guidance': 'Help text to give more information about expected input',
+            'required': true
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'Alignment' }) }}
+
+    {{
+        form.time({
+            'label': 'Time field',
+            'show-label': false,
+            'help': 'This example hides the label with the <code>show-label</code> option'
+        })
+    }}
+
+    {{
+        form.time({
+            'id': 'time-8',
+            'label': 'Text input with a longer than expected label which will probably wrap multple lines and push the following input onto the next baseline',
+            'name': 'inputTextLong',
+            'placeholder': 'Placeholder',
+            'help': 'Example block-level help text here',
+            'guidance': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{
+        form.time({
+            'id': 'time-9',
+            'label': 'Text input with a longer than expected label but this time we use the form__group--top class to keep the label on a single line',
+            'class': 'form__group--top',
+            'name': 'inputTextLong',
+            'placeholder': 'Placeholder',
+            'help': 'Example block-level help text here',
+            'guidance': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{
+        form.time({
+            'id': 'time-10',
+            'label': 'The same as above, but this time we also add the .form__group--flush class to keep everything on the left edge',
+            'class': 'form__group--top form__group--flush',
+            'name': 'inputTextLong',
+            'placeholder': 'Placeholder',
+            'help': 'Example block-level help text here',
+            'guidance': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'Errors &amp; Validation' }) }}
+
+    {{
+        form.time({
+            'id': 'time-11',
+            'label': 'Time field with error',
+            'error': 'Please complete this field'
+        })
+    }}
+
+    {{
+        form.time({
+            'id': 'time-12',
+            'label': 'Time field with multiple errors',
+            'error': ['Do this', 'Do this too']
+        })
+    }}
+
+    {{
+        form.time({
+            'id': 'time-13',
+            'label': 'Time field with error and help',
+            'error': 'Please complete this field',
+            'help': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{
+        form.time({
+            'id': 'time-14',
+            'class': 'has-error',
+            'label': 'Time field error with help only',
+            'help': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'States' }) }}
+
+    {{
+        form.time({
+            'id': 'time-15',
+            'label': '"class": "has-changed"',
+            'class': 'has-changed',
+            'help': 'Highlight whether an action elsewhere affects an input'
+        })
+    }}
+    {{
+        form.time({
+            'id': 'time-16',
+            'label': '"class": "has-success"',
+            'class': 'has-success',
+            'help': 'Something good happened'
+        })
+    }}
+
+    {{
+        form.time({
+            'id': 'time-17',
+            'label': '"class": "has-warning"',
+            'class': 'has-warning',
+            'help': 'Something bad happened'
+        })
+    }}
+    {{
+        form.time({
+            'id': 'time-18',
+            'label': '"class": "has-error"',
+            'class': 'has-error',
+            'help': 'Automatically added if using <code>error</code> option'
+        })
+    }}
+    {{
+        form.time({
+            'id': 'time-19',
+            'label': '"disabled": true',
+            'disabled': true,
+            'help': 'Stop! Can’t touch this'
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'Grid Sizes' }) }}
+
+    {{
+        form.time({
+            'id': 'time-1-col',
+            'label': 'One column',
+            'class': 'form__control-col--1',
+            'name': 'inputDateMini',
+        })
+    }}
+
+    {{
+        form.time({
+            'id': 'time-2-col',
+            'label': 'Two columns',
+            'class': 'form__control-col--2',
+            'name': 'inputDateSmall'
+        })
+    }}
+
+    {{
+        form.time({
+            'id': 'time-3-col',
+            'label': 'Three columns',
+            'class': 'form__control-col--3',
+            'name': 'inputDateMedium'
+        })
+    }}
+
+    {{
+        form.time({
+            'id': 'time-4-col',
+            'label': 'Four columns',
+            'class': 'form__control-col--4',
+            'name': 'inputDateRegular'
+        })
+    }}
+
+    {{
+        form.time({
+            'id': 'time-5-col',
+            'label': 'Five columns',
+            'class': 'form__control-col--5',
+            'name': 'inputDateLarge'
+        })
+    }}
+
+    {{
+        form.time({
+            'id': 'time-6-col',
+            'label': 'Six columns',
+            'class': 'form__control-col--6',
+            'name': 'inputDateXLarge'
+        })
+    }}
+
+    {{
+        form.time({
+            'id': 'time-7-col',
+            'label': 'Seven columns',
+            'class': 'form__control-col--7',
+            'name': 'inputDateFull'
+        })
+    }}
+
+    {{
+        form.time({
+            'id': 'time-8-col',
+            'label': 'Eight columns',
+            'class': 'form__control-col--8',
+            'name': 'inputDateFull'
+        })
+    }}
+
+    {{
+        form.time({
+            'id': 'time-9-col',
+            'label': 'Nine columns',
+            'class': 'form__control-col--9',
+            'name': 'inputDateFull'
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'Legacy Sizes' }) }}
+
+    {{
+        form.time({
+            'id': 'time-20',
+            'label': 'Mini',
+            'class': 'form__group--mini',
+            'name': 'inputTextMini'
+        })
+    }}
+
+    {{
+        form.time({
+            'id': 'time-21',
+            'label': 'Small',
+            'class': 'form__group--small',
+            'name': 'inputTextSmall'
+        })
+    }}
+
+    {{
+        form.time({
+            'id': 'time-22',
+            'label': 'Medium',
+            'class': 'form__group--medium',
+            'name': 'inputTextMedium'
+        })
+    }}
+
+    {{
+        form.time({
+            'id': 'time-23',
+            'label': 'Regular',
+            'class': 'form__group--regular',
+            'name': 'inputTextRegular'
+        })
+    }}
+
+    {{
+        form.time({
+            'id': 'time-24',
+            'label': 'Large',
+            'class': 'form__group--large',
+            'name': 'inputTextLarge'
+        })
+    }}
+
+    {{
+        form.time({
+            'id': 'time-25',
+            'label': 'Extra Large',
+            'class': 'form__group--xlarge',
+            'name': 'inputTextXLarge'
+        })
+    }}
+
+    {{
+        form.time({
+            'id': 'time-26',
+            'label': 'Full',
+            'class': 'form__group--full',
+            'name': 'inputTextFull'
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'Appended &amp; Prepended' }) }}
+
+    {{
+        form.time({
+            'id': 'time-27',
+            'label': 'Prepended',
+            'prepend': html.icon('clock-o')
+        })
+    }}
+
+    {{
+        form.time({
+            'id': 'time-28',
+            'label': 'Appended',
+            'append': html.icon('clock-o')
+        })
+    }}
+
+    {{
+        form.time({
+            'id': 'time-29',
+            'label': 'Appended with guidance',
+            'append': html.icon('clock-o'),
+            'guidance': 'Help text to give more information about expected input'
+        })
+    }}
+
+    {{
+        form.time({
+            'id': 'time-30',
+            'label': 'Prepended &amp; Appended',
+            'append': html.icon('clock-o'),
+            'prepend': html.icon('clock-o')
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+
+    {{
+        form.end()
+    }}
+
+{% endblock tab_content %}
+
+{% block tab_sidebar %}
+    <a href="https://jadu.gitbooks.io/pulsar/content/text.html">
+        <img src="../../../images/cover.png" alt="Pulsar documentation front cover" width="157" />
+    </a>
+    <br />
+    {{
+        html.button({
+            'label': 'View Documentation',
+            'type': 'link',
+            'href': 'https://jadu.gitbooks.io/pulsar/content/text.html'
+        })
+    }}
+
+{% endblock tab_sidebar %}

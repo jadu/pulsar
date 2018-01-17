@@ -1,12 +1,16 @@
 {% macro block_when(options) %}
 {% spaceless %}
     {% import _self as rule %}
+
+    {% if options['show_and'] is not defined or options['show_and'] != false %}
+        {% set options = options|merge({ 'show_and': true }) %}
+    {% endif %}
+    {% if options['show_or'] is not defined or options['show_or'] != false %}
+        {% set options = options|merge({ 'show_or': true }) %}
+    {% endif %}
+
     {{
         rule.block(options
-            |defaults({
-                'show_and': true,
-                'show_or': true
-            })
             |merge({
                 'type': 'when'
             })
@@ -18,12 +22,16 @@
 {% macro block_and(options) %}
 {% spaceless %}
     {% import _self as rule %}
+
+    {% if options['show_and'] is not defined or options['show_and'] != false %}
+        {% set options = options|merge({ 'show_and': true }) %}
+    {% endif %}
+    {% if options['show_or'] is not defined or options['show_or'] != false %}
+        {% set options = options|merge({ 'show_or': true }) %}
+    {% endif %}
+
     {{
         rule.block(options
-            |defaults({
-                'show_and': true,
-                'show_or': true
-            })
             |merge({
                 'type': 'and'
             })
@@ -35,12 +43,16 @@
 {% macro block_or(options) %}
 {% spaceless %}
     {% import _self as rule %}
+
+    {% if options['show_and'] is not defined or options['show_and'] != false %}
+        {% set options = options|merge({ 'show_and': true }) %}
+    {% endif %}
+    {% if options['show_or'] is not defined or options['show_or'] != false %}
+        {% set options = options|merge({ 'show_or': true }) %}
+    {% endif %}
+
     {{
         rule.block(options
-            |defaults({
-                'show_and': true,
-                'show_or': true
-            })
             |merge({
                 'type': 'or'
             })
@@ -52,12 +64,16 @@
 {% macro block_then(options) %}
 {% spaceless %}
     {% import _self as rule %}
+
+    {% if options['show_and'] is not defined or options['show_and'] != false %}
+        {% set options = options|merge({ 'show_and': true }) %}
+    {% endif %}
+    {% if options['show_or'] is not defined or options['show_or'] != false %}
+        {% set options = options|merge({ 'show_or': false }) %}
+    {% endif %}
+
     {{
         rule.block(options
-            |defaults({
-                'show_and': true,
-                'show_or': false
-            })
             |merge({
                 'type': 'then'
             })
@@ -68,14 +84,21 @@
 
 
 {% macro block(options) %}
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
 {% spaceless %}
-    <fieldset class="rules__step">
+
+    {% set ruleClass = 'rules__step' %}
+
+    {% if options.error is defined and options.error is not empty %}
+        {% set ruleClass = ruleClass ~ ' has-error' %}
+    {% endif %}
+
+    <fieldset{{ attributes(options|defaults({'class': ruleClass})|only('class')) }}>
         <legend class="hide">{{ options.type|default }}</legend>
         <div class="rule__triggers__container" data-index="1">
 
             <div class="rule-block-wrapper">
                 <div class="rule-block rule-block--{{ options.type|default }}" data-index="__index__">
-
                     <div class="rule-block__header rule-block__header--{{ options.type|default }}">
                         <h5 class="rule-block__heading">{{ options.type|default }}</h5>
                         <i data-toggle="tooltips" data-placement="right" data-title="What should cause this rule to run" title="What should cause this rule to run" aria-hidden="true"  class="icon-question-sign rule-block__heading__icon"></i>
@@ -96,6 +119,7 @@
                         {% endif %}
 
                     </div>
+                    {{ form.error({ 'value': options.error|default }) }}
                 </div>
             </div>
 

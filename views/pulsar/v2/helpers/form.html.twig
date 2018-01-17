@@ -480,6 +480,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 {% macro color(options) %}
 {% spaceless %}
     {% import _self as form %}
+    {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
     {%
         set options = options|default({})|merge({
@@ -490,6 +491,72 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
     %}
 
     {{ form.text(options) }}
+
+{% endspaceless %}
+{% endmacro %}
+
+
+{# -----------------------------------------------------------------------------
+
+# Compound
+
+Allows you to build a form group using multiple separate inputs with a single 
+common label, and render those in a screenreader-friendly way.
+
+https://jadu.github.io/pulsar/form-helpers/compound
+
+#}
+{% macro compound(options) %}
+{% spaceless %}
+    {% import _self as form %}
+    {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
+    {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+
+    {% set groupClass = 'form__group form__group--compound' %}
+
+    {% if options.error is defined and options.error is not empty %}
+        {% set groupClass = groupClass ~ ' has-error' %}
+    {% endif %}
+
+    <fieldset{{
+        attributes(options
+                |only('class id')
+                |defaults({
+                    'class': groupClass
+                })
+            )
+    -}}>
+    <legend class="control__label" {{ util.id(options.id ~ '[label]') }}>{{ options.label|default }} {{ util.guidance(options.guidance|default, { 'guidance-container': options['guidance-container']|default }) }}</legend>
+
+    <div class="controls">
+        {% for input in options.inputs %}
+            {{
+                elem.label(input
+                    |only('label guidance-container required show-label')
+                    |merge({
+                        'for': input.id,
+                        'id': input.id ~ '[label]'
+                    })
+                )
+            }}
+
+            {% set inputOptions = input|exclude('error label guidance-container required show-label') %}
+
+            {% if input.type == 'select' %}
+                {{ elem.select(inputOptions|merge({'class': inputOptions.class|default ~ ' select'})) }}
+            {% elseif input.type == 'select2' %}
+                {{ elem.select2(inputOptions) }}
+            {% elseif input.type == 'textarea' %}
+                {{ elem.textarea(inputOptions) }}
+            {% else %}
+                {{ elem.input(inputOptions) }}
+            {% endif %}
+        {% endfor %}
+
+        {{ form.error({ 'value': options.error|default }) }}
+        {{ form.help({ 'value': options.help|default }) }}
+    </div>
+</fieldset>
 
 {% endspaceless %}
 {% endmacro %}
@@ -1961,6 +2028,69 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
             ]
         })
     }}
+
+{% endspaceless %}
+{% endmacro %}
+
+
+{# -----------------------------------------------------------------------------
+
+# Time
+
+Generates a text input field which will show a time picker when focused.
+
+## Example usage
+
+```twig
+{{
+    form.time({
+        'label': 'What time would you like your appointment?'
+    })
+}}
+```
+
+## Options applied to parent wrapper
+
+Option      | Type   | Description
+----------- | ------ | ---------------------------------------------------------
+autofocus   | bool   | Whether the field should have input focus on page load
+class       | string | A space separated list of class names
+error       | string | Text to explain an error/validation condition. Also adds error state styling
+guidance    | string | Text to be displayed in a popover, adds a (?) icon after the input
+help        | string | Additional guidance information to be displayed next to the input
+label       | string | Text for the `<label>` companion element
+required    | bool   | Visually indicates that the field must be completed
+show-label  | bool   | Control visibility of the `<label>` element without affecting layout (default: true)
+
+## Options applied to input
+
+Option      | Type   | Description
+----------- | ------ | ---------------------------------------------------------
+autofocus   | bool   | Whether the field should have input focus on page load
+disabled    | bool   | Stops the element from being interactive if true
+form        | string | Specific one or more forms this label belongs to
+id          | string | A unique identifier, will also be used as the label's `for` attribute
+name        | string | The name of this control
+placeholder | string | A short hint that describes the expected value
+required    | bool   | Adds `required` and `aria-required="true"` attributes
+value       | string | Specifies the value of the input
+data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
+
+*Any other options not listed here will be applied to the input.
+
+#}
+{% macro time(options) %}
+{% spaceless %}
+    {% import _self as form %}
+
+    {%
+        set options = options|default({})|merge({
+            'placeholder': options.placeholder|default('hh:mm'),
+            'data-timepicker': 'true'
+        })
+    %}
+
+    {{ form.text(options) }}
 
 {% endspaceless %}
 {% endmacro %}

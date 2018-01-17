@@ -7,7 +7,7 @@ fieldset {
 .form {
     background-color: color(white);
 
-    > fieldset {
+    fieldset {
         padding: 22px 0;
 
         legend {
@@ -270,11 +270,13 @@ fieldset {
     padding: $line-height-base 0;
     position: relative;
 
-    @include respond-min($screen-desktop) {
-        &:not(.form__actions--flush) {
-            padding-left: 25%;
-        }
+    @include respond-min($screen-tablet) {
+        @include push-padding(3);
     }
+}
+
+.form__actions--flush {
+    padding-left: 0;
 }
 
 .modal .form__actions {
@@ -304,23 +306,26 @@ fieldset {
     width: 100%;
 }
 
-@include respond-min($screen-smaller) {
+@include respond-min($screen-tablet) {
 
 // if no label is provided, the width of form__control will be calculated
 // based on the full 12 column grid
 // * flush form groups also use the 12 column grid
 
     // default width
-    .form__control,
+    .form__group .form__control,
+    .form__group .form__control + .select2,
     .form__group--flush > .control__label + .controls > .form__control {
-        @include col-span(4, false, false, 12);
+        @include col-span-width(4, 12);
     }
 
     // column variations
     @for $i from 1 through 12 {
+        .form__control-col--#{$i}.form__control,
         .form__control-col--#{$i} .form__control,
+        .form__control-col--#{$i} .form__control + .select2,
         .form__group--flush.form__control-col--#{$i} .control__label + .controls > .form__control {
-            @include col-span($i, false, false, 12);
+            @include col-span-width($i, 12);
         }
     }
 
@@ -328,14 +333,17 @@ fieldset {
 // based on the remaining 9 column grid
 
     // default width
-    .control__label + .controls > .form__control:not(.checkbox) {
-        @include col-span(4, false, false, 9);
+    .control__label + .controls > .form__control:not(.checkbox),
+    .control__label + .controls > .form__control:not(.checkbox) + .select2 {
+        @include col-span-width(4, 9);
     }
 
     // column variations
     @for $i from 1 through 9 {
-        .form__control-col--#{$i} .control__label + .controls > .form__control {
-            @include col-span($i, false, false, 9);
+        .control__label + .controls > .form__control.form__control-col--#{$i},
+        .form__control-col--#{$i} .control__label + .controls > .form__control,
+        .form__control-col--#{$i} .control__label + .controls > .form__control + .select2 {
+            @include col-span-width($i, 9);
         }
     }
 
@@ -344,20 +352,21 @@ fieldset {
         // 1. allow input-specific widths for fine-grained control
         // 2. allow a class on the main group to control the width of it's controls
         .form__control.form__control--#{$variant},
-        .form__group--#{$variant}.form__group--#{$variant} .control__label + .controls > .form__control {
+        .form__group--#{$variant}.form__group--#{$variant} .control__label + .controls > .form__control,
+        .form__group--#{$variant}.form__group--#{$variant} .control__label + .controls > .form__control + .select2 {
             width: #{$width};
         }
     }
 
     // input-groups default
     .form__group .input-group {
-        @include col-span(4, false, false, 9);
+        @include col-span-width(4, 9);
     }
 
     // input-groups column variations
     @for $i from 1 through 9 {
         .form__group.form__control-col--#{$i} .input-group {
-            @include col-span($i, false, false, 9);
+            @include col-span-width($i, 9);
         }
     }
 
@@ -375,22 +384,58 @@ fieldset {
 
 // validation
 
-.form__group {
+.form__group:not(.form__group--partial-state) {
   &.has-changed {
-    @include form__control-validation($state-info-text, color(info), $state-info-bg);
+    @include form__group-validation($state-info-text, color(info), $state-info-bg);
   }
 
   &.has-warning {
-    @include form__control-validation($state-warning-text, color(warning), $state-warning-bg);
+    @include form__group-validation($state-warning-text, color(warning), $state-warning-bg);
   }
 
   &.has-error {
-    @include form__control-validation($state-danger-text, color(danger), $state-danger-bg);
+    @include form__group-validation($state-danger-text, color(danger), $state-danger-bg);
   }
 
   &.has-success {
-    @include form__control-validation($state-success-text, color(success), $state-success-bg);
+    @include form__group-validation($state-success-text, color(success), $state-success-bg);
   }
+}
+
+.form__group--partial-state {
+    &.has-changed {
+        @include form__group-partial-validation($state-info-text, color(info));
+    }
+
+    &.has-warning {
+        @include form__group-partial-validation($state-warning-text, color(warning));
+    }
+
+    &.has-error {
+        @include form__group-partial-validation($state-danger-text, color(danger));
+    }
+
+    &.has-success {
+        @include form__group-partial-validation($state-success-text, color(success));
+    }
+}
+
+.form__control {
+    &.has-changed {
+        @include form__control-validation($state-info-text, color(info), $state-info-bg);
+    }
+
+    &.has-warning {
+        @include form__control-validation($state-warning-text, color(warning), $state-warning-bg);
+    }
+
+    &.has-error {
+        @include form__control-validation($state-danger-text, color(danger), $state-danger-bg);
+    }
+
+    &.has-success {
+        @include form__control-validation($state-success-text, color(success), $state-success-bg);
+    }
 }
 
 .help-block {
@@ -461,9 +506,10 @@ fieldset {
     width: 10px;
 }
 
-.form-checkbox .checkbox,
-.form-radio .radio {
+.form__group.form-checkbox .form__control.checkbox,
+.form__group.form-radio .form__control.radio {
     margin-top: 17px;
+    width: auto;
 }
 
 // Make sure checkboxes and radios reduce the label's clickable area to the
@@ -478,6 +524,10 @@ fieldset {
     > .controls > .control__label {
         display: inline-block;
         width: 100%;
+    }
+
+    .control__label > .form__control {
+        width: auto;
     }
 }
 
@@ -533,4 +583,47 @@ fieldset {
 
 .form-range .input-group > .form__control:last-child {
     padding-right: 0;
+}
+
+// undo default fieldset padding
+fieldset.form__group--compound {
+    padding: 0;
+}
+
+.form__group--compound {
+    > .control__label {
+        border-bottom: 0;
+        float: left; // as we can't use inline-block
+        font-size: inherit;
+        line-height: inherit;
+    }
+
+    > .controls {
+        // override regular stacked styling
+        > .form__control,
+        > .control__label,
+        &:first-child > .control__label {
+            clear: none;
+            display: inline-block;
+            float: none;
+            vertical-align: top;
+        }
+
+        // make sure inputs are suitably spaced when they stack with 100% width
+        // at small screen widths
+        .form__control:not(:last-child) {
+            margin-right: 1%; // needs to be grid gutter var
+            margin-top: 5px;
+
+            @include respond-min($screen-small) {
+                margin-right: 10px;
+                margin-top: 0;
+            }
+        }
+
+        // inline radio/checkboxes need spacing apart slightly
+        > .control__label:not(:first-of-type) {
+            margin-left: 10px;
+        }
+    }
 }

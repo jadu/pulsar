@@ -17,9 +17,16 @@ Provide extra contextual meaning to things, like stateful information.
 }}
 ```
 {% endraw %}
-    
-<p data-height="60" data-theme-id="24005" data-slug-hash="PzooGE" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/PzooGE/">PzooGE</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+<div class="pulsar-example">
+    <span class="label">default</span>&nbsp;
+    <span class="label label--primary">primary</span>&nbsp;
+    <span class="label label--success">success</span>&nbsp;
+    <span class="label label--warning">warning</span>&nbsp;
+    <span class="label label--danger">danger</span>&nbsp;
+    <span class="label label--info">info</span>&nbsp;
+    <span class="label label--inverse">inverse</span>&nbsp;
+</div>
 
 ## Options
 
@@ -36,8 +43,19 @@ data-*    | string | Data attributes, eg: `'data-foo': 'bar'`
 
 Labels are usually used to indicate a state and therefore should be past-participles or adjectives.
 
-<p data-height="160" data-theme-id="24005" data-slug-hash="GqRRXd" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/GqRRXd/">GqRRXd</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example">
+    <p>
+        <span class="label label--inverse">locked</span> &nbsp; <span class="label">unlocked</span>&nbsp;
+    </p>
+    <p>
+        <span class="label">visible</span>&nbsp;
+        <span class="label label--warning">hidden</span>&nbsp;
+    </p>
+    <p>
+        <span class="label label--success">published</span>&nbsp;
+        <span class="label label--danger">offline</span>&nbsp;
+    </p>
+</div>
 
 ## Types
 
@@ -54,8 +72,15 @@ Labels accept the normal state variations through the `class` option.
 ```
 {% endraw %}
 
-<p data-height="60" data-theme-id="24005" data-slug-hash="PzooGE" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/PzooGE/">PzooGE</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="puslar-example">
+    <span class="label">default</span>&nbsp;
+    <span class="label label--primary">primary</span>&nbsp;
+    <span class="label label--success">success</span>&nbsp;
+    <span class="label label--warning">warning</span>&nbsp;
+    <span class="label label--danger">danger</span>&nbsp;
+    <span class="label label--info">info</span>&nbsp;
+    <span class="label label--inverse">inverse</span>&nbsp;
+</div>
 
 ## Removable labels
 
@@ -72,8 +97,15 @@ Add `'removable': true` to add a remove link after the label value. You'll need 
 ```
 {% endraw %}
 
-<p data-height="60" data-theme-id="24005" data-slug-hash="LZYYjb" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/LZYYjb/">LZYYjb</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example">
+    <span class="label">default <a type="link" data-action="remove" data-action-target="this" class="btn  remove-button"><i class="icon-remove-sign"></i></a></span>&nbsp;
+    <span class="label label--primary">primary <a type="link" data-action="remove" data-action-target="this" class="btn  remove-button"><i class="icon-remove-sign"></i></a></span>&nbsp;
+    <span class="label label--success">success <a type="link" data-action="remove" data-action-target="this" class="btn  remove-button"><i class="icon-remove-sign"></i></a></span>&nbsp;
+    <span class="label label--warning">warning <a type="link" data-action="remove" data-action-target="this" class="btn  remove-button"><i class="icon-remove-sign"></i></a></span>&nbsp;
+    <span class="label label--danger">danger <a type="link" data-action="remove" data-action-target="this" class="btn  remove-button"><i class="icon-remove-sign"></i></a></span>&nbsp;
+    <span class="label label--info">info <a type="link" data-action="remove" data-action-target="this" class="btn  remove-button"><i class="icon-remove-sign"></i></a></span>&nbsp;
+    <span class="label label--inverse">inverse <a type="link" data-action="remove" data-action-target="this" class="btn  remove-button"><i class="icon-remove-sign"></i></a></span>&nbsp;
+</div>
 
 ## Labels with tooltips
 
@@ -111,5 +143,7 @@ You should keep labels short and concise, tooltips can be used to provide furthe
 ```
 {% endraw %}
 
-<p data-height="60" data-theme-id="24005" data-slug-hash="yJLLEm" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/yJLLEm/">yJLLEm</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example">
+    <span class="label label--large">biggy</span>&nbsp;
+    <span class="label">smalls</span>&nbsp;
+</div>

@@ -1,6 +1,6 @@
 {
   "name": "pulsar",
-  "version": "6.20.11",
+  "version": "6.21.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/jadu/pulsar.git"
@@ -9,10 +9,8 @@
   "scripts": {
     "start": "vagrant reload && grunt",
     "coverage": "mochify --transform [ babelify ] --plugin [ mochify-istanbul --exclude '**/+(tests|node_modules|libs)/**/*' --report lcov --dir ./coverage --instrumenter babel-istanbul] --reporter spec --recursive ./tests/js/web/index ./tests/js/web/*Test.js",
-    "test": "npm run web-test && npm run js-ext-test && npm run js-macro-test",
-    "web-test": "mochify --reporter spec --transform [ babelify ] --recursive ./tests/js/web/index ./tests/js/web/*Test.js",
-    "js-ext-test": "mocha --reporter spec ./tests/js/twig/Extension/*Test.js",
-    "js-macro-test": "mocha --reporter spec ./tests/js/twig/Macro/*Test.js"
+    "test": "npm run web-test",
+    "web-test": "mochify --reporter spec --transform [ babelify ] ./tests/js/web/index './tests/js/web/**/*Test.js'"
   },
   "devDependencies": {
     "aliasify": "^1.9.0",
@@ -49,12 +47,9 @@
     "grunt-contrib-jshint": "^1.0.0",
     "grunt-contrib-uglify": "^1.0.1",
     "grunt-contrib-watch": "^1.0.0",
-    "grunt-email-builder": "^3.0.1",
     "grunt-exec": "^0.4.6",
     "grunt-gh-pages": "^2.0.0",
-    "grunt-inline-css": "^0.1.5",
     "grunt-leading-indent": "^0.2.0",
-    "grunt-mailgun": "^1.0.1",
     "grunt-mocha": "^1.0.1",
     "grunt-notify": "^0.4.3",
     "grunt-phpunit": "^0.3.6",

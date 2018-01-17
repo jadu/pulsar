@@ -1,0 +1,94 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
+
+{% block tab_content %}
+
+    {{
+        form.create()
+    }}
+
+    {{
+        form.text({
+            'label': 'Timeout',
+            'class': 'form__control-col--2',
+            'help': 'How long the system should wait for a response, usually 600 seconds (10 minutes)',
+            'value': '600',
+            'append': 'seconds',
+            'maxlength': '3',
+            'required': true
+        })
+    }}
+
+    {{
+        form.compound({
+            'id': 'foo',
+            'help': 'How long the system should wait for a response, usually 30 seconds',
+            'label': 'Timeout',
+            'inputs': [
+                {
+                    'class': 'form__control-col--1',
+                    'label': 'Value',
+                    'id': 'value',
+                    'maxlength': '3',
+                    'show-label': false,
+                    'type': 'text'
+                },
+                {
+                    'class': 'u-width-auto',
+                    'label': 'Unit of time',
+                    'id': 'Unit',
+                    'show-label': false,
+                    'type': 'select',
+                    'options': [
+                        {
+                            'label': 'Seconds',
+                            'value': 'sec'
+                        },
+                        {
+                            'label': 'Minutes',
+                            'value': 'min'
+                        }
+                    ]
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.compound({
+            'id': 'bar',
+            'help': 'For example: 25 12 1980',
+            'label': 'Date of birth',
+            'inputs': [
+                {
+                    'class': 'form__control-col--1',
+                    'label': 'Day',
+                    'id': 'dd',
+                    'placeholder': 'DD',
+                    'show-label': false,
+                    'type': 'text'
+                },
+                {
+                    'class': 'form__control-col--1',
+                    'label': 'Month',
+                    'id': 'mm',
+                    'placeholder': 'MM',
+                    'show-label': false,
+                    'type': 'text'
+                },
+                {
+                    'class': 'form__control-col--1',
+                    'label': 'Year',
+                    'id': 'yyyy',
+                    'placeholder': 'YYYY',
+                    'show-label': false,
+                    'type': 'text'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.end()
+    }}
+
+{% endblock tab_content %}
