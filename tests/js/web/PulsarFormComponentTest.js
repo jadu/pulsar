@@ -47,8 +47,7 @@ describe('Pulsar Form Component', function() {
                     <input value="baz" name="foo" type="checkbox" class="form__control checkbox" checked>Baz</label>\
             </div>\
         </div>\
-    \
-        <div class="form__group">\
+	<div class="form__group">\
             <label class="control__label">Time picker test</label>\
             <div class="controls">\
                     <input value="foo" name="foo" type="text" data-timepicker="true" class="form__control qa-foo" />\
@@ -118,7 +117,6 @@ describe('Pulsar Form Component', function() {
         beforeEach(function() {
             this.pulsarForm.initSelect2 = sinon.stub();
             this.pulsarForm.init();
-
         });
 
         it('should call the select2 plugin', function() {
