@@ -10,14 +10,18 @@ Group a series of related buttons together on a single line. Great for creating 
 
 {% code_example form_helpers/button-group %}
 
-<div class="form__group form__button-group">
-    <div class="controls btn__group">
-        <input name="bands" type="radio" class="form__control radio" />
-        <label class="control__label">AM</label>
-        <input name="bands" type="radio" class="form__control radio" />
-        <label class="control__label">FM</label>
-        <input name="bands" type="radio" class="form__control radio" />
-        <label class="control__label">MW</label>
+Example using `'type': 'radio'` allowing singular choice.
+
+<div class="pulsar-example form">
+    <div class="form__group form__button-group">
+        <div class="controls btn__group">
+            <input id="btn-grp-radio-1" name="bands" type="radio" class="form__control radio" /><!--
+         --><label for="btn-grp-radio-1" class="control__label">AM</label><!--
+         --><input id="btn-grp-radio-1" name="bands" type="radio" class="form__control radio" /><!--
+         --><label for="btn-grp-radio-1" class="control__label">FM</label><!--
+         --><input id="btn-grp-radio-1" name="bands" type="radio" class="form__control radio" /><!--
+         --><label for="btn-grp-radio-1" class="control__label">MW</label>
+        </div>
     </div>
 </div>
 
@@ -43,15 +47,19 @@ The inputs used within button groups can be changed to suit your need, supply `r
 
 {% code_example form_helpers/button-group-icons %}
 
-<div class="form__group form__button-group">
-    <div class="controls btn__group">
-        <input name="bands" type="checkbox" class="form__control checkbox" />
-        <label class="control__label"><i class="icon-align-left"></i></label>
-        <input name="bands" type="checkbox" class="form__control checkbox" />
-        <label class="control__label"><i class="icon-align-center"></i></label>
-        <input name="bands" type="checkbox" class="form__control checkbox" />
-        <label class="control__label"><i class="icon-align-right"></i></label>
-        <input name="bands" type="checkbox" class="form__control checkbox" />
-        <label class="control__label"><i class="icon-align-justify"></i></label>
+Example using `'type': 'checkbox'` allowing multiple choice.
+
+<div class="pulsar-example form">
+    <div class="form__group form__button-group">
+        <div class="controls btn__group">
+            <input id="btn-grp-checkbox-1" name="bands" type="checkbox" class="form__control checkbox" /><!--
+         --><label for="btn-grp-checkbox-1" class="control__label"><i class="icon-align-left"></i></label><!--
+         --><input id="btn-grp-checkbox-2" name="bands" type="checkbox" class="form__control checkbox" /><!--
+         --><label for="btn-grp-checkbox-2" class="control__label"><i class="icon-align-center"></i></label><!--
+         --><input id="btn-grp-checkbox-3" name="bands" type="checkbox" class="form__control checkbox" /><!--
+         --><label for="btn-grp-checkbox-3" class="control__label"><i class="icon-align-right"></i></label><!--
+         --><input id="btn-grp-checkbox-4" name="bands" type="checkbox" class="form__control checkbox" /><!--
+         --><label for="btn-grp-checkbox-4" class="control__label"><i class="icon-align-justify"></i></label>
+        </div>
     </div>
 </div>

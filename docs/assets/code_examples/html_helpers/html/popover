@@ -1,0 +1,7 @@
+<a
+    href="#"
+    class="btn"
+    data-toggle="popover"
+    data-content="This is the popover content. It can (optionally) contain <strong><u>HTML</u></strong>"
+    data-title="Popover Title"
+    data-html="true">Click to toggle popover</a>

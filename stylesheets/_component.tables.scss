@@ -34,6 +34,10 @@
         }
     }
 
+    tr.u-no-border > td {
+        border-bottom: 0;
+    }
+
     tr.fade {
         animation-name: fade-row-to-white !important;
         animation-delay: 1s;
@@ -113,6 +117,28 @@
             height: 24px;
             width: 24px;
         }
+
+        a > i {
+            color: color(text);
+        }
+
+        a:hover > i {
+            color: #2d86b3;
+        }
+    }
+}
+
+.table--white-bg {
+    background-color: white;
+}
+
+.table--contrast {
+    thead {
+        background-color: color(grey, off-white);
+    }
+
+    tbody {
+        background-color: lighten(color(grey, off-white), 4);
     }
 }
 
@@ -151,8 +177,8 @@
     }
 }
 
+tr.table__form,
 td.table__form {
-    background-color: color(background);
     padding: 10px 10px 24px 20px;
 
     form {
@@ -182,6 +208,11 @@ td.table__form {
         width: 25px;
         margin-left: 10px;
     }
+}
+
+td.table__form,
+.table__form td {
+    background-color: color(background);
 }
 
 .table-container + .pagination {
@@ -272,4 +303,51 @@ td.row__actions {
                 linear-gradient(180deg, rgba(255, 255, 255, 0) 97%, rgba(255, 255, 255, 1) 100%),
                 linear-gradient(90deg, rgba(255, 255, 255, 0) 99%, rgba(0, 0, 0, .1) 100%),
                 linear-gradient(270deg, rgba(255, 255, 255, 0) 99%, rgba(0, 0, 0, .1) 100%);
+}
+
+.sticky-scrollbar {
+    bottom: 0;
+    height: 30px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    position: fixed;
+    z-index: $zindex-sticky;
+
+    @include respond-min($screen-tablet) {
+        bottom: 37px;
+    }
+}
+
+.sticky-scrollbar__inner {
+    border: 1px solid color(white);
+    opacity: .01;
+}
+
+.table-container.table--overflow-left .sticky-scrollbar::-webkit-scrollbar,
+.table-container.table--overflow-right .sticky-scrollbar::-webkit-scrollbar {
+    -webkit-appearance: none;
+    background: color(background, light);
+    width: 7px;
+}
+
+.table-container.table--overflow-left .sticky-scrollbar::-webkit-scrollbar-track,
+.table-container.table--overflow-right .sticky-scrollbar::-webkit-scrollbar-track {
+    background: color(background, light);
+    border-bottom: 1px solid color(border);
+    border-top: 1px solid color(border);
+
+    @include respond-min($screen-tablet) {
+        border-bottom: 0;
+    }
+}
+
+.table-container.table--overflow-left .sticky-scrollbar::-webkit-scrollbar-thumb,
+.table-container.table--overflow-right .sticky-scrollbar::-webkit-scrollbar-thumb {
+    background: color(grey, lightest);
+    border-bottom: 1px solid color(border);
+    border-top: 1px solid color(border);
+
+    @include respond-min($screen-tablet) {
+        border-bottom: 0;
+    }
 }

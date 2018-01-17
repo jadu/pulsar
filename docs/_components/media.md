@@ -10,9 +10,15 @@ The _media object_ is, typically, an image on the left with descriptive content 
 
 {% code_example html_helpers/media %}
 
-<p data-height="80" data-theme-id="24005" data-slug-hash="2cf3bf12d98f67d6e504432a55cb0348" data-default-tab="result" data-user="pulsar" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/2cf3bf12d98f67d6e504432a55cb0348/">docs - media object</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example">
+    <div class="media">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/48px-Octicons-mark-github.svg.png" alt="" class="media__image">
+        <div class="media__body">
+            <p>Title</p>
+            <span class="small-type muted">Description</span>
+        </div>
+    </div>
+</div>
 
 ## Options
 
@@ -38,11 +44,11 @@ Supply an `icon` instead of `image` to choose from the hundreds of icons availab
 {% raw %}
 ```twig
 {{
-    html.media({ 
-        'icon': 'youtube-square', 
-        'icon_colour': '#e52d27', 
-        'title': 'YouTube', 
-        'description': 'Upload video to YouTube' 
+    html.media({
+        'icon': 'youtube-square',
+        'icon_colour': '#e52d27',
+        'title': 'YouTube',
+        'description': 'Upload video to YouTube'
     })
 }}
 ```
@@ -54,20 +60,30 @@ You can place actions on the right hand side, like [remove buttons](remove_butto
 
 {% raw %}
 ```twig
-{{ 
-    html.media({ 
-        'image': 'github.png', 
-        'image_alt': 'GitHub logo', 
-        'title': 'Title', 
+{{
+    html.media({
+        'image': 'github.png',
+        'image_alt': 'GitHub logo',
+        'title': 'Title',
         'description': 'Description',
-        'action': html.remove_button({ 'target': '#example' }) 
+        'action': html.remove_button({ 'target': '#example' })
     })
 }}
 ```
 {% endraw %}
 
-<p data-height="80" data-theme-id="24005" data-slug-hash="d46e3668e49d91765f4b4f4ef73dacd6" data-default-tab="result" data-user="pulsar" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/d46e3668e49d91765f4b4f4ef73dacd6/">docs - media object - action</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<div class="pulsar-example">
+    <div class="media">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/48px-Octicons-mark-github.svg.png" alt="" class="media__image">
 
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
-
-
+        <div class="media__body">
+            <span class="pull-right">
+            <button type="button" class="remove-button" data-toggle="tooltips" data-placement="right" title="Remove this item" data-action="remove" data-action-target="#itemToRemove" data-original-title="Remove this item">
+              <i class="icon-remove-sign"></i>
+            </button>
+          </span>
+            <p>Title</p>
+            <span class="small-type muted">Description</span>
+        </div>
+    </div>
+</div>

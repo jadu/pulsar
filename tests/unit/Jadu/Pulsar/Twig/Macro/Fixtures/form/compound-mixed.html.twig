@@ -1,0 +1,35 @@
+{% extends '@cssTests/visual-regression-layout.html.twig' %}
+{% block body %}
+{{
+    form.compound({
+        'id': 'foo',
+        'label': 'fooLabel',
+        'inputs': [
+            {
+                'class': 'fooInputClass',
+                'label': 'fooInputLabel',
+                'id': 'fooInputId',
+                'show-label': false,
+                'type': 'text'
+            },
+            {
+                'class': 'barInputClass',
+                'label': 'barInputLabel',
+                'id': 'barInputId',
+                'show-label': false,
+                'type': 'select',
+                'options': [
+                    {
+                        'label': 'Seconds',
+                        'value': 'sec'
+                    },
+                    {
+                        'label': 'Minutes',
+                        'value': 'min'
+                    }
+                ]
+            }
+        ]
+    })
+}}
+{% endblock %}

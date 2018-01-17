@@ -27,7 +27,9 @@ Tooltips can be applied through the use of data-attributes and can be added to r
 
 Choose the most appropriate placement to fit your UI, try to avoid the tooltip from obscuring important things when it appears.
 
-<p data-height="120" data-theme-id="24005" data-slug-hash="dppVkm" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/dppVkm/">docs - component - tooltip placements</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example" style="height: 120px; padding-top: 40px; text-align: center;">
+    <button type="button" class="btn btn-default" data-toggle="tooltips" data-placement="left" title="" data-original-title="Tooltip on left">Tooltip on left</button>&nbsp;<button type="button" class="btn btn-default" data-toggle="tooltips" data-placement="top" title="" data-original-title="Tooltip on top">Tooltip on top</button>&nbsp;<button type="button" class="btn btn-default" data-toggle="tooltips" data-placement="bottom" title="" data-original-title="Tooltip on bottom">Tooltip on bottom</button>&nbsp;<button type="button" class="btn btn-default" data-toggle="tooltips" data-placement="right" title="" data-original-title="Tooltip on right">Tooltip on right</button>
+</div>
 
 ## Options
 
@@ -106,8 +108,19 @@ The `disabled` parameter prevents mouse events from firing and stops tooltips fr
 
 {% raw %}
 ```twig
-<div rel="tooltip" data-toggle="tooltip" title="My tooltip brings all the boys to the yard">
+<div
+    rel="tooltip"
+    data-toggle="tooltip"
+    title="My tooltip brings all the boys to the yard">
   {{ html.button({ ... }) }}
 </div>
 ```
 {% endraw %}
+
+## Variations
+
+Choose the most appropriate placement to fit your UI, try to avoid the tooltip from obscuring important things when it appears.
+
+<div class="pulsar-example" style="height: 120px; padding-top: 40px; text-align: center;">
+    <button type="button" class="btn btn-default" data-toggle="tooltips" data-placement="left" title="" data-original-title="Tooltip on left">Tooltip on left</button>&nbsp;<button type="button" class="btn btn-default" data-toggle="tooltips" data-placement="top" title="" data-original-title="Tooltip on top">Tooltip on top</button>&nbsp;<button type="button" class="btn btn-default" data-toggle="tooltips" data-placement="bottom" title="" data-original-title="Tooltip on bottom">Tooltip on bottom</button>&nbsp;<button type="button" class="btn btn-default" data-toggle="tooltips" data-placement="right" title="" data-original-title="Tooltip on right">Tooltip on right</button>
+</div>

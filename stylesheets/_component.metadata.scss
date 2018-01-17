@@ -29,6 +29,7 @@ $metadata-padding-y: $padding-small-vertical !default;
   }
 
   &__value {
+    margin-bottom: 0;
     margin-left: 0;
     width: 85%;
   }

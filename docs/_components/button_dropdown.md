@@ -22,8 +22,16 @@ Show a dropdown/dropup menu when the button is clicked.
 ```
 {% endraw %}
 
-<div><p data-height="140" data-theme-id="24005" data-slug-hash="XjdJPp" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/XjdJPp/">docs - html - button dropdown</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script></div>
+<div class="pulsar-example" style="height: 150px;">
+    <div class="btn__group dropdown open">
+        <button type="button" class="btn dropdown__toggle" data-toggle="dropdown">Drop Down
+        <span class="caret"></span></button>
+        <ul class="dropdown__menu">
+            <li><a href="#foo">foo</a></li>
+            <li><a href="#bar">bar</a></li>
+        </ul>
+    </div>
+</div>
 
 ## Options
 
@@ -55,8 +63,18 @@ Pass a list of `html.link` items to the `menu_items` parameter to be used as the
 ```
 {% endraw %}
 
-<p data-height="240" data-theme-id="24005" data-slug-hash="xEVbNP" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/xEVbNP/">docs - html - button dropdown items</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example" style="height: 250px">
+    <div class="btn__group dropdown open">
+        <button data-toggle="dropdown" class="btn dropdown__toggle">Drop Down&nbsp;<span class="caret"></span></button>
+        <ul class="dropdown__menu pull-left">
+            <li><a href="#"><i class="icon-save"></i> Save</a></li>
+            <li><a><i class="icon-print"></i> Print</a></li>
+            <li><a disabled="" aria-disabled="true" class="is-disabled"><i class="icon-lock"></i> Lock</a></li>
+            <li><a><i class="icon-group"></i> Collaborators <span class="badge">3</span></a></li>
+            <li><span class="divider"></span></li><li><a href="#" class="link--danger"><i class="icon-trash"></i> Delete</a></li>
+        </ul>
+    </div>
+</div>
 
 ## Dropup
 
@@ -77,8 +95,17 @@ Change the placement of the menu with the `direction` option.
 ```
 {% endraw %}
 
-<div><p data-height="145" data-theme-id="24005" data-slug-hash="BLKyvZ" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/BLKyvZ/">docs - html - button dropup</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script></div>
+<div class="pulsar-example" style="height: 150px;">
+    <!-- INLINE STYLES FOR DOCUMENTATION PURPOSES ONLY -->
+    <div class="btn__group dropup open" style="position: relative; margin-top: 70px;">
+        <button type="button" class="btn dropdown__toggle" data-toggle="dropdown">Drop Up
+        <span class="caret"></span></button>
+        <ul class="dropdown__menu">
+            <li><a href="#foo">foo</a></li>
+            <li><a href="#bar">bar</a></li>
+        </ul>
+    </div>
+</div>
 
 ## Divider
 
@@ -99,8 +126,16 @@ Separate menu items with a horizontal line.
 ```
 {% endraw %}
 
-<div><p data-height="150" data-theme-id="24005" data-slug-hash="pEyvYg" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/pEyvYg/">docs - html - button dropdown divider</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script></div>
+<div class="pulsar-example" style="height: 160px;">
+    <div class="btn__group dropdown open">
+        <button type="button" class="btn dropdown__toggle" data-toggle="dropdown">Drop Down <span class="caret"></span></button>
+        <ul class="dropdown__menu">
+            <li><a href="#">foo</a></li>
+            <li><span class="divider"></span></li>
+            <li><a href="#">bar</a></li>
+        </ul>
+    </div>
+</div>
 
 ## Tooltips within a dropdown
 
@@ -113,8 +148,8 @@ To add a tooltip to a dropdown menu item, you'll need to use the `container` opt
         'label': 'Drop Down',
         'items': [
             html.link({ 'label': 'No tooltip', 'href': '#foo' }),
-            html.link({ 
-                'label': 'With tooltip', 
+            html.link({
+                'label': 'With tooltip',
                 'href': '#bar',
                 'title': 'My tooltip',
                 'data-toggle': 'tooltips',

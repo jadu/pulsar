@@ -5,6 +5,7 @@
 {% set tab_buttongroup %}{% include 'lexicon/forms/button-group.html.twig' %}{% endset %}
 {% set tab_colour %}{% include 'lexicon/forms/colour.html.twig' %}{% endset %}
 {% set tab_content %}{% include 'lexicon/forms/content.html.twig' %}{% endset %}
+{% set tab_compound %}{% include 'lexicon/forms/compound.html.twig' %}{% endset %}
 {% set tab_checkbox %}{% include 'lexicon/forms/checkbox.html.twig' %}{% endset %}
 {% set tab_date %}{% include 'lexicon/forms/date.html.twig' %}{% endset %}
 {% set tab_dropzone %}{% include 'lexicon/forms/dropzone.html.twig' %}{% endset %}
@@ -17,6 +18,7 @@
 {% set tab_select2 %}{% include 'lexicon/forms/select2.html.twig' %}{% endset %}
 {% set tab_text %}{% include 'lexicon/forms/text.html.twig' %}{% endset %}
 {% set tab_textarea %}{% include 'lexicon/forms/textarea.html.twig' %}{% endset %}
+{% set tab_time %}{% include 'lexicon/forms/time.html.twig' %}{% endset %}
 {% set tab_toggleswitch %}{% include 'lexicon/forms/toggle-switch.html.twig' %}{% endset %}
 {% set tab_jstree %}{% include 'lexicon/forms/jstree.html.twig' %}{% endset %}
 
@@ -25,8 +27,7 @@
         {
           "id"    : "buttongroup",
           "label" : "Button Group",
-          "src"   : tab_buttongroup,
-          "active": true
+          "src"   : tab_buttongroup
         },
         {
           "id"    : "checkbox",
@@ -42,6 +43,11 @@
           "id"    : "colour",
           "label" : "Colour",
           "src"   : tab_colour
+        },
+        {
+          "id"    : "compound",
+          "label" : "Compound",
+          "src"   : tab_compound
         },
         {
           "id"    : "content",
@@ -86,7 +92,8 @@
         {
           "id"    : "select",
           "label" : "Select",
-          "src"   : tab_select
+          "src"   : tab_select,
+          "active": true
         },
         {
           "id"    : "select2",
@@ -107,6 +114,11 @@
           "id"    : "textarea",
           "label" : "Textarea",
           "src"   : tab_textarea
+        },
+        {
+          "id"    : "time",
+          "label" : "Time",
+          "src"   : tab_time
         },
         {
           "id"    : "toggleswitch",
