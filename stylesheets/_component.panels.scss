@@ -73,6 +73,8 @@
 }
 
 @each $state, $state-color, $state-color-alt in $state-colors {
+    // Exclude unneeded states
+    @if $state != base and $state != new and $state != white {
         .panel--#{$state} {
             background-color: $state-color;
             color: $state-color-alt;
@@ -86,6 +88,7 @@
             }
         }
     }
+}
 
 .form-v2 > .panel:first-of-type {
     margin-top: 0;
