@@ -500,7 +500,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
 # Compound
 
-Allows you to build a form group using multiple separate inputs with a single 
+Allows you to build a form group using multiple separate inputs with a single
 common label, and render those in a screenreader-friendly way.
 
 https://jadu.github.io/pulsar/form-helpers/compound
@@ -2172,5 +2172,138 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
         })
     }}
 
+{% endspaceless %}
+{% endmacro %}
+
+{# -----------------------------------------------------------------------------
+
+# Repeater Start & End
+
+The opening Repeater macro. Additional components can be nested within the repeater_start and repeater_end macros.
+The Repeater allows users to define a repeatable set of for fields that can be added, removed & edited.
+
+## Example usage
+
+```twig
+{{
+    {{ form.repeater_start({
+        'label': 'My first repeater',
+        'empty': 'You have not added any repeater entries',
+        'headings': [
+            { name: 'text', label: 'text' }
+        ],
+        'max-entries': 3,
+        'add-new-group-text': 'Add',
+        'add-another-group-text': 'Add another'
+    }) }}
+
+        {{
+            form.text({
+                'label': 'text',
+                'id': 'repeater-text',
+                'name': 'text'
+            })
+        }}
+
+    {{  form.repeater_end() }}
+}}
+```
+
+## Options
+
+Option                  | Type   | Description
+-------------           | ------ | -------------------------------------------------------
+label                   | string | The repeater input label text
+empty                   | string | The empty placeholder text when no items have been added
+headings                | Array  | An array of heading config objects: { name: string, label: string }
+max-entries             | int    | Maximum (inclusive) number of entries that can be added
+add-new-group-text      | string | The text content of the add new entry button
+add-another-group-text  | string | The text content of the add another new entry button
+
+0#}
+{% macro repeater_start(options) %}
+{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{% import _self as form %}
+{% set headingLength = options.headings|length %}
+{% spaceless %}
+    <div
+        class="repeater"
+        data-repeater
+        data-repeater-add-new-group-text="{{ options['add-new-group-text']|default('Add') }}"
+        data-repeater-add-another-group-text="{{ options['add-another-group-text']|default('Add another') }}"
+        data-repeater-max-entries="{{ options['max-entries']|default(false) }}"
+        data-repeater-preview-colspan="{{ options.headings|length + 1 }}"
+    >
+        <div class="repeater__saved-data u-display-none" data-repeater-saved-entries-root></div>
+        <div class="form__group">
+            {{
+                elem.label({
+                    'label': options.label,
+                    'required': options.required|default(false)
+                })
+            }}
+            <div class="controls">
+                <table class="table table--full table--horizontal repeatable__table">
+                    <thead class="repeater__preview-headings">
+                        <tr>
+                            {% for heading in options.headings %}
+                                <th data-repeater-for-name="{{ heading.name }}">{{ heading.label }}</th>
+                            {% endfor %}
+                            <th rowspan="1" colspan="1"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="repeater__preview-data" data-repeater-preview-root>
+                        <tr class="repeater__empty-placeholder" data-repeater-preview-placeholder>
+                            <td colspan="{{ headingLength }}" class="muted">{{ options.empty }}</td>
+                            <td class="table__td--align-right table-row__actions"></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr class="repeater__group" data-repeater-new-group>
+                        <td class="table__form" colspan="{{ headingLength + 1 }}">
+                            <div data-repeater-new-group-controls>
+
+{% endspaceless %}
+{% endmacro %}
+
+{% macro repeater_end() %}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{% spaceless %}
+                            </div>
+                            <div class="form__actions repeater__group-actions">
+                                {{
+                                    html.button({
+                                        'data-repeater-save-group': 'true',
+                                        'label': 'Save',
+                                        'class': 'btn--primary repeater__save-group',
+                                        'type': 'button'
+                                    })
+                                }}
+
+                                {{
+                                    html.button({
+                                        'data-repeater-cancel-save': 'true',
+                                        'label': 'Cancel',
+                                        'class': 'btn--naked repeater__cancel-group',
+                                        'type': 'button'
+                                    })
+                                }}
+                            </div>
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+                {{
+                    html.button({
+                        'data-repeater-add-group': 'true',
+                        'label': 'Add',
+                        'class': 'repeater__add-group',
+                        'type': 'button'
+                    })
+                }}
+            </div>
+        </div>
+    </div>
 {% endspaceless %}
 {% endmacro %}

@@ -22,8 +22,8 @@
     "undef": true,
     "unused": true,
     "globals": {
-        "$"          : false,
-        "jQuery"     : false,
+        "$"          : true,
+        "jQuery"     : true,
         "console"    : false,
         "define"     : false,
         "describe"   : false,
