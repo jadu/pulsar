@@ -232,7 +232,9 @@ NavMainComponent.prototype.unhidePrimaryNavItems = function () {
         firstHiddenPrimaryNavItem = navItems.find('li:hidden').first();
 
         if ((firstHiddenPrimaryNavItem.length > 0) && (navItemMore.is(':visible'))) {
-            firstHiddenPrimaryNavItem.show();
+
+            // Reset display type to list-item rather than show() to make sure they don't get recreated as inline-block
+            firstHiddenPrimaryNavItem.css({display: 'list-item'});
         }
 };
 
