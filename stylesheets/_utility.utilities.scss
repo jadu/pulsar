@@ -59,11 +59,6 @@ p.success {
     user-select: none;
 }
 
-// removes bottom margin from an element
-.bottomless {
-    margin-bottom: 0 !important;
-}
-
 .double-top {
     margin-top: 2em;
 }
@@ -327,4 +322,14 @@ div.no-results {
 %u-width-auto,
 .u-width-auto {
     width: auto !important;
+}
+
+%u-no-margin-top,
+.u-no-margin-top {
+    margin-top: 0 !important;
+}
+
+%u-no-margin-bottom,
+.u-no-margin-bottom {
+    margin-bottom: 0 !important;
 }
