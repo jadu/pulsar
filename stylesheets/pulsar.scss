@@ -132,7 +132,6 @@ $fa-css-prefix: 'icon';
 @import 'component.progress-lists';
 @import 'component.range-slider';
 @import 'component.remove-button';
-@import 'component.repeatable';
 @import 'component.ribbon';
 @import 'component.rules';
 @import 'component.search';
@@ -151,6 +150,7 @@ $fa-css-prefix: 'icon';
 @import 'component.tooltips';
 @import 'component.jstree';
 @import 'component.dropzone';
+@import 'component.repeater';
 
 /* -------------------------------------------------------------------------- *\
 	If you're extending Pulsar and want to include your own layouts/modules etc
@@ -168,8 +168,6 @@ $fa-css-prefix: 'icon';
 @import 'utility.utilities';
 @import 'utility.states';
 
-// @import '../libs/datatables-responsive/css/dataTables.responsive';
-
 // Overrides and fixes
 @import 'override.shame';
-// @import 'override.tour';
+
