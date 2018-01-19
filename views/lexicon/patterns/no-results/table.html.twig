@@ -1,0 +1,36 @@
+{% extends '@pulsar/pulsar/components/tab.html.twig' %}
+
+{% block tab_content %}
+    <table class="table table--full">
+        <thead>
+            <tr>
+                <td class="table-responsive"></td>
+                <td class="table-selection"></td>
+                <th><a href="#">Name</a></th>
+                <th><a href="#">IP</a></th>
+                <th><a href="#">Status</a></th>
+                <th><a href="#">Uptime</a></th>
+                <th><a href="#">Image</a></th>
+                <th><a href="#">RAM</a></th>
+                <th class="centered"><a href="#">CPUs</a></th>
+                <th><a href="#">Actions</a></th>
+            </tr>
+            <tr class="no-results">
+                <td id="no-results" class="no-results" colspan="10">
+                    <div class="no-results__message">
+                        <p>There are currently no things for this form</p>
+                    </div>
+                    <a href="#rule-form" class="btn btn--primary js-create-rule no-results__action">Create Thing</a>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+{% endblock tab_content %}
+{% block tab_sidebar %}
+    <h2>Empty Table</h2>
+    <p>If a table has nothing to display, show a handy call to action to get the user started.</p>
+    <p>The table header is still displayed to hint at the type of data that will be contained.</p>
+{% endblock tab_sidebar %}
