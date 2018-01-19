@@ -35,12 +35,27 @@ function filterByFileExtensionFactory (inclusive) {
  * @param list {Array<string>}
  * @param extension {string} a space separated extension list
  * @param inclusive? {boolean}
+ * @returns {Array<string>}
  */
-const filterFileExtension = (list, extension, inclusive = true) => {
+const filterFileExtensionList = (list, extension, inclusive = true) => {
     // create filter function
     const fileFilter = filterByFileExtensionFactory(inclusive);
     // split extension list argument and filter
     return list.filter(fileFilter.bind(null, extension.split(' ')));
 }
 
-module.exports = filterFileExtension;
+/**
+ * Filter a single file string by extensions
+ * @param file {string}
+ * @param extension {string} a space separated extension list
+ * @param inclusive? {boolean}
+ * @returns {boolean}
+ */
+const filterFileExtension = (file, extension, inclusive = true) => {
+    return filterByFileExtensionFactory(inclusive)(extension.split(' '), file);
+}
+
+module.exports = {
+    filterFileExtensionList,
+    filterFileExtension
+};
