@@ -1,44 +1,60 @@
-const filterFileExtension = require('../../../../js/utilities/filterByFileExtension');
+const { filterFileExtensionList, filterFileExtension } = require('../../../../js/utilities/filterByFileExtension');
 
 describe('filterByFileExtension', () => {
-    it('should filter files by inclusion', () => {
-        const files = [
-            'file.js?v1=true',
-            'file.html',
-            'file.css',
-            'bar.js'
-        ];
+    const files = [
+        'file.js?v1=true',
+        'file.html',
+        'file.css',
+        'bar.js',
+        'not a file'
+    ];
 
-        expect(filterFileExtension(files, 'js')).to.deep.equal([
-            'file.js?v1=true',
-            'bar.js'
-        ]);
+    describe('filterFileExtensionList', () => {
+        it('should filter files by inclusion', () => {
+            expect(filterFileExtensionList(files, 'js')).to.deep.equal([
+                'file.js?v1=true',
+                'bar.js'
+            ]);
+        });
+
+        it('should filter files by exclusion', () => {
+            expect(filterFileExtensionList(files, 'js', false)).to.deep.equal([
+                'file.html',
+                'file.css'
+            ]);
+        });
+
+        it('should filter out strings that are not files', () => {
+            expect(filterFileExtensionList(files, 'js')).to.deep.equal([
+                'file.js?v1=true',
+                'bar.js'
+            ]);
+        });
+
+        it('should support multiple extensions', () => {
+            expect(filterFileExtensionList(files, 'js html')).to.deep.equal([
+                'file.js?v1=true',
+                'file.html',
+                'bar.js'
+            ]);
+        });
     });
 
-    it('should filter files by exclusion', () => {
-        const files = [
-            'file.js',
-            'file.html',
-            'file.css',
-            'bar.js'
-        ];
+    describe('filterFileExtension', () => {
+        it('should filter a file by inclusion', () => {
+            expect(filterFileExtension('foo.js', 'js')).to.be.true;
+        });
 
-        expect(filterFileExtension(files, 'js', false)).to.deep.equal([
-            'file.html',
-            'file.css'
-        ]);
-    });
+        it('should filter a file by exclusion', () => {
+            expect(filterFileExtension('foo.js', 'js', false)).to.be.false;
+        });
 
-    it('should filter out strings that are not files', () => {
-        const files = [
-            'file',
-            'file.html',
-            'bar',
-            'bar.js'
-        ];
+        it('should return false for things we think are not files', () => {
+            expect(filterFileExtension('not a file', 'js')).to.be.false;
+        });
 
-        expect(filterFileExtension(files, 'js')).to.deep.equal([
-            'bar.js'
-        ]);
+        it('should support multiple file extensions', () => {
+            expect(filterFileExtension('index.html', 'js html')).to.be.true;
+        });
     });
 });
