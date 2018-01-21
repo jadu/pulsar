@@ -3,9 +3,9 @@
 var $ = require('jquery');
 
 function MasterSwitchComponent(html, disableUi) {
-    this.$html = html,
+    this.$html = html;
     this.disableUi = disableUi;
-};
+}
 
 MasterSwitchComponent.prototype.init = function () {
     var component = this;
