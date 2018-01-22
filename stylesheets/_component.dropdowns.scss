@@ -301,7 +301,7 @@
   }
 }
 
-.dropdown--medium ~ ul {
+.dropdown--medium ~ .dropdown__menu {
     width: 300px;
 }
 
@@ -310,13 +310,13 @@
     margin: 0;
     padding-bottom: 4px;
 
-    a {
-        float: right;
-        margin-right: 12px;
-    }
-
     span {
         display: inline-block;
         padding: 8px 8px 8px 18px;
     }
+}
+
+.dropdown__title__btn {
+    float: right;
+    margin-right: 12px;
 }
