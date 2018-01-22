@@ -15,13 +15,14 @@
     pulsar.flash = new pulsar.FlashMessageComponent($html);
     pulsar.helpText = new pulsar.HelpTextComponent($html, window, document);
     pulsar.pulsarForm = new pulsar.PulsarFormComponent($html);
-    pulsar.pulsarUI = new pulsar.PulsarUIComponent($html, pulsar.history);
+    pulsar.pulsarUI = new pulsar.PulsarUIComponent($html, window.History);
     pulsar.pulsarSortable = new pulsar.PulsarSortableComponent($html, window);
     pulsar.signIn = new pulsar.SignInComponent($html);
     pulsar.masterSwitch = new pulsar.MasterSwitchComponent($html, pulsar.disableUi);
 	pulsar.modulePermissions = new pulsar.ModulePermissionsComponent($html);
     pulsar.navMain = new pulsar.NavMainComponent($html, window);
     pulsar.filterBar = new pulsar.FilterBarComponent($html);
+    pulsar.faviconEditor = new pulsar.FaviconEditor(document.head);
     pulsar.repeaterManager = new pulsar.RepeaterManagerComponent(
         pulsar.pulsarForm,
         pulsar.repeaterComponentFactory,
@@ -75,6 +76,28 @@
             supported: !lt10,
             showInputNode: lt10
         });
+
+        // Notifications
+        pulsar.faviconEditor.init();
+
+        // NOTIFICATIONS DEBUG, PLS REMOVE, THX
+        var $updateNotificationColour = $('#update-notification-colour'),
+            $resetNotification = $('#reset-notification');
+
+        if ($updateNotificationColour.length) {
+            $updateNotificationColour.on('click', function (event) {
+                var colour = '#' + $updateNotificationColour.closest('.input-group').find('#notification-colour').val();
+
+                event.preventDefault();
+                pulsar.faviconEditor.restore();
+                pulsar.faviconEditor.addCircleNotification(colour);
+            });
+
+            $resetNotification.on('click', function (event) {
+                event.preventDefault();
+                pulsar.faviconEditor.restore();
+            });
+        }
     });
 
 }(jQuery));
