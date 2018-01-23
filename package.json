@@ -1,14 +1,13 @@
 {
   "name": "pulsar",
-  "version": "6.20.14",
+  "version": "6.21.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/jadu/pulsar.git"
   },
-  "main": "./src/Jadu/Pulsar/Twig.js/Pulsar.js",
   "scripts": {
     "start": "vagrant reload && grunt",
-    "coverage": "mochify --transform [ babelify ] --plugin [ mochify-istanbul --exclude '**/+(tests|node_modules|libs)/**/*' --report lcov --dir ./coverage --instrumenter babel-istanbul] --reporter spec --recursive ./tests/js/web/index ./tests/js/web/*Test.js",
+    "coverage": "mochify --transform [ babelify ] --plugin [ mochify-istanbul --exclude '**/+(tests|node_modules|libs)/**/*' --report lcov --dir ./coverage --instrumenter babel-istanbul] --reporter spec ./tests/js/web/index './tests/js/web/**/*Test.js'",
     "test": "npm run web-test",
     "web-test": "mochify --reporter spec --transform [ babelify ] ./tests/js/web/index './tests/js/web/**/*Test.js'"
   },
@@ -24,6 +23,7 @@
     "browserify-istanbul": "^2.0.0",
     "browserify-shim": "^3.8.9",
     "chai": "^1.9.2",
+    "chai-dom": "^1.6.0",
     "chai-hiff": "^1.0.0",
     "datatables.net": "^1.10.11",
     "datatables.net-buttons": "^1.1.2",
@@ -33,6 +33,7 @@
     "datatables.net-responsive-dt": "^2.0.0",
     "datatables.net-select": "^1.1.2",
     "datatables.net-select-dt": "^1.1.2",
+    "dom4": "^1.8.5",
     "grunt": "^0.4.5",
     "grunt-asciify": "^0.2.2",
     "grunt-autoprefixer": "^3.0.4",
@@ -72,7 +73,7 @@
     "phpruntime": "^5.0.0",
     "phptoast": "^3.17.0",
     "phptojs": "^3.16.0",
-    "sinon": "^1.17.3",
+    "sinon": "^2.4.1",
     "sinon-chai": "^2.8.0",
     "sinon-jquery": "^1.0.2",
     "twig": "^0.9.4",

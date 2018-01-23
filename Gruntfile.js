@@ -95,6 +95,20 @@ module.exports = function(grunt) {
                     extDot: 'first',
                     src:    'pulsar-ie*.scss'
                 }]
+            },
+            lexicon: {
+                options: {
+                    outputStyle: 'nested',
+                    sourceMap: true
+                },
+                files: [{
+                    cwd: 'stylesheets/lexicon/',
+                    dest:   'css/',
+                    expand: true,
+                    ext:    '.css',
+                    extDot: 'first',
+                    src:    '*.scss'
+                }]
             }
         },
 
@@ -145,7 +159,7 @@ module.exports = function(grunt) {
 
         scsslint: {
             allFiles: [
-                'stylesheets/*.scss',
+                'stylesheets/**/*.scss',
             ],
             options: {
                 config: '.scss-lint.yml',
@@ -156,10 +170,7 @@ module.exports = function(grunt) {
         watch: {
             css: {
                 files: ['stylesheets/**/*.scss'],
-                tasks: ['sass:dev', 'autoprefixer', 'bless:css'],
-                options: {
-                    livereload: true,
-                },
+                tasks: ['sass:dev', 'sass:lexicon', 'autoprefixer', 'bless:css']
             },
             scsslint: {
                 files: 'stylesheets/**/*.scss',
@@ -531,7 +542,6 @@ module.exports = function(grunt) {
             'docs/**/*.php',
             'css/**/*',
             'js/**/*',
-            'lexicon/**/*',
             'src/**/*',
             'stylesheets/**/*',
             'tests/**/*',
@@ -544,6 +554,7 @@ module.exports = function(grunt) {
         'scsslint',
         'replace',
         'sass:dev',
+        'sass:lexicon',
         'autoprefixer',
         'bless',
         'browserify:dev',
