@@ -1,0 +1,69 @@
+.table-detail {
+    background: color(white);
+    border-left: 1px solid $modal-header-border-color;
+    height: 100%;
+    position: absolute;
+    right: -600px;
+    top: 0;
+    transform: translate3d(-100%, 0, 0);
+    transition: all .2s;
+    visibility: visible;
+    width: 300px;
+    z-index: $zindex-modal;
+
+    @include respond-min($screen-xsmall) {
+    	right: -800px;
+    	width: 400px;
+    }
+
+    @include respond-min($screen-smaller) {
+    	right: -1000px;
+    	width: 500px;
+    }
+
+    @include respond-min($screen-tablet) {
+    	right: -1200px;
+    	width: 600px;
+    }
+
+    &.table-detail--open {
+	    right: 0;
+	    transform: translate3d(0, 0, 0);
+	}
+}
+
+.table-detail__header {
+    border-bottom: 1px solid $modal-header-border-color;
+    padding: $modal-title-padding;
+}
+
+.table-detail__header-close {
+    margin-top: -2px;
+}
+
+.table-detail__title {
+    line-height: $modal-title-line-height;
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.table-detail-backdrop {
+    background: $modal-backdrop-bg;
+    height: 0;
+    opacity: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    transition: opacity .5s, width .1s .5s, height .1s .5s;
+    width: 0;
+    z-index: ($zindex-modal - 10);
+
+    &.in {
+		height: 100%;
+		opacity: .5;
+		transition: opacity .2s;
+		width: 100%;
+    }
+}
