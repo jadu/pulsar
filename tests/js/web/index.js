@@ -4,13 +4,18 @@
 var $ = require('jquery'),
     chai = require('chai'),
     sinon = require('sinon'),
-    sinonChai = require('sinon-chai');
+    sinonChai = require('sinon-chai'),
+    chaiDom = require('chai-dom');
+
+// Polyfill the DOM Level 4 API
+require('dom4');
 
 // Expose jQuery globals
 window.$ = window.jQuery = $;
 
-// Load Sinon-Chai
+// Load chai extensions
 chai.use(sinonChai);
+chai.use(chaiDom);
 
 mocha.timeout(2000);
 

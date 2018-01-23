@@ -7,7 +7,7 @@ fieldset {
 .form {
     background-color: color(white);
 
-    > fieldset {
+    fieldset {
         padding: 22px 0;
 
         legend {
@@ -54,7 +54,7 @@ fieldset {
     border-radius: $input-border-radius;
     height: $input-height-base;
     line-height: $input-height-base;
-    padding: 0 $padding-base-horizontal;
+    padding: 0 0 0 $padding-base-horizontal;
 
     @include respond-min($screen-tablet) {
         .has-changed &.file,

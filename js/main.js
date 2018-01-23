@@ -23,6 +23,11 @@
     pulsar.navMain = new pulsar.NavMainComponent($html, window);
     pulsar.filterBar = new pulsar.FilterBarComponent($html);
     pulsar.tableDetail = new pulsar.TableDetailComponent($html);
+    pulsar.repeaterManager = new pulsar.RepeaterManagerComponent(
+        pulsar.pulsarForm,
+        pulsar.repeaterComponentFactory,
+        $html
+    );
 
     $(function () {
         pulsar.button.init();
@@ -39,7 +44,7 @@
         pulsar.filterBar.init();
         pulsar.disableUi.init();
         pulsar.dropZoneComponent = pulsar.DropZoneComponentFactory.create($('body')[0], '.dropzone');
-        pulsar.tableDetail.init();
+        pulsar.repeaterManager.init();
 
         // Switch out .svg for .png for <img> elements in older browsers
         pulsar.svgeezy.init('nocheck', 'png');
