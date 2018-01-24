@@ -59,16 +59,11 @@ a.dt-button {
 }
 
 .dt-buttons > button {
-    margin-right: $margin-base-vertical;
-}
-
-button.dt-button {
     background-color: transparent;
-    border-bottom: 0;
-    border-left: 0;
+    border: 0;
     border-right: 1px solid color(border);
-    border-top: 0;
     color: color(jadu-blue, dark);
+    margin-right: $margin-base-vertical;
 
     &:hover {
         color: color(jadu-blue, darkest);
