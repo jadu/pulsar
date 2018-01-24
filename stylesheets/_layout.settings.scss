@@ -6,7 +6,7 @@
     @include clear-fix(true);
 
     background-color: color(background);
-    margin: ($padding-large-vertical * 2) (($padding-small-horizontal * 2) * -1);
+    margin: ($margin-large-vertical * 2) (($margin-small-horizontal * 2) * -1);
     padding: ($padding-large-vertical * 2) ($padding-small-horizontal * 2);
 
     @include respond-min($screen-small) {
