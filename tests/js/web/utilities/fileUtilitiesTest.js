@@ -2,10 +2,11 @@ const {
     filterFileExtensionList,
     filterFileExtension,
     filterDataEncodedURIList,
-    filterDataEncodedURI
-} = require('../../../../js/utilities/filterFiles');
+    filterDataEncodedURI,
+    getFileExtension
+} = require('../../../../js/utilities/fileUtilities');
 
-describe('filterByFileExtension', () => {
+describe('fileUtilities', () => {
     const files = [
         'file.js?v1=true',
         'file.html',
@@ -89,6 +90,20 @@ describe('filterByFileExtension', () => {
 
         it('should filter a list by exclusion', () => {
             expect(filterDataEncodedURI('data:image/png', false)).to.be.false;
+        });
+    });
+
+    describe('getFileExtension', () => {
+        it('should return a file extension', () => {
+            expect(getFileExtension('foo.js')).to.equal('js');
+        });
+
+        it('should return null for non files', () => {
+            expect(getFileExtension('not a file')).to.be.false;
+        });
+
+        it('should handle files with query params', () => {
+            expect(getFileExtension('foo.js?ver=666')).to.equal('js');
         });
     });
 });
