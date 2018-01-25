@@ -2,7 +2,7 @@
  * A higher order function responsible for creating file extension
  * filter functions based on inclusion
  * @param inclusive
- * @returns {function(Array<string>, string)}
+ * @returns {function}
  */
 function filterByFileExtensionFactory (inclusive) {
     return (list, ext) => {
@@ -31,6 +31,23 @@ function filterByFileExtensionFactory (inclusive) {
 }
 
 /**
+ * A higher order function to create a filter
+ * to identify data encoded images
+ * @param inclusive {boolean}
+ * @returns {function}
+ */
+function filterByDataEncodedURIFactory (inclusive) {
+    return (str) => {
+        // check for strings starting with 'data:'
+        const re = new RegExp(/^data:/);
+        const test = re.exec(str);
+
+        // return a boolean based on inclusion
+        return (test !== null && test[0] !== undefined) === inclusive;
+    }
+}
+
+/**
  * Filter a file list by extensions
  * @param list {Array<string>}
  * @param extension {string} a space separated extension list
@@ -55,7 +72,29 @@ const filterFileExtension = (file, extension, inclusive = true) => {
     return filterByFileExtensionFactory(inclusive)(extension.split(' '), file);
 }
 
+/**
+ * Filter a list of strings by data URI images
+ * @param list {Array<string>}
+ * @param inclusive {boolean}
+ * @returns {Array<string>}
+ */
+const filterDataEncodedURIList = (list, inclusive = true) => {
+    return list.filter(filterByDataEncodedURIFactory(inclusive));
+}
+
+/**
+ * Filter a list of strings by data URI images
+ * @param str {string}
+ * @param inclusive {boolean}
+ * @returns {boolean}
+ */
+const filterDataEncodedURI = (str, inclusive = true) => {
+    return filterByDataEncodedURIFactory(inclusive)(str);
+}
+
 module.exports = {
     filterFileExtensionList,
-    filterFileExtension
+    filterFileExtension,
+    filterDataEncodedURIList,
+    filterDataEncodedURI
 };

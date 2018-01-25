@@ -1,4 +1,9 @@
-const { filterFileExtensionList, filterFileExtension } = require('../../../../js/utilities/filterByFileExtension');
+const {
+    filterFileExtensionList,
+    filterFileExtension,
+    filterDataEncodedURIList,
+    filterDataEncodedURI
+} = require('../../../../js/utilities/filterFiles');
 
 describe('filterByFileExtension', () => {
     const files = [
@@ -55,6 +60,35 @@ describe('filterByFileExtension', () => {
 
         it('should support multiple file extensions', () => {
             expect(filterFileExtension('index.html', 'js html')).to.be.true;
+        });
+    });
+
+    describe('filterDataEncodedURIList', () => {
+        const list = [
+            'data:image/png;base64;SOME_IMAGE',
+            'not a data encoded URI'
+        ];
+
+        it('should filter a list by inclusion', () => {
+            expect(filterDataEncodedURIList(list)).to.deep.equal([
+                'data:image/png;base64;SOME_IMAGE'
+            ]);
+        });
+
+        it('should filter a list by exclusion', () => {
+            expect(filterDataEncodedURIList(list, false)).to.deep.equal([
+                'not a data encoded URI'
+            ]);
+        });
+    });
+
+    describe('filterDataEncodedURI', () => {
+        it('should filter a list by inclusion', () => {
+            expect(filterDataEncodedURI('data:image/png')).to.be.true;
+        });
+
+        it('should filter a list by exclusion', () => {
+            expect(filterDataEncodedURI('data:image/png', false)).to.be.false;
         });
     });
 });
