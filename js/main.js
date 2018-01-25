@@ -13,16 +13,16 @@
     pulsar.button = new pulsar.ButtonComponent($html);
     pulsar.disableUi = new pulsar.DisableUiComponent($html);
     pulsar.flash = new pulsar.FlashMessageComponent($html);
+    pulsar.filterBar = new pulsar.FilterBarComponent($html);
     pulsar.helpText = new pulsar.HelpTextComponent($html, window, document);
+    pulsar.masterSwitch = new pulsar.MasterSwitchComponent($html, pulsar.disableUi);
+    pulsar.modulePermissions = new pulsar.ModulePermissionsComponent($html);
+    pulsar.navMain = new pulsar.NavMainComponent($html, window);
+    pulsar.passwordStrengthChecker = new pulsar.PasswordStrengthChecker($html);
     pulsar.pulsarForm = new pulsar.PulsarFormComponent($html);
     pulsar.pulsarUI = new pulsar.PulsarUIComponent($html, pulsar.history);
     pulsar.pulsarSortable = new pulsar.PulsarSortableComponent($html, window);
     pulsar.signIn = new pulsar.SignInComponent($html);
-    pulsar.masterSwitch = new pulsar.MasterSwitchComponent($html, pulsar.disableUi);
-	pulsar.modulePermissions = new pulsar.ModulePermissionsComponent($html);
-    pulsar.navMain = new pulsar.NavMainComponent($html, window);
-    pulsar.filterBar = new pulsar.FilterBarComponent($html);
-    pulsar.passwordStrengthChecker = new pulsar.PasswordStrengthChecker();
 
     $(function () {
         pulsar.button.init();
