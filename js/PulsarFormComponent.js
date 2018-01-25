@@ -6,7 +6,6 @@ var $ = require('jquery'),
 require('../libs/pikaday/plugins/pikaday.jquery');
 require('../libs/select2/dist/js/select2.min');
 require('../libs/spectrum/spectrum');
-// require('../js/PasswordStrengthChecker/PasswordStrengthCheckerComponent.js');
 
 function PulsarFormComponent(html) {
     this.$html = html;
@@ -18,62 +17,6 @@ PulsarFormComponent.prototype.init = function () {
 
     // Colourpickers
     component.initColourpickers();
-
-    // // Initialize Password Strength Meters
-    // this.$html.find('#password__meter').password({
-    //     shortPass: 'The password is too short',
-    //     badPass: 'Weak: try combining letters & numbers',
-    //     goodPass: 'Medium: try using special charecters',
-    //     strongPass: 'Strong password',
-    //     enterPass: 'Type your password',
-    //     showCriteria: true,
-    //     criteriaPosition: 'up',
-    //     showPercent: false,
-    //     showText: true,
-    //     animate: true,
-    //     animateSpeed: 'fast',
-    //     username: false,
-    //     usernamePartialMatch: false,
-    //     minimumLength: 8,
-    //     showCommonPasswords: false
-    // });
-
-    // this.$html.find('#password__metertoggle').password({
-    //     shortPass: 'The password is too short',
-    //     badPass: 'Weak: try combining letters & numbers',
-    //     goodPass: 'Medium: try using special charecters',
-    //     strongPass: 'Strong password',
-    //     enterPass: 'Type your password',
-    //     showCriteria: false,
-    //     criteriaPosition: 'down',
-    //     showPercent: true,
-    //     showText: false,
-    //     animate: true,
-    //     animateSpeed: 'fast',
-    //     username: false,
-    //     usernamePartialMatch: false,
-    //     minimumLength: 8,
-    //     showCommonPasswords: false
-    // });
-
-    // this.$html.find('#password__metertoggle-2').password({
-    //     shortPass: 'The password is too short',
-    //     badPass: 'Weak: try combining letters & numbers',
-    //     goodPass: 'Medium: try using special charecters',
-    //     strongPass: 'Strong password',
-    //     enterPass: 'Type your password',
-    //     showCriteria: true,
-    //     criteriaPosition: 'down',
-    //     showPercent: false,
-    //     showText: false,
-    //     animate: true,
-    //     animateSpeed: 'fast',
-    //     username: false,
-    //     usernamePartialMatch: false,
-    //     minimumLength: 8,
-    //     showCommonPasswords: true,
-    //     commonPasswordsList: 'Admin123$'
-    // });
 
     // Attach basic pikaday to datepicker fields
     this.$html.find('[data-datepicker=true]').pikaday({
@@ -119,12 +62,6 @@ PulsarFormComponent.prototype.init = function () {
 
     // choice block click behaviour
     choiceBlock.on('change', '.controls input[type="checkbox"], .controls input[type="radio"]', component.selectionButtons);
-
-    // Bind onClick Events for Hide/Show Text & Eye Icon Toggle
-    // this.$html.find('#password__icontoggle__btn').on('click', { input : '#password__icontoggle', buttonIcon : '#password__icontoggle__btn i' }, $.fn.togglePasswordVisibility);
-    // this.$html.find('#password__texttoggle__btn').on('click', { input : '#password__texttoggle', button : '#password__texttoggle__btn' }, $.fn.togglePasswordVisibility);
-    // this.$html.find('#password__metertoggle__btn').on('click', { input : '#password__metertoggle', buttonIcon : '#password__metertoggle__btn i' }, $.fn.togglePasswordVisibility);
-    // this.$html.find('#password__metertoggle__btn-2').on('click', { input : '#password__metertoggle-2', button : '#password__metertoggle__btn-2' }, $.fn.togglePasswordVisibility);
 
     // initialise tinepickers
     var $timePickers = this.$html.find('[data-timepicker=true]');
