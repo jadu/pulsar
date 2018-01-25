@@ -1,0 +1,3 @@
+// Favicon with a circle notification, radius: 10, color: red
+
+module.exports = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAArklEQVRYR2P8ukz5PwMNAdO17wxs694xMD38Bbblnzwbw68gIYZ/WpxgPiMtHcC69h0D69r3WL33O1iQ4XewEO0cAPI5R8szvGH7o0aKdg7gaH7KwHT9B14H/NPkoJ0DuFLuMzB8+4c/dXEzDbADuGjogAGPggFPhKDIH9BsCEt94IJoLVpBFEyngoiYApamJeGoA0ZDYDQERkNgNARGQ2A0BEZDYDQERkOAmBAAACMWjtrmAk6hAAAAAElFTkSuQmCC';

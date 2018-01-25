@@ -1,4 +1,4 @@
-const { filterFileExtension } = require('../utilities/filterByFileExtension');
+const { filterFileExtension, filterDataEncodedURI } = require('../utilities/filterFiles');
 
 class FaviconEditor {
     /**
@@ -15,16 +15,34 @@ class FaviconEditor {
          * Root element for favicon queries
          * @type {HTMLElement}
          */
-        this.root = root;
+        this.root = root
+
+        /**
+         * A serializer function that can be overwritten using
+         * the public API, this is for altering the return data type
+         * from the update methods
+         * @param canvas {HTMLElement}
+         * @param ctx {CanvasRenderingContext2D}
+         * @param originalImage {HTMLElement}
+         */
+        this.serializer = (canvas, ctx, originalImage) => canvas.toDataURL('image/png');
+    }
+
+    /**
+     * Override the canvas serializer function
+     * @param serializer {function}
+     */
+    setSerializer (serializer) {
+        this.serializer = serializer;
     }
 
     /**
      * Initiate service
      */
-    async init () {
+    init () {
         // Get favicon nodes from DOM
         this.favicons = [].slice.call(this.root.querySelectorAll('[rel*="icon"]'))
-            .map(node => ({node, cachedHref: node.href}));
+            .map(node => ({ node, cachedHref: node.href }));
     }
 
     /**
@@ -35,9 +53,10 @@ class FaviconEditor {
     async update (customGraphics) {
         const setupPromises = [];
         let favicons;
+        let data;
 
         this.favicons.forEach(({ node }) => {
-            if (filterFileExtension(node.href, 'ico png')) {
+            if (filterFileExtension(node.href, 'ico png') || filterDataEncodedURI(node.href)) {
                 setupPromises.push(this.setup(node));
             }
         });
@@ -45,24 +64,39 @@ class FaviconEditor {
         try {
             favicons = await Promise.all(setupPromises);
         } catch (error) {
-
+            favicons = [];
         }
 
-        favicons.forEach(({ canvas, image, node }) => {
-            node.href = this.draw(canvas, image, customGraphics);
-        });
+
+        for (let index = 0; index < favicons.length; index++) {
+            const { node, canvas, image } = favicons[index];
+            const uri = this.draw(canvas, image, customGraphics);
+
+            // assign the uri to data so we can return the new
+            // favicon data uri
+            if (!index) {
+                data = uri;
+            }
+
+            node.href = uri;
+        }
+
+        return data;
     }
 
     /**
      * Add a circle to the top right of the favicon
      * @param color {string}
      * @param size {number}
+     * @returns {Promise<string>}
      */
     async addCircleNotification (color, size = 6) {
+        const radius = size / 2;
+
         return await this.update((canvas, ctx) => {
             ctx.fillStyle = color;
             ctx.beginPath();
-            ctx.arc(canvas.width - size, size, size, 0, 2 * Math.PI);
+            ctx.arc(canvas.width - radius, radius, radius, 0, 2 * Math.PI);
             ctx.fill();
         });
     }
@@ -72,9 +106,10 @@ class FaviconEditor {
      * the callback will receive the canvas and context as
      * arguments
      * @param customGraphics {function}
+     * @returns {Promise<string>}
      */
-    addCustomNotification (customGraphics) {
-        this.update(customGraphics);
+    async addCustomNotification (customGraphics) {
+        return await this.update(customGraphics);
     }
 
     /**
@@ -84,16 +119,21 @@ class FaviconEditor {
     setup (faviconNode) {
         // Create an image from our favicon
         const favicon = document.createElement('img');
+
         // Create canvas
         const canvas = document.createElement('canvas');
+
+        favicon.crossOrigin = '';
 
         return new Promise((resolve, reject) => {
             // Wait for our favicon to load
             favicon.addEventListener('load', event => {
+
                 resolve({ canvas, image: event.target, node: faviconNode });
             });
 
-            favicon.addEventListener('error', reject)
+            favicon.addEventListener('error', reject);
+
 
             favicon.src = faviconNode.href;
         });
@@ -118,9 +158,9 @@ class FaviconEditor {
         // Add graphics
         customGraphics(canvas, ctx);
 
-        // TODO: derive type from source
+        // TODO: derive mime type from source
         // Return data URL of canvas
-        return canvas.toDataURL('image/png');
+        return this.serializer(canvas, ctx, favicon);
     }
 
     /**
