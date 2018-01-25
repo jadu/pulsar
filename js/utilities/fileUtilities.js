@@ -1,32 +1,44 @@
 /**
+ * Get a file extension from a string
+ * @param file {string}
+ * @returns {boolean}
+ */
+function getFileExtension (file) {
+    const ext = file.split('.');
+
+    // extensions that are not files, you shall not pass
+    if (ext.length < 2) {
+        return false;
+    }
+
+    // strip query strings from our extension
+    const re = new RegExp(/^[a-z0-9\-]+/);
+    const test = re.exec(ext.pop());
+    const fileExt = test[0];
+
+    // return false for anything we deem not to be a file
+    return fileExt !== undefined ? fileExt : false;
+}
+
+/**
  * A higher order function responsible for creating file extension
  * filter functions based on inclusion
- * @param inclusive
+ * @param inclusive {boolean}
+ * @param getExt {function}
  * @returns {function}
  */
-function filterByFileExtensionFactory (inclusive) {
-    return (list, ext) => {
-        const file = ext.split('.');
+function filterByFileExtensionFactory (inclusive, getExt) {
+    return (list, file) => {
+        const ext = getExt(file);
 
-        // extensions that are not files, you shall not pass
-        if (file.length < 2) {
-            return false;
-        }
-
-        // strip query strings from our extension
-        const re = new RegExp(/^[a-z0-9\-]+/);
-        // test against the last '.(ext)'
-        const test = re.exec(file.pop());
-        const fileExt = test[0];
-
-        // return false for anything we deem not to be a file
-        if (fileExt === undefined) {
+        // Return a falsy value if we do not have a file
+        if (!ext) {
             return false;
         }
 
         // return a boolean based on presence in the list
         // and the inclusion/exclusion option
-        return (list.indexOf(fileExt) !== -1) === inclusive;
+        return (list.indexOf(getExt(file)) !== -1) === inclusive;
     }
 }
 
@@ -56,7 +68,7 @@ function filterByDataEncodedURIFactory (inclusive) {
  */
 const filterFileExtensionList = (list, extension, inclusive = true) => {
     // create filter function
-    const fileFilter = filterByFileExtensionFactory(inclusive);
+    const fileFilter = filterByFileExtensionFactory(inclusive, getFileExtension);
     // split extension list argument and filter
     return list.filter(fileFilter.bind(null, extension.split(' ')));
 }
@@ -69,7 +81,7 @@ const filterFileExtensionList = (list, extension, inclusive = true) => {
  * @returns {boolean}
  */
 const filterFileExtension = (file, extension, inclusive = true) => {
-    return filterByFileExtensionFactory(inclusive)(extension.split(' '), file);
+    return filterByFileExtensionFactory(inclusive, getFileExtension)(extension.split(' '), file);
 }
 
 /**
@@ -96,5 +108,6 @@ module.exports = {
     filterFileExtensionList,
     filterFileExtension,
     filterDataEncodedURIList,
-    filterDataEncodedURI
+    filterDataEncodedURI,
+    getFileExtension
 };
