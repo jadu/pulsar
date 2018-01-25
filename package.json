@@ -8,8 +8,12 @@
   "scripts": {
     "start": "vagrant reload && grunt",
     "coverage": "mochify --transform [ babelify ] --plugin [ mochify-istanbul --exclude '**/+(tests|node_modules|libs)/**/*' --report lcov --dir ./coverage --instrumenter babel-istanbul] --reporter spec ./tests/js/web/index './tests/js/web/**/*Test.js'",
-    "test": "npm run web-test",
-    "web-test": "mochify --reporter spec --transform [ babelify ] ./tests/js/web/index './tests/js/web/**/*Test.js'"
+    "test": "npm run phantom-test",
+    "build:tests": "grunt javascript:tests",
+    "build:tests:watch": "grunt javascript:tests:watch",
+    "test:phantom": "mochify --reporter spec --transform [ babelify ] ./tests/harness/common './tests/js/web/**/*Test.js'",
+    "test:browser": "npm run build:tests",
+    "test:browser:watch": "npm run build:tests:watch"
   },
   "devDependencies": {
     "aliasify": "^1.9.0",
@@ -67,13 +71,12 @@
     "matchdep": "^1.0.1",
     "minifyify": "^6.3.0",
     "mocha": "^2.4.5",
-    "mocha-phantomjs": "^4.0.2",
-    "mochify": "~2.18.1",
+    "mochify": "^5.2.0",
     "mochify-istanbul": "^2.4.2",
-    "phantomjs": "2.1.1",
     "phpruntime": "^5.0.0",
     "phptoast": "^3.17.0",
     "phptojs": "^3.16.0",
+    "require-globify": "^1.4.1",
     "sinon": "^2.4.1",
     "sinon-chai": "^2.8.0",
     "sinon-jquery": "^1.0.2",

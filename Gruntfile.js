@@ -39,6 +39,23 @@ module.exports = function(grunt) {
                         'uglifyify'
                     ]
                 }
+            },
+            browserTests: {
+                files: {
+                    'dist/js/bundle.js': ['js/index.js'],
+                    'dist/js/browser.test.js': ['tests/harness/browser.js']
+                },
+                options: {
+                    browserifyOptions: {
+                        standalone: 'pulsar',
+                        debug: true
+                    },
+                    transform: [
+                        ['babelify', { presets: ['es2015'] } ],
+                        ['aliasify', { global: true }],
+                        ['require-globify']
+                    ]
+                }
             }
         },
 
@@ -179,6 +196,10 @@ module.exports = function(grunt) {
             js: {
                 files: ['js/**/*.js', 'tests/js/**/*', 'package.json'],
                 tasks: ['browserify:dev']
+            },
+            tests: {
+                files: ['js/**/*.js', 'tests/**/*.js'],
+                tasks: ['browserify:browserTests']
             }
         },
 
@@ -616,6 +637,15 @@ module.exports = function(grunt) {
     grunt.registerTask('validate', [
         'casperjs',
         'validation'
+    ]);
+
+    grunt.registerTask('javascript:tests', [
+        'browserify:browserTests',
+    ]);
+
+    grunt.registerTask('javascript:tests:watch', [
+        'browserify:browserTests',
+        'watch:tests'
     ]);
 
     // load all grunt tasks

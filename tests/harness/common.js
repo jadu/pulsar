@@ -1,4 +1,3 @@
-/*global mocha, mochaPhantomJS, sinon:true, window */
 'use strict';
 
 var $ = require('jquery'),
@@ -10,14 +9,14 @@ var $ = require('jquery'),
 // Polyfill the DOM Level 4 API
 require('dom4');
 
+require('babel-polyfill');
+
 // Expose jQuery globals
 window.$ = window.jQuery = $;
 
 // Load chai extensions
 chai.use(sinonChai);
 chai.use(chaiDom);
-
-mocha.timeout(2000);
 
 // Expose tools in the global scope
 window.chai = chai;
