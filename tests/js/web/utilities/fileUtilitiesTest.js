@@ -105,5 +105,9 @@ describe('fileUtilities', () => {
         it('should handle files with query params', () => {
             expect(getFileExtension('foo.js?ver=666')).to.equal('js');
         });
+
+        it('should handle data encoded urls', () => {
+            expect(getFileExtension('data:image/png;base64')).to.equal('png');
+        });
     });
 });

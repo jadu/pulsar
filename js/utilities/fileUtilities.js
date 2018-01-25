@@ -6,9 +6,13 @@
 function getFileExtension (file) {
     const ext = file.split('.');
 
-    // extensions that are not files, you shall not pass
+    // extensions that are not files, you shall not pass. (unless you are a data encoded URL)
     if (ext.length < 2) {
-        return false;
+        // extract mime from data encoded string
+        const re = new RegExp(/^data:image\/([a-z\-]+)/, 'i');
+        const test = re.exec(file);
+
+        return test !== null && test[1] !== undefined ? test[1] : false;
     }
 
     // strip query strings from our extension
