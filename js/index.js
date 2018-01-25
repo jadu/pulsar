@@ -20,12 +20,12 @@ var $                     = require('jquery'),
     matchMediaAddListener = require('./polyfills/matchMedia.addListener'),
 
     clickover = require('../libs/bootstrapx-clickover/js/bootstrapx-clickover'),
+    countdown = require('../libs/jquery.countdown/dist/jquery.countdown.min'),
     history   = require('../libs/history.js/scripts/bundled/html5/jquery.history'),
     jqueryui  = require('../libs/jquery-ui/jquery-ui.min'),
-    countdown = require('../libs/jquery.countdown/dist/jquery.countdown.min'),
     pikaday   = require('../libs/pikaday/plugins/pikaday.jquery'),
-    svgeezy   = require('../libs/svgeezy/svgeezy.min'),
     select2   = require('../libs/select2/dist/js/select2.min'),
+    svgeezy   = require('../libs/svgeezy/svgeezy.min'),
     tinycon   = require('../libs/tinyicon/tinycon.min'),
 
     dt            = require('datatables.net')(window, $),
@@ -35,18 +35,18 @@ var $                     = require('jquery'),
 
     ButtonComponent = require('./ButtonComponent'),
     DisableUiComponent = require('./DisableUiComponent'),
-    HelpTextComponent = require('./HelpTextComponent'),
+    DropZoneComponentFactory = require('./DropZone/DropZoneComponentFactory'),
     FilterBarComponent = require('./FilterBarComponent'),
     FlashMessageComponent = require('./FlashMessageComponent'),
+    HelpTextComponent = require('./HelpTextComponent'),
     MasterSwitchComponent = require('./MasterSwitchComponent'),
     ModulePermissionsComponent = require('./ModulePermissionsComponent'),
     NavMainComponent = require('./NavMainComponent'),
+    PasswordStrengthChecker = require('./PasswordStrengthChecker/PasswordStrengthCheckerComponent'),
     PulsarFormComponent = require('./PulsarFormComponent'),
     PulsarUIComponent = require('./PulsarUIComponent'),
     PulsarSortableComponent = require('./PulsarSortableComponent'),
-    SignInComponent = require('./area/signin/signin'),
-    DropZoneComponentFactory = require('./DropZone/DropZoneComponentFactory'),
-    PasswordStrengthChecker = require('./PasswordStrengthChecker/PasswordStrengthCheckerComponent');
+    SignInComponent = require('./area/signin/signin');
 
     require('jstree');
 
@@ -54,17 +54,17 @@ module.exports = {
     ButtonComponent,
     DropZoneComponentFactory,
     DisableUiComponent,
-    HelpTextComponent,
     FilterBarComponent,
     FlashMessageComponent,
+    HelpTextComponent,
+    history,
     MasterSwitchComponent,
     ModulePermissionsComponent,
     NavMainComponent,
+    PasswordStrengthChecker,
     PulsarFormComponent,
     PulsarUIComponent,
     PulsarSortableComponent,
     SignInComponent,
-    history,
-    svgeezy,
-    PasswordStrengthChecker
+    svgeezy
 };
