@@ -102,7 +102,7 @@ class FaviconEditor {
      * @param size {number}
      * @returns {Promise<string>}
      */
-    async addCircleNotification (color, size = 6) {
+    async addCircleNotification (color, size = 10) {
         const radius = size / 2;
 
         return await this.update((canvas, ctx) => {
