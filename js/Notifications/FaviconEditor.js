@@ -135,19 +135,18 @@ class FaviconEditor {
         // Create canvas
         const canvas = document.createElement('canvas');
 
+        // Side step issues with CORs and "tainted" canvases
         favicon.crossOrigin = '';
 
         return new Promise((resolve, reject) => {
+            favicon.src = faviconNode.href;
+
             // Wait for our favicon to load
             favicon.addEventListener('load', event => {
-
                 resolve({ canvas, image: event.target, node: faviconNode });
             });
 
             favicon.addEventListener('error', reject);
-
-
-            favicon.src = faviconNode.href;
         });
     }
 
