@@ -1,4 +1,4 @@
-const { filterFileExtension, filterDataEncodedURI } = require('../utilities/filterFiles');
+const { filterFileExtension, filterDataEncodedURI, getFileExtension } = require('../utilities/fileUtilities');
 
 class FaviconEditor {
     /**
@@ -7,7 +7,7 @@ class FaviconEditor {
     constructor (root) {
         /**
          * <link/> references
-         * @type {Array<{ node: HTMLElement, cachedHref: string }>}
+         * @type {Array<{ node: HTMLLinkElement, cachedHref: string }>}
          */
         this.favicons = [];
 
@@ -21,11 +21,23 @@ class FaviconEditor {
          * A serializer function that can be overwritten using
          * the public API, this is for altering the return data type
          * from the update methods
-         * @param canvas {HTMLElement}
+         * @param canvas {HTMLCanvasElement}
          * @param ctx {CanvasRenderingContext2D}
-         * @param originalImage {HTMLElement}
+         * @param originalImage {HTMLImageElement}
          */
-        this.serializer = (canvas, ctx, originalImage) => canvas.toDataURL('image/png');
+        this.serializer = (canvas, ctx, originalImage) => {
+            const ext = getFileExtension(originalImage.src);
+
+            // If we can derive an extension from the file
+            // we will assume the mime type. If we cannot get
+            // an extension we will return the original favicon
+            // src in order the gracefully degrade
+            if (ext) {
+                return canvas.toDataURL(`image/${ext}`);
+            } else {
+                return originalImage.src;
+            }
+        }
     }
 
     /**
@@ -114,7 +126,7 @@ class FaviconEditor {
 
     /**
      * Setup an in-memory canvas
-     * @param faviconNode {HTMLElement}
+     * @param faviconNode {HTMLLinkElement}
      */
     setup (faviconNode) {
         // Create an image from our favicon
@@ -141,8 +153,8 @@ class FaviconEditor {
 
     /**
      * Draw favicon on a canvas
-     * @param canvas {HTMLElement}
-     * @param favicon {HTMLElement}
+     * @param canvas {HTMLCanvasElement}
+     * @param favicon {HTMLImageElement}
      * @param customGraphics {function}
      */
     draw (canvas, favicon, customGraphics) {
@@ -158,8 +170,8 @@ class FaviconEditor {
         // Add graphics
         customGraphics(canvas, ctx);
 
-        // TODO: derive mime type from source
-        // Return data URL of canvas
+        // pass canvas, ctx & favicon image node to our
+        // serializer function
         return this.serializer(canvas, ctx, favicon);
     }
 
