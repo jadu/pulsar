@@ -6,9 +6,6 @@ var $ = require('jquery'),
     sinonChai = require('sinon-chai'),
     chaiDom = require('chai-dom');
 
-// Polyfill the DOM Level 4 API
-require('dom4');
-
 require('babel-polyfill');
 
 // Expose jQuery globals
