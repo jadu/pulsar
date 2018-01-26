@@ -1,8 +1,8 @@
 const FaviconEditor = require('../../../../js/Notifications/FaviconEditor');
 const $ = require('jquery');
 const vanillaFavicon = require('./fixtures/favicon');
-const redCircleFavicon = require('./fixtures/faviconWithCricleNotification?radius=10&color=red');
-const customFavicon = require('./fixtures/faviconWithCustom?text=TEST');
+const faviconWithRedCircle = require('./fixtures/faviconWithRedCircle?radius=10&color=red');
+const faviconWithCustomText = require('./fixtures/faviconWithCustom?text=TEST');
 
 describe('FaviconEditor', () => {
     let faviconEditor;
@@ -79,7 +79,7 @@ describe('FaviconEditor', () => {
 
                 faviconEditor.addCircleNotification('red', 10)
                     .then((data) => {
-                        expect(data).to.equal(redCircleFavicon);
+                        expect(data).to.equal(faviconWithRedCircle);
                         done();
                     })
                     .catch(done);
@@ -105,7 +105,7 @@ describe('FaviconEditor', () => {
                         ctx.fillText('TEST', canvas.width / 2, canvas.height / 2);
                     })
                     .then(data => {
-                        expect(data).to.deep.equal(customFavicon);
+                        expect(data).to.deep.equal(faviconWithCustomText);
                         done();
                     })
                     .catch(done);
