@@ -29,6 +29,9 @@ after_success:
   - grunt deploy
   - bash <(curl -s https://codecov.io/bash)
 
+addons:
+  chrome: stable
+
 deploy:
   provider: releases
   api_key:
