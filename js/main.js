@@ -82,7 +82,7 @@
 
         // NOTIFICATIONS DEBUG, PLS REMOVE, THX
         var $updateNotificationColour = $('#update-notification-colour'),
-            $resetNotification = $('#reset-notification');
+            $resetNotification = $('#notification-reset');
 
         if ($updateNotificationColour.length) {
             $updateNotificationColour.on('click', function (event) {
