@@ -13,7 +13,7 @@ class TableDetailComponent {
      * Initialise
      */
     init () {
-        if (typeof this.$html === 'undefined' || !this.$html) {
+        if (typeof this.$html === 'undefined' || !this.$html.length) {
             throw new Error('$html must be passed to TableDetailComponent');
         }
 
@@ -30,7 +30,7 @@ class TableDetailComponent {
         this.$table = this.$html.find('[data-table-detail-table]');
 
         // Add backdrop and detail panel if UI contains a table detail pattern
-        if (this.$table) {
+        if (this.$table.length) {
             this.$html.find('body')
                 .append('<div class="table-detail-backdrop"></div>')
                 .append($panelHtml);
