@@ -29,10 +29,9 @@ after_success:
   - grunt deploy
   - bash <(curl -s https://codecov.io/bash)
 
+sudo: required
 addons:
-  apt:
-    packages:
-      - google-chrome-stable
+  chrome: stable
 
 deploy:
   provider: releases
