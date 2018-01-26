@@ -26,17 +26,7 @@ class FaviconEditor {
          * @param originalImage {HTMLImageElement}
          */
         this.serializer = (canvas, ctx, originalImage) => {
-            const ext = getFileExtension(originalImage.src);
-
-            // If we can derive an extension from the file
-            // we will assume the mime type. If we cannot get
-            // an extension we will return the original favicon
-            // src in order the gracefully degrade
-            if (ext) {
-                return canvas.toDataURL(`image/${ext}`);
-            } else {
-                return originalImage.src;
-            }
+            return canvas.toDataURL(`image/${getFileExtension(originalImage.src)}`);
         }
     }
 
@@ -78,7 +68,6 @@ class FaviconEditor {
         } catch (error) {
             favicons = [];
         }
-
 
         for (let index = 0; index < favicons.length; index++) {
             const { node, canvas, image } = favicons[index];
