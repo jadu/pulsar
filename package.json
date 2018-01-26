@@ -12,7 +12,7 @@
     "build:tests": "grunt javascript:tests",
     "build:tests:watch": "grunt javascript:tests:watch",
     "test:phantom": "mochify --reporter spec --transform [ babelify ] ./tests/harness/common './tests/js/web/**/*Test.js'",
-    "test:browser": "npm run build:tests",
+    "test:browser": "npm run build:tests && open ./tests/js/web/index.html",
     "test:browser:watch": "npm run build:tests:watch"
   },
   "devDependencies": {
@@ -38,7 +38,6 @@
     "datatables.net-responsive-dt": "^2.0.0",
     "datatables.net-select": "^1.1.2",
     "datatables.net-select-dt": "^1.1.2",
-    "dom4": "^1.8.5",
     "grunt": "^0.4.5",
     "grunt-asciify": "^0.2.2",
     "grunt-autoprefixer": "^3.0.4",
