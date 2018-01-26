@@ -10,7 +10,7 @@ describe('TableDetailComponent', () => {
 	let tableDetailComponentWithoutHTML;
 
 	beforeEach(() => {
-		$html = $('<html></html>');
+		$html = $('<div></div>');
 		$body = $('<body></body>').appendTo($html);
 
 		$tableHTML = $(
