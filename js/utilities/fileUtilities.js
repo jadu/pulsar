@@ -18,10 +18,9 @@ function getFileExtension (file) {
     // strip query strings from our extension
     const re = new RegExp(/^[a-z0-9\-]+/, 'i');
     const test = re.exec(ext.pop());
-    const fileExt = test[0];
 
     // return false for anything we deem not to be a file
-    return fileExt !== undefined ? fileExt : false;
+    return test !== null && test[0] !== undefined ? test[0] : false;
 }
 
 /**
