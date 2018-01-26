@@ -11,7 +11,8 @@ module.exports = function(grunt) {
             dev: {
                 files: {
                     'dist/js/bundle.js': ['js/index.js'],
-                    'dist/js/test.js': ['tests/js/web/index.js']
+                    'dist/js/test.js': ['tests/js/web/index.js'],
+                    'dist/js/lexicon-bundle.js': ['js/lexicon/lexicon-index.js']
                 },
                 options: {
                     browserifyOptions: {
@@ -27,7 +28,8 @@ module.exports = function(grunt) {
             dist: {
                 files: {
                     'dist/js/bundle.js': ['js/index.js'],
-                    'dist/js/test.js': ['tests/js/web/index.js']
+                    'dist/js/test.js': ['tests/js/web/index.js'],
+                    'dist/js/lexicon-bundle.js': ['js/lexicon/lexicon-index.js']
                 },
                 options: {
                     browserifyOptions: {
