@@ -1,8 +1,8 @@
 const FaviconEditor = require('../../../../js/Notifications/FaviconEditor');
 const $ = require('jquery');
-const vanillaFavicon = require('./snapshots/favicon');
-const redCircleFavicon = require('./snapshots/faviconWithCricleNotification?radius=10&color=red');
-const customFavicon = require('./snapshots/faviconWithCustom?text=TEST');
+const vanillaFavicon = require('./fixtures/favicon');
+const redCircleFavicon = require('./fixtures/faviconWithCricleNotification?radius=10&color=red');
+const customFavicon = require('./fixtures/faviconWithCustom?text=TEST');
 
 describe('FaviconEditor', () => {
     let faviconEditor;
