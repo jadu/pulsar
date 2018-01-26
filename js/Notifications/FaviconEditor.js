@@ -1,4 +1,4 @@
-const { filterFileExtension, filterDataEncodedURI, getFileExtension } = require('../utilities/fileUtilities');
+const { filterFileExtension, getFileExtension } = require('../utilities/fileUtilities');
 
 class FaviconEditor {
     /**
@@ -68,7 +68,7 @@ class FaviconEditor {
         let data;
 
         this.favicons.forEach(({ node }) => {
-            if (filterFileExtension(node.href, 'ico png') || filterDataEncodedURI(node.href)) {
+            if (filterFileExtension(node.href, 'ico png')) {
                 setupPromises.push(this.setup(node));
             }
         });
