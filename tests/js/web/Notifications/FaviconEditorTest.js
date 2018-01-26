@@ -66,6 +66,7 @@ describe('FaviconEditor', () => {
             $root = $(`
                 <div>
                     <link rel="icon" href="${vanillaFavicon}">
+                    <link rel="icon" href="${vanillaFavicon}">
                 </div>`
             );
 
@@ -91,6 +92,24 @@ describe('FaviconEditor', () => {
                     done();
                 })
                 .catch(done);
+        });
+
+        it('should ignore favicons it cant handle', (done) => {
+            const $invalidFavicon = $('<link rel="icon" href="favicon.svg">');
+
+            $root.append($invalidFavicon);
+
+            faviconEditor = new FaviconEditor($root[0]);
+            faviconEditor.init();
+
+            faviconEditor.addCircleNotification('red')
+                .then((data) => {
+                    expect(data).to.be.truthy;
+                    done();
+                })
+                .catch(done);
+
+            $invalidFavicon.remove();
         });
 
         describe('addCircleNotification', () => {
