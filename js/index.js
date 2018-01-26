@@ -51,9 +51,8 @@ var $                     = require('jquery'),
     repeaterComponentFactory = require('./Repeater/repeaterComponentFactory'),
     FaviconEditor = require('./Notifications/FaviconEditor');
 
-    require('jstree');
-    require('../libs/history.js/scripts/bundled/html5/jquery.history');
-
+require('jstree');
+require('../libs/history.js/scripts/bundled/html5/jquery.history');
 
 module.exports = {
     ButtonComponent,
