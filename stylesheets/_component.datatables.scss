@@ -46,18 +46,25 @@
 }
 // scss-lint:enable SelectorFormat
 
-.dt-buttons {
-    border-right: 1px solid #ccc;
-    float: left;
-    margin-top: 11px;
-    margin-right: 10px;
-    padding-right: 6px;
+a.dt-button {
+    border-right: 1px solid color(border);
+    margin-right: $margin-base-vertical;
+    padding-right: $margin-base-vertical;
 }
 
-.dt-button {
+.dt-buttons > a,
+.dt-buttons > button {
+    float: left;
+    margin-top: $margin-large-vertical;
+}
+
+.dt-buttons > button {
     background-color: transparent;
     border: 0;
+    border-right: 1px solid color(border);
     color: color(jadu-blue, dark);
+    margin-right: $margin-base-vertical;
+    padding: 0 $padding-base-horizontal;
 
     &:hover {
         color: color(jadu-blue, darkest);
