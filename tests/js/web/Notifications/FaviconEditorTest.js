@@ -84,7 +84,6 @@ describe('FaviconEditor', () => {
                     return [...ctx.getImageData(0, 0, canvas.width, canvas.height).data];
                 });
 
-
                 faviconEditor.addCircleNotification('red', 10)
                     .then((data) => {
                         expect(data).to.deep.equal(faviconWithRedCircle);
