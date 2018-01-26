@@ -8,7 +8,7 @@
   "scripts": {
     "start": "vagrant reload && grunt",
     "coverage": "mochify --transform [ babelify ] --plugin [ mochify-istanbul --exclude '**/+(tests|node_modules|libs)/**/*' --report lcov --dir ./coverage --instrumenter babel-istanbul] --reporter spec ./tests/js/web/index './tests/js/web/**/*Test.js'",
-    "test": "npm run phantom-test",
+    "test": "npm run test:phantom",
     "build:tests": "grunt javascript:tests",
     "build:tests:watch": "grunt javascript:tests:watch",
     "test:phantom": "mochify --reporter spec --transform [ babelify ] ./tests/harness/common './tests/js/web/**/*Test.js'",
