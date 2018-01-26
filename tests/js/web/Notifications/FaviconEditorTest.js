@@ -77,9 +77,17 @@ describe('FaviconEditor', () => {
                 faviconEditor = new FaviconEditor($root[0]);
                 faviconEditor.init();
 
+                // Override serializer to return raw image data, we cannot use the default
+                // canvas.toDataURL(...) here as the png compression is different when
+                // in the browser / headless test environments
+                faviconEditor.setSerializer((canvas, ctx) => {
+                    return [...ctx.getImageData(0, 0, canvas.width, canvas.height).data];
+                });
+
+
                 faviconEditor.addCircleNotification('red', 10)
                     .then((data) => {
-                        expect(data).to.equal(faviconWithRedCircle);
+                        expect(data).to.deep.equal(faviconWithRedCircle);
                         done();
                     })
                     .catch(done);
