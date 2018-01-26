@@ -99,7 +99,7 @@ describe('fileUtilities', () => {
         });
 
         it('should return null for non files', () => {
-            expect(getFileExtension('not a file')).to.be.false;
+            expect(getFileExtension('not.a.file.!@£$%^')).to.be.false;
         });
 
         it('should handle files with query params', () => {
