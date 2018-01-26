@@ -51,6 +51,10 @@ describe('FaviconEditor', () => {
         });
     });
 
+    describe('serializer', () => {
+
+    });
+
     // Update methods are tested using snapshots saved in ./snapshots/
     // we assert that our favicon update methods return the same
     // data encoded URI as defined in the snapshot directory
@@ -70,6 +74,23 @@ describe('FaviconEditor', () => {
 
         afterEach(() => {
             $root.remove();
+        });
+
+        it('should swallow errors when performing setup and leave link element untouched', (done) => {
+            sinon.stub(document, 'createElement').withArgs('img').returns({
+                addEventListener: (arg, cb) => arg === 'error' && cb()
+            });
+
+            faviconEditor = new FaviconEditor($root[0]);
+            faviconEditor.init();
+
+            faviconEditor.update(() => {})
+                .then(() => {
+                    expect($root.find('link').attr('href')).to.equal(vanillaFavicon);
+                    document.createElement.restore();
+                    done();
+                })
+                .catch(done);
         });
 
         describe('addCircleNotification', () => {
