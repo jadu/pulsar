@@ -111,7 +111,7 @@
 
 .input-group-btn:first-child > .btn,
 .input-group-btn:first-child > .btn__group {
-    margin-right: $padding-base-horizontal / 2;
+    margin-right: $margin-base-horizontal / 2;
 }
 
 .input-group:not(.has-btn-prepended) .form__control:not(:first-child),
@@ -128,7 +128,7 @@
 
 .input-group-btn:last-child > .btn,
 .input-group-btn:last-child > .btn__group {
-    margin-left: $padding-base-horizontal / 2;
+    margin-left: $margin-base-horizontal / 2;
 }
 
 // Button input groups
