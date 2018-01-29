@@ -65,35 +65,35 @@ describe('Pulsar Password Library', function() {
         // $.fn.togglePasswordVisibility = sinon.stub();
     });
 
-    describe('Clicking the eye icon button next to the password field', function() {
+    describe('Clicking the eye icon button next to the password field', () => {
 
-        beforeEach(function() {
+        beforeEach( () => {
             // Need to trigger the togglePasswordVisibility() from within PasswordStrengthCheckerComponent.js
             this.$eyeButton.click();
         });
 
-        it('should change the icon class to eye-slash', function() {
+        it('should change the icon class to eye-slash', () => {
             expect(this.$eyeIcon.hasClass('icon-eye-slash')).to.be.true;
         });
 
-        it('should change the inputs type to text', function() {
+        it('should change the inputs type to text', () => {
             expect(this.$password.attr('type') === 'text').to.be.true;
         });
 
     });
 
-    describe('Clicking the eye-slash icon button next to the password field', function() {
+    describe('Clicking the eye-slash icon button next to the password field', () => {
 
-        beforeEach(function() {
+        beforeEach(() => {
             this.$eyeButton.click();
             this.$eyeButton.click();
         });
 
-        it('should change the icon class to eye', function() {
+        it('should change the icon class to eye', () => {
             expect(this.$eyeIcon.hasClass('icon-eye')).to.be.true;
         });
 
-        it('should change the inputs type to password', function() {
+        it('should change the inputs type to password', () => {
             expect(this.$password.attr('type') === 'password').to.be.true;
         });
 
