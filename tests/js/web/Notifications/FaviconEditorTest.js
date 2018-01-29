@@ -3,6 +3,7 @@ const $ = require('jquery');
 const vanillaFavicon = require('./fixtures/favicon');
 const faviconWithRedCircle = require('./fixtures/faviconWithRedCircle?radius=10&color=red');
 const faviconWithCustomGraphic = require('./fixtures/faviconWithCustom?rect=0055&fillStyle=red');
+const { AssertionError } = require('chai');
 
 describe('FaviconEditor', () => {
     let faviconEditor;
@@ -109,8 +110,38 @@ describe('FaviconEditor', () => {
             $invalidFavicon.remove();
         });
 
+        /**
+         * Convert fixture data array to a encoded URL for comparison debugging
+         * @param data {Array<number>}
+         * @param width {number}
+         * @param height {number}
+         * @returns {string|*}
+         */
+        function getExpectedURL (data, width, height) {
+            const cvs = document.createElement('canvas');
+            const ctx = cvs.getContext('2d');
+            const imageData = new window.ImageData(Uint8ClampedArray.from(data), width, height);
+
+            ctx.putImageData(imageData, 0, 0);
+
+            return cvs.toDataURL('image/png');
+        }
+
+        /**
+         * Create a custom Chai assertion error and print image URLs
+         * @param expected {string}
+         * @param actual {string}
+         * @returns {*}
+         */
+        function faviconError (expected, actual) {
+            return new AssertionError(`Favicons did not match:\n\nEXPECTED: ${expected}\n\nACTUAL: ${actual}`);
+        }
+
         describe('addCircleNotification', () => {
             it('should draw a circle onto an image', (done) => {
+                const expected = getExpectedURL(faviconWithRedCircle, 32, 32);
+                let actual;
+
                 faviconEditor = new FaviconEditor($root[0]);
                 faviconEditor.init();
 
@@ -118,13 +149,26 @@ describe('FaviconEditor', () => {
                 // canvas.toDataURL(...) here as the png compression is different when
                 // in the browser / headless test environments
                 faviconEditor.setSerializer((canvas, ctx) => {
-                    return [...ctx.getImageData(0, 0, canvas.width, canvas.height).data];
+                    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                    const debugCvs = document.createElement('canvas');
+                    const debugCtx = debugCvs.getContext('2d');
+
+                    debugCtx.width = canvas.width;
+                    debugCtx.height = canvas.height;
+                    debugCtx.putImageData(imageData, 0, 0);
+                    actual = debugCvs.toDataURL('image/png');
+
+                    return [...imageData.data];
                 });
 
-                faviconEditor.addCircleNotification('red', 10)
+                faviconEditor.addCircleNotification('red', 5)
                     .then((data) => {
-                        expect(data).to.deep.equal(faviconWithRedCircle);
-                        done();
+                        try {
+                            expect(data).to.deep.equal(faviconWithRedCircle);
+                            done();
+                        } catch (error) {
+                            done(faviconError(actual, expected));
+                        }
                     })
                     .catch(done);
             });
@@ -132,6 +176,9 @@ describe('FaviconEditor', () => {
 
         describe('addCustomNotification', () => {
             it('should draw a custom graphic onto an image', (done) => {
+                const expected = getExpectedURL(faviconWithCustomGraphic, 32, 32);
+                let actual;
+
                 faviconEditor = new FaviconEditor($root[0]);
                 faviconEditor.init();
 
@@ -139,7 +186,16 @@ describe('FaviconEditor', () => {
                 // canvas.toDataURL(...) here as the png compression is different when
                 // in the browser / headless test environments
                 faviconEditor.setSerializer((canvas, ctx) => {
-                    return [...ctx.getImageData(0, 0, canvas.width, canvas.height).data];
+                    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                    const debugCvs = document.createElement('canvas');
+                    const debugCtx = debugCvs.getContext('2d');
+
+                    debugCtx.width = canvas.width;
+                    debugCtx.height = canvas.height;
+                    debugCtx.putImageData(imageData, 0, 0);
+                    actual = debugCvs.toDataURL('image/png');
+
+                    return [...imageData.data];
                 });
 
                 faviconEditor.addCustomNotification(
@@ -149,8 +205,12 @@ describe('FaviconEditor', () => {
                         ctx.fill();
                     })
                     .then(data => {
-                        expect(data).to.deep.equal(faviconWithCustomGraphic);
-                        done();
+                        try {
+                            expect(data).to.deep.equal(faviconWithCustomGraphic);
+                            done();
+                        } catch (error) {
+                            done(faviconError(actual, expected));
+                        }
                     })
                     .catch(done);
             });
