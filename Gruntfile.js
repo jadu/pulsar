@@ -10,9 +10,7 @@ module.exports = function(grunt) {
         browserify: {
             dev: {
                 files: {
-                    'dist/js/bundle.js': ['js/index.js'],
-                    'dist/js/test.js': ['tests/js/web/index.js'],
-                    'dist/js/lexicon-bundle.js': ['js/lexicon/lexicon-index.js']
+                    'dist/js/bundle.js': ['js/index.js']
                 },
                 options: {
                     browserifyOptions: {
@@ -41,9 +39,7 @@ module.exports = function(grunt) {
             },
             dist: {
                 files: {
-                    'dist/js/bundle.js': ['js/index.js'],
-                    'dist/js/test.js': ['tests/js/web/index.js'],
-                    'dist/js/lexicon-bundle.js': ['js/lexicon/lexicon-index.js']
+                    'dist/js/bundle.js': ['js/index.js']
                 },
                 options: {
                     browserifyOptions: {
@@ -209,12 +205,16 @@ module.exports = function(grunt) {
                 files: 'stylesheets/**/*.scss',
                 tasks: ['scsslint']
             },
+            lexicon: {
+                files: ['js/lexicon/**/*.js'],
+                tasks: ['browserify:lexicon']
+            },
             js: {
-                files: ['js/**/*.js', 'tests/js/**/*', 'package.json'],
+                files: ['js/**/*.js', 'package.json', '!js/lexicon/**/*'],
                 tasks: ['browserify:dev']
             },
             tests: {
-                files: ['js/**/*.js', 'tests/**/*.js'],
+                files: ['tests/**/*.js'],
                 tasks: ['browserify:browserTests']
             }
         },
