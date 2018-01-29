@@ -23,6 +23,7 @@
     pulsar.navMain = new pulsar.NavMainComponent($html, window);
     pulsar.filterBar = new pulsar.FilterBarComponent($html);
     pulsar.faviconEditor = new pulsar.FaviconEditor(document.head);
+    pulsar.tableDetail = new pulsar.TableDetailComponent($html);
     pulsar.repeaterManager = new pulsar.RepeaterManagerComponent(
         pulsar.pulsarForm,
         pulsar.repeaterComponentFactory,
@@ -43,6 +44,7 @@
         pulsar.navMain.init();
         pulsar.filterBar.init();
         pulsar.disableUi.init();
+        pulsar.tableDetail.init();
         pulsar.dropZoneComponent = pulsar.DropZoneComponentFactory.create($('body')[0], '.dropzone');
         pulsar.repeaterManager.init();
 
