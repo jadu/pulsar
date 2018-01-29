@@ -310,13 +310,13 @@
     margin: 0;
     padding-bottom: 4px;
 
-    span {
+    .dropdown__title__text {
         display: inline-block;
         padding: 8px 8px 8px 18px;
     }
-}
 
-.dropdown__title__btn {
-    float: right;
-    margin-right: 12px;
+    .dropdown__title__btn {
+        float: right;
+        margin-right: 12px;
+    }
 }
