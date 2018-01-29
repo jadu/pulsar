@@ -31,7 +31,7 @@ favicon.init();
 
 ### Preset Notifications
 
-The favicon presets are convenience methods created for situations we predict to be common. It is expected that this list will grow as the service is iterated and common patterns are identified.
+The favicon presets are convenience methods created for common situations. It is expected that this list will grow as the service is iterated and common patterns are identified.
 
 #### Notification Circle
 
