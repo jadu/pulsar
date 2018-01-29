@@ -1,0 +1,47 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
+
+{% block tab_content %}
+
+<table class="table datatable table--full" data-table-detail-table>
+    <thead>
+        <tr>
+            <td class="table-responsive"></td>
+            <td class="table-selection"></td>
+            <th><a href="#">Date</a></th>
+            <th><a href="#">Time</a></th>
+            <th><a href="#">User type</a></th>
+            <th><a href="#">Event</a></th>
+            <th><a href="#">Actions</a></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in 0..5 %}
+        <tr data-table-detail-content="<div class=&quot;padding&quot;><span class=&quot;label&quot;>Waiting on client</span> to <span class=&quot;label&quot;>Open</span></div>" data-table-detail-panel-custom-title="A custom title set on the clicked TR">
+            <td class="table-responsive">
+                {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+            </td>
+            <td class="table-selection">
+                {{ html.icon('unchecked', { 'class': 'table-row-select js-select' }) }}
+            </td>
+
+            <td>{{ html.link({ 'label': '13/01/2017', 'class': 'table-action', 'data-table-detail-view-detail': true }) }}</td>
+            <td>3:30pm</td>
+            <td>
+                {{
+                    html.label({
+                        'label': 'council staff',
+                        'class': 'label--success'
+                    })
+                }}
+            </td>
+            <td>Case status changed</td>
+            <td>
+                {{ html.link({ 'label': 'Details', 'class': 'table-action', 'data-table-detail-view-detail': true }) }}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock tab_content %}
+

@@ -479,7 +479,14 @@ fieldset {
     }
 
     .form__control:checked + .control__label {
-        @extend .btn:active;
+        background-color: color(grey, lighter);
+        box-shadow: 0 2px 0 color(primary);
+        font-family: $font-family-regular;
+    }
+
+    .form__control:focus + .control__label {
+        box-shadow: 0 2px 0 0 color(primary), 0 0 0 2px white, 0 0 2px 5px highlight !important;
+        z-index: 1;
     }
 
     .btn__group {
