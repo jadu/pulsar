@@ -55,7 +55,6 @@ describe('PulsarFormComponent', function() {
             </div>\
         </div>\
     </form>\
-    \
     <input data-datepicker="true" type="text" />\
 </div>\
 <a href="#tab-foo" data-toggle="tab">tab</a>\
