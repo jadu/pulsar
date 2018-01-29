@@ -10,63 +10,63 @@ describe('PulsarFormComponent', function() {
     beforeEach(function() {
         this.$html = $('<div id="html"></div>').appendTo('html');
         this.$body = $('<div id="body"></div>').appendTo(this.$html);
-        this.$markup = $('
+        this.$markup = $('\
 <div id="tab-foo">\
     <form class="form">\
-        <select class="js-select2">
-            <option>foo</option>
-            <option>bar</option>
-            <option>baz</option>
-        </select>
-        <select class="js-select2" data-html="true">
-            <option>foo</option>
-            <option>bar</option>
-            <option>baz</option>
-        </select>
-
-        <div class="form__group form-choice choice--block">
-            <label class="control__label">Radio Test</label>
-            <div class="controls">
-                <label class="control__label">
-                    <input value="foo" name="foo" type="radio" class="form__control qa-foo radio">Foo</label>
-                <label class="control__label">
-                    <input value="bar" name="foo" type="radio" class="form__control radio">Bar</label>
-                <label class="control__label">
-                    <input value="baz" name="foo" type="radio" class="form__control radio" checked>Baz</label>
-            </div>
-        </div>
-
-        <div class="form__group form-choice choice--block">
-            <label class="control__label">Checkbox Test</label>
-            <div class="controls">
-                <label class="control__label">
+        <select class="js-select2">\
+            <option>foo</option>\
+            <option>bar</option>\
+            <option>baz</option>\
+        </select>\
+        <select class="js-select2" data-html="true">\
+            <option>foo</option>\
+            <option>bar</option>\
+            <option>baz</option>\
+        </select>\
+        \
+        <div class="form__group form-choice choice--block">\
+            <label class="control__label">Radio Test</label>\
+            <div class="controls">\
+                <label class="control__label">\
+                    <input value="foo" name="foo" type="radio" class="form__control qa-foo radio">Foo</label>\
+                <label class="control__label">\
+                    <input value="bar" name="foo" type="radio" class="form__control radio">Bar</label>\
+                <label class="control__label">\
+                    <input value="baz" name="foo" type="radio" class="form__control radio" checked>Baz</label>\
+            </div>\
+        </div>\
+        \
+        <div class="form__group form-choice choice--block">\
+            <label class="control__label">Checkbox Test</label>\
+            <div class="controls">\
+                <label class="control__label">\
                     <input value="foo" name="foo" type="checkbox" class="form__control qa-foo checkbox">Foo</label>\
-                <label class="control__label">
+                <label class="control__label">\
                     <input value="bar" name="foo" type="checkbox" class="form__control checkbox">Bar</label>\
-                <label class="control__label">
+                <label class="control__label">\
                     <input value="baz" name="foo" type="checkbox" class="form__control checkbox" checked>Baz</label>\
-            </div>
-        </div>
-
-        <div class="form__group">
-            <label class="control__label">Time picker test</label>
-            <div class="controls">
-                    <input value="foo" name="foo" type="text" data-timepicker="true" class="form__control qa-foo" />
-            </div>
-        </div>
-    </form>
-    
-    <input data-datepicker="true" type="text" />
-</div>
-<a href="#tab-foo" data-toggle="tab">tab</a>
-<a href="#modal-foo" data-toggle="modal">modal</a>
-<div class="modal" id="modal-foo">
-    <select class="js-select2">
-        <option>foo</option>
-        <option>bar</option>
-        <option>baz</option>
-    </select>
-</div>
+            </div>\
+        </div>\
+        \
+        <div class="form__group">\
+            <label class="control__label">Time picker test</label>\
+            <div class="controls">\
+                    <input value="foo" name="foo" type="text" data-timepicker="true" class="form__control qa-foo" />\
+            </div>\
+        </div>\
+    </form>\
+    \
+    <input data-datepicker="true" type="text" />\
+</div>\
+<a href="#tab-foo" data-toggle="tab">tab</a>\
+<a href="#modal-foo" data-toggle="modal">modal</a>\
+<div class="modal" id="modal-foo">\
+    <select class="js-select2">\
+        <option>foo</option>\
+        <option>bar</option>\
+        <option>baz</option>\
+    </select>\
+</div>\
 ').appendTo(this.$body);
 
         this.$radioFoo = this.$html.find('.radio[value="foo"]');
