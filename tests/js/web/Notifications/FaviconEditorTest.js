@@ -56,9 +56,9 @@ describe('FaviconEditor', () => {
 
     });
 
-    // Update methods are tested using snapshots saved in ./snapshots/
+    // Update methods are tested using image data fixtures saved in ./fixtures/
     // we assert that our favicon update methods return the same
-    // data encoded URI as defined in the snapshot directory
+    // ImageData as the saved fixture
 
     describe('update', () => {
         let $root;
