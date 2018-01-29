@@ -1,12 +1,8 @@
 ---
 layout: page
-title: Notifications
+title: Favicon
 category: Components
 ---
-
-A set of components and services that make up Notifications.
-
-## Favicon updater 
 
 The favicon updater is a service that allows users to add programmatic favicon updates. This can be something as simple as a small coloured circle on top of the existing favicon to indicate a notification, or more complex graphics to indicate application state changes.
 
@@ -14,7 +10,7 @@ The favicon service supports ...
 
 ### Usage
 
-Creating an instance of the `FaviconEditor`. The `iresolvethod must be called once the document has loaded, it will build a reference to all favicons scoped to the `root` node.
+Creating an instance of the `FaviconEditor`. The init method must be called once the document has loaded, it will build a reference to all favicons scoped to the `root` node.
 
 ```javascript
 const FaviconEditor = require('/path/to/pulsar/Notifications/FaviconEditor');
@@ -36,8 +32,6 @@ favicon.init();
 ### Preset Notifications
 
 The favicon presets are convenience methods created for situations we predict to be common. It is expected that this list will grow as the service is iterated and common patterns are identified.
-
----
 
 #### Notification Circle
 
