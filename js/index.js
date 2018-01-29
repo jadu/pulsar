@@ -72,6 +72,5 @@ module.exports = {
     repeaterComponentFactory,
     SignInComponent,
     svgeezy,
-    TableDetailComponent;
-    
+    TableDetailComponent,
 };
