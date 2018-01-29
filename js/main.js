@@ -79,27 +79,8 @@
             showInputNode: lt10
         });
 
-        // Notifications
+        // Favicon editor
         pulsar.faviconEditor.init();
-
-        // NOTIFICATIONS DEBUG, PLS REMOVE, THX
-        var $updateNotificationColour = $('#update-notification-colour'),
-            $resetNotification = $('#notification-reset');
-
-        if ($updateNotificationColour.length) {
-            $updateNotificationColour.on('click', function (event) {
-                var colour = '#' + $updateNotificationColour.closest('.input-group').find('#notification-colour').val();
-
-                event.preventDefault();
-                pulsar.faviconEditor.restore();
-                pulsar.faviconEditor.addCircleNotification(colour);
-            });
-
-            $resetNotification.on('click', function (event) {
-                event.preventDefault();
-                pulsar.faviconEditor.restore();
-            });
-        }
     });
 
 }(jQuery));
