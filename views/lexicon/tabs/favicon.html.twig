@@ -1,0 +1,30 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
+
+{% block tab_content %}
+
+    <h2 class="heading">Favicon Updates</h2>
+
+    <p>The favicon updater service allows programmatic control over a user's favicon.</p>
+
+    <h2>Presets</h2>
+
+    <p>The favicon presets are convenience methods created for common situations. It is expected that this list will grow as the service is iterated and common patterns are identified.</p>
+
+    <p><strong>Circle Notification</strong></p>
+
+    {{
+        html.button({
+            'id': 'notification-circle',
+            'label': 'Add circle notification'
+        })
+    }}
+
+    {{
+        html.button({
+            'id': 'notification-reset',
+            'label': 'Reset'
+        })
+    }}
+
+
+{%  endblock tab_content %}
