@@ -25,6 +25,20 @@ module.exports = function(grunt) {
                     ]
                 }
             },
+            lexicon: {
+                files: {
+                    'dist/js/lexicon-bundle.js': ['js/lexicon/lexicon-index.js']
+                },
+                options: {
+                    browserifyOptions: {
+                        debug: true
+                    },
+                    transform: [
+                        ['babelify', { presets: ['es2015'] } ],
+                        ['aliasify', { global: true }]
+                    ]
+                }
+            },
             dist: {
                 files: {
                     'dist/js/bundle.js': ['js/index.js'],
@@ -560,6 +574,7 @@ module.exports = function(grunt) {
         'autoprefixer',
         'bless',
         'browserify:dev',
+        'browserify:lexicon',
         'browserSync',
         'watch'
     ]);
