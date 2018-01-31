@@ -281,7 +281,7 @@ describe('DropZone', () => {
     });
 
     describe('handleWindowLeave()', () => {
-        const event = { dataTransfer: { files: [] } };
+        const event = { dataTransfer: { files: [] }, clientX: 0, clientY: 0 };
         let dropZoneLeaveStub;
         let onDropZoneStub;
         let onWindowStub;
