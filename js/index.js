@@ -9,6 +9,8 @@
 // Fixes issue with dependencies that expect both $ and jQuery to be set
 window.jQuery = window.$ = require('jquery');
 
+require('babel-polyfill');
+
 // Global UI components
 var $                     = require('jquery'),
     dropdown              = require('./libs/dropdown'),
@@ -49,14 +51,17 @@ var $                     = require('jquery'),
     RepeaterManagerComponent = require('./Repeater/RepeaterManagerComponent'),
     repeaterComponentFactory = require('./Repeater/repeaterComponentFactory'),
     SignInComponent = require('./area/signin/signin'),
-    TableDetailComponent = require('./TableDetailComponent');
+    TableDetailComponent = require('./TableDetailComponent'),
 
-    require('jstree');
+
+require('jstree');
+require('../libs/history.js/scripts/bundled/html5/jquery.history');
 
 module.exports = {
     ButtonComponent,
     DropZoneComponentFactory,
     DisableUiComponent,
+    FaviconEditor
     FilterBarComponent,
     FlashMessageComponent,
     HelpTextComponent,
@@ -73,4 +78,8 @@ module.exports = {
     SignInComponent,
     svgeezy,
     TableDetailComponent,
+    history,
+    svgeezy,
+    RepeaterManagerComponent,
+    repeaterComponentFactory
 };
