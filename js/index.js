@@ -51,7 +51,7 @@ var $                     = require('jquery'),
     RepeaterManagerComponent = require('./Repeater/RepeaterManagerComponent'),
     repeaterComponentFactory = require('./Repeater/repeaterComponentFactory'),
     SignInComponent = require('./area/signin/signin'),
-    TableDetailComponent = require('./TableDetailComponent'),
+    TableDetailComponent = require('./TableDetailComponent');
 
 
 require('jstree');
@@ -61,7 +61,7 @@ module.exports = {
     ButtonComponent,
     DropZoneComponentFactory,
     DisableUiComponent,
-    FaviconEditor
+    FaviconEditor,
     FilterBarComponent,
     FlashMessageComponent,
     HelpTextComponent,
