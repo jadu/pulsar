@@ -222,7 +222,6 @@ describe('PulsarFormComponent', function() {
     describe('Datepickers', function() {
 
         beforeEach(function() {
-            sinon.spy($.fn, 'pikaday');
             this.pulsarForm.init();
         });
 

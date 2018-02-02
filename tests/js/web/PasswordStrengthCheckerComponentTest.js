@@ -3,7 +3,7 @@
 'use strict';
 
 var $ = require('jquery'),
-    password = require('../../../js/PasswordStrengthChecker/PasswordStrengthCheckerComponent.js');
+    PasswordStrengthChecker = require('../../../js/PasswordStrengthChecker/PasswordStrengthCheckerComponent.js');
 
 describe('Pulsar Password Library', function() {
 
@@ -59,16 +59,19 @@ describe('Pulsar Password Library', function() {
 
         this.$password = this.$html.find('#password__metertoggle');
         this.$eyeButton = this.$html.find('#password__metertoggle__button');
-        this.$eyeIcon = this.$html.find('#password__metertoggle__button i')
+        this.$eyeIcon = this.$html.find('#password__metertoggle__button i');
 
-        $.fn.password = sinon.stub();
-        // $.fn.togglePasswordVisibility = sinon.stub();
+        this.passwordComponent = new PasswordStrengthChecker(this.$html);
+    });
+
+    afterEach(function () {
+        this.$html.remove(); // Detach test DOM from the real one
     });
 
     describe('Clicking the eye icon button next to the password field', () => {
 
-        beforeEach( () => {
-            // Need to trigger the togglePasswordVisibility() from within PasswordStrengthCheckerComponent.js
+        beforeEach(() => {
+            this.passwordComponent.init();
             this.$eyeButton.click();
         });
 
@@ -85,6 +88,7 @@ describe('Pulsar Password Library', function() {
     describe('Clicking the eye-slash icon button next to the password field', () => {
 
         beforeEach(() => {
+            this.passwordComponent.init();
             this.$eyeButton.click();
             this.$eyeButton.click();
         });
