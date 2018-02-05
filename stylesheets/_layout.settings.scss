@@ -6,7 +6,7 @@
     @include clear-fix(true);
 
     background-color: color(background);
-    margin: ($padding-large-vertical * 2) (($padding-small-horizontal * 2) * -1);
+    margin: ($margin-large-vertical * 2) (($margin-small-horizontal * 2) * -1);
     padding: ($padding-large-vertical * 2) ($padding-small-horizontal * 2);
 
     @include respond-min($screen-small) {
@@ -89,7 +89,7 @@
 
 .settings-section__heading + p,
 .settings-section p + p {
-    margin-top: $padding-base-vertical * 2 * -1;
+    margin-top: $margin-base-vertical * 2 * -1;
 }
 
 
@@ -254,7 +254,7 @@
 
 .tab__settings .form__group--top .control__label {
     display: block;
-    margin-bottom: $padding-base-vertical;
+    margin-bottom: $margin-base-vertical;
     padding-right: 0;
     padding-top: 0;
     width: 100%;
@@ -391,7 +391,7 @@
 .content-heading {
     display: block;
     line-height: $input-height-small;
-    margin-bottom: $padding-base-vertical * 2;
+    margin-bottom: $margin-base-vertical * 2;
 }
 
 
@@ -401,7 +401,7 @@
 
 .content-actions {
     float: right;
-    margin: 0 0 ($padding-base-vertical * 2) $padding-large-horizontal;
+    margin: 0 0 ($margin-base-vertical * 2) $margin-large-horizontal;
 }
 
 .content-actions__pages,

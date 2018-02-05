@@ -10,8 +10,7 @@ module.exports = function(grunt) {
         browserify: {
             dev: {
                 files: {
-                    'dist/js/bundle.js': ['js/index.js'],
-                    'dist/js/test.js': ['tests/js/web/index.js']
+                    'dist/js/bundle.js': ['js/index.js']
                 },
                 options: {
                     browserifyOptions: {
@@ -24,10 +23,23 @@ module.exports = function(grunt) {
                     ]
                 }
             },
+            lexicon: {
+                files: {
+                    'dist/js/lexicon-bundle.js': ['js/lexicon/lexicon-index.js']
+                },
+                options: {
+                    browserifyOptions: {
+                        debug: true
+                    },
+                    transform: [
+                        ['babelify', { presets: ['es2015'] } ],
+                        ['aliasify', { global: true }]
+                    ]
+                }
+            },
             dist: {
                 files: {
-                    'dist/js/bundle.js': ['js/index.js'],
-                    'dist/js/test.js': ['tests/js/web/index.js']
+                    'dist/js/bundle.js': ['js/index.js']
                 },
                 options: {
                     browserifyOptions: {
@@ -37,6 +49,23 @@ module.exports = function(grunt) {
                         ['babelify', { presets: ['es2015'] } ],
                         ['aliasify', { global: true }],
                         'uglifyify'
+                    ]
+                }
+            },
+            browserTests: {
+                files: {
+                    'dist/js/bundle.js': ['js/index.js'],
+                    'dist/js/browser.test.js': ['tests/harness/browser.js']
+                },
+                options: {
+                    browserifyOptions: {
+                        standalone: 'pulsar',
+                        debug: true
+                    },
+                    transform: [
+                        ['babelify', { presets: ['es2015'] } ],
+                        ['aliasify', { global: true }],
+                        ['require-globify']
                     ]
                 }
             }
@@ -176,9 +205,17 @@ module.exports = function(grunt) {
                 files: 'stylesheets/**/*.scss',
                 tasks: ['scsslint']
             },
+            lexicon: {
+                files: ['js/lexicon/**/*.js'],
+                tasks: ['browserify:lexicon']
+            },
             js: {
-                files: ['js/**/*.js', 'tests/js/**/*', 'package.json'],
+                files: ['js/**/*.js', 'package.json', '!js/lexicon/**/*'],
                 tasks: ['browserify:dev']
+            },
+            tests: {
+                files: ['tests/**/*.js'],
+                tasks: ['browserify:browserTests']
             }
         },
 
@@ -558,6 +595,7 @@ module.exports = function(grunt) {
         'autoprefixer',
         'bless',
         'browserify:dev',
+        'browserify:lexicon',
         'browserSync',
         'watch'
     ]);
@@ -616,6 +654,15 @@ module.exports = function(grunt) {
     grunt.registerTask('validate', [
         'casperjs',
         'validation'
+    ]);
+
+    grunt.registerTask('javascript:tests', [
+        'browserify:browserTests',
+    ]);
+
+    grunt.registerTask('javascript:tests:watch', [
+        'browserify:browserTests',
+        'watch:tests'
     ]);
 
     // load all grunt tasks
