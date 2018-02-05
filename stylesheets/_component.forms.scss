@@ -571,6 +571,11 @@ fieldset {
     }
 }
 
+.form-radio .radio,
+.form-checkbox .checkbox {
+    top: 11px;
+}
+
 // Make sure checkboxes and radios reduce the label's clickable area to the
 // width of the label only
 .form-checkbox-inline,
