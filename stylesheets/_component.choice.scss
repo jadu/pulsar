@@ -14,8 +14,8 @@
 .form-choice .form__control {
     &.checkbox,
     &.radio {
-        vertical-align: text-bottom;
-        // width: auto; // suppress default grid width
+        vertical-align: baseline;
+        width: auto; // suppress default grid width
     }
 
     &.select,
@@ -55,11 +55,6 @@
         @include ie-lte(8) {
             border: 1px solid color(black);
         }
-    }
-
-    .control__label:focus,
-    .control__label.is-selected:focus {
-        box-shadow: inset 0 0 0 2px color(primary);
     }
 }
 
