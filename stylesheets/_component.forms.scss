@@ -140,12 +140,17 @@ fieldset {
         padding: 0;
 
         @include respond-min($screen-tablet) {
-            padding: 14px 0 0;
+            padding: 8px 0;
         }
 
         @include ie-lte(9) {
             border: 1px solid $input-border;
             border-radius: 0;
+        }
+
+        &:focus {
+            border: 0;
+            box-shadow: 0 0 0 2px color(primary);
         }
 
         &.is-disabled {
@@ -230,6 +235,13 @@ fieldset {
     fieldset[disabled] & {
         cursor: not-allowed;
         background-color: $input-bg-disabled;
+    }
+
+    &:focus {
+        border: 1px solid color(primary);
+        box-shadow: 0 0 0 1px color(primary);
+        outline: none;
+        overflow: visible; // stop chrome clipping the box shadow
     }
 }
 
@@ -333,8 +345,8 @@ fieldset {
 // based on the remaining 9 column grid
 
     // default width
-    .control__label + .controls > .form__control:not(.checkbox),
-    .control__label + .controls > .form__control:not(.checkbox) + .select2 {
+    .control__label + .controls > .form__control:not(.checkbox):not(.radio),
+    .control__label + .controls > .form__control:not(.checkbox):not(.radio) + .select2 {
         @include col-span-width(4, 9);
     }
 
@@ -508,8 +520,63 @@ fieldset {
 
 .form__group.form-checkbox .form__control.checkbox,
 .form__group.form-radio .form__control.radio {
-    margin-top: 17px;
-    width: auto;
+    // margin-top: 17px;
+}
+
+.form__control.checkbox,
+.form__control.radio {
+    appearance: none;
+    background-color: #fafafa;
+    border: 1px solid color(border);
+    box-shadow: none;
+    height: 20px;
+    position: relative;
+    width: 20px;
+
+    .controls {
+        padding: 12px 0 16px;
+    }
+
+    &:focus {
+        border-color: color(primary);
+        box-shadow: 0 0 0 1px color(primary);
+    }
+
+    &:checked {
+        border-color: color(grey, light);
+    }
+
+    &:focus:checked {
+        border-color: color(primary);
+    }
+
+    &::before {
+        content: '';
+        font-family: 'FontAwesome';
+        height: 20px;
+        left: 1px;
+        position: absolute;
+        top: -15px;
+    }
+
+    &:focus:checked::before {
+        color: color(primary);
+    }
+
+    &:checked::before {
+        color: color(text);
+        content: '\f00c';
+    }
+}
+
+.form__control.radio {
+    border-radius: 20px;
+
+    &:checked::before {
+        content: '\f111';
+        font-size: 14px;
+        left: 3px;
+    }
 }
 
 // Make sure checkboxes and radios reduce the label's clickable area to the
@@ -526,9 +593,9 @@ fieldset {
         width: 100%;
     }
 
-    .control__label > .form__control {
-        width: auto;
-    }
+    // .control__label > .form__control {
+    //     width: auto;
+    // }
 }
 
 .form-choice {

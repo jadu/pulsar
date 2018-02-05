@@ -120,6 +120,7 @@
     }
 
     &:focus {
-        box-shadow: 0 0 0 2px white, 0 0 2px 5px highlight;
+        border: 0;
+        box-shadow: 0 0 0 2px white, 0 0 0 4px color(primary);
     }
 }
