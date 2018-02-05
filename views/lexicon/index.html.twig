@@ -20,6 +20,9 @@
 {% set tab_flash %}
     {% include 'lexicon/tabs/flash.html.twig' %}
 {% endset %}
+{% set tab_favicon %}
+    {% include 'lexicon/tabs/favicon.html.twig' %}
+{% endset %}
 {% set tab_icons %}
     {% include 'lexicon/tabs/icons.html.twig' %}
 {% endset %}
@@ -92,6 +95,12 @@
           "label" : "Flash messages",
           "href"  : "?tab=flash",
           "src"   : tab_flash
+        },
+        {
+          "id"    : "favicon",
+          "label" : "Favicon",
+          "href"  : "?tab=favicon",
+          "src"   : tab_favicon
         },
         {
           "id"    : "block-list",
