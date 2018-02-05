@@ -43,6 +43,30 @@ Builds Pulsar and runs php & js unit tests.
 
 Reports on unit test coverage.
 
+**Local JavaScript Test Suite**
+
+The Pulsar test suite is configured to work in a regular chrome browser as well as a chrome headless environment.
+
+Run tests in headless mode:
+
+```
+npm run test:headless
+
+// watch
+
+npm run test:headless -- --watch
+```
+
+Run tests in a local instance of chrome:
+
+```
+npm run test:browser
+
+// watch
+
+npm run test:browser:watch
+```
+
 # Definition of Done
 
 Features written for the Pulsar-UI core should only be released when they meet the following criteria (where applicable):
