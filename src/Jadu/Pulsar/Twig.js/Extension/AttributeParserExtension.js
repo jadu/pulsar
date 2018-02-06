@@ -1,4 +1,3 @@
-'use strict';
 
 var _ = require('lodash');
 
@@ -48,7 +47,6 @@ AttributeParserExtension.prototype.parseAttributes = function (attributes, args)
                         html.push('aria-required="true"');
                         break;
                     case 'disabled':
-                        html.push('aria-disabled="true"');
                         addDisabledClass = true;
                         break;
                 }
