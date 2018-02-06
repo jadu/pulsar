@@ -485,7 +485,7 @@ fieldset {
 
     // Position elements outside of the container as display:none or
     // visibility:hidden causes the inputs to stop being interactive in IE8
-    .form__control {
+    .form__control.form__control {
         left: -9999px;
         position: absolute;
         top: 0;
