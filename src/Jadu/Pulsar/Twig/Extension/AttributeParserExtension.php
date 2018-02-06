@@ -138,7 +138,6 @@ class AttributeParserExtension extends \Twig_Extension
                                 $html[] = 'aria-required="true"';
                             }
                             else if ($key == 'disabled') {
-                                $html[] = 'aria-disabled="true"';
                                 $classes[] = 'is-disabled';
                             }
                         }

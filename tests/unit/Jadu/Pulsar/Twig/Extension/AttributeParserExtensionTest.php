@@ -112,7 +112,6 @@ class AttributeParserExtensionTest extends \PHPUnit_Framework_TestCase
     public function testDisabledAddsAriaDisabled()
     {
         $dataIn = array('disabled' => true);
-        $dataOut = ' aria-disabled="true"';
         $this->assertContains($dataOut, $this->ext->parseAttributes($dataIn));
     }
 
