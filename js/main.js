@@ -15,13 +15,15 @@
     pulsar.flash = new pulsar.FlashMessageComponent($html);
     pulsar.helpText = new pulsar.HelpTextComponent($html, window, document);
     pulsar.pulsarForm = new pulsar.PulsarFormComponent($html);
-    pulsar.pulsarUI = new pulsar.PulsarUIComponent($html, pulsar.history);
+    pulsar.pulsarUI = new pulsar.PulsarUIComponent($html, window.History);
     pulsar.pulsarSortable = new pulsar.PulsarSortableComponent($html, window);
     pulsar.signIn = new pulsar.SignInComponent($html);
     pulsar.masterSwitch = new pulsar.MasterSwitchComponent($html, pulsar.disableUi);
 	pulsar.modulePermissions = new pulsar.ModulePermissionsComponent($html);
     pulsar.navMain = new pulsar.NavMainComponent($html, window);
     pulsar.filterBar = new pulsar.FilterBarComponent($html);
+    pulsar.faviconEditor = new pulsar.FaviconEditor(document.head);
+    pulsar.tableDetail = new pulsar.TableDetailComponent($html);
     pulsar.repeaterManager = new pulsar.RepeaterManagerComponent(
         pulsar.pulsarForm,
         pulsar.repeaterComponentFactory,
@@ -42,6 +44,7 @@
         pulsar.navMain.init();
         pulsar.filterBar.init();
         pulsar.disableUi.init();
+        pulsar.tableDetail.init();
         pulsar.dropZoneComponent = pulsar.DropZoneComponentFactory.create($('body')[0], '.dropzone');
         pulsar.repeaterManager.init();
 
@@ -75,6 +78,9 @@
             supported: !lt10,
             showInputNode: lt10
         });
+
+        // Favicon editor
+        pulsar.faviconEditor.init();
     });
 
 }(jQuery));
