@@ -1,0 +1,18 @@
+{% extends '@pulsar/lexicon/base.html.twig' %}
+
+{% set heading = 'Table Detail' %}
+
+{% set tab_one %}
+    {% include '/lexicon/patterns/table-detail/table-detail.html.twig' %}
+{% endset %}
+
+{%
+    set tabs_content = [
+        {
+            "id"    : "tabledetail",
+            "label" : "Table Detail",
+            "src"   : tab_one,
+            "active": true
+        }
+    ]
+%}
