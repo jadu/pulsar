@@ -191,8 +191,7 @@ function showAddFilterPopover ($filterbar) {
             // Disable the add filter button
             $addFilterButton
                 .addClass('is-disabled')
-                .attr('disabled', true)
-                .attr('aria-disabled', true);
+                .attr('disabled', true);
 
             // Hide the filter list button if no links remaining
             filterListButtonVisibility($filterbar);
@@ -218,8 +217,7 @@ function showAddFilterPopover ($filterbar) {
                     $popoverControls
                         .find('[data-ui="add-filter"]')
                         .addClass('is-disabled')
-                        .attr('disabled', true)
-                        .attr('aria-disabled', true);
+                        .attr('disabled', true);
                 }
             });
         }
