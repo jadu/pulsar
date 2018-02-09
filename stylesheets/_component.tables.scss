@@ -56,8 +56,13 @@
     }
 
     .no-results {
-      padding: 2em 0;
-      text-align: center;
+        padding: 2em 0;
+        text-align: center;
+
+        // Stop no-results from inheriting bold text from th
+        &.no-results {
+            font-family: $font-family-light;
+        }
     }
 
     th {
@@ -147,6 +152,7 @@
 .table-container {
     margin-bottom: 24px;
     overflow-x: auto;
+    overflow-y: hidden;
     position: relative;
 
     .table {

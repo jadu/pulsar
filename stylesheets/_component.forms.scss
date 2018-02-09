@@ -140,12 +140,17 @@ fieldset {
         padding: 0;
 
         @include respond-min($screen-tablet) {
-            padding: 14px 0 0;
+            padding: 8px 0;
         }
 
         @include ie-lte(9) {
             border: 1px solid $input-border;
             border-radius: 0;
+        }
+
+        &:focus {
+            border: 0;
+            box-shadow: 0 0 0 2px color(primary);
         }
 
         &.is-disabled {
@@ -230,6 +235,13 @@ fieldset {
     fieldset[disabled] & {
         cursor: not-allowed;
         background-color: $input-bg-disabled;
+    }
+
+    &:focus {
+        border: 1px solid color(primary);
+        box-shadow: 0 0 0 1px color(primary);
+        outline: none;
+        overflow: visible; // stop chrome clipping the box shadow
     }
 }
 
@@ -333,8 +345,8 @@ fieldset {
 // based on the remaining 9 column grid
 
     // default width
-    .control__label + .controls > .form__control:not(.checkbox),
-    .control__label + .controls > .form__control:not(.checkbox) + .select2 {
+    .control__label + .controls > .form__control:not(.checkbox):not(.radio),
+    .control__label + .controls > .form__control:not(.checkbox):not(.radio) + .select2 {
         @include col-span-width(4, 9);
     }
 
@@ -342,6 +354,7 @@ fieldset {
     @for $i from 1 through 9 {
         .control__label + .controls > .form__control.form__control-col--#{$i},
         .form__control-col--#{$i} .control__label + .controls > .form__control,
+        .form__control-col--#{$i} .control__label + .controls > .form__control:not(.checkbox):not(.radio),
         .form__control-col--#{$i} .control__label + .controls > .form__control + .select2 {
             @include col-span-width($i, 9);
         }
@@ -351,7 +364,7 @@ fieldset {
 
         // 1. allow input-specific widths for fine-grained control
         // 2. allow a class on the main group to control the width of it's controls
-        .form__control.form__control--#{$variant},
+        .form__group--#{$variant}.form__group--#{$variant} .form__control,
         .form__group--#{$variant}.form__group--#{$variant} .control__label + .controls > .form__control,
         .form__group--#{$variant}.form__group--#{$variant} .control__label + .controls > .form__control + .select2 {
             width: #{$width};
@@ -472,14 +485,21 @@ fieldset {
 
     // Position elements outside of the container as display:none or
     // visibility:hidden causes the inputs to stop being interactive in IE8
-    .form__control {
+    .form__control.form__control {
         left: -9999px;
         position: absolute;
         top: 0;
     }
 
     .form__control:checked + .control__label {
-        @extend .btn:active;
+        background-color: color(grey, lighter);
+        box-shadow: 0 2px 0 color(primary);
+        font-family: $font-family-regular;
+    }
+
+    .form__control:focus + .control__label {
+        box-shadow: 0 2px 0 0 color(primary), 0 0 0 2px white, 0 0 2px 5px highlight !important;
+        z-index: 1;
     }
 
     .btn__group {
@@ -508,8 +528,60 @@ fieldset {
 
 .form__group.form-checkbox .form__control.checkbox,
 .form__group.form-radio .form__control.radio {
-    margin-top: 17px;
-    width: auto;
+    // margin-top: 17px;
+}
+
+.form__control.checkbox,
+.form__control.radio {
+    appearance: none;
+    background-color: #fafafa;
+    border: 0;
+    box-shadow: inset 0 0 0 1px color(border);
+    height: 20px;
+    position: relative;
+    width: 20px;
+
+    .controls {
+        padding: 12px 0 16px;
+    }
+
+    &:focus {
+        border-color: color(primary);
+        box-shadow: 0 0 0 2px color(primary);
+    }
+
+    &::before {
+        content: '';
+        font-family: 'FontAwesome';
+        height: 20px;
+        left: 2px;
+        position: absolute;
+        top: -14px;
+    }
+
+    &:focus:checked::before {
+        color: color(primary);
+    }
+
+    &:checked::before {
+        color: color(text);
+        content: '\f00c';
+    }
+}
+
+.form__control.radio {
+    border-radius: 20px;
+
+    &:checked::before {
+        content: '\f111';
+        font-size: 13.5px;
+        left: 3.9px;
+    }
+}
+
+.form-radio .radio,
+.form-checkbox .checkbox {
+    top: 11px;
 }
 
 // Make sure checkboxes and radios reduce the label's clickable area to the
@@ -526,9 +598,9 @@ fieldset {
         width: 100%;
     }
 
-    .control__label > .form__control {
-        width: auto;
-    }
+    // .control__label > .form__control {
+    //     width: auto;
+    // }
 }
 
 .form-choice {
