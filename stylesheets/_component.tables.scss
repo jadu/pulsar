@@ -56,8 +56,13 @@
     }
 
     .no-results {
-      padding: 2em 0;
-      text-align: center;
+        padding: 2em 0;
+        text-align: center;
+
+        // Stop no-results from inheriting bold text from th
+        &.no-results {
+            font-family: $font-family-light;
+        }
     }
 
     th {
