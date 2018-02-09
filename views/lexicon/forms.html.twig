@@ -2,6 +2,7 @@
 
 {% set heading = 'Form Helpers' %}
 
+{% set tab_all %}{% include 'lexicon/forms/all.html.twig' %}{% endset %}
 {% set tab_buttongroup %}{% include 'lexicon/forms/button-group.html.twig' %}{% endset %}
 {% set tab_colour %}{% include 'lexicon/forms/colour.html.twig' %}{% endset %}
 {% set tab_content %}{% include 'lexicon/forms/content.html.twig' %}{% endset %}
@@ -25,6 +26,11 @@
 
 {%
     set tabs_content = [
+        {
+          "id"    : "all",
+          "label" : "All fields",
+          "src"   : tab_all
+        },
         {
           "id"    : "buttongroup",
           "label" : "Button Group",
