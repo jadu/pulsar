@@ -2,6 +2,7 @@
 
 {% set heading = 'Form Helpers' %}
 
+{% set tab_all %}{% include 'lexicon/forms/all.html.twig' %}{% endset %}
 {% set tab_buttongroup %}{% include 'lexicon/forms/button-group.html.twig' %}{% endset %}
 {% set tab_colour %}{% include 'lexicon/forms/colour.html.twig' %}{% endset %}
 {% set tab_content %}{% include 'lexicon/forms/content.html.twig' %}{% endset %}
@@ -21,9 +22,15 @@
 {% set tab_time %}{% include 'lexicon/forms/time.html.twig' %}{% endset %}
 {% set tab_toggleswitch %}{% include 'lexicon/forms/toggle-switch.html.twig' %}{% endset %}
 {% set tab_jstree %}{% include 'lexicon/forms/jstree.html.twig' %}{% endset %}
+{% set tab_repeater %}{% include 'lexicon/forms/repeater.html.twig' %}{% endset %}
 
 {%
     set tabs_content = [
+        {
+          "id"    : "all",
+          "label" : "All fields",
+          "src"   : tab_all
+        },
         {
           "id"    : "buttongroup",
           "label" : "Button Group",
@@ -92,8 +99,7 @@
         {
           "id"    : "select",
           "label" : "Select",
-          "src"   : tab_select,
-          "active": true
+          "src"   : tab_select
         },
         {
           "id"    : "select2",
@@ -124,6 +130,11 @@
           "id"    : "toggleswitch",
           "label" : "Toggle Switch",
           "src"   : tab_toggleswitch
+        },
+        {
+          "id"    : "repeater",
+          "label" : "Repeater",
+          "src"   : tab_repeater
         }
     ]
 %}
