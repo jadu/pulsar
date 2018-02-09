@@ -37,7 +37,7 @@
 .report__settings {
     float: right;
     margin-top: 20px;
-    min-width: 225px;
+    min-width: 240px;
     margin-bottom: $line-height-base;
 
     @include respond-min($screen-desktop) {
