@@ -354,6 +354,7 @@ fieldset {
     @for $i from 1 through 9 {
         .control__label + .controls > .form__control.form__control-col--#{$i},
         .form__control-col--#{$i} .control__label + .controls > .form__control,
+        .form__control-col--#{$i} .control__label + .controls > .form__control:not(.checkbox):not(.radio),
         .form__control-col--#{$i} .control__label + .controls > .form__control + .select2 {
             @include col-span-width($i, 9);
         }
@@ -363,7 +364,7 @@ fieldset {
 
         // 1. allow input-specific widths for fine-grained control
         // 2. allow a class on the main group to control the width of it's controls
-        .form__control.form__control--#{$variant},
+        .form__group--#{$variant}.form__group--#{$variant} .form__control,
         .form__group--#{$variant}.form__group--#{$variant} .control__label + .controls > .form__control,
         .form__group--#{$variant}.form__group--#{$variant} .control__label + .controls > .form__control + .select2 {
             width: #{$width};
@@ -484,7 +485,7 @@ fieldset {
 
     // Position elements outside of the container as display:none or
     // visibility:hidden causes the inputs to stop being interactive in IE8
-    .form__control {
+    .form__control.form__control {
         left: -9999px;
         position: absolute;
         top: 0;
