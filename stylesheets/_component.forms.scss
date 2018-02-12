@@ -283,7 +283,7 @@ fieldset {
     position: relative;
 
     @include respond-min($screen-tablet) {
-        @include push-padding(2.92); // magci number to align form actions with form grid
+        @include push-padding(2.92); // magic number to align form actions with form grid
     }
 }
 
