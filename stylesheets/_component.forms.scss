@@ -283,7 +283,7 @@ fieldset {
     position: relative;
 
     @include respond-min($screen-tablet) {
-        @include push-padding(3);
+        @include push-padding(2.92); // magic number to align form actions with form grid
     }
 }
 
@@ -364,8 +364,8 @@ fieldset {
 
         // 1. allow input-specific widths for fine-grained control
         // 2. allow a class on the main group to control the width of it's controls
-        .form__group--#{$variant}.form__group--#{$variant} .form__control,
-        .form__group--#{$variant}.form__group--#{$variant} .control__label + .controls > .form__control,
+        .form__group--#{$variant}.form__group--#{$variant} .form__control:not(.checkbox):not(.radio),
+        .form__group--#{$variant}.form__group--#{$variant} .control__label + .controls > .form__control:not(.checkbox):not(.radio),
         .form__group--#{$variant}.form__group--#{$variant} .control__label + .controls > .form__control + .select2 {
             width: #{$width};
         }
@@ -538,7 +538,9 @@ fieldset {
     border: 0;
     box-shadow: inset 0 0 0 1px color(border);
     height: 20px;
+    overflow: hidden;
     position: relative;
+    vertical-align: text-bottom;
     width: 20px;
 
     .controls {
@@ -584,6 +586,12 @@ fieldset {
     top: 11px;
 }
 
+.form-radio .help-block,
+.form-checkbox .help-block {
+    position: relative;
+    top: .675em; // magic number for top
+}
+
 // Make sure checkboxes and radios reduce the label's clickable area to the
 // width of the label only
 .form-checkbox-inline,
@@ -604,9 +612,15 @@ fieldset {
 }
 
 .form-choice {
-    > .controls > .control__label {
-        clear: left;
-        float: left;
+    overflow: hidden;
+
+    > .controls {
+        margin-top: 11px; // magic number to align with main label
+
+        > .control__label {
+            clear: left;
+            float: left;
+        }
     }
 }
 
