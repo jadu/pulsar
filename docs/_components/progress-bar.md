@@ -89,7 +89,7 @@ Use where space is limited, like table rows or dropdown menus.
 
 Given the markup example below, it's simply a case of updating the two main percentage values in `aria-valuenow` and the inline `style` attributes with your new percentage.
 
-If you have the percentage in the label either hidden or visible) then you'll need to update that too.
+If you have the percentage in the label either hidden or visible then you'll need to update that too.
 
 ```html
 <div class="progress">
@@ -104,4 +104,61 @@ If you have the percentage in the label either hidden or visible) then you'll ne
         25%
     </div>
 </div>
+```
+
+## Stepped Progress Bar Example
+
+Stepped progress bar is used mainly in modals as a step indicator of a multi step process.
+<div class="pulsar-example">
+<div class="stepped-progressbar">
+    <div class="step"><span class="step-box current">1</span></div>
+    <div class="step"><span class="step-box">2</span></div>
+    <div class="step"><span class="step-box">3</span></div>
+    <div class="step last"><span class="step-box"><i class="icon-flag-checkered"></i></span></div>
+</div><br/>
+<div class="stepped-progressbar">
+    <div class="step successful"><span class="step-box completed"><i class="icon-ok"></i></span></div>
+    <div class="step"><span class="step-box current">2</span></div>
+    <div class="step"><span class="step-box">3</span></div>
+    <div class="step last"><span class="step-box"><i class="icon-flag-checkered"></i></span></div>
+</div><br/>
+<div class="stepped-progressbar">
+    <div class="step successful"><span class="step-box completed"><i class="icon-ok"></i></span></div>
+    <div class="step successful"><span class="step-box completed"><i class="icon-ok"></i></span></div>
+    <div class="step"><span class="step-box current">3</span></div>
+    <div class="step last"><span class="step-box"><i class="icon-flag-checkered"></i></span></div>
+</div><br/>
+<div class="stepped-progressbar">
+    <div class="step successful"><span class="step-box completed"><i class="icon-ok"></i></span></div>
+    <div class="step successful"><span class="step-box completed"><i class="icon-ok"></i></span></div>
+    <div class="step successful"><span class="step-box completed"><i class="icon-ok"></i></span></div>
+    <div class="step last"><span class="step-box final"><i class="icon-flag-checkered"></i></span></div>
+</div><br/>
+</div>
+
+```html
+<div class="stepped-progressbar">
+    <div class="step"><span class="step-box current">1</span></div>
+    <div class="step"><span class="step-box">2</span></div>
+    <div class="step"><span class="step-box">3</span></div>
+    <div class="step last"><span class="step-box"><i class="icon-flag-checkered"></i></span></div>
+</div><br/>
+<div class="stepped-progressbar">
+    <div class="step successful"><span class="step-box completed"><i class="icon-ok"></i></span></div>
+    <div class="step"><span class="step-box current">2</span></div>
+    <div class="step"><span class="step-box">3</span></div>
+    <div class="step last"><span class="step-box"><i class="icon-flag-checkered"></i></span></div>
+</div><br/>
+<div class="stepped-progressbar">
+    <div class="step successful"><span class="step-box completed"><i class="icon-ok"></i></span></div>
+    <div class="step successful"><span class="step-box completed"><i class="icon-ok"></i></span></div>
+    <div class="step"><span class="step-box current">3</span></div>
+    <div class="step last"><span class="step-box"><i class="icon-flag-checkered"></i></span></div>
+</div><br/>
+<div class="stepped-progressbar">
+    <div class="step successful"><span class="step-box completed"><i class="icon-ok"></i></span></div>
+    <div class="step successful"><span class="step-box completed"><i class="icon-ok"></i></span></div>
+    <div class="step successful"><span class="step-box completed"><i class="icon-ok"></i></span></div>
+    <div class="step last"><span class="step-box final"><i class="icon-flag-checkered"></i></span></div>
+</div><br/>
 ```
