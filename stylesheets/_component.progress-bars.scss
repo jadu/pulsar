@@ -39,3 +39,77 @@
 .progress-bar--compact {
   height: 5px;
 }
+
+.stepped-progressbar {
+  background-color: color(gray, lightest);
+  display: table;
+  padding: 20px;
+  width: 100%;
+
+  .step {
+    display: block;
+    float: left;
+    overflow: hidden;
+    position: relative;
+    width: 50px;
+
+    span {
+      position: relative;
+      zoom: 1;
+
+      &::after {
+        border-top: 2px dotted color(gray);
+        content: '';
+        display: block;
+        left: 100%;
+        position: absolute;
+        top: 12px;
+        width: 1000px;
+      }
+    }
+
+    &.successful {
+      span {
+        &::after {
+            border-top: 2px dotted color(success);
+        }
+      }
+    }
+
+    &.last {
+      span {
+        &::after {
+          width: 0;
+         }
+      }
+    }
+  }
+
+  .step-box {
+    background-color: color(white);
+    border: 1px solid color(gray);
+    border-radius: 50%;
+    display: block;
+    height: 25px;
+    text-align: center;
+    width: 25px;
+
+    &.current {
+      background-color: color(jadu-blue, pale);
+      border-color: color(jadu-blue, darkest);
+      border-radius: 25%;
+    }
+
+    &.completed {
+      border-color: color(success);
+      color: color(success);
+    }
+
+    &.final {
+      border-color: color(success);
+      border-radius: 25%;
+      color: color(success);
+    }
+  }
+}
+
