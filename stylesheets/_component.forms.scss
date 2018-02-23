@@ -567,7 +567,9 @@ fieldset {
     &:focus:checked::before {
         color: color(primary);
     }
+}
 
+.form__control.checkbox {
     &:checked::before {
         color: color(text);
         content: '\f00c';
