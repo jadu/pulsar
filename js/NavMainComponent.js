@@ -77,7 +77,8 @@ NavMainComponent.prototype.init = function () {
         component.changeActiveQuaternaryNavLink($(this).attr('href'));
     });
 
-    component.$moreIcon.find('.nav-link').on('click', function () {
+    component.$moreIcon.find('.nav-link').on('click', function (e) {
+        e.preventDefault();
         component.$navSecondary.removeClass('is-open');
         component.$navTertiary.toggleClass('is-open');
         component.$navTertiary.find('.nav-list').addClass('is-active');
