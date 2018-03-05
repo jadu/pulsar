@@ -63,7 +63,7 @@
         display: block;
         left: 100%;
         position: absolute;
-        top: 12px;
+        top: 11px;
         width: 1000px;
       }
     }
@@ -90,9 +90,9 @@
     border: 1px solid color(gray);
     border-radius: 50%;
     display: block;
-    height: 25px;
+    height: 26px;
     text-align: center;
-    width: 25px;
+    width: 26px;
 
     &.current {
       background-color: color(jadu-blue, pale);
