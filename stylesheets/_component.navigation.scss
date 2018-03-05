@@ -207,6 +207,7 @@ $nav-color-darker: darken(color(jadu-blue, dark), 10%) !default;
 
 .nav-item {
     list-style-type: none;
+    font-family: $font-family-regular;
 }
 
 .nav-divider {
