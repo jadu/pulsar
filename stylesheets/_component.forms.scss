@@ -390,7 +390,8 @@ fieldset {
         }
     }
 
-    .form__group .input-group .form__control {
+    // Bumping specificity to compete with .form__group--#{$variant}.form__group--#{$variant} .form__control:not(.checkbox):not(.radio),
+    .form__group.form__group .input-group .form__control.form__control {
         width: 100%;
     }
 }
@@ -566,7 +567,9 @@ fieldset {
     &:focus:checked::before {
         color: color(primary);
     }
+}
 
+.form__control.checkbox {
     &:checked::before {
         color: color(text);
         content: '\f00c';
