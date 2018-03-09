@@ -31,7 +31,7 @@ NavMainComponent.prototype.init = function () {
     component.$moreIcon = component.$navMain.find('.more-icon');
     component.$closeLink = component.$navMain.find('[data-nav-action=close]');
 
-    component.initMoreIcon();
+    component.moreIconClickHandler();
     component.adjustNavItems();
 
     component.$window.resize(function () {
@@ -180,10 +180,8 @@ NavMainComponent.prototype.adjustNavItems = function () {
         moreIconHeight = 72, // Pre calculated height of the "More" nav item
         navItemsCountTotal = component.$html.find('.nav-primary .nav-items li').length,
         numberOfHiddenNavItems = 0;
-
-    // Re initialize "More" icon in case it wasn't present from the start
-    component.initMoreIcon();
-
+        
+    // When nav items + more icon height is greater than available window height
     if (navItemsHeight + moreIconHeight > availableHeight) {
         // If there is not enough space hide the last primary nav items
         component.hidePrimaryNavItems(navItemsHeight, moreIconHeight, availableHeight);
@@ -195,8 +193,8 @@ NavMainComponent.prototype.adjustNavItems = function () {
         component.hideMoreCategoriesTopItems(navItemsCountTotal, numberOfHiddenNavItems);
     } else if (navItemsHeight + moreIconHeight < availableHeight) {
         // Unhide items if they were hidden and there is space in the primary nav
+        component.unhidePrimaryNavItems();
         numberOfHiddenNavItems = component.$html.find('.nav-primary .nav-items li:hidden').length;
-        component.unhidePrimaryNavItems(numberOfHiddenNavItems);
         component.lastItemSubstitution(numberOfHiddenNavItems);
     }
 };
@@ -241,7 +239,7 @@ NavMainComponent.prototype.addMoreNavItem = function (numberOfHiddenNavItems) {
         navItemMore = navItems.find('.more-icon');
 
     // Add the "More" nav item
-    if ((numberOfHiddenNavItems > 0) && (!component.$html.find('.more-icon').length)){
+    if ((numberOfHiddenNavItems > 0) && (!component.$html.find('.more-icon').length)) {
         navItems.append('<li aria-haspopup="true" class="nav-item t-nav-item more-icon"><a href="#more" class="nav-link t-nav-link"><i aria-hidden="true" class="icon-ellipsis-horizontal nav-link__icon t-nav-icon"></i><span class="nav-link__label">More</span></a></li>');
     }
 
@@ -278,27 +276,26 @@ NavMainComponent.prototype.lastItemSubstitution = function (numberOfHiddenNavIte
         navItems = component.$html.find('.nav-primary .nav-items'),
         navItemMore = navItems.find('.more-icon');
 
-        if (numberOfHiddenNavItems === 0) {
-            navItemMore.hide();
-            component.$html.find('.nav-tertiary').removeClass('is-open');
-            component.$html.find('.nav-quaternary').removeClass('is-open');
-        }
+    if (numberOfHiddenNavItems === 0) {
+        navItemMore.hide();
+        component.$html.find('.nav-tertiary').removeClass('is-open');
+        component.$html.find('.nav-quaternary').removeClass('is-open');
+    }
 };
 
-NavMainComponent.prototype.initMoreIcon = function () {
+NavMainComponent.prototype.moreIconClickHandler = function () {
     var component = this;
 
-        component.$navMain = this.$html.find('.nav-main');
-        component.$moreIcon = component.$navMain.find('.more-icon');
-        component.$navSecondary = this.$html.find('.nav-secondary');
-        component.$navTertiary = component.$navMain.find('.nav-tertiary');
+    component.$navMain = this.$html.find('.nav-main');
+    component.$navSecondary = this.$html.find('.nav-secondary');
+    component.$navTertiary = component.$navMain.find('.nav-tertiary');
 
-        component.$moreIcon.find('.nav-link').on('click', function (e) {
-            e.preventDefault();
-            component.$navSecondary.removeClass('is-open');
-            component.$navTertiary.toggleClass('is-open');
-            component.$navTertiary.find('.nav-list').addClass('is-active');
-        });
+    component.$navMain.on('click', '.more-icon > .nav-link', function(e) {
+        e.preventDefault();
+        component.$navSecondary.removeClass('is-open');
+        component.$navTertiary.toggleClass('is-open');
+        component.$navTertiary.find('.nav-list').addClass('is-active');
+    });
 };
 
 module.exports = NavMainComponent;
