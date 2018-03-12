@@ -62,13 +62,15 @@ describe('NavMainComponent', function () {
 \
 --><div class="nav-tertiary">\
 \
-    <a href="#close" data-nav-action="close">x</a>\
+        <a href="#close" data-nav-action="close">x</a>\
 \
-        <ul class="nav-items">\
-            <li class="nav-item">\
-                <a href="#three_one" class="nav-link">3.1</a>\
-            </li>\
-        </ul>\
+        <div class="nav-list">\
+            <ul class="nav-items">\
+                <li class="nav-item">\
+                    <a href="#three_one" class="nav-link">3.1</a>\
+                </li>\
+            </ul>\
+        </div>\
     </div><!-- \
   --><div class="nav-quaternary">\
   \
@@ -274,16 +276,41 @@ describe('NavMainComponent', function () {
         });
     });
 
-    /*describe('when the more link is clicked', function () {
+    describe('when the more link is clicked', function () {
         beforeEach(function() {
+            this.navMainComponent.init();
+            this.$window.height(200);
+            this.$window.resize();
             this.$moreIconLink = this.$html.find('.more-icon > .nav-link');
-            this.$moreIconLink.click();
+            this.clickEvent = $.Event('click');
         });
 
-        it('should open the sliding main nav if it is closed', function () {
-            expect(this.$navTertiary.hasClass('is-open')).to.be.true;
+        it('should prevent the default bahavior', function () {
+            this.$moreIconLink.trigger(this.clickEvent);
+
+            expect(this.clickEvent.isDefaultPrevented()).to.be.true;
         });
-    });*/
+
+        it('should close the secondary nav when open', function () {
+            this.$html.find('.nav-secondary').addClass('is-open');
+            
+            this.$moreIconLink.trigger(this.clickEvent);
+
+            expect(this.$html.find('.nav-secondary').hasClass('is-open')).to.be.false;
+        });
+
+        it('should open the sliding main nav', function () {
+            this.$moreIconLink.trigger(this.clickEvent);
+
+            expect(this.$html.find('.nav-tertiary').hasClass('is-open')).to.be.true;
+        });
+
+        it('should add the is-active class to nav-tertiary nav-list', function () {
+            this.$moreIconLink.trigger(this.clickEvent);
+
+            expect(this.$html.find('.nav-tertiary .nav-list').hasClass('is-active')).to.be.true;
+        });
+    });
 
     describe('clicking the close icon, when the tertiary sub navigation is open', function () {
         beforeEach(function () {
