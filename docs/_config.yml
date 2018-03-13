@@ -8,6 +8,10 @@ kramdown:
 # Permalinks
 permalink:          /:title/
 
+links:
+  - title: Home
+    url: /
+
 # Setup
 title:               Pulsar
 tagline:             The open-source design system for the Jadu Continuum platform
