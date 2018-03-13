@@ -19,7 +19,7 @@
     pulsar.pulsarSortable = new pulsar.PulsarSortableComponent($html, window);
     pulsar.signIn = new pulsar.SignInComponent($html);
     pulsar.masterSwitch = new pulsar.MasterSwitchComponent($html, pulsar.disableUi);
-	pulsar.modulePermissions = new pulsar.ModulePermissionsComponent($html);
+    pulsar.modulePermissions = new pulsar.ModulePermissionsComponent($html);
     pulsar.navMain = new pulsar.NavMainComponent($html, window);
     pulsar.filterBar = new pulsar.FilterBarComponent($html);
     pulsar.faviconEditor = new pulsar.FaviconEditor(document.head);
