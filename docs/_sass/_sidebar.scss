@@ -8,7 +8,7 @@
     @include respond-min($screen-tablet) {
         left: 0;
         position: relative;
-        width: 100%;
+        // width: 100%;
     }
 
     ol {
@@ -69,46 +69,3 @@
         width: 3px;
     }
 }
-
-// .sidebar {
-//     color: $pulsar-main;
-//     float: left;
-//     margin-right: 5%;
-//     margin-top: 1.5rem;
-//     width: 20%;
-//     text-align: left;
-
-//     ol {
-//         list-style-type: none;
-//         padding-left: 10px;
-//     }
-
-//     a {
-//         color: $pulsar-main;
-//     }
-// }
-
-// .sidebar-nav-item {
-//     color: $pulsar-main;
-//     display: block;
-//     padding: 3px 0 3px 5px;
-
-//     &.active {
-//         background-color: #638395;
-//         color: white;
-//         border-radius: 0;
-//         border-top-right-radius: 10px;
-//         border-bottom-left-radius: 10px;
-//         padding: 3px 0 3px 5px;
-//         text-decoration: none;
-//     }
-// }
-
-// .sidebar-nav-header {
-//     border-bottom: 2px solid lighten($pulsar-main, 40);
-//     color: $pulsar-main;
-//     display: block;
-//     margin: .5rem 0;
-//     padding: 3px 0 3px 5px;
-//     width: 100%;
-// }
