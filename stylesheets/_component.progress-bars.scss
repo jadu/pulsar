@@ -69,21 +69,13 @@
       }
     }
 
-    &.successful {
-      span {
-        &::after {
+    &.successful span::after {
             border-top: 2px dotted color(success);
-        }
-      }
     }
 
-    &.last {
-      span {
-        &::after {
+    &.last span::after {
           width: 0;
-         }
       }
-    }
   }
 
   .step-box {
