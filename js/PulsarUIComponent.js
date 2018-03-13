@@ -3,10 +3,10 @@
 var $ = require('jquery'),
     StickyScrollBarComponent = require('./StickyScrollBarComponent');
 
-require('datatables.net')(window, $);
-require('datatables.net-buttons')(window, $);
-require('datatables.net-responsive')(window, $);
-require('datatables.net-select')(window, $);
+require('datatables.net');
+require('datatables.net-buttons');
+require('datatables.net-responsive');
+require('datatables.net-select');
 require('../libs/jquery.countdown/dist/jquery.countdown.min');
 
 function PulsarUIComponent(html, history) {
