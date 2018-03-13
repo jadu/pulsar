@@ -70,18 +70,14 @@
     }
 
     &.successful {
-      span {
-        &::after {
+      span::after {
             border-top: 2px dotted color(success);
-        }
       }
     }
 
     &.last {
-      span {
-        &::after {
+      span::after {
           width: 0;
-         }
       }
     }
   }
