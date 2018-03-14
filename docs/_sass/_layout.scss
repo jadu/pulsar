@@ -10,14 +10,18 @@
 
 .page {
     border-left: 1px solid #ccc;
-    padding: .7rem 50px 0;
+    padding: 1rem 15px 0;
     position: relative;
     max-width: 1000px;
-    // width: 100%;
+    width: 100%;
+
+    @include respond-min($screen-tablet) {
+        padding: .7rem 50px 0;
+    }
 }
 
 .is-open + .page {
-    left: 94%;
+    left: 90%;
 
     @include respond-min($screen-tablet) {
         left: 0;

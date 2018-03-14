@@ -20,14 +20,15 @@
 <script>
 (function ($) {
     var $trigger = $('.nav-toggle'),
-        $nav = $('.sidebar');
+        $nav = $('.sidebar'),
+        width = window.innerWidth;
 
     $trigger.on('click', function() {
         $nav.toggleClass('is-open');
     });
 
     $(window).on('resize', function() {
-        if (window.innerWidth <= 900) {
+        if ((width != window.innerWidth) && (window.innerWidth <= 900)) {
             $nav.removeClass('is-open');
         }
     });
