@@ -50,6 +50,9 @@ NavMainComponent.prototype.init = function () {
         // back button
         if (href.indexOf('#') !== -1) {
             e.preventDefault();
+            
+            // change aria expanded to true
+            $self.attr('aria-expanded', 'true');
         }
 
         component.switchPrimaryNav(href);
@@ -156,6 +159,7 @@ NavMainComponent.prototype.closeNavs = function () {
         component.$navSecondary.removeClass('is-open');
     }
 
+    component.$navMain.find('[aria-expanded=true]').attr( 'aria-expanded', 'false');
     component.$contentMain.unbind('click', component.closeHandler);
 };
 
