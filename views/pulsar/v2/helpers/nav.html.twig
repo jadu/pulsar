@@ -3,8 +3,9 @@
     {% import _self as nav %}
     {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 
-<nav class="nav-main"><!--
- --><div class="nav-primary t-nav-primary"><!--
+<nav class="nav-main" aria-label="Main"><!--
+ -->
+    <div class="nav-primary t-nav-primary"><!--
 
      --><a href="{{ options.brand_link|default('#') }}" class="jadu-branding">
             <span class="jadu-logomark"></span><!--
@@ -115,7 +116,7 @@
             )
         }}
     >
-        <a {{ attributes(options|only('href data-toggle')) }} class="nav-link t-nav-link">
+        <a {{ attributes(options|only('href data-toggle')) }} class="nav-link t-nav-link" {% if options.class is defined and 'is-active' in options.class %} aria-current="page" {% endif %} {% if options.href starts with '#' %} aria-haspopup="true" aria-expanded="false"{% endif %}>
             {% if options.icon is defined and options.icon is not empty %}
                 {{ html.icon(options.icon, { 'class': 'icon-fw nav-link__icon t-nav-icon' }) }}
             {% elseif options.image is defined and options.image is not empty %}
@@ -133,7 +134,7 @@
     {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
     {% set active_tab_id = get_active_tab(tabs, active_tab|default) %}
 
-    <div class="nav-inline">
+    <div class="nav-inline" aria-label="Secondary">
         <ul class="nav-inline__list">
     {%- for tab in tabs -%}
             <li class="nav-inline__item{% if active_tab_id == tab.id %} nav-inline__item--is-active is-active{% endif %}{% if tab.hidden is defined and tab.hidden == true %} hide{% endif %}">
@@ -153,16 +154,22 @@
 
 
 {%- macro breadcrumbs(items) -%}
+    {% spaceless %}    
     {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
-
-    <nav class="breadcrumb">
+    <nav class="breadcrumb" aria-label="breadcrumbs">
     {%- for item in items -%}
-        {{ html.link(item) }}
-        {% if not loop.last %}
-            /
+        {% if loop.last %}
+            {% set item = item|merge({
+                'aria-current': 'page'
+            }) %}
         {% endif %}
+        
+        {{ html.link(item) }}
+        
+        {%- if not loop.last -%}/{%- endif -%}
     {%- endfor -%}
     </nav>
+    {% endspaceless %}
 {%- endmacro -%}
 
 
