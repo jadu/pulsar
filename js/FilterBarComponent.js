@@ -60,7 +60,7 @@ function createFilterListButton ($filterbar) {
     });
 
     // Build up list and mark up for Add filter button
-    $addFilterButton = $('<button class="btn filter-bar__add" data-ui="show-filter-list" data-toggle="popover" data-trigger="click" title="Filter by" data-html="true" data-placement="bottom" data-content=""><i class="icon-plus"></i></button>');
+    $addFilterButton = $('<button class="btn filter-bar__add" data-ui="show-filter-list" data-toggle="popover" data-trigger="click" title="Filter by" data-html="true" data-placement="bottom" data-content=""><i class="icon-plus"><span class="hide">Add</span></i></button>');
     $addFilterButton.attr('data-content', $filterList[0].outerHTML);
 
     // Append button and label wrapper
