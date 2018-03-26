@@ -5,7 +5,11 @@ title: Forms Styleguide
 
 Pulsar form helpers provide all the necessary markup and styling required to build a responsive, robust form layout. All helpers provide a set of common options allowing you to provide useful labels, placeholders and guidance popovers or indicate whether fields are required or in an error state.
 
-## Accessibility
+<p class="callout callout--danger">
+All user interfaces within the Continuum platform *must* meet WCAG 2.0 compliance.
+</p>
+
+## Accessibility & WCAG Compliance
 
 Pulsar form helpers are designed to make building accessible forms as easy as possible, however there are a few things you will need to consider and test for.
 
@@ -13,41 +17,41 @@ Pulsar form helpers are designed to make building accessible forms as easy as po
 
 Use the WebAim [Web Accessibility Evaluation Tool's Chrome extension](http://wave.webaim.org/extension/) (WAVE) to view your UIs and resolve any 'red flag' errors as part of your normal testing process. You should spend some time [familiarising yourself](http://wave.webaim.org/help) with the WAVE tool and the types of errors it will highlight. Remember, the absence of errors does not necessarily indicate that a given UI is accessible, but it will help catch accessibility errors that break WCAG 2.0 AA compliance.
 
+<figure>
+<img src="{{ site.baseurl }}/assets/image_examples/wave-tool.png" alt="Screenshot of the WAVE tool in Chrome">
+<figcaption>The WAVE tool will highlight the number of errors (in red) which need to be resolved.</figcaption>
+</figure>
+
 ### Use IDs in form helpers
 
 If you're using form helpers, you *must* supply an `id` attribute. Pulsar's form helpers will automatically link both the label and the input so that screenreaders will correctly announce the elements.
 
-### Labelling standalone inputs
+{% code_example form_helpers/text %}
 
-There may be times when a design calls for an input without an explicit label next to it, but can still be labelled by another element, such as a table heading column label.
+## Labelling standalone inputs
+
+There may be times when a design calls for an input without an explicit label next to it, but there are a couple of methods you can use to label the inputs. You should use one of the following strategies to avoid an error in WAVE.
+
+### Hidden label
+
+Form helpers can use hidden labels which will be ready by screenreaders but not visible in the UI. For helpers, use the `'show-label': false` option to visually hide them.
+
+{% code_example styleguides/hidden-label %}
+
+### aria-labelledby
+
+If another visible element on the page can be used to label the input, like a 
+The input can then use the `aria-labelledby` attribute to specify the element you're using as a label.
 
 To do this, the element acting as the label must have an `id`, we recommend namespacing IDs used only for labels as `id="aria-something"` so that other developers will understand that this ID exists for accessibility reasons. No styles or javascript behaviour should be hooked into `aria-` namespaced IDs.
 
-###### Example
+{% code_example styleguides/aria-labelledby %}
 
-{% raw %}
-```twig
-<table>
-    <thead>
-        <tr>
-            <th id="aria-foo">Select</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-                {{
-                    form.checkbox({
-                        'id': 'foo',
-                        'aria-labelledby': 'aria-foo'
-                    })
-                }}
-            </td>
-        </tr>
-    </tbody>
-</table>
-```
-{% endraw %}
+### aria-label
+
+You can specify a label directly on the input with the `aria-label` attribute, this should be used only when a visible label is not present, or cannot be created.
+
+{% code_example styleguides/aria-label %}
 
 ## Validation states
 
@@ -136,7 +140,7 @@ Do not use the placeholder attribute instead of a `<label>` element. Their purpo
 
 Placeholders should:
 
-* Not have a full stop at the end
+* Not have a full stop at the end (unless part of the expected input)
 
 {% raw %}
 ```twig
