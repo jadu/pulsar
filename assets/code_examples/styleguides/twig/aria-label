@@ -1,0 +1,6 @@
+{{
+    form.checkbox({
+        'id': 'foo',
+        'aria-labelled': 'My awesome checkbox'
+    })
+}}
