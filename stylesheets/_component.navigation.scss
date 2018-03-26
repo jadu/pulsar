@@ -1,5 +1,5 @@
-$nav-color-light: darken(color(jadu-blue, dark), 2.5%) !default;
-$nav-color-dark: darken(color(jadu-blue, dark), 7.5%) !default;
+$nav-color-light: color(jadu-blue, dark) !default;
+$nav-color-dark: darken(color(jadu-blue, dark), 5%) !default;
 $nav-color-darker: darken(color(jadu-blue, dark), 10%) !default;
 
 .nav-main {
@@ -242,7 +242,7 @@ $nav-color-darker: darken(color(jadu-blue, dark), 10%) !default;
     }
 
     .nav-link {
-        color: color(white);
+        color: lighten($nav-color-light, 40);
         display: block;
         font-family: $font-family-regular;
         font-size: .75em;
