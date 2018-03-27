@@ -1,5 +1,6 @@
 {{
     html.icon('save', {
-        'label': 'Save'
+        'label': 'Save',
+        'class': 'my-class'
     })
 }}

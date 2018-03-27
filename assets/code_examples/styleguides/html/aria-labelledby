@@ -1,6 +1,0 @@
-<h1 id="aria-billing-address">Billing address</h1>
-<div class="form__group">
-    <div class="controls">
-        <input id="foo" type="text" class="form__control" aria-labelledby="aria-billing-address">
-    </div>
-</div>
