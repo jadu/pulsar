@@ -37,11 +37,11 @@ NavMainComponent.prototype.init = function () {
     component.adjustNavItems();
 
     // Open navigation on mobile
-    component.$mobileMenuButton.on('click', function(e) {
+    component.$mobileMenuButton.on('click', function() {
         component.$body.toggleClass('open-nav');
         $(this).toggleClass('open');
 
-        if ($(this).text() == 'Menu') {
+        if ($(this).text() === 'Menu') {
             $(this).text('Close');
             $(this).attr('aria-expanded', 'true');
         } else {
