@@ -57,12 +57,12 @@ $greeter-button-bg-color-disabled:      $greeter-bg-color-darker !default;
 $greeter-button-border-color-disabled:  darken($greeter-bg-color, 10) !default;
 
 // Branding
-$greeter-brand-top-image:               '../images/branding/continuum-brandmark.svg' !default;
-$greeter-brand-top-image-fallback:      '../images/branding/continuum-brandmark.png' !default;
+$greeter-brand-top-image:               $branding-brandmark !default;
+$greeter-brand-top-image-fallback:      $branding-brandmark-fallback !default;
 $greeter-brand-top-width:               200px !default;
 $greeter-brand-top-height:              36px !default;
-$greeter-brand-bottom-image:            '../images/branding/jadu-brandmark.svg' !default;
-$greeter-brand-bottom-image-fallback:   '../images/branding/jadu-brandmark.png' !default;
+$greeter-brand-bottom-image:            $brading-generic-brandmark !default;
+$greeter-brand-bottom-image-fallback:   $brading-generic-brandmark-fallback !default;
 $greeter-brand-bottom-width:            100px !default;
 $greeter-brand-bottom-height:           40px !default;
 
