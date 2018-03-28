@@ -22,7 +22,7 @@
         {% set tab_active = tabs[0].id %}
     {% endif %}
 
-    <div class="nav-inline t-nav-inline" role="navigation" aria-label="secondary navigation">
+    <nav class="nav-inline t-nav-inline" aria-label="secondary">
         <ul class="nav-inline__list">
     {%- for tab in tabs -%}
 
@@ -83,7 +83,7 @@
             </li>
     {%- endfor -%}
         </ul>
-    </div>
+    </nav>
 {%- endmacro -%}
 
 {%- macro content(tabs) -%}
