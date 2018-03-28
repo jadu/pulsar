@@ -223,3 +223,13 @@ $zindex-nav-secondary:                1070 !default;
 $zindex-nav:                          1080 !default;
 $zindex-popover:                      1090 !default;
 $zindex-modal:                        3000 !default;
+
+// -----------------------------------------------------------------------------
+//  Signin
+// -----------------------------------------------------------------------------
+
+$signin-bg-color:          rgba(51, 153, 204, .9);
+$signin-bg-color-fallback: rgb(51, 153, 204);
+
+$signin-full-width:        400px;
+$signin-mobile-width:      300px;
