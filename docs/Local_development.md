@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Installation
+title: Local Development
 ---
 
 Pulsar can run standalone to allow you to develop user interfaces outside of the software, it requires a few things to be installed first.
