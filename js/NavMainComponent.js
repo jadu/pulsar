@@ -38,15 +38,16 @@ NavMainComponent.prototype.init = function () {
 
     // Open navigation on mobile
     component.$mobileMenuButton.on('click', function() {
+        var $self = $(this);
         component.$body.toggleClass('open-nav');
-        $(this).toggleClass('open');
+        $self.toggleClass('open');
 
-        if ($(this).text() === 'Menu') {
-            $(this).text('Close');
-            $(this).attr('aria-expanded', 'true');
+        if ($self.text() === 'Menu') {
+            $self.text('Close');
+            $self.attr('aria-expanded', 'true');
         } else {
-            $(this).text('Menu');
-            $(this).attr('aria-expanded', 'false');
+            $self.text('Menu');
+            $self.attr('aria-expanded', 'false');
         }
     });
 
@@ -64,23 +65,21 @@ NavMainComponent.prototype.init = function () {
 
     // Close navs on main content click
     component.$contentMain.on('click', function () {
-        var $self = $(this);
-        component.closeNavs($self);
+        component.closeNavs($(this));
     });
 
     // Open secondary nav on primary nav item click
     component.$primaryNavLinks.on('click', function (event) {
-        var $self = $(this);
-        component.openSecondaryNav($self, event);
+        component.openSecondaryNav($(this), event);
     });
 
     // Open quaternary nav on tertiary nav item click
-    component.$tertiaryNavLinks.on('click', function (e) {
+    component.$tertiaryNavLinks.on('click', function (event) {
         var $self = $(this),
             href = $self.attr('href');
 
         if (href.indexOf('#') !== -1) {
-            e.preventDefault();
+            event.preventDefault();
 
             // Change aria expanded to true
             $self.attr('aria-expanded', 'true');
@@ -90,10 +89,9 @@ NavMainComponent.prototype.init = function () {
     });
 
     // Close respective navs on close link click
-    component.$closeLink.on('click', function (e) {
-        var $self = $(this);
-        e.preventDefault();
-        component.closeNavs($self);
+    component.$closeLink.on('click', function (event) {
+        event.preventDefault();
+        component.closeNavs($(this));
     });
 };
 
@@ -114,10 +112,7 @@ NavMainComponent.prototype.openSecondaryNav = function ($linkClicked, event) {
     // If href is a fragment (therefore opens a sub nav), don't add it to the URL because it breaks the back button
     if (target.indexOf('#') !== -1) {
         event.preventDefault();
-        
-        // Change aria expanded to true
         $linkClicked.attr('aria-expanded', 'true');
-
         component.$navSecondary.addClass('is-open');
         component.$navSecondary.find('.nav-list.is-active').removeClass('is-active');
         component.$navSecondary.find('[data-nav="' + target + '"]').addClass('is-active');
@@ -201,7 +196,7 @@ NavMainComponent.prototype.closeTertiaryNav = function () {
     // Reset aria-expanded on more button
     component.$navMain.find('[aria-expanded=true]')
         .removeClass('is-active')
-        .attr( 'aria-expanded', 'false');
+        .attr('aria-expanded', 'false');
 }
 
 /**
@@ -214,7 +209,7 @@ NavMainComponent.prototype.closeQuaternaryNav = function () {
     component.$navQuaternary.find('.nav-list.is-active').removeClass('is-active');
 
     // Reset aria-expanded on tertiary link
-    component.$navTertiary.find('[aria-expanded=true]').attr( 'aria-expanded', 'false');
+    component.$navTertiary.find('[aria-expanded=true]').attr('aria-expanded', 'false');
 }
 
 /**
@@ -354,7 +349,7 @@ NavMainComponent.prototype.lastItemSubstitution = function (numberOfHiddenNavIte
 
 /**
  * Hide more link if there are no hidden nav items
- * @param {jQuery} $linkClicked - jQuery object of the more link
+ * @param {jQuery} $moreLink - jQuery object of the more link
  */
 NavMainComponent.prototype.moreIconClickHandler = function ($moreLink) {
     var component = this;
