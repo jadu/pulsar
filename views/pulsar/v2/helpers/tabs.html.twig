@@ -22,7 +22,7 @@
         {% set tab_active = tabs[0].id %}
     {% endif %}
 
-    <div class="nav-inline t-nav-inline">
+    <nav class="nav-inline t-nav-inline" aria-label="secondary">
         <ul class="nav-inline__list">
     {%- for tab in tabs -%}
 
@@ -62,6 +62,12 @@
                     {% set options = {'data-href': tab.href} %}
                 {% endif %}
 
+                {% if tab_active is defined and tab_active == tab.id %}
+                    {% set options = options|merge({
+                        'aria-current': 'page'
+                    }) %}
+                {% endif %}
+
                 {%
                     set options = options|merge({
                         'class': tab.class|default ~ ' nav-inline__link',
@@ -72,11 +78,12 @@
                         'tabindex': tabindex
                     })
                 %}
+
                 {{ html.link(options|merge(tab.data|default({}))) }}
             </li>
     {%- endfor -%}
         </ul>
-    </div>
+    </nav>
 {%- endmacro -%}
 
 {%- macro content(tabs) -%}
