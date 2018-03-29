@@ -126,7 +126,12 @@ describe('NavMainComponent', function () {
     describe('When mobile menu button is clicked', function () {
         beforeEach(function () {
             this.navMainComponent.init();
-            this.$mobileMenuButton.click();
+            this.clickEvent = $.Event('click');
+            this.$mobileMenuButton.trigger(this.clickEvent);
+        });
+
+        it('should stop propagation', function () {
+            expect(this.clickEvent.isPropagationStopped()).to.be.true;
         });
 
         it('should add the open-nav class to the body', function () {
