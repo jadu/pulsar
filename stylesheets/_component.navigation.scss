@@ -458,7 +458,7 @@
 .nav-close,
 .nav-close-ltr {
     color: color(white);
-    display: block;
+    display: none;
     padding: 0 20px 23px;
     text-decoration: none;
     margin-top: 24px;
@@ -470,6 +470,13 @@
         content: '\f0a8';
         color: color(white);
     }
+
+    .nav-secondary.is-open &,
+    .nav-tertiary.is-open &,
+    .nav-quaternary.is-open & {
+        display: block;
+    }
+
 }
 
 .nav-close-ltr {
