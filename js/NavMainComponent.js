@@ -37,8 +37,9 @@ NavMainComponent.prototype.init = function () {
     component.adjustNavItems();
 
     // Open navigation on mobile
-    component.$mobileMenuButton.on('click', function() {
+    component.$mobileMenuButton.on('click', function(event) {
         var $self = $(this);
+        event.stopImmediatePropagation();
         component.$body.toggleClass('open-nav');
         $self.toggleClass('open');
 
