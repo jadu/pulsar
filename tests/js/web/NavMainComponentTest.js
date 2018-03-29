@@ -15,67 +15,67 @@ describe('NavMainComponent', function () {
         this.$window.height(150);
         this.window = this.$window[0];
 
-        this.$markup = $(
-            '<button class="mobile-menu-button t-mobile-menu-button" aria-expanded="false" aria-controls="aria-main-nav" aria-label="Toggle main menu">Menu</button>' +
-            '<nav class="nav-main" aria-label="Primary" id="aria-main-nav">' +
-            '   <div class="nav-primary">' +
-            '       <a href="http://jadu.net" class="jadu-branding">Jadu</a>' +
-            '       <ul class="nav-items">' +
-            '           <li class="nav-item">' +
-            '               <a href="#one" class="nav-link" aria-haspopup="true" aria-expanded="false" aria-controls="aria-secondary-nav">1</a>' +
-            '           </li>' +
-            '           <li class="nav-item">' +
-            '               <a href="#two" class="nav-link" aria-haspopup="true" aria-expanded="false" aria-controls="aria-secondary-nav">2</a>' +
-            '           </li>' +
-            '           <li class="nav-item">' +
-            '               <a href="#three" class="nav-link" aria-haspopup="true" aria-expanded="false" aria-controls="aria-secondary-nav">3</a>' +
-            '           </li>' +
-            '       </ul>' +
-            '   </div>' +
-            '   <div class="nav-secondary" id="aria-secondary-nav">' +
-            '       <a href="#close" data-nav-action="close">x</a>' +
-            '       <form>' +
-            '           <input type="search" placeholder="search" />' +
-            '           <button>Go</button>' +
-            '       </form>' +
-            '       <div class="nav-list" data-nav="#one">' +
-            '           <ul class="nav-items">' +
-            '               <li class="nav-item">' +
-            '                   <a href="#one_one" class="nav-link">1.1</a>' +
-            '               </li>' +
-            '           </ul>' +
-            '       </div>' +
-            '       <div class="nav-list" data-nav="#two">' +
-            '           <ul class="nav-items">' +
-            '               <li class="nav-item">' +
-            '                   <a href="#two_one" class="nav-link">2.1</a>' +
-            '               </li>' +
-            '           </ul>' +
-            '       </div>' +
-            '   </div>' +
-            '   <div class="nav-tertiary" id="aria-tertiary-nav">' +
-            '       <a href="#close" data-nav-action="close">x</a>' +
-            '       <div class="nav-list">' +
-            '           <ul class="nav-items">' +
-            '               <li class="nav-item">' +
-            '                   <a href="#three_one" class="nav-link" aria-haspopup="true" aria-expanded="false" aria-controls="aria-quaternary-nav">3.1</a>' +
-            '               </li>' +
-            '           </ul>' +
-            '       </div>' +
-            '   </div>' +
-            '   <div class="nav-quaternary" id="aria-quaternary-nav">' +
-            '       <a href="#close" data-nav-action="close">x</a>' +
-            '       <div class="nav-list" data-nav="#three_one">' +
-            '           <ul class="nav-items">' +
-            '               <li class="nav-item">' +
-            '                   <a href="#four_one" class="nav-link">4.1</a>' +
-            '               </li>' +
-            '           </ul>' +
-            '       </div>' +
-            '   </div>' +
-            '</nav>' +
-            '<div class="content-main"></div>'
-        ).appendTo(this.$body);
+        this.$markup = $(`
+            <button class="mobile-menu-button t-mobile-menu-button" aria-expanded="false" aria-controls="aria-main-nav" aria-label="Toggle main menu">Menu</button>
+            <nav class="nav-main" aria-label="Primary" id="aria-main-nav">
+               <div class="nav-primary">
+                   <a href="http://jadu.net" class="jadu-branding">Jadu</a>
+                   <ul class="nav-items">
+                       <li class="nav-item">
+                           <a href="#one" class="nav-link" aria-haspopup="true" aria-expanded="false" aria-controls="aria-secondary-nav">1</a>
+                       </li>
+                       <li class="nav-item">
+                           <a href="#two" class="nav-link" aria-haspopup="true" aria-expanded="false" aria-controls="aria-secondary-nav">2</a>
+                       </li>
+                       <li class="nav-item">
+                           <a href="#three" class="nav-link" aria-haspopup="true" aria-expanded="false" aria-controls="aria-secondary-nav">3</a>
+                       </li>
+                   </ul>
+               </div>
+               <div class="nav-secondary" id="aria-secondary-nav">
+                   <a href="#close" data-nav-action="close">x</a>
+                   <form>
+                       <input type="search" placeholder="search" />
+                       <button>Go</button>
+                   </form>
+                   <div class="nav-list" data-nav="#one">
+                       <ul class="nav-items">
+                           <li class="nav-item">
+                               <a href="#one_one" class="nav-link">1.1</a>
+                           </li>
+                       </ul>
+                   </div>
+                   <div class="nav-list" data-nav="#two">
+                       <ul class="nav-items">
+                           <li class="nav-item">
+                               <a href="#two_one" class="nav-link">2.1</a>
+                           </li>
+                       </ul>
+                   </div>
+               </div>
+               <div class="nav-tertiary" id="aria-tertiary-nav">
+                   <a href="#close" data-nav-action="close">x</a>
+                   <div class="nav-list">
+                       <ul class="nav-items">
+                           <li class="nav-item">
+                               <a href="#three_one" class="nav-link" aria-haspopup="true" aria-expanded="false" aria-controls="aria-quaternary-nav">3.1</a>
+                           </li>
+                       </ul>
+                   </div>
+               </div>
+               <div class="nav-quaternary" id="aria-quaternary-nav">
+                   <a href="#close" data-nav-action="close">x</a>
+                   <div class="nav-list" data-nav="#three_one">
+                       <ul class="nav-items">
+                           <li class="nav-item">
+                               <a href="#four_one" class="nav-link">4.1</a>
+                           </li>
+                       </ul>
+                   </div>
+               </div>
+            </nav>
+            <div class="content-main"></div>
+        `).appendTo(this.$body);
 
         this.$mobileMenuButton = this.$html.find('.mobile-menu-button');
         this.$navMain = this.$html.find('.nav-main');
@@ -340,7 +340,28 @@ describe('NavMainComponent', function () {
             this.$moreIconLink.trigger(this.clickEvent);
 
             expect(this.$html.find('.nav-tertiary .nav-list').hasClass('is-active')).to.be.true;
-        });      
+        });
+
+        it('should close the tertiary nav if it is already open', function () {
+            this.$moreIconLink.trigger(this.clickEvent);
+            this.$moreIconLink.trigger(this.clickEvent2);
+
+            expect(this.$html.find('.nav-tertiary').hasClass('is-open')).to.be.false;
+        });  
+
+        it('should remove the is-active class from the tertiary navs active nav-list if its already open', function () {
+            this.$moreIconLink.trigger(this.clickEvent);
+            this.$moreIconLink.trigger(this.clickEvent2);
+
+            expect(this.$html.find('.nav-tertiary .nav-list').hasClass('is-active')).to.be.false;
+        });  
+
+        it('should change more button aria-expanded attribute to false if the tertiary nav was already open', function () {
+            this.$moreIconLink.trigger(this.clickEvent);
+            this.$moreIconLink.trigger(this.clickEvent2);
+
+            expect(this.$moreIconLink.attr('aria-expanded')).to.be.equal('false');
+        });
 
         describe('when a tertiary nav link is clicked', function () {
             beforeEach(function() {
@@ -383,7 +404,7 @@ describe('NavMainComponent', function () {
             });
 
             it('should remove the is-active class from the more button', function () {
-                expect(this.$moreIconLink.attr('aria-expanded')).to.be.equal('false');
+                expect(this.$moreIconLink.hasClass('is-active')).to.be.false;
             });
 
             it('should change more button aria-expanded attribute to false', function () {
