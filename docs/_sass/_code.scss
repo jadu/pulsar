@@ -9,10 +9,11 @@ pre {
 }
 
 code {
-  padding: .25em .5em;
-  color: $code-color;
   background-color: #f9f9f9;
   border-radius: 3px;
+  color: $code-color;
+  font-size: .9rem;
+  padding: .25em .5em;
 }
 
 pre {
@@ -27,17 +28,32 @@ pre code {
   background-color: transparent;
 }
 
+.highlight,
+pre.prettyprint {
+    background-color: #f1efee;
+    border: 1px solid #ccc;
+    border-radius: 0;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    color: #22221b;
+    font-size: .75rem;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+    overflow-x: auto;
+    padding: 1em;
+    width: 100%;
+}
+
+pre.prettyprint {
+    white-space: -moz-pre-line;
+    white-space: -pre-line;
+    white-space: -o-pre-line;
+    white-space: pre-line;
+    word-wrap: break-word;
+}
+
 // Pygments via Jekyll
 .highlight {
-  background-color: #272822;
-  border-top-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-  font-size: .65rem;
-  line-height: 1.4;
-  margin-bottom: 1rem;
-  overflow-x: auto;
-  padding: 1rem;
-
   pre {
     margin-bottom: 0;
     overflow-x: auto;
