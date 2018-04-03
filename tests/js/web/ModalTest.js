@@ -2,8 +2,9 @@
 
 'use strict'
 
-var $ = require('jquery'),
-    modal = require('../../../js/libs/modal');
+var $ = require('jquery');
+
+require('../../../js/libs/modal');
 
 describe('Test extra functionality added to Bootstrap modals', function() {
 
