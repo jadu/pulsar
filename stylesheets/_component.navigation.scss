@@ -378,13 +378,6 @@
     margin-left: 242px;
     transition: all 100ms linear;
     width: 0;
-
-    .nav-link {
-
-        &:hover {
-            background-color: darken($nav-color-light, 4%);
-        }
-    }
 }
 
 .nav-remove-search {
