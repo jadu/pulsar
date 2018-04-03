@@ -111,21 +111,21 @@ If you have the percentage in the label either hidden or visible then you'll nee
 Stepped progress bar is used mainly in modals as a step indicator of a multi step process.
 <div class="pulsar-example">
     <div class="stepped-progressbar">
-        <div class="step"><span class="step-box current">1</span></div>
-        <div class="step"><span class="step-box">2</span></div>
-        <div class="step"><span class="step-box">3</span></div>
+        <div class="step"><span class="step-box current"><span class="step-number">1</span></span></div>
+        <div class="step"><span class="step-box"><span class="step-number">2</span></span></div>
+        <div class="step"><span class="step-box"><span class="step-number">3</span></span></div>
         <div class="step last"><span class="step-box"><i class="icon-flag-checkered"></i></span></div>
     </div>
     <div class="stepped-progressbar">
         <div class="step successful"><span class="step-box completed"><i class="icon-ok"></i></span></div>
-        <div class="step"><span class="step-box current">2</span></div>
-        <div class="step"><span class="step-box">3</span></div>
+        <div class="step"><span class="step-box current"><span class="step-number">2</span></span></div>
+        <div class="step"><span class="step-box"><span class="step-number">3</span></span></div>
         <div class="step last"><span class="step-box"><i class="icon-flag-checkered"></i></span></div>
     </div>
     <div class="stepped-progressbar">
         <div class="step successful"><span class="step-box completed"><i class="icon-ok"></i></span></div>
         <div class="step successful"><span class="step-box completed"><i class="icon-ok"></i></span></div>
-        <div class="step"><span class="step-box current">3</span></div>
+        <div class="step"><span class="step-box current"><span class="step-number">3</span></span></div>
         <div class="step last"><span class="step-box"><i class="icon-flag-checkered"></i></span></div>
     </div>
     <div class="stepped-progressbar">
@@ -138,27 +138,27 @@ Stepped progress bar is used mainly in modals as a step indicator of a multi ste
 
 ```html
 <div class="stepped-progressbar">
-    <div class="step"><span class="step-box current">1</span></div>
-    <div class="step"><span class="step-box">2</span></div>
-    <div class="step"><span class="step-box">3</span></div>
-    <div class="step last"><span class="step-box"><i class="icon-flag-checkered"></i></span></div>
-</div>
-<div class="stepped-progressbar">
-    <div class="step successful"><span class="step-box completed"><i class="icon-ok"></i></span></div>
-    <div class="step"><span class="step-box current">2</span></div>
-    <div class="step"><span class="step-box">3</span></div>
-    <div class="step last"><span class="step-box"><i class="icon-flag-checkered"></i></span></div>
-</div>
-<div class="stepped-progressbar">
-    <div class="step successful"><span class="step-box completed"><i class="icon-ok"></i></span></div>
-    <div class="step successful"><span class="step-box completed"><i class="icon-ok"></i></span></div>
-    <div class="step"><span class="step-box current">3</span></div>
-    <div class="step last"><span class="step-box"><i class="icon-flag-checkered"></i></span></div>
-</div>
-<div class="stepped-progressbar">
-    <div class="step successful"><span class="step-box completed"><i class="icon-ok"></i></span></div>
-    <div class="step successful"><span class="step-box completed"><i class="icon-ok"></i></span></div>
-    <div class="step successful"><span class="step-box completed"><i class="icon-ok"></i></span></div>
-    <div class="step last"><span class="step-box final"><i class="icon-flag-checkered"></i></span></div>
-</div>
+        <div class="step"><span class="step-box current"><span class="step-number">1</span></span></div>
+        <div class="step"><span class="step-box"><span class="step-number">2</span></span></div>
+        <div class="step"><span class="step-box"><span class="step-number">3</span></span></div>
+        <div class="step last"><span class="step-box"><i class="icon-flag-checkered"></i></span></div>
+    </div>
+    <div class="stepped-progressbar">
+        <div class="step successful"><span class="step-box completed"><i class="icon-ok"></i></span></div>
+        <div class="step"><span class="step-box current"><span class="step-number">2</span></span></div>
+        <div class="step"><span class="step-box"><span class="step-number">3</span></span></div>
+        <div class="step last"><span class="step-box"><i class="icon-flag-checkered"></i></span></div>
+    </div>
+    <div class="stepped-progressbar">
+        <div class="step successful"><span class="step-box completed"><i class="icon-ok"></i></span></div>
+        <div class="step successful"><span class="step-box completed"><i class="icon-ok"></i></span></div>
+        <div class="step"><span class="step-box current"><span class="step-number">3</span></span></div>
+        <div class="step last"><span class="step-box"><i class="icon-flag-checkered"></i></span></div>
+    </div>
+    <div class="stepped-progressbar">
+        <div class="step successful"><span class="step-box completed"><i class="icon-ok"></i></span></div>
+        <div class="step successful"><span class="step-box completed"><i class="icon-ok"></i></span></div>
+        <div class="step successful"><span class="step-box completed"><i class="icon-ok"></i></span></div>
+        <div class="step last"><span class="step-box final"><i class="icon-flag-checkered"></i></span></div>
+    </div>
 ```
