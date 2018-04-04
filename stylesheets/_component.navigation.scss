@@ -172,6 +172,7 @@
 }
 
 .mobile-menu-button {
+    background-color: color(white);
     border: 1px solid $nav-color-dark;
     border-radius: 4px;
     color: $nav-color-dark;
@@ -364,8 +365,11 @@
 }
 
 .nav-tertiary {
-    .nav-link {
+    @include ie-lte(9) {
+        box-sizing: content-box;
+    }
 
+    .nav-link {
         span {
             margin-left: 10px;
         }
@@ -409,6 +413,11 @@
 
 .nav-quaternary.is-open {
     width: 242px;
+
+    @include ie-lte(9) {
+        box-sizing: content-box;
+        width: 277px;
+    }
 }
 
 .jadu-branding {
