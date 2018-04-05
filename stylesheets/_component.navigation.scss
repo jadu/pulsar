@@ -239,7 +239,7 @@
     }
 
     .nav-link {
-        color: color(white);
+        color: lighten($nav-color-light, 40);
         display: block;
         font-family: $font-family-regular;
         font-size: .75em;
