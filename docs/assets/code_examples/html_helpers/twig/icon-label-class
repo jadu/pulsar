@@ -1,0 +1,6 @@
+{{
+    html.icon('save', {
+        'label': 'Save',
+        'class': 'my-class'
+    })
+}}
