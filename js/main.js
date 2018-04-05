@@ -54,20 +54,6 @@
         // Use clickover enhancements for popovers
         $('[rel="clickover"]').clickover({ 'global_close': true });
 
-        // Open navigation (should be added to NavMainComponent)
-        $('.mobile-menu-button').on('click', function(e) {
-            e.preventDefault();
-
-            $('body').toggleClass('open-nav');
-            $(this).toggleClass('open');
-
-            if ($(this).text() == 'Menu') {
-                $(this).text('Close');
-            } else {
-                $(this).text('Menu');
-            }
-        });
-
         // jsTree
         $('#container').jstree({
             'plugins' : ['state']
