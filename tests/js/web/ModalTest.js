@@ -11,22 +11,22 @@ describe('Test extra functionality added to Bootstrap modals', function() {
     beforeEach(function() {
         this.$html = $('<div id="html"></div>').appendTo('html');
         this.$body = $('<div id="body"></div>').appendTo(this.$html);
-        this.$code = $('\
-            <a href="#theModal">\
-            <div class="modal fade" id="theModal" tabindex="-1" role="dialog" aria-hidden="true">\
-                <div class="modal__dialog">\
-                    <div class="modal__content">\
-                        <div class="modal__header">\
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>\
-                            <h4 class="modal__title">Standard modal</h4>\
-                        </div>\
-                        <div class="modal__body">\
-                            <input type="text" id="textField" />\
-                        </div>\
-                    </div>\
-                </div>\
-            </div>\
-').appendTo(this.$body);
+        this.$code = $(`
+            <a href="#theModal">
+            <div class="modal fade" id="theModal" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal__dialog">
+                    <div class="modal__content">
+                        <div class="modal__header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal__title">Standard modal</h4>
+                        </div>
+                        <div class="modal__body">
+                            <input type="text" id="textField" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `).appendTo(this.$body);
 
         this.$modalToggle = this.$html.find('a[href="#theModal"]');
         this.$modal = this.$html.find('#theModal');
