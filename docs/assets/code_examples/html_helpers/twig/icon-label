@@ -1,5 +1,0 @@
-{{
-    html.icon('save', {
-        'label': 'Save'
-    })
-}}
