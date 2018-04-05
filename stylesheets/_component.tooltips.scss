@@ -131,3 +131,9 @@
 div[data-toggle="tooltips"] {
     display: inline-block;
 }
+
+// Disable pointer events on disabled elements within a tooltip to prevent the issue where
+// moving the cursor fast across a disabled element causes the mouseleave event not to fire
+[data-toggle="tooltips"] > [disabled] {
+  pointer-events: none;
+}
