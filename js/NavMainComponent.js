@@ -7,6 +7,9 @@ function NavMainComponent ($html, rootWindow) {
     this.$window = $(rootWindow);
 };
 
+/**
+ * Initialise
+ */
 NavMainComponent.prototype.init = function () {
     var component = this;
 
@@ -18,6 +21,7 @@ NavMainComponent.prototype.init = function () {
         throw new Error('window must be passed to NavMainComponent');
     }
 
+    component.$body = this.$html.find('body');
     component.$navMain = this.$html.find('.nav-main');
     component.$contentMain = this.$html.find('.content-main');
     component.$navPrimary = this.$html.find('.nav-primary');
@@ -25,154 +29,193 @@ NavMainComponent.prototype.init = function () {
     component.$navTertiary = component.$navMain.find('.nav-tertiary');
     component.$navQuaternary = component.$navMain.find('.nav-quaternary');
     component.$primaryNavLinks = component.$navPrimary.find('.nav-link');
-    component.$secondaryNavLinks = component.$navSecondary.find('.nav-link');
     component.$tertiaryNavLinks = component.$navTertiary.find('.nav-link');
-    component.$quaternaryNavLinks = component.$navQuaternary.find('.nav-link');
-    component.$moreIcon = component.$navMain.find('.more-icon');
     component.$closeLink = component.$navMain.find('[data-nav-action=close]');
+    component.$mobileMenuButton = this.$html.find('.mobile-menu-button');
 
-    component.moreIconClickHandler();
+    // Calculate what primary nav items can be shown and which need to be hidden in more menu
     component.adjustNavItems();
 
+    // Open navigation on mobile
+    component.$mobileMenuButton.on('click', function(event) {
+        var $self = $(this);
+        event.stopImmediatePropagation();
+        component.$body.toggleClass('open-nav');
+        $self.toggleClass('open');
+
+        if ($self.text() === 'Menu') {
+            $self.text('Close');
+            $self.attr('aria-expanded', 'true');
+        } else {
+            $self.text('Menu');
+            $self.attr('aria-expanded', 'false');
+        }
+    });
+
+    // More button is shown when window is too short to display all primary nav items
+    component.$navMain.on('click', '.more-icon > .nav-link', function(event) {
+        var $self = $(this);
+        event.preventDefault();
+        component.moreIconClickHandler($self)
+    });
+
+    // Re-adjust nav items on window resize to calc if more button is needed 
     component.$window.resize(function () {
         component.adjustNavItems();
     });
 
-    component.closeHandler = function () {
-        component.closeNavs();
-    };
-
-    component.$primaryNavLinks.on('click', function (e) {
-        var $self = $(this),
-            href = $self.attr('href');
-
-        // If href is a fragment, don't add it to the URL because it breaks the
-        // back button
-        if (href.indexOf('#') !== -1) {
-            e.preventDefault();
-        }
-
-        component.switchPrimaryNav(href);
-        component.switchSecondaryNav(href);
-        component.$contentMain.on('click', component.closeHandler);
+    // Close navs on main content click
+    component.$contentMain.on('click', function () {
+        component.closeNavs($(this));
     });
 
-    component.$secondaryNavLinks.on('click', function () {
-        component.changeActiveSecondaryNavLink($(this).attr('href'));
+    // Open secondary nav on primary nav item click
+    component.$primaryNavLinks.on('click', function (event) {
+        component.openSecondaryNav($(this), event);
     });
 
-    component.$tertiaryNavLinks.on('click', function (e) {
+    // Open quaternary nav on tertiary nav item click
+    component.$tertiaryNavLinks.on('click', function (event) {
         var $self = $(this),
             href = $self.attr('href');
 
         if (href.indexOf('#') !== -1) {
-            e.preventDefault();
+            event.preventDefault();
+
+            // Change aria expanded to true
+            $self.attr('aria-expanded', 'true');
         }
 
-        component.switchTertiartyNav(href);
-        component.switchQuaternaryNav(href);
-        component.$contentMain.on('click', component.closeHandler);
+        component.openQuaternaryNav(href);
     });
 
-    component.$quaternaryNavLinks.on('click', function () {
-        component.changeActiveQuaternaryNavLink($(this).attr('href'));
-    });
-
-    component.$closeLink.on('click', function (e) {
-        e.preventDefault();
-        component.closeNavs();
-        component.closeSubNavs();
-        component.$primaryNavLinks.removeClass('is-active');
+    // Close respective navs on close link click
+    component.$closeLink.on('click', function (event) {
+        event.preventDefault();
+        component.closeNavs($(this));
     });
 };
 
-NavMainComponent.prototype.switchPrimaryNav = function (target) {
-    var component = this;
+/**
+ * Open secondary navigation, close all other navs and highlight primary nav item parent
+ * @param {jQuery} $linkClicked - jQuery object of the link clicked to open secondary nav
+ * @param {Event} event - click event for the primary nav link
+ */
+NavMainComponent.prototype.openSecondaryNav = function ($linkClicked, event) {
+    var component = this,
+        target = $linkClicked.attr('href');
 
-    component.$primaryNavLinks.removeClass('is-active');
-    component.$navQuaternary.removeClass('is-open');
-    component.$navTertiary.removeClass('is-open');
+    // Close any previously open navs
+    component.closeSecondaryNav();
+    component.closeTertiaryNav();
+    component.closeQuaternaryNav();
+
+    // If href is a fragment (therefore opens a sub nav), don't add it to the URL because it breaks the back button
+    if (target.indexOf('#') !== -1) {
+        event.preventDefault();
+        $linkClicked.attr('aria-expanded', 'true');
+        component.$navSecondary.addClass('is-open');
+        component.$navSecondary.find('.nav-list.is-active').removeClass('is-active');
+        component.$navSecondary.find('[data-nav="' + target + '"]').addClass('is-active');
+    }
 
     if (component.$html.find('[data-nav="' + target + '"]').length >= 1) {
         component.$navMain.addClass('is-open');
     } else {
-        component.closeNavs();
+        component.closeNavs($linkClicked);
     }
 
     component.$navPrimary.find('.is-active').removeClass('is-active');
     component.$navPrimary.find('[href="' + target + '"]').addClass('is-active');
 };
 
-NavMainComponent.prototype.switchSecondaryNav = function (target) {
-    var component = this;
-    component.closeSubNavs();
-
-    if (target.indexOf('#') !== -1) {
-        component.$navSecondary.addClass('is-open');
-        component.$navSecondary.find('.nav-list.is-active').removeClass('is-active');
-        component.$navSecondary.find('[data-nav="' + target + '"]').addClass('is-active');
-    }
-};
-
-NavMainComponent.prototype.switchTertiartyNav = function (target) {
+/**
+ * Open quaternary navigation
+ * @param {string} target - href of target nav list
+ */
+NavMainComponent.prototype.openQuaternaryNav = function (target) {
     var component = this;
 
-    if (!component.$html.find('[data-nav="' + target + '"]').length) {
-        component.closeNavs();
-    }
-
-    component.$html.find('[href="' + target + '"]').addClass('is-active');
-};
-
-NavMainComponent.prototype.switchQuaternaryNav = function (target) {
-    var component = this;
-
-    // If category item has encapsulated options and if it is same-page link then open the proper menu
+    // If menu item has child menu options and therefore is same-page link then open $navQuaternary
     if (target.indexOf('#') !== -1) {
         component.$navQuaternary.addClass('is-open');
     }
 
-    component.$html.find('[data-nav="' + target + '"]').addClass('is-active');
+    // Show the target nav-list in the opened nav
+    component.$navQuaternary.find('[data-nav="' + target + '"]').addClass('is-active');
 };
 
-NavMainComponent.prototype.changeActiveSecondaryNavLink = function (target) {
+/**
+ * Close respective nav(s) depending on which close link was clicked
+ * @param {jQuery} $linkClicked - jQuery object of the close link clicked
+ */
+NavMainComponent.prototype.closeNavs = function ($linkClicked) {
+    var component = this,
+        $linkParent = $linkClicked.parent();
+
+    if ($linkParent.hasClass('nav-secondary')) {
+        component.closeSecondaryNav();
+    }
+
+    else if ($linkParent.hasClass('nav-tertiary')) {
+        component.closeTertiaryNav();
+    }
+
+    else if ($linkParent.hasClass('nav-quaternary')) {
+        component.closeQuaternaryNav();
+    }
+
+    else {
+        component.closeSecondaryNav();
+        component.closeTertiaryNav();
+        component.closeQuaternaryNav();
+    }
+}
+
+/**
+ * Close secondary navigation
+ */
+NavMainComponent.prototype.closeSecondaryNav = function () {
     var component = this;
 
-    component.$navSecondary.find('.nav-item.is-active').removeClass('is-active');
-    component.$html.find('[href="' + target + '"]').addClass('is-active');
-};
-
-NavMainComponent.prototype.changeActiveQuaternaryNavLink = function (target) {
-    var component = this;
-
-    component.$html.find('[href="' + target + '"]').addClass('is-active');
-};
-
-NavMainComponent.prototype.closeNavs = function () {
-    var component = this;
     component.$navMain.removeClass('is-open');
+    component.$navMain.find('[aria-expanded=true]').attr( 'aria-expanded', 'false');
+    component.$navSecondary.removeClass('is-open');
+    component.$primaryNavLinks.removeClass('is-active')
+    component.$navSecondary.find('.nav-list').removeClass('is-active');
+}
 
-    if (component.$navSecondary.hasClass('is-open')) {
-        component.$navSecondary.removeClass('is-open');
-    }
-
-    component.$contentMain.unbind('click', component.closeHandler);
-};
-
-NavMainComponent.prototype.closeSubNavs = function () {
+/**
+ * Close tertiary navigation
+ */
+NavMainComponent.prototype.closeTertiaryNav = function () {
     var component = this;
 
-    component.$navSecondary.find('.nav-list').removeClass('is-active');
+    component.$navTertiary.removeClass('is-open');
+    component.$navTertiary.find('.nav-list').removeClass('is-active');
 
-    if (component.$navQuaternary.hasClass('is-open')) {
-        component.$navQuaternary.removeClass('is-open');
-        component.$navQuaternary.find('.nav-list.is-active').removeClass('is-active');
-    } else {
-        component.$navTertiary.removeClass('is-open');
-    }
-};
+    // Reset aria-expanded on more button
+    component.$navMain.find('[aria-expanded=true]')
+        .removeClass('is-active')
+        .attr('aria-expanded', 'false');
+}
 
-// Detect window height, adjust the number of items in the primary nav and check when to add "More" option
+/**
+ * Close quaternary navigation
+ */
+NavMainComponent.prototype.closeQuaternaryNav = function () {
+    var component = this;
+
+    component.$navQuaternary.removeClass('is-open');
+    component.$navQuaternary.find('.nav-list.is-active').removeClass('is-active');
+
+    // Reset aria-expanded on tertiary link
+    component.$navTertiary.find('[aria-expanded=true]').attr('aria-expanded', 'false');
+}
+
+/**
+ * Detect window height, adjust the number of items in the primary nav and check when to add "More" option
+ */
 NavMainComponent.prototype.adjustNavItems = function () {
     var component = this,
         availableHeight = component.$window.height(),
@@ -199,6 +242,12 @@ NavMainComponent.prototype.adjustNavItems = function () {
     }
 };
 
+/**
+ * Hide primary nav items that don't fit in window
+ * @param {number} navItemsHeight - PX height of primary nav items
+ * @param {number} moreIconHeight - PX height of more link
+ * @param {number} availableHeight - PX height of window
+ */
 NavMainComponent.prototype.hidePrimaryNavItems = function (navItemsHeight, moreIconHeight, availableHeight) {
     var component = this,
         navItems = component.$html.find('.nav-primary .nav-items'),
@@ -220,6 +269,9 @@ NavMainComponent.prototype.hidePrimaryNavItems = function (navItemsHeight, moreI
     }
 };
 
+/**
+ * Unhide primary nav items
+ */
 NavMainComponent.prototype.unhidePrimaryNavItems = function () {
     var component = this,
         navItems = component.$html.find('.nav-primary .nav-items'),
@@ -233,6 +285,10 @@ NavMainComponent.prototype.unhidePrimaryNavItems = function () {
         }
 };
 
+/**
+ * Add the more link to the primary nav
+ * @param {number} numberOfHiddenNavItems - Number of hidden nav items
+ */
 NavMainComponent.prototype.addMoreNavItem = function (numberOfHiddenNavItems) {
     var component = this,
         navItems = component.$html.find('.nav-primary .nav-items'),
@@ -240,7 +296,7 @@ NavMainComponent.prototype.addMoreNavItem = function (numberOfHiddenNavItems) {
 
     // Add the "More" nav item
     if ((numberOfHiddenNavItems > 0) && (!component.$html.find('.more-icon').length)) {
-        navItems.append('<li aria-haspopup="true" class="nav-item t-nav-item more-icon"><a href="#more" class="nav-link t-nav-link"><i aria-hidden="true" class="icon-ellipsis-horizontal nav-link__icon t-nav-icon"></i><span class="nav-link__label">More</span></a></li>');
+        navItems.append('<li class="nav-item t-nav-item more-icon"><a href="#more" class="nav-link t-nav-link" aria-haspopup="true" aria-expanded="false" aria-controls="aria-tertiary-nav"><i aria-hidden="true" class="icon-ellipsis-horizontal nav-link__icon t-nav-icon"></i><span class="nav-link__label">More</span></a></li>');
     }
 
     // Check if "More" nav item is visible
@@ -252,6 +308,11 @@ NavMainComponent.prototype.addMoreNavItem = function (numberOfHiddenNavItems) {
     }
 };
 
+/**
+ * Hide the nav items in nav tertiary that are already displayed in the primary nav
+ * @param {number} navItemsCountTotal - Total number of nav items
+ * @param {number} numberOfHiddenNavItems - Number of hidden nav items
+ */
 NavMainComponent.prototype.hideMoreCategoriesTopItems = function (navItemsCountTotal, numberOfHiddenNavItems) {
     var component = this,
         nthChild = 1, // Number used to iterate nth-child
@@ -271,6 +332,10 @@ NavMainComponent.prototype.hideMoreCategoriesTopItems = function (navItemsCountT
     }
 };
 
+/**
+ * Hide more link if there are no hidden nav items
+ * @param {number} numberOfHiddenNavItems - Number of hidden nav items
+ */
 NavMainComponent.prototype.lastItemSubstitution = function (numberOfHiddenNavItems) {
     var component = this,
         navItems = component.$html.find('.nav-primary .nav-items'),
@@ -283,19 +348,30 @@ NavMainComponent.prototype.lastItemSubstitution = function (numberOfHiddenNavIte
     }
 };
 
-NavMainComponent.prototype.moreIconClickHandler = function () {
+/**
+ * Hide more link if there are no hidden nav items
+ * @param {jQuery} $moreLink - jQuery object of the more link
+ */
+NavMainComponent.prototype.moreIconClickHandler = function ($moreLink) {
     var component = this;
 
-    component.$navMain = this.$html.find('.nav-main');
-    component.$navSecondary = this.$html.find('.nav-secondary');
-    component.$navTertiary = component.$navMain.find('.nav-tertiary');
+    $moreLink.addClass('is-active');
 
-    component.$navMain.on('click', '.more-icon > .nav-link', function(e) {
-        e.preventDefault();
-        component.$navSecondary.removeClass('is-open');
-        component.$navTertiary.toggleClass('is-open');
+    // Close secondary nav if already open
+    component.closeSecondaryNav();
+
+    // If tertiary nav is already open
+    if (component.$navTertiary.find('.nav-list').hasClass('is-active')) {
+        $moreLink.attr('aria-expanded', 'false');
+        component.$navTertiary.removeClass('is-open');
+        component.$navTertiary.find('.nav-list').removeClass('is-active');
+    } else {
+        $moreLink.attr('aria-expanded', 'true');
+
+        // Open $navTertiary
         component.$navTertiary.find('.nav-list').addClass('is-active');
-    });
+        component.$navTertiary.addClass('is-open');
+    }
 };
 
 module.exports = NavMainComponent;

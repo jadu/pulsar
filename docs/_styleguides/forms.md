@@ -40,8 +40,7 @@ Form helpers can use hidden labels which will be ready by screenreaders but not 
 
 ### aria-labelledby
 
-If another visible element on the page can be used to label the input, like a 
-The input can then use the `aria-labelledby` attribute to specify the element you're using as a label.
+If another visible element on the page can be used to label the input, like a heading or title, the input can then use the `aria-labelledby` attribute to specify the element you're using as a label.
 
 To do this, the element acting as the label must have an `id`, we recommend namespacing IDs used only for labels as `id="aria-something"` so that other developers will understand that this ID exists for accessibility reasons. No styles or javascript behaviour should be hooked into `aria-` namespaced IDs.
 
