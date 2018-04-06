@@ -1,6 +1,7 @@
 {{
     form.text({
         'label': 'First name',
-        'id': 'foo'
+        'id': 'inputText',
+        'name': 'inputText'
     })
 }}

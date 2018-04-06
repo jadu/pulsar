@@ -1,0 +1,8 @@
+{{
+    form.text({
+        'label': 'First name',
+        'class': 'form__control--col-1',
+        'id': 'inputTextWidth',
+        'name': 'inputTextWidth'
+    })
+}}
