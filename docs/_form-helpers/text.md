@@ -12,11 +12,15 @@ Generates a text input.
 
 <div class="pulsar-example form">
     <div class="form__group">
-        <label for="inputText" class="control__label">Text input</label>
+        <label for="foo" class="control__label">First name</label>
         <div class="controls">
-            <input id="inputText" name="inputText" type="text" class="form__control">
+            <input id="foo" name="inputText" type="text" class="form__control">
         </div>
     </div>
+
+    <p class="screenreader">
+        <q><var>First name</var> edit, blank</q>
+    </p>
 </div>
 
 ## Options applied to parent wrapper
@@ -65,11 +69,16 @@ Any other options not listed here will be applied to the input.
 
 <div class="pulsar-example form">
     <div class="form__group has-error">
-        <label for="inputText" class="control__label">Text input</label>
+        <label for="inputTextWithError" class="control__label">First name</label>
         <div class="controls">
-            <input id="inputText" name="inputText" type="text" class="form__control"><span class="help-block is-error"><i class="icon-warning-sign"></i> Something went wrong</span>
+            <input id="inputText" name="inputTextWithError" type="text" class="form__control">
+            <span class="help-block is-error"><i class="icon-warning-sign"></i> Something went wrong</span>
         </div>
     </div>
+
+    <p class="screenreader">
+        <q><var>First Name</var> edit, blank</q>
+    </p>
 </div>
 
 ## Widths
@@ -85,3 +94,85 @@ The main input can use 1-9 columns of the 12 column grid (where 3 are used for t
 * `.form__content--col-7`
 * `.form__content--col-8`
 * `.form__content--col-9`
+
+## Screenreader examples
+
+<div class="pulsar-example form">
+    <div class="form__group">
+        <label for="inputTextSimple" class="control__label">First name</label>
+        <div class="controls">
+            <input id="inputTextSimple" name="inputText" type="text" class="form__control">
+        </div>
+    </div>
+
+    <p class="screenreader">
+        <q><var>First name</var> edit, blank</q>
+    </p>
+</div>
+
+<div class="pulsar-example form">
+    <div class="form__group">
+        <label for="inputTextRequired" class="control__label">First name <span class="required-indicator" rel="tooltip" data-toggle="tooltips" title="required">*</span></label>
+        <div class="controls">
+            <input id="inputTextRequired" required aria-required="true" name="inputText" type="text" class="form__control">
+        </div>
+    </div>
+
+    <p class="screenreader">
+        <q><var>First name</var> star edit, required, invalid entry, blank</q>
+    </p>
+</div>
+
+<div class="pulsar-example form">
+    <div class="form__group">
+        <label for="inputTextWithValue" class="control__label">First name</label>
+        <div class="controls">
+            <input id="inputTextWithValue" name="inputText" type="text" class="form__control" value="Pulsar">
+        </div>
+    </div>
+
+    <p class="screenreader">
+        <q><var>First name</var> edit, <var>Pulsar</var></q>
+    </p>
+</div>
+
+<div class="pulsar-example form">
+    <div class="form__group">
+        <label for="inputTextWithPlaceholder" class="control__label">Date of birth</label>
+        <div class="controls">
+            <input id="inputTextWithPlaceholder" name="inputText" type="text" class="form__control" placeholder="DD/MM/YYYY">
+        </div>
+    </div>
+
+    <p class="screenreader">
+        <q><var>Date of birth</var> edit, <var>dee-dee slash em-em slash eee-aye</var>, blank</q>
+    </p>
+</div>
+
+<div class="pulsar-example form">
+    <div class="form__group">
+        <label for="inputTextWithHelp" class="control__label">First name</label>
+        <div class="controls">
+            <input id="inputTextWithHelp" name="inputTextWithHelp" type="text" class="form__control">
+            <span class="help-block">You may enter more than one</span>
+        </div>
+    </div>
+
+    <p class="screenreader">
+        <q><var>First Name</var> edit, blank</q>
+    </p>
+</div>
+
+<div class="pulsar-example form">
+    <div class="form__group has-error">
+        <label for="inputTextWithError" class="control__label">First name</label>
+        <div class="controls">
+            <input id="inputTextWithError" type="text" class="form__control">
+            <span class="help-block is-error"><i aria-hidden="true" class="icon-warning-sign"></i> Please complete this field</span>
+        </div>
+    </div>
+
+    <p class="screenreader">
+        <q><var>First Name</var> edit, blank</q>
+    </p>
+</div>

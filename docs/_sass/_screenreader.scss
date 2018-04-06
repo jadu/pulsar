@@ -1,0 +1,53 @@
+.screenreader {
+    color: #666;
+    background-color: #f1efee;
+    display: block;
+    font-size: 14px;
+    font-style: italic;
+    min-height: 42px;
+    padding: 8px;
+    position: relative;
+
+    &::before {
+        background-color: #e5e5e5;
+        border-bottom-left-radius: 10px;
+        bottom: 0;
+        content: 'Screenreader';
+        display: block;
+        font-style: normal;
+        left: 0;
+        line-height: 2.5rem;
+        padding: 0 10px;
+        position: absolute;
+        top: 0;
+    }
+    
+    .pulsar-example & {
+        border-bottom-left-radius: 10px;
+        border-top: 1px solid #ccc;
+        margin: 0 -16px -16px;
+    }
+
+    .pulsar-example &:last-child {
+        margin-bottom: -16px;
+    }
+
+    q {
+        display: inline-block;
+        font-family: georgia;
+        line-height: 1.5rem;
+        margin-left: 110px;
+
+        &::before {
+            margin-right: 3px;
+        }
+
+        &::after {
+            margin-left: 3px;
+        }
+    }
+
+    var {
+        border-bottom: 1px dashed #999;
+    }
+}
