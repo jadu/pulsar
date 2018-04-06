@@ -3,18 +3,17 @@
     background-color: #f1efee;
     display: block;
     font-size: 14px;
-    font-style: italic;
+    line-height: 1.5rem;
     min-height: 42px;
-    padding: 8px;
+    padding: 8px 8px 8px 120px;
     position: relative;
 
     &::before {
         background-color: #e5e5e5;
         border-bottom-left-radius: 10px;
         bottom: 0;
-        content: 'Screenreader';
+        content: 'Screen reader';
         display: block;
-        font-style: normal;
         left: 0;
         line-height: 2.5rem;
         padding: 0 10px;
@@ -35,8 +34,7 @@
     q {
         display: inline-block;
         font-family: georgia;
-        line-height: 1.5rem;
-        margin-left: 110px;
+        font-style: italic;
 
         &::before {
             margin-right: 3px;
