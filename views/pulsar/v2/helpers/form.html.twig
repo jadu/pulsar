@@ -54,31 +54,26 @@ items         | array  | An array of items to put in the dropdown list (usually 
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
+    {% set help_id = null %}
     {% if options.help is defined and options.help is not empty %}
         {% set help_id = 'guid-' ~ random() %}
-        {% set options = options|merge({ 'help_id': help_id }) %}
-
-        {{
-            form.group({
-                'parent': options
-                    |only('bare class error guidance guidance-container help help_id id label required show-label type')
-                    |merge({'class': options.class|default ~ ' form__button-group', 'aria-describedby': help_id}),
-                'controls': {'class': 'btn__group'},
-                'inputs': options.items
-            })
-        }}
-    {% else %}
-        {{
-            form.group({
-                'parent': options
-                    |only('bare class error guidance guidance-container help help_id id label required show-label type')
-                    |merge({'class': options.class|default ~ ' form__button-group'}),
-                'controls': {'class': 'btn__group'},
-                'inputs': options.items
-            })
-        }}
+        {% 
+            set options = options|merge({ 
+                'help_id': help_id,
+                'aria-describedby': help_id
+            }) 
+        %}
     {% endif %}
 
+    {{
+        form.group({
+            'parent': options
+                |only('aria-describedby bare class error guidance guidance-container help help_id id label required show-label type')
+                |merge({'class': options.class|default ~ ' form__button-group'}),
+            'controls': {'class': 'btn__group'},
+            'inputs': options.items
+        })
+    }}
 {% endspaceless %}
 {% endmacro %}
 
@@ -441,34 +436,26 @@ show-label | bool   | Control visibility of the `<label>` element without affect
 
     {% endif %}
 
+    {% set help_id = null %}
     {% if options.help is defined and options.help is not empty %}
         {% set help_id = 'guid-' ~ random() %}
-        {% set options = options|merge({ 'help_id': help_id }) %}
-
-        {{
-            form.group({
-                'parent': options
-                    |only('bare class error guidance guidance-container help help_id id label required show-label')
-                    |exclude('multiple')
-                    |defaults({'class': 'form-choice'})
-                    |merge({'aria-describedby': help_id}),
-                'inputs': inputs
-            })
-        }}
-    
-    {% else %}
-
-        {{
-            form.group({
-                'parent': options
-                    |only('bare class error guidance guidance-container help help_id id label required show-label')
-                    |exclude('multiple')
-                    |defaults({'class': 'form-choice'}),
-                'inputs': inputs
-            })
-        }}
-
+        {% 
+            set options = options|merge({ 
+                'help_id': help_id,
+                'aria-describedby': help_id
+            }) 
+        %}
     {% endif %}
+
+    {{
+        form.group({
+            'parent': options
+                |only('aria-describedby bare class error guidance guidance-container help help_id id label required show-label')
+                |exclude('multiple')
+                |defaults({'class': 'form-choice'}),
+            'inputs': inputs
+        })
+    }}
 
 {% endspaceless %}
 {% endmacro %}
@@ -564,29 +551,23 @@ https://jadu.github.io/pulsar/form-helpers/compound
         {% set groupClass = groupClass ~ ' has-error' %}
     {% endif %}
 
+    {% set help_id = null %}
     {% if options.help is defined and options.help is not empty %}
         {% set help_id = 'guid-' ~ random() %}
-        {% set options = options|merge({ 'help_id': help_id }) %}
+        {% 
+            set options = options|merge({ 
+                'help_id': help_id,
+                'aria-describedby': help_id
+            }) 
+        %}
+    {% endif %}
 
     <fieldset{{
         attributes(options
-                |only('class id')
-                |defaults({
-                    'class': groupClass,
-                    'aria-describedby': help_id,
-                })
+                |only('aria-describedby class id')
+                |defaults({ 'class': groupClass })
             )
     -}}>
-    {% else %}
-    <fieldset{{
-        attributes(options
-                |only('class id')
-                |defaults({
-                    'class': groupClass
-                })
-            )
-    -}}>
-    {% endif %}
 
     <legend class="control__label" {{ util.id(options.id ~ '[label]') }}>{{ options.label|default }} {{ util.guidance(options.guidance|default, { 'guidance-container': options['guidance-container']|default }) }}</legend>
 
@@ -1358,7 +1339,7 @@ value  | string | The string or html markup to render inside the help block
 {% spaceless %}
 
     {% if options.value is defined and options.value is not empty %}
-        <span class="help-block"{% if options.id is defined and options.id is not empty %} id="{{- options.id|raw -}}"{% endif %}>
+        <span class="help-block"{% if options.id is defined and options.id is not empty %} id="{{- options.id -}}"{% endif %}>
             {{- options.value|raw -}}
         </span>
     {% endif %}
