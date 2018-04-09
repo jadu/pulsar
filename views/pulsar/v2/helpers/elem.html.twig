@@ -43,7 +43,11 @@ value       | string | Specifies the value of the input
         {% set options = options|defaults({'class': 'form__control'}) %}
     {% endif %}
 
-    <input{{ attributes(options|exclude('append bare input_placement prepend naked')) }} />
+    {% if options.help_id is defined and options.help_id is not empty %}
+        {% set options = options|defaults({'aria-describedby': options.help_id}) %}
+    {% endif %}
+
+    <input{{ attributes(options|exclude('append bare input_placement prepend naked help_id')) }} />
 
 {% endspaceless %}
 {% endmacro %}
@@ -182,9 +186,14 @@ value       | string | Specifies the value of the input
 {% spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
+
+    {% if options.help_id is defined and options.help_id is not empty %}
+        {% set options = options|defaults({'aria-describedby': options.help_id}) %}
+    {% endif %}
+
     <select{{
         attributes(options
-            |exclude('append bare label prepend selected value options')
+            |exclude('append bare label prepend selected value options help_id')
             |defaults({
                 'class': 'form__control'
             })
@@ -327,9 +336,13 @@ value       | string  | Specifies the value of the input
 {% spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
+    {% if options.help_id is defined and options.help_id is not empty %}
+        {% set options = options|defaults({'aria-describedby': options.help_id}) %}
+    {% endif %}
+
     <textarea{{
         attributes(options
-            |exclude('append bare prepend value')
+            |exclude('append bare prepend value help_id')
             |defaults({
                 'class': 'form__control'
             })
