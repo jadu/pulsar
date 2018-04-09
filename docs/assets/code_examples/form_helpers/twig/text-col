@@ -2,6 +2,7 @@
     form.text({
         'label': 'First name',
         'class': 'form__control--col-1',
+        'help': 'Optional help text',
         'id': 'inputTextWidth',
         'name': 'inputTextWidth'
     })
