@@ -566,7 +566,7 @@ https://jadu.github.io/pulsar/form-helpers/compound
 
     {% if options.help is defined and options.help is not empty %}
         {% set help_id = 'guid-' ~ random() %}
-        {% set options = options|merge({ 'help_id': help_id }) %} {# needed? #}
+        {% set options = options|merge({ 'help_id': help_id }) %}
 
     <fieldset{{
         attributes(options
