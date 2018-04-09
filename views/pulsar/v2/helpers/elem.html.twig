@@ -47,7 +47,7 @@ value       | string | Specifies the value of the input
         {% set options = options|defaults({'aria-describedby': options.help_id}) %}
     {% endif %}
 
-    <input{{ attributes(options|exclude('append bare input_placement prepend naked help_id')) }} />
+    <input{{ attributes(options|exclude('append bare help_id input_placement prepend naked')) }} />
 
 {% endspaceless %}
 {% endmacro %}
@@ -193,7 +193,7 @@ value       | string | Specifies the value of the input
 
     <select{{
         attributes(options
-            |exclude('append bare label prepend selected value options help_id')
+            |exclude('append bare help_id label prepend selected value options')
             |defaults({
                 'class': 'form__control'
             })
@@ -342,7 +342,7 @@ value       | string  | Specifies the value of the input
 
     <textarea{{
         attributes(options
-            |exclude('append bare prepend value help_id')
+            |exclude('append bare help_id prepend value')
             |defaults({
                 'class': 'form__control'
             })
