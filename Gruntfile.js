@@ -78,7 +78,8 @@ module.exports = function(grunt) {
             options: {
                 bin: 'vendor/bin/phpunit',
                 bootstrap: 'tests/unit/bootstrap.php',
-                colors: true
+                colors: true,
+                bin: "php -d memory_limit=-1 ./vendor/bin/phpunit"
             }
         },
 
