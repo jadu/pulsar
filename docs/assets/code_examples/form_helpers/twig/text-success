@@ -1,7 +1,7 @@
 {{
     form.text({
         'label': 'First name',
-        'class': 'has-warning',
+        'class': 'has-success',
         'help': 'Optional help text'
         'id': 'inputTextSuccess',
         'name': 'inputTextSuccess',

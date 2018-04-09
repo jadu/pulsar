@@ -8,6 +8,8 @@ Generates a text input field allowing users to input data, with a variety of opt
 
 ## Example usage
 
+###### Simple
+
 {% code_example form_helpers/text %}
 
 <div class="pulsar-example form">
@@ -20,6 +22,30 @@ Generates a text input field allowing users to input data, with a variety of opt
 
     <p class="screenreader">
         <q><var>First name</var> edit, blank</q>
+    </p>
+</div>
+
+###### Fully loaded
+
+<div class="pulsar-example form">
+    <div class="form__group">
+        <label for="inputText" class="control__label">
+            Price 
+            <span class="required-indicator" rel="tooltip" data-toggle="tooltips" title="required">*</span>
+            <i data-container="body" data-content="Guidance text to give more information about expected input" data-placement="top" rel="clickover" aria-hidden="true" class="icon-question-sign input-group-guidance" title=""></i>
+        </label>
+        <div class="controls">
+            <div class="input-group">
+                <span class="input-group-addon">£</span>
+                <input id="inputText" name="inputText" type="text" class="form__control">
+                <span class="input-group-addon">.00</span>
+            </div>
+            <span class="help-block">Enter the value in whole pounds. For example: 60</span>
+        </div>
+    </div>
+
+    <p class="screenreader">
+        <q><var>Price</var> star edit, required, invalid entry, blank</q>
     </p>
 </div>
 
@@ -48,14 +74,14 @@ Option      | Type   | Description
 autofocus   | bool   | Whether the field should have input focus on page load
 disabled    | bool   | Stops the element from being interactive if true
 form        | string | Specific one or more forms this label belongs to
-id          | string | Passed to the `<label>` element as a `for` attribute, and the `<input>` as the unique identifier
+id          | string  | A unique identifier for the `<input>`, also added to the `<label>` as the `for` attribute
 name        | string | The name of this control
 placeholder | string | A short hint that describes the expected value
 required    | bool   | Adds `required` and `aria-required="true"` attributes
 value       | string | Specifies the value of the input
 data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
-Any other options not listed here will be applied to the input.
+* Any other options not listed here will be applied to the input.
 
 ## Validation states
 
