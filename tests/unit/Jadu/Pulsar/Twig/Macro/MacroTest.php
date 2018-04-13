@@ -80,6 +80,9 @@ class MacroTest extends \PHPUnit_Framework_TestCase
         $output = preg_replace('/>\s+/', '>', $output);
         $output = preg_replace('/\s+</', '<', $output);
 
+        // Normalise random ids generated and used by help text
+        $output = preg_replace('/(guid-)\w+/', 'guid-1', $output);
+        
         return $output;
     }
 
