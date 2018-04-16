@@ -96,6 +96,7 @@ Toggle a modal with a link (or a link button) by using the `data-toggle="modal"`
     id="myModal"
     tabindex="-1"
     role="dialog"
+    aria-modal="true"
     aria-labelledby="myModalLabel"
     aria-describedby="dialog-description">
     ...
