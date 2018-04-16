@@ -9,19 +9,20 @@ Modals are a blocking element, they should be used sparingly and only when we ab
 Example:
 
 ```html
-<div class="modal">
+<div class="modal" id="myModal" role="dialog" aria-labelledby="dialog-title" aria-describedby="dialog-description">
     <div class="modal__dialog">
         <div class="modal__content">
             <div class="modal__header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal__title">A simple example</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close dialog">&times;</button>
+                <h4 class="modal__title" id="dialog-title">A simple example</h4>
             </div>
             <div class="modal__body">
+                <p id="dialog-description" class="sr-only">SR description goes here</p>
                 <p>The modal body might have instructions, a form, or other stuff.</p>
             </div>
             <div class="modal__footer">
-                <button type="button" class="btn" data-dismiss="modal">Cancel</button>
                 <button type="button" class="btn btn--primary">Save Changes</button>
+                <button type="button" class="btn" data-dismiss="modal">Cancel</button>
             </div>
         </div><!-- /.modal__content -->
     </div><!-- /.modal__dialog -->
@@ -29,14 +30,15 @@ Example:
 ```
 
 <div class="pulsar-example">
-    <div class="modal modal__example show">
+    <div class="modal modal__example show" id="myModal-2" role="dialog" aria-labelledby="dialog-title-2" aria-describedby="dialog-description-2">
         <div class="modal__dialog">
             <div class="modal__content">
                 <div class="modal__header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal__title">A simple example</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close dialog">×</button>
+                    <h4 class="modal__title" id="dialog-title-2">A simple example</h4>
                 </div>
                 <div class="modal__body">
+                    <p id="dialog-description-2" class="sr-only">SR description goes here</p>
                     <p>The modal body might have instructions, a form, or other stuff.</p>
                 </div>
                 <div class="modal__footer">
@@ -59,14 +61,15 @@ Use the `.modal--danger` class for situations where we're performing destructive
 ```
 
 <div class="pulsar-example">
-    <div class="modal modal--danger modal__example show">
+    <div class="modal modal--danger modal__example show" id="myModal-3" role="dialog" aria-labelledby="dialog-title-3" aria-describedby="dialog-description-3">
         <div class="modal__dialog">
             <div class="modal__content">
                 <div class="modal__header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal__title"><i class="icon-warning-sign"></i> You’re about to do something really, really bad</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close dialog">×</button>
+                    <h4 class="modal__title" id="dialog-title-3"><i class="icon-warning-sign"></i> You’re about to do something really, really bad</h4>
                 </div>
                 <div class="modal__body">
+                    <p id="dialog-description-3" class="sr-only">SR description goes here</p>
                     <p>We mainly use modals to get you to stop and confirm that you really want to delete something, and remind you that this action cannot be reversed.</p>
                     <p>A modal's action buttons should be written so that if a user only reads the buttons, they should get an idea of the action they're about to perform instead of blindly clicking 'OK' or 'Confirm'.</p>
                 </div>
@@ -94,7 +97,7 @@ Toggle a modal with a link (or a link button) by using the `data-toggle="modal"`
     tabindex="-1"
     role="dialog"
     aria-labelledby="myModalLabel"
-    aria-hidden="true">
+    aria-describedby="dialog-description">
     ...
 </div>
 ```
@@ -184,7 +187,6 @@ $('#myModal').on('hidden.bs.modal', function (e) {
 
 Be sure to add `role="dialog"` to your primary modal div. In the example above, `div#myModal`.
 Also, the `aria-labelledby` attribute references your modal title. In this example, `h4#myModalLabel`.
-Finally, `aria-hidden="true"` tells assistive technologies to skip DOM elements.
 Additionally, you may give a description of your modal dialog. Use the `aria-describedby` attribute in the modal's primary `<div>` to point to this description (this is not shown in the above example).
 
 ## Nested modals
