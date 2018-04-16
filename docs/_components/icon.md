@@ -8,34 +8,21 @@ Help visually distinguish and provide extra meaning to certain items or actions.
 
 Pulsar currently uses Font Awesome 4.6.3. Older 3.2.1 icons are still supported and are mapped to their newer version 4 icon.
 
+## Example usage
+
+{% raw %}
+```twig
+{{ html.icon('save') }}
+
+{{ html.icon('save', { 'class': 'foo' }) }}
+```
+{% endraw %}
+
 ## Options
 
 Option | Type   | Description
 ------ | ------ | --------------------------------------------------------------
 class  | string | CSS classes, space separated
-label  | string | A hidden text label to be used when no other text label is present
-
-## Examples
-
-It isn't always obvious what icons mean from their pictogram alone, Where possible an icon should be used to illustrate a textual label.
-
-{% code_example html_helpers/icon %}
-
-<div class="pulsar-example">
-    <i class="icon icon-save"></i> Save
-</div>
-
-If an icon must be standalone, you should use the `label` attribute to include a visually-hidden label which will maintain WCAG compliance for your interface.
-
-{% code_example html_helpers/icon-label %}
-
-<div class="pulsar-example">
-    <i class="icon icon-save"><span class="hide">Save</span></i>
-</div>
-
-If you want to add a class, this can be done through the options much the same as other helpers.
-
-{% code_example html_helpers/icon-label-class %}
 
 ## Mime types
 
