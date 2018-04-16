@@ -40,14 +40,16 @@
 
 <p><a data-toggle="modal" href="#myModal" class="btn">Launch Standard Modal</a></p>
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="dialog-title" aria-describedby="dialog-description">
     <div class="modal__dialog">
         <div class="modal__content">
             <div class="modal__header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal__title">Standard modal</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close dialog">&times;</button>
+                <h4 class="modal__title" id="dialog-title">Standard modal</h4>
             </div>
             <div class="modal__body">
+                <p id="dialog-description" class="sr-only">SR description goes here</p>
+                
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pharetra dui ac congue fringilla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nunc sit amet feugiat diam. Proin eu condimentum elit. Donec facilisis urna sed tortor semper tincidunt. Maecenas tortor justo, rhoncus a luctus eget, consectetur suscipit est. In molestie posuere lectus. Vestibulum sit amet ligula odio. Nulla lobortis neque ac porta accumsan.</p>
 
                 <p>Sed non maximus ante. Morbi nec interdum velit, quis accumsan felis. Ut laoreet egestas elit. Donec vulputate ex eu posuere auctor. Mauris sodales purus porta volutpat luctus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vestibulum placerat eros eget tincidunt. Cras pellentesque vestibulum ligula, a posuere massa bibendum at. Quisque laoreet mauris eros, vel varius neque facilisis a. Suspendisse ornare aliquet tortor, id lacinia turpis commodo a. In tempus risus quis dapibus blandit. Sed semper odio id nulla faucibus consectetur. Nunc purus lectus, blandit quis est ac, lacinia cursus leo. Quisque dapibus, augue at consequat eleifend, orci sapien lacinia elit, in condimentum lacus lacus eu odio. Aliquam non sem tellus.</p>
