@@ -49,39 +49,45 @@ Generates a text input field allowing users to input data, with a variety of opt
     </p>
 </div>
 
-## Options applied to parent wrapper
+## Options
 
-Option       | Type   | Description
------------- | ------ | ---------------------------------------------------------
-append       | string | Text or markup to include after the input element
-append_type  | string | Use only when appending a button. `button` is the only valid value
-class        | string | A space separated list of class names
-error       | string | Text to explain an error/validation condition. Also adds error state styling
-guidance     | string | Text to be displayed in a popover, adds a (?) icon after the input
-guidance-container | string | Element to bind guidance popover scroll behaviour to (default `body`)
-help         | string | Additional guidance information to be displayed next to the input
-id           | string | Passed to the `<label>` element as a `for` attribute, and the `<input>` as the unique identifier
-label        | string | Text for the `<label>` companion element
-prepend      | string | Text or markup to include before the input element
-prepend_type | string | Use only when prepending a button. `button`is the only valid value
-required     | bool   | Visually indicates that the field must be completed
-show-label   | bool   | Control visibility of the `<label>` element without affecting layout (default: true)
+Most common HTML attributes for the text input type can be passed to the helper's options object.
 
-## Options applied to input
+{% raw %}
+```twig
+{{
+    form.text({
+        'key1': 'value1',
+        'key2': 'value2',
+    })
+}}
+```
+{% endraw %}
 
-Option      | Type   | Description
------------ | ------ | ---------------------------------------------------------
-autofocus   | bool   | Whether the field should have input focus on page load
-disabled    | bool   | Stops the element from being interactive if true
-form        | string | Specific one or more forms this label belongs to
-id          | string  | A unique identifier for the `<input>`, also added to the `<label>` as the `for` attribute
-name        | string | The name of this control
-placeholder | string | A short hint that describes the expected value
-required    | bool   | Adds `required` and `aria-required="true"` attributes
-value       | string | Specifies the value of the input
-data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
+Any other options not listed here will be applied to the `input`.
 
-* Any other options not listed here will be applied to the input.
+| Option | Type | Description | Applied to |
+| ------ | ---- | ----------- | ---------- |
+append       | string | Text or markup to include after the input element | |
+append_type  | string | Use only when appending a button. `button` is the only valid value | |
+autofocus    | bool   | Whether the field should have input focus on page load | input.autofocus | 
+class        | string | A space separated list of class names | form__group.class |
+data-*       | string | Data attributes, eg: `'data-foo': 'bar'` | input.data-* |
+disabled     | bool   | Stops the element from being interactive if true | input.disabled |
+error        | string | Text to explain an error/validation condition. Also adds error state styling | |
+form         | string | Specific one or more forms this label belongs to | input.form |
+guidance     | string | Text to be displayed in a popover, adds a <i class="icon icon-question-circle"></i> icon after the input | |
+guidance-container | string | Element to bind guidance popover scroll behaviour to (default `body`) | |
+help         | string | Additional guidance information to be displayed next to the input | |
+id           | string | Passed to the `<label>` element as a `for` attribute, and the `<input>` as the unique identifier | input.id, label.for |
+label        | string | Text for the `<label>` companion element | label.value |
+name         | string | The name of this control | input.name |
+placeholder  | string | A short hint that describes the expected value | input.placeholder |
+prepend      | string | Text or markup to include before the input element | |
+prepend_type | string | Use only when prepending a button. `button`is the only valid value | |
+required     | bool   | Adds `required` and `aria-required="true"` attributes | input.required input.aria-required |
+show-label   | bool   | Control visibility of the `<label>` element without affecting layout (default: true) | |
+value        | string | Specifies the value of the input | input.value |
 
 ## Validation states
 
