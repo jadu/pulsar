@@ -70,3 +70,37 @@ table:not(.table) {
         background-color: #f9f9f9;
     }
 }
+
+figure {
+  text-align: center;
+
+  img {
+    border: 1px solid #e5e5e5;
+    margin: 0 auto;
+    padding: .5rem;
+  }
+
+  figcaption {
+    color: #999;
+    font-size: .8rem;
+    margin-top: 1rem;
+  }
+}
+
+.callout {
+  border-bottom-right-radius: 50px;
+  border-top-right-radius: 50px;
+  margin-left: -50px;
+  padding: 1rem 0 1rem 50px;
+  display: block;
+}
+
+.callout--danger {
+  background-color: #a61b34;
+  color: #fff;
+}
+
+.callout--info {
+  background-color: #638395;
+  color: #fff;
+}
