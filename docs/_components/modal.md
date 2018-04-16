@@ -30,15 +30,15 @@ Example:
 ```
 
 <div class="pulsar-example">
-    <div class="modal modal__example show" id="myModal-2" role="dialog" aria-labelledby="dialog-title-2" aria-describedby="dialog-description-2">
+    <div class="modal modal__example show" id="myModal2" role="dialog" aria-labelledby="dialog2-title" aria-describedby="dialog2-description">
         <div class="modal__dialog">
             <div class="modal__content">
                 <div class="modal__header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close dialog">×</button>
-                    <h4 class="modal__title" id="dialog-title-2">A simple example</h4>
+                    <h4 class="modal__title" id="dialog2-title">A simple example</h4>
                 </div>
                 <div class="modal__body">
-                    <p id="dialog-description-2" class="sr-only">SR description goes here</p>
+                    <p id="dialog2-description" class="sr-only">SR description goes here</p>
                     <p>The modal body might have instructions, a form, or other stuff.</p>
                 </div>
                 <div class="modal__footer">
@@ -61,15 +61,15 @@ Use the `.modal--danger` class for situations where we're performing destructive
 ```
 
 <div class="pulsar-example">
-    <div class="modal modal--danger modal__example show" id="myModal-3" role="dialog" aria-labelledby="dialog-title-3" aria-describedby="dialog-description-3">
+    <div class="modal modal--danger modal__example show" id="myModal3" role="dialog" aria-labelledby="dialog3-title" aria-describedby="dialog3-description">
         <div class="modal__dialog">
             <div class="modal__content">
                 <div class="modal__header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close dialog">×</button>
-                    <h4 class="modal__title" id="dialog-title-3"><i class="icon-warning-sign"></i> You’re about to do something really, really bad</h4>
+                    <h4 class="modal__title" id="dialog3-title"><i class="icon-warning-sign"></i> You’re about to do something really, really bad</h4>
                 </div>
                 <div class="modal__body">
-                    <p id="dialog-description-3" class="sr-only">SR description goes here</p>
+                    <p id="dialog3-description" class="sr-only">SR description goes here</p>
                     <p>We mainly use modals to get you to stop and confirm that you really want to delete something, and remind you that this action cannot be reversed.</p>
                     <p>A modal's action buttons should be written so that if a user only reads the buttons, they should get an idea of the action they're about to perform instead of blindly clicking 'OK' or 'Confirm'.</p>
                 </div>
