@@ -9,7 +9,7 @@ Modals are a blocking element, they should be used sparingly and only when we ab
 Example:
 
 ```html
-<div class="modal" id="myModal" role="dialog" aria-labelledby="dialog-title" aria-describedby="dialog-description">
+<div class="modal" id="myModal" role="dialog" aria-modal="true" aria-labelledby="dialog-title" aria-describedby="dialog-description">
     <div class="modal__dialog">
         <div class="modal__content">
             <div class="modal__header">
@@ -30,7 +30,7 @@ Example:
 ```
 
 <div class="pulsar-example">
-    <div class="modal modal__example show" id="myModal2" role="dialog" aria-labelledby="dialog2-title" aria-describedby="dialog2-description">
+    <div class="modal modal__example show" id="myModal2" role="dialog" aria-modal="true" aria-labelledby="dialog2-title" aria-describedby="dialog2-description">
         <div class="modal__dialog">
             <div class="modal__content">
                 <div class="modal__header">
@@ -61,7 +61,7 @@ Use the `.modal--danger` class for situations where we're performing destructive
 ```
 
 <div class="pulsar-example">
-    <div class="modal modal--danger modal__example show" id="myModal3" role="dialog" aria-labelledby="dialog3-title" aria-describedby="dialog3-description">
+    <div class="modal modal--danger modal__example show" id="myModal3" role="dialog" aria-modal="true" aria-labelledby="dialog3-title" aria-describedby="dialog3-description">
         <div class="modal__dialog">
             <div class="modal__content">
                 <div class="modal__header">
