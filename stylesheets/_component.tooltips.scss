@@ -16,25 +16,25 @@
 
   &.in { @include opacity(1); }
 
-    &.top {
-        margin-top: -3px;
-        padding: 5px 0;
-    }
+  &.top {
+      margin-top: -3px;
+      padding: 5px 0;
+  }
 
-    &.right {
-        margin-left: 3px;
-        padding: 0 5px;
-    }
+  &.right {
+      margin-left: 3px;
+      padding: 0 5px;
+  }
 
-    &.bottom {
-        margin-top: 3px;
-        padding: 5px 0;
-    }
+  &.bottom {
+      margin-top: 3px;
+      padding: 5px 0;
+  }
 
-    &.left {
-        margin-left: -3px;
-        padding: 0 5px;
-    }
+  &.left {
+      margin-left: -3px;
+      padding: 0 5px;
+  }
 }
 
 // Wrapper for the tooltip content
@@ -60,74 +60,80 @@
 
 .tooltip {
   &.top .tooltip-arrow {
-    bottom: 0;
-    left: 50%;
-    margin-left: -$tooltip-arrow-width;
-    border-width: $tooltip-arrow-width $tooltip-arrow-width 0;
-    border-top-color: rgba(color(black), .9);
-    border-top-color: color(black);
+      bottom: 0;
+      left: 50%;
+      margin-left: -$tooltip-arrow-width;
+      border-width: $tooltip-arrow-width $tooltip-arrow-width 0;
+      border-top-color: rgba(color(black), .9);
+      border-top-color: color(black);
   }
 
   &.top-left .tooltip-arrow {
-    bottom: 0;
-    left: 5px;
-    border-width: $tooltip-arrow-width $tooltip-arrow-width 0;
-    border-top-color: rgba(color(black), .9);
-    border-top-color: color(black);
+      bottom: 0;
+      left: 5px;
+      border-width: $tooltip-arrow-width $tooltip-arrow-width 0;
+      border-top-color: rgba(color(black), .9);
+      border-top-color: color(black);
   }
 
   &.top-right .tooltip-arrow {
-    bottom: 0;
-    right: 5px;
-    border-width: $tooltip-arrow-width $tooltip-arrow-width 0;
-    border-top-color: rgba(color(black), .9);
-    border-top-color: color(black);
+      bottom: 0;
+      right: 5px;
+      border-width: $tooltip-arrow-width $tooltip-arrow-width 0;
+      border-top-color: rgba(color(black), .9);
+      border-top-color: color(black);
   }
 
   &.right .tooltip-arrow {
-    top: 50%;
-    left: 0;
-    margin-top: -$tooltip-arrow-width;
-    border-width: $tooltip-arrow-width $tooltip-arrow-width $tooltip-arrow-width 0;
-    border-right-color: rgba(color(black), .9);
-    border-right-color: color(black);
+      top: 50%;
+      left: 0;
+      margin-top: -$tooltip-arrow-width;
+      border-width: $tooltip-arrow-width $tooltip-arrow-width $tooltip-arrow-width 0;
+      border-right-color: rgba(color(black), .9);
+      border-right-color: color(black);
   }
 
   &.left .tooltip-arrow {
-    top: 50%;
-    right: 0;
-    margin-top: -$tooltip-arrow-width;
-    border-width: $tooltip-arrow-width 0 $tooltip-arrow-width $tooltip-arrow-width;
-    border-left-color: rgba(color(black), .9);
-    border-left-color: color(black);
+      top: 50%;
+      right: 0;
+      margin-top: -$tooltip-arrow-width;
+      border-width: $tooltip-arrow-width 0 $tooltip-arrow-width $tooltip-arrow-width;
+      border-left-color: rgba(color(black), .9);
+      border-left-color: color(black);
   }
 
   &.bottom .tooltip-arrow {
-    top: 0;
-    left: 50%;
-    margin-left: -$tooltip-arrow-width;
-    border-width: 0 $tooltip-arrow-width $tooltip-arrow-width;
-    border-bottom-color: rgba(color(black), .9);
-    border-bottom-color: color(black);
+      top: 0;
+      left: 50%;
+      margin-left: -$tooltip-arrow-width;
+      border-width: 0 $tooltip-arrow-width $tooltip-arrow-width;
+      border-bottom-color: rgba(color(black), .9);
+      border-bottom-color: color(black);
   }
 
   &.bottom-left .tooltip-arrow {
-    top: 0;
-    left: 5px;
-    border-width: 0 $tooltip-arrow-width $tooltip-arrow-width;
-    border-bottom-color: rgba(color(black), .9);
-    border-bottom-color: color(black);
+      top: 0;
+      left: 5px;
+      border-width: 0 $tooltip-arrow-width $tooltip-arrow-width;
+      border-bottom-color: rgba(color(black), .9);
+      border-bottom-color: color(black);
   }
 
   &.bottom-right .tooltip-arrow {
-    top: 0;
-    right: 5px;
-    border-width: 0 $tooltip-arrow-width $tooltip-arrow-width;
-    border-bottom-color: rgba(color(black), .9);
-    border-bottom-color: color(black);
+      top: 0;
+      right: 5px;
+      border-width: 0 $tooltip-arrow-width $tooltip-arrow-width;
+      border-bottom-color: rgba(color(black), .9);
+      border-bottom-color: color(black);
   }
 }
 
 div[data-toggle="tooltips"] {
-    display: inline-block;
+  display: inline-block;
+}
+
+// Disable pointer events on disabled elements within a tooltip to prevent the issue where
+// moving the cursor fast across a disabled element causes the mouseleave event not to fire
+[data-toggle="tooltips"] > [disabled] {
+  pointer-events: none;
 }
