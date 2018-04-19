@@ -156,6 +156,10 @@ $fa-css-prefix: 'icon';
     .control__label + .controls {
         margin-left: 0;
     }
+
+    .modal__title {
+        border: 0;
+    }
 }
 
 .pulsar-panel {
