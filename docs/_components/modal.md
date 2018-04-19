@@ -14,7 +14,7 @@ Example:
         <div class="modal__content">
             <div class="modal__header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close dialog">×</button>
-                <h4 class="modal__title" id="myModal-title">A simple example</h4>
+                <h1 class="modal__title" id="myModal-title">A simple example</h1>
             </div>
             <div class="modal__body">
                 <p id="myModal-description" class="hide">Here goes a short description (a couple of lines) about the modal's purpose, if needed.</p>
@@ -22,7 +22,7 @@ Example:
             </div>
             <div class="modal__footer">
                 <button type="button" class="btn btn--primary">Save Changes</button>
-                <button type="button" class="btn" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn--naked" data-dismiss="modal">Cancel</button>
             </div>
         </div><!-- /.modal__content -->
     </div><!-- /.modal__dialog -->
@@ -35,7 +35,7 @@ Example:
             <div class="modal__content">
                 <div class="modal__header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close dialog">×</button>
-                    <h4 class="modal__title" id="myModal2-title">A simple example</h4>
+                    <h1 class="modal__title" id="myModal2-title">A simple example</h1>
                 </div>
                 <div class="modal__body">
                     <p id="myModal2-description" class="hide">Here goes a short description (a couple of lines) about the modal's purpose, if needed.</p>
@@ -66,7 +66,7 @@ Use the `.modal--danger` class for situations where we're performing destructive
             <div class="modal__content">
                 <div class="modal__header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close dialog">×</button>
-                    <h4 class="modal__title" id="myModal3-title"><i class="icon-warning-sign"></i> You’re about to do something really, really bad</h4>
+                    <h1 class="modal__title" id="myModal3-title"><i class="icon-warning-sign"></i> You’re about to do something really, really bad</h1>
                 </div>
                 <div class="modal__body">
                     <p id="myModal3-description" class="hide">Here goes a short description (a couple of lines) about the modal's purpose, if needed.</p>
