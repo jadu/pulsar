@@ -140,7 +140,7 @@ Stepped progress bar is used mainly in modals as a step indicator of a multi ste
 </div>
 
 ```html
-    <<h3 class="hide" id="aria-stepped-progress-bar-heading-1">Step 1 of 4</h3>
+    <h3 class="hide" id="aria-stepped-progress-bar-heading-1">Step 1 of 4</h3>
     <ol class="stepped-progressbar" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="4" aria-describedby="aria-stepped-progress-bar-heading-1">
         <li class="step"><span class="step-box current"><span class="step-number" aria-hidden="true">1</span></span></li>
         <li class="step"><span class="step-box"><span class="step-number" aria-hidden="true">2</span></span></li>
