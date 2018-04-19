@@ -74,7 +74,9 @@ describe('NavMainComponent', function () {
                    </div>
                </div>
             </nav>
-            <div class="content-main"></div>
+            <div class="content-main">
+                <a href="#" data-toggle="popover" data-content="foo">popover test</a>
+            </div>
         `).appendTo(this.$body);
 
         this.$mobileMenuButton = this.$html.find('.mobile-menu-button');
@@ -92,6 +94,9 @@ describe('NavMainComponent', function () {
         this.$linkThree = this.$html.find('[href="#three"]');
         this.$tertiaryLinkThree = this.$html.find('[href="#three_one"]');
 
+        $.fn.popover = sinon.stub().returnsThis();
+        this.$popoverLink = this.$html.find('[data-toggle="popover"]');
+
         // set height on nav items as no css in tests
         this.$html.find('.nav-item').height(20);
         this.$html.find('.more-icon').height(20);
@@ -101,6 +106,7 @@ describe('NavMainComponent', function () {
 
     afterEach(function () {
         this.$html.remove(); // Detach test DOM from the real one
+        delete $.fn.popover;
     });
 
     describe('when component is initalised, if html arguement is missing', function () {
@@ -493,5 +499,22 @@ describe('NavMainComponent', function () {
             expect(this.$navTertiary.hasClass('is-open')).to.be.false;
             expect(this.$navQuaternary.hasClass('is-open')).to.be.false;
         });
+    });
+
+    describe('opening the secondary nav when a popover is open', function () {
+        beforeEach(function () {
+            this.navMainComponent.init();
+            this.clickEvent = $.Event('click');
+            this.$linkOne.trigger(this.clickEvent);
+            this.$popoverLink.trigger(this.clickEvent);
+        });
+
+        it('should trigger a popover', function () {
+			expect($.fn.popover).to.have.been.called;
+		});
+
+        it('should be hidden when opening the secondary navigation', function () {
+            expect($.fn.popover).to.have.been.calledWith('hide');            
+        })
     });
 });
