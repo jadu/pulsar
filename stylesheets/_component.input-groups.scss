@@ -141,11 +141,6 @@
 .input-group-btn > .btn {
     position: relative;
 
-    // Jankily prevent input button groups from wrapping
-    + .btn {
-        margin-left: -4px;
-    }
-
     // Bring the "active" button to the front
     &:hover,
     &:active {
