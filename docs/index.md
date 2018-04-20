@@ -256,55 +256,55 @@ The base layout includes the core elements, and a full width content area which 
 
 Generally, all other layouts detailed here are extensions of the base layout.
 
-![Pulsar Base Layout - Greybox model](/assets/image_examples/Basic%20Layout/Box%20Model.png)
+![Pulsar Base Layout - Greybox model]({{ site.baseurl }}/assets/image_examples/Basic%20Layout/Box%20Model.png)
 
 # Base Layout with Sidebar Help
 
 The sidebar help variation allows a column on the right hand side to contain help text to describe a user interface and provide more context to the user. This pattern is suitable for simple UIs where the `tab__content` is either a form or a table. For more complex UIs you may choose not to dedicate so much horizontal space for help text.
 
-![Pulsar Base Layout with Sidebar Help - Greybox model](/assets/image_examples/Basic%20Layout%20with%20Sidebar%20Help/Box%20Model.png)
+![Pulsar Base Layout with Sidebar Help - Greybox model]({{ site.baseurl }}/assets/image_examples/Basic%20Layout%20with%20Sidebar%20Help/Box%20Model.png)
 
 #### Example
 
-![Pulsar Base Layout with Sidebar Help - Example](/assets/image_examples/Basic%20Layout%20with%20Sidebar%20Help/Example.png)
+![Pulsar Base Layout with Sidebar Help - Example]({{ site.baseurl }}/assets/image_examples/Basic%20Layout%20with%20Sidebar%20Help/Example.png)
 
 # Settings Layout
 
 The settings layout has a left hand column dedicated to form controls which control whatever elements may reside in the right hand column. A simple example is a document editor on the right, with the editing controls on the left.
 
-![Pulsar Settings Layout - Greybox model](/assets/image_examples/Settings%20Layout/Box%20Model.png)
+![Pulsar Settings Layout - Greybox model]({{ site.baseurl }}/assets/image_examples/Settings%20Layout/Box%20Model.png)
 
 #### Example
 
-![Pulsar Settings Layout - Example](/assets/image_examples/Settings%20Layout/Example.png)
+![Pulsar Settings Layout - Example]({{ site.baseurl }}/assets/image_examples/Settings%20Layout/Example.png)
 
 # Masterswitch Layout (shown with optional sidebar help)
 
 The masterswitch layout has a single toggle switch that controls the enabled/disabled state of an entire user interface. Useful for patterns such as the integrations UI where a quick on/off switch needs to be provided.
 
-![Pulsar Masterswitch Layout - Greybox model](/assets/image_examples/Masterswitch%20Layout%20with%20Sidebar%20Help/Box%20Model.png)
+![Pulsar Masterswitch Layout - Greybox model]({{ site.baseurl }}/assets/image_examples/Masterswitch%20Layout%20with%20Sidebar%20Help/Box%20Model.png)
 
 #### Example
 
-![Pulsar Masterswitch Layout - Example](/assets/image_examples/Masterswitch%20Layout%20with%20Sidebar%20Help/Example.png)
+![Pulsar Masterswitch Layout - Example]({{ site.baseurl }}/assets/image_examples/Masterswitch%20Layout%20with%20Sidebar%20Help/Example.png)
 
 # Piano Layout
 
 Shows a scrollable left hand column and a details area on the right. The piano layout allows users to quickly navigate through multiple items and still maintain the context of what other items exist in a list. Useful for messages (like GMail).
 
-![Pulsar Piano Layout - Greybox model](/assets/image_examples/Piano%20Layout/Box%20Model.png)
+![Pulsar Piano Layout - Greybox model]({{ site.baseurl }}/assets/image_examples/Piano%20Layout/Box%20Model.png)
 
 #### Example
 
-![Pulsar Piano Layout - Example](/assets/image_examples/Piano%20Layout/Example.png)
+![Pulsar Piano Layout - Example]({{ site.baseurl }}/assets/image_examples/Piano%20Layout/Example.png)
 
 # Reports Layout
 
 Used exclusively for reporting UIs, this layout provides areas for report controls, charts and tabular data.
 
-![Pulsar Reports Layout - Greybox model](/assets/image_examples/Reports%20Layout/Box%20Model.png)
+![Pulsar Reports Layout - Greybox model]({{ site.baseurl }}/assets/image_examples/Reports%20Layout/Box%20Model.png)
 
 #### Example
 
-![Pulsar Reports Layout - Example](/assets/image_examples/Reports%20Layout/Example.png)
+![Pulsar Reports Layout - Example]({{ site.baseurl }}/assets/image_examples/Reports%20Layout/Example.png)
 
