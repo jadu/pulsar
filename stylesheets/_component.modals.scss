@@ -107,8 +107,9 @@
 
 // Title text within header
 .modal__title {
-    margin: 0;
+    font-size: $font-size-base;
     line-height: $modal-title-line-height;
+    margin: 0;
 }
 
 // Modal body
