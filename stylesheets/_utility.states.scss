@@ -34,10 +34,10 @@ $danger-to-text-color: black;
 
 .has-error:not(.form__group),
 .has-danger:not(.form__group) {
-    background-color: lighten(color(danger), 20) !important;
+    background-color: color(danger, light) !important;
 
     &:hover {
-        background-color: lighten(color(danger), 17) !important;
+        background-color: darken(color(danger, light), 5) !important;
     }
 }
 
