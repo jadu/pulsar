@@ -110,6 +110,9 @@ NavMainComponent.prototype.openSecondaryNav = function ($linkClicked, event) {
     component.closeTertiaryNav();
     component.closeQuaternaryNav();
 
+    // Close any open popovers which would appear over the navigation
+    component.$html.find('[data-toggle="popover"]').popover('hide');
+
     // If href is a fragment (therefore opens a sub nav), don't add it to the URL because it breaks the back button
     if (target.indexOf('#') !== -1) {
         event.preventDefault();
