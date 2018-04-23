@@ -241,7 +241,6 @@ fieldset {
         border: 1px solid color(primary);
         box-shadow: 0 0 0 1px color(primary);
         outline: none;
-        overflow: visible; // stop chrome clipping the box shadow
     }
 }
 
