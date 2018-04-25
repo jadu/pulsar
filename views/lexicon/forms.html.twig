@@ -4,25 +4,25 @@
 
 {% set tab_all %}{% include 'lexicon/forms/all.html.twig' %}{% endset %}
 {% set tab_buttongroup %}{% include 'lexicon/forms/button-group.html.twig' %}{% endset %}
+{% set tab_choice %}{% include 'lexicon/forms/choice.html.twig' %}{% endset %}
 {% set tab_colour %}{% include 'lexicon/forms/colour.html.twig' %}{% endset %}
 {% set tab_content %}{% include 'lexicon/forms/content.html.twig' %}{% endset %}
 {% set tab_compound %}{% include 'lexicon/forms/compound.html.twig' %}{% endset %}
 {% set tab_checkbox %}{% include 'lexicon/forms/checkbox.html.twig' %}{% endset %}
 {% set tab_date %}{% include 'lexicon/forms/date.html.twig' %}{% endset %}
 {% set tab_dropzone %}{% include 'lexicon/forms/dropzone.html.twig' %}{% endset %}
-{% set tab_password %}{% include 'lexicon/forms/password.html.twig' %}{% endset %}
-{% set tab_range %}{% include 'lexicon/forms/range.html.twig' %}{% endset %}
-{% set tab_choice %}{% include 'lexicon/forms/choice.html.twig' %}{% endset %}
 {% set tab_file %}{% include 'lexicon/forms/file.html.twig' %}{% endset %}
+{% set tab_jstree %}{% include 'lexicon/forms/jstree.html.twig' %}{% endset %}
+{% set tab_password %}{% include 'lexicon/forms/password.html.twig' %}{% endset %}
 {% set tab_radio %}{% include 'lexicon/forms/radio.html.twig' %}{% endset %}
+{% set tab_range %}{% include 'lexicon/forms/range.html.twig' %}{% endset %}
+{% set tab_repeater %}{% include 'lexicon/forms/repeater.html.twig' %}{% endset %}
 {% set tab_select %}{% include 'lexicon/forms/select.html.twig' %}{% endset %}
 {% set tab_select2 %}{% include 'lexicon/forms/select2.html.twig' %}{% endset %}
 {% set tab_text %}{% include 'lexicon/forms/text.html.twig' %}{% endset %}
 {% set tab_textarea %}{% include 'lexicon/forms/textarea.html.twig' %}{% endset %}
 {% set tab_time %}{% include 'lexicon/forms/time.html.twig' %}{% endset %}
 {% set tab_toggleswitch %}{% include 'lexicon/forms/toggle-switch.html.twig' %}{% endset %}
-{% set tab_jstree %}{% include 'lexicon/forms/jstree.html.twig' %}{% endset %}
-{% set tab_repeater %}{% include 'lexicon/forms/repeater.html.twig' %}{% endset %}
 
 {%
     set tabs_content = [
@@ -34,7 +34,8 @@
         {
           "id"    : "buttongroup",
           "label" : "Button Group",
-          "src"   : tab_buttongroup
+          "src"   : tab_buttongroup,
+          "active": true
         },
         {
           "id"    : "checkbox",
@@ -62,14 +63,14 @@
           "src"   : tab_content
         },
         {
-          "id"    : "dropzone",
-          "label" : "Dropzone",
-          "src"   : tab_dropzone
-        },
-        {
           "id"    : "date",
           "label" : "Date",
           "src"   : tab_date
+        },
+                {
+          "id"    : "dropzone",
+          "label" : "Dropzone",
+          "src"   : tab_dropzone
         },
         {
           "id"    : "file",
@@ -87,19 +88,9 @@
           "src"   : tab_password
         },
         {
-          "id"    : "range",
-          "label" : "Range",
-          "src"   : tab_range
-        },
-        {
           "id"    : "radio",
           "label" : "Radio",
           "src"   : tab_radio
-        },
-        {
-          "id"    : "repeater",
-          "label" : "Repeater",
-          "src"   : tab_repeater
         },
         {
           "id"    : "select",
@@ -130,6 +121,16 @@
           "id"    : "toggleswitch",
           "label" : "Toggle Switch",
           "src"   : tab_toggleswitch
+        },
+        {
+          "id"    : "password",
+          "label" : "Password",
+          "src"   : tab_password
+        },
+        {
+          "id"    : "repeater",
+          "label" : "Repeater",
+          "src"   : tab_repeater
         }
     ]
 %}

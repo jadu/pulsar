@@ -102,7 +102,9 @@ $fa-css-prefix: 'icon';
 @import 'component.close';
 @import 'component.datepicker';
 @import 'component.daterange';
+@import 'component.datatables';
 @import 'component.dropdowns';
+@import 'component.dropzone';
 @import 'component.editor';
 @import 'component.filterbar';
 @import 'component.flash';
@@ -112,6 +114,7 @@ $fa-css-prefix: 'icon';
 @import 'component.greeter';
 @import 'component.icons';
 @import 'component.input-groups';
+@import 'component.jstree';
 @import 'component.labels';
 @import 'component.lists';
 @import 'component.loading';
@@ -126,12 +129,14 @@ $fa-css-prefix: 'icon';
 @import 'component.notifications';
 @import 'component.pagination';
 @import 'component.panels';
+@import 'component.password';
 @import 'component.piano';
 @import 'component.popovers';
 @import 'component.progress-bars';
 @import 'component.progress-lists';
 @import 'component.range-slider';
 @import 'component.remove-button';
+@import 'component.repeater';
 @import 'component.ribbon';
 @import 'component.rules';
 @import 'component.search';
@@ -145,13 +150,9 @@ $fa-css-prefix: 'icon';
 @import 'component.tables';
 @import 'component.table-detail';
 @import 'component.timepicker';
-@import 'component.datatables';
 @import 'component.toggle-switch';
 @import 'component.toolbar';
 @import 'component.tooltips';
-@import 'component.jstree';
-@import 'component.dropzone';
-@import 'component.repeater';
 
 /* -------------------------------------------------------------------------- *\
 	If you're extending Pulsar and want to include your own layouts/modules etc
@@ -169,6 +170,8 @@ $fa-css-prefix: 'icon';
 @import 'utility.utilities';
 @import 'utility.states';
 
+// @import '../libs/datatables-responsive/css/dataTables.responsive';
+
 // Overrides and fixes
 @import 'override.shame';
-
+// @import 'override.tour';

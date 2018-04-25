@@ -46,3 +46,45 @@ value       | string | Specifies the value of the input
 data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
 Any other options not listed here will be applied to the input.
+
+
+# Password Field with Visibility Toggle and/or Strength Meter
+
+## Dependencies
+
+Both meter and toggle elements need the `PulsarFormComponent` to be included in your browserify configuration.
+
+Depending on your setup, this will probably need to be in be in a file called `index.js` or `main.js`.
+
+```javascript
+var PulsarFormComponent = require('/path/to/pulsar/PulsarFormComponent');
+
+$(function () {
+    var $html = $('html');
+
+    pulsarForm = new PulsarFormComponent($html);
+    pulsarForm.init();
+});
+```
+
+## Example usage
+
+{% code_example form_helpers/password-meter-toggle %}
+
+<div class="pulsar-example form">
+    <div class="form__group password__meter password__toggle">
+        <label for="password__metertoggle" class="control__label">Composite Password field with Meter and Toggle</label>
+        <div class="controls">
+            <div class="input-group has-btn-appended">
+                <input id="password__metertoggle" type="password" class="form__control">
+                <div class="password__wrapper form__control" style="display: none;">
+                    <div class="password__graybar">
+                        <div class="password__colorbar"></div>
+                    </div>
+                    <span class="password__text">Type your password</span>
+                </div>
+                <span class="input-group-btn"><button id="password__metertoggle__button" type="button" class="btn btn--naked"><i aria-hidden="true" class="icon-eye"></i></button></span>
+            </div>
+        </div>
+    </div>
+</div>
