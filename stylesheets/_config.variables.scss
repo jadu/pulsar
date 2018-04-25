@@ -119,7 +119,10 @@ $padding-small-horizontal:            10px !default;
 //  Navigation
 // -----------------------------------------------------------------------------
 
-$nav-primary-width:                   75px;
+$nav-primary-width:                   85px;
+$nav-color-light: darken(rgb(45, 134, 179), 2.5%) !default; // must be AA 4.5:1
+$nav-color-dark: darken(rgb(45, 134, 179), 7.5%) !default;
+$nav-color-darker: darken(rgb(45, 134, 179), 10%) !default;
 
 // -----------------------------------------------------------------------------
 //  Forms
@@ -223,3 +226,13 @@ $zindex-nav-secondary:                1070 !default;
 $zindex-nav:                          1080 !default;
 $zindex-popover:                      1090 !default;
 $zindex-modal:                        3000 !default;
+
+// -----------------------------------------------------------------------------
+//  Signin
+// -----------------------------------------------------------------------------
+
+$signin-bg-color:          rgba(34, 101, 134, .9);
+$signin-bg-color-fallback: rgb(34, 101, 134);
+
+$signin-full-width:        400px;
+$signin-mobile-width:      300px;

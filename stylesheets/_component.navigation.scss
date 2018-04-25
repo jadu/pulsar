@@ -1,7 +1,3 @@
-$nav-color-light: color(jadu-blue, dark) !default;
-$nav-color-dark: darken(color(jadu-blue, dark), 5%) !default;
-$nav-color-darker: darken(color(jadu-blue, dark), 10%) !default;
-
 .nav-main {
     -webkit-backface-visibility: hidden;
     -webkit-transform: translate3d(-100%, 0, 0);
@@ -176,6 +172,7 @@ $nav-color-darker: darken(color(jadu-blue, dark), 10%) !default;
 }
 
 .mobile-menu-button {
+    background-color: color(white);
     border: 1px solid $nav-color-dark;
     border-radius: 4px;
     color: $nav-color-dark;
@@ -207,6 +204,7 @@ $nav-color-darker: darken(color(jadu-blue, dark), 10%) !default;
 
 .nav-item {
     list-style-type: none;
+    font-family: $font-family-regular;
 }
 
 .nav-divider {
@@ -241,7 +239,7 @@ $nav-color-darker: darken(color(jadu-blue, dark), 10%) !default;
     }
 
     .nav-link {
-        color: lighten($nav-color-light, 40);
+        color: color(white);
         display: block;
         font-family: $font-family-regular;
         font-size: .75em;
@@ -367,8 +365,11 @@ $nav-color-darker: darken(color(jadu-blue, dark), 10%) !default;
 }
 
 .nav-tertiary {
-    .nav-link {
+    @include ie-lte(9) {
+        box-sizing: content-box;
+    }
 
+    .nav-link {
         span {
             margin-left: 10px;
         }
@@ -381,13 +382,6 @@ $nav-color-darker: darken(color(jadu-blue, dark), 10%) !default;
     margin-left: 242px;
     transition: all 100ms linear;
     width: 0;
-
-    .nav-link {
-
-        &:hover {
-            background-color: darken($nav-color-light, 4%);
-        }
-    }
 }
 
 .nav-remove-search {
@@ -412,6 +406,11 @@ $nav-color-darker: darken(color(jadu-blue, dark), 10%) !default;
 
 .nav-quaternary.is-open {
     width: 242px;
+
+    @include ie-lte(9) {
+        box-sizing: content-box;
+        width: 277px;
+    }
 }
 
 .jadu-branding {
@@ -461,7 +460,7 @@ $nav-color-darker: darken(color(jadu-blue, dark), 10%) !default;
 .nav-close,
 .nav-close-ltr {
     color: color(white);
-    display: block;
+    display: none;
     padding: 0 20px 23px;
     text-decoration: none;
     margin-top: 24px;
@@ -473,6 +472,13 @@ $nav-color-darker: darken(color(jadu-blue, dark), 10%) !default;
         content: '\f0a8';
         color: color(white);
     }
+
+    .nav-secondary.is-open &,
+    .nav-tertiary.is-open &,
+    .nav-quaternary.is-open & {
+        display: block;
+    }
+
 }
 
 .nav-close-ltr {

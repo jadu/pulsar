@@ -22,7 +22,7 @@
         {% set tab_active = tabs[0].id %}
     {% endif %}
 
-    <div class="nav-inline t-nav-inline">
+    <nav class="nav-inline t-nav-inline" aria-label="secondary">
         <ul class="nav-inline__list">
     {%- for tab in tabs -%}
 
@@ -31,9 +31,11 @@
                 {% if tab.disabled is defined and tab.disabled == true %}
                     {% set href = '#' %}
                     {% set type = 'link' %}
+                    {% set tabindex = '-1' %}
                 {% else %}
                     {% set href = '#' ~ tab.id %}
                     {% set type = 'tab' %}
+                    {% set tabindex = '0' %}
                     {%
                         if tab.src is defined
                         and tab.src != null
@@ -60,20 +62,28 @@
                     {% set options = {'data-href': tab.href} %}
                 {% endif %}
 
+                {% if tab_active is defined and tab_active == tab.id %}
+                    {% set options = options|merge({
+                        'aria-current': 'page'
+                    }) %}
+                {% endif %}
+
                 {%
                     set options = options|merge({
                         'class': tab.class|default ~ ' nav-inline__link',
                         'label': tab.label,
                         'href': href,
                         'data-toggle': type,
-                        'disabled': tab.disabled|default(false)
+                        'disabled': tab.disabled|default(false),
+                        'tabindex': tabindex
                     })
                 %}
+
                 {{ html.link(options|merge(tab.data|default({}))) }}
             </li>
     {%- endfor -%}
         </ul>
-    </div>
+    </nav>
 {%- endmacro -%}
 
 {%- macro content(tabs) -%}

@@ -711,4 +711,12 @@ span.select2-selection.select2-selection--single {
 .select2-selection__choice {
     line-height: 34px;
 }
+
+.select2-container--default.select2-container--open .select2-selection--single,
+.select2-container--default.select2-container--focus .select2-selection--single,
+.select2-container--default.select2-container--focus:focus .select2-selection--single {
+    border: 1px solid color(primary);
+    box-shadow: 0 0 0 1px color(primary);
+    outline: none;
+}
 // scss-lint:enable all

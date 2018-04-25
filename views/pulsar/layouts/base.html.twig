@@ -68,15 +68,14 @@
 
     <script
         src="{{ base_path ~ 'dist/js/bundle.js' }}"
-        type="text/javascript"
         id="main-js"
 {% if pageModule is defined %}
         data-page="{{ pageModule }}"
 {% endif %}
     ></script>
 
-    <script src="{{ base_path ~ 'js/main.js' }}" type="text/javascript"></script>
-    <script src="{{ base_path ~ 'dist/js/lexicon-bundle.js' }}" type="text/javascript"></script>
+    <script src="{{ base_path ~ 'js/main.js' }}" ></script>
+    <script src="{{ base_path ~ 'dist/js/lexicon-bundle.js' }}" ></script>
 
     {% block pageStyle %}{% endblock %}
 </head>
@@ -91,7 +90,7 @@
 
             <div class="toolbar">
 
-                <a href="#" class="mobile-menu-button t-mobile-menu-button">Menu</a>
+                <button class="mobile-menu-button t-mobile-menu-button" aria-expanded="false" aria-controls="aria-main-nav" aria-label="Toggle main menu">Menu</button>
 
                 {% block notifications %}{% endblock %}
 
