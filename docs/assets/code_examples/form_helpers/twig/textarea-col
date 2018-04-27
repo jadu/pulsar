@@ -1,0 +1,9 @@
+{{
+    form.textarea({
+        'label': 'Description',
+        'class': 'form__control--col-1',
+        'help': 'Optional help text',
+        'id': 'inputTextareaWidth',
+        'name': 'inputTextareaWidth'
+    })
+}}
