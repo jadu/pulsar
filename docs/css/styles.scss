@@ -12,6 +12,7 @@
 @import "layout";
 @import "posts";
 @import "prettify";
+@import "screenreader";
 @import "sidebar";
 @import "message";
 
@@ -135,7 +136,7 @@ $fa-css-prefix: 'icon';
 }
 
 .pulsar-example {
-    border: 1px solid #e5e5e5;
+    border: 1px solid #ccc;
     border-top-right-radius: 10px;
     border-bottom-left-radius: 10px;
     display: table;

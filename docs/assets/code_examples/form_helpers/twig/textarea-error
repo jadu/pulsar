@@ -1,0 +1,8 @@
+{{
+    form.textarea({
+        'label': 'Description',
+        'error': 'Please enter a description',
+        'id': 'inputTextareaError',
+        'name': 'inputTextareaError'
+    })
+}}
