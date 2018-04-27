@@ -1,0 +1,7 @@
+<div class="form__group">
+    <label for="inputTextDisabled" class="control__label">First name</label>
+    <div class="controls">
+        <input id="inputTextDisabled" disabled name="inputTextDisabled" type="text" class="form__control">
+        <span class="help-block">Optional help text</span>
+    </div>
+</div>
