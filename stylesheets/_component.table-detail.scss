@@ -5,7 +5,9 @@
     bottom: 0;
     display: table-cell;
     height: 100%;
-    position: absolute;
+    overflow-x: none;
+    overflow-y: auto;
+    position: fixed;
     right: 0;
     top: 0;
     transform: translateX(100%);
