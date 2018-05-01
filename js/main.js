@@ -49,12 +49,16 @@
         pulsar.repeaterManager.init();
 
         // Switch out .svg for .png for <img> elements in older browsers
-        pulsar.svgeezy.init('nocheck', 'png');
+        svgeezy.init('nocheck', 'png');
 
-        // Use clickover enhancements for popovers
-        $('[rel="clickover"]').clickover({ 'global_close': true });
+        $('[rel="clickover"]').popover();
 
-        // jsTree
+        $('html').on('click', function(e) {
+            if (typeof $(e.target).data('original-title') == 'undefined' && !$(e.target).parents().is('.popover.in')) {
+                $('[rel="clickover"]').popover('hide');
+            }
+        });
+
         $('#container').jstree({
             'plugins' : ['state']
         });
