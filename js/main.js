@@ -54,7 +54,7 @@
         $('[rel="clickover"]').popover();
 
         $('html').on('click', function(e) {
-            if (typeof $(e.target).data('original-title') == 'undefined' && !$(e.target).parents().is('.popover.in')) {
+            if (typeof $(e.target).data('original-title') === 'undefined' && !$(e.target).parents().is('.popover.in')) {
                 $('[rel="clickover"]').popover('hide');
             }
         });
