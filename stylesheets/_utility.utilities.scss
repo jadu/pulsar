@@ -338,3 +338,8 @@ div.no-results {
 .u-margin-bottom {
     margin-bottom: $margin-base !important;
 }
+
+%u-margin-bottom--large,
+.u-margin-bottom--large {
+    margin-bottom: $margin-base * 2 !important;
+}
