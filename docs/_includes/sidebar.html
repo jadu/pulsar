@@ -1,4 +1,7 @@
 <div class="sidebar">
+    <h1 class="brand">
+        <a href="{{ site.baseurl }}">{{ site.title | strip }}</a><img src="{{ site.baseurl }}/assets/images/pulsar-brand-medium.png" class="brand-image" />
+    </h1>
 
     <nav class="sidebar-nav">
       <a class="sidebar-nav-item{% if page.url == site.baseurl %} active{% endif %}" href="{{ site.baseurl }}">Home</a>
@@ -15,7 +18,7 @@
 
       {% assign collections = site.collections %}
       {% for collection in collections %}
-
+        {% if collection.label != 'posts' %}
           <span class="sidebar-nav-header">{{ collection.label | replace: '-', ' ' | capitalize  }}</span>
 
           <ol>
@@ -25,6 +28,7 @@
             </li>
           {% endfor %}
           </ol>
+        {% endif %}
       {% endfor %}
     </nav>
 </div>

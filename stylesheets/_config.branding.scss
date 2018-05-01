@@ -22,3 +22,9 @@ $branding-footer:                     $image-path + 'branding/jadu-continuum-bra
 $branding-footer-fallback:            $image-path + 'branding/jadu-continuum-brandmark.png' !default;
 $branding-footer-height:              16px !default;
 $branding-footer-width:               127px !default;
+
+$branding-brandmark:                  $image-path + 'branding/continuum-brandmark.svg' !default;
+$branding-brandmark-fallback:         $image-path + 'branding/continuum-brandmark.png' !default;
+
+$brading-generic-brandmark:           $image-path + 'branding/jadu-brandmark.svg' !default;
+$brading-generic-brandmark-fallback:  $image-path + 'branding/jadu-brandmark.png' !default;

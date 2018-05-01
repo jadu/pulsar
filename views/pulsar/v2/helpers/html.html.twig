@@ -308,7 +308,7 @@ data-*  | string | Data attributes, eg: `'data-foo': 'bar'`
                 })
             )
         }}>
-            {{- options.label|default|raw -}}
+            {{- options.label|default|striptags('<abbr><b><br><cite><code><dfn><em><i><img><kbd><q><small><span><strong><sub><sup>')|raw -}}
             {{- util.caret(options.caret|default) -}}
         </button>
 
@@ -442,63 +442,6 @@ placement    | string | the alignment of the dropdown menu, `left` (default) or 
             })
         }}
     </div>
-
-{% endspaceless %}
-{% endmacro %}
-
-
-{# -----------------------------------------------------------------------------
-
-# Countdown
-
-Helper which wires up jquery.countdown functionality for live countdowns. This
-is a basic implementation for the time being, speak to Pulsar team if you need
-extra functionality as per http://hilios.github.io/jQuery.countdown/documentation.html
-
-## Example usage
-
-```twig
-{{
-    html.countdown({
-        'final-date': '2020/01/01 12:34:00',
-        'format': '%ww %dd %Hh %Mm %S',
-        'label': 'Expires 01/01/2010 at 12:34pm'
-    })
-}}
-```
-
-## Options
-
-Option     | Type   | Description
----------- | ------ | --------------------------------------------------------------
-class      | string | CSS classes, space separated
-final-date | string | A native date() object, epoch timestamp (milliseconds) or date string
-format     | string | A `strftime` string to format the countdown output (default: `%ww %dd %Hh %Mm %S`)
-id         | string | A unique identifier, if required
-label      | string | A fallback string to display if no js available
-data-*     | string | Data attributes, eg: `'data-foo': 'bar'`
-
-#}
-{% macro countdown(options) %}
-{% spaceless %}
-
-    {%
-        set options = options|default({})|merge({
-            'data-final-date': options['final-date']|default,
-            'data-format': options.format|default
-        })
-    %}
-
-    <span{{
-        attributes(options
-            |exclude('final-date format label')
-            |defaults({
-                'class': 'js-countdown'
-            })
-        )
-    }}>
-        {{- options.label|default|raw -}}
-    </span>
 
 {% endspaceless %}
 {% endmacro %}

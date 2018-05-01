@@ -1,5 +1,5 @@
 var $ = require('jquery'),
-    sticky = require('../libs/sticky/jquery.sticky');
+    sticky = require('jquery-sticky');
 
 function FlashMessageComponent(html) {
 

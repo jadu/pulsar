@@ -15,13 +15,20 @@
     pulsar.flash = new pulsar.FlashMessageComponent($html);
     pulsar.helpText = new pulsar.HelpTextComponent($html, window, document);
     pulsar.pulsarForm = new pulsar.PulsarFormComponent($html);
-    pulsar.pulsarUI = new pulsar.PulsarUIComponent($html, pulsar.history);
+    pulsar.pulsarUI = new pulsar.PulsarUIComponent($html, window.History);
     pulsar.pulsarSortable = new pulsar.PulsarSortableComponent($html, window);
     pulsar.signIn = new pulsar.SignInComponent($html);
     pulsar.masterSwitch = new pulsar.MasterSwitchComponent($html, pulsar.disableUi);
 	pulsar.modulePermissions = new pulsar.ModulePermissionsComponent($html);
     pulsar.navMain = new pulsar.NavMainComponent($html, window);
     pulsar.filterBar = new pulsar.FilterBarComponent($html);
+    pulsar.faviconEditor = new pulsar.FaviconEditor(document.head);
+    pulsar.tableDetail = new pulsar.TableDetailComponent($html);
+    pulsar.repeaterManager = new pulsar.RepeaterManagerComponent(
+        pulsar.pulsarForm,
+        pulsar.repeaterComponentFactory,
+        $html
+    );
 
     $(function () {
         pulsar.button.init();
@@ -37,29 +44,21 @@
         pulsar.navMain.init();
         pulsar.filterBar.init();
         pulsar.disableUi.init();
+        pulsar.tableDetail.init();
         pulsar.dropZoneComponent = pulsar.DropZoneComponentFactory.create($('body')[0], '.dropzone');
+        pulsar.repeaterManager.init();
 
         // Switch out .svg for .png for <img> elements in older browsers
-        pulsar.svgeezy.init('nocheck', 'png');
+        svgeezy.init('nocheck', 'png');
 
-        // Use clickover enhancements for popovers
-        $('[rel="clickover"]').clickover({ 'global_close': true });
+        $('[rel="clickover"]').popover();
 
-        // Open navigation (should be added to NavMainComponent)
-        $('.mobile-menu-button').on('click', function(e) {
-            e.preventDefault();
-
-            $('body').toggleClass('open-nav');
-            $(this).toggleClass('open');
-
-            if ($(this).text() == 'Menu') {
-                $(this).text('Close');
-            } else {
-                $(this).text('Menu');
+        $('html').on('click', function(e) {
+            if (typeof $(e.target).data('original-title') === 'undefined' && !$(e.target).parents().is('.popover.in')) {
+                $('[rel="clickover"]').popover('hide');
             }
         });
 
-        // jsTree
         $('#container').jstree({
             'plugins' : ['state']
         });
@@ -69,6 +68,9 @@
             supported: !lt10,
             showInputNode: lt10
         });
+
+        // Favicon editor
+        pulsar.faviconEditor.init();
     });
 
 }(jQuery));

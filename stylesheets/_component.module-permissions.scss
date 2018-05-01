@@ -5,10 +5,6 @@ $module-permissions-breakpoint: $screen-tablet;
     float: left;
     margin-bottom: 1em;
     width: 100%;
-
-    @include respond-min($screen-large) {
-        width: 70%;
-    }
 }
 
 .module {
@@ -25,11 +21,24 @@ $module-permissions-breakpoint: $screen-tablet;
         @include respond-min($screen-phone) {
             display: inline-block;
         }
+
+        @include respond-min-max($screen-medium, $screen-large) {
+            width: 100%;
+        }
+
+        @include respond-max($screen-small) {
+            width: 100%;
+        }
     }
 
     .form__control.checkbox {
         margin-top: 0;
         vertical-align: text-bottom;
+
+        @include respond-max($screen-small) {
+            height: 14px;
+            width: 14px;
+        }
     }
 }
 
@@ -95,6 +104,14 @@ $module-permissions-breakpoint: $screen-tablet;
 
     @at-root .is-open & {
         display: inline-block;
+    }
+
+    @include respond-min-max($screen-medium, $screen-large) {
+        float: left;
+    }
+
+    @include respond-min($screen-small) {
+        float: left;
     }
 }
 

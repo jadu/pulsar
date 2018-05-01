@@ -6,27 +6,11 @@ module.exports = function(grunt) {
 
         pkg:     grunt.file.readJSON('package.json'),
         pulsar:  grunt.file.readJSON('pulsar.json'),
-        secrets: grunt.file.readJSON('secrets.json'),
-
-        mailgun: {
-            cmsDetail: {
-                options: {
-                    key: '<%= secrets.mailgun.api_key %>',
-                    sender: '<%= secrets.mailgun.sender %>',
-                    recipient: '<%= secrets.mailgun.recipient %>',
-                    subject: 'Test Pulsar Email Template',
-                    preventThreading: true,
-                    hideRecipient: true
-                },
-                src: ['emails/dist/*.html']
-            }
-        },
 
         browserify: {
             dev: {
                 files: {
-                    'dist/js/bundle.js': ['js/index.js'],
-                    'dist/js/test.js': ['tests/js/web/index.js']
+                    'dist/js/bundle.js': ['js/index.js']
                 },
                 options: {
                     browserifyOptions: {
@@ -39,10 +23,23 @@ module.exports = function(grunt) {
                     ]
                 }
             },
+            lexicon: {
+                files: {
+                    'dist/js/lexicon-bundle.js': ['js/lexicon/lexicon-index.js']
+                },
+                options: {
+                    browserifyOptions: {
+                        debug: true
+                    },
+                    transform: [
+                        ['babelify', { presets: ['es2015'] } ],
+                        ['aliasify', { global: true }]
+                    ]
+                }
+            },
             dist: {
                 files: {
-                    'dist/js/bundle.js': ['js/index.js'],
-                    'dist/js/test.js': ['tests/js/web/index.js']
+                    'dist/js/bundle.js': ['js/index.js']
                 },
                 options: {
                     browserifyOptions: {
@@ -54,6 +51,23 @@ module.exports = function(grunt) {
                         'uglifyify'
                     ]
                 }
+            },
+            browserTests: {
+                files: {
+                    'dist/js/bundle.js': ['js/index.js'],
+                    'dist/js/browser.test.js': ['tests/harness/browser.js']
+                },
+                options: {
+                    browserifyOptions: {
+                        standalone: 'pulsar',
+                        debug: true
+                    },
+                    transform: [
+                        ['babelify', { presets: ['es2015'] } ],
+                        ['aliasify', { global: true }],
+                        ['require-globify']
+                    ]
+                }
             }
         },
 
@@ -62,7 +76,7 @@ module.exports = function(grunt) {
                 dir: 'tests/unit/'
             },
             options: {
-                bin: 'vendor/bin/phpunit',
+                bin: 'php -d memory_limit=-1 ./vendor/bin/phpunit',
                 bootstrap: 'tests/unit/bootstrap.php',
                 colors: true
             }
@@ -72,7 +86,11 @@ module.exports = function(grunt) {
             dev: {
                 options: {
                     outputStyle: 'nested',
-                    sourceMap: true
+                    sourceMap: true,
+                    includePaths: [
+                        'node_modules',
+                        'stylesheets'
+                    ]
                 },
                 files: [{
                     cwd:    'stylesheets/',
@@ -85,7 +103,10 @@ module.exports = function(grunt) {
             },
             dist_modern: {
                 options: {
-                    outputStyle: 'compressed'
+                    outputStyle: 'compressed',
+                    includePaths: [
+                        'stylesheets'
+                    ]
                 },
                 files: [{
                     cwd:    'stylesheets/',
@@ -99,7 +120,10 @@ module.exports = function(grunt) {
             },
             dist_ie: {
                 options: {
-                    outputStyle: 'nested'
+                    outputStyle: 'nested',
+                    includePaths: [
+                        'stylesheets'
+                    ]
                 },
                 files: [{
                     cwd:    'stylesheets/',
@@ -111,14 +135,14 @@ module.exports = function(grunt) {
                     src:    'pulsar-ie*.scss'
                 }]
             },
-            email: {
+            lexicon: {
                 options: {
                     outputStyle: 'nested',
                     sourceMap: true
                 },
                 files: [{
-                    cwd:    'emails/stylesheets/',
-                    dest:   'emails/css/',
+                    cwd: 'stylesheets/lexicon/',
+                    dest:   'css/',
                     expand: true,
                     ext:    '.css',
                     extDot: 'first',
@@ -174,7 +198,7 @@ module.exports = function(grunt) {
 
         scsslint: {
             allFiles: [
-                'stylesheets/*.scss',
+                'stylesheets/**/*.scss',
             ],
             options: {
                 config: '.scss-lint.yml',
@@ -185,22 +209,23 @@ module.exports = function(grunt) {
         watch: {
             css: {
                 files: ['stylesheets/**/*.scss'],
-                tasks: ['sass:dev', 'autoprefixer', 'bless:css'],
-                options: {
-                    livereload: true,
-                },
+                tasks: ['sass:dev', 'sass:lexicon', 'autoprefixer', 'bless:css']
             },
             scsslint: {
                 files: 'stylesheets/**/*.scss',
                 tasks: ['scsslint']
             },
-            emails: {
-                files: ['emails/**/*'],
-                tasks: ['emailBuilder']
+            lexicon: {
+                files: ['js/lexicon/**/*.js'],
+                tasks: ['browserify:lexicon']
             },
             js: {
-                files: ['js/**/*.js', 'tests/js/**/*', 'package.json'],
+                files: ['js/**/*.js', 'package.json', '!js/lexicon/**/*'],
                 tasks: ['browserify:dev']
+            },
+            tests: {
+                files: ['tests/**/*.js'],
+                tasks: ['browserify:browserTests']
             }
         },
 
@@ -254,8 +279,8 @@ module.exports = function(grunt) {
         },
 
         copy: {
-          dist: {
-            files: [{
+            dist: {
+                files: [{
                     expand: true,
                     cwd: '',
                     src: [
@@ -266,6 +291,17 @@ module.exports = function(grunt) {
                         'src/**/*'
                     ],
                     dest: 'dist/'
+                }]
+            },
+            docs: {
+                files: [{
+                    cwd: '',
+                    expand: true,
+                    flatten: true,
+                    src: [
+                        'dist/js/bundle.js'
+                    ],
+                    dest: 'docs/assets/'
                 }]
             }
         },
@@ -287,20 +323,6 @@ module.exports = function(grunt) {
                 tagName: '%VERSION%',
                 push: true,
                 pushTo: 'origin'
-            }
-        },
-
-        emailBuilder: {
-            inline: {
-                files : [{
-                    expand: true,
-                    flatten: true,
-                    src: ['emails/src/**/*.html'],
-                    dest: 'emails/dist/'
-                }]
-            },
-            options: {
-                encodeSpecialChars: true
             }
         },
 
@@ -567,7 +589,6 @@ module.exports = function(grunt) {
             'docs/**/*.php',
             'css/**/*',
             'js/**/*',
-            'lexicon/**/*',
             'src/**/*',
             'stylesheets/**/*',
             'tests/**/*',
@@ -580,20 +601,20 @@ module.exports = function(grunt) {
         'scsslint',
         'replace',
         'sass:dev',
+        'sass:lexicon',
         'autoprefixer',
         'bless',
         'browserify:dev',
+        'browserify:lexicon',
         'browserSync',
-        'watch',
-        'email-build'
+        'watch'
     ]);
 
     grunt.registerTask('post-merge', [
         'exec:fixProximaNova',
         'replace',
         'sass:dev',
-        'browserify',
-        'email-build'
+        'browserify'
     ]);
 
     grunt.registerTask('build', [
@@ -604,7 +625,6 @@ module.exports = function(grunt) {
         'autoprefixer',
         'browserify:dist',
         'copy:dist',
-        'emailBuilder',
         'realFavicon',
         'compress'
     ]);
@@ -622,16 +642,6 @@ module.exports = function(grunt) {
     grunt.registerTask('favicons', [
         'clean:favicons',
         'realFavicon'
-    ]);
-
-    grunt.registerTask('email-build', [
-        'sass:email',
-        'emailBuilder'
-    ]);
-
-    grunt.registerTask('email-test', [
-        'email-build',
-        'mailgun'
     ]);
 
     grunt.registerTask('wraith', [
@@ -654,6 +664,15 @@ module.exports = function(grunt) {
     grunt.registerTask('validate', [
         'casperjs',
         'validation'
+    ]);
+
+    grunt.registerTask('javascript:tests', [
+        'browserify:browserTests',
+    ]);
+
+    grunt.registerTask('javascript:tests:watch', [
+        'browserify:browserTests',
+        'watch:tests'
     ]);
 
     // load all grunt tasks

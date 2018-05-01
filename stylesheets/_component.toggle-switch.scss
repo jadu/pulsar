@@ -31,7 +31,7 @@
     }
 
     &:focus + .toggle-switch-label {
-        box-shadow: 0 0 0 2px white, 0 0 2px 5px highlight;
+        box-shadow: 0 0 0 2px white, 0 0 0 4px color(primary);
     }
 
     &.toggle-switch--large + .toggle-switch-label {
@@ -57,7 +57,7 @@
     font-size: 2em;
     height: 1em;
     position: relative;
-    transition: .4s;
+    transition: left .4s, right .4s;
     vertical-align: middle;
     width: 2em;
 
@@ -101,14 +101,15 @@
 }
 
 // State class overrides to make sure internal 'icon' doesn't inherit the state
-// colour styling as they look terrible and don't meet AA
+// colour styling as they look terrible and don't meet AA.
+// .double.chained control__label is required to override inherited styles
 .has-changed,
 .has-success,
 .has-warning,
 .has-info,
 .has-error,
 .has-danger {
-    .toggle-switch-label.control__label {
+    .toggle-switch-label.control__label.control__label {
         color: color(white);
     }
 }
@@ -116,4 +117,3 @@
 .toggle-switch.is-disabled + .toggle-switch-label {
     opacity: .5;
 }
-

@@ -1,40 +1,34 @@
 'use strict';
 
-var $ = require('jquery');
+var $ = require('jquery'),
+    TimePickerComponent = require('./TimePickerComponent');
 
-require('../libs/pikaday/plugins/pikaday.jquery');
-require('../libs/select2/dist/js/select2.min');
-require('../libs/spectrum/spectrum');
+require('../node_modules/pikaday/plugins/pikaday.jquery');
+require('select2')();
+require('spectrum-colorpicker');
 
 function PulsarFormComponent(html) {
     this.$html = html;
+    this.timePickerComponent = new TimePickerComponent();
 }
 
 PulsarFormComponent.prototype.init = function () {
     var component = this;
 
-    // Colourpickers
+    // Colour picker
     component.initColourpickers();
 
-    // Attach basic pikaday to datepicker fields
-    this.$html.find('[data-datepicker=true]').pikaday({
-        format: 'DD/MM/YYYY'
-    });
+    // Date picker
+    component.initDatePickers();
 
-    // Block styled checkboxes and radios
-    var choiceBlock = component.$html.find(".choice--block");
+    // Choice block
+    component.initSelectionButtons();
 
-    // set up choice block states on load
-    $.each(choiceBlock, function() {
-        component.initSelectionButtons($(this));
-    });
+    // Select2
+    component.initSelect2(component.$html.find('.js-select2:not([data-init="false"])'));
 
-    // select2
-    var $select2 = this.$html.find('.js-select2:not([data-init="false"])');
-
-    $.each($select2, function() {
-        component.initSelect2($(this));
-    });
+    // Time picker
+    component.initTimePickers();
 
     // reinitialise select2 items in a tab when the tab is focused to fix widths
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
@@ -57,20 +51,48 @@ PulsarFormComponent.prototype.init = function () {
             });
         });
     });
+}
 
-    // choice block click behaviour
-    choiceBlock.on('change', '.controls input[type="checkbox"], .controls input[type="radio"]', component.selectionButtons);
+/**
+ * Re-initialise the Form Component Services
+ * I've intentionally left out Select2 here, as programmatic
+ * control often requires more custom behaviour than simply re-init'ing
+ */
+PulsarFormComponent.prototype.refresh = function () {
+    // Colour picker
+    this.initColourpickers();
 
-};
+    // Date picker
+    this.initDatePickers();
 
-PulsarFormComponent.prototype.initSelectionButtons = function(e) {
-    e.find('input[type="checkbox"]:checked, input[type="radio"]:checked')
-        .closest('.control__label')
-        .addClass('is-selected');
+    // Choice block
+    this.initSelectionButtons();
 
-};
+    // Time picker
+    this.initTimePickers();
+}
 
-PulsarFormComponent.prototype.initColourpickers = function() {
+/**
+ * Initiate a time picker on data-timepicker fields
+ */
+PulsarFormComponent.prototype.initTimePickers = function () {
+    this.timePickerComponent.init(this.$html.find('[data-timepicker=true]'));
+}
+
+/**
+ * Initiate a date picker on data-datepicker fields using pickaday
+ */
+PulsarFormComponent.prototype.initDatePickers = function () {
+    // Attach basic pikaday to datepicker fields
+    this.$html
+        .find('[data-datepicker=true]')
+        .pikaday({ format: 'DD/MM/YYYY' });
+}
+
+/**
+ * Initiate colour pickers
+ */
+PulsarFormComponent.prototype.initColourpickers = function () {
     var component = this,
         pickers = component.$html.find('.js-colorpicker');
 
@@ -78,12 +100,22 @@ PulsarFormComponent.prototype.initColourpickers = function() {
 
         var $this = $(this),
             $input = $this.find('.form__control'),
-            $pickerInput = $($.parseHTML('<input>')),
+            $pickerInput = $('<input data-colour-picker-input>'),
             disabledAttr = $input.attr('disabled'),
-            isDisabled = false;
+            isDisabled = false,
+            existingPicker = $input.next('[data-colour-picker-input]');
 
         if (typeof disabledAttr !== typeof undefined && disabledAttr !== false) {
             isDisabled = true;
+        }
+
+        if (existingPicker.length) {
+            // Remove existing colour picker elements,
+            // frustratingly invoking the spectrum 'destroy'
+            // method does not remove the sp-replacer
+            $pickerInput.spectrum('destroy');
+            existingPicker.remove();
+            $input.siblings('.sp-replacer').remove();
         }
 
         $pickerInput.insertAfter($input);
@@ -108,10 +140,42 @@ PulsarFormComponent.prototype.initColourpickers = function() {
             $pickerInput.spectrum('set', '#' + $input.val());
         });
     });
+}
 
-};
+/**
+ * Update colour pickers within a scope
+ * @param $root
+ */
+PulsarFormComponent.prototype.updateColourPicker = function ($root) {
+    const $input = $root.find('.js-colorpicker .form__control');
 
-PulsarFormComponent.prototype.selectionButtons = function() {
+    $input.each((index, element) => {
+        const $input = $(element);
+        const $picker = $input.next();
+
+        $picker.spectrum('set', `#${$input.val()}`);
+    });
+}
+
+/**
+ * Initiate Selection Buttons
+ */
+PulsarFormComponent.prototype.initSelectionButtons = function () {
+    const choiceblock = this.$html.find('.choice--block');
+
+    choiceblock
+        .find('input[type="checkbox"]:checked, input[type="radio"]:checked')
+        .closest('.control__label')
+        .addClass('is-selected');
+
+    choiceblock
+        .on('change', '.controls input[type="checkbox"], .controls input[type="radio"]', this.selectionButtons);
+}
+
+/**
+ * Selection Button className logic
+ */
+PulsarFormComponent.prototype.selectionButtons = function () {
     var $target = $(this),
         $controls = $target.closest('.controls');
 
@@ -124,10 +188,13 @@ PulsarFormComponent.prototype.selectionButtons = function() {
     } else {
         $target.closest('.control__label').removeClass('is-selected');
     }
+}
 
-};
-
-PulsarFormComponent.prototype.initSelect2 = function(target) {
+/**
+ * Initiate Select2
+ * @param target
+ */
+PulsarFormComponent.prototype.initSelect2 = function (target) {
     var $target = target;
 
     $target.each(function() {
@@ -144,8 +211,8 @@ PulsarFormComponent.prototype.initSelect2 = function(target) {
         }
 
         $this.select2(config);
+        $this.parent().find('.select2-container').removeAttr('style');
     });
-
 }
 
 module.exports = PulsarFormComponent;

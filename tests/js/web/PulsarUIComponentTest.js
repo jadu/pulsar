@@ -3,7 +3,6 @@
 'use strict'
 
 var $ = require('jquery'),
-    history = require('../../../libs/history.js/scripts/bundled/html5/jquery.history'),
     tab = require('../../../js/libs/tab'),
     PulsarUIComponent = require('../../../js/PulsarUIComponent');
 
@@ -13,7 +12,7 @@ describe('Pulsar UI Component', function() {
         this.$html = $('<html></html>');
         this.$body = $('<body></body>').appendTo(this.$html);
         this.$code = $('\
-            <a href="#foo" disabled class="is-disabled" aria-disabled="true">\
+            <a href="#foo" disabled class="is-disabled">\
             <table class="table qa-table"></table>\
             <table class="table--datagrid qa-datagrid"></table>\
             <table class="table datatable qa-datatable"></table>\
@@ -25,7 +24,6 @@ describe('Pulsar UI Component', function() {
             <div class="tab__pane" id="tab">\
                 <table class="table datatable qa-tab-datatable"></table>\
             </div>\
-            <span class="js-countdown qa-countdown-one" data-final-date="1665243907399" data-format="%d">Expires in 6 hours</span>\
 ').appendTo(this.$html);
 
         this.$tabLink = this.$html.find('a[href="#tab"]');
@@ -37,7 +35,6 @@ describe('Pulsar UI Component', function() {
         this.$datatableWithCustomMessage = this.$html.find('.qa-datatable-empty-message');
         this.$datatableDisableSelection = this.$html.find('.qa-datatable-no-selection');
         this.$tableDupe = this.$html.find('.qa-table-dupe');
-        this.$countdownOne = this.$html.find('.qa-countdown-one');
 
         this.history = {
             pushState: sinon.stub()
@@ -45,18 +42,6 @@ describe('Pulsar UI Component', function() {
 
         this.pulsarUIComponent = new PulsarUIComponent(this.$html, this.history);
 
-    });
-
-    describe('A countdown element', function() {
-
-        beforeEach(function() {
-            sinon.spy($.fn, 'countdown');
-            this.pulsarUIComponent.init();
-        });
-
-        it('should call the countdown plugin', function() {
-            expect($.fn.countdown).to.have.been.called;
-        });
     });
 
     describe('disabled links', function() {
@@ -108,27 +93,27 @@ describe('Pulsar UI Component', function() {
         });
     });
 
-    describe('Clicking a tab toggle with the data-href attribute', function() {
+    // describe('Clicking a tab toggle with the data-href attribute', function() {
 
-        beforeEach(function() {
-            this.pulsarUIComponent.init();
-        });
+    //     beforeEach(function() {
+    //         this.pulsarUIComponent.init();
+    //     });
 
-        it('should call the history plugin', function() {
-            this.$pushStateTabLink.click();
-            expect(this.history.pushState).to.have.been.calledOnce;
-        });
+    //     it('should call the history plugin', function() {
+    //         this.$pushStateTabLink.click();
+    //         expect(this.history.pushState).to.have.been.calledOnce;
+    //     });
 
-        it('should push the correct state object onto the history stack', function () {
-            this.$pushStateTabLink.click();
-            expect(this.history.pushState).to.have.been.calledWith({state: 1});
-        });
+    //     it('should push the correct state object onto the history stack', function () {
+    //         this.$pushStateTabLink.click();
+    //         expect(this.history.pushState).to.have.been.calledWith({state: 1});
+    //     });
 
-        it('should push the correct href onto the history stack', function () {
-            this.$pushStateTabLink.click();
-            expect(this.history.pushState).to.have.been.calledWith(sinon.match.any, '?tab=foo', '?tab=foo');
-        });
-    });
+    //     it('should push the correct href onto the history stack', function () {
+    //         this.$pushStateTabLink.click();
+    //         expect(this.history.pushState).to.have.been.calledWith(sinon.match.any, '?tab=foo', '?tab=foo');
+    //     });
+    // });
 
     describe('clicking a tab toggle', function() {
 

@@ -10,7 +10,14 @@ Generates a text input field which will show a date picker when focused.
 
 {% code_example form_helpers/date %}
 
-<p data-height="300" data-theme-id="24005" data-slug-hash="LRkpBE" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/LRkpBE/">docs - form - date</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example form">
+    <div class="form__group">
+        <label for="example-date" class="control__label">Date picker</label>
+        <div class="controls">
+            <input id="example-date" placeholder="dd/mm/yyyy" data-datepicker="true" type="text" class="form__control">
+        </div>
+    </div>
+</div>
 
 ## Options applied to parent wrapper
 

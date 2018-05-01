@@ -16,8 +16,7 @@ $ie-version: 12 !default;
 
 // Third party plugins
 // scss-lint:disable all
-@import '../libs/normalize-css/normalize.css';
-@import '../libs/susy/sass/susy';
+@import '../node_modules/normalize.css/normalize.css';
 // scss-lint:enable all
 
 // Proxima Nova (requires license)
@@ -25,10 +24,10 @@ $font-path: '../fonts/';
 @import '../fonts/config.fonts';
 
 // Font awesome
-$fa-font-path: '../libs/font-awesome/fonts';
+$fa-font-path: '../node_modules/font-awesome/fonts';
 $fa-css-prefix: 'icon';
 @import 'deprecated.icons';
-@import '../libs/font-awesome/scss/font-awesome';
+@import '../node_modules/font-awesome/scss/font-awesome';
 
 // Mixins
 @import 'mixin.border-radius';
@@ -73,6 +72,7 @@ $fa-css-prefix: 'icon';
 @import 'layout.sidebar';
 @import 'layout.signin';
 @import 'layout.tabs';
+@import 'layout.report';
 
 /* -------------------------------------------------------------------------- *\
 	If you're theming Pulsar and want to include your own variables, colours or
@@ -96,6 +96,7 @@ $fa-css-prefix: 'icon';
 @import 'component.button-groups';
 @import 'component.buttons';
 @import 'component.calendar';
+@import 'component.cards';
 @import 'component.colorpicker';
 @import 'component.close';
 @import 'component.datepicker';
@@ -111,7 +112,6 @@ $fa-css-prefix: 'icon';
 @import 'component.icons';
 @import 'component.input-groups';
 @import 'component.labels';
-@import 'component.lexicon';
 @import 'component.lists';
 @import 'component.loading';
 @import 'component.login';
@@ -131,7 +131,6 @@ $fa-css-prefix: 'icon';
 @import 'component.progress-lists';
 @import 'component.range-slider';
 @import 'component.remove-button';
-@import 'component.repeatable';
 @import 'component.ribbon';
 @import 'component.rules';
 @import 'component.search';
@@ -143,12 +142,15 @@ $fa-css-prefix: 'icon';
 @import 'component.tab-help';
 @import 'component.tab-panel';
 @import 'component.tables';
+@import 'component.table-detail';
+@import 'component.timepicker';
 @import 'component.datatables';
 @import 'component.toggle-switch';
 @import 'component.toolbar';
 @import 'component.tooltips';
 @import 'component.jstree';
 @import 'component.dropzone';
+@import 'component.repeater';
 
 /* -------------------------------------------------------------------------- *\
 	If you're extending Pulsar and want to include your own layouts/modules etc
@@ -166,8 +168,6 @@ $fa-css-prefix: 'icon';
 @import 'utility.utilities';
 @import 'utility.states';
 
-// @import '../libs/datatables-responsive/css/dataTables.responsive';
-
 // Overrides and fixes
 @import 'override.shame';
-// @import 'override.tour';
+

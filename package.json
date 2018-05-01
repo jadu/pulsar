@@ -1,24 +1,26 @@
 {
   "name": "pulsar",
-  "version": "6.20.12",
+  "version": "7.0.7",
   "repository": {
     "type": "git",
     "url": "https://github.com/jadu/pulsar.git"
   },
-  "main": "./src/Jadu/Pulsar/Twig.js/Pulsar.js",
   "scripts": {
     "start": "vagrant reload && grunt",
-    "coverage": "mochify --transform [ babelify ] --plugin [ mochify-istanbul --exclude '**/+(tests|node_modules|libs)/**/*' --report lcov --dir ./coverage --instrumenter babel-istanbul] --reporter spec --recursive ./tests/js/web/index ./tests/js/web/*Test.js",
-    "test": "npm run web-test && npm run js-ext-test && npm run js-macro-test",
-    "web-test": "mochify --reporter spec --transform [ babelify ] ./tests/js/web/index './tests/js/web/**/*Test.js'",
-    "js-ext-test": "mocha --reporter spec ./tests/js/twig/Extension/*Test.js",
-    "js-macro-test": "mocha --reporter spec ./tests/js/twig/Macro/*Test.js"
+    "coverage": "mochify --transform [ babelify ] --plugin [ mochify-istanbul --exclude '**/+(tests|node_modules|libs)/**/*' --report lcov --dir ./coverage --instrumenter babel-istanbul] --reporter spec ./tests/harness/common './tests/js/web/**/*Test.js'",
+    "test": "npm run test:headless",
+    "build:tests": "grunt javascript:tests",
+    "build:tests:watch": "grunt javascript:tests:watch",
+    "test:headless": "mochify --reporter spec --transform [ babelify ] ./tests/harness/common './tests/js/web/**/*Test.js'",
+    "test:browser": "npm run build:tests && open ./tests/js/web/index.html",
+    "test:browser:watch": "npm run build:tests:watch"
   },
   "devDependencies": {
     "aliasify": "^1.9.0",
-    "babel-core": "^6.24.0",
+    "babel-core": "^6.26.0",
     "babel-istanbul": "^0.12.2",
-    "babel-preset-es2015": "^6.24.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-es2017": "^6.24.1",
     "babel-register": "^6.24.1",
     "babelify": "^7.3.0",
     "browser-sync": "^2.17.3",
@@ -26,15 +28,8 @@
     "browserify-istanbul": "^2.0.0",
     "browserify-shim": "^3.8.9",
     "chai": "^1.9.2",
+    "chai-dom": "^1.6.0",
     "chai-hiff": "^1.0.0",
-    "datatables.net": "^1.10.11",
-    "datatables.net-buttons": "^1.1.2",
-    "datatables.net-buttons-dt": "^1.1.2",
-    "datatables.net-dt": "^1.10.10",
-    "datatables.net-responsive": "^2.0.2",
-    "datatables.net-responsive-dt": "^2.0.0",
-    "datatables.net-select": "^1.1.2",
-    "datatables.net-select-dt": "^1.1.2",
     "grunt": "^0.4.5",
     "grunt-asciify": "^0.2.2",
     "grunt-autoprefixer": "^3.0.4",
@@ -49,12 +44,9 @@
     "grunt-contrib-jshint": "^1.0.0",
     "grunt-contrib-uglify": "^1.0.1",
     "grunt-contrib-watch": "^1.0.0",
-    "grunt-email-builder": "^3.0.1",
     "grunt-exec": "^0.4.6",
     "grunt-gh-pages": "^2.0.0",
-    "grunt-inline-css": "^0.1.5",
     "grunt-leading-indent": "^0.2.0",
-    "grunt-mailgun": "^1.0.1",
     "grunt-mocha": "^1.0.1",
     "grunt-notify": "^0.4.3",
     "grunt-phpunit": "^0.3.6",
@@ -64,49 +56,50 @@
     "grunt-scss-lint": "0.3.8",
     "grunt-text-replace": "^0.4.0",
     "grunt-w3c-html-validation": "^0.1.8",
-    "jquery": "1.x",
     "jsdom": "^9.12.0",
     "jsdom-global": "^2.1.1",
     "matchdep": "^1.0.1",
     "minifyify": "^6.3.0",
     "mocha": "^2.4.5",
-    "mocha-phantomjs": "^4.0.2",
-    "mochify": "~2.18.1",
+    "mochify": "^5.2.0",
     "mochify-istanbul": "^2.4.2",
-    "phantomjs": "2.1.1",
     "phpruntime": "^5.0.0",
     "phptoast": "^3.17.0",
     "phptojs": "^3.16.0",
-    "sinon": "^1.17.3",
+    "require-globify": "^1.4.1",
+    "sinon": "^2.4.1",
     "sinon-chai": "^2.8.0",
     "sinon-jquery": "^1.0.2",
     "twig": "^0.9.4",
     "uglifyify": "^3.0.1"
   },
-  "browserify": {
-    "transform": [
-      "browserify-shim"
-    ]
-  },
-  "aliasify": {
-    "aliases": {
-      "jquery": "./libs/jquery/dist/jquery.min"
-    }
-  },
-  "browserify-shim": {
-    "./libs/svgeezy/svgeezy.min.js": {
-      "exports": "svgeezy"
-    },
-    "./libs/jquery.countdown/dist/jquery.countdown.min": {
-      "exports": "countdown"
-    },
-    "./libs/tinyicon/tinycon.min": {
-      "exports": "Tinycon"
-    }
-  },
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "datatables.net": "^1.10.11",
+    "datatables.net-buttons": "^1.1.2",
+    "datatables.net-buttons-dt": "^1.1.2",
+    "datatables.net-dt": "^1.10.10",
+    "datatables.net-responsive": "^2.0.2",
+    "datatables.net-responsive-dt": "^2.0.0",
+    "datatables.net-select": "^1.1.2",
+    "datatables.net-select-dt": "^1.1.2",
+    "font-awesome": "^4.7.0",
+    "jquery": "1.x",
+    "jquery-placeholder": "^2.3.1",
+    "jquery-sticky": "^1.0.4",
+    "jquery-ui": "github:mikedevelops/jquery-ui#core-widgets",
     "jstree": "^3.3.3",
     "lodash": "^4.6.1",
-    "moment": "^2.15.2"
+    "moment": "^2.15.2",
+    "normalize.css": "^7.0.0",
+    "nwmatcher": "^1.4.2",
+    "pikaday": "^1.6.1",
+    "respond.js": "^1.4.2",
+    "select2": "^4.0.4",
+    "selectivizr": "^1.0.3",
+    "spectrum-colorpicker": "^1.8.0",
+    "susy": "^2.2.6",
+    "svgeezy": "git+https://github.com/benhowdle89/svgeezy.git",
+    "vide": "^0.5.1"
   }
 }
