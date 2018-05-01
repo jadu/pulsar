@@ -4,24 +4,24 @@
 
 %hide,
 .hide {
-    border: 0;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
+    border: 0 !important;
+    clip: rect(0 0 0 0) !important;
+    height: 1px !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    width: 1px !important;
 }
 
 %show,
 .show {
-    clip: auto;
-    display: inline-block;
-    height: auto;
-    overflow: visible;
-    position: static;
-    width: auto;
+    clip: auto !important;
+    display: inline-block !important;
+    height: auto !important;
+    overflow: visible !important;
+    position: static !important;
+    width: auto !important;
 }
 
 .visually-hidden {
@@ -57,11 +57,6 @@ p.success {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-}
-
-// removes bottom margin from an element
-.bottomless {
-    margin-bottom: 0 !important;
 }
 
 .double-top {
@@ -312,4 +307,29 @@ div.no-results {
 %u-cursor-not-allowed,
 .u-cursor-not-allowed {
     cursor: not-allowed !important;
+}
+
+%u-no-hover:hover,
+.u-no-hover.u-no-hover:hover {
+    background-color: inherit !important;
+}
+
+%u-no-border,
+.u-no-border {
+    border: 0 !important;
+}
+
+%u-width-auto,
+.u-width-auto {
+    width: auto !important;
+}
+
+%u-margin-top-none,
+.u-margin-top-none {
+    margin-top: 0 !important;
+}
+
+%u-margin-bottom-none,
+.u-margin-bottom-none {
+    margin-bottom: 0 !important;
 }

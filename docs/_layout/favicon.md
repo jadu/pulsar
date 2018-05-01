@@ -6,8 +6,12 @@ category: Layout
 
 Each Continuum product has a dedicated set of favicons. The `grunt realFavicon` task generates all the required variations for different browsers and devices, as well as the code necessary to create 'tiles' on Windows Mobile.
 
-<p data-height="130" data-theme-id="24005" data-slug-hash="jWwqXY" data-default-tab="result" data-user="stanton" class='codepen'>See the Pen <a href='http://codepen.io/stanton/pen/jWwqXY/'>jWwqXY</a> by Paul Stanton (<a href='http://codepen.io/stanton'>@stanton</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div style="text-align: center">
+    <img src="/assets/image_examples/cms.png" style="display: inline-block">
+    <img src="/assets/image_examples/xfp.png" style="display: inline-block">
+    <img src="/assets/image_examples/cxm.png" style="display: inline-block">
+    <img src="/assets/image_examples/cp.png" style="display: inline-block">
+</div>
 
 ## Grunt task
 

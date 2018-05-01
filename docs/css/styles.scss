@@ -7,11 +7,12 @@
 @import "mixins";
 @import "base";
 @import "type";
-@import "syntax";
+// @import "syntax";
 @import "code";
 @import "layout";
 @import "posts";
 @import "prettify";
+@import "screenreader";
 @import "sidebar";
 @import "message";
 
@@ -20,12 +21,16 @@
 }
 
 $ie-version: 12 !default;
+$image-path: '../assets/images/';
 
 // Font awesome
 $fa-font-path: '../assets/font-awesome/fonts';
 $fa-css-prefix: 'icon';
 @import '../../stylesheets/_deprecated.icons';
 @import '../assets/font-awesome/scss/font-awesome';
+
+// Third party code
+@import '../../stylesheets/libraries/_library.colorpicker';
 
 .pulsar-example {
     // Mixins
@@ -42,6 +47,7 @@ $fa-css-prefix: 'icon';
 
     // Config
     @import '../../stylesheets/_config.variables';
+    @import '../../stylesheets/_config.branding';
 
     // Functions
     @import '../../stylesheets/_function.math';
@@ -62,15 +68,61 @@ $fa-css-prefix: 'icon';
     @import '../../stylesheets/_structure.type';
     @import '../../stylesheets/_structure.forms';
 
+    // Objects
+    @import '../../stylesheets/objects/_object.media';
+
     // Components
+    @import '../../stylesheets/_component.badges';
+    @import '../../stylesheets/_component.block-list';
+    @import '../../stylesheets/_component.breadcrumb';
     @import '../../stylesheets/_component.buttons';
+    @import '../../stylesheets/_component.button-groups';
+    @import '../../stylesheets/_component.cards';
+    @import '../../stylesheets/_component.close';
+
+    @at-root {
+        @import '../../stylesheets/_component.colorpicker';
+        @import '../../stylesheets/_component.datepicker';
+    }
+
+    @import '../../stylesheets/_component.daterange';
+    @import '../../stylesheets/_component.dropdowns';
+    @import '../../stylesheets/_component.flash';
     @import '../../stylesheets/_component.forms';
+    @import '../../stylesheets/_component.choice';
     @import '../../stylesheets/_component.icons';
+    @import '../../stylesheets/_component.input-groups';
+    @import '../../stylesheets/_component.labels';
+    @import '../../stylesheets/_component.loading';
+    @import '../../stylesheets/_component.masterswitch';
+    @import '../../stylesheets/_component.metadata';
+    @import '../../stylesheets/_component.modals';
+    @import '../../stylesheets/_component.navigation';
+    @import '../../stylesheets/_component.nav-list';
+    @import '../../stylesheets/_component.notifications';
+    @import '../../stylesheets/_component.pagination';
+    @import '../../stylesheets/_component.panels';
+
+    @at-root {
+        @import '../../stylesheets/_component.popovers';
+    }
+
+    @import '../../stylesheets/_component.progress-bars';
+    @import '../../stylesheets/_component.progress-lists';
     @import '../../stylesheets/_component.panels';
     @import '../../stylesheets/_component.range-slider';
     @import '../../stylesheets/_component.remove-button';
     @import '../../stylesheets/_component.rules';
-    @import '../../stylesheets/_component.select2';
+
+    @at-root {
+        @import '../../stylesheets/_component.select2';
+    }
+
+    @import '../../stylesheets/_component.status';
+    @import '../../stylesheets/_component.tables';
+    @import '../../stylesheets/_component.datatables';
+    @import '../../stylesheets/_component.toggle-switch';
+    @import '../../stylesheets/_component.tooltips';
 
     // Utilities
     @import '../../stylesheets/_utility.baseline';
@@ -84,17 +136,70 @@ $fa-css-prefix: 'icon';
     @import '../../stylesheets/_utility.states';
 }
 
-
 .pulsar-example {
     border: 1px solid #ccc;
     border-top-right-radius: 10px;
     border-bottom-left-radius: 10px;
+    display: table;
     font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-    font-size: .8rem;
     margin-bottom: 1rem;
     padding: 1rem;
+    position: relative;
+    width: 100%;
+
+    p:last-child {
+        margin-bottom: 0;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        color: #515151;
+    }
 
     .control__label + .controls {
         margin-left: 0;
+    }
+
+    .modal__title {
+        border: 0;
+    }
+}
+
+.pulsar-panel {
+    background-color: lighten(#c84d40, 30);
+    border-left: 4px solid #c84d40;
+    font-size: .8rem;
+    margin-bottom: 1rem;
+    padding: .5rem;
+
+    .panel__title {
+        font-size: 1.2rem;
+    }
+
+    p:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.fontawesome-icon-list {
+    a {
+        color: #515151;
+    }
+
+    .fa-hover {
+        margin-bottom: .5rem;
+    }
+
+    .fa {
+        width: 50px;
+    }
+}
+
+.pulsar-example {
+    .modal__dialog {
+        padding: 0;
+    }
+
+    .modal--danger .modal__title {
+        color: #fff;
     }
 }

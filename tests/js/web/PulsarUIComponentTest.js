@@ -12,7 +12,7 @@ describe('Pulsar UI Component', function() {
         this.$html = $('<html></html>');
         this.$body = $('<body></body>').appendTo(this.$html);
         this.$code = $('\
-            <a href="#foo" disabled class="is-disabled" aria-disabled="true">\
+            <a href="#foo" disabled class="is-disabled">\
             <table class="table qa-table"></table>\
             <table class="table--datagrid qa-datagrid"></table>\
             <table class="table datatable qa-datatable"></table>\

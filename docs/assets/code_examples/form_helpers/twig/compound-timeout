@@ -1,0 +1,34 @@
+{{
+    form.compound({
+        'id': 'foo',
+        'help': 'How long the system should wait for a response, usually 30 seconds',
+        'label': 'Timeout',
+        'inputs': [
+            {
+                'class': 'form__control-col--1',
+                'label': 'Value',
+                'id': 'value',
+                'maxlength': '3',
+                'show-label': false,
+                'type': 'text'
+            },
+            {
+                'class': 'u-width-auto',
+                'label': 'Unit of time',
+                'id': 'Unit',
+                'show-label': false,
+                'type': 'select',
+                'options': [
+                    {
+                        'label': 'Seconds',
+                        'value': 'sec'
+                    },
+                    {
+                        'label': 'Minutes',
+                        'value': 'min'
+                    }
+                ]
+            }
+        ]
+    })
+}}

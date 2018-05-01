@@ -54,10 +54,21 @@ items         | array  | An array of items to put in the dropdown list (usually 
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
+    {% set help_id = null %}
+    {% if options.help is defined and options.help is not empty %}
+        {% set help_id = 'guid-' ~ random() %}
+        {% 
+            set options = options|merge({ 
+                'help_id': help_id,
+                'aria-describedby': help_id
+            }) 
+        %}
+    {% endif %}
+
     {{
         form.group({
             'parent': options
-                |only('bare class error guidance guidance-container help id label required show-label type')
+                |only('aria-describedby bare class error guidance guidance-container help help_id id label required show-label type')
                 |merge({'class': options.class|default ~ ' form__button-group'}),
             'controls': {'class': 'btn__group'},
             'inputs': options.items
@@ -116,10 +127,14 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
+    {% if options.help is defined and options.help is not empty %}
+        {% set options = options|merge({ 'help_id': 'guid-' ~ random() }) %}
+    {% endif %}
+
     {{
         form.group({
             'parent': options
-                |only('bare class error guidance guidance-container help id label required show-label')
+                |only('bare class error guidance guidance-container help help_id id label required show-label')
                 |defaults({
                     'class': 'form-checkbox'
                 }),
@@ -192,6 +207,10 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
+    {% if options.help is defined and options.help is not empty %}
+        {% set options = options|merge({ 'help_id': 'guid-' ~ random() }) %}
+    {% endif %}
+
     {% set inputClass = 'checkbox' %}
     {%
         if options.bare is defined
@@ -204,7 +223,7 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {%
         set input = elem.input(options
-            |exclude('error guidance guidance-container')
+            |exclude('error guidance guidance-container help')
             |merge({
                 'class': inputClass,
                 'label': null,
@@ -224,7 +243,7 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
     {{
         form.group({
             'parent': options
-                |only('bare class error help id')
+                |only('bare class error help help_id id')
                 |defaults({
                     'class': 'form-checkbox-inline'
                 }),
@@ -274,7 +293,6 @@ label through the use of the sibling `+` CSS selector.
 Option   | Type   | Description
 -------- | ------ | ------------------------------------------------------------
 form     | string | Specific one or more forms this label belongs to
-help     | string | Additional guidance information to be displayed next to the input
 id       | string | A unique identifier, will also be used as the label's `for` attribute
 name     | string | The name of this control
 required | bool   | Adds `required` and `aria-required="true"` attributes
@@ -418,10 +436,21 @@ show-label | bool   | Control visibility of the `<label>` element without affect
 
     {% endif %}
 
+    {% set help_id = null %}
+    {% if options.help is defined and options.help is not empty %}
+        {% set help_id = 'guid-' ~ random() %}
+        {% 
+            set options = options|merge({ 
+                'help_id': help_id,
+                'aria-describedby': help_id
+            }) 
+        %}
+    {% endif %}
+
     {{
         form.group({
             'parent': options
-                |only('bare class error guidance guidance-container help id label required show-label')
+                |only('aria-describedby bare class error guidance guidance-container help help_id id label required show-label')
                 |exclude('multiple')
                 |defaults({'class': 'form-choice'}),
             'inputs': inputs
@@ -480,6 +509,11 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 {% macro color(options) %}
 {% spaceless %}
     {% import _self as form %}
+    {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+
+    {% if options.help is defined and options.help is not empty %}
+        {% set options = options|merge({ 'help_id': 'guid-' ~ random() }) %}
+    {% endif %}
 
     {%
         set options = options|default({})|merge({
@@ -490,6 +524,85 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
     %}
 
     {{ form.text(options) }}
+
+{% endspaceless %}
+{% endmacro %}
+
+
+{# -----------------------------------------------------------------------------
+
+# Compound
+
+Allows you to build a form group using multiple separate inputs with a single
+common label, and render those in a screenreader-friendly way.
+
+https://jadu.github.io/pulsar/form-helpers/compound
+
+#}
+{% macro compound(options) %}
+{% spaceless %}
+    {% import _self as form %}
+    {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
+    {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+
+    {% set groupClass = 'form__group form__group--compound' %}
+
+    {% if options.error is defined and options.error is not empty %}
+        {% set groupClass = groupClass ~ ' has-error' %}
+    {% endif %}
+
+    {% set help_id = null %}
+    {% if options.help is defined and options.help is not empty %}
+        {% set help_id = 'guid-' ~ random() %}
+        {% 
+            set options = options|merge({ 
+                'help_id': help_id,
+                'aria-describedby': help_id
+            }) 
+        %}
+    {% endif %}
+
+    <fieldset{{
+        attributes(options
+                |only('aria-describedby class id')
+                |defaults({ 'class': groupClass })
+            )
+    -}}>
+
+    <legend class="control__label" {{ util.id(options.id ~ '[label]') }}>{{ options.label|default }} {{ util.guidance(options.guidance|default, { 'guidance-container': options['guidance-container']|default }) }}</legend>
+
+    <div class="controls">
+        {% for input in options.inputs %}
+            {{
+                elem.label(input
+                    |only('label guidance-container required show-label')
+                    |merge({
+                        'for': input.id,
+                        'id': input.id ~ '[label]'
+                    })
+                )
+            }}
+
+            {% set inputOptions = input|exclude('error label guidance-container required show-label') %}
+
+            {% if input.type == 'select' %}
+                {{ elem.select(inputOptions|merge({'class': inputOptions.class|default ~ ' select'})) }}
+            {% elseif input.type == 'select2' %}
+                {{ elem.select2(inputOptions) }}
+            {% elseif input.type == 'textarea' %}
+                {{ elem.textarea(inputOptions) }}
+            {% else %}
+                {{ elem.input(inputOptions) }}
+            {% endif %}
+        {% endfor %}
+
+        {{ form.error({ 'value': options.error|default }) }}
+
+        {% if options.help is defined and options.help is not empty %}
+            {{ form.help({ 'value': options.help|default, 'id': options.help_id }) }}
+        {% endif %}
+    </div>
+</fieldset>
 
 {% endspaceless %}
 {% endmacro %}
@@ -709,6 +822,10 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
             'data-datepicker': 'true'
         })
     %}
+
+    {% if options.help is defined and options.help is not empty %}
+        {% set options = options|merge({ 'help_id': 'guid-' ~ random() }) %}
+    {% endif %}
 
     {{ form.text(options) }}
 
@@ -947,9 +1064,13 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
+    {% if options.help is defined and options.help is not empty %}
+        {% set options = options|merge({ 'help_id': 'guid-' ~ random() }) %}
+    {% endif %}
+
     {{
         form.group({
-            'parent': options|only('bare class error guidance guidance-container help id label required show-label'),
+            'parent': options|only('bare class error guidance guidance-container help help_id id label required show-label'),
             'inputs': [
                 elem.input(options
                     |exclude('bare class guidance guidance-container error help label show-label')
@@ -1074,7 +1195,7 @@ controls.class    | string | A space separated list of class names
     {% if options.parent.bare is not defined or options.parent.bare != true %}
     <div{{
         attributes(options.parent
-                |only('class')
+                |only('class aria-describedby')
                 |defaults({
                     'class': groupClass
                 })
@@ -1174,7 +1295,10 @@ controls.class    | string | A space separated list of class names
         {% endif %}
 
             {{ form.error({ 'value': options.parent.error|default }) }}
-            {{ form.help({ 'value': options.parent.help|default }) }}
+
+        {% if options.parent.help is defined and options.parent.help is not empty and options.parent.help_id is defined and options.parent.help_id is not empty %}
+            {{ form.help({ 'value': options.parent.help|default, 'id': options.parent.help_id }) }}
+        {% endif %}
 
         {% if options.parent.bare is not defined or options.parent.bare != true %}
         </div>
@@ -1215,7 +1339,7 @@ value  | string | The string or html markup to render inside the help block
 {% spaceless %}
 
     {% if options.value is defined and options.value is not empty %}
-        <span class="help-block">
+        <span class="help-block"{% if options.id is defined and options.id is not empty %} id="{{- options.id -}}"{% endif %}>
             {{- options.value|raw -}}
         </span>
     {% endif %}
@@ -1380,10 +1504,14 @@ data-*     | string | Data attributes, eg: `'data-foo': 'bar'`
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
+    {% if options.help is defined and options.help is not empty %}
+        {% set options = options|merge({ 'help_id': 'guid-' ~ random() }) %}
+    {% endif %}
+
     {{
         form.group({
             'parent': options
-                |only('bare class error guidance guidance-container help id label required show-label')
+                |only('bare class error guidance guidance-container help help_id id label required show-label')
                 |defaults({
                     'class': 'form-radio'
                 }),
@@ -1453,6 +1581,10 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
+    {% if options.help is defined and options.help is not empty %}
+        {% set options = options|merge({ 'help_id': 'guid-' ~ random() }) %}
+    {% endif %}
+
     {% set inputClass = 'radio' %}
     {%
         if options.bare is defined
@@ -1465,7 +1597,7 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {%
         set input = elem.input(options
-            |exclude('error guidance guidance-container')
+            |exclude('error guidance guidance-container help')
             |merge({
                 'class': inputClass,
                 'label': null,
@@ -1486,7 +1618,7 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
     {{
         form.group({
             'parent': options
-                |only('bare class error guidance-container help id')
+                |only('bare class error guidance-container help help_id id')
                 |defaults({
                     'class': 'form-radio-inline'
                 }),
@@ -1693,9 +1825,13 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
+    {% if options.help is defined and options.help is not empty %}
+        {% set options = options|merge({ 'help_id': 'guid-' ~ random() }) %}
+    {% endif %}
+
     {{
         form.group({
-            'parent': options|only('append append_type bare class error guidance guidance-container help id label prepend prepend_type required show-label'),
+            'parent': options|only('append append_type bare class error guidance guidance-container help help_id id label prepend prepend_type required show-label'),
             'inputs': [
                 elem.select(
                     options
@@ -1768,9 +1904,13 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
+    {% if options.help is defined and options.help is not empty %}
+        {% set options = options|merge({ 'help_id': 'guid-' ~ random() }) %}
+    {% endif %}
+
     {{
         form.group({
-            'parent': options|only('append append_type bare class error guidance guidance-container help id prepend prepend_type label required show-label'),
+            'parent': options|only('append append_type bare class error guidance guidance-container help help_id id prepend prepend_type label required show-label'),
             'inputs': [
                 elem.select2(options
                     |exclude('bare class error guidance guidance-container help label show-label')
@@ -1850,15 +1990,21 @@ required form markup.
 
 ## Options applied to parent wrapper
 
-Option      | Type   | Description
------------ | ------ | ---------------------------------------------------------
-class       | string | A space separated list of class names
-error       | string | Text to explain an error/validation condition. Also adds error state styling
-guidance    | string | Text to be displayed in a popover, adds a (?) icon after the input
-help        | string | Additional guidance information to be displayed next to the input
-label       | string | Text for the `<label>` companion element
-required    | bool   | Visually indicates that the field must be completed
-show-label  | bool   | Control visibility of the `<label>` element without affecting layout (default: true)
+Option       | Type   | Description
+------------ | ------ | ---------------------------------------------------------
+append       | string | Text or markup to include after the input element
+append_type  | string | Use only when appending a button. `button` is the only valid value
+class        | string | A space separated list of class names
+error        | string | Text to explain an error/validation condition. Also adds error state styling
+guidance     | string | Text to be displayed in a popover, adds a (?) icon after the input
+guidance-container | string | Element to bind guidance popover scroll behaviour to (default `body`)
+help         | string | Additional guidance information to be displayed next to the input
+id           | string | Passed to the `<label>` element as a `for` attribute, and the `<input>` as the unique identifier
+label        | string | Text for the `<label>` companion element
+prepend      | string | Text or markup to include before the input element
+prepend_type | string | Use only when prepending a button. `button`is the only valid value
+required     | bool   | Visually indicates that the field must be completed
+show-label   | bool   | Control visibility of the `<label>` element without affecting layout (default: true)
 
 ## Options applied to input
 
@@ -1874,7 +2020,7 @@ required    | bool   | Adds `required` and `aria-required="true"` attributes
 value       | string | Specifies the value of the input
 data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
-*Any other options not listed here will be applied to the input.
+* Any other options not listed here will be applied to the input.
 
 #}
 {% macro text(options) %}
@@ -1884,9 +2030,13 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {% set options = options|default({})|merge({ 'type': options.type|default('text') }) %}
 
+    {% if options.help is defined and options.help is not empty %}
+        {% set options = options|merge({ 'help_id': 'guid-' ~ random() }) %}
+    {% endif %}
+
     {{
         form.group({
-            'parent': options|only('append append_type bare class error guidance guidance-container help id label prepend prepend_type required show-label'),
+            'parent': options|only('append append_type bare class error guidance guidance-container help help_id id label prepend prepend_type required show-label'),
             'inputs': [
                 elem.input(
                     options|exclude('append_type bare class error guidance guidance-container help label prepend_type show-label')
@@ -1950,9 +2100,13 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
+    {% if options.help is defined and options.help is not empty %}
+        {% set options = options|merge({ 'help_id': 'guid-' ~ random() }) %}
+    {% endif %}
+
     {{
         form.group({
-            'parent': options|only('bare class error guidance guidance-container help id label required show-label'),
+            'parent': options|only('bare class error guidance guidance-container help help_id id label required show-label'),
             'inputs': [
                 elem.textarea(options
                     |exclude('bare class error guidance guidance-container help label show-label')
@@ -1961,6 +2115,69 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
             ]
         })
     }}
+
+{% endspaceless %}
+{% endmacro %}
+
+
+{# -----------------------------------------------------------------------------
+
+# Time
+
+Generates a text input field which will show a time picker when focused.
+
+## Example usage
+
+```twig
+{{
+    form.time({
+        'label': 'What time would you like your appointment?'
+    })
+}}
+```
+
+## Options applied to parent wrapper
+
+Option      | Type   | Description
+----------- | ------ | ---------------------------------------------------------
+autofocus   | bool   | Whether the field should have input focus on page load
+class       | string | A space separated list of class names
+error       | string | Text to explain an error/validation condition. Also adds error state styling
+guidance    | string | Text to be displayed in a popover, adds a (?) icon after the input
+help        | string | Additional guidance information to be displayed next to the input
+label       | string | Text for the `<label>` companion element
+required    | bool   | Visually indicates that the field must be completed
+show-label  | bool   | Control visibility of the `<label>` element without affecting layout (default: true)
+
+## Options applied to input
+
+Option      | Type   | Description
+----------- | ------ | ---------------------------------------------------------
+autofocus   | bool   | Whether the field should have input focus on page load
+disabled    | bool   | Stops the element from being interactive if true
+form        | string | Specific one or more forms this label belongs to
+id          | string | A unique identifier, will also be used as the label's `for` attribute
+name        | string | The name of this control
+placeholder | string | A short hint that describes the expected value
+required    | bool   | Adds `required` and `aria-required="true"` attributes
+value       | string | Specifies the value of the input
+data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
+
+*Any other options not listed here will be applied to the input.
+
+#}
+{% macro time(options) %}
+{% spaceless %}
+    {% import _self as form %}
+
+    {%
+        set options = options|default({})|merge({
+            'placeholder': options.placeholder|default('hh:mm'),
+            'data-timepicker': 'true'
+        })
+    %}
+
+    {{ form.text(options) }}
 
 {% endspaceless %}
 {% endmacro %}
@@ -2017,9 +2234,13 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {% set toggleLabel = '<span class="hide">' ~ options.label ~ '</span>' %}
 
+    {% if options.help is defined and options.help is not empty %}
+        {% set options = options|merge({ 'help_id': 'guid-' ~ random() }) %}
+    {% endif %}
+
     {%
         set toggle = elem.input(options
-            |exclude('error guidance guidance-container show-label label')
+            |exclude('error guidance guidance-container show-label label help')
             |merge({
                 'class': 'toggle-switch',
                 'type': 'checkbox'
@@ -2034,7 +2255,7 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
     {{
         form.group({
             'parent': options
-                |only('bare class error guidance guidance-container help label required show-label')
+                |only('bare class error guidance guidance-container help help_id label required show-label')
                 |merge({
                     'class': options.class|default ~ ' form__group--toggle'
                 }),
@@ -2042,5 +2263,138 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
         })
     }}
 
+{% endspaceless %}
+{% endmacro %}
+
+{# -----------------------------------------------------------------------------
+
+# Repeater Start & End
+
+The opening Repeater macro. Additional components can be nested within the repeater_start and repeater_end macros.
+The Repeater allows users to define a repeatable set of for fields that can be added, removed & edited.
+
+## Example usage
+
+```twig
+{{
+    {{ form.repeater_start({
+        'label': 'My first repeater',
+        'empty': 'You have not added any repeater entries',
+        'headings': [
+            { name: 'text', label: 'text' }
+        ],
+        'max-entries': 3,
+        'add-new-group-text': 'Add',
+        'add-another-group-text': 'Add another'
+    }) }}
+
+        {{
+            form.text({
+                'label': 'text',
+                'id': 'repeater-text',
+                'name': 'text'
+            })
+        }}
+
+    {{  form.repeater_end() }}
+}}
+```
+
+## Options
+
+Option                  | Type   | Description
+-------------           | ------ | -------------------------------------------------------
+label                   | string | The repeater input label text
+empty                   | string | The empty placeholder text when no items have been added
+headings                | Array  | An array of heading config objects: { name: string, label: string }
+max-entries             | int    | Maximum (inclusive) number of entries that can be added
+add-new-group-text      | string | The text content of the add new entry button
+add-another-group-text  | string | The text content of the add another new entry button
+
+0#}
+{% macro repeater_start(options) %}
+{% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{% import _self as form %}
+{% set headingLength = options.headings|length %}
+{% spaceless %}
+    <div
+        class="repeater"
+        data-repeater
+        data-repeater-add-new-group-text="{{ options['add-new-group-text']|default('Add') }}"
+        data-repeater-add-another-group-text="{{ options['add-another-group-text']|default('Add another') }}"
+        data-repeater-max-entries="{{ options['max-entries']|default(false) }}"
+        data-repeater-preview-colspan="{{ options.headings|length + 1 }}"
+    >
+        <div class="repeater__saved-data u-display-none" data-repeater-saved-entries-root></div>
+        <div class="form__group">
+            {{
+                elem.label({
+                    'label': options.label,
+                    'required': options.required|default(false)
+                })
+            }}
+            <div class="controls">
+                <table class="table table--full table--horizontal repeatable__table">
+                    <thead class="repeater__preview-headings">
+                        <tr>
+                            {% for heading in options.headings %}
+                                <th data-repeater-for-name="{{ heading.name }}">{{ heading.label }}</th>
+                            {% endfor %}
+                            <th rowspan="1" colspan="1"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="repeater__preview-data" data-repeater-preview-root>
+                        <tr class="repeater__empty-placeholder" data-repeater-preview-placeholder>
+                            <td colspan="{{ headingLength }}" class="muted">{{ options.empty }}</td>
+                            <td class="table__td--align-right table-row__actions"></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr class="repeater__group" data-repeater-new-group>
+                        <td class="table__form" colspan="{{ headingLength + 1 }}">
+                            <div data-repeater-new-group-controls>
+
+{% endspaceless %}
+{% endmacro %}
+
+{% macro repeater_end() %}
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{% spaceless %}
+                            </div>
+                            <div class="form__actions repeater__group-actions">
+                                {{
+                                    html.button({
+                                        'data-repeater-save-group': 'true',
+                                        'label': 'Save',
+                                        'class': 'btn--primary repeater__save-group',
+                                        'type': 'button'
+                                    })
+                                }}
+
+                                {{
+                                    html.button({
+                                        'data-repeater-cancel-save': 'true',
+                                        'label': 'Cancel',
+                                        'class': 'btn--naked repeater__cancel-group',
+                                        'type': 'button'
+                                    })
+                                }}
+                            </div>
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+                {{
+                    html.button({
+                        'data-repeater-add-group': 'true',
+                        'label': 'Add',
+                        'class': 'repeater__add-group',
+                        'type': 'button'
+                    })
+                }}
+            </div>
+        </div>
+    </div>
 {% endspaceless %}
 {% endmacro %}

@@ -1,58 +1,33 @@
-/* -------------------------------------------------------------------------- *\
-    Configuration
-\* -------------------------------------------------------------------------- */
-
-$metadata-padding-x: $padding-small-horizontal !default;
-$metadata-padding-y: $padding-small-vertical !default;
-
-
-
-
-
-/* -------------------------------------------------------------------------- *\
-    Default Presentation
-\* -------------------------------------------------------------------------- */
-
 .metadata {
-  margin-bottom: 0;
-  width: 100%;
+    margin-bottom: 0;
+    width: 100%;
 
-  &__key,
-  &__value {
-    display: inline-block;
-    padding: $metadata-padding-y 0;
-    vertical-align: top;
-  }
+    &__key,
+    &__value {
+        display: block;
+        padding-bottom: $padding-small-vertical;
+        padding-top: $padding-small-vertical;
+        vertical-align: top;
+        word-break: break-word;
 
-  &__key {
-    width: 15%;
-  }
-
-  &__value {
-    margin-left: 0;
-    width: 85%;
-  }
-}
-
-
-
-
-/* -------------------------------------------------------------------------- *\
-    Variations
-\* -------------------------------------------------------------------------- */
-
-.metadata--bordered {
-  border: 1px solid color(gray, lighter);
-  border-radius: $border-radius;
-
-  .metadata__key,
-  .metadata__value {
-    padding: $metadata-padding-y $metadata-padding-x;
-    vertical-align: top;
-
-    &:not(:last-of-type) {
-      border-bottom: 1px solid color(gray, lighter);
+        @include respond-min($screen-phone) {
+            display: inline-block;
+        }
     }
-  }
+
+    &__key {
+        @include respond-min($screen-phone) {
+            padding-right: 2%;
+            width: 23%;
+        }
+    }
+
+    &__value {
+        margin-left: 0;
+
+        @include respond-min($screen-phone) {
+            width: 75%;
+        }
+    }
 }
 

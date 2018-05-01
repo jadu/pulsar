@@ -9,31 +9,48 @@ Your button labels should be illustrative but concise, it's almost never enough 
 
 Use title case.
 
-<div><p data-height="65" data-theme-id="24005" data-slug-hash="KgzPkm" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/KgzPkm/">docs - buttons - title case</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script></div>
+<div class="pulsar-example">
+    <button class="btn">This Is an Example of Title Case</button>
+</div>
 
 If the button relates to an action, the label should be (principally) a verb, use the state classes to reinforce dangerous or destructive actions.
 
-<div><p data-height="65" data-theme-id="24005" data-slug-hash="WwwXmq" data-default-tab="result" data-user="pulsar" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/WwwXmq/">Button CRUD patterns</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script></div>
+<div class="pulsar-example">
+    <button class="btn btn--primary">New</button>&nbsp;
+    <button class="btn btn--primary">Save</button>&nbsp;
+    <button class="btn">Edit</button>&nbsp;
+    <button class="btn btn--danger">Delete</button>&nbsp;
+    <button class="btn">Copy</button>&nbsp;
+    <button class="btn">Show</button>&nbsp;
+    <button class="btn">Hide</button>
+</div>
 
 If an action is related to creating new items of content, use ‘New’.
 
-<div><p data-height="65" data-theme-id="24005" data-slug-hash="XjdAkq" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/XjdAkq/">docs - buttons - new news article</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script></div>
+<div class="pulsar-example">
+    <button class="btn btn--primary">New News Article</button>
+</div>
 
 If the action involves adding to a parent item or to a context that already exists (such as adding a keyword to a content item) use ‘Add’.
 
-<div><p data-height="65" data-theme-id="24005" data-slug-hash="GjkKxg" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/GjkKxg/">docs - buttons - add keyword</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script></div>
+<div class="pulsar-example">
+    <button class="btn btn--primary">Add Keyword</button>
+</div>
 
 If an action affects more than one item, you should badge your button.
 
-<div><p data-height="65" data-theme-id="24005" data-slug-hash="XjdAEq" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/XjdAEq/">docs - buttons - badged buttons</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script></div>
+<div class="pulsar-example">
+    <button class="btn btn--primary"><i class="icon-upload"></i> Export <span class="badge">20</span> Users</button>&nbsp;
+    <button class="btn btn--danger"><i class="icon-times"></i> Delete <span class="badge">3</span> Items</button>
+</div>
 
 If a button triggers more than one action, we should communicate this to the user where possible.
 
-<div><p data-height="130" data-theme-id="24005" data-slug-hash="GjkKdg" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/GjkKdg/">docs - buttons - multiple actions</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script></div>
+<div class="pulsar-example">
+    <button class="btn">Save Changes and Publish Now</button><br /><br />
+    <button class="btn">Save Changes and Submit for Proofing</button><br /><br />
+    <button class="btn">Save Changes and Email User</button>
+</div>
 
 ## Using icons
 
@@ -41,24 +58,64 @@ Icons should sparingly to further illustrate the action where necessary. To avoi
 
 Icons should be used in:
 
-* All actions menu items* Inline delete (times, not trash)* Blocking actions/states (locked)* microinteractions (saving)
+* All actions menu items
+* Inline delete (times, not trash)
+* Blocking actions/states (locked)
+* Microinteractions (saving)
 
-<p data-height="298" data-theme-id="24005" data-slug-hash="xVVpgp" data-default-tab="result" data-user="pulsar" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/xVVpgp/">Button icon examples</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<div class="pulsar-example">
+    <div class="btn__group dropdown">
+        <button class="btn dropdown__toggle" data-toggle="dropdown">Actions&nbsp;<span class="caret"></span></button>
+        <ul class="dropdown__menu pull-left">
+            <li><a href="/save"><i class="icon-save"></i>&nbsp;Save</a></li>
+            <li><a href="/edit"><i class="icon-pencil"></i>&nbsp;Edit</a></li>
+            <li><span class="divider"></span></li>
+            <li><a href="/publish"><i class="icon-cloud-upload"></i>&nbsp;Publish</a></li>
+            <li><a href="/translate"><i class="icon-globe"></i>&nbsp;Translate</a></li>
+            <li><a href="/locl"><i class="icon-lock"></i>&nbsp;Lock</a></li>
+            <li><span class="divider"></span></li>
+            <li><a href="/delete"><i class="icon-remove"></i>&nbsp;Delete</a></li>
+        </ul>
+    </div>&nbsp;
 
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+    <button class="btn btn--warning"><i class="icon-refresh"></i> Rescan Assets</button>&nbsp;
+    <button class="btn"><i class="icon-unlock"></i> Unlock</button>&nbsp;
+    <button class="btn btn--inverse"><i class="icon-lock"></i> Locked</button>&nbsp;
+    <button class="btn btn--primary is-disabled" disabled="disabled"><i class="icon-spinner icon-spin"></i> Saving</button>&nbsp;
+    <button class="btn btn--success is-disabled"><i class="icon-ok"></i> Saved</button>
+</div>
 
 ## Actions menu
 
-* Use dividers to group related actions* Use icons related to the action.* Primary actions should be grouped at the top of the list* Disabled items should use a tooltip explaining why they are disabled
+* Use dividers to group related actions
+* Use icons related to the action
+* Primary actions should be grouped at the top of the list
+* Disabled items should use a tooltip explaining why they are disabled
 
-<p data-height="298" data-theme-id="24005" data-slug-hash="XXeNXM" data-default-tab="result" data-user="pulsar" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/XXeNXM/">XXeNXM</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example">
+    <div class="btn__group dropdown">
+        <button class="btn dropdown__toggle" data-toggle="dropdown">Actions&nbsp;<span class="caret"></span></button>
+        <ul class="dropdown__menu pull-left">
+            <li><a href="/save"><i class="icon-save"></i>&nbsp;Save</a></li>
+            <li><a href="/edit"><i class="icon-pencil"></i>&nbsp;Edit</a></li>
+            <li><span class="divider"></span></li>
+            <li><a href="/publish"><i class="icon-cloud-upload"></i>&nbsp;Publish</a></li>
+            <li><a href="/translate"><i class="icon-globe"></i>&nbsp;Translate</a></li>
+            <li><a href="/locl"><i class="icon-lock"></i>&nbsp;Lock</a></li>
+            <li><span class="divider"></span></li>
+            <li><a href="/delete"><i class="icon-remove"></i>&nbsp;Delete</a></li>
+        </ul>
+    </div>
+</div>
 
 ## Form actions
 
 Buttons required to submit/cancel a form should be left aligned. Any destructive action, such as delete, should be right aligned to avoid accidental use.
 
-<p data-height="92" data-theme-id="24005" data-slug-hash="Myyrrp" data-default-tab="result" data-user="pulsar" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/Myyrrp/">Form action buttons</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example">
+    <div class="form__actions">
+        <button class="btn btn--primary">Save</button>
+        <a href="#" class="btn btn--naked">Cancel</a>
+        <a href="#" data-toggle="modal" class="btn btn--danger pull-right">Delete</a>
+    </div>
+</div>

@@ -1,6 +1,6 @@
 {
   "name": "pulsar",
-  "version": "6.20.12",
+  "version": "7.0.7",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -22,7 +22,9 @@
     "selectivizr": "jadu/selectivizr",
     "store.js": "latest",
     "Vague.js": "0.0.4",
-    "vide": "~0.3.1"
+    "vide": "~0.3.1",
+    "spectrum": "^1.8.0",
+    "jt.timepicker": "jquery-timepicker-jt#^1.11.12"
   },
   "devDependencies": {
     "livereload-js": "livereload/livereload-js",

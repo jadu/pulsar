@@ -5,62 +5,69 @@
 var $ = require('jquery'),
     PulsarFormComponent = require('../../../js/PulsarFormComponent');
 
-describe('Pulsar Form Component - Select2 elements', function() {
+describe('PulsarFormComponent', function() {
 
     beforeEach(function() {
         this.$html = $('<div id="html"></div>').appendTo('html');
         this.$body = $('<div id="body"></div>').appendTo(this.$html);
-        this.$markup = $('\
-<div id="tab-foo">\
-    <form class="form">\
-        <select class="js-select2">\
-            <option>foo</option>\
-            <option>bar</option>\
-            <option>baz</option>\
-        </select>\
-        <select class="js-select2" data-html="true">\
-            <option>foo</option>\
-            <option>bar</option>\
-            <option>baz</option>\
-        </select>\
-    \
-        <div class="form__group form-choice choice--block">\
-            <label class="control__label">Radio Test</label>\
-            <div class="controls">\
-                <label class="control__label">\
-                    <input value="foo" name="foo" type="radio" class="form__control qa-foo radio">Foo</label>\
-                <label class="control__label">\
-                    <input value="bar" name="foo" type="radio" class="form__control radio">Bar</label>\
-                <label class="control__label">\
-                    <input value="baz" name="foo" type="radio" class="form__control radio" checked>Baz</label>\
-            </div>\
-        </div>\
-    \
-        <div class="form__group form-choice choice--block">\
-            <label class="control__label">Checkbox Test</label>\
-            <div class="controls">\
-                <label class="control__label">\
-                    <input value="foo" name="foo" type="checkbox" class="form__control qa-foo checkbox">Foo</label>\
-                <label class="control__label">\
-                    <input value="bar" name="foo" type="checkbox" class="form__control checkbox">Bar</label>\
-                <label class="control__label">\
-                    <input value="baz" name="foo" type="checkbox" class="form__control checkbox" checked>Baz</label>\
-            </div>\
-        </div>\
-    </form>\
-    \
-    <input data-datepicker="true" type="text" />\
-</div>\
-<a href="#tab-foo" data-toggle="tab">tab</a>\
-<a href="#modal-foo" data-toggle="modal">modal</a>\
-<div class="modal" id="modal-foo">\
-    <select class="js-select2">\
-        <option>foo</option>\
-        <option>bar</option>\
-        <option>baz</option>\
-    </select>\
-</div>\
-').appendTo(this.$body);
+        this.$markup = $(`
+            <div id="tab-foo">\
+                <form class="form">\
+                    <select class="js-select2">
+                        <option>foo</option>
+                        <option>bar</option>
+                        <option>baz</option>
+                    </select>
+                    <select class="js-select2" data-html="true">
+                        <option>foo</option>
+                        <option>bar</option>
+                        <option>baz</option>
+                    </select>
+                
+                    <div class="form__group form-choice choice--block">
+                        <label class="control__label">Radio Test</label>
+                        <div class="controls">
+                            <label class="control__label">
+                                <input value="foo" name="foo" type="radio" class="form__control qa-foo radio">Foo</label>
+                            <label class="control__label">
+                                <input value="bar" name="foo" type="radio" class="form__control radio">Bar</label>
+                            <label class="control__label">
+                                <input value="baz" name="foo" type="radio" class="form__control radio" checked>Baz</label>
+                        </div>
+                    </div>
+                
+                    <div class="form__group form-choice choice--block">
+                        <label class="control__label">Checkbox Test</label>
+                        <div class="controls">
+                            <label class="control__label">
+                                <input value="foo" name="foo" type="checkbox" class="form__control qa-foo checkbox">Foo</label>
+                            <label class="control__label">
+                                <input value="bar" name="foo" type="checkbox" class="form__control checkbox">Bar</label>
+                            <label class="control__label">
+                                <input value="baz" name="foo" type="checkbox" class="form__control checkbox" checked>Baz</label>
+                        </div>
+                    </div>
+                
+                    <div class="form__group">
+                        <label class="control__label">Time picker test</label>
+                        <div class="controls">
+                                <input value="foo" name="foo" type="text" data-timepicker="true" class="form__control qa-foo" />
+                        </div>
+                    </div>
+                </form>
+                
+                <input data-datepicker="true" type="text" />
+            </div>
+            <a href="#tab-foo" data-toggle="tab">tab</a>
+            <a href="#modal-foo" data-toggle="modal">modal</a>
+            <div class="modal" id="modal-foo">
+                <select class="js-select2">
+                    <option>foo</option>
+                    <option>bar</option>
+                    <option>baz</option>
+                </select>
+            </div>
+        `).appendTo(this.$body);
 
         this.$radioFoo = this.$html.find('.radio[value="foo"]');
         this.$radioBar = this.$html.find('.radio[value="bar"]');
@@ -79,14 +86,21 @@ describe('Pulsar Form Component - Select2 elements', function() {
         this.$tabToggle = this.$html.find('[data-toggle="tab"]');
         this.$modalToggle = this.$html.find('[data-toggle="modal"]');
         this.$modal = this.$html.find('#modal-foo');
+        this.$timepicker = this.$html.find('[data-timepicker="true"]');
 
         this.pulsarForm = new PulsarFormComponent(this.$html);
 
         $.fn.select2 = sinon.stub();
+        $.fn.timepicker = sinon.stub();
+        $.fn.spectrum = sinon.stub();
+        $.fn.pikaday = sinon.stub();
     });
 
     afterEach(function() {
         delete $.fn.select2;
+        delete $.fn.timepicker;
+        delete $.fn.spectrum;
+        delete $.fn.pikaday;
         this.$html.remove();
     });
 
@@ -210,7 +224,6 @@ describe('Pulsar Form Component - Select2 elements', function() {
     describe('Datepickers', function() {
 
         beforeEach(function() {
-            sinon.spy($.fn, 'pikaday');
             this.pulsarForm.init();
         });
 
@@ -220,4 +233,39 @@ describe('Pulsar Form Component - Select2 elements', function() {
 
     });
 
+    describe('Timepickers', function() {
+
+        beforeEach(function() {
+            this.pulsarForm.timePickerComponent.init = sinon.stub();
+            this.pulsarForm.init();
+        });
+
+        it('should call the timePickerComponents init method', function() {
+            expect(this.pulsarForm.timePickerComponent.init).to.have.been.called;
+        });
+    });
+
+    describe('refresh', function () {
+        beforeEach(function () {
+            this.$html.append('<div class="js-colorpicker"></div>');
+        });
+
+        it('should initiate the colour pickers', function () {
+            this.pulsarForm.refresh();
+
+            expect($.fn.spectrum).to.have.been.calledOnce;
+        });
+
+        it('should initiate the date pickers', function () {
+            this.pulsarForm.refresh();
+
+            expect($.fn.pikaday).to.have.been.calledOnce;
+        });
+
+        it('should initiate time pickers', function () {
+            this.pulsarForm.refresh();
+
+            expect($.fn.timepicker).to.have.been.calledOnce;
+        });
+    });
 });

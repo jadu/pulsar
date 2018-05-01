@@ -5,29 +5,33 @@
 
 <body>
 
-    <div class="header">
-        <img src="{{ site.baseurl }}/assets/images/pulsar-brand-medium.png" class="brand-image" />
-        <h1>
-            <a href="{{ site.baseurl }}">
-                {{ site.title }}
-            </a>
-        </h1>
-        <p class="lead">{{ site.tagline }}</p>
-
-        <div class="header-links">
-            <a class="header-link" href="https://github.com/jadu/pulsar">View on GitHub</a>
-            <a class="header-link" href="https://github.com/jadu/pulsar/archive/develop.zip">Download .zip</a>
-            <a class="header-link" href="https://github.com/jadu/pulsar/archive/develop.tar.gz">Download .tar.gz</a>
-        </div>
-    </div>
-
     <div class="content">
         {% include sidebar.html %}
         <div class="page">
+            <a href="#" class="nav-toggle">
+                <i class="icon icon-bars"></i>
+            </a>
             <h1 class="page-title">{{ page.title }}</h1>
             {{ content }}
         </div>
     </div>
 
 </body>
+<script>
+(function ($) {
+    var $trigger = $('.nav-toggle'),
+        $nav = $('.sidebar'),
+        width = window.innerWidth;
+
+    $trigger.on('click', function() {
+        $nav.toggleClass('is-open');
+    });
+
+    $(window).on('resize', function() {
+        if ((width != window.innerWidth) && (window.innerWidth <= 900)) {
+            $nav.removeClass('is-open');
+        }
+    });
+})(jQuery);
+</script>
 </html>

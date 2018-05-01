@@ -43,7 +43,18 @@ This will then affect all select elements with the `js-select2` class (which wil
 ```
 {% endraw %}
 
-<p data-height="150" data-theme-id="24005" data-slug-hash="VKjjXL" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/VKjjXL/">form - select2</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example form">
+    <div class="form__group">
+        <label class="control__label" for="foo">Pick a colour</label>
+        <div class="controls">
+            <select class="form__control select js-select2" id="foo">
+                <option value="">Choose</option>
+                <option value="colour_red">Red</option>
+                <option value="colour_blue">Blue</option>
+            </select>
+        </div>
+    </div>
+</div>
 
 ## Options applied to parent wrapper
 
@@ -78,7 +89,7 @@ size        | int     | The number of items to display when the list is shown
 data-init   | string  | If 'false', will prevent the select2 javascript behaviour being initialised
 data-*      | string  | Data attributes, eg: `'data-foo': 'bar'`
 
-*Any other options not listed here will be applied to the input.
+* Any other options not listed here will be applied to the input.
 
 ## Manually creating select2 elements
 
@@ -114,7 +125,7 @@ With the select2 helper you can include HTML within your `<option>` labels, the 
 {{
     form.select2({
         'label': 'Pick a colour',
-        'id': 'example-select',
+        'id': 'bar',
         'data-html': 'true',
         'options': {
             '': 'Choose',
@@ -126,7 +137,18 @@ With the select2 helper you can include HTML within your `<option>` labels, the 
 ```
 {% endraw %}
 
-<p data-height="150" data-theme-id="24005" data-slug-hash="zKBoBw" data-default-tab="result" data-user="pulsar" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/pulsar/pen/zKBoBw/">form - select2 html</a> by Pulsar (<a href="http://codepen.io/pulsar">@pulsar</a>) on <a href="http://codepen.io">CodePen</a>.</p><script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<div class="pulsar-example form">
+    <div class="form__group">
+        <label class="control__label" for="bar">Pick a colour</label>
+        <div class="controls">
+            <select class="form__control select js-select2" data-html="true" id="bar">
+                <option value="">Choose</option>
+                <option value="colour_red"><span style="color: red">Red</span></option>
+                <option value="colour_blue"><span style="color: blue">Blue</span></option>
+            </select>
+        </div>
+    </div>
+</div>
 
 ## Widths
 

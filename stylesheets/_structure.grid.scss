@@ -1,5 +1,5 @@
 $columns:       12;
-$gutter_pc:     1;
+$gutter_pc:     .5;
 
 .g-col {
     background-clip: padding-box !important;
@@ -23,7 +23,7 @@ $gutter_pc:     1;
 }
 
 /**
- * Creates column styling and assigns a set of responsive widths
+ * Creates column styling and assigns a set of responsive widths. Do not use within a media query or media query mixin.
  *
  * @param  {int}  $num                   The number of columns the width should span
  * @param  {bool} $force:  false         If true, prevents the width from becoming 100% at smaller screen sizes
@@ -32,7 +32,7 @@ $gutter_pc:     1;
  */
 @mixin col-span($num, $force: false, $gutter: false, $columns: $columns, $important: false) {
     $one_col: (100% - ($gutter_pc * ($columns - 1))) / $columns;
-    $span_width: ($one_col * ($num)) + ($gutter_pc * ($num - 1));
+    $span_width: floor(($one_col * ($num)) + ($gutter_pc * ($num - 1)));
 
     @if $gutter == true {
         @include respond-min($screen-tablet) {
@@ -41,7 +41,7 @@ $gutter_pc:     1;
     }
 
     @if $force == false {
-        @include respond-min($screen-phone) {
+        @include respond-max($screen-tablet) {
             width: 100%;
         }
     }
@@ -62,14 +62,25 @@ $gutter_pc:     1;
             width: $span_width !important;
         }
     }
+}
 
-    @include respond-min($screen-desktop) {
-        @if $important == false {
-            width: $span_width;
-        }
-        @else {
-            width: $span_width !important;
-        }
+/**
+ * Assigns width based on number of grid columns. Does not provide responsive styling, use the col-span mixin for
+ * built in responsiveness. Useful when assigning grid width to an element within a media query.
+ *
+ * @param  {int}  $num                   The number of columns the width should span
+ * @param  {int}  $columns: $columns      The total number of grid columns to use for grid calculations, defaults to $columns (12)
+ * @param  {bool} $important:  false     If true, adds the !important declaration
+ */
+@mixin col-span-width($num, $columns: $columns, $important: false) {
+    $one_col: (100% - ($gutter_pc * ($columns - 1))) / $columns;
+    $span_width: floor(($one_col * ($num)) + ($gutter_pc * ($num - 1)));
+
+    @if $important == false {
+        width: $span_width;
+    }
+    @else {
+        width: $span_width !important;
     }
 }
 
@@ -77,6 +88,12 @@ $gutter_pc:     1;
 @mixin push($num) {
     $one_col: (100% - ($gutter_pc * ($columns - 1))) / $columns;
     margin-left: ($one_col * $num) + ($gutter_pc * ($num));
+}
+
+// indent an element using padding-left by a given number of columns
+@mixin push-padding($num) {
+    $one_col: (100% - ($gutter_pc * ($columns - 1))) / $columns;
+    padding-left: ($one_col * $num) + ($gutter_pc * ($num));
 }
 
 // add (or suppress) the left hand gutter on an element

@@ -26,7 +26,8 @@
                     'value': 'three',
                     'name': 'one'
                 }
-            ]
+            ],
+            'help': 'Help text to give more information about expected input'
         })
     }}
 
@@ -51,7 +52,8 @@
                     'value': 'three',
                     'name': 'two'
                 }
-            ]
+            ],
+            'help': 'Help text to give more information about expected input'
         })
     }}
 
@@ -76,7 +78,8 @@
                     'value': 'three',
                     'name': 'one'
                 }
-            ]
+            ],
+            'help': 'Help text to give more information about expected input'
         })
     }}
 
@@ -102,7 +105,8 @@
                     'value': 'three',
                     'name': 'one'
                 }
-            ]
+            ],
+            'help': 'Help text to give more information about expected input'
         })
     }}
 
@@ -143,7 +147,8 @@
                     'value': 'six',
                     'name': 'three'
                 }
-            ]
+            ],
+            'help': 'Help text to give more information about expected input'
         })
     }}
 
@@ -185,7 +190,8 @@
                     'value': 'six',
                     'name': 'four'
                 }
-            ]
+            ],
+            'help': 'Help text to give more information about expected input'
         })
     }}
 
@@ -210,7 +216,8 @@
                     'value': 'underline',
                     'name': 'five'
                 },
-            ]
+            ],
+            'help': 'Help text to give more information about expected input'
         })
     }}
 
@@ -235,7 +242,8 @@
                     'value': 'underline',
                     'name': 'foo'
                 },
-            ]
+            ],
+            'help': 'Help text to give more information about expected input'
         })
     }}
 
@@ -292,9 +300,11 @@
         })
     }}
 
+    <p>Test right margin removed from rightermost choice block correctly</p>
+
     {{
         form.choice({
-            'class': 'choice--block choice--block-inline',
+            'class': 'choice--block choice--block-inline form__control-col--1',
             'label': 'Choice block checkboxes (& inline)',
             'optimize': 'few',
             'multiple': true,
@@ -333,6 +343,464 @@
                     'label': 'seven',
                     'value': 'seven',
                     'name': 'seven'
+                },
+                {
+                    'label': 'eight',
+                    'value': 'eight',
+                    'name': 'eight'
+                },
+                {
+                    'label': 'nine',
+                    'value': 'nine',
+                    'name': 'nine'
+                },
+            ]
+        })
+    }}
+
+    {{
+        form.choice({
+            'class': 'choice--block choice--block-inline form__control-col--2',
+            'label': 'Choice block checkboxes (& inline)',
+            'optimize': 'few',
+            'multiple': true,
+            'options': [
+                {
+                    'label': 'one',
+                    'value': 'one',
+                    'name': 'one'
+                },
+                {
+                    'label': 'two',
+                    'value': 'two',
+                    'name': 'two'
+                },
+                {
+                    'label': 'three',
+                    'value': 'three',
+                    'name': 'three'
+                },
+                {
+                    'label': 'four',
+                    'value': 'four',
+                    'name': 'four'
+                },
+                {
+                    'label': 'five',
+                    'value': 'five',
+                    'name': 'five'
+                },
+                {
+                    'label': 'six',
+                    'value': 'six',
+                    'name': 'six'
+                },
+                {
+                    'label': 'seven',
+                    'value': 'seven',
+                    'name': 'seven'
+                },
+                {
+                    'label': 'eight',
+                    'value': 'eight',
+                    'name': 'eight'
+                },
+                {
+                    'label': 'nine',
+                    'value': 'nine',
+                    'name': 'nine'
+                },
+            ]
+        })
+    }}
+
+    {{
+        form.choice({
+            'class': 'choice--block choice--block-inline form__control-col--3',
+            'label': 'Choice block checkboxes (& inline)',
+            'optimize': 'few',
+            'multiple': true,
+            'options': [
+                {
+                    'label': 'one',
+                    'value': 'one',
+                    'name': 'one'
+                },
+                {
+                    'label': 'two',
+                    'value': 'two',
+                    'name': 'two'
+                },
+                {
+                    'label': 'three',
+                    'value': 'three',
+                    'name': 'three'
+                },
+                {
+                    'label': 'four',
+                    'value': 'four',
+                    'name': 'four'
+                },
+                {
+                    'label': 'five',
+                    'value': 'five',
+                    'name': 'five'
+                },
+                {
+                    'label': 'six',
+                    'value': 'six',
+                    'name': 'six'
+                },
+                {
+                    'label': 'seven',
+                    'value': 'seven',
+                    'name': 'seven'
+                },
+                {
+                    'label': 'eight',
+                    'value': 'eight',
+                    'name': 'eight'
+                },
+                {
+                    'label': 'nine',
+                    'value': 'nine',
+                    'name': 'nine'
+                },
+            ]
+        })
+    }}
+
+    {{
+        form.choice({
+            'class': 'choice--block choice--block-inline form__control-col--4',
+            'label': 'Choice block checkboxes (& inline)',
+            'optimize': 'few',
+            'multiple': true,
+            'options': [
+                {
+                    'label': 'one',
+                    'value': 'one',
+                    'name': 'one'
+                },
+                {
+                    'label': 'two',
+                    'value': 'two',
+                    'name': 'two'
+                },
+                {
+                    'label': 'three',
+                    'value': 'three',
+                    'name': 'three'
+                },
+                {
+                    'label': 'four',
+                    'value': 'four',
+                    'name': 'four'
+                },
+                {
+                    'label': 'five',
+                    'value': 'five',
+                    'name': 'five'
+                },
+                {
+                    'label': 'six',
+                    'value': 'six',
+                    'name': 'six'
+                },
+                {
+                    'label': 'seven',
+                    'value': 'seven',
+                    'name': 'seven'
+                },
+                {
+                    'label': 'eight',
+                    'value': 'eight',
+                    'name': 'eight'
+                },
+                {
+                    'label': 'nine',
+                    'value': 'nine',
+                    'name': 'nine'
+                },
+            ]
+        })
+    }}
+
+    {{
+        form.choice({
+            'class': 'choice--block choice--block-inline form__control-col--5',
+            'label': 'Choice block checkboxes (& inline)',
+            'optimize': 'few',
+            'multiple': true,
+            'options': [
+                {
+                    'label': 'one',
+                    'value': 'one',
+                    'name': 'one'
+                },
+                {
+                    'label': 'two',
+                    'value': 'two',
+                    'name': 'two'
+                },
+                {
+                    'label': 'three',
+                    'value': 'three',
+                    'name': 'three'
+                },
+                {
+                    'label': 'four',
+                    'value': 'four',
+                    'name': 'four'
+                },
+                {
+                    'label': 'five',
+                    'value': 'five',
+                    'name': 'five'
+                },
+                {
+                    'label': 'six',
+                    'value': 'six',
+                    'name': 'six'
+                },
+                {
+                    'label': 'seven',
+                    'value': 'seven',
+                    'name': 'seven'
+                },
+                {
+                    'label': 'eight',
+                    'value': 'eight',
+                    'name': 'eight'
+                },
+                {
+                    'label': 'nine',
+                    'value': 'nine',
+                    'name': 'nine'
+                },
+            ]
+        })
+    }}
+
+    {{
+        form.choice({
+            'class': 'choice--block choice--block-inline form__control-col--6',
+            'label': 'Choice block checkboxes (& inline)',
+            'optimize': 'few',
+            'multiple': true,
+            'options': [
+                {
+                    'label': 'one',
+                    'value': 'one',
+                    'name': 'one'
+                },
+                {
+                    'label': 'two',
+                    'value': 'two',
+                    'name': 'two'
+                },
+                {
+                    'label': 'three',
+                    'value': 'three',
+                    'name': 'three'
+                },
+                {
+                    'label': 'four',
+                    'value': 'four',
+                    'name': 'four'
+                },
+                {
+                    'label': 'five',
+                    'value': 'five',
+                    'name': 'five'
+                },
+                {
+                    'label': 'six',
+                    'value': 'six',
+                    'name': 'six'
+                },
+                {
+                    'label': 'seven',
+                    'value': 'seven',
+                    'name': 'seven'
+                },
+                {
+                    'label': 'eight',
+                    'value': 'eight',
+                    'name': 'eight'
+                },
+                {
+                    'label': 'nine',
+                    'value': 'nine',
+                    'name': 'nine'
+                },
+            ]
+        })
+    }}
+
+    {{
+        form.choice({
+            'class': 'choice--block choice--block-inline form__control-col--7',
+            'label': 'Choice block checkboxes (& inline)',
+            'optimize': 'few',
+            'multiple': true,
+            'options': [
+                {
+                    'label': 'one',
+                    'value': 'one',
+                    'name': 'one'
+                },
+                {
+                    'label': 'two',
+                    'value': 'two',
+                    'name': 'two'
+                },
+                {
+                    'label': 'three',
+                    'value': 'three',
+                    'name': 'three'
+                },
+                {
+                    'label': 'four',
+                    'value': 'four',
+                    'name': 'four'
+                },
+                {
+                    'label': 'five',
+                    'value': 'five',
+                    'name': 'five'
+                },
+                {
+                    'label': 'six',
+                    'value': 'six',
+                    'name': 'six'
+                },
+                {
+                    'label': 'seven',
+                    'value': 'seven',
+                    'name': 'seven'
+                },
+                {
+                    'label': 'eight',
+                    'value': 'eight',
+                    'name': 'eight'
+                },
+                {
+                    'label': 'nine',
+                    'value': 'nine',
+                    'name': 'nine'
+                },
+            ]
+        })
+    }}
+
+    {{
+        form.choice({
+            'class': 'choice--block choice--block-inline form__control-col--8',
+            'label': 'Choice block checkboxes (& inline)',
+            'optimize': 'few',
+            'multiple': true,
+            'options': [
+                {
+                    'label': 'one',
+                    'value': 'one',
+                    'name': 'one'
+                },
+                {
+                    'label': 'two',
+                    'value': 'two',
+                    'name': 'two'
+                },
+                {
+                    'label': 'three',
+                    'value': 'three',
+                    'name': 'three'
+                },
+                {
+                    'label': 'four',
+                    'value': 'four',
+                    'name': 'four'
+                },
+                {
+                    'label': 'five',
+                    'value': 'five',
+                    'name': 'five'
+                },
+                {
+                    'label': 'six',
+                    'value': 'six',
+                    'name': 'six'
+                },
+                {
+                    'label': 'seven',
+                    'value': 'seven',
+                    'name': 'seven'
+                },
+                {
+                    'label': 'eight',
+                    'value': 'eight',
+                    'name': 'eight'
+                },
+                {
+                    'label': 'nine',
+                    'value': 'nine',
+                    'name': 'nine'
+                },
+            ]
+        })
+    }}
+
+    {{
+        form.choice({
+            'class': 'choice--block choice--block-inline form__control-col--9',
+            'label': 'Choice block checkboxes (& inline)',
+            'optimize': 'few',
+            'multiple': true,
+            'options': [
+                {
+                    'label': 'one',
+                    'value': 'one',
+                    'name': 'one'
+                },
+                {
+                    'label': 'two',
+                    'value': 'two',
+                    'name': 'two'
+                },
+                {
+                    'label': 'three',
+                    'value': 'three',
+                    'name': 'three'
+                },
+                {
+                    'label': 'four',
+                    'value': 'four',
+                    'name': 'four'
+                },
+                {
+                    'label': 'five',
+                    'value': 'five',
+                    'name': 'five'
+                },
+                {
+                    'label': 'six',
+                    'value': 'six',
+                    'name': 'six'
+                },
+                {
+                    'label': 'seven',
+                    'value': 'seven',
+                    'name': 'seven'
+                },
+                {
+                    'label': 'eight',
+                    'value': 'eight',
+                    'name': 'eight'
+                },
+                {
+                    'label': 'nine',
+                    'value': 'nine',
+                    'name': 'nine'
                 },
             ]
         })

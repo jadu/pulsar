@@ -60,7 +60,7 @@ function createFilterListButton ($filterbar) {
     });
 
     // Build up list and mark up for Add filter button
-    $addFilterButton = $('<button class="btn filter-bar__add" data-ui="show-filter-list" data-toggle="popover" data-trigger="click" title="Filter by" data-html="true" data-placement="bottom" data-content=""><i class="icon-plus"></i></button>');
+    $addFilterButton = $('<button class="btn filter-bar__add" data-ui="show-filter-list" data-toggle="popover" data-trigger="click" title="Filter by" data-html="true" data-placement="bottom" data-content="" aria-haspopup="true"><i class="icon-plus"><span class="hide">Add</span></i></button>');
     $addFilterButton.attr('data-content', $filterList[0].outerHTML);
 
     // Append button and label wrapper
@@ -191,8 +191,7 @@ function showAddFilterPopover ($filterbar) {
             // Disable the add filter button
             $addFilterButton
                 .addClass('is-disabled')
-                .attr('disabled', true)
-                .attr('aria-disabled', true);
+                .attr('disabled', true);
 
             // Hide the filter list button if no links remaining
             filterListButtonVisibility($filterbar);
@@ -218,8 +217,7 @@ function showAddFilterPopover ($filterbar) {
                     $popoverControls
                         .find('[data-ui="add-filter"]')
                         .addClass('is-disabled')
-                        .attr('disabled', true)
-                        .attr('aria-disabled', true);
+                        .attr('disabled', true);
                 }
             });
         }

@@ -1,74 +1,120 @@
-/* ========================
-//#google-prettify-monokai-theme
-//#Version: 0.3
-//#Author: RaphaelDDL
-//#Github: https://github.com/RaphaelDDL/google-prettify-monokai-theme/
-//For use with Google Code Prettify, HTML Syntax only
-//======================== */
-
-pre .str, code .str { color: #e6db5a; } /* string */
-pre .kwd, code .kwd { color: #66d9ef; } /* keyword */
-pre .com, code .com { color: #75715e; font-style: italic; } /* comment */
-pre .typ, code .typ { color: #66d9ef; } /* type */
-pre .lit, code .lit { color: #ae81ff; } /* literal */
-pre .pun, code .pun { color: #fff; } /* punctuation */
-pre .pln, code .pln { color: #fff; } /* plaintext */
-pre .tag, code .tag { color: #f92672; } /* html/xml tag */
-pre .atn, code .atn { color: #a6e22a; } /* html/xml attribute name */
-pre .atv, code .atv { color: #e6db74; } /* html/xml attribute value */
-pre .dec, code .dec { color: #ae81ff; } /* decimal */
-
-pre.prettyprint, code.prettyprint {
-    background-color: #272822;
-    border: 0;
-    border-top-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-    font-family: consolas, menlo, courier, monospace;
-    font-size: .75rem;
-    margin: 0;
-    padding: .5rem 1rem;
+// scss-lint:disable all
+/*! Color themes for Google Code Prettify | MIT License | github.com/jmblog/color-themes-for-google-code-prettify */
+.prettyprint {
+  background: #fff;
+  font-family: Menlo, "Bitstream Vera Sans Mono", "DejaVu Sans Mono", Monaco, Consolas, monospace;
 }
 
-pre.prettyprint {
-    width: 100%;
-    padding: 1em;
-    white-space: pre-wrap;
+.pln {
+  color: #333;
 }
 
-/* ------------------------
-//Section: class 'linenums' for line numbering
-//------------------------ */
+/* Specify class=linenums on a pre to get line numbering */
 ol.linenums {
-    margin-top: 0;
-    margin-bottom: 0;
-    color: #75715e;
-    list-style: decimal inside !important;
-} /* IE indents via margin-left */
-
-
-/* =============================================
-//Section: Print Styles (partially from Sunburn Theme)
-//================================================ */
-@media print {
-    pre.prettyprinted, pre.prettyprint, code.prettyprint {
-        background-color:#fff;
-        color:#000;
-        -moz-border-radius:0;
-        -webkit-border-radius:0;
-        -o-border-radius:0;
-        -ms-border-radius:0;
-        -khtml-border-radius:0;
-        border-radius:0;
-    }
-
-    pre .str, code .str { color: #060; }
-    pre .kwd, code .kwd { color: #006; font-weight: bold; }
-    pre .com, code .com { color: #600; font-style: italic; }
-    pre .typ, code .typ { color: #404; font-weight: bold; }
-    pre .lit, code .lit { color: #044; }
-    pre .pun, code .pun { color: #440; }
-    pre .pln, code .pln { color: #000; }
-    pre .tag, code .tag { color: #006; font-weight: bold; }
-    pre .atn, code .atn { color: #404; }
-    pre .atv, code .atv { color: #060; }
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #cccccc;
 }
+
+li.L0,
+li.L1,
+li.L2,
+li.L3,
+li.L4,
+li.L5,
+li.L6,
+li.L7,
+li.L8,
+li.L9 {
+  padding-left: 1em;
+  background-color: #fff;
+  list-style-type: decimal;
+}
+
+@media screen {
+
+  /* string content */
+
+  .str {
+    color: #d14;
+  }
+
+  /* keyword */
+
+  .kwd {
+    color: #333;
+  }
+
+  /* comment */
+
+  .com {
+    color: #998;
+  }
+
+  /* type name */
+
+  .typ {
+    color: #458;
+  }
+
+  /* literal value */
+
+  .lit {
+    color: #458;
+  }
+
+  /* punctuation */
+
+  .pun {
+    color: #333;
+  }
+
+  /* lisp open bracket */
+
+  .opn {
+    color: #333;
+  }
+
+  /* lisp close bracket */
+
+  .clo {
+    color: #333;
+  }
+
+  /* markup tag name */
+
+  .tag {
+    color: #000080;
+  }
+
+  /* markup attribute name */
+
+  .atn {
+    color: #008080;
+  }
+
+  /* markup attribute value */
+
+  .atv {
+    color: #d14;
+  }
+
+  /* declaration */
+
+  .dec {
+    color: #333;
+  }
+
+  /* variable name */
+
+  .var {
+    color: #008080;
+  }
+
+  /* function name */
+
+  .fun {
+    color: #900;
+  }
+}
+// scss-lint:enable all
