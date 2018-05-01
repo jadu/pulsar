@@ -21,19 +21,6 @@ var $                     = require('jquery'),
     matchMedia            = require('./polyfills/matchMedia'),
     matchMediaAddListener = require('./polyfills/matchMedia.addListener'),
 
-    clickover = require('../libs/bootstrapx-clickover/js/bootstrapx-clickover'),
-    jqueryui  = require('../libs/jquery-ui/jquery-ui.min'),
-    countdown = require('../libs/jquery.countdown/dist/jquery.countdown.min'),
-    pikaday   = require('../libs/pikaday/plugins/pikaday.jquery'),
-    svgeezy   = require('../libs/svgeezy/svgeezy.min'),
-    select2   = require('../libs/select2/dist/js/select2.min'),
-    tinycon   = require('../libs/tinyicon/tinycon.min'),
-
-    dt            = require('datatables.net')(window, $),
-    dt_buttons    = require('datatables.net-buttons')(window, $),
-    dt_responsive = require('datatables.net-responsive')(window, $),
-    dt_select     = require('datatables.net-select')(window, $),
-
     ButtonComponent = require('./ButtonComponent'),
     DisableUiComponent = require('./DisableUiComponent'),
     HelpTextComponent = require('./HelpTextComponent'),
@@ -53,7 +40,7 @@ var $                     = require('jquery'),
     FaviconEditor = require('./Notifications/FaviconEditor');
 
 require('jstree');
-require('../libs/history.js/scripts/bundled/html5/jquery.history');
+require('svgeezy');
 
 module.exports = {
     ButtonComponent,
@@ -71,7 +58,6 @@ module.exports = {
     SignInComponent,
     TableDetailComponent,
     history,
-    svgeezy,
     RepeaterManagerComponent,
     repeaterComponentFactory,
     FaviconEditor
