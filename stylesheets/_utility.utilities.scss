@@ -336,5 +336,10 @@ div.no-results {
 
 %u-margin-bottom-1,
 .u-margin-bottom-1 {
-    margin-bottom: 1rem !important;
+    margin-bottom: $margin-base !important;
+}
+
+%u-margin-bottom-2,
+.u-margin-bottom-2 {
+    margin-bottom: $margin-base * 2 !important;
 }

@@ -1,3 +1,8 @@
+// Ensure selected Pulsar radio controls aren't clipped
+.form-choice {
+    overflow: visible;
+}
+
 // Align form-choice to grid
 @include respond-min($screen-tablet) {
     .form-choice > .controls > .control__label {
