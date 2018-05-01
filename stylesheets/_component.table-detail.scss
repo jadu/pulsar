@@ -53,6 +53,10 @@
     white-space: nowrap;
 }
 
+.table-detail__body {
+    padding: $modal-title-padding;
+}
+
 .table-detail-backdrop {
     background: $modal-backdrop-bg;
     height: 0;
