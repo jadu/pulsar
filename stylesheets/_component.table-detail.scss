@@ -5,7 +5,9 @@
     bottom: 0;
     display: table-cell;
     height: 100%;
-    position: absolute;
+    overflow-x: none;
+    overflow-y: auto;
+    position: fixed;
     right: 0;
     top: 0;
     transform: translateX(100%);
@@ -45,10 +47,15 @@
 
 .table-detail__title {
     line-height: $modal-title-line-height;
+    font-size: $font-size-large;
     margin: 0;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.table-detail__body {
+    padding: $modal-title-padding;
 }
 
 .table-detail-backdrop {
