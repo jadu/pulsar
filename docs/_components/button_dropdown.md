@@ -67,11 +67,11 @@ Pass a list of `html.link` items to the `menu_items` parameter to be used as the
     <div class="btn__group dropdown open">
         <button data-toggle="dropdown" class="btn dropdown__toggle">Drop Down&nbsp;<span class="caret"></span></button>
         <ul class="dropdown__menu pull-left">
-            <li><a href="#"><i class="icon-save"></i> Save</a></li>
-            <li><a><i class="icon-print"></i> Print</a></li>
-            <li><a disabled="" aria-disabled="true" class="is-disabled"><i class="icon-lock"></i> Lock</a></li>
-            <li><a><i class="icon-group"></i> Collaborators <span class="badge">3</span></a></li>
-            <li><span class="divider"></span></li><li><a href="#" class="link--danger"><i class="icon-trash"></i> Delete</a></li>
+            <li><a href="#save"><i class="icon-save"></i> Save</a></li>
+            <li><a href="#print"><i class="icon-print"></i> Print</a></li>
+            <li><a href="#lock" disabled="" aria-disabled="true" class="is-disabled"><i class="icon-lock"></i> Lock</a></li>
+            <li><a href="#collaborators"><i class="icon-group"></i> Collaborators <span class="badge">3</span></a></li>
+            <li><span class="divider"></span></li><li><a href="#delete" class="link--danger"><i class="icon-trash"></i> Delete</a></li>
         </ul>
     </div>
 </div>
