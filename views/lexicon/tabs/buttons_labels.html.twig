@@ -580,22 +580,25 @@
             set example_dropdown = [
                 html.link({
                     label: html.icon('save') ~ ' Save',
-                    href: '#'
+                    href: '#save'
                 }),
                 html.link({
-                    label: html.icon('print') ~ ' Print'
+                    label: html.icon('print') ~ ' Print',
+                    href: '#print'
                 }),
                 html.link({
                     label: html.icon('lock') ~ ' Lock',
+                    href: '#lock',
                     disabled: true
                 }),
                 html.link({
-                    label: html.icon('group') ~ ' Collaborators ' ~ html.badge({ 'label': 3 })
+                    label: html.icon('group') ~ ' Collaborators ' ~ html.badge({ 'label': 3 }),
+                    href: '#collaborators'
                 }),
                 html.divider(),
                 html.link({
                     label: html.icon('trash') ~ ' Delete',
-                    href: '#',
+                    href: '#delete',
                     class: 'link--danger'
                 })
             ]
