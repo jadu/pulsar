@@ -159,11 +159,9 @@
     <div class="toolbar-help toolbar-icon">
         <div class="dropdown">
             {{
-                html.link({
-                    'class': 'toolbar-help-link',
-                    'href': '#',
-                    'icon': 'question-sign',
-                    'label': options.label|default('user guides'),
+                html.button({
+                    'class': 'toolbar-help-link btn--naked',
+                    'label': html.icon('question-sign') ~ ' user guides',
                     'data-toggle': 'dropdown'
                 })
             }}
