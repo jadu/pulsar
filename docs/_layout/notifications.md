@@ -13,7 +13,7 @@ Provides a prominent location for notifications to be displayed. A toolbar indic
 {{
     html.button({
         'class': 'notifications-toggle btn--naked',
-        'label': html.icon('bell'),
+        'label': html.icon('bell-o', { 'label': 'Show notifications' }),
         'data-toggle': 'dropdown'
     })
 }}
@@ -21,9 +21,9 @@ Provides a prominent location for notifications to be displayed. A toolbar indic
 {% endraw %}
 
 <div class="pulsar-example">
-    <button class="notifications-toggle btn--naked is-active has-new" data-toggle="dropdown"><i class="icon-bell-o"></i></button>
-    <button class="notifications-toggle btn--naked is-active" data-toggle="dropdown"><i class="icon-bell-o"></i></button>
-    <button class="notifications-toggle btn--naked" data-toggle="dropdown"><i class="icon-bell-o"></i></button>
+    <button class="notifications-toggle btn--naked is-active has-new" data-toggle="dropdown"><i class="icon-bell-o"><span class="hide">Show notifications</span></i></button>
+    <button class="notifications-toggle btn--naked is-active" data-toggle="dropdown"><i class="icon-bell-o"><span class="hide">Show notifications</span></i></button>
+    <button class="notifications-toggle btn--naked" data-toggle="dropdown"><i class="icon-bell-o"><span class="hide">Show notifications</span></i></button>
 </div>
 
 Toggle the states with common state classes
@@ -46,7 +46,7 @@ A main `notifications` container holds both the `notifications-toggle` and the `
     {{
         html.button({
             'class': 'notifications-toggle btn--naked is-active',
-            'label': html.icon('bell'),
+            'label': html.icon('bell-o', { 'label': 'Show notifications' }),
             'data-toggle': 'dropdown'
         })
     }}
