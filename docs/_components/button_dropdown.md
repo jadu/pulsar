@@ -117,9 +117,9 @@ Separate menu items with a horizontal line.
     html.button_dropdown({
         'label': 'Drop Down',
         'items': [
-            html.link({ 'label': 'foo' }),
+            html.link({ 'label': 'foo', 'href': '#foo' }),
             html.divider(),
-            html.link({ 'label': 'bar' })
+            html.link({ 'label': 'bar', 'href': '#bar' })
         ]
     })
 }}
@@ -130,9 +130,9 @@ Separate menu items with a horizontal line.
     <div class="btn__group dropdown open">
         <button type="button" class="btn dropdown__toggle" data-toggle="dropdown">Drop Down <span class="caret"></span></button>
         <ul class="dropdown__menu">
-            <li><a href="#">foo</a></li>
+            <li><a href="#foo">foo</a></li>
             <li><span class="divider"></span></li>
-            <li><a href="#">bar</a></li>
+            <li><a href="#bar">bar</a></li>
         </ul>
     </div>
 </div>
