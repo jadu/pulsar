@@ -11,9 +11,8 @@ Provides a prominent location for notifications to be displayed. A toolbar indic
 {% raw %}
 ```twig
 {{
-    html.link({
-        'class': 'notifications-toggle',
-        'href': '#',
+    html.button({
+        'class': 'notifications-toggle btn--naked',
         'label': html.icon('bell'),
         'data-toggle': 'dropdown'
     })
@@ -22,9 +21,9 @@ Provides a prominent location for notifications to be displayed. A toolbar indic
 {% endraw %}
 
 <div class="pulsar-example">
-    <a href="#" class="notifications-toggle is-active has-new" data-toggle="dropdown"><i class="icon-bell-o"></i></a>
-    <a href="#" class="notifications-toggle is-active" data-toggle="dropdown"><i class="icon-bell-o"></i></a>
-    <a href="#" class="notifications-toggle" data-toggle="dropdown"><i class="icon-bell-o"></i></a>
+    <button class="notifications-toggle btn--naked is-active has-new" data-toggle="dropdown"><i class="icon-bell-o"></i></button>
+    <button class="notifications-toggle btn--naked is-active" data-toggle="dropdown"><i class="icon-bell-o"></i></button>
+    <button class="notifications-toggle btn--naked" data-toggle="dropdown"><i class="icon-bell-o"></i></button>
 </div>
 
 Toggle the states with common state classes
@@ -45,9 +44,8 @@ A main `notifications` container holds both the `notifications-toggle` and the `
 ```twig
 <div class="dropdown notifications">
     {{
-        html.link({
-            'class': 'notifications-toggle is-active',
-            'href': '#',
+        html.button({
+            'class': 'notifications-toggle btn--naked is-active',
             'label': html.icon('bell'),
             'data-toggle': 'dropdown'
         })
