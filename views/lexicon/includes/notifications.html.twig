@@ -1,8 +1,7 @@
     <div class="dropdown notifications">
         {{
-            html.link({
-                'class': 'notifications-toggle is-active',
-                'href': '#',
+            html.button({
+                'class': 'notifications-toggle btn--naked is-active',
                 'label': html.icon('bell-o', { 'label': 'Show notifications' }),
                 'data-toggle': 'dropdown'
             })
