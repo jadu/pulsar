@@ -53,7 +53,7 @@ A main `notifications` container holds both the `notifications-toggle` and the `
     <div class="notifications-list dropdown__menu"><!--
         --><div class="notifications__header">
             <h1 class="notifications-title">Notifications</h1>
-          <a href="#" class="notifications-dismiss">dismiss all</a>
+            <button class="notifications-dismiss btn--naked">dismiss all</button>
         </div><!--
         --><div class="notification is-new">
             <div class="media">
