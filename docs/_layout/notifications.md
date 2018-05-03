@@ -78,7 +78,7 @@ A main `notifications` container holds both the `notifications-toggle` and the `
 
                     <p>We've updated our user manual to feature our new and improved user interface. If you need a copy, drop us a message and we'll be happy to send one over.</p>
 
-                    <p><i class="icon-file-text-alt"></i> <a href="#">View detailed release notes</a></p>
+                    <p><i class="icon-file-text-alt"></i> <a href="#path-to-release-notes">View detailed release notes</a></p>
                 </div>
             </div>
         </div>
@@ -106,13 +106,13 @@ A main `notifications` container holds both the `notifications-toggle` and the `
 
                     <p>We've updated our user manual to feature our new and improved user interface. If you need a copy, drop us a message and we'll be happy to send one over.</p>
 
-                    <p><i class="icon-file-text-alt"></i> <a href="#">View detailed release notes</a></p>
+                    <p><i class="icon-file-text-alt"></i> <a href="#path-to-release-notes">View detailed release notes</a></p>
                 </div>
             </div>
         </div>
 
         <div class="notifications__footer">
-            <a href="#" class="notifications-all">View all</a>
+            <button class="btn btn--naked notifications-all">View all</button>
         </div>
     </div>
 </div>
