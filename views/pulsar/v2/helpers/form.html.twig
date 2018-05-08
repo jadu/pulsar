@@ -65,13 +65,28 @@ items         | array  | An array of items to put in the dropdown list (usually 
         %}
     {% endif %}
 
+    {% set items = options.items %}
+
+    {% if options.error is defined and options.error is not empty %}
+        {% set newItems = [] %}
+        {% for item in options.items %}
+            {% if item is iterable %}
+                {% set item = item|merge({ 'has_error': true }) %}
+                {% set newItems = newItems|merge({(loop.index): item}) %}
+            {% else %}
+                {% set newItems = options.items %}
+            {% endif %}
+        {% endfor %}
+        {% set items = newItems %}
+    {% endif %}
+
     {{
         form.group({
             'parent': options
-                |only('aria-describedby bare class error guidance guidance-container help help_id id label required show-label type')
+                |only('aria-describedby bare class error guidance guidance-container has_error help help_id id label required show-label type')
                 |merge({'class': options.class|default ~ ' form__button-group'}),
             'controls': {'class': 'btn__group'},
-            'inputs': options.items
+            'inputs': items
         })
     }}
 {% endspaceless %}
@@ -129,6 +144,10 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {% if options.help is defined and options.help is not empty %}
         {% set options = options|merge({ 'help_id': 'guid-' ~ random() }) %}
+    {% endif %}
+
+    {% if options.error is defined and options.error is not empty %}
+        {% set options = options|merge({ 'has_error': true }) %}
     {% endif %}
 
     {{
@@ -315,6 +334,8 @@ required | bool   | Visually indicates that the field must be completed
 {% spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
+    {#<pre>{{ dump(options) }}</pre>#}
+
     {{
         elem.input(options
             |exclude('class for guidance-container label show-label')
@@ -409,14 +430,20 @@ show-label | bool   | Control visibility of the `<label>` element without affect
             %}
         {% endfor %}
 
+        {% set select2_options = {
+            'bare': true,
+            'id': options.id|default,
+            'multiple': options.multiple,
+            'options': select_options,
+        }%}
+
+        {% if options.error is defined and options.error is not empty %}
+            {% set select2_options = select2_options|merge({ 'has_error': true }) %}
+        {% endif %}
+
         {%
             set inputs = inputs|merge([
-                form.select2({
-                    'bare': true,
-                    'id': options.id|default,
-                    'multiple': options.multiple,
-                    'options': select_options
-                })
+                form.select2(select2_options)
             ])
         %}
 
@@ -427,6 +454,11 @@ show-label | bool   | Control visibility of the `<label>` element without affect
             'bare': true,
             'label': '<span class="form-choice__label">' ~ input_options.label ~ '</span>'
             }) %}
+
+            {% if options.error is defined and options.error is not empty %}
+                {% set input_options = input_options|merge({ 'has_error': true }) %}
+            {% endif %}
+
             {% if options.multiple %}
                 {% set inputs = inputs|merge([ form.checkbox_inline(input_options) ]) %}
             {% else %}
@@ -1068,6 +1100,10 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
         {% set options = options|merge({ 'help_id': 'guid-' ~ random() }) %}
     {% endif %}
 
+    {% if options.error is defined and options.error is not empty %}
+        {% set options = options|merge({ 'has_error': true }) %}
+    {% endif %}
+
     {{
         form.group({
             'parent': options|only('bare class error guidance guidance-container help help_id id label required show-label'),
@@ -1178,6 +1214,8 @@ controls.class    | string | A space separated list of class names
     {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 
     {% set groupClass = 'form__group' %}
+
+    {#<pre>{{ dump(options) }}</pre>#}
 
     {% if options.parent.error is defined and options.parent.error is not empty %}
         {% set groupClass = groupClass ~ ' has-error' %}
@@ -1508,6 +1546,10 @@ data-*     | string | Data attributes, eg: `'data-foo': 'bar'`
         {% set options = options|merge({ 'help_id': 'guid-' ~ random() }) %}
     {% endif %}
 
+    {% if options.error is defined and options.error is not empty %}
+        {% set options = options|merge({ 'has_error': true }) %}
+    {% endif %}
+
     {{
         form.group({
             'parent': options
@@ -1829,6 +1871,10 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
         {% set options = options|merge({ 'help_id': 'guid-' ~ random() }) %}
     {% endif %}
 
+    {% if options.error is defined and options.error is not empty %}
+        {% set options = options|merge({ 'has_error': true }) %}
+    {% endif %}
+
     {{
         form.group({
             'parent': options|only('append append_type bare class error guidance guidance-container help help_id id label prepend prepend_type required show-label'),
@@ -1906,6 +1952,10 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {% if options.help is defined and options.help is not empty %}
         {% set options = options|merge({ 'help_id': 'guid-' ~ random() }) %}
+    {% endif %}
+
+    {% if options.error is defined and options.error is not empty %}
+        {% set options = options|merge({ 'has_error': true }) %}
     {% endif %}
 
     {{
@@ -2034,6 +2084,10 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
         {% set options = options|merge({ 'help_id': 'guid-' ~ random() }) %}
     {% endif %}
 
+    {% if options.error is defined and options.error is not empty %}
+        {% set options = options|merge({ 'has_error': true }) %}
+    {% endif %}
+
     {{
         form.group({
             'parent': options|only('append append_type bare class error guidance guidance-container help help_id id label prepend prepend_type required show-label'),
@@ -2102,6 +2156,10 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {% if options.help is defined and options.help is not empty %}
         {% set options = options|merge({ 'help_id': 'guid-' ~ random() }) %}
+    {% endif %}
+
+    {% if options.error is defined and options.error is not empty %}
+        {% set options = options|merge({ 'has_error': true }) %}
     {% endif %}
 
     {{
@@ -2236,6 +2294,10 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {% if options.help is defined and options.help is not empty %}
         {% set options = options|merge({ 'help_id': 'guid-' ~ random() }) %}
+    {% endif %}
+
+    {% if options.error is defined and options.error is not empty %}
+        {% set options = options|merge({ 'has_error': true }) %}
     {% endif %}
 
     {%
