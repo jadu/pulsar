@@ -1,58 +1,60 @@
 {% extends '@pulsar/pulsar/components/tab.html.twig' %}
 
 {% block tab_content %}
-
+{% set i = 1 %}
     {{
         form.create()
     }}
 
     {{
         form.button_group({
-            'label': 'Button group',
+            'label': 'Button group ' ~ i,
             'type': 'checkbox',
             'items': [
                 {
-                    'id': 'foo1',
-                    'label': 'Foo',
-                    'name': '1'
+                    'id': 'foo-' ~ i,
+                    'label': 'Foo ' ~ i,
+                    'name': 'foo-' ~ i
                 },
                 {
-                    'id': 'bar1',
-                    'label': 'Bar',
-                    'name': '1'
+                    'id': 'bar-' ~ i,
+                    'label': 'Bar ' ~ i,
+                    'name': 'bar-' ~ i
                 },
                 {
-                    'id': 'baz1',
-                    'label': 'Baz',
-                    'name': '1'
+                    'id': 'baz-' ~ i,
+                    'label': 'Baz ' ~ i,
+                    'name': 'baz-' ~  i
                 }
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{
         form.button_group({
-            'label': 'Button group',
+            'label': 'Button group ' ~ i,
             'items': [
                 form.radio_simple({
-                    'id': 'foo-2',
-                    'label': 'Foo',
-                    'name': 'foo-2',
-		    'checked': true
+                    'id': 'foo-' ~ i,
+                    'label': 'Foo ' ~ i,
+                    'name': i,
+		                    'checked': true
                 }),
                 form.radio_simple({
-                    'id': 'bar-2',
-                    'label': 'Bar',
-                    'name': 'bar-2'
+                    'id': 'bar-' ~ i,
+                    'label': 'Bar ' ~ i,
+                    'name': i
                 }),
                 form.radio_simple({
-                    'id': 'baz-2',
-                    'label': 'Baz',
-                    'name': 'baz-2'
+                    'id': 'baz-' ~ i,
+                    'label': 'Baz ' ~ i,
+                    'name': i
                 })
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {%
         set headings = [
@@ -69,24 +71,25 @@
             'required': true,
             'items': [
                 form.radio_simple({
-                    'id': 'foo-3',
-                    'label': 'Foo',
-                    'name': 'foo-3',
-		    'checked': true
+                    'id': 'foo-' ~ i,
+                    'label': 'Foo ' ~ i,
+                    'name': i,
+		                    'checked': true
                 }),
                 form.radio_simple({
-                    'id': 'bar-3',
-                    'label': 'Bar',
-                    'name': 'bar-3'
+                    'id': 'bar-' ~ i,
+                    'label': 'Bar ' ~ i,
+                    'name': i
                 }),
                 form.radio_simple({
-                    'id': 'baz-3',
-                    'label': 'Baz',
-                    'name': 'baz-3'
+                    'id': 'baz-' ~ i,
+                    'label': 'Baz ' ~ i,
+                    'name': i
                 })
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{
         form.button_group({
@@ -94,24 +97,25 @@
             'help': 'Help text to give more information about expected input',
             'items': [
                 form.radio_simple({
-                    'id': 'foo-4',
-                    'label': 'Foo',
-                    'name': 'foo-4',
-		    'checked': true
+                    'id': 'foo-' ~ i,
+                    'label': 'Foo ' ~ i,
+                    'name': i,
+		                    'checked': true
                 }),
                 form.radio_simple({
-                    'id': 'bar-4',
-                    'label': 'Bar',
-                    'name': 'bar-4'
+                    'id': 'bar-' ~ i,
+                    'label': 'Bar ' ~ i,
+                    'name': i
                 }),
                 form.radio_simple({
-                    'id': 'baz-4',
-                    'label': 'Baz',
-                    'name': 'baz-4'
+                    'id': 'baz-' ~ i,
+                    'label': 'Baz ' ~ i,
+                    'name': i
                 })
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{
         form.button_group({
@@ -119,24 +123,25 @@
             'guidance': 'Help text to give more information about expected input',
             'items': [
                 form.radio_simple({
-                    'id': 'foo-5',
-                    'label': 'Foo',
-                    'name': 'foo-5',
-		    'checked': true
+                    'id': 'foo-' ~ i,
+                    'label': 'Foo ' ~ i,
+                    'name': i,
+                            'checked': true
                 }),
                 form.radio_simple({
-                    'id': 'bar-5',
-                    'label': 'Bar',
-                    'name': 'bar-5'
+                    'id': 'bar-' ~ i,
+                    'label': 'Bar ' ~ i,
+                    'name': i
                 }),
                 form.radio_simple({
-                    'id': 'baz-5',
-                    'label': 'Baz',
-                    'name': 'baz-5'
+                    'id': 'baz-' ~ i,
+                    'label': 'Baz ' ~ i,
+                    'name': i
                 })
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{
         form.button_group({
@@ -145,24 +150,26 @@
             'required': true,
             'items': [
                 form.radio_simple({
-                    'id': 'foo-6',
-                    'label': 'Foo',
-                    'name': 'foo-6',
-		    'checked': true
+                    'id': 'foo-' ~ i,
+                    'label': 'Foo ' ~ i,
+                    'name': i,
+                            'checked': true
                 }),
                 form.radio_simple({
-                    'id': 'bar-6',
-                    'label': 'Bar',
-                    'name': 'bar-6'
+                    'id': 'bar-' ~ i,
+                    'label': 'Bar ' ~ i,
+                    'name': i
                 }),
                 form.radio_simple({
-                    'id': 'baz-6',
-                    'label': 'Baz',
-                    'name': 'baz-6'
+                    'id': 'baz-' ~ i,
+                    'label': 'Baz ' ~ i,
+                    'name': i
                 })
             ]
         })
     }}
+    {% set i = i + 1 %}
+    
 
     {{ form.fieldset_end() }}
     {{ form.fieldset_start({ 'legend': 'Alignment' }) }}
@@ -174,24 +181,25 @@
             'help': 'This example hides the label with the <code>show-label</code> option',
             'items': [
                 form.radio_simple({
-                    'id': 'foo-7',
-                    'label': 'Foo',
-                    'name': 'foo-7',
-		    'checked': true
+                    'id': 'foo-' ~ i,
+                    'label': 'Foo ' ~ i,
+                    'name': i,
+                            'checked': true
                 }),
                 form.radio_simple({
-                    'id': 'bar-7',
-                    'label': 'Bar',
-                    'name': 'bar-7'
+                    'id': 'bar-' ~ i,
+                    'label': 'Bar ' ~ i,
+                    'name': i
                 }),
                 form.radio_simple({
-                    'id': 'baz-7',
-                    'label': 'Baz',
-                    'name': 'baz-7'
+                    'id': 'baz-' ~ i,
+                    'label': 'Baz ' ~ i,
+                    'name': i
                 })
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{
         form.button_group({
@@ -200,24 +208,25 @@
             'guidance': 'Help text to give more information about expected input',
             'items': [
                 form.radio_simple({
-                    'id': 'foo-8',
-                    'label': 'Foo',
-                    'name': 'foo-8',
-		    'checked': true
+                    'id': 'foo-' ~ i,
+                    'label': 'Foo ' ~ i,
+                    'name': i,
+		                    'checked': true
                 }),
                 form.radio_simple({
-                    'id': 'bar-8',
-                    'label': 'Bar',
-                    'name': 'bar-8'
+                    'id': 'bar-' ~ i,
+                    'label': 'Bar ' ~ i,
+                    'name': i
                 }),
                 form.radio_simple({
-                    'id': 'baz-8',
-                    'label': 'Baz',
-                    'name': 'baz-8'
+                    'id': 'baz-' ~ i,
+                    'label': 'Baz ' ~ i,
+                    'name': i
                 })
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{
         form.button_group({
@@ -227,24 +236,25 @@
             'guidance': 'Help text to give more information about expected input',
             'items': [
                 form.radio_simple({
-                    'id': 'foo-9',
-                    'label': 'Foo',
-                    'name': 'foo-9',
-		    'checked': true
+                    'id': 'foo-' ~ i,
+                    'label': 'Foo ' ~ i,
+                    'name': i,
+		            'checked': true
                 }),
                 form.radio_simple({
-                    'id': 'bar-9',
-                    'label': 'Bar',
-                    'name': 'bar-9'
+                    'id': 'bar-' ~ i,
+                    'label': 'Bar ' ~ i,
+                    'name': i
                 }),
                 form.radio_simple({
-                    'id': 'baz-9',
-                    'label': 'Baz',
-                    'name': 'baz-9'
+                    'id': 'baz-' ~ i,
+                    'label': 'Baz ' ~ i,
+                    'name': i
                 })
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{
         form.button_group({
@@ -254,24 +264,25 @@
             'guidance': 'Help text to give more information about expected input',
             'items': [
                 form.radio_simple({
-                    'id': 'foo-10',
-                    'label': 'Foo',
-                    'name': 'foo-10',
-		    'checked': true
+                    'id': 'foo-' ~ i,
+                    'label': 'Foo ' ~ i,
+                    'name': i,
+                    'checked': true
                 }),
                 form.radio_simple({
-                    'id': 'bar-10',
-                    'label': 'Bar',
-                    'name': 'bar-10'
+                    'id': 'bar-' ~ i,
+                    'label': 'Bar ' ~ i,
+                    'name': i
                 }),
                 form.radio_simple({
-                    'id': 'baz-10',
-                    'label': 'Baz',
-                    'name': 'baz-10'
+                    'id': 'baz-' ~ i,
+                    'label': 'Baz ' ~ i,
+                    'name': i
                 })
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{ form.fieldset_end() }}
     {{ form.fieldset_start({ 'legend': 'Grid Sizes' }) }}
@@ -282,24 +293,25 @@
             'label': 'Button group',
             'items': [
                 form.radio_simple({
-                    'id': 'foo-11',
-                    'label': 'Foo',
-                    'name': 'foo-11',
-		    'checked': true
+                    'id': 'foo-' ~ i,
+                    'label': 'Foo ' ~ i,
+                    'name': i,
+                    'checked': true
                 }),
                 form.radio_simple({
-                    'id': 'bar-11',
-                    'label': 'Bar',
-                    'name': 'bar-11'
+                    'id': 'bar-' ~ i,
+                    'label': 'Bar ' ~ i,
+                    'name': i
                 }),
                 form.radio_simple({
-                    'id': 'baz-11',
-                    'label': 'Baz',
-                    'name': 'baz-11'
+                    'id': 'baz-' ~ i,
+                    'label': 'Baz ' ~ i,
+                    'name': i
                 })
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{ form.fieldset_end() }}
     {{ form.fieldset_start({ 'legend': 'Errors &amp; Validation' }) }}
@@ -310,24 +322,25 @@
             'error': 'Please choose an option',
             'items': [
                 form.radio_simple({
-                    'id': 'foo-12',
-                    'label': 'Foo',
-                    'name': 'foo-12',
-		    'checked': true
+                    'id': 'foo-' ~ i,
+                    'label': 'Foo ' ~ i,
+                    'name': i,
+                    'checked': true
                 }),
                 form.radio_simple({
-                    'id': 'bar-12',
-                    'label': 'Bar',
-                    'name': 'bar-12'
+                    'id': 'bar-' ~ i,
+                    'label': 'Bar ' ~ i,
+                    'name': i
                 }),
                 form.radio_simple({
-                    'id': 'baz-12',
-                    'label': 'Baz',
-                    'name': 'baz-12'
+                    'id': 'baz-' ~ i,
+                    'label': 'Baz ' ~ i,
+                    'name': i
                 })
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{
         form.button_group({
@@ -335,24 +348,25 @@
             'error': ['Do this', 'Do this too'],
             'items': [
                 form.radio_simple({
-                    'id': 'foo-13',
-                    'label': 'Foo',
-                    'name': 'foo-13',
-		    'checked': true
+                    'id': 'foo-' ~ i,
+                    'label': 'Foo ' ~ i,
+                    'name': i,
+                    'checked': true
                 }),
                 form.radio_simple({
-                    'id': 'bar-13',
-                    'label': 'Bar',
-                    'name': 'bar-13'
+                    'id': 'bar-' ~ i,
+                    'label': 'Bar ' ~ i,
+                    'name': i
                 }),
                 form.radio_simple({
-                    'id': 'baz-13',
-                    'label': 'Baz',
-                    'name': 'baz-13'
+                    'id': 'baz-' ~ i,
+                    'label': 'Baz ' ~ i,
+                    'name': i
                 })
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{
         form.button_group({
@@ -361,24 +375,25 @@
             'help': 'Help text to give more information about expected input',
             'items': [
                 form.radio_simple({
-                    'id': 'foo-14',
-                    'label': 'Foo',
-                    'name': 'foo-14',
-		    'checked': true
+                    'id': 'foo-' ~ i,
+                    'label': 'Foo ' ~ i,
+                    'name': i,
+                    'checked': true
                 }),
                 form.radio_simple({
-                    'id': 'bar-14',
-                    'label': 'Bar',
-                    'name': 'bar-14'
+                    'id': 'bar-' ~ i,
+                    'label': 'Bar ' ~ i,
+                    'name': i
                 }),
                 form.radio_simple({
-                    'id': 'baz-14',
-                    'label': 'Baz',
-                    'name': 'baz-14'
+                    'id': 'baz-' ~ i,
+                    'label': 'Baz ' ~ i,
+                    'name': i
                 })
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{
         form.button_group({
@@ -387,24 +402,25 @@
             'help': 'Help text to give more information about expected input',
             'items': [
                 form.radio_simple({
-                    'id': 'foo-15',
-                    'label': 'Foo',
-                    'name': 'foo-15',
-		    'checked': true
+                    'id': 'foo-' ~ i,
+                    'label': 'Foo ' ~ i,
+                    'name': i,
+                    'checked': true
                 }),
                 form.radio_simple({
-                    'id': 'bar-15',
-                    'label': 'Bar',
-                    'name': 'bar-15'
+                    'id': 'bar-' ~ i,
+                    'label': 'Bar ' ~ i,
+                    'name': i
                 }),
                 form.radio_simple({
-                    'id': 'baz-15',
-                    'label': 'Baz',
-                    'name': 'baz-15'
+                    'id': 'baz-' ~ i,
+                    'label': 'Baz ' ~ i,
+                    'name': i
                 })
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{ form.fieldset_end() }}
     {{ form.fieldset_start({ 'legend': 'States' }) }}
@@ -416,24 +432,25 @@
             'help': 'Highlight whether an action elsewhere affects an input',
             'items': [
                 form.radio_simple({
-                    'id': 'foo-16',
-                    'label': 'Foo',
-                    'name': 'foo-16',
-		    'checked': true
+                    'id': 'foo-' ~ i,
+                    'label': 'Foo ' ~ i,
+                    'name': i,
+                    'checked': true
                 }),
                 form.radio_simple({
-                    'id': 'bar-16',
-                    'label': 'Bar',
-                    'name': 'bar-16'
+                    'id': 'bar-' ~ i,
+                    'label': 'Bar ' ~ i,
+                    'name': i
                 }),
                 form.radio_simple({
-                    'id': 'baz-16',
-                    'label': 'Baz',
-                    'name': 'baz-16'
+                    'id': 'baz-' ~ i,
+                    'label': 'Baz ' ~ i,
+                    'name': i
                 })
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{
         form.button_group({
@@ -442,24 +459,25 @@
             'help': 'Something good happened',
             'items': [
                 form.radio_simple({
-                    'id': 'foo-17',
-                    'label': 'Foo',
-                    'name': 'foo-17',
-		    'checked': true
+                    'id': 'foo-' ~ i,
+                    'label': 'Foo ' ~ i,
+                    'name': i,
+                    'checked': true
                 }),
                 form.radio_simple({
-                    'id': 'bar-17',
-                    'label': 'Bar',
-                    'name': 'baz-17'
+                    'id': 'bar-' ~ i,
+                    'label': 'Bar ' ~ i,
+                    'name': i
                 }),
                 form.radio_simple({
-                    'id': 'baz-17',
-                    'label': 'Baz',
-                    'name': 'baz-17'
+                    'id': 'baz-' ~ i,
+                    'label': 'Baz ' ~ i,
+                    'name': i
                 })
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{
         form.button_group({
@@ -468,24 +486,25 @@
             'help': 'Something bad happened',
             'items': [
                 form.radio_simple({
-                    'id': 'foo-18',
-                    'label': 'Foo',
-                    'name': 'foo-18',
-		    'checked': true
+                    'id': 'foo-' ~ i,
+                    'label': 'Foo ' ~ i,
+                    'name': i,
+                    'checked': true
                 }),
                 form.radio_simple({
-                    'id': 'bar-18',
-                    'label': 'Bar',
-                    'name': 'bar-18'
+                    'id': 'bar-' ~ i,
+                    'label': 'Bar ' ~ i,
+                    'name': i
                 }),
                 form.radio_simple({
-                    'id': 'baz-18',
-                    'label': 'Baz',
-                    'name': 'baz-18'
+                    'id': 'baz-' ~ i,
+                    'label': 'Baz ' ~ i,
+                    'name': i
                 })
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{
         form.button_group({
@@ -494,24 +513,25 @@
             'help': 'Automatically added if using <code>error</code> option',
             'items': [
                 form.radio_simple({
-                    'id': 'foo-19',
-                    'label': 'Foo',
-                    'name': 'foo-19',
-		    'checked': true
+                    'id': 'foo-' ~ i,
+                    'label': 'Foo ' ~ i,
+                    'name': i,
+                    'checked': true
                 }),
                 form.radio_simple({
-                    'id': 'bar-19',
-                    'label': 'Bar',
-                    'name': 'bar-19'
+                    'id': 'bar-' ~ i,
+                    'label': 'Bar ' ~ i,
+                    'name': i
                 }),
                 form.radio_simple({
-                    'id': 'baz-19',
-                    'label': 'Baz',
-                    'name': 'baz-19'
+                    'id': 'baz-' ~ i,
+                    'label': 'Baz ' ~ i,
+                    'name': i
                 })
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{
         form.button_group({
@@ -520,24 +540,25 @@
             'help': 'Stop! Can’t touch this',
             'items': [
                 form.radio_simple({
-                    'id': 'foo-20',
-                    'label': 'Foo',
-                    'name': 'foo-20',
-		    'checked': true
+                    'id': 'foo-' ~ i,
+                    'label': 'Foo ' ~ i,
+                    'name': i,
+		            'checked': true
                 }),
                 form.radio_simple({
-                    'id': 'bar-20',
-                    'label': 'Bar',
-                    'name': 'bar-20'
+                    'id': 'bar-' ~ i,
+                    'label': 'Bar ' ~ i,
+                    'name': i
                 }),
                 form.radio_simple({
-                    'id': 'baz-20',
-                    'label': 'Baz',
-                    'name': 'baz-20'
+                    'id': 'baz-' ~ i,
+                    'label': 'Baz ' ~ i,
+                    'name': i
                 })
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{ form.fieldset_end() }}
 
