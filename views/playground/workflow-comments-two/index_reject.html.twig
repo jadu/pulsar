@@ -1,0 +1,56 @@
+{% extends '@pulsar/pulsar/layouts/base.html.twig' %}
+
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{% import '@pulsar/pulsar/v2/helpers/tabs.html.twig' as tabs %}
+{% import '@pulsar/pulsar/v2/helpers/flash.html.twig' as flash %}
+
+{% block title %}{{ parent() }}{% endblock %}
+
+{% set heading = 'My Example Document' %}
+
+{%
+    set nav_data = {
+        "1": {
+            "label": "Test One",
+            "class": "",
+            "href": "/app/app.php/playground/workflow-comments-one/index.html.twig",
+            "icon": "folder"
+        },
+        "2": {
+            "label": "Test Two",
+            "class": "is-active",
+            "href": "/app/app.php/playground/workflow-comments-two/index.html.twig",
+            "icon": "folder"
+        },
+        "3": {
+            "label": "Test Three",
+            "class": "",
+            "href": "/app/app.php/playground/workflow-comments-three/index.html.twig",
+            "icon": "folder"
+        },
+    }
+%}
+
+{% set tab %}
+    {% include 'playground/workflow-comments-two/tab_reject.html.twig' %}
+{% endset %}
+
+{%
+    set tabs_content = [
+        {
+          "id"    : "tab",
+          "label" : "Content",
+          "src"   : tab,
+          "active": true
+        }
+    ]
+%}
+
+{% block tabs_list %}
+    {{ tabs.list(tabs_content) }}
+{% endblock %}
+
+{% block tabs_content %}
+    {{ tabs.content(tabs_content) }}
+{% endblock %}
