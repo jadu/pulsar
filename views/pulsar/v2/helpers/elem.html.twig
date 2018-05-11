@@ -43,10 +43,24 @@ value       | string | Specifies the value of the input
         {% set options = options|defaults({'class': 'form__control'}) %}
     {% endif %}
 
+    {# Build aria-described string of guids for help blocks and errors #}
+    {% set describedByIds = [] %}
+
     {% if options.help_id is defined and options.help_id is not empty %}
-        {% set options = options|defaults({'aria-describedby': options.help_id}) %}
+        {% set describedByIds = describedByIds|merge([options.help_id])%}
     {% endif %}
 
+    {% if options.error_ids is defined and options.error_ids is not empty %}
+        {% for id in options.error_ids %}
+            {% set describedByIds = describedByIds|merge([id])%}
+        {% endfor %}
+    {% endif %}
+
+    {% if describedByIds|length %}
+        {% set options = options|defaults({'aria-describedby': describedByIds|join(' ')}) %}
+    {% endif %}
+
+    {# Set aria-invalid="true" for inputs with errors #}
     {% if options.has_error is defined and options.has_error == true %}
         {% set options = options|defaults({'aria-invalid': 'true'}) %}
     {% endif %}
@@ -190,10 +204,24 @@ value       | string | Specifies the value of the input
 {% spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
+    {# Build aria-described string of guids for help blocks and errors #}
+    {% set describedByIds = [] %}
+
     {% if options.help_id is defined and options.help_id is not empty %}
-        {% set options = options|defaults({'aria-describedby': options.help_id}) %}
+        {% set describedByIds = describedByIds|merge([options.help_id])%}
     {% endif %}
 
+    {% if options.error_ids is defined and options.error_ids is not empty %}
+        {% for id in options.error_ids %}
+            {% set describedByIds = describedByIds|merge([id])%}
+        {% endfor %}
+    {% endif %}
+
+    {% if describedByIds|length %}
+        {% set options = options|defaults({'aria-describedby': describedByIds|join(' ')}) %}
+    {% endif %}
+
+    {# Set aria-invalid="true" for inputs with errors #}
     {% if options.has_error is defined and options.has_error == true %}
         {% set options = options|defaults({'aria-invalid': 'true'}) %}
     {% endif %}
@@ -343,10 +371,24 @@ value       | string  | Specifies the value of the input
 {% spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
+    {# Build aria-described string of guids for help blocks and errors #}
+    {% set describedByIds = [] %}
+
     {% if options.help_id is defined and options.help_id is not empty %}
-        {% set options = options|defaults({'aria-describedby': options.help_id}) %}
+        {% set describedByIds = describedByIds|merge([options.help_id])%}
     {% endif %}
 
+    {% if options.error_ids is defined and options.error_ids is not empty %}
+        {% for id in options.error_ids %}
+            {% set describedByIds = describedByIds|merge([id])%}
+        {% endfor %}
+    {% endif %}
+
+    {% if describedByIds|length %}
+        {% set options = options|defaults({'aria-describedby': describedByIds|join(' ')}) %}
+    {% endif %}
+
+    {# Set aria-invalid="true" for inputs with errors #}
     {% if options.has_error is defined and options.has_error == true %}
         {% set options = options|defaults({'aria-invalid': 'true'}) %}
     {% endif %}
