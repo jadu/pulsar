@@ -74,6 +74,7 @@
     line-height: $line-height-base;
     color: $dropdown-link-color;
     white-space: nowrap; // prevent links from randomly breaking onto new lines
+    text-align: left;
     text-decoration: none;
 
     [class^="icon-"],
