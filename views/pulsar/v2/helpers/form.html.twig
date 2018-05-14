@@ -69,14 +69,23 @@ items         | array  | An array of items to put in the dropdown list (usually 
         {% set describedByIds = describedByIds|merge([options.help_id])%}
     {% endif %}
 
+    {% if describedByIds|length %}
+        {% set options = options|defaults({'aria-describedby': describedByIds|join(' ')}) %}
+    {% endif %}
+
     {# If error is preset add aria-invalid="true" and aria-describedby to all inputs #}
     {% set items = options.items %}
 
-    {% if options.error is defined and options.error is not empty %}
+    {% if options.error is defined and options.error is not empty or options.help is defined and options.help is not empty %}
         {% set newItems = [] %}
         {% for item in options.items %}
             {% if item is iterable %}
-                {% set item = item|merge({ 'has_error': true, 'aria-describedby': describedByIds|join(' ') }) %}
+                {% if options.error is defined and options.error %}
+                    {% set item = item|merge({ 'has_error': true, 'aria-describedby': describedByIds|join(' ') }) %}
+                {% else %}
+                    {% set item = item|merge({ 'aria-describedby': describedByIds|join(' ') }) %}
+                {% endif %}
+
                 {% set newItems = newItems|merge({(loop.index): item}) %}
             {% else %}
                 {% set newItems = options.items %}
@@ -975,6 +984,12 @@ value  | string, array  | The string, or array of strings to render inside the e
         {% if options.error_ids is defined and options.error_ids is not empty %}
             {% for error in errors %}
                 <span class="help-block is-error" role="alert" id="{{ attribute(options.error_ids, loop.index0) }}">
+                    {{ html.icon('warning-sign') }} {{ error|raw -}}
+                </span>
+            {% endfor %}
+        {% else %}
+            {% for error in errors %}
+                <span class="help-block is-error">
                     {{ html.icon('warning-sign') }} {{ error|raw -}}
                 </span>
             {% endfor %}
