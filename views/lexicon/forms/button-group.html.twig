@@ -427,7 +427,7 @@
 
     {{
         form.button_group({
-            'label': '"class": "has-changed"',
+            'label': 'Button group with "has-changed" class',
             'class': 'has-changed',
             'help': 'Highlight whether an action elsewhere affects an input',
             'items': [
@@ -454,7 +454,7 @@
 
     {{
         form.button_group({
-            'label': '"class": "has-success"',
+            'label': 'Button group with "has-success" class',
             'class': 'has-success',
             'help': 'Something good happened',
             'items': [
@@ -481,7 +481,7 @@
 
     {{
         form.button_group({
-            'label': '"class": "has-warning"',
+            'label': 'Button group with "has-warning" class',
             'class': 'has-warning',
             'help': 'Something bad happened',
             'items': [
@@ -508,7 +508,7 @@
 
     {{
         form.button_group({
-            'label': '"class": "has-error"',
+            'label': 'Button group with "has-error" class',
             'class': 'has-error',
             'help': 'Automatically added if using <code>error</code> option',
             'items': [
@@ -535,25 +535,27 @@
 
     {{
         form.button_group({
-            'label': '"disabled": true',
-            'disabled': true,
+            'label': 'Disabled button group',
             'help': 'Stop! Can’t touch this',
             'items': [
                 form.radio_simple({
                     'id': 'foo-' ~ i,
                     'label': 'Foo ' ~ i,
                     'name': i,
-		            'checked': true
+                    'checked': true,
+                    'disabled': true,
                 }),
                 form.radio_simple({
                     'id': 'bar-' ~ i,
                     'label': 'Bar ' ~ i,
-                    'name': i
+                    'name': i,
+                    'disabled': true,
                 }),
                 form.radio_simple({
                     'id': 'baz-' ~ i,
                     'label': 'Baz ' ~ i,
-                    'name': i
+                    'name': i,
+                    'disabled': true,
                 })
             ]
         })
@@ -563,7 +565,18 @@
     {{ form.fieldset_end() }}
 
     {{
-        form.end()
+        form.end({
+            'actions': [
+                html.button({
+                    'label': 'Save',
+                    'class': 'btn--primary'
+                }),
+                html.button({
+                    'label': 'Cancel',
+                    'class': 'btn--naked'
+                })
+            ]
+        })
     }}
 
 {% endblock tab_content %}
