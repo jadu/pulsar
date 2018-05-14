@@ -54,7 +54,7 @@ items         | array  | An array of items to put in the dropdown list (usually 
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
-    {% set options = modify_options(options) %}
+    {% set options = modify_options(options|default({})) %}
 
     {# Build aria-described string of guids for help blocks and errors #}
     {% set describedByIds = [] %}
@@ -156,7 +156,7 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
-    {% set options = modify_options(options) %}
+    {% set options = modify_options(options|default({})) %}
 
     {{
         form.group({
@@ -417,7 +417,7 @@ show-label | bool   | Control visibility of the `<label>` element without affect
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
-    {% set options = modify_options(options) %}
+    {% set options = modify_options(options|default({})) %}
 
     {# Build aria-described string of guids for help blocks and errors #}
     {% set describedByIds = [] %}
@@ -563,7 +563,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
         })
     %}
 
-    {% set options = modify_options(options) %}
+    {% set options = modify_options(options|default({})) %}
 
     {{ form.text(options) }}
 
@@ -593,7 +593,7 @@ https://jadu.github.io/pulsar/form-helpers/compound
         {% set groupClass = groupClass ~ ' has-error' %}
     {% endif %}
 
-    {% set options = modify_options(options) %}
+    {% set options = modify_options(options|default({})) %}
 
     {# Build aria-described string of guids for help blocks and errors #}
     {% set describedByIds = [] %}
@@ -873,7 +873,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
         })
     %}
 
-    {% set options = modify_options(options) %}
+    {% set options = modify_options(options|default({})) %}
 
     {{ form.text(options) }}
 
@@ -1115,7 +1115,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
-    {% set options = modify_options(options) %}
+    {% set options = modify_options(options|default({})) %}
 
     {{
         form.group({
@@ -1557,7 +1557,7 @@ data-*     | string | Data attributes, eg: `'data-foo': 'bar'`
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
-    {% set options = modify_options(options) %}
+    {% set options = modify_options(options|default({})) %}
 
     {{
         form.group({
@@ -1632,7 +1632,7 @@ data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
-    {% set options = modify_options(options) %}
+    {% set options = modify_options(options|default({})) %}
 
     {% set inputClass = 'radio' %}
     {%
@@ -1874,7 +1874,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
-    {% set options = modify_options(options) %}
+    {% set options = modify_options(options|default({})) %}
 
     {{
         form.group({
@@ -1951,7 +1951,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
-    {% set options = modify_options(options) %}
+    {% set options = modify_options(options|default({})) %}
 
     {{
         form.group({
@@ -2075,7 +2075,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {% set options = options|default({})|merge({ 'type': options.type|default('text') }) %}
 
-    {% set options = modify_options(options) %}
+    {% set options = modify_options(options|default({})) %}
 
     {{
         form.group({
@@ -2143,7 +2143,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
-    {% set options = modify_options(options) %}
+    {% set options = modify_options(options|default({})) %}
 
     {{
         form.group({
@@ -2274,7 +2274,7 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {% set toggleLabel = '<span class="hide">' ~ options.label ~ '</span>' %}
 
-    {% set options = modify_options(options) %}
+    {% set options = modify_options(options|default({})) %}
 
     {%
         set toggle = elem.input(options
