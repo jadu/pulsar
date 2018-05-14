@@ -59,28 +59,24 @@ items         | array  | An array of items to put in the dropdown list (usually 
     {# Build aria-described string of guids for help blocks and errors #}
     {% set describedByIds = [] %}
 
-    {% if options.help_id is defined and options.help_id is not empty %}
-        {% set describedByIds = describedByIds|merge([options.help_id])%}
-    {% endif %}
-
     {% if options.error_ids is defined and options.error_ids is not empty %}
         {% for id in options.error_ids %}
             {% set describedByIds = describedByIds|merge([id])%}
         {% endfor %}
     {% endif %}
 
-    {% if describedByIds|length %}
-        {% set options = options|defaults({'aria-describedby': describedByIds|join(' ')}) %}
+    {% if options.help_id is defined and options.help_id is not empty %}
+        {% set describedByIds = describedByIds|merge([options.help_id])%}
     {% endif %}
 
-    {# If error is preset add aria-invalid="true" to all inputs #}
+    {# If error is preset add aria-invalid="true" and aria-describedby to all inputs #}
     {% set items = options.items %}
 
     {% if options.error is defined and options.error is not empty %}
         {% set newItems = [] %}
         {% for item in options.items %}
             {% if item is iterable %}
-                {% set item = item|merge({ 'has_error': true }) %}
+                {% set item = item|merge({ 'has_error': true, 'aria-describedby': describedByIds|join(' ') }) %}
                 {% set newItems = newItems|merge({(loop.index): item}) %}
             {% else %}
                 {% set newItems = options.items %}
@@ -92,7 +88,7 @@ items         | array  | An array of items to put in the dropdown list (usually 
     {{
         form.group({
             'parent': options
-                |only('aria-describedby bare class error error_ids guidance guidance-container has_error help help_id id label required show-label type')
+                |only('bare class error error_ids guidance guidance-container has_error help help_id id label required show-label type')
                 |merge({'class': options.class|default ~ ' form__button-group'}),
             'controls': {'class': 'btn__group'},
             'inputs': items
@@ -412,6 +408,21 @@ show-label | bool   | Control visibility of the `<label>` element without affect
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
+    {% set options = modify_options(options) %}
+
+    {# Build aria-described string of guids for help blocks and errors #}
+    {% set describedByIds = [] %}
+
+    {% if options.error_ids is defined and options.error_ids is not empty %}
+        {% for id in options.error_ids %}
+            {% set describedByIds = describedByIds|merge([id])%}
+        {% endfor %}
+    {% endif %}
+
+    {% if options.help_id is defined and options.help_id is not empty %}
+        {% set describedByIds = describedByIds|merge([options.help_id])%}
+    {% endif %}
+
     {% set inputs = [] %}
     {%
         set options = options|default({})|merge({
@@ -436,6 +447,7 @@ show-label | bool   | Control visibility of the `<label>` element without affect
             'id': options.id|default,
             'multiple': options.multiple,
             'options': select_options,
+            'aria-describedby': describedByIds|join(' ')
         }%}
 
         {% if options.error is defined and options.error is not empty %}
@@ -453,7 +465,8 @@ show-label | bool   | Control visibility of the `<label>` element without affect
         {% for input_options in options.options %}
             {% set input_options = input_options|merge({
             'bare': true,
-            'label': '<span class="form-choice__label">' ~ input_options.label ~ '</span>'
+            'label': '<span class="form-choice__label">' ~ input_options.label ~ '</span>',
+            'aria-describedby': describedByIds|join(' ')
             }) %}
 
             {% if options.error is defined and options.error is not empty %}
@@ -469,29 +482,10 @@ show-label | bool   | Control visibility of the `<label>` element without affect
 
     {% endif %}
 
-    {% set options = modify_options(options) %}
-
-    {# Build aria-described string of guids for help blocks and errors #}
-    {% set describedByIds = [] %}
-
-    {% if options.help_id is defined and options.help_id is not empty %}
-        {% set describedByIds = describedByIds|merge([options.help_id])%}
-    {% endif %}
-
-    {% if options.error_ids is defined and options.error_ids is not empty %}
-        {% for id in options.error_ids %}
-            {% set describedByIds = describedByIds|merge([id])%}
-        {% endfor %}
-    {% endif %}
-
-    {% if describedByIds|length %}
-        {% set options = options|defaults({'aria-describedby': describedByIds|join(' ')}) %}
-    {% endif %}
-
     {{
         form.group({
             'parent': options
-                |only('aria-describedby bare class error error_ids guidance guidance-container help help_id id label required show-label')
+                |only('bare class error error_ids guidance guidance-container help help_id id label required show-label')
                 |exclude('multiple')
                 |defaults({'class': 'form-choice'}),
             'inputs': inputs
@@ -595,23 +589,19 @@ https://jadu.github.io/pulsar/form-helpers/compound
     {# Build aria-described string of guids for help blocks and errors #}
     {% set describedByIds = [] %}
 
-    {% if options.help_id is defined and options.help_id is not empty %}
-        {% set describedByIds = describedByIds|merge([options.help_id])%}
-    {% endif %}
-
     {% if options.error_ids is defined and options.error_ids is not empty %}
         {% for id in options.error_ids %}
             {% set describedByIds = describedByIds|merge([id])%}
         {% endfor %}
     {% endif %}
 
-    {% if describedByIds|length %}
-        {% set options = options|defaults({'aria-describedby': describedByIds|join(' ')}) %}
+    {% if options.help_id is defined and options.help_id is not empty %}
+        {% set describedByIds = describedByIds|merge([options.help_id])%}
     {% endif %}
 
     <fieldset{{
         attributes(options
-                |only('aria-describedby class id')
+                |only('class id')
                 |defaults({ 'class': groupClass })
             )
     -}}>
@@ -630,7 +620,7 @@ https://jadu.github.io/pulsar/form-helpers/compound
                 )
             }}
 
-            {% set inputOptions = input|exclude('error label guidance-container required show-label') %}
+            {% set inputOptions = input|exclude('error label guidance-container required show-label')|merge({'aria-describedby': describedByIds|join(' ')}) %}
 
             {% if input.type == 'select' %}
                 {{ elem.select(inputOptions|merge({'class': inputOptions.class|default ~ ' select'})) }}
@@ -984,7 +974,7 @@ value  | string, array  | The string, or array of strings to render inside the e
 
         {% if options.error_ids is defined and options.error_ids is not empty %}
             {% for error in errors %}
-                <span class="help-block is-error" id="{{ attribute(options.error_ids, loop.index0) }}">
+                <span class="help-block is-error" role="alert" id="{{ attribute(options.error_ids, loop.index0) }}">
                     {{ html.icon('warning-sign') }} {{ error|raw -}}
                 </span>
             {% endfor %}
