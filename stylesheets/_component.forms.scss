@@ -351,7 +351,7 @@ fieldset {
 
     // column variations
     @for $i from 1 through 9 {
-        .control__label + .controls > .form__control.form__control-col--#{$i},
+        .control__label + .controls > .form__control:not(.checkbox):not(.radio).form__control-col--#{$i},
         .form__control-col--#{$i} .control__label + .controls > .form__control,
         .form__control-col--#{$i} .control__label + .controls > .form__control:not(.checkbox):not(.radio),
         .form__control-col--#{$i} .control__label + .controls > .form__control + .select2 {
