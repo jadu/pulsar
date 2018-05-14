@@ -7,8 +7,8 @@
   <img src="../../../../images/video/galaxy.jpg" alt="galaxy background">
 </div>
 <!--<![endif]-->
-<div class="video" data-vide-bg="../../../../images/video/galaxy.mp4">
-	<img class="signin-brand" src="../../../../images/branding/continuum-brandmark.svg" />
+<div class="video" data-vide-bg="../../../../images/video/galaxy.mp4" role="main">
+	<h1 class="signin-brand"><img src="../../../../images/branding/continuum-brandmark.svg" alt="Continuum Brandmark" /></h1>
 
 	<div class="signin-container">
 
@@ -32,7 +32,7 @@
 							type="text"
 							placeholder="username"
 							autocomplete="off"
-							tabindex="1"
+							tabindex="0"
 						/>
 					</div>
 
@@ -46,7 +46,7 @@
 							id="password"
 							name="password"
 							placeholder="password"
-							tabindex="2"
+							tabindex="0"
 							type="password"
 						/>
 					</div>
@@ -54,10 +54,10 @@
 					<!-- recaptcha goes here -->
 
 					<div class="signin__actions">
-						<button class="btn btn--primary signin__submit" name="signin-submit" type="submit" tabindex="3">Sign In</button>
+						<button class="btn btn--primary signin__submit" name="signin-submit" type="submit" tabindex="0">Sign In</button>
 					</div>
 
-					<a class="signin__link" href="#forgot-password" tabindex="4">Forgotten password?</a>
+					<a class="signin__link" href="#forgot-password" tabindex="0">Forgotten password?</a>
 				</form>
 
 				<form class="signin__panel signin-reset" aria-hidden="true">
@@ -133,7 +133,7 @@
 					</div>
 				</form>
 
-				<form class="signin__panel signin-forgot" aria-hidden="true">
+				<form id="forgot-password" class="signin__panel signin-forgot" aria-hidden="true">
 					<div class="signin__icon t-signin-icon"></div>
 
 					<span class="signin__info" role="alert">If you’ve forgotten your username you will need to contact your webmaster, or your organisation’s&nbsp;IT&nbsp;support.</span>
