@@ -459,6 +459,8 @@
 
 .nav-close,
 .nav-close-ltr {
+    background: none;
+    border: 0;
     color: color(white);
     display: none;
     padding: 0 20px 23px;
@@ -503,8 +505,9 @@
     background-size: $branding-navigation-width $branding-navigation-height;
     background-repeat: no-repeat;
     display: inline-block;
-    text-align: center;
     height: $branding-navigation-height;
+    text-align: center;
+    text-indent: -9999px;
     width: $branding-navigation-width;
 
 	// Support transparent PNG background images in IE8
