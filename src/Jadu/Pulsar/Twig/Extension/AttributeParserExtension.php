@@ -128,8 +128,11 @@ class AttributeParserExtension extends \Twig_Extension
                         if ($value) {
 
                             // Don't output `disabled` boolean on links as it
-                            // throws a W3C validation error
-                            if ((!$usingTag || $args['tag'] != 'a') || ($usingTag && $key != 'disabled')) {
+                            // throws a W3C validation error, use aria-disabled instead so that 
+                            // tools like AXE toolbar don't throw a low contrast violation
+                            if ($usingTag && $args['tag'] === 'a') {
+                                $html[] = 'aria-disabled="true"';
+                            } else if ((!$usingTag) || ($usingTag && $key != 'disabled')) {
                                 $html[] = htmlspecialchars($key);
                             }
 
