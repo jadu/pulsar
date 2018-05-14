@@ -109,21 +109,21 @@ $input-color-placeholder:             color(gray, light) !default;
 $legend-border-color:                 color(border) !default;
 $input-group-addon-border-color:      $input-border !default;
 
-$state-warning-text:             #af6318 !default; // 4.54:1 AA Compliant
+$state-warning-text:             #a65e17 !default; // AA compliant on white & warning bg
 $state-warning-bg:               #fcf8e3 !default;
-$state-warning-border:           darken($state-warning-bg, 10%) !default;
+$state-warning-border:           #a65e17 !default;
 
-$state-danger-text:              #b94a48 !default; // 5.08:1 AA Compliant
-$state-danger-bg:                #f2dede !default;
-$state-danger-border:            darken($state-danger-bg, 10%) !default;
+$state-danger-text:              #b94a48 !default; // AA compliant on white & danger bg
+$state-danger-bg:                #faefef !default;
+$state-danger-border:            #b94a48 !default;
 
-$state-success-text:             #448345 !default; // 4.59:1 AA Compliant
+$state-success-text:             #3d763e !default; // AA compliant on white & success bg
 $state-success-bg:               #dff0d8 !default;
-$state-success-border:           darken($state-success-bg, 10%) !default;
+$state-success-border:           #3d763e !default;
 
-$state-info-text:                #367da1 !default; // 4.56:1 AA Compliant
+$state-info-text:                #2f6e8e !default; // AA compliant on white & info bg
 $state-info-bg:                  #d9edf7 !default;
-$state-info-border:              darken($state-info-bg, 10%) !default;
+$state-info-border:              #2f6e8e !default;
 
 // -----------------------------------------------------------------------------
 //  Navigation
