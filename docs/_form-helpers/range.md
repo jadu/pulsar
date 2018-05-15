@@ -70,8 +70,8 @@ Any other options not listed here will be applied to the input.
             Example
         </label>
         <div class="controls">
-            <input id="foo" type="range" class="form__control">
-            <span class="help-block is-error"><i class="icon-warning-sign"></i> Something went wrong</span>
+            <input id="foo" type="range" aria-describedby="guid-1675310271" aria-invalid="true" class="form__control">
+            <span class="help-block is-error" role="alert" id="guid-1675310271"><i class="icon-warning-sign"></i> Something went wrong</span>
         </div>
     </div>
 </div>
@@ -89,3 +89,7 @@ The main input can use 1-9 columns of the 12 column grid (where 3 are used for t
 * `.form__content--col-7`
 * `.form__content--col-8`
 * `.form__content--col-9`
+
+## Accessibility
+
+To maintain compliance with WCAG 2.0 AA, a form element must have a related label element, the easiest way to achieve this is to always pass an `id` attribute to form helpers. Form helpers will automatically add `aria-describedby="guid-<random-number>"` to inputs and an `id` to help blocks and errors. Additionally, `aria-invalid="true"` will be added to inputs when an error is passed.
