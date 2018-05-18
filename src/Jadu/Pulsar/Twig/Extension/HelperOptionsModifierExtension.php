@@ -14,6 +14,11 @@ class HelperOptionsModifierExtension extends \Twig_Extension
         return 'modify_options';
     }
 
+    /**
+     * Register the `modify_options()` function with Twig.
+     *
+     * @return array The Twig function
+     */
     public function getFunctions()
     {
         return array(
@@ -25,7 +30,7 @@ class HelperOptionsModifierExtension extends \Twig_Extension
      * Returns a modified options array including error flag, error and help guids
      *
      * @param  array    $options    The form helper options
-     * @return array
+     * @return array|boolean
      */
     public function modifyOptions($options)
     {
