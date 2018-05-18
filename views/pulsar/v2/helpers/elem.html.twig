@@ -52,7 +52,7 @@ value       | string | Specifies the value of the input
 
     {% if options.error_ids is defined and options.error_ids is not empty %}
         {% for id in options.error_ids %}
-            {% set describedByIds = describedByIds|merge([id])%}
+            {% set describedByIds = describedByIds|merge([id]) %}
         {% endfor %}
     {% endif %}
 
@@ -213,7 +213,7 @@ value       | string | Specifies the value of the input
 
     {% if options.error_ids is defined and options.error_ids is not empty %}
         {% for id in options.error_ids %}
-            {% set describedByIds = describedByIds|merge([id])%}
+            {% set describedByIds = describedByIds|merge([id]) %}
         {% endfor %}
     {% endif %}
 
@@ -375,12 +375,12 @@ value       | string  | Specifies the value of the input
     {% set describedByIds = [] %}
 
     {% if options.help_id is defined and options.help_id is not empty %}
-        {% set describedByIds = describedByIds|merge([options.help_id])%}
+        {% set describedByIds = describedByIds|merge([options.help_id]) %}
     {% endif %}
 
     {% if options.error_ids is defined and options.error_ids is not empty %}
         {% for id in options.error_ids %}
-            {% set describedByIds = describedByIds|merge([id])%}
+            {% set describedByIds = describedByIds|merge([id]) %}
         {% endfor %}
     {% endif %}
 

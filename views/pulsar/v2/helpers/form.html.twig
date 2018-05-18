@@ -61,12 +61,12 @@ items         | array  | An array of items to put in the dropdown list (usually 
 
     {% if options.error_ids is defined and options.error_ids is not empty %}
         {% for id in options.error_ids %}
-            {% set describedByIds = describedByIds|merge([id])%}
+            {% set describedByIds = describedByIds|merge([id]) %}
         {% endfor %}
     {% endif %}
 
     {% if options.help_id is defined and options.help_id is not empty %}
-        {% set describedByIds = describedByIds|merge([options.help_id])%}
+        {% set describedByIds = describedByIds|merge([options.help_id]) %}
     {% endif %}
 
     {% if describedByIds|length %}
@@ -77,7 +77,7 @@ items         | array  | An array of items to put in the dropdown list (usually 
     {% set items = options.items %}
 
     {% if options.error is defined and options.error is not empty or options.help is defined and options.help is not empty %}
-        {% set newItems = [] %}
+        {% set tempItems = [] %}
         {% for item in options.items %}
             {% if item is iterable %}
                 {% if options.error is defined and options.error %}
@@ -86,12 +86,12 @@ items         | array  | An array of items to put in the dropdown list (usually 
                     {% set item = item|merge({ 'aria-describedby': describedByIds|join(' ') }) %}
                 {% endif %}
 
-                {% set newItems = newItems|merge({(loop.index): item}) %}
+                {% set tempItems = tempItems|merge({(loop.index): item}) %}
             {% else %}
-                {% set newItems = options.items %}
+                {% set tempItems = options.items %}
             {% endif %}
         {% endfor %}
-        {% set items = newItems %}
+        {% set items = tempItems %}
     {% endif %}
 
     {{
@@ -424,12 +424,12 @@ show-label | bool   | Control visibility of the `<label>` element without affect
 
     {% if options.error_ids is defined and options.error_ids is not empty %}
         {% for id in options.error_ids %}
-            {% set describedByIds = describedByIds|merge([id])%}
+            {% set describedByIds = describedByIds|merge([id]) %}
         {% endfor %}
     {% endif %}
 
     {% if options.help_id is defined and options.help_id is not empty %}
-        {% set describedByIds = describedByIds|merge([options.help_id])%}
+        {% set describedByIds = describedByIds|merge([options.help_id]) %}
     {% endif %}
 
     {% set inputs = [] %}
@@ -600,12 +600,12 @@ https://jadu.github.io/pulsar/form-helpers/compound
 
     {% if options.error_ids is defined and options.error_ids is not empty %}
         {% for id in options.error_ids %}
-            {% set describedByIds = describedByIds|merge([id])%}
+            {% set describedByIds = describedByIds|merge([id]) %}
         {% endfor %}
     {% endif %}
 
     {% if options.help_id is defined and options.help_id is not empty %}
-        {% set describedByIds = describedByIds|merge([options.help_id])%}
+        {% set describedByIds = describedByIds|merge([options.help_id]) %}
     {% endif %}
 
     <fieldset{{
