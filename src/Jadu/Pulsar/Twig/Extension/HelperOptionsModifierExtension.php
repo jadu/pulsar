@@ -44,7 +44,7 @@ class HelperOptionsModifierExtension extends \Twig_Extension
 
             // Build guids for errors
             for ($i = 0; $i < $numberOfErrors; $i++) {
-                $errorGuids[] = 'guid-'.rand();
+                $errorGuids[] = 'guid-' . rand();
             }
 
             $options['error_ids'] = $errorGuids;
@@ -52,7 +52,7 @@ class HelperOptionsModifierExtension extends \Twig_Extension
 
         // Check if errors are present in options
         if (array_key_exists('help', $options) and count($options['help']) > 0) {
-            $options['help_id'] = 'guid-'.rand();
+            $options['help_id'] = 'guid-' . rand();
         }
 
         return $options;
