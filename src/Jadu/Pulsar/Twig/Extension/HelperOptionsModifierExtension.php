@@ -4,12 +4,12 @@ namespace Jadu\Pulsar\Twig\Extension;
 
 class HelperOptionsModifierExtension extends \Twig_Extension
 {
-	/**
-	 * Name of this extension
-	 *
-	 * @return string
-	 */
-	public function getName()
+    /**
+     * Name of this extension
+     *
+     * @return string
+     */
+    public function getName()
     {
         return 'modify_options';
     }
@@ -22,11 +22,11 @@ class HelperOptionsModifierExtension extends \Twig_Extension
     }
 
     /**
-	 * Returns a modified options array including error flag, error and help guids
-	 *
-	 * @param  array    $options    The form helper options
-	 * @return array
-	 */
+     * Returns a modified options array including error flag, error and help guids
+     *
+     * @param  array    $options    The form helper options
+     * @return array
+     */
     public function modifyOptions($options)
     {
         // If we don't have $options, abandon ship
@@ -36,14 +36,14 @@ class HelperOptionsModifierExtension extends \Twig_Extension
 
         // Check if errors are present in options
         if (array_key_exists('error', $options) and count($options['error']) > 0) {
-        	$numberOfErrors = count($options['error']);
-	    	$errorGuids = array();
+            $numberOfErrors = count($options['error']);
+            $errorGuids = array();
 
             // Set has_error for aria-invalid use
             $options['has_error'] = true;
 
             // Build guids for errors
-            for ($i = 0; $i < $numberOfErrors; $i++) { 
+            for ($i = 0; $i < $numberOfErrors; $i++) {
                 $errorGuids[] = 'guid-'.rand();
             }
 
