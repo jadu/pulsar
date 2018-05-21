@@ -71,7 +71,7 @@ Any other options not listed here will be applied to the input.
         </label>
         <div class="controls">
             <input id="foo" type="range" aria-describedby="guid-1675310271" aria-invalid="true" class="form__control">
-            <span class="help-block is-error" role="alert" id="guid-1675310271"><i class="icon-warning-sign"></i> Something went wrong</span>
+            <span class="help-block is-error" role="alert" aria-atomic="true" id="guid-1675310271"><i class="icon-warning-sign"></i> Something went wrong</span>
         </div>
     </div>
 </div>
