@@ -62,7 +62,7 @@ Any other options not listed here will be applied to the input.
         <label for="inputRadioLeft" class="control__label">Default radio</label>
         <div class="controls">
             <input id="inputRadioLeft" name="inputRadioLeft" checked="" type="radio" aria-describedby="guid-12345678" class="form__control radio">
-            <span class="help-block is-error" id="guid-12345678" role="alert"><i class="icon-warning-sign"></i> Something went wrong</span>
+            <span class="help-block is-error" id="guid-12345678" role="alert" aria-atomic="true"><i class="icon-warning-sign"></i> Something went wrong</span>
         </div>
     </div>
 </div>
