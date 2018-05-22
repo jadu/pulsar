@@ -29,9 +29,10 @@
             {% set options = ({}) %}
             <li class="nav-inline__item{% if tab_active is defined and tab_active == tab.id %} nav-inline__item--is-active is-active{% endif %}{% if tab.hidden is defined and tab.hidden == true %} hide{% endif %}">
                 {% if tab.disabled is defined and tab.disabled == true %}
-                    {% set href = '#' %}
+                    {% set href = null %}
                     {% set type = 'link' %}
                     {% set tabindex = '-1' %}
+                    {% set options = options|merge({ 'aria-disabled': 'true' }) %}
                 {% else %}
                     {% set href = '#' ~ tab.id %}
                     {% set type = 'tab' %}
