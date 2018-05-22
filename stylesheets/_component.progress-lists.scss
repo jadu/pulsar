@@ -9,6 +9,17 @@
     }
 }
 
+.progress-list-mini {
+    display: inline-block;
+    float: right;
+    margin-bottom: 0;
+    width: 503px;
+}
+
+.main-title-progresslist {
+    margin-top: 12px;
+}
+
 .progress-list__item {
     background-color: $progress-bg;
     border-bottom: 3px solid color(white);
