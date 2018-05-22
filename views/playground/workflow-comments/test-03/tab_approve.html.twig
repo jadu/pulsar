@@ -19,13 +19,9 @@
                         'icon': 'save'
                     },
                     {
-                        'label': 'Submit for approval',
-                        'href': '#workflow-submit',
-                        'disabled': true,
-                        'data-toggle': 'tooltips',
-                        'title': 'There are no new changes to approve',
-                        'data-placement': 'right',
-                        'icon': 'hand-o-right'
+                        'label': 'Publish',
+                        'href': 'index_publish.html.twig',
+                        'icon': 'check-circle'
                     }
                 ],
                 [
@@ -66,22 +62,21 @@
 {%- endblock -%}
 
 {%- block actions_right -%}
-    <div data-toggle="tooltips" title="There are no new changes to approve">
-        {{
-            html.button({
-                'label': 'Submit for Approval',
-                'disabled': true,
-                'type': 'link',
-                'href': '#workflow-submit'
-            })
-        }}
-    </div>
     {{
         html.button({
             'label': 'Save',
-            'class': 'btn--primary'
+            'class': ''
         })
     }}
+    {{
+        html.button({
+            'label': 'Publish',
+            'class': 'btn--success',
+            'type': 'link',
+            'href': 'index_publish.html.twig'
+        })
+    }}
+
 {%- endblock -%}
 
 {% block tab_content %}
@@ -92,6 +87,19 @@
             padding: 5px;
         }
     </style>
+    {% if _get.note is defined and _get.note is not empty %}
+        {% set note = '<p class="panel--callout"><strong>Notes to author</strong>: <q>' ~ _get.note ~ '</q></p>' %}
+    {% endif %}
+
+    {{
+        html.panel({
+            'title': '<strong>Admin McAdminface</strong> has approved this content',
+            'body': '<p>It can now be published to the website. If any further changes are made they will also need to be approved.</p>' ~ note|default,
+            'icon': 'thumbs-o-up',
+            'class': 'panel--primary u-margin-top-none'
+        })
+    }}
+
     {{
         form.create()
     }}
@@ -154,15 +162,8 @@ Cras eget elit maximus, facilisis ante sed, feugiat mi. Morbi molestie hendrerit
         form.end({
             'actions': [
                 form.submit({
-                    'class': 'btn--primary',
+                    'class': '',
                     'label': 'Save'
-                }),
-                html.button({
-                    'label': 'Submit for Approval',
-                    'data-toggle': 'modal',
-                    'type': 'link',
-                    'href': '#workflow-submit',
-                    'disabled': true
                 }),
                 html.button({
                     'class': 'btn--naked',
@@ -173,5 +174,6 @@ Cras eget elit maximus, facilisis ante sed, feugiat mi. Morbi molestie hendrerit
             ]
         })
     }}
+
 
 {% endblock %}

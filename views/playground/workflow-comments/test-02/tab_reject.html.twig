@@ -20,8 +20,7 @@
                     },
                     {
                         'label': 'Submit for approval',
-                        'href': '#workflow-submit',
-                        'data-toggle': 'modal',
+                        'href': 'index.html.twig',
                         'icon': 'hand-o-right'
                     }
                 ],
@@ -88,14 +87,16 @@
             padding: 5px;
         }
     </style>
+
     {% if _get.note is defined and _get.note is not empty %}
         {% set note = '<p class="panel--callout"><strong>Notes to author</strong>: <q>' ~ _get.note ~ '</q></p>' %}
     {% endif %}
+
     {{
         html.panel({
             'title': '<strong>Admin McAdminface</strong> has rejected this content',
             'body': note|default ~ '<p>No changes have been made since your rejection, this message will disappear when the author makes changes, or resubmits for approval</p>',
-            'icon': 'exclamation-sign',
+            'icon': 'times-circle',
             'class': 'panel--danger u-margin-top-none'
         })
     }}
@@ -166,13 +167,6 @@ Cras eget elit maximus, facilisis ante sed, feugiat mi. Morbi molestie hendrerit
                     'label': 'Save'
                 }),
                 html.button({
-                    'class': '',
-                    'label': 'Submit for Approval',
-                    'data-toggle': 'modal',
-                    'type': 'link',
-                    'href': '#workflow-submit'
-                }),
-                html.button({
                     'class': 'btn--naked',
                     'type': 'link',
                     'label': 'Cancel',
@@ -187,8 +181,8 @@ Cras eget elit maximus, facilisis ante sed, feugiat mi. Morbi molestie hendrerit
             {{
                 form.create({
                     'method': 'GET',
-                    'id': 'submit',
-                    'name': 'submit',
+                    'id': 'submit-approve',
+                    'name': 'submit-approve',
                     'action': 'index.html.twig'
                 })
             }}
@@ -198,8 +192,6 @@ Cras eget elit maximus, facilisis ante sed, feugiat mi. Morbi molestie hendrerit
                     <h1 class="modal__title">Submit for Approval</h1>
                 </div>
                 <div class="modal__body">
-                    <p>Before your content can be published a managing editor must review and approve it.</p>
-                    <p>You can provide useful notes here to aid their decision. You will be notified if your content has been approved or rejected.</p>
                     {{
                         form.textarea({
                             'label': 'Note to reviewer (optional)',
@@ -215,7 +207,7 @@ Cras eget elit maximus, facilisis ante sed, feugiat mi. Morbi molestie hendrerit
                         html.button({
                             'class': 'btn--primary',
                             'label': 'Submit for Approval',
-                            'type': 'submit'
+                            'type': 'submit',
                         })
                     }}
                     {{
@@ -227,8 +219,8 @@ Cras eget elit maximus, facilisis ante sed, feugiat mi. Morbi molestie hendrerit
                     }}
                 </div>
             </div><!-- /.modal__content -->
-            {{ form.end() }}
         </div><!-- /.modal__dialog -->
-    </div><!-- /.modal -->    
+        {{ form.end() }}
+    </div><!-- /.modal -->
 
 {% endblock %}
