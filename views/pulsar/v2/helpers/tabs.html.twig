@@ -31,12 +31,10 @@
                 {% if tab.disabled is defined and tab.disabled == true %}
                     {% set href = '#' ~ tab.id %}
                     {% set type = 'link' %}
-                    {% set tabindex = '0' %}
                     {% set options = options|merge({ 'aria-disabled': 'true' }) %}
                 {% else %}
                     {% set href = '#' ~ tab.id %}
                     {% set type = 'tab' %}
-                    {% set tabindex = '0' %}
                     {%
                         if tab.src is defined
                         and tab.src != null
@@ -75,8 +73,7 @@
                         'label': tab.label,
                         'href': href,
                         'data-toggle': type,
-                        'disabled': tab.disabled|default(false),
-                        'tabindex': tabindex
+                        'disabled': tab.disabled|default(false)
                     })
                 %}
 
