@@ -78,3 +78,7 @@ orientation         | string | By default the timepicker dropdown will be aligne
 timeFormat          | string | How times should be displayed in the list and input element. Uses PHP's date() formatting syntax. Characters can be escaped with a preceeding double slash (e.g. H\\\hi). `default: 'g:ia'`
 
 More options can be found in the timepicker [docs](https://github.com/jonthornton/jquery-timepicker)
+
+## Accessibility
+
+To maintain compliance with WCAG 2.0 AA, a form element must have a related label element, the easiest way to achieve this is to always pass an `id` attribute to form helpers. Form helpers will automatically add `aria-describedby="guid-<random-number>"` to inputs and an `id` to help blocks and errors. Additionally, `aria-invalid="true"` will be added to inputs when an error is passed.
