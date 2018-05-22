@@ -17,11 +17,6 @@
                         'label': 'Save',
                         'href': '#save',
                         'icon': 'save'
-                    },
-                    {
-                        'label': 'Publish',
-                        'href': 'index_publish.html.twig',
-                        'icon': 'check-circle'
                     }
                 ],
                 [
@@ -64,16 +59,17 @@
 {%- block actions_right -%}
     {{
         html.button({
-            'label': 'Save',
-            'class': ''
+            'label': 'Submit for Approval',
+            'class': '',
+            'data-toggle': 'modal',
+            'type': 'link',
+            'href': '#workflow-submit'
         })
     }}
     {{
         html.button({
-            'label': 'Publish',
-            'class': 'btn--success',
-            'type': 'link',
-            'href': 'index_publish.html.twig'
+            'label': 'Save',
+            'class': 'btn--primary'
         })
     }}
 
@@ -93,9 +89,9 @@
     {{
         html.panel({
             'title': '<strong>Admin McAdminface</strong> has approved this content',
-            'body': '<p>It can now be published to the website.</p>' ~ note|default,
-            'icon': 'thumbs-o-up',
-            'class': 'panel--primary u-margin-top-none'
+            'body': '<p>It has now been published on the website.</p>' ~ note|default,
+            'icon': 'check',
+            'class': 'panel--success u-margin-top-none'
         })
     }}
 
@@ -161,7 +157,7 @@ Cras eget elit maximus, facilisis ante sed, feugiat mi. Morbi molestie hendrerit
         form.end({
             'actions': [
                 form.submit({
-                    'class': '',
+                    'class': 'button--primary',
                     'label': 'Save'
                 }),
                 html.button({
