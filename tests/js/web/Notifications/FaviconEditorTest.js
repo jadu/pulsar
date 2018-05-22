@@ -1,8 +1,8 @@
 const FaviconEditor = require('../../../../js/Notifications/FaviconEditor');
 const $ = require('jquery');
 const vanillaFavicon = require('./fixtures/favicon');
-const faviconWithRedCircle = require('./fixtures/faviconWithRedCircle?radius=10&color=red');
-const faviconWithCustomGraphic = require('./fixtures/faviconWithCustom?rect=0055&fillStyle=red');
+const faviconWithRedCircle = require('./fixtures/faviconWithRedCircle-radius-10-color-red');
+const faviconWithCustomGraphic = require('./fixtures/faviconWithCustom-rect-0055-fillStyle-red');
 const { AssertionError } = require('chai');
 
 describe('FaviconEditor', () => {
