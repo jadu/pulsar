@@ -1,4 +1,4 @@
-{% extends '@pulsar/pulsar/layouts/base.html.twig' %}
+{% extends '@pulsar/playground/workflow-comments/test-05/base.html.twig' %}
 
 {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 {% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
@@ -8,6 +8,36 @@
 {% block title %}{{ parent() }}{% endblock %}
 
 {% set heading = "My Example Document (Admin\'s View)" %}
+
+{% block progresslist %}
+    <div class="progress-list progress-list-mini">
+
+        <a href="#" class="progress-list__item progress-list__item--complete">
+            <span class="progress-list__label">
+                <span class="badge badge--round badge--outline">Step 1</span>
+                Draft
+            </span>
+            <span class="progress-list__arrow">&gt;</span>
+        </a>
+
+        <a href="#" class="progress-list__item progress-list__item--complete">
+            <span class="progress-list__label">
+                <span class="badge badge--round badge--outline">Step 2</span>
+                Submission
+            </span>
+            <span class="progress-list__arrow">&gt;</span>
+        </a>
+
+        <a href="#" class="progress-list__item progress-list__item--complete">
+            <span class="progress-list__label">
+                <span class="badge badge--round badge--outline">Step 3</span>
+                Approval
+            </span>
+            <span class="progress-list__arrow">&gt;</span>
+        </a>
+
+    </div>
+{% endblock %}
 
 {%
     set nav_data = {
