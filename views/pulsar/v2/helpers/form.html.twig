@@ -983,7 +983,7 @@ value  | string, array  | The string, or array of strings to render inside the e
 
         {% if options.error_ids is defined and options.error_ids is not empty %}
             {% for error in errors %}
-                <span class="help-block is-error" role="alert" aria-atomic="true" id="{{ attribute(options.error_ids, loop.index0) }}">
+                <span class="help-block is-error" id="{{ attribute(options.error_ids, loop.index0) }}">
                     {{ html.icon('warning-sign') }} {{ error|raw -}}
                 </span>
             {% endfor %}

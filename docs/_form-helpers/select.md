@@ -113,7 +113,7 @@ Your options can be arranged within `optgroups` by using the optgroup syntax.
                 <option value="colour_red">Red</option>
                 <option value="colour_blue">Blue</option>
             </select>
-            <span class="help-block is-error" role="alert" aria-atomic="true" id="guid-1244863091"><i aria-hidden="true" class="icon-warning-sign"></i> Something went wrong</span>
+            <span class="help-block is-error" id="guid-1244863091"><i aria-hidden="true" class="icon-warning-sign"></i> Something went wrong</span>
         </div>
     </div>
 </div>

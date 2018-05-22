@@ -84,7 +84,7 @@ You should provide sensible labels as well as unique IDs for each individual inp
             <label for="yyyy" id="yyyy[label]" class="control__label hide">Year</label>
             <input id="yyyy" placeholder="YYYY" type="text" aria-describedby="guid-460222874 guid-1069969603" class="form__control form__control-col--1">
 
-            <span class="help-block is-error" role="alert" aria-atomic="true" id="guid-460222874"><i aria-hidden="true" class="icon-warning-sign"></i> Please complete your month of birth</span>
+            <span class="help-block is-error" id="guid-460222874"><i aria-hidden="true" class="icon-warning-sign"></i> Please complete your month of birth</span>
 
             <span class="help-block" id="guid-1069969603">For example: 25 12 1980</span>
         </div>
