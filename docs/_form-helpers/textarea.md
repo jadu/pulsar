@@ -38,8 +38,8 @@ A textarea will default to two rows in height to differentiate themselves from r
             <i data-container="body" data-content="Guidance text to give more information about expected input" data-placement="top" rel="clickover" aria-hidden="true" class="icon-question-sign input-group-guidance" title=""></i>
         </label>
         <div class="controls">
-            <textarea id="inputTextareaBravo" name="inputTextareaBravo" rows="2" class="form__control textarea"></textarea>
-            <span class="help-block">Optional help text</span>
+            <textarea id="inputTextareaBravo" name="inputTextareaBravo" rows="2" aria-describedby="guid-12345678" class="form__control textarea"></textarea>
+            <span class="help-block" id="guid-12345678">Optional help text</span>
         </div>
     </div>
 
@@ -91,13 +91,13 @@ Use the `error` option when a form needs to highlight invalid or missing input, 
     <div class="form__group has-error">
         <label for="inputTextareaError" class="control__label">Description</label>
         <div class="controls">
-            <textarea id="inputTextareaError" name="inputTextareaError" rows="2" class="form__control textarea"></textarea>
-            <span class="help-block is-error"><i class="icon-warning-sign"></i> Please enter a description</span>
+            <textarea id="inputTextareaError" name="inputTextareaError" rows="2" aria-describedby="guid-34567890" aria-invalid="true" class="form__control textarea"></textarea>
+            <span class="help-block is-error" id="guid-34567890"><i class="icon-warning-sign"></i> Please enter a description</span>
         </div>
     </div>
 
     <p class="screenreader">
-        <q><var>Description</var> edit multi-line, blank</q>
+        <q><var>Description</var> edit multi-line, invalid entry. Please enter a description</q>
     </p>
 </div>
 
@@ -111,13 +111,13 @@ The `has-success` can highlight fields that have been successfully updated.
     <div class="form__group has-success">
         <label for="inputTextareaSuccess" class="control__label">Description</label>
         <div class="controls">
-            <textarea id="inputTextareaSuccess" name="inputTextareaSuccess" rows="2" class="form__control textarea"></textarea>
-            <span class="help-block">Optional help text</span>
+            <textarea id="inputTextareaSuccess" name="inputTextareaSuccess" rows="2" aria-describedby="guid-45678901" class="form__control textarea"></textarea>
+            <span class="help-block" id="guid-45678901">Optional help text</span>
         </div>
     </div>
 
     <p class="screenreader">
-        <q><var>Description</var> edit multi-line, blank</q>
+        <q><var>Description</var> edit multi-line, blank. Optional help text.</q>
     </p>
 </div>
 
@@ -131,13 +131,13 @@ If a field value is changed by an interaction elsewhere in an interface, use the
     <div class="form__group has-changed">
         <label for="inputTextareaChanged" class="control__label">Description</label>
         <div class="controls">
-            <textarea id="inputTextareaChanged" name="inputTextareaChanged" rows="2" class="form__control textarea"></textarea>
-            <span class="help-block">Optional help text</span>
+            <textarea id="inputTextareaChanged" name="inputTextareaChanged" rows="2" aria-describedby="guid-56789012" class="form__control textarea"></textarea>
+            <span class="help-block" id="guid-56789012">Optional help text</span>
         </div>
     </div>
 
     <p class="screenreader">
-        <q><var>Description</var> edit multi-line, blank</q>
+        <q><var>Description</var> edit multi-line, blank. Optional help text</q>
     </p>
 </div>
 
@@ -176,71 +176,71 @@ the width can be modified by passing the required column class via the `class` a
     <div class="form__group form__control-col--1">
         <label for="inputTextareaWidthOne" class="control__label">Description</label>
         <div class="controls">
-            <textarea id="inputTextareaWidthOne" rows="2" class="form__control textarea"></textarea>
-            <span class="help-block">Optional help text</span>
+            <textarea id="inputTextareaWidthOne" rows="2" aria-describedby="guid-11111111" class="form__control textarea"></textarea>
+            <span class="help-block" id="guid-11111111">Optional help text</span>
         </div>
     </div>
     <div class="form__group form__control-col--2">
         <label for="inputTextareaWidthTwo" class="control__label">Description</label>
         <div class="controls">
-            <textarea id="inputTextareaWidthTwo" rows="2" class="form__control textarea"></textarea>
-            <span class="help-block">Optional help text</span>
+            <textarea id="inputTextareaWidthTwo" rows="2" aria-describedby="guid-22222222" class="form__control textarea"></textarea>
+            <span class="help-block" id="guid-22222222">Optional help text</span>
         </div>
     </div>
     <div class="form__group form__control-col--3">
         <label for="inputTextareaWidthThree" class="control__label">Description</label>
         <div class="controls">
-            <textarea id="inputTextareaWidthThree" rows="2" class="form__control textarea"></textarea>
-            <span class="help-block">Optional help text</span>
+            <textarea id="inputTextareaWidthThree" rows="2" aria-describedby="guid-33333333" class="form__control textarea"></textarea>
+            <span class="help-block" id="guid-33333333">Optional help text</span>
         </div>
     </div>
     <div class="form__group form__control-col--4">
         <label for="inputTextareaWidthFour" class="control__label">Description</label>
         <div class="controls">
-            <textarea id="inputTextareaWidthFour" rows="2" class="form__control textarea"></textarea>
-            <span class="help-block">Optional help text</span>
+            <textarea id="inputTextareaWidthFour" rows="2" aria-describedby="guid-44444444" class="form__control textarea"></textarea>
+            <span class="help-block" id="guid-44444444">Optional help text</span>
         </div>
     </div>
     <div class="form__group form__control-col--5">
         <label for="inputTextareaWidthFive" class="control__label">Description</label>
         <div class="controls">
-            <textarea id="inputTextareaWidthFive" rows="2" class="form__control textarea"></textarea>
-            <span class="help-block">Optional help text</span>
+            <textarea id="inputTextareaWidthFive" rows="2" aria-describedby="guid-55555555" class="form__control textarea"></textarea>
+            <span class="help-block" id="guid-55555555">Optional help text</span>
         </div>
     </div>
     <div class="form__group form__control-col--6">
         <label for="inputTextareaWidthSix" class="control__label">Description</label>
         <div class="controls">
-            <textarea id="inputTextareaWidthSix" rows="2" class="form__control textarea"></textarea>
-            <span class="help-block">Optional help text</span>
+            <textarea id="inputTextareaWidthSix" rows="2" aria-describedby="guid-66666666" class="form__control textarea"></textarea>
+            <span class="help-block" id="guid-66666666">Optional help text</span>
         </div>
     </div>
     <div class="form__group form__control-col--7">
         <label for="inputTextareaWidthSeven" class="control__label">Description</label>
         <div class="controls">
-            <textarea id="inputTextareaWidthSeven" rows="2" class="form__control textarea"></textarea>
-            <span class="help-block">Optional help text</span>
+            <textarea id="inputTextareaWidthSeven" rows="2" aria-describedby="guid-77777777" class="form__control textarea"></textarea>
+            <span class="help-block" id="guid-77777777">Optional help text</span>
         </div>
     </div>
     <div class="form__group form__control-col--8">
         <label for="inputTextareaWidthEight" class="control__label">Description</label>
         <div class="controls">
-            <textarea id="inputTextareaWidthEight" rows="2" class="form__control textarea"></textarea>
-            <span class="help-block">Optional help text</span>
+            <textarea id="inputTextareaWidthEight" rows="2" aria-describedby="guid-88888888" class="form__control textarea"></textarea>
+            <span class="help-block" id="guid-88888888">Optional help text</span>
         </div>
     </div>
     <div class="form__group form__control-col--9">
         <label for="inputTextareaWidthNine" class="control__label">Description</label>
         <div class="controls">
-            <textarea id="inputTextareaWidthNine" rows="2" class="form__control textarea"></textarea>
-            <span class="help-block">Optional help text</span>
+            <textarea id="inputTextareaWidthNine" rows="2" aria-describedby="guid-99999999" class="form__control textarea"></textarea>
+            <span class="help-block" id="guid-99999999">Optional help text</span>
         </div>
     </div>
 </div>
 
 ## Accessibility
 
-To maintain compliance with WCAG 2.0 AA, a form element must have a related label element, the easiest way to achieve this is to always pass an `id` attribute to form helpers.
+To maintain compliance with WCAG 2.0 AA, a form element must have a related label element, the easiest way to achieve this is to always pass an `id` attribute to form helpers. Form helpers will automatically add `aria-describedby="guid-<random-number>"` to inputs and an `id` to help blocks and errors. Additionally, `aria-invalid="true"` will be added to inputs when an error is passed.
 
 ### Screenreader examples
 
@@ -300,13 +300,13 @@ To maintain compliance with WCAG 2.0 AA, a form element must have a related labe
     <div class="form__group">
         <label for="inputTextareaWithHelp" class="control__label">Description</label>
         <div class="controls">
-            <textarea id="inputTextareaWithHelp" rows="2" class="form__control textarea"></textarea>
-            <span class="help-block">Be descriptive</span>
+            <textarea id="inputTextareaWithHelp" rows="2" aria-describedby="guid-12121212" class="form__control textarea"></textarea>
+            <span class="help-block" id="guid-12121212">Be descriptive</span>
         </div>
     </div>
 
     <p class="screenreader">
-        <q><var>Description</var>, edit multi-line, blank</q>
+        <q><var>Description</var>, edit multi-line, blank. Be descriptive.</q>
     </p>
 </div>
 
@@ -314,12 +314,12 @@ To maintain compliance with WCAG 2.0 AA, a form element must have a related labe
     <div class="form__group has-error">
         <label for="inputTextareaWithError" class="control__label">Description</label>
         <div class="controls">
-            <textarea id="inputTextareaWithError" rows="2" class="form__control textarea"></textarea>
-            <span class="help-block is-error"><i aria-hidden="true" class="icon-warning-sign"></i> Please complete this field</span>
+            <textarea id="inputTextareaWithError" rows="2" aria-describedby="guid-23232323" aria-invalid="true" class="form__control textarea"></textarea>
+            <span class="help-block is-error" id="guid-23232323"><i aria-hidden="true" class="icon-warning-sign"></i> Please complete this field</span>
         </div>
     </div>
 
     <p class="screenreader">
-        <q><var>Description</var>, edit multi-line, blank</q>
+        <q><var>Description</var>, edit multi-line, invalid entry. Please complete this field.</q>
     </p>
 </div>

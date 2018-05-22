@@ -3,7 +3,7 @@
         Description
     </label>
     <div class="controls">
-        <textarea id="inputTextareaChanged" name="inputTextareaChanged" rows="2" class="form__control textarea"></textarea>
-        <span class="help-block">Optional help text</span>
+        <textarea id="inputTextareaChanged" name="inputTextareaChanged" rows="2" aria-describedby="guid-56789012" class="form__control textarea"></textarea>
+        <span class="help-block" id="guid-56789012">Optional help text</span>
     </div>
 </div>
