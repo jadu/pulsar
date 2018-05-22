@@ -10,7 +10,7 @@
         <label for="yyyy" id="yyyy[label]" class="control__label hide">Year</label>
         <input id="yyyy" placeholder="YYYY" type="text" aria-describedby="guid-12345678 guid-98765432" class="form__control form__control-col--1">
 
-        <span class="help-block is-error" id="guid-12345678" role="alert" aria-atomic="true"><i aria-hidden="true" class="icon-warning-sign"></i> Please complete your month of birth</span>
+        <span class="help-block is-error" id="guid-12345678"><i aria-hidden="true" class="icon-warning-sign"></i> Please complete your month of birth</span>
 
         <span class="help-block" id="guid-98765432">For example: 25 12 1980</span>
     </div>

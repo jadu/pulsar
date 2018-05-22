@@ -102,7 +102,7 @@ Use the `error` option when a form needs to highlight invalid or missing input, 
         <label for="inputTextError" class="control__label">First name</label>
         <div class="controls">
             <input id="inputTextError" name="inputTextError" type="text" aria-describedby="guid-12345678" aria-invalid="true" class="form__control">
-            <span class="help-block is-error" role="alert" aria-atomic="true" id="guid-12345678"><i class="icon-warning-sign"></i> Please enter a name</span>
+            <span class="help-block is-error" id="guid-12345678"><i class="icon-warning-sign"></i> Please enter a name</span>
         </div>
     </div>
 
@@ -326,7 +326,7 @@ To maintain compliance with WCAG 2.0 AA, a form element must have a related labe
         <label for="inputTextWithError" class="control__label">First name</label>
         <div class="controls">
             <input id="inputTextWithError" type="text" aria-describedby="guid-22334455" aria-invalid="true" class="form__control">
-            <span class="help-block is-error" role="alert" aria-atomic="true" id="guid-22334455"><i aria-hidden="true" class="icon-warning-sign"></i> Please complete this field</span>
+            <span class="help-block is-error" id="guid-22334455"><i aria-hidden="true" class="icon-warning-sign"></i> Please complete this field</span>
         </div>
     </div>
 

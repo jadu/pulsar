@@ -92,7 +92,7 @@ Use the `error` option when a form needs to highlight invalid or missing input, 
         <label for="inputTextareaError" class="control__label">Description</label>
         <div class="controls">
             <textarea id="inputTextareaError" name="inputTextareaError" rows="2" aria-describedby="guid-34567890" aria-invalid="true" class="form__control textarea"></textarea>
-            <span class="help-block is-error" role="alert" aria-atomic="true" id="guid-34567890"><i class="icon-warning-sign"></i> Please enter a description</span>
+            <span class="help-block is-error" id="guid-34567890"><i class="icon-warning-sign"></i> Please enter a description</span>
         </div>
     </div>
 
@@ -315,7 +315,7 @@ To maintain compliance with WCAG 2.0 AA, a form element must have a related labe
         <label for="inputTextareaWithError" class="control__label">Description</label>
         <div class="controls">
             <textarea id="inputTextareaWithError" rows="2" aria-describedby="guid-23232323" aria-invalid="true" class="form__control textarea"></textarea>
-            <span class="help-block is-error" role="alert" aria-atomic="true" id="guid-23232323"><i aria-hidden="true" class="icon-warning-sign"></i> Please complete this field</span>
+            <span class="help-block is-error" id="guid-23232323"><i aria-hidden="true" class="icon-warning-sign"></i> Please complete this field</span>
         </div>
     </div>
 
