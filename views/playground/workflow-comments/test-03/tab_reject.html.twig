@@ -19,16 +19,10 @@
                         'icon': 'save'
                     },
                     {
-                        'label': 'Approve',
-                        'href': '#workflow-approve',
+                        'label': 'Submit for approval',
+                        'href': '#workflow-submit',
                         'data-toggle': 'modal',
-                        'icon': 'thumbs-o-up'
-                    },
-                    {
-                        'label': 'Reject',
-                        'href': '#workflow-reject',
-                        'data-toggle': 'modal',
-                        'icon': 'thumbs-o-down'
+                        'icon': 'hand-o-right'
                     }
                 ],
                 [
@@ -71,6 +65,15 @@
 {%- block actions_right -%}
     {{
         html.button({
+            'label': 'Submit for Approval',
+            'class': '',
+            'data-toggle': 'modal',
+            'type': 'link',
+            'href': '#workflow-submit'
+        })
+    }}
+    {{
+        html.button({
             'label': 'Save',
             'class': 'btn--primary'
         })
@@ -78,7 +81,7 @@
 {%- endblock -%}
 
 {% block tab_content %}
-    <style>
+<style>
         [method="POST"] .form__group {
             background-color: #efefef;
             margin-bottom: 1px;
@@ -86,30 +89,14 @@
         }
     </style>
     {% if _get.note is defined and _get.note is not empty %}
-        {% set note = '<p class="panel--callout"><strong>Notes to reviewer</strong>: <q>' ~ _get.note ~ '</q></p>' %}
+        {% set note = '<p class="panel--callout"><strong>Notes to author</strong>: <q>' ~ _get.note ~ '</q></p>' %}
     {% endif %}
     {{
         html.panel({
-            'title': 'This content is awaiting approval',
-            'body': '<p>Please review the content and choose to approve for publishing, or reject (with reason, such as to request changes).</p>
-            <p></p>As a reviewer you may make changes to this document before approving.</p>
-            <p class="panel--callout"><strong>Notes from author</strong>: <q>This is required for the new marketing push</q></p>',
-            'class': 'panel--info u-margin-top-none',
-            'icon': 'exclamation-triangle',
-            'actions': [
-                {
-                    'label': 'Approve',
-                    'class': 'btn--success',
-                    'data-toggle': 'modal',
-                    'href': '#workflow-approve'
-                },
-                {
-                    'label': 'Reject',
-                    'class': 'btn--danger',
-                    'data-toggle': 'modal',
-                    'href': '#workflow-reject'
-                }
-            ]
+            'title': '<strong>Admin McAdminface</strong> has rejected this content',
+            'body': note|default ~ '<p>No changes have been made since your rejection, this message will disappear when the author makes changes, or resubmits for approval</p>',
+            'icon': 'exclamation-sign',
+            'class': 'panel--danger u-margin-top-none'
         })
     }}
 
@@ -174,9 +161,9 @@ Cras eget elit maximus, facilisis ante sed, feugiat mi. Morbi molestie hendrerit
     {{
         form.end({
             'actions': [
-                html.button({
-                    'label': 'Save',
-                    'class': 'btn--primary'
+                form.submit({
+                    'class': 'btn--primary',
+                    'label': 'Save'
                 }),
                 html.button({
                     'class': 'btn--naked',
@@ -188,27 +175,26 @@ Cras eget elit maximus, facilisis ante sed, feugiat mi. Morbi molestie hendrerit
         })
     }}
 
-    <div id="workflow-approve" class="modal modal__large">
+    <div id="workflow-submit" class="modal modal__large">
         <div class="modal__dialog">
             {{
                 form.create({
                     'method': 'GET',
-                    'id': 'submit-approve',
-                    'name': 'submit-approve',
-                    'action': 'index_approve.html.twig'
+                    'id': 'submit',
+                    'name': 'submit',
+                    'action': 'index.html.twig'
                 })
             }}
             <div class="modal__content">
                 <div class="modal__header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h1 class="modal__title">Approve Content</h1>
+                    <h1 class="modal__title">Submit for Approval</h1>
                 </div>
                 <div class="modal__body">
-                    <p>The original author (Sarah Backhouse) will be notified that this content has been approved for publishing.</p>
-                    <p><strong>Approving will not immediately publish this content</strong>. Either the original author, or an Admin with suitable permissions will need to publish once approved.</p>
+
                     {{
                         form.textarea({
-                            'label': 'Note to author (optional)',
+                            'label': 'Note to reviewer (optional)',
                             'id': 'note',
                             'name': 'note',
                             'class': 'form__group--full form__group--top form__group--flush u-margin-bottom-none',
@@ -219,8 +205,8 @@ Cras eget elit maximus, facilisis ante sed, feugiat mi. Morbi molestie hendrerit
                 <div class="modal__footer">
                     {{
                         html.button({
-                            'class': 'btn--success',
-                            'label': 'Approve',
+                            'class': 'btn--primary',
+                            'label': 'Submit for Approval',
                             'type': 'submit'
                         })
                     }}
@@ -236,54 +222,5 @@ Cras eget elit maximus, facilisis ante sed, feugiat mi. Morbi molestie hendrerit
             {{ form.end() }}
         </div><!-- /.modal__dialog -->
     </div><!-- /.modal -->
-
-    <div id="workflow-reject" class="modal modal__large modal--danger">
-            <div class="modal__dialog">
-                {{
-                    form.create({
-                        'method': 'GET',
-                        'id': 'submit-reject',
-                        'name': 'submit-reject',
-                        'action': 'index_reject.html.twig'
-                    })
-                }}
-                <div class="modal__content">
-                    <div class="modal__header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h1 class="modal__title">Reject Content</h1>
-                    </div>
-                    <div class="modal__body">
-                        <p>Provide a helpful reason why this content has been rejected, with suitable guidance if changes are required.</p>
-                        <p>The original author (Sarah Backhouse) will be notified.</p>
-                        {{
-                            form.textarea({
-                                'label': 'Reasons for rejection (optional)',
-                                'id': 'note',
-                                'name': 'note',
-                                'class': 'form__group--full form__group--top form__group--flush u-margin-bottom-none',
-                                'rows': 5
-                            })
-                        }}
-                    </div>
-                    <div class="modal__footer">
-                        {{
-                            html.button({
-                                'class': 'btn--danger',
-                                'label': 'Reject',
-                                'type': 'submit'
-                            })
-                        }}
-                        {{
-                            html.button({
-                                'class': 'btn--naked',
-                                'data-dismiss': 'modal',
-                                'label': 'Cancel'
-                            })
-                        }}
-                    </div>
-                </div><!-- /.modal__content -->
-                {{ form.end() }}
-            </div><!-- /.modal__dialog -->
-        </div><!-- /.modal -->    
 
 {% endblock %}

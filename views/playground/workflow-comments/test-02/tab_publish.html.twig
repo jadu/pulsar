@@ -20,9 +20,8 @@
                     },
                     {
                         'label': 'Submit for approval',
-                        'href': '#workflow-submit',
-                        'data-toggle': 'modal',
-                        'icon': 'hand-o-right'
+                        'href': 'index.html.twig',
+                        'icon': 'hand-o-right',
                     }
                 ],
                 [
@@ -63,15 +62,16 @@
 {%- endblock -%}
 
 {%- block actions_right -%}
-    {{
-        html.button({
-            'label': 'Submit for Approval',
-            'class': '',
-            'data-toggle': 'modal',
-            'type': 'link',
-            'href': '#workflow-submit'
-        })
-    }}
+    <div data-toggle="tooltips" title="There are no new changes to approve">
+        {{
+            html.button({
+                'label': 'Submit for Approval',
+                'disabled': true,
+                'type': 'link',
+                'href': '#workflow-submit'
+            })
+        }}
+    </div>
     {{
         html.button({
             'label': 'Save',
@@ -81,7 +81,7 @@
 {%- endblock -%}
 
 {% block tab_content %}
-    <style>
+<style>
         [method="POST"] .form__group {
             background-color: #efefef;
             margin-bottom: 1px;
@@ -89,8 +89,7 @@
         }
     </style>
     {{
-        form.create({
-        })
+        form.create()
     }}
 
     {{
@@ -155,13 +154,6 @@ Cras eget elit maximus, facilisis ante sed, feugiat mi. Morbi molestie hendrerit
                     'label': 'Save'
                 }),
                 html.button({
-                    'class': '',
-                    'label': 'Submit for Approval',
-                    'data-toggle': 'modal',
-                    'type': 'link',
-                    'href': '#workflow-submit'
-                }),
-                html.button({
                     'class': 'btn--naked',
                     'type': 'link',
                     'label': 'Cancel',
@@ -170,55 +162,5 @@ Cras eget elit maximus, facilisis ante sed, feugiat mi. Morbi molestie hendrerit
             ]
         })
     }}
-
-    <div id="workflow-submit" class="modal modal__large">
-        <div class="modal__dialog">
-            {{
-                form.create({
-                    'method': 'GET',
-                    'id': 'submit',
-                    'name': 'submit',
-                    'action': 'index_two.html.twig'
-                })
-            }}
-            <div class="modal__content">
-                <div class="modal__header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h1 class="modal__title">Submit for Approval</h1>
-                </div>
-                <div class="modal__body">
-                    <p>Before your content can be published a managing editor must review and approve it.</p>
-                    <p>You can provide useful notes here to aid their decision. You will be notified if your content has been approved or rejected.</p>
-                    {{
-                        form.textarea({
-                            'label': 'Note to reviewer (optional)',
-                            'form': 'submit',
-                            'id': 'note',
-                            'name': 'note',
-                            'class': 'form__group--full form__group--top form__group--flush u-margin-bottom-none',
-                            'rows': 5
-                        })
-                    }}
-                </div>
-                <div class="modal__footer">
-                    {{
-                        html.button({
-                            'class': 'btn--primary',
-                            'label': 'Submit for Approval',
-                            'type': 'submit'
-                        })
-                    }}
-                    {{
-                        html.button({
-                            'class': 'btn--naked',
-                            'data-dismiss': 'modal',
-                            'label': 'Cancel'
-                        })
-                    }}
-                </div>
-            </div><!-- /.modal__content -->
-            {{ form.end() }}
-        </div><!-- /.modal__dialog -->
-    </div><!-- /.modal -->    
 
 {% endblock %}

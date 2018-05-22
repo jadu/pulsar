@@ -20,7 +20,11 @@
                     },
                     {
                         'label': 'Submit for approval',
-                        'href': 'index.html.twig',
+                        'href': '#workflow-submit',
+                        'disabled': true,
+                        'data-toggle': 'tooltips',
+                        'title': 'There are no new changes to approve',
+                        'data-placement': 'right',
                         'icon': 'hand-o-right'
                     }
                 ],
@@ -62,15 +66,16 @@
 {%- endblock -%}
 
 {%- block actions_right -%}
-    {{
-        html.button({
-            'label': 'Submit for Approval',
-            'class': '',
-            'data-toggle': 'modal',
-            'type': 'link',
-            'href': '#workflow-submit'
-        })
-    }}
+    <div data-toggle="tooltips" title="There are no new changes to approve">
+        {{
+            html.button({
+                'label': 'Submit for Approval',
+                'disabled': true,
+                'type': 'link',
+                'href': '#workflow-submit'
+            })
+        }}
+    </div>
     {{
         html.button({
             'label': 'Save',
@@ -87,20 +92,6 @@
             padding: 5px;
         }
     </style>
-
-    {% if _get.note is defined and _get.note is not empty %}
-        {% set note = '<p class="panel--callout"><strong>Notes to author</strong>: <q>' ~ _get.note ~ '</q></p>' %}
-    {% endif %}
-
-    {{
-        html.panel({
-            'title': '<strong>Admin McAdminface</strong> has rejected this content',
-            'body': note|default ~ '<p>No changes have been made since your rejection, this message will disappear when the author makes changes, or resubmits for approval</p>',
-            'icon': 'times-circle',
-            'class': 'panel--danger u-margin-top-none'
-        })
-    }}
-
     {{
         form.create()
     }}
@@ -167,13 +158,6 @@ Cras eget elit maximus, facilisis ante sed, feugiat mi. Morbi molestie hendrerit
                     'label': 'Save'
                 }),
                 html.button({
-                    'class': '',
-                    'label': 'Submit for Approval',
-                    'data-toggle': 'modal',
-                    'type': 'link',
-                    'href': '#workflow-submit'
-                }),
-                html.button({
                     'class': 'btn--naked',
                     'type': 'link',
                     'label': 'Cancel',
@@ -182,54 +166,5 @@ Cras eget elit maximus, facilisis ante sed, feugiat mi. Morbi molestie hendrerit
             ]
         })
     }}
-
-    <div id="workflow-submit" class="modal modal__large">
-        <div class="modal__dialog">
-            {{
-                form.create({
-                    'method': 'GET',
-                    'id': 'submit-approve',
-                    'name': 'submit-approve',
-                    'action': 'index.html.twig'
-                })
-            }}
-            <div class="modal__content">
-                <div class="modal__header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h1 class="modal__title">Submit for Approval</h1>
-                </div>
-                <div class="modal__body">
-                    <p>Before your content can be published a managing editor must review and approve it.</p>
-                    <p>You can provide useful notes here to aid their decision. You will be notified if your content has been approved or rejected.</p>
-                    {{
-                        form.textarea({
-                            'label': 'Note to reviewer (optional)',
-                            'id': 'note',
-                            'name': 'note',
-                            'class': 'form__group--full form__group--top form__group--flush u-margin-bottom-none',
-                            'rows': 5
-                        })
-                    }}
-                </div>
-                <div class="modal__footer">
-                    {{
-                        html.button({
-                            'class': 'btn--primary',
-                            'label': 'Submit for Approval',
-                            'type': 'submit',
-                        })
-                    }}
-                    {{
-                        html.button({
-                            'class': 'btn--naked',
-                            'data-dismiss': 'modal',
-                            'label': 'Cancel'
-                        })
-                    }}
-                </div>
-            </div><!-- /.modal__content -->
-        </div><!-- /.modal__dialog -->
-        {{ form.end() }}
-    </div><!-- /.modal -->    
 
 {% endblock %}

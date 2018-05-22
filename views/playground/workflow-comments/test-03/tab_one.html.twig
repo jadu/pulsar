@@ -19,9 +19,28 @@
                         'icon': 'save'
                     },
                     {
-                        'label': 'Cancel approval',
-                        'href': 'index.html.twig',
-                        'icon': 'hand-stop-o'
+                        'label': 'Quick approve',
+                        'href': 'index_approve.html.twig?view=no-comment',
+                        'data-toggle': 'modal',
+                        'icon': 'thumbs-o-up'
+                    },
+                    {
+                        'label': 'Approve with comments',
+                        'href': '#workflow-approve',
+                        'data-toggle': 'modal',
+                        'icon': 'comment-o'
+                    },
+                    {
+                        'label': 'Quick reject',
+                        'href': 'index_reject.html.twig?view=no-comment',
+                        'data-toggle': 'modal',
+                        'icon': 'thumbs-o-down'
+                    },
+                    {
+                        'label': 'Reject with comments',
+                        'href': '#workflow-reject',
+                        'data-toggle': 'modal',
+                        'icon': 'comment-o'
                     }
                 ],
                 [
@@ -64,55 +83,49 @@
 {%- block actions_right -%}
     {{
         html.button({
-            'label': 'Submit for Approval',
-            'class': '',
-            'data-toggle': 'modal',
-            'type': 'link',
-            'href': '#workflow-submit',
-            'disabled': true,
-        })
-    }}
-    {{
-        html.button({
             'label': 'Save',
-            'class': 'btn--primary',
-            'disabled': true
+            'class': 'btn--primary'
         })
     }}
 {%- endblock -%}
 
 {% block tab_content %}
 <style>
-    [method="POST"] .form__group {
+        [method="POST"] .form__group {
         background-color: #efefef;
         margin-bottom: 1px;
         padding: 5px;
     }
 </style>
-
     {% if _get.note is defined and _get.note is not empty %}
-        {% set note = '<p class="panel--callout"><strong>Notes to reviewer</strong>: <q>' ~ _get.note ~ '</q></p>' %}
+        {% set note = '<p class="panel--callout"><strong>Notes from author</strong>: <q>' ~ _get.note ~ '</q></p>' %}
+    {% else %}
+        {% set note = '<p class="panel--callout"><strong>Notes from author</strong>: <q>This is required for the new marketing push</q></p>' %}
     {% endif %}
-
     {{
         html.panel({
             'title': 'This content is awaiting approval',
-            'body': '<p>A managing editor has been asked to review and approve your content before it can be published.</p>
-            <p>You will be notified when they have completed their review.</p>' ~ note|default,
-            'class': 'panel--info u-margin-top-none',
-            'icon': 'exclamation-triangle',
-            'actions': [
-                {
-                    'label': 'Cancel Approval',
-                    'class': 'btn--inverse btn--small',
-                    'type': 'link',
-                    'href': 'index.html.twig'
-                }
-            ]
+            'body': '<p>Please review the content and choose to approve for publishing, or reject (with reason, such as to request changes).</p><p>As a reviewer you may make changes to this document before approving.</p>' ~ note|default ~ '
+            <div class="panel__actions">
+                <div class="btn__group dropdown">
+                    <button data-toggle="dropdown" class="btn btn--success dropdown__toggle">Approve&nbsp;<span class="caret"></span></button>
+                    <ul class="dropdown__menu pull-left">
+                        <li><a href="index_approve.html.twig?view=no-comment"><i aria-hidden="true" class="icon-thumbs-o-up"><span class="hide">Approve</span></i> Quick Approve</a></li>
+                        <li><a data-toggle="modal" href="#workflow-approve"><i aria-hidden="true" class="icon-comment-o"><span class="hide">Approve with comments</span></i> Approve with Comments</a></li>
+                    </ul>
+                </div>
+                <div class="btn__group dropdown">
+                    <button data-toggle="dropdown" class="btn btn--danger dropdown__toggle">Reject&nbsp;<span class="caret"></span></button>
+                    <ul class="dropdown__menu pull-left">
+                        <li><a href="index_reject.html.twig?view=no-comment"><i aria-hidden="true" class="icon-thumbs-o-down"></i> Quick Reject</a></li>
+                        <li><a data-toggle="modal" href="#workflow-reject"><i aria-hidden="true" class="icon-comment-o"><span class="hide">reject with comment</span></i> Reject with Comments</a></li>
+                    </ul>
+                </div>
+            </div>',
+            'class': 'panel--info u-margin-top-none'
         })
     }}
 
-<div data-disable-ui="true">
     {{
         form.create()
     }}
@@ -174,16 +187,9 @@ Cras eget elit maximus, facilisis ante sed, feugiat mi. Morbi molestie hendrerit
     {{
         form.end({
             'actions': [
-                form.submit({
-                    'class': 'btn--primary',
-                    'label': 'Save'
-                }),
                 html.button({
-                    'class': '',
-                    'label': 'Submit for Approval',
-                    'data-toggle': 'modal',
-                    'type': 'link',
-                    'href': '#workflow-submit'
+                    'label': 'Save',
+                    'class': 'btn--primary'
                 }),
                 html.button({
                     'class': 'btn--naked',
@@ -194,33 +200,100 @@ Cras eget elit maximus, facilisis ante sed, feugiat mi. Morbi molestie hendrerit
             ]
         })
     }}
-</div>
 
-    <div id="workflow-submit" class="modal modal__large">
+    <div id="workflow-approve" class="modal modal__large">
         <div class="modal__dialog">
+            {{
+                form.create({
+                    'method': 'GET',
+                    'id': 'submit-approve',
+                    'name': 'submit-approve',
+                    'action': 'index_approve.html.twig'
+                })
+            }}
             <div class="modal__content">
                 <div class="modal__header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h1 class="modal__title">Submit for Approval</h1>
+                    <h1 class="modal__title">Approve Content</h1>
                 </div>
                 <div class="modal__body">
-                    <p>Before your content can be published a managing editor must review and approve it.</p>
-                    <p>You can provide useful notes here to aid their decision. You will be notified if your content has been approved or rejected.</p>
                     {{
                         form.textarea({
-                            'label': 'Note to reviewer (optional)',
-                            'id': 'review-note',
+                            'label': 'Note to author (optional)',
+                            'id': 'note',
+                            'name': 'note',
                             'class': 'form__group--full form__group--top form__group--flush u-margin-bottom-none',
                             'rows': 5
                         })
                     }}
                 </div>
                 <div class="modal__footer">
-                    <button type="button" class="btn btn--primary">Submit for Approval</button>
-                    <button type="button" class="btn btn--naked" data-dismiss="modal">Cancel</button>
-                </div>
-            </div><!-- /.modal__content -->
-        </div><!-- /.modal__dialog -->
-    </div><!-- /.modal -->    
+                        {{
+                            html.button({
+                                'class': 'btn--success',
+                                'label': 'Approve',
+                                'type': 'submit'
+                            })
+                        }}
+                        {{
+                            html.button({
+                                'class': 'btn--naked',
+                                'data-dismiss': 'modal',
+                                'label': 'Cancel'
+                            })
+                        }}
+                    </div>
+                </div><!-- /.modal__content -->
+                {{ form.end() }}
+            </div><!-- /.modal__dialog -->
+        </div><!-- /.modal -->
+
+    <div id="workflow-reject" class="modal modal__large modal--danger">
+            <div class="modal__dialog">
+                {{
+                    form.create({
+                        'method': 'GET',
+                        'id': 'submit-reject',
+                        'name': 'submit-reject',
+                        'action': 'index_reject.html.twig'
+                    })
+                }}
+                <div class="modal__content">
+                    <div class="modal__header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h1 class="modal__title">Reject Content</h1>
+                    </div>
+                    <div class="modal__body">
+                        {{
+                            form.textarea({
+                                'label': 'Reasons for rejection (optional)',
+                                'id': 'note',
+                                'name': 'note',
+                                'class': 'form__group--full form__group--top form__group--flush u-margin-bottom-none',
+                                'rows': 5
+                            })
+                        }}
+                    </div>
+                    <div class="modal__footer">
+                            {{
+                                html.button({
+                                    'class': 'btn--danger',
+                                    'label': 'Reject',
+                                    'type': 'submit'
+                                })
+                            }}
+                            {{
+                                html.button({
+                                    'class': 'btn--naked',
+                                    'data-dismiss': 'modal',
+                                    'label': 'Cancel'
+                                })
+                            }}
+                        </div>
+                    </div><!-- /.modal__content -->
+                    {{ form.end() }}
+                </div><!-- /.modal__dialog -->
+            </div><!-- /.modal -->
+
 
 {% endblock %}

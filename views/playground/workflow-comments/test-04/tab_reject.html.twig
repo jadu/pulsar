@@ -19,9 +19,9 @@
                         'icon': 'save'
                     },
                     {
-                        'label': 'Publish',
-                        'href': 'index_publish.html.twig',
-                        'icon': 'check-circle'
+                        'label': 'Submit for approval',
+                        'href': 'index.html.twig',
+                        'icon': 'hand-o-right'
                     }
                 ],
                 [
@@ -64,19 +64,19 @@
 {%- block actions_right -%}
     {{
         html.button({
-            'label': 'Save',
-            'class': ''
+            'label': 'Submit for Approval',
+            'class': '',
+            'data-toggle': 'modal',
+            'type': 'link',
+            'href': '#workflow-submit'
         })
     }}
     {{
         html.button({
-            'label': 'Publish',
-            'class': 'btn--success',
-            'type': 'link',
-            'href': 'index_publish.html.twig'
+            'label': 'Save',
+            'class': 'btn--primary'
         })
     }}
-
 {%- endblock -%}
 
 {% block tab_content %}
@@ -87,18 +87,47 @@
             padding: 5px;
         }
     </style>
+
     {% if _get.note is defined and _get.note is not empty %}
         {% set note = '<p class="panel--callout"><strong>Notes to author</strong>: <q>' ~ _get.note ~ '</q></p>' %}
     {% endif %}
 
     {{
         html.panel({
-            'title': '<strong>Admin McAdminface</strong> has approved this content',
-            'body': '<p>It can now be published to the website. If any further changes are made they will also need to be approved.</p>' ~ note|default,
-            'icon': 'thumbs-o-up',
-            'class': 'panel--primary u-margin-top-none'
+            'title': '<strong>Admin McAdminface</strong> has rejected this content',
+            'body': note|default ~ '<p>No changes have been made since your rejection, this message will disappear when the author makes changes, or resubmits for approval</p>',
+            'icon': 'times-circle',
+            'class': 'panel--danger u-margin-top-none'
         })
     }}
+
+    <div class="progress-list">
+
+        <a href="#" class="progress-list__item progress-list__item--complete">
+            <span class="progress-list__label">
+                <span class="badge badge--round badge--outline">Step 1</span>
+                Draft
+            </span>
+            <span class="progress-list__arrow">&gt;</span>
+        </a>
+
+        <a href="#" class="progress-list__item">
+            <span class="progress-list__label">
+                <span class="badge badge--round badge--outline">Step 2</span>
+                Submitted
+            </span>
+            <span class="progress-list__arrow">&gt;</span>
+        </a>
+
+        <a href="#" class="progress-list__item">
+            <span class="progress-list__label">
+                <span class="badge badge--round badge--outline">Step 3</span>
+                Approved
+            </span>
+            <span class="progress-list__arrow">&gt;</span>
+        </a>
+
+    </div>
 
     {{
         form.create()
@@ -161,15 +190,8 @@ Cras eget elit maximus, facilisis ante sed, feugiat mi. Morbi molestie hendrerit
     {{
         form.end({
             'actions': [
-                html.button({
-                    'label': 'Publish',
-                    'class': 'btn--success',
-                    'data-toggle': 'modal',
-                    'type': 'link',
-                    'href': '#workflow-submit'
-                }),
                 form.submit({
-                    'class': '',
+                    'class': 'btn--primary',
                     'label': 'Save'
                 }),
                 html.button({
@@ -182,5 +204,51 @@ Cras eget elit maximus, facilisis ante sed, feugiat mi. Morbi molestie hendrerit
         })
     }}
 
+    <div id="workflow-submit" class="modal modal__large">
+        <div class="modal__dialog">
+            {{
+                form.create({
+                    'method': 'GET',
+                    'id': 'submit-approve',
+                    'name': 'submit-approve',
+                    'action': 'index.html.twig'
+                })
+            }}
+            <div class="modal__content">
+                <div class="modal__header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h1 class="modal__title">Submit for Approval</h1>
+                </div>
+                <div class="modal__body">
+                    {{
+                        form.textarea({
+                            'label': 'Note to reviewer (optional)',
+                            'id': 'note',
+                            'name': 'note',
+                            'class': 'form__group--full form__group--top form__group--flush u-margin-bottom-none',
+                            'rows': 5
+                        })
+                    }}
+                </div>
+                <div class="modal__footer">
+                    {{
+                        html.button({
+                            'class': 'btn--primary',
+                            'label': 'Submit for Approval',
+                            'type': 'submit',
+                        })
+                    }}
+                    {{
+                        html.button({
+                            'class': 'btn--naked',
+                            'data-dismiss': 'modal',
+                            'label': 'Cancel'
+                        })
+                    }}
+                </div>
+            </div><!-- /.modal__content -->
+        </div><!-- /.modal__dialog -->
+        {{ form.end() }}
+    </div><!-- /.modal -->
 
 {% endblock %}

@@ -1,0 +1,312 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
+{% set i = 1 %}
+
+{%- block actions_left -%}
+    {{
+        html.actions_menu({
+            'items': [
+                [
+                    {
+                        'label': 'Create New Page',
+                        'href': '#one',
+                        'icon': 'file-text-o'
+                    }
+                ],
+                [
+                    {
+                        'label': 'Save',
+                        'href': '#save',
+                        'icon': 'save'
+                    },
+                    {
+                        'label': 'Approve',
+                        'href': '#workflow-approve',
+                        'data-toggle': 'modal',
+                        'icon': 'thumbs-o-up'
+                    },
+                    {
+                        'label': 'Reject',
+                        'href': '#workflow-reject',
+                        'data-toggle': 'modal',
+                        'icon': 'thumbs-o-down'
+                    }
+                ],
+                [
+                    {
+                        'label': 'Lock',
+                        'href': '#lock',
+                        'icon': 'lock'
+                    },
+                    {
+                        'label': 'Collaborate',
+                        'href': '#collaborate',
+                        'icon': 'user-plus'
+                    }
+                ],
+                [
+                    {
+                        'label': 'Preview',
+                        'href': '#preview',
+                        'icon': 'eye-open'
+                    },
+                    {
+                        'label': 'View history',
+                        'href': '#history',
+                        'icon': 'history'
+                    }
+                ],
+                [
+                    {
+                        'class': 'link--danger',
+                        'label': 'Delete',
+                        'href': '#delete',
+                        'icon': 'remove'
+                    }
+                ],
+            ]
+        })
+    }}
+{%- endblock -%}
+
+{%- block actions_right -%}
+    {{
+        html.button({
+            'label': 'Save',
+            'class': 'btn--primary'
+        })
+    }}
+{%- endblock -%}
+
+{% block tab_content %}
+    <style>
+        [method="POST"] .form__group {
+            background-color: #efefef;
+            margin-bottom: 1px;
+            padding: 5px;
+        }
+    </style>
+    {% if _get.note is defined and _get.note is not empty %}
+        {% set note = '<p class="panel--callout"><strong>Notes to reviewer</strong>: <q>' ~ _get.note ~ '</q></p>' %}
+    {% endif %}
+    {{
+        html.panel({
+            'title': 'This content is awaiting approval',
+            'body': '<p>Please review the content and choose to approve for publishing, or reject (with reason, such as to request changes).</p>
+            <p></p>As a reviewer you may make changes to this document before approving.</p>
+            <p class="panel--callout"><strong>Notes from author</strong>: <q>This is required for the new marketing push</q></p>',
+            'class': 'panel--info u-margin-top-none',
+            'actions': [
+                {
+                    'label': 'Approve',
+                    'class': 'btn--success',
+                    'data-toggle': 'modal',
+                    'href': '#workflow-approve'
+                },
+                {
+                    'label': 'Reject',
+                    'class': 'btn--danger',
+                    'data-toggle': 'modal',
+                    'href': '#workflow-reject'
+                }
+            ]
+        })
+    }}
+
+    <div class="progress-list">
+
+        <a href="#" class="progress-list__item progress-list__item--complete">
+            <span class="progress-list__label">
+                <span class="badge badge--round badge--outline">Step 1</span>
+                Draft
+            </span>
+            <span class="progress-list__arrow">&gt;</span>
+        </a>
+
+        <a href="#" class="progress-list__item progress-list__item--current">
+            <span class="progress-list__label">
+                <span class="badge badge--round badge--outline">Step 2</span>
+                Submitted
+            </span>
+            <span class="progress-list__arrow">&gt;</span>
+        </a>
+
+        <a href="#" class="progress-list__item">
+            <span class="progress-list__label">
+                <span class="badge badge--round badge--outline">Step 3</span>
+                Approved
+            </span>
+            <span class="progress-list__arrow">&gt;</span>
+        </a>
+
+    </div>
+
+    {{
+        form.create()
+    }}
+
+    {{
+        form.text({
+            'id': i,
+            'label': 'Title',
+            'required': true,
+            'value': 'Example Content Item'
+        })
+    }}
+    {% set i = i + 1 %}
+
+    {{
+        form.content({
+            'id': i,
+            'label': 'Categories',
+            'required': true,
+            'value': html.button({
+                'label': 'Assign Categories'
+            })
+        })
+    }}
+    {% set i = i + 1 %}
+
+    {{
+        form.content({
+            'id': i,
+            'label': 'Metadata',
+            'required': true,
+            'value': html.button({
+                'label': 'Assign Metadata'
+            })
+        })
+    }}
+    {% set i = i + 1 %}
+
+    {{
+        form.textarea({
+            'id': i,
+            'label': 'Content',
+            'required': true,
+            'rows': 20,
+            'class': 'form__group--full',
+            'value': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin hendrerit sem nec ante fringilla venenatis non a metus. Ut commodo sagittis velit, in vehicula urna venenatis eu. In orci libero, porta sed nisi id, commodo fermentum quam. Donec auctor massa sed orci ornare, non vestibulum est gravida. Morbi sit amet feugiat urna. Donec pretium venenatis est, sed tempus mi euismod id. Nam posuere hendrerit blandit. Fusce pharetra tortor eros, ut auctor orci porta et.
+
+Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce nunc lectus, porta vitae eros sed, pellentesque ultricies mi. Maecenas nisi lectus, sodales et turpis nec, finibus sagittis dolor. Morbi dignissim, nisi ac dapibus sagittis, nisl tellus tincidunt tortor, in ultricies nunc dolor sed turpis. Praesent at varius odio. Morbi auctor faucibus nunc id mattis. Aenean tristique lacus a tempor convallis. Suspendisse blandit massa eget dolor semper, vitae aliquet nulla pellentesque. Quisque tristique lorem tellus, bibendum varius ipsum tempus at. Phasellus interdum, tortor quis sollicitudin congue, ipsum elit aliquet erat, eu rutrum libero sapien sit amet libero. Vestibulum vitae venenatis lectus. Aenean gravida dolor non tincidunt efficitur.
+
+Mauris mollis turpis vel ligula finibus, vitae porttitor purus vehicula. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Quisque sed convallis arcu. Donec commodo ligula quis libero lacinia pretium. Proin turpis nisl, vestibulum eget malesuada in, facilisis id leo. Duis interdum, lacus sit amet rhoncus porttitor, mauris ligula auctor mauris, eu vehicula massa mauris ac turpis. Nullam pulvinar turpis sed pellentesque mattis. Donec tristique, risus iaculis faucibus interdum, elit quam mollis risus, at viverra ipsum dolor a ex. Praesent nisl nisi, dignissim quis dictum nec, varius non ante. Nullam tempor sapien nec nisi hendrerit aliquet. Praesent cursus mollis suscipit. Cras egestas quam et eros tristique elementum. Vestibulum eu consectetur nisi, sed pulvinar diam. Sed arcu nulla, feugiat vitae molestie at, vulputate a ligula. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur et finibus ipsum.
+
+Phasellus sollicitudin, odio eu molestie finibus, neque ex tempus nisl, at tincidunt tortor arcu vel nulla. Vestibulum vel massa vitae lorem scelerisque bibendum. Vestibulum et fermentum purus. Maecenas condimentum interdum feugiat. Etiam non mi ex. Nulla eu molestie augue. Maecenas placerat ante tellus, non iaculis nulla ultrices lacinia. Curabitur quis mi sed sapien condimentum rutrum. Etiam sodales tortor quis tempus volutpat. In non enim euismod, viverra odio sit amet, efficitur nisi. Donec id nulla vestibulum, iaculis dolor non, interdum leo. In lectus eros, eleifend nec mi finibus, commodo sagittis est.
+
+Cras eget elit maximus, facilisis ante sed, feugiat mi. Morbi molestie hendrerit tellus ut mattis. Sed faucibus auctor semper. Aliquam euismod nisi vitae ante cursus, eu imperdiet magna lacinia. Nullam porta, massa quis egestas mattis, orci lectus commodo ligula, non aliquam ex nisi et augue. Praesent dignissim arcu ac ultricies varius. Aliquam in enim et justo semper aliquet id sed leo. Cras non ligula leo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Morbi consequat nisl eros, a venenatis ligula euismod sit amet.'
+        })
+    }}
+    {% set i = i + 1 %}
+
+    {{
+        form.end({
+            'actions': [
+                html.button({
+                    'label': 'Save',
+                    'class': 'btn--primary'
+                }),
+                html.button({
+                    'class': 'btn--naked',
+                    'type': 'link',
+                    'label': 'Cancel',
+                    'href': '#'
+                })
+            ]
+        })
+    }}
+
+    <div id="workflow-approve" class="modal modal__large">
+        <div class="modal__dialog">
+            {{
+                form.create({
+                    'method': 'GET',
+                    'id': 'submit-approve',
+                    'name': 'submit-approve',
+                    'action': 'index_approve.html.twig'
+                })
+            }}
+            <div class="modal__content">
+                <div class="modal__header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h1 class="modal__title">Approve Content</h1>
+                </div>
+                <div class="modal__body">
+                    {{
+                        form.textarea({
+                            'label': 'Note to author (optional)',
+                            'id': 'note',
+                            'name': 'note',
+                            'class': 'form__group--full form__group--top form__group--flush u-margin-bottom-none',
+                            'rows': 5
+                        })
+                    }}
+                </div>
+                <div class="modal__footer">
+                    {{
+                        html.button({
+                            'class': 'btn--success',
+                            'label': 'Approve',
+                            'type': 'submit'
+                        })
+                    }}
+                    {{
+                        html.button({
+                            'class': 'btn--naked',
+                            'data-dismiss': 'modal',
+                            'label': 'Cancel'
+                        })
+                    }}
+                </div>
+            </div><!-- /.modal__content -->
+            {{ form.end() }}
+        </div><!-- /.modal__dialog -->
+    </div><!-- /.modal -->
+
+    <div id="workflow-reject" class="modal modal__large modal--danger">
+            <div class="modal__dialog">
+                {{
+                    form.create({
+                        'method': 'GET',
+                        'id': 'submit-reject',
+                        'name': 'submit-reject',
+                        'action': 'index_reject.html.twig'
+                    })
+                }}
+                <div class="modal__content">
+                    <div class="modal__header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h1 class="modal__title">Reject Content</h1>
+                    </div>
+                    <div class="modal__body">
+                        {{
+                            form.textarea({
+                                'label': 'Reasons for rejection (optional)',
+                                'id': 'note',
+                                'name': 'note',
+                                'class': 'form__group--full form__group--top form__group--flush u-margin-bottom-none',
+                                'rows': 5
+                            })
+                        }}
+                    </div>
+                    <div class="modal__footer">
+                        {{
+                            html.button({
+                                'class': 'btn--danger',
+                                'label': 'Reject',
+                                'type': 'submit'
+                            })
+                        }}
+                        {{
+                            html.button({
+                                'class': 'btn--naked',
+                                'data-dismiss': 'modal',
+                                'label': 'Cancel'
+                            })
+                        }}
+                    </div>
+                </div><!-- /.modal__content -->
+                {{ form.end() }}
+            </div><!-- /.modal__dialog -->
+        </div><!-- /.modal -->
+
+{% endblock %}
