@@ -6,6 +6,7 @@ use Jadu\Pulsar\Twig\Extension\ArrayExtension;
 use Jadu\Pulsar\Twig\Extension\AttributeParserExtension;
 use Jadu\Pulsar\Twig\Extension\ConfigExtension;
 use Jadu\Pulsar\Twig\Extension\ConstantDefinedExtension;
+use Jadu\Pulsar\Twig\Extension\HelperOptionsModifierExtension;
 use Jadu\Pulsar\Twig\Extension\RelativeTimeExtension;
 use Jadu\Pulsar\Twig\Extension\UrlParamsExtension;
 use Jadu\Pulsar\Twig\Extension\TabsExtension;
@@ -38,6 +39,7 @@ class MacroTest extends \PHPUnit_Framework_TestCase
         $this->twig->addExtension(new AttributeParserExtension());
         $this->twig->addExtension(new ConfigExtension($baseDir . 'pulsar.json'));
         $this->twig->addExtension(new ConstantDefinedExtension());
+        $this->twig->addExtension(new HelperOptionsModifierExtension());
         $this->twig->addExtension(new RelativeTimeExtension());
         $this->twig->addExtension(new UrlParamsExtension(array()));
         $this->twig->addExtension(new TabsExtension());

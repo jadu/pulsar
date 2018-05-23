@@ -34,7 +34,7 @@ A generic component to use wherever suitable, can be used within an empty tab if
 
 You should still display the column titles in the table header, this helps to inform the user about what kind of data is normally present in the table.
 
-<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> If you're using datatables instead of plain HTML tables you simply need to have a table with no rows in the body and this message will be displayed automatically. Check the <a href="datatable.md">datatable  documentation</a> for more information on how to customise this message.</a></div>
+<div class="alert alert-info" role="alert" aria-atomic="true"><i class="fa fa-info-circle"></i> If you're using datatables instead of plain HTML tables you simply need to have a table with no rows in the body and this message will be displayed automatically. Check the <a href="datatable.md">datatable  documentation</a> for more information on how to customise this message.</a></div>
 
 Use the following markup inside your `<table>`:
 
