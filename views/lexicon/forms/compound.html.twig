@@ -279,7 +279,8 @@
                     'id': 'dd-' ~ i,
                     'placeholder': 'DD',
                     'show-label': false,
-                    'type': 'text'
+                    'type': 'text',
+                    'has_error': true
                 },
                 {
                     'class': 'form__control-col--1',
@@ -287,7 +288,8 @@
                     'id': 'mm-' ~ i,
                     'placeholder': 'MM',
                     'show-label': false,
-                    'type': 'text'
+                    'type': 'text',
+                    'has_error': true
                 },
                 {
                     'class': 'form__control-col--1',
@@ -295,7 +297,8 @@
                     'id': 'yyyy-' ~ i,
                     'placeholder': 'YYYY',
                     'show-label': false,
-                    'type': 'text'
+                    'type': 'text',
+                    'has_error': true
                 }
             ]
         })
@@ -307,15 +310,17 @@
             'id': 'comp-' ~ i,
             'help': 'For example: 25 12 1980',
             'label': 'Date of birth',
-            'error': ['Do this', 'Do this too'],
+            'error': ['Invalid day of birth entered', 'Invalid year of borth entered'],
+            'class': 'form__group--partial-state',
             'inputs': [
                 {
-                    'class': 'form__control-col--1',
+                    'class': 'form__control-col--1 has-error',
                     'label': 'Day',
                     'id': 'dd-' ~ i,
                     'placeholder': 'DD',
                     'show-label': false,
-                    'type': 'text'
+                    'type': 'text',
+                    'has_error': true
                 },
                 {
                     'class': 'form__control-col--1',
@@ -326,12 +331,13 @@
                     'type': 'text'
                 },
                 {
-                    'class': 'form__control-col--1',
+                    'class': 'form__control-col--1 has-error',
                     'label': 'Year',
                     'id': 'yyyy-' ~ i,
                     'placeholder': 'YYYY',
                     'show-label': false,
-                    'type': 'text'
+                    'type': 'text',
+                    'has_error': true
                 }
             ]
         })
@@ -351,7 +357,8 @@
                     'id': 'dd-' ~ i,
                     'placeholder': 'DD',
                     'show-label': false,
-                    'type': 'text'
+                    'type': 'text',
+                    'has_error': true
                 },
                 {
                     'class': 'form__control-col--1',
@@ -359,7 +366,8 @@
                     'id': 'mm-' ~ i,
                     'placeholder': 'MM',
                     'show-label': false,
-                    'type': 'text'
+                    'type': 'text',
+                    'has_error': true
                 },
                 {
                     'class': 'form__control-col--1',
@@ -367,7 +375,8 @@
                     'id': 'yyyy-' ~ i,
                     'placeholder': 'YYYY',
                     'show-label': false,
-                    'type': 'text'
+                    'type': 'text',
+                    'has_error': true
                 }
             ]
         })
@@ -396,7 +405,8 @@
                     'id': 'mm-' ~ i,
                     'placeholder': 'MM',
                     'show-label': false,
-                    'type': 'text'
+                    'type': 'text',
+                    'has_error': true
                 },
                 {
                     'class': 'form__control-col--1',
@@ -424,7 +434,8 @@
                     'id': 'dd-' ~ i,
                     'placeholder': 'DD',
                     'show-label': false,
-                    'type': 'text'
+                    'type': 'text',
+                    'has_error': true
                 },
                 {
                     'class': 'form__control-col--1',
@@ -432,7 +443,8 @@
                     'id': 'mm-' ~ i,
                     'placeholder': 'MM',
                     'show-label': false,
-                    'type': 'text'
+                    'type': 'text',
+                    'has_error': true
                 },
                 {
                     'class': 'form__control-col--1',
@@ -440,7 +452,8 @@
                     'id': 'yyyy-' ~ i,
                     'placeholder': 'YYYY',
                     'show-label': false,
-                    'type': 'text'
+                    'type': 'text',
+                    'has_error': true
                 }
             ]
         })

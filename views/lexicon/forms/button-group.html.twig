@@ -11,6 +11,7 @@
         form.button_group({
             'label': 'Button group ' ~ i,
             'type': 'checkbox',
+            'error': 'something went wrong',
             'items': [
                 {
                     'id': 'foo-' ~ i,
@@ -60,7 +61,7 @@
 
     {{
         form.button_group({
-            'label': 'Required',
+            'label': 'Required (radios)',
             'required': true,
             'items': [
                 {
@@ -86,7 +87,7 @@
 
     {{
         form.button_group({
-            'label': 'Button group with help',
+            'label': 'Button group with help (radios)',
             'help': 'Help text to give more information about expected input',
             'items': [
                 {
@@ -112,7 +113,7 @@
 
     {{
         form.button_group({
-            'label': 'Button group with guidance',
+            'label': 'Button group with guidance (radios)',
             'guidance': 'Help text to give more information about expected input',
             'items': [
                 {
@@ -138,7 +139,7 @@
 
     {{
         form.button_group({
-            'label': 'Required with guidance',
+            'label': 'Required with guidance, with on option pre-selected (radios)',
             'guidance': 'Help text to give more information about expected input',
             'required': true,
             'items': [
@@ -169,7 +170,7 @@
 
     {{
         form.button_group({
-            'label': 'Button group hide label',
+            'label': 'Button group hide label (radios)',
             'show-label': false,
             'help': 'This example hides the label with the <code>show-label</code> option',
             'items': [
@@ -196,7 +197,7 @@
 
     {{
         form.button_group({
-            'label': 'Text input with a longer than expected label which will probably wrap multple lines and push the following input onto the next baseline',
+            'label': 'Text input with a longer than expected label which will probably wrap multple lines and push the following input onto the next baseline (radios)',
             'help': 'Example block-level help text here',
             'guidance': 'Help text to give more information about expected input',
             'items': [
@@ -223,7 +224,7 @@
 
     {{
         form.button_group({
-            'label': 'Text input with a longer than expected label but this time we use the form__group--top class to keep the label on a single line',
+            'label': 'Text input with a longer than expected label but this time we use the form__group--top class to keep the label on a single line (radios)',
             'class': 'form__group--top',
             'help': 'Example block-level help text here',
             'guidance': 'Help text to give more information about expected input',
@@ -251,7 +252,7 @@
 
     {{
         form.button_group({
-            'label': 'The same as above, but this time we also add the .form__group--flush class to keep everything on the left edge',
+            'label': 'The same as above, but this time we also add the .form__group--flush class to keep everything on the left edge (radios)',
             'class': 'form__group--top form__group--flush',
             'help': 'Example block-level help text here',
             'guidance': 'Help text to give more information about expected input',
@@ -311,7 +312,7 @@
 
     {{
         form.button_group({
-            'label': 'Button group with error',
+            'label': 'Button group with error (radios)',
             'error': 'Please choose an option',
             'items': [
                 {
@@ -337,7 +338,7 @@
 
     {{
         form.button_group({
-            'label': 'Button group with multiple errors',
+            'label': 'Button group with multiple errors (radios)',
             'error': ['Do this', 'Do this too'],
             'items': [
                 {
@@ -363,7 +364,7 @@
 
     {{
         form.button_group({
-            'label': 'Button group with error and help',
+            'label': 'Button group with error and help (radios)',
             'error': 'Please choose an option',
             'help': 'Help text to give more information about expected input',
             'items': [
@@ -390,7 +391,7 @@
 
     {{
         form.button_group({
-            'label': 'Button group with help only',
+            'label': 'Button group with help only (radios)',
             'class': 'has-error',
             'help': 'Help text to give more information about expected input',
             'items': [
