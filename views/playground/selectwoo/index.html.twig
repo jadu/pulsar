@@ -1,0 +1,66 @@
+{% extends '@pulsar/pulsar/layouts/base.html.twig' %}
+
+{% block tabs_content %}
+{{
+    form.create()
+}}
+{% set i = 1 %}
+
+{{
+    form.text({
+        'label': 'Start focus',
+        'id': i
+    })
+}}
+{% set i = i + 1 %}
+
+{{
+    form.select2({
+        'id': i,
+        'label': 'Test Alpha',
+        'options': [
+            {
+                'label': 'Value one',
+                'value': 'value1'
+            },
+            {
+                'label': 'Value two',
+                'value': 'value2'
+            },
+            {
+                'label': 'Value three',
+                'value': 'value1'
+            },
+            {
+                'label': 'Value four',
+                'value': 'value2'
+            },
+            {
+                'label': 'Value five',
+                'value': 'value1'
+            },
+            {
+                'label': 'Value six',
+                'value': 'value2'
+            }
+        ]
+
+    })
+}}
+{{
+    form.end({
+        'actions': [
+            form.submit({
+                'class': 'btn--primary',
+                'label': 'Primary Action'
+            }),
+            html.button({
+                'class': 'btn--naked',
+                'type': 'link',
+                'label': 'Cancel',
+                'href': '/home'
+            })
+        ]
+    })
+}}
+{% endblock %}
