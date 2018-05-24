@@ -17,6 +17,29 @@
 {% set i = i + 1 %}
 
 {{
+    form.select({
+        'id': i,
+        'label': 'Standard Select',
+        'options': [
+            {
+                'label': 'Value one',
+                'value': 'value1'
+            },
+            {
+                'label': 'Value two',
+                'value': 'value2'
+            },
+            {
+                'label': 'Value three',
+                'value': 'value3'
+            }
+        ]
+
+    })
+}}
+{% set i = i + 1 %}
+
+{{
     form.select2({
         'id': i,
         'label': 'Test Alpha',
