@@ -107,6 +107,7 @@
     "babel-polyfill": "^6.26.0",
     "jstree": "^3.3.3",
     "lodash": "^4.6.1",
-    "moment": "^2.15.2"
+    "moment": "^2.15.2",
+    "select2": "github:jadu/selectWoo"
   }
 }
