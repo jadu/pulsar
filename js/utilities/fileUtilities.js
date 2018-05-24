@@ -32,6 +32,12 @@ function getFileExtension (file) {
  */
 function filterByFileExtensionFactory (inclusive, getExt) {
     return (list, file) => {
+        // If the extension list is empty, treat it as a * wildcard
+        // and return true for everything
+        if (list.join('') === '') {
+            return true;
+        }
+
         const ext = getExt(file);
 
         // Return a falsy value if we do not have a file

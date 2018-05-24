@@ -52,10 +52,6 @@ describe('FaviconEditor', () => {
         });
     });
 
-    describe('serializer', () => {
-
-    });
-
     // Update methods are tested using image data fixtures saved in ./fixtures/
     // we assert that our favicon update methods return the same
     // ImageData as the saved fixture

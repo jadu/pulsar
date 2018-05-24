@@ -4,7 +4,7 @@ class FaviconEditor {
     /**
      * @param root {HTMLElement}
      */
-    constructor (root) {
+    constructor (root, filter = 'ico png') {
         /**
          * <link/> references
          * @type {Array<{ node: HTMLLinkElement, cachedHref: string }>}
@@ -15,7 +15,14 @@ class FaviconEditor {
          * Root element for favicon queries
          * @type {HTMLElement}
          */
-        this.root = root
+        this.root = root;
+
+        /**
+         * Filter string used for determining which file types
+         * are included
+         * @type {string}
+         */
+        this.filter = filter;
 
         /**
          * A serializer function that can be overwritten using
@@ -27,7 +34,7 @@ class FaviconEditor {
          */
         this.serializer = (canvas, ctx, originalImage) => {
             return canvas.toDataURL(`image/${getFileExtension(originalImage.src)}`);
-        }
+        };
     }
 
     /**
@@ -58,7 +65,7 @@ class FaviconEditor {
         let data;
 
         this.favicons.forEach(({ node }) => {
-            if (filterFileExtension(node.href, 'ico png')) {
+            if (filterFileExtension(node.href, this.filter)) {
                 setupPromises.push(this.setup(node));
             }
         });

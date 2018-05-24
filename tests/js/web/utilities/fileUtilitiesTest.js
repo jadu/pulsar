@@ -44,6 +44,10 @@ describe('fileUtilities', () => {
                 'bar.js'
             ]);
         });
+
+        it('should support no extensions', () => {
+            expect(filterFileExtensionList(files, '')).to.deep.equal(files);
+        });
     });
 
     describe('filterFileExtension', () => {
@@ -61,6 +65,10 @@ describe('fileUtilities', () => {
 
         it('should support multiple file extensions', () => {
             expect(filterFileExtension('index.html', 'js html')).to.be.true;
+        });
+
+        it('should support no file extensions', () => {
+            expect(filterFileExtension('index.html', '')).to.be.true;
         });
     });
 
