@@ -3,14 +3,14 @@
 
     <div class="controls">
         <label for="value" id="value[label]" class="control__label hide">Value</label>
-        <input id="value" maxlength="3" type="text" class="form__control form__control-col--1">
+        <input id="value" maxlength="3" type="text" aria-describedby="guid-12345678" class="form__control form__control-col--1">
 
         <label for="Unit" id="Unit[label]" class="control__label hide">Unit of time</label>
-        <select id="Unit" type="select" class="form__control u-width-auto select">
+        <select id="Unit" type="select" class="form__control u-width-auto select" aria-describedby="guid-12345678">
             <option value="sec">Seconds</option>
             <option value="min">Minutes</option>
         </select>
 
-        <span class="help-block">How long the system should wait for a response, usually 30 seconds</span>
+        <span class="help-block" id="guid-12345678">How long the system should wait for a response, usually 30 seconds</span>
     </div>
 </fieldset>

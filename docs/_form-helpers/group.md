@@ -64,3 +64,7 @@ parent.removable  | bool   | Whether to display a remove button after the input 
 parent.required   | bool   | Visually indicates that the field must be completed
 parent.show-label | bool | Control visibility of the `<label>` element without affecting layout (default: true)
 parent.data-*     | string | Data attributes, eg: `'data-foo': 'bar'`
+
+## Accessibility
+
+To maintain compliance with WCAG 2.0 AA, a form element must have a related label element, the easiest way to achieve this is to always pass an `id` attribute to form helpers. Form helpers will automatically add `aria-describedby="guid-<random-number>"` to inputs and an `id` to help blocks and errors. Additionally, `aria-invalid="true"` will be added to inputs when an error is passed.
