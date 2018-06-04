@@ -78,7 +78,7 @@ The information for the individual tabs and their content is defined in a JSON o
 | data-href | string | Absolute or relative URL to update browser address using pushState | No |
 | data-*    | string | Data attributes, eg: `'data-foo': 'bar'` | No |
 
-<div class="alert alert-danger" role="alert"><i class="fa fa-warning-sign"></i> While it is currently possible to pass a URL through the `src` attribute, this functionality is deprecated and should not be used. Use `href` instead.</div>
+<div class="alert alert-danger" role="alert" aria-atomic="true"><i class="fa fa-warning-sign"></i> While it is currently possible to pass a URL through the `src` attribute, this functionality is deprecated and should not be used. Use `href` instead.</div>
 
 {% raw %}
 ```twig

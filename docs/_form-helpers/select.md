@@ -108,12 +108,12 @@ Your options can be arranged within `optgroups` by using the optgroup syntax.
     <div class="form__group has-error">
         <label class="control__label">Pick a colour</label>
         <div class="controls">
-            <select class="form__control select">
+            <select aria-describedby="guid-1244863091" aria-invalid="true" class="form__control select">
                 <option value="">Choose</option>
                 <option value="colour_red">Red</option>
                 <option value="colour_blue">Blue</option>
             </select>
-            <span class="help-block is-error"><i aria-hidden="true" class="icon-warning-sign"></i> Something went wrong</span>
+            <span class="help-block is-error" id="guid-1244863091"><i aria-hidden="true" class="icon-warning-sign"></i> Something went wrong</span>
         </div>
     </div>
 </div>
@@ -131,3 +131,7 @@ The main input can use 1-9 columns of the 12 column grid (where 3 are used for t
 * `.form__content--col-7`
 * `.form__content--col-8`
 * `.form__content--col-9`
+
+## Accessibility
+
+To maintain compliance with WCAG 2.0 AA, a form element must have a related label element, the easiest way to achieve this is to always pass an `id` attribute to form helpers. Form helpers will automatically add `aria-describedby="guid-<random-number>"` to inputs and an `id` to help blocks and errors. Additionally, `aria-invalid="true"` will be added to inputs when an error is passed.

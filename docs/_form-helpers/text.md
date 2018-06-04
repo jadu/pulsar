@@ -30,7 +30,7 @@ Generates a text input field allowing users to input data, with a variety of opt
 <div class="pulsar-example form">
     <div class="form__group">
         <label for="inputText" class="control__label">
-            Price 
+            Price
             <span class="required-indicator" rel="tooltip" data-toggle="tooltips" title="required">*</span>
             <i data-container="body" data-content="Guidance text to give more information about expected input" data-placement="top" rel="clickover" aria-hidden="true" class="icon-question-sign input-group-guidance" title=""></i>
         </label>
@@ -70,7 +70,7 @@ Any other options not listed here will be applied to the `input`.
 | ------ | ---- | ----------- | ---------- |
 append       | string | Text or markup to include after the input element | |
 append_type  | string | Use only when appending a button. `button` is the only valid value | |
-autofocus    | bool   | Whether the field should have input focus on page load | input.autofocus | 
+autofocus    | bool   | Whether the field should have input focus on page load | input.autofocus |
 class        | string | A space separated list of class names | form__group.class |
 data-*       | string | Data attributes, eg: `'data-foo': 'bar'` | input.data-* |
 disabled     | bool   | Stops the element from being interactive if true | input.disabled |
@@ -101,13 +101,13 @@ Use the `error` option when a form needs to highlight invalid or missing input, 
     <div class="form__group has-error">
         <label for="inputTextError" class="control__label">First name</label>
         <div class="controls">
-            <input id="inputTextError" name="inputTextError" type="text" class="form__control">
-            <span class="help-block is-error"><i class="icon-warning-sign"></i> Please enter a name</span>
+            <input id="inputTextError" name="inputTextError" type="text" aria-describedby="guid-12345678" aria-invalid="true" class="form__control">
+            <span class="help-block is-error" id="guid-12345678"><i class="icon-warning-sign"></i> Please enter a name</span>
         </div>
     </div>
 
     <p class="screenreader">
-        <q><var>First Name</var> edit, blank</q>
+        <q><var>First Name</var> edit, blank. Invalid entry. Please enter a name.</q>
     </p>
 </div>
 
@@ -121,13 +121,13 @@ The `has-success` can highlight fields that have been successfully updated.
     <div class="form__group has-success">
         <label for="inputTextSuccess" class="control__label">First name</label>
         <div class="controls">
-            <input id="inputTextSuccess" name="inputTextSuccess" type="text" class="form__control">
-            <span class="help-block">Optional help text</span>
+            <input id="inputTextSuccess" name="inputTextSuccess" type="text" aria-describedby="guid-12345678" class="form__control">
+            <span class="help-block" id="guid-12345678">Optional help text</span>
         </div>
     </div>
 
     <p class="screenreader">
-        <q><var>First Name</var> edit, blank</q>
+        <q><var>First Name</var> edit, blank. Optional help text</q>
     </p>
 </div>
 
@@ -141,13 +141,13 @@ If a field value is changed by an interaction elsewhere in an interface, use the
     <div class="form__group has-changed">
         <label for="inputTextChanged" class="control__label">First name</label>
         <div class="controls">
-            <input id="inputTextChanged" name="inputTextChanged" type="text" class="form__control">
-            <span class="help-block">Optional help text</span>
+            <input id="inputTextChanged" name="inputTextChanged" type="text" aria-describedby="guid-12345678" class="form__control">
+            <span class="help-block" id="guid-12345678">Optional help text</span>
         </div>
     </div>
 
     <p class="screenreader">
-        <q><var>First Name</var> edit, blank</q>
+        <q><var>First Name</var> edit, blank. Optional help text</q>
     </p>
 </div>
 
@@ -187,71 +187,71 @@ the width can be modified by passing the required column class via the `class` a
     <div class="form__group form__control-col--1">
         <label for="inputTextColOne" class="control__label">First name</label>
         <div class="controls">
-            <input id="inputTextColOne" name="inputTextColOne" type="text" class="form__control">
-            <span class="help-block">Optional help text</span>
+            <input id="inputTextColOne" name="inputTextColOne" type="text" aria-describedby="guid-12345678" class="form__control">
+            <span class="help-block" id="guid-12345678">Optional help text</span>
         </div>
     </div>
     <div class="form__group form__control-col--2">
         <label for="inputTextColOne" class="control__label">First name</label>
         <div class="controls">
-            <input id="inputTextColOne" name="inputTextColOne" type="text" class="form__control">
-            <span class="help-block">Optional help text</span>
+            <input id="inputTextColOne" name="inputTextColOne" type="text" aria-describedby="guid-23456789" class="form__control">
+            <span class="help-block" id="guid-23456789">Optional help text</span>
         </div>
     </div>
     <div class="form__group form__control-col--3">
         <label for="inputTextColOne" class="control__label">First name</label>
         <div class="controls">
-            <input id="inputTextColOne" name="inputTextColOne" type="text" class="form__control">
-            <span class="help-block">Optional help text</span>
+            <input id="inputTextColOne" name="inputTextColOne" type="text" aria-describedby="guid-34567890" class="form__control">
+            <span class="help-block" id="guid-34567890">Optional help text</span>
         </div>
     </div>
     <div class="form__group form__control-col--4">
         <label for="inputTextColOne" class="control__label">First name</label>
         <div class="controls">
-            <input id="inputTextColOne" name="inputTextColOne" type="text" class="form__control">
-            <span class="help-block">Optional help text</span>
+            <input id="inputTextColOne" name="inputTextColOne" type="text" aria-describedby="guid-45678901" class="form__control">
+            <span class="help-block" id="guid-45678901">Optional help text</span>
         </div>
     </div>
     <div class="form__group form__control-col--5">
         <label for="inputTextColOne" class="control__label">First name</label>
         <div class="controls">
-            <input id="inputTextColOne" name="inputTextColOne" type="text" class="form__control">
-            <span class="help-block">Optional help text</span>
+            <input id="inputTextColOne" name="inputTextColOne" type="text" aria-describedby="guid-56789012" class="form__control">
+            <span class="help-block" id="guid-56789012">Optional help text</span>
         </div>
     </div>
     <div class="form__group form__control-col--6">
         <label for="inputTextColOne" class="control__label">First name</label>
         <div class="controls">
-            <input id="inputTextColOne" name="inputTextColOne" type="text" class="form__control">
-            <span class="help-block">Optional help text</span>
+            <input id="inputTextColOne" name="inputTextColOne" type="text" aria-describedby="guid-67890123" class="form__control">
+            <span class="help-block" id="guid-67890123">Optional help text</span>
         </div>
     </div>
     <div class="form__group form__control-col--7">
         <label for="inputTextColOne" class="control__label">First name</label>
         <div class="controls">
-            <input id="inputTextColOne" name="inputTextColOne" type="text" class="form__control">
-            <span class="help-block">Optional help text</span>
+            <input id="inputTextColOne" name="inputTextColOne" type="text" aria-describedby="guid-78901234" class="form__control">
+            <span class="help-block" id="guid-78901234">Optional help text</span>
         </div>
     </div>
     <div class="form__group form__control-col--8">
         <label for="inputTextColOne" class="control__label">First name</label>
         <div class="controls">
-            <input id="inputTextColOne" name="inputTextColOne" type="text" class="form__control">
-            <span class="help-block">Optional help text</span>
+            <input id="inputTextColOne" name="inputTextColOne" type="text" aria-describedby="guid-89012345" class="form__control">
+            <span class="help-block" id="guid-89012345">Optional help text</span>
         </div>
     </div>
     <div class="form__group form__control-col--9">
         <label for="inputTextColOne" class="control__label">First name</label>
         <div class="controls">
-            <input id="inputTextColOne" name="inputTextColOne" type="text" class="form__control">
-            <span class="help-block">Optional help text</span>
+            <input id="inputTextColOne" name="inputTextColOne" type="text" aria-describedby="guid-90123456" class="form__control">
+            <span class="help-block" id="guid-90123456">Optional help text</span>
         </div>
     </div>
 </div>
 
 ## Accessibility
 
-To maintain compliance with WCAG 2.0 AA, a form element must have a related label element, the easiest way to achieve this is to always pass an `id` attribute to form helpers.
+To maintain compliance with WCAG 2.0 AA, a form element must have a related label element, the easiest way to achieve this is to always pass an `id` attribute to form helpers. Form helpers will automatically add `aria-describedby="guid-<random-number>"` to inputs and an `id` to help blocks and errors. Additionally, `aria-invalid="true"` will be added to inputs when an error is passed.
 
 ### Screenreader examples
 
@@ -311,13 +311,13 @@ To maintain compliance with WCAG 2.0 AA, a form element must have a related labe
     <div class="form__group">
         <label for="inputTextWithHelp" class="control__label">First name</label>
         <div class="controls">
-            <input id="inputTextWithHelp" name="inputTextWithHelp" type="text" class="form__control">
-            <span class="help-block">You may enter more than one</span>
+            <input id="inputTextWithHelp" name="inputTextWithHelp" type="text" aria-describedby="guid-11223344" class="form__control">
+            <span class="help-block" id="guid-11223344">You may enter more than one</span>
         </div>
     </div>
 
     <p class="screenreader">
-        <q><var>First Name</var> edit, blank</q>
+        <q><var>First Name</var> edit, blank. You may enter more than one.</q>
     </p>
 </div>
 
@@ -325,12 +325,12 @@ To maintain compliance with WCAG 2.0 AA, a form element must have a related labe
     <div class="form__group has-error">
         <label for="inputTextWithError" class="control__label">First name</label>
         <div class="controls">
-            <input id="inputTextWithError" type="text" class="form__control">
-            <span class="help-block is-error"><i aria-hidden="true" class="icon-warning-sign"></i> Please complete this field</span>
+            <input id="inputTextWithError" type="text" aria-describedby="guid-22334455" aria-invalid="true" class="form__control">
+            <span class="help-block is-error" id="guid-22334455"><i aria-hidden="true" class="icon-warning-sign"></i> Please complete this field</span>
         </div>
     </div>
 
     <p class="screenreader">
-        <q><var>First Name</var> edit, blank</q>
+        <q><var>First Name</var> invalid entry, edit. Please complete this field</q>
     </p>
 </div>
