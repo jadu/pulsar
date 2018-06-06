@@ -239,6 +239,8 @@
     }
 
     .nav-link {
+        background-color: transparent;
+        border: 0;
         color: color(white);
         display: block;
         font-family: $font-family-regular;
@@ -348,8 +350,11 @@
     }
 
     .nav-link {
+        background-color: transparent;
+        border: 0;
         border-top-right-radius: 8px;
         border-bottom-left-radius: 8px;
+        text-align: left;
 
         &:hover,
         &:focus {
