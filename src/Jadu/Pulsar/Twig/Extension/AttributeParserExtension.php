@@ -113,6 +113,11 @@ class AttributeParserExtension extends \Twig_Extension
         $classes = isset($attributes['class']) ? explode(' ', $attributes['class']) : array();
         unset($attributes['class']);
 
+        // Make sure the `disabled` attribute is set, even if a developer has only provided the `is-disabled` class
+        if (in_array('is-disabled', $classes) && !array_key_exists('disabled', $attributes)) {
+            $attributes['disabled'] = true;
+        }
+
         // Parse the attributes
         foreach ($attributes as $key => &$value) {
 
@@ -127,9 +132,17 @@ class AttributeParserExtension extends \Twig_Extension
                         // Only output the key if true, do nothing if false
                         if ($value) {
 
-                            // Don't output `disabled` boolean on links as it
-                            // throws a W3C validation error
-                            if ((!$usingTag || $args['tag'] != 'a') || ($usingTag && $key != 'disabled')) {
+                            if ($usingTag && $args['tag'] === 'a') {
+
+                                // Don't use `disabled` on links as it breaks W3C validation
+                                if ($key === 'disabled' && !array_key_exists('aria-disabled', $attributes)) {
+                                    $html[] = 'aria-disabled="true"';
+                                }
+                                else {
+                                    $html[] = htmlspecialchars($key);
+                                }
+                            }
+                            else {
                                 $html[] = htmlspecialchars($key);
                             }
 
