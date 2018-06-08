@@ -116,6 +116,55 @@ class AttributeParserExtensionTest extends \PHPUnit_Framework_TestCase
         $this->assertContains($dataOut, $this->ext->parseAttributes($dataIn));
     }
 
+    public function testDisabledAddsDisabledClassToButton()
+    {
+        $dataIn = array('disabled' => true);
+        $dataOut = ' disabled';
+        $this->assertContains($dataOut, $this->ext->parseAttributes($dataIn, array('tag' => 'button')));
+    }
+
+    public function testDisabledAddsDisabledClassToFieldset()
+    {
+        $dataIn = array('disabled' => true);
+        $dataOut = ' disabled';
+        $this->assertContains($dataOut, $this->ext->parseAttributes($dataIn, array('tag' => 'fieldset')));
+    }
+
+    public function testDisabledAddsDisabledClassToInput()
+    {
+        $dataIn = array('disabled' => true);
+        $dataOut = ' disabled';
+        $this->assertContains($dataOut, $this->ext->parseAttributes($dataIn, array('tag' => 'input')));
+    }
+
+    public function testDisabledAddsDisabledClassToOption()
+    {
+        $dataIn = array('disabled' => true);
+        $dataOut = ' disabled';
+        $this->assertContains($dataOut, $this->ext->parseAttributes($dataIn, array('tag' => 'option')));
+    }
+
+    public function testDisabledAddsDisabledClassToSelect()
+    {
+        $dataIn = array('disabled' => true);
+        $dataOut = ' disabled';
+        $this->assertContains($dataOut, $this->ext->parseAttributes($dataIn, array('tag' => 'select')));
+    }
+
+    public function testDisabledAddsDisabledClassToTextarea()
+    {
+        $dataIn = array('disabled' => true);
+        $dataOut = ' disabled';
+        $this->assertContains($dataOut, $this->ext->parseAttributes($dataIn, array('tag' => 'textarea')));
+    }
+
+    public function testDisabledDoesNotAddDisabledClassToDiv()
+    {
+        $dataIn = array('disabled' => true);
+        $dataOut = ' disabled';
+        $this->assertNotContains($dataOut, $this->ext->parseAttributes($dataIn, array('tag' => 'div')));
+    }
+
     public function testDisabledDoesNotAddDisabledClassToLinks()
     {
         $dataIn = array('disabled' => true);
@@ -156,20 +205,6 @@ class AttributeParserExtensionTest extends \PHPUnit_Framework_TestCase
         $dataIn = array('disabled' => true, 'class' => 'foo is-disabled');
         $dataOut = ' class="foo is-disabled"';
         $this->assertContains($dataOut, $this->ext->parseAttributes($dataIn));
-    }
-
-    public function testIsDisabledClassAddsDisabledAttribute()
-    {
-        $dataIn = array('class' => 'foo is-disabled');
-        $dataOut = ' disabled';
-        $this->assertContains($dataOut, $this->ext->parseAttributes($dataIn));
-    }
-
-    public function testIsDisabledClassAndAttributeOnlyAddDisabledAttributeOnce()
-    {
-        $dataIn = array('class' => 'foo is-disabled', 'disabled' => true);
-        $dataOut = 'disabled disabled';
-        $this->assertNotContains($dataOut, $this->ext->parseAttributes($dataIn));
     }
 
 }
