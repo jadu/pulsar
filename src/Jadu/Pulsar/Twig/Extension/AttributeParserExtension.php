@@ -98,11 +98,14 @@ class AttributeParserExtension extends \Twig_Extension
     public function parseAttributes($attributes, array $args = array())
     {
         $html = array();
+
+        $disableableElements = array('button', 'fieldset', 'input', 'optgroup', 'option', 'select', 'textarea');
         $usingTag = false;
 
         if (isset($args['tag'])) {
             $usingTag = true;
-            $html[] = $args['tag'];
+            $tag = $args['tag'];
+            $html[] = $tag;
         }
         else if (empty($attributes)) {
             return '';
@@ -113,9 +116,25 @@ class AttributeParserExtension extends \Twig_Extension
         $classes = isset($attributes['class']) ? explode(' ', $attributes['class']) : array();
         unset($attributes['class']);
 
-        // Make sure the `disabled` attribute is set, even if a developer has only provided the `is-disabled` class
-        if (in_array('is-disabled', $classes) && !array_key_exists('disabled', $attributes)) {
+        // Because we chekc this attribute a few times, we'll default it to `false` if it hasn't been set
+        if (!array_key_exists('disabled', $attributes)) {
+            $attributes['disabled'] = false;
+        }
+
+        // Check if a disable class has been supplied, and set the `disabled` attr if so
+        if (in_array('is-disabled', $classes)) {
             $attributes['disabled'] = true;
+        }
+
+        // Set the `is-disabled` class if it hasn't already been passed as an option
+        if ($attributes['disabled'] === true && !in_array('is-disabled', $classes)) {
+            $classes[] = 'is-disabled';
+        }
+
+        // If the element isn't disableable, use `aria-disabled` instead of `disabled`
+        if ($usingTag && !in_array($tag, $disableableElements) && $attributes['disabled'] === true) {
+            $attributes['aria-disabled'] = 'true';
+            unset($attributes['disabled']);
         }
 
         // Parse the attributes
@@ -131,28 +150,13 @@ class AttributeParserExtension extends \Twig_Extension
 
                         // Only output the key if true, do nothing if false
                         if ($value) {
-
-                            if ($usingTag && $args['tag'] === 'a') {
-
-                                // Don't use `disabled` on links as it breaks W3C validation
-                                if ($key === 'disabled' && !array_key_exists('aria-disabled', $attributes)) {
-                                    $html[] = 'aria-disabled="true"';
-                                }
-                                else {
-                                    $html[] = htmlspecialchars($key);
-                                }
-                            }
-                            else {
-                                $html[] = htmlspecialchars($key);
-                            }
+                            $html[] = htmlspecialchars($key);
 
                             // Add extra attributes based on certain properties
                             if ($key == 'required') {
                                 $html[] = 'aria-required="true"';
                             }
-                            else if ($key == 'disabled') {
-                                $classes[] = 'is-disabled';
-                            }
+                            
                         }
                         break;
                     default:
