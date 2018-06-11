@@ -1,0 +1,1 @@
+<input type="radio" name="bar" disabled id="foo" /><label for="foo">Foo</label>

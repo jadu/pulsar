@@ -78,6 +78,7 @@ required      | bool   | Visually indicates that the field must be completed
 Option        | Type   | Description
 ------------- | ------ | -------------------------------------------------------
 checked       | bool   | Whether the input is checked
+disabled      | bool   | Stops the element from being interactive if true
 form          | string | Specify one or more forms this label belongs to
 id            | string | A unique identifier, will also be applied as the label's `for` attribute
 indeterminate | bool   | Shows the checkbox as [-], overrides the value of `checked`
@@ -87,6 +88,25 @@ value         | string | Specifies the value of the input
 data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
 
 Any other options not listed here will be applied to the input.
+
+## Disabled state
+
+Add the `'disabled': true` option to disable the field on load. See the [disabling elements styleguide](styleguides/disabling_elements/) for more information about how to disable elements via javascript. Provide help text or information within the UI where possible to explain why elements are disabled.
+
+{% code_example form_helpers/toggle-disabled %}
+
+<div class="pulsar-example form">
+    <div class="form__group form__group--toggle">
+    <label class="control__label">Toggle switch</label>
+    <div class="controls">
+        <input id="foo" name="bar" disabled type="checkbox" class="form__control toggle-switch is-disabled">
+        <label for="foo" class="control__label toggle-switch-label">
+            <span class="hide">Toggle switch</span>
+        </label>
+    </div>
+</div>
+
+</div>
 
 ## Accessibility
 
