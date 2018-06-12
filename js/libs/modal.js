@@ -248,9 +248,12 @@ var $ = require('jquery');
   $(document)
     .on('show.bs.modal',  '.modal', function () { $(document.body).addClass('modal-open') })
     .on('hidden.bs.modal', '.modal', function () {
-      // $(this).removeData('bs.modal').empty()
       $(document.body).removeClass('modal-open');
+    });
 
-    })
-
+  // Focus the first input in a modal when the modal has been opened
+  $(document).on('shown.bs.modal', '.modal', function() {
+    $(':input:not(input[type=button], input[type=submit], button):visible:first', $(this)).focus();
+  });
+  
 module.exports = Modal;

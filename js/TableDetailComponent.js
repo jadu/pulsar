@@ -21,7 +21,7 @@ class TableDetailComponent {
             '<div class="table-detail t-table-detail" data-table-detail-panel>' +
             '   <div class="table-detail__header">' +
             '       <button type="button" class="close table-detail__header-close" data-table-detail-close-panel aria-hidden="true">&times;</button>' +
-            '       <h4 class="table-detail__title" data-table-detail-panel-title>Detail</h4>' +
+            '       <h1 class="table-detail__title" data-table-detail-panel-title>Detail</h1>' +
             '   </div>' +
             '   <div class="table-detail__body" data-table-detail-panel-body></div>' +
             '</div>'
@@ -36,7 +36,7 @@ class TableDetailComponent {
                 .append($panelHtml);
         }
 
-        // Grap detail panel bits we need
+        // Grab detail panel bits we need
         this.$detailPanel = this.$html.find('[data-table-detail-panel]');
         this.$detailPanelBody = this.$html.find('[data-table-detail-panel-body]');
         this.$detailPanelTitle = this.$html.find('[data-table-detail-panel-title]');

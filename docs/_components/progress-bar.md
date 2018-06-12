@@ -89,7 +89,7 @@ Use where space is limited, like table rows or dropdown menus.
 
 Given the markup example below, it's simply a case of updating the two main percentage values in `aria-valuenow` and the inline `style` attributes with your new percentage.
 
-If you have the percentage in the label either hidden or visible) then you'll need to update that too.
+If you have the percentage in the label either hidden or visible then you'll need to update that too.
 
 ```html
 <div class="progress">
@@ -104,4 +104,68 @@ If you have the percentage in the label either hidden or visible) then you'll ne
         25%
     </div>
 </div>
+```
+
+## Stepped Progress Bar Example
+
+Stepped progress bar is used mainly in modals as a step indicator of a multi step process.
+<div class="pulsar-example">
+    <ol class="stepped-progressbar" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="4" aria-describedby="aria-stepped-progress-bar-heading-1">
+        <li class="step"><span class="step-box current"><span class="step-number" aria-hidden="true">1</span></span></li>
+        <li class="step"><span class="step-box"><span class="step-number" aria-hidden="true">2</span></span></li>
+        <li class="step"><span class="step-box"><span class="step-number" aria-hidden="true">3</span></span></li>
+        <li class="step last"><span class="step-box"><i class="icon-flag-checkered" aria-hidden="true"></i></span></li>
+    </ol>
+    <h3 class="hide" id="aria-stepped-progress-bar-heading-2">Step 2 of 4</h3>
+    <ol class="stepped-progressbar" role="progressbar" aria-valuenow="2" aria-valuemin="1" aria-valuemax="4" aria-describedby="aria-stepped-progress-bar-heading-2">
+        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
+        <li class="step"><span class="step-box current"><span class="step-number" aria-hidden="true">2</span></span></li>
+        <li class="step"><span class="step-box"><span class="step-number" aria-hidden="true">3</span></span></li>
+        <li class="step last"><span class="step-box"><i class="icon-flag-checkered" aria-hidden="true"></i></span></li>
+    </ol>
+    <h3 class="hide" id="aria-stepped-progress-bar-heading-3">Step 3 of 4</h3>
+    <ol class="stepped-progressbar" role="progressbar" aria-valuenow="3" aria-valuemin="1" aria-valuemax="4" aria-describedby="aria-stepped-progress-bar-heading-3">
+        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
+        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
+        <li class="step"><span class="step-box current"><span class="step-number" aria-hidden="true">3</span></span></li>
+        <li class="step last" ><span class="step-box"><i class="icon-flag-checkered" aria-hidden="true"></i></span></li>
+    </ol>
+    <h3 class="hide" id="aria-stepped-progress-bar-heading-4">Step 4 of 4</h3>
+    <ol class="stepped-progressbar" role="progressbar" aria-valuenow="4" aria-valuemin="1" aria-valuemax="4" aria-describedby="aria-stepped-progress-bar-heading-4">
+        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
+        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
+        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
+        <li class="step last"><span class="step-box final"><i class="icon-flag-checkered" aria-hidden="true" ></i></span></li>
+    </ol>
+</div>
+
+```html
+    <h3 class="hide" id="aria-stepped-progress-bar-heading-1">Step 1 of 4</h3>
+    <ol class="stepped-progressbar" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="4" aria-describedby="aria-stepped-progress-bar-heading-1">
+        <li class="step"><span class="step-box current"><span class="step-number" aria-hidden="true">1</span></span></li>
+        <li class="step"><span class="step-box"><span class="step-number" aria-hidden="true">2</span></span></li>
+        <li class="step"><span class="step-box"><span class="step-number" aria-hidden="true">3</span></span></li>
+        <li class="step last"><span class="step-box"><i class="icon-flag-checkered" aria-hidden="true"></i></span></li>
+    </ol>
+    <h3 class="hide" id="aria-stepped-progress-bar-heading-2">Step 2 of 4</h3>
+    <ol class="stepped-progressbar" role="progressbar" aria-valuenow="2" aria-valuemin="1" aria-valuemax="4" aria-describedby="aria-stepped-progress-bar-heading-2">
+        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
+        <li class="step"><span class="step-box current"><span class="step-number" aria-hidden="true">2</span></span></li>
+        <li class="step"><span class="step-box"><span class="step-number" aria-hidden="true">3</span></span></li>
+        <li class="step last"><span class="step-box"><i class="icon-flag-checkered" aria-hidden="true"></i></span></li>
+    </ol>
+    <h3 class="hide" id="aria-stepped-progress-bar-heading-3">Step 3 of 4</h3>
+    <ol class="stepped-progressbar" role="progressbar" aria-valuenow="3" aria-valuemin="1" aria-valuemax="4" aria-describedby="aria-stepped-progress-bar-heading-3">
+        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
+        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
+        <li class="step"><span class="step-box current"><span class="step-number" aria-hidden="true">3</span></span></li>
+        <li class="step last" ><span class="step-box"><i class="icon-flag-checkered" aria-hidden="true"></i></span></li>
+    </ol>
+    <h3 class="hide" id="aria-stepped-progress-bar-heading-4">Step 4 of 4</h3>
+    <ol class="stepped-progressbar" role="progressbar" aria-valuenow="4" aria-valuemin="1" aria-valuemax="4" aria-describedby="aria-stepped-progress-bar-heading-4">
+        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
+        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
+        <li class="step successful"><span class="step-box completed"><i class="icon-ok" aria-hidden="true"></i></span></li>
+        <li class="step last"><span class="step-box final"><i class="icon-flag-checkered" aria-hidden="true" ></i></span></li>
+    </ol>
 ```

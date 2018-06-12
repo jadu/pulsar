@@ -12,6 +12,7 @@
 @import "layout";
 @import "posts";
 @import "prettify";
+@import "screenreader";
 @import "sidebar";
 @import "message";
 
@@ -76,6 +77,7 @@ $fa-css-prefix: 'icon';
     @import '../../stylesheets/_component.breadcrumb';
     @import '../../stylesheets/_component.buttons';
     @import '../../stylesheets/_component.button-groups';
+    @import '../../stylesheets/_component.cards';
     @import '../../stylesheets/_component.close';
 
     @at-root {
@@ -135,7 +137,7 @@ $fa-css-prefix: 'icon';
 }
 
 .pulsar-example {
-    border: 1px solid #e5e5e5;
+    border: 1px solid #ccc;
     border-top-right-radius: 10px;
     border-bottom-left-radius: 10px;
     display: table;
@@ -155,6 +157,10 @@ $fa-css-prefix: 'icon';
 
     .control__label + .controls {
         margin-left: 0;
+    }
+
+    .modal__title {
+        border: 0;
     }
 }
 
@@ -197,6 +203,3 @@ $fa-css-prefix: 'icon';
         color: #fff;
     }
 }
-
-
-
