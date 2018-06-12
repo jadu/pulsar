@@ -116,7 +116,7 @@ class AttributeParserExtension extends \Twig_Extension
         $classes = isset($attributes['class']) ? explode(' ', $attributes['class']) : array();
         unset($attributes['class']);
 
-        // Because we chekc this attribute a few times, we'll default it to `false` if it hasn't been set
+        // Because we check this attribute a few times, we'll default it to `false` if it hasn't been set
         if (!array_key_exists('disabled', $attributes)) {
             $attributes['disabled'] = false;
         }
@@ -155,8 +155,7 @@ class AttributeParserExtension extends \Twig_Extension
                             // Add extra attributes based on certain properties
                             if ($key == 'required') {
                                 $html[] = 'aria-required="true"';
-                            }
-                            
+                            }   
                         }
                         break;
                     default:
