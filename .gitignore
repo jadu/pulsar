@@ -39,3 +39,4 @@ pulsar.zip
 /stylesheets/pulsar-theme-*
 /docs/assets/bundle.js
 /.vscode
+/ngrok
