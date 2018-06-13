@@ -27,27 +27,13 @@ This will then affect all select elements with the `js-select2` class (which wil
 
 ## Example usage
 
-{% raw %}
-```twig
-{{
-    form.select2({
-        'label': 'Pick a colour',
-        'id': 'foo',
-        'options': {
-            '': 'Choose',
-            'colour_red': 'Red',
-            'colour_blue': 'Blue'
-        }
-    })
-}}
-```
-{% endraw %}
+{% code_example form_helpers/select2 %}
 
 <div class="pulsar-example form">
     <div class="form__group">
-        <label class="control__label" for="foo">Pick a colour</label>
+        <label for="foo" class="control__label" for="foo">Pick a colour</label>
         <div class="controls">
-            <select class="form__control select js-select2" id="foo">
+            <select id="foo" name="bar" class="form__control select js-select2">
                 <option value="">Choose</option>
                 <option value="colour_red">Red</option>
                 <option value="colour_blue">Blue</option>
@@ -77,7 +63,7 @@ show-label   | bool    | Control visibility of the `<label>` element without aff
 Option      | Type    | Description
 ----------- | ------- | --------------------------------------------------------
 data-html   | string  | If `true`, uses Select2's templating functions to parse HTML within options
-disabled    | string  | Stops the element from being interactive if value = 'disabled'
+disabled    | boolean | Stops the element from being interactive if `true`
 form        | string  | Specific one or more forms this label belongs to
 id          | string  | A unique identifier, will also be used as the label's `for` attribute
 multiple    | boolean | Whether multiple options can be selected
@@ -145,6 +131,25 @@ With the select2 helper you can include HTML within your `<option>` labels, the 
                 <option value="">Choose</option>
                 <option value="colour_red"><span style="color: red">Red</span></option>
                 <option value="colour_blue"><span style="color: blue">Blue</span></option>
+            </select>
+        </div>
+    </div>
+</div>
+
+## Disabled state
+
+Add the `'disabled': true` option to disable the field on load. See the [disabling elements styleguide](styleguides/disabling_elements/) for more information about how to disable elements via javascript. Provide help text or information within the UI where possible to explain why elements are disabled.
+
+{% code_example form_helpers/select2-disabled %}
+
+<div class="pulsar-example form">
+    <div class="form__group">
+        <label for="foo2" class="control__label">Pick a colour</label>
+        <div class="controls">
+            <select id="foo2" name="foo2" disabled class="form__control select js-select2">
+                <option value="">Choose</option>
+                <option value="colour_red">Red</option>
+                <option value="colour_blue">Blue</option>
             </select>
         </div>
     </div>
