@@ -116,6 +116,76 @@ class AttributeParserExtensionTest extends \PHPUnit_Framework_TestCase
         $this->assertContains($dataOut, $this->ext->parseAttributes($dataIn));
     }
 
+    public function testDisabledAddsDisabledClassToButton()
+    {
+        $dataIn = array('disabled' => true);
+        $dataOut = ' disabled';
+        $this->assertContains($dataOut, $this->ext->parseAttributes($dataIn, array('tag' => 'button')));
+    }
+
+    public function testDisabledAddsDisabledClassToFieldset()
+    {
+        $dataIn = array('disabled' => true);
+        $dataOut = ' disabled';
+        $this->assertContains($dataOut, $this->ext->parseAttributes($dataIn, array('tag' => 'fieldset')));
+    }
+
+    public function testDisabledAddsDisabledClassToInput()
+    {
+        $dataIn = array('disabled' => true);
+        $dataOut = ' disabled';
+        $this->assertContains($dataOut, $this->ext->parseAttributes($dataIn, array('tag' => 'input')));
+    }
+
+    public function testDisabledAddsDisabledClassToOption()
+    {
+        $dataIn = array('disabled' => true);
+        $dataOut = ' disabled';
+        $this->assertContains($dataOut, $this->ext->parseAttributes($dataIn, array('tag' => 'option')));
+    }
+
+    public function testDisabledAddsDisabledClassToSelect()
+    {
+        $dataIn = array('disabled' => true);
+        $dataOut = ' disabled';
+        $this->assertContains($dataOut, $this->ext->parseAttributes($dataIn, array('tag' => 'select')));
+    }
+
+    public function testDisabledAddsDisabledClassToTextarea()
+    {
+        $dataIn = array('disabled' => true);
+        $dataOut = ' disabled';
+        $this->assertContains($dataOut, $this->ext->parseAttributes($dataIn, array('tag' => 'textarea')));
+    }
+
+    public function testDisabledDoesNotAddDisabledClassToDiv()
+    {
+        $dataIn = array('disabled' => true);
+        $dataOut = ' disabled';
+        $this->assertNotContains($dataOut, $this->ext->parseAttributes($dataIn, array('tag' => 'div')));
+    }
+
+    public function testDisabledDoesNotAddDisabledClassToLinks()
+    {
+        $dataIn = array('disabled' => true);
+        $dataOut = ' disabled';
+        $this->assertNotContains($dataOut, $this->ext->parseAttributes($dataIn, array('tag' => 'a')));
+    }
+
+    public function testDisabledAddsAriaDisabledToLinks()
+    {
+        $dataIn = array('disabled' => true);
+        $dataOut = ' aria-disabled="true';
+        $this->assertContains($dataOut, $this->ext->parseAttributes($dataIn, array('tag' => 'a')));
+    }
+
+    public function testDisabledAddsAriaDisabledToLinksOnlyOnce()
+    {
+        $dataIn = array('disabled' => true, 'aria-disabled' => 'true');
+        $dataOut = ' aria-disabled="true" aria-disabled="true"';
+        $this->assertNotContains($dataOut, $this->ext->parseAttributes($dataIn, array('tag' => 'a')));
+    }
+
     public function testDisabledMergesDisabledClassToExistingClasses()
     {
         $dataIn = array('disabled' => true, 'class' => 'foo');
