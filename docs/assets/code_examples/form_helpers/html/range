@@ -3,6 +3,6 @@
         Size
     </label>
     <div class="controls">
-        <input id="foo" type="range" class="form__control">
+        <input id="foo" name="bar" type="range" class="form__control">
     </div>
 </div>

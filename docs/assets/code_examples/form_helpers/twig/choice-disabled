@@ -1,0 +1,25 @@
+{{
+    form.choice({
+        'label': 'Assign blame to',
+        'options': [
+            {
+                'label': 'Sunshine',
+                'value': 'sun',
+                'checked': true
+            },
+            {
+                'label': 'Moonlight',
+                'value': 'moon',
+                'disabled': true
+            },
+            {
+                'label': 'Good times',
+                'value': 'good'
+            },
+            {
+                'label': 'Boogie',
+                'value': 'boogie'
+            }
+        ]
+    })
+}}

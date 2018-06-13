@@ -3,14 +3,12 @@
   font-size: 2em;
   font-weight: bold;
   line-height: $line-height-base;
-  color: color(black);
-  opacity: .2;
+  color: color(grey, dark);
   text-decoration: none;
 
   &:hover {
     color: color(black);
     cursor: pointer;
-    opacity: .4;
   }
 }
 
