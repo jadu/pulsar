@@ -1,19 +1,20 @@
 {% extends '@pulsar/pulsar/components/tab.html.twig' %}
 
 {% block tab_content %}
-    <table class="table datatable table--full">
+    <table class="table datatable table--full" data-order='[[ 3, "desc" ]]'>
         <thead>
             <tr>
                 <td class="table-responsive"></td>
                 <td class="table-selection"></td>
                 <th><a href="#">Name</a></th>
+                <th><a href="#">Created</a></th>
                 <th><a href="#">IP</a></th>
                 <th><a href="#">Status</a></th>
                 <th><a href="#">Uptime</a></th>
                 <th><a href="#">Image</a></th>
                 <th><a href="#">RAM</a></th>
                 <th class="centered"><a href="#">CPUs</a></th>
-                <th><a href="#">Actions</a></th>
+                <th data-orderable="false"><a href="#">Actions</a></th>
             </tr>
         </thead>
         <tbody>
@@ -26,6 +27,7 @@
                     {{ html.icon('unchecked', { 'class': 'table-row-select js-select' }) }}
                 </td>
                 <td><a href="#" class="table-link">Sysadmin - Ansible 1</a></td>
+                <td>04/07/2018 12:34pm</td>
                 <td class="monospace"><a href="#" class="table-link">10.101.0.175</a></td>
                 <td>
                     {{
@@ -56,6 +58,7 @@
                     {{ html.icon('unchecked', { 'class': 'table-row-select js-select' }) }}
                 </td>
                 <td><a href="#" class="table-link">Sysasdmin - WISP 1</a></td>
+                <td>04/07/2018 12:34pm</td>
                 <td class="monospace"><a href="#" class="table-link">10.101.0.138</a></td>
                 <td>
                     {{
