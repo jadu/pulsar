@@ -129,6 +129,7 @@ PulsarUIComponent.prototype.initDataTables = function () {
             dom: dom,
             aaSorting: [],
             bAutoWidth: false,
+            stateSave: true,
             buttons: [
                 'selectAll',
                 'selectNone'

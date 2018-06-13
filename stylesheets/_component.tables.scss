@@ -96,15 +96,12 @@
 
     th,
     thead td {
+        background-color: color(background, light);
         border-top: 1px solid color(border);
         border-bottom: 2px solid color(border);
         font-family: $font-family-regular;
         font-weight: normal;
         vertical-align: bottom;
-
-        @include respond-min($screen-desktop) {
-            border-top: 0;
-        }
     }
 
     td.table__actions {
@@ -161,11 +158,15 @@
 }
 
 .table-action {
+    border-right: 1px dotted color(border);
     display: inline-block;
     margin-right: 5px;
+    padding-right: 10px;
 
-    &:last {
+    &:last-child {
+        border-right: 0;
         margin-right: 0;
+        padding-right: 0;
     }
 }
 
