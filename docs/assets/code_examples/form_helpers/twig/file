@@ -1,6 +1,7 @@
 {{
     form.file({
-    'label': 'File input',
+        'label': 'File input',
         'id': 'foo',
+        'name': 'bar'
     })
 }}
