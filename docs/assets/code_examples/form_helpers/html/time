@@ -3,6 +3,6 @@
         When would you like your appointment?
     </label>
     <div class="controls">
-        <input id="foo" placeholder="hh:mm" data-timepicker="true" type="text" class="form__controlui-timepicker-input" autocomplete="off">
+        <input id="foo" name="bar" placeholder="hh:mm" data-timepicker="true" type="text" class="form__controlui-timepicker-input" autocomplete="off">
     </div>
 </div>
