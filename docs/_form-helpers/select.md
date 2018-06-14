@@ -43,7 +43,7 @@ show-label   | bool    | Control visibility of the `<label>` element without aff
 
 Option      | Type    | Description
 ----------- | ------- | --------------------------------------------------------
-disabled    | string  | Stops the element from being interactive if value = 'disabled'
+disabled    | boolean  | Stops the element from being interactive if true
 form        | string  | Specific one or more forms this label belongs to
 id          | string  | A unique identifier, if required
 multiple    | boolean | Whether multiple options can be selected
@@ -91,6 +91,25 @@ value       | string  | Value for the `<option>`
 Your options can be arranged within `optgroups` by using the optgroup syntax.
 
 {% code_example form_helpers/select-optgroup %}
+
+## Disabled state
+
+Add the `'disabled': true` option to disable the field on load. See the [disabling elements styleguide](styleguides/disabling_elements/) for more information about how to disable elements via javascript. Provide help text or information within the UI where possible to explain why elements are disabled.
+
+{% code_example form_helpers/select-disabled %}
+
+<div class="pulsar-example form">
+    <div class="form__group">
+        <label for="foo2" class="control__label">Pick a colour</label>
+        <div class="controls">
+            <select id="foo2" name="foo2" disabled class="form__control select">
+                <option value="">Choose</option>
+                <option value="colour_red">Red</option>
+                <option value="colour_blue">Blue</option>
+            </select>
+        </div>
+    </div>
+</div>
 
 ## Error state
 

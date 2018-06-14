@@ -1,0 +1,8 @@
+<div class="form__group">
+    <label for="inputTextarea" class="control__label">
+        Description
+    </label>
+    <div class="controls">
+        <textarea id="inputTextarea" name="inputTextrea" rows="2" disabled class="form__control textarea"></textarea>
+    </div>
+</div>
