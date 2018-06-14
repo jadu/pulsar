@@ -1,6 +1,7 @@
 {{
     form.date({
         'label': 'Date picker',
-        'id': 'foo'
+        'id': 'foo',
+        'name': 'bar'
     })
 }}

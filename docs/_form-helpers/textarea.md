@@ -141,6 +141,21 @@ If a field value is changed by an interaction elsewhere in an interface, use the
     </p>
 </div>
 
+## Disabled state
+
+Add the `'disabled': true` option to disable the field on load. See the [disabling elements styleguide](styleguides/disabling_elements/) for more information about how to disable elements via javascript. Provide help text or information within the UI where possible to explain why elements are disabled.
+
+{% code_example form_helpers/textarea-disabled %}
+
+<div class="pulsar-example form">
+    <div class="form__group">
+        <label for="inputTextarea" class="control__label">Description</label>
+        <div class="controls">
+            <textarea id="inputTextarea" name="inputTextarea" disabled rows="2" class="form__control textarea"></textarea>
+        </div>
+    </div>
+</div>
+
 ## Rows
 
 The height of a textarea can be increased by defining a number of `rows` that suits your expected input. If you expect a lot of content, provide more rows.
