@@ -151,7 +151,7 @@ If a field value is changed by an interaction elsewhere in an interface, use the
     </p>
 </div>
 
-## Disabled fields
+## Disabled state
 
 Add the `'disabled': true` attribute to prevent a field from being edited or interacted with.
 
