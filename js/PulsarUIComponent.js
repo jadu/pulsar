@@ -162,14 +162,18 @@ PulsarUIComponent.prototype.initDataTables = function () {
     // Dropdowns within responsive tables will be hidden by overflows, this method detaches the dropdown menu and reattaches it on the body
     $(document).on('show.bs.dropdown', '.datatable', function(e) {
         var dropdown = $(e.target),
+            dropdownHeight = dropdown.height(),
+            dropdownWidth = dropdown.width(),
             dropdownMenu = dropdown.find('.dropdown__menu'),
-            dropdownMenuTop = dropdown.offset().top,
-            dropdownMenuLeft = dropdown.offset().left;
+            dropdownMenuWidth = dropdownMenu.width(),
+            dropdownMenuOffset = dropdown.offset(),
+            dropdownMenuOffsetTop = dropdownMenuOffset.top,
+            dropdownMenuOffsetLeft = dropdownMenuOffset.left;
 
         dropdownMenu.css({
             display: 'block',
-            left: dropdownMenuLeft - dropdownMenu.width() + dropdown.width() - 2,
-            top: dropdownMenuTop + dropdown.height() - 1
+            left: dropdownMenuOffsetLeft - dropdownMenuWidth + dropdownWidth - 2,
+            top: dropdownMenuOffsetTop + dropdownHeight - 1
         }).addClass('js-row-actions-dropdown');
 
         $('body').append(dropdownMenu);
