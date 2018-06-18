@@ -118,14 +118,16 @@ a.dt-button {
 }
 
 .table-row-select {
-    color: #666;
+    color: color(grey);
     cursor: pointer;
-    font-size: 14px;
+    font-size: 16px;
     position: relative;
     top: 1px;
 }
 
+.dt-row-selected .table-row-select::before,
 tr.selected .table-row-select::before {
+    color: color(primary);
     content: '\f14a';
 }
 

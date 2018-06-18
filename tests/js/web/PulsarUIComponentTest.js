@@ -3,9 +3,12 @@
 'use strict'
 
 var $ = require('jquery'),
+    dropdown = require('../../../js/libs/dropdown'),
     history = require('../../../libs/history.js/scripts/bundled/html5/jquery.history'),
     tab = require('../../../js/libs/tab'),
     PulsarUIComponent = require('../../../js/PulsarUIComponent');
+
+    $.fx.off = !$.fx.off;
 
 describe('Pulsar UI Component', function() {
 
@@ -17,14 +20,35 @@ describe('Pulsar UI Component', function() {
             <table class="table qa-table"></table>\
             <table class="table--datagrid qa-datagrid"></table>\
             <table class="table datatable qa-datatable"></table>\
+            <table class="table datatable table--horizontal qa-datatable-actions">\
+                <thead>\
+                    <tr>\
+                        <th>foo</th>\
+                        <th>bar</th>\
+                    </tr>\
+                </thead>\
+                <tbody>\
+                    <tr>\
+                        <td></td>\
+                        <td>\
+                            <div class="btn__group dropdown">\
+                                <button data-toggle="dropdown" class="btn dropdown__toggle row-actions">\
+                                    <i class="icon-ellipsis-h"><span class="hide">Actions</span></i>\
+                                </button>\
+                                <ul class="dropdown__menu pull-left">\
+                                    <li><a href="#action">action</a></li>\
+                                </ul>\
+                            </div>\
+                        </td>\
+                    </tr>\
+                </tbody>\
+            </table>\
             <table class="table datatable qa-datatable-empty-message" data-empty-table="foo"></table>\
             <table class="table datatable qa-datatable-no-selection" data-select="false"></table>\
             <div class="table-container"><table class="table qa-table-dupe"></table></div>\
             <a href="#tab" data-toggle="tab">foo</a>\
             <a data-href="?tab=foo" href="#tab-foo" data-toggle="tab">foo</a>\
-            <div class="tab__pane" id="tab">\
-                <table class="table datatable qa-tab-datatable"></table>\
-            </div>\
+            <div class="tab__pane" id="tab"><table class="table datatable qa-tab-datatable"></table></div>\
             <span class="js-countdown qa-countdown-one" data-final-date="1665243907399" data-format="%d">Expires in 6 hours</span>\
 ').appendTo(this.$html);
 
@@ -38,6 +62,8 @@ describe('Pulsar UI Component', function() {
         this.$datatableDisableSelection = this.$html.find('.qa-datatable-no-selection');
         this.$tableDupe = this.$html.find('.qa-table-dupe');
         this.$countdownOne = this.$html.find('.qa-countdown-one');
+        this.$datatableActions = this.$html.find('.qa-datatable-actions');
+        this.$rowActions = this.$html.find('.row-actions');
 
         this.history = {
             pushState: sinon.stub()
@@ -108,6 +134,58 @@ describe('Pulsar UI Component', function() {
         });
     });
 
+    describe('Table row-actions', function() {
+
+        beforeEach(function() {
+            sinon.spy(this.pulsarUIComponent, 'closeRowActions');
+            this.pulsarUIComponent.init();
+        });
+
+        it('should be opened when clicked', function() {
+            this.$rowActions.click();
+            setTimeout(function(){
+                expect(this.$rowActions.parent().hasClass('open')).to.be.true;
+            }, 1000);
+        });
+
+        it('should be closed when clicked again', function() {
+            this.$rowActions.click();
+            this.$rowActions.click();
+            setTimeout(function(){
+                expect(this.$rowActions.parent().hasClass('open')).to.be.false;
+            }, 1000);
+        });
+
+        it('should call the closeRowActions method when window resized', function() {
+            this.$rowActions.click();
+            this.$html.trigger('resize');
+            setTimeout(function(){
+                expect(this.closeRowActions).to.have.been.called;
+            }, 1000);
+        });
+
+        it('should call the closeRowActions method when table scrolled', function() {
+            this.$rowActions.click();
+            this.$datatableActions.trigger('scroll');
+            setTimeout(function(){
+                expect(this.closeRowActions).to.have.been.called;
+            }, 1000);
+        });
+
+        it('should be closed when the window resized', function() {
+            this.$rowActions.click();
+            this.$html.trigger('resize');
+            expect(this.$rowActions.parent().hasClass('open')).to.be.false;
+        });
+
+        it('should be closed when the table is scrolled resized', function() {
+            this.$rowActions.click();
+            this.$datatableActions.trigger('scroll');
+            expect(this.$rowActions.parent().hasClass('open')).to.be.false;
+        });
+
+    });
+
     describe('Clicking a tab toggle with the data-href attribute', function() {
 
         beforeEach(function() {
@@ -166,7 +244,4 @@ describe('Pulsar UI Component', function() {
         });
 
     });
-
-
 });
-

@@ -1,5 +1,33 @@
 {% extends '@pulsar/pulsar/components/tab.html.twig' %}
 
+{%
+    set example_dropdown = [
+        html.link({
+            label: html.icon('refresh') ~ ' Reboot',
+            href: '#reboot'
+        }),
+        html.link({
+            label: html.icon('pause-circle-o') ~ ' Suspend',
+            href: '#suspend'
+        }),
+        html.link({
+            label: html.icon('power-off') ~ ' Shutdown',
+            href: '#shutdown'
+        }),
+        html.divider(),
+        html.link({
+            label: html.icon('terminal') ~ ' Console',
+            href: '#console'
+        }),
+        html.divider(),
+        html.link({
+            label: html.icon('times') ~ ' Delete',
+            href: '#delete',
+            class: 'link--danger'
+        })
+    ]
+%}
+
 {% block tab_content %}
     <table class="table datatable table--full table--horizontal" data-order='[[ 3, "desc" ]]'>
         <thead>
@@ -14,7 +42,7 @@
                 <th>Image</th>
                 <th>RAM</th>
                 <th class="centered">CPUs</th>
-                <th data-orderable="false">Actions</th>
+                <td data-orderable="false"></td>
             </tr>
         </thead>
         <tbody>
@@ -42,10 +70,15 @@
                 <td>4 GB</td>
                 <td class="centered">2</td>
                 <td>
-                    {{ html.link({ 'label': 'Reboot', 'class': 'table-action' }) }}<!--
-                    -->{{ html.link({ 'label': 'Suspend', 'class': 'table-action' }) }}<!--
-                    -->{{ html.link({ 'label': 'Shutdown', 'class': 'table-action' }) }}<!--
-                    -->{{ html.link({ 'label': 'Console', 'class': 'table-action' }) }}
+                    {{
+                        html.button_dropdown({
+                            'label': html.icon('ellipsis-h', {'label': 'Actions'}),
+                            'class': 'btn--naked dropdown__menu--right row-actions',
+                            'data-container': 'body',
+                            'caret': false,
+                            'items': example_dropdown,
+                        })
+                    }}
                 </td>
 
             </tr>
@@ -72,10 +105,15 @@
                 <td>2 GB</td>
                 <td class="centered">1</td>
                 <td>
-                    {{ html.link({ 'label': 'Reboot', 'class': 'table-action' }) }}<!--
-                    -->{{ html.link({ 'label': 'Suspend', 'class': 'table-action' }) }}<!--
-                    -->{{ html.link({ 'label': 'Shutdown', 'class': 'table-action' }) }}<!--
-                    -->{{ html.link({ 'label': 'Console', 'class': 'table-action' }) }}
+                    {{
+                        html.button_dropdown({
+                            'label': html.icon('ellipsis-h', {'label': 'Actions'}),
+                            'class': 'btn--naked dropdown__menu--right row-actions',
+                            'data-container': 'body',
+                            'caret': false,
+                            'items': example_dropdown,
+                        })
+                    }}
                 </td>
             </tr>
             {% endfor %}

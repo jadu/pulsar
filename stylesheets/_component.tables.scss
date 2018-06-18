@@ -98,7 +98,6 @@
     thead td {
         background-color: color(background, light);
         border-top: 1px solid color(border);
-        border-bottom: 2px solid color(border);
         font-family: $font-family-regular;
         font-weight: normal;
         vertical-align: bottom;
@@ -356,5 +355,27 @@ td.row__actions {
 
     @include respond-min($screen-tablet) {
         border-bottom: 0;
+    }
+}
+
+.btn.row-actions {
+    border: 1px solid transparent;
+    font-size: $font-size-large;
+    padding: 0 5px;
+
+    .btn__group.open & {
+        box-shadow: none;
+    }
+
+    .btn__group.open & {
+        background-color: white;
+        border: 1px solid $dropdown-border;
+        bottom: -1px;
+        border-bottom: 0;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        padding: 0 5px;
+        position: relative;
+        z-index: $zindex-dropdown + 1;
     }
 }
