@@ -9,7 +9,7 @@
 
 {% macro caret(visible) %}
 {% spaceless %}
-    {% if visible is defined and visible != true %}
+    {% if visible is defined and visible != false %}
         &nbsp;<span class="caret"></span>
     {% endif  %}
 {% endspaceless %}
