@@ -14,42 +14,42 @@ describe('Pulsar UI Component', function() {
     beforeEach(function() {
         this.$html = $('<html></html>');
         this.$body = $('<body></body>').appendTo(this.$html);
-        this.$code = $('\
-            <a href="#foo" disabled class="is-disabled">\
-            <table class="table qa-table"></table>\
-            <table class="table--datagrid qa-datagrid"></table>\
-            <table class="table datatable qa-datatable"></table>\
-            <table class="table datatable table--horizontal qa-datatable-actions">\
-                <thead>\
-                    <tr>\
-                        <th>foo</th>\
-                        <th>bar</th>\
-                    </tr>\
-                </thead>\
-                <tbody>\
-                    <tr>\
-                        <td></td>\
-                        <td>\
-                            <div class="btn__group dropdown">\
-                                <button data-toggle="dropdown" class="btn dropdown__toggle row-actions">\
-                                    <i class="icon-ellipsis-h"><span class="hide">Actions</span></i>\
-                                </button>\
-                                <ul class="dropdown__menu pull-left">\
-                                    <li><a href="#action">action</a></li>\
-                                </ul>\
-                            </div>\
-                        </td>\
-                    </tr>\
-                </tbody>\
-            </table>\
-            <table class="table datatable qa-datatable-empty-message" data-empty-table="foo"></table>\
-            <table class="table datatable qa-datatable-no-selection" data-select="false"></table>\
-            <div class="table-container"><table class="table qa-table-dupe"></table></div>\
-            <a href="#tab" data-toggle="tab">foo</a>\
-            <a data-href="?tab=foo" href="#tab-foo" data-toggle="tab">foo</a>\
-            <div class="tab__pane" id="tab"><table class="table datatable qa-tab-datatable"></table></div>\
+        this.$code = $(`
+            <a href="#foo" disabled class="is-disabled">
+            <table class="table qa-table"></table>
+            <table class="table--datagrid qa-datagrid"></table>
+            <table class="table datatable qa-datatable"></table>
+            <table class="table datatable table--horizontal qa-datatable-actions">
+                <thead>
+                    <tr>
+                        <th>foo</th>
+                        <th>bar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <div class="btn__group dropdown">
+                                <button data-toggle="dropdown" class="btn dropdown__toggle row-actions">
+                                    <i class="icon-ellipsis-h"><span class="hide">Actions</span></i>
+                                </button>
+                                <ul class="dropdown__menu pull-left">
+                                    <li><a href="#action">action</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table datatable qa-datatable-empty-message" data-empty-table="foo"></table>
+            <table class="table datatable qa-datatable-no-selection" data-select="false"></table>
+            <div class="table-container"><table class="table qa-table-dupe"></table></div>
+            <a href="#tab" data-toggle="tab">foo</a>
+            <a data-href="?tab=foo" href="#tab-foo" data-toggle="tab">foo</a>
+            <div class="tab__pane" id="tab"><table class="table datatable qa-tab-datatable"></table></div>
             <span class="js-countdown qa-countdown-one" data-final-date="1665243907399" data-format="%d">Expires in 6 hours</span>\
-').appendTo(this.$html);
+`).appendTo(this.$html);
 
         this.$tabLink = this.$html.find('a[href="#tab"]');
         this.$pushStateTabLink = this.$html.find('a[href="#tab-foo"]');
@@ -143,6 +143,7 @@ describe('Pulsar UI Component', function() {
             this.$rowActions.click();
             setTimeout(function(){
                 expect(this.$rowActions.parent().hasClass('open')).to.be.true;
+                done();
             }, 1000);
         });
 
@@ -151,6 +152,7 @@ describe('Pulsar UI Component', function() {
             this.$rowActions.click();
             setTimeout(function(){
                 expect(this.$rowActions.parent().hasClass('open')).to.be.false;
+                done();
             }, 1000);
         });
 
@@ -159,6 +161,7 @@ describe('Pulsar UI Component', function() {
             this.$html.trigger('resize');
             setTimeout(function(){
                 expect(this.closeRowActions).to.have.been.called;
+                done();
             }, 1000);
         });
 

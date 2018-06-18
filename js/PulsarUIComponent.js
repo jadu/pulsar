@@ -206,7 +206,6 @@ PulsarUIComponent.prototype.initDataTables = function () {
 PulsarUIComponent.prototype.closeRowActions = function ($container) {
     var component = this,
         $table = $container.find('.table'),
-        $rowActions = $table.find('.row-actions'),
         $dropdown = $table.find('.dropdown.open');
 
     component.$html.find('.js-row-actions-dropdown')
