@@ -3,7 +3,6 @@
 'use strict'
 
 var $ = require('jquery'),
-    dropdown = require('../../../js/libs/dropdown'),
     history = require('../../../libs/history.js/scripts/bundled/html5/jquery.history'),
     tab = require('../../../js/libs/tab'),
     PulsarUIComponent = require('../../../js/PulsarUIComponent');
@@ -63,7 +62,6 @@ describe('Pulsar UI Component', function() {
         this.$tableDupe = this.$html.find('.qa-table-dupe');
         this.$countdownOne = this.$html.find('.qa-countdown-one');
         this.$datatableActions = this.$html.find('.qa-datatable-actions');
-        this.$rowActions = this.$html.find('.row-actions');
 
         this.history = {
             pushState: sinon.stub()
