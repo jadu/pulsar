@@ -5,6 +5,7 @@
 var $ = require('jquery'),
     history = require('../../../libs/history.js/scripts/bundled/html5/jquery.history'),
     tab = require('../../../js/libs/tab'),
+    dropdown = require('../../../js/libs/dropdown'),
     PulsarUIComponent = require('../../../js/PulsarUIComponent');
 
     $.fx.off = !$.fx.off;
@@ -141,7 +142,7 @@ describe('Pulsar UI Component', function() {
 
         it('should be opened when clicked', function() {
             this.$rowActions.click();
-            setTimeout(function(){
+            setTimeout(function(done){
                 expect(this.$rowActions.parent().hasClass('open')).to.be.true;
                 done();
             }, 1000);
@@ -150,7 +151,7 @@ describe('Pulsar UI Component', function() {
         it('should be closed when clicked again', function() {
             this.$rowActions.click();
             this.$rowActions.click();
-            setTimeout(function(){
+            setTimeout(function(done){
                 expect(this.$rowActions.parent().hasClass('open')).to.be.false;
                 done();
             }, 1000);
@@ -159,7 +160,7 @@ describe('Pulsar UI Component', function() {
         it('should call the closeRowActions method when window resized', function() {
             this.$rowActions.click();
             this.$html.trigger('resize');
-            setTimeout(function(){
+            setTimeout(function(done){
                 expect(this.closeRowActions).to.have.been.called;
                 done();
             }, 1000);
