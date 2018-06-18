@@ -159,20 +159,60 @@ PulsarUIComponent.prototype.initDataTables = function () {
         $($.fn.dataTable.tables(true)).DataTable().columns.adjust().responsive.recalc();
     });
 
+    // Dropdowns within responsive tables will be hidden by overflows, this method detaches the dropdown menu and reattaches it on the body
+    $(document).on('show.bs.dropdown', '.datatable', function(e) {
+        var dropdown = $(e.target),
+            dropdownMenu = dropdown.find('.dropdown__menu'),
+            dropdownMenuTop = dropdown.offset().top,
+            dropdownMenuLeft = dropdown.offset().left;
+
+        dropdownMenu.css({
+            display: 'block',
+            left: dropdownMenuLeft - dropdownMenu.width() + dropdown.width() - 2,
+            top: dropdownMenuTop + dropdown.height() - 1
+        }).addClass('js-row-actions-dropdown');
+
+        $('body').append(dropdownMenu);
+
+        $(this).on('hidden.bs.dropdown', function () {
+            dropdownMenu.css({
+                'display': 'none'
+            }).removeClass('js-row-actions-dropdown').appendTo(e.target);
+        });
+    });
+
     this.$html.find('.table--horizontal').each(function() {
         var $table = $(this).parent();
 
         $table.scroll(function() {
             component.styleTableOverflows($table);
+            component.closeRowActions($table);
         });
 
         $(window).on('load resize', function () {
             component.styleTableOverflows($table);
+            component.closeRowActions($table);
         });
 
         // Add sticky scroll bar
         component.stickyScrollBarComponent.init($table);
     });
+};
+
+PulsarUIComponent.prototype.closeRowActions = function ($container) {
+    var component = this,
+        $table = $container.find('.table'),
+        $rowActions = $table.find('.row-actions'),
+        $dropdown = $table.find('.dropdown.open');
+
+    component.$html.find('.js-row-actions-dropdown')
+        .css({
+            'display': 'none'
+        })
+        .appendTo($dropdown)
+        .removeClass('js-row-actions-dropdown');
+
+    $dropdown.removeClass('open');
 };
 
 PulsarUIComponent.prototype.styleTableOverflows = function ($container) {
