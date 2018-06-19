@@ -65,6 +65,7 @@ describe('Pulsar UI Component', function() {
         this.$datatableActions = this.$html.find('.qa-datatable-actions');
 
         this.$rowActions = this.$html.find('.row-actions');
+        this.$rowActionsParent = this.$rowActions.parent();;
 
         this.history = {
             pushState: sinon.stub()
@@ -145,7 +146,7 @@ describe('Pulsar UI Component', function() {
         it('should be opened when clicked', function() {
             this.$rowActions.click();
             setTimeout(function(done){
-                expect(this.$rowActions.parent().hasClass('open')).to.be.true;
+                expect(this.$rowActionsParent.hasClass('open')).to.be.true;
                 done();
             }, 1000);
         });
@@ -154,7 +155,7 @@ describe('Pulsar UI Component', function() {
             this.$rowActions.click();
             this.$rowActions.click();
             setTimeout(function(done){
-                expect(this.$rowActions.parent().hasClass('open')).to.be.false;
+                expect(this.$rowActionsParent.hasClass('open')).to.be.false;
                 done();
             }, 1000);
         });
@@ -179,13 +180,13 @@ describe('Pulsar UI Component', function() {
         it('should be closed when the window resized', function() {
             this.$rowActions.click();
             this.$html.trigger('resize');
-            expect(this.$rowActions.parent().hasClass('open')).to.be.false;
+            expect(this.$rowActionsParent.hasClass('open')).to.be.false;
         });
 
         it('should be closed when the table is scrolled resized', function() {
             this.$rowActions.click();
             this.$datatableActions.trigger('scroll');
-            expect(this.$rowActions.parent().hasClass('open')).to.be.false;
+            expect(this.$rowActionsParent.hasClass('open')).to.be.false;
         });
 
     });
