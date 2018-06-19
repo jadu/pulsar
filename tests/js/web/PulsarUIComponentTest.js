@@ -143,37 +143,38 @@ describe('Pulsar UI Component', function() {
             this.pulsarUIComponent.init();
         });
 
-        it('should be opened when clicked', function() {
+        it('should be opened when clicked', function(done) {
             this.$rowActions.click();
-            setTimeout(function(done){
+            setTimeout(function(){
                 expect(this.$rowActionsParent.hasClass('open')).to.be.true;
                 done();
             }, 1000);
         });
 
-        it('should be closed when clicked again', function() {
+        it('should be closed when clicked again', function(done) {
             this.$rowActions.click();
             this.$rowActions.click();
-            setTimeout(function(done){
+            setTimeout(function(){
                 expect(this.$rowActionsParent.hasClass('open')).to.be.false;
                 done();
             }, 1000);
         });
 
-        it('should call the closeRowActions method when window resized', function() {
+        it('should call the closeRowActions method when window resized', function(done) {
             this.$rowActions.click();
             this.$html.trigger('resize');
-            setTimeout(function(done){
+            setTimeout(function(){
                 expect(this.closeRowActions).to.have.been.called;
                 done();
             }, 1000);
         });
 
-        it('should call the closeRowActions method when table scrolled', function() {
+        it('should call the closeRowActions method when table scrolled', function(done) {
             this.$rowActions.click();
             this.$datatableActions.trigger('scroll');
             setTimeout(function(){
                 expect(this.closeRowActions).to.have.been.called;
+                done();
             }, 1000);
         });
 
