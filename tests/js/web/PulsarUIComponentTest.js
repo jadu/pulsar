@@ -145,7 +145,7 @@ describe('Pulsar UI Component', function() {
             this.$rowActions.click();
             setTimeout(function(){
                 expect(this.$rowActionsParent.hasClass('open')).to.be.true;
-            }, 1000);
+            }, 1500);
         });
 
         it('should be closed when clicked again', function() {
@@ -153,7 +153,7 @@ describe('Pulsar UI Component', function() {
             this.$rowActions.click();
             setTimeout(function(){
                 expect(this.$rowActionsParent.hasClass('open')).to.be.false;
-            }, 1000);
+            }, 1500);
         });
 
         it('should call the closeRowActions method when window resized', function() {
@@ -161,7 +161,7 @@ describe('Pulsar UI Component', function() {
             this.$html.trigger('resize');
             setTimeout(function(){
                 expect(this.closeRowActions).to.have.been.called;
-            }, 1000);
+            }, 1500);
         });
 
         it('should call the closeRowActions method when table scrolled', function() {
@@ -169,7 +169,7 @@ describe('Pulsar UI Component', function() {
             this.$datatableActions.trigger('scroll');
             setTimeout(function(){
                 expect(this.closeRowActions).to.have.been.called;
-            }, 1000);
+            }, 1500);
         });
 
         it('should be closed when the window resized', function() {
