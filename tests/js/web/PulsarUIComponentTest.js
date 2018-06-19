@@ -13,8 +13,8 @@ var $ = require('jquery'),
 describe('Pulsar UI Component', function() {
 
     beforeEach(function() {
-        this.$html = $('<html></html>');
-        this.$body = $('<body></body>').appendTo(this.$html);
+        this.$html = $('<div class="html"></div>');
+        this.$body = $('<div class="body"></div>').appendTo(this.$html);
         this.$code = $(`
             <a href="#foo" disabled class="is-disabled">
             <table class="table qa-table"></table>
@@ -63,7 +63,7 @@ describe('Pulsar UI Component', function() {
         this.$tableDupe = this.$html.find('.qa-table-dupe');
         this.$countdownOne = this.$html.find('.qa-countdown-one');
         this.$datatableActions = this.$html.find('.qa-datatable-actions');
-        
+
         this.$rowActions = this.$html.find('.row-actions');
 
         this.history = {
