@@ -419,6 +419,11 @@ placement    | string | the alignment of the dropdown menu, `left` (default) or 
     {% import _self as html %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
+    {% set caret = true %}
+    {% if options.caret is defined and options.caret != true %}
+        {% set caret = 0 %}
+    {% endif %}
+
     <div{{
         attributes({
             'class': 'btn__group drop' ~ options.direction|default('down') ~ (options.parent_class is defined ? ' ' ~ options.parent_class : '')
@@ -428,7 +433,7 @@ placement    | string | the alignment of the dropdown menu, `left` (default) or 
             html.button(options
                 |exclude('direction parent_class placement items')
                 |defaults({
-                    'caret': options.caret|default(true),
+                    'caret': caret,
                     'class': 'dropdown__toggle' ~ (options.class is defined ? ' ' ~ options.class : ''),
                     'data-toggle': 'dropdown'
                 })
