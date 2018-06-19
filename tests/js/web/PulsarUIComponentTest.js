@@ -63,6 +63,7 @@ describe('Pulsar UI Component', function() {
         this.$tableDupe = this.$html.find('.qa-table-dupe');
         this.$countdownOne = this.$html.find('.qa-countdown-one');
         this.$datatableActions = this.$html.find('.qa-datatable-actions');
+        
         this.$rowActions = this.$html.find('.row-actions');
 
         this.history = {
