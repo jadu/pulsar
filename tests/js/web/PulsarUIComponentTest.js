@@ -67,7 +67,7 @@ describe('Pulsar UI Component', function() {
 
         this.history = {
             pushState: sinon.stub()
-        };
+        }
 
         this.pulsarUIComponent = new PulsarUIComponent(this.$html, this.history);
 
@@ -140,36 +140,28 @@ describe('Pulsar UI Component', function() {
             sinon.spy(this.pulsarUIComponent, 'closeRowActions');
             this.pulsarUIComponent.init();
         });
-
+x
         it('should be opened when clicked', function() {
             this.$rowActions.click();
-            setTimeout(function(){
-                expect(this.$rowActionsParent.hasClass('open')).to.be.true;
-            }, 1500);
+            expect(this.$rowActionsParent.hasClass('open')).to.be.true;
         });
 
         it('should be closed when clicked again', function() {
             this.$rowActions.click();
             this.$rowActions.click();
-            setTimeout(function(){
-                expect(this.$rowActionsParent.hasClass('open')).to.be.false;
-            }, 1500);
+            expect(this.$rowActionsParent.hasClass('open')).to.be.false;
         });
 
         it('should call the closeRowActions method when window resized', function() {
             this.$rowActions.click();
             this.$html.trigger('resize');
-            setTimeout(function(){
-                expect(this.closeRowActions).to.have.been.called;
-            }, 1500);
+            expect(this.closeRowActions).to.have.been.called;
         });
 
         it('should call the closeRowActions method when table scrolled', function() {
             this.$rowActions.click();
             this.$datatableActions.trigger('scroll');
-            setTimeout(function(){
-                expect(this.closeRowActions).to.have.been.called;
-            }, 1500);
+            expect(this.closeRowActions).to.have.been.called;
         });
 
         it('should be closed when the window resized', function() {
