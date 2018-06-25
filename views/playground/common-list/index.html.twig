@@ -1,0 +1,18 @@
+{% extends '@pulsar/lexicon/base.html.twig' %}
+
+{% set heading = 'Common List View' %}
+
+{% set tab %}
+    {% include 'playground/common-list/tab.html.twig' %}
+{% endset %}
+
+{%
+    set tabs_content = [
+        {
+          "id"    : "list",
+          "label" : "Tab Title",
+          "src"   : tab,
+          "active": true
+        }
+    ]
+%}

@@ -1,0 +1,414 @@
+{% extends '@pulsar/pulsar/components/tab.html.twig' %}
+{% import "@pulsar/pulsar/v2/helpers/html.html.twig" as html %}
+
+{%
+    set example_dropdown = [
+        html.link({
+            label: html.icon('save') ~ ' Save as',
+            href: '#saveas'
+        }),
+        html.link({
+            label: html.icon('share') ~ ' Share',
+            href: '#share'
+        }),
+        html.link({
+            label: html.icon('eye-open') ~ ' Preview',
+            href: '#preview'
+        }),
+        html.link({
+            label: html.icon('external-link') ~ ' View live',
+            href: '#viewlive'
+        }),
+        html.divider(),
+        html.link({
+            label: html.icon('user') ~ ' Change owner',
+            href: '#changeowner'
+        }),
+        html.link({
+            label: html.icon('link') ~ ' Link inspector',
+            href: '#linkinspector'
+        }),
+        html.link({
+            label: html.icon('history') ~ ' View history',
+            href: '#viewhistory'
+        }),
+        html.link({
+            label: html.icon('list-ol') ~ ' Track changes',
+            href: '#trackchanges'
+        }),
+        html.divider(),
+        html.link({
+            label: html.icon('lock') ~ ' Lock',
+            href: '#lock'
+        }),
+        html.link({
+            label: html.icon('unlock') ~ ' Unlock',
+            href: '#unlock'
+        }),
+        html.link({
+            label: html.icon('check-circle') ~ ' Make live',
+            href: '#makelive'
+        }),
+        html.link({
+            label: html.icon('times-circle') ~ ' Take offline',
+            href: '#takeoffline'
+        }),
+        html.link({
+            label: html.icon('eye-open') ~ ' Make visible',
+            href: '#makevisible'
+        }),
+        html.link({
+            label: html.icon('eye-slash') ~ ' Make invisible',
+            href: '#makeinvisible'
+        }),
+        html.divider(),
+        html.link({
+            label: html.icon('times') ~ ' Delete',
+            href: '#delete',
+            class: 'link--danger'
+        }),
+
+    ]
+%}
+
+{%- block actions_left -%}
+    {{
+        html.actions_menu({
+            'items': [
+                [
+                    {
+                        'label': 'Lock',
+                        'href': '#lock',
+                        'icon': 'lock',
+                        'disabled': true
+                    },
+                    {
+                        'label': 'Unlock',
+                        'href': '#unlock',
+                        'icon': 'unlock'
+                    },
+                    {
+                        'label': 'Make live',
+                        'href': '#makelive',
+                        'icon': 'check-circle'
+                    },
+                    {
+                        'label': 'Take offline',
+                        'href': '#takeoffline',
+                        'icon': 'times-circle'
+                    },
+                    {
+                        'label': 'Make visible',
+                        'href': '#makevisible',
+                        'icon': 'eye-open'
+                    },
+                    {
+                        'label': 'Make invisible',
+                        'href': '#makeinvisible',
+                        'icon': 'eye-slash'
+                    }
+                ],
+                [
+                    {
+                        'label': 'Print table',
+                        'href': '#print',
+                        'icon': 'print'
+                    },
+                    {
+                        'label': 'Download as CSV',
+                        'href': '#download',
+                        'icon': 'download'
+                    }
+                ],
+                [
+                    {
+                        'label': 'Delete',
+                        'href': '#delete',
+                        'icon': 'times',
+                        'class': 'link--danger'
+                    }
+                ]
+            ]
+        })
+    }}
+{%- endblock -%}
+
+{%- block actions_right -%}
+    {{
+        html.button({
+            'label': 'Create Thing',
+            'class': 'btn--primary'
+        })
+    }}
+{%- endblock -%}
+
+{% block tab_content %}
+    <table class="table datatable table--full table--horizontal" data-order='[[ 3, "desc" ]]'>
+        <thead>
+            <tr>
+                <td class="table-responsive"></td>
+                <td class="table-selection"></td>
+                <th>Title</th>
+                <th>Created date</th>
+                <th>Owner</th>
+                <th>Modified date</th>
+                <th>Modified by</th>
+                <th>Categories</th>
+                <th class="u-text-align-center">Live</th>
+                <th class="u-text-align-center">Visible</th>
+                <td data-orderable="false"></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="table-responsive">
+                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                </td>
+                <td class="table-selection">
+                    {{ html.icon('square-o', { 'class': 'table-row-select js-select' }) }}
+                </td>
+                <td><a class="link" href="#link-1">The Terminator</a></td>
+                <td data-order="1984-10-26 12:34">26/10/1984 12:34pm</td>
+                <td>James Cameron</td>
+                <td data-order="1991-07-01 12:00">01/07/1991 12:34pm</td>
+                <td>James Cameron</td>
+                <td>
+                    {{
+                        html.link({
+                            'label': html.label({
+                                'label': 'action'
+                            })
+                        })
+                    }}
+                    {{
+                        html.link({
+                            'label': html.label({
+                                'label': 'science fiction'
+                            })
+                        })
+                    }}
+                    {{
+                        html.link({
+                            'label': html.label({
+                                'label': html.icon('ellipsis-h')
+                            })
+                        })
+                    }}
+                </td>
+                <td class="u-text-align-center">{{ html.status('online', {'title': 'live'}) }}</td>
+                <td class="u-text-align-center">{{ html.status('offline', {'title': 'invisible'}) }}</td>
+                <td>
+                    {{
+                        html.button_dropdown({
+                            'label': html.icon('ellipsis-h', {'label': 'Actions'}),
+                            'class': 'btn--naked dropdown__menu--right row-actions',
+                            'data-container': 'body',
+                            'caret': false,
+                            'items': example_dropdown,
+                        })
+                    }}
+                </td>
+            </tr>
+
+            <tr>
+                <td class="table-responsive">
+                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                </td>
+                <td class="table-selection">
+                    {{ html.icon('square-o', { 'class': 'table-row-select js-select' }) }}
+                </td>
+                <td><a class="link" href="#link-1">Conan the Barbarian</a></td>
+                <td data-order="1982-04-02 12:00">02/04/1982 12:34pm</td>
+                <td>John Millius</td>
+                <td data-order="2017-02-16 12:00">16/02/2017</td>
+                <td>Paul Verhoven</td>
+                <td>
+                    {{
+                        html.link({
+                            'label': html.label({
+                                'label': 'thriller'
+                            })
+                        })
+                    }}
+                    {{
+                        html.link({
+                            'label': html.label({
+                                'label': 'action'
+                            })
+                        })
+                    }}
+                    {{
+                        html.link({
+                            'label': html.label({
+                                'label': html.icon('ellipsis-h')
+                            })
+                        })
+                    }}
+                </td>
+                <td class="u-text-align-center">{{ html.status('offline', {'title': 'offline'}) }}</td>
+                <td class="u-text-align-center">{{ html.status('online', {'title': 'visible'}) }}</td>
+                <td>
+                    {{
+                        html.button_dropdown({
+                            'label': html.icon('ellipsis-h', {'label': 'Actions'}),
+                            'class': 'btn--naked dropdown__menu--right row-actions',
+                            'data-container': 'body',
+                            'caret': false,
+                            'items': example_dropdown,
+                        })
+                    }}
+                </td>
+            </tr>
+            <tr>
+                <td class="table-responsive">
+                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                </td>
+                <td class="table-selection">
+                    {{ html.icon('square-o', { 'class': 'table-row-select js-select' }) }}
+                </td>
+                <td><a class="link" href="#link-1">Predator</a></td>
+                <td data-order="1988-01-01 12:00">01/01/1988 12:34pm</td>
+                <td>John McTiernan</td>
+                <td class="muted">n/a</td>
+                <td class="muted">n/a</td>
+                <td>
+                    {{
+                        html.link({
+                            'label': html.label({
+                                'label': 'action'
+                            })
+                        })
+                    }}
+                    {{
+                        html.link({
+                            'label': html.label({
+                                'label': 'science fiction'
+                            })
+                        })
+                    }}
+                    {{
+                        html.link({
+                            'label': html.label({
+                                'label': html.icon('ellipsis-h')
+                            })
+                        })
+                    }}
+                </td>
+                <td class="u-text-align-center">{{ html.status('online', {'title': 'live'}) }}</td>
+                <td class="u-text-align-center">{{ html.status('offline', {'title': 'invisible'}) }}</td>
+                <td>
+                    {{
+                        html.button_dropdown({
+                            'label': html.icon('ellipsis-h', {'label': 'Actions'}),
+                            'class': 'btn--naked dropdown__menu--right row-actions',
+                            'data-container': 'body',
+                            'caret': false,
+                            'items': example_dropdown,
+                        })
+                    }}
+                </td>
+            </tr>
+            <tr>
+                <td class="table-responsive">
+                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                </td>
+                <td class="table-selection">
+                    {{ html.icon('square-o', { 'class': 'table-row-select js-select' }) }}
+                </td>
+                <td><a class="link" href="#link-1">Commando</a></td>
+                <td data-order="1986-02-21 12:00">21/02/1986 12:34pm</td>
+                <td>Mark L. Lester</td>
+                <td class="muted">n/a</td>
+                <td class="muted">n/a</td>
+                <td>
+                    {{
+                        html.link({
+                            'label': html.label({
+                                'label': 'thriller'
+                            })
+                        })
+                    }}
+                    {{
+                        html.link({
+                            'label': html.label({
+                                'label': 'action'
+                            })
+                        })
+                    }}
+                    {{
+                        html.link({
+                            'label': html.label({
+                                'label': html.icon('ellipsis-h')
+                            })
+                        })
+                    }}
+                </td>
+                <td class="u-text-align-center">{{ html.status('online', {'title': 'live'}) }}</td>
+                <td class="u-text-align-center">{{ html.status('offline', {'title': 'invisible'}) }}</td>
+                <td>
+                    {{
+                        html.button_dropdown({
+                            'label': html.icon('ellipsis-h', {'label': 'Actions'}),
+                            'class': 'btn--naked dropdown__menu--right row-actions',
+                            'data-container': 'body',
+                            'caret': false,
+                            'items': example_dropdown,
+                        })
+                    }}
+                </td>
+            </tr>
+
+            <tr>
+                <td class="table-responsive">
+                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                </td>
+                <td class="table-selection">
+                    {{ html.icon('square-o', { 'class': 'table-row-select js-select' }) }}
+                </td>
+                <td><a class="link" href="#link-1">Total Recall</a></td>
+                <td data-order="1990-06-01 12:00">01/06/1990 12:34pm</td>
+                <td>Paul Verhoven</td>
+                <td data-order="2012-08-29 12:00">29/08/2012</td>
+                <td>Len Wiseman</td>
+                <td>
+                    {{
+                        html.link({
+                            'label': html.label({
+                                'label': 'action'
+                            })
+                        })
+                    }}
+                    {{
+                        html.link({
+                            'label': html.label({
+                                'label': 'science fiction'
+                            })
+                        })
+                    }}
+                    {{
+                        html.link({
+                            'label': html.label({
+                                'label': html.icon('ellipsis-h')
+                            })
+                        })
+                    }}
+                </td>
+                <td class="u-text-align-center">{{ html.status('offline', {'title': 'offline'}) }}</td>
+                <td class="u-text-align-center">{{ html.status('online', {'title': 'visible'}) }}</td>
+                <td>
+                    {{
+                        html.button_dropdown({
+                            'label': html.icon('ellipsis-h', {'label': 'Actions'}),
+                            'class': 'btn--naked dropdown__menu--right row-actions',
+                            'data-container': 'body',
+                            'caret': false,
+                            'items': example_dropdown,
+                        })
+                    }}
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+
+{% endblock tab_content %}
