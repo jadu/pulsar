@@ -57,11 +57,19 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
             {% for item_group in item_groups %}
                 {% for item in item_group %}
 
-                    {%
-                        set actions = actions|merge([
-                            html.link(item)
-                        ])
-                    %}
+                    {% if item.type is defined and item.type == 'title' %}
+                        {%
+                            set actions = actions|merge([
+                                '<span class="dropdown__title">' ~ item.label ~ '</span>'
+                            ])
+                        %}
+                    {% else %}
+                        {%
+                            set actions = actions|merge([
+                                html.link(item)
+                            ])
+                        %}
+                    {% endif %}
 
                 {% endfor %}
 
@@ -79,7 +87,7 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {{
         html.button_dropdown({
-            'label': 'Actions',
+            'label': items.label|default('Actions'),
             'items': actions
         })
     }}

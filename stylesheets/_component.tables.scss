@@ -3,8 +3,8 @@
 
     [href],
     .continuum-cms & [href]:link {
-        border-bottom-color: color(link, dark);
-        color: color(link, dark);
+        border-bottom: 1px dotted color(grey, light);
+        color: color(link);
         text-decoration: none;
     }
 
@@ -22,7 +22,7 @@
 
         [href],
         .continuum-cms & [href]:link {
-            border-bottom-color: color(link, dark);
+            border-bottom: 1px dotted color(link, dark);
             color: color(link, dark);
         }
     }

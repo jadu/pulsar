@@ -74,6 +74,17 @@ a.dt-button {
     // scss-lint:disable SelectorFormat
     td,
     th {
+        &.sorting:hover,
+        &.sorting_asc:hover,
+        &.sorting_desc:hover {
+            background-color: color(background, dark);
+            cursor: pointer;
+
+            &::after {
+                color: color(link);
+            }
+        }
+
         &.sorting::after,
         &.sorting_asc::after,
         &.sorting_desc::after {
