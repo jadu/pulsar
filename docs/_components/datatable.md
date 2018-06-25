@@ -4,7 +4,7 @@ title: Datatables
 category: Components
 ---
 
-Datatables use the datatables.net plugin to provide a nice amount of functionality to your data. Pulsar's configuration includes plugins to make them responsive.
+Datatables use the datatables.net plugin to provide a nice amount of functionality to your data. Pulsar's configuration includes plugins to make them responsive. Where possible you should refer to the [datatable documentation](https://www.datatables.net).
 
 ## Dependencies
 
@@ -1349,6 +1349,13 @@ Add the `data-orderable="false"` to any `thead > th` or `thead > td` that you do
 </table>
 ```
 
+## Sorting date/time columns
+
+To allow proper sorting of dates, use the `data-order` attribute to supply a `yyyy-mm-dd hh:mm` formatted string, this will be used when sorting the column.
+
+```html
+<td data-order="1982-04-02 12:00">02/04/1982 12:34pm</td>
+```
 
 ## No results
 
