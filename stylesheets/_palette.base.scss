@@ -163,7 +163,7 @@ $palette-alias: (
         disabled: map-get(map-get($palette-monochromes, gray), lighter)
     ),
     link: (
-        base:     map-get(map-get($palette-branding, jadu-blue), dark),
+        base:     rgb(35, 124, 169),
         dark:     map-get(map-get($palette-branding, jadu-blue), darkest),
         hover:    map-get(map-get($palette-branding, jadu-blue), darkest),
         inverse:  #fff,
