@@ -25,3 +25,14 @@
         border-radius: 6px;
     }
 }
+
+.status--icon {
+    &.is-active,
+    &.is-online {
+        color: #297c46;
+    }
+
+    &.is-offline {
+        color: #c84d40;
+    }
+}

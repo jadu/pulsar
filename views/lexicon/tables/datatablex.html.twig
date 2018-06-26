@@ -32,8 +32,9 @@
     <table class="table datatable table--full table--horizontal" data-order='[[ 3, "desc" ]]'>
         <thead>
             <tr>
-                <td class="table-responsive"></td>
-                <td class="table-selection"></td>
+                <th class="table-selection">
+                    <input type="checkbox" class="form__control checkbox js-select-all" aria-label="Select all rows" />
+                </th>
                 <th>Name</th>
                 <th>Created</th>
                 <th>IP</th>
@@ -48,11 +49,8 @@
         <tbody>
             {% for i in 0..5 %}
             <tr>
-                <td class="table-responsive">
-                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
-                </td>
                 <td class="table-selection">
-                    {{ html.icon('square-o', { 'class': 'table-row-select js-select' }) }}
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#link-{{ i }}" class="table-link">Sysadmin - Ansible 1</a></td>
                 <td>04/07/2018 12:34pm</td>
@@ -84,11 +82,8 @@
             </tr>
 
             <tr class="table__tr">
-                <td class="table__td table-responsive">
-                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
-                </td>
-                <td class="table__td table-selection">
-                    {{ html.icon('square-o', { 'class': 'table-row-select js-select' }) }}
+                <td class="table-selection">
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#" class="table-link">Sysasdmin - WISP 1</a></td>
                 <td>04/07/2018 12:34pm</td>

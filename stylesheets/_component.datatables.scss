@@ -151,13 +151,13 @@ th.sorting_disabled:hover {
 .table-responsive,
 .table-selection {
     text-align: center;
-    min-width: 30px;
-    max-width: 30px;
+    min-width: 42px;
+    max-width: 42px;
     user-select: none;
-    width: 30px;
+    width: 42px;
 
     &:hover {
-        background: none;
+        // background: none;
         cursor: pointer;
     }
 }
@@ -175,7 +175,6 @@ th.sorting_disabled:hover {
     display: none;
     float: left;
     line-height: 30px;
-    margin-left: 12px;
 
     @include respond-min($screen-tablet) {
         display: block;
@@ -207,11 +206,9 @@ th.sorting_disabled:hover {
     width: 100%;
 
     .select-info {
-        @extend %label;
-        @extend %label--info;
-        color: color(text);
-        font-family: $font-family-regular;
-        margin-left: 5px;
+        border-left: 1px dotted color(border);
+        margin-left: 10px;
+        padding-left: 10px;
     }
 }
 

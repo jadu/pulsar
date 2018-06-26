@@ -116,3 +116,18 @@
     text-align: center;
     width: 100%;
 }
+
+.btn.link {
+    border-bottom: 1px dotted color(grey, light);
+    border-radius: 0;
+    color: color(link) !important;
+}
+
+.table .link + .label {
+    margin-left: $gutter-width / 2;
+    vertical-align: text-top;
+}
+
+.btn__group.dropdown > .bulk-actions span.badge {
+    margin-top: -2px;
+}

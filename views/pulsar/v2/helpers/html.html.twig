@@ -87,7 +87,14 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {{
         html.button_dropdown({
-            'label': items.label|default('Actions'),
+            'id': 'actions_menu',
+            'label': items.label|default('Actions') ~ 
+                html.badge({
+                    'label': '0', 
+                    'aria-label': '0 rows selected',
+                    'class': 'label--primary js-bulk-actions-badge'
+                }),
+            'class': items.class|default(''),
             'items': actions
         })
     }}
@@ -1397,15 +1404,37 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
 {% macro status(state, options) %}
+{% import _self as html %}
 {% spaceless %}
 
 {% if options.title is not defined %}
     {% set options = options|default({})|merge({ 'title': state|default('active') }) %}
 {% endif %}
 
+{% if options.icon is defined %}
+
+    {% if options.icon == true %}
+        {% if state == 'online' or state == 'active' %}
+            {% set iconGlyph = 'check-circle' %}
+        {% endif %}
+    {% endif %}
+    
+    {{ 
+        html.icon(iconGlyph|default('times-rectangle'), options
+            |exclude('state icon')
+            |merge({
+                'class': 'status--icon is-' ~ state|default('active'),
+                'data-placement': options['data-placement']|default('top'),
+                'data-toggle': 'tooltips',
+            }) 
+        )
+    }}
+
+{% else %}
+
     <span{{
         attributes(options
-            |exclude('state')
+            |exclude('state icon title')
             |merge({
                 'data-placement': options['data-placement']|default('top')
             })
@@ -1416,8 +1445,12 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
         )
     }}></span>
 
+{% endif %}
+
 {% endspaceless %}
 {% endmacro %}
+
+
 {# -----------------------------------------------------------------------------
 
 # DropZone
