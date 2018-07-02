@@ -68,11 +68,11 @@ HelpTextComponent.prototype.updateHelpSidebar = function () {
     var component = this,
         $activeTabContainer = component.$html.find('.tab__pane.is-active .tab__container'),
         activeTabSideBarContentHtml = component.$html.find('.tab__pane.is-active .tab__sidebar').html(),
-        $mobileToggleHelpButton = $('<button class="show-page-help js-show-page-help"><i class="icon-question-sign" aria-hidden="true"></i><span class="hide">Show on page help</span></button>'),
+        $mobileToggleHelpButton = $('<button class="show-page-help js-show-page-help"><i class="icon-question-sign" aria-hidden="true"></i><span class="hide">Show on-page help</span></button>'),
         $pageMainTitle = component.$html.find('.main-title'),
         $tabHelp = component.$html.find('.tab-help'),
         isMobile,
-        $mobileCloseHelpButton = $('<button class="close-page-help js-close-page-help"><i class="icon-remove-sign"></i></button>');
+        $mobileCloseHelpButton = $('<button class="close-page-help js-close-page-help"><i class="icon-remove-sign" aria-hidden="true"></i><span class="hide">Close on-page help</span></button>');
 
     // Check if active tab has help text
     if (activeTabSideBarContentHtml && activeTabSideBarContentHtml.length > 0) {
