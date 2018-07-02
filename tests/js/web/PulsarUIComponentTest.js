@@ -19,29 +19,6 @@ describe('Pulsar UI Component', function() {
             <table class="table qa-table"></table>\
             <table class="table--datagrid qa-datagrid"></table>\
             <table class="table datatable qa-datatable"></table>\
-            <table class="table datatable table--horizontal qa-datatable-actions">\
-                <thead>\
-                    <tr>\
-                        <th>foo</th>\
-                        <th>bar</th>\
-                    </tr>\
-                </thead>\
-                <tbody>\
-                    <tr>\
-                        <td></td>\
-                        <td>\
-                            <div class="btn__group dropdown">\
-                                <button data-toggle="dropdown" class="btn dropdown__toggle row-actions">\
-                                    <i class="icon-ellipsis-h"><span class="hide">Actions</span></i>\
-                                </button>\
-                                <ul class="dropdown__menu pull-left">\
-                                    <li><a href="#action">action</a></li>\
-                                </ul>\
-                            </div>\
-                        </td>\
-                    </tr>\
-                </tbody>\
-            </table>\
             <table class="table datatable qa-datatable-empty-message" data-empty-table="foo"></table>\
             <table class="table datatable qa-datatable-no-selection" data-select="false"></table>\
             <div class="table-container"><table class="table qa-table-dupe"></table></div>\
@@ -61,9 +38,6 @@ describe('Pulsar UI Component', function() {
         this.$datatableDisableSelection = this.$html.find('.qa-datatable-no-selection');
         this.$tableDupe = this.$html.find('.qa-table-dupe');
         this.$countdownOne = this.$html.find('.qa-countdown-one');
-        this.$datatableActions = this.$html.find('.qa-datatable-actions');
-        this.$rowActions = this.$html.find('.row-actions');
-        this.$rowActionsParent = this.$html.find('.dropdown');
 
         this.history = {
             pushState: sinon.stub()
@@ -132,50 +106,6 @@ describe('Pulsar UI Component', function() {
         it('should wrap the table with the disable class when the data-select attribute is false', function() {
             expect(this.$datatableDisableSelection.parent().hasClass('dt-disable-selection')).to.be.true;
         });
-    });
-
-    describe('Table row-actions', function() {
-
-        beforeEach(function() {
-            sinon.spy(this.pulsarUIComponent, 'closeRowActions');
-            this.pulsarUIComponent.init();
-        });
-x
-        it('should be opened when clicked', function() {
-            this.$rowActions.click();
-            expect(this.$rowActionsParent.hasClass('open')).to.be.true;
-        });
-
-        it('should be closed when clicked again', function() {
-            this.$rowActions.click();
-            this.$rowActions.click();
-            expect(this.$rowActionsParent.hasClass('open')).to.be.false;
-        });
-
-        it('should call the closeRowActions method when window resized', function() {
-            this.$rowActions.click();
-            this.$html.trigger('resize');
-            expect(this.closeRowActions).to.have.been.called;
-        });
-
-        it('should call the closeRowActions method when table scrolled', function() {
-            this.$rowActions.click();
-            this.$datatableActions.trigger('scroll');
-            expect(this.closeRowActions).to.have.been.called;
-        });
-
-        it('should be closed when the window resized', function() {
-            this.$rowActions.click();
-            this.$html.trigger('resize');
-            expect(this.$rowActionsParent.hasClass('open')).to.be.false;
-        });
-
-        it('should be closed when the table is scrolled resized', function() {
-            this.$rowActions.click();
-            this.$datatableActions.trigger('scroll');
-            expect(this.$rowActionsParent.hasClass('open')).to.be.false;
-        });
-
     });
 
     describe('Clicking a tab toggle with the data-href attribute', function() {
