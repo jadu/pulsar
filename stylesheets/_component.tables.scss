@@ -80,8 +80,7 @@
             }
         }
 
-        &.shrink-to-fit,
-        &.u-shrink-to-fit {
+        &.shrink-to-fit {
             @include respond-min($screen-tablet) {
                 width: 1px;
             }

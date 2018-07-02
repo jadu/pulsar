@@ -3,10 +3,7 @@ GEM
   specs:
     addressable (2.5.0)
       public_suffix (~> 2.0, >= 2.0.2)
-    autoprefixer-rails (6.3.7)
-      execjs
     colorator (1.1.0)
-    execjs (2.7.0)
     faraday (0.11.0)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.17)
@@ -23,8 +20,6 @@ GEM
       pathutil (~> 0.9)
       rouge (~> 1.7)
       safe_yaml (~> 1.0)
-    jekyll-autoprefixer (1.0.1)
-      autoprefixer-rails (~> 6.3.6)
     jekyll-gist (1.4.0)
       octokit (~> 4.2)
     jekyll-paginate (1.1.0)
@@ -62,10 +57,9 @@ PLATFORMS
 
 DEPENDENCIES
   jekyll (= 3.4.0)
-  jekyll-autoprefixer
   jekyll-gist
   jekyll-paginate
   pulsar-jekyll-code-example
 
 BUNDLED WITH
-   1.16.1
+   1.14.4
