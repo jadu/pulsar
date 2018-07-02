@@ -5,13 +5,21 @@
 {% set tab %}
     {% include 'playground/common-list/tab.html.twig' %}
 {% endset %}
+{% set table %}
+    {% include 'playground/common-list/table.html.twig' %}
+{% endset %}
 
 {%
     set tabs_content = [
         {
           "id"    : "list",
           "label" : "Tab Title",
-          "src"   : tab,
+          "src"   : tab
+        },
+        {
+          "id"    : "table",
+          "label" : "Table Helper",
+          "src"   : table,
           "active": true
         }
     ]
