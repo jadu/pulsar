@@ -1514,3 +1514,45 @@ data-dropzone-file-node-type        | boolean   | Show file type in file html | 
     {% endspaceless %}
 {% endmacro %}
 
+{# -----------------------------------------------------------------------------
+
+Datatable - https://jadu.github.io/pulsar/components/datatable/
+
+#}
+{% macro datatable(options) %}
+    {% import _self as html %}
+    {% if options.data is defined and options.data is not empty %}
+    <table{{ attributes(options|defaults({ 'class': 'table datatable' })) }}>
+        <thead>
+            <tr>
+                {% for column in options.data.columns %}
+                    {% if loop.first %}
+                        <th class="table-selection" data-orderable="false">
+                            <input type="checkbox" class="form__control checkbox js-select-all" aria-label="Select all rows" data-toggle="tooltips" title="select all rows" data-placement="right" data-container="body" />
+                        </th>
+                    {% endif %}
+                    <th{{ attributes(column.attrs|default) }}>{{ column.title }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in options.data.data %}
+                <tr>
+                    <td class="table-selection">
+                        <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
+                    </td>
+                    {% for key, val in row %}
+                        {% if val is same as(true) %}
+                            <td data-order="{{ key }}" class="u-text-align-center">{{ html.status('online', { 'title': key, 'icon': true }) }}</td>
+                        {% elseif val is same as(false) %}
+                            <td data-order="{{ key }}" class="u-text-align-center">{{ html.status('offline', { 'title': 'Not ' ~ key|lower, 'icon': true }) }}</td>
+                        {% else %}
+                            <td>{{ val }}</td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+{% endmacro %}
