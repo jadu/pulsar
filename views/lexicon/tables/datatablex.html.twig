@@ -43,7 +43,6 @@
                 <th>Image</th>
                 <th>RAM</th>
                 <th class="centered">CPUs</th>
-                <td data-orderable="false"></td>
             </tr>
         </thead>
         <tbody>
@@ -67,18 +66,6 @@
                 <td>{{ html.icon('linux') }} Centos 6 v1.0.2</td>
                 <td>4 GB</td>
                 <td class="centered">2</td>
-                <td>
-                    {{
-                        html.button_dropdown({
-                            'label': html.icon('ellipsis-h', {'label': 'Actions'}),
-                            'class': 'btn--naked dropdown__menu--right row-actions',
-                            'data-container': 'body',
-                            'caret': false,
-                            'items': example_dropdown,
-                        })
-                    }}
-                </td>
-
             </tr>
 
             <tr class="table__tr">
@@ -99,17 +86,6 @@
                 <td>{{ html.icon('windows') }} Windows Server 2012 R2 v1.0.0</td>
                 <td>2 GB</td>
                 <td class="centered">1</td>
-                <td>
-                    {{
-                        html.button_dropdown({
-                            'label': html.icon('ellipsis-h', {'label': 'Actions'}),
-                            'class': 'btn--naked dropdown__menu--right row-actions',
-                            'data-container': 'body',
-                            'caret': false,
-                            'items': example_dropdown,
-                        })
-                    }}
-                </td>
             </tr>
             {% endfor %}
         </tbody>
