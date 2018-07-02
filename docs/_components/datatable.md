@@ -63,10 +63,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
         <tbody>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td>
                     <a href="/edit">Name data</a>
@@ -98,10 +98,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
         <tbody>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Kuame Raymond</a></td>
                 <td>Est Consulting</td>
@@ -110,10 +110,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Oren Holden</a></td>
                 <td>Aliquet Nec LLP</td>
@@ -122,10 +122,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Timothy Armstrong</a></td>
                 <td>Ac Arcu Nunc Ltd</td>
@@ -134,10 +134,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Herrod Ramirez</a></td>
                 <td>Quam Institute</td>
@@ -146,10 +146,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Samson Brennan</a></td>
                 <td>Nec Cursus A Incorporated</td>
@@ -158,10 +158,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Malcolm Weber</a></td>
                 <td>Proin Vel Nisl Incorporated</td>
@@ -170,10 +170,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Arden Boyle</a></td>
                 <td>Dictum Eu Corp.</td>
@@ -182,10 +182,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Dale Parrish</a></td>
                 <td>Felis Purus Ac LLC</td>
@@ -194,10 +194,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Boris Pace</a></td>
                 <td>Sed Libero Inc.</td>
@@ -206,10 +206,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Rogan Higgins</a></td>
                 <td>Cursus Consulting</td>
@@ -218,10 +218,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Allistair Sheppard</a></td>
                 <td>Quis Diam LLC</td>
@@ -230,10 +230,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Kane Wyatt</a></td>
                 <td>Maecenas Consulting</td>
@@ -242,10 +242,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Kasper Barton</a></td>
                 <td>Mauris Institute</td>
@@ -254,10 +254,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Phelan Valencia</a></td>
                 <td>Nec Eleifend Corp.</td>
@@ -266,10 +266,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Jameson Duncan</a></td>
                 <td>Orci Lacus Inc.</td>
@@ -278,10 +278,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Merrill Lowery</a></td>
                 <td>Penatibus Et Magnis Foundation</td>
@@ -290,10 +290,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Mufutau Valentine</a></td>
                 <td>Nulla Eget LLP</td>
@@ -302,10 +302,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Lucius Barron</a></td>
                 <td>Imperdiet Ornare LLC</td>
@@ -314,10 +314,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Dieter Gross</a></td>
                 <td>Enim Nunc Associates</td>
@@ -326,10 +326,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Brody Lara</a></td>
                 <td>Nunc Ac LLP</td>
@@ -338,10 +338,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Avram Henry</a></td>
                 <td>Natoque Corp.</td>
@@ -350,10 +350,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Malachi Daniels</a></td>
                 <td>Est LLC</td>
@@ -362,10 +362,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Hiram Leach</a></td>
                 <td>Mauris Nulla Institute</td>
@@ -374,10 +374,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Malik Doyle</a></td>
                 <td>Dolor Quisque Tincidunt Company</td>
@@ -386,10 +386,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Lev Delacruz</a></td>
                 <td>Ut Nulla Consulting</td>
@@ -398,10 +398,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Ryan Mckinney</a></td>
                 <td>Lectus A Ltd</td>
@@ -410,10 +410,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Ulysses Burt</a></td>
                 <td>Fermentum Company</td>
@@ -422,10 +422,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Porter Barnes</a></td>
                 <td>Aliquam Fringilla Incorporated</td>
@@ -434,10 +434,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Brennan Dorsey</a></td>
                 <td>Adipiscing Lobortis LLP</td>
@@ -446,10 +446,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Kato Dean</a></td>
                 <td>Magnis Dis Industries</td>
@@ -458,10 +458,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Blaze Glover</a></td>
                 <td>Eu Tempor Company</td>
@@ -470,10 +470,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Griffin Glass</a></td>
                 <td>Aliquet Consulting</td>
@@ -482,10 +482,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Keefe Foley</a></td>
                 <td>Mauris Limited</td>
@@ -494,10 +494,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Lucius Chang</a></td>
                 <td>Tellus Industries</td>
@@ -506,10 +506,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Abraham Whitley</a></td>
                 <td>Phasellus Associates</td>
@@ -518,10 +518,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Ulric Anthony</a></td>
                 <td>Congue Institute</td>
@@ -530,10 +530,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Armand Gilmore</a></td>
                 <td>Etiam Imperdiet Dictum Incorporated</td>
@@ -542,10 +542,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Rudyard Leonard</a></td>
                 <td>Porta Industries</td>
@@ -554,10 +554,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Tyler Hayes</a></td>
                 <td>Magna Phasellus Associates</td>
@@ -566,10 +566,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Cairo Merritt</a></td>
                 <td>Nam Company</td>
@@ -578,10 +578,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Lucius Franks</a></td>
                 <td>Quis Associates</td>
@@ -590,10 +590,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Kane Buck</a></td>
                 <td>Proin Eget Odio Ltd</td>
@@ -602,10 +602,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">James Smith</a></td>
                 <td>Orci Consulting</td>
@@ -614,10 +614,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Troy Hardy</a></td>
                 <td>Leo In Lobortis Incorporated</td>
@@ -626,10 +626,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Jonah Reilly</a></td>
                 <td>Eget Nisi Dictum Company</td>
@@ -638,10 +638,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Eric Henry</a></td>
                 <td>Magnis Limited</td>
@@ -650,10 +650,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Price Colon</a></td>
                 <td>Enim Etiam Imperdiet Inc.</td>
@@ -662,10 +662,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Connor Rutledge</a></td>
                 <td>Phasellus Dolor Consulting</td>
@@ -674,10 +674,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Lawrence Ferrell</a></td>
                 <td>Vel Venenatis Vel Incorporated</td>
@@ -686,10 +686,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Abraham Fischer</a></td>
                 <td>Luctus Lobortis LLP</td>
@@ -698,10 +698,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Reed Cline</a></td>
                 <td>Laoreet Foundation</td>
@@ -710,10 +710,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Asher Simmons</a></td>
                 <td>Consequat Purus Corp.</td>
@@ -722,10 +722,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">George Reeves</a></td>
                 <td>Placerat Augue LLP</td>
@@ -734,10 +734,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Leo Bridges</a></td>
                 <td>Sapien Cras Dolor Associates</td>
@@ -746,10 +746,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Sebastian Copeland</a></td>
                 <td>Elit Company</td>
@@ -758,10 +758,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Damian Acevedo</a></td>
                 <td>Malesuada Associates</td>
@@ -770,10 +770,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Thaddeus Mccarthy</a></td>
                 <td>Pede Associates</td>
@@ -782,10 +782,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Reese Jennings</a></td>
                 <td>Dignissim Corp.</td>
@@ -794,10 +794,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Bert Davidson</a></td>
                 <td>Cum Sociis Natoque Ltd</td>
@@ -806,10 +806,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Grady Cox</a></td>
                 <td>Aenean Associates</td>
@@ -818,10 +818,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Upton Peterson</a></td>
                 <td>Mollis Lectus Pede Corp.</td>
@@ -830,10 +830,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Acton Ware</a></td>
                 <td>Enim Etiam Imperdiet Foundation</td>
@@ -842,10 +842,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Nicholas Roman</a></td>
                 <td>In Cursus Et LLC</td>
@@ -854,10 +854,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Nash Park</a></td>
                 <td>Laoreet Libero Et Institute</td>
@@ -866,10 +866,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Thane Myers</a></td>
                 <td>Non LLC</td>
@@ -878,10 +878,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Denton Graves</a></td>
                 <td>Sollicitudin Orci Sem Institute</td>
@@ -890,10 +890,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Denton Fowler</a></td>
                 <td>Mattis Integer Incorporated</td>
@@ -902,10 +902,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Colin Raymond</a></td>
                 <td>Lorem Corporation</td>
@@ -914,10 +914,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Keefe Kelley</a></td>
                 <td>Enim Foundation</td>
@@ -926,10 +926,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Blake Nolan</a></td>
                 <td>Risus Nunc Ac Incorporated</td>
@@ -938,10 +938,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Jesse Gaines</a></td>
                 <td>Sagittis Company</td>
@@ -950,10 +950,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Lionel Alexander</a></td>
                 <td>Integer Vulputate PC</td>
@@ -962,10 +962,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Raymond Velasquez</a></td>
                 <td>Elementum LLC</td>
@@ -974,10 +974,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Harrison Rosario</a></td>
                 <td>Ligula Associates</td>
@@ -986,10 +986,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Robert Carpenter</a></td>
                 <td>Orci Tincidunt PC</td>
@@ -998,10 +998,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Keith Nash</a></td>
                 <td>Non Nisi Limited</td>
@@ -1010,10 +1010,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Xander Schroeder</a></td>
                 <td>Elit Aliquam Inc.</td>
@@ -1022,10 +1022,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Mason Hammond</a></td>
                 <td>Sit Amet Risus Consulting</td>
@@ -1034,10 +1034,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Abraham Mcbride</a></td>
                 <td>Et Industries</td>
@@ -1046,10 +1046,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Octavius Bartlett</a></td>
                 <td>Luctus Ltd</td>
@@ -1058,10 +1058,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Clinton Henderson</a></td>
                 <td>Turpis Nec Mauris Company</td>
@@ -1070,10 +1070,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Owen Weber</a></td>
                 <td>Phasellus In Felis Inc.</td>
@@ -1082,10 +1082,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Drew Torres</a></td>
                 <td>Eu Associates</td>
@@ -1094,10 +1094,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Dale Wade</a></td>
                 <td>Nibh Aliquam Ornare Corporation</td>
@@ -1106,10 +1106,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Aristotle Hess</a></td>
                 <td>Suscipit Est PC</td>
@@ -1118,10 +1118,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Channing Carver</a></td>
                 <td>Curae; Limited</td>
@@ -1130,10 +1130,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">William Thompson</a></td>
                 <td>Ut Pellentesque Eget Associates</td>
@@ -1142,10 +1142,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Armando Fitzpatrick</a></td>
                 <td>Nulla In Tincidunt Associates</td>
@@ -1154,10 +1154,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Dalton Evans</a></td>
                 <td>Egestas Associates</td>
@@ -1166,10 +1166,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Brett Howell</a></td>
                 <td>Justo Proin Non Consulting</td>
@@ -1178,10 +1178,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Todd Armstrong</a></td>
                 <td>Auctor Quis Tristique LLP</td>
@@ -1190,10 +1190,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Cameron Trujillo</a></td>
                 <td>Ac Company</td>
@@ -1202,10 +1202,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Travis Mckee</a></td>
                 <td>Egestas Aliquam Corp.</td>
@@ -1214,10 +1214,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Hamilton Maddox</a></td>
                 <td>Ligula Consectetuer Corporation</td>
@@ -1226,10 +1226,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Cole Mack</a></td>
                 <td>Porttitor Interdum Ltd</td>
@@ -1238,10 +1238,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Sean Benjamin</a></td>
                 <td>Metus Sit Amet Limited</td>
@@ -1250,10 +1250,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Caesar Lee</a></td>
                 <td>Fusce LLP</td>
@@ -1262,10 +1262,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Kamal Spencer</a></td>
                 <td>Velit Industries</td>
@@ -1274,10 +1274,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Mannix Reese</a></td>
                 <td>Fusce Diam Nunc Institute</td>
@@ -1286,10 +1286,10 @@ The `DataTable` plugin is called on any table containing the `datatable` class. 
             </tr>
             <tr>
                 <td class="table-responsive">
-                    <a href="#" class="table-child-toggle"><i class="icon icon-plus-sign">Expand</i></a>
+                    <button class="btn btn--naked"><i class="icon-plus-sign table-child-toggle"><span class="hide">Expand</span></i></button>
                 </td>
                 <td class="table-selection">
-                    <i class="icon icon-square-o table-row-select js-select"><span class="hide">Unchecked</span></i>
+                    <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                 </td>
                 <td><a href="#">Colt Combs</a></td>
                 <td>Mi Ac Incorporated</td>

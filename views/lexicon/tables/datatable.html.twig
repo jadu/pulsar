@@ -23,7 +23,12 @@
             {% for i in 0..5 %}
             <tr>
                 <td class="table-responsive">
-                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                    {{
+                        html.button({
+                            'label': html.icon('plus-sign', { 'label': 'Expand', 'class': 'table-child-toggle' }),
+                            'class': 'btn--naked'
+                        })
+                    }}
                 </td>
                 <td class="table-selection">
                     <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
@@ -54,7 +59,7 @@
 
             <tr class="table__tr">
                 <td class="table__td table-responsive">
-                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                    {{ html.button({ 'label': html.icon('plus-sign', { 'label': 'Expand', 'class': 'table-child-toggle' }), 'class': 'btn--naked'}) }}
                 </td>
                 <td class="table__td table-selection">
                     <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
