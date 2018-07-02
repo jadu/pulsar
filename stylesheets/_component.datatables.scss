@@ -89,7 +89,7 @@ a.dt-button {
         &.sorting_asc::after,
         &.sorting_desc::after {
             @include icon-FontAwesome();
-            font-size: 16px;
+            font-size: $font-size-base;
             left: 0;
             margin-left: 10px;
         }
@@ -131,7 +131,7 @@ a.dt-button {
 .table-row-select {
     color: color(grey);
     cursor: pointer;
-    font-size: 16px;
+    font-size: $font-size-base;
     position: relative;
     top: 1px;
 }
@@ -156,9 +156,9 @@ th.sorting_disabled:hover {
     user-select: none;
     width: 42px;
 
-    &:hover {
-        // background: none;
-        cursor: pointer;
+    .btn {
+        line-height: 22px;
+        padding: 0;
     }
 }
 
