@@ -36,10 +36,6 @@ build:
 	@ -rbenv global 2.3.0
 	@ echo "\n${CHECK} Done"
 
-	# echo "${HR}\nInstalling Ruby...${HR}\n"
-	# -brew install ruby
-	# echo "\n${CHECK} Done"
-
 	@ echo "${HR}\nInstalling scss-lint...${HR}\n"
 	@ gem install scss_lint -v ${SASSLINTVER} --no-ri --no-rdoc --no-user-install
 	@ echo "\n${CHECK} Done"
