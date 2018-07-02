@@ -41,7 +41,11 @@ This may take a while if it’s your first time, once that’s ready you should 
 vagrant up
 ```
 
-The first time you run this, vagrant will download a ‘box’ which is basically a lightweight Ubuntu build, it will then run a provisioning script which installs and configures Apache, PHP, MySQL and Git.
+or alternatively, using docker
+
+```
+docker-compose up -d
+```
 
 Once that’s complete, you will need to run the main `grunt` task which will build the main CSS and javascript files, and watch for any further changes. This can be started with:
 
