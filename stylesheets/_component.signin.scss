@@ -12,7 +12,7 @@ body {
 
 // prevent white flash before video plugin is initialised
 .signin-backdrop {
-	background-color: black;
+	background-color: color(black);
 	bottom: 0;
 	left: 0;
 	position: absolute;
@@ -53,8 +53,8 @@ body {
 	background-color: $signin-bg-color-fallback;
 	background-color: $signin-bg-color;
 	border-radius: 2px;
-	box-shadow: 0 0 50px #000;
-	color: white;
+	box-shadow: 0 0 50px color(black);
+	color: color(white);
 	margin: 0 auto;
 	min-height: 350px;
 	padding: 0 0 10px;
@@ -78,7 +78,7 @@ body {
 
 		.loading--circle i {
 			border: 1px solid rgba(0, 0, 0, .2);
-			border-top-color: white;
+			border-top-color: color(white);
 		}
 	}
 
@@ -99,12 +99,12 @@ body {
 	}
 
 	input {
-		background-color: white;
-		color: black;
+		background-color: color(white);
+		color: color(black);
 	}
 
 	a {
-		color: white;
+		color: color(white);
 	}
 
 	.btn {
@@ -281,7 +281,7 @@ body {
 	font-size: .8em;
 
 	&:focus {
-		outline-color: white;
+		outline-color: color(white);
 	}
 }
 
