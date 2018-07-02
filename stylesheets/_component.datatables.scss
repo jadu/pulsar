@@ -55,6 +55,7 @@ a.dt-button {
 .dt-buttons {
     float: left;
 
+    > a,
     > button {
         background-color: transparent;
         border: 0;
@@ -105,6 +106,10 @@ a.dt-button {
 
         &.sorting_desc::after {
             content: '\f0dd';
+        }
+
+        &.sorting_disabled::after {
+            content: '';
         }
 
         &.sorting_asc,
