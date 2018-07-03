@@ -75,6 +75,8 @@ a.dt-button {
     // scss-lint:disable SelectorFormat
     td,
     th {
+        white-space: nowrap;
+
         &.sorting:hover,
         &.sorting_asc:hover,
         &.sorting_desc:hover {
