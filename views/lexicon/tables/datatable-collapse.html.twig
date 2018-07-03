@@ -212,6 +212,7 @@
     {{ 
         html.datatable({
             'data-order': '[[ 3, "desc" ]]',
+            'overflow': 'collapse',
             'data': data
         }) 
     }}
@@ -220,15 +221,15 @@
 {% block tab_sidebar %}
     <h2>DataTable</h2>
     <ul>
-        <li>Same structure as basic table</li>
-        <li>Table overflow scrolls horizontally</li>
+        <li>Same structure as datatable</li>
+        <li>Table overflow collapses rows</li>
         <li>Automatic pagination</li>
     </ul>
     <pre><code class="hljs">&#123;&#123; 
     html.datatable(&#123;
-        'class': 'table--full',
         'data-order': '[[ 3, "desc" ]]',
-        'data': data
+        'data': data,
+        'overflow': 'collapse'
     &#125;) 
 &#125;&#125;</code></pre>
 {% endblock tab_sidebar %}
