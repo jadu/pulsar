@@ -1521,10 +1521,21 @@ Datatable - https://jadu.github.io/pulsar/components/datatable/
 #}
 {% macro datatable(options) %}
     {% import _self as html %}
+
+    {% if options.overflow is defined and options.overflow == 'collapse' %}
+        {% set overflow = options.overflow %}
+    {% else %}
+        {% set overflow = 'scroll' %}
+        {% set options = options|merge({ 'class': 'table--horizontal' }) %}
+    {% endif %}
+
     {% if options.data is defined and options.data is not empty %}
-    <table{{ attributes(options|defaults({ 'class': 'table datatable' })) }}>
+    <table{{ attributes(options|defaults({ 'class': 'table datatable table--full' })) }}>
         <thead>
             <tr>
+                {% if overflow == 'collapse' %}
+                    <td></td>
+                {% endif %}
                 {% for column in options.data.columns %}
                     {% if loop.first %}
                         <th class="table-selection" data-orderable="false">
@@ -1538,6 +1549,11 @@ Datatable - https://jadu.github.io/pulsar/components/datatable/
         <tbody>
             {% for row in options.data.data %}
                 <tr>
+                    {% if overflow == 'collapse' %}
+                        <td class="table-responsive">
+                            {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                        </td>
+                    {% endif %}
                     <td class="table-selection">
                         <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
                     </td>
