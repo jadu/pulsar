@@ -5,7 +5,7 @@ namespace Jadu\Pulsar\Twig\Extension;
 use Twig_Environment;
 use Twig_Loader_Array;
 
-class GetConstantExtensionTest extends \PHPUnit_Framework_TestCase
+class GetConstantExtensionTest extends \PHPUnit\Framework\TestCase
 {
     public function setUp()
     {
