@@ -2,7 +2,7 @@
 
 namespace Jadu\Pulsar\Twig\Extension;
 
-class TabsExtensionTest extends \PHPUnit_Framework_TestCase
+class TabsExtensionTest extends \PHPUnit\Framework\TestCase
 {
 
   public function setUp()
