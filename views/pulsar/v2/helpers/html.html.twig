@@ -92,7 +92,8 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
                 html.badge({
                     'label': '0', 
                     'aria-label': '0 rows selected',
-                    'class': 'label--primary js-bulk-actions-badge'
+                    'class': 'label--primary js-bulk-actions-badge',
+                    'style': 'display: none;'
                 }),
             'class': items.class|default(''),
             'items': actions
@@ -1434,7 +1435,7 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
     <span{{
         attributes(options
-            |exclude('state icon title')
+            |exclude('state icon')
             |merge({
                 'data-placement': options['data-placement']|default('top')
             })

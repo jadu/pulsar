@@ -2,7 +2,7 @@
 
 namespace Jadu\Pulsar\Twig\Extension;
 
-class HelperOptionsModifierExtensionTest extends \PHPUnit_Framework_TestCase
+class HelperOptionsModifierExtensionTest extends \PHPUnit\Framework\TestCase
 {
     public function setUp()
     {
