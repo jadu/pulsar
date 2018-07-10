@@ -1,4 +1,4 @@
-{% extends '@pulsar/pulsar/layouts/base.html.twig' %}
+{% extends '@pulsar/playground/workflow-comments/final-editor/base.html.twig' %}
 
 {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
 {% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
@@ -7,7 +7,37 @@
 
 {% block title %}{{ parent() }}{% endblock %}
 
-{% set heading = 'My Example Document' %}
+{% set heading = "My Example Document" %}
+
+{% block progresslist %}
+    <div class="progress-list progress-list-mini">
+
+        <a href="#" class="progress-list__item">
+            <span class="progress-list__label">
+                <span class="badge badge--round badge--outline">Step 1</span>
+                Draft
+            </span>
+            <span class="progress-list__arrow">&gt;</span>
+        </a>
+
+        <a href="#" class="progress-list__item progress-list__item--complete">
+            <span class="progress-list__label">
+                <span class="badge badge--round badge--outline">Step 2</span>
+                Submission
+            </span>
+            <span class="progress-list__arrow">&gt;</span>
+        </a>
+
+        <a href="#" class="progress-list__item">
+            <span class="progress-list__label">
+                <span class="badge badge--round badge--outline">Step 3</span>
+                Approve & Publish
+            </span>
+            <span class="progress-list__arrow">&gt;</span>
+        </a>
+
+    </div>
+{% endblock %}
 
 {%
     set nav_data = {
@@ -25,7 +55,7 @@
         },
         "3": {
             "label": "Test 03",
-            "class": "is-active",
+            "class": "",
             "href": "/app/app.php/playground/workflow-comments/test-03/index.html.twig",
             "icon": "folder"
         },
@@ -56,16 +86,16 @@
     }
 %}
 
-{% set tab_one %}
-    {% include 'playground/workflow-comments/test-03/tab_one.html.twig' %}
+{% set tab_two %}
+    {% include 'playground/workflow-comments/final-editor/tab_two.html.twig' %}
 {% endset %}
 
 {%
     set tabs_content = [
         {
-          "id"    : "one",
+          "id"    : "two",
           "label" : "Content",
-          "src"   : tab_one,
+          "src"   : tab_two,
           "active": true
         }
     ]
