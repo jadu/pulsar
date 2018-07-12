@@ -278,6 +278,41 @@
             }
         }
     }
+
+    .progress-list__item--grey {
+        background-color: $progress-bg;
+        color: black;
+
+        @include respond-min($screen-tablet) {
+            box-shadow: inset 0 0 0 rgba(0, 0, 0, 0);
+        }
+
+        .badge {
+            color: color(white) !important;
+        }
+
+        &:not(:last-child)::after {
+            border-top-color: $progress-bg;
+
+            @include respond-min($screen-tablet) {
+                border-left-color: $progress-bg;
+                border-top-color: transparent;
+            }
+        }
+
+        &:hover {
+            background-color: $progress-bg;
+
+            &::after {
+                border-top-color: $progress-bg;
+
+                @include respond-min($screen-tablet) {
+                    border-left-color: $progress-bg;
+                    border-top-color: transparent;
+                }
+            }
+        }
+    }
 }
 
 .progress-list--centred {
