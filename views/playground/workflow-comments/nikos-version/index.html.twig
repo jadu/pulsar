@@ -75,33 +75,6 @@
     {{ tabs.list(tabs_content) }}
 {% endblock %}
 
-{% block progresslist %}
-    <div class="progress-list progress-list-minialt">
-        <div class="progress-list-wrapper">
-        <a href="#" class="progress-list__item progress-list__item--current">
-            <span class="progress-list__label">
-                Draft
-            </span>
-            <span class="progress-list__arrow">&gt;</span>
-        </a>
-
-        <a href="#" class="progress-list__item">
-            <span class="progress-list__label">
-                Pending Approval
-            </span>
-            <span class="progress-list__arrow">&gt;</span>
-        </a>
-
-        <a href="#" class="progress-list__item">
-            <span class="progress-list__label">
-                Published
-            </span>
-            <span class="progress-list__arrow">&gt;</span>
-        </a>
-        </div>
-    </div>
-{% endblock %}
-
 {% block tabs_content %}
     {{ tabs.content(tabs_content) }}
 {% endblock %}

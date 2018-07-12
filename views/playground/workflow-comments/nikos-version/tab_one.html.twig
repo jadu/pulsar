@@ -62,7 +62,35 @@
     }}
 {%- endblock -%}
 
+{%- block progresslist -%}
+    <div class="progress-list progress-list-mini progress-list progress-list--centred">
+        <div class="progress-list-wrapper">
+            <a href="#" class="progress-list__item progress-list__item--current">
+                <span class="progress-list__label">
+                    <span class="badge badge--round badge--outline">Step 1</span>
+                    Draft
+                </span>
+                <span class="progress-list__arrow">&gt;</span>
+            </a>
 
+            <a href="#" class="progress-list__item">
+                <span class="progress-list__label">
+                    <span class="badge badge--round badge--outline">Step 2</span>
+                    Submission
+                </span>
+                <span class="progress-list__arrow">&gt;</span>
+            </a>
+
+            <a href="#" class="progress-list__item">
+                <span class="progress-list__label">
+                    <span class="badge badge--round badge--outline">Step 3</span>
+                    Approve & Publish
+                </span>
+                <span class="progress-list__arrow">&gt;</span>
+            </a>
+        </div>
+    </div>
+{%- endblock -%}
 
 {%- block actions_right -%}
     {{

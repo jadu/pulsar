@@ -148,8 +148,10 @@
                     {% else %}
                         <h1 class="main-title u-display-inline-block main-title-progresslist">{{ heading|default('MISSING HEADING') }}</h1>
                     {% endif %}
-                    {% block progresslist %}{% endblock %}
+
                     {% block tabs_list %}{% endblock %}
+                    {% block progresslist %}{% endblock %}
+                    {% block panel %}{% endblock %}
                     {% block tabs_content %}{% endblock %}
                 </div>
             </div>

@@ -9,36 +9,6 @@
 
 {% set heading = "My Example Document" %}
 
-{% block progresslist %}
-    <div class="progress-list progress-list-mini">
-
-        <a href="#" class="progress-list__item progress-list__item--current">
-            <span class="progress-list__label">
-                <span class="badge badge--round badge--outline">Step 1</span>
-                Draft
-            </span>
-            <span class="progress-list__arrow">&gt;</span>
-        </a>
-
-        <a href="#" class="progress-list__item">
-            <span class="progress-list__label">
-                <span class="badge badge--round badge--outline">Step 2</span>
-                Send for Approval
-            </span>
-            <span class="progress-list__arrow">&gt;</span>
-        </a>
-
-        <a href="#" class="progress-list__item">
-            <span class="progress-list__label">
-                <span class="badge badge--round badge--outline">Step 3</span>
-                Approve & Publish
-            </span>
-            <span class="progress-list__arrow">&gt;</span>
-        </a>
-
-    </div>
-{% endblock %}
-
 {%
     set nav_data = {
         "1": {
@@ -103,6 +73,49 @@
 
 {% block tabs_list %}
     {{ tabs.list(tabs_content) }}
+{% endblock %}
+
+{% block panel %}
+
+    <div class="panel panel--danger"><i aria-hidden="true" class="icon-times-circle panel__icon"></i>
+        <div class="panel__title u-display-inline-block">Content Rejected</div>
+        <div class="progress-list progress-list-mini u-float-right">
+            <a href="#" class="progress-list__item progress-list__item--current">
+                <span class="progress-list__label">
+                    Draft
+                </span>
+                <span class="progress-list__arrow">&gt;</span>
+            </a>
+            <a href="#" class="progress-list__item">
+                <span class="progress-list__label">
+                    Pending Approval
+                </span>
+                <span class="progress-list__arrow">&gt;</span>
+            </a>
+            <a href="#" class="progress-list__item">
+                <span class="progress-list__label">
+                    Published
+                </span>
+                <span class="progress-list__arrow">&gt;</span>
+            </a>
+        </div>
+        <div class="panel__body">
+            <div>No changes have been made since your rejection, this message will disappear when the author makes changes, or resubmits for approval</div>
+            <div class="timeline__item" data-timestamp="2018-03-29T10:59:04+00:00" data-id="2650349">
+                <div class="timeline-avatar timeline-avatar--user"><span>YZ</span></div>
+                <div class="timeline-content">
+                    <div class="timeline-content__inner"><h4 class="timeline-content__title">Yves Zelman [Admin]:</h4>
+                        <div class="timeline-content__date"><i aria-hidden="true" class="icon-clock-o icon--info u-hidden-print cursor-help"></i><time class="u-visible-print-inline">29 Mar 2018, 11:59 AM</time><time class="timeago u-hidden-print" datetime="Thu, 29 Mar 2018 11:59:04 +0100" data-timezone="Europe/London"> Thursday 29th March 2018 (11:59)</time></div>
+                        <div class="timeline-content__body" data-id="2650349">
+                            <p id="message-120530" class="timeline-content__text">"Test"</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="font-size: 12px; text-align: right"><a href="#">View detailed history of comments here.</a></div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
 
 {% block tabs_content %}

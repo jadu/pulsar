@@ -19,10 +19,9 @@
                         'icon': 'save'
                     },
                     {
-                        'label': 'Send for approval',
-                        'href': '#workflow-submit',
-                        'data-toggle': 'modal',
-                        'icon': 'hand-o-right'
+                        'label': 'Cancel approval',
+                        'href': 'index.html.twig',
+                        'icon': 'hand-stop-o'
                     }
                 ],
                 [
@@ -62,8 +61,6 @@
     }}
 {%- endblock -%}
 
-
-
 {%- block actions_right -%}
     {{
         html.button({
@@ -77,22 +74,25 @@
             'class': 'btn--primary',
             'data-toggle': 'modal',
             'type': 'link',
-            'href': '#workflow-submit'
+            'href': '#workflow-submit',
         })
     }}
 {%- endblock -%}
 
 {% block tab_content %}
-    <style>
-        [method="POST"] .form__group {
-            background-color: #efefef;
-            margin-bottom: 1px;
-            padding: 5px;
-        }
-    </style>
+<style>
+    [method="POST"] .form__group {
+        background-color: #efefef;
+        margin-bottom: 1px;
+        padding: 5px;
+    }
+</style>
+
+
+
+<div>
     {{
-        form.create({
-        })
+        form.create()
     }}
 
     {{
@@ -157,6 +157,13 @@ Cras eget elit maximus, facilisis ante sed, feugiat mi. Morbi molestie hendrerit
                     'label': 'Save'
                 }),
                 html.button({
+                    'class': '',
+                    'label': 'Send for Approval',
+                    'data-toggle': 'modal',
+                    'type': 'link',
+                    'href': '#workflow-submit'
+                }),
+                html.button({
                     'class': 'btn--naked',
                     'type': 'link',
                     'label': 'Cancel',
@@ -165,52 +172,59 @@ Cras eget elit maximus, facilisis ante sed, feugiat mi. Morbi molestie hendrerit
             ]
         })
     }}
+</div>
 
     <div id="workflow-submit" class="modal modal__large">
         <div class="modal__dialog">
-            {{
-                form.create({
-                    'method': 'GET',
-                    'id': 'submit',
-                    'name': 'submit',
-                    'action': 'index_two.html.twig'
-                })
-            }}
             <div class="modal__content">
                 <div class="modal__header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     <h1 class="modal__title">Send for Approval</h1>
                 </div>
                 <div class="modal__body">
+                    <p>Are you sure?</p>
+                    <p>By sending your content for approval again </p>
                     {{
                         form.textarea({
                             'label': 'Note to reviewer (optional)',
-                            'form': 'submit',
-                            'id': 'note',
-                            'name': 'note',
+                            'id': 'review-note',
                             'class': 'form__group--full form__group--top form__group--flush u-margin-bottom-none',
                             'rows': 5
                         })
                     }}
                 </div>
                 <div class="modal__footer">
+                    <button type="button" class="btn btn--primary">Send for Approval</button>
+                    <button type="button" class="btn btn--naked" data-dismiss="modal">Cancel</button>
+                </div>
+            </div><!-- /.modal__content -->
+        </div><!-- /.modal__dialog -->
+    </div><!-- /.modal -->
+
+    <div id="comment-history" class="modal modal__large">
+        <div class="modal__dialog">
+            <div class="modal__content">
+                <div class="modal__header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h1 class="modal__title">Send for Approval</h1>
+                </div>
+                <div class="modal__body">
+                    <p>Are you sure?</p>
+                    <p>By sending your content for approval again </p>
                     {{
-                        html.button({
-                            'class': 'btn--primary',
-                            'label': 'Send for Approval',
-                            'type': 'submit'
-                        })
-                    }}
-                    {{
-                        html.button({
-                            'class': 'btn--naked',
-                            'data-dismiss': 'modal',
-                            'label': 'Cancel'
+                        form.textarea({
+                            'label': 'Note to reviewer (optional)',
+                            'id': 'review-note',
+                            'class': 'form__group--full form__group--top form__group--flush u-margin-bottom-none',
+                            'rows': 5
                         })
                     }}
                 </div>
+                <div class="modal__footer">
+                    <button type="button" class="btn btn--primary">Send for Approval</button>
+                    <button type="button" class="btn btn--naked" data-dismiss="modal">Cancel</button>
+                </div>
             </div><!-- /.modal__content -->
-            {{ form.end() }}
         </div><!-- /.modal__dialog -->
     </div><!-- /.modal -->
 

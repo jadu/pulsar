@@ -69,57 +69,19 @@
             'class': 'btn--primary',
             'data-toggle': 'modal',
             'type': 'link',
-            'href': '#'
+            'href': '#workflow-submit'
         })
     }}
 {%- endblock -%}
 
 {% block tab_content %}
-<style>
+    <style>
         [method="POST"] .form__group {
             background-color: #efefef;
             margin-bottom: 1px;
             padding: 5px;
         }
     </style>
-    {% if _get.note is defined and _get.note is not empty %}
-        {% set note = '"' ~ _get.note ~ '"' %}
-    {% else %}
-        {% set note = ' No comments left ' %}
-    {% endif %}
-    {{
-        html.panel({
-            'title': 'Content Approved & Published',
-            'body':
-            '<div class="timeline__item" data-timestamp="2018-03-29T10:59:04+00:00" data-id="2650349">
-                <div class="timeline-avatar timeline-avatar--user">
-                    <span>LS</span>
-                </div>
-                <div class="timeline-content">
-                    <div class="timeline-content__inner">
-                        <h4 class="timeline-content__title">Lord Sugar:
-
-                        </h4>
-
-                        <div class="timeline-content__date">
-                            <i data-toggle="tooltips" title="" aria-hidden="true" class="icon-clock-o icon--info u-hidden-print cursor-help" data-original-title="29 Mar 2018, 11:59 AM"></i>
-                            <time class="u-visible-print-inline">29 Mar 2018, 11:59 AM</time>
-                            <time class="timeago u-hidden-print" datetime="Thu, 29 Mar 2018 11:59:04 +0100" data-timezone="Europe/London">Thursday 29th March 2018 (11:59)</time>
-                        </div>
-
-                        <div class="timeline-content__body" data-id="2650349">
-                            <p id="message-120530" class="timeline-content__text">
-                                ' ~ note ~ '
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </div>',
-            'icon': 'check',
-            'class': 'panel--success u-margin-top-none'
-        })
-    }}
 
     {{
         form.create()
@@ -209,7 +171,7 @@ Cras eget elit maximus, facilisis ante sed, feugiat mi. Morbi molestie hendrerit
             <div class="modal__content">
                 <div class="modal__header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h1 class="modal__title">Submit for Approval</h1>
+                    <h1 class="modal__title">Send for Approval</h1>
                 </div>
                 <div class="modal__body">
                     {{
@@ -226,7 +188,7 @@ Cras eget elit maximus, facilisis ante sed, feugiat mi. Morbi molestie hendrerit
                         {{
                             html.button({
                                 'class': 'btn--primary',
-                                'label': 'Submit for Approval',
+                                'label': 'Send for Approval',
                                 'type': 'submit',
                             })
                         }}
