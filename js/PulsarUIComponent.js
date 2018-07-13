@@ -55,7 +55,7 @@ PulsarUIComponent.prototype.initDataTables = function () {
         datatables = component.$html.find('.datatable:not(.table--horizontal)'),
         datatablesHorizontal = component.$html.find('.datatable.table--horizontal');
 
-    datatables.each(function() {
+    datatables.each(function () {
         var $this = $(this);
 
         var select = {
@@ -120,7 +120,7 @@ PulsarUIComponent.prototype.initDataTables = function () {
         });
     });
 
-    datatablesHorizontal.each(function() {
+    datatablesHorizontal.each(function () {
         var $this = $(this);
 
         var select = {
@@ -183,12 +183,12 @@ PulsarUIComponent.prototype.initDataTables = function () {
                 $allCheckboxes = $this.find('.js-select');
 
             if ($checkbox.hasClass('selected')) {
-                table.rows( { search: 'applied' } ).deselect()
+                table.rows({ search: 'applied' }).deselect();
 
                 $checkbox.removeClass('selected');
                 $allCheckboxes.removeClass('selected').prop('checked', false);
             } else {
-                table.rows( { search: 'applied' } ).select()
+                table.rows({ search: 'applied' }).select();
                 $checkbox.addClass('selected');
                 $allCheckboxes.addClass('selected').prop('checked', true);
             }
@@ -200,10 +200,10 @@ PulsarUIComponent.prototype.initDataTables = function () {
         $($.fn.dataTable.tables(true)).DataTable().columns.adjust().responsive.recalc();
     });
 
-    this.$html.find('.table--horizontal').each(function() {
+    this.$html.find('.table--horizontal').each(function () {
         var $table = $(this).parent();
 
-        $table.scroll(function() {
+        $table.scroll(function () {
             component.styleTableOverflows($table);
         });
 
@@ -247,7 +247,7 @@ PulsarUIComponent.prototype.styleTableOverflows = function ($container) {
 PulsarUIComponent.prototype.initCountdown = function () {
 
     // Initial basic implementation of https://github.com/hilios/jQuery.countdown
-    this.$html.find('.js-countdown').each(function() {
+    this.$html.find('.js-countdown').each(function () {
 
         var $this = $(this),
             format = '%ww %dd %Hh %Mm %S';
