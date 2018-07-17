@@ -1,0 +1,78 @@
+.table-detail {
+    -webkit-transform: translateX(100%);
+    background: color(white);
+    border-left: 1px solid $modal-header-border-color;
+    bottom: 0;
+    display: table-cell;
+    height: 100%;
+    overflow-x: none;
+    overflow-y: auto;
+    position: fixed;
+    right: 0;
+    top: 0;
+    transform: translateX(100%);
+    transition: transform .2s ease-out;
+    visibility: visible;
+    width: 300px;
+    will-change: transform;
+    z-index: $zindex-modal;
+
+    @include respond-min($screen-xsmall) {
+        width: 400px;
+    }
+
+    @include respond-min($screen-smaller) {
+        width: 500px;
+    }
+
+    @include respond-min($screen-tablet) {
+        width: 600px;
+    }
+
+    &.table-detail--open {
+        -webkit-transform: none;
+        transform: none;
+        transition: transform .2s;
+    }
+}
+
+.table-detail__header {
+    border-bottom: 1px solid $modal-header-border-color;
+    padding: $modal-title-padding;
+}
+
+.table-detail__header-close {
+    margin-top: -2px;
+}
+
+.table-detail__title {
+    line-height: $modal-title-line-height;
+    font-size: $font-size-xlarge;
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.table-detail__body {
+    padding: $modal-title-padding;
+}
+
+.table-detail-backdrop {
+    background: $modal-backdrop-bg;
+    height: 0;
+    opacity: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    transition: opacity .5s, width .1s .5s, height .1s .5s;
+    width: 0;
+    z-index: ($zindex-modal - 10);
+
+    &.in {
+        height: 100%;
+        opacity: .5;
+        transition: opacity .2s;
+        width: 100%;
+    }
+}

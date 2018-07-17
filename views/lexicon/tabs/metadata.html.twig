@@ -9,6 +9,8 @@
 
     {%
         set data = {
+            "Example long title" : "true_lies.avi",
+            "Example very long title" : "true_lies.avi",
             "File" : "true_lies.avi",
             "Size" : "1.2Gb",
             "Type" : "Video"
@@ -16,14 +18,5 @@
     %}
 
     {{ html.metadata({ 'items': data }) }}
-
-    <h2 class="heading">Bordered variation</h2>
-
-    {{
-        html.metadata({
-            'items': data,
-            'class': 'metadata--bordered'
-        })
-    }}
 
 {% endblock tab_content %}

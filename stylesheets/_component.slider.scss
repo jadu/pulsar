@@ -1,8 +1,8 @@
 .slider-container {
-    margin: 5em auto 0;
     padding: $padding-base * 2;
 
     @include respond-min($screen-tablet) {
+        margin: 5em auto 0;
         padding: 0;
         width: 600px;
     }

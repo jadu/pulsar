@@ -2,12 +2,14 @@ language: php
 
 cache:
   directories:
-    - node_modules
     - vendor
     - $HOME/.composer/cache
 
 php:
   - 5.5
+
+before_install:
+  - npm install -g npm@5.5.1
 
 before_script:
   - npm install -g grunt-cli
@@ -26,6 +28,10 @@ script:
 after_success:
   - grunt deploy
   - bash <(curl -s https://codecov.io/bash)
+
+sudo: required
+addons:
+  chrome: stable
 
 deploy:
   provider: releases

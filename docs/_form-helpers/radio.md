@@ -14,7 +14,7 @@ Generates a radio input field. There are various different options available to 
     <div class="form__group form-radio">
         <label for="inputRadioLeft" class="control__label">Default radio</label>
         <div class="controls">
-            <input id="inputRadioLeft" name="inputRadioLeft" checked="" type="radio" class="form__control radio">
+            <input id="inputRadioLeft" name="inputRadioLeft" type="radio" class="form__control radio">
         </div>
     </div>
 </div>
@@ -35,6 +35,7 @@ show-label | bool   | Control visibility of the `<label>` element without affect
 
 Option   | Type   | Description
 -------- | ------ | ------------------------------------------------------------
+disabled | bool   | Stops the element from being interactive if true
 form     | string | Specific one or more forms this label belongs to
 id       | string | A unique identifier, if required
 name     | string | The name of this control
@@ -44,6 +45,21 @@ value    | string | Specifies the value of the input
 data-*   | string | Data attributes, eg: `'data-foo': 'bar'`
 
 Any other options not listed here will be applied to the input.
+
+## Disabled state
+
+Add the `'disabled': true` option to disable the field on load. See the [disabling elements styleguide](styleguides/disabling_elements/) for more information about how to disable elements via javascript. Provide help text or information within the UI where possible to explain why elements are disabled.
+
+{% code_example form_helpers/radio-disabled %}
+
+<div class="pulsar-example form">
+    <div class="form__group form-radio">
+        <label for="disabledRadio" class="control__label">Disabled radio</label>
+        <div class="controls">
+            <input id="disabledRadio" name="disabledRadio" disabled type="radio" class="form__control radio">
+        </div>
+    </div>
+</div>
 
 ## Error state
 
@@ -61,8 +77,8 @@ Any other options not listed here will be applied to the input.
     <div class="form__group has-error form-radio">
         <label for="inputRadioLeft" class="control__label">Default radio</label>
         <div class="controls">
-            <input id="inputRadioLeft" name="inputRadioLeft" checked="" type="radio" class="form__control radio">
-            <span class="help-block is-error"><i class="icon-warning-sign"></i> Something went wrong</span>
+            <input id="inputRadioLeft" name="inputRadioLeft" type="radio" aria-describedby="guid-12345678" class="form__control radio">
+            <span class="help-block is-error" id="guid-12345678"><i class="icon-warning-sign"></i> Something went wrong</span>
         </div>
     </div>
 </div>
@@ -87,7 +103,7 @@ Labels follow the regular Pulsar form flow and are positioned down the left. Cli
     <div class="form__group form-radio">
         <label for="inputRadioLeft" class="control__label">Default radio</label>
         <div class="controls">
-            <input id="inputRadioLeft" name="inputRadioLeft" checked="" type="radio" class="form__control radio">
+            <input id="inputRadioLeft" name="inputRadioLeft" type="radio" class="form__control radio">
         </div>
     </div>
 </div>
@@ -115,7 +131,8 @@ input_placement | string | `left` (default), `right` position of the input vs th
 <div class="pulsar-example form">
     <div class="form__group form-radio-inline">
         <div class="controls">
-            <label for="inputRadioRight" class="control__label"><input id="inputRadioRight" name="inputRadioInline" checked="" type="radio" class="form__control radio">Radio inline</label>
+            <label for="inputRadioRight" class="control__label">
+            <input id="inputRadioRight" name="inputRadioInline" type="radio" class="form__control radio">Radio inline</label>
         </div>
     </div>
 </div>
@@ -136,7 +153,7 @@ input_placement | string | `left` (default), `right` position of the input vs th
 <div class="pulsar-example form">
     <div class="form__group form-radio-inline">
         <div class="controls">
-            <label for="inputRadioRight" class="control__label">Radio on the right <input id="inputRadioRight" name="inputRadioInline" checked="" type="radio" class="form__control radio"></label>
+            <label for="inputRadioRight" class="control__label">Radio on the right <input id="inputRadioRight" name="inputRadioInline" type="radio" class="form__control radio"></label>
         </div>
     </div>
 </div>
@@ -148,12 +165,12 @@ Using `form.radio_inline` will cause the radio input to not follow the normal fl
 <div class="pulsar-example form">
     <div class="form__group form-radio-inline">
         <div class="controls">
-            <label for="inputRadioRight" class="control__label"><input id="inputRadioRight" name="inputRadioInline" checked="" type="radio" class="form__control radio">Radio inline</label>
+            <label for="inputRadioRight" class="control__label"><input id="inputRadioRight" name="inputRadioInline" type="radio" class="form__control radio">Radio inline</label>
         </div>
     </div>
     <div class="form__group form-radio-inline form__group--indent">
         <div class="controls">
-            <label for="inputRadioIndented" class="control__label"><input id="inputRadioIndented" name="inputRadioInline" checked="" type="radio" class="form__control radio">Radio inline &amp; indented</label>
+            <label for="inputRadioIndented" class="control__label"><input id="inputRadioIndented" name="inputRadioInline" type="radio" class="form__control radio">Radio inline &amp; indented</label>
         </div>
     </div>
 </div>
@@ -187,3 +204,7 @@ Depending on your UI needs, you can display radios as [choice blocks](/choice.md
         </div>
     </div>
 </div>
+
+## Accessibility
+
+To maintain compliance with WCAG 2.0 AA, a form element must have a related label element, the easiest way to achieve this is to always pass an `id` attribute to form helpers. Form helpers will automatically add `aria-describedby="guid-<random-number>"` to inputs and an `id` to help blocks and errors. Additionally, `aria-invalid="true"` will be added to inputs when an error is passed.

@@ -47,7 +47,11 @@
     <!--[if IE 7]><link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'pulsar-ie7' ~ themeFile ~ '.min.css' }}" /><![endif]-->
     <!--[if IE 8]><link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'pulsar-ie8' ~ themeFile ~ '.min.css' }}" /><![endif]-->
     <!--[if IE 9]><link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'pulsar-ie9' ~ themeFile ~ '.min.css' }}" /><![endif]-->
-    <!--[if gt IE 9]><!--> <link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'pulsar' ~ themeFile ~ '.css' }}" /> <!--<![endif]-->
+    <!--[if gt IE 9]><!-->
+    <link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'pulsar' ~ themeFile ~ '.css' }}" />
+    <link rel="stylesheet" type="text/css" href="{{ cssPath ~ 'lexicon.css' }}" />
+    <!--<![endif]-->
+
 
     <!--[if lt IE 9]>
     <script type="text/javascript" src="{{ libsPath ~ 'html5shiv/dist/html5shiv.js' }}"></script>
@@ -64,13 +68,14 @@
 
     <script
         src="{{ base_path ~ 'dist/js/bundle.js' }}"
-        type="text/javascript"
         id="main-js"
 {% if pageModule is defined %}
         data-page="{{ pageModule }}"
 {% endif %}
     ></script>
-    <script src="{{ base_path ~ 'js/main.js' }}" type="text/javascript"></script>
+
+    <script src="{{ base_path ~ 'js/main.js' }}" ></script>
+    <script src="{{ base_path ~ 'dist/js/lexicon-bundle.js' }}" ></script>
 
     {% block pageStyle %}{% endblock %}
 </head>
@@ -85,7 +90,7 @@
 
             <div class="toolbar">
 
-                <a href="#" class="mobile-menu-button t-mobile-menu-button">Menu</a>
+                <button class="mobile-menu-button t-mobile-menu-button" aria-expanded="false" aria-controls="aria-main-nav" aria-label="Toggle main menu">Menu</button>
 
                 {% block notifications %}{% endblock %}
 

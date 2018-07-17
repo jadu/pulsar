@@ -6,11 +6,11 @@
     @include clear-fix(true);
 
     background-color: color(background);
-    margin: ($padding-large-vertical * 2) (($padding-small-horizontal * 2) * -1);
+    margin: ($margin-large-vertical * 2) (($margin-small-horizontal * 2) * -1);
     padding: ($padding-large-vertical * 2) ($padding-small-horizontal * 2);
 
     @include respond-min($screen-small) {
-        margin: 0 0 $line-height-large;
+        margin: 0;
     }
 
     @include respond-min($screen-medium) {
@@ -89,7 +89,7 @@
 
 .settings-section__heading + p,
 .settings-section p + p {
-    margin-top: $padding-base-vertical * 2 * -1;
+    margin-top: $margin-base-vertical * 2 * -1;
 }
 
 
@@ -106,8 +106,6 @@
 
     @include respond-max($screen-smaller) {
         @include clear-fix(true);
-
-        text-align: center;
     }
 
     &:not(:last-child) {
@@ -123,25 +121,17 @@
  * Primary settings section toggles
  */
 
-.settings-section--primary .form__group--toggle {
-    @include respond-max($screen-smaller) {
-        float: left;
-        width: 50%;
-    }
-}
+.tab__settings .settings-section--primary .form__group--toggle {
 
-.settings-section--primary .form__group--toggle .control__label {
-    font-family: $font-family-regular;
+    @include respond-max($screen-medium) {
+        .controls {
+            float: left;
+        }
 
-    @include respond-max($screen-small) {
-        padding-right: 0;
-    }
-}
-
-.settings-section--primary .toggle-switch-label {
-    @include respond-max($screen-smaller) {
-        margin: 0 auto;
-        text-align: left;
+        .control__label {
+            max-width: 100%;
+            padding-right: 0;
+        }
     }
 }
 
@@ -226,9 +216,21 @@
     }
 }
 
-.tab__settings .form__group--toggle .controls {
-    float: right;
-    width: 4em;
+.tab__settings .form__group--toggle {
+    > .control__label {
+        width: 100%;
+
+        @include respond-min($screen-small) {
+            max-width: 75%;
+            padding-right: 0;
+            width: auto;
+        }
+    }
+
+    .controls {
+        float: right;
+        width: 4em;
+    }
 }
 
 
@@ -252,7 +254,7 @@
 
 .tab__settings .form__group--top .control__label {
     display: block;
-    margin-bottom: $padding-base-vertical;
+    margin-bottom: $margin-base-vertical;
     padding-right: 0;
     padding-top: 0;
     width: 100%;
@@ -341,8 +343,8 @@
  */
 
 .tab__container.has-settings .tab__content {
-    @include respond-min($screen-small) {
-        margin-bottom: $line-height-large;
+    @include respond-min($screen-medium) {
+        margin-bottom: $line-height-small;
         padding-left: $padding-small-horizontal * 2;
     }
 
@@ -389,7 +391,7 @@
 .content-heading {
     display: block;
     line-height: $input-height-small;
-    margin-bottom: $padding-base-vertical * 2;
+    margin-bottom: $margin-base-vertical * 2;
 }
 
 
@@ -399,7 +401,7 @@
 
 .content-actions {
     float: right;
-    margin: 0 0 ($padding-base-vertical * 2) $padding-large-horizontal;
+    margin: 0 0 ($margin-base-vertical * 2) $margin-large-horizontal;
 }
 
 .content-actions__pages,

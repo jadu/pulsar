@@ -1,6 +1,7 @@
 {{
     form.textarea({
-        'label': 'Textarea',
-        'id': 'foo'
+        'label': 'Description',
+        'id': 'inputTextarea',
+        'name': 'inputTextarea'
     })
 }}

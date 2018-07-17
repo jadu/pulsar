@@ -181,3 +181,8 @@
         padding: 0 20px;
     }
 }
+
+// nested form groups underneath a normal form control, such as XFPs 'use a value from a previous action' pattern
+.form__group > .controls > .form__group {
+    margin: .675em 0; // magic number to replicate help-block positioning
+}

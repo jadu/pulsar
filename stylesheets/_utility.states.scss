@@ -32,6 +32,15 @@ $danger-to-text-color: black;
     }
 }
 
+.has-error:not(.form__group),
+.has-danger:not(.form__group) {
+    background-color: color(danger, light) !important;
+
+    &:hover {
+        background-color: darken(color(danger, light), 5) !important;
+    }
+}
+
 @each $state, $state-color, $state-color-alt in $state-colors {
     %text--#{$state},
     .text--#{$state} {

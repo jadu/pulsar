@@ -1,0 +1,345 @@
+{% extends '@pulsar/pulsar/components/tab.html.twig' %}
+{% set i = 1 %}
+
+{% block tab_content %}
+
+    {{
+        form.create()
+    }}
+
+    {{
+        form.text({
+            'label': 'Text',
+            'id': i
+        })
+    }}
+    {% set i = i + 1 %}
+
+    {{
+        form.textarea({
+            'label': 'Textarea',
+            'id': i
+        })
+    }}
+    {% set i = i + 1 %}
+
+    {{
+        form.password({
+            'label': 'Password',
+            'id': i
+        })
+    }}
+    {% set i = i + 1 %}
+
+    {{
+        form.date({
+            'label': 'Date',
+            'id': i
+        })
+    }}
+    {% set i = i + 1 %}
+
+    {{
+        form.time({
+            'label': 'Time',
+            'id': i
+        })
+    }}
+    {% set i = i + 1 %}
+
+    {{
+        form.file({
+            'label': 'File',
+            'id': i
+        })
+    }}
+    {% set i = i + 1 %}
+
+    {{
+        form.color({
+            'label': 'Color',
+            'id': i
+        })
+    }}
+    {% set i = i + 1 %}
+
+    {{
+        form.select({
+            'label': 'Select',
+            'id': i,
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+    {% set i = i + 1 %}
+
+    {{
+        form.select2({
+            'label': 'Select2',
+            'id': i,
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+    {% set i = i + 1 %}
+
+    {{
+        form.compound({
+            'label': 'Compound',
+            'id': i,
+            'inputs': [
+                {
+                    'class': 'form__control-col--1',
+                    'label': 'Value',
+                    'id': 'value-0',
+                    'maxlength': '3',
+                    'show-label': false,
+                    'type': 'text'
+                },
+                {
+                    'class': 'u-width-auto',
+                    'label': 'Unit of time',
+                    'id': 'unit-0',
+                    'show-label': false,
+                    'type': 'select',
+                    'options': [
+                        {
+                            'label': 'Seconds',
+                            'value': 'sec'
+                        },
+                        {
+                            'label': 'Minutes',
+                            'value': 'min'
+                        }
+                    ]
+                }
+            ]
+        })
+    }}
+    {% set i = i + 1 %}
+
+    {{
+        form.toggle_switch({
+            'label': 'Toggle switch',
+            'id': i
+        })
+    }}
+    {% set i = i + 1 %}
+
+    {{
+        form.range({
+            'label': 'Range',
+            'id': i,
+        })
+    }}
+    {% set i = i + 1 %}
+
+    {{ form.fieldset_start({ 'legend': 'Checkboxes and radios' }) }}
+
+    {{
+        form.checkbox({
+            'label': 'Checkbox',
+            'id': i
+        })
+    }}
+    {% set i = i + 1 %}
+
+    {{
+        form.radio({
+            'label': 'Radio',
+            'id': i
+        })
+    }}
+    {% set i = i + 1 %}
+
+    {{
+        form.checkbox_inline({
+            'label': 'Checkbox inline',
+            'id': i
+        })
+    }}
+    {% set i = i + 1 %}
+
+    {{
+        form.radio_inline({
+            'label': 'Radio inline',
+            'id': i
+        })
+    }}
+    {% set i = i + 1 %}
+
+    {{
+        form.checkbox_inline({
+            'label': 'Checkbox inline indented',
+            'class': 'form__group--indent',
+            'id': i
+        })
+    }}
+    {% set i = i + 1 %}
+
+    {{
+        form.radio_inline({
+            'label': 'Radio inline indented',
+            'class': 'form__group--indent',
+            'id': i
+        })
+    }}
+    {% set i = i + 1 %}
+
+    {{
+        form.choice({
+            'label': 'Choice checkbox',
+            'id': i,
+            'options': [
+                {
+                    'label': 'One',
+                    'value': 'one',
+                    'name': 'one',
+                    'checked': true
+                },
+                {
+                    'label': 'Two',
+                    'value': 'two',
+                    'name': 'one'
+                },
+                {
+                    'label': 'Three',
+                    'value': 'three',
+                    'name': 'one'
+                }
+            ]
+        })
+    }}
+    {% set i = i + 1 %}
+
+    {{
+        form.choice({
+            'label': 'Choice radio',
+            'multiple': true,
+            'id': i,
+            'options': [
+                {
+                    'label': 'One',
+                    'value': 'one',
+                    'name': 'one'
+                },
+                {
+                    'label': 'Two',
+                    'value': 'two',
+                    'name': 'one'
+                },
+                {
+                    'label': 'Three',
+                    'value': 'three',
+                    'name': 'one'
+                }
+            ]
+        })
+    }}
+    {% set i = i + 1 %}
+
+    {{
+        form.choice({
+            'label': 'Choice as select2',
+            'id': i,
+            'options': [
+                {
+                    'label': 'One',
+                    'value': 'one',
+                    'name': 'three'
+                },
+                {
+                    'label': 'Two',
+                    'value': 'two',
+                    'name': 'three'
+                },
+                {
+                    'label': 'Three',
+                    'value': 'three',
+                    'name': 'three'
+                },
+                {
+                    'label': 'Four',
+                    'value': 'four',
+                    'name': 'three'
+                },
+                {
+                    'label': 'Five',
+                    'value': 'five',
+                    'name': 'three'
+                },
+                {
+                    'label': 'Six',
+                    'value': 'six',
+                    'name': 'three'
+                }
+            ]
+        })
+    }}
+    {% set i = i + 1 %}
+
+    {{
+        form.choice({
+            'class': 'choice--block',
+            'label': 'Choice block radios',
+            'id': i,
+            'options': [
+                {
+                    'label': html.icon('bold') ~ ' Bold',
+                    'value': 'bold',
+                    'name': 'five'
+                },
+                {
+                    'label': html.icon('italic') ~ ' Italic',
+                    'value': 'italic',
+                    'name': 'five',
+                    'checked': true
+                },
+                {
+                    'label': html.icon('underline') ~ ' Underline',
+                    'value': 'underline',
+                    'name': 'five'
+                },
+            ]
+        })
+    }}
+    {% set i = i + 1 %}
+
+    {{ form.fieldset_end() }}
+
+    {{
+        form.end()
+    }}
+
+{% endblock tab_content %}
+
+{% block tab_sidebar %}
+    <a href="https://jadu.gitbooks.io/pulsar/content/text.html">
+        <img src="../../../images/cover.png" alt="Pulsar documentation front cover" width="157" />
+    </a>
+    <br />
+    {{
+        html.button({
+            'label': 'View Documentation',
+            'type': 'link',
+            'href': 'https://jadu.gitbooks.io/pulsar/content/text.html'
+        })
+    }}
+
+{% endblock tab_sidebar %}

@@ -43,7 +43,29 @@ value       | string | Specifies the value of the input
         {% set options = options|defaults({'class': 'form__control'}) %}
     {% endif %}
 
-    <input{{ attributes(options|exclude('append bare input_placement prepend naked')) }} />
+    {# Build aria-described string of guids for help blocks and errors #}
+    {% set describedByIds = [] %}
+
+    {% if options.help_id is defined and options.help_id is not empty %}
+        {% set describedByIds = describedByIds|merge([options.help_id]) %}
+    {% endif %}
+
+    {% if options.error_ids is defined and options.error_ids is not empty %}
+        {% for id in options.error_ids %}
+            {% set describedByIds = describedByIds|merge([id]) %}
+        {% endfor %}
+    {% endif %}
+
+    {% if describedByIds|length %}
+        {% set options = options|defaults({'aria-describedby': describedByIds|join(' ')}) %}
+    {% endif %}
+
+    {# Set aria-invalid="true" for inputs with errors #}
+    {% if options.has_error is defined and options.has_error == true %}
+        {% set options = options|defaults({'aria-invalid': 'true'}) %}
+    {% endif %}
+
+    <input{{ attributes(options|exclude('append bare has_error help_id input_placement prepend naked')) }} />
 
 {% endspaceless %}
 {% endmacro %}
@@ -182,9 +204,31 @@ value       | string | Specifies the value of the input
 {% spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
+    {# Build aria-described string of guids for help blocks and errors #}
+    {% set describedByIds = [] %}
+
+    {% if options.help_id is defined and options.help_id is not empty %}
+        {% set describedByIds = describedByIds|merge([options.help_id]) %}
+    {% endif %}
+
+    {% if options.error_ids is defined and options.error_ids is not empty %}
+        {% for id in options.error_ids %}
+            {% set describedByIds = describedByIds|merge([id]) %}
+        {% endfor %}
+    {% endif %}
+
+    {% if describedByIds|length %}
+        {% set options = options|defaults({'aria-describedby': describedByIds|join(' ')}) %}
+    {% endif %}
+
+    {# Set aria-invalid="true" for inputs with errors #}
+    {% if options.has_error is defined and options.has_error == true %}
+        {% set options = options|defaults({'aria-invalid': 'true'}) %}
+    {% endif %}
+
     <select{{
         attributes(options
-            |exclude('append bare label prepend selected value options')
+            |exclude('append bare has_error help_id label prepend selected value options')
             |defaults({
                 'class': 'form__control'
             })
@@ -327,9 +371,31 @@ value       | string  | Specifies the value of the input
 {% spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
+    {# Build aria-described string of guids for help blocks and errors #}
+    {% set describedByIds = [] %}
+
+    {% if options.help_id is defined and options.help_id is not empty %}
+        {% set describedByIds = describedByIds|merge([options.help_id]) %}
+    {% endif %}
+
+    {% if options.error_ids is defined and options.error_ids is not empty %}
+        {% for id in options.error_ids %}
+            {% set describedByIds = describedByIds|merge([id]) %}
+        {% endfor %}
+    {% endif %}
+
+    {% if describedByIds|length %}
+        {% set options = options|defaults({'aria-describedby': describedByIds|join(' ')}) %}
+    {% endif %}
+
+    {# Set aria-invalid="true" for inputs with errors #}
+    {% if options.has_error is defined and options.has_error == true %}
+        {% set options = options|defaults({'aria-invalid': 'true'}) %}
+    {% endif %}
+
     <textarea{{
         attributes(options
-            |exclude('append bare prepend value')
+            |exclude('append bare has_error help_id prepend value')
             |defaults({
                 'class': 'form__control'
             })

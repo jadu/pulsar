@@ -51,11 +51,9 @@ div.is-sortable {
 
 div.is-sorting {
     background-color: color(sorting);
-    border: 1px dashed color(sorting, dark);
-    border-radius: 5px;
+    outline: 1px dashed color(sorting, dark);
     display: block;
     margin-bottom: 4px;
-    min-height: 68px;
 
     &::before {
         display: none;

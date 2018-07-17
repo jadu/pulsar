@@ -34,6 +34,10 @@
         }
     }
 
+    tr.u-no-border > td {
+        border-bottom: 0;
+    }
+
     tr.fade {
         animation-name: fade-row-to-white !important;
         animation-delay: 1s;
@@ -52,8 +56,13 @@
     }
 
     .no-results {
-      padding: 2em 0;
-      text-align: center;
+        padding: 2em 0;
+        text-align: center;
+
+        // Stop no-results from inheriting bold text from th
+        &.no-results {
+            font-family: $font-family-light;
+        }
     }
 
     th {
@@ -113,6 +122,28 @@
             height: 24px;
             width: 24px;
         }
+
+        a > i {
+            color: color(text);
+        }
+
+        a:hover > i {
+            color: #2d86b3;
+        }
+    }
+}
+
+.table--white-bg {
+    background-color: white;
+}
+
+.table--contrast {
+    thead {
+        background-color: color(grey, off-white);
+    }
+
+    tbody {
+        background-color: lighten(color(grey, off-white), 4);
     }
 }
 
@@ -121,6 +152,7 @@
 .table-container {
     margin-bottom: 24px;
     overflow-x: auto;
+    overflow-y: hidden;
     position: relative;
 
     .table {
@@ -155,8 +187,8 @@
     }
 }
 
+tr.table__form,
 td.table__form {
-    background-color: color(background);
     padding: 10px 10px 24px 20px;
 
     form {
@@ -186,6 +218,11 @@ td.table__form {
         width: 25px;
         margin-left: 10px;
     }
+}
+
+td.table__form,
+.table__form td {
+    background-color: color(background);
 }
 
 .table-container + .pagination {
