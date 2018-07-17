@@ -1,0 +1,7 @@
+<div class="form__group">
+    <label for="inputTextDisabled" class="control__label">First name</label>
+    <div class="controls">
+        <input id="inputTextDisabled" disabled name="inputTextDisabled" type="text" aria-describedby="guid-12345678" class="form__control">
+        <span class="help-block" id="guid-12345678">Optional help text</span>
+    </div>
+</div>

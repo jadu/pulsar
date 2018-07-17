@@ -9,6 +9,8 @@
 // Fixes issue with dependencies that expect both $ and jQuery to be set
 window.jQuery = window.$ = require('jquery');
 
+require('babel-polyfill');
+
 // Global UI components
 var $                     = require('jquery'),
     dropdown              = require('./libs/dropdown'),
@@ -20,7 +22,6 @@ var $                     = require('jquery'),
     matchMediaAddListener = require('./polyfills/matchMedia.addListener'),
 
     clickover = require('../libs/bootstrapx-clickover/js/bootstrapx-clickover'),
-    history   = require('../libs/history.js/scripts/bundled/html5/jquery.history'),
     jqueryui  = require('../libs/jquery-ui/jquery-ui.min'),
     countdown = require('../libs/jquery.countdown/dist/jquery.countdown.min'),
     pikaday   = require('../libs/pikaday/plugins/pikaday.jquery'),
@@ -45,9 +46,14 @@ var $                     = require('jquery'),
     PulsarUIComponent = require('./PulsarUIComponent'),
     PulsarSortableComponent = require('./PulsarSortableComponent'),
     SignInComponent = require('./area/signin/signin'),
-    DropZoneComponentFactory = require('./DropZone/DropZoneComponentFactory');
+    TableDetailComponent = require('./TableDetailComponent'),
+    DropZoneComponentFactory = require('./DropZone/DropZoneComponentFactory'),
+    RepeaterManagerComponent = require('./Repeater/RepeaterManagerComponent'),
+    repeaterComponentFactory = require('./Repeater/repeaterComponentFactory'),
+    FaviconEditor = require('./Notifications/FaviconEditor');
 
-    require('jstree');
+require('jstree');
+require('../libs/history.js/scripts/bundled/html5/jquery.history');
 
 module.exports = {
     ButtonComponent,
@@ -63,6 +69,10 @@ module.exports = {
     PulsarUIComponent,
     PulsarSortableComponent,
     SignInComponent,
+    TableDetailComponent,
     history,
-    svgeezy
+    svgeezy,
+    RepeaterManagerComponent,
+    repeaterComponentFactory,
+    FaviconEditor
 };

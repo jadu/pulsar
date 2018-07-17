@@ -504,3 +504,15 @@ $susy: (
         }
     }
 }
+
+// -----------------------------------------------------------------------------
+//  18/01/2018
+//
+// removes bottom margin from an element, replaced with u- namespaced class
+//
+//  _utility.utilities.scss
+// -----------------------------------------------------------------------------
+
+.bottomless {
+    margin-bottom: 0 !important;
+}

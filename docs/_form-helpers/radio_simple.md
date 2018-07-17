@@ -14,6 +14,10 @@ This helper does not include the extra markup or classes used for a normal Pulsa
 
 {% code_example form_helpers/radio-simple %}
 
+<div class="pulsar-example form">
+    <input type="radio" name="bar" id="baz" /><label for="baz">Foo</label>
+</div>
+
 ## Options applied to input
 
 Option          | Type   | Description
@@ -32,7 +36,18 @@ value           | string | Specifies the value of the input
 Option          | Type   | Description
 --------------- | ------ | -----------------------------------------------------
 class           | string | A space separated list of class names
+disabled        | bool   | Stops the element from being interactive if true
 label           | string | Text for the `<label>` companion element
 required        | bool   | Visually indicates that the field must be completed
 
 Any other options not listed here will be applied to the input
+
+## Disabled state
+
+Add the `'disabled': true` option to disable the field on load. See the [disabling elements styleguide](styleguides/disabling_elements/) for more information about how to disable elements via javascript. Provide help text or information within the UI where possible to explain why elements are disabled.
+
+{% code_example form_helpers/radio-simple-disabled %}
+
+<div class="pulsar-example form">
+    <input type="radio" name="bar" disabled id="baz" /><label for="baz">Radio simple disabled</label>
+</div>

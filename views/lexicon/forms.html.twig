@@ -2,9 +2,11 @@
 
 {% set heading = 'Form Helpers' %}
 
+{% set tab_all %}{% include 'lexicon/forms/all.html.twig' %}{% endset %}
 {% set tab_buttongroup %}{% include 'lexicon/forms/button-group.html.twig' %}{% endset %}
 {% set tab_colour %}{% include 'lexicon/forms/colour.html.twig' %}{% endset %}
 {% set tab_content %}{% include 'lexicon/forms/content.html.twig' %}{% endset %}
+{% set tab_compound %}{% include 'lexicon/forms/compound.html.twig' %}{% endset %}
 {% set tab_checkbox %}{% include 'lexicon/forms/checkbox.html.twig' %}{% endset %}
 {% set tab_date %}{% include 'lexicon/forms/date.html.twig' %}{% endset %}
 {% set tab_dropzone %}{% include 'lexicon/forms/dropzone.html.twig' %}{% endset %}
@@ -20,9 +22,15 @@
 {% set tab_time %}{% include 'lexicon/forms/time.html.twig' %}{% endset %}
 {% set tab_toggleswitch %}{% include 'lexicon/forms/toggle-switch.html.twig' %}{% endset %}
 {% set tab_jstree %}{% include 'lexicon/forms/jstree.html.twig' %}{% endset %}
+{% set tab_repeater %}{% include 'lexicon/forms/repeater.html.twig' %}{% endset %}
 
 {%
     set tabs_content = [
+        {
+          "id"    : "all",
+          "label" : "All fields",
+          "src"   : tab_all
+        },
         {
           "id"    : "buttongroup",
           "label" : "Button Group",
@@ -42,6 +50,11 @@
           "id"    : "colour",
           "label" : "Colour",
           "src"   : tab_colour
+        },
+        {
+          "id"    : "compound",
+          "label" : "Compound",
+          "src"   : tab_compound
         },
         {
           "id"    : "content",
@@ -84,20 +97,19 @@
           "src"   : tab_radio
         },
         {
+          "id"    : "repeater",
+          "label" : "Repeater",
+          "src"   : tab_repeater
+        },
+        {
           "id"    : "select",
           "label" : "Select",
-          "src"   : tab_select,
-          "active": true
+          "src"   : tab_select
         },
         {
           "id"    : "select2",
           "label" : "Select2",
           "src"   : tab_select2
-        },
-        {
-          "id"    : "password",
-          "label" : "Password",
-          "src"   : tab_password
         },
         {
           "id"    : "text",

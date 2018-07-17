@@ -107,8 +107,9 @@
 
 // Title text within header
 .modal__title {
-    margin: 0;
+    font-size: $font-size-xlarge;
     line-height: $modal-title-line-height;
+    margin: 0;
 }
 
 // Modal body
@@ -148,7 +149,6 @@
     }
 
     .close {
-        @include opacity(.7);
         color: color(white);
     }
 }
@@ -246,7 +246,6 @@
 
     .close {
         margin-top: 0;
-        opacity: 1;
     }
 
     .download {
@@ -284,6 +283,7 @@
         }
 
         .modal__title {
+            font-size: $font-size-base;
             line-height: 1.2em;
         }
 
