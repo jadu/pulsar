@@ -46,3 +46,22 @@ value       | string | Specifies the value of the input
 data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
 Any other options not listed here will be applied to the input.
+
+## Disabled state
+
+Add the `'disabled': true` option to disable the field on load. See the [disabling elements styleguide](styleguides/disabling_elements/) for more information about how to disable elements via javascript. Provide help text or information within the UI where possible to explain why elements are disabled.
+
+{% code_example form_helpers/date-disabled %}
+
+<div class="pulsar-example form">
+    <div class="form__group">
+        <label for="example-date" class="control__label">Date picker</label>
+        <div class="controls">
+            <input id="example-date" placeholder="dd/mm/yyyy" data-datepicker="true" disabled type="text" class="form__control">
+        </div>
+    </div>
+</div>
+
+## Accessibility
+
+To maintain compliance with WCAG 2.0 AA, a form element must have a related label element, the easiest way to achieve this is to always pass an `id` attribute to form helpers. Form helpers will automatically add `aria-describedby="guid-<random-number>"` to inputs and an `id` to help blocks and errors. Additionally, `aria-invalid="true"` will be added to inputs when an error is passed.

@@ -29,12 +29,15 @@ build:
 	@ -brew cask install virtualbox
 	@ echo "\n${CHECK} Done"
 
-	@ echo "${HR}\nInstalling Ruby...${HR}\n"
-	@ -brew install ruby
+	@ echo "${HR}\nInstalling Ruby via rbenv...${HR}\n"
+	@ -brew install rbenv
+	@ -rbenv init
+	@ -rbenv install 2.3.0
+	@ -rbenv global 2.3.0
 	@ echo "\n${CHECK} Done"
 
 	@ echo "${HR}\nInstalling scss-lint...${HR}\n"
-	@ gem install scss_lint -v ${SASSLINTVER} --no-ri --no-rdoc
+	@ gem install scss_lint -v ${SASSLINTVER} --no-ri --no-rdoc --no-user-install
 	@ echo "\n${CHECK} Done"
 
 	@ echo "${HR}\nInstalling PhantomJS...${HR}\n"
@@ -46,7 +49,7 @@ build:
 	@ echo "\n${CHECK} Done"
 
 	@ echo "${HR}\nInstalling Wraith...${HR}\n"
-	@ gem install wraith --no-ri --no-rdoc
+	@ gem install wraith --no-ri --no-rdoc --no-user-install
 	@ echo "\n${CHECK} Done"
 
 	@ echo "${HR}\nInstalling Node & NPM...${HR}\n"

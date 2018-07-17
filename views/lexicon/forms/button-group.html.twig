@@ -8,23 +8,24 @@
 
     {{
         form.button_group({
-            'label': 'Button group',
+            'label': 'Button group (checkboxes)',
             'type': 'checkbox',
+            'error': 'something went wrong',
             'items': [
                 {
                     'id': 'foo1',
                     'label': 'Foo',
-                    'name': '1'
+                    'name': 'foo-1'
                 },
                 {
                     'id': 'bar1',
                     'label': 'Bar',
-                    'name': '1'
+                    'name': 'foo-1'
                 },
                 {
                     'id': 'baz1',
                     'label': 'Baz',
-                    'name': '1'
+                    'name': 'foo-1'
                 }
             ]
         })
@@ -32,134 +33,122 @@
 
     {{
         form.button_group({
-            'label': 'Button group',
+            'label': 'Button group (radios)',
+            'type': 'radio',
             'items': [
-                form.radio_simple({
-                    'id': 'foo-2',
+                {
+                    'id': 'foo2',
                     'label': 'Foo',
-                    'name': 'foo-2',
-		    'checked': true
-                }),
-                form.radio_simple({
-                    'id': 'bar-2',
+                    'name': 'foo-2'
+                },
+                {
+                    'id': 'bar2',
                     'label': 'Bar',
-                    'name': 'bar-2'
-                }),
-                form.radio_simple({
-                    'id': 'baz-2',
+                    'name': 'foo-2'
+                },
+                {
+                    'id': 'baz2',
                     'label': 'Baz',
-                    'name': 'baz-2'
-                })
+                    'name': 'foo-2'
+                }
             ]
         })
     }}
 
-    {%
-        set headings = [
-            'Default',
-            'Label',
-            'Value',
-            ''
-        ]
-    %}
-
     {{
         form.button_group({
-            'label': 'Required',
+            'label': 'Required (radios)',
             'required': true,
             'items': [
-                form.radio_simple({
-                    'id': 'foo-3',
+                {
+                    'id': 'foo3',
                     'label': 'Foo',
-                    'name': 'foo-3',
-		    'checked': true
-                }),
-                form.radio_simple({
-                    'id': 'bar-3',
+                    'name': 'foo-3'
+                },
+                {
+                    'id': 'bar3',
                     'label': 'Bar',
-                    'name': 'bar-3'
-                }),
-                form.radio_simple({
-                    'id': 'baz-3',
+                    'name': 'foo-3'
+                },
+                {
+                    'id': 'baz3',
                     'label': 'Baz',
-                    'name': 'baz-3'
-                })
+                    'name': 'foo-3'
+                }
             ]
         })
     }}
 
     {{
         form.button_group({
-            'label': 'Button group with help',
+            'label': 'Button group with help (radios)',
             'help': 'Help text to give more information about expected input',
             'items': [
-                form.radio_simple({
-                    'id': 'foo-4',
+                {
+                    'id': 'foo4',
                     'label': 'Foo',
-                    'name': 'foo-4',
-		    'checked': true
-                }),
-                form.radio_simple({
-                    'id': 'bar-4',
+                    'name': 'foo-4'
+                },
+                {
+                    'id': 'bar4',
                     'label': 'Bar',
-                    'name': 'bar-4'
-                }),
-                form.radio_simple({
-                    'id': 'baz-4',
+                    'name': 'foo-4'
+                },
+                {
+                    'id': 'baz4',
                     'label': 'Baz',
-                    'name': 'baz-4'
-                })
+                    'name': 'foo-4'
+                }
             ]
         })
     }}
 
     {{
         form.button_group({
-            'label': 'Button group with guidance',
+            'label': 'Button group with guidance (radios)',
             'guidance': 'Help text to give more information about expected input',
             'items': [
-                form.radio_simple({
-                    'id': 'foo-5',
+                {
+                    'id': 'foo5',
                     'label': 'Foo',
-                    'name': 'foo-5',
-		    'checked': true
-                }),
-                form.radio_simple({
-                    'id': 'bar-5',
+                    'name': 'foo-5'
+                },
+                {
+                    'id': 'bar5',
                     'label': 'Bar',
-                    'name': 'bar-5'
-                }),
-                form.radio_simple({
-                    'id': 'baz-5',
+                    'name': 'foo-5'
+                },
+                {
+                    'id': 'baz5',
                     'label': 'Baz',
-                    'name': 'baz-5'
-                })
+                    'name': 'foo-5'
+                }
             ]
         })
     }}
 
     {{
         form.button_group({
-            'label': 'Required with guidance',
+            'label': 'Required with guidance, with on option pre-selected (radios)',
             'guidance': 'Help text to give more information about expected input',
             'required': true,
             'items': [
-                form.radio_simple({
-                    'id': 'foo-6',
+                {
+                    'id': 'foo6',
                     'label': 'Foo',
                     'name': 'foo-6',
-		    'checked': true
-                }),
-                form.radio_simple({
-                    'id': 'bar-6',
+                    'checked': true
+                },
+                {
+                    'id': 'bar6',
                     'label': 'Bar',
-                    'name': 'bar-6'
-                }),
-                form.radio_simple({
-                    'id': 'baz-6',
+                    'name': 'foo-6'
+                },
+                {
+                    'id': 'baz6',
                     'label': 'Baz',
-                    'name': 'baz-6'
-                })
+                    'name': 'foo-6'
+                }
             ]
         })
     }}
@@ -169,134 +158,106 @@
 
     {{
         form.button_group({
-            'label': 'Button group hide label',
+            'label': 'Button group hide label (radios)',
             'show-label': false,
             'help': 'This example hides the label with the <code>show-label</code> option',
             'items': [
-                form.radio_simple({
-                    'id': 'foo-7',
+                {
+                    'id': 'foo7',
                     'label': 'Foo',
                     'name': 'foo-7',
-		    'checked': true
-                }),
-                form.radio_simple({
-                    'id': 'bar-7',
+                    'checked': true
+                },
+                {
+                    'id': 'bar7',
                     'label': 'Bar',
-                    'name': 'bar-7'
-                }),
-                form.radio_simple({
-                    'id': 'baz-7',
+                    'name': 'foo-7'
+                },
+                {
+                    'id': 'baz7',
                     'label': 'Baz',
-                    'name': 'baz-7'
-                })
+                    'name': 'foo-7'
+                }
             ]
         })
     }}
 
     {{
         form.button_group({
-            'label': 'Text input with a longer than expected label which will probably wrap multple lines and push the following input onto the next baseline',
+            'label': 'Text input with a longer than expected label which will probably wrap multple lines and push the following input onto the next baseline (radios)',
             'help': 'Example block-level help text here',
             'guidance': 'Help text to give more information about expected input',
             'items': [
-                form.radio_simple({
-                    'id': 'foo-8',
+                {
+                    'id': 'foo8',
                     'label': 'Foo',
                     'name': 'foo-8',
-		    'checked': true
-                }),
-                form.radio_simple({
-                    'id': 'bar-8',
+                    'checked': true
+                },
+                {
+                    'id': 'bar8',
                     'label': 'Bar',
-                    'name': 'bar-8'
-                }),
-                form.radio_simple({
-                    'id': 'baz-8',
+                    'name': 'foo-8'
+                },
+                {
+                    'id': 'baz8',
                     'label': 'Baz',
-                    'name': 'baz-8'
-                })
+                    'name': 'foo-8'
+                }
             ]
         })
     }}
 
     {{
         form.button_group({
-            'label': 'Text input with a longer than expected label but this time we use the form__group--top class to keep the label on a single line',
+            'label': 'Text input with a longer than expected label but this time we use the form__group--top class to keep the label on a single line (radios)',
             'class': 'form__group--top',
             'help': 'Example block-level help text here',
             'guidance': 'Help text to give more information about expected input',
             'items': [
-                form.radio_simple({
-                    'id': 'foo-9',
+                {
+                    'id': 'foo9',
                     'label': 'Foo',
                     'name': 'foo-9',
-		    'checked': true
-                }),
-                form.radio_simple({
-                    'id': 'bar-9',
+                    'checked': true
+                },
+                {
+                    'id': 'bar9',
                     'label': 'Bar',
-                    'name': 'bar-9'
-                }),
-                form.radio_simple({
-                    'id': 'baz-9',
+                    'name': 'foo-9'
+                },
+                {
+                    'id': 'baz9',
                     'label': 'Baz',
-                    'name': 'baz-9'
-                })
+                    'name': 'foo-9'
+                }
             ]
         })
     }}
 
     {{
         form.button_group({
-            'label': 'The same as above, but this time we also add the .form__group--flush class to keep everything on the left edge',
+            'label': 'The same as above, but this time we also add the .form__group--flush class to keep everything on the left edge (radios)',
             'class': 'form__group--top form__group--flush',
             'help': 'Example block-level help text here',
             'guidance': 'Help text to give more information about expected input',
             'items': [
-                form.radio_simple({
-                    'id': 'foo-10',
+                {
+                    'id': 'foo10',
                     'label': 'Foo',
                     'name': 'foo-10',
-		    'checked': true
-                }),
-                form.radio_simple({
-                    'id': 'bar-10',
+                    'checked': true
+                },
+                {
+                    'id': 'bar10',
                     'label': 'Bar',
-                    'name': 'bar-10'
-                }),
-                form.radio_simple({
-                    'id': 'baz-10',
+                    'name': 'foo-10'
+                },
+                {
+                    'id': 'baz10',
                     'label': 'Baz',
-                    'name': 'baz-10'
-                })
-            ]
-        })
-    }}
-
-    {{ form.fieldset_end() }}
-    {{ form.fieldset_start({ 'legend': 'Grid Sizes' }) }}
-
-    {{
-        form.button_group({
-            'class': 'form__control-col--1',
-            'label': 'Button group',
-            'items': [
-                form.radio_simple({
-                    'id': 'foo-11',
-                    'label': 'Foo',
-                    'name': 'foo-11',
-		    'checked': true
-                }),
-                form.radio_simple({
-                    'id': 'bar-11',
-                    'label': 'Bar',
-                    'name': 'bar-11'
-                }),
-                form.radio_simple({
-                    'id': 'baz-11',
-                    'label': 'Baz',
-                    'name': 'baz-11'
-                })
+                    'name': 'foo-10'
+                }
             ]
         })
     }}
@@ -306,102 +267,102 @@
 
     {{
         form.button_group({
-            'label': 'Button group with error',
+            'label': 'Button group with error (radios)',
             'error': 'Please choose an option',
             'items': [
-                form.radio_simple({
-                    'id': 'foo-12',
+                {
+                    'id': 'foo12',
                     'label': 'Foo',
                     'name': 'foo-12',
-		    'checked': true
-                }),
-                form.radio_simple({
-                    'id': 'bar-12',
+                    'checked': true
+                },
+                {
+                    'id': 'bar12',
                     'label': 'Bar',
-                    'name': 'bar-12'
-                }),
-                form.radio_simple({
-                    'id': 'baz-12',
+                    'name': 'foo-12'
+                },
+                {
+                    'id': 'baz12',
                     'label': 'Baz',
-                    'name': 'baz-12'
-                })
+                    'name': 'foo-12'
+                }
             ]
         })
     }}
 
     {{
         form.button_group({
-            'label': 'Button group with multiple errors',
+            'label': 'Button group with multiple errors (radios)',
             'error': ['Do this', 'Do this too'],
             'items': [
-                form.radio_simple({
-                    'id': 'foo-13',
+                {
+                    'id': 'foo13',
                     'label': 'Foo',
                     'name': 'foo-13',
-		    'checked': true
-                }),
-                form.radio_simple({
-                    'id': 'bar-13',
+                    'checked': true
+                },
+                {
+                    'id': 'bar13',
                     'label': 'Bar',
-                    'name': 'bar-13'
-                }),
-                form.radio_simple({
-                    'id': 'baz-13',
+                    'name': 'foo-13'
+                },
+                {
+                    'id': 'baz13',
                     'label': 'Baz',
-                    'name': 'baz-13'
-                })
+                    'name': 'foo-13'
+                }
             ]
         })
     }}
 
     {{
         form.button_group({
-            'label': 'Button group with error and help',
+            'label': 'Button group with error and help (radios)',
             'error': 'Please choose an option',
             'help': 'Help text to give more information about expected input',
             'items': [
-                form.radio_simple({
-                    'id': 'foo-14',
+                {
+                    'id': 'foo14',
                     'label': 'Foo',
                     'name': 'foo-14',
-		    'checked': true
-                }),
-                form.radio_simple({
-                    'id': 'bar-14',
+                    'checked': true
+                },
+                {
+                    'id': 'bar14',
                     'label': 'Bar',
-                    'name': 'bar-14'
-                }),
-                form.radio_simple({
-                    'id': 'baz-14',
+                    'name': 'foo-14'
+                },
+                {
+                    'id': 'baz14',
                     'label': 'Baz',
-                    'name': 'baz-14'
-                })
+                    'name': 'foo-14'
+                }
             ]
         })
     }}
 
     {{
         form.button_group({
-            'label': 'Button group with help only',
+            'label': 'Button group with help only (radios)',
             'class': 'has-error',
             'help': 'Help text to give more information about expected input',
             'items': [
-                form.radio_simple({
-                    'id': 'foo-15',
+                {
+                    'id': 'foo15',
                     'label': 'Foo',
                     'name': 'foo-15',
-		    'checked': true
-                }),
-                form.radio_simple({
-                    'id': 'bar-15',
+                    'checked': true
+                },
+                {
+                    'id': 'bar15',
                     'label': 'Bar',
-                    'name': 'bar-15'
-                }),
-                form.radio_simple({
-                    'id': 'baz-15',
+                    'name': 'foo-15'
+                },
+                {
+                    'id': 'baz15',
                     'label': 'Baz',
-                    'name': 'baz-15'
-                })
+                    'name': 'foo-15'
+                }
             ]
         })
     }}
@@ -415,22 +376,22 @@
             'class': 'has-changed',
             'help': 'Highlight whether an action elsewhere affects an input',
             'items': [
-                form.radio_simple({
-                    'id': 'foo-16',
+                {
+                    'id': 'foo16',
                     'label': 'Foo',
                     'name': 'foo-16',
-		    'checked': true
-                }),
-                form.radio_simple({
-                    'id': 'bar-16',
+                    'checked': true
+                },
+                {
+                    'id': 'bar16',
                     'label': 'Bar',
-                    'name': 'bar-16'
-                }),
-                form.radio_simple({
-                    'id': 'baz-16',
+                    'name': 'foo-16'
+                },
+                {
+                    'id': 'baz16',
                     'label': 'Baz',
-                    'name': 'baz-16'
-                })
+                    'name': 'foo-16'
+                }
             ]
         })
     }}
@@ -441,22 +402,22 @@
             'class': 'has-success',
             'help': 'Something good happened',
             'items': [
-                form.radio_simple({
-                    'id': 'foo-17',
+                {
+                    'id': 'foo17',
                     'label': 'Foo',
                     'name': 'foo-17',
-		    'checked': true
-                }),
-                form.radio_simple({
-                    'id': 'bar-17',
+                    'checked': true
+                },
+                {
+                    'id': 'bar17',
                     'label': 'Bar',
-                    'name': 'baz-17'
-                }),
-                form.radio_simple({
-                    'id': 'baz-17',
+                    'name': 'foo-17'
+                },
+                {
+                    'id': 'baz17',
                     'label': 'Baz',
-                    'name': 'baz-17'
-                })
+                    'name': 'foo-17'
+                }
             ]
         })
     }}
@@ -467,22 +428,22 @@
             'class': 'has-warning',
             'help': 'Something bad happened',
             'items': [
-                form.radio_simple({
-                    'id': 'foo-18',
+                {
+                    'id': 'foo18',
                     'label': 'Foo',
                     'name': 'foo-18',
-		    'checked': true
-                }),
-                form.radio_simple({
-                    'id': 'bar-18',
+                    'checked': true
+                },
+                {
+                    'id': 'bar18',
                     'label': 'Bar',
-                    'name': 'bar-18'
-                }),
-                form.radio_simple({
-                    'id': 'baz-18',
+                    'name': 'foo-18'
+                },
+                {
+                    'id': 'baz18',
                     'label': 'Baz',
-                    'name': 'baz-18'
-                })
+                    'name': 'foo-18'
+                }
             ]
         })
     }}
@@ -493,22 +454,22 @@
             'class': 'has-error',
             'help': 'Automatically added if using <code>error</code> option',
             'items': [
-                form.radio_simple({
-                    'id': 'foo-19',
+                {
+                    'id': 'foo19',
                     'label': 'Foo',
                     'name': 'foo-19',
-		    'checked': true
-                }),
-                form.radio_simple({
-                    'id': 'bar-19',
+                    'checked': true
+                },
+                {
+                    'id': 'bar19',
                     'label': 'Bar',
-                    'name': 'bar-19'
-                }),
-                form.radio_simple({
-                    'id': 'baz-19',
+                    'name': 'foo-19'
+                },
+                {
+                    'id': 'baz19',
                     'label': 'Baz',
-                    'name': 'baz-19'
-                })
+                    'name': 'foo-19'
+                }
             ]
         })
     }}
@@ -519,22 +480,22 @@
             'disabled': true,
             'help': 'Stop! Can’t touch this',
             'items': [
-                form.radio_simple({
-                    'id': 'foo-20',
+                {
+                    'id': 'foo20',
                     'label': 'Foo',
                     'name': 'foo-20',
-		    'checked': true
-                }),
-                form.radio_simple({
-                    'id': 'bar-20',
+                    'checked': true
+                },
+                {
+                    'id': 'bar20',
                     'label': 'Bar',
-                    'name': 'bar-20'
-                }),
-                form.radio_simple({
-                    'id': 'baz-20',
+                    'name': 'foo-20'
+                },
+                {
+                    'id': 'baz20',
                     'label': 'Baz',
-                    'name': 'baz-20'
-                })
+                    'name': 'foo-20'
+                }
             ]
         })
     }}
