@@ -146,7 +146,7 @@
                             </div>
                         {% endblock %}
                     {% else %}
-                        <h1 class="main-title">{{ heading|default('MISSING HEADING') }}</h1>
+                        <h1 class="main-title">{{ heading|default('MISSING HEADING')|raw }}</h1>
                     {% endif %}
 
                     {% block tabs_list %}{% endblock %}

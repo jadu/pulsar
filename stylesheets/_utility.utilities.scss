@@ -324,9 +324,19 @@ div.no-results {
     width: auto !important;
 }
 
+%u-margin-top-one-half,
+.u-margin-top-one-half {
+    margin-top: .5em !important;
+}
+
 %u-margin-top-none,
 .u-margin-top-none {
     margin-top: 0 !important;
+}
+
+%u-margin-right-one-half,
+.u-margin-right-one-half {
+    margin-right: .5em !important;
 }
 
 %u-margin-bottom-none,

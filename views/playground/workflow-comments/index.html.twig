@@ -1,0 +1,71 @@
+{% extends '@pulsar/lexicon/base.html.twig' %}
+
+{% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
+{% import '@pulsar/pulsar/v2/helpers/form.html.twig' as form %}
+{% import '@pulsar/pulsar/v2/helpers/tabs.html.twig' as tabs %}
+{% import '@pulsar/pulsar/v2/helpers/flash.html.twig' as flash %}
+
+{% block title %}{{ parent() }}{% endblock %}
+
+{%
+    set heading = "My Example Document " ~ 
+    html.label({'label': 'Draft', 'class': 'label--primary'}) ~
+    html.label({'label': 'Pending Approval', 'class': 'label--warning'}) ~
+    html.label({'label': 'Published', 'class': 'label--success'}) ~
+    html.label({'label': 'Locked', 'class': 'label--inverse'})
+%}
+
+{% set tab_editor_draft %}
+    {% include 'playground/workflow-comments/tab_editor_draft.html.twig' %}
+{% endset %}
+{% set tab_editor_pending %}
+    {% include 'playground/workflow-comments/tab_editor_pending.html.twig' %}
+{% endset %}
+{% set tab_reviewer_pending %}
+    {% include 'playground/workflow-comments/tab_reviewer_pending.html.twig' %}
+{% endset %}
+{% set tab_reviewer_approved %}
+    {% include 'playground/workflow-comments/tab_reviewer_approved.html.twig' %}
+{% endset %}
+{% set tab_reviewer_rejected %}
+    {% include 'playground/workflow-comments/tab_reviewer_rejected.html.twig' %}
+{% endset %}
+
+{%
+    set tabs_content = [
+        {
+          "id"    : "editor_draft",
+          "label" : "Editor View - Draft",
+          "src"   : tab_editor_draft,
+          "active": true
+        },
+        {
+          "id"    : "editor_pending",
+          "label" : "Editor View - Pending",
+          "src"   : tab_editor_pending,
+        },
+        {
+          "id"    : "reviewer_pending",
+          "label" : "Reviewer View - Pending",
+          "src"   : tab_reviewer_pending,
+        },
+        {
+          "id"    : "reviewer_approved",
+          "label" : "Reviewer View - Approved",
+          "src"   : tab_reviewer_approved,
+        },
+        {
+          "id"    : "reviewer_rejected",
+          "label" : "Reviewer View - Rejected",
+          "src"   : tab_reviewer_rejected,
+        }
+    ]
+%}
+
+{% block tabs_list %}
+    {{ tabs.list(tabs_content) }}
+{% endblock %}
+
+{% block tabs_content %}
+    {{ tabs.content(tabs_content) }}
+{% endblock %}
