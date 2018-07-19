@@ -56,15 +56,15 @@ You should provide sensible labels as well as unique IDs for each individual inp
         <legend class="control__label" id="bar[label]">Date of birth</legend>
         <div class="controls">
             <label for="dd" id="dd[label]" class="control__label hide">Day</label>
-            <input id="dd" placeholder="DD" type="text" class="form__control form__control-col--1">
+            <input id="dd" placeholder="DD" type="text" aria-describedby="guid-671105739" class="form__control form__control-col--1">
 
             <label for="mm" id="mm[label]" class="control__label hide">Month</label>
-            <input id="mm" placeholder="MM" type="text" class="form__control form__control-col--1">
+            <input id="mm" placeholder="MM" type="text" aria-describedby="guid-671105739" class="form__control form__control-col--1">
 
             <label for="yyyy" id="yyyy[label]" class="control__label hide">Year</label>
-            <input id="yyyy" placeholder="YYYY" type="text" class="form__control form__control-col--1">
+            <input id="yyyy" placeholder="YYYY" type="text" aria-describedby="guid-671105739" class="form__control form__control-col--1">
 
-            <span class="help-block">For example: 25 12 1980</span>
+            <span class="help-block" id="guid-671105739">For example: 25 12 1980</span>
         </div>
     </fieldset>
 </div>
@@ -76,17 +76,17 @@ You should provide sensible labels as well as unique IDs for each individual inp
         <legend class="control__label" id="comp-10[label]">Example with one invalid field and error </legend>
         <div class="controls">
             <label for="dd" id="dd[label]" class="control__label hide">Day</label>
-            <input id="dd" placeholder="DD" type="text" class="form__control form__control-col--1">
+            <input id="dd" placeholder="DD" type="text" aria-describedby="guid-460222874 guid-1069969603" class="form__control form__control-col--1">
 
             <label for="mm" id="mm[label]" class="control__label hide">Month</label>
-            <input id="mm" placeholder="MM" type="text" class="form__control form__control-col--1 has-error">
+            <input id="mm" placeholder="MM" type="text" aria-invalid="true" aria-describedby="guid-460222874 guid-1069969603" class="form__control form__control-col--1 has-error">
 
             <label for="yyyy" id="yyyy[label]" class="control__label hide">Year</label>
-            <input id="yyyy" placeholder="YYYY" type="text" class="form__control form__control-col--1">
+            <input id="yyyy" placeholder="YYYY" type="text" aria-describedby="guid-460222874 guid-1069969603" class="form__control form__control-col--1">
 
-            <span class="help-block is-error"><i aria-hidden="true" class="icon-warning-sign"></i> Please complete your month of birth</span>
+            <span class="help-block is-error" id="guid-460222874"><i aria-hidden="true" class="icon-warning-sign"></i> Please complete your month of birth</span>
 
-            <span class="help-block">For example: 25 12 1980</span>
+            <span class="help-block" id="guid-1069969603">For example: 25 12 1980</span>
         </div>
     </fieldset>
 </div>
@@ -98,15 +98,19 @@ You should provide sensible labels as well as unique IDs for each individual inp
     <legend class="control__label" id="foo[label]">Timeout</legend>
     <div class="controls">
         <label for="value" id="value[label]" class="control__label hide">Value</label>
-        <input id="value" maxlength="3" type="text" class="form__control form__control-col--1">
+        <input id="value" maxlength="3" type="text" aria-describedby="guid-82443025" class="form__control form__control-col--1">
 
         <label for="Unit" id="Unit[label]" class="control__label hide">Unit of time</label>
-        <select id="Unit" type="select" class="form__control u-width-auto select">
+        <select id="Unit" type="select" aria-describedby="guid-82443025" class="form__control u-width-auto select">
             <option value="sec">Seconds</option>
             <option value="min">Minutes</option>
         </select>
 
-        <span class="help-block">How long the system should wait for a response, usually 30 seconds</span>
+        <span class="help-block" id="guid-82443025">How long the system should wait for a response, usually 30 seconds</span>
     </div>
 </fieldset>
 </div>
+
+## Accessibility
+
+To maintain compliance with WCAG 2.0 AA, a form element must have a related label element, the easiest way to achieve this is to always pass an `id` attribute to form helpers. Form helpers will automatically add `aria-describedby="guid-<random-number>"` to inputs and an `id` to help blocks and errors. Additionally, `aria-invalid="true"` will be added to inputs when an error is passed.
