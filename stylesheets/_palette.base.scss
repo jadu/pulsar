@@ -175,6 +175,7 @@ $palette-alias: (
     ),
     background: (
         base:      map-get(map-get($palette-monochromes, gray), off-white),
+        dark:      map-get(map-get($palette-monochromes, gray), lightest),
         light:     lighten(map-get(map-get($palette-monochromes, gray), off-white), 2),
         selected:  map-get(map-get($palette-states, info), light)
     )

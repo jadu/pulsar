@@ -16,7 +16,7 @@
             {% for i in 0..5 %}
             <tr>
                 <td class="table-responsive">
-                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                    {{ html.button({ 'label': html.icon('plus-sign', { 'label': 'Expand', 'class': 'table-child-toggle' }), 'class': 'btn--naked'}) }}
                 </td>
                 <td><a href="#">01/02/2017 12:34pm</a></td>
                 <td>{{ html.label({ 'label': 'info', 'class': 'label--info' }) }}</td>
@@ -29,7 +29,7 @@
 
             <tr>
                 <td class="table-responsive">
-                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                    {{ html.button({ 'label': html.icon('plus-sign', { 'label': 'Expand', 'class': 'table-child-toggle' }), 'class': 'btn--naked'}) }}
                 </td>
                 <td><a href="#">01/02/2017 12:34pm</a></td>
                 <td>{{ html.label({ 'label': 'error', 'class': 'label--danger' }) }}</td>

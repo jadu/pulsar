@@ -47,27 +47,27 @@
 // scss-lint:enable SelectorFormat
 
 a.dt-button {
-    border-right: 1px solid color(border);
+    border-right: 1px dotted color(border);
     margin-right: $margin-base-vertical;
     padding-right: $margin-base-vertical;
 }
 
-.dt-buttons > a,
-.dt-buttons > button {
+.dt-buttons {
     float: left;
-    margin-top: $margin-large-vertical;
-}
 
-.dt-buttons > button {
-    background-color: transparent;
-    border: 0;
-    border-right: 1px solid color(border);
-    color: color(link);
-    margin-right: $margin-base-vertical;
-    padding: 0 $padding-base-horizontal;
+    > a,
+    > button {
+        background-color: transparent;
+        border: 0;
+        border-right: 1px dotted color(border);
+        color: color(link);
+        float: left;
+        line-height: 30px;
+        padding: 0 $padding-base-horizontal;
 
-    &:hover {
-        color: color(jadu-blue, darkest);
+        &:hover {
+            color: color(link, hover);
+        }
     }
 }
 
@@ -75,29 +75,53 @@ a.dt-button {
     // scss-lint:disable SelectorFormat
     td,
     th {
+        white-space: nowrap;
+
+        &.sorting:hover,
+        &.sorting_asc:hover,
+        &.sorting_desc:hover {
+            background-color: color(background, dark);
+            cursor: pointer;
+
+            &::after {
+                color: color(link);
+            }
+        }
+
         &.sorting::after,
         &.sorting_asc::after,
         &.sorting_desc::after {
             @include icon-FontAwesome();
-            font-size: 18px;
+            font-size: $font-size-base;
             left: 0;
             margin-left: 10px;
         }
 
+        &.sorting::after {
+            content: '\f0dc';
+            color: color(text, light);
+        }
+
         &.sorting_asc::after {
-            content: $circle-arrow-up;
+            content: '\f0de';
         }
 
         &.sorting_desc::after {
-            content: $circle-arrow-down;
+            content: '\f0dd';
+        }
+
+        &.sorting_disabled::after {
+            content: '';
         }
 
         &.sorting_asc,
         &.sorting_desc {
-            background-color: darken(#fff, 10);
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
+            background-color: color(background, dark);
         }
+    }
+
+    th [href] {
+        color: color(text);
     }
 
     td.sorting_1 {
@@ -112,14 +136,16 @@ a.dt-button {
 }
 
 .table-row-select {
-    color: #666;
+    color: color(grey);
     cursor: pointer;
-    font-size: 14px;
+    font-size: $font-size-base;
     position: relative;
     top: 1px;
 }
 
+.dt-row-selected .table-row-select::before,
 tr.selected .table-row-select::before {
+    color: color(primary);
     content: '\f14a';
 }
 
@@ -132,14 +158,14 @@ th.sorting_disabled:hover {
 .table-responsive,
 .table-selection {
     text-align: center;
-    min-width: 30px;
-    max-width: 30px;
+    min-width: 42px;
+    max-width: 42px;
     user-select: none;
-    width: 30px;
+    width: 42px;
 
-    &:hover {
-        background: none;
-        cursor: pointer;
+    .btn {
+        line-height: 22px;
+        padding: 0;
     }
 }
 
@@ -155,7 +181,7 @@ th.sorting_disabled:hover {
 .dataTables_info {
     display: none;
     float: left;
-    margin-top: 11px;
+    line-height: 30px;
 
     @include respond-min($screen-tablet) {
         display: block;
@@ -164,7 +190,6 @@ th.sorting_disabled:hover {
 
 .dataTables_filter {
     float: right;
-    margin-top: 9px;
 
     [type="search"] {
         border: 1px solid color(border);
@@ -172,21 +197,25 @@ th.sorting_disabled:hover {
         border-radius: 4px;
         margin-left: 10px;
         padding: 5px;
+
+        &:focus {
+            border: 1px solid color(primary);
+            box-shadow: inset 0 0 0 1px color(primary);
+            outline: none;
+        }
     }
 }
 
 .dataTables_top {
-    color: color(text, light);
+    color: color(text);
     float: left;
     margin-bottom: 10px;
     width: 100%;
 
     .select-info {
-        @extend %label;
-        @extend %label--info;
-        color: color(text);
-        font-family: $font-family-regular;
-        margin-left: 5px;
+        border-left: 1px dotted color(border);
+        margin-left: 10px;
+        padding-left: 10px;
     }
 }
 
@@ -205,6 +234,7 @@ th.sorting_disabled:hover {
 
 .dataTables_bottom {
     display: block;
+    margin-top: -1px;
     width: 100%;
 }
 

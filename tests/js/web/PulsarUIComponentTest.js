@@ -7,6 +7,8 @@ var $ = require('jquery'),
     tab = require('../../../js/libs/tab'),
     PulsarUIComponent = require('../../../js/PulsarUIComponent');
 
+    $.fx.off = true;
+
 describe('Pulsar UI Component', function() {
 
     beforeEach(function() {
@@ -22,9 +24,7 @@ describe('Pulsar UI Component', function() {
             <div class="table-container"><table class="table qa-table-dupe"></table></div>\
             <a href="#tab" data-toggle="tab">foo</a>\
             <a data-href="?tab=foo" href="#tab-foo" data-toggle="tab">foo</a>\
-            <div class="tab__pane" id="tab">\
-                <table class="table datatable qa-tab-datatable"></table>\
-            </div>\
+            <div class="tab__pane" id="tab"><table class="table datatable qa-tab-datatable"></table></div>\
             <span class="js-countdown qa-countdown-one" data-final-date="1665243907399" data-format="%d">Expires in 6 hours</span>\
 ').appendTo(this.$html);
 
@@ -166,7 +166,4 @@ describe('Pulsar UI Component', function() {
         });
 
     });
-
-
 });
-
