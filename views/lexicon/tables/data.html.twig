@@ -1,7 +1,5 @@
-{% extends '@pulsar/pulsar/components/tab.html.twig' %}
-
 {% 
-    set data = {
+    set datatableData = {
         'columns': [
             { 'title': 'Title' },
             { 'title': 'Owner' },
@@ -207,28 +205,3 @@
         ]
     }
 %}
-
-{% block tab_content %}
-    {{ 
-        html.datatable({
-            'data-order': '[[ 3, "desc" ]]',
-            'data': data
-        }) 
-    }}
-{% endblock tab_content %}
-
-{% block tab_sidebar %}
-    <h2>DataTable</h2>
-    <ul>
-        <li>Same structure as basic table</li>
-        <li>Table overflow scrolls horizontally</li>
-        <li>Automatic pagination</li>
-    </ul>
-    <pre><code class="hljs">&#123;&#123; 
-    html.datatable(&#123;
-        'class': 'table--full',
-        'data-order': '[[ 3, "desc" ]]',
-        'data': data
-    &#125;) 
-&#125;&#125;</code></pre>
-{% endblock tab_sidebar %}

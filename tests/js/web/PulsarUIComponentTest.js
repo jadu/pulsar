@@ -7,7 +7,7 @@ var $ = require('jquery'),
     tab = require('../../../js/libs/tab'),
     PulsarUIComponent = require('../../../js/PulsarUIComponent');
 
-    $.fx.off = !$.fx.off;
+    $.fx.off = true;
 
 describe('Pulsar UI Component', function() {
 
@@ -41,7 +41,7 @@ describe('Pulsar UI Component', function() {
 
         this.history = {
             pushState: sinon.stub()
-        }
+        };
 
         this.pulsarUIComponent = new PulsarUIComponent(this.$html, this.history);
 
