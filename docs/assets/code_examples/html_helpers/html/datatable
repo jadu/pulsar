@@ -1,0 +1,26 @@
+<table class="table datatable table--full table--horizontal" data-order='[[ 3, "desc" ]]'>
+    <thead>
+        <tr>
+            <th class="table-selection" data-orderable="false">
+                <input type="checkbox" class="form__control checkbox js-select-all" aria-label="Select all rows" data-toggle="tooltips" title="select all rows" data-placement="right" data-container="body" />
+            </th>
+            <th>Title</th>
+            <th>Owner</th>
+            <th>Modified</th>
+            <th class="u-text-align-center shrink-to-fit">Live</th>
+            <th class="u-text-align-center shrink-to-fit">Visible</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="table-selection">
+                <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
+            </td>
+            <td><a class="link" href="#link-1">The Terminator</a></td>
+            <td>James Cameron</td>
+            <td data-order="1991-07-01 12:00">01/07/1991 12:34pm</td>
+            <td data-order="live" class="u-text-align-center">{{ html.status('online', {'title': 'live', 'icon': true }) }}</td>
+            <td data-order="invisible" class="u-text-align-center">{{ html.status('offline', {'title': 'invisible', 'icon': true , 'icon': true }) }}</td>
+        </tr>
+    </tbody>
+</table>

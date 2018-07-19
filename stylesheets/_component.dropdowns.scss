@@ -171,6 +171,7 @@
 
 // Right aligned dropdowns
 // ---------------------------
+.dropdown__menu--right + .dropdown__menu,
 .pull-right > .dropdown__menu {
   right: 0;
   left: auto;

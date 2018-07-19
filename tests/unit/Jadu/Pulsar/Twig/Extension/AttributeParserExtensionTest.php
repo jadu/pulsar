@@ -2,7 +2,7 @@
 
 namespace Jadu\Pulsar\Twig\Extension;
 
-class AttributeParserExtensionTest extends \PHPUnit_Framework_TestCase
+class AttributeParserExtensionTest extends \PHPUnit\Framework\TestCase
 {
     public function setUp()
     {
