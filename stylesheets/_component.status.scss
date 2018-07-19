@@ -10,18 +10,18 @@
 .status {
     &.is-active,
     &.is-online {
-        background-color: #297c46;
+        background-color: color(success);
         border-radius: 6px;
     }
 
     &.is-offline {
-        background-color: #c84d40;
+        background-color: color(danger);
         border-radius: 2px;
     }
 
     &.is-inactive {
-        background-color: #fff;
-        border: 2px solid #ccc;
+        background-color: color(white);
+        border: 2px solid color(border);
         border-radius: 6px;
     }
 }
@@ -29,10 +29,10 @@
 .status--icon {
     &.is-active,
     &.is-online {
-        color: #297c46;
+        color: color(success);
     }
 
     &.is-offline {
-        color: #c84d40;
+        color: color(danger);
     }
 }

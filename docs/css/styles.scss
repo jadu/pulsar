@@ -72,6 +72,7 @@ $fa-css-prefix: 'icon';
     @import '../../stylesheets/objects/_object.media';
 
     // Components
+    @import '../../stylesheets/_component.actionsbar';
     @import '../../stylesheets/_component.badges';
     @import '../../stylesheets/_component.block-list';
     @import '../../stylesheets/_component.breadcrumb';

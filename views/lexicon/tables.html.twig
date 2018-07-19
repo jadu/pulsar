@@ -3,17 +3,20 @@
 
 {% set heading = 'Tables' %}
 
-{% set tab_buttongroup %}
+{% set tab_basic %}
     {% include 'lexicon/tables/basic.html.twig' %}
+{% endset %}
+{% set tab_basic_scrolling %}
+    {% include 'lexicon/tables/basic-scrolling.html.twig' %}
 {% endset %}
 {% set tab_datatable %}
     {% include 'lexicon/tables/datatable.html.twig' %}
 {% endset %}
+{% set tab_datatable_collapse %}
+    {% include 'lexicon/tables/datatable-collapse.html.twig' %}
+{% endset %}
 {% set tab_datatable_empty %}
     {% include 'lexicon/tables/datatable-empty.html.twig' %}
-{% endset %}
-{% set tab_datagrid %}
-    {% include 'lexicon/tables/datagrid.html.twig' %}
 {% endset %}
 {% set tab_formtable %}
     {% include 'lexicon/tables/form-tables.html.twig' %}
@@ -21,35 +24,35 @@
 {% set tab_sortable %}
     {% include 'lexicon/tables/sortable.html.twig' %}
 {% endset %}
-{% set tab_tablex %}
-    {% include 'lexicon/tables/tablex.html.twig' %}
-{% endset %}
-{% set tab_datatablex %}
-    {% include 'lexicon/tables/datatablex.html.twig' %}
-{% endset %}
+
 
 {%
     set tabs_content = [
         {
           "id"    : "basic",
-          "label" : "Basic Table",
-          "src"   : tab_buttongroup
+          "label" : "Basic",
+          "src"   : tab_basic
+        },
+        {
+          "id"    : "basic",
+          "label" : "Basic (scrolling)",
+          "src"   : tab_basic_scrolling
         },
         {
           "id"    : "datatable",
           "label" : "DataTable",
           "src"   : tab_datatable,
           'active': 'true'
+        },{
+          "id"    : "datatable-collapse",
+          "label" : "Datatable (collapsing)",
+          "src"   : tab_datatable_collapse
         },
+
         {
           "id"    : "datatable-empty",
           "label" : "DataTable (empty)",
           "src"   : tab_datatable_empty
-        },
-        {
-          "id"    : "datagrid",
-          "label" : "Datagrid " ~ html.label({'label': 'retired'}),
-          "src"   : tab_datagrid
         },
         {
           "id"    : "formtables",
@@ -60,16 +63,6 @@
           "id"    : "sortable",
           "label" : "Sortable Tables",
           "src"   : tab_sortable
-        },
-        {
-          "id"    : "tablex",
-          "label" : "Horizontal Table",
-          "src"   : tab_tablex
-        },
-        {
-          "id"    : "datatablex",
-          "label" : "Horizontal Datatable",
-          "src"   : tab_datatablex
         }
     ]
 %}
