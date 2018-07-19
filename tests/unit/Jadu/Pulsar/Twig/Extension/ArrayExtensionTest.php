@@ -2,7 +2,7 @@
 
 namespace Jadu\Pulsar\Twig\Extension;
 
-class ArrayExtensionTest extends \PHPUnit_Framework_TestCase
+class ArrayExtensionTest extends \PHPUnit\Framework\TestCase
 {
 	public function setUp()
 	{

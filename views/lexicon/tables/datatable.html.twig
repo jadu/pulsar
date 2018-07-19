@@ -1,94 +1,234 @@
 {% extends '@pulsar/pulsar/components/tab.html.twig' %}
 
+{% 
+    set data = {
+        'columns': [
+            { 'title': 'Title' },
+            { 'title': 'Owner' },
+            { 'title': 'Modified'},
+            {
+                'title': 'Live',
+                'attrs': {
+                    'data-orderable': 'false',
+                    'class': 'u-text-align-center u-shrink-to-fit'
+                }
+            },
+            {
+                'title': 'Visible',
+                'attrs': {
+                    'data-orderable': 'false',
+                    'class': 'u-text-align-center u-shrink-to-fit'
+                }
+            }
+        ],
+        'data': [
+            {
+                'Title': 'The Terminator',
+                'Owner': 'James Cameron',
+                'Modified': '1991-07-01 12:34',
+                'Live': true,
+                'Visible': false 
+            },
+            {
+                'Title': 'Conan the Barbarian',
+                'Owner': 'John Millius',
+                'Modified': '1982-04-02 12:34',
+                'Live': false,
+                'Visible': true 
+            },
+            {
+                'Title': 'Predator',
+                'Owner': 'John McTiernan',
+                'Modified': '1988-01-01 12:34',
+                'Live': true,
+                'Visible': true
+            },
+            {
+                'Title': 'Commando',
+                'Owner': 'Mark L. Lester',
+                'Modified': '1986-02-21 12:34',
+                'Live': true,
+                'Visible': true
+            },
+            {
+                'Title': 'Terminator Genisys',
+                'Owner': 'Alan Taylor',
+                'Modified': '2015-06-25 12:34',
+                'Live': true,
+                'Visible': true
+            },
+            {
+                'Title': 'Conan the Destroyer',
+                'Owner': 'Richard Fleischer',
+                'Modified': '1984-06-29 12:34',
+                'Live': true,
+                'Visible': true
+            },
+            {
+                'Title': 'Terminator 2: Judgement Day',
+                'Owner': 'James Cameron',
+                'Modified': '1991-08-16 12:34:00',
+                'Live': true,
+                'Visible': true
+            },
+            {
+                'Title': 'Twins',
+                'Owner': 'Ivan Reitman',
+                'Modified': '1988-12-08 12:34',
+                'Live': true,
+                'Visible': true
+            },
+            {
+                'Title': 'Escape Plan',
+                'Owner': 'Mikael Håfström',
+                'Modified': '2013-10-18 12:00',
+                'Live': true,
+                'Visible': true
+            },
+            {
+                'Title': 'The Last Stand',
+                'Owner': 'Kim Je-woon',
+                'Modified': '2013-01-18 12:00',
+                'Live': true,
+                'Visible': true
+            },
+            {
+                'Title': 'True Lies',
+                'Owner': 'James Cameron',
+                'Modified': '1994-07-15 12:00',
+                'Live': true,
+                'Visible': true
+            },
+            {
+                'Title': 'Aftermath',
+                'Owner': 'Elliott Lester',
+                'Modified': '2017-04-07 12:34',
+                'Live': true,
+                'Visible': true
+            },
+            {
+                'Title': 'Sabotage',
+                'Owner': 'David Ayer',
+                'Modified': '2014-05-09',
+                'Live': true,
+                'Visible': true
+            },
+            {
+                'Title': 'Total Recall',
+                'Owner': 'Paul Verhoven',
+                'Modified': '2012-08-29 12:00',
+                'Live': true,
+                'Visible': true
+            },
+            {
+                'Title': 'Maggie',
+                'Owner': 'Henry Hobson',
+                'Modified': '2015-05-06 12:00',
+                'Live': true,
+                'Visible': true
+            },
+            {
+                'Title': 'Red Sonja',
+                'Owner': 'Richard Fleischer',
+                'Modified': '1985-07-03 12:00',
+                'Live': true,
+                'Visible': true
+            },
+            {
+                'Title': 'Kindergarten Cop',
+                'Owner': 'Ivan Reitman',
+                'Modified': '1991-02-01 12:00',
+                'Live': true,
+                'Visible': true
+            },
+            {
+                'Title': 'The Running Man',
+                'Owner': 'Paul Michael Glaser',
+                'Modified': '1987-11-13 12:00',
+                'Live': true,
+                'Visible': true
+            },
+            {
+                'Title': 'Junior',
+                'Owner': 'Ivan Reitman',
+                'Modified': '1994-11-23 12:00',
+                'Live': true,
+                'Visible': true
+            },
+            {
+                'Title': 'Last Action Hero',
+                'Owner': 'John McTiernan',
+                'Modified': '1993-07-30 12:00',
+                'Live': true,
+                'Visible': true
+            },
+            {
+                'Title': 'Red Heat',
+                'Owner': 'Walter Hill',
+                'Modified': '1998-06-17 12:00',
+                'Live': true,
+                'Visible': true
+            },
+            {
+                'Title': 'Raw Deal',
+                'Owner': 'John Irvin',
+                'Modified': '1986-06-06 12:00',
+                'Live': true,
+                'Visible': true
+            },
+            {
+                'Title': 'Eraser',
+                'Owner': 'Chuck Russell',
+                'Modified': '1996-06-21 12:00',
+                'Live': true,
+                'Visible': true
+            },
+            {
+                'Title': 'Jingle All the Way',
+                'Owner': 'Brian Levant',
+                'Modified': '1996-11-16 12:00',
+                'Live': true,
+                'Visible': true
+            },
+            {
+                'Title': 'The 6th Day',
+                'Owner': 'Roger Spottiswoode',
+                'Modified': '2000-11-13 12:00',
+                'Live': true,
+                'Visible': true
+            },
+            {
+                'Title': 'Collateral Damage',
+                'Owner': 'Andrew Davis',
+                'Modified': '2002-02-08 12:00',
+                'Live': true,
+                'Visible': true
+            }
+        ]
+    }
+%}
+
 {% block tab_content %}
-    <table class="table datatable table--full">
-        <thead>
-            <tr>
-                <td class="table-responsive"></td>
-                <td class="table-selection"></td>
-                <th><a href="#">Name</a></th>
-                <th><a href="#">IP</a></th>
-                <th><a href="#">Status</a></th>
-                <th><a href="#">Uptime</a></th>
-                <th><a href="#">Image</a></th>
-                <th><a href="#">RAM</a></th>
-                <th class="centered"><a href="#">CPUs</a></th>
-                <th><a href="#">Actions</a></th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for i in 0..5 %}
-            <tr>
-                <td class="table-responsive">
-                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
-                </td>
-                <td class="table-selection">
-                    {{ html.icon('unchecked', { 'class': 'table-row-select js-select' }) }}
-                </td>
-                <td><a href="#" class="table-link">Sysadmin - Ansible 1</a></td>
-                <td class="monospace"><a href="#" class="table-link">10.101.0.175</a></td>
-                <td>
-                    {{
-                        html.label({
-                            'label': 'running',
-                            'class': 'label--success'
-                        })
-                    }}
-                </td>
-                <td>3d 4h 35m</td>
-                <td>{{ html.icon('linux') }} Centos 6 v1.0.2</td>
-                <td>4 GB</td>
-                <td class="centered">2</td>
-                <td>
-                    {{ html.link({ 'label': 'Reboot', 'class': 'table-action' }) }}<!--
-                    -->{{ html.link({ 'label': 'Suspend', 'class': 'table-action' }) }}<!--
-                    -->{{ html.link({ 'label': 'Shutdown', 'class': 'table-action' }) }}<!--
-                    -->{{ html.link({ 'label': 'Console', 'class': 'table-action' }) }}
-                </td>
-
-            </tr>
-
-            <tr class="table__tr">
-                <td class="table__td table-responsive">
-                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
-                </td>
-                <td class="table__td table-selection">
-                    {{ html.icon('unchecked', { 'class': 'table-row-select js-select' }) }}
-                </td>
-                <td><a href="#" class="table-link">Sysasdmin - WISP 1</a></td>
-                <td class="monospace"><a href="#" class="table-link">10.101.0.138</a></td>
-                <td>
-                    {{
-                        html.label({
-                            'label': 'suspended'
-                        })
-                    }}
-                </td>
-                <td>17w 3d 4h 35m</td>
-                <td>{{ html.icon('windows') }} Windows Server 2012 R2 v1.0.0</td>
-                <td>2 GB</td>
-                <td class="centered">1</td>
-                <td>
-                    {{ html.link({ 'label': 'Reboot', 'class': 'table-action' }) }}<!--
-                    -->{{ html.link({ 'label': 'Suspend', 'class': 'table-action' }) }}<!--
-                    -->{{ html.link({ 'label': 'Shutdown', 'class': 'table-action' }) }}<!--
-                    -->{{ html.link({ 'label': 'Console', 'class': 'table-action' }) }}
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
+    {{ 
+        html.datatable({
+            'data-order': '[[ 3, "desc" ]]',
+            'data': data
+        }) 
+    }}
 {% endblock tab_content %}
+
 {% block tab_sidebar %}
     <h2>DataTable</h2>
     <ul>
         <li>Same structure as basic table</li>
-        <li>Addition of <code>datatable</code> class invokes DataTables plugin</li>
-        <li>Cells collapse when responsive</li>
+        <li>Table overflow scrolls horizontally</li>
         <li>Automatic pagination</li>
     </ul>
-    <code class="hljs">
-        &lt;table class="table datatable table--full"&gt; &hellip; &lt;/table&gt;
-    </code>
+    <pre><code class="hljs">&#123;&#123; 
+    html.datatable(&#123;
+        'class': 'table--full',
+        'data-order': '[[ 3, "desc" ]]',
+        'data': data
+    &#125;) 
+&#125;&#125;</code></pre>
 {% endblock tab_sidebar %}
