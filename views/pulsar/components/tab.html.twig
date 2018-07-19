@@ -33,12 +33,12 @@
     {% if _actions_left is not empty or _actions_right is not empty %}
     <div class="actionsbar">
         {% if _actions_left is not empty %}
-        <div class="actionsbar--left-side">
+        <div class="float--left">
             {{ _actions_left|raw }}
         </div>
         {% endif %}
         {% if _actions_right is not empty %}
-        <div class="actionsbar--right-side">
+        <div class="float--right">
             {{ _actions_right|raw }}
         </div>
         {% endif %}
