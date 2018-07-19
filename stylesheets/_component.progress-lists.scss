@@ -1,6 +1,5 @@
 .progress-list {
     margin-bottom: 1em;
-    margin-top: 1em;
     overflow: hidden;
     width: 100%;
 
@@ -9,330 +8,10 @@
         table-layout: fixed;
     }
 }
-// Extras
-
-.progress-list-minialt {
-    display: inline-block;
-    margin-bottom: 0;
-
-    .progress-list-wrapper {
-        float: right;
-    }
-
-    .progress-list__item {
-        cursor: default;
-        font-size: 14px;
-        padding: .25em 0 .25em 32px;
-
-        &:hover {
-            background-color: $progress-bg;
-            color: color(black);
-
-            &::after {
-                border-top-color: transparent;
-                border-left-color: $progress-bg;
-            }
-        }
-    }
-
-    .progress-list__item--current {
-        &:hover {
-            background-color: color(primary);
-            color: color(primary, alt);
-
-            &::after {
-                border-top-color: transparent;
-                border-left-color: color(primary);
-            }
-        }
-    }
-}
-
-.progress-list-mini {
-    display: inline-block;
-    margin-top: 10px;
-    margin-right: 12px;
-    width: inherit;
-
-    .progress-list__item {
-        background-color: white;
-        border-bottom: 3px solid color(white);
-        box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0);
-        cursor: default;
-        color: color(black) !important;
-        font-size: 14px;
-        display: block;
-        padding: .55em 0 .55em 40px;
-        text-decoration: none;
-        vertical-align: top;
-
-        @include respond-min($screen-tablet) {
-            border: 0;
-            box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0);
-            display: table-cell;
-            padding: .25em 0 .25em 32px;
-        }
-
-        // scss-lint:disable DeclarationOrder
-        &:not(:last-child) {
-            @include css-arrow(10px, bottom, white);
-
-            &::before {
-                border-top-color: color(white);
-                border-width: 15px;
-                margin-left: -15px;
-            }
-
-            @include respond-min($screen-tablet) {
-                @include css-arrow(23px, right, white);
-                border-right: 3px solid color(white);
-
-                &::before {
-                    border-left-color: color(white);
-                    border-width: 27px;
-                    margin-left: 0;
-                    margin-top: -27px;
-                }
-
-                &::after {
-                    border-top-color: transparent;
-                    margin-left: 0;
-                }
-            }
-        }
-        // scss-lint:enable DeclarationOrder
-
-        &:first-child {
-            border-top-left-radius: $border-radius;
-            border-top-right-radius: $border-radius;
-
-            @include respond-min($screen-tablet) {
-                border-bottom-left-radius: $border-radius;
-                border-top-left-radius: $border-radius;
-                border-top-right-radius: 0;
-                padding-left: 15px;
-            }
-        }
-
-        &:last-child {
-            border-bottom: 0;
-            border-bottom-left-radius: $border-radius;
-            border-bottom-right-radius: $border-radius;
-            padding-right: 15px;
-
-            @include respond-min($screen-tablet) {
-                border-bottom-left-radius: 0;
-                border-bottom-right-radius: $border-radius;
-                border-top-right-radius: $border-radius;
-                padding-right: 15px;
-            }
-        }
-
-        &::before,
-        &::after {
-            z-index: 1;
-        }
-
-        &:hover {
-            background-color: white;
-            color: color(black);
-
-            &::after {
-                border-top-color: white;
-
-                @include respond-min($screen-tablet) {
-                    border-top-color: transparent;
-                    border-left-color: white;
-                }
-            }
-        }
-    }
-
-    .progress-list__label {
-        @include word-break-all;
-
-        display: inline-block;
-        position: relative;
-        text-align: left;
-        width: 100%;
-        z-index: 2;
-
-        .badge {
-            display: none;
-            margin-right: 5px;
-
-            @include respond-min($screen-desktop) {
-                display: inline-block;
-            }
-        }
-    }
-
-    .progress-list__arrow {
-        @extend %hide;
-    }
-
-    .progress-list__item--complete {
-        background-color: color(success);
-        color: white !important;
-
-        @include respond-min($screen-tablet) {
-            box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
-        }
-
-        .badge {
-            color: color(white) !important;
-        }
-
-        &:not(:last-child)::after {
-            border-top-color: color(success);
-
-            @include respond-min($screen-tablet) {
-                border-top-color: transparent;
-                border-left-color: color(success);
-            }
-        }
-
-        &:hover {
-            background-color: color(success);
-            color: white;
-
-            &::after {
-                border-top-color: color(success);
-
-                @include respond-min($screen-tablet) {
-                    border-top-color: transparent;
-                    border-left-color: color(success);
-                }
-            }
-        }
-    }
-
-    .progress-list__item--current {
-        background-color: color(primary);
-        color: white !important;
-
-        @include respond-min($screen-tablet) {
-            box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
-        }
-
-        .badge {
-            color: color(white) !important;
-        }
-
-        &:not(:last-child)::after {
-            border-top-color: color(primary);
-
-            @include respond-min($screen-tablet) {
-                border-left-color: color(primary);
-                border-top-color: transparent;
-            }
-        }
-
-        &:hover {
-            background-color: color(primary);
-            color: color(primary, alt);
-
-            &::after {
-                border-top-color: transparent;
-                border-left-color: color(primary);
-
-                @include respond-min($screen-tablet) {
-                    border-left-color: color(primary);
-                    border-top-color: transparent;
-                }
-            }
-        }
-    }
-
-    .progress-list__item--intermediate {
-        background-color: color(warning);
-        color: black;
-
-        @include respond-min($screen-tablet) {
-            box-shadow: inset 0 0 0 rgba(0, 0, 0, 0);
-        }
-
-        .badge {
-            color: color(white) !important;
-        }
-
-        &:not(:last-child)::after {
-            border-top-color: color(warning);
-
-            @include respond-min($screen-tablet) {
-                border-left-color: color(warning);
-                border-top-color: transparent;
-            }
-        }
-
-        &:hover {
-            background-color: color(warning);
-
-            &::after {
-                border-top-color: color(warning);
-
-                @include respond-min($screen-tablet) {
-                    border-left-color: color(warning);
-                    border-top-color: transparent;
-                }
-            }
-        }
-    }
-
-    .progress-list__item--grey {
-        background-color: $progress-bg;
-        color: black;
-
-        @include respond-min($screen-tablet) {
-            box-shadow: inset 0 0 0 rgba(0, 0, 0, 0);
-        }
-
-        .badge {
-            color: color(white) !important;
-        }
-
-        &:not(:last-child)::after {
-            border-top-color: $progress-bg;
-
-            @include respond-min($screen-tablet) {
-                border-left-color: $progress-bg;
-                border-top-color: transparent;
-            }
-        }
-
-        &:hover {
-            background-color: $progress-bg;
-
-            &::after {
-                border-top-color: $progress-bg;
-
-                @include respond-min($screen-tablet) {
-                    border-left-color: $progress-bg;
-                    border-top-color: transparent;
-                }
-            }
-        }
-    }
-}
-
-.progress-list--centred {
-    text-align: center;
-}
-
-.progress-list-wrapper {
-    display: inline-block;
-}
-
-.main-title-progresslist {
-    margin-top: 12px;
-}
-
-// Extras Finish
 
 .progress-list__item {
     background-color: $progress-bg;
     border-bottom: 3px solid color(white);
-    box-shadow: inset 0 2px 2px 0 rgba(0, 0, 0, .1);
     color: color(black);
     display: block;
     padding: .7em 0 .5em .5em;
@@ -341,7 +20,6 @@
 
     @include respond-min($screen-tablet) {
         border: 0;
-        box-shadow: inset 2px 1px 2px rgba(0, 0, 0, .1);
         display: table-cell;
         padding: .75em 0 .75em 40px;
     }
@@ -445,23 +123,19 @@
 }
 
 .progress-list__item--complete {
-    background-color: color(success);
+    background-color: lighten(color(success), 25);
     color: color(success, alt);
-
-    @include respond-min($screen-tablet) {
-        box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
-    }
 
     .badge {
         color: color(white) !important;
     }
 
     &:not(:last-child)::after {
-        border-top-color: color(success);
+        border-top-color: lighten(color(success), 25);
 
         @include respond-min($screen-tablet) {
             border-top-color: transparent;
-            border-left-color: color(success);
+            border-left-color: lighten(color(success), 25);
         }
     }
 
@@ -481,22 +155,18 @@
 }
 
 .progress-list__item--current {
-    background-color: color(primary) !important;
+    background-color: lighten(color(primary), 25) !important;
     color: color(primary, alt);
-
-    @include respond-min($screen-tablet) {
-        box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
-    }
 
     .badge {
         color: color(white) !important;
     }
 
     &:not(:last-child)::after {
-        border-top-color: color(primary);
+        border-top-color: lighten(color(primary), 25);
 
         @include respond-min($screen-tablet) {
-            border-left-color: color(primary);
+            border-left-color: lighten(color(primary), 25);
             border-top-color: transparent;
         }
     }

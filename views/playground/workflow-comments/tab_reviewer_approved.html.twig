@@ -1,0 +1,174 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
+{% set i = 200 %}
+
+{%- block actions_left -%}
+    {{
+        html.actions_menu({
+            'items': [
+                [
+                    {
+                        'label': 'Create New Page',
+                        'href': '#create',
+                        'icon': 'file-text-o'
+                    }
+                ],
+                [
+                    {
+                        'label': 'Save',
+                        'href': '#save',
+                        'icon': 'save'
+                    }
+                ],
+                [
+                    {
+                        'label': 'Lock',
+                        'href': '#lock',
+                        'icon': 'lock'
+                    },
+                    {
+                        'label': 'Collaborate',
+                        'href': '#collaborate',
+                        'icon': 'user-plus'
+                    }
+                ],
+                [
+                    {
+                        'label': 'Preview',
+                        'href': '#preview',
+                        'icon': 'eye-open'
+                    },
+                    {
+                        'label': 'View history',
+                        'href': '#history',
+                        'icon': 'history'
+                    }
+                ],
+                [
+                    {
+                        'class': 'link--danger',
+                        'label': 'Delete',
+                        'href': '#delete',
+                        'icon': 'remove'
+                    }
+                ],
+            ]
+        })
+    }}
+{%- endblock -%}
+
+{%- block actions_right -%}
+    {{
+        html.button({
+            'label': 'Save',
+            'class': ''
+        })
+    }}
+    {{
+        html.button({
+            'label': 'Send for Approval',
+            'class': 'btn--primary',
+            'data-toggle': 'modal',
+            'type': 'link',
+            'href': '#workflow-submit'
+        })
+    }}
+{%- endblock -%}
+
+{% block tab_content %}
+    <div class="panel with-timeline u-margin-top-none">
+        <i aria-hidden="true" class="icon-check panel__icon"></i>
+        <div class="panel__title u-display-inline-block">Content Approved &amp; Published</div>
+        <div class="panel__body">
+            <div class="timeline__item" data-timestamp="2018-03-29T10:59:04+00:00" data-id="2650349">
+                <div class="timeline-avatar timeline-avatar--user"><span>LS</span></div>
+                <div class="timeline-content">
+                    <div class="timeline-content__inner"><h4 class="timeline-content__title">Lord Sugar [Admin]:</h4>
+                        <div class="timeline-content__date"><i aria-hidden="true" class="icon-clock-o icon--info u-hidden-print cursor-help"></i><time class="u-visible-print-inline">29 Mar 2018, 11:59 AM</time><time class="timeago u-hidden-print" datetime="Thu, 29 Mar 2018 11:59:04 +0100" data-timezone="Europe/London"> Thursday 29th March 2018 (11:59)</time></div>
+                        <div class="timeline-content__body" data-id="2650349">
+                            <p id="message-120530" class="timeline-content__text">"Test"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel__actions panel__actions--right">
+                {{
+                    html.button({
+                        'label': 'View detailed history of comments',
+                        'class': 'btn--naked',
+                        'type': 'link',
+                        'href': '#document-history'
+                    })
+                }}
+            </div>
+        </div>
+    </div>
+
+    <div class="u-text-align-center">PANEL VARIATION WITH NO MESSAGE</div>
+
+    <div class="panel with-timeline u-margin-top-none">
+        <i aria-hidden="true" class="icon-check panel__icon"></i>
+        <div class="panel__title u-display-inline-block">Content Approved &amp; Published</div>
+        <div class="panel__body">
+            <div class="panel__actions panel__actions--right">
+                {{
+                    html.button({
+                        'label': 'View detailed history of comments',
+                        'class': 'btn--naked',
+                        'type': 'link',
+                        'href': '#document-history'
+                    })
+                }}
+            </div>
+        </div>
+    </div>
+
+    <div class="u-text-align-center">UI CONTENT GOES HERE</div>
+
+    <div id="workflow-submit" class="modal modal__large">
+        <div class="modal__dialog">
+            {{
+                form.create({
+                    'method': 'GET',
+                    'id': 'submit-approve',
+                    'name': 'submit-approve',
+                    'action': 'index.html.twig'
+                })
+            }}
+            <div class="modal__content">
+                <div class="modal__header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h1 class="modal__title">Send for Approval</h1>
+                </div>
+                <div class="modal__body">
+                    {{
+                        form.textarea({
+                            'label': 'Note to reviewer (optional)',
+                            'id': 'note',
+                            'name': 'note',
+                            'class': 'form__group--full form__group--top form__group--flush u-margin-bottom-none',
+                            'rows': 5
+                        })
+                    }}
+                </div>
+                <div class="modal__footer">
+                        {{
+                            html.button({
+                                'class': 'btn--primary',
+                                'label': 'Send for Approval',
+                                'type': 'submit',
+                            })
+                        }}
+                        {{
+                            html.button({
+                                'class': 'btn--naked',
+                                'data-dismiss': 'modal',
+                                'label': 'Cancel'
+                            })
+                        }}
+                </div>
+            </div><!-- /.modal__content -->
+        </div><!-- /.modal__dialog -->
+    </div><!-- /.modal -->
+
+{% endblock %}
