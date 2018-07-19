@@ -1,0 +1,264 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
+{% set i = 100 %}
+
+{%- block actions_left -%}
+    {{
+        html.actions_menu({
+            'items': [
+                [
+                    {
+                        'label': 'Create New Page',
+                        'href': '#create',
+                        'icon': 'file-text-o'
+                    }
+                ],
+                [
+                    {
+                        'label': 'Save',
+                        'href': '#save',
+                        'icon': 'save'
+                    },
+                    
+                ],
+                [
+                    {
+                        'label': 'Cancel approval',
+                        'href': 'index.html.twig',
+                        'icon': 'hand-stop-o'
+                    },
+                    {
+                        'label': 'Resend for approval',
+                        'href': 'index.html.twig',
+                        'icon': 'hand-o-right'
+                    }
+                ],
+                [
+                    {
+                        'label': 'Lock',
+                        'href': '#lock',
+                        'icon': 'lock'
+                    },
+                    {
+                        'label': 'Collaborate',
+                        'href': '#collaborate',
+                        'icon': 'user-plus'
+                    }
+                ],
+                [
+                    {
+                        'label': 'Preview',
+                        'href': '#preview',
+                        'icon': 'eye-open'
+                    },
+                    {
+                        'label': 'View history',
+                        'href': '#history',
+                        'icon': 'history'
+                    }
+                ],
+                [
+                    {
+                        'class': 'link--danger',
+                        'label': 'Delete',
+                        'href': '#delete',
+                        'icon': 'remove'
+                    }
+                ],
+            ]
+        })
+    }}
+{%- endblock -%}
+
+{%- block actions_right -%}
+    {{
+        html.button({
+            'label': 'Resend for Approval',
+            'class': '',
+            'data-toggle': 'modal',
+            'type': 'link',
+            'href': '#resend-for-approval',
+        })
+    }}
+    {{
+        html.button({
+            'label': 'Save',
+            'class': 'btn--primary',
+            'data-toggle': 'modal',
+            'type': 'link',
+            'href': '#second-save'
+        })
+    }}
+{%- endblock -%}
+
+{% block tab_content %}
+
+    {# FOLLOWING IF RULE ONLY REQUIRED FOR PULSAR DEMO #}
+    {% if _get.note is defined %}
+        {% set note = '"' ~ _get.note ~ '"' %}
+    {% endif %}
+
+    <div class="panel with-timeline u-margin-top-none">
+        <div class="panel__title u-display-inline-block">Content Pending Approval</div>
+
+        <div class="panel__body">
+            <div class="timeline__item" data-timestamp="2018-03-29T10:59:04+00:00" data-id="2650349">
+                <div class="timeline-avatar timeline-avatar--user"><span>AB</span></div>
+                    <div class="timeline-content">
+                        <div class="timeline-content__inner"><span class="timeline-content__title">Alex Bearing (Editor):</span>
+                        <div class="timeline-content__date">
+                            {{ html.icon('clock-o', {'class': 'icon--info u-hidden-print', 'label': 'Time of message'}) }} 
+                            <time class="u-visible-print-inline">10 Mar 2018, 10:01 AM</time>
+                            <time class="timeago u-hidden-print" datetime="Thu, 10 Mar 2018 10:01:04 +0100" data-timezone="Europe/London"> Thursday 29th March 2018 (11:59)</time>
+                        </div>
+                        <div class="timeline-content__body" data-id="2650349">
+                            <p id="message-120530" class="timeline-content__text">Message from author explaining anything the reviewer needs to know.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel__actions">
+                {{
+                    html.button({
+                        'label': 'Cancel Approval Request',
+                        'class': 'btn--danger',
+                        'type': 'link',
+                        'href': '#cancel-approval',
+                        'data-toggle': 'modal'
+                    })
+                }}
+                {{
+                    html.button({
+                        'label': 'View detailed history of comments',
+                        'class': 'btn--naked u-float-right',
+                        'type': 'link',
+                        'href': '#document-history'
+                    })
+                }}
+            </div>
+        </div>
+    </div>
+
+    <div class="u-text-align-center">PANEL VARIATION WITH NO MESSAGE</div>
+
+    <div class="panel u-margin-top-none">
+        <div class="panel__title u-display-inline-block">Content Pending Approval</div>
+
+        <div class="panel__body">
+            
+            <small class="u-float-right"><a href="#document-history">View detailed history of comments</a></small>
+
+            <div class="panel__actions">
+                {{
+                    html.button({
+                        'label': 'Cancel Approval Request',
+                        'class': 'btn--danger',
+                        'type': 'link',
+                        'href': '#cancel-approval',
+                        'data-toggle': 'modal'
+                    })
+                }}
+            </div>
+        </div>
+    </div>
+
+    <div class="u-text-align-center">UI CONTENT GOES HERE</div>
+
+    <div id="resend-for-approval" class="modal modal__large">
+        <div class="modal__dialog">
+            <div class="modal__content">
+                <div class="modal__header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h1 class="modal__title">Resend for Approval</h1>
+                </div>
+                <div class="modal__body">
+                    <p>By resending your content for approval it will cancel the original request. The reviewer will be notified.</p>
+                    {{
+                        form.textarea({
+                            'label': 'Note to reviewer (optional)',
+                            'id': 'review-note',
+                            'class': 'form__group--full form__group--top form__group--flush u-margin-bottom-none',
+                            'help': 'Maximum 255 characters',
+                            'rows': 5,
+                            'maxlength': 255
+                        })
+                    }}
+                </div>
+                <div class="modal__footer">
+                    {{
+                        html.button({
+                            'label': 'Resend for Approval',
+                            'class': 'btn--primary'
+                        })
+                    }}
+                    {{
+                        html.button({
+                            'label': 'Cancel',
+                            'class': 'btn--naked',
+                            'data-dismiss': 'modal'
+                        })
+                    }}
+                </div>
+            </div><!-- /.modal__content -->
+        </div><!-- /.modal__dialog -->
+    </div><!-- /.modal -->
+
+    <div id="second-save" class="modal modal__large">
+        <div class="modal__dialog">
+            <div class="modal__content">
+                <div class="modal__header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h1 class="modal__title">Cancel Pending Approval?</h1>
+                </div>
+                <div class="modal__body">
+                    <p class="u-margin-bottom-none">This content is currently {{ html.label({ 'label': 'Pending Approval', 'class': 'label--warning' }) }}. If you save changes now it will <strong>cancel your approval request</strong> and the reviewer will be notified You will then need to resend for approval when you’re ready.</p>
+                </div>
+                <div class="modal__footer">
+                    {{
+                        html.button({
+                            'label': 'Cancel Approval &amp; Save Changes',
+                            'class': 'btn--primary'
+                        })
+                    }}
+                    {{
+                        html.button({
+                            'label': 'Cancel',
+                            'class': 'btn--naked',
+                            'data-dismiss': 'modal'
+                        })
+                    }}
+                </div>
+            </div><!-- /.modal__content -->
+        </div><!-- /.modal__dialog -->
+    </div><!-- /.modal -->
+
+    <div id="cancel-approval" class="modal modal__large modal--danger">
+        <div class="modal__dialog">
+            <div class="modal__content">
+                <div class="modal__header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h1 class="modal__title">Cancel Approval?</h1>
+                </div>
+                <div class="modal__body">
+                    <p class="u-margin-bottom-none">Are you sure you want to cancel the pending approval request?</p>
+                </div>
+                <div class="modal__footer">
+                    {{
+                        html.button({
+                            'label': 'Cancel Approval',
+                            'class': 'btn--danger'
+                        })
+                    }}
+                    {{
+                        html.button({
+                            'label': 'Do Not Cancel',
+                            'class': 'btn--naked',
+                            'data-dismiss': 'modal'
+                        })
+                    }}
+                </div>
+            </div><!-- /.modal__content -->
+        </div><!-- /.modal__dialog -->
+    </div><!-- /.modal -->
+
+{% endblock %}

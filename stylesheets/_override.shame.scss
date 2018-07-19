@@ -116,3 +116,10 @@
     text-align: center;
     width: 100%;
 }
+
+.panel--callout {
+    background-color: color(background, light);
+    border-radius: 4px;
+    color: color(text);
+    padding: .75em $gutter-width;
+}
