@@ -59,17 +59,17 @@
 {%- block actions_right -%}
     {{
         html.button({
-            'label': 'Save',
-            'class': ''
+            'label': 'Send for Approval',
+            'class': '',
+            'data-toggle': 'modal',
+            'type': 'link',
+            'href': '#workflow-submit-2'
         })
     }}
     {{
         html.button({
-            'label': 'Send for Approval',
-            'class': 'btn--primary',
-            'data-toggle': 'modal',
-            'type': 'link',
-            'href': '#workflow-submit'
+            'label': 'Save',
+            'class': 'btn--primary'
         })
     }}
 {%- endblock -%}
@@ -125,7 +125,7 @@
 
     <div class="u-text-align-center">UI CONTENT GOES HERE</div>
 
-    <div id="workflow-submit" class="modal modal__large">
+    <div id="workflow-submit-2" class="modal modal__large">
         <div class="modal__dialog">
             {{
                 form.create({
