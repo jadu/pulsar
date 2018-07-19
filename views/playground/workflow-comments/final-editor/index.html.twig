@@ -75,31 +75,31 @@
     {{ tabs.list(tabs_content) }}
 {% endblock %}
 
-{% block progresslistmini %}
-<div style="overflow: auto;">
-    <div class="progress-list progress-list-mini progress-list--standalone">
-        <a href="#" class="progress-list__item progress-list__item--blue">
+{% block progresslist %}
+    <div class="progress-list progress-list-minialt">
+        <div class="progress-list-wrapper">
+        <a href="#" class="progress-list__item progress-list__item--current">
             <span class="progress-list__label">
                 Draft
             </span>
             <span class="progress-list__arrow">&gt;</span>
         </a>
 
-        <a href="#" class="progress-list__item progress-list__item--grey">
+        <a href="#" class="progress-list__item">
             <span class="progress-list__label">
                 Pending Approval
             </span>
             <span class="progress-list__arrow">&gt;</span>
         </a>
 
-        <a href="#" class="progress-list__item progress-list__item--grey">
+        <a href="#" class="progress-list__item">
             <span class="progress-list__label">
                 Published
             </span>
             <span class="progress-list__arrow">&gt;</span>
         </a>
+        </div>
     </div>
-</div>
 {% endblock %}
 
 {% block tabs_content %}
