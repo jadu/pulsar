@@ -316,3 +316,16 @@ $btn-white:                 'white';
         }
     }
 }
+
+.view-history-link {
+    float: right;
+
+    @include respond-max($screen-phablet) {
+        float: none;
+    }
+
+    @include respond-max($screen-phone) {
+        float: none;
+        margin-top: 10px;
+    }
+}
