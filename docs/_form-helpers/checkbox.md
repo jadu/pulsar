@@ -36,6 +36,7 @@ show-label | bool | Control visibility of the `<label>` element without affectin
 Option          | Type   | Description
 --------------- | ------ | -------------------------------------------------------
 checked         | bool | Whether the input is checked
+disabled        | bool | If true, prevents the input from being interacted with
 form            | string | Specify one or more forms this label belongs to
 id              | string | A unique identifier, will also be used as the label's `for` attribute
 indeterminate   | bool | Shows the checkbox as [-], overrides the value of `checked`
@@ -47,6 +48,21 @@ value           | string | Specifies the value of the input
 data-*          | string | Data attributes, eg: `'data-foo': 'bar'`
 
 Any other options not listed here will be applied to the input.
+
+## Disabled state
+
+Add the `'disabled': true` option to disable the field on load. See the [disabling elements styleguide](styleguides/disabling_elements/) for more information about how to disable elements via javascript. Provide help text or information within the UI where possible to explain why elements are disabled.
+
+{% code_example form_helpers/checkbox-disabled %}
+
+<div class="pulsar-example form">
+    <div class="form__group form-checkbox">
+        <label for="checkbox-disabled" class="control__label">My label</label>
+        <div class="controls">
+            <input id="checkbox-disabled" disabled type="checkbox" name="checkbox-disabled" class="form__control checkbox is-disabled">
+        </div>
+    </div>
+</div>
 
 ## Error state
 
@@ -64,8 +80,8 @@ Any other options not listed here will be applied to the input.
     <div class="form__group form-checkbox has-error">
         <label for="inputCheckboxLeft" class="control__label">Default checkbox</label>
         <div class="controls">
-            <input id="inputCheckboxLeft" name="inputCheckboxLeft" checked="" type="checkbox" class="form__control checkbox">
-            <span class="help-block is-error"><i class="icon-warning-sign"></i> Something went wrong</span>
+            <input id="inputCheckboxLeft" name="inputCheckboxLeft" checked="" type="checkbox" class="form__control checkbox" aria-invalid="true" aria-describedby="guid-12345678">
+            <span class="help-block is-error" id="guid-12345678"><i class="icon-warning-sign"></i> Something went wrong</span>
         </div>
     </div>
 </div>
@@ -212,3 +228,7 @@ Depending on your UI needs, you can display checkboxes as [choice blocks](/choic
         </div>
     </div>
 </div>
+
+## Accessibility
+
+To maintain compliance with WCAG 2.0 AA, a form element must have a related label element, the easiest way to achieve this is to always pass an `id` attribute to form helpers. Form helpers will automatically add `aria-describedby="guid-<random-number>"` to inputs and an `id` to help blocks and errors. Additionally, `aria-invalid="true"` will be added to inputs when an error is passed.

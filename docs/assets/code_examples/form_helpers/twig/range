@@ -1,6 +1,7 @@
 {{
     form.range({
         'label': 'Size',
-        'id': 'foo'
+        'id': 'foo',
+        'name': 'bar'
     })
 }}

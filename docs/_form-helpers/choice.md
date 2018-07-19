@@ -6,19 +6,28 @@ category: Form helpers
 
 Displayed as a question with multiple answers, each of which has its own label and can allow either singular (checkboxes) or multiple (radios) choice.
 
+If using radios you should always set a default `checked` option.
+
 <div class="pulsar-example form">
     <div class="form__group form-choice form__group--medium">
         <label class="control__label">Assign blame to</label>
         <div class="controls">
-
-          <label class="control__label"><input value="sunshine" name="foo" type="radio" class="form__control radio">Sunshine</label>
-
-          <label class="control__label"><input value="italic" name="foo" type="radio" class="form__control radio">Moonlight</label>
-
-          <label class="control__label"><input value="italic" name="foo" type="radio" class="form__control radio">Good times</label>
-
-          <label class="control__label is-selected"><input value="underline" name="foo" type="radio" checked="" class="form__control radio">Boogie</label>
-
+            <label class="control__label">
+                <input value="sun" name="foo" checked type="radio" class="form__control radio">
+                <span class="form-choice__label">Sunshine</span>
+            </label>
+            <label class="control__label">
+                <input value="moon" namse="foo" type="radio" class="form__control radio">
+                <span class="form-choice__label">Moonlight</span>
+            </label>
+            <label class="control__label">
+                <input value="good" name="foo" type="radio" class="form__control radio">
+                <span class="form-choice__label">Good times</span>
+            </label>
+            <label class="control__label">
+                <input value="boogie" name="foo" type="radio" class="form__control radio">
+                <span class="form-choice__label">Boogie</span>
+            </label>
         </div>
     </div>
 </div>
@@ -44,53 +53,34 @@ required.  | bool   | Visually indicates that the field must be completed, will 
 multiple   | bool   | If `true`, uses checkboxes instead of radios, or passes the `multiple` attribute to the select2 element
 show-label | bool   | Control visibility of the `<label>` element without affecting layout (default: true)
 
-## Disabled options
+## Disabled Options
 
 You can disable individual choices by adding the `disabled` attribute to the option, or options, you need.
 
-{% raw %}
-```twig
-{{
-    form.choice({
-        'label': 'Do you like me?',
-        'id': 'foo',
-        'options': [
-            {
-                'label': 'Sunshine',
-                'value': 'sun'
-            },
-            {
-                'label': 'Moonlight',
-                'value': 'moon',
-                'disabled': true
-            },
-            {
-                'label': 'Good times',
-                'value': 'good'
-            },
-            {
-                'label': 'Boogie',
-                'value': 'boogie'
-            }
-        ]
-    })
-}}
-```
-{% endraw %}
+Add the `'disabled': true` option to disable the field on load. See the [disabling elements styleguide](styleguides/disabling_elements/) for more information about how to disable elements via javascript. Provide help text or information within the UI where possible to explain why elements are disabled.
+
+{% code_example form_helpers/choice-disabled %}
 
 <div class="pulsar-example form">
     <div class="form__group form-choice form__group--medium">
         <label class="control__label">Assign blame to</label>
         <div class="controls">
-
-          <label class="control__label"><input value="sunshine" name="foo" type="radio" class="form__control radio"><span class="form-choice__label">Sunshine</span></label>
-
-          <label class="control__label"><input value="italic" name="foo" type="radio" class="form__control radio" disabled="disabled"><span class="form-choice__label">Moonlight</span></label>
-
-          <label class="control__label"><input value="italic" name="foo" type="radio" class="form__control radio"><span class="form-choice__label">Good times</span></label>
-
-          <label class="control__label is-selected"><input value="underline" name="foo" type="radio" checked="" class="form__control radio"><span class="form-choice__label">Boogie</span></label>
-
+        <label class="control__label">
+            <input value="sun" checked type="radio" class="form__control radio">
+            <span class="form-choice__label">Sunshine</span>
+        </label>
+        <label class="control__label">
+            <input value="moon" disabled type="radio" class="form__control radio">
+            <span class="form-choice__label">Moonlight</span>
+        </label>
+        <label class="control__label">
+            <input value="good" type="radio" class="form__control radio">
+            <span class="form-choice__label">Good times</span>
+        </label>
+        <label class="control__label">
+            <input value="boogie" type="radio" class="form__control radio">
+            <span class="form-choice__label">Boogie</span>
+        </label>
         </div>
     </div>
 </div>
@@ -129,3 +119,7 @@ Add `choice--block choice--block-inline` to lay the options out horizontally.
         </label><label class="control__label"><input value="underline" name="foo" type="radio" class="form__control radio">No
         </label></div></div>
 </div>
+
+## Accessibility
+
+To maintain compliance with WCAG 2.0 AA, a form element must have a related label element, the easiest way to achieve this is to always pass an `id` attribute to form helpers. Form helpers will automatically add `aria-describedby="guid-<random-number>"` to inputs and an `id` to help blocks and errors. Additionally, `aria-invalid="true"` will be added to inputs when an error is passed.
