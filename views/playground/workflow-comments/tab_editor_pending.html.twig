@@ -106,7 +106,7 @@
                     <div class="timeline-content">
                         <div class="timeline-content__inner"><span class="timeline-content__title">Alex Bearing (Editor):</span>
                         <div class="timeline-content__date">
-                            {{ html.icon('clock-o', {'class': 'icon--info u-hidden-print', 'label': 'Time of message'}) }} 
+                            {{ html.icon('clock-o', {'class': 'icon--info u-hidden-print', 'label': 'Time of message'}) }}
                             <time class="u-visible-print-inline">10 Mar 2018, 10:01 AM</time>
                             <time class="timeago u-hidden-print" datetime="Thu, 10 Mar 2018 10:01:04 +0100" data-timezone="Europe/London"> Thursday 29th March 2018 (11:59)</time>
                         </div>
@@ -130,7 +130,7 @@
                 {{
                     html.button({
                         'label': 'View detailed history of comments',
-                        'class': 'btn--naked u-float-right',
+                        'class': 'btn--naked view-history-link',
                         'type': 'link',
                         'href': '#document-history'
                     })
@@ -145,8 +145,6 @@
         <div class="panel__title u-display-inline-block">Content Pending Approval</div>
 
         <div class="panel__body">
-            
-            <small class="u-float-right"><a href="#document-history">View detailed history of comments</a></small>
 
             <div class="panel__actions">
                 {{
@@ -156,6 +154,14 @@
                         'type': 'link',
                         'href': '#cancel-approval',
                         'data-toggle': 'modal'
+                    })
+                }}
+                {{
+                    html.button({
+                        'label': 'View detailed history of comments',
+                        'class': 'btn--naked view-history-link',
+                        'type': 'link',
+                        'href': '#document-history'
                     })
                 }}
             </div>

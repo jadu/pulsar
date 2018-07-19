@@ -91,11 +91,11 @@
                 </div>
             </div>
 
-            <div class="panel__actions panel__actions--right">
+            <div class="panel__actions">
                 {{
                     html.button({
                         'label': 'View detailed history of comments',
-                        'class': 'btn--naked',
+                        'class': 'btn--naked view-history-link',
                         'type': 'link',
                         'href': '#document-history'
                     })
@@ -106,15 +106,15 @@
 
     <div class="u-text-align-center">PANEL VARIATION WITH NO MESSAGE</div>
 
-    <div class="panel with-timeline u-margin-top-none">
+    <div class="panel u-margin-top-none">
         <i aria-hidden="true" class="icon-check panel__icon"></i>
         <div class="panel__title u-display-inline-block">Content Approved &amp; Published</div>
         <div class="panel__body">
-            <div class="panel__actions panel__actions--right">
+            <div class="panel__actions">
                 {{
                     html.button({
                         'label': 'View detailed history of comments',
-                        'class': 'btn--naked',
+                        'class': 'btn--naked view-history-link',
                         'type': 'link',
                         'href': '#document-history'
                     })
