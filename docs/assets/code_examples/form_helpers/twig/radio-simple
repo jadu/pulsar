@@ -1,7 +1,7 @@
 {{
     form.radio_simple({
         'label': 'Radio simple',
-        'id' 'foo',
+        'id': 'foo',
         'name': 'bar'
     })
 }}
