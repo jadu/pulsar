@@ -25,7 +25,7 @@ describe('TableDetailComponent', () => {
 			'	</tbody>' +
 			'</table>'
 		).appendTo($body);
-	
+
 		tableDetailComponent = new TableDetailComponent($html);
 	});
 
@@ -103,6 +103,24 @@ describe('TableDetailComponent', () => {
 			tableDetailComponent.init($body);
 
 			$body.find('[data-table-detail-close-panel]').trigger(clickEvent);
+
+			expect($body.find('.table-detail-backdrop').hasClass('in')).to.be.false;
+		});
+
+		it('remove the "table-detail--open" class to the panel to open it', () => {
+			tableDetailComponent.init($body);
+
+			$body.find('[data-table-detail-close-panel]').trigger(clickEvent);
+
+			expect($body.find('[data-table-detail-panel]').hasClass('table-detail--open')).to.be.false;
+		});
+	})
+
+	describe('When the backdrop overlay is clicked', () => {
+		it('should remove the "in" class from the backdrop to hide it', () => {
+			tableDetailComponent.init($body);
+
+			$body.find('.table-detail-backdrop').trigger(clickEvent);
 
 			expect($body.find('.table-detail-backdrop').hasClass('in')).to.be.false;
 		});
