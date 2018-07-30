@@ -1,7 +1,7 @@
 {{
     form.radio_simple({
         'label': 'Radio simple disabled',
-        'id' 'foo',
+        'id': 'foo',
         'name': 'bar',
         'disabled': true
     })

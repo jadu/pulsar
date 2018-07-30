@@ -3,8 +3,8 @@
 
     [href],
     .continuum-cms & [href]:link {
-        border-bottom-color: color(link, dark);
-        color: color(link, dark);
+        border-bottom: 1px dotted color(grey, light);
+        color: color(link);
         text-decoration: none;
     }
 
@@ -22,7 +22,7 @@
 
         [href],
         .continuum-cms & [href]:link {
-            border-bottom-color: color(link, dark);
+            border-bottom: 1px dotted color(link, dark);
             color: color(link, dark);
         }
     }
@@ -80,7 +80,8 @@
             }
         }
 
-        &.shrink-to-fit {
+        &.shrink-to-fit,
+        &.u-shrink-to-fit {
             @include respond-min($screen-tablet) {
                 width: 1px;
             }
@@ -96,15 +97,11 @@
 
     th,
     thead td {
+        background-color: color(background, light);
         border-top: 1px solid color(border);
-        border-bottom: 2px solid color(border);
         font-family: $font-family-regular;
         font-weight: normal;
         vertical-align: bottom;
-
-        @include respond-min($screen-desktop) {
-            border-top: 0;
-        }
     }
 
     td.table__actions {
@@ -161,12 +158,12 @@
 }
 
 .table-action {
-    border-right: 1px solid color(border);
+    border-right: 1px dotted color(border);
     display: inline-block;
     margin-right: 5px;
-    padding-right: 8px;
+    padding-right: 10px;
 
-    &:last-of-type {
+    &:last-child {
         border-right: 0;
         margin-right: 0;
         padding-right: 0;

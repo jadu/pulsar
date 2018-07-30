@@ -302,6 +302,12 @@ td.no-results {
     text-align: justify !important;
 }
 
+%u-font-size-small,
+.u-font-size-small {
+    font-size: $font-size-small !important;
+}
+
+
 %u-ui-disabled,
 .u-ui-disabled.u-ui-disabled {
     @extend %u-cursor-not-allowed;
