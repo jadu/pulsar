@@ -60,8 +60,9 @@ class TableDetailComponent {
         //Close with backdrop click
         this.$html.find('.table-detail-backdrop').on('click', (event) => {
             if (this.$html.find('.table-detail-backdrop').hasClass('in')) {
+                event.preventDefault();
                 this.closeDetail();
-            };
+            }
         });
     }
     /**
