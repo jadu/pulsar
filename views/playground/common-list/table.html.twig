@@ -1,0 +1,96 @@
+{% extends '@pulsar/pulsar/components/tab.html.twig' %}
+{% extends '@pulsar/lexicon/tables/data.html.twig' %}
+{% import "@pulsar/pulsar/v2/helpers/html.html.twig" as html %}
+
+{%- block actions_left -%}
+    {{
+        html.actions_menu({
+            'class': 'bulk-actions',
+            'items': [
+                [
+                    {
+                        'label': 'Create thing',
+                        'href': '#creatething',
+                        'icon': 'plus'
+                    },
+                    {
+                        'label': 'New filter',
+                        'href': '#newfilter',
+                        'icon': 'filter',
+                        'data-ui': 'show-filter-bar'
+                    }
+                ],
+                [
+                    {
+                        'label': 'Make a copy',
+                        'href': '#makecopy',
+                        'icon': 'copy',
+                        'data-bulk-action': true
+                    },
+                    {
+                        'label': 'Change owner',
+                        'href': '#Changeowner',
+                        'icon': 'user',
+                        'data-bulk-action': true
+                    }
+                ],
+                [
+                    {
+                        'label': 'Make live',
+                        'href': '#makelive',
+                        'icon': 'check-circle',
+                        'data-bulk-action': true
+                    },
+                    {
+                        'label': 'Take offline',
+                        'href': '#takeoffline',
+                        'icon': 'times-rectangle',
+                        'data-bulk-action': true
+                    },
+                    {
+                        'label': 'Make visible',
+                        'href': '#makevisible',
+                        'icon': 'eye-open',
+                        'data-bulk-action': true
+                    },
+                    {
+                        'label': 'Make invisible',
+                        'href': '#makeinvisible',
+                        'icon': 'eye-slash',
+                        'data-bulk-action': true
+                    }
+                ],
+                [
+                    {
+                        'label': 'Delete',
+                        'href': '#delete',
+                        'icon': 'times',
+                        'class': 'link--danger',
+                        'data-bulk-action': true
+                    }
+                ]
+            ]
+        })
+    }}
+{%- endblock -%}
+
+{%- block actions_right -%}
+    {{
+        html.button({
+            'label': 'Create Thing',
+            'class': 'btn--primary'
+        })
+    }}
+{%- endblock -%}
+
+
+
+{% block tab_content %}
+    {{ 
+        html.datatable({
+            'class': 'table--full table--horizontal',
+            'data-order': '[[ 3, "desc" ]]',
+            'data': datatableData
+        }) 
+    }}
+{% endblock tab_content %}

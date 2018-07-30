@@ -232,7 +232,7 @@
                     {% for i in 0..9 %}
                     <tr>
                         <td class="table-responsive">
-                            {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                            {{ html.button({ 'label': html.icon('plus-sign', { 'label': 'Expand', 'class': 'table-child-toggle' }), 'class': 'btn--naked'}) }}
                         </td>
                         <td class="table-selection">
                             {{ html.icon('unchecked', { 'class': 'table-row-select js-select' }) }}

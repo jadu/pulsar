@@ -68,7 +68,7 @@
         <tbody>
             <tr class="u-no-border">
                 <td class="table-responsive">
-                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                    {{ html.button({ 'label': html.icon('plus-sign', { 'label': 'Expand', 'class': 'table-child-toggle' }), 'class': 'btn--naked'}) }}
                 </td>
                 <td class="centered">{{ html.status('active') }}</td>
                 <td><a href="#">Create green waste case</a></td>
@@ -241,7 +241,7 @@
             {% for i in 0..5 %}
             <tr>
                 <td class="table-responsive">
-                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                    {{ html.button({ 'label': html.icon('plus-sign', { 'label': 'Expand', 'class': 'table-child-toggle' }), 'class': 'btn--naked'}) }}
                 </td>
                 <td class="centered">{{ html.status('active') }}</td>
                 <td><a href="#">Create green waste case</a></td>
@@ -250,7 +250,7 @@
 
             <tr>
                 <td class="table-responsive">
-                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                    {{ html.button({ 'label': html.icon('plus-sign', { 'label': 'Expand', 'class': 'table-child-toggle' }), 'class': 'btn--naked'}) }}
                 </td>
                 <td class="centered">{{ html.status('inactive') }}</td>
                 <td><a href="#">Create brown waste case</a></td>
