@@ -1,5 +1,5 @@
 class TableDetailComponent {
-    
+
     /**
      * TableDetailComponent
      * @constructor
@@ -47,7 +47,7 @@ class TableDetailComponent {
 
             let detailContent = $(event.currentTarget).closest('tr').data('table-detail-content');
             let customDetailPanelTitle = $(event.currentTarget).closest('tr').data('table-detail-panel-custom-title');
-            
+
             this.viewDetail(detailContent, customDetailPanelTitle);
         });
 
@@ -56,8 +56,14 @@ class TableDetailComponent {
             event.preventDefault();
             this.closeDetail();
         });
-    }
 
+        //Close with backdrop click
+        this.$html.find('.table-detail-backdrop').on('click', (event) => {
+            if (this.$html.find('.table-detail-backdrop').hasClass('in')) {
+                this.closeDetail();
+            };
+        });
+    }
     /**
      * Show detail panel and populate with content and optional custom title
      * @param {String} content - string of html content to populate the detail panel body with
@@ -71,7 +77,7 @@ class TableDetailComponent {
 
         // Remove any previously added contents
         this.$detailPanelBody.empty();
-        
+
         // Add attached data to detail panel body
         this.$detailPanelBody.html(content);
 
