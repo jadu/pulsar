@@ -53,6 +53,7 @@
 
 .modal--large .modal__dialog {
     max-width: 800px;
+    max-width: 800px;
 }
 
 // Actual modal
@@ -122,6 +123,7 @@
 // Footer (for actions)
 .modal__footer {
     @include clear-fix; // clear it in case folks use .pull-* classes on buttons
+    clear: both;
     padding: ($modal-inner-padding - 1) $modal-inner-padding ($modal-inner-padding - 5);
     // text-align: right; // right align buttons
     border-top: 1px solid $modal-footer-border-color;
