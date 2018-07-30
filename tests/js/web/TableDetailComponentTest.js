@@ -128,7 +128,7 @@ describe('TableDetailComponent', () => {
 		it('remove the "table-detail--open" class to the panel to open it', () => {
 			tableDetailComponent.init($body);
 
-			$body.find('[data-table-detail-close-panel]').trigger(clickEvent);
+			$body.find('.table-detail-backdrop').trigger(clickEvent);
 
 			expect($body.find('[data-table-detail-panel]').hasClass('table-detail--open')).to.be.false;
 		});
