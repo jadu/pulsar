@@ -53,36 +53,11 @@ $timeline-content-border: #ccc;
             }
         }
     }
-
-    .autosave {
-        padding-top: .5em;
-    }
 }
 
 .timeline--no-messages::before {
     @include respond-min($screen-tablet) {
         content: none;
-    }
-}
-
-.timeline__notice {
-    background-color: color(jadu-blue);
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    color: white;
-    display: block;
-    left: 10px;
-    padding: 5px;
-    position: absolute;
-    right: 15px;
-    text-align: center;
-    text-decoration: none;
-    top: 0;
-    z-index: 2;
-
-    &:hover {
-        background-color: darken(color(jadu-blue), 5%);
-        color: white;
     }
 }
 
@@ -240,52 +215,6 @@ $timeline-content-border: #ccc;
             border-width: 8px;
             margin-top: -8px;
         }
-
-        .timeline__item--new & {
-            -webkit-animation-duration: 2s;
-            animation-duration: 2s;
-            -webkit-animation-name: newContentBackgroundAndBorderFade;
-            animation-name: newContentBackgroundAndBorderFade;
-
-            &::before {
-                -webkit-animation-duration: 2s;
-                animation-duration: 2s;
-                -webkit-animation-name: newContentBefore;
-                animation-name: newContentBefore;
-                -webkit-transform-style: preserve-3d;
-            }
-
-            &::after {
-                -webkit-animation-duration: 2s;
-                animation-duration: 2s;
-                -webkit-animation-name: newContentAfter;
-                animation-name: newContentAfter;
-                -webkit-transform-style: preserve-3d;
-            }
-        }
-
-        .timeline__item--highlighted & {
-            -webkit-animation-duration: 7s;
-            animation-duration: 7s;
-            -webkit-animation-name: highlightedContentBackgroundAndBorderFade;
-            animation-name: highlightedContentBackgroundAndBorderFade;
-
-            &::before {
-                -webkit-animation-duration: 7s;
-                animation-duration: 7s;
-                -webkit-animation-name: highlightedContentBefore;
-                animation-name: highlightedContentBefore;
-                -webkit-transform-style: preserve-3d;
-            }
-
-            &::after {
-                -webkit-animation-duration: 7s;
-                animation-duration: 7s;
-                -webkit-animation-name: highlightedContentAfter;
-                animation-name: highlightedContentAfter;
-                -webkit-transform-style: preserve-3d;
-            }
-        }
     }
 
     &__title {
@@ -381,30 +310,6 @@ $timeline-content-border: #ccc;
 
         @include ie-lte(10) {
             max-width: 150px;
-        }
-    }
-
-    &__changes {
-        list-style: none;
-        margin: 20px 0;
-
-        li {
-            margin-bottom: $padding-base;
-
-            @include respond-min($screen-desktop) {
-                display: table;
-                margin-bottom: 5px;
-                table-layout: fixed;
-                width: 100%;
-
-                &:last-child {
-                    margin-bottom: 0;
-                }
-
-                &.no-prefix {
-                    display: block;
-                }
-            }
         }
     }
 
@@ -673,13 +578,4 @@ $timeline-content-border: #ccc;
 .timeline-content__text,
 .timeago {
     color: black;
-}
-
-.panel.with-timeline .panel__actions {
-    margin-bottom: 10px;
-    margin-left: 70px;
-
-    @include respond-max($screen-tablet) {
-        margin-left: 0;
-    }
 }
