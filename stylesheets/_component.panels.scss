@@ -56,7 +56,6 @@
             opacity: .5;
         }
     }
-
 }
 
 @each $state, $state-color, $state-color-alt in $state-colors {
@@ -120,6 +119,19 @@
     .btn {
         margin-right: 5px;
     }
+
+    .view-history-link {
+        float: right;
+
+        @include respond-max($screen-phablet) {
+            float: none;
+        }
+
+        @include respond-max($screen-phone) {
+            float: none;
+            margin-top: 10px;
+        }
+    }
 }
 
 .panel__actions--inline {
@@ -139,4 +151,13 @@
 
 .panel--danger a.view-history-link {
     color: color(white) !important;
+}
+
+.panel.with-timeline .panel__actions {
+    margin-bottom: 10px;
+    margin-left: 70px;
+
+    @include respond-max($screen-tablet) {
+        margin-left: 0;
+    }
 }
