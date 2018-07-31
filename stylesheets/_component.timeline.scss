@@ -1,0 +1,689 @@
+$timeline-content-border: #ccc;
+
+.has-timeline {
+    .content-main {
+        @include respond-max($screen-tablet) {
+            padding: 0;
+        }
+    }
+
+    .nav-inline {
+        margin: 0 $padding-base;
+
+        @include respond-min($screen-tablet) {
+            margin: 0;
+        }
+    }
+}
+
+.timeline {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    word-break: break-word;
+
+    @include respond-min($screen-tablet) {
+        padding: 5px 0 2em;
+    }
+
+    @include ie-lte(8) {
+        &::before {
+            background: darken(#e9f0f5, 5%);
+            content: '';
+            height: 100%;
+            left: 35px;
+            position: absolute;
+            top: 54px;
+            width: 4px;
+        }
+    }
+
+    &::before {
+        @include respond-min($screen-tablet) {
+            background: darken(#e9f0f5, 5%);
+            content: '';
+            height: 100%;
+            left: 35px;
+            position: absolute;
+            top: 0;
+            width: 4px;
+
+            .lt-ie10 & {
+                top: 58px;
+            }
+        }
+    }
+
+    .autosave {
+        padding-top: .5em;
+    }
+}
+
+.timeline--no-messages::before {
+    @include respond-min($screen-tablet) {
+        content: none;
+    }
+}
+
+.timeline__notice {
+    background-color: color(jadu-blue);
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    color: white;
+    display: block;
+    left: 10px;
+    padding: 5px;
+    position: absolute;
+    right: 15px;
+    text-align: center;
+    text-decoration: none;
+    top: 0;
+    z-index: 2;
+
+    &:hover {
+        background-color: darken(color(jadu-blue), 5%);
+        color: white;
+    }
+}
+
+.timeline__items {
+    padding: 0 $padding-base;
+
+    @include respond-min($screen-tablet) {
+        padding: 0;
+    }
+}
+
+.timeline__item {
+    margin: 1em 0;
+    position: relative;
+
+    @include respond-min($screen-tablet) {
+        //margin: 2em 0;
+    }
+
+    &:first-child {
+        @include respond-min($screen-tablet) {
+            margin-top: 0;
+        }
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.timeline-avatar {
+    background-color: #75ce66;
+    border-radius: 50%;
+    height: 20px;
+    left: 0;
+    margin-left: 1em;
+    position: absolute;
+    top: 14px;
+    width: 20px;
+
+    @include respond-min($screen-phone) {
+        height: 25px;
+        width: 25px;
+    }
+
+    @include respond-min($screen-tablet) {
+        box-shadow: 0 0 0 4px color(white), inset 0 2px 0 rgba(#000, .08), 0 3px 0 4px rgba(#000, .05);
+        height: 40px;
+        top: 0;
+        width: 40px;
+    }
+
+    span {
+        display: block;
+        font-size: 10px;
+        line-height: 2.1;
+        text-align: center;
+
+        @include respond-min($screen-phone) {
+            font-size: 13px;
+        }
+
+        @include respond-min($screen-tablet) {
+            font-size: 20px;
+        }
+    }
+
+    &__image {
+        border-radius: 50%;
+        height: 20px;
+        width: 20px;
+
+        @include respond-min($screen-phone) {
+            height: 25px;
+            width: 25px;
+        }
+
+        @include respond-min($screen-tablet) {
+            height: 40px;
+            width: 40px;
+        }
+    }
+
+    &--user {
+        background-color: #75ce66;
+        color: color(white);
+    }
+
+    &--admin {
+        background-color: color(jadu-blue);
+        color: color(white);
+    }
+
+    &--system {
+        background-color: color(jadu-blue);
+        color: color(white);
+    }
+}
+
+.timeline__message-box {
+    .timeline-content {
+        background-color: darken(#fafafa, 5%);
+
+        @include respond-min($screen-tablet) {
+            &::after {
+                border-color: rgba(136, 183, 213, 0);
+                border-right-color: darken(#fafafa, 5%);
+                border-width: 7px;
+                margin-top: -7px;
+            }
+        }
+    }
+
+    .timeline-avatar {
+        display: none;
+
+        @include respond-min($screen-tablet) {
+            display: block;
+        }
+    }
+}
+
+.timeline-content {
+    background: #fafafa;
+    border: 1px solid $timeline-content-border;
+    padding: 1em;
+
+    @include respond-min($screen-tablet) {
+        border: 1px solid $timeline-content-border;
+        margin-left: 70px;
+        margin-top: $padding-base;
+        position: relative;
+
+        &::before,
+        &::after {
+            border: solid transparent;
+            content: '';
+            height: 0;
+            position: absolute;
+            right: 100%;
+            top: 16px;
+            width: 0;
+        }
+
+        &::after {
+            border-color: rgba(136, 183, 213, 0);
+            border-right-color: #fafafa;
+            border-width: 7px;
+            margin-top: -7px;
+        }
+
+        &::before {
+            border-color: rgba(194, 225, 245, 0);
+            border-right-color: $timeline-content-border;
+            border-width: 8px;
+            margin-top: -8px;
+        }
+
+        .timeline__item--new & {
+            -webkit-animation-duration: 2s;
+            animation-duration: 2s;
+            -webkit-animation-name: newContentBackgroundAndBorderFade;
+            animation-name: newContentBackgroundAndBorderFade;
+
+            &::before {
+                -webkit-animation-duration: 2s;
+                animation-duration: 2s;
+                -webkit-animation-name: newContentBefore;
+                animation-name: newContentBefore;
+                -webkit-transform-style: preserve-3d;
+            }
+
+            &::after {
+                -webkit-animation-duration: 2s;
+                animation-duration: 2s;
+                -webkit-animation-name: newContentAfter;
+                animation-name: newContentAfter;
+                -webkit-transform-style: preserve-3d;
+            }
+        }
+
+        .timeline__item--highlighted & {
+            -webkit-animation-duration: 7s;
+            animation-duration: 7s;
+            -webkit-animation-name: highlightedContentBackgroundAndBorderFade;
+            animation-name: highlightedContentBackgroundAndBorderFade;
+
+            &::before {
+                -webkit-animation-duration: 7s;
+                animation-duration: 7s;
+                -webkit-animation-name: highlightedContentBefore;
+                animation-name: highlightedContentBefore;
+                -webkit-transform-style: preserve-3d;
+            }
+
+            &::after {
+                -webkit-animation-duration: 7s;
+                animation-duration: 7s;
+                -webkit-animation-name: highlightedContentAfter;
+                animation-name: highlightedContentAfter;
+                -webkit-transform-style: preserve-3d;
+            }
+        }
+    }
+
+    &__title {
+        color: #303e49;
+        display: inline-block;
+        margin: 0 0 0 26px;
+
+        @include respond-min($screen-phone) {
+            margin: 0 0 0 32px;
+        }
+
+        @include respond-min($screen-tablet) {
+            line-height: $line-height-base;
+            margin: 0;
+            width: 60%;
+        }
+    }
+
+    &__note-title {
+        margin: 1em 0;
+    }
+
+    &__text {
+        @include word-wrap();
+
+        margin: .5em 0;
+
+        @include respond-min($screen-tablet) {
+            margin: 1em 0;
+        }
+
+        a {
+            word-break: break-all;
+        }
+
+        .avatar {
+            background-color: color(white);
+            vertical-align: bottom;
+        }
+    }
+
+    &__small {
+        color: color(gray, dark);
+        display: inline-block;
+        font-size: .7em;
+
+        .label {
+            font-size: 100%;
+        }
+    }
+
+    &__date {
+        display: block;
+        font-size: 14px;
+        margin-top: $padding-base;
+
+        @include respond-min($screen-tablet) {
+            display: inline-block;
+            float: right;
+            margin-top: 0;
+            text-align: right;
+            width: 40%;
+        }
+    }
+
+    &__attachments {
+        margin: 1em 0;
+
+        li {
+            display: inline-block;
+            margin-right: .5em;
+            width: 150px;
+        }
+    }
+
+    &__thumbnail-link {
+        border-radius: 4px;
+        cursor: pointer;
+        display: inline-block;
+        max-height: 250px;
+        max-width: 100%;
+        overflow: hidden;
+        position: relative;
+
+        @include ie-lte(10) {
+            max-width: 150px;
+        }
+    }
+
+    &__thumbnail {
+        max-height: 250px;
+        max-width: 100%;
+
+        @include ie-lte(10) {
+            max-width: 150px;
+        }
+    }
+
+    &__changes {
+        list-style: none;
+        margin: 20px 0;
+
+        li {
+            margin-bottom: $padding-base;
+
+            @include respond-min($screen-desktop) {
+                display: table;
+                margin-bottom: 5px;
+                table-layout: fixed;
+                width: 100%;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+
+                &.no-prefix {
+                    display: block;
+                }
+            }
+        }
+    }
+
+    &__from {
+        display: inline-block;
+        height: 0;
+        opacity: 0;
+        overflow: hidden;
+        width: 0;
+    }
+
+    &__from--show {
+        height: auto;
+        opacity: 1;
+        overflow: visible;
+        padding: 0 3px;
+        width: auto;
+
+        .diff-multi-line & {
+            display: block;
+            padding: 5px 0;
+        }
+    }
+
+    &__from-label {
+        transition: background-color .5s linear, color .5s ease;
+    }
+
+    &__from-label--show,
+    &__removed {
+        background: #f6b6b4;
+        border-radius: 3px;
+        color: #8c291c;
+        padding: 1px 2px;
+        text-decoration: line-through;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+
+    &__to {
+        background: #abdfab;
+        border-radius: 3px;
+        color: #3e6441;
+        padding: 1px 2px;
+    }
+
+    &__diff-toggle {
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    &__diff-type {
+        display: block;
+        font-family: $font-family-regular;
+        word-wrap: break-word;
+
+        @include respond-min($screen-desktop) {
+            display: table-cell;
+            padding-right: 1%;
+            width: 15%;
+        }
+    }
+
+    &__diff-title {
+        .no-prefix & {
+            display: block;
+            font-family: $font-family-regular;
+            width: 100%;
+
+            @include respond-min($screen-desktop) {
+                display: table-cell;
+                padding-right: 1%;
+                width: 15%;
+            }
+        }
+    }
+
+    &__diff-value {
+        @include respond-min($screen-desktop) {
+            .no-prefix & {
+                display: table-cell;
+                width: 84%;
+            }
+        }
+    }
+
+    &__diff-details {
+        @include respond-min($screen-desktop) {
+            display: table-cell;
+            width: 84%;
+
+            .no-prefix & {
+                display: table;
+                width: 100%;
+            }
+        }
+    }
+
+    &__body {
+        clear: both;
+        overflow: hidden;
+
+        *:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &--admin {
+        box-shadow: 0 3px 0 color(jadu-blue);
+    }
+
+    &--user {
+        box-shadow: 0 3px 0 #ccc;
+    }
+}
+
+.timeline-content__inner {
+    overflow: hidden;
+}
+
+.timeline__item .timeline-content.has-warning {
+    border-color: #e48f3d;
+    background: lighten(#eaa96a, 15%);
+    color: $jadu-black;
+
+    @include respond-min($screen-tablet) {
+        &::after {
+            border-color: rgba(136, 183, 213, 0);
+            border-right-color: #f3d0ad;
+            border-width: 7px;
+            margin-top: -7px;
+        }
+
+        &::before {
+            border-color: rgba(194, 225, 245, 0);
+            border-right-color: #a45c17;
+            border-width: 8px;
+            margin-top: -8px;
+        }
+    }
+
+    .form__control:not([type="file"]) {
+        border-color: #e48f3d;
+    }
+}
+
+.thumbnail-filename {
+    display: block;
+    font-size: .9em;
+}
+
+.timeline__form {
+    background: none;
+    padding: 0;
+    position: relative;
+}
+
+.timeline__message-field {
+    background-color: color(white) !important;
+    border-radius: 4px;
+    border: 1px solid $timeline-content-border;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    color: #1e1e1e;
+    display: block;
+    font-size: 16px;
+    height: 36px;
+    line-height: 24px;
+    padding: 5px 12px !important;
+    max-width: 100%;
+    vertical-align: middle;
+    width: 100%;
+}
+
+.timeline__message-label {
+    @include visuallyhidden;
+}
+
+.timeline__form__controls {
+    @include clear-fix(true);
+
+    padding: 0;
+}
+
+.timeline__status-select {
+    display: inline-block;
+    font-size: 14px;
+    height: 30px;
+    line-height: 30px;
+    margin-top: 10px;
+    width: auto;
+
+    @include respond-min($screen-tablet) {
+        margin-top: 0;
+    }
+}
+
+.timeline__form__control,
+.timeline__status-undo {
+    font-size: 14px;
+    line-height: 26px;
+    margin: 0 1em 0 0;
+    text-decoration: none;
+}
+
+.timeline__undo-link {
+    display: block;
+
+    @include respond-min($screen-tablet) {
+        display: inline-block;
+    }
+}
+
+.has-timeline {
+    .tabs__content {
+        display: block;
+    }
+}
+
+.timeline__prologue {
+    display: block;
+    margin: ($padding-base * 2) 0;
+    text-align: center;
+
+    @include respond-min($screen-tablet) {
+        margin: 0 0 ($padding-base * 2);
+    }
+}
+
+.has-timeline .actionsbar {
+    margin: 14px $padding-base 0;
+
+    @include respond-min($screen-tablet) {
+        margin: 14px 0 16px;
+    }
+}
+
+.interstitial-warning {
+    margin: $padding-base 0 0;
+    text-align: right;
+}
+
+.timeline__attach-file.is-disabled {
+    cursor: default;
+    opacity: .5;
+    pointer-events: none;
+
+    &:hover,
+    &:focus,
+    &:active {
+        color: initial;
+    }
+}
+
+.timeline__attach-file-error {
+    color: color(danger);
+    font-size: 14px;
+    line-height: 1.5;
+    margin: .675em 0 0;
+}
+
+.timeline__attachment-feedback .timeline__attach-file-error {
+    padding-top: 1em;
+}
+
+.timeline-content__text,
+.timeago {
+    color: black;
+}
+
+.panel.with-timeline .panel__actions {
+    margin-bottom: 10px;
+    margin-left: 70px;
+
+    @include respond-max($screen-tablet) {
+        margin-left: 0;
+    }
+}
