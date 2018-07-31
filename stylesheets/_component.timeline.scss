@@ -488,6 +488,10 @@ $timeline-content-border: #ccc;
     width: 100%;
 }
 
+.timeline__message-label {
+    @include sr-hide;
+}
+
 .timeline__form__controls {
     @include clear-fix(true);
 
