@@ -16,7 +16,6 @@
 
     &__body {
         max-height: 20em;
-        overflow-y: auto;
         padding: 10px $padding-base-horizontal;
 
         p,
@@ -116,6 +115,7 @@
 
 .panel__actions {
     margin-top: 10px;
+    min-height: 33px;
 
     .btn {
         margin-right: 5px;
@@ -135,4 +135,8 @@
 .panel__actions--right {
     margin: 10px 0 0;
     text-align: right;
+}
+
+.panel--danger a.view-history-link {
+    color: color(white) !important;
 }
