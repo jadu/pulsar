@@ -91,3 +91,31 @@
         @include sr-hide;
     }
 }
+
+@mixin word-wrap() {
+    -ms-word-break: break-all; // ie11
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    word-break: break-all; // edge
+    overflow-wrap: break-word; // various old FF and Saf
+    word-wrap: break-word; // various old FF and Saf
+    word-break: break-word; // chrome
+    hyphens: auto; // not supported in chrome
+
+    // trigger word breaks and hyphens in FF
+    @-moz-document url-prefix() {
+        word-break: normal;
+    }
+}
+
+@mixin visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
