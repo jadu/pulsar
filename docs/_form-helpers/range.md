@@ -12,9 +12,7 @@ Generates a range slider input.
 
 <div class="pulsar-example form">
     <div class="form__group form-range">
-        <label for="foo" class="control__label">
-            Size
-        </label>
+        <label for="foo" class="control__label">Size</label>
         <div class="controls">
             <input id="foo" type="range" class="form__control">
         </div>
@@ -51,6 +49,21 @@ value       | string | Specifies the value of the input
 data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
 Any other options not listed here will be applied to the input.
+
+## Disabled state
+
+Add the `'disabled': true` option to disable the field on load. See the [disabling elements styleguide](styleguides/disabling_elements/) for more information about how to disable elements via javascript. Provide help text or information within the UI where possible to explain why elements are disabled.
+
+{% code_example form_helpers/range-disabled %}
+
+<div class="pulsar-example form">
+    <div class="form__group form-range">
+        <label for="foo2" class="control__label">Size</label>
+        <div class="controls">
+            <input id="foo2" name="bar2" disabled type="range" class="form__control">
+        </div>
+    </div>
+</div>
 
 ## Error state
 

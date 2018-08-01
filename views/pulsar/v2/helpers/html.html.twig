@@ -57,11 +57,19 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
             {% for item_group in item_groups %}
                 {% for item in item_group %}
 
-                    {%
-                        set actions = actions|merge([
-                            html.link(item)
-                        ])
-                    %}
+                    {% if item.type is defined and item.type == 'title' %}
+                        {%
+                            set actions = actions|merge([
+                                '<span class="dropdown__title">' ~ item.label ~ '</span>'
+                            ])
+                        %}
+                    {% else %}
+                        {%
+                            set actions = actions|merge([
+                                html.link(item)
+                            ])
+                        %}
+                    {% endif %}
 
                 {% endfor %}
 
@@ -79,7 +87,15 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
     {{
         html.button_dropdown({
-            'label': 'Actions',
+            'id': 'actions_menu',
+            'label': items.label|default('Actions') ~ 
+                html.badge({
+                    'label': '0', 
+                    'aria-label': '0 rows selected',
+                    'class': 'label--primary js-bulk-actions-badge',
+                    'style': 'display: none;'
+                }),
+            'class': items.class|default(''),
             'items': actions
         })
     }}
@@ -419,6 +435,11 @@ placement    | string | the alignment of the dropdown menu, `left` (default) or 
     {% import _self as html %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
+    {% set caret = true %}
+    {% if options.caret is defined and options.caret != true %}
+        {% set caret = 0 %}
+    {% endif %}
+
     <div{{
         attributes({
             'class': 'btn__group drop' ~ options.direction|default('down') ~ (options.parent_class is defined ? ' ' ~ options.parent_class : '')
@@ -428,7 +449,7 @@ placement    | string | the alignment of the dropdown menu, `left` (default) or 
             html.button(options
                 |exclude('direction parent_class placement items')
                 |defaults({
-                    'caret': options.caret|default(true),
+                    'caret': caret,
                     'class': 'dropdown__toggle' ~ (options.class is defined ? ' ' ~ options.class : ''),
                     'data-toggle': 'dropdown'
                 })
@@ -1384,15 +1405,37 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
 
 #}
 {% macro status(state, options) %}
+{% import _self as html %}
 {% spaceless %}
 
 {% if options.title is not defined %}
     {% set options = options|default({})|merge({ 'title': state|default('active') }) %}
 {% endif %}
 
+{% if options.icon is defined %}
+
+    {% if options.icon == true %}
+        {% if state == 'online' or state == 'active' %}
+            {% set iconGlyph = 'check-circle' %}
+        {% endif %}
+    {% endif %}
+    
+    {{ 
+        html.icon(iconGlyph|default('times-rectangle'), options
+            |exclude('state icon')
+            |merge({
+                'class': 'status--icon is-' ~ state|default('active'),
+                'data-placement': options['data-placement']|default('top'),
+                'data-toggle': 'tooltips',
+            }) 
+        )
+    }}
+
+{% else %}
+
     <span{{
         attributes(options
-            |exclude('state')
+            |exclude('state icon')
             |merge({
                 'data-placement': options['data-placement']|default('top')
             })
@@ -1403,8 +1446,12 @@ data-* | string | Data attributes, eg: `'data-foo': 'bar'`
         )
     }}></span>
 
+{% endif %}
+
 {% endspaceless %}
 {% endmacro %}
+
+
 {# -----------------------------------------------------------------------------
 
 # DropZone
@@ -1468,3 +1515,61 @@ data-dropzone-file-node-type        | boolean   | Show file type in file html | 
     {% endspaceless %}
 {% endmacro %}
 
+{# -----------------------------------------------------------------------------
+
+Datatable - https://jadu.github.io/pulsar/components/datatable/
+
+#}
+{% macro datatable(options) %}
+    {% import _self as html %}
+
+    {% if options.overflow is defined and options.overflow == 'collapse' %}
+        {% set overflow = options.overflow %}
+    {% else %}
+        {% set overflow = 'scroll' %}
+        {% set options = options|merge({ 'class': 'table--horizontal' }) %}
+    {% endif %}
+
+    {% if options.data is defined and options.data is not empty %}
+    <table{{ attributes(options|defaults({ 'class': 'table datatable table--full' })) }}>
+        <thead>
+            <tr>
+                {% if overflow == 'collapse' %}
+                    <td></td>
+                {% endif %}
+                {% for column in options.data.columns %}
+                    {% if loop.first %}
+                        <th class="table-selection" data-orderable="false">
+                            <input type="checkbox" class="form__control checkbox js-select-all" aria-label="Select all rows" data-toggle="tooltips" title="select all rows" data-placement="right" data-container="body" />
+                        </th>
+                    {% endif %}
+                    <th{{ attributes(column.attrs|default) }}>{{ column.title }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in options.data.data %}
+                <tr>
+                    {% if overflow == 'collapse' %}
+                        <td class="table-responsive">
+                            {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                        </td>
+                    {% endif %}
+                    <td class="table-selection">
+                        <input type="checkbox" class="form__control checkbox js-select" aria-label="Select row" />
+                    </td>
+                    {% for key, val in row %}
+                        {% if val is same as(true) %}
+                            <td data-order="{{ key }}" class="u-text-align-center">{{ html.status('online', { 'title': key, 'icon': true }) }}</td>
+                        {% elseif val is same as(false) %}
+                            <td data-order="{{ key }}" class="u-text-align-center">{{ html.status('offline', { 'title': 'Not ' ~ key|lower, 'icon': true }) }}</td>
+                        {% else %}
+                            <td>{{ val }}</td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+{% endmacro %}

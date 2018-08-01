@@ -1,0 +1,8 @@
+{{
+    form.toggle_switch({
+        'label': 'Toggle switch',
+        'id': 'foo',
+        'name': 'bar', 
+        'disabled': true
+    })
+}}

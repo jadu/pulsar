@@ -55,7 +55,7 @@ PulsarUIComponent.prototype.initDataTables = function () {
         datatables = component.$html.find('.datatable:not(.table--horizontal)'),
         datatablesHorizontal = component.$html.find('.datatable.table--horizontal');
 
-    datatables.each(function() {
+    datatables.each(function () {
         var $this = $(this);
 
         var select = {
@@ -64,25 +64,24 @@ PulsarUIComponent.prototype.initDataTables = function () {
             selector:  'td.table-selection'
         }
 
-        var dom = '<"dataTables_top"Birf><"dataTables_actions"T>t<"dataTables_bottom"lp>';
+        var dom = '<"dataTables_top"Birf><"dataTables_actions"T>t<"dataTables_bottom"lip>';
 
         if (!$this.data('empty-table')) {
             $this.data('empty-table', 'There are currently no items to display');
         }
 
         if ($this.data('select') === false) {
-            dom = '<"dataTables_top"irf><"dataTables_actions"T><"dt-disable-selection"t><"dataTables_bottom"lp>';
+            dom = '<"dataTables_top"irf><"dataTables_actions"T><"dt-disable-selection"t><"dataTables_bottom"p>';
             select = false;
         }
 
-        $this.DataTable({
+        let table = $this.DataTable({
             dom: dom,
             aaSorting: [],
             bAutoWidth: false,
-            buttons: [
-                'selectAll',
-                'selectNone'
-            ],
+            pageLength: 25,
+            lengthChange: false,
+            buttons: [],
             columnDefs: [
                 { className: 'control', orderable: false, targets: 0 },
                 { "searchable": false, "targets": [0, 1] },
@@ -93,7 +92,8 @@ PulsarUIComponent.prototype.initDataTables = function () {
                 "info": "Showing _START_ to _END_ of _TOTAL_ items",
                 "infoEmpty": 'No items',
                 "infoFiltered": " (filtered from _MAX_ items)",
-                "zeroRecords": "No items matched your filter, please clear it and try again"
+                "zeroRecords": "No items matched your filter, please clear it and try again",
+                "search": "Filter records"
             },
             responsive: {
                 details: {
@@ -103,18 +103,34 @@ PulsarUIComponent.prototype.initDataTables = function () {
             select: select,
             stateSave: false
         });
+
+        $this.on('click', '.js-select-all', function(e) {
+            var $checkbox = $(e.target),
+                $allCheckboxes = $this.find('.js-select');
+
+            if ($checkbox.hasClass('selected')) {
+                table.rows().deselect();
+                $checkbox.removeClass('selected');
+                $allCheckboxes.removeClass('selected').prop('checked', false);
+            } else {
+                table.rows().select();
+                $checkbox.addClass('selected');
+                $allCheckboxes.addClass('selected').prop('checked', true);
+            }
+        });
     });
 
-    datatablesHorizontal.each(function() {
+    datatablesHorizontal.each(function () {
         var $this = $(this);
 
         var select = {
             className: 'dt-row-selected',
             style:     'multi',
-            selector:  'td.table-selection'
+            selector:  '.js-select',
+            info:       true
         }
 
-        var dom = '<"dataTables_top"Birf><"dataTables_actions"T><"table-container"t><"dataTables_bottom"lp>';
+        var dom = '<"dataTables_top"Birf><"dataTables_actions"T><"table-container"t><"dataTables_bottom"p>';
 
         if (!$this.data('empty-table')) {
             $this.data('empty-table', 'There are currently no items to display');
@@ -125,25 +141,24 @@ PulsarUIComponent.prototype.initDataTables = function () {
             select = false;
         }
 
-        $this.DataTable({
+        let table = $this.DataTable({
             dom: dom,
             aaSorting: [],
             bAutoWidth: false,
-            buttons: [
-                'selectAll',
-                'selectNone'
-            ],
+            stateSave: true,
+            pageLength: 25,
+            lengthChange: false,
+            buttons: [],
             columnDefs: [
                 { className: 'control', orderable: false, targets: 0 },
-                { "searchable": false, "targets": [0, 1] },
-                { "orderable": false, "targets": [0, 1] }
             ],
             language: {
                 "emptyTable": $this.data('empty-table'),
                 "info": "Showing _START_ to _END_ of _TOTAL_ items",
                 "infoEmpty": 'No items',
                 "infoFiltered": " (filtered from _MAX_ items)",
-                "zeroRecords": "No items matched your filter, please clear it and try again"
+                "zeroRecords": "No items matched your filter, please clear it and try again",
+                "search": "Quick filter"
             },
             select: select,
             stateSave: false
@@ -151,6 +166,33 @@ PulsarUIComponent.prototype.initDataTables = function () {
 
         // Add sticky scroll bar
         component.stickyScrollBarComponent.init($this.parent());
+
+        // Init bulk actions menu
+        component.toggleBulkActions($this);
+
+        // Rerun bulk actions on row select
+        table.on('select deselect', function (e, dt, type, indexes) {
+            if (type === 'row') {
+                component.toggleBulkActions($this);
+            }
+        });
+
+            
+        $this.on('click', '.js-select-all', function(e) {
+            var $checkbox = $(e.target),
+                $allCheckboxes = $this.find('.js-select');
+
+            if ($checkbox.hasClass('selected')) {
+                table.rows({ search: 'applied' }).deselect();
+
+                $checkbox.removeClass('selected');
+                $allCheckboxes.removeClass('selected').prop('checked', false);
+            } else {
+                table.rows({ search: 'applied' }).select();
+                $checkbox.addClass('selected');
+                $allCheckboxes.addClass('selected').prop('checked', true);
+            }
+        });
     });
 
     // Refresh datatables when tabs are switched, this fixes some layout issues
@@ -158,10 +200,10 @@ PulsarUIComponent.prototype.initDataTables = function () {
         $($.fn.dataTable.tables(true)).DataTable().columns.adjust().responsive.recalc();
     });
 
-    this.$html.find('.table--horizontal').each(function() {
+    this.$html.find('.table--horizontal').each(function () {
         var $table = $(this).parent();
 
-        $table.scroll(function() {
+        $table.scroll(function () {
             component.styleTableOverflows($table);
         });
 
@@ -205,7 +247,7 @@ PulsarUIComponent.prototype.styleTableOverflows = function ($container) {
 PulsarUIComponent.prototype.initCountdown = function () {
 
     // Initial basic implementation of https://github.com/hilios/jQuery.countdown
-    this.$html.find('.js-countdown').each(function() {
+    this.$html.find('.js-countdown').each(function () {
 
         var $this = $(this),
             format = '%ww %dd %Hh %Mm %S';
@@ -218,6 +260,40 @@ PulsarUIComponent.prototype.initCountdown = function () {
             $this.html(event.strftime(format));
         });
     });
+};
+
+PulsarUIComponent.prototype.toggleBulkActions = function(table) {
+    var table = table.DataTable(),
+        count = table.rows({ selected: true }).count(),
+        $bulkActionsButton = this.$html.find('.bulk-actions'),
+        $bulkActionsBadge = $bulkActionsButton.find('.js-bulk-actions-badge'),
+        $bulkActions = this.$html.find('[data-bulk-action]');
+
+    if (count === 0) {
+        $bulkActionsBadge.hide();
+
+        $bulkActions
+            .addClass('disabled')
+            .prop('aria-disabled', 'true')
+            .prop('aria-label', 'no rows selected')
+            .parent().attr({
+                'data-toggle': 'tooltips',
+                'data-placement': 'right',
+                'data-container': 'body',
+                'title': 'Select one or more items to perform this bulk action'
+            }).tooltips();
+    } 
+    else {
+        $bulkActionsBadge
+            .attr('aria-label', count + ' row' + ((count > 1) ? 's' : '') + ' selected')
+            .text(count)
+            .show();
+
+        $bulkActions
+            .removeClass('disabled')
+            .prop('aria-disabled', 'false')
+            .parent().tooltips('destroy');
+    }
 };
 
 module.exports = PulsarUIComponent;
