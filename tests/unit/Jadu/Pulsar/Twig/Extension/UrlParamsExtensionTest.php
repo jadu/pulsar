@@ -2,7 +2,7 @@
 
 namespace Jadu\Pulsar\Twig\Extension;
 
-class UrlParamsExtensionTest extends \PHPUnit_Framework_TestCase
+class UrlParamsExtensionTest extends \PHPUnit\Framework\TestCase
 {
     public function setUp()
     {

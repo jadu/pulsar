@@ -40,3 +40,4 @@ pulsar.zip
 /docs/assets/bundle.js
 /.vscode
 /ngrok
+/provisioning/playbook.retry
