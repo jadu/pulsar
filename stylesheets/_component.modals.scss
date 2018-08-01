@@ -149,7 +149,6 @@
     }
 
     .close {
-        @include opacity(.7);
         color: color(white);
     }
 }
@@ -247,7 +246,6 @@
 
     .close {
         margin-top: 0;
-        opacity: 1;
     }
 
     .download {

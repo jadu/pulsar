@@ -37,7 +37,7 @@
 {% for i in 0..499 %}
             <tr class="table__tr">
                 <td class="table__td table-responsive">
-                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                    {{ html.button({ 'label': html.icon('plus-sign', { 'label': 'Expand', 'class': 'table-child-toggle' }), 'class': 'btn--naked'}) }}
                 </td>
                 <td class="table__td table-selection">
                     {{ html.icon('unchecked', { 'class': 'table-row-select js-select' }) }}
@@ -67,7 +67,7 @@
 
             <tr class="table__tr">
                 <td class="table__td table-responsive">
-                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                    {{ html.button({ 'label': html.icon('plus-sign', { 'label': 'Expand', 'class': 'table-child-toggle' }), 'class': 'btn--naked'}) }}
                 </td>
                 <td class="table__td table-selection">
                     {{ html.icon('unchecked', { 'class': 'table-row-select js-select' }) }}

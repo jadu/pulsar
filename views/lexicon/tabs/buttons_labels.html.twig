@@ -13,6 +13,24 @@
 
 {% block tab_content %}
 
+{{
+    html.button_dropdown({
+        'label': 'Drop Down',
+        'items': [
+            html.link({
+                label: html.icon('print') ~ ' Print',
+                'class': 'is-disabled'
+            }),
+            html.link({
+                label: html.icon('lock') ~ ' Lock',
+                disabled: true
+            })
+        ]
+    })
+}}
+        
+
+
     <h2 class="heading">Button variations</h2>
 
     <p>
@@ -583,7 +601,8 @@
                     href: '#'
                 }),
                 html.link({
-                    label: html.icon('print') ~ ' Print'
+                    label: html.icon('print') ~ ' Print',
+                    'class': 'is-disabled'
                 }),
                 html.link({
                     label: html.icon('lock') ~ ' Lock',

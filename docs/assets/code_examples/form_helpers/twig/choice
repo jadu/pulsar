@@ -1,11 +1,11 @@
 {{
     form.choice({
         'label': 'Assign blame to',
-        'id': 'blame',
         'options': [
             {
                 'label': 'Sunshine',
-                'value': 'sun'
+                'value': 'sun',
+                'checked': true
             },
             {
                 'label': 'Moonlight',
