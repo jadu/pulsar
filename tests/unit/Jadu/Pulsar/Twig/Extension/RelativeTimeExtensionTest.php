@@ -2,7 +2,7 @@
 
 namespace Jadu\Pulsar\Twig\Extension;
 
-class RelativeTimeExtensionTest extends \PHPUnit_Framework_TestCase
+class RelativeTimeExtensionTest extends \PHPUnit\Framework\TestCase
 {
     public function setUp()
     {

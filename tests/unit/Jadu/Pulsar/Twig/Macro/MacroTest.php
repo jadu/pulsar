@@ -17,7 +17,7 @@ use RecursiveIteratorIterator;
 use RecursiveRegexIterator;
 use RegexIterator;
 
-class MacroTest extends \PHPUnit_Framework_TestCase
+class MacroTest extends \PHPUnit\Framework\TestCase
 {
     protected $twig;
 

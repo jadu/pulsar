@@ -26,7 +26,7 @@
         
                         <p>Phasellus at posuere leo, sit amet consectetur ligula. Donec ultrices odio ut diam efficitur, sit amet feugiat ligula convallis. Phasellus feugiat nunc mattis faucibus aliquam. Sed non elit eu purus vestibulum hendrerit varius a leo. Donec at fermentum nulla. Nam in libero varius, dignissim nulla non, ultrices sem. Integer in libero felis. Proin nec nulla ut augue dapibus aliquet id non odio. Integer sit amet mollis magna. Quisque iaculis neque ac lobortis tempor. Suspendisse potenti. Proin pellentesque arcu sed ante volutpat feugiat.</p></div>" data-table-detail-panel-custom-title="A custom title set on the clicked TR">
             <td class="table-responsive">
-                {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                {{ html.button({ 'label': html.icon('plus-sign', { 'label': 'Expand', 'class': 'table-child-toggle' }), 'class': 'btn--naked'}) }}
             </td>
             <td class="table-selection">
                 {{ html.icon('unchecked', { 'class': 'table-row-select js-select' }) }}

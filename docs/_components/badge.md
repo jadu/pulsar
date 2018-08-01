@@ -43,12 +43,12 @@ Badges within buttons will inherit the parent button styling without the need to
 
 <div class="pulsar-example">
     <p>
-        <span class="badge">1</span>
-        <span class="badge badge--primary">2</span>
-        <span class="badge badge--success">3</span>
-        <span class="badge badge--warning">5</span>
-        <span class="badge badge--danger">8</span>
-        <span class="badge badge--info">13</span>
-        <span class="badge badge--inverse">21</span>
+        <button class="btn">Base <span class="badge">1</span></button>
+        <button class="btn btn--primary">Primary <span class="badge">2</span></button>
+        <button class="btn btn--success">Success <span class="badge">3</span></button>
+        <button class="btn btn--warning">Warning <span class="badge">5</span></button>
+        <button class="btn btn--danger">Danger <span class="badge">8</span></button>
+        <button class="btn btn--info">Info <span class="badge">13</span></button>
+        <button class="btn btn--inverse">Inverse <span class="badge">21</span></button>
     </p>
 </div>

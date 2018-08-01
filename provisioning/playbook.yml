@@ -3,7 +3,7 @@
   tasks:
     - name: install server components
       apt: name={{ item }} state=present update_cache=yes
-      sudo: yes
+      become: yes
       with_items:
        - apache2
        - mysql-server
@@ -12,7 +12,7 @@
        - git
 
     - name: update php.ini
-      sudo: yes
+      become: yes
       template: >
         src=./templates/php.ini.j2
         dest=/etc/php5/apache2/php.ini

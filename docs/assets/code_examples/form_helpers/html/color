@@ -3,7 +3,7 @@
     <div class="controls">
         <div class="input-group">
             <span class="input-group-addon">#</span>
-            <input id="foo" value="123456" type="text" class="form__control">    
+            <input id="foo" type="text" class="form__control">    
         </div>
     </div>
 </div>
