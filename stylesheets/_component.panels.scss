@@ -120,7 +120,7 @@
         margin-right: 5px;
     }
 
-    .view-history-link {
+    .panel__link--right {
         float: right;
 
         @include respond-max($screen-phablet) {
@@ -147,10 +147,6 @@
 .panel__actions--right {
     margin: 10px 0 0;
     text-align: right;
-}
-
-.panel--danger a.view-history-link {
-    color: color(white) !important;
 }
 
 .panel.with-timeline .panel__actions {
