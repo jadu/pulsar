@@ -40,6 +40,7 @@ class TableDetailComponent {
         this.$detailPanel = this.$html.find('[data-table-detail-panel]');
         this.$detailPanelBody = this.$html.find('[data-table-detail-panel-body]');
         this.$detailPanelTitle = this.$html.find('[data-table-detail-panel-title]');
+        this.$tableDetailBackdrop = this.$html.find('.table-detail-backdrop');
 
         // Open click listener
         this.$table.find('[data-table-detail-view-detail]').on('click', (event) => {
@@ -58,9 +59,9 @@ class TableDetailComponent {
         });
 
         //Close with backdrop click
-        this.$html.find('.table-detail-backdrop').on('click', (event) => {
+        this.$tableDetailBackdrop.on('click', (event) => {
             event.preventDefault();
-            if (this.$html.find('.table-detail-backdrop').hasClass('in')) {
+            if (this.$tableDetailBackdrop.hasClass('in')) {
                 this.closeDetail();
             }
         });
@@ -83,7 +84,7 @@ class TableDetailComponent {
         this.$detailPanelBody.html(content);
 
         // Apply backdrop
-        this.$html.find('.table-detail-backdrop').addClass('in');
+        this.$tableDetailBackdrop.addClass('in');
 
         // Open panel
         this.$detailPanel.addClass('table-detail--open');
@@ -94,7 +95,7 @@ class TableDetailComponent {
      */
     closeDetail () {
         // Remove backdrop
-        this.$html.find('.table-detail-backdrop').removeClass('in');
+        this.$tableDetailBackdrop.removeClass('in');
 
         // Close panel
         this.$detailPanel.removeClass('table-detail--open');
