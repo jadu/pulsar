@@ -121,8 +121,9 @@ describe('TableDetailComponent', () => {
 			tableDetailComponent.init($body);
 
 			$body.find('[data-table-detail-view-detail]').trigger(clickEvent);
-			$body.find('.table-detail-backdrop').trigger(clickEvent);
+			expect($body.find('.table-detail-backdrop').hasClass('in')).to.be.true;
 
+			$body.find('.table-detail-backdrop').trigger(clickEvent);
 			expect($body.find('.table-detail-backdrop').hasClass('in')).to.be.false;
 		});
 
@@ -130,8 +131,9 @@ describe('TableDetailComponent', () => {
 			tableDetailComponent.init($body);
 
 			$body.find('[data-table-detail-view-detail]').trigger(clickEvent);
-			$body.find('.table-detail-backdrop').trigger(clickEvent);
+			expect($body.find('[data-table-detail-panel]').hasClass('table-detail--open')).to.be.true;
 
+			$body.find('.table-detail-backdrop').trigger(clickEvent);
 			expect($body.find('[data-table-detail-panel]').hasClass('table-detail--open')).to.be.false;
 		});
 	})
