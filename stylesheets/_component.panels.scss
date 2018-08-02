@@ -120,7 +120,7 @@
         margin-right: 5px;
     }
 
-    .panel__link--right {
+    .panel__btn--right {
         float: right;
 
         @include respond-max($screen-phablet) {
