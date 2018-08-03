@@ -1,5 +1,5 @@
 class TableDetailComponent {
-    
+
     /**
      * TableDetailComponent
      * @constructor
@@ -40,6 +40,7 @@ class TableDetailComponent {
         this.$detailPanel = this.$html.find('[data-table-detail-panel]');
         this.$detailPanelBody = this.$html.find('[data-table-detail-panel-body]');
         this.$detailPanelTitle = this.$html.find('[data-table-detail-panel-title]');
+        this.$tableDetailBackdrop = this.$html.find('.table-detail-backdrop');
 
         // Open click listener
         this.$table.find('[data-table-detail-view-detail]').on('click', (event) => {
@@ -47,7 +48,7 @@ class TableDetailComponent {
 
             let detailContent = $(event.currentTarget).closest('tr').data('table-detail-content');
             let customDetailPanelTitle = $(event.currentTarget).closest('tr').data('table-detail-panel-custom-title');
-            
+
             this.viewDetail(detailContent, customDetailPanelTitle);
         });
 
@@ -56,8 +57,15 @@ class TableDetailComponent {
             event.preventDefault();
             this.closeDetail();
         });
-    }
 
+        //Close with backdrop click
+        this.$tableDetailBackdrop.on('click', (event) => {
+            event.preventDefault();
+            if (this.$tableDetailBackdrop.hasClass('in')) {
+                this.closeDetail();
+            }
+        });
+    }
     /**
      * Show detail panel and populate with content and optional custom title
      * @param {String} content - string of html content to populate the detail panel body with
@@ -71,12 +79,12 @@ class TableDetailComponent {
 
         // Remove any previously added contents
         this.$detailPanelBody.empty();
-        
+
         // Add attached data to detail panel body
         this.$detailPanelBody.html(content);
 
         // Apply backdrop
-        this.$html.find('.table-detail-backdrop').addClass('in');
+        this.$tableDetailBackdrop.addClass('in');
 
         // Open panel
         this.$detailPanel.addClass('table-detail--open');
@@ -87,7 +95,7 @@ class TableDetailComponent {
      */
     closeDetail () {
         // Remove backdrop
-        this.$html.find('.table-detail-backdrop').removeClass('in');
+        this.$tableDetailBackdrop.removeClass('in');
 
         // Close panel
         this.$detailPanel.removeClass('table-detail--open');
