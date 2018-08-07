@@ -1084,7 +1084,11 @@ data-*      | string    | Data attributes, eg: `'data-foo': 'bar'`
     {% if options.icon is defined and options.icon is not empty %}
         {{ html.icon(options.icon, { 'class': 'media__image', 'colour': options.icon_colour|default('#000') }) }}
     {% elseif options.image is defined and options.image is not empty %}
-        <img src="{{ options.image }}" alt="{{ options.image_alt|default }}" class="media__image" />
+        {% set alt = ' role=presentation' %}
+        {% if options.image_alt is defined and options.image_alt is not empty %}
+            {% set alt = ' ' ~ options.image_alt %} 
+        {% endif %}
+        <img src="{{ options.image }}"{{ alt|default }} class="media__image" />
     {% endif %}
         <div class="media__body">
         {% if options.action is defined and options.action is not empty %}
