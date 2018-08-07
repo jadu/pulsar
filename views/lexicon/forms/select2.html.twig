@@ -2,6 +2,26 @@
 
 {% block tab_content %}
 
+{{
+        form.select2({
+            'label': 'Select field',
+            'help': 'This example hides the label with the <code>show-label</code> option',
+            'append': html.button({ 'label': 'foo' }),
+            'append_type': 'button',
+            'class': 'form__group--full',
+            'options': [
+                {
+                    'label': 'a very very very very very very very very very very very very very very very very long label',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
     {{
         form.create()
     }}
@@ -195,7 +215,7 @@
             'help': 'This example hides the label with the <code>show-label</code> option',
             'options': [
                 {
-                    'label': 'Value one',
+                    'label': 'a very very very very very very very very very very very very very very very very long label',
                     'value': 'value1'
                 },
                 {
@@ -655,10 +675,90 @@
 
     {{
         form.select2({
+            'id': 'select2-34',
+            'label': 'Mini + appended button',
+            'prepend': html.button({ 'label': 'foo' }),
+            'prepend_type': 'button',
+            'class': 'form__group--mini',
+            'options': [
+                {
+                    'label': 'a very very very very very very very very very very very very very very very very long label',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
+            'id': 'select2-30',
+            'label': 'Prepended &amp; Appended mini',
+            'class': 'form__group--mini',
+            'append': '.00',
+            'prepend': '£',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
             'id': 'select2-21',
             'label': 'Small',
             'class': 'form__group--small',
             'name': 'inputSelectSmall',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
+            'id': 'select2-34',
+            'label': 'Small + appended button',
+            'prepend': html.button({ 'label': 'foo' }),
+            'prepend_type': 'button',
+            'class': 'form__group--small',
+            'options': [
+                {
+                    'label': 'a very very very very very very very very very very very very very very very very long label',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
+            'id': 'select2-30',
+            'label': 'Prepended &amp; Appended small',
+            'class': 'form__group--small',
+            'append': '.00',
+            'prepend': '£',
             'options': [
                 {
                     'label': 'Value one',
@@ -693,9 +793,87 @@
 
     {{
         form.select2({
+            'id': 'select2-34',
+            'label': 'Medium + appended button',
+            'prepend': html.button({ 'label': 'foo' }),
+            'prepend_type': 'button',
+            'class': 'form__group--medium',
+            'options': [
+                {
+                    'label': 'a very very very very very very very very very very very very very very very very long label',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
+            'id': 'select2-30',
+            'label': 'Prepended &amp; Appended med',
+            'class': 'form__group--medium',
+            'append': '.00',
+            'prepend': '£',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
             'id': 'select2-23',
             'label': 'Regular',
             'name': 'inputSelectRegular',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
+            'id': 'select2-34',
+            'label': 'Reg (will use new I guess) + appended button',
+            'prepend': html.button({ 'label': 'foo' }),
+            'prepend_type': 'button',
+            'options': [
+                {
+                    'label': 'a very very very very very very very very very very very very very very very very long label',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
+            'id': 'select2-30',
+            'label': 'Prepended &amp; Appended reg',
+            'append': '.00',
+            'prepend': '£',
             'options': [
                 {
                     'label': 'Value one',
@@ -730,10 +908,90 @@
 
     {{
         form.select2({
+            'id': 'select2-34',
+            'label': 'Large + appended button',
+            'prepend': html.button({ 'label': 'foo' }),
+            'prepend_type': 'button',
+            'class': 'form__group--large',
+            'options': [
+                {
+                    'label': 'a very very very very very very very very very very very very very very very very long label',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
+            'id': 'select2-30',
+            'label': 'Prepended &amp; Appended large',
+            'class': 'form__group--large',
+            'append': '.00',
+            'prepend': '£',
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
             'id': 'select2-25',
             'label': 'Extra Large',
             'class': 'form__group--xlarge',
             'name': 'inputSelectXLarge',
+            'options': [
+                {
+                    'label': 'A very very very very very very very very very very very very very very very very very very very very very very long label',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
+            'id': 'select2-34',
+            'label': 'xlarge + appended button',
+            'prepend': html.button({ 'label': 'foo' }),
+            'prepend_type': 'button',
+            'class': 'form__group--xlarge',
+            'options': [
+                {
+                    'label': 'a very very very very very very very very very very very very very very very very long label',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
+            'id': 'select2-30',
+            'label': 'Prepended &amp; Appended xlarge',
+            'class': 'form__group--xlarge',
+            'append': '.00',
+            'prepend': '£',
             'options': [
                 {
                     'label': 'Value one',
@@ -753,6 +1011,46 @@
             'label': 'Full',
             'class': 'form__group--full',
             'name': 'inputSelectFull',
+            'options': [
+                {
+                    'label': 'A very very very very very very very very very very very very very very very very very very very very very very long label',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
+            'id': 'select2-34',
+            'label': 'full + appended button',
+            'prepend': html.button({ 'label': 'foo' }),
+            'prepend_type': 'button',
+            'class': 'form__group--full',
+            'options': [
+                {
+                    'label': 'a very very very very very very very very very very very very very very very very long label',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
+            'id': 'select2-30',
+            'label': 'Prepended &amp; Appended full',
+            'class': 'form__group--full',
+            'append': '.00',
+            'prepend': '£',
             'options': [
                 {
                     'label': 'Value one',
@@ -844,7 +1142,27 @@
     }}
 
     {{
-        form.select({
+        form.select2({
+            'id': 'select2-30',
+            'label': 'Prepended &amp; Appended',
+            'append': '.00',
+            'prepend': '£',
+            'multiple': true,
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
             'id': 'select2-31',
             'label': 'Prepended button',
             'prepend': html.button({ 'label': 'foo' }),
@@ -871,6 +1189,26 @@
             'options': [
                 {
                     'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.select2({
+            'id': 'select2-34',
+            'label': 'Appended button with very long option',
+            'append': html.button({ 'label': 'foo' }),
+            'append_type': 'button',
+            'class': 'form__group--full',
+            'options': [
+                {
+                    'label': 'a very very very very very very very very very very very very very very very very long label',
                     'value': 'value1'
                 },
                 {
