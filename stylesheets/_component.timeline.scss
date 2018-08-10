@@ -1,21 +1,5 @@
 $timeline-content-border: #ccc;
 
-.has-timeline {
-    .content-main {
-        @include respond-max($screen-tablet) {
-            padding: 0;
-        }
-    }
-
-    .nav-inline {
-        margin: 0 $padding-base;
-
-        @include respond-min($screen-tablet) {
-            margin: 0;
-        }
-    }
-}
-
 .timeline {
     margin: 0;
     padding: 0;
@@ -52,20 +36,6 @@ $timeline-content-border: #ccc;
                 top: 58px;
             }
         }
-    }
-}
-
-.timeline--no-messages::before {
-    @include respond-min($screen-tablet) {
-        content: none;
-    }
-}
-
-.timeline__items {
-    padding: 0 $padding-base;
-
-    @include respond-min($screen-tablet) {
-        padding: 0;
     }
 }
 
@@ -154,29 +124,6 @@ $timeline-content-border: #ccc;
     &--system {
         background-color: color(jadu-blue);
         color: color(white);
-    }
-}
-
-.timeline__message-box {
-    .timeline-content {
-        background-color: darken(#fafafa, 5%);
-
-        @include respond-min($screen-tablet) {
-            &::after {
-                border-color: rgba(136, 183, 213, 0);
-                border-right-color: darken(#fafafa, 5%);
-                border-width: 7px;
-                margin-top: -7px;
-            }
-        }
-    }
-
-    .timeline-avatar {
-        display: none;
-
-        @include respond-min($screen-tablet) {
-            display: block;
-        }
     }
 }
 
@@ -280,16 +227,6 @@ $timeline-content-border: #ccc;
         }
     }
 
-    &__attachments {
-        margin: 1em 0;
-
-        li {
-            display: inline-block;
-            margin-right: .5em;
-            width: 150px;
-        }
-    }
-
     &__thumbnail-link {
         border-radius: 4px;
         cursor: pointer;
@@ -358,61 +295,6 @@ $timeline-content-border: #ccc;
         padding: 1px 2px;
     }
 
-    &__diff-toggle {
-        text-decoration: none;
-
-        &:hover {
-            text-decoration: underline;
-        }
-    }
-
-    &__diff-type {
-        display: block;
-        font-family: $font-family-regular;
-        word-wrap: break-word;
-
-        @include respond-min($screen-desktop) {
-            display: table-cell;
-            padding-right: 1%;
-            width: 15%;
-        }
-    }
-
-    &__diff-title {
-        .no-prefix & {
-            display: block;
-            font-family: $font-family-regular;
-            width: 100%;
-
-            @include respond-min($screen-desktop) {
-                display: table-cell;
-                padding-right: 1%;
-                width: 15%;
-            }
-        }
-    }
-
-    &__diff-value {
-        @include respond-min($screen-desktop) {
-            .no-prefix & {
-                display: table-cell;
-                width: 84%;
-            }
-        }
-    }
-
-    &__diff-details {
-        @include respond-min($screen-desktop) {
-            display: table-cell;
-            width: 84%;
-
-            .no-prefix & {
-                display: table;
-                width: 100%;
-            }
-        }
-    }
-
     &__body {
         clear: both;
         overflow: hidden;
@@ -433,150 +315,6 @@ $timeline-content-border: #ccc;
 
 .timeline-content__inner {
     overflow: hidden;
-}
-
-.timeline__item .timeline-content.has-warning {
-    border-color: #e48f3d;
-    background: lighten(#eaa96a, 15%);
-    color: $jadu-black;
-
-    @include respond-min($screen-tablet) {
-        &::after {
-            border-color: rgba(136, 183, 213, 0);
-            border-right-color: #f3d0ad;
-            border-width: 7px;
-            margin-top: -7px;
-        }
-
-        &::before {
-            border-color: rgba(194, 225, 245, 0);
-            border-right-color: #a45c17;
-            border-width: 8px;
-            margin-top: -8px;
-        }
-    }
-
-    .form__control:not([type="file"]) {
-        border-color: #e48f3d;
-    }
-}
-
-.thumbnail-filename {
-    display: block;
-    font-size: .9em;
-}
-
-.timeline__form {
-    background: none;
-    padding: 0;
-    position: relative;
-}
-
-.timeline__message-field {
-    background-color: color(white) !important;
-    border-radius: 4px;
-    border: 1px solid $timeline-content-border;
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-    color: #1e1e1e;
-    display: block;
-    font-size: 16px;
-    height: 36px;
-    line-height: 24px;
-    padding: 5px 12px !important;
-    max-width: 100%;
-    vertical-align: middle;
-    width: 100%;
-}
-
-.timeline__message-label {
-    @include sr-hide;
-}
-
-.timeline__form__controls {
-    @include clear-fix(true);
-
-    padding: 0;
-}
-
-.timeline__status-select {
-    display: inline-block;
-    font-size: 14px;
-    height: 30px;
-    line-height: 30px;
-    margin-top: 10px;
-    width: auto;
-
-    @include respond-min($screen-tablet) {
-        margin-top: 0;
-    }
-}
-
-.timeline__form__control,
-.timeline__status-undo {
-    font-size: 14px;
-    line-height: 26px;
-    margin: 0 1em 0 0;
-    text-decoration: none;
-}
-
-.timeline__undo-link {
-    display: block;
-
-    @include respond-min($screen-tablet) {
-        display: inline-block;
-    }
-}
-
-.has-timeline {
-    .tabs__content {
-        display: block;
-    }
-}
-
-.timeline__prologue {
-    display: block;
-    margin: ($padding-base * 2) 0;
-    text-align: center;
-
-    @include respond-min($screen-tablet) {
-        margin: 0 0 ($padding-base * 2);
-    }
-}
-
-.has-timeline .actionsbar {
-    margin: 14px $padding-base 0;
-
-    @include respond-min($screen-tablet) {
-        margin: 14px 0 16px;
-    }
-}
-
-.interstitial-warning {
-    margin: $padding-base 0 0;
-    text-align: right;
-}
-
-.timeline__attach-file.is-disabled {
-    cursor: default;
-    opacity: .5;
-    pointer-events: none;
-
-    &:hover,
-    &:focus,
-    &:active {
-        color: initial;
-    }
-}
-
-.timeline__attach-file-error {
-    color: color(danger);
-    font-size: 14px;
-    line-height: 1.5;
-    margin: .675em 0 0;
-}
-
-.timeline__attachment-feedback .timeline__attach-file-error {
-    padding-top: 1em;
 }
 
 .timeline-content__text,
