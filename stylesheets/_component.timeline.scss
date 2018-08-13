@@ -1,5 +1,3 @@
-$timeline-content-border: #ccc;
-
 .timeline {
     margin: 0;
     padding: 0;
@@ -43,10 +41,6 @@ $timeline-content-border: #ccc;
     margin: 1em 0;
     position: relative;
 
-    @include respond-min($screen-tablet) {
-        //margin: 2em 0;
-    }
-
     &:first-child {
         @include respond-min($screen-tablet) {
             margin-top: 0;
@@ -59,7 +53,7 @@ $timeline-content-border: #ccc;
 }
 
 .timeline-avatar {
-    background-color: #75ce66;
+    background-color: color(jadu-green, base);
     border-radius: 50%;
     height: 20px;
     left: 0;
@@ -129,11 +123,11 @@ $timeline-content-border: #ccc;
 
 .timeline-content {
     background: #fafafa;
-    border: 1px solid $timeline-content-border;
+    border: 1px solid color(gray, lightest);
     padding: 1em;
 
     @include respond-min($screen-tablet) {
-        border: 1px solid $timeline-content-border;
+        border: 1px solid color(gray, lightest);
         margin-left: 70px;
         margin-top: $padding-base;
         position: relative;
@@ -158,7 +152,7 @@ $timeline-content-border: #ccc;
 
         &::before {
             border-color: rgba(194, 225, 245, 0);
-            border-right-color: $timeline-content-border;
+            border-right-color: color(gray, lightest);
             border-width: 8px;
             margin-top: -8px;
         }
@@ -277,9 +271,9 @@ $timeline-content-border: #ccc;
 
     &__from-label--show,
     &__removed {
-        background: #f6b6b4;
+        background: color(jadu-pink, pale);
         border-radius: 3px;
-        color: #8c291c;
+        color: color(jadu-red, pale);
         padding: 1px 2px;
         text-decoration: line-through;
 
@@ -289,9 +283,9 @@ $timeline-content-border: #ccc;
     }
 
     &__to {
-        background: #abdfab;
+        background: color(jadu-green, pale);
         border-radius: 3px;
-        color: #3e6441;
+        color: color(jadu-green, darkest);
         padding: 1px 2px;
     }
 
@@ -309,7 +303,7 @@ $timeline-content-border: #ccc;
     }
 
     &--user {
-        box-shadow: 0 3px 0 #ccc;
+        box-shadow: 0 3px 0 color(gray, lightest);
     }
 }
 
@@ -319,5 +313,5 @@ $timeline-content-border: #ccc;
 
 .timeline-content__text,
 .timeago {
-    color: black;
+    color: color(black);
 }
