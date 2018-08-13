@@ -60,3 +60,21 @@ a.disabled {
     cursor: not-allowed !important;
   }
 }
+
+.skip-link {
+  background-color: color(white);
+  position: absolute;
+  left: -9999px;
+  padding: 0 10px;
+  text-align: left;
+  top: -9999px;
+  z-index: $zindex-nav;
+
+  &:focus {
+    display: block;
+    left: 0;
+    position: relative;
+    top: 0;
+    width: 100%;
+  }
+}
