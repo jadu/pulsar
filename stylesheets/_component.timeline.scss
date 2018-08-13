@@ -106,7 +106,7 @@
     }
 
     &--user {
-        background-color: #75ce66;
+        background-color: color(jadu-green, base);
         color: color(white);
     }
 
@@ -122,7 +122,7 @@
 }
 
 .timeline-content {
-    background: #fafafa;
+    background: color(white);
     border: 1px solid color(gray, lightest);
     padding: 1em;
 
@@ -144,14 +144,14 @@
         }
 
         &::after {
-            border-color: rgba(136, 183, 213, 0);
-            border-right-color: #fafafa;
+            border-color: transparent;
+            border-right-color: color(white);
             border-width: 7px;
             margin-top: -7px;
         }
 
         &::before {
-            border-color: rgba(194, 225, 245, 0);
+            border-color: transparent;
             border-right-color: color(gray, lightest);
             border-width: 8px;
             margin-top: -8px;
@@ -159,7 +159,7 @@
     }
 
     &__title {
-        color: #303e49;
+        color: color(gray, darker);
         display: inline-block;
         margin: 0 0 0 26px;
 
