@@ -155,6 +155,19 @@ describe('NavMainComponent', function () {
         });
     });
 
+    describe('when the window is resized, the initial tabindex should be changed to -1', function () {
+        beforeEach(function () {
+            this.navMainComponent.init();
+            this.window.matchMedia.returns({matches: false});
+            this.navMainComponent.manageTabIndexes();
+            this.$window.trigger('resize');
+        });
+
+        it('should maintain the initial tabindex', function () {
+            expect(this.$linkOne.attr('tabindex')).to.equal('-1');
+        });
+    });
+
     describe('When mobile menu button is clicked', function () {
         beforeEach(function () {
             this.navMainComponent.init();
