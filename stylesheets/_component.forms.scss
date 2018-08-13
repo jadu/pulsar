@@ -1,7 +1,8 @@
 fieldset {
-  padding: 0;
-  margin: 0;
-  border: 0;
+    border: 0;
+    margin: 0;
+    min-width: auto;
+    padding: 0;
 }
 
 .form {
@@ -354,7 +355,7 @@ fieldset {
         .control__label + .controls > .form__control:not(.checkbox):not(.radio).form__control-col--#{$i},
         .form__control-col--#{$i} .control__label + .controls > .form__control,
         .form__control-col--#{$i} .control__label + .controls > .form__control:not(.checkbox):not(.radio),
-        .form__control-col--#{$i} .control__label + .controls > .form__control + .select2 {
+        .form__control-col--#{$i} .control__label + .controls > .form__control:not(.checkbox):not(.radio) + .select2 {
             @include col-span-width($i, 9);
         }
     }
@@ -388,9 +389,14 @@ fieldset {
             width: #{$width};
         }
     }
+}
 
-    // Bumping specificity to compete with .form__group--#{$variant}.form__group--#{$variant} .form__control:not(.checkbox):not(.radio),
-    .form__group.form__group .input-group .form__control.form__control {
+.form__group.form__group .input-group .select2.select2,
+.form__group.form__group .input-group .form__control.form__control {
+    flex: 1 1 auto;
+    width: 1%; // needed to stop overflow, when option has a long string on < desktop
+
+    @include ie-lte(9) {
         width: 100%;
     }
 }
