@@ -80,6 +80,7 @@
     {% block pageStyle %}{% endblock %}
 </head>
 <body class="language-html theme-slate">
+<a class="skip-link" href="#skip-target">Skip to main content</a>
 
 {% block body %}
     <div role="main" class="container" id="top">
@@ -150,7 +151,9 @@
                     {% endif %}
 
                     {% block tabs_list %}{% endblock %}
-                    {% block tabs_content %}{% endblock %}
+                    <div id="skip-target">
+                        {% block tabs_content %}{% endblock %}
+                    </div>
                 </div>
             </div>
 
