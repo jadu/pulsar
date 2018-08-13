@@ -244,51 +244,6 @@
         }
     }
 
-    &__from {
-        display: inline-block;
-        height: 0;
-        opacity: 0;
-        overflow: hidden;
-        width: 0;
-    }
-
-    &__from--show {
-        height: auto;
-        opacity: 1;
-        overflow: visible;
-        padding: 0 3px;
-        width: auto;
-
-        .diff-multi-line & {
-            display: block;
-            padding: 5px 0;
-        }
-    }
-
-    &__from-label {
-        transition: background-color .5s linear, color .5s ease;
-    }
-
-    &__from-label--show,
-    &__removed {
-        background: color(jadu-pink, pale);
-        border-radius: 3px;
-        color: color(jadu-red, pale);
-        padding: 1px 2px;
-        text-decoration: line-through;
-
-        &:hover {
-            text-decoration: none;
-        }
-    }
-
-    &__to {
-        background: color(jadu-green, pale);
-        border-radius: 3px;
-        color: color(jadu-green, darkest);
-        padding: 1px 2px;
-    }
-
     &__body {
         clear: both;
         overflow: hidden;
