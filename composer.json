@@ -1,7 +1,7 @@
 {
     "name": "jadu/pulsar",
     "description": "The User Experience and Interface framework for the Jadu Continuum Platform",
-    "version": "8.0.0",
+    "version": "8.1.0",
     "license": "MIT",
     "autoload": {
         "psr-0": {
