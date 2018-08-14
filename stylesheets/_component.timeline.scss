@@ -1,0 +1,272 @@
+.timeline {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    word-break: break-word;
+
+    @include respond-min($screen-tablet) {
+        padding: 5px 0 2em;
+    }
+
+    @include ie-lte(8) {
+        &::before {
+            background: darken(#e9f0f5, 5%);
+            content: '';
+            height: 100%;
+            left: 35px;
+            position: absolute;
+            top: 54px;
+            width: 4px;
+        }
+    }
+
+    &::before {
+        @include respond-min($screen-tablet) {
+            background: darken(#e9f0f5, 5%);
+            content: '';
+            height: 100%;
+            left: 35px;
+            position: absolute;
+            top: 0;
+            width: 4px;
+
+            .lt-ie10 & {
+                top: 58px;
+            }
+        }
+    }
+}
+
+.timeline__item {
+    margin: 1em 0;
+    position: relative;
+
+    &:first-child {
+        @include respond-min($screen-tablet) {
+            margin-top: 0;
+        }
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.timeline-avatar {
+    background-color: color(jadu-green, base);
+    border-radius: 50%;
+    height: 20px;
+    left: 0;
+    margin-left: 1em;
+    position: absolute;
+    top: 14px;
+    width: 20px;
+
+    @include respond-min($screen-phone) {
+        height: 25px;
+        width: 25px;
+    }
+
+    @include respond-min($screen-tablet) {
+        box-shadow: 0 0 0 4px color(white), inset 0 2px 0 rgba(#000, .08), 0 3px 0 4px rgba(#000, .05);
+        height: 40px;
+        top: 0;
+        width: 40px;
+    }
+
+    span {
+        display: block;
+        font-size: 10px;
+        line-height: 2.1;
+        text-align: center;
+
+        @include respond-min($screen-phone) {
+            font-size: 13px;
+        }
+
+        @include respond-min($screen-tablet) {
+            font-size: 20px;
+        }
+    }
+
+    &__image {
+        border-radius: 50%;
+        height: 20px;
+        width: 20px;
+
+        @include respond-min($screen-phone) {
+            height: 25px;
+            width: 25px;
+        }
+
+        @include respond-min($screen-tablet) {
+            height: 40px;
+            width: 40px;
+        }
+    }
+
+    &--user {
+        background-color: color(jadu-green, base);
+        color: color(white);
+    }
+
+    &--admin {
+        background-color: color(jadu-blue);
+        color: color(white);
+    }
+
+    &--system {
+        background-color: color(jadu-blue);
+        color: color(white);
+    }
+}
+
+.timeline-content {
+    background: color(white);
+    border: 1px solid color(gray, lightest);
+    padding: 1em;
+
+    @include respond-min($screen-tablet) {
+        border: 1px solid color(gray, lightest);
+        margin-left: 70px;
+        margin-top: $padding-base;
+        position: relative;
+
+        &::before,
+        &::after {
+            border: solid transparent;
+            content: '';
+            height: 0;
+            position: absolute;
+            right: 100%;
+            top: 16px;
+            width: 0;
+        }
+
+        &::after {
+            border-color: transparent;
+            border-right-color: color(white);
+            border-width: 7px;
+            margin-top: -7px;
+        }
+
+        &::before {
+            border-color: transparent;
+            border-right-color: color(gray, lightest);
+            border-width: 8px;
+            margin-top: -8px;
+        }
+    }
+
+    &__title {
+        color: color(gray, darker);
+        display: inline-block;
+        margin: 0 0 0 26px;
+
+        @include respond-min($screen-phone) {
+            margin: 0 0 0 32px;
+        }
+
+        @include respond-min($screen-tablet) {
+            line-height: $line-height-base;
+            margin: 0;
+            width: 60%;
+        }
+    }
+
+    &__note-title {
+        margin: 1em 0;
+    }
+
+    &__text {
+        @include word-wrap();
+
+        margin: .5em 0;
+
+        @include respond-min($screen-tablet) {
+            margin: 1em 0;
+        }
+
+        a {
+            word-break: break-all;
+        }
+
+        .avatar {
+            background-color: color(white);
+            vertical-align: bottom;
+        }
+    }
+
+    &__small {
+        color: color(gray, dark);
+        display: inline-block;
+        font-size: .7em;
+
+        .label {
+            font-size: 100%;
+        }
+    }
+
+    &__date {
+        display: block;
+        font-size: 14px;
+        margin-top: $padding-base;
+
+        @include respond-min($screen-tablet) {
+            display: inline-block;
+            float: right;
+            margin-top: 0;
+            text-align: right;
+            width: 40%;
+        }
+    }
+
+    &__thumbnail-link {
+        border-radius: 4px;
+        cursor: pointer;
+        display: inline-block;
+        max-height: 250px;
+        max-width: 100%;
+        overflow: hidden;
+        position: relative;
+
+        @include ie-lte(10) {
+            max-width: 150px;
+        }
+    }
+
+    &__thumbnail {
+        max-height: 250px;
+        max-width: 100%;
+
+        @include ie-lte(10) {
+            max-width: 150px;
+        }
+    }
+
+    &__body {
+        clear: both;
+        overflow: hidden;
+
+        *:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &--admin {
+        box-shadow: 0 3px 0 color(jadu-blue);
+    }
+
+    &--user {
+        box-shadow: 0 3px 0 color(gray, lightest);
+    }
+}
+
+.timeline-content__inner {
+    overflow: hidden;
+}
+
+.timeline-content__text,
+.timeago {
+    color: color(black);
+}
