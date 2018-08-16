@@ -22,7 +22,7 @@
 
     <div class="nav-secondary t-nav-secondary" id="aria-secondary-nav">
 
-        <a class="nav-close" data-nav-action="close">{{ html.icon('remove', { 'label': 'Close expanded menu' }) }}</a>
+        <button class="nav-close" data-nav-action="close">{{ html.icon('remove', { 'label': 'Close expanded menu' }) }}</button>
 
         {% if options.data is iterable %}
             {% for options in options.data %}
@@ -54,7 +54,7 @@
 
     <div class="nav-tertiary t-nav-tertiary" id="aria-tertiary-nav">
 
-        <a href="#close" class="nav-close" data-nav-action="close">{{ html.icon('remove', { 'label': 'Close expanded menu' }) }}</a>
+        <button class="nav-close" data-nav-action="close">{{ html.icon('remove', { 'label': 'Close expanded menu' }) }}</button>
 
         <div class="nav-list">
             <h2 class="nav-item nav-item--header t-nav-header" id="aria-tertiary-nav-heading">More Categories</h2>
@@ -73,7 +73,7 @@
 
     <div class="nav-quaternary t-nav-quaternary" id="aria-quaternary-nav">
 
-        <a href="#close" class="nav-close-ltr" data-nav-action="close">{{ html.icon('remove', { 'label': 'Close expanded menu' }) }}</a>
+        <button class="nav-close-ltr" data-nav-action="close">{{ html.icon('remove', { 'label': 'Close expanded menu' }) }}</button>
 
            {% if options.data is iterable %}
                {% for options in options.data %}
@@ -115,7 +115,7 @@
     {% set tag = 'a' %}
     {% if options.href is defined and options.href|slice(0,1) == '#' %}
         {% set tag = 'button' %}
-        {% set options = options|merge({ 'href': null }) %}
+        {% set options = options|merge({ 'data-target': options.href, 'href': null }) %}
     {% endif %}
 
     <li
@@ -126,7 +126,7 @@
             )
         }}
     >
-        <{{ attributes(options|only('href data-toggle'), { 'tag': tag }) }} {% if heading_id is not null %} aria-labelledby="{{ heading_id|striptags|replace(' ', '-') }}"{% endif %} tabindex="1" class="nav-link t-nav-link" {% if options.class is defined and 'is-active' in options.class %} aria-current="page" {% endif %} {% if options.href starts with '#' %} aria-haspopup="true" aria-expanded="false" {% if aria_controls is not null %}aria-controls="{{ aria_controls }}"{% endif %}{% endif %}>
+        <{{ attributes(options|only('href data-toggle data-target'), { 'tag': tag }) }} {% if heading_id is not null %} aria-labelledby="{{ heading_id|striptags|replace(' ', '-') }}"{% endif %} tabindex="1" class="nav-link t-nav-link" {% if options.class is defined and 'is-active' in options.class %} aria-current="page" {% endif %} {% if options.href starts with '#' %} aria-haspopup="true" aria-expanded="false" {% if aria_controls is not null %}aria-controls="{{ aria_controls }}"{% endif %}{% endif %}>
             {% if options.icon is defined and options.icon is not empty %}
                 {{ html.icon(options.icon, { 'class': 'icon-fw nav-link__icon t-nav-icon' }) }}
             {% elseif options.image is defined and options.image is not empty %}
