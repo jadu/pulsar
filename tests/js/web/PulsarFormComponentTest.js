@@ -23,7 +23,7 @@ describe('PulsarFormComponent', function() {
                         <option>bar</option>
                         <option>baz</option>
                     </select>
-                
+
                     <div class="form__group form-choice choice--block">
                         <label class="control__label">Radio Test</label>
                         <div class="controls">
@@ -35,7 +35,7 @@ describe('PulsarFormComponent', function() {
                                 <input value="baz" name="foo" type="radio" class="form__control radio" checked>Baz</label>
                         </div>
                     </div>
-                
+
                     <div class="form__group form-choice choice--block">
                         <label class="control__label">Checkbox Test</label>
                         <div class="controls">
@@ -47,7 +47,7 @@ describe('PulsarFormComponent', function() {
                                 <input value="baz" name="foo" type="checkbox" class="form__control checkbox" checked>Baz</label>
                         </div>
                     </div>
-                
+
                     <div class="form__group">
                         <label class="control__label">Time picker test</label>
                         <div class="controls">
@@ -55,7 +55,7 @@ describe('PulsarFormComponent', function() {
                         </div>
                     </div>
                 </form>
-                
+
                 <input data-datepicker="true" type="text" />
             </div>
             <a href="#tab-foo" data-toggle="tab">tab</a>
@@ -259,7 +259,7 @@ describe('PulsarFormComponent', function() {
         it('should initiate the date pickers', function () {
             this.pulsarForm.refresh();
 
-            expect($.fn.pikaday).to.have.been.calledOnce;
+            expect($.fn.pikaday).to.have.been.called;
         });
 
         it('should initiate time pickers', function () {
