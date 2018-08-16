@@ -20,6 +20,8 @@ PulsarFormComponent.prototype.init = function () {
 
     // Date picker
     component.initDatePickers();
+    component.initUSDatePickers();
+    component.initReverseDatePickers();
 
     // Choice block
     component.initSelectionButtons();
@@ -64,6 +66,8 @@ PulsarFormComponent.prototype.refresh = function () {
 
     // Date picker
     this.initDatePickers();
+    this.initUSDatePickers();
+    this.initReverseDatePickers();
 
     // Choice block
     this.initSelectionButtons();
@@ -85,8 +89,28 @@ PulsarFormComponent.prototype.initTimePickers = function () {
 PulsarFormComponent.prototype.initDatePickers = function () {
     // Attach basic pikaday to datepicker fields
     this.$html
-        .find('[data-datepicker=true]')
+        .find('[data-datepickerStyle=default]')
         .pikaday({ format: 'DD/MM/YYYY' });
+}
+
+/**
+ * Initiate a date picker on data-datepicker fields using pickaday US Format
+ */
+PulsarFormComponent.prototype.initUSDatePickers = function () {
+    // Attach basic pikaday to datepicker fields
+    this.$html
+        .find('[data-datepickerStyle=US]')
+        .pikaday({ format: 'MM/DD/YYYY' });
+}
+
+/**
+ * Initiate a date picker on data-datepicker fields using pickaday reverse Format (Year first)
+ */
+PulsarFormComponent.prototype.initReverseDatePickers = function () {
+    // Attach basic pikaday to datepicker fields
+    this.$html
+        .find('[data-datepickerStyle=reverse]')
+        .pikaday({ format: 'YYYY/MM/DD' });
 }
 
 /**
