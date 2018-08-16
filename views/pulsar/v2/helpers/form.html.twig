@@ -869,7 +869,7 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
     {%
         set options = options|default({})|merge({
             'placeholder': options.placeholder|default('dd/mm/yyyy'),
-            'data-datepicker': 'true',
+            'data-datepicker': options['data-datepicker']|default('true'),
             'data-datepickerStyle': options['data-datepickerStyle']|default('default')
         })
     %}
