@@ -115,6 +115,7 @@
     {% set tag = 'a' %}
     {% if options.href is defined and options.href|slice(0,1) == '#' %}
         {% set tag = 'button' %}
+        {% set options = options|merge({ 'href': null }) %}
     {% endif %}
 
     <li
