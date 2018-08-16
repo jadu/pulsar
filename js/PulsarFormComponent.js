@@ -20,8 +20,6 @@ PulsarFormComponent.prototype.init = function () {
 
     // Date picker
     component.initDatePickers();
-    component.initUSDatePickers();
-    component.initReverseDatePickers();
 
     // Choice block
     component.initSelectionButtons();
@@ -66,8 +64,6 @@ PulsarFormComponent.prototype.refresh = function () {
 
     // Date picker
     this.initDatePickers();
-    this.initUSDatePickers();
-    this.initReverseDatePickers();
 
     // Choice block
     this.initSelectionButtons();
