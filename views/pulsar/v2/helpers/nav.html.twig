@@ -107,7 +107,7 @@
 {% endmacro %}
 
 
-{% macro nav_item(options, heading_id, aria_controls) %}
+{% macro nav_item(options, heading_id, aria_controls, aria_label) %}
 {% spaceless %}
     {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
@@ -121,12 +121,19 @@
     <li
         {{
             attributes(options
-                |exclude('data-toggle href icon label')
+                |exclude('data-toggle href icon label aria-label')
                 |defaults({ 'class': 'nav-item t-nav-item' })
             )
         }}
     >
-        <{{ attributes(options|only('href data-toggle data-target'), { 'tag': tag }) }} {% if heading_id is not null %} aria-labelledby="{{ heading_id|striptags|replace(' ', '-') }}"{% endif %} tabindex="1" class="nav-link t-nav-link" {% if options.class is defined and 'is-active' in options.class %} aria-current="page" {% endif %} {% if options.href starts with '#' or tag == 'button' %} aria-haspopup="true" aria-expanded="false" {% if aria_controls is not null %}aria-controls="{{ aria_controls }}"{% endif %}{% endif %}>
+        <{{ attributes(options|only('aria-label href data-toggle data-target'), { 'tag': tag }) }} 
+            tabindex="1" 
+            class="nav-link t-nav-link" 
+            {% if options.class is defined and 'is-active' in options.class %} aria-current="page" {% endif %} 
+            {% if options.href starts with '#' or tag == 'button' %} aria-haspopup="true" aria-expanded="false" 
+                {% if aria_controls is not null %}aria-controls="{{ aria_controls }}"{% endif %}
+            {% endif %}
+        >
             {% if options.icon is defined and options.icon is not empty %}
                 {{ html.icon(options.icon, { 'class': 'icon-fw nav-link__icon t-nav-icon' }) }}
             {% elseif options.image is defined and options.image is not empty %}
