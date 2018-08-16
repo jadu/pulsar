@@ -43,6 +43,7 @@ name        | string | The name of this control
 placeholder | string | A short hint that describes the expected value
 required    | bool   | Adds `required` and `aria-required="true"` attributes
 value       | string | Specifies the value of the input
+data-datepicker | bool | Initialises or not the datepicker. Accepts `true` (default) or `false`
 data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
 Any other options not listed here will be applied to the input.
