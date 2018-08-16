@@ -4,6 +4,7 @@ var $ = require('jquery');
 
 function NavMainComponent ($html, rootWindow) {
     this.$html = $html;
+    this.window = rootWindow;
     this.$window = $(rootWindow);
 };
 
@@ -24,6 +25,7 @@ NavMainComponent.prototype.init = function () {
     component.$body = this.$html.find('body');
     component.$navMain = this.$html.find('.nav-main');
     component.$contentMain = this.$html.find('.content-main');
+    component.$brandingLink = this.$html.find('.jadu-branding');
     component.$navPrimary = this.$html.find('.nav-primary');
     component.$navSecondary = this.$html.find('.nav-secondary');
     component.$navTertiary = component.$navMain.find('.nav-tertiary');
@@ -36,6 +38,9 @@ NavMainComponent.prototype.init = function () {
     // Calculate what primary nav items can be shown and which need to be hidden in more menu
     component.adjustNavItems();
 
+    // Check which tabindexes should be applied to navigation links to ensure WCAG compliance
+    component.manageTabIndexes();
+
     // Open navigation on mobile
     component.$mobileMenuButton.on('click', function(event) {
         var $self = $(this);
@@ -46,9 +51,13 @@ NavMainComponent.prototype.init = function () {
         if ($self.text() === 'Menu') {
             $self.text('Close');
             $self.attr('aria-expanded', 'true');
+            component.$brandingLink.attr('tabindex', '3');
+            component.$primaryNavLinks.attr('tabindex', '3');
         } else {
             $self.text('Menu');
             $self.attr('aria-expanded', 'false');
+            component.$brandingLink.attr('tabindex', '-1');
+            component.$primaryNavLinks.attr('tabindex', '-1');
         }
     });
 
@@ -62,6 +71,7 @@ NavMainComponent.prototype.init = function () {
     // Re-adjust nav items on window resize to calc if more button is needed 
     component.$window.resize(function () {
         component.adjustNavItems();
+        component.manageTabIndexes();
     });
 
     // Close navs on main content click
@@ -94,6 +104,23 @@ NavMainComponent.prototype.init = function () {
         event.preventDefault();
         component.closeNavs($(this));
     });
+};
+
+/**
+ * Unto the tabindex if the main nav is in responsive mode
+ * This maintains the tab order to ensure WCAG compliance
+ */
+NavMainComponent.prototype.manageTabIndexes = function () {
+    var component = this,
+        isMobile = !component.window.matchMedia('(min-width: 992px)').matches;
+
+    if (isMobile) {
+        component.$brandingLink.attr('tabindex', '-1');
+        component.$primaryNavLinks.attr('tabindex', '-1');
+    } else {
+        component.$brandingLink.attr('tabindex', '1');
+        component.$primaryNavLinks.attr('tabindex', '1');
+    }
 };
 
 /**
