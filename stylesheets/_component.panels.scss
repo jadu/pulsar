@@ -16,7 +16,6 @@
 
     &__body {
         max-height: 20em;
-        overflow-y: auto;
         padding: 10px $padding-base-horizontal;
 
         p,
@@ -57,7 +56,6 @@
             opacity: .5;
         }
     }
-
 }
 
 @each $state, $state-color, $state-color-alt in $state-colors {
@@ -116,9 +114,23 @@
 
 .panel__actions {
     margin-top: 10px;
+    min-height: 33px;
 
     .btn {
         margin-right: 5px;
+    }
+
+    .panel__btn--right {
+        float: right;
+
+        @include respond-max($screen-phablet) {
+            float: none;
+        }
+
+        @include respond-max($screen-phone) {
+            float: none;
+            margin-top: 10px;
+        }
     }
 }
 
@@ -135,4 +147,13 @@
 .panel__actions--right {
     margin: 10px 0 0;
     text-align: right;
+}
+
+.panel.with-timeline .panel__actions {
+    margin-bottom: 10px;
+    margin-left: 70px;
+
+    @include respond-max($screen-tablet) {
+        margin-left: 0;
+    }
 }
