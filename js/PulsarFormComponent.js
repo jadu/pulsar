@@ -84,29 +84,24 @@ PulsarFormComponent.prototype.initTimePickers = function () {
  */
 PulsarFormComponent.prototype.initDatePickers = function () {
     // Attach basic pikaday to datepicker fields
-    this.$html
-        .find('[data-datepickerStyle=default]')
-        .pikaday({ format: 'DD/MM/YYYY' });
-}
 
-/**
- * Initiate a date picker on data-datepicker fields using pickaday US Format
- */
-PulsarFormComponent.prototype.initUSDatePickers = function () {
-    // Attach basic pikaday to datepicker fields
-    this.$html
-        .find('[data-datepickerStyle=US]')
-        .pikaday({ format: 'MM/DD/YYYY' });
-}
+    const datepickers = this.$html.find('[data-datepicker="true"]');
 
-/**
- * Initiate a date picker on data-datepicker fields using pickaday reverse Format (Year first)
- */
-PulsarFormComponent.prototype.initReverseDatePickers = function () {
-    // Attach basic pikaday to datepicker fields
-    this.$html
-        .find('[data-datepickerStyle=reverse]')
-        .pikaday({ format: 'YYYY/MM/DD' });
+    datepickers.each((index, element) => {
+        const $element = $(element);
+
+        $element.parent()
+            .find('[data-datepickerStyle=default]')
+            .pikaday({ format: 'DD/MM/YYYY' });
+
+        $element.parent()
+            .find('[data-datepickerStyle=US]')
+            .pikaday({ format: 'MM/DD/YYYY' });
+
+        $element.parent()
+            .find('[data-datepickerStyle=reverse]')
+            .pikaday({ format: 'YYYY/MM/DD' });
+    });
 }
 
 /**
