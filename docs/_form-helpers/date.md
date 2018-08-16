@@ -47,6 +47,32 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
 
 Any other options not listed here will be applied to the input.
 
+## US and Reverse Formats
+
+Add the `data-datepickerStyle': 'US'` or `'data-datepickerStyle': 'reverse'` option to format the date properly.
+
+{% code_example form_helpers/date-us %}
+
+<div class="pulsar-example form">
+    <div class="form__group">
+        <label for="example-date" class="control__label">Date US format</label>
+        <div class="controls">
+            <input id="example-date" placeholder="mm/dd/yyyy" data-datepicker="true" data-datepickerStyle='US' type="text" class="form__control">
+        </div>
+    </div>
+</div>
+
+{% code_example form_helpers/date-reverse %}
+
+<div class="pulsar-example form">
+    <div class="form__group">
+        <label for="example-date" class="control__label">Date reverse format</label>
+        <div class="controls">
+            <input id="example-date" placeholder="yyyy/mm/mm" data-datepicker="true" data-datepickerStyle='reverse' type="text" class="form__control">
+        </div>
+    </div>
+</div>
+
 ## Disabled state
 
 Add the `'disabled': true` option to disable the field on load. See the [disabling elements styleguide](styleguides/disabling_elements/) for more information about how to disable elements via javascript. Provide help text or information within the UI where possible to explain why elements are disabled.
