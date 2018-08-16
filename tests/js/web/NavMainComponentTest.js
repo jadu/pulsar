@@ -34,7 +34,7 @@ describe('NavMainComponent', function () {
                    </ul>
                </div>
                <div class="nav-secondary" id="aria-secondary-nav">
-                   <a href="#close" data-nav-action="close">x</a>
+                   <button data-nav-action="close">x</button>
                    <form>
                        <input type="search" placeholder="search" />
                        <button>Go</button>
@@ -55,7 +55,7 @@ describe('NavMainComponent', function () {
                    </div>
                </div>
                <div class="nav-tertiary" id="aria-tertiary-nav">
-                   <a href="#close" data-nav-action="close">x</a>
+                   <button data-nav-action="close">x</button>
                    <div class="nav-list">
                        <ul class="nav-items">
                            <li class="nav-item">
@@ -65,7 +65,7 @@ describe('NavMainComponent', function () {
                    </div>
                </div>
                <div class="nav-quaternary" id="aria-quaternary-nav">
-                   <a href="#close" data-nav-action="close">x</a>
+                   <button data-nav-action="close">x</button>
                    <div class="nav-list" data-nav="#three_one">
                        <ul class="nav-items">
                            <li class="nav-item">

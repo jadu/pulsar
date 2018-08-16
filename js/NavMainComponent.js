@@ -130,7 +130,14 @@ NavMainComponent.prototype.manageTabIndexes = function () {
  */
 NavMainComponent.prototype.openSecondaryNav = function ($linkClicked, event) {
     var component = this,
+        target;
+
+    if ($linkClicked[0].hasAttribute('href')) {
         target = $linkClicked.attr('href');
+    }
+    else if ($linkClicked[0].hasAttribute('data-target')) {
+        target = $linkClicked.attr('data-target');
+    }
 
     // Close any previously open navs
     component.closeSecondaryNav();
