@@ -14,7 +14,7 @@ Generates a text input field which will show a date picker when focused.
     <div class="form__group">
         <label for="example-date" class="control__label">Date picker</label>
         <div class="controls">
-            <input id="example-date" placeholder="dd/mm/yyyy" data-datepicker="true" type="text" class="form__control">
+            <input id="example-date" placeholder="dd/mm/yyyy" data-datepicker="true" data-datepickerStyle='default' type="text" class="form__control">
         </div>
     </div>
 </div>
