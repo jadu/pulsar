@@ -1,6 +1,6 @@
 <div class="form__group">
     <label for="foo" class="control__label">Date picker</label>
     <div class="controls">
-        <input id="foo" name="bar" placeholder="dd/mm/yyyy" data-datepicker="true" data-datepickerStyle='US' type="text" class="form__control">
+        <input id="foo" name="bar" placeholder="dd/mm/yyyy" data-datepicker="true" data-dateformat='US' type="text" class="form__control">
     </div>
 </div>

@@ -88,18 +88,18 @@ PulsarFormComponent.prototype.initDatePickers = function () {
     const datepickers = this.$html.find('[data-datepicker="true"]');
 
     datepickers.each((index, element) => {
-        const $element = $(element);
+        const $parent = $(element).parent();
 
-        $element.parent()
-            .find('[data-datepickerStyle=default]')
+        $parent
+            .find('[data-dateformat=default]')
             .pikaday({ format: 'DD/MM/YYYY' });
 
-        $element.parent()
-            .find('[data-datepickerStyle=US]')
+        $parent
+            .find('[data-dateformat=US]')
             .pikaday({ format: 'MM/DD/YYYY' });
 
-        $element.parent()
-            .find('[data-datepickerStyle=reverse]')
+        $parent
+            .find('[data-dateformat=reverse]')
             .pikaday({ format: 'YYYY/MM/DD' });
     });
 }
