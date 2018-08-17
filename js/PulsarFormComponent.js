@@ -91,15 +91,15 @@ PulsarFormComponent.prototype.initDatePickers = function () {
         const $element = $(element);
 
         $element.parent()
-            .find('[format=default]')
+            .find('[data-datepickerStyle=default]')
             .pikaday({ format: 'DD/MM/YYYY' });
 
         $element.parent()
-            .find('[format=US]')
+            .find('[data-datepickerStyle=US]')
             .pikaday({ format: 'MM/DD/YYYY' });
 
         $element.parent()
-            .find('[format=reverse]')
+            .find('[data-datepickerStyle=reverse]')
             .pikaday({ format: 'YYYY/MM/DD' });
     });
 }

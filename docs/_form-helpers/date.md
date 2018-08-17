@@ -14,7 +14,7 @@ Generates a text input field which will show a date picker when focused.
     <div class="form__group">
         <label for="example-date" class="control__label">Date picker</label>
         <div class="controls">
-            <input id="example-date" placeholder="dd/mm/yyyy" data-datepicker="true" format='default' type="text" class="form__control">
+            <input id="example-date" placeholder="dd/mm/yyyy" data-datepicker="true" data-datepickerStyle='default' type="text" class="form__control">
         </div>
     </div>
 </div>
@@ -50,7 +50,7 @@ Any other options not listed here will be applied to the input.
 
 ## US and Reverse Formats
 
-Add the `format': 'US'` or `'format': 'reverse'` option to format the date properly.
+Add the `data-datepickerStyle': 'US'` or `'data-datepickerStyle': 'reverse'` option to format the date properly.
 
 {% code_example form_helpers/date-us %}
 
@@ -58,7 +58,7 @@ Add the `format': 'US'` or `'format': 'reverse'` option to format the date prope
     <div class="form__group">
         <label for="example-date" class="control__label">Date US format</label>
         <div class="controls">
-            <input id="example-date" placeholder="mm/dd/yyyy" data-datepicker="true" format='US' type="text" class="form__control">
+            <input id="example-date" placeholder="mm/dd/yyyy" data-datepicker="true" data-datepickerStyle='US' type="text" class="form__control">
         </div>
     </div>
 </div>
@@ -69,7 +69,7 @@ Add the `format': 'US'` or `'format': 'reverse'` option to format the date prope
     <div class="form__group">
         <label for="example-date" class="control__label">Date reverse format</label>
         <div class="controls">
-            <input id="example-date" placeholder="yyyy/mm/mm" data-datepicker="true" format='reverse' type="text" class="form__control">
+            <input id="example-date" placeholder="yyyy/mm/mm" data-datepicker="true" data-datepickerStyle='reverse' type="text" class="form__control">
         </div>
     </div>
 </div>

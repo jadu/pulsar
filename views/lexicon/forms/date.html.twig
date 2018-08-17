@@ -9,7 +9,7 @@
     {{
         form.date({
             'data-datepicker': 'false',
-            'id': 'date-noDatePicker',
+            'id': 'date-noDayPicker',
             'label': 'Date field without Day Picker'
         })
     }}
@@ -23,7 +23,7 @@
 
     {{
         form.date({
-            'format': 'US',
+            'data-datepickerStyle': 'US',
             'id': 'date-US',
             'label': 'Date US style',
             'placeholder': 'mm/dd/yyyy'
@@ -32,7 +32,7 @@
 
     {{
         form.date({
-            'format': 'reverse',
+            'data-datepickerStyle': 'reverse',
             'id': 'date-reverse',
             'label': 'Date reverse style',
             'placeholder': 'yyyy/mm/dd'
