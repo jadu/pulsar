@@ -14,7 +14,7 @@ Generates a text input field which will show a date picker when focused.
     <div class="form__group">
         <label for="example-date" class="control__label">Date picker</label>
         <div class="controls">
-            <input id="example-date" placeholder="dd/mm/yyyy" data-datepicker="true" data-dateformat='default' type="text" class="form__control">
+            <input id="example-date" placeholder="dd/mm/yyyy" data-datepicker="true" data-format='default' type="text" class="form__control">
         </div>
     </div>
 </div>
@@ -38,6 +38,7 @@ Option      | Type   | Description
 autofocus   | bool   | Whether the field should have input focus on page load
 disabled    | bool   | Stops the element from being interactive if true
 form        | string | Specific one or more forms this label belongs to
+format      | string | Options for this can be `default`, `US` or `reverse`
 id          | string | A unique identifier, if required
 name        | string | The name of this control
 placeholder | string | A short hint that describes the expected value
@@ -50,7 +51,7 @@ Any other options not listed here will be applied to the input.
 
 ## US and Reverse Formats
 
-Add the `data-dateformat': 'US'` or `'data-dateformat': 'reverse'` option to format the date properly.
+Add the `data-format': 'US'` or `'data-format': 'reverse'` option to format the date properly.
 
 {% code_example form_helpers/date-us %}
 
@@ -58,7 +59,7 @@ Add the `data-dateformat': 'US'` or `'data-dateformat': 'reverse'` option to for
     <div class="form__group">
         <label for="example-date" class="control__label">Date US format</label>
         <div class="controls">
-            <input id="example-date" placeholder="mm/dd/yyyy" data-datepicker="true" data-dateformat='US' type="text" class="form__control">
+            <input id="example-date" placeholder="mm/dd/yyyy" data-datepicker="true" data-format='US' type="text" class="form__control">
         </div>
     </div>
 </div>
@@ -69,7 +70,7 @@ Add the `data-dateformat': 'US'` or `'data-dateformat': 'reverse'` option to for
     <div class="form__group">
         <label for="example-date" class="control__label">Date reverse format</label>
         <div class="controls">
-            <input id="example-date" placeholder="yyyy/mm/mm" data-datepicker="true" data-dateformat='reverse' type="text" class="form__control">
+            <input id="example-date" placeholder="yyyy/mm/mm" data-datepicker="true" data-format='reverse' type="text" class="form__control">
         </div>
     </div>
 </div>
