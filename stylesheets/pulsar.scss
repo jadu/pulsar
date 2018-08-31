@@ -41,6 +41,7 @@ $fa-css-prefix: 'icon';
 @import 'mixin.media-queries';
 @import 'mixin.mixins-to-organise';
 @import 'mixin.responsive-utilities';
+@import 'mixin.word-wrap';
 
 // Config
 @import 'config.variables';
@@ -144,6 +145,7 @@ $fa-css-prefix: 'icon';
 @import 'component.tab-panel';
 @import 'component.tables';
 @import 'component.table-detail';
+@import 'component.timeline';
 @import 'component.timepicker';
 @import 'component.datatables';
 @import 'component.toggle-switch';

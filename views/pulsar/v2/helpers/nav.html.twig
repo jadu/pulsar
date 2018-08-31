@@ -5,7 +5,7 @@
 
 <nav class="nav-main" aria-label="Primary" id="aria-main-nav">
     <div class="nav-primary t-nav-primary">
-        <a href="{{ options.brand_link|default('#') }}" class="jadu-branding">
+        <a tabindex="1" href="{{ options.brand_link|default('#') }}" class="jadu-branding">
             <span class="jadu-logomark"></span>
             <span class="jadu-wordmark">Jadu</span>
         </a>
@@ -29,7 +29,7 @@
                 {% if options.items is defined and options.items is iterable %}
 
                     <div class="nav-list" data-nav="{{ options.href }}">
-                        <h2 class="nav-item nav-item--header t-nav-header" id="aria-secondary-nav-heading-{{ options.label|raw }}">{{ options.label|raw }}</h2>
+                        <h2 class="nav-item nav-item--header t-nav-header" id="aria-secondary-nav-heading-{{ options.label|striptags|replace(' ', '-')|raw }}">{{ options.label|raw }}</h2>
 
                         <ul class="nav-items">
                             {% set heading_id = 'aria-secondary-nav-heading-' ~ options.label|raw %}
@@ -80,7 +80,7 @@
                    {% if options.items is defined and options.items is iterable %}
 
                        <div class="nav-list" data-nav="{{ options.href }}">
-                           <h2 class="nav-item nav-item--header t-nav-header" id="aria-quaternary-nav-heading-{{options.label|raw}}">{{ options.label|raw }}</h2>
+                           <h2 class="nav-item nav-item--header t-nav-header" id="aria-quaternary-nav-heading-{{ options.label|striptags|replace(' ', '-')|raw }}">{{ options.label|raw }}</h2>
                            {% set heading_id = 'aria-quaternary-nav-heading-' ~ options.label|raw %}
 
                            <ul class="nav-items">
@@ -120,7 +120,7 @@
             )
         }}
     >
-        <a {{ attributes(options|only('href data-toggle')) }} {% if heading_id is not null %} aria-describedby="{{ heading_id }}"{% endif %} class="nav-link t-nav-link" {% if options.class is defined and 'is-active' in options.class %} aria-current="page" {% endif %} {% if options.href starts with '#' %} aria-haspopup="true" aria-expanded="false" {% if aria_controls is not null %}aria-controls="{{ aria_controls }}"{% endif %}{% endif %}>
+        <a tabindex="1" {{ attributes(options|only('href data-toggle')) }} {% if heading_id is not null %} aria-labelledby="{{ heading_id|striptags|replace(' ', '-') }}"{% endif %} class="nav-link t-nav-link" {% if options.class is defined and 'is-active' in options.class %} aria-current="page" {% endif %} {% if options.href starts with '#' %} aria-haspopup="true" aria-expanded="false" {% if aria_controls is not null %}aria-controls="{{ aria_controls }}"{% endif %}{% endif %}>
             {% if options.icon is defined and options.icon is not empty %}
                 {{ html.icon(options.icon, { 'class': 'icon-fw nav-link__icon t-nav-icon' }) }}
             {% elseif options.image is defined and options.image is not empty %}
@@ -161,9 +161,10 @@
             {{
                 html.link({
                     'class': 'toolbar-help-link',
-                    'href': '#',
+                    'href': '#user-guides',
                     'icon': 'question-sign',
                     'label': options.label|default('user guides'),
+                    'tabindex': options.tabindex|default('0'),
                     'data-toggle': 'dropdown'
                 })
             }}
