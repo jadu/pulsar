@@ -80,6 +80,7 @@
     {% block pageStyle %}{% endblock %}
 </head>
 <body class="language-html theme-slate">
+<a class="skip-link" href="#skip-target" tabindex="1">Skip to main content</a>
 
 {% block body %}
     <div role="main" class="container" id="top">
@@ -90,7 +91,7 @@
 
             <div class="toolbar">
 
-                <button class="mobile-menu-button t-mobile-menu-button" aria-expanded="false" aria-controls="aria-main-nav" aria-label="Toggle main menu">Menu</button>
+                <button tabindex="2" class="mobile-menu-button t-mobile-menu-button" aria-expanded="false" aria-controls="aria-main-nav" aria-label="Toggle main menu">Menu</button>
 
                 {% block notifications %}{% endblock %}
 
@@ -100,6 +101,7 @@
                     html.button_dropdown({
                         'parent_class': 'dropdown user-menu btn--naked',
                         'label': 'Paul Stanton',
+                        'tabindex': '5',
                         'items': [
                             html.link({
                                 "label": html.icon('user') ~ " My details",
@@ -126,8 +128,8 @@
 
             {% block search %}
             <form action="/search" class="main-search" data-ui="search-box">
-                <input type="search" name="q" id="case-search" value="" placeholder="Search" title="search" class="main-search__field" autocomplete="off" aria-labelledby="search-submit">
-                <button id="search-submit" class="main-search__submit" type="submit" name="case-search"><i class="icon-search"><span class="hide">Search</span></i></button>
+                <input type="search" tabindex="3" name="q" id="case-search" value="" placeholder="Search" title="search" class="main-search__field" autocomplete="off" aria-labelledby="search-submit">
+                <button id="search-submit" tabindex="3" class="main-search__submit" type="submit" name="case-search"><i class="icon-search"><span class="hide">Search</span></i></button>
             </form>
             {% endblock %}
 
@@ -149,7 +151,9 @@
                         <h1 class="main-title">{{ heading|default('MISSING HEADING') }}</h1>
                     {% endif %}
                     {% block tabs_list %}{% endblock %}
-                    {% block tabs_content %}{% endblock %}
+                    <div id="skip-target">
+                        {% block tabs_content %}{% endblock %}
+                    </div>
                 </div>
             </div>
 

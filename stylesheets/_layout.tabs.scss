@@ -94,7 +94,7 @@
     width: 100%;
 
     // show/hide tab panes
-    > .tab__pane {
+    .tab__pane {
         display: none;
 
         &.is-active {
