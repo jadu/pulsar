@@ -40,7 +40,7 @@ class HelperOptionsModifierExtension extends \Twig_Extension
         }
 
         // Check if errors are present in options
-        if (array_key_exists('error', $options) and count($options['error']) > 0) {
+        if (array_key_exists('error', $options) and is_array($options['error']) and count($options['error']) > 0) {
             $numberOfErrors = count($options['error']);
             $errorGuids = array();
 
@@ -56,7 +56,7 @@ class HelperOptionsModifierExtension extends \Twig_Extension
         }
 
         // Check if errors are present in options
-        if (array_key_exists('help', $options) and count($options['help']) > 0) {
+        if (array_key_exists('help', $options) and is_array($options['help']) and count($options['help']) > 0) {
             $options['help_id'] = 'guid-' . rand();
         }
 
