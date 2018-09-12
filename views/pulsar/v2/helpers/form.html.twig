@@ -1275,7 +1275,7 @@ controls.class    | string | A space separated list of class names
 
         {% if options.parent.bare is not defined or options.parent.bare != true %}
             <{{ attributes(options|defaults({
-                'class': 'controls' ~ (options.controls.class is defined ? options.controls.class)
+                'class': 'controls ' ~ (options.controls.class is defined ? options.controls.class)
             }), {'tag': ((isToggleSwitch) ? 'span' : 'div')}) }}>
         {% endif %}
 
