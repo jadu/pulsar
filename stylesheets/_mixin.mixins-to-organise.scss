@@ -179,7 +179,7 @@
     // state text colour for now (21/4/2016), but if it's a sibling of an error
     // help block, then a standalone help block should be gray
     .help-block.is-error + .help-block:not(.is-error) {
-        color: color(text, light);
+        color: color(text, help);
         font-family: $font-family-base;
     }
 

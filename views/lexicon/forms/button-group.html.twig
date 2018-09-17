@@ -1,6 +1,7 @@
 {% extends '@pulsar/pulsar/components/tab.html.twig' %}
 
 {% block tab_content %}
+{% set i = 1 %}
 
     {{
         form.create()
@@ -8,52 +9,55 @@
 
     {{
         form.button_group({
-            'label': 'Button group (checkboxes)',
+            'label': 'Button group ' ~ i,
             'type': 'checkbox',
             'error': 'something went wrong',
             'items': [
                 {
-                    'id': 'foo1',
-                    'label': 'Foo',
-                    'name': 'foo-1'
+                    'id': 'foo-' ~ i,
+                    'label': 'Foo ' ~ i,
+                    'name': 'foo-' ~ i,
+                    'checked': true
                 },
                 {
-                    'id': 'bar1',
-                    'label': 'Bar',
-                    'name': 'foo-1'
+                    'id': 'bar-' ~ i,
+                    'label': 'Bar ' ~ i,
+                    'name': 'foo-' ~ i
                 },
                 {
-                    'id': 'baz1',
-                    'label': 'Baz',
-                    'name': 'foo-1'
+                    'id': 'baz-' ~ i,
+                    'label': 'Baz ' ~ i,
+                    'name': 'foo-' ~  i
                 }
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{
         form.button_group({
-            'label': 'Button group (radios)',
-            'type': 'radio',
+            'label': 'Button group ' ~ i,
             'items': [
                 {
-                    'id': 'foo2',
-                    'label': 'Foo',
-                    'name': 'foo-2'
+                    'id': 'foo-' ~ i,
+                    'label': 'Foo ' ~ i,
+                    'name': 'foo-' ~ i,
+                    'checked': true
                 },
                 {
-                    'id': 'bar2',
-                    'label': 'Bar',
-                    'name': 'foo-2'
+                    'id': 'bar-' ~ i,
+                    'label': 'Bar ' ~ i,
+                    'name': 'foo-' ~ i
                 },
                 {
-                    'id': 'baz2',
-                    'label': 'Baz',
-                    'name': 'foo-2'
+                    'id': 'baz-' ~ i,
+                    'label': 'Baz ' ~ i,
+                    'name': 'foo-' ~  i
                 }
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{
         form.button_group({
@@ -61,23 +65,25 @@
             'required': true,
             'items': [
                 {
-                    'id': 'foo3',
-                    'label': 'Foo',
-                    'name': 'foo-3'
+                    'id': 'foo-' ~ i,
+                    'label': 'Foo ' ~ i,
+                    'name': 'foo-' ~ i,
+                    'checked': true
                 },
                 {
-                    'id': 'bar3',
-                    'label': 'Bar',
-                    'name': 'foo-3'
+                    'id': 'bar-' ~ i,
+                    'label': 'Bar ' ~ i,
+                    'name': 'foo-' ~ i
                 },
                 {
-                    'id': 'baz3',
-                    'label': 'Baz',
-                    'name': 'foo-3'
+                    'id': 'baz-' ~ i,
+                    'label': 'Baz ' ~ i,
+                    'name': 'foo-' ~  i
                 }
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{
         form.button_group({
@@ -85,23 +91,25 @@
             'help': 'Help text to give more information about expected input',
             'items': [
                 {
-                    'id': 'foo4',
-                    'label': 'Foo',
-                    'name': 'foo-4'
+                    'id': 'foo-' ~ i,
+                    'label': 'Foo ' ~ i,
+                    'name': 'foo-' ~ i,
+                    'checked': true
                 },
                 {
-                    'id': 'bar4',
-                    'label': 'Bar',
-                    'name': 'foo-4'
+                    'id': 'bar-' ~ i,
+                    'label': 'Bar ' ~ i,
+                    'name': 'foo-' ~ i
                 },
                 {
-                    'id': 'baz4',
-                    'label': 'Baz',
-                    'name': 'foo-4'
+                    'id': 'baz-' ~ i,
+                    'label': 'Baz ' ~ i,
+                    'name': 'foo-' ~  i
                 }
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{
         form.button_group({
@@ -109,23 +117,25 @@
             'guidance': 'Help text to give more information about expected input',
             'items': [
                 {
-                    'id': 'foo5',
-                    'label': 'Foo',
-                    'name': 'foo-5'
+                    'id': 'foo-' ~ i,
+                    'label': 'Foo ' ~ i,
+                    'name': 'foo-' ~ i,
+                    'checked': true
                 },
                 {
-                    'id': 'bar5',
-                    'label': 'Bar',
-                    'name': 'foo-5'
+                    'id': 'bar-' ~ i,
+                    'label': 'Bar ' ~ i,
+                    'name': 'foo-' ~ i
                 },
                 {
-                    'id': 'baz5',
-                    'label': 'Baz',
-                    'name': 'foo-5'
+                    'id': 'baz-' ~ i,
+                    'label': 'Baz ' ~ i,
+                    'name': 'foo-' ~  i
                 }
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{
         form.button_group({
@@ -134,24 +144,26 @@
             'required': true,
             'items': [
                 {
-                    'id': 'foo6',
-                    'label': 'Foo',
-                    'name': 'foo-6',
+                    'id': 'foo-' ~ i,
+                    'label': 'Foo ' ~ i,
+                    'name': 'foo-' ~ i,
                     'checked': true
                 },
                 {
-                    'id': 'bar6',
-                    'label': 'Bar',
-                    'name': 'foo-6'
+                    'id': 'bar-' ~ i,
+                    'label': 'Bar ' ~ i,
+                    'name': 'foo-' ~ i
                 },
                 {
-                    'id': 'baz6',
-                    'label': 'Baz',
-                    'name': 'foo-6'
+                    'id': 'baz-' ~ i,
+                    'label': 'Baz ' ~ i,
+                    'name': 'foo-' ~  i
                 }
             ]
         })
     }}
+    {% set i = i + 1 %}
+    
 
     {{ form.fieldset_end() }}
     {{ form.fieldset_start({ 'legend': 'Alignment' }) }}
@@ -163,24 +175,25 @@
             'help': 'This example hides the label with the <code>show-label</code> option',
             'items': [
                 {
-                    'id': 'foo7',
-                    'label': 'Foo',
-                    'name': 'foo-7',
+                    'id': 'foo-' ~ i,
+                    'label': 'Foo ' ~ i,
+                    'name': 'foo-' ~ i,
                     'checked': true
                 },
                 {
-                    'id': 'bar7',
-                    'label': 'Bar',
-                    'name': 'foo-7'
+                    'id': 'bar-' ~ i,
+                    'label': 'Bar ' ~ i,
+                    'name': 'foo-' ~ i
                 },
                 {
-                    'id': 'baz7',
-                    'label': 'Baz',
-                    'name': 'foo-7'
+                    'id': 'baz-' ~ i,
+                    'label': 'Baz ' ~ i,
+                    'name': 'foo-' ~  i
                 }
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{
         form.button_group({
@@ -189,24 +202,25 @@
             'guidance': 'Help text to give more information about expected input',
             'items': [
                 {
-                    'id': 'foo8',
-                    'label': 'Foo',
-                    'name': 'foo-8',
+                    'id': 'foo-' ~ i,
+                    'label': 'Foo ' ~ i,
+                    'name': 'foo-' ~ i,
                     'checked': true
                 },
                 {
-                    'id': 'bar8',
-                    'label': 'Bar',
-                    'name': 'foo-8'
+                    'id': 'bar-' ~ i,
+                    'label': 'Bar ' ~ i,
+                    'name': 'foo-' ~ i
                 },
                 {
-                    'id': 'baz8',
-                    'label': 'Baz',
-                    'name': 'foo-8'
+                    'id': 'baz-' ~ i,
+                    'label': 'Baz ' ~ i,
+                    'name': 'foo-' ~  i
                 }
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{
         form.button_group({
@@ -216,24 +230,25 @@
             'guidance': 'Help text to give more information about expected input',
             'items': [
                 {
-                    'id': 'foo9',
-                    'label': 'Foo',
-                    'name': 'foo-9',
+                    'id': 'foo-' ~ i,
+                    'label': 'Foo ' ~ i,
+                    'name': 'foo-' ~ i,
                     'checked': true
                 },
                 {
-                    'id': 'bar9',
-                    'label': 'Bar',
-                    'name': 'foo-9'
+                    'id': 'bar-' ~ i,
+                    'label': 'Bar ' ~ i,
+                    'name': 'foo-' ~ i
                 },
                 {
-                    'id': 'baz9',
-                    'label': 'Baz',
-                    'name': 'foo-9'
+                    'id': 'baz-' ~ i,
+                    'label': 'Baz ' ~ i,
+                    'name': 'foo-' ~  i
                 }
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{
         form.button_group({
@@ -243,24 +258,54 @@
             'guidance': 'Help text to give more information about expected input',
             'items': [
                 {
-                    'id': 'foo10',
-                    'label': 'Foo',
-                    'name': 'foo-10',
+                    'id': 'foo-' ~ i,
+                    'label': 'Foo ' ~ i,
+                    'name': 'foo-' ~ i,
                     'checked': true
                 },
                 {
-                    'id': 'bar10',
-                    'label': 'Bar',
-                    'name': 'foo-10'
+                    'id': 'bar-' ~ i,
+                    'label': 'Bar ' ~ i,
+                    'name': 'foo-' ~ i
                 },
                 {
-                    'id': 'baz10',
-                    'label': 'Baz',
-                    'name': 'foo-10'
+                    'id': 'baz-' ~ i,
+                    'label': 'Baz ' ~ i,
+                    'name': 'foo-' ~  i
                 }
             ]
         })
     }}
+    {% set i = i + 1 %}
+
+    {{ form.fieldset_end() }}
+    {{ form.fieldset_start({ 'legend': 'Grid Sizes' }) }}
+
+    {{
+        form.button_group({
+            'class': 'form__control-col--1',
+            'label': 'Button group',
+            'items': [
+                {
+                    'id': 'foo-' ~ i,
+                    'label': 'Foo ' ~ i,
+                    'name': 'foo-' ~ i,
+                    'checked': true
+                },
+                {
+                    'id': 'bar-' ~ i,
+                    'label': 'Bar ' ~ i,
+                    'name': 'foo-' ~ i
+                },
+                {
+                    'id': 'baz-' ~ i,
+                    'label': 'Baz ' ~ i,
+                    'name': 'foo-' ~  i
+                }
+            ]
+        })
+    }}
+    {% set i = i + 1 %}
 
     {{ form.fieldset_end() }}
     {{ form.fieldset_start({ 'legend': 'Errors &amp; Validation' }) }}
@@ -271,24 +316,25 @@
             'error': 'Please choose an option',
             'items': [
                 {
-                    'id': 'foo12',
-                    'label': 'Foo',
-                    'name': 'foo-12',
+                    'id': 'foo-' ~ i,
+                    'label': 'Foo ' ~ i,
+                    'name': 'foo-' ~ i,
                     'checked': true
                 },
                 {
-                    'id': 'bar12',
-                    'label': 'Bar',
-                    'name': 'foo-12'
+                    'id': 'bar-' ~ i,
+                    'label': 'Bar ' ~ i,
+                    'name': 'foo-' ~ i
                 },
                 {
-                    'id': 'baz12',
-                    'label': 'Baz',
-                    'name': 'foo-12'
+                    'id': 'baz-' ~ i,
+                    'label': 'Baz ' ~ i,
+                    'name': 'foo-' ~  i
                 }
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{
         form.button_group({
@@ -296,24 +342,25 @@
             'error': ['Do this', 'Do this too'],
             'items': [
                 {
-                    'id': 'foo13',
-                    'label': 'Foo',
-                    'name': 'foo-13',
+                    'id': 'foo-' ~ i,
+                    'label': 'Foo ' ~ i,
+                    'name': 'foo-' ~ i,
                     'checked': true
                 },
                 {
-                    'id': 'bar13',
-                    'label': 'Bar',
-                    'name': 'foo-13'
+                    'id': 'bar-' ~ i,
+                    'label': 'Bar ' ~ i,
+                    'name': 'foo-' ~ i
                 },
                 {
-                    'id': 'baz13',
-                    'label': 'Baz',
-                    'name': 'foo-13'
+                    'id': 'baz-' ~ i,
+                    'label': 'Baz ' ~ i,
+                    'name': 'foo-' ~  i
                 }
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{
         form.button_group({
@@ -322,24 +369,25 @@
             'help': 'Help text to give more information about expected input',
             'items': [
                 {
-                    'id': 'foo14',
-                    'label': 'Foo',
-                    'name': 'foo-14',
+                    'id': 'foo-' ~ i,
+                    'label': 'Foo ' ~ i,
+                    'name': 'foo-' ~ i,
                     'checked': true
                 },
                 {
-                    'id': 'bar14',
-                    'label': 'Bar',
-                    'name': 'foo-14'
+                    'id': 'bar-' ~ i,
+                    'label': 'Bar ' ~ i,
+                    'name': 'foo-' ~ i
                 },
                 {
-                    'id': 'baz14',
-                    'label': 'Baz',
-                    'name': 'foo-14'
+                    'id': 'baz-' ~ i,
+                    'label': 'Baz ' ~ i,
+                    'name': 'foo-' ~  i
                 }
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{
         form.button_group({
@@ -348,162 +396,178 @@
             'help': 'Help text to give more information about expected input',
             'items': [
                 {
-                    'id': 'foo15',
-                    'label': 'Foo',
-                    'name': 'foo-15',
+                    'id': 'foo-' ~ i,
+                    'label': 'Foo ' ~ i,
+                    'name': 'foo-' ~ i,
                     'checked': true
                 },
                 {
-                    'id': 'bar15',
-                    'label': 'Bar',
-                    'name': 'foo-15'
+                    'id': 'bar-' ~ i,
+                    'label': 'Bar ' ~ i,
+                    'name': 'foo-' ~ i
                 },
                 {
-                    'id': 'baz15',
-                    'label': 'Baz',
-                    'name': 'foo-15'
+                    'id': 'baz-' ~ i,
+                    'label': 'Baz ' ~ i,
+                    'name': 'foo-' ~  i
                 }
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{ form.fieldset_end() }}
     {{ form.fieldset_start({ 'legend': 'States' }) }}
 
     {{
         form.button_group({
-            'label': '"class": "has-changed"',
+            'label': 'Button group with "has-changed" class',
             'class': 'has-changed',
             'help': 'Highlight whether an action elsewhere affects an input',
             'items': [
                 {
-                    'id': 'foo16',
-                    'label': 'Foo',
-                    'name': 'foo-16',
+                    'id': 'foo-' ~ i,
+                    'label': 'Foo ' ~ i,
+                    'name': 'foo-' ~ i,
                     'checked': true
                 },
                 {
-                    'id': 'bar16',
-                    'label': 'Bar',
-                    'name': 'foo-16'
+                    'id': 'bar-' ~ i,
+                    'label': 'Bar ' ~ i,
+                    'name': 'foo-' ~ i
                 },
                 {
-                    'id': 'baz16',
-                    'label': 'Baz',
-                    'name': 'foo-16'
+                    'id': 'baz-' ~ i,
+                    'label': 'Baz ' ~ i,
+                    'name': 'foo-' ~  i
                 }
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{
         form.button_group({
-            'label': '"class": "has-success"',
+            'label': 'Button group with "has-success" class',
             'class': 'has-success',
             'help': 'Something good happened',
             'items': [
                 {
-                    'id': 'foo17',
-                    'label': 'Foo',
-                    'name': 'foo-17',
+                    'id': 'foo-' ~ i,
+                    'label': 'Foo ' ~ i,
+                    'name': 'foo-' ~ i,
                     'checked': true
                 },
                 {
-                    'id': 'bar17',
-                    'label': 'Bar',
-                    'name': 'foo-17'
+                    'id': 'bar-' ~ i,
+                    'label': 'Bar ' ~ i,
+                    'name': 'foo-' ~ i
                 },
                 {
-                    'id': 'baz17',
-                    'label': 'Baz',
-                    'name': 'foo-17'
+                    'id': 'baz-' ~ i,
+                    'label': 'Baz ' ~ i,
+                    'name': 'foo-' ~  i
                 }
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{
         form.button_group({
-            'label': '"class": "has-warning"',
+            'label': 'Button group with "has-warning" class',
             'class': 'has-warning',
             'help': 'Something bad happened',
             'items': [
                 {
-                    'id': 'foo18',
-                    'label': 'Foo',
-                    'name': 'foo-18',
+                    'id': 'foo-' ~ i,
+                    'label': 'Foo ' ~ i,
+                    'name': 'foo-' ~ i,
                     'checked': true
                 },
                 {
-                    'id': 'bar18',
-                    'label': 'Bar',
-                    'name': 'foo-18'
+                    'id': 'bar-' ~ i,
+                    'label': 'Bar ' ~ i,
+                    'name': 'foo-' ~ i
                 },
                 {
-                    'id': 'baz18',
-                    'label': 'Baz',
-                    'name': 'foo-18'
+                    'id': 'baz-' ~ i,
+                    'label': 'Baz ' ~ i,
+                    'name': 'foo-' ~  i
                 }
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{
         form.button_group({
-            'label': '"class": "has-error"',
+            'label': 'Button group with "has-error" class',
             'class': 'has-error',
             'help': 'Automatically added if using <code>error</code> option',
             'items': [
                 {
-                    'id': 'foo19',
-                    'label': 'Foo',
-                    'name': 'foo-19',
+                    'id': 'foo-' ~ i,
+                    'label': 'Foo ' ~ i,
+                    'name': 'foo-' ~ i,
                     'checked': true
                 },
                 {
-                    'id': 'bar19',
-                    'label': 'Bar',
-                    'name': 'foo-19'
+                    'id': 'bar-' ~ i,
+                    'label': 'Bar ' ~ i,
+                    'name': 'foo-' ~ i
                 },
                 {
-                    'id': 'baz19',
-                    'label': 'Baz',
-                    'name': 'foo-19'
+                    'id': 'baz-' ~ i,
+                    'label': 'Baz ' ~ i,
+                    'name': 'foo-' ~  i
                 }
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{
         form.button_group({
-            'label': '"disabled": true',
-            'disabled': true,
+            'label': 'Disabled button group',
             'help': 'Stop! Can’t touch this',
             'items': [
                 {
-                    'id': 'foo20',
-                    'label': 'Foo',
-                    'name': 'foo-20',
+                    'id': 'foo-' ~ i,
+                    'label': 'Foo ' ~ i,
+                    'name': 'foo-' ~ i,
                     'checked': true
                 },
                 {
-                    'id': 'bar20',
-                    'label': 'Bar',
-                    'name': 'foo-20'
+                    'id': 'bar-' ~ i,
+                    'label': 'Bar ' ~ i,
+                    'name': 'foo-' ~ i
                 },
                 {
-                    'id': 'baz20',
-                    'label': 'Baz',
-                    'name': 'foo-20'
+                    'id': 'baz-' ~ i,
+                    'label': 'Baz ' ~ i,
+                    'name': 'foo-' ~  i
                 }
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{ form.fieldset_end() }}
 
     {{
-        form.end()
+        form.end({
+            'actions': [
+                html.button({
+                    'label': 'Save',
+                    'class': 'btn--primary'
+                }),
+                html.button({
+                    'label': 'Cancel',
+                    'class': 'btn--naked'
+                })
+            ]
+        })
     }}
 
 {% endblock tab_content %}
