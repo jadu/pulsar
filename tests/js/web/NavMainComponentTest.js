@@ -26,7 +26,7 @@ describe('NavMainComponent', function () {
                            <a href="#one" class="nav-link" aria-haspopup="true" aria-expanded="false" aria-controls="aria-secondary-nav">1</a>
                        </li>
                        <li class="nav-item">
-                           <a href="#two" class="nav-link" aria-haspopup="true" aria-expanded="false" aria-controls="aria-secondary-nav">2</a>
+                           <button data-target="#two" class="nav-link" aria-haspopup="true" aria-expanded="false" aria-controls="aria-secondary-nav">2</button>
                        </li>
                        <li class="nav-item">
                            <a href="#three" class="nav-link" aria-haspopup="true" aria-expanded="false" aria-controls="aria-secondary-nav">3</a>
@@ -91,7 +91,7 @@ describe('NavMainComponent', function () {
         this.$closeQuaternaryNavLink = this.$html.find('.nav-quaternary [data-nav-action="close"]');
 
         this.$linkOne = this.$html.find('[href="#one"]');
-        this.$linkTwo = this.$html.find('[href="#two"]');
+        this.$linkTwo = this.$html.find('[data-target="#two"]');
         this.$linkThree = this.$html.find('[href="#three"]');
         this.$tertiaryLinkThree = this.$html.find('[href="#three_one"]');
 
