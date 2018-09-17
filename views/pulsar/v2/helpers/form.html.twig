@@ -2294,7 +2294,7 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
-    {% set toggleLabel = '<span class="hide">' ~ options.label ~ '</span>' %}
+    {% set toggleLabel = '<span class="hide">toggle ' ~ options.label ~ '</span>' %}
 
     {%
         set toggle = elem.input(options
