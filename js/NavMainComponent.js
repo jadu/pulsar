@@ -163,7 +163,7 @@ NavMainComponent.prototype.openSecondaryNav = function ($linkClicked, event) {
     }
 
     component.$navPrimary.find('.is-active').removeClass('is-active');
-    component.$navPrimary.find('[href="' + target + '"]').addClass('is-active');
+    component.$navPrimary.find('[href="' + target + '"], [data-target="' + target + '"]').addClass('is-active');
 };
 
 /**
