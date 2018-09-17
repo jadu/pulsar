@@ -81,6 +81,7 @@
     }
 
     &::after {
+        color: color(white);
         content: '\F00C \F00D';
         font-family: 'FontAwesome';
         font-size: 14px;
@@ -116,4 +117,13 @@
 
 .toggle-switch.is-disabled + .toggle-switch-label {
     opacity: .5;
+}
+
+.toggle-switch-wrapper-label {
+    display: block;
+
+    .control__label {
+        padding-top: 11px;
+        padding-right: 10px;
+    }
 }

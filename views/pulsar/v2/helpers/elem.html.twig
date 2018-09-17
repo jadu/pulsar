@@ -109,19 +109,22 @@ name    | string | The name of this control
         {% set labelVisibilityClass = ' hide' %}
     {% endif %}
 
+    {% set tag = 'label' %}
+    {% if options.tag is defined and options.tag == 'span' %}
+        {% set tag = 'span' %}
+    {% endif %}
+
     {% if options.label is not empty or options.guidance is not empty %}
-        <label{{
-            attributes(options
-                |exclude('container guidance guidance-container label required show-label')
-                |defaults({
-                    'class': 'control__label' ~ labelVisibilityClass|default
-                })
-            )
-        }}>
+        <{{ attributes(options
+            |exclude('container guidance guidance-container label required show-label tag ' ~ (tag == 'span' ? 'for'))
+            |defaults({
+                'class': 'control__label' ~ labelVisibilityClass|default
+            }), {'tag': (tag)}) }}>
+
             {{- options.label|raw -}}
             {{ util.required(options.required|default(false)) }}
             {{ util.guidance(options.guidance|default, { 'guidance-container': options['guidance-container']|default }) }}
-        </label>
+        </{{ tag }}>
     {% endif %}
 
 {% endspaceless %}
