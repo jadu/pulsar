@@ -33,7 +33,7 @@
 
     <h2 class="heading">Button variations</h2>
 
-    <p>
+    <div>
 
         <!-- The normal type of button you should use -->
         {{ html.button({ label: 'Default' }) }}
@@ -58,8 +58,7 @@
         {{
             html.button({
                 label: 'Danger',
-                class: 'btn--danger',
-                type: 'link'
+                class: 'btn--danger'
             })
         }}
 
@@ -90,7 +89,7 @@
         {{
             html.button({
                 label: 'Disabled',
-                class: 'is-disabled'
+                disabled: true
             })
         }}
 
@@ -107,11 +106,11 @@
                 class: 'btn--naked'
             })
         }}
-    </p>
+    </div>
 
     <h2 class="heading">Link buttons</h2>
 
-    <p>
+    <div>
         <!-- The normal type of button you should use -->
         {{
             html.button({
@@ -177,7 +176,7 @@
         {{
             html.button({
                 label: 'Disabled',
-                class: 'is-disabled',
+                disabled: true,
                 type: 'link'
             })
         }}
@@ -189,11 +188,11 @@
                 class: 'btn--naked'
             })
         }}
-    </p>
+    </div>
 
     <h2 class="heading">Outline buttons</h2>
 
-    <p>
+    <div>
         <!-- The normal type of button you should use -->
         {{
             html.button({
@@ -254,7 +253,8 @@
         {{
             html.button({
                 label: 'Disabled',
-                class: 'btn--outline is-disabled'
+                class: 'btn--outline',
+                disabled: true
             })
         }}
 
@@ -271,16 +271,16 @@
                 class: 'btn--outline btn--naked'
             })
         }}
-    </p>
+    </div>
 
     <h2 class="heading">Disabled buttons</h2>
 
-    <p>
+    <div>
         <!-- The normal type of button you should use -->
         {{
             html.button({
                 label: 'Default',
-                class: 'is-disabled'
+                disabled: true
             })
         }}
 
@@ -288,7 +288,8 @@
         {{
             html.button({
                 label: 'Primary',
-                class: 'btn--primary is-disabled'
+                class: 'btn--primary',
+                disabled: true
             })
         }}
 
@@ -296,7 +297,8 @@
         {{
             html.button({
                 label: 'Success',
-                class: 'btn--success is-disabled'
+                class: 'btn--success',
+                disabled: true
             })
         }}
 
@@ -304,7 +306,8 @@
         {{
             html.button({
                 label: 'Danger',
-                class: 'btn--danger is-disabled'
+                class: 'btn--danger',
+                disabled: true
             })
         }}
 
@@ -312,7 +315,8 @@
         {{
             html.button({
                 label: 'Warning',
-                class: 'btn--warning is-disabled'
+                class: 'btn--warning',
+                disabled: true
             })
         }}
 
@@ -320,7 +324,8 @@
         {{
             html.button({
                 label: 'Info',
-                class: 'btn--info is-disabled'
+                class: 'btn--info',
+                disabled: true
             })
         }}
 
@@ -328,20 +333,22 @@
         {{
             html.button({
                 label: 'Inverse',
-                class: 'btn--inverse is-disabled'
+                class: 'btn--inverse',
+                disabled: true
             })
         }}
 
         {{
             html.button({
                 label: 'Naked',
-                class: 'btn--naked is-disabled'
+                class: 'btn--naked',
+                disabled: true
             })
         }}
-    </p>
+    </div>
 
     <h2 class="heading">Button groups</h2>
-    <p>
+    <div>
         <div class="btn__toolbar">
         {{
             html.button_group({
@@ -398,10 +405,10 @@
             })
         }}
         </div>
-    </p>
+    </div>
 
     <h2 class="heading">Labels</h2>
-    <p>
+    <div>
         {{
             html.label({
                 label: 'default'
@@ -466,10 +473,10 @@
                 class: 'label--large'
             })
         }}
-    </p>
+    </div>
 
     <h2 class="heading">Removable labels</h2>
-    <p>
+    <div>
         {{
             html.label({
                 label: 'default',
@@ -544,10 +551,10 @@
                 removable: true
             })
         }}
-    </p>
+    </div>
 
     <h2 class="heading">Badges</h2>
-    <p>
+    <div>
         {{
             html.badge({
                 label: '1'
@@ -583,7 +590,7 @@
                 label: '7', class: 'badge--inverse'
             })
         }}
-    </p>
+    </div>
 
     <h2 class="heading">Status indicators</h2>
     <p>I am online {{ html.status('online') }}</p>
@@ -592,29 +599,31 @@
     <p>I am inactive {{ html.status('inactive') }}</p>
 
     <h2 class="heading">Dropdown/Dropup buttons</h2>
-    <p>
+    <div>
         <div class="btn__toolbar">
         {%
             set example_dropdown = [
                 html.link({
                     label: html.icon('save') ~ ' Save',
-                    href: '#'
+                    href: '#save'
                 }),
                 html.link({
                     label: html.icon('print') ~ ' Print',
-                    'class': 'is-disabled'
+                    href: '#print'
                 }),
                 html.link({
                     label: html.icon('lock') ~ ' Lock',
+                    href: '#lock',
                     disabled: true
                 }),
                 html.link({
-                    label: html.icon('group') ~ ' Collaborators ' ~ html.badge({ 'label': 3 })
+                    label: html.icon('group') ~ ' Collaborators ' ~ html.badge({ 'label': 3 }),
+                    href: '#collaborators'
                 }),
                 html.divider(),
                 html.link({
                     label: html.icon('trash') ~ ' Delete',
-                    href: '#',
+                    href: '#delete',
                     class: 'link--danger'
                 })
             ]
@@ -659,11 +668,11 @@
             })
         }}
         </div>
-    </p>
+    </div>
 
 
     <h2 class="heading">Icons, Badges and Buttons (oh my!)</h2>
-    <p>
+    <div>
         <div class="btn__toolbar">
             {{
                 html.button({
@@ -713,21 +722,20 @@
 
             }}
         </div>
-    </p>
 
     <h2 class="heading">All the things!</h2>
-    <p>
+    <div>
     {{
         html.button_dropdown({
             'label': html.icon('folder-close') ~ ' Busy Button ' ~ html.badge({ 'label': '99', 'class': 'badge--primary'}),
             'items': example_dropdown
         })
     }}
-    </p>
+    </div>
 
 
 
-    <p class="columns columns--2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam et enim sed lorem sollicitudin tristique sed at erat. Sed non nunc at nibh vestibulum dictum. Vestibulum a blandit tellus. In quis felis rhoncus mi imperdiet gravida eget quis augue. Praesent rutrum fringilla nisi, sit amet commodo purus pellentesque eu. Curabitur blandit arcu at rutrum ullamcorper. Maecenas vitae faucibus nunc. Phasellus eu quam aliquet, malesuada odio ut, dapibus lorem. Nulla nec urna rutrum, consequat est sit amet, consequat mauris. Maecenas vel mauris id urna viverra ullamcorper. Etiam nisi nibh, pulvinar vel elementum luctus, dapibus sit amet leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam et enim sed lorem sollicitudin tristique sed at erat. Sed non nunc at nibh vestibulum dictum. Vestibulum a blandit tellus. In quis felis rhoncus mi imperdiet gravida eget quis augue. Praesent rutrum fringilla nisi, sit amet commodo purus pellentesque eu. Curabitur blandit arcu at rutrum ullamcorper. Maecenas vitae faucibus nunc. Phasellus eu quam aliquet, malesuada odio ut, dapibus lorem. Nulla nec urna rutrum, consequat est sit amet, consequat mauris. Maecenas vel mauris id urna viverra ullamcorper. Etiam nisi nibh, pulvinar vel elementum luctus, dapibus sit amet leo.</p>
+    <p class="columns columns--2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam et enim sed lorem sollicitudin tristique sed at erat. Sed non nunc at nibh vestibulum dictum. Vestibulum a blandit tellus. In quis felis rhoncus mi imperdiet gravida eget quis augue. Praesent rutrum fringilla nisi, sit amet commodo purus pellentesque eu. Curabitur blandit arcu at rutrum ullamcorper. Maecenas vitae faucibus nunc. Phasellus eu quam aliquet, malesuada odio ut, dapibus lorem. Nulla nec urna rutrum, consequat est sit amet, consequat mauris. Maecenas vel mauris id urna viverra ullamcorper. Etiam nisi nibh, pulvinar vel elementum luctus, dapibus sit amet leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam et enim sed lorem sollicitudin tristique sed at erat. Sed non nunc at nibh vestibulum dictum. Vestibulum a blandit tellus. In quis felis rhoncus mi imperdiet gravida eget quis augue. Praesent rutrum fringilla nisi, sit amet commodo purus pellentesque eu. Curabitur blandit arcu at rutrum ullamcorper. Maecenas vitae faucibus nunc. Phasellus eu quam aliquet, malesuada odio ut, dapibus lorem. Nulla nec urna rutrum, consequat est sit amet, consequat mauris. Maecenas vel mauris id urna viverra ullamcorper. Etiam nisi nibh, pulvinar vel elementum luctus, dapibus sit amet leo.</div>
 
     {{
         html.list({

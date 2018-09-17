@@ -50,9 +50,6 @@
 {% set tab_tooltips %}
     {% include 'lexicon/tabs/tooltips.html.twig' %}
 {% endset %}
-{% set tab_data_grid %}
-    {% include 'lexicon/tabs/datagrid.html.twig' %}
-{% endset %}
 {% set tab_metadata %}
     {% include 'lexicon/tabs/metadata.html.twig' %}
 {% endset %}
@@ -135,11 +132,6 @@
           "label" : "Progress bars",
           "href"  : "?tab=progress",
           "src"   : tab_progress_bars
-        },
-        {
-          "id"    : "table",
-          "label" : "Table",
-          "src"   : tab_data_grid
         },
         {
           "id"    : "tooltips",
