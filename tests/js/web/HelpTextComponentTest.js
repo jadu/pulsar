@@ -42,7 +42,7 @@ describe('HelpTextComponent', function() {
         });
 
         it('should copy the active tabs sidebar contents to the tab-help container', function() {
-            expect(this.$tabHelp.html()).to.equal('<a href="#" class="close-page-help js-close-page-help"><i class="icon-remove-sign"></i></a>Some help text');
+            expect(this.$tabHelp.html()).to.equal('<button class="close-page-help js-close-page-help"><i class="icon-remove-sign" aria-hidden="true"></i><span class="hide">Close on-page help</span></button>Some help text');
         });
 
         it('should add the help-close button to the tab-help container', function() {
@@ -248,7 +248,7 @@ describe('HelpTextComponent', function() {
         });
 
         it('should copy the active tabs sidebar contents to the tab-help container', function() {
-            expect(this.$tabHelp.html()).to.equal('<a href="#" class="close-page-help js-close-page-help"><i class="icon-remove-sign"></i></a>Some help text');
+            expect(this.$tabHelp.html()).to.equal('<button class="close-page-help js-close-page-help"><i class="icon-remove-sign" aria-hidden="true"></i><span class="hide">Close on-page help</span></button>Some help text');
         });
 
         it('should add the help-close button to the tab-help container', function() {

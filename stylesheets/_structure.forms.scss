@@ -12,7 +12,8 @@
     width: 100%;
 
     // the main label, usually placed in the left hand column
-    > .control__label {
+    > .control__label,
+    span.control__label {
         @include col-span($form-label-cols);
         word-wrap: break-word;
     }

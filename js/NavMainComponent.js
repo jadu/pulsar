@@ -130,7 +130,14 @@ NavMainComponent.prototype.manageTabIndexes = function () {
  */
 NavMainComponent.prototype.openSecondaryNav = function ($linkClicked, event) {
     var component = this,
+        target;
+
+    if ($linkClicked[0].hasAttribute('href')) {
         target = $linkClicked.attr('href');
+    }
+    else if ($linkClicked[0].hasAttribute('data-target')) {
+        target = $linkClicked.attr('data-target');
+    }
 
     // Close any previously open navs
     component.closeSecondaryNav();
@@ -156,7 +163,7 @@ NavMainComponent.prototype.openSecondaryNav = function ($linkClicked, event) {
     }
 
     component.$navPrimary.find('.is-active').removeClass('is-active');
-    component.$navPrimary.find('[href="' + target + '"]').addClass('is-active');
+    component.$navPrimary.find('[href="' + target + '"], [data-target="' + target + '"]').addClass('is-active');
 };
 
 /**
@@ -326,7 +333,7 @@ NavMainComponent.prototype.addMoreNavItem = function (numberOfHiddenNavItems) {
 
     // Add the "More" nav item
     if ((numberOfHiddenNavItems > 0) && (!component.$html.find('.more-icon').length)) {
-        navItems.append('<li class="nav-item t-nav-item more-icon"><a href="#more" class="nav-link t-nav-link" aria-haspopup="true" aria-expanded="false" aria-controls="aria-tertiary-nav"><i aria-hidden="true" class="icon-ellipsis-horizontal nav-link__icon t-nav-icon"></i><span class="nav-link__label">More</span></a></li>');
+        navItems.append('<li class="nav-item t-nav-item more-icon"><button class="nav-link t-nav-link" aria-haspopup="true" aria-expanded="false" aria-controls="aria-tertiary-nav"><i aria-hidden="true" class="icon-ellipsis-horizontal nav-link__icon t-nav-icon"></i><span class="nav-link__label">More</span></button></li>');
     }
 
     // Check if "More" nav item is visible
