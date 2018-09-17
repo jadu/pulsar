@@ -1,9 +1,8 @@
     <div class="dropdown notifications">
         {{
-            html.link({
+            html.button({
+                'class': 'notifications-toggle btn--naked is-active',
                 'tabindex': '6',
-                'class': 'notifications-toggle is-active',
-                'href': '#',
                 'label': html.icon('bell-o', { 'label': 'Show notifications' }),
                 'data-toggle': 'dropdown'
             })
@@ -12,7 +11,7 @@
         <div class="notifications-container dropdown__menu"><!--
             --><div class="notifications__header">
                 <h1 class="notifications-title">Notifications</h1>
-              <a href="#" class="notifications-dismiss">dismiss all</a>
+                <button class="notifications-dismiss btn--naked">dismiss all</button>
             </div><!--
             --><div class="notifications-list">
                 <div class="notification is-new">
@@ -38,7 +37,7 @@
 
                         <p>We've updated our user manual to feature our new and improved user interface. If you need a copy, drop us a message and we'll be happy to send one over.</p>
 
-                        <p><i class="icon-file-text-alt"></i> <a href="#" aria-labelledby="notification-heading-1">View detailed release notes</a></p>
+                        <p><i class="icon-file-text-alt" aria-hidden="true"></i> <a href="#path-to-release-notes" aria-labelledby="notification-heading-1">View detailed release notes</a></p>
                     </div>
                 </div>
             </div>
@@ -66,7 +65,7 @@
 
                         <p>We've updated our user manual to feature our new and improved user interface. If you need a copy, drop us a message and we'll be happy to send one over.</p>
 
-                        <p><i class="icon-file-text-alt"></i> <a href="#" aria-labelledby="notification-heading-2">View detailed release notes</a></p>
+                        <p><i class="icon-file-text-alt" aria-hidden="true"></i> <a href="#path-to-release-notes" aria-labelledby="notification-heading-2">View detailed release notes</a></p>
                     </div>
                 </div>
             </div>
@@ -94,7 +93,7 @@
 
                         <p>We've updated our user manual to feature our new and improved user interface. If you need a copy, drop us a message and we'll be happy to send one over.</p>
 
-                        <p><i class="icon-file-text-alt"></i> <a href="#" aria-labelledby="notification-heading-3">View detailed release notes</a></p>
+                        <p><i class="icon-file-text-alt" aria-hidden="true"></i> <a href="#path-to-release-notes" aria-labelledby="notification-heading-3">View detailed release notes</a></p>
                     </div>
                 </div>
             </div>
@@ -122,7 +121,7 @@
 
                         <p>We've updated our user manual to feature our new and improved user interface. If you need a copy, drop us a message and we'll be happy to send one over.</p>
 
-                        <p><i class="icon-file-text-alt"></i> <a href="#" aria-labelledby="notification-heading-4">View detailed release notes</a></p>
+                        <p><i class="icon-file-text-alt" aria-hidden="true"></i> <a href="#path-to-release-notes" aria-labelledby="notification-heading-4">View detailed release notes</a></p>
                     </div>
                 </div>
             </div>
@@ -150,7 +149,7 @@
 
                         <p>We've updated our user manual to feature our new and improved user interface. If you need a copy, drop us a message and we'll be happy to send one over.</p>
 
-                        <p><i class="icon-file-text-alt"></i> <a href="#" aria-labelledby="notification-heading-5">View detailed release notes</a></p>
+                        <p><i class="icon-file-text-alt" aria-hidden="true"></i> <a href="#path-to-release-notes" aria-labelledby="notification-heading-5">View detailed release notes</a></p>
                     </div>
                 </div>
             </div>
@@ -178,13 +177,13 @@
 
                         <p>We've updated our user manual to feature our new and improved user interface. If you need a copy, drop us a message and we'll be happy to send one over.</p>
 
-                        <p><i class="icon-file-text-alt"></i> <a href="#" aria-labelledby="notification-heading-6">View detailed release notes</a></p>
+                        <p><i class="icon-file-text-alt" aria-hidden="true"></i> <a href="#path-to-release-notes" aria-labelledby="notification-heading-6">View detailed release notes</a></p>
                     </div>
                 </div>
             </div>
             </div>
             <div class="notifications__footer">
-                <a href="#" class="notifications-all">View all</a>
+                <button class="btn btn--naked notifications-all">View all</button>
             </div>
         </div>
     </div>

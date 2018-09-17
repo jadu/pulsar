@@ -287,8 +287,7 @@ SignInComponent.prototype.switchPanel = function (panelClass) {
 
 	var component = this,
 		newPanel = component.$container.find(panelClass),
-		oldPanel = component.$container.find('.signin__panel:not(' + panelClass + ')'),
-		tabIndex = 1;
+		oldPanel = component.$container.find('.signin__panel:not(' + panelClass + ')');
 
 	component.$container.removeClass('signin--error');
 
@@ -298,8 +297,7 @@ SignInComponent.prototype.switchPanel = function (panelClass) {
 		.find('[tabindex]')
 		.removeAttr('disabled')
 		.each(function() {
-			$(this).attr('tabindex', tabIndex);
-			tabIndex++;
+			$(this).attr('tabindex', '0');
 		});
 
 	// Other panels
