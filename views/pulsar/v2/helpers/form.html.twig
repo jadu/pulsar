@@ -1258,7 +1258,7 @@ controls.class    | string | A space separated list of class names
     {% endif %}
 
         {% if isToggleSwitch %}
-        <label class="toggle-switch-wrapper-label" {% if options.parent.id is defined and options.parent.id is not empty %}for="{{ options.parent.id|default }}" {% endif %}>
+        <label class="toggle-switch-wrapper-label"{% if options.parent.id is defined and options.parent.id is not empty %} for="{{ options.parent.id }}"{% endif %}>
         {% endif %}
 
         {{
@@ -1372,7 +1372,7 @@ controls.class    | string | A space separated list of class names
         {% endif %}
 
         {% if options.parent.bare is not defined or options.parent.bare != true %}
-            </{{(isToggleSwitch) ? 'span' : 'div' }}>
+            </{{ (isToggleSwitch) ? 'span' : 'div' }}>
         {% endif %}
 
         {% if isToggleSwitch %}
@@ -2309,7 +2309,7 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
     {{
         form.group({
             'parent': options
-                |only('bare class error error_ids guidance guidance-container help help_id label required show-label id')
+                |only('bare class error error_ids guidance guidance-container help help_id id label required show-label')
                 |merge({
                     'class': options.class|default ~ ' form__group--toggle'
                 }),
