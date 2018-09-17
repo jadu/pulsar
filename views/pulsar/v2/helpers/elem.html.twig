@@ -124,7 +124,7 @@ name    | string | The name of this control
             {{- options.label|raw -}}
             {{ util.required(options.required|default(false)) }}
             {{ util.guidance(options.guidance|default, { 'guidance-container': options['guidance-container']|default }) }}
-        </{{tag}}>
+        </{{ tag }}>
     {% endif %}
 
 {% endspaceless %}
