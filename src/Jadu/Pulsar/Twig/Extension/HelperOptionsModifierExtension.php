@@ -41,9 +41,10 @@ class HelperOptionsModifierExtension extends \Twig_Extension
 
         // Check if errors are present in options
         if (array_key_exists('error', $options) && !empty($options['error'])) {
-            $errors = is_array($options['error']) ?  $options['error'] : [$options['error']];
-
-            $numberOfErrors = count($errors);
+            if (!is_array($options['error'])) {
+                $options['error'] = [$options['error']];
+            }
+            $numberOfErrors = count($options['error']);
             $errorGuids = array();
 
             // Set has_error for aria-invalid use
