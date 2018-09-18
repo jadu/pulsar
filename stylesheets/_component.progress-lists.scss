@@ -236,13 +236,13 @@
     width: 36px;
 
     &:not(:last-child)::after {
+        border-bottom: 3px dotted color(border);
         content: '';
-        border-bottom: 3px dotted #ccc;
         display: inline-block;
-        position: absolute;
-        width: 24px;
-        top: 15px; // 50% height - borders
         left: 34px;
+        position: absolute;
+        top: 15px; // 50% height - borders
+        width: 24px;
     }
 }
 
