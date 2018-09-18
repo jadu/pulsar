@@ -122,7 +122,7 @@ var $ = require('jquery'),
     }).popover();
   });
 
-  $(document).on('click', function (e) {
+  $(document).on('click', function () {
     $('[data-toggle="popover"][data-autoclose="true"], [rel="clickover"]').each(function () {
       var $this = $(this),
           $bsPopover = $this.popover('hide').data('bs.popover');
