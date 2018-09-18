@@ -1,7 +1,7 @@
 {% extends '@pulsar/pulsar/components/tab.html.twig' %}
 
 {% block tab_content %}
-
+{% set i = 1 %}
     {{
         form.create()
     }}
@@ -10,14 +10,14 @@
     
     {{
         form.compound({
-            'id': 'comp-0',
+            'id': 'comp-' ~ i,
             'help': 'For example: 25 12 1980',
             'label': 'Date of birth',
             'inputs': [
                 {
                     'class': 'form__control-col--1',
                     'label': 'Day',
-                    'id': 'dd-0',
+                    'id': 'dd-' ~ i,
                     'placeholder': 'DD',
                     'show-label': false,
                     'type': 'text'
@@ -25,7 +25,7 @@
                 {
                     'class': 'form__control-col--1',
                     'label': 'Month',
-                    'id': 'mm-0',
+                    'id': 'mm-' ~ i,
                     'placeholder': 'MM',
                     'show-label': false,
                     'type': 'text'
@@ -33,7 +33,7 @@
                 {
                     'class': 'form__control-col--1',
                     'label': 'Year',
-                    'id': 'yyyy-0',
+                    'id': 'yyyy-' ~ i,
                     'placeholder': 'YYYY',
                     'show-label': false,
                     'type': 'text'
@@ -41,16 +41,17 @@
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{
         form.compound({
-            'id': 'comp-1',
+            'id': 'comp-' ~ i,
             'label': 'Date of birth',
             'inputs': [
                 {
                     'class': 'form__control-col--1',
                     'label': 'Day',
-                    'id': 'dd-1',
+                    'id': 'dd-' ~ i,
                     'placeholder': 'DD',
                     'show-label': false,
                     'type': 'text'
@@ -58,7 +59,7 @@
                 {
                     'class': 'form__control-col--1',
                     'label': 'Month',
-                    'id': 'mm-1',
+                    'id': 'mm-' ~ i,
                     'placeholder': 'MM',
                     'show-label': false,
                     'type': 'text'
@@ -66,7 +67,7 @@
                 {
                     'class': 'form__control-col--1',
                     'label': 'Year',
-                    'id': 'yyyy-1',
+                    'id': 'yyyy-' ~ i,
                     'placeholder': 'YYYY',
                     'show-label': false,
                     'type': 'text'
@@ -74,17 +75,18 @@
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{
         form.compound({
-            'id': 'comp-2',
+            'id': 'comp-' ~ i,
             'help': 'How long the system should wait for a response, usually 30 seconds',
             'label': 'Timeout',
             'inputs': [
                 {
                     'class': 'form__control-col--1',
                     'label': 'Value',
-                    'id': 'value-1',
+                    'id': 'value-' ~ i,
                     'maxlength': '3',
                     'show-label': false,
                     'type': 'text'
@@ -92,7 +94,7 @@
                 {
                     'class': 'u-width-auto',
                     'label': 'Unit of time',
-                    'id': 'Unit-1',
+                    'id': 'Unit-' ~ i,
                     'show-label': false,
                     'type': 'select',
                     'options': [
@@ -109,21 +111,20 @@
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{ form.fieldset_end() }}
-    
-
     {{ form.fieldset_start({ 'legend': 'Alignment' }) }}
 
     {{
         form.compound({
-            'id': 'comp-3',
+            'id': 'comp-' ~ i,
             'help': 'This example omits the label option entirely',
             'inputs': [
                 {
                     'class': 'form__control-col--1',
                     'label': 'Day',
-                    'id': 'dd-2',
+                    'id': 'dd-' ~ i,
                     'placeholder': 'DD',
                     'show-label': false,
                     'type': 'text'
@@ -131,7 +132,7 @@
                 {
                     'class': 'form__control-col--1',
                     'label': 'Month',
-                    'id': 'mm-2',
+                    'id': 'mm-' ~ i,
                     'placeholder': 'MM',
                     'show-label': false,
                     'type': 'text'
@@ -139,7 +140,7 @@
                 {
                     'class': 'form__control-col--1',
                     'label': 'Year',
-                    'id': 'yyyy-2',
+                    'id': 'yyyy-' ~ i,
                     'placeholder': 'YYYY',
                     'show-label': false,
                     'type': 'text'
@@ -147,10 +148,11 @@
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{
         form.compound({
-            'id': 'comp-4',
+            'id': 'comp-' ~ i,
             'help': 'How long the system should wait for a response, usually 30 seconds',
             'label': 'Form compound with a longer than expected label which will probably wrap multple lines and push the following input onto the next baseline',
             'guidance': 'Help text to give more information about expected input',
@@ -158,7 +160,7 @@
                 {
                     'class': 'form__control-col--1',
                     'label': 'Value',
-                    'id': 'value-2',
+                    'id': 'value-' ~ i,
                     'maxlength': '3',
                     'show-label': false,
                     'type': 'text'
@@ -166,7 +168,7 @@
                 {
                     'class': 'u-width-auto',
                     'label': 'Unit of time',
-                    'id': 'Unit-2',
+                    'id': 'Unit-' ~ i,
                     'show-label': false,
                     'type': 'select',
                     'options': [
@@ -183,10 +185,11 @@
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{
         form.compound({
-            'id': 'comp-5',
+            'id': 'comp-' ~ i,
             'help': 'How long the system should wait for a response, usually 30 seconds',
             'label': 'Form compound with a longer than expected label but this time we use the form__group--top class to keep the label on a single line',
             'guidance': 'Help text to give more information about expected input',
@@ -195,7 +198,7 @@
                 {
                     'class': 'form__control-col--1',
                     'label': 'Value',
-                    'id': 'value-3',
+                    'id': 'value-' ~ i,
                     'maxlength': '3',
                     'show-label': false,
                     'type': 'text'
@@ -203,7 +206,7 @@
                 {
                     'class': 'u-width-auto',
                     'label': 'Unit of time',
-                    'id': 'Unit-3',
+                    'id': 'Unit-' ~ i,
                     'show-label': false,
                     'type': 'select',
                     'options': [
@@ -220,10 +223,11 @@
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{
         form.compound({
-            'id': 'comp-6',
+            'id': 'comp-' ~ i,
             'help': 'How long the system should wait for a response, usually 30 seconds',
             'label': 'The same as above, but this time we also add the .form__group--flush class to keep everything on the left edge',
             'guidance': 'Help text to give more information about expected input',
@@ -232,7 +236,7 @@
                 {
                     'class': 'form__control-col--1',
                     'label': 'Value',
-                    'id': 'value-4',
+                    'id': 'value-' ~ i,
                     'maxlength': '3',
                     'show-label': false,
                     'type': 'text'
@@ -240,7 +244,7 @@
                 {
                     'class': 'u-width-auto',
                     'label': 'Unit of time',
-                    'id': 'Unit-4',
+                    'id': 'Unit-' ~ i,
                     'show-label': false,
                     'type': 'select',
                     'options': [
@@ -257,13 +261,14 @@
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{ form.fieldset_end() }}
     {{ form.fieldset_start({ 'legend': 'Errors &amp; Validation' }) }}
 
     {{
         form.compound({
-            'id': 'comp-7',
+            'id': 'comp-' ~ i,
             'help': 'For example: 25 12 1980',
             'label': 'Date of birth',
             'error': 'Please complete this field',
@@ -271,7 +276,7 @@
                 {
                     'class': 'form__control-col--1',
                     'label': 'Day',
-                    'id': 'dd-3',
+                    'id': 'dd-' ~ i,
                     'placeholder': 'DD',
                     'show-label': false,
                     'type': 'text',
@@ -280,7 +285,7 @@
                 {
                     'class': 'form__control-col--1',
                     'label': 'Month',
-                    'id': 'mm-3',
+                    'id': 'mm-' ~ i,
                     'placeholder': 'MM',
                     'show-label': false,
                     'type': 'text',
@@ -289,7 +294,7 @@
                 {
                     'class': 'form__control-col--1',
                     'label': 'Year',
-                    'id': 'yyyy-3',
+                    'id': 'yyyy-' ~ i,
                     'placeholder': 'YYYY',
                     'show-label': false,
                     'type': 'text',
@@ -298,10 +303,11 @@
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{
         form.compound({
-            'id': 'comp-8',
+            'id': 'comp-' ~ i,
             'help': 'For example: 25 12 1980',
             'label': 'Date of birth',
             'error': ['Invalid day of birth entered', 'Invalid year of borth entered'],
@@ -310,7 +316,7 @@
                 {
                     'class': 'form__control-col--1 has-error',
                     'label': 'Day',
-                    'id': 'dd-4',
+                    'id': 'dd-' ~ i,
                     'placeholder': 'DD',
                     'show-label': false,
                     'type': 'text',
@@ -319,7 +325,7 @@
                 {
                     'class': 'form__control-col--1',
                     'label': 'Month',
-                    'id': 'mm-4',
+                    'id': 'mm-' ~ i,
                     'placeholder': 'MM',
                     'show-label': false,
                     'type': 'text'
@@ -327,7 +333,7 @@
                 {
                     'class': 'form__control-col--1 has-error',
                     'label': 'Year',
-                    'id': 'yyyy-4',
+                    'id': 'yyyy-' ~ i,
                     'placeholder': 'YYYY',
                     'show-label': false,
                     'type': 'text',
@@ -336,10 +342,11 @@
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{
         form.compound({
-            'id': 'comp-9',
+            'id': 'comp-' ~ i,
             'help': 'For example: 25 12 1980',
             'label': 'Example with help text and error',
             'error': 'Please complete your date of birth',
@@ -347,7 +354,7 @@
                 {
                     'class': 'form__control-col--1',
                     'label': 'Day',
-                    'id': 'dd-5',
+                    'id': 'dd-' ~ i,
                     'placeholder': 'DD',
                     'show-label': false,
                     'type': 'text',
@@ -356,7 +363,7 @@
                 {
                     'class': 'form__control-col--1',
                     'label': 'Month',
-                    'id': 'mm-5',
+                    'id': 'mm-' ~ i,
                     'placeholder': 'MM',
                     'show-label': false,
                     'type': 'text',
@@ -365,7 +372,7 @@
                 {
                     'class': 'form__control-col--1',
                     'label': 'Year',
-                    'id': 'yyyy-5',
+                    'id': 'yyyy-' ~ i,
                     'placeholder': 'YYYY',
                     'show-label': false,
                     'type': 'text',
@@ -374,10 +381,11 @@
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{
         form.compound({
-            'id': 'comp-10',
+            'id': 'comp-1' ~ i,
             'help': 'For example: 25 12 1980',
             'label': 'Example with one invalid field and error',
             'error': 'Please complete your month of birth',
@@ -386,7 +394,7 @@
                 {
                     'class': 'form__control-col--1',
                     'label': 'Day',
-                    'id': 'dd-6',
+                    'id': 'dd-' ~ i,
                     'placeholder': 'DD',
                     'show-label': false,
                     'type': 'text'
@@ -394,7 +402,7 @@
                 {
                     'class': 'form__control-col--1 has-error',
                     'label': 'Month',
-                    'id': 'mm-6',
+                    'id': 'mm-' ~ i,
                     'placeholder': 'MM',
                     'show-label': false,
                     'type': 'text',
@@ -403,7 +411,7 @@
                 {
                     'class': 'form__control-col--1',
                     'label': 'Year',
-                    'id': 'yyyy-6',
+                    'id': 'yyyy-' ~ i,
                     'placeholder': 'YYYY',
                     'show-label': false,
                     'type': 'text'
@@ -411,10 +419,11 @@
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{
         form.compound({
-            'id': 'comp-11',
+            'id': 'comp-1' ~ i,
             'help': 'For example: 25 12 1980',
             'label': 'Example error with help text only',
             'class': 'has-error',
@@ -422,7 +431,7 @@
                 {
                     'class': 'form__control-col--1',
                     'label': 'Day',
-                    'id': 'dd-7',
+                    'id': 'dd-' ~ i,
                     'placeholder': 'DD',
                     'show-label': false,
                     'type': 'text',
@@ -431,7 +440,7 @@
                 {
                     'class': 'form__control-col--1',
                     'label': 'Month',
-                    'id': 'mm-7',
+                    'id': 'mm-' ~ i,
                     'placeholder': 'MM',
                     'show-label': false,
                     'type': 'text',
@@ -440,7 +449,7 @@
                 {
                     'class': 'form__control-col--1',
                     'label': 'Year',
-                    'id': 'yyyy-7',
+                    'id': 'yyyy-' ~ i,
                     'placeholder': 'YYYY',
                     'show-label': false,
                     'type': 'text',
@@ -449,13 +458,14 @@
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{ form.fieldset_end() }}
     {{ form.fieldset_start({ 'legend': 'States' }) }}
 
     {{
         form.compound({
-            'id': 'comp-12',
+            'id': 'comp-1' ~ i,
             'help': 'Highlight whether an action elsewhere affects an input',
             'label': '"class": "has-changed"',
             'class': 'has-changed',
@@ -463,7 +473,7 @@
                 {
                     'class': 'form__control-col--1',
                     'label': 'Day',
-                    'id': 'dd-8',
+                    'id': 'dd-' ~ i,
                     'placeholder': 'DD',
                     'show-label': false,
                     'type': 'text'
@@ -471,7 +481,7 @@
                 {
                     'class': 'form__control-col--1',
                     'label': 'Month',
-                    'id': 'mm-8',
+                    'id': 'mm-' ~ i,
                     'placeholder': 'MM',
                     'show-label': false,
                     'type': 'text'
@@ -479,7 +489,7 @@
                 {
                     'class': 'form__control-col--1',
                     'label': 'Year',
-                    'id': 'yyyy-8',
+                    'id': 'yyyy-' ~ i,
                     'placeholder': 'YYYY',
                     'show-label': false,
                     'type': 'text'
@@ -487,10 +497,11 @@
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{
         form.compound({
-            'id': 'comp-13',
+            'id': 'comp-1' ~ i,
             'help': 'Something good happened',
             'label': '"class": "has-success"',
             'class': 'has-success',
@@ -498,7 +509,7 @@
                 {
                     'class': 'form__control-col--1',
                     'label': 'Day',
-                    'id': 'dd-9',
+                    'id': 'dd-' ~ i,
                     'placeholder': 'DD',
                     'show-label': false,
                     'type': 'text'
@@ -506,7 +517,7 @@
                 {
                     'class': 'form__control-col--1',
                     'label': 'Month',
-                    'id': 'mm-9',
+                    'id': 'mm-' ~ i,
                     'placeholder': 'MM',
                     'show-label': false,
                     'type': 'text'
@@ -514,7 +525,7 @@
                 {
                     'class': 'form__control-col--1',
                     'label': 'Year',
-                    'id': 'yyyy-9',
+                    'id': 'yyyy-' ~ i,
                     'placeholder': 'YYYY',
                     'show-label': false,
                     'type': 'text'
@@ -522,10 +533,11 @@
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{
         form.compound({
-            'id': 'comp-14',
+            'id': 'comp-1' ~ i,
             'help': 'Something bad happened',
             'label': '"class": "has-warning"',
             'class': 'has-warning',
@@ -533,7 +545,7 @@
                 {
                     'class': 'form__control-col--1',
                     'label': 'Day',
-                    'id': 'dd-00',
+                    'id': 'dd-1' ~ i,
                     'placeholder': 'DD',
                     'show-label': false,
                     'type': 'text'
@@ -541,7 +553,7 @@
                 {
                     'class': 'form__control-col--1',
                     'label': 'Month',
-                    'id': 'mm-10',
+                    'id': 'mm-1' ~ i,
                     'placeholder': 'MM',
                     'show-label': false,
                     'type': 'text'
@@ -549,7 +561,7 @@
                 {
                     'class': 'form__control-col--1',
                     'label': 'Year',
-                    'id': 'yyyy-10',
+                    'id': 'yyyy-1' ~ i,
                     'placeholder': 'YYYY',
                     'show-label': false,
                     'type': 'text'
@@ -557,10 +569,11 @@
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{
         form.compound({
-            'id': 'comp-15',
+            'id': 'comp-1' ~ i,
             'help': 'Automatically added if using <code>error</code> option',
             'label': '"class": "has-error"',
             'class': 'has-error',
@@ -568,7 +581,7 @@
                 {
                     'class': 'form__control-col--1',
                     'label': 'Day',
-                    'id': 'dd-11',
+                    'id': 'dd-1' ~ i,
                     'placeholder': 'DD',
                     'show-label': false,
                     'type': 'text'
@@ -576,7 +589,7 @@
                 {
                     'class': 'form__control-col--1',
                     'label': 'Month',
-                    'id': 'mm-11',
+                    'id': 'mm-1' ~ i,
                     'placeholder': 'MM',
                     'show-label': false,
                     'type': 'text'
@@ -584,7 +597,7 @@
                 {
                     'class': 'form__control-col--1',
                     'label': 'Year',
-                    'id': 'yyyy-12',
+                    'id': 'yyyy-1' ~ i,
                     'placeholder': 'YYYY',
                     'show-label': false,
                     'type': 'text'
@@ -592,17 +605,18 @@
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{
         form.compound({
-            'id': 'comp-16',
+            'id': 'comp-1' ~ i,
             'help': 'Stop! Can’t touch this',
             'label': '"disabled": true',
             'inputs': [
                 {
                     'class': 'form__control-col--1',
                     'label': 'Day',
-                    'id': 'dd-13',
+                    'id': 'dd-1' ~ i,
                     'placeholder': 'DD',
                     'show-label': false,
                     'type': 'text',
@@ -611,7 +625,7 @@
                 {
                     'class': 'form__control-col--1',
                     'label': 'Month',
-                    'id': 'mm-13',
+                    'id': 'mm-1' ~ i,
                     'placeholder': 'MM',
                     'show-label': false,
                     'type': 'text',
@@ -620,7 +634,7 @@
                 {
                     'class': 'form__control-col--1',
                     'label': 'Year',
-                    'id': 'yyyy-13',
+                    'id': 'yyyy-1' ~ i,
                     'placeholder': 'YYYY',
                     'show-label': false,
                     'type': 'text',
@@ -629,11 +643,23 @@
             ]
         })
     }}
+    {% set i = i + 1 %}
 
     {{ form.fieldset_end() }}
 
     {{
-        form.end()
+        form.end({
+            'actions': [
+                html.button({
+                    'label': 'Save',
+                    'class': 'btn--primary'
+                }),
+                html.button({
+                    'label': 'Cancel',
+                    'class': 'btn--naked'
+                })
+            ]
+        })
     }}
 
 {% endblock tab_content %}

@@ -26,7 +26,7 @@ describe('NavMainComponent', function () {
                            <a href="#one" class="nav-link" aria-haspopup="true" aria-expanded="false" aria-controls="aria-secondary-nav">1</a>
                        </li>
                        <li class="nav-item">
-                           <a href="#two" class="nav-link" aria-haspopup="true" aria-expanded="false" aria-controls="aria-secondary-nav">2</a>
+                           <button data-target="#two" class="nav-link" aria-haspopup="true" aria-expanded="false" aria-controls="aria-secondary-nav">2</button>
                        </li>
                        <li class="nav-item">
                            <a href="#three" class="nav-link" aria-haspopup="true" aria-expanded="false" aria-controls="aria-secondary-nav">3</a>
@@ -34,7 +34,7 @@ describe('NavMainComponent', function () {
                    </ul>
                </div>
                <div class="nav-secondary" id="aria-secondary-nav">
-                   <a href="#close" data-nav-action="close">x</a>
+                   <button data-nav-action="close">x</button>
                    <form>
                        <input type="search" placeholder="search" />
                        <button>Go</button>
@@ -55,7 +55,7 @@ describe('NavMainComponent', function () {
                    </div>
                </div>
                <div class="nav-tertiary" id="aria-tertiary-nav">
-                   <a href="#close" data-nav-action="close">x</a>
+                   <button data-nav-action="close">x</button>
                    <div class="nav-list">
                        <ul class="nav-items">
                            <li class="nav-item">
@@ -65,7 +65,7 @@ describe('NavMainComponent', function () {
                    </div>
                </div>
                <div class="nav-quaternary" id="aria-quaternary-nav">
-                   <a href="#close" data-nav-action="close">x</a>
+                   <button data-nav-action="close">x</button>
                    <div class="nav-list" data-nav="#three_one">
                        <ul class="nav-items">
                            <li class="nav-item">
@@ -91,7 +91,7 @@ describe('NavMainComponent', function () {
         this.$closeQuaternaryNavLink = this.$html.find('.nav-quaternary [data-nav-action="close"]');
 
         this.$linkOne = this.$html.find('[href="#one"]');
-        this.$linkTwo = this.$html.find('[href="#two"]');
+        this.$linkTwo = this.$html.find('[data-target="#two"]');
         this.$linkThree = this.$html.find('[href="#three"]');
         this.$tertiaryLinkThree = this.$html.find('[href="#three_one"]');
 
