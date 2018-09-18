@@ -32,7 +32,7 @@ Generates a text input field allowing users to input data, with a variety of opt
         <label for="inputText" class="control__label">
             Price
             <span class="required-indicator" rel="tooltip" data-toggle="tooltips" title="required">*</span>
-            <i data-container="body" data-content="Guidance text to give more information about expected input" data-placement="top" rel="clickover" aria-hidden="true" class="icon-question-sign input-group-guidance" title=""></i>
+            <i data-container="body" data-content="Guidance text to give more information about expected input" data-placement="top" data-toggle="popover" data-autoclose="true" aria-hidden="true" class="icon-question-sign input-group-guidance" title=""></i>
         </label>
         <div class="controls">
             <div class="input-group">
