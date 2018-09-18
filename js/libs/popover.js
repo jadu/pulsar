@@ -115,7 +115,7 @@ var $ = require('jquery'),
   }
 
   $(document).ready(function() {
-    $('[data-toggle="popover"]')
+    $('[data-toggle="popover"], [rel="clickover"]')
     .on('click', function(e) {
       e.preventDefault();
       e.stopPropagation();
@@ -123,7 +123,7 @@ var $ = require('jquery'),
   });
 
   $(document).on('click', function (e) {
-    $('[data-toggle="popover"][data-autoclose="true"]').each(function () {
+    $('[data-toggle="popover"][data-autoclose="true"], [rel="clickover"]').each(function () {
         //the 'is' for buttons that trigger popups
         //the 'has' for icons within a button that triggers a popup
         if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {                
