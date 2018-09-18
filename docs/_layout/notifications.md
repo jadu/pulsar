@@ -11,10 +11,9 @@ Provides a prominent location for notifications to be displayed. A toolbar indic
 {% raw %}
 ```twig
 {{
-    html.link({
-        'class': 'notifications-toggle',
-        'href': '#',
-        'label': html.icon('bell'),
+    html.button({
+        'class': 'notifications-toggle btn--naked',
+        'label': html.icon('bell-o', { 'label': 'Show notifications' }),
         'data-toggle': 'dropdown'
     })
 }}
@@ -22,9 +21,9 @@ Provides a prominent location for notifications to be displayed. A toolbar indic
 {% endraw %}
 
 <div class="pulsar-example">
-    <a href="#" class="notifications-toggle is-active has-new" data-toggle="dropdown"><i class="icon-bell-o"></i></a>
-    <a href="#" class="notifications-toggle is-active" data-toggle="dropdown"><i class="icon-bell-o"></i></a>
-    <a href="#" class="notifications-toggle" data-toggle="dropdown"><i class="icon-bell-o"></i></a>
+    <button class="notifications-toggle btn--naked is-active has-new" data-toggle="dropdown"><i class="icon-bell-o"><span class="hide">Show notifications</span></i></button>
+    <button class="notifications-toggle btn--naked is-active" data-toggle="dropdown"><i class="icon-bell-o"><span class="hide">Show notifications</span></i></button>
+    <button class="notifications-toggle btn--naked" data-toggle="dropdown"><i class="icon-bell-o"><span class="hide">Show notifications</span></i></button>
 </div>
 
 Toggle the states with common state classes
@@ -45,17 +44,16 @@ A main `notifications` container holds both the `notifications-toggle` and the `
 ```twig
 <div class="dropdown notifications">
     {{
-        html.link({
-            'class': 'notifications-toggle is-active',
-            'href': '#',
-            'label': html.icon('bell'),
+        html.button({
+            'class': 'notifications-toggle btn--naked is-active',
+            'label': html.icon('bell-o', { 'label': 'Show notifications' }),
             'data-toggle': 'dropdown'
         })
     }}
     <div class="notifications-list dropdown__menu"><!--
         --><div class="notifications__header">
             <h1 class="notifications-title">Notifications</h1>
-          <a href="#" class="notifications-dismiss">dismiss all</a>
+            <button class="notifications-dismiss btn--naked">dismiss all</button>
         </div><!--
         --><div class="notification is-new">
             <div class="media">
@@ -80,7 +78,7 @@ A main `notifications` container holds both the `notifications-toggle` and the `
 
                     <p>We've updated our user manual to feature our new and improved user interface. If you need a copy, drop us a message and we'll be happy to send one over.</p>
 
-                    <p><i class="icon-file-text-alt"></i> <a href="#">View detailed release notes</a></p>
+                    <p><i class="icon-file-text-alt"></i> <a href="#path-to-release-notes">View detailed release notes</a></p>
                 </div>
             </div>
         </div>
@@ -108,13 +106,13 @@ A main `notifications` container holds both the `notifications-toggle` and the `
 
                     <p>We've updated our user manual to feature our new and improved user interface. If you need a copy, drop us a message and we'll be happy to send one over.</p>
 
-                    <p><i class="icon-file-text-alt"></i> <a href="#">View detailed release notes</a></p>
+                    <p><i class="icon-file-text-alt"></i> <a href="#path-to-release-notes">View detailed release notes</a></p>
                 </div>
             </div>
         </div>
 
         <div class="notifications__footer">
-            <a href="#" class="notifications-all">View all</a>
+            <button class="btn btn--naked notifications-all">View all</button>
         </div>
     </div>
 </div>

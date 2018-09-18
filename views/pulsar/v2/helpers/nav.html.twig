@@ -5,8 +5,8 @@
 
 <nav class="nav-main" aria-label="Primary" id="aria-main-nav">
     <div class="nav-primary t-nav-primary">
-        <a tabindex="1" href="{{ options.brand_link|default('#') }}" class="jadu-branding">
-            <span class="jadu-logomark"></span>
+        <a tabindex="1" href="{{ options.brand_link|default('#') }}" class="jadu-branding" aria-label="Home">
+            <span class="jadu-logomark"><span class="hide">Return to home</span></span>
             <span class="jadu-wordmark">Jadu</span>
         </a>
         <ul class="nav-items">
@@ -22,13 +22,12 @@
 
     <div class="nav-secondary t-nav-secondary" id="aria-secondary-nav">
 
-        <a href="#close" class="nav-close" data-nav-action="close">{{ html.icon('remove', { 'label': 'Close expanded menu' }) }}</a>
+        <button class="nav-close" data-nav-action="close" tabindex="1">{{ html.icon('remove', { 'label': 'Close expanded menu' }) }}</button>
 
         {% if options.data is iterable %}
             {% for options in options.data %}
                 {% if options.items is defined and options.items is iterable %}
-
-                    <div class="nav-list" data-nav="{{ options.href }}">
+                    <div class="nav-list" data-nav="{{ options.href }}" id="{{ options.label|lower }}">
                         <h2 class="nav-item nav-item--header t-nav-header" id="aria-secondary-nav-heading-{{ options.label|striptags|replace(' ', '-')|raw }}">{{ options.label|raw }}</h2>
 
                         <ul class="nav-items">
@@ -54,7 +53,7 @@
 
     <div class="nav-tertiary t-nav-tertiary" id="aria-tertiary-nav">
 
-        <a href="#close" class="nav-close" data-nav-action="close">{{ html.icon('remove', { 'label': 'Close expanded menu' }) }}</a>
+        <button class="nav-close" data-nav-action="close" tabindex="1">{{ html.icon('remove', { 'label': 'Close expanded menu' }) }}</button>
 
         <div class="nav-list">
             <h2 class="nav-item nav-item--header t-nav-header" id="aria-tertiary-nav-heading">More Categories</h2>
@@ -73,7 +72,7 @@
 
     <div class="nav-quaternary t-nav-quaternary" id="aria-quaternary-nav">
 
-        <a href="#close" class="nav-close-ltr" data-nav-action="close">{{ html.icon('remove', { 'label': 'Close expanded menu' }) }}</a>
+        <button class="nav-close-ltr" data-nav-action="close" tabindex="1">{{ html.icon('remove', { 'label': 'Close expanded menu' }) }}</button>
 
            {% if options.data is iterable %}
                {% for options in options.data %}
@@ -112,22 +111,35 @@
     {% import '@pulsar/pulsar/v2/helpers/html.html.twig' as html %}
     {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
 
+    {% set tag = 'a' %}
+    {% if options.href is defined and options.href|slice(0,1) == '#' %}
+        {% set tag = 'button' %}
+        {% set options = options|merge({ 'data-target': options.href, 'href': null }) %}
+    {% endif %}
+
     <li
         {{
             attributes(options
-                |exclude('data-toggle href icon label')
+                |exclude('data-toggle href icon label aria-label')
                 |defaults({ 'class': 'nav-item t-nav-item' })
             )
         }}
     >
-        <a tabindex="1" {{ attributes(options|only('href data-toggle')) }} {% if heading_id is not null %} aria-labelledby="{{ heading_id|striptags|replace(' ', '-') }}"{% endif %} class="nav-link t-nav-link" {% if options.class is defined and 'is-active' in options.class %} aria-current="page" {% endif %} {% if options.href starts with '#' %} aria-haspopup="true" aria-expanded="false" {% if aria_controls is not null %}aria-controls="{{ aria_controls }}"{% endif %}{% endif %}>
+        <{{ attributes(options|only('aria-label href data-toggle data-target'), { 'tag': tag }) }} 
+            tabindex="1" 
+            class="nav-link t-nav-link" 
+            {% if options.class is defined and 'is-active' in options.class %} aria-current="page" {% endif %} 
+            {% if options.href starts with '#' or tag == 'button' %} aria-haspopup="true" aria-expanded="false" 
+                {% if aria_controls is not null %}aria-controls="{{ aria_controls }}"{% endif %}
+            {% endif %}
+        >
             {% if options.icon is defined and options.icon is not empty %}
                 {{ html.icon(options.icon, { 'class': 'icon-fw nav-link__icon t-nav-icon' }) }}
             {% elseif options.image is defined and options.image is not empty %}
                 <img src="{{ options.image }}" alt="{{ options.image_alt|default }}" class="nav-link__image" />
             {% endif %}
             <span class="nav-link__label">{{ options.label|raw }}</span>
-        </a>
+        </{{ tag }}>
     </li>
 
 {% endspaceless %}
@@ -159,13 +171,11 @@
     <div class="toolbar-help toolbar-icon">
         <div class="dropdown">
             {{
-                html.link({
-                    'class': 'toolbar-help-link',
-                    'href': '#user-guides',
-                    'icon': 'question-sign',
-                    'label': options.label|default('user guides'),
+                html.button({
+                    'class': 'toolbar-help-link btn--naked',
+                    'label': html.icon('question-sign') ~ ' user guides',
                     'tabindex': options.tabindex|default('0'),
-                    'data-toggle': 'dropdown'
+                    'data-toggle': 'dropdown'                  
                 })
             }}
 

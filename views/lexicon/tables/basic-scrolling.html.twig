@@ -5,21 +5,21 @@
     <table class="table table--full table--horizontal">
         <thead>
             <tr>
-                <th><a href="#">Name</a></th>
-                <th><a href="#">IP</a></th>
-                <th><a href="#">Status</a></th>
-                <th><a href="#">Uptime</a></th>
-                <th><a href="#">Image</a></th>
-                <th><a href="#">RAM</a></th>
-                <th class="centered"><a href="#">CPUs</a></th>
-                <th><a href="#">Actions</a></th>
+                <th>Name</th>
+                <th>IP</th>
+                <th>Status</th>
+                <th>Uptime</th>
+                <th>Image</th>
+                <th>RAM</th>
+                <th class="centered">CPUs</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             {% for i in 0..5 %}
             <tr>
-                <td><a href="#" class="table-link">Sysadmin - Ansible 1</a></td>
-                <td class="monospace"><a href="#" class="table-link">10.101.0.175</a></td>
+                <td><a href="#example" class="table-link">Sysadmin - Ansible 1</a></td>
+                <td class="monospace"><a href="#example" class="table-link">10.101.0.175</a></td>
                 <td>
                     {{
                         html.label({
@@ -42,8 +42,8 @@
             </tr>
 
             <tr class="table__tr">
-                <td><a href="#" class="table-link">Sysasdmin - WISP 1</a></td>
-                <td class="monospace"><a href="#" class="table-link">10.101.0.138</a></td>
+                <td><a href="#example" class="table-link">Sysasdmin - WISP 1</a></td>
+                <td class="monospace"><a href="#example" class="table-link">10.101.0.138</a></td>
                 <td>
                     {{
                         html.label({
