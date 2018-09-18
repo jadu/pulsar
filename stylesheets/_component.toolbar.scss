@@ -130,6 +130,10 @@
     position: relative;
     top: -4px;
     text-decoration: none;
+
+    &:hover {
+        top: -4px; // don't move this element on hover
+    }
 }
 
 .toolbar-help {

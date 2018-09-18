@@ -31,7 +31,6 @@
                 {% if tab.disabled is defined and tab.disabled == true %}
                     {% set href = '#' ~ tab.id %}
                     {% set type = 'link' %}
-                    {% set options = options|merge({ 'aria-disabled': 'true' }) %}
                 {% else %}
                     {% set href = '#' ~ tab.id %}
                     {% set type = 'tab' %}
