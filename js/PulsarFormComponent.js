@@ -115,7 +115,7 @@ PulsarFormComponent.prototype.initColourpickers = function () {
 
         var $this = $(this),
             $input = $this.find('.form__control'),
-            $pickerInput = $('<input data-colour-picker-input>'),
+            $pickerInput = $('<input type="hidden" data-colour-picker-input>'),
             disabledAttr = $input.attr('disabled'),
             isDisabled = false,
             existingPicker = $input.next('[data-colour-picker-input]');
