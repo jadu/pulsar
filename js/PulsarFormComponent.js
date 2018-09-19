@@ -83,30 +83,34 @@ PulsarFormComponent.prototype.initTimePickers = function () {
  * Initiate a date picker on data-datepicker fields using pickaday
  */
 PulsarFormComponent.prototype.initDatePickers = function () {
+
     // Attach basic pikaday to datepicker fields
     const datepickers = this.$html.find('[data-datepicker="true"]');
-    const hardcoded_datepickers = this.$html.find('[data-datepicker="true"]').not('[data-format]');
-
-    // Add missing data-format to hardcoded examples before pikaday initialization
-    hardcoded_datepickers.each((index, element) => {
-        element.setAttribute('data-format', 'default');
-    });
+    let defaultDateFormat = 'DD/MM/YYYY';
 
     datepickers.each((index, element) => {
-        const $parent = $(element).parent();
+        const dateFormat = element.getAttribute('data-format');
 
-        $parent
-            .find('[data-format=default]')
-            .pikaday({ format: 'DD/MM/YYYY' });
+        // Add missing data-format to hardcoded examples and initialize pikaday
+        if (!element.hasAttribute('data-format')) {
+            element.setAttribute('data-format', 'default');
+        } else {
+            switch (dateFormat) {
+                case 'US':
+                    defaultDateFormat = 'MM/DD/YYYY';
+                    break;
+                case 'reverse':
+                    defaultDateFormat = 'YYYY/MM/DD';
+                    break;
+                default:
+                    defaultDateFormat = 'DD/MM/YYYY';
+            }
+        }
 
-        $parent
-            .find('[data-format=US]')
-            .pikaday({ format: 'MM/DD/YYYY' });
-
-        $parent
-            .find('[data-format=reverse]')
-            .pikaday({ format: 'YYYY/MM/DD' });
+        // Initialize pikaday with the right date format
+        $(element).pikaday({ format: ''+defaultDateFormat+'' });
     });
+
 }
 
 /**
