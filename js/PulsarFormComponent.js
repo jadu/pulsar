@@ -103,7 +103,7 @@ PulsarFormComponent.prototype.initDatePickers = function () {
             }
         }
 
-        // Initialize pikaday with the right date format
+        // Initialize pikaday with the correct date format
         $(element).pikaday({ format: defaultDateFormat });
     });
 }
