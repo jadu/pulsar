@@ -373,3 +373,23 @@ th.sorting_disabled:hover {
 }
 
 // scss-lint:enable SelectorFormat
+
+.dtr-details {
+    .dtr-title {
+        a {
+            @include respond-max($screen-smaller) {
+                border-bottom: 0;
+                color: color(black);
+                font-family: $font-family-regular;
+            }
+        }
+    }
+
+    .dtr-data {
+        a {
+            @include respond-max($screen-smaller) {
+                border-bottom: 0;
+            }
+        }
+    }
+}
