@@ -261,19 +261,19 @@ describe('PulsarFormComponent', function() {
         });
 
         it('should get a default "DD/MM/YYYY" date-format attribute when hardcoded', function() {
-            expect(this.$datepicker.attr('data-format') == 'default').to.be.true;
+            expect(this.$datepicker.attr('data-format') === 'default').to.be.true;
         });
 
         it('should get "DD/MM/YYYY" when date-format attribute = "default"', function() {
-            expect(this.$datepickerDefault.attr('data-format') == 'default').to.be.true;
+            expect(this.$datepickerDefault.attr('data-format') === 'default').to.be.true;
         });
 
         it('should get "MM/DD/YYYY" when date-format attribute is "US"', function() {
-            expect(this.$datepickerUS.attr('data-format') == 'US').to.be.true;
+            expect(this.$datepickerUS.attr('data-format') === 'US').to.be.true;
         });
 
         it('should get "YYYY/MM/DD" when date-format attribute is "reverse"', function() {
-            expect(this.$datepickerReverse.attr('data-format') == 'reverse').to.be.true;
+            expect(this.$datepickerReverse.attr('data-format') === 'reverse').to.be.true;
         });
 
     });
