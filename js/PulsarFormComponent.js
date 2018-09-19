@@ -84,8 +84,13 @@ PulsarFormComponent.prototype.initTimePickers = function () {
  */
 PulsarFormComponent.prototype.initDatePickers = function () {
     // Attach basic pikaday to datepicker fields
-
     const datepickers = this.$html.find('[data-datepicker="true"]');
+    const hardcoded_datepickers = this.$html.find('[data-datepicker="true"]').not('[data-format]');
+
+    // Add missing data-format to hardcoded examples before pikaday initialization
+    hardcoded_datepickers.each((index, element) => {
+        element.setAttribute('data-format', 'default');
+    });
 
     datepickers.each((index, element) => {
         const $parent = $(element).parent();
