@@ -83,8 +83,6 @@ PulsarFormComponent.prototype.initTimePickers = function () {
  * Initiate a date picker on data-datepicker fields using pickaday
  */
 PulsarFormComponent.prototype.initDatePickers = function () {
-
-    // Attach basic pikaday to datepicker fields
     const datepickers = this.$html.find('[data-datepicker="true"]');
     let defaultDateFormat = 'DD/MM/YYYY';
 
@@ -92,7 +90,7 @@ PulsarFormComponent.prototype.initDatePickers = function () {
         const dateFormat = element.getAttribute('data-format');
 
         // Add missing data-format to hardcoded examples and initialize pikaday
-        if (!element.hasAttribute('data-format')) {
+        if (!dateFormat) {
             element.setAttribute('data-format', 'default');
         } else {
             switch (dateFormat) {
@@ -102,15 +100,12 @@ PulsarFormComponent.prototype.initDatePickers = function () {
                 case 'reverse':
                     defaultDateFormat = 'YYYY/MM/DD';
                     break;
-                default:
-                    defaultDateFormat = 'DD/MM/YYYY';
             }
         }
 
         // Initialize pikaday with the right date format
-        $(element).pikaday({ format: ''+defaultDateFormat+'' });
+        $(element).pikaday({ format: defaultDateFormat });
     });
-
 }
 
 /**
