@@ -89,7 +89,7 @@ PulsarFormComponent.prototype.initDatePickers = function () {
     datepickers.each((index, element) => {
         const dateFormat = element.getAttribute('data-format');
 
-        // Add missing data-format to hardcoded examples and initialize pikaday
+        // Add missing data-format to hardcoded examples
         if (!dateFormat) {
             element.setAttribute('data-format', 'default');
         } else {
@@ -100,6 +100,8 @@ PulsarFormComponent.prototype.initDatePickers = function () {
                 case 'reverse':
                     defaultDateFormat = 'YYYY/MM/DD';
                     break;
+                default:
+                    defaultDateFormat = 'DD/MM/YYYY';
             }
         }
 
