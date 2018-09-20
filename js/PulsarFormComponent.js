@@ -83,10 +83,30 @@ PulsarFormComponent.prototype.initTimePickers = function () {
  * Initiate a date picker on data-datepicker fields using pickaday
  */
 PulsarFormComponent.prototype.initDatePickers = function () {
-    // Attach basic pikaday to datepicker fields
-    this.$html
-        .find('[data-datepicker=true]')
-        .pikaday({ format: 'DD/MM/YYYY' });
+    const datepickers = this.$html.find('[data-datepicker="true"]');
+    let defaultDateFormat = 'DD/MM/YYYY';
+
+    datepickers.each((index, element) => {
+        let dateFormat = element.getAttribute('data-format');
+
+        if (dateFormat !== null) {
+            dateFormat = dateFormat.toLowerCase();
+        }
+
+        switch (dateFormat) {
+            case 'us':
+                defaultDateFormat = 'MM/DD/YYYY';
+                break;
+            case 'reverse':
+                defaultDateFormat = 'YYYY/MM/DD';
+                break;
+            default:
+                defaultDateFormat = 'DD/MM/YYYY';
+        }
+
+        // Initialize pikaday with the correct date format
+        $(element).pikaday({ format: defaultDateFormat });
+    });
 }
 
 /**
@@ -100,7 +120,7 @@ PulsarFormComponent.prototype.initColourpickers = function () {
 
         var $this = $(this),
             $input = $this.find('.form__control'),
-            $pickerInput = $('<input data-colour-picker-input>'),
+            $pickerInput = $('<input type="hidden" data-colour-picker-input>'),
             disabledAttr = $input.attr('disabled'),
             isDisabled = false,
             existingPicker = $input.next('[data-colour-picker-input]');

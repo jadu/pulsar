@@ -163,9 +163,9 @@ $palette-alias: (
         disabled: map-get(map-get($palette-monochromes, gray), lighter)
     ),
     link: (
-        base:     rgb(35, 124, 169),
-        dark:     map-get(map-get($palette-branding, jadu-blue), darkest),
-        hover:    map-get(map-get($palette-branding, jadu-blue), darkest),
+        base:     #2a7da7, // WCAG 4.58:1 AA compliant
+        dark:     darken(#2a7da7, 5),
+        hover:    darken(#2a7da7, 5),
         inverse:  #fff,
         inverse-hover: darken(#fff, 10%),
         disabled:  map-get(map-get($palette-monochromes, gray), lighter)
