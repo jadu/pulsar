@@ -827,6 +827,7 @@ Generates a text input field which will show a date picker when focused.
 ```twig
 {{
     form.date({
+        'format': 'US',
         'label': 'When is your birthday?'
     })
 }}
@@ -852,6 +853,7 @@ Option      | Type   | Description
 autofocus   | bool   | Whether the field should have input focus on page load
 disabled    | bool   | Stops the element from being interactive if true
 form        | string | Specific one or more forms this label belongs to
+format      | string | Options for this can be `default`, `US` or `reverse`
 id          | string | A unique identifier, will also be used as the label's `for` attribute
 name        | string | The name of this control
 placeholder | string | A short hint that describes the expected value
@@ -869,7 +871,8 @@ data-*      | string | Data attributes, eg: `'data-foo': 'bar'`
     {%
         set options = options|default({})|merge({
             'placeholder': options.placeholder|default('dd/mm/yyyy'),
-            'data-datepicker': 'true'
+            'data-datepicker': options['data-datepicker']|default('true'),
+            'data-format': options.format|default('default')
         })
     %}
 
@@ -1241,6 +1244,11 @@ controls.class    | string | A space separated list of class names
         {% set showLabel = false %}
     {% endif %}
 
+    {% set isToggleSwitch = false %}
+    {% if options.parent.class is defined and 'form__group--toggle' in options.parent.class %}
+        {% set isToggleSwitch = true %}
+    {% endif %}
+
     {% if options.parent.bare is not defined or options.parent.bare != true %}
     <div{{
         attributes(options.parent
@@ -1252,6 +1260,10 @@ controls.class    | string | A space separated list of class names
     -}}>
     {% endif %}
 
+        {% if isToggleSwitch %}
+        <label class="toggle-switch-wrapper-label"{% if options.parent.id is defined and options.parent.id is not empty %} for="{{ options.parent.id }}"{% endif %}>
+        {% endif %}
+
         {{
             elem.label({
                 'for': options.parent.id|default,
@@ -1260,11 +1272,14 @@ controls.class    | string | A space separated list of class names
                 'show-label': showLabel,
                 'required': options.parent.required|default,
                 'guidance-container': options.parent['guidance-container']|default,
+                'tag': (isToggleSwitch) ? 'span' : 'label'
             })
         }}
 
         {% if options.parent.bare is not defined or options.parent.bare != true %}
-        <div class="controls{% if options.controls.class is defined %} {{ options.controls.class }}{% endif %}">
+            <{{ attributes(options|defaults({
+                'class': 'controls ' ~ (options.controls.class is defined ? options.controls.class)
+            }), {'tag': ((isToggleSwitch) ? 'span' : 'div')}) }}>
         {% endif %}
 
         {% set input_group_classes = '' %}
@@ -1349,12 +1364,22 @@ controls.class    | string | A space separated list of class names
             {{ form.error({ 'value': options.parent.error|default }) }}
         {% endif %}
 
-        {% if options.parent.help is defined and options.parent.help is not empty and options.parent.help_id is defined and options.parent.help_id is not empty %}
-            {{ form.help({ 'value': options.parent.help|default, 'id': options.parent.help_id }) }}
+        {% if isToggleSwitch %}
+            {% if options.parent.help is defined and options.parent.help is not empty %}
+                {{ form.help({ 'value': options.parent.help|default }) }}
+            {% endif %}
+        {% else %}
+            {% if options.parent.help is defined and options.parent.help is not empty and options.parent.help_id is defined and options.parent.help_id is not empty %}
+                {{ form.help({ 'value': options.parent.help|default, 'id': options.parent.help_id }) }}
+            {% endif %}
         {% endif %}
 
         {% if options.parent.bare is not defined or options.parent.bare != true %}
-        </div>
+            </{{ (isToggleSwitch) ? 'span' : 'div' }}>
+        {% endif %}
+
+        {% if isToggleSwitch %}
+        </label>
         {% endif %}
     {% if options.parent.bare is not defined or options.parent.bare != true %}
     </div>
@@ -2272,9 +2297,7 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
     {% import _self as form %}
     {% import '@pulsar/pulsar/v2/helpers/elem.html.twig' as elem %}
 
-    {% set toggleLabel = '<span class="hide">' ~ options.label ~ '</span>' %}
-
-    {% set options = modify_options(options|default({})) %}
+    {% set toggleLabel = '<span class="hide">toggle ' ~ options.label ~ '</span>' %}
 
     {%
         set toggle = elem.input(options
@@ -2283,17 +2306,13 @@ data-*        | string | Data attributes, eg: `'data-foo': 'bar'`
                 'class': 'toggle-switch',
                 'type': 'checkbox'
             })
-        ) ~ elem.label({
-                'class': 'toggle-switch-label',
-                'for': options.id|default,
-                'label': toggleLabel
-            })
+        ) ~ '<span class="toggle-switch-label"></span>'
     %}
 
     {{
         form.group({
             'parent': options
-                |only('bare class error error_ids guidance guidance-container help help_id label required show-label')
+                |only('bare class error error_ids guidance guidance-container help help_id id label required show-label')
                 |merge({
                     'class': options.class|default ~ ' form__group--toggle'
                 }),
