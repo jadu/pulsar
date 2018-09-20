@@ -87,10 +87,14 @@ PulsarFormComponent.prototype.initDatePickers = function () {
     let defaultDateFormat = 'DD/MM/YYYY';
 
     datepickers.each((index, element) => {
-        const dateFormat = element.getAttribute('data-format');
+        let dateFormat = element.getAttribute('data-format');
+
+        if (dateFormat !== null) {
+            dateFormat = dateFormat.toLowerCase();
+        }
 
         switch (dateFormat) {
-            case 'US':
+            case 'us':
                 defaultDateFormat = 'MM/DD/YYYY';
                 break;
             case 'reverse':
