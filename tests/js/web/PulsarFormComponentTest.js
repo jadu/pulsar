@@ -262,6 +262,7 @@ describe('PulsarFormComponent', function() {
 
         it('should get "DD/MM/YYYY" when data-datepicker is hardcoded', function() {
             expect($.fn.pikaday).to.have.been.calledWith({ format: 'DD/MM/YYYY' });
+            expect(this.$datepicker.attr('data-format')).to.be.undefined;
         });
 
         it('should get "DD/MM/YYYY" when date-format attribute = "default"', function() {
