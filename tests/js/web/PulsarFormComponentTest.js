@@ -72,7 +72,7 @@ describe('PulsarFormComponent', function() {
                     <div class="form__group">
                         <label class="control__label">Date Picker - US Date Format Test</label>
                         <div class="controls">
-                            <input value="foo" name="foo" type="text" data-datepicker="true" data-format="US" class="form__control qa-foo" />
+                            <input value="foo" name="foo" type="text" data-datepicker="true" data-format="us" class="form__control qa-foo" />
                         </div>
                     </div>
 
@@ -110,7 +110,7 @@ describe('PulsarFormComponent', function() {
 
         this.$datepicker = this.$html.find('[data-datepicker]');
         this.$datepickerDefault = this.$html.find('[data-format=default]');
-        this.$datepickerUS = this.$html.find('[data-format=US]');
+        this.$datepickerUS = this.$html.find('[data-format=us]');
         this.$datepickerReverse = this.$html.find('[data-format=reverse]');
         this.$tabToggle = this.$html.find('[data-toggle="tab"]');
         this.$modalToggle = this.$html.find('[data-toggle="modal"]');
@@ -272,7 +272,7 @@ describe('PulsarFormComponent', function() {
 
         it('should get "MM/DD/YYYY" when date-format attribute is "US"', function() {
             expect($.fn.pikaday).to.have.been.calledWith({ format: 'MM/DD/YYYY' });
-            expect(this.$datepickerUS.attr('data-format') === 'US').to.be.true;
+            expect(this.$datepickerUS.attr('data-format') === 'us').to.be.true;
         });
 
         it('should get "YYYY/MM/DD" when date-format attribute is "reverse"', function() {
