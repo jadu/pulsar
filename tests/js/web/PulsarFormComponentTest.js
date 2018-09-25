@@ -276,6 +276,19 @@ describe('PulsarFormComponent', function() {
             expect($.fn.pikaday).to.have.been.calledWith({ format: 'YYYY/MM/DD' });
         });
 
+        it('should have "dd/mm/yyyy" as a placeholder for inputs with "default" or no option at all', function() {
+            expect(this.$datepicker.attr('placeholder')).to.equal('dd/mm/yyyy');
+            expect(this.$datepickerDefault.attr('placeholder')).to.equal('dd/mm/yyyy');
+        });
+
+        it('should have "mm/dd/yyyy" as a placeholder for inputs with "us" option', function() {
+            expect(this.$datepickerUS.attr('placeholder')).to.equal('mm/dd/yyyy');
+        });
+
+        it('should have "yyyy/mm/dd" as a placeholder for inputs with "reverse" option', function() {
+            expect(this.$datepickerReverse.attr('placeholder')).to.equal('yyyy/mm/dd');
+        });
+
     });
 
     describe('Timepickers', function() {
@@ -288,9 +301,11 @@ describe('PulsarFormComponent', function() {
         it('should call the timePickerComponents init method', function() {
             expect(this.pulsarForm.timePickerComponent.init).to.have.been.called;
         });
+
     });
 
     describe('refresh', function () {
+
         beforeEach(function () {
             this.$html.append('<div class="js-colorpicker"></div>');
         });
@@ -312,5 +327,6 @@ describe('PulsarFormComponent', function() {
 
             expect($.fn.timepicker).to.have.been.calledOnce;
         });
+
     });
 });
