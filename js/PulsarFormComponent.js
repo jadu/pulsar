@@ -89,6 +89,8 @@ PulsarFormComponent.prototype.initDatePickers = function () {
     datepickers.each((index, element) => {
         let dateFormat = element.getAttribute('data-format');
 
+        // Check if data-format attribute exists and lowercase it
+        // to eliminate different styles of writing issues
         if (dateFormat !== null) {
             dateFormat = dateFormat.toLowerCase();
         }
@@ -106,6 +108,9 @@ PulsarFormComponent.prototype.initDatePickers = function () {
 
         // Initialize pikaday with the correct date format
         $(element).pikaday({ format: defaultDateFormat });
+
+        // Initialize placeholder attribute based on the date format
+        $(element).attr('placeholder', defaultDateFormat.toLowerCase());
     });
 }
 
