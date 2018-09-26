@@ -37,7 +37,7 @@ build:
 	@ echo "\n${CHECK} Done"
 
 	@ echo "${HR}\nInstalling scss-lint...${HR}\n"
-	@ gem install scss_lint -v ${SASSLINTVER} --no-ri --no-rdoc --no-user-install
+	@ sudo gem install scss_lint -v ${SASSLINTVER} --no-ri --no-rdoc --no-user-install
 	@ echo "\n${CHECK} Done"
 
 	@ echo "${HR}\nInstalling PhantomJS...${HR}\n"
@@ -49,7 +49,7 @@ build:
 	@ echo "\n${CHECK} Done"
 
 	@ echo "${HR}\nInstalling Wraith...${HR}\n"
-	@ gem install wraith --no-ri --no-rdoc --no-user-install
+	@ sudo gem install wraith --no-ri --no-rdoc --no-user-install
 	@ echo "\n${CHECK} Done"
 
 	@ echo "${HR}\nInstalling Node & NPM...${HR}\n"
