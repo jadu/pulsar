@@ -218,7 +218,8 @@ NavMainComponent.prototype.closeSecondaryNav = function () {
     component.$navMain.removeClass('is-open');
     component.$navMain.find('[aria-expanded=true]').attr( 'aria-expanded', 'false');
     component.$navSecondary.removeClass('is-open');
-    component.$primaryNavLinks.removeClass('is-active')
+    component.$primaryNavLinks.removeClass('is-active');
+    component.$navMain.find('.nav-item.is-active').removeClass('is-active');
     component.$navSecondary.find('.nav-list').removeClass('is-active');
 }
 
