@@ -332,6 +332,14 @@ describe('NavMainComponent', function () {
         it('should remove the highlight from that sections primary nav item', function () {
             expect(this.$html.find('.nav-primary .nav-link').hasClass('is-active')).to.be.false;
         });
+
+        it('should remove the is-active class on the main navigation', function () {
+            expect(this.$html.find('.nav-main').hasClass('is-active')).to.be.false;
+        });
+
+        it('should remove the is-active class on the main navigation active li', function () {
+            expect(this.$html.find('.nav-main .nav-item.is-active').hasClass('is-active')).to.be.false;
+        });
     });
 
     describe('clicking outside of the navigation, when the sub navigation is open', function () {
