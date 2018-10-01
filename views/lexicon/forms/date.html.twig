@@ -8,8 +8,34 @@
 
     {{
         form.date({
+            'data-datepicker': 'false',
+            'id': 'date-noDayPicker',
+            'label': 'Date field without date picker'
+        })
+    }}
+
+    {{
+        form.date({
             'id': 'date-1',
             'label': 'Date field'
+        })
+    }}
+
+    {{
+        form.date({
+            'format': 'US',
+            'id': 'date-US',
+            'label': 'Date US style',
+            'placeholder': 'mm/dd/yyyy'
+        })
+    }}
+
+    {{
+        form.date({
+            'format': 'reverse',
+            'id': 'date-reverse',
+            'label': 'Date reverse style',
+            'placeholder': 'yyyy/mm/dd'
         })
     }}
 
