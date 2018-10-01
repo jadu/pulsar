@@ -141,13 +141,8 @@
 
 .rules-container--v2 {
 
-    .rule-links {
-        // border-left: 2px solid red;
-        // margin-left: 20px;
-
-        a {
-            padding: 5px 0;
-        }
+    .rule-links a {
+        padding: 5px 0;
     }
 
     .rule-link {
@@ -212,7 +207,7 @@
         }
     }
 
-    .rule-link--elseif {
+    .rule-link--else-if {
         border-left: 4px solid color(gray, lightest);
         margin-left: 20px;
 
@@ -240,44 +235,11 @@
     .rule-block--if + .rule-block--or {
         margin-left: 40px;
         width: calc(100% - 40px);
-
-        // &::before {
-        //     background-color: color(gray, lightest);
-        //     content: '';
-        //     display: inline-block;
-        //     height: 80px;
-        //     left: -21px;
-        //     position: absolute;
-        //     top: -1px;
-        //     width: 2px;
-        // }
     }
 
-    .rule-block--else + .rule-block--return {
-        margin-left: 30px;
-        width: calc(100% - 30px);
-
-        &::before {
-            display: none;
-        }
-    }
-
-    .rule-block--if + .rule-links,
-    .rule-block--and + .rule-links,
-    .rule-block--or + .rule-links {
-        padding-left: 20px;
-    }
-
-    .rule-block--and + .rule-block--or + .rule-link--or {
-        padding-left: 40px;
-    }
-
+    .rule-block--indent > .rule-links,
     .rule-block--indent > .rule-block--indent + .rule-links {
         padding-left: 20px;
-    }
-
-    .rule-block--and {
-        margin-top: 0;
     }
 
     .rule-block--indent {
@@ -288,9 +250,11 @@
 
     .rule-block__header {
         box-shadow: none;
+        font-family: $font-family-regular;
     }
 
-    .rule-block--if {
+    .rule-block--if,
+    .rule-block--else-if {
         border-left: 4px solid color(jadu-blue, dark);
         color: color(jadu-blue, dark);
     }
@@ -298,6 +262,11 @@
     .rule-block--and {
         border-left: 4px solid color(jadu-green, dark);
         color: color(jadu-green, dark);
+        margin-top: 0;
+
+        + .rule-block--or + .rule-link--or {
+            padding-left: 40px;
+        }
     }
 
     .rule-block--or {
@@ -308,40 +277,51 @@
     .rule-block--else {
         border-left: 4px solid color(jadu-teal, dark);
         color: color(jadu-teal, dark);
-    }
 
-    .rule-block--return {
-        border-left: 0;
-        border-radius: 25px;
-        
-        .rule-block__header {
-            background-color: color(jadu-green, pale);
-            border-top-left-radius: 25px;
-            border-bottom-left-radius: 25px;
+        + .rule-block--return {
+            margin-left: 30px;
+            width: calc(100% - 30px);
+
+            &::before {
+                display: none;
+            }
         }
     }
 
+    .rule-block--return .rule-block__header {
+        background-color: color(jadu-green, pale);
+    }
+
+    .rule-block--else-return .rule-block__header {
+        background-color: color(gray, dark);
+        color: color(white);
+
+        @include respond-min($screen-small) {
+            width: 120px;
+        }
+    }
+
+    .rule-block--return,
     .rule-block--else-return {
-        border-left: 0;
-        border-radius: 25px;
+        border-radius: 15px;
+
+        @include respond-min($screen-small) {
+            border-left: 0;
+        }
 
         .rule-block__header {
-            background-color: color(gray, dark);
-            border-top-left-radius: 25px;
-            border-bottom-left-radius: 25px;
-            color: color(white);
-            width: 115px;
+            border-radius: 15px;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+
+            @include respond-min($screen-small) {
+                border-radius: 15px;
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+            }
         }
     }
 
-    .rule-block--return {
-        border-left: 0;
-        
-        .rule-block__header {
-            background-color: color(jadu-green, pale);
-        }
-    }
-    
     .rule-block + .rule-block--return,
     .rule-block + .rule-block--else-return {
         border-top-left-radius: 0;
@@ -350,5 +330,16 @@
         .rule-block__header {
             border-top-left-radius: 0;
         }
+    }
+
+    .rule-block__controls {
+        margin-top: .8em;
+    }
+
+    .remove__control {
+        color: color(text);
+        position: absolute;
+        right: 10px;
+        top: 10px;
     }
 }

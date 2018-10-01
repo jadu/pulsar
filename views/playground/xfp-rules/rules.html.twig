@@ -64,6 +64,18 @@
             <span class="rule-block__heading">if</span>
         </div>
         <div class="rule-block__controls">
+
+            <div class="rule-block__control">
+                <div class="form__group form__group--medium">
+                    <label class="control__label hide">Choose trigger</label>
+                    <div class="controls">
+                        <select placeholder="Choose condition" class="form__control select js-select2 select2-hidden-accessible" tabindex="-1" aria-hidden="true">
+                            <option value="foo">User type</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -73,7 +85,9 @@
                 <span class="rule-block__heading">or</span>
             </div>
             <div class="rule-block__controls">
+                
             </div>
+            <a data-action="remove" data-placement="left" data-toggle="tooltips" data-title="Remove this item"  class="remove__control js-remove-trigger"><i  class="icon-remove-sign"><span class="hide">Remove this item</span></i></a>
         </div>
 
         <div class="rule-links">
@@ -90,7 +104,9 @@
                 <span class="rule-block__heading">and</span>
             </div>
             <div class="rule-block__controls">
+            
             </div>
+            <a data-action="remove" data-placement="left" data-toggle="tooltips" data-title="Remove this item"  class="remove__control js-remove-trigger"><i  class="icon-remove-sign"><span class="hide">Remove this item</span></i></a>
         </div>
 
         <div class="rule-links">
@@ -109,7 +125,43 @@
     </div>
 
     <div class="rule-links">
-        <div class="rule-link rule-link--elseif">
+        <div class="rule-link rule-link--else-if">
+            <a href="#or">else if</a>
+        </div>
+    </div>
+
+    <div class="rule-block rule-block--else-if">
+        <div class="rule-block__header">
+            <span class="rule-block__heading">else if</span>
+        </div>
+        <div class="rule-block__controls">
+        </div>
+        <a data-action="remove" data-placement="left" data-toggle="tooltips" data-title="Remove this item"  class="remove__control js-remove-trigger"><i  class="icon-remove-sign"><span class="hide">Remove this item</span></i></a>
+    </div>
+
+    <div class="rule-block--indent">
+
+        <div class="rule-links">
+            <div class="rule-link rule-link--or">
+                <a href="#or">or</a>
+            </div>
+            <div class="rule-link rule-link--and">
+                <a href="#and">and</a>
+            </div>
+        </div>
+
+        <div class="rule-block rule-block--return">
+            <div class="rule-block__header">
+                <span class="rule-block__heading">return</span>
+            </div>
+            <div class="rule-block__controls">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="rule-links">
+        <div class="rule-link rule-link--else-if">
             <a href="#or">else if</a>
         </div>
     </div>
@@ -119,6 +171,16 @@
             <span class="rule-block__heading">else return</span>
         </div>
         <div class="rule-block__controls">
+            <div class="rule-block__control">
+                <div class="form__group form__group--medium">
+                    <label class="control__label hide">Choose trigger</label>
+                    <div class="controls">
+                        <select placeholder="Choose condition" class="form__control select js-select2 select2-hidden-accessible" tabindex="-1" aria-hidden="true">
+                            <option value="foo">User type</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
