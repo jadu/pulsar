@@ -335,15 +335,6 @@ module.exports = function(grunt) {
             updateNpm: {
                 cmd: 'sudo npm install'
             },
-            wraithUpdate: {
-                cmd: 'php tests/css/updateWraith.php'
-            },
-            wraithHistory: {
-                cmd: 'wraith history wraith.yml'
-            },
-            wraithLatest: {
-                cmd: 'wraith latest wraith.yml'
-            },
             fixProximaNova: {
                 cmd: 'git update-index --skip-worktree fonts/_config.fonts.scss'
             }
@@ -632,15 +623,6 @@ module.exports = function(grunt) {
     grunt.registerTask('favicons', [
         'clean:favicons',
         'realFavicon'
-    ]);
-
-    grunt.registerTask('wraith', [
-        'exec:wraithLatest'
-    ]);
-
-    grunt.registerTask('wraith-update', [
-        'exec:wraithUpdate',
-        'exec:wraithHistory'
     ]);
 
     grunt.registerTask('update', [
