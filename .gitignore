@@ -10,7 +10,6 @@
 /tmp/
 /composer.phar
 /.bashrc
-.vagrant/
 .grunt/
 .idea/
 /coverage
@@ -22,7 +21,6 @@
 /css
 libs/livereload-js
 libs/phantomcss
-.vagrant
 pulsar.zip
 /shots
 /fonts
@@ -40,4 +38,3 @@ pulsar.zip
 /docs/assets/bundle.js
 /.vscode
 /ngrok
-/provisioning/playbook.retry
