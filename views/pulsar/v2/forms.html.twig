@@ -49,6 +49,11 @@
     {{ block('form_widget_simple') }}
 {%- endblock telephone_widget -%}
 
+{% block form_label %}
+    {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' control__label')|trim}) %}
+    {{ parent() }}
+{% endblock form_label %}
+
 {% block repeated_row %}
     {#
     No need to render the errors here, as all errors are mapped
