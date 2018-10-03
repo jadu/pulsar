@@ -1,0 +1,199 @@
+{% extends "form_div_layout.html.twig" %}
+
+{% block form_widget_simple %}
+    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form__control')|trim}) %}
+    {{ parent() }}
+{% endblock form_widget_simple %}
+
+{# Remove the surrounding div #}
+{% block form_widget_compound %}
+    {%- if form is rootform -%}
+        {{ form_errors(form) }}
+    {%- endif -%}
+    {{- block('form_rows') -}}
+    {{- form_rest(form) -}}
+{% endblock form_widget_compound %}
+
+{% block textarea_widget %}
+    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form__control textarea')|trim}) %}
+    {{ parent() }}
+{% endblock textarea_widget %}
+
+{% block choice_widget_expanded %}
+    {% if choices_style is defined and choices_style == 'inline' %}
+        <div class="controls" {{ block('widget_container_attributes') }}>
+            {% for child in form %}
+                <label class="control__label" for="{{ child.vars.id }}">
+                    {{- form_widget(child, {attr: {'class': 'checkbox'}}) -}}
+                    {{- child.vars.label -}}
+                </label>
+            {% endfor %}
+        </div>
+    {% else %}
+        {% for child in form %}
+            <label class="control__label">
+                {{- form_widget(child, {attr: attr}) -}}
+                {{- child.vars.label|trans({}, translation_domain) -}}
+            </label>
+        {% endfor %}
+    {% endif %}
+{% endblock choice_widget_expanded %}
+
+{% block choice_widget_collapsed %}
+    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form__control select')|trim}) %}
+    {{ parent() }}
+{% endblock choice_widget_collapsed %}
+
+{%- block telephone_widget -%}
+    {%- set type = type|default('tel') -%}
+    {{ block('form_widget_simple') }}
+{%- endblock telephone_widget -%}
+
+{% block repeated_row %}
+    {#
+    No need to render the errors here, as all errors are mapped
+    to the first child (see RepeatedTypeValidatorExtension).
+    #}
+    {{- block('form_rows_repeated') -}}
+{% endblock repeated_row %}
+
+{# Main form_row block, used to generate complete form rows including pulsar mark up and labels/fields#}
+{% block form_row %}
+    {% spaceless %}
+        <div class="form__group{% if errors|length > 0 %} has-error{% endif %}{% if attr.class is defined %} {{ attr.class }}{% endif %}">
+            {{ form_label(form) }}
+            <div class="controls">
+
+                {# Build aria-described guids for help blocks and errors #}
+                {% set describedByIds = [] %}
+                {% set helpId = null %}
+                {% set errorIds = [] %}
+
+                {# If errors are present, mark field as invalid and build error block guids  #}
+                {% if errors|length > 0 %}
+                    {% set attr = attr|merge({ 'aria-invalid': 'true' }) %}
+
+                    {% for error in errors %}
+                        {% set errorIds = errorIds|merge(['guid-' ~ random()] ) %}
+                    {% endfor %}
+
+                    {# Merge into describedByIds for aria-describedby on the input #}
+                    {% set describedByIds = describedByIds|merge(errorIds) %}
+                {% endif %}
+
+                {# If help text are present, build help block guids  #}
+                {% if helpText is defined and helpText is not null %}
+                    {# need to separate out the help block guids #}
+                    {% set helpId = 'guid-' ~ random() %}
+
+                    {# Merge into describedByIds for aria-describedby on the input #}
+                    {% set describedByIds = describedByIds|merge([helpId]) %}
+                {% endif %}
+
+                {# If we have describedByIds, add aria-describedby to attr #}
+                {% if describedByIds is defined and describedByIds is not empty %}
+                    {% set attr = attr|merge({ 'aria-describedby': describedByIds|join(' ') }) %}
+                {% endif %}
+
+                {# If extra input specific classes are present, add to input/widget #}
+                {% if inputClass is defined %}
+                    {% set attr = attr|merge({'class': (inputClass ~ ' form__control')|trim}) %}
+                {% endif %}
+
+                {# If colour picker #}
+                {% if attr.class is defined and 'colorpicker' in attr.class %}
+                    <div class="input-group">
+                        <span class="input-group-addon">#</span>
+                        {{ form_widget(form, {'attr': attr}) }}
+                    </div>
+                {% elseif prependIcon is defined and prependIcon is not empty %}
+                    {# If prepended icon #}
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="{{ prependIcon }} icon-fw"></i></div>
+                        {{ form_widget(form, {'attr': attr}) }}
+                    </div>
+                {% else %}
+                    {# If standard input #}
+                    {{ form_widget(form, {'attr': attr}) }}
+                {% endif %}
+
+                {# Extra label if field is toggle switch #}
+                {% if inputClass is defined and 'toggle-switch' in inputClass %}
+                    <label for="{{ form.vars.id }}" class="control__label toggle-switch-label">
+                        <span class="hide">Toggle switch</span>
+                    </label>
+                {% endif %}
+
+                {# Errors #}
+                {% if errors|length > 0 %}
+                    {% for error in errors %}
+                        <p class="help-block" id="{{ attribute(errorIds, loop.index0) }}">{{ error.message|trans }}</p>
+                    {% endfor %}
+                {% endif %}
+
+                {# Help #}
+                {% if helpText is defined and helpText is not null %}
+                    <p class="help-block" id="{{ helpId }}">{{ helpText }}</p>
+                {% endif %}
+            </div>
+        </div>
+    {% endspaceless %}
+{% endblock form_row %}
+
+{% block button_row %}
+    <div class="form__group">
+        {{- form_widget(form) -}}
+    </div>
+{% endblock button_row %}
+
+{# Misc #}
+
+{# We add the form class to the form :) #}
+{% block form_start %}
+    {%- do form.setMethodRendered() -%}
+    {% set method = method|upper %}
+    {%- if method in ["GET", "POST"] -%}
+        {% set form_method = method %}
+    {%- else -%}
+        {% set form_method = "POST" %}
+    {%- endif -%}
+    <form class="{% if attr.skipDefaultClasses is not defined %}form {% endif %}{% if attr.class is defined %} {{ attr.class }}{% endif %}" method="{{ form_method|lower }}" action="{{ action }}"{% for attrname, attrvalue in attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}{% if multipart %} enctype="multipart/form-data"{% endif %}>
+    {%- if form_method != method -%}
+        <input type="hidden" name="_method" value="{{ method }}" />
+    {%- endif -%}
+{% endblock form_start %}
+
+{% block form_errors %}
+    {% spaceless %}
+        {% for error in errors %}
+            <p class="help-block">
+                {{ error.message }}
+            </p>
+        {% endfor %}
+    {% endspaceless %}
+{% endblock form_errors %}
+
+{# Used when form_row is used to generate a group of compound fields, such as a group of check boxes #}
+{% block form_rows %}
+    {% spaceless %}
+        {% for child in form %}
+            <label class="control__label">
+                {{ form_widget(child, {attr: attr}) }}
+                {% if child.vars.label is defined and child.vars.label is not empty %}
+                    {{- child.vars.label|trans({}, translation_domain) -}}
+                {% else %}
+                    {{- child.vars.name|trans({}, translation_domain) -}}
+                {% endif %}
+            </label>
+        {% endfor %}
+    {% endspaceless %}
+{% endblock form_rows %}
+
+{# Used when form_row is used to generate a group of repeated fields, such as 2 text inputs #}
+{% block form_rows_repeated %}
+    {% spaceless %}
+        {% for child in form %}
+            {{ form_row(child, {attr: repeated_attr is defined ? repeated_attr : {}}) }}
+        {% endfor %}
+    {% endspaceless %}
+{% endblock form_rows_repeated %}
