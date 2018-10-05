@@ -98,6 +98,7 @@ a.dt-button {
         &.sorting::after {
             content: '\f0dc';
             color: color(text, light);
+            margin-right: -20px; // prevent arrows wrapping onto next line
         }
 
         &.sorting_asc::after {
