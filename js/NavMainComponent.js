@@ -87,16 +87,23 @@ NavMainComponent.prototype.init = function () {
     // Open quaternary nav on tertiary nav item click
     component.$tertiaryNavLinks.on('click', function (event) {
         var $self = $(this),
-            href = $self.attr('href');
+            target;
 
-        if (href.indexOf('#') !== -1) {
+        if ($self[0].hasAttribute('href')) {
+            target = $self.attr('href');
+        }
+        else if ($self[0].hasAttribute('data-target')) {
+            target = $self.attr('data-target');
+        }
+
+        if (target.indexOf('#') !== -1) {
             event.preventDefault();
 
             // Change aria expanded to true
             $self.attr('aria-expanded', 'true');
         }
 
-        component.openQuaternaryNav(href);
+        component.openQuaternaryNav(target);
     });
 
     // Close respective navs on close link click
