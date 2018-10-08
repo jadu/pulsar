@@ -78,10 +78,37 @@
     {{ block('form_widget_simple') }}
 {%- endblock telephone_widget -%}
 
-{% block form_label %}
-    {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' control__label')|trim}) %}
-    {{ parent() }}
-{% endblock form_label %}
+{# Need to copy this whole block because unable to add the util.required #}
+{%- block form_label -%}
+    {% import '@pulsar/pulsar/v2/helpers/util.html.twig' as util %}
+    {% if label is not same as(false) -%}
+        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' control__label')|trim}) %}
+        {% if not compound -%}
+            {% set label_attr = label_attr|merge({'for': id}) %}
+        {%- endif -%}
+        {% if required -%}
+            {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+        {%- endif -%}
+        {% if label is empty -%}
+            {%- if label_format is not empty -%}
+                {% set label = label_format|replace({
+                    '%name%': name,
+                    '%id%': id,
+                }) %}
+            {%- else -%}
+                {% set label = name|humanize %}
+            {%- endif -%}
+        {%- endif -%}
+        <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+        {%- if translation_domain is same as(false) -%}
+            {{- label -}}
+        {%- else -%}
+            {{- label|trans({}, translation_domain) -}}
+        {%- endif -%}
+        {{ util.required(required|default(false)) }}
+        </label>
+    {%- endif -%}
+{%- endblock form_label -%}
 
 {% block repeated_row %}
     {#
