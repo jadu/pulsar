@@ -66,6 +66,13 @@
     {{ parent() }}
 {% endblock choice_widget_collapsed %}
 
+{%- block date_widget -%}
+    {# Force date widgets to be text for pickaday #}
+    {%- set type = 'text' -%}
+    {%- set attr = attr|merge({'data-datepicker': 'true'|trim, 'placeholder': attr.placeholder|default('dd/mm/yyyy')}) -%}
+    {{ parent() }}
+{%- endblock date_widget -%}
+
 {%- block telephone_widget -%}
     {%- set type = type|default('tel') -%}
     {{ block('form_widget_simple') }}
