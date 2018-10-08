@@ -73,6 +73,13 @@ a.dt-button {
 
 .datatable {
     // scss-lint:disable SelectorFormat
+
+    // support absolutely positioned sorting arrows
+    th {
+        padding-right: 20px;
+        position: relative;
+    }
+
     td,
     th {
         &.sorting:hover,
@@ -91,14 +98,14 @@ a.dt-button {
         &.sorting_desc::after {
             @include icon-FontAwesome();
             font-size: $font-size-base;
-            left: 0;
-            margin-left: 10px;
+            position: absolute;
+            right: 10px;
+            top: 30%;
         }
 
         &.sorting::after {
             content: '\f0dc';
             color: color(text, light);
-            margin-right: -20px; // prevent arrows wrapping onto next line
         }
 
         &.sorting_asc::after {
