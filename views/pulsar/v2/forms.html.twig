@@ -142,8 +142,18 @@
                     {% set describedByIds = describedByIds|merge(errorIds) %}
                 {% endif %}
 
-                {# If help text are present, build help block guids  #}
                 {% if helpText is defined and helpText is not null %}
+                    {% set attr = attr|merge({'help_text': helpText}) %}
+                {% endif %}
+
+                {# If help text are present, build help block guids  #}
+                {% if attr.help_text is defined and attr.help_text is not null %}
+                    {# need to separate out the help block guids #}
+                    {% set helpId = 'guid-' ~ random() %}
+
+                    {# Merge into describedByIds for aria-describedby on the input #}
+                    {% set describedByIds = describedByIds|merge([helpId]) %}
+                {% elseif attr.help_html is defined and attr.help_html is not null %}
                     {# need to separate out the help block guids #}
                     {% set helpId = 'guid-' ~ random() %}
 
@@ -178,8 +188,10 @@
                 {% endif %}
 
                 {# Help #}
-                {% if helpText is defined and helpText is not null %}
-                    <p class="help-block" id="{{ helpId }}">{{ helpText }}</p>
+                {% if attr.help_text is defined and attr.help_text is not null %}
+                    <p class="help-block" id="{{ helpId }}">{{ attr.help_text }}</p>
+                {% elseif attr.help_html is defined and attr.help_html is not null %}
+                    <p class="help-block" id="{{ helpId }}">{{ attr.help_html|raw }}</p>
                 {% endif %}
             </div>
         </div>
