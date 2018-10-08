@@ -98,9 +98,9 @@ a.dt-button {
         &.sorting_desc::after {
             @include icon-FontAwesome();
             font-size: $font-size-base;
+            line-height: 22px;
             position: absolute;
             right: 5px;
-            top: 30%;
         }
 
         &.sorting::after {
