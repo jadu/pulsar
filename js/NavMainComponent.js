@@ -89,10 +89,10 @@ NavMainComponent.prototype.init = function () {
         var $self = $(this),
             target;
 
-        if ($self[0].hasAttribute('href')) {
+        if ($self.attr('href')) {
             target = $self.attr('href');
         }
-        else if ($self[0].hasAttribute('data-target')) {
+        else if ($self.attr('data-target')) {
             target = $self.attr('data-target');
         }
 
