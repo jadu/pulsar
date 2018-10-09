@@ -214,6 +214,10 @@
 .nav-link {
     color: color(white);
     text-decoration: none;
+
+    &:focus {
+        outline: 3px solid color(border, focus);
+    }
 }
 
 .nav-primary {
@@ -258,10 +262,6 @@
     .nav-link:focus {
         background-color: darken($nav-color-dark, 2%);
         color: color(white);
-    }
-
-    .nav-link:focus {
-        outline: 3px solid color(border, focus);
     }
 
     .nav-link.is-active:hover,
