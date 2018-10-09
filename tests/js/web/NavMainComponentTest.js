@@ -606,23 +606,18 @@ describe('NavMainComponent', function () {
 
             this.$window.height(1000);
             this.$window.resize();
-            this.$window.resize();
         });
 
-        it('should hide the open tertiary nav', function (done) {
-            this.timeout(5000);
+        it('should hide the open tertiary nav', function () {
             setTimeout(() => {
                 expect(this.$navTertiary.hasClass('is-open')).to.be.false;
-                done();
-            }, 500);
+            }, 200);
         });
         
-        it('should hide the open quaternary nav', function (done) {
-            this.timeout(5000);
+        it('should hide the open quaternary nav', function () {
             setTimeout(() => {
                 expect(this.$navQuaternary.hasClass('is-open')).to.be.false;
-                done();
-            }, 500);
+            }, 200);
         });
     });
 
