@@ -72,6 +72,7 @@ $btn-white:                 'white';
 
     &:focus {
         outline: 3px solid color(border, focus);
+        outline-offset: 3px;
     }
 }
 

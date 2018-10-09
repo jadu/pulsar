@@ -194,6 +194,11 @@
         background: $nav-color-dark;
         color: color(white);
     }
+
+    &:focus {
+        outline: 3px solid color(border, focus);
+        outline-offset: 2px;
+    }
 }
 
 .nav-items {
