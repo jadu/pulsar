@@ -94,6 +94,8 @@ NavMainComponent.prototype.init = function () {
         }
         else if ($self.attr('data-target')) {
             target = $self.attr('data-target');
+        } else {
+            throw new Error('A nav link must have a href or data-target attribute');
         }
 
         if (target.indexOf('#') !== -1) {
@@ -139,11 +141,13 @@ NavMainComponent.prototype.openSecondaryNav = function ($linkClicked, event) {
     var component = this,
         target;
 
-    if ($linkClicked[0].hasAttribute('href')) {
+    if ($linkClicked.attr('href')) {
         target = $linkClicked.attr('href');
     }
-    else if ($linkClicked[0].hasAttribute('data-target')) {
+    else if ($linkClicked.attr('data-target')) {
         target = $linkClicked.attr('data-target');
+    } else {
+        throw new Error('A nav link must have a href or data-target attribute');
     }
 
     // Close any previously open navs

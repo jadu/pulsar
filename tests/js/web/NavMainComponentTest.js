@@ -30,6 +30,12 @@ describe('NavMainComponent', function () {
                        </li>
                        <li class="nav-item">
                            <a href="#three" class="nav-link" aria-haspopup="true" aria-expanded="false" aria-controls="aria-secondary-nav">3</a>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link qa-missing-target" aria-haspopup="true" aria-expanded="false" aria-controls="aria-secondary-nav">5</button>
+                        </li>
+                       <li class="nav-item">
+                           <a class="nav-link qa-missing-href" aria-haspopup="true" aria-expanded="false" aria-controls="aria-secondary-nav">4</a>
                        </li>
                    </ul>
                </div>
@@ -107,6 +113,9 @@ describe('NavMainComponent', function () {
         this.$secondaryButton = this.$html.find('[data-target="#two_two"]');
         this.$tertiaryLink = this.$html.find('[href="#three_one"]');
         this.$tertiaryButton = this.$html.find('[data-target="#three_two"]');
+
+        this.$missingHref = this.$html.find('.qa-missing-href');
+        this.$missingDataTarget = this.$html.find('.qa-missing-target');
 
         $.fn.popover = sinon.stub().returnsThis();
         this.$popoverLink = this.$html.find('[data-toggle="popover"]');
@@ -232,6 +241,32 @@ describe('NavMainComponent', function () {
             expect(this.$mobileMenuButton.attr('aria-expanded')).to.be.equal('false');
         });
     })
+
+    describe('clicking on a nav link with a missing href', function () {
+        beforeEach(function () {
+            this.navMainComponent.init();
+            this.clickEvent = $.Event('click');
+        });
+
+        it('should throw an error', function () {
+            expect(() => {
+                this.$missingHref.trigger(this.clickEvent);
+            }).to.throw('A nav link must have a href or data-target attribute');
+        });
+    });
+
+    describe('clicking on a nav link with a missing data-target', function () {
+        beforeEach(function () {
+            this.navMainComponent.init();
+            this.clickEvent = $.Event('click');
+        });
+
+        it('should throw an error', function () {
+            expect(() => {
+                this.$missingDataTarget.trigger(this.clickEvent);
+            }).to.throw('A nav link must have a href or data-target attribute');
+        });
+    });
 
     describe('clicking on the first primary nav link', function () {
         beforeEach(function () {
@@ -570,8 +605,10 @@ describe('NavMainComponent', function () {
         });
 
         it('should hide the open tertiary or quaternary nav', function () {
-            expect(this.$navTertiary.hasClass('is-open')).to.be.false;
-            expect(this.$navQuaternary.hasClass('is-open')).to.be.false;
+            setTimeout(() => {
+                expect(this.$navTertiary.hasClass('is-open')).to.be.false;
+                expect(this.$navQuaternary.hasClass('is-open')).to.be.false;
+            }, 100);
         });
     });
 
