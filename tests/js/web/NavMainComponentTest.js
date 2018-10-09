@@ -598,17 +598,31 @@ describe('NavMainComponent', function () {
             this.$window.height(200);
             this.$window.resize();
             this.$moreIconLink = this.$navMain.find('.more-icon > .nav-link');
+
+            // open tertiaru
             this.$moreIconLink.click();
+            // open quaternary
+            this.$tertiaryButton.click();
+
             this.$window.height(1000);
             this.$window.resize();
             this.$window.resize();
         });
 
-        it('should hide the open tertiary or quaternary nav', function () {
+        it('should hide the open tertiary nav', function (done) {
+            this.timeout(5000);
             setTimeout(() => {
                 expect(this.$navTertiary.hasClass('is-open')).to.be.false;
+                done();
+            }, 500);
+        });
+        
+        it('should hide the open quaternary nav', function (done) {
+            this.timeout(5000);
+            setTimeout(() => {
                 expect(this.$navQuaternary.hasClass('is-open')).to.be.false;
-            }, 100);
+                done();
+            }, 500);
         });
     });
 

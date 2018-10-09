@@ -8,6 +8,8 @@ function NavMainComponent ($html, rootWindow) {
     this.$window = $(rootWindow);
 };
 
+NavMainComponent.MISSING_ATTR_ERROR = 'A nav link must have a href or data-target attribute';
+
 /**
  * Initialise
  */
@@ -95,7 +97,7 @@ NavMainComponent.prototype.init = function () {
         else if ($self.attr('data-target')) {
             target = $self.attr('data-target');
         } else {
-            throw new Error('A nav link must have a href or data-target attribute');
+            throw new Error(NavMainComponent.MISSING_ATTR_ERROR);
         }
 
         if (target.indexOf('#') !== -1) {
@@ -147,7 +149,7 @@ NavMainComponent.prototype.openSecondaryNav = function ($linkClicked, event) {
     else if ($linkClicked.attr('data-target')) {
         target = $linkClicked.attr('data-target');
     } else {
-        throw new Error('A nav link must have a href or data-target attribute');
+        throw new Error(NavMainComponent.MISSING_ATTR_ERROR)
     }
 
     // Close any previously open navs
