@@ -90,6 +90,7 @@ a.dt-button {
         &.sorting_asc:focus,
         &.sorting_desc:focus {
             outline: 3px solid color(border, focus);
+            outline-offset: -3px;
         }
 
         &.sorting::after,
@@ -205,7 +206,7 @@ th.sorting_disabled:hover {
         &:focus {
             border: 1px solid color(primary);
             outline: 3px solid color(border, focus);
-            outline-offset: 0;
+            outline-offset: 2px;
         }
     }
 }
