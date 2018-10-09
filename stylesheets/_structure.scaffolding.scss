@@ -42,14 +42,18 @@ body {
 }
 
 // Links
-
-a {
+a:link {
   color: color(link);
   cursor: pointer;
-}
 
-a:hover {
-  color: color(link, hover);
+  &:hover {
+    color: color(link, hover);
+  }
+
+  &:focus {
+    color: color(link, focus);
+    outline: 3px solid color(border, focus);
+  }
 }
 
 a.disabled {

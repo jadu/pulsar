@@ -86,6 +86,12 @@ a.dt-button {
             }
         }
 
+        &.sorting:focus,
+        &.sorting_asc:focus,
+        &.sorting_desc:focus {
+            outline: 3px solid color(border, focus);
+        }
+
         &.sorting::after,
         &.sorting_asc::after,
         &.sorting_desc::after {
@@ -198,8 +204,8 @@ th.sorting_disabled:hover {
 
         &:focus {
             border: 1px solid color(primary);
-            box-shadow: inset 0 0 0 1px color(primary);
-            outline: none;
+            outline: 3px solid color(border, focus);
+            outline-offset: 0;
         }
     }
 }
@@ -238,6 +244,10 @@ th.sorting_disabled:hover {
 
 .paginate_button {
     padding: 5px;
+
+    &:focus {
+        outline: 3px solid color(border, focus);
+    }
 }
 
 // scss-lint:enable SelectorFormat
