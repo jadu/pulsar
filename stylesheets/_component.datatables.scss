@@ -73,6 +73,13 @@ a.dt-button {
 
 .datatable {
     // scss-lint:disable SelectorFormat
+
+    // support absolutely positioned sorting arrows
+    th {
+        padding-right: 20px;
+        position: relative;
+    }
+
     td,
     th {
         &.sorting:hover,
@@ -91,8 +98,9 @@ a.dt-button {
         &.sorting_desc::after {
             @include icon-FontAwesome();
             font-size: $font-size-base;
-            left: 0;
-            margin-left: 10px;
+            line-height: 22px;
+            position: absolute;
+            right: 5px;
         }
 
         &.sorting::after {
@@ -373,3 +381,23 @@ th.sorting_disabled:hover {
 }
 
 // scss-lint:enable SelectorFormat
+
+.dtr-details {
+    .dtr-title {
+        a {
+            @include respond-max($screen-smaller) {
+                border-bottom: 0;
+                color: color(black);
+                font-family: $font-family-regular;
+            }
+        }
+    }
+
+    .dtr-data {
+        a {
+            @include respond-max($screen-smaller) {
+                border-bottom: 0;
+            }
+        }
+    }
+}
