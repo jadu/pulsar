@@ -260,6 +260,10 @@
         color: color(white);
     }
 
+    .nav-link:focus {
+        outline: 3px solid color(border, focus);
+    }
+
     .nav-link.is-active:hover,
     .nav-link.is-active:focus {
         background-color: $nav-color-dark;
@@ -419,7 +423,8 @@
 
 .jadu-branding {
     display: block;
-    margin: 10px 0 4px;
+    margin-top: 3px;
+    padding: 10px 0 4px;
     text-decoration: none;
 
     &.is-active {
@@ -467,16 +472,21 @@
     border: 0;
     color: color(white);
     display: none;
-    padding: 0 20px 23px;
-    text-decoration: none;
+    margin-bottom: 23px;
     margin-top: 24px;
+    padding: 0 20px;
     text-align: right;
+    text-decoration: none;
     width: 100%;
 
     &:hover i::before,
     &:focus i::before {
         content: '\f0a8';
         color: color(white);
+    }
+
+    &:focus {
+        outline: 3px solid color(border, focus);
     }
 
     .nav-secondary.is-open &,
