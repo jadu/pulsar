@@ -23,7 +23,7 @@ describe('PulsarFormComponent', function() {
                         <option>bar</option>
                         <option>baz</option>
                     </select>
-                
+
                     <div class="form__group form-choice choice--block">
                         <label class="control__label">Radio Test</label>
                         <div class="controls">
@@ -35,7 +35,7 @@ describe('PulsarFormComponent', function() {
                                 <input value="baz" name="foo" type="radio" class="form__control radio" checked>Baz</label>
                         </div>
                     </div>
-                
+
                     <div class="form__group form-choice choice--block">
                         <label class="control__label">Checkbox Test</label>
                         <div class="controls">
@@ -47,16 +47,42 @@ describe('PulsarFormComponent', function() {
                                 <input value="baz" name="foo" type="checkbox" class="form__control checkbox" checked>Baz</label>
                         </div>
                     </div>
-                
+
                     <div class="form__group">
                         <label class="control__label">Time picker test</label>
                         <div class="controls">
-                                <input value="foo" name="foo" type="text" data-timepicker="true" class="form__control qa-foo" />
+                            <input value="foo" name="foo" type="text" data-timepicker="true" class="form__control qa-foo" />
+                        </div>
+                    </div>
+
+                    <div class="form__group">
+                        <label class="control__label">Hardcoded Date Picker Test</label>
+                        <div class="controls">
+                            <input value="foo" name="foo" type="text" data-datepicker="true" class="form__control qa-foo" />
+                        </div>
+                    </div>
+
+                    <div class="form__group">
+                        <label class="control__label">Date Picker - Default Date Format Test</label>
+                        <div class="controls">
+                            <input value="foo" name="foo" type="text" data-datepicker="true" data-format="default" class="form__control qa-foo" />
+                        </div>
+                    </div>
+
+                    <div class="form__group">
+                        <label class="control__label">Date Picker - US Date Format Test</label>
+                        <div class="controls">
+                            <input value="foo" name="foo" type="text" data-datepicker="true" data-format="us" class="form__control qa-foo" />
+                        </div>
+                    </div>
+
+                    <div class="form__group">
+                        <label class="control__label">Date Picker - Reverse Date Format Test</label>
+                        <div class="controls">
+                            <input value="foo" name="foo" type="text" data-datepicker="true" data-format="reverse" class="form__control qa-foo" />
                         </div>
                     </div>
                 </form>
-                
-                <input data-datepicker="true" type="text" />
             </div>
             <a href="#tab-foo" data-toggle="tab">tab</a>
             <a href="#modal-foo" data-toggle="modal">modal</a>
@@ -83,6 +109,9 @@ describe('PulsarFormComponent', function() {
         this.$checkLabelBaz = this.$checkBaz.closest('.control__label');
 
         this.$datepicker = this.$html.find('[data-datepicker]');
+        this.$datepickerDefault = this.$html.find('[data-format=default]');
+        this.$datepickerUS = this.$html.find('[data-format=us]');
+        this.$datepickerReverse = this.$html.find('[data-format=reverse]');
         this.$tabToggle = this.$html.find('[data-toggle="tab"]');
         this.$modalToggle = this.$html.find('[data-toggle="modal"]');
         this.$modal = this.$html.find('#modal-foo');
@@ -227,8 +256,37 @@ describe('PulsarFormComponent', function() {
             this.pulsarForm.init();
         });
 
-        it('Should have the pikaday plugin attached', function() {
+        it('should have the pikaday plugin attached', function() {
             expect($.fn.pikaday).to.have.been.called;
+        });
+
+        it('should get "DD/MM/YYYY" when data-datepicker is hardcoded', function() {
+            expect($.fn.pikaday).to.have.been.calledWith({ format: 'DD/MM/YYYY' });
+        });
+
+        it('should get "DD/MM/YYYY" when date-format attribute = "default"', function() {
+            expect($.fn.pikaday).to.have.been.calledWith({ format: 'DD/MM/YYYY' });
+        });
+
+        it('should get "MM/DD/YYYY" when date-format attribute is "US"', function() {
+            expect($.fn.pikaday).to.have.been.calledWith({ format: 'MM/DD/YYYY' });
+        });
+
+        it('should get "YYYY/MM/DD" when date-format attribute is "reverse"', function() {
+            expect($.fn.pikaday).to.have.been.calledWith({ format: 'YYYY/MM/DD' });
+        });
+
+        it('should have "dd/mm/yyyy" as a placeholder for inputs with "default" or no option at all', function() {
+            expect(this.$datepicker.attr('placeholder')).to.equal('dd/mm/yyyy');
+            expect(this.$datepickerDefault.attr('placeholder')).to.equal('dd/mm/yyyy');
+        });
+
+        it('should have "mm/dd/yyyy" as a placeholder for inputs with "us" option', function() {
+            expect(this.$datepickerUS.attr('placeholder')).to.equal('mm/dd/yyyy');
+        });
+
+        it('should have "yyyy/mm/dd" as a placeholder for inputs with "reverse" option', function() {
+            expect(this.$datepickerReverse.attr('placeholder')).to.equal('yyyy/mm/dd');
         });
 
     });
@@ -243,9 +301,11 @@ describe('PulsarFormComponent', function() {
         it('should call the timePickerComponents init method', function() {
             expect(this.pulsarForm.timePickerComponent.init).to.have.been.called;
         });
+
     });
 
     describe('refresh', function () {
+
         beforeEach(function () {
             this.$html.append('<div class="js-colorpicker"></div>');
         });
@@ -259,7 +319,7 @@ describe('PulsarFormComponent', function() {
         it('should initiate the date pickers', function () {
             this.pulsarForm.refresh();
 
-            expect($.fn.pikaday).to.have.been.calledOnce;
+            expect($.fn.pikaday).to.have.been.called4times;
         });
 
         it('should initiate time pickers', function () {
@@ -267,5 +327,6 @@ describe('PulsarFormComponent', function() {
 
             expect($.fn.timepicker).to.have.been.calledOnce;
         });
+
     });
 });
