@@ -21,10 +21,6 @@ build:
 	@ -brew install ansible
 	@ echo "\n${CHECK} Done"
 
-	@ echo "${HR}\nInstalling Vagrant...${HR}\n"
-	@ -brew cask install vagrant
-	@ echo "\n${CHECK} Done"
-
 	@ echo "${HR}\nInstalling Virtualbox...${HR}\n"
 	@ -brew cask install virtualbox
 	@ echo "\n${CHECK} Done"
@@ -83,6 +79,6 @@ build:
 	@ grunt sass:dev
 	@ echo "${CHECK} Done\n"
 
-	@ echo "Run 'vagrant up' start the VM."
+	@ echo "Run 'npm start' to start the Pulsar development environment."
 	@ echo "Run 'grunt' to watch for Sass changes."
 	@ echo "If you have issues, check the wiki page: https://github.com/jadu/pulsar/wiki/Make-errors"
