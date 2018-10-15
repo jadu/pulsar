@@ -265,7 +265,7 @@ $btn-white:                 'white';
 .btn--naked,
 .btn--naked > .btn {
     background: none;
-    border: 0;
+    border: 0 !important;
     box-shadow: none;
     color: color(text) !important;
 
