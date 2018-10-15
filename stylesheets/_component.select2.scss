@@ -332,8 +332,10 @@
 }
 
 .select2-container--default.select2-container--focus .select2-selection--multiple {
-    border: solid black 1px;
-    outline: 0;
+    border: 1px solid color(black);
+    box-shadow: 0 0 0 1px color(black);
+    outline: 3px solid color(border, focus);
+    outline-offset: 2px;
 }
 
 .select2-container--default.select2-container--disabled .select2-selection--multiple {
@@ -450,7 +452,10 @@
 }
 
 .select2-container--classic .select2-selection--single:focus {
-    border: 1px solid #5897fb;
+    border: 1px solid color(black);
+    box-shadow: 0 0 0 1px color(black);
+    outline: 3px solid color(border, focus);
+    outline-offset: 2px;
 }
 
 .select2-container--classic .select2-selection--single .select2-selection__rendered {
@@ -559,7 +564,10 @@
 }
 
 .select2-container--classic .select2-selection--multiple:focus {
-    border: 1px solid #5897fb;
+    border: 1px solid color(black);
+    box-shadow: 0 0 0 1px color(black);
+    outline: 3px solid color(border, focus);
+    outline-offset: 2px;
 }
 
 .select2-container--classic .select2-selection--multiple .select2-selection__rendered {
@@ -715,8 +723,9 @@ span.select2-selection.select2-selection--single {
 .select2-container--default.select2-container--open .select2-selection--single,
 .select2-container--default.select2-container--focus .select2-selection--single,
 .select2-container--default.select2-container--focus:focus .select2-selection--single {
-    border: 1px solid color(primary);
-    box-shadow: 0 0 0 1px color(primary);
-    outline: none;
+    border: 1px solid color(black);
+    box-shadow: 0 0 0 1px color(black);
+    outline: 3px solid color(border, focus);
+    outline-offset: 2px;
 }
 // scss-lint:enable all

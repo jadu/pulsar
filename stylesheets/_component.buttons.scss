@@ -69,6 +69,11 @@ $btn-white:                 'white';
       border: 0;
       padding: 0;
     }
+
+    &:focus {
+        outline: 3px solid color(border, focus);
+        outline-offset: 3px;
+    }
 }
 
 /**
