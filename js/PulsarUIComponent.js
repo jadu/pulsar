@@ -64,7 +64,7 @@ PulsarUIComponent.prototype.initDataTables = function () {
             selector:  'td.table-selection'
         }
 
-        var dom = '<"dataTables_top"Birf><"dataTables_actions"T>t<"dataTables_bottom"lip>';
+        var dom = '<"dataTables_top"Birf><"dataTables_actions"T>t<"dataTables_bottom"lp>';
 
         if (!$this.data('empty-table')) {
             $this.data('empty-table', 'There are currently no items to display');
