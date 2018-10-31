@@ -82,6 +82,10 @@ $nav-color-dark:  darken(color(jadu-blue, dark), 5%) !default;
     &:active {
         color: darken($nav-color-dark, 10%);
     }
+
+    &:focus {
+        outline: 3px solid color(border, focus);
+    }
 }
 
 .close-page-help {

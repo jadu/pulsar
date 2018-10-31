@@ -4,13 +4,8 @@
     border-radius: 5px;
     display: block;
     height: 75px;
-    outline: none;
     overflow: visible;
     width: 100%;
-
-    &:focus {
-        outline: none;
-    }
 
     &::-ms-tooltip {
         display: none;
@@ -121,6 +116,8 @@
 
     &:focus {
         border: 0;
-        box-shadow: 0 0 0 2px white, 0 0 0 4px color(primary);
+        box-shadow: none;
+        outline: 3px solid color(border, focus);
+        outline-offset: 0;
     }
 }

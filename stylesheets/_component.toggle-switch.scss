@@ -31,7 +31,8 @@
     }
 
     &:focus + .toggle-switch-label {
-        box-shadow: 0 0 0 2px white, 0 0 0 4px color(primary);
+        outline: 3px solid color(border, focus);
+        outline-offset: 1px;
     }
 
     &.toggle-switch--large + .toggle-switch-label {
