@@ -13,4 +13,9 @@
     a:hover {
         color: color(link); // must be AA 4.5:1
     }
+
+    a:focus {
+        outline: 3px solid color(border, focus);
+        color: color(link, focus);
+    }
 }
