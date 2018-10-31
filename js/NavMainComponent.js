@@ -87,16 +87,23 @@ NavMainComponent.prototype.init = function () {
     // Open quaternary nav on tertiary nav item click
     component.$tertiaryNavLinks.on('click', function (event) {
         var $self = $(this),
-            href = $self.attr('href');
+            target;
 
-        if (href.indexOf('#') !== -1) {
+        if ($self.attr('href')) {
+            target = $self.attr('href');
+        }
+        else if ($self.attr('data-target')) {
+            target = $self.attr('data-target');
+        }
+
+        if (target.indexOf('#') !== -1) {
             event.preventDefault();
 
             // Change aria expanded to true
             $self.attr('aria-expanded', 'true');
         }
 
-        component.openQuaternaryNav(href);
+        component.openQuaternaryNav(target);
     });
 
     // Close respective navs on close link click
@@ -218,7 +225,8 @@ NavMainComponent.prototype.closeSecondaryNav = function () {
     component.$navMain.removeClass('is-open');
     component.$navMain.find('[aria-expanded=true]').attr( 'aria-expanded', 'false');
     component.$navSecondary.removeClass('is-open');
-    component.$primaryNavLinks.removeClass('is-active')
+    component.$primaryNavLinks.removeClass('is-active');
+    component.$navMain.find('.nav-item.is-active').removeClass('is-active');
     component.$navSecondary.find('.nav-list').removeClass('is-active');
 }
 
