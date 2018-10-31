@@ -239,9 +239,10 @@ fieldset {
     }
 
     &:focus {
-        border: 1px solid color(primary);
-        box-shadow: 0 0 0 1px color(primary);
-        outline: none;
+        border: 1px solid color(black);
+        box-shadow: 0 0 0 1px color(black);
+        outline: 3px solid color(border, focus);
+        outline-offset: 2px;
     }
 }
 
@@ -556,8 +557,8 @@ fieldset {
     }
 
     &:focus {
-        border-color: color(primary);
-        box-shadow: 0 0 0 2px color(primary);
+        border-color: color(black);
+        box-shadow: 0 0 0 2px color(black);
     }
 
     &::before {

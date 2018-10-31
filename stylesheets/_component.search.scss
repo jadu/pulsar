@@ -38,6 +38,11 @@ input.main-search__field {
     &::-webkit-input-placeholder {
         color: #555;
     }
+
+    &:focus {
+        outline: 3px solid color(border, focus);
+        outline-offset: 3px;
+    }
 }
 
 input.main-search__field::-ms-clear {
@@ -57,6 +62,10 @@ input.main-search__field::-ms-clear {
     @include respond-min($screen-tablet) {
         left: 155px;
         right: auto;
+    }
+
+    &:focus {
+        outline: 3px solid color(border, focus);
     }
 }
 
