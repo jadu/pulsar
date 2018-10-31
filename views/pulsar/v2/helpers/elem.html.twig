@@ -196,7 +196,6 @@ data        | hash   | Data attributes by key/value
 form        | string | Specific one or more forms this label belongs to
 id          | string | A unique identifier, if required
 options     | hash   | Hash of <option> elements by { 'value': 'label' }
-multiple    | bool   | True or false
 name        | string | The name of this control
 placeholder | string | A short hint that describes the expected value
 selected    | string | The `value` to have as the selected option
@@ -261,7 +260,7 @@ value       | string | Specifies the value of the input
                     {% if option is iterable %}
                         {% for item in option %}
                             <option {{ util.value(item.value) }}
-                                {%- if item.selected is defined and item.selected == true %} selected{% endif -%}
+                                {%- if mainOptions.selected is defined and item.value == mainOptions.selected %} selected{% endif -%}
                                 {%- if item.disabled is defined and item.disabled == true %} disabled="disabled"{% endif -%}>
                                 {{- item.label -}}
                             </option>
