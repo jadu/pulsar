@@ -56,7 +56,8 @@ PulsarUIComponent.prototype.initDataTables = function () {
         datatablesHorizontal = component.$html.find('.datatable.table--horizontal');
 
     datatables.each(function () {
-        var $this = $(this);
+        var $this = $(this),
+            pageLength = 25;
 
         var select = {
             className: 'dt-row-selected',
@@ -70,6 +71,10 @@ PulsarUIComponent.prototype.initDataTables = function () {
             $this.data('empty-table', 'There are currently no items to display');
         }
 
+        if ($this.data('page-length')) {
+            pageLength = $this.data('page-length');
+        }
+
         if ($this.data('select') === false) {
             dom = '<"dataTables_top"irf><"dataTables_actions"T><"dt-disable-selection"t><"dataTables_bottom"p>';
             select = false;
@@ -79,7 +84,7 @@ PulsarUIComponent.prototype.initDataTables = function () {
             dom: dom,
             aaSorting: [],
             bAutoWidth: false,
-            pageLength: 25,
+            pageLength: pageLength,
             lengthChange: false,
             buttons: [],
             columnDefs: [
@@ -121,7 +126,8 @@ PulsarUIComponent.prototype.initDataTables = function () {
     });
 
     datatablesHorizontal.each(function () {
-        var $this = $(this);
+        var $this = $(this),
+            pageLength = 25;
 
         var select = {
             className: 'dt-row-selected',
@@ -136,6 +142,10 @@ PulsarUIComponent.prototype.initDataTables = function () {
             $this.data('empty-table', 'There are currently no items to display');
         }
 
+        if ($this.data('page-length')) {
+            pageLength = $this.data('page-length');
+        }
+
         if ($this.data('select') === false) {
             dom = '<"dataTables_top"irf><"dataTables_actions"T><"dt-disable-selection"<"table-container"t>><"dataTables_bottom"lp>';
             select = false;
@@ -146,7 +156,7 @@ PulsarUIComponent.prototype.initDataTables = function () {
             aaSorting: [],
             bAutoWidth: false,
             stateSave: true,
-            pageLength: 25,
+            pageLength: pageLength,
             lengthChange: false,
             buttons: [],
             columnDefs: [
