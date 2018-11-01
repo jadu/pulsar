@@ -17,8 +17,6 @@ These can be extended with sass placeholders, e.g. `@extend %u-display-none`.
 | .u-clear-right | clear: right !important; |
 | .u-clear-both | clear: both !important; |
 | .u-clear-none | clear: none !important; |
-| .u-clear-initial | clear: initial !important; |
-| .u-clear-inherit | clear: inherit !important; |
 | .u-cursor-not-allowed | cursor: not-allowed !important; |
 | .u-display-none | display: none !important; |
 | .u-display-block | display: block !important; |
