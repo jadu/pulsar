@@ -259,8 +259,18 @@ value       | string | Specifies the value of the input
                 {% for option in options %}
                     {% if option is iterable %}
                         {% for item in option %}
+
+                            {% set selectedAttr = false %}
+                            {% if mainOptions.selected is defined and mainOptions.selected is iterable %}
+                                {% if item.value in mainOptions.selected %}
+                                    {% set selectedAttr = true %}
+                                {% endif %}
+                            {% elseif mainOptions.selected is defined and mainOptions.selected == item.value %}
+                                {% set selectedAttr = true %}
+                            {% endif %}
+
                             <option {{ util.value(item.value) }}
-                                {%- if mainOptions.selected is defined and item.value in mainOptions.selected %} selected{% endif -%}
+                                {%- if selectedAttr == true %} selected{% endif -%}
                                 {%- if item.disabled is defined and item.disabled == true %} disabled="disabled"{% endif -%}>
                                 {{- item.label -}}
                             </option>
@@ -275,8 +285,16 @@ value       | string | Specifies the value of the input
 
             {# non-optgroup nested syntax #}
             {% else %}
+                {% set selectedAttr = false %}
+                {% if mainOptions.selected is defined and mainOptions.selected is iterable %}
+                    {% if label.value in mainOptions.selected %}
+                        {% set selectedAttr = true %}
+                    {% endif %}
+                {% elseif mainOptions.selected is defined and mainOptions.selected == label.value %}
+                    {% set selectedAttr = true %}
+                {% endif %}
                 <option {{ util.value(label.value) }}
-                    {%- if mainOptions.selected is defined and label.value in mainOptions.selected %} selected{% endif -%}
+                    {%- if selectedAttr == true %} selected{% endif -%}
                     {%- if label.disabled is defined and label.disabled == true %} disabled="disabled"{% endif -%}>
                     {{- label.label -}}
                 </option>
@@ -284,8 +302,16 @@ value       | string | Specifies the value of the input
 
         {# legacy un-nested syntax #}
         {% else %}
+            {% set selectedAttr = false %}
+            {% if mainOptions.selected is defined and mainOptions.selected is iterable %}
+                {% if value in mainOptions.selected %}
+                    {% set selectedAttr = true %}
+                {% endif %}
+            {% elseif mainOptions.selected is defined and mainOptions.selected == value %}
+                {% set selectedAttr = true %}
+            {% endif %}
             <option {{ util.value(value) }}
-            {%- if mainOptions.selected is defined and value in mainOptions.selected %} selected{% endif -%}
+            {%- if selectedAttr == true %} selected{% endif -%}
             >
                 {{- label -}}
             </option>
