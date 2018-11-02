@@ -74,6 +74,23 @@ $btn-white:                 'white';
         outline: 3px solid color(border, focus);
         outline-offset: 3px;
     }
+
+    &:hover,
+    &.is-hovered {
+        transform: translateY(1px);
+
+        // Uses a pseudo-element to fill the gap that caused the jitter
+        &::after {
+            bottom: 0;
+            content: '';
+            height: calc(100% + 5px);
+            left: -.05%; // make it slightly wider to prevent side jitter
+            position: absolute;
+            top: -3px;
+            width: 101%; // make it slightly wider to prevent side jitter
+            z-index: -1;
+        }
+    }
 }
 
 /**
@@ -92,21 +109,6 @@ $btn-white:                 'white';
     &.is-hovered {
         box-shadow: 0 1px 0 $shadow-color;
         color: color($state, alt) !important;  // should be immutable
-        transform: translateY(1px);
-
-        @include ie-lte(8) {
-        /* IE8+ - must be on one line, unfortunately */
-        -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=1, M12=0, M21=0, M22=1, SizingMethod='auto expand')";
-
-        /*
-        * To make the transform-origin be the middle of
-        * the object.    Note: These numbers
-        * are approximations.  For more accurate results,
-        * use Internet Explorer with this tool.
-        */
-        margin-left: -3px;
-        margin-top: -2px;
-        }
     }
 
     &:active,
@@ -188,6 +190,7 @@ $btn-white:                 'white';
     &:hover,
     &.is-hovered {
         box-shadow: none;
+        margin-bottom: 1px; // offsets 1px padding reduction that causes content below to jump on button hover
         padding-bottom: $btn-padding-bottom - 1;
     }
 
