@@ -35,7 +35,7 @@ A textarea will default to two rows in height to differentiate themselves from r
         <label for="inputTextareaBravo" class="control__label">
             Description
             <span class="required-indicator" rel="tooltip" data-toggle="tooltips" title="required">*</span>
-            <i data-container="body" data-content="Guidance text to give more information about expected input" data-placement="top" rel="clickover" aria-hidden="true" class="icon-question-sign input-group-guidance" title=""></i>
+            <i data-container="body" data-content="Guidance text to give more information about expected input" data-placement="top" data-toggle="popover" data-autoclose="true" aria-hidden="true" class="icon-question-sign input-group-guidance" title=""></i>
         </label>
         <div class="controls">
             <textarea id="inputTextareaBravo" name="inputTextareaBravo" rows="2" aria-describedby="guid-12345678" class="form__control textarea"></textarea>
