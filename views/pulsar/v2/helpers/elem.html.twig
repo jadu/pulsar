@@ -303,6 +303,9 @@ value       | string | Specifies the value of the input
         {# legacy un-nested syntax #}
         {% else %}
             {% set selectedAttr = false %}
+            {% if mainOptions.selected is defined  %}
+                {% set selectedAttr = ((mainOptions.selected is iterable and value in mainOptions.selected) or mainOptions.selected == value) %}
+            {% endif %}
             {% if mainOptions.selected is defined and mainOptions.selected is iterable %}
                 {% if value in mainOptions.selected %}
                     {% set selectedAttr = true %}
