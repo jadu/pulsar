@@ -13,6 +13,10 @@ These can be extended with sass placeholders, e.g. `@extend %u-display-none`.
 | .margin-left | margin-left: $gutter-width; |
 | .margin-right | margin-right: $gutter-width; |
 | .no-select | user-select: none; (and all browser prefix variations) |
+| .u-clear-left | clear: left !important; |
+| .u-clear-right | clear: right !important; |
+| .u-clear-both | clear: both !important; |
+| .u-clear-none | clear: none !important; |
 | .u-cursor-not-allowed | cursor: not-allowed !important; |
 | .u-display-none | display: none !important; |
 | .u-display-block | display: block !important; |

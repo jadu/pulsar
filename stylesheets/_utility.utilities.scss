@@ -257,6 +257,26 @@ div.no-results {
     float: right !important;
 }
 
+%u-clear-left,
+.u-clear-left {
+    clear: left !important;
+}
+
+%u-clear-right,
+.u-clear-right {
+    clear: right !important;
+}
+
+%u-clear-both,
+.u-clear-both {
+    clear: both !important;
+}
+
+%u-clear-none,
+.u-clear-none {
+    clear: none !important;
+}
+
 %u-vertical-align-top,
 .u-vertical-align-top {
     vertical-align: top !important;
