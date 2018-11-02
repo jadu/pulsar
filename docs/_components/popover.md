@@ -49,6 +49,12 @@ Options can be passed via data attributes or JavaScript. For data attributes, ap
             <td>apply a CSS fade transition to the tooltip</td>
         </tr>
         <tr>
+            <td>autoclose</td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>If <code>true</code>, will close the popover when the user clicks anywhere in the UI</td>
+        </tr>
+        <tr>
             <td>html</td>
             <td>boolean</td>
             <td>false</td>
@@ -105,19 +111,3 @@ Options can be passed via data attributes or JavaScript. For data attributes, ap
     </tbody>
 </table>
 
-## Clickovers
-
-Clickover is a variation of popovers where the popover will be closed when the user clicks anywhere else on the page (popovers require the same toggle to be clicked). To use a popover instead of a clickover, use the `rel="clickover"` attribute instead of `data-toggle="popover"`.
-
-{% raw %}
-```twig
-{{
-    html.link({
-        'href': '#',
-        'label': 'Click to toggle clickover',
-        'rel': 'clickover',
-        'data-content': 'I am a clickover'
-    })
-}}
-```
-{% endraw %}
