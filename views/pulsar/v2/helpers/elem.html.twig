@@ -259,16 +259,10 @@ value       | string | Specifies the value of the input
                 {% for option in options %}
                     {% if option is iterable %}
                         {% for item in option %}
-
                             {% set selectedAttr = false %}
-                            {% if mainOptions.selected is defined and mainOptions.selected is iterable %}
-                                {% if item.value in mainOptions.selected %}
-                                    {% set selectedAttr = true %}
-                                {% endif %}
-                            {% elseif mainOptions.selected is defined and mainOptions.selected == item.value %}
-                                {% set selectedAttr = true %}
+                            {% if mainOptions.selected is defined %}
+                                {% set selectedAttr = ((mainOptions.selected is iterable and item.value in mainOptions.selected) or mainOptions.selected == item.value) %}
                             {% endif %}
-
                             <option {{ util.value(item.value) }}
                                 {%- if selectedAttr == true %} selected{% endif -%}
                                 {%- if item.disabled is defined and item.disabled == true %} disabled="disabled"{% endif -%}>
@@ -286,12 +280,8 @@ value       | string | Specifies the value of the input
             {# non-optgroup nested syntax #}
             {% else %}
                 {% set selectedAttr = false %}
-                {% if mainOptions.selected is defined and mainOptions.selected is iterable %}
-                    {% if label.value in mainOptions.selected %}
-                        {% set selectedAttr = true %}
-                    {% endif %}
-                {% elseif mainOptions.selected is defined and mainOptions.selected == label.value %}
-                    {% set selectedAttr = true %}
+                {% if mainOptions.selected is defined %}
+                    {% set selectedAttr = ((mainOptions.selected is iterable and label.value in mainOptions.selected) or mainOptions.selected == label.value) %}
                 {% endif %}
                 <option {{ util.value(label.value) }}
                     {%- if selectedAttr == true %} selected{% endif -%}
@@ -303,15 +293,8 @@ value       | string | Specifies the value of the input
         {# legacy un-nested syntax #}
         {% else %}
             {% set selectedAttr = false %}
-            {% if mainOptions.selected is defined  %}
+            {% if mainOptions.selected is defined %}
                 {% set selectedAttr = ((mainOptions.selected is iterable and value in mainOptions.selected) or mainOptions.selected == value) %}
-            {% endif %}
-            {% if mainOptions.selected is defined and mainOptions.selected is iterable %}
-                {% if value in mainOptions.selected %}
-                    {% set selectedAttr = true %}
-                {% endif %}
-            {% elseif mainOptions.selected is defined and mainOptions.selected == value %}
-                {% set selectedAttr = true %}
             {% endif %}
             <option {{ util.value(value) }}
             {%- if selectedAttr == true %} selected{% endif -%}
