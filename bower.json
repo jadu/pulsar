@@ -10,7 +10,6 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrapx-clickover": "latest",
     "chartist": "^0.9.8",
     "font-awesome": "4.7.0",
     "html5shiv": "latest",

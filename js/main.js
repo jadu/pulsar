@@ -51,9 +51,6 @@
         // Switch out .svg for .png for <img> elements in older browsers
         pulsar.svgeezy.init('nocheck', 'png');
 
-        // Use clickover enhancements for popovers
-        $('[rel="clickover"]').clickover({ 'global_close': true });
-
         // jsTree
         $('#container').jstree({
             'plugins' : ['state']
