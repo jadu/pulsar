@@ -65,7 +65,7 @@ PulsarUIComponent.prototype.initDataTables = function () {
             selector:  'td.table-selection'
         }
 
-        var dom = '<"dataTables_top"Birf><"dataTables_actions"T>t<"dataTables_bottom"lip>';
+        var dom = '<"dataTables_top"Birf><"dataTables_actions"T>t<"dataTables_bottom"lp>';
 
         if (!$this.data('empty-table')) {
             $this.data('empty-table', 'There are currently no items to display');
@@ -89,7 +89,7 @@ PulsarUIComponent.prototype.initDataTables = function () {
             buttons: [],
             columnDefs: [
                 { className: 'control', orderable: false, targets: 0 },
-                { "searchable": false, "targets": [0, 1] },
+                { "searchable": false, "targets": [0] },
                 { "orderable": false, "targets": [0, 1] }
             ],
             language: {
