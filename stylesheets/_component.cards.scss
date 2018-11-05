@@ -6,6 +6,10 @@
     @include respond-min($screen-small) {
         margin-bottom: 0;
     }
+
+    &:hover {
+        background-color: color(background, light);
+    }
 }
 
 .card__header {
@@ -64,5 +68,20 @@
         border: 1px solid color(border);
         border-bottom-left-radius: $border-radius;
         border-bottom-right-radius: $border-radius;
+    }
+}
+
+@each $state, $state-color, $state-color-alt in $state-colors {
+    .card--#{$state} {
+        background-color: color($state, light);
+        border-color: color($state);
+
+        &:hover {
+            background-color: darken(color($state, light), 2);
+        }
+
+        .card-img + .card__body {
+            border-color: color($state);
+        }
     }
 }
