@@ -99,6 +99,7 @@ a.dt-button {
         &.sorting_desc:focus {
             outline: 3px solid color(border, focus);
             outline-offset: -3px;
+            z-index: 1;
         }
 
         &.sorting::after,
