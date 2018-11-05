@@ -75,12 +75,9 @@ p.success {
     background-color: color(gray, off-white);
     background-image: url($image-path + 'stripes.png');
     background-repeat: repeat;
+    margin: 0 auto;
     padding: 1em 0;
     text-align: center;
-}
-
-div.no-results {
-    margin: 0 auto;
     width: 80%;
 
     @include respond-min($screen-desktop) {
@@ -88,6 +85,14 @@ div.no-results {
     }
 }
 
+td.no-results {
+    margin: inherit;
+    width: 100%;
+
+    @include respond-min($screen-desktop) {
+        width: 100%;
+    }
+}
 
 // Should span full width of content area
 .tab__content > .no-results,
@@ -349,6 +354,12 @@ div.no-results {
 .u-width-auto {
     width: auto !important;
 }
+
+%u-margin-top,
+.u-margin-top {
+    margin-top: $margin-base !important;
+}
+
 
 %u-margin-top-none,
 .u-margin-top-none {
