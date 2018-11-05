@@ -681,6 +681,17 @@ fieldset {
     padding-right: 0;
 }
 
+.form__group {
+    .table tbody {
+        background-color: #fafafa;
+        border-top: 1px solid color(border);
+    }
+
+    .table-container {
+        margin-bottom: .5em;
+    }
+}
+
 // undo default fieldset padding
 fieldset.form__group--compound {
     padding: 0;

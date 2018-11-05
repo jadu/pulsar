@@ -1,27 +1,6 @@
 $columns:       12;
 $gutter_pc:     .5;
 
-.g-col {
-    background-clip: padding-box !important;
-    box-sizing: border-box;
-    display: block;
-    float: left;
-    padding: 0;
-
-    @include respond-min($screen-phone) {
-        margin-left: 0;
-    }
-
-    @include respond-min($screen-tablet) {
-        margin-left: percentage($gutter_pc / 100);
-    }
-
-}
-
-.g-col--first {
-    margin-left: 0;
-}
-
 /**
  * Creates column styling and assigns a set of responsive widths. Do not use within a media query or media query mixin.
  *
@@ -104,23 +83,4 @@ $gutter_pc:     .5;
     @else {
         margin-left: 0;
     }
-}
-
-@for $i from 1 through 12 {
-    .g-col--#{$i}.g-col--#{$i} {
-        @include col-span($i);
-    }
-}
-
-@for $i from 1 through 12 {
-    @include respond-min($screen-tablet) {
-        .g-col-push--#{$i} {
-            @include push($i);
-        }
-    }
-}
-
-.g-col--example {
-    background-color: pink;
-    text-align: center;
 }
