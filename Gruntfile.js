@@ -615,7 +615,6 @@ module.exports = function(grunt) {
         'autoprefixer',
         'browserify:dist',
         'copy:dist',
-        'realFavicon',
         'compress'
     ]);
 
