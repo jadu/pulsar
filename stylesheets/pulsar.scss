@@ -170,6 +170,7 @@ $fa-css-prefix: 'icon';
 // Trumps (attempt highest inherit specificity by loading last)
 @import 'utility.utilities';
 @import 'utility.states';
+@import 'utility.grid';
 
 // Overrides and fixes
 @import 'override.shame';
