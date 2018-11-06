@@ -76,6 +76,7 @@ a.dt-button {
 
     // support absolutely positioned sorting arrows
     th {
+        background-clip: padding-box; // Make sure borders are displayed in FF & IE - https://bugzilla.mozilla.org/show_bug.cgi?id=688556
         padding-right: 20px;
         position: relative;
     }
@@ -91,6 +92,14 @@ a.dt-button {
             &::after {
                 color: color(link);
             }
+        }
+
+        &.sorting:focus,
+        &.sorting_asc:focus,
+        &.sorting_desc:focus {
+            outline: 3px solid color(border, focus);
+            outline-offset: -3px;
+            z-index: 1;
         }
 
         &.sorting::after,
@@ -206,8 +215,8 @@ th.sorting_disabled:hover {
 
         &:focus {
             border: 1px solid color(primary);
-            box-shadow: inset 0 0 0 1px color(primary);
-            outline: none;
+            outline: 3px solid color(border, focus);
+            outline-offset: 2px;
         }
     }
 }
@@ -246,6 +255,10 @@ th.sorting_disabled:hover {
 
 .paginate_button {
     padding: 5px;
+
+    &:focus {
+        outline: 3px solid color(border, focus);
+    }
 }
 
 // scss-lint:enable SelectorFormat

@@ -15,6 +15,7 @@ before_script:
   - npm install -g grunt-cli
   - npm install
   - mkdir -p dist/js
+  - gem update --system && gem install scss_lint
 
 install:
   - composer self-update
@@ -22,6 +23,7 @@ install:
 
 script:
   - phpunit
+  - grunt build
   - npm test
   - npm run coverage
 
