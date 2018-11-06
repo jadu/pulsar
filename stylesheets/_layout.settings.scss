@@ -108,6 +108,8 @@
  */
 
 .settings-section--primary {
+    width: 100%;
+    
     @include respond-min-max($screen-smaller, $screen-medium) {
         float: left;
         min-width: 200px;
