@@ -124,7 +124,7 @@ var $ = require('jquery'),
   $(document).on('click', function (e) {
 
     // Ignore popover triggers
-    if ($(e.target).attr('data-toggle') == 'popover') {
+    if ($(e.target).attr('data-toggle') === 'popover') {
         return;
     }
 
