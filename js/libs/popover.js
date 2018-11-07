@@ -123,8 +123,8 @@ var $ = require('jquery'),
 
   $(document).on('click', function (e) {
 
-    // Ignore popover triggers
-    if ($(e.target).attr('data-toggle') === 'popover') {
+    // Ignore popover and clickover triggers
+    if ($(e.target).attr('data-toggle') === 'popover' || $(e.target).attr('rel') === 'clickover') {
         return;
     }
 
