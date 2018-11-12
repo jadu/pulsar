@@ -122,9 +122,10 @@ var $ = require('jquery'),
   });
 
   $(document).on('click', function (e) {
+    var $target = $(e.target);
 
     // Ignore popover and clickover triggers and children
-    if ($(e.target).attr('data-toggle') === 'popover' || $(e.target).parent().attr('data-toggle') === 'popover' || $(e.target).attr('rel') === 'clickover') {
+    if ($target.attr('data-toggle') === 'popover' || $target.parent().attr('data-toggle') === 'popover' || $target.attr('rel') === 'clickover') {
         return;
     }
 
