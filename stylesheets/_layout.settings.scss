@@ -10,7 +10,7 @@
     padding: ($padding-large-vertical * 2) ($padding-small-horizontal * 2);
 
     @include respond-min($screen-small) {
-        margin: 0;
+        margin: 0 0 $margin-large-vertical;
     }
 
     @include respond-min($screen-medium) {
@@ -22,6 +22,12 @@
     .lt-ie9 & {
         min-width: 0;
         width: 35%;
+    }
+
+    .ie9 & {
+        display: block;
+        margin-left: 0;
+        width: 100%;
     }
 
     > *:last-child {
@@ -352,16 +358,31 @@
  * Content area
  */
 
+.ie9 .tab__container.has-settings {
+    overflow-x: auto;
+}
+
 .tab__container.has-settings .tab__content {
     @include respond-min($screen-medium) {
         margin-bottom: $line-height-small;
-        padding-left: $padding-small-horizontal * 2;
+        -webkit-flex: 1 1 auto;
+        -moz-flex: 1 1 auto;
+        -ms-flex: 1 1 auto;
+        -o-flex: 1 1 auto;
+        flex: 1 1 auto;
+
+        .ie9 & {
+            padding-left: $padding-small-horizontal * 2;
+        }
     }
 
     @include respond-min($screen-medium) {
-        float: none;
         max-width: calc(99% - 370px);
         width: 100%;
+
+        .ie9 & {
+            float: none;
+        }
     }
 
     .lt-ie9 & {
@@ -371,7 +392,13 @@
 
 .tab__container.has-settings .tab__inner {
     @include respond-min($screen-desktop) {
+        align-items: flex-start;
         display: table;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
     }
 }
 
