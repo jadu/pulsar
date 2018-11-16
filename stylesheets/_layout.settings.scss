@@ -393,10 +393,6 @@
     @include respond-min($screen-desktop) {
         align-items: flex-start;
         display: table;
-        display: -webkit-box;
-        display: -moz-box;
-        display: -ms-flexbox;
-        display: -webkit-flex;
         display: flex;
     }
 }
