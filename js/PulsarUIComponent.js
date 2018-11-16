@@ -56,7 +56,8 @@ PulsarUIComponent.prototype.initDataTables = function () {
         datatablesHorizontal = component.$html.find('.datatable.table--horizontal');
 
     datatables.each(function () {
-        var $this = $(this);
+        var $this = $(this),
+            pageLength = 25;
 
         var select = {
             className: 'dt-row-selected',
@@ -64,10 +65,14 @@ PulsarUIComponent.prototype.initDataTables = function () {
             selector:  'td.table-selection'
         }
 
-        var dom = '<"dataTables_top"Birf><"dataTables_actions"T>t<"dataTables_bottom"lip>';
+        var dom = '<"dataTables_top"Birf><"dataTables_actions"T>t<"dataTables_bottom"lp>';
 
         if (!$this.data('empty-table')) {
             $this.data('empty-table', 'There are currently no items to display');
+        }
+
+        if ($this.data('page-length')) {
+            pageLength = $this.data('page-length');
         }
 
         if ($this.data('select') === false) {
@@ -79,12 +84,12 @@ PulsarUIComponent.prototype.initDataTables = function () {
             dom: dom,
             aaSorting: [],
             bAutoWidth: false,
-            pageLength: 25,
+            pageLength: pageLength,
             lengthChange: false,
             buttons: [],
             columnDefs: [
                 { className: 'control', orderable: false, targets: 0 },
-                { "searchable": false, "targets": [0, 1] },
+                { "searchable": false, "targets": [0] },
                 { "orderable": false, "targets": [0, 1] }
             ],
             language: {
@@ -121,7 +126,8 @@ PulsarUIComponent.prototype.initDataTables = function () {
     });
 
     datatablesHorizontal.each(function () {
-        var $this = $(this);
+        var $this = $(this),
+            pageLength = 25;
 
         var select = {
             className: 'dt-row-selected',
@@ -136,6 +142,10 @@ PulsarUIComponent.prototype.initDataTables = function () {
             $this.data('empty-table', 'There are currently no items to display');
         }
 
+        if ($this.data('page-length')) {
+            pageLength = $this.data('page-length');
+        }
+
         if ($this.data('select') === false) {
             dom = '<"dataTables_top"irf><"dataTables_actions"T><"dt-disable-selection"<"table-container"t>><"dataTables_bottom"lp>';
             select = false;
@@ -146,7 +156,7 @@ PulsarUIComponent.prototype.initDataTables = function () {
             aaSorting: [],
             bAutoWidth: false,
             stateSave: true,
-            pageLength: 25,
+            pageLength: pageLength,
             lengthChange: false,
             buttons: [],
             columnDefs: [

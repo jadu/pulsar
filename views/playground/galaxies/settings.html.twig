@@ -1,0 +1,202 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
+
+{%- block actions_left -%}
+    {{
+        html.actions_menu({
+            'items': [
+                [
+                    {
+                        'label': 'Create site',
+                        'href': '/create',
+                        'icon': 'plus'
+                    }
+                ],
+                [
+                    {
+                        'label': 'Archive site',
+                        'href': '/archive',
+                        'icon': 'archive'
+                    },
+                    {
+                        'label': 'Delete site',
+                        'href': '/delete',
+                        'icon': 'times'
+                    }
+                ]
+            ]
+        })
+    }}
+{%- endblock -%}
+
+{%- block actions_right -%}
+    {{
+        html.button({
+            'label': html.icon('eye-open') ~ ' View Site'
+        })
+    }}
+    {{
+        html.button({
+            'label': html.icon('external-link') ~ ' Control Center'
+        })
+    }}
+    {{
+        html.button({
+            'label': 'Save',
+            'class': 'btn--primary'
+        })
+    }}
+    {{
+        html.button({
+            'label': 'Publish',
+            'class': 'btn--success'
+        })
+    }}
+{%- endblock -%}
+
+{% block tab_content %}
+
+    {{
+        form.create()
+    }}
+
+    {{
+        form.text({
+            'label': 'Site name',
+            'class': 'form__control-col--7',
+            'help': 'e.g. Continuum Festival',
+            'required': true
+        })
+    }}
+
+    {{
+        form.textarea({
+            'label': 'Description',
+            'class': 'form__control-col--7',
+            'help': 'This will be displayed when your site appears in search engine results. Aim for around 155 characters',
+            'required': true
+        })
+    }}
+
+    <div class="form__group">
+        <label class="control__label">Web addresses</label>
+        <div class="controls">
+            <div class="table-container">
+                <table class="table table--full">
+                    <tbody>
+                        <tr>
+                            <td><span class="muted">http://www.jaducontinuum.net/</span>continuumfestival</td>
+                            <td class="u-text-align-right">
+                                {{
+                                    html.button({
+                                        'label': html.icon('pencil'),
+                                        'class': 'btn--naked btn--small'
+                                    })
+                                }}
+                                {{
+                                    html.button({
+                                        'label': html.icon('times-circle'),
+                                        'class': 'btn--naked btn--small'
+                                    })
+                                }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="muted">http://www.jaducontinuum.net/</span>continuum-festival</td>
+                            <td class="u-text-align-right">
+                                {{
+                                    html.button({
+                                        'label': html.icon('pencil'),
+                                        'class': 'btn--naked btn--small'
+                                    })
+                                }}
+                                {{
+                                    html.button({
+                                        'label': html.icon('times-circle'),
+                                        'class': 'btn--naked btn--small'
+                                    })
+                                }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <button class="btn">Add Another</button>
+            <span class="help-block">Web addresses always start with your main site's domain name and don't need any specialist setup, you must have at least one</span>
+        </div>
+    </div>
+
+    <div class="form__group">
+        <label class="control__label">Domain name(s)</label>
+        <div class="controls">
+            <div class="table-container">
+                <table class="table table--full">
+                    <tbody>
+                        <tr>
+                            <td class="muted">You have not added any domain names</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <button class="btn">Add</button>
+            <span class="help-block">Custom domain names need to be registered through a domain registrar and configured with <a href="#">your nameserver details</a></span>
+        </div>
+    </div>
+
+    {{
+        form.select({
+            'label': 'Default URL',
+            'help': 'Choose which URL should be used for content links regardless of which address was used to access the site',
+            'options': [
+                {
+                    'label': 'None (don’t rewrite URLs)',
+                    'value': 'none'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.text({
+            'label': 'Content pack',
+            'help': 'Cannot be changed after the site has been created',
+            'value': 'No content pack (empty site)',
+            'disabled': true
+        })
+    }}
+
+    {{
+        form.select2({
+            'label': 'Language pack',
+            'options': [
+                {
+                    'label': 'English (UK)',
+                    'value': 'en-uk'
+                }
+            ]
+        })
+    }}
+
+    {{
+        form.end({
+            'actions': [
+                form.submit({
+                    'label': 'Save',
+                    'class': 'btn--primary'
+                }),
+                html.button({
+                    'class': 'btn--naked',
+                    'type': 'link',
+                    'label': 'Cancel',
+                    'href': '/home'
+                })
+            ]
+        })
+    }}
+{% endblock tab_content %}
+
+{% block tab_sidebar %}
+    <h2>{{ html.icon('info-sign') }} Galaxies, your site factory</h2>
+    <p>A galaxies site is a self-contained website with its own control centre and allows you to create separate sites for events, venues or even your entire institution.</p>
+
+    <p>Using Galaxies turns your Continuum CMS into a multi-tenant content management platform. To unlock the true potential of Galaxies see our <a href="#">online guides</a> or request information about our next <a href="#">Galaxies Designer Training Course</a>.</p>
+{% endblock tab_sidebar %}
