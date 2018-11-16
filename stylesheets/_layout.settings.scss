@@ -365,7 +365,7 @@
 .tab__container.has-settings .tab__content {
     @include respond-min($screen-medium) {
         margin-bottom: $line-height-small;
-        
+
         // stop tables extending past the container when enlarged (IE10)
         // https://github.com/jadu/pulsar/pull/925#discussion_r234206459
         -ms-flex: 1 1 auto;
