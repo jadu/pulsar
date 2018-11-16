@@ -2,6 +2,19 @@
   list-style-type: none;
 }
 
+.list--naked li.is-active {
+    background-color: color(primary);
+    border-radius: $border-radius;
+    margin-left: -5px;
+    padding-left: 5px;
+
+    &,
+    & > a {
+        color: color(primary, alt);
+        text-decoration: none;
+    }
+}
+
 .list--inline {
   li {
     display: inline-block;

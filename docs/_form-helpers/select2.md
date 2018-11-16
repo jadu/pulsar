@@ -70,7 +70,7 @@ multiple    | boolean | Whether multiple options can be selected
 name        | string  | The name of this control
 options     | hash    | The `<option>` attributes formatted as `{ 'value': 'label' }`
 required    | bool    | Adds `required` and `aria-required="true"` attributes
-selected    | string  | The `id` of the item in `options` that should be initially selected
+selected    | string|array | The `id` of the item in `options` that should be initially selected, can be an array if using `multiple`
 size        | int     | The number of items to display when the list is shown
 data-init   | string  | If 'false', will prevent the select2 javascript behaviour being initialised
 data-*      | string  | Data attributes, eg: `'data-foo': 'bar'`

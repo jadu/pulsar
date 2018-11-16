@@ -115,7 +115,28 @@ var $ = require('jquery'),
   }
 
   $(document).ready(function() {
-    $('[data-toggle="popover"]').popover();
+    $('[data-toggle="popover"], [rel="clickover"]')
+    .on('click', function(e) {
+      e.preventDefault();
+    }).popover();
+  });
+
+  $(document).on('click', function (e) {
+    var $target = $(e.target);
+
+    // Ignore popover and clickover triggers and children
+    if ($target.attr('data-toggle') === 'popover' || $target.parent().attr('data-toggle') === 'popover' || $target.attr('rel') === 'clickover') {
+        return;
+    }
+
+    $('[data-toggle="popover"][data-autoclose="true"], [rel="clickover"]').each(function () {
+      var $this = $(this),
+          $bsPopover = $this.popover('hide').data('bs.popover');
+
+      if ($bsPopover !== undefined && $bsPopover.inState) {
+        $bsPopover.click = false;
+      }
+    });
   });
 
 module.exports = Popover;

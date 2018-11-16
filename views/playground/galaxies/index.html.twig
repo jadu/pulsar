@@ -1,0 +1,17 @@
+{% extends '@pulsar/lexicon/base.html.twig' %}
+
+{% set heading = 'Galaxies Sites' %}
+
+{% set tab_sites %}
+    {% include '/playground/galaxies/sites.html.twig' %}
+{% endset %}
+
+{%
+    set tabs_content = [
+        {
+            "id"    : "sites",
+            "label" : "Sites",
+            "src"   : tab_sites,
+        }
+    ]
+%}

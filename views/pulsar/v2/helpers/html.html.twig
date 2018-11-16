@@ -1394,6 +1394,7 @@ class name, eg:
  * offline
  * active
  * inactive
+ * warning
 
 Some states are simply synonyms of each other, the choice of verb will be
 defined by the context in which it is to be used.
@@ -1506,7 +1507,8 @@ data-dropzone-file-node-type        | boolean   | Show file type in file html | 
             <p class="dropzone__info">{{ idle|raw }}</p>
 
             <p class="dropzone__help"
-               rel="clickover"
+               data-toggle="popover"
+               data-autoclose="true"
                data-title="{{ options.helperTitle|default('Helper title')|raw }}"
                data-content="{{ options.helperContent|default('Helper content')|raw }}"
                data-html="true"

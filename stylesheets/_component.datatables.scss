@@ -76,6 +76,7 @@ a.dt-button {
 
     // support absolutely positioned sorting arrows
     th {
+        background-clip: padding-box; // Make sure borders are displayed in FF & IE - https://bugzilla.mozilla.org/show_bug.cgi?id=688556
         padding-right: 20px;
         position: relative;
     }
@@ -98,6 +99,7 @@ a.dt-button {
         &.sorting_desc:focus {
             outline: 3px solid color(border, focus);
             outline-offset: -3px;
+            z-index: 1;
         }
 
         &.sorting::after,
