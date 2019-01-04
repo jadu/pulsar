@@ -70,6 +70,12 @@ describe('NavMainComponent', function () {
                            <li class="nav-item">
                                 <button tabindex="1" data-target="#three_two" class="nav-link" aria-haspopup="true" aria-expanded="false" aria-controls="aria-quaternary-nav">3.2</a>
                             </li>
+                            <li class="nav-item">
+                                <button tabindex="1" class="nav-link qa-tertiary-missing-target" aria-haspopup="true" aria-expanded="false" aria-controls="aria-quaternary-nav">5</button>
+                            </li>
+                            <li class="nav-item">
+                                <a tabindex="1" class="nav-link qa-tertiary-missing-href" aria-haspopup="true" aria-expanded="false" aria-controls="aria-quaternary-nav">4</a>
+                            </li>
                        </ul>
                    </div>
                </div>
@@ -109,13 +115,16 @@ describe('NavMainComponent', function () {
         this.$linkOne = this.$html.find('[href="#one"]');
         this.$linkTwo = this.$html.find('[data-target="#two"]');
         this.$linkThree = this.$html.find('[href="#three"]');
-        this.$secondaryLink = this.$html.find('[href="#two_one"]');
-        this.$secondaryButton = this.$html.find('[data-target="#two_two"]');
-        this.$tertiaryLink = this.$html.find('[href="#three_one"]');
-        this.$tertiaryButton = this.$html.find('[data-target="#three_two"]');
-
         this.$missingHref = this.$html.find('.qa-missing-href');
         this.$missingDataTarget = this.$html.find('.qa-missing-target');
+
+        this.$secondaryLink = this.$html.find('[href="#two_one"]');
+        this.$secondaryButton = this.$html.find('[data-target="#two_two"]');
+        
+        this.$tertiaryLink = this.$html.find('[href="#three_one"]');
+        this.$tertiaryButton = this.$html.find('[data-target="#three_two"]');
+        this.$tertiarymissingHref = this.$html.find('.qa-tertiary-missing-href');
+        this.$tertiarymissingDataTarget = this.$html.find('.qa-tertiary-missing-target');
 
         $.fn.popover = sinon.stub().returnsThis();
         this.$popoverLink = this.$html.find('[data-toggle="popover"]');
@@ -488,6 +497,32 @@ describe('NavMainComponent', function () {
 
             it('should change the clicked links aria-expanded to true', function () {
                 expect(this.$tertiaryLink.attr('aria-expanded')).to.be.equal('true');
+            });
+        });
+
+        describe('clicking on a tertiary nav link with a missing href', function () {
+            beforeEach(function () {
+                this.navMainComponent.init();
+                this.clickEvent = $.Event('click');
+            });
+    
+            it('should throw an error', function () {
+                expect(() => {
+                    this.$tertiarymissingHref.trigger(this.clickEvent);
+                }).to.throw('A nav link must have a href or data-target attribute');
+            });
+        });
+    
+        describe('clicking on a tertiary nav link with a missing data-target', function () {
+            beforeEach(function () {
+                this.navMainComponent.init();
+                this.clickEvent = $.Event('click');
+            });
+    
+            it('should throw an error', function () {
+                expect(() => {
+                    this.$tertiarymissingDataTarget.trigger(this.clickEvent);
+                }).to.throw('A nav link must have a href or data-target attribute');
             });
         });
 
