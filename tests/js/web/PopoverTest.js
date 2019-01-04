@@ -34,11 +34,7 @@ describe('Test extra functionality added to Bootstrap popovers', function() {
 
         beforeEach(function() {
             this.clickEvent = $.Event('click');
-            this.$legacyClickover.trigger(this.clickEvent);
-        });
-
-        it('should trigger a popover', function() {
-            expect($.fn.popover).to.have.been.called;
+            this.$legacyClickover.click();
         });
 
         it('should hide the popover when clicked anywhere in the DOM', function (done) {
@@ -55,11 +51,7 @@ describe('Test extra functionality added to Bootstrap popovers', function() {
 
         beforeEach(function() {
             this.clickEvent = $.Event('click');
-            this.$autoclosingPopover.trigger(this.clickEvent);
-        });
-
-        it('should trigger a popover', function() {
-            expect($.fn.popover).to.have.been.called;
+            this.$autoclosingPopover.click();
         });
 
         it('should hide the popover when clicked anywhere in the DOM', function (done) {
