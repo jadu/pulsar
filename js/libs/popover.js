@@ -118,11 +118,17 @@ var $ = require('jquery'),
     $('[data-toggle="popover"], [rel="clickover"]')
     .on('click', function(e) {
       e.preventDefault();
-      e.stopPropagation();
     }).popover();
   });
 
-  $(document).on('click', function () {
+  $(document).on('click', function (e) {
+    var $target = $(e.target);
+
+    // Ignore popover and clickover triggers and children
+    if ($target.attr('data-toggle') === 'popover' || $target.parent().attr('data-toggle') === 'popover' || $target.attr('rel') === 'clickover') {
+        return;
+    }
+
     $('[data-toggle="popover"][data-autoclose="true"], [rel="clickover"]').each(function () {
       var $this = $(this),
           $bsPopover = $this.popover('hide').data('bs.popover');

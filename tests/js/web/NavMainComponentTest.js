@@ -645,4 +645,21 @@ describe('NavMainComponent', function () {
             expect($.fn.popover).to.have.been.calledWith('hide');            
         })
     });
+
+    describe('opening the secondary nav when a popover is open', function () {
+        beforeEach(function () {
+            this.navMainComponent.init();
+            this.clickEvent = $.Event('click');
+            this.$linkOne.trigger(this.clickEvent);
+            this.$popoverLink.trigger(this.clickEvent);
+        });
+
+        it('should trigger a popover', function () {
+			expect($.fn.popover).to.have.been.called;
+		});
+
+        it('should be hidden when opening the secondary navigation', function () {
+            expect($.fn.popover).to.have.been.calledWith('hide');            
+        })
+    });
 });
