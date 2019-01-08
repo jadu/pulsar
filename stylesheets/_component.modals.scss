@@ -41,12 +41,12 @@
     margin-left: auto;
     margin-right: auto;
     max-width: 600px;
-    padding: 85px ($gutter-width / 2) 30px;
+    padding: 10px;
     width: auto;
     z-index: ($zindex-modal + 10);
 
     @include respond-min($screen-tablet) {
-        padding-top: 100px;
+        padding: 100px ($gutter-width / 2) 30px;
         width: 100%;
     }
 }
