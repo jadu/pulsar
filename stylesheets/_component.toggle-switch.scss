@@ -87,18 +87,13 @@
         font-family: 'FontAwesome';
         font-size: 16px;
         left: 10px;
-        letter-spacing: 10px;
+        letter-spacing: 14.4px;
         line-height: 2;
         position: absolute;
         top: 0;
         transition: .3s;
         width: 100%;
         z-index: 1;
-
-        @include respond-min($screen-xsmall) {
-            font-size: 16px;
-            letter-spacing: 14.4px;
-        }
     }
 }
 
