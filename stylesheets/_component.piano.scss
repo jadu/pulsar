@@ -59,10 +59,12 @@
 }
 
 .piano__item.is-selected {
-    background: #e5ecf2;
-
-    &:hover {
+    @include respond-min($screen-desktop) {
         background: #e5ecf2;
+
+        &:hover {
+            background: #e5ecf2;
+        }
     }
 }
 
