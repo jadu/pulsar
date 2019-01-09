@@ -9,10 +9,11 @@
 }
 
 .slider {
-    display: inline-block;
+    display: block;
     position: relative;
 
     @include respond-min($screen-tablet) {
+        display: inline-block;
         width: 600px;
     }
 }
