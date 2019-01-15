@@ -637,12 +637,14 @@ fieldset {
 }
 
 .form__indent {
-    margin-left: 25%;
-    margin-right: $gutter-width;
+    @include respond-min($screen-tablet) {
+        margin-left: 25%;
+        margin-right: $gutter-width;
 
-    p {
-        margin-left: 0;
-        padding-left: 0;
+        p {
+            margin-left: 0;
+            padding-left: 0;
+        }
     }
 }
 
