@@ -10,6 +10,10 @@
     color: color(black);
     cursor: pointer;
   }
+
+  &:focus {
+    outline: 3px solid color(border, focus);
+  }
 }
 
 // Additional properties for button version

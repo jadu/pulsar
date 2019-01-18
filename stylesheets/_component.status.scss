@@ -19,6 +19,11 @@
         border-radius: 2px;
     }
 
+    &.is-warning {
+        background-color: color(warning);
+        border-radius: 6px;
+    }
+
     &.is-inactive {
         background-color: color(white);
         border: 2px solid color(border);

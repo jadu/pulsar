@@ -529,7 +529,7 @@ module.exports = function(grunt) {
                 'views/**/*'
             ],
             options: {
-                proxy: 'http://192.168.13.37/index.php',
+                proxy: 'http://localhost:3000/app/app.php/lexicon',
                 reloadOnRestart: true,
                 watchTask: true
             }
@@ -615,7 +615,6 @@ module.exports = function(grunt) {
         'autoprefixer',
         'browserify:dist',
         'copy:dist',
-        'realFavicon',
         'compress'
     ]);
 

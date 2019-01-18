@@ -8,6 +8,8 @@ function NavMainComponent ($html, rootWindow) {
     this.$window = $(rootWindow);
 };
 
+NavMainComponent.MISSING_ATTR_ERROR = 'A nav link must have a href or data-target attribute';
+
 /**
  * Initialise
  */
@@ -87,16 +89,25 @@ NavMainComponent.prototype.init = function () {
     // Open quaternary nav on tertiary nav item click
     component.$tertiaryNavLinks.on('click', function (event) {
         var $self = $(this),
-            href = $self.attr('href');
+            target;
 
-        if (href.indexOf('#') !== -1) {
+        if ($self.attr('href')) {
+            target = $self.attr('href');
+        }
+        else if ($self.attr('data-target')) {
+            target = $self.attr('data-target');
+        } else {
+            throw new Error(NavMainComponent.MISSING_ATTR_ERROR);
+        }
+
+        if (target.indexOf('#') !== -1) {
             event.preventDefault();
 
             // Change aria expanded to true
             $self.attr('aria-expanded', 'true');
         }
 
-        component.openQuaternaryNav(href);
+        component.openQuaternaryNav(target);
     });
 
     // Close respective navs on close link click
@@ -132,11 +143,13 @@ NavMainComponent.prototype.openSecondaryNav = function ($linkClicked, event) {
     var component = this,
         target;
 
-    if ($linkClicked[0].hasAttribute('href')) {
+    if ($linkClicked.attr('href')) {
         target = $linkClicked.attr('href');
     }
-    else if ($linkClicked[0].hasAttribute('data-target')) {
+    else if ($linkClicked.attr('data-target')) {
         target = $linkClicked.attr('data-target');
+    } else {
+        throw new Error(NavMainComponent.MISSING_ATTR_ERROR)
     }
 
     // Close any previously open navs
@@ -218,7 +231,8 @@ NavMainComponent.prototype.closeSecondaryNav = function () {
     component.$navMain.removeClass('is-open');
     component.$navMain.find('[aria-expanded=true]').attr( 'aria-expanded', 'false');
     component.$navSecondary.removeClass('is-open');
-    component.$primaryNavLinks.removeClass('is-active')
+    component.$primaryNavLinks.removeClass('is-active');
+    component.$navMain.find('.nav-item.is-active').removeClass('is-active');
     component.$navSecondary.find('.nav-list').removeClass('is-active');
 }
 

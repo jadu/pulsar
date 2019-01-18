@@ -1,0 +1,409 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
+
+{%- block actions_left -%}
+    {{
+        html.actions_menu({
+            'items': [
+                [
+                    {
+                        'label': 'Create site',
+                        'href': '/create',
+                        'icon': 'plus'
+                    }
+                ],
+                [
+                    {
+                        'label': 'Archive site',
+                        'href': '/archive',
+                        'icon': 'archive'
+                    },
+                    {
+                        'label': 'Delete site',
+                        'href': '/delete',
+                        'icon': 'times'
+                    }
+                ]
+            ]
+        })
+    }}
+{%- endblock -%}
+
+{%- block actions_right -%}
+    {{
+        html.button({
+            'label': 'Create Site',
+            'class': 'btn--primary',
+            'data-toggle': 'modal',
+            'href': '#create-site-1',
+            'type': 'link'
+        })
+    }}
+{%- endblock -%}
+
+{% block tab_content %}
+    <table class="table datatable table--full">
+        <thead>
+            <tr>
+                <td class="table-responsive"></td>
+                <td class="table-selection"></td>
+                <th class="shrink-to-fit centered"><a href="#">Status</a></th>
+                <th><a href="#">Site Name</a></th>
+                <th><a href="#">Locale</a></th>
+                <th><a href="#">Actions</a></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <td class="table-responsive">
+                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                </td>
+                <td class="table-selection">
+                    {{ html.icon('square-o', { 'class': 'table-row-select js-select' }) }}
+                </td>
+                <td class="centered">{{ html.status('online') }}</td>
+                <td><a href="designer.html.twig">Godiva Festival</a></td>
+                <td>English (EN)</td>
+                <td>
+                    {{ html.link({ 'label': 'Settings', 'class': 'table-action', 'href': 'galaxies/designer.html.twig' }) }}
+                    {{ html.link({ 'label': 'Control Center', 'class': 'table-action' }) }}
+                    {{ html.link({ 'label': 'Visit Site', 'class': 'table-action' }) }}
+                </td>
+            </tr>
+
+            <tr>
+                <td class="table-responsive">
+                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                </td>
+                <td class="table-selection">
+                    {{ html.icon('square-o', { 'class': 'table-row-select js-select' }) }}
+                </td>
+                <td class="centered">{{ html.status('online') }}</td>
+                <td><a href="designer.html.twig">Oxford Town Hall</a></td>
+                <td>English (EN)</td>
+                <td>
+                    {{ html.link({ 'label': 'Settings', 'class': 'table-action', 'href': 'galaxies/designer.html.twig' }) }}
+                    {{ html.link({ 'label': 'Control Center', 'class': 'table-action' }) }}
+                    {{ html.link({ 'label': 'Visit Site', 'class': 'table-action' }) }}
+                </td>
+            </tr>
+
+            <tr>
+                <td class="table-responsive">
+                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                </td>
+                <td class="table-selection">
+                    {{ html.icon('square-o', { 'class': 'table-row-select js-select' }) }}
+                </td>
+                <td class="centered">{{ html.status('online') }}</td>
+                <td><a href="designer.html.twig">Oxford Town Hall</a></td>
+                <td>Japanese</td>
+                <td>
+                    {{ html.link({ 'label': 'Settings', 'class': 'table-action', 'href': 'galaxies/designer.html.twig' }) }}
+                    {{ html.link({ 'label': 'Control Center', 'class': 'table-action' }) }}
+                    {{ html.link({ 'label': 'Visit Site', 'class': 'table-action' }) }}
+                </td>
+            </tr>
+
+            <tr>
+                <td class="table-responsive">
+                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                </td>
+                <td class="table-selection">
+                    {{ html.icon('square-o', { 'class': 'table-row-select js-select' }) }}
+                </td>
+                <td class="centered">{{ html.status('online') }}</td>
+                <td><a href="designer.html.twig">Royal Pump Rooms</a></td>
+                <td>English (EN)</td>
+                <td>
+                    {{ html.link({ 'label': 'Settings', 'class': 'table-action', 'href': 'galaxies/designer.html.twig' }) }}
+                    {{ html.link({ 'label': 'Control Center', 'class': 'table-action' }) }}
+                    {{ html.link({ 'label': 'Visit Site', 'class': 'table-action' }) }}
+                </td>
+            </tr>
+
+            <tr>
+                <td class="table-responsive">
+                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                </td>
+                <td class="table-selection">
+                    {{ html.icon('square-o', { 'class': 'table-row-select js-select' }) }}
+                </td>
+                <td class="centered">{{ html.status('offline') }}</td>
+                <td><a href="designer.html.twig">Royal Space Centre</a></td>
+                <td>English (EN)</td>
+                <td>
+                    {{ html.link({ 'label': 'Settings', 'class': 'table-action', 'href': 'galaxies/designer.html.twig' }) }}
+                    {{ html.link({ 'label': 'Control Center', 'class': 'table-action' }) }}
+                    {{ html.link({ 'label': 'Visit Site', 'class': 'table-action' }) }}
+                </td>
+            </tr>
+
+            <tr>
+                <td class="table-responsive">
+                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                </td>
+                <td class="table-selection">
+                    {{ html.icon('square-o', { 'class': 'table-row-select js-select' }) }}
+                </td>
+                <td class="centered">{{ html.status('online') }}</td>
+                <td><a href="designer.html.twig">St Mary's Guildhall</a></td>
+                <td>English (EN)</td>
+                <td>
+                    {{ html.link({ 'label': 'Settings', 'class': 'table-action', 'href': 'galaxies/designer.html.twig' }) }}
+                    {{ html.link({ 'label': 'Control Center', 'class': 'table-action' }) }}
+                    {{ html.link({ 'label': 'Visit Site', 'class': 'table-action' }) }}
+                </td>
+            </tr>
+
+            <tr>
+                <td class="table-responsive">
+                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                </td>
+                <td class="table-selection">
+                    {{ html.icon('square-o', { 'class': 'table-row-select js-select' }) }}
+                </td>
+                <td class="centered">{{ html.status('offline') }}</td>
+                <td><a href="designer.html.twig">Visit Coventry and Warwickshire</a></td>
+                <td>English (EN)</td>
+                <td>
+                    {{ html.link({ 'label': 'Settings', 'class': 'table-action', 'href': 'galaxies/designer.html.twig' }) }}
+                    {{ html.link({ 'label': 'Control Center', 'class': 'table-action' }) }}
+                    {{ html.link({ 'label': 'Visit Site', 'class': 'table-action' }) }}
+                </td>
+            </tr>
+
+            <tr>
+                <td class="table-responsive">
+                    {{ html.icon('plus-sign', { 'class': 'table-child-toggle' }) }}
+                </td>
+                <td class="table-selection">
+                    {{ html.icon('square-o', { 'class': 'table-row-select js-select' }) }}
+                </td>
+                <td class="centered">{{ html.status('offline') }}</td>
+                <td><a href="designer.html.twig">War Memorial Park Tennis Club</a></td>
+                <td>English (EN)</td>
+                <td>
+                    {{ html.link({ 'label': 'Settings', 'class': 'table-action', 'href': 'galaxies/designer.html.twig' }) }}
+                    {{ html.link({ 'label': 'Control Center', 'class': 'table-action' }) }}
+                    {{ html.link({ 'label': 'Visit Site', 'class': 'table-action' }) }}
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <div class="modal modal--large" id="create-site-1" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal__dialog">
+            <div class="modal__content">
+                <div class="modal__header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal__title">Create Galaxies Site</h4>
+                </div>
+                <div class="modal__ribbon">
+                    <ol class="progress-steps">
+                        <li class="progress-steps__step progress-steps__step--current">
+                            1
+                        </li>
+                        <li class="progress-steps__step progress-steps__step">
+                            2
+                        </li>
+                        <li class="progress-steps__step">
+                            {{ html.icon('flag-checkered') }}
+                        </li>
+                    </ol>
+                </div>
+                <div class="modal__body">
+                    <p>Let's start by choosing a name and the first web address for your new site, <strong>nothing will be published live at this point</strong>, and everything can be changed later, so don't worry about making any mistakes.</p>
+
+                    {{ form.create() }}
+
+                    {{
+                        form.text({
+                            'label': 'Site name',
+                            'class': 'form__group--full',
+                            'help': 'e.g. Continuum Festival',
+                            'required': true
+                        })
+                    }}
+
+                    {{
+                        form.text({
+                            'label': 'Web address <abbr title="Uniform Resource Locator">(URL)</abbr>',
+                            'class': 'form__group--full',
+                            'help': 'The site won’t be published at this address just yet',
+                            'prepend': 'http://www.jaducontinuum.net/',
+                            'required': true
+                        })
+                    }}
+
+                    {{
+                        form.select2({
+                            'label': 'Content pack',
+                            'options': [
+                                {
+                                    'label': 'No content pack (empty site)',
+                                    'value': 'empty'
+                                },
+                                {
+                                    'label': 'Content pack alpha',
+                                    'value': 'alpha'
+                                },
+                                {
+                                    'label': 'Content pack bravo',
+                                    'value': 'bravo'
+                                }
+                            ]
+                        })
+                    }}
+
+                    {{ form.end() }}
+                </div>
+                <div class="modal__footer">
+                    {{
+                        html.button({
+                            'label': 'Next',
+                            'class': 'btn--primary',
+                            'data-dismiss': 'modal',
+                            'data-toggle': 'modal',
+                            'href': '#create-site-2',
+                            'type': 'link'
+                        })
+                    }}
+                    {{
+                        html.button({
+                            'label': 'Cancel',
+                            'class': 'btn--naked',
+                            'data-dismiss': 'modal'
+                        })
+                    }}
+                </div>
+            </div><!-- /.modal__content -->
+        </div><!-- /.modal__dialog -->
+    </div><!-- /.modal -->
+
+    <div class="modal modal--large" id="create-site-2" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal__dialog">
+            <div class="modal__content">
+                <div class="modal__header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal__title">Create Galaxies Site</h4>
+                </div>
+                <div class="modal__ribbon">
+                    <ol class="progress-steps">
+                        <li class="progress-steps__step progress-steps__step--complete">
+                            {{ html.icon('check') }}
+                        </li>
+                        <li class="progress-steps__step progress-steps__step progress-steps__step--current">
+                            2
+                        </li>
+                        <li class="progress-steps__step">
+                            {{ html.icon('flag-checkered') }}
+                        </li>
+                    </ol>
+                </div>
+                <div class="modal__body">
+                    <p>Create your first administrator account, this account will have full control over the new Galaxies site and will be able to create more administrators.</p>
+
+                    {{ form.create() }}
+
+                    {{
+                        form.text({
+                            'label': 'Admin username',
+                            'class': 'form__group--full',
+                            'required': true
+                        })
+                    }}
+
+                    {{
+                        form.text({
+                            'label': 'Admin password',
+                            'class': 'form__group--full',
+                            'required': true
+                        })
+                    }}
+
+                    {{
+                        form.text({
+                            'label': 'Admin email',
+                            'class': 'form__group--full',
+                            'required': true
+                        })
+                    }}
+
+                    {{ form.end() }}
+                </div>
+                <div class="modal__footer">
+                    {{
+                        html.button({
+                            'label': 'Next',
+                            'class': 'btn--primary',
+                            'data-dismiss': 'modal',
+                            'data-toggle': 'modal',
+                            'href': '#create-site-3',
+                            'type': 'link'
+                        })
+                    }}
+                    {{
+                        html.button({
+                            'label': 'Cancel',
+                            'class': 'btn--naked',
+                            'data-dismiss': 'modal'
+                        })
+                    }}
+                </div>
+            </div><!-- /.modal__content -->
+        </div><!-- /.modal__dialog -->
+    </div><!-- /.modal -->
+
+    <div class="modal modal--large" id="create-site-3" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal__dialog">
+            <div class="modal__content">
+                <div class="modal__header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal__title">Create Galaxies Site</h4>
+                </div>
+                <div class="modal__ribbon">
+                    <ol class="progress-steps">
+                        <li class="progress-steps__step progress-steps__step--complete">
+                            {{ html.icon('check') }}
+                        </li>
+                        <li class="progress-steps__step progress-steps__step--complete">
+                            {{ html.icon('check') }}
+                        </li>
+                        <li class="progress-steps__step progress-steps__step--complete">
+                            {{ html.icon('flag-checkered') }}
+                        </li>
+                    </ol>
+                </div>
+                <div class="modal__body u-text-align-center">
+                    <h1 class="u-margin-top">You're almost done!</h1>
+                    <p> That's all the information we need to create your new site, you can change all your settings and choose your theme in the next steps and when you're ready, <strong>publish</strong> it to the world.</p>
+                </div>
+                <div class="modal__footer">
+                    {{
+                        html.button({
+                            'label': 'Go to the Galaxies Designer',
+                            'class': 'btn--primary',
+                            'data-dismiss': 'modal'
+                        })
+                    }}
+                    {{
+                        html.button({
+                            'label': 'Cancel',
+                            'class': 'btn--naked',
+                            'data-dismiss': 'modal'
+                        })
+                    }}
+                </div>
+            </div><!-- /.modal__content -->
+        </div><!-- /.modal__dialog -->
+    </div><!-- /.modal -->
+{% endblock tab_content %}
+
+{% block tab_sidebar %}
+    <h2>{{ html.icon('info-sign') }} Galaxies, your site factory</h2>
+    <p>A galaxies site is a self-contained website with its own control centre and allows you to create separate sites for events, venues or even your entire institution.</p>
+
+    <p>Using Galaxies turns your Continuum CMS into a multi-tenant content management platform. To unlock the true potential of Galaxies see our <a href="#">online guides</a> or request information about our next <a href="#">Galaxies Designer Training Course</a>.</p>
+{% endblock tab_sidebar %}
