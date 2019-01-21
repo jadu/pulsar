@@ -49,7 +49,7 @@
         transition: background .3s ease;
 
         &:hover {
-          background: lighten(#e5ecf2, 4%);
+          background: lighten(color(new), 4%);
         }
     }
 
@@ -60,10 +60,10 @@
 
 .piano__item.is-selected {
     @include respond-min($screen-desktop) {
-        background: #e5ecf2;
+        background: color(new);
 
         &:hover {
-            background: #e5ecf2;
+            background: color(new);
         }
     }
 }
@@ -139,7 +139,7 @@
     }
 
     .history {
-        background-color: #e5ecf2;
+        background-color: color(new);
         border-bottom: 1px solid color(border);
         border-top: 1px solid color(border);
         color: #989699;
@@ -150,7 +150,7 @@
         text-align: center;
 
         span {
-            background-color: #e5ecf2;
+            background-color: color(new);
             padding: 0 20px;
             position: relative;
             z-index: 1;
