@@ -30,6 +30,12 @@ describe('NavMainComponent', function () {
                        </li>
                        <li class="nav-item">
                            <a href="#three" class="nav-link" aria-haspopup="true" aria-expanded="false" aria-controls="aria-secondary-nav">3</a>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link qa-missing-target" aria-haspopup="true" aria-expanded="false" aria-controls="aria-secondary-nav">5</button>
+                        </li>
+                       <li class="nav-item">
+                           <a class="nav-link qa-missing-href" aria-haspopup="true" aria-expanded="false" aria-controls="aria-secondary-nav">4</a>
                        </li>
                    </ul>
                </div>
@@ -49,7 +55,7 @@ describe('NavMainComponent', function () {
                    <div class="nav-list" data-nav="#two">
                        <ul class="nav-items">
                            <li class="nav-item">
-                               <a tabindex="1" href="#two_one" class="nav-link">2.1</a>
+                               <button tabindex="1" data-target="#two_one" class="nav-link">2.1</a>
                            </li>
                        </ul>
                    </div>
@@ -61,6 +67,15 @@ describe('NavMainComponent', function () {
                            <li class="nav-item">
                                <a tabindex="1" href="#three_one" class="nav-link" aria-haspopup="true" aria-expanded="false" aria-controls="aria-quaternary-nav">3.1</a>
                            </li>
+                           <li class="nav-item">
+                                <button tabindex="1" data-target="#three_two" class="nav-link" aria-haspopup="true" aria-expanded="false" aria-controls="aria-quaternary-nav">3.2</a>
+                            </li>
+                            <li class="nav-item">
+                                <button tabindex="1" class="nav-link qa-tertiary-missing-target" aria-haspopup="true" aria-expanded="false" aria-controls="aria-quaternary-nav">5</button>
+                            </li>
+                            <li class="nav-item">
+                                <a tabindex="1" class="nav-link qa-tertiary-missing-href" aria-haspopup="true" aria-expanded="false" aria-controls="aria-quaternary-nav">4</a>
+                            </li>
                        </ul>
                    </div>
                </div>
@@ -70,6 +85,13 @@ describe('NavMainComponent', function () {
                        <ul class="nav-items">
                            <li class="nav-item">
                                <a tabindex="1" href="#four_one" class="nav-link">4.1</a>
+                           </li>
+                       </ul>
+                   </div>
+                   <div class="nav-list" data-nav="#three_two">
+                       <ul class="nav-items">
+                           <li class="nav-item">
+                               <a tabindex="1" href="#four_two" class="nav-link">4.2</a>
                            </li>
                        </ul>
                    </div>
@@ -93,7 +115,16 @@ describe('NavMainComponent', function () {
         this.$linkOne = this.$html.find('[href="#one"]');
         this.$linkTwo = this.$html.find('[data-target="#two"]');
         this.$linkThree = this.$html.find('[href="#three"]');
-        this.$tertiaryLinkThree = this.$html.find('[href="#three_one"]');
+        this.$missingHref = this.$html.find('.qa-missing-href');
+        this.$missingDataTarget = this.$html.find('.qa-missing-target');
+
+        this.$secondaryLink = this.$html.find('[href="#two_one"]');
+        this.$secondaryButton = this.$html.find('[data-target="#two_two"]');
+        
+        this.$tertiaryLink = this.$html.find('[href="#three_one"]');
+        this.$tertiaryButton = this.$html.find('[data-target="#three_two"]');
+        this.$tertiarymissingHref = this.$html.find('.qa-tertiary-missing-href');
+        this.$tertiarymissingDataTarget = this.$html.find('.qa-tertiary-missing-target');
 
         $.fn.popover = sinon.stub().returnsThis();
         this.$popoverLink = this.$html.find('[data-toggle="popover"]');
@@ -220,6 +251,32 @@ describe('NavMainComponent', function () {
         });
     })
 
+    describe('clicking on a nav link with a missing href', function () {
+        beforeEach(function () {
+            this.navMainComponent.init();
+            this.clickEvent = $.Event('click');
+        });
+
+        it('should throw an error', function () {
+            expect(() => {
+                this.$missingHref.trigger(this.clickEvent);
+            }).to.throw('A nav link must have a href or data-target attribute');
+        });
+    });
+
+    describe('clicking on a nav link with a missing data-target', function () {
+        beforeEach(function () {
+            this.navMainComponent.init();
+            this.clickEvent = $.Event('click');
+        });
+
+        it('should throw an error', function () {
+            expect(() => {
+                this.$missingDataTarget.trigger(this.clickEvent);
+            }).to.throw('A nav link must have a href or data-target attribute');
+        });
+    });
+
     describe('clicking on the first primary nav link', function () {
         beforeEach(function () {
             this.navMainComponent.init();
@@ -332,6 +389,14 @@ describe('NavMainComponent', function () {
         it('should remove the highlight from that sections primary nav item', function () {
             expect(this.$html.find('.nav-primary .nav-link').hasClass('is-active')).to.be.false;
         });
+
+        it('should remove the is-active class on the main navigation', function () {
+            expect(this.$html.find('.nav-main').hasClass('is-active')).to.be.false;
+        });
+
+        it('should remove the is-active class on the main navigation active li', function () {
+            expect(this.$html.find('.nav-main .nav-item.is-active').hasClass('is-active')).to.be.false;
+        });
     });
 
     describe('clicking outside of the navigation, when the sub navigation is open', function () {
@@ -415,7 +480,7 @@ describe('NavMainComponent', function () {
 
         describe('when a tertiary nav link is clicked', function () {
             beforeEach(function() {
-                this.$tertiaryLinkThree.trigger(this.clickEvent);
+                this.$tertiaryLink.trigger(this.clickEvent);
             });
 
             it('should prevent the default bahavior', function () {
@@ -431,8 +496,56 @@ describe('NavMainComponent', function () {
             });
 
             it('should change the clicked links aria-expanded to true', function () {
-                expect(this.$tertiaryLinkThree.attr('aria-expanded')).to.be.equal('true');
-            })
+                expect(this.$tertiaryLink.attr('aria-expanded')).to.be.equal('true');
+            });
+        });
+
+        describe('clicking on a tertiary nav link with a missing href', function () {
+            beforeEach(function () {
+                this.navMainComponent.init();
+                this.clickEvent = $.Event('click');
+            });
+    
+            it('should throw an error', function () {
+                expect(() => {
+                    this.$tertiarymissingHref.trigger(this.clickEvent);
+                }).to.throw('A nav link must have a href or data-target attribute');
+            });
+        });
+    
+        describe('clicking on a tertiary nav link with a missing data-target', function () {
+            beforeEach(function () {
+                this.navMainComponent.init();
+                this.clickEvent = $.Event('click');
+            });
+    
+            it('should throw an error', function () {
+                expect(() => {
+                    this.$tertiarymissingDataTarget.trigger(this.clickEvent);
+                }).to.throw('A nav link must have a href or data-target attribute');
+            });
+        });
+
+        describe('when a tertiary nav button is clicked', function () {
+            beforeEach(function() {
+                this.$tertiaryButton.trigger(this.clickEvent);
+            });
+
+            it('should prevent the default bahavior', function () {
+                expect(this.clickEvent.isDefaultPrevented()).to.be.true;
+            });
+
+            it('should open the quaternary nav', function () {
+                expect(this.$html.find('.nav-quaternary').hasClass('is-open')).to.be.true;
+            });
+
+            it('should add the is-active class to the quaternary nav nav-list', function () {
+                expect(this.$html.find('.nav-quaternary .nav-list').hasClass('is-active')).to.be.true;
+            });
+
+            it('should change the clicked links aria-expanded to true', function () {
+                expect(this.$tertiaryButton.attr('aria-expanded')).to.be.equal('true');
+            });
         });
 
         describe('when the close tertiary nav link is clicked', function () {
@@ -464,7 +577,7 @@ describe('NavMainComponent', function () {
 
         describe('When the quaternary nav is open and the quaternary close button is clicked', function () {
             beforeEach(function() {
-                this.$tertiaryLinkThree.trigger(this.clickEvent);
+                this.$tertiaryLink.trigger(this.clickEvent);
                 this.$closeQuaternaryNavLink.trigger(this.clickEvent2);
             });
 
@@ -481,7 +594,7 @@ describe('NavMainComponent', function () {
             });
 
             it('should change the nav tertiary link previously expanded to aria-expanded="false"', function () {
-                expect(this.$tertiaryLinkThree.attr('aria-expanded')).to.be.equal('false');
+                expect(this.$tertiaryLink.attr('aria-expanded')).to.be.equal('false');
             })
         });
     });
@@ -528,16 +641,44 @@ describe('NavMainComponent', function () {
             this.$window.height(200);
             this.$window.resize();
             this.$moreIconLink = this.$navMain.find('.more-icon > .nav-link');
+
+            // open tertiaru
             this.$moreIconLink.click();
+            // open quaternary
+            this.$tertiaryButton.click();
+
             this.$window.height(1000);
-            this.$window.resize();
             this.$window.resize();
         });
 
-        it('should hide the open tertiary or quaternary nav', function () {
-            expect(this.$navTertiary.hasClass('is-open')).to.be.false;
-            expect(this.$navQuaternary.hasClass('is-open')).to.be.false;
+        it('should hide the open tertiary nav', function () {
+            setTimeout(() => {
+                expect(this.$navTertiary.hasClass('is-open')).to.be.false;
+            }, 200);
         });
+        
+        it('should hide the open quaternary nav', function () {
+            setTimeout(() => {
+                expect(this.$navQuaternary.hasClass('is-open')).to.be.false;
+            }, 200);
+        });
+    });
+
+    describe('opening the secondary nav when a popover is open', function () {
+        beforeEach(function () {
+            this.navMainComponent.init();
+            this.clickEvent = $.Event('click');
+            this.$linkOne.trigger(this.clickEvent);
+            this.$popoverLink.trigger(this.clickEvent);
+        });
+
+        it('should trigger a popover', function () {
+			expect($.fn.popover).to.have.been.called;
+		});
+
+        it('should be hidden when opening the secondary navigation', function () {
+            expect($.fn.popover).to.have.been.calledWith('hide');            
+        })
     });
 
     describe('opening the secondary nav when a popover is open', function () {

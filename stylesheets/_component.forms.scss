@@ -239,9 +239,10 @@ fieldset {
     }
 
     &:focus {
-        border: 1px solid color(primary);
-        box-shadow: 0 0 0 1px color(primary);
-        outline: none;
+        border: 1px solid color(black);
+        box-shadow: 0 0 0 1px color(black);
+        outline: 3px solid color(border, focus);
+        outline-offset: 2px;
     }
 }
 
@@ -556,8 +557,8 @@ fieldset {
     }
 
     &:focus {
-        border-color: color(primary);
-        box-shadow: 0 0 0 2px color(primary);
+        border-color: color(black);
+        box-shadow: 0 0 0 2px color(black);
     }
 
     &::before {
@@ -624,6 +625,7 @@ fieldset {
 .form-choice {
     > .controls {
         margin-top: 11px; // magic number to align with main label
+        overflow: hidden;
 
         > .control__label {
             clear: left;
@@ -677,6 +679,17 @@ fieldset {
 
 .form-range .input-group > .form__control:last-child {
     padding-right: 0;
+}
+
+.form__group {
+    .table tbody {
+        background-color: #fafafa;
+        border-top: 1px solid color(border);
+    }
+
+    .table-container {
+        margin-bottom: .5em;
+    }
 }
 
 // undo default fieldset padding

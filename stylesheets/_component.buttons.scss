@@ -69,6 +69,28 @@ $btn-white:                 'white';
       border: 0;
       padding: 0;
     }
+
+    &:focus {
+        outline: 3px solid color(border, focus);
+        outline-offset: 3px;
+    }
+
+    &:hover,
+    &.is-hovered {
+        transform: translateY(1px);
+
+        // Uses a pseudo-element to fill the gap that caused the jitter
+        &::after {
+            bottom: 0;
+            content: '';
+            height: calc(100% + 5px);
+            left: -.05%; // make it slightly wider to prevent side jitter
+            position: absolute;
+            top: -3px;
+            width: 101%; // make it slightly wider to prevent side jitter
+            z-index: -1;
+        }
+    }
 }
 
 /**
@@ -85,9 +107,8 @@ $btn-white:                 'white';
 
     &:hover,
     &.is-hovered {
-      box-shadow: 0 1px 0 $shadow-color;
-      color: color($state, alt) !important;  // should be immutable
-      top: 1px;
+        box-shadow: 0 1px 0 $shadow-color;
+        color: color($state, alt) !important;  // should be immutable
     }
 
     &:active,
@@ -169,6 +190,7 @@ $btn-white:                 'white';
     &:hover,
     &.is-hovered {
         box-shadow: none;
+        margin-bottom: 1px; // offsets 1px padding reduction that causes content below to jump on button hover
         padding-bottom: $btn-padding-bottom - 1;
     }
 
@@ -260,7 +282,7 @@ $btn-white:                 'white';
 .btn--naked,
 .btn--naked > .btn {
     background: none;
-    border: 0;
+    border: 0 !important;
     box-shadow: none;
     color: color(text) !important;
 

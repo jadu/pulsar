@@ -20,7 +20,7 @@ describe('Pulsar UI Component', function() {
             <table class="table--datagrid qa-datagrid"></table>\
             <table class="table datatable qa-datatable"></table>\
             <table class="table datatable qa-datatable-empty-message" data-empty-table="foo"></table>\
-            <table class="table datatable qa-datatable-no-selection" data-select="false"></table>\
+            <table class="table datatable qa-datatable-no-selection" data-select="false" data-page-length="20"></table>\
             <div class="table-container"><table class="table qa-table-dupe"></table></div>\
             <a href="#tab" data-toggle="tab">foo</a>\
             <a data-href="?tab=foo" href="#tab-foo" data-toggle="tab">foo</a>\

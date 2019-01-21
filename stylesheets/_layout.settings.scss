@@ -27,6 +27,16 @@
     > *:last-child {
         margin-bottom: 0;
     }
+
+    // Ensure AA colour contrast
+    [href] {
+        color: color(link, dark);
+    }
+
+    // Ensure AA colour contrast
+    .help-block {
+        color: color(text);
+    }
 }
 
 
@@ -98,6 +108,8 @@
  */
 
 .settings-section--primary {
+    width: 100%;
+
     @include respond-min-max($screen-smaller, $screen-medium) {
         float: left;
         min-width: 200px;
