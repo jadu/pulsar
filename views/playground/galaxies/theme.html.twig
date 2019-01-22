@@ -1,0 +1,218 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
+
+{%- block actions_left -%}
+    {{
+        html.actions_menu({
+            'items': [
+                [
+                    {
+                        'label': 'Create site',
+                        'href': '/create',
+                        'icon': 'plus'
+                    }
+                ],
+                [
+                    {
+                        'label': 'Archive site',
+                        'href': '/archive',
+                        'icon': 'archive'
+                    },
+                    {
+                        'label': 'Delete site',
+                        'href': '/delete',
+                        'icon': 'times'
+                    }
+                ]
+            ]
+        })
+    }}
+{%- endblock -%}
+
+{%- block actions_right -%}
+    {{
+        html.button({
+            'label': html.icon('eye-open') ~ ' View Site'
+        })
+    }}
+    {{
+        html.button({
+            'label': html.icon('external-link') ~ ' Control Center'
+        })
+    }}
+    {{
+        html.button({
+            'label': 'Save',
+            'class': 'btn--primary'
+        })
+    }}
+    {{
+        html.button({
+            'label': 'Publish',
+            'class': 'btn--success'
+        })
+    }}
+{%- endblock -%}
+
+{% block tab_settings %}
+
+    {{
+        flash.message({
+            'dismissable': false,
+            'message': 'You have unpublished changes to your theme ' ~ html.button({ 'label': 'Publish Changes', 'class': 'btn--outline btn--inverse btn--small' }) ~ '&nbsp;' ~ html.button({ 'label': 'Discard', 'class': 'btn--outline btn--inverse btn--small' }),
+            'type': 'warning'
+        })
+    }}
+
+    <div class="settings-section settings-section--primary">
+
+        {{
+            form.create()
+        }}
+
+        {{
+            form.select({
+                'label': 'Accent colour',
+                'class': 'form__group--full',
+                'options': [
+                    {
+                        'label': 'Blue',
+                        'value': 'blue'
+                    },
+                    {
+                        'label': 'Red',
+                        'value': 'red'
+                    },
+                    {
+                        'label': 'Orange',
+                        'value': 'orange'
+                    },
+                    {
+                        'label': 'Green',
+                        'value': 'geen'
+                    }
+                ]
+            })
+        }}
+
+        {{
+            form.select({
+                'label': 'Font stack',
+                'class': 'form__group--top form__group--flush',
+                'options': [
+                    {
+                        'label': 'Helvetica, Arial, Sans Serif',
+                        'value': '1'
+                    },
+                    {
+                        'label': 'Comic sans, Impact, Papyrus',
+                        'value': 'red'
+                    }
+                ]
+            })
+        }}
+
+
+
+            <div class="form__group form__group--top form__group--flush form__group--full file">
+                <label for="quantum_client_branding_settings_command_detailedLogo_image" class="required control__label">Logo
+                    <i class="icon-info-circle" aria-hidden="true" data-toggle="tooltips" data-html="true" data-title="" data-original-title="" title=""></i>
+                </label>
+                <div class="controls">
+
+                    <img src="http://via.placeholder.com/330x200/ffffff/000000?text=logo-preview" />
+
+                    <input class="form__control file" type="file" id="quantum_client_branding_settings_command_detailedLogo_image" name="quantum_client_branding_settings_command[detailedLogo][image]" accept="image/*">
+                    <p class="help-block">Used in your site header, favicon and emails.<br />Min 200 x 200px. Use SVG for best results.</p>
+                </div>
+            </div>
+
+
+
+
+        {{
+            form.end({
+                'class': 'form__actions--flush',
+                'actions': [
+                    form.submit({
+                        'class': 'btn--primary',
+                        'label': 'Save'
+                    }),
+                    html.button({
+                        'class': 'btn--naked',
+                        'type': 'link',
+                        'label': 'Cancel',
+                        'href': '/home'
+                    })
+                ]
+            })
+        }}
+
+    </div>
+
+{% endblock tab_settings %}
+
+{% block tab_content %}
+
+<div class="g-row">
+    <div class="card g-col g-col--3 g-col--first">
+        <img src="http://via.placeholder.com/600x400/ebebeb/000000?text=preview" class="card-img" />
+        <div class="card__body">
+            <h3 class="card__title">School</h3>
+            <p>An optional theme description helping the user to know which one to choose.</p>
+            <a href="#cta-one" class="card-link">Preview</a>
+            <a href="#cta-two" class="card-link">Choose</a>
+        </div>
+    </div>
+    <div class="card g-col g-col--3 card--primary">
+        <img src="http://via.placeholder.com/600x400/ebebeb/000000?text=preview" class="card-img" />
+        <div class="card__body">
+            <h3 class="card__title">Venue</h3>
+            <p>An optional theme description helping the user to know which one to choose.</p>
+            {{
+                html.label({
+                    'label': 'this is your active theme',
+                    'class': 'label--primary'
+                })
+            }}
+        </div>
+    </div>
+    <div class="card g-col g-col--3">
+        <img src="http://via.placeholder.com/600x400/ebebeb/000000?text=preview" class="card-img" />
+        <div class="card__body">
+            <h3 class="card__title">Event</h3>
+            <p>An optional theme description helping the user to know which one to choose.</p>
+            <a href="#cta-one" class="card-link">Preview</a>
+            <a href="#cta-two" class="card-link">Choose</a>
+        </div>
+    </div>
+    <div class="card g-col g-col--3">
+        <img src="http://via.placeholder.com/600x400/ebebeb/000000?text=preview" class="card-img" />
+        <div class="card__body">
+            <h3 class="card__title">Service</h3>
+            <p>An optional theme description helping the user to know which one to choose.</p>
+            <a href="#cta-one" class="card-link">Preview</a>
+            <a href="#cta-two" class="card-link">Choose</a>
+        </div>
+    </div>
+</div>
+<div class="g-row">
+    <div class="card g-col g-col--3 g-col--first">
+        <img src="http://via.placeholder.com/600x400/ebebeb/000000?text=preview" class="card-img" />
+        <div class="card__body">
+            <h3 class="card__title">Research</h3>
+            <p>An optional theme description helping the user to know which one to choose.</p>
+            <a href="#cta-one" class="card-link">Preview</a>
+            <a href="#cta-two" class="card-link">Choose</a>
+        </div>
+    </div>
+    <div class="card g-col g-col--3">
+        <img src="http://via.placeholder.com/600x400/ebebeb/000000?text=preview" class="card-img" />
+        <div class="card__body">
+            <h3 class="card__title">Tourism</h3>
+            <p>An optional theme description helping the user to know which one to choose.</p>
+            <a href="#cta-one" class="card-link">Preview</a>
+            <a href="#cta-two" class="card-link">Choose</a>
+        </div>
+    </div>
+</div>
+{% endblock tab_content %}

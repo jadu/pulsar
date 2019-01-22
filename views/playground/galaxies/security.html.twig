@@ -1,0 +1,210 @@
+{% extends "@pulsar/pulsar/components/tab.html.twig" %}
+
+{%- block actions_left -%}
+    {{
+        html.actions_menu({
+            'items': [
+                [
+                    {
+                        'label': 'Create site',
+                        'href': '/create',
+                        'icon': 'plus'
+                    }
+                ],
+                [
+                    {
+                        'label': 'Archive site',
+                        'href': '/archive',
+                        'icon': 'archive'
+                    },
+                    {
+                        'label': 'Delete site',
+                        'href': '/delete',
+                        'icon': 'times'
+                    }
+                ]
+            ]
+        })
+    }}
+{%- endblock -%}
+
+{%- block actions_right -%}
+    {{
+        html.button({
+            'label': html.icon('eye-open') ~ ' View Site'
+        })
+    }}
+    {{
+        html.button({
+            'label': html.icon('external-link') ~ ' Control Center'
+        })
+    }}
+    {{
+        html.button({
+            'label': 'Save',
+            'class': 'btn--primary'
+        })
+    }}
+    {{
+        html.button({
+            'label': 'Publish',
+            'class': 'btn--success'
+        })
+    }}
+{%- endblock -%}
+
+{% block tab_content %}
+
+    {{
+        form.create()
+    }}
+
+    {{
+        form.toggle_switch({
+            'label': 'Password protect website',
+            'id': 'security-password',
+            'help': 'Restrict access to your site to website accounts only'
+        })
+    }}
+
+    <div class="form__group">
+        <label class="control__label">Website accounts <span class="required-indicator" rel="tooltip" data-toggle="tooltips" title="" data-original-title="required">*</span></label>
+        <div class="controls">
+            <div class="table-container">
+                <table class="table table--full">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Username</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="2" class="muted">You have not added any website accounts</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td class="table__form" colspan="2">
+                                {{
+                                    form.fieldset_start({
+                                        'legend': 'Add Access Account'
+                                    })
+                                }}
+                                {{
+                                    form.text({
+                                        'label': 'Actual name',
+                                        'class': 'form__control-col--8',
+                                        'required': true
+                                    })
+                                }}
+                                {{
+                                    form.text({
+                                        'label': 'Email address',
+                                        'class': 'form__control-col--8',
+                                        'required': true
+                                    })
+                                }}
+                                {{
+                                    form.text({
+                                        'label': 'Username',
+                                        'class': 'form__control-col--8',
+                                        'required': true
+                                    })
+                                }}
+                                {{
+                                    form.text({
+                                        'label': 'Password',
+                                        'class': 'form__control-col--8',
+                                        'required': true
+                                    })
+                                }}
+                                {{
+                                    form.text({
+                                        'label': 'Confirm password',
+                                        'class': 'form__control-col--8',
+                                        'required': true
+                                    })
+                                }}
+
+                                <div class="form__actions">
+                                    {{
+                                        html.button({
+                                            'label': 'Add',
+                                            'class': 'btn--primary'
+                                        })
+                                    }}
+                                    {{
+                                        html.button({
+                                            'label': 'Cancel',
+                                            'class': 'btn--naked'
+                                        })
+                                    }}
+                                </div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <button class="btn is-disabled" disabled>Add</button>
+        </div>
+    </div>
+
+    {{
+        form.toggle_switch({
+            'label': 'Use SSL',
+            'id': 'security-ssl',
+            'help': 'Automatically direct visitors and search engines to the secure version of your site'
+        })
+    }}
+
+    {{
+        form.text({
+            'label': 'SSL certificate information',
+            'class': 'form__control-col--7',
+            'id': 'ssl-cert',
+            'required': true
+        })
+    }}
+
+    {{
+        form.text({
+            'label': 'SSL key location',
+            'class': 'form__control-col--7',
+            'id': 'ssl-key',
+            'required': true
+        })
+    }}
+
+    {{
+        form.text({
+            'label': 'Certificate authority',
+            'class': 'form__control-col--7',
+            'id': 'ssl-cert-authority'
+        })
+    }}
+
+    {{
+        form.end({
+            'actions': [
+                form.submit({
+                    'label': 'Save',
+                    'class': 'btn--primary'
+                }),
+                html.button({
+                    'class': 'btn--naked',
+                    'type': 'link',
+                    'label': 'Cancel',
+                    'href': '/home'
+                })
+            ]
+        })
+    }}
+
+{% endblock tab_content %}
+
+{% block tab_sidebar %}
+    <h2>{{ html.icon('info-sign') }} Protect your visitors</h2>
+    <p>Create secure Galaxies sites and require authorised visitors to sign in first.</p>
+    <p>Use SSL security to encrypt traffic to and from your site, protecting data in transit.</p>
+{% endblock tab_sidebar %}

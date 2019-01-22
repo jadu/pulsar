@@ -1,12 +1,10 @@
 /.sass-cache                export-ignore
-/.vagrant                   export-ignore
 /app/                       export-ignore
 /coverage/                  export-ignore
 /docs/                      export-ignore
 /features/                  export-ignore
 /hook/                      export-ignore
 /node_modules/              export-ignore
-/provisioning/              export-ignore
 /coverage/                  export-ignore
 /shots/                     export-ignore
 /shots_history/             export-ignore
@@ -30,7 +28,6 @@
 /makefile                   export-ignore
 /phpunit.xml.dist           export-ignore
 /pulsar.sublime-project     export-ignore
-/Vagrantfile                export-ignore
 /tests/validation/w3cError* export-ignore
 /validation-status.json     export-ignore
 /validation-report.json     export-ignore
@@ -43,11 +40,6 @@
 ##
 ## /libs/
 ##
-
-# bootstrapx-clickover
-/libs/bootstrapx-clickover/.bower.json                          export-ignore
-/libs/bootstrapx-clickover/docs/                                export-ignore
-/libs/bootstrapx-clickover/README.md                            export-ignore
 
 # font-awesome
 /libs/font-awesome/.bower.json                                  export-ignore
