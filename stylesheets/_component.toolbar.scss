@@ -4,7 +4,7 @@
     display: block;
     float: left;
     margin-bottom: 18px;
-    padding: 12px 20px;
+    padding: 12px 20px 0;
     width: 100%;
 
     @include respond-min($screen-desktop) {
