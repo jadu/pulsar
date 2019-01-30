@@ -405,6 +405,10 @@ var $ = require('jquery');
       var data    = $this.data('bs.tooltips')
       var options = typeof option == 'object' && option
 
+      if ('ontouchstart' in window) {
+        return;
+      }
+
       if (!data && option == 'destroy') return
       if (!data) $this.data('bs.tooltips', (data = new Tooltips(this, options)))
       if (typeof option == 'string') data[option]()
