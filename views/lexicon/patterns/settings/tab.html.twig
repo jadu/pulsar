@@ -64,7 +64,7 @@
         })
     }}
 
-    <div class="settings-section settings-section--primary">
+    <div class="settings-section settings-section--primary settings-section--stacked">
 
         {{
             form.toggle_switch({
@@ -76,14 +76,216 @@
 
     </div>
 
-    <div class="settings-section">
+    <div class="settings-section settings-section--stacked">
 
-        <ol>
-            <li>Page 1 - Your details</li>
-            <li>Page 1 - Your details</li>
-            <li>Page 1 - Your details</li>
-            <li>Page 1 - Your details</li>
-        </ol>
+    {% set i = 100 %}
+    {{
+        form.create()
+    }}
+
+    {{
+        form.text({
+            'label': 'Text',
+            'id': i
+        })
+    }}
+    {% set i = i + 1 %}
+
+    {{
+        form.textarea({
+            'label': 'Textarea',
+            'id': i,
+            'help': 'Long help text that wraps onto two lines to check spacing and alignment'
+        })
+    }}
+    {% set i = i + 1 %}
+
+    {{
+        form.color({
+            'label': 'Color',
+            'id': i
+        })
+    }}
+    {% set i = i + 1 %}
+
+    {{
+        form.select({
+            'label': 'Select',
+            'id': i,
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+    {% set i = i + 1 %}
+
+    {{
+        form.select2({
+            'label': 'Select2',
+            'id': i,
+            'options': [
+                {
+                    'label': 'Value one',
+                    'value': 'value1'
+                },
+                {
+                    'label': 'Value two',
+                    'value': 'value2'
+                }
+            ]
+        })
+    }}
+    {% set i = i + 1 %}
+{# 
+    {{
+        form.compound({
+            'label': 'Compound',
+            'id': i,
+            'inputs': [
+                {
+                    'class': 'form__control-col--1',
+                    'label': 'Value',
+                    'id': 'value-0',
+                    'maxlength': '3',
+                    'show-label': false,
+                    'type': 'text'
+                },
+                {
+                    'class': 'u-width-auto',
+                    'label': 'Unit of time',
+                    'id': 'unit-0',
+                    'show-label': false,
+                    'type': 'select',
+                    'options': [
+                        {
+                            'label': 'Seconds',
+                            'value': 'sec'
+                        },
+                        {
+                            'label': 'Minutes',
+                            'value': 'min'
+                        }
+                    ]
+                }
+            ]
+        })
+    }}
+    {% set i = i + 1 %} 
+#}
+
+    {{
+        form.toggle_switch({
+            'label': 'Toggle switch',
+            'id': i
+        })
+    }}
+    {% set i = i + 1 %}
+
+    {{
+        form.range({
+            'label': 'Range',
+            'id': i,
+        })
+    }}
+    {% set i = i + 1 %}
+
+    {{ form.fieldset_start({ 'legend': 'Checkboxes and radios' }) }}
+
+    {{
+        form.checkbox({
+            'label': 'Checkbox with super long label',
+            'id': i
+        })
+    }}
+    {% set i = i + 1 %}
+
+    {{
+        form.radio({
+            'label': 'Radio',
+            'id': i
+        })
+    }}
+    {% set i = i + 1 %}
+
+    {{
+        form.checkbox_inline({
+            'label': 'Checkbox inline',
+            'id': i
+        })
+    }}
+    {% set i = i + 1 %}
+
+    {{
+        form.radio_inline({
+            'label': 'Radio inline',
+            'id': i
+        })
+    }}
+    {% set i = i + 1 %}
+
+    {{
+        form.choice({
+            'label': 'Choice checkbox',
+            'id': i,
+            'options': [
+                {
+                    'label': 'Checkbox One',
+                    'value': 'one',
+                    'name': 'one',
+                    'checked': true
+                },
+                {
+                    'label': 'Checkbox Two',
+                    'value': 'two',
+                    'name': 'one'
+                },
+                {
+                    'label': 'Checkbox Three',
+                    'value': 'three',
+                    'name': 'one'
+                }
+            ]
+        })
+    }}
+    {% set i = i + 1 %}
+
+    {{
+        form.choice({
+            'label': 'Choice radio',
+            'multiple': true,
+            'id': i,
+            'options': [
+                {
+                    'label': 'Radio One',
+                    'value': 'one',
+                    'name': 'one'
+                },
+                {
+                    'label': 'Radio Two',
+                    'value': 'two',
+                    'name': 'one'
+                },
+                {
+                    'label': 'Radio Three',
+                    'value': 'three',
+                    'name': 'one'
+                }
+            ]
+        })
+    }}
+
+    {{ form.fieldset_end() }}
+
+    {{
+        form.end()
+    }}
 
     </div>
 
