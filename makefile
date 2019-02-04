@@ -44,10 +44,6 @@ build:
 	@ -brew install imagemagick
 	@ echo "\n${CHECK} Done"
 
-	@ echo "${HR}\nInstalling Wraith...${HR}\n"
-	@ sudo gem install wraith --no-ri --no-rdoc --no-user-install
-	@ echo "\n${CHECK} Done"
-
 	@ echo "${HR}\nInstalling Node & NPM...${HR}\n"
 	@ -brew install node
 	@ npm install -g npm
