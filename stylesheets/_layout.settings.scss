@@ -471,8 +471,8 @@
             width: 100%;
         }
 
-        &.colorpicker .form__control {
-            width: calc(100% - 48px) !important;
+        .ie9 &.colorpicker .form__control {
+            width: calc(100% - 48px);
         }
 
         .help-block {
