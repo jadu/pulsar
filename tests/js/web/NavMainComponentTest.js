@@ -5,7 +5,7 @@
 var $ = require('jquery'),
     NavMainComponent = require('../../../js/NavMainComponent');
 
-$.fx.off = !$.fx.off;
+$.fx.off = true;
 
 describe('NavMainComponent', function () {
     beforeEach(function() {
@@ -429,6 +429,7 @@ describe('NavMainComponent', function () {
             this.$moreIconLink = this.$html.find('.more-icon > .nav-link');
             this.clickEvent = $.Event('click');
             this.clickEvent2 = $.Event('click');
+            this.clickEvent3 = $.Event('click');
         });
 
         it('should prevent the default bahavior', function () {
@@ -466,9 +467,12 @@ describe('NavMainComponent', function () {
 
         it('should close the quaternary nav if it is already open', function () {
             this.$moreIconLink.trigger(this.clickEvent);
-            this.$tertiaryLink.trigger(this.clickEvent);
-            this.$moreIconLink.trigger(this.clickEvent2);
+            this.$tertiaryButton.trigger(this.clickEvent3);
 
+            expect(this.$html.find('.nav-quaternary').hasClass('is-open')).to.be.true;
+
+            this.$moreIconLink.trigger(this.clickEvent2);
+            
             expect(this.$html.find('.nav-quaternary').hasClass('is-open')).to.be.false;
         });
 
@@ -481,7 +485,10 @@ describe('NavMainComponent', function () {
 
         it('should remove the is-active class from the quaternary navs active nav-list if its already open', function () {
             this.$moreIconLink.trigger(this.clickEvent);
-            this.$tertiaryLink.trigger(this.clickEvent);
+            this.$tertiaryButton.trigger(this.clickEvent3);
+            
+            expect(this.$html.find('.nav-quaternary').hasClass('is-open')).to.be.true;
+
             this.$moreIconLink.trigger(this.clickEvent2);
 
             expect(this.$html.find('.nav-quaternary .nav-list').hasClass('is-active')).to.be.false;
