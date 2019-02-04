@@ -462,14 +462,30 @@ describe('NavMainComponent', function () {
             this.$moreIconLink.trigger(this.clickEvent2);
 
             expect(this.$html.find('.nav-tertiary').hasClass('is-open')).to.be.false;
-        });  
+        });
+
+        it('should close the quaternary nav if it is already open', function () {
+            this.$moreIconLink.trigger(this.clickEvent);
+            this.$tertiaryLink.trigger(this.clickEvent);
+            this.$moreIconLink.trigger(this.clickEvent2);
+
+            expect(this.$html.find('.nav-quaternary').hasClass('is-open')).to.be.false;
+        });
 
         it('should remove the is-active class from the tertiary navs active nav-list if its already open', function () {
             this.$moreIconLink.trigger(this.clickEvent);
             this.$moreIconLink.trigger(this.clickEvent2);
 
             expect(this.$html.find('.nav-tertiary .nav-list').hasClass('is-active')).to.be.false;
-        });  
+        });
+
+        it('should remove the is-active class from the quaternary navs active nav-list if its already open', function () {
+            this.$moreIconLink.trigger(this.clickEvent);
+            this.$tertiaryLink.trigger(this.clickEvent);
+            this.$moreIconLink.trigger(this.clickEvent2);
+
+            expect(this.$html.find('.nav-quaternary .nav-list').hasClass('is-active')).to.be.false;
+        });
 
         it('should change more button aria-expanded attribute to false if the tertiary nav was already open', function () {
             this.$moreIconLink.trigger(this.clickEvent);
