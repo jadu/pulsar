@@ -451,6 +451,10 @@
  */
  .tab__settings .settings-section--stacked {
 
+    .form__group {
+        clear: both;
+    }
+
     // Force labels to be stacked with the inputs below, except for checkbox/radio
     .form__group:not(.form__group--flush):not(.form__group--toggle):not(.form-checkbox):not(.form-radio) {
         margin-bottom: 12px;
@@ -465,6 +469,11 @@
         .form__control + .select2,
         .input-group {
             width: 100%;
+        }
+
+        &.colorpicker .form__control {
+            border: 1px solid green;
+            width: calc(100% - 48px) !important;
         }
 
         .help-block {
