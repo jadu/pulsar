@@ -1467,10 +1467,10 @@ All DropZone options should be prefixed with `data-dropzone-`, for example `data
 
 Option                              | Type      | Description
 ----------------------------------- | --------- | ----------------------------------------------------
-helperLabel                         | string    | The label for the default helper text popup
-helperTitle                         | string    | The heading for the default helper text popup
-helperContent                       | string    | The content for the default helper text popup
-helperContainer                     | string    | The selector for the container of the helper text popup
+data-helper-label                   | string    | The label for the default helper text popup
+data-helper-title                   | string    | The heading for the default helper text popup
+data-helper-content                 | string    | The content for the default helper text popup
+data-helper-container               | string    | The selector for the container of the helper text popup
 data-dropzone-max-files             | string    | The maximum ammount of files a DropZone will accept
 data-dropzone-max-size              | string    | The combined file size limit of a group of files
 data-dropzone-idle-timer-duration   | string    | The duration
@@ -1509,13 +1509,13 @@ data-dropzone-file-node-type        | boolean   | Show file type in file html | 
             <p class="dropzone__help"
                data-toggle="popover"
                data-autoclose="true"
-               data-title="{{ options.helperTitle|default('Helper title')|raw }}"
-               data-content="{{ options.helperContent|default('Helper content')|raw }}"
+               data-title="{{ options['data-helper-title']|default('Helper title')|raw }}"
+               data-content="{{ options['data-helper-content']|default('Helper content')|raw }}"
                data-html="true"
                data-placement="bottom"
-               data-container="{{ options.helperContainer|default('#' ~ options.id) }}"
+               data-container="{{ options['data-helper-container']|default('#' ~ options.id) }}"
             >
-                {{ html.icon('question-sign') }} {{ options.helperLabel|default('Only certain file types are allowed') }}
+                {{ html.icon('question-sign') }} {{ options['data-helper-label']|default('Only certain file types are allowed') }}
             </p>
         </div>
     {% endspaceless %}
