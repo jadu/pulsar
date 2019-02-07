@@ -303,13 +303,49 @@ td.table__form .rules + .form__group:last-of-type {
  * The following version 2 was developed to meet the needs of XFP conditional logic rules
  */
 .rules-container--v2 {
+    border-left: 4px solid color(gray, lightest);
+    padding-left: 20px;
+    position: relative;
 
-    .rule-links a {
-        padding: 5px 0;
+    &::before,
+    &::after {
+        background-color: color(white);
+        content: '';
+        display: block;
+        height: 35px;
+        left: -4px;
+        position: absolute;
+        width: 24px;
+    }
+
+    &::before {
+        border-bottom: 4px solid color(gray, lightest);
+        top: 0;
+    }
+
+    &::after {
+        border-top: 4px solid color(gray, lightest);
+        bottom: 0;
+    }
+
+    .rule-links button {
+        border: 1px solid color(border);
+        border-radius: 5px;
+        display: inline-block;
+        margin-left: 25px;
+        min-width: 50px;
+        padding: 8px 0;
+        text-align: center;
+
+        &:hover {
+            background-color: color(background, light);
+        }
     }
 
     .rule-link {
         position: relative;
+        padding-top: 10px;
+        padding-bottom: 10px;
 
         &::after {
             color: #dedede;
@@ -318,79 +354,93 @@ td.table__form .rules + .form__group:last-of-type {
             font-size: 19px;
             left: 0;
             position: absolute;
-            top: 7px;
+            top: 17px;
         }
     }
 
     .rule-link--or {
-        border-left: 4px solid color(gray, lightest);
-        padding-left: 30px;
-
         &::before {
             content: '';
             display: inline-block;
             border-left: 4px solid color(gray, lightest);
             margin-right: -5px;
-            height: 21px;
+            height: 45px;
+            position: absolute;
+            top: -14px;
             width: 0;
         }
 
         &::after {
-            left: 35px;
+            left: 3px;
         }
 
-        a {
-            display: inline-block;
+        button {
+            background-color: lighten(#9d7ee3, 25);
+        }
+    }
 
-            &::before {
-                background-color: color(gray, lightest);
-                content: '';
-                display: inline-block;
-                height: 4px;
-                margin-right: 10px;
-                width: 10px;
-            }
+    .rule-block--else-if + .rule-links .rule-link--or,
+    .rule-block--and + .rule-links .rule-link--or {
+        border-left: 4px solid color(gray, lightest);
+        margin-left: 20px;
+        padding-left: 40px;
+
+        &::after {
+            left: 44px;
+        }
+    }
+
+    .rule-link--or + .rule-link--and {
+        padding-top: 0;
+
+        &::after {
+            top: 7px;
         }
     }
 
     .rule-link--and {
         border-left: 4px solid color(gray, lightest);
+        margin-left: 20px;
 
-        a {
-            display: inline-block;
-
-            &::before {
-                background-color: color(gray, lightest);
-                content: '';
-                display: inline-block;
-                height: 4px;
-                margin-right: 10px;
-                width: 10px;
-            }
+        button {
+            background-color: lighten(#e8b750, 30);
         }
     }
 
     .rule-link--else-if {
-        border-left: 4px solid color(gray, lightest);
-        margin-left: 20px;
+        margin-left: -20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
 
-        a {
-            display: inline-block;
+        &::before {
+            border-top: 2px dashed color(gray, lightest);
+            content: '';
+            display: block;
+            width: 100%;
+            height: 3px;
+            position: absolute;
+            top: 38px;
+        }
 
-            &::before {
-                background-color: color(gray, lightest);
-                content: '';
-                display: inline-block;
-                height: 4px;
-                margin-right: 10px;
-                width: 10px;
-            }
+        &::after {
+            top: 27px;
+        }
+
+        button {
+            background-color: lighten(#3f8ccc, 40);
+            margin-left: 30px;
+            min-width: 76px;
         }
     }
 
     .rule-block + .rule-block,
     .rule-block--indent > .rule-block {
         margin-top: -1px;
+
+        // visually distinguish blocks close together
+        .rule-block__header {
+            border-top: 1px solid rgba(255, 255, 255, .5);
+        }
     }
 
     // first block, indented one spot
@@ -412,34 +462,90 @@ td.table__form .rules + .form__group:last-of-type {
     }
 
     .rule-block__header {
+        border: 0;
         box-shadow: none;
+        color: color(white);
         font-family: $font-family-regular;
+        font-size: 18.66px; // For AA large text
+        padding: .5em;
+
+        @include respond-min($screen-tablet) {
+            padding: 0;
+        }
+    }
+
+    .rule-block__heading {
+        padding: 0;
     }
 
     .rule-block--if,
     .rule-block--else-if {
-        border-left: 4px solid color(jadu-blue, dark);
-        color: color(jadu-blue, dark);
+        background-color: lighten(#3f8ccc, 40);
+        border-color: #3f8ccc;
+        border-top-left-radius: 15px;
+
+        @include respond-min($screen-tablet) {
+            border-top-right-radius: 15px;
+        }
+
+        .rule-block__header {
+            background-color: #3f8ccc;
+            border-top-left-radius: 14px;
+        }
+
+        .remove-control {
+            color: color(white);
+
+            @include respond-min($screen-tablet) {
+                color: color(text);
+            }
+        }
+    }
+
+    .rule-block--else-if {
+        &::after {
+            border-top: 4px solid color(gray, lightest);
+            content: '';
+            display: block;
+            width: 24px;
+            height: 4px;
+            left: -25px;
+            position: absolute;
+            top: 35px;
+        }
+
+        .rule-block__header {
+            border-top: 0;
+        }
     }
 
     .rule-block--and {
-        border-left: 4px solid color(jadu-green, dark);
-        color: color(jadu-green, dark);
+        background-color: lighten(#e8b750, 30);
+        border-color: #e8b750;
         margin-top: 0;
 
-        + .rule-block--or + .rule-link--or {
-            padding-left: 40px;
+        .rule-block__header {
+            background-color: #e8b750;
+            color: color(black);
         }
     }
 
     .rule-block--or {
-        border-left: 4px solid color(jadu-pink, dark);
-        color: color(jadu-pink, dark);
+        background-color: lighten(#9d7ee3, 25);
+        border-color: #9d7ee3;
+
+        .rule-block__header {
+            background-color: #9d7ee3;
+        }
     }
 
     .rule-block--else {
-        border-left: 4px solid color(jadu-teal, dark);
-        color: color(jadu-teal, dark);
+        background-color: lighten(#3f8ccc, 30);
+        border-color: #3f8ccc;
+
+        .rule-block__header {
+            background-color: #3f8ccc;
+        }
 
         + .rule-block--return {
             margin-left: 30px;
@@ -451,52 +557,42 @@ td.table__form .rules + .form__group:last-of-type {
         }
     }
 
-    .rule-block--return .rule-block__header {
-        background-color: color(jadu-green, pale);
-    }
-
-    .rule-block--else-return .rule-block__header {
-        background-color: color(gray, dark);
-        color: color(white);
-
-        @include respond-min($screen-small) {
-            width: 120px;
-        }
-    }
-
-    .rule-block--return,
-    .rule-block--else-return {
-        border-radius: 15px;
-
-        @include respond-min($screen-small) {
-            border-left: 0;
-        }
+    .rule-block--return {
+        background-color: lighten(#7dbc8e, 30);
+        border-color: #7dbc8e;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
 
         .rule-block__header {
-            border-radius: 15px;
-            border-bottom-left-radius: 0;
-            border-bottom-right-radius: 0;
+            background-color: #7dbc8e;
 
-            @include respond-min($screen-small) {
-                border-radius: 15px;
-                border-top-right-radius: 0;
-                border-bottom-right-radius: 0;
+            @include respond-min($screen-tablet) {
+                border-bottom-left-radius: 14px;
             }
         }
     }
 
-    .rule-block + .rule-block--return,
-    .rule-block + .rule-block--else-return {
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
+    .rule-block--else-return {
+        background-color: color(gray, lightest);
+        border-color: color(gray, dark);
+        border-radius: 15px;
 
         .rule-block__header {
-            border-top-left-radius: 0;
+            background-color: color(gray, dark);
+            border-top-left-radius: 14px;
+            border-top-right-radius: 14px;
+            color: color(white);
+
+            @include respond-min($screen-small) {
+                border-top-left-radius: 14px;
+                border-bottom-left-radius: 14px;
+                width: 120px;
+            }
         }
     }
 
     .rule-block__controls {
-        margin-top: .8em;
+        margin-top: .5em;
     }
 
     .remove__control {
